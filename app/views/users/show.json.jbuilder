@@ -1,0 +1,1 @@
+json.extract! @user, :id, :username, :email, :fname, :lname, :birth, :gender, :about, :website, :country, :pic, :lang, :saved_collections, :saved_products, :private_chats, :public_chats, :notifications

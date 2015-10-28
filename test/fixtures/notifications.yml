@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  senderId: MyString
+  receiverId: MyString
+  targetId: MyString
+  message: MyString
+  timestamp: MyString
+
+two:
+  senderId: MyString
+  receiverId: MyString
+  targetId: MyString
+  message: MyString
+  timestamp: MyString
