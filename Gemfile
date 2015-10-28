@@ -31,7 +31,9 @@ gem 'omniauth'
 
 gem 'omniauth-facebook'
 
-gem 'carrierwave'
+# carr ierwave provides an unit interface to enable upload file in different storage
+gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
+gem "mini_magick"
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
