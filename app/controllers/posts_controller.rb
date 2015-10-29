@@ -72,7 +72,6 @@ class PostsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def post_params
-    #params[:post][:image] = File.open(params[:post][:image])
     params.require(:post).permit(:name, :image, :productId, :owner, :collectionId, :chatId)
   end
 end
