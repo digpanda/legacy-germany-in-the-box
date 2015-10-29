@@ -24,7 +24,7 @@
             </ul>
             <div class="info">
               <%= link_to profile_path(collection.user) do %>
-                  <img src=<%= collection.user.img %>>
+                  <img src=<%= collection.user.pic%>>
 
                   <p><%= collection.user.username %></p>
               <% end %>
@@ -85,7 +85,9 @@
       <ul class="large-block-grid-4 collections">
         <%= content_tag_for(:tr, @collections) do |collection| %>
             <li>
-              <!-- <a href=" #" data-reveal-id="firstModal" onclick=" myFunction('<%= collection.id %>' , '<%= collection.products_imgs %> ', '<%= collection.name %> ' , '<%= collection.desc %> ')" class="radius  "> -->
+              <% if false %>
+                <a href=" #" data-reveal-id="firstModal" onclick=" myFunction('<%= collection.id %>' , '<%= collection.products_imgs %> ', '<%= collection.name %> ' , '<%= collection.desc %> ')" class="radius  "> 
+              <% end %>
               <ul class="small-block-grid-2 collectionsicon">
                 <% collection.products.limit(4).each do |i| %>
                     <li><img src=<%= collection.products[i].img %>></li>
@@ -94,7 +96,7 @@
               <!-- </a> -->
               <div class="info">
                 <%= link_to profile_path(collection.user) do %>
-                    <img src=<%= collection.user.img %>>
+                    <img src=<%= collection.user.pic %>>
 
                     <p><%= collection.user.username %></p>
                 <% end %>
