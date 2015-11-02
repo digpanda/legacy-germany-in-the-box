@@ -25,7 +25,7 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-    @owner = User.find(post_params[:owner])
+    @owner = User.find(post_params[:user])
     @post = Post.new(post_params)
     @owner.posts.push(@post)
 
@@ -72,6 +72,6 @@ class PostsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def post_params
-    params.require(:post).permit(:name, :image, :productId, :owner, :collectionId, :chatId)
+    params.require(:post).permit(:name, :image, :productId, :user, :collectionId, :chatId)
   end
 end
