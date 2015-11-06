@@ -11,8 +11,10 @@
         </div>
     <% end %>
 
+    <div class="field">
       <img src="<%= @user.pic.url %>"/>
       <%= f.file_field :pic%>
+  </div>
 
     <div class="field">
       <%= f.label :fname %><br>
