@@ -16,6 +16,8 @@ class User
   field :provider
   field :uid
 
+  mount_uploader :pic, AttachmentUploader
+
   # Include default devise modules. Others available are:
   #  :lockable, :timeoutable and
   devise :database_authenticatable, :registerable,
@@ -86,13 +88,13 @@ class User
   validates :email , uniqueness: true
   # validates :fname, presence: true
   # validates :lname, presence: true
-  validates :birth, presence: true
-  validates :gender, presence: true
+  #validates :birth, presence: true
+  #validates :gender, presence: true
   # validates :about, presence: true
   # validates :website, presence: true
   # validates :country, presence: true
   # validates :pic, presence: true
-  validates :lang, presence: true
+  #validates :lang, presence: true
 
 
 

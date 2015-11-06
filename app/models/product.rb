@@ -17,7 +17,9 @@ class Product
   field :status, type: String
   field :desc, type: String
 
-
+  mount_uploader :img, AttachmentUploader
+  mount_uploader :imglg, AttachmentUploader
+  
   # Relations_mapping
   field :owner, :type => String
   field :likers, :type => Array, default: []

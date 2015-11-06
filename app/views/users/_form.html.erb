@@ -11,9 +11,12 @@
         </div>
     <% end %>
 
+      <img src="<%= @user.pic.url %>"/>
+      <%= f.file_field :pic%>
+
     <div class="field">
-      <%= f.label :name %><br>
-      <%= f.text_field :name %>
+      <%= f.label :fname %><br>
+      <%= f.text_field :fname %>
     </div>
     <div class="field">
       <%= f.label :email %><br>
@@ -24,8 +27,8 @@
       <%= f.text_field :password %>
     </div>
     <div class="field">
-      <%= f.label :userid %><br>
-      <%= f.number_field :userid %>
+      <%= f.label :uid %><br>
+      <%= f.number_field :uid %>
     </div>
     <div class="actions">
       <%= f.submit %>
