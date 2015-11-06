@@ -38,14 +38,17 @@
       <%= f.label :category %><br>
       <%= f.number_field :category %>
     </div>
+
     <div class="field">
-      <%= f.label :img %><br>
-      <%= f.number_field :img %>
+      <img src="<%= @product.img.url %>"/>
+      <%= f.file_field :img%>
     </div>
+
     <div class="field">
-      <%= f.label :imglg %><br>
-      <%= f.text_field :imglg %>
+      <img src="<%= @product.imglg.url %>"/>
+      <%= f.file_field :imglg%>
     </div>
+
     <div class="field">
       <%= f.label :price %><br>
       <%= f.number_field :price %>
@@ -70,6 +73,12 @@
       <%= f.label :status %><br>
       <%= f.text_field :status %>
     </div>
+
+    <div class="field">
+      <%= f.label :owner %><br>
+      <%= f.text_field :owner %>
+    </div>
+
     <div class="actions">
       <%= f.submit %>
     </div>
