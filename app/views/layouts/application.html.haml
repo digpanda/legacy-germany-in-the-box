@@ -2,32 +2,20 @@
 %html
   %head
     %title Couponia - Index shop layout 1
-    / meta info
     %meta{:content => "text/html; charset=utf-8", "http-equiv" => "Content-Type"}
     %meta{:content => "Koupon HTML5 Template", :name => "keywords"}
     %meta{:content => "Koupon - Premiun HTML5 Template for Coupons Website", :name => "description"}
     %meta{:content => "Tsoy", :name => "author"}
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
-    / Google fonts
     %link{:href => "http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300", :rel => "stylesheet", :type => "text/css"}
     %link{:href => "http://fonts.googleapis.com/css?family=Roboto:400,100,300", :rel => "stylesheet", :type => "text/css"}
-    / Bootstrap styles
     = stylesheet_link_tag  "couponia/css/boostrap.css" 
-    / Font Awesome styles (icons)
     = stylesheet_link_tag "couponia/css/font_awesome.css"
-    / Main Template styles
     = stylesheet_link_tag "couponia/css/styles.css"
-    / IE 8 Fallback
-    /[if lt IE 9]
     = stylesheet_link_tag  "couponia/css/ie.css" 
-    / Your custom styles (blank file)
     = stylesheet_link_tag  "couponia/css/mystyles.css"
   %body
     .global-wrap
-      /
-        \//////////////////////////////////
-        \//////////////MAIN HEADER/////////////
-        \////////////////////////////////////
       .top-main-area.text-center
         .container
           %a.logo.mt5{:href => "index.html"}
@@ -36,7 +24,6 @@
         .container
           .row
             .col-md-6
-              / MAIN NAVIGATION
               #flexnav-menu-button.flexnav-menu-button Menu
               %nav
                 %ul#flexnav.nav.nav-pills.flexnav{"data-breakpoint" => "800"}
@@ -52,9 +39,7 @@
                     %a{:href => "blog-sidebar-right.html"} Blog
                   %li
                     %a{:href => "page-full-width.html"} Pages
-              / END MAIN NAVIGATION
             .col-md-6
-              / LOGIN REGISTER LINKS
               %ul.login-register
                 %li.shopping-cart
                   %a{:href => "page-cart.html"}
@@ -89,7 +74,6 @@
                   %a.popup-text{"data-effect" => "mfp-move-from-top", :href => "#register-dialog"}
                     %i.fa.fa-edit>
                     Sign up
-      / LOGIN REGISTER LINKS CONTENT
       #login-dialog.mfp-with-anim.mfp-hide.mfp-dialog.clearfix
         %i.fa.fa-sign-in.dialog-icon
         %h3 Member Login
@@ -150,20 +134,9 @@
           %label E-mail
           %input.span12{:placeholder => "email@domain.com", :type => "text"}
           %input.btn.btn-primary{:type => "submit", :value => "Request new password"}     
-      /
-        \//////////////////////////////////
-        \//////////////PAGE CONTENT/////////////
-        \////////////////////////////////////
-      = yield
-      /
-        \//////////////////////////////////
-        \//////////////END PAGE CONTENT/////////
-        \////////////////////////////////////
 
-      /
-        \//////////////////////////////////
-        \//////////////MAIN FOOTER//////////////
-        \////////////////////////////////////
+      = yield
+
       %footer.main
         .footer-top-area
           .container
@@ -246,11 +219,7 @@
                       = image_tag "couponia/payment/mastercard-curved-32px.png", :alt => "Image Alternative text",  :title => "Image Title"
                     %li
                       = image_tag "couponia/payment/visa-curved-32px.png", :alt => "Image Alternative text",  :title => "Image Title"
-      /
-        \//////////////////////////////////
-        \//////////////END MAIN  FOOTER/////////
-        \////////////////////////////////////
-      / Scripts queries
+                      
       = javascript_include_tag "couponia/jquery.js"
       = javascript_include_tag "couponia/boostrap.min.js"
       = javascript_include_tag "couponia/countdown.min.js"
@@ -267,5 +236,4 @@
       = javascript_include_tag "couponia/owl-carousel.js"
       = javascript_include_tag "couponia/masonry.js"
       = javascript_include_tag "couponia/nicescroll.js"
-      / Custom scripts
       = javascript_include_tag "couponia/custom.js"

@@ -9,28 +9,28 @@
           %li= message
   .field
     = f.label :name
-    %br/
+    %br
     = f.text_field :name
   .field
     = f.label :image
-    %br/
+    %br
     %img{:src => "#{@post.image.url}"}/
     = f.file_field :image
   .field
     = f.label :productId
-    %br/
+    %br
     = f.text_field :productId
   .field
     = f.label :collectionId
-    %br/
+    %br
     = f.text_field :collectionId
   .field
     = f.label :chatId
-    %br/
+    %br
     = f.text_field :chatId
   .field
     = f.label :user
-    %br/
+    %br
     = f.text_field :user
   .actions
     = f.submit

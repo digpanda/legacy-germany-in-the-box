@@ -4,38 +4,38 @@
     = devise_error_messages!
     .field
       = f.label :email
-      %br/
+      %br
       = f.email_field :email, autofocus: true
     .field
       = f.label :password
       - if @validatable
         %em
           (#{@minimum_password_length} characters minimum)
-      %br/
+      %br
       = f.password_field :password, autocomplete: "off"
     .field
       = f.label :pic
-      %br/
+      %br
       = f.text_field :pic
     .field
       = f.label :password_confirmation
-      %br/
+      %br
       = f.password_field :password_confirmation, autocomplete: "off"
     .field
       = f.label :username
-      %br/
+      %br
       = f.text_field :username
     .field
       = f.label :birth
-      %br/
+      %br
       = f.date_field :birth
     .field
       = f.label :gender
-      %br/
+      %br
       = f.text_field :gender
     .field
       = f.label :lang
-      %br/
+      %br
       = f.text_field :lang
     .actions
       = f.submit "Sign up"

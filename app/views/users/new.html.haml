@@ -8,19 +8,19 @@
         - @user.errors.full_messages.each do |message|
           %li= message
   .field
-    %img{:src => "#{@user.pic.url}"}/
+    %img{:src => "#{@user.pic.url}"}
     = f.file_field :pic
   .field
     = f.label :username
-    %br/
+    %br
     = f.text_field :username
   .field
     = f.label :email
-    %br/
+    %br
     = f.text_field :email
   .field
     = f.label :password
-    %br/
+    %br
     = f.password_field :password
   .actions
     = f.submit 'Register'

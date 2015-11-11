@@ -9,65 +9,65 @@
           %li= message
   .field
     = f.label :network
-    %br/
+    %br
     = f.text_field :network
   .field
     = f.label :shopname
-    %br/
+    %br
     = f.text_field :shopname
   .field
     = f.label :prodid
-    %br/
+    %br
     = f.text_field :prodid
   .field
     = f.label :deeplink
-    %br/
+    %br
     = f.number_field :deeplink
   .field
     = f.label :name
-    %br/
+    %br
     = f.number_field :name
   .field
     = f.label :brand
-    %br/
+    %br
     = f.text_field :brand
   .field
     = f.label :category
-    %br/
+    %br
     = f.number_field :category
   .field
-    %img{:src => "#{@product.img}"}/
+    %img{:src => "#{@product.img}"}
     = f.text_field :img
   .field
-    %img{:src => "#{@product.imglg}"}/
+    %img{:src => "#{@product.imglg}"}
     = f.text_field :imglg
   .field
     = f.label :price
-    %br/
+    %br
     = f.number_field :price
   .field
     = f.label :priceold
-    %br/
+    %br
     = f.number_field :priceold
   .field
     = f.label :sale
-    %br/
+    %br
     = f.number_field :sale
   .field
     = f.label :currency
-    %br/
+    %br
     = f.text_area :currency
   .field
     = f.label :update
-    %br/
+    %br
     = f.text_area :update
   .field
     = f.label :status
-    %br/
+    %br
     = f.text_field :status
   .field
     = f.label :owner
-    %br/
+    %br
     = f.text_field :owner
   .actions
     = f.submit

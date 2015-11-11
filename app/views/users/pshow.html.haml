@@ -14,8 +14,7 @@
   .row.profileicon
     .small-1.small-centered.columns.pfirst
       - if @user.pic
-        %img{:src => "<haml_loud"}/
-        @user.pic &gt;
+        %img{:src => "{@user.pic}"}
       - else
         = image_tag('icons/user_line@3x.png')
     .small-3.small-centered.columns.pfirst
@@ -27,22 +26,22 @@
     .large-3.columns
       %a{:href => ""}
         %span= @user.saved_products.count
-        %br/
+        %br
         %span Saved
     .large-3.columns
       %a{:href => ""}
         %span= @user.saved_products.count
-        %br/
+        %br
         %span Posted
     .large-3.columns
       %a{:href => ""}
         %span= @user.following.count
-        %br/
+        %br
         %span Following
     .large-3.columns
       %a{:href => ""}
         %span= @user.followers.count
-        %br/
+        %br
         %span Followers
 .large-12.columns.pforth{:style => "background-color: white;"}
   .large-12.small-centered.columns.pfirst
@@ -51,8 +50,7 @@
         %li
           %a.radius{"data-reveal-id" => "firstModal", :href => "#", :onclick => "myFunction('#{product.img}','#{product.desc}','#{product.price}','#{product.name}','#{product.id}')"}
             .imgetub
-              %img{:src => "<haml_loud"}/
-              product.img  alt="img03"/&gt;
+              %img{:src => "#{product.img}", :alt => "img03"}
           .caption
             - if (product.owner == nil)
               = link_to profile_path('55d471b869702d64d700001d') do
@@ -60,8 +58,7 @@
                 %p.pconf Achat
             - else
               = link_to profile_path(product.owner) do
-                %img{:src => "<haml_loud"}/
-                product.owner_img  class='piconf'&gt;
+                %img{:src => "#{product.owner_img}", :class => 'piconf'}
                 %p.pconf= product.owner_name
             - if current_user
               = link_to image_tag("icons/cart_a@3x.png", :class => 'seciconfooter'), product.deeplink

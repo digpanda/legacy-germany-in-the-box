@@ -13,12 +13,10 @@
           %ul.small-block-grid-2.collectionsicon
             - collection.products.limit(4).each do |i|
               %li
-                %img{:src => "<haml_loud"}/
-                collection.products[i].img &gt;
+                %img{:src => "#{collection.products[i].img}"}
           .info
             = link_to profile_path(collection.user) do
-              %img{:src => "<haml_loud"}/
-              collection.user.pic&gt;
+              %img{:src => "#{collection.user.pic}"}
               %p= collection.user.username
             - if @user.saved_collections.include?(collection.id.to_s)
               = link_to image_tag("icons/heartf.png", :class => 'likeicon'), unsavecoll_path(:id => '55bb6c3a69702d64d700000b', :col_id => collection.id), method: :post, remote: true
@@ -28,12 +26,12 @@
 #firstModal.reveal-modal{"aria-hidden" => "true", "aria-labelledby" => "firstModalTitle", "data-reveal" => "", :role => "dialog"}
   .row
     .large-8.columns
-      %img#lgimg.prodlimg{:src => "https://cdn.artstation.com/p/assets/images/images/000/696/013/large/liu-haifan-hulkbuster1.jpg?1430977120"}/
+      %img#lgimg.prodlimg{:src => "https://cdn.artstation.com/p/assets/images/images/000/696/013/large/liu-haifan-hulkbuster1.jpg?1430977120"}
       .row.prodcolfooter
         %ul.button-group.even-3
           %li
             %a#saveprod.left.colproduser{:href => "#"}
-              %img#userimg.firsticonfooter{:alt => "img01", :src => "/assets/icons/achatlogo.png"}/
+              %img#userimg.firsticonfooter{:alt => "img01", :src => "/assets/icons/achatlogo.png"}
               = succeed "Achat" do
                 %p#username{:style => "margin-left: 9px;"}
           %li
@@ -60,12 +58,10 @@
             %ul.small-block-grid-2.collectionsicon
               - collection.products.limit(4).each do |i|
                 %li
-                  %img{:src => "<haml_loud"}/
-                  collection.products[i].img &gt;
-            / </a>
+                  %img{:src => "#{collection.products[i].img}"}
             .info
               = link_to profile_path(collection.user) do
-                %img{:src => "<haml_loud"}/
+                %img{:src => "#{collection.user.pic}"}
                 collection.user.pic &gt;
                 %p= collection.user.username
               = link_to image_tag("icons/Slice2.png", :class => 'likeicon'), collection_path(collection.id)

@@ -1,15 +1,15 @@
 .login
-  %br/
+  %br
   %h4 Log in to aChat
-  %br/
+  %br
   = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
     .field
       = f.label :email
-      %br/
+      %br
       = f.email_field :email, autofocus: true
     .field
       = f.label :password
-      %br/
+      %br
       = f.password_field :password, autocomplete: "off"
     .actions
       = f.submit "Log in"
