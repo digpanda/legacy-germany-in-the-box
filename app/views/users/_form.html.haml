@@ -1,0 +1,30 @@
+= form_for(@user) do |f|
+  - if @user.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@user.errors.count, "error")
+        prohibited this user from being saved:
+      %ul
+        - @user.errors.full_messages.each do |message|
+          %li= message
+  .field
+    %img{:src => "#{@user.pic.url}"}/
+    = f.file_field :pic
+  .field
+    = f.label :fname
+    %br/
+    = f.text_field :fname
+  .field
+    = f.label :email
+    %br/
+    = f.text_field :email
+  .field
+    = f.label :password
+    %br/
+    = f.text_field :password
+  .field
+    = f.label :uid
+    %br/
+    = f.number_field :uid
+  .actions
+    = f.submit

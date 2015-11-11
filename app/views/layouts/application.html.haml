@@ -1,0 +1,271 @@
+!!!
+%html
+  %head
+    %title Couponia - Index shop layout 1
+    / meta info
+    %meta{:content => "text/html; charset=utf-8", "http-equiv" => "Content-Type"}
+    %meta{:content => "Koupon HTML5 Template", :name => "keywords"}
+    %meta{:content => "Koupon - Premiun HTML5 Template for Coupons Website", :name => "description"}
+    %meta{:content => "Tsoy", :name => "author"}
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
+    / Google fonts
+    %link{:href => "http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300", :rel => "stylesheet", :type => "text/css"}
+    %link{:href => "http://fonts.googleapis.com/css?family=Roboto:400,100,300", :rel => "stylesheet", :type => "text/css"}
+    / Bootstrap styles
+    = stylesheet_link_tag  "couponia/css/boostrap.css" 
+    / Font Awesome styles (icons)
+    = stylesheet_link_tag "couponia/css/font_awesome.css"
+    / Main Template styles
+    = stylesheet_link_tag "couponia/css/styles.css"
+    / IE 8 Fallback
+    /[if lt IE 9]
+    = stylesheet_link_tag  "couponia/css/ie.css" 
+    / Your custom styles (blank file)
+    = stylesheet_link_tag  "couponia/css/mystyles.css"
+  %body
+    .global-wrap
+      /
+        \//////////////////////////////////
+        \//////////////MAIN HEADER/////////////
+        \////////////////////////////////////
+      .top-main-area.text-center
+        .container
+          %a.logo.mt5{:href => "index.html"}
+            =image_tag  "couponia/logo-small-dark.png"
+      %header.main
+        .container
+          .row
+            .col-md-6
+              / MAIN NAVIGATION
+              #flexnav-menu-button.flexnav-menu-button Menu
+              %nav
+                %ul#flexnav.nav.nav-pills.flexnav{"data-breakpoint" => "800"}
+                  %li.active
+                    %a{:href => "index.html"} Home
+                  %li
+                    %a{:href => "category-page-shop.html"} Category
+                  %li
+                    =link_to " Product", popular_products_path
+                  %li
+                    %a{:href => "features-typography.html"} Features
+                  %li
+                    %a{:href => "blog-sidebar-right.html"} Blog
+                  %li
+                    %a{:href => "page-full-width.html"} Pages
+              / END MAIN NAVIGATION
+            .col-md-6
+              / LOGIN REGISTER LINKS
+              %ul.login-register
+                %li.shopping-cart
+                  %a{:href => "page-cart.html"}
+                    %i.fa.fa-shopping-cart>
+                    My Cart
+                  .shopping-cart-box
+                    %ul.shopping-cart-items
+                      %li
+                        %a{:href => "product-shop-sidebar.html"}
+                          = image_tag "couponia/70x70.png", :alt => "Image Alternative text",  :title => "AMaze"
+                          %h5 New Glass Collection
+                          %span.shopping-cart-item-price $150
+                      %li
+                        %a{:href => "product-shop-sidebar.html"}
+                          = image_tag "couponia/70x70.png", :alt => "Image Alternative text",   :title => "Gamer Chick"
+                          %h5 Playstation Accessories
+                          %span.shopping-cart-item-price $170
+                    %ul.list-inline.text-center
+                      %li
+                        %a{:href => "page-cart.html"}
+                          %i.fa.fa-shopping-cart
+                          View Cart
+                      %li
+                        %a{:href => "page-checkout.html"}
+                          %i.fa.fa-check-square
+                          Checkout
+                %li
+                  %a.popup-text{"data-effect" => "mfp-move-from-top", :href => "#login-dialog"}
+                    %i.fa.fa-sign-in>
+                    Sign in
+                %li
+                  %a.popup-text{"data-effect" => "mfp-move-from-top", :href => "#register-dialog"}
+                    %i.fa.fa-edit>
+                    Sign up
+      / LOGIN REGISTER LINKS CONTENT
+      #login-dialog.mfp-with-anim.mfp-hide.mfp-dialog.clearfix
+        %i.fa.fa-sign-in.dialog-icon
+        %h3 Member Login
+        %h5 Welcome back, friend. Login to get started
+        %form.dialog-form
+          .form-group
+            %label E-mail
+            %input.form-control{:placeholder => "email@domain.com", :type => "text"}
+          .form-group
+            %label Password
+            %input.form-control{:placeholder => "My secret password", :type => "password"}
+          .checkbox
+            %label
+              %input{:type => "checkbox"}>/
+              Remember me
+          %input.btn.btn-primary{:type => "submit", :value => "Sign in"}
+        %ul.dialog-alt-links
+          %li
+            %a.popup-text{"data-effect" => "mfp-zoom-out", :href => "#register-dialog"} Not member yet
+          %li
+            %a.popup-text{"data-effect" => "mfp-zoom-out", :href => "#password-recover-dialog"} Forgot password
+      #register-dialog.mfp-with-anim.mfp-hide.mfp-dialog.clearfix
+        %i.fa.fa-edit.dialog-icon
+        %h3 Member Register
+        %h5 Ready to get best offers? Let's get started!
+        %form.dialog-form
+          .form-group
+            %label E-mail
+            %input.form-control{:placeholder => "email@domain.com", :type => "text"}
+          .form-group
+            %label Password
+            %input.form-control{:placeholder => "My secret password", :type => "password"}
+          .form-group
+            %label Repeat Password
+            %input.form-control{:placeholder => "Type your password again", :type => "password"}
+          .row
+            .col-md-8
+              .form-group
+                %label Your Area
+                %input.form-control{:placeholder => "Boston", :type => "password"}
+            .col-md-4
+              .form-group
+                %label Postal/Zip
+                %input.form-control{:placeholder => "12345", :type => "password"}
+          .checkbox
+            %label
+              %input{:type => "checkbox"}>/
+              Get hot offers via e-mail
+          %input.btn.btn-primary{:type => "submit", :value => "Sign up"}
+        %ul.dialog-alt-links
+          %li
+            %a.popup-text{"data-effect" => "mfp-zoom-out", :href => "#login-dialog"} Already member
+      #password-recover-dialog.mfp-with-anim.mfp-hide.mfp-dialog.clearfix
+        %i.icon-retweet.dialog-icon
+        %h3 Password Recovery
+        %h5 Fortgot your password? Don't worry we can deal with it
+        %form.dialog-form
+          %label E-mail
+          %input.span12{:placeholder => "email@domain.com", :type => "text"}
+          %input.btn.btn-primary{:type => "submit", :value => "Request new password"}     
+      /
+        \//////////////////////////////////
+        \//////////////PAGE CONTENT/////////////
+        \////////////////////////////////////
+      = yield
+      /
+        \//////////////////////////////////
+        \//////////////END PAGE CONTENT/////////
+        \////////////////////////////////////
+
+      /
+        \//////////////////////////////////
+        \//////////////MAIN FOOTER//////////////
+        \////////////////////////////////////
+      %footer.main
+        .footer-top-area
+          .container
+            .row.row-wrap
+              .col-md-3
+                %a{:href => "index.html"}
+                  =image_tag "couponia/logo.png", :alt => "logo",  :title => "logo"
+                %ul.list.list-social
+                  %li
+                    %a.fa.fa-facebook.box-icon{"data-toggle" => "tooltip", :href => "#", :title => "Facebook"}
+                  %li
+                    %a.fa.fa-twitter.box-icon{"data-toggle" => "tooltip", :href => "#", :title => "Twitter"}
+                  %li
+                    %a.fa.fa-flickr.box-icon{"data-toggle" => "tooltip", :href => "#", :title => "Flickr"}
+                  %li
+                    %a.fa.fa-linkedin.box-icon{"data-toggle" => "tooltip", :href => "#", :title => "LinkedIn"}
+                  %li
+                    %a.fa.fa-tumblr.box-icon{"data-toggle" => "tooltip", :href => "#", :title => "Tumblr"}
+                %p Convallis morbi lobortis laoreet augue fermentum class congue tempor montes purus vitae quam augue inceptos nunc justo erat mauris cursus
+              .col-md-3
+                %h4 Sign Up to the Newsletter
+                .box
+                  %form
+                    .form-group.mb10
+                      %label E-mail
+                      %input.form-control{:type => "text"}
+                    %p.mb10 Facilisis feugiat pulvinar nullam nec fusce purus
+                    %input.btn.btn-primary{:type => "submit", :value => "Sign Up"}
+              .col-md-3
+                %h4 Couponia on Twitter
+                / START TWITTER
+                -#twitter-ticker.twitter-ticker
+                / END TWITTER
+              .col-md-3
+                %h4 Recent News
+                %ul.thumb-list
+                  %li
+                    %a{:href => "#"}
+                      =image_tag "couponia/70x70.png" , :alt => "Image Alternative text", :title => "Urbex Esch/Lux with Laney and Laaaaag"
+                    .thumb-list-item-caption
+                      %p.thumb-list-item-meta Jul 18, 2014
+                      %h5.thumb-list-item-title
+                        %a{:href => "#"} Cubilia enim
+                      %p.thumb-list-item-desciption Sem ullamcorper iaculis convallis imperdiet
+                  %li
+                    %a{:href => "#"}
+                      =image_tag "couponia/70x70.png", :alt => "Image Alternative text",  :title => "AMaze"
+                    .thumb-list-item-caption
+                      %p.thumb-list-item-meta Jul 18, 2014
+                      %h5.thumb-list-item-title
+                        %a{:href => "#"} Blandit suscipit
+                      %p.thumb-list-item-desciption Aptent accumsan curabitur aptent condimentum
+                  %li
+                    %a{:href => "#"}
+                      =image_tag "couponia/70x70.png", :alt => "Image Alternative text", :title => "The Hidden Power of the Heart"
+                    .thumb-list-item-caption
+                      %p.thumb-list-item-meta Jul 18, 2014
+                      %h5.thumb-list-item-title
+                        %a{:href => "#"} Tortor venenatis
+                      %p.thumb-list-item-desciption Ut tempus rhoncus suscipit vitae
+        .footer-copyright
+          .container
+            .row
+              .col-md-4
+                %p Copyright © 2014, Your Store, All Rights Reserved
+              .col-md-6.col-md-offset-2
+                .pull-right
+                  %ul.list-inline.list-payment
+                    %li
+                      = image_tag "couponia/payment/american-express-curved-32px.png", :alt => "Image Alternative text",  :title => "Image Title"
+                    %li
+                      = image_tag "couponia/payment/cirrus-curved-32px.png", :alt => "Image Alternative text",  :title => "Image Title"
+                    %li
+                      = image_tag "couponia/payment/discover-curved-32px.png", :alt => "Image Alternative text",  :title => "Image Title"
+                    %li
+                      = image_tag "couponia/payment/ebay-curved-32px.png", :alt => "Image Alternative text",  :title => "Image Title"
+                    %li
+                      = image_tag "couponia/payment/maestro-curved-32px.png", :alt => "Image Alternative text",  :title => "Image Title"
+                    %li
+                      = image_tag "couponia/payment/mastercard-curved-32px.png", :alt => "Image Alternative text",  :title => "Image Title"
+                    %li
+                      = image_tag "couponia/payment/visa-curved-32px.png", :alt => "Image Alternative text",  :title => "Image Title"
+      /
+        \//////////////////////////////////
+        \//////////////END MAIN  FOOTER/////////
+        \////////////////////////////////////
+      / Scripts queries
+      = javascript_include_tag "couponia/jquery.js"
+      = javascript_include_tag "couponia/boostrap.min.js"
+      = javascript_include_tag "couponia/countdown.min.js"
+      = javascript_include_tag "couponia/flexnav.min.js"
+      = javascript_include_tag "couponia/magnific.js"
+      = javascript_include_tag "couponia/tweet.min.js"
+      %script{:src => "https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"}
+      = javascript_include_tag "couponia/fitvids.min.js"
+      = javascript_include_tag "couponia/mail.min.js"
+      = javascript_include_tag "couponia/ionrangeslider.js"
+      = javascript_include_tag "couponia/icheck.js"
+      = javascript_include_tag "couponia/fotorama.js"
+      = javascript_include_tag "couponia/card-payment.js"
+      = javascript_include_tag "couponia/owl-carousel.js"
+      = javascript_include_tag "couponia/masonry.js"
+      = javascript_include_tag "couponia/nicescroll.js"
+      / Custom scripts
+      = javascript_include_tag "couponia/custom.js"

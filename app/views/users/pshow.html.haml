@@ -1,0 +1,71 @@
+.large-10.push-1.columns.pfirst
+  .row
+    .large-12.columns
+      %button.large.alert.round.button.dropdown.right.settings{"aria-controls" => "drop", "aria-expanded" => "false", "data-dropdown" => "drop"} ..
+      %ul#drop.f-dropdown{"aria-hidden" => "false", "data-dropdown-content" => "", :role => "menu", :tabindex => "-1"}
+        %li
+          %a{:href => "#"} This is a link
+        %li
+          %a{:href => "#"} This is another
+        %li
+          %a{:href => "#"} Yet another
+      %a.button.right.editprofile{:href => "#"} Edit profile
+.large-10.push-1.columns.psec
+  .row.profileicon
+    .small-1.small-centered.columns.pfirst
+      - if @user.pic
+        %img{:src => "<haml_loud"}/
+        @user.pic &gt;
+      - else
+        = image_tag('icons/user_line@3x.png')
+    .small-3.small-centered.columns.pfirst
+      %h2
+        = @user.fname
+        = @user.lname
+.large-10.push-1.columns.pthir
+  .row
+    .large-3.columns
+      %a{:href => ""}
+        %span= @user.saved_products.count
+        %br/
+        %span Saved
+    .large-3.columns
+      %a{:href => ""}
+        %span= @user.saved_products.count
+        %br/
+        %span Posted
+    .large-3.columns
+      %a{:href => ""}
+        %span= @user.following.count
+        %br/
+        %span Following
+    .large-3.columns
+      %a{:href => ""}
+        %span= @user.followers.count
+        %br/
+        %span Followers
+.large-12.columns.pforth{:style => "background-color: white;"}
+  .large-12.small-centered.columns.pfirst
+    %ul#og-grid.og-grid.left
+      = content_tag_for(:tr,@user.products ) do |product|
+        %li
+          %a.radius{"data-reveal-id" => "firstModal", :href => "#", :onclick => "myFunction('#{product.img}','#{product.desc}','#{product.price}','#{product.name}','#{product.id}')"}
+            .imgetub
+              %img{:src => "<haml_loud"}/
+              product.img  alt="img03"/&gt;
+          .caption
+            - if (product.owner == nil)
+              = link_to profile_path('55d471b869702d64d700001d') do
+                %img.piconf{:src => "/assets/icons/Slice1.png"}/
+                %p.pconf Achat
+            - else
+              = link_to profile_path(product.owner) do
+                %img{:src => "<haml_loud"}/
+                product.owner_img  class='piconf'&gt;
+                %p.pconf= product.owner_name
+            - if current_user
+              = link_to image_tag("icons/cart_a@3x.png", :class => 'seciconfooter'), product.deeplink
+              - if current_user.products.include?(product)
+                = link_to image_tag("icons/heartf.png", :class => 'seciconfooter'), unsaveprod_path(:id => current_user.id, :prod_id => product.id), method: :post, remote: true
+              - else
+                = link_to image_tag("icons/Slice2.png", :class => 'seciconfooter'), saveprod_path(:id => current_user.id, :prod_id => product.id), method: :post, remote: true

@@ -1,0 +1,36 @@
+= form_for(@post) do |f|
+  - if @post.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@post.errors.count, "error")
+        prohibited this post from being saved:
+      %ul
+        - @post.errors.full_messages.each do |message|
+          %li= message
+  .field
+    = f.label :name
+    %br/
+    = f.text_field :name
+  .field
+    = f.label :image
+    %br/
+    %img{:src => "#{@post.image.url}"}/
+    = f.file_field :image
+  .field
+    = f.label :productId
+    %br/
+    = f.text_field :productId
+  .field
+    = f.label :collectionId
+    %br/
+    = f.text_field :collectionId
+  .field
+    = f.label :chatId
+    %br/
+    = f.text_field :chatId
+  .field
+    = f.label :user
+    %br/
+    = f.text_field :user
+  .actions
+    = f.submit

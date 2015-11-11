@@ -1,0 +1,16 @@
+.login
+  %br/
+  %h4 Log in to aChat
+  %br/
+  = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+    .field
+      = f.label :email
+      %br/
+      = f.email_field :email, autofocus: true
+    .field
+      = f.label :password
+      %br/
+      = f.password_field :password, autocomplete: "off"
+    .actions
+      = f.submit "Log in"
+  = render "devise/shared/links"

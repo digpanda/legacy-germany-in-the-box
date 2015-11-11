@@ -1,0 +1,124 @@
+/
+  \//////////////////////////////////
+  \//////////////PAGE CONTENT/////////////
+  \////////////////////////////////////
+.gap
+.container
+  - @products.each do |p|
+    .mfp-with-anim.mfp-hide.mfp-dialog.mfp-dialog-big.clearfix{ :id => "product-quick-view-dialog-#{p.id}" }
+      .row
+        .col-md-8
+          .fotorama{"data-allowfullscreen" => "1", "data-nav" => "thumbs", "data-thumbheight" => "100", "data-thumbwidth" => "100"}
+            =image_tag p.imglg, :alt => "Image Alternative text",  :title => "waipio valley"
+            =image_tag p.img, :alt => "Image Alternative text",  :title => "The Hidden Power of the Heart"
+            =image_tag p.img, :alt => "Image Alternative text",  :title => "Tcascada"
+            =image_tag p.img, :alt => "Image Alternative text",  :title => "the best mode of transport here in maldives"
+            =image_tag p.img, :alt => "Image Alternative text",  :title => "a turn"
+        .col-md-4
+          .product-page-meta
+            %h4= p.name
+            %p= p.desc
+            %a.btn.btn-primary.btn-lg.btn-block{:href => "#"} $225 Buy Now
+            %ul.list.product-page-meta-info
+              %li
+                %ul.list.product-page-meta-price-list
+                  %li
+                    %span.product-page-meta-title List Price
+                    %span.product-page-meta-price $1000
+                  %li
+                    %span.product-page-meta-title Discount
+                    %span.product-page-meta-price 77.5%
+                  %li
+                    %span.product-page-meta-title Savings
+                    %span.product-page-meta-price $775
+              %li
+                %span.product-page-meta-title Time Left to Buy
+                / COUNTDOWN
+                .countdown.countdown-inline{"data-countdown" => "Aug 25, 2013 10:45:00"}
+              %li
+                %span.product-page-meta-title 5000+ bought
+      %hr/
+      %a.btn.btn-primary{:href => "#"} More Details
+  .row
+    .col-md-3
+      %aside.sidebar-left
+        %ul.nav.nav-tabs.nav-stacked.nav-coupon-category.nav-coupon-category-left
+          %li.active
+            %a{:href => "#"}
+              %i.fa.fa-ticket>
+              All
+              %span 36
+          %li
+            %a{:href => "#"}
+              %i.fa.fa-cutlery>
+              Food &amp; Drink
+              %span 34
+          %li
+            %a{:href => "#"}
+              %i.fa.fa-calendar>
+              Events
+              %span 46
+          %li
+            %a{:href => "#"}
+              %i.fa.fa-female>
+              Beauty
+              %span 41
+          %li
+            %a{:href => "#"}
+              %i.fa.fa-bolt>
+              Fitness
+              %span 39
+          %li
+            %a{:href => "#"}
+              %i.fa.fa-headphones>
+              Electronics
+              %span 46
+          %li
+            %a{:href => "#"}
+              %i.fa.fa-image>
+              Furniture
+              %span 50
+          %li
+            %a{:href => "#"}
+              %i.fa.fa-umbrella>
+              Fashion
+              %span 50
+          %li
+            %a{:href => "#"}
+              %i.fa.fa-shopping-cart>
+              Shopping
+              %span 42
+          %li
+            %a{:href => "#"}
+              %i.fa.fa-home>
+              Home &amp; Graden
+              %span 42
+          %li
+            %a{:href => "#"}
+              %i.fa.fa-plane>
+              Travel
+              %span 48
+    .col-md-9
+      #masonry.row.row-wrap
+        - @products.each do |p|
+          %a.col-md-3.col-masonry.popup-text{"data-effect" => "mfp-move-from-top", :href => "#product-quick-view-dialog-#{p.id}"}
+            .product-thumb
+              %header.product-header
+                =image_tag  p.img, :alt => p.name, :title => p.name
+                .product-quick-view
+                  %span.fa.fa-eye
+              .product-inner
+                %h5.product-title= truncate(p.name, :length => 16) 
+                .product-desciption= truncate(p.desc, :length => 16)
+                .product-meta
+                  %span.product-time
+                    %i.fa.fa-clock-o
+                    8 days 47 h
+                  %ul.product-price-list
+                    %li
+                      %span.product-price $102
+                    %li
+                      %span.product-old-price $188
+                %p.product-location
+                  %i.fa.fa-map-marker
+                  Boston

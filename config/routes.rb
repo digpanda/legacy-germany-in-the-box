@@ -14,7 +14,10 @@ Rails.application.routes.draw do
 
   # user
 
-  get '/',to: 'products#indexr', as: 'home'
+  get '/',to: 'pages#home', as: 'home'
+  
+  get 'popular_products',to: 'products#indexr', as: 'popular_products'
+  
   get 'profile/:id', to: 'users#pshow', as: "profile"
   post '/getuser', to: 'users#getuserbyemail'
   post '/follow/:id/:target_id', to: 'users#follow'

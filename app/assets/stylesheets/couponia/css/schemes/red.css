@@ -1,0 +1,130 @@
+a,
+.text-color,
+.btn-ghost.btn-primary,
+.comment .comment-review-rate,
+.nav-tabs.nav-stacked.nav-coupon-category > li > a:hover,
+.product-info-price,
+.i-check.i-check-stroke.checked:before,
+ul.pagination li a,
+ul.pagination li a:hover,
+.btn-white,
+.nav-pills.nav-stacked.nav-arrow > li a:hover,
+.countdown.countdown-inline > div:first-child span.count,
+.countdown.countdown-inline > div:first-child span.title {
+  color: #f00;
+}
+a:hover {
+  color: #c00;
+}
+.post .post-inner,
+.btn-ghost.btn-primary,
+.fotorama__thumb-border,
+.i-check.hover,
+.i-radio.hover,
+.i-check.checked,
+.i-radio.checked,
+footer.main,
+.testimonial-color .testimonial-inner {
+  border-color: #f00;
+}
+header.main-color .flexnav li a:hover,
+.btn-primary:hover,
+.team-member .team-member-social > li .fa:hover {
+  background-color: #c00;
+}
+header.main-white .flexnav > li.active > a,
+header.main-white .flexnav > li.active > a:hover,
+.btn-primary,
+.btn-ghost.btn-primary:hover,
+.product-quick-view .fa:hover,
+.nav-tabs.nav-stacked.nav-coupon-category > li > a:hover span,
+.i-check.checked,
+.i-radio.checked,
+.irs-slider,
+header.main.main-color,
+.header-search-bar button,
+ul.pagination li.active a,
+ul.pagination li.active a:hover,
+.team-member .team-member-social > li .fa,
+.owl-controls .owl-buttons div:hover,
+.search-area-white .search-btn,
+.search-area,
+.flexnav li.active > a,
+.flexnav li.active > a:hover,
+.box-icon,
+.nav-tabs.nav-stacked.nav-coupon-category > li > a:hover .fa,
+.nav-tabs.nav-stacked.nav-coupon-category > .active > a,
+.nav-tabs.nav-stacked.nav-coupon-category > .active > a:hover,
+.nav-tabs.nav-stacked.nav-coupon-category > .active > a:before,
+.nav-tabs.nav-stacked.nav-coupon-category > li.active > a .fa,
+.tabbable >.nav li.active a,
+.dropcap-color:first-letter,
+.nav-pills.nav-stacked.nav-arrow > li.active a,
+.nav-pills.nav-stacked.nav-arrow > li.active a:after,
+.testimonial-color .testimonial-inner,
+.hover-img .hover-icon:before,
+.hover-img >.hover-title,
+.hover-img .hover-inner,
+.owl-controls .owl-page span,
+.carousel .carousel-control,
+.flexnav-menu-button,
+.touch-button,
+.mfp-dialog .dialog-icon,
+.tags-list > li > a {
+  background-color: #f00;
+}
+.testimonial-color .testimonial-inner:after {
+  border-color: #f00 transparent transparent transparent;
+}
+.flexnav li.active > a {
+  border-color: #f00 !important;
+}
+.btn-primary,
+ul.pagination li.active a,
+ul.pagination li.active a:hover,
+.nav-tabs.nav-stacked.nav-coupon-category > .active > a .fa,
+.nav-pills.nav-stacked.nav-arrow > li.active a {
+  border-color: #e60000;
+}
+.btn-primary:hover {
+  border-color: #c00;
+}
+.touch-button.active,
+.tags-list > li > a:hover {
+  background-color: #d90000;
+}
+.search-area-white .search-btn {
+  border-color: #d90000;
+}
+.product-thumb .icon-list-rating {
+  color: #f33;
+}
+.product-thumb .product-price {
+  background-color: #f00;
+}
+.product-banner {
+  background-color: #600;
+}
+.address-box:hover .address-box-remove:hover,
+.address-box:hover .address-box-edit:hover,
+.address-box:hover .address-box-new-icon,
+.team-member .team-member-social > li .fa,
+.search-area label .fa,
+.box-icon:hover {
+  background-color: #c00;
+}
+.owl-controls .owl-buttons div:hover {
+  box-shadow: 0 0 0 1px #f00;
+}
+.btn-ghost {
+  background: none;
+}
+.tabbable >.nav li.active .fa {
+  background: #b30000;
+}
+.thumb-list > li .thumb-list-item-caption .icon-list-rating {
+  color: #f33;
+}
+.form-control:focus {
+  border-color: #ff1a1a;
+}

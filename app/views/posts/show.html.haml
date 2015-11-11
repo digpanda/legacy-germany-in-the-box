@@ -1,0 +1,21 @@
+%p#notice= notice
+%p
+  %strong Name:
+  = @post.name
+%p
+  %img{:src => "#{@post.image.url}"}/
+%p
+  %strong Image:
+  = @post.image_identifier
+%p
+  %strong Productid:
+  = @post.productId
+%p
+  %strong Collectionid:
+  = @post.collectionId
+%p
+  %strong Chatid:
+  = @post.chatId
+= link_to 'Edit', edit_post_path(@post)
+|
+= link_to 'Back', posts_path
