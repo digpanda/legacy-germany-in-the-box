@@ -1,0 +1,9 @@
+%p#notice= notice
+%p
+  %strong Name:
+  = @shop.name
+%p
+  %img{:src => "#{@shop.logo.url}"}
+%p
+  %strong logo:
+  = @shop.logo_identifier
