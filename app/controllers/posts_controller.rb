@@ -1,4 +1,4 @@
-require 'base64_to_upload'
+
 
 class PostsController < ApplicationController
   

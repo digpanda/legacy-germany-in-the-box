@@ -1,3 +1,5 @@
+require 'base64_to_upload'
+
 class ApplicationController < ActionController::Base
   before_action :configure_devise_permitted_parameters, if: :devise_controller?
   # Prevent CSRF attacks by raising an exception.
