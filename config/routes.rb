@@ -11,7 +11,8 @@ Rails.application.routes.draw do
   resources :products, except: [:index]
 
   resources :users, except: [:destroy]
-
+  resources :shops
+  
   # user
 
   get '/',to: 'pages#home', as: 'home'
