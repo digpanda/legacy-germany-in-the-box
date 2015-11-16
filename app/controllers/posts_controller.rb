@@ -1,7 +1,15 @@
+require 'base64_to_upload'
+
 class PostsController < ApplicationController
+  
+  include Base64ToUpload
+
   skip_before_action :verify_authenticity_token
   before_action :set_post, only: [:show, :edit, :update, :destroy]
-  before_action :base64_to_uploadedfile, only: [:create, :update]
+  before_action(:only =>  [:create, :update]) { 
+    base64_to_uploadedfile :post, :image 
+  }
+
   # GET /posts
   # GET /posts.json
   def index
@@ -75,18 +83,4 @@ class PostsController < ApplicationController
     params.require(:post).permit(:name, :image, :productId, :user, :collectionId, :chatId)
   end
 
-  def base64_to_uploadedfile
-    base64 = params[:post][:base64]
-    
-    if base64
-      base64_code = base64[:code]
-      base64_original_filename = base64[:original_filename]
- 
-      tempfile = Tempfile.new(SecureRandom.hex(16).to_s)
-      tempfile.binmode
-      tempfile.write(Base64.decode64(base64_code))
-
-      params[:post][:image] = ActionDispatch::Http::UploadedFile.new(:tempfile => tempfile, :filename => base64_original_filename, :original_filename => base64_original_filename); 
-    end
-  end
 end
