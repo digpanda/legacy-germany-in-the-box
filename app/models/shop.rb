@@ -1,3 +1,4 @@
+
 class Shop
   include Mongoid::Document
 
