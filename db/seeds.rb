@@ -14,7 +14,7 @@ shop = Shop.create!(
 );
 
 product = shop.products.create!(
-  :name => '10 Blatt Seidenpapier',
+  :name => '10 Blatt Seidenpapier ♥ Panda ♥',
   :desc => %Q{
   ♥ 10 Bögen Seidenpapier
   ♥ Panda
