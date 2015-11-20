@@ -1,9 +1,96 @@
-%p#notice= notice
-%p
-  %strong Name:
-  = @shop.name
-%p
-  %img{:src => "#{@shop.logo.url}"}
-%p
-  %strong logo:
-  = @shop.logo_identifier
+.gap
+.container
+  .row
+    .col-md-3
+      %aside.sidebar-left
+        .sidebar-box.text-center
+          %img{:src => @shop.logo, :style => 'width:128px;height:128px'}
+        %ul.nav.nav-tabs.nav-stacked.nav-coupon-category.nav-coupon-category-left
+          %li.active
+            %a{:href => "#"}
+              %i.fa.fa-ticket>
+              All
+              %span 36
+          %li
+            %a{:href => "#"}
+              %i.fa.fa-cutlery>
+              Food &amp; Drink
+              %span 34
+          %li
+            %a{:href => "#"}
+              %i.fa.fa-calendar>
+              Events
+              %span 46
+          %li
+            %a{:href => "#"}
+              %i.fa.fa-female>
+              Beauty
+              %span 41
+          %li
+            %a{:href => "#"}
+              %i.fa.fa-bolt>
+              Fitness
+              %span 39
+          %li
+            %a{:href => "#"}
+              %i.fa.fa-headphones>
+              Electronics
+              %span 46
+          %li
+            %a{:href => "#"}
+              %i.fa.fa-image>
+              Furniture
+              %span 50
+          %li
+            %a{:href => "#"}
+              %i.fa.fa-umbrella>
+              Fashion
+              %span 50
+          %li
+            %a{:href => "#"}
+              %i.fa.fa-shopping-cart>
+              Shopping
+              %span 42
+          %li
+            %a{:href => "#"}
+              %i.fa.fa-home>
+              Home &amp; Graden
+              %span 42
+          %li
+            %a{:href => "#"}
+              %i.fa.fa-plane>
+              Travel
+              %span 48
+    .col-md-9
+      .box
+        %img{:src => @shop.banner}
+      .gap 
+      %h2= @shop.name
+      %p.text-muted= @shop.desc
+      .gap
+      .tabbable
+        %ul#myTab.nav.nav-tabs
+          %li.active
+            %a{"data-toggle" => "tab", :href => "#tab-1"}
+              %i.fa.fa-pencil>
+              Desciption
+          %li
+            %a{"data-toggle" => "tab", :href => "#tab-2"}
+              %i.fa.fa-info>
+              Additional Information
+          %li
+            %a{"data-toggle" => "tab", :href => "#tab-3"}
+              %i.fa.fa-truck>
+              Shipping &amp; Payment
+          %li
+            %a{"data-toggle" => "tab", :href => "#tab-4"}
+              %i.fa.fa-comments>
+              Reviews
+        .tab-content
+          #tab-1.tab-pane.fade.in.active
+            %p Faucibus nibh quisque curabitur feugiat amet etiam magnis pulvinar posuere lacinia nisi in nam sapien dignissim nullam at luctus luctus euismod dis bibendum dignissim pretium ipsum placerat mollis ridiculus porta torquent elit rutrum massa sagittis mi nibh semper vitae condimentum mus blandit montes dignissim malesuada facilisis bibendum mauris rutrum ullamcorper
+            %p Platea euismod elit tristique vestibulum eleifend eget proin vulputate nascetur natoque iaculis himenaeos ac nunc facilisi dignissim ridiculus elementum litora ante netus purus habitant aliquet penatibus volutpat ultrices quam praesent
+            %p Fermentum orci eu vivamus nec magna egestas curae condimentum urna pharetra lorem quam urna egestas ornare suscipit velit vestibulum tortor erat viverra magnis vehicula faucibus luctus turpis ac suscipit interdum
+          #tab-2.tab-pane.fade.in
+          #tab-3.tab-pane.fade.in
+          #tab-4.tab-pane.fade.in

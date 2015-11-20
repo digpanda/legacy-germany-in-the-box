@@ -15,7 +15,7 @@
     = stylesheet_link_tag  "couponia/css/ie.css" 
     = stylesheet_link_tag  "couponia/css/mystyles.css"
   %body
-    .global-wrap
+    %nav.navbar-fixed-top
       .top-main-area.text-center
         .container
           %a.logo.mt5{:href => "index.html"}
@@ -135,105 +135,105 @@
           %input.span12{:placeholder => "email@domain.com", :type => "text"}
           %input.btn.btn-primary{:type => "submit", :value => "Request new password"}     
 
-      = yield
+    = yield
 
-      %footer.main
-        .footer-top-area
-          .container
-            .row.row-wrap
-              .col-md-3
-                %a{:href => "index.html"}
-                  =image_tag "couponia/logo.png", :alt => "logo",  :title => "logo"
-                %ul.list.list-social
+    %footer.main
+      .footer-top-area
+        .container
+          .row.row-wrap
+            .col-md-3
+              %a{:href => "index.html"}
+                =image_tag "couponia/logo.png", :alt => "logo",  :title => "logo"
+              %ul.list.list-social
+                %li
+                  %a.fa.fa-facebook.box-icon{"data-toggle" => "tooltip", :href => "#", :title => "Facebook"}
+                %li
+                  %a.fa.fa-twitter.box-icon{"data-toggle" => "tooltip", :href => "#", :title => "Twitter"}
+                %li
+                  %a.fa.fa-flickr.box-icon{"data-toggle" => "tooltip", :href => "#", :title => "Flickr"}
+                %li
+                  %a.fa.fa-linkedin.box-icon{"data-toggle" => "tooltip", :href => "#", :title => "LinkedIn"}
+                %li
+                  %a.fa.fa-tumblr.box-icon{"data-toggle" => "tooltip", :href => "#", :title => "Tumblr"}
+              %p Convallis morbi lobortis laoreet augue fermentum class congue tempor montes purus vitae quam augue inceptos nunc justo erat mauris cursus
+            .col-md-3
+              %h4 Sign Up to the Newsletter
+              .box
+                %form
+                  .form-group.mb10
+                    %label E-mail
+                    %input.form-control{:type => "text"}
+                  %p.mb10 Facilisis feugiat pulvinar nullam nec fusce purus
+                  %input.btn.btn-primary{:type => "submit", :value => "Sign Up"}
+            .col-md-3
+              %h4 Couponia on Twitter
+              / START TWITTER
+              -#twitter-ticker.twitter-ticker
+              / END TWITTER
+            .col-md-3
+              %h4 Recent News
+              %ul.thumb-list
+                %li
+                  %a{:href => "#"}
+                    =image_tag "couponia/70x70.png" , :alt => "Image Alternative text", :title => "Urbex Esch/Lux with Laney and Laaaaag"
+                  .thumb-list-item-caption
+                    %p.thumb-list-item-meta Jul 18, 2014
+                    %h5.thumb-list-item-title
+                      %a{:href => "#"} Cubilia enim
+                    %p.thumb-list-item-desciption Sem ullamcorper iaculis convallis imperdiet
+                %li
+                  %a{:href => "#"}
+                    =image_tag "couponia/70x70.png", :alt => "Image Alternative text",  :title => "AMaze"
+                  .thumb-list-item-caption
+                    %p.thumb-list-item-meta Jul 18, 2014
+                    %h5.thumb-list-item-title
+                      %a{:href => "#"} Blandit suscipit
+                    %p.thumb-list-item-desciption Aptent accumsan curabitur aptent condimentum
+                %li
+                  %a{:href => "#"}
+                    =image_tag "couponia/70x70.png", :alt => "Image Alternative text", :title => "The Hidden Power of the Heart"
+                  .thumb-list-item-caption
+                    %p.thumb-list-item-meta Jul 18, 2014
+                    %h5.thumb-list-item-title
+                      %a{:href => "#"} Tortor venenatis
+                    %p.thumb-list-item-desciption Ut tempus rhoncus suscipit vitae
+      .footer-copyright
+        .container
+          .row
+            .col-md-4
+              %p Copyright © 2014, Your Store, All Rights Reserved
+            .col-md-6.col-md-offset-2
+              .pull-right
+                %ul.list-inline.list-payment
                   %li
-                    %a.fa.fa-facebook.box-icon{"data-toggle" => "tooltip", :href => "#", :title => "Facebook"}
+                    = image_tag "couponia/payment/american-express-curved-32px.png", :alt => "Image Alternative text",  :title => "Image Title"
                   %li
-                    %a.fa.fa-twitter.box-icon{"data-toggle" => "tooltip", :href => "#", :title => "Twitter"}
+                    = image_tag "couponia/payment/cirrus-curved-32px.png", :alt => "Image Alternative text",  :title => "Image Title"
                   %li
-                    %a.fa.fa-flickr.box-icon{"data-toggle" => "tooltip", :href => "#", :title => "Flickr"}
+                    = image_tag "couponia/payment/discover-curved-32px.png", :alt => "Image Alternative text",  :title => "Image Title"
                   %li
-                    %a.fa.fa-linkedin.box-icon{"data-toggle" => "tooltip", :href => "#", :title => "LinkedIn"}
+                    = image_tag "couponia/payment/ebay-curved-32px.png", :alt => "Image Alternative text",  :title => "Image Title"
                   %li
-                    %a.fa.fa-tumblr.box-icon{"data-toggle" => "tooltip", :href => "#", :title => "Tumblr"}
-                %p Convallis morbi lobortis laoreet augue fermentum class congue tempor montes purus vitae quam augue inceptos nunc justo erat mauris cursus
-              .col-md-3
-                %h4 Sign Up to the Newsletter
-                .box
-                  %form
-                    .form-group.mb10
-                      %label E-mail
-                      %input.form-control{:type => "text"}
-                    %p.mb10 Facilisis feugiat pulvinar nullam nec fusce purus
-                    %input.btn.btn-primary{:type => "submit", :value => "Sign Up"}
-              .col-md-3
-                %h4 Couponia on Twitter
-                / START TWITTER
-                -#twitter-ticker.twitter-ticker
-                / END TWITTER
-              .col-md-3
-                %h4 Recent News
-                %ul.thumb-list
+                    = image_tag "couponia/payment/maestro-curved-32px.png", :alt => "Image Alternative text",  :title => "Image Title"
                   %li
-                    %a{:href => "#"}
-                      =image_tag "couponia/70x70.png" , :alt => "Image Alternative text", :title => "Urbex Esch/Lux with Laney and Laaaaag"
-                    .thumb-list-item-caption
-                      %p.thumb-list-item-meta Jul 18, 2014
-                      %h5.thumb-list-item-title
-                        %a{:href => "#"} Cubilia enim
-                      %p.thumb-list-item-desciption Sem ullamcorper iaculis convallis imperdiet
+                    = image_tag "couponia/payment/mastercard-curved-32px.png", :alt => "Image Alternative text",  :title => "Image Title"
                   %li
-                    %a{:href => "#"}
-                      =image_tag "couponia/70x70.png", :alt => "Image Alternative text",  :title => "AMaze"
-                    .thumb-list-item-caption
-                      %p.thumb-list-item-meta Jul 18, 2014
-                      %h5.thumb-list-item-title
-                        %a{:href => "#"} Blandit suscipit
-                      %p.thumb-list-item-desciption Aptent accumsan curabitur aptent condimentum
-                  %li
-                    %a{:href => "#"}
-                      =image_tag "couponia/70x70.png", :alt => "Image Alternative text", :title => "The Hidden Power of the Heart"
-                    .thumb-list-item-caption
-                      %p.thumb-list-item-meta Jul 18, 2014
-                      %h5.thumb-list-item-title
-                        %a{:href => "#"} Tortor venenatis
-                      %p.thumb-list-item-desciption Ut tempus rhoncus suscipit vitae
-        .footer-copyright
-          .container
-            .row
-              .col-md-4
-                %p Copyright © 2014, Your Store, All Rights Reserved
-              .col-md-6.col-md-offset-2
-                .pull-right
-                  %ul.list-inline.list-payment
-                    %li
-                      = image_tag "couponia/payment/american-express-curved-32px.png", :alt => "Image Alternative text",  :title => "Image Title"
-                    %li
-                      = image_tag "couponia/payment/cirrus-curved-32px.png", :alt => "Image Alternative text",  :title => "Image Title"
-                    %li
-                      = image_tag "couponia/payment/discover-curved-32px.png", :alt => "Image Alternative text",  :title => "Image Title"
-                    %li
-                      = image_tag "couponia/payment/ebay-curved-32px.png", :alt => "Image Alternative text",  :title => "Image Title"
-                    %li
-                      = image_tag "couponia/payment/maestro-curved-32px.png", :alt => "Image Alternative text",  :title => "Image Title"
-                    %li
-                      = image_tag "couponia/payment/mastercard-curved-32px.png", :alt => "Image Alternative text",  :title => "Image Title"
-                    %li
-                      = image_tag "couponia/payment/visa-curved-32px.png", :alt => "Image Alternative text",  :title => "Image Title"
-                      
-      = javascript_include_tag "couponia/jquery.js"
-      = javascript_include_tag "couponia/boostrap.min.js"
-      = javascript_include_tag "couponia/countdown.min.js"
-      = javascript_include_tag "couponia/flexnav.min.js"
-      = javascript_include_tag "couponia/magnific.js"
-      = javascript_include_tag "couponia/tweet.min.js"
-      %script{:src => "https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"}
-      = javascript_include_tag "couponia/fitvids.min.js"
-      = javascript_include_tag "couponia/mail.min.js"
-      = javascript_include_tag "couponia/ionrangeslider.js"
-      = javascript_include_tag "couponia/icheck.js"
-      = javascript_include_tag "couponia/fotorama.js"
-      = javascript_include_tag "couponia/card-payment.js"
-      = javascript_include_tag "couponia/owl-carousel.js"
-      = javascript_include_tag "couponia/masonry.js"
-      = javascript_include_tag "couponia/nicescroll.js"
-      = javascript_include_tag "couponia/custom.js"
+                    = image_tag "couponia/payment/visa-curved-32px.png", :alt => "Image Alternative text",  :title => "Image Title"
+                    
+    = javascript_include_tag "couponia/jquery.js"
+    = javascript_include_tag "couponia/boostrap.min.js"
+    = javascript_include_tag "couponia/countdown.min.js"
+    = javascript_include_tag "couponia/flexnav.min.js"
+    = javascript_include_tag "couponia/magnific.js"
+    = javascript_include_tag "couponia/tweet.min.js"
+    %script{:src => "https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"}
+    = javascript_include_tag "couponia/fitvids.min.js"
+    = javascript_include_tag "couponia/mail.min.js"
+    = javascript_include_tag "couponia/ionrangeslider.js"
+    = javascript_include_tag "couponia/icheck.js"
+    = javascript_include_tag "couponia/fotorama.js"
+    = javascript_include_tag "couponia/card-payment.js"
+    = javascript_include_tag "couponia/owl-carousel.js"
+    = javascript_include_tag "couponia/masonry.js"
+    = javascript_include_tag "couponia/nicescroll.js"
+    = javascript_include_tag "couponia/custom.js"

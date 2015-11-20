@@ -1,0 +1,25 @@
+= form_for(@shop) do |f|
+  - if @shop.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@shop.errors.count, "error")
+        prohibited this shop from being saved:
+      %ul
+        - @shop.errors.full_messages.each do |message|
+          %li= message
+  .field
+    = f.label :name
+    %br
+    = f.text_field :name
+  .field
+    = f.label :desc
+    %br
+    = f.text_field :desc
+  .field
+    %img{:src => "#{@shop.logo}"}
+    = f.file_field :logo
+  .field
+    %img{:src => "#{@shop.banner}"}
+    = f.file_field :banner
+  .actions
+    = f.submit
