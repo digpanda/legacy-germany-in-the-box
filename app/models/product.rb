@@ -29,8 +29,9 @@ class Product
   belongs_to :user, inverse_of: :oProcuts
   # has_many :likers, class_name: "User" , as: 'likers'
 
-  embedded_in :shop
-
+  #embedded_in :shop
+  belongs_to :shop
+  
   index({brand: 1}, {unique: false})
   index({category: 1}, {unique: false})
   index({name: 1}, {unique: false})

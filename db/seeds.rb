@@ -7,6 +7,7 @@ def get_demo_image(model, image_name, content_type = 'image/jpeg')
 end
 
 Shop.where(:name => 'Herz-Buffet').delete;
+Product.where(:name => '10 Blatt Seidenpapier ♥ Panda ♥').delete;
 
 shop = Shop.create!(
   :name => 'Herz-Buffet', 
@@ -24,9 +25,7 @@ product = shop.products.create!(
   ♥ Das Papier eignet sich nicht nur wundervoll zum Verpacken
   ♥ Das Papier wird auf 18x25cm gefaltet versendet
   },
-  :img => get_demo_image(Product.name.downcase, 'herz_buffet_small_10_blatt_seidenpapier_panda.jpg'),
-  :imglg => get_demo_image(Product.name.downcase, 'herz_buffet_large_10_blatt_seidenpapier_panda.jpg'),
+  :img => 'https://images2.dawandastatic.com/23/c2/61/cf/40/44/4d/62/a4/30/1b/3c/00/7b/12/fe/square_130.JPEG',
+  :imglg => 'https://images2.dawandastatic.com/23/c2/61/cf/40/44/4d/62/a4/30/1b/3c/00/7b/12/fe/product_l.JPEG',
 )
-
-shop.save!
 

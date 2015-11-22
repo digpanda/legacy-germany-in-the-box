@@ -9,6 +9,9 @@
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
     %link{:href => "http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300", :rel => "stylesheet", :type => "text/css"}
     %link{:href => "http://fonts.googleapis.com/css?family=Roboto:400,100,300", :rel => "stylesheet", :type => "text/css"}
+ 
+    = javascript_include_tag "couponia/jquery.js"
+
     = stylesheet_link_tag  "couponia/css/boostrap.css" 
     = stylesheet_link_tag "couponia/css/font_awesome.css"
     = stylesheet_link_tag "couponia/css/styles.css"
@@ -225,7 +228,6 @@
                   %li
                     = image_tag "couponia/payment/visa-curved-32px.png", :alt => "Image Alternative text",  :title => "Image Title"
                     
-    = javascript_include_tag "couponia/jquery.js"
     = javascript_include_tag "couponia/boostrap.min.js"
     = javascript_include_tag "couponia/countdown.min.js"
     = javascript_include_tag "couponia/flexnav.min.js"

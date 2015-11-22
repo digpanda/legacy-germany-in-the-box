@@ -1,11 +1,19 @@
-/
-  \//////////////////////////////////
-  \//////////////PAGE CONTENT/////////////
-  \////////////////////////////////////
+:javascript
+  $('document').ready( function() {
+   $.magnificPopup.instance.close = function () {
+    var mp = $.magnificPopup.instance
+    shop_link = mp.st.el.attr('shop_link');
+    if (typeof shop_link !== typeof undefined && shop_link !== false) {
+      window.location.href = mp.st.el.attr('shop_link');
+    }
+  }});
+
+
+
 .gap
 .container
   - @products.each do |p|
-    .mfp-with-anim.mfp-hide.mfp-dialog.mfp-dialog-big.clearfix{ :id => "product-quick-view-dialog-#{p.id}" }
+    .mfp-with-anim.mfp-hide.mfp-dialog.mfp-dialog-big.clearfix{ :id => "product-quick-view-dialog-#{p.id}"}
       .row
         .col-md-8
           .fotorama{"data-allowfullscreen" => "1", "data-nav" => "thumbs", "data-thumbheight" => "100", "data-thumbwidth" => "100"}
@@ -16,6 +24,8 @@
             =image_tag p.img, :alt => "Image Alternative text",  :title => "a turn"
         .col-md-4
           .product-page-meta
+            -if p.shop
+              %h4=link_to "Shop: #{p.shop.name}", p.shop, :target => "_blank"
             %h4= p.name
             %p= p.desc
             %a.btn.btn-primary.btn-lg.btn-block{:href => "#"} $225 Buy Now
@@ -101,7 +111,7 @@
     .col-md-9
       #masonry.row.row-wrap
         - @products.each do |p|
-          %a.col-md-3.col-masonry.popup-text{"data-effect" => "mfp-move-from-top", :href => "#product-quick-view-dialog-#{p.id}"}
+          %a.col-md-3.col-masonry.popup-text{"data-effect" => "mfp-move-from-top", :href => "#product-quick-view-dialog-#{p.id}",  :shop_link => "#{p.shop ? shop_path(p.shop) : ''}"}
             .product-thumb
               %header.product-header
                 =image_tag  p.img, :alt => p.name, :title => p.name

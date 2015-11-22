@@ -10,5 +10,6 @@ class Shop
   mount_uploader :logo, AttachmentUploader
   mount_uploader :banner, AttachmentUploader
 
-  embeds_many :products
+  #embeds_many :products
+  has_many :products,  dependent: :destroy
 end
