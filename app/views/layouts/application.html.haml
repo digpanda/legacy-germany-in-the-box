@@ -17,6 +17,7 @@
     = stylesheet_link_tag "couponia/css/styles.css"
     = stylesheet_link_tag  "couponia/css/ie.css" 
     = stylesheet_link_tag  "couponia/css/mystyles.css"
+  =console
   %body
     %nav.navbar-fixed-top
       .top-main-area.text-center
@@ -69,30 +70,31 @@
                         %a{:href => "page-checkout.html"}
                           %i.fa.fa-check-square
                           Checkout
-                %li
-                  %a.popup-text{"data-effect" => "mfp-move-from-top", :href => "#login-dialog"}
-                    %i.fa.fa-sign-in>
-                    Sign in
-                %li
-                  %a.popup-text{"data-effect" => "mfp-move-from-top", :href => "#register-dialog"}
-                    %i.fa.fa-edit>
-                    Sign up
+                - unless current_user
+                  %li
+                    %a.popup-text{"data-effect" => "mfp-move-from-top", :href => "#login-dialog"}
+                      %i.fa.fa-sign-in>
+                      Sign in
+                  %li
+                    %a.popup-text{"data-effect" => "mfp-move-from-top", :href => "#register-dialog"}
+                      %i.fa.fa-edit>
+                      Sign up
       #login-dialog.mfp-with-anim.mfp-hide.mfp-dialog.clearfix
         %i.fa.fa-sign-in.dialog-icon
         %h3 Member Login
         %h5 Welcome back, friend. Login to get started
-        %form.dialog-form
+        =form_tag user_session_path, :class => "dialog-form"  do
           .form-group
             %label E-mail
-            %input.form-control{:placeholder => "email@domain.com", :type => "text"}
+            =email_field_tag "user[email]",  nil, :class => "form-control", :placeholder => "email@domain.com" 
           .form-group
             %label Password
-            %input.form-control{:placeholder => "My secret password", :type => "password"}
+            =password_field_tag "user[password]", nil, :class => "form-control", :placeholder => "My secret password"
           .checkbox
             %label
-              %input{:type => "checkbox"}>/
+              %input{:type => "checkbox"}
               Remember me
-          %input.btn.btn-primary{:type => "submit", :value => "Sign in"}
+          = submit_tag 'Sign in', :class => "btn btn-primary"
         %ul.dialog-alt-links
           %li
             %a.popup-text{"data-effect" => "mfp-zoom-out", :href => "#register-dialog"} Not member yet
