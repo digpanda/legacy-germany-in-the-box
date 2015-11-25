@@ -81,9 +81,12 @@
                       Sign up
                 - else
                   %li
-                    %a.popup-text{:href => "#{ destroy_user_session_path }", :method => :delete}
+                    %a{ :href => "#{ destroy_user_session_path }", "data-method" => :delete }
                       %i.fa.fa-sign-out
                       Sign out
+                  %li    
+                    %a{ :href => "#{ edit_user_path current_user }" }
+                      = image_tag (current_user.pic.url.nil? ? "icons/user_line@3x.png" : current_user.pic.url) , :style => 'width:32px;height:32px' 
       #login-dialog.mfp-with-anim.mfp-hide.mfp-dialog.clearfix
         %i.fa.fa-sign-in.dialog-icon
         %h3 Member Login
@@ -122,15 +125,6 @@
           .form-group
             %label Repeat Password
             = password_field_tag "user[password_confirmation]", nil, :class => "form-control", :placeholder => "Type your password again"
-          .row
-            .col-md-8
-              .form-group
-                %label Your Area
-                %input.form-control{:placeholder => "Boston", :type => "password"}
-            .col-md-4
-              .form-group
-                %label Postal/Zip
-                %input.form-control{:placeholder => "12345", :type => "password"}
           .checkbox
             %label
               %input{:type => "checkbox"}>/

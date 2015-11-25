@@ -8,7 +8,7 @@
         - @user.errors.full_messages.each do |message|
           %li= message
   .field
-    %img{:src => "#{@user.pic.url}"}/
+    %img{:src => "#{@user.pic.url}" , :style => 'width:96px;height:96px'}/
     = f.file_field :pic
   .field
     = f.label :fname

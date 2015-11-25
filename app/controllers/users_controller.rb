@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  skip_before_action :verify_authenticity_token
+  #skip_before_action :verify_authenticity_token
   before_action :set_user, except: [:userssearch, :openmailnoti,:removeprodtocol, :getuserbyid, :index, :new, :create, :addprodtocol, :getuserbyemail]
 
   # GET /users
