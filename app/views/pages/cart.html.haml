@@ -1,0 +1,158 @@
+.container
+  .row
+    .col-md-8
+      %table.table.cart-table
+        %thead
+          %tr
+            %th Item
+            %th Name
+            %th QTY
+            %th Price
+            %th Remove
+        %tbody
+          %tr
+            %td.cart-item-image
+              %a{:href => "#"}
+                %img{:alt => "Image Alternative text", :src => "img/70x70.png", :title => "AMaze"}
+            %td
+              %a{:href => "#"} New Glass Collection
+            %td.cart-item-quantity
+              %i.fa.fa-minus.cart-item-minus
+              %input.cart-quantity{:name => "cart-quantity", :type => "text", :value => "1"}
+              %i.fa.fa-plus.cart-item-plus
+            %td $150
+            %td.cart-item-remove
+              %a.fa.fa-times{:href => "#"}
+          %tr
+            %td.cart-item-image
+              %a{:href => "#"}
+                %img{:alt => "Image Alternative text", :src => "img/70x70.png", :title => "Urbex Esch/Lux with Laney and Laaaaag"}
+            %td
+              %a{:href => "#"} Canon Camera
+            %td.cart-item-quantity
+              %i.fa.fa-minus.cart-item-minus
+              %input.cart-quantity{:name => "cart-quantity", :type => "text", :value => "1"}
+              %i.fa.fa-plus.cart-item-plus
+            %td $200
+            %td.cart-item-remove
+              %a.fa.fa-times{:href => "#"}
+          %tr
+            %td.cart-item-image
+              %a{:href => "#"}
+                %img{:alt => "Image Alternative text", :src => "img/70x70.png", :title => "Old No7"}
+            %td
+              %a{:href => "#"} Jack Daniels Huge Pack
+            %td.cart-item-quantity
+              %i.fa.fa-minus.cart-item-minus
+              %input.cart-quantity{:name => "cart-quantity", :type => "text", :value => "1"}
+              %i.fa.fa-plus.cart-item-plus
+            %td $150
+            %td.cart-item-remove
+              %a.fa.fa-times{:href => "#"}
+      %a.btn.btn-primary{:href => "#"} Update the cart
+    .col-md-3
+      %ul.cart-total-list
+        %li
+          %span Sub Total
+          %span $500.00
+        %li
+          %span Shipping
+          %span $0.00
+        %li
+          %span Taxes
+          %span $0.00
+        %li
+          %span Total
+          %span $500.00
+      %a.btn.btn-primary.btn-lg{:href => "#"} Checkout
+  .gap
+/
+  \//////////////////////////////////
+  \//////////////END PAGE CONTENT/////////
+  \////////////////////////////////////
+/
+  \//////////////////////////////////
+  \//////////////MAIN FOOTER//////////////
+  \////////////////////////////////////
+%footer.main
+  .footer-top-area
+    .container
+      .row.row-wrap
+        .col-md-3
+          %a{:href => "index.html"}
+            %img.logo{:alt => "logo", :src => "img/logo.png", :title => "logo"}
+          %ul.list.list-social
+            %li
+              %a.fa.fa-facebook.box-icon{"data-toggle" => "tooltip", :href => "#", :title => "Facebook"}
+            %li
+              %a.fa.fa-twitter.box-icon{"data-toggle" => "tooltip", :href => "#", :title => "Twitter"}
+            %li
+              %a.fa.fa-flickr.box-icon{"data-toggle" => "tooltip", :href => "#", :title => "Flickr"}
+            %li
+              %a.fa.fa-linkedin.box-icon{"data-toggle" => "tooltip", :href => "#", :title => "LinkedIn"}
+            %li
+              %a.fa.fa-tumblr.box-icon{"data-toggle" => "tooltip", :href => "#", :title => "Tumblr"}
+          %p Sagittis curae nostra dictum ornare dictum fermentum justo dapibus iaculis mus malesuada leo velit curabitur in auctor ornare ligula nam
+        .col-md-3
+          %h4 Sign Up to the Newsletter
+          .box
+            %form
+              .form-group.mb10
+                %label E-mail
+                %input.form-control{:type => "text"}
+              %p.mb10 Elit tempus suscipit vulputate neque bibendum felis
+              %input.btn.btn-primary{:type => "submit", :value => "Sign Up"}
+        .col-md-3
+          %h4 Couponia on Twitter
+          / START TWITTER
+          #twitter-ticker.twitter-ticker
+          / END TWITTER
+        .col-md-3
+          %h4 Recent News
+          %ul.thumb-list
+            %li
+              %a{:href => "#"}
+                %img{:alt => "Image Alternative text", :src => "img/70x70.png", :title => "Urbex Esch/Lux with Laney and Laaaaag"}
+              .thumb-list-item-caption
+                %p.thumb-list-item-meta Jul 18, 2014
+                %h5.thumb-list-item-title
+                  %a{:href => "#"} Tortor sagittis
+                %p.thumb-list-item-desciption Parturient pellentesque mus tristique purus
+            %li
+              %a{:href => "#"}
+                %img{:alt => "Image Alternative text", :src => "img/70x70.png", :title => "AMaze"}
+              .thumb-list-item-caption
+                %p.thumb-list-item-meta Jul 18, 2014
+                %h5.thumb-list-item-title
+                  %a{:href => "#"} Lacinia nec
+                %p.thumb-list-item-desciption Vitae himenaeos tincidunt dapibus sollicitudin
+            %li
+              %a{:href => "#"}
+                %img{:alt => "Image Alternative text", :src => "img/70x70.png", :title => "The Hidden Power of the Heart"}
+              .thumb-list-item-caption
+                %p.thumb-list-item-meta Jul 18, 2014
+                %h5.thumb-list-item-title
+                  %a{:href => "#"} Magna odio
+                %p.thumb-list-item-desciption Arcu tellus nec rhoncus litora
+  .footer-copyright
+    .container
+      .row
+        .col-md-4
+          %p Copyright © 2014, Your Store, All Rights Reserved
+        .col-md-6.col-md-offset-2
+          .pull-right
+            %ul.list-inline.list-payment
+              %li
+                %img{:alt => "Image Alternative text", :src => "img/payment/american-express-curved-32px.png", :title => "Image Title"}
+              %li
+                %img{:alt => "Image Alternative text", :src => "img/payment/cirrus-curved-32px.png", :title => "Image Title"}
+              %li
+                %img{:alt => "Image Alternative text", :src => "img/payment/discover-curved-32px.png", :title => "Image Title"}
+              %li
+                %img{:alt => "Image Alternative text", :src => "img/payment/ebay-curved-32px.png", :title => "Image Title"}
+              %li
+                %img{:alt => "Image Alternative text", :src => "img/payment/maestro-curved-32px.png", :title => "Image Title"}
+              %li
+                %img{:alt => "Image Alternative text", :src => "img/payment/mastercard-curved-32px.png", :title => "Image Title"}
+              %li
+                %img{:alt => "Image Alternative text", :src => "img/payment/visa-curved-32px.png", :title => "Image Title"}
