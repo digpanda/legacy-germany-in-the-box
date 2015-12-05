@@ -1,3 +1,5 @@
+Dockerfile
+
 /public/uploads
 *.rbc
 capybara-*.html
