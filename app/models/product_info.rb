@@ -1,18 +1,14 @@
-class Product
+class ProductInfo
   include Mongoid::Document
 
-  field :n, as: :name, type: String
+  field :name, as: :name, type: String
+  field :bran, as: :brand, type: String
+  field :thum, as: :thumbnail, type: String
+  field :pric, as: :price, type: BigDecimal
+  field :curr, as: :currency, type: String
 
-  field :b, as: :brand, type: String
+  embeds_one :shop_info
+  belongs_to :product
 
-  field :t, as: :thumbnail, type: String
-
-  field :p, as: :price, type: BigDecimal
-
-  field :c, as: :currency, type: String
-
-  field :sn, as: :shop_name, type: String
-
-  field :si, as: :shop_icon, type: String
-
+  index({"shop_info._id" => 1}, {sparse: true, unique: false})
 end

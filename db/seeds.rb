@@ -6,8 +6,10 @@ def get_demo_image(model, image_name, content_type = 'image/jpeg')
   file
 end
 
-Shop.where(:name => 'Herz-Buffet').delete;
-Product.where(:name => '10 Blatt Seidenpapier ♥ Panda ♥').delete;
+Shop.all.delete;
+ShopInfo.all.delete;
+ProductInfo.all.delete;
+Product.where(:name => '10 Blatt Seidenpapier').delete;
 
 shop = Shop.create!(
   :name => 'Herz-Buffet', 
@@ -16,8 +18,14 @@ shop = Shop.create!(
   :banner => get_demo_image(Shop.name.downcase, 'herz-buffet-banner.jpg')
 );
 
-product = shop.products.create!(
-  :name => '10 Blatt Seidenpapier ♥ Panda ♥',
+shopInfo = ShopInfo.create!(
+  :name => 'Herz-Buffet', 
+  :logo => get_demo_image(Shop.name.downcase, 'herz-buffet-logo.jpg'),
+  :shop => shop
+);
+
+product = Product.create!(
+  :name => '10 Blatt Seidenpapier',
   :desc => %Q{
   ♥ 10 Bögen Seidenpapier
   ♥ Panda
@@ -27,5 +35,16 @@ product = shop.products.create!(
   },
   :img => 'https://images2.dawandastatic.com/23/c2/61/cf/40/44/4d/62/a4/30/1b/3c/00/7b/12/fe/square_130.JPEG',
   :imglg => 'https://images2.dawandastatic.com/23/c2/61/cf/40/44/4d/62/a4/30/1b/3c/00/7b/12/fe/product_l.JPEG',
-)
+);
 
+productInfo = ProductInfo.create!(
+  :name => '10 Blatt Seidenpapier ♥ Panda ♥',
+  :thum => 'https://images2.dawandastatic.com/23/c2/61/cf/40/44/4d/62/a4/30/1b/3c/00/7b/12/fe/square_130.JPEG',
+  :product => product,
+  :shop_info => shopInfo
+);
+
+# Product.distinct(:shopname).each do |s|
+#   shop = Shop.create!( :name => :shopname )
+#   shopInfo = ShopInfo.create!( :name => :shopname )
+# end

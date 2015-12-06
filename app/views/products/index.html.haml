@@ -24,10 +24,10 @@
             =image_tag p.img, :alt => "Image Alternative text",  :title => "a turn"
         .col-md-4
           .product-page-meta
-            -if p.shop
-              %h4=link_to "Shop: #{p.shop.name}", p.shop, :target => "_blank"
-            %h4= p.name
-            %p= p.desc
+            -if p.product_info
+              %h4=link_to "Shop: #{p.product_info.shop_info.name}", p.product_info.shop_info.shop, :target => "_blank"
+              %h4= p.product_info.name
+              %p= p.product_info.shop_info.shop.desc
             %a.btn.btn-primary.btn-lg.btn-block{:href => "#"} $225 Buy Now
             %ul.list.product-page-meta-info
               %li
@@ -111,24 +111,25 @@
     .col-md-9
       #masonry.row.row-wrap
         - @products.each do |p|
-          %a.col-md-3.col-masonry.popup-text{"data-effect" => "mfp-move-from-top", :href => "#product-quick-view-dialog-#{p.id}",  :shop_link => "#{p.shop ? shop_path(p.shop) : ''}"}
-            .product-thumb
-              %header.product-header
-                =image_tag  p.img, :alt => p.name, :title => p.name
-                .product-quick-view
-                  %span.fa.fa-eye
-              .product-inner
-                %h5.product-title= truncate(p.name, :length => 16) 
-                .product-desciption= truncate(p.desc, :length => 16)
-                .product-meta
-                  %span.product-time
-                    %i.fa.fa-clock-o
-                    8 days 47 h
-                  %ul.product-price-list
-                    %li
-                      %span.product-price $102
-                    %li
-                      %span.product-old-price $188
-                %p.product-location
-                  %i.fa.fa-map-marker
-                  Boston
+          -if p.product_info
+            %a.col-md-3.col-masonry.popup-text{"data-effect" => "mfp-move-from-top", :href => "#product-quick-view-dialog-#{p.id}",  :shop_link => "#{p.product_info.shop_info.shop ? shop_path(p.product_info.shop_info.shop) : ''}"}
+              .product-thumb
+                %header.product-header
+                  =image_tag  p.img, :alt => p.name, :title => p.name
+                  .product-quick-view
+                    %span.fa.fa-eye
+                .product-inner
+                  %h5.product-title= truncate(p.name, :length => 16) 
+                  .product-desciption= truncate(p.desc, :length => 16)
+                  .product-meta
+                    %span.product-time
+                      %i.fa.fa-clock-o
+                      8 days 47 h
+                    %ul.product-price-list
+                      %li
+                        %span.product-price $102
+                      %li
+                        %span.product-old-price $188
+                  %p.product-location
+                    %i.fa.fa-map-marker
+                    Boston
