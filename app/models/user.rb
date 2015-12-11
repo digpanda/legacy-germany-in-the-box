@@ -16,6 +16,9 @@ class User
   field :provider
   field :uid
 
+  field :tel
+  field :mobile
+
   mount_uploader :pic, AttachmentUploader
 
   # Include default devise modules. Others available are:

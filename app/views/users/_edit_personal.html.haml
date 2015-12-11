@@ -1,0 +1,43 @@
+= form_for @user do |f|
+  - if @user.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@user.errors.count, "error")
+        prohibited this user from being saved:
+      %ul
+        - @user.errors.full_messages.each do |message|
+          %li= message
+  .form-group
+    = f.label :fname, 'Firstname'
+    = f.text_field :fname, :class => 'form-control'     
+  .form-group
+    = f.label :lname, 'Lastname'
+    = f.text_field :lname, :class => 'form-control'            
+  .form-group
+    = f.label :birth, 'Birthday'
+    = f.text_field :birth, :class => 'form-control'                 
+  .form-group
+    = f.label :gender, 'Gender'
+    = f.text_field :gender, :class => 'form-control'            
+  .form-group
+    = f.label :about, 'About'
+    = f.text_field :about, :class => 'form-control'            
+  .form-group
+    = f.label :website, 'Website'
+    = f.text_field :website, :class => 'form-control'            
+  .form-group
+    = f.label :country, 'Country'
+    = f.text_field :country, :class => 'form-control'            
+  .form-group
+    = f.label :lang, 'Language'
+    = f.text_field :lang, :class => 'form-control'            
+  .form-group
+    = f.label :provider, 'Provider'
+    = f.text_field :provider, :class => 'form-control'            
+  .form-group
+    = f.label :tel, 'Telephone'
+    = f.text_field :tel, :class => 'form-control'            
+  .form-group
+    = f.label :mobile, 'Mobile'
+    = f.text_field :mobile, :class => 'form-control'            
+  = f.submit 'save', :class => 'btn btn-primary'

@@ -1,15 +1,3 @@
-:javascript
-  $('document').ready( function() {
-   $.magnificPopup.instance.close = function () {
-    var mp = $.magnificPopup.instance
-    shop_link = mp.st.el.attr('shop_link');
-    if (typeof shop_link !== typeof undefined && shop_link !== false) {
-      window.location.href = mp.st.el.attr('shop_link');
-    }
-  }});
-
-
-
 .gap
 .container
   - @products.each do |p|
@@ -24,10 +12,9 @@
             =image_tag p.img, :alt => "Image Alternative text",  :title => "a turn"
         .col-md-4
           .product-page-meta
-            -if p.product_info
-              %h4=link_to "Shop: #{p.product_info.shop_info.name}", p.product_info.shop_info.shop, :target => "_blank"
-              %h4= p.product_info.name
-              %p= p.product_info.shop_info.shop.desc
+            %h4=link_to "Shop: #{p.product_info.shop_info.name}", p.product_info.shop_info.shop, :target => "_blank"
+            %h4= p.product_info.name
+            %p= p.product_info.shop_info.shop.desc
             %a.btn.btn-primary.btn-lg.btn-block{:href => "#"} $225 Buy Now
             %ul.list.product-page-meta-info
               %li
