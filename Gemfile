@@ -32,6 +32,10 @@ gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
 gem 'mini_magick'
 gem 'haml-rails'
 
+gem 'easy_captcha'
+gem 'rmagick'
+gem 'diff-lcs', '1.2.5'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
