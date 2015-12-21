@@ -99,6 +99,7 @@ class User
   # validates :pic, presence: true
   #validates :lang, presence: true
 
+  validates_confirmation_of :password
 
 
   def saved_collections

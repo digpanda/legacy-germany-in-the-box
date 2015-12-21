@@ -70,10 +70,24 @@ end
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
+        format.html {
+          flash[:success] = 'User was successfully updated.'
+          render :edit, user_info_edit_part: params[:user_info_edit_part]
+          flash.delete(:success)
+        }
         format.json { render :show, status: :ok, location: @user }
       else
-        format.html { render :edit }
+        format.html {
+          if @user.errors.any?
+            @user.errors.full_messages.each do |msg|
+              flash[:error] ||= msg
+            end
+          end
+
+          render :edit
+
+          flash.delete(:error)
+        }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
@@ -339,7 +353,7 @@ end
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def user_params
-    params.require(:user).permit(:username, :email, :parse_id, :password, :fname, :lname, :birth, :gender, :about, :website, :country, :pic, :lang, :provider ,:uid)
+    params.require(:user).permit(:username, :email, :parse_id, :password, :password_confirmation, :fname, :lname, :birth, :gender, :about, :website, :country, :pic, :lang, :provider ,:uid, :tel, :mobile)
   end
 
   def user_search

@@ -9,7 +9,7 @@ development:
       # Provides the hosts the default session can connect to. Must be an array
       # of host:port pairs. (required)
       hosts:
-        - achat-db:27017 
+        - localhost:27017 
       options:
         user: achat
         password: achat2cool

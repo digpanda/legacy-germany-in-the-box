@@ -86,7 +86,7 @@
                       Sign out
                   %li    
                     %a{ :href => "#{ edit_user_path current_user }" }
-                      = image_tag (current_user.pic.url.nil? ? "icons/user_line@3x.png" : current_user.pic.url) , :style => 'width:32px;height:32px' 
+                      = image_tag (current_user.pic.url.nil? ? "icons/default_user_pic.png" : current_user.pic.url) , :style => 'width:32px;height:32px'
       #login-dialog.mfp-with-anim.mfp-hide.mfp-dialog.clearfix
         %i.fa.fa-sign-in.dialog-icon
         %h3 Member Login
@@ -102,7 +102,7 @@
             = captcha_tag
           .form-group
             %label Captcha
-            = text_field_tag :captcha
+            = text_field_tag :captcha, '', :autocomplete => :off
           .checkbox
             %label
               %input{:type => "checkbox"}
@@ -145,12 +145,31 @@
         %form.dialog-form
           %label E-mail
           %input.span12{:placeholder => "email@domain.com", :type => "text"}
-          %input.btn.btn-primary{:type => "submit", :value => "Request new password"}     
+          %input.btn.btn-primary{:type => "submit", :value => "Request new password"}
+
     .gap
     .gap
     .gap
     .gap
-    
+
+    .row
+      - if flash[:error]
+        .alert.alert-danger.pull-right.fade.in{:role => 'alert'}
+          %a.close{"aria-label" => "close", "data-dismiss" => "alert", :href => "#"} &times;
+          = flash[:error]
+      - elsif flash[:info]
+        .alert.alert-info.pull-right.fade.in{:role => 'alert'}
+          %a.close{"aria-label" => "close", "data-dismiss" => "alert", :href => "#"} &times;
+          = flash[:info]
+      - elsif flash[:warning]
+        .alert.alert-warning.pull-right.fade.in{:role => 'alert'}
+          %a.close{"aria-label" => "close", "data-dismiss" => "alert", :href => "#"} &times;
+          = flash[:warning]
+      - elsif flash[:success]
+        .alert.alert-success.pull-right.fade.in{:role => 'alert'}
+          %a.close{"aria-label" => "close", "data-dismiss" => "alert", :href => "#"} &times;
+          = flash[:success]
+
     = yield
 
     .gap

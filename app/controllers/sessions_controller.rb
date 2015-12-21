@@ -6,7 +6,7 @@ class SessionsController < Devise::SessionsController
       super
     else
       flash[:error] = "Captcha has wrong, try a again."
-      redirect_to '/'
+      redirect_to home_path
     end
   end
 end
