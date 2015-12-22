@@ -57,7 +57,7 @@
                             %a{:href => "#{cart_path}" }
                               = image_tag i.product.img
                               %h5= i.product.name
-                              %span.shopping-cart-item-price= "$#{i.product.price}"
+                              %span.shopping-cart-item-price= "Subtotal: $#{i.product.price * i.quantity}"
                       %ul.list-inline.text-center
                         %li
                           %a{:href => "#{cart_path}"}
