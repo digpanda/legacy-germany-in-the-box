@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   # user
 
   get '/',to: 'pages#home', as: 'home'
-  get 'cart',to: 'pages#cart', as: 'cart'
+  get 'cart',to: 'orders#cart', as: 'cart'
 
   get 'popular_products',to: 'products#indexr', as: 'popular_products'
 

@@ -1,0 +1,43 @@
+.container
+  .row
+    .col-md-8
+      %table.table.cart-table
+        %thead
+          %tr
+            %th Item
+            %th Name
+            %th QTY
+            %th Price
+            %th Remove
+        %tbody
+          - current_order.order_items.each do |i|
+            %tr
+              %td.cart-item-image
+                %a{:href => "#"}
+                  %img{:src => "#{i.product.img}", :style => 'weight:48px;width:48px'}
+              %td
+                %a{:href => "#"}= i.product.name
+              %td.cart-item-quantity
+                %i.fa.fa-minus.cart-item-minus
+                %input.cart-quantity{:name => "cart-quantity", :type => "text", :value => "#{i.quantity}"}
+                %i.fa.fa-plus.cart-item-plus
+              %td= "$#{i.product.price}"
+              %td.cart-item-remove
+                %a.fa.fa-times{:href => "#"}
+      %a.btn.btn-primary{:href => "#"} Update the cart
+    .col-md-3
+      %ul.cart-total-list
+        %li
+          %span Sub Total
+          %span= "$#{current_order.total}"
+        %li
+          %span Shipping
+          %span $0.00
+        %li
+          %span Taxes
+          %span $0.00
+        %li
+          %span Total
+          %span= "$#{current_order.total}"
+      %a.btn.btn-primary.btn-lg{:href => "#"} Checkout
+  .gap
