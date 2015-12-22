@@ -50,26 +50,29 @@
                     %i.fa.fa-shopping-cart>
                     My Cart
                   .shopping-cart-box
-                    %ul.shopping-cart-items
-                      %li
-                        %a{:href => "product-shop-sidebar.html"}
-                          = image_tag "couponia/70x70.png", :alt => "Image Alternative text",  :title => "AMaze"
-                          %h5 New Glass Collection
-                          %span.shopping-cart-item-price $150
-                      %li
-                        %a{:href => "product-shop-sidebar.html"}
-                          = image_tag "couponia/70x70.png", :alt => "Image Alternative text",   :title => "Gamer Chick"
-                          %h5 Playstation Accessories
-                          %span.shopping-cart-item-price $170
-                    %ul.list-inline.text-center
-                      %li
-                        %a{:href => "page-cart.html"}
-                          %i.fa.fa-shopping-cart
-                          View Cart
-                      %li
-                        %a{:href => "page-checkout.html"}
-                          %i.fa.fa-check-square
-                          Checkout
+                    -if current_order.order_items.count > 0
+                      %ul.shopping-cart-items
+                        - current_order.order_items.each do |i|
+                          %li
+                            %a{:href => "#{cart_path}" }
+                              = image_tag i.product.img
+                              %h5= i.product.name
+                              %span.shopping-cart-item-price= "$#{i.product.price}"
+                      %ul.list-inline.text-center
+                        %li
+                          %a{:href => "#{cart_path}"}
+                            %i.fa.fa-shopping-cart
+                            View Cart
+                        %li
+                          %a{:href => "page-checkout.html"}
+                            %i.fa.fa-check-square
+                            Checkout
+                    -else
+                      %ul.list-inline.text-center
+                        %li
+                          %a{:href => "#{cart_path}"}
+                            %i
+                            Empty Cart
                 - unless current_user
                   %li
                     %a.popup-text{"data-effect" => "mfp-move-from-top", :href => "#login-dialog"}

@@ -81,8 +81,7 @@ class User
 
   has_many :oCollections , class_name: 'Collection' ,inverse_of: :user
 
-
-
+  has_many :orders;
 
   # has_many :liked_collections, class_name: "Collection"
 

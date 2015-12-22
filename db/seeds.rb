@@ -6,32 +6,26 @@ def get_demo_image(model, image_name, content_type = 'image/jpeg')
   file
 end
 
-Shop.all.delete;
-Product.where(:name => '10 Blatt Seidenpapier').delete;
+Shop.where(:name => 'Herz-Buffet').delete;
+Product.where(:name => '10 Blatt Seidenpapier ♥ Panda ♥').delete;
 
 shop = Shop.create!(
-  :name => 'Herz-Buffet', 
-  :desc => 'Alle Bestellungen werden automatisch bestätigt und können sofort bezahlt werden. Die Versandkosten betragen deutschlandweit pauschal 3,50€, egal wieviel ihr bestellt. Paypalgebühren werden nicht erhoben. Jeder Bestellung liegt eine Rechnung mit ausgewiesener Umsatzsteuer bei.',
-  :logo => get_demo_image(Shop.name.downcase, 'herz-buffet-logo.jpg'),
-  :banner => get_demo_image(Shop.name.downcase, 'herz-buffet-banner.jpg')
+    :name => 'Herz-Buffet',
+    :desc => 'Alle Bestellungen werden automatisch bestätigt und können sofort bezahlt werden. Die Versandkosten betragen deutschlandweit pauschal 3,50€, egal wieviel ihr bestellt. Paypalgebühren werden nicht erhoben. Jeder Bestellung liegt eine Rechnung mit ausgewiesener Umsatzsteuer bei.',
+    :logo => get_demo_image(Shop.name.downcase, 'herz-buffet-logo.jpg'),
+    :banner => get_demo_image(Shop.name.downcase, 'herz-buffet-banner.jpg')
 );
 
-
 product = shop.products.create!(
-  :name => '10 Blatt Seidenpapier',
-  :desc => %Q{
+    :name => '10 Blatt Seidenpapier ♥ Panda ♥',
+    :desc => %Q{
   ♥ 10 Bögen Seidenpapier
   ♥ Panda
   ♥ Größe je Bogen: 50 x 70cm
   ♥ Das Papier eignet sich nicht nur wundervoll zum Verpacken
   ♥ Das Papier wird auf 18x25cm gefaltet versendet
   },
-  :img => 'https://images2.dawandastatic.com/23/c2/61/cf/40/44/4d/62/a4/30/1b/3c/00/7b/12/fe/square_130.JPEG',
-  :imglg => 'https://images2.dawandastatic.com/23/c2/61/cf/40/44/4d/62/a4/30/1b/3c/00/7b/12/fe/product_l.JPEG',
-);
-
-
-# Product.distinct(:shopname).each do |s|
-#   shop = Shop.create!( :name => :shopname )
-#   shopInfo = ShopInfo.create!( :name => :shopname )
-# end
+    :img => 'https://images2.dawandastatic.com/23/c2/61/cf/40/44/4d/62/a4/30/1b/3c/00/7b/12/fe/square_130.JPEG',
+    :imglg => 'https://images2.dawandastatic.com/23/c2/61/cf/40/44/4d/62/a4/30/1b/3c/00/7b/12/fe/product_l.JPEG',
+    :price => 10.0
+)

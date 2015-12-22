@@ -17,6 +17,7 @@ class Product
   field :update_, type: String
   field :status, type: String
   field :desc, type: String
+  field :weight, type: Float
   
   # Relations_mapping
   field :owner, :type => String
@@ -27,6 +28,8 @@ class Product
   # # Relations
   has_and_belongs_to_many :users, inverse_of: :products
   has_and_belongs_to_many :collections, inverse_of: :products
+  has_many :order_item
+
   belongs_to :user, inverse_of: :oProcuts
   belongs_to :shop
   # has_many :likers, class_name: "User" , as: 'likers'

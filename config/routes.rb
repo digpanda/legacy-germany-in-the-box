@@ -13,6 +13,8 @@ Rails.application.routes.draw do
 
   resources :users, except: [:destroy]
   resources :shops
+
+  resources :orders
   
   # user
 
@@ -20,8 +22,11 @@ Rails.application.routes.draw do
   get 'cart',to: 'pages#cart', as: 'cart'
 
   get 'popular_products',to: 'products#indexr', as: 'popular_products'
-  
+
   get 'profile/:id', to: 'users#pshow', as: "profile"
+
+  get 'orders/add_product/:product_id', to: 'orders#add_product', as: 'add_product'
+
   post '/getuser', to: 'users#getuserbyemail'
   post '/follow/:id/:target_id', to: 'users#follow'
   post '/unfollow/:id/:target_id', to: 'users#unfollow'
