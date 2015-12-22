@@ -15,7 +15,8 @@
               %h4=link_to "Shop: #{p.shop.name}", p.shop, :target => "_blank"
             %h4= p.name
             %p= p.desc
-            =link_to "$#{p.price} Buy Now", add_product_path(p), :class => "btn btn-primary btn-lg btn-block"
+            = form_tag add_product_path(p) do
+              =submit_tag "$#{p.price} Buy Now", :class => "btn btn-primary btn-lg btn-block"
             %ul.list.product-page-meta-info
               %li
                 %ul.list.product-page-meta-price-list

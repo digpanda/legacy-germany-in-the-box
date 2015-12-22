@@ -25,7 +25,8 @@ Rails.application.routes.draw do
 
   get 'profile/:id', to: 'users#pshow', as: "profile"
 
-  get 'orders/add_product/:product_id', to: 'orders#add_product', as: 'add_product'
+  post 'orders/add_product/:product_id', to: 'orders#add_product', as: 'add_product'
+  post 'orders/adjust_products_amount', to: 'orders#adjust_products_amount', as: 'adjust_products_amount'
 
   post '/getuser', to: 'users#getuserbyemail'
   post '/follow/:id/:target_id', to: 'users#follow'
