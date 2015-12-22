@@ -288,7 +288,7 @@ class ProductsController < ApplicationController
     rand = rand(cnt+1)
     # just to test 
     products = Product.where(:name => '10 Blatt Seidenpapier ♥ Panda ♥');
-    #products  += Product.skip(rand).limit(n)
+    products  += Product.skip(rand).limit(n)
 
     #while i < n-2  do
     # products.push(Product.skip(rand).limit(1))
