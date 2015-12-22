@@ -1,5 +1,4 @@
 class Post
-
   include Mongoid::Document
 
   field :name, type: String
@@ -13,6 +12,5 @@ class Post
   validates :name, :image, presence: true
 
   belongs_to :user
-  
 end
 

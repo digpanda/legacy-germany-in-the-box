@@ -79,9 +79,7 @@ end
       else
         format.html {
           if @user.errors.any?
-            @user.errors.full_messages.each do |msg|
-              flash[:error] ||= msg
-            end
+            flash[:error] ||= @user.errors.full_messages.join(', ')
           end
 
           render :edit

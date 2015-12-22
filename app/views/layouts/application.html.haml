@@ -119,17 +119,18 @@
         %h5 Ready to get best offers? Let's get started!
         = form_tag user_registration_path, :method => 'POST', :class => "dialog-form" do
           .form-group
-            %label Username
-            = text_field_tag "user[username]", nil, :class => "form-control", :placeholder => "achathero"
+            = text_field_tag "user[username]", nil, :class => "form-control", :placeholder => "Username"
           .form-group
-            %label E-mail
-            = email_field_tag "user[email]", nil, :class => "form-control", :placeholder => "email@domain.com"
+            = email_field_tag "user[email]", nil, :class => "form-control", :placeholder => "Email"
           .form-group
-            %label Password
-            = password_field_tag "user[password]", nil, :class => "form-control", :placeholder => "My secret password"
+            = password_field_tag "user[password]", nil, :class => "form-control", :placeholder => "Password"
           .form-group
-            %label Repeat Password
-            = password_field_tag "user[password_confirmation]", nil, :class => "form-control", :placeholder => "Type your password again"
+            = password_field_tag "user[password_confirmation]", nil, :class => "form-control", :placeholder => "Password Confirmation"
+          .form-group
+            = captcha_tag
+          .form-group
+            %label Captcha
+            = text_field_tag :captcha, '', :autocomplete => :off
           .checkbox
             %label
               %input{:type => "checkbox"}>/

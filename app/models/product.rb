@@ -1,5 +1,6 @@
 class Product
   include Mongoid::Document
+
   field :network, type: String
   field :shopname, type: String
   field :prodid, type: String
@@ -27,9 +28,8 @@ class Product
   has_and_belongs_to_many :users, inverse_of: :products
   has_and_belongs_to_many :collections, inverse_of: :products
   belongs_to :user, inverse_of: :oProcuts
+  belongs_to :shop
   # has_many :likers, class_name: "User" , as: 'likers'
-
-  has_one :product_info
   
   index({brand: 1}, {unique: false})
   index({category: 1}, {unique: false})

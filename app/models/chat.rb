@@ -1,9 +1,9 @@
 class Chat
   include Mongoid::Document
+
   field :name, type: String
   field :desc, type: String
   field :chat_type, type: String
-
 
   # Relations_mapping
   field :owner, :type => String

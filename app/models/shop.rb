@@ -7,8 +7,8 @@ class Shop
   field :logo, type: String
   field :banner, type: String
 
+  has_many :products
+
   mount_uploader :logo, AttachmentUploader
   mount_uploader :banner, AttachmentUploader
-
-  has_one :shop_info
 end
