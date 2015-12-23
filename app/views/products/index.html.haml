@@ -41,61 +41,12 @@
     .col-md-3
       %aside.sidebar-left
         %ul.nav.nav-tabs.nav-stacked.nav-coupon-category.nav-coupon-category-left
-          %li.active
-            %a{:href => "#"}
-              %i.fa.fa-ticket>
-              All
-              %span 36
-          %li
-            %a{:href => "#"}
-              %i.fa.fa-cutlery>
-              Food &amp; Drink
-              %span 34
-          %li
-            %a{:href => "#"}
-              %i.fa.fa-calendar>
-              Events
-              %span 46
-          %li
-            %a{:href => "#"}
-              %i.fa.fa-female>
-              Beauty
-              %span 41
-          %li
-            %a{:href => "#"}
-              %i.fa.fa-bolt>
-              Fitness
-              %span 39
-          %li
-            %a{:href => "#"}
-              %i.fa.fa-headphones>
-              Electronics
-              %span 46
-          %li
-            %a{:href => "#"}
-              %i.fa.fa-image>
-              Furniture
-              %span 50
-          %li
-            %a{:href => "#"}
-              %i.fa.fa-umbrella>
-              Fashion
-              %span 50
-          %li
-            %a{:href => "#"}
-              %i.fa.fa-shopping-cart>
-              Shopping
-              %span 42
-          %li
-            %a{:href => "#"}
-              %i.fa.fa-home>
-              Home &amp; Graden
-              %span 42
-          %li
-            %a{:href => "#"}
-              %i.fa.fa-plane>
-              Travel
-              %span 48
+          - Category.where( :parent => nil ).each_with_index do |c, i|
+            %li{ :class => i == 0 ? 'active' : '' }
+              %a{:href => '#'}
+                %i{ :class => "fa #{c.cssc}" }
+                = c.name
+                %span= c.get_number_of_different_products
     .col-md-9
       #masonry.row.row-wrap
         - @products.each do |p|

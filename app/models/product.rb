@@ -32,6 +32,8 @@ class Product
 
   belongs_to :user, inverse_of: :oProcuts
   belongs_to :shop
+  has_and_belongs_to_many :categories
+
   # has_many :likers, class_name: "User" , as: 'likers'
   
   index({brand: 1}, {unique: false})
