@@ -27,6 +27,7 @@ Rails.application.routes.draw do
 
   post 'orders/add_product/:product_id', to: 'orders#add_product', as: 'add_product'
   post 'orders/adjust_products_amount', to: 'orders#adjust_products_amount', as: 'adjust_products_amount'
+  post 'orders/checkout', to: 'orders#checkout', as: 'checkout'
 
   post '/getuser', to: 'users#getuserbyemail'
   post '/follow/:id/:target_id', to: 'users#follow'

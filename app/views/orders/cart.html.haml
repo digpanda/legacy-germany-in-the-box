@@ -28,6 +28,7 @@
                     =link_to '', '#', :class => 'fa fa-times', :onclick => "$('#cart-quantity-of-product-#{i.product.id}').val(0); $('#orders_adjust_products_amount').submit()"
           =submit_tag 'Update the cart', :class => "btn btn-primary"
       .col-md-3
+        = form_tag checkout_path
         %ul.cart-total-list
           %li
             %span Sub Total
@@ -41,7 +42,8 @@
           %li
             %span Total
             %span= "$#{current_order.total}"
-        %a.btn.btn-primary.btn-lg{:href => "#"} Checkout
+          = hidden_field_tag 'order_id', "#{current_order.id}"
+          = submit_tag 'Checkout', :class => "btn btn-primary btn-lg"
     - else
       %h4 You haven't selected any products.
 

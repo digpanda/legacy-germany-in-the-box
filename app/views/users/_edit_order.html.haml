@@ -1,0 +1,16 @@
+%table.table.table-order
+  %thead
+    %tr
+      %th Id
+      %th Status
+      %th Total Price
+      %th Created at
+      %th Updated at
+  %tbody
+    - current_user.orders.each do |o|
+      %tr
+        %td= o.id
+        %td= o.status
+        %td= o.total
+        %td= o.c_at
+        %td= o.u_at

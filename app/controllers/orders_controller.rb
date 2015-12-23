@@ -45,4 +45,16 @@ class OrdersController < ApplicationController
 
       redirect_to cart_path
     end
+
+    def checkout
+      if user_signed_in?
+        current_order.status = :accepted
+        current_order.user = current_user
+        current_order.save!
+        redirect_to popular_products_path
+      else
+        flash[:info] = 'You haven\'t logged in.'
+        redirect_to request.referrer
+      end
+    end
 end

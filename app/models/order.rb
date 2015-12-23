@@ -3,7 +3,9 @@ class Order
   include Mongoid::Timestamps::Created::Short
   include Mongoid::Timestamps::Updated::Short
 
-  belongs_to :customer
+  field :status, type: Symbol, default: :new #[ :new, :accepted, :payed, :shipped ]
+
+  belongs_to :user
   has_many :order_items
 
   def total
