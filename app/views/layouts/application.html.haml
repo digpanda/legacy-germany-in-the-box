@@ -22,7 +22,7 @@
     %nav.navbar-fixed-top
       .top-main-area.text-center
         .container
-          %a.logo.mt5{:href => "index.html"}
+          %a.logo.mt5{:href => "#{home_path}"}
             =image_tag  "couponia/logo-small-dark.png"
       %header.main
         .container
@@ -35,6 +35,15 @@
                     %a{:href => "#{home_path}"} Home
                   %li
                     %a{:href => "#"} Category
+                    %ul
+                      - Category.where( :parent => nil ).each do |c|
+                        %li
+                          %a{:href => "#"}= c.name
+                          - if c.children.count > 0
+                            %ul
+                              - c.children.each do |cc|
+                                %li
+                                  %a{:href => "#"}= cc.name
                   %li
                     =link_to " Product", popular_products_path
                   %li

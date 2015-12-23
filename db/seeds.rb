@@ -73,7 +73,7 @@ category_home_garden = Category.create!(
 )
 
 category_carpet = Category.create!(
-    :name => 'Home & Garden',
+    :name => 'Carpet',
     :parent => category_home_garden
 )
 
