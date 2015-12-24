@@ -110,11 +110,12 @@
           .form-group
             %label Password
             = password_field_tag "user[password]", nil, :class => "form-control", :placeholder => "My secret password"
-          .form-group
-            = captcha_tag
-          .form-group
-            %label Captcha
-            = text_field_tag :captcha, '', :autocomplete => :off
+          - if session[:login_failure_counter].present? and session[:login_failure_counter] >= Rails.configuration.login_failure_limit
+            .form-group
+              = captcha_tag
+            .form-group
+              %label Captcha
+              = text_field_tag :captcha, '', :autocomplete => :off
           .checkbox
             %label
               %input{:type => "checkbox"}

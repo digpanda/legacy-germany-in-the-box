@@ -1,0 +1,1 @@
+Rails.configuration.login_failure_limit = 2
