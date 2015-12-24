@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   captcha_route
   devise_for :users, :controllers => { :omniauth_callbacks => 'users/omniauth_callbacks',registrations: "registrations", sessions: "sessions" }
 
+  devise_scope :user do
+    get '/sign_out', to: 'sessions#destroy', as: :signout
+  end
 
   resources :notifications
   resources :posts
@@ -11,7 +14,7 @@ Rails.application.routes.draw do
   resources :collections
   resources :products, except: [:index]
 
-  resources :users, except: [:destroy]
+  resources :users, except: [:show, :destroy]
   resources :shops
 
   resources :orders

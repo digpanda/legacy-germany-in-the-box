@@ -18,10 +18,17 @@
     = stylesheet_link_tag  "couponia/css/ie.css" 
     = stylesheet_link_tag  "couponia/css/mystyles.css"
 
-    = hidden_field_tag :login_failure_counter, "#{session[:login_failure_counter]}"
+    - if session[:login_failure_counter]
+      = hidden_field_tag :login_failure_counter, "#{session[:login_failure_counter]}"
 
     :javascript
       $( document ).ready( function () {
+        var close = $.magnificPopup.instance.close
+        $.magnificPopup.instance.close = function () {
+         close()
+         window.location.href = '/sign_out'
+        }
+
         if ($('#login_failure_counter').length) {
           $('#sign_in_link').click()
         }
@@ -101,7 +108,7 @@
                       Sign up
                 - else
                   %li
-                    %a{ :href => "#{ destroy_user_session_path }", "data-method" => :delete }
+                    %a{ :href => "#{ signout_path }" }
                       %i.fa.fa-sign-out
                       Sign out
                   %li    

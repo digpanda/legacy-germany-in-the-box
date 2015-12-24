@@ -12,7 +12,11 @@ class SessionsController < Devise::SessionsController
     else
       super
     end
+  end
 
+  def destroy
+    session.delete(:login_failure_counter)
+    super
   end
 
 end
