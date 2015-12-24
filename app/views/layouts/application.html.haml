@@ -109,8 +109,11 @@
                       = image_tag (current_user.pic.url.nil? ? "icons/default_user_pic.png" : current_user.pic.url) , :style => 'width:32px;height:32px'
       #login-dialog.mfp-with-anim.mfp-hide.mfp-dialog.clearfix
         %i.fa.fa-sign-in.dialog-icon
-        %h3 Member Login
-        %h5 Welcome back, friend. Login to get started
+        - if session[:login_failure_counter]
+          %h5{ :style => 'color:red' }= flash[:error]
+        - else
+          %h3 Member Login
+          %h5 Welcome back, friend. Login to get started
         = form_tag user_session_path, :method => 'POST', :class => "dialog-form"  do
           .form-group
             %label E-mail
