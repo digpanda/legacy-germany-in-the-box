@@ -17,7 +17,15 @@
     = stylesheet_link_tag "couponia/css/styles.css"
     = stylesheet_link_tag  "couponia/css/ie.css" 
     = stylesheet_link_tag  "couponia/css/mystyles.css"
-    
+
+    = hidden_field_tag :login_failure_counter, "#{session[:login_failure_counter]}"
+
+    :javascript
+      $( document ).ready( function () {
+        if ($('#login_failure_counter').length) {
+          $('#sign_in_link').click()
+        }
+      });
   %body
     %nav.navbar-fixed-top
       .top-main-area.text-center
@@ -84,7 +92,7 @@
                             Empty Cart
                 - unless current_user
                   %li
-                    %a.popup-text{"data-effect" => "mfp-move-from-top", :href => "#login-dialog"}
+                    %a.popup-text{ :id => 'sign_in_link', "data-effect" => "mfp-move-from-top", :href => "#login-dialog"}
                       %i.fa.fa-sign-in
                       Sign in
                   %li
