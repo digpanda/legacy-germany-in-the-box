@@ -2,11 +2,12 @@ class SessionsController < Devise::SessionsController
   skip_before_filter :require_no_authentication, :only => [:new]
 
   def create
-    if session[:login_failure_counter].present? and session[:login_failure_counter] > 2
+    if session[:login_failure_counter].present? and session[:login_failure_counter] >= Rails.configuration.login_failure_limit
       if valid_captcha?(params[:captcha])
+        session.delete(:login_failure_counter)
         super
       else
-        flash[:error] = "Captcha has wrong, try again."
+        flash[:error] = 'Captcha has wrong, try again.'
         redirect_to home_path
       end
     else
@@ -14,9 +15,9 @@ class SessionsController < Devise::SessionsController
     end
   end
 
-  def destroy
+  def cancel_login
     session.delete(:login_failure_counter)
-    super
+    redirect_to request.referer
   end
 
 end

@@ -28,14 +28,13 @@
           var t = this.st.el[0]
 
           if (t.id == 'sign_in_link') {
-            window.location.href = '/sign_out';
+            window.location.href = '/cancel_login';
           }
 
           $.magnificPopup.proto.close.call(this);
         };
 
         if ($('#login_failure_counter').length) {
-          alert(($('#login_failure_counter').val()))
           $('#sign_in_link').click();
         }
       });
