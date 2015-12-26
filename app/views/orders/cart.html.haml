@@ -41,7 +41,7 @@
             %span $0.00
           %li
             %span Total
-            %span= "$#{current_order.total}"
+            %span= "$#{current_order.total_price}"
           = hidden_field_tag 'order_id', "#{current_order.id}"
           = submit_tag 'Checkout', :class => "btn btn-primary btn-lg"
     - else

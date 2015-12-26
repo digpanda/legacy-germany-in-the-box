@@ -19,18 +19,23 @@
     = stylesheet_link_tag  'couponia/css/ie.css'
     = stylesheet_link_tag  'couponia/css/mystyles.css'
 
-    - if session[:login_failure_counter]
+    - if session[:login_failure_counter].present?
       = hidden_field_tag :login_failure_counter, "#{session[:login_failure_counter]}"
 
     :javascript
       $( document ).ready( function () {
-        var close = $.magnificPopup.instance.close;
         $.magnificPopup.instance.close = function () {
-         close();
-         window.location.href = '/sign_out';
+          var t = this.st.el[0]
+
+          if (t.id == 'sign_in_link') {
+            window.location.href = '/sign_out';
+          }
+
+          $.magnificPopup.proto.close.call(this);
         };
 
         if ($('#login_failure_counter').length) {
+          alert(($('#login_failure_counter').val()))
           $('#sign_in_link').click();
         }
       });
@@ -116,7 +121,8 @@
                   %li    
                     %a{ :href => "#{ edit_user_path current_user }" }
                       = image_tag (current_user.pic.url.nil? ? 'icons/default_user_pic.png' : current_user.pic.url) , :style => 'width:32px;height:32px'
-      #login-dialog.mfp-with-anim.mfp-hide.mfp-dialog.clearfix
+
+      #login-dialog.mfp-with-anim.mfp-hide.mfp-dialog.clearfix.open-popup-link
         %i.fa.fa-sign-in.dialog-icon
         - if session[:login_failure_counter]
           %h5{ :style => 'color:red' }= flash[:error]
@@ -180,7 +186,26 @@
           %label E-mail
           %input.span12{:placeholder => 'email@domain.com', :type => 'text'}
           %input.btn.btn-primary{:type => 'submit', :value => 'Request new password'}
-
+      - if @show_search_area.present? and @show_search_area
+        %form.search-area.form-group
+          .container
+            .row
+              .col-md-8.clearfix
+                %label
+                  %i.fa.fa-search
+                  %span I am searching for
+                .search-area-division.search-area-division-input
+                  %input.form-control{:placeholder => 'Travel Vacation', :type => 'text'}
+              .col-md-3.clearfix
+                %label
+                  %i.fa.fa-map-marker
+                  %span In
+                .search-area-division.search-area-division-location
+                  %input.form-control{:placeholder => 'Boston', :type => 'text'}
+              .col-md-1
+                %button.btn.btn-block.btn-white.search-btn{:type => 'submit'} Search
+        .gap
+        .gap
     .gap
     .gap
     .gap
