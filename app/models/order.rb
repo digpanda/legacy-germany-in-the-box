@@ -8,7 +8,7 @@ class Order
   belongs_to :user
   has_many :order_items
 
-  def total
+  def total_price
     order_items.inject(0) { |sum, i| sum += i.quantity * i.product.price }
   end
 

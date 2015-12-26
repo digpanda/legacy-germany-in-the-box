@@ -21,18 +21,18 @@
                     %a{:href => "#"}= i.product.name
                   %td.cart-item-quantity
                     %i.fa.fa-minus.cart-item-minus
-                    %input.cart-quantity{:id => "cart-quantity-of-product-#{i.product.id}", :name => "cart-quantity-of-product-#{i.product.id}", :type => "text", :value => "#{i.quantity}"}
+                    %input.cart-quantity{:id => "cart-quantity-of-product-#{i.product.id}", :name => "cart-quantity-of-product-#{i.product.id}", :type => 'text', :value => "#{i.quantity}"}
                     %i.fa.fa-plus.cart-item-plus
                   %td= "$#{i.product.price}"
                   %td.cart-item-remove
                     =link_to '', '#', :class => 'fa fa-times', :onclick => "$('#cart-quantity-of-product-#{i.product.id}').val(0); $('#orders_adjust_products_amount').submit()"
-          =submit_tag 'Update the cart', :class => "btn btn-primary"
+          =submit_tag 'Update the cart', :class => 'btn btn-primary'
       .col-md-3
         = form_tag checkout_path
         %ul.cart-total-list
           %li
             %span Sub Total
-            %span= "$#{current_order.total}"
+            %span= "$#{current_order.total_price}"
           %li
             %span Shipping
             %span $0.00
