@@ -2,36 +2,36 @@
 %html
   %head
     %title Couponia - Index shop layout 1
-    %meta{:content => "text/html; charset=utf-8", "http-equiv" => "Content-Type"}
-    %meta{:content => "Koupon HTML5 Template", :name => "keywords"}
-    %meta{:content => "Koupon - Premiun HTML5 Template for Coupons Website", :name => "description"}
-    %meta{:content => "Tsoy", :name => "author"}
-    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
-    %link{:href => "http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300", :rel => "stylesheet", :type => "text/css"}
-    %link{:href => "http://fonts.googleapis.com/css?family=Roboto:400,100,300", :rel => "stylesheet", :type => "text/css"}
+    %meta{:content => 'text/html; charset=utf-8', 'http-equiv' => 'Content-Type'}
+    %meta{:content => 'Koupon HTML5 Template', :name => 'keywords'}
+    %meta{:content => 'Koupon - Premiun HTML5 Template for Coupons Website', :name => 'description'}
+    %meta{:content => 'Tsoy', :name => 'author'}
+    %meta{:content => 'width=device-width, initial-scale=1.0', :name => 'viewport'}
+    %link{:href => 'http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300', :rel => 'stylesheet', :type => 'text/css'}
+    %link{:href => 'http://fonts.googleapis.com/css?family=Roboto:400,100,300', :rel => 'stylesheet', :type => 'text/css'}
 
-    = javascript_include_tag "couponia/jquery.js"
+    = javascript_include_tag 'couponia/jquery.js'
 
-    = stylesheet_link_tag "custom/number_circle.css"
-    = stylesheet_link_tag  "couponia/css/boostrap.css"
-    = stylesheet_link_tag "couponia/css/font_awesome.css"
-    = stylesheet_link_tag "couponia/css/styles.css"
-    = stylesheet_link_tag  "couponia/css/ie.css" 
-    = stylesheet_link_tag  "couponia/css/mystyles.css"
+    = stylesheet_link_tag 'custom/number_circle.css'
+    = stylesheet_link_tag  'couponia/css/boostrap.css'
+    = stylesheet_link_tag 'couponia/css/font_awesome.css'
+    = stylesheet_link_tag 'couponia/css/styles.css'
+    = stylesheet_link_tag  'couponia/css/ie.css'
+    = stylesheet_link_tag  'couponia/css/mystyles.css'
 
     - if session[:login_failure_counter]
       = hidden_field_tag :login_failure_counter, "#{session[:login_failure_counter]}"
 
     :javascript
       $( document ).ready( function () {
-        var close = $.magnificPopup.instance.close
+        var close = $.magnificPopup.instance.close;
         $.magnificPopup.instance.close = function () {
-         close()
-         window.location.href = '/sign_out'
+         close();
+         window.location.href = '/sign_out';
         }
 
         if ($('#login_failure_counter').length) {
-          $('#sign_in_link').click()
+          $('#sign_in_link').click();
         }
       });
   %body
@@ -39,35 +39,35 @@
       .top-main-area.text-center
         .container
           %a.logo.mt5{:href => "#{home_path}"}
-            =image_tag  "couponia/logo-small-dark.png"
+            =image_tag  'couponia/logo-small-dark.png'
       %header.main
         .container
           .row
             .col-md-6
               #flexnav-menu-button.flexnav-menu-button Menu
               %nav
-                %ul#flexnav.nav.nav-pills.flexnav{"data-breakpoint" => "800"}
+                %ul#flexnav.nav.nav-pills.flexnav{'data-breakpoint' => '800'}
                   %li.active
                     %a{:href => "#{home_path}"} Home
                   %li
-                    %a{:href => "#"} Category
+                    %a{:href => '#'} Category
                     %ul
                       - Category.where( :parent => nil ).each do |c|
                         %li
-                          %a{:href => "#"}= c.name
+                          %a{:href => '#'}= c.name
                           - if c.children.count > 0
                             %ul
                               - c.children.each do |cc|
                                 %li
-                                  %a{:href => "#"}= cc.name
+                                  %a{:href => '#'}= cc.name
                   %li
-                    =link_to " Product", popular_products_path
+                    =link_to 'Product', popular_products_path
                   %li
-                    %a{:href => "#"} Features
+                    %a{:href => '#'} Features
                   %li
-                    %a{:href => "#"} Blog
+                    %a{:href => '#'} Blog
                   %li
-                    %a{:href => "#"} Pages
+                    %a{:href => '#'} Pages
             .col-md-6
               %ul.login-register
                 %li.shopping-cart
@@ -90,7 +90,7 @@
                             %i.fa.fa-shopping-cart
                             View Cart
                         %li
-                          %a{:href => "page-checkout.html"}
+                          %a{:href => 'page-checkout.html'}
                             %i.fa.fa-check-square
                             Checkout
                     -else
@@ -101,11 +101,11 @@
                             Empty Cart
                 - unless current_user
                   %li
-                    %a.popup-text{ :id => 'sign_in_link', "data-effect" => "mfp-move-from-top", :href => "#login-dialog"}
+                    %a.popup-text{ :id => 'sign_in_link', 'data-effect' => 'mfp-move-from-top', :href => "#login-dialog"}
                       %i.fa.fa-sign-in
                       Sign in
                   %li
-                    %a.popup-text{"data-effect" => "mfp-move-from-top", :href => "#register-dialog"}
+                    %a.popup-text{'data-effect' => 'mfp-move-from-top', :href => '#register-dialog'}
                       %i.fa.fa-edit
                       Sign up
                 - else
@@ -115,7 +115,7 @@
                       Sign out
                   %li    
                     %a{ :href => "#{ edit_user_path current_user }" }
-                      = image_tag (current_user.pic.url.nil? ? "icons/default_user_pic.png" : current_user.pic.url) , :style => 'width:32px;height:32px'
+                      = image_tag (current_user.pic.url.nil? ? 'icons/default_user_pic.png' : current_user.pic.url) , :style => 'width:32px;height:32px'
       #login-dialog.mfp-with-anim.mfp-hide.mfp-dialog.clearfix
         %i.fa.fa-sign-in.dialog-icon
         - if session[:login_failure_counter]
@@ -123,13 +123,13 @@
         - else
           %h3 Member Login
           %h5 Welcome back, friend. Login to get started
-        = form_tag user_session_path, :method => 'POST', :class => "dialog-form"  do
+        = form_tag user_session_path, :method => 'POST', :class => 'dialog-form'  do
           .form-group
             %label E-mail
-            = email_field_tag "user[email]",  nil, :class => "form-control", :placeholder => "email@domain.com" 
+            = email_field_tag 'user[email]',  nil, :class => 'form-control', :placeholder => 'email@domain.com'
           .form-group
             %label Password
-            = password_field_tag "user[password]", nil, :class => "form-control", :placeholder => "My secret password"
+            = password_field_tag 'user[password]', nil, :class => 'form-control', :placeholder => 'My secret password'
           - if session[:login_failure_counter].present? and session[:login_failure_counter] >= Rails.configuration.login_failure_limit
             .form-group
               = captcha_tag
@@ -138,27 +138,27 @@
               = text_field_tag :captcha, '', :autocomplete => :off
           .checkbox
             %label
-              %input{:type => "checkbox"}
+              %input{:type => 'checkbox'}
               Remember me
-          = submit_tag 'Sign in', :class => "btn btn-primary"
+          = submit_tag 'Sign in', :class => 'btn btn-primary'
         %ul.dialog-alt-links
           %li
-            %a.popup-text{"data-effect" => "mfp-zoom-out", :href => "#register-dialog"} Not member yet
+            %a.popup-text{'data-effect' => 'mfp-zoom-out', :href => '#register-dialog'} Not member yet
           %li
-            %a.popup-text{"data-effect" => "mfp-zoom-out", :href => "#password-recover-dialog"} Forgot password
+            %a.popup-text{'data-effect' => 'mfp-zoom-out', :href => '#password-recover-dialog'} Forgot password
       #register-dialog.mfp-with-anim.mfp-hide.mfp-dialog.clearfix
         %i.fa.fa-edit.dialog-icon
         %h3 Member Register
         %h5 Ready to get best offers? Let's get started!
-        = form_tag user_registration_path, :method => 'POST', :class => "dialog-form" do
+        = form_tag user_registration_path, :method => 'POST', :class => 'dialog-form' do
           .form-group
-            = text_field_tag "user[username]", nil, :class => "form-control", :placeholder => "Username"
+            = text_field_tag 'user[username]', nil, :class => 'form-control', :placeholder => 'Username'
           .form-group
-            = email_field_tag "user[email]", nil, :class => "form-control", :placeholder => "Email"
+            = email_field_tag 'user[email]', nil, :class => 'form-control', :placeholder => 'Email'
           .form-group
-            = password_field_tag "user[password]", nil, :class => "form-control", :placeholder => "Password"
+            = password_field_tag 'user[password]', nil, :class => 'form-control', :placeholder => 'Password'
           .form-group
-            = password_field_tag "user[password_confirmation]", nil, :class => "form-control", :placeholder => "Password Confirmation"
+            = password_field_tag 'user[password_confirmation]', nil, :class => 'form-control', :placeholder => 'Password Confirmation'
           .form-group
             = captcha_tag
           .form-group
@@ -166,20 +166,20 @@
             = text_field_tag :captcha, '', :autocomplete => :off
           .checkbox
             %label
-              %input{:type => "checkbox"}>/
+              %input{:type => 'checkbox'}>/
               Get hot offers via e-mail
-          = submit_tag 'Sign up', :class => "btn btn-primary"
+          = submit_tag 'Sign up', :class => 'btn btn-primary'
         %ul.dialog-alt-links
           %li
-            %a.popup-text{"data-effect" => "mfp-zoom-out", :href => "#login-dialog"} Already member
+            %a.popup-text{'data-effect' => 'mfp-zoom-out', :href => '#login-dialog'} Already member
       #password-recover-dialog.mfp-with-anim.mfp-hide.mfp-dialog.clearfix
         %i.icon-retweet.dialog-icon
         %h3 Password Recovery
         %h5 Fortgot your password? Don't worry we can deal with it
         %form.dialog-form
           %label E-mail
-          %input.span12{:placeholder => "email@domain.com", :type => "text"}
-          %input.btn.btn-primary{:type => "submit", :value => "Request new password"}
+          %input.span12{:placeholder => 'email@domain.com', :type => 'text'}
+          %input.btn.btn-primary{:type => 'submit', :value => 'Request new password'}
 
     .gap
     .gap
@@ -189,19 +189,19 @@
     .row
       - if flash[:error]
         .alert.alert-danger.pull-right.fade.in{:role => 'alert'}
-          %a.close{"aria-label" => "close", "data-dismiss" => "alert", :href => "#"} &times;
+          %a.close{'aria-label' => 'close', 'data-dismiss' => 'alert', :href => '#'} &times;
           = flash[:error]
       - elsif flash[:info]
         .alert.alert-info.pull-right.fade.in{:role => 'alert'}
-          %a.close{"aria-label" => "close", "data-dismiss" => "alert", :href => "#"} &times;
+          %a.close{'aria-label' => 'close', 'data-dismiss' => 'alert', :href => '#'} &times;
           = flash[:info]
       - elsif flash[:warning]
         .alert.alert-warning.pull-right.fade.in{:role => 'alert'}
-          %a.close{"aria-label" => "close", "data-dismiss" => "alert", :href => "#"} &times;
+          %a.close{'aria-label' => 'close', 'data-dismiss' => 'alert', :href => '#'} &times;
           = flash[:warning]
       - elsif flash[:success]
         .alert.alert-success.pull-right.fade.in{:role => 'alert'}
-          %a.close{"aria-label" => "close", "data-dismiss" => "alert", :href => "#"} &times;
+          %a.close{'aria-label' => 'close', 'data-dismiss' => 'alert', :href => '#'} &times;
           = flash[:success]
 
     = yield
@@ -212,19 +212,19 @@
         .container
           .row.row-wrap
             .col-md-3
-              %a{:href => "index.html"}
-                =image_tag "couponia/logo.png", :alt => "logo",  :title => "logo"
+              %a{:href => 'index.html'}
+                =image_tag 'couponia/logo.png', :alt => 'logo',  :title => 'logo'
               %ul.list.list-social
                 %li
-                  %a.fa.fa-facebook.box-icon{"data-toggle" => "tooltip", :href => "#", :title => "Facebook"}
+                  %a.fa.fa-facebook.box-icon{'data-toggle' => 'tooltip', :href => '#', :title => 'Facebook'}
                 %li
-                  %a.fa.fa-twitter.box-icon{"data-toggle" => "tooltip", :href => "#", :title => "Twitter"}
+                  %a.fa.fa-twitter.box-icon{'data-toggle' => 'tooltip', :href => '#', :title => 'Twitter'}
                 %li
-                  %a.fa.fa-flickr.box-icon{"data-toggle" => "tooltip", :href => "#", :title => "Flickr"}
+                  %a.fa.fa-flickr.box-icon{'data-toggle' => 'tooltip', :href => '#', :title => 'Flickr'}
                 %li
-                  %a.fa.fa-linkedin.box-icon{"data-toggle" => "tooltip", :href => "#", :title => "LinkedIn"}
+                  %a.fa.fa-linkedin.box-icon{'data-toggle' => 'tooltip', :href => '#', :title => 'LinkedIn'}
                 %li
-                  %a.fa.fa-tumblr.box-icon{"data-toggle" => "tooltip", :href => "#", :title => "Tumblr"}
+                  %a.fa.fa-tumblr.box-icon{'data-toggle' => 'tooltip', :href => '#', :title => 'Tumblr'}
               %p Convallis morbi lobortis laoreet augue fermentum class congue tempor montes purus vitae quam augue inceptos nunc justo erat mauris cursus
             .col-md-3
               %h4 Sign Up to the Newsletter
@@ -232,9 +232,9 @@
                 %form
                   .form-group.mb10
                     %label E-mail
-                    %input.form-control{:type => "text"}
+                    %input.form-control{:type => 'text'}
                   %p.mb10 Facilisis feugiat pulvinar nullam nec fusce purus
-                  %input.btn.btn-primary{:type => "submit", :value => "Sign Up"}
+                  %input.btn.btn-primary{:type => 'submit', :value => 'Sign Up'}
             .col-md-3
               %h4 Couponia on Twitter
               / START TWITTER
@@ -244,28 +244,28 @@
               %h4 Recent News
               %ul.thumb-list
                 %li
-                  %a{:href => "#"}
-                    =image_tag "couponia/70x70.png" , :alt => "Image Alternative text", :title => "Urbex Esch/Lux with Laney and Laaaaag"
+                  %a{:href => '#'}
+                    =image_tag 'couponia/70x70.png' , :alt => 'Image Alternative text', :title => 'Urbex Esch/Lux with Laney and Laaaaag'
                   .thumb-list-item-caption
                     %p.thumb-list-item-meta Jul 18, 2014
                     %h5.thumb-list-item-title
-                      %a{:href => "#"} Cubilia enim
+                      %a{:href => '#'} Cubilia enim
                     %p.thumb-list-item-desciption Sem ullamcorper iaculis convallis imperdiet
                 %li
-                  %a{:href => "#"}
-                    =image_tag "couponia/70x70.png", :alt => "Image Alternative text",  :title => "AMaze"
+                  %a{:href => '#'}
+                    =image_tag 'couponia/70x70.png', :alt => 'Image Alternative text',  :title => 'AMaze'
                   .thumb-list-item-caption
                     %p.thumb-list-item-meta Jul 18, 2014
                     %h5.thumb-list-item-title
-                      %a{:href => "#"} Blandit suscipit
+                      %a{:href => '#'} Blandit suscipit
                     %p.thumb-list-item-desciption Aptent accumsan curabitur aptent condimentum
                 %li
-                  %a{:href => "#"}
-                    =image_tag "couponia/70x70.png", :alt => "Image Alternative text", :title => "The Hidden Power of the Heart"
+                  %a{:href => '#'}
+                    =image_tag 'couponia/70x70.png', :alt => 'Image Alternative text', :title => 'The Hidden Power of the Heart'
                   .thumb-list-item-caption
                     %p.thumb-list-item-meta Jul 18, 2014
                     %h5.thumb-list-item-title
-                      %a{:href => "#"} Tortor venenatis
+                      %a{:href => '#'} Tortor venenatis
                     %p.thumb-list-item-desciption Ut tempus rhoncus suscipit vitae
       .footer-copyright
         .container
@@ -276,33 +276,33 @@
               .pull-right
                 %ul.list-inline.list-payment
                   %li
-                    = image_tag "couponia/payment/american-express-curved-32px.png", :alt => "Image Alternative text",  :title => "Image Title"
+                    = image_tag 'couponia/payment/american-express-curved-32px.png', :alt => 'Image Alternative text',  :title => 'Image Title'
                   %li
-                    = image_tag "couponia/payment/cirrus-curved-32px.png", :alt => "Image Alternative text",  :title => "Image Title"
+                    = image_tag 'couponia/payment/cirrus-curved-32px.png', :alt => 'Image Alternative text',  :title => 'Image Title'
                   %li
-                    = image_tag "couponia/payment/discover-curved-32px.png", :alt => "Image Alternative text",  :title => "Image Title"
+                    = image_tag 'couponia/payment/discover-curved-32px.png', :alt => 'Image Alternative text',  :title => 'Image Title'
                   %li
-                    = image_tag "couponia/payment/ebay-curved-32px.png", :alt => "Image Alternative text",  :title => "Image Title"
+                    = image_tag 'couponia/payment/ebay-curved-32px.png', :alt => 'Image Alternative text',  :title => 'Image Title'
                   %li
-                    = image_tag "couponia/payment/maestro-curved-32px.png", :alt => "Image Alternative text",  :title => "Image Title"
+                    = image_tag 'couponia/payment/maestro-curved-32px.png', :alt => 'Image Alternative text',  :title => 'Image Title'
                   %li
-                    = image_tag "couponia/payment/mastercard-curved-32px.png", :alt => "Image Alternative text",  :title => "Image Title"
+                    = image_tag 'couponia/payment/mastercard-curved-32px.png', :alt => 'Image Alternative text',  :title => 'Image Title'
                   %li
-                    = image_tag "couponia/payment/visa-curved-32px.png", :alt => "Image Alternative text",  :title => "Image Title"
+                    = image_tag 'couponia/payment/visa-curved-32px.png', :alt => 'Image Alternative text',  :title => 'Image Title'
 
-    = javascript_include_tag "couponia/boostrap.min.js"
-    = javascript_include_tag "couponia/countdown.min.js"
-    = javascript_include_tag "couponia/flexnav.min.js"
-    = javascript_include_tag "couponia/magnific.js"
-    = javascript_include_tag "couponia/tweet.min.js"
-    %script{:src => "https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"}
-    = javascript_include_tag "couponia/fitvids.min.js"
-    = javascript_include_tag "couponia/mail.min.js"
-    = javascript_include_tag "couponia/ionrangeslider.js"
-    = javascript_include_tag "couponia/icheck.js"
-    = javascript_include_tag "couponia/fotorama.js"
-    = javascript_include_tag "couponia/card-payment.js"
-    = javascript_include_tag "couponia/owl-carousel.js"
-    = javascript_include_tag "couponia/masonry.js"
-    = javascript_include_tag "couponia/nicescroll.js"
-    = javascript_include_tag "couponia/custom.js"
+    = javascript_include_tag 'couponia/boostrap.min.js'
+    = javascript_include_tag 'couponia/countdown.min.js'
+    = javascript_include_tag 'couponia/flexnav.min.js'
+    = javascript_include_tag 'couponia/magnific.js'
+    = javascript_include_tag 'couponia/tweet.min.js'
+    %script{:src => 'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false'}
+    = javascript_include_tag 'couponia/fitvids.min.js'
+    = javascript_include_tag 'couponia/mail.min.js'
+    = javascript_include_tag 'couponia/ionrangeslider.js'
+    = javascript_include_tag 'couponia/icheck.js'
+    = javascript_include_tag 'couponia/fotorama.js'
+    = javascript_include_tag 'couponia/card-payment.js'
+    = javascript_include_tag 'couponia/owl-carousel.js'
+    = javascript_include_tag 'couponia/masonry.js'
+    = javascript_include_tag 'couponia/nicescroll.js'
+    = javascript_include_tag 'couponia/custom.js'
