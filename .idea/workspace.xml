@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="53023302-7b6a-4b02-a48d-ce95de92dd4f" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/layouts/application.html.haml" afterPath="$PROJECT_DIR$/app/views/layouts/application.html.haml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/initializers/assets.rb" afterPath="$PROJECT_DIR$/config/initializers/assets.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/stylesheets/custom/number_circle.css" afterPath="$PROJECT_DIR$/app/assets/stylesheets/custom/number_circle.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="a-chat.iws" />
@@ -43,14 +41,14 @@
       <file leaf-file-name="application.html.haml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.haml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.82288826">
-              <caret line="40" column="46" selection-start-line="40" selection-start-column="46" selection-end-line="40" selection-end-column="46" />
+            <state vertical-scroll-proportion="0.29545453">
+              <caret line="151" column="56" selection-start-line="151" selection-start-column="56" selection-end-line="151" selection-end-column="56" />
               <folding>
-                <marker date="1451127073564" expanded="true" signature="1255:1436" placeholder="{...}" />
-                <marker date="1451127073564" expanded="true" signature="1255:1543" placeholder="{...}" />
-                <marker date="1451127073564" expanded="true" signature="1362:1414" placeholder="{...}" />
-                <marker date="1451127073564" expanded="true" signature="1362:1436" placeholder="{...}" />
-                <marker date="1451127073564" expanded="true" signature="1486:1535" placeholder="{...}" />
+                <marker date="1451127493496" expanded="true" signature="1255:1436" placeholder="{...}" />
+                <marker date="1451127493496" expanded="true" signature="1255:1544" placeholder="{...}" />
+                <marker date="1451127493496" expanded="true" signature="1362:1414" placeholder="{...}" />
+                <marker date="1451127493496" expanded="true" signature="1362:1436" placeholder="{...}" />
+                <marker date="1451127493496" expanded="true" signature="1487:1536" placeholder="{...}" />
               </folding>
             </state>
           </provider>
@@ -911,6 +909,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.27314112">
           <caret line="12" column="12" selection-start-line="12" selection-start-column="12" selection-end-line="12" selection-end-column="12" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1251,14 +1250,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.haml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.82288826">
-          <caret line="40" column="46" selection-start-line="40" selection-start-column="46" selection-end-line="40" selection-end-column="46" />
+        <state vertical-scroll-proportion="0.29545453">
+          <caret line="151" column="56" selection-start-line="151" selection-start-column="56" selection-end-line="151" selection-end-column="56" />
           <folding>
-            <marker date="1451127073564" expanded="true" signature="1255:1436" placeholder="{...}" />
-            <marker date="1451127073564" expanded="true" signature="1255:1543" placeholder="{...}" />
-            <marker date="1451127073564" expanded="true" signature="1362:1414" placeholder="{...}" />
-            <marker date="1451127073564" expanded="true" signature="1362:1436" placeholder="{...}" />
-            <marker date="1451127073564" expanded="true" signature="1486:1535" placeholder="{...}" />
+            <marker date="1451127493496" expanded="true" signature="1255:1436" placeholder="{...}" />
+            <marker date="1451127493496" expanded="true" signature="1255:1544" placeholder="{...}" />
+            <marker date="1451127493496" expanded="true" signature="1362:1414" placeholder="{...}" />
+            <marker date="1451127493496" expanded="true" signature="1362:1436" placeholder="{...}" />
+            <marker date="1451127493496" expanded="true" signature="1487:1536" placeholder="{...}" />
           </folding>
         </state>
       </provider>
