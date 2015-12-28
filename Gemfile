@@ -36,6 +36,8 @@ gem 'easy_captcha'
 gem 'rmagick'
 gem 'diff-lcs', '1.2.5'
 
+gem 'rails3-jquery-autocomplete'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

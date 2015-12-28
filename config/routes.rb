@@ -27,6 +27,8 @@ Rails.application.routes.draw do
 
   get 'popular_products',to: 'products#indexr', as: 'popular_products'
 
+  get 'autocomplete_product_search', to: 'products#autocomplete_product_search', as: 'autocomplete_product_search'
+
   get 'profile/:id', to: 'users#pshow', as: "profile"
 
   post 'orders/add_product/:product_id', to: 'orders#add_product', as: 'add_product'

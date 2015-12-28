@@ -10,14 +10,15 @@
     %link{:href => 'http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300', :rel => 'stylesheet', :type => 'text/css'}
     %link{:href => 'http://fonts.googleapis.com/css?family=Roboto:400,100,300', :rel => 'stylesheet', :type => 'text/css'}
 
+
     = javascript_include_tag 'couponia/jquery.js'
 
-    = stylesheet_link_tag 'custom/number_circle.css'
-    = stylesheet_link_tag  'couponia/css/boostrap.css'
+    = stylesheet_link_tag 'couponia/css/boostrap.css'
     = stylesheet_link_tag 'couponia/css/font_awesome.css'
     = stylesheet_link_tag 'couponia/css/styles.css'
-    = stylesheet_link_tag  'couponia/css/ie.css'
-    = stylesheet_link_tag  'couponia/css/mystyles.css'
+    = stylesheet_link_tag 'couponia/css/ie.css'
+    = stylesheet_link_tag 'couponia/css/mystyles.css'
+    = stylesheet_link_tag 'custom/number_circle.css'
 
     - if session[:login_failure_counter].present?
       = hidden_field_tag :login_failure_counter, "#{session[:login_failure_counter]}"
@@ -189,25 +190,14 @@
           %input.span12{:placeholder => 'email@domain.com', :type => 'text'}
           %input.btn.btn-primary{:type => 'submit', :value => 'Request new password'}
       - if @show_search_area.present? and @show_search_area
-        %form.search-area.form-group
-          .container
-            .row
-              .col-md-8.clearfix
-                %label
-                  %i.fa.fa-search
-                  %span I am searching for
-                .search-area-division.search-area-division-input
-                  %input.form-control{:placeholder => 'Travel Vacation', :type => 'text'}
-              .col-md-3.clearfix
-                %label
-                  %i.fa.fa-map-marker
-                  %span In
-                .search-area-division.search-area-division-location
-                  %input.form-control{:placeholder => 'Boston', :type => 'text'}
-              .col-md-1
-                %button.btn.btn-block.btn-white.search-btn{:type => 'submit'} Search
+        =yield :search_area
         .gap
         .gap
+
+    - if @show_search_area.present? and @show_search_area
+      .gap
+      .gap
+
     .gap
     .gap
     .gap

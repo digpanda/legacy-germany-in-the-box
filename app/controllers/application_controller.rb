@@ -3,6 +3,8 @@ require 'base64_to_upload'
 class ApplicationController < ActionController::Base
   # reset captcha code after each request for security
   after_filter :reset_last_captcha_code!
+
+  # active part of the top menu
   before_filter { params[:top_menu_active_part] = current_top_menu_active_part }
 
   before_action :configure_devise_permitted_parameters, if: :devise_controller?

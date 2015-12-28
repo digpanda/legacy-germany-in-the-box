@@ -1,3 +1,17 @@
+=content_for :search_area do
+  %form.search-area.form-group
+    .container
+      .row
+        .col-md-8.clearfix
+          %label
+            %i.fa.fa-search
+            %span I am searching for
+          .search-area-division.search-area-division-input
+            = autocomplete_field_tag :search_area, params[:search_area], autocomplete_product_search_path, :placeholder => 'a product', :id => 'search_area', :name => 'product[search_area]', 'min-length':0, :class => 'form-control'
+        .col-md-4.clearfix
+          %label
+            %span= 'in the product criteria.'
+
 .container
   - @products.each do |p|
     .mfp-with-anim.mfp-hide.mfp-dialog.mfp-dialog-big.clearfix{ :id => "product-quick-view-dialog-#{p.id}"}
@@ -57,7 +71,7 @@
                 .product-quick-view
                   %span.fa.fa-eye
               .product-inner
-                %h5.product-title= truncate(p.name, :length => 16) 
+                %h5.product-title= truncate(p.name, :length => 16)
                 .product-desciption= truncate(p.desc, :length => 16)
                 .product-meta
                   %span.product-time

@@ -1,6 +1,7 @@
 class ProductsController < ApplicationController
   skip_before_action :verify_authenticity_token
   before_action :set_product, only: [:show, :edit, :update, :destroy, :similarproductsi]
+  before_action { @show_search_area = true }
 
 # time = Time.new
 # GET /products
@@ -298,6 +299,10 @@ class ProductsController < ApplicationController
     products
 
 
+  end
+
+  def autocomplete_product_search
+    logger.info("######################################################################")
   end
 
   protected
