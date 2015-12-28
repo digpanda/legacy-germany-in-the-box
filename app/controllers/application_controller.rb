@@ -3,6 +3,7 @@ require 'base64_to_upload'
 class ApplicationController < ActionController::Base
   # reset captcha code after each request for security
   after_filter :reset_last_captcha_code!
+  before_filter { params[:top_menu_active_part] = current_top_menu_active_part }
 
   before_action :configure_devise_permitted_parameters, if: :devise_controller?
   # Prevent CSRF attacks by raising an exception.
@@ -55,4 +56,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def current_top_menu_active_part
+    :home
+  end
 end

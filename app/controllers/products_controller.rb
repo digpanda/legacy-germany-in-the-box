@@ -299,6 +299,12 @@ class ProductsController < ApplicationController
 
 
   end
+
+  protected
+
+  def current_top_menu_active_part
+    :product
+  end
 end
 
 

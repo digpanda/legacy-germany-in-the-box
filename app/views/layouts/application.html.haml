@@ -50,9 +50,9 @@
             .col-md-6
               %nav
                 %ul#flexnav_left.nav.nav-pills.flexnav{'data-breakpoint' => '800'}
-                  %li.active
+                  %li{:class => params[:top_menu_active_part] ? (params[:top_menu_active_part] == :home ? 'active' : '') : 'active'}
                     %a{:href => "#{home_path}"} Home
-                  %li
+                  %li{:class => params[:top_menu_active_part] == :category ? 'active' : ''}
                     %a{:href => '#'} Category
                     %ul
                       - Category.where( :parent => nil ).each do |c|
@@ -63,13 +63,13 @@
                               - c.children.each do |cc|
                                 %li
                                   %a{:href => '#'}= cc.name
-                  %li
+                  %li{:class => params[:top_menu_active_part] == :product ? 'active' : ''}
                     =link_to 'Product', popular_products_path
-                  %li
+                  %li{:class => params[:top_menu_active_part] == :features ? 'active' : ''}
                     %a{:href => '#'} Features
-                  %li
+                  %li{:class => params[:top_menu_active_part] == :blog ? 'active' : ''}
                     %a{:href => '#'} Blog
-                  %li
+                  %li{:class => params[:top_menu_active_part] == :pages ? 'active' : ''}
                     %a{:href => '#'} Pages
             .col-md-5
               %ul.login-register

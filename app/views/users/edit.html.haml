@@ -1,1 +1,1 @@
-= render partial: params[:user_info_edit_part] ? params[:user_info_edit_part] : 'edit_account', layout: "edit_layout"
+= render partial: params[:user_info_edit_part] ? params[:user_info_edit_part] : :edit_account.to_s, layout: :edit_layout.to_s

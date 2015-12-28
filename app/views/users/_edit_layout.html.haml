@@ -3,14 +3,14 @@
     .col-md-3
       %aside.sidebar-left
         %ul.nav.nav-pills.nav-stacked.nav-arrow
-          %li{:class => params[:user_info_edit_part] ? (params[:user_info_edit_part] == 'edit_account' ? 'active' : '') : 'active'}
-            =link_to 'Account Information',  edit_user_path(@user, :user_info_edit_part => 'edit_account') 
-          %li{:class => params[:user_info_edit_part] == 'edit_personal' ? 'active' : ''}
-            =link_to 'Personal Information',  edit_user_path(@user, :user_info_edit_part => 'edit_personal')
-          %li{:class => params[:user_info_edit_part] == 'edit_bank' ? 'active' : ''}
-            =link_to 'Bank Information',  edit_user_path(@user, :user_info_edit_part => 'edit_bank')
-          %li{:class => params[:user_info_edit_part] == 'edit_order' ? 'active' : ''}
-            =link_to 'Order History',  edit_user_path(@user, :user_info_edit_part => 'edit_order')
+          %li{:class => params[:user_info_edit_part] ? (params[:user_info_edit_part] == :edit_account ? 'active' : '') : 'active'}
+            =link_to 'Account Information',  edit_user_path(@user, :user_info_edit_part => :edit_account)
+          %li{:class => params[:user_info_edit_part] == :edit_personal ? 'active' : ''}
+            =link_to 'Personal Information',  edit_user_path(@user, :user_info_edit_part => :edit_personal)
+          %li{:class => params[:user_info_edit_part] == :edit_bank ? 'active' : ''}
+            =link_to 'Bank Information',  edit_user_path(@user, :user_info_edit_part => :edit_bank)
+          %li{:class => params[:user_info_edit_part] == :edit_order ? 'active' : ''}
+            =link_to 'Order History',  edit_user_path(@user, :user_info_edit_part => :edit_order)
     .col-md-9
       .row
         .col-md-6
