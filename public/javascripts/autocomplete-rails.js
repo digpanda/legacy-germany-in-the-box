@@ -1,1 +1,179 @@
-!function(t){t.fn.railsAutocomplete=function(){var e=function(){this.railsAutoCompleter||(this.railsAutoCompleter=new t.railsAutocomplete(this))};return void 0!==t.fn.on?t(document).on("focus",this.selector,e):this.live("focus",e)},t.railsAutocomplete=function(t){var e=t;this.init(e)},t.railsAutocomplete.fn=t.railsAutocomplete.prototype={railsAutocomplete:"0.0.1"},t.railsAutocomplete.fn.extend=t.railsAutocomplete.extend=t.extend,t.railsAutocomplete.fn.extend({init:function(e){function a(t){return t.split(e.delimiter)}function i(t){return a(t).pop().replace(/^\s+/,"")}e.delimiter=t(e).attr("data-delimiter")||null,e.min_length=t(e).attr("min-length")||2,e.append_to=t(e).attr("data-append-to")||null,e.autoFocus=t(e).attr("data-auto-focus")||!1,t(e).autocomplete({appendTo:e.append_to,autoFocus:e.autoFocus,delay:t(e).attr("delay")||0,source:function(a,n){var r=this.element[0],o={term:i(a.term)};t(e).attr("data-autocomplete-fields")&&t.each(t.parseJSON(t(e).attr("data-autocomplete-fields")),function(e,a){o[e]=t(a).val()}),t.getJSON(t(e).attr("data-autocomplete"),o,function(){0===arguments[0].length&&(arguments[0]=[],arguments[0][0]={id:"",label:"no existing match"}),t(arguments[0]).each(function(a,i){var n={};n[i.id]=i,t(e).data(n)}),n.apply(null,arguments),t(r).trigger("railsAutocomplete.source",arguments)})},change:function(e,a){if(t(this).is("[data-id-element]")&&""!==t(t(this).attr("data-id-element")).val()&&(t(t(this).attr("data-id-element")).val(a.item?a.item.id:""),t(this).attr("data-update-elements"))){var i=t.parseJSON(t(this).attr("data-update-elements")),n=a.item?t(this).data(a.item.id.toString()):{};if(i&&""===t(i.id).val())return;for(var r in i){var o=t(i[r]);o.is(":checkbox")?null!=n[r]&&o.prop("checked",n[r]):o.val(a.item?n[r]:"")}}},search:function(){var t=i(this.value);return t.length<e.min_length?!1:void 0},focus:function(){return!1},select:function(i,n){if(-1!=n.item.value.toLowerCase().indexOf("no match")||-1!=n.item.value.toLowerCase().indexOf("too many results"))return t(this).trigger("railsAutocomplete.noMatch",n),!1;var r=a(this.value);if(r.pop(),r.push(n.item.value),null!=e.delimiter)r.push(""),this.value=r.join(e.delimiter);else if(this.value=r.join(""),t(this).attr("data-id-element")&&t(t(this).attr("data-id-element")).val(n.item.id),t(this).attr("data-update-elements")){var o=n.item,l=-1!=n.item.value.indexOf("Create New")?!0:!1,u=t.parseJSON(t(this).attr("data-update-elements"));for(var s in u)"checkbox"===t(u[s]).attr("type")?o[s]===!0||1===o[s]?t(u[s]).attr("checked","checked"):t(u[s]).removeAttr("checked"):t(u[s]).val(l&&o[s]&&-1==o[s].indexOf("Create New")||!l?o[s]:"")}var c=this.value;return t(this).bind("keyup.clearId",function(){t.trim(t(this).val())!=t.trim(c)&&(t(t(this).attr("data-id-element")).val(""),t(this).unbind("keyup.clearId"))}),t(e).trigger("railsAutocomplete.select",n),!1}})}}),t(document).ready(function(){t("input[data-autocomplete]").railsAutocomplete()})}(jQuery);
+/*
+* Unobtrusive autocomplete
+*
+* To use it, you just have to include the HTML attribute autocomplete
+* with the autocomplete URL as the value
+*
+*   Example:
+*       <input type="text" data-autocomplete="/url/to/autocomplete">
+*
+* Optionally, you can use a jQuery selector to specify a field that can
+* be updated with the element id whenever you find a matching value
+*
+*   Example:
+*       <input type="text" data-autocomplete="/url/to/autocomplete" data-id-element="#id_field">
+*/
+
+(function(jQuery)
+{
+  var self = null;
+  jQuery.fn.railsAutocomplete = function() {
+    var handler = function() {
+      if (!this.railsAutoCompleter) {
+        this.railsAutoCompleter = new jQuery.railsAutocomplete(this);
+      }
+    };
+    if (jQuery.fn.on !== undefined) {
+      return jQuery(document).on('focus',this.selector,handler);
+    }
+    else {
+      return this.live('focus',handler);
+    }
+  };
+
+  jQuery.railsAutocomplete = function (e) {
+    var _e = e;
+    this.init(_e);
+  };
+
+  jQuery.railsAutocomplete.fn = jQuery.railsAutocomplete.prototype = {
+    railsAutocomplete: '0.0.1'
+  };
+
+  jQuery.railsAutocomplete.fn.extend = jQuery.railsAutocomplete.extend = jQuery.extend;
+  jQuery.railsAutocomplete.fn.extend({
+    init: function(e) {
+      e.delimiter = jQuery(e).attr('data-delimiter') || null;
+      e.min_length = jQuery(e).attr('min-length') || 2;
+      e.append_to = jQuery(e).attr('data-append-to') || null;
+      e.autoFocus = jQuery(e).attr('data-auto-focus') || false;
+      function split( val ) {
+        return val.split( e.delimiter );
+      }
+      function extractLast( term ) {
+        return split( term ).pop().replace(/^\s+/,"");
+      }
+
+      jQuery(e).autocomplete({
+        appendTo: e.append_to,
+        autoFocus: e.autoFocus,
+        delay: jQuery(e).attr('delay') || 0,
+        source: function( request, response ) {
+          var firedFrom = this.element[0];
+          var params = {term: extractLast( request.term )};
+          if (jQuery(e).attr('data-autocomplete-fields')) {
+              jQuery.each(jQuery.parseJSON(jQuery(e).attr('data-autocomplete-fields')), function(field, selector) {
+              params[field] = jQuery(selector).val();
+            });
+          }
+          jQuery.getJSON( jQuery(e).attr('data-autocomplete'), params, function() {
+            if(arguments[0].length === 0) {
+              arguments[0] = [];
+              arguments[0][0] = { id: "", label: "no existing match" };
+            }
+            jQuery(arguments[0]).each(function(i, el) {
+              var obj = {};
+              obj[el.id] = el;
+              jQuery(e).data(obj);
+            });
+            response.apply(null, arguments);
+            jQuery(firedFrom).trigger('railsAutocomplete.source', arguments);
+          });
+        },
+        change: function( event, ui ) {
+            if(!jQuery(this).is('[data-id-element]') ||
+                    jQuery(jQuery(this).attr('data-id-element')).val() === "") {
+                    return;
+            }
+            jQuery(jQuery(this).attr('data-id-element')).val(ui.item ? ui.item.id : "");
+
+            if (jQuery(this).attr('data-update-elements')) {
+                var update_elements = jQuery.parseJSON(jQuery(this).attr("data-update-elements"));
+                var data = ui.item ? jQuery(this).data(ui.item.id.toString()) : {};
+                if(update_elements && jQuery(update_elements['id']).val() === "") {
+                  return;
+                }
+                for (var key in update_elements) {
+                    var element = jQuery(update_elements[key]);
+                    if (element.is(':checkbox')) {
+                        if (data[key] != null) {
+                            element.prop('checked', data[key]);
+                        }
+                    } else {
+                        element.val(ui.item ? data[key] : "");
+                    }
+                }
+            }
+        },
+        search: function() {
+          // custom minLength
+          var term = extractLast( this.value );
+          if ( term.length < e.min_length ) {
+            return false;
+          }
+        },
+        focus: function() {
+          // prevent value inserted on focus
+          return false;
+        },
+        select: function( event, ui ) {
+          if(ui.item.value.toLowerCase().indexOf('no match') != -1 || ui.item.value.toLowerCase().indexOf('too many results') != -1){
+            jQuery(this).trigger('railsAutocomplete.noMatch', ui);
+            return false;
+          }
+          var terms = split( this.value );
+          // remove the current input
+          terms.pop();
+          // add the selected item
+          terms.push( ui.item.value );
+          // add placeholder to get the comma-and-space at the end
+          if (e.delimiter != null) {
+            terms.push( "" );
+            this.value = terms.join( e.delimiter );
+          } else {
+            this.value = terms.join("");
+            if (jQuery(this).attr('data-id-element')) {
+              jQuery(jQuery(this).attr('data-id-element')).val(ui.item.id);
+            }
+            if (jQuery(this).attr('data-update-elements')) {
+              var data = ui.item;
+              var new_record = ui.item.value.indexOf('Create New') != -1 ? true : false;
+              var update_elements = jQuery.parseJSON(jQuery(this).attr("data-update-elements"));
+              for (var key in update_elements) {
+                if(jQuery(update_elements[key]).attr("type") === "checkbox"){
+                   if(data[key] === true || data[key] === 1) {
+                       jQuery(update_elements[key]).attr("checked","checked");
+                   }
+                   else {
+                       jQuery(update_elements[key]).removeAttr("checked");
+                   }
+                }
+                else{
+                  if((new_record && data[key] && data[key].indexOf('Create New') == -1) || !new_record){
+                    jQuery(update_elements[key]).val(data[key]);
+                  }else{
+                    jQuery(update_elements[key]).val('');
+                  }
+                }
+               }
+            }
+          }
+          var remember_string = this.value;
+          jQuery(this).bind('keyup.clearId', function(){
+            if(jQuery.trim(jQuery(this).val()) != jQuery.trim(remember_string)){
+              jQuery(jQuery(this).attr('data-id-element')).val("");
+              jQuery(this).unbind('keyup.clearId');
+            }
+          });
+          jQuery(e).trigger('railsAutocomplete.select', ui);
+
+          return false;
+        }
+      });
+    }
+  });
+
+  jQuery(document).ready(function(){
+    jQuery('input[data-autocomplete]').railsAutocomplete();
+  });
+})(jQuery);
