@@ -85,8 +85,8 @@ $("#price-slider").ionRangeSlider({
 });
 
 // Responsive navigation
-$('#flexnav').flexNav();
-
+$('#flexnav_left').flexNav();
+$('#flexnav_right').flexNav();
 
 
 // Lighbox text
