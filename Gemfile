@@ -37,6 +37,9 @@ gem 'rmagick'
 gem 'diff-lcs', '1.2.5'
 
 gem 'rails3-jquery-autocomplete'
+gem 'jquery-rails'
+gem 'jquery-ui-rails'
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

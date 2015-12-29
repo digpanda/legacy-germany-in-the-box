@@ -301,9 +301,8 @@ class ProductsController < ApplicationController
 
   end
 
-  def autocomplete_product_search
-    logger.info("######################################################################")
-  end
+
+  autocomplete :product, :name
 
   protected
 

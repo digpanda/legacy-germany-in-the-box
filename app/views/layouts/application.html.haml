@@ -10,7 +10,10 @@
     %link{:href => 'http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300', :rel => 'stylesheet', :type => 'text/css'}
     %link{:href => 'http://fonts.googleapis.com/css?family=Roboto:400,100,300', :rel => 'stylesheet', :type => 'text/css'}
 
-    = javascript_include_tag 'couponia/jquery.js'
+    = javascript_include_tag 'jquery.js'
+    = javascript_include_tag 'jquery_ujs.js'
+    = javascript_include_tag 'jquery-ui/autocomplete.js'
+
     = javascript_include_tag 'autocomplete-rails.js'
 
     = stylesheet_link_tag 'couponia/css/boostrap.css'
@@ -18,7 +21,8 @@
     = stylesheet_link_tag 'couponia/css/styles.css'
     = stylesheet_link_tag 'couponia/css/ie.css'
     = stylesheet_link_tag 'couponia/css/mystyles.css'
-    = stylesheet_link_tag 'custom/number_circle.css'
+
+    = stylesheet_link_tag 'achat.css'
 
     - if session[:login_failure_counter].present?
       = hidden_field_tag :login_failure_counter, "#{session[:login_failure_counter]}"

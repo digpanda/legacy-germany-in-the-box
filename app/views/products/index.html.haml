@@ -7,7 +7,7 @@
             %i.fa.fa-search
             %span I am searching for
           .search-area-division.search-area-division-input
-            = autocomplete_field_tag :search_area, params[:search_area], autocomplete_product_search_path, :placeholder => 'a product', :id => 'search_area', :name => 'product[search_area]', 'min-length':0, :class => 'form-control'
+            = autocomplete_field_tag :name, '', autocomplete_product_name_products_path, :placeholder => 'a product', :id => 'search_area', :name => 'product[search_area]', 'min-length':0, :class => 'form-control'
         .col-md-4.clearfix
           %label
             %span= 'in the product criteria.'

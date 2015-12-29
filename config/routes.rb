@@ -13,7 +13,10 @@ Rails.application.routes.draw do
   resources :messages
   resources :chats
   resources :collections
-  resources :products, except: [:index]
+
+  resources :products, except: [:index] do
+    get :autocomplete_product_name, :on => :collection
+  end
 
   resources :users, except: [:show, :destroy]
   resources :shops
@@ -26,8 +29,6 @@ Rails.application.routes.draw do
   get 'cart',to: 'orders#cart', as: 'cart'
 
   get 'popular_products',to: 'products#indexr', as: 'popular_products'
-
-  get 'autocomplete_product_search', to: 'products#autocomplete_product_search', as: 'autocomplete_product_search'
 
   get 'profile/:id', to: 'users#pshow', as: "profile"
 
