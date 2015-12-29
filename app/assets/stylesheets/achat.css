@@ -11,7 +11,7 @@
 
 .ui-autocomplete {
     position: absolute;
-    z-index: 1000;
+    z-index: 2000;
     cursor: default;
     padding: 0;
     margin-top: 2px;

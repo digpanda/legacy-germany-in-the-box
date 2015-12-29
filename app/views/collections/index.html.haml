@@ -6,9 +6,7 @@
       - product_imgs= []
       - collection.products.each do |product|
         - product_imgs << product.img
-      %a.radius{"data-reveal-id" => "firstModal", :href => "", :onclick => "myFunction('#{collection.id}'
-                , '#{product_imgs} ','#{collection.products}'
-                , '#{collection.name} ' , '#{collection.desc} ')"}
+      %a.radius{"data-reveal-id" => "firstModal", :href => "", :onclick => "myFunction('#{collection.id}', '#{product_imgs} ','#{collection.products}', '#{collection.name}' , '#{collection.desc}')"}
         %li
           %ul.small-block-grid-2.collectionsicon
             - collection.products.limit(4).each do |i|

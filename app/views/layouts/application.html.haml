@@ -116,6 +116,12 @@
                     %a.popup-text{'data-effect' => 'mfp-move-from-top', :href => '#register-dialog'}
                       %i.fa.fa-edit
                       Sign up
+                - else
+                  %li
+                    %a{:href => "#{collections_path}"}
+                      %i.fa.fa-heart
+                      My collection
+
             - if current_user
               .col-md-1
                 %nav

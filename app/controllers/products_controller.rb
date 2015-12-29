@@ -304,6 +304,7 @@ class ProductsController < ApplicationController
 
   autocomplete :product, :name
 
+
   protected
 
   def current_top_menu_active_part
