@@ -302,8 +302,7 @@ class ProductsController < ApplicationController
   end
 
 
-  autocomplete :product, :name
-
+  autocomplete :product, :name, :full => true, :limit => 20
 
   protected
 
