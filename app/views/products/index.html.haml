@@ -7,12 +7,12 @@
       },
       _renderMenu: function( ul, items ) {
           var that = this,
-              currentCategory = "";
+              search_category = "";
           $.each( items, function( index, item ) {
               var li;
-              if ( item.sc != currentCategory ) {
+              if ( item.sc != search_category ) {
                   ul.append( "<li class='ui-autocomplete-category'>" + item.sc + "</li>" );
-                  currentCategory = item.sc;
+                  search_category = item.sc;
               }
               li = that._renderItemData( ul, item );
               if ( item.sc ) {
@@ -29,7 +29,7 @@
   });
 
 =content_for :search_area do
-  %form.search-area.form-group
+  = form_tag search_products_path, :method => :post, :class => 'search-area form-group' do
     .container
       .row
         .col-md-8.clearfix
@@ -37,11 +37,12 @@
             %i.fa.fa-search
             %span I am searching for
           .search-area-division.search-area-division-input
-            %input{:placeholder => 'a product', :id => 'products_search_area', :name => 'products[search_area]', 'min-length':0, :class => 'form-control' }
-        .col-md-4.clearfix
+            %input{ :placeholder => 'a product', :id => 'products_search_area', :class => 'form-control' }
+        .col-md-3.clearfix
           %label
             %span= 'in the product criteria.'
-
+        .col-md-1
+          %button.btn.btn-block.btn-white.search-btn{:type => 'submit'}= 'Search'
 .container
   - @products.each do |p|
     .mfp-with-anim.mfp-hide.mfp-dialog.mfp-dialog-big.clearfix{ :id => "product-quick-view-dialog-#{p.id}"}

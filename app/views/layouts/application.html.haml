@@ -137,7 +137,7 @@
       #login-dialog.mfp-with-anim.mfp-hide.mfp-dialog.clearfix.open-popup-link
         %i.fa.fa-sign-in.dialog-icon
         - if session[:login_failure_counter]
-          %h5{ :style => 'color:red' }= flash[:error]
+          %h5{ :style => 'color:red' }= flash[:error].present? ? flash[:error] : flash[:info]
         - else
           %h3 Member Login
           %h5 Welcome back, friend. Login to get started

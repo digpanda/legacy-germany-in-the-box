@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="53023302-7b6a-4b02-a48d-ce95de92dd4f" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/javascripts/autocomplete-rails-modified.js" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/layouts/application.html.haml" afterPath="$PROJECT_DIR$/app/views/layouts/application.html.haml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/initializers/assets.rb" afterPath="$PROJECT_DIR$/config/initializers/assets.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/products/index.html.haml" afterPath="$PROJECT_DIR$/app/views/products/index.html.haml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/orders_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/orders_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/products_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/products_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/routes.rb" afterPath="$PROJECT_DIR$/config/routes.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="a-chat.iws" />
@@ -40,17 +42,17 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="application.html.haml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="application.html.haml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.haml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.21084337">
-              <caret line="14" column="46" selection-start-line="14" selection-start-column="46" selection-end-line="14" selection-end-column="46" />
+            <state vertical-scroll-proportion="-2.7666667">
+              <caret line="143" column="8" selection-start-line="143" selection-start-column="8" selection-end-line="143" selection-end-column="83" />
               <folding>
-                <marker date="1451488754474" expanded="true" signature="1391:1745" placeholder="{...}" />
-                <marker date="1451488754474" expanded="true" signature="1391:1753" placeholder="{...}" />
-                <marker date="1451488754474" expanded="true" signature="1446:1645" placeholder="{...}" />
-                <marker date="1451488754474" expanded="true" signature="1519:1584" placeholder="{...}" />
-                <marker date="1451488754474" expanded="true" signature="1696:1745" placeholder="{...}" />
+                <marker date="1451489391388" expanded="true" signature="1391:1745" placeholder="{...}" />
+                <marker date="1451489391388" expanded="true" signature="1391:1753" placeholder="{...}" />
+                <marker date="1451489391388" expanded="true" signature="1446:1645" placeholder="{...}" />
+                <marker date="1451489391388" expanded="true" signature="1519:1584" placeholder="{...}" />
+                <marker date="1451489391388" expanded="true" signature="1696:1745" placeholder="{...}" />
               </folding>
             </state>
           </provider>
@@ -79,18 +81,19 @@
       <file leaf-file-name="index.html.haml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/products/index.html.haml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.65">
-              <caret line="40" column="26" selection-start-line="40" selection-start-column="26" selection-end-line="40" selection-end-column="26" />
+            <state vertical-scroll-proportion="-10.0">
+              <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
               <folding>
-                <marker date="1451486587104" expanded="true" signature="47:840" placeholder="{...}" />
-                <marker date="1451486587104" expanded="true" signature="47:968" placeholder="{...}" />
-                <marker date="1451486587104" expanded="true" signature="104:838" placeholder="{...}" />
-                <marker date="1451486587104" expanded="true" signature="132:254" placeholder="{...}" />
-                <marker date="1451486587104" expanded="true" signature="297:832" placeholder="{...}" />
-                <marker date="1451486587104" expanded="true" signature="411:822" placeholder="{...}" />
-                <marker date="1451486587104" expanded="true" signature="483:637" placeholder="{...}" />
-                <marker date="1451486587104" expanded="true" signature="720:810" placeholder="{...}" />
-                <marker date="1451486587104" expanded="true" signature="887:962" placeholder="{&quot;delay&quot;: 0...}" />
+                <marker date="1451491968848" expanded="true" signature="47:840" placeholder="{...}" />
+                <marker date="1451491968848" expanded="true" signature="47:968" placeholder="{...}" />
+                <marker date="1451491968848" expanded="true" signature="104:838" placeholder="{...}" />
+                <marker date="1451491968848" expanded="true" signature="132:254" placeholder="{...}" />
+                <marker date="1451491968848" expanded="true" signature="297:832" placeholder="{...}" />
+                <marker date="1451491968848" expanded="true" signature="411:822" placeholder="{...}" />
+                <marker date="1451491968848" expanded="true" signature="603:637" placeholder="{...}" />
+                <marker date="1451491968848" expanded="true" signature="603:822" placeholder="{...}" />
+                <marker date="1451491968848" expanded="true" signature="720:810" placeholder="{...}" />
+                <marker date="1451491968848" expanded="true" signature="887:962" placeholder="{&quot;delay&quot;: 0...}" />
               </folding>
             </state>
           </provider>
@@ -106,6 +109,16 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="orders_controller.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/controllers/orders_controller.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="56" column="33" selection-start-line="56" selection-start-column="33" selection-end-line="56" selection-end-column="33" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="Gemfile" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Gemfile">
           <provider selected="true" editor-type-id="text-editor">
@@ -116,11 +129,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="products_controller.rb" pinned="false" current-in-tab="false">
+      <file leaf-file-name="products_controller.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/controllers/products_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="314" column="58" selection-start-line="314" selection-start-column="58" selection-end-line="314" selection-end-column="58" />
+            <state vertical-scroll-proportion="0.057471264">
+              <caret line="2" column="87" selection-start-line="2" selection-start-column="87" selection-end-line="2" selection-end-column="87" />
               <folding />
             </state>
           </provider>
@@ -139,8 +152,8 @@
       <file leaf-file-name="routes.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config/routes.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="17" column="28" selection-start-line="17" selection-start-column="9" selection-end-line="17" selection-end-column="34" />
+            <state vertical-scroll-proportion="-34.583332">
+              <caret line="83" column="14" selection-start-line="83" selection-start-column="8" selection-end-line="83" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -184,7 +197,6 @@
         <option value="$PROJECT_DIR$/app/models/order_item.rb" />
         <option value="$PROJECT_DIR$/app/models/product.rb" />
         <option value="$PROJECT_DIR$/app/models/category.rb" />
-        <option value="$PROJECT_DIR$/app/controllers/orders_controller.rb" />
         <option value="$PROJECT_DIR$/lib/user_failure.rb" />
         <option value="$PROJECT_DIR$/app/models/order.rb" />
         <option value="$PROJECT_DIR$/app/views/orders/cart.html.haml" />
@@ -198,7 +210,6 @@
         <option value="$PROJECT_DIR$/config/environments/development.rb" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/rails-jquery-autocomplete/autocomplete-rails.js" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/application.js" />
-        <option value="$PROJECT_DIR$/config/routes.rb" />
         <option value="$PROJECT_DIR$/app/views/users/_edit_account.html.haml" />
         <option value="$PROJECT_DIR$/app/assets/stylesheets/custom/number_circle.css" />
         <option value="$PROJECT_DIR$/app/views/collections/index.html.haml" />
@@ -208,11 +219,13 @@
         <option value="$PROJECT_DIR$/public/javascripts/autocomplete-rails.js" />
         <option value="$PROJECT_DIR$/public/javascripts/autocomplete-rails-modified.js" />
         <option value="$PROJECT_DIR$/Gemfile" />
-        <option value="$PROJECT_DIR$/app/views/products/index.html.haml" />
-        <option value="$PROJECT_DIR$/app/controllers/products_controller.rb" />
         <option value="$PROJECT_DIR$/app/assets/stylesheets/achat.css" />
         <option value="$PROJECT_DIR$/config/initializers/assets.rb" />
+        <option value="$PROJECT_DIR$/app/controllers/orders_controller.rb" />
         <option value="$PROJECT_DIR$/app/views/layouts/application.html.haml" />
+        <option value="$PROJECT_DIR$/config/routes.rb" />
+        <option value="$PROJECT_DIR$/app/views/products/index.html.haml" />
+        <option value="$PROJECT_DIR$/app/controllers/products_controller.rb" />
       </list>
     </option>
   </component>
@@ -858,9 +871,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="27" width="1922" height="1054" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.38445377" sideWeight="0.44764796" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.38445377" sideWeight="0.44764796" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32878152" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.29380664" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1178,14 +1191,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/orders_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/user_failure.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1231,7 +1236,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="17" column="18" selection-start-line="17" selection-start-column="18" selection-end-line="17" selection-end-column="18" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
+            <element signature="n#!!doc" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1244,44 +1249,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/routes.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="17" column="28" selection-start-line="17" selection-start-column="9" selection-end-line="17" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../upload_v2_7/template/page-search-sticky.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-4.8">
           <caret line="401" column="19" selection-start-line="401" selection-start-column="13" selection-end-line="401" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/products/index.html.haml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.65">
-          <caret line="40" column="26" selection-start-line="40" selection-start-column="26" selection-end-line="40" selection-end-column="26" />
-          <folding>
-            <marker date="1451486587104" expanded="true" signature="47:840" placeholder="{...}" />
-            <marker date="1451486587104" expanded="true" signature="47:968" placeholder="{...}" />
-            <marker date="1451486587104" expanded="true" signature="104:838" placeholder="{...}" />
-            <marker date="1451486587104" expanded="true" signature="132:254" placeholder="{...}" />
-            <marker date="1451486587104" expanded="true" signature="297:832" placeholder="{...}" />
-            <marker date="1451486587104" expanded="true" signature="411:822" placeholder="{...}" />
-            <marker date="1451486587104" expanded="true" signature="483:637" placeholder="{...}" />
-            <marker date="1451486587104" expanded="true" signature="720:810" placeholder="{...}" />
-            <marker date="1451486587104" expanded="true" signature="887:962" placeholder="{&quot;delay&quot;: 0...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/products_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="314" column="58" selection-start-line="314" selection-start-column="58" selection-end-line="314" selection-end-column="58" />
           <folding />
         </state>
       </provider>
@@ -1312,15 +1283,58 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.haml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.21084337">
-          <caret line="14" column="46" selection-start-line="14" selection-start-column="46" selection-end-line="14" selection-end-column="46" />
+        <state vertical-scroll-proportion="-2.7666667">
+          <caret line="143" column="8" selection-start-line="143" selection-start-column="8" selection-end-line="143" selection-end-column="83" />
           <folding>
-            <marker date="1451488754474" expanded="true" signature="1391:1745" placeholder="{...}" />
-            <marker date="1451488754474" expanded="true" signature="1391:1753" placeholder="{...}" />
-            <marker date="1451488754474" expanded="true" signature="1446:1645" placeholder="{...}" />
-            <marker date="1451488754474" expanded="true" signature="1519:1584" placeholder="{...}" />
-            <marker date="1451488754474" expanded="true" signature="1696:1745" placeholder="{...}" />
+            <marker date="1451489391388" expanded="true" signature="1391:1745" placeholder="{...}" />
+            <marker date="1451489391388" expanded="true" signature="1391:1753" placeholder="{...}" />
+            <marker date="1451489391388" expanded="true" signature="1446:1645" placeholder="{...}" />
+            <marker date="1451489391388" expanded="true" signature="1519:1584" placeholder="{...}" />
+            <marker date="1451489391388" expanded="true" signature="1696:1745" placeholder="{...}" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/products/index.html.haml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.0">
+          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+          <folding>
+            <marker date="1451491968848" expanded="true" signature="47:840" placeholder="{...}" />
+            <marker date="1451491968848" expanded="true" signature="47:968" placeholder="{...}" />
+            <marker date="1451491968848" expanded="true" signature="104:838" placeholder="{...}" />
+            <marker date="1451491968848" expanded="true" signature="132:254" placeholder="{...}" />
+            <marker date="1451491968848" expanded="true" signature="297:832" placeholder="{...}" />
+            <marker date="1451491968848" expanded="true" signature="411:822" placeholder="{...}" />
+            <marker date="1451491968848" expanded="true" signature="603:637" placeholder="{...}" />
+            <marker date="1451491968848" expanded="true" signature="603:822" placeholder="{...}" />
+            <marker date="1451491968848" expanded="true" signature="720:810" placeholder="{...}" />
+            <marker date="1451491968848" expanded="true" signature="887:962" placeholder="{&quot;delay&quot;: 0...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/orders_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="56" column="33" selection-start-line="56" selection-start-column="33" selection-end-line="56" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/routes.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-34.583332">
+          <caret line="83" column="14" selection-start-line="83" selection-start-column="8" selection-end-line="83" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/products_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.057471264">
+          <caret line="2" column="87" selection-start-line="2" selection-start-column="87" selection-end-line="2" selection-end-column="87" />
+          <folding />
         </state>
       </provider>
     </entry>

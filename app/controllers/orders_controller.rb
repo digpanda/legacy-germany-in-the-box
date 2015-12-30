@@ -53,6 +53,7 @@ class OrdersController < ApplicationController
         current_order.save!
         redirect_to popular_products_path
       else
+        session[:login_failure_counter] = 1
         flash[:info] = 'You haven\'t logged in.'
         redirect_to request.referrer
       end

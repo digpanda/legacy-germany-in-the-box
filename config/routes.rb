@@ -28,13 +28,16 @@ Rails.application.routes.draw do
   get '/',to: 'pages#home', as: 'home'
   get 'cart',to: 'orders#cart', as: 'cart'
 
-  get 'popular_products',to: 'products#indexr', as: 'popular_products'
+  get 'popular_products', to: 'products#indexr', as: 'popular_products'
+  post 'products/search', to: 'products#search', as: 'search_products'
 
   get 'profile/:id', to: 'users#pshow', as: "profile"
+
 
   post 'orders/add_product/:product_id', to: 'orders#add_product', as: 'add_product'
   post 'orders/adjust_products_amount', to: 'orders#adjust_products_amount', as: 'adjust_products_amount'
   post 'orders/checkout', to: 'orders#checkout', as: 'checkout'
+
 
   post '/getuser', to: 'users#getuserbyemail'
   post '/follow/:id/:target_id', to: 'users#follow'
