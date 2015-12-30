@@ -307,20 +307,16 @@ class ProductsController < ApplicationController
 
   def get_products_from_search_cache(term)
     Rails.cache.fetch("products_search_cache_#{term}", :expires_in => Rails.configuration.product_search_cache_expire_limit ) {
-      products_from_products = sort_and_map_products(Product.where({ name: /.*#{term}.*/i }), :product)
-      products_from_brands = sort_and_map_products(Product.where({ brand: /.*#{term}.*/i }), :brand)
-      products_from_shops = []
+      products_from_products = sort_and_map_products(Product.where({ name: /.*#{term}.*/i }).limit(10), :product)
+      products_from_brands = sort_and_map_products(Product.where({ brand: /.*#{term}.*/i }).limit(10), :brand)
+
       products_from_categories =  []
 
-      Category.where( { name: /.*#{term}.*/i } ).to_a.each do |c|
+      Category.where( { name: /.*#{term}.*/i } ).limit(10).to_a.each do |c|
         products_from_categories |=  sort_and_map_products(c.products, :category)
       end
 
-      Shop.where( { name: /.*#{term}.*/i } ).to_a.each do |s|
-        products_from_shops += sort_and_map_products(s.products, :shop)
-      end
-
-      products_from_products + products_from_brands + products_from_shops + products_from_categories
+      products_from_products + products_from_brands + products_from_categories
     }
   end
 
