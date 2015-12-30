@@ -36,7 +36,6 @@ gem 'easy_captcha'
 gem 'rmagick'
 gem 'diff-lcs', '1.2.5'
 
-gem 'rails3-jquery-autocomplete'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 

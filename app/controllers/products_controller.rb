@@ -4,8 +4,7 @@ class ProductsController < ApplicationController
   before_action { @show_search_area = true }
 
   def autocomplete_product_name
-    products = get_products_from_search_cache( params[:term])
-    render :json => products.first(Rails.configuration.autocomplete_limit).sort! { |a,b| a.name.downcase <=> b.name.downcase } .map { |p| {:id => p.id, :label => p.name, :value => p.name} }
+    render :json => get_products_from_search_cache( params[:term])
   end
 
 # time = Time.new
@@ -308,18 +307,25 @@ class ProductsController < ApplicationController
 
   def get_products_from_search_cache(term)
     Rails.cache.fetch("products_search_cache_#{term}", :expires_in => Rails.configuration.product_search_cache_expire_limit ) {
-      products = Product.or({ name: /.*#{term}.*/i }, { brand: /.*#{term}.*/i } ).to_a
+      products_from_products = sort_and_map_products(Product.where({ name: /.*#{term}.*/i }), :product)
+      products_from_brands = sort_and_map_products(Product.where({ brand: /.*#{term}.*/i }), :brand)
+      products_from_shops = []
+      products_from_categories =  []
 
       Category.where( { name: /.*#{term}.*/i } ).to_a.each do |c|
-        products = products | c.products
+        products_from_categories |=  sort_and_map_products(c.products, :category)
       end
 
       Shop.where( { name: /.*#{term}.*/i } ).to_a.each do |s|
-        products = products | s.products
+        products_from_shops += sort_and_map_products(s.products, :shop)
       end
 
-      products
+      products_from_products + products_from_brands + products_from_shops + products_from_categories
     }
+  end
+
+  def sort_and_map_products(products, search_category)
+    products.sort! { |a,b| a.name.downcase <=> b.name.downcase }.map { |p| {:id => p.id, :label => p.name, :value => p.name, :sc => search_category } }
   end
 
   protected

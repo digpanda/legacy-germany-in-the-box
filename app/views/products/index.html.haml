@@ -1,3 +1,33 @@
+:javascript
+  $( document ).ready( function () {
+    $.widget( "custom.catcomplete", $.ui.autocomplete, {
+      _create: function() {
+          this._super();
+          this.widget().menu( "option", "items", "> :not(.ui-autocomplete-category)" );
+      },
+      _renderMenu: function( ul, items ) {
+          var that = this,
+              currentCategory = "";
+          $.each( items, function( index, item ) {
+              var li;
+              if ( item.sc != currentCategory ) {
+                  ul.append( "<li class='ui-autocomplete-category'>" + item.sc + "</li>" );
+                  currentCategory = item.sc;
+              }
+              li = that._renderItemData( ul, item );
+              if ( item.sc ) {
+                  li.attr( "aria-label", item.sc + " : " + item.label );
+              }
+          });
+      }
+    });
+
+    $( "#products_search_area" ).catcomplete({
+      delay: 0,
+      source: '/products/autocomplete_product_name'
+    });
+  });
+
 =content_for :search_area do
   %form.search-area.form-group
     .container
@@ -7,7 +37,7 @@
             %i.fa.fa-search
             %span I am searching for
           .search-area-division.search-area-division-input
-            = autocomplete_field_tag :name, '', autocomplete_product_name_products_path, :placeholder => 'a product', :id => 'search_area', :name => 'product[search_area]', 'min-length':0, :class => 'form-control'
+            %input{:placeholder => 'a product', :id => 'products_search_area', :name => 'products[search_area]', 'min-length':0, :class => 'form-control' }
         .col-md-4.clearfix
           %label
             %span= 'in the product criteria.'

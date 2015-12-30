@@ -24,6 +24,10 @@
     -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
     -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    max-height: 200px;
+    overflow-y: auto;
+    /* prevent horizontal scrollbar */
+    overflow-x: hidden;
 }
 
 .ui-autocomplete > li {
@@ -32,4 +36,11 @@
 
 .ui-autocomplete > li.ui-state-focus {
     background-color: #DDD;
+}
+
+.ui-autocomplete-category {
+    font-weight: bold;
+    padding: .2em .4em;
+    margin: .8em 0 .2em;
+    line-height: 1.5;
 }
