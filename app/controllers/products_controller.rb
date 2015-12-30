@@ -3,6 +3,11 @@ class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy, :similarproductsi]
   before_action { @show_search_area = true }
 
+  def autocomplete_product_name
+    products = get_products_from_search_cache( params[:term])
+    render :json => products.first(Rails.configuration.autocomplete_limit).sort! { |a,b| a.name.downcase <=> b.name.downcase } .map { |p| {:id => p.id, :label => p.name, :value => p.name} }
+  end
+
 # time = Time.new
 # GET /products
 # GET /products.json
@@ -301,14 +306,28 @@ class ProductsController < ApplicationController
 
   end
 
+  def get_products_from_search_cache(term)
+    Rails.cache.fetch("products_search_cache_#{term}", :expires_in => Rails.configuration.product_search_cache_expire_limit ) {
+      products = Product.or({ name: /.*#{term}.*/i }, { brand: /.*#{term}.*/i } ).to_a
 
-  autocomplete :product, :name, :full => true, :limit => 20
+      Category.where( { name: /.*#{term}.*/i } ).to_a.each do |c|
+        products = products | c.products
+      end
+
+      Shop.where( { name: /.*#{term}.*/i } ).to_a.each do |s|
+        products = products | s.products
+      end
+
+      products
+    }
+  end
 
   protected
 
   def current_top_menu_active_part
     :product
   end
+
 end
 
 
