@@ -8,8 +8,9 @@ class ProductsController < ApplicationController
   end
 
   def search_products
-    products = get_products_from_search_cache( params[:product_search_area] )
-    @products = products.collect{|p| p.obj}
+    founded_products = get_products_from_search_cache( params[:products_search_area] )
+
+    @products = founded_products.collect{|p| p[:obj] }
     respond_to do |format|
       format.html { render :index }
     end
@@ -315,15 +316,17 @@ class ProductsController < ApplicationController
 
   def get_products_from_search_cache(term)
     Rails.cache.fetch("products_search_cache_#{term}", :expires_in => Rails.configuration.product_search_cache_expire_limit ) {
-      products_from_products = sort_and_map_products(Product.where({ name: /.*#{term}.*/i }), :product)
-      products_from_brands = sort_and_map_products(Product.where({ brand: /.*#{term}.*/i }), :brand)
+      products_from_products = sort_and_map_products(Product.where({ name: /.*#{term}.*/i }).limit(Rails.configuration.autocomplete_limit), :product)
 
+      logger.info("###########################################################"+products_from_products.size.to_s)
+      products_from_brands = sort_and_map_products(Product.where({ brand: /.*#{term}.*/i }).limit(Rails.configuration.autocomplete_limit), :brand)
+      logger.info("###########################################################"+products_from_brands.size.to_s)
       products_from_categories =  []
 
-      Category.where( { name: /.*#{term}.*/i } ).to_a.each do |c|
+      Category.where( { name: /.*#{term}.*/i } ).limit(Rails.configuration.autocomplete_limit).to_a.each do |c|
         products_from_categories |=  sort_and_map_products(c.products, :category)
       end
-
+      logger.info("###########################################################"+products_from_categories.size.to_s)
       products_from_products + products_from_brands + products_from_categories
     }
   end

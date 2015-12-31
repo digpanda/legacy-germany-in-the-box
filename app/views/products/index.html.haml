@@ -23,7 +23,7 @@
     });
 
     $( "#products_search_area" ).catcomplete({
-      delay: 0,
+      delay: 1000,
       source: '/products/autocomplete_product_name'
     });
   });
@@ -37,7 +37,7 @@
             %i.fa.fa-search
             %span I am searching for
           .search-area-division.search-area-division-input
-            %input{ :placeholder => 'a product', :id => 'products_search_area', :class => 'form-control' }
+            =text_field_tag :products_search_area, params[:products_search_area], :placeholder => 'a product', :class => 'form-control'
         .col-md-3.clearfix
           %label
             %span= 'in the product criteria.'

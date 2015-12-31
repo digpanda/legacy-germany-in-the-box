@@ -29,7 +29,7 @@ Rails.application.routes.draw do
   get 'cart',to: 'orders#cart', as: 'cart'
 
   get 'popular_products', to: 'products#indexr', as: 'popular_products'
-  post 'products/search', to: 'products#search', as: 'search_products'
+  post 'products/search', to: 'products#search_products', as: 'search_products'
 
   get 'profile/:id', to: 'users#pshow', as: "profile"
 
