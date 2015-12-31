@@ -91,6 +91,55 @@ category_clothes_for_men = Category.create!(
     :cssc => 'fa-male'
 )
 
+Category.create!(
+    :name => 'Outerwear, Woven Cotton or Wool & Fine Animal Hair',
+    :code => 'L2-48',
+    :parent => category_clothes_for_men
+)
+
+Category.create!(
+    :name => 'Sweaters & Sweatshirts',
+    :code => 'L2-63',
+    :parent => category_clothes_for_men
+)
+
+Category.create!(
+    :name => 'Suits, Suit Jackets & Blazers',
+    :code => 'L2-50',
+    :parent => category_clothes_for_men
+)
+
+Category.create!(
+    :name => 'Swimwear & Leisurewear',
+    :code => 'L2-53',
+    :parent => category_clothes_for_men
+)
+
+Category.create!(
+    :name => 'T-Shirts, Shirts & Polos',
+    :code => 'L2-51',
+    :parent => category_clothes_for_men
+)
+
+Category.create!(
+    :name => 'Trousers, Shorts & Jeans',
+    :code => 'L2-52',
+    :parent => category_clothes_for_men
+)
+
+Category.create!(
+    :name => 'Outerwear, Knitted',
+    :code => 'L2-596',
+    :parent => category_clothes_for_men
+)
+
+Category.create!(
+    :name => 'Outerwear, Leather, Fur & Plastic',
+    :code => 'L2-669',
+    :parent => category_clothes_for_men
+)
+
+
 #
 # clothes for women category
 #
@@ -100,6 +149,86 @@ category_clothes_for_women = Category.create!(
     :cssc => 'fa-female'
 )
 
+Category.create!(
+    :name => 'Body Shapers',
+    :code => 'L2-245',
+    :parent => category_clothes_for_women
+)
+
+Category.create!(
+    :name => 'Outerwear & Woven Other Textile Materials',
+    :code => 'L2-66',
+    :parent => category_clothes_for_women
+)
+
+Category.create!(
+    :name => 'Dresses',
+    :code => 'L2-77',
+    :parent => category_clothes_for_women
+)
+
+
+Category.create!(
+    :name => 'Lingerie',
+    :code => 'L2-80',
+    :parent => category_clothes_for_women
+)
+
+Category.create!(
+    :name => 'Skirts, Skorts & Culottes',
+    :code => 'L2-75',
+    :parent => category_clothes_for_women
+)
+
+Category.create!(
+    :name => 'Suits, Suit Jackets & Blazers',
+    :code => 'L2-248',
+    :parent => category_clothes_for_women
+)
+
+Category.create!(
+    :name => 'Sweaters & Sweatshirts',
+    :code => 'L2-78',
+    :parent => category_clothes_for_women
+)
+
+Category.create!(
+    :name => 'Swimwear & Leisurewear',
+    :code => 'L2-246',
+    :parent => category_clothes_for_women
+)
+
+Category.create!(
+    :name => 'Trousers, Shorts & Jeans',
+    :code => 'L2-79',
+    :parent => category_clothes_for_women
+)
+
+Category.create!(
+    :name => 'Wedding & Prom Dresses',
+    :code => 'L2-81',
+    :parent => category_clothes_for_women
+)
+
+Category.create!(
+    :name => 'Outerwear & Knitted',
+    :code => 'L2-591',
+    :parent => category_clothes_for_women
+)
+
+Category.create!(
+    :name => 'Outerwear, Leather, Fur & Plastic',
+    :code => 'L2-670',
+    :parent => category_clothes_for_women
+)
+
+Category.create!(
+    :name => 'Other Garments',
+    :code => 'L2-593',
+    :parent => category_clothes_for_women
+)
+
+
 #
 # clothes for babies & essentials
 #
@@ -108,6 +237,7 @@ category_clothes_for_babies_essentials = Category.create!(
     :code => 'L1-331',
     :cssc => 'fa-smile-o'
 )
+
 
 #
 # clothes for children
@@ -126,6 +256,19 @@ category_health_beauty = Category.create!(
     :code => 'L1-84',
     :cssc => 'fa-stethoscope '
 )
+
+Category.create!(
+    :name => 'Bath & Shower',
+    :code => 'L2-278',
+    :parent => category_health_beauty
+)
+
+
+subcategory ="Fragrances" id="L2-91"
+subcategory ="Hair Care" id="L2-92"
+subcategory ="Skin Care, Cosmetics &amp; Tanning" id="L2-94"
+subcategory ="Supplements" id="L2-277"
+subcategory ="Massage &amp; Orthopaedic" id="L2-662"
 
 
 #
