@@ -1,88 +1,186 @@
 Category.all.delete
 
 #
-# food & drink category
+# bags & accessories category
 #
-category_food_drink = Category.create!(
-    :name => 'Food & Drink',
-    :cssc => 'fa-cutlery'
+category_bags_accessories = Category.create!(
+    :name => 'Bags & Accessories',
+    :code => 'L1-1',
+    :cssc => 'fa-umbrella'
+)
+
+Category.create!(
+    :name => 'Belts',
+    :code => 'L2-251',
+    :parent => category_bags_accessories
+)
+
+Category.create!(
+    :name => 'Bag Accessories',
+    :code => 'L2-291',
+    :parent => category_bags_accessories
+)
+
+Category.create!(
+    :name => 'Gloves & Ear Muffs',
+    :code => 'L2-404',
+    :parent => category_bags_accessories
+)
+
+Category.create!(
+    :name => 'Sunglasses',
+    :code => 'L2-406',
+    :parent => category_bags_accessories
+)
+
+Category.create!(
+    :name => 'Briefcases, School Satchels & Messenger Bags',
+    :code => 'L2-624',
+    :parent => category_bags_accessories
+)
+
+Category.create!(
+    :name => 'Handbags, Clutches & Shoulder Bags',
+    :code => 'L2-626',
+    :parent => category_bags_accessories
+)
+
+Category.create!(
+    :name => 'Purses, Pouches & Walletss',
+    :code => 'L2-627',
+    :parent => category_bags_accessories
+)
+
+Category.create!(
+    :name => 'Travel Bags, Toilet Bags, rucksacks & Sports Bags',
+    :code => 'L2-628',
+    :parent => category_bags_accessories
+)
+
+Category.create!(
+    :name => 'Scarves, Shawls & Veils',
+    :code => 'L2-645',
+    :parent => category_bags_accessories
+)
+
+Category.create!(
+    :name => 'Key Rings & Moneyclips',
+    :code => 'L2-646',
+    :parent => category_bags_accessories
+)
+
+
+Category.create!(
+    :name => 'Wristbands',
+    :code => 'L2-649',
+    :parent => category_bags_accessories
+)
+
+Category.create!(
+    :name => 'Other Accessories',
+    :code => 'L2-244',
+    :parent => category_bags_accessories
 )
 
 #
-# events category
+# clothes for men category
 #
-category_events = Category.create!(
-    :name => 'Events',
-    :cssc => 'fa-calendar'
+category_clothes_for_men = Category.create!(
+    :name => 'Clothes for Men',
+    :code => 'L1-47',
+    :cssc => 'fa-male'
 )
 
 #
-# beauty category
+# clothes for women category
 #
-category_beauty = Category.create!(
-    :name => 'Beauty',
+category_clothes_for_women = Category.create!(
+    :name => 'Clothes for Women',
+    :code => 'L1-64',
     :cssc => 'fa-female'
 )
 
 #
-# fitness category
+# clothes for babies & essentials
 #
-category_fitness = Category.create!(
-    :name => 'Fitness',
-    :cssc => 'fa-bolt'
+category_clothes_for_babies_essentials = Category.create!(
+    :name => 'Clothes for Babies & Essentials',
+    :code => 'L1-331',
+    :cssc => 'fa-smile-o'
 )
 
 #
-# electronics category
+# clothes for children
 #
-category_electronics = Category.create!(
-    :name => 'Electronics',
-    :cssc => 'fa-headphones'
+category_clothes_for_children = Category.create!(
+    :name => 'Clothes for Children',
+    :code => 'L1-414',
+    :cssc => 'fa-child'
 )
 
 #
-# furniture category
+# health & beauty category
 #
-category_furniture = Category.create!(
-    :name => 'Furniture',
-    :cssc => 'fa-image'
+category_health_beauty = Category.create!(
+    :name => 'Health & Beauty',
+    :code => 'L1-84',
+    :cssc => 'fa-stethoscope '
 )
 
-#
-# fashion category
-#
-category_fashion = Category.create!(
-    :name => 'Fashion',
-    :cssc => 'fa-umbrella'
-)
-
-#
-# shopping category
-#
-category_shopping = Category.create!(
-    :name => 'Shopping',
-    :cssc => 'fa-shopping-cart'
-)
 
 #
 # home & garden category
 #
 category_home_garden = Category.create!(
     :name => 'Home & Garden',
+    :code => 'L1-150',
     :cssc => 'fa-home'
 )
 
-category_carpet = Category.create!(
-    :name => 'Carpet',
+category_home_accessories = Category.create!(
+    :name => 'Home Accessories',
     :parent => category_home_garden
 )
 
+
 #
-# travel category
+# jewellery & watches category
 #
-category_tavel = Category.create!(
-    :name => 'Tavel',
-    :cssc => 'fa-plane'
+category_food_drinks = Category.create!(
+    :name => 'Jewellery & Watches',
+    :code => 'L1-321',
+    :cssc => 'fa-clock-o'
+)
+
+
+#
+# toys & games category
+#
+category_food_drinks = Category.create!(
+    :name => 'Toys & Games',
+    :code => 'L1-329',
+    :cssc => ' fa-gamepad'
+)
+
+
+
+#
+# food & drink category
+#
+category_food_drinks = Category.create!(
+    :name => 'Food & Drinks',
+    :code => 'L1-578',
+    :cssc => 'fa-cutlery'
+)
+
+
+#
+# category shoes & footwear
+#
+category_food_drinks = Category.create!(
+    :name => 'Shoes & Footwear',
+    :code => 'L1-661',
+    :cssc => 'fa-gift'
 )
 
 #
@@ -96,7 +194,8 @@ def create_upload_from_image_file(model, image_name, content_type = 'image/jpeg'
 end
 
 Shop.where(:name => 'Herz-Buffet').delete;
-Product.where(:name => '10 Blatt Seidenpapier ♥ Panda ♥').delete;
+Product.where(:name => '10 Blatt Seidenpapier ♥ Panda ♥').all.delete;
+Product.where({:name => /.*熊猫壁纸.*/i}).all.delete;
 
 shop = Shop.create!(
     :name => 'Herz-Buffet',
@@ -120,5 +219,17 @@ product = shop.products.create!(
     :brand => 'Herz-Buffet'
 )
 
-product.categories << category_carpet
+product.categories << category_home_accessories
+product.save!
+
+product = shop.products.create!(
+    :name => '熊猫壁纸',
+    :desc => '熊猫壁纸',
+    :img => 'https://images2.dawandastatic.com/23/c2/61/cf/40/44/4d/62/a4/30/1b/3c/00/7b/12/fe/square_130.JPEG',
+    :imglg => 'https://images2.dawandastatic.com/23/c2/61/cf/40/44/4d/62/a4/30/1b/3c/00/7b/12/fe/product_l.JPEG',
+    :price => 10.0,
+    :brand => 'Herz-Buffet'
+)
+
+product.categories << category_home_accessories
 product.save!

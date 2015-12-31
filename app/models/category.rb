@@ -5,6 +5,7 @@ class Category
 
   field :name,  type: String
   field :desc,  type: String
+  field :code,  type: String
   field :cssc,  type: String
 
   has_many :children, :class_name => 'Category', :inverse_of => :parent

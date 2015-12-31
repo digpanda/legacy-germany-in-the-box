@@ -19,7 +19,11 @@ class ApplicationController < ActionController::Base
   def current_order
     @current_order ||= begin
       if has_order?
-        order = Order.find(session[:order_id])
+        begin
+          order = Order.find(session[:order_id])
+        rescue
+          order = nil
+        end
       end
 
       unless order
