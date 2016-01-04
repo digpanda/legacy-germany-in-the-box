@@ -46,13 +46,13 @@ Category.create!(
 )
 
 Category.create!(
-    :name => 'Purses, Pouches & Walletss',
+    :name => 'Purses, Pouches & Wallets',
     :code => 'L2-627',
     :parent => category_bags_accessories
 )
 
 Category.create!(
-    :name => 'Travel Bags, Toilet Bags, rucksacks & Sports Bags',
+    :name => 'Travel Bags, Toilet Bags, Rucksacks & Sports Bags',
     :code => 'L2-628',
     :parent => category_bags_accessories
 )
@@ -82,6 +82,7 @@ Category.create!(
     :parent => category_bags_accessories
 )
 
+
 #
 # clothes for men category
 #
@@ -92,16 +93,17 @@ category_clothes_for_men = Category.create!(
 )
 
 Category.create!(
+    :name => 'Sweaters & Sweatshirts',
+    :code => 'L2-63',
+    :parent => category_clothes_for_men
+)
+
+Category.create!(
     :name => 'Outerwear, Woven Cotton or Wool & Fine Animal Hair',
     :code => 'L2-48',
     :parent => category_clothes_for_men
 )
 
-Category.create!(
-    :name => 'Sweaters & Sweatshirts',
-    :code => 'L2-63',
-    :parent => category_clothes_for_men
-)
 
 Category.create!(
     :name => 'Suits, Suit Jackets & Blazers',
@@ -228,7 +230,6 @@ Category.create!(
     :parent => category_clothes_for_women
 )
 
-
 #
 # clothes for babies & essentials
 #
@@ -238,6 +239,24 @@ category_clothes_for_babies_essentials = Category.create!(
     :cssc => 'fa-smile-o'
 )
 
+Category.create!(
+    :name => 'Baby Clothes of cotton',
+    :code => 'L2-332',
+    :parent => category_clothes_for_babies_essentials
+)
+
+Category.create!(
+    :name => 'Baby Clothes of Synthetic Fibre',
+    :code => 'L2-334',
+    :parent => category_clothes_for_babies_essentials
+)
+
+
+Category.create!(
+    :name => 'Baby Essentials',
+    :code => 'L2-356',
+    :parent => category_clothes_for_babies_essentials
+)
 
 #
 # clothes for children
@@ -247,6 +266,61 @@ category_clothes_for_children = Category.create!(
     :code => 'L1-414',
     :cssc => 'fa-child'
 )
+
+Category.create!(
+    :name => 'Outerwear',
+    :code => 'L2-415',
+    :parent => category_clothes_for_children
+)
+
+Category.create!(
+    :name => 'Suits, Jackets & Dresses',
+    :code => 'L2-428',
+    :parent => category_clothes_for_children
+)
+
+Category.create!(
+    :name => 'Sweaters & Sweatshirts',
+    :code => 'L2-446',
+    :parent => category_clothes_for_children
+)
+
+Category.create!(
+    :name => 'Swimwear & Leisurewear',
+    :code => 'L2-452',
+    :parent => category_clothes_for_children
+)
+
+Category.create!(
+    :name => 'T-Shirts, Shirts & Blouses',
+    :code => 'L2-462',
+    :parent => category_clothes_for_children
+)
+
+Category.create!(
+    :name => 'Trousers, Jeans & Skirts',
+    :code => 'L2-474',
+    :parent => category_clothes_for_children
+)
+
+Category.create!(
+    :name => 'Underwear & Sleepwear',
+    :code => 'L2-522',
+    :parent => category_clothes_for_children
+)
+
+Category.create!(
+    :name => 'Used & Worn Clothing',
+    :code => 'L2-541',
+    :parent => category_clothes_for_children
+)
+
+Category.create!(
+    :name => 'Socks & Tights',
+    :code => 'L2-606',
+    :parent => category_clothes_for_children
+)
+
 
 #
 # health & beauty category
@@ -263,12 +337,35 @@ Category.create!(
     :parent => category_health_beauty
 )
 
+Category.create!(
+    :name => 'Fragrances',
+    :code => 'L2-91',
+    :parent => category_health_beauty
+)
 
-subcategory ="Fragrances" id="L2-91"
-subcategory ="Hair Care" id="L2-92"
-subcategory ="Skin Care, Cosmetics &amp; Tanning" id="L2-94"
-subcategory ="Supplements" id="L2-277"
-subcategory ="Massage &amp; Orthopaedic" id="L2-662"
+Category.create!(
+    :name => 'Hair Care',
+    :code => 'L2-92',
+    :parent => category_health_beauty
+)
+
+Category.create!(
+    :name => 'Skin Care, Cosmetics & Tanning',
+    :code => 'L2-94',
+    :parent => category_health_beauty
+)
+
+Category.create!(
+    :name => 'Supplements',
+    :code => 'L2-277',
+    :parent => category_health_beauty
+)
+
+Category.create!(
+    :name => 'Massage & Orthopaedic',
+    :code => 'L2-662',
+    :parent => category_health_beauty
+)
 
 
 #
@@ -282,30 +379,114 @@ category_home_garden = Category.create!(
 
 category_home_accessories = Category.create!(
     :name => 'Home Accessories',
+    :code => 'L2-273',
+    :parent => category_home_garden
+)
+
+Category.create!(
+    :name => 'Kitchen Accessories',
+    :code => 'L2-275',
+    :parent => category_home_garden
+)
+
+Category.create!(
+    :name => 'Lighting',
+    :code => 'L2-173',
     :parent => category_home_garden
 )
 
 
+Category.create!(
+    :name => 'Furniture & Baby Furniture',
+    :code => 'L2-388',
+    :parent => category_home_garden
+)
+
+
+Category.create!(
+    :name => 'Kitchenware & Tableware',
+    :code => 'L2-639',
+    :parent => category_home_garden
+)
+
+Category.create!(
+    :name => 'Cutlery & Kitchen Utensils',
+    :code => 'L2-640',
+    :parent => category_home_garden
+)
+
+
+Category.create!(
+    :name => 'Cookware',
+    :code => 'L2-641',
+    :parent => category_home_garden
+)
+
 #
 # jewellery & watches category
 #
-category_food_drinks = Category.create!(
+category_jewellery_watches = Category.create!(
     :name => 'Jewellery & Watches',
     :code => 'L1-321',
     :cssc => 'fa-clock-o'
 )
 
+Category.create!(
+    :name => 'Jewellery of Precious Metals',
+    :code => 'L2-322',
+    :parent => category_jewellery_watches
+)
+
+Category.create!(
+    :name => 'Pearls, Precious & Semiprecious Stones',
+    :code => 'L2-325',
+    :parent => category_jewellery_watches
+)
+
+Category.create!(
+    :name => 'Clocks',
+    :code => 'L2-561',
+    :parent => category_jewellery_watches
+)
+
+Category.create!(
+    :name => 'Watch & Clock Parts',
+    :code => 'L2-563',
+    :parent => category_jewellery_watches
+)
 
 #
 # toys & games category
 #
-category_food_drinks = Category.create!(
+category_toys_games = Category.create!(
     :name => 'Toys & Games',
     :code => 'L1-329',
     :cssc => ' fa-gamepad'
 )
 
+Category.create!(
+    :name => 'Figures & Dolls',
+    :code => 'L2-220',
+    :parent => category_toys_games
+)
 
+Category.create!(
+    :name => 'Model Vehicles, Slot Racing & Radio-Controlled Toys',
+    :code => 'L2-227',
+    :parent => category_toys_games
+)
+
+Category.create!(
+    :name => 'Tricycles, Scooters, Pedal Cars & Ride-On Toys',
+    :code => 'L2-664',
+    :parent => category_toys_games
+)
+
+Category.create!(
+    :name => 'Other Toys & Games',
+    :code => 'L2-229',
+    :parent => category_toys_games
+)
 
 #
 # food & drink category
@@ -316,15 +497,105 @@ category_food_drinks = Category.create!(
     :cssc => 'fa-cutlery'
 )
 
+Category.create!(
+    :name => 'Non-alcoholic Beverages',
+    :code => 'L2-97',
+    :parent => category_food_drinks
+)
+
+Category.create!(
+    :name => 'Spirits',
+    :code => 'L2-587',
+    :parent => category_food_drinks
+)
+
+Category.create!(
+    :name => 'Sweets, Snacks & Confectionery',
+    :code => 'L2-633',
+    :parent => category_food_drinks
+)
+
+Category.create!(
+    :name => 'Fruit, Nuts, Seeds & Vegetables',
+    :code => 'L2-635',
+    :parent => category_food_drinks
+)
+
+Category.create!(
+    :name => 'Jams, Honey & Spreads',
+    :code => 'L2-665',
+    :parent => category_food_drinks
+)
+
+Category.create!(
+    :name => 'Oils, Herbs & Spices',
+    :code => 'L2-666',
+    :parent => category_food_drinks
+)
 
 #
 # category shoes & footwear
 #
-category_food_drinks = Category.create!(
+category_shoes_footwear = Category.create!(
     :name => 'Shoes & Footwear',
     :code => 'L1-661',
     :cssc => 'fa-gift'
 )
+
+Category.create!(
+    :name => 'Pumps, Flats, Oxfords, Brogues, Loafers, Platforms, Mules, Boat Shoes & Moccasins',
+    :code => 'L2-543',
+    :parent => category_shoes_footwear
+)
+
+Category.create!(
+    :name => 'Men | Loafers, Oxfords, Brogues, Mules, Boat Shoes & Moccasins',
+    :code => 'L2-602',
+    :parent => category_shoes_footwear
+)
+
+Category.create!(
+    :name => 'Women | Pumps, Flats, Oxfords, Brogues, Loafers, Platforms, Mules, Boat shoes & Moccasins',
+    :code => 'L2-603',
+    :parent => category_shoes_footwear
+)
+
+Category.create!(
+    :name => 'Men | house slippers',
+    :code => 'L2-613',
+    :parent => category_shoes_footwear
+)
+
+Category.create!(
+    :name => 'Women | house slippers',
+    :code => 'L2-616',
+    :parent => category_shoes_footwear
+)
+
+Category.create!(
+    :name => 'Boots & High Tops',
+    :code => 'L2-619',
+    :parent => category_shoes_footwear
+)
+
+Category.create!(
+    :name => 'Children | House Slippers',
+    :code => 'L2-620',
+    :parent => category_shoes_footwear
+)
+
+Category.create!(
+    :name => 'Children | Sandals & Flip Flops',
+    :code => 'L2-621',
+    :parent => category_shoes_footwear
+)
+
+Category.create!(
+    :name => 'Other Footwear',
+    :code => 'L2-600',
+    :parent => category_shoes_footwear
+)
+
 
 #
 # creates image upload file
