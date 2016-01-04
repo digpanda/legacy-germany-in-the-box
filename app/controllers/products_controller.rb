@@ -321,23 +321,6 @@ class ProductsController < ApplicationController
 
   end
 
-  def get_products_from_search_cache(term)
-    Rails.cache.fetch("products_search_cache_#{term}", :expires_in => Rails.configuration.product_search_cache_expire_limit ) {
-      products_from_products = sort_and_map_products(Product.where({ name: /.*#{term}.*/i }).limit(Rails.configuration.autocomplete_limit), :product)
-
-      logger.info("###########################################################"+products_from_products.size.to_s)
-      products_from_brands = sort_and_map_products(Product.where({ brand: /.*#{term}.*/i }).limit(Rails.configuration.autocomplete_limit), :brand)
-      logger.info("###########################################################"+products_from_brands.size.to_s)
-      products_from_categories =  []
-
-      Category.where( { name: /.*#{term}.*/i } ).limit(Rails.configuration.autocomplete_limit).to_a.each do |c|
-        products_from_categories |=  sort_and_map_products(c.products, :category)
-      end
-      logger.info("###########################################################"+products_from_categories.size.to_s)
-      products_from_products + products_from_brands + products_from_categories
-    }
-  end
-
   def sort_and_map_products(products, search_category)
     products.sort! { |a,b| a.name.downcase <=> b.name.downcase }.map { |p| {:label => p.name, :value => p.name, :sc => search_category, :obj => p } }
   end

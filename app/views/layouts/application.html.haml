@@ -59,14 +59,13 @@
                   %li{:class => params[:top_menu_active_part] == :category ? 'active' : ''}
                     %a{:href => '#'} Category
                     %ul
-                      - Category.where( :parent => nil ).each do |c|
+                      - get_all_first_level_categories_from_cache().each do |c|
                         %li
                           %a{:href => '#'}= c.name
-                          - if c.children.count > 0
-                            %ul
-                              - c.children.each do |cc|
-                                %li
-                                  %a{:href => "#{show_products_in_category_path(cc.id)}"}= cc.name
+                          %ul
+                            - get_second_level_categories_from_cache(c).each do |cc|
+                              %li
+                                %a{:href => "#{show_products_in_category_path(cc.id)}"}= cc.name
                   %li{:class => params[:top_menu_active_part] == :product ? 'active' : ''}
                     =link_to 'Product', popular_products_path
                   %li{:class => params[:top_menu_active_part] == :features ? 'active' : ''}

@@ -1,8 +1,8 @@
 .numberCircle {
-    border-radius: 10px;
+    border-radius: 3px;
     behavior: url(PIE.htc);
-    padding: 3px;
-    background: red;
+    padding: 2px;
+    background: dodgerblue;
     border: 1px;
     color: white;
     text-align: center;

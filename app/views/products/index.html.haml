@@ -86,12 +86,12 @@
     .col-md-3
       %aside.sidebar-left
         %ul.nav.nav-tabs.nav-stacked.nav-coupon-category.nav-coupon-category-left
-          - Category.where( :parent => nil ).each_with_index do |c, i|
+          - get_all_first_level_categories_from_cache().each_with_index do |c, i|
             %li{ :class => i == 0 ? 'active' : '' }
               %a{:href => '#'}
                 %i{ :class => "fa #{c.cssc}" }
                 = c.name
-                %span= c.get_number_of_different_products
+                %span= get_number_of_different_products_from_cache(c)
     .col-md-9
       #masonry.row.row-wrap
         - @products.each do |p|
