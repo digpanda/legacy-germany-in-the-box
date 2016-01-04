@@ -26,10 +26,11 @@ Rails.application.routes.draw do
   # user
 
   get '/',to: 'pages#home', as: 'home'
-  get 'cart',to: 'orders#cart', as: 'cart'
+  get '/cart',to: 'orders#cart', as: 'cart'
 
-  get 'popular_products', to: 'products#indexr', as: 'popular_products'
-  post 'products/search', to: 'products#search_products', as: 'search_products'
+  get '/popular_products', to: 'products#indexr', as: 'popular_products'
+  post '/products/search', to: 'products#search_products', as: 'search_products'
+  get '/category/:category_id/products', to: 'products#show_products_in_category', as: 'show_products_in_category'
 
   get 'profile/:id', to: 'users#pshow', as: "profile"
 

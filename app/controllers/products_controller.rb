@@ -16,6 +16,13 @@ class ProductsController < ApplicationController
     end
   end
 
+  def show_products_in_category
+    @products = Category.find(params[:category_id]).products
+    respond_to do |format|
+      format.html { render :index }
+    end
+  end
+
 # time = Time.new
 # GET /products
 # GET /products.json
