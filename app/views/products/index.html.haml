@@ -88,7 +88,7 @@
         %ul.nav.nav-tabs.nav-stacked.nav-coupon-category.nav-coupon-category-left
           - get_all_first_level_categories_from_cache().each_with_index do |c, i|
             %li{ :class => i == 0 ? 'active' : '' }
-              %a{:href => '#'}
+              %a{:href => "#{show_products_in_category_path(c.id)}" }
                 %i{ :class => "fa #{c.cssc}" }
                 = c.name
                 %span= get_number_of_different_products_from_cache(c)
