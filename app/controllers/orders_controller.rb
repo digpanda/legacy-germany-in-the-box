@@ -65,11 +65,9 @@ class OrdersController < ApplicationController
     redirect_to request.referrer
   end
 
-  def update
+  def go_on
     session[:order_id] = params[:id]
     redirect_to cart_path
   end
 
-  def cart
-  end
 end
