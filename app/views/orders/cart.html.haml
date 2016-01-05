@@ -2,7 +2,7 @@
   .row
     - if current_order.order_items.count > 0
       .col-md-8
-        = form_tag adjust_products_amount_path, :id => 'orders_adjust_products_amount' do
+        = form_tag adjust_products_amount_in_order_path, :id => 'orders_adjust_products_amount' do
           %table.table.cart-table
             %thead
               %tr
@@ -28,7 +28,7 @@
                     =link_to '', '#', :class => 'fa fa-times', :onclick => "$('#cart-quantity-of-product-#{i.product.id}').val(0); $('#orders_adjust_products_amount').submit()"
           =submit_tag 'Update the cart', :class => 'btn btn-primary'
       .col-md-3
-        = form_tag checkout_path
+        = form_tag checkout_order_path
         %ul.cart-total-list
           %li
             %span Sub Total

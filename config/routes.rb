@@ -35,9 +35,10 @@ Rails.application.routes.draw do
   get 'profile/:id', to: 'users#pshow', as: "profile"
 
 
-  post 'orders/add_product/:product_id', to: 'orders#add_product', as: 'add_product'
-  post 'orders/adjust_products_amount', to: 'orders#adjust_products_amount', as: 'adjust_products_amount'
-  post 'orders/checkout', to: 'orders#checkout', as: 'checkout'
+  post 'orders/add_product/:product_id', to: 'orders#add_product', as: 'add_product_to_order'
+  post 'orders/adjust_products_amount', to: 'orders#adjust_products_amount', as: 'adjust_products_amount_in_order'
+  post 'orders/checkout', to: 'orders#checkout', as: 'checkout_order'
+  get 'orders/:id/continue', to: 'orders#continue', as: 'continue_order'
 
 
   post '/getuser', to: 'users#getuserbyemail'
