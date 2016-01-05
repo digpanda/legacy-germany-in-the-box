@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-  #skip_before_action :verify_authenticity_token
   before_action :set_user, except: [:userssearch, :openmailnoti,:removeprodtocol, :getuserbyid, :index, :new, :create, :addprodtocol, :getuserbyemail]
 
   # GET /users
@@ -42,7 +41,6 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    @user=User.find(params[:id])
   end
 
 def openmailnoti

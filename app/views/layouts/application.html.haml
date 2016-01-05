@@ -129,19 +129,19 @@
                         = image_tag (current_user.pic.url.nil? ? 'icons/default_user_pic.png' : current_user.pic.url) , :style => 'width:32px;height:32px'
                       %ul
                         %li
-                          %a{ :href => "#{ edit_user_path(@user, :user_info_edit_part => :edit_account) }" }
+                          %a{ :href => "#{ edit_user_path(current_user, :user_info_edit_part => :edit_account) }" }
                             %i.fa.fa-key
                             Account
                         %li
-                          %a{ :href => "#{ edit_user_path(@user, :user_info_edit_part => :edit_personal) }" }
+                          %a{ :href => "#{ edit_user_path(current_user, :user_info_edit_part => :edit_personal) }" }
                             %i.fa.fa-user
                             Personal
                         %li
-                          %a{ :href => "#{ edit_user_path(@user, :user_info_edit_part => :edit_bank) }" }
+                          %a{ :href => "#{ edit_user_path(current_user, :user_info_edit_part => :edit_bank) }" }
                             %i.fa.fa-university
                             Bank
                         %li
-                          %a{ :href => "#{ edit_user_path(@user, :user_info_edit_part => :edit_order) }" }
+                          %a{ :href => "#{ edit_user_path(current_user, :user_info_edit_part => :edit_order) }" }
                             %i.fa.fa-truck
                             Order
                         %li

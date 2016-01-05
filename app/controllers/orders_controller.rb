@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
 
-    def add_product
+  def add_product
       product = Product.find(params[:product_id])
       existing_order_item = current_order.order_items.to_a.find { |i| i.product.id === product.id }
 
@@ -48,9 +48,10 @@ class OrdersController < ApplicationController
 
     def checkout
       if user_signed_in?
-        current_order.status = :accepted
+        current_order.status = :checked_out
         current_order.user = current_user
         current_order.save!
+        session.delete(:order_id)
         redirect_to popular_products_path
       else
         session[:login_failure_counter] = 1
@@ -58,4 +59,17 @@ class OrdersController < ApplicationController
         redirect_to request.referrer
       end
     end
+
+  def destroy
+    Order.find(params[:id]).delete
+    redirect_to request.referrer
+  end
+
+  def update
+    session[:order_id] = params[:id]
+    redirect_to cart_path
+  end
+
+  def cart
+  end
 end

@@ -65,7 +65,7 @@
             %h4= p.name
             %p= p.desc
             = form_tag add_product_path(p) do
-              =submit_tag "$#{p.price} Buy Now", :class => "btn btn-primary btn-lg btn-block"
+              =submit_tag "$#{p.price} Add to Basket", :class => "btn btn-primary btn-lg btn-block"
             %ul.list.product-page-meta-info
               %li
                 %ul.list.product-page-meta-price-list

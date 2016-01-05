@@ -43,7 +43,7 @@ class ApplicationController < ActionController::Base
   end
 
   def has_order?
-    not session[:order_id].nil?
+    session[:order_id].present?
   end
 
   def after_sign_in_path_for(resource)
