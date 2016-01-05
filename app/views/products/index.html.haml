@@ -24,12 +24,18 @@
 
     $( "#products_search_area" ).catcomplete({
       delay: 1000,
-      source: '/products/autocomplete_product_name'
+      source: '/products/autocomplete_product_name',
+      select: function (a, b) {
+        $(this).val(b.item.value);
+        $("#search_products_form").submit()
+      }
     });
+
+
   });
 
 =content_for :search_area do
-  = form_tag search_products_path, :method => :post, :class => 'search-area form-group' do
+  = form_tag search_products_path, :method => :post, :id => 'search_products_form', :class => 'search-area form-group' do
     .container
       .row
         .col-md-8.clearfix
