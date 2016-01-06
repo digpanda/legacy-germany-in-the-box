@@ -89,13 +89,20 @@
   .row
     .col-md-3
       %aside.sidebar-left
-        %ul.nav.nav-tabs.nav-stacked.nav-coupon-category.nav-coupon-category-left
-          - get_all_first_level_categories_from_cache().each_with_index do |c, i|
-            %li{ :class => i == 0 ? 'active' : '' }
-              %a{:href => "#{show_products_in_category_path(c.id)}" }
-                %i{ :class => "fa #{c.cssc}" }
-                = c.name
-                %span= get_number_of_different_products_from_cache(c)
+        %div#cssmenu
+          %ul
+            %li{ :class => 'active'}
+              %a{:href => "#" }
+                %span= 'Categories'
+            - get_all_first_level_categories_from_cache().each_with_index do |c, i|
+              %li{ :class => i == 0 ? 'has-sub' : 'has-sub' }
+                %a{:href => "#{show_products_in_category_path(c.id)}" }
+                  %span{ :class => "fa #{c.cssc}" }= ' ' + c.name
+                %ul
+                  - get_second_level_categories_from_cache(c).each do |cc|
+                    %li
+                      %a{:href => "#{show_products_in_category_path(cc.id)}"}
+                        %span= cc.name
     .col-md-9
       #masonry.row.row-wrap
         - @products.each do |p|
