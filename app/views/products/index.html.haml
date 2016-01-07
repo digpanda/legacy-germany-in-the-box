@@ -91,18 +91,19 @@
       %aside.sidebar-left
         %div#left_menu
           %ul
-            %li{ :class => 'active'}
+            %li{ :class => 'has-sub active'}
               %a{:href => "#" }
-                %span= 'Categories'
-            - get_all_first_level_categories_from_cache().each_with_index do |c, i|
-              %li{ :class => i == 0 ? 'has-sub' : 'has-sub' }
+                %i{ :class => 'fa fa-list' }= ' Categories'
+            - @categories_and_children.keys.each do |c|
+              %li{ :class => 'has-sub' }
                 %a{:href => "#{show_products_in_category_path(c.id)}" }
-                  %span{ :class => "fa #{c.cssc}" }= ' ' + c.name
+                  %i{ :class => "fa #{c.cssc}" }= ' ' + c.name
+                  %span= 0
                 %ul
-                  - get_second_level_categories_from_cache(c).each do |cc|
+                  - @categories_and_children[c].each do |cc|
                     %li
-                      %a{:href => "#{show_products_in_category_path(cc.id)}"}
-                        %span= cc.name
+                      %a{:href => ""}
+                        %i= cc.name
     .col-md-9
       #masonry.row.row-wrap
         - @products.each do |p|

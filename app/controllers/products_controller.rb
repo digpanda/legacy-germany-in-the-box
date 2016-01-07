@@ -48,10 +48,19 @@ class ProductsController < ApplicationController
   def indexr
     if(params[:num] == nil)
       @products = get_random_Product(50)
-
-
+      @categories_and_children = {}
+      @categories_and_counters = {}
+      @products.each do |p|
+        p.categories.each do |c|
+          if not @categories_and_children.has_key?(c.parent)
+            @categories_and_children[c.parent] = []
+            @categories_and_counters[c.parent] = 0
+          end
+          @categories_and_children[c.parent] << c
+          @categories_and_counters[c.parent] += 1
+        end
+      end
   else
-
     @products = get_random_Product(params[:num].to_i)
     end
     @owner_name = nil
