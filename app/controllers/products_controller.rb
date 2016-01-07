@@ -11,6 +11,8 @@ class ProductsController < ApplicationController
     founded_products = get_products_from_search_cache( params[:products_search_area] )
 
     @products = founded_products.collect{|p| p[:obj] }
+    @categories_and_children, @categories_and_counters = get_category_values_for_left_menu(@products)
+
     respond_to do |format|
       format.html { render :index }
     end
@@ -18,6 +20,8 @@ class ProductsController < ApplicationController
 
   def show_products_in_category
     @products = Category.find(params[:category_id]).products
+    @categories_and_children, @categories_and_counters = get_category_values_for_left_menu(@products)
+
     respond_to do |format|
       format.html { render :index }
     end
@@ -48,18 +52,7 @@ class ProductsController < ApplicationController
   def indexr
     if(params[:num] == nil)
       @products = get_random_Product(50)
-      @categories_and_children = {}
-      @categories_and_counters = {}
-      @products.each do |p|
-        p.categories.each do |c|
-          if not @categories_and_children.has_key?(c.parent)
-            @categories_and_children[c.parent] = []
-            @categories_and_counters[c.parent] = 0
-          end
-          @categories_and_children[c.parent] << c
-          @categories_and_counters[c.parent] += 1
-        end
-      end
+      @categories_and_children, @categories_and_counters = get_category_values_for_left_menu(@products)
   else
     @products = get_random_Product(params[:num].to_i)
     end
@@ -332,6 +325,27 @@ class ProductsController < ApplicationController
 
   def sort_and_map_products(products, search_category)
     products.sort! { |a,b| a.name.downcase <=> b.name.downcase }.map { |p| {:label => p.name, :value => p.name, :sc => search_category, :obj => p } }
+  end
+
+  def get_category_values_for_left_menu(products)
+    categories_and_children = {}
+    categories_and_counters = {}
+
+    products.each do |p|
+      p.categories.each do |c|
+        if not categories_and_children.has_key?(c.parent)
+          categories_and_children[c.parent] = []
+          categories_and_counters[c] = 0
+          categories_and_counters[c.parent] = 0
+        end
+
+        categories_and_children[c.parent] << c if not categories_and_children[c.parent].include?(c)
+        categories_and_counters[c] += 1
+        categories_and_counters[c.parent] += 1
+      end
+    end
+
+    return categories_and_children, categories_and_counters
   end
 
   protected

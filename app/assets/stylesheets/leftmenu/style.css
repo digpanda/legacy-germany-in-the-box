@@ -59,6 +59,11 @@
     padding: 1px 2px;
     border-radius: 3px;
 }
+#left_menu > ul > li.active > a > span {
+    background: #333;
+    padding: 1px 2px;
+    border-radius: 3px;
+}
 #left_menu ul ul {
     padding: 5px 12px;
     display: none;
@@ -68,8 +73,16 @@
 }
 #left_menu ul ul a {
     display: block;
-    color: #595959;
+    color: #000;
 }
 #left_menu ul ul a:hover {
     color: #2a8fbd;
 }
+#left_menu ul ul a span {
+    background: #2a8fbd;
+    padding: 1px 2px;
+    border-radius: 3px;
+}
+
+#left_menu_header { pointer-events: none; }
+#left_menu_header.active { pointer-events: auto; }
