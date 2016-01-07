@@ -55,13 +55,7 @@
 #left_menu > ul > li.active > a span {
     border: none;
 }
-#left_menu > ul > li.has-sub > a span {
-    background: url(images/icon_plus.png) 98% center no-repeat;
-}
-#left_menu > ul > li.has-sub.active > a span {
-    background: url(images/icon_minus.png) 98% center no-repeat;
-}
-/* Sub menu */
+
 #left_menu ul ul {
     padding: 5px 12px;
     display: none;
