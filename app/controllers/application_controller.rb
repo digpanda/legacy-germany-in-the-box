@@ -47,7 +47,7 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    '/productsi/50'
+    popular_products_path
   end
 
   def configure_devise_permitted_parameters

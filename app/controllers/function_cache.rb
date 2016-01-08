@@ -33,7 +33,9 @@ module FunctionCache
         products_from_categories |=  sort_and_map_products(c.products, :category)
       end
 
-      products_from_products + products_from_brands + products_from_categories
+      products_from_tags = sort_and_map_products( Product.where( { :tags => term } ).limit(Rails.configuration.autocomplete_limit), :keyword )
+
+      products_from_tags + products_from_products + products_from_brands + products_from_categories
     }
   end
 

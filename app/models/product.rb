@@ -34,11 +34,15 @@ class Product
   belongs_to :shop
   has_and_belongs_to_many :categories
 
+  field :tags, type: Array
+  scope :has_tag, ->(value) { where(:tags => value) }
+
   # has_many :likers, class_name: "User" , as: 'likers'
   
   index({brand: 1}, {unique: false})
   index({category: 1}, {unique: false})
   index({name: 1}, {unique: false})
+  index({tags: 1}, {unique: false})
 
   # search_in :brand, :name, :desc
 
