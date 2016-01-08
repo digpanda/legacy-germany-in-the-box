@@ -2,7 +2,8 @@ module FunctionCache
 
   def get_root_level_categories_from_cache
     Rails.cache.fetch("all_root_level_categories_cache", :expires_in => Rails.configuration.product_search_cache_expire_limit ) {
-      Category.where( :parent => nil )
+      root_level_categories = Category.where( :parent => nil )
+      root_level_categories.collect { |c| c.children.count > 1 ? c : c.children.first }
     }
   end
 
