@@ -323,10 +323,6 @@ class ProductsController < ApplicationController
 
   end
 
-  def sort_and_map_products(products, search_category)
-    products.sort! { |a,b| a.name.downcase <=> b.name.downcase }.map { |p| {:label => p.name, :value => p.name, :sc => search_category, :obj => p } }
-  end
-
   def get_category_values_for_left_menu(products)
     categories_and_children = {}
     categories_and_counters = {}

@@ -1,12 +1,29 @@
 Category.all.delete
 
 #
-# bags & accessories category
+# root categories - level 0
+#
+category_fashion = Category.create!(
+    :name => 'Fashion'
+)
+
+category_food = Category.create!(
+    :name => 'Food'
+)
+
+category_toys_home = Category.create!(
+    :name => 'Toys & Home'
+)
+
+
+#
+# bags & accessories category - level 1
 #
 category_bags_accessories = Category.create!(
     :name => 'Bags & Accessories',
     :code => 'L1-1',
-    :cssc => 'fa-umbrella'
+    :cssc => 'fa-umbrella',
+    :parent => category_fashion
 )
 
 Category.create!(
@@ -84,12 +101,13 @@ Category.create!(
 
 
 #
-# clothes for men category
+# clothes for men category - level 1
 #
 category_clothes_for_men = Category.create!(
     :name => 'Clothes for Men',
     :code => 'L1-47',
-    :cssc => 'fa-male'
+    :cssc => 'fa-male',
+    :parent => category_fashion
 )
 
 Category.create!(
@@ -143,12 +161,13 @@ Category.create!(
 
 
 #
-# clothes for women category
+# clothes for women category - level 1
 #
 category_clothes_for_women = Category.create!(
     :name => 'Clothes for Women',
     :code => 'L1-64',
-    :cssc => 'fa-female'
+    :cssc => 'fa-female',
+    :parent => category_fashion
 )
 
 Category.create!(
@@ -231,12 +250,13 @@ Category.create!(
 )
 
 #
-# clothes for babies & essentials
+# clothes for babies & essentials - level 1
 #
 category_clothes_for_babies_essentials = Category.create!(
     :name => 'Clothes for Babies & Essentials',
     :code => 'L1-331',
-    :cssc => 'fa-smile-o'
+    :cssc => 'fa-smile-o',
+    :parent => category_fashion
 )
 
 Category.create!(
@@ -259,12 +279,13 @@ Category.create!(
 )
 
 #
-# clothes for children
+# clothes for children - level 1
 #
 category_clothes_for_children = Category.create!(
     :name => 'Clothes for Children',
     :code => 'L1-414',
-    :cssc => 'fa-child'
+    :cssc => 'fa-child',
+    :parent => category_fashion
 )
 
 Category.create!(
@@ -323,12 +344,13 @@ Category.create!(
 
 
 #
-# health & beauty category
+# health & beauty category - level 1
 #
 category_health_beauty = Category.create!(
     :name => 'Health & Beauty',
     :code => 'L1-84',
-    :cssc => 'fa-stethoscope '
+    :cssc => 'fa-stethoscope ',
+    :parent => category_fashion
 )
 
 Category.create!(
@@ -369,12 +391,13 @@ Category.create!(
 
 
 #
-# home & garden category
+# home & garden category - level 1
 #
 category_home_garden = Category.create!(
     :name => 'Home & Garden',
     :code => 'L1-150',
-    :cssc => 'fa-home'
+    :cssc => 'fa-home',
+    :parent => category_toys_home
 )
 
 category_home_accessories = Category.create!(
@@ -423,12 +446,13 @@ Category.create!(
 )
 
 #
-# jewellery & watches category
+# jewellery & watches category - level 1
 #
 category_jewellery_watches = Category.create!(
     :name => 'Jewellery & Watches',
     :code => 'L1-321',
-    :cssc => 'fa-clock-o'
+    :cssc => 'fa-clock-o',
+    :parent => category_fashion
 )
 
 Category.create!(
@@ -456,12 +480,13 @@ Category.create!(
 )
 
 #
-# toys & games category
+# toys & games category - level 1
 #
 category_toys_games = Category.create!(
     :name => 'Toys & Games',
     :code => 'L1-329',
-    :cssc => ' fa-gamepad'
+    :cssc => ' fa-gamepad',
+    :parent => category_toys_home
 )
 
 Category.create!(
@@ -489,12 +514,13 @@ Category.create!(
 )
 
 #
-# food & drink category
+# food & drink category - level 1
 #
 category_food_drinks = Category.create!(
     :name => 'Food & Drinks',
     :code => 'L1-578',
-    :cssc => 'fa-cutlery'
+    :cssc => 'fa-cutlery',
+    :parent => category_food
 )
 
 Category.create!(
@@ -534,12 +560,13 @@ Category.create!(
 )
 
 #
-# category shoes & footwear
+# category shoes & footwear - level 1
 #
 category_shoes_footwear = Category.create!(
     :name => 'Shoes & Footwear',
     :code => 'L1-661',
-    :cssc => 'fa-gift'
+    :cssc => 'fa-gift',
+    :parent => category_fashion
 )
 
 Category.create!(

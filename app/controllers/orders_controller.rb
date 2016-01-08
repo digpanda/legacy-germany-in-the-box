@@ -66,7 +66,11 @@ class OrdersController < ApplicationController
   end
 
   def continue
-    session[:order_id] = params[:id]
+    if session[:order_id] != params[:id]
+      session[:order_id] = params[:id]
+      flash[:info] = 'You have selected another order to continue!'
+    end
+
     redirect_to cart_path
   end
 

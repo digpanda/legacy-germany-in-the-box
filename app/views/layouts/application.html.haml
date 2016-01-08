@@ -1,11 +1,11 @@
 !!!
 %html
   %head
-    %title Couponia - Index shop layout 1
+    %title RheinManufaktur
     %meta{:content => 'text/html; charset=utf-8', 'http-equiv' => 'Content-Type'}
-    %meta{:content => 'Koupon HTML5 Template', :name => 'keywords'}
-    %meta{:content => 'Koupon - Premiun HTML5 Template for Coupons Website', :name => 'description'}
-    %meta{:content => 'Tsoy', :name => 'author'}
+    %meta{:content => 'RheinManufaktur', :name => 'keywords'}
+    %meta{:content => 'RheinManufaktur', :name => 'description'}
+    %meta{:content => 'Y. Liu', :name => 'author'}
     %meta{:content => 'width=device-width, initial-scale=1.0', :name => 'viewport'}
     %link{:href => 'http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300', :rel => 'stylesheet', :type => 'text/css'}
     %link{:href => 'http://fonts.googleapis.com/css?family=Roboto:400,100,300', :rel => 'stylesheet', :type => 'text/css'}
@@ -51,7 +51,8 @@
       .top-main-area.text-center
         .container
           %a.logo.mt5{:href => "#{home_path}"}
-            =image_tag  'couponia/logo-small-dark.png'
+            ='RheinManufaktur'
+            -#=image_tag  'icons/achatlogo.png', :style => 'width:24px;height:24px'
       %header.main
         .container
           .row
@@ -59,25 +60,21 @@
               %nav
                 %ul#flexnav_left.nav.nav-pills.flexnav{'data-breakpoint' => '800'}
                   %li{:class => params[:top_menu_active_part] ? (params[:top_menu_active_part] == :home ? 'active' : '') : 'active'}
-                    %a{:href => "#{home_path}"} Home
-                  %li{:class => params[:top_menu_active_part] == :category ? 'active' : ''}
-                    %a{:href => '#'} Category
-                    %ul
-                      - get_all_first_level_categories_from_cache().each do |c|
-                        %li
-                          %a{:href => '#'}= c.name
-                          %ul
-                            - get_second_level_categories_from_cache(c).each do |cc|
-                              %li
-                                %a{:href => "#{show_products_in_category_path(cc.id)}"}= cc.name
+                    %a{:href => "#{home_path}"} Start
+                  - get_root_level_categories_from_cache().each do |rc|
+                    %li{:class => params[:top_menu_active_part] == :fashion ? 'active' : ''}
+                      %a{:href => '#'}= rc.name
+                      %ul
+                        - get_first_level_categories_from_cache(rc).each do |fc|
+                          %li
+                            %a{:href => '#'}= fc.name
+                            %ul
+                              - get_second_level_categories_from_cache(fc).each do |sc|
+                                %li
+                                  %a{:href => "#{show_products_in_category_path(sc.id)}"}= sc.name
+
                   %li{:class => params[:top_menu_active_part] == :product ? 'active' : ''}
                     =link_to 'Product', popular_products_path
-                  %li{:class => params[:top_menu_active_part] == :features ? 'active' : ''}
-                    %a{:href => '#'} Features
-                  %li{:class => params[:top_menu_active_part] == :blog ? 'active' : ''}
-                    %a{:href => '#'} Blog
-                  %li{:class => params[:top_menu_active_part] == :pages ? 'active' : ''}
-                    %a{:href => '#'} Pages
             .col-md-5
               %ul.login-register
                 %li.shopping-cart
@@ -314,7 +311,7 @@
         .container
           .row
             .col-md-4
-              %p Copyright © 2014, Your Store, All Rights Reserved
+              %p Copyright © 2016, RheinManufaktur, All Rights Reserved
             .col-md-6.col-md-offset-2
               .pull-right
                 %ul.list-inline.list-payment

@@ -1,1 +1,8 @@
 /*YOUR CUSTOM STYLES*/
+.flexnav li ul li > a {
+   padding-top: 4px;
+   padding-bottom: 4px;
+}
+.flexnav > li > ul a {
+    line-height: 1.0em;
+}

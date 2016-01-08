@@ -1,8 +1,14 @@
 module FunctionCache
 
-  def get_all_first_level_categories_from_cache
-    Rails.cache.fetch("all_first_level_categories_cache", :expires_in => Rails.configuration.product_search_cache_expire_limit ) {
-      Category.where( :parent => nil ).to_a
+  def get_root_level_categories_from_cache
+    Rails.cache.fetch("all_root_level_categories_cache", :expires_in => Rails.configuration.product_search_cache_expire_limit ) {
+      Category.where( :parent => nil )
+    }
+  end
+
+  def get_first_level_categories_from_cache(root)
+    Rails.cache.fetch("first_level_categories_cache_of_root_leve_#{root.id}", :expires_in => Rails.configuration.product_search_cache_expire_limit ) {
+      root.children.to_a.sort! { |a,b| a.children.count <=> b.children.count }.reverse!
     }
   end
 
@@ -39,4 +45,7 @@ module FunctionCache
     }
   end
 
+  def sort_and_map_products(products, search_category)
+    products.sort! { |a,b| a.name.downcase <=> b.name.downcase }.map { |p| {:label => p.name, :value => p.name, :sc => search_category, :obj => p } }
+  end
 end
