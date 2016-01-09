@@ -1,11 +1,13 @@
 class Address
   include Mongoid::Document
 
-  field :street,  type: String
-  field :city,    type: String
-  field :province,type: String
-  field :zip,     type: String
-  field :country, type: String
+  field :address1,  type: String
+  field :address2,  type: String
+  field :address3,  type: String
+  field :address4,  type: String
+
+  field :zip,       type: String
+  field :country,   type: String
 
   belongs_to :user
 end

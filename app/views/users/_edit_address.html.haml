@@ -2,40 +2,42 @@
   %form
     .form-group
       %label Country
-      %input.form-control{:type => "text", :value => "USA"}/
+      %input.form-control{:type => "text", :value => "USA"}
     .form-group
       %label City
-      %input.form-control{:type => "text", :value => "San Francisco, CA"}/
+      %input.form-control{:type => "text", :value => "San Francisco, CA"}
     .form-group
       %label Address
-      %input.form-control{:type => "text", :value => "1355 Market St, Suite 900"}/
+      %input.form-control{:type => "text", :value => "1355 Market St, Suite 900"}
     .form-group
       %label Zip/Postal
-      %input.form-control{:type => "text", :value => "94103"}/
+      %input.form-control{:type => "text", :value => "94103"}
     .checkbox
       %label
-        %input.i-check{:type => "checkbox"}>/
+        %input.i-check{:type => "checkbox"}>
         Set Primary
-    %input.btn.btn-primary{:type => "submit", :value => "Save Changes"}/
+    %input.btn.btn-primary{:type => "submit", :value => "Save Changes"}
 #add-address-dialog.mfp-with-anim.mfp-hide.mfp-dialog.clearfix
-  %form
+  =form_for @address do |f|
     .form-group
-      %label Country
-      %input.form-control{:type => "text"}/
+      %h4 Your New Address
     .form-group
-      %label City
-      %input.form-control{:type => "text"}/
+      = f.text_field :address2, :class => 'form-control', :placeholder => 'Building No. & Room No.'
     .form-group
-      %label Address
-      %input.form-control{:type => "text"}/
+      = f.text_field :address1, :class => 'form-control', :placeholder => 'Street'
     .form-group
-      %label Zip/Postal
-      %input.form-control{:type => "text"}/
+      = f.text_field :address3, :class => 'form-control', :placeholder => 'District'
+    .form-group
+      = f.text_field :address4, :class => 'form-control', :placeholder => 'Province'
+    .form-group
+      = f.text_field :country, :class => 'form-control', :placeholder => 'Country'
+    .form-group
+      = f.text_field :zip, :class => 'form-control', :placeholder => 'Zip'
     .checkbox
       %label
-        %input.i-check{:checked => "checked", :type => "checkbox"}>/
+        %input.i-check{:checked => "checked", :type => "checkbox"}>
         Set Primary
-    %input.btn.btn-primary{:type => "submit", :value => "Add Address"}/
+    %input.btn.btn-primary{:type => "submit", :value => "Add Address"}
 .row.row-wrap
   .col-md-4
     .address-box
@@ -45,58 +47,13 @@
         %li Country : USA
         %li City: San Francisco, CA
         %li Address: 1355 Market St, Suite 900
-        %li Zip/Postal: 94103
+        %li ZipPostal: 94103
       .radio
         %label
-          %input.i-radio{:name => "primaryAddressOption", :type => "radio"}>/
-          Primary Address
-  .col-md-4
-    .address-box
-      %a.address-box-remove{"data-placement" => "right", "data-toggle" => "tooltip", :href => "#", :title => "Remove"}
-      %a.address-box-edit.popup-text{"data-effect" => "mfp-move-from-top", "data-placement" => "right", "data-toggle" => "tooltip", :href => "#edit-address-dialog", :title => "Edit"}
-      %ul
-        %li Country : USA
-        %li City: Mountain View, CA
-        %li Address: 1600 Amphitheatre
-        %li Zip/Postal: 94043
-      .radio
-        %label
-          %input.i-radio{:name => "primaryAddressOption", :type => "radio"}>/
-          Primary Address
-  .col-md-4
-    .address-box
-      %a.address-box-remove{"data-placement" => "right", "data-toggle" => "tooltip", :href => "#", :title => "Remove"}
-      %a.address-box-edit.popup-text{"data-effect" => "mfp-move-from-top", "data-placement" => "right", "data-toggle" => "tooltip", :href => "#edit-address-dialog", :title => "Edit"}
-      %ul
-        %li Country : Canada
-        %li City: Montreal, Quebec
-        %li Address: 1253 McGill College
-        %li Zip/Postal: H3B 2Y5
-      .radio
-        %label
-          %input.i-radio{:name => "primaryAddressOption", :type => "radio"}>/
+          %input.i-radio{:name => "primaryAddressOption", :type => "radio"}>
           Primary Address
   .col-md-4
     %a.address-box.address-box-new.popup-text{"data-effect" => "mfp-move-from-top", :href => "#add-address-dialog"}
       .vert-center
         %i.fa.fa-plus.address-box-new-icon
         %p Add New Address
--#= form_for current_user do |f|
--#  .form-group
--#    = f.label :street, 'Street'
--#    = f.text_field :street, :class => 'form-control'
--#  .form-group
--#    = f.label :city, 'City'
--#    = f.text_field :city, :class => 'form-control'
--#  .form-group
--#    = f.label :province, 'Province'
--#    = f.text_field :province, :class => 'form-control'
--#  .form-group
--#    = f.label :zip, 'Zip'
--#    = f.text_field :zip, :class => 'form-control'
--#  .form-group
--#    = f.label :country, 'Country'
--#    = f.text_field :country, :class => 'form-control'
--#
--#  = f.button 'Add', :class => 'btn btn-primary', name: :user_info_edit_part, value: :edit_address
--#

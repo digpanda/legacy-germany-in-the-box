@@ -41,6 +41,7 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    @address = Address.new( user: current_user )
   end
 
 def openmailnoti

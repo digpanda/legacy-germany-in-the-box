@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :messages
   resources :chats
   resources :collections
+  resources :addresses
 
   resources :products, except: [:index] do
     get :autocomplete_product_name, :on => :collection
