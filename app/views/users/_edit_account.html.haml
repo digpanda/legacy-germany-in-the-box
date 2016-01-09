@@ -1,15 +1,16 @@
-= form_for current_user do |f|
-  .form-group
-    = f.label :username, 'Username'
-    = f.text_field :username, :class => 'form-control'
-  .form-group
-    = f.label :email, 'Email'
-    = f.text_field :email, :class => 'form-control'
-  .form-group
-    = f.label :password, 'Password'
-    = f.password_field :password, :class => 'form-control', :autocomplete => :off
-  .form-group
-    = f.label :password_confirmation, 'Password Confirmation'
-    = f.password_field :password_confirmation, :class => 'form-control', :autocomplete => :off
-  = f.button 'save', :class => 'btn btn-primary', name: :user_info_edit_part, value: :edit_account
+.col-md-6
+  = form_for current_user do |f|
+    .form-group
+      = f.label :username, 'Username'
+      = f.text_field :username, :class => 'form-control'
+    .form-group
+      = f.label :email, 'Email'
+      = f.text_field :email, :class => 'form-control'
+    .form-group
+      = f.label :password, 'Password'
+      = f.password_field :password, :class => 'form-control', :autocomplete => :off
+    .form-group
+      = f.label :password_confirmation, 'Password Confirmation'
+      = f.password_field :password_confirmation, :class => 'form-control', :autocomplete => :off
+    = f.button 'save', :class => 'btn btn-primary', name: :user_info_edit_part, value: :edit_account
 

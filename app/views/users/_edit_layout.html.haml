@@ -4,14 +4,15 @@
       %aside.sidebar-left
         %ul.nav.nav-pills.nav-stacked.nav-arrow
           %li{:class => params[:user_info_edit_part] ? (params[:user_info_edit_part] == :edit_account.to_s ? 'active' : '') : 'active'}
-            =link_to 'Account Information',  edit_user_path(current_user, :user_info_edit_part => :edit_account)
+            =link_to 'Login Account',  edit_user_path(current_user, :user_info_edit_part => :edit_account)
           %li{:class => params[:user_info_edit_part] == :edit_personal.to_s ? 'active' : ''}
             =link_to 'Personal Information',  edit_user_path(current_user, :user_info_edit_part => :edit_personal)
+          %li{:class => params[:user_info_edit_part] == :edit_address.to_s ? 'active' : ''}
+            =link_to 'My Addresses',  edit_user_path(current_user, :user_info_edit_part => :edit_address)
           %li{:class => params[:user_info_edit_part] == :edit_bank.to_s ? 'active' : ''}
-            =link_to 'Bank Information',  edit_user_path(current_user, :user_info_edit_part => :edit_bank)
+            =link_to 'Bank & Payment',  edit_user_path(current_user, :user_info_edit_part => :edit_bank)
           %li{:class => params[:user_info_edit_part] == :edit_order.to_s ? 'active' : ''}
             =link_to 'Order History',  edit_user_path(current_user, :user_info_edit_part => :edit_order)
     .col-md-9
       .row
-        .col-md-6
-          = yield  
+        = yield

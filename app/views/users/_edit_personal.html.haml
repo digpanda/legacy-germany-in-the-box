@@ -1,27 +1,28 @@
-= form_for @user do |f|
-  .form-group
-    = image_tag (current_user.pic.url.nil? ? "icons/default_user_pic.png" : current_user.pic.url), :style => 'width:96px;height:96px'
-    = f.file_field :pic
-  .form-group
-    = f.text_field :fname, :class => 'form-control', placeholder: 'Firstname'
-  .form-group
-    = f.text_field :lname, :class => 'form-control', placeholder: 'Lastname'
-  .form-group
-    = f.text_field :birth, :class => 'form-control', placeholder: 'Birthday'
-  .form-group
-    = f.text_field :gender, :class => 'form-control', placeholder: 'Gender'
-  .form-group
-    = f.text_field :about, :class => 'form-control', placeholder: 'About'
-  .form-group
-    = f.text_field :website, :class => 'form-control', placeholder: 'Website'
-  .form-group
-    = f.text_field :country, :class => 'form-control', placeholder: 'Country'
-  .form-group
-    = f.text_field :lang, :class => 'form-control', placeholder: 'Language'
-  .form-group
-    = f.text_field :provider, :class => 'form-control', placeholder: 'Provider'
-  .form-group
-    = f.text_field :tel, :class => 'form-control', placeholder: 'Telophone'
-  .form-group
-    = f.text_field :mobile, :class => 'form-control', placeholder: 'Mobile'
-  = f.button 'save', :class => 'btn btn-primary', name: :user_info_edit_part, value: :edit_personal
+.col-md-6
+  = form_for @user do |f|
+    .form-group
+      = image_tag (current_user.pic.url.nil? ? "icons/default_user_pic.png" : current_user.pic.url), :style => 'width:96px;height:96px'
+      = f.file_field :pic
+    .form-group
+      = f.text_field :fname, :class => 'form-control', placeholder: 'Firstname'
+    .form-group
+      = f.text_field :lname, :class => 'form-control', placeholder: 'Lastname'
+    .form-group
+      = f.text_field :birth, :class => 'form-control', placeholder: 'Birthday'
+    .form-group
+      = f.text_field :gender, :class => 'form-control', placeholder: 'Gender'
+    .form-group
+      = f.text_field :about, :class => 'form-control', placeholder: 'About'
+    .form-group
+      = f.text_field :website, :class => 'form-control', placeholder: 'Website'
+    .form-group
+      = f.text_field :country, :class => 'form-control', placeholder: 'Country'
+    .form-group
+      = f.text_field :lang, :class => 'form-control', placeholder: 'Language'
+    .form-group
+      = f.text_field :provider, :class => 'form-control', placeholder: 'Provider'
+    .form-group
+      = f.text_field :tel, :class => 'form-control', placeholder: 'Telophone'
+    .form-group
+      = f.text_field :mobile, :class => 'form-control', placeholder: 'Mobile'
+    = f.button 'save', :class => 'btn btn-primary', name: :user_info_edit_part, value: :edit_personal

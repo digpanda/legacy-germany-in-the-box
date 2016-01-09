@@ -83,6 +83,8 @@ class User
 
   has_many :orders;
 
+  has_many :addresses;
+
   # has_many :liked_collections, class_name: "Collection"
 
   # Validatons
