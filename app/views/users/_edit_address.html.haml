@@ -22,11 +22,11 @@
     .form-group
       %h4 Your New Address
     .form-group
-      = f.text_field :address2, :class => 'form-control', :placeholder => 'Building No. & Room No.'
+      = f.text_field :address1, :class => 'form-control', :placeholder => 'Street, Building & Room'
     .form-group
-      = f.text_field :address1, :class => 'form-control', :placeholder => 'Street'
+      = f.text_field :address1, :class => 'form-control', :placeholder => 'District'
     .form-group
-      = f.text_field :address3, :class => 'form-control', :placeholder => 'District'
+      = f.text_field :address3, :class => 'form-control', :placeholder => 'City'
     .form-group
       = f.text_field :address4, :class => 'form-control', :placeholder => 'Province'
     .form-group
@@ -39,19 +39,22 @@
         Set Primary
     %input.btn.btn-primary{:type => "submit", :value => "Add Address"}
 .row.row-wrap
-  .col-md-4
-    .address-box
-      %a.address-box-remove{"data-placement" => "right", "data-toggle" => "tooltip", :href => "#", :title => "Remove"}
-      %a.address-box-edit.popup-text{"data-effect" => "mfp-move-from-top", "data-placement" => "right", "data-toggle" => "tooltip", :href => "#edit-address-dialog", :title => "Edit"}
-      %ul
-        %li Country : USA
-        %li City: San Francisco, CA
-        %li Address: 1355 Market St, Suite 900
-        %li ZipPostal: 94103
-      .radio
-        %label
-          %input.i-radio{:name => "primaryAddressOption", :type => "radio"}>
-          Primary Address
+  - current_user.addresses.each do |a|
+    .col-md-4
+      .address-box
+        %a.address-box-remove{"data-placement" => "right", "data-toggle" => "tooltip", :href => "#", :title => "Remove"}
+        %a.address-box-edit.popup-text{"data-effect" => "mfp-move-from-top", "data-placement" => "right", "data-toggle" => "tooltip", :href => "#edit-address-dialog", :title => "Edit"}
+        %ul
+          %li= "Street, Building & Room : #{ a.address1 }"
+          %li= "District : #{ a.address2 }"
+          %li= "City : #{ a.address3 }"
+          %li= "Province : #{ a.address4 }"
+          %li= "Country : #{ a.country }"
+          %li= "Zip : #{ a.zip }"
+        .radio
+          %label
+            %input.i-radio{:name => "primaryAddressOption", :type => "radio"}>
+            Primary Address
   .col-md-4
     %a.address-box.address-box-new.popup-text{"data-effect" => "mfp-move-from-top", :href => "#add-address-dialog"}
       .vert-center

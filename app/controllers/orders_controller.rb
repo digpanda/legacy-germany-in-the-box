@@ -54,7 +54,7 @@ class OrdersController < ApplicationController
         session.delete(:order_id)
         redirect_to popular_products_path
       else
-        session[:login_failure_counter] = 1
+        session[:login_advice_counter] = 1
         flash[:info] = 'You haven\'t logged in.'
         redirect_to request.referrer
       end

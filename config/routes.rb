@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   devise_scope :user do
     get '/sign_out', to: 'sessions#destroy', as: :signout
     get '/cancel_login', to: 'sessions#cancel_login', as: :cancel_login
+    get '/cancel_signup', to: 'registrations#cancel_signup', as: :cancel_signup
   end
 
   resources :notifications
