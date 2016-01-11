@@ -10,11 +10,9 @@ class AddressesController < ApplicationController
 
     if @address.save
       if @address.primary and num_addresses > 0
-        current_user.addresses.each do |a|
-          if a != @address and a.primary
-            a.primary = false
-            a.save!
-          end
+        current_user.addresses.select { |a| a.primary and a != @address } .each do |a|
+          a.primary = false
+          a.save
         end
       end
 
@@ -37,22 +35,22 @@ class AddressesController < ApplicationController
   def update
     address = Address.find(params[:id])
 
-    respond_to do |format|
-      if address.update(set_params)
-        if address.primary
-          current_user.addresses.each do |a|
-            if a != address and a.primary
-              a.primary = false
-              a.save!
-            end
-          end
+    if address.update(set_params)
+      if address.primary
+        current_user.addresses.select { |a| a.primary and a != address } .each do |a|
+          a.primary = false
+          a.save
         end
+      end
 
+      respond_to do |format|
         format.html {
           flash[:success] = 'Address was successfully updated.'
           redirect_to request.referer
         }
-      else
+      end
+    else
+      respond_to do |format|
         format.html {
           flash[:error] = address.errors.full_messages.first
           redirect_to request.referer
@@ -65,13 +63,9 @@ class AddressesController < ApplicationController
     address = Address.find(params[:id])
 
     if address.primary
-      current_user.addresses.each do |a|
-        if a != address
-          a.primary = true
-          a.save!
-          break
-        end
-      end
+      candidate = current_user.addresses.detect { |a| a != address }
+      candidate.primary = true
+      candidate.save
     end
 
     address.delete
