@@ -24,7 +24,7 @@
     .form-group
       = f.text_field :address1, :class => 'form-control', :placeholder => 'Street, Building & Room'
     .form-group
-      = f.text_field :address1, :class => 'form-control', :placeholder => 'District'
+      = f.text_field :address2, :class => 'form-control', :placeholder => 'District'
     .form-group
       = f.text_field :address3, :class => 'form-control', :placeholder => 'City'
     .form-group
@@ -42,7 +42,7 @@
   - current_user.addresses.each do |a|
     .col-md-4
       .address-box
-        %a.address-box-remove{"data-placement" => "right", "data-toggle" => "tooltip", :href => "#", :title => "Remove"}
+        = link_to '', address_path(a), method: :delete, data: { confirm: 'Are you certain you want to delete this?' }, "data-placement" => "right", "data-toggle" => "tooltip", class: 'address-box-remove'
         %a.address-box-edit.popup-text{"data-effect" => "mfp-move-from-top", "data-placement" => "right", "data-toggle" => "tooltip", :href => "#edit-address-dialog", :title => "Edit"}
         %ul
           %li= "Street, Building & Room : #{ a.address1 }"

@@ -9,5 +9,7 @@ class Address
   field :zip,       type: String
   field :country,   type: String
 
+  field :primary,   type: Boolean
+
   belongs_to :user
 end
