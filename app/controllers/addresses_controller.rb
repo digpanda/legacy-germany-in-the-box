@@ -1,4 +1,5 @@
 class AddressesController < ApplicationController
+
   def create
     num_addresses = current_user.addresses.count
 
