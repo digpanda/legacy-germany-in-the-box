@@ -60,6 +60,8 @@ group :development, :test do
   gem 'spring'
   #better error display
   gem 'better_errors'
+
+  gem 'minitest', '5.8.3'
 end
 
 

@@ -1,15 +1,20 @@
 class Address
   include Mongoid::Document
 
-  field :address1,  type: String
-  field :address2,  type: String
-  field :address3,  type: String
-  field :address4,  type: String
+  field :street_building_room,  type: String
+  field :district,              type: String
+  field :city,                  type: String
+  field :province,              type: String
 
-  field :zip,       type: String
-  field :country,   type: String
+  field :zip,                   type: String
+  field :country,               type: String
 
-  field :primary,   type: Boolean
+  field :primary,               type: Boolean
 
   belongs_to :user
+
+  validates :street_building_room,  presence: true
+  validates :city,                  presence: true
+  validates :zip,                   presence: true
+  validates :country,               presence: true
 end
