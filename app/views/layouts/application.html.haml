@@ -93,7 +93,7 @@
             .col-md-5
               %ul.login-register
                 %li.shopping-cart
-                  %a{:href => "#{cart_path}"}
+                  %a{:href => "#{manage_cart_path}"}
                     %i.fa.fa-shopping-cart>
                     My Cart
                     %span.numberCircle= current_order.total_amount
@@ -102,23 +102,23 @@
                       %ul.shopping-cart-items
                         - current_order.order_items.each do |i|
                           %li
-                            %a{:href => "#{cart_path}" }
+                            %a{:href => "#{manage_cart_path}" }
                               = image_tag i.product.img
                               %h5= i.product.name
                               %span.shopping-cart-item-price= "Subtotal: $#{i.product.price * i.quantity}"
                       %ul.list-inline.text-center
                         %li
-                          %a{:href => "#{cart_path}"}
+                          %a{:href => "#{manage_cart_path}"}
                             %i.fa.fa-shopping-cart
                             View Cart
                         %li
-                          %a{:href => "#{cart_path}"}
+                          %a{:href => "#{manage_cart_path}"}
                             %i.fa.fa-check-square
                             Checkout
                     -else
                       %ul.list-inline.text-center
                         %li
-                          %a{:href => "#{cart_path}"}
+                          %a{:href => "#{manage_cart_path}"}
                             %i
                             Empty Cart
                 - unless current_user
@@ -269,9 +269,11 @@
           %a.close{'aria-label' => 'close', 'data-dismiss' => 'alert', :href => '#'} &times;
           = flash[:success]
 
-    = yield
+    .container
+      = yield
 
     .gap
+
     %footer.main
       .footer-top-area
         .container

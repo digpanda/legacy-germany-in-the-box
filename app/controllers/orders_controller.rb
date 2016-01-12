@@ -1,5 +1,14 @@
 class OrdersController < ApplicationController
 
+  before_action :authenticate_user!, :except => [:manage_cart, :add_product, :adjust_products_amount]
+
+  def manage_cart
+  end
+
+  def set_address_payment
+    @address = Address.new
+  end
+
   def add_product
       product = Product.find(params[:product_id])
       existing_order_item = current_order.order_items.to_a.find { |i| i.product.id === product.id }
@@ -43,21 +52,15 @@ class OrdersController < ApplicationController
         order_item.save!
       end
 
-      redirect_to cart_path
+      redirect_to manage_cart_path
     end
 
     def checkout
-      if user_signed_in?
-        current_order.status = :checked_out
-        current_order.user = current_user
-        current_order.save!
-        session.delete(:order_id)
-        redirect_to popular_products_path
-      else
-        session[:login_advice_counter] = 1
-        flash[:info] = 'You haven\'t logged in.'
-        redirect_to request.referrer
-      end
+      current_order.status = :checked_out
+      current_order.user = current_user
+      current_order.save!
+      session.delete(:order_id)
+      redirect_to popular_products_path
     end
 
   def destroy
@@ -71,7 +74,7 @@ class OrdersController < ApplicationController
       flash[:info] = 'You have selected another order to continue!'
     end
 
-    redirect_to cart_path
+    redirect_to manage_cart_path
   end
 
 end

@@ -1,3 +1,5 @@
+%h3.text-center You can configure maximal 3 different addresses.
+
 #add-address-dialog.mfp-with-anim.mfp-hide.mfp-dialog.clearfix
   =form_for @address do |f|
     .form-group
@@ -59,8 +61,9 @@
           %label
             = check_box_tag :primary, a.primary, checked = a.primary, { :disabled => true, :class => 'i-check' }
             Primary Address
-  .col-md-4
-    %a.address-box.address-box-new.popup-text{"data-effect" => "mfp-move-from-top", :href => "#add-address-dialog"}
-      .vert-center
-        %i.fa.fa-plus.address-box-new-icon
-        %p Add New Address
+  - if current_user.addresses.count < 3
+    .col-md-4
+      %a.address-box.address-box-new.popup-text{"data-effect" => "mfp-move-from-top", :href => "#add-address-dialog"}
+        .vert-center
+          %i.fa.fa-plus.address-box-new-icon
+          %p Add New Address

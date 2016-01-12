@@ -1,0 +1,47 @@
+#add-address-dialog.mfp-with-anim.mfp-hide.mfp-dialog.clearfix
+  =form_for @address do |f|
+    .form-group
+      %h4 Your New Address
+    .form-group
+      = f.text_field :street_building_room, :class => 'form-control', :placeholder => 'Street, Building & Room (*)'
+    .form-group
+      = f.text_field :district, :class => 'form-control', :placeholder => 'District'
+    .form-group
+      = f.text_field :city, :class => 'form-control', :placeholder => 'City (*)'
+    .form-group
+      = f.text_field :province, :class => 'form-control', :placeholder => 'Province'
+    .form-group
+      = f.text_field :country, :class => 'form-control', :placeholder => 'Country (*)'
+    .form-group
+      = f.text_field :zip, :class => 'form-control', :placeholder => 'Zip (*)'
+    .form-group
+      .checkbox
+        %label
+          %label
+            = f.check_box :primary, {:class => 'i-check'}, true, false
+            Set Primary
+    %input.btn.btn-primary{:type => "submit", :value => "Add Address"}
+
+.row.row-wrap
+  - if current_user.addresses.count > 0
+    - current_user.addresses.each do |a|
+      .col-md-4
+        .address-box
+          %ul
+            %li= "Street, Building & Room : #{ a.street_building_room }"
+            %li= "District : #{ a.district }"
+            %li= "City : #{ a.city }"
+            %li= "Province : #{ a.province }"
+            %li= "Country : #{ a.country }"
+            %li= "Zip : #{ a.zip }"
+          .radio
+            %label
+              = radio_button_tag 'order[delivery_address]', a.id, checked = a.primary
+            My Destination
+
+  - if current_user.addresses.count < 3
+    .col-md-4
+      %a.address-box.address-box-new.popup-text{"data-effect" => "mfp-move-from-top", :href => "#add-address-dialog"}
+        .vert-center
+          %i.fa.fa-plus.address-box-new-icon
+          %p Add New Destination

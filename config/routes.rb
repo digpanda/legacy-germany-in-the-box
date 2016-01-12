@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   captcha_route
+
   devise_for :users, :controllers => { :omniauth_callbacks => 'users/omniauth_callbacks',registrations: "registrations", sessions: "sessions" }
 
   devise_scope :user do
@@ -23,16 +24,15 @@ Rails.application.routes.draw do
   resources :users, except: [:show, :destroy]
   resources :shops
 
-  resources :orders
+  resources :orders, only: [:destroy]
   
   # user
 
   get '/',to: 'pages#home', as: 'home'
-  get '/cart',to: 'orders#cart', as: 'cart'
 
-  get '/popular_products', to: 'products#indexr', as: 'popular_products'
-  post '/products/search', to: 'products#search_products', as: 'search_products'
-  get '/category/:category_id/products', to: 'products#show_products_in_category', as: 'show_products_in_category'
+  get 'popular_products', to: 'products#indexr', as: 'popular_products'
+  post 'products/search', to: 'products#search_products', as: 'search_products'
+  get 'category/:category_id/products', to: 'products#show_products_in_category', as: 'show_products_in_category'
 
   get 'profile/:id', to: 'users#pshow', as: "profile"
 
@@ -40,7 +40,10 @@ Rails.application.routes.draw do
   post 'orders/add_product/:product_id', to: 'orders#add_product', as: 'add_product_to_order'
   post 'orders/adjust_products_amount', to: 'orders#adjust_products_amount', as: 'adjust_products_amount_in_order'
   post 'orders/checkout', to: 'orders#checkout', as: 'checkout_order'
+
+  get 'orders/manage_cart',to: 'orders#manage_cart', as: 'manage_cart'
   get 'orders/:id/continue', to: 'orders#continue', as: 'continue_order'
+  get 'orders/set_address_payment', to: 'orders#set_address_payment', as: 'set_address_payment'
 
 
   post '/getuser', to: 'users#getuserbyemail'
