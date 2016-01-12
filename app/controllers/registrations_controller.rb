@@ -48,9 +48,6 @@ class RegistrationsController < Devise::RegistrationsController
     popular_products_path
   end
 
-  def after_sign_up_path_for(resource)
-    popular_products_path
-  end
 
   def after_inactive_sign_up_path_for(resource)
     flash[:info] = 'We have sent an email to you. Please confirm it, before you login!'
