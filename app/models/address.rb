@@ -13,6 +13,8 @@ class Address
 
   belongs_to :user
 
+  has_many :orders
+
   validates :street_building_room,  presence: true
   validates :city,                  presence: true
   validates :zip,                   presence: true

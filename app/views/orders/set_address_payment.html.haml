@@ -20,9 +20,11 @@
           %label
             = f.check_box :primary, {:class => 'i-check'}, true, false
             Set Primary
-    %input.btn.btn-primary{:type => "submit", :value => "Add Address"}
-
+    %input.btn.btn-primary{:type => 'submit', :value => 'Add Address'}
+.row
+  .h3.text-center Please set up the delivery destination
 .row.row-wrap
+  = form_tag checkout_order_path
   - if current_user.addresses.count > 0
     - current_user.addresses.each do |a|
       .col-md-4
@@ -36,12 +38,16 @@
             %li= "Zip : #{ a.zip }"
           .radio
             %label
-              = radio_button_tag 'order[delivery_address]', a.id, checked = a.primary
+              = radio_button_tag 'delivery_destination_id', a.id, checked = a.primary
             My Destination
 
   - if current_user.addresses.count < 3
     .col-md-4
-      %a.address-box.address-box-new.popup-text{"data-effect" => "mfp-move-from-top", :href => "#add-address-dialog"}
+      %a.address-box.address-box-new.popup-text{'data-effect' => 'mfp-move-from-top', :href => '#add-address-dialog'}
         .vert-center
           %i.fa.fa-plus.address-box-new-icon
           %p Add New Destination
+
+.row
+  = hidden_field_tag 'order_id', "#{current_order.id}"
+  = submit_tag 'Checkout', :class => "btn btn-primary"

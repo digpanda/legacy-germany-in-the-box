@@ -27,7 +27,7 @@
                 %td.cart-item-remove
                   =link_to '', '#', :class => 'fa fa-times', :onclick => "$('#cart-quantity-of-product-#{i.product.id}').val(0); $('#orders_adjust_products_amount').submit()"
         =submit_tag 'Update the cart', :class => 'btn btn-primary'
-        =link_to 'Address & Payment', set_address_payment_path, :class => 'btn btn-primary'
+        =link_to 'Delivery Destination', set_address_payment_path, :class => 'btn btn-primary'
     .col-md-4
       %ul.cart-total-list
         %li
@@ -42,10 +42,6 @@
         %li
           %span Total
           %span= "$#{current_order.total_price}"
-      -#
-      -#= form_tag checkout_order_path
-      -#  = hidden_field_tag 'order_id', "#{current_order.id}"
-      -#  = submit_tag 'Checkout', :class => "btn btn-primary"
 - else
   .row
     %h4 You haven't selected any products.

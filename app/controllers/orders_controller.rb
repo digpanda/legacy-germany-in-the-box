@@ -58,6 +58,7 @@ class OrdersController < ApplicationController
     def checkout
       current_order.status = :checked_out
       current_order.user = current_user
+      current_order.delivery_destination = Address.find(params[:delivery_destination_id])
       current_order.save!
       session.delete(:order_id)
       redirect_to popular_products_path
