@@ -24,7 +24,7 @@ Rails.application.routes.draw do
   resources :users, except: [:show, :destroy]
   resources :shops
 
-  resources :orders, only: [:destroy]
+  resources :orders, only: [:destroy, :show]
   
   # user
 
@@ -32,7 +32,7 @@ Rails.application.routes.draw do
 
   get 'popular_products', to: 'products#indexr', as: 'popular_products'
   post 'products/search', to: 'products#search_products', as: 'search_products'
-  get 'category/:category_id/products', to: 'products#show_products_in_category', as: 'show_products_in_category'
+  get '/category/:category_id/products', to: 'products#show_products_in_category', as: 'show_products_in_category'
 
   get 'profile/:id', to: 'users#pshow', as: "profile"
 
@@ -41,9 +41,9 @@ Rails.application.routes.draw do
   post 'orders/adjust_products_amount', to: 'orders#adjust_products_amount', as: 'adjust_products_amount_in_order'
   post 'orders/checkout', to: 'orders#checkout', as: 'checkout_order'
 
-  get 'orders/manage_cart',to: 'orders#manage_cart', as: 'manage_cart'
+  get 'orders/cart/manage',to: 'orders#manage_cart', as: 'manage_cart'
   get 'orders/:id/continue', to: 'orders#continue', as: 'continue_order'
-  get 'orders/set_address_payment', to: 'orders#set_address_payment', as: 'set_address_payment'
+  get 'orders/checkout/set_address_payment', to: 'orders#set_address_payment', as: 'set_address_payment'
 
 
   post '/getuser', to: 'users#getuserbyemail'

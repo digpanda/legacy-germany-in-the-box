@@ -1,31 +1,8 @@
-
 - if current_order.order_items.count > 0
   .row
     .col-md-8
       = form_tag adjust_products_amount_in_order_path, :id => 'orders_adjust_products_amount' do
-        %table.table.cart-table
-          %thead
-            %tr
-              %th Item
-              %th Name
-              %th QTY
-              %th Unit Price
-              %th Remove
-          %tbody
-            - current_order.order_items.each do |i|
-              %tr
-                %td.cart-item-image
-                  %a{:href => "#"}
-                    %img{:src => "#{i.product.img}", :style => 'weight:48px;width:48px'}
-                %td
-                  %a{:href => "#"}= i.product.name
-                %td.cart-item-quantity
-                  %i.fa.fa-minus.cart-item-minus
-                  %input.cart-quantity{:id => "cart-quantity-of-product-#{i.product.id}", :name => "cart-quantity-of-product-#{i.product.id}", :type => 'text', :value => "#{i.quantity}"}
-                  %i.fa.fa-plus.cart-item-plus
-                %td= "$#{i.product.price}"
-                %td.cart-item-remove
-                  =link_to '', '#', :class => 'fa fa-times', :onclick => "$('#cart-quantity-of-product-#{i.product.id}').val(0); $('#orders_adjust_products_amount').submit()"
+        = render 'cart'
         =submit_tag 'Update the cart', :class => 'btn btn-primary'
         =link_to 'Delivery Destination', set_address_payment_path, :class => 'btn btn-primary'
     .col-md-4

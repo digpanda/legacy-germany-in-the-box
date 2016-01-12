@@ -2,7 +2,14 @@ class OrdersController < ApplicationController
 
   before_action :authenticate_user!, :except => [:manage_cart, :add_product, :adjust_products_amount]
 
+  def show
+    @readonly = true
+    @order = Order.where(:id => params[:id]).first
+  end
+
   def manage_cart
+    @readonly = false
+    @order = current_order
   end
 
   def set_address_payment

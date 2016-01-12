@@ -1,0 +1,16 @@
+.row
+  = render 'cart'
+
+- if @order.delivery_destination.present?
+  .row
+    .address-box
+      %ul
+        %li= "Street, Building & Room : #{ @order.delivery_destination.street_building_room }"
+        %li= "District : #{ @order.delivery_destination.district }"
+        %li= "City : #{ @order.delivery_destination.city }"
+        %li= "Province : #{ @order.delivery_destination.province }"
+        %li= "Country : #{ @order.delivery_destination.country }"
+        %li= "Zip : #{ @order.delivery_destination.zip }"
+- else
+  .row
+    %h4 Delivery destination is not set yet.

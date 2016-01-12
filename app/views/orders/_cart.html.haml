@@ -1,0 +1,26 @@
+%table.table.cart-table
+  %thead
+    %tr
+      %th Item
+      %th Name
+      %th QTY
+      %th Unit Price
+      %th Remove
+  %tbody
+    - @order.order_items.each do |i|
+      %tr
+        %td.cart-item-image
+          %a{:href => "#"}
+            %img{:src => "#{i.product.img}", :style => 'weight:48px;width:48px'}
+        %td
+          %a{:href => "#"}= i.product.name
+        %td.cart-item-quantity
+          - unless @readonly
+            %i.fa.fa-minus.cart-item-minus
+          %input.cart-quantity{:id => "cart-quantity-of-product-#{i.product.id}", :name => "cart-quantity-of-product-#{i.product.id}", :type => 'text', :value => "#{i.quantity}", :disabled => "#{@readonly}"}
+          - unless @readonly
+            %i.fa.fa-plus.cart-item-plus
+        %td= "$#{i.product.price}"
+        - unless @readonly
+          %td.cart-item-remove
+            =link_to '', '#', :class => 'fa fa-times', :onclick => "$('#cart-quantity-of-product-#{i.product.id}').val(0); $('#orders_adjust_products_amount').submit()"
