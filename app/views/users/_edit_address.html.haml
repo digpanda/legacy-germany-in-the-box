@@ -20,9 +20,8 @@
     .form-group
       .checkbox
         %label
-          %label
-            = f.check_box :primary, {:class => 'i-check'}, true, false
-            Set Primary
+          = f.check_box :primary, {:class => 'i-check'}, true, false
+          Set Primary
     %input.btn.btn-primary{:type => "submit", :value => "Add Address"}
 .row.row-wrap
   - current_user.addresses.each do |a|
@@ -42,10 +41,11 @@
           = f.text_field :country,  :value=> "#{a.country}",  :class => 'form-control', :placeholder => 'Country (*)'
         .form-group
           = f.text_field :zip,      :value=> "#{a.zip}",      :class => 'form-control', :placeholder => 'Zip (*)'
-        .checkbox
-          %label
-            = f.check_box :primary, {:class => 'i-check'}, :true, :false
-            Set Primary
+        .form-group
+          .checkbox
+            %label
+              = f.check_box :primary, {:class => 'i-check'}, true, false
+              Set Primary
         %input.btn.btn-primary{:type => "submit", :value => "Save Changes"}
     .col-md-4
       .address-box
@@ -60,7 +60,7 @@
           %li= "Zip : #{ a.zip }"
         .radio
           %label
-            = check_box_tag :primary, a.primary, checked = a.primary, { :disabled => true, :class => 'i-check' }
+            = radio_button_tag :primary, a.primary, checked = a.primary, { :disabled => true, :class => 'i-radio' }
             Primary Address
   - if current_user.addresses.count < 3
     .col-md-4

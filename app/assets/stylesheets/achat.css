@@ -1,3 +1,8 @@
+.i-check.disabled.checked,
+.i-radio.disabled.checked {
+    background: #2a8fbd;
+}
+
 .numberCircle {
     border-radius: 3px;
     behavior: url(PIE.htc);
