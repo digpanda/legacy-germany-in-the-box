@@ -1,3 +1,5 @@
+= javascript_include_tag 'china_city.js'
+
 .row
   %h3.text-center You can configure maximal 3 different addresses.
 
@@ -7,14 +9,15 @@
       %h4 Your New Address
     .form-group
       = f.text_field :street_building_room, :class => 'form-control', :placeholder => 'Street, Building & Room (*)'
+    .city-group
+      .form-group
+        = f.select :province, options_for_select(ChinaCity.list), {  include_blank: '--省份--' }, { :autocomplete => :off, class: 'form-control city-select city-province' }
+      .form-group
+        = f.select :city    , [], { include_blank: '--城市--'}, { :autocomplete => :off, class: 'form-control city-select city-city' }
+      .form-group
+        = f.select :district, [], { include_blank: '--地区--' }, { :autocomplete => :off, class: 'form-control city-select city-district' }
     .form-group
-      = f.text_field :district, :class => 'form-control', :placeholder => 'District'
-    .form-group
-      = f.text_field :city, :class => 'form-control', :placeholder => 'City (*)'
-    .form-group
-      = f.text_field :province, :class => 'form-control', :placeholder => 'Province'
-    .form-group
-      = f.text_field :country, :class => 'form-control', :placeholder => 'Country (*)'
+      = f.text_field :country, :value => '中国', :readonly => true, :class => 'form-control', :placeholder => 'Country (*)'
     .form-group
       = f.text_field :zip, :class => 'form-control', :placeholder => 'Zip (*)'
     .form-group
@@ -31,14 +34,15 @@
           %h4 Change Your Address
         .form-group
           = f.text_field :street_building_room, :value=> "#{a.street_building_room}", :class => 'form-control', :placeholder => 'Street, Building & Room (*)'
+        .city-group
+          .form-group
+            = f.select :province, options_for_select(ChinaCity.list, ChinaCity.list.select { |p| p[0] == a.province }[0][1]), {  include_blank: '--省份--' }, { :autocomplete => :off, class: 'form-control city-select city-province' }
+          .form-group
+            = f.select :city    , options_for_select(ChinaCity.list(ChinaCity.list.select { |p| p[0] == a.province }[0][1]), ChinaCity.list(ChinaCity.list.select { |p| p[0] == a.province }[0][1]).select { |p| p[0] == a.city }[0][1]), { include_blank: '--城市--' }, { :autocomplete => :off, class: 'form-control city-select city-city' }
+          .form-group
+            = f.select :district, options_for_select(ChinaCity.list(ChinaCity.list(ChinaCity.list.select { |p| p[0] == a.province }[0][1]).select { |p| p[0] == a.city }[0][1]), ChinaCity.list(ChinaCity.list(ChinaCity.list.select { |p| p[0] == a.province }[0][1]).select { |p| p[0] == a.city }[0][1]).select { |p| p[0] == a.district }[0][1]), { include_blank: '--地区--' }, { :autocomplete => :off, class: 'form-control city-select city-district' }
         .form-group
-          = f.text_field :district, :value=> "#{a.district}", :class => 'form-control', :placeholder => 'District'
-        .form-group
-          = f.text_field :city, :value=> "#{a.city}", :class => 'form-control', :placeholder => 'City (*)'
-        .form-group
-          = f.text_field :province, :value=> "#{a.province}", :class => 'form-control', :placeholder => 'Province'
-        .form-group
-          = f.text_field :country,  :value=> "#{a.country}",  :class => 'form-control', :placeholder => 'Country (*)'
+          = f.text_field :country, :value => '中国', :readonly => true, :class => 'form-control', :placeholder => 'Country (*)'
         .form-group
           = f.text_field :zip,      :value=> "#{a.zip}",      :class => 'form-control', :placeholder => 'Zip (*)'
         .form-group

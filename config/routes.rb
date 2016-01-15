@@ -25,6 +25,8 @@ Rails.application.routes.draw do
   resources :shops
 
   resources :orders, only: [:destroy, :show]
+
+  mount ChinaCity::Engine => '/china_city'
   
   # user
 

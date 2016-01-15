@@ -6,6 +6,10 @@ class AddressesController < ApplicationController
     params = set_params
     params[:primary] = true if num_addresses == 0
 
+    params[:district] = ChinaCity.get(params[:district])
+    params[:city] = ChinaCity.get(params[:city])
+    params[:province] = ChinaCity.get(params[:province])
+
     @address = Address.create(params)
     @address.user = current_user
 
