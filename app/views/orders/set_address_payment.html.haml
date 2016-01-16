@@ -26,20 +26,24 @@
 .row.row-wrap
   = form_tag checkout_order_path
   - if current_user.addresses.count > 0
-    - current_user.addresses.each do |a|
+    - current_user.addresses.each_with_index do |a, i|
       .col-md-4
-        .address-box
-          %ul
-            %li= "Street, Building & Room : #{ a.street_building_room }"
-            %li= "District : #{ a.district }"
-            %li= "City : #{ a.city }"
-            %li= "Province : #{ a.province }"
-            %li= "Country : #{ a.country }"
-            %li= "Zip : #{ a.zip }"
-          .radio
-            %label
-              = radio_button_tag 'delivery_destination_id', a.id, checked = a.primary
-            My Destination
+        .panel.panel-primary
+          .panel-heading.text-center
+            = 'Address ' + (i+1).to_s
+          .panel-body
+            .address-box
+              %ul
+                %li= "Street, Building & Room : #{ a.street_building_room }"
+                %li= "District : #{ a.district }"
+                %li= "City : #{ a.city }"
+                %li= "Province : #{ a.province }"
+                %li= "Country : #{ a.country }"
+                %li= "Zip : #{ a.zip }"
+              .radio
+                %label
+                  = radio_button_tag 'delivery_destination_id', a.id, checked = a.primary
+                My Destination
 
   - if current_user.addresses.count < 3
     .col-md-4

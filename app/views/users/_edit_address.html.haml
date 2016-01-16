@@ -27,7 +27,7 @@
           Set Primary
     %input.btn.btn-primary{:type => "submit", :value => "Add Address"}
 .row.row-wrap
-  - current_user.addresses.each do |a|
+  - current_user.addresses.each_with_index do |a, i|
     %div.mfp-with-anim.mfp-hide.mfp-dialog.clearfix{ :id => "edit-address-dialog-#{a.id}" }
       = form_for a, :url => address_path(a), :html => { :method => :patch }  do |f|
         .form-group
@@ -52,20 +52,24 @@
               Set Primary
         %input.btn.btn-primary{:type => "submit", :value => "Save Changes"}
     .col-md-4
-      .address-box
-        = link_to '', address_path(a), method: :delete, data: { confirm: 'Are you certain you want to delete this?' }, "data-placement" => "right", "data-toggle" => "tooltip", class: 'address-box-remove'
-        %a.address-box-edit.popup-text{"data-effect" => "mfp-move-from-top", "data-placement" => "right", "data-toggle" => "tooltip", :href => "#edit-address-dialog-#{a.id}", :title => "Edit"}
-        %ul
-          %li= "Street, Building & Room : #{ a.street_building_room }"
-          %li= "District : #{ a.district }"
-          %li= "City : #{ a.city }"
-          %li= "Province : #{ a.province }"
-          %li= "Country : #{ a.country }"
-          %li= "Zip : #{ a.zip }"
-        .radio
-          %label
-            = radio_button_tag :primary, a.primary, checked = a.primary, { :disabled => true, :class => 'i-radio' }
-            Primary Address
+      .panel.panel-primary
+        .panel-heading.text-center
+          = 'Address ' + (i+1).to_s
+        .panel-body
+          .address-box
+            = link_to '', address_path(a), method: :delete, data: { confirm: 'Are you certain you want to delete this?' }, "data-placement" => "right", "data-toggle" => "tooltip", class: 'address-box-remove'
+            %a.address-box-edit.popup-text{"data-effect" => "mfp-move-from-top", "data-placement" => "right", "data-toggle" => "tooltip", :href => "#edit-address-dialog-#{a.id}", :title => "Edit"}
+            %ul
+              %li= "Street, Building & Room : #{ a.street_building_room }"
+              %li= "District : #{ a.district }"
+              %li= "City : #{ a.city }"
+              %li= "Province : #{ a.province }"
+              %li= "Country : #{ a.country }"
+              %li= "Zip : #{ a.zip }"
+            .radio
+              %label
+                = radio_button_tag :primary, a.primary, checked = a.primary, { :disabled => true, :class => 'i-radio' }
+                Primary Address
   - if current_user.addresses.count < 3
     .col-md-4
       %a.address-box.address-box-new.popup-text{"data-effect" => "mfp-move-from-top", :href => "#add-address-dialog"}
