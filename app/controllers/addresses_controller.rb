@@ -40,7 +40,13 @@ class AddressesController < ApplicationController
   def update
     address = Address.find(params[:id])
 
-    if address.update(set_params)
+    params = set_params
+
+    params[:district] = ChinaCity.get(params[:district])
+    params[:city] = ChinaCity.get(params[:city])
+    params[:province] = ChinaCity.get(params[:province])
+
+    if address.update(params)
       if address.primary
         current_user.addresses.select { |a| a.primary and a != address } .each do |a|
           a.primary = false

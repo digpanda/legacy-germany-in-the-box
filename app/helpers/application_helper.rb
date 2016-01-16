@@ -14,6 +14,7 @@ module ApplicationHelper
   end
 
   def get_code_for_province(province)
+    logger.info('##################################################'+province)
     ChinaCity.list.select { |p| p[0] == province }[0][1]
   end
 
