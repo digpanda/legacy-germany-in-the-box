@@ -1,3 +1,5 @@
+Address.all.delete
+
 Category.all.delete
 
 #

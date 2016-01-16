@@ -36,11 +36,11 @@
           = f.text_field :street_building_room, :value=> "#{a.street_building_room}", :class => 'form-control', :placeholder => 'Street, Building & Room (*)'
         .city-group
           .form-group
-            = f.select :province, options_for_select(ChinaCity.list, ChinaCity.list.select { |p| p[0] == a.province }[0][1]), {  include_blank: '--省份--' }, { :autocomplete => :off, class: 'form-control city-select city-province' }
+            = f.select :province, options_for_select(get_provinces, get_code_for_province(a.province)), {  include_blank: '--省份--' }, { :autocomplete => :off, class: 'form-control city-select city-province' }
           .form-group
-            = f.select :city    , options_for_select(ChinaCity.list(ChinaCity.list.select { |p| p[0] == a.province }[0][1]), ChinaCity.list(ChinaCity.list.select { |p| p[0] == a.province }[0][1]).select { |p| p[0] == a.city }[0][1]), { include_blank: '--城市--' }, { :autocomplete => :off, class: 'form-control city-select city-city' }
+            = f.select :city    , options_for_select(get_cities_for_province(a.province), get_code_for_city(a.province, a.city)), { include_blank: '--城市--' }, { :autocomplete => :off, class: 'form-control city-select city-city' }
           .form-group
-            = f.select :district, options_for_select(ChinaCity.list(ChinaCity.list(ChinaCity.list.select { |p| p[0] == a.province }[0][1]).select { |p| p[0] == a.city }[0][1]), ChinaCity.list(ChinaCity.list(ChinaCity.list.select { |p| p[0] == a.province }[0][1]).select { |p| p[0] == a.city }[0][1]).select { |p| p[0] == a.district }[0][1]), { include_blank: '--地区--' }, { :autocomplete => :off, class: 'form-control city-select city-district' }
+            = f.select :district, options_for_select(get_districts_for_city(a.province, a.city), get_code_for_district(a.province, a.city, a.district)), { include_blank: '--地区--' }, { :autocomplete => :off, class: 'form-control city-select city-district' }
         .form-group
           = f.text_field :country, :value => '中国', :readonly => true, :class => 'form-control', :placeholder => 'Country (*)'
         .form-group
