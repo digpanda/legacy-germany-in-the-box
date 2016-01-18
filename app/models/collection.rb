@@ -7,6 +7,8 @@ class Collection
   field :coltype, type: String
   field :img, type: String
 
+  field :public, type: Boolean
+
 
   # Relations_mapping
   # field :owner, :type => String

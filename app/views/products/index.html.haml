@@ -83,12 +83,29 @@
                 %li
                   %span.product-page-meta-title 5000+ bought
         %hr/
-        %a.btn.btn-primary{:href => "#"}
-          %i.fa.fa-info-circle
-          More Details
-        %a.btn.btn-primary{:href => "#"}
-          %i.fa.fa-heart
-          Add to Collection
+        .row
+          .col-md-3
+            - if user_signed_in?
+              .dropdown
+                %button.btn.btn-primary.dropdown-toggle{"data-toggle" => "dropdown", :type => "button"}
+                  %i.fa.fa-heart
+                  Add to Collection
+                  %span.caret
+                %ul.dropdown-menu
+                  - current_user.oCollections.each do |c|
+                    %li
+                      %a{:href => "#{add_product_to_collection_path(c.id, p.id)}"}
+                        %i{:class => "#{c.public ? 'fa fa-users' : 'fa fa-user'}"  }
+                        = c.name
+            - else
+              %a.btn.btn-primary{:href => "#{signin_path}"}
+                %i.fa.fa-heart
+                Add to Collection
+          .col-md-3
+            %a.btn.btn-primary{:href => "#"}
+              %i.fa.fa-share
+              New Collection
+
     .row
       .col-md-3
         %aside.sidebar-left

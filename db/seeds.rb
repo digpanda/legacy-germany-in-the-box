@@ -1,3 +1,13 @@
+User.where(:email => 'dailycron@hotmail.com').each do |u|
+    u.oCollections.delete_all
+end
+
+User.where(:email => 'dailycron@hotmail.com').each do |u|
+  u.oCollections.create!(:name => 'My Son', :public => true)
+  u.oCollections.create!(:name => 'My Wife', :public => false)
+end
+
+
 Address.all.delete
 
 Category.all.delete

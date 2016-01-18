@@ -1,8 +1,13 @@
 class CollectionsController < ApplicationController
   skip_before_action :verify_authenticity_token
 
-  before_action :set_collection, except: [:index, :gsearch, :colsearch, :likedcolls, :new, :savedcolls, :create, :matchedcollections, :mycolls, :indexft, :userinit]
+  before_action :set_collection, except: [:add_product, :index, :gsearch, :colsearch, :likedcolls, :new, :savedcolls, :create, :matchedcollections, :mycolls, :indexft, :userinit]
 
+  before_action :authenticate_user!, :except => [:add_product]
+
+  def add_product
+    Collection.find(params[:collection_id]).products.push(Product.find(params[:product_id]))
+  end
 
   def gsearch
     @user = User.find('55bb6c3a69702d64d700000b')
