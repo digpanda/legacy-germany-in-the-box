@@ -130,7 +130,7 @@
                       Sign up
                 - else
                   %li
-                    %a{:href => "#{collections_path}"}
+                    %a{:href => "#{edit_user_path(current_user, :user_info_edit_part => :edit_collection)}"}
                       %i.fa.fa-heart
                       My collection
 
@@ -162,6 +162,10 @@
                           %a{ :href => "#{ edit_user_path(current_user, :user_info_edit_part => :edit_order) }" }
                             %i.fa.fa-truck
                             Order
+                        %li
+                          %a{ :href => "#{ edit_user_path(current_user, :user_info_edit_part => :edit_collection) }" }
+                            %i.fa.fa-eye
+                            Collection
                         %li
                           %a{ :href => "#{ signout_path }" }
                             %i.fa.fa-sign-out

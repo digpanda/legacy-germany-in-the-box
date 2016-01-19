@@ -48,6 +48,7 @@ Rails.application.routes.draw do
   get 'orders/checkout/set_address_payment', to: 'orders#set_address_payment', as: 'set_address_payment'
 
   get 'collections/:collection_id/add_product/:product_id', to: 'collections#add_product', as: 'add_product_to_collection'
+  get 'collections/:collection_id/remove_product/:product_id', to: 'collections#remove_product', as: 'remove_product_from_collection'
 
   post '/getuser', to: 'users#getuserbyemail'
   post '/follow/:id/:target_id', to: 'users#follow'

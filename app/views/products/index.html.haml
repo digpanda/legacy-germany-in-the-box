@@ -78,11 +78,10 @@
                       %span.product-page-meta-price $775
                 %li
                   %span.product-page-meta-title Time Left to Buy
-                  / COUNTDOWN
                   .countdown.countdown-inline{"data-countdown" => "Aug 25, 2013 10:45:00"}
                 %li
                   %span.product-page-meta-title 5000+ bought
-        %hr/
+        %hr
         .row
           .col-md-3
             - if user_signed_in?
@@ -94,7 +93,7 @@
                 %ul.dropdown-menu
                   - current_user.oCollections.each do |c|
                     %li
-                      %a{:href => "#{add_product_to_collection_path(c.id, p.id)}"}
+                      %a{:href => '#', :onclick => "#{generate_add_product_to_collection_js(c.id, p.id)}"}
                         %i{:class => "#{c.public ? 'fa fa-users' : 'fa fa-user'}"  }
                         = c.name
             - else
@@ -131,7 +130,7 @@
             %a.col-md-3.col-masonry.popup-text{"data-effect" => "mfp-move-from-top", :href => "#product-quick-view-dialog-#{p.id}",  :shop_link => "#{p.shop ? shop_path(p.shop) : ''}"}
               .product-thumb
                 %header.product-header
-                  =image_tag  p.img, :alt => p.name, :title => p.name
+                  = image_tag  p.img, :alt => p.name, :title => p.name
                   .product-quick-view
                     %span.fa.fa-eye
                 .product-inner

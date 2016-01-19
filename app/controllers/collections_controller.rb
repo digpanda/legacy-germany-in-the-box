@@ -1,12 +1,24 @@
 class CollectionsController < ApplicationController
   skip_before_action :verify_authenticity_token
 
-  before_action :set_collection, except: [:add_product, :index, :gsearch, :colsearch, :likedcolls, :new, :savedcolls, :create, :matchedcollections, :mycolls, :indexft, :userinit]
+  before_action :set_collection, except: [:remove_product, :add_product, :index, :gsearch, :colsearch, :likedcolls, :new, :savedcolls, :create, :matchedcollections, :mycolls, :indexft, :userinit]
 
   before_action :authenticate_user!, :except => [:add_product]
 
   def add_product
-    Collection.find(params[:collection_id]).products.push(Product.find(params[:product_id]))
+    c = Collection.find(params[:collection_id])
+    c.products.push(Product.find(params[:product_id]))
+    c.save!
+
+    render :json => {:status => :ok}
+  end
+
+  def remove_product
+    c = Collection.find(params[:collection_id])
+    c.products.delete(Product.find(params[:product_id]))
+    c.save!
+
+    redirect_to request.referer
   end
 
   def gsearch

@@ -1,0 +1,76 @@
+#collection_panel.panel-group
+  - current_user.oCollections.sort {|c1, c2| c2.products.count <=> c1.products.count } .each_with_index do |c, i|
+    .panel.panel-default
+      .panel-heading
+        %h4.panel-title
+          %a{ 'data-parent' => '#collection_panel', 'data-toggle' => 'collapse', :href => "#collection_collapse_#{c.id}"}
+            %i{:class => "fa #{c.public ? 'fa-users' : 'fa-user' }"}
+            = "#{i+1}. #{c.name} #{c.public ? '(public)' : '' }"
+      .panel-collapse.collapse{:id => "collection_collapse_#{c.id}", :class => i==0 ? 'in' : ''}
+        .panel-body
+          - if c.products.count == 0
+            %h4 No products in this collection.
+          - else
+            - c.products.each do |p|
+              .mfp-with-anim.mfp-hide.mfp-dialog.mfp-dialog-big.clearfix{ :id => "product-quick-view-dialog-#{p.id}"}
+                .row
+                  .col-md-8
+                    .fotorama{"data-allowfullscreen" => "1", "data-nav" => "thumbs", "data-thumbheight" => "100", "data-thumbwidth" => "100"}
+                      =image_tag p.imglg, :alt => "Image Alternative text",  :title => "waipio valley"
+                      =image_tag p.img, :alt => "Image Alternative text",  :title => "The Hidden Power of the Heart"
+                      =image_tag p.img, :alt => "Image Alternative text",  :title => "Tcascada"
+                      =image_tag p.img, :alt => "Image Alternative text",  :title => "the best mode of transport here in maldives"
+                      =image_tag p.img, :alt => "Image Alternative text",  :title => "a turn"
+                  .col-md-4
+                    .product-page-meta
+                      -if p.shop
+                        %h4=link_to "Shop: #{p.shop.name}", p.shop, :target => "_blank"
+                      %h4= p.name
+                      %p= p.desc
+                      = form_tag add_product_to_order_path(p) do
+                        =submit_tag "$#{p.price} Add to Basket", :class => "btn btn-primary btn-lg btn-block"
+                      %ul.list.product-page-meta-info
+                        %li
+                          %ul.list.product-page-meta-price-list
+                            %li
+                              %span.product-page-meta-title List Price
+                              %span.product-page-meta-price $1000
+                            %li
+                              %span.product-page-meta-title Discount
+                              %span.product-page-meta-price 77.5%
+                            %li
+                              %span.product-page-meta-title Savings
+                              %span.product-page-meta-price $775
+                        %li
+                          %span.product-page-meta-title Time Left to Buy
+                          .countdown.countdown-inline{"data-countdown" => "Aug 25, 2013 10:45:00"}
+                        %li
+                          %span.product-page-meta-title 5000+ bought
+                %hr
+                .row
+                  %a.btn.btn-primary{:href => "#{remove_product_from_collection_path(c.id, p.id)}"}
+                    %i.fa.fa-times-circle
+                    Dislike
+              #masonry.row.row-wrap
+                - c.products.each do |p|
+                  %a.col-md-3.col-masonry.popup-text{"data-effect" => "mfp-move-from-top", :href => "#product-quick-view-dialog-#{p.id}",  :shop_link => "#{p.shop ? shop_path(p.shop) : ''}"}
+                    .product-thumb
+                      %header.product-header
+                        =image_tag  p.img, :alt => p.name, :title => p.name
+                        .product-quick-view
+                          %span.fa.fa-eye
+                      .product-inner
+                        %h5.product-title= truncate(p.name, :length => 16)
+                        .product-desciption= truncate(p.desc, :length => 16)
+                        .product-meta
+                          %span.product-time
+                            %i.fa.fa-clock-o
+                            8 days 47 h
+                          %ul.product-price-list
+                            %li
+                              %span.product-price $102
+                            %li
+                              %span.product-old-price $188
+                        %p.product-location
+                          %i.fa.fa-map-marker
+                          Boston
