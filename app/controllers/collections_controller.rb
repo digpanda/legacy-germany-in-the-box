@@ -1,16 +1,41 @@
 class CollectionsController < ApplicationController
   skip_before_action :verify_authenticity_token
 
-  before_action :set_collection, except: [:remove_product, :add_product, :index, :gsearch, :colsearch, :likedcolls, :new, :savedcolls, :create, :matchedcollections, :mycolls, :indexft, :userinit]
+  before_action :set_collection, except: [:is_product_in_user_collections, :remove_product, :toggle_product, :index, :gsearch, :colsearch, :likedcolls, :new, :savedcolls, :create, :matchedcollections, :mycolls, :indexft, :userinit]
 
   before_action :authenticate_user!, :except => [:add_product]
 
-  def add_product
+  def toggle_product
     c = Collection.find(params[:collection_id])
-    c.products.push(Product.find(params[:product_id]))
+    p = Product.find(params[:product_id])
+
+    if c.products.include?(p)
+      c.products.delete(p)
+    else
+      c.products.push(p)
+    end
+
     c.save!
 
     render :json => {:status => :ok}
+  end
+
+  def is_product_in_user_collections
+    p = Product.find(params[:product_id])
+
+    current_user.oCollections.each do |c|
+      if c.products.include?(p)
+        respond_to do |format|
+          format.json { render :json => { :contained => 'true' } }
+        end
+
+        return
+      end
+    end
+
+    respond_to do |format|
+      format.json { render :json => { :contained => 'false' } }
+    end
   end
 
   def remove_product
@@ -18,7 +43,10 @@ class CollectionsController < ApplicationController
     c.products.delete(Product.find(params[:product_id]))
     c.save!
 
-    redirect_to request.referer
+    respond_to do |format|
+      format.html { redirect_to request.referer }
+      format.json { render :json => {:status => :ok} }
+    end
   end
 
   def gsearch

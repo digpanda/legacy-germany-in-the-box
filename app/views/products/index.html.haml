@@ -1,33 +1,33 @@
 :javascript
   $( document ).ready( function () {
-    $.widget( "custom.catcomplete", $.ui.autocomplete, {
+    $.widget( 'custom.catcomplete', $.ui.autocomplete, {
       _create: function() {
           this._super();
-          this.widget().menu( "option", "items", "> :not(.ui-autocomplete-category)" );
+          this.widget().menu( 'option', 'items', '> :not(.ui-autocomplete-category)' );
       },
       _renderMenu: function( ul, items ) {
           var that = this,
-              search_category = "";
+              search_category = '';
           $.each( items, function( index, item ) {
               var li;
               if ( item.sc != search_category ) {
-                  ul.append( "<li class='ui-autocomplete-category'>" + item.sc + "</li>" );
+                  ul.append( "<li class='ui-autocomplete-category'>" + item.sc + '</li>' );
                   search_category = item.sc;
               }
               li = that._renderItemData( ul, item );
               if ( item.sc ) {
-                  li.attr( "aria-label", item.sc + " : " + item.label );
+                  li.attr( 'aria-label', item.sc + ' : ' + item.label );
               }
           });
       }
     });
 
-    $( "#products_search_area" ).catcomplete({
+    $( '#products_search_area' ).catcomplete({
       delay: 1000,
       source: '/products/autocomplete_product_name',
       select: function (a, b) {
         $(this).val(b.item.value);
-        $("#search_products_form").submit()
+        $('#search_products_form').submit()
       }
     });
   });
@@ -50,20 +50,20 @@
       .mfp-with-anim.mfp-hide.mfp-dialog.mfp-dialog-big.clearfix{ :id => "product-quick-view-dialog-#{p.id}"}
         .row
           .col-md-8
-            .fotorama{"data-allowfullscreen" => "1", "data-nav" => "thumbs", "data-thumbheight" => "100", "data-thumbwidth" => "100"}
-              =image_tag p.imglg, :alt => "Image Alternative text",  :title => "waipio valley"
-              =image_tag p.img, :alt => "Image Alternative text",  :title => "The Hidden Power of the Heart"
-              =image_tag p.img, :alt => "Image Alternative text",  :title => "Tcascada"
-              =image_tag p.img, :alt => "Image Alternative text",  :title => "the best mode of transport here in maldives"
-              =image_tag p.img, :alt => "Image Alternative text",  :title => "a turn"
+            .fotorama{'data-allowfullscreen' => '1', 'data-nav' => 'thumbs', 'data-thumbheight' => '100', 'data-thumbwidth' => '100'}
+              =image_tag p.imglg, :alt => 'Image Alternative text',  :title => 'waipio valley'
+              =image_tag p.img, :alt => 'Image Alternative text',  :title => 'The Hidden Power of the Heart'
+              =image_tag p.img, :alt => 'Image Alternative text',  :title => 'Tcascada'
+              =image_tag p.img, :alt => 'Image Alternative text',  :title => 'the best mode of transport here in maldives'
+              =image_tag p.img, :alt => 'Image Alternative text',  :title => 'a turn'
           .col-md-4
             .product-page-meta
               -if p.shop
-                %h4=link_to "Shop: #{p.shop.name}", p.shop, :target => "_blank"
+                %h4=link_to "Shop: #{p.shop.name}", p.shop, :target => '_blank'
               %h4= p.name
               %p= p.desc
               = form_tag add_product_to_order_path(p) do
-                =submit_tag "$#{p.price} Add to Basket", :class => "btn btn-primary btn-lg btn-block"
+                =submit_tag "$#{p.price} Add to Basket", :class => 'btn btn-primary btn-lg btn-block'
               %ul.list.product-page-meta-info
                 %li
                   %ul.list.product-page-meta-price-list
@@ -78,7 +78,7 @@
                       %span.product-page-meta-price $775
                 %li
                   %span.product-page-meta-title Time Left to Buy
-                  .countdown.countdown-inline{"data-countdown" => "Aug 25, 2013 10:45:00"}
+                  .countdown.countdown-inline{'data-countdown' => 'Aug 25, 2013 10:45:00'}
                 %li
                   %span.product-page-meta-title 5000+ bought
         %hr
@@ -86,22 +86,22 @@
           .col-md-3
             - if user_signed_in?
               .dropdown
-                %button.btn.btn-primary.dropdown-toggle{"data-toggle" => "dropdown", :type => "button"}
+                %button.btn.dropdown-toggle{:id => "dropdown_toggle_#{p.id}", 'data-toggle' => 'dropdown', :type => 'button', :class => "#{in_user_collections?(p) ? 'btn-success' : 'btn-primary' }"  }
                   %i.fa.fa-heart
                   Add to Collection
                   %span.caret
                 %ul.dropdown-menu
                   - current_user.oCollections.each do |c|
                     %li
-                      %a{:href => '#', :onclick => "#{generate_add_product_to_collection_js(c.id, p.id)}"}
-                        %i{:class => "#{c.public ? 'fa fa-users' : 'fa fa-user'}"  }
-                        = c.name
+                      %label
+                        = check_box_tag "collection_#{c.id}", c.products.include?(p), c.products.include?(p), { :onclick => "#{generate_toggle_product_in_collection_js(c.id, p.id)}" }
+                        %i{ :class => "#{c.public ? 'fa fa-users' : 'fa fa-user'}" }= c.name
             - else
-              %a.btn.btn-primary{:href => '#'}
+              %a.btn.btn-default{:href => '#', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom', :title => 'Yu haven\'t signed in' }
                 %i.fa.fa-heart
                 Add to Collection
           .col-md-3
-            %a.btn.btn-primary{:href => "#"}
+            %a.btn.btn-primary{:href => '#'}
               %i.fa.fa-share
               New Collection
 
@@ -111,7 +111,7 @@
           %div#left_menu
             %ul
               %li#left_menu_header{ :class => 'has-sub active'}
-                %a{:href => "#" }
+                %a{:href => '#' }
                   %i{ :class => 'fa fa-list' }= ' Categories'
               - @categories_and_children.keys.each do |c|
                 %li{ :class => 'has-sub' }
@@ -127,7 +127,7 @@
       .col-md-9
         #masonry.row.row-wrap
           - @products.each do |p|
-            %a.col-md-3.col-masonry.popup-text{"data-effect" => "mfp-move-from-top", :href => "#product-quick-view-dialog-#{p.id}",  :shop_link => "#{p.shop ? shop_path(p.shop) : ''}"}
+            %a.col-md-3.col-masonry.popup-text{'data-effect' => 'mfp-move-from-top', :href => "#product-quick-view-dialog-#{p.id}",  :shop_link => "#{p.shop ? shop_path(p.shop) : ''}"}
               .product-thumb
                 %header.product-header
                   = image_tag  p.img, :alt => p.name, :title => p.name
