@@ -25,7 +25,7 @@ class SessionsController < Devise::SessionsController
     session.delete(:login_advice_counter)
     respond_to do |format|
       format.json {
-        render json: {}
+        render json: { :status => :ok }
       }
     end
   end
