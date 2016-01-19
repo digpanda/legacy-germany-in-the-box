@@ -94,7 +94,7 @@
                   - current_user.oCollections.each do |c|
                     %li
                       %label
-                        = check_box_tag "collection_#{c.id}", c.products.include?(p), c.products.include?(p), { :onclick => "#{generate_toggle_product_in_collection_js(c.id, p.id)}" }
+                        = check_box_tag "collection_checkbox_#{c.id}", c.products.include?(p), c.products.include?(p), { :onclick => "#{generate_toggle_product_in_collection_js(c.id, p.id)}" }
                         %i{ :class => "#{c.public ? 'fa fa-users' : 'fa fa-user'}" }= c.name
             - else
               %a.btn.btn-default{:href => '#', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom', :title => 'Yu haven\'t signed in' }
