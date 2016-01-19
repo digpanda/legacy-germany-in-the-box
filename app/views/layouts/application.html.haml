@@ -61,11 +61,9 @@
       });
   %body
     %nav.navbar-fixed-top
-      .top-main-area.text-center
-        .container
-          %a.logo.mt5{:href => "#{home_path}"}
-            ='RheinManufaktur'
-            -#=image_tag  'icons/achatlogo.png', :style => 'width:24px;height:24px'
+      .container
+        %a.shared_header_logo{:href => "#{home_path}"}
+          =image_tag  'icons/RMlogo_orig.png', :style => 'width:80px;height:24px'
       %header.main
         .container
           .row
