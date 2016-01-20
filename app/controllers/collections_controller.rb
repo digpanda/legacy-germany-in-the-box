@@ -1,9 +1,19 @@
 class CollectionsController < ApplicationController
   skip_before_action :verify_authenticity_token
 
-  before_action :set_collection, except: [:is_product_in_user_collections, :remove_product, :toggle_product, :index, :gsearch, :colsearch, :likedcolls, :new, :savedcolls, :create, :matchedcollections, :mycolls, :indexft, :userinit]
+  before_action :set_collection, except: [:create_and_add_to_collection, :is_product_in_user_collections, :remove_product, :toggle_product, :index, :gsearch, :colsearch, :likedcolls, :new, :savedcolls, :create, :matchedcollections, :mycolls, :indexft, :userinit]
 
   before_action :authenticate_user!, :except => [:add_product]
+
+  def create_and_add_to_collection
+    params = collection_params
+    params[:public] = params[:public] == '1' ? true : false;
+    current_user.oCollections.create!(params)
+
+    respond_to do |format|
+      format.json { render :json => { :status => :ok } }
+    end
+  end
 
   def toggle_product
     c = Collection.find(params[:collection_id])
@@ -260,7 +270,7 @@ class CollectionsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def collection_params
-    params.require(:collection).permit(:name, :desc, :visible, :coltype, :img)
+    params.require(:collection).permit(:name, :desc, :visible, :coltype, :img, :public)
   end
 
 end

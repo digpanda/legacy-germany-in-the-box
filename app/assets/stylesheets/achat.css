@@ -1,3 +1,9 @@
+.scrollable-menu {
+    height: auto;
+    max-height: 80px;
+    overflow-x: hidden;
+}
+
 .i-check.disabled.checked,
 .i-radio.disabled.checked {
     background: #2a8fbd;
