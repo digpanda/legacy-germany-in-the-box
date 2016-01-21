@@ -1,3 +1,7 @@
+.panel-group .panel {
+    overflow: visible;
+}
+
 .scrollable-menu {
     height: auto;
     max-height: 80px;

@@ -13,7 +13,7 @@
             =link_to 'Bank & Payment',  edit_user_path(current_user, :user_info_edit_part => :edit_bank)
           %li{:class => params[:user_info_edit_part] == :edit_order.to_s ? 'active' : ''}
             =link_to 'Order History',  edit_user_path(current_user, :user_info_edit_part => :edit_order)
-          %li{:class => params[:user_info_edit_part] == :edit_collection.to_s ? 'active' : ''}
+          %li{:class => [:edit_collection.to_s, :edit_collection_update.to_s, :edit_collection_new.to_s].include?(params[:user_info_edit_part]) ? 'active' : ''}
             =link_to 'My Collection',  edit_user_path(current_user, :user_info_edit_part => :edit_collection)
     .col-md-9
       .row

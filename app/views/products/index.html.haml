@@ -110,10 +110,11 @@
                 %ul.dropdown-menu
                   %li
                     = form_tag '#', :style=>'min-width:300px;margin:4px', :id => "create_and_add_to_collection_form_#{p.id}" do
-                      = text_field_tag 'collection[name]', nil, :placeholder => 'New Collection',  :required => true
+                      = text_field_tag 'collection[name]', nil, :placeholder => 'New Collection',  :id => "create_and_add_to_collection_form_input_name_#{p.id}", :autocomplete => :off
                       %label{ :style => 'margin:4px'}
                         = check_box_tag 'collection[public]'
                         %i.fa.fa-users{'data-toggle' => 'tooltip', 'data-placement' => 'bottom', :title => 'public' }
+                      = hidden_field_tag :product_id, "#{p.id}"
                       =submit_tag 'OK', :class => 'btn btn-primary', :onclick => "#{generate_create_and_add_to_collection_js(p.id)}"
             - else
               %a.btn.btn-default{:href => '#', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom', :title => 'Yu haven\'t signed in' }

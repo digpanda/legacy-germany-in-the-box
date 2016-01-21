@@ -41,7 +41,13 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    @address = Address.new
+    if params[:user_info_edit_part] == :edit_address.to_s
+      @address = Address.new
+    elsif params[:user_info_edit_part] == :edit_collection_new.to_s
+      @collection = Collection.new
+    elsif params[:user_info_edit_part] == :edit_collection_update.to_s
+      @collection = Collection.find(params[:collection_id])
+    end
   end
 
 def openmailnoti

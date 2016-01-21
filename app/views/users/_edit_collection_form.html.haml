@@ -1,0 +1,27 @@
+.col-md-6
+  = form_for(@collection, :html => {:class => "form-horizontal", :role => "form"}) do |f|
+    .form-group
+      = f.label :name, 'Name'
+      = f.text_field :name, :class => "form-control"
+    .form-group
+      = f.label :desc, 'Description'
+      = f.text_field :desc, :class => "form-control"
+    .form-group
+      = f.label :visible, 'Visibility'
+      = f.text_field :visible, :class => "form-control"
+    .form-group
+      %label{ :style => 'margin:4px'}
+        = f.check_box :public
+        %i.fa.fa-users
+        public
+    .form-group
+      = f.label :coltype, 'Collection Type'
+      = f.text_field :coltype, :class => "form-control"
+    .form-group
+      - if @collection.img.url.present?
+        = image_tag (@collection.img.url), :style => 'width:96px;height:96px'
+      - else
+        = f.label :img, 'Icon'
+      = f.file_field :img
+    .form-group
+      = f.submit :class => "btn btn-primary"

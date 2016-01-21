@@ -6,9 +6,17 @@ class CollectionsController < ApplicationController
   before_action :authenticate_user!, :except => [:add_product]
 
   def create_and_add_to_collection
-    params = collection_params
-    params[:public] = params[:public] == '1' ? true : false;
-    current_user.oCollections.create!(params)
+    cp = collection_params
+    cp[:public] = cp[:public] == '1' ? true : false;
+
+    existing = current_user.oCollections.select { |c| c.name == cp[:name] }
+
+    unless existing.size > 0
+      c = current_user.oCollections.create!(cp)
+      c.products.push(Product.find(params[:product_id]))
+    else
+      existing[0].products.push(Product.find(params[:product_id]))
+    end
 
     respond_to do |format|
       format.json { render :json => { :status => :ok } }
@@ -129,17 +137,36 @@ class CollectionsController < ApplicationController
 
 
   def create
+    existing = current_user.oCollections.select { |c| c.name == collection_params[:name] }
 
-    @collection = Collection.new(collection_params)
-    @collection.user = User.find(params[:owner_id])
-    respond_to do |format|
-      if @collection.save
-        @owner.saved_collections << @collection.id.to_str
-        @owner.save
-        format.html { redirect_to @collection, notice: 'Collection was successfully created.' }
-        format.json { render :show, status: :created, location: @collection }
-      else
-        format.html { render :new }
+    unless existing.size > 0
+      @collection = Collection.new(collection_params)
+      @collection.user = current_user
+
+      respond_to do |format|
+        if @collection.save
+          format.html {
+            flash[:success] = 'The Collection was created successfully.'
+            redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_collection )
+          }
+
+          format.json { render :show, status: :created, location: @collection }
+        else
+          format.html {
+            flash[:error] = @collection.errors.full_messages.first
+            redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_collection_new )
+          }
+
+          format.json { render json: @collection.errors, status: :unprocessable_entity }
+        end
+      end
+    else
+      respond_to do |format|
+        format.html {
+          flash[:error] = 'There is another collection with the same name.'
+          redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_collection_new )
+        }
+
         format.json { render json: @collection.errors, status: :unprocessable_entity }
       end
     end
@@ -148,12 +175,33 @@ class CollectionsController < ApplicationController
   # PATCH/PUT /collections/1
   # PATCH/PUT /collections/1.json
   def update
-    respond_to do |format|
-      if @collection.update(collection_params)
-        format.html { redirect_to @collection, notice: 'Collection was successfully updated.' }
-        format.json { render :show, status: :ok, location: @collection }
-      else
-        format.html { render :edit }
+    existing = current_user.oCollections.select { |c| (not c.id.to_s.eql?(params[:id])) and c.name == collection_params[:name] }
+
+    unless existing.size > 0
+      respond_to do |format|
+        if @collection.update(collection_params)
+          format.html {
+            flash[:success] = 'Updating collection is successful.'
+            redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_collection)
+          }
+
+          format.json { render :show, status: :ok, location: @collection }
+        else
+          format.html {
+            flash[:error] = @collection.errors.full_messages.first
+            redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_collection_update, :collection_id => params[:id] )
+          }
+
+          format.json { render json: @collection.errors, status: :unprocessable_entity }
+        end
+      end
+    else
+      respond_to do |format|
+        format.html {
+          flash[:error] = 'There is another collection with the same name.'
+          redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_collection_update, :collection_id => params[:id] )
+        }
+
         format.json { render json: @collection.errors, status: :unprocessable_entity }
       end
     end
@@ -164,7 +212,7 @@ class CollectionsController < ApplicationController
   def destroy
     @collection.destroy
     respond_to do |format|
-      format.html { redirect_to collections_url, notice: 'Collection was successfully destroyed.' }
+      format.html { redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_collection) }
       format.json { head :no_content }
     end
   end
