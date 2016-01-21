@@ -7,6 +7,7 @@ User.where(:email => 'dailycron@hotmail.com').each do |u|
   u.oCollections.create!(:name => 'My Wife', :public => false)
 end
 
+Order.all.delete
 
 Address.all.delete
 
