@@ -114,6 +114,11 @@ zh-CN:
   popular_products:
     search_prompt: 我要找
     search_placeholder: 产品名称，关键字，品牌
+    add_to_favorite: 添加到收藏夹
+    create_and_add_to_favorite: 创建并收藏
+    add_to_cart: 放入购物车
+    create_favorite: 创建
+    new_favorite: 新的收藏夹
   category:
     categories: 产品分类
   cart:
