@@ -52,4 +52,17 @@ zh-CN:
     password: 密码
     password_confirmation: 重复密码
     save: 保存
+  edit_personal:
+    firstname: 名
+    lastname: 姓
+    birthday: 生日
+    gender: 性别
+    about: 关于我
+    website: 个人主页
+    country: 国家
+    language: 语言
+    provider: 供应商
+    telephone: 电话
+    mobile: 手机
+    save: 保存
 

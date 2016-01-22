@@ -2,27 +2,27 @@
   = form_for @user do |f|
     .form-group
       = image_tag (current_user.pic.url.nil? ? "icons/default_user_pic.png" : current_user.pic.url), :style => 'width:96px;height:96px'
-      = f.file_field :pic
+      = f.file_field :pic, :accept => "image/png, image/gif, image/jpeg"
     .form-group
-      = f.text_field :fname, :class => 'form-control', placeholder: 'Firstname'
+      = f.text_field :fname, :class => 'form-control', placeholder: I18n.t(:firstname, scope: :edit_personal)
     .form-group
-      = f.text_field :lname, :class => 'form-control', placeholder: 'Lastname'
+      = f.text_field :lname, :class => 'form-control', placeholder: I18n.t(:lastname, scope: :edit_personal)
     .form-group
-      = f.text_field :birth, :class => 'form-control', placeholder: 'Birthday'
+      = f.text_field :birth, :class => 'form-control', placeholder: I18n.t(:birthday, scope: :edit_personal)
     .form-group
-      = f.text_field :gender, :class => 'form-control', placeholder: 'Gender'
+      = f.text_field :gender, :class => 'form-control', placeholder: I18n.t(:gender, scope: :edit_personal)
     .form-group
-      = f.text_field :about, :class => 'form-control', placeholder: 'About'
+      = f.text_field :about, :class => 'form-control', placeholder: I18n.t(:about, scope: :edit_personal)
     .form-group
-      = f.text_field :website, :class => 'form-control', placeholder: 'Website'
+      = f.text_field :website, :class => 'form-control', placeholder: I18n.t(:website, scope: :edit_personal)
     .form-group
-      = f.text_field :country, :class => 'form-control', placeholder: 'Country'
+      = f.text_field :country, :class => 'form-control', placeholder: I18n.t(:country, scope: :edit_personal)
     .form-group
-      = f.text_field :lang, :class => 'form-control', placeholder: 'Language'
+      = f.text_field :lang, :class => 'form-control', placeholder: I18n.t(:language, scope: :edit_personal)
     .form-group
-      = f.text_field :provider, :class => 'form-control', placeholder: 'Provider'
+      = f.text_field :provider, :class => 'form-control', placeholder: I18n.t(:provider, scope: :edit_personal)
     .form-group
-      = f.text_field :tel, :class => 'form-control', placeholder: 'Telophone'
+      = f.text_field :tel, :class => 'form-control', placeholder: I18n.t(:telephone, scope: :edit_personal)
     .form-group
-      = f.text_field :mobile, :class => 'form-control', placeholder: 'Mobile'
-    = f.button 'save', :class => 'btn btn-primary', name: :user_info_edit_part, value: :edit_personal
+      = f.text_field :mobile, :class => 'form-control', placeholder: I18n.t(:mobile, scope: :edit_personal)
+    = f.button I18n.t(:save, scope: :edit_personal), :class => 'btn btn-primary', name: :user_info_edit_part, value: :edit_personal
