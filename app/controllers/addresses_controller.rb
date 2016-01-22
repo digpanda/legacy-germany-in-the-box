@@ -75,8 +75,11 @@ class AddressesController < ApplicationController
 
     if address.primary
       candidate = current_user.addresses.detect { |a| a != address }
-      candidate.primary = true
-      candidate.save
+
+      if candidate
+        candidate.primary = true
+        candidate.save
+      end
     end
 
     address.delete

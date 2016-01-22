@@ -39,9 +39,9 @@
         .col-md-12.clearfix
           %label
             %i.fa.fa-search
-            %span I am searching for
+            %span= I18n.t(:search_prompt, scope: :popular_products)
           .search-area-division.search-area-division-input
-            =text_field_tag :products_search_area, params[:products_search_area], :placeholder => 'a product', :class => 'form-control'
+            =text_field_tag :products_search_area, params[:products_search_area], :placeholder => "#{ I18n.t(:search_placeholder, scope: :popular_products) }", :class => 'form-control'
 .container
   - if @products.count == 0
     %h4 Products cannot be found.
@@ -143,7 +143,7 @@
             %ul
               %li#left_menu_header{ :class => 'has-sub active'}
                 %a{:href => '#' }
-                  %i{ :class => 'fa fa-list' }= ' Categories'
+                  %i{ :class => 'fa fa-list' }= I18n.t(:categories, scope: :category)
               - @categories_and_children.keys.each do |c|
                 %li{ :class => 'has-sub' }
                   %a{:href => "#{show_products_in_category_path(c.id)}" }

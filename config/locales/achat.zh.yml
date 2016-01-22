@@ -111,6 +111,29 @@ zh-CN:
     collection_type: 收藏类别
     icon: 图标
     save: 保存
+  popular_products:
+    search_prompt: 我要找
+    search_placeholder: 产品名称，关键字，品牌
+  category:
+    categories: 产品分类
+  cart:
+    no_products: 购物车里还没有产品
+    item: 产品图
+    name: 名称
+    quantity: 数量
+    unit_price: 单价
+    operations: 操作
+    subtotal: 产品总价
+    shipping: 运费
+    taxes: 税
+    total_price: 总计
+    update_cart: 更新购物车
+    set_delivery_destination: 确定收货地址
+  checkout:
+    my_destination: 收货地址
+    setup_delivery_destination: 请您指定收货地址
+    checkout: 下单
+
 
 
 

@@ -3,28 +3,28 @@
 #add-address-dialog.mfp-with-anim.mfp-hide.mfp-dialog.clearfix
   =form_for @address do |f|
     .form-group
-      %h4 Your New Address
+      %h4= I18n.t(:new_address_title, scope: :edit_address)
     .form-group
-      = f.text_field :street_building_room, :class => 'form-control', :placeholder => 'Street, Building & Room (*)'
+      = f.text_field :street_building_room, :class => 'form-control', :placeholder => I18n.t(:street_building_room, scope: :edit_address)
     .city-group
       .form-group
-        = f.select :province, options_for_select(ChinaCity.list), {  include_blank: '--省份--' }, { :autocomplete => :off, class: 'form-control city-select city-province' }
+        = f.select :province, options_for_select(ChinaCity.list), {  include_blank: I18n.t(:province_blank, scope: :edit_address) }, { :autocomplete => :off, class: 'form-control city-select city-province' }
       .form-group
-        = f.select :city    , [], { include_blank: '--城市--'}, { :autocomplete => :off, class: 'form-control city-select city-city' }
+        = f.select :city    , [], { include_blank: I18n.t(:city_blank, scope: :edit_address) }, { :autocomplete => :off, class: 'form-control city-select city-city' }
       .form-group
-        = f.select :district, [], { include_blank: '--地区--' }, { :autocomplete => :off, class: 'form-control city-select city-district' }
+        = f.select :district, [], { include_blank: I18n.t(:district_blank, scope: :edit_address) }, { :autocomplete => :off, class: 'form-control city-select city-district' }
     .form-group
       = f.text_field :country, :value => '中国', :readonly => true, :class => 'form-control', :placeholder => 'Country (*)'
     .form-group
-      = f.text_field :zip, :class => 'form-control', :placeholder => 'Zip (*)'
+      = f.text_field :zip, :class => 'form-control', :placeholder => I18n.t(:zip, scope: :edit_address)
     .form-group
       .checkbox
         %label
           = f.check_box :primary, {:class => 'i-check'}, true, false
-          Set Primary
-    %input.btn.btn-primary{:type => "submit", :value => "Add Address"}
+          =I18n.t(:set_primary, scope: :edit_address)
+    %input.btn.btn-primary{:type => "submit", :value => I18n.t(:add_address, scope: :edit_address)}
 .row
-  .h3.text-center Please set up the delivery destination
+  .h3.text-center= I18n.t(:setup_delivery_destination, scope: :checkout)
 .row.row-wrap
   = form_tag checkout_order_path
   - if current_user.addresses.count > 0
@@ -32,28 +32,28 @@
       .col-md-4
         .panel.panel-primary
           .panel-heading.text-center
-            = 'Address ' + (i+1).to_s
+            = I18n.t(:show_address_title, scope: :edit_address) + (i+1).to_s
           .panel-body
             .address-box
               %ul
-                %li= "Street, Building & Room : #{ a.street_building_room }"
-                %li= "District : #{ a.district }"
-                %li= "City : #{ a.city }"
-                %li= "Province : #{ a.province }"
-                %li= "Country : #{ a.country }"
-                %li= "Zip : #{ a.zip }"
+                %li= "#{I18n.t(:street_building_room, scope: :edit_address)} : #{ a.street_building_room }"
+                %li= "#{I18n.t(:district, scope: :edit_address)} : #{ a.district }"
+                %li= "#{I18n.t(:city, scope: :edit_address)} : #{ a.city }"
+                %li= "#{I18n.t(:province, scope: :edit_address)} : #{ a.province }"
+                %li= "#{I18n.t(:country, scope: :edit_address)} : #{ a.country }"
+                %li= "#{I18n.t(:zip, scope: :edit_address)} : #{ a.zip }"
               .radio
                 %label
                   = radio_button_tag 'delivery_destination_id', a.id, checked = a.primary
-                My Destination
+                = I18n.t(:my_destination, scope: :checkout)
 
   - if current_user.addresses.count < 3
     .col-md-4
       %a.address-box.address-box-new.popup-text{'data-effect' => 'mfp-move-from-top', :href => '#add-address-dialog'}
         .vert-center
           %i.fa.fa-plus.address-box-new-icon
-          %p Add New Destination
+          %p= I18n.t(:add_new_address, scope: :edit_address)
 
 .row
   = hidden_field_tag 'order_id', "#{current_order.id}"
-  = submit_tag 'Checkout', :class => "btn btn-primary"
+  = submit_tag I18n.t(:checkout, scope: :checkout), :class => "btn btn-primary"

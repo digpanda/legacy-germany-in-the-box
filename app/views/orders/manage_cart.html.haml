@@ -3,22 +3,22 @@
     .col-md-8
       = form_tag adjust_products_amount_in_order_path, :id => 'orders_adjust_products_amount' do
         = render 'cart'
-        =submit_tag 'Update the cart', :class => 'btn btn-primary'
-        =link_to 'Delivery Destination', set_address_payment_path, :class => 'btn btn-primary'
+        =submit_tag I18n.t(:update_cart, scope: :cart), :class => 'btn btn-primary'
+        =link_to I18n.t(:set_delivery_destination, scope: :cart), set_address_payment_path, :class => 'btn btn-primary'
     .col-md-4
       %ul.cart-total-list
         %li
-          %span Sub Total
+          %span= I18n.t(:subtotal, scope: :cart)
           %span= "$#{current_order.total_price}"
         %li
-          %span Shipping
+          %span= I18n.t(:shipping, scope: :cart)
           %span $0.00
         %li
-          %span Taxes
+          %span= I18n.t(:taxes, scope: :cart)
           %span $0.00
         %li
-          %span Total
+          %span= I18n.t(:total_price, scope: :cart)
           %span= "$#{current_order.total_price}"
 - else
   .row
-    %h4 You haven't selected any products.
+    %h4= I18n.t(:no_products, scope: :cart)

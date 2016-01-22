@@ -84,4 +84,32 @@ de:
     save_address: Speichern
     show_address_title: Adresse
     delete_address_message: Die Adresse löschen?
+  edit_order:
+    no_order: keine Aufträge vorhanden
+    id: Auftragsnummer
+    status: Status
+    total_price: Gesamter Preis
+    created_at: Erstellt am
+    updated_at: Geändert am
+    operations: Operationen
+    delete: Löschen
+    continue: Weiter
+    new: Neu
+    checked_out: Bezahlt
+  edit_collection:
+    new: Favorit erstellen
+    edit: Ändern
+    remove: Löschen
+    public: Öffentlich
+    no_products: Kein Produkt vorhanden
+    delete_collection_message: Löschen Sie den gewählten Favorit?
+  edit_collection_new:
+    name: Name
+    description: Beschreibung
+    visibility: Sichtbarkeit
+    public: Öffentlich
+    collection_type: Typ des Favorits
+    icon: Icon
+    save: Speichern
+
 

@@ -1,11 +1,11 @@
 %table.table.cart-table
   %thead
     %tr
-      %th Item
-      %th Name
-      %th QTY
-      %th Unit Price
-      %th Remove
+      %th= I18n.t(:item, scope: :cart)
+      %th= I18n.t(:name, scope: :cart)
+      %th= I18n.t(:quantity, scope: :cart)
+      %th= I18n.t(:unit_price, scope: :cart)
+      %th= I18n.t(:operations, scope: :cart)
   %tbody
     - @order.order_items.each do |i|
       %tr
