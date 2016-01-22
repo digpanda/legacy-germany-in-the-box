@@ -103,11 +103,11 @@
                   = I18n.t(:add_to_favorite, scope: :popular_products)
                   %span.caret
                 %ul.dropdown-menu
-                  %li{:style=>'min-width:200px'}
+                  %li{:style=>'min-width:250px'}
                     .col-md-6
                       = link_to I18n.t(:sign_in, scope: :top_menu), user_session_path, :class => 'fa fa-sign-in', :style => 'color:black; text-decoration: underline'
                     .col-md-6
-                      = link_to I18n.t(:sign_in, scope: :top_menu),  new_user_registration_path, :class => 'fa fa-edit', :style => 'color:black; text-decoration: underline'
+                      = link_to I18n.t(:sign_out, scope: :top_menu),  new_user_registration_path, :class => 'fa fa-edit', :style => 'color:black; text-decoration: underline'
           .col-md-3
             - if user_signed_in?
               .dropdown
@@ -131,7 +131,7 @@
                   = I18n.t(:create_and_add_to_favorite, scope: :popular_products)
                   %span.caret
                 %ul.dropdown-menu
-                  %li{:style=>'min-width:200px'}
+                  %li{:style=>'min-width:250px'}
                     .col-md-6
                       = link_to I18n.t(:sign_in, scope: :top_menu), user_session_path, :class => 'fa fa-sign-in', :style => 'color:black; text-decoration: underline'
                     .col-md-6

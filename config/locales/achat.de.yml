@@ -111,5 +111,30 @@ de:
     collection_type: Typ des Favorits
     icon: Icon
     save: Speichern
-
-
+  popular_products:
+    search_prompt: Ich suche
+    search_placeholder: ein Produkt
+    add_to_favorite: Hinzufügen
+    create_and_add_to_favorite: Erstellen
+    add_to_cart: Hinzufügen
+    create_favorite: Erstellen
+    new_favorite: Neuer Favorit
+  category:
+    categories: Kategorien
+  cart:
+    no_products: Kein Produkt vorhanden
+    item: Icon
+    name: Name
+    quantity: Quantity
+    unit_price: Preis
+    operations: Operationen
+    subtotal: Preis
+    shipping: Tranportkosten
+    taxes: Steuer
+    total_price: Gesamter Preis
+    update_cart: Einkaufswagen ändern
+    set_delivery_destination: Anschrift auswählen
+  checkout:
+    my_destination: Anlieferungsanschrift
+    setup_delivery_destination: Bitte Anschrift auswählen
+    checkout: Bestätigen
