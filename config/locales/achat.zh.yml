@@ -84,5 +84,35 @@ zh-CN:
     save_address: 保存
     show_address_title: 地址
     delete_address_message: 确定删除所选地址？
+  edit_order:
+    no_order: 您还没有任何订单
+    id: 订单编号
+    status: 订单状态
+    total_price: 总计
+    created_at: 创建时间
+    updated_at: 修改时间
+    operations: 操作
+    delete: 删除
+    continue: 继续
+    new: 尚未付款
+    checked_out: 已经付款
+  edit_collection:
+    new: 新建收藏夹
+    edit: 修改
+    remove: 删除
+    public: 公开
+    no_products: 该收藏夹下没有产品
+    delete_collection_message: 确定删除所选收藏夹？
+  edit_collection_new:
+    name: 名称
+    description: 描述
+    visibility: 可见性
+    public: 公开性
+    collection_type: 收藏类别
+    icon: 图标
+    save: 保存
+
+
+
 
 

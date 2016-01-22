@@ -1,27 +1,27 @@
 .col-md-6
-  = form_for(@collection, :html => {:class => "form-horizontal", :role => "form"}) do |f|
+  = form_for(@collection, :html => {:class => 'form-horizontal', :role => 'form'}) do |f|
     .form-group
-      = f.label :name, 'Name'
-      = f.text_field :name, :class => "form-control"
+      = f.label :name, I18n.t(:name, scope: :edit_collection_new)
+      = f.text_field :name, :class => 'form-control'
     .form-group
-      = f.label :desc, 'Description'
-      = f.text_field :desc, :class => "form-control"
+      = f.label :desc, I18n.t(:description, scope: :edit_collection_new)
+      = f.text_field :desc, :class => 'form-control'
     .form-group
-      = f.label :visible, 'Visibility'
-      = f.text_field :visible, :class => "form-control"
+      = f.label :visible, I18n.t(:visibility, scope: :edit_collection_new)
+      = f.text_field :visible, :class => 'form-control'
     .form-group
       %label{ :style => 'margin:4px'}
         = f.check_box :public
         %i.fa.fa-users
-        public
+        = I18n.t(:public, scope: :edit_collection_new)
     .form-group
-      = f.label :coltype, 'Collection Type'
-      = f.text_field :coltype, :class => "form-control"
+      = f.label :coltype, I18n.t(:collection_type, scope: :edit_collection_new)
+      = f.text_field :coltype, :class => 'form-control'
     .form-group
       - if @collection.img.url.present?
         = image_tag (@collection.img.url), :style => 'width:96px;height:96px'
       - else
-        = f.label :img, 'Icon'
+        = f.label :img, I18n.t(:icon, scope: :edit_collection_new)
       = f.file_field :img
     .form-group
-      = f.submit :class => "btn btn-primary"
+      = f.submit :class => 'btn btn-primary', :value => I18n.t(:save, scope: :edit_collection_new)

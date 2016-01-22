@@ -1,6 +1,6 @@
 %a.btn.btn-primary.btn-lg{ :href => edit_user_path(current_user, :user_info_edit_part => :edit_collection_new) }
   %i.fa.fa-plus-circle
-  New Collection
+  = I18n.t(:new, scope: :edit_collection)
 
 %br
 %br
@@ -13,14 +13,14 @@
           .btn-group
             %a{ 'data-parent' => '#collection_panel', 'data-toggle' => 'collapse', :href => "#collection_collapse_#{c.id}", :style => 'color: black; text-decoration: underline'}
               %i{:class => "fa #{c.public ? 'fa-users' : 'fa-user' }"}
-              = "#{i+1}. #{c.name} #{c.public ? '(public)' : '' }"
+              = "#{i+1}. #{c.name} #{c.public ? "(#{I18n.t(:public, scope: :edit_collection)})" : '' }"
           .btn-group.pull-right
-            = link_to 'edit', edit_user_path(current_user, :user_info_edit_part => :edit_collection_update, :collection_id => c.id) , :class => 'fa fa-edit btn'
-            = link_to 'remove', collection_path(c.id), method: :delete, data: { confirm: 'Are you certain you want to delete this?' }, :class => 'fa fa-times-circle btn'
+            = link_to I18n.t(:edit, scope: :edit_collection), edit_user_path(current_user, :user_info_edit_part => :edit_collection_update, :collection_id => c.id) , :class => 'fa fa-edit btn'
+            = link_to I18n.t(:remove, scope: :edit_collection), collection_path(c.id), method: :delete, data: { confirm: "#{I18n.t(:delete_collection_message, scope: :edit_collection)}" }, :class => 'fa fa-times-circle btn'
       .panel-collapse.collapse{:id => "collection_collapse_#{c.id}", :class => i==0 ? 'in' : ''}
         .panel-body
           - if c.products.count == 0
-            %h4 No products in this collection.
+            %h4= I18n.t(:no_products, scope: :edit_collection)
           - else
             - c.products.each do |p|
               .mfp-with-anim.mfp-hide.mfp-dialog.mfp-dialog-big.clearfix{ :id => "product-quick-view-dialog-#{p.id}"}

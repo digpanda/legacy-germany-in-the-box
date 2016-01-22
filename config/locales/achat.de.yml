@@ -46,3 +46,42 @@ de:
     title: Passwort vergessen? Keine Sorge und wir helfen Ihnen gern.
     email: Email
     ok: Neues Passwort vergeben
+  edit_account:
+    username: Username
+    email: Email
+    password: Passwort
+    password_confirmation: Passwort wiederholen
+    save: Speichern
+  edit_personal:
+    firstname: Vorname
+    lastname: Nachname
+    birthday: Geburtstag
+    gender: Geschlecht
+    about: Über mich
+    website: Website
+    country: Staat
+    language: Sprache
+    provider: Anbieter
+    telephone: Telephone
+    mobile: Handy
+    save: Speichern
+  edit_address:
+    maximal_number_of_addresses: Sie können maximal drei Adressen konfigurieren.
+    add_new_address: Adresse hinzufügen
+    new_address_title: Ihre neue Adresse
+    street_building_room: Adresse
+    province: Land
+    city: Stadt
+    district: Gemeinde
+    province_blank: --Land--
+    city_blank: --Stadt--
+    district_blank: --Gemeinde--
+    country: Staat
+    zip: Postleitzahl
+    set_primary: primär
+    add_address: hinzufügen
+    change_address_title: Adresse ändern
+    save_address: Speichern
+    show_address_title: Adresse
+    delete_address_message: Die Adresse löschen?
+
