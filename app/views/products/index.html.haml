@@ -97,9 +97,17 @@
                         = check_box_tag "collection_checkbox_#{c.id}", c.products.include?(p), c.products.include?(p), { :onclick => "#{generate_toggle_product_in_collection_js(c.id, p.id)}" }
                         %i{ :class => "#{c.public ? 'fa fa-users' : 'fa fa-user'}" }= c.name
             - else
-              %a.btn.btn-default{:href => '#', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom', :title => 'Yu haven\'t signed in' }
-                %i.fa.fa-heart
-                Add to Collection
+              .dropdown
+                %a.btn.btn-default{:href => '#', 'data-toggle' => 'dropdown', 'data-placement' => 'bottom', :title => 'Yu haven\'t signed in' }
+                  %i.fa.fa-share
+                  Add to Collection
+                  %span.caret
+                %ul.dropdown-menu
+                  %li{:style=>'min-width:200px'}
+                    .col-md-6
+                      = link_to ' sign in', user_session_path, :class => 'fa fa-sign-in', :style => 'color:black; text-decoration: underline'
+                    .col-md-6
+                      = link_to ' sign up',  new_user_registration_path, :class => 'fa fa-edit', :style => 'color:black; text-decoration: underline'
           .col-md-3
             - if user_signed_in?
               .dropdown
@@ -117,10 +125,17 @@
                       = hidden_field_tag :product_id, "#{p.id}"
                       =submit_tag 'OK', :class => 'btn btn-primary', :onclick => "#{generate_create_and_add_to_collection_js(p.id)}"
             - else
-              %a.btn.btn-default{:href => '#', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom', :title => 'Yu haven\'t signed in' }
-                %i.fa.fa-share
-                New Collection
-
+              .dropdown
+                %a.btn.btn-default{:href => '#', 'data-toggle' => 'dropdown', 'data-placement' => 'bottom', :title => 'Yu haven\'t signed in' }
+                  %i.fa.fa-share
+                  New Collection
+                  %span.caret
+                %ul.dropdown-menu
+                  %li{:style=>'min-width:200px'}
+                    .col-md-6
+                      = link_to ' sign in', user_session_path, :class => 'fa fa-sign-in', :style => 'color:black; text-decoration: underline'
+                    .col-md-6
+                      = link_to ' sign up',  new_user_registration_path, :class => 'fa fa-edit', :style => 'color:black; text-decoration: underline'
     .row
       .col-md-3
         %aside.sidebar-left

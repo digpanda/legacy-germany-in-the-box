@@ -3,7 +3,6 @@ class SessionsController < Devise::SessionsController
 
   def new
     session[:login_advice_counter] = 1
-    flash[:info] = 'Confirmation Successful and please login!'
     redirect_to home_path
   end
 
