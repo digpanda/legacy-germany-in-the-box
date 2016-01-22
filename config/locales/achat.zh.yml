@@ -7,8 +7,8 @@ zh-CN:
     my_account: 我的账户
     my_personal: 个人信息
     my_bank: 支付方式
-    my_address: 地址
-    my_order: 订单
+    my_address: 收货地址
+    my_order: 订单记录
     my_collection: 我的收藏
     view_cart: 浏览购物车
     checkout: 去下单
@@ -65,4 +65,24 @@ zh-CN:
     telephone: 电话
     mobile: 手机
     save: 保存
+  edit_address:
+    maximal_number_of_addresses: 您最多可以设定三个地址
+    add_new_address: 添加新地址
+    new_address_title: 您的新地址
+    street_building_room: 地址
+    province: 省份
+    city: 城市
+    district: 地区
+    province_blank: --省份--
+    city_blank: --城市--
+    district_blank: --地区--
+    country: 国家
+    zip: 邮编
+    set_primary: 默认地址
+    add_address: 添加
+    change_address_title: 修改地址
+    save_address: 保存
+    show_address_title: 地址
+    delete_address_message: 确定删除所选地址？
+
 

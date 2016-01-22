@@ -8,7 +8,7 @@
           %li{:class => params[:user_info_edit_part] == :edit_personal.to_s ? 'active' : ''}
             =link_to I18n.t(:my_personal, scope: :top_menu),  edit_user_path(current_user, :user_info_edit_part => :edit_personal)
           %li{:class => params[:user_info_edit_part] == :edit_address.to_s ? 'active' : ''}
-            =link_to I18n.t(:my_account, scope: :top_menu),  edit_user_path(current_user, :user_info_edit_part => :edit_address)
+            =link_to I18n.t(:my_address, scope: :top_menu),  edit_user_path(current_user, :user_info_edit_part => :edit_address)
           %li{:class => params[:user_info_edit_part] == :edit_bank.to_s ? 'active' : ''}
             =link_to I18n.t(:my_bank, scope: :top_menu),  edit_user_path(current_user, :user_info_edit_part => :edit_bank)
           %li{:class => params[:user_info_edit_part] == :edit_order.to_s ? 'active' : ''}
