@@ -46,6 +46,10 @@ zh-CN:
     title: 忘记密码？别担心，我们来帮你！
     email: 登陆邮箱
     ok: 获取新密码
-
-
+  edit_account:
+    username: 用户昵称
+    email: 登陆邮箱
+    password: 密码
+    password_confirmation: 重复密码
+    save: 保存
 
