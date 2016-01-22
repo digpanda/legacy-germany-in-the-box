@@ -10,11 +10,18 @@ class ApplicationController < ActionController::Base
   before_filter { params[:top_menu_active_part] = current_top_menu_active_part }
 
   before_action :configure_devise_permitted_parameters, if: :devise_controller?
+  before_action :set_locale, except: :set_session_locale
+
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :null_session
 
   helper_method :current_order
+
+  def set_session_locale
+    session[:locale] = params[:locale]
+    redirect_to request.referer
+  end
 
   protected
 
@@ -66,5 +73,10 @@ class ApplicationController < ActionController::Base
 
   def current_top_menu_active_part
     :home
+  end
+
+  def set_locale
+    params[:locale]= session[:locale]
+    I18n.locale = params[:locale] || :'zh-CN'
   end
 end

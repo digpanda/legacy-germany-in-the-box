@@ -1,0 +1,48 @@
+de:
+  top_menu:
+    sign_in: Einloggen
+    sign_up: Registieren
+    sign_out: Ausloggen
+    my_cart: Einkaufswagen
+    my_account: Konto
+    my_personal: Person
+    my_bank: Zahlung
+    my_address: Adressen
+    my_order: Aufträge
+    my_collection: Favorit
+    view_cart: Einkaufswagen ansehen
+    checkout: Zur Kasse
+    empty_cart: Kein Produkt vorhanden
+    start: Start
+    popular_product: Produkte
+    language: Sprache
+    chinese: Chinesisch
+    german: Deutsch
+  footer:
+    copyright: Urheberrecht：RheinManufaktur © 2016
+  sign_in_dialog:
+    email: Email
+    password: Passwort
+    header: Einloggen
+    title: Herzlich willkommen zurück!
+    remember_me: Auf diesem Rechner merken
+    not_member_yet: Jetzt registieren
+    forgot_password: Passwort vergessen
+    captcha: CAPTCHA
+    sign_in: Los!
+  sign_up_dialog:
+    username: Username
+    email: Email
+    password: Passwort
+    password_confirmation: Passwort wiederholen
+    header: Registieren
+    title: Herzlich willkommen zu Ihrer Registierung!
+    captcha: CAPTCHA
+    sign_up: Los!
+    already_member: Ich bin breits Kunde
+    product_news: Newsletter erhalten
+  password_recovery_dialog:
+    header: Passwort wiederherstellen
+    title: Passwort vergessen? Keine Sorge und wir helfen Ihnen gern.
+    email: Email
+    ok: Neues Passwort vergeben

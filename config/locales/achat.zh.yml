@@ -1,0 +1,51 @@
+zh-CN:
+  top_menu:
+    sign_in: 登陆
+    sign_up: 注册
+    sign_out: 登出
+    my_cart: 购物车
+    my_account: 我的账户
+    my_personal: 个人信息
+    my_bank: 支付方式
+    my_address: 地址
+    my_order: 订单
+    my_collection: 我的收藏
+    view_cart: 浏览购物车
+    checkout: 去下单
+    empty_cart: 您还没有添加商品
+    start: 首页
+    popular_product: 热门商品
+    language: 语言
+    chinese: 中文
+    german: 德语
+  footer:
+    copyright: 版权所有：莱茵工厂 © 2016
+  sign_in_dialog:
+    email: 登陆邮箱
+    password: 密码
+    header: 用户登陆
+    title: 亲，欢迎您回来！快点登陆吧!
+    remember_me: 保持登陆
+    not_member_yet: 我要注册
+    forgot_password: 忘记密码
+    captcha: 验证码
+    sign_in: 确定
+  sign_up_dialog:
+    username: 用户昵称
+    email: 登陆邮箱
+    password: 密码
+    password_confirmation: 重复密码
+    header: 新用户注册
+    title: 生活良品，尽在莱茵。快点注册吧！
+    captcha: 验证码
+    sign_up: 确定
+    already_member: 已经注册
+    product_news: 订阅产品
+  password_recovery_dialog:
+    header: 密码恢复
+    title: 忘记密码？别担心，我们来帮你！
+    email: 登陆邮箱
+    ok: 获取新密码
+
+
+

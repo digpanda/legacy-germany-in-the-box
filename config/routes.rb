@@ -32,6 +32,8 @@ Rails.application.routes.draw do
 
   get '/',to: 'pages#home', as: 'home'
 
+  get '/set_session_locale/:locale', to: 'application#set_session_locale', as: 'set_session_locale'
+
   get 'popular_products', to: 'products#indexr', as: 'popular_products'
   post 'products/search', to: 'products#search_products', as: 'search_products'
   get '/category/:category_id/products', to: 'products#show_products_in_category', as: 'show_products_in_category'
