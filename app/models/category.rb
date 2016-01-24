@@ -4,7 +4,7 @@ class Category
   include Mongoid::Timestamps::Updated::Short
 
   field :name,  type: String
-  field :desc,  type: String
+  field :desc,  type: String # not needed
   field :code,  type: String
   field :cssc,  type: String
 

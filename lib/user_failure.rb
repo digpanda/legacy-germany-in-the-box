@@ -5,7 +5,7 @@ class UserFailure < Devise::FailureApp
 
   def respond
     if http_auth?
-      session.delete[:login_advice_counter]
+      session.delete(:login_advice_counter)
       http_auth
     else
       if session[:login_advice_counter].present?

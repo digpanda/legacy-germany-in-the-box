@@ -18,6 +18,7 @@ class Collection
 
   mount_uploader :img, AttachmentUploader
 
+
   protected
 
   def getuser

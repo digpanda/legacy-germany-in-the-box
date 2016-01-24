@@ -3,7 +3,7 @@ class CollectionsController < ApplicationController
 
   before_action :set_collection, except: [:create_and_add_to_collection, :is_product_in_user_collections, :remove_product, :toggle_product, :index, :gsearch, :colsearch, :likedcolls, :new, :savedcolls, :create, :matchedcollections, :mycolls, :indexft, :userinit]
 
-  before_action :authenticate_user!, :except => [:add_product]
+  before_action :authenticate_user!, :except => [:add_product, :indexft, :show]
 
   def create_and_add_to_collection
     cp = collection_params
@@ -100,11 +100,9 @@ class CollectionsController < ApplicationController
   end
 
   def indexft
-
-    @user = User.find('55bb6c3a69702d64d700000b')
+    @user = current_user
     $i = params[:to].to_i - params[:from].to_i
     @collections = Collection.skip(params[:from].to_i).limit($i)
-    @products = Product.skip(30).limit(10)
     respond_to do |format|
       format.html { render :index }
       format.json { render :index, status: :ok, location: @collection }

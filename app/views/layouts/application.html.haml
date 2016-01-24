@@ -22,7 +22,7 @@
     = stylesheet_link_tag 'couponia/css/boostrap.css'
     = stylesheet_link_tag 'couponia/css/font_awesome.css'
     = stylesheet_link_tag 'couponia/css/styles.css'
-    = stylesheet_link_tag 'couponia/css/ie.css'
+
     = stylesheet_link_tag 'couponia/css/mystyles.css'
 
     = stylesheet_link_tag 'leftmenu/style.css'
@@ -67,9 +67,10 @@
       %header.main
         .container
           .row
-            .col-md-5
+            .col-md-6
+              #flexnav-menu-button.flexnav-menu-button Menu
               %nav
-                %ul#flexnav_left.nav.nav-pills.flexnav{'data-breakpoint' => '800'}
+                %ul#flexnav.nav.nav-pills.flexnav{'data-breakpoint' => '800'}
                   %li{:class => params[:top_menu_active_part] ? (params[:top_menu_active_part] == :home ? 'active' : '') : 'active'}
                     %a{:href => "#{home_path}"}= I18n.t(:start, scope: :top_menu)
                   - get_root_level_categories_from_cache().each do |rc|
@@ -92,8 +93,7 @@
               %ul.login-register
                 %li.shopping-cart
                   %a{:href => "#{manage_cart_path}"}
-                    %i.fa.fa-shopping-cart>
-                    = I18n.t(:my_cart, scope: :top_menu)
+                    %i.fa.fa-shopping-cart= I18n.t(:my_cart, scope: :top_menu)
                     %span.numberCircle= current_order.total_amount
                   .shopping-cart-box
                     -if current_order.order_items.count > 0
@@ -107,12 +107,10 @@
                       %ul.list-inline.text-center
                         %li
                           %a{:href => "#{manage_cart_path}"}
-                            %i.fa.fa-shopping-cart
-                            = I18n.t(:view_cart, scope: :top_menu)
+                            %i.fa.fa-shopping-cart= I18n.t(:view_cart, scope: :top_menu)
                         %li
                           %a{:href => "#{manage_cart_path}"}
-                            %i.fa.fa-check-square
-                            = I18n.t(:checkout, scope: :top_menu)
+                            %i.fa.fa-check-square= I18n.t(:checkout, scope: :top_menu)
                     -else
                       %ul.list-inline.text-center
                         %li
@@ -122,35 +120,21 @@
                 - unless current_user
                   %li
                     %a.popup-text{ :id => 'sign_in_link', 'data-effect' => 'mfp-move-from-top', :href => '#login-dialog'}
-                      %i.fa.fa-sign-in
-                      = I18n.t(:sign_in, scope: :top_menu)
+                      %i.fa.fa-sign-in= I18n.t(:sign_in, scope: :top_menu)
                   %li
                     %a.popup-text{:id => 'sign_up_link', 'data-effect' => 'mfp-move-from-top', :href => '#register-dialog'}
-                      %i.fa.fa-edit
-                      = I18n.t(:sign_up, scope: :top_menu)
+                      %i.fa.fa-edit= I18n.t(:sign_up, scope: :top_menu)
                 - else
                   %li
                     %a{:href => "#{edit_user_path(current_user, :user_info_edit_part => :edit_collection)}"}
-                      %i.fa.fa-heart
-                      = I18n.t(:my_collection, scope: :top_menu)
-                %li
-                  .dropdown
-                    %a{:href => '#', 'data-toggle' => 'dropdown'}
-                      %i.fa.fa-language
-                      %span.caret
-                    %ul.dropdown-menu{:style => 'background-color:#333'}
-                      %li
-                        = link_to I18n.t(:chinese, scope: :top_menu), set_session_locale_path(:'zh-CN')
-                      %li
-                        = link_to I18n.t(:german, scope: :top_menu),  set_session_locale_path(:de)
-            - if current_user
-              .col-md-1
-                %nav
-                  %ul#flexnav_right.nav.nav-pills.flexnav{'data-breakpoint' => '800'}
-                    %li
-                      %a{ :href => "#{ edit_user_path current_user }" }
-                        = image_tag (current_user.pic.url.nil? ? 'icons/default_user_pic.png' : current_user.pic.url) , :style => 'width:32px;height:32px'
-                      %ul
+                      %i.fa.fa-heart= I18n.t(:my_collection, scope: :top_menu)
+                - if current_user
+                  %li
+                    .dropdown.nav.nav-pills
+                      %a{ 'data-toggle' => 'dropdown', :href => "#{ edit_user_path current_user }" }
+                        = image_tag (current_user.pic.url.nil? ? 'icons/default_user_pic.png' : current_user.pic.url) , :style => 'width:28px;height:28px'
+                        %span.caret
+                      %ul.dropdown-menu{:style => 'background-color:#333'}
                         %li
                           %a{ :href => "#{ edit_user_path(current_user, :user_info_edit_part => :edit_account) }" }
                             %i.fa.fa-key
@@ -179,6 +163,16 @@
                           %a{ :href => "#{ signout_path }" }
                             %i.fa.fa-sign-out
                             = I18n.t(:sign_out, scope: :top_menu)
+                %li.nav.nav-pills
+                  %a{:href => '#', 'data-toggle' => 'dropdown'}
+                    %i.fa.fa-language
+                    %span.caret
+                  %ul.dropdown-menu{:style => 'background-color:#333'}
+                    %li
+                      = link_to I18n.t(:chinese, scope: :top_menu), set_session_locale_path(:'zh-CN')
+                    %li
+                      = link_to I18n.t(:german, scope: :top_menu),  set_session_locale_path(:de)
+
       #login-dialog.mfp-with-anim.mfp-hide.mfp-dialog.clearfix.open-popup-link
         %i.fa.fa-sign-in.dialog-icon
         - if session[:login_advice_counter] and flash[:error].present?
