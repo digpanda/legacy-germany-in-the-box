@@ -39,6 +39,8 @@ gem 'jquery-ui-rails'
 
 gem 'china_city'
 
+gem 'mobvious-rails'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

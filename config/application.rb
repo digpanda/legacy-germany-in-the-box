@@ -6,6 +6,7 @@ require "action_controller/railtie"
 require "action_mailer/railtie"
 require "sprockets/railtie"
 require "rails/test_unit/railtie"
+require 'mobvious'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -29,6 +30,7 @@ module AChat
     #config.active_record.raise_in_transactional_callbacks = true
 
     config.autoload_paths += %W(#{config.root}/lib)
-    config.middleware.use (Mongoid::QueryCache::Middleware)
+    config.middleware.use Mongoid::QueryCache::Middleware
+    config.middleware.use Mobvious::Manager
   end
 end

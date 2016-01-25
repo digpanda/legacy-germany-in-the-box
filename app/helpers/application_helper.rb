@@ -1,5 +1,6 @@
 module ApplicationHelper
   include FunctionCache
+  include Mobvious::Rails::Helper
 
   def get_provinces
     ChinaCity.list

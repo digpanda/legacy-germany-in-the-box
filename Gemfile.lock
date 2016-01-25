@@ -127,6 +127,13 @@ GEM
     mini_magick (4.3.6)
     mini_portile2 (2.0.0)
     minitest (5.8.3)
+    mobileesp_converted (0.2.3)
+    mobvious (0.3.2)
+      mobileesp_converted (~> 0.2.0)
+      rack (>= 1.1.0)
+    mobvious-rails (0.1.2)
+      activesupport
+      mobvious
     mongo (2.2.0)
       bson (~> 4.0)
     mongoid (5.0.1)
@@ -273,6 +280,7 @@ DEPENDENCIES
   jquery-ui-rails
   mini_magick
   minitest (= 5.8.3)
+  mobvious-rails
   mongoid (~> 5.0.0)
   mongoid_search (~> 0.2.8)
   omniauth

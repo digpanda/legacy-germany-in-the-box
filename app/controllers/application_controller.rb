@@ -2,6 +2,7 @@ require 'base64_to_upload'
 
 class ApplicationController < ActionController::Base
   include FunctionCache
+  include Mobvious::Rails::Controller
 
   # reset captcha code after each request for security
   after_filter :reset_last_captcha_code!

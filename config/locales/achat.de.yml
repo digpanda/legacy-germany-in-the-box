@@ -1,5 +1,6 @@
 de:
   top_menu:
+    top_menu: Menü
     sign_in: Einloggen
     sign_up: Registieren
     sign_out: Ausloggen
@@ -10,7 +11,7 @@ de:
     my_address: Adressen
     my_order: Aufträge
     my_collection: Favorit
-    view_cart: Einkaufswagen ansehen
+    view_cart: Ansehen
     checkout: Zur Kasse
     empty_cart: Kein Produkt vorhanden
     start: Start

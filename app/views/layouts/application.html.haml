@@ -60,40 +60,43 @@
         }
       });
   %body
-    %nav.navbar-fixed-top
+    %nav{:class => "#{for_device_type :desktop do 'navbar-fixed-top' end}" }
       .container
         %a.shared_header_logo{:href => "#{home_path}"}
-          =image_tag  'icons/RMlogo_orig.png', :style => 'width:80px;height:24px'
+          - for_device_type :desktop do
+            = image_tag  'icons/RMlogo_orig.png', :style => 'width:80px;height:24px'
       %header.main
         .container
           .row
             .col-md-6
-              #flexnav-menu-button.flexnav-menu-button Menu
-              %nav
-                %ul#flexnav.nav.nav-pills.flexnav{'data-breakpoint' => '800'}
-                  %li{:class => params[:top_menu_active_part] ? (params[:top_menu_active_part] == :home ? 'active' : '') : 'active'}
-                    %a{:href => "#{home_path}"}= I18n.t(:start, scope: :top_menu)
-                  - get_root_level_categories_from_cache().each do |rc|
-                    %li{:class => params[:top_menu_active_part] == :fashion ? 'active' : ''}
-                      %a{:href => '#'}= rc.name
-                      %ul
-                        - get_first_level_categories_from_cache(rc).each do |fc|
-                          %li
-                            - if get_second_level_categories_from_cache(fc).count > 0
-                              %a{:href => '#'}= fc.name
-                              %ul
-                                - get_second_level_categories_from_cache(fc).each do |sc|
-                                  %li
-                                    %a{:href => "#{show_products_in_category_path(sc.id)}"}= sc.name
-                            - else
-                              %a{:href => "#{show_products_in_category_path(fc.id)}" }= fc.name
-                  %li{:class => params[:top_menu_active_part] == :product ? 'active' : ''}
-                    =link_to I18n.t(:popular_product, scope: :top_menu), popular_products_path
+              #flexnav-menu-button.flexnav-menu-button
+                - for_device_type :tablet, :mobile do
+                  = image_tag  'icons/RMlogo_orig.png', :style => 'width:80px;height:24px'
+              %ul#flexnav.nav.nav-pills.flexnav{'data-breakpoint' => '800'}
+                %li{:class => params[:top_menu_active_part] ? (params[:top_menu_active_part] == :home ? 'active' : '') : 'active'}
+                  %a{:href => "#{home_path}"}= I18n.t(:start, scope: :top_menu)
+                - get_root_level_categories_from_cache().each do |rc|
+                  %li{:class => params[:top_menu_active_part] == :fashion ? 'active' : ''}
+                    %a{:href => '#'}= rc.name
+                    %ul
+                      - get_first_level_categories_from_cache(rc).each do |fc|
+                        %li
+                          - if get_second_level_categories_from_cache(fc).count > 0
+                            %a{:href => '#'}= fc.name
+                            %ul
+                              - get_second_level_categories_from_cache(fc).each do |sc|
+                                %li
+                                  %a{:href => "#{show_products_in_category_path(sc.id)}"}= sc.name
+                          - else
+                            %a{:href => "#{show_products_in_category_path(fc.id)}" }= fc.name
+                %li{:class => params[:top_menu_active_part] == :product ? 'active' : ''}
+                  =link_to I18n.t(:popular_product, scope: :top_menu), popular_products_path
             .col-md-6
               %ul.login-register
                 %li.shopping-cart
-                  %a{:href => "#{manage_cart_path}"}
-                    %i.fa.fa-shopping-cart= I18n.t(:my_cart, scope: :top_menu)
+                  %a{:href => "#{manage_cart_path}", :title => "#{I18n.t(:my_cart, scope: :top_menu)}"}
+                    %i.fa.fa-shopping-cart
+                    = for_device_type :desktop do I18n.t(:my_cart, scope: :top_menu) end
                     %span.numberCircle= current_order.total_amount
                   .shopping-cart-box
                     -if current_order.order_items.count > 0
@@ -119,53 +122,56 @@
                             = I18n.t(:empty_cart, scope: :top_menu)
                 - unless current_user
                   %li
-                    %a.popup-text{ :id => 'sign_in_link', 'data-effect' => 'mfp-move-from-top', :href => '#login-dialog'}
-                      %i.fa.fa-sign-in= I18n.t(:sign_in, scope: :top_menu)
+                    %a.popup-text{ :id => 'sign_in_link', 'data-effect' => 'mfp-move-from-top', :href => '#login-dialog', :title => "#{I18n.t(:sign_in, scope: :top_menu)}"}
+                      %i.fa.fa-sign-in
+                      = for_device_type :desktop do I18n.t(:sign_in, scope: :top_menu) end
                   %li
-                    %a.popup-text{:id => 'sign_up_link', 'data-effect' => 'mfp-move-from-top', :href => '#register-dialog'}
-                      %i.fa.fa-edit= I18n.t(:sign_up, scope: :top_menu)
+                    %a.popup-text{:id => 'sign_up_link', 'data-effect' => 'mfp-move-from-top', :href => '#register-dialog', :title => "#{I18n.t(:sign_up, scope: :top_menu)}"}
+                      %i.fa.fa-edit
+                      = for_device_type :desktop do I18n.t(:sign_up, scope: :top_menu) end
                 - else
                   %li
-                    %a{:href => "#{edit_user_path(current_user, :user_info_edit_part => :edit_collection)}"}
-                      %i.fa.fa-heart= I18n.t(:my_collection, scope: :top_menu)
+                    %a{:href => "#{edit_user_path(current_user, :user_info_edit_part => :edit_collection)}",  :title => "#{I18n.t(:my_collection, scope: :top_menu)}"}
+                      %i.fa.fa-heart
+                      = for_device_type :desktop do I18n.t(:my_collection, scope: :top_menu) end
                 - if current_user
-                  %li
-                    .dropdown.nav.nav-pills
-                      %a{ 'data-toggle' => 'dropdown', :href => "#{ edit_user_path current_user }" }
-                        = image_tag (current_user.pic.url.nil? ? 'icons/default_user_pic.png' : current_user.pic.url) , :style => 'width:28px;height:28px'
-                        %span.caret
-                      %ul.dropdown-menu{:style => 'background-color:#333'}
-                        %li
-                          %a{ :href => "#{ edit_user_path(current_user, :user_info_edit_part => :edit_account) }" }
-                            %i.fa.fa-key
-                            = I18n.t(:my_account, scope: :top_menu)
-                        %li
-                          %a{ :href => "#{ edit_user_path(current_user, :user_info_edit_part => :edit_personal) }" }
-                            %i.fa.fa-user
-                            = I18n.t(:my_personal, scope: :top_menu)
-                        %li
-                          %a{ :href => "#{ edit_user_path(current_user, :user_info_edit_part => :edit_address) }" }
-                            %i.fa.fa-globe
-                            = I18n.t(:my_address, scope: :top_menu)
-                        %li
-                          %a{ :href => "#{ edit_user_path(current_user, :user_info_edit_part => :edit_bank) }" }
-                            %i.fa.fa-university
-                            = I18n.t(:my_bank, scope: :top_menu)
-                        %li
-                          %a{ :href => "#{ edit_user_path(current_user, :user_info_edit_part => :edit_order) }" }
-                            %i.fa.fa-truck
-                            = I18n.t(:my_order, scope: :top_menu)
-                        %li
-                          %a{ :href => "#{ edit_user_path(current_user, :user_info_edit_part => :edit_collection) }" }
-                            %i.fa.fa-eye
-                            = I18n.t(:my_collection, scope: :top_menu)
-                        %li
-                          %a{ :href => "#{ signout_path }" }
-                            %i.fa.fa-sign-out
-                            = I18n.t(:sign_out, scope: :top_menu)
-                %li.nav.nav-pills
-                  %a{:href => '#', 'data-toggle' => 'dropdown'}
+                  %li.dropdown
+                    %a{ 'data-toggle' => 'dropdown', :href => "#{ edit_user_path current_user }" }
+                      = image_tag (current_user.pic.url.nil? ? 'icons/default_user_pic.png' : current_user.pic.url) , :style => 'width:24px;height:24px'
+                      %span.caret
+                    %ul.dropdown-menu{:style => 'background-color:#333'}
+                      %li
+                        %a{ :href => "#{ edit_user_path(current_user, :user_info_edit_part => :edit_account) }" }
+                          %i.fa.fa-key
+                          = I18n.t(:my_account, scope: :top_menu)
+                      %li
+                        %a{ :href => "#{ edit_user_path(current_user, :user_info_edit_part => :edit_personal) }" }
+                          %i.fa.fa-user
+                          = I18n.t(:my_personal, scope: :top_menu)
+                      %li
+                        %a{ :href => "#{ edit_user_path(current_user, :user_info_edit_part => :edit_address) }" }
+                          %i.fa.fa-globe
+                          = I18n.t(:my_address, scope: :top_menu)
+                      %li
+                        %a{ :href => "#{ edit_user_path(current_user, :user_info_edit_part => :edit_bank) }" }
+                          %i.fa.fa-university
+                          = I18n.t(:my_bank, scope: :top_menu)
+                      %li
+                        %a{ :href => "#{ edit_user_path(current_user, :user_info_edit_part => :edit_order) }" }
+                          %i.fa.fa-truck
+                          = I18n.t(:my_order, scope: :top_menu)
+                      %li
+                        %a{ :href => "#{ edit_user_path(current_user, :user_info_edit_part => :edit_collection) }" }
+                          %i.fa.fa-eye
+                          = I18n.t(:my_collection, scope: :top_menu)
+                      %li
+                        %a{ :href => "#{ signout_path }" }
+                          %i.fa.fa-sign-out
+                          = I18n.t(:sign_out, scope: :top_menu)
+                %li.dropdown
+                  %a{:href => '#', 'data-toggle' => 'dropdown',  :title => "#{I18n.t(:sign_in, scope: :top_menu)}" }
                     %i.fa.fa-language
+                    = for_device_type :desktop do I18n.t(:language, scope: :top_menu) end
                     %span.caret
                   %ul.dropdown-menu{:style => 'background-color:#333'}
                     %li
