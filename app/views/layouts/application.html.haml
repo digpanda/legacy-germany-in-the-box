@@ -91,6 +91,14 @@
                             %a{:href => "#{show_products_in_category_path(fc.id)}" }= fc.name
                 %li{:class => params[:top_menu_active_part] == :product ? 'active' : ''}
                   =link_to I18n.t(:popular_product, scope: :top_menu), popular_products_path
+                - for_device_type :table, :mobile do
+                  %li
+                    = form_tag search_products_path, :method => :post, :id => 'search_products_form', :class => 'form-group' do
+                      %label
+                        %i.fa.fa-search
+                        %span= I18n.t(:search_prompt, scope: :popular_products)
+                      =text_field_tag :products_search_area, params[:products_search_area], :placeholder => "#{ I18n.t(:search_placeholder, scope: :popular_products) }", :class => 'form-control'
+
             .col-md-6
               %ul.login-register
                 %li.shopping-cart
@@ -136,7 +144,7 @@
                       = for_device_type :desktop do I18n.t(:my_collection, scope: :top_menu) end
                 - if current_user
                   %li.dropdown
-                    %a{ 'data-toggle' => 'dropdown', :href => "#{ edit_user_path current_user }" }
+                    %a{ 'data-toggle' => 'dropdown', :href => "#{ edit_user_path current_user }", :title => "#{I18n.t(:user_profile, scope: :top_menu)}"}
                       = image_tag (current_user.pic.url.nil? ? 'icons/default_user_pic.png' : current_user.pic.url) , :style => 'width:24px;height:24px'
                       %span.caret
                     %ul.dropdown-menu{:style => 'background-color:#333'}
@@ -169,7 +177,7 @@
                           %i.fa.fa-sign-out
                           = I18n.t(:sign_out, scope: :top_menu)
                 %li.dropdown
-                  %a{:href => '#', 'data-toggle' => 'dropdown',  :title => "#{I18n.t(:sign_in, scope: :top_menu)}" }
+                  %a{:href => '#', 'data-toggle' => 'dropdown',  :title => "#{I18n.t(:language, scope: :top_menu)}" }
                     %i.fa.fa-language
                     = for_device_type :desktop do I18n.t(:language, scope: :top_menu) end
                     %span.caret
@@ -253,13 +261,14 @@
       - if @show_search_area.present? and @show_search_area
         =yield :search_area
 
-    - if @show_search_area.present? and @show_search_area
-      .gap
-      .gap
+    - for_device_type :desktop do
+      - if @show_search_area.present? and @show_search_area
+        .row{ :style => 'height: 140px' }
+      - else
+        .row{ :style => 'height: 80px' }
 
-    .gap
-    .gap
-    .gap
+    - for_device_type :tablet, :mobile do
+      .row{ :style => 'height: 30px' }
 
     .row
       - if flash[:error]
