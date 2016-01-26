@@ -270,23 +270,25 @@
     - for_device_type :tablet, :mobile do
       .row{ :style => 'height: 30px' }
 
-    .row
-      - if flash[:error]
-        .alert.alert-danger.pull-right.fade.in{:role => 'alert'}
-          %a.close{'aria-label' => 'close', 'data-dismiss' => 'alert', :href => '#'} &times;
-          = flash[:error]
-      - elsif flash[:info]
-        .alert.alert-info.pull-right.fade.in{:role => 'alert'}
-          %a.close{'aria-label' => 'close', 'data-dismiss' => 'alert', :href => '#'} &times;
-          = flash[:info]
-      - elsif flash[:warning]
-        .alert.alert-warning.pull-right.fade.in{:role => 'alert'}
-          %a.close{'aria-label' => 'close', 'data-dismiss' => 'alert', :href => '#'} &times;
-          = flash[:warning]
-      - elsif flash[:success]
-        .alert.alert-success.pull-right.fade.in{:role => 'alert'}
-          %a.close{'aria-label' => 'close', 'data-dismiss' => 'alert', :href => '#'} &times;
-          = flash[:success]
+    - for_device_type :desktop, :tablet do
+      .row
+        .col-md-3.pull-right
+          - if flash[:error]
+            .alert.alert-danger.fade.in{:role => 'alert'}
+              %a.close{'aria-label' => 'close', 'data-dismiss' => 'alert', :href => '#'} &times;
+              = flash[:error]
+          - elsif flash[:info]
+            .alert.alert-info.fade.in{:role => 'alert'}
+              %a.close{'aria-label' => 'close', 'data-dismiss' => 'alert', :href => '#'} &times;
+              = flash[:info]
+          - elsif flash[:warning]
+            .alert.alert-warning.fade.in{:role => 'alert'}
+              %a.close{'aria-label' => 'close', 'data-dismiss' => 'alert', :href => '#'} &times;
+              = flash[:warning]
+          - elsif flash[:success]
+            .alert.alert-success.fade.in{:role => 'alert'}
+              %a.close{'aria-label' => 'close', 'data-dismiss' => 'alert', :href => '#'} &times;
+              = flash[:success]
 
     .container
       = yield

@@ -29,11 +29,11 @@
 - for_device_type :mobile, :tablet do
   - if current_user.orders.count > 0
     - current_user.orders.each do |o|
-      %table.table
+      %table.table{:style => 'table-layout:fixed' }
         %theader
           %tr.info
             %th= I18n.t(:id, scope: :edit_order)
-            %td= link_to o.id, order_path(o)
+            %td{ :style => 'word-wrap:break-word; overflow-wrap: break-word;' }= link_to o.id, order_path(o)
         %tbody
           %tr
             %th= I18n.t(:status, scope: :edit_order)
