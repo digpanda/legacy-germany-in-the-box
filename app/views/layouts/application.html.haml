@@ -226,27 +226,42 @@
         - elsif session[:signup_advice_counter] and flash[:info].present?
           %h5{ :style => 'color:blue' }= flash[:info]
         - else
-          %h3= I18n.t(:header, scope: :sign_up_dialog)
-          %h5= I18n.t(:title, scope: :sign_up_dialog)
+          - for_device_type :desktop do
+            %h3= I18n.t(:header, scope: :sign_up_dialog)
+            %h5= I18n.t(:title, scope: :sign_up_dialog)
+          - for_device_type :mobile, :tablet do
+            %h4= I18n.t(:header, scope: :sign_up_dialog)
         = form_tag user_registration_path, :method => :post, :class => 'dialog-form' do
-          .form-group
+          - for_device_type :desktop do
+            .form-group
+              = text_field_tag 'user[username]', nil, :class => 'form-control', :placeholder => I18n.t(:username, scope: :sign_up_dialog)
+            .form-group
+              = email_field_tag 'user[email]', nil, :class => 'form-control', :placeholder => I18n.t(:email, scope: :sign_up_dialog)
+            .form-group
+              = password_field_tag 'user[password]', nil, :class => 'form-control', :placeholder => I18n.t(:password, scope: :sign_up_dialog)
+            .form-group
+              = password_field_tag 'user[password_confirmation]', nil, :class => 'form-control', :placeholder => I18n.t(:password_confirmation, scope: :sign_up_dialog)
+            .form-group
+              = captcha_tag
+            .form-group.list-inline
+              %label= I18n.t(:captcha, scope: :sign_up_dialog)
+              = text_field_tag :captcha, '', :autocomplete => :off
+            .checkbox
+              %label
+                %input{:type => 'checkbox'}>
+                = I18n.t(:product_news, scope: :sign_up_dialog)
+            = submit_tag I18n.t(:sign_up, scope: :sign_up_dialog), :class => 'btn btn-primary'
+          - for_device_type :mobile, :tablet do
             = text_field_tag 'user[username]', nil, :class => 'form-control', :placeholder => I18n.t(:username, scope: :sign_up_dialog)
-          .form-group
             = email_field_tag 'user[email]', nil, :class => 'form-control', :placeholder => I18n.t(:email, scope: :sign_up_dialog)
-          .form-group
             = password_field_tag 'user[password]', nil, :class => 'form-control', :placeholder => I18n.t(:password, scope: :sign_up_dialog)
-          .form-group
             = password_field_tag 'user[password_confirmation]', nil, :class => 'form-control', :placeholder => I18n.t(:password_confirmation, scope: :sign_up_dialog)
-          .form-group
             = captcha_tag
-          .form-group
-            %label= I18n.t(:captcha, scope: :sign_up_dialog)
-            = text_field_tag :captcha, '', :autocomplete => :off
-          .checkbox
-            %label
-              %input{:type => 'checkbox'}>/
-              = I18n.t(:product_news, scope: :sign_up_dialog)
-          = submit_tag I18n.t(:sign_up, scope: :sign_up_dialog), :class => 'btn btn-primary'
+            = text_field_tag :captcha, '', :autocomplete => :off, :placeholder => I18n.t(:captcha, scope: :sign_up_dialog)
+            .checkbox
+              %label
+                %input{:type => 'checkbox'}= I18n.t(:product_news, scope: :sign_up_dialog)
+            = submit_tag I18n.t(:sign_up, scope: :sign_up_dialog), :class => 'btn btn-primary'
         %ul.dialog-alt-links
           %li
             %a.popup-text{'data-effect' => 'mfp-zoom-out', :href => '#login-dialog'}= I18n.t(:already_member, scope: :sign_up_dialog)

@@ -1,26 +1,56 @@
-%table.table.cart-table
-  %thead
-    %tr
-      %th= I18n.t(:item, scope: :cart)
-      %th= I18n.t(:name, scope: :cart)
-      %th= I18n.t(:quantity, scope: :cart)
-      %th= I18n.t(:unit_price, scope: :cart)
-      %th= I18n.t(:operations, scope: :cart)
-  %tbody
-    - @order.order_items.each do |i|
+- for_device_type :desktop, :tablet do
+  %table.table.cart-table
+    %thead
       %tr
-        %td.cart-item-image
-          %a{:href => "#"}
-            %img{:src => "#{i.product.img}", :style => 'weight:48px;width:48px'}
-        %td
-          %a{:href => "#"}= i.product.name
-        %td.cart-item-quantity
+        %th= I18n.t(:item, scope: :cart)
+        %th= I18n.t(:name, scope: :cart)
+        %th= I18n.t(:quantity, scope: :cart)
+        %th= I18n.t(:unit_price, scope: :cart)
+        %th= I18n.t(:operations, scope: :cart)
+    %tbody
+      - @order.order_items.each do |i|
+        %tr
+          %td.cart-item-image
+            %a{:href => "#"}
+              %img{:src => "#{i.product.img}", :style => 'weight:48px;width:48px'}
+          %td
+            %a{:href => "#"}= i.product.name
+          %td.cart-item-quantity
+            - unless @readonly
+              %i.fa.fa-minus.cart-item-minus
+            %input.cart-quantity{:id => "cart-quantity-of-product-#{i.product.id}", :name => "cart-quantity-of-product-#{i.product.id}", :type => 'text', :value => "#{i.quantity}", :disabled => "#{@readonly}"}
+            - unless @readonly
+              %i.fa.fa-plus.cart-item-plus
+          %td= "$#{i.product.price}"
           - unless @readonly
-            %i.fa.fa-minus.cart-item-minus
-          %input.cart-quantity{:id => "cart-quantity-of-product-#{i.product.id}", :name => "cart-quantity-of-product-#{i.product.id}", :type => 'text', :value => "#{i.quantity}", :disabled => "#{@readonly}"}
+            %td.cart-item-remove
+              =link_to '', '#', :class => 'fa fa-times', :onclick => "$('#cart-quantity-of-product-#{i.product.id}').val(0); $('#orders_adjust_products_amount').submit()"
+- for_device_type :mobile do
+  %table.table.cart-table
+    %tbody
+      - @order.order_items.each do |i|
+        %tr.info
+          %th= I18n.t(:item, scope: :cart)
+          %td.cart-item-image
+            %a{:href => "#"}
+              %img{:src => "#{i.product.img}", :style => 'weight:48px;width:48px'}
+        %tr
+          %th= I18n.t(:name, scope: :cart)
+          %td
+            %a{:href => "#"}= i.product.name
+        %tr
+          %th= I18n.t(:quantity, scope: :cart)
+          %td.cart-item-quantity
+            - unless @readonly
+              %i.fa.fa-minus.cart-item-minus
+            %input.cart-quantity{:id => "cart-quantity-of-product-#{i.product.id}", :name => "cart-quantity-of-product-#{i.product.id}", :type => 'text', :value => "#{i.quantity}", :disabled => "#{@readonly}"}
+            - unless @readonly
+              %i.fa.fa-plus.cart-item-plus
+        %tr
+          %th= I18n.t(:unit_price, scope: :cart)
+          %td= "$#{i.product.price}"
+        %tr
+          %th= I18n.t(:operations, scope: :cart)
           - unless @readonly
-            %i.fa.fa-plus.cart-item-plus
-        %td= "$#{i.product.price}"
-        - unless @readonly
-          %td.cart-item-remove
-            =link_to '', '#', :class => 'fa fa-times', :onclick => "$('#cart-quantity-of-product-#{i.product.id}').val(0); $('#orders_adjust_products_amount').submit()"
+            %td.cart-item-remove
+              =link_to '', '#', :class => 'fa fa-times', :onclick => "$('#cart-quantity-of-product-#{i.product.id}').val(0); $('#orders_adjust_products_amount').submit()"

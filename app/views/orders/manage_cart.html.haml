@@ -1,24 +1,50 @@
-- if current_order.order_items.count > 0
-  .row
-    .col-md-8
+- for_device_type :mobile, :tablet do
+  - if current_order.order_items.count > 0
+    .row
+      %table.table
+        %tr.alert-success
+          %th= I18n.t(:subtotal, scope: :cart)
+          %td= "$#{current_order.total_price}"
+        %tr
+          %th= I18n.t(:shipping, scope: :cart)
+          %td $0.00
+        %tr
+          %th= I18n.t(:taxes, scope: :cart)
+          %td $0.00
+        %tr
+          %th= I18n.t(:total_price, scope: :cart)
+          %td= "$#{current_order.total_price}"
+    .row
       = form_tag adjust_products_amount_in_order_path, :id => 'orders_adjust_products_amount' do
         = render 'cart'
         =submit_tag I18n.t(:update_cart, scope: :cart), :class => 'btn btn-primary'
         =link_to I18n.t(:set_delivery_destination, scope: :cart), set_address_payment_path, :class => 'btn btn-primary'
-    .col-md-4
-      %ul.cart-total-list
-        %li
-          %span= I18n.t(:subtotal, scope: :cart)
-          %span= "$#{current_order.total_price}"
-        %li
-          %span= I18n.t(:shipping, scope: :cart)
-          %span $0.00
-        %li
-          %span= I18n.t(:taxes, scope: :cart)
-          %span $0.00
-        %li
-          %span= I18n.t(:total_price, scope: :cart)
-          %span= "$#{current_order.total_price}"
-- else
-  .row
-    %h4= I18n.t(:no_products, scope: :cart)
+  - else
+    .row
+      %h4= I18n.t(:no_products, scope: :cart)
+
+- for_device_type :desktop do
+  - if current_order.order_items.count > 0
+    .row
+      .col-md-8
+        = form_tag adjust_products_amount_in_order_path, :id => 'orders_adjust_products_amount' do
+          = render 'cart'
+          =submit_tag I18n.t(:update_cart, scope: :cart), :class => 'btn btn-primary'
+          =link_to I18n.t(:set_delivery_destination, scope: :cart), set_address_payment_path, :class => 'btn btn-primary'
+      .col-md-4
+        %ul.cart-total-list
+          %li
+            %span= I18n.t(:subtotal, scope: :cart)
+            %span= "$#{current_order.total_price}"
+          %li
+            %span= I18n.t(:shipping, scope: :cart)
+            %span $0.00
+          %li
+            %span= I18n.t(:taxes, scope: :cart)
+            %span $0.00
+          %li
+            %span= I18n.t(:total_price, scope: :cart)
+            %span= "$#{current_order.total_price}"
+  - else
+    .row
+      %h4= I18n.t(:no_products, scope: :cart)

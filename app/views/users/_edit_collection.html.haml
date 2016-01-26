@@ -1,4 +1,4 @@
-%a.btn.btn-primary.btn-lg{ :href => edit_user_path(current_user, :user_info_edit_part => :edit_collection_new) }
+%a.btn.btn-primary{ :class => "#{for_device_type :desktop do 'btn-lg' end}",  :href => edit_user_path(current_user, :user_info_edit_part => :edit_collection_new) }
   %i.fa.fa-plus-circle
   = I18n.t(:new, scope: :edit_collection)
 
@@ -13,10 +13,14 @@
           .btn-group
             %a{ 'data-parent' => '#collection_panel', 'data-toggle' => 'collapse', :href => "#collection_collapse_#{c.id}", :style => 'color: black; text-decoration: underline'}
               %i{:class => "fa #{c.public ? 'fa-users' : 'fa-user' }"}
-              = "#{i+1}. #{c.name} #{c.public ? "(#{I18n.t(:public, scope: :edit_collection)})" : '' }"
+              = "#{i+1}. #{c.name} #{c.public ? "(#{I18n.t(:public, scope: :edit_collection)})" : '' }".truncate(20)
           .btn-group.pull-right
-            = link_to I18n.t(:edit, scope: :edit_collection), edit_user_path(current_user, :user_info_edit_part => :edit_collection_update, :collection_id => c.id) , :class => 'fa fa-edit btn'
-            = link_to I18n.t(:remove, scope: :edit_collection), collection_path(c.id), method: :delete, data: { confirm: "#{I18n.t(:delete_collection_message, scope: :edit_collection)}" }, :class => 'fa fa-times-circle btn'
+            - for_device_type :desktop, :tablet do
+              = link_to I18n.t(:edit, scope: :edit_collection), edit_user_path(current_user, :user_info_edit_part => :edit_collection_update, :collection_id => c.id) , :class => 'fa fa-edit btn'
+              = link_to I18n.t(:remove, scope: :edit_collection), collection_path(c.id), method: :delete, data: { confirm: "#{I18n.t(:delete_collection_message, scope: :edit_collection)}" }, :class => 'fa fa-times-circle btn'
+            - for_device_type :mobile do
+              = link_to '', edit_user_path(current_user, :user_info_edit_part => :edit_collection_update, :collection_id => c.id) , :class => 'fa fa-edit btn'
+              = link_to '', collection_path(c.id), method: :delete, data: { confirm: "#{I18n.t(:delete_collection_message, scope: :edit_collection)}" }, :class => 'fa fa-times-circle btn'
       .panel-collapse.collapse{:id => "collection_collapse_#{c.id}", :class => i==0 ? 'in' : ''}
         .panel-body
           - if c.products.count == 0
