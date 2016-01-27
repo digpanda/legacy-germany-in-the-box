@@ -19,6 +19,7 @@ zh-CN:
     language: 语言
     chinese: 中文
     german: 德语
+    user_profile: 用户概要
   footer:
     copyright: 版权所有：莱茵工厂 © 2016
   sign_in_dialog:
@@ -87,11 +88,11 @@ zh-CN:
     delete_address_message: 确定删除所选地址？
   edit_order:
     no_order: 您还没有任何订单
-    id: 订单编号
-    status: 订单状态
+    id: 订单号
+    status: 状态
     total_price: 总计
-    created_at: 创建时间
-    updated_at: 修改时间
+    created_at: 创建于
+    updated_at: 修改于
     operations: 操作
     delete: 删除
     continue: 继续
