@@ -49,7 +49,7 @@
   - else
     - for_device_type :mobile, :tablet do
       - @products.each do |p|
-        .fotorama{"data-allowfullscreen" => "1", "data-nav" => "thumbs", "data-thumbheight" => "96", "data-thumbwidth" => "96"}
+        .fotorama{'data-allowfullscreen' => '1', 'data-nav' => 'thumbs', 'data-thumbheight' => '96', "data-thumbwidth" => '96'}
           =image_tag p.imglg
           =image_tag p.img
           =image_tag p.img
@@ -60,63 +60,64 @@
             %h4=link_to "Shop: #{p.shop.name}", p.shop
           %h4= p.name
           %p.text-smaller.text-muted= p.desc
+          %h5.product-info-price= "$#{p.price}"
 
-        .btn-toolbar
-          .btn-group
-            - if user_signed_in?
-              .dropdown
-                %a.btn.dropdown-toggle{:id => "dropdown_toggle_#{p.id}", 'data-toggle' => 'dropdown', :type => 'button', :class => "#{in_user_collections?(p) ? 'btn-success' : 'btn-primary' }", :title => "#{I18n.t(:add_to_favorite, scope: :popular_products)}" }
-                  %i.fa.fa-heart
-                  %span.caret
-                %ul.dropdown-menu.scrollable-menu
-                  - current_user.oCollections.each do |c|
+          .btn-toolbar
+            .col-xs-4
+              = form_tag add_product_to_order_path(p) do
+                %button.btn.btn-primary.btn-small{ :type => 'submit', :title => "#{I18n.t(:add_to_cart, scope: :popular_products)}"}
+                  %i.fa.fa-shopping-cart
+
+            .col-xs-4
+              - if user_signed_in?
+                .dropdown
+                  %a.btn.dropdown-toggle.btn-small{:id => "dropdown_toggle_#{p.id}", 'data-toggle' => 'dropdown', :type => 'button', :class => "#{in_user_collections?(p) ? 'btn-success' : 'btn-primary' }", :title => "#{I18n.t(:add_to_favorite, scope: :popular_products)}" }
+                    %i.fa.fa-heart
+                    %span.caret
+                  %ul.dropdown-menu.scrollable-menu
+                    - current_user.oCollections.each do |c|
+                      %li
+                        %label
+                          = check_box_tag "collection_checkbox_#{c.id}", c.products.include?(p), c.products.include?(p), { :onclick => "#{generate_toggle_product_in_collection_js(c.id, p.id)}" }
+                          %i{ :class => "#{c.public ? 'fa fa-users' : 'fa fa-user'}" }= c.name
+              - else
+                .dropdown
+                  %a.btn.btn-default.btn-small{:href => '#', 'data-toggle' => 'dropdown', 'data-placement' => 'bottom', :title => "#{I18n.t(:add_to_favorite, scope: :popular_products)}" }
+                    %i.fa.fa-heart
+                    %span.caret
+                  %btn.dropdown-menu
                     %li
-                      %label
-                        = check_box_tag "collection_checkbox_#{c.id}", c.products.include?(p), c.products.include?(p), { :onclick => "#{generate_toggle_product_in_collection_js(c.id, p.id)}" }
-                        %i{ :class => "#{c.public ? 'fa fa-users' : 'fa fa-user'}" }= c.name
-            - else
-              .dropdown
-                %a.btn.btn-default{:href => '#', 'data-toggle' => 'dropdown', 'data-placement' => 'bottom', :title => "#{I18n.t(:add_to_favorite, scope: :popular_products)}" }
-                  %i.fa.fa-heart
-                  %span.caret
-                %btn.dropdown-menu
-                  %li{:style=>'min-width:250px'}
-                    .col-md-6
-                      = link_to I18n.t(:sign_in, scope: :top_menu), user_session_path, :class => 'fa fa-sign-in', :style => 'color:black; text-decoration: underline'
-                    .col-md-6
-                      = link_to I18n.t(:sign_out, scope: :top_menu),  new_user_registration_path, :class => 'fa fa-edit', :style => 'color:black; text-decoration: underline'
+                      .col-md-6
+                        = link_to I18n.t(:sign_in, scope: :top_menu), user_session_path, :class => 'fa fa-sign-in', :style => 'color:black; text-decoration: underline'
+                      .col-md-6
+                        = link_to I18n.t(:sign_up, scope: :top_menu),  new_user_registration_path, :class => 'fa fa-edit', :style => 'color:black; text-decoration: underline'
 
-            - if user_signed_in?
-              .dropdown
-                %a.btn.btn-primary{ 'data-toggle' => 'dropdown', :id => "create_and_add_to_collection_dropdown_button_#{p.id}" , :title => "#{I18n.t(:create_and_add_to_favorite, scope: :popular_products)}" }
-                  %i.fa.fa-share
-                  %span.caret
-                %ul.dropdown-menu
-                  %li
-                    = form_tag '#', :style=>'min-width:300px;margin:4px', :id => "create_and_add_to_collection_form_#{p.id}" do
-                      = text_field_tag 'collection[name]', nil, :placeholder => "#{I18n.t(:new_favorite, scope: :popular_products)}",  :id => "create_and_add_to_collection_form_input_name_#{p.id}", :autocomplete => :off
-                      %label{ :style => 'margin:4px'}
-                        = check_box_tag 'collection[public]'
-                        %i.fa.fa-users{'data-toggle' => 'tooltip', 'data-placement' => 'bottom', :title => 'public' }
-                      = hidden_field_tag :product_id, "#{p.id}"
-                      =submit_tag I18n.t(:create_favorite, scope: :popular_products), :class => 'btn btn-primary', :onclick => "#{generate_create_and_add_to_collection_js(p.id)}"
-            - else
-              .dropdown
-                %a.btn.btn-default{:href => '#', 'data-toggle' => 'dropdown', 'data-placement' => 'bottom', :title => "#{I18n.t(:create_and_add_to_favorite, scope: :popular_products)}" }
-                  %i.fa.fa-share
-                  %span.caret
-                %ul.dropdown-menu
-                  %li{:style=>'min-width:250px'}
-                    .col-md-6
-                      = link_to I18n.t(:sign_in, scope: :top_menu), user_session_path, :class => 'fa fa-sign-in', :style => 'color:black; text-decoration: underline'
-                    .col-md-6
-                      = link_to  I18n.t(:sign_up, scope: :top_menu),  new_user_registration_path, :class => 'fa fa-edit', :style => 'color:black; text-decoration: underline'
-
-          .btn-group.pull-right
-            = form_tag add_product_to_order_path(p) do
-              %button.btn.btn-primary{ :type => 'submit', :title => "#{I18n.t(:add_to_cart, scope: :popular_products)}"}
-                %i.fa.fa-shopping-cart
-                ="$#{p.price}"
+            .col-xs-4
+              - if user_signed_in?
+                .dropdown
+                  %a.btn.btn-primary.btn-small{ 'data-toggle' => 'dropdown', :id => "create_and_add_to_collection_dropdown_button_#{p.id}" , :title => "#{I18n.t(:create_and_add_to_favorite, scope: :popular_products)}" }
+                    %i.fa.fa-share
+                    %span.caret
+                  %ul.dropdown-menu
+                    %li
+                      = form_tag '#', :style=>'min-width:300px;margin:4px', :id => "create_and_add_to_collection_form_#{p.id}" do
+                        = text_field_tag 'collection[name]', nil, :placeholder => "#{I18n.t(:new_favorite, scope: :popular_products)}",  :id => "create_and_add_to_collection_form_input_name_#{p.id}", :autocomplete => :off
+                        %label{ :style => 'margin:4px'}
+                          = check_box_tag 'collection[public]'
+                          %i.fa.fa-users{'data-toggle' => 'tooltip', 'data-placement' => 'bottom', :title => 'public' }
+                        = hidden_field_tag :product_id, "#{p.id}"
+                        =submit_tag I18n.t(:create_favorite, scope: :popular_products), :class => 'btn btn-primary', :onclick => "#{generate_create_and_add_to_collection_js(p.id)}"
+              - else
+                .dropdown
+                  %a.btn.btn-default.btn-small{:href => '#', 'data-toggle' => 'dropdown', 'data-placement' => 'bottom', :title => "#{I18n.t(:create_and_add_to_favorite, scope: :popular_products)}" }
+                    %i.fa.fa-share
+                    %span.caret
+                  %ul.dropdown-menu
+                    %li{:style=>'min-width:250px'}
+                      .col-md-6
+                        = link_to I18n.t(:sign_in, scope: :top_menu), user_session_path, :class => 'fa fa-sign-in', :style => 'color:black; text-decoration: underline'
+                      .col-md-6
+                        = link_to  I18n.t(:sign_up, scope: :top_menu),  new_user_registration_path, :class => 'fa fa-edit', :style => 'color:black; text-decoration: underline'
 
     - for_device_type :desktop do
       - @products.each do |p|
@@ -180,7 +181,7 @@
                       .col-md-6
                         = link_to I18n.t(:sign_in, scope: :top_menu), user_session_path, :class => 'fa fa-sign-in', :style => 'color:black; text-decoration: underline'
                       .col-md-6
-                        = link_to I18n.t(:sign_out, scope: :top_menu),  new_user_registration_path, :class => 'fa fa-edit', :style => 'color:black; text-decoration: underline'
+                        = link_to I18n.t(:sign_up, scope: :top_menu),  new_user_registration_path, :class => 'fa fa-edit', :style => 'color:black; text-decoration: underline'
             .col-md-3
               - if user_signed_in?
                 .dropdown
