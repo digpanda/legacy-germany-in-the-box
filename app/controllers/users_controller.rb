@@ -76,21 +76,29 @@ end
     respond_to do |format|
       if @user.update(user_params)
         format.html {
-          flash[:success] = 'User was successfully updated.'
-          render :edit, user_info_edit_part: params[:user_info_edit_part]
-          flash.delete(:success)
+          if params[:user_info_edit_part] == :edit_account.to_s
+            session[:login_advice_counter] = 1
+            flash[:title] = I18n.t(:success, scope: :edit_account)
+            redirect_to home_path
+          else
+            render :edit, user_info_edit_part: params[:user_info_edit_part]
+          end
+
+          flash.delete(:info)
         }
+
         format.json { render :show, status: :ok, location: @user }
       else
         format.html {
           if @user.errors.any?
-            flash[:error] ||= @user.errors.full_messages.join(', ')
+            flash[:error] ||= @user.errors.full_messages.first
           end
 
-          render :edit
+          render :edit, user_info_edit_part: params[:user_info_edit_part]
 
           flash.delete(:error)
         }
+
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
@@ -351,7 +359,7 @@ end
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_user
-    @user = User.find(params[:id])
+    @user = current_user
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
