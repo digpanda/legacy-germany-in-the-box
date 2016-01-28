@@ -17,15 +17,18 @@ Category.all.delete
 # root categories - level 0
 #
 category_fashion = Category.create!(
-    :name => 'Fashion'
+    :name => 'Fashion',
+    :name_locales => { :'zh-CN' => '时尚', :de => 'Mode'}
 )
 
 category_food = Category.create!(
-    :name => 'Food'
+    :name => 'Food',
+    :name_locales => { :'zh-CN' => '时尚', :de => 'Lebensmittel'}
 )
 
 category_toys_home = Category.create!(
-    :name => 'Toys & Home'
+    :name => 'Toys & Home',
+    :name_locales => { :'zh-CN' => '玩具和家居', :de => 'Spielzeug & Zuhause'}
 )
 
 
@@ -533,7 +536,8 @@ category_food_drinks = Category.create!(
     :name => 'Food & Drinks',
     :code => 'L1-578',
     :cssc => 'fa-cutlery',
-    :parent => category_food
+    :parent => category_food,
+    :name_locales => { :'zh-CN' => '食品和饮料', :de => 'Spielzeug & Zuhause'}
 )
 
 Category.create!(

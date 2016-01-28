@@ -105,6 +105,7 @@ zh-CN:
     public: 公开
     no_products: 该收藏夹下没有产品
     delete_collection_message: 确定删除所选收藏夹？
+    dislike: 从收藏中移除
   edit_collection_new:
     name: 名称
     description: 描述

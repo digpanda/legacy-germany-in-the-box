@@ -105,6 +105,7 @@ de:
     public: Öffentlich
     no_products: Kein Produkt vorhanden
     delete_collection_message: Löschen Sie den gewählten Favorit?
+    dislike: Entfernen
   edit_collection_new:
     name: Name
     description: Beschreibung

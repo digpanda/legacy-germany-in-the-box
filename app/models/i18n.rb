@@ -1,7 +1,7 @@
 class I18n
-  include Mongoid::Document
-
-  field :locale, type: Symbol
-  field :key, type: Symbol
-  field :value, type:String
+  class << self
+    def create_method(name)
+      define_method(name) { puts "Nice!  I'm #{name}" }
+    end
+  end
 end

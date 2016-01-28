@@ -8,6 +8,8 @@ class Category
   field :code,  type: String
   field :cssc,  type: String
 
+  field :name_locales, type: Hash
+
   has_many :children, :class_name => 'Category', :inverse_of => :parent
   belongs_to :parent, :class_name => 'Category', :inverse_of => :children
 
