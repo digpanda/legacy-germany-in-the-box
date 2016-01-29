@@ -1,5 +1,7 @@
 class SessionsController < Devise::SessionsController
 
+  skip_before_filter :verify_signed_out_user
+
   respond_to :html, :json
 
   def new
@@ -29,20 +31,17 @@ class SessionsController < Devise::SessionsController
 
         current_user.update authentication_token: nil
 
-        respond_to do |format|
-          format.json {
-            render :json => {
-                       :user => current_user,
-                       :status => :ok,
-                       :authentication_token => current_user.authentication_token
-                   }
-          }
-        end
+        render :json => {
+          :user => current_user,
+          :status => :ok,
+          :authentication_token => current_user.authentication_token
+        }
       }
     end
   end
 
   def destroy
+
     respond_to do |format|
       format.html {
         super
@@ -51,7 +50,7 @@ class SessionsController < Devise::SessionsController
       format.json {
         if current_user
           current_user.update authentication_token: nil
-          signed_out = (Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name))
+          Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name)
           render :json => {}.to_json, :status => :ok
         else
           render :json => {}.to_json, :status => :unprocessable_entity
@@ -64,7 +63,7 @@ class SessionsController < Devise::SessionsController
     session.delete(:login_advice_counter)
     respond_to do |format|
       format.json {
-        render json: { :status => :ok }
+        render :json => {}.to_json, :status => :ok
       }
     end
   end

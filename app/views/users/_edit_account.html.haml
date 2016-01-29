@@ -1,5 +1,5 @@
 .col-md-6.col-sm-9.col-xs-12
-  = form_for current_user do |f|
+  = form_for current_user, :url => edit_user_registration_path, html: {method: "patch"} do |f|
     .form-group
       = f.label :username, I18n.t(:username, scope: :edit_account)
       = f.text_field :username, :class => 'form-control'

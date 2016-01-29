@@ -173,7 +173,7 @@
                           %i.fa.fa-eye
                           = I18n.t(:my_collection, scope: :top_menu)
                       %li
-                        %a{ :href => "#{ signout_path }" }
+                        %a{ :href => "#{ signout_path }", :'data-method' => :delete }
                           %i.fa.fa-sign-out
                           = I18n.t(:sign_out, scope: :top_menu)
                 %li.dropdown
