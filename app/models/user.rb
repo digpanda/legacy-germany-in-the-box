@@ -137,6 +137,7 @@ class User
       user.pic = auth.info.image # assuming the user model has an image
     end
   end
+
   def self.new_with_session(params, session)
     super.tap do |user|
 

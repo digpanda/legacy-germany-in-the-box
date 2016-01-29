@@ -1,91 +1,151 @@
 class AddressesController < ApplicationController
 
+  before_action :authenticate_user!
+
   def create
     num_addresses = current_user.addresses.count
 
-    params = address_params
-    params[:primary] = true if num_addresses == 0
-
-    params[:district] = ChinaCity.get(params[:district])
-    params[:city] = ChinaCity.get(params[:city])
-    params[:province] = ChinaCity.get(params[:province])
-
-    @address = Address.create(params)
-    @address.user = current_user
-
-    if @address.save
-      if @address.primary and num_addresses > 0
-        current_user.addresses.select { |a| a.primary and a != @address } .each do |a|
-          a.primary = false
-          a.save
-        end
-      end
-
+    if num_addresses >= Rails.configuration.max_num_addresses
       respond_to do |format|
         format.html {
-          flash[:success] = 'Address was successfully created.'
+          flash[:error] = I18n.t(:create_ko, scope: :edit_address)
           redirect_to request.referrer
+        }
+
+        format.json {
+          render :json => {}.to_json, :status => :unprocessable_entity
         }
       end
     else
-      respond_to do |format|
-        format.html {
-          flash[:error] = @address.errors.full_messages.first
-          redirect_to request.referrer
-        }
+      params = address_params
+      params[:primary] = true if num_addresses == 0
+
+      params[:district] = ChinaCity.get(params[:district])
+      params[:city] = ChinaCity.get(params[:city])
+      params[:province] = ChinaCity.get(params[:province])
+
+      address = Address.new(params)
+      address.user = current_user
+
+      if (flag = address.save)
+        if address.primary and num_addresses > 0
+          current_user.addresses.select { |a| a.primary and a != address } .each do |a|
+            a.primary = false
+            flag &&= a.save
+          end
+        end
+      end
+
+      if flag
+        respond_to do |format|
+          format.html {
+            flash[:success] = I18n.t(:create_ok, scope: :edit_address)
+            redirect_to request.referrer
+          }
+
+          format.json {
+            render :json => { :address => address, :status => :ok }
+          }
+        end
+      else
+        respond_to do |format|
+          format.html {
+            flash[:error] = I18n.t(:create_ko, scope: :edit_address)
+            redirect_to request.referrer
+          }
+
+          format.json {
+            render :json => {}.to_json, :status => :unprocessable_entity
+          }
+        end
       end
     end
   end
 
   def update
-    address = Address.find(params[:id])
+    if (address = current_user.addresses.detect { |a| a.id.to_s == params[:id] })
+      params = address_params
 
-    params = address_params
+      params[:district] = ChinaCity.get(params[:district])
+      params[:city] = ChinaCity.get(params[:city])
+      params[:province] = ChinaCity.get(params[:province])
 
-    params[:district] = ChinaCity.get(params[:district])
-    params[:city] = ChinaCity.get(params[:city])
-    params[:province] = ChinaCity.get(params[:province])
-
-    if address.update(params)
-      if address.primary
-        current_user.addresses.select { |a| a.primary and a != address } .each do |a|
-          a.primary = false
-          a.save
+      if (flag = address.update(params))
+        if address.primary
+          current_user.addresses.select { |a| a.primary and a != address } .each do |a|
+            a.primary = false
+            flag &&= a.save
+          end
         end
       end
+    end
 
+    if flag
       respond_to do |format|
         format.html {
-          flash[:success] = 'Address was successfully updated.'
+          flash[:success] = I18n.t(:update_ok, scope: :edit_address)
           redirect_to request.referer
+        }
+
+        format.json {
+          render :json => { :address => address, :status => :ok }
         }
       end
     else
       respond_to do |format|
         format.html {
-          flash[:error] = address.errors.full_messages.first
+          flash[:error] = I18n.t(:update_ko, scope: :edit_address)
           redirect_to request.referer
+        }
+
+        format.json {
+          render :json => {}.to_json, :status => :unprocessable_entity
         }
       end
     end
   end
 
   def destroy
-    address = Address.find(params[:id])
+    if (address = current_user.addresses.detect { |a| a.id.to_s == params[:id] })
+      flag = address.delete
 
-    if address.primary
-      candidate = current_user.addresses.detect { |a| a != address }
+      if address.primary
+        candidate = current_user.addresses.detect { |a| a != address }
 
-      if candidate
-        candidate.primary = true
-        candidate.save
+        if candidate
+          candidate.primary = true
+          flag &&= candidate.save
+        end
       end
     end
 
-    address.delete
+    if flag
+      respond_to do |format|
+        format.html {
+          flash[:success] = I18n.t(:delete_ok, scope: :edit_address)
+          redirect_to request.referer
+        }
 
-    redirect_to request.referrer
+        format.json {
+          render :json => {}.to_json, :status => :ok
+        }
+      end
+    else
+      respond_to do |format|
+        format.html {
+          flash[:error] = I18n.t(:delete_ko, scope: :edit_address)
+          redirect_to request.referer
+        }
+
+        format.json {
+          render :json => {}.to_json, :status => :unprocessable_entity
+        }
+      end
+    end
+
   end
+
+  private
 
   def address_params
     params.require(:address).permit(:street_building_room, :district, :city, :province, :zip, :country, :primary)

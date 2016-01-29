@@ -87,6 +87,12 @@ de:
     save_address: Speichern
     show_address_title: Adresse
     delete_address_message: Die Adresse löschen?
+    delete_ok: Adresse erfolgreich gelöscht.
+    delete_ko: Ein Fehler ist beim Löschen der Adresse aufgetreten.
+    create_ok: Adresse erfolgreich angelegt.
+    create_ko: Ein Fehler ist beim Anlegen der Adresse aufgetreten.
+    update_ok: Adresse erfolgreich aktualisiert.
+    update_ko: Ein Fehler ist bei der Änderung der Adresse aufgetreten.
   edit_order:
     no_order: keine Aufträge vorhanden
     id: Auftragsnummer

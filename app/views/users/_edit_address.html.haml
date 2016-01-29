@@ -70,7 +70,7 @@
               %label
                 = radio_button_tag :primary, a.primary, checked = a.primary, { :disabled => true, :class => 'i-radio' }
                 = I18n.t(:set_primary, scope: :edit_address)
-  - if current_user.addresses.count < 3
+  - if current_user.addresses.count < Rails.configuration.max_num_addresses
     .col-md-4
       %a.address-box.address-box-new.popup-text{"data-effect" => "mfp-move-from-top", :href => "#add-address-dialog"}
         .vert-center

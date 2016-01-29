@@ -41,7 +41,6 @@ class SessionsController < Devise::SessionsController
   end
 
   def destroy
-
     respond_to do |format|
       format.html {
         super

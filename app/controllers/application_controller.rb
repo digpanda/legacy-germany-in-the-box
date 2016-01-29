@@ -5,15 +5,14 @@ class ApplicationController < ActionController::Base
   include FunctionCache
   include Mobvious::Rails::Controller
 
-  protect_from_forgery with: :null_session, :if => Proc.new { |c| c.request.format.json? }
+  protect_from_forgery with: :null_session, :if => Proc.new { |c| c.request.format.html? }
   acts_as_token_authentication_handler_for User, :if => Proc.new { |c| c.request.format.json? }
 
-  before_filter { params[:top_menu_active_part] = current_top_menu_active_part }
-
+  before_action { params[:top_menu_active_part] = current_top_menu_active_part }
 
   before_action :set_locale, except: :set_session_locale
 
-  after_filter :reset_last_captcha_code!
+  after_action :reset_last_captcha_code!
 
   helper_method :current_order
 

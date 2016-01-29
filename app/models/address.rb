@@ -19,4 +19,5 @@ class Address
   validates :city,                  presence: true
   validates :zip,                   presence: true
   validates :country,               presence: true
+
 end

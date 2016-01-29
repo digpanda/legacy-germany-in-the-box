@@ -87,6 +87,12 @@ zh-CN:
     save_address: 保存
     show_address_title: 地址
     delete_address_message: 确定删除所选地址？
+    delete_ok: 地址成功删除
+    delete_ko: 地址删除失败
+    create_ok: 地址成功创建
+    create_ko: 创建地址失败
+    update_ok: 地址修改成功
+    update_ko: 地址修改失败
   edit_order:
     no_order: 您还没有任何订单
     id: 订单号
