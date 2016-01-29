@@ -1,17 +1,19 @@
 require 'base64_to_upload'
 
 class ApplicationController < ActionController::Base
+
   include FunctionCache
   include Mobvious::Rails::Controller
 
-  after_filter :reset_last_captcha_code!
+  protect_from_forgery with: :null_session, :if => Proc.new { |c| c.request.format == 'application/json' }
+  acts_as_token_authentication_handler_for User, :if => Proc.new { |c| c.request.format == 'application/json' }
 
   before_filter { params[:top_menu_active_part] = current_top_menu_active_part }
 
   before_action :configure_devise_permitted_parameters, if: :devise_controller?
   before_action :set_locale, except: :set_session_locale
 
-  protect_from_forgery with: :null_session
+  after_filter :reset_last_captcha_code!
 
   helper_method :current_order
 

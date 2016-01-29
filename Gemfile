@@ -41,6 +41,8 @@ gem 'china_city'
 
 gem 'mobvious-rails'
 
+gem 'simple_token_authentication'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

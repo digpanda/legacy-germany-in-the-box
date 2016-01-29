@@ -3,7 +3,7 @@ class AddressesController < ApplicationController
   def create
     num_addresses = current_user.addresses.count
 
-    params = set_params
+    params = address_params
     params[:primary] = true if num_addresses == 0
 
     params[:district] = ChinaCity.get(params[:district])
@@ -40,7 +40,7 @@ class AddressesController < ApplicationController
   def update
     address = Address.find(params[:id])
 
-    params = set_params
+    params = address_params
 
     params[:district] = ChinaCity.get(params[:district])
     params[:city] = ChinaCity.get(params[:city])
@@ -87,7 +87,7 @@ class AddressesController < ApplicationController
     redirect_to request.referrer
   end
 
-  def set_params
+  def address_params
     params.require(:address).permit(:street_building_room, :district, :city, :province, :zip, :country, :primary)
   end
 

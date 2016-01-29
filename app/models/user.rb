@@ -21,6 +21,9 @@ class User
 
   mount_uploader :pic, AttachmentUploader
 
+  acts_as_token_authenticatable
+  field :authentication_token
+
   # Include default devise modules. Others available are:
   #  :lockable, :timeoutable and
   devise :database_authenticatable, :registerable,
