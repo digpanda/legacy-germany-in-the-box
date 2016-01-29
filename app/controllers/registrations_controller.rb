@@ -1,5 +1,7 @@
 class RegistrationsController < Devise::RegistrationsController
 
+  respond_to :html, :json
+
   def new
     session[:signup_advice_counter] = 1
     redirect_to home_path

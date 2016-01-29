@@ -1,9 +1,8 @@
 class CollectionsController < ApplicationController
-  skip_before_action :verify_authenticity_token
 
   before_action :set_collection, except: [:create_and_add_to_collection, :is_product_in_user_collections, :remove_product, :toggle_product, :index, :gsearch, :colsearch, :likedcolls, :new, :savedcolls, :create, :matchedcollections, :mycolls, :indexft, :userinit]
 
-  before_action :authenticate_user!, :except => [:add_product, :indexft, :show]
+  before_action :authenticate_user!, :except => [:indexft, :show]
 
   def create_and_add_to_collection
     cp = collection_params

@@ -271,7 +271,7 @@ DEPENDENCIES
   byebug
   carrierwave-mongoid
   china_city
-  devise
+  devise (= 3.5.3)
   diff-lcs (= 1.2.5)
   easy_captcha
   haml-rails
