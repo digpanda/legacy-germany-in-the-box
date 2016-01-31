@@ -73,9 +73,9 @@ Rails.application.routes.draw do
   post '/removeprodtocol/:col_id/:prod_id', to: 'users#removeprodtocol'
   post '/getuserbyid/:parse_id', to: 'users#getuserbyid'
 
-  get '/getfollowers/:id', to: 'users#getfollowers'
+  get '/getfollowers/:id', to: 'users#get_followers'
 
-  get '/getfollowings/:id', to: 'users#getfollowings'
+  get '/getfollowings/:id', to: 'users#get_followings'
 
   get 'userssearch/:keyword/:folds' => 'users#userssearch'
 

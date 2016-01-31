@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 
   skip_before_filter :authenticate_user!, only: :index
 
-  acts_as_token_authentication_handler_for User, except: [:index]
+  acts_as_token_authentication_handler_for User, except: [:index, :get_followers, :get_followings]
 
   # GET /users
   # GET /users.json
@@ -320,29 +320,21 @@ end
   end
 
 
-  def getfollowers
-    @users = []
-    @user.followers.each do |i|
-      @follower = User.find (i)
-      @users << @follower
-    end
+  def get_followers
+    @users = @user.followers
+
     respond_to do |format|
       format.html { render :index }
-      format.json { render :index, status: :ok, location: @user }
+      format.json { render :get_followers }
     end
-
   end
 
-  def getfollowings
-    @users = []
-    @user.following.each do |i|
-      @follower = User.find (i)
-      @users << @follower
-    end
+  def get_followings
+    @users = @user.following
 
     respond_to do |format|
       format.html { render :index }
-      format.json { render :index, status: :ok, location: @user }
+      format.json { render :get_followings }
     end
 
   end
@@ -369,7 +361,7 @@ end
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_user
-    @user = current_user
+    @user = User.find(params[:id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

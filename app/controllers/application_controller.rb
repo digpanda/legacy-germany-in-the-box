@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
 
   acts_as_token_authentication_handler_for User, :if => Proc.new { |c| c.request.format.json? }
 
-  before_action :authenticate_user!
+  #before_action :authenticate_user!
 
   before_action { params[:top_menu_active_part] = current_top_menu_active_part }
 
