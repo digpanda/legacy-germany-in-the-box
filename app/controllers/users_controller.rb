@@ -1,10 +1,20 @@
 class UsersController < ApplicationController
+
   before_action :set_user, except: [:userssearch, :openmailnoti,:removeprodtocol, :getuserbyid, :index, :new, :create, :addprodtocol, :getuserbyemail]
+
+  skip_before_filter :authenticate_user!, only: :index
+
+  acts_as_token_authentication_handler_for User, except: [:index]
 
   # GET /users
   # GET /users.json
   def index
     @users = User.all
+
+    respond_to do |format|
+      format.html {  }
+      format.json { render :index }
+    end
   end
 
   # GET /users/1

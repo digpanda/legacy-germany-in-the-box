@@ -1,4 +1,5 @@
-json.array!(@users) do |user|
-  json.extract! user, :id, :username, :email, :en_password, :fname, :lname, :birth, :gender, :about, :website, :country, :pic, :lang, :parse_id, :saved_collections, :saved_products, :private_chats, :public_chats, :notifications
-  json.url user_url(user, format: :json)
+json.array!(@users) do |u|
+  json.extract! u, :id, :username, :fname, :lname, :website, :country, :pic, :lang
+  json.follower_count u.followers.size
+  json.following_count u.following.size
 end
