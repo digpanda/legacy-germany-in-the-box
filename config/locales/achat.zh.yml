@@ -22,6 +22,25 @@ zh-CN:
     user_profile: 用户概要
   footer:
     copyright: 版权所有：莱茵工厂 © 2016
+    rheinmanufaktur: 莱茵工厂
+    imprint: 关于我们
+    terms_conditions: 法律声明
+    privarcy_statement: 数据隐私
+    guidelines: 使用指南
+    press_portal: 新闻门户
+    status: 重要通知
+    career: 工作职位
+    recent_news: 近期新闻
+    selling: 店家指南
+    seller_portal: 店家入口
+    seller_faq: 见问题解答
+    selling_in_3_steps: 三步成交
+    fees_invoices: 收费与账单
+    buying: 买家指南
+    buyer_faq: 常见问题解答
+    buyer_in_3_steps: 三步成交
+    vouchers: 优惠活动
+
   sign_in_dialog:
     email: 登陆邮箱
     password: 密码

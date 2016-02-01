@@ -2,17 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="53023302-7b6a-4b02-a48d-ce95de92dd4f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/collections/search_collections.json.jbuilder" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/products/search_products.json.jbuilder" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/users/search_users.json.jbuilder" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/initializers/achat.rb" afterPath="$PROJECT_DIR$/config/initializers/achat.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/locales/achat.de.yml" afterPath="$PROJECT_DIR$/config/locales/achat.de.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/locales/achat.zh.yml" afterPath="$PROJECT_DIR$/config/locales/achat.zh.yml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/layouts/application.html.haml" afterPath="$PROJECT_DIR$/app/views/layouts/application.html.haml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/collections_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/collections_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/products/index.html.haml" afterPath="$PROJECT_DIR$/app/views/products/index.html.haml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/index.json.jbuilder" afterPath="$PROJECT_DIR$/app/views/users/index.json.jbuilder" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/products_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/products_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/routes.rb" afterPath="$PROJECT_DIR$/config/routes.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/users_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/users_controller.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="a-chat.iws" />
@@ -30,8 +22,8 @@
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/a-chat@Rails_console__a_chat.coverage" NAME="Rails console: a-chat Coverage Results" MODIFIED="1450794518882" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="a-chat" />
     <SUITE FILE_PATH="coverage/a-chat@Development__a_chat.coverage" NAME="Development: a-chat Coverage Results" MODIFIED="1452515758515" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="a-chat" />
+    <SUITE FILE_PATH="coverage/a-chat@Rails_console__a_chat.coverage" NAME="Rails console: a-chat Coverage Results" MODIFIED="1450794518882" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="a-chat" />
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
@@ -48,32 +40,79 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="products_controller.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controllers/products_controller.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="12" column="105" selection-start-line="12" selection-start-column="105" selection-end-line="12" selection-end-column="105" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="routes.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config/routes.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.3333335">
+            <state vertical-scroll-proportion="0.0">
               <caret line="96" column="80" selection-start-line="96" selection-start-column="80" selection-end-line="96" selection-end-column="80" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="collections_controller.rb" pinned="false" current-in-tab="true">
+      <file leaf-file-name="collections_controller.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/collections_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4755043">
+            <state vertical-scroll-proportion="0.0">
               <caret line="11" column="46" selection-start-line="11" selection-start-column="46" selection-end-line="11" selection-end-column="46" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="achat.zh.yml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config/locales/achat.zh.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="175" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="175" selection-end-column="0" />
+              <folding>
+                <marker date="1454365492170" expanded="true" signature="0:3438" placeholder="zh-CN:" />
+                <marker date="1454365492170" expanded="true" signature="9:401" placeholder="top_menu:" />
+                <marker date="1454365492170" expanded="true" signature="404:847" placeholder="footer:" />
+                <marker date="1454365492170" expanded="true" signature="850:1047" placeholder="sign_in_dialog:" />
+                <marker date="1454365492170" expanded="true" signature="1050:1276" placeholder="sign_up_dialog:" />
+                <marker date="1454365492170" expanded="true" signature="1279:1378" placeholder="password_recovery_dialog:" />
+                <marker date="1454365492170" expanded="true" signature="1381:1520" placeholder="edit_account:" />
+                <marker date="1454365492170" expanded="true" signature="1523:1732" placeholder="edit_personal:" />
+                <marker date="1454365492170" expanded="true" signature="1735:2321" placeholder="edit_address:" />
+                <marker date="1454365492170" expanded="true" signature="2324:2532" placeholder="edit_order:" />
+                <marker date="1454365492170" expanded="true" signature="2535:2698" placeholder="edit_collection:" />
+                <marker date="1454365492170" expanded="true" signature="2701:2842" placeholder="edit_collection_new:" />
+                <marker date="1454365492170" expanded="true" signature="2845:3058" placeholder="popular_products:" />
+                <marker date="1454365492170" expanded="true" signature="3061:3091" placeholder="category:" />
+                <marker date="1454365492170" expanded="true" signature="3094:3337" placeholder="cart:" />
+                <marker date="1454365492170" expanded="true" signature="3340:3438" placeholder="checkout:" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="achat.de.yml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config/locales/achat.de.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="169" column="0" selection-start-line="169" selection-start-column="0" selection-end-line="169" selection-end-column="0" />
+              <folding>
+                <marker date="1454365492174" expanded="true" signature="508:1128" placeholder="footer:" />
+                <marker date="1454365492174" expanded="true" signature="1131:1407" placeholder="sign_in_dialog:" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="application.html.haml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.haml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-17.041666">
+              <caret line="383" column="0" selection-start-line="383" selection-start-column="0" selection-end-line="383" selection-end-column="0" />
+              <folding>
+                <marker date="1454365525422" expanded="true" signature="1543:2127" placeholder="{...}" />
+                <marker date="1454365525422" expanded="true" signature="1598:1921" placeholder="{...}" />
+                <marker date="1454365525422" expanded="true" signature="1671:1745" placeholder="{...}" />
+                <marker date="1454365525422" expanded="true" signature="1785:1860" placeholder="{...}" />
+                <marker date="1454365525422" expanded="true" signature="1971:2020" placeholder="{...}" />
+                <marker date="1454365525422" expanded="true" signature="2070:2119" placeholder="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -88,20 +127,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.json.jbuilder" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/users/index.json.jbuilder">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="4" column="3" selection-start-line="4" selection-start-column="3" selection-end-line="4" selection-end-column="3" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="users_controller.rb" pinned="false" current-in-tab="false">
+      <file leaf-file-name="users_controller.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/controllers/users_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
+            <state vertical-scroll-proportion="1.1045918">
               <caret line="342" column="65" selection-start-line="342" selection-start-column="65" selection-end-line="342" selection-end-column="65" />
               <folding />
             </state>
@@ -133,16 +162,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="4" column="35" selection-start-line="4" selection-start-column="35" selection-end-line="4" selection-end-column="35" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="search_products.json.jbuilder" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/products/search_products.json.jbuilder">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="2" column="51" selection-start-line="2" selection-start-column="51" selection-end-line="2" selection-end-column="51" />
               <folding />
             </state>
           </provider>
@@ -194,8 +213,6 @@
         <option value="$PROJECT_DIR$/app/views/users/_edit_account.html.haml" />
         <option value="$PROJECT_DIR$/app/controllers/registrations_controller.rb" />
         <option value="$PROJECT_DIR$/app/controllers/sessions_controller.rb" />
-        <option value="$PROJECT_DIR$/config/locales/achat.zh.yml" />
-        <option value="$PROJECT_DIR$/config/locales/achat.de.yml" />
         <option value="$PROJECT_DIR$/app/models/user.rb" />
         <option value="$PROJECT_DIR$/app/models/address.rb" />
         <option value="$PROJECT_DIR$/app/views/users/_edit_address.html.haml" />
@@ -206,16 +223,18 @@
         <option value="$PROJECT_DIR$/app/views/users/index.html.haml" />
         <option value="$PROJECT_DIR$/app/views/products/index.html.haml" />
         <option value="$PROJECT_DIR$/app/views/products/index.json.jbuilder" />
-        <option value="$PROJECT_DIR$/app/views/layouts/application.html.haml" />
         <option value="$PROJECT_DIR$/app/views/products/search_products.json.jbuilder" />
         <option value="$PROJECT_DIR$/app/controllers/products_controller.rb" />
         <option value="$PROJECT_DIR$/app/views/users/search_users.json.jbuilder" />
         <option value="$PROJECT_DIR$/app/views/users/index.json.jbuilder" />
         <option value="$PROJECT_DIR$/config/initializers/achat.rb" />
-        <option value="$PROJECT_DIR$/app/controllers/users_controller.rb" />
         <option value="$PROJECT_DIR$/config/routes.rb" />
         <option value="$PROJECT_DIR$/app/views/collections/search_collections.json.jbuilder" />
         <option value="$PROJECT_DIR$/app/controllers/collections_controller.rb" />
+        <option value="$PROJECT_DIR$/config/locales/achat.zh.yml" />
+        <option value="$PROJECT_DIR$/config/locales/achat.de.yml" />
+        <option value="$PROJECT_DIR$/app/views/layouts/application.html.haml" />
+        <option value="$PROJECT_DIR$/app/controllers/users_controller.rb" />
       </list>
     </option>
   </component>
@@ -234,10 +253,9 @@
     <order />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1919" />
-    <option name="y" value="27" />
-    <option name="width" value="1368" />
-    <option name="height" value="742" />
+    <option name="x" value="-3" />
+    <option name="width" value="1372" />
+    <option name="height" value="745" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -262,6 +280,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="RailsProjectView" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -276,7 +295,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="achat-backend-main" />
+              <option name="myItemId" value="ab" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -286,7 +305,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="achat-backend-main" />
+              <option name="myItemId" value="ab" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -300,7 +319,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="achat-backend-main" />
+              <option name="myItemId" value="ab" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -308,7 +327,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="initializers" />
+              <option name="myItemId" value="locales" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -318,7 +337,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="achat-backend-main" />
+              <option name="myItemId" value="ab" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -336,7 +355,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="achat-backend-main" />
+              <option name="myItemId" value="ab" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -358,7 +377,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="achat-backend-main" />
+              <option name="myItemId" value="ab" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -380,7 +399,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="achat-backend-main" />
+              <option name="myItemId" value="ab" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -394,7 +413,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="achat-backend-main" />
+              <option name="myItemId" value="ab" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -409,14 +428,13 @@
         </subPane>
       </pane>
       <pane id="Scratches" />
-      <pane id="RailsProjectView" />
       <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.ruby.settings.RubyActiveModuleSdkConfigurable" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../devise-token-api-demo" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="FullScreen" value="false" />
     <property name="recentsLimit" value="5" />
@@ -667,17 +685,16 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1919" y="27" width="1368" height="742" extended-state="6" />
-    <editor active="true" />
+    <frame x="-3" y="0" width="1372" height="745" extended-state="6" />
+    <editor active="false" />
     <layout>
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3578125" sideWeight="0.44764796" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24731183" sideWeight="0.49791667" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3563748" sideWeight="0.44764796" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32973805" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.29357797" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24320242" sideWeight="0.8365817" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.6625" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3277311" sideWeight="0.49791667" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24697885" sideWeight="0.8365817" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25679758" sideWeight="0.1634183" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.67127496" sideWeight="0.5523521" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296875" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -685,10 +702,11 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32489878" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2484375" sideWeight="0.49791667" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.6625" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3277311" sideWeight="0.49791667" order="2" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -784,22 +802,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/locales/achat.zh.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="95" column="0" selection-start-line="89" selection-start-column="0" selection-end-line="95" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/locales/achat.de.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="94" column="71" selection-start-line="94" selection-start-column="71" selection-end-line="94" selection-end-column="71" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -979,13 +981,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.haml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-43.75">
-          <caret line="175" column="46" selection-start-line="175" selection-start-column="46" selection-end-line="175" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/products/search_products.json.jbuilder">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1032,14 +1027,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/users_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="342" column="65" selection-start-line="342" selection-start-column="65" selection-end-line="342" selection-end-column="65" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/users/search_users.json.jbuilder">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1050,7 +1037,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/config/routes.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.3333335">
+        <state vertical-scroll-proportion="0.0">
           <caret line="96" column="80" selection-start-line="96" selection-start-column="80" selection-end-line="96" selection-end-column="80" />
           <folding />
         </state>
@@ -1074,8 +1061,67 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/collections_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4755043">
+        <state vertical-scroll-proportion="0.0">
           <caret line="11" column="46" selection-start-line="11" selection-start-column="46" selection-end-line="11" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/locales/achat.zh.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="175" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="175" selection-end-column="0" />
+          <folding>
+            <marker date="1454365492170" expanded="true" signature="0:3438" placeholder="zh-CN:" />
+            <marker date="1454365492170" expanded="true" signature="9:401" placeholder="top_menu:" />
+            <marker date="1454365492170" expanded="true" signature="404:847" placeholder="footer:" />
+            <marker date="1454365492170" expanded="true" signature="850:1047" placeholder="sign_in_dialog:" />
+            <marker date="1454365492170" expanded="true" signature="1050:1276" placeholder="sign_up_dialog:" />
+            <marker date="1454365492170" expanded="true" signature="1279:1378" placeholder="password_recovery_dialog:" />
+            <marker date="1454365492170" expanded="true" signature="1381:1520" placeholder="edit_account:" />
+            <marker date="1454365492170" expanded="true" signature="1523:1732" placeholder="edit_personal:" />
+            <marker date="1454365492170" expanded="true" signature="1735:2321" placeholder="edit_address:" />
+            <marker date="1454365492170" expanded="true" signature="2324:2532" placeholder="edit_order:" />
+            <marker date="1454365492170" expanded="true" signature="2535:2698" placeholder="edit_collection:" />
+            <marker date="1454365492170" expanded="true" signature="2701:2842" placeholder="edit_collection_new:" />
+            <marker date="1454365492170" expanded="true" signature="2845:3058" placeholder="popular_products:" />
+            <marker date="1454365492170" expanded="true" signature="3061:3091" placeholder="category:" />
+            <marker date="1454365492170" expanded="true" signature="3094:3337" placeholder="cart:" />
+            <marker date="1454365492170" expanded="true" signature="3340:3438" placeholder="checkout:" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/locales/achat.de.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="169" column="0" selection-start-line="169" selection-start-column="0" selection-end-line="169" selection-end-column="0" />
+          <folding>
+            <marker date="1454365492174" expanded="true" signature="508:1128" placeholder="footer:" />
+            <marker date="1454365492174" expanded="true" signature="1131:1407" placeholder="sign_in_dialog:" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.haml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-17.041666">
+          <caret line="383" column="0" selection-start-line="383" selection-start-column="0" selection-end-line="383" selection-end-column="0" />
+          <folding>
+            <marker date="1454365525422" expanded="true" signature="1543:2127" placeholder="{...}" />
+            <marker date="1454365525422" expanded="true" signature="1598:1921" placeholder="{...}" />
+            <marker date="1454365525422" expanded="true" signature="1671:1745" placeholder="{...}" />
+            <marker date="1454365525422" expanded="true" signature="1785:1860" placeholder="{...}" />
+            <marker date="1454365525422" expanded="true" signature="1971:2020" placeholder="{...}" />
+            <marker date="1454365525422" expanded="true" signature="2070:2119" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/users_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.1045918">
+          <caret line="342" column="65" selection-start-line="342" selection-start-column="65" selection-end-line="342" selection-end-column="65" />
           <folding />
         </state>
       </provider>
