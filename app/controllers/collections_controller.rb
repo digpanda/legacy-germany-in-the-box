@@ -1,8 +1,18 @@
 class CollectionsController < ApplicationController
 
-  before_action :set_collection, except: [:create_and_add_to_collection, :is_product_in_user_collections, :remove_product, :toggle_product, :index, :gsearch, :colsearch, :likedcolls, :new, :savedcolls, :create, :matchedcollections, :mycolls, :indexft, :userinit]
+  before_action :set_collection, except: [:create_and_add_to_collection, :is_product_in_user_collections, :remove_product, :toggle_product, :index, :gsearch, :search_collections, :likedcolls, :new, :savedcolls, :create, :matchedcollections, :mycolls, :indexft, :userinit]
 
   before_action :authenticate_user!, :except => [:indexft, :show]
+
+  def search_collections
+    @collections = Collection.or({desc: /.*#{params[:collections_search_keyword]}.*/i}, {name: /.*#{params[:collections_search_keyword]}.*/i}).limit(Rails.configuration.limit_for_search)
+
+    respond_to do |format|
+      format.html { render :index }
+      format.json { render :search_collections }
+    end
+  end
+
 
   def create_and_add_to_collection
     cp = collection_params
@@ -279,25 +289,6 @@ class CollectionsController < ApplicationController
     respond_to do |format|
       format.json { render :index, status: :ok, location: @collection }
     end
-  end
-
-
-  def colsearch
-    if (params[:folds] == "0")
-      @collections = Collection.or({desc: /.*#{params[:keyword]}.*/i}, {name: /.*#{params[:keyword]}.*/i}).limit(50)
-    else
-      @i = params[:folds].to_i
-      @collections = Collection.or({brand: /.*#{params[:keyword]}.*/i}, {name: /.*#{params[:keyword]}.*/i}).skip(@i*50).limit(50)
-      # @products = Product.search(params[:keyword]).order("created_at DESC")
-    end
-    # @products << Product.where(name: params[:keyword])
-    # @products << Product.where(category: params[:keyword])
-
-    respond_to do |format|
-      format.html { render :index }
-      format.json { render :index, status: :ok, location: @collection }
-    end
-
   end
 
   def similarcoli

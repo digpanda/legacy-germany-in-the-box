@@ -77,7 +77,7 @@ Rails.application.routes.draw do
 
   get '/getfollowings/:id', to: 'users#get_followings'
 
-  get 'userssearch/:keyword/:folds' => 'users#userssearch'
+  get 'userssearch/:users_search_keyword' => 'users#search_users'
 
   get 'search/:keyword/:folds' => 'products#search'
 
@@ -94,7 +94,7 @@ Rails.application.routes.draw do
   get 'mycolls/:owner_id' => 'collections#mycolls'
   get 'savedcolls/:owner_id' => 'collections#savedcolls'
   get 'likedcolls/:owner_id' => 'collections#likedcolls'
-  get 'colsearch/:keyword/:folds' => 'collections#colsearch'
+  get 'colsearch/:collections_search_keyword' => 'collections#search_collections'
 
   get 'gsearch/' => 'collections#gsearch', as: "gsearch"
 
@@ -104,7 +104,7 @@ Rails.application.routes.draw do
   get 'productsi/:num' => 'products#indexr', as: 'productsi'
   get 'productsi/:from/:to' => 'products#indexft'
   get 'similarproductsi/:id/:num' => 'products#similarproductsi'
-  get 'prodsearch/:keyword/:folds' => 'products#prodsearch'
+  get 'prodsearch/:products_search_keyword' => 'products#search_products'
   get 'searchp/:searchtext' => 'products#search'
   get 'showindex/:col_id' => 'products#showindex', as: 'colprods'
   get 'savedprods/:owner_id' => 'products#savedprods'

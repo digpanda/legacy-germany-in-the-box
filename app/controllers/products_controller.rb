@@ -9,13 +9,14 @@ class ProductsController < ApplicationController
   end
 
   def search_products
-    founded_products = get_products_from_search_cache( params[:products_search_area] )
-
+    founded_products = get_products_from_search_cache( params[:products_search_keyword] )
+    logger.info('#####################################################'+ params[:products_search_keyword])
     @products = founded_products.collect{|p| p[:obj] }.uniq
     @categories_and_children, @categories_and_counters = get_category_values_for_left_menu(@products)
 
     respond_to do |format|
       format.html { render :index }
+      format.json { render :search_products }
     end
   end
 

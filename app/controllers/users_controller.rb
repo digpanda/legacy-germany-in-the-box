@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_action :set_user, except: [:userssearch, :openmailnoti,:removeprodtocol, :getuserbyid, :index, :new, :create, :addprodtocol, :getuserbyemail]
+  before_action :set_user, except: [:search_users, :openmailnoti,:removeprodtocol, :getuserbyid, :index, :new, :create, :addprodtocol, :getuserbyemail]
 
   skip_before_filter :authenticate_user!, only: :index
 
@@ -339,22 +339,13 @@ end
 
   end
 
-  def userssearch
-    if (params[:folds] == "0")
-      @users = User.or({username: /.*#{params[:keyword]}.*/i}, {fname: /.*#{params[:keyword]}.*/i}, {email: /.*#{params[:keyword]}.*/i}).limit(50)
-    else
-      @i = params[:folds].to_i
-      @users = User.or({username: /.*#{params[:keyword]}.*/i}, {fname: /.*#{params[:keyword]}.*/i}, {email: /.*#{params[:keyword]}.*/i}).skip(@i*50).limit(50)
-      # @products = Product.search(params[:keyword]).order("created_at DESC")
-    end
-    # @products << Product.where(name: params[:keyword])
-    # @products << Product.where(category: params[:keyword])
+  def search_users
+    @users = User.or({username: /.*#{params[:users_search_keyword]}.*/i}, {fname: /.*#{params[:users_search_keyword]}.*/i}, {email: /.*#{params[:users_search_keyword]}.*/i}).limit(Rails.configuration.limit_for_search)
 
     respond_to do |format|
       format.html { render :index }
-      format.json { render :index, status: :ok, location: @user }
+      format.json { render :search_users }
     end
-
   end
 
 
