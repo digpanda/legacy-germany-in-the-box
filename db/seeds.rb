@@ -28,7 +28,7 @@ category_food = Category.create!(
 
 category_toys_home = Category.create!(
     :name => 'Toys & Home',
-    :name_locales => { :'zh-CN' => '玩具和家居', :de => 'Spielzeug & Zuhause'}
+    :name_locales => { :'zh-CN' => '玩具和家居', :de => 'Spielzeuge & Heim'}
 )
 
 
@@ -537,7 +537,7 @@ category_food_drinks = Category.create!(
     :code => 'L1-578',
     :cssc => 'fa-cutlery',
     :parent => category_food,
-    :name_locales => { :'zh-CN' => '食品和饮料', :de => 'Spielzeug & Zuhause'}
+    :name_locales => { :'zh-CN' => '食品和饮料', :de => 'Essen & Getränke'}
 )
 
 Category.create!(
