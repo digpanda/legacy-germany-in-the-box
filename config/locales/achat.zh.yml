@@ -20,6 +20,8 @@ zh-CN:
     chinese: 中文
     german: 德语
     user_profile: 用户概要
+    wrong_captcha: 验证码不一致
+    email_confirmation_msg: 我们已经向您的注册邮箱发送了一封确认邮件，请您登陆前先确认。
   footer:
     copyright: 版权所有：莱茵工厂 © 2016
     rheinmanufaktur: 莱茵工厂
@@ -40,7 +42,6 @@ zh-CN:
     buyer_faq: 常见问题解答
     buyer_in_3_steps: 三步成交
     vouchers: 优惠活动
-
   sign_in_dialog:
     email: 登陆邮箱
     password: 密码
@@ -167,9 +168,3 @@ zh-CN:
     my_destination: 收货地址
     setup_delivery_destination: 请您指定收货地址
     checkout: 下单
-
-
-
-
-
-
