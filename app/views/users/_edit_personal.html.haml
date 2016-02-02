@@ -14,7 +14,7 @@
         = f.radio_button :gender, 'm'
         = I18n.t(:'genderize.name.masculine')
       %label.radio-inline
-        = f.radio_button :gender, 'f', :checked => @user.gender.female?
+        = f.radio_button :gender, 'f', :checked => @user.gender.present? ? @user.gender.female? : true
         = I18n.t(:'genderize.name.feminine')
     .form-group
       = f.text_field :about, :class => 'form-control', placeholder: I18n.t(:about, scope: :edit_personal)

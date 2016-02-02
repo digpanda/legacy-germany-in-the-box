@@ -60,9 +60,9 @@ class UsersController < ApplicationController
     end
   end
 
-def openmailnoti
+  def openmailnoti
 
-end
+  end
 
   # POST /users
   # POST /users.json
@@ -357,12 +357,21 @@ end
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def user_params
+    gender = params.require(:user)[:gender]
+
+    if not gender.present?
+      gender = 'f'
+    elsif ['female', 'f', 'false'].include?(gender.downcase)
+      gender = 'f'
+    elsif ['male', 'm', 'true'].include?(gender.downcase)
+      gender = 'm'
+    end
+
     params.require(:user).permit(:username, :email, :parse_id, :password, :password_confirmation, :fname, :lname, :birth, :gender, :about, :website, :country, :pic, :lang, :provider ,:uid, :tel, :mobile)
   end
 
   def user_search
     params.require(:user).permit(:email)
   end
-
 
 end

@@ -91,6 +91,10 @@ GEM
     faraday (0.9.2)
       multipart-post (>= 1.2, < 3)
     fast-stemmer (1.0.2)
+    fullcalendar-rails (2.6.0.0)
+      jquery-rails (>= 4.0.5, < 5.0.0)
+      jquery-ui-rails (>= 5.0.2)
+      momentjs-rails (>= 2.9.0)
     genderize (0.0.6)
       rails (>= 3.2.13)
     globalid (0.3.6)
@@ -136,6 +140,8 @@ GEM
     mobvious-rails (0.1.2)
       activesupport
       mobvious
+    momentjs-rails (2.11.0)
+      railties (>= 3.1)
     mongo (2.2.0)
       bson (~> 4.0)
     mongoid (5.0.1)
@@ -280,6 +286,7 @@ DEPENDENCIES
   devise (= 3.5.3)
   diff-lcs (= 1.2.5)
   easy_captcha
+  fullcalendar-rails
   genderize
   haml-rails
   jbuilder (~> 2.0)
