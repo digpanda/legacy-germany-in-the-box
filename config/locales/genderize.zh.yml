@@ -1,0 +1,23 @@
+zh-CN:
+  genderize:
+    name:
+      masculine: 男
+      feminine: 女
+        
+  # pronouns
+    subject:
+      masculine: 他
+      feminine: 她
+    
+    object:
+      masculine: 他
+      feminine: 她
+      
+    possessive:
+      masculine: 他的
+      feminine: 她的
+    
+    # Other forms
+    casual:
+      masculine: 先生
+      feminine: 女士

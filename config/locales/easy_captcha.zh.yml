@@ -1,0 +1,4 @@
+zh:
+  recaptcha:
+    errors:
+      incorrect-captcha-sol: '失败'

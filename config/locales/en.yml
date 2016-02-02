@@ -1,4 +1,171 @@
-en:
-  recaptcha:
-    errors:
-      incorrect-captcha-sol: 'Fail'
+de:
+  top_menu:
+    top_menu: Menü
+    sign_in: Einloggen
+    sign_up: Registieren
+    sign_out: Ausloggen
+    my_cart: Einkaufswagen
+    my_account: Konto
+    my_personal: Person
+    my_bank: Zahlung
+    my_address: Adressen
+    my_order: Aufträge
+    my_collection: Favorit
+    view_cart: Ansehen
+    checkout: Zur Kasse
+    empty_cart: Kein Produkt vorhanden
+    start: Start
+    popular_product: Produkte
+    language: Sprache
+    chinese: Chinesisch
+    german: Deutsch
+    user_profile: Nutzerprofil
+    wrong_captcha: Captcha stimmt nicht überein.
+    email_confirmation_msg: Sie erhalten von uns eine Email für die Registrierung. Bitte bestätigen Sie durch den gegebenen Link in der Mail, bevor Sie fortfahren.
+  footer:
+    copyright: Urheberrecht：RheinManufaktur © 2016
+    rheinmanufaktur: RheinManufaktur
+    imprint: Impressum
+    terms_conditions: AGB
+    privarcy_statement: Datenschutzerklärung
+    guidelines: Grundsätze
+    press_portal: Presse
+    status: Status
+    career: Karriere
+    recent_news: Akutelle Nachrichten
+    selling: Verkaufen
+    seller_portal: Verkäuferportal
+    seller_faq: FAQ zum Verkaufen
+    selling_in_3_steps: Verkaufen in 3 Schritten
+    fees_invoices: Gebühren & Rechnungen
+    buying: Kaufen
+    buyer_faq: FAQ zum Kaufen
+    buyer_in_3_steps: Kaufen in 3 Schritten
+    vouchers: Gutscheine
+
+  sign_in_dialog:
+    email: Email
+    password: Passwort
+    header: Einloggen
+    title: Herzlich willkommen zurück!
+    remember_me: Auf diesem Rechner merken
+    not_member_yet: Jetzt registieren
+    forgot_password: Passwort vergessen
+    captcha: CAPTCHA
+    sign_in: Los!
+  sign_up_dialog:
+    username: Username
+    email: Email
+    password: Passwort
+    password_confirmation: Passwort wiederholen
+    header: Registieren
+    title: Herzlich willkommen zu Ihrer Registierung!
+    captcha: CAPTCHA
+    sign_up: Los!
+    already_member: Ich bin breits Kunde
+    product_news: Newsletter erhalten
+  password_recovery_dialog:
+    header: Passwort wiederherstellen
+    title: Passwort vergessen? Keine Sorge und wir helfen Ihnen gern.
+    email: Email
+    ok: Neues Passwort vergeben
+  edit_account:
+    username: Username
+    email: Email
+    password: Passwort
+    password_confirmation: Passwort wiederholen
+    save: Speichern
+    success: Erneutes Einloggen nach der Änderung
+  edit_personal:
+    firstname: Vorname
+    lastname: Nachname
+    birthday: Geburtstag
+    gender: Geschlecht
+    about: Über mich
+    website: Website
+    country: Staat
+    language: Sprache
+    provider: Anbieter
+    telephone: Telephone
+    mobile: Handy
+    save: Speichern
+  edit_address:
+    maximal_number_of_addresses: Sie können maximal drei Adressen konfigurieren.
+    add_new_address: Adresse hinzufügen
+    new_address_title: Ihre neue Adresse
+    street_building_room: Adresse
+    province: Land
+    city: Stadt
+    district: Gemeinde
+    province_blank: --Land--
+    city_blank: --Stadt--
+    district_blank: --Gemeinde--
+    country: Staat
+    zip: Postleitzahl
+    set_primary: primär
+    add_address: hinzufügen
+    change_address_title: Adresse ändern
+    save_address: Speichern
+    show_address_title: Adresse
+    delete_address_message: Die Adresse löschen?
+    delete_ok: Adresse erfolgreich gelöscht.
+    delete_ko: Ein Fehler ist beim Löschen der Adresse aufgetreten.
+    create_ok: Adresse erfolgreich angelegt.
+    create_ko: Ein Fehler ist beim Anlegen der Adresse aufgetreten.
+    update_ok: Adresse erfolgreich aktualisiert.
+    update_ko: Ein Fehler ist bei der Änderung der Adresse aufgetreten.
+  edit_order:
+    no_order: keine Aufträge vorhanden
+    id: Auftragsnummer
+    status: Status
+    total_price: Gesamter Preis
+    created_at: Erstellt am
+    updated_at: Geändert am
+    operations: Operationen
+    delete: Löschen
+    continue: Weiter
+    new: Neu
+    checked_out: Bezahlt
+  edit_collection:
+    new: Favorit erstellen
+    edit: Ändern
+    remove: Löschen
+    public: Öffentlich
+    no_products: Kein Produkt vorhanden
+    delete_collection_message: Löschen Sie den gewählten Favorit?
+    dislike: Entfernen
+  edit_collection_new:
+    name: Name
+    description: Beschreibung
+    visibility: Sichtbarkeit
+    public: Öffentlich
+    collection_type: Typ des Favorits
+    icon: Icon
+    save: Speichern
+  popular_products:
+    search_prompt: Ich suche
+    search_placeholder: ein Produkt
+    add_to_favorite: Hinzufügen
+    create_and_add_to_favorite: Erstellen
+    add_to_cart: Hinzufügen
+    create_favorite: Erstellen
+    new_favorite: Neuer Favorit
+  category:
+    categories: Kategorien
+  cart:
+    no_products: Kein Produkt vorhanden
+    item: Icon
+    name: Name
+    quantity: Quantity
+    unit_price: Preis
+    operations: Operationen
+    subtotal: Preis
+    shipping: Tranportkosten
+    taxes: Steuer
+    total_price: Gesamter Preis
+    update_cart: Einkaufswagen ändern
+    set_delivery_destination: Anschrift auswählen
+  checkout:
+    my_destination: Anlieferungsanschrift
+    setup_delivery_destination: Bitte Anschrift auswählen
+    checkout: Bestätigen

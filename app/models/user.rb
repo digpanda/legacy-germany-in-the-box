@@ -1,12 +1,13 @@
 class User
   include Mongoid::Document
+  include Genderize
 
   field :username, type: String
   field :email, type: String
   field :fname, type: String
   field :lname, type: String
   field :birth, type: String
-  field :gender, type: String
+  genderize (:gender)
   field :about, type: String
   field :website, type: String
   field :country, type: String

@@ -43,6 +43,8 @@ gem 'mobvious-rails'
 
 gem 'simple_token_authentication'
 
+gem "genderize"
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

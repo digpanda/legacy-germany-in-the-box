@@ -1,0 +1,23 @@
+de:
+  genderize:
+    name:
+      masculine: männlich
+      feminine: weiblich
+        
+  # pronouns
+    subject:
+      masculine: er
+      feminine: sie
+    
+    object:
+      masculine: ihn
+      feminine: sie
+      
+    possessive:
+      masculine: sein
+      feminine: ihr
+    
+    # Other forms
+    casual:
+      masculine: Herr
+      feminine: Frau

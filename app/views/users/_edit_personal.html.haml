@@ -10,7 +10,12 @@
     .form-group
       = f.text_field :birth, :class => 'form-control', placeholder: I18n.t(:birthday, scope: :edit_personal)
     .form-group
-      = f.text_field :gender, :class => 'form-control', placeholder: I18n.t(:gender, scope: :edit_personal)
+      %label.radio-inline
+        = f.radio_button :gender, 'm'
+        = I18n.t(:'genderize.name.masculine')
+      %label.radio-inline
+        = f.radio_button :gender, 'f', :checked => @user.gender.female?
+        = I18n.t(:'genderize.name.feminine')
     .form-group
       = f.text_field :about, :class => 'form-control', placeholder: I18n.t(:about, scope: :edit_personal)
     .form-group

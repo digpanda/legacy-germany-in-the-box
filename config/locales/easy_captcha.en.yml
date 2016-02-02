@@ -1,0 +1,4 @@
+en:
+  recaptcha:
+    errors:
+      incorrect-captcha-sol: 'Fail'
