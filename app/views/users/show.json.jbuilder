@@ -1,1 +1,3 @@
-json.extract! @user, :id, :username, :email, :fname, :lname, :birth, :gender, :about, :website, :country, :pic, :lang, :saved_collections, :saved_products, :private_chats, :public_chats, :notifications
+json.extract! @user, :id, :username, :fname, :lname, :country, :pic, :lang
+json.follower_count @user.followers.size
+json.following_count @user.following.size

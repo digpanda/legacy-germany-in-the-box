@@ -21,7 +21,7 @@ Rails.application.routes.draw do
     get :autocomplete_product_name, :on => :collection
   end
 
-  resources :users, except: [:show, :destroy]
+  resources :users, except: [:destroy]
   resources :shops
 
   resources :orders, only: [:destroy, :show]
