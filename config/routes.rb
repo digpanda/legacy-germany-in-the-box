@@ -51,6 +51,7 @@ Rails.application.routes.draw do
 
   get 'collections/:collection_id/toggle_product/:product_id', to: 'collections#toggle_product', as: 'toggle_product_in_collection'
   patch 'collections/:collection_id/remove_product/:product_id', to: 'collections#remove_product', as: 'remove_product_from_collection'
+  patch 'collections/:collection_id/remove_all_products', to: 'collections#remove_all_products', as: 'remove_all_products_from_collection'
   get 'collecionts/is_product_in_user_collections/:product_id', to: 'collections#is_product_in_user_collections', as: 'is_product_in_user_collections'
   post 'collections/create_and_add_to_colletion', to: 'collections#create_and_add_to_collection', as: 'create_and_add_to_collection'
 

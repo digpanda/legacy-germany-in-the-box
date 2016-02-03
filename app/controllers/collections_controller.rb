@@ -1,6 +1,21 @@
 class CollectionsController < ApplicationController
 
-  before_action :set_collection, except: [:create_and_add_to_collection, :is_product_in_user_collections, :remove_product, :toggle_product, :index, :gsearch, :search_collections, :likedcolls, :new, :savedcolls, :create, :matchedcollections, :mycolls, :indexft, :userinit]
+  before_action :set_collection, except: [:create_and_add_to_collection,
+                                          :is_product_in_user_collections,
+                                          :remove_product,
+                                          :remove_all_products,
+                                          :toggle_product,
+                                          :index,
+                                          :gsearch,
+                                          :search_collections,
+                                          :likedcolls,
+                                          :new,
+                                          :savedcolls,
+                                          :create,
+                                          :matchedcollections,
+                                          :mycolls,
+                                          :indexft,
+                                          :userinit]
 
   before_action :authenticate_user!, :except => [:indexft, :show]
 
@@ -70,16 +85,40 @@ class CollectionsController < ApplicationController
 
     if c && c.user == current_user
       c.products.delete(Product.find(params[:product_id]))
-      c.save
 
-      respond_to do |format|
-        format.html { redirect_to request.referer }
-        format.json { render :json => {}, :status => :ok }
+      if c.save
+        respond_to do |format|
+          format.html { redirect_to request.referer }
+          format.json { render :json => {}, :status => :ok }
+        end
+
+        return
       end
-    else
-      respond_to do |format|
-        format.json { render :json => {}, :status => :unprocessable_entity }
+    end
+
+    respond_to do |format|
+      format.json { render :json => {}, :status => :unprocessable_entity }
+    end
+  end
+
+  def remove_all_products
+    c = Collection.find(params[:collection_id])
+
+    if c && c.user == current_user
+      c.products.each { |pid| c.products.delete(pid) }
+
+      if c.save
+        respond_to do |format|
+          format.html { redirect_to request.referer }
+          format.json { render :json => {}, :status => :ok }
+        end
+
+        return
       end
+    end
+
+    respond_to do |format|
+      format.json { render :json => {}, :status => :unprocessable_entity }
     end
   end
 
