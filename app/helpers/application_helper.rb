@@ -26,4 +26,12 @@ module ApplicationHelper
     ChinaCity.list(get_code_for_city(province,city)).select { |p| p[0] == district }[0][1]
   end
 
+  def generate_set_datepicker_lang_js
+    %Q{
+      $( document ).ready( function () {
+        $('.date-picker').datepicker({ language: '#{params[:locale]}', autoclose: true, todayHighlight: true })
+      })
+    }
+  end
+
 end
