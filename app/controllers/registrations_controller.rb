@@ -91,6 +91,11 @@ class RegistrationsController < Devise::RegistrationsController
     popular_products_path
   end
 
+  def after_update_path_for(resource)
+    flash[:info] = I18n.t(:success, scope: :edit_account)
+    edit_user_path(current_user, :user_info_edit_part => :edit_account)
+  end
+
   def configure_devise_permitted_parameters
     registration_params = [:username, :email, :password, :password_confirmation, :birth, :gender, :pic]
 

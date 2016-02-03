@@ -30,7 +30,7 @@ class UsersController < ApplicationController
 
   def getuserbyemail
     @user = User.where(email: user_search[:email]).first
-    # @user = User.where(email: params[:email]).first
+
     respond_to do |format|
       format.html { redirect_to products_path }
       format.json { render :show, status: :created, location: @user }
@@ -77,17 +77,9 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1.json
   def update
     respond_to do |format|
-      if @user.update(user_params)
+      if @user.update(user_params.except(:email, :username))
         format.html {
-          if params[:user_info_edit_part] == :edit_account.to_s
-            session[:login_advice_counter] = 1
-            flash[:title] = I18n.t(:success, scope: :edit_account)
-            redirect_to home_path
-          else
-            render :edit, user_info_edit_part: params[:user_info_edit_part]
-          end
-
-          flash.delete(:info)
+          render :edit, user_info_edit_part: params[:user_info_edit_part]
         }
 
         format.json { render :show, status: :ok, location: @user }
@@ -343,6 +335,7 @@ class UsersController < ApplicationController
 
 
   private
+
   # Use callbacks to share common setup or constraints between actions.
   def set_user
     @user = User.find(params[:id])

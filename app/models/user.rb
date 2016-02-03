@@ -96,10 +96,11 @@ class User
   # Validatons
   validates :username  , :email , presence: true
   validates :email , uniqueness: true
+  validates :birth, presence: true
+  validates :gender, presence: true
+
   # validates :fname, presence: true
   # validates :lname, presence: true
-  #validates :birth, presence: true
-  #validates :gender, presence: true
   # validates :about, presence: true
   # validates :website, presence: true
   # validates :country, presence: true
