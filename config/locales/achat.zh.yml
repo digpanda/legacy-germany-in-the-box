@@ -71,10 +71,11 @@ zh-CN:
   edit_account:
     username: 用户昵称
     email: 登陆邮箱
-    password: 密码
+    current_password: 当前密码
+    password: 新的密码
     password_confirmation: 重复密码
     save: 保存
-    success: 账户信息修改成功，请重新登陆！
+    success: 账户信息修改成功
   edit_personal:
     firstname: 名
     lastname: 姓

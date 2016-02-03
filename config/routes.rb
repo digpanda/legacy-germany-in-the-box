@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   captcha_route
 
-  devise_for :users, :controllers => { :omniauth_callbacks => 'users/omniauth_callbacks',registrations: "registrations", sessions: "sessions" }
+  devise_for :users, :controllers => { :omniauth_callbacks => 'users/omniauth_callbacks', registrations: "registrations", sessions: "sessions" }
 
   devise_scope :user do
     delete '/users/sign_out', to: 'sessions#destroy', as: :signout
