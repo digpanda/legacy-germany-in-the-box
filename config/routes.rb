@@ -50,7 +50,7 @@ Rails.application.routes.draw do
   get 'orders/checkout/set_address_payment', to: 'orders#set_address_payment', as: 'set_address_payment'
 
   get 'collections/:collection_id/toggle_product/:product_id', to: 'collections#toggle_product', as: 'toggle_product_in_collection'
-  get 'collections/:collection_id/remove_product/:product_id', to: 'collections#remove_product', as: 'remove_product_from_collection'
+  patch 'collections/:collection_id/remove_product/:product_id', to: 'collections#remove_product', as: 'remove_product_from_collection'
   get 'collecionts/is_product_in_user_collections/:product_id', to: 'collections#is_product_in_user_collections', as: 'is_product_in_user_collections'
   post 'collections/create_and_add_to_colletion', to: 'collections#create_and_add_to_collection', as: 'create_and_add_to_collection'
 
@@ -70,7 +70,6 @@ Rails.application.routes.draw do
   post '/leaveprivatechat/:id/:chat_id', to: 'users#leaveprivatechat'
   post '/leavepublicchat/:id/:chat_id', to: 'users#leavepublicchat'
   post '/addprodtocol/:col_id/:prod_id', to: 'users#addprodtocol'
-  post '/removeprodtocol/:col_id/:prod_id', to: 'users#removeprodtocol'
   post '/getuserbyid/:parse_id', to: 'users#getuserbyid'
 
   get '/getfollowers/:id', to: 'users#get_followers'

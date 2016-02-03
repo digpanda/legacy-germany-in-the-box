@@ -67,12 +67,19 @@ class CollectionsController < ApplicationController
 
   def remove_product
     c = Collection.find(params[:collection_id])
-    c.products.delete(Product.find(params[:product_id]))
-    c.save!
 
-    respond_to do |format|
-      format.html { redirect_to request.referer }
-      format.json { render :json => {:status => :ok} }
+    if c && c.user == current_user
+      c.products.delete(Product.find(params[:product_id]))
+      c.save
+
+      respond_to do |format|
+        format.html { redirect_to request.referer }
+        format.json { render :json => {}, :status => :ok }
+      end
+    else
+      respond_to do |format|
+        format.json { render :json => {}, :status => :unprocessable_entity }
+      end
     end
   end
 

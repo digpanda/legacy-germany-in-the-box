@@ -1,6 +1,13 @@
 class UsersController < ApplicationController
 
-  before_action :set_user, except: [:search_users, :openmailnoti,:removeprodtocol, :getuserbyid, :index, :new, :create, :addprodtocol, :getuserbyemail]
+  before_action :set_user, except: [:search_users,
+                                    :openmailnoti,
+                                    :getuserbyid,
+                                    :index,
+                                    :new,
+                                    :create,
+                                    :addprodtocol,
+                                    :getuserbyemail]
 
   skip_before_filter :authenticate_user!, only: :index
 
@@ -288,20 +295,6 @@ class UsersController < ApplicationController
     end
 
   end
-
-  def removeprodtocol
-    @product = Product.find(params[:prod_id])
-    @collection = Collection.find(params[:col_id])
-    @collection.products.delete(params[:prod_id])
-    @collection.products_imgs.delete(@product.img)
-    @collection.save
-    @msg = "Done"
-    respond_to do |format|
-      format.json { render :msg, status: :ok, location: @user }
-    end
-
-  end
-
 
   def get_followers
     @users = @user.followers
