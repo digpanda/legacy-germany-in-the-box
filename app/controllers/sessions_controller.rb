@@ -17,7 +17,7 @@ class SessionsController < Devise::SessionsController
             session.delete(:login_advice_counter)
             super
           else
-            flash[:error] = 'Captcha has wrong, try again.'
+            flash[:error] = flash[:error] = I18n.t(:wrong_captcha, scope: :top_menu)
             redirect_to home_path
           end
         else
@@ -28,14 +28,8 @@ class SessionsController < Devise::SessionsController
       format.json {
         self.resource = warden.authenticate!(auth_options)
         sign_in(resource_name, resource)
-
         current_user.update authentication_token: nil
-
-        render :json => {
-          :user => current_user,
-          :status => :ok,
-          :authentication_token => current_user.authentication_token
-        }
+        render :json => { :authentication_token => current_user.authentication_token }, :status => :ok
       }
     end
   end
@@ -50,9 +44,9 @@ class SessionsController < Devise::SessionsController
         if current_user
           current_user.update authentication_token: nil
           Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name)
-          render :json => {}.to_json, :status => :ok
+          render :json => {}, :status => :ok
         else
-          render :json => {}.to_json, :status => :unprocessable_entity
+          render :json => {}, :status => :unprocessable_entity
         end
       }
     end
@@ -62,7 +56,7 @@ class SessionsController < Devise::SessionsController
     session.delete(:login_advice_counter)
     respond_to do |format|
       format.json {
-        render :json => {}.to_json, :status => :ok
+        render :json => {}, :status => :ok
       }
     end
   end

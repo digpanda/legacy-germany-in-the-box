@@ -2,6 +2,12 @@ class RegistrationsController < Devise::RegistrationsController
 
   before_action :configure_devise_permitted_parameters, if: :devise_controller?
 
+  include Base64ToUpload
+
+  before_action(:only =>  [:create, :update]) {
+    base64_to_uploadedfile :user, :pic
+  }
+
   respond_to :html, :json
 
   def new
@@ -86,7 +92,7 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def configure_devise_permitted_parameters
-    registration_params = [:username, :email, :password, :password_confirmation, :birth, :gender]
+    registration_params = [:username, :email, :password, :password_confirmation, :birth, :gender, :pic]
 
     if params[:action] == 'update'
       devise_parameter_sanitizer.for(:account_update) {

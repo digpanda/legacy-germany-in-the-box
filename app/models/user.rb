@@ -11,7 +11,6 @@ class User
   field :about, type: String
   field :website, type: String
   field :country, type: String
-  field :pic, type: String
   field :lang, type: String
   field :parse_id, type: String
   field :provider
