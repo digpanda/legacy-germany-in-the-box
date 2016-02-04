@@ -20,7 +20,7 @@ class CollectionsController < ApplicationController
   before_action :authenticate_user!, :except => [:indexft, :show]
 
   def search_collections
-    @collections = Collection.or({desc: /.*#{params[:collections_search_keyword]}.*/i}, {name: /.*#{params[:collections_search_keyword]}.*/i}).limit(Rails.configuration.limit_for_search)
+    @collections = Collection.or({desc: /.*#{params[:collections_search_keyword]}.*/i}, {name: /.*#{params[:collections_search_keyword]}.*/i}).limit(Rails.configuration.limit_for_collections_search)
 
     respond_to do |format|
       format.html { render :index }

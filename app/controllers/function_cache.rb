@@ -31,22 +31,22 @@ module FunctionCache
 
   def get_products_from_search_cache(term)
     Rails.cache.fetch("products_search_cache_#{term}", :expires_in => Rails.configuration.product_search_cache_expire_limit ) {
-      products_from_products = sort_and_map_products(Product.where({ name: /.*#{term}.*/i }).limit(Rails.configuration.autocomplete_limit), :product)
+      products_from_products = sort_and_map_products(Product.where({ name: /.*#{term}.*/i }).limit(Rails.configuration.limit_for_products_search), :product)
 
-      products_from_brands = sort_and_map_products(Product.where({ brand: /.*#{term}.*/i }).limit(Rails.configuration.autocomplete_limit), :brand)
+      products_from_brands = sort_and_map_products(Product.where({ brand: /.*#{term}.*/i }).limit(Rails.configuration.limit_for_products_search), :brand)
       products_from_categories =  []
 
-      Category.where( { name: /.*#{term}.*/i } ).limit(Rails.configuration.autocomplete_limit).to_a.each do |c|
+      Category.where( { name: /.*#{term}.*/i } ).limit(Rails.configuration.limit_for_products_search).to_a.each do |c|
         products_from_categories |=  sort_and_map_products(c.products, :category)
       end
 
-      products_from_tags = sort_and_map_products( Product.where( { :tags => term } ).limit(Rails.configuration.autocomplete_limit), :keyword )
+      products_from_tags = sort_and_map_products( Product.where( { :tags => term } ).limit(Rails.configuration.limit_for_products_search), :keyword )
 
       products_from_tags + products_from_products + products_from_brands + products_from_categories
     }
   end
 
   def sort_and_map_products(products, search_category)
-    products.sort! { |a,b| a.name.downcase <=> b.name.downcase }.map { |p| {:label => p.name, :value => p.name, :sc => search_category, :obj => p } }
+    products.sort! { |a,b| a.name.downcase <=> b.name.downcase }.map { |p| {:label => p.name, :value => p.name, :sc => search_category, :product => { :id => p.id } } }
   end
 end

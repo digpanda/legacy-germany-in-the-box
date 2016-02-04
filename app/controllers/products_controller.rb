@@ -12,13 +12,17 @@ class ProductsController < ApplicationController
 
   def search_products
     founded_products = get_products_from_search_cache( params[:products_search_keyword] )
-
-    @products = founded_products.collect{|p| p[:obj] }.uniq
-    @categories_and_children, @categories_and_counters = get_category_values_for_left_menu(@products)
+    @products = founded_products.collect{|p| Mongoid::QueryCache.cache { Product.find( p[:product][:id]) } }.compact.uniq
 
     respond_to do |format|
-      format.html { render :index }
-      format.json { render :search_products }
+      format.html {
+        @categories_and_children, @categories_and_counters = get_category_values_for_left_menu(@products)
+        render :index
+      }
+
+      format.json {
+        render :search_products
+      }
     end
   end
 

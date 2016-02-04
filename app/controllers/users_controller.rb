@@ -319,7 +319,9 @@ class UsersController < ApplicationController
   end
 
   def search_users
-    @users = User.or({username: /.*#{params[:users_search_keyword]}.*/i}, {fname: /.*#{params[:users_search_keyword]}.*/i}, {email: /.*#{params[:users_search_keyword]}.*/i}).limit(Rails.configuration.limit_for_search)
+    @users = User.or({username: /.*#{params[:users_search_keyword]}.*/i},
+                     {fname: /.*#{params[:users_search_keyword]}.*/i},
+                     {email: /.*#{params[:users_search_keyword]}.*/i}).limit(Rails.configuration.limit_for_users_search)
 
     respond_to do |format|
       format.html { render :index }
