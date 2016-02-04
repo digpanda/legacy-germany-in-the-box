@@ -4,6 +4,8 @@ class ProductsController < ApplicationController
 
   before_action { @show_search_area = true }
 
+  acts_as_token_authentication_handler_for User, only: [:create, :edit, :destroy, :update]
+
   def autocomplete_product_name
     render :json => get_products_from_search_cache( params[:term] )
   end

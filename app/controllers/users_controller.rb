@@ -11,7 +11,10 @@ class UsersController < ApplicationController
 
   skip_before_filter :authenticate_user!, only: :index
 
-  acts_as_token_authentication_handler_for User, except: [:index, :get_followers, :get_followings]
+  acts_as_token_authentication_handler_for User, except: [:search_users,
+                                                          :index,
+                                                          :get_followers,
+                                                          :get_followings]
 
 
 
