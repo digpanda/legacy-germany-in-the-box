@@ -55,6 +55,13 @@ Rails.application.routes.draw do
   get 'collecionts/is_product_in_user_collections/:product_id', to: 'collections#is_product_in_user_collections', as: 'is_product_in_user_collections'
   post 'collections/create_and_add_to_colletion', to: 'collections#create_and_add_to_collection', as: 'create_and_add_to_collection'
 
+  get '/get_followers/:id', to: 'users#get_followers'
+  get '/get_followings/:id', to: 'users#get_followings'
+
+  get 'search_products/:products_search_keyword' => 'products#search_products'
+  get 'search_collections/:collections_search_keyword' => 'collections#search_collections'
+  get 'search_users/:users_search_keyword' => 'users#search_users'
+
   post '/getuser', to: 'users#getuserbyemail'
   post '/follow/:id/:target_id', to: 'users#follow'
   post '/unfollow/:id/:target_id', to: 'users#unfollow'
@@ -73,10 +80,6 @@ Rails.application.routes.draw do
   post '/addprodtocol/:col_id/:prod_id', to: 'users#addprodtocol'
   post '/getuserbyid/:parse_id', to: 'users#getuserbyid'
 
-  get '/getfollowers/:id', to: 'users#get_followers'
-
-  get '/getfollowings/:id', to: 'users#get_followings'
-
   get 'userssearch/:users_search_keyword' => 'users#search_users'
 
   get 'search/:keyword/:folds' => 'products#search'
@@ -94,7 +97,7 @@ Rails.application.routes.draw do
   get 'mycolls/:owner_id' => 'collections#mycolls'
   get 'savedcolls/:owner_id' => 'collections#savedcolls'
   get 'likedcolls/:owner_id' => 'collections#likedcolls'
-  get 'colsearch/:collections_search_keyword' => 'collections#search_collections'
+
 
   get 'gsearch/' => 'collections#gsearch', as: "gsearch"
 

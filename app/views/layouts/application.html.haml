@@ -19,6 +19,10 @@
 
     = javascript_include_tag 'leftmenu/script.js'
 
+    = javascript_include_tag 'bootstrap-datepicker/core.js'
+    = javascript_include_tag 'bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN.js'
+    = javascript_include_tag 'bootstrap-datepicker/locales/bootstrap-datepicker.de.js'
+
     = stylesheet_link_tag 'couponia/css/boostrap.css'
     = stylesheet_link_tag 'couponia/css/font_awesome.css'
     = stylesheet_link_tag 'couponia/css/styles.css'
@@ -28,6 +32,9 @@
     = stylesheet_link_tag 'leftmenu/style.css'
 
     = stylesheet_link_tag 'achat.css'
+
+    = stylesheet_link_tag 'bootstrap-datepicker.css'
+
 
     - if session[:login_advice_counter].present?
       = hidden_field_tag :login_advice_counter, "#{session[:login_advice_counter]}"
@@ -59,6 +66,9 @@
           $('#sign_up_link').click();
         }
       });
+
+      #{generate_set_datepicker_lang_js}
+
   %body
     %nav{:class => "#{for_device_type :desktop do 'navbar-fixed-top' end}" }
       .container
@@ -204,11 +214,11 @@
             %label= I18n.t(:password, scope: :sign_in_dialog)
             = password_field_tag 'user[password]', nil, :class => 'form-control', :placeholder => 'My secret password'
           - if session[:login_advice_counter].present? and session[:login_advice_counter] >= Rails.configuration.login_failure_limit
-            .form-group
-              = captcha_tag
-            .form-group
-              %label= I18n.t(:captcha, scope: :sign_in_dialog)
-              = text_field_tag :captcha, '', :autocomplete => :off
+            .form-inline
+              .form-group
+                = text_field_tag :captcha, '', :autocomplete => :off,  placeholder: I18n.t(:captcha, scope: :sign_up_dialog)
+              .form-group
+                = captcha_tag
           .checkbox
             %label
               %input{:type => 'checkbox'}
@@ -241,26 +251,38 @@
               = password_field_tag 'user[password]', nil, :class => 'form-control', :placeholder => I18n.t(:password, scope: :sign_up_dialog)
             .form-group
               = password_field_tag 'user[password_confirmation]', nil, :class => 'form-control', :placeholder => I18n.t(:password_confirmation, scope: :sign_up_dialog)
-            .form-group
-              = captcha_tag
-            .form-group.list-inline
-              %label= I18n.t(:captcha, scope: :sign_up_dialog)
-              = text_field_tag :captcha, '', :autocomplete => :off
-            .checkbox
-              %label
-                %input{:type => 'checkbox'}>
-                = I18n.t(:product_news, scope: :sign_up_dialog)
+            .form-inline
+              .form-group
+                = text_field_tag 'user[birth]', nil, :class => 'form-control date-picker', placeholder: I18n.t(:birthday, scope: :edit_personal), 'data-provide': 'datepicker', 'data-date-format': 'yyyy-mm-dd'
+              .form-group.col-md-offset-1
+                %label.radio-inline
+                  = radio_button_tag 'user[gender]', 'm'
+                  = I18n.t(:'genderize.name.masculine')
+                %label.radio-inline
+                  = radio_button_tag 'user[gender]', 'f', :checked => true
+                  = I18n.t(:'genderize.name.feminine')
+            .form-inline
+              .form-group
+                = text_field_tag :captcha, nil, :autocomplete => :off, placeholder: I18n.t(:captcha, scope: :sign_up_dialog), :class => 'form-control', :style => 'margin-right:14px'
+              .form-group
+                = captcha_tag
             = submit_tag I18n.t(:sign_up, scope: :sign_up_dialog), :class => 'btn btn-primary'
           - for_device_type :mobile, :tablet do
             = text_field_tag 'user[username]', nil, :class => 'form-control', :placeholder => I18n.t(:username, scope: :sign_up_dialog)
             = email_field_tag 'user[email]', nil, :class => 'form-control', :placeholder => I18n.t(:email, scope: :sign_up_dialog)
             = password_field_tag 'user[password]', nil, :class => 'form-control', :placeholder => I18n.t(:password, scope: :sign_up_dialog)
             = password_field_tag 'user[password_confirmation]', nil, :class => 'form-control', :placeholder => I18n.t(:password_confirmation, scope: :sign_up_dialog)
-            = captcha_tag
-            = text_field_tag :captcha, '', :autocomplete => :off, :placeholder => I18n.t(:captcha, scope: :sign_up_dialog)
-            .checkbox
-              %label
-                %input{:type => 'checkbox'}= I18n.t(:product_news, scope: :sign_up_dialog)
+            .input-group
+              = text_field_tag 'user[birth]', nil, :class => 'form-control date-picker', placeholder: I18n.t(:birthday, scope: :edit_personal), 'data-provide': 'datepicker', 'data-date-format': 'yyyy-mm-dd', :style => 'width:120px;margin-right:8px'
+              %label.radio-inline
+                = radio_button_tag 'user[gender]', 'm'
+                = I18n.t(:'genderize.name.masculine')
+              %label.radio-inline
+                = radio_button_tag 'user[gender]', 'f', :checked => true
+                = I18n.t(:'genderize.name.feminine')
+            .input-group
+              = captcha_tag
+              = text_field_tag :captcha, '', :autocomplete => :off, :placeholder => I18n.t(:captcha, scope: :sign_up_dialog), :class => 'form-control'
             = submit_tag I18n.t(:sign_up, scope: :sign_up_dialog), :class => 'btn btn-primary'
         %ul.dialog-alt-links
           %li

@@ -1,11 +1,3 @@
-= javascript_include_tag 'bootstrap-datepicker/core.js'
-= javascript_include_tag 'bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN.js'
-= javascript_include_tag 'bootstrap-datepicker/locales/bootstrap-datepicker.de.js'
-= stylesheet_link_tag 'bootstrap-datepicker.css'
-
-:javascript
-  #{generate_set_datepicker_lang_js}
-
 .col-md-6.col-sm-12.col-xs-12
   = form_for @user do |f|
     .form-group

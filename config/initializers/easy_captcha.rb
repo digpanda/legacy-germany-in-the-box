@@ -7,4 +7,6 @@ EasyCaptcha.setup do |config|
   config.cache_expire   = 1.day
   # Cache size
   # config.cache_size     = 500
+  config.length         = 4
+  config.image_width    = 80
 end
