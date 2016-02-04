@@ -2,12 +2,10 @@ class Product
   include Mongoid::Document
 
   field :network, type: String
-  field :shopname, type: String
   field :prodid, type: String
   field :deeplink, type: String
   field :name, type: String
   field :brand, type: String
-  field :category, type: String
   field :img, type: String
   field :imglg, type: String
   field :price
@@ -36,22 +34,9 @@ class Product
 
   field :tags, type: Array
   scope :has_tag, ->(value) { where(:tags => value) }
-
-  # has_many :likers, class_name: "User" , as: 'likers'
   
   index({brand: 1}, {unique: false})
-  index({category: 1}, {unique: false})
   index({name: 1}, {unique: false})
   index({tags: 1}, {unique: false})
-
-  # search_in :brand, :name, :desc
-
-  def owner_img
-    "test"
-  end
-
-  def owner_name
-    "test"
-  end
 
 end

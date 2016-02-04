@@ -10,7 +10,7 @@ class ProductsController < ApplicationController
 
   def search_products
     founded_products = get_products_from_search_cache( params[:products_search_keyword] )
-    logger.info('#####################################################'+ params[:products_search_keyword])
+
     @products = founded_products.collect{|p| p[:obj] }.uniq
     @categories_and_children, @categories_and_counters = get_category_values_for_left_menu(@products)
 
@@ -140,26 +140,6 @@ class ProductsController < ApplicationController
 
 
   def show
-    #  name = @product.ProductName
-    #  File.open('product.log', 'a') do |f2|
-    # # use "\n" for two lines of text
-    #  f2.write Time.new
-    #  f2.write "==>"
-    #  f2.write name
-    #  f2.write "  showed"
-    #  f2.write "\n"
-
-    # end
-
-    begin
-      @user = User.find(@product.owner)
-      @owner_name = @user.username
-      @owner_img = @user.pic
-    rescue Mongoid::Errors::InvalidFind
-      @owner_name = nil
-      @owner_img = nil
-    end
-
   end
 
 # GET /products/new
