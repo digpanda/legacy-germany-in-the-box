@@ -1,11 +1,3 @@
-module BSON
-  class ObjectId
-    def to_json(*args)
-      to_s.to_json
-    end
+require 'jbuilder/jbuilder'
 
-    def as_json(*args)
-      to_s.as_json
-    end
-  end
-end
+Jbuilder.ignore_nil
