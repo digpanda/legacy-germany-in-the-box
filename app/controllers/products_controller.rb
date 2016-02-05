@@ -12,7 +12,7 @@ class ProductsController < ApplicationController
 
   def search_products
     founded_products = get_products_from_search_cache( params[:products_search_keyword] )
-    @products = founded_products.collect{|p| Mongoid::QueryCache.cache { Product.find( p[:product][:id]) } }.compact.uniq
+    @products = founded_products.collect{|p| Mongoid::QueryCache.cache { Product.find( p[:product_id] ) } }.compact.uniq
 
     respond_to do |format|
       format.html {

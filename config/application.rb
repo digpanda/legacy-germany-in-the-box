@@ -30,7 +30,8 @@ module AChat
     #config.active_record.raise_in_transactional_callbacks = true
 
     config.autoload_paths += %W(#{config.root}/lib)
-    config.middleware.use Mongoid::QueryCache::Middleware
+    config.middleware.use "Mongoid::QueryCache::Middleware"
     config.middleware.use Mobvious::Manager
+
   end
 end

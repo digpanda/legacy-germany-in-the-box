@@ -47,6 +47,6 @@ module FunctionCache
   end
 
   def sort_and_map_products(products, search_category)
-    products.sort! { |a,b| a.name.downcase <=> b.name.downcase }.map { |p| {:label => p.name, :value => p.name, :sc => search_category, :product => { :id => p.id } } }
+    products.sort! { |a,b| a.name.downcase <=> b.name.downcase }.map { |p| {:label => p.name, :value => p.name, :sc => search_category, :product_id => p.id } }
   end
 end
