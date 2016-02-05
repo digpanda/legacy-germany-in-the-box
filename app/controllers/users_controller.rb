@@ -16,7 +16,11 @@ class UsersController < ApplicationController
                                                           :get_followers,
                                                           :get_followings]
 
+  include Base64ToUpload
 
+  before_action(:only =>  [:create, :update]) {
+    base64_to_uploadedfile :user, :pic
+  }
 
   # GET /users
   # GET /users.json
