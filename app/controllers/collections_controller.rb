@@ -17,7 +17,8 @@ class CollectionsController < ApplicationController
                                           :indexft,
                                           :userinit]
 
-  before_action :authenticate_user!, :except => [:indexft, :show]
+  before_action :authenticate_user!, :except => [:indexft, :show, :search_collections]
+  acts_as_token_authentication_handler_for User, except: [:search_collections]
 
   def search_collections
     @collections = Collection.or({desc: /.*#{params[:collections_search_keyword]}.*/i}, {name: /.*#{params[:collections_search_keyword]}.*/i}).limit(Rails.configuration.limit_for_collections_search)
