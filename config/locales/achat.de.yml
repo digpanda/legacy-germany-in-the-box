@@ -72,7 +72,8 @@ de:
   edit_account:
     username: Username
     email: Email
-    password: Passwort
+    current_password: Aktuelles Passwort
+    password: Neues Passwort
     password_confirmation: Passwort wiederholen
     save: Speichern
     success: Ihr Konto ist erfolgreich aktualisiert.
