@@ -1,5 +1,8 @@
 class User
   include Mongoid::Document
+  include Mongoid::Timestamps::Created::Short
+  include Mongoid::Timestamps::Updated::Short
+
   include Genderize
 
   field :username, type: String
@@ -98,6 +101,8 @@ class User
   validates :email , uniqueness: true
   validates :birth, presence: true
   validates :gender, presence: true
+
+  validates :addresses, :length => { :minimum => Rails.configuration.max_num_addresses }
 
   # validates :fname, presence: true
   # validates :lname, presence: true

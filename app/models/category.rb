@@ -3,8 +3,9 @@ class Category
   include Mongoid::Timestamps::Created::Short
   include Mongoid::Timestamps::Updated::Short
 
+  strip_attributes :only => [:name, :code]
+
   field :name,  type: String
-  field :desc,  type: String # not needed
   field :code,  type: String
   field :cssc,  type: String
 
@@ -15,11 +16,6 @@ class Category
 
   has_and_belongs_to_many :products
 
-  def get_number_of_different_products
-    if parent.present?
-      products.count
-    else
-      children.inject(0) { |sum, child| sum += child.products.count }
-    end
-  end
+  validates :name,    presence: true
+  validates :code,    presence: true, :unless => lambda { self.parent.blank? }
 end

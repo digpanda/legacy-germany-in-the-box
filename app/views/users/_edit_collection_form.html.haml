@@ -7,9 +7,6 @@
       = f.label :desc, I18n.t(:description, scope: :edit_collection_new)
       = f.text_field :desc, :class => 'form-control'
     .form-group
-      = f.label :visible, I18n.t(:visibility, scope: :edit_collection_new)
-      = f.text_field :visible, :class => 'form-control'
-    .form-group
       %label{ :style => 'margin:4px'}
         = f.check_box :public
         %i.fa.fa-users

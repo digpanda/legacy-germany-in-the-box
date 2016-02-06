@@ -1,5 +1,7 @@
 class Product
   include Mongoid::Document
+  include Mongoid::Timestamps::Created::Short
+  include Mongoid::Timestamps::Updated::Short
 
   field :network, type: String
   field :prodid, type: String

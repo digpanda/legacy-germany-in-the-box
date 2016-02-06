@@ -1,5 +1,7 @@
 class Post
   include Mongoid::Document
+  include Mongoid::Timestamps::Created::Short
+  include Mongoid::Timestamps::Updated::Short
 
   field :name, type: String
   field :image, type: String
