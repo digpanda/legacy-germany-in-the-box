@@ -81,7 +81,7 @@
                             %span.product-page-meta-title 5000+ bought
                   %hr
                   .row
-                    %a.btn.btn-primary{:href => "#{remove_product_from_collection_path(c.id, p.id)}"}
+                    %a.btn.btn-primary{:href => "#{remove_product_from_collection_path(c.id, p.id)}", :'data-method'=> :patch}
                       %i.fa.fa-times-circle
                       = I18n.t(:dislike, scope: :edit_collection)
                 #masonry.row.row-wrap

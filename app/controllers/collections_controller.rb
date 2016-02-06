@@ -3,6 +3,7 @@ class CollectionsController < ApplicationController
   before_action :set_collection, except: [:create_and_add_to_collection,
                                           :is_product_in_user_collections,
                                           :remove_product,
+                                          :remove_products,
                                           :remove_all_products,
                                           :toggle_product,
                                           :index,
@@ -18,7 +19,7 @@ class CollectionsController < ApplicationController
                                           :userinit]
 
   before_action :authenticate_user!, :except => [:indexft, :show, :search_collections]
-  acts_as_token_authentication_handler_for User, except: [:search_collections]
+  #acts_as_token_authentication_handler_for User, except: [:search_collections]
 
   def search_collections
     @collections = Collection.or({desc: /.*#{params[:collections_search_keyword]}.*/i}, {name: /.*#{params[:collections_search_keyword]}.*/i}).limit(Rails.configuration.limit_for_collections_search)
@@ -86,6 +87,31 @@ class CollectionsController < ApplicationController
 
     if c && c.user == current_user
       c.products.delete(Product.find(params[:product_id]))
+
+      if c.save
+        respond_to do |format|
+          format.html { redirect_to request.referer }
+          format.json { render :json => {}, :status => :ok }
+        end
+
+        return
+      end
+    end
+
+    respond_to do |format|
+      format.json { render :json => {}, :status => :unprocessable_entity }
+    end
+  end
+
+  def remove_products
+    c = Collection.find(params[:collection_id])
+
+    if c && c.user == current_user
+      product_ids = params[:product_ids].split(',')
+
+      product_ids.each do |product_id|
+        c.products.delete(Product.find(product_id))
+      end
 
       if c.save
         respond_to do |format|

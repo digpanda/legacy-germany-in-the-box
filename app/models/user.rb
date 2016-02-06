@@ -102,7 +102,7 @@ class User
   validates :birth, presence: true
   validates :gender, presence: true
 
-  validates :addresses, :length => { :minimum => Rails.configuration.max_num_addresses }
+  validates :addresses, :length => { :maximum => Rails.configuration.max_num_addresses }
 
   # validates :fname, presence: true
   # validates :lname, presence: true
