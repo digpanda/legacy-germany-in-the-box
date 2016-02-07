@@ -6,7 +6,7 @@ class SessionsController < Devise::SessionsController
 
   def new
     session[:login_advice_counter] = 1
-    redirect_to home_path
+    redirect_to root_path
   end
 
   def create
@@ -18,7 +18,7 @@ class SessionsController < Devise::SessionsController
             super
           else
             flash[:error] = flash[:error] = I18n.t(:wrong_captcha, scope: :top_menu)
-            redirect_to home_path
+            redirect_to root_path
           end
         else
           super

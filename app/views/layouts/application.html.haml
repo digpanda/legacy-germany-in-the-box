@@ -72,7 +72,7 @@
   %body
     %nav{:class => "#{for_device_type :desktop do 'navbar-fixed-top' end}" }
       .container
-        %a.shared_header_logo{:href => "#{home_path}"}
+        %a.shared_header_logo{:href => "#{root_path}"}
           - for_device_type :desktop do
             = image_tag  'icons/RMlogo_orig.png', :style => 'width:150px;height:42px'
       %header.main
@@ -84,7 +84,7 @@
                   = image_tag  'icons/RMlogo_orig.png', :style => 'width:150px;height:42px'
               %ul#flexnav.nav.nav-pills.flexnav{'data-breakpoint' => '800'}
                 %li{:class => params[:top_menu_active_part] ? (params[:top_menu_active_part] == :home ? 'active' : '') : 'active'}
-                  %a{:href => "#{home_path}"}= I18n.t(:start, scope: :top_menu)
+                  %a{:href => "#{root_path}"}= I18n.t(:start, scope: :top_menu)
                 - get_root_level_categories_from_cache().each do |rc|
                   %li{:class => params[:top_menu_active_part] == :fashion ? 'active' : ''}
                     %a{:href => '#'}= rc.name_locales[I18n.locale]

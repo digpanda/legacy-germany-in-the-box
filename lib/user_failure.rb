@@ -1,6 +1,6 @@
 class UserFailure < Devise::FailureApp
   def redirect_url
-    home_path
+    root_path
   end
 
   def respond

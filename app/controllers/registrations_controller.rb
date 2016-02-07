@@ -12,7 +12,7 @@ class RegistrationsController < Devise::RegistrationsController
 
   def new
     session[:signup_advice_counter] = 1
-    redirect_to home_path
+    redirect_to root_path
   end
 
   def cancel_signup
@@ -50,12 +50,12 @@ class RegistrationsController < Devise::RegistrationsController
 
             session[:signup_advice_counter] = 1
             flash[:error] = resource.errors.full_messages.first
-            redirect_to home_path
+            redirect_to root_path
           end
         else
           session[:signup_advice_counter] = 1
           flash[:error] = I18n.t(:wrong_captcha, scope: :top_menu)
-          redirect_to home_path
+          redirect_to root_path
         end
       }
 

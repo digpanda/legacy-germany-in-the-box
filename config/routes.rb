@@ -12,6 +12,8 @@ Rails.application.routes.draw do
 
   mount ChinaCity::Engine => '/china_city'
 
+  root to: 'pages#home'
+
   resources :brands
 
   resources :collections do
@@ -37,10 +39,6 @@ Rails.application.routes.draw do
   resources :orders, only: [:destroy, :show]
 
   
-  # user
-
-  get '/',to: 'pages#home', as: 'home'
-
   get '/set_session_locale/:locale', to: 'application#set_session_locale', as: 'set_session_locale'
 
   get 'popular_products', to: 'products#indexr', as: 'popular_products'
