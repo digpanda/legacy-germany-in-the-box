@@ -20,8 +20,9 @@ Rails.application.routes.draw do
     match :remove_products,             via: [:patch],  to: :remove_products,       as: :remove_products_from,      :on => :member
     match 'toggle_product/:product_id', via: [:get],    to: :toggle_product,        as: :toggle_product_in,         :on => :member
 
-    match 'is_product_collected/:product_id', via: [:get],    to: :is_product_collected,          as: :is_product_collected,  :on => :collection
-    match :create_and_add,                    via: [:post],   to: :create_and_add,                as: :create_and_add,        :on => :collection
+    match 'is_collected/:product_id',   via: [:get],    to: :is_collected,          as: :is_collected,              :on => :collection
+    match :create_and_add,              via: [:post],   to: :create_and_add,        as: :create_and_add,            :on => :collection
+    match 'search/:keyword',            via: [:get],    to: :search,                as: :search,                    :on => :collection
   end
 
   resources :addresses
@@ -61,7 +62,6 @@ Rails.application.routes.draw do
   get '/get_followings/:id', to: 'users#get_followings'
 
   get '/products/search/:products_search_keyword' => 'products#search_products'
-  get '/collections/search/:collections_search_keyword' => 'collections#search_collections'
   get '/users/search/:users_search_keyword' => 'users#search_users'
 
   post '/getuser', to: 'users#getuserbyemail'

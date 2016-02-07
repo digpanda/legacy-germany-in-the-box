@@ -4,7 +4,7 @@ class CollectionsController < ApplicationController
                                           :is_product_collected,
                                           :index,
                                           :gsearch,
-                                          :search_collections,
+                                          :search,
                                           :likedcolls,
                                           :new,
                                           :savedcolls,
@@ -16,8 +16,8 @@ class CollectionsController < ApplicationController
 
   before_action :authenticate_user!, :except => [:indexft, :show, :search_collections]
 
-  def search_collections
-    @collections = Collection.public.or({desc: /.*#{params[:collections_search_keyword]}.*/i}, {name: /.*#{params[:collections_search_keyword]}.*/i}).limit(Rails.configuration.limit_for_collections_search)
+  def search
+    @collections = Collection.public.or({desc: /.*#{params[:keyword]}.*/i}, {name: /.*#{params[:keyword]}.*/i}).limit(Rails.configuration.limit_for_collections_search)
 
     respond_to do |format|
       format.html { render :index }
