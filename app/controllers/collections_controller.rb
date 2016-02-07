@@ -1,11 +1,7 @@
 class CollectionsController < ApplicationController
 
-  before_action :set_collection, except: [:create_and_add_to_collection,
-                                          :is_product_in_user_collections,
-                                          :remove_product,
-                                          :remove_products,
-                                          :remove_all_products,
-                                          :toggle_product,
+  before_action :set_collection, except: [:create_and_add,
+                                          :is_product_collected,
                                           :index,
                                           :gsearch,
                                           :search_collections,
@@ -19,10 +15,9 @@ class CollectionsController < ApplicationController
                                           :userinit]
 
   before_action :authenticate_user!, :except => [:indexft, :show, :search_collections]
-  #acts_as_token_authentication_handler_for User, except: [:search_collections]
 
   def search_collections
-    @collections = Collection.or({desc: /.*#{params[:collections_search_keyword]}.*/i}, {name: /.*#{params[:collections_search_keyword]}.*/i}).limit(Rails.configuration.limit_for_collections_search)
+    @collections = Collection.public.or({desc: /.*#{params[:collections_search_keyword]}.*/i}, {name: /.*#{params[:collections_search_keyword]}.*/i}).limit(Rails.configuration.limit_for_collections_search)
 
     respond_to do |format|
       format.html { render :index }
@@ -31,7 +26,7 @@ class CollectionsController < ApplicationController
   end
 
 
-  def create_and_add_to_collection
+  def create_and_add
     cp = collection_params
     cp[:public] = cp[:public] == '1' ? true : false;
 
@@ -50,21 +45,20 @@ class CollectionsController < ApplicationController
   end
 
   def toggle_product
-    c = Collection.find(params[:collection_id])
     p = Product.find(params[:product_id])
 
-    if c.products.include?(p)
-      c.products.delete(p)
+    if @collection.products.include?(p)
+      @collection.products.delete(p)
     else
-      c.products.push(p)
+      @collection.products.push(p)
     end
 
-    c.save!
+    @collection.save!
 
     render :json => {:status => :ok}
   end
 
-  def is_product_in_user_collections
+  def is_product_collected
     p = Product.find(params[:product_id])
 
     current_user.oCollections.each do |c|
@@ -83,12 +77,10 @@ class CollectionsController < ApplicationController
   end
 
   def remove_product
-    c = Collection.find(params[:collection_id])
+    if @collection && @collection.user == current_user
+      @collection.products.delete(Product.find(params[:product_id]))
 
-    if c && c.user == current_user
-      c.products.delete(Product.find(params[:product_id]))
-
-      if c.save
+      if @collection.save
         respond_to do |format|
           format.html { redirect_to request.referer }
           format.json { render :json => {}, :status => :ok }
@@ -104,16 +96,14 @@ class CollectionsController < ApplicationController
   end
 
   def remove_products
-    c = Collection.find(params[:collection_id])
-
-    if c && c.user == current_user
+    if @collection && @collection.user == current_user
       product_ids = params[:product_ids].split(',')
 
       product_ids.each do |product_id|
-        c.products.delete(Product.find(product_id))
+        @collection.products.delete(Product.find(product_id))
       end
 
-      if c.save
+      if @collection.save
         respond_to do |format|
           format.html { redirect_to request.referer }
           format.json { render :json => {}, :status => :ok }
@@ -129,12 +119,10 @@ class CollectionsController < ApplicationController
   end
 
   def remove_all_products
-    c = Collection.find(params[:collection_id])
+    if @collection && @collection.user == current_user
+      @collection.products.each { |p| @collection.products.delete(p) }
 
-    if c && c.user == current_user
-      c.products.each { |pid| c.products.delete(pid) }
-
-      if c.save
+      if @collection.save
         respond_to do |format|
           format.html { redirect_to request.referer }
           format.json { render :json => {}, :status => :ok }

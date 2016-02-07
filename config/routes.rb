@@ -1,24 +1,33 @@
 Rails.application.routes.draw do
-  captcha_route
 
-  devise_for :users, :controllers => { :omniauth_callbacks => 'users/omniauth_callbacks', registrations: "registrations", sessions: "sessions" }
+  devise_for :users, :controllers => { registrations: "registrations", sessions: "sessions" }
 
   devise_scope :user do
-    delete '/users/sign_out', to: 'sessions#destroy', as: :signout
-    get '/cancel_login', to: 'sessions#cancel_login', as: :cancel_login
-    get '/cancel_signup', to: 'registrations#cancel_signup', as: :cancel_signup
+    match '/users/sign_out',  via: [:delete],   to: 'sessions#destroy',             as: :signout
+    match '/cancel_login',    via: [:delete],   to: 'sessions#cancel_login',        as: :cancel_login
+    match '/cancel_signup',   via: [:get] ,     to: 'registrations#cancel_signup',  as: :cancel_signup
   end
 
-  resources :notifications
-  resources :posts
+  captcha_route
+
+  mount ChinaCity::Engine => '/china_city'
+
   resources :brands
-  resources :messages
-  resources :chats
-  resources :collections
+
+  resources :collections do
+    match 'remove_product/:product_id', via: [:patch],  to: :remove_product,        as: :remove_product_from,       :on => :member
+    match :remove_all_products,         via: [:patch],  to: :remove_all_products,   as: :remove_all_products_from,  :on => :member
+    match :remove_products,             via: [:patch],  to: :remove_products,       as: :remove_products_from,      :on => :member
+    match 'toggle_product/:product_id', via: [:get],    to: :toggle_product,        as: :toggle_product_in,         :on => :member
+
+    match 'is_product_collected/:product_id', via: [:get],    to: :is_product_collected,          as: :is_product_collected,  :on => :collection
+    match :create_and_add,                    via: [:post],   to: :create_and_add,                as: :create_and_add,        :on => :collection
+  end
+
   resources :addresses
 
   resources :products, except: [:index] do
-    get :autocomplete_product_name, :on => :collection
+    match :autocomplete_product_name, via: [:get], :on => :collection
   end
 
   resources :users, except: [:destroy]
@@ -26,7 +35,6 @@ Rails.application.routes.draw do
 
   resources :orders, only: [:destroy, :show]
 
-  mount ChinaCity::Engine => '/china_city'
   
   # user
 
@@ -41,27 +49,20 @@ Rails.application.routes.draw do
   get 'profile/:id', to: 'users#pshow', as: "profile"
 
 
-  post 'orders/add_product/:product_id', to: 'orders#add_product', as: 'add_product_to_order'
-  post 'orders/adjust_products_amount', to: 'orders#adjust_products_amount', as: 'adjust_products_amount_in_order'
-  post 'orders/checkout', to: 'orders#checkout', as: 'checkout_order'
+  post '/orders/add_product/:product_id', to: 'orders#add_product', as: 'add_product_to_order'
+  post '/orders/adjust_products_amount', to: 'orders#adjust_products_amount', as: 'adjust_products_amount_in_order'
+  post '/orders/checkout', to: 'orders#checkout', as: 'checkout_order'
 
-  get 'orders/cart/manage',to: 'orders#manage_cart', as: 'manage_cart'
-  get 'orders/:id/continue', to: 'orders#continue', as: 'continue_order'
-  get 'orders/checkout/set_address_payment', to: 'orders#set_address_payment', as: 'set_address_payment'
-
-  get 'collections/:collection_id/toggle_product/:product_id', to: 'collections#toggle_product', as: 'toggle_product_in_collection'
-  patch 'collections/:collection_id/remove_product/:product_id', to: 'collections#remove_product', as: 'remove_product_from_collection'
-  patch 'collections/:collection_id/remove_products', to: 'collections#remove_products', as: 'remove_products_from_collection'
-  patch 'collections/:collection_id/remove_all_products', to: 'collections#remove_all_products', as: 'remove_all_products_from_collection'
-  get 'collections/is_product_in_user_collections/:product_id', to: 'collections#is_product_in_user_collections', as: 'is_product_in_user_collections'
-  post 'collections/create_and_add_to_colletion', to: 'collections#create_and_add_to_collection', as: 'create_and_add_to_collection'
+  get '/orders/cart/manage',to: 'orders#manage_cart', as: 'manage_cart'
+  get '/orders/:id/continue', to: 'orders#continue', as: 'continue_order'
+  get '/orders/checkout/set_address_payment', to: 'orders#set_address_payment', as: 'set_address_payment'
 
   get '/get_followers/:id', to: 'users#get_followers'
   get '/get_followings/:id', to: 'users#get_followings'
 
-  get 'search_products/:products_search_keyword' => 'products#search_products'
-  get 'search_collections/:collections_search_keyword' => 'collections#search_collections'
-  get 'search_users/:users_search_keyword' => 'users#search_users'
+  get '/products/search/:products_search_keyword' => 'products#search_products'
+  get '/collections/search/:collections_search_keyword' => 'collections#search_collections'
+  get '/users/search/:users_search_keyword' => 'users#search_users'
 
   post '/getuser', to: 'users#getuserbyemail'
   post '/follow/:id/:target_id', to: 'users#follow'
@@ -119,19 +120,6 @@ Rails.application.routes.draw do
 
   #brands
   get '/getversion' => 'brands#getversion'
-
-  #chats
-  post 'message/:chat_id' => 'messages#create'
-  get 'chatmessages/:chat_id' => 'messages#index'
-  get 'chatsearch/:keyword/:folds' => 'chats#chatsearch'
-  get 'usernotifications/:user_id' => 'notifications#index'
-
-  #messages
-  get 'messagesi/:chat_id/:id' => 'messages#messages'
-
-  #chats
-  get 'privatechats' => 'chats#privatechats'
-  get 'publicchats' => 'chats#publicchats'
 
 end
 

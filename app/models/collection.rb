@@ -20,4 +20,6 @@ class Collection
   validates :name,    presence: true
   validates :public,  presence: true
   validates :user,    presence: true
+
+  scope :public, -> { where(:public => true) }
 end

@@ -33,7 +33,7 @@ module ProductsHelper
         if($(this).val()){
           $.ajax({
             type: 'POST',
-            url: '#{create_and_add_to_collection_path}',
+            url: '#{create_and_add_collections_path}',
             data: $('#create_and_add_to_collection_form_#{product_id}').serialize(),
             success: function(json) {
               $('#create_and_add_to_collection_dropdown_button_#{product_id}').click()
