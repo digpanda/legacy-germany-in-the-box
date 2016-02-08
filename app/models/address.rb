@@ -12,6 +12,12 @@ class Address
   field :zip,                   type: String
   field :country,               type: String
 
+  field :fname,                 type: String
+  field :lname,                 type: String
+  field :email,                 type: String
+  field :mobile,                type: String
+  field :tel,                   type: String
+
   field :primary,               type: Boolean, default: false
 
   belongs_to :user

@@ -148,7 +148,18 @@ class AddressesController < ApplicationController
   private
 
   def address_params
-    params.require(:address).permit(:street_building_room, :district, :city, :province, :zip, :country, :primary)
+    params.require(:address).permit(:street_building_room,
+                                    :district,
+                                    :city,
+                                    :province,
+                                    :zip,
+                                    :country,
+                                    :primary,
+                                    :email,
+                                    :mobile,
+                                    :tel,
+                                    :fname,
+                                    :lname)
   end
 
 end

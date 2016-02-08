@@ -30,10 +30,13 @@ Rails.application.routes.draw do
   resources :addresses
 
   resources :products, except: [:index] do
-    match :autocomplete_product_name, via: [:get], :on => :collection
+    match :autocomplete_product_name,   via: [:get],    to: :autocomplete_product_name,   as: :autocomplete_product_name,   :on => :collection
+    match :search,                      via: [:post],   to: :search_products,             as: :search,                      :on => :collection
+    match :popular_products,            via: [:get],    to: :indexr,                      as: :popular,                     :on => :collection
   end
 
   resources :users, except: [:destroy]
+
   resources :shops
 
   resources :orders, only: [:destroy, :show]
@@ -41,8 +44,6 @@ Rails.application.routes.draw do
   
   get '/set_session_locale/:locale', to: 'application#set_session_locale', as: 'set_session_locale'
 
-  get 'popular_products', to: 'products#indexr', as: 'popular_products'
-  post 'products/search', to: 'products#search_products', as: 'search_products'
   get '/category/:category_id/products', to: 'products#show_products_in_category', as: 'show_products_in_category'
 
   get 'profile/:id', to: 'users#pshow', as: "profile"

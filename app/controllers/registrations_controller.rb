@@ -74,7 +74,7 @@ class RegistrationsController < Devise::RegistrationsController
             respond_with resource, location: after_inactive_sign_up_path_for(resource)
           end
         else
-          render :json => {}.to_json, :status => :unprocessable_entity
+          render :json => { :status => :ko }, :status => :unprocessable_entity
         end
       }
     end
