@@ -2,6 +2,11 @@ class AddressesController < ApplicationController
 
   before_action :authenticate_user!
 
+  def index
+    @addresses = current_user.addresses
+    render :index, :status => :ok
+  end
+
   def create
     num_addresses = current_user.addresses.count
 

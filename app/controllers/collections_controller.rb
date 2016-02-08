@@ -3,7 +3,6 @@ class CollectionsController < ApplicationController
   before_action :set_collection, except: [:create_and_add,
                                           :is_product_collected,
                                           :index,
-                                          :gsearch,
                                           :search,
                                           :likedcolls,
                                           :new,
@@ -11,8 +10,7 @@ class CollectionsController < ApplicationController
                                           :create,
                                           :matchedcollections,
                                           :mycolls,
-                                          :indexft,
-                                          :userinit]
+                                          :indexft]
 
   before_action :authenticate_user!, :except => [:search, :indexft, :show]
 
