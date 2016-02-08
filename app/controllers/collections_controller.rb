@@ -14,21 +14,21 @@ class CollectionsController < ApplicationController
                                           :indexft,
                                           :userinit]
 
-  before_action :authenticate_user!, :except => [:indexft, :show, :search_collections]
+  before_action :authenticate_user!, :except => [:search, :indexft, :show]
 
   def search
     @collections = Collection.public.or({desc: /.*#{params[:keyword]}.*/i}, {name: /.*#{params[:keyword]}.*/i}).limit(Rails.configuration.limit_for_collections_search)
 
     respond_to do |format|
       format.html { render :index }
-      format.json { render :search_collections }
+      format.json { render :search }
     end
   end
 
 
   def create_and_add
     cp = collection_params
-    cp[:public] = cp[:public] == '1' ? true : false;
+    cp[:public] = cp[:public] == 'true' ? true : false;
 
     existing = current_user.oCollections.select { |c| c.name == cp[:name] }
 
@@ -40,7 +40,7 @@ class CollectionsController < ApplicationController
     end
 
     respond_to do |format|
-      format.json { render :json => { :status => :ok } }
+      format.json { render :json => { :status => :ok }, :status => :ok }
     end
   end
 
@@ -55,7 +55,7 @@ class CollectionsController < ApplicationController
 
     @collection.save!
 
-    render :json => {:status => :ok}
+    render :json => {:status => :ok}, :status => :ok
   end
 
   def is_product_collected
@@ -64,7 +64,7 @@ class CollectionsController < ApplicationController
     current_user.oCollections.each do |c|
       if c.products.include?(p)
         respond_to do |format|
-          format.json { render :json => { :contained => 'true' } }
+          format.json { render :json => { :contained => 'true' }, :status => :ok }
         end
 
         return
@@ -72,7 +72,7 @@ class CollectionsController < ApplicationController
     end
 
     respond_to do |format|
-      format.json { render :json => { :contained => 'false' } }
+      format.json { render :json => { :contained => 'false' }, :status => :ok }
     end
   end
 
@@ -137,36 +137,8 @@ class CollectionsController < ApplicationController
     end
   end
 
-  def gsearch
-    @user = User.find('55bb6c3a69702d64d700000b')
-
-    if params[:search_topic] == "1"
-      @chats = Chats.all
-      respond_to do |format|
-        format.html { render :template => "chats/index" }
-        format.json { render :index, status: :ok, location: @chats }
-      end
-    elsif params[:search_topic] == "2"
-      @products = Product.or({brand: /.*#{params[:q]}.*/i}, {name: /.*#{params[:q]}.*/i}, {category: /.*#{params[:q]}.*/i}).limit(50)
-      respond_to do |format|
-        format.html { render :template => "products/index" }
-        format.json { render :index, status: :ok, location: @products }
-      end
-    elsif params[:search_topic] == "3"
-      @collections = Collection.or({desc: /.*#{params[:q]}.*/i}, {name: /.*#{params[:q]}.*/i}).limit(50)
-      respond_to do |format|
-        format.html { render :index }
-        format.json { render :index, status: :ok, location: @collections }
-      end
-    end
-  end
-
-
-  # GET /collections
-  # GET /collections.json
   def index
-    @user = User.find('55bb6c3a69702d64d700000b')
-    @collections = Collection.all
+    @collections = Collection.public
   end
 
   def indexft
@@ -179,9 +151,6 @@ class CollectionsController < ApplicationController
     end
   end
 
-
-  # GET /collections/1
-  # GET /collections/1.json
   def show
     @products = []
     @collection.products.each do |i|
@@ -191,18 +160,12 @@ class CollectionsController < ApplicationController
 
   end
 
-  # GET /collections/new
   def new
     @collection = Collection.new
   end
 
-  # GET /collections/1/edit
   def edit
   end
-
-  # POST /collections
-  # POST /collections.json
-
 
   def create
     existing = current_user.oCollections.select { |c| c.name == collection_params[:name] }
@@ -214,34 +177,32 @@ class CollectionsController < ApplicationController
       respond_to do |format|
         if @collection.save
           format.html {
-            flash[:success] = 'The Collection was created successfully.'
+            flash[:success] = I18n.t(:create_ok, scope: :edit_collection)
             redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_collection )
           }
 
-          format.json { render :show, status: :created, location: @collection }
+          format.json { render json: { status: :ok }, status: :ok }
         else
           format.html {
-            flash[:error] = @collection.errors.full_messages.first
+            flash[:error] = I18n.t(:create_ko, scope: :edit_collection)
             redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_collection_new )
           }
 
-          format.json { render json: @collection.errors, status: :unprocessable_entity }
+          format.json { render json: { status: :ko }, status: :unprocessable_entity }
         end
       end
     else
       respond_to do |format|
         format.html {
-          flash[:error] = 'There is another collection with the same name.'
+          flash[:error] = I18n.t(:create_with_existing_name, scope: :edit_collection)
           redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_collection_new )
         }
 
-        format.json { render json: @collection.errors, status: :unprocessable_entity }
+        format.json { render json: { status: :ko }, status: :unprocessable_entity }
       end
     end
   end
 
-  # PATCH/PUT /collections/1
-  # PATCH/PUT /collections/1.json
   def update
     existing = current_user.oCollections.select { |c| (not c.id.to_s.eql?(params[:id])) and c.name == collection_params[:name] }
 
@@ -249,39 +210,38 @@ class CollectionsController < ApplicationController
       respond_to do |format|
         if @collection.update(collection_params)
           format.html {
-            flash[:success] = 'Updating collection is successful.'
+            flash[:success] = I18n.t(:update_ok, scope: :edit_collection)
             redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_collection)
           }
 
-          format.json { render :show, status: :ok, location: @collection }
+          format.json { render json: { status: :ok }, status: :ok }
         else
           format.html {
-            flash[:error] = @collection.errors.full_messages.first
+            flash[:error] = I18n.t(:update_ko, scope: :edit_collection)
             redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_collection_update, :collection_id => params[:id] )
           }
 
-          format.json { render json: @collection.errors, status: :unprocessable_entity }
+          format.json { render json: { status: :ko }, status: :unprocessable_entity }
         end
       end
     else
       respond_to do |format|
         format.html {
-          flash[:error] = 'There is another collection with the same name.'
+          flash[:error] = I18n.t(:update_with_existing_name, scope: :edit_collection)
           redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_collection_update, :collection_id => params[:id] )
         }
 
-        format.json { render json: @collection.errors, status: :unprocessable_entity }
+        format.json { render json: { status: :ko }, status: :unprocessable_entity }
       end
     end
   end
 
-  # DELETE /collections/1
-  # DELETE /collections/1.json
   def destroy
     @collection.destroy
+
     respond_to do |format|
       format.html { redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_collection) }
-      format.json { head :no_content }
+      format.json { render json: { status: :ok }, status: :ok }
     end
   end
 
@@ -367,7 +327,7 @@ class CollectionsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def collection_params
-    params.require(:collection).permit(:name, :desc, :coltype, :img, :public)
+    params.require(:collection).permit(:name, :desc, :img, :public)
   end
 
 end

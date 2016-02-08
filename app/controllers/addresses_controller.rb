@@ -44,7 +44,7 @@ class AddressesController < ApplicationController
           }
 
           format.json {
-            render :json => { :address => address, :status => :ok }
+            render :json => { :status => :ok }, :status => :ok
           }
         end
       else
@@ -55,7 +55,7 @@ class AddressesController < ApplicationController
           }
 
           format.json {
-            render :json => {}.to_json, :status => :unprocessable_entity
+            render :json => {}, :status => :unprocessable_entity
           }
         end
       end
@@ -88,7 +88,7 @@ class AddressesController < ApplicationController
         }
 
         format.json {
-          render :json => { :address => address, :status => :ok }
+          render :json => { :status => :ok }, :status => :ok
         }
       end
     else
@@ -99,7 +99,7 @@ class AddressesController < ApplicationController
         }
 
         format.json {
-          render :json => {}.to_json, :status => :unprocessable_entity
+          render :json => {}, :status => :unprocessable_entity
         }
       end
     end
@@ -127,7 +127,7 @@ class AddressesController < ApplicationController
         }
 
         format.json {
-          render :json => {}.to_json, :status => :ok
+          render :json => {}, :status => :ok
         }
       end
     else
@@ -138,7 +138,7 @@ class AddressesController < ApplicationController
         }
 
         format.json {
-          render :json => {}.to_json, :status => :unprocessable_entity
+          render :json => {}, :status => :unprocessable_entity
         }
       end
     end

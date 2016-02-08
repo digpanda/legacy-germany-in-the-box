@@ -12,9 +12,6 @@
         %i.fa.fa-users
         = I18n.t(:public, scope: :edit_collection_new)
     .form-group
-      = f.label :coltype, I18n.t(:collection_type, scope: :edit_collection_new)
-      = f.text_field :coltype, :class => 'form-control'
-    .form-group
       - if @collection.img.url.present?
         = image_tag (@collection.img.url), :style => 'width:96px;height:96px'
       - else

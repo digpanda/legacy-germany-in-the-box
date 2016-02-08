@@ -135,6 +135,12 @@ de:
     no_products: Kein Produkt vorhanden
     delete_collection_message: Löschen Sie den gewählten Favorit?
     dislike: Entfernen
+    create_ok: Favorit erfolgreich erstellt!
+    create_ko: Ein Fehler ist bei der Erstellung des Favorits aufgetreten.
+    create_with_existing_name: ein gleichnämiger Favorit ist bereits vorhanden.
+    update_ok: Favorit erfolgreich aktualisiert!
+    update_ko: Ein Fehler ist bei der Änderung des Favorits aufgetreten.
+    update_with_existing_name: ein gleichnämiger Favorit ist bereits vorhanden.
   edit_collection_new:
     name: Name
     description: Beschreibung

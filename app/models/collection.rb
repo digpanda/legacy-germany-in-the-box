@@ -7,7 +7,6 @@ class Collection
 
   field :name, type: String
   field :desc, type: String
-  field :coltype, type: String
   field :img, type: String
   field :public, type: Boolean, default: true
 
