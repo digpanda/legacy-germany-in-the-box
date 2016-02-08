@@ -20,7 +20,10 @@ Rails.application.routes.draw do
     match 'remove_product/:product_id', via: [:patch],  to: :remove_product,        as: :remove_product_from,       :on => :member
     match 'add_product/:product_id',    via: [:patch],  to: :add_product,           as: :add_product_to,            :on => :member
     match :remove_all_products,         via: [:patch],  to: :remove_all_products,   as: :remove_all_products_from,  :on => :member
+    match :add_products,                via: [:patch],  to: :add_products,          as: :add_products_to,           :on => :member
     match :remove_products,             via: [:patch],  to: :remove_products,       as: :remove_products_from,      :on => :member
+    match :add_product,                 via: [:patch],  to: :add_product,           as: :add_product_to,            :on => :member
+    match :remove_product,              via: [:patch],  to: :remove_product,        as: :remove_product_from,       :on => :member
     match 'toggle_product/:product_id', via: [:get],    to: :toggle_product,        as: :toggle_product_in,         :on => :member
     match :like_collection,             via: [:get],    to: :like_collection,       as: :like,                      :on => :member
     match :dislike_collection,          via: [:get],    to: :dislike_collection,    as: :dislike,                   :on => :member

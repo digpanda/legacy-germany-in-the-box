@@ -132,6 +132,29 @@ class CollectionsController < ApplicationController
     end
   end
 
+  def add_products
+    if @collection && @collection.user == current_user
+      product_ids = params[:product_ids].split(',')
+
+      product_ids.each do |product_id|
+        @collection.products.push(Product.find(product_id))
+      end
+
+      if @collection.save
+        respond_to do |format|
+          format.html { redirect_to request.referer }
+          format.json { render :json => {}, :status => :ok }
+        end
+
+        return
+      end
+    end
+
+    respond_to do |format|
+      format.json { render :json => {}, :status => :unprocessable_entity }
+    end
+  end
+
   def remove_all_products
     if @collection && @collection.user == current_user
       @collection.products.each { |p| @collection.products.delete(p) }
