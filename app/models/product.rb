@@ -3,6 +3,8 @@ class Product
   include Mongoid::Timestamps::Created::Short
   include Mongoid::Timestamps::Updated::Short
 
+  strip_attributes
+
   field :network,   type: String
   field :prodid,    type: String
   field :deeplink,  type: String

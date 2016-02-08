@@ -5,6 +5,8 @@ class User
 
   include Genderize
 
+  strip_attributes
+
   field :username,  type: String
   field :fname,     type: String
   field :lname,     type: String

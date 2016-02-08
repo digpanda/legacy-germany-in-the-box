@@ -4,6 +4,8 @@ class Shop
   include Mongoid::Timestamps::Created::Short
   include Mongoid::Timestamps::Updated::Short
 
+  strip_attributes
+
   field :name,    type: String
   field :desc,    type: String
   field :logo,    type: String
