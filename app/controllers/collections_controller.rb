@@ -1,7 +1,7 @@
 class CollectionsController < ApplicationController
 
   before_action :set_collection, except: [:create_and_add,
-                                          :is_product_collected,
+                                          :is_collected,
                                           :index,
                                           :search,
                                           :show_liked_by_me,
@@ -53,7 +53,7 @@ class CollectionsController < ApplicationController
     render :json => {:status => :ok}, :status => :ok
   end
 
-  def is_product_collected
+  def is_collected
     p = Product.find(params[:product_id])
 
     current_user.oCollections.each do |c|
