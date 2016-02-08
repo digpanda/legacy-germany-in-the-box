@@ -4,7 +4,7 @@ class CollectionsController < ApplicationController
                                           :is_product_collected,
                                           :index,
                                           :search,
-                                          :show_my_collections,
+                                          :show_liked_by_me,
                                           :show_liked_collections,
                                           :new,
                                           :create]
@@ -68,6 +68,25 @@ class CollectionsController < ApplicationController
 
     respond_to do |format|
       format.json { render :json => { :contained => 'false' }, :status => :ok }
+    end
+  end
+
+  def add_product
+    if @collection && @collection.user == current_user
+      @collection.products.push(Product.find(params[:product_id]))
+
+      if @collection.save
+        respond_to do |format|
+          format.html { redirect_to request.referer }
+          format.json { render :json => {}, :status => :ok }
+        end
+
+        return
+      end
+    end
+
+    respond_to do |format|
+      format.json { render :json => {}, :status => :unprocessable_entity }
     end
   end
 
@@ -249,7 +268,7 @@ class CollectionsController < ApplicationController
     end
   end
 
-  def show_liked_collections
+  def show_liked_by_me
     @collections = current_user.liked_collections
 
     respond_to do |format|
@@ -259,16 +278,15 @@ class CollectionsController < ApplicationController
   end
 
   def like_collection
-    if @collection
-      current_user.liked_collections << @collection
+    if @collection && @collection.public
+      current_user.liked_collections.push(@collection)
       if current_user.liked_collections.save
         format.json { render json: { status: :ok }, status: :ok }
-      else
-        format.json { render json: { status: :ko }, status: :unprocessable_entity }
+        return
       end
-    else
-      format.json { render json: { status: :ko }, status: :unprocessable_entity }
     end
+
+    format.json { render json: { status: :ko }, status: :unprocessable_entity }
   end
 
   def dislike_collection
@@ -276,10 +294,9 @@ class CollectionsController < ApplicationController
       current_user.liked_collections.delete(@collection)
       if current_user.liked_collections.save
         format.json { render json: { status: :ok }, status: :ok }
-      else
-        format.json { render json: { status: :ko }, status: :unprocessable_entity }
+        return
       end
-    else
+
       format.json { render json: { status: :ko }, status: :unprocessable_entity }
     end
   end

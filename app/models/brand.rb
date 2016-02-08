@@ -3,7 +3,7 @@ class Brand
   include Mongoid::Timestamps::Created::Short
   include Mongoid::Timestamps::Updated::Short
 
-  strip_attributes :only => [:name]
+  strip_attributes
 
   field :name, type: String
 

@@ -3,42 +3,33 @@ class Product
   include Mongoid::Timestamps::Created::Short
   include Mongoid::Timestamps::Updated::Short
 
-  field :network, type: String
-  field :prodid, type: String
-  field :deeplink, type: String
-  field :name, type: String
-  field :brand, type: String
-  field :img, type: String
-  field :imglg, type: String
-  field :price
-  field :priceold
-  field :sale, type: Integer
-  field :currency, type: String
-  field :update_, type: String
-  field :status, type: String
-  field :desc, type: String
-  field :weight, type: Float
-  
-  # Relations_mapping
-  field :owner, :type => String
-  field :likers, :type => Array, default: []
-  field :private_chats, :type => Array, default: []
-  field :public_chats, :type => Array, default: []
+  field :network,   type: String
+  field :prodid,    type: String
+  field :deeplink,  type: String
+  field :name,      type: String
+  field :brand,     type: String
+  field :img,       type: String
+  field :imglg,     type: String
+  field :price,     type: BigDecimal
+  field :priceold,  type: BigDecimal
+  field :sale,      type: Integer
+  field :currency,  type: String
+  field :status,    type: String
+  field :desc,      type: String
+  field :weight,    type: Float
+  field :tags,      type: Array
 
-  # # Relations
-  has_and_belongs_to_many :users, inverse_of: :products
+  has_and_belongs_to_many :users,       inverse_of: :products
   has_and_belongs_to_many :collections, inverse_of: :products
-  has_many :order_item
+  has_and_belongs_to_many :categories,  inverse_of: :products
 
-  belongs_to :user, inverse_of: :oProcuts
-  belongs_to :shop
-  has_and_belongs_to_many :categories
+  has_many :order_items,  inverse_of: :product
 
-  field :tags, type: Array
+  belongs_to :shop, inverse_of: :products
+
   scope :has_tag, ->(value) { where(:tags => value) }
   
   index({brand: 1}, {unique: false})
   index({name: 1}, {unique: false})
   index({tags: 1}, {unique: false})
-
 end

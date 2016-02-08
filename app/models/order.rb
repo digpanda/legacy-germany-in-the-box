@@ -5,11 +5,10 @@ class Order
 
   field :status, type: Symbol, default: :new
 
-  belongs_to :user
+  belongs_to :user,                 :inverse_of => :orders
+  belongs_to :delivery_destination, :inverse_of => :orders, :class_name => 'Address'
 
-  belongs_to :delivery_destination, class_name: 'Address'
-
-  has_many :order_items
+  has_many :order_items,  :inverse_of => :order
 
   validates :status,                  presence: true, inclusion: {in: [:new, :checked_out, :shipped]}
   validates :user,                    presence: true, :unless => lambda { :new == self.status }

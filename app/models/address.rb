@@ -3,7 +3,7 @@ class Address
   include Mongoid::Timestamps::Created::Short
   include Mongoid::Timestamps::Updated::Short
 
-  strip_attributes :only => [:street_building_room, :district, :city, :province, :zip, :country]
+  strip_attributes
 
   field :street_building_room,  type: String
   field :district,              type: String
@@ -20,9 +20,9 @@ class Address
 
   field :primary,               type: Boolean, default: false
 
-  belongs_to :user
+  belongs_to :user, :inverse_of => :addresses;
 
-  has_many :orders
+  has_and_belongs_to_many :orders,  :inverse_of => :delivery_destination
 
   validates :street_building_room,  presence: true
   validates :district,              presence: true

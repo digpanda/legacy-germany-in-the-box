@@ -3,7 +3,7 @@ class Category
   include Mongoid::Timestamps::Created::Short
   include Mongoid::Timestamps::Updated::Short
 
-  strip_attributes :only => [:name, :code]
+  strip_attributes
 
   field :name,  type: String
   field :code,  type: String
