@@ -25,6 +25,8 @@ Rails.application.routes.draw do
     match 'is_collected/:product_id',   via: [:get],    to: :is_collected,          as: :is_collected,              :on => :collection
     match :create_and_add,              via: [:post],   to: :create_and_add,        as: :create_and_add,            :on => :collection
     match 'search/:keyword',            via: [:get],    to: :search,                as: :search,                    :on => :collection
+    match :show_my_collections,         via: [:get],    to: :show_my_collections,   as: :show_my
+    match :show_liked_by_me,            via: [:get],    to: :show_liked_by_me,      as: :show_liked_by_me
   end
 
   resources :addresses
@@ -86,21 +88,6 @@ Rails.application.routes.draw do
   get 'search/:keyword/:folds' => 'products#search'
 
   get 'user/openmailnoti' => 'users#openmailnoti'
-
-
-  # collection
-  post '/newcol/:owner_id' => 'collections#create'
-  get 'collectionsi/:from/:to' => 'collections#indexft'
-  get '/userinit/:user_id' => 'collections#userinit'
-  get 'similarcoli/:id/:num' => 'collections#similarcoli'
-  get 'collection/:id' => 'collections#getinfo'
-  get 'matchedcollections/:id/:num' => 'collections#matchedcollections'
-  get 'mycolls/:owner_id' => 'collections#mycolls'
-  get 'savedcolls/:owner_id' => 'collections#savedcolls'
-  get 'likedcolls/:owner_id' => 'collections#likedcolls'
-
-
-  get 'gsearch/' => 'collections#gsearch', as: "gsearch"
 
 
   # proudcts

@@ -4,15 +4,12 @@ class CollectionsController < ApplicationController
                                           :is_product_collected,
                                           :index,
                                           :search,
-                                          :likedcolls,
+                                          :show_my_collections,
+                                          :show_liked_collections,
                                           :new,
-                                          :savedcolls,
-                                          :create,
-                                          :matchedcollections,
-                                          :mycolls,
-                                          :indexft]
+                                          :create]
 
-  before_action :authenticate_user!, :except => [:search, :indexft, :show]
+  before_action :authenticate_user!, :except => [:search, :index, :show]
 
   def search
     @collections = Collection.public.or({desc: /.*#{params[:keyword]}.*/i}, {name: /.*#{params[:keyword]}.*/i}).limit(Rails.configuration.limit_for_collections_search)
@@ -137,25 +134,21 @@ class CollectionsController < ApplicationController
 
   def index
     @collections = Collection.public
-  end
-
-  def indexft
-    @user = current_user
-    $i = params[:to].to_i - params[:from].to_i
-    @collections = Collection.skip(params[:from].to_i).limit($i)
     respond_to do |format|
       format.html { render :index }
-      format.json { render :index, status: :ok, location: @collection }
+      format.json { render :index, :status => :ok }
     end
   end
 
   def show
-    @products = []
-    @collection.products.each do |i|
-      @product = Product.find (i)
-      @products << @product
+    if @collection && @collection.public && @collection.user == current_user
+      respond_to do |format|
+        format.html { render :show }
+        format.json { render :show, :status => :ok }
+      end
+    else
+      format.json { render json: { status: :ko }, status: :unprocessable_entity }
     end
-
   end
 
   def new
@@ -235,97 +228,69 @@ class CollectionsController < ApplicationController
   end
 
   def destroy
-    @collection.destroy
-
-    respond_to do |format|
-      format.html { redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_collection) }
-      format.json { render json: { status: :ok }, status: :ok }
-    end
-  end
-
-  def mycolls
-    @collections = Collection.where owner: params[:owner_id]
-    respond_to do |format|
-      format.html { render :index }
-      format.json { render :index, status: :ok, location: @collection }
-    end
-  end
-
-
-  def savedcolls
-    @collections = []
-    @user = User.find(params[:owner_id])
-    @user.saved_collections.each do |i|
-      @collection = Collection.find (i)
-      @collections << @collection
-    end
-    respond_to do |format|
-      format.html { render :index }
-      format.json { render :index, status: :ok, location: @collection }
-    end
-
-  end
-
-  def likedcolls
-    @collections = []
-    @user = User.find(params[:owner_id])
-    @user.liked_collections.each do |i|
-      @collection = Collection.find (i)
-      @collections << @collection
-    end
-    respond_to do |format|
-      format.html { render :index }
-      format.json { render :index, status: :ok, location: @collection }
-    end
-  end
-
-
-  def getinfo
-    @products = []
-    @owner = User.find(@collection.owner)
-    @powner = []
-    @collection.products.each do |i|
-      @product = Product.find(i)
-      @products << @product
-
-    end
-    respond_to do |format|
-      format.html { render :show }
-      format.json { render :show, status: :ok, location: @collection }
-    end
-  end
-
-  def matchedcollections
-    @collections = []
-    @acollections = Collection.all
-    @acollections.each do |collection|
-      if collection.products.include?(params[:id])
-        @collections << collection
+    if @collection && @collection.destroy
+      respond_to do |format|
+        format.html { redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_collection) }
+        format.json { render json: { status: :ok }, status: :ok }
+      end
+    else
+      respond_to do |format|
+        format.json { render json: { status: :ko }, status: :unprocessable_entity }
       end
     end
-    @collections = @collections.take(params[:num].to_i)
+  end
+
+  def show_my_collections
+    @collections = current_user.oCollections
 
     respond_to do |format|
-      format.json { render :index, status: :ok, location: @collection }
+      format.html { render :index }
+      format.json { render :index, status: :ok }
     end
   end
 
-  def similarcoli
-    @collections = Collection.all.where(coltype: @collection.coltype).take(params[:num].to_i)
+  def show_liked_collections
+    @collections = current_user.liked_collections
+
     respond_to do |format|
-      format.json { render :index, status: :ok, location: @collection }
+      format.html { render :index }
+      format.json { render :index, status: :ok }
+    end
+  end
+
+  def like_collection
+    if @collection
+      current_user.liked_collections << @collection
+      if current_user.liked_collections.save
+        format.json { render json: { status: :ok }, status: :ok }
+      else
+        format.json { render json: { status: :ko }, status: :unprocessable_entity }
+      end
+    else
+      format.json { render json: { status: :ko }, status: :unprocessable_entity }
+    end
+  end
+
+  def dislike_collection
+    if @collection
+      current_user.liked_collections.delete(@collection)
+      if current_user.liked_collections.save
+        format.json { render json: { status: :ok }, status: :ok }
+      else
+        format.json { render json: { status: :ko }, status: :unprocessable_entity }
+      end
+    else
+      format.json { render json: { status: :ko }, status: :unprocessable_entity }
     end
   end
 
   private
-  # Use callbacks to share common setup or constraints between actions.
+
   def set_collection
     @collection = Collection.find(params[:id])
   end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
   def collection_params
     params.require(:collection).permit(:name, :desc, :img, :public)
   end
-
 end
