@@ -18,15 +18,18 @@ Rails.application.routes.draw do
 
   resources :collections do
     match 'remove_product/:product_id', via: [:patch],  to: :remove_product,        as: :remove_product_from,       :on => :member
+    match 'add_product/:product_id',    via: [:patch],  to: :add_product,           as: :add_product_to,            :on => :member
     match :remove_all_products,         via: [:patch],  to: :remove_all_products,   as: :remove_all_products_from,  :on => :member
     match :remove_products,             via: [:patch],  to: :remove_products,       as: :remove_products_from,      :on => :member
     match 'toggle_product/:product_id', via: [:get],    to: :toggle_product,        as: :toggle_product_in,         :on => :member
+    match :like_collection,             via: [:get],    to: :like_collection,       as: :like,                      :on => :member
+    match :dislike_collection,          via: [:get],    to: :dislike_collection,    as: :dislike,                   :on => :member
 
     match 'is_collected/:product_id',   via: [:get],    to: :is_collected,          as: :is_collected,              :on => :collection
     match :create_and_add,              via: [:post],   to: :create_and_add,        as: :create_and_add,            :on => :collection
     match 'search/:keyword',            via: [:get],    to: :search,                as: :search,                    :on => :collection
-    match :show_my_collections,         via: [:get],    to: :show_my_collections,   as: :show_my
-    match :show_liked_by_me,            via: [:get],    to: :show_liked_by_me,      as: :show_liked_by_me
+    match :show_my_collections,         via: [:get],    to: :show_my_collections,   as: :show_my,                   :on => :collection
+    match :show_liked_by_me,            via: [:get],    to: :show_liked_by_me,      as: :show_liked_by_me,          :on => :collection
   end
 
   resources :addresses
