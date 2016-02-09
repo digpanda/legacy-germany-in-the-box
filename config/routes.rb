@@ -45,7 +45,12 @@ Rails.application.routes.draw do
   end
 
   resources :users, except: [:destroy] do
-    match 'search/:keyword',            via: [:get],    to: :search,                as: :search,                    :on => :collection
+    match 'search/:keyword',  via: [:get],    to: :search,    as: :search,    :on => :collection
+    match :follow,            via: [:patch],  to: :follow,    as: :follow,    :on => :collection
+    match :unfollow,          via: [:patch],  to: :unfollow,  as: :unfollow,  :on => :collection
+
+    match :get_followers,     via: [:get],    to: :get_followers,     as: :get_followers,       :on => :member
+    match :get_followings,    via: [:get],    to: :get_followings,    as: :get_followings,      :on => :member
   end
 
   resources :shops
@@ -61,40 +66,21 @@ Rails.application.routes.draw do
   end
 
   resources :category, only: [:show, :index] do
-    match :list_products,  via: [:get],  to: 'categories#list_products', as: 'list_products'
+    match :list_products,  via: [:get],  to: :list_products, as: :list_products
   end
 
-  resource :users do
-
-  end
 
   get '/category/:category_id/products', to: 'products#show_products_in_category', as: 'show_products_in_category'
 
 
-  get '/get_followers/:id', to: 'users#get_followers'
-  get '/get_followings/:id', to: 'users#get_followings'
-
-
-
-  post '/getuser', to: 'users#getuserbyemail'
-  post '/follow/:id/:target_id', to: 'users#follow'
-  post '/unfollow/:id/:target_id', to: 'users#unfollow'
-  post '/savecol/:id/:col_id', to: 'users#savecol', as: 'savecoll'
-  post '/likecol/:id/:col_id', to: 'users#likecol'
-  post '/unsavecol/:id/:col_id', to: 'users#unsavecol', as: 'unsavecoll'
-  post '/dislikecol/:id/:col_id', to: 'users#dislikecol'
   post '/saveprod/:id/:prod_id', to: 'users#saveprod', as: 'saveprod'
   post '/likeprod/:id/:prod_id', to: 'users#likeprod'
   post '/unsaveprod/:id/:prod_id', to: 'users#unsaveprod', as: 'unsaveprod'
   post '/dislikeprod/:id/:prod_id', to: 'users#dislikeprod'
-  post '/joinprivatechat/:id/:chat_id', to: 'users#joinprivatechat'
-  post '/joinpublicchat/:id/:chat_id', to: 'users#joinpublicchat'
-  post '/leaveprivatechat/:id/:chat_id', to: 'users#leaveprivatechat'
-  post '/leavepublicchat/:id/:chat_id', to: 'users#leavepublicchat'
+
+
   post '/addprodtocol/:col_id/:prod_id', to: 'users#addprodtocol'
   post '/getuserbyid/:parse_id', to: 'users#getuserbyid'
-
-  get 'user/openmailnoti' => 'users#openmailnoti'
 
 
   # proudcts
