@@ -18,7 +18,7 @@
       = form_tag adjust_products_amount_in_orders_path, :id => 'orders_adjust_products_amount', :method => :patch do
         = render 'cart'
         =submit_tag I18n.t(:update_cart, scope: :cart), :class => 'btn btn-primary'
-        =link_to I18n.t(:set_delivery_destination, scope: :cart), set_address_payment_path, :class => 'btn btn-primary'
+        =link_to I18n.t(:set_delivery_destination, scope: :cart), set_address_payment_orders_path, :class => 'btn btn-primary'
   - else
     .row
       %h4= I18n.t(:no_products, scope: :cart)
@@ -30,7 +30,7 @@
         = form_tag adjust_products_amount_in_orders_path, :id => 'orders_adjust_products_amount', :method => :patch do
           = render 'cart'
           =submit_tag I18n.t(:update_cart, scope: :cart), :class => 'btn btn-primary'
-          =link_to I18n.t(:set_delivery_destination, scope: :cart), set_address_payment_path, :class => 'btn btn-primary'
+          =link_to I18n.t(:set_delivery_destination, scope: :cart), set_address_payment_orders_path, :'data-method' => :patch, :class => 'btn btn-primary'
       .col-md-4
         %ul.cart-total-list
           %li

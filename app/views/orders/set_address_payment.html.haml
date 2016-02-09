@@ -26,7 +26,7 @@
 .row
   .h3.text-center= I18n.t(:setup_delivery_destination, scope: :checkout)
 .row.row-wrap
-  = form_tag checkout_order_path
+  = form_tag checkout_orders_path
   - if current_user.addresses.count > 0
     - current_user.addresses.each_with_index do |a, i|
       .col-md-4

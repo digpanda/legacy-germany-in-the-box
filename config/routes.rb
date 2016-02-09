@@ -51,27 +51,25 @@ Rails.application.routes.draw do
   resources :shops
 
   resources :orders, only: [:destroy, :show] do
-    match :add_product,               via: [:patch],  to: :add_product,             as: :add_product_to,              :on => :collection
-    match :adjust_products_amount,    via: [:patch],  to: :adjust_products_amount,  as: :adjust_products_amount_in,   :on => :collection
+    match :add_product,               via: [:patch],        to: :add_product,             as: :add_product_to,              :on => :collection
+    match :adjust_products_amount,    via: [:patch],        to: :adjust_products_amount,  as: :adjust_products_amount_in,   :on => :collection
+    match :checkout,                  via: [:post],         to: :checkout,                as: :checkout,                    :on => :collection
+    match :manage_cart,               via: [:get],          to: :manage_cart,             as: :manage_cart,                 :on => :collection
+    match :set_address_payment,       via: [:patch, :get],  to: :set_address_payment,     as: :set_address_payment,         :on => :collection
+
+    match :continue,                  via: [:get],          to: :continue,                as: :continue,                    :on => :member
   end
 
   resources :category, only: [:show, :index] do
     match :list_products,  via: [:get],  to: 'categories#list_products', as: 'list_products'
   end
 
+  resource :users do
+
+  end
 
   get '/category/:category_id/products', to: 'products#show_products_in_category', as: 'show_products_in_category'
 
-
-
-
-
-
-  post '/orders/checkout', to: 'orders#checkout', as: 'checkout_order'
-
-  get '/orders/cart/manage',to: 'orders#manage_cart', as: 'manage_cart'
-  get '/orders/:id/continue', to: 'orders#continue', as: 'continue_order'
-  get '/orders/checkout/set_address_payment', to: 'orders#set_address_payment', as: 'set_address_payment'
 
   get '/get_followers/:id', to: 'users#get_followers'
   get '/get_followings/:id', to: 'users#get_followings'

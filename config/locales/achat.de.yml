@@ -127,7 +127,7 @@ de:
     continue: Weiter
     new: Neu
     checked_out: Bezahlt
-    continue_messasg: einen anderen Auftrag gewählt
+    continue_message: einen anderen Auftrag gewählt
     delete_order_message: Den Auftrag löschen?
     delete_ok: Der Auftrag erfolgreich gelöscht.
     delete_ko: Ein Fehler ist beim Löschen des Auftrags aufgetreten.
@@ -186,3 +186,5 @@ de:
     my_destination: Anlieferungsanschrift
     setup_delivery_destination: Bitte Anschrift auswählen
     checkout: Bestätigen
+    checkout_ok: Der Auftrag erfolgreich durchgeführt.
+    checkout_ko: Ein Fehler ist bei der Durchführung des Auftrags aufgetreten.

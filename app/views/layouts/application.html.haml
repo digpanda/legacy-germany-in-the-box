@@ -112,7 +112,7 @@
             .col-md-6
               %ul.login-register
                 %li.shopping-cart
-                  %a{:href => "#{manage_cart_path}", :title => "#{I18n.t(:my_cart, scope: :top_menu)}"}
+                  %a{:href => "#{manage_cart_orders_path}", :title => "#{I18n.t(:my_cart, scope: :top_menu)}"}
                     %i.fa.fa-shopping-cart
                     = for_device_type :desktop do I18n.t(:my_cart, scope: :top_menu) end
                     %span.numberCircle= current_order.total_amount
@@ -121,21 +121,21 @@
                       %ul.shopping-cart-items
                         - current_order.order_items.each do |i|
                           %li
-                            %a{:href => "#{manage_cart_path}" }
+                            %a{:href => "#{manage_cart_orders_path}" }
                               = image_tag i.product.img
                               %h5= i.product.name
                               %span.shopping-cart-item-price= "Subtotal: $#{i.product.price * i.quantity}"
                       %ul.list-inline.text-center
                         %li
-                          %a{:href => "#{manage_cart_path}"}
+                          %a{:href => "#{manage_cart_orders_path}"}
                             %i.fa.fa-shopping-cart= I18n.t(:view_cart, scope: :top_menu)
                         %li
-                          %a{:href => "#{manage_cart_path}"}
+                          %a{:href => "#{manage_cart_orders_path}"}
                             %i.fa.fa-check-square= I18n.t(:checkout, scope: :top_menu)
                     -else
                       %ul.list-inline.text-center
                         %li
-                          %a{:href => "#{manage_cart_path}"}
+                          %a{:href => "#{manage_cart_orders_path}"}
                             %i
                             = I18n.t(:empty_cart, scope: :top_menu)
                 - unless current_user

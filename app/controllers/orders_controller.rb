@@ -2,7 +2,7 @@ class OrdersController < ApplicationController
 
   before_action :authenticate_user!, :except => [:manage_cart, :add_product, :adjust_products_amount]
 
-  before_action :set_order, only: [:show, :destroy]
+  before_action :set_order, only: [:show, :destroy, :continue]
 
   def show
     @readonly = true
@@ -78,16 +78,39 @@ class OrdersController < ApplicationController
       order_item.save!
     end
 
-    redirect_to manage_cart_path
+    redirect_to manage_cart_orders_path
   end
 
   def checkout
     current_order.status = :checked_out
     current_order.user = current_user
-    current_order.delivery_destination = Address.find(params[:delivery_destination_id])
-    current_order.save!
-    session.delete(:order_id)
-    redirect_to popular_products_path
+    current_order.delivery_destination = current_user.addresses.detect { |a| a.id.to_s == params[:delivery_destination_id] }
+
+    if current_order.save
+      session.delete(:order_id)
+
+      respond_to do |format|
+        format.html {
+          flash[:success] = I18n.t(:checkout_ok, scope: :checkout)
+          redirect_to popular_products_path
+        }
+
+        format.json {
+          render :json => { :status => :ok }, :status => :ok
+        }
+      end
+    else
+      respond_to do |format|
+        format.html {
+          flash[:error] = I18n.t(:checkout_ko, scope: :checkout)
+          redirect_to request.referrer
+        }
+
+        format.json {
+          render :json => { :status => :ko }, :status => :unprocessable_entity
+        }
+      end
+    end
   end
 
   def destroy
@@ -117,12 +140,12 @@ class OrdersController < ApplicationController
   end
 
   def continue
-    if session[:order_id] != params[:id]
+    if @order && current_order != @order
       session[:order_id] = params[:id]
       flash[:info] = I18n.t(:continue_message, scope: :edit_order)
     end
 
-    redirect_to manage_cart_path
+    redirect_to manage_cart_orders_path
   end
 
   private
