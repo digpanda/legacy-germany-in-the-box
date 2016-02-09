@@ -127,6 +127,16 @@ de:
     continue: Weiter
     new: Neu
     checked_out: Bezahlt
+    continue_messasg: einen anderen Auftrag gewählt
+    delete_order_message: Den Auftrag löschen?
+    delete_ok: Der Auftrag erfolgreich gelöscht.
+    delete_ko: Ein Fehler ist beim Löschen des Auftrags aufgetreten.
+    create_ok: Der Auftrag erfolgreich angelegt.
+    create_ko: Ein Fehler ist beim Anlegen des Auftrags aufgetreten.
+    update_ok: Der Auftrag erfolgreich aktualisiert.
+    update_ko: Ein Fehler ist bei der Änderung des Auftrags aufgetreten.
+    add_product_ok: Der Produkt erfolgreich hinzugefügt.
+    add_product_ko: Ein Fehler ist beim Hinzurügen des Produkts aufgetreten.
   edit_collection:
     new: Favorit erstellen
     edit: Ändern

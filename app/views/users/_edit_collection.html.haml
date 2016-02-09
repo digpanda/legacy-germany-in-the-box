@@ -60,7 +60,8 @@
                           %h4=link_to "Shop: #{p.shop.name}", p.shop, :target => "_blank"
                         %h4= p.name
                         %p= p.desc
-                        = form_tag add_product_to_order_path(p) do
+                        = form_tag add_product_to_orders_path, :method => :patch do
+                          = hidden_field_tag :product_id, "#{p.id}"
                           =submit_tag "$#{p.price} Add to Basket", :class => "btn btn-primary btn-lg btn-block"
                         %ul.list.product-page-meta-info
                           %li

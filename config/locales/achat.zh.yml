@@ -126,6 +126,15 @@ zh-CN:
     continue: 继续
     new: 尚未付款
     checked_out: 已经付款
+    continue_messasg: 您已更换了当前订单
+    delete_ok: 订单成功删除
+    delete_ko: 订单删除失败
+    create_ok: 订单创建成功
+    create_ko: 订单创建失败
+    update_ok: 订单更新成功
+    update_ko: 订单更新失败
+    add_product_ok: 产品添加成功
+    add_product_ko: 产品添加失败
   edit_collection:
     new: 新建收藏夹
     edit: 修改

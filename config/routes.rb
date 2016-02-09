@@ -50,22 +50,23 @@ Rails.application.routes.draw do
 
   resources :shops
 
-  resources :orders, only: [:destroy, :show]
+  resources :orders, only: [:destroy, :show] do
+    match :add_product,               via: [:patch],  to: :add_product,             as: :add_product_to,              :on => :collection
+    match :adjust_products_amount,    via: [:patch],  to: :adjust_products_amount,  as: :adjust_products_amount_in,   :on => :collection
+  end
 
   resources :category, only: [:show, :index] do
     match :list_products,  via: [:get],  to: 'categories#list_products', as: 'list_products'
-  end
-
-  resources :products, only:[] do
-
   end
 
 
   get '/category/:category_id/products', to: 'products#show_products_in_category', as: 'show_products_in_category'
 
 
-  post '/orders/add_product/:product_id', to: 'orders#add_product', as: 'add_product_to_order'
-  post '/orders/adjust_products_amount', to: 'orders#adjust_products_amount', as: 'adjust_products_amount_in_order'
+
+
+
+
   post '/orders/checkout', to: 'orders#checkout', as: 'checkout_order'
 
   get '/orders/cart/manage',to: 'orders#manage_cart', as: 'manage_cart'
@@ -94,9 +95,6 @@ Rails.application.routes.draw do
   post '/leavepublicchat/:id/:chat_id', to: 'users#leavepublicchat'
   post '/addprodtocol/:col_id/:prod_id', to: 'users#addprodtocol'
   post '/getuserbyid/:parse_id', to: 'users#getuserbyid'
-
-
-  get 'search/:keyword/:folds' => 'products#search'
 
   get 'user/openmailnoti' => 'users#openmailnoti'
 
