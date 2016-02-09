@@ -1,6 +1,5 @@
-json.products @products
-json.users @users
-json.collections @collections
-json.products_count @products.count
-json.users_count @users.count
-json.collections_count @collections.count
+json.array!(@products) do |p|
+  json.extract! p, :id, :name, :brand, :img
+  json.shopname Mongoid::QueryCache.cache { Shop.find( p.shop.id ) }.name  if p.shop
+  json.categories p.categories.map { |c| Mongoid::QueryCache.cache { Category.find( c.id ) }.name } if p.categories.size > 0
+end

@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_action :set_user, except: [:search_users,
+  before_action :set_user, except: [:search,
                                     :openmailnoti,
                                     :getuserbyid,
                                     :index,
@@ -11,7 +11,7 @@ class UsersController < ApplicationController
 
   skip_before_filter :authenticate_user!, only: :index
 
-  acts_as_token_authentication_handler_for User, except: [:search_users,
+  acts_as_token_authentication_handler_for User, except: [:search,
                                                           :index,
                                                           :get_followers,
                                                           :get_followings]
@@ -22,8 +22,6 @@ class UsersController < ApplicationController
     base64_to_uploadedfile :user, :pic
   }
 
-  # GET /users
-  # GET /users.json
   def index
     @users = User.all
 
@@ -34,10 +32,6 @@ class UsersController < ApplicationController
   end
 
   def show
-  end
-
-  def pshow
-
   end
 
   def getuserbyemail
@@ -322,14 +316,14 @@ class UsersController < ApplicationController
 
   end
 
-  def search_users
-    @users = User.or({username: /.*#{params[:users_search_keyword]}.*/i},
-                     {fname: /.*#{params[:users_search_keyword]}.*/i},
-                     {email: /.*#{params[:users_search_keyword]}.*/i}).limit(Rails.configuration.limit_for_users_search)
+  def search
+    @users = User.or({username: /.*#{params[:keyword]}.*/i},
+                     {fname: /.*#{params[:keyword]}.*/i},
+                     {email: /.*#{params[:keyword]}.*/i}).limit(Rails.configuration.limit_for_users_search)
 
     respond_to do |format|
       format.html { render :index }
-      format.json { render :search_users }
+      format.json { render :search }
     end
   end
 

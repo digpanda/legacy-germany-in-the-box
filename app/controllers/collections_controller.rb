@@ -189,7 +189,10 @@ class CollectionsController < ApplicationController
         format.json { render :show, :status => :ok }
       end
     else
-      format.json { render json: { status: :ko }, status: :unprocessable_entity }
+      respond_to do |format|
+        format.html { render :show }
+        format.json { render json: { status: :ko }, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -286,7 +289,6 @@ class CollectionsController < ApplicationController
     @collections = current_user.oCollections
 
     respond_to do |format|
-      format.html { render :index }
       format.json { render :index, status: :ok }
     end
   end
@@ -295,7 +297,6 @@ class CollectionsController < ApplicationController
     @collections = current_user.liked_collections
 
     respond_to do |format|
-      format.html { render :index }
       format.json { render :index, status: :ok }
     end
   end
@@ -304,23 +305,33 @@ class CollectionsController < ApplicationController
     if @collection && @collection.public
       current_user.liked_collections.push(@collection)
       if current_user.liked_collections.save
-        format.json { render json: { status: :ok }, status: :ok }
+        respond_to do |format|
+          format.json { render json: { status: :ok }, status: :ok }
+        end
+
         return
       end
+    else
+      respond_to do |format|
+        format.json { render json: { status: :ko }, status: :unprocessable_entity }
+      end
     end
-
-    format.json { render json: { status: :ko }, status: :unprocessable_entity }
   end
 
   def dislike_collection
     if @collection
       current_user.liked_collections.delete(@collection)
       if current_user.liked_collections.save
-        format.json { render json: { status: :ok }, status: :ok }
+        respond_to do |format|
+          format.json { render json: { status: :ok }, status: :ok }
+        end
+
         return
       end
-
-      format.json { render json: { status: :ko }, status: :unprocessable_entity }
+    else
+      respond_to do |format|
+        format.json { render json: { status: :ko }, status: :unprocessable_entity }
+      end
     end
   end
 

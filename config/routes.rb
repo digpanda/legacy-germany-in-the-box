@@ -3,9 +3,9 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { registrations: "registrations", sessions: "sessions" }
 
   devise_scope :user do
-    match '/users/sign_out',  via: [:delete],   to: 'sessions#destroy',             as: :signout
-    match '/cancel_login',    via: [:delete],   to: 'sessions#cancel_login',        as: :cancel_login
-    match '/cancel_signup',   via: [:get] ,     to: 'registrations#cancel_signup',  as: :cancel_signup
+    match 'users/sign_out', via: [:delete],   to: 'sessions#destroy',             as: :signout
+    match :cancel_login,    via: [:delete],   to: 'sessions#cancel_login',        as: :cancel_login
+    match :cancel_signup,   via: [:get] ,     to: 'registrations#cancel_signup',  as: :cancel_signup
   end
 
   captcha_route
@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   mount ChinaCity::Engine => '/china_city'
 
   root to: 'pages#home'
+
+  get '/set_session_locale/:locale', to: 'application#set_session_locale', as: 'set_session_locale'
 
   resources :brands
 
@@ -22,8 +24,6 @@ Rails.application.routes.draw do
     match :remove_all_products,         via: [:patch],  to: :remove_all_products,   as: :remove_all_products_from,  :on => :member
     match :add_products,                via: [:patch],  to: :add_products,          as: :add_products_to,           :on => :member
     match :remove_products,             via: [:patch],  to: :remove_products,       as: :remove_products_from,      :on => :member
-    match :add_product,                 via: [:patch],  to: :add_product,           as: :add_product_to,            :on => :member
-    match :remove_product,              via: [:patch],  to: :remove_product,        as: :remove_product_from,       :on => :member
     match 'toggle_product/:product_id', via: [:get],    to: :toggle_product,        as: :toggle_product_in,         :on => :member
     match :like_collection,             via: [:get],    to: :like_collection,       as: :like,                      :on => :member
     match :dislike_collection,          via: [:get],    to: :dislike_collection,    as: :dislike,                   :on => :member
@@ -38,23 +38,30 @@ Rails.application.routes.draw do
   resources :addresses
 
   resources :products, except: [:index] do
-    match :autocomplete_product_name,   via: [:get],    to: :autocomplete_product_name,   as: :autocomplete_product_name,   :on => :collection
-    match :search,                      via: [:post],   to: :search_products,             as: :search,                      :on => :collection
-    match :popular_products,            via: [:get],    to: :indexr,                      as: :popular,                     :on => :collection
+    match :autocomplete_product_name,         via: [:get],    to: :autocomplete_product_name,   as: :autocomplete_product_name,   :on => :collection
+    match :search,                            via: [:post],   to: :search,                      as: :post_search,                 :on => :collection
+    match 'search/:products_search_keyword',  via: [:get],    to: :search,                      as: :get_search,                  :on => :collection
+    match :popular_products,                  via: [:get],    to: :indexr,                      as: :popular,                     :on => :collection
   end
 
-  resources :users, except: [:destroy]
+  resources :users, except: [:destroy] do
+    match 'search/:keyword',            via: [:get],    to: :search,                as: :search,                    :on => :collection
+  end
 
   resources :shops
 
   resources :orders, only: [:destroy, :show]
 
-  
-  get '/set_session_locale/:locale', to: 'application#set_session_locale', as: 'set_session_locale'
+  resources :category, only: [:show, :index] do
+    match :list_products,  via: [:get],  to: 'categories#list_products', as: 'list_products'
+  end
+
+  resources :products, only:[] do
+
+  end
+
 
   get '/category/:category_id/products', to: 'products#show_products_in_category', as: 'show_products_in_category'
-
-  get 'profile/:id', to: 'users#pshow', as: "profile"
 
 
   post '/orders/add_product/:product_id', to: 'orders#add_product', as: 'add_product_to_order'
@@ -68,8 +75,7 @@ Rails.application.routes.draw do
   get '/get_followers/:id', to: 'users#get_followers'
   get '/get_followings/:id', to: 'users#get_followings'
 
-  get '/products/search/:products_search_keyword' => 'products#search_products'
-  get '/users/search/:users_search_keyword' => 'users#search_users'
+
 
   post '/getuser', to: 'users#getuserbyemail'
   post '/follow/:id/:target_id', to: 'users#follow'
@@ -89,7 +95,6 @@ Rails.application.routes.draw do
   post '/addprodtocol/:col_id/:prod_id', to: 'users#addprodtocol'
   post '/getuserbyid/:parse_id', to: 'users#getuserbyid'
 
-  get 'userssearch/:users_search_keyword' => 'users#search_users'
 
   get 'search/:keyword/:folds' => 'products#search'
 

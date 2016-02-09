@@ -15,7 +15,6 @@ class User
   field :website,   type: String
   field :country,   type: String
   field :lang,      type: String
-  field :parse_id,  type: String
   field :provider,  type: String
   field :uid,       type: String
   field :tel,       type: String

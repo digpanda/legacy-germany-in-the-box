@@ -103,7 +103,7 @@
                   =link_to I18n.t(:popular_product, scope: :top_menu), popular_products_path
                 - for_device_type :table, :mobile do
                   %li
-                    = form_tag search_products_path, :method => :post, :id => 'search_products_form', :class => 'form-group' do
+                    = form_tag post_search_products_path, :method => :post, :id => 'search_products_form', :class => 'form-group' do
                       %label
                         %i.fa.fa-search
                         %span= I18n.t(:search_prompt, scope: :popular_products)

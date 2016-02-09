@@ -10,7 +10,7 @@ class ProductsController < ApplicationController
     render :json => get_products_from_search_cache( params[:term] )
   end
 
-  def search_products
+  def search
     founded_products = get_products_from_search_cache( params[:products_search_keyword] )
     @products = founded_products.collect{|p| Mongoid::QueryCache.cache { Product.find( p[:product_id] ) } }.compact.uniq
 
@@ -21,7 +21,7 @@ class ProductsController < ApplicationController
       }
 
       format.json {
-        render :search_products
+        render :search
       }
     end
   end
@@ -35,27 +35,8 @@ class ProductsController < ApplicationController
     end
   end
 
-# time = Time.new
-# GET /products
-# GET /products.json
   def index
   end
-
-  def showindex
-    @collection = Collection.find(params[:col_id])
-    @products = []
-    @collection.products.each do |i|
-      @product = Product.find (i)
-
-      @products << @product
-    end
-    respond_to do |format|
-      format.html { render :index }
-      format.json { render :index, status: :ok, location: @proudct }
-    end
-
-  end
-
 
   def indexr
     if(params[:num] == nil)
@@ -84,81 +65,17 @@ class ProductsController < ApplicationController
     end
   end
 
-# GET /products/1
-# GET /products/1.json
-
-
-  def prodsearch
-    if (params[:folds] == "0")
-      @products = Product.or({brand: /.*#{params[:keyword]}.*/i}, {name: /.*#{params[:keyword]}.*/i}, {category: /.*#{params[:keyword]}.*/i}).limit(50)
-    else
-      @i = params[:folds].to_i
-      @products = Product.or({brand: /.*#{params[:keyword]}.*/i}, {name: /.*#{params[:keyword]}.*/i}, {category: /.*#{params[:keyword]}.*/i}).skip(@i*50).limit(50)
-      # @products = Product.search(params[:keyword]).order("created_at DESC")
-    end
-    # @products << Product.where(name: params[:keyword])
-    # @products << Product.where(category: params[:keyword])
-
-    respond_to do |format|
-      format.html { render :index }
-      format.json { render :index, status: :ok, location: @proudct }
-    end
-
-  end
-
-
-  def prodsearchbrand
-    if (params[:folds] == "0")
-      @products = Product.or({brand: params[:keyword]}).limit(50)
-    else
-      @i = params[:folds].to_i
-      @products = Product.or({brand: params[:keyword]}).skip(@i*50).limit(50)
-      # @products = Product.search(params[:keyword]).order("created_at DESC")
-    end
-    # @products << Product.where(name: params[:keyword])
-    # @products << Product.where(category: params[:keyword])
-
-    respond_to do |format|
-      format.html { render :index }
-      format.json { render :index, status: :ok, location: @proudct }
-    end
-
-  end
-
-
-  def prodsearchcat
-    if (params[:folds] == "0")
-      @products = Product.or({category: /.*#{params[:keyword]}.*/i}).limit(50)
-    else
-      @i = params[:folds].to_i
-      @products = Product.or({category: /.*#{params[:keyword]}.*/i}).skip(@i*50).limit(50)
-      # @products = Product.search(params[:keyword]).order("created_at DESC")
-    end
-    # @products << Product.where(name: params[:keyword])
-    # @products << Product.where(category: params[:keyword])
-
-    respond_to do |format|
-      format.html { render :index }
-      format.json { render :index, status: :ok, location: @proudct }
-    end
-
-  end
-
 
   def show
   end
 
-# GET /products/new
   def new
     @product = Product.new
   end
 
-# GET /products/1/edit
   def edit
   end
 
-# POST /products
-# POST /products.json
   def create
     @product = Product.new(product_params)
     @product.owner = product_params[:owner]
@@ -174,20 +91,8 @@ class ProductsController < ApplicationController
         format.json { render json: @product.errors, status: :unprocessable_entity }
       end
     end
-#     name = @product.ProductName
-# File.open('product.log', 'a') do |f2|  
-#   # use "\n" for two lines of text  
-#   f2.write Time.new
-#   f2.write "==>"
-#   f2.write name
-#   f2.write "  created"
-#   f2.write "\n"
-#   end
-
   end
 
-# PATCH/PUT /products/1
-# PATCH/PUT /products/1.json
   def update
     respond_to do |format|
       if @product.update(product_params)
@@ -201,24 +106,12 @@ class ProductsController < ApplicationController
 
   end
 
-# DELETE /products/1
-# DELETE /products/1.json
   def destroy
     @product.destroy
     respond_to do |format|
       format.html { redirect_to products_url, notice: 'Product was successfully destroyed.' }
       format.json { head :no_content }
     end
-    #   name = @product.ProductName
-    # File.open('product.log', 'a') do |f2|
-    # # use "\n" for two lines of text
-    # f2.write Time.new
-    # f2.write "==>"
-    # f2.write name
-    # f2.write "  deleted"
-    # f2.write "\n"
-    # end
-
   end
 
 
@@ -242,29 +135,6 @@ class ProductsController < ApplicationController
     end
 
   end
-
-
-  def search
-    if (params[:folds] == "0")
-      @users = User.or({username: /.*#{params[:keyword]}.*/i}, {fname: /.*#{params[:keyword]}.*/i}, {email: /.*#{params[:keyword]}.*/i}).limit(50)
-      @products = Product.or({brand: /.*#{params[:keyword]}.*/i}, {name: /.*#{params[:keyword]}.*/i}, {category: /.*#{params[:keyword]}.*/i}).limit(50)
-      @collections = Collection.or({desc: /.*#{params[:keyword]}.*/i}, {name: /.*#{params[:keyword]}.*/i}).limit(50)
-    else
-      @i = params[:folds].to_i
-      @collections = Collection.or({brand: /.*#{params[:keyword]}.*/i}, {name: /.*#{params[:keyword]}.*/i}).skip(@i*50).limit(50)
-      @users = User.or({username: /.*#{params[:keyword]}.*/i}, {fname: /.*#{params[:keyword]}.*/i}, {email: /.*#{params[:keyword]}.*/i}).skip(@i*50).limit(50)
-      @products = Product.or({brand: /.*#{params[:keyword]}.*/i}, {name: /.*#{params[:keyword]}.*/i}, {category: /.*#{params[:keyword]}.*/i}).skip(@i*50).limit(50)
-
-    end
-
-
-    respond_to do |format|
-      format.html { render :search }
-      format.json { render :search, status: :ok, location: @proudct }
-    end
-
-  end
-
 
   def getpostedprods
     @products = Product.where(owner: params[:owner_id])
