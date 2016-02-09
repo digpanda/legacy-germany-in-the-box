@@ -73,16 +73,6 @@ Rails.application.routes.draw do
   get '/category/:category_id/products', to: 'products#show_products_in_category', as: 'show_products_in_category'
 
 
-  post '/saveprod/:id/:prod_id', to: 'users#saveprod', as: 'saveprod'
-  post '/likeprod/:id/:prod_id', to: 'users#likeprod'
-  post '/unsaveprod/:id/:prod_id', to: 'users#unsaveprod', as: 'unsaveprod'
-  post '/dislikeprod/:id/:prod_id', to: 'users#dislikeprod'
-
-
-  post '/addprodtocol/:col_id/:prod_id', to: 'users#addprodtocol'
-  post '/getuserbyid/:parse_id', to: 'users#getuserbyid'
-
-
   # proudcts
   post '/newprod/:owner_id' => 'products#create'
   get 'productsi/:num' => 'products#indexr', as: 'productsi'
