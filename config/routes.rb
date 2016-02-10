@@ -66,25 +66,9 @@ Rails.application.routes.draw do
   end
 
   resources :category, only: [:show, :index] do
-    match :list_products,  via: [:get],  to: :list_products, as: :list_products
+    match :list_products,             via: [:get],    to: :list_products,               as: :list_products,     :on => :member
+    match :show_products_in_category, via: [:get],    to: :show_products_in_category,   as: :show_products_in,  :on => :member
   end
-
-
-  get '/category/:category_id/products', to: 'products#show_products_in_category', as: 'show_products_in_category'
-
-
-  # proudcts
-  post '/newprod/:owner_id' => 'products#create'
-  get 'productsi/:num' => 'products#indexr', as: 'productsi'
-  get 'productsi/:from/:to' => 'products#indexft'
-  get 'similarproductsi/:id/:num' => 'products#similarproductsi'
-  get 'prodsearch/:products_search_keyword' => 'products#search_products'
-  get 'searchp/:searchtext' => 'products#search'
-  get 'showindex/:col_id' => 'products#showindex', as: 'colprods'
-  get 'savedprods/:owner_id' => 'products#savedprods'
-  get 'searchprodcat/:keyword/:folds' => "products#prodsearchcat"
-  get 'searchprodbrand/:keyword/:folds' => "products#prodsearchbrand"
-  get 'getpostedprods/:owner_id' => "products#getpostedprods"
 
 
   #brands

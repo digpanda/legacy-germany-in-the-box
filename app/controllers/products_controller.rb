@@ -26,15 +26,6 @@ class ProductsController < ApplicationController
     end
   end
 
-  def show_products_in_category
-    @products = Category.find(params[:category_id]).products
-    @categories_and_children, @categories_and_counters = get_category_values_for_left_menu(@products)
-
-    respond_to do |format|
-      format.html { render :index }
-    end
-  end
-
   def index
   end
 
