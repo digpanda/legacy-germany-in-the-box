@@ -28,11 +28,12 @@ Rails.application.routes.draw do
     match :like_collection,             via: [:get],    to: :like_collection,       as: :like,                      :on => :member
     match :dislike_collection,          via: [:get],    to: :dislike_collection,    as: :dislike,                   :on => :member
 
-    match 'is_collected/:product_id',   via: [:get],    to: :is_collected,          as: :is_collected,              :on => :collection
-    match :create_and_add,              via: [:post],   to: :create_and_add,        as: :create_and_add,            :on => :collection
-    match 'search/:keyword',            via: [:get],    to: :search,                as: :search,                    :on => :collection
-    match :show_my_collections,         via: [:get],    to: :show_my_collections,   as: :show_my,                   :on => :collection
-    match :show_liked_by_me,            via: [:get],    to: :show_liked_by_me,      as: :show_liked_by_me,          :on => :collection
+    match 'is_collected/:product_id',         via: [:get],    to: :is_collected,            as: :is_collected,          :on => :collection
+    match :create_and_add,                    via: [:post],   to: :create_and_add,          as: :create_and_add,        :on => :collection
+    match 'search/:keyword',                  via: [:get],    to: :search,                  as: :search,                :on => :collection
+    match :show_my_collections,               via: [:get],    to: :show_my_collections,     as: :show_my,               :on => :collection
+    match :show_liked_by_me,                  via: [:get],    to: :show_liked_by_me,        as: :show_liked_by_me,      :on => :collection
+    match 'show_user_collections/:user_id',   via: [:get],    to: :show_user_collections,   as: :show_user,             :on => :collection
   end
 
   resources :addresses

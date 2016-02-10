@@ -7,7 +7,8 @@ class CollectionsController < ApplicationController
                                           :show_liked_by_me,
                                           :show_liked_collections,
                                           :new,
-                                          :create]
+                                          :create,
+                                          :show_user_collections]
 
   before_action :authenticate_user!, :except => [:search, :index, :show]
 
@@ -193,6 +194,14 @@ class CollectionsController < ApplicationController
         format.html { render :show }
         format.json { render json: { status: :ko }, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def show_user_collections
+    @collections = Collection.public.where( :user_id => params[:user_id] )
+
+    respond_to do |format|
+      format.json { render :index }
     end
   end
 

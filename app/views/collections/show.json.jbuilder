@@ -4,9 +4,9 @@ json.collection {
   json.desc @collection.desc
   json.visible @collection.public
 
-  json.products_imgs c.products.map { |p| p.img ? p.img : p.imglg }.compact
+  json.set! :products_imgs, @collection.products.map { |p| p.img ? p.img : p.imglg }.compact
 
-  json.set! :owner_id, c.user.id
-  json.set! :owner_name, c.user.username
-  json.set! :owner_img, c.user.pic.url
+  json.set! :owner_id, @collection.user.id
+  json.set! :owner_name, @collection.user.username
+  json.set! :owner_img, @collection.user.pic.url ? request.base_url + @collection.user.pic.url : nil
 }
