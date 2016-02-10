@@ -5,12 +5,12 @@ class CollectionsController < ApplicationController
                                           :index,
                                           :search,
                                           :show_liked_by_me,
-                                          :show_liked_collections,
+                                          :show_my_collections,
                                           :new,
                                           :create,
                                           :show_user_collections]
 
-  before_action :authenticate_user!, :except => [:search, :index, :show]
+  before_action :authenticate_user!, :except => [:search, :index, :show, :show_user_collections]
 
   def search
     @collections = Collection.public.or({desc: /.*#{params[:keyword]}.*/i}, {name: /.*#{params[:keyword]}.*/i}).limit(Rails.configuration.limit_for_collections_search)
@@ -184,7 +184,7 @@ class CollectionsController < ApplicationController
   end
 
   def show
-    if @collection && @collection.public && @collection.user == current_user
+    if @collection && @collection.public
       respond_to do |format|
         format.html { render :show }
         format.json { render :show, :status => :ok }
@@ -226,7 +226,7 @@ class CollectionsController < ApplicationController
             redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_collection )
           }
 
-          format.json { render json: { status: :ok }, status: :ok }
+          format.json { render json: { status: :ok, collection_id: @collection.id }, status: :ok }
         else
           format.html {
             flash[:error] = I18n.t(:create_ko, scope: :edit_collection)

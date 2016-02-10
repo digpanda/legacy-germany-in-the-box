@@ -31,11 +31,12 @@ class ProductsController < ApplicationController
 
   def indexr
     if(params[:num] == nil)
-      @products = get_random_Product(50)
+      @products = get_random_Product(limit_for_popular_products)
       @categories_and_children, @categories_and_counters = get_category_values_for_left_menu(@products)
-  else
-    @products = get_random_Product(params[:num].to_i)
+    else
+      @products = get_random_Product(params[:num].to_i)
     end
+
     @owner_name = nil
     @owner_img = nil
     respond_to do |format|
@@ -104,66 +105,42 @@ class ProductsController < ApplicationController
     end
   end
 
-
-  private
-# Use callbacks to share common setup or constraints between actions.
-  def set_product
-    @product = Product.find(params[:id])
-  end
-
-
-# Never trust parameters from the scary internet, only allow the white list through.
-  def product_params
-    params.require(:product).permit(:network, :desc, :shopname, :prodid, :deeplink, :name, :brand, :category, :img, :imglg, :price, :priceold, :sale, :currency, :update_, :owner, :status)
-
-
-  end
-
-
-  def get_random_Product(n)
-    i =
-        cnt = Product.count
-    rand = rand(cnt+1)
-    # just to test 
-    products = Product.where(:name => '10 Blatt Seidenpapier ♥ Panda ♥');
-    #products  += Product.skip(rand).limit(n)
-
-    #while i < n-2  do
-    # products.push(Product.skip(rand).limit(1))
-    # rand = rand(cnt+1)
-    # i +=1
-    # end
-    products
-
-
-  end
-
-  def get_category_values_for_left_menu(products)
-    categories_and_children = {}
-    categories_and_counters = {}
-
-    products.each do |p|
-      p.categories.each do |c|
-        if not categories_and_children.has_key?(c.parent)
-          categories_and_children[c.parent] = []
-          categories_and_counters[c] = 0
-          categories_and_counters[c.parent] = 0
-        end
-
-        categories_and_children[c.parent] << c if not categories_and_children[c.parent].include?(c)
-        categories_and_counters[c] += 1
-        categories_and_counters[c.parent] += 1
-      end
-    end
-
-    return categories_and_children, categories_and_counters
-  end
-
   protected
 
-  def current_top_menu_active_part
-    :product
-  end
+    def current_top_menu_active_part
+      :product
+    end
+
+  private
+
+    def set_product
+      @product = Product.find(params[:id])
+    end
+
+    def product_params
+      params.require(:product).permit(:network, :desc, :shopname, :prodid, :deeplink, :name, :brand, :category, :img, :imglg, :price, :priceold, :sale, :currency, :update_, :owner, :status)
+    end
+
+    def get_category_values_for_left_menu(products)
+      categories_and_children = {}
+      categories_and_counters = {}
+
+      products.each do |p|
+        p.categories.each do |c|
+          if not categories_and_children.has_key?(c.parent)
+            categories_and_children[c.parent] = []
+            categories_and_counters[c] = 0
+            categories_and_counters[c.parent] = 0
+          end
+
+          categories_and_children[c.parent] << c if not categories_and_children[c.parent].include?(c)
+          categories_and_counters[c] += 1
+          categories_and_counters[c.parent] += 1
+        end
+      end
+
+      return categories_and_children, categories_and_counters
+    end
 
 end
 
