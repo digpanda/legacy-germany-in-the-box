@@ -5,7 +5,10 @@ class UsersController < ApplicationController
                                     :new,
                                     :create]
 
-  skip_before_filter :authenticate_user!, only: :index
+  skip_before_filter :authenticate_user!, except: [:search,
+                                                   :index,
+                                                   :get_followers,
+                                                   :get_followings]
 
   acts_as_token_authentication_handler_for User, except: [:search,
                                                           :index,
@@ -76,26 +79,48 @@ class UsersController < ApplicationController
   def follow
     @target = User.find(params[:target_id])
     @target.followers.push(current_user)
-    @target.save
-
     current_user.following.push(@target)
-    current_user.save
 
-    respond_to do |format|
-      format.json { render :json => { status: :ok }, status: :ok}
+    if @target && @target.save && current_user.save
+      respond_to do |format|
+        format.html {
+          flash[:success] = I18n.t(:follow_ok, scope: :edit_following)
+          redirect_to request.referer
+        }
+        format.json { render :json => { status: :ok }, status: :ok}
+      end
+    else
+      respond_to do |format|
+        format.html {
+          flash[:success] = I18n.t(:follow_ko, scope: :edit_following)
+          redirect_to request.referer
+        }
+        format.json { render :json => { status: :ko }, status: :unprocessable_entity}
+      end
     end
   end
 
   def unfollow
     @target = User.find(params[:target_id])
     @target.followers.delete(current_user)
-    @target.save
-
     current_user.following.delete(@target)
-    current_user.save
 
-    respond_to do |format|
-      format.json { render :json => { status: :ok }, status: :ok}
+    if @target && @target.save && current_user.save
+      respond_to do |format|
+        format.html {
+          flash[:success] = I18n.t(:unfollow_ok, scope: :edit_following)
+          redirect_to request.referer
+        }
+        format.json { render :json => { status: :ok }, status: :ok}
+      end
+    else
+      respond_to do |format|
+        format.html {
+          flash[:success] = I18n.t(:follow_ko, scope: :edit_following)
+          redirect_to request.referer
+        }
+        format.json { render :json => { status: :ko }, status: :unprocessable_entity}
+      end
     end
   end
 

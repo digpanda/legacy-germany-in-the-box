@@ -11,6 +11,8 @@ zh-CN:
     my_address: 收货地址
     my_order: 订单记录
     my_collection: 我的收藏
+    my_following: 我的关注
+    my_followers: 我的粉丝
     view_cart: 浏览购物车
     checkout: 去下单
     empty_cart: 您还没有添加商品
@@ -76,6 +78,12 @@ zh-CN:
     password_confirmation: 重复密码
     save: 保存
     success: 账户信息修改成功
+  edit_following:
+    follow_ok: 关注成功
+    follow_ko: 关注失败
+    unfollow_ok: 取消关注成功
+    unfoolow_ko: 取消关注失败
+  edit_followers:
   edit_personal:
     firstname: 名
     lastname: 姓

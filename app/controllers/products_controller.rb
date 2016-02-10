@@ -1,10 +1,10 @@
 class ProductsController < ApplicationController
 
-  before_action :set_product, only: [:show, :edit, :update, :destroy, :similarproductsi]
+  before_action :set_product, only: [:show, :edit, :update, :destroy]
 
   before_action { @show_search_area = true }
 
-  acts_as_token_authentication_handler_for User, only: [:create, :edit, :destroy, :update]
+  before_action :authenticate_user!, only: [:create, :edit, :destroy, :update]
 
   def autocomplete_product_name
     render :json => get_products_from_search_cache( params[:term] )
@@ -65,7 +65,6 @@ class ProductsController < ApplicationController
     end
   end
 
-
   def show
   end
 
@@ -112,39 +111,6 @@ class ProductsController < ApplicationController
       format.html { redirect_to products_url, notice: 'Product was successfully destroyed.' }
       format.json { head :no_content }
     end
-  end
-
-
-  def similarproductsi
-    @products = Product.all.where(category: @product.category).take(params[:num].to_i)
-    respond_to do |format|
-      format.json { render :index, status: :ok, location: @proudct }
-    end
-  end
-
-  def savedprods
-    @products = []
-    @user = User.find(params[:owner_id])
-    @user.saved_products.each do |i|
-      @product = Product.find (i)
-      @products << @product
-    end
-    respond_to do |format|
-      format.html { render :index }
-      format.json { render :index, status: :ok, location: @proudct }
-    end
-
-  end
-
-  def getpostedprods
-    @products = Product.where(owner: params[:owner_id])
-
-    respond_to do |format|
-      format.html { render :index }
-      format.json { render :index, status: :ok, location: @proudct }
-    end
-
-
   end
 
 

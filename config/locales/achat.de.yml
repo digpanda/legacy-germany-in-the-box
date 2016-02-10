@@ -11,6 +11,8 @@ de:
     my_address: Adressen
     my_order: Aufträge
     my_collection: Favorit
+    my_following: Beobachtung
+    my_followers: Anhänger
     view_cart: Ansehen
     checkout: Zur Kasse
     empty_cart: Kein Produkt vorhanden
@@ -77,6 +79,12 @@ de:
     password_confirmation: Passwort wiederholen
     save: Speichern
     success: Ihr Konto ist erfolgreich aktualisiert.
+  edit_following:
+    follow_ok: Die Beobachtung für den Nutzer erfolgreich aktiviert
+    follow_ko: Ein Fehler ist beim Aktivieren der Beobachtung des Nutzers aufgetreten.
+    unfollow_ok: Die Beobachtung für den Nutzer erfolgreich deaktiviert
+    unfoolow_ko: Ein Fehler ist beim Deaktiviern der Beobachtung des Nutzers aufgetreten.
+  edit_followers:
   edit_personal:
     firstname: Vorname
     lastname: Nachname
