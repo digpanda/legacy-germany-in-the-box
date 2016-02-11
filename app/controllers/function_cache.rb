@@ -69,14 +69,12 @@ module FunctionCache
   #   }
   # end
 
-  def get_popular_proudcts_from_cache(page = 0)
+  def get_popular_proudcts_from_cache
     magic_number = generate_magic_number
 
-    popular_products_cache = Rails.cache.fetch("popular_products_cache_#{magic_number}", :expires_in => Rails.configuration.popular_products_cache_expire_limit ) {
+    Rails.cache.fetch("popular_products_cache_#{magic_number}", :expires_in => Rails.configuration.popular_products_cache_expire_limit ) {
       Product.all.sort_by { Random.rand }
     }
-
-    Kaminari.paginate_array(popular_products_cache).page(page).per(Rails.configuration.limit_for_popular_products)
   end
 
   def sort_and_map_products(products, search_category)

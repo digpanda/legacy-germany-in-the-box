@@ -49,8 +49,11 @@ gem 'bootstrap-datepicker-rails'
 
 gem 'strip_attributes'
 
-gem 'kaminari'
-gem 'bootstrap-kaminari-views'
+#gem 'kaminari'
+#gem 'bootstrap-kaminari-views'
+
+gem 'will_paginate'
+gem 'will_paginate-bootstrap'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

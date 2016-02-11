@@ -32,8 +32,10 @@ class ProductsController < ApplicationController
     end
   end
 
+  require 'will_paginate/array'
+
   def list_popular_products
-    @products = get_popular_proudcts_from_cache(params[:page_no] ? params[:page_no].to_i : 0)
+    @products = get_popular_proudcts_from_cache.paginate(:page => (params[:page] ? params[:page].to_i : 1), :per_page => Rails.configuration.limit_for_popular_products)
 
     respond_to do |format|
       format.html {
