@@ -67,8 +67,8 @@ Rails.application.routes.draw do
   end
 
   resources :category, only: [:show, :index] do
-    match :list_products,             via: [:get],    to: :list_products,               as: :list_products,     :on => :member
-    match :show_products_in_category, via: [:get],    to: :show_products_in_category,   as: :show_products_in,  :on => :member
+    match :list_products,   via: [:get],    to: :list_products,               as: :list_products,     :on => :member
+    match :show_products,   via: [:get],    to: :show_products,               as: :show_products_in,  :on => :member
   end
 
 
