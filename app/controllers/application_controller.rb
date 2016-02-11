@@ -7,9 +7,7 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :null_session, :if => Proc.new { |c| c.request.format.html? }
 
-  acts_as_token_authentication_handler_for User, :if => Proc.new { |c| c.request.format.json? }
-
-  #before_action :authenticate_user!
+  before_action :authenticate_user!
 
   before_action { params[:top_menu_active_part] = current_top_menu_active_part }
 

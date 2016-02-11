@@ -1,11 +1,10 @@
 class CategoriesController < ApplicationController
 
-  skip_before_action :verify_authenticity_token
-
   before_action :set_collection, except: [:index]
 
+  before_action :authenticate_user!, except: [:list_products, :show_products_in_category]
 
-  def show_products_in_category
+  def show_products
     @products = @category.products
     @categories_and_children, @categories_and_counters = get_category_values_for_left_menu(@products)
 

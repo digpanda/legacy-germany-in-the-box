@@ -5,15 +5,12 @@ class UsersController < ApplicationController
                                     :new,
                                     :create]
 
-  skip_before_filter :authenticate_user!, except: [:search,
-                                                   :index,
-                                                   :get_followers,
-                                                   :get_followings]
+  before_action :authenticate_user!, except: [:search,
+                                              :index,
+                                              :get_followers,
+                                              :get_followings]
 
-  acts_as_token_authentication_handler_for User, except: [:search,
-                                                          :index,
-                                                          :get_followers,
-                                                          :get_followings]
+  acts_as_token_authentication_handler_for User, fallback: :devise
 
   include Base64ToUpload
 

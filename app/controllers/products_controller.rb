@@ -4,10 +4,14 @@ class ProductsController < ApplicationController
 
   before_action { @show_search_area = true }
 
-  before_action :authenticate_user!, only: [:create, :edit, :destroy, :update]
+  before_action :authenticate_user!, except: [:autocomplete_product_name, :indexr, :search, :show]
 
   def autocomplete_product_name
-    render :json => get_products_from_search_cache( params[:term] )
+    respond_to do |format|
+      format.json {
+        render :json => get_products_from_search_cache( params[:term] ), :status => :ok
+      }
+    end
   end
 
   def search
@@ -31,7 +35,7 @@ class ProductsController < ApplicationController
 
   def indexr
     if(params[:num] == nil)
-      @products = get_random_Product(limit_for_popular_products)
+      @products = get_random_Product(0)
       @categories_and_children, @categories_and_counters = get_category_values_for_left_menu(@products)
     else
       @products = get_random_Product(params[:num].to_i)
@@ -46,6 +50,7 @@ class ProductsController < ApplicationController
   end
 
   def indexft
+
     $i = params[:to].to_i - params[:from].to_i
     @products = Product.limit($i).offset(params[:from].to_i)
     # @products = get_random_Product(params[:num].to_i)
@@ -55,6 +60,23 @@ class ProductsController < ApplicationController
       format.html { render :index }
       format.json { render :index, status: :ok, location: @proudct }
     end
+  end
+
+
+  def get_random_Product(n)
+    i =
+        cnt = Product.count
+    rand = rand(cnt+1)
+    # just to test
+    products = Product.where(:name => '10 Blatt Seidenpapier ♥ Panda ♥');
+    #products  += Product.skip(rand).limit(n)
+
+    #while i < n-2  do
+    # products.push(Product.skip(rand).limit(1))
+    # rand = rand(cnt+1)
+    # i +=1
+    # end
+    products
   end
 
   def show
