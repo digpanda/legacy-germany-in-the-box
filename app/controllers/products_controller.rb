@@ -33,52 +33,10 @@ class ProductsController < ApplicationController
   end
 
   def index
-  end
+    @products = Product.where(:name => '10 Blatt Seidenpapier ♥ Panda ♥');
 
-  def indexr
-    if(params[:num] == nil)
-      @products = get_random_Product(0)
-      @categories_and_children, @categories_and_counters = get_category_values_for_left_menu(@products)
-    else
-      @products = get_random_Product(params[:num].to_i)
-    end
-
-    @owner_name = nil
-    @owner_img = nil
-    respond_to do |format|
-      format.html { render :index }
-      format.json { render :index, status: :ok, location: @proudct }
-    end
-  end
-
-  def indexft
-
-    $i = params[:to].to_i - params[:from].to_i
-    @products = Product.limit($i).offset(params[:from].to_i)
-    # @products = get_random_Product(params[:num].to_i)
-    @owner_name = nil
-    @owner_img = nil
-    respond_to do |format|
-      format.html { render :index }
-      format.json { render :index, status: :ok, location: @proudct }
-    end
-  end
-
-
-  def get_random_Product(n)
-    i =
-        cnt = Product.count
-    rand = rand(cnt+1)
-    # just to test
-    products = Product.where(:name => '10 Blatt Seidenpapier ♥ Panda ♥');
-    #products  += Product.skip(rand).limit(n)
-
-    #while i < n-2  do
-    # products.push(Product.skip(rand).limit(1))
-    # rand = rand(cnt+1)
-    # i +=1
-    # end
-    products
+    #@products = get_popular_proudcts_from_cache
+    @categories_and_children, @categories_and_counters = get_category_values_for_left_menu(@products)
   end
 
   def show
