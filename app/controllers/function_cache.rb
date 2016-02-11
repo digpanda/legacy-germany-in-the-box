@@ -76,7 +76,7 @@ module FunctionCache
       Product.all.sort_by { Random.rand }
     }
 
-    popular_products_cache[page * Rails.configuration.limit_for_popular_products, Rails.configuration.limit_for_popular_products]
+    Kaminari.paginate_array(popular_products_cache).page(page).per(Rails.configuration.limit_for_popular_products)
   end
 
   def sort_and_map_products(products, search_category)

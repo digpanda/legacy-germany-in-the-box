@@ -255,3 +255,5 @@
                     %p.product-location
                       %i.fa.fa-map-marker
                       Boston
+          .col-lg-12.col-md-12.col-sm-12
+            = paginate @products, :theme => 'twitter-bootstrap-3', :pagination_class => "pagination-small pagination-centered", :param_name => 'page_no', :params => {:page_no => 0}
