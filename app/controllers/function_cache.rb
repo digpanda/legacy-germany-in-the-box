@@ -61,4 +61,25 @@ module FunctionCache
   def generate_magic_number
    (session.id ? session.id.to_s.sum : current_user.authentication_token.sum) / Rails.configuration.max_magic_number
   end
+
+  def get_category_values_for_left_menu(products)
+    categories_and_children = {}
+    categories_and_counters = {}
+
+    products.each do |p|
+      p.categories.each do |c|
+        if not categories_and_children.has_key?(c.parent)
+          categories_and_children[c.parent] = []
+          categories_and_counters[c] = 0
+          categories_and_counters[c.parent] = 0
+        end
+
+        categories_and_children[c.parent] << c if not categories_and_children[c.parent].include?(c)
+        categories_and_counters[c] += 1
+        categories_and_counters[c.parent] += 1
+      end
+    end
+
+    return categories_and_children, categories_and_counters
+  end
 end

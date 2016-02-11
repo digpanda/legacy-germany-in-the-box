@@ -14,7 +14,7 @@ Order.all.delete
 Category.all.delete
 
 #
-# root categories - level 0
+# root category - level 0
 #
 category_fashion = Category.create!(
     :name => 'Fashion',

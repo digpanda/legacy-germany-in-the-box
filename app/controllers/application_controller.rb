@@ -64,4 +64,5 @@ class ApplicationController < ActionController::Base
     params[:locale]= session[:locale]
     I18n.locale = params[:locale] || Rails.configuration.default_locale
   end
+
 end

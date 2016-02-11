@@ -1,5 +1,7 @@
 class ProductsController < ApplicationController
 
+  include FunctionCache
+
   before_action :set_product, only: [:show, :edit, :update, :destroy]
 
   before_action { @show_search_area = true }
@@ -142,28 +144,6 @@ class ProductsController < ApplicationController
     def product_params
       params.require(:product).permit(:network, :desc, :shopname, :prodid, :deeplink, :name, :brand, :category, :img, :imglg, :price, :priceold, :sale, :currency, :update_, :owner, :status)
     end
-
-    def get_category_values_for_left_menu(products)
-      categories_and_children = {}
-      categories_and_counters = {}
-
-      products.each do |p|
-        p.categories.each do |c|
-          if not categories_and_children.has_key?(c.parent)
-            categories_and_children[c.parent] = []
-            categories_and_counters[c] = 0
-            categories_and_counters[c.parent] = 0
-          end
-
-          categories_and_children[c.parent] << c if not categories_and_children[c.parent].include?(c)
-          categories_and_counters[c] += 1
-          categories_and_counters[c.parent] += 1
-        end
-      end
-
-      return categories_and_children, categories_and_counters
-    end
-
 end
 
 
