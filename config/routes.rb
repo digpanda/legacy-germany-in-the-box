@@ -38,11 +38,10 @@ Rails.application.routes.draw do
 
   resources :addresses
 
-  resources :products, except: [:index] do
+  resources :products do
     match :autocomplete_product_name,         via: [:get],    to: :autocomplete_product_name,   as: :autocomplete_product_name,   :on => :collection
     match :search,                            via: [:post],   to: :search,                      as: :post_search,                 :on => :collection
     match 'search/:products_search_keyword',  via: [:get],    to: :search,                      as: :get_search,                  :on => :collection
-    match :popular_products,                  via: [:get],    to: :indexr,                      as: :popular,                     :on => :collection
   end
 
   resources :users, except: [:destroy] do

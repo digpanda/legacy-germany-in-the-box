@@ -6,7 +6,7 @@ class ProductsController < ApplicationController
 
   before_action { @show_search_area = true }
 
-  before_action :authenticate_user!, except: [:autocomplete_product_name, :indexr, :search, :show]
+  before_action :authenticate_user!, except: [:autocomplete_product_name, :index, :search, :show]
 
   def autocomplete_product_name
     respond_to do |format|
