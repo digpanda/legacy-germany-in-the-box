@@ -11,5 +11,4 @@ json.collection {
   json.set! :owner_img, @collection.user.pic.url ? request.base_url + @collection.user.pic.url : nil
 }
 
-
 json.products @collection.products, partial: 'products/show', as: :product
