@@ -6,7 +6,7 @@ class ProductsController < ApplicationController
 
   before_action { @show_search_area = true }
 
-  before_action :authenticate_user!, except: [:autocomplete_product_name, :index, :search, :show]
+  before_action :authenticate_user!, except: [:autocomplete_product_name, :list_popular_products, :search, :show]
 
   def autocomplete_product_name
     respond_to do |format|
@@ -32,11 +32,19 @@ class ProductsController < ApplicationController
     end
   end
 
-  def index
-    @products = Product.where(:name => '10 Blatt Seidenpapier ♥ Panda ♥');
+  def list_popular_products
+    @products = get_popular_proudcts_from_cache(params[:page_no] ? params[:page_no].to_i : 0)
 
-    #@products = get_popular_proudcts_from_cache
-    @categories_and_children, @categories_and_counters = get_category_values_for_left_menu(@products)
+    respond_to do |format|
+      format.html {
+        @categories_and_children, @categories_and_counters = get_category_values_for_left_menu(@products)
+        render :index
+      }
+
+      format.json {
+        render :index
+      }
+    end
   end
 
   def show

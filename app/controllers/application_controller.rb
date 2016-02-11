@@ -53,7 +53,7 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    products_path
+    list_popular_products_path
   end
 
   def current_top_menu_active_part

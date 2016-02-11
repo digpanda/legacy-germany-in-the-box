@@ -7,7 +7,7 @@ Rails.configuration.limit_for_products_search = 50
 Rails.configuration.limit_for_collections_search = 50
 Rails.configuration.limit_for_popular_products = 50
 Rails.configuration.default_locale = 'zh-CN'
-Rails.configuration.max_magic_number = 97
+Rails.configuration.max_magic_number = 11
 
 Rails.cache.clear
 
