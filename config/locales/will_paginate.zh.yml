@@ -1,0 +1,18 @@
+zh-CN:
+  will_paginate:
+    previous_label: "&#8592; 上一页"
+    next_label: "下一页 &#8594;"
+    page_gap: "&hellip;"
+
+    page_entries_info:
+      single_page:
+        zero:  "没有 %{model} 了"
+        one:   "显示 1 %{model}"
+        other: "显示所有其他 %{count} %{model}"
+      single_page_html:
+        zero:  "没有 %{model} 了"
+        one:   "显示 <b>1</b> %{model}"
+        other: "显示所有 <b>%{count}</b> %{model}"
+
+      multi_page: "显示从 %{from} 到 %{to} 总共 %{count} %{model}"
+      multi_page_html: "显示从 <b>%{from} 到 %{to}</b> 总共 <b>%{count}</b> %{model}"
