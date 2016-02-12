@@ -13,14 +13,22 @@ class ProductsController < ApplicationController
   def autocomplete_product_name
     respond_to do |format|
       format.json {
-        render :json => get_products_from_search_cache( params[:term] ), :status => :ok
+        render :json => get_products_for_autocompletion(params[:term], params[:page] ? params[:page].to_i : 1), :status => :ok
       }
     end
   end
 
   def search
-    founded_products = get_products_from_search_cache( params[:products_search_keyword] )
-    @products = founded_products.collect{|p| Mongoid::QueryCache.cache { Product.find( p[:product_id] ) } }.compact.uniq
+    founded_products = get_products_from_search_cache_for_term( params[:products_search_keyword] )
+
+    tags_product_ids        = founded_products[:tags]
+    products_product_ids    = founded_products[:products]
+    categories_product_ids  = founded_products[:categories]
+    brands_product_ids      = founded_products[:brands]
+
+    @products = tags_product_ids + products_product_ids + categories_product_ids + brands_product_ids
+    @products = @products.compact.uniq
+    @products = @products.compact.uniq.paginate( :page => (params[:page] ? params[:page].to_i : 1), :per_page => Rails.configuration.limit_for_products_search)
 
     respond_to do |format|
       format.html {

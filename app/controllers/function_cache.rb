@@ -29,13 +29,15 @@ module FunctionCache
     }
   end
 
-  def get_products_from_search_cache(term, page = 0)
-    searched_products = get_products_from_search_cache_for_term(term)
+  def get_products_for_autocompletion(term, page = 1)
+    founded_products = get_products_from_search_cache_for_term(term)
 
-    products_from_products = sort_and_map_products(searched_products[:products].first(Rails.configuration.limit_for_products_search), I18n.t(:product, scope: :popular_products))
-    products_from_brands = sort_and_map_products(searched_products[:brands].first(Rails.configuration.limit_for_products_search),  I18n.t(:brand, scope: :popular_products))
-    products_from_categories =  sort_and_map_products(searched_products[:categories].first(Rails.configuration.limit_for_products_search),  I18n.t(:category, scope: :popular_products))
-    products_from_tags = sort_and_map_products(searched_products[:tags].first(Rails.configuration.limit_for_products_search),  I18n.t(:tag, scope: :popular_products))
+    limit = Rails.configuration.limit_for_products_search
+
+    products_from_products = sort_and_map_products(founded_products[:products][(page - 1) * limit, limit], I18n.t(:product, scope: :popular_products))
+    products_from_brands = sort_and_map_products(founded_products[:brands][(page - 1) * limit, limit],  I18n.t(:brand, scope: :popular_products))
+    products_from_categories =  sort_and_map_products(founded_products[:categories][(page - 1) * limit, limit],  I18n.t(:category, scope: :popular_products))
+    products_from_tags = sort_and_map_products(founded_products[:tags][(page - 1) * limit, limit],  I18n.t(:tag, scope: :popular_products))
 
     products_from_tags + products_from_products + products_from_brands + products_from_categories
   end
