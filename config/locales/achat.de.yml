@@ -175,6 +175,10 @@ de:
     add_to_cart: Hinzufügen
     create_favorite: Erstellen
     new_favorite: Neuer Favorit
+    product: Produktname
+    category: Kategorienname
+    brand: Markenname
+    tag: Schlüsselwort
   category:
     categories: Kategorien
   cart:

@@ -173,6 +173,10 @@ zh-CN:
     add_to_cart: 放入购物车
     create_favorite: 创建
     new_favorite: 新的收藏夹
+    product: 产品名称
+    category: 类别名称
+    brand: 品牌名称
+    tag: 关键字
   category:
     categories: 产品分类
   cart:

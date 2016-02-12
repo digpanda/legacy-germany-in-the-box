@@ -30,44 +30,36 @@ module FunctionCache
   end
 
   def get_products_from_search_cache(term, page = 0)
+    searched_products = get_products_from_search_cache_for_term(term)
+
+    products_from_products = sort_and_map_products(searched_products[:products].first(Rails.configuration.limit_for_products_search), I18n.t(:product, scope: :popular_products))
+    products_from_brands = sort_and_map_products(searched_products[:brands].first(Rails.configuration.limit_for_products_search),  I18n.t(:brand, scope: :popular_products))
+    products_from_categories =  sort_and_map_products(searched_products[:categories].first(Rails.configuration.limit_for_products_search),  I18n.t(:category, scope: :popular_products))
+    products_from_tags = sort_and_map_products(searched_products[:tags].first(Rails.configuration.limit_for_products_search),  I18n.t(:tag, scope: :popular_products))
+
+    products_from_tags + products_from_products + products_from_brands + products_from_categories
+  end
+
+  def get_products_from_search_cache_for_term(term)
     magic_number = generate_magic_number
 
-    Rails.cache.fetch("products_search_cache_#{term}_#{magic_number}_#{page}", :expires_in => Rails.configuration.products_search_cache_expire_limit ) {
-      products_from_products = sort_and_map_products(Product.where({ name: /.*#{term}.*/i }).sort_by {Random.rand}.first(Rails.configuration.limit_for_products_search), :product)
+    Rails.cache.fetch("products_search_cache_#{term}_#{magic_number}", :expires_in => Rails.configuration.products_search_cache_expire_limit ) {
+      products_from_products = Product.where({ name: /.*#{term}.*/i }).sort_by {Random.rand}
 
-      products_from_brands = sort_and_map_products(Product.where({ brand: /.*#{term}.*/i }).sort_by {Random.rand}.first(Rails.configuration.limit_for_products_search), :brand)
+      products_from_brands = Product.where({ brand: /.*#{term}.*/i }).sort_by {Random.rand}
+
       products_from_categories =  []
-
-      Category.where( { name: /.*#{term}.*/i } ).sort_by {Random.rand}.first(Rails.configuration.limit_for_products_search).to_a.each do |c|
-        products_from_categories |=  sort_and_map_products(c.products, :category)
+      Category.where( { name: /.*#{term}.*/i } ).each do |c|
+        products_from_categories |=  c.products
       end
 
-      products_from_tags = sort_and_map_products( Product.where( { :tags => term } ).sort_by {Random.rand}.first(Rails.configuration.limit_for_products_search), :keyword )
+      products_from_categories.sort_by {Random.rand}
 
-      products_from_tags + products_from_products + products_from_brands + products_from_categories
+      products_from_tags = Product.where( { :tags => term } ).sort_by {Random.rand}
+
+      { tags: products_from_tags, products: products_from_products, brands: products_from_brands, categories: products_from_categories }
     }
   end
-  #
-  # def get_products_from_search_cache(term, page = 0)
-  #   magic_number = generate_magic_number
-  #
-  #   Rails.cache.fetch("products_search_cache_#{term}_#{magic_number}_#{page}", :expires_in => Rails.configuration.products_search_cache_expire_limit ) {
-  #     products_from_products = Product.where({ name: /.*#{term}.*/i }).sort_by {Random.rand}
-  #
-  #     products_from_brands = Product.where({ brand: /.*#{term}.*/i }).sort_by {Random.rand}
-  #
-  #     products_from_categories =  []
-  #     Category.where( { name: /.*#{term}.*/i } ).each do |c|
-  #       products_from_categories |=  c.products
-  #     end
-  #
-  #     products_from_categories.sort_by {Random.rand}
-  #
-  #     products_from_tags = Product.where( { :tags => term } ).sort_by {Random.rand}
-  #
-  #     products_from_tags + products_from_products + products_from_brands + products_from_categories
-  #   }
-  # end
 
   def get_popular_proudcts_from_cache
     magic_number = generate_magic_number
