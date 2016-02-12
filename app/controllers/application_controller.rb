@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :null_session, :if => Proc.new { |c| c.request.format.html? }
 
   before_action :authenticate_user!, except: [:set_session_locale]
+  acts_as_token_authentication_handler_for User, fallback: :devise
 
   before_action { params[:top_menu_active_part] = current_top_menu_active_part }
 
