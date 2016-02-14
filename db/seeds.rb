@@ -678,12 +678,10 @@ product = shop.products.create!(
     :price => 10.0,
     :currency => 'EUR',
     :brand => 'Herz-Buffet',
-    :tags => ['壁纸', '熊猫', 'buffet']
-
+    :tags => ['壁纸', '熊猫', 'buffet'],
+    :categories => [category_home_accessories]
 )
 
-product.categories << category_home_accessories
-product.save!
 
 product = shop.products.create!(
     :name => '熊猫壁纸',
@@ -695,8 +693,6 @@ product = shop.products.create!(
     :price => 10.0,
     :currency => 'EUR',
     :brand => 'Herz-Buffet',
-    :tags => ['壁纸', '熊猫', 'buffet']
+    :tags => ['壁纸', '熊猫', 'buffet'],
+    :categories => [category_home_accessories]
 )
-
-product.categories << category_home_accessories
-product.save!

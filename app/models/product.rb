@@ -30,12 +30,12 @@ class Product
 
   belongs_to :shop, inverse_of: :products
 
-  validates :name,      presence: true
-  validates :brand ,    presence: true
-  validates :price,     presence: true
-  validates :currency,  presence: true
-
-
+  validates :name,        presence: true
+  validates :brand ,      presence: true
+  validates :price,       presence: true
+  validates :currency,    presence: true
+  validates :shop,        presence: true
+  validates :categories,  :length => { :minimum => 1 }
 
   scope :has_tag, ->(value) { where(:tags => value) }
   
