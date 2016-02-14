@@ -10,9 +10,11 @@ class Product
   field :deeplink,  type: String
   field :name,      type: String
   field :brand,     type: String
-  field :img,       type: String
+  field :img0,      type: String
+  field :img1,      type: String
+  field :img2,      type: String
+  field :img3,      type: String
   field :price,     type: BigDecimal
-  field :priceold,  type: BigDecimal
   field :sale,      type: Integer
   field :currency,  type: String
   field :status,    type: String
@@ -27,6 +29,13 @@ class Product
   has_many :order_items,  inverse_of: :product
 
   belongs_to :shop, inverse_of: :products
+
+  validates :name,      presence: true
+  validates :brand ,    presence: true
+  validates :price,     presence: true
+  validates :currency,  presence: true
+
+
 
   scope :has_tag, ->(value) { where(:tags => value) }
   

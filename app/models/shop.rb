@@ -28,9 +28,9 @@ class Shop
 
   validates :name,        presence: true
   validates :sms,         presence: true
-  validates :ustid,       presence: false,  length: { minimum: 25, maximum: 25 }
-  validates :story,       presence: false,  length: { minimum: 25, maximum: 25 }
-  validates :sms_mobile,  presence: false,  :unless => lambda { self.sms }
-  validates :address,     presence: true
+  validates :ustid,       length: { minimum: 25, maximum: 25, :allow_blank => true }
+  validates :story,       length: { minimum: 25, maximum: 25, :allow_blank => true }
+  validates :sms_mobile,  presence: true,  :if => lambda { self.sms }
+  validates :address,     presence: true,  :if => lambda { self.status == :opened }
   validates :status,      presence: true,   inclusion: {in: [:new, :opened, :closed]}
 end

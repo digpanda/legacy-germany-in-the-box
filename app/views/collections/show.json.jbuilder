@@ -4,7 +4,7 @@ json.collection {
   json.desc @collection.desc
   json.visible @collection.public
 
-  json.set! :products_imgs, @collection.products.map { |p| p.img }.compact
+  json.set! :products_imgs, @collection.products.map { |p| p.img0 }.compact
 
   json.set! :owner_id, @collection.user.id
   json.set! :owner_name, @collection.user.username
