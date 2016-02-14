@@ -1,6 +1,7 @@
 class PagesController < ApplicationController
 
-  skip_before_filter :authenticate_user!
+  before_action :authenticate_user!, except: [:home]
+  acts_as_token_authentication_handler_for User, except: [:home]
 
   def home
   end

@@ -5,6 +5,7 @@ class CategoryController < ApplicationController
   before_action :set_category, except: [:index]
 
   before_action :authenticate_user!, except: [:list_products, :show_products]
+  acts_as_token_authentication_handler_for User, except: [:list_products, :show_products]
 
   def show_products
     @products = @category.products
