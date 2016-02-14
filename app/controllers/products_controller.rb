@@ -121,7 +121,7 @@ class ProductsController < ApplicationController
     end
 
     def product_params
-      params.require(:product).permit(:network, :desc, :shopname, :prodid, :deeplink, :name, :brand, :category, :img, :imglg, :price, :priceold, :sale, :currency, :update_, :owner, :status)
+      params.require(:product).permit(:network, :desc, :shopname, :prodid, :deeplink, :name, :brand, :category, :img, :price, :priceold, :sale, :currency, :update_, :owner, :status)
     end
 end
 

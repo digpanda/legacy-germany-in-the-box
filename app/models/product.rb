@@ -11,7 +11,6 @@ class Product
   field :name,      type: String
   field :brand,     type: String
   field :img,       type: String
-  field :imglg,     type: String
   field :price,     type: BigDecimal
   field :priceold,  type: BigDecimal
   field :sale,      type: Integer

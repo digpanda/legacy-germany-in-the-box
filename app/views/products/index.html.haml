@@ -50,7 +50,7 @@
     - for_device_type :mobile, :tablet do
       - @products.each do |p|
         .fotorama{'data-allowfullscreen' => '1', 'data-nav' => 'thumbs', 'data-thumbheight' => '96', "data-thumbwidth" => '96'}
-          =image_tag p.imglg
+          =image_tag p.img
           =image_tag p.img
           =image_tag p.img
           =image_tag p.img
@@ -126,7 +126,7 @@
           .row
             .col-md-8
               .fotorama{'data-allowfullscreen' => '1', 'data-nav' => 'thumbs', 'data-thumbheight' => '96', 'data-thumbwidth' => '96'}
-                =image_tag p.imglg
+                =image_tag p.img
                 =image_tag p.img
                 =image_tag p.img
                 =image_tag p.img
