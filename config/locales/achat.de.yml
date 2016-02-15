@@ -44,7 +44,6 @@ de:
     buyer_faq: FAQ zum Kaufen
     buyer_in_3_steps: Kaufen in 3 Schritten
     vouchers: Gutscheine
-
   sign_in_dialog:
     email: Email
     password: Passwort
@@ -144,7 +143,9 @@ de:
     update_ok: Der Auftrag erfolgreich aktualisiert.
     update_ko: Ein Fehler ist bei der Änderung des Auftrags aufgetreten.
     add_product_ok: Der Produkt erfolgreich hinzugefügt.
-    add_product_ko: Ein Fehler ist beim Hinzurügen des Produkts aufgetreten.
+    add_product_ko: Der Vorrat reicht momentan leider nicht.
+    adjust_product_ok: Die Anzahl der Produkte erfolgreich geändert!
+    adjust_product_ko: Der Vorrat reicht momentan leider nicht.
   edit_collection:
     new: Favorit erstellen
     edit: Ändern
