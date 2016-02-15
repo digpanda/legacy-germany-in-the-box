@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="53023302-7b6a-4b02-a48d-ce95de92dd4f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/locales/achat.de.yml" afterPath="$PROJECT_DIR$/config/locales/achat.de.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/locales/achat.zh.yml" afterPath="$PROJECT_DIR$/config/locales/achat.zh.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/orders_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/orders_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/product.rb" afterPath="$PROJECT_DIR$/app/models/product.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/products/index.html.haml" afterPath="$PROJECT_DIR$/app/views/products/index.html.haml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/helpers/products_helper.rb" afterPath="$PROJECT_DIR$/app/helpers/products_helper.rb" />
     </list>
     <ignored path="a-chat.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -71,11 +68,73 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="achat.de.yml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="achat.de.yml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config/locales/achat.de.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.44117647">
-              <caret line="147" column="56" selection-start-line="147" selection-start-column="56" selection-end-line="147" selection-end-column="56" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="14" column="26" selection-start-line="14" selection-start-column="26" selection-end-line="14" selection-end-column="26" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html.haml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/views/products/index.html.haml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.33333334">
+              <caret line="67" column="142" selection-start-line="67" selection-start-column="142" selection-end-line="67" selection-end-column="142" />
+              <folding>
+                <marker date="1455549910321" expanded="true" signature="47:1094" placeholder="{...}" />
+                <marker date="1455549910321" expanded="true" signature="104:838" placeholder="{...}" />
+                <marker date="1455549910321" expanded="true" signature="132:254" placeholder="{...}" />
+                <marker date="1455549910321" expanded="true" signature="297:832" placeholder="{...}" />
+                <marker date="1455549910321" expanded="true" signature="411:822" placeholder="{...}" />
+                <marker date="1455549910321" expanded="true" signature="483:637" placeholder="{...}" />
+                <marker date="1455549910321" expanded="true" signature="720:810" placeholder="{...}" />
+                <marker date="1455549910321" expanded="true" signature="890:1088" placeholder="{&quot;delay&quot;: 1000...}" />
+                <marker date="1455549910321" expanded="true" signature="994:1082" placeholder="{...}" />
+                <marker date="1455549910321" expanded="true" signature="1284:1710" placeholder=".container" />
+                <marker date="1455549910321" expanded="true" signature="1303:1710" placeholder=".row" />
+                <marker date="1455549910321" expanded="true" signature="1318:1710" placeholder=".col-md-12.clearfix" />
+                <marker date="1455549910321" expanded="true" signature="1469:1710" placeholder=".search-area-division.search-area-division-input" />
+                <marker date="1455549910321" expanded="true" signature="1711:14306" placeholder=".container" />
+                <marker date="1455549910321" expanded="true" signature="1873:2104" placeholder=".fotorama{'data-allowfullscreen' =&gt; '1', 'data-nav' =&gt; 'thumbs', 'data-thumbheight' =&gt; '96', &quot;data-thumbwidth&quot; =&gt; '96'}" />
+                <marker date="1455549910321" expanded="true" signature="3636:4368" placeholder=".dropdown" />
+                <marker date="1455549910321" expanded="true" signature="3984:4161" placeholder=".col-md-6" />
+                <marker date="1455549910321" expanded="true" signature="4184:4368" placeholder=".col-md-6" />
+                <marker date="1455549910321" expanded="true" signature="5675:6445" placeholder=".dropdown" />
+                <marker date="1455549910321" expanded="true" signature="6060:6237" placeholder=".col-md-6" />
+                <marker date="1455549910321" expanded="true" signature="6260:6445" placeholder=".col-md-6" />
+                <marker date="1455549910321" expanded="true" signature="6633:8267" placeholder=".row" />
+                <marker date="1455549910321" expanded="true" signature="6650:6929" placeholder=".col-md-8" />
+                <marker date="1455549910321" expanded="true" signature="6674:6929" placeholder=".fotorama{'data-allowfullscreen' =&gt; '1', 'data-nav' =&gt; 'thumbs', 'data-thumbheight' =&gt; '96', 'data-thumbwidth' =&gt; '96'}" />
+                <marker date="1455549910321" expanded="true" signature="6942:8267" placeholder=".col-md-4" />
+                <marker date="1455549910321" expanded="true" signature="6966:8267" placeholder=".product-page-meta" />
+                <marker date="1455549910321" expanded="true" signature="8110:8182" placeholder=".countdown.countdown-inline{'data-countdown' =&gt; 'Aug 25, 2013 10:45:00'}" />
+                <marker date="1455549910321" expanded="true" signature="9219:10008" placeholder=".dropdown" />
+                <marker date="1455549910321" expanded="true" signature="9624:9801" placeholder=".col-md-6" />
+                <marker date="1455549910321" expanded="true" signature="9824:10008" placeholder=".col-md-6" />
+                <marker date="1455549910321" expanded="true" signature="11341:12142" placeholder=".dropdown" />
+                <marker date="1455549910321" expanded="true" signature="11757:11934" placeholder=".col-md-6" />
+                <marker date="1455549910321" expanded="true" signature="11957:12142" placeholder=".col-md-6" />
+                <marker date="1455549910321" expanded="true" signature="12149:14306" placeholder=".row" />
+                <marker date="1455549910321" expanded="true" signature="13054:14306" placeholder=".col-md-9" />
+                <marker date="1455549910321" expanded="true" signature="13335:14189" placeholder=".product-thumb" />
+                <marker date="1455549910321" expanded="true" signature="13485:13542" placeholder=".product-quick-view" />
+                <marker date="1455549910321" expanded="true" signature="13561:14189" placeholder=".product-inner" />
+                <marker date="1455549910321" expanded="true" signature="13667:13719" placeholder=".product-desciption= truncate(p.desc, :length =&gt; 16)" />
+                <marker date="1455549910321" expanded="true" signature="13740:14078" placeholder=".product-meta" />
+                <marker date="1455549910321" expanded="true" signature="14200:14306" placeholder=".col-lg-12.col-md-12.col-sm-12" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="products_helper.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/helpers/products_helper.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="50" column="22" selection-start-line="50" selection-start-column="6" selection-end-line="50" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -101,16 +160,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="order.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/order.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="14" column="2" selection-start-line="14" selection-start-column="2" selection-end-line="14" selection-end-column="95" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="seeds.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/db/seeds.rb">
           <provider selected="true" editor-type-id="text-editor">
@@ -126,16 +175,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="40" column="22" selection-start-line="40" selection-start-column="13" selection-end-line="40" selection-end-column="22" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="category.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/category.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -158,7 +197,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/models/category.rb" />
         <option value="$PROJECT_DIR$/app/models/collection.rb" />
         <option value="$PROJECT_DIR$/app/models/order_item.rb" />
         <option value="$PROJECT_DIR$/app/models/address.rb" />
@@ -198,7 +236,6 @@
         <option value="$PROJECT_DIR$/app/views/products/_form.html.haml" />
         <option value="$PROJECT_DIR$/app/views/products/_show.json.jbuilder" />
         <option value="$PROJECT_DIR$/app/views/products/show.html.haml" />
-        <option value="$PROJECT_DIR$/app/views/products/index.html.haml" />
         <option value="$PROJECT_DIR$/app/views/users/_edit_collection.html.haml" />
         <option value="$PROJECT_DIR$/app/views/collections/index.json.jbuilder" />
         <option value="$PROJECT_DIR$/app/views/collections/search.json.jbuilder" />
@@ -209,6 +246,8 @@
         <option value="$PROJECT_DIR$/app/controllers/orders_controller.rb" />
         <option value="$PROJECT_DIR$/config/locales/achat.zh.yml" />
         <option value="$PROJECT_DIR$/config/locales/achat.de.yml" />
+        <option value="$PROJECT_DIR$/app/helpers/products_helper.rb" />
+        <option value="$PROJECT_DIR$/app/views/products/index.html.haml" />
       </list>
     </option>
   </component>
@@ -465,7 +504,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="controllers" />
+              <option name="myItemId" value="helpers" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -753,7 +792,7 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.019637462" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28776434" sideWeight="0.8365817" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3089124" sideWeight="0.8365817" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25679758" sideWeight="0.1634183" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.296875" sideWeight="0.5641994" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.42857143" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -768,6 +807,27 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3277311" sideWeight="0.49791667" order="2" side_tool="false" content_ui="tabs" />
     </layout>
+    <layout-to-restore>
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5484375" sideWeight="0.4358006" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3234375" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.019637462" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.6625" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25679758" sideWeight="0.1634183" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.296875" sideWeight="0.5641994" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.42857143" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24731183" sideWeight="0.49791667" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296875" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3089124" sideWeight="0.8365817" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3277311" sideWeight="0.49791667" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+    </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
     <option name="RECENTLY_FILTERED_USER_GROUPS">
@@ -797,13 +857,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/views/users/index.html.haml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/users/index.json.jbuilder">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.073529415">
@@ -1053,13 +1106,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/products/index.html.haml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.28846154">
-          <caret line="80" column="33" selection-start-line="80" selection-start-column="33" selection-end-line="80" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/users/_edit_collection.html.haml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1162,9 +1208,67 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/config/locales/achat.de.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.44117647">
-          <caret line="147" column="56" selection-start-line="147" selection-start-column="56" selection-end-line="147" selection-end-column="56" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="14" column="26" selection-start-line="14" selection-start-column="26" selection-end-line="14" selection-end-column="26" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/helpers/products_helper.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="50" column="22" selection-start-line="50" selection-start-column="6" selection-end-line="50" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/products/index.html.haml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33333334">
+          <caret line="67" column="142" selection-start-line="67" selection-start-column="142" selection-end-line="67" selection-end-column="142" />
+          <folding>
+            <marker date="1455549910321" expanded="true" signature="47:1094" placeholder="{...}" />
+            <marker date="1455549910321" expanded="true" signature="104:838" placeholder="{...}" />
+            <marker date="1455549910321" expanded="true" signature="132:254" placeholder="{...}" />
+            <marker date="1455549910321" expanded="true" signature="297:832" placeholder="{...}" />
+            <marker date="1455549910321" expanded="true" signature="411:822" placeholder="{...}" />
+            <marker date="1455549910321" expanded="true" signature="483:637" placeholder="{...}" />
+            <marker date="1455549910321" expanded="true" signature="720:810" placeholder="{...}" />
+            <marker date="1455549910321" expanded="true" signature="890:1088" placeholder="{&quot;delay&quot;: 1000...}" />
+            <marker date="1455549910321" expanded="true" signature="994:1082" placeholder="{...}" />
+            <marker date="1455549910321" expanded="true" signature="1284:1710" placeholder=".container" />
+            <marker date="1455549910321" expanded="true" signature="1303:1710" placeholder=".row" />
+            <marker date="1455549910321" expanded="true" signature="1318:1710" placeholder=".col-md-12.clearfix" />
+            <marker date="1455549910321" expanded="true" signature="1469:1710" placeholder=".search-area-division.search-area-division-input" />
+            <marker date="1455549910321" expanded="true" signature="1711:14306" placeholder=".container" />
+            <marker date="1455549910321" expanded="true" signature="1873:2104" placeholder=".fotorama{'data-allowfullscreen' =&gt; '1', 'data-nav' =&gt; 'thumbs', 'data-thumbheight' =&gt; '96', &quot;data-thumbwidth&quot; =&gt; '96'}" />
+            <marker date="1455549910321" expanded="true" signature="3636:4368" placeholder=".dropdown" />
+            <marker date="1455549910321" expanded="true" signature="3984:4161" placeholder=".col-md-6" />
+            <marker date="1455549910321" expanded="true" signature="4184:4368" placeholder=".col-md-6" />
+            <marker date="1455549910321" expanded="true" signature="5675:6445" placeholder=".dropdown" />
+            <marker date="1455549910321" expanded="true" signature="6060:6237" placeholder=".col-md-6" />
+            <marker date="1455549910321" expanded="true" signature="6260:6445" placeholder=".col-md-6" />
+            <marker date="1455549910321" expanded="true" signature="6633:8267" placeholder=".row" />
+            <marker date="1455549910321" expanded="true" signature="6650:6929" placeholder=".col-md-8" />
+            <marker date="1455549910321" expanded="true" signature="6674:6929" placeholder=".fotorama{'data-allowfullscreen' =&gt; '1', 'data-nav' =&gt; 'thumbs', 'data-thumbheight' =&gt; '96', 'data-thumbwidth' =&gt; '96'}" />
+            <marker date="1455549910321" expanded="true" signature="6942:8267" placeholder=".col-md-4" />
+            <marker date="1455549910321" expanded="true" signature="6966:8267" placeholder=".product-page-meta" />
+            <marker date="1455549910321" expanded="true" signature="8110:8182" placeholder=".countdown.countdown-inline{'data-countdown' =&gt; 'Aug 25, 2013 10:45:00'}" />
+            <marker date="1455549910321" expanded="true" signature="9219:10008" placeholder=".dropdown" />
+            <marker date="1455549910321" expanded="true" signature="9624:9801" placeholder=".col-md-6" />
+            <marker date="1455549910321" expanded="true" signature="9824:10008" placeholder=".col-md-6" />
+            <marker date="1455549910321" expanded="true" signature="11341:12142" placeholder=".dropdown" />
+            <marker date="1455549910321" expanded="true" signature="11757:11934" placeholder=".col-md-6" />
+            <marker date="1455549910321" expanded="true" signature="11957:12142" placeholder=".col-md-6" />
+            <marker date="1455549910321" expanded="true" signature="12149:14306" placeholder=".row" />
+            <marker date="1455549910321" expanded="true" signature="13054:14306" placeholder=".col-md-9" />
+            <marker date="1455549910321" expanded="true" signature="13335:14189" placeholder=".product-thumb" />
+            <marker date="1455549910321" expanded="true" signature="13485:13542" placeholder=".product-quick-view" />
+            <marker date="1455549910321" expanded="true" signature="13561:14189" placeholder=".product-inner" />
+            <marker date="1455549910321" expanded="true" signature="13667:13719" placeholder=".product-desciption= truncate(p.desc, :length =&gt; 16)" />
+            <marker date="1455549910321" expanded="true" signature="13740:14078" placeholder=".product-meta" />
+            <marker date="1455549910321" expanded="true" signature="14200:14306" placeholder=".col-lg-12.col-md-12.col-sm-12" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -47,4 +47,8 @@ module ProductsHelper
       return false;
     }
   end
+
+  def enough_inventory(product_id, quantity)
+    Product.find(product_id).inventory >= quantity
+  end
 end
