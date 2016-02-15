@@ -679,7 +679,8 @@ product = shop.products.create!(
     :currency => 'EUR',
     :brand => 'Herz-Buffet',
     :tags => ['壁纸', '熊猫', 'buffet'],
-    :categories => [category_home_accessories]
+    :categories => [category_home_accessories],
+    :limited => false
 )
 
 
@@ -694,5 +695,7 @@ product = shop.products.create!(
     :currency => 'EUR',
     :brand => 'Herz-Buffet',
     :tags => ['壁纸', '熊猫', 'buffet'],
-    :categories => [category_home_accessories]
+    :categories => [category_home_accessories],
+    :limited => true,
+    :inventory => 2
 )

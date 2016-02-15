@@ -34,7 +34,7 @@
 
 - for_device_type :desktop do
   = content_for :search_area do
-    = form_tag post_search_products_path, :method => :post, :id => 'search_products_form', :class => 'search-area' do
+    = form_tag search_products_path, :method => :get, :id => 'search_products_form', :class => 'search-area' do
       .container
         .row
           .col-md-12.clearfix

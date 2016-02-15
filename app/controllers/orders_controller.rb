@@ -116,6 +116,7 @@ class OrdersController < ApplicationController
     current_order.delivery_destination = current_user.addresses.detect { |a| a.id.to_s == params[:delivery_destination_id] }
 
     all_available = true;
+    product_name = ''
 
     current_order.order_items.each do |oi|
       product = oi.product
@@ -124,11 +125,17 @@ class OrdersController < ApplicationController
         all_available = true
       else
         all_available = false
+        product_name = product.product_name
         break
       end
     end
 
     if all_available && current_order.save
+      current_order.order_items.each do |oi|
+        oi.product.inventory -= oi.quantity
+        oi.product.save
+      end
+
       session.delete(:order_id)
 
       respond_to do |format|
@@ -144,7 +151,7 @@ class OrdersController < ApplicationController
     else
       respond_to do |format|
         format.html {
-          flash[:error] = I18n.t(:checkout_ko, scope: :checkout)
+          flash[:error] = I18n.t(:checkout_ko, scope: :checkout, :product_name => product_name)
           redirect_to request.referrer
         }
 
@@ -171,7 +178,7 @@ class OrdersController < ApplicationController
       respond_to do |format|
         format.html {
           flash[:error] = I18n.t(:delete_ko, scope: :edit_order)
-          redirect_to request.referrer
+          redirect_to request.referrer.merge(:params)
         }
 
         format.json {

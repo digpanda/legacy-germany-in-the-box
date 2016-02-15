@@ -199,4 +199,4 @@ zh-CN:
     setup_delivery_destination: 请您指定收货地址
     checkout: 下单
     checkout_ok: 下单成功
-    checkout_ko: 下单失败
+    checkout_ko: 产品 %{product_name} 缺货中

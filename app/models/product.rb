@@ -21,7 +21,7 @@ class Product
   field :desc,      type: String
   field :weight,    type: Float
   field :tags,      type: Array
-  field :limited,   type: Boolea,   default: true
+  field :limited,   type: Boolean,   default: true
   field :inventory, type: Integer
 
   has_and_belongs_to_many :users,       inverse_of: :products
