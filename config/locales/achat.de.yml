@@ -200,4 +200,4 @@ de:
     setup_delivery_destination: Bitte Anschrift auswählen
     checkout: Bestätigen
     checkout_ok: Der Auftrag erfolgreich durchgeführt.
-    checkout_ko: Ein Fehler ist bei der Durchführung des Auftrags aufgetreten.
+    checkout_ko: Der Vorrat des Products %{product_name} reicht momentan nicht. Bitte versuchen Sie später order reduzieren die Stückanzahl.
