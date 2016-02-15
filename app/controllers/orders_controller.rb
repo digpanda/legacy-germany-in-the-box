@@ -125,7 +125,7 @@ class OrdersController < ApplicationController
         all_available = true
       else
         all_available = false
-        product_name = product.product_name
+        product_name = product.name
         break
       end
     end
