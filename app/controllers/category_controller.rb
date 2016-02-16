@@ -8,7 +8,7 @@ class CategoryController < ApplicationController
   acts_as_token_authentication_handler_for User, except: [:list_products, :show_products]
 
   def show_products
-    @products = @category.products
+    @products = @category.products.paginate( :page => (params[:page] ? params[:page].to_i : 1), :per_page => Rails.configuration.limit_for_products_search)
     @categories_and_children, @categories_and_counters = get_category_values_for_left_menu(@products)
 
     respond_to do |format|

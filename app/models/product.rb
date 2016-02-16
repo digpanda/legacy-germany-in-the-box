@@ -38,9 +38,8 @@ class Product
   validates :price,       presence: true
   validates :currency,    presence: true
   validates :shop,        presence: true
-  validates :categories,  :length => { :minimum => 1 }
   validates :limited,     presence: true
-  validates :inventory,   presence: true, :numericality => { :greater_than => 0 }, :if => lambda { self.limited }
+  validates :inventory,   presence: true, :numericality => { :greater_than_or_equal_to => 0 }, :if => lambda { self.limited }
 
   scope :has_tag, ->(value) { where(:tags => value) }
   

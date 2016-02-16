@@ -133,7 +133,7 @@ class OrdersController < ApplicationController
     if all_available && current_order.save
       current_order.order_items.each do |oi|
         oi.product.inventory -= oi.quantity
-        oi.product.save
+        oi.product.save!
       end
 
       session.delete(:order_id)
