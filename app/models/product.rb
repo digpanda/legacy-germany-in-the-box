@@ -33,6 +33,11 @@ class Product
 
   belongs_to :shop, inverse_of: :products
 
+  mount_uploader :img0,   AttachmentUploader
+  mount_uploader :img1,   AttachmentUploader
+  mount_uploader :img2,   AttachmentUploader
+  mount_uploader :img3,   AttachmentUploader
+
   validates :name,        presence: true
   validates :brand ,      presence: true
   validates :price,       presence: true
