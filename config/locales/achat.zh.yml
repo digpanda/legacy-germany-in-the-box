@@ -179,6 +179,10 @@ zh-CN:
     category: 类别名称
     brand: 品牌名称
     tag: 关键字
+    inventory: 库存
+    price: 价格
+    discount: 优惠
+    saving: 节省
   category:
     categories: 产品分类
   cart:

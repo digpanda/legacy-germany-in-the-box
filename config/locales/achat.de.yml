@@ -180,6 +180,10 @@ de:
     category: Kategorienname
     brand: Markenname
     tag: Schlüsselwort
+    inventory: Vorrat
+    price: Preis
+    discount: Rabbat
+    saving: Preisvorteil
   category:
     categories: Kategorien
   cart:

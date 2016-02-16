@@ -10,11 +10,6 @@ class UsersController < ApplicationController
                                               :get_followers,
                                               :get_followings]
 
-  acts_as_token_authentication_handler_for User, except: [:search,
-                                                          :index,
-                                                          :get_followers,
-                                                          :get_followings]
-
   include Base64ToUpload
 
   before_action(:only =>  [:create, :update]) {

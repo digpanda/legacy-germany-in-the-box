@@ -697,6 +697,7 @@ product = shop.products.create!(
     :brand => 'Herz-Buffet',
     :tags => ['壁纸', '熊猫', 'buffet'],
     :limited => true,
+    :discount => 0.2,
     :inventory => 2
 )
 

@@ -149,19 +149,21 @@
                   %li
                     %ul.list.product-page-meta-price-list
                       %li
-                        %span.product-page-meta-title List Price
-                        %span.product-page-meta-price $1000
+                        %span.product-page-meta-title= I18n.t(:price, scope: :popular_products)
+                        %span.product-page-meta-price= "#{p.price} #{p.currency}"
                       %li
-                        %span.product-page-meta-title Discount
-                        %span.product-page-meta-price 77.5%
+                        %span.product-page-meta-title= I18n.t(:discount, scope: :popular_products)
+                        %span.product-page-meta-price= "#{p.discount}%"
                       %li
-                        %span.product-page-meta-title Savings
-                        %span.product-page-meta-price $775
-                  %li
-                    %span.product-page-meta-title Time Left to Buy
-                    .countdown.countdown-inline{'data-countdown' => 'Aug 25, 2013 10:45:00'}
-                  %li
-                    %span.product-page-meta-title 5000+ bought
+                        %span.product-page-meta-title= I18n.t(:saving, scope: :popular_products)
+                        %span.product-page-meta-price= "#{p.price * p.discount} #{p.currency}"
+                  -if p.limited      
+                    %li
+                      %ul.list.product-page-meta-price-list
+                        %li
+                          %span.product-page-meta-title= I18n.t(:inventory, scope: :popular_products)
+                          %span.product-page-meta-price= p.inventory
+
           %hr
           .row
             .col-md-3

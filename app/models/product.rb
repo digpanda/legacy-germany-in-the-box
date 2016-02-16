@@ -16,7 +16,7 @@ class Product
   field :img3,        type: String
   field :price,       type: BigDecimal
   field :sale,        type: Integer
-  field :currency,    type: String
+  field :currency,    type: String,     default: 'EUR'
   field :status,      type: String
   field :desc,        type: String
   field :weight,      type: Float
@@ -24,6 +24,7 @@ class Product
   field :limited,     type: Boolean,    default: true
   field :inventory,   type: Integer
   field :individual,  type: Boolean,    default: false
+  field :discount,    type: Float,      default: 0
 
   has_and_belongs_to_many :users,       inverse_of: :products
   has_and_belongs_to_many :collections, inverse_of: :products
@@ -41,9 +42,10 @@ class Product
   validates :name,        presence: true
   validates :brand ,      presence: true
   validates :price,       presence: true
-  validates :currency,    presence: true
+  validates :currency,    presence: true, inclusion: {in: ['EUR']}
   validates :shop,        presence: true
   validates :limited,     presence: true
+  validates :discount,    presence: true, :numericality => { :greater_than_or_equal_to => 0, :less_than_or_equal_to => 1 }
   validates :inventory,   presence: true, :numericality => { :greater_than_or_equal_to => 0 }, :if => lambda { self.limited }
 
   scope :has_tag, ->(value) { where(:tags => value) }

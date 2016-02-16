@@ -9,7 +9,6 @@ class ProductsController < ApplicationController
   before_action { @show_search_area = true }
 
   before_action :authenticate_user!, except: [:autocomplete_product_name, :list_popular_products, :search, :show]
-  acts_as_token_authentication_handler_for User, except: [:autocomplete_product_name, :list_popular_products, :search, :show]
 
   def autocomplete_product_name
     respond_to do |format|

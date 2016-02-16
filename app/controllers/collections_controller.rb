@@ -11,7 +11,6 @@ class CollectionsController < ApplicationController
                                           :show_user_collections]
 
   before_action :authenticate_user!, :except => [:search, :index, :show, :show_user_collections]
-  acts_as_token_authentication_handler_for User, except: [:search, :index, :show, :show_user_collections]
 
   def search
     @collections = Collection.public.or({desc: /.*#{params[:keyword]}.*/i}, {name: /.*#{params[:keyword]}.*/i}).limit(Rails.configuration.limit_for_collections_search)

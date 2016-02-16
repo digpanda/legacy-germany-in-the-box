@@ -1,7 +1,6 @@
 class OrdersController < ApplicationController
 
   before_action :authenticate_user!, :except => [:manage_cart, :add_product, :adjust_products_amount]
-  acts_as_token_authentication_handler_for User, except: [:manage_cart, :add_product, :adjust_products_amount]
 
   before_action :set_order, only: [:show, :destroy, :continue]
 
