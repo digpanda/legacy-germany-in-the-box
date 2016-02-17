@@ -22,7 +22,7 @@ class Product
   field :desc,        type: String
   field :weight,      type: Float,      default: 0
   field :tags,        type: Array
-  field :limited,     type: Boolean,    default: true
+  field :limited,     type: Boolean,    default: false
   field :inventory,   type: Integer
   field :individual,  type: Boolean,    default: false
   field :discount,    type: BigDecimal, default: 0
