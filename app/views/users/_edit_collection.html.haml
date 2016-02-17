@@ -29,10 +29,10 @@
             - c.products.each do |p|
               - for_device_type :mobile, :tablet do
                 .fotorama{'data-allowfullscreen' => '1', 'data-nav' => 'thumbs', 'data-thumbheight' => '96', "data-thumbwidth" => '96'}
-                  =image_tag p.img0
-                  =image_tag p.img1
-                  =image_tag p.img2
-                  =image_tag p.img3
+                  =image_tag p.img0.url
+                  =image_tag p.img1.url
+                  =image_tag p.img2.url
+                  =image_tag p.img3.url
                 .product-info.box
                   -if p.shop
                     %h4=link_to "Shop: #{p.shop.name}", p.shop
@@ -48,10 +48,10 @@
                   .row
                     .col-md-8
                       .fotorama{"data-allowfullscreen" => "1", "data-nav" => "thumbs", "data-thumbheight" => "100", "data-thumbwidth" => "100"}
-                        =image_tag p.img0
-                        =image_tag p.img1
-                        =image_tag p.img2
-                        =image_tag p.img3
+                        =image_tag p.img0.url
+                        =image_tag p.img1.url
+                        =image_tag p.img2.url
+                        =image_tag p.img3.url
                     .col-md-4
                       .product-page-meta
                         -if p.shop
@@ -88,7 +88,7 @@
                     %a.col-md-3.col-masonry.popup-text{"data-effect" => "mfp-move-from-top", :href => "#product-quick-view-dialog-#{p.id}",  :shop_link => "#{p.shop ? shop_path(p.shop) : ''}"}
                       .product-thumb
                         %header.product-header
-                          =image_tag  p.img0, :alt => p.name, :title => p.name
+                          =image_tag  p.img0.url, :alt => p.name, :title => p.name
                           .product-quick-view
                             %span.fa.fa-eye
                         .product-inner
