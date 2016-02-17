@@ -14,4 +14,5 @@ class BankAccount
   validates :iban,    presence: true
   validates :bic,     presence: true
   validates :debit,   presence: true
+  validates :shop,    presence: true
 end

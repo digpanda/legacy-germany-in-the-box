@@ -15,7 +15,7 @@ class Shop
   field :eroi,            type: String
   field :sms,             type: Boolean,    default: false
   field :sms_mobile,      type: String
-  field :min_value,       type: BigDecimal
+  field :min_value,       type: BigDecimal, default: 0
 
   field :status,          type: Symbol,     default: :new
 
@@ -24,13 +24,16 @@ class Shop
 
   has_one   :bank_account
   has_one   :address
-  has_many  :products,    inverse_of: :shop
+  has_many  :products,      inverse_of: :shop
 
-  validates :name,        presence: true
-  validates :sms,         presence: true
-  validates :ustid,       length: { minimum: 25, maximum: 25, :allow_blank => true }
-  validates :story,       length: { minimum: 25, maximum: 25, :allow_blank => true }
-  validates :sms_mobile,  presence: true,  :if => lambda { self.sms }
-  validates :address,     presence: true,  :if => lambda { self.status == :opened }
-  validates :status,      presence: true,   inclusion: {in: [:new, :opened, :closed]}
+  validates :name,          presence: true
+  validates :sms,           presence: true
+  validates :sms_mobile,    presence: true,   :if => lambda { self.sms }
+  validates :address,       presence: true,   :if => lambda { self.status == :opened }
+  validates :bank_account,  presence: true,   :if => lambda { self.status == :opened }
+  validates :status,        presence: true,   inclusion: {in: [:new, :opened, :closed]}
+  validates :min_value,     presence: true
+
+  validates :ustid,         length: { minimum: 25, maximum: 25, :allow_blank => true }
+  validates :story,         length: { minimum: 25, maximum: 25, :allow_blank => true }
 end

@@ -24,7 +24,7 @@ class Product
   field :limited,     type: Boolean,    default: true
   field :inventory,   type: Integer
   field :individual,  type: Boolean,    default: false
-  field :discount,    type: Float,      default: 0
+  field :discount,    type: BigDecimal, default: 0
 
   has_and_belongs_to_many :users,       inverse_of: :products
   has_and_belongs_to_many :collections, inverse_of: :products

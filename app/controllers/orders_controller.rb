@@ -115,7 +115,7 @@ class OrdersController < ApplicationController
     current_order.delivery_destination = current_user.addresses.detect { |a| a.id.to_s == params[:delivery_destination_id] }
 
     all_available = true;
-    product_name = ''
+    product_name = nil
 
     current_order.order_items.each do |oi|
       product = oi.product
