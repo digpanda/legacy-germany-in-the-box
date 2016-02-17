@@ -10,6 +10,7 @@ class Product
   field :deeplink,    type: String
   field :name,        type: String
   field :brand,       type: String
+  field :img,         type: String
   field :img0,        type: String
   field :img1,        type: String
   field :img2,        type: String
