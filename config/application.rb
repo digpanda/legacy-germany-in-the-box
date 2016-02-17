@@ -33,5 +33,7 @@ module AChat
     config.middleware.use "Mongoid::QueryCache::Middleware"
     config.middleware.use Mobvious::Manager
 
+    config.i18n.default_locale = 'zh-CN'
+    config.time_zone = 'Beijing'
   end
 end

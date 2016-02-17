@@ -203,4 +203,6 @@ zh-CN:
     setup_delivery_destination: 请您指定收货地址
     checkout: 下单
     checkout_ok: 下单成功
-    checkout_ko: 产品 %{product_name} 缺货中, 请您稍后再试或者减少这个产品订货数量
+    checkout_ko: 下单失败
+    not_all_available: 产品 %{product_name} 缺货中, 请您稍后再试或者减少这个产品订货数量
+    not_all_min_total_reached: 您在 %{shop_name} 的购物额为 %{total_price} %{currency} 没有达到最小交易值 %{min_total} %{currency}, 请您增加您这个店铺的交易额

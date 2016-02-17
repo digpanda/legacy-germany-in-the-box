@@ -28,7 +28,7 @@ class OrdersController < ApplicationController
         existing_order_item.quantity += 1
         existing_order_item.save!
       else
-        current_order_item = current_order.order_items.create!
+        current_order_item = current_order.order_items.new
         current_order_item.price = product.price
         current_order_item.weight = product.weight
         current_order_item.quantity = 1
@@ -114,23 +114,67 @@ class OrdersController < ApplicationController
     current_order.user = current_user
     current_order.delivery_destination = current_user.addresses.detect { |a| a.id.to_s == params[:delivery_destination_id] }
 
-    all_available = true;
+    all_products_available = true;
+    shop_total_prices = {}
     product_name = nil
 
     current_order.order_items.each do |oi|
       product = oi.product
 
-      if all_available && ( not product.limited or product.inventory >= oi.quantity )
-        all_available = true
+      if (not product.limited) or product.inventory >= oi.quantity
+        all_products_available = true
+
+        if shop_total_prices[product.shop]
+          shop_total_prices[product.shop][:value] += product.price * oi.quantity
+        else
+          shop_total_prices[product.shop] = { value: product.price * oi.quantity, currency: product.currency }
+        end  
       else
-        all_available = false
+        all_products_available = false
         product_name = product.name
+
         break
       end
     end
 
-    if all_available && current_order.save
-      current_order.order_items.each do |oi|
+    if !all_products_available
+      msg = I18n.t(:not_all_available, scope: :checkout, :product_name => product_name)
+
+      respond_to do |format|
+        format.html {
+          flash[:error] = msg
+          redirect_to request.referrer
+        }
+
+        format.json {
+          render :json => { :status => :ko, :msg => msg }, :status => :unprocessable_entity
+        }      
+      end
+
+      return
+    end
+
+    shop, total_price = shop_total_prices.detect { |s, t| t[:value] < s.min_total }
+
+    if shop
+      msg = I18n.t(:not_all_min_total_reached, scope: :checkout, :shop_name => shop.name, :total_price => total_price[:value], :currency => total_price[:currency], :min_total => shop.min_total)
+
+      respond_to do |format|
+        format.html {
+          flash[:error] = msg
+          redirect_to request.referrer
+        }
+
+        format.json {
+          render :json => { :status => :ko, :msg => msg }, :status => :unprocessable_entity
+        }
+      end
+
+      return
+    end
+
+    if current_order.save
+      current_order.order_items.select { |oi| oi.product.limited }.each do |oi|
         oi.product.inventory -= oi.quantity
         oi.product.save!
       end

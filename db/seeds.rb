@@ -659,7 +659,8 @@ shop = Shop.create!(
     :name => 'Herz-Buffet',
     :desc => 'Alle Bestellungen werden automatisch bestätigt und können sofort bezahlt werden. Die Versandkosten betragen deutschlandweit pauschal 3,50€, egal wieviel ihr bestellt. Paypalgebühren werden nicht erhoben. Jeder Bestellung liegt eine Rechnung mit ausgewiesener Umsatzsteuer bei.',
     :logo => create_upload_from_image_file(Shop.name.downcase, 'herz-buffet-logo.jpg'),
-    :banner => create_upload_from_image_file(Shop.name.downcase, 'herz-buffet-banner.jpg')
+    :banner => create_upload_from_image_file(Shop.name.downcase, 'herz-buffet-banner.jpg'),
+    :min_total => 20
 );
 
 product = shop.products.create!(

@@ -13,7 +13,6 @@ class OrderItem
   validates :quantity,  presence: true, :numericality => { :greater_than_or_equal_to => 1 }
   validates :weight,    presence: true, :numericality => { :greater_than_or_equal_to => 0 }
   validates :price,     presence: true, :numericality => { :greater_than_or_equal_to => 0 }
-
-  validates_presence_of :product
-  validates_presence_of :order  
+  validates :product,   presence: true
+  validates :order,     presence: true
 end

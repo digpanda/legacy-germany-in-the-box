@@ -20,7 +20,7 @@ class Product
   field :currency,    type: String,     default: 'EUR'
   field :status,      type: String
   field :desc,        type: String
-  field :weight,      type: Float
+  field :weight,      type: Float,      default: 0
   field :tags,        type: Array
   field :limited,     type: Boolean,    default: true
   field :inventory,   type: Integer
@@ -46,6 +46,7 @@ class Product
   validates :currency,    presence: true, inclusion: {in: ['EUR']}
   validates :shop,        presence: true
   validates :limited,     presence: true
+  validates :weight,      presence: true
   validates :discount,    presence: true, :numericality => { :greater_than_or_equal_to => 0, :less_than_or_equal_to => 1 }
   validates :inventory,   presence: true, :numericality => { :greater_than_or_equal_to => 0 }, :if => lambda { self.limited }
 
