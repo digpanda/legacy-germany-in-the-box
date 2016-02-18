@@ -17,7 +17,7 @@ class Product
   field :img3,        type: String
   field :price,       type: BigDecimal
   field :sale,        type: Integer
-  field :currency,    type: String,     default: 'EUR'
+  field :currency,    type: String,     default: '€'
   field :status,      type: String
   field :desc,        type: String
   field :weight,      type: Float,      default: 0
@@ -26,6 +26,8 @@ class Product
   field :inventory,   type: Integer
   field :individual,  type: Boolean,    default: false
   field :discount,    type: BigDecimal, default: 0
+
+  embeds_many :variants,  inverse_of: :product
 
   has_and_belongs_to_many :users,       inverse_of: :products
   has_and_belongs_to_many :collections, inverse_of: :products
@@ -43,7 +45,7 @@ class Product
   validates :name,        presence: true
   validates :brand ,      presence: true
   validates :price,       presence: true
-  validates :currency,    presence: true, inclusion: {in: ['EUR']}
+  validates :currency,    presence: true, inclusion: {in: ['€']}
   validates :shop,        presence: true
   validates :limited,     presence: true
   validates :weight,      presence: true
