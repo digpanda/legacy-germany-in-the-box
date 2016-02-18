@@ -24,7 +24,10 @@ class Shop
 
   has_one   :bank_account
   has_one   :address
-  has_many  :products,      inverse_of: :shop
+
+  has_many  :products,  inverse_of: :shop
+
+  belongs_to :shopkeeper,   class_name: 'User',  inverse_of: :shop
 
   validates :name,          presence: true
   validates :sms,           presence: true
@@ -33,7 +36,16 @@ class Shop
   validates :bank_account,  presence: true,   :if => lambda { self.status == :opened }
   validates :status,        presence: true,   inclusion: {in: [:new, :opened, :closed]}
   validates :min_total,     presence: true
+  validates :shopkeeper,    presence: true
 
   validates :ustid,         length: { minimum: 25, maximum: 25, :allow_blank => true }
   validates :story,         length: { minimum: 25, maximum: 25, :allow_blank => true }
+
+  before_save :ensure_shopkeeper
+
+  private
+
+  def ensure_shopkeeper
+    shopkeeper.role == :shopkeeper
+  end
 end

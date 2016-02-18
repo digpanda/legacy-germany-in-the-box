@@ -5,11 +5,11 @@ class Variant
 
   strip_attributes
 
-  field :name,  type: string
+  field :name,  type: String
 
   embedded_in :product, inverse_of: :variants
 
-  embeds_many :options, class: 'VariantOption', inverse_of: :variant
+  embeds_many :options, class_name: 'VariantOption', inverse_of: :variant
 
   validates :name,  presence: true
 end

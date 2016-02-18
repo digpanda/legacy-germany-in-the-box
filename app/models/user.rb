@@ -8,6 +8,7 @@ class User
   strip_attributes
 
   field :username,  type: String
+  field :role,      type: Symbol, default: :customer
   field :fname,     type: String
   field :lname,     type: String
   field :birth,     type: String
@@ -28,15 +29,18 @@ class User
   has_many :orders,                                 :inverse_of => :user
   has_many :addresses,                              :inverse_of => :user
 
+  has_one  :shop, :inverse_of => :shopkeeper
+
   genderize (:gender)
   mount_uploader :pic, AttachmentUploader
 
+  validates :role,      presence: true, inclusion: {in: [:customer, :shopkeeper, :admin]}
   validates :username,  presence: true
-  validates :email ,    presence: true
-  validates :birth,     presence: true
-  validates :gender,    presence: true
+  validates :email,     presence: true
+  validates :birth,     presence: true, :if => lambda { :customer == self.role }
+  validates :gender,    presence: true, :if => lambda { :customer == self.role }
 
-  validates :email, uniqueness: true
+  validates :email,     uniqueness: true
 
   validates :addresses, :length => { :maximum => Rails.configuration.max_num_addresses }
 
