@@ -36,11 +36,9 @@ class User
 
   validates :role,      presence: true, inclusion: {in: [:customer, :shopkeeper, :admin]}
   validates :username,  presence: true
-  validates :email,     presence: true
+  validates :email,     presence: true, uniqueness: true
   validates :birth,     presence: true, :if => lambda { :customer == self.role }
   validates :gender,    presence: true, :if => lambda { :customer == self.role }
-
-  validates :email,     uniqueness: true
 
   validates :addresses, :length => { :maximum => Rails.configuration.max_num_addresses }
 
@@ -77,4 +75,8 @@ class User
 
   field :authentication_token
 
+  index({email: 1},               {unique: true,  name: :idx_user_email})
+  index({followers: 1},           {unique: false, name: :idx_user_followers,          sparse: true})
+  index({following: 1},           {unique: false, name: :idx_user_following,          sparse: true})
+  index({liked_collections: 1},   {unique: false, name: :idx_user_liked_collections,  sparse: true})
 end

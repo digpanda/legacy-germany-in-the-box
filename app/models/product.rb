@@ -12,7 +12,7 @@ class Product
   field :brand,       type: String
   field :img,         type: String
   field :desc,        type: String
-  field :tags,        type: Array
+  field :tags,        type: Set
 
   embeds_many :variants,  inverse_of: :product
   embeds_many :skus,      inverse_of: :product
@@ -32,8 +32,12 @@ class Product
   validates :skus,        presence: true
 
   scope :has_tag, ->(value) { where(:tags => value) }
-  
-  index({brand: 1}, {unique: false})
-  index({name: 1},  {unique: false})
-  index({tags: 1},  {unique: false})
+
+  index({name: 1},          {unique: false, name: :idx_product_name})
+  index({brand: 1},         {unique: false, name: :idx_product_brand})
+  index({shop: 1},          {unique: false, name: :idx_product_shop})
+  index({tags: 1},          {unique: false, name: :idx_product_tags,        sparse: true})
+  index({users: 1},         {unique: false, name: :idx_product_users,       sparse: true})
+  index({collections: 1},   {unique: false, name: :idx_product_collections, sparse: true})
+  index({categories: 1},    {unique: false, name: :idx_product_categories,  sparse: true})
 end

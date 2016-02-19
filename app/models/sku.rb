@@ -23,7 +23,7 @@ class Sku
   mount_uploader :img2,   AttachmentUploader
   mount_uploader :img3,   AttachmentUploader
 
-  field :options,   type: Array,      default: []
+  field :options,   type: Set,      default: []
 
   embedded_in :product, :inverse_of => :skus
 
@@ -35,5 +35,4 @@ class Sku
   validates :status,        presence: true, inclusion: {in: [:active, :inactive]}
   validates :customizable,  presence: true
   validates :discount,      presence: true, :numericality => { :greater_than_or_equal_to => 0, :less_than_or_equal_to => 1 }
-
 end

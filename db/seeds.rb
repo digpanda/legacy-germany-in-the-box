@@ -693,14 +693,17 @@ v2_o1 = VariantOption.new(:variant => v2, :name => :red)
 v2_o2 = VariantOption.new(:variant => v2, :name => :blue)
 v2_o3 = VariantOption.new(:variant => v2, :name => :gold)
 
-
 s1 = Sku.new(:price => 10, :product => product)
-s1.options << v1_o1.id.to_s
-s1.options << v2_o1.id.to_s
+s1.options << v1_o1.id
+s1.options << v2_o1.id
 
-s2 = Sku.new(:price => 11, :product => product, :limited => true, :quantity => 3)
-s2.options << v1_o3.id.to_s
-s2.options << v2_o3.id.to_s
+s2 = Sku.new(:price => 10, :product => product)
+s2.options << v1_o2.id
+s2.options << v2_o2.id
+
+s3 = Sku.new(:price => 20, :product => product, :limited => true, :quantity => 3)
+s3.options << v1_o3.id
+s3.options << v2_o3.id
 
 product.categories << category_home_accessories
 
