@@ -29,16 +29,16 @@
             - c.products.each do |p|
               - for_device_type :mobile, :tablet do
                 .fotorama{'data-allowfullscreen' => '1', 'data-nav' => 'thumbs', 'data-thumbheight' => '96', "data-thumbwidth" => '96'}
-                  =image_tag p.img0.url
-                  =image_tag p.img1.url
-                  =image_tag p.img2.url
-                  =image_tag p.img3.url
+                  =image_tag p.get_mas.img0.url
+                  =image_tag p.get_mas.img1.url
+                  =image_tag p.get_mas.img2.url
+                  =image_tag p.get_mas.img3.url
                 .product-info.box
                   -if p.shop
                     %h4=link_to "Shop: #{p.shop.name}", p.shop
                   %h4= p.name
                   %p.text-smaller.text-muted= p.desc
-                  %h5.product-info-price= "$#{p.price}"
+                  %h5.product-info-price= "$#{p.get_mas.price}"
                   %a.btn.btn-primary{:href => "#{remove_product_from_collection_path(c.id, p.id)}"}
                     %i.fa.fa-times-circle
                     = I18n.t(:dislike, scope: :edit_collection)
@@ -48,10 +48,10 @@
                   .row
                     .col-md-8
                       .fotorama{"data-allowfullscreen" => "1", "data-nav" => "thumbs", "data-thumbheight" => "100", "data-thumbwidth" => "100"}
-                        =image_tag p.img0.url
-                        =image_tag p.img1.url
-                        =image_tag p.img2.url
-                        =image_tag p.img3.url
+                        =image_tag p.get_mas.img0.url
+                        =image_tag p.get_mas.img1.url
+                        =image_tag p.get_mas.img2.url
+                        =image_tag p.get_mas.img3.url
                     .col-md-4
                       .product-page-meta
                         -if p.shop
@@ -60,7 +60,7 @@
                         %p= p.desc
                         = form_tag add_product_to_orders_path, :method => :patch do
                           = hidden_field_tag :product_id, "#{p.id}"
-                          =submit_tag "$#{p.price} Add to Basket", :class => "btn btn-primary btn-lg btn-block"
+                          =submit_tag "$#{p.get_mas.price} Add to Basket", :class => "btn btn-primary btn-lg btn-block"
                         %ul.list.product-page-meta-info
                           %li
                             %ul.list.product-page-meta-price-list
@@ -88,7 +88,7 @@
                     %a.col-md-3.col-masonry.popup-text{"data-effect" => "mfp-move-from-top", :href => "#product-quick-view-dialog-#{p.id}",  :shop_link => "#{p.shop ? shop_path(p.shop) : ''}"}
                       .product-thumb
                         %header.product-header
-                          =image_tag  p.img0.url, :alt => p.name, :title => p.name
+                          =image_tag  p.get_mas.img0.url, :alt => p.name, :title => p.name
                           .product-quick-view
                             %span.fa.fa-eye
                         .product-inner

@@ -48,9 +48,7 @@ module ProductsHelper
     }
   end
 
-  def enough_inventory(product_id, quantity)
-    p = Product.find(product_id)
-
-    return p && (not p.limited or p.inventory > quantity )
+  def enough_inventory(sku, quantity)
+    return sku && (not sku.limited or sku.quantity >= quantity )
   end
 end

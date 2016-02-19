@@ -50,25 +50,25 @@
     - for_device_type :mobile, :tablet do
       - @products.each do |p|
         .fotorama{'data-allowfullscreen' => '1', 'data-nav' => 'thumbs', 'data-thumbheight' => '96', "data-thumbwidth" => '96'}
-          =image_tag p.img0.url
-          =image_tag p.img1.url
-          =image_tag p.img2.url
-          =image_tag p.img3.url
+          =image_tag p.get_mas.img0.url
+          =image_tag p.get_mas.img1.url
+          =image_tag p.get_mas.img2.url
+          =image_tag p.get_mas.img3.url
         .product-info.box
           -if p.shop
             %h4=link_to "Shop: #{p.shop.name}", p.shop
           %h4= p.name
           %p.text-smaller.text-muted= p.desc
-          %h5.product-info-price= "$#{p.price}"
+          %h5.product-info-price= "$#{p.get_mas.price}"
 
           .btn-toolbar
             .col-xs-4
               = form_tag add_product_to_orders_path, :method => :patch do
                 = hidden_field_tag :product_id, "#{p.id}"
-                - if enough_inventory(p.id, 1)
+                - if enough_inventory(p.get_mas, 1)
                   %button.btn.btn-primary.btn-small{ :type => 'submit', :title => "#{I18n.t(:add_to_cart, scope: :popular_products)}" }
                   %i.fa.fa-shopping-cart
-                - else   
+                - else
                   %button.btn.btn-primary.btn-small{ :type => 'submit', :title => "#{I18n.t(:add_to_cart, scope: :popular_products)}", :disabled => true }
                   %i.fa.fa-shopping-cart
 
@@ -129,10 +129,10 @@
           .row
             .col-md-8
               .fotorama{'data-allowfullscreen' => '1', 'data-nav' => 'thumbs', 'data-thumbheight' => '96', 'data-thumbwidth' => '96'}
-                =image_tag p.img0.url
-                =image_tag p.img1.url
-                =image_tag p.img2.url
-                =image_tag p.img3.url
+                =image_tag p.get_mas.img0.url
+                =image_tag p.get_mas.img1.url
+                =image_tag p.get_mas.img2.url
+                =image_tag p.get_mas.img3.url
             .col-md-4
               .product-page-meta
                 -if p.shop
@@ -141,28 +141,28 @@
                 %p= p.desc
                 = form_tag add_product_to_orders_path, :method => :patch do
                   = hidden_field_tag :product_id, "#{p.id}"
-                  - if enough_inventory(p.id, 1)
-                    = submit_tag "$#{p.price} #{I18n.t(:add_to_cart, scope: :popular_products)}", :class => 'btn btn-primary btn-lg btn-block'
-                  - else    
-                    = submit_tag "$#{p.price} #{I18n.t(:add_to_cart, scope: :popular_products)}", :class => 'btn btn-primary btn-lg btn-block', :disabled => true
+                  - if enough_inventory(p.get_mas, 1)
+                    = submit_tag "$#{p.get_mas.price} #{I18n.t(:add_to_cart, scope: :popular_products)}", :class => 'btn btn-primary btn-lg btn-block'
+                  - else
+                    = submit_tag "$#{p.get_mas.price} #{I18n.t(:add_to_cart, scope: :popular_products)}", :class => 'btn btn-primary btn-lg btn-block', :disabled => true
                 %ul.list.product-page-meta-info
                   %li
                     %ul.list.product-page-meta-price-list
                       %li
                         %span.product-page-meta-title= I18n.t(:price, scope: :popular_products)
-                        %span.product-page-meta-price= "#{p.price} #{p.currency}"
+                        %span.product-page-meta-price= "#{p.get_mas.price} #{p.get_mas.currency}"
                       %li
                         %span.product-page-meta-title= I18n.t(:discount, scope: :popular_products)
-                        %span.product-page-meta-price= "#{p.discount}%"
+                        %span.product-page-meta-price= "#{p.get_mas.discount}%"
                       %li
                         %span.product-page-meta-title= I18n.t(:saving, scope: :popular_products)
-                        %span.product-page-meta-price= "#{p.price * p.discount} #{p.currency}"
-                  -if p.limited      
+                        %span.product-page-meta-price= "#{p.get_mas.price * p.get_mas.discount} #{p.get_mas.currency}"
+                  -if p.get_mas.limited
                     %li
                       %ul.list.product-page-meta-price-list
                         %li
                           %span.product-page-meta-title= I18n.t(:inventory, scope: :popular_products)
-                          %span.product-page-meta-price= p.inventory
+                          %span.product-page-meta-price= p.get_mas.quantity
 
           %hr
           .row
@@ -244,7 +244,7 @@
               %a.col-md-3.col-masonry.popup-text{'data-effect' => 'mfp-move-from-top', :href => "#product-quick-view-dialog-#{p.id}",  :shop_link => "#{p.shop ? shop_path(p.shop) : ''}"}
                 .product-thumb
                   %header.product-header
-                    = image_tag  p.img0.url, :alt => p.name, :title => p.name
+                    = image_tag  p.get_mas.img0.url, :alt => p.name, :title => p.name
                     .product-quick-view
                       %span.fa.fa-eye
                   .product-inner

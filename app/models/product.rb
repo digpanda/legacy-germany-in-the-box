@@ -31,7 +31,14 @@ class Product
   validates :variants,    presence: true
   validates :skus,        presence: true
 
-  scope :has_tag, ->(value) { where(:tags => value) }
+  scope :has_tag,         ->(value) { where(:tags => value) }
+
+  def get_mas
+    sku = skus.detect { |s| not s.limited }
+    sku = skus.sort { |s1, s2| s1.quantity <=> s2.quantity }.last unless sku
+
+    return sku
+  end
 
   index({name: 1},          {unique: false, name: :idx_product_name})
   index({brand: 1},         {unique: false, name: :idx_product_brand})
