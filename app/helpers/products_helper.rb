@@ -51,4 +51,9 @@ module ProductsHelper
   def enough_inventory(sku, quantity)
     return sku && (not sku.limited or sku.quantity >= quantity )
   end
+
+
+  def get_options_list(v)
+    v.options.map { |o| [o.get_locale_name, o.get_locale_name] }
+  end
 end

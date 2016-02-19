@@ -87,7 +87,7 @@
                   %a{:href => "#{root_path}"}= I18n.t(:start, scope: :top_menu)
                 - get_root_level_categories_from_cache().each do |rc|
                   %li{:class => params[:top_menu_active_part] == :fashion ? 'active' : ''}
-                    %a{:href => '#'}= rc.name_locales[I18n.locale]
+                    %a{:href => '#'}= rc.get_locale_name
                     %ul
                       - get_first_level_categories_from_cache(rc).each do |fc|
                         %li

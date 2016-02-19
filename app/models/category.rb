@@ -3,6 +3,8 @@ class Category
   include Mongoid::Timestamps::Created::Short
   include Mongoid::Timestamps::Updated::Short
 
+  include DocLocaleName
+
   strip_attributes
 
   field :name,  type: String

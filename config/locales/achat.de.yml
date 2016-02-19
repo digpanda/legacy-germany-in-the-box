@@ -184,6 +184,8 @@ de:
     price: Preis
     discount: Rabbat
     saving: Preisvorteil
+    variant: Variante
+    variant_option: Option
   category:
     categories: Kategorien
   cart:
