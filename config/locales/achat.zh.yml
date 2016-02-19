@@ -183,6 +183,8 @@ zh-CN:
     price: 价格
     discount: 优惠
     saving: 节省
+    variant: 产品系列
+    variant_option: 系列选项
   category:
     categories: 产品分类
   cart:

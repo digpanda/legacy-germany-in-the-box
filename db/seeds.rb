@@ -655,13 +655,17 @@ Shop.where(:name => 'Herz-Buffet').delete;
 Product.where(:name => '10 Blatt Seidenpapier ♥ Panda ♥').all.delete;
 Product.where({:name => /.*熊猫壁纸.*/i}).all.delete;
 
+shopkeeper = User.where(:email => 'shopkeeper@hotmail.com').first
+shopkeeper.role = :shopkeeper
+shopkeeper.save!
+
 shop = Shop.create!(
     :name => 'Herz-Buffet',
     :desc => 'Alle Bestellungen werden automatisch bestätigt und können sofort bezahlt werden. Die Versandkosten betragen deutschlandweit pauschal 3,50€, egal wieviel ihr bestellt. Paypalgebühren werden nicht erhoben. Jeder Bestellung liegt eine Rechnung mit ausgewiesener Umsatzsteuer bei.',
     :logo => create_upload_from_image_file(Shop.name.downcase, 'herz-buffet-logo.jpg'),
     :banner => create_upload_from_image_file(Shop.name.downcase, 'herz-buffet-banner.jpg'),
     :min_total => 20,
-    :shopkeeper => User.where(:email => 'shopkeeper@hotmail.com').first
+    :shopkeeper => shopkeeper
 );
 
 product = Product.new(
@@ -683,15 +687,15 @@ product = Product.new(
     :shop => shop
 )
 
-v1 = Variant.new(:name => :size, :product => product)
-v1_o1 = VariantOption.new(:variant => v1, :name => :small)
-v1_o2 = VariantOption.new(:variant => v1, :name => :medium)
-v1_o3 = VariantOption.new(:variant => v1, :name => :large)
+v1 = Variant.new(:name => :size, :product => product, :name_locales => { :'zh-CN' => '尺寸', :de => 'Größe'})
+v1_o1 = VariantOption.new(:variant => v1, :name => :small, :name_locales => { :'zh-CN' => '小号', :de => 'klein'})
+v1_o2 = VariantOption.new(:variant => v1, :name => :medium, :name_locales => { :'zh-CN' => '中号', :de => 'mittlere'})
+v1_o3 = VariantOption.new(:variant => v1, :name => :large, :name_locales => { :'zh-CN' => '大号', :de => 'groß'})
 
-v2 = Variant.new(:name => :color, :product => product)
-v2_o1 = VariantOption.new(:variant => v2, :name => :red)
-v2_o2 = VariantOption.new(:variant => v2, :name => :blue)
-v2_o3 = VariantOption.new(:variant => v2, :name => :gold)
+v2 = Variant.new(:name => :color, :product => product,  :name_locales => { :'zh-CN' => '颜色', :de => 'Farbe'})
+v2_o1 = VariantOption.new(:variant => v2, :name => :red, :name_locales => { :'zh-CN' => '红色', :de => 'rot'})
+v2_o2 = VariantOption.new(:variant => v2, :name => :blue, :name_locales => { :'zh-CN' => '蓝色', :de => 'blau'})
+v2_o3 = VariantOption.new(:variant => v2, :name => :gold, :name_locales => { :'zh-CN' => '金色', :de => 'gold'})
 
 s1 = Sku.new(:price => 10, :product => product)
 s1.options << v1_o1.id
