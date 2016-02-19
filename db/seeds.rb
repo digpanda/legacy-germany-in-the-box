@@ -686,30 +686,23 @@ product = Product.new(
 )
 
 v1 = Variant.new(:name => :size, :product => product)
-
 v1_o1 = VariantOption.new(:variant => v1, :name => :small)
-v1.options << v1_o1
-
 v1_o2 = VariantOption.new(:variant => v1, :name => :medium)
-v1.options << v1_o2
-
 v1_o3 = VariantOption.new(:variant => v1, :name => :large)
-v1.options << v1_o3
 
 v2 = Variant.new(:name => :color, :product => product)
-
 v2_o1 = VariantOption.new(:variant => v2, :name => :red)
-v2.options << v2_o1
-
 v2_o2 = VariantOption.new(:variant => v2, :name => :blue)
-v2.options << v2_o2
-
-v2_o3 = VariantOption.new(:variant => v2, :name => :black)
-v2.options << v2_o3
+v2_o3 = VariantOption.new(:variant => v2, :name => :gold)
 
 
-product.variants << v1
-product.skus << s1
+s1 = Sku.new(:price => 10, :product => product)
+s1.options << v1_o1.id.to_s
+s1.options << v2_o1.id.to_s
+
+s2 = Sku.new(:price => 11, :product => product, :limited => true, :quantity => 3)
+s2.options << v1_o3.id.to_s
+s2.options << v2_o3.id.to_s
 
 product.categories << category_home_accessories
 
