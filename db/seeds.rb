@@ -678,10 +678,8 @@ product = Product.new(
     #:img1 => 'https://images2.dawandastatic.com/23/c2/61/cf/40/44/4d/62/a4/30/1b/3c/00/7b/12/fe/product_l.JPEG',
     #:img2 => 'https://images2.dawandastatic.com/23/c2/61/cf/40/44/4d/62/a4/30/1b/3c/00/7b/12/fe/product_l.JPEG',
     #:img3 => 'https://images2.dawandastatic.com/23/c2/61/cf/40/44/4d/62/a4/30/1b/3c/00/7b/12/fe/product_l.JPEG',
-    :price => 10.0,
     :brand => 'Herz-Buffet',
     :tags => ['壁纸', '熊猫', 'buffet'],
-    :limited => false,
     :shop => shop
 )
 

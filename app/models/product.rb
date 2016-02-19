@@ -11,21 +11,8 @@ class Product
   field :name,        type: String
   field :brand,       type: String
   field :img,         type: String
-  field :img0,        type: String
-  field :img1,        type: String
-  field :img2,        type: String
-  field :img3,        type: String
-  field :price,       type: BigDecimal
-  field :sale,        type: Integer
-  field :currency,    type: String,     default: '€'
-  field :status,      type: String
   field :desc,        type: String
-  field :weight,      type: Float,      default: 0
   field :tags,        type: Array
-  field :limited,     type: Boolean,    default: false
-  field :inventory,   type: Integer
-  field :individual,  type: Boolean,    default: false
-  field :discount,    type: BigDecimal, default: 0
 
   embeds_many :variants,  inverse_of: :product
   embeds_many :skus,      inverse_of: :product
@@ -38,21 +25,11 @@ class Product
 
   belongs_to :shop, inverse_of: :products
 
-  mount_uploader :img0,   AttachmentUploader
-  mount_uploader :img1,   AttachmentUploader
-  mount_uploader :img2,   AttachmentUploader
-  mount_uploader :img3,   AttachmentUploader
-
   validates :name,        presence: true
   validates :brand ,      presence: true
-  validates :price,       presence: true
-  validates :currency,    presence: true, inclusion: {in: ['€']}
   validates :shop,        presence: true
-  validates :limited,     presence: true
-  validates :weight,      presence: true
-  validates :discount,    presence: true, :numericality => { :greater_than_or_equal_to => 0, :less_than_or_equal_to => 1 }
-  validates :inventory,   presence: true, :numericality => { :greater_than_or_equal_to => 0 }, :if => lambda { self.limited }
   validates :variants,    presence: true
+  validates :skus,        presence: true
 
   scope :has_tag, ->(value) { where(:tags => value) }
   
