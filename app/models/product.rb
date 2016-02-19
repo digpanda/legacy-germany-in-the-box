@@ -28,6 +28,7 @@ class Product
   field :discount,    type: BigDecimal, default: 0
 
   embeds_many :variants,  inverse_of: :product
+  embeds_many :skus,      inverse_of: :product
 
   has_and_belongs_to_many :users,       inverse_of: :products
   has_and_belongs_to_many :collections, inverse_of: :products
@@ -51,6 +52,7 @@ class Product
   validates :weight,      presence: true
   validates :discount,    presence: true, :numericality => { :greater_than_or_equal_to => 0, :less_than_or_equal_to => 1 }
   validates :inventory,   presence: true, :numericality => { :greater_than_or_equal_to => 0 }, :if => lambda { self.limited }
+  validates :variants,    presence: true
 
   scope :has_tag, ->(value) { where(:tags => value) }
   

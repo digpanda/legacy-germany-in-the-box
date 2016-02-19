@@ -664,7 +664,7 @@ shop = Shop.create!(
     :shopkeeper => User.where(:email => 'shopkeeper@hotmail.com').first
 );
 
-product = shop.products.create!(
+product = Product.new(
     :name => '10 Blatt Seidenpapier ♥ Panda ♥',
     :desc => %Q{
   ♥ 10 Bögen Seidenpapier
@@ -681,27 +681,38 @@ product = shop.products.create!(
     :price => 10.0,
     :brand => 'Herz-Buffet',
     :tags => ['壁纸', '熊猫', 'buffet'],
-    :limited => false
+    :limited => false,
+    :shop => shop
 )
 
-product.categories << category_home_accessories
-product.save!
+v1 = Variant.new(:name => :size, :product => product)
 
-product = shop.products.create!(
-    :name => '熊猫壁纸',
-    :desc => '熊猫壁纸',
-    :img => 'https://images2.dawandastatic.com/23/c2/61/cf/40/44/4d/62/a4/30/1b/3c/00/7b/12/fe/product_l.JPEG',
-    #:img0 => 'https://images2.dawandastatic.com/23/c2/61/cf/40/44/4d/62/a4/30/1b/3c/00/7b/12/fe/product_l.JPEG',
-    #:img1 => 'https://images2.dawandastatic.com/23/c2/61/cf/40/44/4d/62/a4/30/1b/3c/00/7b/12/fe/product_l.JPEG',
-    #:img2 => 'https://images2.dawandastatic.com/23/c2/61/cf/40/44/4d/62/a4/30/1b/3c/00/7b/12/fe/product_l.JPEG',
-    #:img3 => 'https://images2.dawandastatic.com/23/c2/61/cf/40/44/4d/62/a4/30/1b/3c/00/7b/12/fe/product_l.JPEG',
-    :price => 10.0,
-    :brand => 'Herz-Buffet',
-    :tags => ['壁纸', '熊猫', 'buffet'],
-    :limited => true,
-    :discount => 0.2,
-    :inventory => 2
-)
+v1_o1 = VariantOption.new(:variant => v1, :name => :small)
+v1.options << v1_o1
+
+v1_o2 = VariantOption.new(:variant => v1, :name => :medium)
+v1.options << v1_o2
+
+v1_o3 = VariantOption.new(:variant => v1, :name => :large)
+v1.options << v1_o3
+
+v2 = Variant.new(:name => :color, :product => product)
+
+v2_o1 = VariantOption.new(:variant => v2, :name => :red)
+v2.options << v2_o1
+
+v2_o2 = VariantOption.new(:variant => v2, :name => :blue)
+v2.options << v2_o2
+
+v2_o3 = VariantOption.new(:variant => v2, :name => :black)
+v2.options << v2_o3
+
+
+product.variants << v1
+product.skus << s1
 
 product.categories << category_home_accessories
-product.save!
+
+shop.products << product
+shop.save!
+

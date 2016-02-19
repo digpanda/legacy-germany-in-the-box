@@ -5,11 +5,9 @@ class VariantOption
 
   strip_attributes
 
-  field :name,  type: string
+  field :name,      type: String
 
   embedded_in :variant, inverse_of: :options
 
-  embeds_many :skus, inverse_of: :option
-
-  validates :name,  presence: true
+  validates :name,      presence: true
 end
