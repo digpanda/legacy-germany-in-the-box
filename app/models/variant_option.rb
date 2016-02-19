@@ -5,7 +5,8 @@ class VariantOption
 
   strip_attributes
 
-  field :name,      type: String
+  field :name,          type: String
+  field :name_locales,  type: Hash
 
   embedded_in :variant, inverse_of: :options
 

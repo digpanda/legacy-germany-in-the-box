@@ -5,7 +5,8 @@ class Variant
 
   strip_attributes
 
-  field :name,      type: String
+  field :name,          type: String
+  field :name_locales,  type: Hash
 
   embedded_in :product, inverse_of: :variants
 
