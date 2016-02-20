@@ -54,6 +54,6 @@ module ProductsHelper
 
 
   def get_options_list(v)
-    v.options.map { |o| [o.get_locale_name, o.get_locale_name] }
+    v.options.map { |o| [o.get_locale_name, o.id] }
   end
 end

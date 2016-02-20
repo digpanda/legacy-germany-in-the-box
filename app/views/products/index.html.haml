@@ -127,13 +127,13 @@
       - @products.each do |p|
         .mfp-with-anim.mfp-hide.mfp-dialog.mfp-dialog-big.clearfix{ :id => "product-quick-view-dialog-#{p.id}"}
           .row
-            .col-md-8
+            .col-md-7
               .fotorama{'data-allowfullscreen' => '1', 'data-nav' => 'thumbs', 'data-thumbheight' => '96', 'data-thumbwidth' => '96'}
                 =image_tag p.get_mas.img0.url
                 =image_tag p.get_mas.img1.url
                 =image_tag p.get_mas.img2.url
                 =image_tag p.get_mas.img3.url
-            .col-md-4
+            .col-md-5
               .product-page-meta
                 -if p.shop
                   %h4=link_to "Shop: #{p.shop.name}", p.shop, :target => '_blank'
@@ -152,7 +152,7 @@
                         - p.variants.each do |v|
                           %li
                             %span.product-page-meta-title= v.get_locale_name
-                            %span.product-page-meta-price= select_tag :variant_option, options_for_select(get_options_list(v)), { :class => 'form-control' }
+                            %span.product-page-meta-price= select_tag "variant_option_#{v.id}", options_for_select(get_options_list(v)), { :class => 'form-control' }
                   %li
                     %ul.list.product-page-meta-price-list
                       %li
@@ -164,12 +164,11 @@
                       %li
                         %span.product-page-meta-title= I18n.t(:saving, scope: :popular_products)
                         %span.product-page-meta-price= "#{p.get_mas.price * p.get_mas.discount} #{p.get_mas.currency}"
-                  -if p.get_mas.limited
-                    %li
-                      %ul.list.product-page-meta-price-list
-                        %li
-                          %span.product-page-meta-title= I18n.t(:inventory, scope: :popular_products)
-                          %span.product-page-meta-price= p.get_mas.quantity
+                  %li
+                    %ul.list.product-page-meta-price-list
+                      %li
+                        %span.product-page-meta-title= I18n.t(:inventory, scope: :popular_products)
+                        %span.product-page-meta-price= p.get_mas.limited ? p.get_mas.quantity : I18n.t(:unlimited, scope: :popular_products)
 
           %hr
           .row
