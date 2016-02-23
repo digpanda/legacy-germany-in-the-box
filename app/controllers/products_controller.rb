@@ -14,9 +14,7 @@ class ProductsController < ApplicationController
     skus = @product.skus
 
     skus.each do |s|
-      option_ids = s.options.map { |o| o.to_s }.to_set
-
-      if option_ids == params[:option_ids].to_set
+      if s.option_ids.to_set == params[:option_ids].to_set
         respond_to do |format|
           format.json {
             @sku = s
