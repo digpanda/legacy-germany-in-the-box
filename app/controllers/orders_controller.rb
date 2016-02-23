@@ -18,21 +18,25 @@ class OrdersController < ApplicationController
   end
 
   def add_product
-    product = Product.find(params[:product_id])
+    product = Product.find(params[:sku][:product_id])
+    sku = product.get_sku(params[:sku][:option_ids])
+
     existing_order_item = current_order.order_items.to_a.find { |i| i.product.id === product.id }
 
-    if not product.limited or product.inventory > 0
+    if not sku.limited or sku.quantity > 0
       if existing_order_item.present?
-        existing_order_item.price = product.price
-        existing_order_item.weight = product.weight
+        existing_order_item.weight = sku.weight
         existing_order_item.quantity += 1
+        existing_order_item.sku_id = sku.id.to_s
+        existing_order_item.option_ids = sku.option_ids
         existing_order_item.save!
       else
         current_order_item = current_order.order_items.new
-        current_order_item.price = product.price
-        current_order_item.weight = product.weight
+        current_order_item.weight = sku.weight
         current_order_item.quantity = 1
         current_order_item.product = product
+        current_order_item.sku_id = sku.id.to_s
+        current_order_item.option_ids = sku.option_ids
         current_order_item.save!
       end
 
@@ -120,14 +124,15 @@ class OrdersController < ApplicationController
 
     current_order.order_items.each do |oi|
       product = oi.product
+      sku = oi.sku
 
-      if (not product.limited) or product.inventory >= oi.quantity
+      if (not sku.limited) or sku.quantity >= oi.quantity
         all_products_available = true
 
         if shop_total_prices[product.shop]
-          shop_total_prices[product.shop][:value] += product.price * oi.quantity
+          shop_total_prices[product.shop][:value] += sku.price * oi.quantity
         else
-          shop_total_prices[product.shop] = { value: product.price * oi.quantity, currency: product.currency }
+          shop_total_prices[product.shop] = { value: sku.price * oi.quantity, currency: sku.currency }
         end  
       else
         all_products_available = false
@@ -174,9 +179,10 @@ class OrdersController < ApplicationController
     end
 
     if current_order.save
-      current_order.order_items.select { |oi| oi.product.limited }.each do |oi|
-        oi.product.inventory -= oi.quantity
-        oi.product.save!
+      current_order.order_items.select { |oi| oi.sku.limited }.each do |oi|
+        oi.sku.quantity -= oi.quantity
+        oi.price = oi.sku.price
+        oi.sku.save!
       end
 
       session.delete(:order_id)

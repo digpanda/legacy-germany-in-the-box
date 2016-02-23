@@ -698,16 +698,16 @@ v2_o2 = VariantOption.new(:variant => v2, :name => :blue, :name_locales => { :'z
 v2_o3 = VariantOption.new(:variant => v2, :name => :gold, :name_locales => { :'zh-CN' => '金色', :de => 'gold'})
 
 s1 = Sku.new(:price => 10, :product => product)
-s1.options << v1_o1.id
-s1.options << v2_o1.id
+s1.option_ids << v1_o1.id.to_s
+s1.option_ids << v2_o1.id.to_s
 
 s2 = Sku.new(:price => 10, :product => product)
-s2.options << v1_o2.id
-s2.options << v2_o2.id
+s2.option_ids << v1_o2.id.to_s
+s2.option_ids << v2_o2.id.to_s
 
 s3 = Sku.new(:price => 20, :product => product, :limited => true, :quantity => 3)
-s3.options << v1_o3.id
-s3.options << v2_o3.id
+s3.option_ids << v1_o3.id.to_s
+s3.option_ids << v2_o3.id.to_s
 
 product.categories << category_home_accessories
 

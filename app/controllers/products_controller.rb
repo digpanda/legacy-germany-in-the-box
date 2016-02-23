@@ -4,11 +4,36 @@ class ProductsController < ApplicationController
 
   include FunctionCache
 
-  before_action :set_product, only: [:show, :edit, :update, :destroy]
+  before_action :set_product, only: [:show, :edit, :update, :destroy, :get_sku_for_options]
 
   before_action { @show_search_area = true }
 
-  before_action :authenticate_user!, except: [:autocomplete_product_name, :list_popular_products, :search, :show]
+  before_action :authenticate_user!, except: [:autocomplete_product_name, :list_popular_products, :search, :show, :get_sku_for_options]
+
+  def get_sku_for_options
+    skus = @product.skus
+
+    skus.each do |s|
+      option_ids = s.options.map { |o| o.to_s }.to_set
+
+      if option_ids == params[:option_ids].to_set
+        respond_to do |format|
+          format.json {
+            @sku = s
+            render :show_sku, :status => :ok
+          }
+        end
+
+        return
+      end
+    end
+
+    respond_to do |format|
+      format.json {
+        render :json => {}, :status => :not_found
+      }
+    end
+  end
 
   def autocomplete_product_name
     respond_to do |format|

@@ -122,9 +122,9 @@
                         - current_order.order_items.each do |i|
                           %li
                             %a{:href => "#{manage_cart_orders_path}" }
-                              = image_tag i.product.img0.url
+                              = image_tag i.sku.img0.url
                               %h5= i.product.name
-                              %span.shopping-cart-item-price= "Subtotal: $#{i.product.price * i.quantity}"
+                              %span.shopping-cart-item-price= "Subtotal: $#{i.sku.price * i.quantity}"
                       %ul.list-inline.text-center
                         %li
                           %a{:href => "#{manage_cart_orders_path}"}

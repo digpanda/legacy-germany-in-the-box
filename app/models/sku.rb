@@ -18,14 +18,14 @@ class Sku
   field :customizable,  type: Boolean,    default: false
   field :discount,      type: BigDecimal, default: 0
 
+  field :option_ids,    type: Array,      default: []
+
+  embedded_in :product, :inverse_of => :skus
+
   mount_uploader :img0,   AttachmentUploader
   mount_uploader :img1,   AttachmentUploader
   mount_uploader :img2,   AttachmentUploader
   mount_uploader :img3,   AttachmentUploader
-
-  field :options,   type: Set,      default: []
-
-  embedded_in :product, :inverse_of => :skus
 
   validates :price,         presence: true
   validates :currency,      presence: true, inclusion: {in: ['€']}

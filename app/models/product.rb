@@ -40,6 +40,10 @@ class Product
     return sku
   end
 
+  def get_sku(option_ids)
+    skus.detect {|s| s.option_ids.to_set == option_ids.to_set}
+  end
+
   index({name: 1},          {unique: false, name: :idx_product_name})
   index({brand: 1},         {unique: false, name: :idx_product_brand})
   index({shop: 1},          {unique: false, name: :idx_product_shop})

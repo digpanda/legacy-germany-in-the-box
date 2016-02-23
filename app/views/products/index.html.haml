@@ -30,6 +30,24 @@
         $('#search_products_form').submit()
       }
     });
+
+    $( '.variant-option' ).change(function () {
+      product_id = $(this).attr('product_id');
+      option_ids = [];
+
+      $('.product-page-meta-info [id^="product_' + product_id + '_variant"]').each ( function(o) {
+        option_ids.push($(this).val())
+      });
+
+      $.ajax({
+        dataType: 'json',
+        data: { option_ids : option_ids },
+        url: '/products/' + product_id + '/get_sku_for_options',
+        success: function(json){
+          alert(json['product_id'])
+        }
+      });
+    });
   });
 
 - for_device_type :desktop do
@@ -60,16 +78,15 @@
           %h4= p.name
           %p.text-smaller.text-muted= truncate(p.desc, :length => 64)
           %h5.product-info-price= "$#{p.get_mas.price}"
-
           .btn-toolbar
             .col-xs-4
               = form_tag add_product_to_orders_path, :method => :patch do
-                = hidden_field_tag :product_id, "#{p.id}"
+                = hidden_field_tag 'sku[product_id]', "#{p.id}"
                 - if enough_inventory(p.get_mas, 1)
                   %button.btn.btn-primary.btn-small{ :type => 'submit', :title => "#{I18n.t(:add_to_cart, scope: :popular_products)}" }
                   %i.fa.fa-shopping-cart
                 - else
-                  %button.btn.btn-primary.btn-small{ :type => 'submit', :title => "#{I18n.t(:add_to_cart, scope: :popular_products)}", :disabled => true }
+                  %button.btn.btn-primary.btn-small{ :type => 'submit', :title => "#{I18n.t(:not_available, scope: :popular_products)}", :disabled => true }
                   %i.fa.fa-shopping-cart
 
             .col-xs-4
@@ -140,35 +157,35 @@
                 %h4= p.name
                 %p= truncate(p.desc, :length => 128)
                 = form_tag add_product_to_orders_path, :method => :patch do
-                  = hidden_field_tag :product_id, "#{p.id}"
+                  = hidden_field_tag 'sku[product_id]', "#{p.id}"
                   - if enough_inventory(p.get_mas, 1)
-                    = submit_tag "$#{p.get_mas.price} #{I18n.t(:add_to_cart, scope: :popular_products)}", :class => 'btn btn-primary btn-lg btn-block'
+                    = submit_tag "#{I18n.t(:add_to_cart, scope: :popular_products)}", :class => 'btn btn-primary btn-lg'
                   - else
-                    = submit_tag "$#{p.get_mas.price} #{I18n.t(:add_to_cart, scope: :popular_products)}", :class => 'btn btn-primary btn-lg btn-block', :disabled => true
-                %ul.list.product-page-meta-info
-                  - if p.variants.count > 1
+                    = submit_tag "#{I18n.t(:not_available, scope: :popular_products)}", :class => 'btn btn-primary btn-lg', :disabled => true
+                  %ul.list.product-page-meta-info
+                    - if p.variants.count > 1
+                      %li
+                        %ul.list.product-page-meta-price-list
+                          - p.variants.each do |v|
+                            %li
+                              %span.product-page-meta-title= v.get_locale_name
+                              %span.product-page-meta-price= select_tag "sku[option_ids][]", options_for_select(get_options_list(v)), { :id => "product_#{p.id}_variant_#{v.id}", :product_id => p.id, :class => 'form-control variant-option' }
                     %li
                       %ul.list.product-page-meta-price-list
-                        - p.variants.each do |v|
-                          %li
-                            %span.product-page-meta-title= v.get_locale_name
-                            %span.product-page-meta-price= select_tag "variant_option_#{v.id}", options_for_select(get_options_list(v)), { :class => 'form-control' }
-                  %li
-                    %ul.list.product-page-meta-price-list
-                      %li
-                        %span.product-page-meta-title= I18n.t(:price, scope: :popular_products)
-                        %span.product-page-meta-price= "#{p.get_mas.price} #{p.get_mas.currency}"
-                      %li
-                        %span.product-page-meta-title= I18n.t(:discount, scope: :popular_products)
-                        %span.product-page-meta-price= "#{p.get_mas.discount}%"
-                      %li
-                        %span.product-page-meta-title= I18n.t(:saving, scope: :popular_products)
-                        %span.product-page-meta-price= "#{p.get_mas.price * p.get_mas.discount} #{p.get_mas.currency}"
-                  %li
-                    %ul.list.product-page-meta-price-list
-                      %li
-                        %span.product-page-meta-title= I18n.t(:inventory, scope: :popular_products)
-                        %span.product-page-meta-price= p.get_mas.limited ? p.get_mas.quantity : I18n.t(:unlimited, scope: :popular_products)
+                        %li
+                          %span.product-page-meta-title= I18n.t(:price, scope: :popular_products)
+                          %span.product-page-meta-price{:id => "product_price_#{p.id}"}= "#{p.get_mas.price} #{p.get_mas.currency}"
+                        %li
+                          %span.product-page-meta-title= I18n.t(:discount, scope: :popular_products)
+                          %span.product-page-meta-price{:id => "product_discount_#{p.id}"}= "#{p.get_mas.discount}%"
+                        %li
+                          %span.product-page-meta-title= I18n.t(:saving, scope: :popular_products)
+                          %span.product-page-meta-price{:id => "product_saving_#{p.id}"}= "#{p.get_mas.price * p.get_mas.discount} #{p.get_mas.currency}"
+                    %li
+                      %ul.list.product-page-meta-price-list
+                        %li
+                          %span.product-page-meta-title= I18n.t(:inventory, scope: :popular_products)
+                          %span.product-page-meta-price{:id => "product_inventory_#{p.id}"}= p.get_mas.limited ? p.get_mas.quantity : I18n.t(:unlimited, scope: :popular_products)
 
           %hr
           .row

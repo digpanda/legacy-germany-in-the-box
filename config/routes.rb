@@ -39,8 +39,9 @@ Rails.application.routes.draw do
   resources :addresses
 
   resources :products, except: [:index] do
+    match :get_sku_for_options,               via: [:get],    to: :get_sku_for_options,         as: :get_sku_for_options,         :on => :member
     match :autocomplete_product_name,         via: [:get],    to: :autocomplete_product_name,   as: :autocomplete_product_name,   :on => :collection
-    match 'search',                           via: [:get],    to: :search,                      as: :search,                  :on => :collection
+    match 'search',                           via: [:get],    to: :search,                      as: :search,                      :on => :collection
     match 'list_popular_products',            via: [:get],    to: :list_popular_products,       as: :list_popular,                :on => :collection
   end
 
