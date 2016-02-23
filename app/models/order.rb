@@ -17,7 +17,7 @@ class Order
   before_save :ensure_at_least_one_order_item, :unless => lambda { :new == self.status }
 
   def total_price
-    order_items.inject(0) { |sum, i| sum += i.quantity * i.sku.price }
+    order_items.inject(0) { |sum, i| sum += i.quantity * (:status != :new ? i.price : i.sku.price) }
   end
 
   def total_amount

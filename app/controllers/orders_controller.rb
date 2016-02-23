@@ -179,10 +179,10 @@ class OrdersController < ApplicationController
     end
 
     if current_order.save
-      current_order.order_items.select { |oi| oi.sku.limited }.each do |oi|
-        oi.sku.quantity -= oi.quantity
+      current_order.order_items.each do |oi|
+        oi.sku.quantity -= oi.quantity if oi.sku.limited
         oi.price = oi.sku.price
-        oi.sku.save!
+        oi.save!
       end
 
       session.delete(:order_id)
