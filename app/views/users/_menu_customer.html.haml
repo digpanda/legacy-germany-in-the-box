@@ -1,0 +1,33 @@
+%li.dropdown
+  %a{ 'data-toggle' => 'dropdown', :href => "#{ edit_user_path current_user }", :title => "#{I18n.t(:user_profile, scope: :top_menu)}"}
+    = image_tag (current_user.pic.url.nil? ? 'icons/default_user_pic.png' : current_user.pic.url) , :style => 'width:24px;height:24px'
+    %span.caret
+  %ul.dropdown-menu{:style => 'background-color:#333'}
+    %li
+      %a{ :href => "#{ edit_user_path(current_user, :user_info_edit_part => :edit_account) }" }
+        %i.fa.fa-key
+        = I18n.t(:my_account, scope: :top_menu)
+    %li
+      %a{ :href => "#{ edit_user_path(current_user, :user_info_edit_part => :edit_personal) }" }
+        %i.fa.fa-user
+        = I18n.t(:my_personal, scope: :top_menu)
+    %li
+      %a{ :href => "#{ edit_user_path(current_user, :user_info_edit_part => :edit_address) }" }
+        %i.fa.fa-globe
+        = I18n.t(:my_address, scope: :top_menu)
+    %li
+      %a{ :href => "#{ edit_user_path(current_user, :user_info_edit_part => :edit_bank) }" }
+        %i.fa.fa-university
+        = I18n.t(:my_bank, scope: :top_menu)
+    %li
+      %a{ :href => "#{ edit_user_path(current_user, :user_info_edit_part => :edit_order) }" }
+        %i.fa.fa-truck
+        = I18n.t(:my_order, scope: :top_menu)
+    %li
+      %a{ :href => "#{ edit_user_path(current_user, :user_info_edit_part => :edit_collection) }" }
+        %i.fa.fa-eye
+        = I18n.t(:my_collection, scope: :top_menu)
+    %li
+      %a{ :href => "#{ signout_path }", :'data-method' => :delete }
+        %i.fa.fa-sign-out
+        = I18n.t(:sign_out, scope: :top_menu)
