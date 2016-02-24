@@ -17,7 +17,6 @@ class User
   field :country,   type: String
   field :lang,      type: String
   field :provider,  type: String
-  field :uid,       type: String
   field :tel,       type: String
   field :mobile,    type: String
 
@@ -40,7 +39,7 @@ class User
   validates :birth,     presence: true, :if => lambda { :customer == self.role }
   validates :gender,    presence: true, :if => lambda { :customer == self.role }
 
-  validates :addresses, :length => { :maximum => Rails.configuration.max_num_addresses }
+  validates :addresses, :length => { :maximum => Rails.configuration.max_num_addresses }, :if => lambda { :customer == self.role }
 
   validates_confirmation_of :password
 

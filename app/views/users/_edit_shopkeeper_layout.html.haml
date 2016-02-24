@@ -5,10 +5,8 @@
         %ul.nav.nav-pills.nav-stacked.nav-arrow
           %li{:class => params[:user_info_edit_part] ? (params[:user_info_edit_part] == :edit_account.to_s ? 'active' : '') : 'active'}
             =link_to I18n.t(:my_account, scope: :top_menu),  edit_user_path(current_user, :user_info_edit_part => :edit_account)
-          %li{:class => params[:user_info_edit_part] == :edit_address.to_s ? 'active' : ''}
-            =link_to I18n.t(:my_address, scope: :top_menu),  edit_user_path(current_user, :user_info_edit_part => :edit_address)
-          %li{:class => params[:user_info_edit_part] == :edit_bank.to_s ? 'active' : ''}
-            =link_to I18n.t(:my_bank, scope: :top_menu),  edit_user_path(current_user, :user_info_edit_part => :edit_bank)
+          %li{:class => params[:user_info_edit_part] == :edit_shop.to_s ? 'active' : ''}
+            =link_to I18n.t(:my_shop, scope: :top_menu),  edit_user_path(current_user, :user_info_edit_part => :edit_shop)
           %li{:class => [:edit_collection.to_s, :edit_collection_update.to_s, :edit_collection_new.to_s].include?(params[:user_info_edit_part]) ? 'active' : ''}
             =link_to I18n.t(:my_collection, scope: :top_menu),  edit_user_path(current_user, :user_info_edit_part => :edit_collection)
 
@@ -18,10 +16,8 @@
         %ul.nav.nav-pills.nav-stacked.nav-arrow
           %li{:class => params[:user_info_edit_part] ? (params[:user_info_edit_part] == :edit_account.to_s ? 'active' : '') : 'active'}
             =link_to I18n.t(:my_account, scope: :top_menu),  edit_user_path(current_user, :user_info_edit_part => :edit_account)
-          %li{:class => params[:user_info_edit_part] == :edit_address.to_s ? 'active' : ''}
-            =link_to I18n.t(:my_address, scope: :top_menu),  edit_user_path(current_user, :user_info_edit_part => :edit_address)
-          %li{:class => params[:user_info_edit_part] == :edit_bank.to_s ? 'active' : ''}
-            =link_to I18n.t(:my_bank, scope: :top_menu),  edit_user_path(current_user, :user_info_edit_part => :edit_bank)
+          %li{:class => params[:user_info_edit_part] == :edit_shop.to_s ? 'active' : ''}
+            =link_to I18n.t(:my_shop, scope: :top_menu),  edit_user_path(current_user, :user_info_edit_part => :edit_shop)
           %li{:class => [:edit_collection.to_s, :edit_collection_update.to_s, :edit_collection_new.to_s].include?(params[:user_info_edit_part]) ? 'active' : ''}
             =link_to I18n.t(:my_collection, scope: :top_menu),  edit_user_path(current_user, :user_info_edit_part => :edit_collection)
 

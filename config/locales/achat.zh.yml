@@ -13,6 +13,7 @@ zh-CN:
     my_collection: 我的收藏
     my_following: 我的关注
     my_followers: 我的粉丝
+    my_shop: 我的店铺
     view_cart: 浏览购物车
     checkout: 去下单
     empty_cart: 您还没有添加商品
@@ -167,6 +168,21 @@ zh-CN:
     collection_type: 收藏类别
     icon: 图标
     save: 保存
+  edit_shop:
+    name: 店铺名
+    desc: 店铺描述
+    logo: 店铺徽标
+    banner: 店铺横幅
+    philosophy: 经营理念
+    story: 产品故事
+    ustid: 企业税号
+    eroi: 欧盟关税标识
+    sms: 短信通知
+    sms_mobile: 短信通知的手机号
+    min_total: 最小购物额
+    currency: 币种
+    status: 店铺状态
+    save: 保存更新
   popular_products:
     search_prompt: 我要找
     search_placeholder: 产品名称，关键字，品牌

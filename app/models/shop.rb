@@ -16,6 +16,7 @@ class Shop
   field :sms,             type: Boolean,    default: false
   field :sms_mobile,      type: String
   field :min_total,       type: BigDecimal, default: 0
+  field :currency,        type: String,     default: '€'
 
   field :status,          type: Symbol,     default: :new
 
@@ -37,6 +38,7 @@ class Shop
   validates :status,        presence: true,   inclusion: {in: [:new, :opened, :closed]}
   validates :min_total,     presence: true
   validates :shopkeeper,    presence: true
+  validates :currency,      presence: true,   inclusion: {in: ['€']}
 
   validates :ustid,         length: { minimum: 25, maximum: 25, :allow_blank => true }
   validates :story,         length: { minimum: 25, maximum: 25, :allow_blank => true }

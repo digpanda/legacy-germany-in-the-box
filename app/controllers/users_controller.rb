@@ -36,6 +36,8 @@ class UsersController < ApplicationController
       @address = Address.new
     elsif params[:user_info_edit_part] == :edit_collection_new.to_s
       @collection = Collection.new
+    elsif params[:user_info_edit_part] == :edit_shop.to_s
+      @shop = current_user.shop.present? ? current_user.shop : Shop.new
     elsif params[:user_info_edit_part] == :edit_collection_update.to_s
       @collection = Collection.find(params[:collection_id])
     end
@@ -168,7 +170,7 @@ class UsersController < ApplicationController
       gender = 'm'
     end
 
-    params.require(:user).permit(:username, :email, :parse_id, :password, :password_confirmation, :fname, :lname, :birth, :gender, :about, :website, :country, :pic, :lang, :provider ,:uid, :tel, :mobile)
+    params.require(:user).permit(:username, :email, :parse_id, :password, :password_confirmation, :fname, :lname, :birth, :gender, :about, :website, :country, :pic, :lang, :provider, :tel, :mobile)
   end
 
 end

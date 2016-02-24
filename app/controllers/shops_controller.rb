@@ -29,7 +29,7 @@ class ShopsController <  ApplicationController
   end
 
   def shop_params
-    params.require(:shop).permit(:name, :desc, :logo, :banner)
+    params.require(:shop).permit(:name, :desc, :logo, :banner, :philosophy, :story, :ustid, :eroi, :sms, :sms_mobile, :min_total, :currency, :status)
   end
 
 end

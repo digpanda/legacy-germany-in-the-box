@@ -13,6 +13,7 @@ de:
     my_collection: Favorit
     my_following: Beobachtung
     my_followers: Anhänger
+    my_shop: Mein Shop
     view_cart: Ansehen
     checkout: Zur Kasse
     empty_cart: Kein Produkt vorhanden
@@ -167,6 +168,21 @@ de:
     public: Öffentlich
     collection_type: Typ des Favorits
     icon: Icon
+    save: Speichern
+  edit_shop:
+    name: Name
+    desc: Beschreibung
+    logo: Logo
+    banner: Banner
+    philosophy: Philosophie
+    story: Produkt-Geschichte
+    ustid: Ust-ID
+    eroi: EROI-Nummer
+    sms: Per SMS benachrichtigt
+    sms_mobile: Handynummer
+    min_total: Mindestbestellwert
+    currency: Währung
+    status: Status
     save: Speichern
   popular_products:
     search_prompt: Ich suche
