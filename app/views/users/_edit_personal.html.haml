@@ -30,4 +30,5 @@
       = f.text_field :tel, :class => 'form-control', placeholder: I18n.t(:telephone, scope: :edit_personal)
     .form-group
       = f.text_field :mobile, :class => 'form-control', placeholder: I18n.t(:mobile, scope: :edit_personal)
-    = f.button I18n.t(:save, scope: :edit_personal), :class => 'btn btn-primary', name: :user_info_edit_part, value: :edit_personal
+    .form-group
+      = f.button I18n.t(:save, scope: :edit_personal), :class => 'btn btn-primary', name: :user_info_edit_part, value: :edit_personal

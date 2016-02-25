@@ -5,7 +5,7 @@
       = f.text_field :name, :class => 'form-control'
     .form-group
       = f.label :desc, I18n.t(:description, scope: :edit_collection_new)
-      = f.text_field :desc, :class => 'form-control'
+      = f.text_area :desc, :class => 'form-control'
     .form-group
       %label{ :style => 'margin:4px'}
         = f.check_box :public

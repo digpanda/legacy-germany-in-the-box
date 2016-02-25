@@ -14,6 +14,7 @@ zh-CN:
     my_following: 我的关注
     my_followers: 我的粉丝
     my_shop: 我的店铺
+    my_product: 我的产品
     view_cart: 浏览购物车
     checkout: 去下单
     empty_cart: 您还没有添加商品
@@ -183,6 +184,15 @@ zh-CN:
     currency: 币种
     status: 店铺状态
     save: 保存更新
+  edit_product:
+    new: 添加新产品
+  edit_product_new:
+    name: 产品名称
+    desc: 产品描述
+    save: 保存新产品
+    cover: 产品封面
+    brand: 商标品牌
+
   popular_products:
     search_prompt: 我要找
     search_placeholder: 产品名称，关键字，品牌

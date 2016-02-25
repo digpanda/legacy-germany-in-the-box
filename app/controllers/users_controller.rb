@@ -34,10 +34,12 @@ class UsersController < ApplicationController
   def edit
     if params[:user_info_edit_part] == :edit_address.to_s
       @address = Address.new
-    elsif params[:user_info_edit_part] == :edit_collection_new.to_s
-      @collection = Collection.new
     elsif params[:user_info_edit_part] == :edit_shop.to_s
       @shop = current_user.shop.present? ? current_user.shop : Shop.new
+    elsif params[:user_info_edit_part] == :edit_product_new.to_s
+      @product = Product.new(shop: current_user.shop, variants: [Variant.new], skus: [Sku.new])
+    elsif params[:user_info_edit_part] == :edit_collection_new.to_s
+      @collection = Collection.new
     elsif params[:user_info_edit_part] == :edit_collection_update.to_s
       @collection = Collection.find(params[:collection_id])
     end

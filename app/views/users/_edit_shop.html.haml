@@ -2,12 +2,12 @@
   = form_for @shop do |f|
     .form-group
       = f.label :logo, I18n.t(:logo, scope: :edit_shop)
-      = image_tag (@shop.logo.nil? ? "icons/default_user_pic.png" : @shop.logo.url), :style => 'width:96px;height:96px', :class => 'form-control img-thumbnail'
-      = f.file_field :logo, :accept => "image/png, image/gif, image/jpeg"
+      = image_tag @shop.logo ? @shop.logo.url : nil, :style => 'width:96px;height:96px', :class => 'form-control img-thumbnail'
+      = f.file_field :logo, :accept => "image/png, image/jpeg"
     .form-group
       = f.label :logo, I18n.t(:banner, scope: :edit_shop)
-      = image_tag (@shop.banner.nil? ? "icons/default_user_pic.png" : @shop.banner.url), :style => 'width:728px;height:92px', :class => 'img-responsive form-control'
-      = f.file_field :banner, :accept => "image/png, image/gif, image/jpeg"
+      = image_tag @shop.banner ? @shop.banner.url : nil, :style => 'width:728px;height:92px', :class => 'img-responsive form-control'
+      = f.file_field :banner, :accept => "image/png, image/jpeg"
     .form-group
       = f.label :name, I18n.t(:name, scope: :edit_shop)
       = f.text_field :name, :class => 'form-control'
@@ -38,4 +38,5 @@
           = f.check_box :sms, {:class => 'i-check'}, true, false
         = I18n.t(:sms, scope: :edit_shop)
       = f.text_field :sms_mobile, :class => 'form-control', :placeholder => I18n.t(:sms_mobile, scope: :edit_shop)
-    = f.button I18n.t(:save, scope: :edit_shop), :class => 'btn btn-primary', name: :user_info_edit_part, value: :edit_shop
+    .form-group
+      = f.button I18n.t(:save, scope: :edit_shop), :class => 'btn btn-primary', name: :user_info_edit_part, value: :edit_shop

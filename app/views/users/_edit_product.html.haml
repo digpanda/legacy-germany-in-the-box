@@ -1,0 +1,6 @@
+%a.btn.btn-primary{ :class => "#{for_device_type :desktop do 'btn-lg' end}",  :href => edit_user_path(current_user, :user_info_edit_part => :edit_product_new) }
+  %i.fa.fa-plus-circle
+  = I18n.t(:new, scope: :edit_product)
+
+%br
+%br

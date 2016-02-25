@@ -5,12 +5,9 @@ class Product
 
   strip_attributes
 
-  field :network,     type: String
-  field :prodid,      type: String
-  field :deeplink,    type: String
   field :name,        type: String
   field :brand,       type: String
-  field :img,         type: String
+  field :cover,       type: String
   field :desc,        type: String
   field :tags,        type: Set
 

@@ -11,8 +11,13 @@
       %a{ :href => "#{ edit_user_path(current_user, :user_info_edit_part => :edit_shop) }" }
         %i.fa.fa-globe
         = I18n.t(:my_shop, scope: :top_menu)
+    -if current_user.shop
+      %li
+        %a{ :href => "#{ edit_user_path(current_user, :user_info_edit_part => :edit_shop) }" }
+          %i.fa.fa-globe
+          = I18n.t(:my_product, scope: :top_menu)
     %li
-      %a{ :href => "#{ edit_user_path(current_user, :user_info_edit_part => :edit_collection) }" }
+      %a{ :href => "#{ edit_user_path(current_user, :user_info_edit_part => :edit_product) }" }
         %i.fa.fa-eye
         = I18n.t(:my_collection, scope: :top_menu)
     %li

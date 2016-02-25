@@ -1,0 +1,19 @@
+.col-md-6
+  = form_for(@product, :html => {:class => 'form-horizontal', :role => 'form'}) do |f|
+    .form-group
+      = f.label :img, I18n.t(:cover, scope: :edit_product_new)
+      = image_tag @product.cover ? @product.cover.url : nil, :style => 'width:128px;height:128px', :class => 'form-control img-thumbnail'
+      = f.file_field :logo, :accept => "image/png, image/gif, image/jpeg"
+    .form-group
+      = f.label :name, I18n.t(:name, scope: :edit_product_new)
+      = f.text_field :name, :class => 'form-control'
+    .form-group
+      = f.label :brand, I18n.t(:brand, scope: :edit_product_new)
+      = f.text_field :brand, :class => 'form-control'
+    .form-group
+      = f.label :desc, I18n.t(:desc, scope: :edit_product_new)
+      = f.text_area :desc, :class => 'form-control'
+    .form-group
+      = f.submit :class => 'btn btn-primary', :value => I18n.t(:save, scope: :edit_product_new)
+
+
