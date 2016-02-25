@@ -222,14 +222,14 @@ class CollectionsController < ApplicationController
       respond_to do |format|
         if @collection.save
           format.html {
-            flash[:success] = I18n.t(:create_ok, scope: :edit_collection)
+            flash[:success] = I18n.t(:create_ok, scope: :edit_collection_new)
             redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_collection )
           }
 
           format.json { render json: { status: :ok, collection_id: @collection.id }, status: :ok }
         else
           format.html {
-            flash[:error] = I18n.t(:create_ko, scope: :edit_collection)
+            flash[:error] = I18n.t(:create_ko, scope: :edit_collection_new)
             redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_collection_new )
           }
 
@@ -239,7 +239,7 @@ class CollectionsController < ApplicationController
     else
       respond_to do |format|
         format.html {
-          flash[:error] = I18n.t(:create_with_existing_name, scope: :edit_collection)
+          flash[:error] = I18n.t(:create_with_existing_name, scope: :edit_collection_new)
           redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_collection_new )
         }
 

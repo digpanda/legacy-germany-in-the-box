@@ -22,6 +22,9 @@ class Product
 
   belongs_to :shop, inverse_of: :products
 
+  accepts_nested_attributes_for :skus
+  accepts_nested_attributes_for :variants
+
   validates :name,        presence: true
   validates :brand ,      presence: true
   validates :shop,        presence: true

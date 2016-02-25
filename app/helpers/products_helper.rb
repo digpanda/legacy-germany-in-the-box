@@ -56,4 +56,8 @@ module ProductsHelper
   def get_options_list(v)
     v.options.map { |o| [o.get_locale_name, o.id] }
   end
+
+  def setup_product(product)
+    
+  end
 end

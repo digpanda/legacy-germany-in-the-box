@@ -155,9 +155,6 @@ zh-CN:
     no_products: 该收藏夹下没有产品
     delete_collection_message: 确定删除所选收藏夹？
     dislike: 从收藏中移除
-    create_ok: 收藏夹创建成功
-    create_ko: 收藏夹创建失败
-    create_with_existing_name: 已经存在同名的收藏夹
     update_ok: 收藏夹修改成功
     update_ko: 收藏夹修改失败
     update_with_existing_name: 已经存在同名的收藏夹
@@ -169,6 +166,9 @@ zh-CN:
     collection_type: 收藏类别
     icon: 图标
     save: 保存
+    create_ok: 收藏夹创建成功
+    create_ko: 收藏夹创建失败
+    create_with_existing_name: 已经存在同名的收藏夹
   edit_shop:
     name: 店铺名
     desc: 店铺描述
@@ -187,12 +187,15 @@ zh-CN:
   edit_product:
     new: 添加新产品
   edit_product_new:
-    name: 产品名称
+    name: 产品名称 (*)
     desc: 产品描述
-    save: 保存新产品
+    save: 保存基本信息
     cover: 产品封面
-    brand: 商标品牌
-
+    brand: 商标品牌 (*)
+    variant_name: 系列型号
+    create_ok: 产品成功创建
+    create_ko: 产品创建失败
+    create_with_existing_name: 已经存在同名的商品
   popular_products:
     search_prompt: 我要找
     search_placeholder: 产品名称，关键字，品牌
@@ -210,8 +213,8 @@ zh-CN:
     price: 价格
     discount: 优惠
     saving: 节省
-    variant: 产品系列
-    variant_option: 系列选项
+    variant: 系列型号
+    variant_option: 型号选项
     unlimited: 不限量
   category:
     categories: 产品分类

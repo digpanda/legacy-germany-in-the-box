@@ -1,0 +1,12 @@
+zh-CN:
+  mongoid:
+    errors:
+      <<: *errors
+
+  attributes: &attributes
+    product:
+      name: 产品名称
+
+  mongoid:
+    attributes:
+      <<: *attributes

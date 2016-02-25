@@ -94,17 +94,23 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.new(product_params)
-    @product.owner = product_params[:owner]
-    @owner = User.find(product_params[:owner])
+    @product.shop = current_user.shop
+
     respond_to do |format|
       if @product.save
-        @owner.saved_products << @product.id.to_str
-        @owner.save
-        format.html { redirect_to @product, notice: 'Product was successfully created.' }
-        format.json { render :show, status: :created, location: @product }
+        format.html {
+          flash[:success] = I18n.t(:create_ok, scope: :edit_product_new)
+          redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_product )
+        }
+
+        format.json { render json: { status: :ok, product_id: @product.id }, status: :ok }
       else
-        format.html { render :new }
-        format.json { render json: @product.errors, status: :unprocessable_entity }
+        format.html {
+          flash[:error] = I18n.t(:create_ko, scope: :edit_product_new)
+          redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_product_new )
+        }
+
+        format.json { render json: { status: :ko }, status: :unprocessable_entity }
       end
     end
   end
@@ -143,7 +149,7 @@ class ProductsController < ApplicationController
     end
 
     def product_params
-      params.require(:product).permit(:network, :desc, :prodid, :deeplink, :name, :brand, :img, :img0, :img1, :img2, :img3, :price, :sale, :currency, :shop, :status)
+      params.require(:product).permit(:desc, :name, :brand, :img)
     end
 end
 
