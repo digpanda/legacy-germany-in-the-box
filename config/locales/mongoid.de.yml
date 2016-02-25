@@ -1,11 +1,11 @@
-zh-CN:
+de:
   errors: &errors
     messages:
-      blank: '不能为空'
+      blank: 'ist leer'
 
   attributes: &attributes
     product:
-      name: 产品名称
+      name: Produktname
 
   mongoid:
     attributes:

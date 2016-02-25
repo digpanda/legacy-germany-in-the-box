@@ -1,5 +1,5 @@
 .col-md-6
-  = form_for(@product, :html => {:class => 'form-horizontal', :role => 'form'}) do |f|
+  = form_for @product, validate: true, :html => {:class => 'form-horizontal', :role => 'form'} do |f|
     .form-group
       = f.label :img, I18n.t(:cover, scope: :edit_product_new)
       = image_tag @product.cover ? @product.cover.url : nil, :style => 'width:128px;height:128px', :class => 'form-control img-thumbnail'

@@ -5,6 +5,9 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.1'
 # Use SCSS for stylesheets
 gem "mongoid", "~> 5.0.0"
+gem 'client_side_validations'
+gem 'client_side_validations-mongoid'
+
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -54,6 +57,7 @@ gem 'strip_attributes'
 
 gem 'will_paginate'
 gem 'will_paginate-bootstrap'
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

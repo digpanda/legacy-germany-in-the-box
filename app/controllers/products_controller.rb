@@ -106,7 +106,7 @@ class ProductsController < ApplicationController
         format.json { render json: { status: :ok, product_id: @product.id }, status: :ok }
       else
         format.html {
-          flash[:error] = I18n.t(:create_ko, scope: :edit_product_new)
+          flash[:error] = @product.errors.full_messages.first #I18n.t(:create_ko, scope: :edit_product_new)
           redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_product_new )
         }
 
