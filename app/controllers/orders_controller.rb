@@ -212,7 +212,7 @@ class OrdersController < ApplicationController
   end
 
   def destroy
-    if @order && @order.delete
+    if @order && @order.status == :new && @order.order_items.delete_all && @order.delete
       respond_to do |format|
         format.html {
           flash[:success] = I18n.t(:delete_ok, scope: :edit_order)
