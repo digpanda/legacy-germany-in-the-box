@@ -36,12 +36,16 @@ class UsersController < ApplicationController
       @address = Address.new
     elsif params[:user_info_edit_part] == :edit_shop.to_s
       @shop = current_user.shop.present? ? current_user.shop : Shop.new
+    elsif params[:user_info_edit_part] == :edit_product_update.to_s
+      @product = current_user.shop.products.detect { |p| p.id.to_s == params[:product_id] }
     elsif params[:user_info_edit_part] == :edit_product_new.to_s
-      @product = Product.new(shop: current_user.shop, variants: [Variant.new], skus: [Sku.new])
+      @product = Product.new(shop: current_user.shop)
+      @product.variants.build
+      @product.skus.build
     elsif params[:user_info_edit_part] == :edit_collection_new.to_s
       @collection = Collection.new
     elsif params[:user_info_edit_part] == :edit_collection_update.to_s
-      @collection = Collection.find(params[:collection_id])
+      @collection = current_user.oCollections.detect { |c| c.id.to_s == params[:collection_id] }
     end
   end
 

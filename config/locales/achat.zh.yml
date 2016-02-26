@@ -186,16 +186,30 @@ zh-CN:
     save: 保存更新
   edit_product:
     new: 添加新产品
-  edit_product_new:
+    tags: 搜索标签
+    tag1: 标签1
+    tag2: 标签2
+    tag3: 标签3
     name: 产品名称 (*)
     desc: 产品描述
-    save: 保存基本信息
     cover: 产品封面
     brand: 商标品牌 (*)
     variant_name: 系列型号
+    created_at: 创建于
+    updated_at: 修改于
+    operations: 操作
+    delete: 删除
+    no_product: 您的店铺还没有产品
+    delete_address_message: 确定删除所选产品？
+    delete_ok: 产品成功删除
+    delete_ko: 产品删除失败
+    update_ok: 产品修改成功
+    update_ko: 产品修改失败
+  edit_product_new:
     create_ok: 产品成功创建
     create_ko: 产品创建失败
     create_with_existing_name: 已经存在同名的商品
+    save_basic: 保存基本信息
   popular_products:
     search_prompt: 我要找
     search_placeholder: 产品名称，关键字，品牌

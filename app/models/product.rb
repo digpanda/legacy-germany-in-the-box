@@ -9,7 +9,7 @@ class Product
   field :brand,       type: String
   field :cover,       type: String
   field :desc,        type: String
-  field :tags,        type: Set
+  field :tags,        type: Array,  default: Array.new(3)
 
   embeds_many :variants,  inverse_of: :product
   embeds_many :skus,      inverse_of: :product
@@ -28,8 +28,8 @@ class Product
   validates :name,        presence: true
   validates :brand ,      presence: true
   validates :shop,        presence: true
-  validates :variants,    presence: true
-  validates :skus,        presence: true
+  #validates :variants,    presence: true
+  #validates :skus,        presence: true
 
   scope :has_tag,         ->(value) { where(:tags => value) }
 

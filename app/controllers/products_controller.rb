@@ -100,7 +100,7 @@ class ProductsController < ApplicationController
       if @product.save
         format.html {
           flash[:success] = I18n.t(:create_ok, scope: :edit_product_new)
-          redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_product )
+          redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_product_update, :product_id => @product.id )
         }
 
         format.json { render json: { status: :ok, product_id: @product.id }, status: :ok }
@@ -118,10 +118,16 @@ class ProductsController < ApplicationController
   def update
     respond_to do |format|
       if @product.update(product_params)
-        format.html { redirect_to @product, notice: 'Product was successfully updated.' }
+        format.html {
+          flash[:success] = I18n.t(:update_ok, scope: :edit_product)
+          redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_product)
+        }
         format.json { render :show, status: :ok, location: @product }
       else
-        format.html { render :edit }
+        format.html {
+          flash[:error] = I18n.t(:update_ko, scope: :edit_product)
+          redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_product_update, :product_id => @product.id )
+        }
         format.json { render json: @product.errors, status: :unprocessable_entity }
       end
     end

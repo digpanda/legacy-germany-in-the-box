@@ -4,3 +4,19 @@
 
 %br
 %br
+  
+- if current_user.shop.products.count > 0
+  %table.table.cart-table
+    %thead
+      %tr
+        %th= I18n.t(:name, scope: :edit_product)
+        %th= I18n.t(:brand, scope: :edit_product)
+        %th= I18n.t(:operations, scope: :edit_product)
+    %tbody
+      - current_user.shop.products.each do |p|
+        %tr
+          %td= link_to p.name, edit_user_path(current_user, :user_info_edit_part => :edit_product_update, :product_id => p.id)
+          %td= p.brand
+          %td
+- else
+  %h4= I18n.t(:no_product, scope: :edit_product)

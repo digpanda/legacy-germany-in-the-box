@@ -22,10 +22,10 @@
       = f.text_area :story, :class => 'form-control'
     .form-group
       = f.label :min_totoal, I18n.t(:min_total, scope: :edit_shop)
-      = f.text_field :min_total, :class => 'form-control'
-    .form-group
-      = f.label :currency, I18n.t(:currency, scope: :edit_shop)
-      = f.text_field :currency, :class => 'form-control', :disabled => true
+      .input-group
+        = f.text_field :min_total, :class => 'form-control'
+        %span.input-group-addon
+          = f.label @shop.currency
     .form-group
       = f.label :ustid, I18n.t(:ustid, scope: :edit_shop)
       = f.text_field :ustid, :class => 'form-control'
@@ -33,10 +33,10 @@
       = f.label :eroi, I18n.t(:eroi, scope: :edit_shop)
       = f.text_field :eroi, :class => 'form-control'
     .form-group
-      .checkbox
-        %label
-          = f.check_box :sms, {:class => 'i-check'}, true, false
-        = I18n.t(:sms, scope: :edit_shop)
-      = f.text_field :sms_mobile, :class => 'form-control', :placeholder => I18n.t(:sms_mobile, scope: :edit_shop)
+      .input-group
+        %span.input-group-addon
+          = f.check_box :sms, {}, true, false
+          = I18n.t(:sms, scope: :edit_shop)
+        = f.text_field :sms_mobile, :class => 'form-control', :placeholder => I18n.t(:sms_mobile, scope: :edit_shop)
     .form-group
       = f.button I18n.t(:save, scope: :edit_shop), :class => 'btn btn-primary', name: :user_info_edit_part, value: :edit_shop
