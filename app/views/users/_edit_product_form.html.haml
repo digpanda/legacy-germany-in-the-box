@@ -9,28 +9,42 @@
       });
   });
 
-.col-md-6
-  = form_for @product, validate: true, :html => {:class => 'form-horizontal', :role => 'form'} do |f|
-    .form-group
-      = f.label :name, I18n.t(:name, scope: :edit_product)
-      = f.text_field :name, :class => 'form-control'
-    .form-group
-      = f.label :categories, I18n.t(:categories, scope: :edit_product)
-      = f.select :categories, grouped_options_for_select(get_grouped_categories_options), {}, :multiple => 'multiple', :name => 'product[categories][]', :class => 'form-control product_categoires'
-    .form-group
-      = f.label :brand, I18n.t(:brand, scope: :edit_product)
-      = f.text_field :brand, :class => 'form-control'
-    .form-group
-      = f.label :desc, I18n.t(:desc, scope: :edit_product)
-      = f.text_area :desc, :class => 'form-control'
-    .form-group
-      = f.label :tags, I18n.t(:tags, scope: :edit_product)
-      .form-inline
-        = text_field_tag "product[tags][]", nil, :class => 'form-control', :style => 'width:96px', :placeholder => I18n.t(:tag1, scope: :edit_product)
-        = text_field_tag "product[tags][]", nil, :class => 'form-control', :style => 'width:96px', :placeholder => I18n.t(:tag2, scope: :edit_product)
-        = text_field_tag "product[tags][]", nil, :class => 'form-control', :style => 'width:96px', :placeholder => I18n.t(:tag3, scope: :edit_product)
-    .form-group
-      = f.submit :class => 'btn btn-primary', :value => I18n.t(:save_basic, scope: :edit_product_new)
-  -#  - if @product.persisted?
+.panel-group
+  .panel.panel-info
+    .panel-heading
+      = I18n.t(:basic_info, scope: :edit_product)
+    .panel-body
+      = form_for @product, validate: true do |f|
+        .form-group
+          .input-group
+            .input-group-addon
+              = f.label :categories, I18n.t(:categories, scope: :edit_product)
+            = f.select :categories, grouped_options_for_select(get_grouped_categories_options, @product.categories.map { |c| c.id.to_s }), {}, :multiple => 'multiple', :name => 'product[categories][]', :class => 'form-control product_categoires'
+        .form-group
+          .form-inline
+            .form-group
+              .input-group
+                .input-group-addon
+                  = f.label :name, I18n.t(:name, scope: :edit_product)
+                = f.text_field :name, :class => 'form-control'
+            .form-group
+              .input-group
+                .input-group-addon
+                  = f.label :brand, I18n.t(:brand, scope: :edit_product)
+                = f.text_field :brand, :class => 'form-control'
+        .form-group
+          .input-group
+            .input-group-addon
+              = f.label :desc, I18n.t(:desc, scope: :edit_product)
+            = f.text_area :desc, :class => 'form-control'
+        .form-group
+          .input-group
+            .input-group-addon
+              = f.label :tags, I18n.t(:tags, scope: :edit_product)
+            = text_field_tag "product[tags][]", @product.tags[0], :class => 'form-control', :style => 'width:96px', :placeholder => I18n.t(:tag1, scope: :edit_product)
+            = text_field_tag "product[tags][]", @product.tags[1], :class => 'form-control', :style => 'width:96px', :placeholder => I18n.t(:tag2, scope: :edit_product)
+            = text_field_tag "product[tags][]", @product.tags[2], :class => 'form-control', :style => 'width:96px', :placeholder => I18n.t(:tag3, scope: :edit_product)
+        .form-group
+          = f.submit :class => 'btn btn-primary', :value => I18n.t(:save_basic, scope: :edit_product_new)
 
 

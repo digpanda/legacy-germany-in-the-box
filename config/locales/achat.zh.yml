@@ -185,11 +185,12 @@ zh-CN:
     status: 店铺状态
     save: 保存更新
   edit_product:
+    basic_info: 产品概要
     new: 添加新产品
-    tags: 搜索标签
-    tag1: 标签1
-    tag2: 标签2
-    tag3: 标签3
+    tags: 搜索关键字
+    tag1: 关键字1
+    tag2: 关键字2
+    tag3: 关键字3
     name: 产品名称 (*)
     desc: 产品描述
     cover: 产品封面
