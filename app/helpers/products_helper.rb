@@ -57,7 +57,13 @@ module ProductsHelper
     v.options.map { |o| [o.get_locale_name, o.id] }
   end
 
-  def setup_product(product)
-    
+  def get_grouped_categories_options
+    categories = []
+
+    Category.roots.each do |rc|
+      categories += rc.children
+    end
+
+    categories.map {|rc| [rc.name, rc.children.map {|cc| [cc.name, cc.id.to_s]} ] }.to_a
   end
 end

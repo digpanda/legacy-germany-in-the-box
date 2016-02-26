@@ -117,7 +117,10 @@ class ProductsController < ApplicationController
 
   def update
     respond_to do |format|
+      @product.categories = params.require(:product)[:categories].map { |cid| Category.find(cid) if not cid.blank? }.compact
+
       if @product.update(product_params)
+
         format.html {
           flash[:success] = I18n.t(:update_ok, scope: :edit_product)
           redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_product)

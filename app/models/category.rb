@@ -20,4 +20,6 @@ class Category
 
   validates :name,    presence: true
   validates :code,    presence: true, :unless => lambda { self.parent.blank? }
+
+  scope :roots,   ->  { where(:parent => nil) }
 end

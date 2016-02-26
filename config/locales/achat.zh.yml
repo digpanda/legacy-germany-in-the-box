@@ -205,6 +205,7 @@ zh-CN:
     delete_ko: 产品删除失败
     update_ok: 产品修改成功
     update_ko: 产品修改失败
+    categories: 产品类别 (*)
   edit_product_new:
     create_ok: 产品成功创建
     create_ko: 产品创建失败

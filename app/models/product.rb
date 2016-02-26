@@ -28,6 +28,7 @@ class Product
   validates :name,        presence: true
   validates :brand ,      presence: true
   validates :shop,        presence: true
+  validates :categories,  presence: true
   #validates :variants,    presence: true
   #validates :skus,        presence: true
 

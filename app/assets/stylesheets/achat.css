@@ -24,6 +24,10 @@
     font: 10px;
 }
 
+.product_categoires {
+    max-height: 400px;
+}
+
 .ui-autocomplete {
     position: absolute;
     z-index: 2000;

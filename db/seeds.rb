@@ -23,7 +23,7 @@ category_fashion = Category.create!(
 
 category_food = Category.create!(
     :name => 'Food',
-    :name_locales => { :'zh-CN' => '时尚', :de => 'Lebensmittel'}
+    :name_locales => { :'zh-CN' => '食品和饮料', :de => 'Lebensmittel'}
 )
 
 category_toys_home = Category.create!(

@@ -46,6 +46,8 @@ GEM
       debug_inspector (>= 0.0.1)
     bootstrap-datepicker-rails (1.5.0)
       railties (>= 3.0)
+    bootstrap-multiselect-rails (0.9.9)
+      rails (>= 4.0.0)
     bson (4.0.0)
     bson_ext (1.5.1)
     builder (3.2.2)
@@ -292,6 +294,7 @@ PLATFORMS
 DEPENDENCIES
   better_errors
   bootstrap-datepicker-rails
+  bootstrap-multiselect-rails
   byebug
   carrierwave-mongoid
   china_city

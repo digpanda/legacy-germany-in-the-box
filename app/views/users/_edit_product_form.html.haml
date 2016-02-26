@@ -1,3 +1,14 @@
+= javascript_include_tag 'bootstrap-multiselect.js'
+= stylesheet_link_tag 'bootstrap-multiselect.css'
+
+:javascript
+  $(document).ready(function() {
+      $('#product_categories').multiselect({
+        enableCaseInsensitiveFiltering: true,
+        maxHeight: 400,
+      });
+  });
+
 .col-md-6
   = form_for @product, validate: true, :html => {:class => 'form-horizontal', :role => 'form'} do |f|
     .form-group
@@ -7,6 +18,9 @@
     .form-group
       = f.label :name, I18n.t(:name, scope: :edit_product)
       = f.text_field :name, :class => 'form-control'
+    .form-group
+      = f.label :categories, I18n.t(:categories, scope: :edit_product)
+      = f.select :categories, grouped_options_for_select(get_grouped_categories_options), {}, :multiple => 'multiple', :name => 'product[categories][]', :class => 'form-control product_categoires'
     .form-group
       = f.label :brand, I18n.t(:brand, scope: :edit_product)
       = f.text_field :brand, :class => 'form-control'
@@ -21,4 +35,6 @@
         = text_field_tag "product[tags][]", nil, :class => 'form-control', :style => 'width:96px', :placeholder => I18n.t(:tag3, scope: :edit_product)
     .form-group
       = f.submit :class => 'btn btn-primary', :value => I18n.t(:save_basic, scope: :edit_product_new)
+  -#  - if @product.persisted?
+
 
