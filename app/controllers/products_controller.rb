@@ -97,6 +97,8 @@ class ProductsController < ApplicationController
     @product.shop = current_user.shop
 
     respond_to do |format|
+      @product.categories = params.require(:product)[:categories].map { |cid| Category.find(cid) if not cid.blank? }.compact
+
       if @product.save
         format.html {
           flash[:success] = I18n.t(:create_ok, scope: :edit_product_new)
@@ -127,6 +129,7 @@ class ProductsController < ApplicationController
         }
         format.json { render :show, status: :ok, location: @product }
       else
+
         format.html {
           flash[:error] = I18n.t(:update_ko, scope: :edit_product)
           redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_product_update, :product_id => @product.id )

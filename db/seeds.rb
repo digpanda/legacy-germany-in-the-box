@@ -9,6 +9,8 @@ end
 
 Address.all.delete
 
+OrderItem.all.delete
+
 Order.all.delete
 
 Category.all.delete
@@ -677,7 +679,7 @@ product = Product.new(
   ♥ Das Papier eignet sich nicht nur wundervoll zum Verpacken
   ♥ Das Papier wird auf 18x25cm gefaltet versendet
   },
-    :img => 'https://images2.dawandastatic.com/23/c2/61/cf/40/44/4d/62/a4/30/1b/3c/00/7b/12/fe/product_l.JPEG',
+    :cover => 'https://images2.dawandastatic.com/23/c2/61/cf/40/44/4d/62/a4/30/1b/3c/00/7b/12/fe/product_l.JPEG',
     #:img0 => 'https://images2.dawandastatic.com/23/c2/61/cf/40/44/4d/62/a4/30/1b/3c/00/7b/12/fe/product_l.JPEG',
     #:img1 => 'https://images2.dawandastatic.com/23/c2/61/cf/40/44/4d/62/a4/30/1b/3c/00/7b/12/fe/product_l.JPEG',
     #:img2 => 'https://images2.dawandastatic.com/23/c2/61/cf/40/44/4d/62/a4/30/1b/3c/00/7b/12/fe/product_l.JPEG',

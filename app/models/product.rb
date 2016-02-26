@@ -14,11 +14,10 @@ class Product
   embeds_many :variants,  inverse_of: :product
   embeds_many :skus,      inverse_of: :product
 
-  has_and_belongs_to_many :users,       inverse_of: :products
   has_and_belongs_to_many :collections, inverse_of: :products
   has_and_belongs_to_many :categories,  inverse_of: :products
 
-  has_many :order_items,  inverse_of: :product
+  has_many :order_items,  inverse_of: :product,   dependent: :restrict
 
   belongs_to :shop, inverse_of: :products
 
