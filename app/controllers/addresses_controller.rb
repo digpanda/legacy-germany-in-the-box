@@ -68,7 +68,7 @@ class AddressesController < ApplicationController
   end
 
   def update
-    if (address = current_user.addresses.detect { |a| a.id.to_s == params[:id] })
+    if (address = current_user.addresses.find(params[:id]))
       params = address_params
 
       params[:district] = ChinaCity.get(params[:district])
@@ -111,11 +111,11 @@ class AddressesController < ApplicationController
   end
 
   def destroy
-    if (address = current_user.addresses.detect { |a| a.id.to_s == params[:id] })
+    if (address = current_user.addresses.find(params[:id]))
       flag = address.delete
 
       if address.primary
-        candidate = current_user.addresses.detect { |a| a != address }
+        candidate = current_user.addresses.not.where(:id => address.id).first
 
         if candidate
           candidate.primary = true

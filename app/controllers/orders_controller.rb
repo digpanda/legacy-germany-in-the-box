@@ -116,7 +116,7 @@ class OrdersController < ApplicationController
   def checkout
     current_order.status = :checked_out
     current_order.user = current_user
-    current_order.delivery_destination = current_user.addresses.detect { |a| a.id.to_s == params[:delivery_destination_id] }
+    current_order.delivery_destination = current_user.addresses.find(params[:delivery_destination_id])
 
     all_products_available = true;
     shop_total_prices = {}
