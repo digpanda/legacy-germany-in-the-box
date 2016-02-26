@@ -34,4 +34,7 @@ module ApplicationHelper
     }
   end
 
+  def get_uploaded_img_url(img)
+    img ? (img.url ? img.url : nil) : nil
+  end
 end

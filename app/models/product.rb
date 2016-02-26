@@ -24,6 +24,8 @@ class Product
   accepts_nested_attributes_for :skus
   accepts_nested_attributes_for :variants
 
+  mount_uploader :cover,   AttachmentUploader
+
   validates :name,        presence: true
   validates :brand ,      presence: true
   validates :shop,        presence: true
