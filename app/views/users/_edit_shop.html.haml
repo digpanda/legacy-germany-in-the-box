@@ -1,42 +1,55 @@
-.col-md-6.col-sm-12.col-xs-12
-  = form_for @shop do |f|
-    .form-group
-      = f.label :logo, I18n.t(:logo, scope: :edit_shop)
-      = image_tag @shop.logo ? @shop.logo.url : nil, :style => 'width:96px;height:96px', :class => 'form-control img-thumbnail'
-      = f.file_field :logo, :accept => "image/png, image/jpeg"
-    .form-group
-      = f.label :logo, I18n.t(:banner, scope: :edit_shop)
-      = image_tag @shop.banner ? @shop.banner.url : nil, :style => 'width:728px;height:92px', :class => 'img-responsive form-control'
-      = f.file_field :banner, :accept => "image/png, image/jpeg"
-    .form-group
-      = f.label :name, I18n.t(:name, scope: :edit_shop)
-      = f.text_field :name, :class => 'form-control'
-    .form-group
-      = f.label :desc, I18n.t(:desc, scope: :edit_shop)
-      = f.text_area :desc, :class => 'form-control'
-    .form-group
-      = f.label :philosophy, I18n.t(:philosophy, scope: :edit_shop)
-      = f.text_area :philosophy, :class => 'form-control'
-    .form-group
-      = f.label :story, I18n.t(:story, scope: :edit_shop)
-      = f.text_area :story, :class => 'form-control'
-    .form-group
-      = f.label :min_totoal, I18n.t(:min_total, scope: :edit_shop)
-      .input-group
-        = f.text_field :min_total, :class => 'form-control'
-        %span.input-group-addon
-          = f.label @shop.currency
-    .form-group
-      = f.label :ustid, I18n.t(:ustid, scope: :edit_shop)
-      = f.text_field :ustid, :class => 'form-control'
-    .form-group
-      = f.label :eroi, I18n.t(:eroi, scope: :edit_shop)
-      = f.text_field :eroi, :class => 'form-control'
-    .form-group
-      .input-group
-        %span.input-group-addon
-          = f.check_box :sms, {}, true, false
-          = I18n.t(:sms, scope: :edit_shop)
-        = f.text_field :sms_mobile, :class => 'form-control', :placeholder => I18n.t(:sms_mobile, scope: :edit_shop)
-    .form-group
-      = f.button I18n.t(:save, scope: :edit_shop), :class => 'btn btn-primary', name: :user_info_edit_part, value: :edit_shop
+= form_for @shop do |f|
+  %table.table.table-bordered
+    %tbody
+      %tr
+        %th.info= I18n.t(:logo, scope: :edit_shop)
+        %th.info= I18n.t(:banner, scope: :edit_shop)
+      %tr
+        %td= image_tag @shop.logo ? @shop.logo.url : nil, :style => 'width:96px;height:96px', :class => 'form-control img-thumbnail'
+        %td= image_tag @shop.banner ? @shop.banner.url : nil, :style => 'width:512px;height:96px', :class => 'img-responsive form-control'
+      %tr
+        %td= f.file_field :logo, :accept => "image/png, image/jpeg"
+        %td= f.file_field :banner, :accept => "image/png, image/jpeg"
+
+  %table.table.table-bordered
+    %tbody
+      %tr
+        %th.info= I18n.t(:name, scope: :edit_shop)
+        %td= f.text_field :name, :class => 'form-control'
+      %tr
+        %th.info= I18n.t(:desc, scope: :edit_product)
+        %td= f.text_area :desc, :class => 'form-control'
+      %tr
+        %th.info= I18n.t(:philosophy, scope: :edit_shop)
+        %td= f.text_area :philosophy, :class => 'form-control'
+      %tr
+        %th.info= I18n.t(:story, scope: :edit_shop)
+        %td= f.text_area :story, :class => 'form-control'
+
+  %table.table.table-bordered
+    %tbody
+      %tr
+        %th.info= I18n.t(:ustid, scope: :edit_shop)
+        %td= f.text_field :ustid, :class => 'form-control'
+      %tr
+        %th.info= I18n.t(:eroi, scope: :edit_shop)
+        %td= f.text_field :eroi, :class => 'form-control'
+
+  %table.table.table-bordered
+    %tbody
+      %tr
+        %th.info.text-center= I18n.t(:min_total, scope: :edit_shop)
+        %th.info.text-center= I18n.t(:sms, scope: :edit_shop)
+      %tr
+        %td
+          .input-group
+            = f.text_field :min_total, :class => 'form-control'
+            %span.input-group-addon
+              = f.label @shop.currency
+        %td
+          .input-group
+            %span.input-group-addon
+              = f.check_box :sms, {}, true, false
+            = f.text_field :sms_mobile, :class => 'form-control', :placeholder => I18n.t(:sms_mobile, scope: :edit_shop)
+
+  = f.button I18n.t(:save, scope: :edit_shop), :class => 'btn btn-primary', name: :user_info_edit_part, value: :edit_shop
