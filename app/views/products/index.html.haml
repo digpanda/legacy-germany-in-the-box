@@ -71,10 +71,10 @@
     - for_device_type :mobile, :tablet do
       - @products.each do |p|
         .fotorama{'data-allowfullscreen' => '1', 'data-nav' => 'thumbs', 'data-thumbheight' => '96', "data-thumbwidth" => '96'}
-          =image_tag get_uploaded_img_url(p.get_mas.img0)
-          =image_tag get_uploaded_img_url(p.get_mas.img1)
-          =image_tag get_uploaded_img_url(p.get_mas.img2)
-          =image_tag get_uploaded_img_url(p.get_mas.img3)
+          =image_tag p.get_mas_img_url(:img0)
+          =image_tag p.get_mas_img_url(:img1)
+          =image_tag p.get_mas_img_url(:img2)
+          =image_tag p.get_mas_img_url(:img3)
         .product-info.box
           -if p.shop
             %h4=link_to "Shop: #{p.shop.name}", p.shop
@@ -149,10 +149,10 @@
           .row
             .col-md-7
               .fotorama{'data-allowfullscreen' => '1', 'data-nav' => 'thumbs', 'data-thumbheight' => '96', 'data-thumbwidth' => '96'}
-                =image_tag get_uploaded_img_url(p.get_mas.img0)
-                =image_tag get_uploaded_img_url(p.get_mas.img1)
-                =image_tag get_uploaded_img_url(p.get_mas.img2)
-                =image_tag get_uploaded_img_url(p.get_mas.img3)
+                =image_tag p.get_mas_img_url(:img0)
+                =image_tag p.get_mas_img_url(:img1)
+                =image_tag p.get_mas_img_url(:img2)
+                =image_tag p.get_mas_img_url(:img3)
             .col-md-5
               .product-page-meta
                 -if p.shop
@@ -173,22 +173,23 @@
                             %li
                               %span.product-page-meta-title= v.get_locale_name
                               %span.product-page-meta-price= select_tag "sku[option_ids][]", options_for_select(get_options_list(v)), { :id => "product_#{p.id}_variant_#{v.id}", :product_id => p.id, :class => 'form-control variant-option' }
-                    %li
-                      %ul.list.product-page-meta-price-list
-                        %li
-                          %span.product-page-meta-title= I18n.t(:price, scope: :popular_products)
-                          %span.product-page-meta-price{:id => "product_price_#{p.id}"}= "#{p.get_mas.price} #{p.get_mas.currency}"
-                        %li
-                          %span.product-page-meta-title= I18n.t(:discount, scope: :popular_products)
-                          %span.product-page-meta-price{:id => "product_discount_#{p.id}"}= "#{p.get_mas.discount}%"
-                        %li
-                          %span.product-page-meta-title= I18n.t(:saving, scope: :popular_products)
-                          %span.product-page-meta-price{:id => "product_saving_#{p.id}"}= "#{p.get_mas.price * p.get_mas.discount} #{p.get_mas.currency}"
-                    %li
-                      %ul.list.product-page-meta-price-list
-                        %li
-                          %span.product-page-meta-title= I18n.t(:inventory, scope: :popular_products)
-                          %span.product-page-meta-price{:id => "product_inventory_#{p.id}"}= p.get_mas.limited ? p.get_mas.quantity : I18n.t(:unlimited, scope: :popular_products)
+                    - if p.get_mas
+                      %li
+                        %ul.list.product-page-meta-price-list
+                          %li
+                            %span.product-page-meta-title= I18n.t(:price, scope: :popular_products)
+                            %span.product-page-meta-price{:id => "product_price_#{p.id}"}= "#{p.get_mas.price} #{p.get_mas.currency}"
+                          %li
+                            %span.product-page-meta-title= I18n.t(:discount, scope: :popular_products)
+                            %span.product-page-meta-price{:id => "product_discount_#{p.id}"}= "#{p.get_mas.discount}%"
+                          %li
+                            %span.product-page-meta-title= I18n.t(:saving, scope: :popular_products)
+                            %span.product-page-meta-price{:id => "product_saving_#{p.id}"}= "#{p.get_mas.price * p.get_mas.discount} #{p.get_mas.currency}"
+                      %li
+                        %ul.list.product-page-meta-price-list
+                          %li
+                            %span.product-page-meta-title= I18n.t(:inventory, scope: :popular_products)
+                            %span.product-page-meta-price{:id => "product_inventory_#{p.id}"}= p.get_mas.limited ? p.get_mas.quantity : I18n.t(:unlimited, scope: :popular_products)
 
           %hr
           .row
@@ -270,7 +271,7 @@
               %a.col-md-3.col-masonry.popup-text{'data-effect' => 'mfp-move-from-top', :href => "#product-quick-view-dialog-#{p.id}",  :shop_link => "#{p.shop ? shop_path(p.shop) : ''}"}
                 .product-thumb
                   %header.product-header
-                    = image_tag get_uploaded_img_url(p.get_mas.img0), :alt => p.name, :title => p.name
+                    = image_tag p.get_mas_img_url(:img0), :alt => p.name, :title => p.name
                     .product-quick-view
                       %span.fa.fa-eye
                   .product-inner
