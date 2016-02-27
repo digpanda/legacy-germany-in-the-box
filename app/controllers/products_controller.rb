@@ -4,11 +4,16 @@ class ProductsController < ApplicationController
 
   include FunctionCache
 
-  before_action :set_product, only: [:show, :edit, :update, :destroy, :get_sku_for_options]
+  before_action :set_product, only: [:show, :edit, :update, :destroy, :get_sku_for_options, :remove_sku]
 
   before_action { @show_search_area = true }
 
   before_action :authenticate_user!, except: [:autocomplete_product_name, :list_popular_products, :search, :show, :get_sku_for_options]
+
+  def remove_sku
+    @product.skus.find(params[:sku_id]).delete
+    redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_product_detail)
+  end
 
   def get_sku_for_options
     skus = @product.skus

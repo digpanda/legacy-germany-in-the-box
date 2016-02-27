@@ -185,6 +185,8 @@ zh-CN:
     status: 店铺状态
     save: 保存更新
   edit_product:
+    edit: 修改
+    remove: 删除
     basic_info: 产品概要
     new: 添加新产品
     tags: 搜索关键字
@@ -201,18 +203,21 @@ zh-CN:
     operations: 操作
     delete: 删除
     no_product: 您的店铺还没有产品
-    delete_address_message: 确定删除所选产品？
+    delete_product_message: 确定删除所选产品？
     delete_ok: 产品成功删除
     delete_ko: 产品删除失败
     update_ok: 产品修改成功
     update_ko: 产品修改失败
     categories: 产品类别 (*)
-    details: 产品明细
+    skus: 库存单元
     new_basic: 创建概要
     update_basic: 更新概要
     variant: 系列型号
   edit_product_detail:
-    new: 添加新明细
+    edit: 修改
+    remove: 删除
+    delete_sku_message: 确定删除所选库存单元？
+    new: 添加新库存单元
     img0: 图片1
     img1: 图片2
     img2: 图片3

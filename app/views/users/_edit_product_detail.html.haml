@@ -10,6 +10,9 @@
     %theader
       %tr.info
         %th{:colspan => 8}
+          .btn-group.pull-right
+            = link_to I18n.t(:edit, scope: :edit_product_detail), edit_user_path(current_user, :user_info_edit_part => :edit_product_detail_update, :product_id => s.product.id, :sku_id => s.id) , :class => 'fa fa-edit btn'
+            = link_to I18n.t(:remove, scope: :edit_product_detail), remove_sku_product_path(s.product.id, s.id), method: :delete, data: { confirm: "#{I18n.t(:delete_sku_message, scope: :edit_product_detail)}" }, :class => 'fa fa-times-circle btn'
     %tbody
       %tr
         %th{:colspan => 2}= I18n.t(:img0, scope: :edit_product_detail)
