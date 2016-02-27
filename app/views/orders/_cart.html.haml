@@ -12,7 +12,7 @@
         %tr
           %td.cart-item-image
             %a{:href => "#"}
-              %img{:src => "#{i.sku.img0.url}", :style => 'weight:48px;width:48px'}
+              %img{:src => "#{get_uploaded_img_url(i.sku.img0)}", :style => 'weight:48px;width:48px'}
           %td
             %a{:href => "#"}= i.product.name
           %td.cart-item-quantity
@@ -33,7 +33,7 @@
           %th= I18n.t(:item, scope: :cart)
           %td.cart-item-image
             %a{:href => "#"}
-              %img{:src => "#{i.sku.img0.url}", :style => 'weight:48px;width:48px'}
+              %img{:src => "#{get_uploaded_img_url(i.sku.img0)}", :style => 'weight:48px;width:48px'}
         %tr
           %th= I18n.t(:name, scope: :cart)
           %td
