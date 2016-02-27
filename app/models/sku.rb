@@ -18,7 +18,7 @@ class Sku
   field :customizable,  type: Boolean,    default: false
   field :discount,      type: BigDecimal, default: 0
 
-  field :option_ids,    type: Set,      default: Set.new
+  field :option_ids,    type: Array,      default: []
 
   embedded_in :product, :inverse_of => :skus
 
@@ -35,4 +35,5 @@ class Sku
   validates :status,        presence: true, inclusion: {in: [:active, :inactive]}
   validates :customizable,  presence: true
   validates :discount,      presence: true, :numericality => { :greater_than_or_equal_to => 0, :less_than_or_equal_to => 1 }
+  validates :option_ids,    presence: true
 end

@@ -30,8 +30,6 @@ class Product
   validates :brand ,      presence: true
   validates :shop,        presence: true
   validates :categories,  presence: true
-  #validates :variants,    presence: true
-  #validates :skus,        presence: true
 
   scope :has_tag,         ->(value) { where(:tags => value) }
 
@@ -40,6 +38,11 @@ class Product
     sku = skus.sort { |s1, s2| s1.quantity <=> s2.quantity }.last unless sku
 
     return sku
+  end
+
+  def get_mas_img_url(img_field)
+    img = get_mas ? (get_mas.read_attribute img_field) : nil
+    img ? img.url : nil
   end
 
   def get_sku(option_ids)

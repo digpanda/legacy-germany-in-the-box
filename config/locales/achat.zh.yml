@@ -252,7 +252,7 @@ zh-CN:
     add_to_favorite: 添加到收藏夹
     create_and_add_to_favorite: 创建并收藏
     add_to_cart: 放入购物车
-    no_available: 当前产品缺货中
+    not_available: 当前产品缺货中
     create_favorite: 创建
     new_favorite: 新的收藏夹
     product: 产品名称
