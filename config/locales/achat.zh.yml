@@ -207,11 +207,12 @@ zh-CN:
     update_ok: 产品修改成功
     update_ko: 产品修改失败
     categories: 产品类别 (*)
+    details: 产品明细
+    save_basic: 保存概要
   edit_product_new:
     create_ok: 产品成功创建
     create_ko: 产品创建失败
     create_with_existing_name: 已经存在同名的商品
-    save_basic: 保存基本信息
   popular_products:
     search_prompt: 我要找
     search_placeholder: 产品名称，关键字，品牌
