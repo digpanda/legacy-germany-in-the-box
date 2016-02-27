@@ -9,9 +9,6 @@
       });
   });
 
-.h3.text-center
-  = I18n.t(:basic_info, scope: :edit_product)
-%br
 = form_for @product, validate: true do |f|
   %table.table.table-bordered
     %tbody
@@ -41,7 +38,7 @@
         %td= text_field_tag "product[tags][]", @product.tags[1], :class => 'form-control', :placeholder => I18n.t(:tag2, scope: :edit_product)
         %td= text_field_tag "product[tags][]", @product.tags[2], :class => 'form-control', :placeholder => I18n.t(:tag3, scope: :edit_product)
 
-  = f.submit :class => 'btn btn-primary', :value => I18n.t(:save_basic, scope: :edit_product)
-  -if @product.persisted?
-    = link_to I18n.t(:details, scope: :edit_product), nil, :class => 'btn btn-primary'
+  = f.submit :class => 'btn btn-primary', :value => @product.persisted? ? I18n.t(:update_basic, scope: :edit_product) : I18n.t(:new_basic, scope: :edit_product)
 
+  -if @product.persisted?
+    = link_to I18n.t(:details, scope: :edit_product), edit_user_path(current_user, :user_info_edit_part => :edit_product_detail, :product_id => @product.id), :class => 'btn btn-primary'

@@ -1,0 +1,16 @@
+%a.btn.btn-primary{ :class => "#{for_device_type :desktop do 'btn-lg' end}",  :href => edit_user_path(current_user, :user_info_edit_part => :edit_product_detail_new) }
+  %i.fa.fa-plus-circle
+  = I18n.t(:new, scope: :edit_product_detail)
+
+%br
+%br
+
+- if @product.variants.count > 0
+  = form_for @product, validate: true do |f|
+    %table.table.table-bordered
+      %tbody
+        %tr.info
+          %th.text-center{ :colspan => 3 }= I18n.t(:variant, scope: :edit_product)
+          %th
+            = f.fields_for :variants do |fv|
+              = fv.text_field :name,  :class => 'form-control'

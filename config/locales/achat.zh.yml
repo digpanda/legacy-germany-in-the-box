@@ -208,7 +208,14 @@ zh-CN:
     update_ko: 产品修改失败
     categories: 产品类别 (*)
     details: 产品明细
-    save_basic: 保存概要
+    new_basic: 创建概要
+    update_basic: 更新概要
+    variant: 系列型号
+  edit_product_detail:
+    new: 添加新明细
+    create_ok: 明细成功创建
+    create_ko: 明细创建失败
+    create_with_existing_name: 已经存在同名的明细
   edit_product_new:
     create_ok: 产品成功创建
     create_ko: 产品创建失败
