@@ -8,7 +8,7 @@
           %li{:class => params[:user_info_edit_part] == :edit_shop.to_s ? 'active' : ''}
             =link_to I18n.t(:my_shop, scope: :top_menu),  edit_user_path(current_user, :user_info_edit_part => :edit_shop)
           - if current_user.shop
-            %li{:class => [:edit_product.to_s, :edit_product_update.to_s, :edit_product_new.to_s, :edit_product_detail.to_s].include?(params[:user_info_edit_part]) ? 'active' : ''}
+            %li{:class => [:edit_product.to_s, :edit_product_update.to_s, :edit_product_new.to_s, :edit_product_detail.to_s, :edit_product_detail_new.to_s, :edit_product_detail_update.to_s].include?(params[:user_info_edit_part]) ? 'active' : ''}
               =link_to I18n.t(:my_product, scope: :top_menu),  edit_user_path(current_user, :user_info_edit_part => :edit_product)
           %li{:class => [:edit_collection.to_s, :edit_collection_update.to_s, :edit_collection_new.to_s].include?(params[:user_info_edit_part]) ? 'active' : ''}
             =link_to I18n.t(:my_collection, scope: :top_menu),  edit_user_path(current_user, :user_info_edit_part => :edit_collection)
@@ -22,7 +22,7 @@
           %li{:class => params[:user_info_edit_part] == :edit_shop.to_s ? 'active' : ''}
             =link_to I18n.t(:my_shop, scope: :top_menu),  edit_user_path(current_user, :user_info_edit_part => :edit_shop)
           - if current_user.shop
-            %li{:class => [:edit_product.to_s, :edit_product_update.to_s, :edit_product_new.to_s, :edit_product_detail.to_s].include?(params[:user_info_edit_part]) ? 'active' : ''}
+            %li{:class => [:edit_product.to_s, :edit_product_update.to_s, :edit_product_new.to_s, :edit_product_detail.to_s, :edit_product_detail_new.to_s, :edit_product_detail_update.to_s].include?(params[:user_info_edit_part]) ? 'active' : ''}
               =link_to I18n.t(:my_product, scope: :top_menu),  edit_user_path(current_user, :user_info_edit_part => :edit_product)
           %li{:class => [:edit_collection.to_s, :edit_collection_update.to_s, :edit_collection_new.to_s].include?(params[:user_info_edit_part]) ? 'active' : ''}
             =link_to I18n.t(:my_collection, scope: :top_menu),  edit_user_path(current_user, :user_info_edit_part => :edit_collection)

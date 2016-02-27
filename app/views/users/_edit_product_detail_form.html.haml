@@ -1,1 +1,8 @@
-
+= form_for @product, validate: true do |f|
+  %table.table.table-bordered
+    %tbody
+      %tr.info
+        %th.text-center{ :colspan => 3 }= I18n.t(:variant, scope: :edit_product)
+        %th
+          = f.fields_for :variants do |fv|
+            = fv.text_field :name,  :class => 'form-control'

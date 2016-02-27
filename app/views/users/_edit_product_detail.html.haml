@@ -1,16 +1,41 @@
-%a.btn.btn-primary{ :class => "#{for_device_type :desktop do 'btn-lg' end}",  :href => edit_user_path(current_user, :user_info_edit_part => :edit_product_detail_new) }
+%a.btn.btn-primary{ :class => "#{for_device_type :desktop do 'btn-lg' end}",  :href => edit_user_path(current_user, :user_info_edit_part => :edit_product_detail_new, :product_id => @product.id) }
   %i.fa.fa-plus-circle
   = I18n.t(:new, scope: :edit_product_detail)
 
 %br
 %br
 
-- if @product.variants.count > 0
-  = form_for @product, validate: true do |f|
-    %table.table.table-bordered
-      %tbody
-        %tr.info
-          %th.text-center{ :colspan => 3 }= I18n.t(:variant, scope: :edit_product)
-          %th
-            = f.fields_for :variants do |fv|
-              = fv.text_field :name,  :class => 'form-control'
+- @product.skus.each do |s|
+  %table.table.table-bordered
+    %theader
+      %tr.info
+        %th{:colspan => 8}
+    %tbody
+      %tr
+        %th{:colspan => 2}= I18n.t(:img0, scope: :edit_product_detail)
+        %th{:colspan => 2}= I18n.t(:img1, scope: :edit_product_detail)
+        %th{:colspan => 2}= I18n.t(:img2, scope: :edit_product_detail)
+        %th{:colspan => 2}= I18n.t(:img3, scope: :edit_product_detail)
+      %tr
+        %td{:colspan => 2}= image_tag get_uploaded_img_url(s.img0), :style => 'width:128px;height:128px', :class => 'form-control img-thumbnail'
+        %td{:colspan => 2}= image_tag get_uploaded_img_url(s.img1), :style => 'width:128px;height:128px', :class => 'form-control img-thumbnail'
+        %td{:colspan => 2}= image_tag get_uploaded_img_url(s.img2), :style => 'width:128px;height:128px', :class => 'form-control img-thumbnail'
+        %td{:colspan => 2}= image_tag get_uploaded_img_url(s.img3), :style => 'width:128px;height:128px', :class => 'form-control img-thumbnail'
+      %tr
+        %th= I18n.t(:price, scope: :edit_product_detail)
+        %th= I18n.t(:currency, scope: :edit_product_detail)
+        %th= I18n.t(:quantity, scope: :edit_product_detail)
+        %th= I18n.t('edit_product_detail.limited.info')
+        %th= I18n.t(:weight, scope: :edit_product_detail)
+        %th= I18n.t(:discount, scope: :edit_product_detail)
+        %th= I18n.t('edit_product_detail.customizable.info')
+        %th= I18n.t('edit_product_detail.status.info')
+      %tr
+        %td= s.price
+        %td= s.currency
+        %td= s.quantity
+        %td= I18n.t(s.customizable.to_s.to_sym, scope: 'edit_product_detail.limited')
+        %td= s.weight
+        %td= s.discount
+        %td= I18n.t(s.customizable.to_s.to_sym, scope: 'edit_product_detail.customizable')
+        %td= I18n.t(s.status, scope: 'edit_product_detail.status')

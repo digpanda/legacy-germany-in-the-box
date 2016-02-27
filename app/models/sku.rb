@@ -18,7 +18,7 @@ class Sku
   field :customizable,  type: Boolean,    default: false
   field :discount,      type: BigDecimal, default: 0
 
-  field :option_ids,    type: Array,      default: []
+  field :option_ids,    type: Set,      default: Set.new
 
   embedded_in :product, :inverse_of => :skus
 

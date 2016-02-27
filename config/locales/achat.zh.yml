@@ -213,6 +213,27 @@ zh-CN:
     variant: 系列型号
   edit_product_detail:
     new: 添加新明细
+    img0: 图片1
+    img1: 图片2
+    img2: 图片3
+    img3: 图片4
+    price: 价格
+    currency: 货币
+    quantity: 库存
+    limited:
+      info: 限量
+      'true': 不限量
+      'false': 限量
+    weight: 重量
+    status:
+      info: 状态
+      'active': 上线
+      'inactive': 下线
+    customizable:
+      info: 定制
+      'true': 可以
+      'false': 不可
+    discount: 折扣
     create_ok: 明细成功创建
     create_ko: 明细创建失败
     create_with_existing_name: 已经存在同名的明细
