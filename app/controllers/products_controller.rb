@@ -132,7 +132,7 @@ class ProductsController < ApplicationController
         format.json { render json: { status: :ok, product_id: @product.id }, status: :ok }
       else
         format.html {
-          flash[:error] = @product.errors.full_messages.first #I18n.t(:create_ko, scope: :edit_product_new)
+          flash[:error] = @product.errors.full_messages.first
           redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_product_new )
         }
 
@@ -143,7 +143,7 @@ class ProductsController < ApplicationController
 
   def update
     respond_to do |format|
-      if  params.require(:product)[:categories]
+      if params.require(:product)[:categories]
         @product.categories = params.require(:product)[:categories].map { |cid| Category.find(cid) if not cid.blank? }.compact
       end
 
@@ -153,8 +153,11 @@ class ProductsController < ApplicationController
             flash[:success] = I18n.t(:update_ok, scope: :edit_product)
             redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_product)
           elsif params[:part] == :sku.to_s
-            flash[:success] = I18n.t(:update_sku_ok, scope: :edit_product_detail)
+            flash[:success] = I18n.t(:update_ok, scope: :edit_product_detail)
             redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_product_detail, :product_id => @product.id)
+          elsif params[:part] == :variant.to_s
+            flash[:success] = I18n.t(:update_ok, scope: :edit_product_variant)
+            redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_product_variant, :product_id => @product.id)
           end
         }
         format.json { render :show, status: :ok, location: @product }

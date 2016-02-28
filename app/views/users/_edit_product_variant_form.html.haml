@@ -1,0 +1,11 @@
+.col-md-8
+  = form_for @product do |f|
+    = hidden_field_tag :part, :variant
+    = f.fields_for :options do |fo|
+      - if @product.options[fo.index].id.to_s == params[:option_id]
+        .form-group
+          = fo.label :name
+          = fo.text_field :name, :class => 'form-control'
+
+    .form-group
+      = f.submit :class => 'btn btn-primary', :value => new ? I18n.t(:create_variant, scope: :edit_product_variant) : I18n.t(:update_variant, scope: :edit_product_variant)
