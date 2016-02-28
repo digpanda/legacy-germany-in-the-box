@@ -4,7 +4,7 @@ class ProductsController < ApplicationController
 
   include FunctionCache
 
-  before_action :set_product, only: [:show, :edit, :update, :destroy, :get_sku_for_options, :remove_sku]
+  before_action :set_product, only: [:show, :edit, :update, :destroy, :get_sku_for_options, :remove_sku, :remove_option]
 
   before_action { @show_search_area = true }
 
@@ -13,6 +13,25 @@ class ProductsController < ApplicationController
   def remove_sku
     @product.skus.find(params[:sku_id]).delete
     redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_product_detail, :product_id => @product.id)
+  end
+
+  def remove_option
+    ids = []
+
+    unless (o = @product.options.find(params[:option_id]))
+      o = @product.options.detect { |o| o.suboptions.find(params[:option_id]) }
+      ids << params[:option_id] if o
+    else
+      ids = o.suboptions.map { |o| o.id.to_s }
+    end
+
+    if @product.skus.detect { |s| s.option_ids.to_set.intersect?(ids.to_set) }
+      flash[:error] = I18n.t(:sku_dependent, scope: :edit_product_variant)
+      redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_product_variant, :product_id => @product.id)
+    else
+      o.suboptions.find(params[:option_id]).delete
+      redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_product_variant, :product_id => @product.id)
+    end
   end
 
   def get_sku_for_options

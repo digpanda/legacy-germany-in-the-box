@@ -40,6 +40,7 @@ Rails.application.routes.draw do
 
   resources :products, except: [:index] do
     match 'remove_sku/:sku_id',               via: [:delete], to: :remove_sku,                  as: :remove_sku,                  :on => :member
+    match 'remove_option/:option_id',         via: [:delete], to: :remove_option,               as: :remove_option,               :on => :member
     match :get_sku_for_options,               via: [:get],    to: :get_sku_for_options,         as: :get_sku_for_options,         :on => :member
 
     match :autocomplete_product_name,         via: [:get],    to: :autocomplete_product_name,   as: :autocomplete_product_name,   :on => :collection

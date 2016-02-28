@@ -1,0 +1,24 @@
+.col-md-8
+  %a.btn.btn-primary{ :class => 'btn-lg',  :href => edit_user_path(current_user, :user_info_edit_part => :edit_product_detail_new, :product_id => @product.id) }
+    %i.fa.fa-plus-circle
+    = I18n.t(:new_variant, scope: :edit_product_variant)
+
+  %br
+  %br
+
+  - @product.options.each do |o|
+    %table.table.table-bordered
+      %tbody
+        %tr.info
+          %th{colspan: 3}
+            = o.name
+            .btn-group.pull-right
+              = link_to I18n.t(:edit, scope: :edit_product_variant), edit_user_path(current_user, :user_info_edit_part => :edit_product_variant_update, :product_id => @product.id, :option_id => o.id) , :class => 'fa fa-edit btn'
+              = link_to I18n.t(:remove, scope: :edit_product_variant), remove_option_product_path(@product.id, o.id), method: :delete, data: { confirm: "#{I18n.t(:delete_option_message, scope: :edit_product_variant)}" }, :class => 'fa fa-times-circle btn'
+        - o.suboptions.each do |so|
+          %tr
+            %th{colspan: 1}= I18n.t(:option_name, scope: :edit_product_variant)
+            %td{colspan: 1}= so.name
+            %td{colspan: 1}
+              = link_to I18n.t(:edit_option, scope: :edit_product_variant), edit_user_path(current_user, :user_info_edit_part => :edit_product_variant_update, :product_id => @product.id, :option_id => so.id) , :class => 'fa fa-edit btn'
+              = link_to I18n.t(:remove_option, scope: :edit_product_variant), remove_option_product_path(@product.id, so.id), method: :delete, data: { confirm: "#{I18n.t(:delete_option_message, scope: :edit_product_variant)}" }, :class => 'fa fa-times-circle btn'

@@ -47,6 +47,8 @@ class UsersController < ApplicationController
       @product.skus.build
     elsif params[:user_info_edit_part] == :edit_product_detail_update.to_s
       @product = current_user.shop.products.find(params[:product_id])
+    elsif params[:user_info_edit_part] == :edit_product_variant.to_s
+      @product = current_user.shop.products.find(params[:product_id])
     elsif params[:user_info_edit_part] == :edit_collection_new.to_s
       @collection = Collection.new
     elsif params[:user_info_edit_part] == :edit_collection_update.to_s

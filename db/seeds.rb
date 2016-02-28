@@ -710,7 +710,7 @@ s1.save!
 
 s2 = Sku.new(:price => 10, :product => product)
 s2.option_ids << v1_o2.id.to_s
-s2.option_ids << v2_o2.id.to_s
+s2.option_ids << v2_o1.id.to_s
 s2.img0 = create_upload_from_image_file(Product.name.downcase, 'herz_buffet_large_10_blatt_seidenpapier_panda.jpg')
 s2.img1 = create_upload_from_image_file(Product.name.downcase, 'herz_buffet_large_10_blatt_seidenpapier_panda.jpg')
 s2.img2 = create_upload_from_image_file(Product.name.downcase, 'herz_buffet_large_10_blatt_seidenpapier_panda.jpg')

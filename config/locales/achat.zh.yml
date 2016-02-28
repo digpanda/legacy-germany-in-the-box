@@ -257,6 +257,16 @@ zh-CN:
     update_sku: 更新库存
     new_sku: 新建库存
     update_sku_ok: 库存单位更新成功
+  edit_product_variant:
+    new_variant: 创建新型号
+    edit: 编辑型号
+    remove: 删除型号
+    edit_option: 编辑型号选项
+    remove_option: 删除型号选项
+    delete_option_message: 确定删除所选型号？
+    name: 型号名称
+    option_name: 选项名称
+    sku_dependent: 存在使用此型号选项的库存单元，因此不能删除
   popular_products:
     search_prompt: 我要找
     search_placeholder: 产品名称，关键字，品牌
