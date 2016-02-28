@@ -15,7 +15,6 @@
         %theader
           %tr.info.text-center
             %th{:colspan => 4}= I18n.t(:images, scope: :edit_product_detail)
-
         %tbody
           %tr
             %th{:colspan => 2}= I18n.t(:img0, scope: :edit_product_detail)
@@ -37,6 +36,9 @@
             %td{:colspan => 2}= fs.file_field :img3, :accept => "image/png, image/jpeg"
 
       %table.table.table-bordered
+        %theader
+          %tr.info.text-center
+            %th{:colspan => 4}= I18n.t(:sku_options, scope: :edit_product_detail)
         %tbody
           %tr
             %th= fs.label :option_ids, I18n.t(:sku_variants_options, scope: :edit_product_detail)
@@ -75,3 +77,5 @@
               = fs.hidden_field :status
               = fs.check_box :status, {}, 'active'
               = I18n.t('edit_product_detail.status.active')
+
+  = f.submit :class => 'btn btn-primary', :value => new ? I18n.t(:new_sku, scope: :edit_product_detail) : I18n.t(:update_sku, scope: :edit_product_detail)

@@ -702,14 +702,29 @@ v2_o3 = VariantOption.new(:variant => v2, :name => :gold, :name_locales => { :'z
 s1 = Sku.new(:price => 10, :product => product)
 s1.option_ids << v1_o1.id.to_s
 s1.option_ids << v2_o1.id.to_s
+s1.img0 = create_upload_from_image_file(Product.name.downcase, 'herz_buffet_large_10_blatt_seidenpapier_panda.jpg')
+s1.img1 = create_upload_from_image_file(Product.name.downcase, 'herz_buffet_large_10_blatt_seidenpapier_panda.jpg')
+s1.img2 = create_upload_from_image_file(Product.name.downcase, 'herz_buffet_large_10_blatt_seidenpapier_panda.jpg')
+s1.img3 = create_upload_from_image_file(Product.name.downcase, 'herz_buffet_large_10_blatt_seidenpapier_panda.jpg')
+s1.save!
 
 s2 = Sku.new(:price => 10, :product => product)
 s2.option_ids << v1_o2.id.to_s
 s2.option_ids << v2_o2.id.to_s
+s2.img0 = create_upload_from_image_file(Product.name.downcase, 'herz_buffet_large_10_blatt_seidenpapier_panda.jpg')
+s2.img1 = create_upload_from_image_file(Product.name.downcase, 'herz_buffet_large_10_blatt_seidenpapier_panda.jpg')
+s2.img2 = create_upload_from_image_file(Product.name.downcase, 'herz_buffet_large_10_blatt_seidenpapier_panda.jpg')
+s2.img3 = create_upload_from_image_file(Product.name.downcase, 'herz_buffet_large_10_blatt_seidenpapier_panda.jpg')
+s2.save!
 
 s3 = Sku.new(:price => 20, :product => product, :limited => true, :quantity => 3)
 s3.option_ids << v1_o3.id.to_s
 s3.option_ids << v2_o3.id.to_s
+s3.img0 = create_upload_from_image_file(Product.name.downcase, 'herz_buffet_large_10_blatt_seidenpapier_panda.jpg')
+s3.img1 = create_upload_from_image_file(Product.name.downcase, 'herz_buffet_large_10_blatt_seidenpapier_panda.jpg')
+s3.img2 = create_upload_from_image_file(Product.name.downcase, 'herz_buffet_large_10_blatt_seidenpapier_panda.jpg')
+s3.img3 = create_upload_from_image_file(Product.name.downcase, 'herz_buffet_large_10_blatt_seidenpapier_panda.jpg')
+s3.save!
 
 product.categories << category_home_accessories
 

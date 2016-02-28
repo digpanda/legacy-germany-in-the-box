@@ -249,6 +249,9 @@ zh-CN:
     create_with_existing_name: 已经存在同名的明细
     sku_variants_options: 型号组合
     images: 产品图片
+    sku_options: 库存与型号
+    update_sku: 更新库存
+    new_sku: 新建库存
   edit_product_new:
     create_ok: 产品成功创建
     create_ko: 产品创建失败

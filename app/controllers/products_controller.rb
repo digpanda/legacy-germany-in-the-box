@@ -124,7 +124,9 @@ class ProductsController < ApplicationController
 
   def update
     respond_to do |format|
-      @product.categories = params.require(:product)[:categories].map { |cid| Category.find(cid) if not cid.blank? }.compact
+      if  params.require(:product)[:categories]
+        @product.categories = params.require(:product)[:categories].map { |cid| Category.find(cid) if not cid.blank? }.compact
+      end
 
       if @product.update(product_params)
         format.html {
@@ -137,7 +139,7 @@ class ProductsController < ApplicationController
       else
 
         format.html {
-          flash[:error] = I18n.t(:update_ko, scope: :edit_product)
+          flash[:error] = @product.errors.full_messages.first
           redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_product_update, :product_id => @product.id )
         }
         format.json { render json: @product.errors, status: :unprocessable_entity }
@@ -167,7 +169,7 @@ class ProductsController < ApplicationController
     end
 
     def product_params
-      params.require(:product).permit(:desc, :name, :brand, :img, tags:[])
+      params.require(:product).permit(:desc, :name, :brand, :img, tags:[], skus_attributes: [:id, :img0, :img1, :img2, :img3, :price, :quantity, :currency, :weight, :customizable, :limited, :status, option_ids: []])
     end
 end
 

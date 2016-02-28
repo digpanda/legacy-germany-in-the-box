@@ -11,8 +11,8 @@ class Product
   field :desc,        type: String
   field :tags,        type: Array,  default: Array.new(3)
 
-  embeds_many :variants,  inverse_of: :product
-  embeds_many :skus,      inverse_of: :product
+  embeds_many :variants,  inverse_of: :product,   cascade_callbacks: true
+  embeds_many :skus,      inverse_of: :product,   cascade_callbacks: true
 
   has_and_belongs_to_many :collections, inverse_of: :products
   has_and_belongs_to_many :categories,  inverse_of: :products
