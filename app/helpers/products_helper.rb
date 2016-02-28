@@ -1,4 +1,6 @@
 module ProductsHelper
+  include FunctionCache
+
   def generate_toggle_product_in_collection_js(collection_id, product_id)
     %Q{
       $.ajax({
@@ -53,20 +55,14 @@ module ProductsHelper
   end
 
   def get_options_list(v)
-    v.suboptions.map { |o| [o.get_locale_name, o.id] }
+    get_options_list_from_cache(v)
   end
 
   def get_grouped_categories_options
-    categories = []
-
-    Category.roots.each do |rc|
-      categories += rc.children
-    end
-
-    categories.map {|rc| [rc.name, rc.children.map {|cc| [cc.name, cc.id.to_s]} ] }.to_a
+    get_grouped_categories_options_from_cache
   end
 
   def get_grouped_variants_options(product)
-    product.options.map { |v| [v.name, v.suboptions.map { |o| [o.name, o.id.to_s]}] }.to_a
+    get_grouped_variants_options_from_cache(product)
   end
 end

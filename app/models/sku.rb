@@ -37,12 +37,17 @@ class Sku
   validates :discount,      presence: true, :numericality => { :greater_than_or_equal_to => 0, :less_than_or_equal_to => 1 }
   validates :option_ids,    presence: true
 
+  before_save :clean_blank_and_duplicated_option_ids
   before_save :clean_quantity, :unless => lambda { self.limited }
 
   private
 
   def clean_quantity
     self.quantity = nil
+  end
+
+  def clean_blank_and_duplicated_option_ids
+    self.option_ids = self.options_ids.map { |id| id if not id.blank? }.to_set.to_a
   end
 
 end
