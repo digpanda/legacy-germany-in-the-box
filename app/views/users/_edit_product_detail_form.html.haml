@@ -1,1 +1,67 @@
+= javascript_include_tag 'bootstrap-multiselect.js'
+= stylesheet_link_tag 'bootstrap-multiselect.css'
 
+:javascript
+  $(document).ready(function() {
+      $('.sku_variants_options').multiselect({
+        maxHeight: 400
+      });
+  });
+
+= form_for @product, validate: true do |f|
+  = f.fields_for :skus do |fs|
+    - if @product.skus[fs.index].id.to_s == params[:sku_id]
+      %table.table.table-bordered
+        %theader
+          %tr.info
+            %th{:colspan => 4}
+              = fs.label :option_ids, I18n.t(:sku_variants_options, scope: :edit_product_detail)
+              = fs.select :option_ids, grouped_options_for_select(get_grouped_variants_options(@product), @product.skus[fs.index].option_ids ), {}, {:multiple => 'multiple', :class => 'sku_variants_options'}
+        %tbody
+          %tr
+            %th{:colspan => 2}= I18n.t(:img0, scope: :edit_product_detail)
+            %th{:colspan => 2}= I18n.t(:img1, scope: :edit_product_detail)
+          %tr
+            %td{:colspan => 2}= image_tag get_uploaded_img_url(@product.skus[fs.index].img0), :style => 'width:256px;height:256px', :class => 'form-control img-thumbnail'
+            %td{:colspan => 2}= image_tag get_uploaded_img_url(@product.skus[fs.index].img1), :style => 'width:256px;height:256px', :class => 'form-control img-thumbnail'
+          %tr
+            %td{:colspan => 2}= fs.file_field :img0, :accept => "image/png, image/jpeg"
+            %td{:colspan => 2}= fs.file_field :img1, :accept => "image/png, image/jpeg"
+          %tr
+            %th{:colspan => 2}= I18n.t(:img2, scope: :edit_product_detail)
+            %th{:colspan => 2}= I18n.t(:img3, scope: :edit_product_detail)
+          %tr
+            %td{:colspan => 2}= image_tag get_uploaded_img_url(@product.skus[fs.index].img2), :style => 'width:256px;height:256px', :class => 'form-control img-thumbnail'
+            %td{:colspan => 2}= image_tag get_uploaded_img_url(@product.skus[fs.index].img3), :style => 'width:256px;height:256px', :class => 'form-control img-thumbnail'
+          %tr
+            %td{:colspan => 2}= fs.file_field :img2, :accept => "image/png, image/jpeg"
+            %td{:colspan => 2}= fs.file_field :img3, :accept => "image/png, image/jpeg"
+
+      %table.table.table-bordered
+        %tbody
+          %tr
+            %th= I18n.t(:price, scope: :edit_product_detail)
+            %th= I18n.t(:quantity, scope: :edit_product_detail)
+          %tr
+            %td
+              .input-group
+                = fs.text_field :price, :class => 'form-control'
+                %span.input-group-addon
+                  = fs.label @product.shop.currency
+            %td
+              .input-group
+                %span.input-group-addon
+                  = fs.check_box :limited, {}, true, false
+                = fs.text_field :quantity, :class => 'form-control', :placeholder => @product.skus[fs.index].limited ? '' : I18n.t(@product.skus[fs.index].limited.to_s.to_sym, scope: 'edit_product_detail.limited')
+          %tr
+            %th= I18n.t(:weight, scope: :edit_product_detail)
+            %td= @product.skus[fs.index].weight
+          %tr
+            %th= I18n.t(:discount, scope: :edit_product_detail)
+            %td= @product.skus[fs.index].discount
+          %tr
+            %th= I18n.t('edit_product_detail.customizable.info')
+            %td= I18n.t(@product.skus[fs.index].customizable.to_s.to_sym, scope: 'edit_product_detail.customizable')
+          %tr
+            %th= I18n.t('edit_product_detail.status.info')
+            %td= I18n.t(@product.skus[fs.index].status, scope: 'edit_product_detail.status')

@@ -39,7 +39,7 @@
     %tbody
       %tr
         %th.info.text-center= I18n.t(:min_total, scope: :edit_shop)
-        %th.info.text-center= I18n.t(:sms, scope: :edit_shop)
+        %th.info.text-center= I18n.t('edit_shop.sms.info')
       %tr
         %td
           .input-group
@@ -50,6 +50,6 @@
           .input-group
             %span.input-group-addon
               = f.check_box :sms, {}, true, false
-            = f.text_field :sms_mobile, :class => 'form-control', :placeholder => I18n.t(:sms_mobile, scope: :edit_shop)
+            = f.text_field :sms_mobile, :class => 'form-control', :placeholder => @shop.sms ? '' : I18n.t('edit_shop.sms.false')
 
   = f.button I18n.t(:save, scope: :edit_shop), :class => 'btn btn-primary', name: :user_info_edit_part, value: :edit_shop
