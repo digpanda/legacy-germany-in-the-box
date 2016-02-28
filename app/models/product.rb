@@ -41,8 +41,19 @@ class Product
   end
 
   def get_mas_img_url(img_field)
-    img = get_mas ? (get_mas.read_attribute img_field) : nil
-    img ? img.url : nil
+    mas = get_mas
+
+    return nil unless mas
+
+    if img_field == :img0
+      mas.img0 ? mas.img0.url : nil
+    elsif img_field == :img1
+      mas.img1 ? mas.img1.url : nil
+    elsif img_field == :img2
+      mas.img2 ? mas.img2.url : nil
+    elsif img_field == :img3
+      mas.img3 ? mas.img3.url : nil
+    end
   end
 
   def get_sku(option_ids)
