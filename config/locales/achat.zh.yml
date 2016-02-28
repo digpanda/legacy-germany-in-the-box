@@ -214,6 +214,8 @@ zh-CN:
     update_basic: 更新概要
     variant: 系列型号
   edit_product_detail:
+    sku_manage: 库存管理
+    variant_manage: 型号设置
     edit: 修改
     remove: 删除
     delete_sku_message: 确定删除所选库存单元？
