@@ -215,6 +215,10 @@ zh-CN:
     new_basic: 创建概要
     update_basic: 更新概要
     variant: 系列型号
+  edit_product_new:
+    create_ok: 产品成功创建
+    create_ko: 产品创建失败
+    create_with_existing_name: 已经存在同名的商品
   edit_product_detail:
     sku_manage: 库存管理
     variant_manage: 型号设置
@@ -252,10 +256,7 @@ zh-CN:
     sku_options: 库存与型号
     update_sku: 更新库存
     new_sku: 新建库存
-  edit_product_new:
-    create_ok: 产品成功创建
-    create_ko: 产品创建失败
-    create_with_existing_name: 已经存在同名的商品
+    update_sku_ok: 库存单位更新成功
   popular_products:
     search_prompt: 我要找
     search_placeholder: 产品名称，关键字，品牌

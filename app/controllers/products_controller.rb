@@ -130,8 +130,13 @@ class ProductsController < ApplicationController
 
       if @product.update(product_params)
         format.html {
-          flash[:success] = I18n.t(:update_ok, scope: :edit_product)
-          redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_product)
+          if params[:part] == :basic.to_s
+            flash[:success] = I18n.t(:update_ok, scope: :edit_product)
+            redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_product)
+          elsif params[:part] == :sku.to_s
+            flash[:success] = I18n.t(:update_sku_ok, scope: :edit_product_detail)
+            redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_product_detail, :product_id => @product.id)
+          end
         }
         format.json { render :show, status: :ok, location: @product }
 

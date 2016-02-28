@@ -9,6 +9,7 @@
   });
 
 = form_for @product, validate: true do |f|
+  = hidden_field_tag :part, :sku
   = f.fields_for :skus do |fs|
     - if @product.skus[fs.index].id.to_s == params[:sku_id]
       %table.table.table-bordered

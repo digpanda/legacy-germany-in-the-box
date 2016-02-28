@@ -1,3 +1,13 @@
+= javascript_include_tag 'bootstrap-multiselect.js'
+= stylesheet_link_tag 'bootstrap-multiselect.css'
+
+:javascript
+  $(document).ready(function() {
+      $('.product_categories').multiselect({
+        maxHeight: 400,
+      });
+  });
+
 %a.btn.btn-primary{ :class => "#{for_device_type :desktop do 'btn-lg' end}",  :href => edit_user_path(current_user, :user_info_edit_part => :edit_product_new) }
   %i.fa.fa-plus-circle
   = I18n.t(:new, scope: :edit_product)
@@ -11,12 +21,16 @@
       %tr
         %th= I18n.t(:name, scope: :edit_product)
         %th= I18n.t(:brand, scope: :edit_product)
+        %th= I18n.t(:categories, scope: :edit_product)
         %th= I18n.t(:operations, scope: :edit_product)
     %tbody
       - current_user.shop.products.each do |p|
         %tr
           %td= link_to p.name, edit_user_path(current_user, :user_info_edit_part => :edit_product_update, :product_id => p.id)
           %td= p.brand
+          %td= select_tag :categories, grouped_options_for_select(get_grouped_categories_options, p.categories.map { |c| c.id.to_s }), :multiple => 'multiple', :class => 'form-control product_categories'
           %td
+            = link_to I18n.t(:sku_manage, scope: :edit_product_detail), edit_user_path(current_user, :user_info_edit_part => :edit_product_detail, :product_id => p.id), :class => 'fa fa-edit'
+            = link_to I18n.t(:variant_manage, scope: :edit_product_detail), edit_user_path(current_user, :user_info_edit_part => :edit_product_variant, :product_id => p.id), :class => 'fa fa-edit'
 - else
   %h4= I18n.t(:no_product, scope: :edit_product)
