@@ -217,7 +217,8 @@ zh-CN:
     edit: 修改
     remove: 删除
     delete_sku_message: 确定删除所选库存单元？
-    new: 添加新库存单元
+    new_sku: 添加库存单元
+    new_variant: 添加系列型号
     img0: 图片1
     img1: 图片2
     img2: 图片3
