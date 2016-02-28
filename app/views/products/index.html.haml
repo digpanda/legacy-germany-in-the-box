@@ -166,10 +166,10 @@
                   - else
                     = submit_tag "#{I18n.t(:not_available, scope: :popular_products)}", :class => 'btn btn-primary btn-lg', :disabled => true
                   %ul.list.product-page-meta-info
-                    - if p.variants.count > 1
+                    - if p.options.count > 1
                       %li
                         %ul.list.product-page-meta-price-list
-                          - p.variants.each do |v|
+                          - p.options.each do |v|
                             %li
                               %span.product-page-meta-title= v.get_locale_name
                               %span.product-page-meta-price= select_tag "sku[option_ids][]", options_for_select(get_options_list(v)), { :id => "product_#{p.id}_variant_#{v.id}", :product_id => p.id, :class => 'form-control variant-option' }

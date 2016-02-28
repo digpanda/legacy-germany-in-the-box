@@ -10,7 +10,10 @@ class VariantOption
   field :name,          type: String
   field :name_locales,  type: Hash
 
-  embedded_in :variant, inverse_of: :options
+  embeds_many :suboptions, class_name: 'VariantOption', inverse_of: :parent
+
+  embedded_in :parent,    inverse_of: :suboptions,   class_name: 'VariantOption'
+  embedded_in :product,   inverse_of: :options
 
   validates :name,      presence: true
 end

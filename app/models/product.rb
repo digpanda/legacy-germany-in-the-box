@@ -11,7 +11,7 @@ class Product
   field :desc,        type: String
   field :tags,        type: Array,  default: Array.new(3)
 
-  embeds_many :variants,  inverse_of: :product,   cascade_callbacks: true
+  embeds_many :options,   inverse_of: :product,   cascade_callbacks: true,  class_name: 'VariantOption'
   embeds_many :skus,      inverse_of: :product,   cascade_callbacks: true
 
   has_and_belongs_to_many :collections, inverse_of: :products
@@ -22,7 +22,7 @@ class Product
   belongs_to :shop, inverse_of: :products
 
   accepts_nested_attributes_for :skus
-  accepts_nested_attributes_for :variants
+  accepts_nested_attributes_for :options
 
   mount_uploader :cover,   AttachmentUploader
 

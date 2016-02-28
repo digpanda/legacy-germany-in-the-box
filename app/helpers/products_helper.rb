@@ -52,9 +52,8 @@ module ProductsHelper
     return sku && (not sku.limited or sku.quantity >= quantity )
   end
 
-
   def get_options_list(v)
-    v.options.map { |o| [o.get_locale_name, o.id] }
+    v.suboptions.map { |o| [o.get_locale_name, o.id] }
   end
 
   def get_grouped_categories_options
@@ -68,6 +67,6 @@ module ProductsHelper
   end
 
   def get_grouped_variants_options(product)
-    product.variants.map { |v| [v.name, v.options.map { |o| [o.name, o.id.to_s]}] }.to_a
+    product.options.map { |v| [v.name, v.suboptions.map { |o| [o.name, o.id.to_s]}] }.to_a
   end
 end
