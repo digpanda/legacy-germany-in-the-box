@@ -16,22 +16,24 @@ class ProductsController < ApplicationController
   end
 
   def remove_option
-    ids = []
-
     unless (o = @product.options.find(params[:option_id]))
       o = @product.options.detect { |o| o.suboptions.find(params[:option_id]) }
-      ids << params[:option_id] if o
+      if @product.skus.detect { |s| s.option_ids.to_set.include?(params[:option_id]) }
+        flash[:error] = I18n.t(:sku_dependent, scope: :edit_product_variant)
+      else
+        o.suboptions.find(params[:option_id]).delete
+      end
     else
       ids = o.suboptions.map { |o| o.id.to_s }
+
+      if @product.skus.detect { |s| s.option_ids.to_set.intersect?(ids.to_set) }
+        flash[:error] = I18n.t(:sku_dependent, scope: :edit_product_variant)
+      else
+        o.delete
+      end
     end
 
-    if @product.skus.detect { |s| s.option_ids.to_set.intersect?(ids.to_set) }
-      flash[:error] = I18n.t(:sku_dependent, scope: :edit_product_variant)
-      redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_product_variant, :product_id => @product.id)
-    else
-      o.suboptions.find(params[:option_id]).delete
-      redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_product_variant, :product_id => @product.id)
-    end
+    redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_product_variant, :product_id => @product.id)
   end
 
   def get_sku_for_options
@@ -196,7 +198,7 @@ class ProductsController < ApplicationController
     end
 
     def product_params
-      params.require(:product).permit(:desc, :name, :brand, :img, tags:[], skus_attributes: [:id, :img0, :img1, :img2, :img3, :price, :quantity, :currency, :weight, :customizable, :limited, :status, option_ids: []])
+      params.require(:product).permit(:desc, :name, :brand, :img, tags:[], options_attributes: [:id, :name], skus_attributes: [:id, :img0, :img1, :img2, :img3, :price, :quantity, :currency, :weight, :customizable, :limited, :status, option_ids: []])
     end
 end
 
