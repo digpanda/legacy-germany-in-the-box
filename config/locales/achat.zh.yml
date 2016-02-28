@@ -248,6 +248,7 @@ zh-CN:
     create_ko: 明细创建失败
     create_with_existing_name: 已经存在同名的明细
     sku_variants_options: 型号组合
+    images: 产品图片
   edit_product_new:
     create_ok: 产品成功创建
     create_ko: 产品创建失败

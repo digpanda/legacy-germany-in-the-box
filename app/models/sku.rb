@@ -14,7 +14,7 @@ class Sku
   field :quantity,      type: Integer
   field :limited,       type: Boolean,    default: false
   field :weight,        type: Float,      default: 0
-  field :status,        type: Symbol,     default: :active
+  field :status,        type: String,     default: 'active'
   field :customizable,  type: Boolean,    default: false
   field :discount,      type: BigDecimal, default: 0
 
@@ -32,7 +32,7 @@ class Sku
   validates :quantity,      presence: true, :numericality => { :greater_than_or_equal_to => 0 }, :if => lambda { self.limited }
   validates :limited,       presence: true
   validates :weight,        presence: true
-  validates :status,        presence: true, inclusion: {in: [:active, :inactive]}
+  validates :status,        presence: true, inclusion: {in: ['active', 'inactive']}
   validates :customizable,  presence: true
   validates :discount,      presence: true, :numericality => { :greater_than_or_equal_to => 0, :less_than_or_equal_to => 1 }
   validates :option_ids,    presence: true
