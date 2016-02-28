@@ -227,8 +227,8 @@ zh-CN:
     quantity: 库存
     limited:
       info: 限量
-      'true': 不限量
-      'false': 限量
+      'true': 限量
+      'false': 不限量
     weight: 重量
     status:
       info: 状态

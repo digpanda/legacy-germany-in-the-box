@@ -50,7 +50,7 @@
         %td= s.price
         %td= s.currency
         %td= s.quantity
-        %td= I18n.t(s.customizable.to_s.to_sym, scope: 'edit_product_detail.limited')
+        %td= I18n.t(s.limited.to_s.to_sym, scope: 'edit_product_detail.limited')
         %td= s.weight
         %td= s.discount
         %td= I18n.t(s.customizable.to_s.to_sym, scope: 'edit_product_detail.customizable')
