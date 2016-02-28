@@ -12,7 +12,7 @@ class ProductsController < ApplicationController
 
   def remove_sku
     @product.skus.find(params[:sku_id]).delete
-    redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_product_detail)
+    redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_product_detail, :product_id => @product.id)
   end
 
   def get_sku_for_options
