@@ -49,7 +49,8 @@
         %td
           .input-group
             %span.input-group-addon
-              = f.check_box :sms, {}, true, false
+              = f.hidden_field :sms
+              = f.check_box :sms, {}, true
             = f.text_field :sms_mobile, :class => 'form-control', :placeholder => @shop.sms ? '' : I18n.t('edit_shop.sms.false')
 
   = f.button I18n.t(:save, scope: :edit_shop), :class => 'btn btn-primary', name: :user_info_edit_part, value: :edit_shop

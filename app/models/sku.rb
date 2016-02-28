@@ -36,4 +36,13 @@ class Sku
   validates :customizable,  presence: true
   validates :discount,      presence: true, :numericality => { :greater_than_or_equal_to => 0, :less_than_or_equal_to => 1 }
   validates :option_ids,    presence: true
+
+  before_save :clean_quantity, :unless => lambda { self.limited }
+
+  private
+
+  def clean_quantity
+    self.quantity = nil
+  end
+
 end

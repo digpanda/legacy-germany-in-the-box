@@ -44,10 +44,15 @@ class Shop
   validates :story,         length: { minimum: 25, maximum: 25, :allow_blank => true }
 
   before_save :ensure_shopkeeper
+  before_save :clean_sms_mobile, :unless => lambda { self.sms }
 
   private
 
   def ensure_shopkeeper
     shopkeeper.role == :shopkeeper
+  end
+
+  def clean_sms_mobile
+    self.sms_mobile = nil
   end
 end

@@ -13,11 +13,11 @@ class ShopsController <  ApplicationController
   def update
      respond_to do |format|
       if @shop.update(shop_params)
-        format.html { redirect_to @shop, notice: 'Post was successfully updated.' }
-        format.json { render :show, status: :ok, location: @shop }
+        flash[:success] = I18n.t(:update_ok, scope: :edit_shop)
+        format.html { redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_shop) }
       else
-        format.html { render :edit }
-        format.json { render json: @shop.errors, status: :unprocessable_entity }
+        flash[:error] = @shop.errors.full_messages.first
+        format.html { redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_shop) }
       end
     end   
   end

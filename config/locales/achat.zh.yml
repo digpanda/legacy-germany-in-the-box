@@ -69,13 +69,11 @@ zh-CN:
     product_news: 订阅产品
   password_recovery_dialog:
     header: 密码恢复
-    title: 忘记密码？别担心，我们来帮你！
+    title: 忘记密码？别担心，我们来帮！
     email: 登陆邮箱
     ok: 获取新密码
   edit_account:
-    username: 用户昵称
-    email: 登陆邮箱
-    current_password: 当前密码
+    ush current_password: 当前密码
     password: 新的密码
     password_confirmation: 重复密码
     save: 保存
@@ -187,6 +185,7 @@ zh-CN:
     currency: 币种
     status: 店铺状态
     save: 保存更新
+    update_ok: 店铺更新成功
   edit_product:
     edit: 修改
     remove: 删除
