@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="53023302-7b6a-4b02-a48d-ce95de92dd4f" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/_edit_product_detail.html.haml" afterPath="$PROJECT_DIR$/app/views/users/_edit_product_detail.html.haml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/helpers/products_helper.rb" afterPath="$PROJECT_DIR$/app/helpers/products_helper.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="a-chat.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -64,11 +64,11 @@
       <file leaf-file-name="_edit_product_detail.html.haml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/users/_edit_product_detail.html.haml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.625">
-              <caret line="25" column="10" selection-start-line="25" selection-start-column="10" selection-end-line="25" selection-end-column="10" />
+            <state vertical-scroll-proportion="0.37815127">
+              <caret line="6" column="22" selection-start-line="6" selection-start-column="22" selection-end-line="6" selection-end-column="22" />
               <folding>
-                <marker date="1456619399887" expanded="true" signature="146:282" placeholder="{...}" />
-                <marker date="1456619399887" expanded="true" signature="197:276" placeholder="{&quot;enableCaseInsensitiveFiltering&quot;: true...}" />
+                <marker date="1456619508467" expanded="true" signature="146:235" placeholder="{...}" />
+                <marker date="1456619508467" expanded="true" signature="197:229" placeholder="{&quot;maxHeight&quot;: 400...}" />
               </folding>
             </state>
           </provider>
@@ -816,9 +816,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-3" y="0" width="1372" height="745" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5560676" sideWeight="0.42673716" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.5560676" sideWeight="0.42673716" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32872504" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32258064" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.019637462" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1277,11 +1277,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/users/_edit_product_detail.html.haml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.625">
-          <caret line="25" column="10" selection-start-line="25" selection-start-column="10" selection-end-line="25" selection-end-column="10" />
+        <state vertical-scroll-proportion="0.37815127">
+          <caret line="6" column="22" selection-start-line="6" selection-start-column="22" selection-end-line="6" selection-end-column="22" />
           <folding>
-            <marker date="1456619399887" expanded="true" signature="146:282" placeholder="{...}" />
-            <marker date="1456619399887" expanded="true" signature="197:276" placeholder="{&quot;enableCaseInsensitiveFiltering&quot;: true...}" />
+            <marker date="1456619508467" expanded="true" signature="146:235" placeholder="{...}" />
+            <marker date="1456619508467" expanded="true" signature="197:229" placeholder="{&quot;maxHeight&quot;: 400...}" />
           </folding>
         </state>
       </provider>
