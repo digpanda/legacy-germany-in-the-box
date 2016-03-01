@@ -2,6 +2,8 @@ class AddressesController < ApplicationController
 
   before_action :authenticate_user!
 
+  load_and_authorize_resource
+
   def index
     @addresses = current_user.addresses
     render :index, :status => :ok

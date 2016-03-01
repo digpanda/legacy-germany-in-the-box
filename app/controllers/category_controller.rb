@@ -6,6 +6,8 @@ class CategoryController < ApplicationController
 
   before_action :authenticate_user!, except: [:list_products, :show_products]
 
+  load_and_authorize_resource
+
   def show_products
     @products = @category.products.paginate( :page => (params[:page] ? params[:page].to_i : 1), :per_page => Rails.configuration.limit_for_products_search)
     @categories_and_children, @categories_and_counters = get_category_values_for_left_menu(@products)

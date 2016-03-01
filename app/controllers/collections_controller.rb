@@ -12,6 +12,8 @@ class CollectionsController < ApplicationController
 
   before_action :authenticate_user!, :except => [:search, :index, :show, :show_user_collections]
 
+  load_and_authorize_resource
+
   def search
     @collections = Collection.public.or({desc: /.*#{params[:keyword]}.*/i}, {name: /.*#{params[:keyword]}.*/i}).limit(Rails.configuration.limit_for_collections_search)
 

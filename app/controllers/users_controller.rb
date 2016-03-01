@@ -1,14 +1,17 @@
 class UsersController < ApplicationController
 
-  before_action :set_user, except: [:search,
-                                    :index,
-                                    :new,
-                                    :create]
-
   before_action :authenticate_user!, except: [:search,
                                               :index,
                                               :get_followers,
                                               :get_followings]
+
+
+  load_and_authorize_resource
+
+  before_action :set_user, except: [:search,
+                                    :index,
+                                    :new,
+                                    :create]
 
   include Base64ToUpload
 

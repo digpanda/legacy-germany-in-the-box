@@ -4,6 +4,8 @@ class OrdersController < ApplicationController
 
   before_action :set_order, only: [:show, :destroy, :continue]
 
+  load_and_authorize_resource
+
   def show
     @readonly = true
   end

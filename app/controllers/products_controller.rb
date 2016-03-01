@@ -10,6 +10,8 @@ class ProductsController < ApplicationController
 
   before_action :authenticate_user!, except: [:autocomplete_product_name, :list_popular_products, :search, :show, :get_sku_for_options]
 
+  load_and_authorize_resource
+
   def remove_sku
     @product.skus.find(params[:sku_id]).delete
     redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_product_detail, :product_id => @product.id)
