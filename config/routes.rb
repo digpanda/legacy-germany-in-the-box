@@ -18,7 +18,7 @@ Rails.application.routes.draw do
 
   resources :brands
 
-  resources :collections do
+  resources :collections, execpt: [:new] do
     match 'remove_product/:product_id', via: [:patch],  to: :remove_product,        as: :remove_product_from,       :on => :member
     match 'add_product/:product_id',    via: [:patch],  to: :add_product,           as: :add_product_to,            :on => :member
     match :remove_all_products,         via: [:patch],  to: :remove_all_products,   as: :remove_all_products_from,  :on => :member
@@ -36,7 +36,7 @@ Rails.application.routes.draw do
     match 'show_user_collections/:user_id',   via: [:get],    to: :show_user_collections,   as: :show_user,             :on => :collection
   end
 
-  resources :addresses
+  resources :addresses, except: [:new, :edit]
 
   resources :products, except: [:index] do
     match 'remove_sku/:sku_id',               via: [:delete], to: :remove_sku,                  as: :remove_sku,                  :on => :member
@@ -57,7 +57,7 @@ Rails.application.routes.draw do
     match :get_followings,    via: [:get],    to: :get_followings,    as: :get_followings,      :on => :member
   end
 
-  resources :shops
+  resources :shops, execpt: [:new, :edit]
 
   resources :orders, only: [:destroy, :show] do
     match :add_product,               via: [:patch],        to: :add_product,             as: :add_product_to,              :on => :collection
