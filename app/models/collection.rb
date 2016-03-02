@@ -21,5 +21,5 @@ class Collection
   validates :public,  presence: true
   validates :user,    presence: true
 
-  scope :public, -> { where(:public => true) }
+  scope :is_public, -> { where(:public => true) }
 end

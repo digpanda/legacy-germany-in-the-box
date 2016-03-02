@@ -47,16 +47,6 @@ class Shop
   before_save :ensure_shopkeeper
   before_save :clean_sms_mobile, :unless => lambda { self.sms }
 
-  def status=(value)
-    unless value
-      self.products.each do |s|
-        s.status = value
-      end
-    end
-
-    self.status = value
-  end
-
   private
 
   def ensure_shopkeeper

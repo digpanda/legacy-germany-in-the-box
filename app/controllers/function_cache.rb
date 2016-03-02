@@ -46,18 +46,18 @@ module FunctionCache
     magic_number = generate_magic_number
 
     Rails.cache.fetch("products_search_cache_#{term}_#{magic_number}", :expires_in => Rails.configuration.products_search_cache_expire_limit ) {
-      products_from_products = Product.where({ name: /.*#{term}.*/i }).sort_by {Random.rand}
+      products_from_products = Product.is_active.where({ name: /.*#{term}.*/i }).sort_by {Random.rand}
 
-      products_from_brands = Product.where({ brand: /.*#{term}.*/i }).sort_by {Random.rand}
+      products_from_brands = Product.is_active.where({ brand: /.*#{term}.*/i }).sort_by {Random.rand}
 
       products_from_categories =  []
       Category.where( { name: /.*#{term}.*/i } ).each do |c|
-        products_from_categories |=  c.products
+        products_from_categories |=  c.products.is_active
       end
 
       products_from_categories.sort_by {Random.rand}
 
-      products_from_tags = Product.where( { :tags => term } ).sort_by {Random.rand}
+      products_from_tags = Product.is_active.where( { :tags => term } ).sort_by {Random.rand}
 
       { tags: products_from_tags, products: products_from_products, brands: products_from_brands, categories: products_from_categories }
     }
@@ -67,7 +67,7 @@ module FunctionCache
     magic_number = generate_magic_number
 
     Rails.cache.fetch("popular_products_cache_#{magic_number}", :expires_in => Rails.configuration.popular_products_cache_expire_limit ) {
-      Product.all.sort_by { Random.rand }
+      Product.is_active.all.sort_by { Random.rand }
     }
   end
 

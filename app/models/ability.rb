@@ -5,17 +5,20 @@ class Ability
     user ||= User.new
 
     if user.role == :customer
-      can [:show], Shop
+
+      can [:show], Shop, :status => true
 
       can [:list_popular_products,
            :get_sku_for_options,
            :autocomplete_product_name,
-           :search,
-           :show], Product
+           :search], Product
 
-      can [:show,
-           :index,
+      can [:show], Product, :status => true
+
+      can [:index,
            :search], User
+
+      can [:show], User, :status => true
 
       can [:create,
            :edit,
@@ -23,9 +26,10 @@ class Ability
 
       can :manage, Order, :user => user
 
-      can [:show,
-           :index,
-           :search], Collection, :public => true
+      can [:index,
+           :search], Collection
+
+      can [:show], Collection, :public => true
 
       can [:create_and_add,
            :toggle_product,

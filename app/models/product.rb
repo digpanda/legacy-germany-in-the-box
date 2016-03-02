@@ -36,6 +36,14 @@ class Product
   scope :has_tag,         ->(value) { where(:tags => value)   }
   scope :is_active,       ->        { where( :status => true ) }
 
+  index({name: 1},          {unique: false, name: :idx_product_name})
+  index({brand: 1},         {unique: false, name: :idx_product_brand})
+  index({shop: 1},          {unique: false, name: :idx_product_shop})
+  index({tags: 1},          {unique: false, name: :idx_product_tags,        sparse: true})
+  index({users: 1},         {unique: false, name: :idx_product_users,       sparse: true})
+  index({collections: 1},   {unique: false, name: :idx_product_collections, sparse: true})
+  index({categories: 1},    {unique: false, name: :idx_product_categories,  sparse: true})
+
   def get_mas
     self.skus.where({ :status => :active }).to_a.sort { |s1, s2| s1.quantity <=> s2.quantity } .last
   end
@@ -60,21 +68,4 @@ class Product
     skus.detect {|s| s.option_ids.to_set == option_ids.to_set}
   end
 
-  def status=(value)
-    unless value
-      self.skus.each do |s|
-        s.status = value
-      end
-    end
-
-    self.status = value
-  end
-
-  index({name: 1},          {unique: false, name: :idx_product_name})
-  index({brand: 1},         {unique: false, name: :idx_product_brand})
-  index({shop: 1},          {unique: false, name: :idx_product_shop})
-  index({tags: 1},          {unique: false, name: :idx_product_tags,        sparse: true})
-  index({users: 1},         {unique: false, name: :idx_product_users,       sparse: true})
-  index({collections: 1},   {unique: false, name: :idx_product_collections, sparse: true})
-  index({categories: 1},    {unique: false, name: :idx_product_categories,  sparse: true})
 end

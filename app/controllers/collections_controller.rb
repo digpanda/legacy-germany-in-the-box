@@ -15,7 +15,7 @@ class CollectionsController < ApplicationController
   load_and_authorize_resource
 
   def search
-    @collections = Collection.public.or({desc: /.*#{params[:keyword]}.*/i}, {name: /.*#{params[:keyword]}.*/i}).limit(Rails.configuration.limit_for_collections_search)
+    @collections = Collection.is_active.is_public.or({desc: /.*#{params[:keyword]}.*/i}, {name: /.*#{params[:keyword]}.*/i}).limit(Rails.configuration.limit_for_collections_search)
 
     respond_to do |format|
       format.html { render :index }

@@ -243,8 +243,8 @@ zh-CN:
     weight: 重量
     status:
       info: 状态
-      'active': 上线
-      'inactive': 下线
+      'true': 上架
+      'false': 下架
     customizable:
       info: 定制
       'true': 可以
