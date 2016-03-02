@@ -11,10 +11,10 @@ class Sku
   field :img3,          type: String
   field :price,         type: BigDecimal
   field :currency,      type: String,     default: '€'
-  field :quantity,      type: Integer
-  field :limited,       type: Boolean,    default: false
+  field :quantity,      type: Integer,    default: 0
+  field :limited,       type: Boolean,    default: true
   field :weight,        type: Float,      default: 0
-  field :status,        type: String,     default: 'active'
+  field :status,        type: Boolean,    default: true
   field :customizable,  type: Boolean,    default: false
   field :discount,      type: BigDecimal, default: 0
 
@@ -32,10 +32,12 @@ class Sku
   validates :quantity,      presence: true, :numericality => { :greater_than_or_equal_to => 0 }, :if => lambda { self.limited }
   validates :limited,       presence: true
   validates :weight,        presence: true
-  validates :status,        presence: true, inclusion: {in: ['active', 'inactive']}
+  validates :status,        presence: true
   validates :customizable,  presence: true
   validates :discount,      presence: true, :numericality => { :greater_than_or_equal_to => 0, :less_than_or_equal_to => 1 }
   validates :option_ids,    presence: true
+
+  scope :is_active,       ->        { where( :status => true ) }
 
   before_save :clean_blank_and_duplicated_option_ids
   before_save :clean_quantity, :unless => lambda { self.limited }

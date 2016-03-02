@@ -7,17 +7,41 @@ class Ability
     if user.role == :customer
       can [:show], Shop
 
-      can [:list_popular_products, :get_sku_for_options, :autocomplete_product_name, :search, :show], Product
+      can [:list_popular_products,
+           :get_sku_for_options,
+           :autocomplete_product_name,
+           :search,
+           :show], Product
 
-      can [:show, :index, :search, :update], User
+      can [:show,
+           :index,
+           :search], User
 
-      can [:edit, :update], User, { self => user }
+      can [:create,
+           :edit,
+           :update], User, :id => user.id
 
-      can :manage, Order, { :user => user }
+      can :manage, Order, :user => user
 
-      can :manage, Collection, { :user => user }
+      can [:show,
+           :index,
+           :search], Collection, :public => true
 
-      can :manage, Address, { :user => user }
+      can [:create_and_add,
+           :toggle_product,
+           :is_collected,
+           :add_product,
+           :remove_product,
+           :remove_products,
+           :remove_all_products,
+           :create,
+           :update,
+           :destroy,
+           :show_liked_by_me,
+           :like_collection,
+           :dislike_collection], Collection, :user => user
+
+      can :manage, Address, :user => user
 
     elsif user.role == :shopkeeper
       can [:show, :update], Shop

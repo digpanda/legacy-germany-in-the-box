@@ -17,8 +17,7 @@ class Shop
   field :sms_mobile,      type: String
   field :min_total,       type: BigDecimal, default: 0
   field :currency,        type: String,     default: '€'
-
-  field :status,          type: Symbol,     default: :new
+  field :status,          type: Boolean,    default: true
 
   mount_uploader :logo,   AttachmentUploader
   mount_uploader :banner, AttachmentUploader
@@ -35,7 +34,7 @@ class Shop
   validates :sms_mobile,    presence: true,   :if => lambda { self.sms }
   validates :address,       presence: true,   :if => lambda { self.status == :opened }
   validates :bank_account,  presence: true,   :if => lambda { self.status == :opened }
-  validates :status,        presence: true,   inclusion: {in: [:new, :opened, :closed]}
+  validates :status,        presence: true
   validates :min_total,     presence: true
   validates :shopkeeper,    presence: true
   validates :currency,      presence: true,   inclusion: {in: ['€']}
@@ -43,8 +42,20 @@ class Shop
   validates :ustid,         length: { minimum: 25, maximum: 25, :allow_blank => true }
   validates :story,         length: { minimum: 25, maximum: 25, :allow_blank => true }
 
+  scope :is_active,       ->        { where( :status => true ) }
+
   before_save :ensure_shopkeeper
   before_save :clean_sms_mobile, :unless => lambda { self.sms }
+
+  def status=(value)
+    unless value
+      self.products.each do |s|
+        s.status = value
+      end
+    end
+
+    self.status = value
+  end
 
   private
 
@@ -55,4 +66,5 @@ class Shop
   def clean_sms_mobile
     self.sms_mobile = nil
   end
+
 end

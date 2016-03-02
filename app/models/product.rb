@@ -9,7 +9,8 @@ class Product
   field :brand,       type: String
   field :cover,       type: String
   field :desc,        type: String
-  field :tags,        type: Array,  default: Array.new(3)
+  field :tags,        type: Array,    default: Array.new(3)
+  field :status,      type: Boolean,  default: true
 
   embeds_many :options,   inverse_of: :product,   cascade_callbacks: true,  class_name: 'VariantOption'
   embeds_many :skus,      inverse_of: :product,   cascade_callbacks: true
@@ -30,14 +31,13 @@ class Product
   validates :brand ,      presence: true
   validates :shop,        presence: true
   validates :categories,  presence: true
+  validates :status,      presence: true
 
-  scope :has_tag,         ->(value) { where(:tags => value) }
+  scope :has_tag,         ->(value) { where(:tags => value)   }
+  scope :is_active,       ->        { where( :status => true ) }
 
   def get_mas
-    sku = skus.detect { |s| not s.limited }
-    sku = skus.sort { |s1, s2| s1.quantity <=> s2.quantity }.last unless sku
-
-    return sku
+    self.skus.where({ :status => :active }).to_a.sort { |s1, s2| s1.quantity <=> s2.quantity } .last
   end
 
   def get_mas_img_url(img_field)
@@ -58,6 +58,16 @@ class Product
 
   def get_sku(option_ids)
     skus.detect {|s| s.option_ids.to_set == option_ids.to_set}
+  end
+
+  def status=(value)
+    unless value
+      self.skus.each do |s|
+        s.status = value
+      end
+    end
+
+    self.status = value
   end
 
   index({name: 1},          {unique: false, name: :idx_product_name})

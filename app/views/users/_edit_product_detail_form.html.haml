@@ -55,12 +55,7 @@
             %th.text-center= I18n.t(:quantity, scope: :edit_product_detail)
             %th.text-center= I18n.t(:weight, scope: :edit_product_detail)
           %tr
-            %td
-              .input-group
-                %span.input-group-addon
-                  = fs.hidden_field :limited
-                  = fs.check_box :limited, {}, true
-                = fs.text_field :quantity, :class => 'form-control', :placeholder => @product.skus[fs.index].limited ? '' : I18n.t(@product.skus[fs.index].limited.to_s.to_sym, scope: 'edit_product_detail.limited')
+            %td= fs.text_field :quantity, :class => 'form-control', :placeholder => @product.skus[fs.index].limited ? '' : I18n.t(@product.skus[fs.index].limited.to_s.to_sym, scope: 'edit_product_detail.limited')
             %td= fs.text_field :weight, :class => 'form-control'
           %tr
             %th.text-center= I18n.t(:discount, scope: :edit_product_detail)
@@ -76,7 +71,7 @@
           %tr
             %td
               = fs.hidden_field :status
-              = fs.check_box :status, {}, 'active'
+              = fs.check_box :status, {}, true
               = I18n.t('edit_product_detail.status.active')
     - elsif (not new) && @product.skus[fs.index].id.to_s == params[:sku_id]
       %table.table.table-bordered
@@ -122,12 +117,7 @@
             %th.text-center= I18n.t(:quantity, scope: :edit_product_detail)
             %th.text-center= I18n.t(:weight, scope: :edit_product_detail)
           %tr
-            %td
-              .input-group
-                %span.input-group-addon
-                  = fs.hidden_field :limited
-                  = fs.check_box :limited, {}, true
-                = fs.text_field :quantity, :class => 'form-control', :placeholder => @product.skus[fs.index].limited ? '' : I18n.t(@product.skus[fs.index].limited.to_s.to_sym, scope: 'edit_product_detail.limited')
+            %td= fs.text_field :quantity, :class => 'form-control', :placeholder => @product.skus[fs.index].limited ? '' : I18n.t(@product.skus[fs.index].limited.to_s.to_sym, scope: 'edit_product_detail.limited')
             %td= fs.text_field :weight, :class => 'form-control'
           %tr
             %th.text-center= I18n.t(:discount, scope: :edit_product_detail)
@@ -143,7 +133,7 @@
           %tr
             %td
               = fs.hidden_field :status
-              = fs.check_box :status, {}, 'active'
+              = fs.check_box :status, {}, true
               = I18n.t('edit_product_detail.status.active')
 
   = f.submit :class => 'btn btn-primary', :value => new ? I18n.t(:new_sku, scope: :edit_product_detail) : I18n.t(:update_sku, scope: :edit_product_detail), :part => :sku

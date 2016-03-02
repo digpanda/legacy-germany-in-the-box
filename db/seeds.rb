@@ -667,7 +667,8 @@ shop = Shop.create!(
     :logo => create_upload_from_image_file(Shop.name.downcase, 'herz-buffet-logo.jpg'),
     :banner => create_upload_from_image_file(Shop.name.downcase, 'herz-buffet-banner.jpg'),
     :min_total => 20,
-    :shopkeeper => shopkeeper
+    :shopkeeper => shopkeeper,
+    :status => true
 );
 
 product = Product.new(
