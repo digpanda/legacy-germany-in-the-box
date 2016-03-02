@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 
   get '/set_session_locale/:locale', to: 'application#set_session_locale', as: 'set_session_locale'
 
-  resources :collections, execpt: [:new] do
+  resources :collections, except: [:new] do
     match 'remove_product/:product_id', via: [:patch],  to: :remove_product,        as: :remove_product_from,       :on => :member
     match 'add_product/:product_id',    via: [:patch],  to: :add_product,           as: :add_product_to,            :on => :member
     match :remove_all_products,         via: [:patch],  to: :remove_all_products,   as: :remove_all_products_from,  :on => :member
@@ -48,14 +48,15 @@ Rails.application.routes.draw do
 
   resources :users, except: [:destroy] do
     match 'search/:keyword',  via: [:get],    to: :search,    as: :search,    :on => :collection
-    match :follow,            via: [:patch],  to: :follow,    as: :follow,    :on => :collection
-    match :unfollow,          via: [:patch],  to: :unfollow,  as: :unfollow,  :on => :collection
 
-    match :get_followers,     via: [:get],    to: :get_followers,     as: :get_followers,       :on => :member
-    match :get_followings,    via: [:get],    to: :get_followings,    as: :get_followings,      :on => :member
+    #match :follow,            via: [:patch],  to: :follow,    as: :follow,    :on => :collection
+    #match :unfollow,          via: [:patch],  to: :unfollow,  as: :unfollow,  :on => :collection
+
+    #match :get_followers,     via: [:get],    to: :get_followers,     as: :get_followers,       :on => :member
+    #match :get_followings,    via: [:get],    to: :get_followings,    as: :get_followings,      :on => :member
   end
 
-  resources :shops, execpt: [:new, :edit, :create, :destroy]
+  resources :shops, except: [:new, :edit, :create, :destroy]
 
   resources :orders, only: [:destroy, :show] do
     match :add_product,               via: [:patch],        to: :add_product,             as: :add_product_to,              :on => :collection
