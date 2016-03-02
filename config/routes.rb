@@ -37,13 +37,14 @@ Rails.application.routes.draw do
   resources :addresses, except: [:new, :edit]
 
   resources :products, except: [:index, :new, :edit] do
-    match 'remove_sku/:sku_id',               via: [:delete], to: :remove_sku,                  as: :remove_sku,                  :on => :member
-    match 'remove_option/:option_id',         via: [:delete], to: :remove_option,               as: :remove_option,               :on => :member
-    match :get_sku_for_options,               via: [:get],    to: :get_sku_for_options,         as: :get_sku_for_options,         :on => :member
+    match 'remove_sku/:sku_id',                     via: [:delete], to: :remove_sku,                  as: :remove_sku,                  :on => :member
+    match 'remove_variant/:variant_id',             via: [:delete], to: :remove_variant,              as: :remove_variant,              :on => :member
+    match 'remove_option/:variant_id/:option_id',   via: [:delete], to: :remove_option,               as: :remove_option,               :on => :member
+    match :get_sku_for_options,                     via: [:get],    to: :get_sku_for_options,         as: :get_sku_for_options,         :on => :member
 
-    match :autocomplete_product_name,         via: [:get],    to: :autocomplete_product_name,   as: :autocomplete_product_name,   :on => :collection
-    match 'search',                           via: [:get],    to: :search,                      as: :search,                      :on => :collection
-    match 'list_popular_products',            via: [:get],    to: :list_popular_products,       as: :list_popular,                :on => :collection
+    match :autocomplete_product_name,               via: [:get],    to: :autocomplete_product_name,   as: :autocomplete_product_name,   :on => :collection
+    match 'search',                                 via: [:get],    to: :search,                      as: :search,                      :on => :collection
+    match 'list_popular_products',                  via: [:get],    to: :list_popular_products,       as: :list_popular,                :on => :collection
   end
 
   resources :users, except: [:destroy] do

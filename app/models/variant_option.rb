@@ -15,5 +15,7 @@ class VariantOption
   embedded_in :parent,    inverse_of: :suboptions,   class_name: 'VariantOption'
   embedded_in :product,   inverse_of: :options
 
+  accepts_nested_attributes_for :suboptions
+
   validates :name,      presence: true
 end

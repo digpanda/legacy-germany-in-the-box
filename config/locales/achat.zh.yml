@@ -272,7 +272,11 @@ zh-CN:
     create_variant: 创建型号
     update_variant: 保存型号
     update_ok: 产品型号更新成功
-    name: 型号名称
+    variant_name: 型号名称
+    option_name: 选项名称
+    new_option: 添加选项
+    delete_variant_ok: 型号成功删除
+    delete_option_ok: 型号选项成功删除
   popular_products:
     search_prompt: 我要找
     search_placeholder: 产品名称，关键字，品牌

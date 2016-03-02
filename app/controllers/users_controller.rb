@@ -54,9 +54,15 @@ class UsersController < ApplicationController
       @product = current_user.shop.products.find(params[:product_id])
     elsif params[:user_info_edit_part] == :edit_product_variant_new.to_s
       @product = current_user.shop.products.find(params[:product_id])
-      @product.options.build
+      @variant = @product.options.build
     elsif params[:user_info_edit_part] == :edit_product_variant_update.to_s
       @product = current_user.shop.products.find(params[:product_id])
+      @variant = @product.options.find(params[:variant_id]) if params[:variant_id]
+      if params[:option_id]
+        @suboption = @variant.suboptions.find(params[:option_id])
+      else
+        @suboption = @variant.suboptions.build
+      end
     elsif params[:user_info_edit_part] == :edit_collection_new.to_s
       @collection = Collection.new
     elsif params[:user_info_edit_part] == :edit_collection_update.to_s

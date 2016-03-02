@@ -1,14 +1,42 @@
 .col-md-8
-  = form_for @product do |f|
-    = hidden_field_tag :part, :variant
-    = f.fields_for :options do |fo|
-      - if (not new) && @product.options[fo.index].id.to_s == params[:option_id]
+  - if params[:variant]
+    - if not params[:variant_id]
+      = form_for @product do |f|
+        = hidden_field_tag :part, :variant
+        = f.fields_for :options, @variant do |fo|
+          .form-group
+            = fo.label I18n.t(:variant_name, scope: :edit_product_variant)
+            = fo.text_field :name, :class => 'form-control'
         .form-group
-          = fo.label I18n.t(:name, scope: :edit_product_variant)
-          = fo.text_field :name, :class => 'form-control'
-      - elsif new && (not @product.options[fo.index].persisted?)
+          = f.submit :class => 'btn btn-primary', :value => (not params[:variant_id]) ? I18n.t(:create_variant, scope: :edit_product_variant) : I18n.t(:update_variant, scope: :edit_product_variant)
+    - else
+      = form_for @product do |f|
+        = hidden_field_tag :part, :variant
+        = f.fields_for :options, @variant do |fo|
+          .form-group
+            = fo.label I18n.t(:variant_name, scope: :edit_product_variant)
+            = fo.text_field :name, :class => 'form-control'
         .form-group
-          = fo.label I18n.t(:name, scope: :edit_product_variant)
-          = fo.text_field :name, :class => 'form-control'
-    .form-group
-      = f.submit :class => 'btn btn-primary', :value => new ? I18n.t(:create_variant, scope: :edit_product_variant) : I18n.t(:update_variant, scope: :edit_product_variant)
+          = f.submit :class => 'btn btn-primary', :value => (not params[:variant_id]) ? I18n.t(:create_variant, scope: :edit_product_variant) : I18n.t(:update_variant, scope: :edit_product_variant)
+
+  -if params[:option]
+    - if not params[:option_id]
+      = form_for @product do |f|
+        = hidden_field_tag :part, :variant
+        = f.fields_for :options, @variant do |fo|
+          = fo.fields_for :suboptions, @suboption do |fso|
+            .form-group
+              = fso.label I18n.t(:option_name, scope: :edit_product_variant)
+              = fso.text_field :name, :class => 'form-control'
+        .form-group
+          = f.submit :class => 'btn btn-primary', :value => (not params[:option_id]) ? I18n.t(:create_variant, scope: :edit_product_variant) : I18n.t(:update_variant, scope: :edit_product_variant)
+    - else
+      = form_for @product do |f|
+        = hidden_field_tag :part, :variant
+        = f.fields_for :options, @variant do |fo|
+          = fo.fields_for :suboptions, @suboption do |fso|
+            .form-group
+              = fso.label I18n.t(:option_name, scope: :edit_product_variant)
+              = fso.text_field :name, :class => 'form-control'
+        .form-group
+          = f.submit :class => 'btn btn-primary', :value => (not params[:option_id]) ? I18n.t(:create_variant, scope: :edit_product_variant) : I18n.t(:update_variant, scope: :edit_product_variant)

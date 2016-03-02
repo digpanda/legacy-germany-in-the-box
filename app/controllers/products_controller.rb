@@ -17,21 +17,35 @@ class ProductsController < ApplicationController
     redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_product_detail, :product_id => @product.id)
   end
 
-  def remove_option
-    unless (o = @product.options.find(params[:option_id]))
-      o = @product.options.detect { |o| o.suboptions.find(params[:option_id]) }
-      if @product.skus.detect { |s| s.option_ids.to_set.include?(params[:option_id]) }
-        flash[:error] = I18n.t(:sku_dependent, scope: :edit_product_variant)
-      else
-        o.suboptions.find(params[:option_id]).delete
-      end
-    else
-      ids = o.suboptions.map { |o| o.id.to_s }
+  def remove_variant
+    variant = @product.options.find(params[:variant_id])
 
-      if @product.skus.detect { |s| s.option_ids.to_set.intersect?(ids.to_set) }
-        flash[:error] = I18n.t(:sku_dependent, scope: :edit_product_variant)
+    ids = variant.suboptions.map { |o| o.id.to_s }
+
+    if @product.skus.detect { |s| s.option_ids.to_set.intersect?(ids.to_set) }
+      flash[:error] = I18n.t(:sku_dependent, scope: :edit_product_variant)
+    else
+      if variant.delete
+        flash[:success] = I18n.t(:delete_variant_ok, scope: :edit_product_variant)
       else
-        o.delete
+        flash[:error] = variant.errors.full_messages.first
+      end
+    end
+
+    redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_product_variant, :product_id => @product.id)
+  end
+
+  def remove_option
+    if @product.skus.detect { |s| s.option_ids.to_set.include?(params[:option_id]) }
+      flash[:error] = I18n.t(:sku_dependent, scope: :edit_product_variant)
+    else
+      variant = @product.options.find(params[:variant_id])
+      option = variant.suboptions.find(params[:option_id])
+
+      if option.delete
+        flash[:success] = I18n.t(:delete_option_ok, scope: :edit_product_variant)
+      else
+        flash[:error] = option.errors.full_messages.first
       end
     end
 
@@ -193,7 +207,7 @@ class ProductsController < ApplicationController
     end
 
     def product_params
-      params.require(:product).permit(:desc, :name, :brand, :img, tags:[], options_attributes: [:id, :name], skus_attributes: [:id, :img0, :img1, :img2, :img3, :price, :quantity, :currency, :weight, :customizable, :limited, :status, option_ids: []])
+      params.require(:product).permit(:desc, :name, :brand, :img, tags:[], options_attributes: [:id, :name, suboptions_attributes: [:id, :name]], skus_attributes: [:id, :img0, :img1, :img2, :img3, :price, :quantity, :currency, :weight, :customizable, :limited, :status, option_ids: []])
     end
 end
 
