@@ -52,6 +52,7 @@ GEM
     bson_ext (1.5.1)
     builder (3.2.2)
     byebug (8.2.1)
+    cancan (1.6.10)
     carrierwave (0.10.0)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
@@ -296,6 +297,7 @@ DEPENDENCIES
   bootstrap-datepicker-rails
   bootstrap-multiselect-rails
   byebug
+  cancan
   carrierwave-mongoid
   china_city
   client_side_validations

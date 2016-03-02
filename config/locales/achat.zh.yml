@@ -73,7 +73,9 @@ zh-CN:
     email: 登陆邮箱
     ok: 获取新密码
   edit_account:
-    ush current_password: 当前密码
+    username: 用户ID
+    email: 注册信箱
+    current_password: 当前密码
     password: 新的密码
     password_confirmation: 重复密码
     save: 保存
