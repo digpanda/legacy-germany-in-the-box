@@ -134,6 +134,6 @@
             %td
               = fs.hidden_field :status
               = fs.check_box :status, {}, true
-              = I18n.t('edit_product_detail.status.active')
+              = I18n.t('edit_product_detail.status.true')
 
   = f.submit :class => 'btn btn-primary', :value => new ? I18n.t(:new_sku, scope: :edit_product_detail) : I18n.t(:update_sku, scope: :edit_product_detail), :part => :sku

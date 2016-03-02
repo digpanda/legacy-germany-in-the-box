@@ -53,4 +53,4 @@
         %td= s.weight
         %td= s.discount
         %td= I18n.t(s.customizable.to_s.to_sym, scope: 'edit_product_detail.customizable')
-        %td= I18n.t(s.status, scope: 'edit_product_detail.status')
+        %td= I18n.t(s.status.to_s, scope: 'edit_product_detail.status')

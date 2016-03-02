@@ -33,7 +33,7 @@ class Product
   validates :categories,  presence: true
   validates :status,      presence: true
 
-  scope :has_tag,         ->(value) { where(:tags => value)   }
+  scope :has_tag,         ->(value) { where( :tags => value )   }
   scope :is_active,       ->        { where( :status => true ) }
 
   index({name: 1},          {unique: false, name: :idx_product_name})
@@ -45,7 +45,7 @@ class Product
   index({categories: 1},    {unique: false, name: :idx_product_categories,  sparse: true})
 
   def get_mas
-    self.skus.where({ :status => :active }).to_a.sort { |s1, s2| s1.quantity <=> s2.quantity } .last
+    self.skus.is_active.to_a.sort { |s1, s2| s1.quantity <=> s2.quantity } .last
   end
 
   def get_mas_img_url(img_field)

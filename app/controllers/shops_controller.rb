@@ -4,7 +4,7 @@ class ShopsController <  ApplicationController
 
   skip_before_action :verify_authenticity_token
 
-  before_action :set_post, only: [:update]
+  before_action :shop_params, only: [:update]
 
   load_and_authorize_resource
 
