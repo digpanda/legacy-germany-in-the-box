@@ -1,1 +1,0 @@
-json.extract! @post, :id, :name, :image, :productId, :collectionId, :chatId
