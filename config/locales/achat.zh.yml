@@ -308,6 +308,7 @@ zh-CN:
     total_price: 总计
     update_cart: 更新购物车
     set_delivery_destination: 确定收货地址
+    variant_option: 系列型号
   checkout:
     my_destination: 收货地址
     setup_delivery_destination: 请您指定收货地址

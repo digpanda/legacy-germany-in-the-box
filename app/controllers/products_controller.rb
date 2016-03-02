@@ -113,13 +113,6 @@ class ProductsController < ApplicationController
   def show
   end
 
-  def new
-    @product = Product.new
-  end
-
-  def edit
-  end
-
   def create
     @product = Product.new(product_params)
     @product.shop = current_user.shop

@@ -1,9 +1,22 @@
+= javascript_include_tag 'bootstrap-multiselect.js'
+= stylesheet_link_tag 'bootstrap-multiselect.css'
+
+:javascript
+  $(document).ready(function() {
+      $('.sku_variants_options').multiselect({
+        enableCaseInsensitiveFiltering: true,
+        maxHeight: 400,
+      });
+  });
+
+
 - for_device_type :desktop, :tablet do
   %table.table.cart-table
     %thead
       %tr
         %th= I18n.t(:item, scope: :cart)
         %th= I18n.t(:name, scope: :cart)
+        %th= I18n.t(:variant_option, scope: :cart)
         %th= I18n.t(:quantity, scope: :cart)
         %th= I18n.t(:unit_price, scope: :cart)
         %th= I18n.t(:operations, scope: :cart)
@@ -15,6 +28,8 @@
               %img{:src => "#{get_uploaded_img_url(i.sku.img0)}", :style => 'weight:48px;width:48px'}
           %td
             %a{:href => "#"}= i.product.name
+          %td
+            = select_tag :option_ids, grouped_options_for_select(get_grouped_variants_options(i.product), i.option_ids ), {:multiple => 'multiple', :class => 'sku_variants_options'}
           %td.cart-item-quantity
             - unless @readonly
               %i.fa.fa-minus.cart-item-minus
@@ -38,6 +53,10 @@
           %th= I18n.t(:name, scope: :cart)
           %td
             %a{:href => "#"}= i.product.name
+        %tr
+          %th= I18n.t(:variant_option, scope: :cart)
+          %td
+            = select_tag :option_ids, grouped_options_for_select(get_grouped_variants_options(i.product), i.option_ids ), {:multiple => 'multiple', :class => 'sku_variants_options'}
         %tr
           %th= I18n.t(:quantity, scope: :cart)
           %td.cart-item-quantity

@@ -57,7 +57,7 @@ gem 'will_paginate-bootstrap'
 
 gem 'bootstrap-multiselect-rails'
 
-gem 'cancan'
+gem 'cancancan'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
