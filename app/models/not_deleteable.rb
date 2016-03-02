@@ -23,6 +23,6 @@ end
 
 class MissingMigrationException < Exception
   def message
-    "Model is lacking the deleted boolean field for NotDeleteable to work"
+    'deleted flag not defined'
   end
 end
