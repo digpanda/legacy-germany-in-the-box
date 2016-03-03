@@ -49,7 +49,7 @@ class Sku
   end
 
   def clean_blank_and_duplicated_option_ids
-    self.option_ids = self.option_ids.map { |id| id if not id.blank? }.to_set.to_a
+    self.option_ids = self.option_ids.reject { |c| c.empty? }.to_set.to_a
   end
 
 end

@@ -60,7 +60,7 @@ class ProductsController < ApplicationController
         respond_to do |format|
           format.json {
             @sku = s
-            render :show_sku, :status => :ok
+            render :show_sku, locals: { sku: s }, :status => :ok
           }
         end
 
@@ -207,7 +207,7 @@ class ProductsController < ApplicationController
     end
 
     def product_params
-      params.require(:product).permit(:desc, :name, :brand, :img, tags:[], options_attributes: [:id, :name, suboptions_attributes: [:id, :name]], skus_attributes: [:id, :img0, :img1, :img2, :img3, :price, :quantity, :currency, :weight, :customizable, :limited, :status, option_ids: []])
+      params.require(:product).permit(:desc, :name, :brand, :img, tags:[], options_attributes: [:id, :name, suboptions_attributes: [:id, :name]], skus_attributes: [:id, :img0, :img1, :img2, :img3, :price, :quantity, :currency, :weight, :customizable, :status, option_ids: []])
     end
 end
 

@@ -731,3 +731,5 @@ product.categories << category_home_accessories
 shop.products << product
 shop.save!
 
+Rails.cache.clear
+

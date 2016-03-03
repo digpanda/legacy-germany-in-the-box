@@ -41,7 +41,7 @@
 
       $.ajax({
         dataType: 'json',
-        data: { option_ids: option_ids, locale: "#{params[:locale]}" },
+        data: { option_ids: option_ids },
         url: '/products/' + product_id + '/get_sku_for_options',
         success: function(json){
           $('#product_price_'+product_id).text(json['price'] + ' ' +  json['currency']);

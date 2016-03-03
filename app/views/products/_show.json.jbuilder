@@ -1,4 +1,11 @@
-json.extract! product, :id, :desc, :network, :prodid, :deeplink, :name, :brand, :img0, :price, :sale, :currency, :status
-json.set! product.img0.url ? request.base_url + product.img0.url : product.img
-json.shopname product.shop.name if product.shop.present?
-json.categories product.categories.map { |c| c.name } if product.categories.present?
+json.extract! product, :id, :name, :brand, :desc
+json.cover_url product.cover.url
+
+json.shop do
+  json.name product.shop.name
+  json.url  shop_url(product.shop)
+end
+
+json.categories product.categories.map { |c| { name: c.name, url: category_url(c) } } if product.categories.present?
+
+json.skus product.skus.map { |c| { } }
