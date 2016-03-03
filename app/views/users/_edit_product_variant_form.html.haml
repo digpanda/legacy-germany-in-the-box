@@ -29,7 +29,7 @@
               = fso.label I18n.t(:option_name, scope: :edit_product_variant)
               = fso.text_field :name, :class => 'form-control'
         .form-group
-          = f.submit :class => 'btn btn-primary', :value => (not params[:option_id]) ? I18n.t(:create_variant, scope: :edit_product_variant) : I18n.t(:update_variant, scope: :edit_product_variant)
+          = f.submit :class => 'btn btn-primary', :value => (not params[:option_id]) ? I18n.t(:create_option, scope: :edit_product_variant) : I18n.t(:update_option, scope: :edit_product_variant)
     - else
       = form_for @product do |f|
         = hidden_field_tag :part, :variant
@@ -39,4 +39,4 @@
               = fso.label I18n.t(:option_name, scope: :edit_product_variant)
               = fso.text_field :name, :class => 'form-control'
         .form-group
-          = f.submit :class => 'btn btn-primary', :value => (not params[:option_id]) ? I18n.t(:create_variant, scope: :edit_product_variant) : I18n.t(:update_variant, scope: :edit_product_variant)
+          = f.submit :class => 'btn btn-primary', :value => (not params[:option_id]) ? I18n.t(:create_option, scope: :edit_product_variant) : I18n.t(:update_option, scope: :edit_product_variant)

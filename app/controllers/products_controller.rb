@@ -161,6 +161,8 @@ class ProductsController < ApplicationController
       if @product.update(product_params)
         format.html {
           if params[:part] == :basic.to_s
+            Rails.cache.clear
+
             flash[:success] = I18n.t(:update_ok, scope: :edit_product)
             redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_product)
           elsif params[:part] == :sku.to_s
@@ -171,9 +173,8 @@ class ProductsController < ApplicationController
             redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_product_variant, :product_id => @product.id)
           end
         }
-        format.json { render :show, status: :ok, location: @product }
 
-        Rails.cache.clear
+        format.json { render :show, status: :ok, location: @product }
       else
 
         format.html {

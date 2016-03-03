@@ -42,6 +42,19 @@ class Sku
   before_save :clean_blank_and_duplicated_option_ids
   before_save :clean_quantity, :unless => lambda { self.limited }
 
+  def get_options_json
+    variants = self.option_ids.map do |oid|
+      self.product.options.detect do |v|
+        v.suboptions.find(oid)
+      end
+    end
+
+    variants.each_with_index.map do |v, i|
+      o = v.suboptions.find(option_ids[i])
+      { name: v.name, name_locales: v.name_locales, option: { id: o.id, name: o.name, name_locales: o.name_locales } }
+    end
+  end
+
   private
 
   def clean_quantity

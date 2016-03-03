@@ -263,14 +263,16 @@ zh-CN:
     new_variant: 创建新型号
     edit: 编辑型号
     remove: 删除型号
-    edit_option: 编辑型号选项
-    remove_option: 删除型号选项
+    edit_option: 编辑选项
+    remove_option: 删除选项
     delete_option_message: 确定删除所选型号？
     name: 型号名称
     option_name: 选项名称
     sku_dependent: 存在使用此型号选项的库存单元，因此不能删除
     create_variant: 创建型号
-    update_variant: 保存型号
+    update_variant: 更新型号
+    create_option: 创建选项
+    update_option: 更新选项
     update_ok: 产品型号更新成功
     variant_name: 型号名称
     option_name: 选项名称
