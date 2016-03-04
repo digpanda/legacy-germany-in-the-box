@@ -48,6 +48,8 @@
           $('#product_discount_'+product_id).text(json['discount'] + ' ' +  '%');
           $('#product_saving_'+product_id).text(parseFloat(json['price']) * parseFloat(json['discount'])  + ' ' +  json['currency']);
           $('#product_inventory_'+product_id).text(json['quantity'])
+          fotorama = $('#product_quick_view_dialog_'+product_id).find('.fotorama').fotorama().data('fotorama');
+          fotorama.load([{img: json['img0_url']}, {img: json['img1_url']}, {img: json['img2_url']}, {img: json['img3_url']}])
         }
       });
     });
@@ -145,7 +147,7 @@
 
     - for_device_type :desktop do
       - @products.each do |p|
-        .mfp-with-anim.mfp-hide.mfp-dialog.mfp-dialog-big.clearfix{ :id => "product-quick-view-dialog-#{p.id}"}
+        .mfp-with-anim.mfp-hide.mfp-dialog.mfp-dialog-big.clearfix{ :id => "product_quick_view_dialog_#{p.id}"}
           .row
             .col-md-7
               .fotorama{'data-allowfullscreen' => '1', 'data-nav' => 'thumbs', 'data-thumbheight' => '96', 'data-thumbwidth' => '96'}
@@ -268,7 +270,7 @@
         .col-md-9
           #masonry.row.row-wrap
             - @products.each do |p|
-              %a.col-md-3.col-masonry.popup-text{'data-effect' => 'mfp-move-from-top', :href => "#product-quick-view-dialog-#{p.id}",  :shop_link => "#{p.shop ? shop_path(p.shop) : ''}"}
+              %a.col-md-3.col-masonry.popup-text{'data-effect' => 'mfp-move-from-top', :href => "#product_quick_view_dialog_#{p.id}",  :shop_link => "#{p.shop ? shop_path(p.shop) : ''}"}
                 .product-thumb
                   %header.product-header
                     = image_tag p.get_mas_img_url(:img0), :alt => p.name, :title => p.name
