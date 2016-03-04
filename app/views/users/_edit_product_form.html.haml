@@ -22,6 +22,8 @@
 %br
 
 = form_for @product, validate: true do |f|
+  = hidden_field_tag :part, :basic
+
   %table.table.table-bordered
     %tbody
       %tr.info

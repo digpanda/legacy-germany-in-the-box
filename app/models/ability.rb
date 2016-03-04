@@ -61,9 +61,10 @@ class Ability
       can [:remove_sku,
            :remove_option,
            :remove_variant,
-           :create,
            :update,
            :destroy], Product, :shop => { :shopkeeper => user }
+
+      can [:create], Product
 
       can [:index,
            :search], User
