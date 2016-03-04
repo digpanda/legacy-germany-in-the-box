@@ -55,6 +55,10 @@ class Sku
     end
   end
 
+  def get_option(oid)
+    self.option_ids.map { |oid| self.product.options.map { |v| o = v.suboptions.find(oid); o.name if o }.compact.join }.join(', ')
+  end
+
   private
 
   def clean_quantity

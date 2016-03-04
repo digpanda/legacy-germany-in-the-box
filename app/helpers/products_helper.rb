@@ -54,6 +54,10 @@ module ProductsHelper
     return sku && (not sku.limited or sku.quantity >= quantity )
   end
 
+  def get_option(oid)
+
+  end
+
   def get_options_list(v)
     get_options_list_from_cache(v)
   end

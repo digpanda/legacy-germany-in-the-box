@@ -699,7 +699,7 @@ v2_o1 = VariantOption.new(:parent => v2, :name => :red, :name_locales => { :'zh-
 v2_o2 = VariantOption.new(:parent => v2, :name => :blue, :name_locales => { :'zh-CN' => '蓝色', :de => 'blau'})
 v2_o3 = VariantOption.new(:parent => v2, :name => :gold, :name_locales => { :'zh-CN' => '金色', :de => 'gold'})
 
-s1 = Sku.new(:price => 10, :product => product)
+s1 = Sku.new(:price => 10, :product => product, :quantity => 5)
 s1.option_ids << v1_o1.id.to_s
 s1.option_ids << v2_o1.id.to_s
 s1.img0 = create_upload_from_image_file(Product.name.downcase, 'herz_buffet_large_10_blatt_seidenpapier_panda.jpg')
@@ -708,7 +708,7 @@ s1.img2 = create_upload_from_image_file(Product.name.downcase, 'herz_buffet_larg
 s1.img3 = create_upload_from_image_file(Product.name.downcase, 'herz_buffet_large_10_blatt_seidenpapier_panda.jpg')
 s1.save!
 
-s2 = Sku.new(:price => 10, :product => product)
+s2 = Sku.new(:price => 10, :product => product, :quantity => 4)
 s2.option_ids << v1_o2.id.to_s
 s2.option_ids << v2_o1.id.to_s
 s2.img0 = create_upload_from_image_file(Product.name.downcase, 'herz_buffet_large_10_blatt_seidenpapier_panda.jpg')
