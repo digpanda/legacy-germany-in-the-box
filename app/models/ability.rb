@@ -16,7 +16,9 @@ class Ability
       can [:show], Product, :status => true
 
       can [:index,
-           :search], User
+           :search,
+           :follow,
+           :unfollow], User
 
       can [:show], User, :status => true
 
@@ -43,6 +45,7 @@ class Ability
            :destroy,
            :show_liked_by_me,
            :like_collection,
+           :show_my_collections,
            :dislike_collection], Collection, :user => user
 
       can :manage, Address, :user => user
@@ -92,6 +95,7 @@ class Ability
            :destroy,
            :show_liked_by_me,
            :like_collection,
+           :show_my_collections,
            :dislike_collection], Collection, :user => user
 
     elsif user.role == :admin

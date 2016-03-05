@@ -49,12 +49,11 @@ Rails.application.routes.draw do
 
   resources :users, except: [:destroy] do
     match 'search/:keyword',  via: [:get],    to: :search,    as: :search,    :on => :collection
+    match :follow,            via: [:patch],  to: :follow,    as: :follow,    :on => :collection
+    match :unfollow,          via: [:patch],  to: :unfollow,  as: :unfollow,  :on => :collection
 
-    #match :follow,            via: [:patch],  to: :follow,    as: :follow,    :on => :collection
-    #match :unfollow,          via: [:patch],  to: :unfollow,  as: :unfollow,  :on => :collection
-
-    #match :get_followers,     via: [:get],    to: :get_followers,     as: :get_followers,       :on => :member
-    #match :get_followings,    via: [:get],    to: :get_followings,    as: :get_followings,      :on => :member
+    match :get_followers,     via: [:get],    to: :get_followers,     as: :get_followers,       :on => :member
+    match :get_followings,    via: [:get],    to: :get_followings,    as: :get_followings,      :on => :member
   end
 
   resources :shops, except: [:new, :edit, :create, :destroy]

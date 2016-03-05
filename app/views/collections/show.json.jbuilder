@@ -2,7 +2,6 @@ json.collection {
   json.id @collection.id
   json.name @collection.name
   json.desc @collection.desc
-  json.visible @collection.public
 
   json.set! :products_imgs, @collection.products.map { |p| p.img0.url ? request.base_url + p.img0.url : p.img }.compact
 

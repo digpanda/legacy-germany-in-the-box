@@ -215,7 +215,7 @@ class CollectionsController < ApplicationController
   end
 
   def create
-    existing = current_user.oCollections.select { |c| c.name == collection_params[:name] }
+    existing = current_user.oCollections.where( :name => collection_params[:name] )
 
     unless existing.size > 0
       @collection = Collection.new(collection_params)
@@ -235,7 +235,7 @@ class CollectionsController < ApplicationController
             redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_collection_new )
           }
 
-          format.json { render json: { status: :ko }, status: :unprocessable_entity }
+          format.json { render json: { status: :ko, msg: @collection.errors.full_messages.first }, status: :unprocessable_entity }
         end
       end
     else
@@ -245,7 +245,7 @@ class CollectionsController < ApplicationController
           redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_collection_new )
         }
 
-        format.json { render json: { status: :ko }, status: :unprocessable_entity }
+        format.json { render json: { status: :ko, msg: I18n.t(:create_with_existing_name, scope: :edit_collection_new) }, status: :unprocessable_entity }
       end
     end
   end

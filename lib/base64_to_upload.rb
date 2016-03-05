@@ -1,7 +1,7 @@
 module Base64ToUpload
   
   def base64_to_uploadedfile(model, image)
-    base64 = params[model][:base64]
+    base64 = params.require(model)[:base64]
     
     if base64
       base64_code = base64[:code]

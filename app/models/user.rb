@@ -19,6 +19,7 @@ class User
   field :provider,  type: String
   field :tel,       type: String
   field :mobile,    type: String
+  field :status,    type: Boolean, default: true
 
   has_and_belongs_to_many :followers,         :class_name => 'User',        :inverse_of => :following
   has_and_belongs_to_many :following,         :class_name => 'User',        :inverse_of => :followers
@@ -38,8 +39,12 @@ class User
   validates :email,     presence: true, uniqueness: true
   validates :birth,     presence: true, :if => lambda { :customer == self.role }
   validates :gender,    presence: true, :if => lambda { :customer == self.role }
+  validates :status,    presence: true
 
-  validates :addresses, :length => { :maximum => Rails.configuration.max_num_addresses }, :if => lambda { :customer == self.role }
+  validates :oCollections, :length => { :maximum => Rails.configuration.max_customer_collections },   :if => lambda { :customer   == self.role }
+  validates :oCollections, :length => { :maximum => Rails.configuration.max_shopkeeper_collections }, :if => lambda { :shopkeeper == self.role }
+
+  validates :addresses,    :length => { :maximum => Rails.configuration.max_num_addresses }, :if => lambda { :customer == self.role }
 
   validates_confirmation_of :password
 

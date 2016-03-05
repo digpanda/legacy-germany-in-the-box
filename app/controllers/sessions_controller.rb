@@ -31,7 +31,7 @@ class SessionsController < Devise::SessionsController
         self.resource = warden.authenticate!(auth_options)
         sign_in(resource_name, resource)
         current_user.update authentication_token: nil
-        render :json => { :status => :ok, :authentication_token => current_user.authentication_token }, :status => :ok
+        render :login, :status => :ok
       }
     end
   end
