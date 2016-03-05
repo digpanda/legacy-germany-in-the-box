@@ -313,7 +313,7 @@ class CollectionsController < ApplicationController
   end
 
   def like_collection
-    if @collection && @collection.public
+    if @collection && @collection.public && @collection.user != current_user
       current_user.liked_collections.push(@collection)
       if current_user.save
         respond_to do |format|
@@ -330,7 +330,7 @@ class CollectionsController < ApplicationController
   end
 
   def dislike_collection
-    if @collection
+    if @collection && @collection.user != current_user
       current_user.liked_collections.delete(@collection)
       if current_user.save
         respond_to do |format|

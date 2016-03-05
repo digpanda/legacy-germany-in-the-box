@@ -1,3 +1,3 @@
 json.array!(@users) do |u|
-  json.extract! u, :id, :username, :country, :pic
+  json.partial! 'show_info', user: @user
 end

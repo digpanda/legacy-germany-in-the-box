@@ -17,10 +17,12 @@ class Ability
 
       can [:index,
            :search,
-           :follow,
            :unfollow], User
 
-      can [:show], User, :status => true
+      can [:show,
+           :follow,
+           :get_followers,
+           :get_following], User, :status => true
 
       can [:create,
            :edit,
@@ -71,9 +73,13 @@ class Ability
       can [:create], Product
 
       can [:index,
-           :search], User
+           :search,
+           :unfollow], User
 
-      can [:show], User, :status => true
+      can [:show,
+           :follow,
+           :get_followers,
+           :get_following], User, :status => true
 
       can [:create,
            :edit,

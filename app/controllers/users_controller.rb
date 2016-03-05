@@ -101,11 +101,11 @@ class UsersController < ApplicationController
   end
 
   def follow
-    @target = User.find(params[:target_id])
+    @target = @user
     @target.followers.push(current_user)
     current_user.following.push(@target)
 
-    if @target && @target.save && current_user.save
+    if @target && @target != current_user && @target.save && current_user.save
       respond_to do |format|
         format.html {
           flash[:success] = I18n.t(:follow_ok, scope: :edit_following)
@@ -125,11 +125,11 @@ class UsersController < ApplicationController
   end
 
   def unfollow
-    @target = User.find(params[:target_id])
+    @target = @user
     @target.followers.delete(current_user)
     current_user.following.delete(@target)
 
-    if @target && @target.save && current_user.save
+    if @target && @target != current_user && @target.save && current_user.save
       respond_to do |format|
         format.html {
           flash[:success] = I18n.t(:unfollow_ok, scope: :edit_following)
@@ -157,7 +157,7 @@ class UsersController < ApplicationController
     end
   end
 
-  def get_followings
+  def get_following
     @users = @user.following
 
     respond_to do |format|
