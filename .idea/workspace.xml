@@ -2,22 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="53023302-7b6a-4b02-a48d-ce95de92dd4f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/users/_show.json.jbuilder" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/users/_show_info.json.jbuilder" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/sessions/login.json.jbuilder" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile.lock" afterPath="$PROJECT_DIR$/Gemfile.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile" afterPath="$PROJECT_DIR$/Gemfile" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/ability.rb" afterPath="$PROJECT_DIR$/app/models/ability.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/initializers/achat.rb" afterPath="$PROJECT_DIR$/config/initializers/achat.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/base64_to_upload.rb" afterPath="$PROJECT_DIR$/lib/base64_to_upload.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/initializers/carrierwave.rb" afterPath="$PROJECT_DIR$/config/initializers/carrierwave.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/collections_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/collections_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/collections/index.json.jbuilder" afterPath="$PROJECT_DIR$/app/views/collections/index.json.jbuilder" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/routes.rb" afterPath="$PROJECT_DIR$/config/routes.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/sessions_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/sessions_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/collections/show.json.jbuilder" afterPath="$PROJECT_DIR$/app/views/collections/show.json.jbuilder" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/show.json.jbuilder" afterPath="$PROJECT_DIR$/app/views/users/show.json.jbuilder" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/user.rb" afterPath="$PROJECT_DIR$/app/models/user.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="a-chat.iws" />
@@ -66,18 +52,18 @@
       <file leaf-file-name="collections_controller.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/collections_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.8571428">
-              <caret line="217" column="83" selection-start-line="217" selection-start-column="83" selection-end-line="217" selection-end-column="83" />
+            <state vertical-scroll-proportion="-8.642858">
+              <caret line="334" column="22" selection-start-line="334" selection-start-column="22" selection-end-line="334" selection-end-column="22" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ability.rb" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ability.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/models/ability.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-14.714286">
-              <caret line="97" column="32" selection-start-line="97" selection-start-column="32" selection-end-line="97" selection-end-column="32" />
+            <state vertical-scroll-proportion="0.7466216">
+              <caret line="97" column="31" selection-start-line="97" selection-start-column="31" selection-end-line="97" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -133,7 +119,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="show.json.jbuilder" pinned="false" current-in-tab="true">
+      <file leaf-file-name="show.json.jbuilder" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/users/show.json.jbuilder">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
@@ -214,13 +200,13 @@
         <option value="$PROJECT_DIR$/lib/base64_to_upload.rb" />
         <option value="$PROJECT_DIR$/config/initializers/achat.rb" />
         <option value="$PROJECT_DIR$/app/models/user.rb" />
-        <option value="$PROJECT_DIR$/app/controllers/collections_controller.rb" />
-        <option value="$PROJECT_DIR$/app/models/ability.rb" />
         <option value="$PROJECT_DIR$/app/views/collections/show.json.jbuilder" />
         <option value="$PROJECT_DIR$/app/views/users/_show.json.jbuilder" />
         <option value="$PROJECT_DIR$/app/views/collections/_show_user_info.json.jbuilder" />
         <option value="$PROJECT_DIR$/app/views/collections/index.json.jbuilder" />
         <option value="$PROJECT_DIR$/app/views/users/show.json.jbuilder" />
+        <option value="$PROJECT_DIR$/app/controllers/collections_controller.rb" />
+        <option value="$PROJECT_DIR$/app/models/ability.rb" />
       </list>
     </option>
   </component>
@@ -1253,22 +1239,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/collections_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.8571428">
-          <caret line="217" column="83" selection-start-line="217" selection-start-column="83" selection-end-line="217" selection-end-column="83" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/ability.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-14.714286">
-          <caret line="97" column="32" selection-start-line="97" selection-start-column="32" selection-end-line="97" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/collections/show.json.jbuilder">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1321,6 +1291,22 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="15" selection-start-line="0" selection-start-column="15" selection-end-line="0" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/collections_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.642858">
+          <caret line="334" column="22" selection-start-line="334" selection-start-column="22" selection-end-line="334" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/ability.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7466216">
+          <caret line="97" column="31" selection-start-line="97" selection-start-column="31" selection-end-line="97" selection-end-column="31" />
           <folding />
         </state>
       </provider>

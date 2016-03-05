@@ -315,7 +315,7 @@ class CollectionsController < ApplicationController
   def like_collection
     if @collection && @collection.public
       current_user.liked_collections.push(@collection)
-      if current_user.liked_collections.save
+      if current_user.save
         respond_to do |format|
           format.json { render json: { status: :ok }, status: :ok }
         end
@@ -332,7 +332,7 @@ class CollectionsController < ApplicationController
   def dislike_collection
     if @collection
       current_user.liked_collections.delete(@collection)
-      if current_user.liked_collections.save
+      if current_user.save
         respond_to do |format|
           format.json { render json: { status: :ok }, status: :ok }
         end

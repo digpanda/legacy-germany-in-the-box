@@ -44,9 +44,10 @@ class Ability
            :update,
            :destroy,
            :show_liked_by_me,
-           :like_collection,
            :show_my_collections,
            :dislike_collection], Collection, :user => user
+
+      can [:like_collection, :dislike_collection], Collection
 
       can :manage, Address, :user => user
 
@@ -94,9 +95,9 @@ class Ability
            :update,
            :destroy,
            :show_liked_by_me,
-           :like_collection,
-           :show_my_collections,
-           :dislike_collection], Collection, :user => user
+           :show_my_collections], Collection, :user => user
+
+      can [:like_collection, :dislike_collection], Collection
 
     elsif user.role == :admin
     end
