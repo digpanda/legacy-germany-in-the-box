@@ -13,7 +13,9 @@ class Ability
            :autocomplete_product_name,
            :search], Product
 
-      can [:show], Product, :status => true
+      can [:show,
+           :like_product,
+           :unlike_product], Product, :status => true
 
       can [:index,
            :search,
@@ -49,7 +51,8 @@ class Ability
            :show_my_collections,
            :dislike_collection], Collection, :user => user
 
-      can [:like_collection, :dislike_collection], Collection
+      can [:like_collection,
+           :dislike_collection], Collection
 
       can :manage, Address, :user => user
 
@@ -62,7 +65,9 @@ class Ability
            :autocomplete_product_name,
            :search], Product
 
-      can [:show], Product, :status => true
+      can [:show,
+           :like_product,
+           :unlike_product], Product, :status => true
 
       can [:remove_sku,
            :remove_option,

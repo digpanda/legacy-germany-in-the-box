@@ -41,6 +41,8 @@ Rails.application.routes.draw do
     match 'remove_variant/:variant_id',             via: [:delete], to: :remove_variant,              as: :remove_variant,              :on => :member
     match 'remove_option/:variant_id/:option_id',   via: [:delete], to: :remove_option,               as: :remove_option,               :on => :member
     match :get_sku_for_options,                     via: [:get],    to: :get_sku_for_options,         as: :get_sku_for_options,         :on => :member
+    match :like_product,                            via: [:patch],  to: :like_product,                as: :like_product,                :on => :member
+    match :unlike_product,                          via: [:patch],  to: :unlike_product,              as: :unlike_product,              :on => :member
 
     match :autocomplete_product_name,               via: [:get],    to: :autocomplete_product_name,   as: :autocomplete_product_name,   :on => :collection
     match 'search',                                 via: [:get],    to: :search,                      as: :search,                      :on => :collection

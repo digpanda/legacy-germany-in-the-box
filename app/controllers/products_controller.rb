@@ -12,6 +12,42 @@ class ProductsController < ApplicationController
 
   load_and_authorize_resource
 
+  def like_product
+    o = current_user.dCollection = Collection.create( :name => :default, :user => current_user ) if current_user.dCollection
+    o.products.push(@product)
+
+    if o.save
+      respond_to do |format|
+        format.html { redirect_to request.referer }
+        format.json { render :json => { :status => :ok, :collection_id => o.id }, :status => :ok }
+      end
+
+      return
+    end
+
+    respond_to do |format|
+      format.json { render :json => { :status => :lo }, :status => :unprocessable_entity }
+    end
+  end
+
+  def unlike_product
+    o = current_user.dCollection = Collection.create( :name => :default, :user => current_user ) if current_user.dCollection
+    o.products.delete(@product)
+
+    if o.save
+      respond_to do |format|
+        format.html { redirect_to request.referer }
+        format.json { render :json => { :status => :ok, :collection_id => o.id }, :status => :ok }
+      end
+
+      return
+    end
+
+    respond_to do |format|
+      format.json { render :json => { :status => :ko  }, :status => :unprocessable_entity }
+    end
+  end
+
   def remove_sku
     @product.skus.find(params[:sku_id]).delete
     redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_product_detail, :product_id => @product.id)

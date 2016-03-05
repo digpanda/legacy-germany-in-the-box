@@ -29,17 +29,19 @@ class User
   has_many :orders,                                 :inverse_of => :user,   :dependent => :restrict
   has_many :addresses,                              :inverse_of => :user,   :dependent => :restrict
 
-  has_one  :shop,   :inverse_of => :shopkeeper,   :dependent => :restrict
+  has_one  :shop,         :inverse_of => :shopkeeper,   :dependent => :restrict
+  has_one  :dCollection,  :inverse_of => :user,         :dependent => :restrict,  :class_name => 'Collection'
 
   genderize (:gender)
   mount_uploader :pic, AttachmentUploader
 
-  validates :role,      presence: true, inclusion: {in: [:customer, :shopkeeper, :admin]}
-  validates :username,  presence: true
-  validates :email,     presence: true, uniqueness: true
-  validates :birth,     presence: true, :if => lambda { :customer == self.role }
-  validates :gender,    presence: true, :if => lambda { :customer == self.role }
-  validates :status,    presence: true
+  validates :role,          presence: true, inclusion: {in: [:customer, :shopkeeper, :admin]}
+  validates :username,      presence: true
+  validates :email,         presence: true, uniqueness: true
+  validates :birth,         presence: true, :if => lambda { :customer == self.role }
+  validates :gender,        presence: true, :if => lambda { :customer == self.role }
+  validates :status,        presence: true
+  validates :dCollection,   presence: true
 
   validates :oCollections, :length => { :maximum => Rails.configuration.max_customer_collections },   :if => lambda { :customer   == self.role }
   validates :oCollections, :length => { :maximum => Rails.configuration.max_shopkeeper_collections }, :if => lambda { :shopkeeper == self.role }
