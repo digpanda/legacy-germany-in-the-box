@@ -41,6 +41,7 @@ class ApplicationController < ActionController::Base
       end
 
       if user_signed_in?
+        order.order_items.delete_all if [:shopkeeper, :admin].include?(current_user.role)
         order.user = current_user
       end
 

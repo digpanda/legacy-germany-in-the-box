@@ -22,20 +22,18 @@ class OrdersController < ApplicationController
   def add_product
     product = Product.find(params[:sku][:product_id])
     sku = product.get_sku(params[:sku][:option_ids].split(','))
+    quantity = params[:sku][:quantity].to_i
 
-    existing_order_item = current_order.order_items.to_a.find { |i| i.product.id === product.id }
+    existing_order_item = current_order.order_items.to_a.find { |i| i.product.id == product.id && i.sku_id == sku.id}
 
-    if not sku.limited or sku.quantity > 0
+    if not sku.limited or sku.quantity >= quantity
       if existing_order_item.present?
-        existing_order_item.weight = sku.weight
-        existing_order_item.quantity += 1
-        existing_order_item.sku_id = sku.id.to_s
-        existing_order_item.option_ids = sku.option_ids
+        existing_order_item.quantity += quantity
         existing_order_item.save!
       else
         current_order_item = current_order.order_items.new
+        current_order_item.quantity = quantity
         current_order_item.weight = sku.weight
-        current_order_item.quantity = 1
         current_order_item.product = product
         current_order_item.sku_id = sku.id.to_s
         current_order_item.option_ids = sku.option_ids
