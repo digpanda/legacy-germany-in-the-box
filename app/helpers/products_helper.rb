@@ -55,8 +55,9 @@ module ProductsHelper
   end
 
   def get_options_for_select(product)
-    values = product.skus.map { |s| s.option_ids.compact.join(',') }
-    names  = product.skus.map do |s|
+    skus = product.skus.is_active.in_stock
+    values = skus.map { |s| s.option_ids.compact.join(',') }
+    names  = skus.map do |s|
       s.option_ids.compact.map do |oid|
         o = product.options.detect { |v| v.suboptions.find(oid) }.suboptions.find(oid)
         name = o.name_locales && o.name_locales[I18n.locale]

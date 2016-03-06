@@ -38,6 +38,7 @@ class Sku
   validates :option_ids,    presence: true
 
   scope :is_active,       ->        { where( :status => true ) }
+  scope :in_stock,        ->        { where( :quantity.gt => 0 ) }
 
   before_save :clean_blank_and_duplicated_option_ids
   before_save :clean_quantity, :unless => lambda { self.limited }
