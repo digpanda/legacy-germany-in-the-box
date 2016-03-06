@@ -13,7 +13,7 @@ class ProductsController < ApplicationController
   load_and_authorize_resource
 
   def like_product
-    o = current_user.dCollection = Collection.create( :name => :default, :user => current_user ) if current_user.dCollection
+    o = current_user.dCollection = Collection.create( :name => :default, :user => current_user ) unless current_user.dCollection
     o.products.push(@product)
 
     if o.save
@@ -31,7 +31,7 @@ class ProductsController < ApplicationController
   end
 
   def unlike_product
-    o = current_user.dCollection = Collection.create( :name => :default, :user => current_user ) if current_user.dCollection
+    o = current_user.dCollection = Collection.create( :name => :default, :user => current_user ) unless current_user.dCollection
     o.products.delete(@product)
 
     if o.save
