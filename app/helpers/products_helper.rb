@@ -60,8 +60,7 @@ module ProductsHelper
     names  = skus.map do |s|
       s.option_ids.compact.map do |oid|
         o = product.options.detect { |v| v.suboptions.find(oid) }.suboptions.find(oid)
-        name = o.name_locales && o.name_locales[I18n.locale]
-        name ? name : o.name
+        o.get_locale_name
       end.join(', ')
     end
     values.each_with_index.map { |v,i| [names[i], v] }
@@ -75,7 +74,7 @@ module ProductsHelper
     end
 
     variants.each_with_index.map do |v, i|
-      o = v.suboptions.find(option_ids[i])
+      o = v.suboptions.find(sku.option_ids[i])
       { name: v.name, name_locales: v.name_locales, option: { id: o.id, name: o.name, name_locales: o.name_locales } }
     end
   end

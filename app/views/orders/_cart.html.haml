@@ -19,7 +19,8 @@
         %th= I18n.t(:variant_option, scope: :cart)
         %th= I18n.t(:quantity, scope: :cart)
         %th= I18n.t(:unit_price, scope: :cart)
-        %th= I18n.t(:operations, scope: :cart)
+        - unless @readonly
+          %th= I18n.t(:operations, scope: :cart)
     %tbody
       - @order.order_items.each do |i|
         %tr

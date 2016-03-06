@@ -24,7 +24,7 @@ class OrdersController < ApplicationController
     sku = product.get_sku(params[:sku][:option_ids].split(','))
     quantity = params[:sku][:quantity].to_i
 
-    existing_order_item = current_order.order_items.to_a.find { |i| i.product.id == product.id && i.sku_id == sku.id}
+    existing_order_item = current_order.order_items.to_a.find { |i| i.product.id == product.id && i.sku_id == sku.id.to_s}
 
     if not sku.limited or sku.quantity >= quantity
       if existing_order_item.present?
@@ -32,11 +32,14 @@ class OrdersController < ApplicationController
         existing_order_item.save!
       else
         current_order_item = current_order.order_items.new
+        current_order_item.price = sku.price
         current_order_item.quantity = quantity
         current_order_item.weight = sku.weight
         current_order_item.product = product
+        current_order_item.product_name = product.name
         current_order_item.sku_id = sku.id.to_s
         current_order_item.option_ids = sku.option_ids
+        current_order_item.option_names = get_options(sku)
         current_order_item.save!
       end
 
@@ -121,6 +124,7 @@ class OrdersController < ApplicationController
     all_products_available = true;
     shop_total_prices = {}
     product_name = nil
+    sku = nil
 
     current_order.order_items.each do |oi|
       product = oi.product
@@ -143,7 +147,7 @@ class OrdersController < ApplicationController
     end
 
     if !all_products_available
-      msg = I18n.t(:not_all_available, scope: :checkout, :product_name => product_name)
+      msg = I18n.t(:not_all_available, scope: :checkout, :product_name => product_name, :option_names => get_options_txt(sku))
 
       respond_to do |format|
         format.html {
@@ -200,12 +204,12 @@ class OrdersController < ApplicationController
     else
       respond_to do |format|
         format.html {
-          flash[:error] = I18n.t(:checkout_ko, scope: :checkout, :product_name => product_name)
+          flash[:error] = current_order.errors.full_messages.first
           redirect_to request.referrer
         }
 
         format.json {
-          render :json => { :status => :ko }, :status => :unprocessable_entity
+          render :json => { :status => :ko, :msg => current_order.errors.full_messages.first }, :status => :unprocessable_entity
         }
       end
     end
@@ -250,5 +254,31 @@ class OrdersController < ApplicationController
 
   def set_order
     @order = Order.find(params[:id])
+  end
+
+  def get_options(sku)
+    variants = sku.option_ids.map do |oid|
+      sku.product.options.detect do |v|
+        v.suboptions.find(oid)
+      end
+    end
+
+    variants.each_with_index.map do |v, i|
+      o = v.suboptions.find(sku.option_ids[i])
+      { name: v.get_locale_name, option: { name: o.get_locale_name } }
+    end
+  end
+
+  def get_options_txt(sku)
+    variants = sku.option_ids.map do |oid|
+      sku.product.options.detect do |v|
+        v.suboptions.find(oid)
+      end
+    end
+
+    variants.each_with_index.map do |v, i|
+      o = v.suboptions.find(sku.option_ids[i])
+      o.get_locale_name
+    end.join(', ')
   end
 end
