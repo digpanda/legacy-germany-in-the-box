@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
 
   before_action :authenticate_user!, except: [:set_session_locale]
 
-  acts_as_token_authentication_handler_for User, if: lambda { |controller| controller.request.format.json? }
+  acts_as_token_authentication_handler_for User, if: lambda { |controller| controller.request.format.json? }, :fallback => :none
 
   before_action { params[:top_menu_active_part] = current_top_menu_active_part }
 
