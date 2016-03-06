@@ -66,8 +66,17 @@ module ProductsHelper
     values.each_with_index.map { |v,i| [names[i], v] }
   end
 
-  def get_options_list(v)
-    get_options_list_from_cache(v)
+  def get_options_json(sku)
+    variants = sku.option_ids.map do |oid|
+      sku.product.options.detect do |v|
+        v.suboptions.find(oid)
+      end
+    end
+
+    variants.each_with_index.map do |v, i|
+      o = v.suboptions.find(option_ids[i])
+      { name: v.name, name_locales: v.name_locales, option: { id: o.id, name: o.name, name_locales: o.name_locales } }
+    end
   end
 
   def get_grouped_categories_options

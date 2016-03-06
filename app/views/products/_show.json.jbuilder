@@ -8,4 +8,4 @@ end
 
 json.categories product.categories.map { |c| { name: c.name, url: category_url(c) } } if product.categories.present?
 
-json.skus product.skus.map { |s| s.get_options_json }
+json.skus product.skus.map { |s| get_options_json(s) }

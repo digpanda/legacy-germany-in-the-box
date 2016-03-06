@@ -21,7 +21,7 @@ class OrdersController < ApplicationController
 
   def add_product
     product = Product.find(params[:sku][:product_id])
-    sku = product.get_sku(params[:sku][:option_ids])
+    sku = product.get_sku(params[:sku][:option_ids].split(','))
 
     existing_order_item = current_order.order_items.to_a.find { |i| i.product.id === product.id }
 
