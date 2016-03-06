@@ -13,13 +13,13 @@ class ProductsController < ApplicationController
   load_and_authorize_resource
 
   def like_product
-    o = current_user.dCollection = Collection.create( :name => :default, :user => current_user ) unless current_user.dCollection
-    o.products.push(@product)
+    current_user.dCollection = Collection.create( :name => :default, :user => current_user ) unless current_user.dCollection
+    current_user.dCollection.products.push(@product) unless current_user.dCollection.products.find(@product)
 
-    if o.save
+    if current_user.dCollection.save
       respond_to do |format|
         format.html { redirect_to request.referer }
-        format.json { render :json => { :status => :ok, :collection_id => o.id }, :status => :ok }
+        format.json { render :json => { :status => :ok, :collection_id => current_user.dCollection.id }, :status => :ok }
       end
 
       return
@@ -30,14 +30,14 @@ class ProductsController < ApplicationController
     end
   end
 
-  def unlike_product
-    o = current_user.dCollection = Collection.create( :name => :default, :user => current_user ) unless current_user.dCollection
-    o.products.delete(@product)
+  def dislike_product
+    current_user.dCollection = Collection.create( :name => :default, :user => current_user ) unless current_user.dCollection
+    current_user.dCollection.products.delete(@product)
 
-    if o.save
+    if current_user.dCollection.save
       respond_to do |format|
         format.html { redirect_to request.referer }
-        format.json { render :json => { :status => :ok, :collection_id => o.id }, :status => :ok }
+        format.json { render :json => { :status => :ok, :collection_id => current_user.dCollection.id }, :status => :ok }
       end
 
       return

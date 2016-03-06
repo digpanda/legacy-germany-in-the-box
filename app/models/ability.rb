@@ -14,8 +14,9 @@ class Ability
            :search], Product
 
       can [:show,
-           :like_product,
-           :unlike_product], Product, :status => true
+           :like_product], Product, :status => true
+
+      can [:dislike_product], Product
 
       can [:index,
            :search,
@@ -66,8 +67,9 @@ class Ability
            :search], Product
 
       can [:show,
-           :like_product,
-           :unlike_product], Product, :status => true
+           :like_product], Product, :status => true
+
+      can [:dislike_product], Product
 
       can [:remove_sku,
            :remove_option,
