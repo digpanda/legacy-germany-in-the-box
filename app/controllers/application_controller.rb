@@ -13,14 +13,12 @@ class ApplicationController < ActionController::Base
 
   before_action { params[:top_menu_active_part] = current_top_menu_active_part }
 
-  before_action :set_locale, except: :set_session_locale
-
   after_action :reset_last_captcha_code!
 
   helper_method :current_order
 
   def set_session_locale
-    session[:locale] = params[:locale]
+    I18n.locale = params[:locale]
     redirect_to request.referer
   end
 
@@ -60,11 +58,6 @@ class ApplicationController < ActionController::Base
 
   def current_top_menu_active_part
     :home
-  end
-
-  def set_locale
-    params[:locale]= session[:locale]
-    I18n.locale = params[:locale]
   end
 
 end

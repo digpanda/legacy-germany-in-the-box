@@ -54,8 +54,16 @@ module ProductsHelper
     return sku && (not sku.limited or sku.quantity >= quantity )
   end
 
-  def get_option(oid)
-
+  def get_options_for_select(product)
+    values = product.skus.map { |s| s.option_ids.compact.join(',') }
+    names  = product.skus.map do |s|
+      s.option_ids.compact.map do |oid|
+        o = product.options.detect { |v| v.suboptions.find(oid) }.suboptions.find(oid)
+        name = o.name_locales && o.name_locales[I18n.locale]
+        name ? name : o.name
+      end.join(', ')
+    end
+    values.each_with_index.map { |v,i| [names[i], v] }
   end
 
   def get_options_list(v)

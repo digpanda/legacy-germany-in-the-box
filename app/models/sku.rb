@@ -56,7 +56,9 @@ class Sku
   end
 
   def get_option(oid)
-    self.option_ids.map { |oid| self.product.options.map { |v| o = v.suboptions.find(oid); o.name if o }.compact.join }.join(', ')
+    options = self.options_ids.map {}
+    ids = self.option_ids.map { |oid| self.product.options.map { |v| o = v.suboptions.find(oid); o.id if o }.compact.join }
+    names = self.option_ids.map { |oid| self.product.options.map { |v| o = v.suboptions.find(oid); o.name if o }.compact.join }
   end
 
   private

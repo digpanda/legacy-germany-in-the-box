@@ -175,7 +175,7 @@
                       %ul.list.product-page-meta-price-list
                         %li
                           %span.product-page-meta-title= I18n.t(:variant_option, scope: :cart)
-                          %span.product-page-meta-price= select_tag 'sku[option_ids][]', options_for_select(p.skus.map { |s| s.option_ids.map { |oid| s.get_option(oid)} }, ), :class => 'form-control', :id => 'option_ids'
+                          %span.product-page-meta-price= select_tag 'sku[option_ids][]', options_for_select( get_options_for_select(p) ), :class => 'form-control', :id => 'option_ids'
                     - if p.get_mas
                       %li
                         %ul.list.product-page-meta-price-list
