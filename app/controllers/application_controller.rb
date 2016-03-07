@@ -58,7 +58,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_orders
-    @current_orders ||= session[:order_ids].map { |sid, oid| [sid, Order.find(oid)] unless sid.empty? }.compact.uniq
+    @current_orders ||= session[:order_ids].map { |sid, oid| [Shop.find(sid), Order.find(oid)] unless sid.empty? }.compact.uniq
   end
 
   def total_number_of_products

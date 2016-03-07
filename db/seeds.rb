@@ -653,16 +653,17 @@ def create_upload_from_image_file(model, image_name, content_type = 'image/jpeg'
   file
 end
 
-Shop.where(:name => 'Herz-Buffet').delete;
-Product.where(:name => '10 Blatt Seidenpapier ♥ Panda ♥').all.delete;
+User.where(:email => 'skopkeeper@hotmail.com').all.delete;
+Shop.where(:name => /.*Herz-Buffet.*/i).all.delete;
+Product.where(:name => /.*10 Blatt Seidenpapier ♥ Panda ♥.*/).all.delete;
 Product.where({:name => /.*熊猫壁纸.*/i}).all.delete;
 
-shopkeeper = User.where(:email => 'shopkeeper@hotmail.com').first
+shopkeeper = User.where(:email => 'shopkeeper01@hotmail.com').first
 shopkeeper.role = :shopkeeper
 shopkeeper.save!
 
 shop = Shop.create!(
-    :name => 'Herz-Buffet',
+    :name => 'Herz-Buffet 01',
     :desc => 'Alle Bestellungen werden automatisch bestätigt und können sofort bezahlt werden. Die Versandkosten betragen deutschlandweit pauschal 3,50€, egal wieviel ihr bestellt. Paypalgebühren werden nicht erhoben. Jeder Bestellung liegt eine Rechnung mit ausgewiesener Umsatzsteuer bei.',
     :logo => create_upload_from_image_file(Shop.name.downcase, 'herz-buffet-logo.jpg'),
     :banner => create_upload_from_image_file(Shop.name.downcase, 'herz-buffet-banner.jpg'),
@@ -671,7 +672,81 @@ shop = Shop.create!(
 );
 
 product = Product.new(
-    :name => '10 Blatt Seidenpapier ♥ Panda ♥',
+    :name => '10 Blatt Seidenpapier ♥ Panda ♥ 01',
+    :desc => %Q{
+  ♥ 10 Bögen Seidenpapier
+  ♥ Panda
+  ♥ Größe je Bogen: 50 x 70cm
+  ♥ Das Papier eignet sich nicht nur wundervoll zum Verpacken
+  ♥ Das Papier wird auf 18x25cm gefaltet versendet
+  },
+    :cover => 'https://images2.dawandastatic.com/23/c2/61/cf/40/44/4d/62/a4/30/1b/3c/00/7b/12/fe/product_l.JPEG',
+    #:img0 => 'https://images2.dawandastatic.com/23/c2/61/cf/40/44/4d/62/a4/30/1b/3c/00/7b/12/fe/product_l.JPEG',
+    #:img1 => 'https://images2.dawandastatic.com/23/c2/61/cf/40/44/4d/62/a4/30/1b/3c/00/7b/12/fe/product_l.JPEG',
+    #:img2 => 'https://images2.dawandastatic.com/23/c2/61/cf/40/44/4d/62/a4/30/1b/3c/00/7b/12/fe/product_l.JPEG',
+    #:img3 => 'https://images2.dawandastatic.com/23/c2/61/cf/40/44/4d/62/a4/30/1b/3c/00/7b/12/fe/product_l.JPEG',
+    :brand => 'Herz-Buffet',
+    :tags => ['壁纸', '熊猫', 'buffet'],
+    :shop => shop
+)
+
+v1 = VariantOption.new(:name => :size, :product => product, :name_locales => { :'zh-CN' => '尺寸', :de => 'Größe'})
+v1_o1 = VariantOption.new(:parent => v1, :name => :small, :name_locales => { :'zh-CN' => '小号', :de => 'klein'})
+v1_o2 = VariantOption.new(:parent => v1, :name => :medium, :name_locales => { :'zh-CN' => '中号', :de => 'mittlere'})
+v1_o3 = VariantOption.new(:parent => v1, :name => :large, :name_locales => { :'zh-CN' => '大号', :de => 'groß'})
+
+v2 = VariantOption.new(:name => :color, :product => product,  :name_locales => { :'zh-CN' => '颜色', :de => 'Farbe'})
+v2_o1 = VariantOption.new(:parent => v2, :name => :red, :name_locales => { :'zh-CN' => '红色', :de => 'rot'})
+v2_o2 = VariantOption.new(:parent => v2, :name => :blue, :name_locales => { :'zh-CN' => '蓝色', :de => 'blau'})
+v2_o3 = VariantOption.new(:parent => v2, :name => :gold, :name_locales => { :'zh-CN' => '金色', :de => 'gold'})
+
+s1 = Sku.new(:price => 10, :product => product, :quantity => 5)
+s1.option_ids << v1_o1.id.to_s
+s1.option_ids << v2_o1.id.to_s
+s1.img0 = create_upload_from_image_file(Product.name.downcase, 'herz_buffet_large_10_blatt_seidenpapier_panda.jpg')
+s1.img1 = create_upload_from_image_file(Product.name.downcase, 'herz_buffet_large_10_blatt_seidenpapier_panda.jpg')
+s1.img2 = create_upload_from_image_file(Product.name.downcase, 'herz_buffet_large_10_blatt_seidenpapier_panda.jpg')
+s1.img3 = create_upload_from_image_file(Product.name.downcase, 'herz_buffet_large_10_blatt_seidenpapier_panda.jpg')
+s1.save!
+
+s2 = Sku.new(:price => 10, :product => product, :quantity => 4)
+s2.option_ids << v1_o2.id.to_s
+s2.option_ids << v2_o1.id.to_s
+s2.img0 = create_upload_from_image_file(Product.name.downcase, 'herz_buffet_large_10_blatt_seidenpapier_panda.jpg')
+s2.img1 = create_upload_from_image_file(Product.name.downcase, 'herz_buffet_large_10_blatt_seidenpapier_panda.jpg')
+s2.img2 = create_upload_from_image_file(Product.name.downcase, 'herz_buffet_large_10_blatt_seidenpapier_panda.jpg')
+s2.img3 = create_upload_from_image_file(Product.name.downcase, 'herz_buffet_large_10_blatt_seidenpapier_panda.jpg')
+s2.save!
+
+s3 = Sku.new(:price => 20, :product => product, :limited => true, :quantity => 3)
+s3.option_ids << v1_o3.id.to_s
+s3.option_ids << v2_o3.id.to_s
+s3.img0 = create_upload_from_image_file(Product.name.downcase, 'herz_buffet_large_10_blatt_seidenpapier_panda.jpg')
+s3.img1 = create_upload_from_image_file(Product.name.downcase, 'herz_buffet_large_10_blatt_seidenpapier_panda.jpg')
+s3.img2 = create_upload_from_image_file(Product.name.downcase, 'herz_buffet_large_10_blatt_seidenpapier_panda.jpg')
+s3.img3 = create_upload_from_image_file(Product.name.downcase, 'herz_buffet_large_10_blatt_seidenpapier_panda.jpg')
+s3.save!
+
+product.categories << category_home_accessories
+
+shop.products << product
+shop.save!
+
+shopkeeper = User.where(:email => 'shopkeeper02@hotmail.com').first
+shopkeeper.role = :shopkeeper
+shopkeeper.save!
+
+shop = Shop.create!(
+    :name => 'Herz-Buffet 02',
+    :desc => 'Alle Bestellungen werden automatisch bestätigt und können sofort bezahlt werden. Die Versandkosten betragen deutschlandweit pauschal 3,50€, egal wieviel ihr bestellt. Paypalgebühren werden nicht erhoben. Jeder Bestellung liegt eine Rechnung mit ausgewiesener Umsatzsteuer bei.',
+    :logo => create_upload_from_image_file(Shop.name.downcase, 'herz-buffet-logo.jpg'),
+    :banner => create_upload_from_image_file(Shop.name.downcase, 'herz-buffet-banner.jpg'),
+    :min_total => 20,
+    :shopkeeper => shopkeeper
+);
+
+product = Product.new(
+    :name => '10 Blatt Seidenpapier ♥ Panda ♥ 02',
     :desc => %Q{
   ♥ 10 Bögen Seidenpapier
   ♥ Panda

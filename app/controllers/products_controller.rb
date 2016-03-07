@@ -144,7 +144,7 @@ class ProductsController < ApplicationController
   end
 
   def list_popular_products
-    @products = Product.is_active.where(:name => '10 Blatt Seidenpapier ♥ Panda ♥').paginate(:page => (params[:page] ? params[:page].to_i : 1), :per_page => Rails.configuration.limit_for_popular_products);
+    @products = Product.is_active.where(:name => /.*10 Blatt Seidenpapier ♥ Panda ♥.*/i).paginate(:page => (params[:page] ? params[:page].to_i : 1), :per_page => Rails.configuration.limit_for_popular_products);
 
     #@products = get_popular_proudcts_from_cache.paginate(:page => (params[:page] ? params[:page].to_i : 1), :per_page => Rails.configuration.limit_for_popular_products)
 
