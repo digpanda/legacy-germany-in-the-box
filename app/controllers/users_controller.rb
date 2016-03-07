@@ -78,7 +78,7 @@ class UsersController < ApplicationController
 
   def update
     respond_to do |format|
-      if @user.update(user_params.except(:email, :username))
+      if @user.update(user_params.except(:email))
         format.html {
           render :edit, user_info_edit_part: params[:user_info_edit_part]
         }
