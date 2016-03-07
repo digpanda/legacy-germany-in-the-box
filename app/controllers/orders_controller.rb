@@ -216,7 +216,8 @@ class OrdersController < ApplicationController
   end
 
   def destroy
-    session[:order_ids].delete(@order.order_items.first.product.shop.id.to_s)
+    shop_id = @order.order_items.first.product.shop.id.to_s
+    session[:order_ids].delete(shop_id)
 
     if @order && @order.status == :new && @order.order_items.delete_all && @order.delete
       respond_to do |format|
@@ -244,8 +245,11 @@ class OrdersController < ApplicationController
   end
 
   def continue
-    if @order && session[:order_ids][@order.order_items.first.product.shop.id.to_s] != @order.id.to_s
-      session[:order_id] = params[:id]
+    shop_id = @order.order_items.first.product.shop.id.to_s
+    if @order && current_order(shop_id) != @order
+      session.delete(:order_ids)
+      session[:order_ids] = {}
+      session[:order_ids][shop_id] = @order.id.to_s
       flash[:info] = I18n.t(:continue_message, scope: :edit_order)
     end
 
