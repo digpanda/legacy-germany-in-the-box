@@ -55,5 +55,5 @@
           %p= I18n.t(:add_new_address, scope: :edit_address)
 
 .row
-  = hidden_field_tag 'order_id', "#{current_order.id}"
+  = hidden_field_tag :shop_id, "#{params[:shop_id]}"
   = submit_tag I18n.t(:checkout, scope: :checkout), :class => "btn btn-primary"

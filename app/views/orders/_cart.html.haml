@@ -22,7 +22,7 @@
         - unless @readonly
           %th= I18n.t(:operations, scope: :cart)
     %tbody
-      - @order.order_items.each do |i|
+      - order.order_items.each do |i|
         %tr
           %td.cart-item-image
             %a{:href => "#"}
@@ -44,7 +44,7 @@
 - for_device_type :mobile do
   %table.table.cart-table
     %tbody
-      - @order.order_items.each do |i|
+      - order.order_items.each do |i|
         %tr.info
           %th= I18n.t(:item, scope: :cart)
           %td.cart-item-image

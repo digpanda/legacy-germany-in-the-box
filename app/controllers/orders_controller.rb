@@ -12,10 +12,9 @@ class OrdersController < ApplicationController
 
   def manage_cart
     @readonly = false
-    @order = current_order
   end
 
-  def set_address_payment
+  def set_address
     @address = Address.new
   end
 
@@ -24,14 +23,14 @@ class OrdersController < ApplicationController
     sku = product.get_sku(params[:sku][:option_ids].split(','))
     quantity = params[:sku][:quantity].to_i
 
-    existing_order_item = current_order.order_items.to_a.find { |i| i.product.id == product.id && i.sku_id == sku.id.to_s}
+    existing_order_item = current_order(product.shop.id.to_s).order_items.to_a.find { |i| i.product.id == product.id && i.sku_id == sku.id.to_s}
 
     if not sku.limited or sku.quantity >= quantity
       if existing_order_item.present?
         existing_order_item.quantity += quantity
         existing_order_item.save!
       else
-        current_order_item = current_order.order_items.new
+        current_order_item = current_order(product.shop.id.to_s).order_items.build
         current_order_item.price = sku.price
         current_order_item.quantity = quantity
         current_order_item.weight = sku.weight
@@ -43,7 +42,7 @@ class OrdersController < ApplicationController
         current_order_item.save!
       end
 
-      if current_order.save
+      if current_order(product.shop.id.to_s).save
         respond_to do |format|
           format.html {
             flash[:info] = I18n.t(:add_product_ok, scope: :edit_order)
@@ -117,6 +116,7 @@ class OrdersController < ApplicationController
   end
 
   def checkout
+    current_order = current_order(params[:shop_id])
     current_order.status = :checked_out
     current_order.user = current_user
     current_order.delivery_destination = current_user.addresses.find(params[:delivery_destination_id])
@@ -189,7 +189,7 @@ class OrdersController < ApplicationController
         oi.save!
       end
 
-      session.delete(:order_id)
+      session[:order_ids].delete(params[:shop_id])
 
       respond_to do |format|
         format.html {
@@ -216,6 +216,8 @@ class OrdersController < ApplicationController
   end
 
   def destroy
+    session[:order_ids].delete(@order.order_items.first.product.shop.id.to_s)
+
     if @order && @order.status == :new && @order.order_items.delete_all && @order.delete
       respond_to do |format|
         format.html {
@@ -242,7 +244,7 @@ class OrdersController < ApplicationController
   end
 
   def continue
-    if @order && current_order != @order
+    if @order && session[:order_ids][@order.order_items.first.product.shop.id.to_s] != @order.id.to_s
       session[:order_id] = params[:id]
       flash[:info] = I18n.t(:continue_message, scope: :edit_order)
     end

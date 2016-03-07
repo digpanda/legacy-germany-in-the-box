@@ -65,7 +65,7 @@ Rails.application.routes.draw do
     match :adjust_products_amount,    via: [:patch],        to: :adjust_products_amount,  as: :adjust_products_amount_in,   :on => :collection
     match :checkout,                  via: [:post],         to: :checkout,                as: :checkout,                    :on => :collection
     match :manage_cart,               via: [:get],          to: :manage_cart,             as: :manage_cart,                 :on => :collection
-    match :set_address_payment,       via: [:patch, :get],  to: :set_address_payment,     as: :set_address_payment,         :on => :collection
+    match 'set_address/:shop_id/',    via: [:patch, :get],  to: :set_address,             as: :set_address,                 :on => :collection
 
     match :continue,                  via: [:get],          to: :continue,                as: :continue,                    :on => :member
   end

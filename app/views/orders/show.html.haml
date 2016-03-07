@@ -1,5 +1,5 @@
 .row
-  = render 'cart'
+  = render 'cart', order: @order
 
 - if @order.delivery_destination.present?
   .row

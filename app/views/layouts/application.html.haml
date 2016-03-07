@@ -70,7 +70,7 @@
       });
 
       #{generate_set_datepicker_lang_js}
-
+  = console
   %body
     %nav{:class => "#{for_device_type :desktop do 'navbar-fixed-top' end}" }
       .container
@@ -117,29 +117,24 @@
                   %a{:href => "#{manage_cart_orders_path}", :title => "#{I18n.t(:my_cart, scope: :top_menu)}"}
                     %i.fa.fa-shopping-cart
                     = for_device_type :desktop do I18n.t(:my_cart, scope: :top_menu) end
-                    %span.numberCircle= current_order.total_amount
+                    %span.numberCircle= total_number_of_products
                   .shopping-cart-box
-                    -if current_order.order_items.count > 0
-                      %ul.shopping-cart-items
-                        - current_order.order_items.each do |i|
-                          %li
-                            %a{:href => "#{manage_cart_orders_path}" }
-                              = image_tag get_uploaded_img_url(i.sku.img0)
-                              %h5= i.product.name
-                              %span.shopping-cart-item-price= "Subtotal: $#{i.sku.price * i.quantity}"
-                      %ul.list-inline.text-center
-                        %li
-                          %a{:href => "#{manage_cart_orders_path}"}
-                            %i.fa.fa-shopping-cart= I18n.t(:view_cart, scope: :top_menu)
-                        %li
-                          %a{:href => "#{manage_cart_orders_path}"}
-                            %i.fa.fa-check-square= I18n.t(:checkout, scope: :top_menu)
+                    -if total_number_of_products > 0
+                      - current_orders.each do |s, o|
+                        %ul.shopping-cart-items
+                          - o.order_items.each do |i|
+                            %li
+                              %a{:href => "#{manage_cart_orders_path}" }
+                                = image_tag get_uploaded_img_url(i.sku.img0)
+                                %h5= i.product.name
+                                %span.shopping-cart-item-price= "Subtotal: $#{i.sku.price * i.quantity}"
                     -else
                       %ul.list-inline.text-center
                         %li
                           %a{:href => "#{manage_cart_orders_path}"}
                             %i
                             = I18n.t(:empty_cart, scope: :top_menu)
+
                 - unless current_user
                   %li
                     %a.popup-text{ :id => 'sign_in_link', 'data-effect' => 'mfp-move-from-top', :href => '#login-dialog', :title => "#{I18n.t(:sign_in, scope: :top_menu)}"}
