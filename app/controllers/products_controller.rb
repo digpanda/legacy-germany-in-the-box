@@ -191,7 +191,8 @@ class ProductsController < ApplicationController
   def update
     respond_to do |format|
       if params.require(:product)[:categories]
-        @product.categories = params.require(:product)[:categories].map { |cid| Category.find(cid) if not cid.blank? }.compact
+        @product.categories.clear
+        @product.categories << params.require(:product)[:categories].map { |cid| Category.find(cid) if not cid.blank? }.compact
       end
 
       if @product.update(product_params)

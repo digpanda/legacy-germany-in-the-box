@@ -18,6 +18,9 @@ class Ability
 
       can [:dislike_product], Product
 
+      can [:show_products,
+           :list_products], Category
+
       can [:index,
            :search,
            :unfollow], User
@@ -78,6 +81,9 @@ class Ability
            :destroy], Product, :shop => { :shopkeeper => user }
 
       can [:create], Product
+
+      can [:show_products,
+           :list_products], Category
 
       can [:index,
            :search,
