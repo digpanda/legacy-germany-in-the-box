@@ -136,7 +136,7 @@ zh-CN:
     continue: 继续
     new: 尚未付款
     checked_out: 已经付款
-    continue_message: 您已更换了当前订单
+    continue_message: 您所选择的订单产品已经加入到当前购物车
     delete_ok: 订单成功删除
     delete_ko: 订单删除失败
     create_ok: 订单创建成功

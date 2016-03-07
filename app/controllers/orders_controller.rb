@@ -246,11 +246,39 @@ class OrdersController < ApplicationController
 
   def continue
     shop_id = @order.order_items.first.product.shop.id.to_s
-    if @order && current_order(shop_id) != @order
-      session.delete(:order_ids)
-      session[:order_ids] = {}
+
+    unless (co = current_order(shop_id))
       session[:order_ids][shop_id] = @order.id.to_s
-      flash[:info] = I18n.t(:continue_message, scope: :edit_order)
+    else
+      if @order != co
+        @order.order_items.each do |ooi|
+          coi = co.order_items.detect { |coi| ooi.sku_id == coi.sku_id }
+
+          if coi
+            coi.quantity += ooi.quantity
+            coi.save
+          else
+            sku = ooi.product.get_sku(ooi.option_ids)
+            noi = co.order_items.build
+            noi.price = sku.price
+            noi.quantity = ooi.quantity
+            noi.weight = sku.weight
+            noi.product = sku.product
+            noi.product_name = sku.product.name
+            noi.sku_id = sku.id.to_s
+            noi.option_ids = sku.option_ids
+            noi.option_names = get_options(sku)
+            noi.save
+          end
+
+          ooi.delete
+        end
+
+        @order.order_items.delete_all
+        @order.delete
+
+        flash[:info] = I18n.t(:continue_message, scope: :edit_order)
+      end
     end
 
     redirect_to manage_cart_orders_path

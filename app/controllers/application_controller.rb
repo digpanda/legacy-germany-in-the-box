@@ -34,7 +34,7 @@ class ApplicationController < ActionController::Base
       end
 
       unless order
-        order = Order.create!
+        order = Order.create
         session[:order_ids][shop_id] = order.id
       end
 
@@ -46,6 +46,7 @@ class ApplicationController < ActionController::Base
           end
         else
          order.user = current_user unless order.user
+         order.save
         end
       end
 
