@@ -41,7 +41,7 @@ class User
   validates :birth,         presence: true, :if => lambda { :customer == self.role }
   validates :gender,        presence: true, :if => lambda { :customer == self.role }
   validates :status,        presence: true
-  validates :dCollection,   presence: true
+  #validates :dCollection,   presence: true
 
   validates :oCollections, :length => { :maximum => Rails.configuration.max_customer_collections },   :if => lambda { :customer   == self.role }
   validates :oCollections, :length => { :maximum => Rails.configuration.max_shopkeeper_collections }, :if => lambda { :shopkeeper == self.role }
