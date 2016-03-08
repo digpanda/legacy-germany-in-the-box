@@ -36,12 +36,12 @@
                 =I18n.t(:shop, scope: :cart) + ': '
                 =link_to s.name, shop_path(s), :style => 'color: black; text-decoration: underline'
             .panel-body
-              .col-md-8
+              .col-md-9
                 = form_tag adjust_products_amount_in_orders_path, :id => 'orders_adjust_products_amount', :method => :patch do
                   = render 'cart', order: o
                   =submit_tag I18n.t(:update_cart, scope: :cart), :class => 'btn btn-primary btn-small'
                   =link_to I18n.t(:set_delivery_destination, scope: :cart), set_address_orders_path(s), :class => 'btn btn-primary btn-small'
-              .col-md-4
+              .col-md-3
                 %ul.cart-total-list
                   %li
                     %span= I18n.t(:subtotal, scope: :cart)
