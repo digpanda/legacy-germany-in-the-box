@@ -2,14 +2,14 @@ module FunctionCache
 
   def get_root_level_categories_from_cache
     Rails.cache.fetch("all_root_level_categories_cache", :expires_in => Rails.configuration.products_search_cache_expire_limit ) {
-      root_level_categories = Category.roots
+      root_level_categories = Category.roots.is_active
       root_level_categories.collect { |c| c.children.count > 1 ? c : c.children.first }
     }
   end
 
   def get_first_level_categories_from_cache(root)
     Rails.cache.fetch("first_level_categories_cache_of_root_leve_#{root.id}", :expires_in => Rails.configuration.products_search_cache_expire_limit ) {
-      root.children.to_a.sort! { |a,b| a.children.count <=> b.children.count }.reverse!
+      root.children.is_active.to_a.sort! { |a,b| a.children.count <=> b.children.count }.reverse!
     }
   end
 
@@ -18,14 +18,14 @@ module FunctionCache
       if first_level_category.parent.present?
         products.count
       else
-        first_level_category.children.inject(0) { |sum, child| sum += child.products.count }
+        first_level_category.children.is_active.inject(0) { |sum, child| sum += child.products.count }
       end
     }
   end
 
   def get_second_level_categories_from_cache(first_level_category)
     Rails.cache.fetch("second_level_categories_cache_of_first_level_category_#{first_level_category.id}", :expires_in => Rails.configuration.products_search_cache_expire_limit ) {
-      first_level_category.children.to_a
+      first_level_category.children.is_active.to_a
     }
   end
 
@@ -51,7 +51,7 @@ module FunctionCache
       products_from_brands = Product.is_active.where({ brand: /.*#{term}.*/i }).sort_by {Random.rand}
 
       products_from_categories =  []
-      Category.where( { name: /.*#{term}.*/i } ).each do |c|
+      Category.is_active.where( { name: /.*#{term}.*/i } ).each do |c|
         products_from_categories |=  c.products.is_active
       end
 
@@ -104,7 +104,7 @@ module FunctionCache
     Rails.cache.fetch("get_grouped_categories_options_from_cache", :expires_in => Rails.configuration.popular_products_cache_expire_limit ) {
       categories = []
 
-      Category.roots.each do |rc|
+      Category.roots.is_active.each do |rc|
         categories += rc.children
       end
 

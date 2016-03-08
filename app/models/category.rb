@@ -7,9 +7,10 @@ class Category
 
   strip_attributes
 
-  field :name,  type: String
-  field :code,  type: String
-  field :cssc,  type: String
+  field :name,    type: String
+  field :code,    type: String
+  field :cssc,    type: String
+  field :status,  type: Boolean,  :default => true
 
   field :name_locales, type: Hash
 
@@ -20,6 +21,8 @@ class Category
 
   validates :name,    presence: true
   validates :code,    presence: true, :unless => lambda { self.parent.blank? }
+  validates :status,  presence: true
 
-  scope :roots,   ->  { where(:parent => nil) }
+  scope :roots,           ->  { where(:parent => nil) }
+  scope :is_active,       ->  { where( :status => true ) }
 end
