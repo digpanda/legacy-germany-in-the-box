@@ -319,7 +319,7 @@ Category.create!(
     :name => 'Baby Clothes of cotton',
     :code => 'L2-332',
     :parent => category_clothes_for_babies_essentials,
-    :name_locales => { :'zh-CN' => '婴儿衣装', :de => 'Babybekleidungen'}
+    :name_locales => { :'zh-CN' => '婴儿棉质衣装', :de => 'Babybekleidungen'}
 )
 
 Category.create!(
@@ -565,7 +565,7 @@ Category.create!(
     :name => 'Watch & Clock Parts',
     :code => 'L2-563',
     :parent => category_jewellery_watches,
-    :name_locales => { :'zh-CN' => '手表 & 钟', :de => 'Armbanduhren & Uhrenteile'}
+    :name_locales => { :'zh-CN' => '手表 & 钟表及部件', :de => 'Armbanduhren & Uhrenteile'}
 )
 
 #
