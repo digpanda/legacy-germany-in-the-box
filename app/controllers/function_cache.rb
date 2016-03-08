@@ -101,14 +101,14 @@ module FunctionCache
   end
 
   def get_grouped_categories_options_from_cache
-    Rails.cache.fetch("get_grouped_categories_options_from_cache", :expires_in => Rails.configuration.popular_products_cache_expire_limit ) {
+    Rails.cache.fetch("get_grouped_categories_options_from_cache_#{I18n.locale}", :expires_in => Rails.configuration.popular_products_cache_expire_limit ) {
       categories = []
 
       Category.roots.is_active.each do |rc|
-        categories += rc.children
+        categories += rc.children.is_active
       end
 
-      categories.map {|rc| [rc.name, rc.children.map {|cc| [cc.name_locales && cc.name_locales[I18n.locale] ? cc.name_locales[I18n.locale] : cc.name, cc.id.to_s]} ] }.to_a
+      categories.map {|rc| [rc.get_locale_name, rc.children.is_active.map {|cc| [cc.get_locale_name, cc.id.to_s]} ] }.to_a
     }
   end
 
