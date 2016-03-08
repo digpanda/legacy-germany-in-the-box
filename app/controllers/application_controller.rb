@@ -13,6 +13,8 @@ class ApplicationController < ActionController::Base
 
   before_action { params[:top_menu_active_part] = current_top_menu_active_part }
 
+  before_action :set_locale, except: :set_session_locale
+
   after_action :reset_last_captcha_code!
 
   helper_method :current_order, :current_orders, :total_number_of_products
@@ -72,6 +74,10 @@ class ApplicationController < ActionController::Base
 
   def current_top_menu_active_part
     :home
+  end
+
+  def set_locale
+    params[:locale]= Rails.configuration.default_locale if params[:locale]
   end
 
 end
