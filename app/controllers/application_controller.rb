@@ -77,7 +77,11 @@ class ApplicationController < ActionController::Base
   end
 
   def set_locale
-    params[:locale]= Rails.configuration.default_locale if params[:locale]
+    if current_user.role == :shopkeeper
+      I18n.locale = Rails.configuration.default_shopkeeper_locale
+    else
+      I18n.locale = Rails.configuration.default_customer_locale
+    end
   end
 
 end

@@ -309,9 +309,9 @@ de:
     unit_price: Preis
     operations: Aktionen
     subtotal: Preis
-    shipping: Tranportkosten
+    shipping: Tranport
     taxes: Steuer
-    total_price: Gesamter Preis
+    total_price: Gesamter
     update_cart: Einkaufswagen ändern
     set_delivery_destination: Anschrift auswählen
     variant_option: Variante
