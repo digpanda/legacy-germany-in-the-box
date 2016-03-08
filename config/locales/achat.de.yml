@@ -81,10 +81,10 @@ de:
     save: Speichern
     success: Ihr Konto ist erfolgreich aktualisiert.
   edit_following:
-    follow_ok: Die Beobachtung für den Nutzer erfolgreich aktiviert
-    follow_ko: Ein Fehler ist beim Aktivieren der Beobachtung des Nutzers aufgetreten.
+    follow_ok: Die Beobachtung für den Nutzer erfolgreich aktiviert!
+    follow_ko: Ein Fehler ist bei der Aktivierung der Beobachtung aufgetreten.
     unfollow_ok: Die Beobachtung für den Nutzer erfolgreich deaktiviert
-    unfoolow_ko: Ein Fehler ist beim Deaktiviern der Beobachtung des Nutzers aufgetreten.
+    unfoolow_ko: Ein Fehler ist bei der Deaktivierung der Beobachtung aufgetreten.
   edit_followers:
   edit_personal:
     firstname: Vorname
@@ -118,11 +118,11 @@ de:
     save_address: Speichern
     show_address_title: Adresse
     delete_address_message: Die Adresse löschen?
-    delete_ok: Adresse erfolgreich gelöscht.
-    delete_ko: Ein Fehler ist beim Löschen der Adresse aufgetreten.
-    create_ok: Adresse erfolgreich angelegt.
+    delete_ok: Die Adresse erfolgreich gelöscht!
+    delete_ko: Ein Fehler ist bei der Löschung der Adresse aufgetreten.
+    create_ok: Die Adresse erfolgreich angelegt!
     create_ko: Ein Fehler ist beim Anlegen der Adresse aufgetreten.
-    update_ok: Adresse erfolgreich aktualisiert.
+    update_ok: Die Adresse erfolgreich aktualisiert!
     update_ko: Ein Fehler ist bei der Änderung der Adresse aufgetreten.
   edit_order:
     no_order: keine Aufträge vorhanden
@@ -156,9 +156,9 @@ de:
     no_products: Kein Produkt vorhanden
     delete_collection_message: Löschen Sie den gewählten Favorit?
     dislike: Entfernen
-    update_ok: Favorit erfolgreich aktualisiert!
+    update_ok: Der Favorit erfolgreich aktualisiert!
     update_ko: Ein Fehler ist bei der Änderung des Favorits aufgetreten.
-    update_with_existing_name: ein gleichnämiger Favorit ist bereits vorhanden.
+    update_with_existing_name: Ein gleichnämiger Favorit ist bereits vorhanden.
   edit_collection_new:
     name: Name
     description: Beschreibung
@@ -167,9 +167,9 @@ de:
     collection_type: Typ des Favorits
     icon: Icon
     save: Speichern
-    create_ok: Favorit erfolgreich erstellt!
+    create_ok: Der Favorit erfolgreich erstellt!
     create_ko: Ein Fehler ist bei der Erstellung des Favorits aufgetreten.
-    create_with_existing_name: ein gleichnämiger Favorit ist bereits vorhanden.
+    create_with_existing_name: Ein gleichnämiger Favorit ist bereits vorhanden.
   edit_shop:
     name: Name
     desc: Beschreibung
@@ -179,26 +179,113 @@ de:
     story: Produkt-Geschichte
     ustid: Ust-ID
     eroi: EROI-Nummer
-    sms: Per SMS benachrichtigt
+    sms:
+      info: per SMS benachrichtigt
+      'true': Ja
+      'false': Nein
     sms_mobile: Handynummer
     min_total: Mindestbestellwert
     currency: Währung
     status: Status
     save: Speichern
+    update_ok: Der Shop erfolgreich aktualisiert!
   edit_product:
+    edit: Editieren
+    remove: Entfernen
+    basic_info: Produktprofil
     new: Neues Produkt
-  edit_product_new:
-    name: Produktname (*)
+    tags: Schlüsselwörter
+    tag1: Schlüsselwort 1
+    tag2: Schlüsselwort 2
+    tag3: Schlüsselwort 3
+    name: Produktname*
     desc: Beschreibung
-    save: Speichern
-    cover: Titelbild
-    brand: Marke (*)
+    cover: Deckenbild
+    brand: Marke*
+    variant_name: Variantentyp
+    created_at: erstellt am
+    updated_at: aktualisiert am
+    operations: Aktionen
+    delete: Entfernen
+    no_product: Ausverkauft
+    delete_product_message: Das Produkt entfernen?
+    delete_ok: Das Produkt erfolgreich entfernt!
+    delete_ko: Ein Fehler ist bei der Lösung des Produkts aufgetreten.
+    update_ok: Das Produkt erfolgreich aktualisiert!
+    update_ko: Ein Fehler ist bei der Änderung des Produkts aufgetreten.
+    categories: Kategorien*
+    skus: Aritkelpositionen
+    new_basic: Erstellen
+    update_basic: Akutalisieren
+    variant: Variantentyp
+  edit_product_new:
+    create_ok: Das Produkt erfolgreich erstellt!
+    create_ko: Ein Fehler ist beim
+    create_with_existing_name: Ein gleichnämiges Produkt ist bereits vorhanden.
+  edit_product_detail:
+    sku_manage: Artikelpositionen
+    variant_manage: Variantentypen
+    edit: Editieren
+    remove: Entfernen
+    delete_sku_message: Die gewählte Artikelposition löschen?
+    new_variant: Neuen Variantentyp erstellen
+    img0: Bild 1
+    img1: Bild 2
+    img2: Bild 3
+    img3: Bild 4
+    price: Preis
+    currency: Währung
+    quantity: Menge
+    limited:
+      info: Menge begrenzt
+      'true': Ja
+      'false': Nein
+    weight: Gewicht
+    status:
+      info: Zum Verkauf angeboten
+      'true': Ja
+      'false': Nein
+    customizable:
+      info: Auf Kundenwünsche anpassbar
+      'true': Ja
+      'false': Nein
+    discount: Rabatt
+    create_ok: Die Artikelposition erfolgreich erstellt!
+    create_ko: Ein Fehler ist beim Anlegen der Artikelpositionen aufgetreten.
+    sku_variants_options: Variantentypen
+    images: Produktbilder
+    sku_options: Details der Artikelposition
+    update_sku: Aktualisieren
+    new_sku: Neue Artikelposition
+    create_sku: Erstellen
+    update_ok: Die Artikelposition erfolgreich aktualisiert!
+  edit_product_variant:
+    new_variant: Neue Variante
+    edit: Editieren
+    remove: Entfernen
+    edit_option: Editieren
+    remove_option: Entfernen
+    delete_option_message: Die gewählte Wahlmöglichkeit löschen?
+    name: Wahlmöglichkeit
+    option_name: Wahlmöglichkeit
+    sku_dependent: Es gibt Produkte, welche gerade diese gewählte verwenden. Die Löschung ist daher unmöglich.
+    create_variant: Erstellen
+    update_variant: Aktualisieren
+    create_option: Erstellen
+    update_option: Akutalisieren
+    update_ok: Die Wahlmöglichkeit erfolgreich aktualisiert!
+    variant_name: Variantentyp
+    option_name: Wahlmöglichkeit
+    new_option: Neue Wahlmöglichkeit
+    delete_variant_ok: Die Variante erfolgreich gelöscht!
+    delete_option_ok: Die Wahlmöglichkeit erfolgreich gelöscht!
   popular_products:
     search_prompt: Ich suche
     search_placeholder: ein Produkt
     add_to_favorite: Hinzufügen
     create_and_add_to_favorite: Erstellen
     add_to_cart: Hinzufügen
+    not_available: Ausverkauft
     create_favorite: Erstellen
     new_favorite: Neuer Favorit
     product: Produktname
@@ -220,13 +307,15 @@ de:
     name: Name
     quantity: Quantity
     unit_price: Preis
-    operations: Operationen
+    operations: Aktionen
     subtotal: Preis
     shipping: Tranportkosten
     taxes: Steuer
     total_price: Gesamter Preis
     update_cart: Einkaufswagen ändern
     set_delivery_destination: Anschrift auswählen
+    variant_option: Variante
+    shop: Shop
   checkout:
     my_destination: Anlieferungsanschrift
     setup_delivery_destination: Bitte Anschrift auswählen

@@ -137,6 +137,7 @@ zh-CN:
     new: 尚未付款
     checked_out: 已经付款
     continue_message: 您所选择的订单产品已经加入到当前购物车
+    delete_order_message: 确定删除所选订单吗?
     delete_ok: 订单成功删除
     delete_ko: 订单删除失败
     create_ok: 订单创建成功
@@ -197,10 +198,10 @@ zh-CN:
     tag1: 关键字1
     tag2: 关键字2
     tag3: 关键字3
-    name: 产品名称 (*)
+    name: 产品名称*
     desc: 产品描述
     cover: 产品封面
-    brand: 商标品牌 (*)
+    brand: 商标品牌*
     variant_name: 系列型号
     created_at: 创建于
     updated_at: 修改于
@@ -212,7 +213,7 @@ zh-CN:
     delete_ko: 产品删除失败
     update_ok: 产品修改成功
     update_ko: 产品修改失败
-    categories: 产品类别 (*)
+    categories: 产品类别*
     skus: 库存单元
     new_basic: 创建概要
     update_basic: 更新概要
@@ -227,7 +228,6 @@ zh-CN:
     edit: 修改
     remove: 删除
     delete_sku_message: 确定删除所选库存单元？
-    new_sku: 添加库存单元
     new_variant: 添加系列型号
     img0: 图片1
     img1: 图片2
@@ -252,12 +252,12 @@ zh-CN:
     discount: 折扣
     create_ok: 明细成功创建
     create_ko: 明细创建失败
-    create_with_existing_name: 已经存在同名的明细
     sku_variants_options: 型号组合
     images: 产品图片
     sku_options: 库存与型号
     update_sku: 更新库存
     new_sku: 新建库存
+    create_sku: 创建新库存
     update_ok: 库存单位更新成功
   edit_product_variant:
     new_variant: 创建新型号
