@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_order, :current_orders, :total_number_of_products
 
   def set_session_locale
-    I18n.locale = params[:locale]
+    session[:locale] = params[:locale]
     redirect_to request.referer
   end
 
@@ -77,11 +77,8 @@ class ApplicationController < ActionController::Base
   end
 
   def set_locale
-    if current_user.role == :shopkeeper
-      I18n.locale = Rails.configuration.default_shopkeeper_locale
-    else
-      I18n.locale = Rails.configuration.default_customer_locale
-    end
+    params[:locale]= session[:locale]
+    I18n.locale = params[:locale] || Rails.configuration.default_customer_locale
   end
 
 end
