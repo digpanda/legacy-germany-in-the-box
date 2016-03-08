@@ -114,7 +114,7 @@ module FunctionCache
 
   def get_grouped_variants_options_from_cache(p)
     Rails.cache.fetch("get_grouped_variants_options_from_cache_#{p.id}_#{I18n.locale}", :expires_in => Rails.configuration.popular_products_cache_expire_limit ) {
-      p.options.map { |v| [v.name, v.suboptions.map { |o| [ o.name_locales && o.name_locales[I18n.locale] ? o.name_locales[I18n.locale] : o.name, o.id.to_s]}] }.to_a
+      p.options.map { |v| [v.get_locale_name, v.suboptions.map { |o| [ o.get_locale_name, o.id.to_s]}] }.to_a
     }
   end
 end
