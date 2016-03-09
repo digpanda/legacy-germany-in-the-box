@@ -75,7 +75,7 @@ class ApplicationController < ActionController::Base
     if current_user.role == :customer
       list_popular_products_path
     else
-      edit_user_path(current_user)
+      edit_user_path(current_user, :user_info_edit_part => :edit_shop)
     end
   end
 
