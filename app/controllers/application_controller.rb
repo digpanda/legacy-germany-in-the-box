@@ -2,7 +2,10 @@ require 'base64_to_upload'
 
 class ApplicationController < ActionController::Base
 
+  include HttpAcceptLanguage::AutoLocale
+
   include FunctionCache
+
   include Mobvious::Rails::Controller
 
   protect_from_forgery with: :null_session, :if => Proc.new { |c| c.request.format.html? }
@@ -17,7 +20,7 @@ class ApplicationController < ActionController::Base
 
   after_action :reset_last_captcha_code!
 
-  helper_method :current_order, :current_orders, :total_number_of_products
+  helper_method :current_order, :current_orders, :total_number_of_products, :extract_locale
 
   def set_session_locale
     session[:locale] = params[:locale]
@@ -69,7 +72,11 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    list_popular_products_path
+    if current_user.role == :customer
+      list_popular_products_path
+    else
+      edit_user_path(current_user)
+    end
   end
 
   def current_top_menu_active_part
@@ -78,7 +85,32 @@ class ApplicationController < ActionController::Base
 
   def set_locale
     params[:locale]= session[:locale]
-    I18n.locale = params[:locale] || Rails.configuration.default_customer_locale
+
+    if params[:locale]
+      I18n.locale = params[:locale]
+    else
+      if current_user and current_user.role == :customer
+        if 'zh' == extract_locale
+          I18n.locale = :'zh-CN'
+        else
+          I18n.locale = :de
+        end
+      elsif current_user and current_user.role == :shopkeeper
+        I18n.locale = :de
+      elsif current_user and current_user.role == :admin
+        I18n.locale = :'zh-CN'
+      else
+        if 'zh' == extract_locale
+          I18n.locale = :'zh-CN'
+        else
+          I18n.locale = :de
+        end
+      end
+    end
+  end
+
+  def extract_locale
+    request.env['HTTP_ACCEPT_LANGUAGE'].scan(/^[a-z]{2}/).first
   end
 
 end

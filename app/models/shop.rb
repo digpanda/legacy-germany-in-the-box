@@ -32,8 +32,8 @@ class Shop
   validates :name,          presence: true
   validates :sms,           presence: true
   validates :sms_mobile,    presence: true,   :if => lambda { self.sms }
-  validates :address,       presence: true,   :if => lambda { self.status == :opened }
-  validates :bank_account,  presence: true,   :if => lambda { self.status == :opened }
+  #validates :address,       presence: true,   :if => lambda { self.status == :opened }
+  #validates :bank_account,  presence: true,   :if => lambda { self.status == :opened }
   validates :status,        presence: true
   validates :min_total,     presence: true
   validates :shopkeeper,    presence: true

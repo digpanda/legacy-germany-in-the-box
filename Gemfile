@@ -59,10 +59,11 @@ gem 'bootstrap-multiselect-rails'
 
 gem 'cancancan'
 
+gem 'http_accept_language'
+
 group :development, :test do
   gem 'factory_girl'
 end
-
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

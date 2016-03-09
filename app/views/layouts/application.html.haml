@@ -83,66 +83,68 @@
               #flexnav-menu-button.flexnav-menu-button
                 - for_device_type :tablet, :mobile do
                   = image_tag  'icons/RMlogo_orig.png', :style => 'width:150px;height:42px'
-              %ul#flexnav.nav.nav-pills.flexnav{'data-breakpoint' => '800'}
-                %li{:class => params[:top_menu_active_part] ? (params[:top_menu_active_part] == :home ? 'active' : '') : 'active'}
-                  %a{:href => "#{root_path}"}= I18n.t(:start, scope: :top_menu)
-                - get_root_level_categories_from_cache().each do |rc|
-                  %li{:class => params[:top_menu_active_part] == :fashion ? 'active' : ''}
-                    %a{:href => '#'}= rc.get_locale_name
-                    %ul
-                      - get_first_level_categories_from_cache(rc).each do |fc|
-                        %li
-                          - if get_second_level_categories_from_cache(fc).count > 0
-                            %a{:href => '#'}= fc.get_locale_name
-                            %ul
-                              - get_second_level_categories_from_cache(fc).each do |sc|
-                                %li
-                                  %a{:href => "#{show_products_in_category_path(sc.id)}"}= sc.get_locale_name
-                          - else
-                            %a{:href => "#{show_products_in_category_path(fc.id)}" }= fc.get_locale_name
-                %li{:class => params[:top_menu_active_part] == :product ? 'active' : ''}
-                  =link_to I18n.t(:popular_product, scope: :top_menu), list_popular_products_path
-                - for_device_type :table, :mobile do
-                  %li
-                    = form_tag search_products_path, :method => :get, :id => 'search_products_form', :class => 'form-group' do
-                      %label
-                        %i.fa.fa-search
-                        %span= I18n.t(:search_prompt, scope: :popular_products)
-                      =text_field_tag :products_search_keyword, params[:products_search_keyword], :placeholder => "#{ I18n.t(:search_placeholder, scope: :popular_products) }", :class => 'form-control'
-
+              - if I18n.locale == :'zh-CN' or current_user.role == :customer
+                %ul#flexnav.nav.nav-pills.flexnav{'data-breakpoint' => '800'}
+                  %li{:class => params[:top_menu_active_part] ? (params[:top_menu_active_part] == :home ? 'active' : '') : 'active'}
+                    %a{:href => "#{root_path}"}= I18n.t(:start, scope: :top_menu)
+                  - get_root_level_categories_from_cache().each do |rc|
+                    %li{:class => params[:top_menu_active_part] == :fashion ? 'active' : ''}
+                      %a{:href => '#'}= rc.get_locale_name
+                      %ul
+                        - get_first_level_categories_from_cache(rc).each do |fc|
+                          %li
+                            - if get_second_level_categories_from_cache(fc).count > 0
+                              %a{:href => '#'}= fc.get_locale_name
+                              %ul
+                                - get_second_level_categories_from_cache(fc).each do |sc|
+                                  %li
+                                    %a{:href => "#{show_products_in_category_path(sc.id)}"}= sc.get_locale_name
+                            - else
+                              %a{:href => "#{show_products_in_category_path(fc.id)}" }= fc.get_locale_name
+                  %li{:class => params[:top_menu_active_part] == :product ? 'active' : ''}
+                    =link_to I18n.t(:popular_product, scope: :top_menu), list_popular_products_path
+                  - for_device_type :table, :mobile do
+                    %li
+                      = form_tag search_products_path, :method => :get, :id => 'search_products_form', :class => 'form-group' do
+                        %label
+                          %i.fa.fa-search
+                          %span= I18n.t(:search_prompt, scope: :popular_products)
+                        =text_field_tag :products_search_keyword, params[:products_search_keyword], :placeholder => "#{ I18n.t(:search_placeholder, scope: :popular_products) }", :class => 'form-control'
             .col-md-6
               %ul.login-register
-                %li.shopping-cart
-                  %a{:href => "#{manage_cart_orders_path}", :title => "#{I18n.t(:my_cart, scope: :top_menu)}"}
-                    %i.fa.fa-shopping-cart
-                    = for_device_type :desktop do I18n.t(:my_cart, scope: :top_menu) end
-                    %span.numberCircle= total_number_of_products
-                  .shopping-cart-box
-                    -if total_number_of_products > 0
-                      - current_orders.each do |s, o|
-                        %ul.shopping-cart-items
-                          - o.order_items.each do |i|
-                            %li
-                              %a{:href => "#{manage_cart_orders_path}" }
-                                = image_tag get_uploaded_img_url(i.sku.img0)
-                                %h5= i.product.name
-                                %span.shopping-cart-item-price= "Subtotal: $#{i.sku.price * i.quantity}"
-                    -else
-                      %ul.list-inline.text-center
-                        %li
-                          %a{:href => "#{manage_cart_orders_path}"}
-                            %i
-                            = I18n.t(:empty_cart, scope: :top_menu)
+                - if I18n.locale == :'zh-CN' or current_user.role == :customer
+                  %li.shopping-cart
+                    %a{:href => "#{manage_cart_orders_path}", :title => "#{I18n.t(:my_cart, scope: :top_menu)}"}
+                      %i.fa.fa-shopping-cart
+                      = for_device_type :desktop do I18n.t(:my_cart, scope: :top_menu) end
+                      %span.numberCircle= total_number_of_products
+                    .shopping-cart-box
+                      -if total_number_of_products > 0
+                        - current_orders.each do |s, o|
+                          %ul.shopping-cart-items
+                            - o.order_items.each do |i|
+                              %li
+                                %a{:href => "#{manage_cart_orders_path}" }
+                                  = image_tag get_uploaded_img_url(i.sku.img0)
+                                  %h5= i.product.name
+                                  %span.shopping-cart-item-price= "Subtotal: $#{i.sku.price * i.quantity}"
+                      -else
+                        %ul.list-inline.text-center
+                          %li
+                            %a{:href => "#{manage_cart_orders_path}"}
+                              %i
+                              = I18n.t(:empty_cart, scope: :top_menu)
 
                 - unless current_user
                   %li
                     %a.popup-text{ :id => 'sign_in_link', 'data-effect' => 'mfp-move-from-top', :href => '#login-dialog', :title => "#{I18n.t(:sign_in, scope: :top_menu)}"}
                       %i.fa.fa-sign-in
                       = for_device_type :desktop do I18n.t(:sign_in, scope: :top_menu) end
-                  %li
-                    %a.popup-text{:id => 'sign_up_link', 'data-effect' => 'mfp-move-from-top', :href => '#register-dialog', :title => "#{I18n.t(:sign_up, scope: :top_menu)}"}
-                      %i.fa.fa-edit
-                      = for_device_type :desktop do I18n.t(:sign_up, scope: :top_menu) end
+                  - if I18n.locale == :'zh-CN' or current_user.role == :customer
+                    %li
+                      %a.popup-text{:id => 'sign_up_link', 'data-effect' => 'mfp-move-from-top', :href => '#register-dialog', :title => "#{I18n.t(:sign_up, scope: :top_menu)}"}
+                        %i.fa.fa-edit
+                        = for_device_type :desktop do I18n.t(:sign_up, scope: :top_menu) end
                 - else
                   %li
                     %a{:href => "#{edit_user_path(current_user, :user_info_edit_part => :edit_collection)}",  :title => "#{I18n.t(:my_collection, scope: :top_menu)}"}
@@ -155,16 +157,17 @@
                     = render 'users/menu_shopkeeper'
                   - elsif current_user.role == :admin
                     = render 'users/menu_admin'
-                %li.dropdown
-                  %a{:href => '#', 'data-toggle' => 'dropdown',  :title => "#{I18n.t(:language, scope: :top_menu)}" }
-                    %i.fa.fa-language
-                    = for_device_type :desktop do I18n.t(:language, scope: :top_menu) end
-                    %span.caret
-                  %ul.dropdown-menu{:style => 'background-color:#333'}
-                    %li
-                      = link_to I18n.t(:chinese, scope: :top_menu), set_session_locale_path(:'zh-CN')
-                    %li
-                      = link_to I18n.t(:german, scope: :top_menu),  set_session_locale_path(:de)
+                - if I18n.locale == :'zh-CN' or current_user.role == :customer
+                  %li.dropdown
+                    %a{:href => '#', 'data-toggle' => 'dropdown',  :title => "#{I18n.t(:language, scope: :top_menu)}" }
+                      %i.fa.fa-language
+                      = for_device_type :desktop do I18n.t(:language, scope: :top_menu) end
+                      %span.caret
+                    %ul.dropdown-menu{:style => 'background-color:#333'}
+                      %li
+                        = link_to I18n.t(:chinese, scope: :top_menu), set_session_locale_path(:'zh-CN')
+                      %li
+                        = link_to I18n.t(:german, scope: :top_menu),  set_session_locale_path(:de)
 
       #login-dialog.mfp-with-anim.mfp-hide.mfp-dialog.clearfix.open-popup-link
         %i.fa.fa-sign-in.dialog-icon
@@ -314,18 +317,10 @@
                   %a{:href => '#'}
                     =image_tag 'couponia/70x70.png' , :alt => 'Image Alternative text', :title => 'Urbex Esch/Lux with Laney and Laaaaag'
                   .thumb-list-item-caption
-                    %p.thumb-list-item-meta Jul 18, 2014
+                    %p.thumb-list-item-meta 13-01-2016
                     %h5.thumb-list-item-title
-                      %a{:href => '#'} Cubilia enim
-                    %p.thumb-list-item-desciption Sem ullamcorper iaculis convallis imperdiet
-                %li
-                  %a{:href => '#'}
-                    =image_tag 'couponia/70x70.png', :alt => 'Image Alternative text',  :title => 'AMaze'
-                  .thumb-list-item-caption
-                    %p.thumb-list-item-meta Jul 18, 2014
-                    %h5.thumb-list-item-title
-                      %a{:href => '#'} Blandit suscipit
-                    %p.thumb-list-item-desciption Aptent accumsan curabitur aptent condimentum
+                      %a{:href => '#'} Herzlichen Dank!
+                    %p.thumb-list-item-desciption Wir bedanken uns herzlich bei <strong>IHK Bayern</strong> und <strong>Handwerkskammern Bayern</strong> für ihre gemeinsame Förderung und Bezuschussen! Sie helfen uns, unsere Mission zu erreichern, nämlich den deutschen Herstellern den direkten Vertriebsweg zu chinesischen Markt zu etablieren.
 
             .col-md-2.col-md-offset-2
               %h4= I18n.t(:rheinmanufaktur, scope: :footer)
@@ -342,11 +337,12 @@
               %h5=link_to I18n.t(:seller_faq, scope: :footer), '#', :style => 'color: gray; text-decoration: underline'
               %h5=link_to I18n.t(:selling_in_3_steps, scope: :footer), '#', :style => 'color: gray; text-decoration: underline'
               %h5=link_to I18n.t(:fees_invoices, scope: :footer), '#', :style => 'color: gray; text-decoration: underline'
-            .col-md-2
-              %h4= I18n.t(:buying, scope: :footer)
-              %h5=link_to I18n.t(:buyer_faq, scope: :footer), '#', :style => 'color: gray; text-decoration: underline'
-              %h5=link_to I18n.t(:buyer_in_3_steps, scope: :footer), '#', :style => 'color: gray; text-decoration: underline'
-              %h5=link_to I18n.t(:vouchers, scope: :footer), '#', :style => 'color: gray; text-decoration: underline'
+            - if I18n.locale == :'zh-CN' or current_user.role == :customer
+              .col-md-2
+                %h4= I18n.t(:buying, scope: :footer)
+                %h5=link_to I18n.t(:buyer_faq, scope: :footer), '#', :style => 'color: gray; text-decoration: underline'
+                %h5=link_to I18n.t(:buyer_in_3_steps, scope: :footer), '#', :style => 'color: gray; text-decoration: underline'
+                %h5=link_to I18n.t(:vouchers, scope: :footer), '#', :style => 'color: gray; text-decoration: underline'
 
       .footer-copyright
         .container

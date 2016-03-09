@@ -1,12 +1,13 @@
 require File.expand_path('../boot', __FILE__)
 
-require "rails"
+require 'rails'
 
-require "action_controller/railtie"
-require "action_mailer/railtie"
-require "sprockets/railtie"
-require "rails/test_unit/railtie"
+require 'action_controller/railtie'
+require 'action_mailer/railtie'
+require 'sprockets/railtie'
+require 'rails/test_unit/railtie'
 require 'mobvious'
+require 'http_accept_language'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -30,10 +31,11 @@ module AChat
     #config.active_record.raise_in_transactional_callbacks = true
 
     config.autoload_paths += %W(#{config.root}/lib)
-    config.middleware.use "Mongoid::QueryCache::Middleware"
+    config.middleware.use Mongoid::QueryCache::Middleware
     config.middleware.use Mobvious::Manager
-
-    config.i18n.default_locale = 'zh-CN'
-    config.time_zone = 'Beijing'
+    config.middleware.use HttpAcceptLanguage::Middleware
+    config.i18n.available_locales = %w(de zh-CN)
+    config.i18n.default_locale = :de
+    #config.time_zone = 'Beijing'
   end
 end

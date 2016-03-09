@@ -175,15 +175,11 @@ class ProductsController < ApplicationController
           flash[:success] = I18n.t(:create_ok, scope: :edit_product_new)
           redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_product_update, :product_id => @product.id )
         }
-
-        format.json { render json: { status: :ok, product_id: @product.id }, status: :ok }
       else
         format.html {
           flash[:error] = @product.errors.full_messages.first
           redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_product_new )
         }
-
-        format.json { render json: { status: :ko }, status: :unprocessable_entity }
       end
     end
   end
@@ -210,25 +206,29 @@ class ProductsController < ApplicationController
             redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_product_variant, :product_id => @product.id)
           end
         }
-
-        format.json { render :show, status: :ok, location: @product }
       else
-
         format.html {
           flash[:error] = @product.errors.full_messages.first
           redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_product_update, :product_id => @product.id )
         }
-        format.json { render json: @product.errors, status: :unprocessable_entity }
       end
     end
 
   end
 
   def destroy
-    @product.destroy
     respond_to do |format|
-      format.html { redirect_to products_url, notice: 'Product was successfully destroyed.' }
-      format.json { head :no_content }
+      if @product.destroy
+        format.html {
+          flash[:success] = I18n.t(:delete_ok, scope: :edit_product)
+          redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_product)
+        }
+      else
+        format.html {
+          flash[:error] = @product.errors.full_messages.first
+          redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_product)
+        }
+      end
     end
   end
 

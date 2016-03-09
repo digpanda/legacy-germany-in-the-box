@@ -171,7 +171,7 @@ de:
     create_ko: Ein Fehler ist bei der Erstellung des Favorits aufgetreten.
     create_with_existing_name: Ein gleichnämiger Favorit ist bereits vorhanden.
   edit_shop:
-    name: Name
+    name: Shopname*
     desc: Beschreibung
     logo: Logo
     banner: Banner
