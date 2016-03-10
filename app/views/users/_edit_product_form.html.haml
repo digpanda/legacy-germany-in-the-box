@@ -21,7 +21,7 @@
 %br
 %br
 
-= form_for @product, validate: true do |f|
+= form_for @product do |f|
   = hidden_field_tag :part, :basic
 
   %table.table.table-bordered
@@ -29,16 +29,16 @@
       %tr.info
         %th.text-center= I18n.t(:categories, scope: :edit_product)
       %tr
-        %td= f.select :categories, grouped_options_for_select(get_grouped_categories_options, @product.categories.map { |c| c.id.to_s }), {}, :multiple => 'multiple', :name => 'product[categories][]', :class => 'form-control product_categoires'
+        %td= f.select :categories, grouped_options_for_select(get_grouped_categories_options, @product.categories.map { |c| c.id.to_s }), {}, :multiple => 'multiple', :name => 'product[categories][]', :class => 'form-control product_categoires', :required => true
 
   %table.table.table-bordered
     %tbody
       %tr
         %th.info= I18n.t(:name, scope: :edit_product)
-        %td= f.text_field :name, :class => 'form-control'
+        %td= f.text_field :name, :class => 'form-control', :required => true
       %tr
         %th.info= I18n.t(:brand, scope: :edit_product)
-        %td= f.text_field :brand, :class => 'form-control'
+        %td= f.text_field :brand, :class => 'form-control', :required => true
       %tr
         %th.info= I18n.t(:desc, scope: :edit_product)
         %td= f.text_area :desc, :class => 'form-control'

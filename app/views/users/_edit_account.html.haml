@@ -1,20 +1,19 @@
 .col-md-6.col-sm-9.col-xs-12
-  = form_for current_user, :url => users_path, html: {method: "patch"} do |f|
+  = form_for current_user, :url => users_path, html: {method: 'patch', 'data-toggle': "validator", role: "form"} do |f|
     .form-group
-      = f.label :username, I18n.t(:username, scope: :edit_account)
+      = f.label :username, I18n.t(:username, scope: :edit_account), :class => 'control-label'
       = f.text_field :username, :class => 'form-control', :readonly => true
     .form-group
       = f.label :email, I18n.t(:email, scope: :edit_account)
       = f.text_field :email, :class => 'form-control', :readonly => true
     .form-group
       = f.label :current_password, I18n.t(:current_password, scope: :edit_account)
-      = f.password_field :current_password, :class => 'form-control', :autocomplete => :off
-    .form-group
+      = f.password_field :current_password, :class => 'form-control', :autocomplete => :off, :required => true
       = f.label :password, I18n.t(:password, scope: :edit_account)
-      = f.password_field :password, :class => 'form-control', :autocomplete => :off
+      = f.password_field :password, :class => 'form-control', :autocomplete => :off, :required => true
     .form-group
       = f.label :password_confirmation, I18n.t(:password_confirmation, scope: :edit_account)
-      = f.password_field :password_confirmation, :class => 'form-control', :autocomplete => :off
+      = f.password_field :password_confirmation, :class => 'form-control', :autocomplete => :off, :required => true
     .form-group
       = f.button I18n.t(:save, scope: :edit_account), :type => 'submit', :class => 'btn btn-primary', name: :user_info_edit_part, value: :edit_account
 

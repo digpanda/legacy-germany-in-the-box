@@ -8,7 +8,7 @@
       });
   });
 
-= form_for @product, validate: true do |f|
+= form_for @product do |f|
   = hidden_field_tag :part, :sku
   = f.fields_for :skus do |fs|
     - if new && (not @product.skus[fs.index].persisted?)
@@ -43,23 +43,23 @@
             %th.text-center{:colspan => 2}= fs.label :option_ids, I18n.t(:sku_variants_options, scope: :edit_product_detail)
             %th.text-center{:colspan => 2}= I18n.t(:price, scope: :edit_product_detail)
           %tr
-            %td{:colspan => 2}= fs.select :option_ids, grouped_options_for_select(get_grouped_variants_options(@product), @product.skus[fs.index].option_ids ), {}, {:multiple => 'multiple', :class => 'sku_variants_options'}
+            %td{:colspan => 2}= fs.select :option_ids, grouped_options_for_select(get_grouped_variants_options(@product), @product.skus[fs.index].option_ids ), {}, {:multiple => 'multiple', :class => 'sku_variants_options', :required => true}
             %td{:colspan => 2}
               .input-group
-                = fs.text_field :price, :class => 'form-control'
+                = fs.text_field :price, :class => 'form-control', :required => true
                 %span.input-group-addon
                   = fs.label @product.shop.currency
           %tr
             %th.text-center{:colspan => 2}= I18n.t(:quantity, scope: :edit_product_detail)
             %th.text-center{:colspan => 2}= I18n.t(:weight, scope: :edit_product_detail)
           %tr
-            %td{:colspan => 2}= fs.text_field :quantity, :class => 'form-control', :placeholder => @product.skus[fs.index].limited ? '' : I18n.t(@product.skus[fs.index].limited.to_s.to_sym, scope: 'edit_product_detail.limited')
-            %td{:colspan => 2}= fs.text_field :weight, :class => 'form-control'
+            %td{:colspan => 2}= fs.text_field :quantity, :class => 'form-control', :placeholder => @product.skus[fs.index].limited ? '' : I18n.t(@product.skus[fs.index].limited.to_s.to_sym, scope: 'edit_product_detail.limited'), :required => true
+            %td{:colspan => 2}= fs.text_field :weight, :class => 'form-control', :required => true
           %tr
             %th.text-center{:colspan => 2}= I18n.t(:discount, scope: :edit_product_detail)
             %th.text-center{:colspan => 2}= I18n.t('edit_product_detail.customizable.info')
           %tr
-            %td{:colspan => 2}= fs.text_field :discount, :class => 'form-control'
+            %td{:colspan => 2}= fs.text_field :discount, :class => 'form-control', :required => true
             %td{:colspan => 2}
               = fs.hidden_field :customizable
               = fs.check_box :customizable, {}, true

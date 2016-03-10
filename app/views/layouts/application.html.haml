@@ -17,7 +17,7 @@
     = javascript_include_tag 'jquery-ui/widget.js'
     = javascript_include_tag 'jquery-ui/autocomplete.js'
 
-    = javascript_include_tag 'rails.validations.js'
+    = javascript_include_tag 'bootstrapValidator.min.js'
 
     = javascript_include_tag 'leftmenu/script.js'
 
@@ -67,6 +67,9 @@
         if ($('#signup_advice_counter').length) {
           $('#sign_up_link').click();
         }
+
+
+
       });
 
       #{generate_set_datepicker_lang_js}
@@ -351,12 +354,14 @@
               %p= I18n.t(:copyright, scope: :footer)
             .col-md-6.col-md-offset-2
 
+    = javascript_include_tag 'bootstrapValidator.min.js'
+
     = javascript_include_tag 'couponia/boostrap.min.js'
     = javascript_include_tag 'couponia/countdown.min.js'
     = javascript_include_tag 'couponia/flexnav.min.js'
     = javascript_include_tag 'couponia/magnific.js'
     = javascript_include_tag 'couponia/tweet.min.js'
-    %script{:src => 'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false'}
+    -#%script{:src => 'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false'}
     = javascript_include_tag 'couponia/fitvids.min.js'
     = javascript_include_tag 'couponia/mail.min.js'
     = javascript_include_tag 'couponia/ionrangeslider.js'

@@ -6,7 +6,7 @@
         = f.fields_for :options, @variant do |fo|
           .form-group
             = fo.label I18n.t(:variant_name, scope: :edit_product_variant)
-            = fo.text_field :name, :class => 'form-control'
+            = fo.text_field :name, :class => 'form-control', :required => true
         .form-group
           = f.submit :class => 'btn btn-primary', :value => (not params[:variant_id]) ? I18n.t(:create_variant, scope: :edit_product_variant) : I18n.t(:update_variant, scope: :edit_product_variant)
     - else
@@ -15,7 +15,7 @@
         = f.fields_for :options, @variant do |fo|
           .form-group
             = fo.label I18n.t(:variant_name, scope: :edit_product_variant)
-            = fo.text_field :name, :class => 'form-control'
+            = fo.text_field :name, :class => 'form-control', :required => true
         .form-group
           = f.submit :class => 'btn btn-primary', :value => (not params[:variant_id]) ? I18n.t(:create_variant, scope: :edit_product_variant) : I18n.t(:update_variant, scope: :edit_product_variant)
 
@@ -27,7 +27,7 @@
           = fo.fields_for :suboptions, @suboption do |fso|
             .form-group
               = fso.label I18n.t(:option_name, scope: :edit_product_variant)
-              = fso.text_field :name, :class => 'form-control'
+              = fso.text_field :name, :class => 'form-control', :required => true
         .form-group
           = f.submit :class => 'btn btn-primary', :value => (not params[:option_id]) ? I18n.t(:create_option, scope: :edit_product_variant) : I18n.t(:update_option, scope: :edit_product_variant)
     - else
@@ -37,6 +37,6 @@
           = fo.fields_for :suboptions, @suboption do |fso|
             .form-group
               = fso.label I18n.t(:option_name, scope: :edit_product_variant)
-              = fso.text_field :name, :class => 'form-control'
+              = fso.text_field :name, :class => 'form-control', :required => true
         .form-group
           = f.submit :class => 'btn btn-primary', :value => (not params[:option_id]) ? I18n.t(:create_option, scope: :edit_product_variant) : I18n.t(:update_option, scope: :edit_product_variant)

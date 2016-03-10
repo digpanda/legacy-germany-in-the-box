@@ -15,7 +15,7 @@
     %tbody
       %tr
         %th.info= I18n.t(:name, scope: :edit_shop)
-        %td= f.text_field :name, :class => 'form-control'
+        %td= f.text_field :name, :class => 'form-control', :required => true
       %tr
         %th.info= I18n.t(:desc, scope: :edit_product)
         %td= f.text_area :desc, :class => 'form-control'
