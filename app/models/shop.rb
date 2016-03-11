@@ -18,6 +18,7 @@ class Shop
   field :min_total,       type: BigDecimal, default: 0
   field :currency,        type: String,     default: '€'
   field :status,          type: Boolean,    default: true
+  field :founding_year,   type: String
 
   mount_uploader :logo,   AttachmentUploader
   mount_uploader :banner, AttachmentUploader
@@ -38,6 +39,7 @@ class Shop
   validates :min_total,     presence: true
   validates :shopkeeper,    presence: true
   validates :currency,      presence: true,   inclusion: {in: ['€']}
+  validates :founding_year, presence: true
 
   validates :ustid,         length: { minimum: 25, maximum: 25, :allow_blank => true }
   validates :story,         length: { minimum: 25, maximum: 25, :allow_blank => true }

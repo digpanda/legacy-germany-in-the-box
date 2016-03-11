@@ -18,19 +18,24 @@
         %td= f.text_field :name, :class => 'form-control', :required => true
       %tr
         %th.info
+          = I18n.t(:founding_year, scope: :edit_shop)
+          %i.fa.fa-info-circle{ :title => I18n.t(:founding_year, scope: :edit_shop) }
+        %td= f.text_field :founding_year, :class => 'form-control', :required => true, :pattern => '^(19|20)\d{2}$'
+      %tr
+        %th.info
           = I18n.t(:desc, scope: :edit_product)
           %i.fa.fa-info-circle{ :title => I18n.t(:desc_info, scope: :edit_shop) }
-        %td= f.text_area :desc, :class => 'form-control'
+        %td= f.text_area :desc, :class => 'form-control', rows: 4
       %tr
         %th.info
           = I18n.t(:philosophy, scope: :edit_shop)
           %i.fa.fa-info-circle{ :title => I18n.t(:philosophy_info, scope: :edit_shop) }
-        %td= f.text_area :philosophy, :class => 'form-control'
+        %td= f.text_area :philosophy, :class => 'form-control', rows: 4
       %tr
         %th.info
           = I18n.t(:story, scope: :edit_shop)
           %i.fa.fa-info-circle{ :title => I18n.t(:story_info, scope: :edit_shop) }
-        %td= f.text_area :story, :class => 'form-control'
+        %td= f.text_area :story, :class => 'form-control', rows: 4
 
   %table.table.table-bordered
     %tbody

@@ -45,7 +45,7 @@
         %th.info
           = I18n.t(:desc, scope: :edit_product)
           %i.fa.fa-info-circle{ :title => I18n.t(:desc_info, scope: :edit_product) }
-        %td= f.text_area :desc, :class => 'form-control'
+        %td= f.text_area :desc, :class => 'form-control', rows: 5
   %table.table.table-bordered
     %tbody
       %tr.info

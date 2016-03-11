@@ -1,9 +1,5 @@
-.interacted:invalid {
-    border: 1px solid red;
-}
-
-.interacted:valid {
-    border: 1px solid green;
+textarea {
+    resize: none;
 }
 
 .panel-group .panel {
