@@ -1,4 +1,8 @@
 .col-md-8
+  %a.btn.btn-primary{ :class => 'btn-lg',  :href => edit_user_path(current_user, :user_info_edit_part => :edit_product ) }
+    %i.fa.fa-chevron-left
+    = I18n.t(:return, scope: :edit_product_variant)
+
   %a.btn.btn-primary{ :class => 'btn-lg',  :href => edit_user_path(current_user, :user_info_edit_part => :edit_product_variant_new, :product_id => @product.id, :variant => true) }
     %i.fa.fa-plus-circle
     = I18n.t(:new_variant, scope: :edit_product_variant)

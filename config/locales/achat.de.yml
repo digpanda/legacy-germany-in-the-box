@@ -231,6 +231,7 @@ de:
     keywords_info: Wir empfehlen Ihnen, mit 3 Schlüsselwörtern das Produkt zu charakterisieren. Diese Schlüsselwörtern dienen sowohl dem internen als auch externem Search.
     images_info: Bis zu 4 Photos können für ein Produkt hochgeladen werden.
     desc_info: Beschreiben Sie Ihr Produkt mit all den ansprechenden Eigenschaften, die für Käufer relevant sind. (max. 50 Wörter)
+    cancel: Abbrechen
   edit_product_new:
     create_ok: Das Produkt erfolgreich erstellt!
     create_ko: Ein Fehler ist beim
@@ -275,6 +276,8 @@ de:
     images_info: Bis zu 4 Photos können für ein Produkt hochgeladen werden. 
     variants_info: Variante beschreibt als Gegenstände ähnlicher Form und/oder Funktion mit einem in der Regel hohen Anteil identischer Gruppen oder Teile. Zu min. einer Variantenoption muss eine Artikelposition zugeordnet werden.
     customizable_info: Dieses Produkt kann nach Kundenwunsch individuell angefertig werden.
+    return: Zurück zur Produktliste
+    cancel: Abbrechen
   edit_product_variant:
     new_variant: Neue Variante
     edit: Editieren
@@ -295,6 +298,8 @@ de:
     new_option: Neue Wahlmöglichkeit
     delete_variant_ok: Die Variante erfolgreich gelöscht!
     delete_option_ok: Die Wahlmöglichkeit erfolgreich gelöscht!
+    return: Zurück zur Produktliste
+    cancel: Abbrechen
   popular_products:
     search_prompt: Ich suche
     search_placeholder: ein Produkt

@@ -8,6 +8,9 @@
       });
   });
 
+%a.btn.btn-primary{ :class => 'btn-lg',  :href => edit_user_path(current_user, :user_info_edit_part => :edit_product ) }
+  %i.fa.fa-chevron-left
+  = I18n.t(:return, scope: :edit_product_detail)
 
 %a.btn.btn-primary{ :class => 'btn-lg',  :href => edit_user_path(current_user, :user_info_edit_part => :edit_product_detail_new, :product_id => @product.id) }
   %i.fa.fa-plus-circle
@@ -57,3 +60,4 @@
         %td= s.discount
         %td= I18n.t(s.customizable.to_s.to_sym, scope: 'edit_product_detail.customizable')
         %td= I18n.t(s.status.to_s, scope: 'edit_product_detail.status')
+
