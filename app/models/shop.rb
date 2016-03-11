@@ -19,12 +19,18 @@ class Shop
   field :currency,        type: String,     default: '€'
   field :status,          type: Boolean,    default: true
   field :founding_year,   type: String
+  field :uniqueness,      type: String
+  field :german_essence,  type: String
+  field :target_groups,   type: Array,      default: Array.new(6)
+  field :sponsors,        type: Array,      default: Array.new(6)
+  field :partners,        type: Array,      default: Array.new(6)
+  field :register,        type: String
 
   mount_uploader :logo,   AttachmentUploader
   mount_uploader :banner, AttachmentUploader
 
-  has_one   :bank_account,  inverse_of: :shop,  dependent: :restrict
-  has_one   :address,       inverse_of: :shop,  dependent: :restrict
+  has_one   :bank_account,    inverse_of: :shop,  dependent: :restrict
+  has_one   :address,         inverse_of: :shop,  dependent: :restrict
 
   has_many  :products,  inverse_of: :shop,  dependent: :restrict
 
@@ -33,16 +39,17 @@ class Shop
   validates :name,          presence: true
   validates :sms,           presence: true
   validates :sms_mobile,    presence: true,   :if => lambda { self.sms }
-  #validates :address,       presence: true,   :if => lambda { self.status == :opened }
+  #validates :billing_address,       presence: true,   :if => lambda { self.status == :opened }
   #validates :bank_account,  presence: true,   :if => lambda { self.status == :opened }
   validates :status,        presence: true
   validates :min_total,     presence: true
   validates :shopkeeper,    presence: true
   validates :currency,      presence: true,   inclusion: {in: ['€']}
   validates :founding_year, presence: true
+  validates :register,      presence: true
 
   validates :ustid,         length: { minimum: 25, maximum: 25, :allow_blank => true }
-  validates :story,         length: { minimum: 25, maximum: 25, :allow_blank => true }
+  validates :eroi,          length: { minimum: 25, maximum: 25, :allow_blank => true }
 
   scope :is_active,       ->        { where( :status => true ) }
 

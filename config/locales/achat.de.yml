@@ -176,7 +176,7 @@ de:
     logo: Logo
     banner: Banner
     philosophy: Philosophie
-    story: Produkt-Geschichte
+    story: Geschichte
     ustid: Ust-ID
     eroi: EROI-Nummer
     sms:
@@ -191,13 +191,43 @@ de:
     update_ok: Der Shop erfolgreich aktualisiert!
     desc_info: Wer sind Sie? Was bieten Sie an?  (max. 50 Wörter)
     philosophy_info: Welche Grundidee und Grundüberzeugung unterliegen Ihren Produkten? (max. 200 Wörter)
-    story_info: Was kennzeichnet und differenziert Ihre Produkte von anderen ähnlichen Produkten auf dem Markt? Welche Produktsiegel haben Ihre Produkte? Welche Auszeichnungenhaben haben Ihre Produkte erhalten? Haben Ihre Produkte prominente Sponsoren? (max. 200 Wörter)
+    story_info: Bitte Teilen Sie mit uns die Geschichten über die Entstehung Ihrer Marke und Highlights. (max. 200 Wörter) 
     ust_id_info: Als Exportierender Hersteller führen Sie keine Ust-Vorsteuer ab. Falls Sie eine Ust-ID besitzen, benötigen wir sie für Ausfuhrbescheinigungen. (max. 25 Buchstaben)
     eroi_number_info: Die EORI-Nummer ersetzt die deutsche Zollnummer und dient der Regiestrierung und Identifikation von Wirschaftsbeteiligten bei der Zollabwicklung in EU. Ab einen Tagesexportwert von 1.000 EUR muss der Hersteller EORI-Nummer angeben. Wenn Sie erwarten, dass Sie diesen Tagegrenzwert überschreiten werden, emfehlen wir diese nummer im Vorfeld zu beantragen. Die EORI-Nummer können Sie jeder Zeit nachtragen. (max. 25 Buchstaben)
     min_total_info: Sie können einen Mindestbestellwert für eine Bestellung aus Ihrem Shop festlegen. 
     sms_info: Möchten Sie über einen Verkauf von RheinManufaktur benachrichtigt werden? Wenn ja, dann geben Sie uns Ihre Mobilephone Nummber. Selbstverständlich ist das ein kostenloser Service. Bitte achten Sie darauf, dass die nummer keinen Trennstrich "-" enthält.
-    founding_year: Gründungsjahr
+    founding_year: Gründungsjahr*
     founding_year_info: Wann wurde Ihre Marke gegründet? (Jahr)
+    german_essence: German-Design
+    german_essence_info: Die deutsche Herstellung ist weltweit bekannt für seine Effizienz, Schlichheit und Qualität. Wie spiegeln Ihre Produkte die Essenz von "German-Design" hinsichtlich ihrer Herstellung und Gestaltung wider? (max. 250 Wörter)
+    uniqueness: Einzigartigkeit
+    uniqueness_info: Was hebt Ihre Produkte von anderen ähnlichen Produkten auf dem Markt ab?   (max 200 Wörter)
+    target_groups: Zielgruppen
+    target_groups_info: Wer gehört zur Zielgruppe für Ihre Produkte in Deutschland? Sie können bis zu 6 Zielgruppen eintragen.
+    target_group_1: Zielgruppe 1
+    target_group_2: Zielgruppe 2
+    target_group_3: Zielgruppe 3
+    target_group_4: Zielgruppe 4
+    target_group_5: Zielgruppe 5
+    target_group_6: Zielgruppe 6
+    sponsors: Sponsoren
+    sponsors_info: Haben Ihre Produkte prominente Sponsoren/Fans? Sie können bis zu 6 Sponsoren eintragen.
+    sponsor_1: Sponsor 1
+    sponsor_2: Sponsor 2
+    sponsor_3: Sponsor 3
+    sponsor_4: Sponsor 4
+    sponsor_5: Sponsor 5
+    sponsor_6: Sponsor 6
+    partners: Partner
+    partners_info: Wer sind Ihre Kooperationspartner? Sie können bis zu 6 Partnern eintragen.
+    partner_1: Partner 1
+    partner_2: Partner 2
+    partner_3: Partner 3
+    partner_4: Partner 4
+    partner_5: Partner 5
+    partner_6: Partner 6
+    register: Handelregister*
+
   edit_product:
     edit: Editieren
     remove: Entfernen
@@ -208,7 +238,7 @@ de:
     tag2: Schlüsselwort 2
     tag3: Schlüsselwort 3
     name: Produktname*
-    desc: Beschreibung
+    desc: Beschreibung*
     cover: Deckenbild
     brand: Marke*
     variant_name: Variantentyp
@@ -229,7 +259,7 @@ de:
     variant: Variantentyp
     categories_info: Die Zuordnung der Kategorien hilft den Käufern, Ihr Produkt zu finden. Zu min. einer Kategorie muss ein Produkt zugeordnet werden.
     keywords_info: Wir empfehlen Ihnen, mit 3 Schlüsselwörtern das Produkt zu charakterisieren. Diese Schlüsselwörtern dienen sowohl dem internen als auch externem Search.
-    images_info: Bis zu 4 Photos können für ein Produkt hochgeladen werden.
+    images_info: Laden Sie bitte bis zu 4 Produktbilder in JPG oder JPEG Format für das Produkt hoch. (max. 1 MB pro Bild)
     desc_info: Beschreiben Sie Ihr Produkt mit all den ansprechenden Eigenschaften, die für Käufer relevant sind. (max. 50 Wörter)
     cancel: Abbrechen
   edit_product_new:

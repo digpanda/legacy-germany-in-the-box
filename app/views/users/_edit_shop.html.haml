@@ -19,11 +19,11 @@
       %tr
         %th.info
           = I18n.t(:founding_year, scope: :edit_shop)
-          %i.fa.fa-info-circle{ :title => I18n.t(:founding_year, scope: :edit_shop) }
+          %i.fa.fa-info-circle{ :title => I18n.t(:founding_year_info, scope: :edit_shop) }
         %td= f.text_field :founding_year, :class => 'form-control', :required => true, :pattern => '^(19|20)\d{2}$'
       %tr
         %th.info
-          = I18n.t(:desc, scope: :edit_product)
+          = I18n.t(:desc, scope: :edit_shop)
           %i.fa.fa-info-circle{ :title => I18n.t(:desc_info, scope: :edit_shop) }
         %td= f.text_area :desc, :class => 'form-control', rows: 4
       %tr
@@ -36,14 +36,36 @@
           = I18n.t(:story, scope: :edit_shop)
           %i.fa.fa-info-circle{ :title => I18n.t(:story_info, scope: :edit_shop) }
         %td= f.text_area :story, :class => 'form-control', rows: 4
+      %tr
+        %th.info
+          = I18n.t(:uniqueness, scope: :edit_shop)
+          %i.fa.fa-info-circle{ :title => I18n.t(:uniqueness_info, scope: :edit_shop) }
+        %td= f.text_area :uniqueness, :class => 'form-control', rows: 4
+      %tr
+        %th.info
+          = I18n.t(:german_essence, scope: :edit_shop)
+          %i.fa.fa-info-circle{ :title => I18n.t(:german_essence_info, scope: :edit_shop) }
+        %td= f.text_area :german_essence, :class => 'form-control', rows: 4
+
+  - f.fields_for :address do |fa|
+    %table.table.table-bordered
+      %tbody
+        %tr
+          %th.info
+            = I18n.t(:fname, scope: :edit_shop)
+          %td= fa.text_field :fname, :class => 'form-control', :required => true
 
   %table.table.table-bordered
     %tbody
       %tr
         %th.info
+          = I18n.t(:register, scope: :edit_shop)
+        %td= f.text_field :register, :class => 'form-control', :required => true
+      %tr
+        %th.info
           = I18n.t(:ustid, scope: :edit_shop)
           %i.fa.fa-info-circle{ :title => I18n.t(:ust_id_info, scope: :edit_shop) }
-        %td= f.text_field :ustid, :class => 'form-control'
+        %td= f.text_field :ustid, :class => 'form-control', :placeholder => 'DE999999999'
       %tr
         %th.info
           = I18n.t(:eroi, scope: :edit_shop)
@@ -71,5 +93,47 @@
               = f.hidden_field :sms
               = f.check_box :sms, {}, true
             = f.text_field :sms_mobile, :class => 'form-control', :placeholder => @shop.sms ? '' : I18n.t('edit_shop.sms.false')
+
+  %table.table.table-bordered
+    %tbody
+      %tr.info
+        %th.text-center{ :colspan => 6 }
+          = I18n.t(:target_groups, scope: :edit_shop)
+          %i.fa.fa-info-circle{ :title => I18n.t(:target_groups_info, scope: :edit_shop) }
+      %tr
+        %td= text_field_tag "shop[target_groups][]", @shop.target_groups[0], :class => 'form-control', :placeholder => I18n.t(:target_group_1, scope: :edit_shop)
+        %td= text_field_tag "shop[target_groups][]", @shop.target_groups[1], :class => 'form-control', :placeholder => I18n.t(:target_group_2, scope: :edit_shop)
+        %td= text_field_tag "shop[target_groups][]", @shop.target_groups[2], :class => 'form-control', :placeholder => I18n.t(:target_group_3, scope: :edit_shop)
+        %td= text_field_tag "shop[target_groups][]", @shop.target_groups[3], :class => 'form-control', :placeholder => I18n.t(:target_group_4, scope: :edit_shop)
+        %td= text_field_tag "shop[target_groups][]", @shop.target_groups[4], :class => 'form-control', :placeholder => I18n.t(:target_group_5, scope: :edit_shop)
+        %td= text_field_tag "shop[target_groups][]", @shop.target_groups[5], :class => 'form-control', :placeholder => I18n.t(:target_group_6, scope: :edit_shop)
+
+  %table.table.table-bordered
+    %tbody
+      %tr.info
+        %th.text-center{ :colspan => 6 }
+          = I18n.t(:sponsors, scope: :edit_shop)
+          %i.fa.fa-info-circle{ :title => I18n.t(:sponsors_info, scope: :edit_shop) }
+      %tr
+        %td= text_field_tag "shop[sponsors][]", @shop.sponsors[0], :class => 'form-control', :placeholder => I18n.t(:sponsor_1, scope: :edit_shop)
+        %td= text_field_tag "shop[sponsors][]", @shop.sponsors[1], :class => 'form-control', :placeholder => I18n.t(:sponsor_2, scope: :edit_shop)
+        %td= text_field_tag "shop[sponsors][]", @shop.sponsors[2], :class => 'form-control', :placeholder => I18n.t(:sponsor_3, scope: :edit_shop)
+        %td= text_field_tag "shop[sponsors][]", @shop.sponsors[3], :class => 'form-control', :placeholder => I18n.t(:sponsor_4, scope: :edit_shop)
+        %td= text_field_tag "shop[sponsors][]", @shop.sponsors[4], :class => 'form-control', :placeholder => I18n.t(:sponsor_5, scope: :edit_shop)
+        %td= text_field_tag "shop[sponsors][]", @shop.sponsors[5], :class => 'form-control', :placeholder => I18n.t(:sponsor_6, scope: :edit_shop)
+
+  %table.table.table-bordered
+    %tbody
+      %tr.info
+        %th.text-center{ :colspan => 6 }
+          = I18n.t(:partners, scope: :edit_shop)
+          %i.fa.fa-info-circle{ :title => I18n.t(:partners_info, scope: :edit_shop) }
+      %tr
+        %td= text_field_tag "shop[partners][]", @shop.partners[0], :class => 'form-control', :placeholder => I18n.t(:partner_1, scope: :edit_shop)
+        %td= text_field_tag "shop[partners][]", @shop.partners[1], :class => 'form-control', :placeholder => I18n.t(:partner_2, scope: :edit_shop)
+        %td= text_field_tag "shop[partners][]", @shop.partners[2], :class => 'form-control', :placeholder => I18n.t(:partner_3, scope: :edit_shop)
+        %td= text_field_tag "shop[partners][]", @shop.partners[3], :class => 'form-control', :placeholder => I18n.t(:partner_4, scope: :edit_shop)
+        %td= text_field_tag "shop[partners][]", @shop.partners[4], :class => 'form-control', :placeholder => I18n.t(:partner_5, scope: :edit_shop)
+        %td= text_field_tag "shop[partners][]", @shop.partners[5], :class => 'form-control', :placeholder => I18n.t(:partner_6, scope: :edit_shop)
 
   = f.button I18n.t(:save, scope: :edit_shop), :class => 'btn btn-primary', name: :user_info_edit_part, value: :edit_shop

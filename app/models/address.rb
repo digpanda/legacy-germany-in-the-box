@@ -17,10 +17,12 @@ class Address
   field :email,                 type: String
   field :mobile,                type: String
   field :tel,                   type: String
+  field :function,              type: String
 
   field :primary,               type: Boolean, default: false
 
   belongs_to :user, :inverse_of => :addresses;
+  belongs_to :shop, :inverse_of => :address;
 
   has_and_belongs_to_many :orders,  :inverse_of => :delivery_destination
 
@@ -32,6 +34,4 @@ class Address
   validates :country,               presence: true
 
   validates :primary,               presence: true
-
-  validates :user,                  presence: true
 end
