@@ -17,29 +17,43 @@
         %th.info= I18n.t(:name, scope: :edit_shop)
         %td= f.text_field :name, :class => 'form-control', :required => true
       %tr
-        %th.info= I18n.t(:desc, scope: :edit_product)
+        %th.info
+          = I18n.t(:desc, scope: :edit_product)
+          %i.fa.fa-info-circle{ :title => I18n.t(:desc_info, scope: :edit_shop) }
         %td= f.text_area :desc, :class => 'form-control'
       %tr
-        %th.info= I18n.t(:philosophy, scope: :edit_shop)
+        %th.info
+          = I18n.t(:philosophy, scope: :edit_shop)
+          %i.fa.fa-info-circle{ :title => I18n.t(:philosophy_info, scope: :edit_shop) }
         %td= f.text_area :philosophy, :class => 'form-control'
       %tr
-        %th.info= I18n.t(:story, scope: :edit_shop)
+        %th.info
+          = I18n.t(:story, scope: :edit_shop)
+          %i.fa.fa-info-circle{ :title => I18n.t(:story_info, scope: :edit_shop) }
         %td= f.text_area :story, :class => 'form-control'
 
   %table.table.table-bordered
     %tbody
       %tr
-        %th.info= I18n.t(:ustid, scope: :edit_shop)
+        %th.info
+          = I18n.t(:ustid, scope: :edit_shop)
+          %i.fa.fa-info-circle{ :title => I18n.t(:ust_id_info, scope: :edit_shop) }
         %td= f.text_field :ustid, :class => 'form-control'
       %tr
-        %th.info= I18n.t(:eroi, scope: :edit_shop)
+        %th.info
+          = I18n.t(:eroi, scope: :edit_shop)
+          %i.fa.fa-info-circle{ :title => I18n.t(:eroi_number_info, scope: :edit_shop) }
         %td= f.text_field :eroi, :class => 'form-control'
 
   %table.table.table-bordered
     %tbody
       %tr
-        %th.info.text-center= I18n.t(:min_total, scope: :edit_shop)
-        %th.info.text-center= I18n.t('edit_shop.sms.info')
+        %th.info.text-center
+          = I18n.t(:min_total, scope: :edit_shop)
+          %i.fa.fa-info-circle{ :title => I18n.t(:min_total_info, scope: :edit_shop) }
+        %th.info.text-center
+          = I18n.t('edit_shop.sms.info')
+          %i.fa.fa-info-circle{ :title => I18n.t(:sms_info, scope: :edit_shop) }
       %tr
         %td
           .input-group

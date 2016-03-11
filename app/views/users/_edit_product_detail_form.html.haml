@@ -14,7 +14,9 @@
     - if new && (not @product.skus[fs.index].persisted?)
       %table.table.table-bordered
         %theader
-          %th.info.text-center{:colspan => 4}= I18n.t(:images, scope: :edit_product_detail)
+          %th.info.text-center{:colspan => 4}
+            = I18n.t(:images, scope: :edit_product_detail)
+            %i.fa.fa-info-circle{ :title => I18n.t(:images_info, scope: :edit_product_detail) }
         %tbody
           %tr
             %th.text-center{:colspan => 2}= I18n.t(:img0, scope: :edit_product_detail)
@@ -74,7 +76,9 @@
     - elsif (not new) && @product.skus[fs.index].id.to_s == params[:sku_id]
       %table.table.table-bordered
         %theader
-          %th.info.text-center{:colspan => 4}= I18n.t(:images, scope: :edit_product_detail)
+          %th.info.text-center{:colspan => 4}
+            = I18n.t(:images, scope: :edit_product_detail)
+            %i.fa.fa-info-circle{ :title => I18n.t(:images_info, scope: :edit_product_detail) }
         %tbody
           %tr
             %th.text-center{:colspan => 2}= I18n.t(:img0, scope: :edit_product_detail)
@@ -100,7 +104,9 @@
           %th.info.text-center{:colspan => 4}= I18n.t(:sku_options, scope: :edit_product_detail)
         %tbody
           %tr
-            %th.text-center{:colspan => 2}= fs.label :option_ids, I18n.t(:sku_variants_options, scope: :edit_product_detail)
+            %th.text-center{:colspan => 2}
+              = fs.label :option_ids, I18n.t(:sku_variants_options, scope: :edit_product_detail)
+              %i.fa.fa-info-circle{ :title => I18n.t(:variants_info, scope: :edit_product_detail) }
             %th.text-center{:colspan => 2}= I18n.t(:price, scope: :edit_product_detail)
           %tr
             %td{:colspan => 2}= fs.select :option_ids, grouped_options_for_select(get_grouped_variants_options(@product), @product.skus[fs.index].option_ids ), {}, {:multiple => 'multiple', :class => 'sku_variants_options'}
@@ -117,7 +123,9 @@
             %td{:colspan => 2}= fs.text_field :weight, :class => 'form-control'
           %tr
             %th.text-center{:colspan => 2}= I18n.t(:discount, scope: :edit_product_detail)
-            %th.text-center{:colspan => 2}= I18n.t('edit_product_detail.customizable.info')
+            %th.text-center{:colspan => 2}
+              = I18n.t('edit_product_detail.customizable.info')
+              %i.fa.fa-info-circle{ :title => I18n.t(:customizable_info, scope: :edit_product_detail) }
           %tr
             %td{:colspan => 2}= fs.text_field :discount, :class => 'form-control'
             %td{:colspan => 2}

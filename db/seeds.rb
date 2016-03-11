@@ -140,7 +140,6 @@ category_clothes_for_men = Category.create!(
     :cssc => 'fa-male',
     :parent => category_fashion,
     :name_locales => { :'zh-CN' => '男性时尚', :de => 'Herrenmode'},
-    :status => false
 )
 
 Category.create!(

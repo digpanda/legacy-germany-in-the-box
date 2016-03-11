@@ -233,14 +233,14 @@ zh-CN:
     img1: 图片2
     img2: 图片3
     img3: 图片4
-    price: 价格
-    currency: 货币
-    quantity: 库存
+    price: 价格*
+    currency: 货币*
+    quantity: 库存*
     limited:
       info: 限量
       'true': 限量
       'false': 不限量
-    weight: 重量
+    weight: 重量*
     status:
       info: 状态
       'true': 上架
@@ -249,10 +249,10 @@ zh-CN:
       info: 定制
       'true': 可以
       'false': 不可
-    discount: 折扣
+    discount: 折扣*
     create_ok: 明细成功创建
     create_ko: 明细创建失败
-    sku_variants_options: 型号组合
+    sku_variants_options: 型号组合*
     images: 产品图片
     sku_options: 库存与型号
     update_sku: 更新库存

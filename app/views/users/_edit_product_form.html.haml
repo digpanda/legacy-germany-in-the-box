@@ -27,7 +27,9 @@
   %table.table.table-bordered
     %tbody
       %tr.info
-        %th.text-center= I18n.t(:categories, scope: :edit_product)
+        %th.text-center
+          = I18n.t(:categories, scope: :edit_product)
+          %i.fa.fa-info-circle{ :title => I18n.t(:categories_info, scope: :edit_product) }
       %tr
         %td= f.select :categories, grouped_options_for_select(get_grouped_categories_options, @product.categories.map { |c| c.id.to_s }), {}, :multiple => 'multiple', :name => 'product[categories][]', :class => 'form-control product_categoires', :required => true
 
@@ -40,13 +42,16 @@
         %th.info= I18n.t(:brand, scope: :edit_product)
         %td= f.text_field :brand, :class => 'form-control', :required => true
       %tr
-        %th.info= I18n.t(:desc, scope: :edit_product)
+        %th.info
+          = I18n.t(:desc, scope: :edit_product)
+          %i.fa.fa-info-circle{ :title => I18n.t(:desc_info, scope: :edit_product) }
         %td= f.text_area :desc, :class => 'form-control'
-
   %table.table.table-bordered
     %tbody
       %tr.info
-        %th.text-center{ :colspan => 3 }= I18n.t(:tags, scope: :edit_product)
+        %th.text-center{ :colspan => 3 }
+          = I18n.t(:tags, scope: :edit_product)
+          %i.fa.fa-info-circle{ :title => I18n.t(:keywords_info, scope: :edit_product) }
       %tr
         %td= text_field_tag "product[tags][]", @product.tags[0], :class => 'form-control', :placeholder => I18n.t(:tag1, scope: :edit_product)
         %td= text_field_tag "product[tags][]", @product.tags[1], :class => 'form-control', :placeholder => I18n.t(:tag2, scope: :edit_product)

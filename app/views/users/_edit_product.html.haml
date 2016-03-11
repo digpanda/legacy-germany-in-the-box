@@ -21,7 +21,9 @@
       %tr
         %th= I18n.t(:name, scope: :edit_product)
         %th= I18n.t(:brand, scope: :edit_product)
-        %th= I18n.t(:categories, scope: :edit_product)
+        %th
+          = I18n.t(:categories, scope: :edit_product)
+          %i.fa.fa-info-circle{ :title => I18n.t(:categories_info, scope: :edit_product) }
         %th= I18n.t(:operations, scope: :edit_product)
     %tbody
       - current_user.shop.products.each do |p|

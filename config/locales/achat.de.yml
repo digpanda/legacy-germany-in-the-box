@@ -189,6 +189,13 @@ de:
     status: Status
     save: Speichern
     update_ok: Der Shop erfolgreich aktualisiert!
+    desc_info: Wer sind Sie? Was bieten Sie an?  (max. 50 Wörter)
+    philosophy_info: Welche Grundidee und Grundüberzeugung unterliegen Ihren Produkten? (max. 200 Wörter)
+    story_info: Was kennzeichnet und differenziert Ihre Produkte von anderen ähnlichen Produkten auf dem Markt? Welche Produktsiegel haben Ihre Produkte? Welche Auszeichnungenhaben haben Ihre Produkte erhalten? Haben Ihre Produkte prominente Sponsoren? (max. 200 Wörter)
+    ust_id_info: Als Exportierender Hersteller führen Sie keine Ust-Vorsteuer ab. Falls Sie eine Ust-ID besitzen, benötigen wir sie für Ausfuhrbescheinigungen. (max. 25 Buchstaben)
+    eroi_number_info: Die EORI-Nummer ersetzt die deutsche Zollnummer und dient der Regiestrierung und Identifikation von Wirschaftsbeteiligten bei der Zollabwicklung in EU. Ab einen Tagesexportwert von 1.000 EUR muss der Hersteller EORI-Nummer angeben. Wenn Sie erwarten, dass Sie diesen Tagegrenzwert überschreiten werden, emfehlen wir diese nummer im Vorfeld zu beantragen. Die EORI-Nummer können Sie jeder Zeit nachtragen. (max. 25 Buchstaben)
+    min_total_info: Sie können einen Mindestbestellwert für eine Bestellung aus Ihrem Shop festlegen. 
+    sms_info: Möchten Sie über einen Verkauf von RheinManufaktur benachrichtigt werden? Wenn ja, dann geben Sie uns Ihre Mobilephone Nummber. Selbstverständlich ist das ein kostenloser Service. Bitte achten Sie darauf, dass die nummer keinen Trennstrich "-" enthält.
   edit_product:
     edit: Editieren
     remove: Entfernen
@@ -218,6 +225,10 @@ de:
     new_basic: Erstellen
     update_basic: Akutalisieren
     variant: Variantentyp
+    categories_info: Die Zuordnung der Kategorien hilft den Käufern, Ihr Produkt zu finden. Zu min. einer Kategorie muss ein Produkt zugeordnet werden.
+    keywords_info: Wir empfehlen Ihnen, mit 3 Schlüsselwörtern das Produkt zu charakterisieren. Diese Schlüsselwörtern dienen sowohl dem internen als auch externem Search.
+    images_info: Bis zu 4 Photos können für ein Produkt hochgeladen werden.
+    desc_info: Beschreiben Sie Ihr Produkt mit all den ansprechenden Eigenschaften, die für Käufer relevant sind. (max. 50 Wörter)
   edit_product_new:
     create_ok: Das Produkt erfolgreich erstellt!
     create_ko: Ein Fehler ist beim
@@ -233,14 +244,14 @@ de:
     img1: Bild 2
     img2: Bild 3
     img3: Bild 4
-    price: Preis
+    price: Preis*
     currency: Währung
-    quantity: Menge
+    quantity: Menge*
     limited:
       info: Menge begrenzt
       'true': Ja
       'false': Nein
-    weight: Gewicht
+    weight: Gewicht*
     status:
       info: Zum Verkauf angeboten
       'true': Ja
@@ -249,16 +260,19 @@ de:
       info: Auf Kundenwünsche anpassbar
       'true': Ja
       'false': Nein
-    discount: Rabatt
+    discount: Rabatt*
     create_ok: Die Artikelposition erfolgreich erstellt!
     create_ko: Ein Fehler ist beim Anlegen der Artikelpositionen aufgetreten.
-    sku_variants_options: Variantentypen
+    sku_variants_options: Variantentypen*
     images: Produktbilder
     sku_options: Details der Artikelposition
     update_sku: Aktualisieren
     new_sku: Neue Artikelposition
     create_sku: Erstellen
     update_ok: Die Artikelposition erfolgreich aktualisiert!
+    images_info: Bis zu 4 Photos können für ein Produkt hochgeladen werden. 
+    variants_info: Variante beschreibt als Gegenstände ähnlicher Form und/oder Funktion mit einem in der Regel hohen Anteil identischer Gruppen oder Teile. Zu min. einer Variantenoption muss eine Artikelposition zugeordnet werden.
+    customizable_info: Dieses Produkt kann nach Kundenwunsch individuell angefertig werden.
   edit_product_variant:
     new_variant: Neue Variante
     edit: Editieren
