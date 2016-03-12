@@ -14,38 +14,42 @@
   %table.table.table-bordered
     %tbody
       %tr
-        %th.info= I18n.t(:name, scope: :edit_shop)
-        %td= f.text_field :name, :class => 'form-control', :required => true
+        %th.info{width: '30%'}= I18n.t(:name, scope: :edit_shop)
+        %td{width: '70%'}= f.text_field :name, :class => 'form-control', :required => true
       %tr
-        %th.info
+        %th.info{width: '30%', :title => I18n.t(:founding_year_info, scope: :edit_shop) }
           = I18n.t(:founding_year, scope: :edit_shop)
           %i.fa.fa-info-circle{ :title => I18n.t(:founding_year_info, scope: :edit_shop) }
-        %td= f.text_field :founding_year, :class => 'form-control', :required => true, :pattern => '^(19|20)\d{2}$'
+        %td{width: '70%'}= f.text_field :founding_year, :class => 'form-control', :required => true, :pattern => '^(19|20)\d{2}$'
       %tr
-        %th.info
+        %th.info{width: '30%'}
+          = I18n.t(:register, scope: :edit_shop)
+        %td{width: '70%'}= f.text_field :register, :class => 'form-control', :required => true
+      %tr
+        %th.info{width: '30%', :title => I18n.t(:desc_info, scope: :edit_shop) }
           = I18n.t(:desc, scope: :edit_shop)
           %i.fa.fa-info-circle{ :title => I18n.t(:desc_info, scope: :edit_shop) }
-        %td= f.text_area :desc, :class => 'form-control', rows: 4
+        %td{width: '70%'}= f.text_area :desc, :class => 'form-control', rows: 4
       %tr
-        %th.info
+        %th.info{width: '30%', :title => I18n.t(:philosophy_info, scope: :edit_shop) }
           = I18n.t(:philosophy, scope: :edit_shop)
           %i.fa.fa-info-circle{ :title => I18n.t(:philosophy_info, scope: :edit_shop) }
-        %td= f.text_area :philosophy, :class => 'form-control', rows: 4
+        %td{width: '70%'}= f.text_area :philosophy, :class => 'form-control', rows: 4
       %tr
-        %th.info
-          = I18n.t(:story, scope: :edit_shop)
-          %i.fa.fa-info-circle{ :title => I18n.t(:story_info, scope: :edit_shop) }
-        %td= f.text_area :story, :class => 'form-control', rows: 4
+        %th.info{width: '30%', :title => I18n.t(:stories_info, scope: :edit_shop) }
+          = I18n.t(:stories, scope: :edit_shop)
+          %i.fa.fa-info-circle{ :title => I18n.t(:stories_info, scope: :edit_shop) }
+        %td{width: '70%'}= f.text_area :stories, :class => 'form-control', rows: 4
       %tr
-        %th.info
+        %th.info{width: '30%', :title => I18n.t(:uniqueness_info, scope: :edit_shop) }
           = I18n.t(:uniqueness, scope: :edit_shop)
           %i.fa.fa-info-circle{ :title => I18n.t(:uniqueness_info, scope: :edit_shop) }
-        %td= f.text_area :uniqueness, :class => 'form-control', rows: 4
+        %td{width: '70%'}= f.text_area :uniqueness, :class => 'form-control', rows: 4
       %tr
-        %th.info
+        %th.info{width: '30%', :title => I18n.t(:german_essence_info, scope: :edit_shop) }
           = I18n.t(:german_essence, scope: :edit_shop)
           %i.fa.fa-info-circle{ :title => I18n.t(:german_essence_info, scope: :edit_shop) }
-        %td= f.text_area :german_essence, :class => 'form-control', rows: 4
+        %td{width: '70%'}= f.text_area :german_essence, :class => 'form-control', rows: 4
 
   - f.fields_for :address do |fa|
     %table.table.table-bordered
@@ -58,46 +62,32 @@
   %table.table.table-bordered
     %tbody
       %tr
-        %th.info
-          = I18n.t(:register, scope: :edit_shop)
-        %td= f.text_field :register, :class => 'form-control', :required => true
-      %tr
-        %th.info
+        %th.info{width: '30%', :title => I18n.t(:ust_id_info, scope: :edit_shop) }
           = I18n.t(:ustid, scope: :edit_shop)
           %i.fa.fa-info-circle{ :title => I18n.t(:ust_id_info, scope: :edit_shop) }
-        %td= f.text_field :ustid, :class => 'form-control', :placeholder => 'DE999999999'
+        %td{width: '70%'}= f.text_field :ustid, :class => 'form-control', :placeholder => 'DE999999999'
       %tr
-        %th.info
+        %th.info{width: '30%', :title => I18n.t(:eroi_number_info, scope: :edit_shop) }
           = I18n.t(:eroi, scope: :edit_shop)
           %i.fa.fa-info-circle{ :title => I18n.t(:eroi_number_info, scope: :edit_shop) }
-        %td= f.text_field :eroi, :class => 'form-control'
+        %td{width: '70%'}= f.text_field :eroi, :class => 'form-control'
 
   %table.table.table-bordered
     %tbody
       %tr
-        %th.info.text-center
+        %th.info.text-center{ :title => I18n.t(:min_total_info, scope: :edit_shop) }
           = I18n.t(:min_total, scope: :edit_shop)
           %i.fa.fa-info-circle{ :title => I18n.t(:min_total_info, scope: :edit_shop) }
-        %th.info.text-center
-          = I18n.t('edit_shop.sms.info')
-          %i.fa.fa-info-circle{ :title => I18n.t(:sms_info, scope: :edit_shop) }
       %tr
         %td
           .input-group
             = f.text_field :min_total, :class => 'form-control'
             %span.input-group-addon
               = f.label @shop.currency
-        %td
-          .input-group
-            %span.input-group-addon
-              = f.hidden_field :sms
-              = f.check_box :sms, {}, true
-            = f.text_field :sms_mobile, :class => 'form-control', :placeholder => @shop.sms ? '' : I18n.t('edit_shop.sms.false')
-
   %table.table.table-bordered
     %tbody
       %tr.info
-        %th.text-center{ :colspan => 6 }
+        %th.text-center{ :colspan => 6, :title => I18n.t(:target_groups_info, scope: :edit_shop) }
           = I18n.t(:target_groups, scope: :edit_shop)
           %i.fa.fa-info-circle{ :title => I18n.t(:target_groups_info, scope: :edit_shop) }
       %tr
@@ -111,7 +101,7 @@
   %table.table.table-bordered
     %tbody
       %tr.info
-        %th.text-center{ :colspan => 6 }
+        %th.text-center{ :colspan => 6, :title => I18n.t(:sponsors_info, scope: :edit_shop) }
           = I18n.t(:sponsors, scope: :edit_shop)
           %i.fa.fa-info-circle{ :title => I18n.t(:sponsors_info, scope: :edit_shop) }
       %tr
@@ -125,7 +115,7 @@
   %table.table.table-bordered
     %tbody
       %tr.info
-        %th.text-center{ :colspan => 6 }
+        %th.text-center{ :colspan => 6, :title => I18n.t(:partners_info, scope: :edit_shop) }
           = I18n.t(:partners, scope: :edit_shop)
           %i.fa.fa-info-circle{ :title => I18n.t(:partners_info, scope: :edit_shop) }
       %tr

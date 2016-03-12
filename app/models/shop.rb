@@ -10,7 +10,7 @@ class Shop
   field :logo,            type: String
   field :banner,          type: String
   field :philosophy,      type: String
-  field :story,           type: String
+  field :stories,         type: String
   field :ustid,           type: String
   field :eroi,            type: String
   field :sms,             type: Boolean,    default: false
