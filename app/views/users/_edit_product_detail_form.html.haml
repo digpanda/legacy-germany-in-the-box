@@ -12,7 +12,7 @@
   = hidden_field_tag :part, :sku
   = f.fields_for :skus do |fs|
     - if new && (not @product.skus[fs.index].persisted?)
-      %table.table.table-bordered
+      %table.table.table-borderless
         %theader
           %th.info.text-center{:colspan => 4}
             = I18n.t(:images, scope: :edit_product_detail)
@@ -37,7 +37,7 @@
             %td{:colspan => 2, :align => :center}= fs.file_field :img2, :accept => "image/png, image/jpeg"
             %td{:colspan => 2, :align => :center}= fs.file_field :img3, :accept => "image/png, image/jpeg"
 
-      %table.table.table-bordered
+      %table.table.table-borderless
         %theader
           %th.info.text-center{:colspan => 4}= I18n.t(:sku_options, scope: :edit_product_detail)
         %tbody
@@ -74,7 +74,7 @@
               = fs.check_box :status, {}, true
               = I18n.t('edit_product_detail.status.true')
     - elsif (not new) && @product.skus[fs.index].id.to_s == params[:sku_id]
-      %table.table.table-bordered
+      %table.table.table-borderless
         %theader
           %th.info.text-center{:colspan => 4}
             = I18n.t(:images, scope: :edit_product_detail)
@@ -99,7 +99,7 @@
             %td{:colspan => 2, :align => :center}= fs.file_field :img2, :accept => "image/png, image/jpeg"
             %td{:colspan => 2, :align => :center}= fs.file_field :img3, :accept => "image/png, image/jpeg"
 
-      %table.table.table-bordered
+      %table.table.table-borderless
         %theader
           %th.info.text-center{:colspan => 4}= I18n.t(:sku_options, scope: :edit_product_detail)
         %tbody

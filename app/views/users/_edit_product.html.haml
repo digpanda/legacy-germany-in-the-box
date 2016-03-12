@@ -31,7 +31,7 @@
     %tbody
       - current_user.shop.products.each do |p|
         %tr
-          %td= link_to p.name, edit_user_path(current_user, :user_info_edit_part => :edit_product_update, :product_id => p.id)
+          %td= link_to p.get_locale_name, edit_user_path(current_user, :user_info_edit_part => :edit_product_update, :product_id => p.id)
           %td= p.brand
           %td= select_tag :categories, grouped_options_for_select(get_grouped_categories_options, p.categories.map { |c| c.id.to_s }), :multiple => 'multiple', :class => 'form-control product_categories'
           %td{:style => 'width:80px'}

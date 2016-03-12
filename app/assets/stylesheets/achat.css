@@ -1,3 +1,10 @@
+.table.table-borderless {
+    border-bottom:0px !important;
+}
+.table.table-borderless  th, .table.table-borderless  td {
+    border: 0px !important;
+}
+
 textarea {
     resize: none;
 }

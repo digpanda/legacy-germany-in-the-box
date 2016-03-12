@@ -3,6 +3,8 @@ class Shop
   include Mongoid::Timestamps::Created::Short
   include Mongoid::Timestamps::Updated::Short
 
+  include DocLocaleName
+
   strip_attributes
 
   field :name,            type: String
@@ -25,6 +27,8 @@ class Shop
   field :sponsors,        type: Array,      default: Array.new(6)
   field :partners,        type: Array,      default: Array.new(6)
   field :register,        type: String
+
+  field :name_locales,    type: Hash
 
   mount_uploader :logo,   AttachmentUploader
   mount_uploader :banner, AttachmentUploader

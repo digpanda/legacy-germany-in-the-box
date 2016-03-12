@@ -3,12 +3,16 @@ class Collection
   include Mongoid::Timestamps::Created::Short
   include Mongoid::Timestamps::Updated::Short
 
+  include DocLocaleName
+
   strip_attributes
 
   field :name,    type: String
   field :desc,    type: String
   field :img,     type: String
   field :public,  type: Boolean, default: true
+
+  field :name_locales, type: Hash
 
   mount_uploader :img, AttachmentUploader
 

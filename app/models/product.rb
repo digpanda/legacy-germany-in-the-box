@@ -3,6 +3,8 @@ class Product
   include Mongoid::Timestamps::Created::Short
   include Mongoid::Timestamps::Updated::Short
 
+  include DocLocaleName
+
   strip_attributes
 
   field :name,        type: String
@@ -11,6 +13,8 @@ class Product
   field :desc,        type: String
   field :tags,        type: Array,    default: Array.new(3)
   field :status,      type: Boolean,  default: true
+
+  field :name_locales, type: Hash
 
   embeds_many :options,   inverse_of: :product,   cascade_callbacks: true,  class_name: 'VariantOption'
   embeds_many :skus,      inverse_of: :product,   cascade_callbacks: true
