@@ -170,14 +170,18 @@ de:
     create_ok: Der Favorit erfolgreich erstellt!
     create_ko: Ein Fehler ist bei der Erstellung des Favorits aufgetreten.
     create_with_existing_name: Ein gleichnämiger Favorit ist bereits vorhanden.
+  shop_application:
+    shop_application: Beantragen
+    shop_application_ok: Vielen Dank für Ihren Kontakt! Wir werden uns bald mit Ihnen in Verbindung setzten.
+    title: Antragsformular
   edit_shop:
-    email: Email zur Registrierung
+    email: Email*
     name: Herstellername*
-    desc: Beschreibung
+    desc: Beschreibung*
     logo: Logo
     banner: Banner
-    philosophy: Philosophie
-    stories: Geschichten
+    philosophy: Philosophie*
+    stories: Geschichten*
     ustid: Ust-ID
     eroi: EROI-Nummer
     sms:

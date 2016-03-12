@@ -47,6 +47,10 @@ class Shop
   validates :currency,      presence: true,   inclusion: {in: ['€']}
   validates :founding_year, presence: true
   validates :register,      presence: true
+  validates :desc,          presence: true,   length: {maximum: 1024*16}
+  validates :philosophy,    presence: true,   length: {maximum: 1024*16}
+  validates :stories,       presence: true,   length: {maximum: 1024*16}
+
 
   validates :ustid,         length: { minimum: 25, maximum: 25, :allow_blank => true }
   validates :eroi,          length: { minimum: 25, maximum: 25, :allow_blank => true }
