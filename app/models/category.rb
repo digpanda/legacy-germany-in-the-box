@@ -19,9 +19,9 @@ class Category
 
   has_and_belongs_to_many :products,  :inverse_of => :categories
 
-  validates :name,    presence: true
+  validates :name,    presence: true, length: {maximum: 256}
   validates :code,    presence: true, :unless => lambda { self.parent.blank? }
-  validates :status,  presence: true
+  validates :status,  presence: true, length: {maximum: 32}
 
   scope :roots,           ->  { where(:parent => nil) }
   scope :is_active,       ->  { where( :status => true ) }

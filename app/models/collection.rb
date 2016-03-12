@@ -21,7 +21,7 @@ class Collection
 
   belongs_to :user, inverse_of: :oCollections
 
-  validates :name,    presence: true
+  validates :name,    presence: true, length: {maximum: 64}
   validates :public,  presence: true
   validates :user,    presence: true
 

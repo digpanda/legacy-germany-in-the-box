@@ -17,5 +17,5 @@ class VariantOption
 
   accepts_nested_attributes_for :suboptions
 
-  validates :name,      presence: true
+  validates :name,      presence: true, length: {maximum: 64}
 end

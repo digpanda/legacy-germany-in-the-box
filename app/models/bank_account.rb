@@ -10,9 +10,9 @@ class BankAccount
 
   belongs_to :shop
 
-  validates :name,    presence: true
-  validates :iban,    presence: true
-  validates :bic,     presence: true
+  validates :name,    presence: true,   length: {maximum: 128}
+  validates :iban,    presence: true,   length: {maximum: 32}
+  validates :bic,     presence: true,   length: {maximum: 32}
   validates :debit,   presence: true
   validates :shop,    presence: true
 end
