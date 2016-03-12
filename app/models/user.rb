@@ -14,9 +14,6 @@ class User
   field :birth,     type: String
   field :about,     type: String
   field :website,   type: String
-  field :country,   type: String
-  field :lang,      type: String
-  field :provider,  type: String
   field :tel,       type: String
   field :mobile,    type: String
   field :status,    type: Boolean, default: true
@@ -36,12 +33,18 @@ class User
   mount_uploader :pic, AttachmentUploader
 
   validates :role,          presence: true, inclusion: {in: [:customer, :shopkeeper, :admin]}
-  validates :username,      presence: true
-  validates :email,         presence: true, uniqueness: true
+  validates :username,      presence: true, length: {maximum: 32}
+  validates :email,         presence: true, length: {maximum: 32}, uniqueness: true
   validates :birth,         presence: true, :if => lambda { :customer == self.role }
   validates :gender,        presence: true, :if => lambda { :customer == self.role }
   validates :status,        presence: true
-  #validates :dCollection,   presence: true
+
+  validates :fname,   length: {maximum: 32}
+  validates :lname,   length: {maximum: 32}
+  validates :birth,   length: {maximum: 10}
+  validates :about,   length: {maximum: 1024*16}
+  validates :website, length: {maximum: 256}
+
 
   validates :oCollections, :length => { :maximum => Rails.configuration.max_customer_collections },   :if => lambda { :customer   == self.role }
   validates :oCollections, :length => { :maximum => Rails.configuration.max_shopkeeper_collections }, :if => lambda { :shopkeeper == self.role }

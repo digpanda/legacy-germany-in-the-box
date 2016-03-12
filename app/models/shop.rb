@@ -23,9 +23,8 @@ class Shop
   field :founding_year,   type: String
   field :uniqueness,      type: String
   field :german_essence,  type: String
-  field :target_groups,   type: Array,      default: Array.new(6)
-  field :sponsors,        type: Array,      default: Array.new(6)
-  field :partners,        type: Array,      default: Array.new(6)
+  field :target_groups,   type: Array,      default: Array.new(1)
+  field :sales_channels,  type: Array,      default: Array.new(1)
   field :register,        type: String
 
   field :name_locales,    type: Hash
@@ -40,24 +39,24 @@ class Shop
 
   belongs_to :shopkeeper,   class_name: 'User',  inverse_of: :shop
 
-  validates :name,          presence: true
+  validates :name,          presence: true,   length: {maximum: 128}
   validates :sms,           presence: true
-  validates :sms_mobile,    presence: true,   :if => lambda { self.sms }
+  validates :sms_mobile,    presence: true,   :if => lambda { self.sms }, length: {maximum: 16}
   #validates :billing_address,       presence: true,   :if => lambda { self.status == :opened }
   #validates :bank_account,  presence: true,   :if => lambda { self.status == :opened }
   validates :status,        presence: true
   validates :min_total,     presence: true
   validates :shopkeeper,    presence: true
   validates :currency,      presence: true,   inclusion: {in: ['€']}
-  validates :founding_year, presence: true
-  validates :register,      presence: true
+  validates :founding_year, presence: true,   length: {maximum: 4}
+  validates :register,      presence: true,   length: {maximum: 128}
   validates :desc,          presence: true,   length: {maximum: 1024*16}
   validates :philosophy,    presence: true,   length: {maximum: 1024*16}
   validates :stories,       presence: true,   length: {maximum: 1024*16}
 
 
-  validates :ustid,         length: { minimum: 25, maximum: 25, :allow_blank => true }
-  validates :eroi,          length: { minimum: 25, maximum: 25, :allow_blank => true }
+  validates :ustid,         length: { maximum: 32, :allow_blank => true }
+  validates :eroi,          length: { maximum: 32, :allow_blank => true }
 
   scope :is_active,       ->        { where( :status => true ) }
 

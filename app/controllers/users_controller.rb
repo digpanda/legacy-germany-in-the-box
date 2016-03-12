@@ -197,7 +197,7 @@ class UsersController < ApplicationController
       gender = 'm'
     end
 
-    params.require(:user).permit(:username, :email, :parse_id, :password, :password_confirmation, :fname, :lname, :birth, :gender, :about, :website, :country, :pic, :lang, :provider, :tel, :mobile)
+    params.require(:user).permit(:username, :email, :password, :password_confirmation, :fname, :lname, :birth, :gender, :about, :website, :pic, :tel, :mobile)
   end
 
 end

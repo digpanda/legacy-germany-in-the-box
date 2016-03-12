@@ -31,11 +31,14 @@ class Product
 
   mount_uploader :cover,   AttachmentUploader
 
-  validates :name,        presence: true
-  validates :brand ,      presence: true
+  validates :name,        presence: true,   length: {maximum: 128}
+  validates :brand ,      presence: true,   length: {maximum: 128}
   validates :shop,        presence: true
   validates :categories,  presence: true
   validates :status,      presence: true
+
+  validates :desc,    length: { maximum: 1024*16}
+  validates :tags,    length: { maximum: Rails.configuration.max_num_tags }
 
   scope :has_tag,         ->(value) { where( :tags => value )   }
   scope :is_active,       ->        { where( :status => true ) }
