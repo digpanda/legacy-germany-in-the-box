@@ -109,7 +109,7 @@
               %tr
                 %td{width: '80%'}= text_field_tag 'shop[target_groups][]', tg, :class => 'form-control', :placeholder => I18n.t(:target_group, scope: :edit_shop)
                 %td{width: '20%'}
-                  %a{ :href => '#', :class => 'btn' }
+                  %a{ :href => '#', :class => 'btn', :onclick => "$(this).closest('tr').remove()" }
                     %i.fa.fa-times-circle
                     =I18n.t(:remove_target_group, scope: :edit_shop)
 
