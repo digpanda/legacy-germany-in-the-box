@@ -15,10 +15,6 @@ Rails.application.routes.draw do
 
   root to: 'pages#home'
 
-  resources :shop_application, except: [:destroy] do
-
-  end
-
   get '/set_session_locale/:locale', to: 'application#set_session_locale', as: 'set_session_locale'
 
   resources :collections, except: [:new] do

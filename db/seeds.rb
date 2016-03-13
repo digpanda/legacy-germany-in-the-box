@@ -759,7 +759,11 @@ shop = Shop.create!(
     :logo => create_upload_from_image_file(Shop.name.downcase, 'herz-buffet-logo.jpg'),
     :banner => create_upload_from_image_file(Shop.name.downcase, 'herz-buffet-banner.jpg'),
     :min_total => 20,
-    :shopkeeper => shopkeeper
+    :shopkeeper => shopkeeper,
+    :founding_year => 1988,
+    :register => 12345678,
+    :philosophy => 'my philosohpy',
+    :stories => 'my stories'
 );
 
 product = Product.new(
@@ -833,7 +837,11 @@ shop = Shop.create!(
     :logo => create_upload_from_image_file(Shop.name.downcase, 'herz-buffet-logo.jpg'),
     :banner => create_upload_from_image_file(Shop.name.downcase, 'herz-buffet-banner.jpg'),
     :min_total => 20,
-    :shopkeeper => shopkeeper
+    :shopkeeper => shopkeeper,
+    :founding_year => 1988,
+    :register => 12345678,
+    :philosophy => 'my philosohpy',
+    :stories => 'my stories'
 );
 
 product = Product.new(

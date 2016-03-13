@@ -208,31 +208,13 @@ de:
     uniqueness: Einzigartigkeit
     uniqueness_info: Was hebt Ihre Produkte von anderen ähnlichen Produkten auf dem Markt ab?   (max 200 Wörter)
     target_groups: Zielgruppen
-    target_groups_info: Wer gehört zur Zielgruppe für Ihre Produkte in Deutschland? Sie können bis zu 6 Zielgruppen eintragen.
-    target_group_1: Zielgruppe 1
-    target_group_2: Zielgruppe 2
-    target_group_3: Zielgruppe 3
-    target_group_4: Zielgruppe 4
-    target_group_5: Zielgruppe 5
-    target_group_6: Zielgruppe 6
-    sponsors: Sponsoren
-    sponsors_info: Haben Ihre Produkte prominente Sponsoren/Fans? Sie können bis zu 6 Sponsoren eintragen.
-    sponsor_1: Sponsor 1
-    sponsor_2: Sponsor 2
-    sponsor_3: Sponsor 3
-    sponsor_4: Sponsor 4
-    sponsor_5: Sponsor 5
-    sponsor_6: Sponsor 6
-    partners: Partner
-    partners_info: Wer sind Ihre Kooperationspartner? Sie können bis zu 6 Partnern eintragen.
-    partner_1: Partner 1
-    partner_2: Partner 2
-    partner_3: Partner 3
-    partner_4: Partner 4
-    partner_5: Partner 5
-    partner_6: Partner 6
+    target_groups_info: Wer gehört zur Zielgruppe für Ihre Produkte in Deutschland? Sie können bis zu 12 Zielgruppen eintragen.
+    target_group: Zielgruppe
+    sales_channels: Vertriebswege
+    sales_channels_info: Was ist Ihre Vertriebswege? Sie können bis zu 32 Vertriebswege eintragen.
     register: Handelregister*
-
+    add_target_group: Hinzufügen
+    remove_target_group: Entfernen
   edit_product:
     edit: Editieren
     remove: Entfernen
@@ -245,7 +227,7 @@ de:
     name: Produktname*
     desc: Beschreibung*
     cover: Deckenbild
-    brand: Marke*
+    brand: Markennamen*
     variant_name: Variantentyp
     created_at: erstellt am
     updated_at: aktualisiert am

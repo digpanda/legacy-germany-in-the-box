@@ -16,11 +16,11 @@
               = "#{i+1}. #{c.name} #{c.public ? "(#{I18n.t(:public, scope: :edit_collection)})" : '' }".truncate(20)
           .btn-group.pull-right
             - for_device_type :desktop, :tablet do
-              = link_to I18n.t(:edit, scope: :edit_collection), edit_user_path(current_user, :user_info_edit_part => :edit_collection_update, :collection_id => c.id) , :class => 'fa fa-edit btn'
-              = link_to I18n.t(:remove, scope: :edit_collection), collection_path(c.id), method: :delete, data: { confirm: "#{I18n.t(:delete_collection_message, scope: :edit_collection)}" }, :class => 'fa fa-times-circle btn'
+              = link_to I18n.t(:edit, scope: :edit_collection), edit_user_path(current_user, :user_info_edit_part => :edit_collection_update, :collection_id => c.id) , :class => 'fa fa-edit btn btn-sm'
+              = link_to I18n.t(:remove, scope: :edit_collection), collection_path(c.id), method: :delete, data: { confirm: "#{I18n.t(:delete_collection_message, scope: :edit_collection)}" }, :class => 'fa fa-times-circle btn btn-sm'
             - for_device_type :mobile do
-              = link_to '', edit_user_path(current_user, :user_info_edit_part => :edit_collection_update, :collection_id => c.id) , :class => 'fa fa-edit btn'
-              = link_to '', collection_path(c.id), method: :delete, data: { confirm: "#{I18n.t(:delete_collection_message, scope: :edit_collection)}" }, :class => 'fa fa-times-circle btn'
+              = link_to '', edit_user_path(current_user, :user_info_edit_part => :edit_collection_update, :collection_id => c.id) , :class => 'fa fa-edit btn btn-sm'
+              = link_to '', collection_path(c.id), method: :delete, data: { confirm: "#{I18n.t(:delete_collection_message, scope: :edit_collection)}" }, :class => 'fa fa-times-circle btn btn-sm'
       .panel-collapse.collapse{:id => "collection_collapse_#{c.id}", :class => i==0 ? 'in' : ''}
         .panel-body
           - if c.products.count == 0

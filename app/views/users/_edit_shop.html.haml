@@ -93,33 +93,24 @@
                 %span.input-group-addon
                   = f.label @shop.currency
   .panel.panel-info
-    .panel-heading.text-center{ :title => I18n.t(:target_groups_info, scope: :edit_shop) }
-      = I18n.t(:target_groups, scope: :edit_shop)
-      %i.fa.fa-info-circle{ :title => I18n.t(:target_groups_info, scope: :edit_shop) }
+    .panel-heading{ :title => I18n.t(:target_groups_info, scope: :edit_shop) }
+      .btn-toolbar
+        = I18n.t(:target_groups, scope: :edit_shop)
+        %i.fa.fa-info-circle{ :title => I18n.t(:target_groups_info, scope: :edit_shop) }
+        .pull-right
+          %a{:href => '#', :class=> 'btn btn-sm', :onclick => "$('#table_shop_target_groups_#{@shop.id}').find('tbody').append($('<tr>').append($('<td>').append($('<input>').attr('name', 'shop[target_groups][]').attr('placeholder', '#{I18n.t(:target_group, scope: :edit_shop)}').addClass('form-control')))); return false;" }
+            %i.fa.fa-plus-circle
+            = I18n.t(:add_target_group, scope: :edit_shop)
     .panel-body
-      %table.table.table-borderless
+      %table.table.table-borderless{:id => "table_shop_target_groups_#{@shop.id}"}
         %tbody
-          %tr
-            %td= text_field_tag "shop[target_groups][]", @shop.target_groups[0], :class => 'form-control', :placeholder => I18n.t(:target_group_1, scope: :edit_shop)
-            %td= text_field_tag "shop[target_groups][]", @shop.target_groups[1], :class => 'form-control', :placeholder => I18n.t(:target_group_2, scope: :edit_shop)
-            %td= text_field_tag "shop[target_groups][]", @shop.target_groups[2], :class => 'form-control', :placeholder => I18n.t(:target_group_3, scope: :edit_shop)
-            %td= text_field_tag "shop[target_groups][]", @shop.target_groups[3], :class => 'form-control', :placeholder => I18n.t(:target_group_4, scope: :edit_shop)
-            %td= text_field_tag "shop[target_groups][]", @shop.target_groups[4], :class => 'form-control', :placeholder => I18n.t(:target_group_5, scope: :edit_shop)
-            %td= text_field_tag "shop[target_groups][]", @shop.target_groups[5], :class => 'form-control', :placeholder => I18n.t(:target_group_6, scope: :edit_shop)
-
-  .panel.panel-info
-    .panel-heading.text-center{ :title => I18n.t(:partners_info, scope: :edit_shop) }
-      = I18n.t(:partners, scope: :edit_shop)
-      %i.fa.fa-info-circle{ :title => I18n.t(:partners_info, scope: :edit_shop) }
-    .panel-body
-      %table.table.table-borderless
-        %tbody
-          %tr
-            %td= text_field_tag "shop[partners][]", @shop.partners[0], :class => 'form-control', :placeholder => I18n.t(:partner_1, scope: :edit_shop)
-            %td= text_field_tag "shop[partners][]", @shop.partners[1], :class => 'form-control', :placeholder => I18n.t(:partner_2, scope: :edit_shop)
-            %td= text_field_tag "shop[partners][]", @shop.partners[2], :class => 'form-control', :placeholder => I18n.t(:partner_3, scope: :edit_shop)
-            %td= text_field_tag "shop[partners][]", @shop.partners[3], :class => 'form-control', :placeholder => I18n.t(:partner_4, scope: :edit_shop)
-            %td= text_field_tag "shop[partners][]", @shop.partners[4], :class => 'form-control', :placeholder => I18n.t(:partner_5, scope: :edit_shop)
-            %td= text_field_tag "shop[partners][]", @shop.partners[5], :class => 'form-control', :placeholder => I18n.t(:partner_6, scope: :edit_shop)
+          - if @shop.target_groups
+            - @shop.target_groups.each do |tg|
+              %tr
+                %td{width: '80%'}= text_field_tag 'shop[target_groups][]', tg, :class => 'form-control', :placeholder => I18n.t(:target_group, scope: :edit_shop)
+                %td{width: '20%'}
+                  %a{ :href => '#', :class => 'btn' }
+                    %i.fa.fa-times-circle
+                    =I18n.t(:remove_target_group, scope: :edit_shop)
 
   = f.button I18n.t(:save, scope: :edit_shop), :class => 'btn btn-primary', name: :user_info_edit_part, value: :edit_shop

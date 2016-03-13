@@ -4,8 +4,6 @@ class ShopsController <  ApplicationController
 
   skip_before_action :verify_authenticity_token
 
-  before_action :shop_params, only: [:update]
-
   load_and_authorize_resource
 
   def update
@@ -23,7 +21,7 @@ class ShopsController <  ApplicationController
   private
 
   def shop_params
-    params.require(:shop).permit(:name, :desc, :logo, :banner, :philosophy, :stories, :ustid, :eroi, :min_total, :currency, :status, :founding_year, :register, target_groups:[], partners:[] )
+    params.require(:shop).permit(:name, :desc, :logo, :banner, :philosophy, :stories, :ustid, :eroi, :min_total, :currency, :status, :founding_year, :register, target_groups:[], sales_channels:[] )
   end
 
 end

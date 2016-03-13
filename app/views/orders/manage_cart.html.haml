@@ -7,12 +7,12 @@
             %tr.alert-success
               %th= I18n.t(:subtotal, scope: :cart)
               %td= "$#{o.total_price}"
-            %tr
-              %th= I18n.t(:shipping, scope: :cart)
-              %td $0.00
-            %tr
-              %th= I18n.t(:taxes, scope: :cart)
-              %td $0.00
+            -#%tr
+            -#  %th= I18n.t(:shipping, scope: :cart)
+            -#  %td $0.00
+            -#%tr
+            -#  %th= I18n.t(:taxes, scope: :cart)
+            -#  %td $0.00
             %tr
               %th= I18n.t(:total_price, scope: :cart)
               %td= "$#{o.total_price}"
@@ -46,12 +46,12 @@
                   %li
                     %span= I18n.t(:subtotal, scope: :cart)
                     %span= "$#{o.total_price}"
-                  %li
-                    %span= I18n.t(:shipping, scope: :cart)
-                    %span $0.00
-                  %li
-                    %span= I18n.t(:taxes, scope: :cart)
-                    %span $0.00
+                  -#%li
+                  -#  %span= I18n.t(:shipping, scope: :cart)
+                  -#  %span $0.00
+                  -#%li
+                  -#  %span= I18n.t(:taxes, scope: :cart)
+                  -#  %span $0.00
                   %li
                     %span= I18n.t(:total_price, scope: :cart)
                     %span= "$#{o.total_price}"

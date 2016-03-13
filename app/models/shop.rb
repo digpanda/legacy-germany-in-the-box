@@ -23,8 +23,8 @@ class Shop
   field :founding_year,   type: String
   field :uniqueness,      type: String
   field :german_essence,  type: String
-  field :target_groups,   type: Array,      default: Array.new(1)
-  field :sales_channels,  type: Array,      default: Array.new(1)
+  field :target_groups,   type: Array
+  field :sales_channels,  type: Array
   field :register,        type: String
 
   field :name_locales,    type: Hash
