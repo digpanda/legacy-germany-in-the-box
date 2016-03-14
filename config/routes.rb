@@ -61,6 +61,8 @@ Rails.application.routes.draw do
 
   resources :shops, except: [:new, :edit, :create, :destroy]
 
+  resources :shop_application, except: [:destroy]
+
   resources :orders, only: [:destroy, :show] do
     match :add_product,               via: [:patch],        to: :add_product,             as: :add_product_to,              :on => :collection
     match :adjust_products_amount,    via: [:patch],        to: :adjust_products_amount,  as: :adjust_products_amount_in,   :on => :collection

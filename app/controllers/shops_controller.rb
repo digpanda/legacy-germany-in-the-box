@@ -8,7 +8,12 @@ class ShopsController <  ApplicationController
 
   def update
      respond_to do |format|
-      if current_user.shop.update(shop_params)
+       sp = shop_params
+
+       current_user.shop.target_groups.clear unless sp[:target_groups]
+       current_user.shop.sales_channels.clear unless sp[:sales_channels]
+
+       if current_user.shop.update(sp)
         flash[:success] = I18n.t(:update_ok, scope: :edit_shop)
         format.html { redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_shop) }
       else
