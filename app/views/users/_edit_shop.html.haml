@@ -1,6 +1,6 @@
 = form_for @shop do |f|
   .panel-group
-    .panel.panel-info
+    .panel.panel-default
       .panel-body
         %table.table.table-borderless
           %tbody
@@ -13,7 +13,7 @@
             %tr
               %td= f.file_field :logo, :accept => "image/png, image/jpeg"
               %td= f.file_field :banner, :accept => "image/png, image/jpeg"
-    .panel.panel-info
+    .panel.panel-default
       .panel-body
         %table.table.table-borderless
           %tbody
@@ -54,7 +54,7 @@
                 = I18n.t(:german_essence, scope: :edit_shop)
                 %i.fa.fa-info-circle{ :title => I18n.t(:german_essence_info, scope: :edit_shop) }
               %td{width: '70%'}= f.text_area :german_essence, :class => 'form-control', rows: 4, :maxlength => Rails.configuration.max_medium_text_length
-    .panel.panel-info
+    .panel.panel-default
       .panel-body
         - f.fields_for :address do |fa|
           %table.table.table-borderless
@@ -64,7 +64,7 @@
                   = I18n.t(:fname, scope: :edit_shop)
                 %td= fa.text_field :fname, :class => 'form-control', :required => true
 
-    .panel.panel-info
+    .panel.panel-default
       .panel-body
         %table.table.table-borderless
           %tbody
@@ -79,7 +79,7 @@
                 %i.fa.fa-info-circle{ :title => I18n.t(:eroi_number_info, scope: :edit_shop) }
               %td{width: '70%'}= f.text_field :eroi, :class => 'form-control', :maxlength => Rails.configuration.max_tiny_text_length
 
-  .panel.panel-info
+  .panel.panel-default
     .panel-body
       %table.table.table-borderless
         %tbody
@@ -92,9 +92,9 @@
                 = f.text_field :min_total, :class => 'form-control'
                 %span.input-group-addon
                   = f.label @shop.currency
-  .panel.panel-info
+  .panel.panel-default
     .panel-heading{ :title => I18n.t(:target_groups_info, scope: :edit_shop, num: Rails.configuration.max_num_target_groups) }
-      .btn-toolbar
+      .btn-toolbar{:style => 'margin:8px'}
         = I18n.t(:target_groups, scope: :edit_shop)
         %i.fa.fa-info-circle{ :title => I18n.t(:target_groups_info, scope: :edit_shop, num: Rails.configuration.max_num_target_groups) }
         .pull-right
@@ -112,9 +112,9 @@
                   %a{ :href => '#', :class => 'btn', :onclick => "$(this).closest('tr').remove(); return false;" }
                     %i.fa.fa-times-circle
                     =I18n.t(:remove_target_group, scope: :edit_shop)
-  .panel.panel-info
+  .panel.panel-default
     .panel-heading{ :title => I18n.t(:sales_channels_info, scope: :edit_shop, num: Rails.configuration.max_num_sales_channels) }
-      .btn-toolbar
+      .btn-toolbar{:style => 'margin:8px'}
         = I18n.t(:sales_channels, scope: :edit_shop)
         %i.fa.fa-info-circle{ :title => I18n.t(:sales_channels_info, scope: :edit_shop, num: Rails.configuration.max_num_sales_channels) }
         .pull-right
