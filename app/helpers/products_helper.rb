@@ -86,7 +86,8 @@ module ProductsHelper
       if (body.children().length < #{Rails.configuration.max_num_sales_channels}) {
         body.append(
           $('<tr>').append(
-            $('<td>').attr('width', '40%').append(
+            #{gen_sales_channel_select_tag},
+            $('<td>').attr('width', '60%').append(
               $('<input>').attr('name', 'shop[sales_channels][]').attr('required', true).attr('placeholder', '#{I18n.t(:sales_channel, scope: :edit_shop)}').addClass('form-control')
             ),
             $('<td>').attr('width', '20%').append(
@@ -107,6 +108,19 @@ module ProductsHelper
   def gen_remove_sales_channel
     %Q{
       "$(this).closest('tr').remove(); return false;"
+    }
+  end
+
+  def gen_sales_channel_select_tag
+    %Q{
+      $('<td>').attr('width', '20%').append(
+        $('<select>').addClass('form-control').append(
+          $('<option>').val('Online-Shop').text('Online-Shop'),
+          $('<option>').val('Online-Marktplatz').text('Online-Marktplatz'),
+          $('<option>').val('Einzelhandler').text('Einzelhandler'),
+          $('<option>').val('Workshop').text('Workshop')
+        )
+      )
     }
   end
 
