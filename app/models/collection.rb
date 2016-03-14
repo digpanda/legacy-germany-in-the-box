@@ -8,7 +8,6 @@ class Collection
   strip_attributes
 
   field :name,    type: String
-  field :desc,    type: String
   field :img,     type: String
   field :public,  type: Boolean, default: true
 
@@ -21,7 +20,7 @@ class Collection
 
   belongs_to :user, inverse_of: :oCollections
 
-  validates :name,    presence: true, length: {maximum: 64}
+  validates :name,    presence: true, length: {maximum: Rails.configuration.max_short_text_length}
   validates :public,  presence: true
   validates :user,    presence: true
 

@@ -26,12 +26,12 @@ class Address
 
   has_and_belongs_to_many :orders,  :inverse_of => :delivery_destination
 
-  validates :street_building_room,  presence: true
-  validates :district,              presence: true
-  validates :city,                  presence: true
-  validates :province,              presence: true
-  validates :zip,                   presence: true
-  validates :country,               presence: true
+  validates :street_building_room,  presence: true, length: {maximum: Rails.configuration.max_short_text_length}
+  validates :district,              presence: true, length: {maximum: Rails.configuration.max_tiny_text_length}
+  validates :city,                  presence: true, length: {maximum: Rails.configuration.max_tiny_text_length}
+  validates :province,              presence: true, length: {maximum: Rails.configuration.max_tiny_text_length}
+  validates :zip,                   presence: true, length: {maximum: Rails.configuration.max_tiny_text_length}
+  validates :country,               presence: true, length: {maximum: Rails.configuration.max_tiny_text_length}
 
   validates :primary,               presence: true
 end

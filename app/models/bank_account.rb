@@ -10,9 +10,9 @@ class BankAccount
 
   belongs_to :shop
 
-  validates :name,    presence: true,   length: {maximum: 128}
-  validates :iban,    presence: true,   length: {maximum: 32}
-  validates :bic,     presence: true,   length: {maximum: 32}
+  validates :name,    presence: true,   length: {maximum: Rails.configuration.max_short_text_length}
+  validates :iban,    presence: true,   length: {maximum: Rails.configuration.max_tiny_text_length}
+  validates :bic,     presence: true,   length: {maximum: Rails.configuration.max_tiny_text_length}
   validates :debit,   presence: true
   validates :shop,    presence: true
 end

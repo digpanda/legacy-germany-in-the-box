@@ -14,11 +14,11 @@ class ShopApplication
   field :founding_year,   type: String
   field :register,        type: String
 
-  validates :email,         presence: true,   length: {maximum: 64}
-  validates :name,          presence: true,   length: {maximum: 128}
+  validates :email,         presence: true,   length: {maximum: Rails.configuration.max_short_text_length}
+  validates :name,          presence: true,   length: {maximum: Rails.configuration.max_short_text_length}
   validates :founding_year, presence: true,   length: {maximum: 4}
-  validates :register,      presence: true,   length: {maximum: 32}
-  validates :desc,          presence: true,   length: {maximum: 1024*16}
-  validates :philosophy,    presence: true,   length: {maximum: 1024*16}
-  validates :stories,       presence: true,   length: {maximum: 1024*16}
+  validates :register,      presence: true,   length: {maximum: Rails.configuration.max_tiny_text_length}
+  validates :desc,          presence: true,   length: {maximum: Rails.configuration.max_medium_text_length}
+  validates :philosophy,    presence: true,   length: {maximum: Rails.configuration.max_medium_text_length}
+  validates :stories,       presence: true,   length: {maximum: Rails.configuration.max_long_text_length}
 end

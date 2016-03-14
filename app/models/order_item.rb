@@ -23,7 +23,7 @@ class OrderItem
   validates :order,         presence: true
   validates :sku_id,        presence: true
   validates :option_ids,    presence: true
-  validates :product_name,  presence: true
+  validates :product_name,  presence: true, length: {maximum: Rails.configuration.max_short_text_length}
   validates :option_names,  presence: true
 
   def sku

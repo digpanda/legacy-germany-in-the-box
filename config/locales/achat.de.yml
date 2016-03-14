@@ -274,7 +274,7 @@ de:
       info: Menge begrenzt
       'true': Ja
       'false': Nein
-    weight: Gewicht*
+    weight: Inhaltgewicht*
     status:
       info: Zum Verkauf angeboten
       'true': Ja
