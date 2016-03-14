@@ -12,9 +12,9 @@
   = hidden_field_tag :part, :sku
   = f.fields_for :skus do |fs|
     - if new && (not @product.skus[fs.index].persisted?)
-      %table.table.table-borderless
+      %table.table.table-bordered
         %theader
-          %th.info.text-center{:colspan => 4}
+          %th.text-center{:colspan => 4}
             = I18n.t(:images, scope: :edit_product_detail)
             %i.fa.fa-info-circle{ :title => I18n.t(:images_info, scope: :edit_product_detail) }
         %tbody
@@ -37,9 +37,9 @@
             %td{:colspan => 2, :align => :center}= fs.file_field :img2, :accept => "image/png, image/jpeg"
             %td{:colspan => 2, :align => :center}= fs.file_field :img3, :accept => "image/png, image/jpeg"
 
-      %table.table.table-borderless
+      %table.table.table-bordered
         %theader
-          %th.info.text-center{:colspan => 4}= I18n.t(:sku_options, scope: :edit_product_detail)
+          %th.text-center{:colspan => 4}= I18n.t(:sku_options, scope: :edit_product_detail)
         %tbody
           %tr
             %th.text-center{:colspan => 2}= fs.label :option_ids, I18n.t(:sku_variants_options, scope: :edit_product_detail)
@@ -74,9 +74,9 @@
               = fs.check_box :status, {}, true
               = I18n.t('edit_product_detail.status.true')
     - elsif (not new) && @product.skus[fs.index].id.to_s == params[:sku_id]
-      %table.table.table-borderless
+      %table.table.table-bordered
         %theader
-          %th.info.text-center{:colspan => 4}
+          %th.text-center{:colspan => 4}
             = I18n.t(:images, scope: :edit_product_detail)
             %i.fa.fa-info-circle{ :title => I18n.t(:images_info, scope: :edit_product_detail) }
         %tbody
@@ -99,9 +99,9 @@
             %td{:colspan => 2, :align => :center}= fs.file_field :img2, :accept => "image/png, image/jpeg"
             %td{:colspan => 2, :align => :center}= fs.file_field :img3, :accept => "image/png, image/jpeg"
 
-      %table.table.table-borderless
+      %table.table.table-bordered
         %theader
-          %th.info.text-center{:colspan => 4}= I18n.t(:sku_options, scope: :edit_product_detail)
+          %th.text-center{:colspan => 4}= I18n.t(:sku_options, scope: :edit_product_detail)
         %tbody
           %tr
             %th.text-center{:colspan => 2}

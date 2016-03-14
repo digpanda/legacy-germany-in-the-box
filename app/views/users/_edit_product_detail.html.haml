@@ -22,7 +22,7 @@
 - @product.skus.each do |s|
   %table.table.table-bordered
     %theader
-      %tr.info
+      %tr
         %th{:colspan => 8}
           = select_tag :option_ids, grouped_options_for_select(get_grouped_variants_options(@product), s.option_ids ), :multiple => 'multiple', :class => 'sku_variants_options', :readonly=>true
           %i.fa.fa-info-circle{ :title => I18n.t(:variants_info, scope: :edit_product_detail) }

@@ -11,7 +11,7 @@ class Product
   field :brand,       type: String
   field :cover,       type: String
   field :desc,        type: String
-  field :tags,        type: Array,    default: Array.new(3)
+  field :tags,        type: Array,    default: Array.new(Rails.configuration.max_num_tags)
   field :status,      type: Boolean,  default: true
 
   field :name_locales, type: Hash
@@ -31,13 +31,13 @@ class Product
 
   mount_uploader :cover,   AttachmentUploader
 
-  validates :name,        presence: true,   length: {maximum: 128}
-  validates :brand ,      presence: true,   length: {maximum: 128}
+  validates :name,        presence: true,   length: {maximum: Rails.configuration.max_short_text_length}
+  validates :brand ,      presence: true,   length: {maximum: Rails.configuration.max_short_text_length}
   validates :shop,        presence: true
   validates :categories,  presence: true
   validates :status,      presence: true
 
-  validates :desc,    length: { maximum: 1024*16}
+  validates :desc,    length: { maximum: Rails.configuration.max_long_text_length}
   validates :tags,    length: { maximum: Rails.configuration.max_num_tags }
 
   scope :has_tag,         ->(value) { where( :tags => value )   }

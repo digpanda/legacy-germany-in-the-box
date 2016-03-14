@@ -23,8 +23,8 @@ class Shop
   field :founding_year,   type: String
   field :uniqueness,      type: String
   field :german_essence,  type: String
-  field :target_groups,   type: Array
-  field :sales_channels,  type: Array
+  field :target_groups,   type: Array,      default: []
+  field :sales_channels,  type: Array,      default: []
   field :register,        type: String
 
   field :name_locales,    type: Hash
@@ -39,9 +39,9 @@ class Shop
 
   belongs_to :shopkeeper,   class_name: 'User',  inverse_of: :shop
 
-  validates :name,          presence: true,   length: {maximum: 128}
+  validates :name,          presence: true,   length: {maximum: Rails.configuration.max_tiny_text_length}
   validates :sms,           presence: true
-  validates :sms_mobile,    presence: true,   :if => lambda { self.sms }, length: {maximum: 16}
+  validates :sms_mobile,    presence: true,   :if => lambda { self.sms }, length: {maximum: Rails.configuration.max_tiny_text_length}
   #validates :billing_address,       presence: true,   :if => lambda { self.status == :opened }
   #validates :bank_account,  presence: true,   :if => lambda { self.status == :opened }
   validates :status,        presence: true
@@ -49,14 +49,14 @@ class Shop
   validates :shopkeeper,    presence: true
   validates :currency,      presence: true,   inclusion: {in: ['€']}
   validates :founding_year, presence: true,   length: {maximum: 4}
-  validates :register,      presence: true,   length: {maximum: 128}
-  validates :desc,          presence: true,   length: {maximum: 1024*16}
-  validates :philosophy,    presence: true,   length: {maximum: 1024*16}
-  validates :stories,       presence: true,   length: {maximum: 1024*16}
+  validates :register,      presence: true,   length: {maximum: Rails.configuration.max_tiny_text_length}
+  validates :desc,          presence: true,   length: {maximum: Rails.configuration.max_medium_text_length}
+  validates :philosophy,    presence: true,   length: {maximum: Rails.configuration.max_medium_text_length}
+  validates :stories,       presence: true,   length: {maximum: Rails.configuration.max_long_text_length}
 
 
-  validates :ustid,         length: { maximum: 32, :allow_blank => true }
-  validates :eroi,          length: { maximum: 32, :allow_blank => true }
+  validates :ustid,         length: { maximum: Rails.configuration.max_tiny_text_length, :allow_blank => true }
+  validates :eroi,          length: { maximum: Rails.configuration.max_tiny_text_length, :allow_blank => true }
 
   scope :is_active,       ->        { where( :status => true ) }
 

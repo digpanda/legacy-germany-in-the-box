@@ -9,7 +9,7 @@ class ShopApplicationController < ApplicationController
     @shop_application = ShopApplication.new(shop_application_params)
 
     if @shop_application.save
-      flash[:success] = I18n.t(:shop_application_ok, scope: :top_menu)
+      flash[:success] = I18n.t(:shop_application_ok, scope: :shop_application)
     else
       flash[:error] = @shop_application.errors.full_messages.first
     end

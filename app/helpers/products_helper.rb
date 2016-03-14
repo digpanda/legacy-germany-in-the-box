@@ -57,7 +57,7 @@ module ProductsHelper
         body.append(
           $('<tr>').append(
             $('<td>').attr('width', '80%').append(
-              $('<input>').attr('name', 'shop[target_groups][]').attr('required', true).attr('placeholder', '#{I18n.t(:target_group, scope: :edit_shop)}').addClass('form-control')
+              $('<input>').attr('name', 'shop[target_groups][]').attr('required', true).attr('placeholder', '#{I18n.t(:target_group, scope: :edit_shop)}').attr('maxLength', #{Rails.configuration.max_short_text_length}).addClass('form-control')
             ),
             $('<td>').attr('width', '20%').append(
               $('<a>').attr('href', '#').addClass('btn').attr('onclick', #{gen_remove_target_group}).append(
@@ -88,7 +88,7 @@ module ProductsHelper
           $('<tr>').append(
             #{gen_sales_channel_select_tag},
             $('<td>').attr('width', '60%').append(
-              $('<input>').attr('name', 'shop[sales_channels][]').attr('required', true).attr('placeholder', '#{I18n.t(:sales_channel, scope: :edit_shop)}').addClass('form-control')
+              $('<input>').attr('name', 'shop[sales_channels][]').attr('required', true).attr('placeholder', '#{I18n.t(:sales_channel, scope: :edit_shop)}').attr('maxLength', #{Rails.configuration.max_short_text_length}).addClass('form-control')
             ),
             $('<td>').attr('width', '20%').append(
               $('<a>').attr('href', '#').addClass('btn').attr('onclick', #{gen_remove_sales_channel}).append(
@@ -114,7 +114,7 @@ module ProductsHelper
   def gen_sales_channel_select_tag
     %Q{
       $('<td>').attr('width', '20%').append(
-        $('<select>').addClass('form-control').append(
+        $('<select>').attr('name', 'shop[sales_channels][]').addClass('form-control').append(
           $('<option>').val('Online-Shop').text('Online-Shop'),
           $('<option>').val('Online-Marktplatz').text('Online-Marktplatz'),
           $('<option>').val('Einzelhandler').text('Einzelhandler'),

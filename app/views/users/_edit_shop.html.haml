@@ -19,41 +19,41 @@
           %tbody
             %tr
               %th{width: '30%'}= I18n.t(:name, scope: :edit_shop)
-              %td{width: '70%'}= f.text_field :name, :class => 'form-control', :required => true
+              %td{width: '70%'}= f.text_field :name, :class => 'form-control', :required => true, :maxlength => Rails.configuration.max_short_text_length
             %tr
               %th{width: '30%', :title => I18n.t(:founding_year_info, scope: :edit_shop) }
                 = I18n.t(:founding_year, scope: :edit_shop)
                 %i.fa.fa-info-circle{ :title => I18n.t(:founding_year_info, scope: :edit_shop) }
-              %td{width: '70%'}= f.text_field :founding_year, :class => 'form-control', :required => true, :pattern => '^(19|20)\d{2}$'
+              %td{width: '70%'}= f.text_field :founding_year, :class => 'form-control', :required => true, :pattern => '^(19|20)\d{2}$', :maxlength => 4
             %tr
               %th{width: '30%'}
                 = I18n.t(:register, scope: :edit_shop)
-              %td{width: '70%'}= f.text_field :register, :class => 'form-control', :required => true
+              %td{width: '70%'}= f.text_field :register, :class => 'form-control', :required => true, :maxlength => Rails.configuration.max_short_text_length
             %tr
               %th{width: '30%', :title => I18n.t(:desc_info, scope: :edit_shop) }
                 = I18n.t(:desc, scope: :edit_shop)
                 %i.fa.fa-info-circle{ :title => I18n.t(:desc_info, scope: :edit_shop) }
-              %td{width: '70%'}= f.text_area :desc, :class => 'form-control', rows: 4
+              %td{width: '70%'}= f.text_area :desc, :class => 'form-control', rows: 4, :required => true, :maxlength => Rails.configuration.max_medium_text_length
             %tr
               %th{width: '30%', :title => I18n.t(:philosophy_info, scope: :edit_shop) }
                 = I18n.t(:philosophy, scope: :edit_shop)
                 %i.fa.fa-info-circle{ :title => I18n.t(:philosophy_info, scope: :edit_shop) }
-              %td{width: '70%'}= f.text_area :philosophy, :class => 'form-control', rows: 4
+              %td{width: '70%'}= f.text_area :philosophy, :class => 'form-control', rows: 4, :required => true, :maxlength => Rails.configuration.max_medium_text_length
             %tr
               %th{width: '30%', :title => I18n.t(:stories_info, scope: :edit_shop) }
                 = I18n.t(:stories, scope: :edit_shop)
                 %i.fa.fa-info-circle{ :title => I18n.t(:stories_info, scope: :edit_shop) }
-              %td{width: '70%'}= f.text_area :stories, :class => 'form-control', rows: 4
+              %td{width: '70%'}= f.text_area :stories, :class => 'form-control', rows: 4, :required => true, :maxlength => Rails.configuration.max_long_text_length
             %tr
               %th{width: '30%', :title => I18n.t(:uniqueness_info, scope: :edit_shop) }
                 = I18n.t(:uniqueness, scope: :edit_shop)
                 %i.fa.fa-info-circle{ :title => I18n.t(:uniqueness_info, scope: :edit_shop) }
-              %td{width: '70%'}= f.text_area :uniqueness, :class => 'form-control', rows: 4
+              %td{width: '70%'}= f.text_area :uniqueness, :class => 'form-control', rows: 4, :maxlength => Rails.configuration.max_medium_text_length
             %tr
               %th{width: '30%', :title => I18n.t(:german_essence_info, scope: :edit_shop) }
                 = I18n.t(:german_essence, scope: :edit_shop)
                 %i.fa.fa-info-circle{ :title => I18n.t(:german_essence_info, scope: :edit_shop) }
-              %td{width: '70%'}= f.text_area :german_essence, :class => 'form-control', rows: 4
+              %td{width: '70%'}= f.text_area :german_essence, :class => 'form-control', rows: 4, :maxlength => Rails.configuration.max_medium_text_length
     .panel.panel-info
       .panel-body
         - f.fields_for :address do |fa|
@@ -72,12 +72,12 @@
               %th{width: '30%', :title => I18n.t(:ust_id_info, scope: :edit_shop) }
                 = I18n.t(:ustid, scope: :edit_shop)
                 %i.fa.fa-info-circle{ :title => I18n.t(:ust_id_info, scope: :edit_shop) }
-              %td{width: '70%'}= f.text_field :ustid, :class => 'form-control', :placeholder => 'DE999999999'
+              %td{width: '70%'}= f.text_field :ustid, :class => 'form-control', :placeholder => 'DE999999999', :maxlength => Rails.configuration.max_tiny_text_length
             %tr
               %th{width: '30%', :title => I18n.t(:eroi_number_info, scope: :edit_shop) }
                 = I18n.t(:eroi, scope: :edit_shop)
                 %i.fa.fa-info-circle{ :title => I18n.t(:eroi_number_info, scope: :edit_shop) }
-              %td{width: '70%'}= f.text_field :eroi, :class => 'form-control'
+              %td{width: '70%'}= f.text_field :eroi, :class => 'form-control', :maxlength => Rails.configuration.max_tiny_text_length
 
   .panel.panel-info
     .panel-body
@@ -93,10 +93,10 @@
                 %span.input-group-addon
                   = f.label @shop.currency
   .panel.panel-info
-    .panel-heading{ :title => I18n.t(:target_groups_info, scope: :edit_shop) }
+    .panel-heading{ :title => I18n.t(:target_groups_info, scope: :edit_shop, num: Rails.configuration.max_num_target_groups) }
       .btn-toolbar
         = I18n.t(:target_groups, scope: :edit_shop)
-        %i.fa.fa-info-circle{ :title => I18n.t(:target_groups_info, scope: :edit_shop) }
+        %i.fa.fa-info-circle{ :title => I18n.t(:target_groups_info, scope: :edit_shop, num: Rails.configuration.max_num_target_groups) }
         .pull-right
           %a{:href => '#', :class=> 'btn btn-sm', :onclick => "#{gen_add_target_group}", :id => "a_add_target_group_#{@shop.id}"}
             %i.fa.fa-plus-circle
@@ -107,16 +107,16 @@
           - if @shop.target_groups
             - @shop.target_groups.each do |tg|
               %tr
-                %td{width: '80%'}= text_field_tag 'shop[target_groups][]', tg, :class => 'form-control', :placeholder => I18n.t(:target_group, scope: :edit_shop)
+                %td{width: '80%'}= text_field_tag 'shop[target_groups][]', tg, :class => 'form-control', :placeholder => I18n.t(:target_group, scope: :edit_shop), :maxlength => Rails.configuration.max_short_text_length
                 %td{width: '20%'}
                   %a{ :href => '#', :class => 'btn', :onclick => "$(this).closest('tr').remove(); return false;" }
                     %i.fa.fa-times-circle
                     =I18n.t(:remove_target_group, scope: :edit_shop)
   .panel.panel-info
-    .panel-heading{ :title => I18n.t(:sales_channels_info, scope: :edit_shop) }
+    .panel-heading{ :title => I18n.t(:sales_channels_info, scope: :edit_shop, num: Rails.configuration.max_num_sales_channels) }
       .btn-toolbar
         = I18n.t(:sales_channels, scope: :edit_shop)
-        %i.fa.fa-info-circle{ :title => I18n.t(:sales_channels_info, scope: :edit_shop) }
+        %i.fa.fa-info-circle{ :title => I18n.t(:sales_channels_info, scope: :edit_shop, num: Rails.configuration.max_num_sales_channels) }
         .pull-right
           %a{:href => '#', :class=> 'btn btn-sm', :onclick => "#{gen_add_sales_channel}", :id => "a_add_sales_channel_#{@shop.id}"}
             %i.fa.fa-plus-circle
@@ -125,9 +125,10 @@
       %table.table.table-borderless{:id => "table_shop_sales_channels_#{@shop.id}"}
         %tbody
           - if @shop.sales_channels
-            - @shop.sales_channels.each do |sc|
+            - @shop.sales_channels.each_slice(2) do |sck, scv|
               %tr
-                %td{width: '80%'}= text_field_tag 'shop[sales_channels][]', sc, :class => 'form-control', :placeholder => I18n.t(:sales_channel, scope: :edit_shop)
+                %td{width: '20%'}= select_tag 'shop[sales_channels][]', options_for_select([ 'Online-Shop', 'Online-Marktplatz', 'Einzelhandler', 'Workshop' ], sck), :class => 'form-control'
+                %td{width: '60%'}= text_field_tag 'shop[sales_channels][]', scv, :class => 'form-control', :placeholder => I18n.t(:sales_channel, scope: :edit_shop), :required => true
                 %td{width: '20%'}
                   %a{ :href => '#', :class => 'btn', :onclick => "$(this).closest('tr').remove(); return false;" }
                     %i.fa.fa-times-circle

@@ -100,7 +100,7 @@ de:
     mobile: Handy
     save: Speichern
   edit_address:
-    maximal_number_of_addresses: Sie können maximal drei Adressen konfigurieren.
+    maximal_number_of_addresses: Sie können maximal %{num} Adressen konfigurieren.
     add_new_address: Adresse hinzufügen
     new_address_title: Ihre neue Adresse
     street_building_room: Adresse
@@ -172,7 +172,7 @@ de:
     create_with_existing_name: Ein gleichnämiger Favorit ist bereits vorhanden.
   shop_application:
     shop_application: Beantragen
-    shop_application_ok: Vielen Dank für Ihren Kontakt! Wir werden uns bald mit Ihnen in Verbindung setzten.
+    shop_application_ok: Vielen Dank für Ihren Antrag! Wir werden uns bald mit Ihnen in Verbindung setzten.
     title: Antragsformular
   edit_shop:
     email: Email*
@@ -194,30 +194,30 @@ de:
     status: Status
     save: Speichern
     update_ok: Der Shop erfolgreich aktualisiert!
-    desc_info: Wer sind Sie? Was bieten Sie an?  (max. 50 Wörter)
-    philosophy_info: Welche Grundidee und Grundüberzeugung unterliegen Ihren Produkten? (max. 200 Wörter)
+    desc_info: Wer sind Sie? Was bieten Sie an?
+    philosophy_info: Welche Grundidee und Grundüberzeugung unterliegen Ihren Produkten?
     stories_info: Haben Ihre Produkte bemerkenswerte Geschichten, z.B dass Ihre Marke Sponsor für lokale Kinderevents, Elternverein, Sportverein ist, oder dass die Rezepte oder Herstellungen einer langen Familientradition folgen? Welche Zeitungen und Magazine haben von Ihren Produkten positiv berichtet?
-    ust_id_info: Als Exportierender Hersteller führen Sie keine Ust-Vorsteuer ab. Falls Sie eine Ust-ID besitzen, benötigen wir sie für Ausfuhrbescheinigungen. (max. 25 Buchstaben)
+    ust_id_info: Als Exportierender Hersteller führen Sie keine Ust-Vorsteuer ab. Falls Sie eine Ust-ID besitzen, benötigen wir sie für Ausfuhrbescheinigungen.
     eroi_number_info: Die EORI-Nummer ersetzt die deutsche Zollnummer und dient der Regiestrierung und Identifikation von Wirschaftsbeteiligten bei der Zollabwicklung in EU. Ab einen Tagesexportwert von 1.000 EUR muss der Hersteller EORI-Nummer angeben. Wenn Sie erwarten, dass Sie diesen Tagegrenzwert überschreiten werden, emfehlen wir diese nummer im Vorfeld zu beantragen. Die EORI-Nummer können Sie jeder Zeit nachtragen. (max. 25 Buchstaben)
     min_total_info: Sie können einen Mindestbestellwert für eine Bestellung aus Ihrem Shop festlegen. 
     sms_info: Möchten Sie über einen Verkauf von RheinManufaktur benachrichtigt werden? Wenn ja, dann geben Sie uns Ihre Mobilephone Nummber. Selbstverständlich ist das ein kostenloser Service. Bitte achten Sie darauf, dass die nummer keinen Trennstrich "-" enthält.
     founding_year: Gründungsjahr*
-    founding_year_info: Wann wurde Ihre Marke gegründet? (Jahr)
+    founding_year_info: In welchem wurde Ihre Marke gegründet?
     german_essence: German-Design
     german_essence_info: Die deutsche Herstellung ist weltweit bekannt für seine Effizienz, Schlichheit und Qualität. Wie spiegeln Ihre Produkte die Essenz von "German-Design" hinsichtlich ihrer Herstellung und Gestaltung wider? (max. 250 Wörter)
     uniqueness: Einzigartigkeit
-    uniqueness_info: Was hebt Ihre Produkte von anderen ähnlichen Produkten auf dem Markt ab?   (max 200 Wörter)
+    uniqueness_info: Was hebt Ihre Produkte von anderen ähnlichen Produkten auf dem Markt ab?
     target_groups: Zielgruppen
-    target_groups_info: Wer gehört zur Zielgruppe für Ihre Produkte in Deutschland? Sie können bis zu 12 Zielgruppen eintragen.
+    target_groups_info: Wer gehört zur Zielgruppe für Ihre Produkte in Deutschland? Sie können bis zu %{num} Zielgruppen eintragen.
     target_group: Zielgruppe
     sales_channels: Vertriebswege
-    sales_channels_info: Was ist Ihre Vertriebswege? Sie können bis zu 32 Vertriebswege eintragen.
+    sales_channels_info: Was ist Ihre Vertriebswege? Sie können bis zu %{num} Vertriebswege eintragen.
     register: Handelregister*
     add_target_group: Hinzufügen
     remove_target_group: Entfernen
     add_sales_channel: Hinzufügen
     remove_sales_channel: Entfernen
-    sales_channel: Vetriebsweg
+    sales_channel: bspw. Link zur Website
   edit_product:
     edit: Editieren
     remove: Entfernen
@@ -248,9 +248,9 @@ de:
     update_basic: Akutalisieren
     variant: Variantentyp
     categories_info: Die Zuordnung der Kategorien hilft den Käufern, Ihr Produkt zu finden. Zu min. einer Kategorie muss ein Produkt zugeordnet werden.
-    keywords_info: Wir empfehlen Ihnen, mit 3 Schlüsselwörtern das Produkt zu charakterisieren. Diese Schlüsselwörtern dienen sowohl dem internen als auch externem Search.
+    keywords_info: Wir empfehlen Ihnen, mit %{num} Schlüsselwörtern das Produkt zu charakterisieren. Diese Schlüsselwörtern dienen sowohl dem internen als auch externem Search.
     images_info: Laden Sie bitte bis zu 4 Produktbilder in JPG oder JPEG Format für das Produkt hoch. (max. 1 MB pro Bild)
-    desc_info: Beschreiben Sie Ihr Produkt mit all den ansprechenden Eigenschaften, die für Käufer relevant sind. (max. 50 Wörter)
+    desc_info: Beschreiben Sie Ihr Produkt mit all den ansprechenden Eigenschaften, die für Käufer relevant sind.
     cancel: Abbrechen
   edit_product_new:
     create_ok: Das Produkt erfolgreich erstellt!

@@ -15,6 +15,10 @@ Rails.configuration.max_magic_number = 11
 Rails.configuration.max_add_to_cart_each_time = 5
 Rails.configuration.default_customer_locale = 'zh-CN'
 Rails.configuration.default_shopkeeper_locale = 'de'
+Rails.configuration.max_tiny_text_length = 32
+Rails.configuration.max_short_text_length = 256
+Rails.configuration.max_medium_text_length = 1024*4
+Rails.configuration.max_long_text_length = 1024*16
 
 Rails.cache.clear
 

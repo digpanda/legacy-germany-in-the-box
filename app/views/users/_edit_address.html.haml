@@ -1,7 +1,7 @@
 = javascript_include_tag 'china_city.js'
 
 .row
-  %h3.text-center= I18n.t(:maximal_number_of_addresses, scope: :edit_address)
+  %h3.text-center= I18n.t(:maximal_number_of_addresses, scope: :edit_address, num: Rails.configuration.max_num_addresses)
 
 #add-address-dialog.mfp-with-anim.mfp-hide.mfp-dialog.clearfix
   =form_for @address do |f|
