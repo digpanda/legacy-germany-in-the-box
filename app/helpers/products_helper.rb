@@ -50,6 +50,66 @@ module ProductsHelper
     }
   end
 
+  def gen_add_target_group
+    %Q{
+      var body = $('#table_shop_target_groups_#{@shop.id}').find('tbody')
+      if (body.children().length < #{Rails.configuration.max_num_target_groups}) {
+        body.append(
+          $('<tr>').append(
+            $('<td>').attr('width', '80%').append(
+              $('<input>').attr('name', 'shop[target_groups][]').attr('required', true).attr('placeholder', '#{I18n.t(:target_group, scope: :edit_shop)}').addClass('form-control')
+            ),
+            $('<td>').attr('width', '20%').append(
+              $('<a>').attr('href', '#').addClass('btn').attr('onclick', #{gen_remove_target_group}).append(
+                $('<i>').addClass('fa').addClass('fa-times-circle'),
+                ' #{I18n.t(:remove_target_group, scope: :edit_shop)}'
+              )
+            )
+          )
+        );
+      } else {
+        $(this).prop('disabled', true);
+      }
+      return false;
+    }
+  end
+
+  def gen_remove_target_group
+    %Q{
+      "$(this).closest('tr').remove(); return false;"
+    }
+  end
+
+  def gen_add_sales_channel
+    %Q{
+      var body = $('#table_shop_sales_channels_#{@shop.id}').find('tbody')
+      if (body.children().length < #{Rails.configuration.max_num_sales_channels}) {
+        body.append(
+          $('<tr>').append(
+            $('<td>').attr('width', '40%').append(
+              $('<input>').attr('name', 'shop[sales_channels][]').attr('required', true).attr('placeholder', '#{I18n.t(:sales_channel, scope: :edit_shop)}').addClass('form-control')
+            ),
+            $('<td>').attr('width', '20%').append(
+              $('<a>').attr('href', '#').addClass('btn').attr('onclick', #{gen_remove_sales_channel}).append(
+                $('<i>').addClass('fa').addClass('fa-times-circle'),
+                ' #{I18n.t(:remove_sales_channel, scope: :edit_shop)}'
+              )
+            )
+          )
+        );
+      } else {
+        $(this).prop('disabled', true);
+      }
+      return false;
+    }
+  end
+
+  def gen_remove_sales_channel
+    %Q{
+      "$(this).closest('tr').remove(); return false;"
+    }
+  end
+
   def enough_inventory(sku, quantity)
     return sku && (not sku.limited or sku.quantity >= quantity )
   end

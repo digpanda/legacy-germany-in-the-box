@@ -98,7 +98,7 @@
         = I18n.t(:target_groups, scope: :edit_shop)
         %i.fa.fa-info-circle{ :title => I18n.t(:target_groups_info, scope: :edit_shop) }
         .pull-right
-          %a{:href => '#', :class=> 'btn btn-sm', :onclick => "$('#table_shop_target_groups_#{@shop.id}').find('tbody').append($('<tr>').append($('<td>').append($('<input>').attr('name', 'shop[target_groups][]').attr('placeholder', '#{I18n.t(:target_group, scope: :edit_shop)}').addClass('form-control')))); return false;" }
+          %a{:href => '#', :class=> 'btn btn-sm', :onclick => "#{gen_add_target_group}", :id => "a_add_target_group_#{@shop.id}"}
             %i.fa.fa-plus-circle
             = I18n.t(:add_target_group, scope: :edit_shop)
     .panel-body
@@ -109,8 +109,29 @@
               %tr
                 %td{width: '80%'}= text_field_tag 'shop[target_groups][]', tg, :class => 'form-control', :placeholder => I18n.t(:target_group, scope: :edit_shop)
                 %td{width: '20%'}
-                  %a{ :href => '#', :class => 'btn', :onclick => "$(this).closest('tr').remove()" }
+                  %a{ :href => '#', :class => 'btn', :onclick => "$(this).closest('tr').remove(); return false;" }
                     %i.fa.fa-times-circle
                     =I18n.t(:remove_target_group, scope: :edit_shop)
+  .panel.panel-info
+    .panel-heading{ :title => I18n.t(:sales_channels_info, scope: :edit_shop) }
+      .btn-toolbar
+        = I18n.t(:sales_channels, scope: :edit_shop)
+        %i.fa.fa-info-circle{ :title => I18n.t(:sales_channels_info, scope: :edit_shop) }
+        .pull-right
+          %a{:href => '#', :class=> 'btn btn-sm', :onclick => "#{gen_add_sales_channel}", :id => "a_add_sales_channel_#{@shop.id}"}
+            %i.fa.fa-plus-circle
+            = I18n.t(:add_sales_channel, scope: :edit_shop)
+    .panel-body
+      %table.table.table-borderless{:id => "table_shop_sales_channels_#{@shop.id}"}
+        %tbody
+          - if @shop.sales_channels
+            - @shop.sales_channels.each do |sc|
+              %tr
+                %td{width: '80%'}= text_field_tag 'shop[sales_channels][]', sc, :class => 'form-control', :placeholder => I18n.t(:sales_channel, scope: :edit_shop)
+                %td{width: '20%'}
+                  %a{ :href => '#', :class => 'btn', :onclick => "$(this).closest('tr').remove(); return false;" }
+                    %i.fa.fa-times-circle
+                    =I18n.t(:remove_sales_channel, scope: :edit_shop)
+
 
   = f.button I18n.t(:save, scope: :edit_shop), :class => 'btn btn-primary', name: :user_info_edit_part, value: :edit_shop

@@ -215,6 +215,9 @@ de:
     register: Handelregister*
     add_target_group: Hinzufügen
     remove_target_group: Entfernen
+    add_sales_channel: Hinzufügen
+    remove_sales_channel: Entfernen
+    sales_channel: Vetriebsweg
   edit_product:
     edit: Editieren
     remove: Entfernen
