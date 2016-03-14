@@ -13,6 +13,7 @@ class ShopApplication
   field :stories,         type: String
   field :founding_year,   type: String
   field :register,        type: String
+  field :token,           type: String
 
   validates :email,         presence: true,   length: {maximum: Rails.configuration.max_short_text_length}
   validates :name,          presence: true,   length: {maximum: Rails.configuration.max_short_text_length}
@@ -21,4 +22,6 @@ class ShopApplication
   validates :desc,          presence: true,   length: {maximum: Rails.configuration.max_medium_text_length}
   validates :philosophy,    presence: true,   length: {maximum: Rails.configuration.max_medium_text_length}
   validates :stories,       presence: true,   length: {maximum: Rails.configuration.max_long_text_length}
+
+  validates :token,         length: {maximum: Rails.configuration.max_tiny_text_length}
 end
