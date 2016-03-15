@@ -14,32 +14,34 @@
           %table.table.table-borderless
             %tbody
               %tr.form-group
-                %th{width: '30%'}= I18n.t(:email, scope: :edit_shop)
+                %td{width: '30%', :title => I18n.t(:email_info, scope: :shop_application)}
+                  %strong= I18n.t(:email, scope: :shop_application)
+                  %i.fa.fa-info-circle{ :title => I18n.t(:email_info, scope: :shop_application) }
                 %td{width: '70%'}= f.email_field :email, :class => 'form-control', :required => true
               %tr.form-group
-                %th{width: '30%'}= I18n.t(:name, scope: :edit_shop)
+                %td{width: '30%'}= I18n.t(:name, scope: :edit_shop)
                 %td{width: '70%'}= f.text_field :name, :class => 'form-control', :required => true
               %tr.form-group
-                %th{width: '30%', :title => I18n.t(:founding_year_info, scope: :edit_shop) }
+                %td{width: '30%', :title => I18n.t(:founding_year_info, scope: :edit_shop) }
                   = I18n.t(:founding_year, scope: :edit_shop)
                   %i.fa.fa-info-circle{ :title => I18n.t(:founding_year_info, scope: :edit_shop) }
                 %td{width: '70%'}= f.text_field :founding_year, :class => 'form-control', :required => true, :pattern => '^(19|20)\d{2}$', :required => true
               %tr.form-group
-                %th{width: '30%'}
+                %td{width: '30%'}
                   = I18n.t(:register, scope: :edit_shop)
                 %td{width: '70%'}= f.text_field :register, :class => 'form-control', :required => true
               %tr.form-group
-                %th{width: '30%', :title => I18n.t(:desc_info, scope: :edit_shop) }
+                %td{width: '30%', :title => I18n.t(:desc_info, scope: :edit_shop) }
                   = I18n.t(:desc, scope: :edit_shop)
                   %i.fa.fa-info-circle{ :title => I18n.t(:desc_info, scope: :edit_shop) }
                 %td{width: '70%'}= f.text_area :desc, :class => 'form-control', rows: 4, :required => true
               %tr.form-group
-                %th{width: '30%', :title => I18n.t(:philosophy_info, scope: :edit_shop) }
+                %td{width: '30%', :title => I18n.t(:philosophy_info, scope: :edit_shop) }
                   = I18n.t(:philosophy, scope: :edit_shop)
                   %i.fa.fa-info-circle{ :title => I18n.t(:philosophy_info, scope: :edit_shop) }
                 %td{width: '70%'}= f.text_area :philosophy, :class => 'form-control', rows: 4, :required => true
               %tr.form-group
-                %th{width: '30%', :title => I18n.t(:stories_info, scope: :edit_shop) }
+                %td{width: '30%', :title => I18n.t(:stories_info, scope: :edit_shop) }
                   = I18n.t(:stories, scope: :edit_shop)
                   %i.fa.fa-info-circle{ :title => I18n.t(:stories_info, scope: :edit_shop) }
                 %td{width: '70%'}= f.text_area :stories, :class => 'form-control', rows: 4, :required => true

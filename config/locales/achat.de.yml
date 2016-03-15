@@ -175,6 +175,8 @@ de:
     shop_application: Beantragen
     shop_application_ok: Vielen Dank für Ihren Antrag! Wir werden uns bald mit Ihnen in Verbindung setzten.
     title: Antragsformular
+    email: Email zur Registrierung
+    email_info: Die Mailaddresse wird später beim initialen Einloggen zusammen mit einer Aktivierungscode benötigt, die an diese Mailadresse gesendet wird.
   edit_shop:
     email: Email*
     name: Herstellername*

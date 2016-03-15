@@ -23,5 +23,5 @@ class ShopApplication
   validates :philosophy,    presence: true,   length: {maximum: Rails.configuration.max_medium_text_length}
   validates :stories,       presence: true,   length: {maximum: Rails.configuration.max_long_text_length}
 
-  validates :token,         length: {maximum: Rails.configuration.max_tiny_text_length}
+  validates :code,          length: {maximum: Rails.configuration.max_tiny_text_length}
 end

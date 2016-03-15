@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { registrations: "registrations", sessions: "sessions" }
 
   devise_scope :user do
-    match :shopkeeper,      via: [:get],      to: 'sessions#new',                 as: :shopkeeper
     match 'users/sign_out', via: [:delete],   to: 'sessions#destroy',             as: :signout
     match :cancel_login,    via: [:get],      to: 'sessions#cancel_login',        as: :cancel_login
     match :cancel_signup,   via: [:get] ,     to: 'registrations#cancel_signup',  as: :cancel_signup
@@ -15,6 +14,7 @@ Rails.application.routes.draw do
 
   root to: 'pages#home'
 
+  get :shopkeeper,                   to: 'shop_application#new'
   get '/set_session_locale/:locale', to: 'application#set_session_locale', as: 'set_session_locale'
 
   resources :collections, except: [:new] do
