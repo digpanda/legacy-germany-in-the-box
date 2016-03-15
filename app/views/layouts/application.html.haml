@@ -136,9 +136,9 @@
                               = I18n.t(:empty_cart, scope: :top_menu)
 
                 - unless current_user
-                  - if I18n.locale == 'zh-CN'
+                  - if I18n.locale == :'zh-CN'
                     %li
-                      %a.popup-text{ :id => 'sign_in_link', 'data-effect' => 'mfp-move-from-top', :href => '#login-dialog', :title => "#{I18n.t(:sign_in, scope: :top_menu)}"}
+                      %a.popup-text{ :id => 'sign_in_link', 'data-effect' => 'mfp-zoom-out', :href => '#login-dialog', :title => "#{I18n.t(:sign_in, scope: :top_menu)}"}
                         %i.fa.fa-sign-in
                         = for_device_type :desktop do I18n.t(:sign_in, scope: :top_menu) end
                   - if I18n.locale == :de
@@ -148,7 +148,7 @@
                         = for_device_type :desktop do I18n.t(:shop_application, scope: :shop_application) end
                   - if I18n.locale == :'zh-CN' or (current_user && current_user.role == :customer)
                     %li
-                      %a.popup-text{:id => 'sign_up_link', 'data-effect' => 'mfp-move-from-top', :href => '#register-dialog', :title => "#{I18n.t(:sign_up, scope: :top_menu)}"}
+                      %a.popup-text{:id => 'sign_up_link', 'data-effect' => 'mfp-zoom-out', :href => '#register-dialog', :title => "#{I18n.t(:sign_up, scope: :top_menu)}"}
                         %i.fa.fa-edit
                         = for_device_type :desktop do I18n.t(:sign_up, scope: :top_menu) end
                 - else
@@ -343,7 +343,7 @@
               %h5=link_to I18n.t(:career, scope: :footer), '#', :style => 'color: gray; text-decoration: underline'
             .col-md-2
               %h4= I18n.t(:selling, scope: :footer)
-              %h5=link_to I18n.t(:seller_portal, scope: :footer), '#', :style => 'color: gray; text-decoration: underline'
+              %h5=link_to I18n.t(:seller_portal, scope: :footer), '#login-dialog', :class => 'popup-text', 'data-effect' => 'mfp-zoom-out', :style => 'color: gray; text-decoration: underline'
               %h5=link_to I18n.t(:seller_faq, scope: :footer), '#', :style => 'color: gray; text-decoration: underline'
               %h5=link_to I18n.t(:selling_in_3_steps, scope: :footer), '#', :style => 'color: gray; text-decoration: underline'
               %h5=link_to I18n.t(:fees_invoices, scope: :footer), '#', :style => 'color: gray; text-decoration: underline'

@@ -1,3 +1,6 @@
+require "uri"
+require "net/http"
+
 class ShopApplicationController < ApplicationController
 
   before_action :authenticate_user!, except: [:index, :new, :update, :create]
@@ -10,6 +13,14 @@ class ShopApplicationController < ApplicationController
 
     if @shop_application.save
       flash[:success] = I18n.t(:shop_application_ok, scope: :shop_application)
+
+      params[:user] = {}
+      params[:user][:username] = params[:shop_application][:name]
+      params[:user][:email] = params[:shop_application][:email]
+      params[:user][:password] = @shop_application.code[0, 7]
+      params[:user][:password_confirmation] = @shop_application.code[0, 7]
+
+      params.delete :shop_application
     else
       flash[:error] = @shop_application.errors.full_messages.first
     end
