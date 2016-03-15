@@ -14,7 +14,9 @@ Rails.application.routes.draw do
 
   root to: 'pages#home'
 
-  get :shopkeeper,                   to: 'shop_application#new'
+  get   :shopkeeper,                   to: 'shop_application#new'
+  post  :shopkeeper,                   to: 'shop_application#create'
+
   get '/set_session_locale/:locale', to: 'application#set_session_locale', as: 'set_session_locale'
 
   resources :collections, except: [:new] do
