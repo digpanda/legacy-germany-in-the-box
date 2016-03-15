@@ -1,12 +1,12 @@
-= form_for @shop do |f|
+= form_for @shop, :html => {role: 'form'} do |f|
   .panel-group
     .panel.panel-default
       .panel-body
         %table.table.table-borderless
           %tbody
             %tr
-              %th= I18n.t(:logo, scope: :edit_shop)
-              %th= I18n.t(:banner, scope: :edit_shop)
+              %td= I18n.t(:logo, scope: :edit_shop)
+              %td= I18n.t(:banner, scope: :edit_shop)
             %tr
               %td= image_tag @shop.logo ? @shop.logo.url : nil, :style => 'width:96px;height:96px', :class => 'form-control img-thumbnail'
               %td= image_tag @shop.banner ? @shop.banner.url : nil, :style => 'width:512px;height:96px', :class => 'img-responsive form-control'
@@ -17,50 +17,50 @@
       .panel-body
         %table.table.table-borderless
           %tbody
-            %tr
-              %th{width: '30%'}= I18n.t(:name, scope: :edit_shop)
-              %td{width: '70%'}= f.text_field :name, :class => 'form-control', :required => true, :maxlength => Rails.configuration.max_short_text_length
-            %tr
-              %th{width: '30%', :title => I18n.t(:founding_year_info, scope: :edit_shop) }
+            %tr.form-group
+              %td{width: '20%'}= I18n.t(:name, scope: :edit_shop)
+              %td{width: '80%'}= f.text_field :name, :class => 'form-control', :required => true
+            %tr.form-group
+              %td{width: '20%', :title => I18n.t(:founding_year_info, scope: :edit_shop) }
                 = I18n.t(:founding_year, scope: :edit_shop)
                 %i.fa.fa-info-circle{ :title => I18n.t(:founding_year_info, scope: :edit_shop) }
-              %td{width: '70%'}= f.text_field :founding_year, :class => 'form-control', :required => true, :pattern => '^(19|20)\d{2}$', :maxlength => 4
-            %tr
-              %th{width: '30%'}
+              %td{width: '80%'}= f.text_field :founding_year, :class => 'form-control', :required => true, :pattern => '^(19|20)\d{2}$', :maxlength => 4
+            %tr.form-group
+              %td{width: '20%'}
                 = I18n.t(:register, scope: :edit_shop)
-              %td{width: '70%'}= f.text_field :register, :class => 'form-control', :required => true, :maxlength => Rails.configuration.max_short_text_length
-            %tr
-              %th{width: '30%', :title => I18n.t(:desc_info, scope: :edit_shop) }
+              %td{width: '80%'}= f.text_field :register, :class => 'form-control', :required => true
+            %tr.form-group
+              %td{width: '20%', :title => I18n.t(:desc_info, scope: :edit_shop) }
                 = I18n.t(:desc, scope: :edit_shop)
                 %i.fa.fa-info-circle{ :title => I18n.t(:desc_info, scope: :edit_shop) }
-              %td{width: '70%'}= f.text_area :desc, :class => 'form-control', rows: 4, :required => true, :maxlength => Rails.configuration.max_medium_text_length
-            %tr
-              %th{width: '30%', :title => I18n.t(:philosophy_info, scope: :edit_shop) }
+              %td{width: '80%'}= f.text_area :desc, :class => 'form-control', rows: 4, :required => true
+            %tr.form-group
+              %td{width: '20%', :title => I18n.t(:philosophy_info, scope: :edit_shop) }
                 = I18n.t(:philosophy, scope: :edit_shop)
                 %i.fa.fa-info-circle{ :title => I18n.t(:philosophy_info, scope: :edit_shop) }
-              %td{width: '70%'}= f.text_area :philosophy, :class => 'form-control', rows: 4, :required => true, :maxlength => Rails.configuration.max_medium_text_length
-            %tr
-              %th{width: '30%', :title => I18n.t(:stories_info, scope: :edit_shop) }
+              %td{width: '80%'}= f.text_area :philosophy, :class => 'form-control', rows: 4, :required => true
+            %tr.form-group
+              %td{width: '20%', :title => I18n.t(:stories_info, scope: :edit_shop) }
                 = I18n.t(:stories, scope: :edit_shop)
                 %i.fa.fa-info-circle{ :title => I18n.t(:stories_info, scope: :edit_shop) }
-              %td{width: '70%'}= f.text_area :stories, :class => 'form-control', rows: 4, :required => true, :maxlength => Rails.configuration.max_long_text_length
-            %tr
-              %th{width: '30%', :title => I18n.t(:uniqueness_info, scope: :edit_shop) }
+              %td{width: '80%'}= f.text_area :stories, :class => 'form-control', rows: 4, :required => true
+            %tr.form-group
+              %td{width: '20%', :title => I18n.t(:uniqueness_info, scope: :edit_shop) }
                 = I18n.t(:uniqueness, scope: :edit_shop)
                 %i.fa.fa-info-circle{ :title => I18n.t(:uniqueness_info, scope: :edit_shop) }
-              %td{width: '70%'}= f.text_area :uniqueness, :class => 'form-control', rows: 4, :maxlength => Rails.configuration.max_medium_text_length
-            %tr
-              %th{width: '30%', :title => I18n.t(:german_essence_info, scope: :edit_shop) }
+              %td{width: '80%'}= f.text_area :uniqueness, :class => 'form-control', rows: 4
+            %tr.form-group
+              %td{width: '20%', :title => I18n.t(:german_essence_info, scope: :edit_shop) }
                 = I18n.t(:german_essence, scope: :edit_shop)
                 %i.fa.fa-info-circle{ :title => I18n.t(:german_essence_info, scope: :edit_shop) }
-              %td{width: '70%'}= f.text_area :german_essence, :class => 'form-control', rows: 4, :maxlength => Rails.configuration.max_medium_text_length
+              %td{width: '80%'}= f.text_area :german_essence, :class => 'form-control', rows: 4
     .panel.panel-default
       .panel-body
         - f.fields_for :address do |fa|
           %table.table.table-borderless
             %tbody
               %tr
-                %th
+                %td
                   = I18n.t(:fname, scope: :edit_shop)
                 %td= fa.text_field :fname, :class => 'form-control', :required => true
 
@@ -68,33 +68,33 @@
       .panel-body
         %table.table.table-borderless
           %tbody
-            %tr
-              %th{width: '30%', :title => I18n.t(:ust_id_info, scope: :edit_shop) }
+            %tr.form-group
+              %td{width: '20%', :title => I18n.t(:ust_id_info, scope: :edit_shop) }
                 = I18n.t(:ustid, scope: :edit_shop)
                 %i.fa.fa-info-circle{ :title => I18n.t(:ust_id_info, scope: :edit_shop) }
-              %td{width: '70%'}= f.text_field :ustid, :class => 'form-control', :placeholder => 'DE999999999', :maxlength => Rails.configuration.max_tiny_text_length
-            %tr
-              %th{width: '30%', :title => I18n.t(:eroi_number_info, scope: :edit_shop) }
+              %td{width: '80%'}= f.text_field :ustid, :class => 'form-control', :placeholder => 'DE999999999'
+            %tr.form-group
+              %td{width: '20%', :title => I18n.t(:eroi_number_info, scope: :edit_shop) }
                 = I18n.t(:eroi, scope: :edit_shop)
                 %i.fa.fa-info-circle{ :title => I18n.t(:eroi_number_info, scope: :edit_shop) }
-              %td{width: '70%'}= f.text_field :eroi, :class => 'form-control', :maxlength => Rails.configuration.max_tiny_text_length
+              %td{width: '80%'}= f.text_field :eroi, :class => 'form-control'
 
   .panel.panel-default
     .panel-body
       %table.table.table-borderless
         %tbody
-          %tr
-            %th{width: '30%', :title => I18n.t(:min_total_info, scope: :edit_shop) }
+          %tr.form-group
+            %td{width: '20%', :title => I18n.t(:min_total_info, scope: :edit_shop) }
               = I18n.t(:min_total, scope: :edit_shop)
               %i.fa.fa-info-circle{ :title => I18n.t(:min_total_info, scope: :edit_shop) }
-            %td{width: '70%'}
+            %td{width: '80%'}
               .input-group
-                = f.text_field :min_total, :class => 'form-control'
+                = f.text_field :min_total, :class => 'form-control', :required => true
                 %span.input-group-addon
                   = f.label @shop.currency
   .panel.panel-default
     .panel-heading{ :title => I18n.t(:target_groups_info, scope: :edit_shop, num: Rails.configuration.max_num_target_groups) }
-      .btn-toolbar{:style => 'margin:8px'}
+      .btn-toolbar{ :style => 'margin-left:22px' }
         = I18n.t(:target_groups, scope: :edit_shop)
         %i.fa.fa-info-circle{ :title => I18n.t(:target_groups_info, scope: :edit_shop, num: Rails.configuration.max_num_target_groups) }
         .pull-right
@@ -106,15 +106,15 @@
         %tbody
           - if @shop.target_groups
             - @shop.target_groups.each do |tg|
-              %tr
-                %td{width: '80%'}= text_field_tag 'shop[target_groups][]', tg, :class => 'form-control', :placeholder => I18n.t(:target_group, scope: :edit_shop), :maxlength => Rails.configuration.max_short_text_length
+              %tr.form-group
+                %td{width: '80%'}= text_field_tag 'shop[target_groups][]', tg, :class => 'form-control', :placeholder => I18n.t(:target_group, scope: :edit_shop), :required => true
                 %td{width: '20%'}
                   %a{ :href => '#', :class => 'btn', :onclick => "$(this).closest('tr').remove(); return false;" }
                     %i.fa.fa-times-circle
                     =I18n.t(:remove_target_group, scope: :edit_shop)
   .panel.panel-default
     .panel-heading{ :title => I18n.t(:sales_channels_info, scope: :edit_shop, num: Rails.configuration.max_num_sales_channels) }
-      .btn-toolbar{:style => 'margin:8px'}
+      .btn-toolbar{ :style => 'margin-left:22px' }
         = I18n.t(:sales_channels, scope: :edit_shop)
         %i.fa.fa-info-circle{ :title => I18n.t(:sales_channels_info, scope: :edit_shop, num: Rails.configuration.max_num_sales_channels) }
         .pull-right
@@ -126,7 +126,7 @@
         %tbody
           - if @shop.sales_channels
             - @shop.sales_channels.each_slice(2) do |sck, scv|
-              %tr
+              %tr.form-group
                 %td{width: '20%'}= select_tag 'shop[sales_channels][]', options_for_select([ 'Online-Shop', 'Online-Marktplatz', 'Einzelhandler', 'Workshop' ], sck), :class => 'form-control'
                 %td{width: '60%'}= text_field_tag 'shop[sales_channels][]', scv, :class => 'form-control', :placeholder => I18n.t(:sales_channel, scope: :edit_shop), :required => true
                 %td{width: '20%'}

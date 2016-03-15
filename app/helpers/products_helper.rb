@@ -55,9 +55,9 @@ module ProductsHelper
       var body = $('#table_shop_target_groups_#{@shop.id}').find('tbody')
       if (body.children().length < #{Rails.configuration.max_num_target_groups}) {
         body.append(
-          $('<tr>').append(
+          $('<tr>').addClass('form-group').append(
             $('<td>').attr('width', '80%').append(
-              $('<input>').attr('name', 'shop[target_groups][]').attr('required', true).attr('placeholder', '#{I18n.t(:target_group, scope: :edit_shop)}').attr('maxLength', #{Rails.configuration.max_short_text_length}).addClass('form-control')
+              $('<input>').attr('name', 'shop[target_groups][]').attr('required', true).attr('placeholder', '#{I18n.t(:target_group, scope: :edit_shop)}').addClass('form-control')
             ),
             $('<td>').attr('width', '20%').append(
               $('<a>').attr('href', '#').addClass('btn').attr('onclick', #{gen_remove_target_group}).append(
@@ -67,9 +67,8 @@ module ProductsHelper
             )
           )
         );
-      } else {
-        $(this).prop('disabled', true);
       }
+
       return false;
     }
   end
@@ -85,10 +84,10 @@ module ProductsHelper
       var body = $('#table_shop_sales_channels_#{@shop.id}').find('tbody')
       if (body.children().length < #{Rails.configuration.max_num_sales_channels}) {
         body.append(
-          $('<tr>').append(
+          $('<tr>').addClass('form-group').append(
             #{gen_sales_channel_select_tag},
             $('<td>').attr('width', '60%').append(
-              $('<input>').attr('name', 'shop[sales_channels][]').attr('required', true).attr('placeholder', '#{I18n.t(:sales_channel, scope: :edit_shop)}').attr('maxLength', #{Rails.configuration.max_short_text_length}).addClass('form-control')
+              $('<input>').attr('name', 'shop[sales_channels][]').attr('required', true).attr('placeholder', '#{I18n.t(:sales_channel, scope: :edit_shop)}').addClass('form-control')
             ),
             $('<td>').attr('width', '20%').append(
               $('<a>').attr('href', '#').addClass('btn').attr('onclick', #{gen_remove_sales_channel}).append(
@@ -98,9 +97,8 @@ module ProductsHelper
             )
           )
         );
-      } else {
-        $(this).prop('disabled', true);
       }
+
       return false;
     }
   end

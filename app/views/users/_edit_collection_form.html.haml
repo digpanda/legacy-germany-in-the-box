@@ -3,7 +3,6 @@
     .form-group
       = f.label :name, I18n.t(:name, scope: :edit_collection_new)
       = f.text_field :name, :class => 'form-control', :required => true
-      %div.help-block.with-errors
     .form-group
       = f.label :desc, I18n.t(:description, scope: :edit_collection_new)
       = f.text_area :desc, :class => 'form-control', rows: 4

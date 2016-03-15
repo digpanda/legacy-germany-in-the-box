@@ -8,7 +8,7 @@
       });
   });
 
-= form_for @product do |f|
+= form_for @product, :html => {'data-toggle': 'validator'} do |f|
   = hidden_field_tag :part, :sku
   = f.fields_for :skus do |fs|
     - if new && (not @product.skus[fs.index].persisted?)
