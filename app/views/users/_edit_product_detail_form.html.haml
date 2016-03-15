@@ -13,14 +13,14 @@
   = f.fields_for :skus do |fs|
     - if new && (not @product.skus[fs.index].persisted?)
       %table.table.table-bordered
-        %theader
-          %th.text-center{:colspan => 4}
+        %tdeader
+          %td.text-center{:colspan => 4}
             = I18n.t(:images, scope: :edit_product_detail)
             %i.fa.fa-info-circle{ :title => I18n.t(:images_info, scope: :edit_product_detail) }
         %tbody
           %tr
-            %th.text-center{:colspan => 2}= I18n.t(:img0, scope: :edit_product_detail)
-            %th.text-center{:colspan => 2}= I18n.t(:img1, scope: :edit_product_detail)
+            %td.text-center{:colspan => 2}= I18n.t(:img0, scope: :edit_product_detail)
+            %td.text-center{:colspan => 2}= I18n.t(:img1, scope: :edit_product_detail)
           %tr
             %td{:colspan => 2, :align => :center}= image_tag get_uploaded_img_url(@product.skus[fs.index].img0), :style => 'width:320px;height:320px'
             %td{:colspan => 2, :align => :center}= image_tag get_uploaded_img_url(@product.skus[fs.index].img1), :style => 'width:320px;height:320px'
@@ -28,8 +28,8 @@
             %td{:colspan => 2, :align => :center}= fs.file_field :img0, :accept => "image/png, image/jpeg"
             %td{:colspan => 2, :align => :center}= fs.file_field :img1, :accept => "image/png, image/jpeg"
           %tr
-            %th.text-center{:colspan => 2}= I18n.t(:img2, scope: :edit_product_detail)
-            %th.text-center{:colspan => 2}= I18n.t(:img3, scope: :edit_product_detail)
+            %td.text-center{:colspan => 2}= I18n.t(:img2, scope: :edit_product_detail)
+            %td.text-center{:colspan => 2}= I18n.t(:img3, scope: :edit_product_detail)
           %tr
             %td{:colspan => 2, :align => :center}= image_tag get_uploaded_img_url(@product.skus[fs.index].img2), :style => 'width:320px;height:320px'
             %td{:colspan => 2, :align => :center}= image_tag get_uploaded_img_url(@product.skus[fs.index].img3), :style => 'width:320px;height:320px'
@@ -38,13 +38,13 @@
             %td{:colspan => 2, :align => :center}= fs.file_field :img3, :accept => "image/png, image/jpeg"
 
       %table.table.table-bordered
-        %theader
-          %th.text-center{:colspan => 4}= I18n.t(:sku_options, scope: :edit_product_detail)
+        %tdeader
+          %td.text-center{:colspan => 4}= I18n.t(:sku_options, scope: :edit_product_detail)
         %tbody
           %tr
-            %th.text-center{:colspan => 2}= fs.label :option_ids, I18n.t(:sku_variants_options, scope: :edit_product_detail)
-            %th.text-center{:colspan => 2}= I18n.t(:price, scope: :edit_product_detail)
-          %tr
+            %td.text-center{:colspan => 2}= I18n.t(:sku_variants_options, scope: :edit_product_detail)
+            %td.text-center{:colspan => 2}= I18n.t(:price, scope: :edit_product_detail)
+          %tr.form-group
             %td{:colspan => 2}= fs.select :option_ids, grouped_options_for_select(get_grouped_variants_options(@product), @product.skus[fs.index].option_ids ), {}, {:multiple => 'multiple', :class => 'sku_variants_options', :required => true}
             %td{:colspan => 2}
               .input-group
@@ -52,37 +52,37 @@
                 %span.input-group-addon
                   = fs.label @product.shop.currency
           %tr
-            %th.text-center{:colspan => 2}= I18n.t(:quantity, scope: :edit_product_detail)
-            %th.text-center{:colspan => 2}= I18n.t(:weight, scope: :edit_product_detail)
-          %tr
+            %td.text-center{:colspan => 2}= I18n.t(:quantity, scope: :edit_product_detail)
+            %td.text-center{:colspan => 2}= I18n.t(:weight, scope: :edit_product_detail)
+          %tr.form-group
             %td{:colspan => 2}= fs.text_field :quantity, :class => 'form-control', :placeholder => @product.skus[fs.index].limited ? '' : I18n.t(@product.skus[fs.index].limited.to_s.to_sym, scope: 'edit_product_detail.limited'), :required => true
             %td{:colspan => 2}= fs.text_field :weight, :class => 'form-control', :required => true
           %tr
-            %th.text-center{:colspan => 2}= I18n.t(:discount, scope: :edit_product_detail)
-            %th.text-center{:colspan => 2}= I18n.t('edit_product_detail.customizable.info')
-          %tr
+            %td.text-center{:colspan => 2}= I18n.t(:discount, scope: :edit_product_detail)
+            %td.text-center{:colspan => 2}= I18n.t('edit_product_detail.customizable.info')
+          %tr.form-group
             %td{:colspan => 2}= fs.text_field :discount, :class => 'form-control', :required => true
             %td{:colspan => 2}
               = fs.hidden_field :customizable
               = fs.check_box :customizable, {}, true
               = I18n.t(true, scope: 'edit_product_detail.customizable')
           %tr
-            %th.text-center{:colspan => 2}= I18n.t('edit_product_detail.status.info')
-          %tr
+            %td.text-center{:colspan => 2}= I18n.t('edit_product_detail.status.info')
+          %tr.form-group
             %td{:colspan => 2}
               = fs.hidden_field :status
               = fs.check_box :status, {}, true
               = I18n.t('edit_product_detail.status.true')
     - elsif (not new) && @product.skus[fs.index].id.to_s == params[:sku_id]
       %table.table.table-bordered
-        %theader
-          %th.text-center{:colspan => 4}
+        %tdeader
+          %td.text-center{:colspan => 4}
             = I18n.t(:images, scope: :edit_product_detail)
             %i.fa.fa-info-circle{ :title => I18n.t(:images_info, scope: :edit_product_detail) }
         %tbody
           %tr
-            %th.text-center{:colspan => 2}= I18n.t(:img0, scope: :edit_product_detail)
-            %th.text-center{:colspan => 2}= I18n.t(:img1, scope: :edit_product_detail)
+            %td.text-center{:colspan => 2}= I18n.t(:img0, scope: :edit_product_detail)
+            %td.text-center{:colspan => 2}= I18n.t(:img1, scope: :edit_product_detail)
           %tr
             %td{:colspan => 2, :align => :center}= image_tag get_uploaded_img_url(@product.skus[fs.index].img0), :style => 'width:320px;height:320px'
             %td{:colspan => 2, :align => :center}= image_tag get_uploaded_img_url(@product.skus[fs.index].img1), :style => 'width:320px;height:320px'
@@ -90,8 +90,8 @@
             %td{:colspan => 2, :align => :center}= fs.file_field :img0, :accept => "image/png, image/jpeg"
             %td{:colspan => 2, :align => :center}= fs.file_field :img1, :accept => "image/png, image/jpeg"
           %tr
-            %th.text-center{:colspan => 2}= I18n.t(:img2, scope: :edit_product_detail)
-            %th.text-center{:colspan => 2}= I18n.t(:img3, scope: :edit_product_detail)
+            %td.text-center{:colspan => 2}= I18n.t(:img2, scope: :edit_product_detail)
+            %td.text-center{:colspan => 2}= I18n.t(:img3, scope: :edit_product_detail)
           %tr
             %td{:colspan => 2, :align => :center}= image_tag get_uploaded_img_url(@product.skus[fs.index].img2), :style => 'width:320px;height:320px'
             %td{:colspan => 2, :align => :center}= image_tag get_uploaded_img_url(@product.skus[fs.index].img3), :style => 'width:320px;height:320px'
@@ -100,15 +100,15 @@
             %td{:colspan => 2, :align => :center}= fs.file_field :img3, :accept => "image/png, image/jpeg"
 
       %table.table.table-bordered
-        %theader
-          %th.text-center{:colspan => 4}= I18n.t(:sku_options, scope: :edit_product_detail)
+        %tdeader
+          %td.text-center{:colspan => 4}= I18n.t(:sku_options, scope: :edit_product_detail)
         %tbody
           %tr
-            %th.text-center{:colspan => 2}
-              = fs.label :option_ids, I18n.t(:sku_variants_options, scope: :edit_product_detail)
+            %td.text-center{:colspan => 2}
+              = I18n.t(:sku_variants_options, scope: :edit_product_detail)
               %i.fa.fa-info-circle{ :title => I18n.t(:variants_info, scope: :edit_product_detail) }
-            %th.text-center{:colspan => 2}= I18n.t(:price, scope: :edit_product_detail)
-          %tr
+            %td.text-center{:colspan => 2}= I18n.t(:price, scope: :edit_product_detail)
+          %tr.form-group
             %td{:colspan => 2}= fs.select :option_ids, grouped_options_for_select(get_grouped_variants_options(@product), @product.skus[fs.index].option_ids ), {}, {:multiple => 'multiple', :class => 'sku_variants_options'}
             %td{:colspan => 2}
               .input-group
@@ -116,25 +116,25 @@
                 %span.input-group-addon
                   = fs.label @product.shop.currency
           %tr
-            %th.text-center{:colspan => 2}= I18n.t(:quantity, scope: :edit_product_detail)
-            %th.text-center{:colspan => 2}= I18n.t(:weight, scope: :edit_product_detail)
-          %tr
+            %td.text-center{:colspan => 2}= I18n.t(:quantity, scope: :edit_product_detail)
+            %td.text-center{:colspan => 2}= I18n.t(:weight, scope: :edit_product_detail)
+          %tr.form-group
             %td{:colspan => 2}= fs.text_field :quantity, :class => 'form-control', :placeholder => @product.skus[fs.index].limited ? '' : I18n.t(@product.skus[fs.index].limited.to_s.to_sym, scope: 'edit_product_detail.limited')
             %td{:colspan => 2}= fs.text_field :weight, :class => 'form-control'
           %tr
-            %th.text-center{:colspan => 2}= I18n.t(:discount, scope: :edit_product_detail)
-            %th.text-center{:colspan => 2}
+            %td.text-center{:colspan => 2}= I18n.t(:discount, scope: :edit_product_detail)
+            %td.text-center{:colspan => 2}
               = I18n.t('edit_product_detail.customizable.info')
               %i.fa.fa-info-circle{ :title => I18n.t(:customizable_info, scope: :edit_product_detail) }
-          %tr
+          %tr.form-group
             %td{:colspan => 2}= fs.text_field :discount, :class => 'form-control'
             %td{:colspan => 2}
               = fs.hidden_field :customizable
               = fs.check_box :customizable, {}, true
               = I18n.t(true, scope: 'edit_product_detail.customizable')
           %tr
-            %th.text-center{:colspan => 2}= I18n.t('edit_product_detail.status.info')
-          %tr
+            %td.text-center{:colspan => 2}= I18n.t('edit_product_detail.status.info')
+          %tr.form-group
             %td{:colspan => 2}
               = fs.hidden_field :status
               = fs.check_box :status, {}, true

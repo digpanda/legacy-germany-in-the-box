@@ -166,6 +166,8 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     @product.shop = current_user.shop
+    option = @product.options.build(:name => 'Standard')
+    option.suboptions.build(:name => 'Standard')
 
     respond_to do |format|
       @product.categories = params.require(:product)[:categories].map { |cid| Category.find(cid) if not cid.blank? }.compact
@@ -173,7 +175,7 @@ class ProductsController < ApplicationController
       if @product.save
         format.html {
           flash[:success] = I18n.t(:create_ok, scope: :edit_product_new)
-          redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_product_update, :product_id => @product.id )
+          redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_product)
         }
       else
         format.html {

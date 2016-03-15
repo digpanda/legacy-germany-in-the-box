@@ -51,6 +51,10 @@ class Product
   index({collections: 1},   {unique: false, name: :idx_product_collections, sparse: true})
   index({categories: 1},    {unique: false, name: :idx_product_categories,  sparse: true})
 
+  def has_option?
+    self.options && self.options.detect { |o| o.suboptions }
+  end
+
   def get_mas
     self.skus.is_active.to_a.sort { |s1, s2| s1.quantity <=> s2.quantity } .last
   end

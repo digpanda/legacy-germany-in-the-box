@@ -21,9 +21,9 @@
 
 - @product.skus.each do |s|
   %table.table.table-bordered
-    %theader
+    %tdeader
       %tr
-        %th{:colspan => 8}
+        %td{:colspan => 8}
           = select_tag :option_ids, grouped_options_for_select(get_grouped_variants_options(@product), s.option_ids ), :multiple => 'multiple', :class => 'sku_variants_options', :readonly=>true
           %i.fa.fa-info-circle{ :title => I18n.t(:variants_info, scope: :edit_product_detail) }
           .btn-group.pull-right
@@ -31,26 +31,26 @@
             = link_to I18n.t(:remove, scope: :edit_product_detail), remove_sku_product_path(@product.id, s.id), method: :delete, data: { confirm: "#{I18n.t(:delete_sku_message, scope: :edit_product_detail)}" }, :class => 'fa fa-times-circle btn'
     %tbody
       %tr
-        %th.text-center{:colspan => 2, :width => '25%'}= I18n.t(:img0, scope: :edit_product_detail)
-        %th.text-center{:colspan => 2, :width => '25%'}= I18n.t(:img1, scope: :edit_product_detail)
-        %th.text-center{:colspan => 2, :width => '25%'}= I18n.t(:img2, scope: :edit_product_detail)
-        %th.text-center{:colspan => 2, :width => '25%'}= I18n.t(:img3, scope: :edit_product_detail)
+        %td.text-center{:colspan => 2, :width => '25%'}= I18n.t(:img0, scope: :edit_product_detail)
+        %td.text-center{:colspan => 2, :width => '25%'}= I18n.t(:img1, scope: :edit_product_detail)
+        %td.text-center{:colspan => 2, :width => '25%'}= I18n.t(:img2, scope: :edit_product_detail)
+        %td.text-center{:colspan => 2, :width => '25%'}= I18n.t(:img3, scope: :edit_product_detail)
       %tr
         %td{:colspan => 2, :align => :center, :width => '25%'}= image_tag get_uploaded_img_url(s.img0), :style => 'width:160px;height:160px'
         %td{:colspan => 2, :align => :center, :width => '25%'}= image_tag get_uploaded_img_url(s.img1), :style => 'width:160px;height:160px'
         %td{:colspan => 2, :align => :center, :width => '25%'}= image_tag get_uploaded_img_url(s.img2), :style => 'width:160px;height:160px'
         %td{:colspan => 2, :align => :center, :width => '25%'}= image_tag get_uploaded_img_url(s.img3), :style => 'width:160px;height:160px'
       %tr
-        %th{:width => '25%'}= I18n.t(:price, scope: :edit_product_detail)
-        %th{:width => '25%'}= I18n.t(:currency, scope: :edit_product_detail)
-        %th{:width => '25%'}= I18n.t(:quantity, scope: :edit_product_detail)
-        %th{:width => '25%'}= I18n.t('edit_product_detail.limited.info')
-        %th{:width => '25%'}= I18n.t(:weight, scope: :edit_product_detail)
-        %th{:width => '25%'}= I18n.t(:discount, scope: :edit_product_detail)
-        %th{:width => '25%'}
+        %td{:width => '25%'}= I18n.t(:price, scope: :edit_product_detail)
+        %td{:width => '25%'}= I18n.t(:currency, scope: :edit_product_detail)
+        %td{:width => '25%'}= I18n.t(:quantity, scope: :edit_product_detail)
+        %td{:width => '25%'}= I18n.t('edit_product_detail.limited.info')
+        %td{:width => '25%'}= I18n.t(:weight, scope: :edit_product_detail)
+        %td{:width => '25%'}= I18n.t(:discount, scope: :edit_product_detail)
+        %td{:width => '25%'}
           = I18n.t('edit_product_detail.customizable.info')
           %i.fa.fa-info-circle{ :title => I18n.t(:customizable_info, scope: :edit_product_detail) }
-        %th{:width => '25%'}= I18n.t('edit_product_detail.status.info')
+        %td{:width => '25%'}= I18n.t('edit_product_detail.status.info')
       %tr
         %td{:width => '25%'}= s.price
         %td{:width => '25%'}= s.currency

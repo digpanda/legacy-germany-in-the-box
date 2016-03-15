@@ -22,41 +22,41 @@
 %br
 %br
 
-= form_for @product do |f|
+= form_for @product, :html => {'data-toggle': 'validator'} do |f|
   = hidden_field_tag :part, :basic
 
   %table.table.table-bordered
     %tbody
       %tr
-        %th.text-center{ :title => I18n.t(:categories_info, scope: :edit_product) }
+        %td.text-center{ :title => I18n.t(:categories_info, scope: :edit_product) }
           = I18n.t(:categories, scope: :edit_product)
           %i.fa.fa-info-circle{ :title => I18n.t(:categories_info, scope: :edit_product) }
-      %tr
+      %tr.form-group
         %td= f.select :categories, grouped_options_for_select(get_grouped_categories_options, @product.categories.map { |c| c.id.to_s }), {}, :multiple => 'multiple', :name => 'product[categories][]', :class => 'form-control product_categoires', :required => true
 
   %table.table.table-bordered
     %tbody
-      %tr
-        %th{width: '20%'}= I18n.t(:name, scope: :edit_product)
+      %tr.form-group
+        %td{width: '20%'}= I18n.t(:name, scope: :edit_product)
         %td= f.text_field :name, :class => 'form-control', :required => true
-      %tr
-        %th{width: '20%'}= I18n.t(:brand, scope: :edit_product)
+      %tr.form-group
+        %td{width: '20%'}= I18n.t(:brand, scope: :edit_product)
         %td= f.text_field :brand, :class => 'form-control', :required => true
-      %tr
-        %th{width: '20%', :title => I18n.t(:desc_info, scope: :edit_product) }
+      %tr.form-group
+        %td{width: '20%', :title => I18n.t(:desc_info, scope: :edit_product) }
           = I18n.t(:desc, scope: :edit_product)
           %i.fa.fa-info-circle{ :title => I18n.t(:desc_info, scope: :edit_product) }
-        %td= f.text_area :desc, :class => 'form-control', rows: 5
+        %td= f.text_area :desc, :class => 'form-control', rows: 4, :required => true
   %table.table.table-bordered
     %tbody
       %tr
-        %th.text-center{ :colspan => 3, :title => I18n.t(:keywords_info, scope: :edit_product, num: Rails.configuration.max_num_addresses) }
+        %td.text-center{ :colspan => 3, :title => I18n.t(:keywords_info, scope: :edit_product, num: Rails.configuration.max_num_addresses) }
           = I18n.t(:tags, scope: :edit_product)
           %i.fa.fa-info-circle{ :title => I18n.t(:keywords_info, scope: :edit_product, num: Rails.configuration.max_num_addresses) }
-      %tr
+      %tr.form-group
         %td= text_field_tag "product[tags][]", @product.tags[0], :class => 'form-control', :placeholder => I18n.t(:tag1, scope: :edit_product)
         %td= text_field_tag "product[tags][]", @product.tags[1], :class => 'form-control', :placeholder => I18n.t(:tag2, scope: :edit_product)
         %td= text_field_tag "product[tags][]", @product.tags[2], :class => 'form-control', :placeholder => I18n.t(:tag3, scope: :edit_product)
 
   = f.submit :class => 'btn btn-primary', :value => @product.persisted? ? I18n.t(:update_basic, scope: :edit_product) : I18n.t(:new_basic, scope: :edit_product)
-  = link_to I18n.t(:cancel, scope: :edit_product), :back, :class => 'btn btn-primary'
+  = link_to I18n.t(:cancel, scope: :edit_product), edit_user_path(current_user, :user_info_edit_part => :edit_product), :class => 'btn btn-primary'

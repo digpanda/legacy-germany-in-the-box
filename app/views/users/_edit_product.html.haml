@@ -20,14 +20,14 @@
     %thead
       %tr
         %th
-          %strong= I18n.t(:name, scope: :edit_product)
+          = I18n.t(:name, scope: :edit_product)
         %th
-          %strong= I18n.t(:brand, scope: :edit_product)
+          = I18n.t(:brand, scope: :edit_product)
         %th
-          %strong= I18n.t(:categories, scope: :edit_product)
+          = I18n.t(:categories, scope: :edit_product)
           %i.fa.fa-info-circle{ :title => I18n.t(:categories_info, scope: :edit_product) }
         %th
-          %strong= I18n.t(:operations, scope: :edit_product)
+          = I18n.t(:operations, scope: :edit_product)
     %tbody
       - current_user.shop.products.each do |p|
         %tr
@@ -35,7 +35,8 @@
           %td= p.brand
           %td= select_tag :categories, grouped_options_for_select(get_grouped_categories_options, p.categories.map { |c| c.id.to_s }), :multiple => 'multiple', :class => 'form-control product_categories'
           %td{:style => 'width:80px'}
-            = link_to I18n.t(:sku_manage, scope: :edit_product_detail), edit_user_path(current_user, :user_info_edit_part => :edit_product_detail, :product_id => p.id), :class => 'fa fa-edit'
+            - if p.has_options?
+              = link_to I18n.t(:sku_manage, scope: :edit_product_detail), edit_user_path(current_user, :user_info_edit_part => :edit_product_detail, :product_id => p.id), :class => 'fa fa-edit'
             = link_to I18n.t(:variant_manage, scope: :edit_product_detail), edit_user_path(current_user, :user_info_edit_part => :edit_product_variant, :product_id => p.id), :class => 'fa fa-edit'
             = link_to I18n.t(:remove, scope: :edit_product), product_path(p), :method => :delete, data: { confirm: I18n.t(:delete_product_message, scope: :edit_product) }, :class => 'fa fa-edit'
 
