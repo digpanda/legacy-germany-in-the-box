@@ -1,6 +1,6 @@
 %li.dropdown
   %a{ 'data-toggle' => 'dropdown', :href => "#{ edit_user_path current_user }", :title => "#{I18n.t(:user_profile, scope: :top_menu)}"}
-    = image_tag (current_user.shop.logo.url.nil? ? 'icons/default_user_pic.png' : current_user.shop.logo.url) , :style => 'width:24px;height:24px'
+    = image_tag ( current_user.shop && get_uploaded_img_url(current_user.shop.logo) ? get_uploaded_img_url(current_user.shop.logo) : 'icons/default_user_pic.png'), :style => 'width:24px;height:24px'
     %span.caret
   %ul.dropdown-menu{:style => 'background-color:#333'}
     %li

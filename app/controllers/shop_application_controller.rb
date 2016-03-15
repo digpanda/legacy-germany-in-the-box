@@ -14,13 +14,17 @@ class ShopApplicationController < ApplicationController
     if @shop_application.save
       flash[:success] = I18n.t(:shop_application_ok, scope: :shop_application)
 
-      params[:user] = {}
-      params[:user][:username] = params[:shop_application][:name]
-      params[:user][:email] = params[:shop_application][:email]
-      params[:user][:password] = @shop_application.code[0, 7]
-      params[:user][:password_confirmation] = @shop_application.code[0, 7]
+      user = {}
+      user[:username] = params[:shop_application][:name]
+      user[:email] = params[:shop_application][:email]
+      user[:password] = @shop_application.code[0, 8]
+      user[:password_confirmation] = @shop_application.code[0, 8]
+      user[:role] = :shopkeeper
 
-      params.delete :shop_application
+      @user = User.new(user)
+      unless @user.save
+        flash[:error] = @user.errors.full_messages.first
+      end
     else
       flash[:error] = @shop_application.errors.full_messages.first
     end
