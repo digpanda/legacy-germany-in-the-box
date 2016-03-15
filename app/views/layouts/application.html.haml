@@ -7,8 +7,8 @@
     %meta{:content => 'RheinManufaktur', :name => 'description'}
     %meta{:content => 'Y. Liu', :name => 'author'}
     %meta{:content => 'width=device-width, initial-scale=1.0', :name => 'viewport'}
-    %link{:href => 'http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300', :rel => 'stylesheet', :type => 'text/css'}
-    %link{:href => 'http://fonts.googleapis.com/css?family=Roboto:400,100,300', :rel => 'stylesheet', :type => 'text/css'}
+    -#%link{:href => 'http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300', :rel => 'stylesheet', :type => 'text/css'}
+    -#%link{:href => 'http://fonts.googleapis.com/css?family=Roboto:400,100,300', :rel => 'stylesheet', :type => 'text/css'}
 
     = csrf_meta_tag
 
@@ -17,7 +17,7 @@
     = javascript_include_tag 'jquery-ui/widget.js'
     = javascript_include_tag 'jquery-ui/autocomplete.js'
 
-    = javascript_include_tag 'bootstrapValidator.min.js'
+    = javascript_include_tag 'validator.js'
 
     = javascript_include_tag 'leftmenu/script.js'
 
@@ -67,9 +67,6 @@
         if ($('#signup_advice_counter').length) {
           $('#sign_up_link').click();
         }
-
-
-
       });
 
       #{generate_set_datepicker_lang_js}
@@ -186,13 +183,13 @@
         - else
           %h3= I18n.t(:header, scope: :sign_in_dialog)
           %h5= I18n.t(:title, scope: :sign_in_dialog)
-        = form_tag user_session_path, :method => :post, :class => 'dialog-form'  do
+        = form_tag user_session_path, :method => :post, :class => 'dialog-form', 'data-toggle': 'validator', role: 'form'  do
           .form-group
             %label= I18n.t(:email, scope: :sign_in_dialog)
-            = email_field_tag 'user[email]',  nil, :class => 'form-control', :placeholder => 'email@domain.com'
+            = email_field_tag 'user[email]',  nil, :class => 'form-control', :placeholder => 'email@domain.com', :required => true
           .form-group
             %label= I18n.t(:password, scope: :sign_in_dialog)
-            = password_field_tag 'user[password]', nil, :class => 'form-control', :placeholder => 'My secret password'
+            = password_field_tag 'user[password]', nil, :class => 'form-control', :placeholder => 'My secret password', :required => true
           - if session[:login_advice_counter].present? and session[:login_advice_counter] >= Rails.configuration.login_failure_limit
             .form-inline
               .form-group
@@ -358,8 +355,6 @@
             .col-md-4
               %p= I18n.t(:copyright, scope: :footer)
             .col-md-6.col-md-offset-2
-
-    = javascript_include_tag 'bootstrapValidator.min.js'
 
     = javascript_include_tag 'couponia/boostrap.min.js'
     = javascript_include_tag 'couponia/countdown.min.js'

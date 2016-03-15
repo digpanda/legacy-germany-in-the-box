@@ -10,6 +10,7 @@ class Collection
   field :name,    type: String
   field :img,     type: String
   field :public,  type: Boolean, default: true
+  field :desc,    type: String
 
   field :name_locales, type: Hash
 
@@ -23,6 +24,7 @@ class Collection
   validates :name,    presence: true, length: {maximum: Rails.configuration.max_short_text_length}
   validates :public,  presence: true
   validates :user,    presence: true
+  validates :desc,    length: {maximum: Rails.configuration.max_medium_text_length}
 
   scope :is_public, -> { where(:public => true) }
 end

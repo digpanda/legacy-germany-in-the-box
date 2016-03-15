@@ -10,7 +10,7 @@
       .panel-heading.text-center
         %h3= I18n.t(:title, scope: :shop_application)
       .panel-body
-        = form_for :shop_application  do |f|
+        = form_for :shop_application, 'data-toggle': 'validator', role: 'form'  do |f|
           %table.table.table-borderless
             %tbody
               %tr

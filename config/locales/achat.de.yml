@@ -79,7 +79,7 @@ de:
     password: Neues Passwort
     password_confirmation: Passwort wiederholen
     save: Speichern
-    success: Ihr Konto ist erfolgreich aktualisiert.
+    success: Ihr Passwort wurde erfolgreich aktualisiert.
   edit_following:
     follow_ok: Die Beobachtung für den Nutzer erfolgreich aktiviert!
     follow_ko: Ein Fehler ist bei der Aktivierung der Beobachtung aufgetreten.
