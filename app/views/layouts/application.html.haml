@@ -183,17 +183,17 @@
         - else
           %h3= I18n.t(:header, scope: :sign_in_dialog)
           %h5= I18n.t(:title, scope: :sign_in_dialog)
-        = form_tag user_session_path, :method => :post, :class => 'dialog-form', 'data-toggle': 'validator', role: 'form'  do
+        = form_tag user_session_path, :method => :post, :class => 'dialog-form', 'data-toggle': 'validator'  do
           .form-group
             %label= I18n.t(:email, scope: :sign_in_dialog)
             = email_field_tag 'user[email]',  nil, :class => 'form-control', :placeholder => 'email@domain.com', :required => true
           .form-group
             %label= I18n.t(:password, scope: :sign_in_dialog)
-            = password_field_tag 'user[password]', nil, :class => 'form-control', :placeholder => 'My secret password', :required => true
+            = password_field_tag 'user[password]', nil, :class => 'form-control', :placeholder => I18n.t(:password, scope: :sign_up_dialog), :required => true
           - if session[:login_advice_counter].present? and session[:login_advice_counter] >= Rails.configuration.login_failure_limit
             .form-inline
               .form-group
-                = text_field_tag :captcha, '', :autocomplete => :off,  placeholder: I18n.t(:captcha, scope: :sign_up_dialog)
+                = text_field_tag :captcha, '', :autocomplete => :off,  placeholder: I18n.t(:captcha, scope: :sign_up_dialog), :required => true, :minLength => 4, :maxLength => 4, :class => 'form-control'
               .form-group
                 = captcha_tag
           .checkbox
@@ -218,19 +218,21 @@
             %h5= I18n.t(:title, scope: :sign_up_dialog)
           - for_device_type :mobile, :tablet do
             %h4= I18n.t(:header, scope: :sign_up_dialog)
-        = form_tag user_registration_path, :method => :post, :class => 'dialog-form' do
+        = form_tag user_registration_path, :method => :post, :class => 'dialog-form', 'data-toggle': 'validator' do
           - for_device_type :desktop do
             .form-group
-              = text_field_tag 'user[username]', nil, :class => 'form-control', :placeholder => I18n.t(:username, scope: :sign_up_dialog)
+              = text_field_tag 'user[username]', nil, :class => 'form-control', :placeholder => I18n.t(:username, scope: :sign_up_dialog), :required => true
             .form-group
-              = email_field_tag 'user[email]', nil, :class => 'form-control', :placeholder => I18n.t(:email, scope: :sign_up_dialog)
+              = email_field_tag 'user[email]', nil, :class => 'form-control', :placeholder => I18n.t(:email, scope: :sign_up_dialog), :required => true
             .form-group
-              = password_field_tag 'user[password]', nil, :class => 'form-control', :placeholder => I18n.t(:password, scope: :sign_up_dialog)
+              = password_field_tag 'user[password]', nil, :class => 'form-control', :placeholder => I18n.t(:password, scope: :sign_up_dialog), :required => true, :minLength => 8
+              %div.help-block.with-errors
             .form-group
-              = password_field_tag 'user[password_confirmation]', nil, :class => 'form-control', :placeholder => I18n.t(:password_confirmation, scope: :sign_up_dialog)
+              = password_field_tag 'user[password_confirmation]', nil, :class => 'form-control', :placeholder => I18n.t(:password_confirmation, scope: :sign_up_dialog), 'data-match' => '#user_password'
+              %div.help-block.with-errors
             .form-inline
               .form-group
-                = text_field_tag 'user[birth]', nil, :class => 'form-control date-picker', placeholder: I18n.t(:birthday, scope: :edit_personal), 'data-provide': 'datepicker', 'data-date-format': 'yyyy-mm-dd'
+                = text_field_tag 'user[birth]', nil, :class => 'form-control date-picker', placeholder: I18n.t(:birthday, scope: :edit_personal), 'data-provide': 'datepicker', 'data-date-format': 'yyyy-mm-dd', :required => true
               .form-group.col-md-offset-1
                 %label.radio-inline
                   = radio_button_tag 'user[gender]', 'm'
@@ -240,15 +242,17 @@
                   = I18n.t(:'genderize.name.feminine')
             .form-inline
               .form-group
-                = text_field_tag :captcha, nil, :autocomplete => :off, placeholder: I18n.t(:captcha, scope: :sign_up_dialog), :class => 'form-control', :style => 'margin-right:14px'
+                = text_field_tag :captcha, nil, :autocomplete => :off, placeholder: I18n.t(:captcha, scope: :sign_up_dialog), :class => 'form-control', :style => 'margin-right:14px', :required => true, :minLength => 4, :maxLength => 4
               .form-group
                 = captcha_tag
             = submit_tag I18n.t(:sign_up, scope: :sign_up_dialog), :class => 'btn btn-primary'
           - for_device_type :mobile, :tablet do
-            = text_field_tag 'user[username]', nil, :class => 'form-control', :placeholder => I18n.t(:username, scope: :sign_up_dialog)
-            = email_field_tag 'user[email]', nil, :class => 'form-control', :placeholder => I18n.t(:email, scope: :sign_up_dialog)
-            = password_field_tag 'user[password]', nil, :class => 'form-control', :placeholder => I18n.t(:password, scope: :sign_up_dialog)
-            = password_field_tag 'user[password_confirmation]', nil, :class => 'form-control', :placeholder => I18n.t(:password_confirmation, scope: :sign_up_dialog)
+            = text_field_tag 'user[username]', nil, :class => 'form-control', :placeholder => I18n.t(:username, scope: :sign_up_dialog), :required => true
+            = email_field_tag 'user[email]', nil, :class => 'form-control', :placeholder => I18n.t(:email, scope: :sign_up_dialog), :required => true
+            = password_field_tag 'user[password]', nil, :class => 'form-control', :placeholder => I18n.t(:password, scope: :sign_up_dialog), :required => true, :minLength => 8
+            %div.help-block.with-errors
+            = password_field_tag 'user[password_confirmation]', nil, :class => 'form-control', :placeholder => I18n.t(:password_confirmation, scope: :sign_up_dialog), 'data-match' => '#user_password'
+            %div.help-block.with-errors
             .input-group
               = text_field_tag 'user[birth]', nil, :class => 'form-control date-picker', placeholder: I18n.t(:birthday, scope: :edit_personal), 'data-provide': 'datepicker', 'data-date-format': 'yyyy-mm-dd', :style => 'width:120px;margin-right:8px'
               %label.radio-inline
@@ -259,7 +263,7 @@
                 = I18n.t(:'genderize.name.feminine')
             .input-group
               = captcha_tag
-              = text_field_tag :captcha, '', :autocomplete => :off, :placeholder => I18n.t(:captcha, scope: :sign_up_dialog), :class => 'form-control'
+              = text_field_tag :captcha, '', :autocomplete => :off, :placeholder => I18n.t(:captcha, scope: :sign_up_dialog), :class => 'form-control', :required => true, :minLength => 4, :maxLength => 4
             = submit_tag I18n.t(:sign_up, scope: :sign_up_dialog), :class => 'btn btn-primary'
         %ul.dialog-alt-links
           %li
@@ -268,9 +272,9 @@
         %i.icon-retweet.dialog-icon
         %h3= I18n.t(:header, scope: :password_recovery_dialog)
         %h5= I18n.t(:title, scope: :password_recovery_dialog)
-        %form.dialog-form
-          %label= I18n.t(:email, scope: :password_recovery_dialog)
-          %input.span12{:placeholder => 'email@domain.com', :type => 'text'}
+        %form.dialog-form{'data-toggle': 'validator'}
+          %label.control-label= I18n.t(:email, scope: :password_recovery_dialog)
+          %input.form-control.span12{:placeholder => 'email@domain.com', :type => 'email', :required => true}
           %input.btn.btn-primary{:type => 'submit', :value => I18n.t(:ok, scope: :password_recovery_dialog)}
       - if @show_search_area.present? and @show_search_area
         =yield :search_area

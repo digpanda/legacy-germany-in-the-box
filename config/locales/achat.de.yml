@@ -99,6 +99,7 @@ de:
     telephone: Telephone
     mobile: Handy
     save: Speichern
+    update_ok: Ihre persöhnliche Daten wurden erfolgreich aktualisiert.
   edit_address:
     maximal_number_of_addresses: Sie können maximal %{num} Adressen konfigurieren.
     add_new_address: Adresse hinzufügen

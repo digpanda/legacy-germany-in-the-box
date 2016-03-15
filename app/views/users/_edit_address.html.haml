@@ -4,22 +4,22 @@
   %h3.text-center= I18n.t(:maximal_number_of_addresses, scope: :edit_address, num: Rails.configuration.max_num_addresses)
 
 #add-address-dialog.mfp-with-anim.mfp-hide.mfp-dialog.clearfix
-  =form_for @address do |f|
+  =form_for @address, html: {'data-toggle': 'validator'} do |f|
     .form-group
       %h4= I18n.t(:new_address_title, scope: :edit_address)
     .form-group
-      = f.text_field :street_building_room, :class => 'form-control', :placeholder => I18n.t(:street_building_room, scope: :edit_address)
+      = f.text_field :street_building_room, :class => 'form-control', :placeholder => I18n.t(:street_building_room, scope: :edit_address), :required => true
     .city-group
       .form-group
-        = f.select :province, options_for_select(ChinaCity.list), {  include_blank: I18n.t(:province_blank, scope: :edit_address) }, { :autocomplete => :off, class: 'form-control city-select city-province' }
+        = f.select :province, options_for_select(ChinaCity.list), {  include_blank: I18n.t(:province_blank, scope: :edit_address) }, { :autocomplete => :off, class: 'form-control city-select city-province', :required => true }
       .form-group
-        = f.select :city    , [], { include_blank: I18n.t(:city_blank, scope: :edit_address) }, { :autocomplete => :off, class: 'form-control city-select city-city' }
+        = f.select :city    , [], { include_blank: I18n.t(:city_blank, scope: :edit_address) }, { :autocomplete => :off, class: 'form-control city-select city-city', :required => true }
       .form-group
-        = f.select :district, [], { include_blank: I18n.t(:district_blank, scope: :edit_address) }, { :autocomplete => :off, class: 'form-control city-select city-district' }
+        = f.select :district, [], { include_blank: I18n.t(:district_blank, scope: :edit_address) }, { :autocomplete => :off, class: 'form-control city-select city-district', :required => true }
     .form-group
       = f.text_field :country, :value => '中国', :readonly => true, :class => 'form-control', :placeholder => 'Country (*)'
     .form-group
-      = f.text_field :zip, :class => 'form-control', :placeholder => I18n.t(:zip, scope: :edit_address)
+      = f.text_field :zip, :class => 'form-control', :placeholder => I18n.t(:zip, scope: :edit_address), :required => true
     .form-group
       .checkbox
         %label
@@ -30,22 +30,22 @@
 .row.row-wrap
   - current_user.addresses.each_with_index do |a, i|
     %div.mfp-with-anim.mfp-hide.mfp-dialog.clearfix{ :id => "edit-address-dialog-#{a.id}" }
-      = form_for a, :url => address_path(a), :html => { :method => :patch }  do |f|
+      = form_for a, :url => address_path(a), :html => { :method => :patch, 'data-toggle': 'validator' }  do |f|
         .form-group
           %h4= I18n.t(:change_address_title, scope: :edit_address)
         .form-group
-          = f.text_field :street_building_room, :value=> "#{a.street_building_room}", :class => 'form-control', :placeholder => 'Street, Building & Room (*)'
+          = f.text_field :street_building_room, :value=> "#{a.street_building_room}", :class => 'form-control', :placeholder => 'Street, Building & Room (*)', :required => true
         .city-group
           .form-group
-            = f.select :province, options_for_select(get_provinces, get_code_for_province(a.province)), {  include_blank: I18n.t(:province_blank, scope: :edit_address) }, { :autocomplete => :off, class: 'form-control city-select city-province' }
+            = f.select :province, options_for_select(get_provinces, get_code_for_province(a.province)), {  include_blank: I18n.t(:province_blank, scope: :edit_address) }, { :autocomplete => :off, class: 'form-control city-select city-province', :required => true }
           .form-group
-            = f.select :city    , options_for_select(get_cities_for_province(a.province), get_code_for_city(a.province, a.city)), { include_blank: I18n.t(:city_blank, scope: :edit_address) }, { :autocomplete => :off, class: 'form-control city-select city-city' }
+            = f.select :city    , options_for_select(get_cities_for_province(a.province), get_code_for_city(a.province, a.city)), { include_blank: I18n.t(:city_blank, scope: :edit_address) }, { :autocomplete => :off, class: 'form-control city-select city-city', :required => true }
           .form-group
-            = f.select :district, options_for_select(get_districts_for_city(a.province, a.city), get_code_for_district(a.province, a.city, a.district)), { include_blank: I18n.t(:district_blank, scope: :edit_address) }, { :autocomplete => :off, class: 'form-control city-select city-district' }
+            = f.select :district, options_for_select(get_districts_for_city(a.province, a.city), get_code_for_district(a.province, a.city, a.district)), { include_blank: I18n.t(:district_blank, scope: :edit_address) }, { :autocomplete => :off, class: 'form-control city-select city-district', :required => true }
         .form-group
           = f.text_field :country, :value => '中国', :readonly => true, :class => 'form-control', :placeholder => 'Country (*)'
         .form-group
-          = f.text_field :zip,      :value=> "#{a.zip}",      :class => 'form-control', :placeholder => 'Zip (*)'
+          = f.text_field :zip, :value=> "#{a.zip}", :class => 'form-control', :placeholder => 'Zip (*)', :required => true
         .form-group
           .checkbox
             %label

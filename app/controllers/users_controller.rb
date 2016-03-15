@@ -81,6 +81,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.update(user_params.except(:email))
         format.html {
+          flash[:success] = I18n.t(:update_ok, scope: :edit_personal)
           render :edit, user_info_edit_part: params[:user_info_edit_part]
         }
 

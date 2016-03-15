@@ -99,6 +99,7 @@ zh-CN:
     telephone: 电话
     mobile: 手机
     save: 保存
+    update_ok: 您的个人信息成功更新
   edit_address:
     maximal_number_of_addresses: 您最多可以设定三个地址
     add_new_address: 添加新地址

@@ -1,5 +1,5 @@
 .col-md-6.col-sm-12.col-xs-12
-  = form_for @user do |f|
+  = form_for @user, html: {'data-toggle': 'validator'} do |f|
     .form-group
       = image_tag (current_user.pic.url.nil? ? "icons/default_user_pic.png" : current_user.pic.url), :style => 'width:96px;height:96px'
       = f.file_field :pic, :accept => "image/png, image/gif, image/jpeg"
@@ -8,7 +8,8 @@
     .form-group
       = f.text_field :lname, :class => 'form-control', placeholder: I18n.t(:lastname, scope: :edit_personal)
     .form-group
-      = f.text_field :birth, :class => 'form-control date-picker', placeholder: I18n.t(:birthday, scope: :edit_personal), 'data-provide': 'datepicker', 'data-date-format': 'yyyy-mm-dd'
+      = f.text_field :birth, :class => 'form-control date-picker', placeholder: I18n.t(:birthday, scope: :edit_personal), 'data-provide': 'datepicker', 'data-date-format': 'yyyy-mm-dd', :required => true
+      %div.help-block.with-errors
     .form-group
       %label.radio-inline
         = f.radio_button :gender, 'm'
