@@ -136,11 +136,12 @@
                               = I18n.t(:empty_cart, scope: :top_menu)
 
                 - unless current_user
-                  %li
-                    %a.popup-text{ :id => 'sign_in_link', 'data-effect' => 'mfp-move-from-top', :href => '#login-dialog', :title => "#{I18n.t(:sign_in, scope: :top_menu)}"}
-                      %i.fa.fa-sign-in
-                      = for_device_type :desktop do I18n.t(:sign_in, scope: :top_menu) end
-                  - if I18n.locale == :de and not current_user
+                  - if I18n.locale == 'zh-CN'
+                    %li
+                      %a.popup-text{ :id => 'sign_in_link', 'data-effect' => 'mfp-move-from-top', :href => '#login-dialog', :title => "#{I18n.t(:sign_in, scope: :top_menu)}"}
+                        %i.fa.fa-sign-in
+                        = for_device_type :desktop do I18n.t(:sign_in, scope: :top_menu) end
+                  - if I18n.locale == :de
                     %li
                       %a{:href => "#{shop_application_index_path}"}
                         %i.fa.fa-thumbs-up
