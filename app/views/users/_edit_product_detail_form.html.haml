@@ -8,6 +8,20 @@
       });
   });
 
+  $.validator.addMethod("multiSelectRequired", function (value, element) {
+    return element.length > 0;
+  });
+
+  $('.sku_variants_options').each(function () {
+    $(this).change(function () {
+      $(this).valid();
+    });
+
+    $(this).rules('add', {
+      'multiSelectRequired': true
+    });
+  });
+
 = form_for @product, :html => {'data-toggle': 'validator'} do |f|
   = hidden_field_tag :part, :sku
   = f.fields_for :skus do |fs|

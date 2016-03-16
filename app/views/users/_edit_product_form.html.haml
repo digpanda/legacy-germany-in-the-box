@@ -33,7 +33,7 @@
           = I18n.t(:categories, scope: :edit_product)
           %i.fa.fa-info-circle{ :title => I18n.t(:categories_info, scope: :edit_product) }
       %tr.form-group
-        %td= f.select :categories, grouped_options_for_select(get_grouped_categories_options, @product.categories.map { |c| c.id.to_s }), {}, :name => 'product[categories][]', :class => 'form-control product_categoires', :required => true
+        %td= f.select :categories, grouped_options_for_select(get_grouped_categories_options, @product.categories.map { |c| c.id.to_s }), {}, :name => 'product[categories][]', :class => 'form-control product_categoires'
 
   %table.table.table-bordered
     %tbody
