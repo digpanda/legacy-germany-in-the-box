@@ -1,8 +1,8 @@
 .col-md-6.col-sm-12.col-xs-12
   = form_for @user, html: {'data-toggle': 'validator'} do |f|
     .form-group
-      = image_tag (current_user.pic.url.nil? ? "icons/default_user_pic.png" : current_user.pic.url), :style => 'width:96px;height:96px'
-      = f.file_field :pic, :accept => "image/png, image/gif, image/jpeg"
+      = image_tag (current_user.pic.url.nil? ? "icons/default_user_pic.png" : current_user.pic.url), :style => 'width:96px;height:96px', :id => "pic_#{current_user.id}"
+      = f.file_field :pic, :accept => "image/png, image/jpeg, image/jpg", :class => 'img-file-upload', :img_id => "#pic_#{current_user.id}", :onchange =>"validateImgFile(this);"
     .form-group
       = f.text_field :fname, :class => 'form-control', placeholder: I18n.t(:firstname, scope: :edit_personal)
     .form-group

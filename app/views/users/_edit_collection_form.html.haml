@@ -1,6 +1,9 @@
 .col-md-6
   = form_for(@collection, :html => {:class => 'form-horizontal', :role => 'form', 'data-toggle': 'validator'}) do |f|
     .form-group
+      = image_tag (@collection.img.url), :style => 'width:96px;height:96px', :id => "img_#{@collection.id}"
+      = f.file_field :img, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#img_#{@collection.id}", :class => 'img-file-upload', :onchange =>"validateImgFile(this);"
+    .form-group
       = f.label :name, I18n.t(:name, scope: :edit_collection_new)
       = f.text_field :name, :class => 'form-control', :required => true
     .form-group
@@ -11,11 +14,5 @@
         = f.check_box :public
         %i.fa.fa-users
         = I18n.t(:public, scope: :edit_collection_new)
-    .form-group
-      - if @collection.img.url.present?
-        = image_tag (@collection.img.url), :style => 'width:96px;height:96px'
-      - else
-        = f.label :img, I18n.t(:icon, scope: :edit_collection_new)
-      = f.file_field :img
     .form-group
       = f.submit :class => 'btn btn-primary', :value => I18n.t(:save, scope: :edit_collection_new)

@@ -1,4 +1,7 @@
 de:
+  image_upload:
+    max_exceeded_message: Die hochzuladene Datei ist größer als 1 Megabytes.
+    ext_error_message: Nur die Formaten .jpg, .jpeg, or .png sind akzeptierbar.
   top_menu:
     top_menu: Menü
     sign_in: Einloggen
@@ -248,7 +251,7 @@ de:
     updated_at: aktualisiert am
     operations: Aktionen
     delete: Entfernen
-    no_product: Ausverkauft
+    no_product: Momentan ist kein Produkt vorhanden.
     delete_product_message: Das Produkt entfernen?
     delete_ok: Das Produkt erfolgreich entfernt!
     delete_ko: Ein Fehler ist bei der Lösung des Produkts aufgetreten.
