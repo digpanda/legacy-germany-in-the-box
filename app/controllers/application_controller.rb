@@ -74,8 +74,13 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
     if current_user.role == :customer
       list_popular_products_path
-    else
-      edit_user_path(current_user, :user_info_edit_part => :edit_shop)
+    elsif current_user.role == :shopkeeper
+      if current_user.sign_in_count <= 1
+        flash[:info] = 'testtesttest'
+        edit_user_path(current_user, :user_info_edit_part => :edit_account)
+      else
+        edit_user_path(current_user, :user_info_edit_part => :edit_shop)
+      end
     end
   end
 
