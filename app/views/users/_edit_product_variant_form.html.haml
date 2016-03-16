@@ -1,7 +1,7 @@
 .col-md-8
   - if params[:variant]
     - if not params[:variant_id]
-      = form_for @product do |f|
+      = form_for @product, :html => {'data-toggle': 'validator'} do |f|
         = hidden_field_tag :part, :variant
         = f.fields_for :options, @variant do |fo|
           .form-group
@@ -11,7 +11,7 @@
           = f.submit :class => 'btn btn-primary', :value => (not params[:variant_id]) ? I18n.t(:create_variant, scope: :edit_product_variant) : I18n.t(:update_variant, scope: :edit_product_variant)
           = link_to I18n.t(:cancel, scope: :edit_product_variant), :back, :class => 'btn btn-primary'
     - else
-      = form_for @product do |f|
+      = form_for @product, :html => {'data-toggle': 'validator'} do |f|
         = hidden_field_tag :part, :variant
         = f.fields_for :options, @variant do |fo|
           .form-group
@@ -22,7 +22,7 @@
           = link_to I18n.t(:cancel, scope: :edit_product_variant), :back, :class => 'btn btn-primary'
   -if params[:option]
     - if not params[:option_id]
-      = form_for @product do |f|
+      = form_for @product, :html => {'data-toggle': 'validator'} do |f|
         = hidden_field_tag :part, :variant
         = f.fields_for :options, @variant do |fo|
           = fo.fields_for :suboptions, @suboption do |fso|
@@ -33,7 +33,7 @@
           = f.submit :class => 'btn btn-primary', :value => (not params[:option_id]) ? I18n.t(:create_option, scope: :edit_product_variant) : I18n.t(:update_option, scope: :edit_product_variant)
           = link_to I18n.t(:cancel, scope: :edit_product_variant), :back, :class => 'btn btn-primary'
     - else
-      = form_for @product do |f|
+      = form_for @product, :html => {'data-toggle': 'validator'} do |f|
         = hidden_field_tag :part, :variant
         = f.fields_for :options, @variant do |fo|
           = fo.fields_for :suboptions, @suboption do |fso|
