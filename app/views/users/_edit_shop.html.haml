@@ -24,7 +24,7 @@
               %td{width: '20%', :title => I18n.t(:founding_year_info, scope: :edit_shop) }
                 = I18n.t(:founding_year, scope: :edit_shop)
                 %i.fa.fa-info-circle{ :title => I18n.t(:founding_year_info, scope: :edit_shop) }
-              %td{width: '80%'}= f.text_field :founding_year, :class => 'form-control', :required => true, :pattern => '^(19|20)\d{2}$', :maxlength => 4
+              %td{width: '80%'}= f.text_field :founding_year, :class => 'form-control', :required => true, :pattern => '^(18|19|20)\d{2}$', :maxlength => 4, :placeholder => 'Bspw. 1988'
             %tr.form-group
               %td{width: '20%'}
                 = I18n.t(:register, scope: :edit_shop)
@@ -89,7 +89,7 @@
               %i.fa.fa-info-circle{ :title => I18n.t(:min_total_info, scope: :edit_shop) }
             %td{width: '80%'}
               .input-group
-                = f.text_field :min_total, :class => 'form-control', :required => true
+                = f.text_field :min_total, :class => 'form-control', :required => true, :pattern => '^\d+\.?\d*$'
                 %span.input-group-addon
                   = f.label @shop.currency
   .panel.panel-default

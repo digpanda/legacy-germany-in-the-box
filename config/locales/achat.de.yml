@@ -298,7 +298,7 @@ de:
       info: Auf Kundenwünsche anpassbar
       'true': Ja
       'false': Nein
-    discount: Rabatt*
+    discount: '%Rabatt*'
     create_ok: Die Artikelposition erfolgreich erstellt!
     create_ko: Ein Fehler ist beim Anlegen der Artikelpositionen aufgetreten.
     sku_variants_options: Variantentypen*
