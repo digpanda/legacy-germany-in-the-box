@@ -26,6 +26,7 @@ class Shop
   field :target_groups,   type: Array,      default: []
   field :sales_channels,  type: Array,      default: []
   field :register,        type: String
+  field :website,         type: String
 
   field :name_locales,    type: Hash
 
@@ -54,6 +55,7 @@ class Shop
   validates :philosophy,    presence: true,   length: {maximum: Rails.configuration.max_medium_text_length}
   validates :stories,       presence: true,   length: {maximum: Rails.configuration.max_long_text_length}
 
+  validates :website,       length: {maximum: Rails.configuration.max_short_text_length}
 
   validates :ustid,         length: { maximum: Rails.configuration.max_tiny_text_length, :allow_blank => true }
   validates :eroi,          length: { maximum: Rails.configuration.max_tiny_text_length, :allow_blank => true }

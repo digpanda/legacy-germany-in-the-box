@@ -6,18 +6,20 @@
           =link_to I18n.t(:shop_application, scope: :shop_application),  '#'
 
   .col-md-9
-    .panel.panel-info
-      .panel-heading.text-center
-        %h3= I18n.t(:title, scope: :shop_application)
-      .panel-body
-        = form_for :shop_application, html: {'data-toggle': 'validator'} do |f|
+    = form_for :shop_application, html: {'data-toggle': 'validator'} do |f|
+      .panel.panel-info
+        .panel-heading.text-center
+          %h4= I18n.t(:shopkeeper_info, scope: :shop_application)
+        .panel-body
           %table.table.table-borderless
             %tbody
               %tr.form-group
                 %td{width: '30%', :title => I18n.t(:email_info, scope: :shop_application)}
                   %strong= I18n.t(:email, scope: :shop_application)
                   %i.fa.fa-info-circle{ :title => I18n.t(:email_info, scope: :shop_application) }
-                %td{width: '70%'}= f.email_field :email, :class => 'form-control', :required => true
+                %td{width: '70%'}
+                  = f.email_field :email, :class => 'form-control', :required => true, 'data-remote' => "#{is_registered_shop_application_index_url}"
+                  %div.help-block.with-errors
               %tr.form-group
                 %td{width: '30%'}= I18n.t(:name, scope: :edit_shop)
                 %td{width: '70%'}= f.text_field :name, :class => 'form-control', :required => true
@@ -45,5 +47,29 @@
                   = I18n.t(:stories, scope: :edit_shop)
                   %i.fa.fa-info-circle{ :title => I18n.t(:stories_info, scope: :edit_shop) }
                 %td{width: '70%'}= f.text_area :stories, :class => 'form-control', rows: 4, :required => true
-
-          = f.button I18n.t(:save, scope: :edit_shop), :class => 'btn btn-primary', name: :user_info_edit_part, value: :edit_shop
+              %tr.form-group
+                %td{width: '30%'}
+                  = I18n.t(:website, scope: :edit_shop)
+                %td{width: '70%'}= f.text_field :website, :class => 'form-control'
+      .panel.panel-info
+        .panel-heading.text-center
+          %h4= I18n.t(:contact_person_info, scope: :shop_application)
+        .panel-body
+          %table.table.table-borderless
+            %tbody
+              %tr.form-group
+                %td{width: '30%'}= I18n.t(:contact_fname, scope: :shop_application)
+                %td{width: '70%'}= f.text_field :fname, :class => 'form-control'
+              %tr.form-group
+                %td{width: '30%'}= I18n.t(:contact_lname, scope: :shop_application)
+                %td{width: '70%'}= f.text_field :lname, :class => 'form-control'
+              %tr.form-group
+                %td{width: '30%'}= I18n.t(:contact_tel, scope: :shop_application)
+                %td{width: '70%'}= f.text_field :tel, :class => 'form-control'
+              %tr.form-group
+                %td{width: '30%'}= I18n.t(:contact_mobile, scope: :shop_application)
+                %td{width: '70%'}= f.text_field :mobile, :class => 'form-control'
+              %tr.form-group
+                %td{width: '30%'}= I18n.t(:contact_email, scope: :shop_application)
+                %td{width: '70%'}= f.text_field :mail, :class => 'form-control'
+      = f.button I18n.t(:save, scope: :edit_shop), :class => 'btn btn-primary', name: :user_info_edit_part, value: :edit_shop

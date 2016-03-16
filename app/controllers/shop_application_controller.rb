@@ -3,7 +3,7 @@ require "net/http"
 
 class ShopApplicationController < ApplicationController
 
-  before_action :authenticate_user!, except: [:index, :new, :update, :create]
+  before_action :authenticate_user!, except: [:index, :new, :create, :registered?]
 
   def new
   end
@@ -22,8 +22,15 @@ class ShopApplicationController < ApplicationController
       user[:role] = :shopkeeper
 
       @user = User.new(user)
+
       unless @user.save
         flash[:error] = @user.errors.full_messages.first
+      else
+        @shop = Shop.new(shop_application_params.except(:email, :fname, :lname, :tel, :mobile, :mail))
+        @shop.shopkeeper = @user
+        unless @shop.save
+          flash[:error] = @shop.errors.full_messages.first
+        end
       end
     else
       flash[:error] = @shop_application.errors.full_messages.first
@@ -36,10 +43,20 @@ class ShopApplicationController < ApplicationController
     render :new
   end
 
+  def registered?
+    respond_to do |format|
+      if User.where(:email => shop_application_params[:email]).count == 0
+        format.json { render :json => {}, status: :ok}
+      else
+        format.json { render :json => {}, status: :found}
+      end
+    end
+  end
+
   private
 
   def shop_application_params
-    params.require(:shop_application).permit(:email, :name, :desc, :philosophy, :stories, :founding_year, :register)
+    params.require(:shop_application).permit(:email, :name, :desc, :philosophy, :stories, :founding_year, :register, :website, :fname, :lname, :tel, :mobile, :mail)
   end
 
 end

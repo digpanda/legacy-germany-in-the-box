@@ -56,8 +56,6 @@ de:
     forgot_password: Passwort vergessen
     captcha: CAPTCHA
     sign_in: Los!
-    activation_code: Aktivierungscode
-    activation: Aktivierung
   sign_up_dialog:
     username: Username
     email: Email
@@ -176,9 +174,16 @@ de:
   shop_application:
     shop_application: Beantragen
     shop_application_ok: Vielen Dank für Ihren Antrag! Wir werden uns bald mit Ihnen in Verbindung setzten.
+    shopkeeper_info: Herstellerinformation
     title: Antragsformular
     email: Email zur Registrierung
-    email_info: Die Mailaddresse wird später beim initialen Einloggen zusammen mit einer Aktivierungscode benötigt, die an diese Mailadresse gesendet wird.
+    email_info: Die Mailaddresse wird später beim initialen Einloggen zusammen mit einem Initialpasswort benötigt, das an diese Mailadresse gesendet wird.
+    contact_person_info: Kontaktperson
+    contact_fname: Vorname
+    contact_lname: Nachname
+    contact_tel: Festnetz
+    contact_mobile: Mobile
+    contact_email: Email
   edit_shop:
     email: Email*
     name: Herstellername*
@@ -223,6 +228,7 @@ de:
     add_sales_channel: Hinzufügen
     remove_sales_channel: Entfernen
     sales_channel: bspw. Link zur Website
+    website: Homepage
   edit_product:
     edit: Editieren
     remove: Entfernen

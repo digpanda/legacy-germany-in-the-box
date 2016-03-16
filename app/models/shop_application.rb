@@ -14,6 +14,13 @@ class ShopApplication
   field :founding_year,   type: String
   field :register,        type: String
   field :code,            type: String
+  field :website,         type: String
+
+  field :fname,           type: String
+  field :lname,           type: String
+  field :mobile,          type: String
+  field :tel,             type: String
+  field :mail,            type: String
 
   validates :email,         presence: true,   length: {maximum: Rails.configuration.max_short_text_length}
   validates :name,          presence: true,   length: {maximum: Rails.configuration.max_short_text_length}
@@ -23,7 +30,15 @@ class ShopApplication
   validates :philosophy,    presence: true,   length: {maximum: Rails.configuration.max_medium_text_length}
   validates :stories,       presence: true,   length: {maximum: Rails.configuration.max_long_text_length}
 
-  validates :code,          length: {maximum: Rails.configuration.max_tiny_text_length}
+  validates :code,          length: {maximum: Rails.configuration.max_short_text_length}
+  validates :website,       length: {maximum: Rails.configuration.max_short_text_length}
+
+  validates :fname,         length: {maximum: Rails.configuration.max_tiny_text_length}
+  validates :lname,         length: {maximum: Rails.configuration.max_tiny_text_length}
+  validates :mobile,        length: {maximum: Rails.configuration.max_tiny_text_length}
+  validates :tel,           length: {maximum: Rails.configuration.max_tiny_text_length}
+  validates :mail,          length: {maximum: Rails.configuration.max_short_text_length}
+
 
   before_save :gen_code;
 
