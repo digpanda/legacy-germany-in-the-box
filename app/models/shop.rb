@@ -46,7 +46,7 @@ class Shop
   #validates :billing_address,       presence: true,   :if => lambda { self.status == :opened }
   #validates :bank_account,  presence: true,   :if => lambda { self.status == :opened }
   validates :status,        presence: true
-  validates :min_total,     presence: true
+  validates :min_total,     presence: true,   numericality: { :greater_than_or_equal_to => 0 }
   validates :shopkeeper,    presence: true
   validates :currency,      presence: true,   inclusion: {in: ['€']}
   validates :founding_year, presence: true,   length: {maximum: 4}

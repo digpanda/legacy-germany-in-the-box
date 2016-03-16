@@ -16,7 +16,7 @@ class Sku
   field :weight,        type: Float,      default: 0
   field :status,        type: Boolean,    default: true
   field :customizable,  type: Boolean,    default: false
-  field :discount,      type: BigDecimal, default: 0
+  field :discount,      type: Integer,    default: 0
 
   field :option_ids,    type: Array,      default: []
 
@@ -34,7 +34,7 @@ class Sku
   validates :weight,        presence: true
   validates :status,        presence: true
   validates :customizable,  presence: true
-  validates :discount,      presence: true, :numericality => { :greater_than_or_equal_to => 0, :less_than_or_equal_to => 1 }
+  validates :discount,      presence: true, :numericality => { :greater_than_or_equal_to => 0, :less_than_or_equal_to => 100 }
   validates :option_ids,    presence: true
 
   scope :is_active,       ->        { where( :status => true ) }

@@ -46,20 +46,12 @@ class Product
   scope :has_tag,         ->(value) { where( :tags => value )   }
   scope :is_active,       ->        { where( :status => true ) }
 
-  index({name: 1},          {unique: false, name: :idx_product_name})
-  index({brand: 1},         {unique: false, name: :idx_product_brand})
-  index({shop: 1},          {unique: false, name: :idx_product_shop})
-  index({tags: 1},          {unique: false, name: :idx_product_tags,        sparse: true})
-  index({users: 1},         {unique: false, name: :idx_product_users,       sparse: true})
-  index({collections: 1},   {unique: false, name: :idx_product_collections, sparse: true})
-  index({categories: 1},    {unique: false, name: :idx_product_categories,  sparse: true})
-
   def has_option?
-    self.options && self.options.detect { |o| o.suboptions }
+    self.options && self.options.select { |o| o.suboptions && o.suboptions.size > 0 }.size > 0
   end
 
   def get_mas
-    self.skus.is_active.to_a.sort { |s1, s2| s1.quantity <=> s2.quantity } .last
+    skus.is_active.to_a.sort { |s1, s2| s1.quantity <=> s2.quantity } .last
   end
 
   def get_mas_img_url(img_field)
@@ -82,4 +74,11 @@ class Product
     skus.detect {|s| s.option_ids.to_set == option_ids.to_set}
   end
 
+  index({name: 1},          {unique: false, name: :idx_product_name})
+  index({brand: 1},         {unique: false, name: :idx_product_brand})
+  index({shop: 1},          {unique: false, name: :idx_product_shop})
+  index({tags: 1},          {unique: false, name: :idx_product_tags,        sparse: true})
+  index({users: 1},         {unique: false, name: :idx_product_users,       sparse: true})
+  index({collections: 1},   {unique: false, name: :idx_product_collections, sparse: true})
+  index({categories: 1},    {unique: false, name: :idx_product_categories,  sparse: true})
 end
