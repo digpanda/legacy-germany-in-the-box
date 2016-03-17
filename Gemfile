@@ -61,8 +61,6 @@ gem 'http_accept_language'
 
 gem "jquery-fileupload-rails"
 
-gem 'bootstrap-select-rails'
-
 group :development, :test do
   gem 'factory_girl'
 end

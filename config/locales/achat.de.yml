@@ -18,7 +18,9 @@ de:
     my_following: Beobachtung
     my_followers: Anhänger
     my_shop: Mein Shop
+    my_producer: Herstellerdetails
     my_product: Meine Produkte
+    my_agb: AGB
     view_cart: Ansehen
     checkout: Zur Kasse
     empty_cart: Kein Produkt vorhanden
@@ -179,9 +181,9 @@ de:
   shop_application:
     shop_application: Beantragen
     shop_application_ok: Vielen Dank für Ihren Antrag! Wir werden uns bald mit Ihnen in Verbindung setzten.
-    shopkeeper_info: Herstellerinformation
+    shopkeeper_info: Herstellerdetails
     title: Antragsformular
-    email: Email zur Registrierung
+    email: Email zur Registrierung*
     email_info: Die Mailaddresse wird später beim initialen Einloggen zusammen mit einem Initialpasswort benötigt, das an diese Mailadresse gesendet wird.
     contact_person_info: Kontaktperson
     contact_fname: Vorname
@@ -213,6 +215,8 @@ de:
     status: Status
     save: Speichern
     update_ok: Der Shop erfolgreich aktualisiert!
+    update_producer_ok: Herstellerdetails erfolgreich aktualisiert!
+    update_agb_ok: Vielen Dank für das Einverständnis unserer allgeimeinen Geschäftsbedingungen!
     desc_info: Wer sind Sie? Was bieten Sie an?
     philosophy_info: Welche Grundidee und Grundüberzeugung unterliegen Ihren Produkten?
     stories_info: Haben Ihre Produkte bemerkenswerte Geschichten, z.B dass Ihre Marke Sponsor für lokale Kinderevents, Elternverein, Sportverein ist, oder dass die Rezepte oder Herstellungen einer langen Familientradition folgen? Welche Zeitungen und Magazine haben von Ihren Produkten positiv berichtet?
@@ -236,8 +240,10 @@ de:
     remove_target_group: Entfernen
     add_sales_channel: Hinzufügen
     remove_sales_channel: Entfernen
-    sales_channel: bspw. Link zur Website
+    sales_channel:
     website: Homepage
+    agb: Allgemeine Geschäftsbedingungen
+    agb_statement: Hiermit versichere ich, dass ich die AGB der DigPanda GmbH komplett gelesen habe und ich mit den Inhalten dieser AGB einverstanden bin. 
   edit_product:
     edit: Editieren
     remove: Entfernen

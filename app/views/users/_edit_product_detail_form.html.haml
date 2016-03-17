@@ -81,13 +81,13 @@
             %td.text-center{:colspan => 2}= I18n.t(:quantity, scope: :edit_product_detail)
           %tr
             %td.form-group{:colspan => 2}= fs.select :option_ids, grouped_options_for_select(get_grouped_variants_options(@product), @sku.option_ids ), {}, {:multiple => 'multiple', :class => 'sku_variants_options', :required => true}
-            %td.form-group{:colspan => 2}= fs.text_field :quantity, :class => 'form-control', :placeholder => @product.skus[fs.index].limited ? '' : I18n.t(@product.skus[fs.index].limited.to_s.to_sym, scope: 'edit_product_detail.limited'), :type => 'number', :required => true
+            %td.form-group{:colspan => 2}= fs.text_field :quantity, :class => 'form-control', :placeholder => @sku.limited ? '' : I18n.t(@sku.limited.to_s.to_sym, scope: 'edit_product_detail.limited'), :required => true, :pattern => '^[1-9][0-9]*$'
           %tr
             %td.text-center{:colspan => 2}= I18n.t(:price, scope: :edit_product_detail)
             %td.text-center{:colspan => 2}= I18n.t(:discount, scope: :edit_product_detail)
           %tr
             %td{:colspan => 2}
-              .input-group{style: 'width:266px'}
+              .input-group.form-group{style: 'width:266px'}
                 = fs.text_field :price, :class => 'form-control', :required => true, :pattern => '^\d+\.?\d*$'
                 %span.input-group-addon
                   = @product.shop.currency
@@ -194,13 +194,13 @@
             %td.text-center{:colspan => 2}= I18n.t(:quantity, scope: :edit_product_detail)
           %tr
             %td.form-group{:colspan => 2}= fs.select :option_ids, grouped_options_for_select(get_grouped_variants_options(@product), @sku.option_ids ), {}, {:multiple => 'multiple', :class => 'sku_variants_options', :required => true}
-            %td.form-group{:colspan => 2}= fs.text_field :quantity, :class => 'form-control', :placeholder => @product.skus[fs.index].limited ? '' : I18n.t(@product.skus[fs.index].limited.to_s.to_sym, scope: 'edit_product_detail.limited'), :pattern => '^[1-9][0-9]*$', :required => true
+            %td.form-group{:colspan => 2}= fs.text_field :quantity, :class => 'form-control', :placeholder => @sku.limited ? '' : I18n.t(@sku.limited.to_s.to_sym, scope: 'edit_product_detail.limited'), :pattern => '^[1-9][0-9]*$', :required => true
           %tr
             %td.text-center{:colspan => 2}= I18n.t(:price, scope: :edit_product_detail)
             %td.text-center{:colspan => 2}= I18n.t(:discount, scope: :edit_product_detail)
           %tr
             %td{:colspan => 2}
-              .input-group{style: 'width:266px'}
+              .input-group.form-group{style: 'width:266px'}
                 = fs.text_field :price, :class => 'form-control', :required => true, :pattern => '^\d+\.?\d*$'
                 %span.input-group-addon
                   = @product.shop.currency
