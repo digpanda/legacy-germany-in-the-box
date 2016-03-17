@@ -7,92 +7,104 @@
 
   .col-md-9
     = form_for :shop_application, html: {'data-toggle': 'validator'} do |f|
-      .panel.panel-info
-        .panel-heading.text-center
-          %h4= I18n.t(:shopkeeper_info, scope: :shop_application)
-        .panel-body
-          %table.table.table-borderless
-            %tbody
-              %tr.form-group
-                %td{width: '30%', :title => I18n.t(:email_info, scope: :shop_application)}
-                  %strong= I18n.t(:email, scope: :shop_application)
-                  %i.fa.fa-info-circle{ :title => I18n.t(:email_info, scope: :shop_application) }
-                %td{width: '70%'}
-                  = f.email_field :email, :class => 'form-control', :required => true, 'data-remote' => "#{is_registered_shop_application_index_url}"
-                  %div.help-block.with-errors
-              %tr.form-group
-                %td{width: '30%'}= I18n.t(:name, scope: :edit_shop)
-                %td{width: '70%'}= f.text_field :name, :class => 'form-control', :required => true
-              %tr.form-group
-                %td{width: '30%', :title => I18n.t(:founding_year_info, scope: :edit_shop) }
-                  = I18n.t(:founding_year, scope: :edit_shop)
-                  %i.fa.fa-info-circle{ :title => I18n.t(:founding_year_info, scope: :edit_shop) }
-                %td{width: '70%'}= f.text_field :founding_year, :class => 'form-control', :required => true, :pattern => '^(18|19|20)\d{2}$', :required => true
-              %tr.form-group
-                %td{width: '30%'}
-                  = I18n.t(:register, scope: :edit_shop)
-                %td{width: '70%'}= f.text_field :register, :class => 'form-control', :required => true
-              %tr.form-group
-                %td{width: '30%', :title => I18n.t(:desc_info, scope: :edit_shop) }
-                  = I18n.t(:desc, scope: :edit_shop)
-                  %i.fa.fa-info-circle{ :title => I18n.t(:desc_info, scope: :edit_shop) }
-                %td{width: '70%'}= f.text_area :desc, :class => 'form-control', rows: 4, :required => true
-              %tr.form-group
-                %td{width: '30%', :title => I18n.t(:philosophy_info, scope: :edit_shop) }
-                  = I18n.t(:philosophy, scope: :edit_shop)
-                  %i.fa.fa-info-circle{ :title => I18n.t(:philosophy_info, scope: :edit_shop) }
-                %td{width: '70%'}= f.text_area :philosophy, :class => 'form-control', rows: 4, :required => true
-              %tr.form-group
-                %td{width: '30%', :title => I18n.t(:stories_info, scope: :edit_shop) }
-                  = I18n.t(:stories, scope: :edit_shop)
-                  %i.fa.fa-info-circle{ :title => I18n.t(:stories_info, scope: :edit_shop) }
-                %td{width: '70%'}= f.text_area :stories, :class => 'form-control', rows: 4, :required => true
-              %tr.form-group
-                %td{width: '30%'}
-                  = I18n.t(:website, scope: :edit_shop)
-                %td{width: '70%'}= f.text_field :website, :class => 'form-control'
-      .panel.panel-info
-        .panel-heading.text-center
-          %h4= I18n.t(:contact_person_info, scope: :shop_application)
-        .panel-body
-          %table.table.table-borderless
-            %tbody
-              %tr
-                %td
-                  = f.label :fname, I18n.t(:contact_fname, scope: :shop_application)
-                  = f.text_field :fname, :class => 'form-control'
-                %td
-                  = f.label :lname, I18n.t(:contact_lname, scope: :shop_application)
-                  = f.text_field :lname, :class => 'form-control'
-              %tr
-                %td
-                  = f.label :tel, I18n.t(:contact_tel, scope: :shop_application)
-                  = f.text_field :tel, :class => 'form-control'
-                %td
-                  = f.label :mobile, I18n.t(:contact_mobile, scope: :shop_application)
-                  = f.text_field :mobile, :class => 'form-control'
-              %tr
-                %td
-                  = f.label :mail, I18n.t(:contact_email, scope: :shop_application)
-                  = f.text_field :mail, :class => 'form-control'
-      .panel.panel-info
-        .panel-heading.text-center
-          %h4= I18n.t(:statements, scope: :shop_application)
-        .panel-body
-          %table.table.table-borderless
-            %tr
-              .form-group
-                = f.hidden_field :statement0
-                = f.check_box :statement0, { :required => true }, true
-                = I18n.t(:statement_0, scope: :shop_application)
-            %tr
-              .form-group
-                = f.hidden_field :statement0
-                = f.check_box :statement1, {  :required => true }, true
-                = I18n.t(:statement_1, scope: :shop_application)
-            %tr
-              .form-group
-                = f.hidden_field :statement0
-                = f.check_box :statement2, { :required => true }, true
-                = I18n.t(:statement_2, scope: :shop_application)
+      .panel-group
+        .panel.panel-info
+          .panel-heading.text-center
+            %h4= I18n.t(:shopkeeper_info, scope: :shop_application)
+          .panel-body
+            %table.table.table-borderless
+              %tbody
+                %tr.form-group
+                  %td{width: '30%', :title => I18n.t(:email_info, scope: :shop_application)}
+                    %strong= I18n.t(:email, scope: :shop_application)
+                    %i.fa.fa-info-circle{ :title => I18n.t(:email_info, scope: :shop_application) }
+                  %td{width: '70%'}
+                    = f.email_field :email, :class => 'form-control', :required => true, 'data-remote' => "#{is_registered_shop_application_index_url}", :maxLength => Rails.configuration.max_short_text_length
+                    %div.help-block.with-errors
+                %tr.form-group
+                  %td{width: '30%'}= I18n.t(:name, scope: :edit_shop)
+                  %td{width: '70%'}= f.text_field :name, :class => 'form-control', :required => true, :maxLength => Rails.configuration.max_short_text_length
+                %tr.form-group
+                  %td{width: '30%', :title => I18n.t(:founding_year_info, scope: :edit_shop) }
+                    = I18n.t(:founding_year, scope: :edit_shop)
+                    %i.fa.fa-info-circle{ :title => I18n.t(:founding_year_info, scope: :edit_shop) }
+                  %td{width: '70%'}= f.text_field :founding_year, :class => 'form-control', :required => true, :pattern => '^(18|19|20)\d{2}$', :maxLength => 4
+                %tr.form-group
+                  %td{width: '30%'}
+                    = I18n.t(:register, scope: :edit_shop)
+                  %td{width: '70%'}= f.text_field :register, :class => 'form-control', :required => true, :maxLength => Rails.configuration.max_tiny_text_length
+                %tr.form-group
+                  %td{width: '30%', :title => I18n.t(:desc_info, scope: :edit_shop) }
+                    = I18n.t(:desc, scope: :edit_shop)
+                    %i.fa.fa-info-circle{ :title => I18n.t(:desc_info, scope: :edit_shop) }
+                  %td{width: '70%'}= f.text_area :desc, :class => 'form-control', rows: 4, :required => true, :maxLength => Rails.configuration.max_medium_text_length
+                %tr.form-group
+                  %td{width: '30%', :title => I18n.t(:philosophy_info, scope: :edit_shop) }
+                    = I18n.t(:philosophy, scope: :edit_shop)
+                    %i.fa.fa-info-circle{ :title => I18n.t(:philosophy_info, scope: :edit_shop) }
+                  %td{width: '70%'}= f.text_area :philosophy, :class => 'form-control', rows: 4, :required => true, :maxLength => Rails.configuration.max_medium_text_length
+                %tr.form-group
+                  %td{width: '30%', :title => I18n.t(:stories_info, scope: :edit_shop) }
+                    = I18n.t(:stories, scope: :edit_shop)
+                    %i.fa.fa-info-circle{ :title => I18n.t(:stories_info, scope: :edit_shop) }
+                  %td{width: '70%'}= f.text_area :stories, :class => 'form-control', rows: 4, :required => true, :maxLength => Rails.configuration.max_long_text_length
+                %tr.form-group
+                  %td{width: '30%', :title => I18n.t(:uniqueness_info, scope: :edit_shop) }
+                    = I18n.t(:uniqueness, scope: :edit_shop)
+                    %i.fa.fa-info-circle{ :title => I18n.t(:uniqueness_info, scope: :edit_shop) }
+                  %td{width: '70%'}= f.text_area :uniqueness, :class => 'form-control', rows: 4, :maxLength => Rails.configuration.max_medium_text_length
+                %tr.form-group
+                  %td{width: '30%', :title => I18n.t(:german_essence_info, scope: :edit_shop) }
+                    = I18n.t(:german_essence, scope: :edit_shop)
+                    %i.fa.fa-info-circle{ :title => I18n.t(:german_essence_info, scope: :edit_shop) }
+                  %td{width: '70%'}= f.text_area :german_essence, :class => 'form-control', rows: 4, :maxLength => Rails.configuration.max_medium_text_length
+                %tr.form-group
+                  %td{width: '30%'}
+                    = I18n.t(:website, scope: :edit_shop)
+                  %td{width: '70%'}= f.text_field :website, :class => 'form-control', :maxLength => Rails.configuration.max_short_text_length
+        .panel.panel-info
+          .panel-heading.text-center
+            %h4= I18n.t(:contact_person_info, scope: :shop_application)
+          .panel-body
+            %table.table.table-borderless
+              %tbody
+                %tr
+                  %td
+                    = f.label :fname, I18n.t(:contact_fname, scope: :shop_application)
+                    = f.text_field :fname, :class => 'form-control', :maxLength => Rails.configuration.max_tiny_text_length
+                  %td
+                    = f.label :lname, I18n.t(:contact_lname, scope: :shop_application)
+                    = f.text_field :lname, :class => 'form-control', :maxLength => Rails.configuration.max_tiny_text_length
+                %tr
+                  %td
+                    = f.label :tel, I18n.t(:contact_tel, scope: :shop_application)
+                    = f.text_field :tel, :class => 'form-control', :maxLength => Rails.configuration.max_tiny_text_length
+                  %td
+                    = f.label :mobile, I18n.t(:contact_mobile, scope: :shop_application)
+                    = f.text_field :mobile, :class => 'form-control', :maxLength => Rails.configuration.max_tiny_text_length
+                %tr
+                  %td
+                    = f.label :mail, I18n.t(:contact_email, scope: :shop_application)
+                    = f.text_field :mail, :class => 'form-control', :maxLength => Rails.configuration.max_short_text_length
+        .panel.panel-info
+          .panel-heading.text-center
+            %h4= I18n.t(:statements, scope: :shop_application)
+          .panel-body
+            %table.table.table-borderless
+              %tbody
+                %tr
+                  .form-group
+                    = f.hidden_field :statement0
+                    = f.check_box :statement0, { :required => true }, true
+                    = I18n.t(:statement_0, scope: :shop_application)
+                %tr
+                  .form-group
+                    = f.hidden_field :statement1
+                    = f.check_box :statement1, {  :required => true }, true
+                    = I18n.t(:statement_1, scope: :shop_application)
+                %tr
+                  .form-group
+                    = f.hidden_field :statement2
+                    = f.check_box :statement2, { :required => true }, true
+                    = I18n.t(:statement_2, scope: :shop_application)
       = f.button I18n.t(:save, scope: :edit_shop), :class => 'btn btn-primary', name: :user_info_edit_part, value: :edit_shop

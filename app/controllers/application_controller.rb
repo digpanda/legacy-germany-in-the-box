@@ -75,9 +75,8 @@ class ApplicationController < ActionController::Base
     if current_user.role == :customer
       list_popular_products_path
     elsif current_user.role == :shopkeeper
-      if current_user.sign_in_count <= 1
-        flash[:info] = I18n.t(:change_initial_password, scope: :edit_account)
-        edit_user_path(current_user, :user_info_edit_part => :edit_account)
+      if current_user.shop && (not current_user.shop.agb)
+        edit_user_path(current_user, :user_info_edit_part => :edit_shopkeeper_agb)
       else
         edit_user_path(current_user, :user_info_edit_part => :edit_shop)
       end

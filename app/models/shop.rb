@@ -27,6 +27,10 @@ class Shop
   field :sales_channels,  type: Array,      default: []
   field :register,        type: String
   field :website,         type: String
+  field :statement0,      type: Boolean
+  field :statement1,      type: Boolean
+  field :statement2,      type: Boolean
+  field :agb,             type: Boolean,    default: false
 
   field :name_locales,    type: Hash
 
@@ -54,11 +58,18 @@ class Shop
   validates :desc,          presence: true,   length: {maximum: Rails.configuration.max_medium_text_length}
   validates :philosophy,    presence: true,   length: {maximum: Rails.configuration.max_medium_text_length}
   validates :stories,       presence: true,   length: {maximum: Rails.configuration.max_long_text_length}
+  validates :statement0,    presence: true
+  validates :statement1,    presence: true
+  validates :statement2,    presence: true
+  validates :agb,           presence: true
 
   validates :website,       length: {maximum: Rails.configuration.max_short_text_length}
 
-  validates :ustid,         length: { maximum: Rails.configuration.max_tiny_text_length, :allow_blank => true }
-  validates :eroi,          length: { maximum: Rails.configuration.max_tiny_text_length, :allow_blank => true }
+  validates :ustid,         length: { maximum: Rails.configuration.max_tiny_text_length}
+  validates :eroi,          length: { maximum: Rails.configuration.max_tiny_text_length}
+
+  validates :uniqueness,      length: { maximum: Rails.configuration.max_medium_text_length}
+  validates :german_essence,  length: { maximum: Rails.configuration.max_medium_text_length}
 
   scope :is_active,       ->        { where( :status => true ) }
 

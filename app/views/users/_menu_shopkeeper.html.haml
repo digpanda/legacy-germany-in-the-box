@@ -3,23 +3,28 @@
     = image_tag ( current_user.shop && get_uploaded_img_url(current_user.shop.logo) ? get_uploaded_img_url(current_user.shop.logo) : 'icons/default_user_pic.png'), :style => 'width:24px;height:24px'
     %span.caret
   %ul.dropdown-menu{:style => 'background-color:#333'}
-    %li
-      %a{ :href => "#{ edit_user_path(current_user, :user_info_edit_part => :edit_account) }" }
-        %i.fa.fa-key
-        = I18n.t(:my_account, scope: :top_menu)
-    %li
-      %a{ :href => "#{ edit_user_path(current_user, :user_info_edit_part => :edit_shop) }" }
-        %i.fa.fa-globe
-        = I18n.t(:my_shop, scope: :top_menu)
-    -if current_user.shop
+    - if current_user.shop && current_user.shop.agb
       %li
-        %a{ :href => "#{ edit_user_path(current_user, :user_info_edit_part => :edit_product) }" }
-          %i.fa.fa-globe
-          = I18n.t(:my_product, scope: :top_menu)
+        %a{ :href => "#{ edit_user_path(current_user, :user_info_edit_part => :edit_account) }" }
+          %i.fa.fa-key
+          = I18n.t(:my_account, scope: :top_menu)
     %li
-      %a{ :href => "#{ edit_user_path(current_user, :user_info_edit_part => :edit_collection) }" }
-        %i.fa.fa-eye
-        = I18n.t(:my_collection, scope: :top_menu)
+      %a{ :href => "#{ edit_user_path(current_user, :user_info_edit_part => :edit_producer) }" }
+        %i.fa.fa-key
+        = I18n.t(:my_producer, scope: :top_menu)
+    - if current_user.shop && current_user.shop.agb
+      %li
+        %a{ :href => "#{ edit_user_path(current_user, :user_info_edit_part => :edit_shop) }" }
+          %i.fa.fa-globe
+          = I18n.t(:my_shop, scope: :top_menu)
+        %li
+          %a{ :href => "#{ edit_user_path(current_user, :user_info_edit_part => :edit_product) }" }
+            %i.fa.fa-globe
+            = I18n.t(:my_product, scope: :top_menu)
+        %li
+          %a{ :href => "#{ edit_user_path(current_user, :user_info_edit_part => :edit_collection) }" }
+            %i.fa.fa-eye
+            = I18n.t(:my_collection, scope: :top_menu)
     %li
       %a{ :href => "#{ signout_path }", :'data-method' => :delete }
         %i.fa.fa-sign-out

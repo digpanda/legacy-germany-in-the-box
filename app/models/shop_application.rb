@@ -15,6 +15,8 @@ class ShopApplication
   field :register,        type: String
   field :code,            type: String
   field :website,         type: String
+  field :uniqueness,      type: String
+  field :german_essence,  type: String
 
   field :fname,           type: String
   field :lname,           type: String
