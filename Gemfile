@@ -59,11 +59,13 @@ gem 'cancancan'
 
 gem 'http_accept_language'
 
+gem "jquery-fileupload-rails"
+
+gem 'bootstrap-select-rails'
+
 group :development, :test do
   gem 'factory_girl'
 end
-
-gem "jquery-fileupload-rails"
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

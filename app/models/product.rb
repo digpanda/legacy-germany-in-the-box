@@ -13,7 +13,6 @@ class Product
   field :desc,        type: String
   field :tags,        type: Array,    default: Array.new(Rails.configuration.max_num_tags)
   field :status,      type: Boolean,  default: true
-  field :unit,        type: Symbol,   default: :article
 
   field :name_locales, type: Hash
 
@@ -50,8 +49,6 @@ class Product
 
   validates :desc,        length: { maximum: Rails.configuration.max_long_text_length}
   validates :tags,        length: { maximum: Rails.configuration.max_num_tags }
-
-  validates :unit,        presence: true, inclusion: {in: [:g, :kg, :ml, :l, :article]}
 
   scope :has_tag,         ->(value) { where( :tags => value )   }
   scope :is_active,       ->        { where( :status => true ) }

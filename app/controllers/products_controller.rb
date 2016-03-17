@@ -61,10 +61,11 @@ class ProductsController < ApplicationController
     if @product.skus.detect { |s| s.option_ids.to_set.intersect?(ids.to_set) }
       flash[:error] = I18n.t(:sku_dependent, scope: :edit_product_variant)
     else
-      if variant.delete
+      if variant.delete && @product.save
         flash[:success] = I18n.t(:delete_variant_ok, scope: :edit_product_variant)
       else
         flash[:error] = variant.errors.full_messages.first
+        flash[:error] ||= @product.errors.full_messages.first
       end
     end
 
@@ -78,10 +79,11 @@ class ProductsController < ApplicationController
       variant = @product.options.find(params[:variant_id])
       option = variant.suboptions.find(params[:option_id])
 
-      if option.delete
+      if option.delete && @product.save
         flash[:success] = I18n.t(:delete_option_ok, scope: :edit_product_variant)
       else
         flash[:error] = option.errors.full_messages.first
+        flash[:error] ||= @product.errors.full_messages.first
       end
     end
 
@@ -188,16 +190,17 @@ class ProductsController < ApplicationController
 
   def update
     respond_to do |format|
-      if params.require(:product)[:categories]
-        @product.categories.clear
-        @product.categories << params.require(:product)[:categories].map { |cid| Category.find(cid) if not cid.blank? }.compact
+      if sku_attributes = params.require(:product)[:skus_attributes]
+        sku_attributes.each do |k,v|
+          v[:option_ids] = v[:option_ids].reject { |c| c.empty? }
+        end
       end
 
       if @product.update(product_params)
         format.html {
-          if params[:part] == :basic.to_s
-            Rails.cache.clear
+          Rails.cache.clear
 
+          if params[:part] == :basic.to_s
             flash[:success] = I18n.t(:update_ok, scope: :edit_product)
             redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_product)
           elsif params[:part] == :sku.to_s
@@ -247,7 +250,7 @@ class ProductsController < ApplicationController
     end
 
     def product_params
-      params.require(:product).permit(:desc, :name, :brand, :img, tags:[], options_attributes: [:id, :name, suboptions_attributes: [:id, :name]], skus_attributes: [:id, :img0, :img1, :img2, :img3, :price, :quantity, :currency, :weight, :customizable, :status, option_ids: []])
+      params.require(:product).permit(:desc, :name, :brand, :img, tags:[], options_attributes: [:id, :name, suboptions_attributes: [:id, :name]], skus_attributes: [:unit, :id, :img0, :img1, :img2, :img3, :price, :quantity, :currency, :weight, :customizable, :status, option_ids: []])
     end
 end
 

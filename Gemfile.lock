@@ -48,6 +48,7 @@ GEM
       railties (>= 3.0)
     bootstrap-multiselect-rails (0.9.9)
       rails (>= 4.0.0)
+    bootstrap-select-rails (1.6.3)
     bson (4.0.0)
     bson_ext (1.5.1)
     builder (3.2.2)
@@ -293,6 +294,7 @@ DEPENDENCIES
   better_errors
   bootstrap-datepicker-rails
   bootstrap-multiselect-rails
+  bootstrap-select-rails
   byebug
   cancancan
   carrierwave-mongoid

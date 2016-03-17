@@ -17,6 +17,7 @@ class Sku
   field :status,        type: Boolean,    default: true
   field :customizable,  type: Boolean,    default: false
   field :discount,      type: Integer,    default: 0
+  field :unit,          type: String
 
   field :option_ids,    type: Array,      default: []
 
@@ -36,6 +37,8 @@ class Sku
   validates :customizable,  presence: true
   validates :discount,      presence: true, :numericality => { :greater_than_or_equal_to => 0, :less_than_or_equal_to => 100 }
   validates :option_ids,    presence: true
+
+  validates :unit,          presence: true, inclusion: {in: ['g', 'kg', 'ml', 'l']}
 
   scope :is_active,       ->        { where( :status => true ) }
   scope :in_stock,        ->        { where( :quantity.gt => 0 ) }
