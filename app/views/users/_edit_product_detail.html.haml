@@ -40,24 +40,22 @@
         %td{:colspan => 2, :align => :center, :width => '25%'}= image_tag get_uploaded_img_url(s.img2), :style => 'width:160px;height:160px'
         %td{:colspan => 2, :align => :center, :width => '25%'}= image_tag get_uploaded_img_url(s.img3), :style => 'width:160px;height:160px'
       %tr
-        %td{:width => '25%'}= I18n.t(:price, scope: :edit_product_detail)
-        %td{:width => '25%'}= I18n.t(:currency, scope: :edit_product_detail)
-        %td{:width => '25%'}= I18n.t(:quantity, scope: :edit_product_detail)
-        %td{:width => '25%'}= I18n.t('edit_product_detail.limited.info')
-        %td{:width => '25%'}= I18n.t(:weight, scope: :edit_product_detail)
-        %td{:width => '25%'}= I18n.t(:discount, scope: :edit_product_detail)
-        %td{:width => '25%'}
+        %td.text-center= I18n.t(:price, scope: :edit_product_detail)
+        %td.text-center= I18n.t(:discount, scope: :edit_product_detail)
+        %td.text-center= I18n.t(:quantity, scope: :edit_product_detail)
+        %td.text-center= I18n.t(:weight, scope: :edit_product_detail)
+        %td.text-center{:colspan => 2}= I18n.t(:space_weight, scope: :edit_product_detail)
+        %td.text-center
           = I18n.t('edit_product_detail.customizable.info')
           %i.fa.fa-info-circle{ :title => I18n.t(:customizable_info, scope: :edit_product_detail) }
-        %td{:width => '25%'}= I18n.t('edit_product_detail.status.info')
+        %td.text-center= I18n.t('edit_product_detail.status.info')
       %tr
-        %td{:width => '25%'}= s.price
-        %td{:width => '25%'}= s.currency
-        %td{:width => '25%'}= s.quantity
-        %td{:width => '25%'}= I18n.t(s.limited.to_s.to_sym, scope: 'edit_product_detail.limited')
-        %td{:width => '25%'}= s.weight
-        %td{:width => '25%'}= s.discount
-        %td{:width => '25%'}= I18n.t(s.customizable.to_s.to_sym, scope: 'edit_product_detail.customizable')
-        %td{:width => '25%'}= I18n.t(s.status.to_s, scope: 'edit_product_detail.status')
+        %td= s.price.to_s + ' ' + s.currency
+        %td= s.discount
+        %td= s.quantity
+        %td= s.weight.to_s + ' ' + s.unit
+        %td{:colspan => 2}= s.space_length.to_s + ' cm x ' + s.space_width.to_s + 'cm x ' + s.space_height.to_s + ' cm'
+        %td= I18n.t(s.customizable.to_s.to_sym, scope: 'edit_product_detail.customizable')
+        %td= I18n.t(s.status.to_s, scope: 'edit_product_detail.status')
   .gap
 
