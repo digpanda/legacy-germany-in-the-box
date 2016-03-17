@@ -1,8 +1,12 @@
 .col-md-6
   = form_for(@collection, :html => {:class => 'form-horizontal', :role => 'form', 'data-toggle': 'validator'}) do |f|
     .form-group
-      = image_tag (@collection.img.url), :style => 'width:96px;height:96px', :id => "img_#{@collection.id}"
-      = f.file_field :img, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#img_#{@collection.id}", :class => 'img-file-upload', :onchange =>"validateImgFile(this);"
+      = image_tag (@collection.img.url), :style => 'width:128px;height:128px', :id => "img_#{@collection.id}", :class => 'form-control'
+      %div.fileUpload.btn.btn-default
+        %span
+          %i.fa.fa-cloud-upload
+          =I18n.t(:upload, scope: :image_upload)
+        = f.file_field :img, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#img_#{@collection.id}", :class => 'img-file-upload upload', :onchange =>"validateImgFile(this);"
     .form-group
       = f.label :name, I18n.t(:name, scope: :edit_collection_new)
       = f.text_field :name, :class => 'form-control', :required => true

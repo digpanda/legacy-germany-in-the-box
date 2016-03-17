@@ -17,6 +17,11 @@ class Product
 
   field :name_locales, type: Hash
 
+  field :seal0,       type: String
+  field :seal1,       type: String
+  field :seal2,       type: String
+  field :seal3,       type: String
+
   embeds_many :options,   inverse_of: :product,   cascade_callbacks: true,  class_name: 'VariantOption'
   embeds_many :skus,      inverse_of: :product,   cascade_callbacks: true
 
@@ -31,6 +36,11 @@ class Product
   accepts_nested_attributes_for :options
 
   mount_uploader :cover,   AttachmentUploader
+
+  mount_uploader :seal0,   AttachmentUploader
+  mount_uploader :seal1,   AttachmentUploader
+  mount_uploader :seal2,   AttachmentUploader
+  mount_uploader :seal3,   AttachmentUploader
 
   validates :name,        presence: true,   length: {maximum: Rails.configuration.max_short_text_length}
   validates :brand ,      presence: true,   length: {maximum: Rails.configuration.max_short_text_length}

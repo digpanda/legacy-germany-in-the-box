@@ -27,34 +27,51 @@
   = f.fields_for :skus do |fs|
     - if new && (not @product.skus[fs.index].persisted?)
       %table.table.table-bordered
-        %tdeader
-          %td.text-center{:colspan => 4}
-            = I18n.t(:images, scope: :edit_product_detail)
-            %i.fa.fa-info-circle{ :title => I18n.t(:images_info, scope: :edit_product_detail) }
         %tbody
+          %tr
+            %td.text-center{:colspan => 8}
+              = I18n.t(:images, scope: :edit_product_detail)
+              %i.fa.fa-info-circle{ :title => I18n.t(:images_info, scope: :edit_product_detail) }
           %tr
             %td.text-center{:colspan => 2}= I18n.t(:img0, scope: :edit_product_detail)
             %td.text-center{:colspan => 2}= I18n.t(:img1, scope: :edit_product_detail)
-          %tr
-            %td{:colspan => 2, :align => :center}= image_tag get_uploaded_img_url(@product.skus[fs.index].img0), :style => 'width:320px;height:320px', :id => "img_0_#{@product.id}"
-            %td{:colspan => 2, :align => :center}= image_tag get_uploaded_img_url(@product.skus[fs.index].img1), :style => 'width:320px;height:320px', :id => "img_1_#{@product.id}"
-          %tr
-            %td{:colspan => 2, :align => :center}= fs.file_field :img0, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#img_0_#{@product.id}", :class => 'img-file-upload', :onchange =>"validateImgFile(this);"
-            %td{:colspan => 2, :align => :center}= fs.file_field :img1, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#img_1_#{@product.id}", :class => 'img-file-upload', :onchange =>"validateImgFile(this);"
-          %tr
             %td.text-center{:colspan => 2}= I18n.t(:img2, scope: :edit_product_detail)
             %td.text-center{:colspan => 2}= I18n.t(:img3, scope: :edit_product_detail)
           %tr
-            %td{:colspan => 2, :align => :center}= image_tag get_uploaded_img_url(@product.skus[fs.index].img2), :style => 'width:320px;height:320px', :id => "img_2_#{@product.id}"
-            %td{:colspan => 2, :align => :center}= image_tag get_uploaded_img_url(@product.skus[fs.index].img3), :style => 'width:320px;height:320px', :id => "img_3_#{@product.id}"
+            %td{:colspan => 2, :align => :center}= image_tag get_uploaded_img_url(@product.skus[fs.index].img0), :style => 'width:160px;height:160px', :id => "img_0_#{@product.id}"
+            %td{:colspan => 2, :align => :center}= image_tag get_uploaded_img_url(@product.skus[fs.index].img1), :style => 'width:160px;height:160px', :id => "img_1_#{@product.id}"
+            %td{:colspan => 2, :align => :center}= image_tag get_uploaded_img_url(@product.skus[fs.index].img2), :style => 'width:160px;height:160px', :id => "img_2_#{@product.id}"
+            %td{:colspan => 2, :align => :center}= image_tag get_uploaded_img_url(@product.skus[fs.index].img3), :style => 'width:160px;height:160px', :id => "img_3_#{@product.id}"
           %tr
-            %td{:colspan => 2, :align => :center}= fs.file_field :img2, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#img_2_#{@product.id}", :class => 'img-file-upload'
-            %td{:colspan => 2, :align => :center}= fs.file_field :img3, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#img_3_#{@product.id}", :class => 'img-file-upload'
+            %td{:colspan => 2, :align => :center}
+              %div.fileUpload.btn.btn-default
+                %span
+                  %i.fa.fa-cloud-upload
+                  =I18n.t(:upload, scope: :image_upload)
+                = fs.file_field :img0, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#img_0_#{@product.id}", :class => 'img-file-upload upload', :onchange =>"validateImgFile(this);"
+            %td{:colspan => 2, :align => :center}
+              %div.fileUpload.btn.btn-default
+                %span
+                  %i.fa.fa-cloud-upload
+                  =I18n.t(:upload, scope: :image_upload)
+                = fs.file_field :img1, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#img_1_#{@product.id}", :class => 'img-file-upload upload', :onchange =>"validateImgFile(this);"
+            %td{:colspan => 2, :align => :center}
+              %div.fileUpload.btn.btn-default
+                %span
+                  %i.fa.fa-cloud-upload
+                  =I18n.t(:upload, scope: :image_upload)
+                = fs.file_field :img2, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#img_2_#{@product.id}", :class => 'img-file-upload upload'
+            %td{:colspan => 2, :align => :center}
+              %div.fileUpload.btn.btn-default
+                %span
+                  %i.fa.fa-cloud-upload
+                  =I18n.t(:upload, scope: :image_upload)
+                = fs.file_field :img3, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#img_3_#{@product.id}", :class => 'img-file-upload upload'
 
       %table.table.table-bordered
-        %tdeader
-          %td.text-center{:colspan => 4}= I18n.t(:sku_options, scope: :edit_product_detail)
         %tbody
+          %tr
+            %td.text-center{:colspan => 4}= I18n.t(:sku_options, scope: :edit_product_detail)
           %tr
             %td.text-center{:colspan => 2}= I18n.t(:sku_variants_options, scope: :edit_product_detail)
             %td.text-center{:colspan => 2}= I18n.t(:price, scope: :edit_product_detail)
@@ -89,34 +106,51 @@
               = I18n.t('edit_product_detail.status.true')
     - elsif (not new) && @product.skus[fs.index].id.to_s == params[:sku_id]
       %table.table.table-bordered
-        %tdeader
-          %td.text-center{:colspan => 4}
-            = I18n.t(:images, scope: :edit_product_detail)
-            %i.fa.fa-info-circle{ :title => I18n.t(:images_info, scope: :edit_product_detail) }
         %tbody
+          %tr
+            %td.text-center{:colspan => 8}
+              = I18n.t(:images, scope: :edit_product_detail)
+              %i.fa.fa-info-circle{ :title => I18n.t(:images_info, scope: :edit_product_detail) }
           %tr
             %td.text-center{:colspan => 2}= I18n.t(:img0, scope: :edit_product_detail)
             %td.text-center{:colspan => 2}= I18n.t(:img1, scope: :edit_product_detail)
-          %tr
-            %td{:colspan => 2, :align => :center}= image_tag get_uploaded_img_url(@product.skus[fs.index].img0), :style => 'width:320px;height:320px', :id => "img_0_#{@product.id}"
-            %td{:colspan => 2, :align => :center}= image_tag get_uploaded_img_url(@product.skus[fs.index].img1), :style => 'width:320px;height:320px', :id => "img_1_#{@product.id}"
-          %tr
-            %td{:colspan => 2, :align => :center}= fs.file_field :img0, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#img_0_#{@product.id}", :class => 'img-file-upload', :onchange =>"validateImgFile(this);"
-            %td{:colspan => 2, :align => :center}= fs.file_field :img1, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#img_1_#{@product.id}", :class => 'img-file-upload', :onchange =>"validateImgFile(this);"
-          %tr
             %td.text-center{:colspan => 2}= I18n.t(:img2, scope: :edit_product_detail)
             %td.text-center{:colspan => 2}= I18n.t(:img3, scope: :edit_product_detail)
           %tr
-            %td{:colspan => 2, :align => :center}= image_tag get_uploaded_img_url(@product.skus[fs.index].img2), :style => 'width:320px;height:320px', :id => "img_2_#{@product.id}"
-            %td{:colspan => 2, :align => :center}= image_tag get_uploaded_img_url(@product.skus[fs.index].img3), :style => 'width:320px;height:320px', :id => "img_3_#{@product.id}"
+            %td{:colspan => 2, :align => :center}= image_tag get_uploaded_img_url(@product.skus[fs.index].img0), :style => 'width:160px;height:160px', :id => "img_0_#{@product.id}"
+            %td{:colspan => 2, :align => :center}= image_tag get_uploaded_img_url(@product.skus[fs.index].img1), :style => 'width:160px;height:160px', :id => "img_1_#{@product.id}"
+            %td{:colspan => 2, :align => :center}= image_tag get_uploaded_img_url(@product.skus[fs.index].img2), :style => 'width:160px;height:160px', :id => "img_2_#{@product.id}"
+            %td{:colspan => 2, :align => :center}= image_tag get_uploaded_img_url(@product.skus[fs.index].img3), :style => 'width:160px;height:160px', :id => "img_3_#{@product.id}"
           %tr
-            %td{:colspan => 2, :align => :center}= fs.file_field :img2, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#img_2_#{@product.id}", :class => 'img-file-upload', :onchange =>"validateImgFile(this);"
-            %td{:colspan => 2, :align => :center}= fs.file_field :img3, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#img_3_#{@product.id}", :class => 'img-file-upload', :onchange =>"validateImgFile(this);"
+            %td{:colspan => 2, :align => :center}
+              %div.fileUpload.btn.btn-default
+                %span
+                  %i.fa.fa-cloud-upload
+                  =I18n.t(:upload, scope: :image_upload)
+                = fs.file_field :img0, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#img_0_#{@product.id}", :class => 'img-file-upload upload', :onchange =>"validateImgFile(this);"
+            %td{:colspan => 2, :align => :center}
+              %div.fileUpload.btn.btn-default
+                %span
+                  %i.fa.fa-cloud-upload
+                  =I18n.t(:upload, scope: :image_upload)
+                = fs.file_field :img1, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#img_1_#{@product.id}", :class => 'img-file-upload upload', :onchange =>"validateImgFile(this);"
+            %td{:colspan => 2, :align => :center}
+              %div.fileUpload.btn.btn-default
+                %span
+                  %i.fa.fa-cloud-upload
+                  =I18n.t(:upload, scope: :image_upload)
+                = fs.file_field :img2, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#img_2_#{@product.id}", :class => 'img-file-upload upload', :onchange =>"validateImgFile(this);"
+            %td{:colspan => 2, :align => :center}
+              %div.fileUpload.btn.btn-default
+                %span
+                  %i.fa.fa-cloud-upload
+                  =I18n.t(:upload, scope: :image_upload)
+                = fs.file_field :img3, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#img_3_#{@product.id}", :class => 'img-file-upload upload', :onchange =>"validateImgFile(this);"
 
       %table.table.table-bordered
-        %tdeader
-          %td.text-center{:colspan => 4}= I18n.t(:sku_options, scope: :edit_product_detail)
         %tbody
+          %tr
+            %td.text-center{:colspan => 4}= I18n.t(:sku_options, scope: :edit_product_detail)
           %tr
             %td.text-center{:colspan => 2}
               = I18n.t(:sku_variants_options, scope: :edit_product_detail)

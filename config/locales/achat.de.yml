@@ -2,6 +2,7 @@ de:
   image_upload:
     max_exceeded_message: Die hochzuladene Datei ist größer als 1 Megabytes.
     ext_error_message: Nur die Formaten .jpg, .jpeg, or .png sind akzeptierbar.
+    upload: Hochladen
   top_menu:
     top_menu: Menü
     sign_in: Einloggen
@@ -267,6 +268,8 @@ de:
     images_info: Laden Sie bitte bis zu 4 Produktbilder in JPG oder JPEG Format für das Produkt hoch. (max. 1 MB pro Bild)
     desc_info: Beschreiben Sie Ihr Produkt mit all den ansprechenden Eigenschaften, die für Käufer relevant sind.
     cancel: Abbrechen
+    product_seal: Produktsiegel
+    product_seal_info: Hier können Sie Ihre Produktsiegel hochladen.
   edit_product_new:
     create_ok: Das Produkt erfolgreich erstellt!
     create_ko: Ein Fehler ist beim

@@ -8,11 +8,21 @@
               %td= I18n.t(:logo, scope: :edit_shop)
               %td= I18n.t(:banner, scope: :edit_shop)
             %tr
-              %td= image_tag @shop.logo ? @shop.logo.url : nil, :style => 'width:96px;height:96px', :class => 'form-control img-thumbnail', :id => "logo_#{@shop.id}"
-              %td= image_tag @shop.banner ? @shop.banner.url : nil, :style => 'width:512px;height:96px', :class => 'img-responsive form-control', :id => "banner_#{@shop.id}"
+              %td= image_tag @shop.logo ? @shop.logo.url : nil, :style => 'width:128px;height:128px', :class => 'form-control img-thumbnail', :id => "logo_#{@shop.id}"
+              %td= image_tag @shop.banner ? @shop.banner.url : nil, :style => 'width:512px;height:128px', :class => 'img-responsive form-control', :id => "banner_#{@shop.id}"
             %tr
-              %td= f.file_field :logo, :accept => "image/png, image/jpeg, image/jpg", :class => 'img-file-upload', :img_id => "#logo_#{@shop.id}", :onchange =>"validateImgFile(this);"
-              %td= f.file_field :banner, :accept => "image/png, image/jpeg, image/jpg", :class => 'img-file-upload', :img_id => "#banner_#{@shop.id}", :onchange =>"validateImgFile(this);"
+              %td
+                %div.fileUpload.btn.btn-default
+                  %span
+                    %i.fa.fa-cloud-upload
+                    =I18n.t(:upload, scope: :image_upload)
+                  = f.file_field :logo, :accept => "image/png, image/jpeg, image/jpg", :class => 'img-file-upload upload', :img_id => "#logo_#{@shop.id}", :onchange =>"validateImgFile(this);"
+              %td
+                %div.fileUpload.btn.btn-default
+                  %span
+                    %i.fa.fa-cloud-upload
+                    =I18n.t(:upload, scope: :image_upload)
+                  = f.file_field :banner, :accept => "image/png, image/jpeg, image/jpg", :class => 'img-file-upload upload', :img_id => "#banner_#{@shop.id}", :onchange =>"validateImgFile(this);"
     .panel.panel-default
       .panel-body
         %table.table.table-borderless
