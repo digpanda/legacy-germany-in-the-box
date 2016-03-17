@@ -292,7 +292,7 @@ de:
       info: Menge begrenzt
       'true': Ja
       'false': Nein
-    weight: Inhaltgewicht*
+    weight: Gewicht*
     status:
       info: Zum Verkauf angeboten
       'true': Ja
@@ -316,6 +316,9 @@ de:
     customizable_info: Dieses Produkt kann nach Kundenwunsch individuell angefertig werden.
     return: Zurück zur Produktliste
     cancel: Abbrechen
+    space_weight: Raumgewicht*
+    space_weight_info:  Geben Sie bitte die Maße und das Gewicht des Pakets an, in dem Sie Ihre tolles Produkt verpacken, in Abhängigkeit der Bestellmenge. Bitte bedenken Sie, je genauer Sie angeben, desto umweltfreundlicher und kosteneffizienter können wir den Versand gestalten.
+    cm: cm
   edit_product_variant:
     new_variant: Neue Variante
     edit: Editieren

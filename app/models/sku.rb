@@ -11,13 +11,16 @@ class Sku
   field :img3,          type: String
   field :price,         type: BigDecimal
   field :currency,      type: String,     default: '€'
-  field :quantity,      type: Integer,    default: 0
+  field :quantity,      type: Integer
   field :limited,       type: Boolean,    default: true
-  field :weight,        type: Float,      default: 0
+  field :weight,        type: Float
   field :status,        type: Boolean,    default: true
   field :customizable,  type: Boolean,    default: false
   field :discount,      type: Integer,    default: 0
   field :unit,          type: String
+  field :space_length,  type: Float,      default: 0
+  field :space_width,   type: Float,      default: 0
+  field :space_height,  type: Float,      default: 0
 
   field :option_ids,    type: Array,      default: []
 
@@ -39,6 +42,10 @@ class Sku
   validates :option_ids,    presence: true
 
   validates :unit,          presence: true, inclusion: {in: ['g', 'kg', 'ml', 'l']}
+
+  validates :space_length,  presence: true
+  validates :space_width,   presence: true
+  validates :space_height,  presence: true
 
   scope :is_active,       ->        { where( :status => true ) }
   scope :in_stock,        ->        { where( :quantity.gt => 0 ) }
