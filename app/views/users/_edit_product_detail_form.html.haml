@@ -127,13 +127,17 @@
             %td.text-center{:colspan => 2}= I18n.t('edit_product_detail.status.info')
           %tr
             %td.form-group{:colspan => 2}
-              = fs.hidden_field :customizable
-              = fs.check_box :customizable, {}, true
-              = I18n.t(true, scope: 'edit_product_detail.customizable')
+              .checkbox
+                %label
+                  = fs.hidden_field :customizable
+                  = fs.check_box :customizable, { :class => 'i-check' }, true
+                  = I18n.t(true, scope: 'edit_product_detail.customizable')
             %td.form-group{:colspan => 2}
-              = fs.hidden_field :status
-              = fs.check_box :status, {}, true
-              = I18n.t('edit_product_detail.status.true')
+              .checkbox
+                %label
+                  = fs.hidden_field :status
+                  = fs.check_box :status, { :class => 'i-check' }, true
+                  = I18n.t('edit_product_detail.status.true')
     - elsif (not new) && @product.skus[fs.index].id.to_s == params[:sku_id]
       %table.table.table-bordered
         %tbody
@@ -237,13 +241,17 @@
             %td.text-center{:colspan => 2}= I18n.t('edit_product_detail.status.info')
           %tr
             %td.form-group{:colspan => 2}
-              = fs.hidden_field :customizable
-              = fs.check_box :customizable, {}, true
-              = I18n.t(true, scope: 'edit_product_detail.customizable')
+              .checkbox
+                %label
+                  = fs.hidden_field :customizable
+                  = fs.check_box :customizable, { :class => 'i-check' }, true
+                  = I18n.t(true, scope: 'edit_product_detail.customizable')
             %td.form-group{:colspan => 2}
-              = fs.hidden_field :status
-              = fs.check_box :status, {}, true
-              = I18n.t('edit_product_detail.status.true')
+              .checkbox
+                %label
+                  = fs.hidden_field :status
+                  = fs.check_box :status, { :class => 'i-check' }, true
+                  = I18n.t('edit_product_detail.status.true')
 
   = f.submit :class => 'btn btn-primary', :value => new ? I18n.t(:create_sku, scope: :edit_product_detail) : I18n.t(:update_sku, scope: :edit_product_detail), :part => :sku
   = link_to I18n.t(:cancel, scope: :edit_product_detail), :back, :class => 'btn btn-primary'

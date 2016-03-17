@@ -22,6 +22,10 @@ class ShopApplication
   field :tel,             type: String
   field :mail,            type: String
 
+  field :statement0,      type: Boolean
+  field :statement1,      type: Boolean
+  field :statement2,      type: Boolean
+
   validates :email,         presence: true,   length: {maximum: Rails.configuration.max_short_text_length}
   validates :name,          presence: true,   length: {maximum: Rails.configuration.max_short_text_length}
   validates :founding_year, presence: true,   length: {maximum: 4}
@@ -29,6 +33,9 @@ class ShopApplication
   validates :desc,          presence: true,   length: {maximum: Rails.configuration.max_medium_text_length}
   validates :philosophy,    presence: true,   length: {maximum: Rails.configuration.max_medium_text_length}
   validates :stories,       presence: true,   length: {maximum: Rails.configuration.max_long_text_length}
+  validates :statement0,    presence: true
+  validates :statement1,    presence: true
+  validates :statement2,    presence: true
 
   validates :code,          length: {maximum: Rails.configuration.max_short_text_length}
   validates :website,       length: {maximum: Rails.configuration.max_short_text_length}

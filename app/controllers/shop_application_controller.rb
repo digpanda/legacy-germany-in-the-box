@@ -26,7 +26,7 @@ class ShopApplicationController < ApplicationController
       unless @user.save
         flash[:error] = @user.errors.full_messages.first
       else
-        @shop = Shop.new(shop_application_params.except(:email, :fname, :lname, :tel, :mobile, :mail))
+        @shop = Shop.new(shop_application_params.except(:statement0, :statement1,  :statement2, :email, :fname, :lname, :tel, :mobile, :mail))
         @shop.shopkeeper = @user
         unless @shop.save
           flash[:error] = @shop.errors.full_messages.first
@@ -56,7 +56,7 @@ class ShopApplicationController < ApplicationController
   private
 
   def shop_application_params
-    params.require(:shop_application).permit(:email, :name, :desc, :philosophy, :stories, :founding_year, :register, :website, :fname, :lname, :tel, :mobile, :mail)
+    params.require(:shop_application).permit(:email, :name, :desc, :philosophy, :stories, :founding_year, :register, :website, :statement0, :statement1,  :statement2, :fname, :lname, :tel, :mobile, :mail)
   end
 
 end

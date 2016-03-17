@@ -101,7 +101,7 @@
               .input-group
                 = f.text_field :min_total, :class => 'form-control', :required => true, :pattern => '^\d+\.?\d*$'
                 %span.input-group-addon
-                  = f.label @shop.currency
+                  = @shop.currency
   .panel.panel-default
     .panel-heading{ :title => I18n.t(:target_groups_info, scope: :edit_shop, num: Rails.configuration.max_num_target_groups) }
       .btn-toolbar{ :style => 'margin-left:22px' }

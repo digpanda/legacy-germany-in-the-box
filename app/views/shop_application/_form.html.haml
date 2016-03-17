@@ -53,6 +53,29 @@
                 %td{width: '70%'}= f.text_field :website, :class => 'form-control'
       .panel.panel-info
         .panel-heading.text-center
+          %h4= I18n.t(:statements, scope: :shop_application)
+        .panel-body
+          %table.table.table-borderless
+            .form-group
+              .checkbox
+                %label
+                  = f.hidden_field :statement0
+                  = f.check_box :statement0, { :class => 'i-check', :required => true }, true
+                  = I18n.t(:statement_0, scope: :shop_application)
+            .form-group
+              .checkbox
+                %label
+                  = f.hidden_field :statement0
+                  = f.check_box :statement1, { :class => 'i-check', :required => true }, true
+                  = I18n.t(:statement_1, scope: :shop_application)
+            .form-group
+              .checkbox
+                %label
+                  = f.hidden_field :statement0
+                  = f.check_box :statement2, { :class => 'i-check', :required => true }, true
+                  = I18n.t(:statement_2, scope: :shop_application)
+      .panel.panel-info
+        .panel-heading.text-center
           %h4= I18n.t(:contact_person_info, scope: :shop_application)
         .panel-body
           %table.table.table-borderless
