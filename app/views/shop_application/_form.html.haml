@@ -27,7 +27,7 @@
                 %td{width: '30%', :title => I18n.t(:founding_year_info, scope: :edit_shop) }
                   = I18n.t(:founding_year, scope: :edit_shop)
                   %i.fa.fa-info-circle{ :title => I18n.t(:founding_year_info, scope: :edit_shop) }
-                %td{width: '70%'}= f.text_field :founding_year, :class => 'form-control', :required => true, :pattern => '^(19|20)\d{2}$', :required => true
+                %td{width: '70%'}= f.text_field :founding_year, :class => 'form-control', :required => true, :pattern => '^(18|19|20)\d{2}$', :required => true
               %tr.form-group
                 %td{width: '30%'}
                   = I18n.t(:register, scope: :edit_shop)
@@ -53,46 +53,46 @@
                 %td{width: '70%'}= f.text_field :website, :class => 'form-control'
       .panel.panel-info
         .panel-heading.text-center
-          %h4= I18n.t(:statements, scope: :shop_application)
-        .panel-body
-          %table.table.table-borderless
-            .form-group
-              .checkbox
-                %label
-                  = f.hidden_field :statement0
-                  = f.check_box :statement0, { :class => 'i-check', :required => true }, true
-                  = I18n.t(:statement_0, scope: :shop_application)
-            .form-group
-              .checkbox
-                %label
-                  = f.hidden_field :statement0
-                  = f.check_box :statement1, { :class => 'i-check', :required => true }, true
-                  = I18n.t(:statement_1, scope: :shop_application)
-            .form-group
-              .checkbox
-                %label
-                  = f.hidden_field :statement0
-                  = f.check_box :statement2, { :class => 'i-check', :required => true }, true
-                  = I18n.t(:statement_2, scope: :shop_application)
-      .panel.panel-info
-        .panel-heading.text-center
           %h4= I18n.t(:contact_person_info, scope: :shop_application)
         .panel-body
           %table.table.table-borderless
             %tbody
-              %tr.form-group
-                %td{width: '30%'}= I18n.t(:contact_fname, scope: :shop_application)
-                %td{width: '70%'}= f.text_field :fname, :class => 'form-control'
-              %tr.form-group
-                %td{width: '30%'}= I18n.t(:contact_lname, scope: :shop_application)
-                %td{width: '70%'}= f.text_field :lname, :class => 'form-control'
-              %tr.form-group
-                %td{width: '30%'}= I18n.t(:contact_tel, scope: :shop_application)
-                %td{width: '70%'}= f.text_field :tel, :class => 'form-control'
-              %tr.form-group
-                %td{width: '30%'}= I18n.t(:contact_mobile, scope: :shop_application)
-                %td{width: '70%'}= f.text_field :mobile, :class => 'form-control'
-              %tr.form-group
-                %td{width: '30%'}= I18n.t(:contact_email, scope: :shop_application)
-                %td{width: '70%'}= f.text_field :mail, :class => 'form-control'
+              %tr
+                %td
+                  = f.label :fname, I18n.t(:contact_fname, scope: :shop_application)
+                  = f.text_field :fname, :class => 'form-control'
+                %td
+                  = f.label :lname, I18n.t(:contact_lname, scope: :shop_application)
+                  = f.text_field :lname, :class => 'form-control'
+              %tr
+                %td
+                  = f.label :tel, I18n.t(:contact_tel, scope: :shop_application)
+                  = f.text_field :tel, :class => 'form-control'
+                %td
+                  = f.label :mobile, I18n.t(:contact_mobile, scope: :shop_application)
+                  = f.text_field :mobile, :class => 'form-control'
+              %tr
+                %td
+                  = f.label :mail, I18n.t(:contact_email, scope: :shop_application)
+                  = f.text_field :mail, :class => 'form-control'
+      .panel.panel-info
+        .panel-heading.text-center
+          %h4= I18n.t(:statements, scope: :shop_application)
+        .panel-body
+          %table.table.table-borderless
+            %tr
+              .form-group
+                = f.hidden_field :statement0
+                = f.check_box :statement0, { :required => true }, true
+                = I18n.t(:statement_0, scope: :shop_application)
+            %tr
+              .form-group
+                = f.hidden_field :statement0
+                = f.check_box :statement1, {  :required => true }, true
+                = I18n.t(:statement_1, scope: :shop_application)
+            %tr
+              .form-group
+                = f.hidden_field :statement0
+                = f.check_box :statement2, { :required => true }, true
+                = I18n.t(:statement_2, scope: :shop_application)
       = f.button I18n.t(:save, scope: :edit_shop), :class => 'btn btn-primary', name: :user_info_edit_part, value: :edit_shop
