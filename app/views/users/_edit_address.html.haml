@@ -8,7 +8,12 @@
     .form-group
       %h4= I18n.t(:new_address_title, scope: :edit_address)
     .form-group
-      = f.text_field :street_building_room, :class => 'form-control', :placeholder => I18n.t(:street_building_room, scope: :edit_address), :required => true
+      .form-inline
+        .form-group
+          = f.text_field :street, :class => 'form-control', :style => 'width:248px', :required => true, :placeholder => I18n.t(:street, scope: :edit_address)
+        .form-group
+          = f.text_field :number, :class => 'form-control', :style => 'width:88px', :required => true, :placeholder => I18n.t(:house_number, scope: :edit_address)
+      = f.text_field :additional, :class => 'form-control', :placeholder => I18n.t(:additional, scope: :edit_address)
     .city-group
       .form-group
         = f.select :province, options_for_select(ChinaCity.list), {  include_blank: I18n.t(:province_blank, scope: :edit_address) }, { :autocomplete => :off, class: 'form-control city-select city-province', :required => true }
@@ -34,7 +39,12 @@
         .form-group
           %h4= I18n.t(:change_address_title, scope: :edit_address)
         .form-group
-          = f.text_field :street_building_room, :value=> "#{a.street_building_room}", :class => 'form-control', :placeholder => 'Street, Building & Room (*)', :required => true
+          .form-inline
+            .form-group
+              = f.text_field :street, :class => 'form-control', :style => 'width:248px', :required => true, :placeholder => I18n.t(:street, scope: :edit_address)
+            .form-group
+              = f.text_field :number, :class => 'form-control', :style => 'width:88px', :required => true, :placeholder => I18n.t(:house_number, scope: :edit_address)
+          = f.text_field :additional, :class => 'form-control', :placeholder => I18n.t(:additional, scope: :edit_address)
         .city-group
           .form-group
             = f.select :province, options_for_select(get_provinces, get_code_for_province(a.province)), {  include_blank: I18n.t(:province_blank, scope: :edit_address) }, { :autocomplete => :off, class: 'form-control city-select city-province', :required => true }
@@ -62,7 +72,8 @@
             = link_to '', address_path(a), method: :delete, data: { confirm: I18n.t(:delete_address_message, scope: :edit_address) }, "data-placement" => "right",  class: 'address-box-remove'
             %a.address-box-edit.popup-text{"data-effect" => "mfp-move-from-top", "data-placement" => "right", "data-toggle" => "tooltip", :href => "#edit-address-dialog-#{a.id}",}
             %ul
-              %li= "#{I18n.t(:street_building_room, scope: :edit_address)} : #{ a.street_building_room }"
+              %li= "#{I18n.t(:street, scope: :edit_address)} : #{ a.street } #{ a.number }"
+              %li= "#{I18n.t(:additional, scope: :edit_address)} : #{ a.additional }"
               %li= "#{I18n.t(:district, scope: :edit_address)} : #{ a.district }"
               %li= "#{I18n.t(:city, scope: :edit_address)} : #{ a.city }"
               %li= "#{I18n.t(:province, scope: :edit_address)} : #{ a.province }"

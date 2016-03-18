@@ -155,7 +155,9 @@ class AddressesController < ApplicationController
   private
 
   def address_params
-    params.require(:address).permit(:street_building_room,
+    params.require(:address).permit(:number,
+                                    :street,
+                                    :additional,
                                     :district,
                                     :city,
                                     :province,

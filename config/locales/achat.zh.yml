@@ -112,7 +112,6 @@ zh-CN:
     maximal_number_of_addresses: 您最多可以设定三个地址
     add_new_address: 添加新地址
     new_address_title: 您的新地址
-    street_building_room: 地址
     province: 省份
     city: 城市
     district: 地区
@@ -133,6 +132,9 @@ zh-CN:
     create_ko: 创建地址失败
     update_ok: 地址修改成功
     update_ko: 地址修改失败
+    street: 街道名称
+    house_number: 街道号
+    additional: 附加信息
   edit_order:
     no_order: 您还没有任何订单
     id: 订单号

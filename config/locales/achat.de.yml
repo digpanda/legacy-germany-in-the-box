@@ -112,7 +112,9 @@ de:
     maximal_number_of_addresses: Sie können maximal %{num} Adressen konfigurieren.
     add_new_address: Adresse hinzufügen
     new_address_title: Ihre neue Adresse
-    street_building_room: Adresse
+    street: Straße
+    house_number: Hausnummer
+    additional: Zusatz
     province: Land
     city: Stadt
     district: Gemeinde
