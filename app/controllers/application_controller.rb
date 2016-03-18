@@ -80,6 +80,8 @@ class ApplicationController < ActionController::Base
       else
         edit_user_path(current_user, :user_info_edit_part => :edit_shop)
       end
+    else
+      root_path
     end
   end
 

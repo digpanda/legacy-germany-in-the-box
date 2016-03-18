@@ -79,6 +79,8 @@ class UsersController < ApplicationController
       @collection = Collection.new
     elsif params[:user_info_edit_part] == :edit_collection_update.to_s
       @collection = current_user.oCollections.find(params[:collection_id])
+    elsif params[:user_info_edit_part] == :edit_shop_applications.to_s
+      @applications = ShopApplication.all
     end
   end
 

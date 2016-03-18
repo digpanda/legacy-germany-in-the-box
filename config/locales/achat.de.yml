@@ -21,6 +21,7 @@ de:
     my_producer: Herstellerdetails
     my_product: Meine Produkte
     my_agb: AGB
+    shop_applications: Beantragungen
     view_cart: Ansehen
     checkout: Zur Kasse
     empty_cart: Kein Produkt vorhanden
@@ -195,6 +196,7 @@ de:
     statement_0: Hiermit versichere ich, dass ich der Hersteller der hochzuladenen Produkte bin bzw. den Hersteller repräsentiere darf. 
     statement_1: Hiermit versichere ich, dass die von mir angebotenen Produkte "Made in Germany" sind. Der Begriff "Made in Germany" lehnt sich an die Rechtsprechung des BGH zur Nutzung des Begriffs „Made in Germany“ an und schreibt vor, dass die für die wertbestimmenden Eigenschaften eines Produktes wesentlichen Herstellvorgänge in Deutschland erfolgen müssen.
     statement_2: Hiermit bestätige ich, dass die von mir angebotenen Produkte die notwendigen Zertifizierungen für den Absatz auf dem deutschen Markt besitzen. 
+    password: Initialpasswort
   edit_shop:
     email: Email*
     name: Herstellername*

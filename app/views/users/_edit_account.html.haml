@@ -8,10 +8,11 @@
       = f.text_field :email, :class => 'form-control', :readonly => true
     .form-group
       = f.label :current_password, I18n.t(:current_password, scope: :edit_account)
-      = f.password_field :current_password, :class => 'form-control', :autocomplete => :off, :required => true, :minLength => 8
+      = f.password_field :current_password, :class => 'form-control', :autocomplete => :off, :required => true, :minLength => Rails.configuration.min_password_length
+      %div.help-block.with-errors
     .form-group
       = f.label :password, I18n.t(:password, scope: :edit_account)
-      = f.password_field :password, :class => 'form-control', :autocomplete => :off, :required => true, :minLength => 8
+      = f.password_field :password, :class => 'form-control', :autocomplete => :off, :required => true, :minLength => Rails.configuration.min_password_length
       %div.help-block.with-errors
     .form-group
       = f.label :password_confirmation, I18n.t(:password_confirmation, scope: :edit_account)

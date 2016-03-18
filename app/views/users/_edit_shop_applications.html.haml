@@ -1,0 +1,12 @@
+%table.table.table-bordered
+  %thead
+    %td= I18n.t(:name, scope: :edit_shop)
+    %td= I18n.t(:email, scope: :shop_application)
+    %td= I18n.t(:password, scope: :shop_application)
+  %tbody
+    - @applications.each do |a|
+      %tr
+        %td= a.email
+        %td= a.name
+        %td= a.code[0,8]
+

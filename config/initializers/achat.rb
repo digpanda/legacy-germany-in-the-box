@@ -19,6 +19,7 @@ Rails.configuration.max_tiny_text_length = 32
 Rails.configuration.max_short_text_length = 256
 Rails.configuration.max_medium_text_length = 1024*4
 Rails.configuration.max_long_text_length = 1024*16
+Rails.configuration.min_password_length = 8
 
 Rails.cache.clear
 

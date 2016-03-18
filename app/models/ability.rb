@@ -119,6 +119,7 @@ class Ability
       can [:like_collection, :dislike_collection], Collection
 
     elsif user.role == :admin
+      can :manage, :all
     end
   end
 end

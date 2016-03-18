@@ -231,6 +231,7 @@
           .form-group
             %label= I18n.t(:email, scope: :sign_in_dialog)
             = email_field_tag 'user[email]',  nil, :class => 'form-control', :placeholder => 'email@domain.com', :required => true
+            %div.help-block.with-errors
           .form-group
             %label= I18n.t(:password, scope: :sign_in_dialog)
             = password_field_tag 'user[password]', nil, :class => 'form-control', :placeholder => I18n.t(:password, scope: :sign_up_dialog), :required => true
@@ -269,7 +270,7 @@
             .form-group
               = email_field_tag 'user[email]', nil, :class => 'form-control', :placeholder => I18n.t(:email, scope: :sign_up_dialog), :required => true
             .form-group
-              = password_field_tag 'user[password]', nil, :class => 'form-control', :placeholder => I18n.t(:password, scope: :sign_up_dialog), :required => true, :minLength => 8
+              = password_field_tag 'user[password]', nil, :class => 'form-control', :placeholder => I18n.t(:password, scope: :sign_up_dialog), :required => true, :minLength => Rails.configuration.min_password_length
               %div.help-block.with-errors
             .form-group
               = password_field_tag 'user[password_confirmation]', nil, :class => 'form-control', :placeholder => I18n.t(:password_confirmation, scope: :sign_up_dialog), 'data-match' => '#user_password'

@@ -8,6 +8,10 @@
         %i.fa.fa-key
         = I18n.t(:my_account, scope: :top_menu)
     %li
+      %a{ :href => "#{ edit_user_path(current_user, :user_info_edit_part => :edit_shop_applications) }" }
+        %i.fa.fa-key
+        = I18n.t(:shop_applications, scope: :top_menu)
+    %li
       %a{ :href => "#{ signout_path }", :'data-method' => :delete }
         %i.fa.fa-sign-out
         = I18n.t(:sign_out, scope: :top_menu)

@@ -1,19 +1,8 @@
-User.where(:email => 'dailycron@hotmail.com').each do |u|
-    u.oCollections.delete_all
-end
-
-User.where(:email => 'dailycron@hotmail.com').each do |u|
-  u.oCollections.create!(:name => 'My Son', :public => true)
-  u.oCollections.create!(:name => 'My Wife', :public => false)
-end
-
 Address.all.delete
-
 OrderItem.all.delete
-
 Order.all.delete
-
 Category.all.delete
+ShopApplication.all.delete
 
 #
 # root category - level 0
@@ -744,14 +733,38 @@ def create_upload_from_image_file(model, image_name, content_type = 'image/jpeg'
   file
 end
 
-User.where(:email => 'skopkeeper@hotmail.com').all.delete;
-Shop.where(:name => /.*Herz-Buffet.*/i).all.delete;
+
+
+User.where(:email => 'dailycron@hotmail.com').each do |u|
+    u.oCollections.delete_all
+
+end
+
+User.where(:email => 'dailycron@hotmail.com').each do |u|
+    u.oCollections.create!(:name => 'My Son', :public => true)
+    u.oCollections.create!(:name => 'My Wife', :public => false)
+end
+
 Product.where(:name => /.*10 Blatt Seidenpapier ♥ Panda ♥.*/).all.delete;
 Product.where({:name => /.*熊猫壁纸.*/i}).all.delete;
+Shop.where(:name => /.*Herz-Buffet.*/i).all.delete;
+User.where(:email => /.*shopkeeper.*i/).all.delete;
+User.where(:email => /.*dailycron.*i/).all.delete;
+User.where(:email => /.*customer.*i/).all.delete;
+User.where(:email => /.*admin.*i/).all.delete;
 
-shopkeeper = User.where(:email => 'shopkeeper01@hotmail.com').first
-shopkeeper.role = :shopkeeper
-shopkeeper.save!
+
+User.create!(:username => 'admin', :email => 'admin@hotmail.com', :password => '12345678', :password_confirmation => '12345678', :role => :admin)
+
+customer = User.create!(:username => 'customer01', :email => 'customer01@hotmail.com', :gender => 'm', :birth => '1978-01-01', :password => '12345678', :password_confirmation => '12345678', :role => :customer)
+customer.oCollections.create!(:name => 'My Son', :public => true)
+customer.oCollections.create!(:name => 'My Wife', :public => false)
+
+customer = User.create!(:username => 'customer02', :email => 'customer02@hotmail.com', :gender => 'f', :birth => '1978-02-01', :password => '12345678', :password_confirmation => '12345678', :role => :customer)
+customer.oCollections.create!(:name => 'My Son', :public => true)
+customer.oCollections.create!(:name => 'My Wife', :public => false)
+
+shopkeeper = User.create!(:username => 'shopkeeper01', :email => 'shopkeeper01@hotmail.com', :password => '12345678', :password_confirmation => '12345678', :role => :shopkeeper)
 
 shop = Shop.create!(
     :name => 'Herz-Buffet 01',
@@ -763,23 +776,22 @@ shop = Shop.create!(
     :founding_year => 1988,
     :register => 12345678,
     :philosophy => 'my philosohpy',
-    :stories => 'my stories'
+    :stories => 'my stories',
+    :statement0 => true,
+    :statement1 => true,
+    :statement2 => true,
+    :agb => true
 );
 
 product = Product.new(
     :name => '10 Blatt Seidenpapier ♥ Panda ♥ 01',
     :desc => %Q{
-  ♥ 10 Bögen Seidenpapier
-  ♥ Panda
-  ♥ Größe je Bogen: 50 x 70cm
-  ♥ Das Papier eignet sich nicht nur wundervoll zum Verpacken
-  ♥ Das Papier wird auf 18x25cm gefaltet versendet
-  },
-    :cover => 'https://images2.dawandastatic.com/23/c2/61/cf/40/44/4d/62/a4/30/1b/3c/00/7b/12/fe/product_l.JPEG',
-    #:img0 => 'https://images2.dawandastatic.com/23/c2/61/cf/40/44/4d/62/a4/30/1b/3c/00/7b/12/fe/product_l.JPEG',
-    #:img1 => 'https://images2.dawandastatic.com/23/c2/61/cf/40/44/4d/62/a4/30/1b/3c/00/7b/12/fe/product_l.JPEG',
-    #:img2 => 'https://images2.dawandastatic.com/23/c2/61/cf/40/44/4d/62/a4/30/1b/3c/00/7b/12/fe/product_l.JPEG',
-    #:img3 => 'https://images2.dawandastatic.com/23/c2/61/cf/40/44/4d/62/a4/30/1b/3c/00/7b/12/fe/product_l.JPEG',
+      ♥ 10 Bögen Seidenpapier
+      ♥ Panda
+      ♥ Größe je Bogen: 50 x 70cm
+      ♥ Das Papier eignet sich nicht nur wundervoll zum Verpacken
+      ♥ Das Papier wird auf 18x25cm gefaltet versendet
+    },
     :brand => 'Herz-Buffet',
     :tags => ['壁纸', '熊猫', 'buffet'],
     :shop => shop
@@ -827,9 +839,8 @@ product.categories << category_home_accessories
 shop.products << product
 shop.save!
 
-shopkeeper = User.where(:email => 'shopkeeper02@hotmail.com').first
-shopkeeper.role = :shopkeeper
-shopkeeper.save!
+
+shopkeeper = User.create!(:username => 'shopkeeper02', :email => 'shopkeeper02@hotmail.com', :password => '12345678', :password_confirmation => '12345678', :role => :shopkeeper)
 
 shop = Shop.create!(
     :name => 'Herz-Buffet 02',
@@ -841,7 +852,11 @@ shop = Shop.create!(
     :founding_year => 1988,
     :register => 12345678,
     :philosophy => 'my philosohpy',
-    :stories => 'my stories'
+    :stories => 'my stories',
+    :statement0 => true,
+    :statement1 => true,
+    :statement2 => true,
+    :agb => true
 );
 
 product = Product.new(
