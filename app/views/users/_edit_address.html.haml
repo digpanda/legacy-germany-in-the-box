@@ -4,7 +4,7 @@
   %h3.text-center= I18n.t(:maximal_number_of_addresses, scope: :edit_address, num: Rails.configuration.max_num_addresses)
 
 #add-address-dialog.mfp-with-anim.mfp-hide.mfp-dialog.clearfix
-  =form_for @address, html: {'data-toggle': 'validator'} do |f|
+  =form_for @address, html: {} do |f|
     .form-group
       %h4= I18n.t(:new_address_title, scope: :edit_address)
     .form-group
@@ -12,7 +12,7 @@
         .form-group
           = f.text_field :street, :class => 'form-control', :style => 'width:248px', :required => true, :placeholder => I18n.t(:street, scope: :edit_address)
         .form-group
-          = f.text_field :number, :class => 'form-control', :style => 'width:88px', :required => true, :placeholder => I18n.t(:house_number, scope: :edit_address)
+          = f.text_field :number, :class => 'form-control', :style => 'width:88px', :required => true, :placeholder => I18n.t(:house_number, scope: :edit_address), :pattern => '\d+'
       = f.text_field :additional, :class => 'form-control', :placeholder => I18n.t(:additional, scope: :edit_address)
     .city-group
       .form-group
@@ -24,7 +24,7 @@
     .form-group
       = f.text_field :country, :value => '中国', :readonly => true, :class => 'form-control', :placeholder => 'Country (*)'
     .form-group
-      = f.text_field :zip, :class => 'form-control', :placeholder => I18n.t(:zip, scope: :edit_address), :required => true
+      = f.text_field :zip, :class => 'form-control', :placeholder => I18n.t(:zip, scope: :edit_address), :required => true, :pattern => '\d+'
     .form-group
       .checkbox
         %label
@@ -35,7 +35,7 @@
 .row.row-wrap
   - current_user.addresses.each_with_index do |a, i|
     %div.mfp-with-anim.mfp-hide.mfp-dialog.clearfix{ :id => "edit-address-dialog-#{a.id}" }
-      = form_for a, :url => address_path(a), :html => { :method => :patch, 'data-toggle': 'validator' }  do |f|
+      = form_for a, :url => address_path(a), :html => { :method => :patch }  do |f|
         .form-group
           %h4= I18n.t(:change_address_title, scope: :edit_address)
         .form-group
@@ -43,7 +43,7 @@
             .form-group
               = f.text_field :street, :class => 'form-control', :style => 'width:248px', :required => true, :placeholder => I18n.t(:street, scope: :edit_address)
             .form-group
-              = f.text_field :number, :class => 'form-control', :style => 'width:88px', :required => true, :placeholder => I18n.t(:house_number, scope: :edit_address)
+              = f.text_field :number, :class => 'form-control', :style => 'width:88px', :required => true, :placeholder => I18n.t(:house_number, scope: :edit_address), :pattern => '\d+'
           = f.text_field :additional, :class => 'form-control', :placeholder => I18n.t(:additional, scope: :edit_address)
         .city-group
           .form-group
@@ -55,7 +55,7 @@
         .form-group
           = f.text_field :country, :value => '中国', :readonly => true, :class => 'form-control', :placeholder => 'Country (*)'
         .form-group
-          = f.text_field :zip, :value=> "#{a.zip}", :class => 'form-control', :placeholder => 'Zip (*)', :required => true
+          = f.text_field :zip, :value=> "#{a.zip}", :class => 'form-control', :placeholder => 'Zip (*)', :required => true, :pattern => '\d+'
         .form-group
           .checkbox
             %label

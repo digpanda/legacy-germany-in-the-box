@@ -118,6 +118,8 @@ class Ability
 
       can [:like_collection, :dislike_collection], Collection
 
+      can :manage, Address, :user => user
+
     elsif user.role == :admin
       can :manage, :all
     end

@@ -20,7 +20,7 @@ class AddressesController < ApplicationController
         }
 
         format.json {
-          render :json => {}.to_json, :status => :unprocessable_entity
+          render :json => { msg: I18n.t(:maximal_number_of_addresses, scope: :edit_address, num: Rails.configuration.max_num_addresses ) }.to_json, :status => :unprocessable_entity
         }
       end
     else
@@ -62,7 +62,7 @@ class AddressesController < ApplicationController
           }
 
           format.json {
-            render :json => {}, :status => :unprocessable_entity
+            render :json => { :status => :ko, :msg => address.errors.full_messages.first }, :status => :unprocessable_entity
           }
         end
       end
@@ -106,7 +106,7 @@ class AddressesController < ApplicationController
         }
 
         format.json {
-          render :json => {}, :status => :unprocessable_entity
+          render :json => { :status => :ko, :msg => address.errors.full_messages.first }, :status => :unprocessable_entity
         }
       end
     end
@@ -134,7 +134,7 @@ class AddressesController < ApplicationController
         }
 
         format.json {
-          render :json => {}, :status => :ok
+          render :json => { :status => :ok }, :status => :ok
         }
       end
     else
@@ -145,7 +145,7 @@ class AddressesController < ApplicationController
         }
 
         format.json {
-          render :json => {}, :status => :unprocessable_entity
+          render :json => { :status => :ko, :msg => address.errors.full_messages.first }, :status => :unprocessable_entity
         }
       end
     end
