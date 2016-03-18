@@ -135,6 +135,9 @@ de:
     create_ko: Ein Fehler ist beim Anlegen der Adresse aufgetreten.
     update_ok: Die Adresse erfolgreich aktualisiert!
     update_ko: Ein Fehler ist bei der Änderung der Adresse aufgetreten.
+    addresses: Adressen
+    billing_address: Rechnungsadresse
+    sender_address: Absendungsaddresse
   edit_order:
     no_order: keine Aufträge vorhanden
     id: Auftragsnummer

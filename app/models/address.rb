@@ -13,6 +13,7 @@ class Address
   field :province,              type: String
   field :zip,                   type: String
   field :country,               type: String
+  field :type,                  type: String
 
   field :fname,                 type: String
   field :lname,                 type: String

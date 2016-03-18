@@ -38,9 +38,9 @@ class Shop
   mount_uploader :banner, AttachmentUploader
 
   has_one   :bank_account,    inverse_of: :shop,  dependent: :restrict
-  has_one   :address,         inverse_of: :shop,  dependent: :restrict
 
-  has_many  :products,  inverse_of: :shop,  dependent: :restrict
+  has_many  :addresses,       inverse_of: :shop,  dependent: :restrict
+  has_many  :products,        inverse_of: :shop,  dependent: :restrict
 
   belongs_to :shopkeeper,   class_name: 'User',  inverse_of: :shop
 

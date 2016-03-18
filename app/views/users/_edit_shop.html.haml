@@ -1,3 +1,9 @@
+%a.btn.btn-primary{ :class => 'btn-lg',  :href => edit_user_path(current_user, :user_info_edit_part => :edit_shop_address) }
+  %i.fa.fa-pencil-square-o
+  = I18n.t(:addresses, scope: :edit_address)
+
+.gap
+
 = form_for @shop, :html => {role: 'form'} do |f|
   .panel-group
     .panel.panel-default

@@ -1,0 +1,6 @@
+- if current_user.addresses.count < Rails.configuration.max_num_addresses
+  .col-md-4
+    %a.address-box.address-box-new
+      .vert-center
+        %i.fa.fa-plus.address-box-new-icon
+        %p= I18n.t(:add_new_address, scope: :edit_address)

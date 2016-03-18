@@ -135,6 +135,9 @@ zh-CN:
     street: 街道名称
     house_number: 街道号
     additional: 附加信息
+    addresses: 地址管理
+    billing_address: 账单地址
+    sender_address: 发货地址
   edit_order:
     no_order: 您还没有任何订单
     id: 订单号
