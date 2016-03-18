@@ -1,4 +1,8 @@
 zh-CN:
+  image_upload:
+    max_exceeded_message: 上传的图片需要小于1兆
+    ext_error_message: 只能上传.jpg,.jpeg和.png等格式
+    upload: 上传
   top_menu:
     top_menu: 菜单
     sign_in: 登陆
@@ -14,7 +18,10 @@ zh-CN:
     my_following: 我的关注
     my_followers: 我的粉丝
     my_shop: 我的店铺
+    my_producer: 厂家信息
     my_product: 我的产品
+    my_agb: 条款与法律声明
+    shop_applications: 开店申请管理
     view_cart: 浏览购物车
     checkout: 去下单
     empty_cart: 您还没有添加商品
@@ -80,6 +87,7 @@ zh-CN:
     password_confirmation: 重复密码
     save: 保存
     success: 账户信息修改成功
+    change_initial_password: 我们建议，修改系统给您设定初始密码，方便您记忆。
   edit_following:
     follow_ok: 关注成功
     follow_ko: 关注失败
@@ -171,7 +179,26 @@ zh-CN:
     create_ok: 收藏夹创建成功
     create_ko: 收藏夹创建失败
     create_with_existing_name: 已经存在同名的收藏夹
+  shop_application:
+    shop_application: 申请开店
+    shop_application_ok: 谢谢你的申请，我们会在第一时间与您联系。
+    shopkeeper_info: 厂家信息
+    title: 申请表
+    email: 注册信箱
+    email_info: 初始密码将会发到这个注册信箱。
+    contact_person_info: 联系人
+    contact_fname: 名
+    contact_lname: 姓
+    contact_tel: 固定电话
+    contact_mobile: 移动电话
+    contact_email: 信箱
+    statements: 声明
+    statement_0: 在此保证上传的产品是经过生产厂商所许可的。
+    statement_1: 在此保证上传的产品是真正的德国制造，并符合BGH的法律依据。
+    statement_2: 在此保证产品有在德国市场的销售许可。
+    password: 初始密码
   edit_shop:
+    email: 邮箱*
     name: 店铺名
     desc: 店铺描述
     logo: 店铺徽标
@@ -190,6 +217,35 @@ zh-CN:
     status: 店铺状态
     save: 保存更新
     update_ok: 店铺更新成功
+    update_producer_ok: 厂家信息成功更新！
+    update_agb_ok: 非常感谢您接受并同意我们的使用条款！
+    desc_info: 您是谁？您提供什么产品？
+    philosophy_info: 您的产品哲学是什么？
+    stories_info: 您的产品有什么特别的故事，例如是当地一些活动或者协会的赞助商；特别的传统工艺；被当地媒体所报道。
+    ust_id_info: 作为出口商您无需预先支付营业税，我们只是在出口证明上需要填写您的营业税号。
+    eroi_number_info: 欧盟海关税号用于对欧盟范围内的商业活动进行识别。如果您的日营业额超过1000欧元，我们建议您实现申请欧盟海关税号。这个税号也可事后填写。
+    min_total_info: 用户在您店铺的最小购物额
+    sms_info: 用户对您的产品的购买将通过短信通知您。
+    founding_year: 成立年份
+    founding_year_info: 你的品牌什么时候创建的？
+    german_essence: 德国制造
+    german_essence_info: 德国制造因其产品的高效，简洁和质量世界驰名。您的产品如何反映德国制造的理念？
+    uniqueness: 标志性的特点
+    uniqueness_info: 您的产品与市场上同类产品有什么不同和标志性的特点
+    target_groups: 客户群
+    target_groups_info: 谁是您在德国的客户群？你可以最多填写%{num}个客户群。
+    target_group: 客户群
+    sales_channels: 销售渠道
+    sales_channels_info: 您的销售渠道是什么？ 你可以最多填写%{num}个销售渠道。
+    register: 商业登记号*
+    add_target_group: 添加
+    remove_target_group: 删除
+    add_sales_channel: 添加
+    remove_sales_channel: 删除
+    sales_channel:
+    website: 主页
+    agb: 条款可法律声明
+    agb_statement: 在此保证，我已经清楚的阅读DigPanda有限公司的使用条款，并且同意并接受此条款。
   edit_product:
     edit: 修改
     remove: 删除产品
@@ -219,6 +275,13 @@ zh-CN:
     new_basic: 创建概要
     update_basic: 更新概要
     variant: 系列型号
+    categories_info: 明确的产品归类将帮助客户更好的发现您的产品。
+    keywords_info: 我们推荐您使用%{num}关键字来对您的产品特性进行描述。清晰明确的关键字将帮助客户更好的发现您的产品。
+    images_info: 请您为您的产品上传至多4张产品图片，每张最到1兆字节。可以接受的格式为： .jpeg, .png和.jpg。
+    desc_info: 请您对您的产品进行描述。
+    cancel: 取消
+    product_seal: 产品认证
+    product_seal_info: 这里您可以上传产品认证。
   edit_product_new:
     create_ok: 产品成功创建
     create_ko: 产品创建失败
@@ -260,6 +323,14 @@ zh-CN:
     new_sku: 新建库存
     create_sku: 创建新库存
     update_ok: 库存单位更新成功
+    images_info: 您可以为您的产品上传4张图片。
+    variants_info: 一个库存单元属于一个产品型号的组合
+    customizable_info: 此产品可定制
+    return: 返回产品列表
+    cancel: 取消
+    space_weight: 空间重量*
+    space_weight_info:  请您填写此产品的空间重量。
+    cm: 厘米
   edit_product_variant:
     new_variant: 创建新型号
     edit: 编辑型号
@@ -280,6 +351,8 @@ zh-CN:
     new_option: 添加选项
     delete_variant_ok: 型号成功删除
     delete_option_ok: 型号选项成功删除
+    return: 返回产品列表
+    cancel: 取消
   popular_products:
     search_prompt: 我要找
     search_placeholder: 产品名称，关键字，品牌

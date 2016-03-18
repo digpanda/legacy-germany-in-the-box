@@ -43,6 +43,20 @@
                 = I18n.t(:german_essence, scope: :edit_shop)
                 %i.fa.fa-info-circle{ :title => I18n.t(:german_essence_info, scope: :edit_shop) }
               %td{width: '80%'}= f.text_area :german_essence, :class => 'form-control', rows: 4
+    .panel.panel-default
+      .panel-body
+        %table.table.table-borderless
+          %tbody
+            %tr.form-group
+              %td{width: '20%', :title => I18n.t(:ust_id_info, scope: :edit_shop) }
+                = I18n.t(:ustid, scope: :edit_shop)
+                %i.fa.fa-info-circle{ :title => I18n.t(:ust_id_info, scope: :edit_shop) }
+              %td{width: '80%'}= f.text_field :ustid, :class => 'form-control', :placeholder => 'DE999999999'
+            %tr.form-group
+              %td{width: '20%', :title => I18n.t(:eroi_number_info, scope: :edit_shop) }
+                = I18n.t(:eroi, scope: :edit_shop)
+                %i.fa.fa-info-circle{ :title => I18n.t(:eroi_number_info, scope: :edit_shop) }
+              %td{width: '80%'}= f.text_field :eroi, :class => 'form-control'
     .panel.panel-info
       .panel-heading{ :title => I18n.t(:target_groups_info, scope: :edit_shop, num: Rails.configuration.max_num_target_groups) }
         .btn-toolbar{ :style => 'margin-left:22px' }

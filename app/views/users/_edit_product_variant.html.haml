@@ -14,7 +14,7 @@
   %table.table.table-bordered
     %tbody
       %tr
-        %th{colspan: 3}
+        %th.info{colspan: 3}
           = o.get_locale_name
           .btn-group.pull-right
             = link_to I18n.t(:edit, scope: :edit_product_variant), edit_user_path(current_user, :user_info_edit_part => :edit_product_variant_update, :product_id => @product.id, :variant_id => o.id, :variant => true) , :class => 'fa fa-edit btn'

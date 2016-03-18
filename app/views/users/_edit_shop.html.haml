@@ -28,21 +28,6 @@
         %table.table.table-borderless
           %tbody
             %tr.form-group
-              %td{width: '20%', :title => I18n.t(:ust_id_info, scope: :edit_shop) }
-                = I18n.t(:ustid, scope: :edit_shop)
-                %i.fa.fa-info-circle{ :title => I18n.t(:ust_id_info, scope: :edit_shop) }
-              %td{width: '80%'}= f.text_field :ustid, :class => 'form-control', :placeholder => 'DE999999999'
-            %tr.form-group
-              %td{width: '20%', :title => I18n.t(:eroi_number_info, scope: :edit_shop) }
-                = I18n.t(:eroi, scope: :edit_shop)
-                %i.fa.fa-info-circle{ :title => I18n.t(:eroi_number_info, scope: :edit_shop) }
-              %td{width: '80%'}= f.text_field :eroi, :class => 'form-control'
-
-    .panel.panel-default
-      .panel-body
-        %table.table.table-borderless
-          %tbody
-            %tr.form-group
               %td{width: '20%', :title => I18n.t(:min_total_info, scope: :edit_shop) }
                 = I18n.t(:min_total, scope: :edit_shop)
                 %i.fa.fa-info-circle{ :title => I18n.t(:min_total_info, scope: :edit_shop) }
