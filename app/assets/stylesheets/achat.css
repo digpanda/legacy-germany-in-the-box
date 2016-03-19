@@ -1,3 +1,9 @@
+.invalidBorderClass{
+    border-color: darkred;
+    border-width:1px;
+    border-style: solid;
+}
+
 .fileUpload {
     position: relative;
     overflow: hidden;

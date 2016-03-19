@@ -4,8 +4,11 @@
 :javascript
   $(document).ready(function() {
       $('.sku_variants_options').multiselect({
+        nonSelectedText: "#{I18n.t(:non_selected_text, scope: :multiselect)}",
+        nSelectedText: "#{I18n.t(:n_selected_text, scope: :multiselect)}",
+        numberDisplayed: 3,
         maxHeight: 400
-      });
+      }).multiselect('disable');;
   });
 
 %a.btn.btn-primary{ :class => 'btn-lg',  :href => edit_user_path(current_user, :user_info_edit_part => :edit_product ) }

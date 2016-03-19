@@ -4,7 +4,18 @@
 :javascript
   $(document).ready(function() {
       $('.sku_variants_options').multiselect({
-        maxHeight: 400
+        nonSelectedText: "#{I18n.t(:non_selected_text, scope: :multiselect)}",
+        nSelectedText: "#{I18n.t(:n_selected_text, scope: :multiselect)}",
+        numberDisplayed: 3,
+        maxHeight: 400,
+        onChange: function(option, checked) {
+          v = $('.sku_variants_options')
+          if ( v.val() ) {
+            v.next().removeClass('invalidBorderClass')
+          } else {
+            v.next().addClass('invalidBorderClass')
+          }
+        }
       });
 
       $('.unit_options').multiselect({
@@ -12,21 +23,7 @@
       });
   });
 
-  $.validator.addMethod("multiSelectRequired", function (value, element) {
-    return element.length > 0;
-  });
-
-  $('.sku_variants_options').each(function () {
-    $(this).change(function () {
-      $(this).valid();
-    });
-
-    $(this).rules('add', {
-      'multiSelectRequired': true
-    });
-  });
-
-= form_for @product, :html => {'data-toggle': 'validator'} do |f|
+= form_for @product, :html => {'data-toggle': 'validator', :id => 'product_detail_form'} do |f|
   = hidden_field_tag :part, :sku
   = f.fields_for :skus do |fs|
     - if new && (not @product.skus[fs.index].persisted?)
@@ -107,18 +104,18 @@
             %td.text-center{:colspan => 2}
               .form-inline
                 .form-group
-                  .input-group
-                    = fs.text_field :space_length, :class => 'form-control', :required => true, :pattern => '^\d+\.?\d*$', :style => 'width:52px'
+                  .input-group.input-group-sm
+                    = fs.text_field :space_length, :class => 'form-control', :required => true, :pattern => '^\d+\.?\d*$', :style => 'width:48px'
                     .input-group-addon
                       = I18n.t('cm', scope: :edit_product_detail)
                 .form-group
-                  .input-group
-                    = fs.text_field :space_width, :class => 'form-control', :required => true, :pattern => '^\d+\.?\d*$', :style => 'width:52px'
+                  .input-group.input-group-sm
+                    = fs.text_field :space_width, :class => 'form-control', :required => true, :pattern => '^\d+\.?\d*$', :style => 'width:48px'
                     .input-group-addon
                       = I18n.t('cm', scope: :edit_product_detail)
                 .form-group
-                  .input-group
-                    = fs.text_field :space_height, :class => 'form-control', :required => true, :pattern => '^\d+\.?\d*$', :style => 'width:52px'
+                  .input-group.input-group-sm
+                    = fs.text_field :space_height, :class => 'form-control', :required => true, :pattern => '^\d+\.?\d*$', :style => 'width:48px'
                     .input-group-addon
                       = I18n.t('cm', scope: :edit_product_detail)
 
@@ -220,18 +217,18 @@
             %td.text-center{:colspan => 2}
               .form-inline
                 .form-group
-                  .input-group
-                    = fs.text_field :space_length, :class => 'form-control', :required => true, :pattern => '^\d+\.?\d*$', :style => 'width:52px'
+                  .input-group.input-group-sm
+                    = fs.text_field :space_length, :class => 'form-control input-sm', :required => true, :pattern => '^\d+\.?\d*$', :style => 'width:48px'
                     .input-group-addon
                       = I18n.t('cm', scope: :edit_product_detail)
                 .form-group
-                  .input-group
-                    = fs.text_field :space_width, :class => 'form-control', :required => true, :pattern => '^\d+\.?\d*$', :style => 'width:52px'
+                  .input-group.input-group-sm
+                    = fs.text_field :space_width, :class => 'form-control', :required => true, :pattern => '^\d+\.?\d*$', :style => 'width:48px'
                     .input-group-addon
                       = I18n.t('cm', scope: :edit_product_detail)
                 .form-group
-                  .input-group
-                    = fs.text_field :space_height, :class => 'form-control', :required => true, :pattern => '^\d+\.?\d*$', :style => 'width:52px'
+                  .input-group.input-group-sm
+                    = fs.text_field :space_height, :class => 'form-control', :required => true, :pattern => '^\d+\.?\d*$', :style => 'width:48px'
                     .input-group-addon
                       = I18n.t('cm', scope: :edit_product_detail)
           %tr
@@ -253,5 +250,5 @@
                   = fs.check_box :status, { :class => 'i-check' }, true
                   = I18n.t('edit_product_detail.status.true')
 
-  = f.submit :class => 'btn btn-primary', :value => new ? I18n.t(:create_sku, scope: :edit_product_detail) : I18n.t(:update_sku, scope: :edit_product_detail), :part => :sku
+  = f.submit :class => 'btn btn-primary', :value => new ? I18n.t(:create_sku, scope: :edit_product_detail) : I18n.t(:update_sku, scope: :edit_product_detail), :part => :sku, :onclick => "v = $('.sku_variants_options'); if ( v.val() ) { return true; } else { v.next().addClass('invalidBorderClass'); return false; }"
   = link_to I18n.t(:cancel, scope: :edit_product_detail), :back, :class => 'btn btn-primary'

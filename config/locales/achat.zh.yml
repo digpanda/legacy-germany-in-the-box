@@ -1,4 +1,7 @@
 zh-CN:
+  multiselect:
+    non_selected_text: 尚未选择
+    n_selected_text: 已选择
   image_upload:
     max_exceeded_message: 上传的图片需要小于1兆
     ext_error_message: 只能上传.jpg,.jpeg和.png等格式

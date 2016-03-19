@@ -1,4 +1,7 @@
 de:
+  multiselect:
+    non_selected_text: Nicht ausgewählt
+    n_selected_text: ausgewählt
   image_upload:
     max_exceeded_message: Die hochzuladene Datei ist größer als 1 Megabytes.
     ext_error_message: Nur die Formaten .jpg, .jpeg, or .png sind akzeptierbar.
