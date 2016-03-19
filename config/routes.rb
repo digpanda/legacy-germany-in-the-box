@@ -34,12 +34,7 @@ Rails.application.routes.draw do
     match 'show_user_collections/:user_id',   via: [:get],    to: :show_user_collections,   as: :show_user,             :on => :collection
   end
 
-  resources :addresses, except: [:new, :edit] do
-    match :create_for_shop,     via: [:post],     to: :create_for_shop,     as: :create_for_shop,     :on => :collection
-
-    match :update_for_shop,     via: [:patch],    to: :update_for_shop,     as: :update_for_shop,     :on => :member
-    match :destroy_for_shop,    via: [:delete],   to: :destroy_for_shop,    as: :destroy_for_shop,    :on => :member
-  end
+  resources :addresses, except: [:new, :edit]
 
   resources :products, except: [:index, :new, :edit] do
     match 'remove_sku/:sku_id',                     via: [:delete], to: :remove_sku,                  as: :remove_sku,                  :on => :member

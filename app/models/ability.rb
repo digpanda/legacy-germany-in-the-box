@@ -122,9 +122,7 @@ class Ability
       can [:like_collection,
            :dislike_collection], Collection
 
-      can [:create_for_shop,
-           :update_for_shop,
-           :destroy_for_shop], Address, :shop => user.shop
+      can :manage, Address, :shop => user.shop
 
     elsif user.role == :admin
       can :manage, :all
