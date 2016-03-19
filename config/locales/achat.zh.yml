@@ -139,8 +139,12 @@ zh-CN:
     house_number: 街道号
     additional: 附加信息
     addresses: 地址管理
-    billing_address: 账单地址
-    sender_address: 发货地址
+    billing_address:
+    sender_address:
+    billing: 账单地址
+    sender: 发货地址
+    both: 账单和发货
+    type: 地址类型
   edit_order:
     no_order: 您还没有任何订单
     id: 订单号

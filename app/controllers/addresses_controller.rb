@@ -12,28 +12,30 @@ class AddressesController < ApplicationController
   end
 
   def create
-    num_addresses = current_user.addresses.count
+    if current_user.role == :customer
+      num_addresses = current_user.addresses.count
 
-    if num_addresses >= Rails.configuration.max_num_addresses
-      respond_to do |format|
-        format.html {
-          flash[:error] = I18n.t(:create_ko, scope: :edit_address)
-          redirect_to request.referrer
-        }
+      if num_addresses >= Rails.configuration.max_num_addresses
+        respond_to do |format|
+          format.html {
+            flash[:error] = I18n.t(:create_ko, scope: :edit_address)
+            redirect_to request.referrer
+          }
 
-        format.json {
-          render :json => { msg: I18n.t(:maximal_number_of_addresses, scope: :edit_address, num: Rails.configuration.max_num_addresses ) }.to_json, :status => :unprocessable_entity
-        }
+          format.json {
+            render :json => { msg: I18n.t(:maximal_number_of_addresses, scope: :edit_address, num: Rails.configuration.max_num_addresses ) }.to_json, :status => :unprocessable_entity
+          }
+        end
       end
-    else
-      params = address_params
-      params[:primary] = true if num_addresses == 0
 
-      params[:district] = ChinaCity.get(params[:district])
-      params[:city] = ChinaCity.get(params[:city])
-      params[:province] = ChinaCity.get(params[:province])
+      ap = address_params
+      ap[:primary] = true if num_addresses == 0
 
-      address = Address.new(params)
+      ap[:district] = ChinaCity.get(ap[:district])
+      ap[:city] = ChinaCity.get(ap[:city])
+      ap[:province] = ChinaCity.get(ap[:province])
+
+      address = Address.new(ap)
       address.user = current_user
 
       if (flag = address.save)
@@ -44,19 +46,11 @@ class AddressesController < ApplicationController
           end
         end
       end
+    elsif current_user.role == :shopkeeper
+      num_addresses = current_user.shop.addresses.count
+      max_num_addresses = Rails.configuration.max_num_shop_billing_addresses + Rails.configuration.max_num_shop_sender_addresses
 
-      if flag
-        respond_to do |format|
-          format.html {
-            flash[:success] = I18n.t(:create_ok, scope: :edit_address)
-            redirect_to request.referrer
-          }
-
-          format.json {
-            render :json => { :status => :ok }, :status => :ok
-          }
-        end
-      else
+      if num_addresses >= max_num_addresses
         respond_to do |format|
           format.html {
             flash[:error] = I18n.t(:create_ko, scope: :edit_address)
@@ -64,23 +58,52 @@ class AddressesController < ApplicationController
           }
 
           format.json {
-            render :json => { :status => :ko, :msg => address.errors.full_messages.first }, :status => :unprocessable_entity
+            render :json => { msg: I18n.t(:maximal_number_of_addresses, scope: :edit_address, num: max_num_addresses) }.to_json, :status => :unprocessable_entity
           }
         end
       end
+
+      address = Address.new(address_params)
+      address.shop = current_user.shop
+      flag = address.save
     end
+
+    if flag
+      respond_to do |format|
+        format.html {
+          flash[:success] = I18n.t(:create_ok, scope: :edit_address)
+          redirect_to request.referrer
+        }
+
+        format.json {
+          render :json => { :status => :ok }, :status => :ok
+        }
+      end
+    else
+      respond_to do |format|
+        format.html {
+          flash[:error] = I18n.t(:create_ko, scope: :edit_address)
+          redirect_to request.referrer
+        }
+
+        format.json {
+          render :json => { :status => :ko, :msg => address.errors.full_messages.first }, :status => :unprocessable_entity
+        }
+      end
+    end
+
   end
 
   def update
     if current_user.role == :customer
       if (address = current_user.addresses.find(params[:id]))
-        params = address_params
+        ap = address_params
 
-        params[:district] = ChinaCity.get(params[:district])
-        params[:city] = ChinaCity.get(params[:city])
-        params[:province] = ChinaCity.get(params[:province])
+        ap[:district] = ChinaCity.get(ap[:district])
+        ap[:city] = ChinaCity.get(ap[:city])
+        ap[:province] = ChinaCity.get(ap[:province])
 
-        if (flag = address.update(params))
+        if (flag = address.update(ap))
           if address.primary
             current_user.addresses.select { |a| a.primary and a != address } .each do |a|
               a.primary = false

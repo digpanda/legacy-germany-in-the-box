@@ -1,10 +1,3 @@
-- if current_user.addresses.count < Rails.configuration.max_num_shop_billing_addresses + Rails.configuration.max_num_shop_sender_addresses
-  .col-md-4
-    %a.address-box.address-box-new.popup-text{"data-effect" => "mfp-move-from-top", :href => "#add-address-dialog"}
-      .vert-center
-        %i.fa.fa-plus.address-box-new-icon
-        %p= I18n.t(:add_new_address, scope: :edit_address)
-
 #add-address-dialog.mfp-with-anim.mfp-hide.mfp-dialog.clearfix
   =form_for @address do |f|
     .form-group
@@ -25,7 +18,7 @@
       = f.text_field :country, :class => 'form-control', :value => 'Deutschland', :readonly => true
     .form-group
       - ['billing', 'sender', 'both'].each do |t|
-        = f.radio_button :type, t, :checked => (t == 'both')
+        = f.radio_button :type, t, :checked => (t == 'both'), :required => true
         = I18n.t(t, scope: :edit_address)
     .form-group
       %input.btn.btn-primary{:type => "submit", :value => I18n.t(:add_address, scope: :edit_address)}
@@ -43,22 +36,17 @@
             .form-group
               = f.text_field :number, :class => 'form-control', :style => 'width:88px', :required => true, :placeholder => I18n.t(:house_number, scope: :edit_address), :pattern => '\d+'
           = f.text_field :additional, :class => 'form-control', :placeholder => I18n.t(:additional, scope: :edit_address)
-        .city-group
-          .form-group
-            = f.select :province, options_for_select(get_provinces, get_code_for_province(a.province)), {  include_blank: I18n.t(:province_blank, scope: :edit_address) }, { :autocomplete => :off, class: 'form-control city-select city-province', :required => true }
-          .form-group
-            = f.select :city    , options_for_select(get_cities_for_province(a.province), get_code_for_city(a.province, a.city)), { include_blank: I18n.t(:city_blank, scope: :edit_address) }, { :autocomplete => :off, class: 'form-control city-select city-city', :required => true }
-          .form-group
-            = f.select :district, options_for_select(get_districts_for_city(a.province, a.city), get_code_for_district(a.province, a.city, a.district)), { include_blank: I18n.t(:district_blank, scope: :edit_address) }, { :autocomplete => :off, class: 'form-control city-select city-district', :required => true }
         .form-group
-          = f.text_field :country, :value => '中国', :readonly => true, :class => 'form-control'
+          .form-inline
+            .form-group
+              = f.text_field :zip, :class => 'form-control', :placeholder => I18n.t(:zip, scope: :edit_address), :required => true, :pattern => '\d{5,5}', :style => 'width:88px'
+            .form-group
+              = f.text_field :city, class: 'form-control', :placeholder => I18n.t(:city, scope: :edit_address), :required => true, :style => 'width:248px'
+          = f.text_field :country, :class => 'form-control', :value => 'Deutschland', :readonly => true
         .form-group
-          = f.text_field :zip, :value=> "#{a.zip}", :class => 'form-control', :placeholder => I18n.t(:zip, scope: :edit_address), :required => true, :pattern => '\d{6,6}'
-        .form-group
-          .checkbox
-            %label
-              = f.check_box :primary, {:class => 'i-check'}, true, false
-              = I18n.t(:set_primary, scope: :edit_address)
+          - ['billing', 'sender', 'both'].each do |t|
+            = f.radio_button :type, t, :checked => (t == a.type), :required => true
+            = I18n.t(t, scope: :edit_address)
         .form-group
           %input.btn.btn-primary{:type => "submit", :value => I18n.t(:save_address, scope: :edit_address)}
     .col-md-4
@@ -72,12 +60,15 @@
             %ul
               %li= "#{I18n.t(:street, scope: :edit_address)} : #{ a.street } #{ a.number }"
               %li= "#{I18n.t(:additional, scope: :edit_address)} : #{ a.additional }"
-              %li= "#{I18n.t(:district, scope: :edit_address)} : #{ a.district }"
               %li= "#{I18n.t(:city, scope: :edit_address)} : #{ a.city }"
-              %li= "#{I18n.t(:province, scope: :edit_address)} : #{ a.province }"
               %li= "#{I18n.t(:country, scope: :edit_address)} : #{ a.country }"
               %li= "#{I18n.t(:zip, scope: :edit_address)} : #{ a.zip }"
-            .radio
-              %label
-                = radio_button_tag :primary, a.primary, checked = a.primary, { :disabled => true, :class => 'i-radio' }
-                = I18n.t(:set_primary, scope: :edit_address)
+              %li= "#{I18n.t(:type, scope: :edit_address)} : #{ I18n.t(a.type, scope: :edit_address) }"
+
+  - if current_user.shop.addresses.count < Rails.configuration.max_num_shop_billing_addresses + Rails.configuration.max_num_shop_sender_addresses
+    .col-md-4
+      %a.address-box.address-box-new.popup-text{"data-effect" => "mfp-move-from-top", :href => "#add-address-dialog"}
+        .vert-center
+          %i.fa.fa-plus.address-box-new-icon
+          %p= I18n.t(:add_new_address, scope: :edit_address)
+

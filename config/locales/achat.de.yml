@@ -142,7 +142,7 @@ de:
     billing: Rechnung
     sender: Absender
     both: Rechnung und Absender
-
+    type: Typ
   edit_order:
     no_order: keine Aufträge vorhanden
     id: Auftragsnummer
