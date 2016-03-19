@@ -9,7 +9,7 @@
         = I18n.t(:my_account, scope: :top_menu)
     %li
       %a{ :href => "#{ edit_user_path(current_user, :user_info_edit_part => :edit_shop_applications) }" }
-        %i.fa.fa-key
+        %i.fa.fa-thumbs-up
         = I18n.t(:shop_applications, scope: :top_menu)
     %li
       %a{ :href => "#{ signout_path }", :'data-method' => :delete }

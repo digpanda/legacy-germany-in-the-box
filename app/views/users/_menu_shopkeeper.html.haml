@@ -10,7 +10,7 @@
           = I18n.t(:my_account, scope: :top_menu)
     %li
       %a{ :href => "#{ edit_user_path(current_user, :user_info_edit_part => :edit_producer) }" }
-        %i.fa.fa-key
+        %i.fa.fa-info-circle
         = I18n.t(:my_producer, scope: :top_menu)
     - if current_user.shop && current_user.shop.agb
       %li

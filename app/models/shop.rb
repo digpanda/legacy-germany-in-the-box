@@ -74,9 +74,14 @@ class Shop
   scope :is_active,       ->        { where( :status => true ) }
 
   before_save :ensure_shopkeeper
+  before_save :ensure_agb
   before_save :clean_sms_mobile, :unless => lambda { self.sms }
 
   private
+
+  def ensure_agb
+    self.agb = true if self.agb.present?
+  end
 
   def ensure_shopkeeper
     shopkeeper.role == :shopkeeper
