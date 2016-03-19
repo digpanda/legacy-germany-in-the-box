@@ -53,9 +53,9 @@
           .form-group
             = f.select :district, options_for_select(get_districts_for_city(a.province, a.city), get_code_for_district(a.province, a.city, a.district)), { include_blank: I18n.t(:district_blank, scope: :edit_address) }, { :autocomplete => :off, class: 'form-control city-select city-district', :required => true }
         .form-group
-          = f.text_field :country, :value => '中国', :readonly => true, :class => 'form-control', :placeholder => 'Country (*)'
+          = f.text_field :country, :value => '中国', :readonly => true, :class => 'form-control'
         .form-group
-          = f.text_field :zip, :value=> "#{a.zip}", :class => 'form-control', :placeholder => 'Zip (*)', :required => true, :pattern => '\d+'
+          = f.text_field :zip, :value=> "#{a.zip}", :class => 'form-control', :placeholder => I18n.t(:zip, scope: :edit_address), :required => true, :pattern => '\d{6,6}'
         .form-group
           .checkbox
             %label

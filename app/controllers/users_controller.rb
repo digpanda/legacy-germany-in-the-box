@@ -37,6 +37,8 @@ class UsersController < ApplicationController
   def edit
     if params[:user_info_edit_part] == :edit_address.to_s
       @address = Address.new
+    elsif params[:user_info_edit_part] == :edit_shop_address.to_s
+      @address = Address.new
     elsif params[:user_info_edit_part] == :edit_producer.to_s
       @shop = current_user.shop
     elsif params[:user_info_edit_part] == :edit_shopkeeper_agb.to_s

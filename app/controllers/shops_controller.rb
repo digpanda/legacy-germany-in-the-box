@@ -32,7 +32,10 @@ class ShopsController <  ApplicationController
   private
 
   def shop_params
-    params.require(:shop).permit(:name, :desc, :logo, :banner, :philosophy, :stories, :ustid, :eroi, :min_total, :currency, :status, :founding_year, :register, :website, :agb, target_groups:[], sales_channels:[] )
+    if agb
+      params.require(:shop).permit(:name, :desc, :logo, :banner, :philosophy, :stories, :ustid, :eroi, :min_total, :currency, :status, :founding_year, :register, :website, :agb, target_groups:[], sales_channels:[] )
+    else
+      params.require(:shop).permit(:name, :desc, :logo, :banner, :philosophy, :stories, :ustid, :eroi, :min_total, :currency, :status, :founding_year, :register, :website, target_groups:[], sales_channels:[] )
+    end
   end
-
 end

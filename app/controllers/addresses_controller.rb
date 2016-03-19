@@ -69,6 +69,51 @@ class AddressesController < ApplicationController
     end
   end
 
+  def create_for_shop
+    num_addresses = current_user.shop.addresses.count
+    max_num_addresses = Rails.configuration.max_num_shop_billing_addresses + Rails.configuration.max_num_shop_sender_addresses
+
+    if num_addresses >= max_num_addresses
+      respond_to do |format|
+        format.html {
+          flash[:error] = I18n.t(:create_ko, scope: :edit_address)
+          redirect_to request.referrer
+        }
+
+        format.json {
+          render :json => { msg: I18n.t(:maximal_number_of_addresses, scope: :edit_address, num: max_num_addresses) }.to_json, :status => :unprocessable_entity
+        }
+      end
+    else
+      address = Address.new(address_params)
+      address.shop = current_user.shop
+
+      if address.save
+        respond_to do |format|
+          format.html {
+            flash[:success] = I18n.t(:create_ok, scope: :edit_address)
+            redirect_to request.referrer
+          }
+
+          format.json {
+            render :json => { :status => :ok }, :status => :ok
+          }
+        end
+      else
+        respond_to do |format|
+          format.html {
+            flash[:error] = I18n.t(:create_ko, scope: :edit_address)
+            redirect_to request.referrer
+          }
+
+          format.json {
+            render :json => { :status => :ko, :msg => address.errors.full_messages.first }, :status => :unprocessable_entity
+          }
+        end
+      end
+    end
+  end
+
   def update
     if (address = current_user.addresses.find(params[:id]))
       params = address_params
@@ -155,20 +200,33 @@ class AddressesController < ApplicationController
   private
 
   def address_params
-    params.require(:address).permit(:number,
-                                    :street,
-                                    :additional,
-                                    :district,
-                                    :city,
-                                    :province,
-                                    :zip,
-                                    :country,
-                                    :primary,
-                                    :email,
-                                    :mobile,
-                                    :tel,
-                                    :fname,
-                                    :lname)
+    if current_user.role == :customer
+      params.require(:address).permit(:number,
+                                      :street,
+                                      :additional,
+                                      :district,
+                                      :city,
+                                      :province,
+                                      :zip,
+                                      :country,
+                                      :primary)
+    else
+      params.require(:address).permit(:number,
+                                      :street,
+                                      :additional,
+                                      :district,
+                                      :city,
+                                      :province,
+                                      :zip,
+                                      :country,
+                                      :type,
+                                      :email,
+                                      :mobile,
+                                      :tel,
+                                      :fname,
+                                      :lname,
+                                      :function)
+    end
   end
 
 end

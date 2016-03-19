@@ -58,7 +58,10 @@ class Ability
       can [:like_collection,
            :dislike_collection], Collection
 
-      can :manage, Address, :user => user
+      can [:create,
+           :index,
+           :update,
+           :destroy], Address, :user => user
 
     elsif user.role == :shopkeeper
       can [:show,
@@ -116,9 +119,12 @@ class Ability
            :show_liked_by_me,
            :show_my_collections], Collection, :user => user
 
-      can [:like_collection, :dislike_collection], Collection
+      can [:like_collection,
+           :dislike_collection], Collection
 
-      can :manage, Address, :user => user
+      can [:create_for_shop,
+           :update_for_shop,
+           :destroy_for_shop], Address, :shop => user.shop
 
     elsif user.role == :admin
       can :manage, :all

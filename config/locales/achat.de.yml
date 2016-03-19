@@ -125,7 +125,7 @@ de:
     city_blank: --Stadt--
     district_blank: --Gemeinde--
     country: Staat
-    zip: Postleitzahl
+    zip: PLZ
     set_primary: primär
     add_address: hinzufügen
     change_address_title: Adresse ändern
@@ -139,8 +139,10 @@ de:
     update_ok: Die Adresse erfolgreich aktualisiert!
     update_ko: Ein Fehler ist bei der Änderung der Adresse aufgetreten.
     addresses: Adressen
-    billing_address: Rechnungsadresse
-    sender_address: Absendungsaddresse
+    billing: Rechnung
+    sender: Absender
+    both: Rechnung und Absender
+
   edit_order:
     no_order: keine Aufträge vorhanden
     id: Auftragsnummer
