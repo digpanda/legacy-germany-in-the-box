@@ -248,7 +248,25 @@
                 %label
                   = fs.hidden_field :status
                   = fs.check_box :status, { :class => 'i-check' }, true
-                  = I18n.t('edit_product_detail.status.true')
+                  = I18n.t(true, scope: 'edit_product_detail.status')
+
+      %table.table.table-bordered
+        %tbody
+          %tr
+            %td.text-center.info{:colspan => 4}
+              = I18n.t(:time, scope: :edit_product_detail)
+          %tr
+            %td.form-group{:colspan => 4}
+              .checkbox
+                %label
+                  = fs.hidden_field :renew
+                  = fs.check_box :renew, { :class => 'i-check' }, true
+                  = I18n.t(:renew_info, scope: :edit_product_detail)
+              .checkbox
+                %label
+                  = fs.hidden_field :timed
+                  = fs.check_box :timed, { :class => 'i-check' }, true
+                  = I18n.t(:timed_info, scope: :edit_product_detail)
 
   = f.submit :class => 'btn btn-primary', :value => new ? I18n.t(:create_sku, scope: :edit_product_detail) : I18n.t(:update_sku, scope: :edit_product_detail), :part => :sku, :onclick => "v = $('.sku_variants_options'); if ( v.val() ) { return true; } else { v.next().addClass('invalidBorderClass'); return false; }"
   = link_to I18n.t(:cancel, scope: :edit_product_detail), :back, :class => 'btn btn-primary'

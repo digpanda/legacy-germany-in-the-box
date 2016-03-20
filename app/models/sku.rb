@@ -21,6 +21,8 @@ class Sku
   field :space_length,  type: Float,      default: 0
   field :space_width,   type: Float,      default: 0
   field :space_height,  type: Float,      default: 0
+  field :renew,         type: Boolean
+  field :timed,         type: Boolean
 
   field :option_ids,    type: Array,      default: []
 

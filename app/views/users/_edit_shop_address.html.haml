@@ -18,8 +18,10 @@
       = f.text_field :country, :class => 'form-control', :value => 'Deutschland', :readonly => true
     .form-group
       - ['billing', 'sender', 'both'].each do |t|
-        = f.radio_button :type, t, :checked => (t == 'both'), :required => true
-        = I18n.t(t, scope: :edit_address)
+        .row
+          .col-lg-offset-1.col-md-offset-1
+            = f.radio_button :type, t, :checked => (t == 'both'), :required => true, :class => 'i-radio'
+            = I18n.t(t, scope: :edit_address)
     .form-group
       %input.btn.btn-primary{:type => "submit", :value => I18n.t(:add_address, scope: :edit_address)}
 
@@ -45,8 +47,10 @@
           = f.text_field :country, :class => 'form-control', :value => 'Deutschland', :readonly => true
         .form-group
           - ['billing', 'sender', 'both'].each do |t|
-            = f.radio_button :type, t, :checked => (t == a.type), :required => true
-            = I18n.t(t, scope: :edit_address)
+            .row
+              .col-lg-offset-1.col-md-offset-1
+                = f.radio_button :type, t, :checked => (t == a.type), :required => true, :class => 'i-radio'
+                = I18n.t(t, scope: :edit_address)
         .form-group
           %input.btn.btn-primary{:type => "submit", :value => I18n.t(:save_address, scope: :edit_address)}
     .col-md-4

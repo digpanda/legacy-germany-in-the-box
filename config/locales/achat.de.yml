@@ -324,6 +324,9 @@ de:
       info: Auf Kundenwünsche anpassbar
       'true': Ja
       'false': Nein
+    time: Dauer der Einstellung
+    renew_info: Die Einstellung verlängert sich automatisch um weitere 120 Tage wenn diese Zeit abläuft.
+    timed_info: Das Produkt wird für 120 Tage auf RM eingestellt. 
     discount: '%Rabatt*'
     create_ok: Die Artikelposition erfolgreich erstellt!
     create_ko: Ein Fehler ist beim Anlegen der Artikelpositionen aufgetreten.
