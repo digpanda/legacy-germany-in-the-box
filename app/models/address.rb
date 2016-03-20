@@ -20,7 +20,6 @@ class Address
   field :email,         type: String
   field :mobile,        type: String
   field :tel,           type: String
-  field :function,      type: String
 
   field :primary,       type: Boolean,    default: false
 

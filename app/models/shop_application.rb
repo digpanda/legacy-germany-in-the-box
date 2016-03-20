@@ -23,6 +23,7 @@ class ShopApplication
   field :mobile,          type: String
   field :tel,             type: String
   field :mail,            type: String
+  field :function,        type: String
 
   field :statement0,      type: Boolean
   field :statement1,      type: Boolean

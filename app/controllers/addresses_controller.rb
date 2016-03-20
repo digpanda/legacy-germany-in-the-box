@@ -214,8 +214,7 @@ class AddressesController < ApplicationController
                                       :mobile,
                                       :tel,
                                       :fname,
-                                      :lname,
-                                      :function)
+                                      :lname)
     end
   end
 

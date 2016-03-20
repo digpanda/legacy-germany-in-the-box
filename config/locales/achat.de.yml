@@ -207,6 +207,7 @@ de:
     statement_1: Hiermit versichere ich, dass die von mir angebotenen Produkte "Made in Germany" sind. Der Begriff "Made in Germany" lehnt sich an die Rechtsprechung des BGH zur Nutzung des Begriffs „Made in Germany“ an und schreibt vor, dass die für die wertbestimmenden Eigenschaften eines Produktes wesentlichen Herstellvorgänge in Deutschland erfolgen müssen.
     statement_2: Hiermit bestätige ich, dass die von mir angebotenen Produkte die notwendigen Zertifizierungen für den Absatz auf dem deutschen Markt besitzen. 
     password: Initialpasswort
+    contact_function: Funktion
   edit_shop:
     email: Email*
     name: Herstellername*
