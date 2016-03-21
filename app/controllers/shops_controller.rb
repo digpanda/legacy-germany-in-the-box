@@ -32,7 +32,7 @@ class ShopsController <  ApplicationController
   private
 
   def shop_params
-    if agb
+    unless current_user.shop.agb
       params.require(:shop).permit(:name, :desc, :logo, :banner, :philosophy, :stories, :ustid, :eroi, :min_total, :currency, :status, :founding_year, :register, :website, :agb, target_groups:[], sales_channels:[] )
     else
       params.require(:shop).permit(:name, :desc, :logo, :banner, :philosophy, :stories, :ustid, :eroi, :min_total, :currency, :status, :founding_year, :register, :website, target_groups:[], sales_channels:[] )
