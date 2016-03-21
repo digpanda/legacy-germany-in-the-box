@@ -24,7 +24,7 @@ class Collection
   validates :name,    presence: true, length: {maximum: Rails.configuration.max_short_text_length}
   validates :public,  presence: true
   validates :user,    presence: true
-  validates :desc,    length: {maximum: Rails.configuration.max_medium_text_length}
+  validates :desc,    length: {maximum: Rails.configuration.max_medium_text_length * 1.25}
 
   scope :is_public, -> { where(:public => true) }
 end

@@ -47,7 +47,7 @@ class Product
   validates :categories,  presence: true
   validates :status,      presence: true
 
-  validates :desc,        length: { maximum: Rails.configuration.max_long_text_length}
+  validates :desc,        length: { maximum: Rails.configuration.max_long_text_length * 1.25}
   validates :tags,        length: { maximum: Rails.configuration.max_num_tags }
 
   scope :has_tag,         ->(value) { where( :tags => value )   }

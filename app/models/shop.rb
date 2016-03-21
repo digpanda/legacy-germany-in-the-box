@@ -45,7 +45,7 @@ class Shop
 
   belongs_to :shopkeeper,   class_name: 'User',  inverse_of: :shop
 
-  validates :name,          presence: true,   length: {maximum: Rails.configuration.max_tiny_text_length}
+  validates :name,          presence: true,   length: {maximum: Rails.configuration.max_tiny_text_length * 1.25}
   validates :sms,           presence: true
   validates :sms_mobile,    presence: true,   :if => lambda { self.sms }, length: {maximum: Rails.configuration.max_tiny_text_length}
   #validates :billing_address,       presence: true,   :if => lambda { self.status == :opened }
@@ -56,20 +56,20 @@ class Shop
   validates :currency,      presence: true,   inclusion: {in: ['€']}
   validates :founding_year, presence: true,   length: {maximum: 4}
   validates :register,      presence: true,   length: {maximum: Rails.configuration.max_tiny_text_length}
-  validates :desc,          presence: true,   length: {maximum: Rails.configuration.max_medium_text_length}
-  validates :philosophy,    presence: true,   length: {maximum: Rails.configuration.max_medium_text_length}
-  validates :stories,       presence: true,   length: {maximum: Rails.configuration.max_long_text_length}
+  validates :desc,          presence: true,   length: {maximum: Rails.configuration.max_medium_text_length * 1.25}
+  validates :philosophy,    presence: true,   length: {maximum: Rails.configuration.max_medium_text_length * 1.25}
+  validates :stories,       presence: true,   length: {maximum: Rails.configuration.max_long_text_length * 1.25}
   validates :statement0,    presence: true
   validates :statement1,    presence: true
   validates :statement2,    presence: true
   validates :agb,           presence: true
 
-  validates :website,         length: { maximum: Rails.configuration.max_short_text_length }
-  validates :ustid,           length: { maximum: Rails.configuration.max_tiny_text_length }
-  validates :eroi,            length: { maximum: Rails.configuration.max_tiny_text_length }
-  validates :uniqueness,      length: { maximum: Rails.configuration.max_medium_text_length }
-  validates :german_essence,  length: { maximum: Rails.configuration.max_medium_text_length }
-  validates :shopname,        length: { maximum: Rails.configuration.max_short_text_length }
+  validates :website,         length: {maximum: Rails.configuration.max_short_text_length * 1.25}
+  validates :ustid,           length: {maximum: Rails.configuration.max_tiny_text_length }
+  validates :eroi,            length: {maximum: Rails.configuration.max_tiny_text_length }
+  validates :uniqueness,      length: {maximum: Rails.configuration.max_medium_text_length * 1.25}
+  validates :german_essence,  length: {maximum: Rails.configuration.max_medium_text_length * 1.25}
+  validates :shopname,        length: {maximum: Rails.configuration.max_short_text_length }
 
   scope :is_active,       ->        { where( :status => true ) }
 

@@ -30,18 +30,18 @@ class ShopApplication
   field :statement2,      type: Boolean
 
   validates :email,         presence: true,   length: {maximum: Rails.configuration.max_short_text_length}
-  validates :name,          presence: true,   length: {maximum: Rails.configuration.max_short_text_length}
+  validates :name,          presence: true,   length: {maximum: Rails.configuration.max_short_text_length * 1.25}
   validates :founding_year, presence: true,   length: {maximum: 4}
-  validates :register,      presence: true,   length: {maximum: Rails.configuration.max_tiny_text_length}
-  validates :desc,          presence: true,   length: {maximum: Rails.configuration.max_medium_text_length}
-  validates :philosophy,    presence: true,   length: {maximum: Rails.configuration.max_medium_text_length}
-  validates :stories,       presence: true,   length: {maximum: Rails.configuration.max_long_text_length}
+  validates :register,      presence: true,   length: {maximum: Rails.configuration.max_tiny_text_length * 1.25}
+  validates :desc,          presence: true,   length: {maximum: Rails.configuration.max_medium_text_length * 1.25}
+  validates :philosophy,    presence: true,   length: {maximum: Rails.configuration.max_medium_text_length * 1.25}
+  validates :stories,       presence: true,   length: {maximum: Rails.configuration.max_long_text_length * 1.25}
   validates :statement0,    presence: true
   validates :statement1,    presence: true
   validates :statement2,    presence: true
 
   validates :code,          length: {maximum: Rails.configuration.max_short_text_length}
-  validates :website,       length: {maximum: Rails.configuration.max_short_text_length}
+  validates :website,       length: {maximum: Rails.configuration.max_short_text_length * 1.25}
 
   validates :fname,         length: {maximum: Rails.configuration.max_tiny_text_length}
   validates :lname,         length: {maximum: Rails.configuration.max_tiny_text_length}
