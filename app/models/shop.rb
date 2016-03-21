@@ -8,6 +8,7 @@ class Shop
   strip_attributes
 
   field :name,            type: String
+  field :shopname,        type: String
   field :desc,            type: String
   field :logo,            type: String
   field :banner,          type: String
@@ -45,6 +46,7 @@ class Shop
   belongs_to :shopkeeper,   class_name: 'User',  inverse_of: :shop
 
   validates :name,          presence: true,   length: {maximum: Rails.configuration.max_tiny_text_length}
+  validates :shopname,      presence: true,   length: {maximum: Rails.configuration.max_short_text_length}
   validates :sms,           presence: true
   validates :sms_mobile,    presence: true,   :if => lambda { self.sms }, length: {maximum: Rails.configuration.max_tiny_text_length}
   #validates :billing_address,       presence: true,   :if => lambda { self.status == :opened }
@@ -77,7 +79,13 @@ class Shop
   before_save :ensure_agb
   before_save :clean_sms_mobile, :unless => lambda { self.sms }
 
+  before_validation :ensure_shopname
+
   private
+
+  def ensure_shopname
+    self.shopname = self.name unless self.shopname
+  end
 
   def ensure_agb
     self.agb = true if self.agb.present?
