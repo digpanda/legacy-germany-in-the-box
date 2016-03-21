@@ -196,21 +196,21 @@ de:
     title: Antragsformular
     email: Email zur Registrierung*
     email_info: Die Mailaddresse wird später beim initialen Einloggen zusammen mit einem Initialpasswort benötigt, das an diese Mailadresse gesendet wird.
-    contact_person_info: Kontaktperson
+    contact_person_info: Ansprechenpartner
     contact_fname: Vorname
     contact_lname: Nachname
     contact_tel: Festnetz
     contact_mobile: Mobile
     contact_email: Email
+    contact_function: Funktion
     statements: Erklärungen*
     statement_0: Hiermit versichere ich, dass ich der Hersteller der hochzuladenen Produkte bin bzw. den Hersteller repräsentiere darf. 
     statement_1: Hiermit versichere ich, dass die von mir angebotenen Produkte "Made in Germany" sind. Der Begriff "Made in Germany" lehnt sich an die Rechtsprechung des BGH zur Nutzung des Begriffs „Made in Germany“ an und schreibt vor, dass die für die wertbestimmenden Eigenschaften eines Produktes wesentlichen Herstellvorgänge in Deutschland erfolgen müssen.
     statement_2: Hiermit bestätige ich, dass die von mir angebotenen Produkte die notwendigen Zertifizierungen für den Absatz auf dem deutschen Markt besitzen. 
     password: Initialpasswort
-    contact_function: Funktion
   edit_shop:
     email: Email*
-    name: Herstellername*
+    name: Herstellername/Firmenname*
     desc: Beschreibung*
     logo: Logo
     banner: Banner
@@ -230,25 +230,25 @@ de:
     update_ok: Der Shop erfolgreich aktualisiert!
     update_producer_ok: Herstellerdetails erfolgreich aktualisiert!
     update_agb_ok: Vielen Dank für das Einverständnis unserer allgeimeinen Geschäftsbedingungen!
-    desc_info: Wer sind Sie? Was bieten Sie an?
-    philosophy_info: Welche Grundidee und Grundüberzeugung unterliegen Ihren Produkten?
-    stories_info: Haben Ihre Produkte bemerkenswerte Geschichten, z.B dass Ihre Marke Sponsor für lokale Kinderevents, Elternverein, Sportverein ist, oder dass die Rezepte oder Herstellungen einer langen Familientradition folgen? Welche Zeitungen und Magazine haben von Ihren Produkten positiv berichtet?
+    desc_info: Wer sind Sie? Was bieten Sie an?  (max. 50 Wörter)
+    philosophy_info: Welche Grundidee und Grundüberzeugung unterliegen Ihren Produkten? (max. 200 Wörter)
+    stories_info: Haben Ihre Produkte bemerkenswerte Geschichten, z.B dass Ihre Marke Sponsor für lokale Kinderevents, Elternverein, Sportverein ist, oder dass die Rezepte oder Herstellungen einer langen Familientradition folgen? Welche Zeitungen und Magazine haben von Ihren Produkten positiv berichtet? (max. 1000 Wörter)
     ust_id_info: Als Exportierender Hersteller führen Sie keine Ust-Vorsteuer ab. Falls Sie eine Ust-ID besitzen, benötigen wir sie für Ausfuhrbescheinigungen.
     eroi_number_info: Die EORI-Nummer ersetzt die deutsche Zollnummer und dient der Regiestrierung und Identifikation von Wirschaftsbeteiligten bei der Zollabwicklung in EU. Ab einen Tagesexportwert von 1.000 EUR muss der Hersteller EORI-Nummer angeben. Wenn Sie erwarten, dass Sie diesen Tagegrenzwert überschreiten werden, emfehlen wir diese nummer im Vorfeld zu beantragen. Die EORI-Nummer können Sie jeder Zeit nachtragen. (max. 25 Buchstaben)
     min_total_info: Sie können einen Mindestbestellwert für eine Bestellung aus Ihrem Shop festlegen. 
     sms_info: Möchten Sie über einen Verkauf von RheinManufaktur benachrichtigt werden? Wenn ja, dann geben Sie uns Ihre Mobilephone Nummber. Selbstverständlich ist das ein kostenloser Service. Bitte achten Sie darauf, dass die nummer keinen Trennstrich "-" enthält.
     founding_year: Gründungsjahr*
-    founding_year_info: In welchem wurde Ihre Marke gegründet?
+    founding_year_info: Wann wurde Ihre Marke gegründet? (Jahr)
     german_essence: German-Design
     german_essence_info: Die deutsche Herstellung ist weltweit bekannt für seine Effizienz, Schlichheit und Qualität. Wie spiegeln Ihre Produkte die Essenz von "German-Design" hinsichtlich ihrer Herstellung und Gestaltung wider? (max. 250 Wörter)
     uniqueness: Einzigartigkeit
-    uniqueness_info: Was hebt Ihre Produkte von anderen ähnlichen Produkten auf dem Markt ab?
+    uniqueness_info: Was hebt Ihre Produkte von anderen ähnlichen Produkten auf dem Markt ab? (max. 200 Wörter)
     target_groups: Zielgruppen
     target_groups_info: Wer gehört zur Zielgruppe für Ihre Produkte in Deutschland? Sie können bis zu %{num} Zielgruppen eintragen.
     target_group: Zielgruppe
     sales_channels: Vertriebswege
     sales_channels_info: Was ist Ihre Vertriebswege? Sie können bis zu %{num} Vertriebswege eintragen.
-    register: Handelregister*
+    register: Handelsregister*
     add_target_group: Hinzufügen
     remove_target_group: Entfernen
     add_sales_channel: Hinzufügen
@@ -257,6 +257,7 @@ de:
     website: Homepage
     agb: Allgemeine Geschäftsbedingungen
     agb_statement: Hiermit versichere ich, dass ich die AGB der DigPanda GmbH komplett gelesen habe und ich mit den Inhalten dieser AGB einverstanden bin. 
+    required_field_info: '* Pflichtfeld'
   edit_product:
     edit: Editieren
     remove: Entfernen

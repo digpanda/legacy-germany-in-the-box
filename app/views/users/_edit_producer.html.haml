@@ -8,12 +8,12 @@
           %tbody
             %tr.form-group
               %td{width: '20%'}= I18n.t(:name, scope: :edit_shop)
-              %td{width: '80%'}= f.text_field :name, :class => 'form-control', :required => true
+              %td{width: '80%'}= f.text_field :name, :class => 'form-control', :required => true, :placeholder => 'MyShop GmbH'
             %tr.form-group
               %td{width: '20%', :title => I18n.t(:founding_year_info, scope: :edit_shop) }
                 = I18n.t(:founding_year, scope: :edit_shop)
                 %i.fa.fa-info-circle{ :title => I18n.t(:founding_year_info, scope: :edit_shop) }
-              %td{width: '80%'}= f.text_field :founding_year, :class => 'form-control', :required => true, :pattern => '^(18|19|20)\d{2}$', :maxlength => 4, :placeholder => 'Bspw. 1988'
+              %td{width: '80%'}= f.text_field :founding_year, :class => 'form-control', :required => true, :pattern => '^(18|19|20)\d{2}$', :maxlength => 4, :placeholder => '2000'
             %tr.form-group
               %td{width: '20%'}
                 = I18n.t(:register, scope: :edit_shop)

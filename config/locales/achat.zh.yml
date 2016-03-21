@@ -139,8 +139,6 @@ zh-CN:
     house_number: 街道号
     additional: 附加信息
     addresses: 地址管理
-    billing_address:
-    sender_address:
     billing: 账单地址
     sender: 发货地址
     both: 账单和发货
@@ -204,6 +202,7 @@ zh-CN:
     contact_tel: 固定电话
     contact_mobile: 移动电话
     contact_email: 信箱
+    contact_function: 职责
     statements: 声明
     statement_0: 在此保证上传的产品是经过生产厂商所许可的。
     statement_1: 在此保证上传的产品是真正的德国制造，并符合BGH的法律依据。
@@ -216,6 +215,7 @@ zh-CN:
     logo: 店铺徽标
     banner: 店铺横幅
     philosophy: 经营理念
+    stories: 成长历程
     story: 产品故事
     ustid: 企业税号
     eroi: 欧盟关税标识

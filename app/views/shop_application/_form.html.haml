@@ -12,6 +12,8 @@
           .panel-heading.text-center
             %h4= I18n.t(:shopkeeper_info, scope: :shop_application)
           .panel-body
+            %dev.pull-right
+              %strong= I18n.t(:required_field_info, scope: :edit_shop)
             %table.table.table-borderless
               %tbody
                 %tr.form-group
@@ -19,16 +21,16 @@
                     %strong= I18n.t(:email, scope: :shop_application)
                     %i.fa.fa-info-circle{ :title => I18n.t(:email_info, scope: :shop_application) }
                   %td{width: '70%'}
-                    = f.email_field :email, :class => 'form-control', :required => true, 'data-remote' => "#{is_registered_shop_application_index_url}", :maxLength => Rails.configuration.max_short_text_length
+                    = f.email_field :email, :class => 'form-control', :required => true, 'data-remote' => "#{is_registered_shop_application_index_url}", :maxLength => Rails.configuration.max_short_text_length, :placeholder => 'example@google.com'
                     %div.help-block.with-errors
                 %tr.form-group
                   %td{width: '30%'}= I18n.t(:name, scope: :edit_shop)
-                  %td{width: '70%'}= f.text_field :name, :class => 'form-control', :required => true, :maxLength => Rails.configuration.max_short_text_length
+                  %td{width: '70%'}= f.text_field :name, :class => 'form-control', :required => true, :maxLength => Rails.configuration.max_short_text_length, :placeholder => 'MyShop GmbH'
                 %tr.form-group
                   %td{width: '30%', :title => I18n.t(:founding_year_info, scope: :edit_shop) }
                     = I18n.t(:founding_year, scope: :edit_shop)
                     %i.fa.fa-info-circle{ :title => I18n.t(:founding_year_info, scope: :edit_shop) }
-                  %td{width: '70%'}= f.text_field :founding_year, :class => 'form-control', :required => true, :pattern => '^(18|19|20)\d{2}$', :maxLength => 4
+                  %td{width: '70%'}= f.text_field :founding_year, :class => 'form-control', :required => true, :pattern => '^(18|19|20)\d{2}$', :maxLength => 4, :placeholder => '2000'
                 %tr.form-group
                   %td{width: '30%'}
                     = I18n.t(:register, scope: :edit_shop)
@@ -110,4 +112,5 @@
                     = f.hidden_field :statement2
                     = f.check_box :statement2, { :required => true }, true
                     = I18n.t(:statement_2, scope: :shop_application)
+
       = f.button I18n.t(:save, scope: :edit_shop), :class => 'btn btn-primary', name: :user_info_edit_part, value: :edit_shop
