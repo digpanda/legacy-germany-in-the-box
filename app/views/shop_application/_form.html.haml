@@ -83,14 +83,14 @@
                     = f.text_field :function, :class => 'form-control', :maxLength => Rails.configuration.max_short_text_length
                   %td
                     = f.label :mail, I18n.t(:contact_email, scope: :shop_application)
-                    = f.text_field :mail, :class => 'form-control', :maxLength => Rails.configuration.max_short_text_length
+                    = f.email_field :mail, :class => 'form-control', :maxLength => Rails.configuration.max_short_text_length
                 %tr
                   %td
                     = f.label :tel, I18n.t(:contact_tel, scope: :shop_application)
-                    = f.text_field :tel, :class => 'form-control', :maxLength => Rails.configuration.max_tiny_text_length
+                    = f.text_field :tel, :class => 'form-control', :maxLength => Rails.configuration.max_tiny_text_length, :pattern => '\d+'
                   %td
                     = f.label :mobile, I18n.t(:contact_mobile, scope: :shop_application)
-                    = f.text_field :mobile, :class => 'form-control', :maxLength => Rails.configuration.max_tiny_text_length
+                    = f.text_field :mobile, :class => 'form-control', :maxLength => Rails.configuration.max_tiny_text_length, :pattern => '\d+'
         .panel.panel-info
           .panel-heading.text-center
             %h4= I18n.t(:statements, scope: :shop_application)
