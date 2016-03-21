@@ -25,31 +25,43 @@
                     %div.help-block.with-errors
                 %tr.form-group
                   %td{width: '30%'}= I18n.t(:name, scope: :edit_shop)
-                  %td{width: '70%'}= f.text_field :name, :class => 'form-control', :required => true, :maxLength => Rails.configuration.max_short_text_length, :placeholder => I18n.t(:company_name_placeholder, scope: :edit_shop)
+                  %td{width: '70%'}
+                    = f.text_field :name, :class => 'form-control', :required => true, :maxLength => Rails.configuration.max_short_text_length, :placeholder => I18n.t(:company_name_placeholder, scope: :edit_shop)
+                    %div.help-block.with-errors
                 %tr.form-group
                   %td{width: '30%', :title => I18n.t(:founding_year_info, scope: :edit_shop) }
                     = I18n.t(:founding_year, scope: :edit_shop)
                     %i.fa.fa-info-circle{ :title => I18n.t(:founding_year_info, scope: :edit_shop) }
-                  %td{width: '70%'}= f.text_field :founding_year, :class => 'form-control', :required => true, :pattern => '^(18|19|20)\d{2}$', :maxLength => 4, :placeholder => '2016'
+                  %td{width: '70%'}
+                    = f.text_field :founding_year, :class => 'form-control', :required => true, :pattern => '^(18|19|20)\d{2}$', :maxLength => 4, :placeholder => '2016'
+                    %div.help-block.with-errors
                 %tr.form-group
                   %td{width: '30%'}
                     = I18n.t(:register, scope: :edit_shop)
-                  %td{width: '70%'}= f.text_field :register, :class => 'form-control', :required => true, :maxLength => Rails.configuration.max_tiny_text_length, :placeholder => 'HRB 999999'
+                  %td{width: '70%'}
+                    = f.text_field :register, :class => 'form-control', :required => true, :maxLength => Rails.configuration.max_tiny_text_length, :placeholder => 'HRB 999999'
+                    %div.help-block.with-errors
                 %tr.form-group
                   %td{width: '30%', :title => I18n.t(:desc_info, scope: :edit_shop) }
                     = I18n.t(:desc, scope: :edit_shop)
                     %i.fa.fa-info-circle{ :title => I18n.t(:desc_info, scope: :edit_shop) }
-                  %td{width: '70%'}= f.text_area :desc, :class => 'form-control', rows: 4, :required => true, :maxLength => Rails.configuration.max_medium_text_length
+                  %td{width: '70%'}
+                    = f.text_area :desc, :class => 'form-control', rows: 4, :required => true, :maxLength => Rails.configuration.max_medium_text_length
+                    %div.help-block.with-errors
                 %tr.form-group
                   %td{width: '30%', :title => I18n.t(:philosophy_info, scope: :edit_shop) }
                     = I18n.t(:philosophy, scope: :edit_shop)
                     %i.fa.fa-info-circle{ :title => I18n.t(:philosophy_info, scope: :edit_shop) }
-                  %td{width: '70%'}= f.text_area :philosophy, :class => 'form-control', rows: 4, :required => true, :maxLength => Rails.configuration.max_medium_text_length
+                  %td{width: '70%'}
+                    = f.text_area :philosophy, :class => 'form-control', rows: 4, :required => true, :maxLength => Rails.configuration.max_medium_text_length
+                    %div.help-block.with-errors
                 %tr.form-group
                   %td{width: '30%', :title => I18n.t(:stories_info, scope: :edit_shop) }
                     = I18n.t(:stories, scope: :edit_shop)
                     %i.fa.fa-info-circle{ :title => I18n.t(:stories_info, scope: :edit_shop) }
-                  %td{width: '70%'}= f.text_area :stories, :class => 'form-control', rows: 4, :required => true, :maxLength => Rails.configuration.max_long_text_length
+                  %td{width: '70%'}
+                    = f.text_area :stories, :class => 'form-control', rows: 4, :required => true, :maxLength => Rails.configuration.max_long_text_length
+                    %div.help-block.with-errors
                 %tr.form-group
                   %td{width: '30%', :title => I18n.t(:uniqueness_info, scope: :edit_shop) }
                     = I18n.t(:uniqueness, scope: :edit_shop)
@@ -72,25 +84,34 @@
               %tbody
                 %tr
                   %td
-                    = f.label :fname, I18n.t(:contact_fname, scope: :shop_application)
-                    = f.text_field :fname, :class => 'form-control', :maxLength => Rails.configuration.max_tiny_text_length
+                    .form-group
+                      = f.label :fname, I18n.t(:contact_fname, scope: :shop_application)
+                      = f.text_field :fname, :class => 'form-control', :maxLength => Rails.configuration.max_tiny_text_length
                   %td
-                    = f.label :lname, I18n.t(:contact_lname, scope: :shop_application)
-                    = f.text_field :lname, :class => 'form-control', :maxLength => Rails.configuration.max_tiny_text_length
+                    .form-group
+                      = f.label :lname, I18n.t(:contact_lname, scope: :shop_application)
+                      = f.text_field :lname, :class => 'form-control', :maxLength => Rails.configuration.max_tiny_text_length
                 %tr
                   %td
-                    = f.label :function, I18n.t(:contact_function, scope: :shop_application)
-                    = f.text_field :function, :class => 'form-control', :maxLength => Rails.configuration.max_short_text_length
+                    .form-group
+                      = f.label :function, I18n.t(:contact_function, scope: :shop_application)
+                      = f.text_field :function, :class => 'form-control', :maxLength => Rails.configuration.max_short_text_length
                   %td
-                    = f.label :mail, I18n.t(:contact_email, scope: :shop_application)
-                    = f.email_field :mail, :class => 'form-control', :maxLength => Rails.configuration.max_short_text_length
+                    .form-group
+                      = f.label :mail, I18n.t(:contact_email, scope: :shop_application)
+                      = f.email_field :mail, :class => 'form-control', :maxLength => Rails.configuration.max_short_text_length
+                      %div.help-block.with-errors
                 %tr
                   %td
-                    = f.label :tel, I18n.t(:contact_tel, scope: :shop_application)
-                    = f.text_field :tel, :class => 'form-control', :maxLength => Rails.configuration.max_tiny_text_length, :pattern => '\d+'
+                    .form-group
+                      = f.label :tel, I18n.t(:contact_tel, scope: :shop_application)
+                      = f.text_field :tel, :class => 'form-control', :maxLength => Rails.configuration.max_tiny_text_length, :pattern => '^(((((((00|\+)49[ \-/]?)|0)[1-9][0-9]{1,4})[ \-/]?)|((((00|\+)49\()|\(0)[1-9][0-9]{1,4}\)[ \-/]?))[0-9]{1,7}([ \-/]?[0-9]{1,5})?)$', :placeholder => '+49(89)123456 | 089-1234-5678 | (089)1234-5678'
+                      %div.help-block.with-errors
                   %td
-                    = f.label :mobile, I18n.t(:contact_mobile, scope: :shop_application)
-                    = f.text_field :mobile, :class => 'form-control', :maxLength => Rails.configuration.max_tiny_text_length, :pattern => '\d+'
+                    .form-group
+                      = f.label :mobile, I18n.t(:contact_mobile, scope: :shop_application)
+                      = f.text_field :mobile, :class => 'form-control', :maxLength => Rails.configuration.max_tiny_text_length, :pattern => '^(((((((00|\+)49[ \-/]?)|0)[1-9][0-9]{1,4})[ \-/]?)|((((00|\+)49\()|\(0)[1-9][0-9]{1,4}\)[ \-/]?))[0-9]{1,7}([ \-/]?[0-9]{1,5})?)$', :placeholder => '+49(176)64336650 | +49(176)64336650 | 0176-6433-6650'
+                      %div.help-block.with-errors
         .panel.panel-info
           .panel-heading.text-center
             %h4= I18n.t(:statements, scope: :shop_application)
