@@ -131,7 +131,7 @@ de:
     change_address_title: Adresse ändern
     save_address: Speichern
     show_address_title: Adresse
-    delete_address_message: Die Adresse löschen?
+    delete_address_message: Möchten Sie die Adresse löschen??
     delete_ok: Die Adresse erfolgreich gelöscht!
     delete_ko: Ein Fehler ist bei der Löschung der Adresse aufgetreten.
     create_ok: Die Adresse erfolgreich angelegt!

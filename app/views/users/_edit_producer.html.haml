@@ -17,7 +17,7 @@
             %tr.form-group
               %td{width: '20%'}
                 = I18n.t(:register, scope: :edit_shop)
-              %td{width: '80%'}= f.text_field :register, :class => 'form-control', :required => true
+              %td{width: '80%'}= f.text_field :register, :class => 'form-control', :required => true, :placeholder => 'HRB 999999'
             %tr.form-group
               %td{width: '20%', :title => I18n.t(:desc_info, scope: :edit_shop) }
                 = I18n.t(:desc, scope: :edit_shop)

@@ -34,7 +34,7 @@
                 %tr.form-group
                   %td{width: '30%'}
                     = I18n.t(:register, scope: :edit_shop)
-                  %td{width: '70%'}= f.text_field :register, :class => 'form-control', :required => true, :maxLength => Rails.configuration.max_tiny_text_length
+                  %td{width: '70%'}= f.text_field :register, :class => 'form-control', :required => true, :maxLength => Rails.configuration.max_tiny_text_length, :placeholder => 'HRB 999999'
                 %tr.form-group
                   %td{width: '30%', :title => I18n.t(:desc_info, scope: :edit_shop) }
                     = I18n.t(:desc, scope: :edit_shop)
