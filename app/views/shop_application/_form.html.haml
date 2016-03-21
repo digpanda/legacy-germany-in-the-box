@@ -75,7 +75,7 @@
                 %tr.form-group
                   %td{width: '30%'}
                     = I18n.t(:website, scope: :edit_shop)
-                  %td{width: '70%'}= f.text_field :website, :class => 'form-control', :maxLength => Rails.configuration.max_short_text_length
+                  %td{width: '70%'}= f.text_field :website, :class => 'form-control', :maxLength => Rails.configuration.max_short_text_length, :placeholder => 'www.mydomain.com'
         .panel.panel-info
           .panel-heading.text-center
             %h4= I18n.t(:contact_person_info, scope: :shop_application)
@@ -99,7 +99,7 @@
                   %td
                     .form-group
                       = f.label :mail, I18n.t(:contact_email, scope: :shop_application)
-                      = f.email_field :mail, :class => 'form-control', :maxLength => Rails.configuration.max_short_text_length
+                      = f.email_field :mail, :class => 'form-control', :maxLength => Rails.configuration.max_short_text_length, :placeholder => 'example@google.com'
                       %div.help-block.with-errors
                 %tr
                   %td
