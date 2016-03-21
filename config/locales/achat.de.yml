@@ -194,8 +194,8 @@ de:
     shop_application_ok: Vielen Dank für Ihren Antrag! Wir werden uns bald mit Ihnen in Verbindung setzten.
     shopkeeper_info: Herstellerdetails
     title: Antragsformular
-    email: Email zur Benutzer-Konto*
-    email_info: Bitte geben Sie Ihre Email ein. Es wird Ihr Benutzername in Rhein-Manufaktur.eu sein.
+    email: Benutzer-Konto*
+    email_info: Bitte geben Sie Ihre Email ein. Es wird Ihr Benutzer-Konto in Rhein-Manufaktur.eu sein.
     contact_person_info: Ansprechenpartner
     contact_fname: Vorname
     contact_lname: Nachname
@@ -265,10 +265,10 @@ de:
     remove: Entfernen
     basic_info: Allgmeine Information
     new: Neues Produkt
-    tags: Schlüsselwörter
-    tag1: Schlüsselwort 1
-    tag2: Schlüsselwort 2
-    tag3: Schlüsselwort 3
+    tags: Stichwörter
+    tag1: Stichwort 1
+    tag2: Stichwort 2
+    tag3: Stichwort 3
     name: Produktname*
     desc: Beschreibung*
     cover: Deckenbild
@@ -290,7 +290,7 @@ de:
     update_basic: Akutalisieren
     variant: Variantentyp
     categories_info: Die Zuordnung der Kategorien hilft den Käufern, Ihr Produkt zu finden. Zu min. einer Kategorie muss ein Produkt zugeordnet werden.
-    keywords_info: Wir empfehlen Ihnen, mit %{num} Schlüsselwörtern das Produkt zu charakterisieren. Diese Schlüsselwörtern dienen sowohl dem internen als auch externem Search.
+    keywords_info: Wir empfehlen Ihnen, mit %{num} Stichwörtern das Produkt zu charakterisieren. Diese Stickwörtern dienen sowohl dem internen als auch externem Search.
     images_info: Laden Sie bitte bis zu 4 Produktbilder in JPG oder JPEG Format für das Produkt hoch. (max. 1 MB pro Bild)
     desc_info: Beschreiben Sie Ihr Produkt mit all den ansprechenden Eigenschaften, die für Käufer relevant sind.
     cancel: Abbrechen

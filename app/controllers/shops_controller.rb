@@ -2,7 +2,7 @@ class ShopsController <  ApplicationController
 
   include Base64ToUpload
 
-  skip_before_action :verify_authenticity_token
+  before_action :authenticate_user!, except: [:show]
 
   load_and_authorize_resource
 
