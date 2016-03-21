@@ -46,7 +46,6 @@ class Shop
   belongs_to :shopkeeper,   class_name: 'User',  inverse_of: :shop
 
   validates :name,          presence: true,   length: {maximum: Rails.configuration.max_tiny_text_length}
-  validates :shopname,      presence: true,   length: {maximum: Rails.configuration.max_short_text_length}
   validates :sms,           presence: true
   validates :sms_mobile,    presence: true,   :if => lambda { self.sms }, length: {maximum: Rails.configuration.max_tiny_text_length}
   #validates :billing_address,       presence: true,   :if => lambda { self.status == :opened }
@@ -65,13 +64,12 @@ class Shop
   validates :statement2,    presence: true
   validates :agb,           presence: true
 
-  validates :website,       length: {maximum: Rails.configuration.max_short_text_length}
-
-  validates :ustid,         length: { maximum: Rails.configuration.max_tiny_text_length}
-  validates :eroi,          length: { maximum: Rails.configuration.max_tiny_text_length}
-
-  validates :uniqueness,      length: { maximum: Rails.configuration.max_medium_text_length}
-  validates :german_essence,  length: { maximum: Rails.configuration.max_medium_text_length}
+  validates :website,         length: { maximum: Rails.configuration.max_short_text_length }
+  validates :ustid,           length: { maximum: Rails.configuration.max_tiny_text_length }
+  validates :eroi,            length: { maximum: Rails.configuration.max_tiny_text_length }
+  validates :uniqueness,      length: { maximum: Rails.configuration.max_medium_text_length }
+  validates :german_essence,  length: { maximum: Rails.configuration.max_medium_text_length }
+  validates :shopname,        length: { maximum: Rails.configuration.max_short_text_length }
 
   scope :is_active,       ->        { where( :status => true ) }
 
@@ -79,13 +77,7 @@ class Shop
   before_save :ensure_agb
   before_save :clean_sms_mobile, :unless => lambda { self.sms }
 
-  before_validation :ensure_shopname
-
   private
-
-  def ensure_shopname
-    self.shopname = self.name unless self.shopname
-  end
 
   def ensure_agb
     self.agb = true if self.agb.present?
