@@ -258,6 +258,8 @@ zh-CN:
     website: 主页
     agb: 条款可法律声明
     agb_statement: 在此保证，我已经清楚的阅读DigPanda有限公司的使用条款，并且同意并接受此条款。
+    required_field_info: '* 必填字段'
+    company_name_placeholder: '示例 有限公司'
   edit_product:
     edit: 修改
     remove: 删除产品

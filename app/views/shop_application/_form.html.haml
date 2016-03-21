@@ -25,7 +25,7 @@
                     %div.help-block.with-errors
                 %tr.form-group
                   %td{width: '30%'}= I18n.t(:name, scope: :edit_shop)
-                  %td{width: '70%'}= f.text_field :name, :class => 'form-control', :required => true, :maxLength => Rails.configuration.max_short_text_length, :placeholder => 'MyShop GmbH'
+                  %td{width: '70%'}= f.text_field :name, :class => 'form-control', :required => true, :maxLength => Rails.configuration.max_short_text_length, :placeholder => I18n.t(:company_name_placeholder, scope: :edit_shop)
                 %tr.form-group
                   %td{width: '30%', :title => I18n.t(:founding_year_info, scope: :edit_shop) }
                     = I18n.t(:founding_year, scope: :edit_shop)

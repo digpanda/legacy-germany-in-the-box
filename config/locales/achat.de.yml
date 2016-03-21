@@ -194,12 +194,12 @@ de:
     shop_application_ok: Vielen Dank für Ihren Antrag! Wir werden uns bald mit Ihnen in Verbindung setzten.
     shopkeeper_info: Herstellerdetails
     title: Antragsformular
-    email: Email zur Registrierung*
-    email_info: Die Mailaddresse wird später beim initialen Einloggen zusammen mit einem Initialpasswort benötigt, das an diese Mailadresse gesendet wird.
+    email: Email zur Benutzer-Konto*
+    email_info: Bitte geben Sie Ihre Email ein. Es wird Ihr Benutzername in Rhein-Manufaktur.eu sein.
     contact_person_info: Ansprechenpartner
     contact_fname: Vorname
     contact_lname: Nachname
-    contact_tel: Festnetz
+    contact_tel: Festnetznummer
     contact_mobile: Mobile
     contact_email: Email
     contact_function: Funktion
@@ -247,7 +247,7 @@ de:
     target_groups_info: Wer gehört zur Zielgruppe für Ihre Produkte in Deutschland? Sie können bis zu %{num} Zielgruppen eintragen.
     target_group: Zielgruppe
     sales_channels: Vertriebswege
-    sales_channels_info: Was ist Ihre Vertriebswege? Sie können bis zu %{num} Vertriebswege eintragen.
+    sales_channels_info: Was sind Ihre Vertriebswege? Sie können bis zu %{num} Vertriebswege eintragen.
     register: Handelsregister*
     add_target_group: Hinzufügen
     remove_target_group: Entfernen
@@ -258,6 +258,7 @@ de:
     agb: Allgemeine Geschäftsbedingungen
     agb_statement: Hiermit versichere ich, dass ich die AGB der DigPanda GmbH komplett gelesen habe und ich mit den Inhalten dieser AGB einverstanden bin. 
     required_field_info: '* Pflichtfeld'
+    company_name_placeholder: 'Beispiel GmbH'
   edit_product:
     edit: Editieren
     remove: Entfernen
