@@ -259,6 +259,7 @@ de:
     agb_statement: Hiermit versichere ich, dass ich die AGB der DigPanda GmbH komplett gelesen habe und ich mit den Inhalten dieser AGB einverstanden bin. 
     required_field_info: '* Pflichtfeld'
     company_name_placeholder: 'Beispiel GmbH'
+    shopname: Shopname
   edit_product:
     edit: Editieren
     remove: Entfernen

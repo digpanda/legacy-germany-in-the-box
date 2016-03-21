@@ -4,7 +4,7 @@
 
 .gap
 
-= form_for @shop, :html => {role: 'form'} do |f|
+= form_for @shop, :html => {'data-toggle': 'validator', role: 'form'} do |f|
   .panel-group
     .panel.panel-default
       .panel-body
@@ -33,6 +33,11 @@
       .panel-body
         %table.table.table-borderless
           %tbody
+            %tr.form-group
+              %td{width: '20%' }
+                = I18n.t(:shopname, scope: :edit_shop)
+              %td{width: '80%'}
+                = f.text_field :shopname, :class => 'form-control', :required => true, :maxLength => Rails.configuration.max_short_text_length
             %tr.form-group
               %td{width: '20%', :title => I18n.t(:min_total_info, scope: :edit_shop) }
                 = I18n.t(:min_total, scope: :edit_shop)
