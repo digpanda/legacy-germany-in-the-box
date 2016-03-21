@@ -5,6 +5,8 @@ class ShopApplicationController < ApplicationController
 
   before_action :authenticate_user!, except: [:index, :new, :create, :registered?]
 
+  before_action :set_locale
+
   def new
   end
 
@@ -59,4 +61,7 @@ class ShopApplicationController < ApplicationController
     params.require(:shop_application).permit(:email, :name, :shopname, :desc, :philosophy, :stories, :founding_year, :register, :website, :statement0, :statement1,  :statement2, :fname, :lname, :tel, :mobile, :mail, :german_essence, :uniqueness, :function)
   end
 
+  def set_locale
+    I18n.locale = :de
+  end
 end
