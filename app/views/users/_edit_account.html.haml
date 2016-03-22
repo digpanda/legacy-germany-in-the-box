@@ -12,7 +12,10 @@
       = f.password_field :current_password, :class => 'form-control', :autocomplete => :off, :required => true, :minLength => Rails.configuration.min_password_length
       %div.help-block.with-errors
     .form-group
-      = f.label :password, I18n.t(:password, scope: :edit_account)
+      %label{ for: 'user[password]', :title => I18n.t(:password_info, scope: :edit_account)}
+        %i.fa.fa-info-circle
+        = I18n.t(:password, scope: :edit_account)
+
       = f.password_field :password, :class => 'form-control', :autocomplete => :off, :required => true, :minLength => Rails.configuration.min_password_length, :id=>'inputPassword'
       %div.help-block.with-errors
     .form-group

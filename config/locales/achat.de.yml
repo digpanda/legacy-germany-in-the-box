@@ -91,6 +91,7 @@ de:
     save: Speichern
     success: Ihr Passwort wurde erfolgreich aktualisiert.
     change_initial_password: Wir empfehlen Ihnen, das Initialpasswort zu ändern.
+    password_info:  Es umfasst mindestens 8 Zeichen.
   edit_following:
     follow_ok: Die Beobachtung für den Nutzer erfolgreich aktiviert!
     follow_ko: Ein Fehler ist bei der Aktivierung der Beobachtung aufgetreten.
