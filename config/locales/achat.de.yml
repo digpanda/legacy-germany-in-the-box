@@ -210,6 +210,7 @@ de:
     statement_2: Hiermit bestätige ich, dass die von mir angebotenen Produkte die notwendigen Zertifizierungen für den Absatz auf dem deutschen Markt besitzen. 
     password: Initialpasswort
     duplicated_email: Das Email ist schon besetzt. Bitte geben Sie eine andere Email ein.
+    application_finished: Antrag abgeschlossen
   edit_shop:
     email: Email*
     name: Herstellername/Firmenname*

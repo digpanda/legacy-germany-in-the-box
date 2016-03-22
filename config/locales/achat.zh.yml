@@ -209,6 +209,7 @@ zh-CN:
     statement_1: 在此保证上传的产品是真正的德国制造，并符合BGH的法律依据。
     statement_2: 在此保证产品有在德国市场的销售许可。
     password: 初始密码
+    application_finished: 申请完成
   edit_shop:
     email: 邮箱*
     name: 店铺名

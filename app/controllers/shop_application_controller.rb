@@ -14,8 +14,6 @@ class ShopApplicationController < ApplicationController
     @shop_application = ShopApplication.new(shop_application_params)
 
     if @shop_application.save
-      flash[:success] = I18n.t(:shop_application_ok, scope: :shop_application)
-
       user = {}
       user[:username] = params[:shop_application][:name]
       user[:email] = params[:shop_application][:email]
@@ -38,7 +36,7 @@ class ShopApplicationController < ApplicationController
       flash[:error] = @shop_application.errors.full_messages.first
     end
 
-    redirect_to root_path
+    redirect_to shop_application_index_path(:finished => true)
   end
 
   def index
