@@ -3,9 +3,18 @@
 
 :javascript
   $(document).ready(function() {
-    $('#product_categories').multiselect({
+    $('.product_categories').multiselect({
       enableCaseInsensitiveFiltering: true,
       maxHeight: 400,
+      onChange: function(option, checked) {
+        v = $('.product_categories')
+
+        if ( v.val() ) {
+          v.next().removeClass('invalidBorderClass')
+        } else {
+          v.next().addClass('invalidBorderClass')
+        }
+      }
     });
   });
 
@@ -29,15 +38,6 @@
   %table.table.table-bordered
     %tbody
       %tr
-        %td.info.text-center{ :title => I18n.t(:categories_info, scope: :edit_product) }
-          = I18n.t(:categories, scope: :edit_product)
-          %i.fa.fa-info-circle{ :title => I18n.t(:categories_info, scope: :edit_product) }
-      %tr.form-group
-        %td= f.select :categories, grouped_options_for_select(get_grouped_categories_options, @product.categories.map { |c| c.id.to_s }), { :include_blank => I18n.t(:non_selected_text, scope: :multiselect) }, :name => 'product[categories][]', :class => 'form-control product_categoires'
-
-  %table.table.table-bordered
-    %tbody
-      %tr
         %td.text-center.info{colspan: 2}=I18n.t(:basic_info, scope: :edit_product)
       %tr.form-group
         %td{width: '20%'}= I18n.t(:name, scope: :edit_product)
@@ -50,6 +50,17 @@
           = I18n.t(:desc, scope: :edit_product)
           %i.fa.fa-info-circle{ :title => I18n.t(:desc_info, scope: :edit_product) }
         %td= f.text_area :desc, :class => 'form-control', rows: 8, :required => true, :maxLength => Rails.configuration.max_medium_text_length
+
+  %table.table.table-bordered
+    %tbody
+      %tr
+        %td.info.text-center{ :title => I18n.t(:categories_info, scope: :edit_product) }
+          = I18n.t(:categories, scope: :edit_product)
+          %i.fa.fa-info-circle{ :title => I18n.t(:categories_info, scope: :edit_product) }
+      %tr.form-group
+        %td= f.select :categories, grouped_options_for_select(get_grouped_categories_options, @product.categories.map { |c| c.id.to_s }), { :include_blank => I18n.t(:non_selected_text, scope: :multiselect) }, :name => 'product[categories][]', :class => 'form-control product_categories'
+
+
   %table.table.table-bordered
     %tbody
       %tr
@@ -98,5 +109,5 @@
               =I18n.t(:upload, scope: :image_upload)
             = f.file_field :seal3, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#seal_3_#{@product.id}", :class => 'img-file-upload upload', :onchange =>"validateImgFile(this);"
 
-  = f.submit :class => 'btn btn-primary', :value => @product.persisted? ? I18n.t(:update_basic, scope: :edit_product) : I18n.t(:new_basic, scope: :edit_product), :onclick => "v = $('.product_categories'); if ( v.val() ) { return true; } else { v.addClass('invalidBorderClass'); return false; }"
+  = f.submit :class => 'btn btn-primary', :value => @product.persisted? ? I18n.t(:update_basic, scope: :edit_product) : I18n.t(:new_basic, scope: :edit_product), :onclick => "v = $('.product_categories'); if ( v.val() ) { return true; } else { v.next().addClass('invalidBorderClass'); return false; }"
   = link_to I18n.t(:cancel, scope: :edit_product), edit_user_path(current_user, :user_info_edit_part => :edit_product), :class => 'btn btn-primary'
