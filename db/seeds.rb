@@ -1,8 +1,8 @@
-Address.all.delete
+#Address.all.delete
 OrderItem.all.delete
 Order.all.delete
-Category.all.delete
-ShopApplication.all.delete
+#Category.all.delete
+#ShopApplication.all.delete
 
 #
 # root category - level 0
@@ -733,25 +733,16 @@ def create_upload_from_image_file(model, image_name, content_type = 'image/jpeg'
   file
 end
 
-
-
-User.where(:email => 'dailycron@hotmail.com').each do |u|
-    u.oCollections.delete_all
-
-end
-
-User.where(:email => 'dailycron@hotmail.com').each do |u|
-    u.oCollections.create!(:name => 'My Son', :public => true)
-    u.oCollections.create!(:name => 'My Wife', :public => false)
-end
-
 Product.where(:name => /.*10 Blatt Seidenpapier ♥ Panda ♥.*/).all.delete;
 Product.where({:name => /.*熊猫壁纸.*/i}).all.delete;
-Shop.where(:name => /.*Herz-Buffet.*/i).all.delete;
-User.where(:email => /.*shopkeeper.*i/).all.delete;
-User.where(:email => /.*dailycron.*i/).all.delete;
-User.where(:email => /.*customer.*i/).all.delete;
-User.where(:email => /.*admin.*i/).all.delete;
+Shop.where(:name => 'Herz-Buffet 01').all.delete;
+Shop.where(:name => 'Herz-Buffet 02').all.delete;
+User.where(:email => 'shopkeeper01@hotmail.com').all.delete;
+User.where(:email => 'shopkeeper02@hotmail.com').all.delete;
+User.where(:email => 'dailycron@hotmail.com').all.delete;
+User.where(:email => 'customer01@hotmail.com').all.delete;
+User.where(:email => 'customer02@hotmail.com').all.delete;
+User.where(:email => 'admin@hotmail.com').all.delete;
 
 
 User.create!(:username => 'admin', :email => 'admin@hotmail.com', :password => '12345678', :password_confirmation => '12345678', :role => :admin)
