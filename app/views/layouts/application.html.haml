@@ -352,7 +352,7 @@
               %a.close{'aria-label' => 'close', 'data-dismiss' => 'alert', :href => '#'} &times;
               = flash[:success]
 
-    .container-fluid
+    .container{:style => 'min-height:400px'}
       = yield
 
     .gap
