@@ -1,8 +1,10 @@
 #Address.all.delete
+#ShopApplication.all.delete
+
 OrderItem.all.delete
 Order.all.delete
-#Category.all.delete
-#ShopApplication.all.delete
+
+Category.all.delete
 
 #
 # root category - level 0
