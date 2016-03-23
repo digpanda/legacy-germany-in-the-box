@@ -20,7 +20,7 @@
       %div.help-block.with-errors
     .form-group
       = f.label :password_confirmation, I18n.t(:password_confirmation, scope: :edit_account)
-      = f.password_field :password_confirmation, :class => 'form-control', :autocomplete => :off, 'data-match': '#inputPassword'
+      = f.password_field :password_confirmation, :class => 'form-control', :autocomplete => :off, 'data-match': '#inputPassword', 'data-match-error': I18n.t(:password_match_error, scope: :edit_account)
       %div.help-block.with-errors
     .form-group
       = f.button I18n.t(:save, scope: :edit_account), :type => 'submit', :class => 'btn btn-primary', name: :user_info_edit_part, value: :edit_account

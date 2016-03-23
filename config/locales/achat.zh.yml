@@ -92,6 +92,7 @@ zh-CN:
     success: 账户信息修改成功
     change_initial_password: 我们建议，修改系统给您设定初始密码，方便您记忆。
     password_info: 密码最小长度为8个字符
+    password_match_error: 密码必须一致
   edit_following:
     follow_ok: 关注成功
     follow_ko: 关注失败

@@ -61,7 +61,7 @@ de:
     password: Passwort
     header: Einloggen
     title: Herzlich willkommen zurück!
-    remember_me: Auf diesem Rechner merken
+    remember_me:  Angemeldet bleiben
     not_member_yet: Jetzt registieren
     forgot_password: Passwort vergessen
     captcha: CAPTCHA
@@ -92,6 +92,7 @@ de:
     success: Ihr Passwort wurde erfolgreich aktualisiert.
     change_initial_password: Wir empfehlen Ihnen, das Initialpasswort zu ändern.
     password_info:  Es umfasst mindestens 8 Zeichen.
+    password_match_error: Das Passwort muss gleich sein.
   edit_following:
     follow_ok: Die Beobachtung für den Nutzer erfolgreich aktiviert!
     follow_ko: Ein Fehler ist bei der Aktivierung der Beobachtung aufgetreten.
@@ -295,7 +296,7 @@ de:
     new_basic: Erstellen
     update_basic: Akutalisieren
     variant: Variantentyp
-    categories_info: Die Zuordnung der Kategorien hilft den Käufern, Ihr Produkt zu finden. Zu min. einer Kategorie muss ein Produkt zugeordnet werden.
+    categories_info: Die Zuordnung der Kategorien hilft den Käufern, Ihr Produkt zu finden.
     keywords_info: Wir empfehlen Ihnen, mit %{num} Stichwörtern das Produkt zu charakterisieren. Diese Stickwörtern dienen sowohl dem internen als auch externem Search.
     desc_info: Beschreiben Sie Ihr Produkt mit all den ansprechenden Eigenschaften, die für Käufer relevant sind.
     cancel: Abbrechen

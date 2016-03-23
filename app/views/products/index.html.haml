@@ -86,7 +86,7 @@
           =image_tag p.get_mas_img_url(:img3)
         .product-info.box
           -if p.shop
-            %h4=link_to "Shop: #{p.shop.name}", p.shop
+            %h4=link_to "Shop: #{p.shop.shopname}", p.shop
           %h4= p.name
           %p.text-smaller.text-muted= truncate(p.desc, :length => 64)
           %h5.product-info-price= "$#{p.get_mas.price}"
@@ -165,7 +165,7 @@
             .col-md-5
               .product-page-meta
                 -if p.shop
-                  %h4=link_to "Shop: #{p.shop.name}", p.shop, :target => '_blank'
+                  %h4=link_to "Shop: #{p.shop.shopname}", p.shop, :target => '_blank'
                 %h4= p.name
                 %p= truncate(p.desc, :length => 128)
                 .gap

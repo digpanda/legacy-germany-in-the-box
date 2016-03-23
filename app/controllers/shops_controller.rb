@@ -31,9 +31,9 @@ class ShopsController <  ApplicationController
 
   def shop_params
     unless current_user.shop.agb
-      params.require(:shop).permit(:name, :desc, :logo, :banner, :philosophy, :stories, :ustid, :eroi, :min_total, :currency, :status, :founding_year, :register, :website, :agb, target_groups:[], sales_channels:[] )
+      params.require(:shop).permit(:shopname, :name, :desc, :logo, :banner, :philosophy, :stories, :ustid, :eroi, :min_total, :currency, :status, :founding_year, :register, :website, :agb, target_groups:[], sales_channels:[] )
     else
-      params.require(:shop).permit(:name, :desc, :logo, :banner, :philosophy, :stories, :ustid, :eroi, :min_total, :currency, :status, :founding_year, :register, :website, target_groups:[], sales_channels:[] )
+      params.require(:shop).permit(:shopname, :name, :desc, :logo, :banner, :philosophy, :stories, :ustid, :eroi, :min_total, :currency, :status, :founding_year, :register, :website, target_groups:[], sales_channels:[] )
     end
   end
 end
