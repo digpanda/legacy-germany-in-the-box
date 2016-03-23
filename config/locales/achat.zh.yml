@@ -144,6 +144,8 @@ zh-CN:
     sender: 发货地址
     both: 账单和发货
     type: 地址类型
+    fname: 名
+    lname: 姓
   edit_order:
     no_order: 您还没有任何订单
     id: 订单号
@@ -340,7 +342,6 @@ zh-CN:
     new_sku: 新建库存
     create_sku: 创建新库存
     update_ok: 库存单位更新成功
-    images_info: 您可以为您的产品上传4张图片。
     variants_info: 一个库存单元属于一个产品型号的组合
     customizable_info: 此产品可定制
     return: 返回产品列表

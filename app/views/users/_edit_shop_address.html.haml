@@ -5,6 +5,12 @@
     .form-group
       .form-inline
         .form-group
+          = f.text_field :fname, :class => 'form-control', :style => 'width:168px', :required => true, :placeholder => I18n.t(:fname, scope: :edit_address)
+        .form-group
+          = f.text_field :lname, :class => 'form-control', :style => 'width:168px', :required => true, :placeholder => I18n.t(:lname, scope: :edit_address)
+    .form-group
+      .form-inline
+        .form-group
           = f.text_field :street, :class => 'form-control', :style => 'width:248px', :required => true, :placeholder => I18n.t(:street, scope: :edit_address)
         .form-group
           = f.text_field :number, :class => 'form-control', :style => 'width:88px', :required => true, :placeholder => I18n.t(:house_number, scope: :edit_address), :pattern => '\d+'
@@ -31,6 +37,12 @@
       = form_for a, :url => address_path(a), :html => { :method => :patch }  do |f|
         .form-group
           %h4= I18n.t(:change_address_title, scope: :edit_address)
+        .form-group
+          .form-inline
+            .form-group
+              = f.text_field :fname, :class => 'form-control', :style => 'width:168px', :required => true, :placeholder => I18n.t(:fname, scope: :edit_address)
+            .form-group
+              = f.text_field :lname, :class => 'form-control', :style => 'width:168px', :required => true, :placeholder => I18n.t(:lname, scope: :edit_address)
         .form-group
           .form-inline
             .form-group

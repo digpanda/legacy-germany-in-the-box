@@ -144,6 +144,8 @@ de:
     sender: Absender
     both: Rechnung und Absender
     type: Typ
+    fname: Vorname
+    lname: Nachname
   edit_order:
     no_order: keine Aufträge vorhanden
     id: Auftragsnummer
@@ -195,8 +197,8 @@ de:
     shop_application_ok: Vielen Dank für Ihren Antrag! Wir werden uns bald mit Ihnen in Verbindung setzten.
     shopkeeper_info: Herstellerdetails
     title: Antragsformular
-    email: Benutzer-Konto*
-    email_info: Bitte geben Sie Ihre Email ein. Es wird Ihr Benutzer-Konto in Rhein-Manufaktur.eu sein.
+    email: Benutzerkonto*
+    email_info: Bitte geben Sie Ihre Email ein. Es wird Ihr Benutzerkonto in Rhein-Manufaktur.eu sein.
     contact_person_info: Ansprechenpartner
     contact_fname: Vorname
     contact_lname: Nachname
@@ -217,6 +219,7 @@ de:
     desc: Beschreibung*
     logo: Logo
     banner: Banner
+    banner_info: Die empfohlenen Größen des Banners sind 468x60 oder 728x90. (max. 1 MB pro Bild)
     philosophy: Philosophie*
     stories: Geschichten*
     ustid: Ust-ID
@@ -294,11 +297,10 @@ de:
     variant: Variantentyp
     categories_info: Die Zuordnung der Kategorien hilft den Käufern, Ihr Produkt zu finden. Zu min. einer Kategorie muss ein Produkt zugeordnet werden.
     keywords_info: Wir empfehlen Ihnen, mit %{num} Stichwörtern das Produkt zu charakterisieren. Diese Stickwörtern dienen sowohl dem internen als auch externem Search.
-    images_info: Laden Sie bitte bis zu 4 Produktbilder in JPG oder JPEG Format für das Produkt hoch. (max. 1 MB pro Bild)
     desc_info: Beschreiben Sie Ihr Produkt mit all den ansprechenden Eigenschaften, die für Käufer relevant sind.
     cancel: Abbrechen
     product_seal: Produktsiegel
-    product_seal_info: Hier können Sie Ihre Produktsiegel hochladen.
+    product_seal_info: Hier können Sie Ihre Produktsiegel hochladen. (max. 1 MB pro Bild)
   edit_product_new:
     create_ok: Das Produkt erfolgreich erstellt!
     create_ko: Ein Fehler ist beim
@@ -343,7 +345,7 @@ de:
     new_sku: Neue Artikelposition
     create_sku: Erstellen
     update_ok: Die Artikelposition erfolgreich aktualisiert!
-    images_info: Bis zu 4 Photos können für ein Produkt hochgeladen werden. 
+    images_info: Laden Sie bitte bis zu 4 Produktbilder in PNG, JPG oder JPEG Format für das Produkt hoch. (max. 1 MB pro Bild)
     variants_info: Variante beschreibt als Gegenstände ähnlicher Form und/oder Funktion mit einem in der Regel hohen Anteil identischer Gruppen oder Teile. Zu min. einer Variantenoption muss eine Artikelposition zugeordnet werden.
     customizable_info: Dieses Produkt kann nach Kundenwunsch individuell angefertig werden.
     return: Zurück zur Produktliste
