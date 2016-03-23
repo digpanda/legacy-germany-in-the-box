@@ -41,15 +41,15 @@
         %td.text-center.info{colspan: 2}=I18n.t(:basic_info, scope: :edit_product)
       %tr.form-group
         %td{width: '20%'}= I18n.t(:name, scope: :edit_product)
-        %td= f.text_field :name, :class => 'form-control', :required => true
+        %td= f.text_field :name, :class => 'form-control', :required => true, :maxLength => Rails.configuration.max_short_text_length
       %tr.form-group
         %td{width: '20%'}= I18n.t(:brand, scope: :edit_product)
-        %td= f.text_field :brand, :class => 'form-control', :required => true
+        %td= f.text_field :brand, :class => 'form-control', :required => true, :maxLength => Rails.configuration.max_short_text_length
       %tr.form-group
         %td{width: '20%', :title => I18n.t(:desc_info, scope: :edit_product) }
           = I18n.t(:desc, scope: :edit_product)
           %i.fa.fa-info-circle{ :title => I18n.t(:desc_info, scope: :edit_product) }
-        %td= f.text_area :desc, :class => 'form-control', rows: 8, :required => true
+        %td= f.text_area :desc, :class => 'form-control', rows: 8, :required => true, :maxLength => Rails.configuration.max_medium_text_length
   %table.table.table-bordered
     %tbody
       %tr

@@ -41,13 +41,13 @@ class Product
   mount_uploader :seal2,   AttachmentUploader
   mount_uploader :seal3,   AttachmentUploader
 
-  validates :name,        presence: true,   length: {maximum: Rails.configuration.max_short_text_length}
-  validates :brand ,      presence: true,   length: {maximum: Rails.configuration.max_short_text_length}
+  validates :name,        presence: true,   length: {maximum: (Rails.configuration.max_short_text_length * 1.25).round}
+  validates :brand ,      presence: true,   length: {maximum: (Rails.configuration.max_short_text_length * 1.25).round}
   validates :shop,        presence: true
   validates :categories,  presence: true
   validates :status,      presence: true
 
-  validates :desc,        length: { maximum: (Rails.configuration.max_long_text_length * 1.25).round}
+  validates :desc,        length: { maximum: (Rails.configuration.max_medium_text_length * 1.25).round}
   validates :tags,        length: { maximum: Rails.configuration.max_num_tags }
 
   scope :has_tag,         ->(value) { where( :tags => value )   }

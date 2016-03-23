@@ -298,7 +298,7 @@ de:
     variant: Variantentyp
     categories_info: Die Zuordnung der Kategorien hilft den Käufern, Ihr Produkt zu finden.
     keywords_info: Wir empfehlen Ihnen, mit %{num} Stichwörtern das Produkt zu charakterisieren. Diese Stickwörtern dienen sowohl dem internen als auch externem Search.
-    desc_info: Beschreiben Sie Ihr Produkt mit all den ansprechenden Eigenschaften, die für Käufer relevant sind.
+    desc_info: Beschreiben Sie Ihr Produkt mit all den ansprechenden Eigenschaften, die für Käufer relevant sind. (max. 250 Wörter)
     cancel: Abbrechen
     product_seal: Produktsiegel
     product_seal_info: Hier können Sie Ihre Produktsiegel hochladen. (max. 1 MB pro Bild)
