@@ -3,11 +3,10 @@
 
 :javascript
   $(document).ready(function() {
-      $('#product_categories').multiselect({
-        nonSelectedText: "#{I18n.t(:non_selected_text, scope: :multiselect)}",
-        enableCaseInsensitiveFiltering: true,
-        maxHeight: 400,
-      });
+    $('#product_categories').multiselect({
+      enableCaseInsensitiveFiltering: true,
+      maxHeight: 400,
+    });
   });
 
 - if @product.persisted?
@@ -79,25 +78,25 @@
             %span
               %i.fa.fa-cloud-upload
               =I18n.t(:upload, scope: :image_upload)
-            = f.file_field @product.seal0, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#seal_0_#{@product.id}", :class => 'img-file-upload upload', :onchange =>"validateImgFile(this);"
+            = f.file_field :seal0, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#seal_0_#{@product.id}", :class => 'img-file-upload upload', :onchange =>"validateImgFile(this);"
         %td{:colspan => 2, :align => :center}
           %div.fileUpload.btn.btn-default
             %span
               %i.fa.fa-cloud-upload
               =I18n.t(:upload, scope: :image_upload)
-            = f.file_field @product.seal1, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#seal_1_#{@product.id}", :class => 'img-file-upload upload', :onchange =>"validateImgFile(this);"
+            = f.file_field :seal1, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#seal_1_#{@product.id}", :class => 'img-file-upload upload', :onchange =>"validateImgFile(this);"
         %td{:colspan => 2, :align => :center}
           %div.fileUpload.btn.btn-default
             %span
               %i.fa.fa-cloud-upload
               =I18n.t(:upload, scope: :image_upload)
-            = f.file_field @product.seal2, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#seal_2_#{@product.id}", :class => 'img-file-upload upload', :onchange =>"validateImgFile(this);"
+            = f.file_field :seal2, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#seal_2_#{@product.id}", :class => 'img-file-upload upload', :onchange =>"validateImgFile(this);"
         %td{:colspan => 2, :align => :center}
           %div.fileUpload.btn.btn-default
             %span
               %i.fa.fa-cloud-upload
               =I18n.t(:upload, scope: :image_upload)
-            = f.file_field @product.seal3, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#seal_3_#{@product.id}", :class => 'img-file-upload upload', :onchange =>"validateImgFile(this);"
+            = f.file_field :seal3, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#seal_3_#{@product.id}", :class => 'img-file-upload upload', :onchange =>"validateImgFile(this);"
 
   = f.submit :class => 'btn btn-primary', :value => @product.persisted? ? I18n.t(:update_basic, scope: :edit_product) : I18n.t(:new_basic, scope: :edit_product)
   = link_to I18n.t(:cancel, scope: :edit_product), edit_user_path(current_user, :user_info_edit_part => :edit_product), :class => 'btn btn-primary'

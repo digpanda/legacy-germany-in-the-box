@@ -250,7 +250,7 @@ class ProductsController < ApplicationController
     end
 
     def product_params
-      params.require(:product).permit(:desc, :name, :brand, :img, tags:[], options_attributes: [:id, :name, suboptions_attributes: [:id, :name]], skus_attributes: [:id, :img0, :img1, :img2, :img3, :price, :quantity, :currency, :weight, :customizable, :status, :unit, :space_length, :space_width, :space_height, :renew, :timed, option_ids: []])
+      params.require(:product).permit(:seal0, :seal1, :seal2, :seal3, :desc, :name, :brand, :img, tags:[], options_attributes: [:id, :name, suboptions_attributes: [:id, :name]], skus_attributes: [:id, :img0, :img1, :img2, :img3, :price, :quantity, :currency, :weight, :customizable, :status, :unit, :space_length, :space_width, :space_height, :renew, :timed, option_ids: []])
     end
 end
 
