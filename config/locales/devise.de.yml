@@ -13,7 +13,7 @@ de:
       locked: "Dein Account ist gesperrt."
       not_found_in_database: "E-Mail-Adresse oder Passwort ungültig."
       timeout: "Deine Sitzung ist abgelaufen, bitte melde Dich erneut an."
-      unauthenticated: "Du musst Dich anmelden oder registrieren, bevor Du fortfahren kannst."
+      unauthenticated: "Das Passwort und die EMail Adresse, die Sie eingegeben haben, stimmen nicht überein"
       unconfirmed: "Du musst Deinen Account bestätigen, bevor Du fortfahren kannst."
     mailer:
       confirmation_instructions:
