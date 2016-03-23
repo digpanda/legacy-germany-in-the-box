@@ -1,18 +1,5 @@
 .container
-  .col-md-3
-    %aside.sidebar-left
-      %ul.nav.nav-pills.nav-stacked.nav-arrow
-        - unless params[:finished]
-          %li{:class => 'active'}
-            =link_to I18n.t(:shop_application, scope: :shop_application),  '#'
-          %li
-            =link_to I18n.t(:application_finished, scope: :shop_application),  '#'
-        - else
-          %li
-            =link_to I18n.t(:shop_application, scope: :shop_application),  '#'
-          %li{:class => 'active'}
-            =link_to I18n.t(:application_finished, scope: :shop_application),  '#'
-  .col-md-9
+  .col-md-12
     - unless params[:finished]
       = form_for :shop_application, html: {'data-toggle': 'validator'} do |f|
         .panel-group
