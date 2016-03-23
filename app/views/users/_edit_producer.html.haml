@@ -1,4 +1,4 @@
-= form_for @shop, :html => {role: 'form'} do |f|
+= form_for @shop, :html => {'data-toggle': 'validator', role: 'form', :id => 'testtest', :name => 'testtest'} do |f|
   .panel-group
     .panel.panel-info
       .panel-heading.text-center
@@ -8,41 +8,55 @@
           %tbody
             %tr.form-group
               %td{width: '20%'}= I18n.t(:name, scope: :edit_shop)
-              %td{width: '80%'}= f.text_field :name, :class => 'form-control', :required => true, :placeholder => I18n.t(:company_name_placeholder, scope: :edit_shop)
+              %td{width: '80%'}
+                = f.text_field :name, :class => 'form-control', :required => true, :maxLength => Rails.configuration.max_short_text_length, :placeholder => I18n.t(:company_name_placeholder, scope: :edit_shop)
+                %div.help-block.with-errors
             %tr.form-group
               %td{width: '20%', :title => I18n.t(:founding_year_info, scope: :edit_shop) }
                 = I18n.t(:founding_year, scope: :edit_shop)
                 %i.fa.fa-info-circle{ :title => I18n.t(:founding_year_info, scope: :edit_shop) }
-              %td{width: '80%'}= f.text_field :founding_year, :class => 'form-control', :required => true, :pattern => '^(18|19|20)\d{2}$', :maxlength => 4, :placeholder => '2016'
+              %td{width: '80%'}
+                = f.text_field :founding_year, :class => 'form-control', :required => true, :pattern => '^(18|19|20)\d{2}$', :maxLength => 4, :placeholder => '2016'
+                %div.help-block.with-errors
             %tr.form-group
               %td{width: '20%'}
                 = I18n.t(:register, scope: :edit_shop)
-              %td{width: '80%'}= f.text_field :register, :class => 'form-control', :required => true, :placeholder => 'HRB 999999'
+              %td{width: '80%'}
+                = f.text_field :register, :class => 'form-control', :required => true, :maxLength => Rails.configuration.max_tiny_text_length, :placeholder => 'HRB 999999'
+                %div.help-block.with-errors
             %tr.form-group
               %td{width: '20%', :title => I18n.t(:desc_info, scope: :edit_shop) }
                 = I18n.t(:desc, scope: :edit_shop)
                 %i.fa.fa-info-circle{ :title => I18n.t(:desc_info, scope: :edit_shop) }
-              %td{width: '80%'}= f.text_area :desc, :class => 'form-control', rows: 4, :required => true
+              %td{width: '80%'}
+                = f.text_area :desc, :class => 'form-control', rows: 4, :required => true, :maxLength => Rails.configuration.max_medium_text_length
+                %div.help-block.with-errors
             %tr.form-group
               %td{width: '20%', :title => I18n.t(:philosophy_info, scope: :edit_shop) }
                 = I18n.t(:philosophy, scope: :edit_shop)
                 %i.fa.fa-info-circle{ :title => I18n.t(:philosophy_info, scope: :edit_shop) }
-              %td{width: '80%'}= f.text_area :philosophy, :class => 'form-control', rows: 4, :required => true
+              %td{width: '80%'}
+                = f.text_area :philosophy, :class => 'form-control', rows: 4, :required => true, :maxLength => Rails.configuration.max_medium_text_length
+                %div.help-block.with-errors
             %tr.form-group
               %td{width: '20%', :title => I18n.t(:stories_info, scope: :edit_shop) }
                 = I18n.t(:stories, scope: :edit_shop)
                 %i.fa.fa-info-circle{ :title => I18n.t(:stories_info, scope: :edit_shop) }
-              %td{width: '80%'}= f.text_area :stories, :class => 'form-control', rows: 4, :required => true
+              %td{width: '80%'}
+                = f.text_area :stories, :class => 'form-control', rows: 4, :required => true, :maxLength => Rails.configuration.max_long_text_length
+                %div.help-block.with-errors
             %tr.form-group
               %td{width: '20%', :title => I18n.t(:uniqueness_info, scope: :edit_shop) }
                 = I18n.t(:uniqueness, scope: :edit_shop)
                 %i.fa.fa-info-circle{ :title => I18n.t(:uniqueness_info, scope: :edit_shop) }
-              %td{width: '80%'}= f.text_area :uniqueness, :class => 'form-control', rows: 4
+              %td{width: '80%'}= f.text_area :uniqueness, :class => 'form-control', rows: 4, :maxLength => Rails.configuration.max_medium_text_length
             %tr.form-group
               %td{width: '20%', :title => I18n.t(:german_essence_info, scope: :edit_shop) }
                 = I18n.t(:german_essence, scope: :edit_shop)
                 %i.fa.fa-info-circle{ :title => I18n.t(:german_essence_info, scope: :edit_shop) }
-              %td{width: '80%'}= f.text_area :german_essence, :class => 'form-control', rows: 4
+              %td{width: '80%'}
+                = f.text_area :german_essence, :class => 'form-control', rows: 4, :maxLength => Rails.configuration.max_medium_text_length
+                %div.help-block.with-errors
     .panel.panel-default
       .panel-body
         %table.table.table-borderless
@@ -51,12 +65,16 @@
               %td{width: '20%', :title => I18n.t(:ust_id_info, scope: :edit_shop) }
                 = I18n.t(:ustid, scope: :edit_shop)
                 %i.fa.fa-info-circle{ :title => I18n.t(:ust_id_info, scope: :edit_shop) }
-              %td{width: '80%'}= f.text_field :ustid, :class => 'form-control', :placeholder => 'DE999999999'
+              %td{width: '80%'}
+                = f.text_field :ustid, :class => 'form-control', :placeholder => 'DE999999999', :maxLength => Rails.configuration.max_tiny_text_length
+                %div.help-block.with-errors
             %tr.form-group
               %td{width: '20%', :title => I18n.t(:eroi_number_info, scope: :edit_shop) }
                 = I18n.t(:eroi, scope: :edit_shop)
                 %i.fa.fa-info-circle{ :title => I18n.t(:eroi_number_info, scope: :edit_shop) }
-              %td{width: '80%'}= f.text_field :eroi, :class => 'form-control'
+              %td{width: '80%'}
+                = f.text_field :eroi, :class => 'form-control', :maxLength => Rails.configuration.max_tiny_text_length
+                %div.help-block.with-errors
     .panel.panel-info
       .panel-heading{ :title => I18n.t(:target_groups_info, scope: :edit_shop, num: Rails.configuration.max_num_target_groups) }
         .btn-toolbar{ :style => 'margin-left:22px' }
@@ -91,9 +109,9 @@
           %tbody
             - if @shop.sales_channels
               - @shop.sales_channels.each_slice(2) do |sck, scv|
-                %tr.form-group
+                %tr
                   %td{width: '20%'}= select_tag 'shop[sales_channels][]', options_for_select([ 'Online-Shop', 'Online-Marktplatz', 'Einzelhandler', 'Workshop' ], sck), :class => 'form-control'
-                  %td{width: '60%'}= text_field_tag 'shop[sales_channels][]', scv, :class => 'form-control', :placeholder => I18n.t(:sales_channel, scope: :edit_shop), :required => true
+                  %td.form-group{width: '60%'}= text_field_tag 'shop[sales_channels][]', scv, :class => 'form-control', :placeholder => I18n.t(:sales_channel, scope: :edit_shop), :required => true
                   %td{width: '20%'}
                     %a{ :href => '#', :class => 'btn', :onclick => "$(this).closest('tr').remove(); return false;" }
                       %i.fa.fa-times-circle
@@ -118,4 +136,4 @@
                 = I18n.t(:statement_2, scope: :shop_application)
 
 
-  = f.button I18n.t(:save, scope: :edit_shop), :class => 'btn btn-primary', name: :user_info_edit_part, value: :edit_producer
+  = f.button I18n.t(:save, scope: :edit_shop), :class => 'btn btn-primary', :onclick => "$('.dynamical_required').each( function () { if ( $(this).val().length == 0 ) { $(this).addClass('invalidBorderClass'); } else { $(this).removeClass('invalidBorderClass'); } } ); if ( $('.invalidBorderClass').length > 0 ) { return false; }",  name: :user_info_edit_part, value: :edit_producer
