@@ -1,15 +1,15 @@
 module FunctionCache
 
   def get_root_level_categories_from_cache
-    Rails.cache.fetch("all_root_level_categories_cache", :expires_in => Rails.configuration.products_search_cache_expire_limit ) {
-      root_level_categories = Category.roots.is_active
+    Rails.cache.fetch("all_root_level_categories_cache_#{I18n.locale}", :expires_in => Rails.configuration.products_search_cache_expire_limit ) {
+      root_level_categories = Category.roots.is_active.to_a.sort { |a,b| a.get_locale_name <=> b.get_locale_name }
       root_level_categories.collect { |c| c.children.count > 1 ? c : c.children.first }
     }
   end
 
   def get_first_level_categories_from_cache(root)
-    Rails.cache.fetch("first_level_categories_cache_of_root_leve_#{root.id}", :expires_in => Rails.configuration.products_search_cache_expire_limit ) {
-      root.children.is_active.to_a.sort! { |a,b| a.children.count <=> b.children.count }.reverse!
+    Rails.cache.fetch("first_level_categories_cache_of_root_leve_#{root.id}_#{I18n.locale}", :expires_in => Rails.configuration.products_search_cache_expire_limit ) {
+      root.children.is_active.to_a.sort { |a,b| a.get_locale_name <=> b.get_locale_name }
     }
   end
 
@@ -24,8 +24,8 @@ module FunctionCache
   end
 
   def get_second_level_categories_from_cache(first_level_category)
-    Rails.cache.fetch("second_level_categories_cache_of_first_level_category_#{first_level_category.id}", :expires_in => Rails.configuration.products_search_cache_expire_limit ) {
-      first_level_category.children.is_active.to_a
+    Rails.cache.fetch("second_level_categories_cache_of_first_level_category_#{first_level_category.id}_#{I18n.locale}", :expires_in => Rails.configuration.products_search_cache_expire_limit ) {
+      first_level_category.children.is_active.to_a.sort { |a,b| a.get_locale_name <=> b.get_locale_name }
     }
   end
 

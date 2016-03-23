@@ -610,7 +610,7 @@ Category.create!(
     :name => 'Non-alcoholic Beverages',
     :code => 'L2-97',
     :parent => category_food_drinks,
-    :name_locales => { :'zh-CN' => '软饮料', :de => 'alkoholfreie Getränke'}
+    :name_locales => { :'zh-CN' => '软饮料', :de => 'Alkoholfreie Getränke'}
 )
 
 Category.create!(
