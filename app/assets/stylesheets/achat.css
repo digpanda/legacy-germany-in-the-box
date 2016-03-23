@@ -1,3 +1,13 @@
+body {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
+
+.container-fluid,
+.row-fluid { height: inherit; }
+
+
 .invalidBorderClass{
     border-color: darkred;
     border-width:1px;
