@@ -1,4 +1,4 @@
-json.extract! user, :id, :username, :fname, :lname, :country, :lang, :birth, :about, :website, :lang, :provider, :tel, :mobile
+json.extract! user, :id, :username, :fname, :lname, :birth, :about, :website, :provider, :tel, :mobile
 json.gender user.gender.abbr
 json.pic user.pic.url
 json.follower_count user.followers.size

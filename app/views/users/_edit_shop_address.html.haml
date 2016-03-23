@@ -17,7 +17,7 @@
           = f.text_field :city, class: 'form-control', :placeholder => I18n.t(:city, scope: :edit_address), :required => true, :style => 'width:248px'
       = f.text_field :country, :class => 'form-control', :value => 'Deutschland', :readonly => true
     .form-group
-      - ['billing', 'sender', 'both'].each do |t|
+      - ['billing', 'sender', 'both'].reject { |t| t != 'both' ? current_user.shop.addresses.select { |a| (a.type == t || a.type == 'both')  }.count > 0 : current_user.shop.addresses.count > 0  }.each do |t|
         .row
           .col-lg-offset-1.col-md-offset-1
             = f.radio_button :type, t, :checked => (t == 'both'), :required => true, :class => 'i-radio'
@@ -46,7 +46,7 @@
               = f.text_field :city, class: 'form-control', :placeholder => I18n.t(:city, scope: :edit_address), :required => true, :style => 'width:248px'
           = f.text_field :country, :class => 'form-control', :value => 'Deutschland', :readonly => true
         .form-group
-          - ['billing', 'sender', 'both'].each do |t|
+          - ['billing', 'sender', 'both'].reject { |t| t != 'both' ? current_user.shop.addresses.select { |a| (a.type == t)  }.count > 0 : current_user.shop.addresses.count > 0  }.each do |t|
             .row
               .col-lg-offset-1.col-md-offset-1
                 = f.radio_button :type, t, :checked => (t == a.type), :required => true, :class => 'i-radio'
