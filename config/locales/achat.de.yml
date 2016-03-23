@@ -262,7 +262,7 @@ de:
     agb_statement: Hiermit versichere ich, dass ich die AGB der DigPanda GmbH komplett gelesen habe und ich mit den Inhalten dieser AGB einverstanden bin. 
     required_field_info: '* Pflichtfeld'
     company_name_placeholder: 'Beispiel GmbH'
-    shopname: Shopname
+    shopname: Shopname*
   edit_product:
     edit: Editieren
     remove: Entfernen
@@ -287,7 +287,7 @@ de:
     delete_ko: Ein Fehler ist bei der Lösung des Produkts aufgetreten.
     update_ok: Das Produkt erfolgreich aktualisiert!
     update_ko: Ein Fehler ist bei der Änderung des Produkts aufgetreten.
-    categories: Kategorien*
+    categories: Kategorie*
     skus: Aritkelpositionen
     new_basic: Erstellen
     update_basic: Akutalisieren
