@@ -22,8 +22,8 @@
     .form-group
       = f.text_field :website, :class => 'form-control', placeholder: I18n.t(:website, scope: :edit_personal)
     .form-group
-      = f.text_field :tel, :class => 'form-control', placeholder: I18n.t(:telephone, scope: :edit_personal)
+      = f.text_field :tel, :class => 'form-control', placeholder: I18n.t(:telephone, scope: :edit_personal), :pattern => '^(((((((00|\+)49[ \-/]?)|0)[1-9][0-9]{1,4})[ \-/]?)|((((00|\+)49\()|\(0)[1-9][0-9]{1,4}\)[ \-/]?))[0-9]{1,7}([ \-/]?[0-9]{1,5})?)$', :placeholder => '+49(89)123456'
     .form-group
-      = f.text_field :mobile, :class => 'form-control', placeholder: I18n.t(:mobile, scope: :edit_personal)
+      = f.text_field :mobile, :class => 'form-control', placeholder: I18n.t(:mobile, scope: :edit_personal), :pattern => '^(((((((00|\+)49[ \-/]?)|0)[1-9][0-9]{1,4})[ \-/]?)|((((00|\+)49\()|\(0)[1-9][0-9]{1,4}\)[ \-/]?))[0-9]{1,7}([ \-/]?[0-9]{1,5})?)$', :placeholder => '+49(176)64336650'
     .form-group
       = f.button I18n.t(:save, scope: :edit_personal), :class => 'btn btn-primary', name: :user_info_edit_part, value: :edit_personal
