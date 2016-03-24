@@ -54,7 +54,8 @@ shop = Shop.create!(
     :statement0 => true,
     :statement1 => true,
     :statement2 => true,
-    :agb => true
+    :agb => true,
+    :shopname => 'Herz-Buffet 01'
 );
 
 product = Product.new(
@@ -130,7 +131,8 @@ shop = Shop.create!(
     :statement0 => true,
     :statement1 => true,
     :statement2 => true,
-    :agb => true
+    :agb => true,
+    :name => 'Herz-Buffet 02',
 );
 
 product = Product.new(
