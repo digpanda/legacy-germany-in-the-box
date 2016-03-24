@@ -31,11 +31,8 @@ body {
     filter: alpha(opacity=0);
 }
 
-.table.table-borderless {
-    border-bottom:0px !important;
-}
-.table.table-borderless  th, .table.table-borderless  td {
-    border: 0px !important;
+.table-borderless tbody tr td, .table-borderless tbody tr th, .table-borderless thead tr th {
+    border: none;
 }
 
 textarea {

@@ -136,7 +136,7 @@
                   = fs.check_box :status, { :class => 'i-check' }, true
                   = I18n.t('edit_product_detail.status.true')
     - elsif (not new) && @product.skus[fs.index].id.to_s == params[:sku_id]
-      %table.table.table-bordered
+      %table.table.table-borderless
         %tbody
           %tr
             %td.text-center.info{:colspan => 8, :title => I18n.t(:images_info, scope: :edit_product_detail)}
@@ -180,21 +180,21 @@
 
       .gap
 
-      %table.table.table-bordered
+      %table.table.table-borderless
         %tbody
           %tr
             %td.text-center.info{:colspan => 4}= I18n.t(:sku_options, scope: :edit_product_detail)
           %tr
-            %td.text-center{:colspan => 2, :title => I18n.t(:variants_info, scope: :edit_product_detail)}
+            %td{:colspan => 2, :title => I18n.t(:variants_info, scope: :edit_product_detail)}
               = I18n.t(:sku_variants_options, scope: :edit_product_detail)
               %i.fa.fa-info-circle{ :title => I18n.t(:variants_info, scope: :edit_product_detail) }
-            %td.text-center{:colspan => 2}= I18n.t(:quantity, scope: :edit_product_detail)
+            %td{:colspan => 2}= I18n.t(:quantity, scope: :edit_product_detail)
           %tr
             %td.form-group{:colspan => 2}= fs.select :option_ids, grouped_options_for_select(get_grouped_variants_options(@product), @sku.option_ids ), {}, {:multiple => 'multiple', :class => 'sku_variants_options', :required => true}
             %td.form-group{:colspan => 2}= fs.text_field :quantity, :class => 'form-control', :placeholder => @sku.limited ? '' : I18n.t(@sku.limited.to_s.to_sym, scope: 'edit_product_detail.limited'), :pattern => '^[1-9][0-9]*$', :required => true
           %tr
-            %td.text-center{:colspan => 2}= I18n.t(:price, scope: :edit_product_detail)
-            %td.text-center{:colspan => 2}= I18n.t(:discount, scope: :edit_product_detail)
+            %td{:colspan => 2}= I18n.t(:price, scope: :edit_product_detail)
+            %td{:colspan => 2}= I18n.t(:discount, scope: :edit_product_detail)
           %tr
             %td{:colspan => 2}
               .input-group.form-group{style: 'width:266px'}
@@ -203,8 +203,8 @@
                   = @product.shop.currency
             %td.form-group{:colspan => 2}= fs.text_field :discount, :class => 'form-control', :pattern => '^[1-9][0-9]?$|^100$|^0$', :required => true
           %tr
-            %td.text-center{:colspan => 2}= I18n.t(:weight, scope: :edit_product_detail)
-            %td.text-center{:colspan => 2, :title => I18n.t(:space_weight_info, scope: :edit_product_detail)}
+            %td{:colspan => 2}= I18n.t(:weight, scope: :edit_product_detail)
+            %td{:colspan => 2, :title => I18n.t(:space_weight_info, scope: :edit_product_detail)}
               = I18n.t(:space_weight, scope: :edit_product_detail)
               %i.fa.fa-info-circle{ :title => I18n.t(:space_weight_info, scope: :edit_product_detail) }
           %tr
@@ -214,7 +214,7 @@
                   = fs.text_field :weight, :class => 'form-control', :required => true, :pattern => '^\d+\.?\d*$'
                 .form-group
                   = fs.select :unit, options_for_select(['g', 'kg', 'ml', 'l'], @sku.unit), {}, { :class => 'form-control' }
-            %td.text-center{:colspan => 2}
+            %td{:colspan => 2}
               .form-inline
                 .form-group
                   .input-group.input-group-sm
@@ -232,25 +232,25 @@
                     .input-group-addon
                       = I18n.t('cm', scope: :edit_product_detail)
           %tr
-            %td.text-center{:colspan => 2, :title => I18n.t(:customizable_info, scope: :edit_product_detail)}
+            %td{:colspan => 2, :title => I18n.t(:customizable_info, scope: :edit_product_detail)}
               = I18n.t('edit_product_detail.customizable.info')
               %i.fa.fa-info-circle{ :title => I18n.t(:customizable_info, scope: :edit_product_detail) }
-            %td.text-center{:colspan => 2}= I18n.t('edit_product_detail.status.info')
+            %td{:colspan => 2}= I18n.t('edit_product_detail.status.info')
           %tr
             %td.form-group{:colspan => 2}
-              .checkbox
+              .checkbox{:style => 'margin:0px'}
                 %label
                   = fs.hidden_field :customizable
                   = fs.check_box :customizable, { :class => 'i-check' }, true
                   = I18n.t(true, scope: 'edit_product_detail.customizable')
             %td.form-group{:colspan => 2}
-              .checkbox
+              .checkbox{:style => 'margin:0px'}
                 %label
                   = fs.hidden_field :status
                   = fs.check_box :status, { :class => 'i-check' }, true
                   = I18n.t(true, scope: 'edit_product_detail.status')
 
-      %table.table.table-bordered
+      %table.table.table-borderless
         %tbody
           %tr
             %td.text-center.info{:colspan => 4}

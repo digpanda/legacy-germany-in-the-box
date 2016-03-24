@@ -35,7 +35,7 @@
 = form_for @product, :html => {'data-toggle': 'validator'} do |f|
   = hidden_field_tag :part, :basic
 
-  %table.table.table-bordered
+  %table.table.table-borderless
     %tbody
       %tr
         %td.text-center.info{colspan: 2}=I18n.t(:basic_info, scope: :edit_product)
@@ -51,7 +51,7 @@
           %i.fa.fa-info-circle{ :title => I18n.t(:desc_info, scope: :edit_product) }
         %td= f.text_area :desc, :class => 'form-control', rows: 8, :required => true, :maxLength => Rails.configuration.max_medium_text_length
 
-  %table.table.table-bordered
+  %table.table.table-borderless
     %tbody
       %tr
         %td.info.text-center{ :title => I18n.t(:categories_info, scope: :edit_product) }
@@ -61,7 +61,7 @@
         %td= f.select :categories, grouped_options_for_select(get_grouped_categories_options, @product.categories.map { |c| c.id.to_s }), { :include_blank => I18n.t(:non_selected_text, scope: :multiselect) }, :name => 'product[categories][]', :class => 'form-control product_categories'
 
 
-  %table.table.table-bordered
+  %table.table.table-borderless
     %tbody
       %tr
         %td.text-center.info{ :colspan => 3, :title => I18n.t(:keywords_info, scope: :edit_product, num: Rails.configuration.max_num_addresses) }
@@ -72,7 +72,7 @@
         %td= text_field_tag "product[tags][]", @product.tags[1], :class => 'form-control', :placeholder => I18n.t(:tag2, scope: :edit_product)
         %td= text_field_tag "product[tags][]", @product.tags[2], :class => 'form-control', :placeholder => I18n.t(:tag3, scope: :edit_product)
 
-  %table.table.table-bordered
+  %table.table.table-borderless
     %tbody
       %tr
         %td.text-center.info{:colspan => 8, :title => I18n.t(:product_seal_info, scope: :edit_product)}
