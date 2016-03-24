@@ -23,11 +23,21 @@
           = f.text_field :city, class: 'form-control', :placeholder => I18n.t(:city, scope: :edit_address), :required => true, :style => 'width:248px'
       = f.text_field :country, :class => 'form-control', :value => 'Deutschland', :readonly => true
     .form-group
-      - ['billing', 'sender', 'both'].reject { |t| t != 'both' ? current_user.shop.addresses.select { |a| (a.type == t || a.type == 'both')  }.count > 0 : current_user.shop.addresses.count > 0  }.each do |t|
+      - if current_user.shop.addresses.in(:type => ['billing', 'both']).count < Rails.configuration.max_num_shop_billing_addresses
         .row
           .col-lg-offset-1.col-md-offset-1
-            = f.radio_button :type, t, :checked => (t == 'both'), :required => true, :class => 'i-radio'
-            = I18n.t(t, scope: :edit_address)
+            = f.radio_button :type, 'billing', :required => true, :class => 'i-radio'
+            = I18n.t('billing', scope: :edit_address)
+      - if current_user.shop.addresses.in(:type => ['sender', 'both']).count < Rails.configuration.max_num_shop_sender_addresses
+        .row
+          .col-lg-offset-1.col-md-offset-1
+            = f.radio_button :type, 'sender', :required => true, :class => 'i-radio'
+            = I18n.t('sender', scope: :edit_address)
+      - if current_user.shop.addresses.in(:type => ['billing', 'sender', 'both']).count < Rails.configuration.max_num_shop_billing_addresses
+        .row
+          .col-lg-offset-1.col-md-offset-1
+            = f.radio_button :type, 'both', :required => true, :class => 'i-radio'
+            = I18n.t('both', scope: :edit_address)
     .form-group
       %input.btn.btn-primary{:type => "submit", :value => I18n.t(:add_address, scope: :edit_address)}
 
@@ -58,11 +68,21 @@
               = f.text_field :city, class: 'form-control', :placeholder => I18n.t(:city, scope: :edit_address), :required => true, :style => 'width:248px'
           = f.text_field :country, :class => 'form-control', :value => 'Deutschland', :readonly => true
         .form-group
-          - ['billing', 'sender', 'both'].reject { |t| t != 'both' ? current_user.shop.addresses.select { |a| (a.type == t)  }.count > 0 : current_user.shop.addresses.count > 0  }.each do |t|
+          - if current_user.shop.addresses.in(:type => ['billing']).count < Rails.configuration.max_num_shop_billing_addresses
             .row
               .col-lg-offset-1.col-md-offset-1
-                = f.radio_button :type, t, :checked => (t == a.type), :required => true, :class => 'i-radio'
-                = I18n.t(t, scope: :edit_address)
+                = f.radio_button :type, 'billing', :required => true, :class => 'i-radio'
+                = I18n.t('billing', scope: :edit_address)
+          - if current_user.shop.addresses.in(:type => ['sender']).count < Rails.configuration.max_num_shop_sender_addresses
+            .row
+              .col-lg-offset-1.col-md-offset-1
+                = f.radio_button :type, 'sender', :required => true, :class => 'i-radio'
+                = I18n.t('sender', scope: :edit_address)
+          - if current_user.shop.addresses.in(:type => 'both').count < [Rails.configuration.max_num_shop_billing_addresses, Rails.configuration.max_num_shop_sender_addresses].min && (current_user.shop.addresses.in(:type => 'billing').count < Rails.configuration.max_num_shop_billing_addresses || current_user.shop.addresses.in(:type => 'sender').count < Rails.configuration.max_num_shop_sender_addresses)
+            .row
+              .col-lg-offset-1.col-md-offset-1
+                = f.radio_button :type, 'both', :required => true, :class => 'i-radio'
+                = I18n.t('both', scope: :edit_address)
         .form-group
           %input.btn.btn-primary{:type => "submit", :value => I18n.t(:save_address, scope: :edit_address)}
     .col-md-4
@@ -81,7 +101,7 @@
               %li= "#{I18n.t(:zip, scope: :edit_address)} : #{ a.zip }"
               %li= "#{I18n.t(:type, scope: :edit_address)} : #{ I18n.t(a.type, scope: :edit_address) }"
 
-  - if current_user.shop.addresses.count < Rails.configuration.max_num_shop_billing_addresses + Rails.configuration.max_num_shop_sender_addresses
+  - if current_user.shop.addresses.in(:type => 'both').count < [Rails.configuration.max_num_shop_billing_addresses, Rails.configuration.max_num_shop_sender_addresses].min && (current_user.shop.addresses.in(:type => 'billing').count < Rails.configuration.max_num_shop_billing_addresses || current_user.shop.addresses.in(:type => 'sender').count < Rails.configuration.max_num_shop_sender_addresses)
     .col-md-4
       %a.address-box.address-box-new.popup-text{"data-effect" => "mfp-move-from-top", :href => "#add-address-dialog"}
         .vert-center
