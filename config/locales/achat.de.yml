@@ -302,6 +302,8 @@ de:
     cancel: Abbrechen
     product_seal: Produktsiegel
     product_seal_info: Hier können Sie Ihre Produktsiegel hochladen. (max. 1 MB pro Bild)
+    quantity_info: '%{num1} Stk. von %{num2} Varianten'
+    quantity: Menge
   edit_product_new:
     create_ok: Das Produkt erfolgreich erstellt!
     create_ko: Ein Fehler ist beim

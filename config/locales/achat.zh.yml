@@ -302,6 +302,8 @@ zh-CN:
     cancel: 取消
     product_seal: 产品认证
     product_seal_info: 这里您可以上传产品认证。
+    quantity_info: '%{num2}个型号，共%{num1}件'
+    quantity: 数量
   edit_product_new:
     create_ok: 产品成功创建
     create_ko: 产品创建失败

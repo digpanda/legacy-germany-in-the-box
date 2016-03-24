@@ -30,6 +30,8 @@
           = I18n.t(:categories, scope: :edit_product)
           %i.fa.fa-info-circle{ :title => I18n.t(:categories_info, scope: :edit_product) }
         %th
+          = I18n.t(:quantity, scope: :edit_product_detail)
+        %th
           = I18n.t(:operations, scope: :edit_product)
     %tbody
       - current_user.shop.products.each do |p|
@@ -37,6 +39,7 @@
           %td= link_to p.get_locale_name, edit_user_path(current_user, :user_info_edit_part => :edit_product_update, :product_id => p.id)
           %td= p.brand
           %td= select_tag :categories, grouped_options_for_select(get_grouped_categories_options, p.categories.map { |c| c.id.to_s }), :class => 'form-control product_categories'
+          %td= I18n.t(:quantity_info, scope: :edit_product, num1: p.skus.inject(0) { |sum, s| sum += s.quantity }, num2: p.skus.count)
           %td{:align => "left"}
             = link_to I18n.t(:edit, scope: :edit_product),  edit_user_path(current_user, :user_info_edit_part => :edit_product_update, :product_id => p.id), :class => 'fa fa-edit'
             = link_to I18n.t(:remove, scope: :edit_product), product_path(p), :method => :delete, data: { confirm: I18n.t(:delete_product_message, scope: :edit_product) }, :class => 'fa fa-edit'
