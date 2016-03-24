@@ -283,19 +283,11 @@
                     .product-quick-view
                       %span.fa.fa-eye
                   .product-inner
-                    %h5.product-title= truncate(p.name, :length => 16)
-                    .product-desciption= truncate(p.desc, :length => 16)
+                    %h5.product-title= truncate(p.name, :length => 32)
+                    .product-desciption= truncate(p.desc, :length => 64)
                     .product-meta
-                      %span.product-time
-                        %i.fa.fa-clock-o
-                        8 days 47 h
                       %ul.product-price-list
                         %li
-                          %span.product-price $102
-                        %li
-                          %span.product-old-price $188
-                    %p.product-location
-                      %i.fa.fa-map-marker
-                      Boston
+                          %span.product-price= p.get_mas.price.to_s + ' ' + p.get_mas.currency.to_s
           .col-lg-12.col-md-12.col-sm-12
             = will_paginate @products, renderer: BootstrapPagination::Rails
