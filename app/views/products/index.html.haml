@@ -288,6 +288,9 @@
                     .product-meta
                       %ul.product-price-list
                         %li
-                          %span.product-price= p.get_mas.price.to_s + ' ' + p.get_mas.currency.to_s
+                          %span.product-price= (p.get_mas.price * (100 - p.get_mas.discount) / 100.0).to_s + ' ' + p.get_mas.currency.to_s
+                        - if p.get_mas.discount > 0
+                          %li
+                            %span.product-old-price= p.get_mas.price.to_s + ' ' + p.get_mas.currency.to_s
           .col-lg-12.col-md-12.col-sm-12
             = will_paginate @products, renderer: BootstrapPagination::Rails
