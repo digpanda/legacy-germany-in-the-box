@@ -32,26 +32,27 @@
       .tabbable
         %ul#myTab.nav.nav-tabs
           %li.active
-            %a{"data-toggle" => "tab", :href => "#tab-1"}
-              %i.fa.fa-pencil>
-              Desciption
+            %a{"data-toggle" => "tab", :href => "#tab-1", :title => I18n.t(:philosophy_info, scope: :edit_shop) }
+              %i.fa.fa-info{ :title => I18n.t(:philosophy_info, scope: :edit_shop) }
+              = I18n.t(:philosophy, scope: :edit_shop)
           %li
-            %a{"data-toggle" => "tab", :href => "#tab-2"}
-              %i.fa.fa-info>
-              Additional Information
+            %a{"data-toggle" => "tab", :href => "#tab-2", :title => I18n.t(:stories_info, scope: :edit_shop)}
+              %i.fa.fa-info{ :title => I18n.t(:stories_info, scope: :edit_shop) }
+              = I18n.t(:stories, scope: :edit_shop)
           %li
-            %a{"data-toggle" => "tab", :href => "#tab-3"}
-              %i.fa.fa-truck>
-              Shipping &amp; Payment
+            %a{"data-toggle" => "tab", :href => "#tab-3", :title => I18n.t(:uniqueness_info, scope: :edit_shop) }
+              %i.fa.fa-info{ :title => I18n.t(:uniqueness_info, scope: :edit_shop) }
+              = I18n.t(:uniqueness, scope: :edit_shop)
           %li
-            %a{"data-toggle" => "tab", :href => "#tab-4"}
-              %i.fa.fa-comments>
-              Reviews
+            %a{"data-toggle" => "tab", :href => "#tab-3", :title => I18n.t(:german_essence_info, scope: :edit_shop) }
+              %i.fa.fa-info{ :title => I18n.t(:german_essence_info, scope: :edit_shop) }
+              = I18n.t(:german_essence, scope: :edit_shop)
         .tab-content
           #tab-1.tab-pane.fade.in.active
-            %p Faucibus nibh quisque curabitur feugiat amet etiam magnis pulvinar posuere lacinia nisi in nam sapien dignissim nullam at luctus luctus euismod dis bibendum dignissim pretium ipsum placerat mollis ridiculus porta torquent elit rutrum massa sagittis mi nibh semper vitae condimentum mus blandit montes dignissim malesuada facilisis bibendum mauris rutrum ullamcorper
-            %p Platea euismod elit tristique vestibulum eleifend eget proin vulputate nascetur natoque iaculis himenaeos ac nunc facilisi dignissim ridiculus elementum litora ante netus purus habitant aliquet penatibus volutpat ultrices quam praesent
-            %p Fermentum orci eu vivamus nec magna egestas curae condimentum urna pharetra lorem quam urna egestas ornare suscipit velit vestibulum tortor erat viverra magnis vehicula faucibus luctus turpis ac suscipit interdum
+            = @shop.philosophy
           #tab-2.tab-pane.fade.in
+            = @shop.stories
           #tab-3.tab-pane.fade.in
+            = @shop.uniqueness
           #tab-4.tab-pane.fade.in
+            = @shop.german_essence
