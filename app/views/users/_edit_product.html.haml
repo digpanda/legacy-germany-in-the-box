@@ -41,8 +41,7 @@
           %td= select_tag :categories, grouped_options_for_select(get_grouped_categories_options, p.categories.map { |c| c.id.to_s }), :class => 'form-control product_categories'
           %td= I18n.t(:quantity_info, scope: :edit_product, num1: p.skus.inject(0) { |sum, s| sum += s.quantity }, num2: p.skus.count)
           %td{:align => "left"}
-            = link_to I18n.t(:edit, scope: :edit_product),  edit_user_path(current_user, :user_info_edit_part => :edit_product_update, :product_id => p.id), :class => 'fa fa-edit'
-            = link_to I18n.t(:remove, scope: :edit_product), product_path(p), :method => :delete, data: { confirm: I18n.t(:delete_product_message, scope: :edit_product) }, :class => 'fa fa-edit'
+            = link_to '', product_path(p), :method => :delete, data: { confirm: I18n.t(:delete_product_message, scope: :edit_product) }, :class => 'fa fa-times-circle fa-2x', :title => I18n.t(:remove, scope: :edit_product)
 
 - else
   %h4= I18n.t(:no_product, scope: :edit_product)
