@@ -1736,9 +1736,11 @@ label {
 .comment .comment-like [class^="fa fa-"] {
   font-weight: normal;
 }
+/*
 .comment .comment-reply {
   [class^="fa fa-"]: 13px;
 }
+*/
 .comment:hover .comment-like {
   opacity: 1;
   -ms-filter: none;
@@ -2747,9 +2749,9 @@ ul.pagination li.next a:before {
 .bg-holder > .bg-mask-white {
   background: #fff;
 }
-.bg-holder > .bg-mask-color-invert {
+/*.bg-holder > .bg-mask-color-invert {
   background: $base_color_invert;
-}
+}*/
 .bg-holder > .bg-parallax {
   background-position: 50% 0;
   background-attachment: fixed;
