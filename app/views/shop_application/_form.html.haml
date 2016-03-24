@@ -15,12 +15,12 @@
                     %strong= I18n.t(:email, scope: :shop_application)
                     %i.fa.fa-info-circle{ :title => I18n.t(:email_info, scope: :shop_application) }
                   %td{width: '70%'}
-                    = f.email_field :email, :class => 'form-control', :required => true, 'data-remote' => "#{is_registered_shop_application_index_url}", 'data-remote-error': I18n.t(:duplicated_email, scope: :shop_application), :maxLength => Rails.configuration.max_short_text_length, :placeholder => 'example@google.com'
+                    = f.email_field :email, :class => 'form-control', :required => true, 'data-remote' => "#{is_registered_shop_application_index_url}", 'data-remote-error': I18n.t(:duplicated_email, scope: :shop_application), :maxLength => Rails.configuration.max_tiny_text_length, :placeholder => 'example@google.com'
                     %div.help-block.with-errors
                 %tr.form-group
                   %td{width: '30%'}= I18n.t(:name, scope: :edit_shop)
                   %td{width: '70%'}
-                    = f.text_field :name, :class => 'form-control', :required => true, :maxLength => Rails.configuration.max_short_text_length, :placeholder => I18n.t(:company_name_placeholder, scope: :edit_shop)
+                    = f.text_field :name, :class => 'form-control', :required => true, :maxLength => Rails.configuration.max_tiny_text_length, :placeholder => I18n.t(:company_name_placeholder, scope: :edit_shop)
                     %div.help-block.with-errors
                 %tr.form-group
                   %td{width: '30%', :title => I18n.t(:founding_year_info, scope: :edit_shop) }

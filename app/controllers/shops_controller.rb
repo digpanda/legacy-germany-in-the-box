@@ -4,6 +4,10 @@ class ShopsController <  ApplicationController
 
   load_and_authorize_resource
 
+  def show
+    @categories_and_children, @categories_and_counters = get_category_values_for_left_menu(Shop.find(params[:id]).products)
+  end
+
   def update
      respond_to do |format|
        sp = shop_params
