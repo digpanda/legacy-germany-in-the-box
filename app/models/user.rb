@@ -34,7 +34,7 @@ class User
 
   validates :role,          presence: true, inclusion: {in: [:customer, :shopkeeper, :admin]}
   validates :username,      presence: true, length: {maximum: Rails.configuration.max_tiny_text_length}
-  validates :email,         presence: true, length: {maximum: Rails.configuration.max_short_text_length}, uniqueness: true
+  validates :email,         presence: true, length: {maximum: Rails.configuration.max_tiny_text_length}, uniqueness: true
   validates :birth,         presence: true, :if => lambda { :customer == self.role }
   validates :gender,        presence: true, :if => lambda { :customer == self.role }
   validates :status,        presence: true

@@ -15,7 +15,7 @@ class ShopApplicationController < ApplicationController
 
     if @shop_application.save
       user = {}
-      user[:username] = params[:shop_application][:name]
+      user[:username] = params[:shop_application][:email]
       user[:email] = params[:shop_application][:email]
       user[:password] = @shop_application.code[0, 8]
       user[:password_confirmation] = @shop_application.code[0, 8]

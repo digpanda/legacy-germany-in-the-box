@@ -4,62 +4,24 @@
       %aside.sidebar-left
         .sidebar-box.text-center
           %img{:src => @shop.logo, :style => 'width:128px;height:128px'}
-        %ul.nav.nav-tabs.nav-stacked.nav-coupon-category.nav-coupon-category-left
-          %li.active
-            %a{:href => "#"}
-              %i.fa.fa-ticket>
-              All
-              %span 36
-          %li
-            %a{:href => "#"}
-              %i.fa.fa-cutlery>
-              Food &amp; Drink
-              %span 34
-          %li
-            %a{:href => "#"}
-              %i.fa.fa-calendar>
-              Events
-              %span 46
-          %li
-            %a{:href => "#"}
-              %i.fa.fa-female>
-              Beauty
-              %span 41
-          %li
-            %a{:href => "#"}
-              %i.fa.fa-bolt>
-              Fitness
-              %span 39
-          %li
-            %a{:href => "#"}
-              %i.fa.fa-headphones>
-              Electronics
-              %span 46
-          %li
-            %a{:href => "#"}
-              %i.fa.fa-image>
-              Furniture
-              %span 50
-          %li
-            %a{:href => "#"}
-              %i.fa.fa-umbrella>
-              Fashion
-              %span 50
-          %li
-            %a{:href => "#"}
-              %i.fa.fa-shopping-cart>
-              Shopping
-              %span 42
-          %li
-            %a{:href => "#"}
-              %i.fa.fa-home>
-              Home &amp; Graden
-              %span 42
-          %li
-            %a{:href => "#"}
-              %i.fa.fa-plane>
-              Travel
-              %span 48
+      %aside.sidebar-left
+        %div#left_menu
+          %ul
+            %li#left_menu_header{ :class => 'has-sub active'}
+              %a{:href => '#' }
+                %i{ :class => 'fa fa-list' }= I18n.t(:categories, scope: :category)
+            - @categories_and_children.keys.each do |c|
+              %li{ :class => 'has-sub' }
+                %a{:href => "#{show_products_in_category_path(c.id)}" }
+                  %i{ :class => "fa #{c.cssc}" }= ' ' + c.name
+                  %span= @categories_and_counters[c]
+                %ul
+                  - @categories_and_children[c].each do |cc|
+                    %li
+                      %a{:href => "#{show_products_in_category_path(cc.id)}" }
+                        %i= cc.name
+                        %span= @categories_and_counters[cc]
+
     .col-md-9
       .box
         %img{:src => @shop.banner}
