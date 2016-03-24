@@ -360,20 +360,20 @@ de:
     remove: Entfernen
     edit_option: Editieren
     remove_option: Entfernen
-    delete_option_message: Die gewählte Wahlmöglichkeit löschen?
+    delete_option_message: Das gewählte Artikelmerkmal löschen?
     name: Wahlmöglichkeit
-    option_name: Wahlmöglichkeit
+    option_name: Artikelmerkmal
     sku_dependent: Es gibt Produkte, welche gerade diese gewählte verwenden. Die Löschung ist daher unmöglich.
     create_variant: Erstellen
     update_variant: Aktualisieren
     create_option: Erstellen
     update_option: Akutalisieren
-    update_ok: Die Wahlmöglichkeit erfolgreich aktualisiert!
+    update_ok: Das Artikelmerkmal erfolgreich aktualisiert!
     variant_name: Variantentyp
-    option_name: Wahlmöglichkeit
-    new_option: Neue Wahlmöglichkeit
+    option_name: Artikelmerkmal
+    new_option: Neues Artikelmerkmal
     delete_variant_ok: Die Variante erfolgreich gelöscht!
-    delete_option_ok: Die Wahlmöglichkeit erfolgreich gelöscht!
+    delete_option_ok: Das Artikelmerkmal erfolgreich gelöscht!
     return: Zurück zur Produktliste
     cancel: Abbrechen
   popular_products:
