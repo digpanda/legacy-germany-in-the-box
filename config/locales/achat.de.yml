@@ -295,7 +295,7 @@ de:
     skus: Aritkelpositionen
     new_basic: Erstellen
     update_basic: Akutalisieren
-    variant: Variantentyp
+    variant: Variantentype
     categories_info: Die Zuordnung der Kategorien hilft den Käufern, Ihr Produkt zu finden.
     keywords_info: Wir empfehlen Ihnen, mit %{num} Stichwörtern das Produkt zu charakterisieren. Diese Stickwörtern dienen sowohl dem internen als auch externem Search.
     desc_info: Beschreiben Sie Ihr Produkt mit all den ansprechenden Eigenschaften, die für Käufer relevant sind. (max. 250 Wörter)
@@ -378,6 +378,7 @@ de:
     delete_option_ok: Das Artikelmerkmal erfolgreich gelöscht!
     return: Zurück zur Produktliste
     cancel: Abbrechen
+    variants: Varianten
   popular_products:
     search_prompt: Ich suche
     search_placeholder: ein Produkt

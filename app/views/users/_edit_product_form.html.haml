@@ -34,80 +34,94 @@
 
 = form_for @product, :html => {'data-toggle': 'validator'} do |f|
   = hidden_field_tag :part, :basic
-
-  %table.table.table-borderless
-    %tbody
-      %tr
-        %td.text-center.info{colspan: 2}=I18n.t(:basic_info, scope: :edit_product)
-      %tr.form-group
-        %td{width: '20%'}= I18n.t(:name, scope: :edit_product)
-        %td= f.text_field :name, :class => 'form-control', :required => true, :maxLength => Rails.configuration.max_short_text_length
-      %tr.form-group
-        %td{width: '20%'}= I18n.t(:brand, scope: :edit_product)
-        %td= f.text_field :brand, :class => 'form-control', :required => true, :maxLength => Rails.configuration.max_short_text_length
-      %tr.form-group
-        %td{width: '20%', :title => I18n.t(:desc_info, scope: :edit_product) }
-          = I18n.t(:desc, scope: :edit_product)
-          %i.fa.fa-info-circle{ :title => I18n.t(:desc_info, scope: :edit_product) }
-        %td= f.text_area :desc, :class => 'form-control', rows: 8, :required => true, :maxLength => Rails.configuration.max_medium_text_length
-
-  %table.table.table-borderless
-    %tbody
-      %tr
-        %td.info.text-center{ :title => I18n.t(:categories_info, scope: :edit_product) }
+  .panel-group
+    .panel.panel-info
+      .panel-heading
+        .text-center=I18n.t(:basic_info, scope: :edit_product)
+      .panel-body
+        %table.table.table-borderless
+          %tbody
+            %tr.form-group
+              %td{width: '20%'}= I18n.t(:name, scope: :edit_product)
+              %td= f.text_field :name, :class => 'form-control', :required => true, :maxLength => Rails.configuration.max_short_text_length
+            %tr.form-group
+              %td{width: '20%'}= I18n.t(:brand, scope: :edit_product)
+              %td= f.text_field :brand, :class => 'form-control', :required => true, :maxLength => Rails.configuration.max_short_text_length
+            %tr.form-group
+              %td{width: '20%', :title => I18n.t(:desc_info, scope: :edit_product) }
+                = I18n.t(:desc, scope: :edit_product)
+                %i.fa.fa-info-circle{ :title => I18n.t(:desc_info, scope: :edit_product) }
+              %td= f.text_area :desc, :class => 'form-control', rows: 8, :required => true, :maxLength => Rails.configuration.max_medium_text_length
+    .panel.panel-info
+      .panel-heading{ :title => I18n.t(:categories_info, scope: :edit_product) }
+        .text-center
           = I18n.t(:categories, scope: :edit_product)
           %i.fa.fa-info-circle{ :title => I18n.t(:categories_info, scope: :edit_product) }
-      %tr.form-group
-        %td= f.select :categories, grouped_options_for_select(get_grouped_categories_options, @product.categories.map { |c| c.id.to_s }), { :include_blank => I18n.t(:non_selected_text, scope: :multiselect) }, :name => 'product[categories][]', :class => 'form-control product_categories'
-
-
-  %table.table.table-borderless
-    %tbody
-      %tr
-        %td.text-center.info{ :colspan => 3, :title => I18n.t(:keywords_info, scope: :edit_product, num: Rails.configuration.max_num_addresses) }
+      .panel-body
+        %table.table.table-borderless
+          %tbody
+            %tr.form-group
+              %td= f.select :categories, grouped_options_for_select(get_grouped_categories_options, @product.categories.map { |c| c.id.to_s }), { :include_blank => I18n.t(:non_selected_text, scope: :multiselect) }, :name => 'product[categories][]', :class => 'form-control product_categories'
+    .panel.panel-info
+      .panel-heading{:title => I18n.t(:keywords_info, scope: :edit_product, num: Rails.configuration.max_num_addresses)}
+        .text-center
           = I18n.t(:tags, scope: :edit_product)
           %i.fa.fa-info-circle{ :title => I18n.t(:keywords_info, scope: :edit_product, num: Rails.configuration.max_num_addresses) }
-      %tr.form-group
-        %td= text_field_tag "product[tags][]", @product.tags[0], :class => 'form-control', :placeholder => I18n.t(:tag1, scope: :edit_product)
-        %td= text_field_tag "product[tags][]", @product.tags[1], :class => 'form-control', :placeholder => I18n.t(:tag2, scope: :edit_product)
-        %td= text_field_tag "product[tags][]", @product.tags[2], :class => 'form-control', :placeholder => I18n.t(:tag3, scope: :edit_product)
-
-  %table.table.table-borderless
-    %tbody
-      %tr
-        %td.text-center.info{:colspan => 8, :title => I18n.t(:product_seal_info, scope: :edit_product)}
+      .panel-body
+        %table.table.table-borderless
+          %tbody
+            %tr.form-group
+              %td= text_field_tag "product[tags][]", @product.tags[0], :class => 'form-control', :placeholder => I18n.t(:tag1, scope: :edit_product)
+              %td= text_field_tag "product[tags][]", @product.tags[1], :class => 'form-control', :placeholder => I18n.t(:tag2, scope: :edit_product)
+              %td= text_field_tag "product[tags][]", @product.tags[2], :class => 'form-control', :placeholder => I18n.t(:tag3, scope: :edit_product)
+    .panel.panel-info
+      .panel-heading{:title => I18n.t(:product_seal_info, scope: :edit_product)}
+        .text-center
           = I18n.t(:product_seal, scope: :edit_product)
           %i.fa.fa-info-circle{ :title => I18n.t(:product_seal_info, scope: :edit_product) }
-      %tr
-        %td{:colspan => 2, :align => :center}= image_tag get_uploaded_img_url(@product.seal0), :style => 'width:160px;height:160px', :id => "seal_0_#{@product.id}"
-        %td{:colspan => 2, :align => :center}= image_tag get_uploaded_img_url(@product.seal1), :style => 'width:160px;height:160px', :id => "seal_1_#{@product.id}"
-        %td{:colspan => 2, :align => :center}= image_tag get_uploaded_img_url(@product.seal2), :style => 'width:160px;height:160px', :id => "seal_2_#{@product.id}"
-        %td{:colspan => 2, :align => :center}= image_tag get_uploaded_img_url(@product.seal3), :style => 'width:160px;height:160px', :id => "seal_3_#{@product.id}"
-      %tr
-        %td{:colspan => 2, :align => :center}
-          %div.fileUpload.btn.btn-default
-            %span
-              %i.fa.fa-cloud-upload
-              =I18n.t(:upload, scope: :image_upload)
-            = f.file_field :seal0, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#seal_0_#{@product.id}", :class => 'img-file-upload upload', :onchange =>"validateImgFile(this);"
-        %td{:colspan => 2, :align => :center}
-          %div.fileUpload.btn.btn-default
-            %span
-              %i.fa.fa-cloud-upload
-              =I18n.t(:upload, scope: :image_upload)
-            = f.file_field :seal1, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#seal_1_#{@product.id}", :class => 'img-file-upload upload', :onchange =>"validateImgFile(this);"
-        %td{:colspan => 2, :align => :center}
-          %div.fileUpload.btn.btn-default
-            %span
-              %i.fa.fa-cloud-upload
-              =I18n.t(:upload, scope: :image_upload)
-            = f.file_field :seal2, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#seal_2_#{@product.id}", :class => 'img-file-upload upload', :onchange =>"validateImgFile(this);"
-        %td{:colspan => 2, :align => :center}
-          %div.fileUpload.btn.btn-default
-            %span
-              %i.fa.fa-cloud-upload
-              =I18n.t(:upload, scope: :image_upload)
-            = f.file_field :seal3, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#seal_3_#{@product.id}", :class => 'img-file-upload upload', :onchange =>"validateImgFile(this);"
+      .panel-body
+        %table.table.table-borderless
+          %tbody
+            %tr
+              %td{:colspan => 2, :align => :center}= image_tag get_uploaded_img_url(@product.seal0), :style => 'width:160px;height:160px', :id => "seal_0_#{@product.id}"
+              %td{:colspan => 2, :align => :center}= image_tag get_uploaded_img_url(@product.seal1), :style => 'width:160px;height:160px', :id => "seal_1_#{@product.id}"
+              %td{:colspan => 2, :align => :center}= image_tag get_uploaded_img_url(@product.seal2), :style => 'width:160px;height:160px', :id => "seal_2_#{@product.id}"
+              %td{:colspan => 2, :align => :center}= image_tag get_uploaded_img_url(@product.seal3), :style => 'width:160px;height:160px', :id => "seal_3_#{@product.id}"
+            %tr
+              %td{:colspan => 2, :align => :center}
+                %div.fileUpload.btn.btn-default
+                  %span
+                    %i.fa.fa-cloud-upload
+                    =I18n.t(:upload, scope: :image_upload)
+                  = f.file_field :seal0, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#seal_0_#{@product.id}", :class => 'img-file-upload upload', :onchange =>"validateImgFile(this);"
+              %td{:colspan => 2, :align => :center}
+                %div.fileUpload.btn.btn-default
+                  %span
+                    %i.fa.fa-cloud-upload
+                    =I18n.t(:upload, scope: :image_upload)
+                  = f.file_field :seal1, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#seal_1_#{@product.id}", :class => 'img-file-upload upload', :onchange =>"validateImgFile(this);"
+              %td{:colspan => 2, :align => :center}
+                %div.fileUpload.btn.btn-default
+                  %span
+                    %i.fa.fa-cloud-upload
+                    =I18n.t(:upload, scope: :image_upload)
+                  = f.file_field :seal2, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#seal_2_#{@product.id}", :class => 'img-file-upload upload', :onchange =>"validateImgFile(this);"
+              %td{:colspan => 2, :align => :center}
+                %div.fileUpload.btn.btn-default
+                  %span
+                    %i.fa.fa-cloud-upload
+                    =I18n.t(:upload, scope: :image_upload)
+                  = f.file_field :seal3, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#seal_3_#{@product.id}", :class => 'img-file-upload upload', :onchange =>"validateImgFile(this);"
+    .panel.panel-info
+      .panel-heading{ :title => I18n.t(:variants_info, scope: :edit_product_detail) }
+        .text-center
+          = I18n.t(:variant, scope: :edit_product)
+          %i.fa.fa-info-circle{ :title => I18n.t(:variants_info, scope: :edit_product) }
+      .panel-body
+        = f.fields_for :options do |fo|
+          .form-group
+            = fo.label I18n.t(:variant_name, scope: :edit_product_variant)
+            = fo.text_field :name, :class => 'form-control', :required => true
 
   = f.submit :class => 'btn btn-primary', :value => @product.persisted? ? I18n.t(:update_basic, scope: :edit_product) : I18n.t(:new_basic, scope: :edit_product), :onclick => "v = $('.product_categories'); if ( v.val() ) { return true; } else { v.next().addClass('invalidBorderClass'); return false; }"
   = link_to I18n.t(:cancel, scope: :edit_product), edit_user_path(current_user, :user_info_edit_part => :edit_product), :class => 'btn btn-primary'

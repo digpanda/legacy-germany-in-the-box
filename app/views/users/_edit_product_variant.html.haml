@@ -25,5 +25,5 @@
           %td{colspan: 1, width: '30%'}= I18n.t(:option_name, scope: :edit_product_variant)
           %td{colspan: 1, width: '55%'}= so.get_locale_name
           %td{colspan: 1, width: '15%'}
-            = link_to '', edit_user_path(current_user, :user_info_edit_part => :edit_product_variant_update, :product_id => @product.id, :variant_id => o.id, :option_id => so.id, :option => true) , :class => 'fa fa-edit fa-2x', :title => I18n.t(:edit_option, scope: :edit_product_variant)
-            = link_to '', remove_option_product_path(@product.id, o.id, so.id), method: :delete, data: { confirm: "#{I18n.t(:delete_option_message, scope: :edit_product_variant)}" }, :class => 'fa fa-times-circle fa-2x', :title => I18n.t(:remove_option, scope: :edit_product_variant)
+            = link_to '', edit_user_path(current_user, :user_info_edit_part => :edit_product_variant_update, :product_id => @product.id, :variant_id => o.id, :option_id => so.id, :option => true) , :class => 'fa fa-edit fa-lg', :title => I18n.t(:edit_option, scope: :edit_product_variant)
+            = link_to '', remove_option_product_path(@product.id, o.id, so.id), method: :delete, data: { confirm: "#{I18n.t(:delete_option_message, scope: :edit_product_variant)}" }, :class => 'fa fa-times-circle fa-lg', :title => I18n.t(:remove_option, scope: :edit_product_variant)
