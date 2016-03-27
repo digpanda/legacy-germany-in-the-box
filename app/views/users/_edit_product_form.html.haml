@@ -21,7 +21,8 @@
       v = $('.product_categories');
 
       if ( v.val().length == 0 ) {
-        v.next().addClass('invalidBorderClass'); return false;
+        v.next().addClass('invalidBorderClass');
+        return false;
       }
 
       $('.dynamical_required').each(
