@@ -47,11 +47,6 @@
       %i.fa.fa-edit
       = I18n.t(:sku_manage, scope: :edit_product_detail)
 
-
-  %a.btn.btn-primary{ :class => 'btn-lg',  :href => edit_user_path(current_user, :user_info_edit_part => :edit_product_variant, :product_id => @product.id) }
-    %i.fa.fa-edit
-    = I18n.t(:variant_manage, scope: :edit_product_detail)
-
 %br
 %br
 
@@ -59,8 +54,8 @@
   = hidden_field_tag :part, :basic
   .panel-group
     .panel.panel-info
-      .panel-heading
-        .text-center=I18n.t(:basic_info, scope: :edit_product)
+      .panel-heading.text-center
+        %label=I18n.t(:basic_info, scope: :edit_product)
       .panel-body
         %table.table.table-borderless
           %tbody
@@ -78,7 +73,7 @@
     .panel.panel-info
       .panel-heading{ :title => I18n.t(:categories_info, scope: :edit_product) }
         .text-center
-          = I18n.t(:categories, scope: :edit_product)
+          %label= I18n.t(:categories, scope: :edit_product)
           %i.fa.fa-info-circle{ :title => I18n.t(:categories_info, scope: :edit_product) }
       .panel-body
         %table.table.table-borderless
@@ -88,7 +83,7 @@
     .panel.panel-info
       .panel-heading{:title => I18n.t(:keywords_info, scope: :edit_product, num: Rails.configuration.max_num_addresses)}
         .text-center
-          = I18n.t(:tags, scope: :edit_product)
+          %label= I18n.t(:tags, scope: :edit_product)
           %i.fa.fa-info-circle{ :title => I18n.t(:keywords_info, scope: :edit_product, num: Rails.configuration.max_num_addresses) }
       .panel-body
         %table.table.table-borderless
@@ -100,7 +95,7 @@
     .panel.panel-info
       .panel-heading{:title => I18n.t(:product_seal_info, scope: :edit_product)}
         .text-center
-          = I18n.t(:product_seal, scope: :edit_product)
+          %label= I18n.t(:product_seal, scope: :edit_product)
           %i.fa.fa-info-circle{ :title => I18n.t(:product_seal_info, scope: :edit_product) }
       .panel-body
         %table.table.table-borderless
@@ -137,10 +132,13 @@
                   = f.file_field :seal3, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#seal_3_#{@product.id}", :class => 'img-file-upload upload', :onchange =>"validateImgFile(this);"
     .panel.panel-info{ :id => "variants_panel_#{@product.id}"}
       .panel-heading{ :title => I18n.t(:variants_info, scope: :edit_product_detail) }
-        = I18n.t(:variant, scope: :edit_product)
-        %i.fa.fa-info-circle{ :title => I18n.t(:variants_info, scope: :edit_product) }
+        %label
+          = I18n.t(:variant, scope: :edit_product)
+          %i.fa.fa-info-circle{ :title => I18n.t(:variants_info, scope: :edit_product) }
         .pull-right
-          %a{:href => '#', :class=> 'btn fa fa-plus-circle fa-lg', :onclick => "#{gen_add_variant_panel}", :id => "a_add_variant_#{@product.id}"}
+          %a{:href => '#', :class=> 'btn btn-sm', :onclick => "#{gen_add_variant_panel}", :id => "a_add_variant_#{@product.id}"}
+            %i.fa.fa-plus-circle
+            = I18n.t(:new_variant, scope: :edit_product_variant)
       .panel-body
         = f.fields_for :options do |fo|
           .col-md-4

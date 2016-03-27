@@ -2,7 +2,7 @@
   .panel-group
     .panel.panel-info
       .panel-heading.text-center
-        %h4= I18n.t(:shopkeeper_info, scope: :shop_application)
+        %label= I18n.t(:shopkeeper_info, scope: :shop_application)
       .panel-body
         %table.table.table-borderless
           %tbody
@@ -78,8 +78,9 @@
     .panel.panel-info
       .panel-heading{ :title => I18n.t(:target_groups_info, scope: :edit_shop, num: Rails.configuration.max_num_target_groups) }
         .btn-toolbar{ :style => 'margin-left:22px' }
-          = I18n.t(:target_groups, scope: :edit_shop)
-          %i.fa.fa-info-circle{ :title => I18n.t(:target_groups_info, scope: :edit_shop, num: Rails.configuration.max_num_target_groups) }
+          %label
+            = I18n.t(:target_groups, scope: :edit_shop)
+            %i.fa.fa-info-circle{ :title => I18n.t(:target_groups_info, scope: :edit_shop, num: Rails.configuration.max_num_target_groups) }
           .pull-right
             %a{:href => '#', :class=> 'btn btn-sm', :onclick => "#{gen_add_target_group}", :id => "a_add_target_group_#{@shop.id}"}
               %i.fa.fa-plus-circle
@@ -98,8 +99,9 @@
     .panel.panel-info
       .panel-heading{ :title => I18n.t(:sales_channels_info, scope: :edit_shop, num: Rails.configuration.max_num_sales_channels) }
         .btn-toolbar{ :style => 'margin-left:22px' }
-          = I18n.t(:sales_channels, scope: :edit_shop)
-          %i.fa.fa-info-circle{ :title => I18n.t(:sales_channels_info, scope: :edit_shop, num: Rails.configuration.max_num_sales_channels) }
+          %label
+            = I18n.t(:sales_channels, scope: :edit_shop)
+            %i.fa.fa-info-circle{ :title => I18n.t(:sales_channels_info, scope: :edit_shop, num: Rails.configuration.max_num_sales_channels) }
           .pull-right
             %a{:href => '#', :class=> 'btn btn-sm', :onclick => "#{gen_add_sales_channel}", :id => "a_add_sales_channel_#{@shop.id}"}
               %i.fa.fa-plus-circle
@@ -118,7 +120,7 @@
                       =I18n.t(:remove_sales_channel, scope: :edit_shop)
     .panel.panel-info
       .panel-heading.text-center
-        %h4= I18n.t(:statements, scope: :shop_application)
+        %label= I18n.t(:statements, scope: :shop_application)
       .panel-body
         %table.table.table-borderless
           %tbody
