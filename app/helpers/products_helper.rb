@@ -134,12 +134,34 @@ module ProductsHelper
     }
   end
 
-  def gen_add_variant_option
+  def gen_add_option_to_existing_variant
+    %Q{
+      var parent_index = $(this).attr('index')
+      var body = $(this).closest('.panel').find('.panel-body');
+      var index = body.children('input').length;
+
+      body.append(
+        $('<div>').addClass('form-inline').append(
+          $('<div>').addClass('form-group').append(
+            $('<input>').attr('name', 'product[options_attributes][' + parent_index + '][suboptions_attributes][' + index + '][name]').addClass('form-control dynamical_required').attr('maxLength', '#{Rails.configuration.max_tiny_text_length}').attr('placeholder', '#{I18n.t(:option_name, scope: :edit_product_variant)}')
+          )
+        ),
+        ' ',
+        $('<div>').addClass('btn-group pull-right').append(
+          $('<a>').addClass('fa fa-times-circle fa-lg btn btn-lg').attr('title', '#{I18n.t(:remove, scope: :edit_product_variant)}')
+        )
+      );
+
+      return false;
+    }
+  end
+
+  def gen_add_option_to_new_variant
     %Q{
       "
       var parent_index = $('#variants_panel_#{@product.id}').find('.panel-body:first').find('.panel').not($(this).closest('.panel')).length;
       var body = $(this).closest('.panel').find('.panel-body');
-      var index = body.find('input').length;
+      var index = body.children('input').length;
       body.append(
         $('<div>').addClass('form-inline').append(
           $('<div>').addClass('form-group').append(
@@ -172,7 +194,7 @@ module ProductsHelper
                 ' ',
                 $('<div>').addClass('btn-group pull-right').append(
                   $('<a>').addClass('fa fa-times-circle fa-lg btn btn-lg').attr('onclick', #{gen_remove_variant_panel}).attr('title', '#{I18n.t(:remove, scope: :edit_product_variant)}'),
-                  $('<a>').addClass('fa fa-plus fa-lg btn btn-lg').attr('onclick', #{gen_add_variant_option}).attr('title', '#{I18n.t(:remove, scope: :edit_product_variant)}')
+                  $('<a>').addClass('fa fa-plus fa-lg btn btn-lg').attr('onclick', #{gen_add_option_to_new_variant}).attr('title', '#{I18n.t(:remove, scope: :edit_product_variant)}')
                 )
               )
             ),
