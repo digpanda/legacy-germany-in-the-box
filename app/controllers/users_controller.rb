@@ -52,6 +52,15 @@ class UsersController < ApplicationController
       @product.shop = current_user.shop
     elsif params[:user_info_edit_part] == :edit_product_detail.to_s
       @product = current_user.shop.products.find(params[:product_id])
+    elsif params[:user_info_edit_part] == :edit_product_detail_clone.to_s
+      @product = current_user.shop.products.find(params[:product_id])
+      @src = @product.skus.find(params[:sku_id])
+      @sku = @product.skus.build(@src.attributes.except(:_id, :img0, :img1, :img2, :img3))
+      CopyCarrierwaveFile::CopyFileService.new(@src, @sku, :img0).set_file
+      CopyCarrierwaveFile::CopyFileService.new(@src, @sku, :img1).set_file
+      CopyCarrierwaveFile::CopyFileService.new(@src, @sku, :img2).set_file
+      CopyCarrierwaveFile::CopyFileService.new(@src, @sku, :img3).set_file
+      @sku.save
     elsif params[:user_info_edit_part] == :edit_product_detail_new.to_s
       @product = current_user.shop.products.find(params[:product_id])
       @sku = @product.skus.build

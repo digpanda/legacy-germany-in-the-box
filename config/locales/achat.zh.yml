@@ -352,6 +352,7 @@ zh-CN:
     space_weight: 空间重量*
     space_weight_info:  请您填写此产品的空间重量。
     cm: 厘米
+    clone: 克隆
   edit_product_variant:
     new_variant: 创建新型号
     edit: 编辑型号

@@ -27,7 +27,7 @@
   = hidden_field_tag :part, :sku
   = f.fields_for :skus do |fs|
     - if new && (not @product.skus[fs.index].persisted?)
-      %table.table.table-bordered
+      %table.table.table-borderless
         %tbody
           %tr
             %td.text-center.info{:colspan => 8, :title => I18n.t(:images_info, scope: :edit_product_detail)}
@@ -69,7 +69,7 @@
                   =I18n.t(:upload, scope: :image_upload)
                 = fs.file_field :img3, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#img_3_#{@product.id}", :class => 'img-file-upload upload'
       .gap
-      %table.table.table-bordered
+      %table.table.table-borderless
         %tbody
           %tr
             %td.text-center.info{:colspan => 4}= I18n.t(:sku_options, scope: :edit_product_detail)
@@ -100,7 +100,7 @@
                 .form-group
                   = fs.text_field :weight, :class => 'form-control', :required => true, :pattern => '^\d+\.?\d*$'
                 .form-group
-                  = fs.select :unit, options_for_select(['g', 'kg', 'ml', 'l']), { :include_blank => true }, { :class => 'form-control', :required => true }
+                  = fs.select :unit, options_for_select(['g', 'kg', 'ml', 'l'], @sku.unit), { :include_blank => true }, { :class => 'form-control', :required => true }
             %td.text-center{:colspan => 2}
               .form-inline
                 .form-group
@@ -135,6 +135,25 @@
                   = fs.hidden_field :status
                   = fs.check_box :status, { :class => 'i-check' }, true
                   = I18n.t('edit_product_detail.status.true')
+
+      %table.table.table-borderless
+        %tbody
+          %tr
+            %td.text-center.info{:colspan => 4}
+              = I18n.t(:time, scope: :edit_product_detail)
+          %tr
+            %td.form-group{:colspan => 4}
+              .checkbox
+                %label
+                  = fs.hidden_field :renew
+                  = fs.check_box :renew, { :class => 'i-check' }, true
+                  = I18n.t(:renew_info, scope: :edit_product_detail)
+              .checkbox
+                %label
+                  = fs.hidden_field :timed
+                  = fs.check_box :timed, { :class => 'i-check' }, true
+                  = I18n.t(:timed_info, scope: :edit_product_detail)
+
     - elsif (not new) && @product.skus[fs.index].id.to_s == params[:sku_id]
       %table.table.table-borderless
         %tbody
@@ -270,3 +289,4 @@
 
   = f.submit :class => 'btn btn-primary', :value => new ? I18n.t(:create_sku, scope: :edit_product_detail) : I18n.t(:update_sku, scope: :edit_product_detail), :part => :sku, :onclick => "v = $('.sku_variants_options'); if ( v.val() ) { return true; } else { v.next().addClass('invalidBorderClass'); return false; }"
   = link_to I18n.t(:cancel, scope: :edit_product_detail), :back, :class => 'btn btn-primary'
+  =console

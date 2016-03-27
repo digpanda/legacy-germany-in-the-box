@@ -356,6 +356,7 @@ de:
     space_weight: Raumgewicht*
     space_weight_info:  Geben Sie bitte die Maße und das Gewicht des Pakets an, in dem Sie Ihre tolles Produkt verpacken, in Abhängigkeit der Bestellmenge. Bitte bedenken Sie, je genauer Sie angeben, desto umweltfreundlicher und kosteneffizienter können wir den Versand gestalten.
     cm: cm
+    clone: Klonen
   edit_product_variant:
     new_variant: Neue Variante
     edit: Editieren

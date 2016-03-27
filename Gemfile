@@ -61,6 +61,8 @@ gem 'http_accept_language'
 
 gem "jquery-fileupload-rails"
 
+gem 'copy_carrierwave_file'
+
 group :development, :test do
   gem 'factory_girl'
 end
