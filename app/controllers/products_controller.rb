@@ -79,7 +79,7 @@ class ProductsController < ApplicationController
       variant = @product.options.find(params[:variant_id])
       option = variant.suboptions.find(params[:option_id])
 
-      if option.delete && @product.save
+      if option.delete && variant.save && @product.save
         flash[:success] = I18n.t(:delete_option_ok, scope: :edit_product_variant)
       else
         flash[:error] = option.errors.full_messages.first
