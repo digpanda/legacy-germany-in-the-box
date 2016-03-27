@@ -189,20 +189,22 @@ module ProductsHelper
       var index = body.find('.panel').length
       if (index < #{Rails.configuration.max_num_variants}) {
         body.append(
-          $('<div>').addClass('panel col-md-4').append(
-            $('<div>').addClass('panel-heading').append(
-              $('<div>').addClass('form-inline').append(
-                $('<div>').addClass('form-group').append(
-                  $('<input>').attr('name', 'product[options_attributes]['+index+'][name]').attr('required', true).attr('style', 'max-width:120px').addClass('form-control input-sm dynamical_required').attr('maxLength', '#{Rails.configuration.max_tiny_text_length}').attr('placeholder', '#{I18n.t(:variant_name, scope: :edit_product_variant)}')
-                ),
-                ' ',
-                $('<div>').addClass('btn-group pull-right').append(
-                  $('<a>').addClass('fa fa-times-circle btn').click(#{gen_remove_variant_panel}).attr('title', '#{I18n.t(:remove, scope: :edit_product_variant)}'),
-                  $('<a>').addClass('fa fa-plus btn').click(#{gen_add_option_to_new_variant}).attr('title', '#{I18n.t(:remove, scope: :edit_product_variant)}')
+          $('<div>').addClass('col-md-4').append(
+            $('<div>').addClass('panel panel-info').append(
+              $('<div>').addClass('panel-heading').append(
+                $('<div>').addClass('form-inline').append(
+                  $('<div>').addClass('form-group').append(
+                    $('<input>').attr('name', 'product[options_attributes]['+index+'][name]').attr('required', true).attr('style', 'max-width:120px').addClass('form-control input-sm dynamical_required').attr('maxLength', '#{Rails.configuration.max_tiny_text_length}').attr('placeholder', '#{I18n.t(:variant_name, scope: :edit_product_variant)}')
+                  ),
+                  ' ',
+                  $('<div>').addClass('btn-group pull-right').append(
+                    $('<a>').addClass('fa fa-times-circle btn').click(#{gen_remove_variant_panel}).attr('title', '#{I18n.t(:remove, scope: :edit_product_variant)}'),
+                    $('<a>').addClass('fa fa-plus btn').click(#{gen_add_option_to_new_variant}).attr('title', '#{I18n.t(:new_option, scope: :edit_product_variant)}')
+                  )
                 )
-              )
-            ),
-            $('<div>').addClass('panel-body')
+              ),
+              $('<div>').addClass('panel-body')
+            )
           )
         );
       }
