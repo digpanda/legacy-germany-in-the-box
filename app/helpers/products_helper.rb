@@ -147,11 +147,11 @@ module ProductsHelper
       body.append(
         $('<div>').addClass('form-inline').append(
           $('<div>').addClass('form-group').append(
-            $('<input>').attr('name', 'product[options_attributes][' + parent_index + '][suboptions_attributes][' + index + '][name]').addClass('form-control dynamical_required').attr('maxLength', '#{Rails.configuration.max_tiny_text_length}').attr('placeholder', '#{I18n.t(:option_name, scope: :edit_product_variant)}')
+            $('<input>').attr('style', 'max-width:120px').attr('name', 'product[options_attributes][' + parent_index + '][suboptions_attributes][' + index + '][name]').addClass('form-control dynamical_required').attr('maxLength', '#{Rails.configuration.max_tiny_text_length}').attr('placeholder', '#{I18n.t(:option_name, scope: :edit_product_variant)}')
           ),
           ' ',
           $('<div>').addClass('btn-group pull-right').append(
-            $('<a>').addClass('fa fa-times-circle fa-lg btn').attr('title', '#{I18n.t(:remove, scope: :edit_product_variant)}').click(#{gen_remove_option_panel})
+            $('<a>').addClass('fa fa-times-circle btn').attr('title', '#{I18n.t(:remove, scope: :edit_product_variant)}').click(#{gen_remove_option_panel})
           )
         )
       );
@@ -164,16 +164,16 @@ module ProductsHelper
     %Q{
       function() {
         var parent_index = $('#variants_panel_#{@product.id}').find('.panel-body:first').find('.panel').not($(this).closest('.panel')).length;
-        var body = $(this).closest('.panel').find('.panel-body');
-        var index = body.children('input').length;
+        var body = $(this).closest('.panel').children('.panel-body');
+        var index = body.find('input').length;
         body.append(
           $('<div>').addClass('form-inline').append(
             $('<div>').addClass('form-group').append(
-              $('<input>').attr('name', 'product[options_attributes]['+parent_index+'][suboptions_attributes][' + index + '][name]').addClass('form-control dynamical_required').attr('maxLength', '#{Rails.configuration.max_tiny_text_length}').attr('placeholder', '#{I18n.t(:option_name, scope: :edit_product_variant)}')
+              $('<input>').attr('style', 'max-width:120px').attr('name', 'product[options_attributes]['+parent_index+'][suboptions_attributes][' + index + '][name]').addClass('form-control dynamical_required input-sm').attr('maxLength', '#{Rails.configuration.max_tiny_text_length}').attr('placeholder', '#{I18n.t(:option_name, scope: :edit_product_variant)}')
             ),
             ' ',
             $('<div>').addClass('btn-group pull-right').append(
-              $('<a>').addClass('fa fa-times-circle fa-lg btn btn-lg').attr('title', '#{I18n.t(:remove, scope: :edit_product_variant)}').click(#{gen_remove_option_panel})
+              $('<a>').addClass('fa fa-times-circle btn').attr('title', '#{I18n.t(:remove, scope: :edit_product_variant)}').click(#{gen_remove_option_panel})
             )
           )
         );
@@ -189,16 +189,16 @@ module ProductsHelper
       var index = body.find('.panel').length
       if (index < #{Rails.configuration.max_num_variants}) {
         body.append(
-          $('<div>').addClass('panel panel-info thumbnail').append(
+          $('<div>').addClass('panel col-md-4').append(
             $('<div>').addClass('panel-heading').append(
               $('<div>').addClass('form-inline').append(
                 $('<div>').addClass('form-group').append(
-                  $('<input>').attr('name', 'product[options_attributes]['+index+'][name]').attr('required', true).addClass('form-control dynamical_required').attr('maxLength', '#{Rails.configuration.max_tiny_text_length}').attr('placeholder', '#{I18n.t(:variant_name, scope: :edit_product_variant)}')
+                  $('<input>').attr('name', 'product[options_attributes]['+index+'][name]').attr('required', true).attr('style', 'max-width:120px').addClass('form-control input-sm dynamical_required').attr('maxLength', '#{Rails.configuration.max_tiny_text_length}').attr('placeholder', '#{I18n.t(:variant_name, scope: :edit_product_variant)}')
                 ),
                 ' ',
                 $('<div>').addClass('btn-group pull-right').append(
-                  $('<a>').addClass('fa fa-times-circle fa-lg btn btn-lg').click(#{gen_remove_variant_panel}).attr('title', '#{I18n.t(:remove, scope: :edit_product_variant)}'),
-                  $('<a>').addClass('fa fa-plus fa-lg btn btn-lg').click(#{gen_add_option_to_new_variant}).attr('title', '#{I18n.t(:remove, scope: :edit_product_variant)}')
+                  $('<a>').addClass('fa fa-times-circle btn').click(#{gen_remove_variant_panel}).attr('title', '#{I18n.t(:remove, scope: :edit_product_variant)}'),
+                  $('<a>').addClass('fa fa-plus btn').click(#{gen_add_option_to_new_variant}).attr('title', '#{I18n.t(:remove, scope: :edit_product_variant)}')
                 )
               )
             ),
