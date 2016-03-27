@@ -69,7 +69,7 @@ class ProductsController < ApplicationController
       end
     end
 
-    redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_product_variant, :product_id => @product.id)
+    redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_product_update, :product_id => @product.id)
   end
 
   def remove_option
@@ -87,7 +87,7 @@ class ProductsController < ApplicationController
       end
     end
 
-    redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_product_variant, :product_id => @product.id)
+    redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_product_update, :product_id => @product.id)
   end
 
   def get_sku_for_options

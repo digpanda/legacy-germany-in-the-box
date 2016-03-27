@@ -71,9 +71,9 @@
         %table.table.table-borderless
           %tbody
             %tr.form-group
-              %td= text_field_tag "product[tags][]", @product.tags[0], :class => 'form-control', :placeholder => I18n.t(:tag1, scope: :edit_product)
-              %td= text_field_tag "product[tags][]", @product.tags[1], :class => 'form-control', :placeholder => I18n.t(:tag2, scope: :edit_product)
-              %td= text_field_tag "product[tags][]", @product.tags[2], :class => 'form-control', :placeholder => I18n.t(:tag3, scope: :edit_product)
+              %td= text_field_tag "product[tags][]", @product.tags[0], :class => 'form-control', :placeholder => I18n.t(:tag1, scope: :edit_product), :maxLength => Rails.configuration.max_tiny_text_length
+              %td= text_field_tag "product[tags][]", @product.tags[1], :class => 'form-control', :placeholder => I18n.t(:tag2, scope: :edit_product), :maxLength => Rails.configuration.max_tiny_text_length
+              %td= text_field_tag "product[tags][]", @product.tags[2], :class => 'form-control', :placeholder => I18n.t(:tag3, scope: :edit_product), :maxLength => Rails.configuration.max_tiny_text_length
     .panel.panel-info
       .panel-heading{:title => I18n.t(:product_seal_info, scope: :edit_product)}
         .text-center
@@ -112,16 +112,31 @@
                     %i.fa.fa-cloud-upload
                     =I18n.t(:upload, scope: :image_upload)
                   = f.file_field :seal3, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#seal_3_#{@product.id}", :class => 'img-file-upload upload', :onchange =>"validateImgFile(this);"
-    .panel.panel-info
+    .panel.panel-info{ :id => "variants_panel_#{@product.id}"}
       .panel-heading{ :title => I18n.t(:variants_info, scope: :edit_product_detail) }
-        .text-center
-          = I18n.t(:variant, scope: :edit_product)
-          %i.fa.fa-info-circle{ :title => I18n.t(:variants_info, scope: :edit_product) }
+        = I18n.t(:variant, scope: :edit_product)
+        %i.fa.fa-info-circle{ :title => I18n.t(:variants_info, scope: :edit_product) }
+        .pull-right
+          %a{:href => '#', :class=> 'btn fa fa-plus-circle fa-lg', :onclick => "#{gen_add_variant_panel}", :id => "a_add_variant_#{@product.id}"}
       .panel-body
         = f.fields_for :options do |fo|
-          .form-group
-            = fo.label I18n.t(:variant_name, scope: :edit_product_variant)
-            = fo.text_field :name, :class => 'form-control', :required => true
+          .panel.panel-info
+            .panel-heading
+              .form-inline
+                .form-group
+                  = fo.text_field :name, :value => fo.object.get_locale_name, :class => 'form-control', :required => true, :maxLength => Rails.configuration.max_tiny_text_length, :placeholder => I18n.t(:variant_name, scope: :edit_product_variant)
+                .btn-group.pull-right
+                  = link_to '', remove_variant_product_path(@product.id, fo.object.id), method: :delete, data: { confirm: "#{I18n.t(:delete_option_message, scope: :edit_product_variant)}" }, :class => 'fa fa-times-circle fa-lg btn btn-lg', :title => I18n.t(:remove, scope: :edit_product_variant)
+                  = link_to '', '#', :onclick => "#{gen_add_variant_option}", :class => 'fa fa-plus fa-lg btn btn-lg', :title => I18n.t(:new_option, scope: :edit_product_variant)
+            .panel-body
+              = fo.fields_for :suboptions do |fso|
+                .form-inline
+                  .form-group
+                    = fso.text_field :name, :value => fso.object.get_locale_name, :class => 'form-control', :required => true, :maxLength => Rails.configuration.max_tiny_text_length, :placeholder => I18n.t(:option_name, scope: :edit_product_variant)
+                  .btn-group.pull-right
+                    = link_to '', remove_option_product_path(@product.id, fo.object.id, fso.object.id), method: :delete, data: { confirm: "#{I18n.t(:delete_option_message, scope: :edit_product_variant)}" }, :class => 'btn fa fa-times-circle fa-lg', :title => I18n.t(:remove_option, scope: :edit_product_variant)
+
+
 
   = f.submit :class => 'btn btn-primary', :value => @product.persisted? ? I18n.t(:update_basic, scope: :edit_product) : I18n.t(:new_basic, scope: :edit_product), :onclick => "v = $('.product_categories'); if ( v.val() ) { return true; } else { v.next().addClass('invalidBorderClass'); return false; }"
   = link_to I18n.t(:cancel, scope: :edit_product), edit_user_path(current_user, :user_info_edit_part => :edit_product), :class => 'btn btn-primary'

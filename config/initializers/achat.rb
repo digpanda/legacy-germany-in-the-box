@@ -7,6 +7,7 @@ Rails.configuration.max_num_shop_sender_addresses = 1
 Rails.configuration.max_num_tags = 3
 Rails.configuration.max_num_target_groups = 6
 Rails.configuration.max_num_sales_channels = 12
+Rails.configuration.max_num_variants = 3
 Rails.configuration.max_customer_collections = 10
 Rails.configuration.max_shopkeeper_collections = 100
 Rails.configuration.limit_for_users_search = 20

@@ -122,6 +122,69 @@ module ProductsHelper
     }
   end
 
+  def gen_remove_variant_panel
+    %Q{
+      "$(this).closest('.panel').remove(); return false;"
+    }
+  end
+
+  def gen_remove_option_panel
+    %Q{
+      "$(this).closest('.form-inline').remove(); return false;"
+    }
+  end
+
+  def gen_add_variant_option
+    %Q{
+      "
+      var parent_index = $('#variants_panel_#{@product.id}').find('.panel-body:first').find('.panel').not($(this).closest('.panel')).length;
+      var body = $(this).closest('.panel').find('.panel-body');
+      var index = body.find('input').length;
+      body.append(
+        $('<div>').addClass('form-inline').append(
+          $('<div>').addClass('form-group').append(
+            $('<input>').attr('name', 'product[options_attributes]['+parent_index+'][suboptions_attributes][' + index + '][name]').addClass('form-control dynamical_required').attr('maxLength', '#{Rails.configuration.max_tiny_text_length}').attr('placeholder', '#{I18n.t(:option_name, scope: :edit_product_variant)}')
+          )
+        ),
+        ' ',
+        $('<div>').addClass('btn-group pull-right').append(
+          $('<a>').addClass('fa fa-times-circle fa-lg btn btn-lg').attr('title', '#{I18n.t(:remove, scope: :edit_product_variant)}')
+        )
+      );
+
+      return false;
+      "
+    }.delete("\n")
+  end
+
+  def gen_add_variant_panel
+    %Q{
+      var body = $('#variants_panel_#{@product.id}').find('.panel-body:first')
+      var index = body.find('.panel').length
+      if (index < #{Rails.configuration.max_num_variants}) {
+        body.append(
+          $('<div>').addClass('panel panel-info thumbnail').append(
+            $('<div>').addClass('panel-heading').append(
+              $('<div>').addClass('form-inline').append(
+                $('<div>').addClass('form-group').append(
+                  $('<input>').attr('name', 'product[options_attributes]['+index+'][name]').attr('required', true).addClass('form-control dynamical_required').attr('maxLength', '#{Rails.configuration.max_tiny_text_length}').attr('placeholder', '#{I18n.t(:variant_name, scope: :edit_product_variant)}')
+                ),
+                ' ',
+                $('<div>').addClass('btn-group pull-right').append(
+                  $('<a>').addClass('fa fa-times-circle fa-lg btn btn-lg').attr('onclick', #{gen_remove_variant_panel}).attr('title', '#{I18n.t(:remove, scope: :edit_product_variant)}'),
+                  $('<a>').addClass('fa fa-plus fa-lg btn btn-lg').attr('onclick', #{gen_add_variant_option}).attr('title', '#{I18n.t(:remove, scope: :edit_product_variant)}')
+                )
+              )
+            ),
+            $('<div>').addClass('panel-body')
+          )
+        );
+      }
+
+      return false;
+    }
+  end
+
   def enough_inventory(sku, quantity)
     return sku && (not sku.limited or sku.quantity >= quantity )
   end
