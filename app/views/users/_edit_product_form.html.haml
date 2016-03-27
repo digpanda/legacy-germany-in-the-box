@@ -44,7 +44,7 @@
 - if @product.persisted?
   -if @product.has_option?
     %a.btn.btn-primary{ :class => 'btn-lg',  :href => edit_user_path(current_user, :user_info_edit_part => :edit_product_detail, :product_id => @product.id) }
-      %i.fa.fa-stack-exchange
+      %i.fa.fa-building
       = I18n.t(:sku_manage, scope: :edit_product_detail)
 
 %br
