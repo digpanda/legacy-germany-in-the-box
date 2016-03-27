@@ -16,6 +16,28 @@
         }
       }
     });
+
+    $('#edit_product_submit_btn').click( function() {
+      v = $('.product_categories');
+
+      if ( v.val().length == 0 ) {
+        v.next().addClass('invalidBorderClass'); return false;
+      }
+
+      $('.dynamical_required').each(
+        function () {
+          if ( $(this).val().length == 0 ) {
+            $(this).addClass('invalidBorderClass');
+          } else {
+            $(this).removeClass('invalidBorderClass');
+          }
+        }
+      );
+
+      if ( $('.invalidBorderClass').length > 0 ) {
+        return false;
+      }
+    });
   });
 
 - if @product.persisted?
@@ -137,6 +159,5 @@
                     = link_to '', remove_option_product_path(@product.id, fo.object.id, fso.object.id), method: :delete, data: { confirm: "#{I18n.t(:delete_option_message, scope: :edit_product_variant)}" }, :class => 'btn fa fa-times-circle fa-lg', :title => I18n.t(:remove_option, scope: :edit_product_variant)
 
 
-
-  = f.submit :class => 'btn btn-primary', :value => @product.persisted? ? I18n.t(:update_basic, scope: :edit_product) : I18n.t(:new_basic, scope: :edit_product), :onclick => "v = $('.product_categories'); if ( v.val() ) { return true; } else { v.next().addClass('invalidBorderClass'); return false; }"
+  = f.submit :id => 'edit_product_submit_btn', :class => 'btn btn-primary', :value => @product.persisted? ? I18n.t(:update_basic, scope: :edit_product) : I18n.t(:new_basic, scope: :edit_product)
   = link_to I18n.t(:cancel, scope: :edit_product), edit_user_path(current_user, :user_info_edit_part => :edit_product), :class => 'btn btn-primary'
