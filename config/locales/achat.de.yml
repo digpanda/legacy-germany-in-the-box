@@ -3,7 +3,7 @@ de:
     non_selected_text: Nicht ausgewählt
     n_selected_text: ausgewählt
   image_upload:
-    max_exceeded_message: Die hochzuladene Datei ist größer als 1 Megabytes.
+    max_exceeded_message: Das Bild ist größer als 1 MB. Bitte laden Sie ein anderes Bild hoch.
     ext_error_message: Nur die Formaten .jpg, .jpeg, or .png sind akzeptierbar.
     upload: Hochladen
   top_menu:
