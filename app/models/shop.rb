@@ -55,15 +55,15 @@ class Shop
   validates :shopkeeper,    presence: true
   validates :currency,      presence: true,   inclusion: {in: ['€']}
   validates :founding_year, presence: true,   length: {maximum: 4}
-  validates :register,      presence: true,   length: {maximum: Rails.configuration.max_tiny_text_length}
   validates :desc,          presence: true,   length: {maximum: (Rails.configuration.max_medium_text_length * 1.25).round}
   validates :philosophy,    presence: true,   length: {maximum: (Rails.configuration.max_medium_text_length * 1.25).round}
-  validates :stories,       presence: true,   length: {maximum: (Rails.configuration.max_long_text_length * 1.25).round}
   validates :statement0,    presence: true
   validates :statement1,    presence: true
   validates :statement2,    presence: true
   validates :agb,           presence: true
 
+  validates :register,        length: {maximum: Rails.configuration.max_tiny_text_length}
+  validates :stories,         length: {maximum: (Rails.configuration.max_long_text_length * 1.25).round}
   validates :website,         length: {maximum: (Rails.configuration.max_short_text_length * 1.25).round}
   validates :ustid,           length: {maximum: Rails.configuration.max_tiny_text_length }
   validates :eroi,            length: {maximum: Rails.configuration.max_tiny_text_length }

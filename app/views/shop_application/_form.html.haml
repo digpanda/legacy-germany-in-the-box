@@ -53,9 +53,9 @@
                 %tr.form-group
                   %td{width: '30%', :title => I18n.t(:stories_info, scope: :edit_shop) }
                     %i.fa.fa-info-circle{ :title => I18n.t(:stories_info, scope: :edit_shop) }
-                    %label.required= I18n.t(:stories, scope: :edit_shop)
+                    %label= I18n.t(:stories, scope: :edit_shop)
                   %td{width: '70%'}
-                    = f.text_area :stories, :class => 'form-control', rows: 4, :required => true, :maxLength => Rails.configuration.max_long_text_length
+                    = f.text_area :stories, :class => 'form-control', rows: 4, :maxLength => Rails.configuration.max_long_text_length
                     %div.help-block.with-errors
                 %tr.form-group
                   %td{width: '30%', :title => I18n.t(:uniqueness_info, scope: :edit_shop) }
