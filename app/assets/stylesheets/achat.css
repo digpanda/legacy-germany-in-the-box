@@ -1,3 +1,10 @@
+.required {
+  background-image: url("icons/asterisk.png");
+  background-position: right;
+  background-repeat: no-repeat;
+  background-size: 12px 6px;
+}
+
 body {
     height: 100%;
     width: 100%;

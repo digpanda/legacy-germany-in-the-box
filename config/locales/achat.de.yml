@@ -198,16 +198,16 @@ de:
     shop_application_ok: Vielen Dank für Ihren Antrag! Wir werden uns bald mit Ihnen in Verbindung setzten.
     shopkeeper_info: Herstellerdetails
     title: Antragsformular
-    email: Benutzerkonto*
+    email: Benutzerkonto
     email_info: Bitte geben Sie Ihre Email ein. Es wird Ihr Benutzerkonto in Rhein-Manufaktur.eu sein.
-    contact_person_info: Ansprechenpartner
+    contact_person_info: Ansprechpartner
     contact_fname: Vorname
     contact_lname: Nachname
     contact_tel: Festnetznummer
     contact_mobile: Mobile
     contact_email: Email
     contact_function: Arbeitstitel
-    statements: Erklärungen*
+    statements: Erklärungen
     statement_0: Hiermit versichere ich, dass ich der Hersteller der hochzuladenen Produkte bin bzw. den Hersteller repräsentiere darf. 
     statement_1: Hiermit versichere ich, dass die von mir angebotenen Produkte "Made in Germany" sind. Der Begriff "Made in Germany" lehnt sich an die Rechtsprechung des BGH zur Nutzung des Begriffs „Made in Germany“ an und schreibt vor, dass die für die wertbestimmenden Eigenschaften eines Produktes wesentlichen Herstellvorgänge in Deutschland erfolgen müssen.
     statement_2: Hiermit bestätige ich, dass die von mir angebotenen Produkte die notwendigen Zertifizierungen für den Absatz auf dem deutschen Markt besitzen. 
@@ -215,14 +215,14 @@ de:
     duplicated_email: Das Email ist schon besetzt. Bitte geben Sie eine andere Email ein.
     application_finished: Antrag abgeschlossen
   edit_shop:
-    email: Email*
-    name: Herstellername/Firmenname*
-    desc: Beschreibung*
+    email: Email
+    name: Herstellername/Firmenname
+    desc: Beschreibung
     logo: Logo
     banner: Banner
     banner_info: Die empfohlenen Größen des Banners sind 468x60 oder 728x90. (max. 1 MB pro Bild)
-    philosophy: Philosophie*
-    stories: Geschichten*
+    philosophy: Philosophie
+    stories: Geschichten
     ustid: Ust-ID
     eroi: EROI-Nummer
     sms:
@@ -244,7 +244,7 @@ de:
     eroi_number_info: Die EORI-Nummer ersetzt die deutsche Zollnummer und dient der Regiestrierung und Identifikation von Wirschaftsbeteiligten bei der Zollabwicklung in EU. Ab einen Tagesexportwert von 1.000 EUR muss der Hersteller EORI-Nummer angeben. Wenn Sie erwarten, dass Sie diesen Tagegrenzwert überschreiten werden, emfehlen wir diese nummer im Vorfeld zu beantragen. Die EORI-Nummer können Sie jeder Zeit nachtragen. (max. 25 Buchstaben)
     min_total_info: Sie können einen Mindestbestellwert für eine Bestellung aus Ihrem Shop festlegen. 
     sms_info: Möchten Sie über einen Verkauf von RheinManufaktur benachrichtigt werden? Wenn ja, dann geben Sie uns Ihre Mobilephone Nummber. Selbstverständlich ist das ein kostenloser Service. Bitte achten Sie darauf, dass die nummer keinen Trennstrich "-" enthält.
-    founding_year: Gründungsjahr*
+    founding_year: Gründungsjahr
     founding_year_info: Wann wurde Ihre Marke gegründet? (Jahr)
     german_essence: German-Design
     german_essence_info: Die deutsche Herstellung ist weltweit bekannt für seine Effizienz, Schlichheit und Qualität. Wie spiegeln Ihre Produkte die Essenz von "German-Design" hinsichtlich ihrer Herstellung und Gestaltung wider? (max. 250 Wörter)
@@ -255,7 +255,7 @@ de:
     target_group: Zielgruppe
     sales_channels: Vertriebswege
     sales_channels_info: Was sind Ihre Vertriebswege? Sie können bis zu %{num} Vertriebswege eintragen.
-    register: Handelsregister*
+    register: Handelsregister
     add_target_group: Hinzufügen
     remove_target_group: Entfernen
     add_sales_channel: Hinzufügen
@@ -266,7 +266,7 @@ de:
     agb_statement: Hiermit versichere ich, dass ich die AGB der DigPanda GmbH komplett gelesen habe und ich mit den Inhalten dieser AGB einverstanden bin. 
     required_field_info: '* Pflichtfeld'
     company_name_placeholder: 'Beispiel GmbH'
-    shopname: Shopname*
+    shopname: Shopname
   edit_product:
     edit: Editieren
     remove: Entfernen
@@ -276,10 +276,10 @@ de:
     tag1: Stichwort 1
     tag2: Stichwort 2
     tag3: Stichwort 3
-    name: Produktname*
-    desc: Beschreibung*
+    name: Produktname
+    desc: Beschreibung
     cover: Deckenbild
-    brand: Markennamen*
+    brand: Markennamen
     variant_name: Variantentyp
     created_at: erstellt am
     updated_at: aktualisiert am
@@ -291,7 +291,7 @@ de:
     delete_ko: Ein Fehler ist bei der Lösung des Produkts aufgetreten.
     update_ok: Das Produkt erfolgreich aktualisiert!
     update_ko: Ein Fehler ist bei der Änderung des Produkts aufgetreten.
-    categories: Kategorie*
+    categories: Kategorie
     skus: Aritkelpositionen
     new_basic: Erstellen
     update_basic: Akutalisieren
@@ -319,14 +319,14 @@ de:
     img1: Bild 2
     img2: Bild 3
     img3: Bild 4
-    price: Preis*
+    price: Preis
     currency: Währung
-    quantity: Menge*
+    quantity: Menge
     limited:
       info: Menge begrenzt
       'true': Ja
       'false': Nein
-    weight: Gewicht*
+    weight: Gewicht
     status:
       info: Zum Verkauf angeboten
       'true': Ja
@@ -338,10 +338,10 @@ de:
     time: Dauer der Einstellung
     renew_info: Die Einstellung verlängert sich automatisch um weitere 120 Tage wenn diese Zeit abläuft.
     timed_info: Das Produkt wird für 120 Tage auf RM eingestellt. 
-    discount: '%Rabatt*'
+    discount: '%Rabatt'
     create_ok: Die Artikelposition erfolgreich erstellt!
     create_ko: Ein Fehler ist beim Anlegen der Artikelpositionen aufgetreten.
-    sku_variants_options: Variantentypen*
+    sku_variants_options: Variantentypen
     images: Produktbilder
     sku_options: Details der Artikelposition
     update_sku: Aktualisieren
@@ -353,7 +353,7 @@ de:
     customizable_info: Dieses Produkt kann nach Kundenwunsch individuell angefertig werden.
     return: Zurück zur Produktliste
     cancel: Abbrechen
-    space_weight: Raumgewicht*
+    space_weight: Raumgewicht
     space_weight_info:  Geben Sie bitte die Maße und das Gewicht des Pakets an, in dem Sie Ihre tolles Produkt verpacken, in Abhängigkeit der Bestellmenge. Bitte bedenken Sie, je genauer Sie angeben, desto umweltfreundlicher und kosteneffizienter können wir den Versand gestalten.
     cm: cm
     clone: Klonen

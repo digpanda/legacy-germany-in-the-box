@@ -41,11 +41,10 @@
     });
   });
 
-- if @product.persisted?
-  -if @product.has_option?
-    %a.btn.btn-primary{ :class => 'btn-lg',  :href => edit_user_path(current_user, :user_info_edit_part => :edit_product_detail, :product_id => @product.id) }
-      %i.fa.fa-building
-      = I18n.t(:sku_manage, scope: :edit_product_detail)
+- if @product.persisted? && @product.has_option?
+  %a.btn.btn-primary{ :class => 'btn-lg',  :href => edit_user_path(current_user, :user_info_edit_part => :edit_product_detail, :product_id => @product.id) }
+    %i.fa.fa-building
+    = I18n.t(:sku_manage, scope: :edit_product_detail)
 
 %br
 %br
@@ -60,21 +59,23 @@
         %table.table.table-borderless
           %tbody
             %tr.form-group
-              %td{width: '20%'}= I18n.t(:name, scope: :edit_product)
+              %td{width: '20%'}
+                %label= I18n.t(:name, scope: :edit_product)
               %td= f.text_field :name, :class => 'form-control', :required => true, :maxLength => Rails.configuration.max_short_text_length
             %tr.form-group
-              %td{width: '20%'}= I18n.t(:brand, scope: :edit_product)
+              %td{width: '20%'}
+                %label= I18n.t(:brand, scope: :edit_product)
               %td= f.text_field :brand, :class => 'form-control', :required => true, :maxLength => Rails.configuration.max_short_text_length
             %tr.form-group
               %td{width: '20%', :title => I18n.t(:desc_info, scope: :edit_product) }
-                = I18n.t(:desc, scope: :edit_product)
                 %i.fa.fa-info-circle{ :title => I18n.t(:desc_info, scope: :edit_product) }
+                %label= I18n.t(:desc, scope: :edit_product)
               %td= f.text_area :desc, :class => 'form-control', rows: 8, :required => true, :maxLength => Rails.configuration.max_medium_text_length
     .panel.panel-info
       .panel-heading{ :title => I18n.t(:categories_info, scope: :edit_product) }
         .text-center
-          %label= I18n.t(:categories, scope: :edit_product)
           %i.fa.fa-info-circle{ :title => I18n.t(:categories_info, scope: :edit_product) }
+          %label= I18n.t(:categories, scope: :edit_product)
       .panel-body
         %table.table.table-borderless
           %tbody
@@ -83,8 +84,8 @@
     .panel.panel-info
       .panel-heading{:title => I18n.t(:keywords_info, scope: :edit_product, num: Rails.configuration.max_num_addresses)}
         .text-center
-          %label= I18n.t(:tags, scope: :edit_product)
           %i.fa.fa-info-circle{ :title => I18n.t(:keywords_info, scope: :edit_product, num: Rails.configuration.max_num_addresses) }
+          %label= I18n.t(:tags, scope: :edit_product)
       .panel-body
         %table.table.table-borderless
           %tbody
@@ -95,8 +96,8 @@
     .panel.panel-info
       .panel-heading{:title => I18n.t(:product_seal_info, scope: :edit_product)}
         .text-center
-          %label= I18n.t(:product_seal, scope: :edit_product)
           %i.fa.fa-info-circle{ :title => I18n.t(:product_seal_info, scope: :edit_product) }
+          %label= I18n.t(:product_seal, scope: :edit_product)
       .panel-body
         %table.table.table-borderless
           %tbody
@@ -132,9 +133,8 @@
                   = f.file_field :seal3, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#seal_3_#{@product.id}", :class => 'img-file-upload upload', :onchange =>"validateImgFile(this);"
     .panel.panel-info{ :id => "variants_panel_#{@product.id}"}
       .panel-heading{ :title => I18n.t(:variants_info, scope: :edit_product_detail) }
-        %label
-          = I18n.t(:variant, scope: :edit_product)
-          %i.fa.fa-info-circle{ :title => I18n.t(:variants_info, scope: :edit_product) }
+        %i.fa.fa-info-circle{ :title => I18n.t(:variants_info, scope: :edit_product) }
+        %label= I18n.t(:variant, scope: :edit_product)
         .pull-right
           %a{:href => '#', :class=> 'btn btn-sm', :onclick => "#{gen_add_variant_panel}", :id => "a_add_variant_#{@product.id}"}
             %i.fa.fa-plus-circle

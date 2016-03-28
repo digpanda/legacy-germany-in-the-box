@@ -38,7 +38,7 @@ zh-CN:
     email_confirmation_msg: 我们已经向您的注册邮箱发送了一封确认邮件，请您登陆前先确认。
   footer:
     copyright: 版权所有：莱茵工厂 © 2016
-    rheinmanufaktur: 莱茵工场
+    rheinmanufaktur: 莱茵工厂
     imprint: 关于我们
     terms_conditions: 法律声明
     privarcy_statement: 数据隐私
@@ -214,7 +214,7 @@ zh-CN:
     password: 初始密码
     application_finished: 申请完成
   edit_shop:
-    email: 邮箱*
+    email: 邮箱
     name: 店铺名
     desc: 店铺描述
     logo: 店铺徽标
@@ -254,7 +254,7 @@ zh-CN:
     target_group: 客户群
     sales_channels: 销售渠道
     sales_channels_info: 您的销售渠道是什么？ 你可以最多填写%{num}个销售渠道。
-    register: 商业登记号*
+    register: 商业登记号
     add_target_group: 添加
     remove_target_group: 删除
     add_sales_channel: 添加
@@ -263,9 +263,9 @@ zh-CN:
     website: 主页
     agb: 条款可法律声明
     agb_statement: 在此保证，我已经清楚的阅读DigPanda有限公司的使用条款，并且同意并接受此条款。
-    required_field_info: '* 必填字段'
+    required_field_info: ' 必填字段'
     company_name_placeholder: '示例 有限公司'
-    shopname: 网店名称*
+    shopname: 网店名称
   edit_product:
     edit: 修改
     remove: 删除产品
@@ -275,10 +275,10 @@ zh-CN:
     tag1: 关键字1
     tag2: 关键字2
     tag3: 关键字3
-    name: 产品名称*
+    name: 产品名称
     desc: 产品描述
     cover: 产品封面
-    brand: 商标品牌*
+    brand: 商标品牌
     variant_name: 系列型号
     created_at: 创建于
     updated_at: 修改于
@@ -290,7 +290,7 @@ zh-CN:
     delete_ko: 产品删除失败
     update_ok: 产品修改成功
     update_ko: 产品修改失败
-    categories: 产品类别*
+    categories: 产品类别
     skus: 库存单元
     new_basic: 创建概要
     update_basic: 更新概要
@@ -319,14 +319,14 @@ zh-CN:
     img1: 图片2
     img2: 图片3
     img3: 图片4
-    price: 价格*
-    currency: 货币*
-    quantity: 库存*
+    price: 价格
+    currency: 货币
+    quantity: 库存
     limited:
       info: 限量
       'true': 限量
       'false': 不限量
-    weight: 重量*
+    weight: 重量
     status:
       info: 状态
       'true': 上架
@@ -335,10 +335,10 @@ zh-CN:
       info: 定制
       'true': 可以
       'false': 不可
-    discount: 折扣*
+    discount: 折扣
     create_ok: 明细成功创建
     create_ko: 明细创建失败
-    sku_variants_options: 型号组合*
+    sku_variants_options: 型号组合
     images: 产品图片
     sku_options: 库存与型号
     update_sku: 更新库存
@@ -349,7 +349,7 @@ zh-CN:
     customizable_info: 此产品可定制
     return: 返回产品列表
     cancel: 取消
-    space_weight: 空间重量*
+    space_weight: 空间重量
     space_weight_info:  请您填写此产品的空间重量。
     cm: 厘米
     clone: 克隆
