@@ -20,7 +20,7 @@ de:
     my_collection: Favorit
     my_following: Beobachtung
     my_followers: Anhänger
-    my_shop: Mein Shop
+    my_shop: Shop
     my_producer: Herstellerdetails
     my_product: Meine Produkte
     my_agb: AGB
@@ -35,7 +35,7 @@ de:
     german: Deutsch
     user_profile: Nutzerprofil
     wrong_captcha: Captcha stimmt nicht überein.
-    email_confirmation_msg: Sie erhalten von uns eine Email für die Registrierung. Bitte bestätigen Sie durch den gegebenen Link in der Mail, bevor Sie fortfahren.
+    email_confirmation_msg: Sie erhalten von uns eine E-Mail für die Registrierung. Bitte bestätigen Sie durch den gegebenen Link in der Mail, bevor Sie fortfahren.
   footer:
     copyright: © DigPanda GmbH 2015-2016
     rheinmanufaktur: RheinManufaktur
@@ -57,7 +57,7 @@ de:
     buyer_in_3_steps: Kaufen in 3 Schritten
     vouchers: Gutscheine
   sign_in_dialog:
-    email: Email
+    email: E-Mail
     password: Passwort
     header: Einloggen
     title: Herzlich willkommen zurück!
@@ -68,7 +68,7 @@ de:
     sign_in: Los!
   sign_up_dialog:
     username: Username
-    email: Email
+    email: E-Mail
     password: Passwort
     password_confirmation: Passwort wiederholen
     header: Registieren
@@ -80,11 +80,11 @@ de:
   password_recovery_dialog:
     header: Passwort wiederherstellen
     title: Passwort vergessen? Keine Sorge und wir helfen Ihnen gern.
-    email: Email
+    email: E-Mail
     ok: Neues Passwort vergeben
   edit_account:
     username: Username
-    email: Email
+    email: E-Mail
     current_password: Aktuelles Passwort
     password: Neues Passwort
     password_confirmation: Passwort wiederholen
@@ -199,23 +199,23 @@ de:
     shopkeeper_info: Herstellerdetails
     title: Antragsformular
     email: Benutzerkonto
-    email_info: Bitte geben Sie Ihre Email ein. Es wird Ihr Benutzerkonto in Rhein-Manufaktur.eu sein.
+    email_info: Bitte geben Sie Ihre E-Mail ein. Es wird Ihr Benutzerkonto in Rhein-Manufaktur.eu sein.
     contact_person_info: Ansprechpartner
     contact_fname: Vorname
     contact_lname: Nachname
     contact_tel: Festnetznummer
     contact_mobile: Mobile
-    contact_email: Email
+    contact_email: E-Mail
     contact_function: Position
     statements: Erklärungen
     statement_0: Hiermit versichere ich, dass ich der Hersteller der hochzuladenen Produkte bin bzw. den Hersteller repräsentiere darf. 
     statement_1: Hiermit versichere ich, dass die von mir angebotenen Produkte "Made in Germany" sind. Der Begriff "Made in Germany" lehnt sich an die Rechtsprechung des BGH zur Nutzung des Begriffs „Made in Germany“ an und schreibt vor, dass die für die wertbestimmenden Eigenschaften eines Produktes wesentlichen Herstellvorgänge in Deutschland erfolgen müssen.
     statement_2: Hiermit bestätige ich, dass die von mir angebotenen Produkte die notwendigen Zertifizierungen für den Absatz auf dem deutschen Markt besitzen. 
     password: Initialpasswort
-    duplicated_email: Das Email ist schon besetzt. Bitte geben Sie eine andere Email ein.
+    duplicated_email: Die E-Mail ist schon besetzt. Bitte geben Sie eine andere E-Mail ein.
     application_finished: Antrag abgeschlossen
   edit_shop:
-    email: Email
+    email: E-Mail
     name: Herstellername/Firmenname
     desc: Beschreibung
     logo: Logo
