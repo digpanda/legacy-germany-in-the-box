@@ -86,10 +86,10 @@ module ProductsHelper
         body.append(
           $('<tr>').append(
             #{gen_sales_channel_select_tag},
-            $('<td>').addClass('form-group').attr('width', '60%').append(
+            $('<td>').addClass('form-group').attr('width', '55%').append(
               $('<input>').attr('name', 'shop[sales_channels][]').attr('required', true).attr('placeholder', '#{I18n.t(:sales_channel, scope: :edit_shop)}').addClass('form-control dynamical_required').attr('maxLength', #{Rails.configuration.max_short_text_length})
             ),
-            $('<td>').attr('width', '20%').append(
+            $('<td>').attr('width', '15%').append(
               $('<a>').attr('href', '#').addClass('btn').attr('onclick', #{gen_remove_sales_channel}).append(
                 $('<i>').addClass('fa').addClass('fa-times-circle'),
                 ' #{I18n.t(:remove_sales_channel, scope: :edit_shop)}'
@@ -111,7 +111,7 @@ module ProductsHelper
 
   def gen_sales_channel_select_tag
     %Q{
-      $('<td>').attr('width', '20%').append(
+      $('<td>').attr('width', '30%').append(
         $('<select>').attr('name', 'shop[sales_channels][]').addClass('form-control').append(
           $('<option>').val('Online-Shop').text('Online-Shop'),
           $('<option>').val('Online-Marktplatz').text('Online-Marktplatz'),

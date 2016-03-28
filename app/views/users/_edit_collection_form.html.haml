@@ -8,7 +8,7 @@
           =I18n.t(:upload, scope: :image_upload)
         = f.file_field :img, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#img_#{@collection.id}", :class => 'img-file-upload upload', :onchange =>"validateImgFile(this);"
     .form-group
-      = f.label :name, I18n.t(:name, scope: :edit_collection_new)
+      = f.label :name, I18n.t(:name, scope: :edit_collection_new), :class => 'required'
       = f.text_field :name, :class => 'form-control', :required => true
     .form-group
       = f.label :desc, I18n.t(:description, scope: :edit_collection_new)

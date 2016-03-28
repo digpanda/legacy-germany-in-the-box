@@ -5,22 +5,22 @@
         %table.table.table-borderless
           %tbody
             %tr
-              %td
+              %td{ width: '30%' }
                 %label= I18n.t(:logo, scope: :edit_shop)
-              %td{ :title => I18n.t(:banner_info, scope: :edit_shop) }
+              %td{ width: '70%', :title => I18n.t(:banner_info, scope: :edit_shop) }
                 %i.fa.fa-info-circle{ :title => I18n.t(:banner_info, scope: :edit_shop) }
                 %label= I18n.t(:banner, scope: :edit_shop)
             %tr
-              %td= image_tag @shop.logo ? @shop.logo.url : nil, :style => 'width:128px;height:128px', :class => 'form-control img-thumbnail', :id => "logo_#{@shop.id}"
-              %td= image_tag @shop.banner ? @shop.banner.url : nil, :style => 'width:512px;height:128px', :class => 'img-responsive form-control', :id => "banner_#{@shop.id}"
+              %td{ width: '30%' }= image_tag @shop.logo ? @shop.logo.url : nil, :style => 'width:128px;height:128px', :class => 'form-control img-thumbnail', :id => "logo_#{@shop.id}"
+              %td{ width: '70%' }= image_tag @shop.banner ? @shop.banner.url : nil, :style => 'width:512px;height:128px', :class => 'img-responsive form-control', :id => "banner_#{@shop.id}"
             %tr
-              %td
+              %td{ width: '30%' }
                 %div.fileUpload.btn.btn-default
                   %span
                     %i.fa.fa-cloud-upload
                     =I18n.t(:upload, scope: :image_upload)
                   = f.file_field :logo, :accept => "image/png, image/jpeg, image/jpg", :class => 'img-file-upload upload', :img_id => "#logo_#{@shop.id}", :onchange =>"validateImgFile(this);"
-              %td
+              %td{width: '70%' }
                 %div.fileUpload.btn.btn-default
                   %span
                     %i.fa.fa-cloud-upload
@@ -31,15 +31,15 @@
         %table.table.table-borderless
           %tbody
             %tr.form-group
-              %td{width: '20%' }
-                %label= I18n.t(:shopname, scope: :edit_shop)
-              %td{width: '80%'}
+              %td{ width: '30%' }
+                %label.required= I18n.t(:shopname, scope: :edit_shop)
+              %td{ width: '70%'}
                 = f.text_field :shopname, :class => 'form-control', :required => true, :maxLength => Rails.configuration.max_short_text_length
             %tr.form-group
-              %td{width: '20%', :title => I18n.t(:min_total_info, scope: :edit_shop) }
+              %td{ width: '30%', :title => I18n.t(:min_total_info, scope: :edit_shop) }
                 %i.fa.fa-info-circle{ :title => I18n.t(:min_total_info, scope: :edit_shop) }
-                %label= I18n.t(:min_total, scope: :edit_shop)
-              %td{width: '80%'}
+                %label.required= I18n.t(:min_total, scope: :edit_shop)
+              %td{ width: '70%'}
                 .input-group
                   = f.text_field :min_total, :class => 'form-control', :required => true, :pattern => '^\d+\.?\d*$'
                   %span.input-group-addon

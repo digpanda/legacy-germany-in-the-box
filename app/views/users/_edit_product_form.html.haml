@@ -60,22 +60,22 @@
           %tbody
             %tr.form-group
               %td{width: '20%'}
-                %label= I18n.t(:name, scope: :edit_product)
+                %label.required= I18n.t(:name, scope: :edit_product)
               %td= f.text_field :name, :class => 'form-control', :required => true, :maxLength => Rails.configuration.max_short_text_length
             %tr.form-group
               %td{width: '20%'}
-                %label= I18n.t(:brand, scope: :edit_product)
+                %label.required= I18n.t(:brand, scope: :edit_product)
               %td= f.text_field :brand, :class => 'form-control', :required => true, :maxLength => Rails.configuration.max_short_text_length
             %tr.form-group
               %td{width: '20%', :title => I18n.t(:desc_info, scope: :edit_product) }
                 %i.fa.fa-info-circle{ :title => I18n.t(:desc_info, scope: :edit_product) }
-                %label= I18n.t(:desc, scope: :edit_product)
+                %label.required= I18n.t(:desc, scope: :edit_product)
               %td= f.text_area :desc, :class => 'form-control', rows: 8, :required => true, :maxLength => Rails.configuration.max_medium_text_length
     .panel.panel-info
       .panel-heading{ :title => I18n.t(:categories_info, scope: :edit_product) }
         .text-center
           %i.fa.fa-info-circle{ :title => I18n.t(:categories_info, scope: :edit_product) }
-          %label= I18n.t(:categories, scope: :edit_product)
+          %label.required= I18n.t(:categories, scope: :edit_product)
       .panel-body
         %table.table.table-borderless
           %tbody

@@ -1,9 +1,4 @@
-.required {
-  background-image: url("icons/asterisk.png");
-  background-position: right;
-  background-repeat: no-repeat;
-  background-size: 12px 6px;
-}
+.required:after { content: ' *'; color: red }
 
 body {
     height: 100%;
