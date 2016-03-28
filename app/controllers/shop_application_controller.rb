@@ -7,6 +7,11 @@ class ShopApplicationController < ApplicationController
 
   before_action :set_locale
 
+  before_action :set_shop_application, only: [:show]
+
+  def show
+  end
+
   def new
   end
 
@@ -61,5 +66,9 @@ class ShopApplicationController < ApplicationController
 
   def set_locale
     I18n.locale = :de
+  end
+
+  def set_shop_application
+    @shop_application = ShopApplication.find(params[:id])
   end
 end

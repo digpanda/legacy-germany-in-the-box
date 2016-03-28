@@ -6,7 +6,7 @@
   %tbody
     - @applications.each do |a|
       %tr
-        %td= a.name
-        %td= a.email
+        %td= link_to a.email, shop_application_path(a)
         %td= a.code[0,8]
+        %td= a.name
 
