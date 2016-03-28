@@ -117,14 +117,14 @@
       .container
         %a.shared_header_logo{:href => "#{root_path}"}
           - for_device_type :desktop do
-            = image_tag  'icons/RMlogo_orig.png', :style => 'width:150px;height:42px'
+            = image_tag  'icons/Logo_Rhein_Manufaktur_final_com_s.png', :style => 'width:92px;height:46px'
       %header.main
         .container
           .row
             .col-md-6
               #flexnav-menu-button.flexnav-menu-button
                 - for_device_type :tablet, :mobile do
-                  = image_tag  'icons/RMlogo_orig.png', :style => 'width:150px;height:42px'
+                  = image_tag  'icons/Logo_Rhein_Manufaktur_final_com_s.png', :style => 'width:92px;height:46px'
               - if I18n.locale == :'zh-CN' or (current_user && current_user.role == :customer)
                 %ul#flexnav.nav.nav-pills.flexnav{'data-breakpoint' => '800'}
                   %li{:class => params[:top_menu_active_part] ? (params[:top_menu_active_part] == :home ? 'active' : '') : 'active'}
@@ -363,7 +363,7 @@
           .row.row-wrap
             .col-md-3
               %a{:href => '#'}
-                = image_tag  'icons/RMlogo_orig.png'
+                = image_tag  'icons/Logo_Rhein_Manufaktur_final_com_s.png'
               %h4{ :style => 'margin-top: 12px'}= I18n.t(:recent_news, scope: :footer)
               %ul.thumb-list
                 %li
