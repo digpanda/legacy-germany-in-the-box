@@ -41,11 +41,6 @@
     });
   });
 
-- if @product.persisted? && @product.has_option?
-  %a.btn.btn-primary{ :class => 'btn-lg',  :href => edit_user_path(current_user, :user_info_edit_part => :edit_product_detail, :product_id => @product.id) }
-    %i.fa.fa-building
-    = I18n.t(:sku_manage, scope: :edit_product_detail)
-
 %br
 %br
 
@@ -157,7 +152,11 @@
                       = fso.text_field :name, :value => fso.object.get_locale_name, :style => 'max-width:120px', :class => 'form-control input-sm', :required => true, :maxLength => Rails.configuration.max_tiny_text_length, :placeholder => I18n.t(:option_name, scope: :edit_product_variant)
                     .btn-group.pull-right
                       = link_to '', remove_option_product_path(@product.id, fo.object.id, fso.object.id), method: :delete, data: { confirm: "#{I18n.t(:delete_option_message, scope: :edit_product_variant)}" }, :class => 'btn fa fa-times-circle', :title => I18n.t(:remove_option, scope: :edit_product_variant)
-
+      - if @product.persisted? && @product.has_option?
+        .panel-footer
+          %a{ :href => edit_user_path(current_user, :user_info_edit_part => :edit_product_detail, :product_id => @product.id) }
+            %i.fa.fa-edit
+            = I18n.t(:sku_manage, scope: :edit_product_detail)
 
   = f.submit :id => 'edit_product_submit_btn', :class => 'btn btn-primary', :value => @product.persisted? ? I18n.t(:update_basic, scope: :edit_product) : I18n.t(:new_basic, scope: :edit_product)
   = link_to I18n.t(:cancel, scope: :edit_product), edit_user_path(current_user, :user_info_edit_part => :edit_product), :class => 'btn btn-primary'
