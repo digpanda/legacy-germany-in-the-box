@@ -31,8 +31,8 @@ zh-CN:
     start: 首页
     popular_product: 热门商品
     language: 语言
-    chinese: 中文
-    german: 德语
+    chinese: 中文/CN
+    german: 德语/DE
     user_profile: 用户概要
     wrong_captcha: 验证码不一致
     email_confirmation_msg: 我们已经向您的注册邮箱发送了一封确认邮件，请您登陆前先确认。
