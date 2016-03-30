@@ -168,8 +168,6 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     @product.shop = current_user.shop
-    option = @product.options.build(:name => 'Standard')
-    option.suboptions.build(:name => 'Standard')
 
     respond_to do |format|
       @product.categories = params.require(:product)[:categories].map { |cid| Category.find(cid) if not cid.blank? }.compact

@@ -62,12 +62,6 @@ class UsersController < ApplicationController
     elsif params[:user_info_edit_part] == :edit_product_detail_new.to_s
       @product = current_user.shop.products.find(params[:product_id])
       @sku = @product.skus.build
-
-      if default_variant = @product.options.where(:name => 'Standard').first
-        if default_variant && (default_option = default_variant.suboptions.where(:name => 'Standard').first)
-          @sku.option_ids << default_option.id.to_s
-        end
-      end
     elsif params[:user_info_edit_part] == :edit_product_detail_update.to_s
       @product = current_user.shop.products.find(params[:product_id])
       @sku = @product.skus.find(params[:sku_id])
