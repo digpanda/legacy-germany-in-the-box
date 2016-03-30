@@ -125,7 +125,8 @@ module ProductsHelper
   def gen_remove_variant_panel
     %Q{
       function () {
-        $(this).closest('.panel').remove(); return false;
+        $(this).closest('.panel').remove();
+        return false;
       }
     }
   end
@@ -163,13 +164,13 @@ module ProductsHelper
   def gen_add_option_to_new_variant
     %Q{
       function() {
-        var parent_index = $('#variants_panel_#{@product.id}').find('.panel-body:first').find('.panel').not($(this).closest('.panel')).length;
         var body = $(this).closest('.panel').children('.panel-body');
+        var pp_index = $(this).closest('.col-md-4').prevAll().length;
         var index = body.find('input').length;
         body.append(
           $('<div>').addClass('form-inline').append(
             $('<div>').addClass('form-group').append(
-              $('<input>').attr('style', 'max-width:120px').attr('name', 'product[options_attributes]['+parent_index+'][suboptions_attributes][' + index + '][name]').addClass('form-control dynamical-required input-sm').attr('maxLength', '#{Rails.configuration.max_tiny_text_length}').attr('placeholder', '#{I18n.t(:option_name, scope: :edit_product_variant)}')
+              $('<input>').attr('style', 'max-width:120px').attr('name', 'product[options_attributes]['+pp_index+'][suboptions_attributes][' + index + '][name]').addClass('form-control dynamical-required input-sm').attr('maxLength', '#{Rails.configuration.max_tiny_text_length}').attr('placeholder', '#{I18n.t(:option_name, scope: :edit_product_variant)}')
             ),
             ' ',
             $('<div>').addClass('btn-group pull-right').append(
@@ -185,7 +186,7 @@ module ProductsHelper
 
   def gen_add_variant_panel
     %Q{
-      var body = $('#variants_panel_#{@product.id}').find('.panel-body:first')
+      var body = $(this).closest('.panel').children('.panel-body')
       var index = body.find('.panel').length
       if (index < #{Rails.configuration.max_num_variants}) {
         body.append(
