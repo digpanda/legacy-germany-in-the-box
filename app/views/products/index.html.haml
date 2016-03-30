@@ -1,5 +1,5 @@
 :javascript
-  $( document ).ready( function () {
+  $(function () {
     $.widget( 'custom.catcomplete', $.ui.autocomplete, {
       _create: function() {
           this._super();
@@ -31,11 +31,11 @@
       }
     });
 
-    $( '.variant-option' ).change(function () {
+    $( 'select.variant-option' ).change(function () {
       product_id = $(this).attr('product_id');
       option_ids = [];
 
-      $('.product-page-meta-info [id^="product_' + product_id + '_variant"]').each ( function(o) {
+      $('ul.product-page-meta-info [id^="product_' + product_id + '_variant"]').each ( function(o) {
         option_ids.push($(this).val())
       });
 
