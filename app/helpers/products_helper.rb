@@ -134,21 +134,22 @@ module ProductsHelper
   def gen_remove_option_panel
     %Q{
       function() {
-        $(this).closest('.form-inline').remove(); return false;
+        $(this).closest('.form-inline').remove();
+        return false;
       }
     }
   end
 
   def gen_add_option_to_existing_variant
     %Q{
-      var parent_index = $(this).attr('index')
-      var body = $(this).closest('.panel').find('.panel-body');
-      var index = body.children('input').length;
+      var pp_index = $(this).attr('index')
+      var body = $(this).closest('.panel').children('.panel-body');
+      var index = body.children('.form-inline').length;
 
       body.append(
         $('<div>').addClass('form-inline').append(
           $('<div>').addClass('form-group').append(
-            $('<input>').attr('style', 'max-width:120px').attr('name', 'product[options_attributes][' + parent_index + '][suboptions_attributes][' + index + '][name]').addClass('form-control dynamical-required').attr('maxLength', '#{Rails.configuration.max_tiny_text_length}').attr('placeholder', '#{I18n.t(:option_name, scope: :edit_product_variant)}')
+            $('<input>').attr('style', 'max-width:120px').attr('name', 'product[options_attributes][' + pp_index + '][suboptions_attributes][' + index + '][name]').addClass('form-control dynamical-required').attr('maxLength', '#{Rails.configuration.max_tiny_text_length}').attr('placeholder', '#{I18n.t(:option_name, scope: :edit_product_variant)}')
           ),
           ' ',
           $('<div>').addClass('btn-group pull-right').append(
@@ -164,9 +165,10 @@ module ProductsHelper
   def gen_add_option_to_new_variant
     %Q{
       function() {
+        var pp_index = $(this).closest('.col-md-4').prevAll('.col-md-4').length;
         var body = $(this).closest('.panel').children('.panel-body');
-        var pp_index = $(this).closest('.col-md-4').prevAll().length;
         var index = body.find('input').length;
+
         body.append(
           $('<div>').addClass('form-inline').append(
             $('<div>').addClass('form-group').append(
