@@ -25,10 +25,10 @@
           %a{ :href => "#{ edit_user_path(current_user, :user_info_edit_part => :edit_shop_address) }" }
             %i.fa.fa-globe
             = I18n.t(:my_address, scope: :top_menu)
-        %li
-          %a{ :href => "#{ edit_user_path(current_user, :user_info_edit_part => :edit_collection) }" }
-            %i.fa.fa-eye
-            = I18n.t(:my_collection, scope: :top_menu)
+        -#%li
+        -#  %a{ :href => "#{ edit_user_path(current_user, :user_info_edit_part => :edit_collection) }" }
+        -#    %i.fa.fa-eye
+        -#    = I18n.t(:my_collection, scope: :top_menu)
     %li
       %a{ :href => "#{ signout_path }", :'data-method' => :delete }
         %i.fa.fa-sign-out

@@ -18,8 +18,6 @@ class ShopsController <  ApplicationController
        if current_user.shop.update(sp)
          if params[:user_info_edit_part] == :edit_producer.to_s
            flash[:success] = I18n.t(:update_producer_ok, scope: :edit_shop)
-         elsif params[:user_info_edit_part] == :edit_shopkeeper_agb.to_s
-           flash[:success] = I18n.t(:update_agb_ok, scope: :edit_shop)
          else
            flash[:success] = I18n.t(:update_ok, scope: :edit_shop)
          end
@@ -35,7 +33,7 @@ class ShopsController <  ApplicationController
 
   def shop_params
     unless current_user.shop.agb
-      params.require(:shop).permit(:shopname, :name, :desc, :logo, :banner, :philosophy, :stories, :ustid, :eroi, :min_total, :currency, :status, :founding_year, :register, :website, :agb, target_groups:[], sales_channels:[] )
+      params.require(:shop).permit(:shopname, :name, :desc, :logo, :banner, :philosophy, :stories, :tax_number, :ustid, :eroi, :min_total, :currency, :status, :founding_year, :register, :website, :agb, target_groups:[], sales_channels:[] )
     else
       params.require(:shop).permit(:shopname, :name, :desc, :logo, :banner, :philosophy, :stories, :ustid, :eroi, :min_total, :currency, :status, :founding_year, :register, :website, target_groups:[], sales_channels:[] )
     end

@@ -32,7 +32,7 @@ class Shop
   field :statement0,      type: Boolean
   field :statement1,      type: Boolean
   field :statement2,      type: Boolean
-  field :agb,             type: Boolean,    default: false
+  field :agb,             type: Boolean
 
   field :name_locales,    type: Hash
 
@@ -56,12 +56,13 @@ class Shop
   validates :founding_year, presence: true,   length: {maximum: 4}
   validates :desc,          presence: true,   length: {maximum: (Rails.configuration.max_medium_text_length * 1.25).round}
   validates :philosophy,    presence: true,   length: {maximum: (Rails.configuration.max_medium_text_length * 1.25).round}
-  validates :statement0,    presence: true
-  validates :statement1,    presence: true
-  validates :statement2,    presence: true
-  validates :agb,           presence: true
-  validates :tax_number,    presence: true,   length: {maximum: Rails.configuration.max_tiny_text_length }
-  validates :ustid,         presence: true,   length: {maximum: Rails.configuration.max_tiny_text_length }
+  validates :tax_number,    presence: true,   length: {maximum: Rails.configuration.max_tiny_text_length },   :if => lambda { self.agb }
+  validates :ustid,         presence: true,   length: {maximum: Rails.configuration.max_tiny_text_length },   :if => lambda { self.agb }
+
+  validates :statement0,    inclusion: {in: [true]},    :if => lambda { self.statement0.present? }
+  validates :statement1,    inclusion: {in: [true]},    :if => lambda { self.statement1.present? }
+  validates :statement2,    inclusion: {in: [true]},    :if => lambda { self.statement2.present? }
+  validates :agb,           inclusion: {in: [true]},    :if => lambda { self.agb.present? }
 
   validates :register,        length: {maximum: Rails.configuration.max_tiny_text_length}
   validates :stories,         length: {maximum: (Rails.configuration.max_long_text_length * 1.25).round}
@@ -74,14 +75,9 @@ class Shop
   scope :is_active,       ->        { where( :status => true ) }
 
   before_save :ensure_shopkeeper
-  before_save :ensure_agb
   before_save :clean_sms_mobile, :unless => lambda { self.sms }
 
   private
-
-  def ensure_agb
-    self.agb = true if self.agb.present?
-  end
 
   def ensure_shopkeeper
     shopkeeper.role == :shopkeeper

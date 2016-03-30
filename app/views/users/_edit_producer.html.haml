@@ -139,5 +139,17 @@
                 = f.check_box :statement2, { :disabled => true }
                 = I18n.t(:statement_2, scope: :shop_application)
 
+    .panel.panel-info
+      .panel-heading.text-center
+        %label.required= I18n.t(:agb, scope: :edit_shop)
+      .panel-body
+        .form-group
+          - if current_user.shop && (not current_user.shop.agb)
+            = f.hidden_field :agb
+            = f.check_box :agb, { :required => true }, true
+            = I18n.t(:agb_statement, scope: :edit_shop)
+          - else
+            = f.check_box :agb, { :disabled => true }
+            = I18n.t(:agb_statement, scope: :edit_shop)
 
   = f.button I18n.t(:save, scope: :edit_shop), :class => 'btn btn-primary', :onclick => "$('.dynamical_required').each( function () { if ( $(this).val().length == 0 ) { $(this).addClass('invalidBorderClass'); } else { $(this).removeClass('invalidBorderClass'); } } ); if ( $('.invalidBorderClass').length > 0 ) { return false; }",  name: :user_info_edit_part, value: :edit_producer
