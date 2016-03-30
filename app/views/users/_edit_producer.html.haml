@@ -1,4 +1,4 @@
-= form_for @shop, :html => {'data-toggle': 'validator', role: 'form', :id => 'testtest', :name => 'testtest'} do |f|
+= form_for @shop, :html => {'data-toggle': 'validator', role: 'form' } do |f|
   .panel-group
     .panel.panel-info
       .panel-heading.text-center
@@ -147,9 +147,9 @@
           - if current_user.shop && (not current_user.shop.agb)
             = f.hidden_field :agb
             = f.check_box :agb, { :required => true }, true
-            = I18n.t(:agb_statement, scope: :edit_shop)
+            = I18n.t(:agb_statement, scope: :edit_shop).html_safe
           - else
             = f.check_box :agb, { :disabled => true }
-            = I18n.t(:agb_statement, scope: :edit_shop)
+            = I18n.t(:agb_statement, scope: :edit_shop).html_safe
 
   = f.button I18n.t(:save, scope: :edit_shop), :class => 'btn btn-primary', :onclick => "$('.dynamical_required').each( function () { if ( $(this).val().length == 0 ) { $(this).addClass('invalidBorderClass'); } else { $(this).removeClass('invalidBorderClass'); } } ); if ( $('.invalidBorderClass').length > 0 ) { return false; }",  name: :user_info_edit_part, value: :edit_producer

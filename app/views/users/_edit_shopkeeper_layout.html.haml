@@ -1,3 +1,11 @@
+#agb-dialog.mfp-with-anim.mfp-hide.mfp-dialog.mfp-dialog-big.clearfix
+  %br
+  .text-center
+    %h3
+      %span.label.label-primary= I18n.t(:agb, scope: :edit_shop)
+  %br
+  %textarea{ :class => 'form-control', :rows => '8'}= 'AGB'
+
 .container
   .col-md-3
     %aside.sidebar-left
@@ -21,7 +29,7 @@
     - if current_user.shop && current_user.shop.agb
       .gap
       .col-md-offset-1
-        = link_to I18n.t(:my_agb, scope: :top_menu),  '#', :style => 'color: #666; text-decoration: underline'
+        = link_to I18n.t(:my_agb, scope: :top_menu),  '#agb-dialog', :style => 'color: #666; text-decoration: underline', :class => 'popup-text', 'data-effect' => 'mfp-zoom-out'
 
   .col-md-9
     = yield
