@@ -54,10 +54,10 @@ class UsersController < ApplicationController
       @product = current_user.shop.products.find(params[:product_id])
       @src = @product.skus.find(params[:sku_id])
       @sku = @product.skus.build(@src.attributes.except(:_id, :img0, :img1, :img2, :img3))
-      CopyCarrierwaveFile::CopyFileService.new(@src, @sku, :img0).set_file
-      CopyCarrierwaveFile::CopyFileService.new(@src, @sku, :img1).set_file
-      CopyCarrierwaveFile::CopyFileService.new(@src, @sku, :img2).set_file
-      CopyCarrierwaveFile::CopyFileService.new(@src, @sku, :img3).set_file
+      CopyCarrierwaveFile::CopyFileService.new(@src, @sku, :img0).set_file if @src.img0.url
+      CopyCarrierwaveFile::CopyFileService.new(@src, @sku, :img1).set_file if @src.img1.url
+      CopyCarrierwaveFile::CopyFileService.new(@src, @sku, :img2).set_file if @src.img2.url
+      CopyCarrierwaveFile::CopyFileService.new(@src, @sku, :img3).set_file if @src.img3.url
       @sku.save
     elsif params[:user_info_edit_part] == :edit_product_detail_new.to_s
       @product = current_user.shop.products.find(params[:product_id])
