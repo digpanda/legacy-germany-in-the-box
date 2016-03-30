@@ -141,7 +141,7 @@
 
     .panel.panel-info
       .panel-heading.text-center
-        %label.required= I18n.t(:agb, scope: :edit_shop)
+        %label{:class => current_user.shop.agb ? '' : 'required'}= I18n.t(:agb, scope: :edit_shop)
       .panel-body
         .form-group
           - if current_user.shop && (not current_user.shop.agb)
