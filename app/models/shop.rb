@@ -14,6 +14,7 @@ class Shop
   field :banner,          type: String
   field :philosophy,      type: String
   field :stories,         type: String
+  field :tax_number,      type: String
   field :ustid,           type: String
   field :eroi,            type: String
   field :sms,             type: Boolean,    default: false
@@ -48,8 +49,6 @@ class Shop
   validates :name,          presence: true,   length: {maximum: (Rails.configuration.max_tiny_text_length * 1.25).round}
   validates :sms,           presence: true
   validates :sms_mobile,    presence: true,   :if => lambda { self.sms }, length: {maximum: Rails.configuration.max_tiny_text_length}
-  #validates :billing_address,       presence: true,   :if => lambda { self.status == :opened }
-  #validates :bank_account,  presence: true,   :if => lambda { self.status == :opened }
   validates :status,        presence: true
   validates :min_total,     presence: true,   numericality: { :greater_than_or_equal_to => 0 }
   validates :shopkeeper,    presence: true
@@ -61,11 +60,12 @@ class Shop
   validates :statement1,    presence: true
   validates :statement2,    presence: true
   validates :agb,           presence: true
+  validates :tax_number,    presence: true,   length: {maximum: Rails.configuration.max_tiny_text_length }
+  validates :ustid,         presence: true,   length: {maximum: Rails.configuration.max_tiny_text_length }
 
   validates :register,        length: {maximum: Rails.configuration.max_tiny_text_length}
   validates :stories,         length: {maximum: (Rails.configuration.max_long_text_length * 1.25).round}
   validates :website,         length: {maximum: (Rails.configuration.max_short_text_length * 1.25).round}
-  validates :ustid,           length: {maximum: Rails.configuration.max_tiny_text_length }
   validates :eroi,            length: {maximum: Rails.configuration.max_tiny_text_length }
   validates :uniqueness,      length: {maximum: (Rails.configuration.max_medium_text_length * 1.25).round}
   validates :german_essence,  length: {maximum: (Rails.configuration.max_medium_text_length * 1.25).round}

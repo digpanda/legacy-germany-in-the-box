@@ -20,9 +20,9 @@ de:
     my_collection: Favorit
     my_following: Beobachtung
     my_followers: Anhänger
-    my_shop: Shop
+    my_shop: Shop-Einstellungen
     my_producer: Herstellerdetails
-    my_product: Meine Produkte
+    my_product: Produktmanagment
     my_agb: AGB
     shop_applications: Beantragungen
     view_cart: Ansehen
@@ -267,6 +267,7 @@ de:
     required_field_info: '* Pflichtfeld'
     company_name_placeholder: 'Beispiel GmbH'
     shopname: Shopname
+    tax_number: Steuernummer
   edit_product:
     edit: Editieren
     remove: Entfernen

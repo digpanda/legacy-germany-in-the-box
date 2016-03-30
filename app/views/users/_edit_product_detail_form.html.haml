@@ -106,7 +106,7 @@
                 .form-group
                   = fs.text_field :weight, :class => 'form-control', :required => true, :pattern => '^\d+\.?\d*$'
                 .form-group
-                  = fs.select :unit, options_for_select(['g', 'kg', 'ml', 'l'], @sku.unit), { :include_blank => true }, { :class => 'form-control', :required => true }
+                  = fs.select :unit, options_for_select(['g', 'kg', 'ml', 'l'], 'kg'), {}, { :class => 'form-control' }
             %td{:colspan => 2}
               .form-inline
                 .form-group
