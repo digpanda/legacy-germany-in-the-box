@@ -194,10 +194,11 @@
                         %i.fa.fa-edit
                         = for_device_type :desktop do I18n.t(:sign_up, scope: :top_menu) end
                 - else
-                  %li
-                    %a{:href => "#{edit_user_path(current_user, :user_info_edit_part => :edit_collection)}",  :title => "#{I18n.t(:my_collection, scope: :top_menu)}"}
-                      %i.fa.fa-heart
-                      = for_device_type :desktop do I18n.t(:my_collection, scope: :top_menu) end
+                  - if current_user.role != :shopkeeper
+                    %li
+                      %a{:href => "#{edit_user_path(current_user, :user_info_edit_part => :edit_collection)}",  :title => "#{I18n.t(:my_collection, scope: :top_menu)}"}
+                        %i.fa.fa-heart
+                        = for_device_type :desktop do I18n.t(:my_collection, scope: :top_menu) end
                 - if current_user
                   - if current_user.role == :customer
                     = render 'users/menu_customer'
