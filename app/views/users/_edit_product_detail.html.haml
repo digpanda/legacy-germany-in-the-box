@@ -2,8 +2,8 @@
 = stylesheet_link_tag 'bootstrap-multiselect.css'
 
 :javascript
-  $(document).ready(function() {
-      $('.sku_variants_options').multiselect({
+  $(function() {
+      $('select.sku-variants-options').multiselect({
         nonSelectedText: "#{I18n.t(:non_selected_text, scope: :multiselect)}",
         nSelectedText: "#{I18n.t(:n_selected_text, scope: :multiselect)}",
         numberDisplayed: 3,
@@ -28,7 +28,7 @@
       %tr
         %td.info{:colspan => 8}
           %i.fa.fa-info-circle{ :title => I18n.t(:variants_info, scope: :edit_product_detail) }
-          = select_tag :option_ids, grouped_options_for_select(get_grouped_variants_options(@product), s.option_ids ), :multiple => 'multiple', :class => 'sku_variants_options', :readonly=>true
+          = select_tag :option_ids, grouped_options_for_select(get_grouped_variants_options(@product), s.option_ids ), :multiple => 'multiple', :class => 'sku-variants-options', :readonly=>true
           .btn-group.pull-right
             = link_to I18n.t(:edit, scope: :edit_product_detail), edit_user_path(current_user, :user_info_edit_part => :edit_product_detail_update, :product_id => @product.id, :sku_id => s.id), :class => 'fa fa-edit btn'
             = link_to I18n.t(:clone, scope: :edit_product_detail), edit_user_path(current_user, :user_info_edit_part => :edit_product_detail_clone, :product_id => @product.id, :sku_id => s.id), :class => 'fa fa-files-o btn'

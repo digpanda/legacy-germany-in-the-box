@@ -3,11 +3,11 @@
 
 :javascript
   $(document).ready(function() {
-    $('.product_categories').multiselect({
+    $('select.product-categories').multiselect({
       enableCaseInsensitiveFiltering: true,
       maxHeight: 400,
       onChange: function(option, checked) {
-        v = $('.product_categories')
+        v = $('.product-categories')
 
         if ( v.val() ) {
           v.next().removeClass('invalidBorderClass')
@@ -18,14 +18,14 @@
     });
 
     $('#edit_product_submit_btn').click( function() {
-      v = $('.product_categories');
+      v = $('select.product-categories');
 
       if ( v.val().length == 0 ) {
         v.next().addClass('invalidBorderClass');
         return false;
       }
 
-      $('.dynamical_required').each(
+      $('input.dynamical-required').each(
         function () {
           if ( $(this).val().length == 0 ) {
             $(this).addClass('invalidBorderClass');
@@ -75,7 +75,7 @@
         %table.table.table-borderless
           %tbody
             %tr.form-group
-              %td= f.select :categories, grouped_options_for_select(get_grouped_categories_options, @product.categories.map { |c| c.id.to_s }), { :include_blank => I18n.t(:non_selected_text, scope: :multiselect) }, :name => 'product[categories][]', :class => 'form-control product_categories'
+              %td= f.select :categories, grouped_options_for_select(get_grouped_categories_options, @product.categories.map { |c| c.id.to_s }), { :include_blank => I18n.t(:non_selected_text, scope: :multiselect) }, :name => 'product[categories][]', :class => 'form-control product-categories'
     .panel.panel-info
       .panel-heading{:title => I18n.t(:keywords_info, scope: :edit_product, num: Rails.configuration.max_num_addresses)}
         .text-center

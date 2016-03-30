@@ -2,24 +2,20 @@
 = stylesheet_link_tag 'bootstrap-multiselect.css'
 
 :javascript
-  $(document).ready(function() {
-      $('.sku_variants_options').multiselect({
+  $(function() {
+      $('select.sku-variants-options').multiselect({
         nonSelectedText: "#{I18n.t(:non_selected_text, scope: :multiselect)}",
         nSelectedText: "#{I18n.t(:n_selected_text, scope: :multiselect)}",
         numberDisplayed: 3,
         maxHeight: 400,
         onChange: function(option, checked) {
-          v = $('.sku_variants_options')
+          v = $('.sku-variants-options')
           if ( v.val() ) {
             v.next().removeClass('invalidBorderClass')
           } else {
             v.next().addClass('invalidBorderClass')
           }
         }
-      });
-
-      $('.unit_options').multiselect({
-        maxHeight: 40
       });
   });
 
@@ -80,7 +76,7 @@
             %td{:colspan => 2}
               %label.required= I18n.t(:quantity, scope: :edit_product_detail)
           %tr
-            %td.form-group{:colspan => 2}= fs.select :option_ids, grouped_options_for_select(get_grouped_variants_options(@product), @sku.option_ids ), {}, {:multiple => 'multiple', :class => 'sku_variants_options', :required => true}
+            %td.form-group{:colspan => 2}= fs.select :option_ids, grouped_options_for_select(get_grouped_variants_options(@product), @sku.option_ids ), {}, {:multiple => 'multiple', :class => 'sku-variants-options', :required => true}
             %td.form-group{:colspan => 2}= fs.text_field :quantity, :class => 'form-control', :placeholder => @sku.limited ? '' : I18n.t(@sku.limited.to_s.to_sym, scope: 'edit_product_detail.limited'), :required => true, :pattern => '^[1-9][0-9]*$'
           %tr
             %td{:colspan => 2}
@@ -219,7 +215,7 @@
             %td{:colspan => 2}
               %label.required= I18n.t(:quantity, scope: :edit_product_detail)
           %tr
-            %td.form-group{:colspan => 2}= fs.select :option_ids, grouped_options_for_select(get_grouped_variants_options(@product), @sku.option_ids ), {}, {:multiple => 'multiple', :class => 'sku_variants_options', :required => true}
+            %td.form-group{:colspan => 2}= fs.select :option_ids, grouped_options_for_select(get_grouped_variants_options(@product), @sku.option_ids ), {}, {:multiple => 'multiple', :class => 'sku-variants-options', :required => true}
             %td.form-group{:colspan => 2}= fs.text_field :quantity, :class => 'form-control', :placeholder => @sku.limited ? '' : I18n.t(@sku.limited.to_s.to_sym, scope: 'edit_product_detail.limited'), :pattern => '^[1-9][0-9]*$', :required => true
           %tr
             %td{:colspan => 2}
@@ -301,5 +297,5 @@
                   = fs.check_box :timed, { :class => 'i-check' }, true
                   = I18n.t(:timed_info, scope: :edit_product_detail)
 
-  = f.submit :class => 'btn btn-primary', :value => new ? I18n.t(:create_sku, scope: :edit_product_detail) : I18n.t(:update_sku, scope: :edit_product_detail), :part => :sku, :onclick => "v = $('.sku_variants_options'); if ( v.val() ) { return true; } else { v.next().addClass('invalidBorderClass'); return false; }"
+  = f.submit :class => 'btn btn-primary', :value => new ? I18n.t(:create_sku, scope: :edit_product_detail) : I18n.t(:update_sku, scope: :edit_product_detail), :part => :sku, :onclick => "v = $('select.sku-variants-options'); if ( v.val() ) { return true; } else { v.next().addClass('invalidBorderClass'); return false; }"
   = link_to I18n.t(:cancel, scope: :edit_product_detail), :back, :class => 'btn btn-primary'

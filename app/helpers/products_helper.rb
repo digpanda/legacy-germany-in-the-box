@@ -57,7 +57,7 @@ module ProductsHelper
         body.append(
           $('<tr>').addClass('form-group').append(
             $('<td>').attr('width', '80%').append(
-              $('<input>').attr('name', 'shop[target_groups][]').attr('required', true).attr('placeholder', '#{I18n.t(:target_group, scope: :edit_shop)}').addClass('form-control dynamical_required').attr('maxLength', #{Rails.configuration.max_short_text_length})
+              $('<input>').attr('name', 'shop[target_groups][]').attr('required', true).attr('placeholder', '#{I18n.t(:target_group, scope: :edit_shop)}').addClass('form-control dynamical-required').attr('maxLength', #{Rails.configuration.max_short_text_length})
             ),
             $('<td>').attr('width', '20%').append(
               $('<a>').attr('href', '#').addClass('btn').attr('onclick', #{gen_remove_target_group}).append(
@@ -87,7 +87,7 @@ module ProductsHelper
           $('<tr>').append(
             #{gen_sales_channel_select_tag},
             $('<td>').addClass('form-group').attr('width', '55%').append(
-              $('<input>').attr('name', 'shop[sales_channels][]').attr('required', true).attr('placeholder', '#{I18n.t(:sales_channel, scope: :edit_shop)}').addClass('form-control dynamical_required').attr('maxLength', #{Rails.configuration.max_short_text_length})
+              $('<input>').attr('name', 'shop[sales_channels][]').attr('required', true).attr('placeholder', '#{I18n.t(:sales_channel, scope: :edit_shop)}').addClass('form-control dynamical-required').attr('maxLength', #{Rails.configuration.max_short_text_length})
             ),
             $('<td>').attr('width', '15%').append(
               $('<a>').attr('href', '#').addClass('btn').attr('onclick', #{gen_remove_sales_channel}).append(
@@ -147,7 +147,7 @@ module ProductsHelper
       body.append(
         $('<div>').addClass('form-inline').append(
           $('<div>').addClass('form-group').append(
-            $('<input>').attr('style', 'max-width:120px').attr('name', 'product[options_attributes][' + parent_index + '][suboptions_attributes][' + index + '][name]').addClass('form-control dynamical_required').attr('maxLength', '#{Rails.configuration.max_tiny_text_length}').attr('placeholder', '#{I18n.t(:option_name, scope: :edit_product_variant)}')
+            $('<input>').attr('style', 'max-width:120px').attr('name', 'product[options_attributes][' + parent_index + '][suboptions_attributes][' + index + '][name]').addClass('form-control dynamical-required').attr('maxLength', '#{Rails.configuration.max_tiny_text_length}').attr('placeholder', '#{I18n.t(:option_name, scope: :edit_product_variant)}')
           ),
           ' ',
           $('<div>').addClass('btn-group pull-right').append(
@@ -169,7 +169,7 @@ module ProductsHelper
         body.append(
           $('<div>').addClass('form-inline').append(
             $('<div>').addClass('form-group').append(
-              $('<input>').attr('style', 'max-width:120px').attr('name', 'product[options_attributes]['+parent_index+'][suboptions_attributes][' + index + '][name]').addClass('form-control dynamical_required input-sm').attr('maxLength', '#{Rails.configuration.max_tiny_text_length}').attr('placeholder', '#{I18n.t(:option_name, scope: :edit_product_variant)}')
+              $('<input>').attr('style', 'max-width:120px').attr('name', 'product[options_attributes]['+parent_index+'][suboptions_attributes][' + index + '][name]').addClass('form-control dynamical-required input-sm').attr('maxLength', '#{Rails.configuration.max_tiny_text_length}').attr('placeholder', '#{I18n.t(:option_name, scope: :edit_product_variant)}')
             ),
             ' ',
             $('<div>').addClass('btn-group pull-right').append(
@@ -194,7 +194,7 @@ module ProductsHelper
               $('<div>').addClass('panel-heading').append(
                 $('<div>').addClass('form-inline').append(
                   $('<div>').addClass('form-group').append(
-                    $('<input>').attr('name', 'product[options_attributes]['+index+'][name]').attr('required', true).attr('style', 'max-width:120px').addClass('form-control input-sm dynamical_required').attr('maxLength', '#{Rails.configuration.max_tiny_text_length}').attr('placeholder', '#{I18n.t(:variant_name, scope: :edit_product_variant)}')
+                    $('<input>').attr('name', 'product[options_attributes]['+index+'][name]').attr('required', true).attr('style', 'max-width:120px').addClass('form-control input-sm dynamical-required').attr('maxLength', '#{Rails.configuration.max_tiny_text_length}').attr('placeholder', '#{I18n.t(:variant_name, scope: :edit_product_variant)}')
                   ),
                   ' ',
                   $('<div>').addClass('btn-group pull-right').append(
