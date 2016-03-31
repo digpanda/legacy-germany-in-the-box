@@ -299,11 +299,11 @@
             %td.form-group{:colspan => 4}
               .radio
                 %label
-                  = fs.radio_button :time, 'terminated', :class => 'i-radio'
+                  = fs.radio_button :time, 'terminated', :class => 'i-radio', :required => true
                   = I18n.t(:timed_info, scope: :edit_product_detail)
               .radio
                 %label
-                  = fs.radio_button :time, 'automatic', :class => 'i-radio'
+                  = fs.radio_button :time, 'automatic', :class => 'i-radio', :required => true
                   = I18n.t(:renew_info, scope: :edit_product_detail)
 
   = f.submit :class => 'btn btn-primary', :value => new ? I18n.t(:create_sku, scope: :edit_product_detail) : I18n.t(:update_sku, scope: :edit_product_detail), :part => :sku, :onclick => "v = $('select.sku-variants-options'); if ( v.val() ) { return true; } else { v.next().addClass('invalidBorderClass'); return false; }"
