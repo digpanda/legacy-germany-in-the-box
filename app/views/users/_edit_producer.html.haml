@@ -79,27 +79,6 @@
                 = f.text_field :eroi, :class => 'form-control', :maxLength => Rails.configuration.max_tiny_text_length
                 %div.help-block.with-errors
     .panel.panel-info
-      .panel-heading{ :title => I18n.t(:target_groups_info, scope: :edit_shop, num: Rails.configuration.max_num_target_groups) }
-        .btn-toolbar{ :style => 'margin-left:22px' }
-          %label
-            %i.fa.fa-info-circle{ :title => I18n.t(:target_groups_info, scope: :edit_shop, num: Rails.configuration.max_num_target_groups) }
-            %label= I18n.t(:target_groups, scope: :edit_shop)
-          .pull-right
-            %a{:href => '#', :class=> 'btn btn-sm', :onclick => "#{gen_add_target_group}", :id => "a_add_target_group_#{@shop.id}"}
-              %i.fa.fa-plus-circle
-              = I18n.t(:add_target_group, scope: :edit_shop)
-      .panel-body
-        %table.table.table-borderless{:id => "table_shop_target_groups_#{@shop.id}"}
-          %tbody
-            - if @shop.target_groups
-              - @shop.target_groups.each do |tg|
-                %tr.form-group
-                  %td{width: '70%'}= text_field_tag 'shop[target_groups][]', tg, :class => 'form-control', :placeholder => I18n.t(:target_group, scope: :edit_shop), :required => true
-                  %td{width: '30%'}
-                    %a{ :href => '#', :class => 'btn', :onclick => "$(this).closest('tr').remove(); return false;" }
-                      %i.fa.fa-times-circle
-                      =I18n.t(:remove_target_group, scope: :edit_shop)
-    .panel.panel-info
       .panel-heading{ :title => I18n.t(:sales_channels_info, scope: :edit_shop, num: Rails.configuration.max_num_sales_channels) }
         .btn-toolbar{ :style => 'margin-left:22px' }
           %i.fa.fa-info-circle{ :title => I18n.t(:sales_channels_info, scope: :edit_shop, num: Rails.configuration.max_num_sales_channels) }

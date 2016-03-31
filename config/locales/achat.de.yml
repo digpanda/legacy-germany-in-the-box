@@ -254,7 +254,7 @@ de:
     target_groups_info: Wer gehört zur Zielgruppe für Ihre Produkte in Deutschland? Sie können bis zu %{num} Zielgruppen eintragen.
     target_group: Zielgruppe
     sales_channels: Vertriebswege
-    sales_channels_info: Was sind Ihre Vertriebswege? Sie können bis zu %{num} Vertriebswege eintragen.
+    sales_channels_info: Über welche Vertriebswege verfügen Sie? (Bespielsweise eigener Online-Shop, dritte Online-Plattform, Präsenzshop, Einzelhandel, Direct Selling...) Sie können max. %{num} Vertriebswege eintragen.
     register: Handelsregister
     add_target_group: Hinzufügen
     remove_target_group: Entfernen

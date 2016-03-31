@@ -206,7 +206,17 @@ module ProductsHelper
                   )
                 )
               ),
-              $('<div>').addClass('panel-body')
+              $('<div>').addClass('panel-body').append(
+                $('<div>').addClass('form-inline').append(
+                  $('<div>').addClass('form-group').append(
+                    $('<input>').attr('style', 'max-width:120px').attr('name', 'product[options_attributes]['+index+'][suboptions_attributes][' + 0 + '][name]').addClass('form-control dynamical-required input-sm').attr('maxLength', '#{Rails.configuration.max_tiny_text_length}').attr('placeholder', '#{I18n.t(:option_name, scope: :edit_product_variant)}')
+                  ),
+                  ' ',
+                  $('<div>').addClass('btn-group pull-right').append(
+                    $('<a>').addClass('fa fa-times-circle btn').attr('title', '#{I18n.t(:remove, scope: :edit_product_variant)}').click(#{gen_remove_option_panel})
+                  )
+                )
+              )
             )
           )
         );

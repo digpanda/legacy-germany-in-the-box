@@ -25,7 +25,6 @@ class Shop
   field :founding_year,   type: String
   field :uniqueness,      type: String
   field :german_essence,  type: String
-  field :target_groups,   type: Array,      default: []
   field :sales_channels,  type: Array,      default: []
   field :register,        type: String
   field :website,         type: String
