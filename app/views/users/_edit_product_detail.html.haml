@@ -65,13 +65,13 @@
         %td= I18n.t(s.status.to_s, scope: 'edit_product_detail.status')
       %tr
         %td.form-group{:colspan => 8}
-          .checkbox
+          .radio
             %label
-              = check_box_tag :renew, value='true', checked = s.renew, { :class => 'i-check', :disabled => true }
-              = I18n.t(:renew_info, scope: :edit_product_detail)
-          .checkbox
-            %label
-              = check_box_tag :timed, value='true', checked = s.timed, { :class => 'i-check', :disabled => true }
+              = radio_button_tag s.id, value = 'terminated', checked = s.time == 'terminated', { :class => 'i-radio', :disabled => true }
               = I18n.t(:timed_info, scope: :edit_product_detail)
+          .radio
+            %label
+              = radio_button_tag s.id, value = 'automatic', checked = s.time == 'automatic', { :class => 'i-radio', :disabled => true }
+              = I18n.t(:renew_info, scope: :edit_product_detail)
   .gap
 

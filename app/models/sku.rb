@@ -21,8 +21,7 @@ class Sku
   field :space_length,  type: Float,      default: 0
   field :space_width,   type: Float,      default: 0
   field :space_height,  type: Float,      default: 0
-  field :renew,         type: Boolean
-  field :timed,         type: Boolean
+  field :time,          type: String,     default: 'terminated'
 
   field :option_ids,    type: Array,      default: []
 
@@ -34,16 +33,17 @@ class Sku
   mount_uploader :img3,   AttachmentUploader
 
   validates :price,         presence: true
-  validates :currency,      presence: true, inclusion: {in: ['€']}
-  validates :quantity,      presence: true, :numericality => { :greater_than_or_equal_to => 0 }, :if => lambda { self.limited }
+  validates :currency,      presence: true,   inclusion: {in: ['€']}
+  validates :quantity,      presence: true,   :numericality => { :greater_than_or_equal_to => 0 }, :if => lambda { self.limited }
   validates :limited,       presence: true
   validates :weight,        presence: true
   validates :status,        presence: true
   validates :customizable,  presence: true
-  validates :discount,      presence: true, :numericality => { :greater_than_or_equal_to => 0, :less_than_or_equal_to => 100 }
+  validates :discount,      presence: true,   :numericality => { :greater_than_or_equal_to => 0, :less_than_or_equal_to => 100 }
   validates :option_ids,    presence: true
+  validates :time,          presence: true,   inclusion: {in: ['terminated', 'automatic']}
 
-  validates :unit,          presence: true, inclusion: {in: ['g', 'kg', 'ml', 'l']}
+  validates :unit,          presence: true,   inclusion: {in: ['g', 'kg', 'ml', 'l']}
 
   validates :space_length,  presence: true
   validates :space_width,   presence: true

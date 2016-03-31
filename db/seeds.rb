@@ -55,7 +55,8 @@ shop = Shop.create!(
     :statement1 => true,
     :statement2 => true,
     :agb => true,
-    :shopname => 'Herz-Buffet 01'
+    :tax_number => '12345678',
+    :ustid => '12345678'
 );
 
 product = Product.new(
@@ -132,7 +133,8 @@ shop = Shop.create!(
     :statement1 => true,
     :statement2 => true,
     :agb => true,
-    :name => 'Herz-Buffet 02',
+    :tax_number => '12345678',
+    :ustid => '12345678'
 );
 
 product = Product.new(
