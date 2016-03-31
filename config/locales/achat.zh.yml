@@ -349,10 +349,11 @@ zh-CN:
     customizable_info: 此产品可定制
     return: 返回产品列表
     cancel: 取消
-    space_weight: 空间重量
-    space_weight_info:  请您填写此产品的空间重量。
+    space_weight: 产品尺寸和重量
+    space_weight_info:  请您填写此产品的产品尺寸。
     cm: 厘米
     clone: 克隆
+    piece: 件
   edit_product_variant:
     new_variant: 创建新型号
     edit: 编辑型号

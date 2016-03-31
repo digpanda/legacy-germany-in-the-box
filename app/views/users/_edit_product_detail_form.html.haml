@@ -89,7 +89,9 @@
                 = fs.text_field :price, :class => 'form-control', :required => true, :pattern => '^\d+\.?\d*$'
                 %span.input-group-addon
                   = @product.shop.currency
-            %td.form-group{:colspan => 2}= fs.text_field :discount, :class => 'form-control', :required => true, :pattern => '^[1-9][0-9]?$|^100$|^0$'
+            %td{:colspan => 2}
+              .form-group
+                = fs.text_field :discount, :class => 'form-control', :required => true, :pattern => '^[1-9][0-9]?$|^100$|^0$'
           %tr
             %td{:colspan => 2}
               %label.required= I18n.t(:weight, scope: :edit_product_detail)
@@ -100,9 +102,10 @@
             %td{:colspan => 2}
               .form-inline
                 .form-group
-                  = fs.text_field :weight, :class => 'form-control', :required => true, :pattern => '^\d+\.?\d*$'
-                .form-group
-                  = fs.select :unit, options_for_select(['g', 'kg', 'ml', 'l'], 'kg'), {}, { :class => 'form-control' }
+                  .input-group
+                    = fs.text_field :weight, :class => 'form-control', :required => true, :pattern => '^\d+\.?\d*$'
+                    .input-group-btn{:style => 'width:80px'}
+                      = fs.select :unit, options_for_select(['kg']), {}, { :class => 'form-control' }
             %td{:colspan => 2}
               .form-inline
                 .form-group
@@ -215,8 +218,14 @@
             %td{:colspan => 2}
               %label.required= I18n.t(:quantity, scope: :edit_product_detail)
           %tr
-            %td.form-group{:colspan => 2}= fs.select :option_ids, grouped_options_for_select(get_grouped_variants_options(@product), @sku.option_ids ), {}, {:multiple => 'multiple', :class => 'sku-variants-options', :required => true}
-            %td.form-group{:colspan => 2}= fs.text_field :quantity, :class => 'form-control', :placeholder => @sku.limited ? '' : I18n.t(@sku.limited.to_s.to_sym, scope: 'edit_product_detail.limited'), :pattern => '^[1-9][0-9]*$', :required => true
+            %td{:colspan => 2}
+              .form-group
+                = fs.select :option_ids, grouped_options_for_select(get_grouped_variants_options(@product), @sku.option_ids ), {}, {:multiple => 'multiple', :class => 'sku-variants-options', :required => true}
+            %td{:colspan => 2}
+              .input-group.form-group
+                = fs.text_field :quantity, :class => 'form-control', :placeholder => @sku.limited ? '' : I18n.t(@sku.limited.to_s.to_sym, scope: 'edit_product_detail.limited'), :pattern => '^[1-9][0-9]*$', :required => true
+                .input-group-addon
+                  = I18n.t(:piece, scope: :edit_product_detail)
           %tr
             %td{:colspan => 2}
               %label.required= I18n.t(:price, scope: :edit_product_detail)
@@ -224,24 +233,25 @@
               %label.required= I18n.t(:discount, scope: :edit_product_detail)
           %tr
             %td{:colspan => 2}
-              .input-group.form-group{style: 'width:266px'}
+              .input-group.form-group
                 = fs.text_field :price, :class => 'form-control', :required => true, :pattern => '^\d+\.?\d*$'
                 %span.input-group-addon
                   = @product.shop.currency
-            %td.form-group{:colspan => 2}= fs.text_field :discount, :class => 'form-control', :pattern => '^[1-9][0-9]?$|^100$|^0$', :required => true
-          %tr
             %td{:colspan => 2}
-              %label.required= I18n.t(:weight, scope: :edit_product_detail)
-            %td{:colspan => 2, :title => I18n.t(:space_weight_info, scope: :edit_product_detail)}
+              .input-group.form-group
+                = fs.text_field :discount, :class => 'form-control', :pattern => '^[1-9][0-9]?$|^100$|^0$', :required => true
+                .input-group-addon
+                  = '%'
+          %tr
+            %td{:colspan => 2, :title => I18n.t(:space_weight_info, scope: :edit_product_detail), :width => '50%'}
               %i.fa.fa-info-circle{ :title => I18n.t(:space_weight_info, scope: :edit_product_detail) }
               %label.required= I18n.t(:space_weight, scope: :edit_product_detail)
+            %td{:colspan => 1, :title => I18n.t(:customizable_info, scope: :edit_product_detail), :width => '25%'}
+              %i.fa.fa-info-circle{ :title => I18n.t(:customizable_info, scope: :edit_product_detail) }
+              %label= I18n.t('edit_product_detail.customizable.info')
+            %td{:colspan => 1, :width => '25%'}
+              %label= I18n.t('edit_product_detail.status.info')
           %tr
-            %td{:colspan => 2}
-              .form-inline
-                .form-group
-                  = fs.text_field :weight, :class => 'form-control', :required => true, :pattern => '^\d+\.?\d*$'
-                .form-group
-                  = fs.select :unit, options_for_select(['g', 'kg', 'ml', 'l'], @sku.unit), {}, { :class => 'form-control' }
             %td{:colspan => 2}
               .form-inline
                 .form-group
@@ -259,25 +269,26 @@
                     = fs.text_field :space_height, :class => 'form-control', :required => true, :pattern => '^\d+\.?\d*$', :style => 'width:48px'
                     .input-group-addon
                       = I18n.t('cm', scope: :edit_product_detail)
-          %tr
-            %td{:colspan => 2, :title => I18n.t(:customizable_info, scope: :edit_product_detail)}
-              %i.fa.fa-info-circle{ :title => I18n.t(:customizable_info, scope: :edit_product_detail) }
-              %label= I18n.t('edit_product_detail.customizable.info')
-            %td{:colspan => 2}
-              %label= I18n.t('edit_product_detail.status.info')
-          %tr
-            %td.form-group{:colspan => 2}
-              .checkbox{:style => 'margin:0px'}
-                %label
-                  = fs.hidden_field :customizable
-                  = fs.check_box :customizable, { :class => 'i-check' }, true
-                  = I18n.t(true, scope: 'edit_product_detail.customizable')
-            %td.form-group{:colspan => 2}
-              .checkbox{:style => 'margin:0px'}
-                %label
-                  = fs.hidden_field :status
-                  = fs.check_box :status, { :class => 'i-check' }, true
-                  = I18n.t(true, scope: 'edit_product_detail.status')
+              .gap-small
+              .form-inline
+                .input-group.input-group-sm
+                  = fs.text_field :weight, :style => 'width: 206px', :class => 'form-control', :required => true, :pattern => '^\d+\.?\d*$'
+                  .input-group-btn{:style => 'width:60px'}
+                    = fs.select :unit, options_for_select(['kg'], @sku.unit), {}, { :class => 'form-control input-sm' }
+            %td
+              .form-group{:colspan => 1}
+                .checkbox{:style => 'margin:0px'}
+                  %label
+                    = fs.hidden_field :customizable
+                    = fs.check_box :customizable, { :class => 'i-check' }, true
+                    = I18n.t(true, scope: 'edit_product_detail.customizable')
+            %td
+              .form-group{:colspan => 1}
+                .checkbox{:style => 'margin:0px'}
+                  %label
+                    = fs.hidden_field :status
+                    = fs.check_box :status, { :class => 'i-check' }, true
+                    = I18n.t(true, scope: 'edit_product_detail.status')
 
       %table.table.table-borderless
         %tbody

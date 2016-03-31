@@ -304,7 +304,7 @@ de:
     product_seal: Produktsiegel
     product_seal_info: Hier können Sie Ihre Produktsiegel hochladen. (max. 1 MB pro Bild)
     quantity_info: '%{num1} Stk. von %{num2} Varianten'
-    quantity: Menge
+    quantity: Verfügbarkeit
   edit_product_new:
     create_ok: Das Produkt erfolgreich erstellt!
     create_ko: Ein Fehler ist beim
@@ -322,24 +322,24 @@ de:
     img3: Bild 4
     price: Preis
     currency: Währung
-    quantity: Menge
+    quantity: Verfügbarkeit
     limited:
       info: Menge begrenzt
       'true': Ja
       'false': Nein
     weight: Gewicht
     status:
-      info: Zum Verkauf angeboten
+      info: Zum Verkauf
       'true': Ja
       'false': Nein
     customizable:
-      info: Auf Kundenwünsche anpassbar
+      info: Anpassbar
       'true': Ja
       'false': Nein
     time: Dauer der Einstellung
     renew_info: Die Einstellung verlängert sich automatisch um weitere 120 Tage wenn diese Zeit abläuft.
     timed_info: Das Produkt wird für 120 Tage auf RM eingestellt. 
-    discount: '%Rabatt'
+    discount: Rabatt
     create_ok: Die Artikelposition erfolgreich erstellt!
     create_ko: Ein Fehler ist beim Anlegen der Artikelpositionen aufgetreten.
     sku_variants_options: Variantentypen
@@ -354,10 +354,11 @@ de:
     customizable_info: Dieses Produkt kann nach Kundenwunsch individuell angefertig werden.
     return: Zurück zur Produktliste
     cancel: Abbrechen
-    space_weight: Raumgewicht
-    space_weight_info:  Geben Sie bitte die Maße und das Gewicht des Pakets an, in dem Sie Ihre tolles Produkt verpacken, in Abhängigkeit der Bestellmenge. Bitte bedenken Sie, je genauer Sie angeben, desto umweltfreundlicher und kosteneffizienter können wir den Versand gestalten.
+    space_weight: Produktmaße und Gewicht
+    space_weight_info: Geben Sie bitte die Maße und das Gewicht des Produkts an. Es handelt sich hier um das Produkt mit Verpackung, aber ohne Karton. Bei Kleidungen bitte orientieren Sie sich an den kleinsten Quader, in den das Produkt rein passt.
     cm: cm
     clone: Klonen
+    piece: Stk.
   edit_product_variant:
     new_variant: Neue Variante
     edit: Editieren
