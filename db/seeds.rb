@@ -83,7 +83,7 @@ v2_o1 = VariantOption.new(:parent => v2, :name => 'rot', :name_locales => { :'zh
 v2_o2 = VariantOption.new(:parent => v2, :name => 'blue', :name_locales => { :'zh-CN' => '蓝色'})
 v2_o3 = VariantOption.new(:parent => v2, :name => 'gold', :name_locales => { :'zh-CN' => '金色'})
 
-s1 = Sku.new(:price => 10, :product => product, :quantity => 5, :weight => 10, :unit => 'g', :discount => 10)
+s1 = Sku.new(:price => 10, :product => product, :quantity => 5, :weight => 10, :unit => 'g', :discount => 10, :space_length => 1.0, :space_width => 2.0, :space_height => 3.0)
 s1.option_ids << v1_o1.id.to_s
 s1.option_ids << v2_o1.id.to_s
 s1.img0 = create_upload_from_image_file(Product.name.downcase, 'herz_buffet_large_10_blatt_seidenpapier_panda.jpg')
@@ -92,7 +92,7 @@ s1.img2 = create_upload_from_image_file(Product.name.downcase, 'herz_buffet_larg
 s1.img3 = create_upload_from_image_file(Product.name.downcase, 'herz_buffet_large_10_blatt_seidenpapier_panda.jpg')
 s1.save!
 
-s2 = Sku.new(:price => 10, :product => product, :quantity => 4, :weight => 10, :unit => 'g')
+s2 = Sku.new(:price => 10, :product => product, :quantity => 4, :weight => 10, :unit => 'g', :space_length => 1.0, :space_width => 2.0, :space_height => 3.0)
 s2.option_ids << v1_o2.id.to_s
 s2.option_ids << v2_o1.id.to_s
 s2.img0 = create_upload_from_image_file(Product.name.downcase, 'herz_buffet_large_10_blatt_seidenpapier_panda.jpg')
@@ -101,7 +101,7 @@ s2.img2 = create_upload_from_image_file(Product.name.downcase, 'herz_buffet_larg
 s2.img3 = create_upload_from_image_file(Product.name.downcase, 'herz_buffet_large_10_blatt_seidenpapier_panda.jpg')
 s2.save!
 
-s3 = Sku.new(:price => 20, :product => product, :limited => true, :quantity => 3, :weight => 10, :unit => 'g')
+s3 = Sku.new(:price => 20, :product => product, :limited => true, :quantity => 3, :weight => 10, :unit => 'g', :space_length => 1.0, :space_width => 2.0, :space_height => 3.0)
 s3.option_ids << v1_o3.id.to_s
 s3.option_ids << v2_o3.id.to_s
 s3.img0 = create_upload_from_image_file(Product.name.downcase, 'herz_buffet_large_10_blatt_seidenpapier_panda.jpg')
@@ -166,7 +166,7 @@ v2_o1 = VariantOption.new(:parent => v2, :name => 'rot', :name_locales => { :'zh
 v2_o2 = VariantOption.new(:parent => v2, :name => 'blau', :name_locales => { :'zh-CN' => '蓝色' })
 v2_o3 = VariantOption.new(:parent => v2, :name => 'gold', :name_locales => { :'zh-CN' => '金色' })
 
-s1 = Sku.new(:price => 10, :product => product, :quantity => 5, :weight => 10, :unit => 'g')
+s1 = Sku.new(:price => 10, :product => product, :quantity => 5, :weight => 10, :unit => 'g', :space_length => 1.0, :space_width => 2.0, :space_height => 3.0)
 s1.option_ids << v1_o1.id.to_s
 s1.option_ids << v2_o1.id.to_s
 s1.img0 = create_upload_from_image_file(Product.name.downcase, 'herz_buffet_large_10_blatt_seidenpapier_panda.jpg')
@@ -175,7 +175,7 @@ s1.img2 = create_upload_from_image_file(Product.name.downcase, 'herz_buffet_larg
 s1.img3 = create_upload_from_image_file(Product.name.downcase, 'herz_buffet_large_10_blatt_seidenpapier_panda.jpg')
 s1.save!
 
-s2 = Sku.new(:price => 10, :product => product, :quantity => 4, :weight => 10, :unit => 'g')
+s2 = Sku.new(:price => 10, :product => product, :quantity => 4, :weight => 10, :unit => 'g', :space_length => 1.0, :space_width => 2.0, :space_height => 3.0)
 s2.option_ids << v1_o2.id.to_s
 s2.option_ids << v2_o1.id.to_s
 s2.img0 = create_upload_from_image_file(Product.name.downcase, 'herz_buffet_large_10_blatt_seidenpapier_panda.jpg')
@@ -184,7 +184,7 @@ s2.img2 = create_upload_from_image_file(Product.name.downcase, 'herz_buffet_larg
 s2.img3 = create_upload_from_image_file(Product.name.downcase, 'herz_buffet_large_10_blatt_seidenpapier_panda.jpg')
 s2.save!
 
-s3 = Sku.new(:price => 20, :product => product, :limited => true, :quantity => 3, :weight => 10, :unit => 'g')
+s3 = Sku.new(:price => 20, :product => product, :limited => true, :quantity => 3, :weight => 10, :unit => 'g', :space_length => 1.0, :space_width => 2.0, :space_height => 3.0)
 s3.option_ids << v1_o3.id.to_s
 s3.option_ids << v2_o3.id.to_s
 s3.img0 = create_upload_from_image_file(Product.name.downcase, 'herz_buffet_large_10_blatt_seidenpapier_panda.jpg')

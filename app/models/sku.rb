@@ -18,9 +18,9 @@ class Sku
   field :customizable,  type: Boolean,    default: false
   field :discount,      type: Integer,    default: 0
   field :unit,          type: String
-  field :space_length,  type: Float,      default: 0
-  field :space_width,   type: Float,      default: 0
-  field :space_height,  type: Float,      default: 0
+  field :space_length,  type: Float
+  field :space_width,   type: Float
+  field :space_height,  type: Float
   field :time,          type: String,     default: 'terminated'
 
   field :option_ids,    type: Array,      default: []
@@ -45,9 +45,9 @@ class Sku
 
   validates :unit,          presence: true,   inclusion: {in: ['g', 'kg', 'ml', 'l']}
 
-  validates :space_length,  presence: true
-  validates :space_width,   presence: true
-  validates :space_height,  presence: true
+  validates :space_length,  presence: true,   :numericality => { :greater_than => 0 }
+  validates :space_width,   presence: true,   :numericality => { :greater_than => 0 }
+  validates :space_height,  presence: true,   :numericality => { :greater_than => 0 }
 
   scope :is_active,       ->        { where( :status => true ) }
   scope :in_stock,        ->        { where( :quantity.gt => 0 ) }
