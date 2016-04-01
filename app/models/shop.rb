@@ -70,6 +70,7 @@ class Shop
   validates :uniqueness,      length: {maximum: (Rails.configuration.max_medium_text_length * 1.25).round}
   validates :german_essence,  length: {maximum: (Rails.configuration.max_medium_text_length * 1.25).round}
   validates :shopname,        length: {maximum: Rails.configuration.max_short_text_length }
+  validates :sales_channels,  length: {minimum: 2, maximum: Rails.configuration.max_num_sales_channels * 2}
 
   scope :is_active,       ->        { where( :status => true ) }
 

@@ -1,3 +1,22 @@
+:javascript
+  $(function() {
+    $('#edit_producer_submit_btn').click( function() {
+      $('input.dynamical-required').each(
+        function () {
+          if ( $(this).val().length == 0 ) {
+            $(this).addClass('invalidBorderClass');
+          } else {
+            $(this).removeClass('invalidBorderClass');
+          }
+        }
+      );
+
+      if ( $('.invalidBorderClass').length > 0 ) {
+        return false;
+      }
+    });
+  });
+
 = form_for @shop, :html => {'data-toggle': 'validator', role: 'form' } do |f|
   .panel-group
     .panel.panel-info
@@ -84,7 +103,7 @@
           %i.fa.fa-info-circle{ :title => I18n.t(:sales_channels_info, scope: :edit_shop, num: Rails.configuration.max_num_sales_channels) }
           %label= I18n.t(:sales_channels, scope: :edit_shop)
           .pull-right
-            %a{:href => '#', :class=> 'btn btn-sm', :onclick => "#{gen_add_sales_channel}", :id => "a_add_sales_channel_#{@shop.id}"}
+            %a{:href => '#', :class=> 'btn btn-sm', :onclick => "#{gen_add_sales_channel('shop')}", :id => "a_add_sales_channel_#{@shop.id}"}
               %i.fa.fa-plus-circle
               = I18n.t(:add_sales_channel, scope: :edit_shop)
       .panel-body
@@ -96,7 +115,7 @@
                   %td{width: '30%'}= select_tag 'shop[sales_channels][]', options_for_select([ 'Online-Shop', 'Online-Marktplatz', 'Einzelhandler', 'Workshop' ], sck), :class => 'form-control'
                   %td.form-group{width: '60%'}= text_field_tag 'shop[sales_channels][]', scv, :class => 'form-control', :placeholder => I18n.t(:sales_channel, scope: :edit_shop), :required => true
                   %td{width: '30%'}
-                    %a{ :href => '#', :class => 'btn', :onclick => "$(this).closest('tr').remove(); return false;" }
+                    %a{ :href => '#', :class => 'btn', :onclick => "#{gen_remove_sales_channel}" }
                       %i.fa.fa-times-circle
                       =I18n.t(:remove_sales_channel, scope: :edit_shop)
     .panel.panel-info
@@ -131,4 +150,4 @@
             = f.check_box :agb, { :disabled => true }
             = I18n.t(:agb_statement, scope: :edit_shop).html_safe
 
-  = f.button I18n.t(:save, scope: :edit_shop), :class => 'btn btn-primary', :onclick => "$('.dynamical_required').each( function () { if ( $(this).val().length == 0 ) { $(this).addClass('invalidBorderClass'); } else { $(this).removeClass('invalidBorderClass'); } } ); if ( $('.invalidBorderClass').length > 0 ) { return false; }",  name: :user_info_edit_part, value: :edit_producer
+  = f.button I18n.t(:save, scope: :edit_shop), :id => 'edit_producer_submit_btn', :class => 'btn btn-primary',  name: :user_info_edit_part, value: :edit_producer

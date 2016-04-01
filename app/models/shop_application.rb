@@ -17,6 +17,7 @@ class ShopApplication
   field :website,         type: String
   field :uniqueness,      type: String
   field :german_essence,  type: String
+  field :sales_channels,  type: Array,      default: []
 
   field :fname,           type: String
   field :lname,           type: String
@@ -38,10 +39,11 @@ class ShopApplication
   validates :statement1,    presence: true
   validates :statement2,    presence: true
 
-  validates :code,          length: {maximum: Rails.configuration.max_short_text_length}
-  validates :website,       length: {maximum: (Rails.configuration.max_short_text_length * 1.25).round}
-  validates :stories,       length: {maximum: (Rails.configuration.max_long_text_length * 1.25).round}
-  validates :register,      length: {maximum: (Rails.configuration.max_tiny_text_length * 1.25).round}
+  validates :code,            length: {maximum: Rails.configuration.max_short_text_length}
+  validates :website,         length: {maximum: (Rails.configuration.max_short_text_length * 1.25).round}
+  validates :stories,         length: {maximum: (Rails.configuration.max_long_text_length * 1.25).round}
+  validates :register,        length: {maximum: (Rails.configuration.max_tiny_text_length * 1.25).round}
+  validates :sales_channels,  length: {minimum: 2, maximum: Rails.configuration.max_num_sales_channels * 2}
 
   validates :fname,         presence: true,   length: {maximum: Rails.configuration.max_tiny_text_length}
   validates :lname,         presence: true,   length: {maximum: Rails.configuration.max_tiny_text_length}
@@ -50,6 +52,7 @@ class ShopApplication
 
   validates :mobile,        length: {maximum: Rails.configuration.max_tiny_text_length}
   validates :function,      length: {maximum: Rails.configuration.max_tiny_text_length}
+
 
   before_save :gen_code;
 

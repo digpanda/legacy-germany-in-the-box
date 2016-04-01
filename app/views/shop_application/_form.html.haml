@@ -1,3 +1,24 @@
+:javascript
+  $(function() {
+    $('#add_sales_channel_btn').click();
+    $('#edit_app_submit_btn').click( function() {
+      $('input.dynamical-required').each(
+        function () {
+          if ( $(this).val().length == 0 ) {
+            $(this).addClass('invalidBorderClass');
+          } else {
+            $(this).removeClass('invalidBorderClass');
+          }
+        }
+      );
+
+      if ( $('.invalidBorderClass').length > 0 ) {
+        return false;
+      }
+    });
+  });
+
+
 .container
   - unless params[:finished]
     = form_for :shop_application, html: {'data-toggle': 'validator'} do |f|
@@ -72,6 +93,18 @@
                     %label= I18n.t(:website, scope: :edit_shop)
                   %td{width: '70%'}= f.text_field :website, :class => 'form-control', :maxLength => Rails.configuration.max_short_text_length, :placeholder => 'www.mydomain.com'
         .panel.panel-info
+          .panel-heading{ :title => I18n.t(:sales_channels_info, scope: :edit_shop, num: Rails.configuration.max_num_sales_channels) }
+            .btn-toolbar{ :style => 'margin-left:22px' }
+              %i.fa.fa-info-circle{ :title => I18n.t(:sales_channels_info, scope: :edit_shop, num: Rails.configuration.max_num_sales_channels) }
+              %label.required= I18n.t(:sales_channels, scope: :edit_shop)
+              .pull-right
+                %a{ :id => 'add_sales_channel_btn', :href => '#', :class=> 'btn btn-sm', :onclick => "#{gen_add_sales_channel('shop_application')}"}
+                  %i.fa.fa-plus-circle
+                  = I18n.t(:add_sales_channel, scope: :edit_shop)
+          .panel-body
+            %table.table.table-borderless
+              %tbody
+        .panel.panel-info
           .panel-heading.text-center
             %h4= I18n.t(:contact_person_info, scope: :shop_application)
           .panel-body
@@ -129,7 +162,7 @@
                     = f.check_box :statement2, { :required => true }, true
                     = I18n.t(:statement_2, scope: :shop_application)
 
-      = f.button I18n.t(:save, scope: :edit_shop), :class => 'btn btn-primary', name: :user_info_edit_part, value: :edit_shop
+      = f.button I18n.t(:save, scope: :edit_shop), :id => 'edit_app_submit_btn', :class => 'btn btn-primary', name: :user_info_edit_part, value: :edit_shop
   - else
     .gap
     %h3.text-center= I18n.t(:shop_application_ok, scope: :shop_application)

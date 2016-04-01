@@ -1,4 +1,10 @@
-.required:after { content: ' *'; color: red }
+img[src=""] {
+    display:none;
+}
+
+.required:after {
+    content: ' *'; color: red
+}
 
 body {
     height: 100%;
