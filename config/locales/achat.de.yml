@@ -242,7 +242,7 @@ de:
     stories_info: Haben Ihre Produkte bemerkenswerte Geschichten, z.B dass Ihre Marke Sponsor für lokale Kinderevents, Elternverein, Sportverein ist, oder dass die Rezepte oder Herstellungen einer langen Familientradition folgen? Welche Zeitungen und Magazine haben von Ihren Produkten positiv berichtet? (max. 1000 Wörter)
     ust_id_info: Als Exportierender Hersteller führen Sie keine Ust-Vorsteuer ab. Falls Sie eine Ust-ID besitzen, benötigen wir sie für Ausfuhrbescheinigungen.
     eroi_number_info: Die EORI-Nummer ersetzt die deutsche Zollnummer und dient der Regiestrierung und Identifikation von Wirschaftsbeteiligten bei der Zollabwicklung in EU. Ab einen Tagesexportwert von 1.000 EUR muss der Hersteller EORI-Nummer angeben. Wenn Sie erwarten, dass Sie diesen Tagegrenzwert überschreiten werden, emfehlen wir diese nummer im Vorfeld zu beantragen. Die EORI-Nummer können Sie jeder Zeit nachtragen. (max. 25 Buchstaben)
-    min_total_info: Sie können einen Mindestbestellwert für eine Bestellung aus Ihrem Shop festlegen. 
+    min_total_info: Sie können einen Mindestbestellwert für jede Bestellung im Ihren Shop festlegen. Geben Sie 0 an, falls Sie keinen Mindestwert wünschen.
     sms_info: Möchten Sie über einen Verkauf von RheinManufaktur benachrichtigt werden? Wenn ja, dann geben Sie uns Ihre Mobilephone Nummber. Selbstverständlich ist das ein kostenloser Service. Bitte achten Sie darauf, dass die nummer keinen Trennstrich "-" enthält.
     founding_year: Gründungsjahr
     founding_year_info: Wann wurde Ihre Marke gegründet? (Jahr)
@@ -361,7 +361,7 @@ de:
     customizable_info: Dieses Produkt kann nach Kundenwunsch individuell angefertig werden.
     return: Zurück zur Produktliste
     cancel: Abbrechen
-    space_weight: Produktmaße und Gewicht
+    space_weight: Produktmaße (Länge x Breite x Höhe) und Gewicht
     space_weight_info: Geben Sie bitte die Maße und das Gewicht des Produkts an. Es handelt sich hier um das Produkt mit Verpackung, aber ohne Karton. Bei Kleidungen bitte orientieren Sie sich an den kleinsten Quader, in den das Produkt rein passt.
     cm: cm
     clone: Klonen

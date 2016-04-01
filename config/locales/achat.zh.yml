@@ -266,6 +266,14 @@ zh-CN:
     required_field_info: ' 必填字段'
     company_name_placeholder: '示例 有限公司'
     shopname: 网店名称
+    tax_number: 企业税号
+    sales_channel_options:
+      own_online_shop: 自己的在线商店
+      third_online_platform: 第三方在线平台
+      presence_shop: 实体店
+      retail: 零售
+      direct_selling: 直销
+      other: 其他
   edit_product:
     edit: 修改
     remove: 删除产品
@@ -349,7 +357,7 @@ zh-CN:
     customizable_info: 此产品可定制
     return: 返回产品列表
     cancel: 取消
-    space_weight: 产品尺寸和重量
+    space_weight: 产品尺寸(长x宽x高)和重量
     space_weight_info:  请您填写此产品的产品尺寸。
     cm: 厘米
     clone: 克隆

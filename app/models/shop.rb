@@ -32,11 +32,20 @@ class Shop
   field :statement1,      type: Boolean
   field :statement2,      type: Boolean
   field :agb,             type: Boolean
+  field :seal0,           type: String
+  field :seal1,           type: String
+  field :seal2,           type: String
+  field :seal3,           type: String
 
   field :name_locales,    type: Hash
 
   mount_uploader :logo,   AttachmentUploader
   mount_uploader :banner, AttachmentUploader
+
+  mount_uploader :seal0,   AttachmentUploader
+  mount_uploader :seal1,   AttachmentUploader
+  mount_uploader :seal2,   AttachmentUploader
+  mount_uploader :seal3,   AttachmentUploader
 
   has_one   :bank_account,    inverse_of: :shop,  dependent: :restrict
 

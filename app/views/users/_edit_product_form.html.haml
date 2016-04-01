@@ -88,44 +88,6 @@
               %td= text_field_tag "product[tags][]", @product.tags[0], :class => 'form-control', :placeholder => I18n.t(:tag1, scope: :edit_product), :maxLength => Rails.configuration.max_tiny_text_length
               %td= text_field_tag "product[tags][]", @product.tags[1], :class => 'form-control', :placeholder => I18n.t(:tag2, scope: :edit_product), :maxLength => Rails.configuration.max_tiny_text_length
               %td= text_field_tag "product[tags][]", @product.tags[2], :class => 'form-control', :placeholder => I18n.t(:tag3, scope: :edit_product), :maxLength => Rails.configuration.max_tiny_text_length
-    .panel.panel-info
-      .panel-heading{:title => I18n.t(:product_seal_info, scope: :edit_product)}
-        .text-center
-          %i.fa.fa-info-circle{ :title => I18n.t(:product_seal_info, scope: :edit_product) }
-          %label= I18n.t(:product_seal, scope: :edit_product)
-      .panel-body
-        %table.table.table-borderless
-          %tbody
-            %tr
-              %td{:colspan => 2, :align => :center}= image_tag get_uploaded_img_url(@product.seal0), :style => 'width:160px;height:160px', :id => "seal_0_#{@product.id}"
-              %td{:colspan => 2, :align => :center}= image_tag get_uploaded_img_url(@product.seal1), :style => 'width:160px;height:160px', :id => "seal_1_#{@product.id}"
-              %td{:colspan => 2, :align => :center}= image_tag get_uploaded_img_url(@product.seal2), :style => 'width:160px;height:160px', :id => "seal_2_#{@product.id}"
-              %td{:colspan => 2, :align => :center}= image_tag get_uploaded_img_url(@product.seal3), :style => 'width:160px;height:160px', :id => "seal_3_#{@product.id}"
-            %tr
-              %td{:colspan => 2, :align => :center}
-                %div.fileUpload.btn.btn-default
-                  %span
-                    %i.fa.fa-cloud-upload
-                    =I18n.t(:upload, scope: :image_upload)
-                  = f.file_field :seal0, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#seal_0_#{@product.id}", :class => 'img-file-upload upload', :onchange =>"validateImgFile(this);"
-              %td{:colspan => 2, :align => :center}
-                %div.fileUpload.btn.btn-default
-                  %span
-                    %i.fa.fa-cloud-upload
-                    =I18n.t(:upload, scope: :image_upload)
-                  = f.file_field :seal1, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#seal_1_#{@product.id}", :class => 'img-file-upload upload', :onchange =>"validateImgFile(this);"
-              %td{:colspan => 2, :align => :center}
-                %div.fileUpload.btn.btn-default
-                  %span
-                    %i.fa.fa-cloud-upload
-                    =I18n.t(:upload, scope: :image_upload)
-                  = f.file_field :seal2, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#seal_2_#{@product.id}", :class => 'img-file-upload upload', :onchange =>"validateImgFile(this);"
-              %td{:colspan => 2, :align => :center}
-                %div.fileUpload.btn.btn-default
-                  %span
-                    %i.fa.fa-cloud-upload
-                    =I18n.t(:upload, scope: :image_upload)
-                  = f.file_field :seal3, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#seal_3_#{@product.id}", :class => 'img-file-upload upload', :onchange =>"validateImgFile(this);"
     .panel.panel-info{ :id => "variants_panel_#{@product.id}"}
       .panel-heading{ :title => I18n.t(:variants_info, scope: :edit_product_detail) }
         %i.fa.fa-info-circle{ :title => I18n.t(:variants_info, scope: :edit_product) }
