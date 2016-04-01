@@ -348,6 +348,7 @@ zh-CN:
     create_ko: 明细创建失败
     sku_variants_options: 型号组合
     images: 产品图片
+    image: 产品图片
     sku_options: 库存与型号
     update_sku: 更新库存
     new_sku: 新建库存

@@ -351,6 +351,7 @@ de:
     create_ko: Ein Fehler ist beim Anlegen der Artikelpositionen aufgetreten.
     sku_variants_options: Variantentypen
     images: Produktbilder
+    image: Produkbild
     sku_options: Details der Artikelposition
     update_sku: Aktualisieren
     new_sku: Neue Artikelposition
@@ -366,6 +367,7 @@ de:
     cm: cm
     clone: Klonen
     piece: Stk.
+    no_detail: Keine Artikelposition vorhanden
   edit_product_variant:
     new_variant: Neue Variante
     edit: Editieren

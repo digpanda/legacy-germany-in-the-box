@@ -22,56 +22,37 @@
 %br
 %br
 
-- @product.skus.each do |s|
-  %table.table.table-bordered
+- if @product.skus.count > 0
+  %table.table.cart-table
+    %thead
+      %tr
+        %th
+          %label= I18n.t(:image, scope: :edit_product_detail)
+        %th
+          %label
+            %i.fa.fa-info-circle{ :title => I18n.t(:variants_info, scope: :edit_product_detail) }
+            = I18n.t(:sku_variants_options, scope: :edit_product_detail)
+        %th
+          %label= I18n.t(:price, scope: :edit_product_detail)
+        %th
+          %label= I18n.t(:discount, scope: :edit_product_detail)
+        %th
+          %label= I18n.t(:quantity, scope: :edit_product_detail)
+        %th
+          %label= I18n.t(:operations, scope: :edit_product)
     %tbody
-      %tr
-        %td.info{:colspan => 8}
-          %i.fa.fa-info-circle{ :title => I18n.t(:variants_info, scope: :edit_product_detail) }
-          = select_tag :option_ids, grouped_options_for_select(get_grouped_variants_options(@product), s.option_ids ), :multiple => 'multiple', :class => 'sku-variants-options', :readonly=>true
-          .btn-group.pull-right
-            = link_to I18n.t(:edit, scope: :edit_product_detail), edit_user_path(current_user, :user_info_edit_part => :edit_product_detail_update, :product_id => @product.id, :sku_id => s.id), :class => 'fa fa-edit btn'
-            = link_to I18n.t(:clone, scope: :edit_product_detail), edit_user_path(current_user, :user_info_edit_part => :edit_product_detail_clone, :product_id => @product.id, :sku_id => s.id), :class => 'fa fa-files-o btn'
-            = link_to I18n.t(:remove, scope: :edit_product_detail), remove_sku_product_path(@product.id, s.id), method: :delete, data: { confirm: "#{I18n.t(:delete_sku_message, scope: :edit_product_detail)}" }, :class => 'fa fa-times-circle btn'
-      %tr
-        %td.text-center{:colspan => 2, :width => '25%'}= I18n.t(:img0, scope: :edit_product_detail)
-        %td.text-center{:colspan => 2, :width => '25%'}= I18n.t(:img1, scope: :edit_product_detail)
-        %td.text-center{:colspan => 2, :width => '25%'}= I18n.t(:img2, scope: :edit_product_detail)
-        %td.text-center{:colspan => 2, :width => '25%'}= I18n.t(:img3, scope: :edit_product_detail)
-      %tr
-        %td{:colspan => 2, :align => :center, :width => '25%'}= image_tag get_uploaded_img_url(s.img0), :style => 'width:160px;height:160px'
-        %td{:colspan => 2, :align => :center, :width => '25%'}= image_tag get_uploaded_img_url(s.img1), :style => 'width:160px;height:160px'
-        %td{:colspan => 2, :align => :center, :width => '25%'}= image_tag get_uploaded_img_url(s.img2), :style => 'width:160px;height:160px'
-        %td{:colspan => 2, :align => :center, :width => '25%'}= image_tag get_uploaded_img_url(s.img3), :style => 'width:160px;height:160px'
-      %tr
-        %td.text-center= I18n.t(:price, scope: :edit_product_detail)
-        %td.text-center= I18n.t(:discount, scope: :edit_product_detail)
-        %td.text-center= I18n.t(:quantity, scope: :edit_product_detail)
-        %td.text-center= I18n.t(:weight, scope: :edit_product_detail)
-        %td.text-center{:colspan => 2, :title => I18n.t(:space_weight_info, scope: :edit_product_detail)}
-          %i.fa.fa-info-circle{ :title => I18n.t(:space_weight_info, scope: :edit_product_detail) }
-          = I18n.t(:space_weight, scope: :edit_product_detail)
-        %td.text-center
-          %i.fa.fa-info-circle{ :title => I18n.t(:customizable_info, scope: :edit_product_detail) }
-          = I18n.t('edit_product_detail.customizable.info')
-        %td.text-center= I18n.t('edit_product_detail.status.info')
-      %tr
-        %td= s.price.to_s + ' ' + s.currency
-        %td= s.discount
-        %td= s.quantity
-        %td= s.weight.to_s + ' ' + s.unit
-        %td.text-center{:colspan => 2}= s.space_length.to_s + ' cm x ' + s.space_width.to_s + 'cm x ' + s.space_height.to_s + ' cm'
-        %td= I18n.t(s.customizable.to_s.to_sym, scope: 'edit_product_detail.customizable')
-        %td= I18n.t(s.status.to_s, scope: 'edit_product_detail.status')
-      %tr
-        %td.form-group{:colspan => 8}
-          .radio
-            %label
-              = radio_button_tag s.id, value = 'terminated', checked = s.time == 'terminated', { :class => 'i-radio', :disabled => true }
-              = I18n.t(:timed_info, scope: :edit_product_detail)
-          .radio
-            %label
-              = radio_button_tag s.id, value = 'automatic', checked = s.time == 'automatic', { :class => 'i-radio', :disabled => true }
-              = I18n.t(:renew_info, scope: :edit_product_detail)
-  .gap
+      - @product.skus.each do |s|
+        %tr
+          %td= link_to image_tag(get_uploaded_img_url(s.img0), :style => 'max-width:48px;max-height:48px'), edit_user_path(current_user, :user_info_edit_part => :edit_product_detail_update, :product_id => @product.id, :sku_id => s.id)
+          %td= select_tag :option_ids, grouped_options_for_select(get_grouped_variants_options(@product), s.option_ids ), :multiple => 'multiple', :class => 'sku-variants-options', :readonly=>true
+          %td= s.price.to_s + ' ' + s.currency
+          %td= s.discount.to_s + '%' if s.discount != 0
+          %td= s.quantity
+          %td
+            = link_to '', edit_user_path(current_user, :user_info_edit_part => :edit_product_detail_update, :product_id => @product.id, :sku_id => s.id), :class => 'fa fa-edit btn', :title => I18n.t(:edit, scope: :edit_product_detail)
+            = link_to '', edit_user_path(current_user, :user_info_edit_part => :edit_product_detail_clone, :product_id => @product.id, :sku_id => s.id), :class => 'fa fa-files-o btn', :title => I18n.t(:clone, scope: :edit_product_detail)
+            = link_to '', remove_sku_product_path(@product.id, s.id), method: :delete, data: { confirm: "#{I18n.t(:delete_sku_message, scope: :edit_product_detail)}" }, :class => 'fa fa-times-circle btn', :title => I18n.t(:remove, scope: :edit_product_detail)
+
+- else
+  %h4= I18n.t(:no_detail, scope: :edit_product_detail)
 
