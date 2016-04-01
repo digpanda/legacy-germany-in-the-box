@@ -112,7 +112,7 @@
             - if @shop.sales_channels
               - @shop.sales_channels.each_slice(2) do |sck, scv|
                 %tr
-                  %td{width: '30%'}= select_tag 'shop[sales_channels][]', options_for_select([ 'Online-Shop', 'Online-Marktplatz', 'Einzelhandler', 'Workshop' ], sck), :class => 'form-control'
+                  %td{width: '30%'}= select_tag 'shop[sales_channels][]', options_for_select(SalesChannelOptions::OPTIONS.map {|o| [I18n.t(o, scope: 'edit_shop.sales_channel_options'), o]}, sck), :class => 'form-control'
                   %td.form-group{width: '60%'}= text_field_tag 'shop[sales_channels][]', scv, :class => 'form-control', :placeholder => I18n.t(:sales_channel, scope: :edit_shop), :required => true
                   %td{width: '30%'}
                     %a{ :href => '#', :class => 'btn', :onclick => "#{gen_remove_sales_channel}" }

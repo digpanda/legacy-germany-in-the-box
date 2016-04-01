@@ -268,6 +268,13 @@ de:
     company_name_placeholder: 'Beispiel GmbH'
     shopname: Shopname
     tax_number: Steuernummer
+    sales_channel_options:
+      own_online_shop: eingener Online-Shop
+      third_online_platform: dritte Online-Plattform
+      presence_shop: Präsenzshop
+      retail: Einzelhandel
+      direct_selling: Direktvertrieb
+      other: Sonstiges
   edit_product:
     edit: Editieren
     remove: Entfernen

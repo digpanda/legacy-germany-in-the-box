@@ -56,7 +56,8 @@ shop = Shop.create!(
     :statement2 => true,
     :agb => true,
     :tax_number => '12345678',
-    :ustid => '12345678'
+    :ustid => '12345678',
+    :sales_channels => [:third_online_platform, 'www.taobao.com']
 );
 
 product = Product.new(
@@ -134,7 +135,8 @@ shop = Shop.create!(
     :statement2 => true,
     :agb => true,
     :tax_number => '12345678',
-    :ustid => '12345678'
+    :ustid => '12345678',
+    :sales_channels => [:third_online_platform, 'www.taobao.com']
 );
 
 product = Product.new(

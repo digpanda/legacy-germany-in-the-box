@@ -62,10 +62,7 @@ module ShopsHelper
     %Q{
       $('<td>').attr('width', '30%').append(
         $('<select>').attr('name', '#{class_name}[sales_channels][]').addClass('form-control').append(
-          $('<option>').val('Online-Shop').text('Online-Shop'),
-          $('<option>').val('Online-Marktplatz').text('Online-Marktplatz'),
-          $('<option>').val('Einzelhandler').text('Einzelhandler'),
-          $('<option>').val('Workshop').text('Workshop')
+          #{SalesChannelOptions::OPTIONS.map { |o| "$('<option>').val('#{o}').text('#{I18n.t(o, scope: 'edit_shop.sales_channel_options')}')" }.join(',')}
         )
       )
     }
