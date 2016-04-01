@@ -12,7 +12,6 @@ class ShopsController <  ApplicationController
      respond_to do |format|
        sp = shop_params
 
-       current_user.shop.target_groups.clear unless sp[:target_groups]
        current_user.shop.sales_channels.clear unless sp[:sales_channels]
 
        if current_user.shop.agb && current_user.shop.update(sp)
