@@ -43,7 +43,7 @@
     %tbody
       - @product.skus.each do |s|
         %tr
-          %td= link_to image_tag(get_uploaded_img_url(s.img0), :style => 'max-width:48px;max-height:48px'), edit_user_path(current_user, :user_info_edit_part => :edit_product_detail_update, :product_id => @product.id, :sku_id => s.id)
+          %td= link_to image_tag(get_uploaded_thumbnail_url(s.img0), :style => 'max-width:48px;max-height:auto'), edit_user_path(current_user, :user_info_edit_part => :edit_product_detail_update, :product_id => @product.id, :sku_id => s.id)
           %td= select_tag :option_ids, grouped_options_for_select(get_grouped_variants_options(@product), s.option_ids ), :multiple => 'multiple', :class => 'sku-variants-options', :readonly=>true
           %td= s.price.to_s + ' ' + s.currency
           %td= s.discount.to_s + '%' if s.discount != 0

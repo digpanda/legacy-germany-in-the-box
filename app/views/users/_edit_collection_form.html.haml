@@ -1,7 +1,7 @@
 .col-md-6
   = form_for(@collection, :html => {:class => 'form-horizontal', :role => 'form', 'data-toggle': 'validator'}) do |f|
     .form-group
-      = image_tag (@collection.img.url), :style => 'width:128px;height:128px', :id => "img_#{@collection.id}", :class => 'form-control'
+      = image_tag get_uploaded_thumbnail_url(@collection.img), :style => 'width:90px;height:90px', :id => "img_#{@collection.id}", :class => 'form-control'
       %div.fileUpload.btn.btn-default
         %span
           %i.fa.fa-cloud-upload

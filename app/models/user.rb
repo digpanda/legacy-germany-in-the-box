@@ -30,7 +30,7 @@ class User
   has_one  :dCollection,  :inverse_of => :user,         :dependent => :restrict,  :class_name => 'Collection'
 
   genderize (:gender)
-  mount_uploader :pic, AttachmentUploader
+  mount_uploader :pic, LogoImageUploader
 
   validates :role,          presence: true, inclusion: {in: [:customer, :shopkeeper, :admin]}
   validates :username,      presence: true, length: {maximum: Rails.configuration.max_tiny_text_length}

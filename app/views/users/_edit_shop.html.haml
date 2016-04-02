@@ -2,86 +2,89 @@
   .panel-group
     .panel.panel-default
       .panel-body
-        %table.table.table-borderless
-          %tbody
-            %tr
-              %td{ width: '30%' }
-                %label= I18n.t(:logo, scope: :edit_shop)
-              %td{ width: '70%', :title => I18n.t(:banner_info, scope: :edit_shop) }
-                %i.fa.fa-info-circle{ :title => I18n.t(:banner_info, scope: :edit_shop) }
-                %label= I18n.t(:banner, scope: :edit_shop)
-            %tr
-              %td{ width: '30%' }= image_tag @shop.logo ? @shop.logo.url : nil, :style => 'width:128px;height:128px', :class => 'form-control img-thumbnail', :id => "logo_#{@shop.id}"
-              %td{ width: '70%' }= image_tag @shop.banner ? @shop.banner.url : nil, :style => 'width:512px;height:128px', :class => 'img-responsive form-control', :id => "banner_#{@shop.id}"
-            %tr
-              %td{ width: '30%' }
-                %div.fileUpload.btn.btn-default
-                  %span
-                    %i.fa.fa-cloud-upload
-                    =I18n.t(:upload, scope: :image_upload)
-                  = f.file_field :logo, :accept => "image/png, image/jpeg, image/jpg", :class => 'img-file-upload upload', :img_id => "#logo_#{@shop.id}", :onchange =>"validateImgFile(this);"
-              %td{width: '70%' }
-                %div.fileUpload.btn.btn-default
-                  %span
-                    %i.fa.fa-cloud-upload
-                    =I18n.t(:upload, scope: :image_upload)
-                  = f.file_field :banner, :accept => "image/png, image/jpeg, image/jpg", :class => 'img-file-upload upload', :img_id => "#banner_#{@shop.id}", :onchange =>"validateImgFile(this);"
+        .row
+          .col-md-4
+            %label= I18n.t(:logo, scope: :edit_shop)
+          .col-md-8{ :title => I18n.t(:banner_info, scope: :edit_shop) }
+            %i.fa.fa-info-circle{ :title => I18n.t(:banner_info, scope: :edit_shop) }
+            %label= I18n.t(:banner, scope: :edit_shop)
+        .row.text-center
+          .col-md-4
+            = image_tag  get_uploaded_thumbnail_url(@shop.logo), :style => 'max-width:90px;max-height:auto', :id => "logo_#{@shop.id}"
+          .col-md-8
+            = image_tag get_uploaded_thumbnail_url(@shop.banner), :class => 'max-width:auto;max-height:90px', :id => "banner_#{@shop.id}"
+        .row.text-center
+          .col-md-4
+            .fileUpload.btn.btn-default
+              %span
+                %i.fa.fa-cloud-upload
+                =I18n.t(:upload, scope: :image_upload)
+              = f.file_field :logo, :accept => "image/png, image/jpeg, image/jpg", :class => 'img-file-upload upload', :img_id => "#logo_#{@shop.id}", :onchange =>"validateImgFile(this);"
+          .col-md-8
+            .fileUpload.btn.btn-default
+              %span
+                %i.fa.fa-cloud-upload
+                =I18n.t(:upload, scope: :image_upload)
+              = f.file_field :banner, :accept => "image/png, image/jpeg, image/jpg", :class => 'img-file-upload upload', :img_id => "#banner_#{@shop.id}", :onchange =>"validateImgFile(this);"
     .panel.panel-default
       .panel-body
-        %table.table.table-borderless
-          %tbody
-            %tr.form-group
-              %td{ width: '30%' }
-                %label.required= I18n.t(:shopname, scope: :edit_shop)
-              %td{ width: '70%'}
-                = f.text_field :shopname, :class => 'form-control', :required => true, :maxLength => Rails.configuration.max_short_text_length
-            %tr.form-group
-              %td{ width: '30%', :title => I18n.t(:min_total_info, scope: :edit_shop) }
-                %i.fa.fa-info-circle{ :title => I18n.t(:min_total_info, scope: :edit_shop) }
-                %label.required= I18n.t(:min_total, scope: :edit_shop)
-              %td{ width: '70%'}
-                .input-group
-                  = f.text_field :min_total, :class => 'form-control', :required => true, :pattern => '^\d+\.?\d*$'
-                  %span.input-group-addon
-                    = @shop.currency
+        .row
+          .form-group
+            .col-md-4
+              = f.label :shopname, I18n.t(:shopname, scope: :edit_shop), :class => 'required'
+            .col-md-8
+              = f.text_field :shopname, :class => 'form-control', :required => true, :maxLength => Rails.configuration.max_short_text_length
+        %br
+        .row
+          .form-group
+            .col-md-4{:title => I18n.t(:min_total_info, scope: :edit_shop) }
+              %i.fa.fa-info-circle{ :title => I18n.t(:min_total_info, scope: :edit_shop) }
+              = f.label :min_total, I18n.t(:min_total, scope: :edit_shop), :class => 'required'
+            .col-md-8
+              .input-group
+                = f.text_field :min_total, :class => 'form-control', :required => true, :pattern => '^\d+\.?\d*$'
+                %span.input-group-addon
+                  = @shop.currency
     .panel.panel-info
       .panel-heading{:title => I18n.t(:product_seal_info, scope: :edit_product)}
         .text-center
           %i.fa.fa-info-circle{ :title => I18n.t(:product_seal_info, scope: :edit_product) }
           %label= I18n.t(:product_seal, scope: :edit_product)
       .panel-body
-        %table.table.table-borderless
-          %tbody
-            %tr
-              %td{:colspan => 2, :align => :center}= image_tag get_uploaded_img_url(@shop.seal0), :style => 'width:160px;height:160px', :id => "seal_0_#{@shop.id}"
-              %td{:colspan => 2, :align => :center}= image_tag get_uploaded_img_url(@shop.seal1), :style => 'width:160px;height:160px', :id => "seal_1_#{@shop.id}"
-              %td{:colspan => 2, :align => :center}= image_tag get_uploaded_img_url(@shop.seal2), :style => 'width:160px;height:160px', :id => "seal_2_#{@shop.id}"
-              %td{:colspan => 2, :align => :center}= image_tag get_uploaded_img_url(@shop.seal3), :style => 'width:160px;height:160px', :id => "seal_3_#{@shop.id}"
-            %tr
-              %td{:colspan => 2, :align => :center}
-                %div.fileUpload.btn.btn-default
-                  %span
-                    %i.fa.fa-cloud-upload
-                    =I18n.t(:upload, scope: :image_upload)
-                  = f.file_field :seal0, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#seal_0_#{@shop.id}", :class => 'img-file-upload upload', :onchange =>"validateImgFile(this);"
-              %td{:colspan => 2, :align => :center}
-                %div.fileUpload.btn.btn-default
-                  %span
-                    %i.fa.fa-cloud-upload
-                    =I18n.t(:upload, scope: :image_upload)
-                  = f.file_field :seal1, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#seal_1_#{@shop.id}", :class => 'img-file-upload upload', :onchange =>"validateImgFile(this);"
-              %td{:colspan => 2, :align => :center}
-                %div.fileUpload.btn.btn-default
-                  %span
-                    %i.fa.fa-cloud-upload
-                    =I18n.t(:upload, scope: :image_upload)
-                  = f.file_field :seal2, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#seal_2_#{@shop.id}", :class => 'img-file-upload upload', :onchange =>"validateImgFile(this);"
-              %td{:colspan => 2, :align => :center}
-                %div.fileUpload.btn.btn-default
-                  %span
-                    %i.fa.fa-cloud-upload
-                    =I18n.t(:upload, scope: :image_upload)
-                  = f.file_field :seal3, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#seal_3_#{@shop.id}", :class => 'img-file-upload upload', :onchange =>"validateImgFile(this);"
+        .row.text-center
+          .col-md-3
+            = image_tag get_uploaded_thumbnail_url(@shop.seal0), :class => 'img-responsive', :id => "seal_0_#{@shop.id}"
+          .col-md-3
+            = image_tag get_uploaded_thumbnail_url(@shop.seal1), :class => 'img-responsive', :id => "seal_1_#{@shop.id}"
+          .col-md-3
+            = image_tag get_uploaded_thumbnail_url(@shop.seal2), :class => 'img-responsive', :id => "seal_2_#{@shop.id}"
+          .col-md-3
+            = image_tag get_uploaded_thumbnail_url(@shop.seal3), :class => 'img-responsive', :id => "seal_3_#{@shop.id}"
+        .row.text-center
+          .col-md-3
+            .fileUpload.btn.btn-default
+              %span
+                %i.fa.fa-cloud-upload
+                =I18n.t(:upload, scope: :image_upload)
+              = f.file_field :seal0, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#seal_0_#{@shop.id}", :class => 'img-file-upload upload', :onchange =>"validateImgFile(this);"
+          .col-md-3
+            .fileUpload.btn.btn-default
+              %span
+                %i.fa.fa-cloud-upload
+                =I18n.t(:upload, scope: :image_upload)
+              = f.file_field :seal1, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#seal_1_#{@shop.id}", :class => 'img-file-upload upload', :onchange =>"validateImgFile(this);"
+          .col-md-3
+            .fileUpload.btn.btn-default
+              %span
+                %i.fa.fa-cloud-upload
+                =I18n.t(:upload, scope: :image_upload)
+              = f.file_field :seal2, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#seal_2_#{@shop.id}", :class => 'img-file-upload upload', :onchange =>"validateImgFile(this);"
+          .col-md-3
+            .fileUpload.btn.btn-default
+              %span
+                %i.fa.fa-cloud-upload
+                =I18n.t(:upload, scope: :image_upload)
+              = f.file_field :seal3, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#seal_3_#{@shop.id}", :class => 'img-file-upload upload', :onchange =>"validateImgFile(this);"
 
 
   = f.button I18n.t(:save, scope: :edit_shop), :class => 'btn btn-primary', name: :user_info_edit_part, value: :edit_shop

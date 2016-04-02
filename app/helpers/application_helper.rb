@@ -34,7 +34,7 @@ module ApplicationHelper
     }
   end
 
-  def get_uploaded_img_url(img)
-    img ? (img.url ? img.url : nil) : nil
+  def get_uploaded_thumbnail_url(img)
+    img ? (img.url ? img.url(:thumb) : nil) : nil
   end
 end

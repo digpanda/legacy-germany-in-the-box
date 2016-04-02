@@ -3,7 +3,7 @@
     .col-md-3
       %aside.sidebar-left
         .sidebar-box.text-center
-          %img{:src => @shop.logo, :style => 'width:128px;height:128px'}
+          %img{:src => get_uploaded_thumbnail_url(@shop.logo), :style => 'max-width:90px;max-height:auto'}
       %aside.sidebar-left
         %div#left_menu
           %ul
@@ -24,7 +24,7 @@
 
     .col-md-9
       .box
-        %img{:src => @shop.banner}
+        %img{:src => get_uploaded_thumbnail_url(@shop.banner), :style => 'max-width:auto;max-height:90px'}
       .gap 
       %h2= @shop.name
       %p.text-muted= @shop.desc

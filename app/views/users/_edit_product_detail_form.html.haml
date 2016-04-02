@@ -34,10 +34,10 @@
           %td.text-center{:colspan => 2}= I18n.t(:img2, scope: :edit_product_detail)
           %td.text-center{:colspan => 2}= I18n.t(:img3, scope: :edit_product_detail)
         %tr
-          %td{:colspan => 2, :align => :center}= image_tag get_uploaded_img_url(@product.skus[fs.index].img0), :style => 'width:152px;height:152px', :id => "img_0_#{@product.id}"
-          %td{:colspan => 2, :align => :center}= image_tag get_uploaded_img_url(@product.skus[fs.index].img1), :style => 'width:152px;height:152px', :id => "img_1_#{@product.id}"
-          %td{:colspan => 2, :align => :center}= image_tag get_uploaded_img_url(@product.skus[fs.index].img2), :style => 'width:152px;height:152px', :id => "img_2_#{@product.id}"
-          %td{:colspan => 2, :align => :center}= image_tag get_uploaded_img_url(@product.skus[fs.index].img3), :style => 'width:152px;height:152px', :id => "img_3_#{@product.id}"
+          %td{:colspan => 2, :align => :center}= image_tag get_uploaded_thumbnail_url(@sku.img0), :class => 'img-responsive', :id => "img_0_#{@product.id}"
+          %td{:colspan => 2, :align => :center}= image_tag get_uploaded_thumbnail_url(@sku.img1), :class => 'img-responsive', :id => "img_1_#{@product.id}"
+          %td{:colspan => 2, :align => :center}= image_tag get_uploaded_thumbnail_url(@sku.img2), :class => 'img-responsive', :id => "img_2_#{@product.id}"
+          %td{:colspan => 2, :align => :center}= image_tag get_uploaded_thumbnail_url(@sku.img3), :class => 'img-responsive', :id => "img_3_#{@product.id}"
         %tr
           %td{:colspan => 2, :align => :center}
             %div.fileUpload.btn.btn-default

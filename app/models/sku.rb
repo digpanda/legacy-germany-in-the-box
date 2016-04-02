@@ -27,10 +27,10 @@ class Sku
 
   embedded_in :product, :inverse_of => :skus
 
-  mount_uploader :img0,   AttachmentUploader
-  mount_uploader :img1,   AttachmentUploader
-  mount_uploader :img2,   AttachmentUploader
-  mount_uploader :img3,   AttachmentUploader
+  mount_uploader :img0,   ProductImageUploader
+  mount_uploader :img1,   ProductImageUploader
+  mount_uploader :img2,   ProductImageUploader
+  mount_uploader :img3,   ProductImageUploader
 
   validates :price,         presence: true
   validates :currency,      presence: true,   inclusion: {in: ['€']}

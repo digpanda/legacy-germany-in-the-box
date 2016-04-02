@@ -29,7 +29,7 @@ class Product
   accepts_nested_attributes_for :skus
   accepts_nested_attributes_for :options
 
-  mount_uploader :cover,   AttachmentUploader
+  mount_uploader :cover,   ProductImageUploader
 
   validates :name,        presence: true,   length: {maximum: (Rails.configuration.max_short_text_length * 1.25).round}
   validates :brand ,      presence: true,   length: {maximum: (Rails.configuration.max_short_text_length * 1.25).round}

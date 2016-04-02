@@ -39,13 +39,13 @@ class Shop
 
   field :name_locales,    type: Hash
 
-  mount_uploader :logo,   AttachmentUploader
-  mount_uploader :banner, AttachmentUploader
+  mount_uploader :logo,   LogoImageUploader
+  mount_uploader :banner, BannerImageUploader
 
-  mount_uploader :seal0,   AttachmentUploader
-  mount_uploader :seal1,   AttachmentUploader
-  mount_uploader :seal2,   AttachmentUploader
-  mount_uploader :seal3,   AttachmentUploader
+  mount_uploader :seal0,   ProductImageUploader
+  mount_uploader :seal1,   ProductImageUploader
+  mount_uploader :seal2,   ProductImageUploader
+  mount_uploader :seal3,   ProductImageUploader
 
   has_one   :bank_account,    inverse_of: :shop,  dependent: :restrict
 
