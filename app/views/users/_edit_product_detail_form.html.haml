@@ -22,149 +22,155 @@
 = form_for @product, :html => {'data-toggle': 'validator', :id => 'product_detail_form'} do |f|
   = hidden_field_tag :part, :sku
   = f.fields_for :skus, @sku do |fs|
-    %table.table.table-borderless
-      %tbody
-        %tr
-          %td.text-center.info{:colspan => 8, :title => I18n.t(:images_info, scope: :edit_product_detail)}
-            %i.fa.fa-info-circle{ :title => I18n.t(:images_info, scope: :edit_product_detail) }
-            %label= I18n.t(:images, scope: :edit_product_detail)
-        %tr
-          %td.text-center{:colspan => 2}= I18n.t(:img0, scope: :edit_product_detail)
-          %td.text-center{:colspan => 2}= I18n.t(:img1, scope: :edit_product_detail)
-          %td.text-center{:colspan => 2}= I18n.t(:img2, scope: :edit_product_detail)
-          %td.text-center{:colspan => 2}= I18n.t(:img3, scope: :edit_product_detail)
-        %tr
-          %td{:colspan => 2, :align => :center}= image_tag get_uploaded_thumbnail_url(@sku.img0), :class => 'img-responsive', :id => "img_0_#{@product.id}"
-          %td{:colspan => 2, :align => :center}= image_tag get_uploaded_thumbnail_url(@sku.img1), :class => 'img-responsive', :id => "img_1_#{@product.id}"
-          %td{:colspan => 2, :align => :center}= image_tag get_uploaded_thumbnail_url(@sku.img2), :class => 'img-responsive', :id => "img_2_#{@product.id}"
-          %td{:colspan => 2, :align => :center}= image_tag get_uploaded_thumbnail_url(@sku.img3), :class => 'img-responsive', :id => "img_3_#{@product.id}"
-        %tr
-          %td{:colspan => 2, :align => :center}
-            %div.fileUpload.btn.btn-default
-              %span
-                %i.fa.fa-cloud-upload
-                =I18n.t(:upload, scope: :image_upload)
-              = fs.file_field :img0, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#img_0_#{@product.id}", :class => 'img-file-upload upload', :onchange =>"validateImgFile(this);"
-          %td{:colspan => 2, :align => :center}
-            %div.fileUpload.btn.btn-default
-              %span
-                %i.fa.fa-cloud-upload
-                =I18n.t(:upload, scope: :image_upload)
-              = fs.file_field :img1, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#img_1_#{@product.id}", :class => 'img-file-upload upload', :onchange =>"validateImgFile(this);"
-          %td{:colspan => 2, :align => :center}
-            %div.fileUpload.btn.btn-default
-              %span
-                %i.fa.fa-cloud-upload
-                =I18n.t(:upload, scope: :image_upload)
-              = fs.file_field :img2, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#img_2_#{@product.id}", :class => 'img-file-upload upload', :onchange =>"validateImgFile(this);"
-          %td{:colspan => 2, :align => :center}
-            %div.fileUpload.btn.btn-default
-              %span
-                %i.fa.fa-cloud-upload
-                =I18n.t(:upload, scope: :image_upload)
-              = fs.file_field :img3, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#img_3_#{@product.id}", :class => 'img-file-upload upload', :onchange =>"validateImgFile(this);"
+    .panel-group
+      .panel.panel-info
+        .panel-heading.text-center{:colspan => 8, :title => I18n.t(:images_info, scope: :edit_product_detail)}
+          %i.fa.fa-info-circle{ :title => I18n.t(:images_info, scope: :edit_product_detail) }
+          %label= I18n.t(:images, scope: :edit_product_detail)
+        .panel-body
+          .row.text-center
+            .col-md-3
+              = I18n.t(:img0, scope: :edit_product_detail)
+            .col-md-3
+              = I18n.t(:img1, scope: :edit_product_detail)
+            .col-md-3
+              = I18n.t(:img2, scope: :edit_product_detail)
+            .col-md-3
+              = I18n.t(:img3, scope: :edit_product_detail)
+          .row.text-center
+            .col-md-3
+              = image_tag get_uploaded_thumbnail_url(@sku.img0), :class => 'img-responsive', :id => "img_0_#{@product.id}"
+            .col-md-3
+              = image_tag get_uploaded_thumbnail_url(@sku.img1), :class => 'img-responsive', :id => "img_1_#{@product.id}"
+            .col-md-3
+              = image_tag get_uploaded_thumbnail_url(@sku.img2), :class => 'img-responsive', :id => "img_2_#{@product.id}"
+            .col-md-3
+              = image_tag get_uploaded_thumbnail_url(@sku.img3), :class => 'img-responsive', :id => "img_3_#{@product.id}"
+          .row.text-center
+            .col-md-3
+              .fileUpload.btn.btn-default
+                %span
+                  %i.fa.fa-cloud-upload
+                  =I18n.t(:upload, scope: :image_upload)
+                = fs.file_field :img0, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#img_0_#{@product.id}", :class => 'img-file-upload upload', :onchange =>"validateImgFile(this);"
+            .col-md-3
+              .fileUpload.btn.btn-default
+                %span
+                  %i.fa.fa-cloud-upload
+                  =I18n.t(:upload, scope: :image_upload)
+                = fs.file_field :img1, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#img_1_#{@product.id}", :class => 'img-file-upload upload', :onchange =>"validateImgFile(this);"
+            .col-md-3
+              .fileUpload.btn.btn-default
+                %span
+                  %i.fa.fa-cloud-upload
+                  =I18n.t(:upload, scope: :image_upload)
+                = fs.file_field :img2, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#img_2_#{@product.id}", :class => 'img-file-upload upload', :onchange =>"validateImgFile(this);"
+            .col-md-3
+              .fileUpload.btn.btn-default
+                %span
+                  %i.fa.fa-cloud-upload
+                  =I18n.t(:upload, scope: :image_upload)
+                = fs.file_field :img3, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#img_3_#{@product.id}", :class => 'img-file-upload upload', :onchange =>"validateImgFile(this);"
 
-    .gap
+      .panel.panel-info
+        .panel-heading.text-center
+          %label= I18n.t(:sku_options, scope: :edit_product_detail)
+        .panel-body
+          .row
+            .col-md-6{:title => I18n.t(:variants_info, scope: :edit_product_detail)}
+              %i.fa.fa-info-circle{ :title => I18n.t(:variants_info, scope: :edit_product_detail) }
+              %label.required= I18n.t(:sku_variants_options, scope: :edit_product_detail)
+            .col-md-6
+              %label.required= I18n.t(:quantity, scope: :edit_product_detail)
+          .row
+            .col-md-6
+              .form-group
+                = fs.select :option_ids, grouped_options_for_select(get_grouped_variants_options(@product), @sku.option_ids ), {}, {:multiple => 'multiple', :class => 'sku-variants-options', :required => true}
+            .col-md-6
+              .input-group.form-group
+                = fs.text_field :quantity, :class => 'form-control', :placeholder => @sku.limited ? '' : I18n.t(@sku.limited.to_s.to_sym, scope: 'edit_product_detail.limited'), :pattern => I18n.t(:positive_integer, scope: :validation), :required => true
+                .input-group-addon
+                  = I18n.t(:piece, scope: :edit_product_detail)
+          .row
+            .col-md-6
+              %label.required= I18n.t(:price, scope: :edit_product_detail)
+            .col-md-6
+              %label.required= I18n.t(:discount, scope: :edit_product_detail)
+          .row
+            .col-md-6
+              .input-group.form-group
+                = fs.text_field :price, :class => 'form-control', :required => true, :pattern => I18n.t(:positive_float, scope: :validation)
+                %span.input-group-addon
+                  = @product.shop.currency
+            .col-md-6
+              .input-group.form-group
+                = fs.text_field :discount, :class => 'form-control', :pattern => I18n.t(:positive_integer_less_or_equal_than_100, scope: :validation), :required => true
+                .input-group-addon
+                  = '%'
+          .row
+            .col-md-6{ :title => I18n.t(:space_weight_info, scope: :edit_product_detail) }
+              %i.fa.fa-info-circle{ :title => I18n.t(:space_weight_info, scope: :edit_product_detail) }
+              %label.required= I18n.t(:space_weight, scope: :edit_product_detail)
+            .col-md-6{ :title => I18n.t(:customizable_info, scope: :edit_product_detail) }
+              .col-md-6
+                %i.fa.fa-info-circle{ :title => I18n.t(:customizable_info, scope: :edit_product_detail) }
+                %label= I18n.t('edit_product_detail.customizable.info')
+              .col-md-6
+                %label= I18n.t('edit_product_detail.status.info')
+          .row
+            .col-md-6
+              .row-fluid
+                .col-md-4.nopadding
+                  .form-group
+                    .input-group.input-group-sm
+                      = fs.text_field :space_length, :class => 'form-control input-sm', :required => true, :pattern => I18n.t(:positive_float, scope: :validation)
+                      .input-group-addon
+                        = I18n.t('cm', scope: :edit_product_detail)
+                .col-md-4.nopadding
+                  .form-group
+                    .input-group.input-group-sm
+                      = fs.text_field :space_width, :class => 'form-control', :required => true, :pattern => I18n.t(:positive_float, scope: :validation)
+                      .input-group-addon
+                        = I18n.t('cm', scope: :edit_product_detail)
+                .col-md-4.nopadding
+                  .form-group
+                    .input-group.input-group-sm
+                      = fs.text_field :space_height, :class => 'form-control', :required => true, :pattern => I18n.t(:positive_float, scope: :validation)
+                      .input-group-addon
+                        = I18n.t('cm', scope: :edit_product_detail)
+              .row-fluid
+                .input-group.input-group-sm
+                  = fs.text_field :weight, :class => 'form-control', :required => true, :pattern => I18n.t(:positive_float, scope: :validation)
+                  .input-group-btn
+                    = fs.select :unit, options_for_select(['kg'], @sku.unit), {}, { :class => 'form-control input-sm', :style => 'width:64px' }
+            .col-md-6
+              .col-md-3
+                .form-group
+                  .checkbox{:style => 'margin:0px'}
+                    %label
+                      = fs.hidden_field :customizable
+                      = fs.check_box :customizable, { :class => 'i-check' }, true
+                      = I18n.t(true, scope: 'edit_product_detail.customizable')
+              .col-md-3.col-md-offset-3
+                .form-group
+                  .checkbox{:style => 'margin:0px'}
+                    %label
+                      = fs.hidden_field :status
+                      = fs.check_box :status, { :class => 'i-check' }, true
+                      = I18n.t(true, scope: 'edit_product_detail.status')
 
-    %table.table.table-borderless
-      %tbody
-        %tr
-          %td.text-center.info{:colspan => 4}
-            %label= I18n.t(:sku_options, scope: :edit_product_detail)
-        %tr
-          %td{:colspan => 2, :title => I18n.t(:variants_info, scope: :edit_product_detail)}
-            %i.fa.fa-info-circle{ :title => I18n.t(:variants_info, scope: :edit_product_detail) }
-            %label.required= I18n.t(:sku_variants_options, scope: :edit_product_detail)
-          %td{:colspan => 2}
-            %label.required= I18n.t(:quantity, scope: :edit_product_detail)
-        %tr
-          %td{:colspan => 2}
-            .form-group
-              = fs.select :option_ids, grouped_options_for_select(get_grouped_variants_options(@product), @sku.option_ids ), {}, {:multiple => 'multiple', :class => 'sku-variants-options', :required => true}
-          %td{:colspan => 2}
-            .input-group.form-group
-              = fs.text_field :quantity, :class => 'form-control', :placeholder => @sku.limited ? '' : I18n.t(@sku.limited.to_s.to_sym, scope: 'edit_product_detail.limited'), :pattern => I18n.t(:positive_integer, scope: :validation), :required => true
-              .input-group-addon
-                = I18n.t(:piece, scope: :edit_product_detail)
-        %tr
-          %td{:colspan => 2}
-            %label.required= I18n.t(:price, scope: :edit_product_detail)
-          %td{:colspan => 2}
-            %label.required= I18n.t(:discount, scope: :edit_product_detail)
-        %tr
-          %td{:colspan => 2}
-            .input-group.form-group
-              = fs.text_field :price, :class => 'form-control', :required => true, :pattern => I18n.t(:positive_float, scope: :validation)
-              %span.input-group-addon
-                = @product.shop.currency
-          %td{:colspan => 2}
-            .input-group.form-group
-              = fs.text_field :discount, :class => 'form-control', :pattern => I18n.t(:positive_integer_less_or_equal_than_100, scope: :validation), :required => true
-              .input-group-addon
-                = '%'
-        %tr
-          %td{:colspan => 2, :title => I18n.t(:space_weight_info, scope: :edit_product_detail), :width => '50%'}
-            %i.fa.fa-info-circle{ :title => I18n.t(:space_weight_info, scope: :edit_product_detail) }
-            %label.required= I18n.t(:space_weight, scope: :edit_product_detail)
-          %td{:colspan => 1, :title => I18n.t(:customizable_info, scope: :edit_product_detail), :width => '25%'}
-            %i.fa.fa-info-circle{ :title => I18n.t(:customizable_info, scope: :edit_product_detail) }
-            %label= I18n.t('edit_product_detail.customizable.info')
-          %td{:colspan => 1, :width => '25%'}
-            %label= I18n.t('edit_product_detail.status.info')
-        %tr
-          %td{:colspan => 2}
-            .form-inline
-              .form-group
-                .input-group.input-group-sm
-                  = fs.text_field :space_length, :class => 'form-control input-sm', :required => true, :pattern => I18n.t(:positive_float, scope: :validation), :style => 'width:48px'
-                  .input-group-addon
-                    = I18n.t('cm', scope: :edit_product_detail)
-              .form-group
-                .input-group.input-group-sm
-                  = fs.text_field :space_width, :class => 'form-control', :required => true, :pattern => I18n.t(:positive_float, scope: :validation), :style => 'width:48px'
-                  .input-group-addon
-                    = I18n.t('cm', scope: :edit_product_detail)
-              .form-group
-                .input-group.input-group-sm
-                  = fs.text_field :space_height, :class => 'form-control', :required => true, :pattern => I18n.t(:positive_float, scope: :validation), :style => 'width:48px'
-                  .input-group-addon
-                    = I18n.t('cm', scope: :edit_product_detail)
-            .gap-small
-            .form-inline
-              .input-group.input-group-sm
-                = fs.text_field :weight, :style => 'width: 206px', :class => 'form-control', :required => true, :pattern => I18n.t(:positive_float, scope: :validation)
-                .input-group-btn{:style => 'width:60px'}
-                  = fs.select :unit, options_for_select(['kg'], @sku.unit), {}, { :class => 'form-control input-sm' }
-          %td
-            .form-group{:colspan => 1}
-              .checkbox{:style => 'margin:0px'}
-                %label
-                  = fs.hidden_field :customizable
-                  = fs.check_box :customizable, { :class => 'i-check' }, true
-                  = I18n.t(true, scope: 'edit_product_detail.customizable')
-          %td
-            .form-group{:colspan => 1}
-              .checkbox{:style => 'margin:0px'}
-                %label
-                  = fs.hidden_field :status
-                  = fs.check_box :status, { :class => 'i-check' }, true
-                  = I18n.t(true, scope: 'edit_product_detail.status')
-
-    %table.table.table-borderless
-      %tbody
-        %tr
-          %td.text-center.info{:colspan => 4}
-            %label.required= I18n.t(:time, scope: :edit_product_detail)
-        %tr
-          %td.form-group{:colspan => 4}
-            .radio
-              %label
-                = fs.radio_button :time, 'terminated', :class => 'i-radio', :required => true
-                = I18n.t(:timed_info, scope: :edit_product_detail)
-            .radio
-              %label
-                = fs.radio_button :time, 'automatic', :class => 'i-radio', :required => true
-                = I18n.t(:renew_info, scope: :edit_product_detail)
+      .panel.panel-info
+        .panel-heading.text-center
+          %label.required= I18n.t(:time, scope: :edit_product_detail)
+        .panel-body
+          .radio
+            %label
+              = fs.radio_button :time, 'terminated', :class => 'i-radio', :required => true
+              = I18n.t(:timed_info, scope: :edit_product_detail)
+          .radio
+            %label
+              = fs.radio_button :time, 'automatic', :class => 'i-radio', :required => true
+              = I18n.t(:renew_info, scope: :edit_product_detail)
 
   = f.submit :class => 'btn btn-primary', :value => new ? I18n.t(:create_sku, scope: :edit_product_detail) : I18n.t(:update_sku, scope: :edit_product_detail), :part => :sku, :onclick => "v = $('select.sku-variants-options'); if ( v.val() ) { return true; } else { v.next().addClass('invalidBorderClass'); return false; }"
   = link_to I18n.t(:cancel, scope: :edit_product_detail), :back, :class => 'btn btn-primary'

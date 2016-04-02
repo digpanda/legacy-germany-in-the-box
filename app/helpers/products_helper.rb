@@ -154,6 +154,10 @@ module ProductsHelper
     }
   end
 
+  def gen_upload_image
+
+  end
+
   def enough_inventory(sku, quantity)
     return sku && (not sku.limited or sku.quantity >= quantity )
   end
