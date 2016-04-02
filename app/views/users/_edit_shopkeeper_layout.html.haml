@@ -1,11 +1,3 @@
-#agb-dialog.mfp-with-anim.mfp-hide.mfp-dialog.mfp-dialog-big.clearfix
-  %br
-  .text-center
-    %h3
-      %span.label.label-primary= I18n.t(:agb, scope: :edit_shop)
-  %br
-  %textarea{ :class => 'form-control', :rows => '8'}= 'AGB'
-
 .container
   .col-md-3
     %aside.sidebar-left
@@ -25,11 +17,5 @@
             =link_to I18n.t(:my_address, scope: :top_menu),  edit_user_path(current_user, :user_info_edit_part => :edit_shop_address)
           -#%li{:class => [:edit_collection.to_s, :edit_collection_update.to_s, :edit_collection_new.to_s].include?(params[:user_info_edit_part]) ? 'active' : ''}
           -#  =link_to I18n.t(:my_collection, scope: :top_menu),  edit_user_path(current_user, :user_info_edit_part => :edit_collection)
-
-    - if current_user.shop && current_user.shop.agb
-      .gap
-      .col-md-offset-1
-        = link_to I18n.t(:my_agb, scope: :top_menu),  '#agb-dialog', :style => 'color: #666; text-decoration: underline', :class => 'popup-text', 'data-effect' => 'mfp-zoom-out'
-
   .col-md-9
     = yield

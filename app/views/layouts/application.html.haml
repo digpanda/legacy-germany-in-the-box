@@ -281,6 +281,14 @@
           %label.control-label= I18n.t(:email, scope: :password_recovery_dialog)
           %input.form-control.span12{:placeholder => 'email@domain.com', :type => 'email', :required => true}
           %input.btn.btn-primary{:type => 'submit', :value => I18n.t(:ok, scope: :password_recovery_dialog)}
+      #agb-dialog.mfp-with-anim.mfp-hide.mfp-dialog.mfp-dialog-big.clearfix
+        %br
+        .text-center
+          %h3
+            %span.label.label-primary= I18n.t(:agb, scope: :edit_shop)
+        %br
+        %textarea{ :class => 'form-control', :rows => '8'}= 'AGB'
+
       - if @show_search_area.present? and @show_search_area
         =yield :search_area
 
@@ -337,7 +345,8 @@
             .col-md-2.col-md-offset-2
               %h4= I18n.t(:rheinmanufaktur, scope: :footer)
               %h5=link_to I18n.t(:imprint, scope: :footer), '#', :style => 'color: gray; text-decoration: underline'
-              %h5=link_to I18n.t(:terms_conditions, scope: :footer), '#', :style => 'color: gray; text-decoration: underline'
+              -if user_signed_in? && current_user.role == :shopkeeper
+                %h5=link_to I18n.t(:terms_conditions, scope: :footer), '#agb-dialog', :style => 'color: gray; text-decoration: underline', :class => 'popup-text', 'data-effect' => 'mfp-zoom-out'
               %h5=link_to I18n.t(:privarcy_statement, scope: :footer), '#', :style => 'color: gray; text-decoration: underline'
               %h5=link_to I18n.t(:guidelines, scope: :footer), '#', :style => 'color: gray; text-decoration: underline'
               %h5=link_to I18n.t(:press_portal, scope: :footer), '#', :style => 'color: gray; text-decoration: underline'
