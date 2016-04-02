@@ -83,7 +83,7 @@
               = fs.select :option_ids, grouped_options_for_select(get_grouped_variants_options(@product), @sku.option_ids ), {}, {:multiple => 'multiple', :class => 'sku-variants-options', :required => true}
           %td{:colspan => 2}
             .input-group.form-group
-              = fs.text_field :quantity, :class => 'form-control', :placeholder => @sku.limited ? '' : I18n.t(@sku.limited.to_s.to_sym, scope: 'edit_product_detail.limited'), :pattern => '^[1-9][0-9]*$', :required => true
+              = fs.text_field :quantity, :class => 'form-control', :placeholder => @sku.limited ? '' : I18n.t(@sku.limited.to_s.to_sym, scope: 'edit_product_detail.limited'), :pattern => I18n.t(:positive_integer, scope: :validation), :required => true
               .input-group-addon
                 = I18n.t(:piece, scope: :edit_product_detail)
         %tr
@@ -94,12 +94,12 @@
         %tr
           %td{:colspan => 2}
             .input-group.form-group
-              = fs.text_field :price, :class => 'form-control', :required => true, :pattern => '^\d+\.?\d*$'
+              = fs.text_field :price, :class => 'form-control', :required => true, :pattern => I18n.t(:positive_float, scope: :validation)
               %span.input-group-addon
                 = @product.shop.currency
           %td{:colspan => 2}
             .input-group.form-group
-              = fs.text_field :discount, :class => 'form-control', :pattern => '^[1-9][0-9]?$|^100$|^0$', :required => true
+              = fs.text_field :discount, :class => 'form-control', :pattern => I18n.t(:positive_integer_less_or_equal_than_100, scope: :validation), :required => true
               .input-group-addon
                 = '%'
         %tr
@@ -116,23 +116,23 @@
             .form-inline
               .form-group
                 .input-group.input-group-sm
-                  = fs.text_field :space_length, :class => 'form-control input-sm', :required => true, :pattern => '^([0-9]*[1-9][0-9]*(\.[0-9]+)?|[0]+\.[0-9]*[1-9][0-9]*)$', :style => 'width:48px'
+                  = fs.text_field :space_length, :class => 'form-control input-sm', :required => true, :pattern => I18n.t(:positive_float, scope: :validation), :style => 'width:48px'
                   .input-group-addon
                     = I18n.t('cm', scope: :edit_product_detail)
               .form-group
                 .input-group.input-group-sm
-                  = fs.text_field :space_width, :class => 'form-control', :required => true, :pattern => '^([0-9]*[1-9][0-9]*(\.[0-9]+)?|[0]+\.[0-9]*[1-9][0-9]*)$', :style => 'width:48px'
+                  = fs.text_field :space_width, :class => 'form-control', :required => true, :pattern => I18n.t(:positive_float, scope: :validation), :style => 'width:48px'
                   .input-group-addon
                     = I18n.t('cm', scope: :edit_product_detail)
               .form-group
                 .input-group.input-group-sm
-                  = fs.text_field :space_height, :class => 'form-control', :required => true, :pattern => '^([0-9]*[1-9][0-9]*(\.[0-9]+)?|[0]+\.[0-9]*[1-9][0-9]*)$', :style => 'width:48px'
+                  = fs.text_field :space_height, :class => 'form-control', :required => true, :pattern => I18n.t(:positive_float, scope: :validation), :style => 'width:48px'
                   .input-group-addon
                     = I18n.t('cm', scope: :edit_product_detail)
             .gap-small
             .form-inline
               .input-group.input-group-sm
-                = fs.text_field :weight, :style => 'width: 206px', :class => 'form-control', :required => true, :pattern => '^\d+\.?\d*$'
+                = fs.text_field :weight, :style => 'width: 206px', :class => 'form-control', :required => true, :pattern => I18n.t(:positive_float, scope: :validation)
                 .input-group-btn{:style => 'width:60px'}
                   = fs.select :unit, options_for_select(['kg'], @sku.unit), {}, { :class => 'form-control input-sm' }
           %td
