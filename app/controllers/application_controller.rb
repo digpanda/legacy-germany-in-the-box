@@ -118,8 +118,4 @@ class ApplicationController < ActionController::Base
   def extract_locale
     request.env['HTTP_ACCEPT_LANGUAGE'] ? request.env['HTTP_ACCEPT_LANGUAGE'].scan(/^[a-z]{2}/).first : 'de'
   end
-
-  def parse_boolean(value)
-    ActiveRecord::ConnectionAdapters::Column.value_to_boolean(value)
-  end
 end
