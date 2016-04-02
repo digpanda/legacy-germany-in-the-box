@@ -58,34 +58,34 @@
                     = f.text_field :register, :class => 'form-control', :maxLength => Rails.configuration.max_tiny_text_length, :placeholder => 'HRB 999999'
                     %div.help-block.with-errors
                 %tr.form-group
-                  %td{width: '30%', :title => I18n.t(:desc_info, scope: :edit_shop) }
-                    %i.fa.fa-info-circle{ :title => I18n.t(:desc_info, scope: :edit_shop) }
+                  %td{width: '30%', :title => I18n.t(:desc_info, scope: :edit_shop, num: Rails.configuration.max_medium_text_length ) }
+                    %i.fa.fa-info-circle{ :title => I18n.t(:desc_info, scope: :edit_shop, num: Rails.configuration.max_medium_text_length) }
                     %label.required= I18n.t(:desc, scope: :edit_shop)
                   %td{width: '70%'}
                     = f.text_area :desc, :class => 'form-control', rows: 4, :required => true, :maxLength => Rails.configuration.max_medium_text_length
                     %div.help-block.with-errors
                 %tr.form-group
-                  %td{width: '30%', :title => I18n.t(:philosophy_info, scope: :edit_shop) }
-                    %i.fa.fa-info-circle{ :title => I18n.t(:philosophy_info, scope: :edit_shop) }
+                  %td{width: '30%', :title => I18n.t(:philosophy_info, scope: :edit_shop, num: Rails.configuration.max_medium_text_length) }
+                    %i.fa.fa-info-circle{ :title => I18n.t(:philosophy_info, scope: :edit_shop, num: Rails.configuration.max_medium_text_length) }
                     %label.required= I18n.t(:philosophy, scope: :edit_shop)
                   %td{width: '70%'}
                     = f.text_area :philosophy, :class => 'form-control', rows: 4, :required => true, :maxLength => Rails.configuration.max_medium_text_length
                     %div.help-block.with-errors
                 %tr.form-group
-                  %td{width: '30%', :title => I18n.t(:stories_info, scope: :edit_shop) }
-                    %i.fa.fa-info-circle{ :title => I18n.t(:stories_info, scope: :edit_shop) }
+                  %td{width: '30%', :title => I18n.t(:stories_info, scope: :edit_shop, num: Rails.configuration.max_long_text_length) }
+                    %i.fa.fa-info-circle{ :title => I18n.t(:stories_info, scope: :edit_shop, num: Rails.configuration.max_long_text_length) }
                     %label= I18n.t(:stories, scope: :edit_shop)
                   %td{width: '70%'}
                     = f.text_area :stories, :class => 'form-control', rows: 4, :maxLength => Rails.configuration.max_long_text_length
                     %div.help-block.with-errors
                 %tr.form-group
-                  %td{width: '30%', :title => I18n.t(:uniqueness_info, scope: :edit_shop) }
-                    %i.fa.fa-info-circle{ :title => I18n.t(:uniqueness_info, scope: :edit_shop) }
+                  %td{width: '30%', :title => I18n.t(:uniqueness_info, scope: :edit_shop, num: Rails.configuration.max_medium_text_length) }
+                    %i.fa.fa-info-circle{ :title => I18n.t(:uniqueness_info, scope: :edit_shop, num: Rails.configuration.max_medium_text_length) }
                     %label= I18n.t(:uniqueness, scope: :edit_shop)
                   %td{width: '70%'}= f.text_area :uniqueness, :class => 'form-control', rows: 4, :maxLength => Rails.configuration.max_medium_text_length
                 %tr.form-group
-                  %td{width: '30%', :title => I18n.t(:german_essence_info, scope: :edit_shop) }
-                    %i.fa.fa-info-circle{ :title => I18n.t(:german_essence_info, scope: :edit_shop) }
+                  %td{width: '30%', :title => I18n.t(:german_essence_info, scope: :edit_shop, num: Rails.configuration.max_medium_text_length) }
+                    %i.fa.fa-info-circle{ :title => I18n.t(:german_essence_info, scope: :edit_shop, num: Rails.configuration.max_medium_text_length) }
                     %label= I18n.t(:german_essence, scope: :edit_shop)
                   %td{width: '70%'}= f.text_area :german_essence, :class => 'form-control', rows: 4, :maxLength => Rails.configuration.max_medium_text_length
                 %tr.form-group

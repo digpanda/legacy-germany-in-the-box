@@ -242,9 +242,9 @@ de:
     update_ok: Der Shop erfolgreich aktualisiert!
     update_producer_ok: Herstellerdetails erfolgreich aktualisiert!
     update_agb_ok: Vielen Dank für das Einverständnis unserer allgeimeinen Geschäftsbedingungen!
-    desc_info: Wer sind Sie? Was bieten Sie an?  (max. 50 Wörter)
-    philosophy_info: Welche Grundidee und Grundüberzeugung unterliegen Ihren Produkten? (max. 200 Wörter)
-    stories_info: Haben Ihre Produkte bemerkenswerte Geschichten, z.B dass Ihre Marke Sponsor für lokale Kinderevents, Elternverein, Sportverein ist, oder dass die Rezepte oder Herstellungen einer langen Familientradition folgen? Welche Zeitungen und Magazine haben von Ihren Produkten positiv berichtet? (max. 1000 Wörter)
+    desc_info: Wer sind Sie? Was bieten Sie an?  (max. %{num} Buchstaben)
+    philosophy_info: Welche Grundidee und Grundüberzeugung unterliegen Ihren Produkten? (max. %{num} Buchstaben)
+    stories_info: Haben Ihre Produkte bemerkenswerte Geschichten, z.B dass Ihre Marke Sponsor für lokale Kinderevents, Elternverein, Sportverein ist, oder dass die Rezepte oder Herstellungen einer langen Familientradition folgen? Welche Zeitungen und Magazine haben von Ihren Produkten positiv berichtet? (max. %{num} Buchstaben)
     ust_id_info: Als Exportierender Hersteller führen Sie keine Ust-Vorsteuer ab. Falls Sie eine Ust-ID besitzen, benötigen wir sie für Ausfuhrbescheinigungen.
     eroi_number_info: Die EORI-Nummer ersetzt die deutsche Zollnummer und dient der Regiestrierung und Identifikation von Wirschaftsbeteiligten bei der Zollabwicklung in EU. Ab einen Tagesexportwert von 1.000 EUR muss der Hersteller EORI-Nummer angeben. Wenn Sie erwarten, dass Sie diesen Tagegrenzwert überschreiten werden, emfehlen wir diese nummer im Vorfeld zu beantragen. Die EORI-Nummer können Sie jeder Zeit nachtragen. (max. 25 Buchstaben)
     min_total_info: Sie können einen Mindestbestellwert für jede Bestellung im Ihren Shop festlegen. Geben Sie 0 an, falls Sie keinen Mindestwert wünschen.
@@ -252,9 +252,9 @@ de:
     founding_year: Gründungsjahr
     founding_year_info: Wann wurde Ihre Marke gegründet? (Jahr)
     german_essence: German-Design
-    german_essence_info: Die deutsche Herstellung ist weltweit bekannt für seine Effizienz, Schlichheit und Qualität. Wie spiegeln Ihre Produkte die Essenz von "German-Design" hinsichtlich ihrer Herstellung und Gestaltung wider? (max. 250 Wörter)
+    german_essence_info: Die deutsche Herstellung ist weltweit bekannt für seine Effizienz, Schlichheit und Qualität. Wie spiegeln Ihre Produkte die Essenz von "German-Design" hinsichtlich ihrer Herstellung und Gestaltung wider? (max. %{num} Buchstaben)
     uniqueness: Einzigartigkeit
-    uniqueness_info: Was hebt Ihre Produkte von anderen ähnlichen Produkten auf dem Markt ab? (max. 200 Wörter)
+    uniqueness_info: Was hebt Ihre Produkte von anderen ähnlichen Produkten auf dem Markt ab? (max. %{num} Buchstaben)
     target_groups: Zielgruppen
     target_groups_info: Wer gehört zur Zielgruppe für Ihre Produkte in Deutschland? Sie können bis zu %{num} Zielgruppen eintragen.
     target_group: Zielgruppe
@@ -311,7 +311,7 @@ de:
     variant: Variantentype
     categories_info: Die Zuordnung der Kategorien hilft den Käufern, Ihr Produkt zu finden.
     keywords_info: Wir empfehlen Ihnen, mit %{num} Stichwörtern das Produkt zu charakterisieren. Diese Stickwörtern dienen sowohl dem internen als auch externem Search.
-    desc_info: Beschreiben Sie Ihr Produkt mit all den ansprechenden Eigenschaften, die für Käufer relevant sind. (max. 250 Wörter)
+    desc_info: Beschreiben Sie Ihr Produkt mit all den ansprechenden Eigenschaften, die für Käufer relevant sind. (max. %{num} Buchstaben)
     cancel: Abbrechen
     product_seal: Produktsiegel
     product_seal_info: Hier können Sie Ihre Produktsiegel hochladen. (max. 1 MB pro Bild)
