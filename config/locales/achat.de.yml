@@ -3,7 +3,6 @@ de:
     positive_integer: '^[1-9][0-9]*$'
     positive_integer_less_or_equal_than_100: '^[1-9][0-9]*$'
     positive_float: '^([0-9]*[1-9][0-9]*(,[0-9]+)?|[0]+,[0-9]*[1-9][0-9]*)$'
-
   multiselect:
     non_selected_text: Nicht ausgewählt
     n_selected_text: ausgewählt
@@ -308,7 +307,7 @@ de:
     skus: Aritkelpositionen
     new_basic: Erstellen
     update_basic: Akutalisieren
-    variant: Variantentype
+    variant: Variante
     categories_info: Die Zuordnung der Kategorien hilft den Käufern, Ihr Produkt zu finden.
     keywords_info: Wir empfehlen Ihnen, mit %{num} Stichwörtern das Produkt zu charakterisieren. Diese Stickwörtern dienen sowohl dem internen als auch externem Search.
     desc_info: Beschreiben Sie Ihr Produkt mit all den ansprechenden Eigenschaften, die für Käufer relevant sind. (max. %{num} Buchstaben)
@@ -323,7 +322,7 @@ de:
     create_with_existing_name: Ein gleichnämiges Produkt ist bereits vorhanden.
   edit_product_detail:
     sku_manage: Artikelpositionen
-    variant_manage: Variantentypen
+    variant_manage: Varianten
     edit: Editieren
     remove: Entfernen
     delete_sku_message: Die gewählte Artikelposition löschen?
@@ -354,7 +353,7 @@ de:
     discount: Rabatt
     create_ok: Die Artikelposition erfolgreich erstellt!
     create_ko: Ein Fehler ist beim Anlegen der Artikelpositionen aufgetreten.
-    sku_variants_options: Variantentypen
+    sku_variants_options: Varianten
     images: Produktbilder
     image: Produkbild
     sku_options: Details der Artikelposition
@@ -379,20 +378,20 @@ de:
     remove: Entfernen
     edit_option: Editieren
     remove_option: Entfernen
-    delete_option_message: Das gewählte Artikelmerkmal löschen?
+    delete_option_message: Die gewählte Variantenausprägung löschen?
     name: Wahlmöglichkeit
-    option_name: Artikelmerkmal
+    option_name: Variantenausprägung
     sku_dependent: Es gibt Produkte, welche gerade diese gewählte verwenden. Die Löschung ist daher unmöglich.
     create_variant: Erstellen
     update_variant: Aktualisieren
     create_option: Erstellen
     update_option: Akutalisieren
-    update_ok: Das Artikelmerkmal erfolgreich aktualisiert!
+    update_ok: Die Variantenausprägung erfolgreich aktualisiert!
     variant_name: Variantentyp
-    option_name: Artikelmerkmal
-    new_option: Neues Artikelmerkmal
+    option_name: Variantenausprägung
+    new_option: Neuee Variantenausprägung
     delete_variant_ok: Die Variante erfolgreich gelöscht!
-    delete_option_ok: Das Artikelmerkmal erfolgreich gelöscht!
+    delete_option_ok: Die Variantenausprägung erfolgreich gelöscht!
     return: Zurück zur Produktliste
     cancel: Abbrechen
     variants: Varianten
