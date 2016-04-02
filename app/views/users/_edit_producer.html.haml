@@ -107,47 +107,45 @@
               %i.fa.fa-plus-circle
               = I18n.t(:add_sales_channel, scope: :edit_shop)
       .panel-body
-        %table.table.table-borderless{:id => "table_shop_sales_channels_#{@shop.id}"}
-          %tbody
-            - if @shop.sales_channels
-              - @shop.sales_channels.each_slice(2) do |sck, scv|
-                %tr
-                  %td{width: '30%'}= select_tag 'shop[sales_channels][]', options_for_select(SalesChannelOptions::OPTIONS.map {|o| [I18n.t(o, scope: 'edit_shop.sales_channel_options'), o]}, sck), :class => 'form-control'
-                  %td.form-group{width: '60%'}= text_field_tag 'shop[sales_channels][]', scv, :class => 'form-control', :placeholder => I18n.t(:sales_channel, scope: :edit_shop), :required => true
-                  %td{width: '30%'}
-                    %a{ :href => '#', :class => 'btn', :onclick => "#{gen_remove_sales_channel}" }
-                      %i.fa.fa-times-circle
-                      =I18n.t(:remove_sales_channel, scope: :edit_shop)
+        - if @shop.sales_channels
+          - @shop.sales_channels.each_slice(2) do |sck, scv|
+            .form-group
+              .row
+                .col-md-4= select_tag 'shop[sales_channels][]', options_for_select(SalesChannelOptions::OPTIONS.map {|o| [I18n.t(o, scope: 'edit_shop.sales_channel_options'), o]}, sck), :class => 'form-control'
+                .col-md-6= text_field_tag 'shop[sales_channels][]', scv, :class => 'form-control', :placeholder => I18n.t(:sales_channel, scope: :edit_shop), :required => true
+                .col-md-2
+                  %a{ :href => '#', :class => 'btn', :onclick => "#{gen_remove_sales_channel}" }
+                    %i.fa.fa-times-circle
+                    =I18n.t(:remove_sales_channel, scope: :edit_shop)
     .panel.panel-info
       .panel-heading.text-center
         %label= I18n.t(:statements, scope: :shop_application)
       .panel-body
-        %table.table.table-borderless
-          %tbody
-            %tr
-              .form-group
-                = f.check_box :statement0, { :disabled => true }
-                = I18n.t(:statement_0, scope: :shop_application)
-            %tr
-              .form-group
-                = f.check_box :statement1, { :disabled => true }
-                = I18n.t(:statement_1, scope: :shop_application)
-            %tr
-              .form-group
-                = f.check_box :statement2, { :disabled => true }
-                = I18n.t(:statement_2, scope: :shop_application)
+        .form-group
+          .row-fluid
+            = f.check_box :statement0, { :disabled => true }
+            = I18n.t(:statement_0, scope: :shop_application)
+        .form-group
+          .row-fluid
+            = f.check_box :statement1, { :disabled => true }
+            = I18n.t(:statement_1, scope: :shop_application)
+        .form-group
+          .row-fluid
+            = f.check_box :statement2, { :disabled => true }
+            = I18n.t(:statement_2, scope: :shop_application)
 
     .panel.panel-info
       .panel-heading.text-center
         %label{:class => current_user.shop.agb ? '' : 'required'}= I18n.t(:agb, scope: :edit_shop)
       .panel-body
         .form-group
-          - if current_user.shop && (not current_user.shop.agb)
-            = f.hidden_field :agb
-            = f.check_box :agb, { :required => true }, true
-            = I18n.t(:agb_statement, scope: :edit_shop).html_safe
-          - else
-            = f.check_box :agb, { :disabled => true }
-            = I18n.t(:agb_statement, scope: :edit_shop).html_safe
+          .row-fluid
+            - if current_user.shop && (not current_user.shop.agb)
+              = f.hidden_field :agb
+              = f.check_box :agb, { :required => true }, true
+              = I18n.t(:agb_statement, scope: :edit_shop).html_safe
+            - else
+              = f.check_box :agb, { :disabled => true }
+              = I18n.t(:agb_statement, scope: :edit_shop).html_safe
 
   = f.button I18n.t(:save, scope: :edit_shop), :id => 'edit_producer_submit_btn', :class => 'btn btn-primary',  name: :user_info_edit_part, value: :edit_producer
