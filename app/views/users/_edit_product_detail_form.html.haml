@@ -91,6 +91,7 @@
                 = fs.text_field :quantity, :class => 'form-control', :placeholder => @sku.limited ? '' : I18n.t(@sku.limited.to_s.to_sym, scope: 'edit_product_detail.limited'), :pattern => I18n.t(:positive_integer, scope: :validation), :required => true
                 .input-group-addon
                   = I18n.t(:piece, scope: :edit_product_detail)
+          %br
           .row
             .col-md-6
               %label.required= I18n.t(:price, scope: :edit_product_detail)
@@ -107,15 +108,16 @@
                 = fs.text_field :discount, :class => 'form-control', :pattern => I18n.t(:positive_integer_less_or_equal_than_100, scope: :validation), :required => true
                 .input-group-addon
                   = '%'
+          %br
           .row
             .col-md-6{ :title => I18n.t(:space_weight_info, scope: :edit_product_detail) }
               %i.fa.fa-info-circle{ :title => I18n.t(:space_weight_info, scope: :edit_product_detail) }
               %label.required= I18n.t(:space_weight, scope: :edit_product_detail)
             .col-md-6{ :title => I18n.t(:customizable_info, scope: :edit_product_detail) }
-              .col-md-6
+              .col-md-6.nopadding
                 %i.fa.fa-info-circle{ :title => I18n.t(:customizable_info, scope: :edit_product_detail) }
                 %label= I18n.t('edit_product_detail.customizable.info')
-              .col-md-6
+              .col-md-6.nopadding
                 %label= I18n.t('edit_product_detail.status.info')
           .row
             .col-md-6
@@ -144,14 +146,14 @@
                   .input-group-btn
                     = fs.select :unit, options_for_select(['kg'], @sku.unit), {}, { :class => 'form-control input-sm', :style => 'width:64px' }
             .col-md-6
-              .col-md-3
+              .col-md-6.nopadding
                 .form-group
                   .checkbox{:style => 'margin:0px'}
                     %label
                       = fs.hidden_field :customizable
                       = fs.check_box :customizable, { :class => 'i-check' }, true
                       = I18n.t(true, scope: 'edit_product_detail.customizable')
-              .col-md-3.col-md-offset-3
+              .col-md-6.nopadding
                 .form-group
                   .checkbox{:style => 'margin:0px'}
                     %label
