@@ -1,3 +1,7 @@
+.popover{
+    max-width:600px;
+}
+
 img[src=""] {
     display:none;
 }

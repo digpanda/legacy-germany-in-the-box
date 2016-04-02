@@ -76,7 +76,7 @@ product = Product.new(
 
 v1 = VariantOption.new(:name => 'Größe', :product => product, :name_locales => { :'zh-CN' => '尺寸'})
 v1_o1 = VariantOption.new(:parent => v1, :name => 'klein', :name_locales => { :'zh-CN' => '小号'})
-v1_o2 = VariantOption.new(:parent => v1, :name => 'mittlere', :name_locales => { :'zh-CN' => '中号'})
+v1_o2 = VariantOption.new(:parent => v1, :name => 'mittel', :name_locales => { :'zh-CN' => '中号'})
 v1_o3 = VariantOption.new(:parent => v1, :name => 'groß', :name_locales => { :'zh-CN' => '大号'})
 
 v2 = VariantOption.new(:name => 'Farbe', :product => product,  :name_locales => { :'zh-CN' => '颜色'})
@@ -160,7 +160,7 @@ product = Product.new(
 
 v1 = VariantOption.new(:name => 'Größe', :product => product, :name_locales => { :'zh-CN' => '尺寸' })
 v1_o1 = VariantOption.new(:parent => v1, :name => 'klein', :name_locales => { :'zh-CN' => '小号' })
-v1_o2 = VariantOption.new(:parent => v1, :name => 'mittlere', :name_locales => { :'zh-CN' => '中号' })
+v1_o2 = VariantOption.new(:parent => v1, :name => 'mittel', :name_locales => { :'zh-CN' => '中号' })
 v1_o3 = VariantOption.new(:parent => v1, :name => 'groß', :name_locales => { :'zh-CN' => '大号' })
 
 v2 = VariantOption.new(:name => 'Farbe', :product => product,  :name_locales => { :'zh-CN' => '颜色'})
