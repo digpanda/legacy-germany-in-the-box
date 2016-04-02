@@ -50,7 +50,7 @@ module ShopsHelper
                 #{gen_remove_sales_channel}
               })
             )
-          )
+          ).fadeIn()
         );
       }
 

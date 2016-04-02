@@ -56,43 +56,48 @@
       .panel-heading.text-center
         %label=I18n.t(:basic_info, scope: :edit_product)
       .panel-body
-        %table.table.table-borderless
-          %tbody
-            %tr.form-group
-              %td{width: '20%'}
-                %label.required= I18n.t(:name, scope: :edit_product)
-              %td= f.text_field :name, :class => 'form-control', :required => true, :maxLength => Rails.configuration.max_short_text_length
-            %tr.form-group
-              %td{width: '20%'}
-                %label.required= I18n.t(:brand, scope: :edit_product)
-              %td= f.text_field :brand, :class => 'form-control', :required => true, :maxLength => Rails.configuration.max_short_text_length
-            %tr.form-group
-              %td{width: '20%', :title => I18n.t(:desc_info, scope: :edit_product) }
-                %i.fa.fa-info-circle{ :title => I18n.t(:desc_info, scope: :edit_product) }
-                %label.required= I18n.t(:desc, scope: :edit_product)
-              %td= f.text_area :desc, :class => 'form-control', rows: 8, :required => true, :maxLength => Rails.configuration.max_medium_text_length
+        .form-group
+          .row
+            .col-md-3
+              %label.required= I18n.t(:name, scope: :edit_product)
+            .col-md-9
+              = f.text_field :name, :class => 'form-control', :required => true, :maxLength => Rails.configuration.max_short_text_length
+        .form-group
+          .row
+            .col-md-3
+              %label.required= I18n.t(:brand, scope: :edit_product)
+            .col-md-9
+              = f.text_field :brand, :class => 'form-control', :required => true, :maxLength => Rails.configuration.max_short_text_length
+        .form-group
+          .row
+            .col-md-3{:title => I18n.t(:desc_info, scope: :edit_product) }
+              %i.fa.fa-info-circle{ :title => I18n.t(:desc_info, scope: :edit_product) }
+              %label.required= I18n.t(:desc, scope: :edit_product)
+            .col-md-9
+              = f.text_area :desc, :class => 'form-control', rows: 8, :required => true, :maxLength => Rails.configuration.max_medium_text_length
     .panel.panel-info
       .panel-heading{ :title => I18n.t(:categories_info, scope: :edit_product) }
         .text-center
           %i.fa.fa-info-circle{ :title => I18n.t(:categories_info, scope: :edit_product) }
           %label.required= I18n.t(:categories, scope: :edit_product)
       .panel-body
-        %table.table.table-borderless
-          %tbody
-            %tr.form-group
-              %td= f.select :categories, grouped_options_for_select(get_grouped_categories_options, @product.categories.map { |c| c.id.to_s }), { :include_blank => I18n.t(:non_selected_text, scope: :multiselect) }, :name => 'product[categories][]', :class => 'form-control product-categories'
+        .form-group
+          .row-fluid
+            = f.select :categories, grouped_options_for_select(get_grouped_categories_options, @product.categories.map { |c| c.id.to_s }), { :include_blank => I18n.t(:non_selected_text, scope: :multiselect) }, :name => 'product[categories][]', :class => 'form-control product-categories'
     .panel.panel-info
       .panel-heading{:title => I18n.t(:keywords_info, scope: :edit_product, num: Rails.configuration.max_num_addresses)}
         .text-center
           %i.fa.fa-info-circle{ :title => I18n.t(:keywords_info, scope: :edit_product, num: Rails.configuration.max_num_addresses) }
           %label= I18n.t(:tags, scope: :edit_product)
       .panel-body
-        %table.table.table-borderless
-          %tbody
-            %tr.form-group
-              %td= text_field_tag "product[tags][]", @product.tags[0], :class => 'form-control', :placeholder => I18n.t(:tag1, scope: :edit_product), :maxLength => Rails.configuration.max_tiny_text_length
-              %td= text_field_tag "product[tags][]", @product.tags[1], :class => 'form-control', :placeholder => I18n.t(:tag2, scope: :edit_product), :maxLength => Rails.configuration.max_tiny_text_length
-              %td= text_field_tag "product[tags][]", @product.tags[2], :class => 'form-control', :placeholder => I18n.t(:tag3, scope: :edit_product), :maxLength => Rails.configuration.max_tiny_text_length
+        .form-group
+          .row
+            .col-md-4
+              = text_field_tag "product[tags][]", @product.tags[0], :class => 'form-control', :placeholder => I18n.t(:tag1, scope: :edit_product), :maxLength => Rails.configuration.max_tiny_text_length
+            .col-md-4
+              = text_field_tag "product[tags][]", @product.tags[1], :class => 'form-control', :placeholder => I18n.t(:tag2, scope: :edit_product), :maxLength => Rails.configuration.max_tiny_text_length
+            .col-md-4
+              = text_field_tag "product[tags][]", @product.tags[2], :class => 'form-control', :placeholder => I18n.t(:tag3, scope: :edit_product), :maxLength => Rails.configuration.max_tiny_text_length
     .panel.panel-info{ :id => "variants_panel_#{@product.id}"}
       .panel-heading{ :title => I18n.t(:variants_info, scope: :edit_product_detail) }
         %a{ :rel => 'popover', :title => image_tag('variant-example.png'), 'data-content' => I18n.t(:variants_info, scope: :edit_product_detail) }
@@ -103,23 +108,25 @@
             %i.fa.fa-plus-circle
             = I18n.t(:new_variant, scope: :edit_product_variant)
       .panel-body
-        = f.fields_for :options do |fo|
-          .col-md-4
-            .panel.panel-info
-              .panel-heading
-                .form-inline
-                  .form-group
-                    = fo.text_field :name, :value => fo.object.get_locale_name, :style => 'max-width:120px', :class => 'form-control input-sm', :required => true, :maxLength => Rails.configuration.max_tiny_text_length, :placeholder => I18n.t(:variant_name, scope: :edit_product_variant)
-                  .btn-group.pull-right
-                    = link_to '', remove_variant_product_path(@product.id, fo.object.id), method: :delete, data: { confirm: "#{I18n.t(:delete_option_message, scope: :edit_product_variant)}" }, :class => 'fa fa-times-circle btn', :title => I18n.t(:remove, scope: :edit_product_variant)
-                    = link_to '', '#', :onclick => "#{gen_add_option_to_existing_variant}", :index => fo.index, :class => 'fa fa-plus btn', :title => I18n.t(:new_option, scope: :edit_product_variant)
-              .panel-body
-                = fo.fields_for :suboptions do |fso|
-                  .form-inline
-                    .form-group
-                      = fso.text_field :name, :value => fso.object.get_locale_name, :style => 'max-width:120px', :class => 'form-control input-sm', :required => true, :maxLength => Rails.configuration.max_tiny_text_length, :placeholder => I18n.t(:option_name, scope: :edit_product_variant)
-                    .btn-group.pull-right
-                      = link_to '', remove_option_product_path(@product.id, fo.object.id, fso.object.id), method: :delete, data: { confirm: "#{I18n.t(:delete_option_message, scope: :edit_product_variant)}" }, :class => 'btn fa fa-times-circle', :title => I18n.t(:remove_option, scope: :edit_product_variant)
+        .form-group
+          .row
+            = f.fields_for :options do |fo|
+              .col-md-4
+                .panel.panel-info
+                  .panel-heading
+                    .form-inline
+                      .form-group
+                        = fo.text_field :name, :value => fo.object.get_locale_name, :style => 'max-width:120px', :class => 'form-control input-sm', :required => true, :maxLength => Rails.configuration.max_tiny_text_length, :placeholder => I18n.t(:variant_name, scope: :edit_product_variant)
+                      .btn-group.pull-right
+                        = link_to '', remove_variant_product_path(@product.id, fo.object.id), method: :delete, data: { confirm: "#{I18n.t(:delete_option_message, scope: :edit_product_variant)}" }, :class => 'fa fa-times-circle btn', :title => I18n.t(:remove, scope: :edit_product_variant)
+                        = link_to '', '#', :onclick => "#{gen_add_option_to_existing_variant}", :index => fo.index, :class => 'fa fa-plus btn', :title => I18n.t(:new_option, scope: :edit_product_variant)
+                  .panel-body
+                    = fo.fields_for :suboptions do |fso|
+                      .form-inline
+                        .form-group
+                          = fso.text_field :name, :value => fso.object.get_locale_name, :style => 'max-width:120px', :class => 'form-control input-sm', :required => true, :maxLength => Rails.configuration.max_tiny_text_length, :placeholder => I18n.t(:option_name, scope: :edit_product_variant)
+                        .btn-group.pull-right
+                          = link_to '', remove_option_product_path(@product.id, fo.object.id, fso.object.id), method: :delete, data: { confirm: "#{I18n.t(:delete_option_message, scope: :edit_product_variant)}" }, :class => 'btn fa fa-times-circle', :title => I18n.t(:remove_option, scope: :edit_product_variant)
       - if @product.persisted? && @product.has_option?
         .panel-footer.clearfix
           .pull-right

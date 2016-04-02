@@ -83,7 +83,7 @@ module ProductsHelper
           $('<div>').addClass('btn-group pull-right').append(
             $('<a>').addClass('fa fa-times-circle btn').attr('title', '#{I18n.t(:remove, scope: :edit_product_variant)}').click(#{gen_remove_option_panel})
           )
-        )
+        ).fadeIn()
       );
 
       return false;
@@ -106,7 +106,7 @@ module ProductsHelper
             $('<div>').addClass('btn-group pull-right').append(
               $('<a>').addClass('fa fa-times-circle btn').attr('title', '#{I18n.t(:remove, scope: :edit_product_variant)}').click(#{gen_remove_option_panel})
             )
-          )
+          ).fadeIn()
         );
 
         return false;
@@ -116,7 +116,7 @@ module ProductsHelper
 
   def gen_add_variant_panel
     %Q{
-      var body = $(this).closest('.panel').children('.panel-body')
+      var body = $(this).closest('.panel').children('.panel-body').children('.form-group').children('.row')
       var index = body.find('.panel').length
       if (index < #{Rails.configuration.max_num_variants}) {
         body.append(
@@ -146,7 +146,7 @@ module ProductsHelper
                 )
               )
             )
-          )
+          ).fadeIn()
         );
       }
 
