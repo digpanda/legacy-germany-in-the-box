@@ -77,6 +77,8 @@ GEM
     copy_carrierwave_file (1.1.0)
       carrierwave (~> 0.9)
     debug_inspector (0.0.2)
+    delocalize (1.0.0)
+      rails (>= 2)
     devise (3.5.3)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -299,6 +301,7 @@ DEPENDENCIES
   carrierwave-mongoid
   china_city
   copy_carrierwave_file
+  delocalize
   devise (= 3.5.3)
   diff-lcs (= 1.2.5)
   easy_captcha

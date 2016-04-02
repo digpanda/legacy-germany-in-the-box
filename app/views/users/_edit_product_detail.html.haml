@@ -45,7 +45,7 @@
         %tr
           %td= link_to image_tag(get_uploaded_thumbnail_url(s.img0), :style => 'max-width:48px;max-height:auto'), edit_user_path(current_user, :user_info_edit_part => :edit_product_detail_update, :product_id => @product.id, :sku_id => s.id)
           %td= select_tag :option_ids, grouped_options_for_select(get_grouped_variants_options(@product), s.option_ids ), :multiple => 'multiple', :class => 'sku-variants-options', :readonly=>true
-          %td= s.price.to_s + ' ' + s.currency
+          %td= number_with_precision(s.price ? s.price : 0, :precision => 2) + ' ' + s.currency
           %td= s.discount.to_s + '%' if s.discount != 0
           %td= s.quantity
           %td

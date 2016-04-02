@@ -42,7 +42,7 @@
               = f.label :min_total, I18n.t(:min_total, scope: :edit_shop), :class => 'required'
             .col-md-8
               .input-group
-                = f.text_field :min_total, :class => 'form-control', :required => true, :pattern => I18n.t(:positive_float, scope: :validation)
+                = f.text_field :min_total, value: number_with_precision(@shop.min_total ? @shop.min_total : 0, :precision => 2), :class => 'form-control', :required => true, :pattern => I18n.t(:positive_float, scope: :validation)
                 %span.input-group-addon
                   = @shop.currency
     .panel.panel-info

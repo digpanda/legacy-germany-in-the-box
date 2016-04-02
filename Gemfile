@@ -63,6 +63,8 @@ gem "jquery-fileupload-rails"
 
 gem 'copy_carrierwave_file'
 
+gem "delocalize"
+
 group :development, :test do
   gem 'factory_girl'
 end
