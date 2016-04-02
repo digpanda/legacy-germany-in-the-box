@@ -1,5 +1,9 @@
 .popover{
-    max-width:600px;
+    max-width:512px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1010;
 }
 
 img[src=""] {

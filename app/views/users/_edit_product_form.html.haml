@@ -95,8 +95,8 @@
               %td= text_field_tag "product[tags][]", @product.tags[2], :class => 'form-control', :placeholder => I18n.t(:tag3, scope: :edit_product), :maxLength => Rails.configuration.max_tiny_text_length
     .panel.panel-info{ :id => "variants_panel_#{@product.id}"}
       .panel-heading{ :title => I18n.t(:variants_info, scope: :edit_product_detail) }
-        %a{ :rel => 'popover', :title => image_tag('variant-example.png')}
-          %i.fa.fa-info-circle{ :title => I18n.t(:variants_info, scope: :edit_product_detail) }
+        %a{ :rel => 'popover', :title => image_tag('variant-example.png'), 'data-content' => I18n.t(:variants_info, scope: :edit_product_detail) }
+          %i.fa.fa-info-circle
           %label= I18n.t(:variants, scope: :edit_product_variant)
         .pull-right
           %a{:href => '#', :class=> 'btn btn-sm', :onclick => "#{gen_add_variant_panel}", :id => "a_add_variant_#{@product.id}"}
