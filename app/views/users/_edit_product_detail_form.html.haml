@@ -100,7 +100,7 @@
           .row
             .col-md-6
               .input-group.form-group
-                = fs.text_field :price, value: number_with_precision(@sku.price ? @sku.price : 0, :precision => 2), :class => 'form-control', :required => true, :pattern => I18n.t(:positive_float, scope: :validation)
+                = fs.text_field :price, value: number_with_precision(@sku.price, :precision => 2), :class => 'form-control', :required => true, :pattern => I18n.t(:positive_float, scope: :validation)
                 %span.input-group-addon
                   = @product.shop.currency
             .col-md-6
@@ -125,25 +125,25 @@
                 .col-md-4.nopadding
                   .form-group
                     .input-group.input-group-sm
-                      = fs.text_field :space_length, value: number_with_precision(@sku.space_length ? @sku.space_length : 0, :precision => 2), :class => 'form-control input-sm', :required => true, :pattern => I18n.t(:positive_float, scope: :validation)
+                      = fs.text_field :space_length, value: number_with_precision(@sku.space_length, :precision => 2), :class => 'form-control input-sm', :required => true, :pattern => I18n.t(:positive_float, scope: :validation)
                       .input-group-addon
                         = I18n.t('cm', scope: :edit_product_detail)
                 .col-md-4.nopadding
                   .form-group
                     .input-group.input-group-sm
-                      = fs.text_field :space_width, value: number_with_precision(@sku.space_width ? @sku.space_width : 0, :precision => 2), :class => 'form-control', :required => true, :pattern => I18n.t(:positive_float, scope: :validation)
+                      = fs.text_field :space_width, value: number_with_precision(@sku.space_width, :precision => 2), :class => 'form-control', :required => true, :pattern => I18n.t(:positive_float, scope: :validation)
                       .input-group-addon
                         = I18n.t('cm', scope: :edit_product_detail)
                 .col-md-4.nopadding
                   .form-group
                     .input-group.input-group-sm
-                      = fs.text_field :space_height, value: number_with_precision(@sku.space_height ? @sku.space_height : 0, :precision => 2), :class => 'form-control', :required => true, :pattern => I18n.t(:positive_float, scope: :validation)
+                      = fs.text_field :space_height, value: number_with_precision(@sku.space_height, :precision => 2), :class => 'form-control', :required => true, :pattern => I18n.t(:positive_float, scope: :validation)
                       .input-group-addon
                         = I18n.t('cm', scope: :edit_product_detail)
               .row-fluid
                 .form-group
                   .input-group.input-group-sm
-                    = fs.text_field :weight, value: number_with_precision(@sku.weight ? @sku.weight : 0, :precision => 2), :class => 'form-control', :required => true, :pattern => I18n.t(:positive_float, scope: :validation)
+                    = fs.text_field :weight, value: number_with_precision(@sku.weight, :precision => 2), :class => 'form-control', :required => true, :pattern => I18n.t(:positive_float, scope: :validation)
                     .input-group-btn
                       = fs.select :unit, options_for_select(['kg'], @sku.unit), {}, { :class => 'form-control input-sm', :style => 'width:64px' }
             .col-md-6

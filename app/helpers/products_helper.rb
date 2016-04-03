@@ -205,6 +205,7 @@ module ProductsHelper
       }
 
       if ( $('img.img-responsive[src=""]').length >= 4 ) {
+        alert();
         return false;
       }
 
