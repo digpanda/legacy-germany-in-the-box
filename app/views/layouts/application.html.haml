@@ -77,14 +77,14 @@
       .container
         %a.shared_header_logo{:href => "#{root_path}"}
           - for_device_type :desktop do
-            = image_tag  'icons/Logo_Rhein_Manufaktur_final_com_s.png', :style => 'width:92px;height:46px'
+            = image_tag  'icons/Logo_Rhein_Manufaktur_final_com_s.png', :style => 'width:120px;height:40px'
       %header.main
         .container
           .row
             .col-md-6
               #flexnav-menu-button.flexnav-menu-button
                 - for_device_type :tablet, :mobile do
-                  = image_tag  'icons/Logo_Rhein_Manufaktur_final_com_s.png', :style => 'width:92px;height:46px'
+                  = image_tag  'icons/Logo_Rhein_Manufaktur_final_com_s.png', :style => 'width:120px;height:40px'
               - if I18n.locale == :'zh-CN' or (current_user && current_user.role == :customer)
                 %ul#flexnav.nav.nav-pills.flexnav{'data-breakpoint' => '800'}
                   %li{:class => params[:top_menu_active_part] ? (params[:top_menu_active_part] == :home ? 'active' : '') : 'active'}
@@ -172,7 +172,7 @@
                       %i.fa.fa-language
                       = for_device_type :desktop do I18n.t(:language, scope: :top_menu) end
                       %span.caret
-                    %ul.dropdown-menu{:style => 'background-color:#333'}
+                    %ul.dropdown-menu
                       %li
                         = link_to I18n.t(:chinese, scope: :top_menu), set_session_locale_path(:'zh-CN')
                       %li
@@ -330,10 +330,11 @@
       .footer-top-area
         .container
           .row.row-wrap
-            .col-md-3
+            .col-md-2
               %a{:href => '#'}
-                = image_tag  'icons/Logo_Rhein_Manufaktur_final_com_s.png'
-              %h4{ :style => 'margin-top: 12px'}= I18n.t(:recent_news, scope: :footer)
+                = image_tag  'icons/Logo_Rhein_Manufaktur_final_com_g.png'
+            .col-md-4
+              %h4{ :style => 'margin-top: 12px; display:inline'}= I18n.t(:recent_news, scope: :footer)
               %ul.thumb-list
                 %li
                   .thumb-list-item-caption
@@ -342,30 +343,29 @@
                       %a{:href => '#'} Herzlichen Dank!
                     %p.thumb-list-item-desciption Wir bedanken uns herzlich bei <strong>IHK Bayern</strong> und <strong>Handwerkskammern Bayern</strong> für ihre gemeinsame Förderung und Bezuschussen! Sie helfen uns, unsere Mission zu erreichern, nämlich den deutschen Herstellern den direkten Vertriebsweg zu chinesischen Markt zu etablieren.
 
-            .col-md-2.col-md-offset-2
+            .col-md-2
               %h4= I18n.t(:rheinmanufaktur, scope: :footer)
-              %h5=link_to I18n.t(:sell_on_rm, scope: :footer), '#agb-dialog', :style => 'color: gray; text-decoration: underline', :class => 'popup-text', 'data-effect' => 'mfp-zoom-out'
+              %h5=link_to I18n.t(:sell_on_rm, scope: :footer), '#agb-dialog', :class => 'popup-text', 'data-effect' => 'mfp-zoom-out'
               -if user_signed_in? && current_user.role == :shopkeeper
-                %h5=link_to I18n.t(:charge, scope: :footer), '#agb-dialog', :style => 'color: gray; text-decoration: underline', :class => 'popup-text', 'data-effect' => 'mfp-zoom-out'
-                %h5=link_to I18n.t(:terms_conditions, scope: :footer), '#agb-dialog', :style => 'color: gray; text-decoration: underline', :class => 'popup-text', 'data-effect' => 'mfp-zoom-out'
-              %h5=link_to I18n.t(:privarcy_statement, scope: :footer), '#', :style => 'color: gray; text-decoration: underline'
+                %h5=link_to I18n.t(:charge, scope: :footer), '#agb-dialog', :class => 'popup-text', 'data-effect' => 'mfp-zoom-out'
+                %h5=link_to I18n.t(:terms_conditions, scope: :footer), '#agb-dialog', :class => 'popup-text', 'data-effect' => 'mfp-zoom-out'
+              %h5=link_to I18n.t(:privarcy_statement, scope: :footer), '#'
               -#%h5=link_to I18n.t(:guidelines, scope: :footer), '#', :style => 'color: gray; text-decoration: underline'
-              %h5=link_to I18n.t(:press_portal, scope: :footer), '#', :style => 'color: gray; text-decoration: underline'
+              %h5=link_to I18n.t(:press_portal, scope: :footer), '#'
               -#%h5=link_to I18n.t(:career, scope: :footer), '#', :style => 'color: gray; text-decoration: underline'
-              %h5=link_to I18n.t(:imprint, scope: :footer), '#', :style => 'color: gray; text-decoration: underline'
-
+              %h5=link_to I18n.t(:imprint, scope: :footer), '#'
             .col-md-2
               %h4= I18n.t(:selling, scope: :footer)
-              %h5=link_to I18n.t(:seller_portal, scope: :footer), '#login-dialog', :class => 'popup-text', 'data-effect' => 'mfp-zoom-out', :style => 'color: gray; text-decoration: underline'
-              %h5=link_to I18n.t(:seller_faq, scope: :footer), '#', :style => 'color: gray; text-decoration: underline'
-              %h5=link_to I18n.t(:selling_in_3_steps, scope: :footer), '#', :style => 'color: gray; text-decoration: underline'
-              %h5=link_to I18n.t(:fees_invoices, scope: :footer), '#', :style => 'color: gray; text-decoration: underline'
+              %h5=link_to I18n.t(:seller_portal, scope: :footer), '#login-dialog', :class => 'popup-text', 'data-effect' => 'mfp-zoom-out'
+              %h5=link_to I18n.t(:seller_faq, scope: :footer), '#'
+              %h5=link_to I18n.t(:selling_in_3_steps, scope: :footer), '#'
+              %h5=link_to I18n.t(:fees_invoices, scope: :footer), '#'
             - if I18n.locale == :'zh-CN' or (current_user && current_user.role == :customer)
               .col-md-2
                 %h4= I18n.t(:buying, scope: :footer)
-                %h5=link_to I18n.t(:buyer_faq, scope: :footer), '#', :style => 'color: gray; text-decoration: underline'
-                %h5=link_to I18n.t(:buyer_in_3_steps, scope: :footer), '#', :style => 'color: gray; text-decoration: underline'
-                %h5=link_to I18n.t(:vouchers, scope: :footer), '#', :style => 'color: gray; text-decoration: underline'
+                %h5=link_to I18n.t(:buyer_faq, scope: :footer), '#'
+                %h5=link_to I18n.t(:buyer_in_3_steps, scope: :footer), '#'
+                %h5=link_to I18n.t(:vouchers, scope: :footer), '#'
 
       .footer-copyright
         .container
