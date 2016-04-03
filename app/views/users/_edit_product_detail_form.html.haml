@@ -17,6 +17,22 @@
           }
         }
       });
+
+      $('#edit_product_detail_form_btn').click( function() {
+        v = $('select.sku-variants-options');
+
+        if ( v.val() == null ) {
+          v.next().addClass('invalidBorderClass');
+          return false;
+        }
+
+        if ( $('img.img-responsive').length >= 4) {
+          $('.fileUpload:first').addClass('invalidBorderClass');
+          return false;
+        }
+
+        return true;
+      });
   });
 
 = form_for @product, :html => {'data-toggle': 'validator', :id => 'product_detail_form'} do |f|
@@ -26,7 +42,7 @@
       .panel.panel-info
         .panel-heading.text-center{:colspan => 8, :title => I18n.t(:images_info, scope: :edit_product_detail)}
           %i.fa.fa-info-circle{ :title => I18n.t(:images_info, scope: :edit_product_detail) }
-          %label= I18n.t(:images, scope: :edit_product_detail)
+          %label.required= I18n.t(:images, scope: :edit_product_detail)
         .panel-body
           .row.text-center
             .col-md-3
@@ -175,5 +191,5 @@
               = fs.radio_button :time, 'automatic', :class => 'i-radio', :required => true
               = I18n.t(:renew_info, scope: :edit_product_detail)
 
-  = f.submit :class => 'btn btn-primary', :value => new ? I18n.t(:create_sku, scope: :edit_product_detail) : I18n.t(:update_sku, scope: :edit_product_detail), :part => :sku, :onclick => "#{gen_check_product_details}"
+  = f.submit :class => 'btn btn-primary', :value => new ? I18n.t(:create_sku, scope: :edit_product_detail) : I18n.t(:update_sku, scope: :edit_product_detail), :part => :sku, :id => 'edit_product_detail_form_btn'
   = link_to I18n.t(:cancel, scope: :edit_product_detail), :back, :class => 'btn btn-primary'
