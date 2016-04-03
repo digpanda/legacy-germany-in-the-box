@@ -141,10 +141,11 @@
                       .input-group-addon
                         = I18n.t('cm', scope: :edit_product_detail)
               .row-fluid
-                .input-group.input-group-sm
-                  = fs.text_field :weight, value: number_with_precision(@sku.weight ? @sku.weight : 0, :precision => 2), :class => 'form-control', :required => true, :pattern => I18n.t(:positive_float, scope: :validation)
-                  .input-group-btn
-                    = fs.select :unit, options_for_select(['kg'], @sku.unit), {}, { :class => 'form-control input-sm', :style => 'width:64px' }
+                .form-group
+                  .input-group.input-group-sm
+                    = fs.text_field :weight, value: number_with_precision(@sku.weight ? @sku.weight : 0, :precision => 2), :class => 'form-control', :required => true, :pattern => I18n.t(:positive_float, scope: :validation)
+                    .input-group-btn
+                      = fs.select :unit, options_for_select(['kg'], @sku.unit), {}, { :class => 'form-control input-sm', :style => 'width:64px' }
             .col-md-6
               .col-md-6.nopadding
                 .form-group
@@ -174,5 +175,5 @@
               = fs.radio_button :time, 'automatic', :class => 'i-radio', :required => true
               = I18n.t(:renew_info, scope: :edit_product_detail)
 
-  = f.submit :class => 'btn btn-primary', :value => new ? I18n.t(:create_sku, scope: :edit_product_detail) : I18n.t(:update_sku, scope: :edit_product_detail), :part => :sku, :onclick => "v = $('select.sku-variants-options'); if ( v.val() ) { return true; } else { v.next().addClass('invalidBorderClass'); return false; }"
+  = f.submit :class => 'btn btn-primary', :value => new ? I18n.t(:create_sku, scope: :edit_product_detail) : I18n.t(:update_sku, scope: :edit_product_detail), :part => :sku, :onclick => "#{gen_check_product_details}"
   = link_to I18n.t(:cancel, scope: :edit_product_detail), :back, :class => 'btn btn-primary'

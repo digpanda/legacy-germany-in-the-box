@@ -194,4 +194,21 @@ module ProductsHelper
   def get_grouped_variants_options(product)
     get_grouped_variants_options_from_cache(product)
   end
+
+  def gen_check_product_details
+    %Q{
+      v = $('select.sku-variants-options');
+
+      if ( v.val() == 0 ) {
+        v.next().addClass('invalidBorderClass');
+        return false;
+      }
+
+      if ( $('img.img-responsive[src=""]').length > 3 ) {
+        return false;
+      }
+
+      return true;
+    }
+  end
 end
