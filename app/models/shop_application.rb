@@ -34,7 +34,7 @@ class ShopApplication
   validates :name,          presence: true,   length: {maximum: (Rails.configuration.max_tiny_text_length * 1.25).round}
   validates :founding_year, presence: true,   length: {maximum: 4}
   validates :desc,          presence: true,   length: {maximum: (Rails.configuration.max_medium_text_length * 1.25).round}
-  validates :philosophy,    presence: true,   length: {maximum: (Rails.configuration.max_medium_text_length * 1.25).round}
+  validates :philosophy,    presence: true,   length: {maximum: (Rails.configuration.max_long_text_length * 1.25).round}
   validates :statement0,    presence: true
   validates :statement1,    presence: true
   validates :statement2,    presence: true

@@ -55,11 +55,11 @@
               %div.help-block.with-errors
         .form-group
           .row
-            .col-md-4{ :title => I18n.t(:philosophy_info, scope: :edit_shop, num: Rails.configuration.max_medium_text_length) }
-              %i.fa.fa-info-circle{ :title => I18n.t(:philosophy_info, scope: :edit_shop, num: Rails.configuration.max_medium_text_length) }
+            .col-md-4{ :title => I18n.t(:philosophy_info, scope: :edit_shop, num: Rails.configuration.max_long_text_length) }
+              %i.fa.fa-info-circle{ :title => I18n.t(:philosophy_info, scope: :edit_shop, num: Rails.configuration.max_long_text_length) }
               %label.required= I18n.t(:philosophy, scope: :edit_shop)
             .col-md-8
-              = f.text_area :philosophy, :class => 'form-control', rows: 4, :required => true, :maxLength => Rails.configuration.max_medium_text_length
+              = f.text_area :philosophy, :class => 'form-control', rows: 4, :required => true, :maxLength => Rails.configuration.max_long_text_length
               %div.help-block.with-errors
         .form-group
           .row

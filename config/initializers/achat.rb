@@ -20,8 +20,8 @@ Rails.configuration.default_customer_locale = 'zh-CN'
 Rails.configuration.default_shopkeeper_locale = 'de'
 Rails.configuration.max_tiny_text_length = 64
 Rails.configuration.max_short_text_length = 256
-Rails.configuration.max_medium_text_length = 1024
-Rails.configuration.max_long_text_length = 1024*2
+Rails.configuration.max_medium_text_length = 1000
+Rails.configuration.max_long_text_length = 1000*2
 Rails.configuration.min_password_length = 8
 
 Rails.cache.clear
