@@ -204,7 +204,7 @@ module ProductsHelper
         return false;
       }
 
-      if ( $('img.img-responsive[src=""]').length > 3 ) {
+      if ( $('img.img-responsive[src=""]').length >= 4 ) {
         return false;
       }
 

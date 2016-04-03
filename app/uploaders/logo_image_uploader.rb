@@ -4,7 +4,9 @@ class LogoImageUploader < CarrierWave::Uploader::Base
 
   include CarrierWave::MiniMagick
 
-  storage :file
+  storage :qiniu
+
+  self.qiniu_can_overwrite = true
 
   # Where should files be stored?
   def store_dir
