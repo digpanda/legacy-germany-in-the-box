@@ -5,7 +5,13 @@ class ShopsController <  ApplicationController
   load_and_authorize_resource
 
   def show
-    @categories_and_children, @categories_and_counters = get_category_values_for_left_menu(Shop.find(params[:id]).products)
+    @shop = Shop.find(params[:id])
+    @categories_and_children, @categories_and_counters = get_category_values_for_left_menu(@shop.products)
+
+    respond_to do |format|
+      format.html { render :show }
+      format.json { render :show }
+    end
   end
 
   def update
