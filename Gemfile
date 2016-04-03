@@ -65,6 +65,8 @@ gem 'copy_carrierwave_file'
 
 gem "delocalize"
 
+#gem 'carrierwave-qiniu'
+
 group :development, :test do
   gem 'factory_girl'
 end
