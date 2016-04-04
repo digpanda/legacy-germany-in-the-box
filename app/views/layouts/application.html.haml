@@ -331,15 +331,16 @@
   .footer-top-area
     .container
       .row.row-wrap
-        .col-md-2
+        .col-xs-6.col-sm-2.col-md-2
           - if I18n.locale == :'zh-CN' or (current_user && current_user.role == :customer)
             %a{:href => '#'}
               = image_tag  'icons/Logo_laiyinn_g.png'
-          -if user_signed_in? && current_user.role == :shopkeeper
+          - elsif user_signed_in? && current_user.role == :shopkeeper
             %a{:href => '#'}
               = image_tag  'icons/Logo_RM_g.png'
-        .col-md-4
-          %h4{ :style => 'margin-top: 12px'}= I18n.t(:recent_news, scope: :footer)
+
+        .col-xs-6.col-sm-4.col-md-4
+          %h4= I18n.t(:recent_news, scope: :footer)
           %ul.thumb-list
             %li
               .thumb-list-item-caption
@@ -348,7 +349,7 @@
                   %a{:href => '#'} Herzlichen Dank!
                 %p.thumb-list-item-desciption Wir bedanken uns herzlich bei <strong>IHK Bayern</strong> und <strong>Handwerkskammern Bayern</strong> für ihre gemeinsame Förderung und Bezuschussen! Sie helfen uns, unsere Mission zu erreichern, nämlich den deutschen Herstellern den direkten Vertriebsweg zu chinesischen Markt zu etablieren.
 
-        .col-md-2
+        .col-xs-6.col-sm-4.col-md-2.col-md-offset-1
           %h4= I18n.t(:rheinmanufaktur, scope: :footer)
           %h5=link_to I18n.t(:privarcy_statement, scope: :footer), '#'
           -#%h5=link_to I18n.t(:guidelines, scope: :footer), '#', :style => 'color: gray; text-decoration: underline'
@@ -358,15 +359,15 @@
           -if user_signed_in? && current_user.role == :shopkeeper
             %h5=link_to I18n.t(:terms_conditions, scope: :footer), '#'
 
-        .col-md-2
-          %h4= I18n.t(:selling, scope: :footer)
-          %h5=link_to I18n.t(:seller_portal, scope: :footer), '#login-dialog', :class => 'popup-text', 'data-effect' => 'mfp-zoom-out'
-          %h5=link_to I18n.t(:sell_on_rm, scope: :footer), '#'
-          -if user_signed_in? && current_user.role == :shopkeeper
+        - if user_signed_in? && current_user.role == :shopkeeper
+          .col-xs-6.col-sm-4.col-md-2.col-md-offset-1
+            %h4= I18n.t(:selling, scope: :footer)
+            %h5=link_to I18n.t(:seller_portal, scope: :footer), '#login-dialog', :class => 'popup-text', 'data-effect' => 'mfp-zoom-out'
+            %h5=link_to I18n.t(:sell_on_rm, scope: :footer), '#'
             %h5=link_to I18n.t(:fees_invoices, scope: :footer), '#'
           -#%h5=link_to I18n.t(:seller_faq, scope: :footer), '#'
-        - if I18n.locale == :'zh-CN' or (current_user && current_user.role == :customer)
-          .col-md-2
+        - elsif I18n.locale == :'zh-CN' or (current_user && current_user.role == :customer)
+          .col-xs-6.col-sm-4.col-md-2
             %h4= I18n.t(:buying, scope: :footer)
             %h5=link_to I18n.t(:buyer_faq, scope: :footer), '#'
             %h5=link_to I18n.t(:buyer_in_3_steps, scope: :footer), '#'
