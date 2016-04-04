@@ -43,7 +43,7 @@
             .col-md-4
               %label= I18n.t(:register, scope: :edit_shop)
             .col-md-8
-              = f.text_field :register, :class => 'form-control', :maxLength => Rails.configuration.max_tiny_text_length, :placeholder => 'HRB 999999'
+              = f.text_field :register, :class => 'form-control', :maxLength => Rails.configuration.max_tiny_text_length, :placeholder => 'HRB 123456'
               %div.help-block.with-errors
         .form-group
           .row
@@ -97,7 +97,7 @@
               %i.fa.fa-info-circle{ :title => I18n.t(:ust_id_info, scope: :edit_shop) }
               %label.required= I18n.t(:ustid, scope: :edit_shop)
             .col-md-8
-              = f.text_field :ustid, :class => 'form-control', :placeholder => 'z.B. DE999999999', :required => true, :maxLength => Rails.configuration.max_tiny_text_length, :pattern => '^DE[0-9]{9,9}$'
+              = f.text_field :ustid, :class => 'form-control', :placeholder => 'z.B. DE123456789', :required => true, :maxLength => Rails.configuration.max_tiny_text_length, :pattern => '^DE[0-9]{9,9}$'
               %div.help-block.with-errors
         .form-group
           .row
@@ -105,7 +105,7 @@
               %i.fa.fa-info-circle{ :title => I18n.t(:eroi_number_info, scope: :edit_shop) }
               %label= I18n.t(:eroi, scope: :edit_shop)
             .col-md-8
-              = f.text_field :eroi, :class => 'form-control', :placeholder => 'z.B. DE999999999', :maxLength => Rails.configuration.max_tiny_text_length, :pattern => '^DE[0-9]{9,9}$'
+              = f.text_field :eroi, :class => 'form-control', :placeholder => 'z.B. DE123456789', :maxLength => Rails.configuration.max_tiny_text_length, :pattern => '^DE[0-9]{9,9}$'
               %div.help-block.with-errors
     .panel.panel-info
       .panel-heading{ :title => I18n.t(:sales_channels_info, scope: :edit_shop, num: Rails.configuration.max_num_sales_channels) }
