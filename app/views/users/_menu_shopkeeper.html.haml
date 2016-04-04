@@ -2,7 +2,7 @@
   %a{ 'data-toggle' => 'dropdown', :href => "#{ edit_user_path current_user }", :title => "#{I18n.t(:user_profile, scope: :top_menu)}"}
     = image_tag ( current_user.shop && get_uploaded_thumbnail_url(current_user.shop.logo) ? get_uploaded_thumbnail_url(current_user.shop.logo) : 'icons/default_user_pic.png'), :style => 'width:24px;height:24px'
     %span.caret
-  %ul.dropdown-menu{:style => 'background-color:#333'}
+  %ul.dropdown-menu
     - if current_user.shop && current_user.shop.agb
       %li
         %a{ :href => "#{ edit_user_path(current_user, :user_info_edit_part => :edit_account) }" }
