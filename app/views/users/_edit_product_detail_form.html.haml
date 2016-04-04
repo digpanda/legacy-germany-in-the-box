@@ -26,12 +26,18 @@
           return false;
         }
 
-        if ( $('img.img-responsive').length >= 4) {
+        if ( $('img.img-responsive[src=""]').length >= 4) {
           $('.fileUpload:first').addClass('invalidBorderClass');
           return false;
         }
 
         return true;
+      });
+
+      $('input.img-file-upload').click( function() {
+        if ( $('img.img-responsive[src=""]').length > 0) {
+          $('.fileUpload').removeClass('invalidBorderClass');
+        }
       });
   });
 

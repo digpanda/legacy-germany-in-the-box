@@ -173,6 +173,8 @@ class ProductsController < ApplicationController
       @product.categories = params.require(:product)[:categories].map { |cid| Category.find(cid) if not cid.blank? }.compact
 
       if @product.save
+        Rails.cache.clear
+
         format.html {
           flash[:success] = I18n.t(:create_ok, scope: :edit_product_new)
           redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_product)
@@ -222,6 +224,8 @@ class ProductsController < ApplicationController
   def destroy
     respond_to do |format|
       if @product.destroy
+        Rails.cache.clear
+
         format.html {
           flash[:success] = I18n.t(:delete_ok, scope: :edit_product)
           redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_product)

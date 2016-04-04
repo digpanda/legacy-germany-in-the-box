@@ -46,7 +46,7 @@
     border-bottom: none;
 }
 #left_menu > ul > li.active > a {
-    background: #40D3BE;
+    background: #49D2BE;
     color: #fff;
     text-shadow: 0 1px 1px #000;
     border: 1px solid;
@@ -55,7 +55,7 @@
     border: none;
 }
 #left_menu > ul > li > a > span {
-    background: #40D3BE;
+    background: #49D2BE;
     padding: 1px 2px;
     border-radius: 3px;
 }
@@ -76,10 +76,10 @@
     color: #000;
 }
 #left_menu ul ul a:hover {
-    color: #40D3BE;
+    color: #49D2BE;
 }
 #left_menu ul ul a span {
-    background: #40D3BE;
+    background: #49D2BE;
     padding: 1px 2px;
     border-radius: 3px;
 }

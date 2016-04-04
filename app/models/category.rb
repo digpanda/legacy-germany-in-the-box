@@ -25,4 +25,12 @@ class Category
 
   scope :roots,           ->  { where(:parent => nil) }
   scope :is_active,       ->  { where( :status => true ) }
+
+  def total_products
+    if children.count > 0
+      children.is_active.inject(0) { |sum, c| sum += c.total_products }
+    else
+      products.count
+    end
+  end
 end

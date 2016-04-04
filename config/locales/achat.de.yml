@@ -7,12 +7,13 @@ de:
     positive_integer: '^[1-9][0-9]*$'
     positive_integer_less_or_equal_than_100: '^[1-9][0-9]?$|^100$|^0$'
     positive_float: '^([0-9]*[1-9][0-9]*(,[0-9]{1,2})?|[0]+,[0-9]*[1-9][0-9]*)$'
+    positive_float_equal_or_greater_than_0: '^(0(,[0]{1,2})?|[0-9]*[1-9][0-9]*(,[0-9]{1,2})?|[0]+,[0-9]*[1-9][0-9]*)$'
   multiselect:
     non_selected_text: Nicht ausgewählt
     n_selected_text: ausgewählt
   image_upload:
     max_exceeded_message: Das Bild ist größer als 1 MB. Bitte laden Sie ein anderes Bild hoch.
-    ext_error_message: Nur die Formaten .jpg, .jpeg, or .png sind akzeptierbar.
+    ext_error_message: Akzeptierbare Formate sind JPG, JPEG und PNG.
     upload: Hochladen
   top_menu:
     top_menu: Menü
@@ -46,7 +47,7 @@ de:
     email_confirmation_msg: Sie erhalten von uns eine E-Mail für die Registrierung. Bitte bestätigen Sie durch den gegebenen Link in der Mail, bevor Sie fortfahren.
   footer:
     copyright: © DigPanda GmbH 2015-2016
-    rheinmanufaktur: RheinManufaktur
+    rheinmanufaktur: Rhein-Manufaktur
     imprint: Impressum
     terms_conditions: AGB
     privarcy_statement: Datenschutzerklärung
@@ -104,9 +105,9 @@ de:
     password_info:  Es umfasst mindestens 8 Zeichen.
     password_match_error: Das Passwort muss gleich sein.
   edit_following:
-    follow_ok: Die Beobachtung für den Nutzer erfolgreich aktiviert!
+    follow_ok: Die Beobachtung für den Nutzer wurde erfolgreich aktiviert.
     follow_ko: Ein Fehler ist bei der Aktivierung der Beobachtung aufgetreten.
-    unfollow_ok: Die Beobachtung für den Nutzer erfolgreich deaktiviert
+    unfollow_ok: Die Beobachtung für den Nutzer wurde erfolgreich deaktiviert.
     unfoolow_ko: Ein Fehler ist bei der Deaktivierung der Beobachtung aufgetreten.
   edit_followers:
   edit_personal:
@@ -144,11 +145,11 @@ de:
     save_address: Speichern
     show_address_title: Adresse
     delete_address_message: Möchten Sie die Adresse löschen??
-    delete_ok: Die Adresse erfolgreich gelöscht!
+    delete_ok: Die Adresse wurde erfolgreich gelöscht.
     delete_ko: Ein Fehler ist bei der Löschung der Adresse aufgetreten.
-    create_ok: Die Adresse erfolgreich angelegt!
+    create_ok: Die Adresse wurde erfolgreich angelegt.
     create_ko: Ein Fehler ist beim Anlegen der Adresse aufgetreten.
-    update_ok: Die Adresse erfolgreich aktualisiert!
+    update_ok: Die Adresse wurde erfolgreich aktualisiert.
     update_ko: Ein Fehler ist bei der Änderung der Adresse aufgetreten.
     addresses: Adressen
     billing: Rechnung
@@ -171,15 +172,15 @@ de:
     checked_out: Bezahlt
     continue_message: einen anderen Auftrag gewählt
     delete_order_message: Den Auftrag löschen?
-    delete_ok: Der Auftrag erfolgreich gelöscht.
+    delete_ok: Der Auftrag wurde erfolgreich gelöscht.
     delete_ko: Ein Fehler ist beim Löschen des Auftrags aufgetreten.
-    create_ok: Der Auftrag erfolgreich angelegt.
+    create_ok: Der Auftrag wurde erfolgreich angelegt.
     create_ko: Ein Fehler ist beim Anlegen des Auftrags aufgetreten.
-    update_ok: Der Auftrag erfolgreich aktualisiert.
+    update_ok: Der Auftrag wurde erfolgreich aktualisiert.
     update_ko: Ein Fehler ist bei der Änderung des Auftrags aufgetreten.
-    add_product_ok: Der Produkt erfolgreich hinzugefügt.
+    add_product_ok: Der Produkt wurde erfolgreich hinzugefügt.
     add_product_ko: Der Vorrat reicht momentan leider nicht.
-    adjust_product_ok: Die Anzahl der Produkte erfolgreich geändert!
+    adjust_product_ok: Die Anzahl der Produkte wurde erfolgreich geändert.
     adjust_product_ko: Der Vorrat reicht momentan leider nicht.
   edit_collection:
     new: Favorit erstellen
@@ -189,7 +190,7 @@ de:
     no_products: Kein Produkt vorhanden
     delete_collection_message: Löschen Sie den gewählten Favorit?
     dislike: Entfernen
-    update_ok: Der Favorit erfolgreich aktualisiert!
+    update_ok: Der Favorit wurde erfolgreich aktualisiert.
     update_ko: Ein Fehler ist bei der Änderung des Favorits aufgetreten.
     update_with_existing_name: Ein gleichnämiger Favorit ist bereits vorhanden.
   edit_collection_new:
@@ -200,7 +201,7 @@ de:
     collection_type: Typ des Favorits
     icon: Icon
     save: Speichern
-    create_ok: Der Favorit erfolgreich erstellt!
+    create_ok: Der Favorit wurde erfolgreich erstellt.
     create_ko: Ein Fehler ist bei der Erstellung des Favorits aufgetreten.
     create_with_existing_name: Ein gleichnämiger Favorit ist bereits vorhanden.
   shop_application:
@@ -209,7 +210,7 @@ de:
     shopkeeper_info: Herstellerdetails
     title: Antragsformular
     email: Benutzerkonto
-    email_info: Bitte geben Sie Ihre E-Mail ein. Es wird Ihr Benutzerkonto in Rhein-Manufaktur.eu sein.
+    email_info: Geben Sie bitte Ihre E-Mail-Adresse an, die in der Zukunft als Benutzerkonto dient.
     contact_person_info: Ansprechpartner
     contact_fname: Vorname
     contact_lname: Nachname
@@ -244,8 +245,8 @@ de:
     currency: Währung
     status: Status
     save: Speichern
-    update_ok: Der Shop erfolgreich aktualisiert!
-    update_producer_ok: Herstellerdetails erfolgreich aktualisiert!
+    update_ok: Der Shop wurde erfolgreich aktualisiert.
+    update_producer_ok: Herstellerdetails wurde erfolgreich aktualisiert.
     update_agb_ok: Vielen Dank für das Einverständnis unserer allgeimeinen Geschäftsbedingungen!
     desc_info: Wer sind Sie? Was bieten Sie an?  (max. %{num} Buchstaben)
     philosophy_info: Welche Grundidee und Grundüberzeugung unterliegen Ihren Produkten? (max. %{num} Buchstaben)
@@ -253,7 +254,7 @@ de:
     ust_id_info: Als Exportierender Hersteller führen Sie keine Ust-Vorsteuer ab. Falls Sie eine Ust-ID besitzen, benötigen wir sie für Ausfuhrbescheinigungen.
     eroi_number_info: Die EORI-Nummer ersetzt die deutsche Zollnummer und dient der Regiestrierung und Identifikation von Wirschaftsbeteiligten bei der Zollabwicklung in EU. Ab einen Tagesexportwert von 1.000 EUR muss der Hersteller EORI-Nummer angeben. Wenn Sie erwarten, dass Sie diesen Tagegrenzwert überschreiten werden, emfehlen wir diese nummer im Vorfeld zu beantragen. Die EORI-Nummer können Sie jeder Zeit nachtragen. (max. 25 Buchstaben)
     min_total_info: Sie können einen Mindestbestellwert für jede Bestellung im Ihren Shop festlegen. Geben Sie 0 an, falls Sie keinen Mindestwert wünschen.
-    sms_info: Möchten Sie über einen Verkauf von RheinManufaktur benachrichtigt werden? Wenn ja, dann geben Sie uns Ihre Mobilephone Nummber. Selbstverständlich ist das ein kostenloser Service. Bitte achten Sie darauf, dass die nummer keinen Trennstrich "-" enthält.
+    sms_info: Möchten Sie über einen Verkauf von Rhein-Manufaktur benachrichtigt werden? Wenn ja, dann geben Sie uns Ihre Mobilephone Nummber. Selbstverständlich ist das ein kostenloser Service. Bitte achten Sie darauf, dass die nummer keinen Trennstrich "-" enthält.
     founding_year: Gründungsjahr
     founding_year_info: Wann wurde Ihre Marke gegründet? (Jahr)
     german_essence: German-Design
@@ -264,7 +265,7 @@ de:
     target_groups_info: Wer gehört zur Zielgruppe für Ihre Produkte in Deutschland? Sie können bis zu %{num} Zielgruppen eintragen.
     target_group: Zielgruppe
     sales_channels: Vertriebswege
-    sales_channels_info: Über welche Vertriebswege verfügen Sie? (Bespielsweise eigener Online-Shop, dritte Online-Plattform, Präsenzshop, Einzelhandel, Direct Selling...) Sie können max. %{num} Vertriebswege eintragen.
+    sales_channels_info: Über welche Vertriebswege verfügen Sie? (Bespielsweise eigener Online-Shop, dritte Online-Plattform, Präsenzshop, Einzelhandel, Direktvertrieb...) Sie können max. %{num} Vertriebswege eintragen.
     register: Handelsregister
     add_target_group: Hinzufügen
     remove_target_group: Entfernen
@@ -305,9 +306,9 @@ de:
     delete: Entfernen
     no_product: Momentan ist kein Produkt vorhanden.
     delete_product_message: Das Produkt entfernen?
-    delete_ok: Das Produkt erfolgreich entfernt!
+    delete_ok: Das Produkt wurde erfolgreich entfernt.
     delete_ko: Ein Fehler ist bei der Lösung des Produkts aufgetreten.
-    update_ok: Das Produkt erfolgreich aktualisiert!
+    update_ok: Das Produkt wurde erfolgreich aktualisiert.
     update_ko: Ein Fehler ist bei der Änderung des Produkts aufgetreten.
     categories: Kategorie
     skus: Aritkelpositionen
@@ -323,7 +324,7 @@ de:
     quantity_info: '%{num1} Stk. von %{num2} Varianten'
     quantity: Verfügbarkeit
   edit_product_new:
-    create_ok: Das Produkt erfolgreich erstellt!
+    create_ok: Das Produkt wurde erfolgreich erstellt.
     create_ko: Ein Fehler ist beim
     create_with_existing_name: Ein gleichnämiges Produkt ist bereits vorhanden.
   edit_product_detail:
@@ -357,7 +358,7 @@ de:
     renew_info: Die Einstellung verlängert sich automatisch um weitere 120 Tage wenn diese Zeit abläuft.
     timed_info: Das Produkt wird für nur 120 Tage auf RM eingestellt.
     discount: Rabatt
-    create_ok: Die Artikelposition erfolgreich erstellt!
+    create_ok: Die Artikelposition wurde erfolgreich erstellt.
     create_ko: Ein Fehler ist beim Anlegen der Artikelpositionen aufgetreten.
     sku_variants_options: Varianten
     images: Produktbilder
@@ -366,7 +367,7 @@ de:
     update_sku: Aktualisieren
     new_sku: Neue Artikelposition
     create_sku: Erstellen
-    update_ok: Die Artikelposition erfolgreich aktualisiert!
+    update_ok: Die Artikelposition wurde erfolgreich aktualisiert.
     images_info: Laden Sie bitte min. ein Produktbild in PNG, JPG oder JPEG Format für das Produkt hoch. (max. 1 MB pro Bild)
     variants_info: Variante beschreibt als Gegenstände ähnlicher Form und/oder Funktion mit einem in der Regel hohen Anteil identischer Gruppen oder Teile. Zu min. einer Variantenoption muss eine Artikelposition zugeordnet werden.
     customizable_info: Dieses Produkt kann nach Kundenwunsch individuell angefertig werden.
@@ -392,12 +393,12 @@ de:
     update_variant: Aktualisieren
     create_option: Erstellen
     update_option: Akutalisieren
-    update_ok: Die Variantenausprägung erfolgreich aktualisiert!
-    variant_name: Variantentyp
-    option_name: Variantenausprägung
-    new_option: Neuee Variantenausprägung
-    delete_variant_ok: Die Variante erfolgreich gelöscht!
-    delete_option_ok: Die Variantenausprägung erfolgreich gelöscht!
+    update_ok: Die Variantenausprägung wurde erfolgreich aktualisiert.
+    variant_name: Variante
+    option_name: V-Ausprägung
+    new_option: Neue Variantenausprägung
+    delete_variant_ok: Die Variante wurde erfolgreich gelöscht.
+    delete_option_ok: Die Variantenausprägung wurde erfolgreich gelöscht.
     return: Zurück zur Produktliste
     cancel: Abbrechen
     variants: Varianten
@@ -442,7 +443,7 @@ de:
     my_destination: Anlieferungsanschrift
     setup_delivery_destination: Bitte Anschrift auswählen
     checkout: Bestätigen
-    checkout_ok: Der Auftrag erfolgreich durchgeführt.
+    checkout_ok: Der Auftrag wurde erfolgreich durchgeführt.
     checkout_ko: Ein Fehler ist bei der Durchführung des Auftrags aufgetreten.
     not_all_available: Der Vorrat des Products %{product_name} reicht momentan nicht. Bitte versuchen Sie später order reduzieren die Stückanzahl.
     not_all_min_total_reached: Ihr Einkauf bei %{shop_name} beträgt insgesamt %{total_price} und es ist weniger als das Mindestbestellwert %{min_total} des Online-Shops. Bitte erhöhen Sie die Einkaufsumme bei dem Shop.
