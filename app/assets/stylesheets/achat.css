@@ -72,14 +72,14 @@ textarea {
 
 .i-check.disabled.checked,
 .i-radio.disabled.checked {
-    background: #40D3BE;
+    background: #49D2BE;
 }
 
 .numberCircle {
     border-radius: 3px;
     behavior: url(PIE.htc);
     padding: 1px 2px;
-    background: #40D3BE;
+    background: #49D2BE;
     border: 1px;
     color: white;
     text-align: center;

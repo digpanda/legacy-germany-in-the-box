@@ -46,7 +46,7 @@ img {
 }
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Roboto', arial, helvetica, sans-serif;
-  margin-top: 0;
+  margin-top: 0;D2
   font-weight: 300;
   color: #4d4d4d;
 }
@@ -224,7 +224,7 @@ blockquote p {
 .btn-primary {
   background: #49D2BE;
   color: #fff;
-  border-color: #31B3A0;
+  border-color: #49D2BE;
 }
 .btn-primary:hover {
   background: #31B3A0;
@@ -677,7 +677,7 @@ label {
   height: 50px;
   line-height: 50px;
   display: block;
-  background: #31B3A0;
+  background: #40D2BE;
   text-align: center;
 }
 @media (max-width: 992px) {
@@ -2277,11 +2277,11 @@ ul.pagination li a:hover {
 }
 ul.pagination li.active a {
   background: #49D2BE;
-  border-color: #31B3A0;
+  border-color: #49D2BE;
   color: #fff;
 }
 ul.pagination li.active a:hover {
-  background: #49D2BE;
+  background: #31B3A0;
   border-color: #31B3A0;
 }
 ul.pagination li.prev a:before,
@@ -2356,7 +2356,7 @@ ul.dropdown-menu {
 .nav-pills.nav-stacked.nav-arrow > li.active a {
   color: #fff;
   background: #49D2BE;
-  border-color: #31B3A0;
+  border-color: #49D2BE;
 }
 .nav-pills.nav-stacked.nav-arrow > li.active a:hover {
   color: #fff;
