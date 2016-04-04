@@ -1,21 +1,33 @@
+#Product.all.delete;
+#Category.all.delete;
+
 #
 # root category - level 0
 #
+category_cosmetics_care = Category.create!(
+    :name => 'Cosmetics & Care',
+    :name_locales => { :'zh-CN' => '美妆', :de => 'Kosmetik & Pflege'}
+)
+
+category_medicine_care = Category.create!(
+    :name => 'Medicine & Care',
+    :name_locales => { :'zh-CN' => '药品保健', :de => 'Gesundheit & Medizin'}
+)
+
+category_food = Category.create!(
+    :name => 'Food & Drink',
+    :name_locales => { :'zh-CN' => '食品饮料', :de => 'Lebensmittel & Getränke'}
+)
+
 category_fashion = Category.create!(
     :name => 'Fashion',
     :name_locales => { :'zh-CN' => '时尚', :de => 'Mode'}
 )
 
-category_food = Category.create!(
-    :name => 'Food',
-    :name_locales => { :'zh-CN' => '食品和饮料', :de => 'Lebensmittel'}
-)
-
 category_toys_home = Category.create!(
     :name => 'Toys & Home',
-    :name_locales => { :'zh-CN' => '玩具和家居', :de => 'Spielzeuge & Heim'}
+    :name_locales => { :'zh-CN' => '玩具家居', :de => 'Spielzeuge & Heim'}
 )
-
 
 #
 # bags & accessories category - level 1

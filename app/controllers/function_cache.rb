@@ -3,7 +3,7 @@ module FunctionCache
   def get_root_level_categories_from_cache
     Rails.cache.fetch("all_root_level_categories_cache_#{I18n.locale}", :expires_in => Rails.configuration.products_search_cache_expire_limit ) {
       root_level_categories = Category.roots.is_active.to_a.sort { |a,b| a.get_locale_name <=> b.get_locale_name }
-      root_level_categories.collect { |c| c.children.count > 1 ? c : c.children.first }
+      root_level_categories.select { |c| c.children.count > 1 ? c : c.children.first }
     }
   end
 
@@ -104,11 +104,11 @@ module FunctionCache
     Rails.cache.fetch("get_grouped_categories_options_from_cache_#{I18n.locale}", :expires_in => Rails.configuration.popular_products_cache_expire_limit ) {
       categories = []
 
-      Category.roots.is_active.sort { |a,b| a.get_locale_name <=> b.get_locale_name }.each do |rc|
+      Category.roots.is_active.each do |rc|
         categories += rc.children.is_active
       end
 
-      categories.map {|rc| [rc.get_locale_name, rc.children.is_active.sort { |a,b| a.get_locale_name <=> b.get_locale_name }.map {|cc| [cc.get_locale_name, cc.id.to_s]} ] }.to_a
+      categories.sort {|a,b| b.total_products <=> a.total_products } .map {|rc| [rc.get_locale_name, rc.children.is_active.sort { |a,b| b.total_products <=> a.total_products }.map {|cc| [cc.get_locale_name, cc.id.to_s]} ] }.to_a
     }
   end
 

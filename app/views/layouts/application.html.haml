@@ -345,10 +345,9 @@
 
         .col-md-2
           %h4= I18n.t(:rheinmanufaktur, scope: :footer)
-          %h5=link_to I18n.t(:sell_on_rm, scope: :footer), '#agb-dialog', :class => 'popup-text', 'data-effect' => 'mfp-zoom-out'
           -if user_signed_in? && current_user.role == :shopkeeper
-            %h5=link_to I18n.t(:charge_and_billing, scope: :footer), '#agb-dialog', :class => 'popup-text', 'data-effect' => 'mfp-zoom-out'
-            %h5=link_to I18n.t(:terms_conditions, scope: :footer), '#agb-dialog', :class => 'popup-text', 'data-effect' => 'mfp-zoom-out'
+            %h5=link_to I18n.t(:fees_invoices, scope: :footer), '#'
+            %h5=link_to I18n.t(:terms_conditions, scope: :footer), '#'
           %h5=link_to I18n.t(:privarcy_statement, scope: :footer), '#'
           -#%h5=link_to I18n.t(:guidelines, scope: :footer), '#', :style => 'color: gray; text-decoration: underline'
           %h5=link_to I18n.t(:press_portal, scope: :footer), '#'
@@ -357,10 +356,9 @@
 
         .col-md-2
           %h4= I18n.t(:selling, scope: :footer)
+          %h5=link_to I18n.t(:sell_on_rm, scope: :footer), '#'
           %h5=link_to I18n.t(:seller_portal, scope: :footer), '#login-dialog', :class => 'popup-text', 'data-effect' => 'mfp-zoom-out'
           %h5=link_to I18n.t(:seller_faq, scope: :footer), '#'
-          %h5=link_to I18n.t(:selling_in_3_steps, scope: :footer), '#'
-          %h5=link_to I18n.t(:fees_invoices, scope: :footer), '#'
         - if I18n.locale == :'zh-CN' or (current_user && current_user.role == :customer)
           .col-md-2
             %h4= I18n.t(:buying, scope: :footer)
