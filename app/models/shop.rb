@@ -28,9 +28,6 @@ class Shop
   field :sales_channels,  type: Array,      default: []
   field :register,        type: String
   field :website,         type: String
-  field :statement0,      type: Boolean
-  field :statement1,      type: Boolean
-  field :statement2,      type: Boolean
   field :agb,             type: Boolean
   field :seal0,           type: String
   field :seal1,           type: String
@@ -67,9 +64,6 @@ class Shop
   validates :tax_number,    presence: true,   length: {maximum: Rails.configuration.max_tiny_text_length },   :if => lambda { self.agb }
   validates :ustid,         presence: true,   length: {maximum: Rails.configuration.max_tiny_text_length },   :if => lambda { self.agb }
 
-  validates :statement0,    inclusion: {in: [true]},    :if => lambda { self.statement0.present? }
-  validates :statement1,    inclusion: {in: [true]},    :if => lambda { self.statement1.present? }
-  validates :statement2,    inclusion: {in: [true]},    :if => lambda { self.statement2.present? }
   validates :agb,           inclusion: {in: [true]},    :if => lambda { self.agb.present? }
 
   validates :register,        length: {maximum: Rails.configuration.max_tiny_text_length}

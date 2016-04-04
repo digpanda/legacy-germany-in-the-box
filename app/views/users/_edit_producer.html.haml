@@ -97,7 +97,7 @@
               %i.fa.fa-info-circle{ :title => I18n.t(:ust_id_info, scope: :edit_shop) }
               %label.required= I18n.t(:ustid, scope: :edit_shop)
             .col-md-8
-              = f.text_field :ustid, :class => 'form-control', :placeholder => 'z.B. DE999999999', :required => true, :maxLength => Rails.configuration.max_tiny_text_length
+              = f.text_field :ustid, :class => 'form-control', :placeholder => 'z.B. DE999999999', :required => true, :maxLength => Rails.configuration.max_tiny_text_length, :pattern => '^DE[0-9]{9,9}$'
               %div.help-block.with-errors
         .form-group
           .row
@@ -105,7 +105,7 @@
               %i.fa.fa-info-circle{ :title => I18n.t(:eroi_number_info, scope: :edit_shop) }
               %label= I18n.t(:eroi, scope: :edit_shop)
             .col-md-8
-              = f.text_field :eroi, :class => 'form-control', :maxLength => Rails.configuration.max_tiny_text_length
+              = f.text_field :eroi, :class => 'form-control', :placeholder => 'z.B. DE999999999', :maxLength => Rails.configuration.max_tiny_text_length, :pattern => '^DE[0-9]{9,9}$'
               %div.help-block.with-errors
     .panel.panel-info
       .panel-heading{ :title => I18n.t(:sales_channels_info, scope: :edit_shop, num: Rails.configuration.max_num_sales_channels) }
@@ -127,22 +127,6 @@
                   %a{ :href => '#', :class => 'btn', :onclick => "#{gen_remove_sales_channel}" }
                     %i.fa.fa-times-circle
                     =I18n.t(:remove_sales_channel, scope: :edit_shop)
-    .panel.panel-info
-      .panel-heading.text-center
-        %label= I18n.t(:statements, scope: :shop_application)
-      .panel-body
-        .form-group
-          .row-fluid
-            = f.check_box :statement0, { :disabled => true }
-            = I18n.t(:statement_0, scope: :shop_application)
-        .form-group
-          .row-fluid
-            = f.check_box :statement1, { :disabled => true }
-            = I18n.t(:statement_1, scope: :shop_application)
-        .form-group
-          .row-fluid
-            = f.check_box :statement2, { :disabled => true }
-            = I18n.t(:statement_2, scope: :shop_application)
 
     .panel.panel-info
       .panel-heading.text-center
