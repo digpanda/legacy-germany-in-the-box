@@ -75,16 +75,17 @@
   %body
     %nav{:class => "#{for_device_type :desktop do 'navbar-fixed-top' end}" }
       .container
-        %a.shared_header_logo{:href => "#{root_path}"}
-          - for_device_type :desktop do
-            = image_tag  'icons/Logo_Rhein_Manufaktur_final_com_s.png', :style => 'width:120px;height:40px'
+        - for_device_type :desktop do
+          %a.shared_header_logo{:href => "#{root_path}"}
+            = image_tag  'icons/Logo_gate_L.png', :style => 'width:46px;height:46px'
       %header.main
         .container
           .row
             .col-md-6
               #flexnav-menu-button.flexnav-menu-button
                 - for_device_type :tablet, :mobile do
-                  = image_tag  'icons/Logo_Rhein_Manufaktur_final_com_s.png', :style => 'width:120px;height:40px'
+                  %a.shared_header_logo_mobile{:href => "#{root_path}"}
+                    = image_tag  'icons/Logo_Gate_M.png', :style => 'width:20px;height:20px'
               - if I18n.locale == :'zh-CN' or (current_user && current_user.role == :customer)
                 %ul#flexnav.nav.nav-pills.flexnav{'data-breakpoint' => '800'}
                   %li{:class => params[:top_menu_active_part] ? (params[:top_menu_active_part] == :home ? 'active' : '') : 'active'}
@@ -331,8 +332,12 @@
     .container
       .row.row-wrap
         .col-md-2
-          %a{:href => '#'}
-            = image_tag  'icons/Logo_Rhein_Manufaktur_final_com_g.png'
+          - if I18n.locale == :'zh-CN' or (current_user && current_user.role == :customer)
+            %a{:href => '#'}
+              = image_tag  'icons/Logo_laiyinn_g.png'
+          -if user_signed_in? && current_user.role == :shopkeeper
+            %a{:href => '#'}
+              = image_tag  'icons/Logo_RM_g.png'
         .col-md-4
           %h4{ :style => 'margin-top: 12px'}= I18n.t(:recent_news, scope: :footer)
           %ul.thumb-list
