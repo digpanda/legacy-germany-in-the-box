@@ -30,6 +30,140 @@ category_toys_home = Category.create!(
 )
 
 #
+# Cosmetics & Care - level 1
+#
+Category.create!(
+    :name => 'Bath & Shower',
+    :code => 'L2-278',
+    :parent => category_cosmetics_care,
+    :name_locales => { :'zh-CN' => '沐浴', :de => 'Bad & Dusche'}
+)
+
+Category.create!(
+    :name => 'Hair Care',
+    :code => 'L2-92',
+    :parent => category_cosmetics_care,
+    :name_locales => { :'zh-CN' => '护发', :de => 'Haarpflege'}
+)
+
+Category.create!(
+    :name => 'Skin Care, Cosmetics & Tanning',
+    :code => 'L2-94',
+    :parent => category_cosmetics_care,
+    :name_locales => { :'zh-CN' => '护肤 & 化妆品', :de => 'Hautpflege '}
+)
+
+Category.create!(
+    :name => 'Skin Care, Cosmetics & Tanning',
+    :code => 'L2-94',
+    :parent => category_cosmetics_care,
+    :name_locales => { :'zh-CN' => '儿童护理清洁', :de => 'Kinderpflege'}
+)
+
+Category.create!(
+    :name => 'Skin Care, Cosmetics & Tanning',
+    :code => 'L2-94',
+    :parent => category_cosmetics_care,
+    :name_locales => { :'zh-CN' => '身体护理', :de => 'Körperpflege'}
+)
+
+Category.create!(
+    :name => 'Skin Care, Cosmetics & Tanning',
+    :code => 'L2-94',
+    :parent => category_cosmetics_care,
+    :name_locales => { :'zh-CN' => '化妆品', :de => 'Kosmetik'}
+)
+
+Category.create!(
+    :name => 'Skin Care, Cosmetics & Tanning',
+    :code => 'L2-94',
+    :parent => category_cosmetics_care,
+    :name_locales => { :'zh-CN' => '天然化妆品', :de => 'Naturkosmetik'}
+)
+
+Category.create!(
+    :name => 'Skin Care, Cosmetics & Tanning',
+    :code => 'L2-94',
+    :parent => category_cosmetics_care,
+    :name_locales => { :'zh-CN' => '孕妇身体护理', :de => 'Schwangerpflege'}
+)
+
+Category.create!(
+    :name => 'Massage & Orthopaedic',
+    :code => 'L2-662',
+    :parent => category_cosmetics_care,
+    :name_locales => { :'zh-CN' => '按摩用品', :de => 'Massage & Orthopädie'}
+)
+
+#
+# Medicine & Care - level 1
+#
+
+Category.create!(
+    :name => 'Health Care',
+    :code => 'L2-93',
+    :parent => category_medicine_care,
+    :name_locales => { :'zh-CN' => '女性护理用品', :de => 'Hygiene & Sanitäre Produkte'}
+)
+
+Category.create!(
+    :name => 'Health Care',
+    :code => 'L2-93',
+    :parent => category_medicine_care,
+    :name_locales => { :'zh-CN' => '儿童保健', :de => 'Kinder'}
+)
+
+Category.create!(
+    :name => 'Health Care',
+    :code => 'L2-93',
+    :parent => category_medicine_care,
+    :name_locales => { :'zh-CN' => '医疗器材', :de => 'Medizinische Geräte'}
+)
+
+Category.create!(
+    :name => 'Health Care',
+    :code => 'L2-93',
+    :parent => category_medicine_care,
+    :name_locales => { :'zh-CN' => '天然保健品', :de => 'Naturheilmittel'}
+)
+
+Category.create!(
+    :name => 'Health Care',
+    :code => 'L2-93',
+    :parent => category_medicine_care,
+    :name_locales => { :'zh-CN' => '母婴保健', :de => 'Schwangerschaft & Baby'}
+)
+
+Category.create!(
+    :name => 'Health Care',
+    :code => 'L2-93',
+    :parent => category_medicine_care,
+    :name_locales => { :'zh-CN' => '伤口护理', :de => 'Wundversorgung'}
+)
+
+Category.create!(
+    :name => 'Medicine & Vitamins',
+    :code => 'L2-276',
+    :parent => category_medicine_care,
+    :name_locales => { :'zh-CN' => '心血管血压', :de => 'Kinder'}
+)
+
+
+Category.create!(
+    :name => 'Medicine & Vitamins',
+    :code => 'L2-276',
+    :parent => category_medicine_care,
+    :name_locales => { :'zh-CN' => '非处方药', :de => 'Rezeptfreies Medikament'}
+)
+
+Category.create!(
+    :name => 'Medicine & Vitamins',
+    :code => 'L2-276',
+    :parent => category_medicine_care,
+    :name_locales => { :'zh-CN' => '保健品', :de => 'Vitamine & Nahrungsergänzung'}
+)
+
+#
 # bags & accessories category - level 1
 #
 category_bags_accessories = Category.create!(
@@ -418,31 +552,10 @@ category_health_beauty = Category.create!(
 )
 
 Category.create!(
-    :name => 'Bath & Shower',
-    :code => 'L2-278',
-    :parent => category_health_beauty,
-    :name_locales => { :'zh-CN' => '沐浴', :de => 'Bad & Dusche'}
-)
-
-Category.create!(
     :name => 'Fragrances',
     :code => 'L2-91',
     :parent => category_health_beauty,
     :status => false
-)
-
-Category.create!(
-    :name => 'Hair Care',
-    :code => 'L2-92',
-    :parent => category_health_beauty,
-    :name_locales => { :'zh-CN' => '护发', :de => 'Haarpflege'}
-)
-
-Category.create!(
-    :name => 'Skin Care, Cosmetics & Tanning',
-    :code => 'L2-94',
-    :parent => category_health_beauty,
-    :name_locales => { :'zh-CN' => '护肤 & 化妆品', :de => 'Hautpflege & Kosmetik'}
 )
 
 Category.create!(
@@ -451,14 +564,6 @@ Category.create!(
     :parent => category_health_beauty,
     :name_locales => { :'zh-CN' => '增补品', :de => 'Ergänzungen'}
 )
-
-Category.create!(
-    :name => 'Massage & Orthopaedic',
-    :code => 'L2-662',
-    :parent => category_health_beauty,
-    :name_locales => { :'zh-CN' => '按摩用品', :de => 'Massage & Orthopädie'}
-)
-
 
 #
 # home & garden category - level 1
@@ -604,12 +709,34 @@ Category.create!(
 #
 # food & drink category - level 1
 #
+
 category_food_drinks = Category.create!(
     :name => 'Food & Drinks',
     :code => 'L1-578',
     :cssc => 'fa-cutlery',
     :parent => category_food,
     :name_locales => { :'zh-CN' => '食品和饮料', :de => 'Lebensmittel  & Getränke'}
+)
+
+Category.create!(
+    :name => 'wine < 15%vol: red - produced in E.U.',
+    :code => 'L2-581',
+    :parent => category_food_drinks,
+    :name_locales => { :'zh-CN' => '红葡萄酒', :de => 'Rotwein'}
+)
+
+Category.create!(
+    :name => 'champagne & other sparkling wines',
+    :code => 'L2-579',
+    :parent => category_food_drinks,
+    :name_locales => { :'zh-CN' => '气泡酒', :de => 'Sekt'}
+)
+
+Category.create!(
+    :name => 'champagne & other sparkling wines',
+    :code => 'L2-580',
+    :parent => category_food_drinks,
+    :name_locales => { :'zh-CN' => '白葡萄酒', :de => 'Weißwein'}
 )
 
 Category.create!(
