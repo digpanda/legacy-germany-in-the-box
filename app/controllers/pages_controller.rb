@@ -20,5 +20,10 @@ class PagesController < ApplicationController
   def imprint
   	render :layout => false
   end
+
+  def shopguide
+  	render :layout => false
+  end
+
 end
 
