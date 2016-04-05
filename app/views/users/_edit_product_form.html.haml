@@ -3,27 +3,27 @@
 
 :javascript
   $(function() {
-    $('select.product-categories').multiselect({
-      enableCaseInsensitiveFiltering: true,
-      maxHeight: 400,
-      onChange: function(option, checked) {
-        v = $('.product-categories')
-
-        if ( v.val() ) {
-          v.next().removeClass('invalidBorderClass')
-        } else {
-          v.next().addClass('invalidBorderClass')
-        }
-      }
-    });
+    //$('select.product-categories').multiselect({
+    //  enableCaseInsensitiveFiltering: true,
+    //  maxHeight: 400,
+    //  onChange: function(option, checked) {
+    //    v = $('.product-categories')
+    //
+    //    if ( v.val() ) {
+    //      v.next().removeClass('invalidBorderClass')
+    //    } else {
+    //      v.next().addClass('invalidBorderClass')
+    //    }
+    //  }
+    //});
 
     $('#edit_product_submit_btn').click( function() {
-      v = $('select.product-categories');
-
-      if ( v.val().length == 0 ) {
-        v.next().addClass('invalidBorderClass');
-        return false;
-      }
+      //v = $('select.product-categories');
+      //
+      //if ( v.val().length == 0 ) {
+      //  v.next().addClass('invalidBorderClass');
+      //  return false;
+      //}
 
       $('input.dynamical-required').each(
         function () {
@@ -75,15 +75,15 @@
               %label.required= I18n.t(:desc, scope: :edit_product)
             .col-md-9
               = f.text_area :desc, :class => 'form-control', rows: 8, :required => true, :maxLength => Rails.configuration.max_medium_text_length
-    .panel.panel-info
-      .panel-heading{ :title => I18n.t(:categories_info, scope: :edit_product) }
-        .text-center
-          %i.fa.fa-info-circle{ :title => I18n.t(:categories_info, scope: :edit_product) }
-          %label.required= I18n.t(:categories, scope: :edit_product)
-      .panel-body
-        .form-group
-          .row-fluid
-            = f.select :categories, grouped_options_for_select(get_grouped_categories_options, @product.categories.map { |c| c.id.to_s }), { :include_blank => I18n.t(:non_selected_text, scope: :multiselect) }, :name => 'product[categories][]', :class => 'form-control product-categories'
+    -#.panel.panel-info
+    -#  .panel-heading{ :title => I18n.t(:categories_info, scope: :edit_product) }
+    -#    .text-center
+    -#      %i.fa.fa-info-circle{ :title => I18n.t(:categories_info, scope: :edit_product) }
+    -#      %label.required= I18n.t(:categories, scope: :edit_product)
+    -#  .panel-body
+    -#    .form-group
+    -#      .row-fluid
+    -#        = f.select :categories, grouped_options_for_select(get_grouped_categories_options, @product.categories.map { |c| c.id.to_s }), { :include_blank => I18n.t(:non_selected_text, scope: :multiselect) }, :name => 'product[categories][]', :class => 'form-control product-categories'
     .panel.panel-info
       .panel-heading{:title => I18n.t(:keywords_info, scope: :edit_product, num: Rails.configuration.max_num_addresses)}
         .text-center

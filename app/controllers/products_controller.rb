@@ -170,7 +170,7 @@ class ProductsController < ApplicationController
     @product.shop = current_user.shop
 
     respond_to do |format|
-      @product.categories = params.require(:product)[:categories].map { |cid| Category.find(cid) if not cid.blank? }.compact
+      @product.categories = params.require(:product)[:categories].map { |cid| Category.find(cid) if not cid.blank? }.compact if params.require(:product)[:categories]
 
       if @product.save
         Rails.cache.clear
