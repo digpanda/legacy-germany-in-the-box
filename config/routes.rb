@@ -13,6 +13,11 @@ Rails.application.routes.draw do
   mount ChinaCity::Engine => '/china_city'
 
   root to: 'pages#home'
+  
+  get '/pages/agb', to: 'pages#agb'
+  get '/pages/privacy', to: 'pages#privacy'
+  get '/pages/imprint', to: 'pages#imprint'
+
 
   get '/set_session_locale/:locale', to: 'application#set_session_locale', as: 'set_session_locale'
 
@@ -79,9 +84,8 @@ Rails.application.routes.draw do
     match :show_products,   via: [:get],    to: :show_products,               as: :show_products_in,  :on => :member
   end
 
-
-  #brands
-  get '/getversion' => 'brands#getversion'
+  #resources :docs, only: :show do
+ #   get "/docs/:doc" => "docs#show"
 
 end
 

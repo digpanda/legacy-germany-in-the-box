@@ -9,5 +9,16 @@ class PagesController < ApplicationController
   def home
   end
 
+  def agb
+  	render :layout => false
+  end
+
+  def privacy
+  	render :layout => false
+  end
+
+  def imprint
+  	render :layout => false
+  end
 end
 
