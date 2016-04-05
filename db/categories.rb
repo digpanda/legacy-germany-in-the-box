@@ -6,17 +6,20 @@
 #
 category_cosmetics_care = Category.create!(
     :name => 'Cosmetics & Care',
+    :cssc => 'fa-female',
     :name_locales => { :'zh-CN' => '美妆', :de => 'Kosmetik & Pflege'}
 )
 
 category_medicine_care = Category.create!(
     :name => 'Medicine & Care',
+    :cssc => 'fa-heartbeat',
     :name_locales => { :'zh-CN' => '药品保健', :de => 'Gesundheit & Medizin'}
 )
 
-category_food = Category.create!(
-    :name => 'Food & Drink',
-    :name_locales => { :'zh-CN' => '食品饮料', :de => 'Lebensmittel & Getränke'}
+category_food_drinks = Category.create!(
+    :name => 'Food & Drinks',
+    :cssc => 'fa-cutlery',
+    :name_locales => { :'zh-CN' => '食品和饮料', :de => 'Lebensmittel  & Getränke'}
 )
 
 category_fashion = Category.create!(
@@ -709,15 +712,6 @@ Category.create!(
 #
 # food & drink category - level 1
 #
-
-category_food_drinks = Category.create!(
-    :name => 'Food & Drinks',
-    :code => 'L1-578',
-    :cssc => 'fa-cutlery',
-    :parent => category_food,
-    :name_locales => { :'zh-CN' => '食品和饮料', :de => 'Lebensmittel  & Getränke'}
-)
-
 Category.create!(
     :name => 'wine < 15%vol: red - produced in E.U.',
     :code => 'L2-581',
