@@ -105,7 +105,11 @@ module FunctionCache
       categories = []
 
       Category.roots.is_active.each do |rc|
-        categories += rc.children.is_active
+        if not rc.next_2_last_branche?
+          categories += rc.children.is_active
+        else
+          categories << rc
+        end
       end
 
       categories.sort {|a,b| b.total_products <=> a.total_products } .map {|rc| [rc.get_locale_name, rc.children.is_active.sort { |a,b| b.total_products <=> a.total_products }.map {|cc| [cc.get_locale_name, cc.id.to_s]} ] }.to_a

@@ -33,4 +33,12 @@ class Category
       products.count
     end
   end
+
+  def next_2_last_branche?
+    if children.count > 0
+      return nil == children.detect { |c| c.children.count > 0 }
+    end
+
+    return false
+  end
 end

@@ -148,7 +148,7 @@ Category.create!(
     :name => 'Medicine & Vitamins',
     :code => 'L2-276',
     :parent => category_medicine_care,
-    :name_locales => { :'zh-CN' => '心血管血压', :de => 'Kinder'}
+    :name_locales => { :'zh-CN' => '心血管血压', :de => 'Kreislauf & Herz'}
 )
 
 
