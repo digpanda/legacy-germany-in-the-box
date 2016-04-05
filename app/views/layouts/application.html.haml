@@ -365,8 +365,8 @@
           - if user_signed_in? && current_user.role == :shopkeeper
             %h4= I18n.t(:selling, scope: :footer)
             %h5=link_to I18n.t(:seller_portal, scope: :footer), '#login-dialog', :class => 'popup-text', 'data-effect' => 'mfp-zoom-out'
-            %h5=link_to I18n.t(:sell_on_rm, scope: :footer), '/pages/agb', :target => 'blank'
-            %h5=link_to I18n.t(:fees_invoices, scope: :footer), '/pages/agb', :target => 'blank'
+            %h5=link_to I18n.t(:sell_on_rm, scope: :footer), '/pages/saleguide', :target => 'blank'
+            %h5=link_to I18n.t(:fees_invoices, scope: :footer), '/pages/fees', :target => 'blank'
             -#%h5=link_to I18n.t(:seller_faq, scope: :footer), '#'
           - elsif I18n.locale == :'zh-CN' or (current_user && current_user.role == :customer)
             %h4= I18n.t(:buying, scope: :footer)

@@ -21,9 +21,12 @@ class PagesController < ApplicationController
   	render :layout => false
   end
 
-  def shopguide
+  def saleguide
   	render :layout => false
   end
-
+  
+  def fees
+  	render :layout => false
+  end
 end
 

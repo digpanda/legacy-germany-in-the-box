@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   get '/pages/agb', to: 'pages#agb'
   get '/pages/privacy', to: 'pages#privacy'
   get '/pages/imprint', to: 'pages#imprint'
+  get '/pages/saleguide', to: 'pages#saleguide'
+  get '/pages/fees', to: 'pages#fees'
 
 
   get '/set_session_locale/:locale', to: 'application#set_session_locale', as: 'set_session_locale'
