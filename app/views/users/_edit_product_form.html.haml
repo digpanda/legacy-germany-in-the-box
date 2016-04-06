@@ -105,12 +105,15 @@
       .panel-heading{ :title => I18n.t(:variants_info, scope: :edit_product_detail) }
         %a{ :rel => 'popover', :title => image_tag('variant-example.png'), 'data-content' => I18n.t(:variants_info, scope: :edit_product_detail) }
           %i.fa.fa-info-circle
-          %label= I18n.t(:variants, scope: :edit_product_variant)
+          %label.required= I18n.t(:variants, scope: :edit_product_variant)
         .pull-right
           %a{:href => '#', :class=> 'btn btn-sm', :onclick => "#{gen_add_variant_panel}", :id => "a_add_variant_#{@product.id}"}
             %i.fa.fa-plus-circle
             = I18n.t(:new_variant, scope: :edit_product_variant)
       .panel-body
+        %h5
+          %strong=  'Zu min. einer Variantenoption muss eine Artikelposition zugeordnet werden.'
+        %br
         .form-group
           .row
             = f.fields_for :options do |fo|

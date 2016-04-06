@@ -62,7 +62,9 @@ module ProductsHelper
   def gen_remove_option_panel
     %Q{
       function() {
-        $(this).closest('.form-inline').remove();
+        if ( $(this).closest('.form-inline').siblings().length > 0 ) {
+         $(this).closest('.form-inline').remove();
+        }
         return false;
       }
     }

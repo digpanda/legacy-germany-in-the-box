@@ -372,7 +372,7 @@ de:
     create_sku: Erstellen
     update_ok: Die Artikelposition wurde erfolgreich aktualisiert.
     images_info: Laden Sie bitte min. ein Produktbild in PNG, JPG oder JPEG Format für das Produkt hoch. (max. 1 MB pro Bild)
-    variants_info: Variante beschreibt als Gegenstände ähnlicher Form und/oder Funktion mit einem in der Regel hohen Anteil identischer Gruppen oder Teile. Zu min. einer Variantenoption muss eine Artikelposition zugeordnet werden.
+    variants_info: Variante beschreibt als Gegenstände ähnlicher Form und/oder Funktion mit einem in der Regel hohen Anteil identischer Gruppen oder Teile.
     customizable_info: Dieses Produkt kann nach Kundenwunsch individuell angefertig werden.
     return: Zurück zur Produktliste
     cancel: Abbrechen
