@@ -87,7 +87,7 @@
                   %a.shared_header_logo_mobile{:href => "#{root_path}"}
                     = image_tag  'icons/Logo_Gate_M.png', :style => 'width:20px;height:20px'
               - if I18n.locale == :'zh-CN' or (current_user && current_user.role == :customer)
-                %ul#flexnav.nav.nav-pills.flexnav{'data-breakpoint' => '800'}
+                %ul#flexnav.hidden-xs.nav.nav-pills.flexnav{'data-breakpoint' => '800'}
                   %li{:class => params[:top_menu_active_part] ? (params[:top_menu_active_part] == :home ? 'active' : '') : 'active'}
                     %a{:href => "#{root_path}"}= I18n.t(:start, scope: :top_menu)
                   - get_root_level_categories_from_cache().each do |rc|
@@ -139,16 +139,10 @@
                               = I18n.t(:empty_cart, scope: :top_menu)
 
                 - unless current_user
-                  - if I18n.locale == :'zh-CN'
-                    %li
-                      %a.popup-text{ :id => 'sign_in_link', 'data-effect' => 'mfp-zoom-out', :href => '#login-dialog', :title => "#{I18n.t(:sign_in, scope: :top_menu)}"}
-                        %i.fa.fa-sign-in
-                        = for_device_type :desktop do I18n.t(:sign_in, scope: :top_menu) end
-                  - if I18n.locale == :de
-                    %li
-                      %a{:href => "#{shop_application_index_path}"}
-                        %i.fa.fa-thumbs-up
-                        = for_device_type :desktop do I18n.t(:shop_application, scope: :shop_application) end
+                  %li
+                    %a.popup-text{ :id => 'sign_in_link', 'data-effect' => 'mfp-zoom-out', :href => '#login-dialog', :title => "#{I18n.t(:sign_in, scope: :top_menu)}"}
+                      %i.fa.fa-sign-in
+                      = for_device_type :desktop do I18n.t(:sign_in, scope: :top_menu) end
                   - if I18n.locale == :'zh-CN' or (current_user && current_user.role == :customer)
                     %li
                       %a.popup-text{:id => 'sign_up_link', 'data-effect' => 'mfp-zoom-out', :href => '#register-dialog', :title => "#{I18n.t(:sign_up, scope: :top_menu)}"}
@@ -335,9 +329,21 @@
           - if I18n.locale == :'zh-CN' or (current_user && current_user.role == :customer)
             %a{:href => '#'}
               = image_tag  'icons/Logo_laiyinn_g.png'
+            %h5{ :style => 'padding-top:25px; color:#565a5c' }=I18n.t(:contact_us, scope: :footer)
+            %h5=link_to 'customer@laiyinn.com', 'mailto:customer@laiyinn.com', :style => 'color:#49d2be'            
+
           - elsif user_signed_in? && current_user.role == :shopkeeper
             %a{:href => '#'}
               = image_tag  'icons/Logo_RM_g.png'
+            %h5{ :style => 'padding-top:25px; color:#565a5c' }=I18n.t(:contact_us, scope: :footer)
+            %h5=link_to 'shop@rhein-manufaktur.eu', 'mailto:shop@rhein-manufaktur.eu', :style => 'color:#49d2be'
+
+          - elsif I18n.locale == :de
+            %a{:href => '#'}
+              = image_tag  'icons/Logo_laiyinn_g.png'
+            %h5{ :style => 'padding-top:25px; color:#565a5c' }=I18n.t(:contact_us, scope: :footer)
+            %h5=link_to 'customer@laiyinn.com', 'mailto:customer@laiyinn.com', :style => 'color:#49d2be'
+            
 
         .col-xs-6.col-sm-4.col-md-4
           %h4= I18n.t(:recent_news, scope: :footer)
@@ -351,27 +357,37 @@
 
         .col-xs-6.col-sm-4.col-md-2.col-md-offset-1
           %h4= I18n.t(:rheinmanufaktur, scope: :footer)
-          %h5=link_to I18n.t(:privarcy_statement, scope: :footer), '#'
-          -#%h5=link_to I18n.t(:guidelines, scope: :footer), '#', :style => 'color: gray; text-decoration: underline'
-          %h5=link_to I18n.t(:press_portal, scope: :footer), '#'
-          -#%h5=link_to I18n.t(:career, scope: :footer), '#', :style => 'color: gray; text-decoration: underline'
-          %h5=link_to I18n.t(:imprint, scope: :footer), '#'
           -if user_signed_in? && current_user.role == :shopkeeper
-            %h5=link_to I18n.t(:terms_conditions, scope: :footer), '#'
-
-        - if user_signed_in? && current_user.role == :shopkeeper
-          .col-xs-6.col-sm-4.col-md-2.col-md-offset-1
+            %h5=link_to I18n.t(:terms_conditions, scope: :footer), '/pages/agb', :target => 'blank'
+            %h5=link_to I18n.t(:privarcy_statement, scope: :footer), '/pages/privacy', :target => 'blank'
+            %h5=link_to I18n.t(:imprint, scope: :footer), '/pages/imprint', :target => 'blank'
+            -#%h5=link_to I18n.t(:guidelines, scope: :footer), '#', :style => 'color: gray; text-decoration: underline'
+            -#%h5=link_to I18n.t(:press_portal, scope: :footer), '#'
+            -#%h5=link_to I18n.t(:career, scope: :footer), '#', :style => 'color: gray; text-decoration: underline'
+          - elsif I18n.locale == :'zh-CN' or (current_user && current_user.role == :customer)
+            %h5=link_to I18n.t(:vouchers, scope: :footer), '#'
+          - elsif I18n.locale == :de
+            %h5=link_to I18n.t(:vouchers, scope: :footer), '#'
+          
+        .col-xs-6.col-sm-4.col-md-2.col-md-offset-1
+          - if user_signed_in? && current_user.role == :shopkeeper
             %h4= I18n.t(:selling, scope: :footer)
-            %h5=link_to I18n.t(:seller_portal, scope: :footer), '#login-dialog', :class => 'popup-text', 'data-effect' => 'mfp-zoom-out'
-            %h5=link_to I18n.t(:sell_on_rm, scope: :footer), '#'
-            %h5=link_to I18n.t(:fees_invoices, scope: :footer), '#'
-          -#%h5=link_to I18n.t(:seller_faq, scope: :footer), '#'
-        - elsif I18n.locale == :'zh-CN' or (current_user && current_user.role == :customer)
-          .col-xs-6.col-sm-4.col-md-2
+            %h5=link_to I18n.t(:shop_application, scope: :shop_application), '#shop_application_index_path', :class => 'popup-text', 'data-effect' => 'mfp-zoom-out'
+            %h5=link_to I18n.t(:sell_on_rm, scope: :footer), '/pages/saleguide', :target => 'blank'
+            %h5=link_to I18n.t(:fees_invoices, scope: :footer), '/pages/fees', :target => 'blank'
+            -#%h5=link_to I18n.t(:seller_faq, scope: :footer), '#'
+          - elsif I18n.locale == :'zh-CN' or (current_user && current_user.role == :customer)
             %h4= I18n.t(:buying, scope: :footer)
             %h5=link_to I18n.t(:buyer_faq, scope: :footer), '#'
             %h5=link_to I18n.t(:buyer_in_3_steps, scope: :footer), '#'
             %h5=link_to I18n.t(:vouchers, scope: :footer), '#'
+          - elsif I18n.locale == :de
+            %h4= I18n.t(:buying, scope: :footer)
+            %h5=link_to I18n.t(:shop_application, scope: :shop_application), '#shop_application_index_path', :class => 'popup-text', 'data-effect' => 'mfp-zoom-out'
+            %h5=link_to I18n.t(:buyer_faq, scope: :footer), '#'
+            %h5=link_to I18n.t(:buyer_in_3_steps, scope: :footer), '#'
+            %h5=link_to I18n.t(:vouchers, scope: :footer), '#'
+            
 
   .footer-copyright
     .container
