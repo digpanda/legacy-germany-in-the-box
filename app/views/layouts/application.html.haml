@@ -367,6 +367,7 @@
           - elsif I18n.locale == :'zh-CN' or (current_user && current_user.role == :customer)
             %h5=link_to I18n.t(:vouchers, scope: :footer), '#'
           - elsif I18n.locale == :de
+            %h5=link_to I18n.t(:privarcy_statement, scope: :footer), '/pages/privacy', :target => 'blank'
             %h5=link_to I18n.t(:imprint, scope: :footer), '/pages/imprint', :target => 'blank'
           
         .col-xs-6.col-sm-4.col-md-2.col-md-offset-1
@@ -384,6 +385,8 @@
           - elsif I18n.locale == :de
             %h4= I18n.t(:selling, scope: :footer)
             %h5=link_to I18n.t(:shop_application, scope: :shop_application), '#shop_application_index_path', :class => 'popup-text', 'data-effect' => 'mfp-zoom-out'
+            %h5=link_to I18n.t(:sell_on_rm, scope: :footer), '/pages/saleguide', :target => 'blank'
+
 
             
 
