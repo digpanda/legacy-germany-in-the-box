@@ -1,8 +1,8 @@
 class PagesController < ApplicationController
 
-  before_action :authenticate_user!, except: [:home]
+  before_action :authenticate_user!, except: [:home, :imprint]
 
-  acts_as_token_authentication_handler_for User, except: [:home]
+  acts_as_token_authentication_handler_for User, except: [:home, :imprint]
 
   #load_and_authorize_resource :class => false
 
