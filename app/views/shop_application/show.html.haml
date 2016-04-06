@@ -106,21 +106,3 @@
                     = f.label :mobile, I18n.t(:contact_mobile, scope: :shop_application)
                     = f.text_field :mobile, :class => 'form-control', :disabled => true, :maxLength => Rails.configuration.max_tiny_text_length, :pattern => '^(((((((00|\+)49[ \-/]?)|0)[1-9][0-9]{1,4})[ \-/]?)|((((00|\+)49\()|\(0)[1-9][0-9]{1,4}\)[ \-/]?))[0-9]{1,7}([ \-/]?[0-9]{1,5})?)$', :placeholder => '+49(176)64336650'
                     %div.help-block.with-errors
-      .panel.panel-info
-        .panel-heading.text-center
-          %h4= I18n.t(:statements, scope: :shop_application)
-        .panel-body
-          %table.table.table-borderless
-            %tbody
-              %tr
-                .form-group
-                  = f.check_box :statement0, { :disabled => true }
-                  = I18n.t(:statement_0, scope: :shop_application)
-              %tr
-                .form-group
-                  = f.check_box :statement1, { :disabled => true }
-                  = I18n.t(:statement_1, scope: :shop_application)
-              %tr
-                .form-group
-                  = f.check_box :statement2, { :disabled => true }
-                  = I18n.t(:statement_2, scope: :shop_application)
