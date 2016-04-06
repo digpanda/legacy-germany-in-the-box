@@ -353,7 +353,7 @@
                 %p.thumb-list-item-meta 13-01-2016
                 %h5.thumb-list-item-title
                   %a{:href => '#'} Herzlichen Dank!
-                %p.thumb-list-item-desciption Wir bedanken uns herzlich bei <strong>IHK Bayern</strong> und <strong>Handwerkskammern Bayern</strong> für ihre gemeinsame Förderung und Bezuschussen! Sie helfen uns, unsere Mission zu erreichern, nämlich den deutschen Herstellern den direkten Vertriebsweg zu chinesischen Markt zu etablieren.
+                %p.thumb-list-item-desciption= I18n.t(:news_ihk, scope: :footer).html_safe
 
         .col-xs-6.col-sm-4.col-md-2.col-md-offset-1
           %h4= I18n.t(:rheinmanufaktur, scope: :footer)
