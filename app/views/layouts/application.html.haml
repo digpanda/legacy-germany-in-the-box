@@ -373,7 +373,7 @@
         .col-xs-6.col-sm-4.col-md-2.col-md-offset-1
           - if user_signed_in? && current_user.role == :shopkeeper
             %h4= I18n.t(:selling, scope: :footer)
-            %h5=link_to I18n.t(:shop_application, scope: :shop_application), '#shop_application_index_path', :class => 'popup-text', 'data-effect' => 'mfp-zoom-out'
+            %h5=link_to I18n.t(:shop_application, scope: :shop_application), '/shop_application'
             %h5=link_to I18n.t(:sell_on_rm, scope: :footer), '/pages/saleguide', :target => 'blank'
             %h5=link_to I18n.t(:fees_invoices, scope: :footer), '/pages/fees', :target => 'blank'
             -#%h5=link_to I18n.t(:seller_faq, scope: :footer), '#'
@@ -384,7 +384,7 @@
             %h5=link_to I18n.t(:vouchers, scope: :footer), '#'
           - elsif I18n.locale == :de
             %h4= I18n.t(:selling, scope: :footer)
-            %h5=link_to I18n.t(:shop_application, scope: :shop_application), '#shop_application_index_path', :class => 'popup-text', 'data-effect' => 'mfp-zoom-out'
+            %h5=link_to I18n.t(:shop_application, scope: :shop_application), '/shop_application'
             %h5=link_to I18n.t(:sell_on_rm, scope: :footer), '/pages/saleguide', :target => 'blank'
 
 
