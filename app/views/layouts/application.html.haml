@@ -1,10 +1,14 @@
 !!!
 %html
   %head
-    %title RheinManufaktur
+    - if I18n.locale == :'zh-CN' or (current_user && current_user.role == :customer)
+      %title 莱茵工场
+    - else
+      %title Rhein-Manufaktur
+
     %meta{:content => 'text/html; charset=utf-8', 'http-equiv' => 'Content-Type'}
-    %meta{:content => '莱茵工场Rhein-Manufaktur', :name => 'keywords'}
-    %meta{:content => '莱茵工场Rhein-Manufaktur', :name => 'description'}
+    %meta{:content => '莱茵工场', :name => 'keywords'}
+    %meta{:content => '莱茵工场', :name => 'description'}
     %meta{:content => 'Y. Liu', :name => 'author'}
     %meta{:content => 'width=device-width, initial-scale=1.0', :name => 'viewport'}
 
