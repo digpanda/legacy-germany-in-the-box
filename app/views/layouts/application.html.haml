@@ -205,11 +205,11 @@
               %input{:type => 'checkbox'}
               = I18n.t(:remember_me, scope: :sign_in_dialog)
           = submit_tag I18n.t(:sign_in, scope: :sign_in_dialog), :class => 'btn btn-primary'
-        %ul.dialog-alt-links
-          %li
-            %a.popup-text{'data-effect' => 'mfp-zoom-out', :href => '#register-dialog'}= I18n.t(:not_member_yet, scope: :sign_in_dialog)
-          %li
-            %a.popup-text{'data-effect' => 'mfp-zoom-out', :href => '#password-recover-dialog'}= I18n.t(:forgot_password, scope: :sign_in_dialog)
+        -#%ul.dialog-alt-links
+        -#  %li
+        -#    %a.popup-text{'data-effect' => 'mfp-zoom-out', :href => '#register-dialog'}= I18n.t(:not_member_yet, scope: :sign_in_dialog)
+        -#  %li
+        -#    %a.popup-text{'data-effect' => 'mfp-zoom-out', :href => '#password-recover-dialog'}= I18n.t(:forgot_password, scope: :sign_in_dialog)
       #register-dialog.mfp-with-anim.mfp-hide.mfp-dialog.clearfix
         %i.fa.fa-edit.dialog-icon
         - if session[:signup_advice_counter] and flash[:error].present?

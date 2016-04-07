@@ -73,8 +73,8 @@
               = f.text_field :brand, :class => 'form-control', :required => true, :maxLength => Rails.configuration.max_short_text_length
         .form-group
           .row
-            .col-md-3{:title => I18n.t(:desc_info, scope: :edit_product) }
-              %i.fa.fa-info-circle{ :title => I18n.t(:desc_info, scope: :edit_product) }
+            .col-md-3{:title => I18n.t(:desc_info, scope: :edit_product, num: Rails.configuration.max_medium_text_length) }
+              %i.fa.fa-info-circle{ :title => I18n.t(:desc_info, scope: :edit_product, num: Rails.configuration.max_medium_text_length) }
               %label.required= I18n.t(:desc, scope: :edit_product)
             .col-md-9
               = f.text_area :desc, :class => 'form-control', rows: 8, :required => true, :maxLength => Rails.configuration.max_medium_text_length
