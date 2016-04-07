@@ -94,7 +94,16 @@ class UsersController < ApplicationController
 
   def update
     respond_to do |format|
-      if @user.update(user_params.except(:email))
+      ups = user_params
+
+      if ups[:password] && @user.update_with_password(ups.except(:email))
+        format.html {
+          flash[:success] = I18n.t(:update_ok, scope: :edit_personal)
+          render :edit, user_info_edit_part: params[:user_info_edit_part]
+        }
+
+        format.json { render :show, status: :ok, location: @user }
+      elsif ups[:password].blank? && @user.update_without_password(ups.except(:email))
         format.html {
           flash[:success] = I18n.t(:update_ok, scope: :edit_personal)
           render :edit, user_info_edit_part: params[:user_info_edit_part]
@@ -213,7 +222,7 @@ class UsersController < ApplicationController
       gender = 'm'
     end
 
-    params.require(:user).permit(:username, :email, :password, :password_confirmation, :fname, :lname, :birth, :gender, :about, :website, :pic, :tel, :mobile)
+    params.require(:user).permit(:username, :email, :current_password, :password, :password_confirmation, :fname, :lname, :birth, :gender, :about, :website, :pic, :tel, :mobile)
   end
 
 end

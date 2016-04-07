@@ -1,13 +1,21 @@
 de:
   errors: &errors
     messages:
-      blank: 'ist leer'
+      blank: ist leer
+      invalid: ist ungültig
+
+  models: &models
+    user: Benutzer
 
   attributes: &attributes
     product:
       name: Produktname
+    user:
+      current_password: Aktuelles Passwort
 
   mongoid:
+    models:
+     <<: *models
     attributes:
       <<: *attributes
     errors:

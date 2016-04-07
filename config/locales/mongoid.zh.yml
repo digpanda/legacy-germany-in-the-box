@@ -1,13 +1,21 @@
 zh-CN:
-  errors: &errors
-    messages:
-      blank: '不能为空'
+  models: &models
+    user: 用户
 
   attributes: &attributes
     product:
       name: 产品名称
+    user:
+      current_password: 当前密码
+
+  errors: &errors
+    messages:
+      blank: 不能为空
+      invalid: 无效
 
   mongoid:
+    models:
+     <<: *models
     attributes:
       <<: *attributes
     errors:
