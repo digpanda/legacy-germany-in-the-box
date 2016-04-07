@@ -53,7 +53,10 @@ module ProductsHelper
   def gen_remove_variant_panel
     %Q{
       function () {
-        $(this).closest('.col-md-4').remove();
+        if ( $(this).closest('.col-md-4').siblings().length > 0 ) {
+          $(this).closest('.col-md-4').remove();
+        }
+
         return false;
       }
     }
