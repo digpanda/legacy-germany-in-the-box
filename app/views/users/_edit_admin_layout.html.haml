@@ -6,5 +6,7 @@
           =link_to I18n.t(:my_account, scope: :top_menu),  edit_user_path(current_user, :user_info_edit_part => :edit_account)
         %li{:class => params[:user_info_edit_part] == :edit_shop_applications.to_s ? 'active' : ''}
           =link_to I18n.t(:shop_applications, scope: :top_menu),  edit_user_path(current_user, :user_info_edit_part => :edit_shop_applications)
+        %li{:class => params[:user_info_edit_part] == :edit_shops.to_s ? 'active' : ''}
+          =link_to I18n.t(:shops, scope: :top_menu),  edit_user_path(current_user, :user_info_edit_part => :edit_shops)
   .col-md-9
     = yield

@@ -19,6 +19,11 @@ class UsersController < ApplicationController
     base64_to_uploadedfile :user, :pic
   }
 
+  def reset_password
+    @user.update(user_params)
+    redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_shops)
+  end
+
   def index
     @users = User.all
 
@@ -84,6 +89,10 @@ class UsersController < ApplicationController
       @collection = current_user.oCollections.find(params[:collection_id])
     elsif params[:user_info_edit_part] == :edit_shop_applications.to_s
       @applications = ShopApplication.all
+    elsif params[:user_info_edit_part] == :edit_shops.to_s
+      @shops = Shop.all
+    elsif params[:user_info_edit_part] == :edit_password_by_admin.to_s
+      @user = User.find(params[:user_id])
     end
   end
 

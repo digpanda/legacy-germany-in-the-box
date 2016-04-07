@@ -1,12 +1,17 @@
-%table.table.table-bordered
-  %thead
-    %td= I18n.t(:email, scope: :shop_application)
-    %td= I18n.t(:name, scope: :edit_shop)
-    %td= I18n.t(:password, scope: :shop_application)
-  %tbody
-    - @applications.each do |a|
-      %tr
-        %td= link_to a.email, shop_application_path(a)
-        %td= a.name
-        %td= a.code[0,8]
+- if @applications.count > 0
+  %table.table.cart-table
+    %thead
+      %th= I18n.t(:email, scope: :shop_application)
+      %th= I18n.t(:name, scope: :edit_shop)
+      %th= I18n.t(:password, scope: :shop_application)
+      %th= I18n.t(:application_timestamp, scope: :shop_application)
+    %tbody
+      - @applications.each do |a|
+        %tr
+          %td= link_to a.email, shop_application_path(a)
+          %td= a.name
+          %td= a.code[0,8]
+          %td= a.c_at
+- else
+  %h4= I18n.t(:no_applications, scope: :shop_application)
 
