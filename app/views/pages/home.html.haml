@@ -1,58 +1,108 @@
 .top-area
   #owl-carousel-slider.owl-carousel.owl-slider{"data-inner-pagination" => "true", "data-white-pagination" => "true"}
-    %div
-      .bg-holder
-        = image_tag "advertisement1b.jpg" , :alt => "Image Alternative text", :title => "Branding 2", :style => 'height:480px' 
-        .vert-center.text-white.text-center.slider-caption
-          %h2.text-uc Modern DJ Sets
-          %p.text-bigger Justo cursus ridiculus erat et varius est
-          %p.text-hero Save up to 70%
-          %a.btn.btn-lg.btn-ghost.btn-white{:href => "#"} Shop Now
-    %div
-      .bg-holder
-        = image_tag "advertisement1c.jpg" , :alt => "Image Alternative text", :title => "Branding 3", :style => 'height:480px' 
-        .vert-center.text-white.text-center.slider-caption
-          %h2.text-uc Gatgets Giveaway
-          %p.text-bigger Erat lacus praesent montes aptent eget venenatis
-          %p.text-hero Save up to 30%
-          %a.btn.btn-lg.btn-ghost.btn-white{:href => "#"} Shop Now
-    %div
-      .bg-holder
-        = image_tag "advertisement1d.jpg" , :alt => "Image Alternative text", :title => "Branding 4", :style => 'height:480px' 
-        .vert-center.text-white.text-center.slider-caption
-          %h2.text-uc Gatgets Giveaway
-          %p.text-bigger Erat lacus praesent montes aptent eget venenatis
-          %p.text-hero Save up to 30%
-          %a.btn.btn-lg.btn-ghost.btn-white{:href => "#"} Shop Now
-    %div
-      .bg-holder
-        = image_tag "advertisement2a.jpg" , :alt => "Image Alternative text", :title => "Branding 5", :style => 'height:480px' 
-        .vert-center.text-white.text-center.slider-caption
-          %h2.text-uc Gatgets Giveaway
-          %p.text-bigger Erat lacus praesent montes aptent eget venenatis
-          %p.text-hero Save up to 30%
-          %a.btn.btn-lg.btn-ghost.btn-white{:href => "#"} Shop Now
-    %div
-      .bg-holder
-        = image_tag "advertisement2b.jpg" , :alt => "Image Alternative text", :title => "Branding 6", :style => 'height:480px' 
-        .vert-center.text-white.text-center.slider-caption
-          %h2.text-uc Gatgets Giveaway
-          %p.text-bigger Erat lacus praesent montes aptent eget venenatis
-          %p.text-hero Save up to 30%
-          %a.btn.btn-lg.btn-ghost.btn-white{:href => "#"} Shop Now
-    %div
-      .bg-holder
-        = image_tag "advertisement2c.jpg" , :alt => "Image Alternative text", :title => "Branding 7", :style => 'height:480px' 
-        .vert-center.text-white.text-center.slider-caption
-          %h2.text-uc Gatgets Giveaway
-          %p.text-bigger Erat lacus praesent montes aptent eget venenatis
-          %p.text-hero Save up to 30%
-          %a.btn.btn-lg.btn-ghost.btn-white{:href => "#"} Shop Now
-    %div
-      .bg-holder
-        = image_tag "advertisement1a.jpg" , :alt => "Image Alternative text", :title => "Branding 1", :style => 'height:480px'
-        .vert-center.text-white.text-center.slider-caption
-          %h2.text-uc New Bloke Collection
-          %p.text-bigger Egestas et est aenean ipsum lorem fringilla
-          %p.text-hero Save up to 30%
-          %a.btn.btn-lg.btn-ghost.btn-white{:href => "#"} Shop Now
+    - if I18n.locale == :'zh-CN' or (current_user && current_user.role == :customer)
+      %div
+        .bg-holder
+          = image_tag "advertisement1b.jpg" , :alt => "Image Alternative text", :title => "Branding 2", :style => 'height:480px' 
+          .vert-center.text-white.text-center.slider-caption
+            %h2.text-uc Modern DJ Sets
+            %p.text-bigger Justo cursus ridiculus erat et varius est
+            %p.text-hero Save up to 70%
+            %a.btn.btn-lg.btn-ghost.btn-white{:href => "#"} Shop Now
+      %div
+        .bg-holder
+          = image_tag "advertisement1c.jpg" , :alt => "Image Alternative text", :title => "Branding 3", :style => 'height:480px' 
+          .vert-center.text-white.text-center.slider-caption
+            %h2.text-uc Gatgets Giveaway
+            %p.text-bigger Erat lacus praesent montes aptent eget venenatis
+            %p.text-hero Save up to 30%
+            %a.btn.btn-lg.btn-ghost.btn-white{:href => "#"} Shop Now
+      %div
+        .bg-holder
+          = image_tag "advertisement1d.jpg" , :alt => "Image Alternative text", :title => "Branding 4", :style => 'height:480px' 
+          .vert-center.text-white.text-center.slider-caption
+            %h2.text-uc Gatgets Giveaway
+            %p.text-bigger Erat lacus praesent montes aptent eget venenatis
+            %p.text-hero Save up to 30%
+            %a.btn.btn-lg.btn-ghost.btn-white{:href => "#"} Shop Now
+      %div
+        .bg-holder
+          = image_tag "advertisement2a.jpg" , :alt => "Image Alternative text", :title => "Branding 5", :style => 'height:480px' 
+          .vert-center.text-white.text-center.slider-caption
+            %h2.text-uc Gatgets Giveaway
+            %p.text-bigger Erat lacus praesent montes aptent eget venenatis
+            %p.text-hero Save up to 30%
+            %a.btn.btn-lg.btn-ghost.btn-white{:href => "#"} Shop Now
+      %div
+        .bg-holder
+          = image_tag "advertisement2b.jpg" , :alt => "Image Alternative text", :title => "Branding 6", :style => 'height:480px' 
+          .vert-center.text-white.text-center.slider-caption
+            %h2.text-uc Gatgets Giveaway
+            %p.text-bigger Erat lacus praesent montes aptent eget venenatis
+            %p.text-hero Save up to 30%
+            %a.btn.btn-lg.btn-ghost.btn-white{:href => "#"} Shop Now
+      %div
+        .bg-holder
+          = image_tag "advertisement2c.jpg" , :alt => "Image Alternative text", :title => "Branding 7", :style => 'height:480px' 
+          .vert-center.text-white.text-center.slider-caption
+            %h2.text-uc Gatgets Giveaway
+            %p.text-bigger Erat lacus praesent montes aptent eget venenatis
+            %p.text-hero Save up to 30%
+            %a.btn.btn-lg.btn-ghost.btn-white{:href => "#"} Shop Now
+      %div
+        .bg-holder
+          = image_tag "advertisement1a.jpg" , :alt => "Image Alternative text", :title => "Branding 1", :style => 'height:480px'
+          .vert-center.text-white.text-center.slider-caption
+            %h2.text-uc New Bloke Collection
+            %p.text-bigger Egestas et est aenean ipsum lorem fringilla
+            %p.text-hero Save up to 30%
+            %a.btn.btn-lg.btn-ghost.btn-white{:href => "#"} Shop Now
+    - elsif I18n.locale == :de or (user_signed_in? && current_user.role == :shopkeeper)
+      %div
+        .bg-holder
+          = image_tag "6.jpg" , :alt => "Image Alternative text", :title => "Branding 2", :style => 'height:480px' 
+          .vert-center.text-white.text-center.slider-caption
+            %h2.text-uc Modern DJ Sets
+            %p.text-bigger Justo cursus ridiculus erat et varius est
+            %p.text-hero Save up to 20%
+            %a.btn.btn-lg.btn-ghost.btn-white{:href => "#"} Shop Now
+      %div
+        .bg-holder
+          = image_tag "4.jpg" , :alt => "Image Alternative text", :title => "Branding 3", :style => 'height:480px' 
+          .vert-center.text-white.text-center.slider-caption
+            %h2.text-uc Gatgets Giveaway
+            %p.text-bigger Erat lacus praesent montes aptent eget venenatis
+            %p.text-hero Save up to 10%
+            %a.btn.btn-lg.btn-ghost.btn-white{:href => "#"} Shop Now
+      %div
+        .bg-holder
+          = image_tag "3.jpg" , :alt => "Image Alternative text", :title => "Branding 4", :style => 'height:480px' 
+          .vert-center.text-white.text-center.slider-caption
+            %h2.text-uc Gatgets Giveaway
+            %p.text-bigger Erat lacus praesent montes aptent eget venenatis
+            %p.text-hero Save up to 10%
+            %a.btn.btn-lg.btn-ghost.btn-white{:href => "#"} Shop Now
+      %div
+        .bg-holder
+          = image_tag "1.jpg" , :alt => "Image Alternative text", :title => "Branding 5", :style => 'height:480px' 
+          .vert-center.text-white.text-center.slider-caption
+            %h2.text-uc Gatgets Giveaway
+            %p.text-bigger Erat lacus praesent montes aptent eget venenatis
+            %p.text-hero Save up to 30%
+            %a.btn.btn-lg.btn-ghost.btn-white{:href => "#"} Shop Now
+      %div
+        .bg-holder
+          = image_tag "2.jpg" , :alt => "Image Alternative text", :title => "Branding 6", :style => 'height:480px' 
+          .vert-center.text-white.text-center.slider-caption
+            %h2.text-uc Gatgets Giveaway
+            %p.text-bigger Erat lacus praesent montes aptent eget venenatis
+            %p.text-hero Save up to 20%
+            %a.btn.btn-lg.btn-ghost.btn-white{:href => "#"} Shop Now
+      %div
+        .bg-holder
+          = image_tag "5.jpg" , :alt => "Image Alternative text", :title => "Branding 7", :style => 'height:480px' 
+          .vert-center.text-white.text-center.slider-caption
+            %h2.text-uc Gatgets Giveaway
+            %p.text-bigger Erat lacus praesent montes aptent eget venenatis
+            %p.text-hero Save up to 15%
+            %a.btn.btn-lg.btn-ghost.btn-white{:href => "#"} Shop Now     
