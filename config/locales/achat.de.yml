@@ -127,6 +127,7 @@ de:
     mobile: Handy
     save: Speichern
     update_ok: Ihre persöhnliche Daten wurden erfolgreich aktualisiert.
+    update_password_ok: Ihr Passwort wurde erfolgreich aktualisiert.
   edit_address:
     maximal_number_of_addresses: Sie können maximal %{num} Adressen konfigurieren.
     add_new_address: Adresse hinzufügen

@@ -98,7 +98,8 @@ class UsersController < ApplicationController
 
       if ups[:password] && @user.update_with_password(ups.except(:email))
         format.html {
-          flash[:success] = I18n.t(:update_ok, scope: :edit_personal)
+          flash[:success] = I18n.t(:update_password_ok, scope: :edit_personal)
+          sign_in(@user, :bypass => true)
           render :edit, user_info_edit_part: params[:user_info_edit_part]
         }
 

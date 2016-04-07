@@ -19,7 +19,7 @@ class SessionsController < Devise::SessionsController
             session.delete(:login_advice_counter)
             super
           else
-            flash[:error] = flash[:error] = I18n.t(:wrong_captcha, scope: :top_menu)
+            flash[:error] = I18n.t(:wrong_captcha, scope: :top_menu)
             redirect_to root_path
           end
         else
