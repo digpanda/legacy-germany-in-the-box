@@ -145,3 +145,23 @@ textarea {
     display: none;
     position: absolute;
 }
+
+
+.bannerImg_shopkeeper {
+    background-color:#edefed;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-left: 15%;
+    padding-right: 15%;
+
+    width:100%; 
+    height:auto;
+}
+.bannerImg_shopkeeper.orig {
+    border-top: 3px solid #edefed; 
+    border-bottom: 3px solid #edefed; 
+    border-right: 230px solid #edefed; 
+    border-left: 230px solid #edefed; 
+    width:100%; 
+    height:auto;
+}
