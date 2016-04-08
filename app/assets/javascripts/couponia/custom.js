@@ -7,20 +7,20 @@ var TWITTER_USERNAME = 'envato',
 
 // Countdown
 $(function() {
-    $('.countdown').each(function() {
-        var count = $(this);
-        $(this).countdown({
-            zeroCallback: function(options) {
-                var newDate = new Date(),
-                    newDate = newDate.setHours(newDate.getHours() + 130);
+$('.countdown').each(function() {
+    var count = $(this);
+    $(this).countdown({
+        zeroCallback: function(options) {
+            var newDate = new Date(),
+                newDate = newDate.setHours(newDate.getHours() + 130);
 
-                $(count).attr("data-countdown", newDate);
-                $(count).countdown({
-                    unixFormat: true
-                });
-            }
-        });
+            $(count).attr("data-countdown", newDate);
+            $(count).countdown({
+                unixFormat: true
+            });
+        }
     });
+});
 });
 
 
@@ -121,7 +121,8 @@ $('#star-rating > li').each(function() {
             } else {
                 break;
             }
-        };
+        }
+        ;
         $(this).click(function() {
             for (var i = 0; i < listItems.length; i++) {
                 if (i <= itemIndex) {
@@ -129,7 +130,8 @@ $('#star-rating > li').each(function() {
                 } else {
                     $(listItems[i]).removeClass('selected');
                 }
-            };
+            }
+            ;
         });
     }, function() {
         listItems.removeClass('hovered');
@@ -166,14 +168,16 @@ $('.i-check, .i-radio').iCheck({
 $(".cart-item-plus").click(function() {
     var currentVal = parseInt($(this).prev(".cart-quantity").val());
 
-    if (!currentVal || currentVal == "" || currentVal == "NaN") currentVal = 0;
+    if (!currentVal || currentVal == "" || currentVal == "NaN")
+        currentVal = 0;
 
     $(this).prev(".cart-quantity").val(currentVal + 1);
 });
 
 $(".cart-item-minus").click(function() {
     var currentVal = parseInt($(this).next(".cart-quantity").val());
-    if (currentVal == "NaN") currentVal = 0;
+    if (currentVal == "NaN")
+        currentVal = 0;
     if (currentVal > 0) {
         $(this).next(".cart-quantity").val(currentVal - 1);
     }
@@ -264,7 +268,7 @@ $(document).ready(function() {
         owlItems = owlCarousel.attr('data-items'),
         owlCarouselSlider = $('#owl-carousel-slider'),
         owlNav = owlCarouselSlider.attr('data-nav');
-    // owlSliderPagination = owlCarouselSlider.attr('data-pagination');
+        // owlSliderPagination = owlCarouselSlider.attr('data-pagination');
 
     owlCarousel.owlCarousel({
         items: owlItems,
@@ -273,14 +277,14 @@ $(document).ready(function() {
     });
 
     owlCarouselSlider.owlCarousel({
-        slideSpeed: 300,
-        paginationSpeed: 400,
+        slideSpeed: 200,
+        paginationSpeed: 800,
         // pagination: owlSliderPagination,
         singleItem: true,
         navigation: true,
         navigationText: ['', ''],
         transitionStyle: 'goDown',
-        // autoPlay: 4500
+    // autoPlay: 4500
     });
 
 
@@ -300,14 +304,14 @@ $(document).ready(function() {
     ticker();
 
 
-     // footer always on bottom
+    // footer always on bottom
     var docHeight = $(window).height();
-   var footerHeight = $('#main-footer').height();
-   //var footerTop = $('#main-footer').position().top + footerHeight;
-   //
-   //if (footerTop < docHeight) {
-   // $('#main-footer').css('margin-top', (docHeight - footerTop) + 'px');
-   //}
+    var footerHeight = $('#main-footer').height();
+    //var footerTop = $('#main-footer').position().top + footerHeight;
+    //
+    //if (footerTop < docHeight) {
+    // $('#main-footer').css('margin-top', (docHeight - footerTop) + 'px');
+    //}
 
 });
 
