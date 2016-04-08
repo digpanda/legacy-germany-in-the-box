@@ -43,6 +43,7 @@ zh-CN:
     user_profile: 用户概要
     wrong_captcha: 验证码不一致
     email_confirmation_msg: 我们已经向您的注册邮箱发送了一封确认邮件，请您登陆前先确认。
+    shops: 店铺管理
   footer:
     copyright: 版权所有：莱茵工场 © 2016
     rheinmanufaktur: 莱茵工场
@@ -225,6 +226,11 @@ zh-CN:
     statement_2: 在此保证产品有在德国市场的销售许可。
     password: 初始密码
     application_finished: 申请完成
+    application_timestamp: 申请时间
+    no_applications: 目前还没有收到任何申请
+  edit_shops:
+    operations: 操作
+    reset_password: 重置密码
   edit_shop:
     email: 邮箱
     name: 店铺名

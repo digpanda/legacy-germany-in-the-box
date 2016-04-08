@@ -45,6 +45,7 @@ de:
     user_profile: Nutzerprofil
     wrong_captcha: Captcha stimmt nicht überein.
     email_confirmation_msg: Sie erhalten von uns eine E-Mail für die Registrierung. Bitte bestätigen Sie durch den gegebenen Link in der Mail, bevor Sie fortfahren.
+    shops: Shops
   footer:
     copyright: © DigPanda GmbH 2015-2016
     rheinmanufaktur: Rhein-Manufaktur
@@ -127,6 +128,7 @@ de:
     mobile: Handy
     save: Speichern
     update_ok: Ihre persöhnliche Daten wurden erfolgreich aktualisiert.
+    update_password_ok: Ihr Passwort wurde erfolgreich aktualisiert.
   edit_address:
     maximal_number_of_addresses: Sie können maximal %{num} Adressen konfigurieren.
     add_new_address: Adresse hinzufügen
@@ -228,6 +230,11 @@ de:
     password: Initialpasswort
     duplicated_email: Die E-Mail ist schon besetzt. Bitte geben Sie eine andere E-Mail ein.
     application_finished: Antrag abgeschlossen
+    application_timestamp: Zeitstempel
+    no_applications: keine eingegangene Beantragungen vorhanden
+  edit_shops:
+    operations: Aktionen
+    reset_password: Passwort Rücksetzen
   edit_shop:
     email: E-Mail
     name: Herstellername/Firmenname

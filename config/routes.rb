@@ -57,7 +57,8 @@ Rails.application.routes.draw do
   end
 
   resources :users, except: [:destroy] do
-    match 'search/:keyword',  via: [:get],    to: :search,    as: :search,    :on => :collection
+    match 'search/:keyword',  via: [:get],    to: :search,            as: :search,              :on => :collection
+    match :reset_password,    via: [:patch],  to: :reset_password,    as: :reset_password,      :on => :collection
 
     match :follow,            via: [:patch],  to: :follow,            as: :follow,              :on => :member
     match :unfollow,          via: [:patch],  to: :unfollow,          as: :unfollow,            :on => :member
