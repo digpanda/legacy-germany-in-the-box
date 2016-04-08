@@ -350,7 +350,7 @@ de:
       'false': Nein
     weight: Gewicht
     status:
-      info: Zum Verkauf
+      info: Eingestellt
       'true': Ja
       'false': Nein
     customizable:
