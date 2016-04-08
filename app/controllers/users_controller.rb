@@ -90,7 +90,7 @@ class UsersController < ApplicationController
     elsif params[:user_info_edit_part] == :edit_shop_applications.to_s
       @applications = ShopApplication.all
     elsif params[:user_info_edit_part] == :edit_shops.to_s
-      @shops = Shop.all
+      @shops = Shop.where(:shopkeeper.ne => nil)
     elsif params[:user_info_edit_part] == :edit_password_by_admin.to_s
       @user = User.find(params[:user_id])
     end
