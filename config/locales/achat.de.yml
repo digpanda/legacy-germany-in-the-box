@@ -237,7 +237,7 @@ de:
     reset_password: Passwort Rücksetzen
   edit_shop:
     email: E-Mail
-    name: Herstellername/Firmenname
+    name: Hersteller-/Firmenname
     desc: Beschreibung
     logo: Logo
     banner: Banner
@@ -314,7 +314,7 @@ de:
     updated_at: aktualisiert am
     operations: Aktionen
     delete: Entfernen
-    no_product: Momentan ist kein Produkt vorhanden.
+    no_product: Sie haben noch kein Produkt im Sortiment. Klicken Sie oben die Schaltfläche an, um ein neues Produkt zu erstellen.
     delete_product_message: Das Produkt entfernen?
     delete_ok: Das Produkt wurde erfolgreich entfernt.
     delete_ko: Ein Fehler ist bei der Lösung des Produkts aufgetreten.
@@ -388,7 +388,7 @@ de:
     cm: cm
     clone: Klonen
     piece: Stk.
-    no_detail: Keine Artikelposition vorhanden
+    no_detail: Bitte klicken Sie oben <strong>Neue Artikelposition</strong> an, um eine Artikelposition zu erstellen.
   edit_product_variant:
     new_variant: Neue Variante
     edit: Editieren

@@ -54,5 +54,5 @@
             = link_to '', remove_sku_product_path(@product.id, s.id), method: :delete, data: { confirm: "#{I18n.t(:delete_sku_message, scope: :edit_product_detail)}" }, :class => 'fa fa-times-circle btn', :title => I18n.t(:remove, scope: :edit_product_detail)
 
 - else
-  %h4= I18n.t(:no_detail, scope: :edit_product_detail)
+  %h4= I18n.t(:no_detail, scope: :edit_product_detail).html_safe
 
