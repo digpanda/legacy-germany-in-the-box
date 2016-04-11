@@ -4,6 +4,16 @@ class ShopsController <  ApplicationController
 
   load_and_authorize_resource
 
+  def edit_setting
+    @shop = current_user.shop
+    render :edit_setting, layout: 'shopkeeper_sublayout'
+  end
+
+  def edit_producer
+    @shop = current_user.shop
+    render :edit_producer, layout: 'shopkeeper_sublayout'
+  end
+
   def show
     @shop = Shop.find(params[:id])
     @categories_and_children, @categories_and_counters = get_category_values_for_left_menu(@shop.products)
@@ -20,15 +30,15 @@ class ShopsController <  ApplicationController
 
        if current_user.shop.agb && current_user.shop.update(sp)
          if params[:user_info_edit_part] == :edit_producer.to_s
-           flash[:success] = I18n.t(:update_producer_ok, scope: :edit_shop)
+           flash[:success] = I18n.t(:update_producer_ok, scope: :index_shopkeeper)
          else
-           flash[:success] = I18n.t(:update_ok, scope: :edit_shop)
+           flash[:success] = I18n.t(:update_ok, scope: :index_shopkeeper)
          end
 
          format.html { redirect_to edit_user_path(current_user, :user_info_edit_part => params[:user_info_edit_part]) }
        elsif (not current_user.shop.agb) && current_user.shop.update(sp)
-         flash[:success] = I18n.t(:update_agb_ok, scope: :edit_shop)
-         format.html { redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_shop) }
+         flash[:success] = I18n.t(:update_agb_ok, scope: :index_shopkeeper)
+         format.html { redirect_to edit_user_path(current_user, :user_info_edit_part => :index_shopkeeper) }
        else
         flash[:error] = current_user.shop.errors.full_messages.first
         format.html { redirect_to edit_user_path(current_user, :user_info_edit_part => params[:user_info_edit_part]) }
@@ -44,7 +54,7 @@ class ShopsController <  ApplicationController
     unless current_user.shop.agb
       params.require(:shop).permit(:shopname, :name, :desc, :logo, :banner, :seal0, :seal1, :seal2, :seal3, :philosophy, :stories, :tax_number, :ustid, :eroi, :min_total, :currency, :status, :founding_year, :register, :website, :agb, sales_channels:[] ).delocalize(delocalize_config)
     else
-      params.require(:shop).permit(:shopname, :name, :desc, :logo, :banner, :seal0, :seal1, :seal2, :seal3, :philosophy, :stories, :ustid, :eroi, :min_total, :currency, :status, :founding_year, :register, :website, sales_channels:[] ).delocalize(delocalize_config)
+      params.require(:shop).permit(:shopname, :name, :desc, :logo, :banner, :seal0, :seal1, :seal2, :seal3, :philosophy, :stories, :tax_number, :ustid, :eroi, :min_total, :currency, :status, :founding_year, :register, :website, sales_channels:[] ).delocalize(delocalize_config)
     end
   end
 end

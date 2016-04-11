@@ -41,7 +41,10 @@ Rails.application.routes.draw do
     match 'show_user_collections/:user_id',   via: [:get],    to: :show_user_collections,   as: :show_user,             :on => :collection
   end
 
-  resources :addresses, except: [:new, :edit]
+  resources :addresses, except: [:new, :edit] do
+    match :index_customer,      via: [:get],    to: :index_customer,      as: :index_customer,      :on => :member
+    match :index_shopkeeper,    via: [:get],    to: :index_shopkeeper,    as: :index_shopkeeper,    :on => :member
+  end
 
   resources :products, except: [:index, :new, :edit] do
     match 'remove_sku/:sku_id',                     via: [:delete], to: :remove_sku,                  as: :remove_sku,                  :on => :member
@@ -60,13 +63,18 @@ Rails.application.routes.draw do
     match 'search/:keyword',  via: [:get],    to: :search,            as: :search,              :on => :collection
     match :reset_password,    via: [:patch],  to: :reset_password,    as: :reset_password,      :on => :collection
 
+    match :edit_account,      via: [:get],    to: :edit_account,      as: :edit_account,        :on => :member
+    match :edit_personal,     via: [:get],    to: :edit_personal,     as: :edit_personal,       :on => :member
     match :follow,            via: [:patch],  to: :follow,            as: :follow,              :on => :member
     match :unfollow,          via: [:patch],  to: :unfollow,          as: :unfollow,            :on => :member
     match :get_followers,     via: [:get],    to: :get_followers,     as: :get_followers,       :on => :member
     match :get_following,     via: [:get],    to: :get_following,     as: :get_following,       :on => :member
   end
 
-  resources :shops, except: [:new, :edit, :create, :destroy]
+  resources :shops, except: [:new, :edit, :create, :destroy] do
+    match :edit_setting,    via: [:get],    to: :edit_setting,    as: :edit_setting,    :on => :member
+    match :edit_producer,   via: [:get],    to: :edit_producer,   as: :edit_producer,   :on => :member
+  end
 
   resources :shop_application, except: [:destroy] do
     match :is_registered,     via: [:get],    to: :registered?,       as: :is_registered,       :on => :collection

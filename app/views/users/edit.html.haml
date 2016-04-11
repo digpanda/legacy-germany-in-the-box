@@ -1,6 +1,0 @@
-- if current_user.role == :customer
-  = render partial: params[:user_info_edit_part] ? params[:user_info_edit_part] : :edit_account.to_s, layout: :edit_customer_layout.to_s
-- elsif current_user.role == :shopkeeper
-  = render partial: params[:user_info_edit_part] ? params[:user_info_edit_part] : :edit_account.to_s, layout: :edit_shopkeeper_layout.to_s
-- elsif current_user.role == :admin
-  = render partial: params[:user_info_edit_part] ? params[:user_info_edit_part] : :edit_account.to_s, layout: :edit_admin_layout.to_s

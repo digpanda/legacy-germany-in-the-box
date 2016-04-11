@@ -78,7 +78,7 @@ class ApplicationController < ActionController::Base
       if current_user.shop && (not current_user.shop.agb)
         edit_user_path(current_user, :user_info_edit_part => :edit_producer)
       else
-        edit_user_path(current_user, :user_info_edit_part => :edit_shop)
+        edit_user_path(current_user, :user_info_edit_part => :index_shopkeeper)
       end
     else
       root_path

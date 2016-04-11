@@ -4,7 +4,7 @@
     %span.caret
   %ul.dropdown-menu
     %li
-      %a{ :href => "#{ edit_user_path(current_user, :user_info_edit_part => :edit_account) }" }
+      %a{ :href => "#{ edit_account_user_path(current_user, :user_info_edit_part => :edit_account) }" }
         %i.fa.fa-key
         = I18n.t(:my_account, scope: :top_menu)
     %li

@@ -30,7 +30,7 @@ class MessagesControllerTest < ActionController::TestCase
   end
 
   test "should get edit" do
-    get :edit, id: @message
+    get :index_customer, id: @message
     assert_response :success
   end
 

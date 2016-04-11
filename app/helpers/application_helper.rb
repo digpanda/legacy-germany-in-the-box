@@ -37,4 +37,9 @@ module ApplicationHelper
   def get_uploaded_thumbnail_url(img)
     img ? (img.url ? img.url(:thumb) : nil) : nil
   end
+
+  # renders a given haml block inside a layout
+  def inside_layout(layout = 'application', &block)
+    render :inline => capture_haml(&block), :layout => "layouts/#{layout}"
+  end
 end

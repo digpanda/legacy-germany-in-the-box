@@ -6,7 +6,7 @@
           %h4= I18n.t(:shopkeeper_info, scope: :shop_application)
         .panel-body
           %dev.pull-right
-            %strong= I18n.t(:required_field_info, scope: :edit_shop)
+            %strong= I18n.t(:required_field_info, scope: :index_shopkeeper)
           %table.table.table-borderless
             %tbody
               %tr.form-group
@@ -18,57 +18,57 @@
                   %div.help-block.with-errors
               %tr.form-group
                 %td{width: '30%'}
-                  %label.required= I18n.t(:name, scope: :edit_shop)
+                  %label.required= I18n.t(:name, scope: :index_shopkeeper)
                 %td{width: '70%'}
-                  = f.text_field :name, :class => 'form-control', :required => true, :disabled => true, :maxLength => Rails.configuration.max_tiny_text_length, :placeholder => I18n.t(:company_name_placeholder, scope: :edit_shop)
+                  = f.text_field :name, :class => 'form-control', :required => true, :disabled => true, :maxLength => Rails.configuration.max_tiny_text_length, :placeholder => I18n.t(:company_name_placeholder, scope: :index_shopkeeper)
                   %div.help-block.with-errors
               %tr.form-group
-                %td{width: '30%', :title => I18n.t(:founding_year_info, scope: :edit_shop) }
-                  %i.fa.fa-info-circle{ :title => I18n.t(:founding_year_info, scope: :edit_shop) }
-                  %label.required= I18n.t(:founding_year, scope: :edit_shop)
+                %td{width: '30%', :title => I18n.t(:founding_year_info, scope: :index_shopkeeper) }
+                  %i.fa.fa-info-circle{ :title => I18n.t(:founding_year_info, scope: :index_shopkeeper) }
+                  %label.required= I18n.t(:founding_year, scope: :index_shopkeeper)
                 %td{width: '70%'}
                   = f.text_field :founding_year, :class => 'form-control', :required => true, :disabled => true, :pattern => '^(18|19|20)\d{2}$', :maxLength => 4, :placeholder => '2016'
                   %div.help-block.with-errors
               %tr.form-group
                 %td{width: '30%'}
-                  %label= I18n.t(:register, scope: :edit_shop)
+                  %label= I18n.t(:register, scope: :index_shopkeeper)
                 %td{width: '70%'}
                   = f.text_field :register, :class => 'form-control', :disabled => true, :maxLength => Rails.configuration.max_tiny_text_length, :placeholder => 'HRB 999999'
                   %div.help-block.with-errors
               %tr.form-group
-                %td{width: '30%', :title => I18n.t(:desc_info, scope: :edit_shop) }
-                  %i.fa.fa-info-circle{ :title => I18n.t(:desc_info, scope: :edit_shop) }
-                  %label.required= I18n.t(:desc, scope: :edit_shop)
+                %td{width: '30%', :title => I18n.t(:desc_info, scope: :index_shopkeeper) }
+                  %i.fa.fa-info-circle{ :title => I18n.t(:desc_info, scope: :index_shopkeeper) }
+                  %label.required= I18n.t(:desc, scope: :index_shopkeeper)
                 %td{width: '70%'}
                   = f.text_area :desc, :class => 'form-control', rows: 4, :required => true, :disabled => true, :maxLength => Rails.configuration.max_medium_text_length
                   %div.help-block.with-errors
               %tr.form-group
-                %td{width: '30%', :title => I18n.t(:philosophy_info, scope: :edit_shop) }
-                  %i.fa.fa-info-circle{ :title => I18n.t(:philosophy_info, scope: :edit_shop) }
-                  %label.required= I18n.t(:philosophy, scope: :edit_shop)
+                %td{width: '30%', :title => I18n.t(:philosophy_info, scope: :index_shopkeeper) }
+                  %i.fa.fa-info-circle{ :title => I18n.t(:philosophy_info, scope: :index_shopkeeper) }
+                  %label.required= I18n.t(:philosophy, scope: :index_shopkeeper)
                 %td{width: '70%'}
                   = f.text_area :philosophy, :class => 'form-control', rows: 4, :required => true, :disabled => true, :maxLength => Rails.configuration.max_medium_text_length
                   %div.help-block.with-errors
               %tr.form-group
-                %td{width: '30%', :title => I18n.t(:stories_info, scope: :edit_shop) }
-                  %i.fa.fa-info-circle{ :title => I18n.t(:stories_info, scope: :edit_shop) }
-                  %label= I18n.t(:stories, scope: :edit_shop)
+                %td{width: '30%', :title => I18n.t(:stories_info, scope: :index_shopkeeper) }
+                  %i.fa.fa-info-circle{ :title => I18n.t(:stories_info, scope: :index_shopkeeper) }
+                  %label= I18n.t(:stories, scope: :index_shopkeeper)
                 %td{width: '70%'}
                   = f.text_area :stories, :class => 'form-control', rows: 4, :disabled => true, :maxLength => Rails.configuration.max_long_text_length
                   %div.help-block.with-errors
               %tr.form-group
-                %td{width: '30%', :title => I18n.t(:uniqueness_info, scope: :edit_shop) }
-                  %i.fa.fa-info-circle{ :title => I18n.t(:uniqueness_info, scope: :edit_shop) }
-                  %label= I18n.t(:uniqueness, scope: :edit_shop)
+                %td{width: '30%', :title => I18n.t(:uniqueness_info, scope: :index_shopkeeper) }
+                  %i.fa.fa-info-circle{ :title => I18n.t(:uniqueness_info, scope: :index_shopkeeper) }
+                  %label= I18n.t(:uniqueness, scope: :index_shopkeeper)
                 %td{width: '70%'}= f.text_area :uniqueness, :class => 'form-control', rows: 4, :disabled => true, :maxLength => Rails.configuration.max_medium_text_length
               %tr.form-group
-                %td{width: '30%', :title => I18n.t(:german_essence_info, scope: :edit_shop) }
-                  %i.fa.fa-info-circle{ :title => I18n.t(:german_essence_info, scope: :edit_shop) }
-                  %label= I18n.t(:german_essence, scope: :edit_shop)
+                %td{width: '30%', :title => I18n.t(:german_essence_info, scope: :index_shopkeeper) }
+                  %i.fa.fa-info-circle{ :title => I18n.t(:german_essence_info, scope: :index_shopkeeper) }
+                  %label= I18n.t(:german_essence, scope: :index_shopkeeper)
                 %td{width: '70%'}= f.text_area :german_essence, :class => 'form-control', rows: 4, :disabled => true, :maxLength => Rails.configuration.max_medium_text_length
               %tr.form-group
                 %td{width: '30%'}
-                  %label= I18n.t(:website, scope: :edit_shop)
+                  %label= I18n.t(:website, scope: :index_shopkeeper)
                 %td{width: '70%'}= f.text_field :website, :class => 'form-control', :disabled => true, :maxLength => Rails.configuration.max_short_text_length, :placeholder => 'www.mydomain.com'
       .panel.panel-info
         .panel-heading.text-center

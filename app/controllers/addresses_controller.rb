@@ -4,6 +4,16 @@ class AddressesController < ApplicationController
 
   load_and_authorize_resource
 
+  def index_customer
+    @address = Address.new
+    render "index_#{current_user.role.to_s}", layout: "#{current_user.role.to_s}_sublayout"
+  end
+
+  def index_shopkeeper
+    @address = Address.new
+    render "index_#{current_user.role.to_s}", layout: "#{current_user.role.to_s}_sublayout"
+  end
+
   def index
     if current_user.role == :customer
       @addresses = current_user.addresses

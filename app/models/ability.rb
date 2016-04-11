@@ -31,8 +31,9 @@ class Ability
            :get_following], User, :status => true
 
       can [:create,
-           :edit,
-           :update], User, :id => user.id
+           :update,
+           :edit_account,
+           :edit_personal], User, :id => user.id
 
       can :manage, Order, :user => user
 
@@ -58,14 +59,13 @@ class Ability
       can [:like_collection,
            :dislike_collection], Collection
 
-      can [:create,
-           :index,
-           :update,
-           :destroy], Address, :user => user
+      can :manage, Address, :user => user
 
     elsif user.role == :shopkeeper
       can [:show,
-           :update], Shop, :shopkeeper => user
+           :update,
+           :edit_setting,
+           :edit_producer], Shop, :shopkeeper => user
 
       can [:list_popular_products,
            :get_sku_for_options,
@@ -95,10 +95,11 @@ class Ability
       can [:show,
            :follow,
            :get_followers,
-           :get_following], User, :status => true
+           :get_following,
+           :edit_account,
+           :edit_personal], User, :status => true
 
       can [:create,
-           :edit,
            :update], User, :id => user.id
 
       can [:index,

@@ -30,7 +30,7 @@ class PostsControllerTest < ActionController::TestCase
   end
 
   test "should get edit" do
-    get :edit, id: @post
+    get :index_customer, id: @post
     assert_response :success
   end
 

@@ -39,6 +39,14 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  def edit_account
+    render :edit_account, layout: "#{current_user.role.to_s}_sublayout"
+  end
+
+  def edit_personal
+    render :edit_personal, layout: "#{current_user.role.to_s}_sublayout"
+  end
+
   def edit
     if params[:user_info_edit_part] == :edit_address.to_s
       @address = Address.new
@@ -46,8 +54,8 @@ class UsersController < ApplicationController
       @address = Address.new
     elsif params[:user_info_edit_part] == :edit_producer.to_s
       @shop = current_user.shop
-    elsif params[:user_info_edit_part] == :edit_shop.to_s
-      @shop = current_user.shop
+    elsif params[:user_info_edit_part] == :index_shopkeeper.to_s
+     # @shop = current_user.shop
     elsif params[:user_info_edit_part] == :edit_product_update.to_s
       @product = current_user.shop.products.find(params[:product_id])
     elsif params[:user_info_edit_part] == :edit_product_new.to_s

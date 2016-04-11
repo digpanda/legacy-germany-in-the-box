@@ -30,7 +30,7 @@ class BrandsControllerTest < ActionController::TestCase
   end
 
   test "should get edit" do
-    get :edit, id: @brand
+    get :index_customer, id: @brand
     assert_response :success
   end
 

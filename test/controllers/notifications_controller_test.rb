@@ -30,7 +30,7 @@ class NotificationsControllerTest < ActionController::TestCase
   end
 
   test "should get edit" do
-    get :edit, id: @notification
+    get :index_customer, id: @notification
     assert_response :success
   end
 

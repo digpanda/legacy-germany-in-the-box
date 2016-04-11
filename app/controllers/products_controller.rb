@@ -12,6 +12,7 @@ class ProductsController < ApplicationController
 
   load_and_authorize_resource
 
+
   def like_product
     current_user.dCollection = Collection.create( :name => :default, :user => current_user ) unless current_user.dCollection
     current_user.dCollection.products.push(@product) unless current_user.dCollection.products.find(@product)
