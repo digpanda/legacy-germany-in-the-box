@@ -4,14 +4,9 @@ class AddressesController < ApplicationController
 
   load_and_authorize_resource
 
-  def index_customer
+  def show_addresses
     @address = Address.new
-    render "index_#{current_user.role.to_s}", layout: "#{current_user.role.to_s}_sublayout"
-  end
-
-  def index_shopkeeper
-    @address = Address.new
-    render "index_#{current_user.role.to_s}", layout: "#{current_user.role.to_s}_sublayout"
+    render "show_#{current_user.role.to_s}_addresses", layout: "#{current_user.role.to_s}_sublayout"
   end
 
   def index

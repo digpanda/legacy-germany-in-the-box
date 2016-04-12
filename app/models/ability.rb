@@ -54,7 +54,8 @@ class Ability
            :destroy,
            :show_liked_by_me,
            :show_my_collections,
-           :dislike_collection], Collection, :user => user
+           :dislike_collection,
+           :show_collections], Collection, :user => user
 
       can [:like_collection,
            :dislike_collection], Collection

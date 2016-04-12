@@ -14,6 +14,10 @@ class CollectionsController < ApplicationController
 
   load_and_authorize_resource
 
+  def show_collections
+    render "show_#{current_user.role.to_s}_collections", layout: "#{current_user.role.to_s}_sublayout"
+  end
+
   def search
     @collections = Collection.is_active.is_public.or({desc: /.*#{params[:keyword]}.*/i}, {name: /.*#{params[:keyword]}.*/i}).limit(Rails.configuration.limit_for_collections_search)
 
@@ -209,9 +213,11 @@ class CollectionsController < ApplicationController
 
   def new
     @collection = Collection.new
+    render "new_#{current_user.role.to_s}_collection", layout: "#{current_user.role.to_s}_sublayout"
   end
 
   def edit
+    render "edit_#{current_user.role.to_s}_collection", layout: "#{current_user.role.to_s}_sublayout"
   end
 
   def create
@@ -225,14 +231,14 @@ class CollectionsController < ApplicationController
         if @collection.save
           format.html {
             flash[:success] = I18n.t(:create_ok, scope: :edit_collection_new)
-            redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_collection )
+            redirect_to show_collections_user_path(current_user, :user_info_edit_part => :edit_collection )
           }
 
           format.json { render json: { status: :ok, collection_id: @collection.id }, status: :ok }
         else
           format.html {
             flash[:error] = I18n.t(:create_ko, scope: :edit_collection_new)
-            redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_collection_new )
+            redirect_to new_collection_user_path(current_user, :user_info_edit_part => :edit_collection_new )
           }
 
           format.json { render json: { status: :ko, msg: @collection.errors.full_messages.first }, status: :unprocessable_entity }
@@ -242,7 +248,7 @@ class CollectionsController < ApplicationController
       respond_to do |format|
         format.html {
           flash[:error] = I18n.t(:create_with_existing_name, scope: :edit_collection_new)
-          redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_collection_new )
+          redirect_to new_collection_user_path(current_user, :user_info_edit_part => :edit_collection_new )
         }
 
         format.json { render json: { status: :ko, msg: I18n.t(:create_with_existing_name, scope: :edit_collection_new) }, status: :unprocessable_entity }
@@ -258,14 +264,14 @@ class CollectionsController < ApplicationController
         if @collection.update(collection_params)
           format.html {
             flash[:success] = I18n.t(:update_ok, scope: :edit_collection)
-            redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_collection)
+            redirect_to show_collections_user_path(current_user, :user_info_edit_part => :edit_collection)
           }
 
           format.json { render json: { status: :ok }, status: :ok }
         else
           format.html {
             flash[:error] = I18n.t(:update_ko, scope: :edit_collection)
-            redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_collection_update, :collection_id => params[:id] )
+            redirect_to edit_collection_user_path(@collection, :user_info_edit_part => :edit_collection_update)
           }
 
           format.json { render json: { status: :ko }, status: :unprocessable_entity }
@@ -275,7 +281,7 @@ class CollectionsController < ApplicationController
       respond_to do |format|
         format.html {
           flash[:error] = I18n.t(:update_with_existing_name, scope: :edit_collection)
-          redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_collection_update, :collection_id => params[:id] )
+          redirect_to edit_collection_user_path(@collection, :user_info_edit_part => :edit_collection_update)
         }
 
         format.json { render json: { status: :ko }, status: :unprocessable_entity }
@@ -286,7 +292,7 @@ class CollectionsController < ApplicationController
   def destroy
     if @collection && @collection.destroy
       respond_to do |format|
-        format.html { redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_collection) }
+        format.html { redirect_to show_collections_user_path(current_user, :user_info_edit_part => :edit_collection) }
         format.json { render json: { status: :ok }, status: :ok }
       end
     else

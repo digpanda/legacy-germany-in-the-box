@@ -42,8 +42,6 @@ Rails.application.routes.draw do
   end
 
   resources :addresses, except: [:new, :edit] do
-    match :index_customer,      via: [:get],    to: :index_customer,      as: :index_customer,      :on => :member
-    match :index_shopkeeper,    via: [:get],    to: :index_shopkeeper,    as: :index_shopkeeper,    :on => :member
   end
 
   resources :products, except: [:index, :new, :edit] do
@@ -69,6 +67,11 @@ Rails.application.routes.draw do
     match :unfollow,          via: [:patch],  to: :unfollow,          as: :unfollow,            :on => :member
     match :get_followers,     via: [:get],    to: :get_followers,     as: :get_followers,       :on => :member
     match :get_following,     via: [:get],    to: :get_following,     as: :get_following,       :on => :member
+
+    match :show_addresses,    via: [:get],    to: :show_addresses,    :controller => :addresses,      as: :show_addresses,      :on => :member
+    match :show_collections,  via: [:get],    to: :show_collections,  :controller => :collections,    as: :show_collections,    :on => :member
+    match :new_collection,    via: [:get],    to: :new,               :controller => :collections,    as: :new_collection,      :on => :member
+    match :edit_collection,   via: [:get],    to: :edit,              :controller => :collections,    as: :edit_collection,     :on => :member
   end
 
   resources :shops, except: [:new, :edit, :create, :destroy] do

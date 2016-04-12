@@ -54,7 +54,7 @@ class UsersController < ApplicationController
       @address = Address.new
     elsif params[:user_info_edit_part] == :edit_producer.to_s
       @shop = current_user.shop
-    elsif params[:user_info_edit_part] == :index_shopkeeper.to_s
+    elsif params[:user_info_edit_part] == :edit_shop.to_s
      # @shop = current_user.shop
     elsif params[:user_info_edit_part] == :edit_product_update.to_s
       @product = current_user.shop.products.find(params[:product_id])

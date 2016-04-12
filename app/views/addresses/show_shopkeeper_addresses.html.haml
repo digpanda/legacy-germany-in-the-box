@@ -18,7 +18,7 @@
     .form-group
       .form-inline
         .form-group
-          = f.text_field :zip, :class => 'form-control', :placeholder => I18n.t(:zip, scope: :edit_address), :required => true, :pattern => '^(?!01000|99999)(0[1-9]\d{3}|[1-9]\d{4})$', :style => 'width:88px', :placeholder => '63628'
+          = f.text_field :zip, :class => 'form-control', :placeholder => I18n.t(:zip, scope: :edit_address), :required => true, :pattern => '^(?!01000|99999)(0[1-9]\d{3}|[1-9]\d{4})$', :style => 'width:88px'
         .form-group
           = f.text_field :city, class: 'form-control', :placeholder => I18n.t(:city, scope: :edit_address), :required => true, :style => 'width:248px'
       = f.text_field :country, :class => 'form-control', :value => 'Deutschland', :readonly => true
@@ -63,7 +63,7 @@
         .form-group
           .form-inline
             .form-group
-              = f.text_field :zip, :class => 'form-control', :placeholder => I18n.t(:zip, scope: :edit_address), :required => true, :pattern => '^(?!01000|99999)(0[1-9]\d{3}|[1-9]\d{4})$', :style => 'width:88px', :placeholder => '63628'
+              = f.text_field :zip, :class => 'form-control', :placeholder => I18n.t(:zip, scope: :edit_address), :required => true, :pattern => '^(?!01000|99999)(0[1-9]\d{3}|[1-9]\d{4})$', :style => 'width:88px'
             .form-group
               = f.text_field :city, class: 'form-control', :placeholder => I18n.t(:city, scope: :edit_address), :required => true, :style => 'width:248px'
           = f.text_field :country, :class => 'form-control', :value => 'Deutschland', :readonly => true

@@ -32,21 +32,21 @@
       .tabbable
         %ul#myTab.nav.nav-tabs
           %li.active
-            %a{"data-toggle" => "tab", :href => "#tab-1", :title => I18n.t(:philosophy_info, scope: :index_shopkeeper) }
-              %i.fa.fa-info{ :title => I18n.t(:philosophy_info, scope: :index_shopkeeper) }
-              = I18n.t(:philosophy, scope: :index_shopkeeper)
+            %a{"data-toggle" => "tab", :href => "#tab-1", :title => I18n.t(:philosophy_info, scope: :edit_shop) }
+              %i.fa.fa-info{ :title => I18n.t(:philosophy_info, scope: :edit_shop) }
+              = I18n.t(:philosophy, scope: :edit_shop)
           %li
-            %a{"data-toggle" => "tab", :href => "#tab-2", :title => I18n.t(:stories_info, scope: :index_shopkeeper)}
-              %i.fa.fa-info{ :title => I18n.t(:stories_info, scope: :index_shopkeeper) }
-              = I18n.t(:stories, scope: :index_shopkeeper)
+            %a{"data-toggle" => "tab", :href => "#tab-2", :title => I18n.t(:stories_info, scope: :edit_shop)}
+              %i.fa.fa-info{ :title => I18n.t(:stories_info, scope: :edit_shop) }
+              = I18n.t(:stories, scope: :edit_shop)
           %li
-            %a{"data-toggle" => "tab", :href => "#tab-3", :title => I18n.t(:uniqueness_info, scope: :index_shopkeeper) }
-              %i.fa.fa-info{ :title => I18n.t(:uniqueness_info, scope: :index_shopkeeper) }
-              = I18n.t(:uniqueness, scope: :index_shopkeeper)
+            %a{"data-toggle" => "tab", :href => "#tab-3", :title => I18n.t(:uniqueness_info, scope: :edit_shop) }
+              %i.fa.fa-info{ :title => I18n.t(:uniqueness_info, scope: :edit_shop) }
+              = I18n.t(:uniqueness, scope: :edit_shop)
           %li
-            %a{"data-toggle" => "tab", :href => "#tab-3", :title => I18n.t(:german_essence_info, scope: :index_shopkeeper) }
-              %i.fa.fa-info{ :title => I18n.t(:german_essence_info, scope: :index_shopkeeper) }
-              = I18n.t(:german_essence, scope: :index_shopkeeper)
+            %a{"data-toggle" => "tab", :href => "#tab-3", :title => I18n.t(:german_essence_info, scope: :edit_shop) }
+              %i.fa.fa-info{ :title => I18n.t(:german_essence_info, scope: :edit_shop) }
+              = I18n.t(:german_essence, scope: :edit_shop)
         .tab-content
           #tab-1.tab-pane.fade.in.active
             = @shop.philosophy
