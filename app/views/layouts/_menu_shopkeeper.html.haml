@@ -18,7 +18,7 @@
           %i.fa.fa-thumbs-up
           = I18n.t(:my_shop, scope: :top_menu)
         %li
-          %a{ :href => "#{ edit_user_path(current_user, :user_info_edit_part => :edit_product) }" }
+          %a{ :href => "#{ show_products_user_path(current_user, :user_info_edit_part => :edit_product) }" }
             %i.fa.fa-gift
             = I18n.t(:my_product, scope: :top_menu)
         %li

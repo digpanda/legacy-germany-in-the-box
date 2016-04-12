@@ -6,13 +6,11 @@ class ProductsController < ApplicationController
 
   before_action :set_product, only: [:show, :edit, :update, :destroy, :get_sku_for_options, :remove_sku, :remove_option]
 
-  before_action { @show_search_area = true }
-
   before_action :authenticate_user!, except: [:autocomplete_product_name, :list_popular_products, :search, :show, :get_sku_for_options]
 
   load_and_authorize_resource
 
-  def shop_products
+  def show_products
     render :show_products, layout: "#{current_user.role.to_s}_sublayout"
   end
 
@@ -151,6 +149,7 @@ class ProductsController < ApplicationController
 
   def list_popular_products
     @products = Product.is_active.where(:name => /.*10 Blatt Seidenpapier ♥ Panda ♥.*/i).paginate(:pages => (params[:pages] ? params[:pages].to_i : 1), :per_page => Rails.configuration.limit_for_popular_products);
+    @show_search_area = true
 
     #@products = get_popular_proudcts_from_cache.paginate(:page => (params[:page] ? params[:page].to_i : 1), :per_page => Rails.configuration.limit_for_popular_products)
 
