@@ -21,7 +21,8 @@ class UsersController < ApplicationController
 
   def reset_password
     @user.update(user_params)
-    redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_shops)
+
+    redirect_to edit_account_user_path(current_user, :user_info_edit_part => :edit_shops)
   end
 
   def index
@@ -52,54 +53,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    if params[:user_info_edit_part] == :edit_address.to_s
-      @address = Address.new
-    elsif params[:user_info_edit_part] == :edit_shop_address.to_s
-      @address = Address.new
-    elsif params[:user_info_edit_part] == :edit_producer.to_s
-      @shop = current_user.shop
-    elsif params[:user_info_edit_part] == :edit_shop.to_s
-     # @shop = current_user.shop
-    elsif params[:user_info_edit_part] == :edit_product_update.to_s
-      @product = current_user.shop.products.find(params[:product_id])
-    elsif params[:user_info_edit_part] == :edit_product_new.to_s
-      @product = current_user.shop.products.build
-      @product.shop = current_user.shop
-    elsif params[:user_info_edit_part] == :edit_product_detail.to_s
-      @product = current_user.shop.products.find(params[:product_id])
-    elsif params[:user_info_edit_part] == :edit_product_detail_clone.to_s
-      @product = current_user.shop.products.find(params[:product_id])
-      @src = @product.skus.find(params[:sku_id])
-      @sku = @product.skus.build(@src.attributes.except(:_id, :img0, :img1, :img2, :img3))
-      CopyCarrierwaveFile::CopyFileService.new(@src, @sku, :img0).set_file if @src.img0.url
-      CopyCarrierwaveFile::CopyFileService.new(@src, @sku, :img1).set_file if @src.img1.url
-      CopyCarrierwaveFile::CopyFileService.new(@src, @sku, :img2).set_file if @src.img2.url
-      CopyCarrierwaveFile::CopyFileService.new(@src, @sku, :img3).set_file if @src.img3.url
-      @sku.save
-    elsif params[:user_info_edit_part] == :edit_product_detail_new.to_s
-      @product = current_user.shop.products.find(params[:product_id])
-      @sku = @product.skus.build
-    elsif params[:user_info_edit_part] == :edit_product_detail_update.to_s
-      @product = current_user.shop.products.find(params[:product_id])
-      @sku = @product.skus.find(params[:sku_id])
-    elsif params[:user_info_edit_part] == :edit_product_variant.to_s
-      @product = current_user.shop.products.find(params[:product_id])
-    elsif params[:user_info_edit_part] == :edit_product_variant_new.to_s
-      @product = current_user.shop.products.find(params[:product_id])
-      @variant = @product.options.build
-    elsif params[:user_info_edit_part] == :edit_product_variant_update.to_s
-      @product = current_user.shop.products.find(params[:product_id])
-      @variant = @product.options.find(params[:variant_id]) if params[:variant_id]
-      if params[:option_id]
-        @suboption = @variant.suboptions.find(params[:option_id])
-      else
-        @suboption = @variant.suboptions.build
-      end
-    elsif params[:user_info_edit_part] == :edit_collection_new.to_s
-      @collection = Collection.new
-    elsif params[:user_info_edit_part] == :edit_collection_update.to_s
-      @collection = current_user.oCollections.find(params[:collection_id])
-    elsif params[:user_info_edit_part] == :edit_shop_applications.to_s
+    if params[:user_info_edit_part] == :edit_shop_applications.to_s
       @applications = ShopApplication.all
     elsif params[:user_info_edit_part] == :edit_shops.to_s
       @shops = Shop.where(:shopkeeper.ne => nil)

@@ -4,14 +4,53 @@ class ProductsController < ApplicationController
 
   include FunctionCache
 
-  before_action :set_product, only: [:show, :edit, :update, :destroy, :get_sku_for_options, :remove_sku, :remove_option]
+  before_action :set_product, only: [:show, :edit, :update, :destroy, :get_sku_for_options, :remove_sku, :remove_option, :new_sku]
 
   before_action :authenticate_user!, except: [:autocomplete_product_name, :list_popular_products, :search, :show, :get_sku_for_options]
 
   load_and_authorize_resource
 
+  def new
+    @product = current_user.shop.products.build
+    @product.shop = current_user.shop
+
+    render :new_product, layout: "#{current_user.role.to_s}_sublayout"
+  end
+
+  def new_sku
+    @sku = @product.skus.build
+
+    render :new_sku, layout: "#{current_user.role.to_s}_sublayout"
+  end
+
+  def edit
+    render :edit_product, layout: "#{current_user.role.to_s}_sublayout"
+  end
+
+  def edit_sku
+    @sku = @product.skus.find(params[:sku_id])
+
+    render :edit_sku, layout: "#{current_user.role.to_s}_sublayout"
+  end
+
+  def clone_sku
+    @src = @product.skus.find(params[:sku_id])
+    @sku = @product.skus.build(@src.attributes.except(:_id, :img0, :img1, :img2, :img3))
+    CopyCarrierwaveFile::CopyFileService.new(@src, @sku, :img0).set_file if @src.img0.url
+    CopyCarrierwaveFile::CopyFileService.new(@src, @sku, :img1).set_file if @src.img1.url
+    CopyCarrierwaveFile::CopyFileService.new(@src, @sku, :img2).set_file if @src.img2.url
+    CopyCarrierwaveFile::CopyFileService.new(@src, @sku, :img3).set_file if @src.img3.url
+    @sku.save
+
+    render :clone_sku, layout: "#{current_user.role.to_s}_sublayout"
+  end
+
   def show_products
     render :show_products, layout: "#{current_user.role.to_s}_sublayout"
+  end
+
+  def show_skus
+    render :show_skus, layout: "#{current_user.role.to_s}_sublayout"
   end
 
   def like_product
@@ -52,7 +91,8 @@ class ProductsController < ApplicationController
 
   def remove_sku
     @product.skus.find(params[:sku_id]).delete
-    redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_product_detail, :product_id => @product.id)
+
+    redirect_to show_skus_user_path(@product.id, :user_info_edit_part => :edit_product_detail)
   end
 
   def remove_variant
@@ -71,7 +111,7 @@ class ProductsController < ApplicationController
       end
     end
 
-    redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_product_update, :product_id => @product.id)
+    redirect_to edit_product_user_path(@product.id, :user_info_edit_part => :edit_product_update)
   end
 
   def remove_option
@@ -89,7 +129,7 @@ class ProductsController < ApplicationController
       end
     end
 
-    redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_product_update, :product_id => @product.id)
+    redirect_to edit_product_user_path(@product.id, :user_info_edit_part => :edit_product_update)
   end
 
   def get_sku_for_options
@@ -180,12 +220,12 @@ class ProductsController < ApplicationController
 
         format.html {
           flash[:success] = I18n.t(:create_ok, scope: :edit_product_new)
-          redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_product)
+          redirect_to show_products_user_path(current_user, :user_info_edit_part => :edit_product)
         }
       else
         format.html {
           flash[:error] = @product.errors.full_messages.first
-          redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_product_new )
+          redirect_to new_product_user_path(current_user, :user_info_edit_part => :edit_product_new )
         }
       end
     end
@@ -205,19 +245,19 @@ class ProductsController < ApplicationController
 
           if params[:part] == :basic.to_s
             flash[:success] = I18n.t(:update_ok, scope: :edit_product)
-            redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_product)
+            redirect_to show_products_user_path(current_user, :user_info_edit_part => :edit_product)
           elsif params[:part] == :sku.to_s
             flash[:success] = I18n.t(:update_ok, scope: :edit_product_detail)
-            redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_product_detail, :product_id => @product.id)
+            redirect_to edit_product_user_path(@product.id, :user_info_edit_part => :edit_product_detail)
           elsif params[:part] == :variant.to_s
             flash[:success] = I18n.t(:update_ok, scope: :edit_product_variant)
-            redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_product_variant, :product_id => @product.id)
+            redirect_to edit_product_user_path(@product.id, :user_info_edit_part => :edit_product_variant)
           end
         }
       else
         format.html {
           flash[:error] = @product.errors.full_messages.first
-          redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_product_update, :product_id => @product.id )
+          redirect_to edit_product_user_path(@product.id, :user_info_edit_part => :edit_product_update)
         }
       end
     end
@@ -231,12 +271,12 @@ class ProductsController < ApplicationController
 
         format.html {
           flash[:success] = I18n.t(:delete_ok, scope: :edit_product)
-          redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_product)
+          redirect_to show_products_user_path(current_user, :user_info_edit_part => :edit_product)
         }
       else
         format.html {
           flash[:error] = @product.errors.full_messages.first
-          redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_product)
+          redirect_to show_products_user_path(current_user, :user_info_edit_part => :edit_product)
         }
       end
     end

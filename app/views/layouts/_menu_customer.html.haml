@@ -1,5 +1,5 @@
 %li.dropdown
-  %a{ 'data-toggle' => 'dropdown', :href => "#{ edit_user_path current_user }", :title => "#{I18n.t(:user_profile, scope: :top_menu)}"}
+  %a{ 'data-toggle' => 'dropdown', :href => '#'}
     = image_tag (current_user.pic.url.nil? ? 'icons/default_user_pic.png' : current_user.pic.url) , :style => 'width:24px;height:24px'
     %span.caret
   %ul.dropdown-menu

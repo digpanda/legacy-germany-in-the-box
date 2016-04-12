@@ -84,9 +84,15 @@ class Ability
            :remove_variant,
            :update,
            :destroy,
-           :show_products], Product, :shop => { :shopkeeper => user }
+           :show_products,
+           :edit_product,
+           :show_skus,
+           :edit_sku,
+           :clone_sku], Product, :shop => { :shopkeeper => user }
 
-      can [:create], Product
+      can [:new,
+           :create,
+           :new_sku], Product
 
       can [:show_products,
            :list_products], Category

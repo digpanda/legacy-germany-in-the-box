@@ -35,13 +35,27 @@ class ShopsController <  ApplicationController
            flash[:success] = I18n.t(:update_ok, scope: :edit_shop)
          end
 
-         format.html { redirect_to edit_user_path(current_user, :user_info_edit_part => params[:user_info_edit_part]) }
+         format.html {
+           if :edit_shop.to_s ==  params[:user_info_edit_part]
+             redirect_to edit_setting_shop_path(current_user, :user_info_edit_part => :edit_shop)
+           elsif :edit_producer.to_s == params[:user_info_edit_part]
+             redirect_to edit_producer_shop_path(current_user, :user_info_edit_part => :edit_producer)
+           end
+         }
        elsif (not current_user.shop.agb) && current_user.shop.update(sp)
          flash[:success] = I18n.t(:update_agb_ok, scope: :edit_shop)
-         format.html { redirect_to edit_user_path(current_user, :user_info_edit_part => :edit_shop) }
+
+         format.html { redirect_to edit_setting_shop_path(current_user, :user_info_edit_part => :edit_shop) }
        else
         flash[:error] = current_user.shop.errors.full_messages.first
-        format.html { redirect_to edit_user_path(current_user, :user_info_edit_part => params[:user_info_edit_part]) }
+
+        format.html {
+          if :edit_shop.to_s ==  params[:user_info_edit_part]
+            redirect_to edit_setting_shop_path(current_user, :user_info_edit_part => :edit_shop)
+          elsif :edit_producer.to_s == params[:user_info_edit_part]
+            redirect_to edit_producer_shop_path(current_user, :user_info_edit_part => :edit_producer)
+          end
+        }
       end
     end   
   end

@@ -46,7 +46,7 @@ Rails.application.routes.draw do
   resources :addresses, except: [:new, :edit] do
   end
 
-  resources :products, except: [:index, :new, :edit] do
+  resources :products, except: [:index, :edit] do
     match 'remove_sku/:sku_id',                     via: [:delete], to: :remove_sku,                  as: :remove_sku,                  :on => :member
     match 'remove_variant/:variant_id',             via: [:delete], to: :remove_variant,              as: :remove_variant,              :on => :member
     match 'remove_option/:variant_id/:option_id',   via: [:delete], to: :remove_option,               as: :remove_option,               :on => :member
@@ -75,8 +75,14 @@ Rails.application.routes.draw do
     match :show_addresses,    via: [:get],    to: :show_addresses,    :controller => :addresses,      as: :show_addresses,      :on => :member
     match :show_collections,  via: [:get],    to: :show_collections,  :controller => :collections,    as: :show_collections,    :on => :member
     match :show_products,     via: [:get],    to: :show_products,     :controller => :products,       as: :show_products,       :on => :member
+    match :show_skus,         via: [:get],    to: :show_skus,         :controller => :products,       as: :show_skus,           :on => :member
     match :new_collection,    via: [:get],    to: :new,               :controller => :collections,    as: :new_collection,      :on => :member
     match :edit_collection,   via: [:get],    to: :edit,              :controller => :collections,    as: :edit_collection,     :on => :member
+    match :new_product,       via: [:get],    to: :new,               :controller => :products,       as: :new_product,         :on => :member
+    match :edit_product,      via: [:get],    to: :edit,              :controller => :products,       as: :edit_product,        :on => :member
+    match :new_sku,           via: [:get],    to: :new_sku,           :controller => :products,       as: :new_sku,             :on => :member
+    match :edit_sku,          via: [:get],    to: :edit_sku,          :controller => :products,       as: :edit_sku,            :on => :member
+    match :clone_sku,         via: [:get],    to: :clone_sku,         :controller => :products,       as: :clone_sku,           :on => :member
   end
 
   resources :shops, except: [:new, :edit, :create, :destroy] do
