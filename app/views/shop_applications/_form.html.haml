@@ -23,7 +23,7 @@
   .col-md-1
   .col-md-10
     - unless params[:finished]
-      = form_for :shop_application, html: {'data-toggle': 'validator'} do |f|
+      = form_for @shop_application, html: {'data-toggle': 'validator'} do |f|
         .panel-group
           .panel.panel-info
             .panel-heading.text-center
@@ -39,7 +39,7 @@
                     %i.fa.fa-info-circle{ :title => I18n.t(:email_info, scope: :shop_application) }
                     %label.required= I18n.t(:email, scope: :shop_application)
                   .col-md-9
-                    = f.email_field :email, :class => 'form-control', :required => true, 'data-remote' => "#{is_registered_shop_application_index_url}", 'data-remote-error': I18n.t(:duplicated_email, scope: :shop_application), :maxLength => Rails.configuration.max_tiny_text_length, :placeholder => 'example@google.com'
+                    = f.email_field :email, :class => 'form-control', :required => true, 'data-remote' => "#{is_registered_shop_applications_path}", 'data-remote-error': I18n.t(:duplicated_email, scope: :shop_application), :maxLength => Rails.configuration.max_tiny_text_length, :placeholder => 'example@google.com'
                     %div.help-block.with-errors
               .form-group
                 .row

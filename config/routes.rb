@@ -13,13 +13,15 @@ Rails.application.routes.draw do
   mount ChinaCity::Engine => '/china_city'
 
   root to: 'pages#home'
-  
-  get '/pages/agb', to: 'pages#agb'
-  get '/pages/privacy', to: 'pages#privacy'
-  get '/pages/imprint', to: 'pages#imprint'
-  get '/pages/saleguide', to: 'pages#saleguide'
-  get '/pages/fees', to: 'pages#fees'
 
+  resource :page do
+    match :agb,         via: [:get],    to: :agb,         as: :agb
+    match :privacy,     via: [:get],    to: :privacy,     as: :privacy
+    match :imprint,     via: [:get],    to: :imprint,     as: :imprint
+    match :saleguide,   via: [:get],    to: :saleguide,   as: :saleguide
+    match :fees,        via: [:get],    to: :fees,        as: :fees
+    match :home,        via: [:get],    to: :home,        as: :home
+  end
 
   get '/set_session_locale/:locale', to: 'application#set_session_locale', as: 'set_session_locale'
 
@@ -80,7 +82,7 @@ Rails.application.routes.draw do
     match :edit_producer,   via: [:get],    to: :edit_producer,   as: :edit_producer,   :on => :member
   end
 
-  resources :shop_application, except: [:destroy] do
+  resources :shop_applications, except: [:edit, :update] do
     match :is_registered,     via: [:get],    to: :registered?,       as: :is_registered,       :on => :collection
   end
 
@@ -98,9 +100,6 @@ Rails.application.routes.draw do
     match :list_products,   via: [:get],    to: :list_products,               as: :list_products,     :on => :member
     match :show_products,   via: [:get],    to: :show_products,               as: :show_products_in,  :on => :member
   end
-
-  #resources :docs, only: :show do
- #   get "/docs/:doc" => "docs#show"
 
 end
 

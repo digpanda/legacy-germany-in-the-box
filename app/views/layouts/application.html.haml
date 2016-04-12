@@ -356,24 +356,23 @@
         .col-xs-6.col-sm-4.col-md-2.col-md-offset-1
           %h4= I18n.t(:rheinmanufaktur, scope: :footer)
           -if user_signed_in? && current_user.role == :shopkeeper
-            %h5=link_to I18n.t(:terms_conditions, scope: :footer), '/pages/agb', :target => 'blank'
-            %h5=link_to I18n.t(:privarcy_statement, scope: :footer), '/pages/privacy', :target => 'blank'
-            %h5=link_to I18n.t(:imprint, scope: :footer), '/pages/imprint', :target => 'blank'
+            %h5=link_to I18n.t(:terms_conditions, scope: :footer), agb_page_path, :target => 'blank'
+            %h5=link_to I18n.t(:privarcy_statement, scope: :footer), privacy_page_path, :target => 'blank'
+            %h5=link_to I18n.t(:imprint, scope: :footer), imprint_page_path, :target => 'blank'
             -#%h5=link_to I18n.t(:guidelines, scope: :footer), '#', :style => 'color: gray; text-decoration: underline'
             -#%h5=link_to I18n.t(:press_portal, scope: :footer), '#'
             -#%h5=link_to I18n.t(:career, scope: :footer), '#', :style => 'color: gray; text-decoration: underline'
           - elsif I18n.locale == :'zh-CN' or (current_user && current_user.role == :customer)
             %h5=link_to I18n.t(:vouchers, scope: :footer), '#'
           - elsif I18n.locale == :de
-            %h5=link_to I18n.t(:privarcy_statement, scope: :footer), '/pages/privacy', :target => 'blank'
-            %h5=link_to I18n.t(:imprint, scope: :footer), '/pages/imprint', :target => 'blank'
+            %h5=link_to I18n.t(:privarcy_statement, scope: :footer), privacy_page_path, :target => 'blank'
+            %h5=link_to I18n.t(:imprint, scope: :footer), imprint_page_path, :target => 'blank'
 
         .col-xs-6.col-sm-4.col-md-2.col-md-offset-1
           - if user_signed_in? && current_user.role == :shopkeeper
             %h4= I18n.t(:selling, scope: :footer)
-            %h5=link_to I18n.t(:shop_application, scope: :shop_application), '/shop_application'
-            %h5=link_to I18n.t(:sell_on_rm, scope: :footer), '/pages/saleguide', :target => 'blank'
-            %h5=link_to I18n.t(:fees_invoices, scope: :footer), '/pages/fees', :target => 'blank'
+            %h5=link_to I18n.t(:sell_on_rm, scope: :footer), saleguide_page_path, :target => 'blank'
+            %h5=link_to I18n.t(:fees_invoices, scope: :footer), fees_page_path, :target => 'blank'
             -#%h5=link_to I18n.t(:seller_faq, scope: :footer), '#'
           - elsif I18n.locale == :'zh-CN' or (current_user && current_user.role == :customer)
             %h4= I18n.t(:buying, scope: :footer)
@@ -382,8 +381,8 @@
             %h5=link_to I18n.t(:vouchers, scope: :footer), '#'
           - elsif I18n.locale == :de
             %h4= I18n.t(:selling, scope: :footer)
-            %h5=link_to I18n.t(:shop_application, scope: :shop_application), '/shop_application'
-            %h5=link_to I18n.t(:sell_on_rm, scope: :footer), '/pages/saleguide', :target => 'blank'
+            %h5=link_to I18n.t(:shop_application, scope: :shop_application), new_shop_application_path
+            %h5=link_to I18n.t(:sell_on_rm, scope: :footer), saleguide_page_path, :target => 'blank'
 
 
             

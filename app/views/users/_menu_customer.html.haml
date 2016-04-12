@@ -4,15 +4,15 @@
     %span.caret
   %ul.dropdown-menu
     %li
-      %a{ :href => "#{ edit_account_user_path(:user_info_edit_part => :edit_account) }" }
+      %a{ :href => "#{ edit_account_user_path(current_user, :user_info_edit_part => :edit_account) }" }
         %i.fa.fa-key
         = I18n.t(:my_account, scope: :top_menu)
     %li
-      %a{ :href => "#{ edit_personal_user_path(:user_info_edit_part => :edit_personal) }" }
+      %a{ :href => "#{ edit_personal_user_path(current_user, :user_info_edit_part => :edit_personal) }" }
         %i.fa.fa-user
         = I18n.t(:my_personal, scope: :top_menu)
     %li
-      %a{ :href => "#{ show_addresses_user_path(:user_info_edit_part => :edit_address) }" }
+      %a{ :href => "#{ show_addresses_user_path(current_user, :user_info_edit_part => :edit_address) }" }
         %i.fa.fa-globe
         = I18n.t(:my_address, scope: :top_menu)
     %li
@@ -20,11 +20,11 @@
         %i.fa.fa-university
         = I18n.t(:my_bank, scope: :top_menu)
     %li
-      %a{ :href => "#{ show_orders_user_path(:user_info_edit_part => :edit_order) }" }
+      %a{ :href => "#{ show_orders_user_path(current_user, :user_info_edit_part => :edit_order) }" }
         %i.fa.fa-truck
         = I18n.t(:my_order, scope: :top_menu)
     %li
-      %a{ :href => "#{ show_collections_user_path(:user_info_edit_part => :edit_collection) }" }
+      %a{ :href => "#{ show_collections_user_path(current_user, :user_info_edit_part => :edit_collection) }" }
         %i.fa.fa-eye
         = I18n.t(:my_collection, scope: :top_menu)
     %li
