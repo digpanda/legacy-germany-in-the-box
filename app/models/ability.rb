@@ -83,7 +83,8 @@ class Ability
            :remove_option,
            :remove_variant,
            :update,
-           :destroy], Product, :shop => { :shopkeeper => user }
+           :destroy,
+           :show_products], Product, :shop => { :shopkeeper => user }
 
       can [:create], Product
 

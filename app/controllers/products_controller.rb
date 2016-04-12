@@ -12,6 +12,9 @@ class ProductsController < ApplicationController
 
   load_and_authorize_resource
 
+  def shop_products
+    render :show_products, layout: "#{current_user.role.to_s}_sublayout"
+  end
 
   def like_product
     current_user.dCollection = Collection.create( :name => :default, :user => current_user ) unless current_user.dCollection
