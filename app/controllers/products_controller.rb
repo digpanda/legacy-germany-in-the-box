@@ -117,7 +117,7 @@ class ProductsController < ApplicationController
   def autocomplete_product_name
     respond_to do |format|
       format.json {
-        render :json => get_products_for_autocompletion(params[:term], params[:page] ? params[:page].to_i : 1), :status => :ok
+        render :json => get_products_for_autocompletion(params[:term], params[:pages] ? params[:pages].to_i : 1), :status => :ok
       }
     end
   end
@@ -132,7 +132,7 @@ class ProductsController < ApplicationController
 
     @products = tags_product_ids + products_product_ids + categories_product_ids + brands_product_ids
     @products = @products.compact.uniq
-    @products = @products.compact.uniq.paginate( :page => (params[:page] ? params[:page].to_i : 1), :per_page => Rails.configuration.limit_for_products_search)
+    @products = @products.compact.uniq.paginate( :pages => (params[:pages] ? params[:pages].to_i : 1), :per_page => Rails.configuration.limit_for_products_search)
 
     respond_to do |format|
       format.html {
@@ -147,7 +147,7 @@ class ProductsController < ApplicationController
   end
 
   def list_popular_products
-    @products = Product.is_active.where(:name => /.*10 Blatt Seidenpapier ♥ Panda ♥.*/i).paginate(:page => (params[:page] ? params[:page].to_i : 1), :per_page => Rails.configuration.limit_for_popular_products);
+    @products = Product.is_active.where(:name => /.*10 Blatt Seidenpapier ♥ Panda ♥.*/i).paginate(:pages => (params[:pages] ? params[:pages].to_i : 1), :per_page => Rails.configuration.limit_for_popular_products);
 
     #@products = get_popular_proudcts_from_cache.paginate(:page => (params[:page] ? params[:page].to_i : 1), :per_page => Rails.configuration.limit_for_popular_products)
 

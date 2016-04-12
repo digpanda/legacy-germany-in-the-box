@@ -11,7 +11,7 @@ class CategoryController < ApplicationController
   load_and_authorize_resource
 
   def show_products
-    @products = @category.products.paginate( :page => (params[:page] ? params[:page].to_i : 1), :per_page => Rails.configuration.limit_for_products_search)
+    @products = @category.products.paginate( :pages => (params[:pages] ? params[:pages].to_i : 1), :per_page => Rails.configuration.limit_for_products_search)
     @categories_and_children, @categories_and_counters = get_category_values_for_left_menu(@products)
 
     respond_to do |format|

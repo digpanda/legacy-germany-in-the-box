@@ -1,7 +1,7 @@
 require "uri"
 require "net/http"
 
-class ShopApplicationController < ApplicationController
+class ShopApplicationsController < ApplicationController
 
   before_action :authenticate_user!, except: [:index, :new, :create, :registered?]
 
@@ -13,6 +13,7 @@ class ShopApplicationController < ApplicationController
   end
 
   def new
+    @shop_application = ShopApplication.new
   end
 
   def create
@@ -41,7 +42,7 @@ class ShopApplicationController < ApplicationController
       flash[:error] = @shop_application.errors.full_messages.first
     end
 
-    redirect_to shop_application_index_path(:finished => true)
+    redirect_to new_shop_application_path(:finished => true)
   end
 
   def index
