@@ -68,6 +68,7 @@ Rails.application.routes.draw do
     match :get_followers,     via: [:get],    to: :get_followers,     as: :get_followers,       :on => :member
     match :get_following,     via: [:get],    to: :get_following,     as: :get_following,       :on => :member
 
+    match :show_orders,       via: [:get],    to: :show_orders,       :controller => :orders,         as: :show_orders,         :on => :member
     match :show_addresses,    via: [:get],    to: :show_addresses,    :controller => :addresses,      as: :show_addresses,      :on => :member
     match :show_collections,  via: [:get],    to: :show_collections,  :controller => :collections,    as: :show_collections,    :on => :member
     match :new_collection,    via: [:get],    to: :new,               :controller => :collections,    as: :new_collection,      :on => :member

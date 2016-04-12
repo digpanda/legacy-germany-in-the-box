@@ -5,16 +5,16 @@
   %ul.dropdown-menu
     - if current_user.shop && current_user.shop.agb
       %li
-        %a{ :href => "#{ edit_account_user_path(current_user, :user_info_edit_part => :edit_account) }" }
+        %a{ :href => "#{ edit_account_user_path(:user_info_edit_part => :edit_account) }" }
           %i.fa.fa-key
           = I18n.t(:my_account, scope: :top_menu)
     %li
-      %a{ :href => "#{ edit_producer_shop_path(current_user, :user_info_edit_part => :edit_producer) }" }
+      %a{ :href => "#{ edit_producer_shop_path(:user_info_edit_part => :edit_producer) }" }
         %i.fa.fa-info-circle
         = I18n.t(:my_producer, scope: :top_menu)
     - if current_user.shop && current_user.shop.agb
       %li
-        %a{ :href => "#{ edit_setting_shop_path(current_user, :user_info_edit_part => :edit_shop) }" }
+        %a{ :href => "#{ edit_setting_shop_path(:user_info_edit_part => :edit_shop) }" }
           %i.fa.fa-thumbs-up
           = I18n.t(:my_shop, scope: :top_menu)
         %li
@@ -22,13 +22,9 @@
             %i.fa.fa-gift
             = I18n.t(:my_product, scope: :top_menu)
         %li
-          %a{ :href => "#{ show_addresses_user_path(current_user, :user_info_edit_part => :edit_shop_address) }" }
+          %a{ :href => "#{ show_addresses_user_path(:user_info_edit_part => :edit_shop_address) }" }
             %i.fa.fa-globe
             = I18n.t(:my_address, scope: :top_menu)
-        -#%li
-        -#  %a{ :href => "#{ edit_user_path(current_user, :user_info_edit_part => :edit_collection) }" }
-        -#    %i.fa.fa-eye
-        -#    = I18n.t(:my_collection, scope: :top_menu)
     %li
       %a{ :href => "#{ signout_path }", :'data-method' => :delete }
         %i.fa.fa-sign-out
