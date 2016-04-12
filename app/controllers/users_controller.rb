@@ -47,6 +47,10 @@ class UsersController < ApplicationController
     render :edit_personal, layout: "#{current_user.role.to_s}_sublayout"
   end
 
+  def edit_bank
+    render :edit_bank, layout: "#{current_user.role.to_s}_sublayout"
+  end
+
   def edit
     if params[:user_info_edit_part] == :edit_address.to_s
       @address = Address.new

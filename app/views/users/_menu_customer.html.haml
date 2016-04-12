@@ -16,7 +16,7 @@
         %i.fa.fa-globe
         = I18n.t(:my_address, scope: :top_menu)
     %li
-      %a{ :href => "#{ edit_user_path(current_user, :user_info_edit_part => :edit_bank) }" }
+      %a{ :href => "#{ edit_bank_user_path(current_user, :user_info_edit_part => :edit_bank) }" }
         %i.fa.fa-university
         = I18n.t(:my_bank, scope: :top_menu)
     %li

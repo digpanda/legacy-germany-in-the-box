@@ -65,6 +65,7 @@ Rails.application.routes.draw do
 
     match :edit_account,      via: [:get],    to: :edit_account,      as: :edit_account,        :on => :member
     match :edit_personal,     via: [:get],    to: :edit_personal,     as: :edit_personal,       :on => :member
+    match :edit_bank,         via: [:get],    to: :edit_bank,         as: :edit_bank,           :on => :member
     match :follow,            via: [:patch],  to: :follow,            as: :follow,              :on => :member
     match :unfollow,          via: [:patch],  to: :unfollow,          as: :unfollow,            :on => :member
     match :get_followers,     via: [:get],    to: :get_followers,     as: :get_followers,       :on => :member

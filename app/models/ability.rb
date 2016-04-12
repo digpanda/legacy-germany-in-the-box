@@ -33,7 +33,8 @@ class Ability
       can [:create,
            :update,
            :edit_account,
-           :edit_personal], User, :id => user.id
+           :edit_personal,
+           :edit_bank], User, :id => user.id
 
       can :manage, Order, :user => user
 
