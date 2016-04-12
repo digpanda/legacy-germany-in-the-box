@@ -1,0 +1,11 @@
+.col-md-3
+  %aside.sidebar-left
+    %ul.nav.nav-pills.nav-stacked.nav-arrow
+      %li{:class => params[:user_info_edit_part] ? (params[:user_info_edit_part] == :edit_account.to_s ? 'active' : '') : 'active'}
+        =link_to I18n.t(:my_account, scope: :top_menu),  edit_user_path(current_user, :user_info_edit_part => :edit_account)
+      %li{:class => params[:user_info_edit_part] == :edit_shop_applications.to_s ? 'active' : ''}
+        =link_to I18n.t(:shop_applications, scope: :top_menu),  show_applications_shop_applications_path(:user_info_edit_part => :edit_shop_applications)
+      %li{:class => params[:user_info_edit_part] == :edit_shops.to_s ? 'active' : ''}
+        =link_to I18n.t(:shops, scope: :top_menu),  show_shops_shop_applications_path(:user_info_edit_part => :edit_shops)
+.col-md-9
+  = yield

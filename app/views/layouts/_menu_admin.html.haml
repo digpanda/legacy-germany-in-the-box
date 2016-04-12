@@ -4,15 +4,15 @@
     %span.caret
   %ul.dropdown-menu
     %li
-      %a{ :href => "#{ edit_user_path(current_user, :user_info_edit_part => :edit_account) }" }
+      %a{ :href => "#{ edit_account_user_path(current_user, :user_info_edit_part => :edit_account) }" }
         %i.fa.fa-key
         = I18n.t(:my_account, scope: :top_menu)
     %li
-      %a{ :href => "#{ edit_user_path(current_user, :user_info_edit_part => :edit_shop_applications) }" }
+      %a{ :href => "#{ show_applications_shop_applications_path(:user_info_edit_part => :edit_shop_applications) }" }
         %i.fa.fa-thumbs-up
         = I18n.t(:shop_applications, scope: :top_menu)
     %li
-      %a{ :href => "#{ edit_user_path(current_user, :user_info_edit_part => :edit_shops) }" }
+      %a{ :href => "#{ show_shops_shop_applications_path(:user_info_edit_part => :edit_shops) }" }
         %i.fa.fa-thumbs-up
         = I18n.t(:shops, scope: :top_menu)
     %li

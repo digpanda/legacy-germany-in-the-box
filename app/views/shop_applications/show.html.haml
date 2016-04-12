@@ -14,7 +14,7 @@
                   %i.fa.fa-info-circle{ :title => I18n.t(:email_info, scope: :shop_application) }
                   %label.required= I18n.t(:email, scope: :shop_application)
                 %td{width: '70%'}
-                  = f.email_field :email, :class => 'form-control', :disabled => true, :required => true, 'data-remote' => "#{is_registered_shop_application_index_url}", 'data-remote-error': I18n.t(:duplicated_email, scope: :shop_application), :maxLength => Rails.configuration.max_tiny_text_length, :placeholder => 'example@google.com'
+                  = f.email_field :email, :class => 'form-control', :disabled => true, :required => true, 'data-remote-error': I18n.t(:duplicated_email, scope: :shop_application), :maxLength => Rails.configuration.max_tiny_text_length, :placeholder => 'example@google.com'
                   %div.help-block.with-errors
               %tr.form-group
                 %td{width: '30%'}

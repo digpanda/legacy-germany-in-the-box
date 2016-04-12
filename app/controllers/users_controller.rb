@@ -21,8 +21,8 @@ class UsersController < ApplicationController
 
   def reset_password
     @user.update(user_params)
-
-    redirect_to edit_account_user_path(current_user, :user_info_edit_part => :edit_shops)
+    flash[:success] = I18n.t(:update_password_ok, scope: :edit_personal)
+    redirect_to request.referer
   end
 
   def index
@@ -53,11 +53,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    if params[:user_info_edit_part] == :edit_shop_applications.to_s
-      @applications = ShopApplication.all
-    elsif params[:user_info_edit_part] == :edit_shops.to_s
-      @shops = Shop.where(:shopkeeper.ne => nil)
-    elsif params[:user_info_edit_part] == :edit_password_by_admin.to_s
+    if params[:user_info_edit_part] == :edit_password_by_admin.to_s
       @user = User.find(params[:user_id])
     end
   end

@@ -1,0 +1,2 @@
+- if current_user.role == :admin
+  = render partial: params[:user_info_edit_part] ? params[:user_info_edit_part] : :edit_account.to_s, layout: 'layouts/admin_sublayout'

@@ -71,18 +71,18 @@ Rails.application.routes.draw do
     match :get_followers,     via: [:get],    to: :get_followers,     as: :get_followers,       :on => :member
     match :get_following,     via: [:get],    to: :get_following,     as: :get_following,       :on => :member
 
-    match :show_orders,       via: [:get],    to: :show_orders,       :controller => :orders,         as: :show_orders,         :on => :member
-    match :show_addresses,    via: [:get],    to: :show_addresses,    :controller => :addresses,      as: :show_addresses,      :on => :member
-    match :show_collections,  via: [:get],    to: :show_collections,  :controller => :collections,    as: :show_collections,    :on => :member
-    match :show_products,     via: [:get],    to: :show_products,     :controller => :products,       as: :show_products,       :on => :member
-    match :show_skus,         via: [:get],    to: :show_skus,         :controller => :products,       as: :show_skus,           :on => :member
-    match :new_collection,    via: [:get],    to: :new,               :controller => :collections,    as: :new_collection,      :on => :member
-    match :edit_collection,   via: [:get],    to: :edit,              :controller => :collections,    as: :edit_collection,     :on => :member
-    match :new_product,       via: [:get],    to: :new,               :controller => :products,       as: :new_product,         :on => :member
-    match :edit_product,      via: [:get],    to: :edit,              :controller => :products,       as: :edit_product,        :on => :member
-    match :new_sku,           via: [:get],    to: :new_sku,           :controller => :products,       as: :new_sku,             :on => :member
-    match :edit_sku,          via: [:get],    to: :edit_sku,          :controller => :products,       as: :edit_sku,            :on => :member
-    match :clone_sku,         via: [:get],    to: :clone_sku,         :controller => :products,       as: :clone_sku,           :on => :member
+    match :show_orders,       via: [:get],    to: :show_orders,       :controller => :orders,             as: :show_orders,         :on => :member
+    match :show_addresses,    via: [:get],    to: :show_addresses,    :controller => :addresses,          as: :show_addresses,      :on => :member
+    match :show_collections,  via: [:get],    to: :show_collections,  :controller => :collections,        as: :show_collections,    :on => :member
+    match :show_products,     via: [:get],    to: :show_products,     :controller => :products,           as: :show_products,       :on => :member
+    match :show_skus,         via: [:get],    to: :show_skus,         :controller => :products,           as: :show_skus,           :on => :member
+    match :new_collection,    via: [:get],    to: :new,               :controller => :collections,        as: :new_collection,      :on => :member
+    match :edit_collection,   via: [:get],    to: :edit,              :controller => :collections,        as: :edit_collection,     :on => :member
+    match :new_product,       via: [:get],    to: :new,               :controller => :products,           as: :new_product,         :on => :member
+    match :edit_product,      via: [:get],    to: :edit,              :controller => :products,           as: :edit_product,        :on => :member
+    match :new_sku,           via: [:get],    to: :new_sku,           :controller => :products,           as: :new_sku,             :on => :member
+    match :edit_sku,          via: [:get],    to: :edit_sku,          :controller => :products,           as: :edit_sku,            :on => :member
+    match :clone_sku,         via: [:get],    to: :clone_sku,         :controller => :products,           as: :clone_sku,           :on => :member
   end
 
   resources :shops, except: [:new, :edit, :create, :destroy] do
@@ -91,7 +91,9 @@ Rails.application.routes.draw do
   end
 
   resources :shop_applications, except: [:edit, :update] do
-    match :is_registered,     via: [:get],    to: :registered?,       as: :is_registered,       :on => :collection
+    match :is_registered,     via: [:get],  to: :registered?,         as: :is_registered,       :on => :collection
+    match :show_applications, via: [:get],  to: :show_applications,   as: :show_applications,   :on => :collection
+    match :show_shops,        via: [:get],  to: :show_shops,          as: :show_shops,          :on => :collection
   end
 
   resources :orders, only: [:destroy, :show] do

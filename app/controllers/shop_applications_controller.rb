@@ -5,11 +5,22 @@ class ShopApplicationsController < ApplicationController
 
   before_action :authenticate_user!, except: [:index, :new, :create, :registered?]
 
-  before_action :set_locale
+  before_action :set_locale, except: [:show_applications, :show, :show_shops]
 
   before_action :set_shop_application, only: [:show]
 
+  def show_applications
+    @applications = ShopApplication.all
+    render :show_applications, layout: "#{current_user.role.to_s}_sublayout"
+  end
+
+  def show_shops
+    @shops = Shop.all
+    render :show_shops, layout: "#{current_user.role.to_s}_sublayout"
+  end
+
   def show
+    render :show, layout: "#{current_user.role.to_s}_sublayout"
   end
 
   def new
@@ -66,7 +77,7 @@ class ShopApplicationsController < ApplicationController
   end
 
   def set_locale
-    I18n.locale = :de
+    I18n.locale = :de unless current_user
   end
 
   def set_shop_application
