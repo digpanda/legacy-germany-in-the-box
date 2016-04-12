@@ -159,12 +159,7 @@
                         %i.fa.fa-heart
                         = for_device_type :desktop do I18n.t(:my_collection, scope: :top_menu) end
                 - if current_user
-                  - if current_user.role == :customer
-                    = render 'users/menu_customer'
-                  - elsif current_user.role == :shopkeeper
-                    = render 'users/menu_shopkeeper'
-                  - elsif current_user.role == :admin
-                    = render 'users/menu_admin'
+                  = render "users/menu_#{current_user.role}"
                 - if I18n.locale == :'zh-CN' or (current_user && current_user.role == :customer)
                   %li.dropdown
                     %a{:href => '#', 'data-toggle' => 'dropdown',  :title => "#{I18n.t(:language, scope: :top_menu)}" }
