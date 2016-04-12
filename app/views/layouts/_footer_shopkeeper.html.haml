@@ -1,0 +1,37 @@
+%footer.main
+  .footer-top-area
+    .container
+      .row.row-wrap
+        .col-xs-6.col-sm-2.col-md-2
+          %a{:href => '#'}
+            = image_tag  'icons/Logo_RM_g.png'
+          %h5{ :style => 'padding-top:25px; color:#565a5c' }=I18n.t(:contact_us, scope: :footer)
+          %h5=link_to 'shop@rhein-manufaktur.eu', 'mailto:shop@rhein-manufaktur.eu', :style => 'color:#49d2be'
+
+        .col-xs-6.col-sm-4.col-md-4
+          %h4= I18n.t(:recent_news, scope: :footer)
+          %ul.thumb-list
+            %li
+              .thumb-list-item-caption
+                %p.thumb-list-item-meta 13-01-2016
+                %h5.thumb-list-item-title
+                  %a{:href => '#'}= I18n.t(:news_ihk_titel, scope: :footer)
+                %p.thumb-list-item-desciption= I18n.t(:news_ihk, scope: :footer).html_safe
+
+        .col-xs-6.col-sm-4.col-md-2.col-md-offset-1
+          %h4= I18n.t(:rheinmanufaktur, scope: :footer)
+          %h5=link_to I18n.t(:terms_conditions, scope: :footer), agb_page_path, :target => 'blank'
+          %h5=link_to I18n.t(:privarcy_statement, scope: :footer), privacy_page_path, :target => 'blank'
+          %h5=link_to I18n.t(:imprint, scope: :footer), imprint_page_path, :target => 'blank'
+
+        .col-xs-6.col-sm-4.col-md-2.col-md-offset-1
+          %h4= I18n.t(:selling, scope: :footer)
+          %h5=link_to I18n.t(:sell_on_rm, scope: :footer), saleguide_page_path, :target => 'blank'
+          %h5=link_to I18n.t(:fees_invoices, scope: :footer), fees_page_path, :target => 'blank'
+
+  .footer-copyright
+    .container
+      .row
+        .col-md-4
+          %p= I18n.t(:copyright, scope: :footer)
+        .col-md-6.col-md-offset-2
