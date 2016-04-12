@@ -1,0 +1,30 @@
+%nav{:class => "#{for_device_type :desktop do 'navbar-fixed-top' end}" }
+  .container
+    - for_device_type :desktop do
+      %a.shared_header_logo{:href => "#{root_path}"}
+        = image_tag  'icons/Logo_gate_L.png', :style => 'width:46px;height:46px'
+  %header.main
+    .container
+      .row
+        .col-md-6
+          #flexnav-menu-button.flexnav-menu-button
+            - for_device_type :tablet, :mobile do
+              %a.shared_header_logo_mobile{:href => "#{root_path}"}
+                = image_tag  'icons/Logo_Gate_M.png', :style => 'width:20px;height:20px'
+        .col-md-6
+          %ul.login-register
+            = render 'layouts/menu_admin'
+            %li.dropdown
+              %a{:href => '#', 'data-toggle' => 'dropdown',  :title => "#{I18n.t(:language, scope: :top_menu)}" }
+                %i.fa.fa-language
+                = for_device_type :desktop do I18n.t(:language, scope: :top_menu) end
+                %span.caret
+              %ul.dropdown-menu
+                %li
+                  = link_to I18n.t(:chinese, scope: :top_menu), set_session_locale_path(:'zh-CN')
+                %li
+                  = link_to I18n.t(:german, scope: :top_menu),  set_session_locale_path(:de)
+
+- for_device_type :tablet, :mobile do
+  .row{ :style => 'height: 30px' }
+

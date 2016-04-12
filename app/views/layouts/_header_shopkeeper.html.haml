@@ -1,0 +1,17 @@
+%nav{:class => "#{for_device_type :desktop do 'navbar-fixed-top' end}" }
+  .container
+    - for_device_type :desktop do
+      %a.shared_header_logo{:href => "#{root_path}"}
+        = image_tag  'icons/Logo_gate_L.png', :style => 'width:46px;height:46px'
+  %header.main
+    .container
+      .row
+        .col-md-6
+          #flexnav-menu-button.flexnav-menu-button
+            - for_device_type :tablet, :mobile do
+              %a.shared_header_logo_mobile{:href => "#{root_path}"}
+                = image_tag  'icons/Logo_Gate_M.png', :style => 'width:20px;height:20px'
+        .col-md-6
+          %ul.login-register
+            - if current_user
+              = render 'layouts/menu_shopkeeper'

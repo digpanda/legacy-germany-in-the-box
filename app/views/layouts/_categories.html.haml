@@ -1,0 +1,26 @@
+%ul#flexnav.hidden-xs.nav.nav-pills.flexnav{'data-breakpoint' => '800'}
+  %li{:class => params[:top_menu_active_part] ? (params[:top_menu_active_part] == :home ? 'active' : '') : 'active'}
+    %a{:href => "#{root_path}"}= I18n.t(:start, scope: :top_menu)
+  - get_root_level_categories_from_cache().each do |rc|
+    %li{:class => params[:top_menu_active_part] == :fashion ? 'active' : ''}
+      %a{:href => '#'}= rc.get_locale_name
+      %ul
+        - get_first_level_categories_from_cache(rc).each do |fc|
+          %li
+            - if get_second_level_categories_from_cache(fc).count > 0
+              %a{:href => '#'}= fc.get_locale_name
+              %ul
+                - get_second_level_categories_from_cache(fc).each do |sc|
+                  %li
+                    %a{:href => "#{show_products_in_category_path(sc.id)}"}= sc.get_locale_name
+            - else
+              %a{:href => "#{show_products_in_category_path(fc.id)}" }= fc.get_locale_name
+  %li{:class => params[:top_menu_active_part] == :product ? 'active' : ''}
+    =link_to I18n.t(:popular_product, scope: :top_menu), list_popular_products_path
+  - for_device_type :tablet, :mobile do
+    %li
+      = form_tag search_products_path, :method => :get, :id => 'search_products_form', :class => 'form-group' do
+        %label
+          %i.fa.fa-search
+          %span= I18n.t(:search_prompt, scope: :popular_products)
+        =text_field_tag :products_search_keyword, params[:products_search_keyword], :placeholder => "#{ I18n.t(:search_placeholder, scope: :popular_products) }", :class => 'form-control'

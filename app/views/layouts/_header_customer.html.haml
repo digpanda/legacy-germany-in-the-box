@@ -1,0 +1,60 @@
+%nav{:class => "#{for_device_type :desktop do 'navbar-fixed-top' end}" }
+.container
+  - for_device_type :desktop do
+    %a.shared_header_logo{:href => "#{root_path}"}
+      = image_tag  'icons/Logo_gate_L.png', :style => 'width:46px;height:46px'
+%header.main
+  .container
+    .row
+      .col-md-6
+        #flexnav-menu-button.flexnav-menu-button
+          - for_device_type :tablet, :mobile do
+            %a.shared_header_logo_mobile{:href => "#{root_path}"}
+              = image_tag  'icons/Logo_Gate_M.png', :style => 'width:20px;height:20px'
+
+        = render 'layouts/categories'
+
+      .col-md-6
+        %ul.login-register
+          %li.shopping-cart
+            %a{:href => "#{manage_cart_orders_path}", :title => "#{I18n.t(:my_cart, scope: :top_menu)}"}
+              %i.fa.fa-shopping-cart
+              = for_device_type :desktop do I18n.t(:my_cart, scope: :top_menu) end
+              %span.numberCircle= total_number_of_products
+            .shopping-cart-box
+              -if total_number_of_products > 0
+                - current_orders.each do |s, o|
+                  %ul.shopping-cart-items
+                    - o.order_items.each do |i|
+                      %li
+                        %a{:href => "#{manage_cart_orders_path}" }
+                          = image_tag get_uploaded_thumbnail_url(i.sku.img0)
+                          %h5= i.product.name
+                          %span.shopping-cart-item-price= "Subtotal: $#{i.sku.price * i.quantity}"
+              -else
+                %ul.list-inline.text-center
+                  %li
+                    %a{:href => "#{manage_cart_orders_path}"}
+                      %i
+                      = I18n.t(:empty_cart, scope: :top_menu)
+
+          %li
+            %a{:href => "#{show_collections_user_path(current_user, :user_info_edit_part => :edit_collection)}",  :title => "#{I18n.t(:my_collection, scope: :top_menu)}"}
+              %i.fa.fa-heart
+              = for_device_type :desktop do I18n.t(:my_collection, scope: :top_menu) end
+
+          = render 'layouts/menu_customer'
+
+          %li.dropdown
+            %a{:href => '#', 'data-toggle' => 'dropdown',  :title => "#{I18n.t(:language, scope: :top_menu)}" }
+              %i.fa.fa-language
+              = for_device_type :desktop do I18n.t(:language, scope: :top_menu) end
+              %span.caret
+            %ul.dropdown-menu
+              %li
+                = link_to I18n.t(:chinese, scope: :top_menu), set_session_locale_path(:'zh-CN')
+              %li
+                = link_to I18n.t(:german, scope: :top_menu),  set_session_locale_path(:de)
+
+- if @show_search_area.present? and @show_search_area
+  =yield :search_area
