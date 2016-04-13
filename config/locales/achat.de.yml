@@ -306,7 +306,7 @@ de:
     sales_channel: Link oder Name
     website: Homepage
     agb: Allgemeine Geschäftsbedingungen
-    agb_statement: Hiermit versichere ich, dass ich die <a href='/pages/agb' target='blank'>AGB</a> der DigPanda GmbH komplett gelesen habe und ich mit den Inhalten dieser AGB einverstanden bin. 
+    agb_statement: Hiermit versichere ich, dass ich die <a href='/page/agb' target='blank'>AGB</a> der DigPanda GmbH komplett gelesen habe und ich mit den Inhalten dieser AGB einverstanden bin. 
     required_field_info: '* Pflichtfeld'
     company_name_placeholder: 'Beispiel GmbH'
     shopname: Shopname
