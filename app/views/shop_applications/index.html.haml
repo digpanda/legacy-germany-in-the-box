@@ -11,7 +11,7 @@
           %td= link_to a.email, shop_application_path(a)
           %td= a.name
           %td= a.code[0,8]
-          %td= a.c_at
+          %td= a.c_at.strftime('%a, %d %b %Y %H:%M:%S')
 - else
   %h4= I18n.t(:no_applications, scope: :shop_application)
 
