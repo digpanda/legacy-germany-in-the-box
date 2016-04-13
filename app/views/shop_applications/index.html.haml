@@ -1,10 +1,11 @@
 - if @applications.count > 0
   %table.table.cart-table
     %thead
-      %th= I18n.t(:email, scope: :shop_application)
+      %th= I18n.t(:email, scope: :edit_shop_application)
       %th= I18n.t(:name, scope: :edit_shop)
-      %th= I18n.t(:password, scope: :shop_application)
-      %th= I18n.t(:application_timestamp, scope: :shop_application)
+      %th= I18n.t(:password, scope: :edit_shop_application)
+      %th= I18n.t(:application_timestamp, scope: :edit_shop_application)
+      %th= I18n.t(:operations, scope: :edit_shop_applications)
     %tbody
       - @applications.each do |a|
         %tr
@@ -12,6 +13,8 @@
           %td= a.name
           %td= a.code[0,8]
           %td= a.c_at.strftime('%a, %d %b %Y %H:%M:%S')
+          %td= link_to '', shop_application_path(a), :method => :delete, data: { confirm: I18n.t(:delete_application_message, scope: :edit_shop_applications) }, :class => 'fa fa-times-circle fa-2x', :title => I18n.t(:remove, scope: :edit_shop_applications)
+
 - else
-  %h4= I18n.t(:no_applications, scope: :shop_application)
+  %h4= I18n.t(:no_applications, scope: :edit_shop_application)
 

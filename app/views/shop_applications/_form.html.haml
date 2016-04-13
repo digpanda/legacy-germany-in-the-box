@@ -25,7 +25,7 @@
     .panel-group
       .panel.panel-info
         .panel-heading.text-center
-          %h4= I18n.t(:shopkeeper_info, scope: :shop_application)
+          %h4= I18n.t(:shopkeeper_info, scope: :edit_shop_application)
         .panel-body
           .form-group
             .row
@@ -33,11 +33,11 @@
                 %strong= I18n.t(:required_field_info, scope: :edit_shop)
           .form-group
             .row
-              .col-md-3{ :title => I18n.t(:email_info, scope: :shop_application) }
-                %i.fa.fa-info-circle{ :title => I18n.t(:email_info, scope: :shop_application) }
-                %label.required= I18n.t(:email, scope: :shop_application)
+              .col-md-3{ :title => I18n.t(:email_info, scope: :edit_shop_application) }
+                %i.fa.fa-info-circle{ :title => I18n.t(:email_info, scope: :edit_shop_application) }
+                %label.required= I18n.t(:email, scope: :edit_shop_application)
               .col-md-9
-                = f.email_field :email, :class => 'form-control', :required => true, 'data-remote' => "#{is_registered_shop_applications_path}", 'data-remote-error': I18n.t(:duplicated_email, scope: :shop_application), :maxLength => Rails.configuration.max_tiny_text_length, :placeholder => 'example@google.com'
+                = f.email_field :email, :class => 'form-control', :required => true, 'data-remote' => "#{is_registered_shop_applications_path}", 'data-remote-error': I18n.t(:duplicated_email, scope: :edit_shop_application), :maxLength => Rails.configuration.max_tiny_text_length, :placeholder => 'example@google.com'
                 %div.help-block.with-errors
           .form-group
             .row
@@ -117,43 +117,43 @@
         .panel-body
       .panel.panel-info
         .panel-heading.text-center
-          %h4= I18n.t(:contact_person_info, scope: :shop_application)
+          %h4= I18n.t(:contact_person_info, scope: :edit_shop_application)
         .panel-body
           .row
             .col-md-6
               .form-group
-                = f.label :fname, I18n.t(:contact_fname, scope: :shop_application), :class => 'required'
+                = f.label :fname, I18n.t(:contact_fname, scope: :edit_shop_application), :class => 'required'
                 = f.text_field :fname, :class => 'form-control', :maxLength => Rails.configuration.max_tiny_text_length, :required => true
             .col-md-6
               .form-group
-                = f.label :lname, I18n.t(:contact_lname, scope: :shop_application), :class => 'required'
+                = f.label :lname, I18n.t(:contact_lname, scope: :edit_shop_application), :class => 'required'
                 = f.text_field :lname, :class => 'form-control', :maxLength => Rails.configuration.max_tiny_text_length, :required => true
           .row
             .col-md-6
               .form-group
-                = f.label :function, I18n.t(:contact_function, scope: :shop_application)
+                = f.label :function, I18n.t(:contact_function, scope: :edit_shop_application)
                 = f.text_field :function, :class => 'form-control', :maxLength => Rails.configuration.max_short_text_length
             .col-md-6
               .form-group
-                = f.label :mail, I18n.t(:contact_email, scope: :shop_application), :class => 'required'
+                = f.label :mail, I18n.t(:contact_email, scope: :edit_shop_application), :class => 'required'
                 = f.email_field :mail, :class => 'form-control', :maxLength => Rails.configuration.max_short_text_length, :placeholder => 'example@google.com', :required => true
                 %div.help-block.with-errors
           .row
             .col-md-6
               .form-group
-                = f.label :tel, I18n.t(:contact_tel, scope: :shop_application), :class => 'required'
+                = f.label :tel, I18n.t(:contact_tel, scope: :edit_shop_application), :class => 'required'
                 = f.text_field :tel, :class => 'form-control', :maxLength => Rails.configuration.max_tiny_text_length, :required => true, :pattern => '^(((((((00|\+)49[ \-/]?)|0)[1-9][0-9]{1,4})[ \-/]?)|((((00|\+)49\()|\(0)[1-9][0-9]{1,4}\)[ \-/]?))[0-9]{1,7}([ \-/]?[0-9]{1,5})?)$', :placeholder => '+49(89)123456'
                 %div.help-block.with-errors
             .col-md-6
               .form-group
-                = f.label :mobile, I18n.t(:contact_mobile, scope: :shop_application)
+                = f.label :mobile, I18n.t(:contact_mobile, scope: :edit_shop_application)
                 = f.text_field :mobile, :class => 'form-control', :maxLength => Rails.configuration.max_tiny_text_length, :pattern => '^(((((((00|\+)49[ \-/]?)|0)[1-9][0-9]{1,4})[ \-/]?)|((((00|\+)49\()|\(0)[1-9][0-9]{1,4}\)[ \-/]?))[0-9]{1,7}([ \-/]?[0-9]{1,5})?)$', :placeholder => '+49(176)64336650'
                 %div.help-block.with-errors
 
     - unless readonly
-      = f.button I18n.t(:save, scope: :shop_application), :id => 'edit_app_submit_btn', :class => 'btn btn-primary', name: :user_info_edit_part, value: :edit_shop
+      = f.button I18n.t(:save, scope: :edit_shop_application), :id => 'edit_app_submit_btn', :class => 'btn btn-primary', name: :user_info_edit_part, value: :edit_shop
     - if readonly
-      = link_to I18n.t(:back, scope: :shop_application), :back, :class => 'btn btn-primary'
+      = link_to I18n.t(:back, scope: :edit_shop_application), :back, :class => 'btn btn-primary'
 - else
   .gap
-  %h3.text-center= I18n.t(:shop_application_ok, scope: :shop_application)
+  %h3.text-center= I18n.t(:shop_application_ok, scope: :edit_shop_application)

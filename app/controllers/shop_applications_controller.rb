@@ -7,7 +7,7 @@ class ShopApplicationsController < ApplicationController
 
   before_action(only: [:new])  { I18n.locale = :de }
 
-  before_action :set_shop_application, only: [:show]
+  before_action :set_shop_application, only: [:show, :destroy]
 
   def index
     @applications = ShopApplication.all
@@ -50,6 +50,16 @@ class ShopApplicationsController < ApplicationController
     end
 
     redirect_to new_shop_application_path(:finished => true)
+  end
+
+  def destroy
+    if  @shop_application.destroy
+      flash[:success] = I18n.t(:delete_ok, scope: :edit_shop_application)
+    else
+      flash[:error] = @shop_application.errors.full_messages.first
+    end
+
+    redirect_to request.referer
   end
 
   def registered?

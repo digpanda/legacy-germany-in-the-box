@@ -11,6 +11,8 @@
           %td= link_to s.shopkeeper.email, edit_producer_shop_path(s, :user_info_edit_part => :edit_shops)
           %td= s.name
           %td= s.shopname
-          %td= link_to I18n.t(:reset_password, scope: :edit_shops), edit_user_path(s.shopkeeper, :user_info_edit_part => :edit_password_by_admin, :user_id => s.shopkeeper.id)
+          %td
+            = link_to '', edit_user_path(s.shopkeeper, :user_info_edit_part => :edit_password_by_admin, :user_id => s.shopkeeper.id), :class => 'fa fa-key fa-2x', :title => I18n.t(:reset_password, scope: :edit_shops)
+            = link_to '', shop_path(s), :method => :delete, data: { confirm: I18n.t(:delete_shop_message, scope: :edit_shops) }, :class => 'fa fa-times-circle fa-2x', :title => I18n.t(:remove, scope: :edit_shops)
 - else
-  %h4= I18n.t(:no_applications, scope: :shop_application)
+  %h4= I18n.t(:no_applications, scope: :edit_shop_application)

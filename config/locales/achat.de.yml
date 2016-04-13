@@ -209,7 +209,12 @@ de:
     create_ok: Der Favorit wurde erfolgreich erstellt.
     create_ko: Ein Fehler ist bei der Erstellung des Favorits aufgetreten.
     create_with_existing_name: Ein gleichnämiger Favorit ist bereits vorhanden.
-  shop_application:
+  edit_shop_applications:
+    operations: Aktionen
+    delete_ok: Die Beantragung wurde erfolgreich entfernt.
+    delete_application_message: Die Beantragungen löschen?
+    remove: Entfernen
+  edit_shop_application:
     shop_application: Beantragen
     shop_application_ok: Vielen Dank für Ihren Antrag! Wir werden uns bald mit Ihnen in Verbindung setzten.
     shopkeeper_info: Herstellerdetails
@@ -231,12 +236,18 @@ de:
     duplicated_email: Die E-Mail ist schon besetzt. Bitte geben Sie eine andere E-Mail ein.
     application_finished: Antrag abgeschlossen
     application_timestamp: Zeitstempel
-    no_applications: keine eingegangene Beantragungen vorhanden
+    no_applications: keine neue Beantragungen vorhanden
     save: Speichern
     back: Zurück
+    operations: Aktionen
+    delete_ok: Die Beantragung wurde erfolgreich entfernt.
+    delete_application_message: Die Beantragungen löschen?
   edit_shops:
     operations: Aktionen
     reset_password: Passwort Rücksetzen
+    delete_ok: Der Shop wurde erfolgreich entfernt.
+    delete_shop_message: Den Shop löschen?
+    remove: Entfernen
   edit_shop:
     email: E-Mail
     name: Hersteller-/Firmenname

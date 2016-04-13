@@ -85,7 +85,7 @@ Rails.application.routes.draw do
     match :clone_sku,         via: [:get],    to: :clone_sku,         :controller => :products,           as: :clone_sku,           :on => :member
   end
 
-  resources :shops, except: [:new, :edit, :create, :destroy] do
+  resources :shops, except: [:new, :edit, :create] do
     match :edit_setting,    via: [:get],    to: :edit_setting,    as: :edit_setting,    :on => :member
     match :edit_producer,   via: [:get],    to: :edit_producer,   as: :edit_producer,   :on => :member
   end

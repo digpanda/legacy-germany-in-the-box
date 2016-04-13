@@ -207,7 +207,12 @@ zh-CN:
     create_ok: 收藏夹创建成功
     create_ko: 收藏夹创建失败
     create_with_existing_name: 已经存在同名的收藏夹
-  shop_application:
+  edit_shop_applications:
+    operations: 操作
+    delete_ok: 开店申请成功删除。
+    delete_application_message: 确定删除所选申请？
+    remove: 删除店铺
+  edit_shop_application:
     shop_application: 申请开店
     shop_application_ok: 谢谢你的申请，我们会在第一时间与您联系。
     shopkeeper_info: 厂家信息
@@ -228,12 +233,15 @@ zh-CN:
     password: 初始密码
     application_finished: 申请完成
     application_timestamp: 申请时间
-    no_applications: 目前还没有收到任何申请
+    no_applications: 目前还没有新的开店申请
     save: 保存
     back: 返回
   edit_shops:
     operations: 操作
     reset_password: 重置密码
+    delete_ok: 店铺成功删除。
+    delete_shop_message: 删除所选店铺吗？
+    remove: 删除
   edit_shop:
     email: 邮箱
     name: 店铺名
