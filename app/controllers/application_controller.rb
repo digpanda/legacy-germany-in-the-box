@@ -81,7 +81,7 @@ class ApplicationController < ActionController::Base
         edit_setting_shop_path(current_user, :user_info_edit_part => :edit_shop)
       end
     elsif current_user.role == :admin
-
+      shops_path(:user_info_edit_part => :edit_shops)
     end
   end
 
