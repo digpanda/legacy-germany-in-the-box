@@ -4,6 +4,11 @@ class ShopsController <  ApplicationController
 
   load_and_authorize_resource
 
+  def index
+    @shops = Shop.all
+    render :index, layout: "#{current_user.role.to_s}_sublayout"
+  end
+
   def edit_setting
     @shop = current_user.shop
     render :edit_setting, layout: 'shopkeeper_sublayout'

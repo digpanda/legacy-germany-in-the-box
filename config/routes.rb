@@ -92,8 +92,6 @@ Rails.application.routes.draw do
 
   resources :shop_applications, except: [:edit, :update] do
     match :is_registered,     via: [:get],  to: :registered?,         as: :is_registered,       :on => :collection
-    match :show_applications, via: [:get],  to: :show_applications,   as: :show_applications,   :on => :collection
-    match :show_shops,        via: [:get],  to: :show_shops,          as: :show_shops,          :on => :collection
   end
 
   resources :orders, only: [:destroy, :show] do

@@ -73,15 +73,15 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource)
     if current_user.role == :customer
-      list_popular_products_path
+      root_path
     elsif current_user.role == :shopkeeper
       if current_user.shop && (not current_user.shop.agb)
         edit_producer_shop_path(current_user, :user_info_edit_part => :edit_producer)
       else
         edit_setting_shop_path(current_user, :user_info_edit_part => :edit_shop)
       end
-    else
-      root_path
+    elsif current_user.role == :admin
+
     end
   end
 

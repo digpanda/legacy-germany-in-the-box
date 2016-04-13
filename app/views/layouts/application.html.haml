@@ -108,12 +108,12 @@
               %a.close{'aria-label' => 'close', 'data-dismiss' => 'alert', :href => '#'} &times;
               = flash[:success]
 
-    .container{:style => 'min-height:400px'}
+    .container{:style => 'height:80%'}
       = yield
 
     .gap
 
-  = render "layouts/footer_#{!current_user ? 'default' : current_user.role.to_s}"
+    = render "layouts/footer_#{!current_user ? 'default' : current_user.role.to_s}"
 
   = javascript_include_tag 'couponia/boostrap.min.js'
   = javascript_include_tag 'couponia/countdown.min.js'

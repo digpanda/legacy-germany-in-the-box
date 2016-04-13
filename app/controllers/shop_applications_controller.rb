@@ -3,20 +3,15 @@ require "net/http"
 
 class ShopApplicationsController < ApplicationController
 
-  before_action :authenticate_user!, except: [:index, :new, :create, :registered?]
+  before_action :authenticate_user!, except: [:new, :create, :registered?]
 
-  before_action :set_locale, except: [:show_applications, :show, :show_shops]
+  before_action(only: [:new])  { I18n.locale = :de }
 
   before_action :set_shop_application, only: [:show]
 
-  def show_applications
+  def index
     @applications = ShopApplication.all
-    render :show_applications, layout: "#{current_user.role.to_s}_sublayout"
-  end
-
-  def show_shops
-    @shops = Shop.all
-    render :show_shops, layout: "#{current_user.role.to_s}_sublayout"
+    render :index, layout: "#{current_user.role.to_s}_sublayout"
   end
 
   def show
@@ -56,10 +51,6 @@ class ShopApplicationsController < ApplicationController
     redirect_to new_shop_application_path(:finished => true)
   end
 
-  def index
-    render :new
-  end
-
   def registered?
     respond_to do |format|
       if User.where(:email => shop_application_params[:email]).count == 0
@@ -74,10 +65,6 @@ class ShopApplicationsController < ApplicationController
 
   def shop_application_params
     params.require(:shop_application).permit(:email, :name, :shopname, :desc, :philosophy, :stories, :founding_year, :register, :website, :fname, :lname, :tel, :mobile, :mail, :german_essence, :uniqueness, :function, sales_channels:[])
-  end
-
-  def set_locale
-    I18n.locale = :de unless current_user
   end
 
   def set_shop_application
