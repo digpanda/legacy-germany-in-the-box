@@ -22,9 +22,9 @@ class User
   has_and_belongs_to_many :following,         :class_name => 'User',        :inverse_of => :followers
   has_and_belongs_to_many :liked_collections, :class_name => 'Collection',  :inverse_of => :users
 
-  has_many :oCollections, class_name: 'Collection', :inverse_of => :user,   :dependent => :restrict
+  has_many :oCollections, class_name: 'Collection', :inverse_of => :user
   has_many :orders,                                 :inverse_of => :user,   :dependent => :restrict
-  has_many :addresses,                              :inverse_of => :user,   :dependent => :restrict
+  has_many :addresses,                              :inverse_of => :user
 
   has_one  :shop,         :inverse_of => :shopkeeper,   :dependent => :restrict
   has_one  :dCollection,  :inverse_of => :user,         :dependent => :restrict,  :class_name => 'Collection'

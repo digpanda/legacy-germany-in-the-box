@@ -115,6 +115,8 @@ de:
     password_info:  Es umfasst mindestens 8 Zeichen.
     password_match_error: Das Passwort muss gleich sein.
     last_sign_in_at: Letzes Einloggen
+    role: Rolle
+    sign_in_count: Anzahl des Einloggens
   edit_following:
     follow_ok: Die Beobachtung für den Nutzer wurde erfolgreich aktiviert.
     follow_ko: Ein Fehler ist bei der Aktivierung der Beobachtung aufgetreten.

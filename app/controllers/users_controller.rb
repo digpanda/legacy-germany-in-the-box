@@ -100,7 +100,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    if  @user.destroy
+    if  @user.oCollections.delete_all && @user.addresses.delete_all && @user.destroy
       flash[:success] = I18n.t(:delete_ok, scope: :edit_accounts)
     else
       flash[:error] = @user.errors.full_messages.first

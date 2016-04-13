@@ -113,6 +113,8 @@ zh-CN:
     password_info: 密码最小长度为8个字符
     password_match_error: 密码必须一致
     last_sign_in_at: 最后登陆
+    role: 角色
+    sign_in_count: 登陆次数
   edit_following:
     follow_ok: 关注成功
     follow_ko: 关注失败
