@@ -91,7 +91,6 @@ development:
     # use_utc: false
     use_activesupport_time_zone: true
     raise_not_found_error: false
-    allow_dynamic_fields: true
 test:
   sessions:
     default:
@@ -105,7 +104,6 @@ test:
         max_retries: 1
         retry_interval: 0
         use_activesupport_time_zone: true
-        allow_dynamic_fields: true
 local:
   # Configure available database sessions. (required)
   clients:
@@ -199,4 +197,3 @@ local:
     # use_utc: false
     use_activesupport_time_zone: true
     raise_not_found_error: false
-    allow_dynamic_fields: true
