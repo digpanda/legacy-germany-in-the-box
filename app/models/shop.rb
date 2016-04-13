@@ -44,9 +44,9 @@ class Shop
   mount_uploader :seal2,   ProductImageUploader
   mount_uploader :seal3,   ProductImageUploader
 
-  has_one   :bank_account,    inverse_of: :shop,  dependent: :restrict
+  has_one   :bank_account,    inverse_of: :shop
 
-  has_many  :addresses,       inverse_of: :shop,  dependent: :restrict
+  has_many  :addresses,       inverse_of: :shop
   has_many  :products,        inverse_of: :shop,  dependent: :restrict
 
   belongs_to :shopkeeper,   class_name: 'User',  inverse_of: :shop

@@ -15,7 +15,9 @@
           %td= u.role
           %td= u.sign_in_count
           %td= u.last_sign_in_at ? l(u.last_sign_in_at, :format => '%Y-%m-%d %H:%M:%S') : ''
-          %td= link_to '', user_path(u), :method => :delete, data: { confirm: I18n.t(:delete_application_message, scope: :edit_accounts) }, :class => 'fa fa-times-circle fa-2x', :title => I18n.t(:remove, scope: :edit_accounts)
+          %td
+            -if u.id != current_user.id
+              = link_to '', user_path(u), :method => :delete, data: { confirm: I18n.t(:delete_application_message, scope: :edit_accounts) }, :class => 'fa fa-times-circle fa-2x', :title => I18n.t(:remove, scope: :edit_accounts)
 
 - else
   %h4= I18n.t(:no_applications, scope: :edit_shop_application)
