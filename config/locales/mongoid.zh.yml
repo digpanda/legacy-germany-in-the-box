@@ -1,6 +1,23 @@
 zh-CN:
+  errors: &errors
+    messages:
+      blank: 为空
+      invalid: 无效
+
   models: &models
     user: 用户
+    address: 地址
+    bank_acount: 支付方法
+    category: 类别
+    collection: 收藏
+    order: 订单
+    order_item: 订单明细
+    product: 产品
+    shop: 店铺
+    shop_application: 申请
+    sku: 库存单元
+    user: 用户
+    variant_option: 型号和选项
 
   attributes: &attributes
     product:

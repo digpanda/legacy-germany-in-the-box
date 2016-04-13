@@ -6,6 +6,18 @@ de:
 
   models: &models
     user: Benutzer
+    address: Adresse
+    bank_acount: Bankkonto
+    category: Kategorie
+    collection: Favorite
+    order: Auftrag
+    order_item: Auftragsposition
+    product: Produkt
+    shop: Shop
+    shop_application: Beantragung
+    sku: Artikelposition
+    user: Benutzer
+    variant_option: Variante und Option
 
   attributes: &attributes
     product:
