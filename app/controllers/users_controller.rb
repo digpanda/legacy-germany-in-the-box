@@ -19,12 +19,6 @@ class UsersController < ApplicationController
     base64_to_uploadedfile :user, :pic
   }
 
-  def reset_password
-    @user.update(user_params)
-    flash[:success] = I18n.t(:update_password_ok, scope: :edit_personal)
-    redirect_to request.referer
-  end
-
   def index
     @users = User.all
 
@@ -42,7 +36,11 @@ class UsersController < ApplicationController
   end
 
   def edit_account
-    render :edit_account, layout: "#{current_user.role.to_s}_sublayout"
+    if current_user.id.to_s == @user.id.to_s
+      render :edit_account, layout: "#{current_user.role.to_s}_sublayout"
+    elsif current_user.role == :admin
+      render :edit_account_by_admin, layout: "#{current_user.role.to_s}_sublayout"
+    end
   end
 
   def edit_personal
@@ -65,36 +63,47 @@ class UsersController < ApplicationController
   end
 
   def update
-    respond_to do |format|
-      ups = user_params
+    ups = user_params
 
-      if ups[:password] && @user.update_with_password(ups.except(:email))
-        format.html {
-          flash[:success] = I18n.t(:update_password_ok, scope: :edit_personal)
-          sign_in(@user, :bypass => true) if @user.id == current_user.id
-          redirect_to request.referer
-        }
+    if current_user.id.to_s == @user.id.to_s
+      respond_to do |format|
+        if ups[:password] && @user.update_with_password(ups.except(:email))
+          format.html {
+            flash[:success] = I18n.t(:update_password_ok, scope: :edit_personal)
+            sign_in(@user, :bypass => true)
+            redirect_to request.referer
+          }
 
-        format.json { render :show, status: :ok, location: @user }
-      elsif ups[:password].blank? && @user.update_without_password(ups.except(:email))
-        format.html {
-          flash[:success] = I18n.t(:update_ok, scope: :edit_personal)
-          redirect_to request.referer
-        }
+          format.json { render :show, status: :ok, location: @user }
+        elsif ups[:password].blank? && @user.update_without_password(ups.except(:email))
+          format.html {
+            flash[:success] = I18n.t(:update_ok, scope: :edit_personal)
+            redirect_to request.referer
+          }
 
-        format.json { render :show, status: :ok, location: @user }
-      else
-        format.html {
-          if @user.errors.any?
-            flash[:error] ||= @user.errors.full_messages.first
-          end
+          format.json { render :show, status: :ok, location: @user }
+        else
+          format.html {
+            if @user.errors.any?
+              flash[:error] ||= @user.errors.full_messages.first
+            end
 
-          redirect_to request.referer
+            redirect_to request.referer
 
-          flash.delete(:error)
-        }
+            flash.delete(:error)
+          }
 
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+          format.json { render json: @user.errors, status: :unprocessable_entity }
+        end
+      end
+    elsif current_user.role == :admin
+      if ups[:password] && @user.update(ups.except(:email))
+        respond_to do |format|
+          format.html {
+            flash[:success] = I18n.t(:update_password_ok, scope: :edit_personal)
+            redirect_to request.referer
+          }
+        end
       end
     end
   end

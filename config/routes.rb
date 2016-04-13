@@ -61,7 +61,6 @@ Rails.application.routes.draw do
 
   resources :users do
     match 'search/:keyword',  via: [:get],    to: :search,            as: :search,              :on => :collection
-    match :reset_password,    via: [:patch],  to: :reset_password,    as: :reset_password,      :on => :collection
 
     match :edit_account,      via: [:get],    to: :edit_account,      as: :edit_account,        :on => :member
     match :edit_personal,     via: [:get],    to: :edit_personal,     as: :edit_personal,       :on => :member
