@@ -257,6 +257,10 @@ de:
     delete_ok: Der Shop wurde erfolgreich entfernt.
     delete_shop_message: Den Shop löschen?
     remove: Entfernen
+    agb:
+      info: AGB
+      'true': Ja
+      'false': Nein
   edit_shop:
     email: E-Mail
     name: Hersteller-/Firmenname

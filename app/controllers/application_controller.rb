@@ -76,9 +76,9 @@ class ApplicationController < ActionController::Base
       root_path
     elsif current_user.role == :shopkeeper
       if current_user.shop && (not current_user.shop.agb)
-        edit_producer_shop_path(current_user, :user_info_edit_part => :edit_producer)
+        edit_producer_shop_path(current_user.shop.id, :user_info_edit_part => :edit_producer)
       else
-        edit_setting_shop_path(current_user, :user_info_edit_part => :edit_shop)
+        edit_setting_shop_path(current_user.shop.id, :user_info_edit_part => :edit_shop)
       end
     elsif current_user.role == :admin
       shops_path(:user_info_edit_part => :edit_shops)

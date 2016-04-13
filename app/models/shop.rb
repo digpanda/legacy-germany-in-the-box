@@ -35,6 +35,8 @@ class Shop
   field :seal2,           type: String
   field :seal3,           type: String
 
+  field :bilingual,       type: Array,      default:[:name, :shopname, :desc, :philosophy, :stories, :uniqueness, :german_essence]
+
   field :name_locales,    type: Hash
 
   mount_uploader :logo,   LogoImageUploader
