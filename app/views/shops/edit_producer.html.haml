@@ -130,11 +130,11 @@
 
     .panel.panel-info
       .panel-heading.text-center
-        %label{:class => current_user.shop.agb ? '' : 'required'}= I18n.t(:agb, scope: :edit_shop)
+        %label{:class => @shop.agb ? '' : 'required'}= I18n.t(:agb, scope: :edit_shop)
       .panel-body
         .form-group
           .row-fluid
-            - if current_user.shop && (not current_user.shop.agb)
+            - if @shop && (not @shop.agb)
               = f.hidden_field :agb
               = f.check_box :agb, { :required => true }, true
               = I18n.t(:agb_statement, scope: :edit_shop).html_safe

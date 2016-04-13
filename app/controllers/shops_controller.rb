@@ -2,6 +2,8 @@ class ShopsController <  ApplicationController
 
   before_action :authenticate_user!, except: [:show]
 
+  before_action :set_shop, except: [:index]
+
   load_and_authorize_resource
 
   def index
@@ -10,17 +12,14 @@ class ShopsController <  ApplicationController
   end
 
   def edit_setting
-    @shop = current_user.shop
-    render :edit_setting, layout: 'shopkeeper_sublayout'
+    render :edit_setting, layout: "#{current_user.role.to_s}_sublayout"
   end
 
   def edit_producer
-    @shop = current_user.shop
-    render :edit_producer, layout: 'shopkeeper_sublayout'
+    render :edit_producer, layout: "#{current_user.role.to_s}_sublayout"
   end
 
   def show
-    @shop = Shop.find(params[:id])
     @categories_and_children, @categories_and_counters = get_category_values_for_left_menu(@shop.products)
 
     respond_to do |format|
@@ -33,7 +32,7 @@ class ShopsController <  ApplicationController
      respond_to do |format|
        sp = shop_params
 
-       if current_user.shop.agb && current_user.shop.update(sp)
+       if @shop.agb && @shop.update(sp)
          if params[:user_info_edit_part] == :edit_producer.to_s
            flash[:success] = I18n.t(:update_producer_ok, scope: :edit_shop)
          else
@@ -47,12 +46,12 @@ class ShopsController <  ApplicationController
              redirect_to edit_producer_shop_path(current_user, :user_info_edit_part => :edit_producer)
            end
          }
-       elsif (not current_user.shop.agb) && current_user.shop.update(sp)
+       elsif (not @shop.agb) && @shop.update(sp)
          flash[:success] = I18n.t(:update_agb_ok, scope: :edit_shop)
 
          format.html { redirect_to edit_setting_shop_path(current_user, :user_info_edit_part => :edit_shop) }
        else
-        flash[:error] = current_user.shop.errors.full_messages.first
+        flash[:error] = @shop.errors.full_messages.first
 
         format.html {
           if :edit_shop.to_s ==  params[:user_info_edit_part]
@@ -66,6 +65,10 @@ class ShopsController <  ApplicationController
   end
 
   private
+
+  def set_shop
+    @shop = Shop.find(params[:id])
+  end
 
   def shop_params
     delocalize_config = { :min_total => :number }
