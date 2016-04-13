@@ -2,7 +2,6 @@ class VariantOption
   include Mongoid::Document
   include Mongoid::Timestamps::Created::Short
   include Mongoid::Timestamps::Updated::Short
-  include Mongoid::Attributes::Dynamic
 
   include DocLocaleName
 
