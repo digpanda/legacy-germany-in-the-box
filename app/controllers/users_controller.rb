@@ -71,15 +71,15 @@ class UsersController < ApplicationController
       if ups[:password] && @user.update_with_password(ups.except(:email))
         format.html {
           flash[:success] = I18n.t(:update_password_ok, scope: :edit_personal)
-          sign_in(@user, :bypass => true)
-          render :edit, user_info_edit_part: params[:user_info_edit_part]
+          sign_in(@user, :bypass => true) if @user.id == current_user.id
+          redirect_to request.referer
         }
 
         format.json { render :show, status: :ok, location: @user }
       elsif ups[:password].blank? && @user.update_without_password(ups.except(:email))
         format.html {
           flash[:success] = I18n.t(:update_ok, scope: :edit_personal)
-          render :edit, user_info_edit_part: params[:user_info_edit_part]
+          redirect_to request.referer
         }
 
         format.json { render :show, status: :ok, location: @user }
@@ -89,7 +89,7 @@ class UsersController < ApplicationController
             flash[:error] ||= @user.errors.full_messages.first
           end
 
-          render :edit, user_info_edit_part: params[:user_info_edit_part]
+          redirect_to request.referer
 
           flash.delete(:error)
         }

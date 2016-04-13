@@ -1,6 +1,6 @@
 .col-md-6.col-sm-9.col-xs-12
-  = form_for current_user, html: {method: 'patch', 'data-toggle': 'validator'} do |f|
-    - unless current_user.role == :shopkeeper
+  = form_for @user, html: {method: 'patch', 'data-toggle': 'validator'} do |f|
+    - unless @user.role == :shopkeeper
       .form-group
         = f.label :username, I18n.t(:username, scope: :edit_account), :class => 'control-label'
         = f.text_field :username, :class => 'form-control', :readonly => true
