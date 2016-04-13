@@ -59,7 +59,7 @@ Rails.application.routes.draw do
     match 'list_popular_products',                  via: [:get],    to: :list_popular_products,       as: :list_popular,                :on => :collection
   end
 
-  resources :users, except: [:destroy] do
+  resources :users do
     match 'search/:keyword',  via: [:get],    to: :search,            as: :search,              :on => :collection
     match :reset_password,    via: [:patch],  to: :reset_password,    as: :reset_password,      :on => :collection
 

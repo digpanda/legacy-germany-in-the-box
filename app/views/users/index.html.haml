@@ -1,0 +1,18 @@
+- if @users.count > 0
+  %table.table.cart-table
+    %thead
+      %th= I18n.t(:email, scope: :edit_account)
+      %th= I18n.t(:username, scope: :edit_account)
+      %th= I18n.t(:last_sign_in_at, scope: :edit_account)
+      %th= I18n.t(:operations, scope: :edit_accounts)
+    %tbody
+      - @users.each do |u|
+        %tr
+          %td= link_to u.email, user_path(u, :user_info_edit_part => :edit_accounts)
+          %td= u.username
+          %td= u.last_sign_in_at ? l(u.last_sign_in_at, :format => '%Y-%m-%d') : ''
+          %td= link_to '', user_path(u), :method => :delete, data: { confirm: I18n.t(:delete_application_message, scope: :edit_accounts) }, :class => 'fa fa-times-circle fa-2x', :title => I18n.t(:remove, scope: :edit_accounts)
+
+- else
+  %h4= I18n.t(:no_applications, scope: :edit_shop_application)
+

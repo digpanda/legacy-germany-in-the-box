@@ -29,6 +29,7 @@ class UsersController < ApplicationController
     @users = User.all
 
     respond_to do |format|
+      format.html { render :index, layout: "#{current_user.role.to_s}_sublayout" }
       format.json { render :index }
     end
   end
@@ -96,6 +97,16 @@ class UsersController < ApplicationController
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def destroy
+    if  @user.destroy
+      flash[:success] = I18n.t(:delete_ok, scope: :edit_accounts)
+    else
+      flash[:error] = @user.errors.full_messages.first
+    end
+
+    redirect_to request.referer
   end
 
   def follow

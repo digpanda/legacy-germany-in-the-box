@@ -95,6 +95,12 @@ zh-CN:
     title: 忘记密码？别担心，我们来帮！
     email: 登陆邮箱
     ok: 获取新密码
+  edit_accounts:
+    operations: 操作
+    delete_ok: 用户账户成功删除。
+    delete_shop_message: 确定删除所选账户吗？
+    remove: 删除
+    accounts: 账户管理
   edit_account:
     username: 用户ID
     email: 注册信箱
@@ -106,6 +112,7 @@ zh-CN:
     change_initial_password: 我们建议，修改系统给您设定初始密码，方便您记忆。
     password_info: 密码最小长度为8个字符
     password_match_error: 密码必须一致
+    last_sign_in_at: 最后登陆
   edit_following:
     follow_ok: 关注成功
     follow_ko: 关注失败
