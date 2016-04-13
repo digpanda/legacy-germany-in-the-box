@@ -229,6 +229,8 @@ zh-CN:
     application_finished: 申请完成
     application_timestamp: 申请时间
     no_applications: 目前还没有收到任何申请
+    save: 保存
+    back: 返回
   edit_shops:
     operations: 操作
     reset_password: 重置密码

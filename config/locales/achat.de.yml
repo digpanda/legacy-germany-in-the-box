@@ -232,6 +232,8 @@ de:
     application_finished: Antrag abgeschlossen
     application_timestamp: Zeitstempel
     no_applications: keine eingegangene Beantragungen vorhanden
+    save: Speichern
+    back: Zurück
   edit_shops:
     operations: Aktionen
     reset_password: Passwort Rücksetzen

@@ -151,7 +151,9 @@
                 %div.help-block.with-errors
 
     - unless readonly
-      = f.button I18n.t(:save, scope: :edit_shop), :id => 'edit_app_submit_btn', :class => 'btn btn-primary', name: :user_info_edit_part, value: :edit_shop
+      = f.button I18n.t(:save, scope: :shop_application), :id => 'edit_app_submit_btn', :class => 'btn btn-primary', name: :user_info_edit_part, value: :edit_shop
+    - if readonly
+      = link_to I18n.t(:back, scope: :shop_application), :back, :class => 'btn btn-primary'
 - else
   .gap
   %h3.text-center= I18n.t(:shop_application_ok, scope: :shop_application)
