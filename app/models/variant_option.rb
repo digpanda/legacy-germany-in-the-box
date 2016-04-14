@@ -5,7 +5,7 @@ class VariantOption
 
   strip_attributes
 
-  field :name,          type: String
+  field :name,          type: String,   localize: true
 
   embeds_many :suboptions, class_name: 'VariantOption', inverse_of: :parent
 

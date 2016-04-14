@@ -26,15 +26,34 @@ namespace :achat do
       file
     end
 
-    Product.where(:name => /.*10 Blatt Seidenpapier ♥ Panda ♥.*/).all.delete;
-    Product.where({:name => /.*熊猫壁纸.*/i}).all.delete;
-    Shop.where(:name => 'Herz-Buffet 01').all.delete;
-    Shop.where(:name => 'Herz-Buffet 02').all.delete;
-    User.where(:email => 'shopkeeper01@hotmail.com').all.delete;
-    User.where(:email => 'shopkeeper02@hotmail.com').all.delete;
-    User.where(:email => 'dailycron@hotmail.com').all.delete;
-    User.where(:email => 'customer01@hotmail.com').all.delete;
-    User.where(:email => 'customer02@hotmail.com').all.delete;
+    (user = User.where(:email => 'shopkeeper01@hotmail.com')).each do |u|
+      u.shop.products.delete_all if u.shop && u.shop.products
+      u.shop.save! if u.shop
+      u.shop.delete if u.shop
+      u.save!
+    end
+    user.all.delete
+
+    (user = User.where(:email => 'shopkeeper02@hotmail.com')).each do |u|
+      u.shop.products.delete_all if u.shop && u.shop.products
+      u.shop.save! if u.shop
+      u.shop.delete if u.shop
+      u.save!
+    end
+    user.all.delete
+
+    (user = User.where(:email => 'customer01@hotmail.com')).each do |u|
+      u.orders.delete_all if u.orders
+      u.save!
+    end
+    user.all.delete
+
+    (user = User.where(:email => 'customer02@hotmail.com')).each do |u|
+      u.orders.delete_all if u.orders
+      u.save!
+    end
+    user.all.delete
+
     User.where(:email => 'admin@hotmail.com').all.delete;
 
 

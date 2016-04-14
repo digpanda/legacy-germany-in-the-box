@@ -107,7 +107,7 @@ class ProductsController < ApplicationController
       end
     end
 
-    redirect_to edit_product_user_path(@product.id, :user_info_edit_part => :edit_product_update)
+    redirect_to edit_product_path(@product.id, :user_info_edit_part => :edit_product_update)
   end
 
   def remove_option
@@ -125,7 +125,7 @@ class ProductsController < ApplicationController
       end
     end
 
-    redirect_to edit_product_user_path(@product.id, :user_info_edit_part => :edit_product_update)
+    redirect_to edit_product_path(@product.id, :user_info_edit_part => :edit_product_update)
   end
 
   def get_sku_for_options
@@ -221,7 +221,7 @@ class ProductsController < ApplicationController
       else
         format.html {
           flash[:error] = @product.errors.full_messages.first
-          redirect_to new_product_user_path(current_user, :user_info_edit_part => :edit_product_new )
+          redirect_to new_product_path(current_user, :user_info_edit_part => :edit_product_new )
         }
       end
     end
@@ -241,19 +241,19 @@ class ProductsController < ApplicationController
 
           if params[:part] == :basic.to_s
             flash[:success] = I18n.t(:update_ok, scope: :edit_product)
-            redirect_to show_products_shop_path(current_user.shop.id, :user_info_edit_part => :edit_product)
+            redirect_to show_products_shop_path(@product.shop.id, :user_info_edit_part => :edit_product)
           elsif params[:part] == :sku.to_s
             flash[:success] = I18n.t(:update_ok, scope: :edit_product_detail)
-            redirect_to edit_product_user_path(@product.id, :user_info_edit_part => :edit_product_detail)
+            redirect_to edit_product_path(@product.id, :user_info_edit_part => :edit_product_detail)
           elsif params[:part] == :variant.to_s
             flash[:success] = I18n.t(:update_ok, scope: :edit_product_variant)
-            redirect_to edit_product_user_path(@product.id, :user_info_edit_part => :edit_product_variant)
+            redirect_to edit_product_path(@product.id, :user_info_edit_part => :edit_product_variant)
           end
         }
       else
         format.html {
           flash[:error] = @product.errors.full_messages.first
-          redirect_to edit_product_user_path(@product.id, :user_info_edit_part => :edit_product_update)
+          redirect_to edit_product_path(@product.id, :user_info_edit_part => :edit_product_update)
         }
       end
     end
@@ -261,18 +261,19 @@ class ProductsController < ApplicationController
   end
 
   def destroy
+    sid = @product.shop.id
     respond_to do |format|
       if @product.destroy
         Rails.cache.clear
 
         format.html {
           flash[:success] = I18n.t(:delete_ok, scope: :edit_product)
-          redirect_to show_products_shop_path(current_user.shop.id, :user_info_edit_part => :edit_product)
+          redirect_to show_products_shop_path(sid, :user_info_edit_part => :edit_product)
         }
       else
         format.html {
           flash[:error] = @product.errors.full_messages.first
-          redirect_to show_products_shop_path(current_user.shop.id, :user_info_edit_part => :edit_product)
+          redirect_to show_products_shop_path(sid, :user_info_edit_part => :edit_product)
         }
       end
     end

@@ -29,5 +29,5 @@
         %br
         = render 'shops/producer_form', locale: locale
 - else
-  - get_allowed_locales.each_with_index do
+  - get_allowed_locales.each_with_index do |locale, i|
     = render 'shops/producer_form', locale: locale

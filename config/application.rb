@@ -34,8 +34,8 @@ module AChat
     config.middleware.use Mongoid::QueryCache::Middleware
     config.middleware.use Mobvious::Manager
     config.middleware.use HttpAcceptLanguage::Middleware
-    config.i18n.available_locales = %w(en de zh-CN)
-    config.i18n.default_locale = :en
+    config.i18n.available_locales = %w(de zh-CN)
+    config.i18n.default_locale = :de
     #config.time_zone = 'Beijing'
   end
 end

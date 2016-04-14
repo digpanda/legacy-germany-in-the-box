@@ -6,7 +6,7 @@ class Shop
   strip_attributes
 
   field :name,            type: String
-  field :shopname,        type: String
+  field :shopname,        type: String,     localize: true
   field :desc,            type: String,     localize: true
   field :logo,            type: String
   field :banner,          type: String

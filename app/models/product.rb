@@ -5,10 +5,10 @@ class Product
 
   strip_attributes
 
-  field :name,        type: String
-  field :brand,       type: String
+  field :name,        type: String,   localize: true
+  field :brand,       type: String,   localize: true
   field :cover,       type: String
-  field :desc,        type: String
+  field :desc,        type: String,   localize: true
   field :tags,        type: Array,    default: Array.new(Rails.configuration.max_num_tags)
   field :status,      type: Boolean,  default: true
 

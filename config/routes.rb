@@ -46,14 +46,17 @@ Rails.application.routes.draw do
   resources :addresses, except: [:new, :edit] do
   end
 
-  resources :products, except: [:index, :edit] do
+  resources :products, except: [:index] do
     match 'remove_sku/:sku_id',                     via: [:delete], to: :remove_sku,                  as: :remove_sku,                  :on => :member
     match 'remove_variant/:variant_id',             via: [:delete], to: :remove_variant,              as: :remove_variant,              :on => :member
     match 'remove_option/:variant_id/:option_id',   via: [:delete], to: :remove_option,               as: :remove_option,               :on => :member
     match :get_sku_for_options,                     via: [:get],    to: :get_sku_for_options,         as: :get_sku_for_options,         :on => :member
     match :like_product,                            via: [:patch],  to: :like_product,                as: :like_product,                :on => :member
-    match :dislike_product,                         via: [:patch],  to: :dislike_product,             as: :dislike_product,              :on => :member
+    match :dislike_product,                         via: [:patch],  to: :dislike_product,             as: :dislike_product,             :on => :member
     match :show_skus,                               via: [:get],    to: :show_skus,                   as: :show_skus,                   :on => :member
+    match :new_sku,                                 via: [:get],    to: :new_sku,                     as: :new_sku,                     :on => :member
+    match :edit_sku,                                via: [:get],    to: :edit_sku,                    as: :edit_sku,                    :on => :member
+    match :clone_sku,                               via: [:get],    to: :clone_sku,                   as: :clone_sku,                   :on => :member
 
     match :autocomplete_product_name,               via: [:get],    to: :autocomplete_product_name,   as: :autocomplete_product_name,   :on => :collection
     match 'search',                                 via: [:get],    to: :search,                      as: :search,                      :on => :collection
@@ -76,11 +79,6 @@ Rails.application.routes.draw do
     match :show_collections,  via: [:get],    to: :show_collections,  :controller => :collections,        as: :show_collections,    :on => :member
     match :new_collection,    via: [:get],    to: :new,               :controller => :collections,        as: :new_collection,      :on => :member
     match :edit_collection,   via: [:get],    to: :edit,              :controller => :collections,        as: :edit_collection,     :on => :member
-    match :new_product,       via: [:get],    to: :new,               :controller => :products,           as: :new_product,         :on => :member
-    match :edit_product,      via: [:get],    to: :edit,              :controller => :products,           as: :edit_product,        :on => :member
-    match :new_sku,           via: [:get],    to: :new_sku,           :controller => :products,           as: :new_sku,             :on => :member
-    match :edit_sku,          via: [:get],    to: :edit_sku,          :controller => :products,           as: :edit_sku,            :on => :member
-    match :clone_sku,         via: [:get],    to: :clone_sku,         :controller => :products,           as: :clone_sku,           :on => :member
   end
 
   resources :shops, except: [:new, :edit, :create] do
