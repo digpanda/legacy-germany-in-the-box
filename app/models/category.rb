@@ -12,8 +12,6 @@ class Category
   field :cssc,    type: String
   field :status,  type: Boolean,  :default => true
 
-  field :name_locales, type: Hash
-
   has_many :children, :class_name => 'Category', :inverse_of => :parent,  dependent: :restrict
   belongs_to :parent, :class_name => 'Category', :inverse_of => :children
 

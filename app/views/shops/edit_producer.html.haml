@@ -1,6 +1,6 @@
 :javascript
   $(function() {
-    $('#edit_producer_submit_btn').click( function() {
+    $('.edit_producer_submit').click( function() {
       $('input.dynamical-required').each(
         function () {
           if ( $(this).val().length == 0 ) {
@@ -17,129 +17,139 @@
     });
   });
 
-= form_for @shop, :html => {'data-toggle': 'validator', role: 'form' } do |f|
-  .panel-group
-    .panel.panel-info
-      .panel-heading.text-center
-        %label= I18n.t(:shopkeeper_info, scope: :edit_shop_application)
-      .panel-body
-        .form-group
-          .row
-            .col-md-4
-              %label.required= I18n.t(:name, scope: :edit_shop)
-            .col-md-8
-              = f.text_field :name, :class => 'form-control', :required => true, :maxLength => Rails.configuration.max_short_text_length, :placeholder => I18n.t(:company_name_placeholder, scope: :edit_shop)
-              %div.help-block.with-errors
-        .form-group
-          .row
-            .col-md-4{ :title => I18n.t(:founding_year_info, scope: :edit_shop) }
-              %i.fa.fa-info-circle{ :title => I18n.t(:founding_year_info, scope: :edit_shop) }
-              %label.required= I18n.t(:founding_year, scope: :edit_shop)
-            .col-md-8
-              = f.text_field :founding_year, :class => 'form-control', :required => true, :pattern => '^(18|19|20)\d{2}$', :maxLength => 4, :placeholder => '2016'
-              %div.help-block.with-errors
-        .form-group
-          .row
-            .col-md-4
-              %label= I18n.t(:register, scope: :edit_shop)
-            .col-md-8
-              = f.text_field :register, :class => 'form-control', :maxLength => Rails.configuration.max_tiny_text_length, :placeholder => 'HRB 123456'
-              %div.help-block.with-errors
-        .form-group
-          .row
-            .col-md-4{ :title => I18n.t(:desc_info, scope: :edit_shop, num: Rails.configuration.max_medium_text_length) }
-              %i.fa.fa-info-circle{ :title => I18n.t(:desc_info, scope: :edit_shop, num: Rails.configuration.max_medium_text_length) }
-              %label.required= I18n.t(:desc, scope: :edit_shop)
-            .col-md-8
-              = f.text_area :desc, :class => 'form-control', rows: 4, :required => true, :maxLength => Rails.configuration.max_medium_text_length
-              %div.help-block.with-errors
-        .form-group
-          .row
-            .col-md-4{ :title => I18n.t(:philosophy_info, scope: :edit_shop, num: Rails.configuration.max_long_text_length) }
-              %i.fa.fa-info-circle{ :title => I18n.t(:philosophy_info, scope: :edit_shop, num: Rails.configuration.max_long_text_length) }
-              %label.required= I18n.t(:philosophy, scope: :edit_shop)
-            .col-md-8
-              = f.text_area :philosophy, :class => 'form-control', rows: 4, :required => true, :maxLength => Rails.configuration.max_long_text_length
-              %div.help-block.with-errors
-        .form-group
-          .row
-            .col-md-4{ :title => I18n.t(:stories_info, scope: :edit_shop, num: Rails.configuration.max_long_text_length) }
-              %i.fa.fa-info-circle{ :title => I18n.t(:stories_info, scope: :edit_shop, num: Rails.configuration.max_long_text_length) }
-              %label= I18n.t(:stories, scope: :edit_shop)
-            .col-md-8
-              = f.text_area :stories, :class => 'form-control', rows: 4, :maxLength => Rails.configuration.max_long_text_length
-              %div.help-block.with-errors
-        .form-group
-          .row
-            .col-md-4{ :title => I18n.t(:uniqueness_info, scope: :edit_shop, num: Rails.configuration.max_medium_text_length) }
-              %i.fa.fa-info-circle{ :title => I18n.t(:uniqueness_info, scope: :edit_shop, num: Rails.configuration.max_medium_text_length) }
-              %label= I18n.t(:uniqueness, scope: :edit_shop)
-            .col-md-8
-              = f.text_area :uniqueness, :class => 'form-control', rows: 4, :maxLength => Rails.configuration.max_medium_text_length
-        .form-group
-          .row
-            .col-md-4{ :title => I18n.t(:german_essence_info, scope: :edit_shop, num: Rails.configuration.max_medium_text_length) }
-              %i.fa.fa-info-circle{ :title => I18n.t(:german_essence_info, scope: :edit_shop, num: Rails.configuration.max_medium_text_length) }
-              %label= I18n.t(:german_essence, scope: :edit_shop)
-            .col-md-8
-              = f.text_area :german_essence, :class => 'form-control', rows: 4, :maxLength => Rails.configuration.max_medium_text_length
-              %div.help-block.with-errors
-        .form-group
-          .row
-            .col-md-4
-              %label.required= I18n.t(:tax_number, scope: :edit_shop)
-            .col-md-8
-              = f.text_field :tax_number, :class => 'form-control', :placeholder => 'z.B. 9181081508155', :required => true, :maxLength => Rails.configuration.max_tiny_text_length
-              %div.help-block.with-errors
-        .form-group
-          .row
-            .col-md-4{ :title => I18n.t(:ust_id_info, scope: :edit_shop) }
-              %i.fa.fa-info-circle{ :title => I18n.t(:ust_id_info, scope: :edit_shop) }
-              %label.required= I18n.t(:ustid, scope: :edit_shop)
-            .col-md-8
-              = f.text_field :ustid, :class => 'form-control', :placeholder => 'z.B. DE123456789', :required => true, :maxLength => Rails.configuration.max_tiny_text_length, :pattern => '^DE[0-9]{9,9}$'
-              %div.help-block.with-errors
-        .form-group
-          .row
-            .col-md-4{ :title => I18n.t(:eroi_number_info, scope: :edit_shop) }
-              %i.fa.fa-info-circle{ :title => I18n.t(:eroi_number_info, scope: :edit_shop) }
-              %label= I18n.t(:eroi, scope: :edit_shop)
-            .col-md-8
-              = f.text_field :eroi, :class => 'form-control', :placeholder => 'z.B. DE123456789', :maxLength => Rails.configuration.max_tiny_text_length, :pattern => '^DE[0-9]{9,9}$'
-              %div.help-block.with-errors
-    .panel.panel-info
-      .panel-heading{ :title => I18n.t(:sales_channels_info, scope: :edit_shop, num: Rails.configuration.max_num_sales_channels) }
-        .btn-toolbar{ :style => 'margin-left:22px' }
-          %i.fa.fa-info-circle{ :title => I18n.t(:sales_channels_info, scope: :edit_shop, num: Rails.configuration.max_num_sales_channels) }
-          %label= I18n.t(:sales_channels, scope: :edit_shop)
-          .pull-right
-            %a{:href => '#', :class=> 'btn btn-sm', :onclick => "#{gen_add_sales_channel('shop')}", :id => "a_add_sales_channel_#{@shop.id}"}
-              %i.fa.fa-plus-circle
-              = I18n.t(:add_sales_channel, scope: :edit_shop)
-      .panel-body
-        - if @shop.sales_channels
-          - @shop.sales_channels.each_slice(2) do |sck, scv|
-            .form-group
-              .row
-                .col-md-4= select_tag 'shop[sales_channels][]', options_for_select(SalesChannelOptions::OPTIONS.map {|o| [I18n.t(o, scope: 'edit_shop.sales_channel_options'), o]}, sck), :class => 'form-control'
-                .col-md-6= text_field_tag 'shop[sales_channels][]', scv, :class => 'form-control', :placeholder => I18n.t(:sales_channel, scope: :edit_shop), :required => true
-                .col-md-2
-                  %a{ :href => '#', :class => 'btn', :onclick => "#{gen_remove_sales_channel}" }
-                    %i.fa.fa-times-circle
-                    =I18n.t(:remove_sales_channel, scope: :edit_shop)
+%ul.nav.nav-pills
+  - ['de', 'zh-CN'].each_with_index do |locale, i|
+    %li{class: "#{ i == 0 ? 'active' : '' }"}
+      %a{href: "##{locale}", 'data-toggle': 'tab'}=I18n.t(locale, scope: :locales)
 
-    .panel.panel-info
-      .panel-heading.text-center
-        %label{:class => @shop.agb ? '' : 'required'}= I18n.t(:agb, scope: :edit_shop)
-      .panel-body
-        .form-group
-          .row-fluid
-            - if @shop && (not @shop.agb)
-              = f.hidden_field :agb
-              = f.check_box :agb, { :required => true }, true
-              = I18n.t(:agb_statement, scope: :edit_shop).html_safe
-            - else
-              = f.check_box :agb, { :disabled => true }
-              = I18n.t(:agb_statement, scope: :edit_shop).html_safe
+.tab-content
+  - ['de', 'zh-CN'].each_with_index do |locale, i|
+    .tab-pane.fade.in{ id: locale, class: "#{ i == 0 ? 'active' : '' }" }
+      %br
+      = form_for @shop, :html => {'data-toggle': 'validator', role: 'form' } do |f|
+        = hidden_field_tag :translation, value = locale
+        .panel-group
+          .panel.panel-info
+            .panel-heading.text-center
+              %label= I18n.t(:shopkeeper_info, scope: :edit_shop_application, locale: locale)
+            .panel-body
+              .form-group
+                .row
+                  .col-md-4
+                    %label.required= I18n.t(:name, scope: :edit_shop, locale: locale)
+                  .col-md-8
+                    = f.text_field :name, :class => 'form-control', :required => true, :maxLength => Rails.configuration.max_short_text_length, :placeholder => I18n.t(:company_name_placeholder, scope: :edit_shop)
+                    %div.help-block.with-errors
+              .form-group
+                .row
+                  .col-md-4{ :title => I18n.t(:founding_year_info, scope: :edit_shop, locale: locale) }
+                    %i.fa.fa-info-circle{ :title => I18n.t(:founding_year_info, scope: :edit_shop, locale: locale) }
+                    %label.required= I18n.t(:founding_year, scope: :edit_shop, locale: locale)
+                  .col-md-8
+                    = f.text_field :founding_year, :class => 'form-control', :required => true, :pattern => '^(18|19|20)\d{2}$', :maxLength => 4, :placeholder => '2016'
+                    %div.help-block.with-errors
+              .form-group
+                .row
+                  .col-md-4
+                    %label= I18n.t(:register, scope: :edit_shop, locale: locale)
+                  .col-md-8
+                    = f.text_field :register, :class => 'form-control', :maxLength => Rails.configuration.max_tiny_text_length, :placeholder => 'HRB 123456'
+                    %div.help-block.with-errors
+              .form-group
+                .row
+                  .col-md-4{ :title => I18n.t(:desc_info, scope: :edit_shop, num: Rails.configuration.max_medium_text_length, locale: locale) }
+                    %i.fa.fa-info-circle{ :title => I18n.t(:desc_info, scope: :edit_shop, num: Rails.configuration.max_medium_text_length, locale: locale) }
+                    %label.required= I18n.t(:desc, scope: :edit_shop, locale: locale)
+                  .col-md-8
+                    =  f.text_area :desc, :value => @shop.desc_translations[locale], :class => 'form-control', rows: 4, :required => true, :maxLength => Rails.configuration.max_medium_text_length
+                    %div.help-block.with-errors
+              .form-group
+                .row
+                  .col-md-4{ :title => I18n.t(:philosophy_info, scope: :edit_shop, num: Rails.configuration.max_long_text_length), locale: locale }
+                    %i.fa.fa-info-circle{ :title => I18n.t(:philosophy_info, scope: :edit_shop, num: Rails.configuration.max_long_text_length, locale: locale) }
+                    %label.required= I18n.t(:philosophy, scope: :edit_shop, locale: locale)
+                  .col-md-8
+                    = f.text_area :philosophy, :value => @shop.philosophy_translations[locale], :class => 'form-control', rows: 4, :required => true, :maxLength => Rails.configuration.max_long_text_length
+                    %div.help-block.with-errors
+              .form-group
+                .row
+                  .col-md-4{ :title => I18n.t(:stories_info, scope: :edit_shop, num: Rails.configuration.max_long_text_length, locale: locale) }
+                    %i.fa.fa-info-circle{ :title => I18n.t(:stories_info, scope: :edit_shop, num: Rails.configuration.max_long_text_length, locale: locale) }
+                    %label= I18n.t(:stories, scope: :edit_shop, locale: locale)
+                  .col-md-8
+                    = f.text_area :stories, :value => @shop.stories_translations[locale], :class => 'form-control', rows: 4, :maxLength => Rails.configuration.max_long_text_length
+                    %div.help-block.with-errors
+              .form-group
+                .row
+                  .col-md-4{ :title => I18n.t(:uniqueness_info, scope: :edit_shop, num: Rails.configuration.max_medium_text_length, locale: locale) }
+                    %i.fa.fa-info-circle{ :title => I18n.t(:uniqueness_info, scope: :edit_shop, num: Rails.configuration.max_medium_text_length, locale: locale) }
+                    %label= I18n.t(:uniqueness, scope: :edit_shop, locale: locale)
+                  .col-md-8
+                    = f.text_area :uniqueness, :value => @shop.uniqueness_translations[locale], :class => 'form-control', rows: 4, :maxLength => Rails.configuration.max_medium_text_length
+              .form-group
+                .row
+                  .col-md-4{ :title => I18n.t(:german_essence_info, scope: :edit_shop, num: Rails.configuration.max_medium_text_length, locale: locale) }
+                    %i.fa.fa-info-circle{ :title => I18n.t(:german_essence_info, scope: :edit_shop, num: Rails.configuration.max_medium_text_length, locale: locale) }
+                    %label= I18n.t(:german_essence, scope: :edit_shop, locale: locale)
+                  .col-md-8
+                    = f.text_area :german_essence, :value => @shop.german_essence_translations[locale], :class => 'form-control', rows: 4, :maxLength => Rails.configuration.max_medium_text_length
+                    %div.help-block.with-errors
+              .form-group
+                .row
+                  .col-md-4
+                    %label.required= I18n.t(:tax_number, scope: :edit_shop, locale: locale)
+                  .col-md-8
+                    = f.text_field :tax_number, :class => 'form-control', :placeholder => 'z.B. 9181081508155', :required => true, :maxLength => Rails.configuration.max_tiny_text_length
+                    %div.help-block.with-errors
+              .form-group
+                .row
+                  .col-md-4{ :title => I18n.t(:ust_id_info, scope: :edit_shop, locale: locale) }
+                    %i.fa.fa-info-circle{ :title => I18n.t(:ust_id_info, scope: :edit_shop, locale: locale) }
+                    %label.required= I18n.t(:ustid, scope: :edit_shop, locale: locale)
+                  .col-md-8
+                    = f.text_field :ustid, :class => 'form-control', :placeholder => 'z.B. DE123456789', :required => true, :maxLength => Rails.configuration.max_tiny_text_length, :pattern => '^DE[0-9]{9,9}$'
+                    %div.help-block.with-errors
+              .form-group
+                .row
+                  .col-md-4{ :title => I18n.t(:eroi_number_info, scope: :edit_shop, locale: locale) }
+                    %i.fa.fa-info-circle{ :title => I18n.t(:eroi_number_info, scope: :edit_shop, locale: locale) }
+                    %label= I18n.t(:eroi, scope: :edit_shop, locale: locale)
+                  .col-md-8
+                    = f.text_field :eroi, :class => 'form-control', :placeholder => 'z.B. DE123456789', :maxLength => Rails.configuration.max_tiny_text_length, :pattern => '^DE[0-9]{9,9}$'
+                    %div.help-block.with-errors
+          .panel.panel-info
+            .panel-heading{ :title => I18n.t(:sales_channels_info, scope: :edit_shop, num: Rails.configuration.max_num_sales_channels, locale: locale) }
+              .btn-toolbar{ :style => 'margin-left:22px' }
+                %i.fa.fa-info-circle{ :title => I18n.t(:sales_channels_info, scope: :edit_shop, num: Rails.configuration.max_num_sales_channels, locale: locale) }
+                %label= I18n.t(:sales_channels, scope: :edit_shop, locale: locale)
+                .pull-right
+                  %a{:href => '#', :class=> 'btn btn-sm', :onclick => "#{gen_add_sales_channel('shop')}", :id => "a_add_sales_channel_#{@shop.id}"}
+                    %i.fa.fa-plus-circle
+                    = I18n.t(:add_sales_channel, scope: :edit_shop, locale: locale)
+            .panel-body
+              - if @shop.sales_channels
+                - @shop.sales_channels.each_slice(2) do |sck, scv|
+                  .form-group
+                    .row
+                      .col-md-4= select_tag 'shop[sales_channels][]', options_for_select(SalesChannelOptions::OPTIONS.map {|o| [I18n.t(o, scope: 'edit_shop.sales_channel_options', locale: locale), o]}, sck), :class => 'form-control'
+                      .col-md-6= text_field_tag 'shop[sales_channels][]', scv, :class => 'form-control', :placeholder => I18n.t(:sales_channel, scope: :edit_shop, locale: locale), :required => true
+                      .col-md-2
+                        %a{ :href => '#', :class => 'btn', :onclick => "#{gen_remove_sales_channel}" }
+                          %i.fa.fa-times-circle
+                          =I18n.t(:remove_sales_channel, scope: :edit_shop, locale: locale)
 
-  = f.button I18n.t(:save, scope: :edit_shop), :id => 'edit_producer_submit_btn', :class => 'btn btn-primary',  name: :user_info_edit_part, value: :edit_producer
+          .panel.panel-info
+            .panel-heading.text-center
+              %label{:class => @shop.agb ? '' : 'required'}= I18n.t(:agb, scope: :edit_shop, locale: locale)
+            .panel-body
+              .form-group
+                .row-fluid
+                  - if @shop && (not @shop.agb)
+                    = f.hidden_field :agb
+                    = f.check_box :agb, { :required => true }, true
+                    = I18n.t(:agb_statement, scope: :edit_shop, locale: locale).html_safe
+                  - else
+                    = f.check_box :agb, { :disabled => true }
+                    = I18n.t(:agb_statement, scope: :edit_shop, locale: locale).html_safe
+
+        = f.button I18n.t(:save, scope: :edit_shop, locale: locale), :class => 'btn btn-primary edit_producer_submit',  name: :user_info_edit_part, value: :edit_producer

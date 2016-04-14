@@ -4,6 +4,8 @@ class ShopsController <  ApplicationController
 
   before_action :set_shop, except: [:index]
 
+  around_action :set_translation_locale, only: [:update], if: -> {current_user && current_user.role == :admin}
+
   load_and_authorize_resource
 
   def index
@@ -53,7 +55,7 @@ class ShopsController <  ApplicationController
           redirect_to request.referer
         }
       end
-    end   
+     end
   end
 
   def destroy
@@ -67,6 +69,15 @@ class ShopsController <  ApplicationController
   end
 
   private
+
+  def set_translation_locale
+    cl = I18n.locale
+    I18n.locale = params[:translation].to_sym if params[:translation]
+    yield
+    I18n.locale = cl
+  rescue
+    I18n.locale = cl
+  end
 
   def set_shop
     @shop = Shop.find(params[:id])

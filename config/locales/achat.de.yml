@@ -1,4 +1,7 @@
 de:
+  locales:
+    de: German
+    zh-CN: Chinesisch
   number:
     format:
       separator: ','
