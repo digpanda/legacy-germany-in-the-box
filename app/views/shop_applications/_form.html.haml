@@ -111,7 +111,7 @@
             %i.fa.fa-info-circle{ :title => I18n.t(:sales_channels_info, scope: :edit_shop, num: Rails.configuration.max_num_sales_channels) }
             %label.required= I18n.t(:sales_channels, scope: :edit_shop)
             .pull-right
-              %a{ :id => 'add_sales_channel_btn', :href => '#', :class=> 'btn btn-sm', :onclick => "#{gen_add_sales_channel('shop_application')}"}
+              %a{ :id => 'add_sales_channel_btn', :href => '#', :class=> 'btn btn-sm', :onclick => "#{gen_add_sales_channel('shop_application', I18n.t(:sales_channel, scope: :edit_shop, locale: locale), I18n.t(:remove_sales_channel, scope: :edit_shop, locale: locale), gen_sales_channel_select_options(locale))}"}
                 %i.fa.fa-plus-circle
                 = I18n.t(:add_sales_channel, scope: :edit_shop)
         .panel-body

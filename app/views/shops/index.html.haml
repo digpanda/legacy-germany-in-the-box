@@ -4,6 +4,7 @@
       %th= I18n.t(:email, scope: :edit_account)
       %th= I18n.t(:name, scope: :edit_shop)
       %th= I18n.t('agb.info', scope: :edit_shops)
+      %th= I18n.t(:products, scope: :edit_shops)
       %th= I18n.t(:operations, scope: :edit_shops)
     %tbody
       - @shops.each do |s|
@@ -11,6 +12,7 @@
           %td= s.shopkeeper.email
           %td= link_to s.name, edit_producer_shop_path(s, :user_info_edit_part => :edit_shops)
           %td= s.agb ? I18n.t(s.agb.to_s, scope: 'edit_shops.agb') : ''
+          %td= link_to I18n.t(:products_info, scope: :edit_shops, num: s.products.count), show_products_shop_path(s, :user_info_edit_part => :edit_shops)
           %td
             = link_to '', shop_path(s), :method => :delete, data: { confirm: I18n.t(:delete_shop_message, scope: :edit_shops) }, :class => 'fa fa-times-circle fa-2x', :title => I18n.t(:remove, scope: :edit_shops)
 - else

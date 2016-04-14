@@ -11,7 +11,7 @@
       }).multiselect('disable');
   });
 
-%a.btn.btn-primary{ :class => 'btn-lg',  :href => show_products_user_path(current_user, :user_info_edit_part => :edit_product ) }
+%a.btn.btn-primary{ :class => 'btn-lg',  :href => show_products_shop_path(@product.shop.id, :user_info_edit_part => :edit_product ) }
   %i.fa.fa-chevron-left
   = I18n.t(:return, scope: :edit_product_detail)
 

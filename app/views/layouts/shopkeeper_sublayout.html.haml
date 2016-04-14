@@ -12,7 +12,7 @@
             =link_to I18n.t(:my_shop, scope: :top_menu), edit_setting_shop_path(current_user.shop.id, :user_info_edit_part => :edit_shop)
           - if current_user.shop
             %li{:class => [:edit_product.to_s, :edit_product_update.to_s, :edit_product_new.to_s, :edit_product_detail.to_s, :edit_product_detail_new.to_s, :edit_product_detail_update.to_s, :edit_product_detail_clone.to_s].include?(params[:user_info_edit_part]) ? 'active' : ''}
-              =link_to I18n.t(:my_product, scope: :top_menu),  show_products_user_path(current_user, :user_info_edit_part => :edit_product)
+              =link_to I18n.t(:my_product, scope: :top_menu),  show_products_shop_path(current_user.shop.id, :user_info_edit_part => :edit_product)
           %li{:class => params[:user_info_edit_part] == :edit_shop_address.to_s ? 'active' : ''}
             =link_to I18n.t(:my_address, scope: :top_menu),  show_addresses_user_path(current_user, :user_info_edit_part => :edit_shop_address)
   .col-md-9

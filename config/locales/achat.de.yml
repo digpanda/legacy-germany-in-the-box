@@ -260,6 +260,8 @@ de:
     delete_ok: Der Shop wurde erfolgreich entfernt.
     delete_shop_message: Den Shop löschen?
     remove: Entfernen
+    products: Produkte
+    products_info: '%{num} Produktserie(n)'
     agb:
       info: AGB
       'true': Ja

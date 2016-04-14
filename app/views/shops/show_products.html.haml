@@ -1,16 +1,6 @@
 = javascript_include_tag 'bootstrap-multiselect.js'
 = stylesheet_link_tag 'bootstrap-multiselect.css'
 
-:javascript
-  $(document).ready(function() {
-      $('select.product-categories').multiselect({
-        nonSelectedText: "#{I18n.t(:non_selected_text, scope: :multiselect)}",
-        nSelectedText: "#{I18n.t(:n_selected_text, scope: :multiselect)}",
-        numberDisplayed: 1,
-        maxHeight: 400
-      }).multiselect('disable');
-  });
-
 %a.btn.btn-primary{ :class => "#{for_device_type :desktop do 'btn-lg' end}",  :href => new_product_user_path(current_user, :user_info_edit_part => :edit_product_new) }
   %i.fa.fa-plus-circle
   = I18n.t(:new, scope: :edit_product)
@@ -18,7 +8,7 @@
 %br
 %br
 
-- if current_user.shop.products.count > 0
+- if @shop.products.count > 0
   %table.table.cart-table
     %thead
       %tr
@@ -34,12 +24,11 @@
         %th
           %label= I18n.t(:operations, scope: :edit_product)
     %tbody
-      - current_user.shop.products.each do |p|
+      - @shop.products.each do |p|
         %tr
           %td= link_to p.get_locale_name, edit_product_user_path(p.id, :user_info_edit_part => :edit_product_update)
           %td= p.brand
-          -#%td= select_tag :categories, grouped_options_for_select(get_grouped_categories_options, p.categories.map { |c| c.id.to_s }), :prompt => I18n.t(:non_selected_text, scope: :multiselect), :include_blank => true, :class => 'form-control product-categories'
-          %td= link_to I18n.t(:quantity_info, scope: :edit_product, num1: p.skus.inject(0) { |sum, s| sum += s.quantity }, num2: p.options.count), show_skus_user_path(p.id, :user_info_edit_part => :edit_product_detail)
+          %td= link_to I18n.t(:quantity_info, scope: :edit_product, num1: p.skus.inject(0) { |sum, s| sum += s.quantity }, num2: p.options.count), show_skus_product_path(p.id, :user_info_edit_part => :edit_product_detail)
           %td{:align => "left"}
             = link_to '', product_path(p), :method => :delete, data: { confirm: I18n.t(:delete_product_message, scope: :edit_product) }, :class => 'fa fa-times-circle fa-2x', :title => I18n.t(:remove, scope: :edit_product)
 - else

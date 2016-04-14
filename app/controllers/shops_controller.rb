@@ -21,6 +21,10 @@ class ShopsController <  ApplicationController
     render :edit_producer, layout: "#{current_user.role.to_s}_sublayout"
   end
 
+  def show_products
+    render :show_products, layout: "#{current_user.role.to_s}_sublayout"
+  end
+
   def show
     @categories_and_children, @categories_and_counters = get_category_values_for_left_menu(@shop.products)
 

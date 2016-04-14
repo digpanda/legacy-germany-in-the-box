@@ -53,6 +53,7 @@ Rails.application.routes.draw do
     match :get_sku_for_options,                     via: [:get],    to: :get_sku_for_options,         as: :get_sku_for_options,         :on => :member
     match :like_product,                            via: [:patch],  to: :like_product,                as: :like_product,                :on => :member
     match :dislike_product,                         via: [:patch],  to: :dislike_product,             as: :dislike_product,              :on => :member
+    match :show_skus,                               via: [:get],    to: :show_skus,                   as: :show_skus,                   :on => :member
 
     match :autocomplete_product_name,               via: [:get],    to: :autocomplete_product_name,   as: :autocomplete_product_name,   :on => :collection
     match 'search',                                 via: [:get],    to: :search,                      as: :search,                      :on => :collection
@@ -73,8 +74,6 @@ Rails.application.routes.draw do
     match :show_orders,       via: [:get],    to: :show_orders,       :controller => :orders,             as: :show_orders,         :on => :member
     match :show_addresses,    via: [:get],    to: :show_addresses,    :controller => :addresses,          as: :show_addresses,      :on => :member
     match :show_collections,  via: [:get],    to: :show_collections,  :controller => :collections,        as: :show_collections,    :on => :member
-    match :show_products,     via: [:get],    to: :show_products,     :controller => :products,           as: :show_products,       :on => :member
-    match :show_skus,         via: [:get],    to: :show_skus,         :controller => :products,           as: :show_skus,           :on => :member
     match :new_collection,    via: [:get],    to: :new,               :controller => :collections,        as: :new_collection,      :on => :member
     match :edit_collection,   via: [:get],    to: :edit,              :controller => :collections,        as: :edit_collection,     :on => :member
     match :new_product,       via: [:get],    to: :new,               :controller => :products,           as: :new_product,         :on => :member
@@ -87,6 +86,7 @@ Rails.application.routes.draw do
   resources :shops, except: [:new, :edit, :create] do
     match :edit_setting,    via: [:get],    to: :edit_setting,    as: :edit_setting,    :on => :member
     match :edit_producer,   via: [:get],    to: :edit_producer,   as: :edit_producer,   :on => :member
+    match :show_products,   via: [:get],    to: :show_products,   as: :show_products,   :on => :member
   end
 
   resources :shop_applications, except: [:edit, :update] do

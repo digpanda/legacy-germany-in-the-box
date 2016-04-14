@@ -4,7 +4,7 @@ class ProductsController < ApplicationController
 
   include FunctionCache
 
-  before_action :set_product, only: [:show, :edit, :update, :destroy, :get_sku_for_options, :remove_sku, :remove_option, :new_sku]
+  before_action :set_product, only: [:show, :edit, :update, :destroy, :get_sku_for_options, :remove_sku, :remove_option, :new_sku, :show_skus]
 
   before_action :authenticate_user!, except: [:autocomplete_product_name, :list_popular_products, :search, :show, :get_sku_for_options]
 
@@ -43,10 +43,6 @@ class ProductsController < ApplicationController
     @sku.save
 
     render :clone_sku, layout: "#{current_user.role.to_s}_sublayout"
-  end
-
-  def show_products
-    render :show_products, layout: "#{current_user.role.to_s}_sublayout"
   end
 
   def show_skus
@@ -92,7 +88,7 @@ class ProductsController < ApplicationController
   def remove_sku
     @product.skus.find(params[:sku_id]).delete
 
-    redirect_to show_skus_user_path(@product.id, :user_info_edit_part => :edit_product_detail)
+    redirect_to show_skus_product_path(@product.id, :user_info_edit_part => :edit_product_detail)
   end
 
   def remove_variant
@@ -220,7 +216,7 @@ class ProductsController < ApplicationController
 
         format.html {
           flash[:success] = I18n.t(:create_ok, scope: :edit_product_new)
-          redirect_to show_products_user_path(current_user, :user_info_edit_part => :edit_product)
+          redirect_to show_products_shop_path(current_user.shop.id, :user_info_edit_part => :edit_product)
         }
       else
         format.html {
@@ -245,7 +241,7 @@ class ProductsController < ApplicationController
 
           if params[:part] == :basic.to_s
             flash[:success] = I18n.t(:update_ok, scope: :edit_product)
-            redirect_to show_products_user_path(current_user, :user_info_edit_part => :edit_product)
+            redirect_to show_products_shop_path(current_user.shop.id, :user_info_edit_part => :edit_product)
           elsif params[:part] == :sku.to_s
             flash[:success] = I18n.t(:update_ok, scope: :edit_product_detail)
             redirect_to edit_product_user_path(@product.id, :user_info_edit_part => :edit_product_detail)
@@ -271,12 +267,12 @@ class ProductsController < ApplicationController
 
         format.html {
           flash[:success] = I18n.t(:delete_ok, scope: :edit_product)
-          redirect_to show_products_user_path(current_user, :user_info_edit_part => :edit_product)
+          redirect_to show_products_shop_path(current_user.shop.id, :user_info_edit_part => :edit_product)
         }
       else
         format.html {
           flash[:error] = @product.errors.full_messages.first
-          redirect_to show_products_user_path(current_user, :user_info_edit_part => :edit_product)
+          redirect_to show_products_shop_path(current_user.shop.id, :user_info_edit_part => :edit_product)
         }
       end
     end
