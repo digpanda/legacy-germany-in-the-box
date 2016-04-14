@@ -31,7 +31,7 @@
           .row
             .col-md-4{ :title => I18n.t(:desc_info, scope: :edit_shop, num: Rails.configuration.max_medium_text_length, locale: locale) }
               %i.fa.fa-info-circle{ :title => I18n.t(:desc_info, scope: :edit_shop, num: Rails.configuration.max_medium_text_length, locale: locale) }
-              %label.required= I18n.t(:desc, scope: :edit_shop, locale: locale)
+              %label.required.translation= I18n.t(:desc, scope: :edit_shop, locale: locale)
             .col-md-8
               =  f.text_area :desc, :value => @shop.desc_translations[locale], :class => 'form-control', rows: 4, :required => true, :maxLength => Rails.configuration.max_medium_text_length
               %div.help-block.with-errors
@@ -39,7 +39,7 @@
           .row
             .col-md-4{ :title => I18n.t(:philosophy_info, scope: :edit_shop, num: Rails.configuration.max_long_text_length), locale: locale }
               %i.fa.fa-info-circle{ :title => I18n.t(:philosophy_info, scope: :edit_shop, num: Rails.configuration.max_long_text_length, locale: locale) }
-              %label.required= I18n.t(:philosophy, scope: :edit_shop, locale: locale)
+              %label.required.translation= I18n.t(:philosophy, scope: :edit_shop, locale: locale)
             .col-md-8
               = f.text_area :philosophy, :value => @shop.philosophy_translations[locale], :class => 'form-control', rows: 4, :required => true, :maxLength => Rails.configuration.max_long_text_length
               %div.help-block.with-errors
@@ -47,7 +47,7 @@
           .row
             .col-md-4{ :title => I18n.t(:stories_info, scope: :edit_shop, num: Rails.configuration.max_long_text_length, locale: locale) }
               %i.fa.fa-info-circle{ :title => I18n.t(:stories_info, scope: :edit_shop, num: Rails.configuration.max_long_text_length, locale: locale) }
-              %label= I18n.t(:stories, scope: :edit_shop, locale: locale)
+              %label.translation= I18n.t(:stories, scope: :edit_shop, locale: locale)
             .col-md-8
               = f.text_area :stories, :value => @shop.stories_translations[locale], :class => 'form-control', rows: 4, :maxLength => Rails.configuration.max_long_text_length
               %div.help-block.with-errors
@@ -55,14 +55,14 @@
           .row
             .col-md-4{ :title => I18n.t(:uniqueness_info, scope: :edit_shop, num: Rails.configuration.max_medium_text_length, locale: locale) }
               %i.fa.fa-info-circle{ :title => I18n.t(:uniqueness_info, scope: :edit_shop, num: Rails.configuration.max_medium_text_length, locale: locale) }
-              %label= I18n.t(:uniqueness, scope: :edit_shop, locale: locale)
+              %label.translation= I18n.t(:uniqueness, scope: :edit_shop, locale: locale)
             .col-md-8
               = f.text_area :uniqueness, :value => @shop.uniqueness_translations[locale], :class => 'form-control', rows: 4, :maxLength => Rails.configuration.max_medium_text_length
         .form-group
           .row
             .col-md-4{ :title => I18n.t(:german_essence_info, scope: :edit_shop, num: Rails.configuration.max_medium_text_length, locale: locale) }
               %i.fa.fa-info-circle{ :title => I18n.t(:german_essence_info, scope: :edit_shop, num: Rails.configuration.max_medium_text_length, locale: locale) }
-              %label= I18n.t(:german_essence, scope: :edit_shop, locale: locale)
+              %label.translation= I18n.t(:german_essence, scope: :edit_shop, locale: locale)
             .col-md-8
               = f.text_area :german_essence, :value => @shop.german_essence_translations[locale], :class => 'form-control', rows: 4, :maxLength => Rails.configuration.max_medium_text_length
               %div.help-block.with-errors

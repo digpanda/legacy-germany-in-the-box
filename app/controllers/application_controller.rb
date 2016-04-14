@@ -22,6 +22,8 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_order, :current_orders, :total_number_of_products, :extract_locale
 
+  around_action :set_translation_locale, only: [:update], if: -> {current_user && current_user.role == :admin}
+
   def set_session_locale
     session[:locale] = params[:locale]
     redirect_to request.referer
@@ -113,6 +115,15 @@ class ApplicationController < ActionController::Base
         end
       end
     end
+  end
+
+  def set_translation_locale
+    cl = I18n.locale
+    I18n.locale = params[:translation].to_sym if params[:translation]
+    yield
+    I18n.locale = cl
+  rescue
+    I18n.locale = cl
   end
 
   def extract_locale

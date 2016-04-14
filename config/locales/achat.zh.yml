@@ -312,7 +312,8 @@ zh-CN:
     website: 主页
     agb: 条款可法律声明
     agb_statement: 在此保证，我已经清楚的阅读DigPanda有限公司的<a href='/page/agb' target='blank'>使用条款</a>，并且同意并接受此条款。
-    required_field_info: ' 必填字段'
+    required_field_info: '* 必填字段'
+    underline_field_info: '_ 翻译字段'
     company_name_placeholder: '示例 有限公司'
     shopname: 网店名称
     tax_number: 企业税号
@@ -406,7 +407,7 @@ zh-CN:
     new_sku: 新建库存
     create_sku: 创建新库存
     update_ok: 库存单位更新成功
-    variants_info: 一个库存单元属于一个产品型号的组合
+    variants_info: 型号描述同一个产品的变种
     customizable_info: 此产品可定制
     return: 返回产品列表
     cancel: 取消
@@ -438,6 +439,7 @@ zh-CN:
     return: 返回产品列表
     cancel: 取消
     variants: 产品型号
+    variant_usage: 每个型号必须至少有一个库存单元。如果产品只有一个型号，可以把型号和选项都定义为<strong>默认</strong>.
   popular_products:
     search_prompt: 我要找
     search_placeholder: 产品名称，关键字，品牌

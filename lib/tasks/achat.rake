@@ -14,8 +14,6 @@ namespace :achat do
     OrderItem.all.delete
     Order.all.delete
 
-    category_home_accessories = Category.where(:name => 'Home Accessories')
-
     #
     # creates image upload file
     #
@@ -137,8 +135,6 @@ namespace :achat do
     s3.img3 = create_upload_from_image_file(Product.name.downcase, 'herz_buffet_large_10_blatt_seidenpapier_panda.jpg')
     s3.save!
 
-    product.categories << category_home_accessories
-
     shop.products << product
     shop.save!
 
@@ -213,8 +209,6 @@ namespace :achat do
     s3.img2 = create_upload_from_image_file(Product.name.downcase, 'herz_buffet_large_10_blatt_seidenpapier_panda.jpg')
     s3.img3 = create_upload_from_image_file(Product.name.downcase, 'herz_buffet_large_10_blatt_seidenpapier_panda.jpg')
     s3.save!
-
-    product.categories << category_home_accessories
 
     shop.products << product
     shop.save!

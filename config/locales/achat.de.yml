@@ -317,6 +317,7 @@ de:
     agb: Allgemeine Geschäftsbedingungen
     agb_statement: Hiermit versichere ich, dass ich die <a href='/page/agb' target='blank'>AGB</a> der DigPanda GmbH komplett gelesen habe und ich mit den Inhalten dieser AGB einverstanden bin. 
     required_field_info: '* Pflichtfeld'
+    underline_field_info: '_ Übersetzungsfeld'
     company_name_placeholder: 'Beispiel GmbH'
     shopname: Shopname
     tax_number: Steuernummer
@@ -443,6 +444,7 @@ de:
     return: Zurück zur Produktliste
     cancel: Abbrechen
     variants: Varianten
+    variant_usage: Jede Aritkelposition muss einer Variante zugeordnet werden. Falls das Produkt nur eine Variante hat, tragen Sie bitte das Wort <strong>Standard</strong> in die Felder Variante und V-Ausprägung ein.
   popular_products:
     search_prompt: Ich suche
     search_placeholder: ein Produkt

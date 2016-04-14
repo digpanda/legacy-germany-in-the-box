@@ -73,7 +73,7 @@ module ProductsHelper
     }
   end
 
-  def gen_add_option_to_existing_variant
+  def gen_add_option_to_existing_variant(placeholder)
     %Q{
       var pp_index = $(this).attr('index')
       var body = $(this).closest('.panel').children('.panel-body');
@@ -82,11 +82,11 @@ module ProductsHelper
       body.append(
         $('<div>').addClass('form-inline').append(
           $('<div>').addClass('form-group').append(
-            $('<input>').attr('style', 'max-width:120px').attr('name', 'product[options_attributes][' + pp_index + '][suboptions_attributes][' + index + '][name]').addClass('form-control dynamical-required').attr('maxLength', '#{Rails.configuration.max_tiny_text_length}').attr('placeholder', '#{I18n.t(:option_name, scope: :edit_product_variant)}')
+            $('<input>').attr('style', 'max-width:120px').attr('name', 'product[options_attributes][' + pp_index + '][suboptions_attributes][' + index + '][name]').addClass('form-control dynamical-required').attr('maxLength', '#{Rails.configuration.max_tiny_text_length}').attr('placeholder', '#{placeholder}')
           ),
           ' ',
           $('<div>').addClass('btn-group pull-right').append(
-            $('<a>').addClass('fa fa-times-circle btn').attr('title', '#{I18n.t(:remove, scope: :edit_product_variant)}').click(#{gen_remove_option_panel})
+            $('<a>').addClass('fa fa-times-circle btn').click(#{gen_remove_option_panel})
           )
         ).fadeIn()
       );
@@ -95,7 +95,7 @@ module ProductsHelper
     }
   end
 
-  def gen_add_option_to_new_variant
+  def gen_add_option_to_new_variant(placeholder)
     %Q{
       function() {
         var pp_index = $(this).closest('.col-md-4').prevAll('.col-md-4').length;
@@ -105,11 +105,11 @@ module ProductsHelper
         body.append(
           $('<div>').addClass('form-inline').append(
             $('<div>').addClass('form-group').append(
-              $('<input>').attr('style', 'max-width:120px').attr('name', 'product[options_attributes]['+pp_index+'][suboptions_attributes][' + index + '][name]').addClass('form-control dynamical-required input-sm').attr('maxLength', '#{Rails.configuration.max_tiny_text_length}').attr('placeholder', '#{I18n.t(:option_name, scope: :edit_product_variant)}')
+              $('<input>').attr('style', 'max-width:120px').attr('name', 'product[options_attributes]['+pp_index+'][suboptions_attributes][' + index + '][name]').addClass('form-control dynamical-required input-sm').attr('maxLength', '#{Rails.configuration.max_tiny_text_length}').attr('placeholder', '#{placeholder}')
             ),
             ' ',
             $('<div>').addClass('btn-group pull-right').append(
-              $('<a>').addClass('fa fa-times-circle btn').attr('title', '#{I18n.t(:remove, scope: :edit_product_variant)}').click(#{gen_remove_option_panel})
+              $('<a>').addClass('fa fa-times-circle btn').click(#{gen_remove_option_panel})
             )
           ).fadeIn()
         );
@@ -119,7 +119,7 @@ module ProductsHelper
     }
   end
 
-  def gen_add_variant_panel
+  def gen_add_variant_panel(variant_placeholder, option_placeholder)
     %Q{
       var body = $(this).closest('.panel').children('.panel-body').children('.form-group').children('.row')
       var index = body.find('.panel').length
@@ -130,23 +130,23 @@ module ProductsHelper
               $('<div>').addClass('panel-heading').append(
                 $('<div>').addClass('form-inline').append(
                   $('<div>').addClass('form-group').append(
-                    $('<input>').attr('name', 'product[options_attributes]['+index+'][name]').attr('required', true).attr('style', 'max-width:120px').addClass('form-control input-sm dynamical-required').attr('maxLength', '#{Rails.configuration.max_tiny_text_length}').attr('placeholder', '#{I18n.t(:variant_name, scope: :edit_product_variant)}')
+                    $('<input>').attr('name', 'product[options_attributes]['+index+'][name]').attr('required', true).attr('style', 'max-width:120px').addClass('form-control input-sm dynamical-required').attr('maxLength', '#{Rails.configuration.max_tiny_text_length}').attr('placeholder', '#{variant_placeholder}')
                   ),
                   ' ',
                   $('<div>').addClass('btn-group pull-right').append(
-                    $('<a>').addClass('fa fa-times-circle btn').click(#{gen_remove_variant_panel}).attr('title', '#{I18n.t(:remove, scope: :edit_product_variant)}'),
-                    $('<a>').addClass('fa fa-plus btn').click(#{gen_add_option_to_new_variant}).attr('title', '#{I18n.t(:new_option, scope: :edit_product_variant)}')
+                    $('<a>').addClass('fa fa-times-circle btn').click(#{gen_remove_variant_panel}),
+                    $('<a>').addClass('fa fa-plus btn').click(#{gen_add_option_to_new_variant(option_placeholder)})
                   )
                 )
               ),
               $('<div>').addClass('panel-body').append(
                 $('<div>').addClass('form-inline').append(
                   $('<div>').addClass('form-group').append(
-                    $('<input>').attr('style', 'max-width:120px').attr('name', 'product[options_attributes]['+index+'][suboptions_attributes][' + 0 + '][name]').addClass('form-control dynamical-required input-sm').attr('maxLength', '#{Rails.configuration.max_tiny_text_length}').attr('placeholder', '#{I18n.t(:option_name, scope: :edit_product_variant)}')
+                    $('<input>').attr('style', 'max-width:120px').attr('name', 'product[options_attributes]['+index+'][suboptions_attributes][' + 0 + '][name]').addClass('form-control dynamical-required input-sm').attr('maxLength', '#{Rails.configuration.max_tiny_text_length}').attr('placeholder', '#{option_placeholder}')
                   ),
                   ' ',
                   $('<div>').addClass('btn-group pull-right').append(
-                    $('<a>').addClass('fa fa-times-circle btn').attr('title', '#{I18n.t(:remove, scope: :edit_product_variant)}').click(#{gen_remove_option_panel})
+                    $('<a>').addClass('fa fa-times-circle btn').click(#{gen_remove_option_panel})
                   )
                 )
               )

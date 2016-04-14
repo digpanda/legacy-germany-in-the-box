@@ -60,20 +60,20 @@
         .form-group
           .row
             .col-md-3
-              %label.required= I18n.t(:name, scope: :edit_product, locale: locale)
+              %label.required.translation= I18n.t(:name, scope: :edit_product, locale: locale)
             .col-md-9
               = f.text_field :name, :value => @product.name_translations[locale], :class => 'form-control', :required => true, :maxLength => Rails.configuration.max_short_text_length
         .form-group
           .row
             .col-md-3
-              %label.required= I18n.t(:brand, scope: :edit_product, locale: locale)
+              %label.required.translation= I18n.t(:brand, scope: :edit_product, locale: locale)
             .col-md-9
               = f.text_field :brand, :value => @product.brand_translations[locale], :class => 'form-control', :required => true, :maxLength => Rails.configuration.max_short_text_length
         .form-group
           .row
             .col-md-3{:title => I18n.t(:desc_info, scope: :edit_product, num: Rails.configuration.max_medium_text_length, locale: locale) }
               %i.fa.fa-info-circle{ :title => I18n.t(:desc_info, scope: :edit_product, num: Rails.configuration.max_medium_text_length, locale: locale) }
-              %label.required= I18n.t(:desc, scope: :edit_product, locale: locale)
+              %label.required.translation= I18n.t(:desc, scope: :edit_product, locale: locale)
             .col-md-9
               = f.text_area :desc, :value => @product.desc_translations[locale], :class => 'form-control', rows: 8, :required => true, :maxLength => Rails.configuration.max_medium_text_length
     -#.panel.panel-info
@@ -103,13 +103,13 @@
       .panel-heading
         %a{ :rel => 'popover', :title => image_tag('variant-example.png'), 'data-content' => I18n.t(:variants_info, scope: :edit_product_detail, locale: locale) }
           %i.fa.fa-info-circle
-          %label.required= I18n.t(:variants, scope: :edit_product_variant, locale: locale)
+          %label.required.translation= I18n.t(:variants, scope: :edit_product_variant, locale: locale)
         .pull-right
-          %a{:href => '#', :class=> 'btn btn-sm', :onclick => "#{gen_add_variant_panel}", :id => "a_add_variant_#{@product.id}"}
+          %a{:href => '#', :class=> 'btn btn-sm', :onclick => "#{gen_add_variant_panel(I18n.t(:variant_name, scope: :edit_product_variant, locale: locale), I18n.t(:option_name, scope: :edit_product_variant, locale: locale))}", :id => "a_add_variant_#{@product.id}"}
             %i.fa.fa-plus-circle
             = I18n.t(:new_variant, scope: :edit_product_variant, locale: locale)
       .panel-body
-        %h5=  'Jede Aritkelposition muss einer Variante zugeordnet werden. Falls das Produkt nur eine Variante hat, tragen Sie bitte das Wort <strong>Standard</strong> in die Felder Variante und V-Ausprägung ein.'.html_safe
+        %h5= I18n.t(:variant_usage, scope: :edit_product_variant, locale: locale).html_safe
         %br
         .form-group
           .row
@@ -119,15 +119,15 @@
                   .panel-heading
                     .form-inline
                       .form-group
-                        = fo.text_field :name, :value => fo.object.name, :style => 'max-width:120px', :class => 'form-control input-sm', :required => true, :maxLength => Rails.configuration.max_tiny_text_length, :placeholder => I18n.t(:variant_name, scope: :edit_product_variant, locale: locale)
+                        = fo.text_field :name, :value => fo.object.name_translations[locale], :style => 'max-width:120px', :class => 'form-control input-sm', :required => true, :maxLength => Rails.configuration.max_tiny_text_length, :placeholder => I18n.t(:variant_name, scope: :edit_product_variant, locale: locale)
                       .btn-group.pull-right
                         = link_to '', remove_variant_product_path(@product.id, fo.object.id), method: :delete, data: { confirm: "#{I18n.t(:delete_option_message, scope: :edit_product_variant, locale: locale)}" }, :class => 'fa fa-times-circle btn', :title => I18n.t(:remove, scope: :edit_product_variant, locale: locale)
-                        = link_to '', '#', :onclick => "#{gen_add_option_to_existing_variant}", :index => fo.index, :class => 'fa fa-plus btn', :title => I18n.t(:new_option, scope: :edit_product_variant, locale: locale)
+                        = link_to '', '#', :onclick => "#{gen_add_option_to_existing_variant(I18n.t(:option_name, scope: :edit_product_variant, locale: locale))}", :index => fo.index, :class => 'fa fa-plus btn', :title => I18n.t(:new_option, scope: :edit_product_variant, locale: locale)
                   .panel-body
                     = fo.fields_for :suboptions do |fso|
                       .form-inline
                         .form-group
-                          = fso.text_field :name, :value => fso.object.name, :style => 'max-width:120px', :class => 'form-control input-sm', :required => true, :maxLength => Rails.configuration.max_tiny_text_length, :placeholder => I18n.t(:option_name, scope: :edit_product_variant, locale: locale)
+                          = fso.text_field :name, :value => fso.object.name_translations[locale], :style => 'max-width:120px', :class => 'form-control input-sm', :required => true, :maxLength => Rails.configuration.max_tiny_text_length, :placeholder => I18n.t(:option_name, scope: :edit_product_variant, locale: locale)
                         .btn-group.pull-right
                           = link_to '', remove_option_product_path(@product.id, fo.object.id, fso.object.id), method: :delete, data: { confirm: "#{I18n.t(:delete_option_message, scope: :edit_product_variant, locale: locale)}" }, :class => 'btn fa fa-times-circle', :title => I18n.t(:remove_option, scope: :edit_product_variant, locale: locale)
       - if @product.persisted? && @product.has_option?
