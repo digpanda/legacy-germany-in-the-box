@@ -79,18 +79,9 @@
   %body
     = render "layouts/header_#{!current_user ? 'default' : current_user.role.to_s}"
 
-    - for_device_type :desktop do
-      - if @show_search_area.present? and @show_search_area
-        .row{ :style => 'height: 140px' }
-      - else
-        .row{ :style => 'height: 80px' }
-
-    - for_device_type :tablet, :mobile do
-      .row{ :style => 'height: 30px' }
-
     - for_device_type :desktop, :tablet do
-      .row
-        .col-md-3.pull-right
+      .row{ :style => 'height:74px;margin-top:6px' }
+        .col-md-4.pull-right
           - if flash[:error]
             .alert.alert-danger.fade.in{:role => 'alert'}
               %a.close{'aria-label' => 'close', 'data-dismiss' => 'alert', :href => '#'} &times;

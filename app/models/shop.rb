@@ -9,11 +9,11 @@ class Shop
 
   field :name,            type: String
   field :shopname,        type: String
-  field :desc,            type: String
+  field :desc,            type: String,     localize: true
   field :logo,            type: String
   field :banner,          type: String
-  field :philosophy,      type: String
-  field :stories,         type: String
+  field :philosophy,      type: String,     localize: true
+  field :stories,         type: String,     localize: true
   field :tax_number,      type: String
   field :ustid,           type: String
   field :eroi,            type: String
@@ -23,8 +23,8 @@ class Shop
   field :currency,        type: String,     default: '€'
   field :status,          type: Boolean,    default: true
   field :founding_year,   type: String
-  field :uniqueness,      type: String
-  field :german_essence,  type: String
+  field :uniqueness,      type: String,     localize: true
+  field :german_essence,  type: String,     localize: true
   field :sales_channels,  type: Array,      default: []
   field :register,        type: String
   field :website,         type: String
@@ -33,8 +33,6 @@ class Shop
   field :seal1,           type: String
   field :seal2,           type: String
   field :seal3,           type: String
-
-  field :name_locales,    type: Hash
 
   mount_uploader :logo,   LogoImageUploader
   mount_uploader :banner, BannerImageUploader

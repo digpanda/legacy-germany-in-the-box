@@ -12,8 +12,6 @@ class Collection
   field :public,  type: Boolean, default: true
   field :desc,    type: String
 
-  field :name_locales, type: Hash
-
   mount_uploader :img, LogoImageUploader
 
   has_and_belongs_to_many :users,     inverse_of: :liked_collections

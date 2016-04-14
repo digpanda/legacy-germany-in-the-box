@@ -188,7 +188,7 @@ module ProductsHelper
 
     variants.each_with_index.map do |v, i|
       o = v.suboptions.find(sku.option_ids[i])
-      { name: v.name, name_locales: v.name_locales, option: { id: o.id, name: o.name, name_locales: o.name_locales } }
+      { name: v.name, option: { id: o.id, name: o.name } }
     end
   end
 

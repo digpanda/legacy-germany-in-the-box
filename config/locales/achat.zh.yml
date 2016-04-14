@@ -1,4 +1,7 @@
 zh-CN:
+  locales:
+    de: 德语
+    zh-CN: 中文
   number:
     format:
       separator: '.'

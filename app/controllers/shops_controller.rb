@@ -4,6 +4,8 @@ class ShopsController <  ApplicationController
 
   before_action :set_shop, except: [:index]
 
+  around_action :set_translation_locale, only: [:update], if: -> {current_user && current_user.role == :admin}
+
   load_and_authorize_resource
 
   def index
@@ -29,7 +31,7 @@ class ShopsController <  ApplicationController
   end
 
   def update
-     respond_to do |format|
+    respond_to do |format|
        sp = shop_params(@shop)
 
        if @shop.agb && @shop.update(sp)
@@ -53,7 +55,7 @@ class ShopsController <  ApplicationController
           redirect_to request.referer
         }
       end
-    end   
+     end
   end
 
   def destroy
@@ -68,6 +70,15 @@ class ShopsController <  ApplicationController
 
   private
 
+  def set_translation_locale
+    cl = I18n.locale
+    I18n.locale = params[:translation].to_sym if params[:translation]
+    yield
+    I18n.locale = cl
+  rescue
+    I18n.locale = cl
+  end
+
   def set_shop
     @shop = Shop.find(params[:id])
   end
@@ -76,9 +87,9 @@ class ShopsController <  ApplicationController
     delocalize_config = { :min_total => :number }
 
     unless shop.agb
-      params.require(:shop).permit(:shopname, :name, :desc, :logo, :banner, :seal0, :seal1, :seal2, :seal3, :philosophy, :stories, :tax_number, :ustid, :eroi, :min_total, :currency, :status, :founding_year, :register, :website, :agb, sales_channels:[]).delocalize(delocalize_config)
+      params.require(:shop).permit(:shopname, :name, :desc, :logo, :banner, :seal0, :seal1, :seal2, :seal3, :philosophy, :stories, :german_essence, :uniqueness, :tax_number, :ustid, :eroi, :min_total, :currency, :status, :founding_year, :register, :website, :agb, sales_channels:[]).delocalize(delocalize_config)
     else
-      params.require(:shop).permit(:shopname, :name, :desc, :logo, :banner, :seal0, :seal1, :seal2, :seal3, :philosophy, :stories, :tax_number, :ustid, :eroi, :min_total, :currency, :status, :founding_year, :register, :website, sales_channels:[]).delocalize(delocalize_config)
+      params.require(:shop).permit(:shopname, :name, :desc, :logo, :banner, :seal0, :seal1, :seal2, :seal3, :philosophy, :stories, :german_essence, :uniqueness, :tax_number, :ustid, :eroi, :min_total, :currency, :status, :founding_year, :register, :website, sales_channels:[]).delocalize(delocalize_config)
     end
   end
 end

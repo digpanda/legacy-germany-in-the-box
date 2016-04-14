@@ -75,7 +75,7 @@ class ShopApplicationsController < ApplicationController
   private
 
   def shop_application_params
-    params.require(:shop_application).permit(:email, :name, :shopname, :desc, :philosophy, :stories, :founding_year, :register, :website, :fname, :lname, :tel, :mobile, :mail, :german_essence, :uniqueness, :function, sales_channels:[])
+    params.require(:shop_application).permit(:email, :name, :shopname, :desc, :philosophy, :stories, :german_essence, :uniqueness, :founding_year, :register, :website, :fname, :lname, :tel, :mobile, :mail, :function, sales_channels:[])
   end
 
   def set_shop_application

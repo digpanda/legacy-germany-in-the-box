@@ -8,7 +8,6 @@ class VariantOption
   strip_attributes
 
   field :name,          type: String
-  field :name_locales,  type: Hash
 
   embeds_many :suboptions, class_name: 'VariantOption', inverse_of: :parent
 
