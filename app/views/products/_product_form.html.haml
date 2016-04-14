@@ -118,7 +118,7 @@
                   .panel-heading
                     .form-inline
                       .form-group
-                        = fo.text_field :name, :value => fo.object.get_locale_name, :style => 'max-width:120px', :class => 'form-control input-sm', :required => true, :maxLength => Rails.configuration.max_tiny_text_length, :placeholder => I18n.t(:variant_name, scope: :edit_product_variant)
+                        = fo.text_field :name, :value => fo.object.name, :style => 'max-width:120px', :class => 'form-control input-sm', :required => true, :maxLength => Rails.configuration.max_tiny_text_length, :placeholder => I18n.t(:variant_name, scope: :edit_product_variant)
                       .btn-group.pull-right
                         = link_to '', remove_variant_product_path(@product.id, fo.object.id), method: :delete, data: { confirm: "#{I18n.t(:delete_option_message, scope: :edit_product_variant)}" }, :class => 'fa fa-times-circle btn', :title => I18n.t(:remove, scope: :edit_product_variant)
                         = link_to '', '#', :onclick => "#{gen_add_option_to_existing_variant}", :index => fo.index, :class => 'fa fa-plus btn', :title => I18n.t(:new_option, scope: :edit_product_variant)
@@ -126,7 +126,7 @@
                     = fo.fields_for :suboptions do |fso|
                       .form-inline
                         .form-group
-                          = fso.text_field :name, :value => fso.object.get_locale_name, :style => 'max-width:120px', :class => 'form-control input-sm', :required => true, :maxLength => Rails.configuration.max_tiny_text_length, :placeholder => I18n.t(:option_name, scope: :edit_product_variant)
+                          = fso.text_field :name, :value => fso.object.name, :style => 'max-width:120px', :class => 'form-control input-sm', :required => true, :maxLength => Rails.configuration.max_tiny_text_length, :placeholder => I18n.t(:option_name, scope: :edit_product_variant)
                         .btn-group.pull-right
                           = link_to '', remove_option_product_path(@product.id, fo.object.id, fso.object.id), method: :delete, data: { confirm: "#{I18n.t(:delete_option_message, scope: :edit_product_variant)}" }, :class => 'btn fa fa-times-circle', :title => I18n.t(:remove_option, scope: :edit_product_variant)
       - if @product.persisted? && @product.has_option?

@@ -2,14 +2,14 @@ module FunctionCache
 
   def get_root_level_categories_from_cache
     Rails.cache.fetch("all_root_level_categories_cache_#{I18n.locale}", :expires_in => Rails.configuration.products_search_cache_expire_limit ) {
-      root_level_categories = Category.roots.is_active.to_a.sort { |a,b| a.get_locale_name <=> b.get_locale_name }
+      root_level_categories = Category.roots.is_active.to_a.sort { |a,b| a.name <=> b.name }
       root_level_categories.select { |c| c.children.count > 1 ? c : c.children.first }
     }
   end
 
   def get_first_level_categories_from_cache(root)
     Rails.cache.fetch("first_level_categories_cache_of_root_leve_#{root.id}_#{I18n.locale}", :expires_in => Rails.configuration.products_search_cache_expire_limit ) {
-      root.children.is_active.to_a.sort { |a,b| a.get_locale_name <=> b.get_locale_name }
+      root.children.is_active.to_a.sort { |a,b| a.name <=> b.name }
     }
   end
 
@@ -25,7 +25,7 @@ module FunctionCache
 
   def get_second_level_categories_from_cache(first_level_category)
     Rails.cache.fetch("second_level_categories_cache_of_first_level_category_#{first_level_category.id}_#{I18n.locale}", :expires_in => Rails.configuration.products_search_cache_expire_limit ) {
-      first_level_category.children.is_active.to_a.sort { |a,b| a.get_locale_name <=> b.get_locale_name }
+      first_level_category.children.is_active.to_a.sort { |a,b| a.name <=> b.name }
     }
   end
 
@@ -112,13 +112,13 @@ module FunctionCache
         end
       end
 
-      categories.sort {|a,b| b.total_products <=> a.total_products } .map {|rc| [rc.get_locale_name, rc.children.is_active.sort { |a,b| b.total_products <=> a.total_products }.map {|cc| [cc.get_locale_name, cc.id.to_s]} ] }.to_a
+      categories.sort {|a,b| b.total_products <=> a.total_products } .map {|rc| [rc.name, rc.children.is_active.sort { |a,b| b.total_products <=> a.total_products }.map {|cc| [cc.name, cc.id.to_s]} ] }.to_a
     }
   end
 
   def get_grouped_variants_options_from_cache(p)
     Rails.cache.fetch("get_grouped_variants_options_from_cache_#{p.id}_#{I18n.locale}", :expires_in => Rails.configuration.popular_products_cache_expire_limit ) {
-      p.options.map { |v| [v.get_locale_name, v.suboptions.sort { |a,b| a.get_locale_name <=> b.get_locale_name }.map { |o| [ o.get_locale_name, o.id.to_s]}] }.to_a
+      p.options.map { |v| [v.name, v.suboptions.sort { |a,b| a.name <=> b.name }.map { |o| [ o.name, o.id.to_s]}] }.to_a
     }
   end
 end

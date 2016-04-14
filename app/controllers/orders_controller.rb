@@ -303,7 +303,7 @@ class OrdersController < ApplicationController
 
     variants.each_with_index.map do |v, i|
       o = v.suboptions.find(sku.option_ids[i])
-      { name: v.get_locale_name, option: { name: o.get_locale_name } }
+      { name: v.name, option: { name: o.name } }
     end
   end
 
@@ -316,7 +316,7 @@ class OrdersController < ApplicationController
 
     variants.each_with_index.map do |v, i|
       o = v.suboptions.find(sku.option_ids[i])
-      o.get_locale_name
+      o.name
     end.join(', ')
   end
 end

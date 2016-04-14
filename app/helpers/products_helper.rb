@@ -173,7 +173,7 @@ module ProductsHelper
     names  = skus.map do |s|
       s.option_ids.compact.map do |oid|
         o = product.options.detect { |v| v.suboptions.find(oid) }.suboptions.find(oid)
-        o.get_locale_name
+        o.name
       end.join(', ')
     end
     values.each_with_index.map { |v,i| [names[i], v] }
