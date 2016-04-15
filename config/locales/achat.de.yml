@@ -1,4 +1,5 @@
 de:
+  back: Zurück
   locales:
     de: Deutsch
     zh-CN: Chinesisch
@@ -328,6 +329,8 @@ de:
       retail: Einzelhandel
       direct_selling: Direktvertrieb
       other: Sonstiges
+    shopname_unknown: unbekannt
+    shop_seal: Shopsiegel
   edit_product:
     edit: Editieren
     remove: Entfernen

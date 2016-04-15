@@ -49,7 +49,7 @@
       .panel-heading{:title => I18n.t(:product_seal_info, scope: :edit_product)}
         .text-center
           %i.fa.fa-info-circle{ :title => I18n.t(:product_seal_info, scope: :edit_product) }
-          %label= I18n.t(:product_seal, scope: :edit_product)
+          %label= I18n.t(:shop_seal, scope: :edit_shop)
       .panel-body
         .row.text-center
           .col-md-3
@@ -85,6 +85,46 @@
                 %i.fa.fa-cloud-upload
                 =I18n.t(:upload, scope: :image_upload)
               = f.file_field :seal3, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#seal_3_#{@shop.id}", :class => 'img-file-upload upload', :onchange =>"validateImgFile(this);"
+    .panel.panel-info
+      .panel-heading{:title => I18n.t(:product_seal_info, scope: :edit_product)}
+        .text-center
+          %i.fa.fa-info-circle{ :title => I18n.t(:product_seal_info, scope: :edit_product) }
+          %label= I18n.t(:product_seal, scope: :edit_product)
+      .panel-body
+        .row.text-center
+          .col-md-3
+            = image_tag get_uploaded_thumbnail_url(@shop.seal4), :class => 'img-responsive', :id => "seal_4_#{@shop.id}"
+          .col-md-3
+            = image_tag get_uploaded_thumbnail_url(@shop.seal5), :class => 'img-responsive', :id => "seal_5_#{@shop.id}"
+          .col-md-3
+            = image_tag get_uploaded_thumbnail_url(@shop.seal6), :class => 'img-responsive', :id => "seal_6_#{@shop.id}"
+          .col-md-3
+            = image_tag get_uploaded_thumbnail_url(@shop.seal7), :class => 'img-responsive', :id => "seal_7_#{@shop.id}"
+        .row.text-center
+          .col-md-3
+            .fileUpload.btn.btn-default
+              %span
+                %i.fa.fa-cloud-upload
+                =I18n.t(:upload, scope: :image_upload)
+              = f.file_field :seal4, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#seal_4_#{@shop.id}", :class => 'img-file-upload upload', :onchange =>"validateImgFile(this);"
+          .col-md-3
+            .fileUpload.btn.btn-default
+              %span
+                %i.fa.fa-cloud-upload
+                =I18n.t(:upload, scope: :image_upload)
+              = f.file_field :seal5, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#seal_5_#{@shop.id}", :class => 'img-file-upload upload', :onchange =>"validateImgFile(this);"
+          .col-md-3
+            .fileUpload.btn.btn-default
+              %span
+                %i.fa.fa-cloud-upload
+                =I18n.t(:upload, scope: :image_upload)
+              = f.file_field :seal6, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#seal_6_#{@shop.id}", :class => 'img-file-upload upload', :onchange =>"validateImgFile(this);"
+          .col-md-3
+            .fileUpload.btn.btn-default
+              %span
+                %i.fa.fa-cloud-upload
+                =I18n.t(:upload, scope: :image_upload)
+              = f.file_field :seal7, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#seal_7_#{@shop.id}", :class => 'img-file-upload upload', :onchange =>"validateImgFile(this);"
 
 
   = f.button I18n.t(:save, scope: :edit_shop), :class => 'btn btn-primary', name: :user_info_edit_part, value: :edit_shop

@@ -11,8 +11,8 @@ class ProductsController < ApplicationController
   load_and_authorize_resource
 
   def new
-    @product = current_user.shop.products.build
-    @product.shop = current_user.shop
+    @shop = Shop.find(params[:shop_id])
+    @product = @shop.products.build
 
     render :new_product, layout: "#{current_user.role.to_s}_sublayout"
   end
@@ -206,7 +206,7 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.new(product_params)
-    @product.shop = current_user.shop
+    @product.shop = Shop.find(params[:shop_id])
 
     respond_to do |format|
       @product.categories = params.require(:product)[:categories].map { |cid| Category.find(cid) if not cid.blank? }.compact if params.require(:product)[:categories]
@@ -216,12 +216,12 @@ class ProductsController < ApplicationController
 
         format.html {
           flash[:success] = I18n.t(:create_ok, scope: :edit_product_new)
-          redirect_to show_products_shop_path(current_user.shop.id, :user_info_edit_part => :edit_product)
+          redirect_to show_products_shop_path(@product.shop.id, :user_info_edit_part => :edit_product)
         }
       else
         format.html {
           flash[:error] = @product.errors.full_messages.first
-          redirect_to new_product_path(current_user, :user_info_edit_part => :edit_product_new )
+          redirect_to request.referer
         }
       end
     end

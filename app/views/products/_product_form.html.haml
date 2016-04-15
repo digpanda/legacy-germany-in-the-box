@@ -50,6 +50,7 @@
   });
 
 = form_for @product, :html => {'data-toggle': 'validator'} do |f|
+  = hidden_field_tag :shop_id, value = @product.shop.id
   = hidden_field_tag :translation, value = locale
   = hidden_field_tag :part, :basic
   .panel-group

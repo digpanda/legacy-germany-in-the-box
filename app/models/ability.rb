@@ -18,7 +18,7 @@ class Ability
 
       can [:dislike_product], Product
 
-      can [:show_products2,
+      can [:show_products,
            :list_products], Category
 
       can [:index,
@@ -67,7 +67,8 @@ class Ability
       can [:show,
            :update,
            :edit_setting,
-           :edit_producer], Shop, :shopkeeper => user
+           :edit_producer,
+           :show_products], Shop, :shopkeeper => user
 
       can [:list_popular_products,
            :get_sku_for_options,

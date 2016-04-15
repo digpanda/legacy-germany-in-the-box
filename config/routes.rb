@@ -46,7 +46,7 @@ Rails.application.routes.draw do
   resources :addresses, except: [:new, :edit] do
   end
 
-  resources :products, except: [:index] do
+  resources :products, except: [:index, :new] do
     match 'remove_sku/:sku_id',                     via: [:delete], to: :remove_sku,                  as: :remove_sku,                  :on => :member
     match 'remove_variant/:variant_id',             via: [:delete], to: :remove_variant,              as: :remove_variant,              :on => :member
     match 'remove_option/:variant_id/:option_id',   via: [:delete], to: :remove_option,               as: :remove_option,               :on => :member
@@ -85,6 +85,8 @@ Rails.application.routes.draw do
     match :edit_setting,    via: [:get],    to: :edit_setting,    as: :edit_setting,    :on => :member
     match :edit_producer,   via: [:get],    to: :edit_producer,   as: :edit_producer,   :on => :member
     match :show_products,   via: [:get],    to: :show_products,   as: :show_products,   :on => :member
+
+    resources :products,    only: [:new]
   end
 
   resources :shop_applications, except: [:edit, :update] do

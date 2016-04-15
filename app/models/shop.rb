@@ -31,6 +31,10 @@ class Shop
   field :seal1,           type: String
   field :seal2,           type: String
   field :seal3,           type: String
+  field :seal4,           type: String
+  field :seal5,           type: String
+  field :seal6,           type: String
+  field :seal7,           type: String
 
   mount_uploader :logo,   LogoImageUploader
   mount_uploader :banner, BannerImageUploader
@@ -39,6 +43,10 @@ class Shop
   mount_uploader :seal1,   ProductImageUploader
   mount_uploader :seal2,   ProductImageUploader
   mount_uploader :seal3,   ProductImageUploader
+  mount_uploader :seal4,   ProductImageUploader
+  mount_uploader :seal5,   ProductImageUploader
+  mount_uploader :seal6,   ProductImageUploader
+  mount_uploader :seal7,   ProductImageUploader
 
   has_one   :bank_account,    inverse_of: :shop
 

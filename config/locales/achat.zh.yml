@@ -1,4 +1,5 @@
 zh-CN:
+  back: 返回
   locales:
     de: 德语
     zh-CN: 中文
@@ -324,6 +325,8 @@ zh-CN:
       retail: 零售
       direct_selling: 直销
       other: 其他
+    shopname_unknown: 未命名
+    shop_seal: 厂家认证
   edit_product:
     edit: 修改
     remove: 删除产品
