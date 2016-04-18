@@ -331,6 +331,7 @@ de:
       other: Sonstiges
     shopname_unknown: unbekannt
     shop_seal: Shopsiegel
+    shop_seal_info: Ein Bild sagt mehr als thausende Worte. Ergänzen Sie Ihre Herstellerbeschreibung mit Bildern, die die Qualität und Ihre Persöhnlichkeit unterstreichen. (Z.B. Bilder von Geschäft, Produktionsstätte, Team, Auszeichnungen, Magazinausschnitten, etc.) (max. 1MB pro Bild)
   edit_product:
     edit: Editieren
     remove: Entfernen
@@ -365,7 +366,7 @@ de:
     desc_info: Beschreiben Sie Ihr Produkt mit all den ansprechenden Eigenschaften, die für Käufer relevant sind. (max. %{num} Buchstaben)
     cancel: Abbrechen
     product_seal: Produktsiegel
-    product_seal_info: Hier können Sie Ihre Produktsiegel hochladen. (max. 1 MB pro Bild)
+    product_seal_info: Besitzen Ihre Produkte Marke Qaulität- oder Handelssiegel? (Z.B. Bio-Siegel und Fairtrade-Siegel) (max. 1 MB pro Bild)
     quantity_info: '%{num1} Stk. von %{num2} Varianten'
     quantity: Verfügbarkeit
   edit_product_new:

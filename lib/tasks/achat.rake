@@ -81,7 +81,8 @@ namespace :achat do
         :agb => true,
         :tax_number => '12345678',
         :ustid => 'DE123456789',
-        :sales_channels => [:third_online_platform, 'www.taobao.com']
+        :sales_channels => [:third_online_platform, 'www.taobao.com'],
+        :shopname => 'Herz-Buffet 01'
     );
 
     product = Product.new(
@@ -155,7 +156,8 @@ namespace :achat do
         :agb => true,
         :tax_number => '12345678',
         :ustid => 'DE123456789',
-        :sales_channels => [:third_online_platform, 'www.taobao.com']
+        :sales_channels => [:third_online_platform, 'www.taobao.com'],
+        :shopname => 'Herz-Buffet 02'
     );
 
     product = Product.new(

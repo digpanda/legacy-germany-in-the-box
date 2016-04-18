@@ -40,6 +40,7 @@ class ShopApplicationsController < ApplicationController
         flash[:error] = @user.errors.full_messages.first
       else
         @shop = Shop.new(shop_application_params.except(:email, :fname, :lname, :tel, :mobile, :mail, :function))
+        @shop.shopname = @shop.name
         @shop.shopkeeper = @user
         unless @shop.save
           flash[:error] = @shop.errors.full_messages.first
