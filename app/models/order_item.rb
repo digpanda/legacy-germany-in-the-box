@@ -1,7 +1,5 @@
 class OrderItem
-  include Mongoid::Document
-  include Mongoid::Timestamps::Created::Short
-  include Mongoid::Timestamps::Updated::Short
+  include MongoidBase
 
   field :quantity,        type: Integer,    default: 1
   field :weight,          type: Float,      default: 0

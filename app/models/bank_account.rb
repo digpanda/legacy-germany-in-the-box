@@ -1,7 +1,5 @@
 class BankAccount
-  include Mongoid::Document
-  include Mongoid::Timestamps::Created::Short
-  include Mongoid::Timestamps::Updated::Short
+  include MongoidBase
 
   field :name,  type: String
   field :iban,  type: String

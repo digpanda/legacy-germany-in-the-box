@@ -1,7 +1,5 @@
 class Order
-  include Mongoid::Document
-  include Mongoid::Timestamps::Created::Short
-  include Mongoid::Timestamps::Updated::Short
+  include MongoidBase
 
   field :status, type: Symbol, default: :new
 

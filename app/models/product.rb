@@ -1,7 +1,5 @@
 class Product
-  include Mongoid::Document
-  include Mongoid::Timestamps::Created::Short
-  include Mongoid::Timestamps::Updated::Short
+  include MongoidBase
 
   strip_attributes
 

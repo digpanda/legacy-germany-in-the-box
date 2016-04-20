@@ -1,7 +1,5 @@
 class User
-  include Mongoid::Document
-  include Mongoid::Timestamps::Created::Short
-  include Mongoid::Timestamps::Updated::Short
+  include MongoidBase
 
   include Genderize
 
