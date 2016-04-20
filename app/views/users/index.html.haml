@@ -10,7 +10,7 @@
     %tbody
       - @users.each do |u|
         %tr
-          %td= link_to u.email, user_path(u, :user_info_edit_part => :edit_accounts)
+          %td= u.email
           %td= u.username
           %td= u.role
           %td= u.sign_in_count
