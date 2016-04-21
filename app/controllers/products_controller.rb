@@ -244,7 +244,7 @@ class ProductsController < ApplicationController
             redirect_to show_products_shop_path(@product.shop.id, :user_info_edit_part => :edit_product)
           elsif params[:part] == :sku.to_s
             flash[:success] = I18n.t(:update_ok, scope: :edit_product_detail)
-            redirect_to edit_product_path(@product.id, :user_info_edit_part => :edit_product_detail)
+            redirect_to show_skus_product_path(@product.id, :user_info_edit_part => :edit_product_detail)
           elsif params[:part] == :variant.to_s
             flash[:success] = I18n.t(:update_ok, scope: :edit_product_variant)
             redirect_to edit_product_path(@product.id, :user_info_edit_part => :edit_product_variant)
