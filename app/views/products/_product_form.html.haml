@@ -76,7 +76,7 @@
               %i.fa.fa-info-circle{ :title => I18n.t(:desc_info, scope: :edit_product, num: Rails.configuration.max_long_text_length, locale: locale) }
               %label.required.translation= I18n.t(:desc, scope: :edit_product, locale: locale)
             .col-md-9
-              = f.text_area :desc, :value => @product.desc_translations[locale], :class => 'form-control', rows: 8, :required => true, :maxLength => Rails.configuration.max_medium_text_length
+              = f.text_area :desc, :value => @product.desc_translations[locale], :class => 'form-control', rows: 8, :required => true, :maxLength => Rails.configuration.max_long_text_length
     -#.panel.panel-info
     -#  .panel-heading{ :title => I18n.t(:categories_info, scope: :edit_product) }
     -#    .text-center
