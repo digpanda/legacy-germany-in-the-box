@@ -27,6 +27,8 @@ gem 'omniauth'
 
 gem 'omniauth-facebook'
 
+gem 'pry'
+
 # carr ierwave provides an unit interface to enable upload file in different art of storage
 gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
 gem 'mini_magick'
