@@ -202,6 +202,15 @@ class ProductsController < ApplicationController
   end
 
   def show
+
+    @product = Product.find(params[:id])
+    
+    respond_to do |format|
+      format.json {
+        render :json => { :status => :ok, :product => @product } #(:only => [:_id, :img, :sale, :brand, :shopname]) }
+      }
+    end
+
   end
 
   def create

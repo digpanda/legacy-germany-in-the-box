@@ -29,6 +29,15 @@ class UsersController < ApplicationController
   end
 
   def show
+
+    @user = User.find(params[:id])
+    
+    respond_to do |format|
+      format.json {
+        render :json => { :status => :ok, :user => @user }
+      }
+    end
+
   end
 
   def new
