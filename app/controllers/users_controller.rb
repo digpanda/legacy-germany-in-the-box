@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :authenticate_user!, except: [:search,
                                               :index,
                                               :get_followers,
-                                              :get_followings]
+                                              :get_following]
 
 
   load_and_authorize_resource
@@ -176,20 +176,27 @@ class UsersController < ApplicationController
   end
 
   def get_followers
-    @users = @user.followers
 
+    @user = User.find(params[:id])
+    
     respond_to do |format|
       format.html { render :index }
-      format.json { render :get_followers }
+      format.json {
+        render :json => { :status => :ok, :followers => @user.followers }
+      }
     end
+
   end
 
   def get_following
-    @users = @user.following
 
+    @user = User.find(params[:id])
+    
     respond_to do |format|
       format.html { render :index }
-      format.json { render :get_followings }
+      format.json {
+        render :json => { :status => :ok, :followers => @user.following }
+      }
     end
 
   end
