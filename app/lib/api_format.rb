@@ -2,12 +2,12 @@ module ApiFormat
 
   module_function
 
-  def success(label, data)
+  def success(label='data', data=[])
     { :status => :ok, label => data.as_json.reject(&:empty?) }
   end
 
-  #def error
-  #  { :status => :ko} # i don't know how to format all that yet
-  #end
+  def fail(message)
+    { :status => :ko, :error => message}
+  end
 
 end

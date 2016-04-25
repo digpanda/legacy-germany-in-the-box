@@ -49,9 +49,9 @@ class SessionsController < Devise::SessionsController
         if current_user
           current_user.update authentication_token: nil
           Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name)
-          render :json => { :status => :ok }, :status => :ok
+          render :json => ApiFormat.success(:user, current_user), :status => :ok
         else
-          render :json => { :status => :ko }, :status => :unprocessable_entity
+          render :json => ApiFormat.fail("You are not logged-in"), :status => :unprocessable_entity
         end
       }
     end

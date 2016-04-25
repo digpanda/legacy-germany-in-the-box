@@ -184,7 +184,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @followers = @user.followers.without_detail
 
-    followers_with_reciprocity = JsonIntegrate::followers_reciprocity(user, followers)
+    followers_with_reciprocity = JsonIntegrate.followers_reciprocity(user, followers)
 
     respond_to do |format|
       format.html { render :index }
@@ -199,9 +199,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       format.html { render :index }
-      format.json {
-        render :json => { :status => :ok, :followers => @user.following }
-      }
+      format.json { render :json => ApiFormat.success(:followers, user.following) }
     end
 
   end
