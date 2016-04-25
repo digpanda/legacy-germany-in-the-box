@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
   attr_reader :followers
+  attr_reader :user
 
   before_action :authenticate_user!, except: [:search,
                                               :index,
@@ -183,9 +184,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @followers = @user.followers.without_detail
 
-    followers_with_reciprocity = @followers.map do |f|
-      f.as_json.merge({:reciprocity => (f.followers.include? @user._id)})
-    end
+    followers_with_reciprocity = JsonIntegrate::followers_reciprocity(user, followers)
 
     respond_to do |format|
       format.html { render :index }
