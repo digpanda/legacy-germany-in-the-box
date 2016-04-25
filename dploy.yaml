@@ -1,0 +1,12 @@
+production:
+    scheme: sftp
+    host: 52.28.89.25
+    port: 22
+    slots: 5
+    user: ubuntu
+    privateKey: ../resources/digpanda.pem
+    check: true
+    path:
+        local: /
+        remote: /home/ubuntu/apps/achat-backend-main
+    exclude: ["dploy.yaml"]
