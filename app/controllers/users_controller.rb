@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+  attr_reader :followers
+
   before_action :authenticate_user!, except: [:search,
                                               :index,
                                               :get_followers,
@@ -128,6 +130,7 @@ class UsersController < ApplicationController
   end
 
   def follow
+
     @target = @user
     @target.followers.push(current_user)
     current_user.following.push(@target)
@@ -178,20 +181,23 @@ class UsersController < ApplicationController
   def get_followers
 
     @user = User.find(params[:id])
-    
+    @followers = @user.followers.without_detail
+
+    followers_with_reciprocity = @followers.map do |f|
+      f.as_json.merge({:reciprocity => (f.followers.include? @user._id)})
+    end
+
     respond_to do |format|
       format.html { render :index }
-      format.json {
-        render :json => { :status => :ok, :followers => @user.followers }
-      }
+      format.json { render :json => ApiFormat.success(:followers, followers_with_reciprocity) }
     end
 
   end
 
   def get_following
 
-    @user = User.find(params[:id])
-    
+    @user = User.find(params[:id]) 
+
     respond_to do |format|
       format.html { render :index }
       format.json {

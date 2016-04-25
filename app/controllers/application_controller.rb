@@ -3,7 +3,7 @@ require 'base64_to_upload'
 class ApplicationController < ActionController::Base
 
   include HttpAcceptLanguage::AutoLocale
-
+  
   include FunctionCache
 
   include Mobvious::Rails::Controller

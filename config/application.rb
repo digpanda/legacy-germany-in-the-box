@@ -37,5 +37,6 @@ module AChat
     config.i18n.available_locales = %w(de zh-CN)
     config.i18n.default_locale = :de
     #config.time_zone = 'Beijing'
+
   end
 end
