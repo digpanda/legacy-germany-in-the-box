@@ -79,6 +79,10 @@ GEM
     concurrent-ruby (1.0.1)
     copy_carrierwave_file (1.1.0)
       carrierwave (~> 0.9)
+    countries (1.2.1)
+      currencies (~> 0.4.2)
+      i18n_data (~> 0.7.0)
+    currencies (0.4.2)
     daemons (1.2.3)
     debug_inspector (0.0.2)
     delocalize (1.0.0)
@@ -127,6 +131,7 @@ GEM
       ruby_parser (~> 3.5)
     http_accept_language (2.0.5)
     i18n (0.7.0)
+    i18n_data (0.7.0)
     jbuilder (2.4.1)
       activesupport (>= 3.0.0, < 5.1)
       multi_json (~> 1.2)
@@ -327,6 +332,7 @@ DEPENDENCIES
   carrierwave-qiniu
   china_city
   copy_carrierwave_file
+  countries
   delocalize
   devise (= 3.5.3)
   diff-lcs (= 1.2.5)

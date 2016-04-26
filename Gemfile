@@ -70,6 +70,8 @@ gem "delocalize"
 
 gem 'carrierwave-qiniu'
 
+gem 'countries'
+
 group :development, :test do
   gem 'factory_girl'
 end

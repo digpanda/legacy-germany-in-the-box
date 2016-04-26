@@ -21,7 +21,7 @@
           = f.text_field :zip, :class => 'form-control', :placeholder => I18n.t(:zip, scope: :edit_address), :required => true, :pattern => '^(?!01000|99999)(0[1-9]\d{3}|[1-9]\d{4})$', :style => 'width:88px'
         .form-group
           = f.text_field :city, class: 'form-control', :placeholder => I18n.t(:city, scope: :edit_address), :required => true, :style => 'width:248px'
-      = f.text_field :country, :class => 'form-control', :value => 'Deutschland', :readonly => true
+      = f.text_field :country, :class => 'form-control', :value => ISO3166::Country[:DE].local_name, :readonly => true
     .form-group
       - if current_user.shop.addresses.in(:type => ['billing', 'both']).count < Rails.configuration.max_num_shop_billing_addresses
         .row
@@ -66,7 +66,7 @@
               = f.text_field :zip, :class => 'form-control', :placeholder => I18n.t(:zip, scope: :edit_address), :required => true, :pattern => '^(?!01000|99999)(0[1-9]\d{3}|[1-9]\d{4})$', :style => 'width:88px'
             .form-group
               = f.text_field :city, class: 'form-control', :placeholder => I18n.t(:city, scope: :edit_address), :required => true, :style => 'width:248px'
-          = f.text_field :country, :class => 'form-control', :value => 'Deutschland', :readonly => true
+          = f.text_field :country, :class => 'form-control', :value => ISO3166::Country[:DE].local_name, :readonly => true
         .form-group
           - if current_user.shop.addresses.in(:type => ['billing']).count < Rails.configuration.max_num_shop_billing_addresses
             .row
@@ -97,7 +97,7 @@
               %li= "#{I18n.t(:street, scope: :edit_address)} : #{ a.street } #{ a.number }"
               %li= "#{I18n.t(:additional, scope: :edit_address)} : #{ a.additional }"
               %li= "#{I18n.t(:city, scope: :edit_address)} : #{ a.city }"
-              %li= "#{I18n.t(:country, scope: :edit_address)} : #{ a.country }"
+              %li= "#{I18n.t(:country, scope: :edit_address)} : #{ a.country_local_name }"
               %li= "#{I18n.t(:zip, scope: :edit_address)} : #{ a.zip }"
               %li= "#{I18n.t(:type, scope: :edit_address)} : #{ I18n.t(a.type, scope: :edit_address) }"
 
