@@ -39,6 +39,7 @@ class AddressesController < ApplicationController
       ap[:district] = ChinaCity.get(ap[:district])
       ap[:city] = ChinaCity.get(ap[:city])
       ap[:province] = ChinaCity.get(ap[:province])
+      ap[:country] = ISO3166::Country.find_by_name(ap[:country])[0]
 
       address = Address.new(ap)
       address.user = current_user
@@ -68,8 +69,12 @@ class AddressesController < ApplicationController
         end
       end
 
-      address = Address.new(address_params)
+      ap = address_params
+      ap[:country] = ISO3166::Country.find_by_name(ap[:country])[0]
+
+      address = Address.new(ap)
       address.shop = current_user.shop
+
       flag = address.save
     end
 
@@ -107,6 +112,7 @@ class AddressesController < ApplicationController
         ap[:district] = ChinaCity.get(ap[:district])
         ap[:city] = ChinaCity.get(ap[:city])
         ap[:province] = ChinaCity.get(ap[:province])
+        ap[:country] = ISO3166::Country.find_by_name(ap[:country])[0]
 
         if (flag = address.update(ap))
           if address.primary
@@ -119,7 +125,11 @@ class AddressesController < ApplicationController
       end
     elsif current_user.role == :shopkeeper
       address = current_user.shop.addresses.find(params[:id])
-      flag = address.update(address_params)
+
+      ap = address_params
+      ap[:country] = ISO3166::Country.find_by_name(ap[:country])[0]
+
+      flag = address.update(ap)
     end
 
     if flag

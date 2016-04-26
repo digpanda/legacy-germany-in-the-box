@@ -50,4 +50,8 @@ Rails.application.configure do
       user_name: 'achatdidpanda',
       password: 'achat4cool'
   }
+
+  Rails.application.configure do
+    config.middleware.insert_before(Rails::Rack::Logger, Rails::Rack::LogTailer)
+  end
 end

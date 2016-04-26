@@ -22,7 +22,7 @@
       .form-group
         = f.select :district, [], { include_blank: I18n.t(:district_blank, scope: :edit_address) }, { :autocomplete => :off, class: 'form-control city-select city-district', :required => true }
     .form-group
-      = f.text_field :country, :value => '中国', :readonly => true, :class => 'form-control', :placeholder => 'Country (*)'
+      = f.text_field :country, :value => ISO3166::Country[:CN].local_name, :readonly => true, :class => 'form-control', :placeholder => 'Country (*)'
     .form-group
       = f.text_field :zip, :class => 'form-control', :placeholder => I18n.t(:zip, scope: :edit_address), :required => true, :pattern => '\d{6,6}'
     .form-group
@@ -53,7 +53,7 @@
           .form-group
             = f.select :district, options_for_select(get_districts_for_city(a.province, a.city), get_code_for_district(a.province, a.city, a.district)), { include_blank: I18n.t(:district_blank, scope: :edit_address) }, { :autocomplete => :off, class: 'form-control city-select city-district', :required => true }
         .form-group
-          = f.text_field :country, :value => '中国', :readonly => true, :class => 'form-control'
+          = f.text_field :country, :value => ISO3166::Country[:CN].local_name, :readonly => true, :class => 'form-control'
         .form-group
           = f.text_field :zip, :value=> "#{a.zip}", :class => 'form-control', :placeholder => I18n.t(:zip, scope: :edit_address), :required => true, :pattern => '\d{6,6}'
         .form-group
@@ -77,7 +77,7 @@
               %li= "#{I18n.t(:district, scope: :edit_address)} : #{ a.district }"
               %li= "#{I18n.t(:city, scope: :edit_address)} : #{ a.city }"
               %li= "#{I18n.t(:province, scope: :edit_address)} : #{ a.province }"
-              %li= "#{I18n.t(:country, scope: :edit_address)} : #{ a.country }"
+              %li= "#{I18n.t(:country, scope: :edit_address)} : #{ a.country_local_name }"
               %li= "#{I18n.t(:zip, scope: :edit_address)} : #{ a.zip }"
             .radio
               %label
