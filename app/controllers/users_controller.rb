@@ -1,9 +1,12 @@
 class UsersController < ApplicationController
 
+  attr_reader :followers
+  attr_reader :user
+
   before_action :authenticate_user!, except: [:search,
                                               :index,
                                               :get_followers,
-                                              :get_followings]
+                                              :get_following]
 
 
   load_and_authorize_resource
@@ -29,6 +32,15 @@ class UsersController < ApplicationController
   end
 
   def show
+
+    @user = User.find(params[:id])
+    
+    respond_to do |format|
+      format.json {
+        render :json => { :status => :ok, :user => @user }
+      }
+    end
+
   end
 
   def new
@@ -119,6 +131,7 @@ class UsersController < ApplicationController
   end
 
   def follow
+
     @target = @user
     @target.followers.push(current_user)
     current_user.following.push(@target)
@@ -167,20 +180,26 @@ class UsersController < ApplicationController
   end
 
   def get_followers
-    @users = @user.followers
+
+    @user = User.find(params[:id])
+    @followers = @user.followers.without_detail
+
+    followers_with_reciprocity = JsonIntegrate.followers_reciprocity(user, followers)
 
     respond_to do |format|
       format.html { render :index }
-      format.json { render :get_followers }
+      format.json { render :json => ApiFormat.success(:followers, followers_with_reciprocity) }
     end
+
   end
 
   def get_following
-    @users = @user.following
+
+    @user = User.find(params[:id]) 
 
     respond_to do |format|
       format.html { render :index }
-      format.json { render :get_followings }
+      format.json { render :json => ApiFormat.success(:followers, user.following) }
     end
 
   end

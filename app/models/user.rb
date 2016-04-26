@@ -10,6 +10,7 @@ class User
   field :fname,     type: String
   field :lname,     type: String
   field :birth,     type: String
+  field :country,   type: String
   field :about,     type: String
   field :website,   type: String
   field :tel,       type: String
@@ -20,6 +21,8 @@ class User
   has_and_belongs_to_many :following,         :class_name => 'User',        :inverse_of => :followers
   has_and_belongs_to_many :liked_collections, :class_name => 'Collection',  :inverse_of => :users
 
+  scope :without_detail, -> { only(:_id, :pic, :country, :username) }
+  
   has_one  :dCollection,  class_name: 'Collection', :inverse_of => :user
 
   has_many :oCollections, class_name: 'Collection', :inverse_of => :user
@@ -87,4 +90,5 @@ class User
   index({followers: 1},           {unique: false, name: :idx_user_followers,          sparse: true})
   index({following: 1},           {unique: false, name: :idx_user_following,          sparse: true})
   index({liked_collections: 1},   {unique: false, name: :idx_user_liked_collections,  sparse: true})
+
 end

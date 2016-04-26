@@ -184,7 +184,7 @@ class ProductsController < ApplicationController
   end
 
   def list_popular_products
-    @products = Product.is_active.where(:name => /.*10 Blatt Seidenpapier ♥ Panda ♥.*/i).paginate(:pages => (params[:pages] ? params[:pages].to_i : 1), :per_page => Rails.configuration.limit_for_popular_products);
+    @products = Product.is_active.paginate(:pages => (params[:pages] ? params[:pages].to_i : 1), :per_page => Rails.configuration.limit_for_popular_products);
     @show_search_area = true
 
     #@products = get_popular_proudcts_from_cache.paginate(:page => (params[:page] ? params[:page].to_i : 1), :per_page => Rails.configuration.limit_for_popular_products)
@@ -202,6 +202,15 @@ class ProductsController < ApplicationController
   end
 
   def show
+
+    @product = Product.find(params[:id])
+    
+    respond_to do |format|
+      format.json {
+        render :json => { :status => :ok, :product => @product } #(:only => [:_id, :img, :sale, :brand, :shopname]) }
+      }
+    end
+
   end
 
   def create

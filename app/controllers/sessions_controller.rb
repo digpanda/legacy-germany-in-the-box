@@ -13,6 +13,7 @@ class SessionsController < Devise::SessionsController
 
   def create
     respond_to do |format|
+
       format.html {
         if session[:login_advice_counter].present? and session[:login_advice_counter] >= Rails.configuration.login_failure_limit
           if valid_captcha?(params[:captcha])
@@ -33,10 +34,12 @@ class SessionsController < Devise::SessionsController
         current_user.update authentication_token: nil
         render :login, :status => :ok
       }
+
     end
   end
 
   def destroy
+
     respond_to do |format|
       format.html {
         super
@@ -46,12 +49,13 @@ class SessionsController < Devise::SessionsController
         if current_user
           current_user.update authentication_token: nil
           Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name)
-          render :json => { :status => :ok }, :status => :ok
+          render :json => ApiFormat.success(:user, current_user), :status => :ok
         else
-          render :json => { :status => :ko }, :status => :unprocessable_entity
+          render :json => ApiFormat.fail("You are not logged-in"), :status => :unprocessable_entity
         end
       }
     end
+    
   end
 
   def cancel_login
