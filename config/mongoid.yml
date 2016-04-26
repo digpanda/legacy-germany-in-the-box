@@ -9,7 +9,7 @@ development:
       # Provides the hosts the default session can connect to. Must be an array
       # of host:port pairs. (required)
       hosts:
-        - dogen.mongohq.com:10020 
+        - dogen.mongohq.com:10020
       options:
         user: achat
         password: achat2cool
@@ -91,16 +91,19 @@ development:
     # use_utc: false
     use_activesupport_time_zone: true
     raise_not_found_error: false
+
 test:
-  sessions:
+  # Configure available database sessions. (required)
+  clients:
+    # Defines the default session. (required)
     default:
-      database: a_chat_test
+      # Defines the name of the default database that Mongoid can connect to.
+      # (required).
+      database: a_chat_development
+      # Provides the hosts the default session can connect to. Must be an array
+      # of host:port pairs. (required)
       hosts:
-        - localhost:27017
+        - dogen.mongohq.com:10020
       options:
-        read: primary
-        # In the test environment we lower the retries and retry interval to
-        # low amounts for fast failures.
-        max_retries: 1
-        retry_interval: 0
-        use_activesupport_time_zone: true
+        user: achat
+        password: achat2cool

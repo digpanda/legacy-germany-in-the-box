@@ -80,6 +80,7 @@ GEM
     copy_carrierwave_file (1.1.0)
       carrierwave (~> 0.9)
     daemons (1.2.3)
+    database_cleaner (1.5.3)
     debug_inspector (0.0.2)
     delocalize (1.0.0)
       rails (>= 2)
@@ -104,6 +105,9 @@ GEM
     execjs (2.6.0)
     factory_girl (4.7.0)
       activesupport (>= 3.0.0)
+    factory_girl_rails (4.7.0)
+      factory_girl (~> 4.7.0)
+      railties (>= 3.0.0)
     faraday (0.9.2)
       multipart-post (>= 1.2, < 3)
     fast-stemmer (1.0.2)
@@ -327,11 +331,12 @@ DEPENDENCIES
   carrierwave-qiniu
   china_city
   copy_carrierwave_file
+  database_cleaner
   delocalize
   devise (= 3.5.3)
   diff-lcs (= 1.2.5)
   easy_captcha
-  factory_girl
+  factory_girl_rails
   genderize
   haml-rails
   http_accept_language
@@ -349,6 +354,7 @@ DEPENDENCIES
   pry
   rails (= 4.2.1)
   rmagick
+  rspec-rails (~> 3.0)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   simple_token_authentication
