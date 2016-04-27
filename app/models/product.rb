@@ -25,7 +25,7 @@ class Product
 
   mount_uploader :cover,   ProductImageUploader # deprecated ?
 
-  scope :without_detail, -> { only(:_id, :name, :brand, :shop_id) }
+  scope :without_detail, -> { only(:_id, :name, :brand, :shop_id, :cover) }
   
   validates :name,        presence: true,   length: {maximum: (Rails.configuration.max_short_text_length * 1.25).round}
   validates :brand ,      presence: true,   length: {maximum: (Rails.configuration.max_short_text_length * 1.25).round}
@@ -44,6 +44,10 @@ class Product
 
   def get_mas
     skus.is_active.to_a.sort { |s1, s2| s1.quantity <=> s2.quantity } .last
+  end
+
+  def get_sku_image
+    skus.first.img0 unless skus.first.nil?
   end
 
   def get_mas_img_url(img_field)
