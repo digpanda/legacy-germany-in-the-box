@@ -5,7 +5,7 @@ class Product
 
   field :name,        type: String,   localize: true
   field :brand,       type: String,   localize: true
-  field :cover,       type: String
+  field :cover,       type: String # deprecated ?
   field :desc,        type: String,   localize: true
   field :tags,        type: Array,    default: Array.new(Rails.configuration.max_num_tags)
   field :status,      type: Boolean,  default: true
@@ -23,9 +23,10 @@ class Product
   accepts_nested_attributes_for :skus
   accepts_nested_attributes_for :options
 
-  mount_uploader :cover,   ProductImageUploader
+  mount_uploader :cover,   ProductImageUploader # deprecated ?
 
-
+  scope :without_detail, -> { only(:_id, :name, :brand, :shop_id) }
+  
   validates :name,        presence: true,   length: {maximum: (Rails.configuration.max_short_text_length * 1.25).round}
   validates :brand ,      presence: true,   length: {maximum: (Rails.configuration.max_short_text_length * 1.25).round}
   validates :shop,        presence: true
