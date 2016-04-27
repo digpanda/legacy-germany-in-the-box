@@ -1,6 +1,7 @@
 FactoryGirl.define do
   factory :user do
 
+    role "customer"
     username "test_user"
     email "testing@testing.com"
     birth "1978-01-01"
@@ -25,5 +26,4 @@ FactoryGirl.define do
     end
 =end
   end
-
 end

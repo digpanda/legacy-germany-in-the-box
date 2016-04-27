@@ -3,7 +3,6 @@ de:
     messages:
       blank: ist leer
       invalid: ist ungültig
-
   models: &models
     user: Benutzer
     address: Adresse
