@@ -8,7 +8,6 @@ class Sku
   field :img2,          type: String
   field :img3,          type: String
   field :price,         type: BigDecimal
-  field :currency,      type: String,     default: '€'
   field :quantity,      type: Integer
   field :limited,       type: Boolean,    default: true
   field :weight,        type: Float
@@ -31,7 +30,6 @@ class Sku
   mount_uploader :img3,   ProductImageUploader
 
   validates :price,         presence: true
-  validates :currency,      presence: true,   inclusion: {in: ['€']}
   validates :quantity,      presence: true,   :numericality => { :greater_than_or_equal_to => 0 }, :if => lambda { self.limited }
   validates :limited,       presence: true
   validates :weight,        presence: true
