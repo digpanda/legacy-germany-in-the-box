@@ -60,7 +60,8 @@ namespace :achat do
       u.delete
     end
 
-    User.find_by(:email => 'admin@hotmail.com').delete;
+    u = User.find_by(:email => 'admin@hotmail.com')
+    u.delete if u
 
 
     User.create!(:username => 'admin', :email => 'admin@hotmail.com', :password => '12345678', :password_confirmation => '12345678', :role => :admin)

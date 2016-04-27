@@ -85,6 +85,11 @@ class Shop
   before_save :ensure_shopkeeper
   before_save :clean_sms_mobile, :unless => lambda { self.sms }
 
+  def country
+    sender_address = addresses.find_by(:type => 'sender')
+    sender_address ? sender_address.country : nil
+  end
+
   private
 
   def ensure_shopkeeper
