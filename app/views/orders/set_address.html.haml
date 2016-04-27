@@ -32,6 +32,7 @@
           =I18n.t(:set_primary, scope: :edit_address)
     .form-group
       %input.btn.btn-primary{:type => "submit", :value => I18n.t(:add_address, scope: :edit_address)}
+      
 .row.row-wrap
   - current_user.addresses.each_with_index do |a, i|
     %div.mfp-with-anim.mfp-hide.mfp-dialog.clearfix{ :id => "edit-address-dialog-#{a.id}" }

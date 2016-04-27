@@ -185,8 +185,6 @@ class ProductsController < ApplicationController
 
   def list_popular_products
 
-    # includes(:brands).without_detail
-
     @products = Product.is_active.paginate(:pages => (params[:pages] ? params[:pages].to_i : 1), :per_page => Rails.configuration.limit_for_popular_products);
     @show_search_area = true
 
@@ -197,8 +195,9 @@ class ProductsController < ApplicationController
       }
 
       format.json {
-        render :json => ApiFormat.success(:products, @products)
+        render :list_popular_products
       }
+
     end
   end
 
