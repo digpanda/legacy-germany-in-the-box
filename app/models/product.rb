@@ -51,7 +51,7 @@ class Product
   end
 
   def skus_raw_images_urls
-     skus.inject([]) { |array,sku| array << filter_start_with("img", sku).url }
+     skus.inject([]) { |array,sku| array << filter_start_with("img", sku).to_a.map.each_with_index { |d| d[1]["url"] }.compact }.flatten
   end
 
   def skus_images_urls

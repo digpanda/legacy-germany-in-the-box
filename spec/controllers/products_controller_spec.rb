@@ -9,6 +9,13 @@ describe ProductsController do
 
     end
 
+    it "should get the detail of a specific product" do
+
+      get :popular, :format => :json
+      expect(response).to be_success
+
+    end
+
   end
 
 end
