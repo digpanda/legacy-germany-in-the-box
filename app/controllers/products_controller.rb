@@ -4,9 +4,9 @@ class ProductsController < ApplicationController
 
   include FunctionCache
 
-  before_action :set_product, only: [:show, :edit, :update, :destroy, :get_sku_for_options, :remove_sku, :remove_option, :new_sku, :show_skus]
+  before_action :set_product, only: [:show, :edit, :update, :destroy, :get_sku_for_options, :remove_sku, :remove_option, :new_sku, :show_skus, :skus]
 
-  before_action :authenticate_user!, except: [:autocomplete_product_name, :list_popular_products, :search, :show, :get_sku_for_options]
+  before_action :authenticate_user!, except: [:autocomplete_product_name, :popular, :search, :show, :get_sku_for_options, :skus]
 
   load_and_authorize_resource
 
@@ -45,11 +45,18 @@ class ProductsController < ApplicationController
     render :clone_sku, layout: "#{current_user.role.to_s}_sublayout"
   end
 
-  def show_skus
+  def show_skus 
     render :show_skus, layout: "#{current_user.role.to_s}_sublayout"
   end
 
-  def like_product
+  # This will display the skus for the users (logged in or not)
+  def skus
+    respond_to do |format|
+      format.json { render :skus}
+    end
+  end
+
+  def like
     current_user.dCollection = Collection.create( :name => :default, :user => current_user ) unless current_user.dCollection
     current_user.dCollection.products.push(@product) unless current_user.dCollection.products.find(@product)
 
@@ -67,7 +74,7 @@ class ProductsController < ApplicationController
     end
   end
 
-  def dislike_product
+  def dislike
     current_user.dCollection = Collection.create( :name => :default, :user => current_user ) unless current_user.dCollection
     current_user.dCollection.products.delete(@product)
 
@@ -183,7 +190,7 @@ class ProductsController < ApplicationController
     end
   end
 
-  def list_popular_products
+  def popular
 
     @products = Product.is_active.paginate(:pages => (params[:pages] ? params[:pages].to_i : 1), :per_page => Rails.configuration.limit_for_popular_products);
     @show_search_area = true
@@ -195,9 +202,8 @@ class ProductsController < ApplicationController
       }
 
       format.json {
-        render :list_popular_products
+        render :popular
       }
-
     end
   end
 
@@ -207,7 +213,7 @@ class ProductsController < ApplicationController
     
     respond_to do |format|
       format.json {
-        render :json => { :status => :ok, :product => @product } #(:only => [:_id, :img, :sale, :brand, :shopname]) }
+        render :show
       }
     end
 

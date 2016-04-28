@@ -9,15 +9,17 @@ class Ability
 
       can [:show], Shop, :status => true
 
-      can [:list_popular_products,
+      can [:popular,
            :get_sku_for_options,
            :autocomplete_product_name,
            :search], Product
 
       can [:show,
-           :like_product], Product, :status => true
+           :like], Product, :status => true
 
-      can [:dislike_product], Product
+      can [:dislike], Product
+
+      can [:skus], Product
 
       can [:show_products,
            :list_products], Category
@@ -71,15 +73,15 @@ class Ability
            :edit_producer,
            :show_products], Shop, :shopkeeper => user
 
-      can [:list_popular_products,
+      can [:popular,
            :get_sku_for_options,
            :autocomplete_product_name,
            :search], Product
 
       can [:show,
-           :like_product], Product, :status => true
+           :like], Product, :status => true
 
-      can [:dislike_product], Product
+      can [:dislike], Product
 
       can [:remove_sku,
            :remove_option,

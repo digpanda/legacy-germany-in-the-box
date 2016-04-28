@@ -107,7 +107,8 @@ test:
       options:
         user: achat
         password: achat2cool
-        read: primary
+        read:
+          mode: :primary
         # In the test environment we lower the retries and retry interval to
         # low amounts for fast failures.
         max_retries: 1
