@@ -15,9 +15,9 @@ class Ability
            :search], Product
 
       can [:show,
-           :like_product], Product, :status => true
+           :like], Product, :status => true
 
-      can [:dislike_product], Product
+      can [:dislike], Product
 
       can [:show_products,
            :list_products], Category
@@ -77,9 +77,9 @@ class Ability
            :search], Product
 
       can [:show,
-           :like_product], Product, :status => true
+           :like], Product, :status => true
 
-      can [:dislike_product], Product
+      can [:dislike], Product
 
       can [:remove_sku,
            :remove_option,

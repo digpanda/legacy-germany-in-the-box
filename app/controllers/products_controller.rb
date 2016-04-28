@@ -49,7 +49,7 @@ class ProductsController < ApplicationController
     render :show_skus, layout: "#{current_user.role.to_s}_sublayout"
   end
 
-  def like_product
+  def like
     current_user.dCollection = Collection.create( :name => :default, :user => current_user ) unless current_user.dCollection
     current_user.dCollection.products.push(@product) unless current_user.dCollection.products.find(@product)
 
@@ -67,7 +67,7 @@ class ProductsController < ApplicationController
     end
   end
 
-  def dislike_product
+  def dislike
     current_user.dCollection = Collection.create( :name => :default, :user => current_user ) unless current_user.dCollection
     current_user.dCollection.products.delete(@product)
 
