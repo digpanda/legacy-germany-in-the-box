@@ -87,13 +87,6 @@ class Shop
   validates :shopname,        length: {maximum: Rails.configuration.max_short_text_length }
   validates :sales_channels,  length: {minimum: 2, maximum: Rails.configuration.max_num_sales_channels * 2}
 
-  validates :fname,         presence: true,   length: {maximum: Rails.configuration.max_tiny_text_length}
-  validates :lname,         presence: true,   length: {maximum: Rails.configuration.max_tiny_text_length}
-  validates :tel,           presence: true,   length: {maximum: Rails.configuration.max_tiny_text_length}
-  validates :mail,          presence: true,   length: {maximum: Rails.configuration.max_short_text_length}
-
-  validates :mobile,        length: {maximum: Rails.configuration.max_tiny_text_length}
-  validates :function,      length: {maximum: Rails.configuration.max_tiny_text_length}
 
   scope :is_active,       ->        { where( :status => true ) }
 

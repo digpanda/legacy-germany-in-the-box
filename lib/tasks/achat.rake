@@ -91,7 +91,11 @@ namespace :achat do
         :tax_number => '12345678',
         :ustid => 'DE123456789',
         :sales_channels => [:third_online_platform, 'www.taobao.com'],
-        :shopname => 'Herz-Buffet 01'
+        :shopname => 'Herz-Buffet 01',
+        :fname => 'Ray',
+        :lname => 'Liu',
+        :tel => '08912345678',
+        :mail => 'ray.liu@hotmai.com'
     );
 
     product = Product.new(
@@ -166,7 +170,11 @@ namespace :achat do
         :tax_number => '12345678',
         :ustid => 'DE123456789',
         :sales_channels => [:third_online_platform, 'www.taobao.com'],
-        :shopname => 'Herz-Buffet 02'
+        :shopname => 'Herz-Buffet 02',
+        :fname => 'Ray',
+        :lname => 'Liu',
+        :tel => '08912345678',
+        :mail => 'ray.liu@hotmai.com'
     );
 
     product = Product.new(
