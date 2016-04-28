@@ -37,6 +37,13 @@ class Shop
 
   field :currency,        type: ISO4217::Currency,  default: 'EUR'
 
+  field :fname,           type: String
+  field :lname,           type: String
+  field :mobile,          type: String
+  field :tel,             type: String
+  field :mail,            type: String
+  field :function,        type: String
+
   mount_uploader :logo,   LogoImageUploader
   mount_uploader :banner, BannerImageUploader
 
@@ -79,6 +86,14 @@ class Shop
   validates :german_essence,  length: {maximum: (Rails.configuration.max_medium_text_length * 1.25).round}
   validates :shopname,        length: {maximum: Rails.configuration.max_short_text_length }
   validates :sales_channels,  length: {minimum: 2, maximum: Rails.configuration.max_num_sales_channels * 2}
+
+  validates :fname,         presence: true,   length: {maximum: Rails.configuration.max_tiny_text_length}
+  validates :lname,         presence: true,   length: {maximum: Rails.configuration.max_tiny_text_length}
+  validates :tel,           presence: true,   length: {maximum: Rails.configuration.max_tiny_text_length}
+  validates :mail,          presence: true,   length: {maximum: Rails.configuration.max_short_text_length}
+
+  validates :mobile,        length: {maximum: Rails.configuration.max_tiny_text_length}
+  validates :function,      length: {maximum: Rails.configuration.max_tiny_text_length}
 
   scope :is_active,       ->        { where( :status => true ) }
 
