@@ -7,18 +7,6 @@ class PagesController < ApplicationController
   #load_and_authorize_resource :class => false
 
   def home
-  
-=begin  
-    THIS IS FOR TESTING PURPOSE, DON'T UNCOMMENT IT - Laurent
-    @wirecard = Wirecard.new({
-
-      :merchant_id => "dfc3a296-3faf-4a1d-a075-f72f1b67dd2a",
-      :secret_key => "6cbfa34e-91a7-421a-8dde-069fc0f5e0b8",
-      :username => "engine.digpanda",
-      :password => "x3Zyr8MaY7TDxj6F"
-
-    })
-=end
 
   end
 

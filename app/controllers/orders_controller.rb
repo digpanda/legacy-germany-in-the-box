@@ -120,6 +120,26 @@ class OrdersController < ApplicationController
   end
 
   def checkout
+    @order = current_order(params[:shop_id])
+
+    @wirecard = Wirecard.new({
+
+      :merchant_id => "dfc3a296-3faf-4a1d-a075-f72f1b67dd2a",
+      :secret_key => "6cbfa34e-91a7-421a-8dde-069fc0f5e0b8",
+      :username => "engine.digpanda",
+      :password => "x3Zyr8MaY7TDxj6F"
+
+    })
+
+    @wirecard.pay
+    
+    binding.pry
+
+    @wirecard.digital_signature
+
+  end
+
+  def checkout_OLD
     current_order = current_order(params[:shop_id])
     current_order.status = :checked_out
     current_order.user = current_user

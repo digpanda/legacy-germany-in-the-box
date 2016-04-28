@@ -1,0 +1,4 @@
+.row
+  = form_tag "https://sandbox-engine.thesolution.com/engine/hpp/" do
+    = hidden_field_tag :shop_id, "yo"
+    = submit_tag I18n.t(:checkout, scope: :checkout), :class => "btn btn-primary"
