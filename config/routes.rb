@@ -46,7 +46,7 @@ Rails.application.routes.draw do
   resources :addresses, except: [:new, :edit] do
   end
 
-  concern :shared_products do
+  resources :products, except: [:index, :new] do
     match 'remove_sku/:sku_id',                     via: [:delete], to: :remove_sku,                  as: :remove_sku,                  :on => :member
     match 'remove_variant/:variant_id',             via: [:delete], to: :remove_variant,              as: :remove_variant,              :on => :member
     match 'remove_option/:variant_id/:option_id',   via: [:delete], to: :remove_option,               as: :remove_option,               :on => :member
@@ -61,22 +61,6 @@ Rails.application.routes.draw do
     match :autocomplete_product_name,               via: [:get],    to: :autocomplete_product_name,   as: :autocomplete_product_name,   :on => :collection
     match 'search',                                 via: [:get],    to: :search,                      as: :search,                      :on => :collection
     match :popular,                                 via: [:get],    to: :popular,                     as: :popular,                                  :on => :collection
-  end
-
-  resources :products, except: [:index, :new] do
-    concerns :shared_products
-  end
-
-
-  namespace :api, defaults: { format: 'json' }  do
-    namespace :v1 do
-
-      resources :products do 
-        concerns :shared_products
-      end
-
-    end
-
   end
 
   resources :users do

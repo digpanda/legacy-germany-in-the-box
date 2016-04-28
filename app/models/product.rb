@@ -50,6 +50,10 @@ class Product
     record.as_json.select { |k| k.to_s.match(/^#{start}/) }
   end
 
+  def skus_raw_images_urls
+     skus.inject([]) { |array,sku| array << filter_start_with("img", sku).url }
+  end
+
   def skus_images_urls
     skus.inject([]) { |array,sku| array << filter_start_with("img", sku) }
   end
