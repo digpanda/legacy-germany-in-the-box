@@ -120,8 +120,12 @@ class OrdersController < ApplicationController
   end
 
   def checkout
+
+    redirect_to 'http://localhost:3000/users/sign_in.json?email=prince1234@yahoo.com&password=12345678', :status => 307
+
     @order = current_order(params[:shop_id])
 
+    # This will be changed later on
     @wirecard = Wirecard.new({
 
       :merchant_id => "dfc3a296-3faf-4a1d-a075-f72f1b67dd2a",
@@ -131,7 +135,7 @@ class OrdersController < ApplicationController
 
     })
 
-    @wirecard.pay
+    @wirecard.pay(50)
 
     @wirecard.digital_signature
 

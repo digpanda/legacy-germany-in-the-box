@@ -57,11 +57,15 @@ class Sku
   end
 
   def options
-    option_ids.map { |id| self.product.options.map { |op| op.suboptions.find(id).name } }.flatten
+    option_ids.map { |id| self.product.options.map { |op| op.suboptions.find(id).name } }.flatten.join(',')
   end
 
   def raw_images_urls
     filter_start_with("img").to_a.map.each_with_index { |d| d[1]["url"] }.compact.flatten
+  end
+
+  def first_image
+    img0.url
   end
 
   #class << self
