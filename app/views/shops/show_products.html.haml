@@ -28,7 +28,7 @@
     %tbody
       - @shop.products.each do |p|
         %tr
-          %td= image_tag(get_uploaded_thumbnail_url(p.skus.first.img0), :style => 'max-width:48px;max-height:auto')
+          -#%td= image_tag(get_uploaded_thumbnail_url(p.skus.first.img0), :style => 'max-width:48px;max-height:auto')
           %td= link_to p.name ? p.name : p.name_translations[I18n.default_locale], edit_product_path(p.id, :user_info_edit_part => :edit_product_update)
           %td= p.brand ? p.brand : p.brand_translations[I18n.default_locale]
           %td= link_to I18n.t(:quantity_info, scope: :edit_product, num1: p.skus.inject(0) { |sum, s| sum += s.quantity }, num2: p.options.count), show_skus_product_path(p.id, :user_info_edit_part => :edit_product_detail)

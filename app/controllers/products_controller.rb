@@ -231,7 +231,7 @@ class ProductsController < ApplicationController
 
         format.html {
           flash[:success] = I18n.t(:create_ok, scope: :edit_product_new)
-          redirect_to show_products_shop_path(@product.shop.id, :user_info_edit_part => :edit_product)
+          redirect_to show_skus_product_path(@product.id, :user_info_edit_part => :edit_product)
         }
       else
         format.html {
