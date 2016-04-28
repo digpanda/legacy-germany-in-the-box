@@ -57,7 +57,11 @@ class Sku
   end
 
   def options
-    option_ids.map { |id| self.product.options.map { |op| op.suboptions.find(id).name } }.flatten.join(',')
+    option_ids.map do |id|
+      self.product.options.map do |op|
+        op.suboptions.find(id).name unless op.suboptions.find(id).nil?
+      end
+    end.flatten.join(',')
   end
 
   def raw_images_urls

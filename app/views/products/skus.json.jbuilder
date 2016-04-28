@@ -7,8 +7,6 @@ json.skus @product.skus do |sku|
   json.quantity sku.quantity
   json.raw_images_urls sku.raw_images_urls.first
   json.options sku.options
-
-  #json.url  shop_url(product.shop)
 end
 
 =begin
