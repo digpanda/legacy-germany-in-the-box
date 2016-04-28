@@ -6,7 +6,7 @@ class ProductsController < ApplicationController
 
   before_action :set_product, only: [:show, :edit, :update, :destroy, :get_sku_for_options, :remove_sku, :remove_option, :new_sku, :show_skus]
 
-  before_action :authenticate_user!, except: [:autocomplete_product_name, :list_popular_products, :search, :show, :get_sku_for_options]
+  before_action :authenticate_user!, except: [:autocomplete_product_name, :popular, :search, :show, :get_sku_for_options]
 
   load_and_authorize_resource
 
@@ -183,8 +183,9 @@ class ProductsController < ApplicationController
     end
   end
 
-  def list_popular_products
+  def popular
 
+    binding.pry
     @products = Product.is_active.paginate(:pages => (params[:pages] ? params[:pages].to_i : 1), :per_page => Rails.configuration.limit_for_popular_products);
     @show_search_area = true
 
@@ -195,7 +196,7 @@ class ProductsController < ApplicationController
       }
 
       format.json {
-        render :list_popular_products
+        render "products/api/popular"
       }
 
     end

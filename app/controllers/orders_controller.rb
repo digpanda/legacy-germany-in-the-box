@@ -132,8 +132,6 @@ class OrdersController < ApplicationController
     })
 
     @wirecard.pay
-    
-    binding.pry
 
     @wirecard.digital_signature
 
@@ -218,7 +216,7 @@ class OrdersController < ApplicationController
       respond_to do |format|
         format.html {
           flash[:success] = I18n.t(:checkout_ok, scope: :checkout)
-          redirect_to list_popular_products_path
+          redirect_to popular_products_path
         }
 
         format.json {

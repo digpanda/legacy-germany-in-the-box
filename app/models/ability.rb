@@ -9,7 +9,7 @@ class Ability
 
       can [:show], Shop, :status => true
 
-      can [:list_popular_products,
+      can [:popular,
            :get_sku_for_options,
            :autocomplete_product_name,
            :search], Product
@@ -71,7 +71,7 @@ class Ability
            :edit_producer,
            :show_products], Shop, :shopkeeper => user
 
-      can [:list_popular_products,
+      can [:popular,
            :get_sku_for_options,
            :autocomplete_product_name,
            :search], Product
