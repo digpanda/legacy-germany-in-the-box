@@ -51,6 +51,27 @@ class Sku
   before_save :clean_blank_and_duplicated_option_ids
   before_save :clean_quantity, :unless => lambda { self.limited }
 
+  # might need new refacto below
+  def filter_start_with(start)
+    as_json.select { |k| k.to_s.match(/^#{start}/) }
+  end
+
+  def options
+    option_ids.map { |id| self.product.options.map { |op| op.suboptions.find(id).name } }.flatten
+  end
+
+  def raw_images_urls
+    filter_start_with("img").to_a.map.each_with_index { |d| d[1]["url"] }.compact.flatten
+  end
+
+  #class << self
+
+  #  def images_urls
+  #    all.inject([]) { |array,sku| array << sku.filter_start_with("img") }
+  #  end
+
+  #end
+
   private
 
   def clean_quantity

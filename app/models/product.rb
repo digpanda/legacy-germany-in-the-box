@@ -46,18 +46,6 @@ class Product
     @mas ||= skus.is_active.to_a.sort { |s1, s2| s1.quantity <=> s2.quantity } .last
   end
 
-  def filter_start_with(start, record)
-    record.as_json.select { |k| k.to_s.match(/^#{start}/) }
-  end
-
-  def skus_raw_images_urls
-     skus.inject([]) { |array,sku| array << filter_start_with("img", sku).to_a.map.each_with_index { |d| d[1]["url"] }.compact }.flatten
-  end
-
-  def skus_images_urls
-    skus.inject([]) { |array,sku| array << filter_start_with("img", sku) }
-  end
-
   def sku_image_url
     skus.first.img0.url unless skus.first.nil?
   end

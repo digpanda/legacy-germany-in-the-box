@@ -4,9 +4,9 @@ class ProductsController < ApplicationController
 
   include FunctionCache
 
-  before_action :set_product, only: [:show, :edit, :update, :destroy, :get_sku_for_options, :remove_sku, :remove_option, :new_sku, :show_skus]
+  before_action :set_product, only: [:show, :edit, :update, :destroy, :get_sku_for_options, :remove_sku, :remove_option, :new_sku, :show_skus, :skus]
 
-  before_action :authenticate_user!, except: [:autocomplete_product_name, :popular, :search, :show, :get_sku_for_options]
+  before_action :authenticate_user!, except: [:autocomplete_product_name, :popular, :search, :show, :get_sku_for_options, :skus]
 
   load_and_authorize_resource
 
@@ -45,8 +45,15 @@ class ProductsController < ApplicationController
     render :clone_sku, layout: "#{current_user.role.to_s}_sublayout"
   end
 
-  def show_skus
+  def show_skus 
     render :show_skus, layout: "#{current_user.role.to_s}_sublayout"
+  end
+
+  # This will display the skus for the users (logged in or not)
+  def skus
+    respond_to do |format|
+      format.json { render :skus}
+    end
   end
 
   def like

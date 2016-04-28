@@ -19,6 +19,8 @@ class Ability
 
       can [:dislike], Product
 
+      can [:skus], Product
+
       can [:show_products,
            :list_products], Category
 

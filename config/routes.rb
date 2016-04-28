@@ -54,6 +54,7 @@ Rails.application.routes.draw do
     match :like,                            via: [:patch],  to: :like,                as: :like,                :on => :member
     match :dislike,                         via: [:patch],  to: :dislike,             as: :dislike,             :on => :member
     match :show_skus,                               via: [:get],    to: :show_skus,                   as: :show_skus,                   :on => :member
+    match :skus,                               via: [:get],    to: :skus,                   as: :skus,                   :on => :member
     match :new_sku,                                 via: [:get],    to: :new_sku,                     as: :new_sku,                     :on => :member
     match :edit_sku,                                via: [:get],    to: :edit_sku,                    as: :edit_sku,                    :on => :member
     match :clone_sku,                               via: [:get],    to: :clone_sku,                   as: :clone_sku,                   :on => :member
