@@ -6,6 +6,8 @@ class ShopsController <  ApplicationController
 
   load_and_authorize_resource
 
+  STRONG_PARAMS = [:shopname, :name, :desc, :logo, :banner, :seal0, :seal1, :seal2, :seal3, :seal4, :seal5, :seal6, :seal7, :philosophy, :stories, :german_essence, :uniqueness, :tax_number, :ustid, :eroi, :min_total, :status, :founding_year, :register, :website, :agb, :fname, :lname, :tel, :mobile, :mail, :function, sales_channels:[]]
+
   def index
     @shops = Shop.all
     render :index, layout: "#{current_user.role.to_s}_sublayout"
@@ -16,6 +18,7 @@ class ShopsController <  ApplicationController
   end
 
   def edit_producer
+    @producer = @shop
     render :edit_producer, layout: "#{current_user.role.to_s}_sublayout"
   end
 
@@ -34,30 +37,30 @@ class ShopsController <  ApplicationController
 
   def update
     respond_to do |format|
-       sp = shop_params(@shop)
+      sp = shop_params(@shop)
 
-       if @shop.agb && @shop.update(sp)
-         if params[:user_info_edit_part] == :edit_producer.to_s
-           flash[:success] = I18n.t(:update_producer_ok, scope: :edit_shop)
-         else
-           flash[:success] = I18n.t(:update_ok, scope: :edit_shop)
-         end
+      if @shop.agb && @shop.update(sp)
+        if params[:user_info_edit_part] == :edit_producer.to_s
+          flash[:success] = I18n.t(:update_producer_ok, scope: :edit_shop)
+        else
+          flash[:success] = I18n.t(:update_ok, scope: :edit_shop)
+        end
 
-         format.html {
-           redirect_to request.referer
-         }
-       elsif (not @shop.agb) && @shop.update(sp)
-         flash[:success] = I18n.t(:update_agb_ok, scope: :edit_shop)
+        format.html {
+          redirect_to request.referer
+        }
+      elsif (not @shop.agb) && @shop.update(sp)
+        flash[:success] = I18n.t(:update_agb_ok, scope: :edit_shop)
 
-         format.html { redirect_to edit_setting_shop_path(@shop, :user_info_edit_part => :edit_shop) }
-       else
+        format.html { redirect_to edit_setting_shop_path(@shop, :user_info_edit_part => :edit_shop) }
+      else
         flash[:error] = @shop.errors.full_messages.first
 
         format.html {
           redirect_to request.referer
         }
       end
-     end
+    end
   end
 
   def destroy
@@ -80,9 +83,9 @@ class ShopsController <  ApplicationController
     delocalize_config = { :min_total => :number }
 
     unless shop.agb
-      params.require(:shop).permit(:shopname, :name, :desc, :logo, :banner, :seal0, :seal1, :seal2, :seal3, :seal4, :seal5, :seal6, :seal7, :philosophy, :stories, :german_essence, :uniqueness, :tax_number, :ustid, :eroi, :min_total, :status, :founding_year, :register, :website, :agb, sales_channels:[]).delocalize(delocalize_config)
+      params.require(:shop).permit(*STRONG_PARAMS).delocalize(delocalize_config)
     else
-      params.require(:shop).permit(:shopname, :name, :desc, :logo, :banner, :seal0, :seal1, :seal2, :seal3, :seal4, :seal5, :seal6, :seal7, :philosophy, :stories, :german_essence, :uniqueness, :tax_number, :ustid, :eroi, :min_total, :status, :founding_year, :register, :website, sales_channels:[]).delocalize(delocalize_config)
+      params.require(:shop).permit(*STRONG_PARAMS).except(:agb).delocalize(delocalize_config)
     end
   end
 end

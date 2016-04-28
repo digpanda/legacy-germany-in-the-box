@@ -69,6 +69,12 @@
         .form-group
           .row
             .col-md-4
+              %label= I18n.t(:website, scope: :edit_shop)
+            .col-md-8
+              = f.text_field :website, :class => 'form-control', :maxLength => Rails.configuration.max_short_text_length, :placeholder => 'www.mydomain.com'
+        .form-group
+          .row
+            .col-md-4
               %label.required= I18n.t(:tax_number, scope: :edit_shop, locale: locale)
             .col-md-8
               = f.text_field :tax_number, :class => 'form-control', :placeholder => 'z.B. 9181081508155', :required => true, :maxLength => Rails.configuration.max_tiny_text_length
@@ -109,7 +115,40 @@
                   %a{ :href => '#', :class => 'btn', :onclick => "#{gen_remove_sales_channel}" }
                     %i.fa.fa-times-circle
                     =I18n.t(:remove_sales_channel, scope: :edit_shop, locale: locale)
-
+    .panel.panel-info
+      .panel-heading.text-center
+        %h4= I18n.t(:contact_person_info, scope: :edit_shop_application)
+      .panel-body
+        .row
+          .col-md-6
+            .form-group
+              = f.label :fname, I18n.t(:contact_fname, scope: :edit_shop_application), :class => 'required'
+              = f.text_field :fname, :class => 'form-control', :maxLength => Rails.configuration.max_tiny_text_length, :required => true
+          .col-md-6
+            .form-group
+              = f.label :lname, I18n.t(:contact_lname, scope: :edit_shop_application), :class => 'required'
+              = f.text_field :lname, :class => 'form-control', :maxLength => Rails.configuration.max_tiny_text_length, :required => true
+        .row
+          .col-md-6
+            .form-group
+              = f.label :function, I18n.t(:contact_function, scope: :edit_shop_application)
+              = f.text_field :function, :class => 'form-control', :maxLength => Rails.configuration.max_short_text_length
+          .col-md-6
+            .form-group
+              = f.label :mail, I18n.t(:contact_email, scope: :edit_shop_application), :class => 'required'
+              = f.email_field :mail, :class => 'form-control', :maxLength => Rails.configuration.max_short_text_length, :placeholder => 'example@google.com', :required => true
+              %div.help-block.with-errors
+        .row
+          .col-md-6
+            .form-group
+              = f.label :tel, I18n.t(:contact_tel, scope: :edit_shop_application), :class => 'required'
+              = f.text_field :tel, :class => 'form-control', :maxLength => Rails.configuration.max_tiny_text_length, :required => true, :pattern => '^(((((((00|\+)49[ \-/]?)|0)[1-9][0-9]{1,4})[ \-/]?)|((((00|\+)49\()|\(0)[1-9][0-9]{1,4}\)[ \-/]?))[0-9]{1,7}([ \-/]?[0-9]{1,5})?)$', :placeholder => '+49(89)123456'
+              %div.help-block.with-errors
+          .col-md-6
+            .form-group
+              = f.label :mobile, I18n.t(:contact_mobile, scope: :edit_shop_application)
+              = f.text_field :mobile, :class => 'form-control', :maxLength => Rails.configuration.max_tiny_text_length, :pattern => '^(((((((00|\+)49[ \-/]?)|0)[1-9][0-9]{1,4})[ \-/]?)|((((00|\+)49\()|\(0)[1-9][0-9]{1,4}\)[ \-/]?))[0-9]{1,7}([ \-/]?[0-9]{1,5})?)$', :placeholder => '+49(176)64336650'
+              %div.help-block.with-errors
     .panel.panel-info
       .panel-heading.text-center
         %label{:class => @shop.agb ? '' : 'required'}= I18n.t(:agb, scope: :edit_shop, locale: locale)
