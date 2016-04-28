@@ -61,7 +61,7 @@ class Sku
       self.product.options.map do |op|
         op.suboptions.find(id).name unless op.suboptions.find(id).nil?
       end
-    end.flatten.join(',')
+    end.flatten.compact.join(',')
   end
 
   def raw_images_urls
