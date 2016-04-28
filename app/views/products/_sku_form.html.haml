@@ -124,7 +124,7 @@
               .input-group.form-group
                 = fs.text_field :price, value: number_with_precision(@sku.price, :precision => 2), :class => 'form-control', :required => true, :pattern => I18n.t(:positive_float, scope: :validation)
                 %span.input-group-addon
-                  = @product.shop.currency
+                  = @product.shop.currency.code
             .col-md-6
               .input-group.form-group
                 = fs.text_field :discount, :class => 'form-control', :pattern => I18n.t(:positive_integer_less_or_equal_than_100, scope: :validation), :required => true

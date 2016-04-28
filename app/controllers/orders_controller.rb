@@ -160,7 +160,7 @@ class OrdersController < ApplicationController
         if shop_total_prices[product.shop]
           shop_total_prices[product.shop][:value] += sku.price * oi.quantity
         else
-          shop_total_prices[product.shop] = { value: sku.price * oi.quantity, currency: sku.currency }
+          shop_total_prices[product.shop] = { value: sku.price * oi.quantity }
         end  
       else
         all_products_available = false
@@ -190,7 +190,7 @@ class OrdersController < ApplicationController
     shop, total_price = shop_total_prices.detect { |s, t| t[:value] < s.min_total }
 
     if shop
-      msg = I18n.t(:not_all_min_total_reached, scope: :checkout, :shop_name => shop.name, :total_price => total_price[:value], :currency => total_price[:currency], :min_total => shop.min_total)
+      msg = I18n.t(:not_all_min_total_reached, scope: :checkout, :shop_name => shop.name, :total_price => total_price[:value], :currency => shop.currency.code, :min_total => shop.min_total)
 
       respond_to do |format|
         format.html {

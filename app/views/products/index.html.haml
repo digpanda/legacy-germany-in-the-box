@@ -185,13 +185,13 @@
                           %ul.list.product-page-meta-price-list
                             %li
                               %span.product-page-meta-title= I18n.t(:price, scope: :popular_products)
-                              %span.product-page-meta-price{:id => "product_price_#{p.id}"}= "#{p.get_mas.price} #{p.get_mas.currency}"
+                              %span.product-page-meta-price{:id => "product_price_#{p.id}"}= "#{p.get_mas.price} #{p.shop.currency.code}"
                             %li
                               %span.product-page-meta-title= I18n.t(:discount, scope: :popular_products)
                               %span.product-page-meta-price{:id => "product_discount_#{p.id}"}= "#{p.get_mas.discount}%"
                             %li
                               %span.product-page-meta-title= I18n.t(:saving, scope: :popular_products)
-                              %span.product-page-meta-price{:id => "product_saving_#{p.id}"}= "#{p.get_mas.price * p.get_mas.discount} #{p.get_mas.currency}"
+                              %span.product-page-meta-price{:id => "product_saving_#{p.id}"}= "#{p.get_mas.price * p.get_mas.discount} #{p.shop.currency.code}"
                         %li
                           %ul.list.product-page-meta-price-list
                             %li
@@ -288,9 +288,9 @@
                     .product-meta
                       %ul.product-price-list
                         %li
-                          %span.product-price= (p.get_mas.price * (100 - p.get_mas.discount) / 100.0).to_s + ' ' + p.get_mas.currency.to_s
+                          %span.product-price= (p.get_mas.price * (100 - p.get_mas.discount) / 100.0).to_s + ' ' + p.shop.currency.code
                         - if p.get_mas.discount > 0
                           %li
-                            %span.product-old-price= p.get_mas.price.to_s + ' ' + p.get_mas.currency.to_s
+                            %span.product-old-price= p.get_mas.price.to_s + ' ' + p.shop.currency.code
           .col-lg-12.col-md-12.col-sm-12
             = will_paginate @products, renderer: BootstrapPagination::Rails

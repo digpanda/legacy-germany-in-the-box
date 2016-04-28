@@ -1,3 +1,5 @@
+require 'iso4217/currency_mongoid'
+
 class Shop
   include MongoidBase
 
@@ -16,7 +18,6 @@ class Shop
   field :sms,             type: Boolean,    default: false
   field :sms_mobile,      type: String
   field :min_total,       type: BigDecimal, default: 0
-  field :currency,        type: String,     default: '€'
   field :status,          type: Boolean,    default: true
   field :founding_year,   type: String
   field :uniqueness,      type: String,     localize: true
@@ -33,6 +34,8 @@ class Shop
   field :seal5,           type: String
   field :seal6,           type: String
   field :seal7,           type: String
+
+  field :currency,        type: ISO4217::Currency,  default: 'EUR'
 
   mount_uploader :logo,   LogoImageUploader
   mount_uploader :banner, BannerImageUploader
@@ -59,7 +62,7 @@ class Shop
   validates :status,        presence: true
   validates :min_total,     presence: true,   numericality: { :greater_than_or_equal_to => 0 }
   validates :shopkeeper,    presence: true
-  validates :currency,      presence: true,   inclusion: {in: ['€']}
+  validates :currency,      presence: true
   validates :founding_year, presence: true,   length: {maximum: 4}
   validates :desc,          presence: true,   length: {maximum: (Rails.configuration.max_medium_text_length * 1.25).round}
   validates :philosophy,    presence: true,   length: {maximum: (Rails.configuration.max_long_text_length * 1.25).round}
@@ -81,6 +84,11 @@ class Shop
 
   before_save :ensure_shopkeeper
   before_save :clean_sms_mobile, :unless => lambda { self.sms }
+
+  def country
+    sender_address = addresses.find_by(:type => 'sender')
+    sender_address ? sender_address.country : nil
+  end
 
   private
 

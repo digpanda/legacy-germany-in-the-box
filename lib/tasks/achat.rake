@@ -24,35 +24,44 @@ namespace :achat do
       file
     end
 
-    (user = User.where(:email => 'shopkeeper01@hotmail.com')).each do |u|
+    u = User.find_by(:email => 'shopkeeper01@hotmail.com')
+
+    if u
       u.shop.products.delete_all if u.shop && u.shop.products
       u.shop.save! if u.shop
       u.shop.delete if u.shop
       u.save!
+      u.delete
     end
-    user.all.delete
 
-    (user = User.where(:email => 'shopkeeper02@hotmail.com')).each do |u|
+    u = User.find_by(:email => 'shopkeeper02@hotmail.com')
+
+    if u
       u.shop.products.delete_all if u.shop && u.shop.products
       u.shop.save! if u.shop
       u.shop.delete if u.shop
       u.save!
+      u.delete
     end
-    user.all.delete
 
-    (user = User.where(:email => 'customer01@hotmail.com')).each do |u|
+    u = User.find_by(:email => 'customer01@hotmail.com')
+
+    if u
       u.orders.delete_all if u.orders
       u.save!
+      u.delete
     end
-    user.all.delete
 
-    (user = User.where(:email => 'customer02@hotmail.com')).each do |u|
+    u = User.find_by(:email => 'customer02@hotmail.com')
+
+    if u
       u.orders.delete_all if u.orders
       u.save!
+      u.delete
     end
-    user.all.delete
 
-    User.where(:email => 'admin@hotmail.com').all.delete;
+    u = User.find_by(:email => 'admin@hotmail.com')
+    u.delete if u
 
 
     User.create!(:username => 'admin', :email => 'admin@hotmail.com', :password => '12345678', :password_confirmation => '12345678', :role => :admin)

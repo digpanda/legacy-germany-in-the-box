@@ -493,4 +493,4 @@ de:
     checkout_ok: Der Auftrag wurde erfolgreich durchgeführt.
     checkout_ko: Ein Fehler ist bei der Durchführung des Auftrags aufgetreten.
     not_all_available: Der Vorrat des Products %{product_name} reicht momentan nicht. Bitte versuchen Sie später order reduzieren die Stückanzahl.
-    not_all_min_total_reached: Ihr Einkauf bei %{shop_name} beträgt insgesamt %{total_price} und es ist weniger als das Mindestbestellwert %{min_total} des Online-Shops. Bitte erhöhen Sie die Einkaufsumme bei dem Shop.
+    not_all_min_total_reached: Ihr Einkauf bei %{shop_name} beträgt insgesamt %{total_price} %{currency} und es ist weniger als das Mindestbestellwert %{min_total} %{currency} des Online-Shops. Bitte erhöhen Sie die Einkaufsumme bei dem Shop.

@@ -44,7 +44,7 @@
               .input-group
                 = f.text_field :min_total, value: number_with_precision(@shop.min_total ? @shop.min_total : 0, :precision => 2), :class => 'form-control', :required => true, :pattern => I18n.t(:positive_float_equal_or_greater_than_0, scope: :validation)
                 %span.input-group-addon
-                  = @shop.currency
+                  = @shop.currency.code
     .panel.panel-info
       .panel-heading{:title => I18n.t(:shop_seal_info, scope: :edit_shop)}
         .text-center
