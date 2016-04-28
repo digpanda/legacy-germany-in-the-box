@@ -46,8 +46,8 @@ class Product
     @mas ||= skus.is_active.to_a.sort { |s1, s2| s1.quantity <=> s2.quantity } .last
   end
 
-  def get_sku_image
-    skus.first.img0 unless skus.first.nil?
+  def get_sku_image_url
+    skus.first.img0.url unless skus.first.nil?
   end
 
   def get_mas_img_url(img_field)

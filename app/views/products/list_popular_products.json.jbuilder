@@ -4,8 +4,8 @@ json.products @products do |product|
   json.name product.name
   json.brand product.brand
   json.shop_name product.shop.shopname
-  json.shop_logo product.shop.logo
-  json.sku_image product.get_sku_image # this image was sorted via the skus
+  json.shop_logo_url product.shop.logo.url
+  json.product_image_url product.get_sku_image_url # this image was sorted via the skus
 
 end
 
