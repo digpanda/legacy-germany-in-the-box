@@ -1,7 +1,5 @@
 json.products @products do |product|
 
-  binding.pry
-  
   json.id product._id
   json.name product.name
   json.brand product.brand

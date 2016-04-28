@@ -46,6 +46,8 @@ Rails.application.routes.draw do
   resources :addresses, except: [:new, :edit] do
   end
 
+  #namespace
+
   resources :products, except: [:index, :new] do
     match 'remove_sku/:sku_id',                     via: [:delete], to: :remove_sku,                  as: :remove_sku,                  :on => :member
     match 'remove_variant/:variant_id',             via: [:delete], to: :remove_variant,              as: :remove_variant,              :on => :member
