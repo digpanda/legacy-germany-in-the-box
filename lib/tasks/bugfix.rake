@@ -31,6 +31,11 @@ namespace :bugfix do
         s.mail = sa.mail
         s.function = sa.function
         s.website = sa.website
+      else
+        s.fname = 'Y.'
+        s.lname = 'L.'
+        s.tel = '08912345678'
+        s.mail = 'info@digpanda.com'
       end
 
       s.save!
