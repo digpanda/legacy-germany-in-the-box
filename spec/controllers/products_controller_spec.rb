@@ -11,7 +11,9 @@ describe ProductsController do
 
     it "should get the detail of a specific product" do
 
-      get :popular, :format => :json
+      # TODO : We should generate a new product from FactoryGirl here
+      product = Product.first
+      get :show, id: product.id, :format => :json
       expect(response).to be_success
 
     end
