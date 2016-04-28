@@ -206,7 +206,7 @@ class ProductsController < ApplicationController
     
     respond_to do |format|
       format.json {
-        render :json => { :status => :ok, :product => @product } #(:only => [:_id, :img, :sale, :brand, :shopname]) }
+        render :show
       }
     end
 

@@ -1,3 +1,4 @@
+binding.pry
 json.products @products do |product|
 
   json.id product._id
