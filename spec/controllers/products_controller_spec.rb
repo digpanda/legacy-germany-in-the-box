@@ -20,4 +20,24 @@ describe ProductsController do
 
   end
 
+  context "authenticated user to the website" do
+
+    let(:user) { build :user }
+    before { allow(controller).to receive(:current_user) { user } }
+    let(:current_user) { user }
+
+    it "should like a product" do
+
+      # TODO : We should generate a new product from FactoryGirl here
+      product = Product.first
+
+      header 'X-User-Token', '3_XoKdZ_-Deak-zskYzz'
+      header 'X-User-Email', 'test@test.com'
+      patch :like, id: product.id, :format => :json
+      expect(response).to be_success
+
+    end
+
+  end
+
 end
