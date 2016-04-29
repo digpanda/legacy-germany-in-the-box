@@ -1,6 +1,6 @@
 module ControllerHelpers
 
-  def login_new_user
+  #def login_new_user
 
     #before(:each) do
     #  @request.env["devise.mapping"] = Devise.mappings[:user]
@@ -9,6 +9,6 @@ module ControllerHelpers
     #  sign_in user
     #end
   
-  end
+  #end
 
 end
