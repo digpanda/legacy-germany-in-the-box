@@ -49,8 +49,6 @@ gem 'simple_token_authentication'
 
 gem "genderize"
 
-gem 'bootstrap-datepicker-rails'
-
 gem 'strip_attributes'
 
 gem 'will_paginate'
@@ -73,6 +71,18 @@ gem 'carrierwave-qiniu'
 gem 'countries'
 
 gem 'oauth'
+
+gem 'magnific-popup-rails'
+
+gem "font-awesome-rails"
+
+gem "twitter-bootstrap-rails"
+
+gem 'momentjs-rails'
+
+gem 'bootstrap3-datetimepicker-rails'
+
+gem 'bootstrap-validator-rails'
 
 group :development, :test do
   gem 'factory_girl_rails'

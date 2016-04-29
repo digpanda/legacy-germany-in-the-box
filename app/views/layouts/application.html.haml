@@ -12,35 +12,10 @@
     %meta{:content => 'Y. Liu', :name => 'author'}
     %meta{:content => 'width=device-width, initial-scale=1.0', :name => 'viewport'}
 
+    = javascript_include_tag "application"
+    = stylesheet_link_tag "application", :media => "all"
+
     = csrf_meta_tag
-
-    = javascript_include_tag 'jquery.js'
-    = javascript_include_tag 'jquery_ujs.js'
-    = javascript_include_tag 'jquery-ui/widget.js'
-    = javascript_include_tag 'jquery-ui/autocomplete.js'
-
-    = javascript_include_tag 'validator.js'
-
-    = javascript_include_tag 'leftmenu/script.js'
-
-    = javascript_include_tag 'achat.js'
-
-    = javascript_include_tag 'bootstrap-datepicker/core.js'
-    = javascript_include_tag 'bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN.js'
-    = javascript_include_tag 'bootstrap-datepicker/locales/bootstrap-datepicker.de.js'
-
-    = stylesheet_link_tag 'couponia/css/boostrap.css'
-    = stylesheet_link_tag 'couponia/css/font_awesome.css'
-    = stylesheet_link_tag 'couponia/css/styles.css'
-
-    = stylesheet_link_tag 'couponia/css/mystyles.css'
-
-    = stylesheet_link_tag 'leftmenu/style.css'
-
-    = stylesheet_link_tag 'achat.css'
-
-    = stylesheet_link_tag 'bootstrap-datepicker.css'
-
 
     - if session[:login_advice_counter].present?
       = hidden_field_tag :login_advice_counter, "#{session[:login_advice_counter]}"
@@ -76,6 +51,7 @@
       }
 
       #{generate_set_datepicker_lang_js}
+
   %body
     = render "layouts/header/#{!current_user ? 'default' : current_user.role.to_s}"
 
@@ -106,18 +82,4 @@
 
     = render "layouts/footer/#{!current_user ? 'default' : current_user.role.to_s}"
 
-  = javascript_include_tag 'couponia/boostrap.min.js'
-  = javascript_include_tag 'couponia/countdown.min.js'
-  = javascript_include_tag 'couponia/flexnav.min.js'
-  = javascript_include_tag 'couponia/magnific.js'
-  = javascript_include_tag 'couponia/tweet.min.js'
-  = javascript_include_tag 'couponia/fitvids.min.js'
-  = javascript_include_tag 'couponia/mail.min.js'
-  = javascript_include_tag 'couponia/ionrangeslider.js'
-  = javascript_include_tag 'couponia/icheck.js'
-  = javascript_include_tag 'couponia/fotorama.js'
-  = javascript_include_tag 'couponia/card-payment.js'
-  = javascript_include_tag 'couponia/owl-carousel.js'
-  = javascript_include_tag 'couponia/masonry.js'
-  = javascript_include_tag 'couponia/nicescroll.js'
-  = javascript_include_tag 'couponia/custom.js'
+
