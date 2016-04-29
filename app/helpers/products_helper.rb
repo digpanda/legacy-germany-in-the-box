@@ -1,5 +1,5 @@
 module ProductsHelper
-  include FunctionCache
+  include AppCache
 
   def generate_toggle_product_in_collection_js(collection_id, product_id)
     %Q{
@@ -193,11 +193,11 @@ module ProductsHelper
   end
 
   def get_grouped_categories_options
-    get_grouped_categories_options_from_cache
+    AppCache.get_grouped_categories_options_from_cache
   end
 
   def get_grouped_variants_options(product)
-    get_grouped_variants_options_from_cache(product)
+    AppCache.get_grouped_variants_options_from_cache(product)
   end
 
 end

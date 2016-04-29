@@ -2,7 +2,7 @@ require 'will_paginate/array'
 
 class ProductsController < ApplicationController
 
-  include FunctionCache
+  include AppCache
 
   before_action :set_product, only: [:show, :edit, :update, :destroy, :get_sku_for_options, :remove_sku, :remove_option, :new_sku, :show_skus, :skus]
 
@@ -162,13 +162,13 @@ class ProductsController < ApplicationController
   def autocomplete_product_name
     respond_to do |format|
       format.json {
-        render :json => get_products_for_autocompletion(params[:term], params[:pages] ? params[:pages].to_i : 1), :status => :ok
+        render :json => AppCache.get_products_for_autocompletion(params[:term], params[:pages] ? params[:pages].to_i : 1), :status => :ok
       }
     end
   end
 
   def search
-    founded_products = get_products_from_search_cache_for_term( params[:products_search_keyword] )
+    founded_products = AppCache.get_products_from_search_cache_for_term( params[:products_search_keyword] )
 
     tags_product_ids        = founded_products[:tags]
     products_product_ids    = founded_products[:products]
@@ -181,7 +181,7 @@ class ProductsController < ApplicationController
 
     respond_to do |format|
       format.html {
-        @categories_and_children, @categories_and_counters = get_category_values_for_left_menu(@products)
+        @categories_and_children, @categories_and_counters = AppCache.get_category_values_for_left_menu(@products)
         render :index
       }
 
@@ -199,7 +199,7 @@ class ProductsController < ApplicationController
     respond_to do |format|
       
       format.html {
-        @categories_and_children, @categories_and_counters = get_category_values_for_left_menu(@products)
+        @categories_and_children, @categories_and_counters = AppCache.get_category_values_for_left_menu(@products)
         render :index
       }
 

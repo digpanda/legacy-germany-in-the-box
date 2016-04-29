@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 
   include HttpAcceptLanguage::AutoLocale
   
-  include FunctionCache
+  include AppCache
 
   include Mobvious::Rails::Controller
 
