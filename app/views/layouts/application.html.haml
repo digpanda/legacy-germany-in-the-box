@@ -24,32 +24,7 @@
       = hidden_field_tag :signup_advice_counter, "#{session[:signup_advice_counter]}"
 
     :javascript
-      function validateImgFile(inputFile) {
-        var maxExceededMessage = "#{I18n.t(:max_exceeded_message, scope: :image_upload)}";
-        var extErrorMessage = "#{I18n.t(:ext_error_message, scope: :image_upload)}";;
-        var allowedExtension = ["jpg", "jpeg", "png"];
-
-        var extName;
-        var maxFileSize = 1048576;
-        var sizeExceeded = false;
-        var extError = false;
-
-        $.each(inputFile.files, function() {
-          if (this.size && maxFileSize && this.size > maxFileSize) {sizeExceeded=true;};
-          extName = this.name.split('.').pop();
-          if ($.inArray(extName, allowedExtension) == -1) {extError=true;};
-        });
-        if (sizeExceeded) {
-          window.alert(maxExceededMessage);
-          $(inputFile).val('');
-        };
-
-        if (extError) {
-          window.alert(extErrorMessage);
-          $(inputFile).val('');
-        };
-      }
-
+      #{generate_validate_img_file_js}
       #{generate_set_datepicker_lang_js}
 
   %body
