@@ -21,15 +21,7 @@ var Checkout = (function($) {
     post_bank_details: function() {
 
       let bank_details = $("#bank-details").data();
-      var self = this;
-
-      let parsed_bank_details = {};
-      for (var key in bank_details) {
-
-        new_key = this.underscore_case(key);
-        parsed_bank_details[new_key] = bank_details[key];
-
-      }
+      let parsed_bank_details = this.object_to_underscore_case(bank_details);
       
       this.post_form(parsed_bank_details, parsed_bank_details['form_url']);
 
@@ -40,6 +32,23 @@ var Checkout = (function($) {
      */
     underscore_case: function(string) {
      return string.replace(/(?:^|\.?)([A-Z])/g, function (x,y){return "_" + y.toLowerCase()}).replace(/^_/, "")
+    },
+
+    /**
+     * Convert an object to underscore case
+     */
+    object_to_underscore_case: function(obj) {
+
+      let parsed = {};
+      for (var key in obj) {
+
+        new_key = this.underscore_case(key);
+        parsed[new_key] = obj[key];
+
+      }
+
+      return parsed
+
     },
 
     /**
