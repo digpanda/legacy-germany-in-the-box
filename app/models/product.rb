@@ -38,6 +38,10 @@ class Product
   scope :has_tag,         ->(value) { where( :tags => value )   }
   scope :is_active,       ->        { where( :status => true ) }
 
+  def duty_category
+    categories.count > 0 ? categories.first : nil
+  end
+
   def has_option?
     self.options && self.options.select { |o| o.suboptions && o.suboptions.size > 0 }.size > 0
   end
