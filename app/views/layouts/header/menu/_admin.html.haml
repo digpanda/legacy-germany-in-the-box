@@ -12,12 +12,16 @@
         %i.fa.fa-key
         = I18n.t(:accounts, scope: :edit_accounts)
     %li
+      %a{ :href => "#{ categories_path(:user_info_edit_part => :edit_categories) }" }
+        %i.fa.fa-bars
+        = I18n.t(:categories, scope: :top_menu)
+    %li
       %a{ :href => "#{ shop_applications_path(:user_info_edit_part => :edit_shop_applications) }" }
         %i.fa.fa-thumbs-up
         = I18n.t(:shop_applications, scope: :top_menu)
     %li
       %a{ :href => "#{ shops_path(:user_info_edit_part => :edit_shops) }" }
-        %i.fa.fa-thumbs-up
+        %i.fa.fa-shopping-cart
         = I18n.t(:shops, scope: :top_menu)
     %li
       %a{ :href => "#{ signout_path }", :'data-method' => :delete }

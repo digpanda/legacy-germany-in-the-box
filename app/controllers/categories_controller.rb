@@ -1,8 +1,8 @@
 require 'will_paginate/array'
 
-class CategoryController < ApplicationController
+class CategoriesController < ApplicationController
 
-  include FunctionCache
+  include AppCache
 
   before_action :set_category, except: [:index]
 
@@ -10,9 +10,14 @@ class CategoryController < ApplicationController
 
   load_and_authorize_resource
 
+  def index
+    @root_categories = AppCache.get_root_level_categories_from_cache
+    render :index, layout: "sublayout/_#{current_user.role.to_s}"
+  end
+
   def show_products
     @products = @category.products.paginate( :pages => (params[:pages] ? params[:pages].to_i : 1), :per_page => Rails.configuration.limit_for_products_search)
-    @categories_and_children, @categories_and_counters = get_category_values_for_left_menu(@products)
+    @categories_and_children, @categories_and_counters = AppCache.get_category_values_for_left_menu(@products)
 
     respond_to do |format|
       format.html { render 'products/index' }
