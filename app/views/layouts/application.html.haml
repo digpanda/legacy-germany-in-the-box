@@ -55,6 +55,8 @@
   %body
     = render "layouts/header/#{!current_user ? 'default' : current_user.role.to_s}"
 
+    .gap
+
     - for_device_type :desktop, :tablet do
       .row{ :style => 'height:74px;margin-top:6px' }
         .col-md-4.pull-right
