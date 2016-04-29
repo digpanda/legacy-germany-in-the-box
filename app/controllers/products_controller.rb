@@ -196,6 +196,7 @@ class ProductsController < ApplicationController
     @show_search_area = true
 
     respond_to do |format|
+      
       format.html {
         @categories_and_children, @categories_and_counters = get_category_values_for_left_menu(@products)
         render :index
