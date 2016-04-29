@@ -495,3 +495,11 @@ de:
     checkout_ko: Ein Fehler ist bei der Durchführung des Auftrags aufgetreten.
     not_all_available: Der Vorrat des Products %{product_name} reicht momentan nicht. Bitte versuchen Sie später order reduzieren die Stückanzahl.
     not_all_min_total_reached: Ihr Einkauf bei %{shop_name} beträgt insgesamt %{total_price} %{currency} und es ist weniger als das Mindestbestellwert %{min_total} %{currency} des Online-Shops. Bitte erhöhen Sie die Einkaufsumme bei dem Shop.
+  edit_categories:
+    operations: Aktionen
+    remove: Entfernen
+    no_categories: keine Kategorie vorhanden
+    delete_category_message: Die Kategorie löschen?
+  edit_category:
+    name: Name
+    code: Code

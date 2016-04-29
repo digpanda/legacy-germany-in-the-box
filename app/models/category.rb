@@ -3,9 +3,8 @@ class Category
 
   strip_attributes
 
-  field :name,    type: String
+  field :name,    type: String,   localize: true
   field :code,    type: String
-  field :cssc,    type: String
   field :status,  type: Boolean,  :default => true
 
   has_many :children, :class_name => 'Category', :inverse_of => :parent,  dependent: :restrict

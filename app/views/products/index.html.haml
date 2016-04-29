@@ -265,7 +265,7 @@
                 - @categories_and_children.keys.each do |c|
                   %li{ :class => 'has-sub' }
                     %a{:href => "#{show_products_in_category_path(c.id)}" }
-                      %i{ :class => "fa #{c.cssc}" }= ' ' + c.name
+                      %i= ' ' + c.name
                       %span= @categories_and_counters[c]
                     %ul
                       - @categories_and_children[c].each do |cc|
