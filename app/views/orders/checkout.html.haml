@@ -1,4 +1,5 @@
 .row
-  = form_tag "https://sandbox-engine.thesolution.com/engine/hpp/" do
-    = hidden_field_tag :shop_id, "yo"
-    = submit_tag I18n.t(:checkout, scope: :checkout), :class => "btn btn-primary"
+  #bank-details{ :data => @wirecard.hosted_payment_request_datas }
+
+-# TODO : There should be an automatic pipeline loader in the system
+= javascript_include_tag 'checkout.js'

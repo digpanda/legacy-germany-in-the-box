@@ -41,12 +41,40 @@ country:CA
     @url = "https://sandbox-engine.thesolution.com/engine/hpp/"
   end
 
-  def pay
+  # TODO : Refacto and abstract later on.
+  def hosted_payment_request_datas
 
-    request = {:hey => "fuck"}
-    response = Net::HTTP.post_form(URI.parse(url), request)
+    {
 
-    binding.pry
+      :requested_amount => '1.01',
+      :request_amount_currency => 'CNY',
+      :locale => 'en',
+      :order_number => 123456,
+      :order_detail => '1 widget',
+      :form_url => "https://sandbox-engine.thesolution.com/engine/hpp/",
+      :request_id => "ca077aff-b2e0-0e0b-3be2-08aa3b888b52",
+      :request_time_stamp => "20160425212012",
+      :merchant_account_id => "dfc3a296-3faf-4a1d-a075-f72f1b67dd2a",
+      :payment_method => "upop",
+      :transaction_type => "debit",
+      :redirect_url => "https://sandbox-engine.thesolution.com/shop/complete.jsp?state=success& request_signature:723e75bfe0b730282a754c054389c09043e67e2bd75f96ff64f4939ceeaa09f6",
+      :psp_name => "demo",
+      :success_redirect_url => "https://sandbox-engine.thesolution.com/shop/complete.jsp?state=success&",
+      :fail_redirect_url => "https://sandbox-engine.thesolution.com/shop/complete.jsp?state=failed&",
+      :cancel_redirect_url => "https://sandbox-engine.thesolution.com/shop/complete.jsp?state=cancel&",
+      :processing_redirect_url => "https://sandbox-engine.thesolution.com/shop/complete.jsp?state=processing&",
+      :first_name => "John",
+      :last_name => "Doe",
+      :email => "john.doe@wirecard.com",
+      :phone => "1 555 555 5555",
+      :street1 => "123 test",
+      :street2 => "",
+      :city => "Toronto",
+      :state => "ON",
+      :postal_code => "M4P1E8",
+      :country => "CA"
+
+    }
 
   end
 

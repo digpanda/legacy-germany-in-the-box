@@ -59,7 +59,8 @@ class Sku
   def options
     option_ids.map do |id|
       self.product.options.map do |op|
-        op.suboptions.find(id).name unless op.suboptions.find(id).nil?
+        subop = op.suboptions.find(id)
+        subop.name unless subop.nil?
       end
     end.flatten.compact.join(',')
   end

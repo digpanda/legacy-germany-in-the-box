@@ -47,7 +47,7 @@ class Product
   end
 
   def get_mas
-    @mas ||= skus.is_active.to_a.sort { |s1, s2| s1.quantity <=> s2.quantity } .last
+    @mas ||= skus.is_active.to_a.sort { |s1, s2| s1.quantity <=> s2.quantity }.last
   end
 
   def sku_image_url
