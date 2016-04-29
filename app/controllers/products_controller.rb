@@ -57,6 +57,7 @@ class ProductsController < ApplicationController
   end
 
   def like
+
     current_user.dCollection = Collection.create( :name => :default, :user => current_user ) unless current_user.dCollection
     current_user.dCollection.products.push(@product) unless current_user.dCollection.products.find(@product)
 

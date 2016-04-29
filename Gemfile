@@ -77,6 +77,7 @@ gem 'oauth'
 group :development, :test do
   gem 'factory_girl_rails'
   gem 'rspec-rails', '~> 3.0'
+  gem 'capybara'
   #gem 'mongoid-rspec', '3.0.0'
   #gem 'cucumber-rails', :require => false
   gem 'database_cleaner'

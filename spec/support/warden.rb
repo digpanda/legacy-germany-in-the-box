@@ -1,6 +1,6 @@
 RSpec.configure do |config|
 
-  config.include Warden::Test::Helpers #, type: :request
+  config.include Warden::Test::Helpers
   config.before(:each) do
     Warden.test_mode!
   end
