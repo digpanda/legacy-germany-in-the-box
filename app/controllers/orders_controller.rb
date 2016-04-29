@@ -126,15 +126,18 @@ class OrdersController < ApplicationController
     # This will be changed later on
     @wirecard = Wirecard.new({
 
+      :username => "engine.digpanda",
+      :password => "x3Zyr8MaY7TDxj6F",
+
       :merchant_id => "dfc3a296-3faf-4a1d-a075-f72f1b67dd2a",
       :secret_key => "6cbfa34e-91a7-421a-8dde-069fc0f5e0b8",
-      :username => "engine.digpanda",
-      :password => "x3Zyr8MaY7TDxj6F"
+
+      :amount => 1.01,
+      :currency => 'CNY',
+      :order_number => '123456',
+      :order_detail => '1 widget',
 
     })
-    
-    #@wirecard.pay(50)
-    @wirecard.digital_signature
 
   end
 

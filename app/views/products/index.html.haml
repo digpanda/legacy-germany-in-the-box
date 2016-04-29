@@ -286,6 +286,7 @@
                     %h5.product-title= truncate(p.name, :length => 32)
                     .product-desciption= truncate(p.desc, :length => 64)
                     .product-meta
+                    -#
                       %ul.product-price-list
                         %li
                           %span.product-price= (p.get_mas.price * (100 - p.get_mas.discount) / 100.0).to_s + ' ' + p.shop.currency.code
