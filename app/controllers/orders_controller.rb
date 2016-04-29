@@ -7,7 +7,7 @@ class OrdersController < ApplicationController
   load_and_authorize_resource
 
   def show_orders
-    render :show_orders, layout: "#{current_user.role.to_s}_sublayout"
+    render :show_orders, layout: "sublayout/_#{current_user.role.to_s}"
   end
 
   def show

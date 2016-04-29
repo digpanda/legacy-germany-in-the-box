@@ -77,7 +77,7 @@
 
       #{generate_set_datepicker_lang_js}
   %body
-    = render "layouts/header_#{!current_user ? 'default' : current_user.role.to_s}"
+    = render "layouts/header/#{!current_user ? 'default' : current_user.role.to_s}"
 
     - for_device_type :desktop, :tablet do
       .row{ :style => 'height:74px;margin-top:6px' }
@@ -104,7 +104,7 @@
 
     .gap
 
-    = render "layouts/footer_#{!current_user ? 'default' : current_user.role.to_s}"
+    = render "layouts/footer/#{!current_user ? 'default' : current_user.role.to_s}"
 
   = javascript_include_tag 'couponia/boostrap.min.js'
   = javascript_include_tag 'couponia/countdown.min.js'

@@ -15,7 +15,7 @@ class CollectionsController < ApplicationController
   load_and_authorize_resource
 
   def show_collections
-    render "show_#{current_user.role.to_s}_collections", layout: "#{current_user.role.to_s}_sublayout"
+    render "show_#{current_user.role.to_s}_collections", layout: "sublayout/_#{current_user.role.to_s}"
   end
 
   def search
@@ -213,11 +213,11 @@ class CollectionsController < ApplicationController
 
   def new
     @collection = Collection.new
-    render "new_#{current_user.role.to_s}_collection", layout: "#{current_user.role.to_s}_sublayout"
+    render "new_#{current_user.role.to_s}_collection", layout: "sublayout/_#{current_user.role.to_s}"
   end
 
   def edit
-    render "edit_#{current_user.role.to_s}_collection", layout: "#{current_user.role.to_s}_sublayout"
+    render "edit_#{current_user.role.to_s}_collection", layout: "sublayout/_#{current_user.role.to_s}"
   end
 
   def create

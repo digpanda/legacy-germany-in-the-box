@@ -13,7 +13,7 @@
                 = image_tag  'icons/Logo_Gate_M.png', :style => 'width:20px;height:20px'
         .col-md-6
           %ul.login-register
-            = render 'layouts/menu_admin'
+            = render 'layouts/header/menu/admin'
             %li.dropdown
               %a{:href => '#', 'data-toggle' => 'dropdown',  :title => "#{I18n.t(:language, scope: :top_menu)}" }
                 %i.fa.fa-language
