@@ -32,9 +32,6 @@ class UsersController < ApplicationController
   end
 
   def show
-
-    @user = User.find(params[:id])
-    
     respond_to do |format|
       format.json {
         render :json => { :status => :ok, :user => @user }
@@ -180,8 +177,6 @@ class UsersController < ApplicationController
   end
 
   def get_followers
-
-    @user = User.find(params[:id])
     @followers = @user.followers.without_detail
 
     followers_with_reciprocity = JsonIntegrate.followers_reciprocity(@user, followers)
@@ -194,9 +189,6 @@ class UsersController < ApplicationController
   end
 
   def get_following
-
-    @user = User.find(params[:id]) 
-
     respond_to do |format|
       format.html { render :index }
       format.json { render :json => ApiFormat.success(:followers, user.following) }
