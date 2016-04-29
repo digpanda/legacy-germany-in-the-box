@@ -10,20 +10,20 @@ class ShopsController <  ApplicationController
 
   def index
     @shops = Shop.all
-    render :index, layout: "#{current_user.role.to_s}_sublayout"
+    render :index, layout: "sublayout/_#{current_user.role.to_s}"
   end
 
   def edit_setting
-    render :edit_setting, layout: "#{current_user.role.to_s}_sublayout"
+    render :edit_setting, layout: "sublayout/_#{current_user.role.to_s}"
   end
 
   def edit_producer
     @producer = @shop
-    render :edit_producer, layout: "#{current_user.role.to_s}_sublayout"
+    render :edit_producer, layout: "sublayout/_#{current_user.role.to_s}"
   end
 
   def show_products
-    render :show_products, layout: "#{current_user.role.to_s}_sublayout"
+    render :show_products, layout: "sublayout/_#{current_user.role.to_s}"
   end
 
   def show

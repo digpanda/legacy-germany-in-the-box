@@ -6,7 +6,7 @@ class AddressesController < ApplicationController
 
   def show_addresses
     @address = Address.new
-    render "show_#{current_user.role.to_s}_addresses", layout: "#{current_user.role.to_s}_sublayout"
+    render "show_#{current_user.role.to_s}_addresses", layout: "sublayout/_#{current_user.role.to_s}"
   end
 
   def index

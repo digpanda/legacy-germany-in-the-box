@@ -43,7 +43,7 @@
               %i.fa.fa-heart
               = for_device_type :desktop do I18n.t(:my_collection, scope: :top_menu) end
 
-          = render 'layouts/menu_customer'
+          = render 'layouts/header/menu/customer'
 
           %li.dropdown
             %a{:href => '#', 'data-toggle' => 'dropdown',  :title => "#{I18n.t(:language, scope: :top_menu)}" }

@@ -26,7 +26,7 @@ class UsersController < ApplicationController
     @users = User.all
 
     respond_to do |format|
-      format.html { render :index, layout: "#{current_user.role.to_s}_sublayout" }
+      format.html { render :index, layout: "sublayout/_#{current_user.role.to_s}" }
       format.json { render :index }
     end
   end
@@ -49,18 +49,18 @@ class UsersController < ApplicationController
 
   def edit_account
     if current_user.id.to_s == @user.id.to_s
-      render :edit_account, layout: "#{current_user.role.to_s}_sublayout"
+      render :edit_account, layout: "sublayout/_#{current_user.role.to_s}"
     elsif current_user.role == :admin
-      render :edit_account_by_admin, layout: "#{current_user.role.to_s}_sublayout"
+      render :edit_account_by_admin, layout: "sublayout/_#{current_user.role.to_s}"
     end
   end
 
   def edit_personal
-    render :edit_personal, layout: "#{current_user.role.to_s}_sublayout"
+    render :edit_personal, layout: "sublayout/_#{current_user.role.to_s}"
   end
 
   def edit_bank
-    render :edit_bank, layout: "#{current_user.role.to_s}_sublayout"
+    render :edit_bank, layout: "sublayout/_#{current_user.role.to_s}"
   end
 
   def edit

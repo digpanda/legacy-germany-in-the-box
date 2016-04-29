@@ -11,16 +11,16 @@ class ShopApplicationsController < ApplicationController
 
   def index
     @applications = ShopApplication.all
-    render :index, layout: "#{current_user.role.to_s}_sublayout"
+    render :index, layout: "sublayout/_#{current_user.role.to_s}"
   end
 
   def show
-    render :show, layout: "#{current_user.role.to_s}_sublayout"
+    render :show, layout: "sublayout/_#{current_user.role.to_s}"
   end
 
   def new
     @shop_application = ShopApplication.new
-    render :new, layout: 'default_sublayout'
+    render :new, layout: 'sublayout/_default'
   end
 
   def create

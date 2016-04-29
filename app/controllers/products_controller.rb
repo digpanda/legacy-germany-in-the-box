@@ -14,23 +14,23 @@ class ProductsController < ApplicationController
     @shop = Shop.find(params[:shop_id])
     @product = @shop.products.build
 
-    render :new_product, layout: "#{current_user.role.to_s}_sublayout"
+    render :new_product, layout: "sublayout/_#{current_user.role.to_s}"
   end
 
   def new_sku
     @sku = @product.skus.build
 
-    render :new_sku, layout: "#{current_user.role.to_s}_sublayout"
+    render :new_sku, layout: "sublayout/_#{current_user.role.to_s}"
   end
 
   def edit
-    render :edit_product, layout: "#{current_user.role.to_s}_sublayout"
+    render :edit_product, layout: "sublayout/_#{current_user.role.to_s}"
   end
 
   def edit_sku
     @sku = @product.skus.find(params[:sku_id])
 
-    render :edit_sku, layout: "#{current_user.role.to_s}_sublayout"
+    render :edit_sku, layout: "sublayout/_#{current_user.role.to_s}"
   end
 
   def clone_sku
@@ -42,11 +42,11 @@ class ProductsController < ApplicationController
     CopyCarrierwaveFile::CopyFileService.new(@src, @sku, :img3).set_file if @src.img3.url
     @sku.save
 
-    render :clone_sku, layout: "#{current_user.role.to_s}_sublayout"
+    render :clone_sku, layout: "sublayout/_#{current_user.role.to_s}"
   end
 
   def show_skus 
-    render :show_skus, layout: "#{current_user.role.to_s}_sublayout"
+    render :show_skus, layout: "sublayout/_#{current_user.role.to_s}"
   end
 
   # This will display the skus for the users (logged in or not)
