@@ -1,16 +1,16 @@
 %ul#flexnav.hidden-xs.nav.nav-pills.flexnav{'data-breakpoint' => '800'}
   %li{:class => params[:top_menu_active_part] ? (params[:top_menu_active_part] == :home ? 'active' : '') : 'active'}
     %a{:href => "#{root_path}"}= I18n.t(:start, scope: :top_menu)
-  - get_root_level_categories_from_cache().each do |rc|
+  - AppCache.get_root_level_categories_from_cache().each do |rc|
     %li{:class => params[:top_menu_active_part] == :fashion ? 'active' : ''}
       %a{:href => '#'}= rc.name
       %ul
-        - get_first_level_categories_from_cache(rc).each do |fc|
+        - AppCache.get_first_level_categories_from_cache(rc).each do |fc|
           %li
-            - if get_second_level_categories_from_cache(fc).count > 0
+            - if AppCache.get_second_level_categories_from_cache(fc).count > 0
               %a{:href => '#'}= fc.name
               %ul
-                - get_second_level_categories_from_cache(fc).each do |sc|
+                - AppCache.get_second_level_categories_from_cache(fc).each do |sc|
                   %li
                     %a{:href => "#{show_products_in_category_path(sc.id)}"}= sc.name
             - else
