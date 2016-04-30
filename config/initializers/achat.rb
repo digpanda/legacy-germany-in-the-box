@@ -1,6 +1,5 @@
 Rails.configuration.login_failure_limit = 3
-Rails.configuration.products_search_cache_expire_limit = 1.hours
-Rails.configuration.popular_products_cache_expire_limit = 1.hours
+Rails.configuration.app_cache_expire_limit = ENV["RAILS_ENV"] == 'production' ? 1.hours : 5.minutes
 Rails.configuration.max_num_addresses = 3
 Rails.configuration.max_num_shop_billing_addresses = 1
 Rails.configuration.max_num_shop_sender_addresses = 1
