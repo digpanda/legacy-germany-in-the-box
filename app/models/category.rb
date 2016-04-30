@@ -17,7 +17,7 @@ class Category
   validates :status,  presence: true
 
   scope :roots,           ->  { where(:parent => nil) }
-  scope :is_active,       ->  { where( :status => true ) }
+  scope :is_active,       ->  { where(:status => true) }
 
   def total_products
     if children.count > 0

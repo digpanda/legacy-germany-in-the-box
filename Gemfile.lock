@@ -231,6 +231,8 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
+    pry-rails (0.3.4)
+      pry (>= 0.9.10)
     qiniu (6.5.1)
       json (~> 1.8)
       mime-types (~> 2.4.3)
@@ -395,7 +397,7 @@ DEPENDENCIES
   oauth
   omniauth
   omniauth-facebook
-  pry
+  pry-rails
   rails (= 4.2.1)
   rmagick
   rspec-rails (~> 3.0)
