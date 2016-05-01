@@ -1,5 +1,14 @@
 :javascript
   $(function() {
+      $('select.product-categories').multiselect({
+        nonSelectedText: "#{I18n.t(:non_selected_text, scope: :multiselect)}",
+        nSelectedText: "#{I18n.t(:n_selected_text, scope: :multiselect)}",
+        numberDisplayed: 5,
+        maxHeight: 400
+      }).multiselect();
+  });
+
+  $(function() {
     $('#edit_product_submit_btn').click( function() {
       $('input.dynamical-required').each(
         function () {
@@ -55,6 +64,16 @@
               = f.text_area :desc, :value => @product.desc_translations[locale], :class => 'form-control', rows: 8, :required => true, :maxLength => Rails.configuration.max_long_text_length
     - if current_user.role == :admin
       .panel.panel-info
+        .panel-heading{ :title => I18n.t(:duty_category_info, scope: :edit_product, locale: locale) }
+          .text-center
+            %i.fa.fa-info-circle{ :title => I18n.t(:duty_category_info, scope: :edit_product, locale: locale) }
+            %label.required= I18n.t(:duty_category, scope: :edit_product, locale: locale)
+        .panel-body
+          .form-group
+            .row-fluid
+              = f.select :duty_category, grouped_options_for_select(get_grouped_duty_categories_options(locale), @product.duty_category ? @product.duty_category.id : nil), { :include_blank => I18n.t(:non_selected_text, scope: :multiselect, locale: locale) }, :class => 'form-control'
+    - if current_user.role == :admin
+      .panel.panel-info
         .panel-heading{ :title => I18n.t(:categories_info, scope: :edit_product, locale: locale) }
           .text-center
             %i.fa.fa-info-circle{ :title => I18n.t(:categories_info, scope: :edit_product, locale: locale) }
@@ -62,7 +81,7 @@
         .panel-body
           .form-group
             .row-fluid
-              = f.select :categories, grouped_options_for_select(get_grouped_categories_options(locale), @product.categories.map { |c| c.id.to_s }), { :include_blank => I18n.t(:non_selected_text, scope: :multiselect, locale: locale) }, :name => 'product[categories][]', :class => 'form-control product-categories'
+              = f.select :category_ids, grouped_options_for_select(get_grouped_ui_categories_options(locale), @product.categories.map { |c| c.id.to_s }), { :include_blank => I18n.t(:non_selected_text, scope: :multiselect, locale: locale) }, :multiple => 'multiple', :class => 'form-control product-categories'
     .panel.panel-info
       .panel-heading{:title => I18n.t(:keywords_info, scope: :edit_product, num: Rails.configuration.max_num_addresses, locale: locale)}
         .text-center

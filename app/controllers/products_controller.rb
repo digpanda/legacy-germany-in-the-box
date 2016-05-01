@@ -229,8 +229,6 @@ class ProductsController < ApplicationController
     @product.shop = Shop.find(params[:shop_id])
 
     respond_to do |format|
-      @product.categories = params.require(:product)[:categories].map { |cid| Category.find(cid) if not cid.blank? }.compact if params.require(:product)[:categories]
-
       if @product.save
         format.html {
           flash[:success] = I18n.t(:create_ok, scope: :edit_product_new)
@@ -247,8 +245,6 @@ class ProductsController < ApplicationController
 
   def update
     respond_to do |format|
-      @product.categories = params.require(:product)[:categories].map { |cid| Category.find(cid) if not cid.blank? }.compact if params.require(:product)[:categories]
-
       if sku_attributes = params.require(:product)[:skus_attributes]
         sku_attributes.each do |k,v|
           v[:option_ids] = v[:option_ids].reject { |c| c.empty? }
@@ -275,7 +271,6 @@ class ProductsController < ApplicationController
         }
       end
     end
-
   end
 
   def destroy
@@ -309,7 +304,8 @@ class ProductsController < ApplicationController
 
     def product_params
       delocalize_config = { skus_attributes: { :price => :number,:space_length => :number, :space_width => :number, :space_height => :number, :discount => :number, :quantity => :number, :weight => :number} }
-      params.require(:product).permit(:desc, :name, :brand, :img, tags:[], options_attributes: [:id, :name, suboptions_attributes: [:id, :name]], skus_attributes: [:id, :img0, :img1, :img2, :img3, :price, :discount, :quantity, :weight, :customizable, :status, :unit, :space_length, :space_width, :space_height, :time, option_ids: []]).delocalize(delocalize_config)
+      params.require(:product)[:category_ids].delete('')
+      params.require(:product).permit(:desc, :name, :brand, :img, :duty_category, category_ids:[], tags:[], options_attributes: [:id, :name, suboptions_attributes: [:id, :name]], skus_attributes: [:id, :img0, :img1, :img2, :img3, :price, :discount, :quantity, :weight, :customizable, :status, :unit, :space_length, :space_width, :space_height, :time, option_ids: []]).delocalize(delocalize_config)
     end
 end
 

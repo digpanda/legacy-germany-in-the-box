@@ -82,6 +82,7 @@ module AppCache
   end
 
   def get_category_values_for_left_menu(products)
+
     categories_and_children = {}
     categories_and_counters = {}
 
@@ -89,12 +90,15 @@ module AppCache
       p.categories.each do |c|
         if not categories_and_children.has_key?(c.parent)
           categories_and_children[c.parent] = []
-          categories_and_counters[c] = 0
           categories_and_counters[c.parent] = 0
         end
 
         categories_and_children[c.parent] << c if not categories_and_children[c.parent].include?(c)
-        categories_and_counters[c] += 1
+        if categories_and_counters[c]
+          categories_and_counters[c] += 1
+        else
+          categories_and_counters[c] = 1
+        end
         categories_and_counters[c.parent] += 1
       end
     end
@@ -102,8 +106,25 @@ module AppCache
     return categories_and_children, categories_and_counters
   end
 
-  def get_grouped_categories_options_from_cache(locale)
-    Rails.cache.fetch("get_grouped_categories_options_from_cache_#{locale}", :expires_in => Rails.configuration.app_cache_expire_limit ) {
+  def get_grouped_duty_categories_options_from_cache(locale)
+    Rails.cache.fetch("get_grouped_duty_categories_options_from_cache_#{locale}", :expires_in => Rails.configuration.app_cache_expire_limit ) {
+      categories = []
+
+      DutyCategory.roots.is_active.each do |rc|
+        if not rc.next_2_last_branche?
+          categories += rc.children.is_active
+        else
+          categories << rc
+        end
+      end
+
+      categories.sort {|a,b| b.total_products <=> a.total_products } .map {|rc| [rc.name_translations[locale], rc.children.is_active.sort { |a,b| b.total_products <=> a.total_products }.map {|cc| [cc.name_translations[locale]+" (#{cc.code})", cc.id.to_s]} ] }.to_a
+    }
+  end
+
+
+  def get_grouped_ui_categories_options_from_cache(locale)
+    Rails.cache.fetch("get_grouped_ui_categories_options_from_cache_#{locale}", :expires_in => Rails.configuration.app_cache_expire_limit ) {
       categories = []
 
       Category.roots.is_active.each do |rc|

@@ -192,8 +192,12 @@ module ProductsHelper
     end
   end
 
-  def get_grouped_categories_options(locale)
-    AppCache.get_grouped_categories_options_from_cache(locale)
+  def get_grouped_duty_categories_options(locale)
+    AppCache.get_grouped_duty_categories_options_from_cache(locale)
+  end
+
+  def get_grouped_ui_categories_options(locale)
+    AppCache.get_grouped_ui_categories_options_from_cache(locale)
   end
 
   def get_grouped_variants_options(product)

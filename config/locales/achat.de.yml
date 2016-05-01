@@ -357,12 +357,12 @@ de:
     delete_ko: Ein Fehler ist bei der Lösung des Produkts aufgetreten.
     update_ok: Das Produkt wurde erfolgreich aktualisiert.
     update_ko: Ein Fehler ist bei der Änderung des Produkts aufgetreten.
-    categories: Kategorie
+    categories: Käufer-Kategorie
     skus: Aritkelpositionen
     new_basic: Erstellen
     update_basic: Akutalisieren
     variant: Variante
-    categories_info: Die Zuordnung der Kategorien hilft den Käufern, Ihr Produkt zu finden.
+    categories_info: Die Zuordnung der Käufer-Kategorien hilft den Käufern, Ihr Produkt zu finden.
     keywords_info: Wir empfehlen Ihnen, mit %{num} Stichwörtern das Produkt zu charakterisieren. Diese Stickwörtern dienen sowohl dem internen als auch externem Search.
     desc_info: Beschreiben Sie Ihr Produkt mit all den ansprechenden Eigenschaften, die für Käufer relevant sind. (max. %{num} Buchstaben)
     cancel: Abbrechen
@@ -370,6 +370,8 @@ de:
     product_seal_info: Besitzen Ihre Produkte Qualitäts- oder Handelssigel? (Z.B. Bio-Siegel, Fairtrade-Siegel)   (max. 1MB pro Bild)
     quantity_info: '%{num1} Stk. von %{num2} Varianten'
     quantity: Verfügbarkeit
+    duty_category: Zoll-Kategorie
+    duty_category_info: Die Zuordnung der Käufer-Kategorien ist von dem Zoll in China gefordert.
   edit_product_new:
     create_ok: Das Produkt wurde erfolgreich erstellt.
     create_ko: Ein Fehler ist beim

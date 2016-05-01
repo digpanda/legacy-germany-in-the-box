@@ -13,12 +13,13 @@ class Product
   embeds_many :options,   inverse_of: :product,   cascade_callbacks: true,  class_name: 'VariantOption'
   embeds_many :skus,      inverse_of: :product,   cascade_callbacks: true
 
-  has_and_belongs_to_many :collections, inverse_of: :products
-  has_and_belongs_to_many :categories,  inverse_of: :products
+  has_and_belongs_to_many :collections,   inverse_of: :products
+  has_and_belongs_to_many :categories,    inverse_of: :products
 
   has_many :order_items,  inverse_of: :product,   dependent: :restrict
 
-  belongs_to :shop, inverse_of: :products
+  belongs_to :shop,           inverse_of: :products
+  belongs_to :duty_category,  inverse_of: :products
 
   accepts_nested_attributes_for :skus
   accepts_nested_attributes_for :options
@@ -37,10 +38,6 @@ class Product
 
   scope :has_tag,         ->(value) { where( :tags => value )   }
   scope :is_active,       ->        { where( :status => true ) }
-
-  def duty_category
-    categories.count > 0 ? categories.first : nil
-  end
 
   def has_option?
     self.options && self.options.select { |o| o.suboptions && o.suboptions.size > 0 }.size > 0
