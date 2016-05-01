@@ -4,7 +4,6 @@ class Category
   strip_attributes
 
   field :name,    type: String,   localize: true
-  field :code,    type: String
   field :status,  type: Boolean,  :default => true
 
   has_many :children, :class_name => 'Category', :inverse_of => :parent,  dependent: :restrict
@@ -13,7 +12,6 @@ class Category
   has_and_belongs_to_many :products,  :inverse_of => :categories
 
   validates :name,    presence: true, length: {maximum: Rails.configuration.max_short_text_length}
-  validates :code,    presence: true, :unless => lambda { self.parent.blank? }, length: {maximum: Rails.configuration.max_tiny_text_length}
   validates :status,  presence: true
 
   scope :roots,           ->  { where(:parent => nil) }
