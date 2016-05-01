@@ -2,6 +2,8 @@ namespace :achat do
 
   desc "create duty categories data"
   task duty_categories: :environment do
+    DutyCategory.all.delete
+
     #
     # bags & accessories category - level 1
     #
@@ -38,7 +40,6 @@ namespace :achat do
         :code => 'L2-624',
         :parent => category_bags_accessories,
         :name_translations => {:en => 'Briefcases, School Satchels & Messenger Bags'},
-        :status => false
     )
 
     DutyCategory.create!(
@@ -56,8 +57,7 @@ namespace :achat do
     DutyCategory.create!(
         :code => 'L2-628',
         :parent => category_bags_accessories,
-        :name_translations => {:en => 'Travel Bags, Toilet Bags, Rucksacks & Sports Bags'},
-        :status => false
+        :name_translations => {:en => 'Travel Bags, Toilet Bags, Rucksacks & Sports Bags'}
     )
 
     DutyCategory.create!(
@@ -69,15 +69,13 @@ namespace :achat do
     DutyCategory.create!(
         :code => 'L2-646',
         :parent => category_bags_accessories,
-        :name_translations => {:en => 'Key Rings & Moneyclips'},
-        :status => false
+        :name_translations => {:en => 'Key Rings & Moneyclips'}
     )
 
     DutyCategory.create!(
         :code => 'L2-649',
         :parent => category_bags_accessories,
-        :name_translations => {:en => 'Wristbands'},
-        :status => false
+        :name_translations => {:en => 'Wristbands'}
     )
 
     DutyCategory.create!(
@@ -97,29 +95,25 @@ namespace :achat do
     DutyCategory.create!(
         :code => 'L2-63',
         :parent => category_clothes_for_men,
-        :name_translations => {:en => 'Sweaters & Sweatshirts'},
-        :status => false
+        :name_translations => {:en => 'Sweaters & Sweatshirts'}
     )
 
     DutyCategory.create!(
         :code => 'L2-48',
         :parent => category_clothes_for_men,
-        :name_translations => {:en => 'Outerwear, Woven Cotton or Wool & Fine Animal Hair'},
-        :status => false
+        :name_translations => {:en => 'Outerwear, Woven Cotton or Wool & Fine Animal Hair'}
     )
 
     DutyCategory.create!(
         :code => 'L2-50',
         :parent => category_clothes_for_men,
-        :name_translations => {:en => 'Suits, Suit Jackets & Blazers'},
-        :status => false
+        :name_translations => {:en => 'Suits, Suit Jackets & Blazers'}
     )
 
     DutyCategory.create!(
         :code => 'L2-53',
         :parent => category_clothes_for_men,
-        :name_translations => {:en => 'Swimwear & Leisurewear'},
-        :status => false
+        :name_translations => {:en => 'Swimwear & Leisurewear'}
     )
 
     DutyCategory.create!(
@@ -131,8 +125,7 @@ namespace :achat do
     DutyCategory.create!(
         :code => 'L2-52',
         :parent => category_clothes_for_men,
-        :name_translations => {:en => 'Trousers, Shorts & Jeans'},
-        :status => false
+        :name_translations => {:en => 'Trousers, Shorts & Jeans'}
     )
 
     DutyCategory.create!(
@@ -144,8 +137,7 @@ namespace :achat do
     DutyCategory.create!(
         :code => 'L2-669',
         :parent => category_clothes_for_men,
-        :name_translations => {:en => 'Outerwear, Leather, Fur & Plastic'},
-        :status => false
+        :name_translations => {:en => 'Outerwear, Leather, Fur & Plastic'}
     )
 
 
@@ -160,15 +152,13 @@ namespace :achat do
     DutyCategory.create!(
         :code => 'L2-245',
         :parent => category_clothes_for_women,
-        :name_translations => {:en => 'Body Shapers'},
-        :status => false
+        :name_translations => {:en => 'Body Shapers'}
     )
 
     DutyCategory.create!(
         :code => 'L2-66',
         :parent => category_clothes_for_women,
         :name_translations => {:en => 'Outerwear & Woven Other Textile Materials'},
-        :status => false
     )
 
     DutyCategory.create!(
@@ -180,8 +170,7 @@ namespace :achat do
     DutyCategory.create!(
         :code => 'L2-80',
         :parent => category_clothes_for_women,
-        :name_translations => {:en => 'Lingerie'},
-        :status => false
+        :name_translations => {:en => 'Lingerie'}
     )
 
     DutyCategory.create!(
@@ -199,15 +188,13 @@ namespace :achat do
     DutyCategory.create!(
         :code => 'L2-78',
         :parent => category_clothes_for_women,
-        :name_translations => {:en => 'Sweaters & Sweatshirts'},
-        :status => false
+        :name_translations => {:en => 'Sweaters & Sweatshirts'}
     )
 
     DutyCategory.create!(
         :code => 'L2-246',
         :parent => category_clothes_for_women,
-        :name_translations => {:en => 'Swimwear & Leisurewear'},
-        :status => false
+        :name_translations => {:en => 'Swimwear & Leisurewear'}
     )
 
     DutyCategory.create!(
@@ -219,8 +206,7 @@ namespace :achat do
     DutyCategory.create!(
         :code => 'L2-81',
         :parent => category_clothes_for_women,
-        :name_translations => {:en => 'Wedding & Prom Dresses'},
-        :status => false
+        :name_translations => {:en => 'Wedding & Prom Dresses'}
     )
 
     DutyCategory.create!(
@@ -232,15 +218,13 @@ namespace :achat do
     DutyCategory.create!(
         :code => 'L2-670',
         :parent => category_clothes_for_women,
-        :name_translations => {:en => 'Outerwear, Leather, Fur & Plastic'},
-        :status => false
+        :name_translations => {:en => 'Outerwear, Leather, Fur & Plastic'}
     )
 
     DutyCategory.create!(
         :code => 'L2-593',
         :parent => category_clothes_for_women,
-        :name_translations => {:en => 'Other Garments'},
-        :status => false
+        :name_translations => {:en => 'Other Garments'}
     )
 
     #
@@ -260,8 +244,7 @@ namespace :achat do
     DutyCategory.create!(
         :code => 'L2-334',
         :parent => category_clothes_for_babies_essentials,
-        :name_translations => {:en => 'Baby Clothes of Synthetic Fibre'},
-        :status => false
+        :name_translations => {:en => 'Baby Clothes of Synthetic Fibre'}
     )
 
 
@@ -300,8 +283,7 @@ namespace :achat do
     DutyCategory.create!(
         :code => 'L2-452',
         :parent => category_clothes_for_children,
-        :name_translations => {:en => 'Swimwear & Leisurewear'},
-        :status => false
+        :name_translations => {:en => 'Swimwear & Leisurewear'}
     )
 
     DutyCategory.create!(
@@ -325,8 +307,7 @@ namespace :achat do
     DutyCategory.create!(
         :code => 'L2-541',
         :parent => category_clothes_for_children,
-        :name_translations => {:en => 'Used & Worn Clothing'},
-        :status => false
+        :name_translations => {:en => 'Used & Worn Clothing'}
     )
 
     DutyCategory.create!(
@@ -352,8 +333,7 @@ namespace :achat do
     DutyCategory.create!(
         :code => 'L2-91',
         :parent => category_health_beauty,
-        :name_translations => {:en => 'Fragrances'},
-        :status => false
+        :name_translations => {:en => 'Fragrances'}
     )
 
     DutyCategory.create!(
@@ -486,7 +466,7 @@ namespace :achat do
     DutyCategory.create!(
         :code => 'L2-664',
         :parent => category_toys_games,
-        :name_translations_translations => {:en => 'Tricycles, Scooters, Pedal Cars & Ride-On Toys', :'zh-CN' => '三轮车 & 脚蹬车', :de => 'Dreiräder & Roller'}
+        :name_translations => {:en => 'Tricycles, Scooters, Pedal Cars & Ride-On Toys', :'zh-CN' => '三轮车 & 脚蹬车', :de => 'Dreiräder & Roller'}
     )
 
     DutyCategory.create!(
