@@ -1,20 +1,22 @@
-module FunctionCache
+module AppCache
+
+  module_function
 
   def get_root_level_categories_from_cache
-    Rails.cache.fetch("all_root_level_categories_cache_#{I18n.locale}", :expires_in => Rails.configuration.products_search_cache_expire_limit ) {
+    Rails.cache.fetch("all_root_level_categories_cache_#{I18n.locale}", :expires_in => Rails.configuration.app_cache_expire_limit ) {
       root_level_categories = Category.roots.is_active.to_a.sort { |a,b| a.name <=> b.name }
       root_level_categories.select { |c| c.children.count > 1 ? c : c.children.first }
     }
   end
 
   def get_first_level_categories_from_cache(root)
-    Rails.cache.fetch("first_level_categories_cache_of_root_leve_#{root.id}_#{I18n.locale}", :expires_in => Rails.configuration.products_search_cache_expire_limit ) {
+    Rails.cache.fetch("first_level_categories_cache_of_root_leve_#{root.id}_#{I18n.locale}", :expires_in => Rails.configuration.app_cache_expire_limit ) {
       root.children.is_active.to_a.sort { |a,b| a.name <=> b.name }
     }
   end
 
   def get_number_of_different_products_from_cache(first_level_category)
-    Rails.cache.fetch("number_of_different_products_cache_of_first_level_#{first_level_category.id}", :expires_in => Rails.configuration.products_search_cache_expire_limit ) {
+    Rails.cache.fetch("number_of_different_products_cache_of_first_level_#{first_level_category.id}", :expires_in => Rails.configuration.app_cache_expire_limit ) {
       if first_level_category.parent.present?
         products.count
       else
@@ -24,28 +26,28 @@ module FunctionCache
   end
 
   def get_second_level_categories_from_cache(first_level_category)
-    Rails.cache.fetch("second_level_categories_cache_of_first_level_category_#{first_level_category.id}_#{I18n.locale}", :expires_in => Rails.configuration.products_search_cache_expire_limit ) {
+    Rails.cache.fetch("second_level_categories_cache_of_first_level_category_#{first_level_category.id}_#{I18n.locale}", :expires_in => Rails.configuration.app_cache_expire_limit ) {
       first_level_category.children.is_active.to_a.sort { |a,b| a.name <=> b.name }
     }
   end
 
   def get_products_for_autocompletion(term, page = 1)
-    founded_products = get_products_from_search_cache_for_term(term)
+    founded_products = AppCache.get_products_from_search_cache_for_term(term)
 
     limit = Rails.configuration.limit_for_products_search
 
-    products_from_products = sort_and_map_products(founded_products[:products][(page - 1) * limit, limit], I18n.t(:product, scope: :popular_products))
-    products_from_brands = sort_and_map_products(founded_products[:brands][(page - 1) * limit, limit],  I18n.t(:brand, scope: :popular_products))
-    products_from_categories =  sort_and_map_products(founded_products[:categories][(page - 1) * limit, limit],  I18n.t(:category, scope: :popular_products))
-    products_from_tags = sort_and_map_products(founded_products[:tags][(page - 1) * limit, limit],  I18n.t(:tag, scope: :popular_products))
+    products_from_products = AppCache.sort_and_map_products(founded_products[:products][(page - 1) * limit, limit], I18n.t(:product, scope: :popular_products))
+    products_from_brands = AppCache.sort_and_map_products(founded_products[:brands][(page - 1) * limit, limit],  I18n.t(:brand, scope: :popular_products))
+    products_from_categories =  AppCache.sort_and_map_products(founded_products[:categories][(page - 1) * limit, limit],  I18n.t(:category, scope: :popular_products))
+    products_from_tags = AppCache.sort_and_map_products(founded_products[:tags][(page - 1) * limit, limit],  I18n.t(:tag, scope: :popular_products))
 
     products_from_tags + products_from_products + products_from_brands + products_from_categories
   end
 
   def get_products_from_search_cache_for_term(term)
-    magic_number = generate_magic_number
+    magic_number = AppCache.generate_magic_number
 
-    Rails.cache.fetch("products_search_cache_#{term}_#{magic_number}", :expires_in => Rails.configuration.products_search_cache_expire_limit ) {
+    Rails.cache.fetch("products_search_cache_#{term}_#{magic_number}", :expires_in => Rails.configuration.app_cache_expire_limit ) {
       products_from_products = Product.is_active.where({ name: /.*#{term}.*/i }).sort_by {Random.rand}
 
       products_from_brands = Product.is_active.where({ brand: /.*#{term}.*/i }).sort_by {Random.rand}
@@ -64,9 +66,9 @@ module FunctionCache
   end
 
   def get_popular_proudcts_from_cache
-    magic_number = generate_magic_number
+    magic_number = AppCache.generate_magic_number
 
-    Rails.cache.fetch("popular_products_cache_#{magic_number}", :expires_in => Rails.configuration.popular_products_cache_expire_limit ) {
+    Rails.cache.fetch("popular_products_cache_#{magic_number}", :expires_in => Rails.configuration.app_cache_expire_limit ) {
       Product.is_active.all.sort_by { Random.rand }
     }
   end
@@ -100,8 +102,8 @@ module FunctionCache
     return categories_and_children, categories_and_counters
   end
 
-  def get_grouped_categories_options_from_cache
-    Rails.cache.fetch("get_grouped_categories_options_from_cache_#{I18n.locale}", :expires_in => Rails.configuration.popular_products_cache_expire_limit ) {
+  def get_grouped_categories_options_from_cache(locale)
+    Rails.cache.fetch("get_grouped_categories_options_from_cache_#{locale}", :expires_in => Rails.configuration.app_cache_expire_limit ) {
       categories = []
 
       Category.roots.is_active.each do |rc|
@@ -112,12 +114,12 @@ module FunctionCache
         end
       end
 
-      categories.sort {|a,b| b.total_products <=> a.total_products } .map {|rc| [rc.name, rc.children.is_active.sort { |a,b| b.total_products <=> a.total_products }.map {|cc| [cc.name, cc.id.to_s]} ] }.to_a
+      categories.sort {|a,b| b.total_products <=> a.total_products } .map {|rc| [rc.name_translations[locale], rc.children.is_active.sort { |a,b| b.total_products <=> a.total_products }.map {|cc| [cc.name_translations[locale], cc.id.to_s]} ] }.to_a
     }
   end
 
   def get_grouped_variants_options_from_cache(p)
-    Rails.cache.fetch("get_grouped_variants_options_from_cache_#{p.id}_#{I18n.locale}", :expires_in => Rails.configuration.popular_products_cache_expire_limit ) {
+    Rails.cache.fetch("get_grouped_variants_options_from_cache_#{p.id}_#{I18n.locale}", :expires_in => Rails.configuration.app_cache_expire_limit ) {
       p.options.map { |v| [v.name, v.suboptions.sort { |a,b| a.name <=> b.name }.map { |o| [ o.name, o.id.to_s]}] }.to_a
     }
   end

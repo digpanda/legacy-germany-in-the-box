@@ -27,7 +27,7 @@ class ShopsController <  ApplicationController
   end
 
   def show
-    @categories_and_children, @categories_and_counters = get_category_values_for_left_menu(@shop.products)
+    @categories_and_children, @categories_and_counters = AppCache.get_category_values_for_left_menu(@shop.products)
 
     respond_to do |format|
       format.html { render :show }

@@ -51,10 +51,10 @@ Rails.application.routes.draw do
     match 'remove_variant/:variant_id',             via: [:delete], to: :remove_variant,              as: :remove_variant,              :on => :member
     match 'remove_option/:variant_id/:option_id',   via: [:delete], to: :remove_option,               as: :remove_option,               :on => :member
     match :get_sku_for_options,                     via: [:get],    to: :get_sku_for_options,         as: :get_sku_for_options,         :on => :member
-    match :like,                            via: [:patch],  to: :like,                as: :like,                :on => :member
-    match :dislike,                         via: [:patch],  to: :dislike,             as: :dislike,             :on => :member
+    match :like,                                    via: [:patch],  to: :like,                        as: :like,                        :on => :member
+    match :dislike,                                 via: [:patch],  to: :dislike,                     as: :dislike,                     :on => :member
     match :show_skus,                               via: [:get],    to: :show_skus,                   as: :show_skus,                   :on => :member
-    match :skus,                               via: [:get],    to: :skus,                   as: :skus,                   :on => :member
+    match :skus,                                    via: [:get],    to: :skus,                        as: :skus,                        :on => :member
     match :new_sku,                                 via: [:get],    to: :new_sku,                     as: :new_sku,                     :on => :member
     match :edit_sku,                                via: [:get],    to: :edit_sku,                    as: :edit_sku,                    :on => :member
     match :clone_sku,                               via: [:get],    to: :clone_sku,                   as: :clone_sku,                   :on => :member
@@ -104,7 +104,7 @@ Rails.application.routes.draw do
     match :continue,                  via: [:get],          to: :continue,                as: :continue,                    :on => :member
   end
 
-  resources :category, only: [:show, :index] do
+  resources :categories, only: [:show, :index] do
     match :list_products,   via: [:get],    to: :list_products,               as: :list_products,     :on => :member
     match :show_products,   via: [:get],    to: :show_products,               as: :show_products_in,  :on => :member
   end

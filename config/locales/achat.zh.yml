@@ -50,6 +50,7 @@ zh-CN:
     wrong_captcha: 验证码不一致
     email_confirmation_msg: 我们已经向您的注册邮箱发送了一封确认邮件，请您登陆前先确认。
     shops: 店铺管理
+    categories: 产品目录管理
   footer:
     copyright: 版权所有：莱茵工场 © 2016
     rheinmanufaktur: 莱茵工场
@@ -488,3 +489,11 @@ zh-CN:
     checkout_ko: 下单失败
     not_all_available: 产品： %{product_name}, 型号： (%{option_names}) 缺货中, 请您稍后再试或者减少这个产品订货数量
     not_all_min_total_reached: 您在 %{shop_name} 的购物额为 %{total_price} %{currency} 没有达到最小交易值 %{min_total} %{currency}, 请您增加您这个店铺的交易额
+  edit_categories:
+    operations: 操作
+    remove: 删除
+    no_categories: 还不存在任何目录
+    delete_category_message: 删除当前目录
+  edit_category:
+    name: 名称
+    code: 编码

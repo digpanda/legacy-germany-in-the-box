@@ -27,8 +27,6 @@ gem 'omniauth'
 
 gem 'omniauth-facebook'
 
-gem 'pry'
-
 # carr ierwave provides an unit interface to enable upload file in different art of storage
 gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
 gem 'mini_magick'
@@ -105,6 +103,7 @@ end
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
+  gem 'pry-rails'
 end
 
 group :development, :test do
