@@ -11,38 +11,38 @@ var Checkout = (function($) {
      */
     init: function() {
 
-      this.post_bank_details();
+      this.postBankDetails();
 
     },
 
     /**
      * Post bank details to the `form_url`
      */
-    post_bank_details: function() {
+    postBankDetails: function() {
 
-      let bank_details = $("#bank-details").data();
-      let parsed_bank_details = this.object_to_underscore_case(bank_details);
+      let bankDetails = $("#bank-details").data();
+      let parsedBankDetails = this.objectToUnderscoreCase(bankDetails);
       
-      this.post_form(parsed_bank_details, parsed_bank_details['form_url']);
+      this.postForm(parsedBankDetails, parsedBankDetails['form_url']);
 
     },
 
     /**
      * CamelCase to underscored case
      */
-    underscore_case: function(string) {
+    underscoreCase: function(string) {
      return string.replace(/(?:^|\.?)([A-Z])/g, function (x,y){return "_" + y.toLowerCase()}).replace(/^_/, "")
     },
 
     /**
      * Convert an object to underscore case
      */
-    object_to_underscore_case: function(obj) {
+    objectToUnderscoreCase: function(obj) {
 
       let parsed = {};
       for (var key in obj) {
 
-        new_key = this.underscore_case(key);
+        new_key = this.underscoreCase(key);
         parsed[new_key] = obj[key];
 
       }
@@ -54,7 +54,7 @@ var Checkout = (function($) {
     /**
      * Generate and create a form
      */
-    post_form: function(params, path, target, method) {
+    postForm: function(params, path, target, method) {
 
       method = method || "POST";
       path = path || "";
