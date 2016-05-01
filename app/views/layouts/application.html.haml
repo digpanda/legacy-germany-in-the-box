@@ -13,6 +13,8 @@
     %meta{:content => 'width=device-width, initial-scale=1.0', :name => 'viewport'}
 
     = javascript_include_tag "application"
+    = javascript_include_tag params[:controller] if ::Rails.application.assets.find_asset("#{params[:controller]}.js")
+    = javascript_include_tag "#{params[:controller]}/#{params[:action]}" if ::Rails.application.assets.find_asset("#{params[:controller]}/#{params[:action]}.js")
     = stylesheet_link_tag "application", :media => "all"
 
     = csrf_meta_tag

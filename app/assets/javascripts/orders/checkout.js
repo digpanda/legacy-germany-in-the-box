@@ -1,3 +1,8 @@
+/**
+ * Don't forget to add this file to the assets precompile in
+ * config/initializers/assets.rb for Rails Assets Pipeline
+ * - Laurent
+ */
 
 /**
  * Checkout class
@@ -79,8 +84,10 @@ var Checkout = (function($) {
 
       }
 
-      document.body.appendChild(form);
-      form.submit();
+      // document.body.appendChild(form); <- JS way (body was emptied for unknown reason in the process)
+      $('body').append(form); // <- jQuery way
+      console.log ('yo');
+      // form.submit();
 
     } 
 
