@@ -9,4 +9,5 @@
 //= require moment/zh-cn
 //= require bootstrap-datetimepicker
 //= require bootstrap-multiselect
-//= require_tree .
+
+//= require_tree ./lib

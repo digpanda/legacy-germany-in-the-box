@@ -26,6 +26,10 @@ class ShopsController <  ApplicationController
     render :show_products, layout: "sublayout/_#{current_user.role.to_s}"
   end
 
+  def apply_wirecard
+    @apply_wirecard_datas = {:bidule => 'much'}
+  end
+
   def show
     @categories_and_children, @categories_and_counters = AppCache.get_category_values_for_left_menu(@shop.products)
 

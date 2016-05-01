@@ -59,6 +59,7 @@ class ProductsController < ApplicationController
   def like
 
     current_user.dCollection = Collection.create( :name => :default, :user => current_user ) unless current_user.dCollection
+    
     current_user.dCollection.products.push(@product) unless current_user.dCollection.products.find(@product)
 
     if current_user.dCollection.save
@@ -68,6 +69,7 @@ class ProductsController < ApplicationController
       end
 
       return
+
     end
 
     respond_to do |format|
@@ -207,6 +209,7 @@ class ProductsController < ApplicationController
         render :popular
       }
     end
+
   end
 
   def show

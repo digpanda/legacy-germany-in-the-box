@@ -85,7 +85,8 @@ Rails.application.routes.draw do
   resources :shops, except: [:new, :edit, :create] do
     match :edit_setting,    via: [:get],    to: :edit_setting,    as: :edit_setting,    :on => :member
     match :edit_producer,   via: [:get],    to: :edit_producer,   as: :edit_producer,   :on => :member
-    match :show_products,   via: [:get],    to: :show_products,   as: :show_products,   :on => :member
+    match :show_products,          via: [:get],    to: :show_products,          as: :show_products,          :on => :member
+    match :apply_wirecard,   via: [:get],    to: :apply_wirecard,   as: :apply_wirecard,   :on => :member
 
     resources :products,    only: [:new]
   end

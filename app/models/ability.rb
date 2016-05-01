@@ -67,11 +67,13 @@ class Ability
       can :manage, Address, :user => user
 
     elsif user.role == :shopkeeper
+
       can [:show,
            :update,
            :edit_setting,
            :edit_producer,
-           :show_products], Shop, :shopkeeper => user
+           :show_products,
+           :apply_wirecard], Shop, :shopkeeper => user
 
       can [:popular,
            :get_sku_for_options,
