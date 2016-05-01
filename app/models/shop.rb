@@ -26,6 +26,7 @@ class Shop
   field :register,        type: String
   field :website,         type: String
   field :agb,             type: Boolean
+  field :wirecard_status, type: String
   field :seal0,           type: String
   field :seal1,           type: String
   field :seal2,           type: String

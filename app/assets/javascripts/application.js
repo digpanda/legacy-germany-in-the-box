@@ -10,5 +10,4 @@
 //= require bootstrap-datetimepicker
 //= require bootstrap-multiselect
 
-//= require_tree ./couponia
-//= require_tree ./leftmenu
+//= require_tree ./lib
