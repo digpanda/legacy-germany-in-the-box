@@ -100,7 +100,7 @@ end
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-group :development, :test do
+group :development do
   gem 'web-console', '~> 2.0'
   gem 'pry-rails'
 

@@ -95,19 +95,19 @@ development:
 test:
   clients:
     default:
-      database: a_chat_testing
+      database: digpanda
       hosts:
         - localhost:27017
       options:
-        user: root
-        password: 
+        user: loschcode
+        password: pandarocks
         read:
           mode: :primary
         max_retries: 1
         retry_interval: 0
         use_activesupport_time_zone: true
         allow_dynamic_fields: true
-        
+
 local:
   clients:
     default:
