@@ -20,33 +20,9 @@ var Checkout = (function($) {
     postBankDetails: function() {
 
       let bankDetails = $("#bank-details").data();
-      let parsedBankDetails = this.objectToUnderscoreCase(bankDetails);
+      let parsedBankDetails = Casing.objectToUnderscoreCase(bankDetails);
     
       PostForm.send(parsedBankDetails, parsedBankDetails['form_url']);
-
-    },
-
-    /**
-     * CamelCase to underscored case
-     */
-    underscoreCase: function(string) {
-     return string.replace(/(?:^|\.?)([A-Z])/g, function (x,y){return "_" + y.toLowerCase()}).replace(/^_/, "")
-    },
-
-    /**
-     * Convert an object to underscore case
-     */
-    objectToUnderscoreCase: function(obj) {
-
-      let parsed = {};
-      for (var key in obj) {
-
-        new_key = this.underscoreCase(key);
-        parsed[new_key] = obj[key];
-
-      }
-
-      return parsed
 
     },
 

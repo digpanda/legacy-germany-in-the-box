@@ -27,7 +27,17 @@ class ShopsController <  ApplicationController
   end
 
   def apply_wirecard
-    @apply_wirecard_datas = {:bidule => 'much'}
+
+    @apply_wirecard_datas = {
+
+      :form_url => "https://www.checkoutportal.de/de_DE/signup/",
+      :merchant_id => @shop.id, # match reseller system
+      :merchant_country => 'DEU', # 3 letter ISO
+      :merchant_mcc => '', # VISA MCC codes to be provided by Wirecard
+      :reseller_id => 'digpanda-reseller-hash-to-define-later' # Pre-agreed reseller hash
+
+    }
+
   end
 
   def show
