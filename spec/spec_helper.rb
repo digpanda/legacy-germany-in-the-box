@@ -8,5 +8,4 @@ RSpec.configure do |config|
     #Mongoid.purge!
     #sign_out :user
   end
-
 end
