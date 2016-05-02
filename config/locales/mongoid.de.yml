@@ -3,11 +3,13 @@ de:
     messages:
       blank: ist leer
       invalid: ist ungültig
+      document_not_found: Dokument für Klasse %{klass} mit ID(s) %{identifiers} nicht gefunden.
   models: &models
     user: Benutzer
     address: Adresse
     bank_acount: Bankkonto
-    category: Kategorie
+    category: Käufer-Kategorie
+    duty_category: Zoll-Kategorie
     collection: Favorite
     order: Auftrag
     order_item: Auftragsposition
