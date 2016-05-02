@@ -1,6 +1,7 @@
 class Ability
   include CanCan::Ability
-
+  prepend Draper::CanCanCan
+  
   def initialize(user)
 
     user ||= User.new
