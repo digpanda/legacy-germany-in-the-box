@@ -24,8 +24,8 @@ class Address
   belongs_to :user,     :inverse_of => :addresses;
   belongs_to :shop,     :inverse_of => :address;
 
-  scope :is_billing, -> { any_of({type: 'billing'}, {type: 'both'}) }
-  scope :is_sender, -> { any_of({type: 'sender'}, {type: 'both'}) }
+  scope :is_billing,  ->  { any_of({type: 'billing'}, {type: 'both'}) }
+  scope :is_sender,   ->  { any_of({type: 'sender'}, {type: 'both'}) }
 
   has_and_belongs_to_many :orders,  :inverse_of => :delivery_destination
 
