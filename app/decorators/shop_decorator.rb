@@ -4,6 +4,9 @@ class ShopDecorator < Draper::Decorator
 
   def wirecard_apply_merchant
 
+    billing_address = object.billing_address.decorate
+    shopkeeper = object.shopkeeper
+
     {
         
         # mandatory datas
@@ -15,8 +18,8 @@ class ShopDecorator < Draper::Decorator
         :reseller_id => ::Rails.application.config.wirecard["merchants"]["reseller_id"],
         
         # optional datas
-        :representative_first_name => object.shopkeeper.fname,
-        :representative_last_name => object.shopkeeper.lname,
+        :representative_first_name => shopkeeper.fname,
+        :representative_last_name => shopkeeper.lname,
         :representative_address => '', # TODO : ASK SHA ABOUT THIS
         :representative_zip => '',
         :representative_phone => '',
@@ -26,9 +29,9 @@ class ShopDecorator < Draper::Decorator
         
         :email => '',
         :company_name => object.shopname,
-        :company_address => object.billing_address.street_and_number,
-        :company_city => object.billing_address.city,
-        :company_zip => object.billing_address.zip,
+        :company_address => billing_address.decorate.street_and_number,
+        :company_city => billing_address.city,
+        :company_zip => billing_address.zip,
         :company_state => '', # object.billing_address.state,
         :company_url => object.website,
         :object_url => '',

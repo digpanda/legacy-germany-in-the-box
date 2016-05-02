@@ -1,16 +1,20 @@
 class Wirecard::WebhookController < ApplicationController
 
+  def devlog
+
+    @@devlog ||= Logger.new("#{::Rails.root}/log/wirecard_webhook.log")
+
+  end
+
   def merchant_status_change
 
-=begin
-  {
-  "merchant_id": "<id>",
-  "merchant_status": "<status>", //PROCESSING
-  "reseller_id": "<hash>"
-  }
-=end
+    devlog.info("Wirecard started to communicate with our system")
 
-    binding.pry
+    merchant_id = params[:merchant_id]
+    merchant_status = params[:merchant_status]
+    reseller_id = params[:reseller_id]
+
+    devlog.info("Service received `#{merchant_id}`, `#{merchant_status}`, `#{reseller_id}`")
 
   end
 
