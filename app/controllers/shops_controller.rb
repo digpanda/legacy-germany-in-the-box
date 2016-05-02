@@ -1,29 +1,32 @@
 class ShopsController <  ApplicationController
 
   before_action :authenticate_user!, except: [:show]
-
   before_action :set_shop, except: [:index]
 
+  layout :custom_sublayout, only: [:index, :edit_setting, :edit_producer, :show_products]
+
   load_and_authorize_resource
+
+  attr_reader :shop
 
   STRONG_PARAMS = [:shopname, :name, :desc, :logo, :banner, :seal0, :seal1, :seal2, :seal3, :seal4, :seal5, :seal6, :seal7, :philosophy, :stories, :german_essence, :uniqueness, :tax_number, :ustid, :eroi, :min_total, :status, :founding_year, :register, :website, :agb, :fname, :lname, :tel, :mobile, :mail, :function, sales_channels:[]]
 
   def index
     @shops = Shop.all
-    render :index, layout: "sublayout/_#{current_user.role.to_s}"
+
   end
 
   def edit_setting
-    render :edit_setting, layout: "sublayout/_#{current_user.role.to_s}"
+
   end
 
   def edit_producer
     @producer = @shop
-    render :edit_producer, layout: "sublayout/_#{current_user.role.to_s}"
+
   end
 
   def show_products
-    render :show_products, layout: "sublayout/_#{current_user.role.to_s}"
+
   end
 
   def apply_wirecard
@@ -80,6 +83,10 @@ class ShopsController <  ApplicationController
   end
 
   private
+
+  def custom_sublayout
+    "sublayout/_#{current_user.role.to_s}"
+  end
 
   def set_shop
     @shop = Shop.find(params[:id]).decorate

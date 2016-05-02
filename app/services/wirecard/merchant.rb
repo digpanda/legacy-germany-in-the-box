@@ -3,7 +3,7 @@ module Wirecard
 
     attr_reader :shop
 
-    def initiliaze(shop)
+    def initialize(shop)
       @shop = shop
     end
 
@@ -21,7 +21,7 @@ module Wirecard
         :merchant_mcc         => '5499', # VISA MCC -> TODO : We should make it dynamic later on
         :package_id => ::Rails.application.config.wirecard["merchants"]["package_id"],
         :reseller_id => ::Rails.application.config.wirecard["merchants"]["reseller_id"],
-        
+
         # optional datas
         :representative_first_name => shopkeeper.fname,
         :representative_last_name => shopkeeper.lname,
