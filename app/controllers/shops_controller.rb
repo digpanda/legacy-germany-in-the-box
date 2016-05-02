@@ -28,6 +28,8 @@ class ShopsController <  ApplicationController
 
   def apply_wirecard
 
+    @wirecard = Wirecard::Merchant.new(shop)
+
   end
 
   def show

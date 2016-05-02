@@ -21,7 +21,7 @@ var Checkout = (function($) {
 
       let bankDetails = $("#bank-details").data();
       let parsedBankDetails = Casing.objectToUnderscoreCase(bankDetails);
-    
+
       PostForm.send(parsedBankDetails, parsedBankDetails['form_url']);
 
     },

@@ -1,9 +1,15 @@
 defaults: &defaults
+  reseller:
+    username: engine.digpanda
+    password: x3Zyr8MaY7TDxj6F
   merchants:
     reseller_id: nba81H29Gba
     package_id: digpandapaket1
     country: DEU
     signup: https://www.checkoutportal.de/de_DE/signup/
+  customers:
+    hosted_payment_url: https://sandbox-engine.thesolution.com/engine/hpp/
+    redirect_url: https://sandbox-engine.thesolution.com/shop/complete.jsp
 
 development:
   <<: *defaults
