@@ -89,6 +89,7 @@ group :development, :test do
   #gem 'mongoid-rspec', '3.0.0'
   #gem 'cucumber-rails', :require => false
   gem 'database_cleaner'
+  gem 'pry-rails'
 end
 
 # Use ActiveModel has_secure_password
@@ -102,7 +103,6 @@ end
 
 group :development do
   gem 'web-console', '~> 2.0'
-  gem 'pry-rails'
 
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'

@@ -3,7 +3,7 @@
 json.skus @product.skus do |sku|
   json.id sku.id
   json.discount sku.discount
-  json.price sku.price
+  json.price sku.price.to_f
   json.quantity sku.quantity
   json.raw_images_urls sku.raw_images_urls.first
   json.options sku.options
