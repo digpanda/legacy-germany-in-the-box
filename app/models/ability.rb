@@ -1,6 +1,7 @@
 class Ability
   include CanCan::Ability
-
+  prepend Draper::CanCanCan
+  
   def initialize(user)
 
     user ||= User.new
@@ -73,7 +74,7 @@ class Ability
            :edit_setting,
            :edit_producer,
            :show_products,
-           :apply_wirecard], ShopViewModel, :shopkeeper => user
+           :apply_wirecard], Shop, :shopkeeper => user
 
       can [:popular,
            :get_sku_for_options,

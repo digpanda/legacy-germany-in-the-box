@@ -1,4 +1,6 @@
-class ShopViewModel < ViewModels
+class ShopDecorator < Draper::Decorator
+
+  delegate_all
 
   def wirecard_apply_merchant
 
@@ -6,15 +8,15 @@ class ShopViewModel < ViewModels
         
         # mandatory datas
         :form_url             => ::Rails.application.config.wirecard["merchants"]["signup"],
-        :merchant_id          => self.id, # match reseller system
+        :merchant_id          => object.id, # match reseller system
         :merchant_country     => ::Rails.application.config.wirecard["merchants"]["country"],
         :merchant_mcc         => '5499', # VISA MCC -> TODO : We should make it dynamic later on
         :package_id => ::Rails.application.config.wirecard["merchants"]["package_id"],
         :reseller_id => ::Rails.application.config.wirecard["merchants"]["reseller_id"],
         
         # optional datas
-        :representative_first_name => self.shopkeeper.fname,
-        :representative_last_name => self.shopkeeper.lname,
+        :representative_first_name => object.shopkeeper.fname,
+        :representative_last_name => object.shopkeeper.lname,
         :representative_address => '', # TODO : ASK SHA ABOUT THIS
         :representative_zip => '',
         :representative_phone => '',
@@ -23,13 +25,13 @@ class ShopViewModel < ViewModels
         :representative_fax => '',
         
         :email => '',
-        :company_name => self.shopname,
-        :company_address => self.billing_address.street_and_number,
-        :company_city => self.billing_address.city,
-        :company_zip => self.billing_address.zip,
-        :company_state => '', # self.billing_address.state,
-        :company_url => self.website,
-        :shop_url => '',
+        :company_name => object.shopname,
+        :company_address => object.billing_address.street_and_number,
+        :company_city => object.billing_address.city,
+        :company_zip => object.billing_address.zip,
+        :company_state => '', # object.billing_address.state,
+        :company_url => object.website,
+        :object_url => '',
         :vat_number => '',
         :bank_name => '',
         :bank_city => '',

@@ -27,6 +27,9 @@ gem 'omniauth'
 
 gem 'omniauth-facebook'
 
+gem 'draper', '~> 1.3' # decorators
+gem 'draper-cancancan'
+
 # carr ierwave provides an unit interface to enable upload file in different art of storage
 gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
 gem 'mini_magick'

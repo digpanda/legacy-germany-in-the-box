@@ -59,7 +59,7 @@ class Shop
 
   has_one   :bank_account,    inverse_of: :shop
 
-  has_many  :addresses,       inverse_of: :shop
+  has_many :addresses,   inverse_of: :shop
 
   def billing_address
     addresses.is_billing.first
