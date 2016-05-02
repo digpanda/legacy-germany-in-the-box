@@ -43,6 +43,12 @@ Rails.application.routes.draw do
     match 'show_user_collections/:user_id',   via: [:get],    to: :show_user_collections,   as: :show_user,             :on => :collection
   end
 
+  namespace :wirecard do
+    namespace :webhook do 
+      post 'merchant_status_change', to: :merchant_status_change, as: :merchant_status_change
+    end
+  end
+
   resources :addresses, except: [:new, :edit] do
   end
 

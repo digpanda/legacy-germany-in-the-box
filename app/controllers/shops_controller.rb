@@ -9,7 +9,7 @@ class ShopsController <  ApplicationController
   STRONG_PARAMS = [:shopname, :name, :desc, :logo, :banner, :seal0, :seal1, :seal2, :seal3, :seal4, :seal5, :seal6, :seal7, :philosophy, :stories, :german_essence, :uniqueness, :tax_number, :ustid, :eroi, :min_total, :status, :founding_year, :register, :website, :agb, :fname, :lname, :tel, :mobile, :mail, :function, sales_channels:[]]
 
   def index
-    @shops = Shop.all
+    @shops = ShopViewModel.new Shop.all
     render :index, layout: "sublayout/_#{current_user.role.to_s}"
   end
 
@@ -27,48 +27,6 @@ class ShopsController <  ApplicationController
   end
 
   def apply_wirecard
-
-    @apply_wirecard_datas = {
-
-      # mandatory datas
-      :form_url => ::Rails.application.config.wirecard["merchants"]["signup"],
-      :merchant_id => @shop.id, # match reseller system
-      :merchant_country => ::Rails.application.config.wirecard["merchants"]["country"],
-      :merchant_mcc => '5499', # VISA MCC -> TODO : We should make it dynamic later on
-      :package_id => ::Rails.application.config.wirecard["merchants"]["package_id"],
-      :reseller_id => ::Rails.application.config.wirecard["merchants"]["reseller_id"],
-
-      # optional datas
-      :representative_first_name => @shop.shopkeeper.fname,
-      :representative_last_name => @shop.shopkeeper.lname,
-      :representative_address => '', # TODO : ASK SHA ABOUT THIS
-      :representative_zip => '',
-      :representative_phone => '',
-      :representative_city => '',
-      :representative_mobile => '',
-      :representative_fax => '',
-
-      :email => '',
-      :company_name => @shop.shopname,
-      :company_address => @shop.billing_address.street_and_number,
-      :company_city => @shop.billing_address.city,
-      :company_zip => @shop.billing_address.zip,
-      :company_state => '', # @shop.billing_address.state,
-      :company_url => @shop.website,
-      :shop_url => '',
-      :vat_number => '',
-      :bank_name => '',
-      :bank_city => '',
-      :bank_iban => '',
-      :bank_swift => '',
-      :bank_code => '',
-      :bank_account_number => '',
-      :bank_owner => '',
-
-
-    }
-
-    binding.pry
 
   end
 
@@ -122,7 +80,7 @@ class ShopsController <  ApplicationController
   private
 
   def set_shop
-    @shop = Shop.find(params[:id])
+    @shop = ShopViewModel.new Shop.find(params[:id])
   end
 
   def shop_params(shop)

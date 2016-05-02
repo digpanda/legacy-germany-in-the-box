@@ -33,6 +33,8 @@ module AChat
     #config.assets.precompile = []
 
     config.autoload_paths += %W(#{config.root}/lib)
+    config.autoload_paths += %W(#{config.root}/view_models)
+    
     config.middleware.use Mongoid::QueryCache::Middleware
     config.middleware.use Mobvious::Manager
     config.middleware.use HttpAcceptLanguage::Middleware
