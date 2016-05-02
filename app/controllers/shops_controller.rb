@@ -27,7 +27,7 @@ class ShopsController <  ApplicationController
   end
 
   def apply_wirecard
-    @apply_wirecard_datas = {:bidule => 'much'}
+
   end
 
   def show
@@ -80,7 +80,7 @@ class ShopsController <  ApplicationController
   private
 
   def set_shop
-    @shop = Shop.find(params[:id])
+    @shop = Shop.find(params[:id]).decorate
   end
 
   def shop_params(shop)

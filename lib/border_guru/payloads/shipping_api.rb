@@ -35,7 +35,7 @@ module BorderGuru
         {
           firstName: address_model.first_name,
           lastName: address_model.last_name,
-          streetName: address_model.street_and_house_no,
+          streetName: address_model.street_and_number,
           additionalInfo: address_model.addition,
           postcode: address_model.post_code,
           city: address_model.city,

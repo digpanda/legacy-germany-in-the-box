@@ -1,0 +1,15 @@
+defaults: &defaults
+  merchants:
+    reseller_id: nba81H29Gba
+    package_id: digpandapaket1
+    country: DEU
+    signup: https://www.checkoutportal.de/de_DE/signup/
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults

@@ -1,11 +1,11 @@
 FactoryGirl.define do
   factory :product do
 
-    role "customer"
-    username "test_user"
-    email "testing@testing.com"
-    birth "1978-01-01"
-    gender "m"
+    name "Product 1"
+    brand "Brand 1"
+    cover "Cover 1"
+    desc "Description 1"
+    tags ['tag1', 'tag2']
     status true
 
 =begin

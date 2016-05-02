@@ -59,7 +59,15 @@ class Shop
 
   has_one   :bank_account,    inverse_of: :shop
 
-  has_many  :addresses,       inverse_of: :shop
+  has_many :addresses,   inverse_of: :shop
+
+  def billing_address
+    addresses.is_billing.first
+  end
+  def sender_address
+    addresses.is_sender.first
+  end
+
   has_many  :products,        inverse_of: :shop,  dependent: :restrict
 
   belongs_to :shopkeeper,   class_name: 'User',  inverse_of: :shop
@@ -102,7 +110,7 @@ class Shop
   before_save :clean_sms_mobile, :unless => lambda { self.sms }
 
   def country
-    sender_address = addresses.find_by(:type => 'sender')
+    sender_address = addresses.find_sender
     sender_address ? sender_address.country : nil
   end
 
