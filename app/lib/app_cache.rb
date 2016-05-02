@@ -48,9 +48,9 @@ module AppCache
     magic_number = AppCache.generate_magic_number
 
     Rails.cache.fetch("products_search_cache_#{term}_#{magic_number}", :expires_in => Rails.configuration.app_cache_expire_limit ) {
-      products_from_products = Product.is_active.where({ name: /.*#{term}.*/i }).sort_by {Random.rand}
+      products_from_products = Product.is_active.has_sku.where({ name: /.*#{term}.*/i }).sort_by {Random.rand}
 
-      products_from_brands = Product.is_active.where({ brand: /.*#{term}.*/i }).sort_by {Random.rand}
+      products_from_brands = Product.is_active.has_sku.where({ brand: /.*#{term}.*/i }).sort_by {Random.rand}
 
       products_from_categories =  []
       Category.is_active.where( { name: /.*#{term}.*/i } ).each do |c|
@@ -59,7 +59,7 @@ module AppCache
 
       products_from_categories.sort_by {Random.rand}
 
-      products_from_tags = Product.is_active.where( { :tags => term } ).sort_by {Random.rand}
+      products_from_tags = Product.is_active.has_sku.where( { :tags => term } ).sort_by {Random.rand}
 
       { tags: products_from_tags, products: products_from_products, brands: products_from_brands, categories: products_from_categories }
     }
@@ -69,7 +69,7 @@ module AppCache
     magic_number = AppCache.generate_magic_number
 
     Rails.cache.fetch("popular_products_cache_#{magic_number}", :expires_in => Rails.configuration.app_cache_expire_limit ) {
-      Product.is_active.all.sort_by { Random.rand }
+      Product.is_active.has_sku.sort_by { Random.rand }
     }
   end
 

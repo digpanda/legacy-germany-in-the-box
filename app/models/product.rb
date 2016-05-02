@@ -36,8 +36,9 @@ class Product
   validates :desc,        length: { maximum: (Rails.configuration.max_long_text_length * 1.25).round}
   validates :tags,        length: { maximum: Rails.configuration.max_num_tags }
 
-  scope :has_tag,         ->(value) { where( :tags => value )   }
+  scope :has_tag,         ->(value) { where( :tags => value ) }
   scope :is_active,       ->        { where( :status => true ) }
+  scope :has_sku,         ->()      { where( :skus.ne => [] ) }
 
   def has_option?
     self.options && self.options.select { |o| o.suboptions && o.suboptions.size > 0 }.size > 0
