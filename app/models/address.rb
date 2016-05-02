@@ -11,7 +11,7 @@ class Address
   field :province,      type: String
   field :zip,           type: String
   field :country,       type: ISO3166::Country
-  field :type,          type: String
+  field :type,          type: String # billing, sender, both
 
   field :fname,         type: String
   field :lname,         type: String
@@ -23,6 +23,9 @@ class Address
 
   belongs_to :user,     :inverse_of => :addresses;
   belongs_to :shop,     :inverse_of => :address;
+
+  scope :is_billing, -> { any_of({type: 'billing'}, {type: 'both'}) }
+  scope :is_sender, -> { any_of({type: 'sender'}, {type: 'both'}) }
 
   has_and_belongs_to_many :orders,  :inverse_of => :delivery_destination
 
@@ -42,7 +45,7 @@ class Address
   validates :province,  presence: true,   length: {maximum: Rails.configuration.max_tiny_text_length},  :if => lambda{ self.country_code == 'zh-CN' }
 
   def country_code
-    country.alpha2
+    (country ? country.alpha2 : '') # TODO: this should never happen, we shouldn't check if country exists ever
   end
 
   def country_name
@@ -53,7 +56,7 @@ class Address
     country.local_name
   end
 
-  def street_and_house_no
+  def street_and_number
     if country_code == 'zh-CN'
       "#{number} #{street}"
     elsif country_code == 'DE'
