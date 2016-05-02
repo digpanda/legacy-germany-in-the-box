@@ -32,9 +32,9 @@ module Wirecard
         :representative_mobile => '',
         :representative_fax => '',
 
-        :email => shop.email,
+        :email => shopkeeper.email,
         :company_name => shop.shopname,
-        :company_address => billing_address.decorate.street_and_number,
+        :company_address => billing_address.street_and_number,
         :company_city => billing_address.city,
         :company_zip => billing_address.zip,
         :company_state => '', # shop.billing_address.state,
