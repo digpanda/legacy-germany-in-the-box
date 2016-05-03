@@ -13,6 +13,9 @@ defaults: &defaults
     default_redirect_url: https://sandbox-engine.thesolution.com/shop/complete.jsp
     success_redirect_url : http://local.dev:3000/orders/checkout_success
     fail_redirect_path : http://local.dev:3000/orders/checkout_fail
+    psp_name: demo
+    payment_method: upop
+    transaction_type: debit
 
 development:
   <<: *defaults
