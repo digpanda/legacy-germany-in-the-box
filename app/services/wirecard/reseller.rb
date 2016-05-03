@@ -43,9 +43,9 @@ module Wirecard
       "#{engine_url}merchants/#{merchant_id}/payments/#{transaction_id}.json"
     end
 
-    def payment_status(transaction_response=[])
-
-      return :corrupted if transaction_response["payment"].nil? || transaction_response["payment"]["transaction-state"].nil?
+    def payment_status(transaction_response=nil)
+      
+      return :corrupted unless transaction_response&.[]("payment")&.[]("transaction-state")
 
       case transaction_response["payment"]["transaction-state"]
         when "success"
