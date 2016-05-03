@@ -70,7 +70,7 @@ module Wirecard
         :city                      => user.addresses.first.city,
         :state                     => user.addresses.first.province,
         :postal_code               => user.addresses.first.zip,
-        :country                   => user.addresses.country,
+        :country                   => user.addresses.first.country.alpha2,
         :ip_address                => "127.0.0.1"
       }
 

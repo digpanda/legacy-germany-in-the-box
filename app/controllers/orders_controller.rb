@@ -181,6 +181,7 @@ class OrdersController < ApplicationController
         redirect_to root_url and return
     end
 
+    # we find the order payment
     order_payment                = OrderPayment.where({merchant_id: merchant_id, request_id: request_id, amount: amount, currency: currency}).first
     order_payment.status         = :checking
     order_payment.transaction_id = transaction_id
@@ -192,9 +193,14 @@ class OrdersController < ApplicationController
 
       })
 
+    # we update the order depending on the REAL server side state
     transaction = @wirecard.transaction(transaction_id)
     order_payment.status = @wirecard.payment_status(transaction)
     order_payment.save
+
+    # we update the order
+    order_payment.order.status = order_payment.status # duplicate, should be avoided somehow
+    order_payment.order.save(validate: false) # TODO @yl : we should check the validation here and change it
 
   end
 

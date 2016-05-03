@@ -176,11 +176,15 @@
             - else
               - if @shop.wirecard_status.nil?
                 = link_to "Apply to WireCard now", apply_wirecard_shop_path, {class: "btn btn-danger"}
-              - elsif @shop.wirecard_status == :approved
+              - elsif @shop.wirecard_status == :active
                 Your status was approved
               - elsif @shop.wirecard_status == :processing
                 Your status is processing
-              - elsif @shop.wirecard_status == :disapproved
+              - elsif @shop.wirecard_status == :documents_complete
+                Your documents are complete
+              - elsif @shop.wirecard_status == :declined
                 You were disapproved by WireCard
+              - elsif @shop.wirecard_status == :terminated
+                You were terminated by WireCard
 
   = f.button I18n.t(:save, scope: :edit_shop, locale: locale), :id => "edit_producer_submit_#{locale}", :class => 'btn btn-primary edit_producer_submit',  name: :user_info_edit_part, value: :edit_producer
