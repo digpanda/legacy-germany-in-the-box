@@ -202,9 +202,13 @@ de:
       blank: ist leer
       invalid: ist ungültig
       document_not_found:
-        message: "Dokument(e) nicht gefunden for Klasse %{klass} mit id(s) %{missing}."
-        summary:
-        resolution:
+        message: "Dokument(e) nicht gefunden für Klasse %{klass} mit id(s) %{missing}."
+        summary: "Die gesuchten Dokumente waren für IDs: %{searched} (%{total} total) und die folgenden sind nicht gefunden: %{missing}."
+        resolution: "Entweder setzen Sie Mongoid.raise_not_found_error auf wahr oder nutzen Sie eine richtige ID."
+      validations:
+        message: "Validierung von %{document} fehlt."
+        summary: "Insgesamt sind folgende Fehler gefunden: %{errors}"
+        resolution: 'Versuchen Sie bitte mit gültigen Daten zu speichern.'
   mongoid:
     models:
      <<: *models

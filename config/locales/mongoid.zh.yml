@@ -202,8 +202,14 @@ zh-CN:
     messages:
       blank: 不能为空
       invalid: 无效
-      document_not_found: 不存在%{klass}类ID(s)为%{identifiers}的文档
-
+      document_not_found:
+        message: "不存在%{klass}类ID(s)为%{identifiers}的文档."
+        summary: "查找如下: %{searched} (%{total} total)， 如下没有找到: %{missing}."
+        resolution: "设置Mongoid.raise_not_found_error为真或者使用有效的ID."
+      validations:
+        message: "%{document}文档校验失败"
+        summary: "发现如下错误: %{errors}"
+        resolution: '请您尝试用有效数据保存'
   mongoid:
     models:
      <<: *models
