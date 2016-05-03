@@ -1,7 +1,6 @@
 %ul#flexnav.hidden-xs.nav.nav-pills.flexnav{'data-breakpoint' => '800'}
   %li{:class => params[:top_menu_active_part] ? (params[:top_menu_active_part] == :home ? 'active' : '') : 'active'}
     %a{:href => "#{root_path}"}= I18n.t(:start, scope: :top_menu)
-  - binding.pry
   - AppCache.get_root_level_categories_from_cache().each do |rc|
     %li{:class => params[:top_menu_active_part] == :fashion ? 'active' : ''}
       %a{:href => '#'}= rc.name

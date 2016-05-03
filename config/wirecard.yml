@@ -9,7 +9,9 @@ defaults: &defaults
     signup: https://www.checkoutportal.de/de_DE/signup/
   customers:
     hosted_payment_url: https://sandbox-engine.thesolution.com/engine/hpp/
-    redirect_url: https://sandbox-engine.thesolution.com/shop/complete.jsp
+    default_redirect_url: https://sandbox-engine.thesolution.com/shop/complete.jsp
+    success_path :
+    error_path : 
 
 development:
   <<: *defaults
