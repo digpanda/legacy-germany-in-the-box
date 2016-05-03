@@ -7,7 +7,7 @@ module Wirecard
                 :password, 
                 :engine_url,
                 :merchant_id,
-                :transaction_id,
+                :transaction_id
 
     def initialize(args={})
 
@@ -42,6 +42,21 @@ module Wirecard
 
     def transaction_query_url(transaction_id)
       "#{engine_url}merchants/#{merchant_id}/payments/#{transaction_id}.json"
+    end
+
+    def set_payment_status
+
+      case transaction["payment"]["transaction-state"]
+      when "success"
+        :success
+      when "in-progress"
+        :in_progress
+      when "failed"
+        :failed
+      else
+        :corrupted
+      end
+
     end
 
   end

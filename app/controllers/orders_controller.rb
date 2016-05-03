@@ -4,6 +4,7 @@ class OrdersController < ApplicationController
 
   before_action :set_order, only: [:show, :destroy, :continue]
 
+  protect_from_forgery :except => [:checkout_success, :checkout_fail]
   load_and_authorize_resource
 
   def show_orders
@@ -150,6 +151,7 @@ class OrdersController < ApplicationController
     order_payment             = OrderPayment.new
     order_payment.merchant_id = merchant_id
     order_payment.request_id  = @wirecard.request_id
+    order_payment.user_id     = current_user.id # shouldn't be duplicated, but mongoid added it automatically ...
     order_payment.order_id    = @order.id
     order_payment.amount      = @wirecard.amount
     order_payment.currency    = @wirecard.currency
@@ -162,19 +164,19 @@ class OrdersController < ApplicationController
     transaction_state = params["transaction_state"]
     transaction_id    = params["transaction_id"]
     customer_email    = params["email"]
-    currency          = params["request_amount_currency"]
+    currency          = params["requested_amount_currency"]
     merchant_id       = params["merchant_account_id"]
     request_id        = params["request_id"]
     amount            = params["requested_amount"]
 
     if current_user.email != customer_email
-      # WE SHOULD RAISE AN EXCEPTION HERE, SOMETHING IS CORRUPTED
+      return # TODO : we should do something better than returning here, something went wrong, it should be set as corrupted
     end
 
-    order_payment        = OrderPayment.where({merchant_id: merchant_id, request_id: request_id, amount: amount, currency: currency}).first
-    order_payment.status = :checking
-    order.transaction_id = transaction_id.save
-    order.save
+    order_payment                = OrderPayment.where({merchant_id: merchant_id, request_id: request_id, amount: amount, currency: currency}).first
+    order_payment.status         = :checking
+    order_payment.transaction_id = transaction_id
+    order_payment.save
 
     if transaction_state == "success"
 
@@ -185,45 +187,11 @@ class OrdersController < ApplicationController
         })
 
       transaction = @wirecard.transaction(transaction_id)
-
-      if transaction["transaction-state"] == "success"
-        order_payment.status = :success
-      else
-        order_payment.status = :corrupted
-      end
-
-      binding.pry
+      order_payment.status = @wirecard.set_payment_status
       order_payment.save
 
     end
-=begin
-  Parameters: {"psp_name"=>"demo",
-   "country"=>"CA", 
-   "response_signature"=>"74eb11ab18de0f10ddfe33fcadfafe27468726e1260eca22166971638fade438", 
-   "city"=>"Toronto", 
-   "provider_status_code_1"=>"", 
-   "locale"=>"en", 
-   "requested_amount"=>"1.010000", 
-   "completion_time_stamp"=>"20160503123048", 
-   "provider_status_description_1"=>"", 
-   "authorization_code"=>"376641",
-    "merchant_account_id"=>"dfc3a296-3faf-4a1d-a075-f72f1b67dd2a", 
-    "provider_transaction_reference_id"=>"", 
-    "street1"=>"123 test", 
-    "state"=>"ON",
-     "email"=>"customer01@hotmail.com", 
-     "transaction_id"=>"dd7912ce-112a-11e6-9e82-00163e64ea9f", 
-     "provider_transaction_id_1"=>"", 
-     "status_severity_1"=>"information", 
-     "ip_address"=>"127.0.0.1", 
-     "transaction_type"=>"debit", 
-     "status_code_1"=>"201.0000", 
-     "status_description_1"=>"The resource was successfully created.", 
-     "transaction_state"=>"success", 
-     "requested_amount_currency"=>"CNY", 
-     "postal_code"=>"M4P1E8", 
-     "request_id"=>"20160503123006-571568b68066513c0b4a43e7-572888df6b710e5189bbb421"}
-=end
+
   end
 
   def checkout_fail
