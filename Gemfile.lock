@@ -206,6 +206,8 @@ GEM
     mongoid-grid_fs (2.2.1)
       mime-types (>= 1.0, < 3.0)
       mongoid (>= 3.0, < 6.0)
+    mongoid_includes (1.1.1)
+      mongoid (>= 4.0.0, < 6.0.0)
     mongoid_search (0.2.8)
       bson_ext (>= 1.2)
       fast-stemmer (~> 1.0.0)
@@ -402,6 +404,7 @@ DEPENDENCIES
   mobvious-rails
   momentjs-rails
   mongoid (~> 5.0.0)
+  mongoid_includes
   mongoid_search (~> 0.2.8)
   oauth
   omniauth

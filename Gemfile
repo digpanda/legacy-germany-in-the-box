@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'thin'
 gem 'rails', '4.2.1'
 gem "mongoid", "~> 5.0.0"
+gem "mongoid_includes"
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0' # Use Uglifier as compressor for JavaScript assets
 gem 'mongoid_search', '~> 0.2.8'
