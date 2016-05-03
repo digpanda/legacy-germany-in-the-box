@@ -5,4 +5,4 @@ require File.expand_path('../application', __FILE__)
 Rails.application.initialize!
 
 # HAML escape attrs
-Haml::Template.options[:escape_attrs] = false
+# Haml::Template.options[:escape_attrs] = false -> this blows up the current template system
