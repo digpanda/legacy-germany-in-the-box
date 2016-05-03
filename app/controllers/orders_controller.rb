@@ -128,12 +128,16 @@ class OrdersController < ApplicationController
     @order.desc                 = "" # We should set something here @yl
     @order.save
 
+    # Should be dynamic @yl
+    merchant_id = "dfc3a296-3faf-4a1d-a075-f72f1b67dd2a"
+    secret_key = "6cbfa34e-91a7-421a-8dde-069fc0f5e0b8"
+
     # Should build order_payments and link it here
 
     @wirecard = Wirecard::Customer.new(current_user, {
       
-      :merchant_id  => "dfc3a296-3faf-4a1d-a075-f72f1b67dd2a",
-      :secret_key   => "6cbfa34e-91a7-421a-8dde-069fc0f5e0b8",
+      :merchant_id  => merchant_id,
+      :secret_key   => secret_key,
       
       :order_number => @order.id,
       
@@ -144,19 +148,87 @@ class OrdersController < ApplicationController
     })
 
     order_payment            = OrderPayment.new
+    order_payment.merchant_id = merchant_id
     order_payment.request_id = @wirecard.request_id
     order_payment.order_id   = @order.id
     order_payment.amount     = @wirecard.amount
     order_payment.currency   = @wirecard.currency
     order_payment.save
 
+    # TO REMOVE AFTER TESTING THE LIBRARY
+    @wirecard = Wirecard::Reseller.new({
+
+      :merchant_id  => merchant_id,
+
+      })
+
+    @wirecard.transaction("mlùkmlùk")
+
   end
 
   def checkout_success
-    binding.pry
+
+    transaction_state = params["transaction_state"]
+    transaction_id = params["transaction_id"]
+    customer_email = params["email"]
+    currency = params["request_amount_currency"]
+    merchant_id = params["merchant_account_id"]
+    request_id = params["request_id"]
+    amount = params["requested_amount"]
+
+    if current_user.email != customer_email
+      # There's a pb
+      # TODO : manage it
+    end
+
+    order_payment = OrderPayment.where({merchant_id: merchant_id, request_id: request_id, amount: amount, currency: currency}).first
+    order_payment.status = :checking
+    order.transaction_id = transaction_id.save
+    order.save
+
+    if (transaction_state == "success")
+
+    @wirecard = Wirecard::Reseller.new({
+
+      :merchant_id  => merchant_id,
+
+      })
+
+    @wirecard.transaction(transaction_id)
+
+    end
+
+=begin
+  Parameters: {"psp_name"=>"demo",
+   "country"=>"CA", 
+   "response_signature"=>"74eb11ab18de0f10ddfe33fcadfafe27468726e1260eca22166971638fade438", 
+   "city"=>"Toronto", 
+   "provider_status_code_1"=>"", 
+   "locale"=>"en", 
+   "requested_amount"=>"1.010000", 
+   "completion_time_stamp"=>"20160503123048", 
+   "provider_status_description_1"=>"", 
+   "authorization_code"=>"376641",
+    "merchant_account_id"=>"dfc3a296-3faf-4a1d-a075-f72f1b67dd2a", 
+    "provider_transaction_reference_id"=>"", 
+    "street1"=>"123 test", 
+    "state"=>"ON",
+     "email"=>"customer01@hotmail.com", 
+     "transaction_id"=>"dd7912ce-112a-11e6-9e82-00163e64ea9f", 
+     "provider_transaction_id_1"=>"", 
+     "status_severity_1"=>"information", 
+     "ip_address"=>"127.0.0.1", 
+     "transaction_type"=>"debit", 
+     "status_code_1"=>"201.0000", 
+     "status_description_1"=>"The resource was successfully created.", 
+     "transaction_state"=>"success", 
+     "requested_amount_currency"=>"CNY", 
+     "postal_code"=>"M4P1E8", 
+     "request_id"=>"20160503123006-571568b68066513c0b4a43e7-572888df6b710e5189bbb421"}
+=end
   end
 
-  def checkout_error
+  def checkout_fail
     binding.pry
   end
 

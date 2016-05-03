@@ -1,6 +1,8 @@
 module Wirecard
   class Customer
 
+    include Rails.application.routes.url_helpers # manipulate paths
+
     require 'net/http'
     require 'digest'
 
@@ -15,23 +17,26 @@ module Wirecard
                 :order_detail, 
                 :request_time_stamp,  
                 :request_id, 
-                :redirect_url
+                :default_redirect_url,
+                :success_redirect_url,
+                :fail_redirect_url
 
     def initialize(user, args={})
 
-      @user               ||= user
-      @merchant_id        ||= args[:merchant_id]
-      @secret_key         ||= args[:secret_key]
-      @amount             ||= args[:amount].to_s
-      @currency           ||= args[:currency]
-      @order_number       ||= args[:order_number]
-      @order_detail       ||= args[:order_detail]
-      @request_time_stamp ||= timestamp
-      @request_id         ||= [timestamp, user.id, order_number].join('-')
-      @hosted_payment_url ||= ::Rails.application.config.wirecard["customers"]["hosted_payment_url"]
-      @default_redirect_url       ||= ::Rails.application.config.wirecard["customers"]["redirect_url"]
-      @success_redirect_url ||= ::Rails.application.config.wirecard["customers"]["success_path"] | "#{redirect_url}?state=success&"
-      binding.pry
+      @user                ||= user
+      @merchant_id         ||= args[:merchant_id]
+      @secret_key          ||= args[:secret_key]
+      @amount              ||= args[:amount].to_s
+      @currency            ||= args[:currency]
+      @order_number        ||= args[:order_number]
+      @order_detail        ||= args[:order_detail]
+      @request_time_stamp  ||= timestamp
+      @request_id          ||= [timestamp, user.id, order_number].join('-')
+      @hosted_payment_url  ||= ::Rails.application.config.wirecard["customers"]["hosted_payment_url"]
+      @default_redirect_url||= ::Rails.application.config.wirecard["customers"]["default_redirect_url"]
+      @success_redirect_url ||= ::Rails.application.config.wirecard["customers"]["success_redirect_url"] || "#{default_redirect_url}?state=success&"
+      @fail_redirect_url   ||= ::Rails.application.config.wirecard["customers"]["fail_redirect_url"] || "#{default_redirect_url}?state=failed&"
+
     end
 
     def hosted_payment_datas
@@ -48,13 +53,13 @@ module Wirecard
         :merchant_account_id       => merchant_id,
         :payment_method            => "upop",
         :transaction_type          => "debit",
-        :redirect_url              => "#{redirect_url}?state=success&".html_safe,
+        :redirect_url              => success_redirect_url.html_safe,
         :request_signature         => digital_signature,
         :psp_name                  => "demo",
-        :success_redirect_url      => "#{redirect_url}?state=success&".html_safe,
-        :fail_redirect_url         => "#{redirect_url}?state=failed&".html_safe,
-        :cancel_redirect_url       => "#{redirect_url}?state=cancel&".html_safe,
-        :processing_redirect_url   => "#{redirect_url}?state=processing&".html_safe,
+        :success_redirect_url      => success_redirect_url.html_safe,
+        :fail_redirect_url         => fail_redirect_url.html_safe,
+        :cancel_redirect_url       => "#{default_redirect_url}?state=cancel&".html_safe,
+        :processing_redirect_url   => "#{default_redirect_url}?state=processing&".html_safe,
         
         :first_name                => user.fname,
         :last_name                 => user.lname,
@@ -81,7 +86,7 @@ module Wirecard
       :transaction_type        => "debit",
       :requested_amount        => amount,
       :request_amount_currency => currency,
-      :redirect_url            => "#{redirect_url}?state=success&",
+      :redirect_url            => success_redirect_url.html_safe,
       :ip_address              => '127.0.0.1',
       :secret_key              => secret_key
       }
