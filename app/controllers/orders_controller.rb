@@ -133,8 +133,6 @@ class OrdersController < ApplicationController
     merchant_id = "dfc3a296-3faf-4a1d-a075-f72f1b67dd2a"
     secret_key  = "6cbfa34e-91a7-421a-8dde-069fc0f5e0b8"
 
-    # Should build order_payments and link it here
-
     @wirecard = Wirecard::Customer.new(current_user, {
       
       :merchant_id  => merchant_id,
@@ -160,6 +158,14 @@ class OrdersController < ApplicationController
   end
 
   def checkout_success
+    checkout_callback
+  end
+
+  def checkout_fail
+    checkout_callback
+  end
+
+  def checkout_callback
 
     transaction_state = params["transaction_state"]
     transaction_id    = params["transaction_id"]
@@ -178,27 +184,17 @@ class OrdersController < ApplicationController
     order_payment.transaction_id = transaction_id
     order_payment.save
 
-    if transaction_state == "success"
+    @wirecard = Wirecard::Reseller.new({
 
-      @wirecard = Wirecard::Reseller.new({
+      :merchant_id  => merchant_id,
 
-        :merchant_id  => merchant_id,
+      })
 
-        })
-
-      transaction = @wirecard.transaction(transaction_id)
-      order_payment.status = @wirecard.set_payment_status
-      order_payment.save
-
-    end
+    transaction = @wirecard.transaction(transaction_id)
+    order_payment.status = @wirecard.payment_status(transaction)
+    order_payment.save
 
   end
-
-  def checkout_fail
-    binding.pry
-  end
-
-  def 
 
   def checkout_OLD
     current_order = current_order(params[:shop_id])

@@ -21,8 +21,7 @@ module Wirecard
 
     def transaction(transaction_id)
 
-      # TESTING VARIABLE
-      transaction_id = "af3864e1-0b2b-11e6-9e82-00163e64ea9f"
+      # transaction_id = "af3864e1-0b2b-11e6-9e82-00163e64ea9f" <- test variable
       JSON.parse(get_with_authentification(transaction_query_url(transaction_id)))
 
     end
@@ -44,17 +43,19 @@ module Wirecard
       "#{engine_url}merchants/#{merchant_id}/payments/#{transaction_id}.json"
     end
 
-    def set_payment_status
+    def payment_status(transaction_response=[])
 
-      case transaction["payment"]["transaction-state"]
-      when "success"
-        :success
-      when "in-progress"
-        :in_progress
-      when "failed"
-        :failed
-      else
-        :corrupted
+      return :corrupted if transaction_response["payment"].nil? || transaction_response["payment"]["transaction-state"].nil?
+
+      case transaction_response["payment"]["transaction-state"]
+        when "success"
+          :success
+        when "in-progress"
+          :in_progress
+        when "failed"
+          :failed
+        else
+          :corrupted
       end
 
     end
