@@ -7,7 +7,7 @@ module Wirecard
                 :password, 
                 :engine_url,
                 :merchant_id,
-                :transaction_id
+                :transaction_id,
 
     def initialize(args={})
 
@@ -17,28 +17,27 @@ module Wirecard
 
       @merchant_id = args[:merchant_id]
 
-      basic_authentication # authentification to the engine
-
     end
 
     def transaction(transaction_id)
 
-      transaction_query_url(transaction_id)
+      # TESTING VARIABLE
+      transaction_id = "af3864e1-0b2b-11e6-9e82-00163e64ea9f"
+      JSON.parse(get_with_authentification(transaction_query_url(transaction_id)))
 
     end
 
-    def basic_authentication
-      uri = URI(engine_url) # auth page could be improved to avoid 404
+    def get_with_authentification(raw_url)
+      uri = URI(raw_url)
       Net::HTTP.start(uri.host, uri.port,
-        :use_ssl => uri.scheme == 'https', 
-        :verify_mode => OpenSSL::SSL::VERIFY_NONE) do |http|
+        :use_ssl     => uri.scheme == 'https', 
+        :verify_mode => OpenSSL::SSL::VERIFY_NONE) { |http| make_http_request(http, uri).body }
+    end
 
-        request = Net::HTTP::Get.new uri.request_uri
-        request.basic_auth username, password
-
-        response = http.request request
-        response.body
-      end
+    def make_http_request(http, uri)
+      request = Net::HTTP::Get.new uri.request_uri # prepare the request
+      request.basic_auth username, password # authentification here
+      http.request request # give a response
     end
 
     def transaction_query_url(transaction_id)

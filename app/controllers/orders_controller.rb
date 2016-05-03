@@ -130,7 +130,7 @@ class OrdersController < ApplicationController
 
     # Should be dynamic @yl
     merchant_id = "dfc3a296-3faf-4a1d-a075-f72f1b67dd2a"
-    secret_key = "6cbfa34e-91a7-421a-8dde-069fc0f5e0b8"
+    secret_key  = "6cbfa34e-91a7-421a-8dde-069fc0f5e0b8"
 
     # Should build order_payments and link it here
 
@@ -147,57 +147,55 @@ class OrdersController < ApplicationController
 
     })
 
-    order_payment            = OrderPayment.new
+    order_payment             = OrderPayment.new
     order_payment.merchant_id = merchant_id
-    order_payment.request_id = @wirecard.request_id
-    order_payment.order_id   = @order.id
-    order_payment.amount     = @wirecard.amount
-    order_payment.currency   = @wirecard.currency
+    order_payment.request_id  = @wirecard.request_id
+    order_payment.order_id    = @order.id
+    order_payment.amount      = @wirecard.amount
+    order_payment.currency    = @wirecard.currency
     order_payment.save
-
-    # TO REMOVE AFTER TESTING THE LIBRARY
-    @wirecard = Wirecard::Reseller.new({
-
-      :merchant_id  => merchant_id,
-
-      })
-
-    @wirecard.transaction("mlùkmlùk")
 
   end
 
   def checkout_success
 
     transaction_state = params["transaction_state"]
-    transaction_id = params["transaction_id"]
-    customer_email = params["email"]
-    currency = params["request_amount_currency"]
-    merchant_id = params["merchant_account_id"]
-    request_id = params["request_id"]
-    amount = params["requested_amount"]
+    transaction_id    = params["transaction_id"]
+    customer_email    = params["email"]
+    currency          = params["request_amount_currency"]
+    merchant_id       = params["merchant_account_id"]
+    request_id        = params["request_id"]
+    amount            = params["requested_amount"]
 
     if current_user.email != customer_email
-      # There's a pb
-      # TODO : manage it
+      # WE SHOULD RAISE AN EXCEPTION HERE, SOMETHING IS CORRUPTED
     end
 
-    order_payment = OrderPayment.where({merchant_id: merchant_id, request_id: request_id, amount: amount, currency: currency}).first
+    order_payment        = OrderPayment.where({merchant_id: merchant_id, request_id: request_id, amount: amount, currency: currency}).first
     order_payment.status = :checking
     order.transaction_id = transaction_id.save
     order.save
 
-    if (transaction_state == "success")
+    if transaction_state == "success"
 
-    @wirecard = Wirecard::Reseller.new({
+      @wirecard = Wirecard::Reseller.new({
 
-      :merchant_id  => merchant_id,
+        :merchant_id  => merchant_id,
 
-      })
+        })
 
-    @wirecard.transaction(transaction_id)
+      transaction = @wirecard.transaction(transaction_id)
+
+      if transaction["transaction-state"] == "success"
+        order_payment.status = :success
+      else
+        order_payment.status = :corrupted
+      end
+
+      binding.pry
+      order_payment.save
 
     end
-
 =begin
   Parameters: {"psp_name"=>"demo",
    "country"=>"CA", 
