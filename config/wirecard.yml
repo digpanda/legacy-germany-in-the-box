@@ -2,6 +2,7 @@ defaults: &defaults
   reseller:
     username: engine.digpanda
     password: x3Zyr8MaY7TDxj6F
+    engine_url: https://sandbox-engine.thesolution.com/engine/rest/
   merchants:
     reseller_id: nba81H29Gba
     package_id: digpandapaket1
@@ -9,7 +10,9 @@ defaults: &defaults
     signup: https://www.checkoutportal.de/de_DE/signup/
   customers:
     hosted_payment_url: https://sandbox-engine.thesolution.com/engine/hpp/
-    redirect_url: https://sandbox-engine.thesolution.com/shop/complete.jsp
+    default_redirect_url: https://sandbox-engine.thesolution.com/shop/complete.jsp
+    success_redirect_url : http://local.dev:3000/orders/checkout_success
+    fail_redirect_path : http://local.dev:3000/orders/checkout_fail
 
 development:
   <<: *defaults

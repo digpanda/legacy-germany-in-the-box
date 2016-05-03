@@ -2,11 +2,13 @@ class Order
   include MongoidBase
 
   field :status, type: Symbol, default: :new
-
+  field :desc, type: String
+  
   belongs_to :user,                 :inverse_of => :orders
   belongs_to :delivery_destination, :inverse_of => :orders, :class_name => 'Address'
 
   has_many :order_items,  :inverse_of => :order, dependent: :restrict
+  has_many :order_payments,  :inverse_of => :order, dependent: :restrict
 
   validates :status,                  presence: true, inclusion: {in: [:new, :checked_out, :shipped]}
   validates :user,                    presence: true, :unless => lambda { :new == self.status }

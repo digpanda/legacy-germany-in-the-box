@@ -4,6 +4,7 @@ class OrdersController < ApplicationController
 
   before_action :set_order, only: [:show, :destroy, :continue]
 
+  protect_from_forgery :except => [:checkout_success, :checkout_fail]
   load_and_authorize_resource
 
   def show_orders
@@ -121,36 +122,79 @@ class OrdersController < ApplicationController
 
   def checkout
 
-    @order = current_order(params[:shop_id])
+    @order                      = current_order(params[:shop_id])
+    @order.status               = :paying
+    @order.user                 = current_user
+    @order.delivery_destination = current_user.addresses.find(params[:delivery_destination_id])
+    @order.desc                 = "" # We should set something here @yl
+    @order.save
+
+    # Should be dynamic @yl
+    merchant_id = "dfc3a296-3faf-4a1d-a075-f72f1b67dd2a"
+    secret_key  = "6cbfa34e-91a7-421a-8dde-069fc0f5e0b8"
 
     @wirecard = Wirecard::Customer.new(current_user, {
-
-      :merchant_id => "dfc3a296-3faf-4a1d-a075-f72f1b67dd2a",
-      :secret_key => "6cbfa34e-91a7-421a-8dde-069fc0f5e0b8",
-
+      
+      :merchant_id  => merchant_id,
+      :secret_key   => secret_key,
+      
       :order_number => @order.id,
-
-      :amount => 1.01,
-      :currency => 'CNY',
-      :order_detail => '1 widget',
+      
+      :amount       => 1.01,
+      :currency     => 'CNY',
+      :order_detail => @order.desc,
 
     })
 
-    binding.pry
-
-    #
-    # TODO : Here it will redirect to the checkout page
-    # If I removed any process that should be done (like changing the `current_order`)
-    # Just add all of that here before the rendering
-    #
-
-  end
-
-  def checkout_callback # testing
+    order_payment             = OrderPayment.new
+    order_payment.merchant_id = merchant_id
+    order_payment.request_id  = @wirecard.request_id
+    order_payment.user_id     = current_user.id # shouldn't be duplicated, but mongoid added it automatically ...
+    order_payment.order_id    = @order.id
+    order_payment.amount      = @wirecard.amount
+    order_payment.currency    = @wirecard.currency
+    order_payment.save
 
   end
 
-  def 
+  def checkout_success
+    checkout_callback
+  end
+
+  def checkout_fail
+    checkout_callback
+  end
+
+  def checkout_callback
+
+    transaction_state = params["transaction_state"]
+    transaction_id    = params["transaction_id"]
+    customer_email    = params["email"]
+    currency          = params["requested_amount_currency"]
+    merchant_id       = params["merchant_account_id"]
+    request_id        = params["request_id"]
+    amount            = params["requested_amount"]
+
+    if current_user.email != customer_email
+      return # TODO : we should do something better than returning here, something went wrong, it should be set as corrupted
+    end
+
+    order_payment                = OrderPayment.where({merchant_id: merchant_id, request_id: request_id, amount: amount, currency: currency}).first
+    order_payment.status         = :checking
+    order_payment.transaction_id = transaction_id
+    order_payment.save
+
+    @wirecard = Wirecard::Reseller.new({
+
+      :merchant_id  => merchant_id,
+
+      })
+
+    transaction = @wirecard.transaction(transaction_id)
+    order_payment.status = @wirecard.payment_status(transaction)
+    order_payment.save
+
+  end
 
   def checkout_OLD
     current_order = current_order(params[:shop_id])
