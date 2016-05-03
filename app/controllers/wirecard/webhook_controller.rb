@@ -16,6 +16,10 @@ class Wirecard::WebhookController < ApplicationController
 
     devlog.info("Service received `#{merchant_id}`, `#{merchant_status}`, `#{reseller_id}`")
 
+    shop = Shop.find(merchant_id)
+    shop.merchant_status = merchant_status
+    shop.save
+
 =begin
 
  
