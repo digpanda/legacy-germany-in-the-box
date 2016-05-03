@@ -136,8 +136,6 @@ class OrdersController < ApplicationController
 
     })
 
-    binding.pry
-
     #
     # TODO : Here it will redirect to the checkout page
     # If I removed any process that should be done (like changing the `current_order`)
