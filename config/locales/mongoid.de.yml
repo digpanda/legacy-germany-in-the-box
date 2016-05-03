@@ -19,13 +19,194 @@ de:
     sku: Artikelposition
     user: Benutzer
     variant_option: Variante und Option
-
   attributes: &attributes
+    address:
+      additional: zusätzliche Informationen
+      city: Stadt
+      country: Land
+      district: Bezirk
+      email: EMail
+      fname: Vorname
+      lname: Nachname
+      mobile: Mobiltelefon
+      number: Hausnummer
+      order_ids: Auftragsnummer
+      primary: Primär
+      province: Provinz
+      shop_id: Shopsnummer
+      street: Straße
+      tel: Telefon
+      type: Typ
+      user_id: Benutzernummer
+      zip: Postleitzahl
+    bank_account:
+      bic: BIC
+      debit: Kontonummer
+      iban: IBAN
+      name: NAME
+      shop_id: Shop-ID
+    category:
+      name: Name
+      parent_id: Übergeordnete
+      product_ids: Produkt-IDs
+      status: Status
+      child_ids: Untergeordnete
+    collection:
+      desc: Beschreibung
+      img: Bild
+      name: Name
+      product_ids: Produkt-IDs
+      public: Veröffentlich
+      user_id: Benutzer-ID
+      user_ids: Fan-IDs
+    duty_category:
+      name: Name
+      parent_id: Übergeordnete
+      product_ids: Produkt-IDs
+      status: Status
+      child_ids: Untergeordneten
+      code: Zollnummer
+    order:
+      delivery_destination_id: Versandanschrift-ID
+      status: Status
+      user_id: Benutzer-ID
+      order_item_ids: Auftragsdetail-ID
+    order_item:
+      option_ids: Option-IDs
+      option_names: Optionname
+      order_id: Auftrag-ID
+      price: Preis
+      product_id: Produkt-ID
+      product_name: Produktname
+      quantity: Quantität
+      sku_id: SKU-ID
+      weight: Gewicht
     product:
-      name: Produktname
+      brand: Marke
+      category_ids: Kategorie-IDs
+      collection_ids: Favorit-ID
+      cover: Deckenbild
+      desc: Beschreibung
+      duty_category_id: Zollkategorie-ID
+      name: Name
+      shop_id: Shop-ID
+      status: Status
+      tags: Schlüsselwörter
+      options: Optionen
+      skus: SKUs
+      order_item_ids: Vertragsdetail-ID
+    shop:
+      agb: AGB
+      banner: Banner
+      currency: Währung
+      desc: Beschreibung
+      eroi: EROI
+      fname: Vorname
+      founding_year: Gründungsjahr
+      function: Funktion
+      german_essence: Made-In-Germany
+      lname: Vorname
+      logo: Logo
+      mail: Mail
+      min_total: Mindestbestellwert
+      mobile: Mobiltelefon
+      name: Nachname
+      philosophy: Philosophie
+      register: Registrierungsnummer
+      sales_channels: Vertriebswege
+      seal0: Shopfoto1
+      seal1: Shopfoto2
+      seal2: Shopfoto3
+      seal3: Shopfoto4
+      seal4: Produktsiegel1
+      seal5: Produktsiegel2
+      seal6: Produktsiegel3
+      seal7: Produktsiegel4
+      shopkeeper_id: Besitzer-ID
+      shopname: Shopname
+      sms: benachrichtigt per sms
+      sms_mobile: Mobiltelefon
+      status: Status
+      stories: Produktgeschichten
+      tax_number: Steuernummer
+      tel: Telefon
+      uniqueness: Einzigkeit
+      ustid: Umsatzsteuer-ID
+      website: Website
+      wirecard_status: Wirecard-Status
+      bank_account: Bankkonto
+      address_ids: Anschrift-ID
+      product_ids: Produkt-ID
+    shop_application:
+      code: Initialpasswort
+      desc: Beschreibung
+      email: EMail
+      fname: Vorname
+      founding_year: Gründungsjahr
+      function: Funktion
+      german_essence: Made-In-Germany
+      lname: Firstname
+      mail: Kontakt-EMail
+      mobile: Mobiltelefon
+      name: Name
+      philosophy: Philosophie
+      register: Registrierungsnummer
+      sales_channels: Vertriebswege
+      stories: Produktgeschichten
+      tel: Telefon
+      uniqueness: Einzigkeit
+      website: Website
+    sku:
+      customizable: anpassbar
+      discount: Rabatt
+      img0: Bild1
+      img1: Bild2
+      img2: Bild3
+      img3: Bild4
+      limited: begrenzt
+      option_ids: Option-IDs
+      price: Preis
+      quantity: Quantität
+      space_height: Höhe
+      space_length: Länge
+      space_width: Breite
+      status: Status
+      time: Zeit
+      unit: Einheit
+      weight: Gewicht
+      product: Produkt
     user:
-      current_password: Aktuelles Passwort
-
+      about: worüber
+      birth: Geburtsdatum
+      country: Land
+      email: EMail
+      fname: Vorname
+      follower_ids: Anhänger-IDs
+      following_ids: IDs der Gefällten
+      liked_collection_ids: IDs der gefällten Favoriten
+      lname: Nachname
+      mobile: Mobiltelefon
+      pic: Logo
+      role: Rolle
+      status: Status
+      tel: Telefon
+      username: Username
+      website: Website
+      dCollection: Standardfavorit
+      oCollection_ids: Eigenfavoriten
+      order_ids: Auftrag-IDs
+      address_ids: Anschrift-IDs
+      shop: Shop
+    variant_option:
+      name: Name
+      suboptions: Unteroptionen
+      parent: Variant
+      product: Produkt
+  errors: &errors
+    messages:
+      blank: ist leer
+      invalid: ist ungültig
+      document_not_found: Dokument für Klasse %{klass} mit ID(s) %{identifiers} nicht gefunden.
   mongoid:
     models:
      <<: *models

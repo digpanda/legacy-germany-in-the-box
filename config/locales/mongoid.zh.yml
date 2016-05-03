@@ -3,13 +3,14 @@ zh-CN:
     messages:
       blank: 为空
       invalid: 无效
+      document_not_found: 不存在%{klass}类 ID(s) %{identifiers} 文档.
 
   models: &models
-    user: 用户
     address: 地址
     bank_acount: 支付方法
-    category: 类别
+    category: 买家类别
     collection: 收藏
+    duty_category: 海关类别
     order: 订单
     order_item: 订单明细
     product: 产品
@@ -20,15 +21,193 @@ zh-CN:
     variant_option: 型号和选项
 
   attributes: &attributes
+    address:
+      additional: 附加信息
+      city: 城市
+      country: 国家
+      district: 区
+      email: 邮箱
+      fname: 名
+      lname: 姓
+      mobile: 移动电话
+      number: 门牌号
+      order_ids: 订单ID集
+      primary: 首选
+      province: 省份
+      shop_id: 店铺ID
+      street: 街道
+      tel: 电话
+      type: 地址类别
+      user_id: 用户ID
+      zip: 邮编
+    bank_account:
+      bic: BIC
+      debit: 账户
+      iban: IBAN
+      name: 姓名
+      shop_id: Shop-ID
+    category:
+      name: 名称
+      parent_id: 上级分类ID
+      product_ids: 产品ID集
+      status: 状态
+      child_ids: 下级分类ID集
+    collection:
+      desc: 描述
+      img: 图标
+      name: 名称
+      product_ids: 产品ID集
+      public: 公开
+      user_id: 用户ID
+      user_ids: 喜欢这个收藏用户ID集
+    duty_category:
+      name: 名称
+      parent_id: 上级分类ID
+      product_ids: 产品ID集
+      status: 状态
+      child_ids: 下级分类ID集
+      code: 类别编码
+    order:
+      delivery_destination_id: 目的地址ID
+      status: 状态
+      user_id: 用户ID
+      order_item_ids: 订单项目ID集
+    order_item:
+      option_ids: 选项ID集
+      option_names: 选项名称集
+      order_id: 订单ID
+      price: 价格
+      product_id: 产品ID
+      product_name: 产品名称
+      quantity: 数量
+      sku_id: 库存单元ID
+      weight: 重量
     product:
-      name: 产品名称
+      brand: 品牌
+      category_ids: 类别ID集
+      collection_ids: 收藏ID集
+      cover: 封面
+      desc: 产品描述
+      duty_category_id: 报关分类
+      name: 名称
+      shop_id: 店铺ID
+      status: 状态
+      tags: 关键字
+      options: 选项
+      skus: 库存单元
+      order_item_ids: 订单ID集
+    shop:
+      agb: 使用条款和法律声明
+      banner: 店铺标题图片
+      currency: 币种
+      desc: 描述
+      eroi: 欧盟海关税号
+      fname: 名
+      founding_year: 成立年份
+      function: 职责
+      german_essence: 德国制造
+      lname: 姓
+      logo: 店铺图标
+      mail: 邮件
+      min_total: 最小购物额
+      mobile: 移动电话
+      name: 姓名
+      philosophy: 经营理念
+      register: 商业注册号
+      sales_channels: 销售渠道
+      seal0: 店铺照片1
+      seal1: 店铺照片2
+      seal2: 店铺照片3
+      seal3: 店铺照片4
+      seal4: 产品认证图片1
+      seal5: 产品认证图片2
+      seal6: 产品认证图片3
+      seal7: 产品认证图片4
+      shopkeeper_id: 店主ID
+      shopname: 店铺名称
+      sms: 短信通知
+      sms_mobile: 短信移动号码
+      status: 状态
+      stories: 产品故事
+      tax_number: 税号
+      tel: 固定电话
+      uniqueness: 与众不同的特点
+      ustid: 德国企业税号
+      website: 网站地址
+      wirecard_status: wirecard状态
+      bank_account: 银行账户
+      address_ids: 地址ID集
+      product_ids: 产品ID集
+    shop_application:
+      code: 首次登陆密码
+      desc: 描述
+      email: 注册邮件
+      fname: 名
+      founding_year: 成立年份
+      function: 职责
+      german_essence:
+      lname: 姓
+      mail: 联系邮件
+      mobile: 移动
+      name: 公司或生产厂家
+      philosophy: 经营理念
+      register: 注册号
+      sales_channels: 销售渠道
+      stories: 产品故事
+      tel: 联系电话
+      uniqueness: 与众不同的特点
+      website: 网站地址
+    sku:
+      customizable: 可定制
+      discount: 打折
+      img0: 图片1
+      img1: 图片2
+      img2: 图片3
+      img3: 图片4
+      limited: 受限产品
+      option_ids: 选项编号
+      price: 价格
+      quantity: 数量
+      space_height: 空间高度
+      space_length: 空间长度
+      space_width: 空间宽度
+      status: 状态
+      time: 上架时间
+      unit: 重量单位
+      weight: 重量
+      product: 产品
     user:
-      current_password: 当前密码
-
+      about: 关于
+      birth: 生日
+      country: 国家
+      email: 邮件
+      fname: 名
+      follower_ids: 关注者ID集
+      following_ids: 关注ID集
+      liked_collection_ids: 关注的收藏ID集
+      lname: 姓
+      mobile: 移动电话
+      pic: 投降
+      role: 角色
+      status: 状态
+      tel: 固定电话
+      username: 用户名
+      website: 主页
+      dCollection: 默认收藏
+      oCollection_ids: 自建收藏ID集
+      order_ids: 订单ID集
+      address_ids: 地址ID集
+      shop: 商店
+    variant_option:
+      name: 名称
+      suboptions: 选项
+      parent: 上级
+      product: 产品
   errors: &errors
     messages:
       blank: 不能为空
       invalid: 无效
+      document_not_found: 不存在%{klass}类ID(s)为%{identifiers}的文档
 
   mongoid:
     models:
