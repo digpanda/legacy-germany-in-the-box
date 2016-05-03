@@ -1,9 +1,4 @@
 de:
-  errors: &errors
-    messages:
-      blank: ist leer
-      invalid: ist ungültig
-      document_not_found: Dokument für Klasse %{klass} mit ID(s) %{identifiers} nicht gefunden.
   models: &models
     user: Benutzer
     address: Adresse
@@ -206,7 +201,10 @@ de:
     messages:
       blank: ist leer
       invalid: ist ungültig
-      document_not_found: Dokument für Klasse %{klass} mit ID(s) %{identifiers} nicht gefunden.
+      document_not_found:
+        message: "Dokument(e) nicht gefunden for Klasse %{klass} mit id(s) %{missing}."
+        summary:
+        resolution:
   mongoid:
     models:
      <<: *models

@@ -14,17 +14,18 @@ development:
 test:
   clients:
     default:
-      database: digpanda
+      database: a_chat_development
       hosts:
         - localhost:27017
       options:
-        user: loschcode
-        password: pandarocks
+        user: achat
+        password: achat2cool
         read:
           mode: :primary
         max_retries: 1
         retry_interval: 0
         use_activesupport_time_zone: true
+        raise_not_found_error: true
         #allow_dynamic_fields: true
 
 local:

@@ -1,10 +1,4 @@
 zh-CN:
-  errors: &errors
-    messages:
-      blank: 为空
-      invalid: 无效
-      document_not_found: 不存在%{klass}类 ID(s) %{identifiers} 文档.
-
   models: &models
     address: 地址
     bank_acount: 支付方法
@@ -203,6 +197,7 @@ zh-CN:
       suboptions: 选项
       parent: 上级
       product: 产品
+
   errors: &errors
     messages:
       blank: 不能为空
