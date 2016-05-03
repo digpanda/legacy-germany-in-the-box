@@ -8,6 +8,7 @@ require 'sprockets/railtie'
 require 'rails/test_unit/railtie'
 require 'mobvious'
 require 'http_accept_language'
+require "i18n/backend/fallbacks"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -42,5 +43,8 @@ module AChat
     config.i18n.default_locale = :de
     #config.time_zone = 'Beijing'
     config.wirecard = YAML.load_file("#{Rails.root.to_s}/config/wirecard.yml")[Rails.env]
+
+    I18n::Backend::Simple.send(:include, I18n::Backend::Fallbacks)
+    config.i18n.fallbacks = {'de' => 'en', 'zh-CN' => 'en'}
   end
 end
