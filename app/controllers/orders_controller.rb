@@ -128,7 +128,7 @@ class OrdersController < ApplicationController
       :merchant_id => "dfc3a296-3faf-4a1d-a075-f72f1b67dd2a",
       :secret_key => "6cbfa34e-91a7-421a-8dde-069fc0f5e0b8",
 
-      :order_number => current_order.id,
+      :order_number => @order.id,
 
       :amount => 1.01,
       :currency => 'CNY',
@@ -136,7 +136,21 @@ class OrdersController < ApplicationController
 
     })
 
+    binding.pry
+
+    #
+    # TODO : Here it will redirect to the checkout page
+    # If I removed any process that should be done (like changing the `current_order`)
+    # Just add all of that here before the rendering
+    #
+
   end
+
+  def checkout_callback # testing
+
+  end
+
+  def 
 
   def checkout_OLD
     current_order = current_order(params[:shop_id])

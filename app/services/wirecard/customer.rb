@@ -27,7 +27,7 @@ module Wirecard
       @order_number ||= args[:order_number]
       @order_detail ||= args[:order_detail]
       @request_time_stamp ||= timestamp
-      @request_id ||= [timestamp, user.id, order_number].join('#')
+      @request_id ||= [timestamp, user.id, order_number].join('-')
       @hosted_payment_url = ::Rails.application.config.wirecard["customers"]["hosted_payment_url"]
       @redirect_url ||= ::Rails.application.config.wirecard["customers"]["redirect_url"]
 
