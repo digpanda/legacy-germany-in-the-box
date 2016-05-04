@@ -5,7 +5,7 @@ class Admin::PaymentsController < ApplicationController
 
   def index
 
-    @order_payments = OrderPayment.all
+    @order_payments = OrderPayment.order_by(c_at: :desc)
     
   end
 
