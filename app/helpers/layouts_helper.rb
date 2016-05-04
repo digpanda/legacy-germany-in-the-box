@@ -1,11 +1,11 @@
 module LayoutsHelper
 
-  def is_menu_active?(sym)
+  def is_menu_active?(item)
 
-    if Array === sym
-      sym.map(&:to_s).include?(params[:user_info_edit_part]) ? 'active' : ''
+    if Array === item
+      item.map(&:to_s).include?(params[:user_info_edit_part]) ? 'active' : ''
     else
-      params[:user_info_edit_part] ? (params[:user_info_edit_part] == sym.to_s ? 'active' : '') : 'active'
+      params[:user_info_edit_part] ? (params[:user_info_edit_part] == item.to_s ? 'active' : '') : 'active'
     end
 
   end
