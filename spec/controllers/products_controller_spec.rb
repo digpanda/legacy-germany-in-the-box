@@ -18,7 +18,6 @@ describe ProductsController do
 
     it "should get the detail of a specific product" do
 
-      binding.pry
       get :show, id: product.id, :format => :json
       expect(response).to be_success
 

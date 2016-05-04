@@ -17,7 +17,9 @@ FactoryGirl.define do
     tel "267823687"
     mobile "07890278927"
 
-    encrypted_password "$2a$10$s2dNnihkGCGAb9JGSigYduJdEccRdqJjs3JQjAmGYABJMpbt0qYw2"
+
+    password "12345678"
+    #encrypted_password "$2a$10$s2dNnihkGCGAb9JGSigYduJdEccRdqJjs3JQjAmGYABJMpbt0qYw2"
     authentication_token "xfu16vcEYGBweBiN1FVL"
 
     current_sign_in_ip "127.0.0.1"
@@ -41,27 +43,11 @@ FactoryGirl.define do
     tel "267823687"
     mobile "07890278927"
 
-    encrypted_password "$2a$10$s2dNnihkGCGAb9JGSigYduJdEccRdqJjs3JQjAmGYABJMpbt0qYw2"
+    password "12345678"
+    #encrypted_password "$2a$10$s2dNnihkGCGAb9JGSigYduJdEccRdqJjs3JQjAmGYABJMpbt0qYw2"
     authentication_token "xfu16vcEYGBweBiN1FVL"
 
     current_sign_in_ip "127.0.0.1"
-
-=begin
-    trait :published do
-      status :published
-    end
-
-    trait :unpublished do
-      status :unpublished
-    end
-
-    trait :in_the_future do
-      published_at { 2.days.from_now }
-    end
-
-    trait :in_the_past do
-      published_at { 2.days.ago }
-    end
-=end
+    
   end
 end

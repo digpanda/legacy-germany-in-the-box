@@ -24,13 +24,13 @@ module Wirecard
         :reseller_id => ::Rails.application.config.wirecard["merchants"]["reseller_id"],
 
         # optional datas
-        :representative_first_name => shopkeeper.fname,
-        :representative_last_name => shopkeeper.lname,
+        :representative_first_name => shop.fname,
+        :representative_last_name => shop.lname,
         :representative_address => shopkeeper_address.street_and_number,
         :representative_zip => shopkeeper_address.zip,
         :representative_city => shopkeeper_address.city,
-        :representative_mobile => shopkeeper.mobile,
-        :representative_phone => shopkeeper.tel,
+        :representative_mobile => shop.mobile,
+        :representative_phone => shop.tel,
         :representative_fax => '',
 
         :email => shopkeeper.email,
@@ -49,7 +49,6 @@ module Wirecard
         :bank_code => '',
         :bank_account_number => '',
         :bank_owner => '',
-
 
       }
 
