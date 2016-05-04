@@ -372,6 +372,8 @@ de:
     quantity: Verfügbarkeit
     duty_category: Zoll-Kategorie
     duty_category_info: Die Zuordnung der Käufer-Kategorien ist von dem Zoll in China gefordert.
+    product_data: Produktdaten
+    product_data_info: Hier können Sie Ihre Produktdaten angeben. (max. %{num} Buchstaben)
   edit_product_new:
     create_ok: Das Produkt wurde erfolgreich erstellt.
     create_ko: Ein Fehler ist beim

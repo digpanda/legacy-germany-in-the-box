@@ -62,6 +62,14 @@
               %label.required.translation= I18n.t(:desc, scope: :edit_product, locale: locale)
             .col-md-9
               = f.text_area :desc, :value => @product.desc_translations[locale], :class => 'form-control', rows: 8, :required => true, :maxLength => Rails.configuration.max_long_text_length
+        -if @product.duty_category && @product.duty_category.code == 'L2-276'
+          .form-group
+            .row
+              .col-md-3{:title => I18n.t(:product_data_info, scope: :edit_product, num: Rails.configuration.max_additional_text_length, locale: locale) }
+                %i.fa.fa-info-circle{ :title => I18n.t(:product_data_info, scope: :edit_product, num: Rails.configuration.max_additional_text_length, locale: locale) }
+                %label.translation= I18n.t(:product_data, scope: :edit_product, locale: locale)
+              .col-md-9
+                = f.text_area :data, :value => @product.data_translations[locale], :class => 'form-control', rows: 8, :maxLength => Rails.configuration.max_additional_text_length
     - if current_user.role == :admin
       .panel.panel-info
         .panel-heading{ :title => I18n.t(:duty_category_info, scope: :edit_product, locale: locale) }

@@ -305,7 +305,7 @@ class ProductsController < ApplicationController
     def product_params
       delocalize_config = { skus_attributes: { :price => :number,:space_length => :number, :space_width => :number, :space_height => :number, :discount => :number, :quantity => :number, :weight => :number} }
       params.require(:product)[:category_ids].delete('')
-      params.require(:product).permit(:desc, :name, :brand, :img, :duty_category, category_ids:[], tags:[], options_attributes: [:id, :name, suboptions_attributes: [:id, :name]], skus_attributes: [:id, :img0, :img1, :img2, :img3, :price, :discount, :quantity, :weight, :customizable, :status, :unit, :space_length, :space_width, :space_height, :time, option_ids: []]).delocalize(delocalize_config)
+      params.require(:product).permit(:desc, :name, :brand, :img, :duty_category, category_ids:[], tags:[], options_attributes: [:id, :name, suboptions_attributes: [:id, :name]], skus_attributes: [:id, :img0, :img1, :img2, :img3, :price, :discount, :quantity, :weight, :customizable, :status, :unit, :space_length, :space_width, :space_height, :time, :additional, option_ids: []]).delocalize(delocalize_config)
     end
 end
 

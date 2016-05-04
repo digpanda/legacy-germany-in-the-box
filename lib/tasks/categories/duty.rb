@@ -380,6 +380,11 @@ DutyCategory.create!(
     :name_translations => {:en => 'Massage & Orthopaedic', :'zh-CN' => '按摩用品', :de => 'Massage & Orthopädie'}
 )
 
+DutyCategory.create!(
+    :code => 'L2-276',
+    :parent => category_health_beauty,
+    :name_translations => {:en => 'Medicine & Vitamins', :'zh-CN' => '药品和保健品', :de => 'Medikament & Nahrungsergänzung'}
+)
 
 #
 # home & garden category - level 1
