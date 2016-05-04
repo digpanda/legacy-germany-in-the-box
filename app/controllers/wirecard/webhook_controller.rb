@@ -1,24 +1,59 @@
 class Wirecard::WebhookController < ApplicationController
 
-  def devlog
+  # no authentication required
+  before_action :authenticate_user!, except: [:merchant_status_change]
+  acts_as_token_authentication_handler_for User, except: [:merchant_status_change]
 
-    @@devlog ||= Logger.new("#{::Rails.root}/log/wirecard_webhook.log")
+  before_action :validate_merchant_datas
 
-  end
-
+  # note : i made it fast, we should refacto and put some of this in libraries. - Laurent
   def merchant_status_change
 
-    devlog.info("Wirecard started to communicate with our system")
+    devlog.info "Wirecard started to communicate with our system" 
 
     merchant_id = params["merchant_id"]
     merchant_status = params["merchant_status"]
     reseller_id = params["reseller_id"]
+    wirecard_credentials = params["wirecard_credentials"]
+    
+    devlog.info "Service received `#{merchant_id}`, `#{merchant_status}`, `#{reseller_id}`" 
 
-    devlog.info("Service received `#{merchant_id}`, `#{merchant_status}`, `#{reseller_id}`")
+    # we authenticate the source
+    if (wirecard_credentials["ee_user_cc"] == ::Rails.application.config.wirecard["reseller"]["username"]) &&
+       (wirecard_credentials["ee_password_cc"] == ::Rails.application.config.wirecard["reseller"]["password"])
 
-    shop = Shop.find(merchant_id)
-    shop.wirecard_status = merchant_status.downcase
-    shop.save
+      devlog.info "It passed the authentication"
+
+      shop = Shop.find(merchant_id)
+
+      shop.wirecard_status = merchant_status.downcase
+      shop.save
+
+      render text: "Ok" and return
+
+    end
+    
+    render text: "Not ok" and return
+
+  end
+
+  private
+
+  def required_merchant_datas
+    !!(params["merchant_id"].present? && 
+       params["merchant_status"].present? && 
+       params["reseller_id"].present? &&
+       params["wirecard_credentials"].present? && Hash === params["wirecard_credentials"])
+  end
+
+  def validate_merchant_datas
+    render text: "Wrong arguments given." and return if !required_merchant_datas
+  end
+
+  def devlog
+    @@devlog ||= Logger.new("#{::Rails.root}/log/wirecard_webhook.log")
+  end
+
 
 =begin
 
@@ -38,7 +73,5 @@ class Wirecard::WebhookController < ApplicationController
 )
 
 =end
-
-  end
 
 end
