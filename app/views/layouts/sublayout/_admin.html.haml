@@ -10,7 +10,7 @@
           =link_to I18n.t(:categories, scope: :top_menu),  categories_path(:user_info_edit_part => :edit_categories)
         %li{:class => is_menu_active?(:edit_shop_applications)}
           =link_to I18n.t(:shop_applications, scope: :top_menu),  shop_applications_path(:user_info_edit_part => :edit_shop_applications)
-        %li{:class => [:edit_product.to_s, :edit_product_update.to_s, :edit_product_new.to_s, :edit_product_detail.to_s, :edit_product_detail_new.to_s, :edit_product_detail_update.to_s, :edit_product_detail_clone.to_s, :edit_shops.to_s].include?(params[:user_info_edit_part]) ? 'active' : ''}
+        %li{:class => is_menu_active?([:edit_product, :edit_product_update, :edit_product_new, :edit_product_detail, :edit_product_detail_new, :edit_product_detail_update, :edit_product_detail_clone, :edit_shops])}
           =link_to I18n.t(:shops, scope: :top_menu),  shops_path(:user_info_edit_part => :edit_shops)
         %li{:class => is_menu_active?(:admin_payments)}
           =link_to "Payments",  admin_payments_path(:user_info_edit_part => :admin_payments)
