@@ -122,14 +122,8 @@ class OrdersController < ApplicationController
 
   def checkout
 
-    @order                      = current_order(params[:shop_id])
-    @order.status               = :paying
-    @order.user                 = current_user
-    @order.delivery_destination = current_user.addresses.find(params[:delivery_destination_id])
-    @order.desc                 = "" # We should set something here @yl
-    @order.save
+    @order = current_order(params[:shop_id]).update_for_checkout!(current_user, params[:delivery_destination_id])
 
-    # HERE
     @wirecard = PrepareOrderForWirecardCheckout.perform({
 
       :user        => current_user,

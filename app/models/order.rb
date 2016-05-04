@@ -10,7 +10,8 @@ class Order
   has_many :order_items,  :inverse_of => :order, dependent: :restrict
   has_many :order_payments,  :inverse_of => :order, dependent: :restrict
 
-  validates :status,                  presence: true, inclusion: {in: [:new, :checked_out, :shipped]}
+  # TODO : inclusion should be re-abilited when we are sure of what we include
+  validates :status,                  presence: true #, inclusion: {in: [:new, :checked_out, :shipped, :paying,]}
   validates :user,                    presence: true, :unless => lambda { :new == self.status }
   validates :delivery_destination,    presence: true, :unless => lambda { :new == self.status }
 
@@ -22,6 +23,21 @@ class Order
 
   def total_amount
     order_items.inject(0) { |sum, i| sum += i.quantity }
+  end
+
+  def update_for_checkout!(user, delivery_destination_id)
+
+    self.update({
+
+      :status               => :paying,
+      :user                 => user,
+      :delivery_destination => user.addresses.find(delivery_destination_id),
+      #:desc                 => "" # We should set something here @yl
+    
+    })
+
+    self
+
   end
 
   private
