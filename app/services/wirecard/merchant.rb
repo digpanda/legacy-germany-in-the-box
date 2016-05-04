@@ -19,7 +19,7 @@ module Wirecard
         :form_url             => ::Rails.application.config.wirecard["merchants"]["signup"],
         :merchant_id          => shop.id, # match reseller system
         :merchant_country     => ::Rails.application.config.wirecard["merchants"]["country"],
-        :merchant_mcc         => '5499', # VISA MCC -> TODO : We should make it dynamic later on
+        :merchant_mcc         => '', # VISA MCC : 5499
         :package_id => ::Rails.application.config.wirecard["merchants"]["package_id"],
         :reseller_id => ::Rails.application.config.wirecard["merchants"]["reseller_id"],
 
