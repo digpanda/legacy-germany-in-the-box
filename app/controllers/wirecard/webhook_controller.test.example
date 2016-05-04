@@ -1,0 +1,11 @@
+{
+    "merchant_id" : "57160a2d8066513d7b59746f",
+    "merchant_status" : "active",
+    "reseller_id" : "nba81H29Gba",
+    
+    "wirecard_credentials" : {
+        "ee_user_cc" : "engine.digpanda",
+        "ee_password_cc" : "x3Zyr8MaY7TDxj6F"
+    }
+    
+}
