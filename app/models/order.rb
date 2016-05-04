@@ -32,7 +32,6 @@ class Order
       :status               => :paying,
       :user                 => user,
       :delivery_destination => user.addresses.find(delivery_destination_id),
-      #:desc                 => "" # We should set something here @yl
     
     })
 

@@ -9,6 +9,7 @@ class PrepareOrderForWirecardCheckout
       secret_key  = args[:secret_key]
       user = args[:user]
       order = args[:order]
+      amount = args[:amount]
 
       wirecard = Wirecard::Customer.new(user, {
         
@@ -17,8 +18,8 @@ class PrepareOrderForWirecardCheckout
         
         :order_number => order.id,
         
-        :amount       => 1.01, # TO CHANGE DYNAMICALLY
-        :currency     => 'CNY', # TO CHANGE DYNAMICALLY
+        :amount       => amount,
+        :currency     => currency,
         :order_detail => order.desc,
 
       })
