@@ -78,10 +78,6 @@ class ShopsController <  ApplicationController
 
   private
 
-  def custom_sublayout
-    "sublayout/_#{current_user.role}"
-  end
-
   def set_shop
     @shop = Shop.find(params[:id]).decorate
   end

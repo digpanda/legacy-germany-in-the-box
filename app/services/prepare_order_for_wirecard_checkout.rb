@@ -10,6 +10,7 @@ class PrepareOrderForWirecardCheckout
       user = args[:user]
       order = args[:order]
       amount = args[:amount]
+      currency = args[:currency]
 
       wirecard = Wirecard::Customer.new(user, {
         

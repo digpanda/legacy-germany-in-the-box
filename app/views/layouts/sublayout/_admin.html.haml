@@ -12,6 +12,8 @@
           =link_to I18n.t(:shop_applications, scope: :top_menu),  shop_applications_path(:user_info_edit_part => :edit_shop_applications)
         %li{:class => [:edit_product.to_s, :edit_product_update.to_s, :edit_product_new.to_s, :edit_product_detail.to_s, :edit_product_detail_new.to_s, :edit_product_detail_update.to_s, :edit_product_detail_clone.to_s, :edit_shops.to_s].include?(params[:user_info_edit_part]) ? 'active' : ''}
           =link_to I18n.t(:shops, scope: :top_menu),  shops_path(:user_info_edit_part => :edit_shops)
+        %li{:class => params[:user_info_edit_part] == :list_payments.to_s ? 'active' : ''}
+          =link_to "Payments",  admin_payments_path(:user_info_edit_part => :admin_payments)
 
   .col-md-9
     = yield

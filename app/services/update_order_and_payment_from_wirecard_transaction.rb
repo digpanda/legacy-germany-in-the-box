@@ -10,8 +10,6 @@ class UpdateOrderAndPaymentFromWirecardTransaction
       amount         = args[:requested_amount]
       currency       = args[:requested_amount_currency]
 
-      binding.pry
-
       # we find the order payment
       order_payment                = OrderPayment.where({merchant_id: merchant_id, request_id: request_id, amount: amount, currency: currency}).first
       order_payment.status         = :checking

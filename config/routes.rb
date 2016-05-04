@@ -49,6 +49,11 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :admin do
+    resources :payments do
+    end
+  end
+
   resources :addresses, except: [:new, :edit] do
   end
 
@@ -105,8 +110,8 @@ Rails.application.routes.draw do
     match :add_product,               via: [:patch],        action: :add_product,             as: :add_product_to,              :on => :collection
     match :adjust_products_amount,    via: [:patch],        action: :adjust_products_amount,  as: :adjust_products_amount_in,   :on => :collection
     match :checkout,                  via: [:post],         action: :checkout,                as: :checkout,                    :on => :collection
-    match :checkout_success,                  via: [:post],         action: :checkout_success,                as: :checkout_success,                    :on => :collection
-    match :checkout_fail,                  via: [:post],         action: :checkout_fail,                as: :checkout_fail,                    :on => :collection
+    match :checkout_success,          via: [:post],         action: :checkout_success,                as: :checkout_success,                    :on => :collection
+    match :checkout_fail,             via: [:post],         action: :checkout_fail,                as: :checkout_fail,                    :on => :collection
 
     match :manage_cart,               via: [:get],          action: :manage_cart,             as: :manage_cart,                 :on => :collection
     match 'set_address/:shop_id/',    via: [:patch, :get],  action: :set_address,             as: :set_address,                 :on => :collection

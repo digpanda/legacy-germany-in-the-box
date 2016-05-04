@@ -31,6 +31,10 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  def custom_sublayout
+    "sublayout/_#{current_user.role}"
+  end
+  
   def current_order(shop_id)
     @current_orders ||= {}
     session[:order_ids] ||= {}
