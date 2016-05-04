@@ -1,12 +1,16 @@
 module CategoryBase
   extend ActiveSupport::Concern
   extend Mongoid::Includes
+  extend Mongoid::Document
 
   included do
+
     strip_attributes
 
     field :name,    type: String,   localize: true
     field :status,  type: Boolean,  :default => true
+
+    #recursively_embeds_many
 
     has_many :children, :class_name => self.name, :inverse_of => :parent,  :dependent => :restrict
     belongs_to :parent, :class_name => self.name, :inverse_of => :children

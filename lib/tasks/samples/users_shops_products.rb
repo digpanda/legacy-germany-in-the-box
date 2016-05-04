@@ -10,7 +10,7 @@ def create_upload_from_image_file(model, image_name, content_type = 'image/jpeg'
   file
 end
 
-u = User.find_by(:email => 'shopkeeper01@hotmail.com')
+u = User.where(:email => 'shopkeeper01@hotmail.com').first
 
 if u
   u.shop.products.delete_all if u.shop && u.shop.products
@@ -20,7 +20,7 @@ if u
   u.delete
 end
 
-u = User.find_by(:email => 'shopkeeper02@hotmail.com')
+u = User.where(:email => 'shopkeeper02@hotmail.com').first
 
 if u
   u.shop.products.delete_all if u.shop && u.shop.products
@@ -30,7 +30,7 @@ if u
   u.delete
 end
 
-u = User.find_by(:email => 'customer01@hotmail.com')
+u = User.where(:email => 'customer01@hotmail.com').first
 
 if u
   u.orders.delete_all if u.orders
@@ -38,7 +38,7 @@ if u
   u.delete
 end
 
-u = User.find_by(:email => 'customer02@hotmail.com')
+u = User.where(:email => 'customer02@hotmail.com').first
 
 if u
   u.orders.delete_all if u.orders
@@ -46,7 +46,7 @@ if u
   u.delete
 end
 
-u = User.find_by(:email => 'admin@hotmail.com')
+u = User.where(:email => 'admin@hotmail.com').first
 u.delete if u
 
 
