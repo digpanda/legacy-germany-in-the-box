@@ -19,7 +19,7 @@ module Wirecard
         :form_url             => ::Rails.application.config.wirecard["merchants"]["signup"],
         :merchant_id          => shop.id, # match reseller system
         :merchant_country     => ::Rails.application.config.wirecard["merchants"]["country"],
-        :merchant_mcc         => '', # VISA MCC : 5499
+        :merchant_mcc         => '5499', # VISA MCC : 5499
         :package_id => ::Rails.application.config.wirecard["merchants"]["package_id"],
         :reseller_id => ::Rails.application.config.wirecard["merchants"]["reseller_id"],
 
@@ -33,7 +33,7 @@ module Wirecard
         :representative_phone => shop.tel,
         :representative_fax => '',
 
-        :email => shopkeeper.email,
+        :email => shop.mail,
         :company_name => shop.shopname,
         :company_address => billing_address.street_and_number,
         :company_city => billing_address.city,
