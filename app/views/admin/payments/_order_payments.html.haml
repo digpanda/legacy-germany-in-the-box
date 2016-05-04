@@ -4,4 +4,5 @@
   %td= order_payment.merchant_id
   %td= order_payment.order_id
   %td= order_payment.status
+  %td= order_payment.order.user.decorate.full_name
   %td= "#{order_payment.amount} #{order_payment.currency.code}"
