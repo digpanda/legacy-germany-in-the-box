@@ -44,18 +44,18 @@ module Wirecard
       {
         :requested_amount          => amount,
         :requested_amount_currency => currency,
-        :locale                    => 'en',
+        :locale                    => 'en', # TODO : SHOULD BE SOMETHING ELSE ?
         :order_number              => order_number,
         :order_detail              => order_detail,
         :form_url                  => hosted_payment_url,
         :request_id                => request_id,
         :request_time_stamp        => request_time_stamp,
         :merchant_account_id       => merchant_id,
-        :payment_method            => "upop",
-        :transaction_type          => "debit",
+        :payment_method            => ::Rails.application.config.wirecard["customers"]["payment_method"],
+        :transaction_type          => ::Rails.application.config.wirecard["customers"]["transaction_type"],
         :redirect_url              => success_redirect_url.html_safe,
         :request_signature         => digital_signature,
-        :psp_name                  => "demo",
+        :psp_name                  => ::Rails.application.config.wirecard["customers"]["psp_name"],
         :success_redirect_url      => success_redirect_url.html_safe,
         :fail_redirect_url         => fail_redirect_url.html_safe,
         :cancel_redirect_url       => "#{default_redirect_url}?state=cancel&".html_safe,
@@ -65,12 +65,12 @@ module Wirecard
         :last_name                 => user.lname,
         :email                     => user.email,
         :phone                     => user.tel,
-        :street1                   => "123 test",
+        :street1                   => user.addresses.first.decorate.street_and_number,
         :street2                   => "",
-        :city                      => "Toronto",
-        :state                     => "ON",
-        :postal_code               => "M4P1E8",
-        :country                   => "CA",
+        :city                      => user.addresses.first.city,
+        :state                     => user.addresses.first.province,
+        :postal_code               => user.addresses.first.zip,
+        :country                   => user.addresses.first.country.alpha2,
         :ip_address                => "127.0.0.1"
       }
 
@@ -83,11 +83,11 @@ module Wirecard
       :request_time_stamp      => request_time_stamp,
       :request_id              => request_id,
       :merchant_account_id     => merchant_id,
-      :transaction_type        => "debit",
+      :transaction_type        => ::Rails.application.config.wirecard["customers"]["transaction_type"],
       :requested_amount        => amount,
       :request_amount_currency => currency,
       :redirect_url            => success_redirect_url.html_safe,
-      :ip_address              => '127.0.0.1',
+      :ip_address              => "127.0.0.1",
       :secret_key              => secret_key
       }
 
@@ -99,7 +99,7 @@ module Wirecard
       Time.now.utc.strftime("%Y%m%d%H%M%S")
     end
 
-    
+
 
   end
 end

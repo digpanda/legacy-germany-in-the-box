@@ -130,8 +130,8 @@ class OrdersController < ApplicationController
     @order.save
 
     # Should be dynamic @yl
-    merchant_id = "dfc3a296-3faf-4a1d-a075-f72f1b67dd2a"
-    secret_key  = "6cbfa34e-91a7-421a-8dde-069fc0f5e0b8"
+    merchant_id = "dfc3a296-3faf-4a1d-a075-f72f1b67dd2a" # TO CHANGE DYNAMICALLY
+    secret_key  = "6cbfa34e-91a7-421a-8dde-069fc0f5e0b8" # TO CHANGE DYNAMICALLY
 
     @wirecard = Wirecard::Customer.new(current_user, {
       
@@ -140,8 +140,8 @@ class OrdersController < ApplicationController
       
       :order_number => @order.id,
       
-      :amount       => 1.01,
-      :currency     => 'CNY',
+      :amount       => 1.01, # TO CHANGE DYNAMICALLY
+      :currency     => 'CNY', # TO CHANGE DYNAMICALLY
       :order_detail => @order.desc,
 
     })
@@ -167,7 +167,7 @@ class OrdersController < ApplicationController
 
   def checkout_callback
 
-    transaction_state = params["transaction_state"]
+    transaction_state = params["transaction_state"] # unused in the current system but it's good to know this data
     transaction_id    = params["transaction_id"]
     customer_email    = params["email"]
     currency          = params["requested_amount_currency"]
@@ -175,10 +175,13 @@ class OrdersController < ApplicationController
     request_id        = params["request_id"]
     amount            = params["requested_amount"]
 
+    # corrupted transaction detected : not the same email
     if current_user.email != customer_email
-      return # TODO : we should do something better than returning here, something went wrong, it should be set as corrupted
+        flash[:error] = "An account conflict occurred. Please contact our support."
+        redirect_to root_url and return
     end
 
+    # we find the order payment
     order_payment                = OrderPayment.where({merchant_id: merchant_id, request_id: request_id, amount: amount, currency: currency}).first
     order_payment.status         = :checking
     order_payment.transaction_id = transaction_id
@@ -190,12 +193,18 @@ class OrdersController < ApplicationController
 
       })
 
+    # we update the order depending on the REAL server side state
     transaction = @wirecard.transaction(transaction_id)
     order_payment.status = @wirecard.payment_status(transaction)
     order_payment.save
 
+    # we update the order
+    order_payment.order.status = order_payment.status # duplicate, should be avoided somehow
+    order_payment.order.save(validate: false) # TODO @yl : we should check the validation here and change it
+
   end
 
+=begin
   def checkout_OLD
     current_order = current_order(params[:shop_id])
     current_order.status = :checked_out
@@ -295,6 +304,7 @@ class OrdersController < ApplicationController
       end
     end
   end
+=end
 
   def destroy
     shop_id = @order.order_items.first.product.shop.id.to_s
