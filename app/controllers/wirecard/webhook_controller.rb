@@ -9,7 +9,9 @@ class Wirecard::WebhookController < ApplicationController
   attr_reader :datas
   respond_to :json
 
-  # note : i made it fast, we should refacto and put some of this in libraries and organize it within an /api/ folder
+  # NOTE
+  # i made it fast, we should refacto and put some of this in libraries
+  # and organize it within an /api/ folder
   # - Laurent
   def merchant_status_change
 
@@ -65,25 +67,5 @@ class Wirecard::WebhookController < ApplicationController
   def devlog
     @@devlog ||= Logger.new("#{::Rails.root}/log/wirecard_webhook.log")
   end
-
-
-=begin
-
- 
-                    Array
-(
-    [merchant_id] => digpanda merchant id
-    [merchant_status] => ACTIVE
-    [reseller_id] => nba81H29Gba
-    [wirecard_credentials] => Array
-        (
-            [ee_user_cc] => engine.digpanda
-            [ee_password_cc] => x3Zyr8MaY7TDxj6F
-            [ee_secret_cc] => 6cbfa34e-91a7-421a-8dde-069fc0f5e0b8
-            [ee_maid_cc] => dfc3a296-3faf-4a1d-a075-f72f1b67dd2a
-        )
-)
-
-=end
 
 end

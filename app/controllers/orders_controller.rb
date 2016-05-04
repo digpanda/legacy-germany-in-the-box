@@ -129,31 +129,15 @@ class OrdersController < ApplicationController
     @order.desc                 = "" # We should set something here @yl
     @order.save
 
-    # Should be dynamic @yl
-    merchant_id = "dfc3a296-3faf-4a1d-a075-f72f1b67dd2a" # TO CHANGE DYNAMICALLY
-    secret_key  = "6cbfa34e-91a7-421a-8dde-069fc0f5e0b8" # TO CHANGE DYNAMICALLY
+    # HERE
+    @wirecard = PrepareOrderForWirecardCheckout.perform({
 
-    @wirecard = Wirecard::Customer.new(current_user, {
-      
-      :merchant_id  => merchant_id,
-      :secret_key   => secret_key,
-      
-      :order_number => @order.id,
-      
-      :amount       => 1.01, # TO CHANGE DYNAMICALLY
-      :currency     => 'CNY', # TO CHANGE DYNAMICALLY
-      :order_detail => @order.desc,
+      :user        => current_user,
+      :order       => @order,
+      :merchant_id => "dfc3a296-3faf-4a1d-a075-f72f1b67dd2a", # TO CHANGE DYNAMICALLY
+      :secret_key  => "6cbfa34e-91a7-421a-8dde-069fc0f5e0b8", # TO CHANGE DYNAMICALLY 
 
     })
-
-    order_payment             = OrderPayment.new
-    order_payment.merchant_id = merchant_id
-    order_payment.request_id  = @wirecard.request_id
-    order_payment.user_id     = current_user.id # shouldn't be duplicated, but mongoid added it automatically ...
-    order_payment.order_id    = @order.id
-    order_payment.amount      = @wirecard.amount
-    order_payment.currency    = @wirecard.currency
-    order_payment.save
 
   end
 
