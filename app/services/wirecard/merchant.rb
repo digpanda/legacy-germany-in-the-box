@@ -11,6 +11,7 @@ module Wirecard
 
       billing_address = shop.billing_address.decorate
       shopkeeper = shop.shopkeeper
+      shopkeeper_address = shopkeeper.addresses.first || billing_address
 
       {
 
@@ -25,11 +26,11 @@ module Wirecard
         # optional datas
         :representative_first_name => shopkeeper.fname,
         :representative_last_name => shopkeeper.lname,
-        :representative_address => shopkeeper.addresses.first.street_and_number,
-        :representative_zip => shopkeeper.adresses.first.zip,
-        :representative_phone => shopkeeper.tel,
-        :representative_city => shopkeeper.addresses.first.city,
+        :representative_address => shopkeeper_address.street_and_number,
+        :representative_zip => shopkeeper_address.zip,
+        :representative_city => shopkeeper_address.city,
         :representative_mobile => shopkeeper.mobile,
+        :representative_phone => shopkeeper.tel,
         :representative_fax => '',
 
         :email => shopkeeper.email,
