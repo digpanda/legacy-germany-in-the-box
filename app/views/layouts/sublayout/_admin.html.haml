@@ -2,17 +2,17 @@
   .col-md-3
     %aside.sidebar-left
       %ul.nav.nav-pills.nav-stacked.nav-arrow
-        %li{:class => params[:user_info_edit_part] ? (params[:user_info_edit_part] == :edit_account.to_s ? 'active' : '') : 'active'}
-          =link_to I18n.t(:my_account, scope: :top_menu),  edit_account_user_path(current_user, :user_info_edit_part => :edit_account)
-        %li{:class => params[:user_info_edit_part] == :edit_accounts.to_s ? 'active' : ''}
-          =link_to I18n.t(:accounts, scope: :edit_accounts),  users_path(:user_info_edit_part => :edit_accounts)
-        %li{:class => params[:user_info_edit_part] == :edit_categories.to_s ? 'active' : ''}
+        %li{:class => is_menu_active?(:edit_account)}
+          =link_to I18n.t(:my_account, scope: :top_menu), edit_account_user_path(current_user, :user_info_edit_part => :edit_account)
+        %li{:class => is_menu_active?(:edit_accounts)}
+          =link_to I18n.t(:accounts, scope: :edit_accounts), users_path(:user_info_edit_part => :edit_accounts)
+        %li{:class => is_menu_active?(:edit_categories)}
           =link_to I18n.t(:categories, scope: :top_menu),  categories_path(:user_info_edit_part => :edit_categories)
-        %li{:class => params[:user_info_edit_part] == :edit_shop_applications.to_s ? 'active' : ''}
+        %li{:class => is_menu_active?(:edit_shop_applications)}
           =link_to I18n.t(:shop_applications, scope: :top_menu),  shop_applications_path(:user_info_edit_part => :edit_shop_applications)
         %li{:class => [:edit_product.to_s, :edit_product_update.to_s, :edit_product_new.to_s, :edit_product_detail.to_s, :edit_product_detail_new.to_s, :edit_product_detail_update.to_s, :edit_product_detail_clone.to_s, :edit_shops.to_s].include?(params[:user_info_edit_part]) ? 'active' : ''}
           =link_to I18n.t(:shops, scope: :top_menu),  shops_path(:user_info_edit_part => :edit_shops)
-        %li{:class => params[:user_info_edit_part] == :admin_payments.to_s ? 'active' : ''}
+        %li{:class => is_menu_active?(:admin_payments)}
           =link_to "Payments",  admin_payments_path(:user_info_edit_part => :admin_payments)
 
   .col-md-9
