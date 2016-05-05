@@ -5,7 +5,7 @@ module AppCache
   def get_root_level_categories_from_cache
     Rails.cache.fetch("all_root_level_categories_cache_#{I18n.locale}", :expires_in => Rails.configuration.app_cache_expire_limit ) {
       root_level_categories = Category.roots.is_active.to_a.sort { |a,b| a.name <=> b.name }
-      root_level_categories.select { |c| c.children.size > 1 ? c : c.children.first }
+      root_level_categories.select { |c| c.children_count > 1 ? c : c.children.first }
     }
   end
 
@@ -18,9 +18,9 @@ module AppCache
   def get_number_of_different_products_from_cache(first_level_category)
     Rails.cache.fetch("number_of_different_products_cache_of_first_level_#{first_level_category.id}", :expires_in => Rails.configuration.app_cache_expire_limit ) {
       if first_level_category.parent.present?
-        products.size
+        products_count
       else
-        first_level_category.children.is_active.inject(0) { |sum, child| sum += child.products.size }
+        first_level_category.children.is_active.inject(0) { |sum, child| sum += child.products_count }
       end
     }
   end
@@ -119,7 +119,7 @@ module AppCache
   end
 
   def get_grouped_duty_categories_options_from_cache(locale)
-    Rails.cache.fetch("get_grouped_duty_categories_options_from_cache_#{locale}", :expires_in => Rails.configuration.app_cache_expire_limit ) {
+    cache = Rails.cache.fetch("get_grouped_duty_categories_options_from_cache", :expires_in => Rails.configuration.app_cache_expire_limit ) {
       categories = []
 
       DutyCategory.roots.is_active.each do |rc|
@@ -130,12 +130,14 @@ module AppCache
         end
       end
 
-      categories.sort {|a,b| b.total_products <=> a.total_products } .map {|rc| [rc.name_translations[locale], rc.children.is_active.sort { |a,b| b.total_products <=> a.total_products }.map {|cc| [cc.name_translations[locale]+" (#{cc.code})", cc.id.to_s]} ] }.to_a
+      categories.sort {|a,b| b.total_products <=> a.total_products } .map {|rc| [rc.name_translations, rc.children.is_active.sort { |a,b| b.total_products <=> a.total_products }.map {|cc| [cc.name_translations, cc.code, cc.id.to_s]} ] }.to_a
     }
+
+    cache.map { |c| [c[0][locale], c[1].map { |cc| [cc[0][locale]+" (#{cc[1]})", cc[2]]} ]}
   end
 
   def get_grouped_ui_categories_options_from_cache(locale)
-    Rails.cache.fetch("get_grouped_ui_categories_options_from_cache_#{locale}", :expires_in => Rails.configuration.app_cache_expire_limit ) {
+    cache = Rails.cache.fetch("get_grouped_ui_categories_options_from_cache", :expires_in => Rails.configuration.app_cache_expire_limit ) {
       categories = []
 
       Category.roots.is_active.each do |rc|
@@ -146,8 +148,10 @@ module AppCache
         end
       end
 
-      categories.sort {|a,b| b.total_products <=> a.total_products } .map {|rc| [rc.name_translations[locale], rc.children.is_active.sort { |a,b| b.total_products <=> a.total_products }.map {|cc| [cc.name_translations[locale], cc.id.to_s]} ] }.to_a
+      categories.sort {|a,b| b.total_products <=> a.total_products } .map {|rc| [rc.name_translations, rc.children.is_active.sort { |a,b| b.total_products <=> a.total_products }.map {|cc| [cc.name_translations, cc.id.to_s]} ] }.to_a
     }
+
+    cache.map { |c| [c[0][locale], c[1].map { |cc| [cc[0][locale], cc[1]]} ]}
   end
 
   def get_grouped_variants_options_from_cache(p)

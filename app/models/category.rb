@@ -5,7 +5,7 @@ class Category
   has_and_belongs_to_many :products,  :inverse_of => :categories
 
   def total_products
-    if children.size > 0
+    if children_count > 0
       children.is_active.inject(0) { |sum, c| sum += c.total_products }
     else
       product_ids ? product_ids.size : 0
