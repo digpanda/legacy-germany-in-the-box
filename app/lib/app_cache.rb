@@ -106,9 +106,15 @@ module AppCache
     return categories_and_children, categories_and_counters
   end
 
-  def get_second_last_branches
-    Rails.cache.fetch("get_second_last_branches", :expires_in => Rails.configuration.app_cache_expire_limit ) {
-      Category.is_active.find_by(:products_count.gt => 0)
+  def get_second_last_ui_category_branches_from_cache
+    Rails.cache.fetch("get_second_last_ui_category_branches_from_cache", :expires_in => Rails.configuration.app_cache_expire_limit ) {
+      Category.is_active.where(:children_count => 0).map { |c| c.parent.id }.uniq
+    }
+  end
+
+  def get_second_last_duty_category_branches_from_cache
+    Rails.cache.fetch("get_second_last_duty_category_branches_from_cache", :expires_in => Rails.configuration.app_cache_expire_limit ) {
+      DutyCategory.is_active.where(:children_count => 0).map { |c| c.parent.id }.uniq
     }
   end
 

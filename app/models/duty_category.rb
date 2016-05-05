@@ -18,12 +18,6 @@ class DutyCategory
   end
 
   def second_last_branche?
-    return false if products_count > 0
-
-    if children_count > 0
-      return nil == children.detect { |c| c.children_count > 0 }
-    end
-
-    return false
+    AppCache.get_second_last_duty_category_branches_from_cache.include?(self.id)
   end
 end

@@ -13,12 +13,6 @@ class Category
   end
 
   def second_last_branche?
-    return false if products.size > 0
-
-    if children.size > 0
-      return nil == children.detect { |c| c.children.size > 0 }
-    end
-
-    return false
+    AppCache.get_second_last_ui_category_branches_from_cache.include?(self.id)
   end
 end
