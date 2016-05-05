@@ -10,7 +10,7 @@ class DutyCategory
   validates :code,  presence: true, :unless => lambda { self.parent.blank? }, length: {maximum: Rails.configuration.max_tiny_text_length}
 
   def total_products
-    if children.size > 0
+    if children_count > 0
       children.is_active.inject(0) { |sum, c| sum += c.total_products }
     else
       products_count
@@ -20,8 +20,8 @@ class DutyCategory
   def second_last_branche?
     return false if products_count > 0
 
-    if children.size > 0
-      return nil == children.detect { |c| c.children.size > 0 }
+    if children_count > 0
+      return nil == children.detect { |c| c.children_count > 0 }
     end
 
     return false

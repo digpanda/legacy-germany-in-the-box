@@ -3,6 +3,8 @@ require "abstract_method"
 module CategoryBase
   extend ActiveSupport::Concern
 
+  include Mongoid::MagicCounterCache
+
   included do
 
     strip_attributes
@@ -11,7 +13,11 @@ module CategoryBase
     field :status,  type: Boolean,  :default => true
 
     has_many :children, :class_name => self.name, :inverse_of => :parent,  :dependent => :restrict
+
     belongs_to :parent, :class_name => self.name, :inverse_of => :children
+
+    field :children_count, type: Fixnum, default: 0
+    counter_cache :parent, :field => "children_count"
 
     validates :name,    presence: true, length: {maximum: Rails.configuration.max_short_text_length}
     validates :status,  presence: true
