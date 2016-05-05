@@ -74,7 +74,7 @@
             .search-area-division.search-area-division-input
               =text_field_tag :products_search_keyword, params[:products_search_keyword], :placeholder => "#{ I18n.t(:search_placeholder, scope: :popular_products) }", :class => 'form-control', :required => true
 .container
-  - if @products.count == 0
+  - if @products.size == 0
     %h4 Products cannot be found.
   - else
     - for_device_type :mobile, :tablet do

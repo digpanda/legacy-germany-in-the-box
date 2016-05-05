@@ -20,7 +20,7 @@ class Product
   has_many :order_items,  inverse_of: :product,   dependent: :restrict
 
   belongs_to :shop,           inverse_of: :products
-  belongs_to :duty_category,  inverse_of: :products
+  belongs_to :duty_category,  inverse_of: :products,  counter_cache: true
 
   accepts_nested_attributes_for :skus
   accepts_nested_attributes_for :options

@@ -46,6 +46,8 @@ gem "twitter-bootstrap-rails"
 gem 'momentjs-rails'
 gem 'bootstrap3-datetimepicker-rails'
 gem 'bootstrap-validator-rails'
+gem 'abstract_method'
+gem 'mongoid_magic_counter_cache'
 
 group :development, :test do
   gem 'factory_girl_rails'

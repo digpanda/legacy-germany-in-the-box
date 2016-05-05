@@ -5,7 +5,7 @@ module AppCache
   def get_root_level_categories_from_cache
     Rails.cache.fetch("all_root_level_categories_cache_#{I18n.locale}", :expires_in => Rails.configuration.app_cache_expire_limit ) {
       root_level_categories = Category.roots.is_active.to_a.sort { |a,b| a.name <=> b.name }
-      root_level_categories.select { |c| c.children.count > 1 ? c : c.children.first }
+      root_level_categories.select { |c| c.children.size > 1 ? c : c.children.first }
     }
   end
 
@@ -18,9 +18,9 @@ module AppCache
   def get_number_of_different_products_from_cache(first_level_category)
     Rails.cache.fetch("number_of_different_products_cache_of_first_level_#{first_level_category.id}", :expires_in => Rails.configuration.app_cache_expire_limit ) {
       if first_level_category.parent.present?
-        products.count
+        products.size
       else
-        first_level_category.children.is_active.inject(0) { |sum, child| sum += child.products.count }
+        first_level_category.children.is_active.inject(0) { |sum, child| sum += child.products.size }
       end
     }
   end
@@ -106,12 +106,18 @@ module AppCache
     return categories_and_children, categories_and_counters
   end
 
+  def get_second_last_branches
+    Rails.cache.fetch("get_second_last_branches", :expires_in => Rails.configuration.app_cache_expire_limit ) {
+      Category.is_active.find_by(:products_count.gt => 0)
+    }
+  end
+
   def get_grouped_duty_categories_options_from_cache(locale)
     Rails.cache.fetch("get_grouped_duty_categories_options_from_cache_#{locale}", :expires_in => Rails.configuration.app_cache_expire_limit ) {
       categories = []
 
       DutyCategory.roots.is_active.each do |rc|
-        if not rc.next_2_last_branche?
+        if not rc.second_last_branche?
           categories += rc.children.is_active
         else
           categories << rc
@@ -122,13 +128,12 @@ module AppCache
     }
   end
 
-
   def get_grouped_ui_categories_options_from_cache(locale)
     Rails.cache.fetch("get_grouped_ui_categories_options_from_cache_#{locale}", :expires_in => Rails.configuration.app_cache_expire_limit ) {
       categories = []
 
       Category.roots.is_active.each do |rc|
-        if not rc.next_2_last_branche?
+        if not rc.second_last_branche?
           categories += rc.children.is_active
         else
           categories << rc

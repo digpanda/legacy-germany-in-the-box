@@ -1,6 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    abstract_method (1.2.1)
     actionmailer (4.2.1)
       actionpack (= 4.2.1)
       actionview (= 4.2.1)
@@ -208,6 +209,9 @@ GEM
       mongoid (>= 3.0, < 6.0)
     mongoid_includes (1.1.1)
       mongoid (>= 4.0.0, < 6.0.0)
+    mongoid_magic_counter_cache (1.1.1)
+      mongoid
+      rake
     mongoid_rails_migrations (1.1.0)
       activesupport (>= 4.2.0)
       bundler (>= 1.0.0)
@@ -376,6 +380,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  abstract_method
   better_errors
   bootstrap-multiselect-rails
   bootstrap-validator-rails
@@ -411,6 +416,7 @@ DEPENDENCIES
   momentjs-rails
   mongoid (~> 5.0.0)
   mongoid_includes
+  mongoid_magic_counter_cache
   mongoid_rails_migrations
   mongoid_search (~> 0.2.8)
   oauth

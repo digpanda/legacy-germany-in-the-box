@@ -18,7 +18,7 @@ class AddressesController < ApplicationController
 
   def create
     if current_user.role == :customer
-      num_addresses = current_user.addresses.count
+      num_addresses = current_user.addresses.size
 
       if num_addresses >= Rails.configuration.max_num_addresses
         respond_to do |format|
@@ -53,7 +53,7 @@ class AddressesController < ApplicationController
         end
       end
     elsif current_user.role == :shopkeeper
-      num_addresses = current_user.shop.addresses.count
+      num_addresses = current_user.shop.addresses.size
       max_num_addresses = Rails.configuration.max_num_shop_billing_addresses + Rails.configuration.max_num_shop_sender_addresses
 
       if num_addresses >= max_num_addresses

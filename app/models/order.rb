@@ -42,6 +42,6 @@ class Order
   private
 
   def ensure_at_least_one_order_item
-    order_items.count > 0
+    order_items.size > 0
   end
 end

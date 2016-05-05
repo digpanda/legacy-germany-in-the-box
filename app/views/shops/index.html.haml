@@ -1,4 +1,4 @@
-- if @shops.count > 0
+- if @shops.size > 0
   %table.table.cart-table
     %thead
       %th= I18n.t(:email, scope: :edit_account)
@@ -14,7 +14,7 @@
           %td= link_to s.name, edit_producer_shop_path(s, :user_info_edit_part => :edit_shops)
           %td= link_to s.shopname ? s.shopname : (s.shopname_translations[I18n.default_locale] ? s.shopname_translations[I18n.default_locale] : I18n.t(:shopname_unknown, scope: :edit_shop)), edit_setting_shop_path(s, :user_info_edit_part => :edit_shops)
           %td= s.agb ? I18n.t(s.agb.to_s, scope: 'edit_shops.agb') : ''
-          %td= link_to I18n.t(:products_info, scope: :edit_shops, num: s.products.count), show_products_shop_path(s, :user_info_edit_part => :edit_shops)
+          %td= link_to I18n.t(:products_info, scope: :edit_shops, num: s.products.size), show_products_shop_path(s, :user_info_edit_part => :edit_shops)
           %td
             = link_to '', shop_path(s), :method => :delete, data: { confirm: I18n.t(:delete_shop_message, scope: :edit_shops) }, :class => 'fa fa-times-circle fa-2x', :title => I18n.t(:remove, scope: :edit_shops)
 - else
