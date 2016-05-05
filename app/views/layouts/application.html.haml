@@ -12,6 +12,13 @@
     %meta{:content => 'Y. Liu', :name => 'author'}
     %meta{:content => 'width=device-width, initial-scale=1.0', :name => 'viewport'}
 
+    - # Brunch integration
+    - #= javascript_include_tag "vendor"
+    - #= javascript_include_tag "app"
+    -#:javascript
+    -#  require('initialize')
+    - # End of Brunch integration
+
     = javascript_include_tag "application"
     = javascript_include_tag "views/#{params[:controller]}.js" if ::Rails.application.assets.find_asset("views/#{params[:controller]}.js")
     = javascript_include_tag "views/#{params[:controller]}/#{params[:action]}" if ::Rails.application.assets.find_asset("views/#{params[:controller]}/#{params[:action]}.js")

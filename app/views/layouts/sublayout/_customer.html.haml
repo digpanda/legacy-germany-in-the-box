@@ -3,35 +3,13 @@
     .col-md-3
       %aside.sidebar-left
         %ul.nav.nav-pills.nav-stacked.nav-arrow
-          %li{:class => params[:user_info_edit_part] ? (params[:user_info_edit_part] == :edit_account.to_s ? 'active' : '') : 'active'}
-            =link_to I18n.t(:my_account, scope: :top_menu),  edit_account_user_path(current_user, :user_info_edit_part => :edit_account)
-          %li{:class => params[:user_info_edit_part] == :edit_personal.to_s ? 'active' : ''}
-            =link_to I18n.t(:my_personal, scope: :top_menu),  edit_personal_user_path(current_user, :user_info_edit_part => :edit_personal)
-          %li{:class => params[:user_info_edit_part] == :edit_address.to_s ? 'active' : ''}
-            =link_to I18n.t(:my_address, scope: :top_menu),  show_addresses_user_path(current_user, :user_info_edit_part => :edit_address)
-          %li{:class => params[:user_info_edit_part] == :edit_bank.to_s ? 'active' : ''}
-            =link_to I18n.t(:my_bank, scope: :top_menu),  edit_bank_user_path(current_user, :user_info_edit_part => :edit_bank)
-          %li{:class => params[:user_info_edit_part] == :edit_order.to_s ? 'active' : ''}
-            =link_to I18n.t(:my_order, scope: :top_menu),  show_orders_user_path(current_user, :user_info_edit_part => :edit_order)
-          %li{:class => [:edit_collection.to_s, :edit_collection_update.to_s, :edit_collection_new.to_s].include?(params[:user_info_edit_part]) ? 'active' : ''}
-            =link_to I18n.t(:my_collection, scope: :top_menu),  show_collections_user_path(:user_info_edit_part => :edit_collection)
+          = render partial: "layouts/sublayout/menu/customer"
 
   - for_device_type :mobile do
     .row
       %aside.sidebar-left
         %ul.nav.nav-pills.nav-stacked.nav-arrow
-          %li{:class => params[:user_info_edit_part] ? (params[:user_info_edit_part] == :edit_account.to_s ? 'active' : '') : 'active'}
-            =link_to I18n.t(:my_account, scope: :top_menu),  edit_account_user_path(current_user, :user_info_edit_part => :edit_account)
-          %li{:class => params[:user_info_edit_part] == :edit_personal.to_s ? 'active' : ''}
-            =link_to I18n.t(:my_personal, scope: :top_menu),  edit_personal_user_path(current_user, :user_info_edit_part => :edit_personal)
-          %li{:class => params[:user_info_edit_part] == :edit_address.to_s ? 'active' : ''}
-            =link_to I18n.t(:my_address, scope: :top_menu),  show_addresses_user_path(current_user, :user_info_edit_part => :edit_address)
-          %li{:class => params[:user_info_edit_part] == :edit_bank.to_s ? 'active' : ''}
-            =link_to I18n.t(:my_bank, scope: :top_menu),  edit_bank_user_path(current_user, :user_info_edit_part => :edit_bank)
-          %li{:class => params[:user_info_edit_part] == :edit_order.to_s ? 'active' : ''}
-            =link_to I18n.t(:my_order, scope: :top_menu),  show_orders_user_path(current_user, :user_info_edit_part => :edit_order)
-          %li{:class => [:edit_collection.to_s, :edit_collection_update.to_s, :edit_collection_new.to_s].include?(params[:user_info_edit_part]) ? 'active' : ''}
-            =link_to I18n.t(:my_collection, scope: :top_menu),  show_collections_user_path(:user_info_edit_part => :edit_collection)
+          = render partial: "layouts/sublayout/menu/customer"
 
   - for_device_type :desktop, :tablet do
     .col-md-9
