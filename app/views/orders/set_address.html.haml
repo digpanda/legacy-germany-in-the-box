@@ -30,7 +30,7 @@
   .h3.text-center= I18n.t(:setup_delivery_destination, scope: :checkout)
 .row.row-wrap
   = form_tag checkout_orders_path
-  - if current_user.addresses.count > 0
+  - if current_user.addresses.size > 0
     - current_user.addresses.each_with_index do |a, i|
       .col-md-4
         .panel.panel-primary
@@ -51,7 +51,7 @@
                   = radio_button_tag 'delivery_destination_id', a.id, checked = a.primary
                 = I18n.t(:my_destination, scope: :checkout)
 
-  - if current_user.addresses.count < 3
+  - if current_user.addresses.size < 3
     .col-md-4
       %a.address-box.address-box-new.popup-text{'data-effect' => 'mfp-move-from-top', :href => '#add-address-dialog'}
         .vert-center

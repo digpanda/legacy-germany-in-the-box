@@ -6,7 +6,7 @@
 %br
 
 #collection_panel.panel-group
-  - current_user.oCollections.sort {|c1, c2| c2.products.count <=> c1.products.count } .each_with_index do |c, i|
+  - current_user.oCollections.sort {|c1, c2| c2.products.size <=> c1.products.size } .each_with_index do |c, i|
     .panel.panel-default
       .panel-heading
         .btn-toolbar{:style => 'margin:8px'}
@@ -23,7 +23,7 @@
               = link_to '', collection_path(c.id), method: :delete, data: { confirm: "#{I18n.t(:delete_collection_message, scope: :edit_collection)}" }, :class => 'fa fa-times-circle btn btn-sm'
       .panel-collapse.collapse{:id => "collection_collapse_#{c.id}", :class => i==0 ? 'in' : ''}
         .panel-body
-          - if c.products.count == 0
+          - if c.products.size == 0
             %h4= I18n.t(:no_products, scope: :edit_collection)
           - else
             - c.products.each do |p|

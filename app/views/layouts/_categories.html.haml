@@ -7,7 +7,7 @@
       %ul
         - AppCache.get_first_level_categories_from_cache(rc).each do |fc|
           %li
-            - if AppCache.get_second_level_categories_from_cache(fc).count > 0
+            - if AppCache.get_second_level_categories_from_cache(fc).size > 0
               %a{:href => '#'}= fc.name
               %ul
                 - AppCache.get_second_level_categories_from_cache(fc).each do |sc|
