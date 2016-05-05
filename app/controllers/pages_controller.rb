@@ -7,7 +7,7 @@ class PagesController < ApplicationController
   #load_and_authorize_resource :class => false
 
   def home
-    binding.pry
+    #binding.pry
   end
 
   def agb
