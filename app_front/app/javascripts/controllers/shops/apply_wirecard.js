@@ -1,9 +1,7 @@
 /**
  * Apply Wirecard Class
  */
-var ApplyWirecard = (function($) {
-
-  return {
+var ApplyWirecard = {
 
     /**
      * Initializer
@@ -26,19 +24,6 @@ var ApplyWirecard = (function($) {
 
     },
 
-  };
+}
 
-})($);
-
-/**
- * jQuery scope and such
- */
-(function ($) {
-
-  $(document).ready(function() {
-
-    ApplyWirecard.init($);
-
-  });
-
-})(jQuery, ApplyWirecard);
+module.exports = ApplyWirecard;
