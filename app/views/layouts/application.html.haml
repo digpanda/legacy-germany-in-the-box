@@ -13,10 +13,10 @@
     %meta{:content => 'width=device-width, initial-scale=1.0', :name => 'viewport'}
 
     - # Brunch integration
-    - #= javascript_include_tag "vendor"
-    - #= javascript_include_tag "app"
-    -#:javascript
-    -#  require('initialize')
+    - # = javascript_include_tag "vendor"
+    = javascript_include_tag "app"
+    :javascript
+      require('javascripts/initialize')
     - # End of Brunch integration
 
     = javascript_include_tag "application"

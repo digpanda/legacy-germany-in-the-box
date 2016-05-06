@@ -1,1 +1,1 @@
-{"version":3,"sources":["app/main.css"],"names":[],"mappings":"AAAA;AACA","file":"../app/assets/stylesheets/app.css","sourcesContent":["body {font-family: 'Comic Sans MS'}\n"]}
+{"version":3,"sources":["app/stylesheets/main.sass"],"names":[],"mappings":"AAAA","file":"../app/assets/stylesheets/app.css","sourcesContent":[""]}
