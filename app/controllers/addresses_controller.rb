@@ -4,9 +4,11 @@ class AddressesController < ApplicationController
 
   load_and_authorize_resource
 
+  layout :custom_sublayout, only: [:show_addresses]
+
   def show_addresses
     @address = Address.new
-    render "show_#{current_user.role.to_s}_addresses", layout: "sublayout/_#{current_user.role.to_s}"
+    render "show_#{current_user.role.to_s}_addresses"
   end
 
   def index

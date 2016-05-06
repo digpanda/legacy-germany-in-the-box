@@ -10,9 +10,11 @@ class CategoriesController < ApplicationController
 
   load_and_authorize_resource
 
+  layout :custom_sublayout, only: [:index]
+
   def index
     @root_categories = AppCache.get_root_level_categories_from_cache
-    render :index, layout: "sublayout/_#{current_user.role.to_s}"
+    render :index
   end
 
   def show_products

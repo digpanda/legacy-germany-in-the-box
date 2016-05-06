@@ -5,10 +5,13 @@ class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :destroy, :continue]
 
   protect_from_forgery :except => [:checkout_success, :checkout_fail]
+
   load_and_authorize_resource
 
+  layout :custom_sublayout, only: [:show_orders]
+
   def show_orders
-    render :show_orders, layout: "sublayout/_#{current_user.role.to_s}"
+    render :show_orders
   end
 
   def show

@@ -4,8 +4,7 @@ class LogoImageUploader < CarrierWave::Uploader::Base
 
   include CarrierWave::MiniMagick
 
-  storage :qiniu unless ENV["RAILS_ENV"] == 'local'
-  storage :file if ENV["RAILS_ENV"] == 'local'
+  storage ENV["RAILS_ENV"] == 'local' ? :file : :qiniu
 
   self.qiniu_can_overwrite = true
 
