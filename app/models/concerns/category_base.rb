@@ -24,6 +24,7 @@ module CategoryBase
 
     scope :roots,           ->  { where(:parent => nil) }
     scope :is_active,       ->  { where(:status => true) }
+    scope :has_children,    ->  { where(:children_count.gt => 0) }
 
     # Category.roots.tree -> currently not used in the system
     # We should integrate it to the caterories menu (categories.html.haml)
