@@ -1,3 +1,108 @@
+#csstyle .\+centered {
+  text-align: center;
+  margin: 0 auto; }
+
+#csstyle .\+vertical-centered {
+  padding-top: 35px; }
+
+#csstyle .\+spacer {
+  margin: 1em; }
+
+#csstyle .\+red {
+  color: #e74c3c; }
+
+#csstyle .\+blue {
+  color: #3498db; }
+
+#csstyle .\+grey {
+  color: #95a5a6; }
+
+#csstyle .\+strong {
+  font-weight: 600; }
+
+.main-menu {
+  padding-top: 1em;
+  padding-bottom: 1em; }
+
+.product-menu {
+  padding-top: 1em;
+  padding-bottom: 1em;
+  background-color: #83be58;
+  color: #ecf0f1 !important;
+  font-weight: 600;
+  text-transform: uppercase; }
+
+.logo img {
+  max-width: 200px; }
+
+.main-footer {
+  padding-top: 1em;
+  padding-bottom: 1em;
+  background-color: #83be58;
+  color: #ecf0f1 !important;
+  min-height: 100px;
+  text-transform: uppercase;
+  position: absolute;
+  bottom: 0;
+  left: 0; }
+
+li {
+  list-style: none !important;
+  display: block;
+  padding-bottom: 1em; }
+
+ul#navigation li:hover > ul {
+  visibility: visible;
+  opacity: 1;
+  display: block; }
+ul#navigation ul {
+  list-style: none !important;
+  margin: 0;
+  padding: 0;
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  z-index: 99999;
+  width: 180px;
+  background: grey;
+  box-shadow: 1px 1px 3px #ccc;
+  -webkit-transition: opacity 0.2s linear, visibility 0s linear;
+  -moz-transition: opacity 0.2s linear, visibility 0s linear;
+  -o-transition: opacity 0.2s linear, visibility 0s linear;
+  transition: opacity 0.2s linear, visibility 0s linear;
+  top: 30px;
+  left: 0px; }
+  ul#navigation ul li {
+    clear: both;
+    width: 100%;
+    border: 0 none; }
+    ul#navigation ul li ul {
+      list-style: none !important;
+      margin: 0;
+      padding: 0;
+      visibility: hidden;
+      opacity: 0;
+      position: absolute;
+      z-index: 99999;
+      width: 180px;
+      background: #f8f8f8;
+      box-shadow: 1px 1px 3px #ccc;
+      -webkit-transition: opacity 0s linear, visibility 0s linear;
+      -moz-transition: opacity 0s linear, visibility 0s linear;
+      -o-transition: opacity 0s linear, visibility 0s linear;
+      transition: opacity 0s linear, visibility 0s linear;
+      top: 0;
+      left: 181px; }
+    ul#navigation ul li a {
+      background: none;
+      padding: 7px 15px;
+      color: white;
+      text-decoration: none;
+      display: inline-block;
+      border: 0 none;
+      float: left;
+      clear: both;
+      width: 150px; }
 
 
 /*# sourceMappingURL=app.css.map*/

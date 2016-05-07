@@ -3,26 +3,26 @@
  */
 var ApplyWirecard = {
 
-    /**
-     * Initializer
-     */
-    init: function() {
+  /**
+   * Initializer
+   */
+   init: function() {
 
-      this.postShopDetails();
+    this.postShopDetails();
 
-    },
+  },
 
-    /**
-     * Post shop details to the `form_url`
-     */
-    postShopDetails: function() {
+  /**
+   * Post shop details to the `form_url`
+   */
+   postShopDetails: function() {
 
-      let shopDetails = $("#shop-details").data();
-      let parsedShopDetails = Casing.objectToUnderscoreCase(shopDetails);
+    let shopDetails = $("#shop-details").data();
+    let parsedShopDetails = Casing.objectToUnderscoreCase(shopDetails);
     
-      PostForm.send(parsedShopDetails, parsedShopDetails['form_url']);
+    PostForm.send(parsedShopDetails, parsedShopDetails['form_url']);
 
-    },
+  },
 
 }
 

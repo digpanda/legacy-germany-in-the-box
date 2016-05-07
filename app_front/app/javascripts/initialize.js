@@ -2,20 +2,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /**
    * Controllers loader by Loschcode
-   * Very small and easy system.
+   * Damn simple class loader.
    */
   let routes = $("#js-routes").data();
   
   try {
 
-    let obj = require("javascripts/controllers/"+routes.controller+"/"+routes.action);
-    obj.init();
+    var obj = require("javascripts/controllers/"+routes.controller+"/"+routes.action);
 
   } catch(err) {
 
     console.log("Unable to initialize #js-routes `"+routes.controller+"`.`"+routes.action+"`");
-  
+    return;
+
   }
 
+  /**
+   * Initialization
+   */
+  obj.init();
 
 });

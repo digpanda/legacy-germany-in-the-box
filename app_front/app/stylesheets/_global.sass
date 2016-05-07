@@ -1,0 +1,84 @@
++component(main-menu)
+  +padding-vertical(1em)
+
++component(product-menu)
+  +padding-vertical(1em)
+  background-color: $color-green
+  color: #ecf0f1 !important
+  font-weight: 600
+  text-transform: uppercase
+
+// This should be part of the main menu
++component(logo)
+  img
+    max-width: 200px
+
++component(main-footer)
+  +padding-vertical(1em)
+  background-color: $color-green
+  color: #ecf0f1 !important
+  min-height: 100px
+  text-transform: uppercase
+  position: absolute // remove it when mobile
+  bottom: 0
+  left: 0
+
+li
+  list-style: none !important
+  display: block
+  padding-bottom: 1em
+  
+// INTEGRATING
+ul#navigation
+  li:hover > ul
+    visibility: visible
+    opacity: 1
+    display: block
+  ul
+    list-style: none !important
+    margin: 0
+    padding: 0
+    visibility: hidden
+    opacity: 0
+    position: absolute
+    z-index: 99999
+    width: 180px
+    background: grey
+    box-shadow: 1px 1px 3px #ccc
+    -webkit-transition: opacity 0.2s linear, visibility 0s linear
+    -moz-transition: opacity 0.2s linear, visibility 0s linear
+    -o-transition: opacity 0.2s linear, visibility 0s linear
+    transition: opacity 0.2s linear, visibility 0s linear
+    li
+      ul
+        list-style: none !important
+        margin: 0
+        padding: 0
+        visibility: hidden
+        opacity: 0
+        position: absolute
+        z-index: 99999
+        width: 180px
+        background: #f8f8f8
+        box-shadow: 1px 1px 3px #ccc
+        -webkit-transition: opacity 0s linear, visibility 0s linear
+        -moz-transition: opacity 0s linear, visibility 0s linear
+        -o-transition: opacity 0s linear, visibility 0s linear
+        transition: opacity 0s linear, visibility 0s linear
+        top: 0
+        left: 181px
+      clear: both
+      width: 100%
+      border: 0 none
+      a
+        background: none
+        padding: 7px 15px
+        color: white
+        text-decoration: none
+        display: inline-block
+        border: 0 none
+        float: left
+        clear: both
+        width: 150px
+    top: 30px
+    left: 0px

@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   root to: 'pages#home'
 
   resource :page do
+    match :demo,         via: [:get],    action: :demo,         as: :demo 
     match :agb,         via: [:get],    action: :agb,         as: :agb
     match :privacy,     via: [:get],    action: :privacy,     as: :privacy
     match :imprint,     via: [:get],    action: :imprint,     as: :imprint
