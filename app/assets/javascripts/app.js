@@ -180,6 +180,24 @@ var Checkout = {
 module.exports = Checkout;
 });
 
+require.register("javascripts/controllers/pages/home.js", function(exports, require, module) {
+"use strict";
+
+/**
+ * Apply Wirecard Class
+ */
+var Home = {
+
+  /**
+   * Initializer
+   */
+  init: function init() {}
+
+};
+
+module.exports = Home;
+});
+
 require.register("javascripts/controllers/shops/apply_wirecard.js", function(exports, require, module) {
 "use strict";
 
@@ -219,28 +237,27 @@ document.addEventListener('DOMContentLoaded', function () {
 
   /**
    * Controllers loader by Loschcode
-   * Very small and easy system.
+   * Damn simple class loader.
    */
   var routes = $("#js-routes").data();
 
   try {
 
     var obj = require("javascripts/controllers/" + routes.controller + "/" + routes.action);
-    obj.init();
   } catch (err) {
 
     console.log("Unable to initialize #js-routes `" + routes.controller + "`.`" + routes.action + "`");
+    return;
   }
+
+  /**
+   * Initialization
+   */
+  obj.init();
 });
 });
 
-require.register("javascripts/logger.js", function(exports, require, module) {
-'use strict';
-
-console.log('Hello, world');
-});
-
-;require.register("___globals___", function(exports, require, module) {
+require.register("___globals___", function(exports, require, module) {
   
 });})();require('___globals___');
 

@@ -1,17 +1,19 @@
 module.exports = {
   paths: {
     public: '../app/assets',
-    watched: ['app/javascripts', 'app/stylesheets']
+    watched: ['app/javascripts', 'app/stylesheets', 'app/images']
   },
   files: {
     javascripts: {
       joinTo: {
-        'javascripts/vendor.js': /^(?!app)/,
-        'javascripts/app.js': /^app/
+        'javascripts/app.js': /^app/,
+        'javascripts/vendor.js': /^(bower_components|vendor)/
       }
     },
     stylesheets: {
-      joinTo: 'stylesheets/app.css'
+      joinTo: {
+        'stylesheets/app.css': /^app\/stylesheets\/main.sass/
+      }
     }
   },
 
@@ -21,6 +23,9 @@ module.exports = {
 
 };
 
+/*
+        //'stylesheets/vendor.css': /^(bower_components|vendor)/
+ */
 /*
 exports.config =
   paths: 

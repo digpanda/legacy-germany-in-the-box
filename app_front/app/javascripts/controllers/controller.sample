@@ -1,0 +1,26 @@
+/**
+ * MyClass Class
+ */
+var MyClass = {
+
+    /**
+     * Initializer
+     */
+    init: function() {
+
+      this.any_method();
+
+    },
+
+    /**
+     * Post shop details to the `form_url`
+     */
+    any_method: function() {
+
+      // Stuff
+      
+    },
+
+}
+
+module.exports = MyClass;
