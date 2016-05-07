@@ -14,8 +14,10 @@ class CollectionsController < ApplicationController
 
   load_and_authorize_resource
 
+  layout :custom_sublayout, only: [:show_collections, :new, :edit]
+
   def show_collections
-    render "show_#{current_user.role.to_s}_collections", layout: "sublayout/_#{current_user.role.to_s}"
+    render "show_#{current_user.role.to_s}_collections"
   end
 
   def search
@@ -213,11 +215,11 @@ class CollectionsController < ApplicationController
 
   def new
     @collection = Collection.new
-    render "new_#{current_user.role.to_s}_collection", layout: "sublayout/_#{current_user.role.to_s}"
+    render "new_#{current_user.role.to_s}_collection"
   end
 
   def edit
-    render "edit_#{current_user.role.to_s}_collection", layout: "sublayout/_#{current_user.role.to_s}"
+    render "edit_#{current_user.role.to_s}_collection"
   end
 
   def create

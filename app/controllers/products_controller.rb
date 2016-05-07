@@ -10,27 +10,29 @@ class ProductsController < ApplicationController
 
   load_and_authorize_resource
 
+  layout :custom_sublayout, only: [:new, :new_sku, :edit, :edit_sku, :clone_sku, :show_skus]
+
   def new
     @shop = Shop.find(params[:shop_id])
     @product = @shop.products.build
 
-    render :new_product, layout: "sublayout/_#{current_user.role.to_s}"
+    render :new_product
   end
 
   def new_sku
     @sku = @product.skus.build
 
-    render :new_sku, layout: "sublayout/_#{current_user.role.to_s}"
+    render :new_sku
   end
 
   def edit
-    render :edit_product, layout: "sublayout/_#{current_user.role.to_s}"
+    render :edit_product
   end
 
   def edit_sku
     @sku = @product.skus.find(params[:sku_id])
 
-    render :edit_sku, layout: "sublayout/_#{current_user.role.to_s}"
+    render :edit_sku
   end
 
   def clone_sku
@@ -42,11 +44,11 @@ class ProductsController < ApplicationController
     CopyCarrierwaveFile::CopyFileService.new(@src, @sku, :img3).set_file if @src.img3.url
     @sku.save
 
-    render :clone_sku, layout: "sublayout/_#{current_user.role.to_s}"
+    render :clone_sku
   end
 
   def show_skus 
-    render :show_skus, layout: "sublayout/_#{current_user.role.to_s}"
+    render :show_skus
   end
 
   # This will display the skus for the users (logged in or not)
@@ -304,7 +306,7 @@ class ProductsController < ApplicationController
 
     def product_params
       delocalize_config = { skus_attributes: { :price => :number,:space_length => :number, :space_width => :number, :space_height => :number, :discount => :number, :quantity => :number, :weight => :number} }
-      params.require(:product)[:category_ids].delete('')
+      params.require(:product)[:category_ids]&.delete('')
       params.require(:product).permit(:desc, :name, :brand, :img, :duty_category, category_ids:[], tags:[], options_attributes: [:id, :name, suboptions_attributes: [:id, :name]], skus_attributes: [:id, :img0, :img1, :img2, :img3, :price, :discount, :quantity, :weight, :customizable, :status, :unit, :space_length, :space_width, :space_height, :time, :additional, option_ids: []]).delocalize(delocalize_config)
     end
 end

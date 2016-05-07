@@ -17,6 +17,8 @@ class UsersController < ApplicationController
 
   include Base64ToUpload
 
+  layout :custom_sublayout, only: [:index, :edit_account, :edit_personal, :edit_bank]
+
   before_action(:only =>  [:create, :update]) {
     base64_to_uploadedfile :user, :pic
   }
@@ -26,7 +28,7 @@ class UsersController < ApplicationController
     @users = User.all
 
     respond_to do |format|
-      format.html { render :index, layout: "sublayout/_#{current_user.role.to_s}" }
+      format.html { render :index }
       format.json { render :index }
     end
   end
@@ -46,18 +48,18 @@ class UsersController < ApplicationController
 
   def edit_account
     if current_user.id.to_s == @user.id.to_s
-      render :edit_account, layout: "sublayout/_#{current_user.role.to_s}"
+      render :edit_account
     elsif current_user.role == :admin
-      render :edit_account_by_admin, layout: "sublayout/_#{current_user.role.to_s}"
+      render :edit_account_by_admin
     end
   end
 
   def edit_personal
-    render :edit_personal, layout: "sublayout/_#{current_user.role.to_s}"
+    render :edit_personal
   end
 
   def edit_bank
-    render :edit_bank, layout: "sublayout/_#{current_user.role.to_s}"
+    render :edit_bank
   end
 
   def edit
