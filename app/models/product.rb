@@ -17,7 +17,7 @@ class Product
   has_and_belongs_to_many :collections,   inverse_of: :products
   has_and_belongs_to_many :categories,    inverse_of: :products
 
-  has_many :order_items,  inverse_of: :product,   dependent: :restrict
+  has_many :order_items,  inverse_of: :product
 
   belongs_to :shop,           inverse_of: :products
   belongs_to :duty_category,  inverse_of: :products,  counter_cache: true
@@ -40,38 +40,6 @@ class Product
   scope :has_tag,         ->(value) { where( :tags => value ) }
   scope :is_active,       ->        { where( :status => true ) }
   scope :has_sku,         ->()      { where( :skus.ne => [] ) }
-
-  def has_option?
-    self.options && self.options.select { |o| o.suboptions && o.suboptions.size > 0 }.size > 0
-  end
-
-  def get_mas
-    @mas ||= skus.is_active.to_a.sort { |s1, s2| s1.quantity <=> s2.quantity }.last
-  end
-
-  def sku_image_url
-    skus.first.img0.url unless skus.first.nil?
-  end
-
-  def get_mas_img_url(img_field)
-    mas = get_mas
-
-    return nil unless mas
-
-    if img_field == :img0
-      mas.img0 ? mas.img0.url : nil
-    elsif img_field == :img1
-      mas.img1 ? mas.img1.url : nil
-    elsif img_field == :img2
-      mas.img2 ? mas.img2.url : nil
-    elsif img_field == :img3
-      mas.img3 ? mas.img3.url : nil
-    end
-  end
-
-  def get_sku(option_ids)
-    skus.detect {|s| s.option_ids.to_set == option_ids.to_set}
-  end
 
   index({name: 1},          {unique: false, name: :idx_product_name})
   index({brand: 1},         {unique: false, name: :idx_product_brand})

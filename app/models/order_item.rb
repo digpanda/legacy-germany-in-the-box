@@ -7,7 +7,6 @@ class OrderItem
   field :product_name,    type: String
   field :option_names,    type: Array
 
-
   field :sku_id,      type: String
   field :option_ids,  type: Array,      default: []
 
