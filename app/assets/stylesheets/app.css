@@ -94,7 +94,7 @@
 
 /* line 56, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/_global.sass */
 #slider {
-  padding-bottom: none !important; }
+  padding-bottom: 0 !important; }
 
 /* line 76, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
 .slider__image {
