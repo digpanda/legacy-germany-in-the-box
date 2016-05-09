@@ -174,6 +174,12 @@
     margin: 0em;
     padding: 0.5em;
     font-size: 16px; }
+  /* line 40, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
+  .product-box__inner.\--description {
+    color: #858585;
+    font-size: 12px;
+    margin-bottom: 0;
+    line-height: 1.4em; }
 
 /* line 76, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
 .product-box__meta {
