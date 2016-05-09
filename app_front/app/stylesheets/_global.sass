@@ -6,11 +6,52 @@
       max-width: 200px
 
 +component(product-menu)
+
   background-color: $color-green
   color: #ecf0f1
   font-weight: 600
   text-transform: uppercase
 
+.nav-menu
+  z-index: 2
+  ul
+    list-style: none
+    margin: 0
+    padding: 0
+    a
+      display: block
+      color: #333
+      text-decoration: none
+      font-weight: 700
+      //font-size: 12px
+      line-height: 32px
+      padding: 5px 20px
+      font-family: 'Montserrat', sans-serif !important
+    li
+      position: relative
+      float: left
+      margin: 0
+      padding: 0
+      &:hover
+        background: $color-light-green-2nd
+    ul
+      display: none
+      position: absolute
+      top: 100%
+      left: 0
+      background: $color-light-green
+      padding: 0
+      li
+        float: none
+        width: 200px
+      a
+        line-height: 120%
+        padding: 15px 20px
+      ul
+        top: 0
+        left: 100%
+    li:hover > ul
+      display: block
 
 +component(slider)
   
@@ -22,7 +63,7 @@
     background-position: center center
 
   +part(content)
-    min-height: 300px
+    min-height: 500px
 
   +part(bottom-border)
     border-bottom: thick solid $color-green
@@ -75,7 +116,7 @@ h1
   +part(like)
     a
       font-size: 20px
-      color: grey
+      color: $color-grey
       
       &:hover
         color: $color-red

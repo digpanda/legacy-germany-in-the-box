@@ -1,8 +1,8 @@
 class PagesController < ApplicationController
 
-  before_action :authenticate_user!, except: [:home, :privacy, :imprint, :saleguide, :demo]
+  before_action :authenticate_user!, except: [:home, :privacy, :imprint, :saleguide, :demo, :menu]
 
-  acts_as_token_authentication_handler_for User, except: [:home, :privacy, :imprint, :saleguide, :demo]
+  acts_as_token_authentication_handler_for User, except: [:home, :privacy, :imprint, :saleguide, :demo, :menu]
 
   #load_and_authorize_resource :class => false
 
@@ -31,6 +31,10 @@ class PagesController < ApplicationController
   end
 
   def demo
+    render :layout => false
+  end
+
+  def menu
     render :layout => false
   end
 

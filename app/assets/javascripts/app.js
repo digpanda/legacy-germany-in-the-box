@@ -243,6 +243,24 @@ var Home = {
 module.exports = Home;
 });
 
+require.register("javascripts/controllers/pages/menu.js", function(exports, require, module) {
+"use strict";
+
+/**
+ * Menu Class
+ */
+var Menu = {
+
+  /**
+   * Initializer
+   */
+  init: function init() {}
+
+};
+
+module.exports = Menu;
+});
+
 require.register("javascripts/controllers/shops/apply_wirecard.js", function(exports, require, module) {
 "use strict";
 

@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 
   resource :page do
     match :demo,         via: [:get],    action: :demo,         as: :demo 
+    match :menu,         via: [:get],    action: :menu,         as: :menu
     match :agb,         via: [:get],    action: :agb,         as: :agb
     match :privacy,     via: [:get],    action: :privacy,     as: :privacy
     match :imprint,     via: [:get],    action: :imprint,     as: :imprint
