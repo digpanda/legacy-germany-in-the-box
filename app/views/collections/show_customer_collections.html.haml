@@ -29,17 +29,15 @@
             - c.products.each do |p|
               - for_device_type :mobile, :tablet do
                 .fotorama{'data-allowfullscreen' => '1', 'data-nav' => 'thumbs', 'data-thumbheight' => '96', "data-thumbwidth" => '96'}
-                  =image_tag p.decorate.get_mas_img_url(:img0)
-                  =image_tag p.decorate.get_mas_img_url(:img1)
-                  =image_tag p.decorate.get_mas_img_url(:img2)
-                  =image_tag p.decorate.get_mas_img_url(:img3)
+                  - p.decorate.get_mas.decorate.all_nonempty_img_fields.each do |f|
+                    = image_tag p.decorate.get_mas_img_url(f, :detail)
                 .product-info.box
                   -if p.shop
                     %h4=link_to "Shop: #{p.shop.name}", p.shop
                   %h4= p.name
                   %p.text-smaller.text-muted= p.desc
-                  - if p.get_mas
-                    %h5.product-info-price= "$#{p.get_mas.price}"
+                  - if p.decorate.get_mas
+                    %h5.product-info-price= "$#{p.decorate.get_mas.price}"
                   %a.btn.btn-primary{:href => "#{remove_product_from_collection_path(c.id, p.id)}"}
                     %i.fa.fa-times-circle
                     = I18n.t(:dislike, scope: :edit_collection)
@@ -49,10 +47,8 @@
                   .row
                     .col-md-8
                       .fotorama{"data-allowfullscreen" => "1", "data-nav" => "thumbs", "data-thumbheight" => "100", "data-thumbwidth" => "100"}
-                        =image_tag p.decorate.get_mas_img_url(:img0)
-                        =image_tag p.decorate.get_mas_img_url(:img1)
-                        =image_tag p.decorate.get_mas_img_url(:img2)
-                        =image_tag p.decorate.get_mas_img_url(:img3)
+                        - p.decorate.get_mas.decorate.all_nonempty_img_fields.each do |f|
+                          = image_tag p.decorate.get_mas_img_url(f, :detail)
                     .col-md-4
                       .product-page-meta
                         -if p.shop
@@ -61,7 +57,7 @@
                         %p= p.desc
                         = form_tag add_product_to_orders_path, :method => :patch do
                           = hidden_field_tag :product_id, "#{p.id}"
-                          - if enough_inventory(p.get_mas, 1)
+                          - if enough_inventory(p.decorate.get_mas, 1)
                             = submit_tag "#{I18n.t(:add_to_cart, scope: :popular_products)}", :class => 'btn btn-primary btn-lg'
                           - else
                             = submit_tag "#{I18n.t(:not_available, scope: :popular_products)}", :class => 'btn btn-primary btn-lg', :disabled => true
@@ -92,7 +88,7 @@
                     %a.col-md-3.col-masonry.popup-text{"data-effect" => "mfp-move-from-top", :href => "#product-quick-view-dialog-#{p.id}",  :shop_link => "#{p.shop ? shop_path(p.shop) : ''}"}
                       .product-thumb
                         %header.product-header
-                          =image_tag p.decorate.get_mas_img_url(:img0), :alt => p.name, :title => p.name
+                          =image_tag p.decorate.get_mas_img_url(:img0, :thumb), :alt => p.name, :title => p.name
                           .product-quick-view
                             %span.fa.fa-eye
                         .product-inner

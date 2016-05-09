@@ -1,5 +1,7 @@
 class SkuDecorator < Draper::Decorator
 
+  include Imageable
+
   delegate_all
   decorates :sku
 
@@ -10,4 +12,15 @@ class SkuDecorator < Draper::Decorator
   def raw_images_urls
     all_nonempty_img_fields.map { |f| self.send(f).url }
   end
+
+  private
+
+  def thumb_params
+    Rails.configuration.product_image_thumbnail
+  end
+
+  def detail_params
+    Rails.configuration.product_image_detailview
+  end
+
 end
