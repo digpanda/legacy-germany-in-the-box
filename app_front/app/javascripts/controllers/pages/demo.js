@@ -17,8 +17,10 @@ var Demo = {
       "pause": "3000",
       "speed": "1000",
       "adaptiveHeight": true,
-      "verticalHeight": "1000"
-    });  
+      "mode": "fade",
+      "enableDrag": false,
+      "enableTouch": true
+    });
 
    $(".flexnav").flexNav({
 

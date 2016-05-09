@@ -11,25 +11,132 @@
   font-weight: 600
   text-transform: uppercase
 
+
++component(slider)
+  
+  +part(image)
+    -webkit-background-size: cover
+    -moz-background-size: cover
+    -o-background-size: cover
+    background-size: cover
+
+  +part(content)
+    min-height: 300px
+
+  +part(bottom-border)
+    border-bottom: thick solid $color-green
+
+h1
+  background-color: $color-light-green
+  padding: 0.5em
+  margin: 0em
+
++component(products)
+
+  h1
+    background-color: $color-light-green
+    padding: 0.5em
+
++component(product-box)
+
+  +part(thumb)
+    z-index: 1
+    position: relative
+    text-decoration: none !important
+    display: block
+    -webkit-transition: 0.3s
+    -moz-transition: 0.3s
+    -o-transition: 0.3s
+    -ms-transition: 0.3s
+    transition: 0.3s
+    -webkit-transform: translate3d(0, 0, 0)
+    -moz-transform: translate3d(0, 0, 0)
+    -o-transform: translate3d(0, 0, 0)
+    -ms-transform: translate3d(0, 0, 0)
+    transform: translate3d(0, 0, 0)
+    text-align: center
+    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.2)
+    box-shadow: 0 1px 1px rgba(0,0,0,0.2)
+    -webkit-border-radius: 5px
+    border-radius: 5px
+    border-style: solid // SHOULD BE REFACTORED
+    border-width: 3px
+    border-color: $color-green
+
+    &:hover
+      -webkit-transform: translate3d(0, -5px, 0)
+      -moz-transform: translate3d(0, -5px, 0)
+      -o-transform: translate3d(0, -5px, 0)
+      -ms-transform: translate3d(0, -5px, 0)
+      transform: translate3d(0, -5px, 0)
+      -webkit-box-shadow: 0 4px 2px rgb(230, 251, 215)
+      box-shadow: 0 4px 2px rgb(230, 251, 215)
+
+  +part(like)
+    a
+      font-size: 20px
+      color: grey
+      
+      &:hover
+        color: $color-red
+
+
+  +part(header)
+    img
+      display: block
+      -webkit-border-radius: 5px 5px 0 0
+      border-radius: 5px 5px 0 0
+
+  +part(inner)
+    -webkit-box-sizing: border-box
+    -moz-box-sizing: border-box
+    box-sizing: border-box
+    background: #fff
+    padding: 20px 22px
+    border-top: none
+    position: relative
+    -webkit-border-radius: 0 0 5px 5px
+    border-radius: 0 0 5px 5px
+
+    +option(title)
+
+      margin: 0em
+      padding: 0.5em
+      font-size: 16px
+
+  +part(meta)
+    margin-top: 15px
+
+    +option(price)
+      font-weight: 600
+      color: $color-green
+      padding: 0 7px
+      background: #49D2BE
+      -webkit-border-radius: 3px
+      border-radius: 3px
+      background-color: white
+      font-size: 18px
+
+  +part(location)
+    border-top: 1px dashed #e6e6e6
+    margin-top: 13px
+    padding-top: 8px
+    line-height: 1em
+    margin-bottom: 0
+    color: #a3a3a3
+    font-size: 12px
+
 +component(main-footer)
   +padding-vertical(1em)
   background-color: $color-green
   color: #ecf0f1 !important
   min-height: 100px
   text-transform: uppercase
-  position: absolute // remove it when mobile
+  //margin-top: 100px
+  //position: absolute // remove it when mobile
   bottom: 0
   left: 0
 
   +part(logo)
     img
       max-width: 70px
-
-
-+component(sliding)
-  background: url("slider/1.jpg") no-repeat center center fixed; 
-  position: relative
-  -webkit-background-size: cover
-  -moz-background-size: cover
-  -o-background-size: cover
-  background-size: cover
