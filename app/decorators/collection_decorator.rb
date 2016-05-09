@@ -8,11 +8,11 @@ class CollectionDecorator < Draper::Decorator
 
   private
 
-  def thumb_params
+  def thumb_params(image_field)
     Rails.configuration.logo_image_thumbnail
   end
 
-  def detail_params
+  def detail_params(image_field)
     Rails.configuration.logo_image_detailview
   end
 end

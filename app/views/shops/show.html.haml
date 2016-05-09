@@ -3,7 +3,7 @@
     .col-md-3
       %aside.sidebar-left
         .sidebar-box.text-center
-          %img{:src => get_uploaded_thumbnail_url(@shop.logo), :style => 'max-width:90px;max-height:auto'}
+          %img{:src => @shop.decorate.image_url(:logo, :thumb), :style => 'max-width:90px;max-height:auto'}
       %aside.sidebar-left
         %div#left_menu
           %ul
@@ -24,7 +24,7 @@
 
     .col-md-9
       .box
-        %img{:src => get_uploaded_thumbnail_url(@shop.banner), :style => 'max-width:auto;max-height:90px'}
+        %img{:src => @shop.decorate.image_url(:banner, :thumb), :style => 'max-width:auto;max-height:90px'}
       .gap
       %h2= @shop.name
       %p.text-muted= @shop.desc

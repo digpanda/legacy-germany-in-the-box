@@ -20,11 +20,11 @@ class SkuDecorator < Draper::Decorator
 
   private
 
-  def thumb_params
+  def thumb_params(image_field)
     Rails.configuration.product_image_thumbnail
   end
 
-  def detail_params
+  def detail_params(image_field)
     Rails.configuration.product_image_detailview
   end
 

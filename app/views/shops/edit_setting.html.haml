@@ -10,9 +10,9 @@
             %label= I18n.t(:banner, scope: :edit_shop)
         .row.text-center
           .col-md-4
-            = image_tag  get_uploaded_thumbnail_url(@shop.logo), :style => 'max-width:90px;max-height:auto', :id => "logo_#{@shop.id}"
+            = image_tag @shop.decorate.image_url(:logo, :thumb), :style => 'max-width:90px;max-height:auto', :id => "logo_#{@shop.id}"
           .col-md-8
-            = image_tag get_uploaded_thumbnail_url(@shop.banner), :class => 'max-width:auto;max-height:90px', :id => "banner_#{@shop.id}"
+            = image_tag @shop.decorate.image_url(:banner, :thumb), :class => 'max-width:auto;max-height:90px', :id => "banner_#{@shop.id}"
         .row.text-center
           .col-md-4
             .fileUpload.btn.btn-default
@@ -53,13 +53,13 @@
       .panel-body
         .row.text-center
           .col-md-3
-            = image_tag get_uploaded_thumbnail_url(@shop.seal0), :class => 'img-responsive', :id => "seal_0_#{@shop.id}"
+            = image_tag @shop.decorate.image_url(:seal0, :thumb),  :id => "seal_0_#{@shop.id}"
           .col-md-3
-            = image_tag get_uploaded_thumbnail_url(@shop.seal1), :class => 'img-responsive', :id => "seal_1_#{@shop.id}"
+            = image_tag @shop.decorate.image_url(:seal1, :thumb),  :id => "seal_1_#{@shop.id}"
           .col-md-3
-            = image_tag get_uploaded_thumbnail_url(@shop.seal2), :class => 'img-responsive', :id => "seal_2_#{@shop.id}"
+            = image_tag @shop.decorate.image_url(:seal2, :thumb),  :id => "seal_2_#{@shop.id}"
           .col-md-3
-            = image_tag get_uploaded_thumbnail_url(@shop.seal3), :class => 'img-responsive', :id => "seal_3_#{@shop.id}"
+            = image_tag @shop.decorate.image_url(:seal3, :thumb),  :id => "seal_3_#{@shop.id}"
         .row.text-center
           .col-md-3
             .fileUpload.btn.btn-default
@@ -93,13 +93,13 @@
       .panel-body
         .row.text-center
           .col-md-3
-            = image_tag get_uploaded_thumbnail_url(@shop.seal4), :class => 'img-responsive', :id => "seal_4_#{@shop.id}"
+            = image_tag @shop.decorate.image_url(:seal4, :thumb), :class => 'img-responsive', :id => "seal_4_#{@shop.id}"
           .col-md-3
-            = image_tag get_uploaded_thumbnail_url(@shop.seal5), :class => 'img-responsive', :id => "seal_5_#{@shop.id}"
+            = image_tag @shop.decorate.image_url(:seal5, :thumb), :class => 'img-responsive', :id => "seal_5_#{@shop.id}"
           .col-md-3
-            = image_tag get_uploaded_thumbnail_url(@shop.seal6), :class => 'img-responsive', :id => "seal_6_#{@shop.id}"
+            = image_tag @shop.decorate.image_url(:seal6, :thumb), :class => 'img-responsive', :id => "seal_6_#{@shop.id}"
           .col-md-3
-            = image_tag get_uploaded_thumbnail_url(@shop.seal7), :class => 'img-responsive', :id => "seal_7_#{@shop.id}"
+            = image_tag @shop.decorate.image_url(:seal7, :thumb), :class => 'img-responsive', :id => "seal_7_#{@shop.id}"
         .row.text-center
           .col-md-3
             .fileUpload.btn.btn-default
