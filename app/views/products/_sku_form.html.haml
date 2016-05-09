@@ -58,13 +58,13 @@
               = I18n.t(:img3, scope: :edit_product_detail)
           .row.text-center
             .col-md-3
-              = image_tag get_uploaded_thumbnail_url(@sku.img0), :class => 'img-responsive', :id => "img_0_#{@product.id}"
+              = image_tag @sku.decorate.image_url(:img0, :thumb), :class => 'img-responsive', :id => "img_0_#{@product.id}"
             .col-md-3
-              = image_tag get_uploaded_thumbnail_url(@sku.img1), :class => 'img-responsive', :id => "img_1_#{@product.id}"
+              = image_tag @sku.decorate.image_url(:img1, :thumb), :class => 'img-responsive', :id => "img_1_#{@product.id}"
             .col-md-3
-              = image_tag get_uploaded_thumbnail_url(@sku.img2), :class => 'img-responsive', :id => "img_2_#{@product.id}"
+              = image_tag @sku.decorate.image_url(:img2, :thumb), :class => 'img-responsive', :id => "img_2_#{@product.id}"
             .col-md-3
-              = image_tag get_uploaded_thumbnail_url(@sku.img3), :class => 'img-responsive', :id => "img_3_#{@product.id}"
+              = image_tag @sku.decorate.image_url(:img3, :thumb), :class => 'img-responsive', :id => "img_3_#{@product.id}"
           .row.text-center
             .col-md-3
               .fileUpload.btn.btn-default

@@ -28,7 +28,7 @@
                     - o.order_items.each do |i|
                       %li
                         %a{:href => "#{manage_cart_orders_path}" }
-                          = image_tag get_uploaded_thumbnail_url(i.sku.img0)
+                          = image_tag i.sku.decorate.image_url(:img0, :thumb)
                           %h5= i.product.name
                           %span.shopping-cart-item-price= "Subtotal: $#{i.sku.price * i.quantity}"
               -else

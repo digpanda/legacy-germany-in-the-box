@@ -9,6 +9,11 @@ class SkuDecorator < Draper::Decorator
     @img_fields ||= self.attributes.keys.grep(/^img\d/).map(&:to_sym).select { |f| f if sku.read_attribute(f) }
   end
 
+  def first_nonempty_img_url(version)
+    f = self.attributes.keys.grep(/^img\d/).map(&:to_sym).detect { |f| f if sku.read_attribute(f) }
+    image_url(f, version)
+  end
+
   def raw_images_urls
     all_nonempty_img_fields.map { |f| self.send(f).url }
   end
