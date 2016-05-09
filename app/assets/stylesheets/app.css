@@ -228,5 +228,9 @@ h1 {
   font-family: 'Raleway', sans-serif !important;
   font-weight: 400; }
 
+/* line 12, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/_global.sass */
+a, a:active, a:hover, a:visited {
+  text-decoration: none !important; }
+
 
 /*# sourceMappingURL=app.css.map*/
