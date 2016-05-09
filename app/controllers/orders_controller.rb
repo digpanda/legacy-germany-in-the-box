@@ -28,7 +28,7 @@ class OrdersController < ApplicationController
 
   def add_product
     product = Product.find(params[:sku][:product_id])
-    sku = product.get_sku(params[:sku][:option_ids].split(','))
+    sku = product.decorate.get_sku(params[:sku][:option_ids].split(','))
     quantity = params[:sku][:quantity].to_i
 
     existing_order_item = current_order(product.shop.id.to_s).order_items.to_a.find { |i| i.product.id == product.id && i.sku_id == sku.id.to_s}
@@ -307,7 +307,7 @@ class OrdersController < ApplicationController
             coi.quantity += ooi.quantity
             coi.save
           else
-            sku = ooi.product.get_sku(ooi.option_ids)
+            sku = ooi.product.decorate.get_sku(ooi.option_ids)
             noi = co.order_items.build
             noi.price = sku.price
             noi.quantity = ooi.quantity

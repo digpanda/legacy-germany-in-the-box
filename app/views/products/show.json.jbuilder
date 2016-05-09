@@ -7,7 +7,7 @@ json.name product.name
 json.desc product.desc
 
 json.price product.skus.first.price
-json.skus_raw_images_urls product.skus.map { |sku| sku.raw_images_urls }.flatten
+json.skus_raw_images_urls product.skus.map { |sku| sku.decorate.raw_images_urls }.flatten
 json.sku_count product.skus.size
 
 json.shop_id product.shop.id

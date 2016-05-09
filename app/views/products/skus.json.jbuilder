@@ -5,7 +5,7 @@ json.skus @product.skus do |sku|
   json.discount sku.discount
   json.price sku.price.to_f
   json.quantity sku.quantity
-  json.raw_images_urls sku.raw_images_urls.first
+  json.decorate.raw_images_urls sku.decorate.raw_images_urls.first
   json.options sku.options
 end
 

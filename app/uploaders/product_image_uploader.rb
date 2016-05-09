@@ -23,9 +23,14 @@ class ProductImageUploader < CarrierWave::Uploader::Base
     !self.file.content_type.include? 'image'
   end
 
-  # Create different versions of your uploaded files:
-  version :thumb, :if => :image? do
-    process :resize_and_pad => [200, 200]
-  end
+  if ENV["RAILS_ENV"] == 'local'
+    # Create different versions of your uploaded files:
+    version :thumb, :if => :image? do
+      process :resize_and_pad => [200, 200]
+    end
 
+    version :detail, :if => :image? do
+      process :resize_and_pad => [400, 400]
+    end
+  end
 end# encoding: utf-8

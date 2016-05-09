@@ -11,7 +11,7 @@ module AppCache
 
   def get_first_level_categories_from_cache(root)
     Rails.cache.fetch("first_level_categories_cache_of_root_leve_#{root.id}_#{I18n.locale}", :expires_in => Rails.configuration.app_cache_expire_limit ) {
-      root.children.is_active.to_a.sort { |a,b| a.name <=> b.name }
+      root.children.is_active.to_a.select { |c| c.total_products > 0 }.sort { |a,b| a.name <=> b.name }
     }
   end
 
@@ -27,7 +27,7 @@ module AppCache
 
   def get_second_level_categories_from_cache(first_level_category)
     Rails.cache.fetch("second_level_categories_cache_of_first_level_category_#{first_level_category.id}_#{I18n.locale}", :expires_in => Rails.configuration.app_cache_expire_limit ) {
-      first_level_category.children.is_active.to_a.sort { |a,b| a.name <=> b.name }
+      first_level_category.children.is_active.to_a.select { |c| c.total_products > 0 }.sort { |a,b| a.name <=> b.name }
     }
   end
 

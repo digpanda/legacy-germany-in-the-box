@@ -1,3 +1,7 @@
+Rails.configuration.logo_image_thumbnail = '?imageView2/1/w/90/h/90'
+Rails.configuration.banner_image_thumbnail = '?imageView2/1/w/728/h/90'
+Rails.configuration.product_image_thumbnail = '?imageView2/1/w/200/h/200'
+Rails.configuration.product_image_detailview = '?imageView2/2/h/400'
 Rails.configuration.login_failure_limit = 3
 Rails.configuration.app_cache_expire_limit = ENV["RAILS_ENV"] == 'production' ? 1.hours : 10.minutes
 Rails.configuration.max_num_addresses = 3

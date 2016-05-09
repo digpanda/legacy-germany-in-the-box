@@ -135,7 +135,7 @@
                           = fso.text_field :name, :value => fso.object.name_translations[locale], :style => 'max-width:120px', :class => 'form-control input-sm', :required => true, :maxLength => Rails.configuration.max_tiny_text_length, :placeholder => I18n.t(:option_name, scope: :edit_product_variant, locale: locale)
                         .btn-group.pull-right
                           = link_to '', remove_option_product_path(@product.id, fo.object.id, fso.object.id), method: :delete, data: { confirm: "#{I18n.t(:delete_option_message, scope: :edit_product_variant, locale: locale)}" }, :class => 'btn fa fa-times-circle', :title => I18n.t(:remove_option, scope: :edit_product_variant, locale: locale)
-      - if @product.persisted? && @product.has_option?
+      - if @product.persisted? && @product.decorate.has_option?
         .panel-footer.clearfix
           %a{ :href => show_skus_product_path(@product.id, :user_info_edit_part => :edit_product_detail) }
             %i.fa.fa-edit

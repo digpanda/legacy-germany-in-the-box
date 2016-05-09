@@ -80,21 +80,19 @@
     - for_device_type :mobile, :tablet do
       - @products.each do |p|
         .fotorama{'data-allowfullscreen' => '1', 'data-nav' => 'thumbs', 'data-thumbheight' => '96', "data-thumbwidth" => '96'}
-          =image_tag p.get_mas_img_url(:img0)
-          =image_tag p.get_mas_img_url(:img1)
-          =image_tag p.get_mas_img_url(:img2)
-          =image_tag p.get_mas_img_url(:img3)
+          - p.decorate.get_mas.decorate.all_nonempty_img_fields.each do |f|
+            = image_tag p.decorate.get_mas_img_url(f)
         .product-info.box
           -if p.shop
             %h4=link_to "Shop: #{p.shop.shopname}", p.shop
           %h4= p.name
           %p.text-smaller.text-muted= truncate(p.desc, :length => 64)
-          %h5.product-info-price= "$#{p.get_mas.price}"
+          %h5.product-info-price= "$#{p.decorate.get_mas.price}"
           .btn-toolbar
             .col-xs-4
               = form_tag add_product_to_orders_path, :method => :patch do
                 = hidden_field_tag 'sku[product_id]', "#{p.id}"
-                - if enough_inventory(p.get_mas, 1)
+                - if enough_inventory(p.decorate.get_mas, 1)
                   %button.btn.btn-primary.btn-small{ :type => 'submit', :title => "#{I18n.t(:add_to_cart, scope: :popular_products)}" }
                   %i.fa.fa-shopping-cart
                 - else
@@ -158,10 +156,8 @@
           .row
             .col-md-7
               .fotorama{'data-allowfullscreen' => '1', 'data-nav' => 'thumbs', 'data-thumbheight' => '96', 'data-thumbwidth' => '96'}
-                =image_tag p.get_mas_img_url(:img0)
-                =image_tag p.get_mas_img_url(:img1)
-                =image_tag p.get_mas_img_url(:img2)
-                =image_tag p.get_mas_img_url(:img3)
+                - p.decorate.get_mas.decorate.all_nonempty_img_fields.each do |f|
+                  = image_tag p.decorate.get_mas_img_url(f)
             .col-md-5
               .product-page-meta
                 -if p.shop
@@ -171,32 +167,32 @@
                 .gap
                 = form_tag add_product_to_orders_path, :method => :patch do
                   = hidden_field_tag 'sku[product_id]', "#{p.id}"
-                  - if p.get_mas
+                  - if p.decorate.get_mas
                     .form-inline
-                      = select_tag 'sku[quantity]', options_for_select(1..[Rails.configuration.max_add_to_cart_each_time, p.get_mas.quantity].min, 1), :class => 'form-control input-lg', :style => 'width:72px', :id => "product_quantity_#{p.id}"
-                      = submit_tag "#{I18n.t(:add_to_cart, scope: :popular_products)}", :class => 'btn btn-primary btn-lg', :disabled => (not enough_inventory(p.get_mas, 1))
+                      = select_tag 'sku[quantity]', options_for_select(1..[Rails.configuration.max_add_to_cart_each_time, p.decorate.get_mas.quantity].min, 1), :class => 'form-control input-lg', :style => 'width:72px', :id => "product_quantity_#{p.id}"
+                      = submit_tag "#{I18n.t(:add_to_cart, scope: :popular_products)}", :class => 'btn btn-primary btn-lg', :disabled => (not enough_inventory(p.decorate.get_mas, 1))
                     %ul.list.product-page-meta-info
                       %ul.list.product-page-meta-price-list
                         %li
                           %span.product-page-meta-title= I18n.t(:variant_option, scope: :cart)
-                          %span.product-page-meta-price= select_tag 'sku[option_ids]', options_for_select( get_options_for_select(p), p.get_mas.option_ids.join(',') ), :class => 'form-control variant-option', :id => 'option_ids', :product_id => p.id
-                      - if p.get_mas
+                          %span.product-page-meta-price= select_tag 'sku[option_ids]', options_for_select( get_options_for_select(p), p.decorate.get_mas.option_ids.join(',') ), :class => 'form-control variant-option', :id => 'option_ids', :product_id => p.id
+                      - if p.decorate.get_mas
                         %li
                           %ul.list.product-page-meta-price-list
                             %li
                               %span.product-page-meta-title= I18n.t(:price, scope: :popular_products)
-                              %span.product-page-meta-price{:id => "product_price_#{p.id}"}= "#{p.get_mas.price} #{p.shop.currency.code}"
+                              %span.product-page-meta-price{:id => "product_price_#{p.id}"}= "#{p.decorate.get_mas.price} #{p.shop.currency.code}"
                             %li
                               %span.product-page-meta-title= I18n.t(:discount, scope: :popular_products)
-                              %span.product-page-meta-price{:id => "product_discount_#{p.id}"}= "#{p.get_mas.discount}%"
+                              %span.product-page-meta-price{:id => "product_discount_#{p.id}"}= "#{p.decorate.get_mas.discount}%"
                             %li
                               %span.product-page-meta-title= I18n.t(:saving, scope: :popular_products)
-                              %span.product-page-meta-price{:id => "product_saving_#{p.id}"}= "#{p.get_mas.price * p.get_mas.discount} #{p.shop.currency.code}"
+                              %span.product-page-meta-price{:id => "product_saving_#{p.id}"}= "#{p.decorate.get_mas.price * p.decorate.get_mas.discount} #{p.shop.currency.code}"
                         %li
                           %ul.list.product-page-meta-price-list
                             %li
                               %span.product-page-meta-title= I18n.t(:inventory, scope: :popular_products)
-                              %span.product-page-meta-price{:id => "product_inventory_#{p.id}"}= p.get_mas.limited ? p.get_mas.quantity : I18n.t(:unlimited, scope: :popular_products)
+                              %span.product-page-meta-price{:id => "product_inventory_#{p.id}"}= p.decorate.get_mas.limited ? p.decorate.get_mas.quantity : I18n.t(:unlimited, scope: :popular_products)
                   - else
                     = submit_tag "#{I18n.t(:not_available, scope: :popular_products)}", :class => 'btn btn-primary btn-lg', :disabled => true
           %hr
@@ -279,7 +275,7 @@
               %a.col-md-3.col-masonry.popup-text{'data-effect' => 'mfp-move-from-top', :href => "#product_quick_view_dialog_#{p.id}",  :shop_link => "#{p.shop ? shop_path(p.shop) : ''}"}
                 .product-thumb
                   %header.product-header
-                    = image_tag p.get_mas_img_url(:img0), :alt => p.name, :title => p.name
+                    = image_tag p.decorate.product_cover_url, :alt => p.name, :title => p.name
                     .product-quick-view
                       %span.fa.fa-eye
                   .product-inner
