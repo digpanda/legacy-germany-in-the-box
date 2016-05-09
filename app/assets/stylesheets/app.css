@@ -1,5 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
 @import url(https://fonts.googleapis.com/css?family=Lato);
+@import url(https://fonts.googleapis.com/css?family=Raleway:400,700);
 /* line 85, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
 #csstyle .\+centered {
   text-align: center;
@@ -20,9 +21,9 @@
 /* line 32, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
 .category-menu {
   background-color: #83be58;
-  font-weight: 700;
+  font-weight: 400;
   text-transform: uppercase;
-  font-family: 'Lato', sans-serif; }
+  font-family: 'Raleway', sans-serif; }
   /* line 11, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/helpers/_mixins.sass */
   .category-menu nav {
     z-index: 2;
@@ -224,7 +225,7 @@ h1 {
   background-color: #e6fbd7;
   padding: 0.5em;
   margin: 0em;
-  font-family: 'Montserrat', sans-serif !important;
+  font-family: 'Raleway', sans-serif !important;
   font-weight: 400; }
 
 
