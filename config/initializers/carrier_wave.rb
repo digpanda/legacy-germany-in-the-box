@@ -1,3 +1,0 @@
-module CarrierWave
-
-end

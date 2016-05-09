@@ -7,7 +7,7 @@ class ProductDecorator < Draper::Decorator
     if sku = skus.first
       first_nonempty = sku.decorate.all_nonempty_img_fields.first
       if ENV['RAILS_ENV'] != 'local'
-        sku.send(first_nonempty).url + Rails.configuration.image_thumbnail if first_nonempty
+        sku.send(first_nonempty).url + Rails.configuration.product_image_thumbnail if first_nonempty
       else
         sku.send(first_nonempty).url(:thumb) if first_nonempty
       end
@@ -23,7 +23,7 @@ class ProductDecorator < Draper::Decorator
 
     if mas.decorate.all_nonempty_img_fields.include?(img_field)
       if ENV['RAILS_ENV'] != 'local'
-        mas.send(img_field).url + Rails.configuration.image_detailview
+        mas.send(img_field).url + Rails.configuration.product_image_detailview
       else
         mas.send(img_field).url(:detail)
       end

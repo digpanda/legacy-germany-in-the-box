@@ -152,7 +152,6 @@
     <orderEntry type="library" scope="PROVIDED" name="loofah (v2.0.3, RVM: ruby-2.2.1 [global]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="mongoid-grid_fs (v2.2.1, RVM: ruby-2.2.1 [global]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="mongoid_search (v0.2.8, RVM: ruby-2.2.1 [global]) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="multi_json (v1.11.2, RVM: ruby-2.2.1 [global]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="multi_xml (v0.5.5, RVM: ruby-2.2.1 [global]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="multipart-post (v2.0.0, RVM: ruby-2.2.1 [global]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="orm_adapter (v0.5.0, RVM: ruby-2.2.1 [global]) [gem]" level="application" />
