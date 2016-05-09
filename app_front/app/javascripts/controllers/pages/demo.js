@@ -8,7 +8,7 @@ var Demo = {
    */
   init: function() {
 
-    $('#slider').lightSlider({
+    $('#js-slider').lightSlider({
       "item": 1,
       "loop": true,
       "slideMargin": 0,

@@ -1,0 +1,48 @@
+=padding-vertical($space: 1em)
+  padding-top: $space
+  padding-bottom: $space
+
+=no-list-style
+  list-style: none
+  margin: 0
+  padding: 0
+
+=navbar-system
+  nav
+      z-index: 2
+      position: relative
+
+      ul
+        +no-list-style
+
+        a
+          display: block
+          color: $color-white
+          text-decoration: none
+          line-height: 32px
+          padding: 5px 20px
+
+        li
+          &:hover
+            background: $color-light-green-2nd
+            > ul
+              display: block
+            a
+              color: $color-black !important
+        ul
+          display: none
+          position: absolute
+          top: 100%
+          left: 0
+          background: $color-light-green
+          padding: 0
+          li
+            float: none
+            width: 200px
+          //a
+            //color: $color-black
+            //line-height: 120%
+            //padding: 15px 20px
+          ul
+            top: 0
+            left: 100%

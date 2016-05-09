@@ -1,0 +1,20 @@
++component(slider)
+  
+  position: relative
+  z-index: 1
+
+  ul // Hook for no blank space
+    padding-bottom: 0 !important
+
+  +part(image)
+    -webkit-background-size: cover
+    -moz-background-size: cover
+    -o-background-size: cover
+    background-size: cover
+    background-position: center center
+
+  +part(content)
+    min-height: 500px
+
+  +part(bottom-border)
+    border-bottom: thick solid $color-green

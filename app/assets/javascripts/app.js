@@ -193,7 +193,7 @@ var Demo = {
    */
   init: function init() {
 
-    $('#slider').lightSlider({
+    $('#js-slider').lightSlider({
       "item": 1,
       "loop": true,
       "slideMargin": 0,

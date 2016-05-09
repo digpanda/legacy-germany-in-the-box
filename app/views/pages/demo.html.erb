@@ -18,51 +18,65 @@
     <!-- FontAwesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css">
 
+    <!-- Base container -->
     <div class="container-fluid">
 
-      <!-- Main menu + Logo -->
-      <div class="row main-menu">
+      <!-- Main Menu Area -->
+      <div class="row main-header">
 
-        <!-- Menu area -->
+        <!-- Left side -->
         <div class="col-md-4 +vertical-centered">
-          <div class="col-md-11 col-md-offset-1"><span class=""><i class="fa fa-user"></i></span> My Account</div>
+          <div class="col-md-11 col-md-offset-1">
+
+            <!-- My Account -->
+            <span class="main-header__account"><i class="fa fa-user"></i> My Account</span>
+          </div>
+
         </div>
 
+        <!-- Center side -->
         <div class="col-md-4">
           
           <!-- Logo -->
-          <div class="main-menu__logo +centered">
+          <div class="main-header__logo +centered">
             <img src="/assets/logo-half.png">
           </div>
 
         </div>
-        <div class="col-md-4">
 
-          <!-- Research area -->
-          <div class="+vertical-centered">
-            <div class="col-md-4"><span class="+blue"><i class="fa fa-search"></i></span> Search</div>
-            <div class="col-md-4"><span class="+red"><i class="fa fa-heart"></i></span> 0 Like</div>
-            <div class="+centered +strong"><span class=""><i class="fa fa-shopping-cart"></i></span> 5 products </div>
-          </div>
+        <!-- Right side -->
+        <div class="col-md-4 +vertical-centered">
+
+            <!-- Research area -->
+            <div class="col-md-4">
+            <span class="main-header__search"><i class="fa fa-search"></i> Search</span>
+            </div>
+
+
+            <div class="col-md-4">
+              <span class="main-header__likes"><i class="fa fa-heart"></i> 0 Like</span>
+            </div>
+
+            <div class="+centered +strong">
+              <span class="main-header__cart"><i class="fa fa-shopping-cart"></i> 5 products</span>
+            </div>
 
         </div>
       </div>
+      <!-- End of Main Menu Area -->
 
-      <div class="+spacer"></div>
-
-      <!-- Customer Menu -->
-
-      <div class="row product-menu">
+      <!-- Category Menu -->
+      <div class="row category-menu">
 
         <div class="col-md-10 col-md-push-1 col-md-pull-1">
 
-          <nav class="nav-menu" style="position:relative;z-index:2;">
+          <nav>
             <ul>
 
-            <li class="col-md-2 overmenu"><a href="#">CATEGORY</a>
+            <li class="col-md-2"><a href="#">CATEGORY</a>
                 <ul>
-                  <li class="dir submenu"><a href="#">SUBCATEGORY</a></li>
-                  <li class="dir submenu"><a href="#">SUBCATEGORY</a>
+                  <li class="dir"><a href="#">SUBCATEGORY</a></li>
+                  <li class="dir"><a href="#">SUBCATEGORY</a>
                     <ul>
                       <li><a href="#">SUBSUBCATEGORY</a></li>
                       <li><a href="#">SUBSUBCATEGORY</a></li>
@@ -76,8 +90,8 @@
               </li>
             <li class="col-md-2 overmenu"><a href="#">CATEGORY</a>
                 <ul>
-                  <li class="dir submenu"><a href="#">SUBCATEGORY</a></li>
-                  <li class="dir submenu"><a href="#">SUBCATEGORY</a>
+                  <li class="dir"><a href="#">SUBCATEGORY</a></li>
+                  <li class="dir"><a href="#">SUBCATEGORY</a>
                     <ul>
                       <li><a href="#">SUBSUBCATEGORY</a></li>
                       <li><a href="#">SUBSUBCATEGORY</a></li>
@@ -89,59 +103,51 @@
                   <li><a href="#">SUBCATEGORY</a></li>
                 </ul>
               </li>
-              <li class="col-md-2 overmenu"><a href="#">CATEGORY</a></li>
-              <li class="col-md-2 overmenu"><a href="#">CATEGORY</a></li>
-              <li class="col-md-2 overmenu"><a href="#">CATEGORY</a></li>
-              <li class="col-md-2 overmenu"><a href="#">CATEGORY</a></li>
+              <li class="col-md-2"><a href="#">CATEGORY</a></li>
+              <li class="col-md-2"><a href="#">CATEGORY</a></li>
+              <li class="col-md-2"><a href="#">CATEGORY</a></li>
+              <li class="col-md-2"><a href="#">CATEGORY</a></li>
             </ul>
           </nav>
 
         </div>
 
       </div>
+      <!-- End of Category Menu -->
+
       <!-- Slider -->
-      <div class="row">
+      <div class="row slider">
 
-      <div class="slider" style="position:relative;z-index:1;">
+        <ul id="js-slider">
 
-        <ul id="slider">
-
+          <!-- Image 1 -->
           <li>
-
             <div class="slider__image" style="background-image: url('/assets/slider/1.jpg')" >
-
-            <div class="slider__content"></div>
-
+              <div class="slider__content"></div>
             </div>
-
           </li>
 
+          <!-- Image 2 -->
           <li>
-
             <div class="slider__image" style="background-image: url('/assets/slider/2.jpg')" >
-            
-            <div class="slider__content"></div>
-
+              <div class="slider__content"></div>
             </div>
-
           </li>
+
         </ul>
 
         <div class="slider__bottom-border">
         </div>
 
-        </div>
-
       </div>
 
-      <div class="products">
+      <div class="products-list">
 
         <div class="row">
         <h1>Our best selection ...</h1>
         </div>
 
-
-      <div class="+spacer"></div>
+        <div class="+spacer"></div>
 
         <div class="row">
 
