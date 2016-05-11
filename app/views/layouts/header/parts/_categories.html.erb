@@ -1,0 +1,52 @@
+<ul>
+  <% Category.roots.each do |category| %>
+  <li class="col-md-2">
+    <a href="#"><%= category.name %></a>
+    <% if !category.children.empty? %>
+    <ul>
+      <%= category.decorate.draw_tree %> <!-- TODO : refacto this, here we have very bad decorator methodology /!\ !-->
+    </ul>
+    <% end %>
+  </li>
+  <% end %>
+</ul>
+
+<!--
+            <ul>
+
+            <li class="col-md-2"><a href="#">CATEGORY</a>
+                <ul>
+                  <li class="dir"><a href="#">SUBCATEGORY</a></li>
+                  <li class="dir"><a href="#">SUBCATEGORY</a>
+                    <ul>
+                      <li><a href="#">SUBSUBCATEGORY</a></li>
+                      <li><a href="#">SUBSUBCATEGORY</a></li>
+                      <li><a href="#">SUBSUBCATEGORY</a></li>
+                    </ul>
+                  </li>
+                  <li><a href="#">SUBCATEGORY</a></li>
+                  <li><a href="#">SUBCATEGORY</a></li>
+                  <li><a href="#">SUBCATEGORY</a></li>
+                </ul>
+              </li>
+            <li class="col-md-2 overmenu"><a href="#">CATEGORY</a>
+                <ul>
+                  <li class="dir"><a href="#">SUBCATEGORY</a></li>
+                  <li class="dir"><a href="#">SUBCATEGORY</a>
+                    <ul>
+                      <li><a href="#">SUBSUBCATEGORY</a></li>
+                      <li><a href="#">SUBSUBCATEGORY</a></li>
+                      <li><a href="#">SUBSUBCATEGORY</a></li>
+                    </ul>
+                  </li>
+                  <li><a href="#">SUBCATEGORY</a></li>
+                  <li><a href="#">SUBCATEGORY</a></li>
+                  <li><a href="#">SUBCATEGORY</a></li>
+                </ul>
+              </li>
+              <li class="col-md-2"><a href="#">CATEGORY</a></li>
+              <li class="col-md-2"><a href="#">CATEGORY</a></li>
+              <li class="col-md-2"><a href="#">CATEGORY</a></li>
+              <li class="col-md-2"><a href="#">CATEGORY</a></li>
+            </ul>
+-->

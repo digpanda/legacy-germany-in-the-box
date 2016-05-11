@@ -1,5 +1,11 @@
+ <!DOCTYPE html>
+  <html lang ="en">
+  <head>
+    <meta name ="viewport" content="width=device-width, initial-scale=1">
 
+    <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
@@ -12,41 +18,35 @@
     <!-- FontAwesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css">
 
-<h1>Simple Pure CSS Drop Down Menu</h1>
-<nav class="nav-menu">
-<ul>
+  </head>
+  <body id="csstyle">
 
-  <li><a href="#">Menu 3</a>
-    <ul>
-      <li class="dir"><a href="#">Sub Menu 1</a></li>
-      <li class="dir"><a href="#">Sub Menu 2</a>
-        <ul>
-          <li><a href="#">Category 1</a></li>
-          <li><a href="#">Category 2</a></li>
-          <li><a href="#">Category 3</a></li>
-          <li><a href="#">Category 4</a></li>
-          <li><a href="#">Category 5</a></li>
-        </ul>
-      </li>
-      <li><a href="#">Sub Menu 3</a></li>
-      <li><a href="#">Sub Menu 4</a></li>
-      <li><a href="#">Sub Menu 5</a></li>
-    </ul>
-  </li>
-  <li><a href="#">Menu 4</a></li>
-  <li><a href="#">Menu 5</a></li>
-  <li><a href="#">Menu 6</a></li>
-  <li><a href="#">Menu 6</a></li>
-</ul>
-</nav>
+    <%= javascript_include_tag "application" %>
+    <%= stylesheet_link_tag "application", :media => "all" %>
 
+    <%= csrf_meta_tag %>
+
+    <!-- Base container -->
+    <div class="container-fluid">
+
+      <%= render "layouts/header/#{!current_user ? 'default' : current_user.role.to_s}" %>
+
+      <%= yield %>
+    
+      <%= render "layouts/footer/#{!current_user ? 'default' : current_user.role.to_s}" %>
+
+
+    </div>
+
+    <!-- Brunch compiled front-end -->
     <%= javascript_include_tag "vendor" %>
     <%= javascript_include_tag "app" %>
     <script>
       require('javascripts/initialize');
     </script>
 
+    <!-- JS Routing system -->
     <div id="js-routes" data-controller="<%=params[:controller]%>" data-action="<%=params[:action]%>"></div>
 
-    <%= stylesheet_link_tag "application", :media => "all" %>
-
+  </body>
+  </html>

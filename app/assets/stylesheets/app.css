@@ -18,6 +18,10 @@
 #csstyle .\+strong {
   font-weight: 600; }
 
+/* line 85, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
+#csstyle .\+up {
+  text-transform: uppercase; }
+
 /* line 32, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
 .category-menu {
   background-color: #83be58;
@@ -60,7 +64,7 @@
         /* line 39, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/helpers/_mixins.sass */
         .category-menu nav ul ul li {
           float: none;
-          width: 200px; }
+          width: 250px; }
         /* line 46, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/helpers/_mixins.sass */
         .category-menu nav ul ul ul {
           top: 0;
@@ -72,9 +76,11 @@
   padding-bottom: 1em;
   background-color: #83be58;
   color: #ecf0f1 !important;
-  min-height: 100px;
-  text-transform: uppercase; }
-  /* line 13, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_main-footer.sass */
+  min-height: 100px; }
+  /* line 6, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_main-footer.sass */
+  .main-footer a {
+    color: #ecf0f1 !important; }
+  /* line 16, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_main-footer.sass */
   .main-footer__logo img {
     max-width: 70px; }
 
