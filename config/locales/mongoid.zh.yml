@@ -25,71 +25,71 @@ zh-CN:
       lname: 姓
       mobile: 移动电话
       number: 门牌号
-      order_ids: 订单ID集
+      orders: 订单集
       primary: 首选
       province: 省份
-      shop_id: 店铺ID
+      shop: 店铺
       street: 街道
       tel: 电话
       type: 地址类别
-      user_id: 用户ID
+      user: 用户
       zip: 邮编
     bank_account:
       bic: BIC
       debit: 账户
       iban: IBAN
       name: 姓名
-      shop_id: Shop-ID
+      shop: 店铺
     category:
       name: 名称
-      parent_id: 上级分类ID
-      product_ids: 产品ID集
+      parent: 上级分类
+      products: 产品集
       status: 状态
-      child_ids: 下级分类ID集
+      children: 下级分类
     collection:
       desc: 描述
       img: 图标
       name: 名称
-      product_ids: 产品ID集
+      products: 产品集
       public: 公开
-      user_id: 用户ID
-      user_ids: 喜欢这个收藏用户ID集
+      user: 用户
+      users: 喜欢这个收藏的用户集
     duty_category:
       name: 名称
-      parent_id: 上级分类ID
-      product_ids: 产品ID集
+      parent: 上级分类
+      products: 产品集
       status: 状态
-      child_ids: 下级分类ID集
+      children: 下级分类
       code: 类别编码
     order:
-      delivery_destination_id: 目的地址ID
+      delivery_destination: 目的地址
       status: 状态
-      user_id: 用户ID
-      order_item_ids: 订单项目ID集
+      user: 用户
+      order_items: 订单项目集
     order_item:
       option_ids: 选项ID集
       option_names: 选项名称集
-      order_id: 订单ID
+      order: 订单
       price: 价格
-      product_id: 产品ID
+      product: 产品
       product_name: 产品名称
       quantity: 数量
       sku_id: 库存单元ID
       weight: 重量
     product:
       brand: 品牌
-      category_ids: 类别ID集
-      collection_ids: 收藏ID集
+      categories: 类别集
+      collections: 收藏集
       cover: 封面
       desc: 产品描述
-      duty_category_id: 报关分类
+      duty_category: 报关分类
       name: 名称
-      shop_id: 店铺ID
+      shop: 店铺
       status: 状态
       tags: 关键字
       options: 选项
       skus: 库存单元
-      order_item_ids: 订单ID集
+      order_items: 订单集
     shop:
       agb: 使用条款和法律声明
       banner: 店铺标题图片
@@ -117,7 +117,7 @@ zh-CN:
       seal5: 产品认证图片2
       seal6: 产品认证图片3
       seal7: 产品认证图片4
-      shopkeeper_id: 店主ID
+      shopkeeper: 店主
       shopname: 店铺名称
       sms: 短信通知
       sms_mobile: 短信移动号码
@@ -130,8 +130,8 @@ zh-CN:
       website: 网站地址
       wirecard_status: wirecard状态
       bank_account: 银行账户
-      address_ids: 地址ID集
-      product_ids: 产品ID集
+      addresses: 地址集
+      products: 产品集
     shop_application:
       code: 首次登陆密码
       desc: 描述
@@ -176,9 +176,9 @@ zh-CN:
       country: 国家
       email: 邮件
       fname: 名
-      follower_ids: 关注者ID集
-      following_ids: 关注ID集
-      liked_collection_ids: 关注的收藏ID集
+      followers: 关注者集
+      followings: 被关注集
+      liked_collections: 关注的收藏集
       lname: 姓
       mobile: 移动电话
       pic: 投降
@@ -188,9 +188,9 @@ zh-CN:
       username: 用户名
       website: 主页
       dCollection: 默认收藏
-      oCollection_ids: 自建收藏ID集
-      order_ids: 订单ID集
-      address_ids: 地址ID集
+      oCollections: 自建收藏集
+      orders: 订单集
+      addresses: 地址集
       shop: 商店
     variant_option:
       name: 名称

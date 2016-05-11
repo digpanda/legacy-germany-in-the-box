@@ -1,3 +1,5 @@
+require 'rails_helper'
+
 describe UsersController do
 
   context "listing without authentification (API)" do

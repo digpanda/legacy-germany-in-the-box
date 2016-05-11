@@ -25,71 +25,71 @@ de:
       lname: Nachname
       mobile: Mobiltelefon
       number: Hausnummer
-      order_ids: Auftragsnummer
+      orders: Aufträge
       primary: Primär
       province: Provinz
-      shop_id: Shopsnummer
+      shop: Shop
       street: Straße
       tel: Telefon
       type: Typ
-      user_id: Benutzernummer
+      user: Benutzer
       zip: Postleitzahl
     bank_account:
       bic: BIC
       debit: Kontonummer
       iban: IBAN
       name: NAME
-      shop_id: Shop-ID
+      shop: Shop
     category:
       name: Name
-      parent_id: Übergeordnete
-      product_ids: Produkt-IDs
+      parent: Übergeordnete
+      products: Produkte
       status: Status
-      child_ids: Untergeordnete
+      children: Untergeordneten
     collection:
       desc: Beschreibung
       img: Bild
       name: Name
-      product_ids: Produkt-IDs
+      products: Produkte
       public: Veröffentlich
-      user_id: Benutzer-ID
-      user_ids: Fan-IDs
+      user: Benutzer
+      userss: Fans
     duty_category:
       name: Name
-      parent_id: Übergeordnete
-      product_ids: Produkt-IDs
+      parent: Übergeordnete
+      products: Produkte
       status: Status
-      child_ids: Untergeordneten
+      children: Untergeordneten
       code: Zollnummer
     order:
-      delivery_destination_id: Versandanschrift-ID
+      delivery_destination: Versandanschrift
       status: Status
-      user_id: Benutzer-ID
-      order_item_ids: Auftragsdetail-ID
+      user: Benutzer
+      order_items: Auftragsdetails
     order_item:
       option_ids: Option-IDs
       option_names: Optionname
-      order_id: Auftrag-ID
+      order: Auftrag
       price: Preis
-      product_id: Produkt-ID
+      product: Produkt
       product_name: Produktname
       quantity: Quantität
       sku_id: SKU-ID
       weight: Gewicht
     product:
       brand: Marke
-      category_ids: Kategorie-IDs
-      collection_ids: Favorit-ID
+      categories: Kategorien
+      collections: Favorite
       cover: Deckenbild
       desc: Beschreibung
-      duty_category_id: Zollkategorie-ID
+      duty_category: Zollkategorie
       name: Name
-      shop_id: Shop-ID
+      shop: Shop
       status: Status
       tags: Schlüsselwörter
       options: Optionen
       skus: SKUs
-      order_item_ids: Vertragsdetail-ID
+      order_items: Vertragsdetails
     shop:
       agb: AGB
       banner: Banner
@@ -117,7 +117,7 @@ de:
       seal5: Produktsiegel2
       seal6: Produktsiegel3
       seal7: Produktsiegel4
-      shopkeeper_id: Besitzer-ID
+      shopkeeper: Shop-Besitzer
       shopname: Shopname
       sms: benachrichtigt per sms
       sms_mobile: Mobiltelefon
@@ -130,8 +130,8 @@ de:
       website: Website
       wirecard_status: Wirecard-Status
       bank_account: Bankkonto
-      address_ids: Anschrift-ID
-      product_ids: Produkt-ID
+      address: Anschrifte
+      product: Produkte
     shop_application:
       code: Initialpasswort
       desc: Beschreibung
@@ -176,9 +176,9 @@ de:
       country: Land
       email: EMail
       fname: Vorname
-      follower_ids: Anhänger-IDs
-      following_ids: IDs der Gefällten
-      liked_collection_ids: IDs der gefällten Favoriten
+      followers: Anhänger
+      followings: Gefällten
+      liked_collections: Gefällte Favoriten
       lname: Nachname
       mobile: Mobiltelefon
       pic: Logo
@@ -188,9 +188,9 @@ de:
       username: Username
       website: Website
       dCollection: Standardfavorit
-      oCollection_ids: Eigenfavoriten
-      order_ids: Auftrag-IDs
-      address_ids: Anschrift-IDs
+      oCollections: Eigenfavoriten
+      orders: Aufträge
+      addresses: Anschrifte
       shop: Shop
     variant_option:
       name: Name
