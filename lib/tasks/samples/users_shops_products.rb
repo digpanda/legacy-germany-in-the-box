@@ -52,11 +52,11 @@ u.delete if u
 
 User.create!(:username => 'admin', :email => 'admin@hotmail.com', :password => '12345678', :password_confirmation => '12345678', :role => :admin)
 
-customer = User.create!(:username => 'customer01', :email => 'customer01@hotmail.com', :gender => 'm', :birth => '1978-01-01', :password => '12345678', :password_confirmation => '12345678', :role => :customer)
+customer = User.create!(:username => 'customer01', :email => 'customer01@hotmail.com', :gender => 'm', :birth => '1978-01-01', :password => '12345678', :password_confirmation => '12345678', :role => :customer, :fname => 'Y', :lname => 'L')
 customer.oCollections.create!(:name => 'My Son', :public => true)
 customer.oCollections.create!(:name => 'My Wife', :public => false)
 
-customer = User.create!(:username => 'customer02', :email => 'customer02@hotmail.com', :gender => 'f', :birth => '1978-02-01', :password => '12345678', :password_confirmation => '12345678', :role => :customer)
+customer = User.create!(:username => 'customer02', :email => 'customer02@hotmail.com', :gender => 'f', :birth => '1978-02-01', :password => '12345678', :password_confirmation => '12345678', :role => :customer, :fname => 'Y', :lname => 'L')
 customer.oCollections.create!(:name => 'My Son', :public => true)
 customer.oCollections.create!(:name => 'My Wife', :public => false)
 

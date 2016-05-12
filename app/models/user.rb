@@ -41,12 +41,11 @@ class User
   validates :gender,        presence: true, :if => lambda { :customer == self.role }
   validates :status,        presence: true
 
-  validates :fname,   length: {maximum: 32}
-  validates :lname,   length: {maximum: 32}
-  validates :birth,   length: {maximum: 10}
-  validates :about,   length: {maximum: 1024*16}
-  validates :website, length: {maximum: 256}
-
+  validates :fname,         presence: true, :if => lambda { :customer == self.role }, length: {maximum: Rails.configuration.max_tiny_text_length}
+  validates :lname,         presence: true, :if => lambda { :customer == self.role }, length: {maximum: Rails.configuration.max_tiny_text_length}
+  validates :birth,         presence: true, :if => lambda { :customer == self.role }, length: {maximum: 10}
+  validates :about,         length: {maximum: Rails.configuration.max_medium_text_length}
+  validates :website,       length: {maximum: Rails.configuration.max_short_text_length}
 
   validates :oCollections, :length => { :maximum => Rails.configuration.max_customer_collections },   :if => lambda { :customer   == self.role }
   validates :oCollections, :length => { :maximum => Rails.configuration.max_shopkeeper_collections }, :if => lambda { :shopkeeper == self.role }

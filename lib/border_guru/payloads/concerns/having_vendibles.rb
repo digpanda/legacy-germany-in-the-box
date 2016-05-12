@@ -16,17 +16,17 @@ module BorderGuru
         }
       end
 
-      def line_items(products)
-        products.map do |prod|
+      def line_items(skus)
+        skus.map do |s|
           {
-            sku: prod.prodid,
-            shortDescription: prod.name,
-            price: prod.price,
-            category: (Rails.env.test? ? 'test' : prod.duty_category.border_guru_id),
-            weight: prod.weight_in_kg,
+            sku: s.id,
+            shortDescription: s.sku.product.name,
+            price: s.price,
+            category: (Rails.env.test? ? 'test' : s.sku.product.duty_category.code),
+            weight: s.weight,
             weightScale: WEIGHT_UNIT,
-            countryOfManufacture: prod.country_of_manufacture.alpha2
-          }.merge yield prod
+            countryOfManufacture: s.sku.product.shop.sender_address.country.alpha2
+          }.merge yield s
         end
       end
     end

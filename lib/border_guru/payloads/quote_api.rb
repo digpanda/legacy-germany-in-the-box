@@ -24,7 +24,7 @@ module BorderGuru
       private
 
       def line_items
-        super(@cart.cart_products) do |prod|
+        super(@cart.cart_skus) do |prod|
           {
             quantity: prod.quantity_in_cart,
           }

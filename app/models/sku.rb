@@ -14,7 +14,7 @@ class Sku
   field :status,        type: Boolean,    default: true
   field :customizable,  type: Boolean,    default: false
   field :discount,      type: Integer,    default: 0
-  field :unit,          type: String
+  field :unit,          type: String,     default: 'kg'
   field :space_length,  type: Float
   field :space_width,   type: Float
   field :space_height,  type: Float

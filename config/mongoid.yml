@@ -27,12 +27,10 @@ development:
 test:
   clients:
     default:
-      database: digpanda
+      database: a_chat_test
       hosts:
         - localhost:27017
       options:
-        user: loschcode
-        password: pandarocks
         read:
           mode: :primary
         max_retries: 1

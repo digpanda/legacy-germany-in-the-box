@@ -2,7 +2,7 @@ class Cart
   include Mongoid::Document
   include HasProductSummaries
 
-  delegate :empty?, to: :cart_products
+  delegate :empty?, to: :cart_skus
 
   # If the cart is set up to display the shipping costs
   # for its current content, you will have to make a quote
@@ -25,18 +25,18 @@ class Cart
   # CartProduct (the proxy embedded in Cart), while the
   # CartProduct itsself "belongs_to" the Product
   # (not embedded/"frozen", therefore remaining independent).
-  embeds_many :cart_products
-  summarizes product_list: :cart_products, by: :quantity_in_cart
+  embeds_many :cart_skus
+  summarizes sku_list: :cart_skus, by: :quantity_in_cart
 
-  def add(product, quantity)
-    cart_products << CartProduct.new(
-      product: product,
+  def add(sku, quantity)
+    cart_skus << CartSku.new(
+      sku: sku,
       quantity_in_cart: quantity
     )
   end
 
   def create_order(options = {})
-    order_line_items = cart_products.map &:becomes_order_line_item
+    order_line_items = cart_skus.map &:becomes_order_line_item
     Order.new({
       border_guru_quote_id: border_guru_quote_id,
       order_line_items: order_line_items,

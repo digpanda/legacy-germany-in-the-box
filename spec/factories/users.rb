@@ -26,6 +26,12 @@ FactoryGirl.define do
 
   end
 
+  factory :shopkeeper, :class => User do
+    role      :shopkeeper
+    username  'dailycron'
+    email     'dailycron@hotmail.com'
+  end
+
   factory :user do
 
     role :customer
@@ -48,6 +54,8 @@ FactoryGirl.define do
     authentication_token "xfu16vcEYGBweBiN1FVL"
 
     current_sign_in_ip "127.0.0.1"
+
+    addresses {[FactoryGirl.build(:customer_address)]}
     
   end
 end

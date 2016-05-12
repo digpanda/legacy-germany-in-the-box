@@ -114,6 +114,10 @@ class Shop
     sender_address ? sender_address.country : nil
   end
 
+  def country_of_dispatcher
+    sender_address.country
+  end
+
   private
 
   def ensure_shopkeeper

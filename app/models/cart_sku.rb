@@ -1,16 +1,18 @@
-class CartProduct
+class CartSku
   include Mongoid::Document
 
   field :quantity_in_cart, type: Integer
+
   # inverse_of nil because products do not yet need to know
   # whether they are part of a cart (=wrapped by a cart product)
-  belongs_to :product, inverse_of: nil
-  PROXIED_FIELDS = Product.attribute_names +
+  belongs_to :sku, inverse_of: nil
+
+  PROXIED_FIELDS = Sku.attribute_names +
       %w(duty_category)
 
   def method_missing(method, *args, &b)
     if PROXIED_FIELDS.include? method.to_s
-      product.send method
+      sku.send method
     else
       super
     end
