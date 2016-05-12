@@ -27,8 +27,6 @@ class Address
   scope :is_billing,  ->  { any_of({type: 'billing'}, {type: 'both'}) }
   scope :is_sender,   ->  { any_of({type: 'sender'}, {type: 'both'}) }
 
-  has_and_belongs_to_many :orders,  :inverse_of => :delivery_destination
-
   validates :number,    presence: true,   length: {maximum: Rails.configuration.max_tiny_text_length}
   validates :street,    presence: true,   length: {maximum: Rails.configuration.max_short_text_length}
   validates :city,      presence: true,   length: {maximum: Rails.configuration.max_tiny_text_length}
@@ -45,7 +43,7 @@ class Address
   validates :province,  presence: true,   length: {maximum: Rails.configuration.max_tiny_text_length},  :if => lambda{ self.country_code == 'zh-CN' }
 
   def country_code
-    (country ? country.alpha2 : '') # TODO: this should never happen, we shouldn't check if country exists ever
+    country.alpha2
   end
 
   def country_name

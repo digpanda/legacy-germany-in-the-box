@@ -1,16 +1,17 @@
 .row
   = render 'cart', order: @order
 
-- if @order.delivery_destination.present?
+- if a = @order.delivery_destination
   .row
     .address-box
       %ul
-        %li= "Street, Building & Room : #{ @order.delivery_destination.street_building_room }"
-        %li= "District : #{ @order.delivery_destination.district }"
-        %li= "City : #{ @order.delivery_destination.city }"
-        %li= "Province : #{ @order.delivery_destination.province }"
-        %li= "Country : #{ @order.delivery_destination.country }"
-        %li= "Zip : #{ @order.delivery_destination.zip }"
+        %li= "#{I18n.t(:street, scope: :edit_address)} : #{ a.street } #{ a.number }"
+        %li= "#{I18n.t(:additional, scope: :edit_address)} : #{ a.additional }"
+        %li= "#{I18n.t(:district, scope: :edit_address)} : #{ a.district }"
+        %li= "#{I18n.t(:city, scope: :edit_address)} : #{ a.city }"
+        %li= "#{I18n.t(:province, scope: :edit_address)} : #{ a.province }"
+        %li= "#{I18n.t(:country, scope: :edit_address)} : #{ a.country_local_name }"
+        %li= "#{I18n.t(:zip, scope: :edit_address)} : #{ a.zip }"
 - else
   .row
     %h4 Delivery destination is not set yet.

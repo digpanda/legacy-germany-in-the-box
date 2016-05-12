@@ -1,14 +1,17 @@
 class Order
   include MongoidBase
+  include HasProductSummaries
 
   field :status, type: Symbol, default: :new
-  field :desc, type: String
-  
-  belongs_to :user,                 :inverse_of => :orders
-  belongs_to :delivery_destination, :inverse_of => :orders, :class_name => 'Address'
+  field :desc,   type: String
 
-  has_many :order_items,  :inverse_of => :order, dependent: :restrict
-  has_many :order_payments,  :inverse_of => :order, dependent: :restrict
+  field :border_guru_quote_id, type: String
+
+  belongs_to :user,                 :inverse_of => :orders
+  embeds_one :delivery_destination,  :inverse_of => :orders, :class_name => 'Address'
+
+  has_many :order_items,      :inverse_of => :order,    dependent: :restrict
+  has_many :order_payments,   :inverse_of => :order,    dependent: :restrict
 
   # TODO : inclusion should be re-abilited when we are sure of what we include
   validates :status,                  presence: true #, inclusion: {in: [:new, :checked_out, :shipped, :paying,]}
@@ -16,6 +19,8 @@ class Order
   validates :delivery_destination,    presence: true, :unless => lambda { :new == self.status }
 
   before_save :ensure_at_least_one_order_item, :unless => lambda { :new == self.status }
+
+  summarizes sku_list: :order_items, by: :quantity
 
   def total_price
     order_items.inject(0) { |sum, i| sum += i.quantity * (:status != :new ? i.price : i.sku.price) }
@@ -31,7 +36,7 @@ class Order
 
       :status               => :paying,
       :user                 => user,
-      :delivery_destination => user.addresses.find(delivery_destination_id),
+      :delivery_destination => user.addresses.find(delivery_destination_id).attributes,
     
     })
 

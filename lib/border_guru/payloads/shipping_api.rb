@@ -19,13 +19,13 @@ module BorderGuru
                                             countryOfDestination: @country_of_destination.alpha2,
                                             currency: @currency,
                                             quoteIdentifier: @order.border_guru_quote_id,
-                                            merchantOrderId: @order.order_number,
+                                            merchantOrderId: @order.id,
                                             storeName: @shop.name,
                                             dimensionalWeight: @order.total_weight,
                                             dimensionalWeightScale: WEIGHT_UNIT,
                                             lineItems: line_items,
-                                            shippingAddress: [address(@order.shipping_address)],
-                                            billingAddress: [address(@order.billing_address)],
+                                            shippingAddress: [address(@order.delivery_destination)],
+                                            billingAddress: [address(@order.delivery_destination)],
                                             submerchant: {
                                                 company: "ExampleInc.",
                                                 streetName: "SampleStreet",
@@ -43,23 +43,24 @@ module BorderGuru
 
       def address(address_model)
         {
-            firstName: address_model.first_name,
-            lastName: address_model.last_name,
-            streetName: address_model.street_and_house_no,
-            additionalInfo: address_model.addition,
-            postcode: address_model.post_code,
+            firstName: address_model.fname,
+            lastName: address_model.lname,
+            streetName: address_model.street,
+            houseNo: address_model.number,
+            additionalInfo: address_model.additional,
+            postcode: address_model.zip,
             city: address_model.city,
             country: address_model.country_name,
-            telephone: address_model.telephone,
+            telephone: address_model.tel,
             email: address_model.email,
             countryCode: address_model.country_code
         }
       end
 
       def line_items
-        super @order.order_line_items.each do |prod|
+        super @order.order_items.each do |i|
           {
-              quantity: prod.quantity_ordered
+              quantity: i.quantity
           }
         end
       end

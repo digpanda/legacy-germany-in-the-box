@@ -25,7 +25,7 @@ describe BorderGuru::Payloads::QuoteApi do
 
   it 'adds products attributes to line items' do
     line_item = @payload.to_h[:lineItems].first
-    binding.pry
+
     {
         shortDescription: 'Product 1',
         price: 11,
@@ -40,6 +40,24 @@ describe BorderGuru::Payloads::QuoteApi do
 
   it 'adds cart value to the payload' do
     assert_equal BigDecimal.new(22), @payload.to_h[:subtotal]
+  end
+
+  it 'adds cart weight to the payload' do
+    assert_equal 0.1 * 2, @payload.to_h[:totalWeight]
+    assert_equal 'kg', @payload.to_h[:totalWeightScale]
+  end
+
+
+  it "adds shop's country of dispatcher to payload" do
+    assert_equal 'DE', @payload.to_h[:countryOfOrigin]
+  end
+
+  it "adds shop's currency to payload" do
+    assert_equal 'EUR', @payload.to_h[:currency]
+  end
+
+  it 'adds country of destination to payload' do
+    assert_equal 'CN', @payload.to_h[:countryOfDestination]
   end
 
 end
