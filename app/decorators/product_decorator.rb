@@ -30,9 +30,9 @@ class ProductDecorator < Draper::Decorator
     skus.detect {|s| s.option_ids.to_set == option_ids.to_set}
   end
 
-  def short_desc(words=35)
+  def short_desc(characters=60)
 
-    self.desc.split[0...words].push('...').join(' ')
+    self.desc.chars[0..characters].push("...").join
 
   end
 
