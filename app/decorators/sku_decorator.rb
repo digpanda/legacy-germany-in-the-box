@@ -18,6 +18,10 @@ class SkuDecorator < Draper::Decorator
     all_nonempty_img_fields.map { |f| self.send(f).url }
   end
 
+  def price_with_currency
+    "#{self.price} CNY"
+  end
+  
   private
 
   def thumb_params(image_field)
@@ -27,5 +31,5 @@ class SkuDecorator < Draper::Decorator
   def detail_params(image_field)
     Rails.configuration.product_image_detailview
   end
-
+  
 end
