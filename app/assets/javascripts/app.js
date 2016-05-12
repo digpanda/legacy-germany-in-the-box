@@ -249,7 +249,7 @@ module.exports = Home;
 });
 
 require.register("javascripts/controllers/pages/menu.js", function(exports, require, module) {
-"use strict";
+'use strict';
 
 /**
  * Menu Class
@@ -259,7 +259,10 @@ var Menu = {
   /**
    * Initializer
    */
-  init: function init() {}
+  init: function init() {
+
+    console.log('fuck');
+  }
 
 };
 
@@ -298,6 +301,54 @@ var ApplyWirecard = {
 module.exports = ApplyWirecard;
 });
 
+require.register("javascripts/helpers/search.js", function(exports, require, module) {
+"use strict";
+
+/**
+ * Search Class
+ */
+var Search = {
+
+  /**
+   * Initializer
+   */
+  init: function init() {
+
+    this.searchable_input();
+  },
+
+  /**
+   * We make the input searchable on click
+   */
+  searchable_input: function searchable_input() {
+
+    $("#js-search-click").on("click", function () {
+      $(this).hide();
+      $("#js-search-input").show();
+      $("#js-search-input #search").focus();
+    });
+
+    $(document).click(function () {
+      $("#js-search-input").hide();
+      $("#js-search-click").show();
+    });
+
+    $("#js-search-input").click(function (e) {
+      e.stopPropagation();
+      return false;
+    });
+
+    $("#js-search-click").click(function (e) {
+      e.stopPropagation();
+      return false;
+    });
+  }
+
+};
+
+module.exports = Search;
+});
+
 require.register("javascripts/initialize.js", function(exports, require, module) {
 "use strict";
 
@@ -308,6 +359,20 @@ document.addEventListener('DOMContentLoaded', function () {
    * Damn simple class loader.
    */
   var routes = $("#js-routes").data();
+  var helpers = $("#js-helpers").data();
+
+  try {
+
+    for (var helper in helpers) {
+
+      var _obj = require("javascripts/helpers/" + helper);
+      _obj.init();
+    }
+  } catch (err) {
+
+    console.log("Unable to initialize #js-helpers");
+    return;
+  }
 
   try {
 

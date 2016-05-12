@@ -5,6 +5,23 @@ document.addEventListener('DOMContentLoaded', () => {
    * Damn simple class loader.
    */
   let routes = $("#js-routes").data();
+  let helpers = $("#js-helpers").data();
+
+  try {
+
+    for (var helper in helpers) {
+
+      let obj = require("javascripts/helpers/"+helper);
+      obj.init();
+
+    }
+
+  } catch(err) {
+
+    console.log("Unable to initialize #js-helpers");
+    return;
+
+  }
   
   try {
 
