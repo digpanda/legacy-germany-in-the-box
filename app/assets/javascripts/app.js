@@ -322,16 +322,14 @@ var Search = {
    */
   searchable_input: function searchable_input() {
 
-    // TODO: refacto this ugly code
+    var self = this;
+
     $("#js-search-click").on("click", function () {
-      $(this).hide();
-      $("#js-search-input").show();
-      $("#js-search-input #search").focus();
+      self.show_searcher();
     });
 
     $(document).click(function () {
-      $("#js-search-input").hide();
-      $("#js-search-click").show();
+      self.show_clicker();
     });
 
     $("#js-search-input").click(function (e) {
@@ -341,6 +339,19 @@ var Search = {
     $("#js-search-click").click(function (e) {
       e.stopPropagation();
     });
+  },
+
+  show_clicker: function show_clicker() {
+
+    $("#js-search-input").hide();
+    $("#js-search-click").show();
+  },
+
+  show_searcher: function show_searcher() {
+
+    $(this).hide();
+    $("#js-search-input").show();
+    $("#js-search-input #search").focus();
   }
 
 };

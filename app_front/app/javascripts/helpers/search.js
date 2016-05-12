@@ -17,28 +17,40 @@ var Search = {
      */
     searchable_input: function() {
 
+      var self = this;
 
-      // TODO: refacto this ugly code
       $("#js-search-click").on("click", function() {
-        $(this).hide();
-        $("#js-search-input").show();
-        $("#js-search-input #search").focus();
+        self.show_searcher();
       });
 
       $(document).click(function() {
-         $("#js-search-input").hide();
-         $("#js-search-click").show();
+        self.show_clicker();
       });
 
       $("#js-search-input").click(function(e) {
-          e.stopPropagation(); 
+        e.stopPropagation(); 
       });
       
       $("#js-search-click").click(function(e) {
-          e.stopPropagation();
+        e.stopPropagation();
       });
 
     },
+
+    show_clicker: function() {
+
+      $("#js-search-input").hide();
+      $("#js-search-click").show();
+
+    },
+
+    show_searcher: function() {
+
+      $(this).hide();
+      $("#js-search-input").show();
+      $("#js-search-input #search").focus();
+
+    }
 
 }
 
