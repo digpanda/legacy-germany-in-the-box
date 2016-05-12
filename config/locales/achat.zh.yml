@@ -368,6 +368,8 @@ zh-CN:
     quantity: 数量
     duty_category: 报关产品分类
     duty_category_info: 明确的报关产品归类更好的对产品进行物流。
+    product_data: 技术指标/成分
+    product_data_info: 请您给出关于此产品的技术指标和成分说明。 (最多%{num}个字)
   edit_product_new:
     create_ok: 产品成功创建
     create_ko: 产品创建失败
