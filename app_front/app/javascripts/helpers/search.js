@@ -17,6 +17,8 @@ var Search = {
      */
     searchable_input: function() {
 
+
+      // TODO: refacto this ugly code
       $("#js-search-click").on("click", function() {
         $(this).hide();
         $("#js-search-input").show();
@@ -30,12 +32,10 @@ var Search = {
 
       $("#js-search-input").click(function(e) {
           e.stopPropagation(); 
-          return false;
       });
       
       $("#js-search-click").click(function(e) {
-          e.stopPropagation(); 
-          return false;
+          e.stopPropagation();
       });
 
     },

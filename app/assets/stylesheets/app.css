@@ -162,7 +162,7 @@
       .main-header__search.\--input:hover button.icon, .main-header__search.\--input:active button.icon, .main-header__search.\--input:focus button.icon {
         outline: none;
         opacity: 1;
-        margin-left: -20px; }
+        margin-left: -10px; }
       /* line 67, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_main-header.sass */
       .main-header__search.\--input:hover button.icon:hover {
         background: #83be58; }

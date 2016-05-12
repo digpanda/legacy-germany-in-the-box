@@ -55,6 +55,7 @@
   
             <!-- Research area -->
             <div class="col-md-4">
+            
               <div id="js-search-click">
               <a href="#"><span class="main-header__search"><i class="fa fa-search"></i> Search</span></a>
               </div>
@@ -62,8 +63,10 @@
               <!--<input class="main-header__search --input" name="q" placeholder="Search" title="Search" type="search" autocomplete="off">-->
 
                 <div class="main-header__search --input">
-                  <input type="search" id="search" placeholder="Search..." />
-                  <button class="icon"><i class="fa fa-search"></i></button>
+                  <form action="<%= search_products_path %>">
+                    <input type="search" id="search" name="search" autocomplete="off" placeholder="Search..." />
+                    <button class="icon" type="submit"><i class="fa fa-search"></i></button>
+                  </form>
                 </div>
 
               </div>
