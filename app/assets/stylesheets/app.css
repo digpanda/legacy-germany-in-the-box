@@ -161,6 +161,8 @@
 /* line 46, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_product-box.sass */
 .product-box__header img {
   display: block;
+  margin: 0 auto;
+  width: 65%;
   -webkit-border-radius: 5px 5px 0 0;
   border-radius: 5px 5px 0 0; }
 

@@ -14,7 +14,7 @@
               <header class="product-box__header">
 
                 <a href="#">
-                  <img src="<%= product.decorate.product_cover_url %>" alt="Image Alternative text" title="Cup on red">
+                  <img src="<%= product.decorate.product_cover_url %>" alt="<%= product.name %>" title="<%= product.name %>">
                 </a>
 
               </header>
@@ -22,7 +22,7 @@
               <div class="product-box__inner">
 
                 <h5 class="product-box__inner --title"><%= product.name %></h5>
-                <p class="product-box__iner --desciption"><%= product.desc %></p>
+                <p class="product-box__iner --desciption"><%= product.decorate.short_desc %></p>
 
                 <div class="product-box__meta">
 
@@ -31,7 +31,7 @@
                 </div>
 
                 <p class="product-box__location">
-                  <i class="fa fa-shopping-bag"></i> Shop Name
+                  <i class="fa fa-shopping-bag"></i> <%= product.shop.shopname %>
                 </p>
 
               </div>
