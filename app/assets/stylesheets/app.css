@@ -213,6 +213,9 @@
   margin-bottom: 0;
   color: #a3a3a3;
   font-size: 12px; }
+  /* line 90, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_product-box.sass */
+  .product-box__location a, .product-box__location a:active, .product-box__location a:hover, .product-box__location a:visited {
+    color: #bdc3c7; }
 
 /* line 32, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
 .slider {

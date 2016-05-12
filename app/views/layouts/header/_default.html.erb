@@ -12,7 +12,13 @@
 
             <!-- My Account -->
             <% if current_user&.is_admin? %>
+
+              Admin
+              
             <% elsif current_user&.is_shopkeeper? %>
+
+              Shopkeeper
+
             <% elsif current_user&.is_customer? %>
 
               <%= render 'layouts/header/menu/customer' %>

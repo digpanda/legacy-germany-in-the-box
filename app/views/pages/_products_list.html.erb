@@ -31,7 +31,9 @@
                 </div>
 
                 <p class="product-box__location">
-                  <i class="fa fa-shopping-bag"></i> <%= product.shop.shopname %>
+                  <a href="<%= shop_path(product.shop) %>">
+                    <i class="fa fa-shopping-bag"></i> <%= product.shop.shopname %>
+                  </a>
                 </p>
 
               </div>
