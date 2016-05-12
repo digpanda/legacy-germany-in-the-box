@@ -15,7 +15,9 @@
             <% elsif current_user&.is_shopkeeper? %>
             <% elsif current_user&.is_customer? %>
 
-              <%= render 'layouts/header/menu/customer' %>
+              <%= #render 'layouts/header/menu/customer'
+              %>
+
             <% else %>
               <a class="popup-text" data-effect="mfp-zoom-out" href="#login-dialog" id="sign_in_link">
                 

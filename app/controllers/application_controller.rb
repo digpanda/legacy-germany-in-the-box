@@ -10,6 +10,7 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :null_session, :if => Proc.new { |c| c.request.format.html? }
 
+  before_action :set_all_categories
   before_action :authenticate_user!, except: [:set_session_locale]
 
   acts_as_token_authentication_handler_for User, if: lambda { |controller| controller.request.format.json? }, :fallback => :none
@@ -31,6 +32,10 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  def set_all_categories
+    @category_navigation ||= CategoryNavigation.new
+  end
+  
   def custom_sublayout
     "sublayout/_#{current_user.role}"
   end

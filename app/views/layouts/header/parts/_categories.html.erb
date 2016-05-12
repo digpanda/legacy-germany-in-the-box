@@ -1,12 +1,15 @@
 <ul>
-  <% Category.roots.each do |category| %>
+  <% @category_navigation.roots.each do |category| %>
   <li class="col-md-2">
+
     <a href="#"><%= category.name %></a>
+
     <% if !category.children.empty? %>
-    <ul>
-      <%= category.decorate.draw_tree %> <!-- TODO : refacto this, here we have very bad decorator methodology /!\ !-->
-    </ul>
+      <ul>
+        <%= @category_navigation.sub_tree(category) %>
+      </ul>
     <% end %>
+
   </li>
   <% end %>
 </ul>
