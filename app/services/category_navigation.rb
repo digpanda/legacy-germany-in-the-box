@@ -13,7 +13,7 @@ class CategoryNavigation
 
   def sub_tree(category)
     children(category).inject("") do |memo, child| # We should refacto this code and put the HTML in a view
-      memo << "<li class=\"dir\"><a href=\"#\">#{child.name}</a>"
+      memo << "<li class=\"dir\"><a href=\"#{Rails.application.routes.url_helpers.show_products_in_category_path(child.id)}\">#{child.name}</a>"
       memo << "<ul>#{sub_tree(child)}</ul>" if has_children?(child)
       memo << "</li>"
     end.html_safe
