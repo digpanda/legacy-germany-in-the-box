@@ -322,12 +322,18 @@ h1 {
   font-weight: 400; }
 
 /* line 8, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/_global.sass */
-textarea, input {
+textarea, input, a {
   outline: none; }
 
-/* line 15, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/_global.sass */
+/* line 11, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/_global.sass */
+*:focus {
+  outline: none; }
+
+/* line 18, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/_global.sass */
 a, a:active, a:hover, a:visited {
-  text-decoration: none !important; }
+  text-decoration: none !important;
+  outline: none !important;
+  border: 0; }
 
 
 /*# sourceMappingURL=app.css.map*/

@@ -5,7 +5,10 @@ h1
   font-family: 'Raleway', sans-serif !important
   font-weight: 400
 
-textarea, input
+textarea, input, a
+  outline: none
+
+*:focus
   outline: none
 
 +component(products-list)
@@ -14,3 +17,5 @@ textarea, input
 
 #{$a-tags}
   text-decoration: none !important
+  outline: none !important
+  border: 0
