@@ -349,7 +349,7 @@ var Search = {
 
   show_searcher: function show_searcher() {
 
-    $(this).hide();
+    $("#js-search-click").hide();
     $("#js-search-input").show();
     $("#js-search-input #search").focus();
   }

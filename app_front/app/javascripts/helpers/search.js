@@ -46,7 +46,7 @@ var Search = {
 
     show_searcher: function() {
 
-      $(this).hide();
+      $("#js-search-click").hide();
       $("#js-search-input").show();
       $("#js-search-input #search").focus();
 
