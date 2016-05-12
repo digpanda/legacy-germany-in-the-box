@@ -26,6 +26,21 @@
 
     <%= csrf_meta_tag %>
 
+
+    <% if session[:login_advice_counter].present? %>
+      <%= hidden_field_tag :login_advice_counter, "#{session[:login_advice_counter]}" %>
+    <% end %>
+
+    <% if session[:signup_advice_counter].present? %>
+      <%= hidden_field_tag :signup_advice_counter, "#{session[:signup_advice_counter]}" %>
+    <% end %>
+
+    <script>
+      #{generate_validate_img_file_js}
+      #{generate_set_datepicker_lang_js}
+    </script>
+
+
     <!-- Base container -->
     <div class="container-fluid">
 
