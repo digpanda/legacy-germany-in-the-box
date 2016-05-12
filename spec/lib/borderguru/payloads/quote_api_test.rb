@@ -25,21 +25,21 @@ describe BorderGuru::Payloads::QuoteApi do
 
   it 'adds products attributes to line items' do
     line_item = @payload.to_h[:lineItems].first
+    binding.pry
     {
         shortDescription: 'Product 1',
-        price: 2.46,
-        weight: 1,
-        # see setup block
+        price: 11,
+        weight: 0.1,
         quantity: 2,
         countryOfManufacture: 'DE',
-        category: 'L2-276'
+        category: 'test'
     }.each do |key, expected|
       assert_equal expected, line_item[key]
     end
   end
 
   it 'adds cart value to the payload' do
-    assert_equal 4.92, @payload.to_h[:subtotal]
+    assert_equal BigDecimal.new(22), @payload.to_h[:subtotal]
   end
 
 end

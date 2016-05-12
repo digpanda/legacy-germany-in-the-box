@@ -24,12 +24,12 @@ FactoryGirl.define do
   end
 
   factory :sku do
-    price 2.46
+    price BigDecimal.new(11)
     quantity 2
-    weight 1
+    weight 0.1
     space_length 5
-    space_width 5
-    space_height 5
+    space_width 4
+    space_height 2
   end
 
 end
