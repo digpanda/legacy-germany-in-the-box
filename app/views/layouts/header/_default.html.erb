@@ -15,8 +15,7 @@
             <% elsif current_user&.is_shopkeeper? %>
             <% elsif current_user&.is_customer? %>
 
-              <%= #render 'layouts/header/menu/customer'
-              %>
+              <%= render 'layouts/header/menu/customer' %>
 
             <% else %>
               <a class="popup-text" data-effect="mfp-zoom-out" href="#login-dialog" id="sign_in_link">
@@ -34,7 +33,7 @@
         <div class="col-md-4">
           
           <!-- Logo -->
-          <a href="#">
+          <a href="<%= root_path %>">
             <div class="main-header__logo +centered">
               <img src="/assets/logo-half.png">
             </div>
