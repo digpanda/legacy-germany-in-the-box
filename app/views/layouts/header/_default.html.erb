@@ -1,3 +1,7 @@
+      <!-- Login and such (lightboxes) -->
+      <nav class="<%= for_device_type :desktop do 'navbar-fixed-top' end %>">
+        <%= render 'layouts/dialogs' %>
+      </nav>
 
       <!-- Main Menu Area -->
       <div class="row main-header">
@@ -7,10 +11,9 @@
           <div class="col-md-11 col-md-offset-1">
 
             <!-- My Account -->
-            <a href="#">
-              <span class="main-header__account"><i class="fa fa-user"></i> My Account</span>
+            <a class="popup-text" data-effect="mfp-zoom-out" href="#login-dialog" id="sign_in_link">
               
-              <a class="popup-text" data-effect="mfp-zoom-out" href="#login-dialog" id="sign_in_link"><i class="fa fa-sign-in"></i><%= I18n.t(:sign_in, scope: :top_menu) %></a>
+              <span class="main-header__account"><i class="fa fa-user"></i> My Account</span>
 
             </a>
 
