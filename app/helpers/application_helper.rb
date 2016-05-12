@@ -64,14 +64,6 @@ module ApplicationHelper
     }
   end
 
-  def get_uploaded_thumbnail_url(img)
-    if ENV['RAILS_ENV'] != 'local'
-      img ? (img.url ? img.url + '-thumbnailstd' : nil) : nil
-    else
-      img ? (img.url ? img.url(:thumb) : nil) : nil
-    end
-  end
-
   def inside_layout(layout = 'application', &block)
     render :inline => capture_haml(&block), :layout => "layouts/#{layout}"
   end

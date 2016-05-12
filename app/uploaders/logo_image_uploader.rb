@@ -4,7 +4,7 @@ class LogoImageUploader < CarrierWave::Uploader::Base
 
   include CarrierWave::MiniMagick
 
-  storage ENV["RAILS_ENV"] == 'local' ? :file : :qiniu
+  storage Rails.env.local? ? :file : :qiniu
 
   self.qiniu_can_overwrite = true
 
@@ -23,7 +23,7 @@ class LogoImageUploader < CarrierWave::Uploader::Base
     !self.file.content_type.include? 'image'
   end
 
-  if ENV["RAILS_ENV"] == 'local'
+  if Rails.env.local?
     # Create different versions of your uploaded files:
     version :thumb, :if => :image? do
       process :resize_and_pad => [90, 90]
