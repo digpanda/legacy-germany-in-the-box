@@ -26,7 +26,6 @@
 
     <%= csrf_meta_tag %>
 
-
     <% if session[:login_advice_counter].present? %>
       <%= hidden_field_tag :login_advice_counter, "#{session[:login_advice_counter]}" %>
     <% end %>
@@ -35,20 +34,20 @@
       <%= hidden_field_tag :signup_advice_counter, "#{session[:signup_advice_counter]}" %>
     <% end %>
 
-    <script>
-      #{generate_validate_img_file_js}
-      #{generate_set_datepicker_lang_js}
+    <script> 
+      <%= generate_validate_img_file_js %>
+      <%= generate_set_datepicker_lang_js %>
     </script>
 
 
     <!-- Base container -->
     <div class="container-fluid">
 
-      <%= render "layouts/header/#{!current_user ? 'default' : current_user.role.to_s}" %>
+      <%= render "layouts/header/default" %>
 
       <%= yield %>
     
-      <%= render "layouts/footer/#{!current_user ? 'default' : current_user.role.to_s}" %>
+      <%= render "layouts/footer/default" %>
 
 
     </div>

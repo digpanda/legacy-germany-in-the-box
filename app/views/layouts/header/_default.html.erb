@@ -11,11 +11,18 @@
           <div class="col-md-11 col-md-offset-1">
 
             <!-- My Account -->
-            <a class="popup-text" data-effect="mfp-zoom-out" href="#login-dialog" id="sign_in_link">
-              
-              <span class="main-header__account"><i class="fa fa-user"></i> My Account</span>
+            <% if current_user&.is_admin? %>
+            <% elsif current_user&.is_shopkeeper? %>
+            <% elsif current_user&.is_customer? %>
 
-            </a>
+              <%= render 'layouts/header/menu/customer' %>
+            <% else %>
+              <a class="popup-text" data-effect="mfp-zoom-out" href="#login-dialog" id="sign_in_link">
+                
+                <span class="main-header__account"><i class="fa fa-user"></i> My Account</span>
+
+              </a>
+            <% end %>
 
           </div>
 
