@@ -34,7 +34,7 @@
   font-family: 'Raleway', sans-serif; }
   /* line 11, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/helpers/_mixins.sass */
   .category-menu nav {
-    z-index: 2;
+    z-index: 5;
     position: relative; }
     /* line 15, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/helpers/_mixins.sass */
     .category-menu nav ul {
@@ -364,6 +364,13 @@
 /* line 44, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/hooks/_componia.sass */
 .table a {
   color: #659443; }
+
+/* line 47, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/hooks/_componia.sass */
+.panel-info > .panel-heading {
+  color: #fff !important;
+  background-color: #83be58 !important;
+  border-color: #659443 !important;
+  background-image: none !important; }
 
 /* line 1, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/_global.sass */
 h1 {
