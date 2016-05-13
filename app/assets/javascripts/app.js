@@ -249,7 +249,7 @@ module.exports = Home;
 });
 
 require.register("javascripts/controllers/pages/menu.js", function(exports, require, module) {
-'use strict';
+"use strict";
 
 /**
  * Menu Class
@@ -259,10 +259,7 @@ var Menu = {
   /**
    * Initializer
    */
-  init: function init() {
-
-    console.log('fuck');
-  }
+  init: function init() {}
 
 };
 

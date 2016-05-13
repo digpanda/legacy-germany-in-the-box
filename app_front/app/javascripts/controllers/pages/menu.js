@@ -9,8 +9,6 @@ var Menu = {
    */
   init: function() {
 
-    console.log('fuck');
-
   },
 
 }
