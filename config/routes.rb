@@ -8,6 +8,9 @@ Rails.application.routes.draw do
     match :cancel_signup,   via: [:get] ,     to: 'registrations#cancel_signup',  as: :cancel_signup
   end
 
+  #match :messy,         via: [:get],    action: :messy,         as: :messy
+  get '/api/messy', to: 'api#messy', as: 'messy'
+
   captcha_route
 
   mount ChinaCity::Engine => '/china_city'
