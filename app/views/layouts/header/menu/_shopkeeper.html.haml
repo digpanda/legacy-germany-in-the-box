@@ -1,6 +1,11 @@
-%li.dropdown
+%div.dropdown
   %a{ 'data-toggle' => 'dropdown', :href => '#'}
-    = image_tag ( current_user.shop&.logo ? current_user.shop.decorate.image_url(:logo, :thumb) : 'icons/default_user_pic.png'), :style => 'width:24px;height:24px'
+
+    %span.main-header__account
+      %i.fa.fa-user
+      My Account
+
+    -#= image_tag ( current_user.shop&.logo ? current_user.shop.decorate.image_url(:logo, :thumb) : 'icons/default_user_pic.png'), :style => 'width:24px;height:24px'
     %span.caret
   %ul.dropdown-menu
     - if current_user.shop && current_user.shop.agb

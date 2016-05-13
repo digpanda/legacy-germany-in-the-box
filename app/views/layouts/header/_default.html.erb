@@ -14,11 +14,11 @@
             <!-- My Account -->
             <% if current_user&.is_admin? %>
 
-              Admin
+              <%= render 'layouts/header/menu/admin' %>
               
             <% elsif current_user&.is_shopkeeper? %>
 
-              Shopkeeper
+              <%= render 'layouts/header/menu/shopkeeper' %>
 
             <% elsif current_user&.is_customer? %>
 

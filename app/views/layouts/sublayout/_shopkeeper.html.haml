@@ -1,7 +1,10 @@
+
 = inside_layout do
-  .col-md-3
-    %aside.sidebar-left
-      %ul.nav.nav-pills.nav-stacked.nav-arrow
-        = render partial: "layouts/sublayout/menu/shopkeeper"
-  .col-md-9
-    = yield
+  .row
+    %div{:class => "+spacer"}
+    .col-md-3
+      %aside.sidebar-left
+        %ul.nav.nav-pills.nav-stacked.nav-arrow
+          = render partial: "layouts/sublayout/menu/shopkeeper"
+    .col-md-8
+      = yield
