@@ -14,7 +14,10 @@ class RecordedResponses
         @@shop = create :shop
         @@product = @@shop.products.first
         @@sku = @@product.skus.first
-        @@sender_address = @@shop.sender_address
+
+
+        @@customer = create :user
+        @@shipping_address = @@customer.addresses.first
 
         calculate_quote
         get_shipping
@@ -87,7 +90,7 @@ class RecordedResponses
         begin
           BorderGuru.announce_dispatch(
             order: order,
-            dispatcher: @@sender_address
+            dispatcher: @@shipping_address
           )
         end
     end
@@ -101,8 +104,8 @@ class RecordedResponses
         begin
           calculate_quote
           order = cart.create_order(
-            shipping_address: @sender_address,
-            billing_address: @sender_address
+            shipping_address: @@shipping_address,
+            billing_address: @@shipping_address
           )
           order
         end
@@ -127,16 +130,129 @@ module TestScheduler
   end
 end
 
-# These tests are a bit special: they rely on responses from BorderGuru, and we
-# dont want to execute tons of requests anew for each test, so the approach
-# taken is to get all responses once and then test them. That means shared state
-# among the tests. That again means asynchrony issues. To make sure that all tests
-# are executed only when their shared state is set up, the tests are queued and
-# bulk-executed as soon as RecordedResponses.init is done initialising and yields.
 describe 'BorderGuruTest' do
+
   it 'calculate_quote is success' do
     TestScheduler.on_ready do |response|
       assert response.calculate_quote.success?
     end
   end
+
+  it 'calculate_quote echos input request data' do
+    TestScheduler.on_ready do |response|
+      {
+          :short_description => 'Product 1',
+          :price => 11,
+          :weight => 0.1,
+          :weight_scale => "kg",
+          :quantity => 2
+      }.each do |key, value|
+        assert_equal response.calculate_quote.line_items.first[key.to_s], value
+      end
+    end
+  end
+
+  it 'calculate_quote has line items with tax and duty' do
+    TestScheduler.on_ready do |response|
+      assert_kind_of ::Numeric, response.calculate_quote.line_items.first['tax']
+      assert_kind_of ::Numeric, response.calculate_quote.line_items.first['duty']
+    end
+  end
+
+  it 'calculate_quote summarises line items tax and duty costs' do
+    TestScheduler.on_ready do |response|
+      assert_kind_of ::Numeric, response.calculate_quote.tax_and_duty_cost
+    end
+  end
+
+  it 'calculate_quote returns shipping cost' do
+    TestScheduler.on_ready do |response|
+      assert_kind_of ::Numeric, response.calculate_quote.shipping_cost
+    end
+  end
+
+  it 'calculate_quote returns quote currency' do
+    TestScheduler.on_ready do |response|
+      assert_kind_of ::String, response.calculate_quote.quote_currency
+    end
+  end
+
+  it 'calculate_quote has totals' do
+    TestScheduler.on_ready do |response|
+      assert_kind_of ::Numeric, response.calculate_quote.quote_subtotal
+      assert_kind_of ::Numeric, response.calculate_quote.total
+    end
+  end
+
+  it "calculate_quote saves BorderGuru's quoteIdentifier with cart" do
+    TestScheduler.on_ready do |response|
+      assert_kind_of ::String, response.calculate_quote.quote_identifier
+      assert_equal response.calculate_quote.quote_identifier, response.cart.border_guru_quote_id
+    end
+  end
+
+  it "calculate_quote saves BorderGuru's tax and duty cost with cart" do
+    TestScheduler.on_ready do |response|
+      assert_kind_of ::Numeric, response.calculate_quote.tax_and_duty_cost
+      assert_equal response.calculate_quote.tax_and_duty_cost, response.cart.tax_and_duty_cost
+    end
+  end
+
+  it "calculate_quote saves BorderGuru's shipment cost with cart" do
+    TestScheduler.on_ready do |response|
+      assert_kind_of ::Numeric, response.calculate_quote.shipping_cost
+      assert_equal response.calculate_quote.shipping_cost, response.cart.shipping_cost
+    end
+  end
+
+  it 'get_shipping is success' do
+    TestScheduler.on_ready do |response|
+      assert response.get_shipping.success?
+    end
+  end
+
+  it 'get_shipping saves shipment identifier with order' do
+    TestScheduler.on_ready do |response|
+      assert_kind_of ::String, response.get_shipping.shipment_identifier
+      assert_equal response.get_shipping.shipment_identifier, response.order.border_guru_shipment_id
+    end
+  end
+
+  it 'get_shipping saves tracking link with order' do
+    TestScheduler.on_ready do |response|
+      assert_kind_of ::String, response.get_shipping.link_tracking
+      assert_equal response.get_shipping.link_tracking, response.order.border_guru_link_tracking
+    end
+  end
+
+  it 'get_label is success' do
+    TestScheduler.on_ready do |response|
+      assert response.get_label.success?
+    end
+  end
+
+  it 'get_label is a PDF' do
+    TestScheduler.on_ready do |response|
+      assert_match /PDF/, response.get_label.bindata
+    end
+  end
+
+  it 'cancel_order is success' do
+    TestScheduler.on_ready do |response|
+      assert response.cancel_order.success?
+    end
+  end
+
+  it 'cancel_order has a reason' do
+    TestScheduler.on_ready do |response|
+      assert response.cancel_order.reason
+    end
+  end
+
+  it 'announce_dispatch is success' do
+    TestScheduler.on_ready do |response|
+      assert response.announce_dispatch.success?
+    end
+  end
+
 end

@@ -1,7 +1,7 @@
 .row
   = render 'cart', order: @order
 
-- if a = @order.delivery_destination
+- if a = @order.shipping_address
   .row
     .address-box
       %ul

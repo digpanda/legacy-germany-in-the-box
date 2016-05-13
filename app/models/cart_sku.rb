@@ -30,6 +30,8 @@ class CartSku
     current_order_item.option_ids = sku.option_ids
     current_order_item.option_names = get_options(sku)
     current_order_item.quantity = quantity_in_cart
+
+    current_order_item
   end
 
   private
