@@ -19,8 +19,31 @@ class CartSku
   end
 
   def becomes_order_line_item
-    product.becomes(OrderLineItem).tap do |oli|
-      oli.quantity_ordered = quantity_in_cart
+    current_order_item = OrderItem.new
+
+    current_order_item.price = sku.price
+    current_order_item.quantity = 2
+    current_order_item.weight = sku.weight
+    current_order_item.product = sku.product
+    current_order_item.product_name = sku.product.name
+    current_order_item.sku_id = sku.id.to_s
+    current_order_item.option_ids = sku.option_ids
+    current_order_item.option_names = get_options(sku)
+    current_order_item.quantity = quantity_in_cart
+  end
+
+  private
+
+  def get_options(sku)
+    variants = sku.option_ids.map do |oid|
+      sku.product.options.detect do |v|
+        v.suboptions.find(oid)
+      end
+    end
+
+    variants.each_with_index.map do |v, i|
+      o = v.suboptions.find(sku.option_ids[i])
+      { name: v.name, option: { name: o.name } }
     end
   end
 end
