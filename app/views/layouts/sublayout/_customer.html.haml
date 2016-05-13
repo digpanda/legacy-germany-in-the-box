@@ -1,20 +1,10 @@
+
 = inside_layout do
-  - for_device_type :desktop, :tablet do
+  .row
+    %div{:class => "+spacer"}
     .col-md-3
       %aside.sidebar-left
         %ul.nav.nav-pills.nav-stacked.nav-arrow
           = render partial: "layouts/sublayout/menu/customer"
-
-  - for_device_type :mobile do
-    .row
-      %aside.sidebar-left
-        %ul.nav.nav-pills.nav-stacked.nav-arrow
-          = render partial: "layouts/sublayout/menu/customer"
-
-  - for_device_type :desktop, :tablet do
     .col-md-9
-      = yield
-  - for_device_type :mobile do
-    .gap
-    .row
       = yield

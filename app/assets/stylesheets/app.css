@@ -315,6 +315,52 @@
   background: #659443 !important;
   border-color: #659443 !important; }
 
+/* line 8, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/hooks/_componia.sass */
+.nav-pills.nav-stacked.nav-arrow > li.active a {
+  color: #fff !important;
+  background: #659443 !important;
+  border-color: #659443 !important; }
+
+/* line 13, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/hooks/_componia.sass */
+.nav-pills.nav-stacked.nav-arrow > li.active a:after {
+  background: #659443 !important; }
+
+/* line 16, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/hooks/_componia.sass */
+.nav-pills.nav-stacked.nav-arrow > li a:hover {
+  color: #659443 !important; }
+
+/* line 19, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/hooks/_componia.sass */
+.panel-primary > .panel-heading {
+  color: #fff !important;
+  background-color: #659443 !important;
+  border-color: #659443 !important; }
+
+/* line 24, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/hooks/_componia.sass */
+.panel-primary {
+  border-color: #659443 !important; }
+
+/* line 27, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/hooks/_componia.sass */
+.panel-primary > .panel-heading {
+  background-image: -o-linear-gradient(top, #659443 0, #659443 100%);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#659443), to(#659443));
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$color-green', endColorstr='$color-green', GradientType=0); }
+
+/* line 32, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/hooks/_componia.sass */
+.address-box:hover .address-box-new-icon {
+  background: #659443 !important; }
+
+/* line 35, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/hooks/_componia.sass */
+.address-box-remove:hover, .address-box-edit:hover {
+  background: #659443 !important; }
+
+/* line 38, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/hooks/_componia.sass */
+.caret {
+  color: #659443 !important; }
+
+/* line 41, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/hooks/_componia.sass */
+.table a {
+  color: #659443; }
+
 /* line 1, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/_global.sass */
 h1 {
   background-color: #e6fbd7;
