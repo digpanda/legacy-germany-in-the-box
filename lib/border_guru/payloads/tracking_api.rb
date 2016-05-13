@@ -24,7 +24,7 @@ module BorderGuru
       private
 
       def location
-        "#{@dispatcher.address.city}, #{@dispatcher.country.name}"
+        "#{@dispatcher.city}, #{@dispatcher.country.name}"
       end
 
     end
