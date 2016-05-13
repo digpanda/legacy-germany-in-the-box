@@ -101,9 +101,8 @@ class RecordedResponses
         begin
           calculate_quote
           order = cart.create_order(
-            destination_address: @sender_address,
-            billing_address: @sender_address,
-            order_number: "Test-order-number#{rand}"
+            shipping_address: @sender_address,
+            billing_address: @sender_address
           )
           order
         end
