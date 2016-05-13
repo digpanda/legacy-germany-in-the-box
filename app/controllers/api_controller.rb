@@ -21,9 +21,9 @@ class ApiController < ApplicationController
 
     @h.each do |key,sub|
 
-      n = [*1..50].sample
+      n = [*1..35].sample
 
-      if [*1..25].include? n
+      if [*1..18].include? n
 
         g = [0,1].sample
 
@@ -33,7 +33,7 @@ class ApiController < ApplicationController
           @z[key] = [fill_num]
         end
 
-      elsif n == 50
+      elsif n == 35
 
         raise ActionController::RoutingError.new('Not Found')
 
