@@ -6,7 +6,7 @@ class ApiController < ApplicationController
 
   def messy
 
-    @final_number = [10,5]
+    @final_number = [10,5,10]
     @h = Hash.new{ |h,v| h[v] = [] }
     @z = {}
     num = rand 5 .. 20
