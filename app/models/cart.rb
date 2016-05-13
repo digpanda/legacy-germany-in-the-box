@@ -39,7 +39,7 @@ class Cart
     order_line_items = cart_skus.map &:becomes_order_line_item
     Order.new({
       border_guru_quote_id: border_guru_quote_id,
-      order_line_items: order_line_items,
+      order_items: order_line_items,
       shipping_cost: shipping_cost,
       tax_and_duty_cost: tax_and_duty_cost
     }.merge(options))
