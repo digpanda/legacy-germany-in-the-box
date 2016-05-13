@@ -49,7 +49,6 @@
 
       <%= render "layouts/footer/default" %>
 
-
     </div>
 
     <!-- Brunch compiled front-end -->
@@ -58,6 +57,9 @@
     <script>
       require('javascripts/initialize');
     </script>
+
+    <!-- JS Helpers system -->
+    <div id="js-helpers" data-search data-footer></div>
 
     <!-- JS Routing system -->
     <div id="js-routes" data-controller="<%=params[:controller]%>" data-action="<%=params[:action]%>"></div>

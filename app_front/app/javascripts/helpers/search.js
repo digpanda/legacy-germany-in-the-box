@@ -8,23 +8,23 @@ var Search = {
      */
     init: function() {
 
-      this.searchable_input();
+      this.searchableInput();
 
     },
 
     /**
      * We make the input searchable on click
      */
-    searchable_input: function() {
+    searchableInput: function() {
 
       var self = this;
 
       $("#js-search-click").on("click", function() {
-        self.show_searcher();
+        self.showSearcher();
       });
 
       $(document).click(function() {
-        self.show_clicker();
+        self.showClicker();
       });
 
       $("#js-search-input").click(function(e) {
@@ -37,14 +37,14 @@ var Search = {
 
     },
 
-    show_clicker: function() {
+    showClicker: function() {
 
       $("#js-search-input").hide();
       $("#js-search-click").show();
 
     },
 
-    show_searcher: function() {
+    showSearcher: function() {
 
       $("#js-search-click").hide();
       $("#js-search-input").show();

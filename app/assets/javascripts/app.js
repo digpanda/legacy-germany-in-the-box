@@ -359,6 +359,59 @@ var ApplyWirecard = {
 module.exports = ApplyWirecard;
 });
 
+require.register("javascripts/helpers/footer.js", function(exports, require, module) {
+'use strict';
+
+/**
+ * Footer Class
+ */
+var Footer = {
+
+  /**
+   * Initializer
+   */
+  init: function init() {
+
+    console.log('yes');
+    this.stickyFooter();
+  },
+
+  /**
+   * Put the footer on the bottom of the page
+   */
+  stickyFooter: function stickyFooter() {
+
+    self = this;
+
+    if ($('.js-footer-stick').length > 0) {
+
+      this.processStickyFooter();
+
+      $(window).resize(function () {
+
+        self.processStickyFooter();
+      });
+    }
+  },
+
+  processStickyFooter: function processStickyFooter() {
+
+    var docHeight, footerHeight, footerTop;
+
+    docHeight = $(window).height();
+    footerHeight = $('.js-footer-stick').height();
+    footerTop = $('.js-footer-stick').position().top + footerHeight;
+
+    if (footerTop < docHeight) {
+      $('.js-footer-stick').css('margin-top', 10 + (docHeight - footerTop) + 'px');
+    }
+  }
+
+};
+
+module.exports = Footer;
+});
+
 require.register("javascripts/helpers/search.js", function(exports, require, module) {
 "use strict";
 
@@ -372,22 +425,22 @@ var Search = {
    */
   init: function init() {
 
-    this.searchable_input();
+    this.searchableInput();
   },
 
   /**
    * We make the input searchable on click
    */
-  searchable_input: function searchable_input() {
+  searchableInput: function searchableInput() {
 
     var self = this;
 
     $("#js-search-click").on("click", function () {
-      self.show_searcher();
+      self.showSearcher();
     });
 
     $(document).click(function () {
-      self.show_clicker();
+      self.showClicker();
     });
 
     $("#js-search-input").click(function (e) {
@@ -399,13 +452,13 @@ var Search = {
     });
   },
 
-  show_clicker: function show_clicker() {
+  showClicker: function showClicker() {
 
     $("#js-search-input").hide();
     $("#js-search-click").show();
   },
 
-  show_searcher: function show_searcher() {
+  showSearcher: function showSearcher() {
 
     $("#js-search-click").hide();
     $("#js-search-input").show();
