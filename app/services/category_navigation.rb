@@ -1,7 +1,7 @@
 class CategoryNavigation
 
   def categories
-    @categories ||= Category.only_with_products.to_a
+    @categories ||= Category.all.to_a # .only_with_products shouldn't be added here 
   end
 
   def roots
@@ -32,7 +32,9 @@ class CategoryNavigation
   def categories_by_parent
     @categories_by_parent ||= 
       categories.each_with_object(Hash.new{ |h,v| h[v] = [] }) do |category, memo|
-        memo[category.parent_id.to_s] << category
+        unless category.product_ids.empty? # if there's any product in this category we add it to the list
+          memo[category.parent_id.to_s] << category
+        end
       end
   end
 

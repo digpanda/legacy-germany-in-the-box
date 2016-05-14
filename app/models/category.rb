@@ -6,7 +6,7 @@ class Category
 
   def self.only_with_products
 
-    self.where(:product_ids => {:$not => {:$size => 0}})
+    self.where(:product_ids.ne => nil).and(:product_ids.ne => [])
 
   end
 
