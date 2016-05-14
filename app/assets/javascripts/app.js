@@ -225,7 +225,84 @@ var Home = {
   /**
    * Initializer
    */
-  init: function init() {}
+  init: function init() {
+
+    $('#js-slider').lightSlider({
+      "item": 1,
+      "loop": true,
+      "slideMargin": 0,
+      "pager": false,
+      "auto": true,
+      "pause": "3000",
+      "speed": "1000",
+      "adaptiveHeight": true,
+      "verticalHeight": 1000,
+      "mode": "fade",
+      "enableDrag": false,
+      "enableTouch": true
+    });
+
+    $.widget('custom.catcomplete', $.ui.autocomplete, {
+      _create: function _create() {
+        this._super();
+        this.widget().menu('option', 'items', '> :not(.ui-autocomplete-category)');
+      },
+      _renderMenu: function _renderMenu(ul, items) {
+        var that = this,
+            search_category = '';
+        $.each(items, function (index, item) {
+          var li;
+          if (item.sc != search_category) {
+            ul.append("<li class='ui-autocomplete-category'>" + item.sc + '</li>');
+            search_category = item.sc;
+          }
+          li = that._renderItemData(ul, item);
+          if (item.sc) {
+            li.attr('aria-label', item.sc + ' : ' + item.label);
+          }
+        });
+      }
+    });
+
+    $('#products_search_keyword').catcomplete({
+      delay: 1000,
+      source: '/products/autocomplete_product_name',
+      select: function select(a, b) {
+        $(this).val(b.item.value);
+        $('#search_products_form').submit();
+      }
+    });
+
+    $('select.variant-option').change(function () {
+      product_id = $(this).attr('product_id');
+      option_ids = [];
+
+      $('ul.product-page-meta-info [id^="product_' + product_id + '_variant"]').each(function (o) {
+        option_ids.push($(this).val());
+      });
+
+      $.ajax({
+        dataType: 'json',
+        data: { option_ids: this.value.split(',') },
+        url: '/products/' + product_id + '/get_sku_for_options',
+        success: function success(json) {
+          qc = $('#product_quantity_' + product_id).empty();
+
+          for (i = 1; i <= parseInt(json['quantity']); ++i) {
+            qc.append('<option value="' + i + '">' + i + '</option>');
+          }
+
+          $('#product_price_' + product_id).text(json['price'] + ' ' + json['currency']);
+          $('#product_discount_' + product_id).text(json['discount'] + ' ' + '%');
+          $('#product_saving_' + product_id).text(parseFloat(json['price']) * parseInt(json['discount']) / 100 + ' ' + json['currency']);
+          $('#product_inventory_' + product_id).text(json['quantity']);
+
+          fotorama = $('#product_quick_view_dialog_' + product_id).find('.fotorama').fotorama().data('fotorama');
+          fotorama.load([{ img: json['img0_url'] }, { img: json['img1_url'] }, { img: json['img2_url'] }, { img: json['img3_url'] }]);
+        }
+      });
+    });
+  }
 
 };
 
@@ -282,6 +359,117 @@ var ApplyWirecard = {
 module.exports = ApplyWirecard;
 });
 
+require.register("javascripts/helpers/footer.js", function(exports, require, module) {
+'use strict';
+
+/**
+ * Footer Class
+ */
+var Footer = {
+
+  /**
+   * Initializer
+   */
+  init: function init() {
+
+    console.log('yes');
+    this.stickyFooter();
+  },
+
+  /**
+   * Put the footer on the bottom of the page
+   */
+  stickyFooter: function stickyFooter() {
+
+    self = this;
+
+    if ($('.js-footer-stick').length > 0) {
+
+      this.processStickyFooter();
+
+      $(window).resize(function () {
+
+        self.processStickyFooter();
+      });
+    }
+  },
+
+  processStickyFooter: function processStickyFooter() {
+
+    var docHeight, footerHeight, footerTop;
+
+    docHeight = $(window).height();
+    footerHeight = $('.js-footer-stick').height();
+    footerTop = $('.js-footer-stick').position().top + footerHeight;
+
+    if (footerTop < docHeight) {
+      $('.js-footer-stick').css('margin-top', 10 + (docHeight - footerTop) + 'px');
+    }
+  }
+
+};
+
+module.exports = Footer;
+});
+
+require.register("javascripts/helpers/search.js", function(exports, require, module) {
+"use strict";
+
+/**
+ * Search Class
+ */
+var Search = {
+
+  /**
+   * Initializer
+   */
+  init: function init() {
+
+    this.searchableInput();
+  },
+
+  /**
+   * We make the input searchable on click
+   */
+  searchableInput: function searchableInput() {
+
+    var self = this;
+
+    $("#js-search-click").on("click", function () {
+      self.showSearcher();
+    });
+
+    $(document).click(function () {
+      self.showClicker();
+    });
+
+    $("#js-search-input").click(function (e) {
+      e.stopPropagation();
+    });
+
+    $("#js-search-click").click(function (e) {
+      e.stopPropagation();
+    });
+  },
+
+  showClicker: function showClicker() {
+
+    $("#js-search-input").hide();
+    $("#js-search-click").show();
+  },
+
+  showSearcher: function showSearcher() {
+
+    $("#js-search-click").hide();
+    $("#js-search-input").show();
+    $("#js-search-input #search").focus();
+  }
+
+};
+
+module.exports = Search;
+});
+
 require.register("javascripts/initialize.js", function(exports, require, module) {
 "use strict";
 
@@ -292,6 +480,20 @@ document.addEventListener('DOMContentLoaded', function () {
    * Damn simple class loader.
    */
   var routes = $("#js-routes").data();
+  var helpers = $("#js-helpers").data();
+
+  try {
+
+    for (var helper in helpers) {
+
+      var _obj = require("javascripts/helpers/" + helper);
+      _obj.init();
+    }
+  } catch (err) {
+
+    console.log("Unable to initialize #js-helpers");
+    return;
+  }
 
   try {
 

@@ -1,6 +1,7 @@
 +component(product-box)
 
   +part(thumb)
+    min-height: 430px
     z-index: 1
     position: relative
     text-decoration: none !important
@@ -45,6 +46,8 @@
   +part(header)
     img
       display: block
+      margin: 0 auto
+      width: 65%
       -webkit-border-radius: 5px 5px 0 0
       border-radius: 5px 5px 0 0
 
@@ -84,6 +87,9 @@
       font-size: 18px
 
   +part(location)
+    #{$a-tags}
+      color: $color-grey
+
     border-top: 1px dashed #e6e6e6
     margin-top: 13px
     padding-top: 8px

@@ -1,0 +1,107 @@
+
+      <!-- Login and such -->
+      <nav class="<%= for_device_type :desktop do 'navbar-fixed-top' end %>">
+        <%= render 'layouts/dialogs' %>
+      </nav>
+
+      <!-- Main Menu Area -->
+      <div class="row main-header">
+
+        <!-- Left side -->
+        <div class="col-md-4 +vertical-centered">
+          <div class="col-md-11 col-md-offset-1">
+
+            <!-- My Account -->
+            <% if current_user&.is_admin? %>
+
+              <%= render 'layouts/header/menu/admin' %>
+              
+            <% elsif current_user&.is_shopkeeper? %>
+
+              <%= render 'layouts/header/menu/shopkeeper' %>
+
+            <% elsif current_user&.is_customer? %>
+
+              <%= render 'layouts/header/menu/customer' %>
+
+            <% else %>
+              <a class="popup-text" data-effect="mfp-zoom-out" href="#login-dialog" id="sign_in_link">
+                
+                <span class="main-header__account"><i class="fa fa-user"></i> My Account</span>
+
+              </a>
+            <% end %>
+
+          </div>
+
+        </div>
+
+        <!-- Center side -->
+        <div class="col-md-4">
+          
+          <!-- Logo -->
+          <a href="<%= root_path %>">
+            <div class="main-header__logo +centered">
+              <img src="/assets/logo-half.png">
+            </div>
+          </a>
+
+        </div>
+
+        <!-- Right side -->
+        <div class="col-md-4 +vertical-centered">
+
+            <!-- Research area -->
+            <div class="col-md-6">
+            
+              <div id="js-search-click">
+              <a href="#"><span class="main-header__search"><i class="fa fa-search"></i> Search</span></a>
+              </div>
+              <div id="js-search-input" class="+hidden">
+
+                <div class="main-header__search --input">
+                  <form action="<%= search_products_path %>">
+                    <input type="search" id="search" name="search" autocomplete="off" placeholder="Search..." />
+                    <button class="icon" type="submit"><i class="fa fa-search"></i></button>
+                  </form>
+                </div>
+
+              </div>
+
+            </div>
+
+
+            <div class="col-md-3">
+              <a href="#">
+                <span class="main-header__likes"><i class="fa fa-heart"></i> 0</span>
+              </a>
+            </div>
+
+            <div class="col-md-3 +centered +strong">
+              <a href="#">
+                <span class="main-header__cart"><i class="fa fa-shopping-cart"></i> 5</span>
+              </a>
+            </div>
+
+        </div>
+
+      </div>
+      <!-- End of Main Menu Area -->
+
+      <!-- Category Menu -->
+      <div class="row category-menu">
+
+        <div class="col-md-12">
+
+          <div class="col-md-1"></div>
+
+          <nav>
+            <%= render partial: "layouts/header/parts/categories" %>
+          </nav>
+
+          <div class="col-md-1"></div>
+
+        </div>
+
+      </div>
+      <!-- End of Category Menu -->

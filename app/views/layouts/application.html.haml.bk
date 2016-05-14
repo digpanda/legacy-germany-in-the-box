@@ -61,6 +61,8 @@
 
     = render "layouts/footer/#{!current_user ? 'default' : current_user.role.to_s}"
 
+    = stylesheet_link_tag "application", :media => "all"
+
     = javascript_include_tag "vendor"
     = javascript_include_tag "app"
     :javascript

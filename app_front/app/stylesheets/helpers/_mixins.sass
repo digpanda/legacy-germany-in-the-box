@@ -9,7 +9,7 @@
 
 =navbar-system
   nav
-      z-index: 2
+      z-index: 5
       position: relative
 
       ul
@@ -28,7 +28,9 @@
             > ul
               display: block
             a
-              color: $color-black !important
+              color: black
+              &:hover
+                color: white
         ul
           display: none
           position: absolute
@@ -38,7 +40,7 @@
           padding: 0
           li
             float: none
-            width: 200px
+            width: 250px
           //a
             //color: $color-black
             //line-height: 120%

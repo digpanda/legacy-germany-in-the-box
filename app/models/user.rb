@@ -90,4 +90,16 @@ class User
   index({following: 1},           {unique: false, name: :idx_user_following,          sparse: true})
   index({liked_collections: 1},   {unique: false, name: :idx_user_liked_collections,  sparse: true})
 
+  def is_admin?
+    self.role == :admin
+  end
+
+  def is_shopkeeper?
+    self.role == :shopkeeper
+  end
+
+  def is_customer?
+    self.role == :customer
+  end
+
 end

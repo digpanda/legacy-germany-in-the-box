@@ -1,0 +1,15 @@
+<ul>
+  <% @category_navigation.roots.each do |category| %>
+  <li class="col-md-2">
+
+    <a href="<%= show_products_in_category_path(category.id) %>"><%= category.name %></a>
+
+    <% if !category.children.empty? %>
+      <ul>
+        <%= @category_navigation.sub_tree(category) %>
+      </ul>
+    <% end %>
+
+  </li>
+  <% end %>
+</ul>
