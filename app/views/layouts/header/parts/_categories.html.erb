@@ -1,16 +1,16 @@
-<% if @category_navigation.nil? %>
+<% if @category_navigation_store.nil? %>
   <ul class="col-md-2 +empty-space">
   </ul>
 <% else %>
   <ul>
-    <% @category_navigation.roots.each do |category| %>
+    <% @category_navigation_store.roots.each do |category| %>
     <li class="col-md-2">
 
       <a href="<%= show_products_in_category_path(category.id) %>"><%= category.name %></a>
 
       <% if !category.children.empty? %>
         <ul>
-          <%= @category_navigation.sub_tree(category) %>
+          <%= @category_navigation_store.sub_tree(category) %>
         </ul>
       <% end %>
 

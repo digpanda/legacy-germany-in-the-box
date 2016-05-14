@@ -1,4 +1,4 @@
-class CategoryNavigation
+class CategoryNavigationStore
 
   def categories
     @categories ||= Category.all.to_a # .only_with_products shouldn't be added here 

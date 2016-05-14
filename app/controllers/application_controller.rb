@@ -34,7 +34,7 @@ class ApplicationController < ActionController::Base
 
   def set_all_categories
     if current_user.nil? || current_user.is_customer?
-      @category_navigation ||= CategoryNavigation.new
+      @category_navigation_store ||= CategoryNavigationStore.new
     end
   end
   
