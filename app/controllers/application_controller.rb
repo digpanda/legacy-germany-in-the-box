@@ -81,7 +81,7 @@ class ApplicationController < ActionController::Base
   end
 
   def total_number_of_products
-    @total_number ||= session[:order_ids] ? current_orders.inject(0) { |sum, so| sum += so[1].total_amount } : 0
+    @total_number ||= session[:order_ids] ? current_orders.flatten.compact.inject(0) { |sum, so| sum += so[1].total_amount } : 0
   end
 
   def after_sign_in_path_for(resource)
