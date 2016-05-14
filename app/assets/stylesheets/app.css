@@ -376,6 +376,10 @@
   border-color: #659443 !important;
   background-image: none !important; }
 
+/* line 53, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/hooks/_componia.sass */
+.fotorama__thumb-border {
+  border-color: #83be58 !important; }
+
 /* line 1, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/_global.sass */
 h1 {
   background-color: #e6fbd7;

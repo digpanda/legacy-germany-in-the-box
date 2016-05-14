@@ -4,6 +4,12 @@ class Category
 
   has_and_belongs_to_many :products,  :inverse_of => :categories
 
+  def self.only_with_products
+
+    self.where(:product_ids => {:$not => {:$size => 0}})
+
+  end
+
   def total_products
     if children_count > 0
       children.is_active.inject(0) { |sum, c| sum += c.total_products }

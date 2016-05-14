@@ -1,7 +1,7 @@
 class CategoryNavigation
 
   def categories
-    @categories ||= Category.all.to_a
+    @categories ||= Category.only_with_products.to_a
   end
 
   def roots
