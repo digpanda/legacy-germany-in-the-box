@@ -23,7 +23,7 @@ class ProductDecorator < Draper::Decorator
   end
 
   def has_option?
-    self.options&.select { |o| o.suboptions && o.suboptions.size > 0 }.size > 0
+    self.options&.select { |o| o.suboptions&.size > 0 }.size > 0
   end
 
   def get_sku(option_ids)

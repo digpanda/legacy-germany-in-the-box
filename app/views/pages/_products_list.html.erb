@@ -3,10 +3,11 @@
       <div class="row">
 
       <% grouped_products.each do |product| %>
+          <%= render partial: "product_popup", locals: {product: product} %>
 
           <div class="col-md-3 product-box">
 
-            <div class="product-box__thumb">
+            <div class="product-box__thumb popup-text" data-effect="mfp-move-from-top" href="#product_quick_view_dialog_<%= product.id %>" >
 
               <div class="product-box__like col-md-2 col-md-offset-10">
                 <a href="#"><i class="fa fa-heart"></i></a>
