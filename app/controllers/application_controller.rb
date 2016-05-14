@@ -33,7 +33,9 @@ class ApplicationController < ActionController::Base
   protected
 
   def set_all_categories
-    @category_navigation ||= CategoryNavigation.new
+    if current_user.nil? || current_user.is_customer?
+      @category_navigation ||= CategoryNavigation.new
+    end
   end
   
   def custom_sublayout

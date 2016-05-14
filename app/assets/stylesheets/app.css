@@ -26,6 +26,10 @@
 #csstyle .\+hidden {
   display: none; }
 
+/* line 85, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
+#csstyle .\+empty-space {
+  height: 50px; }
+
 /* line 32, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
 .category-menu {
   background-color: #659443;
