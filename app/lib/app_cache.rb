@@ -106,9 +106,4 @@ module AppCache
     return categories_and_children, categories_and_counters
   end
 
-  def get_grouped_variants_options_from_cache(p)
-    Rails.cache.fetch("get_grouped_variants_options_from_cache_#{p.id}_#{I18n.locale}", :expires_in => Rails.configuration.app_cache_expire_limit ) {
-      p.options.map { |v| [v.name, v.suboptions.sort { |a,b| a.name <=> b.name }.map { |o| [ o.name, o.id.to_s]}] }.to_a
-    }
-  end
 end

@@ -192,8 +192,4 @@ module ProductsHelper
     end
   end
 
-  def get_grouped_variants_options(product)
-    AppCache.get_grouped_variants_options_from_cache(product)
-  end
-
 end
