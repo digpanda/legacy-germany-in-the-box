@@ -19,37 +19,7 @@ class CategoryNavigationStore
     end.html_safe
   end
 
-  def grouped_categories_options(locale)
-    @grouped_categories_options ||= {}
-    @grouped_categories_options[locale] ||= begin
-      gco = []
-
-      categories.each do |rc|
-        if not second_last_branche?(rc)
-          gco += children(rc)
-        else
-          gco << rc
-        end
-      end
-
-      gco.sort {|a,b| total_products(b) <=> total_products(a) } .map {|rc| [rc.name_translations, children(rc).sort { |a,b| b.total_products <=> a.total_products }.map {|cc| [cc.name_translations, cc.id.to_s]} ] }.to_a.map { |c| [c[0][locale], c[1].map { |cc| [cc[0][locale], cc[1]]} ]}
-    end
-  end
-
-  def total_products(category)
-    if category.children_count > 0
-      children(category).inject(0) { |sum, c| sum += total_products(c) }
-    else
-      product_ids ? product_ids.size : 0
-    end
-  end
-
   private
-
-  def second_last_branche?(category)
-    @second_last_branches ||= categories.select { |c| c.children_count == 0 } .map { |c| c.parent.id } .uniq
-    @second_last_branches.include?(category.id)
-  end
 
   def has_children?(category)
     categories_by_parent[category.id.to_s].any?

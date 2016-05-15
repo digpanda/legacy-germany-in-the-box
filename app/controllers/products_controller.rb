@@ -26,7 +26,9 @@ class ProductsController < ApplicationController
   end
 
   def edit
-    @store = CategoryNavigationStore.new
+    @customer_categories_options = DutyAndCustomerCategorySelectStore.new(Category.name)
+    @duty_categories_options = DutyAndCustomerCategorySelectStore.new(DutyCategory.name)
+
     render :edit_product
   end
 
