@@ -104,7 +104,7 @@
           .row
             .col-md-6
               .form-group
-                = fs.select :option_ids, grouped_options_for_select(get_grouped_variants_options(@product), @sku.option_ids ), {}, {:multiple => 'multiple', :class => 'sku-variants-options', :required => true}
+                = fs.select :option_ids, grouped_options_for_select(@product.decorate.grouped_variants_options, @sku.option_ids ), {}, {:multiple => 'multiple', :class => 'sku-variants-options', :required => true}
             .col-md-6
               .input-group.form-group
                 = fs.text_field :quantity, :class => 'form-control', :placeholder => @sku.limited ? '' : I18n.t(@sku.limited.to_s.to_sym, scope: 'edit_product_detail.limited'), :pattern => I18n.t(:positive_integer, scope: :validation), :required => true
