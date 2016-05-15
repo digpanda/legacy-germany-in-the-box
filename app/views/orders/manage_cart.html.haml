@@ -5,21 +5,12 @@
       - if o.total_amount > 0
         .row
           %table.table
-            %tr.alert-success
-              %th= I18n.t(:subtotal, scope: :cart)
-              %td= "$#{o.total_price}"
-            -#%tr
-            -#  %th= I18n.t(:shipping, scope: :cart)
-            -#  %td $0.00
-            -#%tr
-            -#  %th= I18n.t(:taxes, scope: :cart)
-            -#  %td $0.00
             %tr
               %th= I18n.t(:total_price, scope: :cart)
-              %td= "$#{o.total_price}"
+              %td= o.decorate.total_price_in_currency(s.currency.code)
         .row
           = form_tag adjust_products_amount_in_orders_path, :id => 'orders_adjust_products_amount', :method => :patch do
-            = render 'cart', order: o
+            = render 'cart', order: o, currency_code: s.currency.code
             =submit_tag I18n.t(:update_cart, scope: :cart), :class => 'btn btn-primary'
             =link_to I18n.t(:set_delivery_destination, scope: :cart), set_address_payment_orders_path, :class => 'btn btn-primary', :shop_id => s
   - else
@@ -39,23 +30,14 @@
             .panel-body
               .col-md-9
                 = form_tag adjust_products_amount_in_orders_path, :id => 'orders_adjust_products_amount', :method => :patch do
-                  = render 'cart', order: o
+                  = render 'cart', order: o, currency_code: s.currency.code
                   =submit_tag I18n.t(:update_cart, scope: :cart), :class => 'btn btn-primary btn-small'
                   =link_to I18n.t(:set_delivery_destination, scope: :cart), set_address_orders_path(s), :class => 'btn btn-primary btn-small'
               .col-md-3
                 %ul.cart-total-list
                   %li
-                    %span= I18n.t(:subtotal, scope: :cart)
-                    %span= "$#{o.total_price}"
-                  -#%li
-                  -#  %span= I18n.t(:shipping, scope: :cart)
-                  -#  %span $0.00
-                  -#%li
-                  -#  %span= I18n.t(:taxes, scope: :cart)
-                  -#  %span $0.00
-                  %li
                     %span= I18n.t(:total_price, scope: :cart)
-                    %span= "$#{o.total_price}"
+                    %span=  o.decorate.total_price_in_currency(s.currency.code)
   - else
     .row
       %h4= I18n.t(:no_products, scope: :cart)

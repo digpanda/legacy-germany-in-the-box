@@ -13,15 +13,15 @@ class Order
 
   belongs_to :user,                 :inverse_of => :orders
 
-  embeds_one :shipping_address,  :inverse_of => :orders, :class_name => 'Address'
-  embeds_one :billing_address,    :inverse_of => :orders, :class_name => 'Address'
+  embeds_one :shipping_address,     :inverse_of => :orders,   :class_name => 'Address'
+  embeds_one :billing_address,      :inverse_of => :orders,   :class_name => 'Address'
 
-  has_many :order_items,      :inverse_of => :order,    dependent: :restrict
-  has_many :order_payments,   :inverse_of => :order,    dependent: :restrict
+  has_many :order_items,            :inverse_of => :order,    dependent: :restrict
+  has_many :order_payments,         :inverse_of => :order,    dependent: :restrict
 
   # TODO : inclusion should be re-abilited when we are sure of what we include
   validates :status,                  presence: true #, inclusion: {in: [:new, :checked_out, :shipped, :paying,]}
-  validates :user,                    presence: true, :unless => lambda { :new == self.status }
+  #validates :user,                    presence: true, :unless => lambda { :new == self.status }
   #validates :shipping_address,        presence: true, :unless => lambda { :new == self.status }
   #validates :billing_address,         presence: true, :unless => lambda { :new == self.status }
 
@@ -43,7 +43,7 @@ class Order
 
       :status               => :paying,
       :user                 => user,
-      :shipping_address => user.addresses.find(delivery_destination_id).attributes,
+      :shipping_address     => user.addresses.find(delivery_destination_id).attributes,
     
     })
 

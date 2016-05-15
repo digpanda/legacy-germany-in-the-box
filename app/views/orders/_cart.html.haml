@@ -34,7 +34,7 @@
             %input.cart-quantity{:id => "cart-quantity-of-product-#{i.product.id}", :name => "cart-quantity-of-product-#{i.product.id}", :type => 'text', :value => "#{i.quantity}", :disabled => "#{@readonly}"}
             - unless @readonly
               %i.fa.fa-plus.cart-item-plus
-          %td= "$#{i.sku.price}"
+          %td= i.decorate.unit_price_in_currency(currency_code)
           - unless @readonly
             %td.cart-item-remove
               =link_to '', '#', :class => 'fa fa-times', :onclick => "$('#cart-quantity-of-product-#{i.product.id}').val(0); $('#orders_adjust_products_amount').submit()"
@@ -65,7 +65,7 @@
               %i.fa.fa-plus.cart-item-plus
         %tr
           %th= I18n.t(:unit_price, scope: :cart)
-          %td= "$#{i.sku.price}"
+          %td= i.decorate.unit_price_in_currency(currency_code)
         %tr
           %th= I18n.t(:operations, scope: :cart)
           - unless @readonly
