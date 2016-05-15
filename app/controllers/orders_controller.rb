@@ -16,6 +16,7 @@ class OrdersController < ApplicationController
 
   def show
     @readonly = true
+    @currency_code = @order.order_items.first.sku.product.shop.currency.code
   end
 
   def manage_cart
