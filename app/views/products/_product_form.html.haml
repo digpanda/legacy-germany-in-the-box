@@ -89,7 +89,7 @@
         .panel-body
           .form-group
             .row-fluid
-              = f.select :category_ids, grouped_options_for_select(get_grouped_ui_categories_options(locale), @product.categories.map { |c| c.id.to_s }), { :include_blank => I18n.t(:non_selected_text, scope: :multiselect, locale: locale) }, :multiple => 'multiple', :class => 'form-control product-categories'
+              = f.select :category_ids, grouped_options_for_select(@store.grouped_categories_options(locale), @product.categories.map { |c| c.id.to_s }), { :include_blank => I18n.t(:non_selected_text, scope: :multiselect, locale: locale) }, :multiple => 'multiple', :class => 'form-control product-categories'
       .panel.panel-info
         .panel-heading{:title => I18n.t(:keywords_info, scope: :edit_product, num: Rails.configuration.max_num_addresses, locale: locale)}
           .text-center

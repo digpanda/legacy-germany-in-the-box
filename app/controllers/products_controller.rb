@@ -26,12 +26,12 @@ class ProductsController < ApplicationController
   end
 
   def edit
+    @store = CategoryNavigationStore.new
     render :edit_product
   end
 
   def edit_sku
     @sku = @product.skus.find(params[:sku_id])
-
     render :edit_sku
   end
 
