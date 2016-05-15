@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
 
-  before_action :authenticate_user!, :except => [:manage_cart, :add_product, :adjust_products_amount]
+  before_action :authenticate_user!, :except => [:manage_cart, :add_product, :adjust_skus_amount]
 
   before_action :set_order, only: [:show, :destroy, :continue]
 
@@ -78,9 +78,9 @@ class OrdersController < ApplicationController
     end
   end
 
-  def adjust_products_amount
+  def adjust_skus_amount
     products = params.keys.select { |key| /^cart-quantity-of-product-[a-z0-9]+$/.match(key) }
-    existing_order_items = current_order.order_items.to_a;
+    existing_order_items = current_order(params[:shop_id]).order_items.to_a;
 
     all_available = true;
 
@@ -107,7 +107,7 @@ class OrdersController < ApplicationController
         if quantity > 0
           order_item.quantity = quantity
         else
-          current_order.order_items.delete(order_item)
+          current_order(params[:shop_id]).order_items.delete(order_item)
         end
 
         if order_item.save

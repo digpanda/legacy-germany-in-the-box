@@ -27,7 +27,7 @@
           %td
             %a{:href => "#"}= i.product.name
           %td
-            = select_tag :option_ids, grouped_options_for_select(i.product.decorate.grouped_variants_options, i.option_ids ), {:multiple => 'multiple', :class => 'sku-variants-options'}
+            = select_tag :option_ids, grouped_options_for_select(i.product.decorate.grouped_variants_options, i.option_ids), {:multiple => 'multiple', :class => 'sku-variants-options'}
           %td.cart-item-quantity
             - unless @readonly
               %i.fa.fa-minus.cart-item-minus
@@ -54,7 +54,7 @@
         %tr
           %th= I18n.t(:variant_option, scope: :cart)
           %td
-            = select_tag :option_ids, grouped_options_for_select(i.product.decorate.grouped_variants_options, i.option_ids ), {:multiple => 'multiple', :class => 'sku-variants-options'}
+            = select_tag :option_ids, grouped_options_for_select(i.product.decorate.grouped_variants_options, i.option_ids), {:multiple => 'multiple', :class => 'sku-variants-options'}
         %tr
           %th= I18n.t(:quantity, scope: :cart)
           %td.cart-item-quantity

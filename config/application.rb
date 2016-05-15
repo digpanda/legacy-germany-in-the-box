@@ -46,5 +46,6 @@ module AChat
 
     I18n::Backend::Simple.send(:include, I18n::Backend::Fallbacks)
     config.i18n.fallbacks = {'de' => 'en', 'zh-CN' => 'en'}
+    config.web_console.development_only = false
   end
 end

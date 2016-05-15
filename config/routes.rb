@@ -101,8 +101,8 @@ Rails.application.routes.draw do
   resources :shops, except: [:new, :edit, :create] do
     match :edit_setting,    via: [:get],    action: :edit_setting,    as: :edit_setting,    :on => :member
     match :edit_producer,   via: [:get],    action: :edit_producer,   as: :edit_producer,   :on => :member
-    match :show_products,          via: [:get],    action: :show_products,          as: :show_products,          :on => :member
-    match :apply_wirecard,   via: [:get],    action: :apply_wirecard,   as: :apply_wirecard,   :on => :member
+    match :show_products,   via: [:get],    action: :show_products,   as: :show_products,   :on => :member
+    match :apply_wirecard,  via: [:get],    action: :apply_wirecard,  as: :apply_wirecard,  :on => :member
 
     resources :products,    only: [:new]
   end
@@ -113,15 +113,15 @@ Rails.application.routes.draw do
 
   resources :orders, only: [:destroy, :show] do
     match :add_product,               via: [:patch],        action: :add_product,             as: :add_product_to,              :on => :collection
-    match :adjust_products_amount,    via: [:patch],        action: :adjust_products_amount,  as: :adjust_products_amount_in,   :on => :collection
     match :checkout,                  via: [:post],         action: :checkout,                as: :checkout,                    :on => :collection
-    match :checkout_success,          via: [:post],         action: :checkout_success,                as: :checkout_success,                    :on => :collection
-    match :checkout_fail,             via: [:post],         action: :checkout_fail,                as: :checkout_fail,                    :on => :collection
-
+    match :checkout_success,          via: [:post],         action: :checkout_success,        as: :checkout_success,            :on => :collection
+    match :checkout_fail,             via: [:post],         action: :checkout_fail,           as: :checkout_fail,               :on => :collection
     match :manage_cart,               via: [:get],          action: :manage_cart,             as: :manage_cart,                 :on => :collection
-    match 'set_address/:shop_id/',    via: [:patch, :get],  action: :set_address,             as: :set_address,                 :on => :collection
 
-    match :continue,                  via: [:get],          action: :continue,                as: :continue,                    :on => :member
+    match 'set_address/:shop_id/',          via: [:patch, :get],  action: :set_address,             as: :set_address,           :on => :collection
+    match 'adjust_skus_amount/:shop_id/',   via: [:patch],        action: :adjust_skus_amount,      as: :adjust_skus_amount,    :on => :collection
+
+    match :continue,                        via: [:get],    action: :continue,                as: :continue,                    :on => :member
   end
 
   resources :categories, only: [:show, :index] do

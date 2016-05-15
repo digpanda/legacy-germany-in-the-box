@@ -11,8 +11,8 @@
         .row
           = form_tag adjust_products_amount_in_orders_path, :id => 'orders_adjust_products_amount', :method => :patch do
             = render 'cart', order: o, currency_code: s.currency.code
-            =submit_tag I18n.t(:update_cart, scope: :cart), :class => 'btn btn-primary'
-            =link_to I18n.t(:set_delivery_destination, scope: :cart), set_address_payment_orders_path, :class => 'btn btn-primary', :shop_id => s
+            = submit_tag I18n.t(:update_cart, scope: :cart), :class => 'btn btn-primary'
+            = link_to I18n.t(:set_delivery_destination, scope: :cart), set_address_payment_orders_path, :class => 'btn btn-primary', :shop_id => s
   - else
     .row
       %h4= I18n.t(:no_products, scope: :cart)
@@ -25,14 +25,14 @@
           - if o.total_amount > 0
             .panel-heading
               %h4
-                =I18n.t(:shop, scope: :cart) + ': '
-                =link_to s.name, shop_path(s)
+                = I18n.t(:shop, scope: :cart) + ': '
+                = link_to s.name, shop_path(s)
             .panel-body
               .col-md-9
-                = form_tag adjust_products_amount_in_orders_path, :id => 'orders_adjust_products_amount', :method => :patch do
+                = form_tag adjust_skus_amount_orders_path(s.id), :id => 'orders_adjust_products_amount', :method => :patch do
                   = render 'cart', order: o, currency_code: s.currency.code
-                  =submit_tag I18n.t(:update_cart, scope: :cart), :class => 'btn btn-primary btn-small'
-                  =link_to I18n.t(:set_delivery_destination, scope: :cart), set_address_orders_path(s), :class => 'btn btn-primary btn-small'
+                  = submit_tag I18n.t(:update_cart, scope: :cart), :class => 'btn btn-primary btn-small'
+                  = link_to I18n.t(:set_delivery_destination, scope: :cart), set_address_orders_path(s), :class => 'btn btn-primary btn-small'
               .col-md-3
                 %ul.cart-total-list
                   %li
