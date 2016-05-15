@@ -5,12 +5,12 @@ class DutyAndCustomerCategorySelectStore
   end
 
   def categories
-    @categories ||= @classz.all.is_active.to_a # .only_with_products shouldn't be added here
+    @categories ||= @classz.all.is_active.to_a
   end
 
   def grouped_categories_options(locale)
     @grouped_categories_options ||= {}
-    @grouped_categories_options[locale] = second_last_branches.sort {|a,b| a.name <=> b.name } .map {|rc| [rc.name_translations, children(rc).sort { |a,b| a.name <=> b.name }.map {|cc| [cc.name_translations, cc.id.to_s]} ] }.to_a.map { |c| [c[0][locale], c[1].map { |cc| [cc[0][locale], cc[1]]} ]}
+    @grouped_categories_options[locale] = second_last_branches.sort {|a,b| a.name <=> b.name } .map {|rc| [rc.name_translations, children(rc).sort { |a,b| a.name <=> b.name }.map {|cc| [cc.decorate.name_translations, cc.id.to_s]} ] }.map { |c| [c[0][locale], c[1].map { |cc| [cc[0][locale], cc[1]]} ]}
   end
 
   def total_products(category)
@@ -22,7 +22,7 @@ class DutyAndCustomerCategorySelectStore
   end
 
   def second_last_branches
-    @second_last_branches ||= categories.select { |c| c.children_count == 0 } .map { |c| categories.detect { |p| p.id == c.parent.id } }.uniq
+    @second_last_branches ||= categories.select { |c| c.children_count == 0 } .map { |c| categories.detect { |p| p.id.to_s == c.parent_id.to_s } }.uniq
   end
 
   def children(category)
