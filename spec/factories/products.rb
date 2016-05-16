@@ -2,6 +2,10 @@ FactoryGirl.define do
 
   factory :product do
 
+    before(:create) do |product|
+      create_list(:shop, 1, product: product)
+    end
+
     name      'Product 1'
     brand     'Brand 1'
     cover     'Cover 1'
