@@ -421,6 +421,14 @@
 .tabbable > .nav li.active .fa {
   background: #83be58 !important; }
 
+/* line 94, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/hooks/_componia.sass */
+.tabbable > .nav li a {
+  color: #666 !important; }
+
+/* line 97, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/hooks/_componia.sass */
+#left_menu a:hover {
+  color: #659443 !important; }
+
 /* line 1, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/_global.sass */
 h1 {
   background-color: #e6fbd7;
