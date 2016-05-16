@@ -485,6 +485,8 @@ zh-CN:
     set_delivery_destination: 确定收货地址
     variant_option: 系列型号
     shop: 店铺名称
+    shipping_cost: 物流费用
+    duty_cost: 海关税费
   checkout:
     my_destination: 收货地址
     setup_delivery_destination: 请您指定收货地址

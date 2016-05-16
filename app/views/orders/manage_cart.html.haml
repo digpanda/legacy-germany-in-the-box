@@ -40,8 +40,17 @@
               .col-md-3
                 %ul.cart-total-list
                   %li
+                    %span= I18n.t(:subtotal, scope: :cart)
+                    %span= "#{o.total_price} #{s.currency.code}"
+                  %li
+                    %span= I18n.t(:duty_cost, scope: :cart)
+                    %span= "#{@carts[s].tax_and_duty_cost} #{s.currency.code}"
+                  %li
+                    %span= I18n.t(:shipping_cost, scope: :cart)
+                    %span= "#{@carts[s].shipping_cost} #{s.currency.code}"
+                  %li
                     %span= I18n.t(:total_price, scope: :cart)
-                    %span=  o.decorate.total_price_in_currency(s.currency.code)
+                    %span= "#{@carts[s].tax_and_duty_cost + @carts[s].shipping_cost + o.total_price} #{s.currency.code}"
   - else
     .row
       %h4= I18n.t(:no_products, scope: :cart)

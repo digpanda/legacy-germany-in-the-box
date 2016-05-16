@@ -1,3 +1,5 @@
+require 'border_guru'
+
 class OrdersController < ApplicationController
 
   before_action :authenticate_user!, :except => [:manage_cart, :add_product, :adjust_skus_amount]
@@ -21,6 +23,24 @@ class OrdersController < ApplicationController
 
   def manage_cart
     @readonly = false
+    @carts = {}
+
+    current_orders.map do |s, o|
+      @carts[s] = Cart.new
+
+      o.order_items.each do |i|
+        @carts[s].add(i.sku, i.quantity)
+
+        BorderGuru.calculate_quote(
+            cart: @carts[s],
+            shop: Shop.find(s),
+            country_of_destination: ISO3166::Country.new('CN'),
+            currency: 'EUR'
+        )
+      end
+    end
+
+
   end
 
   def set_address

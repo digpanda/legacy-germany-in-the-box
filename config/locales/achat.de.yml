@@ -491,6 +491,8 @@ de:
     set_delivery_destination: Anschrift auswählen
     variant_option: Variante
     shop: Shop
+    shipping_cost: Versendungskosten
+    duty_cost: Zollgebühren
   checkout:
     my_destination: Anlieferungsanschrift
     setup_delivery_destination: Bitte Anschrift auswählen

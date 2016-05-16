@@ -22,7 +22,7 @@ module BorderGuru
             sku: s.id,
             shortDescription: s.sku.product.name,
             price: s.price,
-            category: (Rails.env.test? ? 'test' : s.sku.product.duty_category.code),
+            category: (Rails.env.production? ? s.sku.product.duty_category.code : 'test'),
             weight: s.weight,
             weightScale: WEIGHT_UNIT,
             countryOfManufacture: s.sku.product.shop.sender_address.country.alpha2
