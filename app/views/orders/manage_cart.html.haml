@@ -1,5 +1,6 @@
 %div{class: "+spacer"}
-- for_device_type :mobile, :tablet do
+
+-#- for_device_type :mobile, :tablet do
   - if total_number_of_products > 0
     - current_orders.each do |s, o|
       - if o.total_amount > 0
@@ -16,6 +17,7 @@
   - else
     .row
       %h4= I18n.t(:no_products, scope: :cart)
+-# this was commented (up)
 
 - for_device_type :desktop do
   - if total_number_of_products > 0
@@ -32,7 +34,9 @@
                 = form_tag adjust_skus_amount_orders_path(s.id), :id => 'orders_adjust_products_amount', :method => :patch do
                   = render 'cart', order: o, currency_code: s.currency.code
                   = submit_tag I18n.t(:update_cart, scope: :cart), :class => 'btn btn-primary btn-small'
-                  = link_to I18n.t(:set_delivery_destination, scope: :cart), set_address_orders_path(s), :class => 'btn btn-primary btn-small'
+
+                  = link_to I18n.t(:set_delivery_destination, scope: :cart), set_address_orders_path(s), :class => 'btn btn-primary btn-small', id: 'set_address_link'
+
               .col-md-3
                 %ul.cart-total-list
                   %li

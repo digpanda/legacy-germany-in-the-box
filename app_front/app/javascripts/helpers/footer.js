@@ -8,7 +8,6 @@ var Footer = {
      */
     init: function() {
 
-      console.log('yes');
       this.stickyFooter();
 
     },
