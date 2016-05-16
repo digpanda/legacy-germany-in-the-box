@@ -31,8 +31,8 @@
         = submit_tag I18n.t(:sign_in, scope: :sign_in_dialog), :class => 'btn btn-primary'
 
       %div{class:"col-md-7"}
-        %a{'data-effect' => 'mfp-zoom-out', :href => '#register-dialog', :class => 'btn btn-primary'}= I18n.t(:not_member_yet, scope: :sign_in_dialog)
-        %a.popup-text{'data-effect' => 'mfp-zoom-out', :href => '#password-recover-dialog'}= I18n.t(:forgot_password, scope: :sign_in_dialog)
+        %a.popup-text{'data-effect' => 'mfp-zoom-out', :href => '#register-dialog', :class => 'btn btn-primary'}= I18n.t(:not_member_yet, scope: :sign_in_dialog)
+        %a.popup-text{'data-effect' => 'mfp-zoom-out', class: 'simple-text', :href => '#password-recover-dialog'}= I18n.t(:forgot_password, scope: :sign_in_dialog)
 
 #register-dialog.mfp-with-anim.mfp-hide.mfp-dialog.clearfix
   %i.fa.fa-edit.dialog-icon
@@ -95,7 +95,7 @@
       = submit_tag I18n.t(:sign_up, scope: :sign_up_dialog), :class => 'btn btn-primary'
   %ul.dialog-alt-links
     %li
-      %a.popup-text{'data-effect' => 'mfp-zoom-out', :href => '#login-dialog'}= I18n.t(:already_member, scope: :sign_up_dialog)
+      %a.popup-text{'data-effect' => 'mfp-zoom-out', class: "simple-text", :href => '#login-dialog'}= I18n.t(:already_member, scope: :sign_up_dialog)
 #password-recover-dialog.mfp-with-anim.mfp-hide.mfp-dialog.clearfix
   %i.icon-retweet.dialog-icon
   %h3= I18n.t(:header, scope: :password_recovery_dialog)
