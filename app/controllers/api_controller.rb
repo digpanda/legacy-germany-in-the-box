@@ -4,6 +4,11 @@ class ApiController < ApplicationController
   acts_as_token_authentication_handler_for User, except: [:messy]
   respond_to :json
 
+  #
+  # This was made in 20 minutes for programer test purposes
+  # Please ignore it.
+  #
+
   def messy
 
     @final_number = [10,5,20]

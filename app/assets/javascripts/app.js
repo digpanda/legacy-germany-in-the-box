@@ -180,6 +180,91 @@ var Checkout = {
 module.exports = Checkout;
 });
 
+require.register("javascripts/controllers/orders/manage_cart.js", function(exports, require, module) {
+"use strict";
+
+/**
+ * ManageCart class
+ */
+var ManageCart = {
+
+  /**
+   * Initializer
+   */
+  init: function init() {
+
+    this.onSetAddress();
+  },
+
+  onSetAddress: function onSetAddress() {
+
+    var self = this;
+
+    $("#set_address_link").click(function (e) {
+
+      e.preventDefault();
+      self.forceLogin(this);
+    });
+  },
+
+
+  /**
+   * Send next destination and trigger log-in if not logged-in already
+   */
+  forceLogin: function forceLogin(e) {
+
+    var location = $("#set_address_link").attr("href");
+    var self = this;
+
+    this.isAuth(function (res) {
+
+      // If the user isn't auth
+      // We force the trigger and
+      // Set the new location programmatically
+      if (res === false) {
+
+        self.setRedirectLocation(location);
+        $("#sign_in_link").click();
+      } else {
+
+        // Else we just continue to do what we were doing
+        $(e).submit();
+      }
+    });
+  },
+
+  isAuth: function isAuth(callback) {
+
+    $.ajax({
+      method: "GET",
+      url: "/users/is_auth",
+      data: {}
+
+    }).done(function (res) {
+
+      callback(res.is_auth);
+    });
+  },
+
+  setRedirectLocation: function setRedirectLocation(location) {
+
+    $.ajax({
+      method: "PATCH",
+      url: "/set_redirect_location",
+      data: { "location": location }
+
+    }).done(function (res) {
+
+      // callback {"status": "ok"}
+
+    });
+  }
+
+};
+
+module.exports = ManageCart;
+});
+
 require.register("javascripts/controllers/pages/demo.js", function(exports, require, module) {
 "use strict";
 
@@ -372,7 +457,6 @@ var Footer = {
    */
   init: function init() {
 
-    console.log('yes');
     this.stickyFooter();
   },
 

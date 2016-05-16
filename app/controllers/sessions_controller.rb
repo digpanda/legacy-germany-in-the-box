@@ -2,7 +2,7 @@ class SessionsController < Devise::SessionsController
 
   skip_before_filter :verify_signed_out_user
 
-  before_action :authenticate_user!, except: [:new, :create]
+  before_action :authenticate_user!, except: [:new, :create, :set_redirect_location]
 
   respond_to :html, :json
 
@@ -14,6 +14,18 @@ class SessionsController < Devise::SessionsController
     session[:login_advice_counter] = 1
     redirect_to root_path
   end
+
+  # set a new location after log-in (called via AJAX from the front-end only) ; should be in API part
+  def set_redirect_location
+    session[:previous_url] = params["location"] unless params["location"].nil?
+    render json: {status: 'ok'} and return # should be improved
+  end
+
+  # should be in an API part (called via AJAX from the front-end only)
+  def is_auth
+    render json: {is_auth: !current_user.nil?}
+  end
+
   def create
 
     respond_to do |format|
