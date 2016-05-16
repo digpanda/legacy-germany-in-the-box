@@ -36,4 +36,7 @@ class ProductDecorator < Draper::Decorator
 
   end
 
+  def grouped_variants_options
+    options.map { |v| [v.name, v.suboptions.sort { |a,b| a.name <=> b.name }.map { |o| [ o.name, o.id.to_s]}] }.to_a
+  end
 end

@@ -5,9 +5,7 @@ class Category
   has_and_belongs_to_many :products,  :inverse_of => :categories
 
   def self.only_with_products
-
     self.where(:product_ids.ne => nil).and(:product_ids.ne => [])
-
   end
 
   def total_products
@@ -16,9 +14,5 @@ class Category
     else
       product_ids ? product_ids.size : 0
     end
-  end
-
-  def second_last_branche?
-    AppCache.get_second_last_ui_category_branches_from_cache.include?(self.id)
   end
 end

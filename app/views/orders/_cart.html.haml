@@ -27,14 +27,14 @@
           %td
             %a{:href => "#"}= i.product.name
           %td
-            = select_tag :option_ids, grouped_options_for_select(get_grouped_variants_options(i.product), i.option_ids ), {:multiple => 'multiple', :class => 'sku-variants-options'}
+            = select_tag :option_ids, grouped_options_for_select(i.product.decorate.grouped_variants_options, i.option_ids), {:multiple => 'multiple', :class => 'sku-variants-options'}
           %td.cart-item-quantity
             - unless @readonly
               %i.fa.fa-minus.cart-item-minus
             %input.cart-quantity{:id => "cart-quantity-of-product-#{i.product.id}", :name => "cart-quantity-of-product-#{i.product.id}", :type => 'text', :value => "#{i.quantity}", :disabled => "#{@readonly}"}
             - unless @readonly
               %i.fa.fa-plus.cart-item-plus
-          %td= "$#{i.sku.price}"
+          %td= i.decorate.unit_price_in_currency(currency_code)
           - unless @readonly
             %td.cart-item-remove
               =link_to '', '#', :class => 'fa fa-times', :onclick => "$('#cart-quantity-of-product-#{i.product.id}').val(0); $('#orders_adjust_products_amount').submit()"
@@ -54,7 +54,7 @@
         %tr
           %th= I18n.t(:variant_option, scope: :cart)
           %td
-            = select_tag :option_ids, grouped_options_for_select(get_grouped_variants_options(i.product), i.option_ids ), {:multiple => 'multiple', :class => 'sku-variants-options'}
+            = select_tag :option_ids, grouped_options_for_select(i.product.decorate.grouped_variants_options, i.option_ids), {:multiple => 'multiple', :class => 'sku-variants-options'}
         %tr
           %th= I18n.t(:quantity, scope: :cart)
           %td.cart-item-quantity
@@ -65,7 +65,7 @@
               %i.fa.fa-plus.cart-item-plus
         %tr
           %th= I18n.t(:unit_price, scope: :cart)
-          %td= "$#{i.sku.price}"
+          %td= i.decorate.unit_price_in_currency(currency_code)
         %tr
           %th= I18n.t(:operations, scope: :cart)
           - unless @readonly

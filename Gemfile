@@ -59,7 +59,7 @@ group :development, :test do
   gem 'pry-rails'
 end
 
-group :development do
+group :development, :local do
   gem 'web-console', '~> 2.0'
   gem 'byebug' # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'spring' # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
