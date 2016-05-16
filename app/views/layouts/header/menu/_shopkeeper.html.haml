@@ -6,6 +6,7 @@
     %div{class:"+avatar"}
       = image_tag (current_user.pic.url.nil? ? 'icons/default_user_pic.png' : current_user.pic.url)
       %span{class:"caret"}
+    %div{class:"+spacer"}
 
   %ul.dropdown-menu
     - if current_user.shop && current_user.shop.agb

@@ -6,7 +6,8 @@
     %div{class:"+avatar"}
       = image_tag (current_user.pic.url.nil? ? 'icons/default_user_pic.png' : current_user.pic.url)
       %span{class:"caret"}
-
+    %div{class:"+spacer"}
+    
     %span.caret
   %ul.dropdown-menu
     %li
