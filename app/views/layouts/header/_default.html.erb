@@ -51,6 +51,8 @@
         <!-- Right side -->
         <div class="col-md-4 +vertical-centered">
 
+            <% if seems_like_a_customer? %>
+
             <!-- Research area -->
             <div class="col-md-6">
             
@@ -130,6 +132,8 @@
                 <span class="main-header__cart"><i class="fa fa-shopping-cart"></i> <%= total_number_of_products %></span>
               </a>
             </div>
+
+            <% end %>
 
         </div>
 
