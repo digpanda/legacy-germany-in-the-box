@@ -7,7 +7,7 @@ class PagesController < ApplicationController
   #load_and_authorize_resource :class => false
 
   def home
-
+    @products = Product.all
   end
 
   def agb
@@ -28,10 +28,6 @@ class PagesController < ApplicationController
   
   def fees
   	render :layout => false
-  end
-
-  def demo
-    render :layout => false
   end
 
   def menu

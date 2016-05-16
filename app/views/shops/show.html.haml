@@ -1,58 +1,59 @@
-.container
+.container-fluider
   .row
-    .col-md-3
-      %aside.sidebar-left
-        .sidebar-box.text-center
-          %img{:src => @shop.decorate.image_url(:logo, :thumb), :style => 'max-width:90px;max-height:auto'}
-      %aside.sidebar-left
-        %div#left_menu
-          %ul
-            %li#left_menu_header{ :class => 'has-sub active'}
-              %a{:href => '#' }
-                %i{ :class => 'fa fa-list' }= I18n.t(:categories, scope: :category)
-            - @categories_and_children.keys.each do |c|
-              %li{ :class => 'has-sub' }
-                %a{:href => "#{show_products_in_category_path(c.id)}" }
-                  %i= ' ' + c.name
-                  %span= @categories_and_counters[c]
-                %ul
-                  - @categories_and_children[c].each do |cc|
-                    %li
-                      %a{:href => "#{show_products_in_category_path(cc.id)}" }
-                        %i= cc.name
-                        %span= @categories_and_counters[cc]
+    %div{class: "col-md-10 col-md-push-1 col-md-pull-1"}
+      .col-md-3
+        %aside.sidebar-left
+          .sidebar-box.text-center
+            %img{:src => @shop.decorate.image_url(:logo, :thumb), :style => 'max-width:90px;max-height:auto'}
+        %aside.sidebar-left
+          %div#left_menu
+            %ul
+              %li#left_menu_header{ :class => 'has-sub active'}
+                %a{:href => '#' }
+                  = I18n.t(:categories, scope: :category)
+              - @categories_and_children.keys.each do |c|
+                %li{ :class => 'has-sub' }
+                  %a{:href => "#{show_products_in_category_path(c.id)}" }
+                    %i= ' ' + c.name
+                    %span= @categories_and_counters[c]
+                  %ul
+                    - @categories_and_children[c].each do |cc|
+                      %li
+                        %a{:href => "#{show_products_in_category_path(cc.id)}" }
+                          %i= cc.name
+                          %span= @categories_and_counters[cc]
 
-    .col-md-9
-      .box
-        %img{:src => @shop.decorate.image_url(:banner, :thumb), :style => 'max-width:auto;max-height:90px'}
-      .gap
-      %h2= @shop.name
-      %p.text-muted= @shop.desc
-      .gap
-      .tabbable
-        %ul#myTab.nav.nav-tabs
-          %li.active
-            %a{"data-toggle" => "tab", :href => "#tab-1", :title => I18n.t(:philosophy_info, scope: :edit_shop) }
-              %i.fa.fa-info{ :title => I18n.t(:philosophy_info, scope: :edit_shop) }
-              = I18n.t(:philosophy, scope: :edit_shop)
-          %li
-            %a{"data-toggle" => "tab", :href => "#tab-2", :title => I18n.t(:stories_info, scope: :edit_shop)}
-              %i.fa.fa-info{ :title => I18n.t(:stories_info, scope: :edit_shop) }
-              = I18n.t(:stories, scope: :edit_shop)
-          %li
-            %a{"data-toggle" => "tab", :href => "#tab-3", :title => I18n.t(:uniqueness_info, scope: :edit_shop) }
-              %i.fa.fa-info{ :title => I18n.t(:uniqueness_info, scope: :edit_shop) }
-              = I18n.t(:uniqueness, scope: :edit_shop)
-          %li
-            %a{"data-toggle" => "tab", :href => "#tab-4", :title => I18n.t(:german_essence_info, scope: :edit_shop) }
-              %i.fa.fa-info{ :title => I18n.t(:german_essence_info, scope: :edit_shop) }
-              = I18n.t(:german_essence, scope: :edit_shop)
-        .tab-content
-          #tab-1.tab-pane.fade.in.active
-            = @shop.philosophy
-          #tab-2.tab-pane.fade.in
-            = @shop.stories
-          #tab-3.tab-pane.fade.in
-            = @shop.uniqueness
-          #tab-4.tab-pane.fade.in
-            = @shop.german_essence
+      .col-md-9
+        .box
+          %img{:src => @shop.decorate.image_url(:banner, :thumb), :style => 'max-width:auto;max-height:90px'}
+        .gap
+        %h2= @shop.name
+        %p.text-muted= @shop.desc
+        .gap
+        .tabbable
+          %ul#myTab.nav.nav-tabs
+            %li.active
+              %a{"data-toggle" => "tab", :href => "#tab-1", :title => I18n.t(:philosophy_info, scope: :edit_shop) }
+                %i.fa.fa-info{ :title => I18n.t(:philosophy_info, scope: :edit_shop) }
+                = I18n.t(:philosophy, scope: :edit_shop)
+            %li
+              %a{"data-toggle" => "tab", :href => "#tab-2", :title => I18n.t(:stories_info, scope: :edit_shop)}
+                %i.fa.fa-info{ :title => I18n.t(:stories_info, scope: :edit_shop) }
+                = I18n.t(:stories, scope: :edit_shop)
+            %li
+              %a{"data-toggle" => "tab", :href => "#tab-3", :title => I18n.t(:uniqueness_info, scope: :edit_shop) }
+                %i.fa.fa-info{ :title => I18n.t(:uniqueness_info, scope: :edit_shop) }
+                = I18n.t(:uniqueness, scope: :edit_shop)
+            %li
+              %a{"data-toggle" => "tab", :href => "#tab-4", :title => I18n.t(:german_essence_info, scope: :edit_shop) }
+                %i.fa.fa-info{ :title => I18n.t(:german_essence_info, scope: :edit_shop) }
+                = I18n.t(:german_essence, scope: :edit_shop)
+          .tab-content
+            #tab-1.tab-pane.fade.in.active
+              = @shop.philosophy
+            #tab-2.tab-pane.fade.in
+              = @shop.stories
+            #tab-3.tab-pane.fade.in
+              = @shop.uniqueness
+            #tab-4.tab-pane.fade.in
+              = @shop.german_essence

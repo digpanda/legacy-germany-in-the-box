@@ -310,82 +310,116 @@
   .slider__bottom-border {
     border-bottom: thick solid #659443; }
 
-/* line 1, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/hooks/_componia.sass */
-.dialog-icon {
-  background: #659443 !important; }
-
-/* line 4, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/hooks/_componia.sass */
+/* line 3, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/hooks/_componia.sass */
 .btn-primary {
   background: #659443 !important;
   border-color: #659443 !important; }
 
-/* line 8, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/hooks/_componia.sass */
+/* line 7, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/hooks/_componia.sass */
 .nav-pills.nav-stacked.nav-arrow > li.active a {
   color: #fff !important;
   background: #83be58 !important;
   border-color: #83be58 !important; }
 
-/* line 13, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/hooks/_componia.sass */
+/* line 12, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/hooks/_componia.sass */
 .nav-pills.nav-stacked.nav-arrow > li.active a:after {
   background: #83be58 !important; }
 
-/* line 16, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/hooks/_componia.sass */
+/* line 15, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/hooks/_componia.sass */
 .nav-pills.nav-stacked.nav-arrow > li a:hover {
   color: #83be58 !important; }
 
-/* line 19, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/hooks/_componia.sass */
+/* line 18, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/hooks/_componia.sass */
 .nav-pills.nav-stacked.nav-arrow > li.active a:hover {
-  color: white !important; }
+  color: #ecf0f1 !important; }
 
-/* line 22, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/hooks/_componia.sass */
+/* line 21, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/hooks/_componia.sass */
 .panel-primary > .panel-heading {
   color: #fff !important;
   background-color: #83be58 !important;
   border-color: #83be58 !important; }
 
-/* line 27, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/hooks/_componia.sass */
+/* line 26, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/hooks/_componia.sass */
 .panel-primary {
   border-color: #83be58 !important; }
 
-/* line 30, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/hooks/_componia.sass */
+/* line 29, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/hooks/_componia.sass */
 .panel-primary > .panel-heading {
   background-image: -o-linear-gradient(top, #83be58 0, #83be58 100%);
   background-image: -webkit-gradient(linear, left top, left bottom, from(#83be58), to(#83be58));
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$color-light-green-2nd', endColorstr='$color-light-green-2nd', GradientType=0); }
 
-/* line 35, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/hooks/_componia.sass */
+/* line 34, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/hooks/_componia.sass */
 .address-box:hover .address-box-new-icon {
   background: #83be58 !important; }
 
-/* line 38, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/hooks/_componia.sass */
+/* line 37, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/hooks/_componia.sass */
 .address-box-remove:hover, .address-box-edit:hover {
   background: #83be58 !important; }
 
-/* line 41, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/hooks/_componia.sass */
+/* line 40, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/hooks/_componia.sass */
 .caret {
   color: #659443 !important; }
 
-/* line 44, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/hooks/_componia.sass */
+/* line 43, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/hooks/_componia.sass */
 .table a, .form-group a, .product-page-meta h4 a {
   color: #659443; }
 
-/* line 47, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/hooks/_componia.sass */
+/* line 46, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/hooks/_componia.sass */
 .panel-heading h4 {
-  color: white !important; }
-  /* line 49, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/hooks/_componia.sass */
+  color: #ecf0f1 !important; }
+  /* line 48, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/hooks/_componia.sass */
   .panel-heading h4 a {
-    color: white !important; }
+    color: #ecf0f1 !important; }
 
-/* line 52, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/hooks/_componia.sass */
+/* line 51, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/hooks/_componia.sass */
 .panel-info > .panel-heading {
   color: #fff !important;
   background-color: #83be58 !important;
   border-color: #659443 !important;
   background-image: none !important; }
 
-/* line 58, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/hooks/_componia.sass */
+/* line 57, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/hooks/_componia.sass */
 .fotorama__thumb-border {
   border-color: #83be58 !important; }
+
+/* line 61, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/hooks/_componia.sass */
+.dialog-icon {
+  background: #659443 !important; }
+
+/* line 65, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/hooks/_componia.sass */
+#left_menu > ul > li.active > a, #left_menu ul ul a span {
+  background: #659443 !important;
+  color: #fff;
+  text-shadow: 0 0 0 !important;
+  border: 0px solid !important;
+  padding: 0.5em;
+  font-size: 15px !important; }
+
+/* line 73, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/hooks/_componia.sass */
+#left_menu > ul > li > a, #left_menu ul ul a {
+  font-size: 12px;
+  display: block;
+  color: #565a5c;
+  background: #e6fbd7 !important;
+  border: none; }
+
+/* line 80, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/hooks/_componia.sass */
+#left_menu > ul > li > a > span {
+  background: #83be58 !important;
+  color: #ecf0f1 !important;
+  padding: 0px 0p !important;
+  border-radius: 2px !important; }
+
+/* line 86, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/hooks/_componia.sass */
+.tabbable > .nav li.active a {
+  background: #659443 !important;
+  color: #ecf0f1 !important;
+  border: none; }
+
+/* line 91, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/hooks/_componia.sass */
+.tabbable > .nav li.active .fa {
+  background: #83be58 !important; }
 
 /* line 1, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/_global.sass */
 h1 {

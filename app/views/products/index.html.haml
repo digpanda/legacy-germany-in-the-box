@@ -62,18 +62,18 @@
     });
   });
 
-- for_device_type :desktop do
-  = content_for :search_area do
-    = form_tag search_products_path, :method => :get, :id => 'search_products_form', :class => 'search-area' do
-      .container
-        .row
-          .col-md-12.clearfix
-            %label
-              %i.fa.fa-search
-              %span= I18n.t(:search_prompt, scope: :popular_products)
-            .search-area-division.search-area-division-input
-              =text_field_tag :products_search_keyword, params[:products_search_keyword], :placeholder => "#{ I18n.t(:search_placeholder, scope: :popular_products) }", :class => 'form-control', :required => true
-.container
+-#- for_device_type :desktop do
+-#  = content_for :search_area do
+-#    = form_tag search_products_path, :method => :get, :id => 'search_products_form', :class => 'search-area' do
+-#      .container
+-#        .row
+-#          .col-md-12.clearfix
+-#            %label
+-#              %i.fa.fa-search
+-#              %span= I18n.t(:search_prompt, scope: :popular_products)
+-#            .search-area-division.search-area-division-input
+-#              =text_field_tag :products_search_keyword, params[:products_search_keyword], :placeholder => "#{ I18n.t(:search_placeholder, scope: :popular_products) }", :class => 'form-control', :required => true
+.container-fluid
   - if @products.size == 0
     %h4 Products cannot be found.
   - else
@@ -240,7 +240,7 @@
                         =submit_tag I18n.t(:create_favorite, scope: :popular_products), :class => 'btn btn-primary', :onclick => "#{generate_create_and_add_to_collection_js(p.id)}"
               - else
                 .dropdown
-                  %a.btn.btn-default{:href => '#', 'data-toggle' => 'dropdown', 'data-placement' => 'bottom', :title => 'Yu haven\'t signed in' }
+                  %a.btn.btn-default{:href => '#', 'data-toggle' => 'dropdown', 'data-placement' => 'bottom', :title => 'You haven\'t signed in' }
                     %i.fa.fa-share
                     = I18n.t(:create_and_add_to_favorite, scope: :popular_products)
                     %span.caret
@@ -251,43 +251,27 @@
                       .col-md-6
                         = link_to  I18n.t(:sign_up, scope: :top_menu),  new_user_registration_path, :class => 'fa fa-edit', :style => 'color:black; text-decoration: underline'
       .row
-        .col-md-3
-          %aside.sidebar-left
-            %div#left_menu
-              %ul
-                %li#left_menu_header{ :class => 'has-sub active'}
-                  %a{:href => '#' }
-                    %i{ :class => 'fa fa-list' }= I18n.t(:categories, scope: :category)
-                - @categories_and_children.keys.each do |c|
-                  %li{ :class => 'has-sub' }
-                    %a{:href => "#{show_products_in_category_path(c.id)}" }
-                      %i= ' ' + c.name
-                      %span= @categories_and_counters[c]
-                    %ul
-                      - @categories_and_children[c].each do |cc|
-                        %li
-                          %a{:href => "#{show_products_in_category_path(cc.id)}" }
-                            %i= cc.name
-                            %span= @categories_and_counters[cc]
-        .col-md-9
-          #masonry.row.row-wrap
-            - @products.each do |p|
-              %a.col-md-3.col-masonry.popup-text{'data-effect' => 'mfp-move-from-top', :href => "#product_quick_view_dialog_#{p.id}",  :shop_link => "#{p.shop ? shop_path(p.shop) : ''}"}
-                .product-thumb
-                  %header.product-header
-                    = image_tag p.decorate.product_cover_url, :alt => p.name, :title => p.name
-                    .product-quick-view
-                      %span.fa.fa-eye
-                  .product-inner
-                    %h5.product-title= truncate(p.name, :length => 32)
-                    .product-desciption= truncate(p.desc, :length => 64)
-                    .product-meta
-                    -#
-                      %ul.product-price-list
-                        %li
-                          %span.product-price= (p.get_mas.price * (100 - p.get_mas.discount) / 100.0).to_s + ' ' + p.shop.currency.code
-                        - if p.get_mas.discount > 0
+        %div{class: "+spacer"}
+        %div{class: "col-md-10 col-md-push-1 col-md-pull-1"}
+          .col-md-3
+            %aside.sidebar-left
+              %div#left_menu
+                %ul
+                  %li#left_menu_header{ :class => 'has-sub active'}
+                    %a{:href => '#' }
+                      = I18n.t(:categories, scope: :category)
+                  - @categories_and_children.keys.each do |c|
+                    %li{ :class => 'has-sub' }
+                      %a{:href => "#{show_products_in_category_path(c.id)}" }
+                        %i= ' ' + c.name
+                        %span= @categories_and_counters[c]
+                      %ul
+                        - @categories_and_children[c].each do |cc|
                           %li
-                            %span.product-old-price= p.get_mas.price.to_s + ' ' + p.shop.currency.code
-          .col-lg-12.col-md-12.col-sm-12
-            = will_paginate @products, renderer: BootstrapPagination::Rails
+                            %a{:href => "#{show_products_in_category_path(cc.id)}" }
+                              %i= cc.name
+                              %span= @categories_and_counters[cc]
+          .col-md-9
+            = render partial: "pages/products_list", :locals => { :products => @products }
+            -#.col-lg-12.col-md-12.col-sm-12
+            -#  = will_paginate @products, renderer: BootstrapPagination::Rails

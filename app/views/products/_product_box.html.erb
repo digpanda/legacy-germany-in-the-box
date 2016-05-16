@@ -1,0 +1,39 @@
+            <div class="product-box">
+
+              <div class="product-box__thumb popup-text" data-effect="mfp-move-from-top" href="#product_quick_view_dialog_<%= product.id %>" >
+
+                <div class="product-box__like col-md-2 col-md-offset-10">
+                  <a href="#"><i class="fa fa-heart"></i></a>
+                </div>
+                <header class="product-box__header">
+
+                  <a href="<%= product_path(product) %>">
+                    <img src="<%= product.decorate.product_cover_url %>" alt="<%= product.name %>" title="<%= product.name %>">
+                  </a>
+
+                </header>
+
+                <%= render partial: "pages/product_popup", locals: {product: product} %>
+
+                <div class="product-box__inner">
+
+                  <h5 class="product-box__inner --title"><%= product.name %></h5>
+                  <p class="product-box__iner --desciption"><%= product.decorate.short_desc %></p>
+
+                  <div class="product-box__meta">
+
+                    <span class="product-box__meta --price"><%= product.skus.first.decorate.price_with_currency %></span>
+
+                  </div>
+
+                  <p class="product-box__location">
+                    <a href="<%= shop_path(product.shop) %>">
+                      <i class="fa fa-shopping-bag"></i> <%= product.shop.shopname %>
+                    </a>
+                  </p>
+
+                </div>
+
+              </div>
+
+            </div>
