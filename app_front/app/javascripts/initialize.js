@@ -11,7 +11,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     for (var helper in helpers) {
 
-      let obj = require("javascripts/helpers/"+helper);
+      let formatted_helper = Casing.underscoreCase(helper).replace('-', '_');
+      let obj = require("javascripts/helpers/"+formatted_helper);
       obj.init();
 
     }

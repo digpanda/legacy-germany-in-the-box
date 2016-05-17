@@ -1,19 +1,19 @@
 <% products.in_groups_of(4, false).each do |grouped_products| %>
 
-      <div class="row">
+  <div class="row">
 
-      <% grouped_products.each do |product| %>
+    <% grouped_products.each do |product| %>
 
-          <div class="col-md-3">
+    <div class="col-md-3">
 
-          <%= render partial: 'products/product_box', :locals => {:product => product} %>
-            
-          </div>
+      <%= render partial: 'products/product_box', :locals => {:product => product} %>
+      
+    </div>
 
-        <% end %>
+    <% end %>
 
-        </div>
+  </div>
 
-        <div class="+spacer"></div>
+  <div class="+spacer"></div>
 
-      <% end %>
+<% end %>
