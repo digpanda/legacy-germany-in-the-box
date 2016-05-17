@@ -1,6 +1,5 @@
 class Product
   include MongoidBase
-  include Mongoid::FullTextSearch
 
   strip_attributes
 

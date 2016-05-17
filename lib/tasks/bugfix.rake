@@ -3,6 +3,7 @@ namespace :bugfix do
 
   task fix_country: :environment do
     Address.all.each do |a|
+
       puts "fixing address #{a.street} #{a.number}"
 
       if a.country == 'Deutschland'
