@@ -7,4 +7,19 @@ class OrderDecorator < Draper::Decorator
     "#{object.total_price} #{currency_code}"
   end
 
+  def current_cart
+    cart = Cart.new
+
+    order_items.each do |i|
+      cart.add(i.sku, i.quantity)
+    end
+
+
+    BorderGuru.calculate_quote(
+        cart: cart,
+        shop: order_items.,
+        country_of_destination: ISO3166::Country.new('CN'),
+        currency: 'EUR'
+    )
+  end
 end

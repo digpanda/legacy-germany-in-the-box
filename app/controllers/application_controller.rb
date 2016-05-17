@@ -88,12 +88,50 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def current_cart(shop_id)
+    current_order(shop_id).order_items.each do |i|
+      cart = Cart.new
+
+      o.order_items.each do |i|
+        cart.add(i.sku, i.quantity)
+
+        BorderGuru.calculate_quote(
+            cart: cart,
+            shop: Shop.find(shop_id),
+            country_of_destination: ISO3166::Country.new('CN'),
+            currency: 'EUR'
+        )
+      end
+    end
+  end
+
   def has_order?(shop_id)
      session[:order_ids] ? session[:order_ids][shop_id].present? : false
   end
 
   def current_orders
     @current_orders ||= session[:order_ids].map { |sid, oid| [Shop.find(sid), Order.find(oid)].compact unless sid.empty? }.compact.uniq.reject(&:empty?)
+  end
+
+  def current_carts
+    carts = {}
+
+    current_orders.map do |s, o|
+      carts[s] = Cart.new
+
+      o.order_items.each do |i|
+        carts[s].add(i.sku, i.quantity)
+
+        BorderGuru.calculate_quote(
+            cart: carts[s],
+            shop: Shop.find(s),
+            country_of_destination: ISO3166::Country.new('CN'),
+            currency: 'EUR'
+        )
+      end
+    end
+
+    carts
   end
 
   def total_number_of_products

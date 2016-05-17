@@ -35,6 +35,10 @@ class Cart
     )
   end
 
+  def total
+    shipping_cost + tax_and_duty_cost + cart_skus.inject(0) { |sum, s| sum += s.price }
+  end
+
   def create_order(options = {})
     order_line_items = cart_skus.map &:becomes_order_line_item
 

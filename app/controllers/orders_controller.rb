@@ -23,24 +23,7 @@ class OrdersController < ApplicationController
 
   def manage_cart
     @readonly = false
-    @carts = {}
-
-    current_orders.map do |s, o|
-      @carts[s] = Cart.new
-
-      o.order_items.each do |i|
-        @carts[s].add(i.sku, i.quantity)
-
-        BorderGuru.calculate_quote(
-            cart: @carts[s],
-            shop: Shop.find(s),
-            country_of_destination: ISO3166::Country.new('CN'),
-            currency: 'EUR'
-        )
-      end
-    end
-
-
+    @carts = current_carts
   end
 
   def set_address
@@ -145,8 +128,8 @@ class OrdersController < ApplicationController
   end
 
   def checkout
-
     @order = current_order(params[:shop_id]).update_for_checkout!(current_user, params[:delivery_destination_id])
+    @cart = current_cart(params[:shop_id])
 
     @wirecard = PrepareOrderForWirecardCheckout.perform({
 
@@ -154,11 +137,10 @@ class OrdersController < ApplicationController
       :order       => @order,
       :merchant_id => "dfc3a296-3faf-4a1d-a075-f72f1b67dd2a", # TO CHANGE DYNAMICALLY
       :secret_key  => "6cbfa34e-91a7-421a-8dde-069fc0f5e0b8", # TO CHANGE DYNAMICALLY 
-      :amount      => 1.01,
+      :amount      => @cart.total,
       :currency    => "CNY"
 
     })
-
   end
 
   def checkout_success

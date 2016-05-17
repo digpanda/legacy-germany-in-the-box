@@ -29,6 +29,8 @@ class Order
 
   summarizes sku_list: :order_items, by: :quantity
 
+  index({user: 1},  {unique: false,   name: :idx_order_user,   sparse: true})
+
   def total_price
     order_items.inject(0) { |sum, i| sum += i.quantity * (:status != :new ? i.price : i.sku.price) }
   end

@@ -40,15 +40,16 @@ class Product
   scope :has_tag,         ->(value) { where( :tags => value ) }
   scope :is_active,       ->        { where( :status => true ) }
   scope :has_sku,         ->()      { where( "skus.0" => { "$exists" => true } ) }
-  scope :buyable,         ->        { self.is_active.has_sku }
+  scope :buyable,         ->        { self.is_active.has_sku.in(shop: Address.is_sender.map {|a| a.shop_id}) }
 
-  index({name: 1},          {unique: false, name: :idx_product_name})
-  index({brand: 1},         {unique: false, name: :idx_product_brand})
-  index({shop: 1},          {unique: false, name: :idx_product_shop})
-  index({tags: 1},          {unique: false, name: :idx_product_tags,        sparse: true})
-  index({users: 1},         {unique: false, name: :idx_product_users,       sparse: true})
-  index({collections: 1},   {unique: false, name: :idx_product_collections, sparse: true})
-  index({categories: 1},    {unique: false, name: :idx_product_categories,  sparse: true})
+  index({name: 1},            {unique: false, name: :idx_product_name})
+  index({brand: 1},           {unique: false, name: :idx_product_brand})
+  index({shop: 1},            {unique: false, name: :idx_product_shop})
+  index({tags: 1},            {unique: false, name: :idx_product_tags,            sparse: true})
+  index({users: 1},           {unique: false, name: :idx_product_users,           sparse: true})
+  index({collections: 1},     {unique: false, name: :idx_product_collections,     sparse: true})
+  index({categories: 1},      {unique: false, name: :idx_product_categories,      sparse: true})
+  index({duty_category: 1},   {unique: false, name: :idx_product_duty_category,   sparse: true})
 
   def self.search(query)
     Product.where(name: /(#{query.split.join('|')})/i)

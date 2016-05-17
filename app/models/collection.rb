@@ -21,4 +21,6 @@ class Collection
   validates :desc,    length: {maximum: (Rails.configuration.max_medium_text_length * 1.25).round}
 
   scope :is_public, -> { where(:public => true) }
+
+  index({user: 1},  {unique: false,   name: :idx_collection_user})
 end

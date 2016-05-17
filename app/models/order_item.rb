@@ -23,6 +23,8 @@ class OrderItem
   validates :product_name,  presence: true, length: {maximum: Rails.configuration.max_short_text_length}
   validates :option_names,  presence: true
 
+  index({order: 1},  {unique: false,   name: :idx_order_item_order})
+
   def sku
     @sku ||= product.skus.find(self.sku_id)
   end
