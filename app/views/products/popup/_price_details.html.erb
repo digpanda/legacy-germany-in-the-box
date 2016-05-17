@@ -1,0 +1,41 @@
+<li>
+  <ul class="list product-page-meta-price-list">
+    <li>
+      <span class="product-page-meta-title">
+        <%= I18n.t(:price, scope: :popular_products) %>
+      </span>
+      <span class="product-page-meta-price" id="product_price_<%= product.id %>">
+        <%= "#{product.decorate.get_mas.price} #{product.shop.currency.code}" %>
+      </span>
+    </li>
+    <li>
+      <span class="product-page-meta-title">
+        <%= I18n.t(:discount, scope: :popular_products) %>
+      </span>
+      <span class="product-page-meta-price" id="product_discount_<%= product.id %>">
+        <%= "#{product.decorate.get_mas.discount}%" %>
+      </span>
+    </li>
+    <li>
+      <span class="product-page-meta-title">
+        <%= I18n.t(:saving, scope: :popular_products) %>
+      </span>
+      <span class="product-page-meta-price" id="product_saving_<%= product.id %>">
+        <%= "#{product.decorate.get_mas.price * product.decorate.get_mas.discount} #{product.shop.currency.code}" %>
+      </span>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <ul class="list product-page-meta-price-list">
+    <li>
+      <span class="product-page-meta-title">
+        <%= I18n.t(:inventory, scope: :popular_products) %>
+      </span>
+      <span class="product-page-meta-price" id="product_inventory_<%= product.id %>">
+        <%= product.decorate.get_mas.limited ? product.decorate.get_mas.quantity : I18n.t(:unlimited, scope: :popular_products) %>
+      </span>
+    </li>
+  </ul>
+</li>

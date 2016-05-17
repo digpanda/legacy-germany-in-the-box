@@ -1,0 +1,11 @@
+<div class="row"><h3>Germany in the Box</h3></div>
+
+<% if current_user&.is_shopkeeper? %>
+
+<div class="row"><%= link_to I18n.t(:terms_conditions, scope: :footer), agb_page_path, :target => 'blank' %></div>
+
+<% end %>
+
+<div class="row"><%= link_to I18n.t(:privarcy_statement, scope: :footer), privacy_page_path, :target => 'blank' %></div>
+<div class="row"><%= link_to I18n.t(:imprint, scope: :footer), imprint_page_path, :target => 'blank' %></div>
+<div class="row"><%= link_to I18n.t(:vouchers, scope: :footer), '#' %></div>

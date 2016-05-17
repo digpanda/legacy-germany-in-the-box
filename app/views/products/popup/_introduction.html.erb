@@ -1,0 +1,12 @@
+<% if product.shop %>
+  <h4>
+    <%= link_to "Shop: #{product.shop.shopname}", product.shop %>
+  </h4>
+<% end %>
+
+<h4>
+  <%= product.name %>
+</h4>
+<p>
+  <%= truncate(product.desc, :length => 128) %>
+</p>

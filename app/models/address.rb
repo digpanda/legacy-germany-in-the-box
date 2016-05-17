@@ -26,7 +26,7 @@ class Address
 
   scope :is_billing,  ->  { any_of({type: 'billing'}, {type: 'both'}) }
   scope :is_sender,   ->  { any_of({type: 'sender'}, {type: 'both'}) }
-
+  
   validates :number,    presence: true,   length: {maximum: Rails.configuration.max_tiny_text_length}
   validates :street,    presence: true,   length: {maximum: Rails.configuration.max_short_text_length}
   validates :city,      presence: true,   length: {maximum: Rails.configuration.max_tiny_text_length}

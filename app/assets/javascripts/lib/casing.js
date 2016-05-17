@@ -21,6 +21,13 @@ var Casing = (function($) {
     },
 
     /**
+     * Undescored to CamelCase
+     */
+    camelCase: function(string) {
+      return string.replace(/(\-[a-z])/g, function($1){return $1.toUpperCase().replace('-','');});
+    },
+
+    /**
      * Convert an object to underscore case
      */
     objectToUnderscoreCase: function(obj) {

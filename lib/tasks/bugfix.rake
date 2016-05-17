@@ -3,12 +3,13 @@ namespace :bugfix do
 
   task fix_country: :environment do
     Address.all.each do |a|
+
       puts "fixing address #{a.street} #{a.number}"
 
-      if a.country == 'Deutschland'
-        a.country = 'DE'
-      elsif a.country == '中国'
-        a.country == 'CN'
+      if a.read_attribute(:country) == 'Deutschland'
+        a.write_attribute(:country,'DE')
+      elsif a.read_attribute(:country) == '中国'
+        a.write_attribute(:country,'CN')
       end
 
       a.save!
