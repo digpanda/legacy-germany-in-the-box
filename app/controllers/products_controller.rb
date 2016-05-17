@@ -199,7 +199,7 @@ class ProductsController < ApplicationController
 
   def popular
 
-    @products = Product.is_active.has_sku.paginate(:pages => (params[:pages] ? params[:pages].to_i : 1), :per_page => Rails.configuration.limit_for_popular_products);
+    @products = Product.buyable.paginate(:pages => (params[:pages] ? params[:pages].to_i : 1), :per_page => Rails.configuration.limit_for_popular_products);
     @show_search_area = true
 
     respond_to do |format|

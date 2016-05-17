@@ -7,7 +7,7 @@ class PagesController < ApplicationController
   #load_and_authorize_resource :class => false
 
   def home
-    @products = Product.all
+    @products = Product.buyable.all
   end
 
   def agb

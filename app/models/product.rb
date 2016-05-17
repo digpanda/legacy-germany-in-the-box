@@ -39,7 +39,8 @@ class Product
 
   scope :has_tag,         ->(value) { where( :tags => value ) }
   scope :is_active,       ->        { where( :status => true ) }
-  scope :has_sku,         ->()      { where( :skus.ne => [] ) }
+  scope :has_sku,         ->()      { where( "skus.0" => { "$exists" => true } ) }
+  scope :buyable,         ->        { self.is_active.has_sku }
 
   index({name: 1},          {unique: false, name: :idx_product_name})
   index({brand: 1},         {unique: false, name: :idx_product_brand})
