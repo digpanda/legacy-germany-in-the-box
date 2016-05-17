@@ -58,15 +58,14 @@
       <div id="js-search-click">
         <a href="#"><span class="main-header__search"><i class="fa fa-search"></i> Search</span></a>
       </div>
-      <div id="js-search-input" class="+hidden">
 
+      <div id="js-search-input" class="+hidden">
         <div class="main-header__search --input">
           <form action="<%= search_products_path %>">
-            <input type="search" id="search" name="search" autocomplete="off" placeholder="Search..." />
+            <input type="query" id="search" name="query" autocomplete="off" placeholder="Search..." />
             <button class="icon" type="submit"><i class="fa fa-search"></i></button>
           </form>
         </div>
-
       </div>
 
     </div>

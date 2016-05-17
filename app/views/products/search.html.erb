@@ -1,0 +1,27 @@
+<!-- Search results -->
+<div class="products-list">
+
+  <div class="row">
+    <h1>Results for "<%= @query %>" ...</h1>
+  </div>
+
+  <div class="+spacer"></div>
+
+  <div class="row">
+
+    <% if @products.count > 0 %>
+
+    <div class="col-md-10 col-md-push-1 col-md-pull-1">
+      <%= render partial: "pages/products_list", :locals => { :products => @products } %>
+    </div>
+
+    <% else %>
+
+    <!-- We should improve this and all the "no result" texts -->
+    No result found
+
+    <% end %>
+
+  </div>
+
+</div>

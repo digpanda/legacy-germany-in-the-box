@@ -78,7 +78,7 @@ Rails.application.routes.draw do
     match :clone_sku,                               via: [:get],    action: :clone_sku,                   as: :clone_sku,                   :on => :member
 
     match :autocomplete_product_name,               via: [:get],    action: :autocomplete_product_name,   as: :autocomplete_product_name,   :on => :collection
-    match 'search',                                 via: [:get],    action: :search,                      as: :search,                      :on => :collection
+    match :search,                                 via: [:get],    action: :search,                      as: :search,                      :on => :collection
     match :popular,                                 via: [:get],    action: :popular,                     as: :popular,                                  :on => :collection
   end
 

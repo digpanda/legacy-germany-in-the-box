@@ -1,5 +1,6 @@
 class Product
   include MongoidBase
+  include Mongoid::FullTextSearch
 
   strip_attributes
 
@@ -48,4 +49,9 @@ class Product
   index({users: 1},         {unique: false, name: :idx_product_users,       sparse: true})
   index({collections: 1},   {unique: false, name: :idx_product_collections, sparse: true})
   index({categories: 1},    {unique: false, name: :idx_product_categories,  sparse: true})
+
+  def self.search(query)
+    Product.where(name: /(#{query.split.join('|')})/i)
+  end
+
 end

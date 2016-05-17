@@ -174,6 +174,13 @@ class ProductsController < ApplicationController
   end
 
   def search
+
+    redirect_to(:back) and return if params["query"].nil?
+    @query = params["query"]
+
+    @products = Product.search(@query)
+
+=begin
     founded_products = AppCache.get_products_from_search_cache_for_term( params[:products_search_keyword] )
 
     tags_product_ids        = founded_products[:tags]
@@ -195,6 +202,8 @@ class ProductsController < ApplicationController
         render :search
       }
     end
+=end
+
   end
 
   def popular
