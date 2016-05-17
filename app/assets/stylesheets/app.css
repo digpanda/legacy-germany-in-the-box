@@ -43,6 +43,11 @@
 #csstyle .\+grey {
   color: #bdc3c7; }
 
+/* line 85, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
+#csstyle .\+quoted {
+  font-family: 'Raleway', sans-serif;
+  font-style: italic; }
+
 /* line 32, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
 .category-menu {
   background-color: #659443;
