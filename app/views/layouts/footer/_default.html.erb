@@ -8,34 +8,44 @@
 
         <div class="col-md-12 main-footer">
 
-          <div class="main-footer__logo col-md-3 col-md-offset-1">
+          <div class="main-footer__logo col-md-2 col-md-offset-1">
             <img src="/assets/logo-min-white.png">
           </div>
+
+          <div class="col-md-2 col-md-pull-1">
+
+            <div class="row"><h3><%= I18n.t(:recent_news, scope: :footer) %></h3></div>
+            <div class="row +grey">13-01-2016</div>
+            <div class="row"><%= I18n.t(:news_ihk, scope: :footer).html_safe %></div>
+
+          </div>
+
           <div class="col-md-2">
 
-            <div class="row +up">Germany in the Box</div>
+            <div class="row"><h3>Germany in the Box</h3></div>
             <div class="row"><%= link_to I18n.t(:privarcy_statement, scope: :footer), privacy_page_path, :target => 'blank' %></div>
             <div class="row"><%= link_to I18n.t(:imprint, scope: :footer), imprint_page_path, :target => 'blank' %></div>
             <div class="row"><%= link_to I18n.t(:vouchers, scope: :footer), '#' %></div>
 
           </div>
+
           <div class="col-md-2">
 
             <% if !current_user && I18n.locale == :'zh-CN' %>
-              <div class="row +up"><%= link_to I18n.t(:buying, scope: :footer) %></div>
+              <div class="row"><h3><%= link_to I18n.t(:buying, scope: :footer) %></h3></div>
               <div class="row"><%= link_to I18n.t(:buyer_faq, scope: :footer), '#' %></div>
               <div class="row"><%= link_to I18n.t(:buyer_in_3_steps, scope: :footer), '#' %></div>
             <% elsif !current_user && I18n.locale == :de %>
-              <div class="row +up"><%= I18n.t(:selling, scope: :footer) %></div>
+              <div class="row"><h3><%= I18n.t(:selling, scope: :footer) %></h3></div>
               <div class="row"><%=link_to I18n.t(:shop_application, scope: :edit_shop_application), new_shop_application_path %></div>
               <div class="row"><%=link_to I18n.t(:sell_on_rm, scope: :footer), saleguide_page_path, :target => 'blank' %></div>
             <% end %>
 
-
           </div>
+
           <div class="col-md-2">
 
-            <div class="row +up">Language</div>
+            <div class="row"><h3>Language</h3></div>
             <div class="row"><%= link_to "Chinese", set_session_locale_path(locale: "zh-CN") %></div>
             <div class="row"><%= link_to "German", set_session_locale_path(locale: "de") %></div>
 
