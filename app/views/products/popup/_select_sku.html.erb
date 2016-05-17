@@ -1,0 +1,10 @@
+<ul class="list product-page-meta-price-list">
+  <li>
+    <span class="product-page-meta-title">
+      <%= I18n.t(:variant_option, scope: :cart) %>
+    </span>
+    <span class="product-page-meta-price">
+      <%= select_tag 'sku[option_ids]', options_for_select( get_options_for_select(product), product.decorate.get_mas.option_ids.join(',') ), :class => 'form-control variant-option', :id => 'option_ids', :product_id => product.id %>
+    </span>
+  </li>
+</ul>
