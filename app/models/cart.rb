@@ -36,7 +36,7 @@ class Cart
   end
 
   def total
-    shipping_cost + tax_and_duty_cost + cart_skus.inject(0) { |sum, s| sum += s.price }
+    shipping_cost.round(2) + tax_and_duty_cost.round(2) + cart_skus.inject(0) { |sum, s| sum += s.price }.round(2)
   end
 
   def create_order(options = {})
