@@ -4,10 +4,9 @@
 //= require magnific-popup
 //= require twitter/bootstrap
 //= require bootstrapValidator.min
-//= require moment
-//= require moment/de
-//= require moment/zh-cn
-//= require bootstrap-datetimepicker
+//= require bootstrap-datepicker/core
+//= require bootstrap-datepicker/locales/bootstrap-datepicker.de.js
+//= require bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN.js
 //= require bootstrap-multiselect
 
 //= require_tree ./lib

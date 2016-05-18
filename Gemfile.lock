@@ -46,13 +46,13 @@ GEM
       rack (>= 0.9.0)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
+    bootstrap-datepicker-rails (1.6.1.1)
+      railties (>= 3.0)
     bootstrap-multiselect-rails (0.9.9)
       rails (>= 4.0.0)
     bootstrap-validator-rails (0.5.3)
       jquery-rails (>= 3.0)
       railties (>= 3.0)
-    bootstrap3-datetimepicker-rails (4.17.37)
-      momentjs-rails (>= 2.8.1)
     bson (4.1.1)
     builder (3.2.2)
     byebug (8.2.5)
@@ -193,8 +193,6 @@ GEM
     mobvious-rails (0.1.2)
       activesupport
       mobvious
-    momentjs-rails (2.11.1)
-      railties (>= 3.1)
     mongo (2.2.5)
       bson (~> 4.0)
     mongoid (5.0.2)
@@ -376,9 +374,9 @@ PLATFORMS
 DEPENDENCIES
   abstract_method
   better_errors
+  bootstrap-datepicker-rails
   bootstrap-multiselect-rails
   bootstrap-validator-rails
-  bootstrap3-datetimepicker-rails
   byebug
   cancancan
   capybara
@@ -407,7 +405,6 @@ DEPENDENCIES
   mini_magick
   minitest (= 5.8.3)
   mobvious-rails
-  momentjs-rails
   mongoid (~> 5.0.0)
   mongoid_includes
   mongoid_magic_counter_cache
