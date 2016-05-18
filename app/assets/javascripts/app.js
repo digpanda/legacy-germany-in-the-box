@@ -504,6 +504,68 @@ var Footer = {
 module.exports = Footer;
 });
 
+require.register("javascripts/helpers/product_favorite.js", function(exports, require, module) {
+"use strict";
+
+/**
+ * ProductFavorite Class
+ */
+var ProductFavorite = {
+
+  /**
+   * Initializer
+   */
+  init: function init() {
+
+    // Variable sets
+    this.product = $('#js-product').data();
+
+    this.manageHeartClick();
+  },
+
+  /**
+   * When the heart is clicked
+   */
+  manageHeartClick: function manageHeartClick() {
+
+    self = this;
+
+    $(".js-heart-click").on("click", function (e) {
+
+      e.preventDefault();
+
+      ProductFavorite.doLike(ProductFavorite.product.id, function (res) {
+
+        console.log(res);
+      });
+    });
+  },
+
+  doLike: function doLike(product_id, callback) {
+
+    $.ajax({
+      method: "PATCH",
+      url: "/products/" + product_id + "/like",
+      data: {}
+
+    }).done(function (res) {
+
+      callback(res);
+    }).error(function (err) {
+
+      // If it's a Unauthorized code, it means we are not logged in, let's trigger.
+      if (err.status == 401) {
+
+        $("#sign_in_link").click();
+      }
+    });
+  }
+
+};
+
+module.exports = ProductFavorite;
+});
+
 require.register("javascripts/helpers/product_lightbox.js", function(exports, require, module) {
 'use strict';
 
@@ -530,11 +592,7 @@ var ProductLightbox = {
 
       $('select.variant-option').change(function () {
 
-        console.log('changed');
-
         var product_id = $(this).attr('product_id');
-
-        console.log(product_id);
         var option_ids = [];
 
         $('ul.product-page-meta-info [id^="product_' + product_id + '_variant"]').each(function (o) {

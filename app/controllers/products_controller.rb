@@ -62,8 +62,10 @@ class ProductsController < ApplicationController
 
   def like
 
+    binding.pry
+
     current_user.favorites << Product.find(params[:id])
-    
+
 =begin
     current_user.dCollection = Collection.create( :name => :default, :user => current_user ) unless current_user.dCollection
     

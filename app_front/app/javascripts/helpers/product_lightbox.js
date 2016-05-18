@@ -22,11 +22,7 @@ var ProductLightbox = {
 
         $('select.variant-option').change(function () {
 
-          console.log('changed');
-
           var product_id = $(this).attr('product_id');
-
-          console.log(product_id);
           var option_ids = [];
 
           $('ul.product-page-meta-info [id^="product_' + product_id + '_variant"]').each ( function(o) {
