@@ -3,6 +3,8 @@ require 'base64_to_upload'
 class ApplicationController < ActionController::Base
 
   include HttpAcceptLanguage::AutoLocale
+
+  include UsersHelper
   
   include AppCache
 
@@ -49,7 +51,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def set_all_categories
-    if current_user.nil? || current_user.is_customer?
+    if seems_like_a_customer?
       @category_navigation_store ||= CategoryNavigationStore.new
     end
   end
