@@ -20,7 +20,6 @@ class ShopApplicationsController < ApplicationController
 
   def new
     @shop_application = ShopApplication.new
-    render :new, layout: 'sublayout/_default'
   end
 
   def create
