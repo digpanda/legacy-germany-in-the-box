@@ -41,7 +41,7 @@
       - @product.skus.each do |s|
         %tr
           %td= link_to image_tag(s.decorate.first_nonempty_img_url(:thumb), :style => 'max-width:48px;max-height:auto'), edit_sku_product_path(@product.id, :user_info_edit_part => :edit_product_detail_update, :sku_id => s.id)
-          %td= select_tag :option_ids, grouped_options_for_select(@product.grouped_variants_options, s.option_ids ), :multiple => 'multiple', :class => 'sku-variants-options', :readonly=>true
+          %td= select_tag :option_ids, grouped_options_for_select(@product.decorate.grouped_variants_options, s.option_ids ), :multiple => 'multiple', :class => 'sku-variants-options', :readonly=>true
           %td= number_with_precision(s.price ? s.price : 0, :precision => 2) + ' ' + @product.shop.currency.code
           %td= s.discount.to_s + '%' if s.discount != 0
           %td= s.quantity

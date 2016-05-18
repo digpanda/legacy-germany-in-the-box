@@ -33,4 +33,8 @@ class ProductImageUploader < CarrierWave::Uploader::Base
       process :resize_and_pad => [400, 400]
     end
   end
+
+  def default_url
+    [version_name, "no_image_available.jpg"].compact.join('_')
+  end
 end# encoding: utf-8
