@@ -185,7 +185,10 @@
               to activate this section
             - else
               - if @shop.wirecard_status.nil?
-                = link_to "Apply to WireCard now", apply_wirecard_shop_path, {class: "btn btn-danger", target: "_blank", disabled: "disabled"}
+                - if current_user.is_shopkeeper?
+                  = link_to "Apply to WireCard now", apply_wirecard_shop_path, {class: "btn btn-danger", target: "_blank", disabled: "disabled"}
+                - else
+                  This company didn't apply to WireCard yet.
               - elsif @shop.wirecard_status == :active
                 Your status was approved
               - elsif @shop.wirecard_status == :processing
