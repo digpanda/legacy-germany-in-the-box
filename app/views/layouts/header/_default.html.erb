@@ -72,8 +72,16 @@
 
 
     <div class="col-md-3">
-      <a href="#">
-        <span class="main-header__likes"><i class="fa fa-heart"></i> 0</span>
+      <a href="<%= (current_user.nil? ? "#" : show_collections_user_path(current_user, :user_info_edit_part => :edit_collection)) %>">
+        <span class="main-header__likes"><i class="fa fa-heart"></i> 
+
+        <% if current_user.nil? %>
+          0
+        <% else %>
+          <%= current_user.favorites.count %> <!-- Should be full AJAX not to slow everything down -->
+        <% end %>
+
+        </span>
       </a>
     </div>
 

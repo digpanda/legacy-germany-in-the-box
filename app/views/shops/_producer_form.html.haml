@@ -163,6 +163,16 @@
               = f.check_box :agb, { :disabled => true }
               = I18n.t(:agb_statement, scope: :edit_shop, locale: locale).html_safe
 
+    - if current_user.is_admin?
+      .panel.panel-info
+        .panel-heading.text-center
+          %label
+            Addresses
+        .panel-body
+          .form-group
+            .row-fluid
+              = render partial: "addresses/addresses_table", :locals => { :addresses => @shop.addresses }
+
     .panel.panel-info
       .panel-heading.text-center
         WireCard Payment Partnership
@@ -175,7 +185,10 @@
               to activate this section
             - else
               - if @shop.wirecard_status.nil?
-                = link_to "Apply to WireCard now", apply_wirecard_shop_path, {class: "btn btn-danger"}
+                - if current_user.is_shopkeeper?
+                  = link_to "Apply to WireCard now", apply_wirecard_shop_path, {class: "btn btn-danger", target: "_blank", disabled: "disabled"}
+                - else
+                  This company didn't apply to WireCard yet.
               - elsif @shop.wirecard_status == :active
                 Your status was approved
               - elsif @shop.wirecard_status == :processing

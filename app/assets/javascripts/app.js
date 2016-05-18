@@ -382,6 +382,44 @@ var Menu = {
 module.exports = Menu;
 });
 
+require.register("javascripts/controllers/shop_applications/new.js", function(exports, require, module) {
+'use strict';
+
+/**
+ * ShopApplicationsNew Class
+ */
+var ShopApplicationsNew = {
+
+  /**
+   * Initializer
+   */
+  init: function init() {
+
+    if ($('#add_sales_channel_btn').length > 0) {
+
+      $('#add_sales_channel_btn').click();
+
+      $('#edit_app_submit_btn').click(function () {
+        $('input.dynamical-required').each(function () {
+          if ($(this).val().length == 0) {
+            $(this).addClass('invalidBorderClass');
+          } else {
+            $(this).removeClass('invalidBorderClass');
+          }
+        });
+
+        if ($('.invalidBorderClass').length > 0) {
+          return false;
+        }
+      });
+    }
+  }
+
+};
+
+module.exports = ShopApplicationsNew;
+});
+
 require.register("javascripts/controllers/shops/apply_wirecard.js", function(exports, require, module) {
 "use strict";
 

@@ -17,6 +17,8 @@ class User
   field :mobile,    type: String
   field :status,    type: Boolean, default: true
 
+  has_and_belongs_to_many :favorites, :class_name => 'Product'
+
   has_and_belongs_to_many :followers,         :class_name => 'User',        :inverse_of => :following
   has_and_belongs_to_many :following,         :class_name => 'User',        :inverse_of => :followers
   has_and_belongs_to_many :liked_collections, :class_name => 'Collection',  :inverse_of => :users

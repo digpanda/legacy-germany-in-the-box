@@ -22,6 +22,8 @@ class Product
   belongs_to :shop,           inverse_of: :products
   belongs_to :duty_category,  inverse_of: :products,  counter_cache: true
 
+  has_and_belongs_to_many :users, inverse_of: :favorites
+
   accepts_nested_attributes_for :skus
   accepts_nested_attributes_for :options
 
