@@ -90,6 +90,7 @@
           .form-group
             .row-fluid
               = f.select :category_ids, grouped_options_for_select(@customer_categories_options.grouped_categories_options(locale), @product.categories.map { |c| c.id.to_s }), { :include_blank => I18n.t(:non_selected_text, scope: :multiselect, locale: locale) }, :multiple => 'multiple', :class => 'form-control product-categories'
+    - if current_user.role == :admin && locale == :'zh-CN'
       .panel.panel-info
         .panel-heading{:title => I18n.t(:keywords_info, scope: :edit_product, num: Rails.configuration.max_num_addresses, locale: locale)}
           .text-center

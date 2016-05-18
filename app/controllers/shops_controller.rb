@@ -12,7 +12,7 @@ class ShopsController <  ApplicationController
   attr_reader :shop, :shops
 
   def index
-    @shops = Shop.all
+    @shops = Shop.in(shopkeeper: User.where(role: 'shopkeeper').map { |u| u.id} ).all;
   end
 
   def edit_setting
