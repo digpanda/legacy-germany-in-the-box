@@ -200,7 +200,7 @@ var ManageCart = {
 
     var self = this;
 
-    $("#set_address_link").click(function (e) {
+    $(".js-set-address-link").click(function (e) {
 
       e.preventDefault();
       self.forceLogin(this);
@@ -213,7 +213,7 @@ var ManageCart = {
    */
   forceLogin: function forceLogin(e) {
 
-    var location = $("#set_address_link").attr("href");
+    var location = $(".js-set-address-link").attr("href");
     var self = this;
 
     this.isAuth(function (res) {
