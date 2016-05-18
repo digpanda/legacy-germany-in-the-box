@@ -22,7 +22,7 @@
     .form-group
       = f.text_field :country, :value => ISO3166::Country[:CN].local_name, :readonly => true, :class => 'form-control', :placeholder => 'Country (*)'
     .form-group
-      = f.text_field :zip, :class => 'form-control', :placeholder => I18n.t(:zip, scope: :edit_address), :required => true, :pattern => '\d{6,6}'
+      = f.text_field :zip, :class => 'form-control', :placeholder => I18n.t(:zip, scope: :edit_address), :required => true, :pattern => I18n.t(:zip, scope: :validation, locale: :'zh-CN')
     .form-group
       .checkbox
         %label

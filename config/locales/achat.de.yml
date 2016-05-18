@@ -12,6 +12,7 @@ de:
     positive_integer_less_or_equal_than_100: '^[1-9][0-9]?$|^100$|^0$'
     positive_float: '^([0-9]*[1-9][0-9]*(,[0-9]{1,2})?|[0]+,[0-9]*[1-9][0-9]*)$'
     positive_float_equal_or_greater_than_0: '^(0(,[0]{1,2})?|[0-9]*[1-9][0-9]*(,[0-9]{1,2})?|[0]+,[0-9]*[1-9][0-9]*)$'
+    zip: '^(?!01000|99999)(0[1-9]\d{3}|[1-9]\d{4})$'
   multiselect:
     non_selected_text: Nicht ausgewählt
     n_selected_text: ausgewählt
@@ -150,7 +151,7 @@ de:
     street: Straße
     house_number: Haus Nr.
     additional: Zusatz
-    province: Land
+    province: Landkreis
     city: Stadt
     district: Gemeinde
     province_blank: --Land--
