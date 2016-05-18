@@ -62,6 +62,9 @@ class ProductsController < ApplicationController
 
   def like
 
+    current_user.favorites << Product.find(params[:id])
+    
+=begin
     current_user.dCollection = Collection.create( :name => :default, :user => current_user ) unless current_user.dCollection
     
     current_user.dCollection.products.push(@product) unless current_user.dCollection.products.find(@product)
@@ -79,9 +82,15 @@ class ProductsController < ApplicationController
     respond_to do |format|
       format.json { render :json => { :status => :lo }, :status => :unprocessable_entity }
     end
+=end
+
   end
 
   def unlike
+
+    current_user.favorites.delete(Product.find(params[:id]))
+
+=begin
     current_user.dCollection = Collection.create( :name => :default, :user => current_user ) unless current_user.dCollection
     current_user.dCollection.products.delete(@product)
 
@@ -97,6 +106,7 @@ class ProductsController < ApplicationController
     respond_to do |format|
       format.json { render :json => { :status => :ko  }, :status => :unprocessable_entity }
     end
+=end
   end
 
   def remove_sku
