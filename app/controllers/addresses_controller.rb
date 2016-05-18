@@ -231,7 +231,8 @@ class AddressesController < ApplicationController
                                       :mobile,
                                       :tel,
                                       :fname,
-                                      :lname)
+                                      :lname,
+                                      :company)
     end
   end
 

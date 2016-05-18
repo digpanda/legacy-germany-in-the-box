@@ -151,7 +151,7 @@ de:
     street: Straße
     house_number: Haus Nr.
     additional: Zusatz
-    province: Landkreis
+    province: Land
     city: Stadt
     district: Gemeinde
     province_blank: --Land--
@@ -178,6 +178,7 @@ de:
     type: Typ
     fname: Vorname
     lname: Nachname
+    company: Firmenname
   edit_order:
     no_order: keine Aufträge vorhanden
     id: Auftragsnummer

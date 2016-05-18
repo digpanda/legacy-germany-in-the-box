@@ -12,6 +12,7 @@ class Address
   field :zip,           type: String
   field :country,       type: ISO3166::Country
   field :type,          type: String # billing, sender, both
+  field :company,       type: String
 
   field :fname,         type: String
   field :lname,         type: String
@@ -42,6 +43,7 @@ class Address
   validates :district,  length: {maximum: Rails.configuration.max_tiny_text_length}, :if => lambda{ self.country_code == 'DE' }
 
   validates :district,  presence: true,   length: {maximum: Rails.configuration.max_tiny_text_length},  :if => lambda{ self.country_code == 'zh-CN' }
+  validates :company,   presence: true,   length: {maximum: Rails.configuration.max_tiny_text_length},  :if => lambda{ self.country_code == 'DE' }
   validates :province,  presence: true,   length: {maximum: Rails.configuration.max_tiny_text_length}
 
   validates :type,      presence: true,   inclusion: {in: ['billing', 'sender', 'both']},    :if => lambda{ self.country_code == 'DE' }

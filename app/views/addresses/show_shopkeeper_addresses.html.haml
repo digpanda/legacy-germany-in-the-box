@@ -3,6 +3,8 @@
     .form-group
       %h4= I18n.t(:new_address_title, scope: :edit_address)
     .form-group
+      = f.text_field :company, :class => 'form-control', :required => true, :placeholder => I18n.t(:company, scope: :edit_address)
+    .form-group
       .form-inline
         .form-group
           = f.text_field :fname, :class => 'form-control', :style => 'width:168px', :required => true, :placeholder => I18n.t(:fname, scope: :edit_address)
@@ -49,6 +51,8 @@
       = form_for a, :url => address_path(a), :html => { :method => :patch }  do |f|
         .form-group
           %h4= I18n.t(:change_address_title, scope: :edit_address)
+        .form-group
+          = f.text_field :company, :class => 'form-control', :required => true, :placeholder => I18n.t(:company, scope: :edit_address)
         .form-group
           .form-inline
             .form-group
@@ -98,6 +102,7 @@
             = link_to '', address_path(a), method: :delete, data: { confirm: I18n.t(:delete_address_message, scope: :edit_address) }, "data-placement" => "right",  class: 'address-box-remove'
             %a.address-box-edit.popup-text{"data-effect" => "mfp-move-from-top", "data-placement" => "right", "data-toggle" => "tooltip", :href => "#edit-address-dialog-#{a.id}",}
             %ul
+              %li= "#{I18n.t(:company, scope: :edit_address)} : #{ a.company }"
               %li= "#{I18n.t(:street, scope: :edit_address)} : #{ a.street } #{ a.number }"
               %li= "#{I18n.t(:additional, scope: :edit_address)} : #{ a.additional }"
               %li= "#{I18n.t(:city, scope: :edit_address)} : #{ a.city }"

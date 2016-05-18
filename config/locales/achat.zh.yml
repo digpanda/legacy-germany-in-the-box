@@ -178,6 +178,7 @@ zh-CN:
     type: 地址类型
     fname: 名
     lname: 姓
+    company: 公司名称
   edit_order:
     no_order: 您还没有任何订单
     id: 订单号
