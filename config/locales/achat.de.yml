@@ -179,6 +179,9 @@ de:
     fname: Vorname
     lname: Nachname
     company: Firmenname
+    tel: Festnetz
+    mobile: Handy
+    name: Name
   edit_order:
     no_order: keine Aufträge vorhanden
     id: Auftragsnummer

@@ -8,6 +8,17 @@
     .form-group
       .form-inline
         .form-group
+          = f.text_field :lname, :value => current_user.lname, :class => 'form-control', :style => 'width:168px', :required => true, :placeholder => I18n.t(:lname, scope: :edit_address)
+        .form-group
+          = f.text_field :fname, :value => current_user.fname, :class => 'form-control', :style => 'width:168px', :required => true, :placeholder => I18n.t(:fname, scope: :edit_address)
+      .form-inline
+        .form-group
+          = f.text_field :mobile, :value => current_user.mobile, :class => 'form-control', :style => 'width:168px', :required => true, :placeholder => I18n.t(:mobile, scope: :edit_address)
+        .form-group
+          = f.text_field :tel, :value => current_user.tel, :class => 'form-control', :style => 'width:168px', :placeholder => I18n.t(:tel, scope: :edit_address)
+    .form-group
+      .form-inline
+        .form-group
           = f.text_field :street, :class => 'form-control', :style => 'width:248px', :required => true, :placeholder => I18n.t(:street, scope: :edit_address)
         .form-group
           = f.text_field :number, :class => 'form-control', :style => 'width:88px', :required => true, :placeholder => I18n.t(:house_number, scope: :edit_address), :pattern => '\d+'
@@ -36,6 +47,17 @@
       = form_for a, :url => address_path(a), :html => { :method => :patch }  do |f|
         .form-group
           %h4= I18n.t(:change_address_title, scope: :edit_address)
+        .form-group
+          .form-inline
+            .form-group
+              = f.text_field :lname, :value => a.lname ? a.lname : current_user.lname, :class => 'form-control', :style => 'width:168px', :required => true, :placeholder => I18n.t(:lname, scope: :edit_address)
+            .form-group
+              = f.text_field :fname, :value => a.fname ? a.fname : current_user.fname, :class => 'form-control', :style => 'width:168px', :required => true, :placeholder => I18n.t(:fname, scope: :edit_address)
+          .form-inline
+            .form-group
+              = f.text_field :mobile, :value => current_user.mobile, :class => 'form-control', :style => 'width:168px', :required => true, :placeholder => I18n.t(:mobile, scope: :edit_address)
+            .form-group
+              = f.text_field :tel, :value => current_user.tel, :class => 'form-control', :style => 'width:168px', :placeholder => I18n.t(:tel, scope: :edit_address)
         .form-group
           .form-inline
             .form-group
@@ -70,6 +92,7 @@
             = link_to '', address_path(a), method: :delete, data: { confirm: I18n.t(:delete_address_message, scope: :edit_address) }, "data-placement" => "right",  class: 'address-box-remove'
             %a.address-box-edit.popup-text{"data-effect" => "mfp-move-from-top", "data-placement" => "right", "data-toggle" => "tooltip", :href => "#edit-address-dialog-#{a.id}",}
             %ul
+              %li= "#{I18n.t(:name, scope: :edit_address)} : #{ a.lname }#{ a.fname }"
               %li= "#{I18n.t(:street, scope: :edit_address)} : #{ a.street } #{ a.number }"
               %li= "#{I18n.t(:additional, scope: :edit_address)} : #{ a.additional }"
               %li= "#{I18n.t(:district, scope: :edit_address)} : #{ a.district }"

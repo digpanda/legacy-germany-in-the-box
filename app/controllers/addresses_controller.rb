@@ -216,8 +216,12 @@ class AddressesController < ApplicationController
                                       :province,
                                       :zip,
                                       :country,
-                                      :primary)
-    else
+                                      :primary,
+                                      :mobile,
+                                      :tel,
+                                      :fname,
+                                      :lname,)
+    elsif current_user.role == :shopkeeper
       params.require(:address).permit(:number,
                                       :street,
                                       :additional,
@@ -227,7 +231,6 @@ class AddressesController < ApplicationController
                                       :zip,
                                       :country,
                                       :type,
-                                      :email,
                                       :mobile,
                                       :tel,
                                       :fname,

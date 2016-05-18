@@ -179,6 +179,9 @@ zh-CN:
     fname: 名
     lname: 姓
     company: 公司名称
+    tel: 固定电话
+    mobile: 移动电话
+    name: 姓名
   edit_order:
     no_order: 您还没有任何订单
     id: 订单号
