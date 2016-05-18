@@ -41,6 +41,6 @@ class ProductDecorator < Draper::Decorator
   end
 
   def first_sku_image
-    skus.first ? skus.first.decorate.first_nonempty_img_url(:thumb) : nil
+    skus.first ? skus.first.decorate.first_nonempty_img_url(:thumb) : 'no_image_available.jpg'
   end
 end
