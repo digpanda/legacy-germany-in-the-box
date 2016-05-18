@@ -32,7 +32,7 @@ var Casing = (function($) {
      */
     objectToUnderscoreCase: function(obj) {
 
-      let parsed = {};
+      var parsed = {};
       for (var key in obj) {
 
         new_key = this.underscoreCase(key);
