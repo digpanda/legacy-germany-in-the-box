@@ -20,7 +20,7 @@ class AddressesController < ApplicationController
 
   def create
     if current_user.role == :customer
-      num_addresses = current_user.addresses.size
+      num_addresses = current_user.addresses.count
 
       if num_addresses >= Rails.configuration.max_num_addresses
         respond_to do |format|
@@ -33,29 +33,31 @@ class AddressesController < ApplicationController
             render :json => { msg: I18n.t(:maximal_number_of_addresses, scope: :edit_address, num: Rails.configuration.max_num_addresses ) }.to_json, :status => :unprocessable_entity
           }
         end
-      end
 
-      ap = address_params
-      ap[:primary] = true if num_addresses == 0
+        return
+      else
+        ap = address_params
+        ap[:primary] = true if num_addresses == 0
 
-      ap[:district] = ChinaCity.get(ap[:district])
-      ap[:city] = ChinaCity.get(ap[:city])
-      ap[:province] = ChinaCity.get(ap[:province])
-      ap[:country] = ISO3166::Country.find_by_name(ap[:country])[0]
+        ap[:district] = ChinaCity.get(ap[:district])
+        ap[:city] = ChinaCity.get(ap[:city])
+        ap[:province] = ChinaCity.get(ap[:province])
+        ap[:country] = ISO3166::Country.find_by_name(ap[:country])[0]
 
-      address = Address.new(ap)
-      address.user = current_user
+        address = Address.new(ap)
+        address.user = current_user
 
-      if (flag = address.save)
-        if address.primary and num_addresses > 0
-          current_user.addresses.select { |a| a.primary and a != address } .each do |a|
-            a.primary = false
-            flag &&= a.save
+        if (flag = address.save)
+          if address.primary and num_addresses > 0
+            current_user.addresses.select { |a| a.primary and a != address } .each do |a|
+              a.primary = false
+              flag &&= a.save
+            end
           end
         end
       end
     elsif current_user.role == :shopkeeper
-      num_addresses = current_user.shop.addresses.size
+      num_addresses = current_user.shop.addresses.count
       max_num_addresses = Rails.configuration.max_num_shop_billing_addresses + Rails.configuration.max_num_shop_sender_addresses
 
       if num_addresses >= max_num_addresses
@@ -69,15 +71,15 @@ class AddressesController < ApplicationController
             render :json => { msg: I18n.t(:maximal_number_of_addresses, scope: :edit_address, num: max_num_addresses) }.to_json, :status => :unprocessable_entity
           }
         end
+      else
+        ap = address_params
+        ap[:country] = ISO3166::Country.find_by_name(ap[:country])[0]
+
+        address = Address.new(ap)
+        address.shop = current_user.shop
+
+        flag = address.save
       end
-
-      ap = address_params
-      ap[:country] = ISO3166::Country.find_by_name(ap[:country])[0]
-
-      address = Address.new(ap)
-      address.shop = current_user.shop
-
-      flag = address.save
     end
 
     if flag
@@ -103,7 +105,6 @@ class AddressesController < ApplicationController
         }
       end
     end
-
   end
 
   def update

@@ -33,6 +33,9 @@ class Address
   scope :is_only_sender,    ->  { any_of({type: 'sender'}) }
   scope :is_only_both,      ->  { any_of({type: 'both'}) }
 
+  validates :fname,     presence: true,   length: {maximum: Rails.configuration.max_tiny_text_length}
+  validates :lname,     presence: true,   length: {maximum: Rails.configuration.max_tiny_text_length}
+  validates :mobile,    presence: true,   length: {maximum: Rails.configuration.max_tiny_text_length}
   validates :number,    presence: true,   length: {maximum: Rails.configuration.max_tiny_text_length}
   validates :street,    presence: true,   length: {maximum: Rails.configuration.max_short_text_length}
   validates :city,      presence: true,   length: {maximum: Rails.configuration.max_tiny_text_length}
@@ -40,13 +43,13 @@ class Address
   validates :country,   presence: true
   validates :primary,   presence: true
 
-  validates :district,  length: {maximum: Rails.configuration.max_tiny_text_length}, :if => lambda{ self.country_code == 'DE' }
+  validates :district,  length: {maximum: Rails.configuration.max_tiny_text_length}, :if => lambda{ user.role == :shopkeeper }
 
-  validates :district,  presence: true,   length: {maximum: Rails.configuration.max_tiny_text_length},  :if => lambda{ self.country_code == 'zh-CN' }
-  validates :company,   presence: true,   length: {maximum: Rails.configuration.max_tiny_text_length},  :if => lambda{ self.country_code == 'DE' }
+  validates :district,  presence: true,   length: {maximum: Rails.configuration.max_tiny_text_length},  :if => lambda{ user.role == :customer }
+  validates :company,   presence: true,   length: {maximum: Rails.configuration.max_tiny_text_length},  :if => lambda{ user.role == :shopkeeper }
   validates :province,  presence: true,   length: {maximum: Rails.configuration.max_tiny_text_length}
 
-  validates :type,      presence: true,   inclusion: {in: ['billing', 'sender', 'both']},    :if => lambda{ self.country_code == 'DE' }
+  validates :type,      presence: true,   inclusion: {in: ['billing', 'sender', 'both']},    :if => lambda{ user.role == :shopkeeper }
 
   index({shop: 1},      {unique: false, name: :idx_address_shop, sparse: true})
   index({type: 1},      {unique: false, name: :idx_address_type, sparse: true})
