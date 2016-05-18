@@ -1,12 +1,15 @@
 <!-- Should be somewhere else, better organized ... -->
-<div id="js-product" data-id="<%= product.id %>"></div>
 
             <div class="product-box">
 
               <div class="product-box__thumb">
 
                 <div class="product-box__like col-md-2 col-md-offset-10">
-                  <a href="#" class="js-heart-click"><i class="fa fa-heart"></i></a>
+                  <% if product.is_favorite?(current_user) %>
+                    <a href="#" class="js-heart-click +red" data-product-id="<%= product.id %>" data-favorite="1"><i class="fa fa-heart"></i></a>
+                  <% else %>
+                    <a href="#" class="js-heart-click" data-product-id="<%= product.id %>" data-favorite="0"><i class="fa fa-heart"></i></a>
+                  <% end %>
                 </div>
 
                 <!-- Lightbox clickable area -->

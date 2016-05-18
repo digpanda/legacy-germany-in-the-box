@@ -517,9 +517,6 @@ var ProductFavorite = {
    */
   init: function init() {
 
-    // Variable sets
-    this.product = $('#js-product').data();
-
     this.manageHeartClick();
   },
 
@@ -534,18 +531,46 @@ var ProductFavorite = {
 
       e.preventDefault();
 
-      ProductFavorite.doLike(ProductFavorite.product.id, function (res) {
+      var productId = $(this).attr('data-product-id');
+      var favorite = $(this).attr('data-favorite'); // Should be converted
 
-        console.log(res);
-      });
+      console.log('raw data favorite : ' + $(this).attr('data-favorite'));
+      console.log('id: ' + $(this).attr('id'));
+
+      console.log('favorite : ' + favorite);
+
+      if (favorite == '1') {
+
+        // We remove the favorite front data
+        $(this).removeClass('+red');
+        $(this).attr('data-favorite', '0'); // marche pas
+        //$(this).data('favorite', '0') // marche pas non plus
+
+        ProductFavorite.doUnlike(productId, function (res) {
+
+          var favoritesCount = res.favorites.length;
+          $('#total-likes').html(favoritesCount);
+        });
+      } else {
+
+        // We change the style before the callback for speed reason
+        $(this).addClass('+red');
+        $(this).attr('data-favorite', '1');
+
+        ProductFavorite.doLike(productId, function (res) {
+
+          var favoritesCount = res.favorites.length;
+          $('#total-likes').html(favoritesCount);
+        });
+      }
     });
   },
 
-  doLike: function doLike(product_id, callback) {
+  doLike: function doLike(productId, callback) {
 
     $.ajax({
       method: "PATCH",
-      url: "/products/" + product_id + "/like",
+      url: "/products/" + productId + "/like",
       data: {}
 
     }).done(function (res) {
@@ -559,8 +584,20 @@ var ProductFavorite = {
         $("#sign_in_link").click();
       }
     });
-  }
+  },
 
+  doUnlike: function doUnlike(productId, callback) {
+
+    $.ajax({
+      method: "PATCH",
+      url: "/products/" + productId + "/unlike",
+      data: {}
+
+    }).done(function (res) {
+
+      callback(res);
+    });
+  }
 };
 
 module.exports = ProductFavorite;

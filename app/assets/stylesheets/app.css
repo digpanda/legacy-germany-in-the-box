@@ -15,6 +15,10 @@
   padding: 1em; }
 
 /* line 85, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
+#csstyle .\+red {
+  color: #e74c3c; }
+
+/* line 85, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
 #csstyle .\+strong {
   font-weight: 600; }
 
@@ -34,7 +38,7 @@
 #csstyle .\+avatar {
   position: absolute;
   top: -15px; }
-  /* line 26, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/helpers/_tweaks.sass */
+  /* line 29, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/helpers/_tweaks.sass */
   #csstyle .\+avatar img {
     border-radius: 25px;
     width: 50px; }

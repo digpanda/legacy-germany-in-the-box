@@ -57,4 +57,8 @@ class Product
     Product.where(name: /(#{query.split.join('|')})/i)
   end
 
+  def is_favorite?(user)
+    user.favorites.find(self.id)
+  end
+
 end

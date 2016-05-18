@@ -62,9 +62,9 @@ class ProductsController < ApplicationController
 
   def like
 
-    binding.pry
-
-    current_user.favorites << Product.find(params[:id])
+    @product = Product.find(params[:id])
+    @favorites =  current_user.favorites
+    @favorites << @product
 
 =begin
     current_user.dCollection = Collection.create( :name => :default, :user => current_user ) unless current_user.dCollection
@@ -90,7 +90,9 @@ class ProductsController < ApplicationController
 
   def unlike
 
-    current_user.favorites.delete(Product.find(params[:id]))
+    @product = Product.find(params[:id])
+    @favorites = current_user.favorites
+    @favorites.delete(@product)
 
 =begin
     current_user.dCollection = Collection.create( :name => :default, :user => current_user ) unless current_user.dCollection
