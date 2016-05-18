@@ -221,7 +221,7 @@ class AddressesController < ApplicationController
                                       :mobile,
                                       :tel,
                                       :fname,
-                                      :lname,)
+                                      :lname)
     elsif current_user.role == :shopkeeper
       params.require(:address).permit(:number,
                                       :street,

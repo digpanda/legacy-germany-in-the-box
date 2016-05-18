@@ -3,13 +3,13 @@
     .form-group
       %h4= I18n.t(:new_address_title, scope: :edit_address)
     .form-group
-      = f.text_field :company, :class => 'form-control', :required => true, :placeholder => I18n.t(:company, scope: :edit_address)
+      = f.text_field :company, :value => current_user.shop.name, :class => 'form-control', :required => true, :placeholder => I18n.t(:company, scope: :edit_address)
     .form-group
       .form-inline
         .form-group
-          = f.text_field :fname, :class => 'form-control', :style => 'width:168px', :required => true, :placeholder => I18n.t(:fname, scope: :edit_address)
+          = f.text_field :fname, :value => current_user.shop.fname, :class => 'form-control', :style => 'width:168px', :required => true, :placeholder => I18n.t(:fname, scope: :edit_address)
         .form-group
-          = f.text_field :lname, :class => 'form-control', :style => 'width:168px', :required => true, :placeholder => I18n.t(:lname, scope: :edit_address)
+          = f.text_field :lname, :value => current_user.shop.lname, :class => 'form-control', :style => 'width:168px', :required => true, :placeholder => I18n.t(:lname, scope: :edit_address)
     .form-group
       .form-inline
         .form-group

@@ -123,12 +123,12 @@
                 .col-md-6
                   .form-group
                     = f.label :tel, I18n.t(:contact_tel, scope: :edit_shop_application), :class => 'required'
-                    = f.text_field :tel, :class => 'form-control', :maxLength => Rails.configuration.max_tiny_text_length, :required => true, :pattern => '^(((((((00|\+)49[ \-/]?)|0)[1-9][0-9]{1,4})[ \-/]?)|((((00|\+)49\()|\(0)[1-9][0-9]{1,4}\)[ \-/]?))[0-9]{1,7}([ \-/]?[0-9]{1,5})?)$', :placeholder => '+49(89)123456'
+                    = f.text_field :tel, :class => 'form-control', :maxLength => Rails.configuration.max_tiny_text_length, :required => true, :pattern => I18n.t(:tel, scope: :validation, locale: :de), :placeholder => '+49(89)123456'
                     %div.help-block.with-errors
                 .col-md-6
                   .form-group
                     = f.label :mobile, I18n.t(:contact_mobile, scope: :edit_shop_application)
-                    = f.text_field :mobile, :class => 'form-control', :maxLength => Rails.configuration.max_tiny_text_length, :pattern => '^(((((((00|\+)49[ \-/]?)|0)[1-9][0-9]{1,4})[ \-/]?)|((((00|\+)49\()|\(0)[1-9][0-9]{1,4}\)[ \-/]?))[0-9]{1,7}([ \-/]?[0-9]{1,5})?)$', :placeholder => '+49(176)64336650'
+                    = f.text_field :mobile, :class => 'form-control', :maxLength => Rails.configuration.max_tiny_text_length, :pattern => I18n.t(:mobile, scope: :validation, locale: :de), :placeholder => '+49(176)64336650'
                     %div.help-block.with-errors
 
         - unless readonly
