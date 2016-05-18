@@ -40,7 +40,7 @@ Rails.application.routes.draw do
     match :remove_products,             via: [:patch],  action: :remove_products,       as: :remove_products_from,      :on => :member
     match 'toggle_product/:product_id', via: [:get],    action: :toggle_product,        as: :toggle_product_in,         :on => :member
     match :like_collection,             via: [:patch],  action: :like_collection,       as: :like,                      :on => :member
-    match :dislike_collection,          via: [:patch],  action: :dislike_collection,    as: :dislike,                   :on => :member
+    match :unlike_collection,          via: [:patch],  action: :unlike_collection,    as: :unlike,                   :on => :member
 
     match 'is_collected/:product_id',         via: [:get],    action: :is_collected,            as: :is_collected,          :on => :collection
     match :create_and_add,                    via: [:post],   action: :create_and_add,          as: :create_and_add,        :on => :collection
@@ -70,7 +70,7 @@ Rails.application.routes.draw do
     match 'remove_option/:variant_id/:option_id',   via: [:delete], action: :remove_option,               as: :remove_option,               :on => :member
     match :get_sku_for_options,                     via: [:get],    action: :get_sku_for_options,         as: :get_sku_for_options,         :on => :member
     match :like,                                    via: [:patch],  action: :like,                        as: :like,                        :on => :member
-    match :dislike,                                 via: [:patch],  action: :dislike,                     as: :dislike,                     :on => :member
+    match :unlike,                                 via: [:patch],  action: :unlike,                     as: :unlike,                     :on => :member
     match :show_skus,                               via: [:get],    action: :show_skus,                   as: :show_skus,                   :on => :member
     match :skus,                                    via: [:get],    action: :skus,                        as: :skus,                        :on => :member
     match :new_sku,                                 via: [:get],    action: :new_sku,                     as: :new_sku,                     :on => :member

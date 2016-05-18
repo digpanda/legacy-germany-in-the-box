@@ -18,7 +18,7 @@ class Ability
       can [:show,
            :like], Product, :status => true
 
-      can [:dislike], Product
+      can [:unlike], Product
 
       can [:skus], Product
 
@@ -59,11 +59,11 @@ class Ability
            :destroy,
            :show_liked_by_me,
            :show_my_collections,
-           :dislike_collection,
+           :unlike_collection,
            :show_collections], Collection, :user => user
 
       can [:like_collection,
-           :dislike_collection], Collection
+           :unlike_collection], Collection
 
       can :manage, Address, :user => user
 
@@ -84,7 +84,7 @@ class Ability
       can [:show,
            :like], Product, :status => true
 
-      can [:dislike], Product
+      can [:unlike], Product
 
       can [:remove_sku,
            :remove_option,
@@ -137,7 +137,7 @@ class Ability
            :show_my_collections], Collection, :user => user
 
       can [:like_collection,
-           :dislike_collection], Collection
+           :unlike_collection], Collection
 
       can :manage, Address, :shop => user.shop
 

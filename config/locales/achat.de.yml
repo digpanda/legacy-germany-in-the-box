@@ -208,7 +208,7 @@ de:
     public: Öffentlich
     no_products: Kein Produkt vorhanden
     delete_collection_message: Löschen Sie den gewählten Favorit?
-    dislike: Entfernen
+    unlike: Entfernen
     update_ok: Der Favorit wurde erfolgreich aktualisiert.
     update_ko: Ein Fehler ist bei der Änderung des Favorits aufgetreten.
     update_with_existing_name: Ein gleichnämiger Favorit ist bereits vorhanden.

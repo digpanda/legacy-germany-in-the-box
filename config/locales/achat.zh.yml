@@ -208,7 +208,7 @@ zh-CN:
     public: 公开
     no_products: 该收藏夹下没有产品
     delete_collection_message: 确定删除所选收藏夹？
-    dislike: 从收藏中移除
+    unlike: 从收藏中移除
     update_ok: 收藏夹修改成功
     update_ko: 收藏夹修改失败
     update_with_existing_name: 已经存在同名的收藏夹
