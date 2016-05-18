@@ -382,24 +382,6 @@ var Menu = {
 module.exports = Menu;
 });
 
-require.register("javascripts/controllers/products/new.js", function(exports, require, module) {
-"use strict";
-
-/**
- * ProductsNew Class
- */
-var ProductsNew = {
-
-  /**
-   * Initializer
-   */
-  init: function init() {}
-
-};
-
-module.exports = ProductsNew;
-});
-
 require.register("javascripts/controllers/shop_applications/new.js", function(exports, require, module) {
 'use strict';
 
