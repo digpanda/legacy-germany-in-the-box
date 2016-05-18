@@ -31,9 +31,7 @@ class ProductDecorator < Draper::Decorator
   end
 
   def short_desc(characters=60)
-
     self.desc.chars[0..characters].push("...").join
-
   end
 
   def grouped_variants_options
