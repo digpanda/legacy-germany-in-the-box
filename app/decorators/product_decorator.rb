@@ -40,4 +40,7 @@ class ProductDecorator < Draper::Decorator
     options.map { |v| [v.name, v.suboptions.sort { |a,b| a.name <=> b.name }.map { |o| [ o.name, o.id.to_s]}] }.to_a
   end
 
+  def first_sku_image
+    skus.first ? skus.first.decorate.first_nonempty_img_url(:thumb) : nil
+  end
 end
