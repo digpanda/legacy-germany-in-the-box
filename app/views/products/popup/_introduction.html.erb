@@ -8,5 +8,5 @@
   <%= product.name %>
 </h4>
 <p>
-  <%= truncate(product.desc, :length => 128) %>
+  <%= product.decorate.short_desc(200) %> <a href="<%= product_path(product) %>" class="btn btn-primary">See more</a>
 </p>

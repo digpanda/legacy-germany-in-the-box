@@ -8,6 +8,10 @@ module UsersHelper
     (current_user.nil? && is_german) || current_user&.is_shopkeeper?
   end
 
+  def seems_like_a_admin?
+    current_user&.is_admin?
+  end
+
   def is_german?
     I18n.locale == :de
   end

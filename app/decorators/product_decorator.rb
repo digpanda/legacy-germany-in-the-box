@@ -1,5 +1,7 @@
 class ProductDecorator < Draper::Decorator
 
+  include ActionView::Helpers::TextHelper # load truncate
+
   delegate_all
   decorates :product
 
@@ -31,7 +33,8 @@ class ProductDecorator < Draper::Decorator
   end
 
   def short_desc(characters=60)
-    self.desc.chars[0..characters].push("...").join
+    truncate(self.desc, :length => characters)
+    #self.desc.chars[0..characters].push("...").join
   end
 
   def grouped_variants_options

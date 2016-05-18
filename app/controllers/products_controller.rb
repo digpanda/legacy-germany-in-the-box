@@ -231,7 +231,10 @@ class ProductsController < ApplicationController
     
     respond_to do |format|
       format.json {
-        render :show
+        
+      }
+      format.html {
+
       }
     end
 
