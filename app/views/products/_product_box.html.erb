@@ -1,10 +1,10 @@
-<!-- Should be somewhere else, better organized ... -->
 
             <div class="product-box">
 
               <div class="product-box__thumb">
 
                 <div class="product-box__like col-md-2 col-md-offset-10">
+
                   <% if product.is_favorite?(current_user) %>
                     <a href="#" class="js-heart-click +red" data-product-id="<%= product.id %>" data-favorite="1"><i class="fa fa-heart"></i></a>
                   <% else %>

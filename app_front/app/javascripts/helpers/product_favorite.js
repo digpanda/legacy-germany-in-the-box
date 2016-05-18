@@ -26,11 +26,6 @@ var ProductFavorite = {
         let productId = $(this).attr('data-product-id');
         let favorite = $(this).attr('data-favorite'); // Should be converted
 
-        console.log('raw data favorite : ' + $(this).attr('data-favorite'));
-        console.log('id: '+ $(this).attr('id'));
-
-        console.log('favorite : ' + favorite);
-
         if (favorite == '1') {
 
           // We remove the favorite front data
@@ -38,19 +33,20 @@ var ProductFavorite = {
           $(this).attr('data-favorite', '0'); // marche pas
           //$(this).data('favorite', '0') // marche pas non plus
 
-          ProductFavorite.doUnlike(productId, function(res) {
+          ProductFavorite.doUnlike(this, productId, function(res) {
 
             let favoritesCount = res.favorites.length;
             $('#total-likes').html(favoritesCount);
 
           });
+
         } else {
 
           // We change the style before the callback for speed reason
           $(this).addClass('+red');
           $(this).attr('data-favorite', '1');
 
-          ProductFavorite.doLike(productId, function(res) {
+          ProductFavorite.doLike(this, productId, function(res) {
 
             let favoritesCount = res.favorites.length;
             $('#total-likes').html(favoritesCount);
@@ -63,7 +59,7 @@ var ProductFavorite = {
 
     },
 
-    doLike: function(productId, callback) {
+    doLike: function(el, productId, callback) {
 
       $.ajax({
         method: "PATCH",
@@ -78,7 +74,8 @@ var ProductFavorite = {
 
         // If it's a Unauthorized code, it means we are not logged in, let's trigger.
         if (err.status == 401) {
-
+          
+          $(el).removeClass('+red');
           $("#sign_in_link").click();
 
         }
