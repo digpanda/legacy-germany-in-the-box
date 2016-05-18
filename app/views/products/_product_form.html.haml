@@ -27,7 +27,11 @@
 
     $('a[rel=popover]').popover({
       html: true,
-      trigger: 'hover'
+      trigger: 'hover',
+      content: function() {
+          console.log('yooo');
+          return $("#popover-image").html();
+        },
     });
 
     var panel_cnt = $("#variants_panel_#{@product.id}").children('.panel-body').find('.panel').length
@@ -107,9 +111,11 @@
                 = text_field_tag "product[tags][]", @product.tags[2], :class => 'form-control', :placeholder => I18n.t(:tag3, scope: :edit_product, locale: locale), :maxLength => Rails.configuration.max_tiny_text_length
     .panel.panel-info{ :id => "variants_panel_#{@product.id}"}
       .panel-heading
-        %a{ :rel => 'popover', :title => image_tag('variant-example.png'), 'data-content' => I18n.t(:variants_info, scope: :edit_product_detail, locale: locale) }
+        %a{ :rel => 'popover', :title => I18n.t(:variants_info, scope: :edit_product_detail, locale: locale)}
           %i.fa.fa-info-circle
           %label.required.translation= I18n.t(:variants, scope: :edit_product_variant, locale: locale)
+        #popover-image{style:"display:none;"}
+          = image_tag('variant-example.png')
         .pull-right
           %a{:href => '#', :class=> 'btn btn-sm', :onclick => "#{gen_add_variant_panel(I18n.t(:variant_name, scope: :edit_product_variant, locale: locale), I18n.t(:option_name, scope: :edit_product_variant, locale: locale))}", :id => "a_add_variant_#{@product.id}"}
             %i.fa.fa-plus-circle
