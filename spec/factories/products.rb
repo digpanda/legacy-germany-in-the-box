@@ -2,9 +2,10 @@ FactoryGirl.define do
 
   factory :product do
 
-    before(:create) do |product|
-      create_list(:shop, 1, product: product)
-    end
+    # Todo: I think that code is wrong because a shop don't have a product field, only a products field
+    # before(:create) do |product|
+    #   create_list(:shop, 1, product: product)
+    # end
 
     name      'Product 1'
     brand     'Brand 1'

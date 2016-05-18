@@ -24,9 +24,14 @@ class Address
   belongs_to :user,     :inverse_of => :addresses;
   belongs_to :shop,     :inverse_of => :address;
 
-  scope :is_billing,  ->  { any_of({type: 'billing'}, {type: 'both'}) }
-  scope :is_sender,   ->  { any_of({type: 'sender'}, {type: 'both'}) }
-  
+  scope :is_billing,        ->  { any_of({type: 'billing'}, {type: 'both'}) }
+  scope :is_sender,         ->  { any_of({type: 'sender'}, {type: 'both'}) }
+  scope :is_any,            ->  { any_of({type: 'sender'}, {type: 'billing'}, {type: 'both'}) }
+
+  scope :is_only_billing,   ->  { any_of({type: 'billing'}) }
+  scope :is_only_sender,    ->  { any_of({type: 'sender'}) }
+  scope :is_only_both,      ->  { any_of({type: 'both'}) }
+
   validates :number,    presence: true,   length: {maximum: Rails.configuration.max_tiny_text_length}
   validates :street,    presence: true,   length: {maximum: Rails.configuration.max_short_text_length}
   validates :city,      presence: true,   length: {maximum: Rails.configuration.max_tiny_text_length}
@@ -35,12 +40,11 @@ class Address
   validates :primary,   presence: true
 
   validates :district,  length: {maximum: Rails.configuration.max_tiny_text_length}, :if => lambda{ self.country_code == 'DE' }
-  validates :province,  length: {maximum: Rails.configuration.max_tiny_text_length}, :if => lambda{ self.country_code == 'DE' }
-
-  validates :type,      presence: true,   inclusion: {in: ['billing', 'sender', 'both']},    :if => lambda{ self.country_code == 'DE' }
 
   validates :district,  presence: true,   length: {maximum: Rails.configuration.max_tiny_text_length},  :if => lambda{ self.country_code == 'zh-CN' }
-  validates :province,  presence: true,   length: {maximum: Rails.configuration.max_tiny_text_length},  :if => lambda{ self.country_code == 'zh-CN' }
+  validates :province,  presence: true,   length: {maximum: Rails.configuration.max_tiny_text_length}
+
+  validates :type,      presence: true,   inclusion: {in: ['billing', 'sender', 'both']},    :if => lambda{ self.country_code == 'DE' }
 
   index({shop: 1},      {unique: false, name: :idx_address_shop, sparse: true})
   index({type: 1},      {unique: false, name: :idx_address_type, sparse: true})

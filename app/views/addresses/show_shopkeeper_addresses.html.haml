@@ -20,20 +20,22 @@
         .form-group
           = f.text_field :zip, :class => 'form-control', :placeholder => I18n.t(:zip, scope: :edit_address), :required => true, :pattern => '^(?!01000|99999)(0[1-9]\d{3}|[1-9]\d{4})$', :style => 'width:88px'
         .form-group
-          = f.text_field :city, class: 'form-control', :placeholder => I18n.t(:city, scope: :edit_address), :required => true, :style => 'width:248px'
+          = f.text_field :city, class: 'form-control', :placeholder => I18n.t(:city, scope: :edit_address), :required => true, :style => 'width:120px'
+        .form-group
+          = f.text_field :province, class: 'form-control', :placeholder => I18n.t(:province, scope: :edit_address), :required => true, :style => 'width:120px'
       = f.text_field :country, :class => 'form-control', :value => ISO3166::Country[:DE].local_name, :readonly => true
     .form-group
-      - if current_user.shop.addresses.in(:type => ['billing', 'both']).size < Rails.configuration.max_num_shop_billing_addresses
+      - if current_user.shop.decorate.more_billing_address?
         .row
           .col-lg-offset-1.col-md-offset-1
             = f.radio_button :type, 'billing', :required => true, :class => 'i-radio'
             = I18n.t('billing', scope: :edit_address)
-      - if current_user.shop.addresses.in(:type => ['sender', 'both']).size < Rails.configuration.max_num_shop_sender_addresses
+      - if current_user.shop.decorate.more_sender_address?
         .row
           .col-lg-offset-1.col-md-offset-1
             = f.radio_button :type, 'sender', :required => true, :class => 'i-radio'
             = I18n.t('sender', scope: :edit_address)
-      - if current_user.shop.addresses.in(:type => ['billing', 'sender', 'both']).size < Rails.configuration.max_num_shop_billing_addresses
+      - if current_user.shop.decorate.more_both_address?
         .row
           .col-lg-offset-1.col-md-offset-1
             = f.radio_button :type, 'both', :required => true, :class => 'i-radio'
@@ -65,20 +67,22 @@
             .form-group
               = f.text_field :zip, :class => 'form-control', :placeholder => I18n.t(:zip, scope: :edit_address), :required => true, :pattern => '^(?!01000|99999)(0[1-9]\d{3}|[1-9]\d{4})$', :style => 'width:88px'
             .form-group
-              = f.text_field :city, class: 'form-control', :placeholder => I18n.t(:city, scope: :edit_address), :required => true, :style => 'width:248px'
+              = f.text_field :city, class: 'form-control', :placeholder => I18n.t(:city, scope: :edit_address), :required => true, :style => 'width:120px'
+            .form-group
+              = f.text_field :province, class: 'form-control', :placeholder => I18n.t(:province, scope: :edit_address), :required => true, :style => 'width:120px'
           = f.text_field :country, :class => 'form-control', :value => ISO3166::Country[:DE].local_name, :readonly => true
         .form-group
-          - if current_user.shop.addresses.in(:type => ['billing']).size < Rails.configuration.max_num_shop_billing_addresses
+          - if current_user.shop.decorate.can_change_to_billing?
             .row
               .col-lg-offset-1.col-md-offset-1
                 = f.radio_button :type, 'billing', :required => true, :class => 'i-radio'
                 = I18n.t('billing', scope: :edit_address)
-          - if current_user.shop.addresses.in(:type => ['sender']).size < Rails.configuration.max_num_shop_sender_addresses
+          - if current_user.shop.decorate.can_change_to_sender?
             .row
               .col-lg-offset-1.col-md-offset-1
                 = f.radio_button :type, 'sender', :required => true, :class => 'i-radio'
                 = I18n.t('sender', scope: :edit_address)
-          - if current_user.shop.addresses.in(:type => 'both').size < [Rails.configuration.max_num_shop_billing_addresses, Rails.configuration.max_num_shop_sender_addresses].min && (current_user.shop.addresses.in(:type => 'billing').size < Rails.configuration.max_num_shop_billing_addresses || current_user.shop.addresses.in(:type => 'sender').size < Rails.configuration.max_num_shop_sender_addresses)
+          - if current_user.shop.decorate.can_change_to_both?
             .row
               .col-lg-offset-1.col-md-offset-1
                 = f.radio_button :type, 'both', :required => true, :class => 'i-radio'
@@ -97,6 +101,7 @@
               %li= "#{I18n.t(:street, scope: :edit_address)} : #{ a.street } #{ a.number }"
               %li= "#{I18n.t(:additional, scope: :edit_address)} : #{ a.additional }"
               %li= "#{I18n.t(:city, scope: :edit_address)} : #{ a.city }"
+              %li= "#{I18n.t(:province, scope: :edit_address)} : #{ a.province }"
               %li= "#{I18n.t(:country, scope: :edit_address)} : #{ a.country_local_name }"
               %li= "#{I18n.t(:zip, scope: :edit_address)} : #{ a.zip }"
               %li= "#{I18n.t(:type, scope: :edit_address)} : #{ I18n.t(a.type, scope: :edit_address) }"
