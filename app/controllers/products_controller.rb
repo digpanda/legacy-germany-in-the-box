@@ -81,7 +81,7 @@ class ProductsController < ApplicationController
     end
   end
 
-  def dislike
+  def unlike
     current_user.dCollection = Collection.create( :name => :default, :user => current_user ) unless current_user.dCollection
     current_user.dCollection.products.delete(@product)
 
@@ -231,7 +231,10 @@ class ProductsController < ApplicationController
     
     respond_to do |format|
       format.json {
-        render :show
+        
+      }
+      format.html {
+
       }
     end
 

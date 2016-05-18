@@ -337,7 +337,7 @@ class CollectionsController < ApplicationController
     end
   end
 
-  def dislike_collection
+  def unlike_collection
     if @collection && @collection.user != current_user
       current_user.liked_collections.delete(@collection)
       if current_user.save

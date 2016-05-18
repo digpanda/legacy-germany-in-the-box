@@ -18,9 +18,9 @@ var PostForm = (function($) {
      */
     send: function(params, path, target, method) {
 
-      method = method || "POST";
-      path = path || "";
-      target = target || "";
+      var method = method || "POST";
+      var path = path || "";
+      var target = target || "";
 
       var form = document.createElement("form");
       form.setAttribute("method", method);

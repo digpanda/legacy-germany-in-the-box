@@ -40,7 +40,7 @@
                     %h5.product-info-price= "$#{p.decorate.get_mas.price}"
                   %a.btn.btn-primary{:href => "#{remove_product_from_collection_path(c.id, p.id)}"}
                     %i.fa.fa-times-circle
-                    = I18n.t(:dislike, scope: :edit_collection)
+                    = I18n.t(:unlike, scope: :edit_collection)
 
               - for_device_type :desktop do
                 .mfp-with-anim.mfp-hide.mfp-dialog.mfp-dialog-big.clearfix{ :id => "product-quick-view-dialog-#{p.id}"}
@@ -82,7 +82,7 @@
                   .row
                     %a.btn.btn-primary{:href => "#{remove_product_from_collection_path(c.id, p.id)}", :'data-method'=> :patch}
                       %i.fa.fa-times-circle
-                      = I18n.t(:dislike, scope: :edit_collection)
+                      = I18n.t(:unlike, scope: :edit_collection)
                 #masonry.row.row-wrap
                   - c.products.each do |p|
                     %a.col-md-3.col-masonry.popup-text{"data-effect" => "mfp-move-from-top", :href => "#product-quick-view-dialog-#{p.id}",  :shop_link => "#{p.shop ? shop_path(p.shop) : ''}"}
