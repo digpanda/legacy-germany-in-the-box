@@ -58,6 +58,7 @@ class Product
   end
 
   def is_favorite?(user)
+    return if user.nil?
     user.favorites.find(self.id)
   end
 
