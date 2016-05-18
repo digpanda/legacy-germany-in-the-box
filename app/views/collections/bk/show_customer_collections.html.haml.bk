@@ -5,6 +5,7 @@
 %br
 %br
 
+- # ENTRY POINT FOR FAVORITE SYSTEM CHANGE
 #collection_panel.panel-group
   - current_user.oCollections.sort {|c1, c2| c2.products.size <=> c1.products.size } .each_with_index do |c, i|
     .panel.panel-default
