@@ -16,6 +16,9 @@ class ProductsController < ApplicationController
     @shop = Shop.find(params[:shop_id])
     @product = @shop.products.build
 
+    @customer_categories_options = DutyAndCustomerCategorySelectStore.new(Category.name)
+    @duty_categories_options = DutyAndCustomerCategorySelectStore.new(DutyCategory.name)
+
     render :new_product
   end
 
