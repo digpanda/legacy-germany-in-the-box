@@ -5,21 +5,23 @@ document.addEventListener('DOMContentLoaded', () => {
    * Damn simple class loader.
    */
   let routes = $("#js-routes").data();
-  let helpers = $("#js-helpers").data();
+  let starters = require("javascripts/starters");
 
   try {
 
-    for (var helper in helpers) {
+    for (var idx in starters) {
 
-      let formatted_helper = Casing.underscoreCase(helper).replace('-', '_');
-      let obj = require("javascripts/helpers/"+formatted_helper);
+      console.log('Loading starter : ' + starters[idx]);
+
+      let formatted_starter = Casing.underscoreCase(starters[idx]).replace('-', '_');
+      let obj = require("javascripts/starters/"+formatted_starter);
       obj.init();
 
     }
 
   } catch(err) {
 
-    console.log("Unable to initialize #js-helpers");
+    console.log("Unable to initialize #js-starters");
     return;
 
   }
