@@ -23,8 +23,6 @@
 
                   </header>
 
-                  <%= render partial: "products/product_popup", locals: {product: product} %>
-
                   <div class="product-box__inner">
 
                     <h5 class="product-box__inner --title"><%= product.name %></h5>
@@ -41,6 +39,8 @@
                         <i class="fa fa-shopping-bag"></i> <%= product.shop.shopname %>
                       </a>
                     </p>
+
+                    <%= render partial: "products/product_popup", locals: {product: product} %>
 
                   </div>
 
