@@ -253,40 +253,6 @@ var ManageCart = {
 module.exports = ManageCart;
 });
 
-require.register("javascripts/controllers/pages/demo.js", function(exports, require, module) {
-"use strict";
-
-/**
- * Apply Wirecard Class
- */
-var Demo = {
-
-  /**
-   * Initializer
-   */
-  init: function init() {
-
-    $('#js-slider').lightSlider({
-      "item": 1,
-      "loop": true,
-      "slideMargin": 0,
-      "pager": false,
-      "auto": true,
-      "pause": "3000",
-      "speed": "1000",
-      "adaptiveHeight": true,
-      "verticalHeight": 1000,
-      "mode": "fade",
-      "enableDrag": false,
-      "enableTouch": true
-    });
-  }
-
-};
-
-module.exports = Demo;
-});
-
 require.register("javascripts/controllers/pages/home.js", function(exports, require, module) {
 "use strict";
 

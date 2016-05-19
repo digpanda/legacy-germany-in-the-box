@@ -18,12 +18,12 @@ class SessionsController < Devise::SessionsController
   # set a new location after log-in (called via AJAX from the front-end only) ; should be in API part
   def set_redirect_location
     session[:previous_url] = params["location"] unless params["location"].nil?
-    render json: {status: 'ok'} and return # should be improved
+    render json: {success: true} and return # should be improved
   end
 
   # should be in an API part (called via AJAX from the front-end only)
   def is_auth
-    render json: {is_auth: !current_user.nil?}
+    render json: {success: true, is_auth: !current_user.nil?}
   end
 
   def create
