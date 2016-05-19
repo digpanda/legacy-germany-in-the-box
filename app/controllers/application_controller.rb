@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_order, :current_orders, :total_number_of_products, :extract_locale
 
-  around_action :set_translation_locale, only: [:update], if: -> {current_user && current_user.role == :admin}
+  around_action :set_translation_locale, only: [:update], if: -> { current_user&.is_admin? }
 
   before_action :set_all_categories
 
