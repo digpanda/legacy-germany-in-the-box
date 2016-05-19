@@ -18,7 +18,12 @@ class CategoriesController < ApplicationController
   end
 
   def show_products
-    @products = @category.products.buyable.paginate( :pages => (params[:pages] ? params[:pages].to_i : 1), :per_page => Rails.configuration.limit_for_products_search)
+    # Very slow process -> should be improved somehow
+    @products = @subcategories.map do |category|
+      category.products.buyable.paginate( :pages => (params[:pages] ? params[:pages].to_i : 1), :per_page => Rails.configuration.limit_for_products_search)
+    end.flatten
+
+    #@products = @category.products.buyable.paginate( :pages => (params[:pages] ? params[:pages].to_i : 1), :per_page => Rails.configuration.limit_for_products_search)
     @categories_and_children, @categories_and_counters = AppCache.get_category_values_for_left_menu(@products)
 
     respond_to do |format|
@@ -42,6 +47,7 @@ class CategoriesController < ApplicationController
 
   def set_category
     @category = Category.find(params[:id])
+    @subcategories = @category.children
   end
 
 end

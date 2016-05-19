@@ -1,0 +1,23 @@
+<div class="+spacer"></div>
+
+<div class="row">
+
+  <% if @products.size > 0 %>
+
+    <!-- Categories list -->
+    <div class="col-md-2 col-md-offset-1">
+      Categories
+    </div>
+
+    <!-- Products list -->
+    <div class="col-md-8">
+      <%= render partial: "products/products_list", :locals => { :products => @products } %>
+    </div>
+
+  <% else %>
+
+    <h4 class="+centered">Oops ! No product here ...</h4>
+
+  <% end %>
+
+</div>

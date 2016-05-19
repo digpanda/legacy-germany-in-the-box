@@ -4,6 +4,10 @@ class Category
 
   has_and_belongs_to_many :products,  :inverse_of => :categories
 
+  def with_subcategories
+    #([self] + self.children_tree).flatten
+  end
+
   def self.only_with_products
     self.where(:product_ids.ne => nil).and(:product_ids.ne => [])
   end
