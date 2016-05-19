@@ -17,7 +17,7 @@ class OrderDecorator < Draper::Decorator
 
     BorderGuru.calculate_quote(
         cart: cart,
-        shop: order_items.,
+        shop: order_items,
         country_of_destination: ISO3166::Country.new('CN'),
         currency: 'EUR'
     )
