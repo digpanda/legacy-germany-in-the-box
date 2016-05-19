@@ -29,7 +29,7 @@ class Sku
   mount_uploader :img2,   ProductImageUploader
   mount_uploader :img3,   ProductImageUploader
 
-  validates :price,         presence: true
+  validates :price,         presence: true,   :numericality => { :greater_than => 0 }
   validates :quantity,      presence: true,   :numericality => { :greater_than_or_equal_to => 0 }, :if => lambda { self.limited }
   validates :limited,       presence: true
   validates :weight,        presence: true

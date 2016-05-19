@@ -30,6 +30,10 @@
         %i.fa.fa-shopping-cart
         = I18n.t(:shops, scope: :top_menu)
     %li
+      %a{ :href => "#{ admin_payments_path(:user_info_edit_part => :admin_payments) }" }
+        %i.fa.fa-bank
+        = I18n.t(:payments, scope: :top_menu)
+    %li
       %a{ :href => "#{ signout_path }", :'data-method' => :delete }
         %i.fa.fa-sign-out
         = I18n.t(:sign_out, scope: :top_menu)
