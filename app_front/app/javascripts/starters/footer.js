@@ -21,7 +21,7 @@ var Footer = {
 
       if ($('.js-footer-stick').length > 0) {
 
-        this.processStickyFooter();
+        Footer.processStickyFooter();
         
         $(window).resize(function() {
 

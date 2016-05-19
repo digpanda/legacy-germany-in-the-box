@@ -452,7 +452,73 @@ var ApplyWirecard = {
 module.exports = ApplyWirecard;
 });
 
-require.register("javascripts/helpers/footer.js", function(exports, require, module) {
+require.register("javascripts/initialize.js", function(exports, require, module) {
+"use strict";
+
+document.addEventListener('DOMContentLoaded', function () {
+
+  /**
+   * Controllers loader by Loschcode
+   * Damn simple class loader.
+   */
+  var routes = $("#js-routes").data();
+  var starters = require("javascripts/starters");
+
+  try {
+
+    for (var idx in starters) {
+
+      console.log('Loading starter : ' + starters[idx]);
+
+      var formatted_starter = Casing.underscoreCase(starters[idx]).replace('-', '_');
+      var _obj = require("javascripts/starters/" + formatted_starter);
+      _obj.init();
+    }
+  } catch (err) {
+
+    console.log("Unable to initialize #js-starters");
+    return;
+  }
+
+  try {
+
+    var obj = require("javascripts/controllers/" + routes.controller + "/" + routes.action);
+  } catch (err) {
+
+    console.log("Unable to initialize #js-routes `" + routes.controller + "`.`" + routes.action + "`");
+    return;
+  }
+
+  /**
+   * Initialization
+   */
+  obj.init();
+});
+});
+
+require.register("javascripts/models.js", function(exports, require, module) {
+'use strict';
+
+/**
+ * Models Class
+ */
+var Models = [''];
+
+module.exports = Models;
+});
+
+require.register("javascripts/starters.js", function(exports, require, module) {
+'use strict';
+
+/**
+ * Starters Class
+ */
+var Starters = ['footer', 'product_favorite', 'product_lightbox', 'search'];
+
+module.exports = Starters;
+});
+
+require.register("javascripts/starters/footer.js", function(exports, require, module) {
 'use strict';
 
 /**
@@ -477,7 +543,7 @@ var Footer = {
 
     if ($('.js-footer-stick').length > 0) {
 
-      this.processStickyFooter();
+      Footer.processStickyFooter();
 
       $(window).resize(function () {
 
@@ -504,7 +570,7 @@ var Footer = {
 module.exports = Footer;
 });
 
-require.register("javascripts/helpers/product_favorite.js", function(exports, require, module) {
+require.register("javascripts/starters/product_favorite.js", function(exports, require, module) {
 "use strict";
 
 /**
@@ -599,7 +665,7 @@ var ProductFavorite = {
 module.exports = ProductFavorite;
 });
 
-require.register("javascripts/helpers/product_lightbox.js", function(exports, require, module) {
+require.register("javascripts/starters/product_lightbox.js", function(exports, require, module) {
 'use strict';
 
 /**
@@ -661,7 +727,7 @@ var ProductLightbox = {
 module.exports = ProductLightbox;
 });
 
-require.register("javascripts/helpers/search.js", function(exports, require, module) {
+require.register("javascripts/starters/search.js", function(exports, require, module) {
 "use strict";
 
 /**
@@ -717,48 +783,6 @@ var Search = {
 };
 
 module.exports = Search;
-});
-
-require.register("javascripts/initialize.js", function(exports, require, module) {
-"use strict";
-
-document.addEventListener('DOMContentLoaded', function () {
-
-  /**
-   * Controllers loader by Loschcode
-   * Damn simple class loader.
-   */
-  var routes = $("#js-routes").data();
-  var helpers = $("#js-helpers").data();
-
-  try {
-
-    for (var helper in helpers) {
-
-      var formatted_helper = Casing.underscoreCase(helper).replace('-', '_');
-      var _obj = require("javascripts/helpers/" + formatted_helper);
-      _obj.init();
-    }
-  } catch (err) {
-
-    console.log("Unable to initialize #js-helpers");
-    return;
-  }
-
-  try {
-
-    var obj = require("javascripts/controllers/" + routes.controller + "/" + routes.action);
-  } catch (err) {
-
-    console.log("Unable to initialize #js-routes `" + routes.controller + "`.`" + routes.action + "`");
-    return;
-  }
-
-  /**
-   * Initialization
-   */
-  obj.init();
-});
 });
 
 require.register("___globals___", function(exports, require, module) {
