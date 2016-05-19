@@ -19,7 +19,7 @@ class Sku
   field :space_width,   type: Float
   field :space_height,  type: Float
   field :time,          type: String,     default: 'terminated'
-  field :data,          type: String,   localize: true
+  field :data,          type: String,     localize: true
 
   field :option_ids,    type: Array,      default: []
 

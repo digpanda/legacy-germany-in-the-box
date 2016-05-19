@@ -91,6 +91,19 @@
                   =I18n.t(:upload, scope: :image_upload)
                 = fs.file_field :img3, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#img_3_#{@product.id}", :class => 'img-file-upload upload', :onchange =>"validateImgFile(this);"
 
+      -if @product.duty_category && @product.duty_category.code == 'L2-276'
+        .panel.panel-info
+          .panel-heading.text-center
+            %label= I18n.t(:product_data, scope: :edit_product, locale: locale)
+          .panel-body
+            .form-group
+              .row
+                .col-md-3{:title => I18n.t(:product_data_info, scope: :edit_product, num: Rails.configuration.max_additional_text_length, locale: locale) }
+                  %i.fa.fa-info-circle{ :title => I18n.t(:product_data_info, scope: :edit_product, num: Rails.configuration.max_additional_text_length, locale: locale) }
+                  %label.translation= I18n.t(:product_data, scope: :edit_product, locale: locale)
+                .col-md-9
+                  = fs.text_area :data, :value => @sku.data_translations[locale], :class => 'form-control', rows: 8, :maxLength => Rails.configuration.max_additional_text_length
+
       .panel.panel-info
         .panel-heading.text-center
           %label= I18n.t(:sku_options, scope: :edit_product_detail)
