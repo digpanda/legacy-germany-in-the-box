@@ -13,8 +13,6 @@ module CopyCarrierwaveFile
           else
             raise UnknowStorage
         end
-      else
-        raise NoFileForOriginalResource
       end
     end
 
