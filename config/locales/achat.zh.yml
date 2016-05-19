@@ -511,3 +511,5 @@ zh-CN:
   edit_category:
     name: 名称
     code: 编码
+  edit_payments:
+    no_payments: 还没有任何支付
