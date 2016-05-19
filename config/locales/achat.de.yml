@@ -519,3 +519,11 @@ de:
     code: Code
   edit_payments:
     no_payments: Keine Zahlungen vorhanden
+    request_number: Anfrage-ID
+    transaction_number: Vorgangsnummer
+    merchant_nummber: Händler-ID
+    order_nummber: Auftragsnummer
+    status: Status
+    buyer: Käufer
+    amount: Summe
+    action: Operation

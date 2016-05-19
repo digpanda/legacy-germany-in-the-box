@@ -2,21 +2,21 @@
   %table.table.cart-table
     %thead
       %th
-        Request #
+        = I18n.t(:request_number, scope: :edit_payments)
       %th
-        Transaction #
+        = I18n.t(:transaction_number, scope: :edit_payments)
       %th
-        Merchant #
+        = I18n.t(:merchant_number, scope: :edit_payments)
       %th
-        Order #
+        = I18n.t(:order_number, scope: :edit_payments)
       %th
-        Status
+        = I18n.t(:status, scope: :edit_payments)
       %th
-        Buyer
+        = I18n.t(:buyer, scope: :edit_payments)
       %th
-        Amount
+        = I18n.t(:amount, scope: :edit_payments)
       %th
-        Action
+        = I18n.t(:action, scope: :edit_payments)
     %tbody
       = render partial: "order_payments", collection: @order_payments, :as => :order_payment
 
