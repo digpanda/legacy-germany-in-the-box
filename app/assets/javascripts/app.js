@@ -198,12 +198,10 @@ var ManageCart = {
 
   onSetAddress: function onSetAddress() {
 
-    var self = this;
-
     $(".js-set-address-link").click(function (e) {
 
       e.preventDefault();
-      self.forceLogin(this);
+      ManageCart.forceLogin(this);
     });
   },
 
@@ -211,12 +209,14 @@ var ManageCart = {
   /**
    * Send next destination and trigger log-in if not logged-in already
    */
-  forceLogin: function forceLogin(e) {
+  forceLogin: function forceLogin(el) {
 
-    var location = $(".js-set-address-link").attr("href");
+    var location = $(el).attr("href");
     var self = this;
 
-    this.isAuth(function (res) {
+    var User = require("javascripts/models/user");
+
+    User.isAuth(function (res) {
 
       // If the user isn't auth
       // We force the trigger and
@@ -228,24 +228,12 @@ var ManageCart = {
       } else {
 
         // Else we just continue to do what we were doing
-        $(e).submit();
+        window.location.href = location;
       }
     });
   },
 
-  isAuth: function isAuth(callback) {
-
-    $.ajax({
-      method: "GET",
-      url: "/users/is_auth",
-      data: {}
-
-    }).done(function (res) {
-
-      callback(res.is_auth);
-    });
-  },
-
+  // Should be in a lib
   setRedirectLocation: function setRedirectLocation(location) {
 
     $.ajax({
@@ -468,7 +456,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     for (var idx in starters) {
 
-      console.log('Loading starter : ' + starters[idx]);
+      console.warn('Loading starter : ' + starters[idx]);
 
       var formatted_starter = Casing.underscoreCase(starters[idx]).replace('-', '_');
       var _obj = require("javascripts/starters/" + formatted_starter);
@@ -476,7 +464,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   } catch (err) {
 
-    console.log("Unable to initialize #js-starters");
+    console.error("Unable to initialize #js-starters");
     return;
   }
 
@@ -485,7 +473,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var obj = require("javascripts/controllers/" + routes.controller + "/" + routes.action);
   } catch (err) {
 
-    console.log("Unable to initialize #js-routes `" + routes.controller + "`.`" + routes.action + "`");
+    console.error("Unable to initialize #js-routes `" + routes.controller + "`.`" + routes.action + "`");
     return;
   }
 
@@ -502,9 +490,38 @@ require.register("javascripts/models.js", function(exports, require, module) {
 /**
  * Models Class
  */
-var Models = [''];
+var Models = ['user'];
 
 module.exports = Models;
+});
+
+require.register("javascripts/models/user.js", function(exports, require, module) {
+"use strict";
+
+/**
+ * User Class
+ */
+var User = {
+
+  /**
+   * Check if user is auth or not via API call
+   */
+  isAuth: function isAuth(callback) {
+
+    $.ajax({
+      method: "GET",
+      url: "/users/is_auth",
+      data: {}
+
+    }).done(function (res) {
+
+      callback(res.is_auth);
+    });
+  }
+
+};
+
+module.exports = User;
 });
 
 require.register("javascripts/starters.js", function(exports, require, module) {
@@ -547,7 +564,7 @@ var Footer = {
 
       $(window).resize(function () {
 
-        self.processStickyFooter();
+        Footer.processStickyFooter();
       });
     }
   },

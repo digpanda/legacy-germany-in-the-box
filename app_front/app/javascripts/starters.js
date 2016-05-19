@@ -6,7 +6,7 @@ var Starters = [
   'footer',
   'product_favorite',
   'product_lightbox',
-  'search'
+  'search',
 
 ]
 

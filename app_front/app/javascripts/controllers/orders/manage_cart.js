@@ -14,12 +14,10 @@ var ManageCart = {
 
   onSetAddress() {
 
-    var self = this;
-
     $(".js-set-address-link").click(function(e) {
 
       e.preventDefault();
-      self.forceLogin(this);
+      ManageCart.forceLogin(this);
 
     });
 
@@ -28,12 +26,14 @@ var ManageCart = {
   /**
    * Send next destination and trigger log-in if not logged-in already
    */
-   forceLogin: function(e) {
+   forceLogin: function(el) {
 
-    var location = $(".js-set-address-link").attr("href");
+    var location = $(el).attr("href");
     var self = this;
 
-    this.isAuth(function(res) {
+    var User = require("javascripts/models/user");
+
+    User.isAuth(function(res) {
 
       // If the user isn't auth
       // We force the trigger and
@@ -46,29 +46,15 @@ var ManageCart = {
       } else {
 
         // Else we just continue to do what we were doing
-        $(e).submit();
-
+        window.location.href = location;
+        
       }
 
     });
 
   },
 
-  isAuth: function(callback) {
-
-    $.ajax({
-      method: "GET",
-      url: "/users/is_auth",
-      data: {}
-
-    }).done(function(res) {
-
-      callback(res.is_auth);
-
-    });
-
-  },
-
+  // Should be in a lib
   setRedirectLocation: function(location) {
 
     $.ajax({
