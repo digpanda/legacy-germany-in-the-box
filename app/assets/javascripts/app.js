@@ -665,7 +665,7 @@ var ProductFavorite = {
     });
   },
 
-  doUnlike: function doUnlike(productId, callback) {
+  doUnlike: function doUnlike(el, productId, callback) {
 
     $.ajax({
       method: "PATCH",
