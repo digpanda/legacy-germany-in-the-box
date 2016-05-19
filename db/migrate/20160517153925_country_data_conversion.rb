@@ -13,4 +13,5 @@ class CountryDataConversion < Mongoid::Migration
 
   def self.down
   end
+
 end

@@ -12,7 +12,6 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :null_session, :if => Proc.new { |c| c.request.format.html? }
 
-  before_action :set_all_categories
   before_action :authenticate_user!, except: [:set_session_locale]
 
   acts_as_token_authentication_handler_for User, if: lambda { |controller| controller.request.format.json? }, :fallback => :none
@@ -26,6 +25,8 @@ class ApplicationController < ActionController::Base
   helper_method :current_order, :current_orders, :total_number_of_products, :extract_locale
 
   around_action :set_translation_locale, only: [:update], if: -> {current_user && current_user.role == :admin}
+
+  before_action :set_all_categories
 
   after_filter :store_location
 
