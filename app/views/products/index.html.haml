@@ -62,20 +62,10 @@
     });
   });
 
--#- for_device_type :desktop do
--#  = content_for :search_area do
--#    = form_tag search_products_path, :method => :get, :id => 'search_products_form', :class => 'search-area' do
--#      .container
--#        .row
--#          .col-md-12.clearfix
--#            %label
--#              %i.fa.fa-search
--#              %span= I18n.t(:search_prompt, scope: :popular_products)
--#            .search-area-division.search-area-division-input
--#              =text_field_tag :products_search_keyword, params[:products_search_keyword], :placeholder => "#{ I18n.t(:search_placeholder, scope: :popular_products) }", :class => 'form-control', :required => true
-.container-fluid
+.kcontainer-fluid
   - if @products.size == 0
-    %h4 Products cannot be found.
+    %div{class:"+spacer"}
+    %h4{class:"+centered"} Oops ! No product here ...
   - else
     - for_device_type :mobile, :tablet do
       - @products.each do |p|

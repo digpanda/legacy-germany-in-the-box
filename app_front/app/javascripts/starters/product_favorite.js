@@ -84,7 +84,7 @@ var ProductFavorite = {
 
     },
 
-    doUnlike: function(productId, callback) {
+    doUnlike: function(el, productId, callback) {
 
       $.ajax({
         method: "PATCH",

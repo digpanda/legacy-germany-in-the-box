@@ -25,7 +25,7 @@ var Footer = {
         
         $(window).resize(function() {
 
-          self.processStickyFooter();
+          Footer.processStickyFooter();
           
         });
 
@@ -46,7 +46,6 @@ var Footer = {
       }
 
     },
-    
 
 }
 

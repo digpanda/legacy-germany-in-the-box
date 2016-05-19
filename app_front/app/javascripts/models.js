@@ -3,7 +3,7 @@
  */
 var Models = [
 
-  ''
+  'user'
 
 ]
 

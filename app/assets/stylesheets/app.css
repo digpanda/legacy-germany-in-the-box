@@ -478,6 +478,14 @@ textarea, input, a {
   outline: none; }
 
 /* line 17, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/_global.sass */
+h4 {
+  background-color: #e6fbd7;
+  padding: 0.5em;
+  margin: 0em;
+  font-family: 'Raleway', sans-serif !important;
+  font-weight: 400; }
+
+/* line 24, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/_global.sass */
 a, a:active, a:hover, a:visited {
   text-decoration: none !important;
   outline: none !important;

@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     for (var idx in starters) {
 
-      console.log('Loading starter : ' + starters[idx]);
+      console.warn('Loading starter : ' + starters[idx]);
 
       let formatted_starter = Casing.underscoreCase(starters[idx]).replace('-', '_');
       let obj = require("javascripts/starters/"+formatted_starter);
@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   } catch(err) {
 
-    console.log("Unable to initialize #js-starters");
+    console.error("Unable to initialize #js-starters");
     return;
 
   }
@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   } catch(err) {
 
-    console.log("Unable to initialize #js-routes `"+routes.controller+"`.`"+routes.action+"`");
+    console.error("Unable to initialize #js-routes `"+routes.controller+"`.`"+routes.action+"`");
     return;
 
   }
