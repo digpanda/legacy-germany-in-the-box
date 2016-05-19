@@ -54,6 +54,7 @@ de:
     email_confirmation_msg: Sie erhalten von uns eine E-Mail für die Registrierung. Bitte bestätigen Sie durch den gegebenen Link in der Mail, bevor Sie fortfahren.
     shops: Shops
     categories: Produktkategorien
+    payments: Zahlungen
   footer:
     copyright: © DigPanda GmbH 2015-2016
     rheinmanufaktur: Rhein-Manufaktur
@@ -516,3 +517,13 @@ de:
   edit_category:
     name: Name
     code: Code
+  edit_payments:
+    no_payments: Keine Zahlungen vorhanden
+    request_number: Anfrage-ID
+    transaction_number: Vorgangsnummer
+    merchant_nummber: Händler-ID
+    order_nummber: Auftragsnummer
+    status: Status
+    buyer: Käufer
+    amount: Summe
+    action: Operation
