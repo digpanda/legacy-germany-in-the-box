@@ -124,6 +124,9 @@ GEM
       yard (>= 0.7.0)
     erubis (2.7.0)
     eventmachine (1.2.0.1)
+    exception_notification (4.1.4)
+      actionmailer (~> 4.0)
+      activesupport (~> 4.0)
     execjs (2.6.0)
     factory_girl (4.7.0)
       activesupport (>= 3.0.0)
@@ -392,6 +395,7 @@ DEPENDENCIES
   draper (~> 1.3)
   draper-cancancan
   easy_captcha
+  exception_notification
   factory_girl_rails
   font-awesome-rails
   genderize

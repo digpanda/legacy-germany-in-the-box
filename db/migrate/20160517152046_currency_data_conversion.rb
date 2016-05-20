@@ -6,7 +6,7 @@ class CurrencyDataConversion < Mongoid::Migration
       if s.currency.nil?
         puts "Fixing shop #{s.name} ; converting `nil` currency to `EUR`"
         s.currency = 'EUR'
-        s.save!
+        s.save(validate: false)
       else
         puts "Nothing to do to shop #{s.name}"
       end

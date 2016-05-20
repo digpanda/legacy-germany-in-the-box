@@ -59,6 +59,10 @@ group :development, :test do
   gem "pry-rails"
 end
 
+group :production do
+  gem "exception_notification"
+end
+
 group :development, :local do
   gem "web-console", "~> 2.0"
   gem "byebug" # Call "byebug" anywhere in the code to stop execution and get a debugger console
