@@ -1,5 +1,3 @@
-# encoding: utf-8
-
 class LogoImageUploader < CarrierWave::Uploader::Base
 
   include CarrierWave::MiniMagick
@@ -29,4 +27,4 @@ class LogoImageUploader < CarrierWave::Uploader::Base
       process :resize_and_pad => [90, 90]
     end
   end
-end# encoding: utf-8
+end
