@@ -7,9 +7,10 @@ production:
       options:
         user: achat
         password: achat2cool
-        use_activesupport_time_zone: true
-        raise_not_found_error: false
-        
+  options:
+    use_activesupport_time_zone: true
+    raise_not_found_error: false
+
 development:
   clients:
     default:
