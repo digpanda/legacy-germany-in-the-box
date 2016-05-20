@@ -203,7 +203,7 @@ zh-CN:
       blank: 不能为空
       invalid: 无效
       document_not_found:
-        message: "不存在%{klass}类ID(s)为%{identifiers}的文档."
+        message: "不存在%{klass}类ID(s)为%{missing}的文档."
         summary: "查找如下: %{searched} (%{total} total)， 如下没有找到: %{missing}."
         resolution: "设置Mongoid.raise_not_found_error为真或者使用有效的ID."
       validations:
