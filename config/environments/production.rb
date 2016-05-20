@@ -23,7 +23,7 @@ Rails.application.configure do
   :email => {
     :email_prefix => "Report - ",
     :sender_address => %{"Bug DigPanda Production" <notifier@digpanda.com>},
-    :exception_recipients => %w{laurent.schaffner@digpanda.com}
+    :exception_recipients => %w{laurent.schaffner@digpanda.com, jiang@digpanda.com}
   }
 
   # Raises error for missing translations
