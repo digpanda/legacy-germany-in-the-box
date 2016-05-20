@@ -36,7 +36,7 @@ module ApplicationHelper
 
   def generate_validate_img_file_js
     %Q{
-      function validatePDFFile(inputFile) {
+      function validateImgFile(inputFile) {
         var maxExceededMessage = "#{I18n.t(:max_exceeded_message, scope: :image_upload)}";
         var extErrorMessage = "#{I18n.t(:ext_error_message, scope: :image_upload)}";;
         var allowedExtension = ["jpg", "jpeg", "png"];
@@ -66,7 +66,7 @@ module ApplicationHelper
 
   def generate_validate_pdf_file_js
     %Q{
-      function validateImgFile(inputFile) {
+      function validatePdfFile(inputFile) {
         var maxExceededMessage = "#{I18n.t(:max_exceeded_message, scope: :pdf_upload)}";
         var extErrorMessage = "#{I18n.t(:ext_error_message, scope: :pdf_upload)}";;
         var allowedExtension = ["pdf"];

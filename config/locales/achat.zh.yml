@@ -438,6 +438,7 @@ zh-CN:
     product_data_info: 请您给出关于此产品的技术指标和成分说明。 (最多%{num}个字)
     attachment: 附件
     attachment_info: 这里您可以PDF的形式上传产品技术指标和成分说明。
+    open: 浏览文件
   edit_product_variant:
     new_variant: 创建新型号
     edit: 编辑型号

@@ -444,6 +444,7 @@ de:
     product_data_info: Hier können Sie Ihre Produktdaten angeben. (max. %{num} Buchstaben)
     attachment: Anhang
     attachment_info: Hier können Sie für Ihre Produktdaten eine PDF-Datei als Anhang hochladen.
+    open: Ansehen
   edit_product_variant:
     new_variant: Neue Variante
     edit: Editieren
