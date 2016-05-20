@@ -40,7 +40,7 @@
           - elsif !current_user && I18n.locale == :de
             %h4= I18n.t(:selling, scope: :footer)
             %h5=link_to I18n.t(:shop_application, scope: :edit_shop_application), new_shop_application_path
-            %h5=link_to I18n.t(:sell_on_rm, scope: :footer), saleguide_page_path, :target => 'blank'
+            %h5=link_to I18n.t(:sell_on_gbox, scope: :footer), saleguide_page_path, :target => 'blank'
 
   .footer-copyright
     .container

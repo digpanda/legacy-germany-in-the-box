@@ -66,7 +66,7 @@ zh-CN:
     terms_conditions: 法律声明
     privarcy_statement: 数据隐私
     guidelines: 使用指南
-    sell_on_rm: 卖家指南
+    sell_on_gbox: 卖家指南
     charge_and_billing: 手续费和账单
     press_portal: 新闻门户
     status: 重要通知
@@ -83,7 +83,7 @@ zh-CN:
     vouchers: 优惠活动
     contact_us: 联系客服
     news_ihk_titel: 诚挚感谢！
-    news_ihk: 我们诚挚感谢巴伐利亚工商会（<strong>IHK Bayern</strong>）和手工业商会（<strong>Handwerkskammer Bayern</strong>）对莱茵工场的赞助，感谢两商会对我们模式的认可，支持我们把高品质产品从德国制造者直接带给中国消费者。
+    news_ihk: 我们诚挚感谢德国巴伐利亚州工商联（<strong>IHK Bayern</strong>）和手工业联（<strong>Handwerkskammer Bayern</strong>）对来因盒的赞助。感谢对我们模式的认可，支持我们把高品质德国产品从制造端直接带给中国消费者。
   sign_in_dialog:
     email: 登陆邮箱
     password: 密码
