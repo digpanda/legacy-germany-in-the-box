@@ -41,7 +41,7 @@ Rails.application.configure do
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 
-  config.action_mailer.default_url_options = {host: 'local.dev', port: 3000}
+  config.action_mailer.default_url_options = {host: 'germanyinthebox.com', port: 80}
   config.action_mailer.delivery_method = :smtp
 
   config.action_mailer.smtp_settings = {
@@ -50,7 +50,8 @@ Rails.application.configure do
       domain: 'gmail.com',
       authentication: "plain",
       enable_starttls_auto: true,
-      user_name: 'achatdidpanda',
-      password: 'achat4cool'
+      user_name: 'germanyinthebox@gmail.com',
+      password: 'pandarocks'
   }
+  
 end
