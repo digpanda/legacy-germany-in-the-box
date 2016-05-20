@@ -19,8 +19,12 @@ de:
     non_selected_text: Nicht ausgewählt
     n_selected_text: ausgewählt
   image_upload:
-    max_exceeded_message: Das Bild ist größer als 1 MB. Bitte laden Sie ein anderes Bild hoch.
+    max_exceeded_message: Das Bild ist größer als 1 MB. Bitte laden Sie ein kleineres Bild hoch.
     ext_error_message: Akzeptierbare Formate sind JPG, JPEG und PNG.
+    upload: Hochladen
+  pdf_upload:
+    max_exceeded_message: Die PDF ist größer als 2 MB. Bitte laden Sie eine kleinere PDF hoch.
+    ext_error_message: Akzeptierbares Format ist PDF.
     upload: Hochladen
   top_menu:
     top_menu: Menü
@@ -380,8 +384,6 @@ de:
     quantity: Verfügbarkeit
     duty_category: Zoll-Kategorie
     duty_category_info: Die Zuordnung der Käufer-Kategorien ist von dem Zoll in China gefordert.
-    product_data: Produktdaten
-    product_data_info: Hier können Sie Ihre Produktdaten angeben. (max. %{num} Buchstaben)
   edit_product_new:
     create_ok: Das Produkt wurde erfolgreich erstellt.
     create_ko: Ein Fehler ist beim
@@ -438,6 +440,10 @@ de:
     clone: Klonen
     piece: Stk.
     no_detail: Bitte klicken Sie oben <strong>Neue Artikelposition</strong> an, um eine Artikelposition zu erstellen.
+    product_data: Produktdaten
+    product_data_info: Hier können Sie Ihre Produktdaten angeben. (max. %{num} Buchstaben)
+    attachment: Anhang
+    attachment_info: Hier können Sie für Ihre Produktdaten eine PDF-Datei als Anhang hochladen.
   edit_product_variant:
     new_variant: Neue Variante
     edit: Editieren

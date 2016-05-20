@@ -1,4 +1,6 @@
 :javascript
+  #{generate_validate_pdf_file_js}
+
   $(function() {
       $('select.sku-variants-options').multiselect({
         nonSelectedText: "#{I18n.t(:non_selected_text, scope: :multiselect)}",
@@ -58,51 +60,59 @@
               = I18n.t(:img3, scope: :edit_product_detail)
           .row.text-center
             .col-md-3
-              = image_tag @sku.decorate.image_url(:img0, :thumb), :class => 'img-responsive', :id => "img_0_#{@product.id}"
+              = image_tag @sku.decorate.image_url(:img0, :thumb), :class => 'img-responsive', :id => "img_0_#{@sku.id}"
             .col-md-3
-              = image_tag @sku.decorate.image_url(:img1, :thumb), :class => 'img-responsive', :id => "img_1_#{@product.id}"
+              = image_tag @sku.decorate.image_url(:img1, :thumb), :class => 'img-responsive', :id => "img_1_#{@sku.id}"
             .col-md-3
-              = image_tag @sku.decorate.image_url(:img2, :thumb), :class => 'img-responsive', :id => "img_2_#{@product.id}"
+              = image_tag @sku.decorate.image_url(:img2, :thumb), :class => 'img-responsive', :id => "img_2_#{@sku.id}"
             .col-md-3
-              = image_tag @sku.decorate.image_url(:img3, :thumb), :class => 'img-responsive', :id => "img_3_#{@product.id}"
+              = image_tag @sku.decorate.image_url(:img3, :thumb), :class => 'img-responsive', :id => "img_3_#{@sku.id}"
           .row.text-center
             .col-md-3
               .fileUpload.btn.btn-default
                 %span
                   %i.fa.fa-cloud-upload
                   =I18n.t(:upload, scope: :image_upload)
-                = fs.file_field :img0, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#img_0_#{@product.id}", :class => 'img-file-upload upload', :onchange =>"validateImgFile(this);"
+                = fs.file_field :img0, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#img_0_#{@sku.id}", :class => 'img-file-upload upload', :onchange =>"validateImgFile(this);"
             .col-md-3
               .fileUpload.btn.btn-default
                 %span
                   %i.fa.fa-cloud-upload
                   =I18n.t(:upload, scope: :image_upload)
-                = fs.file_field :img1, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#img_1_#{@product.id}", :class => 'img-file-upload upload', :onchange =>"validateImgFile(this);"
+                = fs.file_field :img1, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#img_1_#{@sku.id}", :class => 'img-file-upload upload', :onchange =>"validateImgFile(this);"
             .col-md-3
               .fileUpload.btn.btn-default
                 %span
                   %i.fa.fa-cloud-upload
                   =I18n.t(:upload, scope: :image_upload)
-                = fs.file_field :img2, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#img_2_#{@product.id}", :class => 'img-file-upload upload', :onchange =>"validateImgFile(this);"
+                = fs.file_field :img2, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#img_2_#{@sku.id}", :class => 'img-file-upload upload', :onchange =>"validateImgFile(this);"
             .col-md-3
               .fileUpload.btn.btn-default
                 %span
                   %i.fa.fa-cloud-upload
                   =I18n.t(:upload, scope: :image_upload)
-                = fs.file_field :img3, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#img_3_#{@product.id}", :class => 'img-file-upload upload', :onchange =>"validateImgFile(this);"
+                = fs.file_field :img3, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#img_3_#{@sku.id}", :class => 'img-file-upload upload', :onchange =>"validateImgFile(this);"
 
       -if @product.duty_category && @product.duty_category.code == 'L2-276'
         .panel.panel-info
           .panel-heading.text-center
-            %label= I18n.t(:product_data, scope: :edit_product, locale: locale)
+            %label= I18n.t(:product_data, scope: :edit_product_detail, locale: locale)
           .panel-body
             .form-group
               .row
-                .col-md-3{:title => I18n.t(:product_data_info, scope: :edit_product, num: Rails.configuration.max_additional_text_length, locale: locale) }
-                  %i.fa.fa-info-circle{ :title => I18n.t(:product_data_info, scope: :edit_product, num: Rails.configuration.max_additional_text_length, locale: locale) }
-                  %label.translation= I18n.t(:product_data, scope: :edit_product, locale: locale)
+                .col-md-3{:title => I18n.t(:product_data_info, scope: :edit_product_detail, num: Rails.configuration.max_additional_text_length, locale: locale) }
+                  %i.fa.fa-info-circle{ :title => I18n.t(:product_data_info, scope: :edit_product_detail, num: Rails.configuration.max_additional_text_length, locale: locale) }
+                  %label.translation= I18n.t(:product_data, scope: :edit_product_detail, locale: locale)
                 .col-md-9
                   = fs.text_area :data, :value => @sku.data_translations[locale], :class => 'form-control', rows: 8, :maxLength => Rails.configuration.max_additional_text_length
+            .form-group
+              .row
+                .col-md-3{:title => I18n.t(:attachment_info, scope: :edit_product_detail, num: Rails.configuration.max_additional_text_length, locale: locale) }
+                  %i.fa.fa-info-circle{ :title => I18n.t(:attachment_info, scope: :edit_product_detail, num: Rails.configuration.max_additional_text_length, locale: locale) }
+                  %label.translation= I18n.t(:attachment, scope: :edit_product_detail, locale: locale)
+                .col-md-9
+                  = link_to @sku.attach0.file.filename, @sku.attach0.url
+                  = fs.file_field :attach0, :accept => "application/pdf", :attach_id => "#attach_0_#{@sku.id}", :class => 'img-file-upload upload', :onchange =>"validateImgFile(this);"
 
       .panel.panel-info
         .panel-heading.text-center
