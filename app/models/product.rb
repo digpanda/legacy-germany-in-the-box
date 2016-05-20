@@ -9,6 +9,7 @@ class Product
   field :desc,        type: String,   localize: true
   field :tags,        type: Array,    default: Array.new(Rails.configuration.max_num_tags)
   field :status,      type: Boolean,  default: true
+  field :approved,    type: Time
 
   embeds_many :options,   inverse_of: :product,   cascade_callbacks: true,  class_name: 'VariantOption'
   embeds_many :skus,      inverse_of: :product,   cascade_callbacks: true
@@ -39,7 +40,7 @@ class Product
   validates :tags,        length: { maximum: Rails.configuration.max_num_tags }
 
   scope :has_tag,         ->(value) { where( :tags => value ) }
-  scope :is_active,       ->        { where( :status => true ) }
+  scope :is_active,       ->        { where( :status => true ).where( :approved.ne => nil ) }
   scope :has_sku,         ->        { where( "skus.0" => { "$exists" => true } ) }
   scope :buyable,         ->        { self.is_active.has_sku.in(shop: Address.is_sender.map {|a| a.shop_id}) }
 

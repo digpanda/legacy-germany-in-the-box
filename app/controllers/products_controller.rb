@@ -63,6 +63,26 @@ class ProductsController < ApplicationController
     end
   end
 
+  def approve
+    
+    @product = Product.find(params[:product_id])
+    @product.approved = Time.now
+    @product.save
+
+    redirect_to(:back) and return
+
+  end
+
+  def disapprove
+
+    @product = Product.find(params[:product_id])
+    @product.approved = nil
+    @product.save
+
+    redirect_to(:back) and return
+
+  end
+
   def like
 
     @product = Product.find(params[:id])

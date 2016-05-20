@@ -65,6 +65,9 @@ Rails.application.routes.draw do
   end
 
   resources :products, except: [:index, :new] do
+
+    match :approve, via: [:patch], action: :approve, as: :approve
+    match :disapprove, via: [:patch], action: :disapprove, as: :disapprove
     match 'remove_sku/:sku_id',                     via: [:delete], action: :remove_sku,                  as: :remove_sku,                  :on => :member
     match 'remove_variant/:variant_id',             via: [:delete], action: :remove_variant,              as: :remove_variant,              :on => :member
     match 'remove_option/:variant_id/:option_id',   via: [:delete], action: :remove_option,               as: :remove_option,               :on => :member
