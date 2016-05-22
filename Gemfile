@@ -52,6 +52,7 @@ gem "abstract_method"
 gem "mongoid_magic_counter_cache"
 
 gem "newrelic_rpm"
+gem "newrelic_moped"
 
 group :development, :test, :staging do
   gem "factory_girl_rails"

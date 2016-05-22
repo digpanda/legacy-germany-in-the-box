@@ -13,7 +13,7 @@ common: &default_settings
   app_name: Germany in the Box
   # agent_enabled: false
   log_level: info
-
+  disable_mongodb: false
 
 development:
   <<: *default_settings
