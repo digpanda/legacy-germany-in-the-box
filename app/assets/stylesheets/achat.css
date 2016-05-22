@@ -1,3 +1,23 @@
+.thumbnail-img {
+    width: auto;
+    max-height: 200px;
+}
+
+.detail-img {
+    width: auto;
+    max-height: 400px;
+}
+
+.icon-img {
+    width: auto;
+    max-height: 48px;
+}
+
+.logo-img {
+    width: auto;
+    max-height: 96px;
+}
+
 .translation {
     text-decoration: underline;
 }

@@ -4,7 +4,7 @@
     %span.main-header__account
 
     %div{class:"+avatar"}
-      = image_tag (current_user.pic.url.nil? ? 'icons/default_user_pic.png' : current_user.pic.url)
+      = image_tag (current_user.pic.url.nil? ? 'icons/default_user_pic.png' : current_user.pic.url), :class => 'logo-img'
       %span{class:"caret"}
     %div{class:"+spacer"}
 

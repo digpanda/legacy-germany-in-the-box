@@ -380,6 +380,7 @@ zh-CN:
     quantity: 数量
     duty_category: 报关产品分类
     duty_category_info: 明确的报关产品归类更好的对产品进行物流。
+    status: 上架
   edit_product_new:
     create_ok: 产品成功创建
     create_ko: 产品创建失败

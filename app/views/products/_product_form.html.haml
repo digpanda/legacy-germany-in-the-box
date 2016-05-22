@@ -59,6 +59,17 @@
               %label.required.translation= I18n.t(:desc, scope: :edit_product, locale: locale)
             .col-md-9
               = f.text_area :desc, :value => @product.desc_translations[locale], :class => 'form-control', rows: 8, :required => true, :maxLength => Rails.configuration.max_long_text_length
+        .form-group
+          .row
+            .col-md-3
+              %label.required.translation= I18n.t(:status, scope: :edit_product, locale: locale)
+            .col-md-9
+              .checkbox{:style => 'margin:0px'}
+                %label
+                  = f.hidden_field :status
+                  = f.check_box :status, { :class => 'i-check' }, true
+                  = I18n.t(true, scope: 'edit_product_detail.status', locale: locale)
+
     - if current_user.role == :admin
       .panel.panel-info
         .panel-heading{ :title => I18n.t(:duty_category_info, scope: :edit_product, locale: locale) }
