@@ -128,10 +128,10 @@ class OrdersController < ApplicationController
   end
 
   def checkout
-    order = current_order(params[:shop_id]).update_for_checkout!(current_user, params[:delivery_destination_id])
+    cart = current_cart(params[:shop_id])
+    order = current_order(params[:shop_id]).update_for_checkout!(current_user, params[:delivery_destination_id], cart.border_guru_quote_id, cart.shipping_cost, cart.tax_and_duty_cost)
     order.save!
 
-    cart = current_cart(params[:shop_id])
 
     @wirecard = PrepareOrderForWirecardCheckout.perform({
 
@@ -158,7 +158,7 @@ class OrdersController < ApplicationController
         currency: 'EUR'
     )
 
-    asdfafa
+    session[:order_ids].delete(shop.id)
   end
 
   def checkout_fail

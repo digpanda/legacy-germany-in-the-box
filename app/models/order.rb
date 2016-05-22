@@ -16,9 +16,6 @@ class Order
   belongs_to :shipping_address,        :class_name => 'Address'
   belongs_to :billing_address,         :class_name => 'Address'
 
-  accepts_nested_attributes_for :shipping_address
-  accepts_nested_attributes_for :billing_address
-
   has_many :order_items,            :inverse_of => :order,    dependent: :restrict
   has_many :order_payments,         :inverse_of => :order,    dependent: :restrict
 
@@ -42,13 +39,17 @@ class Order
     order_items.inject(0) { |sum, i| sum += i.quantity }
   end
 
-  def update_for_checkout!(user, delivery_destination_id)
-    self.update({
+  def update_for_checkout!(user, delivery_destination_id, border_guru_quote_id, shipping_cost, tax_and_duty_cost)
+    a = user.addresses.find(delivery_destination_id)
 
+    self.update({
       :status               => :paying,
       :user                 => user,
-      :shipping_address     => user.addresses.find(delivery_destination_id).attributes,
-    
+      :shipping_address     => a,
+      :billing_address      => a,
+      :border_guru_quote_id => border_guru_quote_id,
+      :shipping_cost        => shipping_cost,
+      :tax_and_duty_cost    => tax_and_duty_cost
     })
 
     self

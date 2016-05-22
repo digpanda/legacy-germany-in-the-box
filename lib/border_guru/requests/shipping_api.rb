@@ -5,7 +5,6 @@ module BorderGuru
     class ShippingApi < Base
 
       def dispatch!
-
         @raw_response = @@access_token.post(
           "/api/shipping?quoteParams=#{quote_params}",
           nil,

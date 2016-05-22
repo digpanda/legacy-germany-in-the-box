@@ -39,7 +39,7 @@ module BorderGuru
       end
 
       def quote_params
-        CGI.escape(payload_hash.to_json)
+        CGI.escape(payload_hash.delete_if{ |k, v| v.nil? }.to_json)
       end
 
     end

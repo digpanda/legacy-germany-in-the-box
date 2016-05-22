@@ -47,14 +47,14 @@ module BorderGuru
             lastName: address_model.lname,
             streetName: address_model.street,
             houseNo: address_model.number,
-            additionalInfo: address_model.additional,
+            additionalInfo: '1234567',
             postcode: address_model.zip,
             city: address_model.city,
             country: address_model.country_name,
             telephone: address_model.tel,
-            email: address_model.email,
+            email: 'yu.liu@hotmail.com',
             countryCode: address_model.country_code
-        }
+        }.delete_if { |k,v| v.nil? }
       end
 
       def line_items
