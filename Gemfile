@@ -53,7 +53,7 @@ gem "mongoid_magic_counter_cache"
 
 gem "newrelic_rpm"
 
-group :development, :test do
+group :development, :test, :staging do
   gem "factory_girl_rails"
   gem "rspec-rails", "~> 3.0"
   gem "capybara"
@@ -63,11 +63,11 @@ group :development, :test do
   gem "pry-rails"
 end
 
-group :production do
+group :production, :staging do
   gem "exception_notification"
 end
 
-group :development, :local do
+group :development, :local, :staging do
   gem "web-console", "~> 2.0"
   gem "byebug" # Call "byebug" anywhere in the code to stop execution and get a debugger console
   gem "spring" # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring

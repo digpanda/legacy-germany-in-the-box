@@ -11,6 +11,13 @@ Rails.application.configure do
   config.assets.digest = true
   config.assets.raise_runtime_errors = true
 
+  config.middleware.use ExceptionNotification::Rack,
+  :email => {
+    :email_prefix => "Report - ",
+    :sender_address => %{"Bug DigPanda Production" <notifier@digpanda.com>},
+    :exception_recipients => %w{laurent.schaffner@digpanda.com, jiang@digpanda.com}
+  }
+
   config.action_mailer.default_url_options = {host: 'germanyinthebox.com', port: 80}
   config.action_mailer.delivery_method = :smtp
 
