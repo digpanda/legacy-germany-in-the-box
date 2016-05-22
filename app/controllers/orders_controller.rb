@@ -22,7 +22,6 @@ class OrdersController < ApplicationController
   end
 
   def manage_cart
-    binding.pry
     @readonly = false
     @carts = current_carts
   end
