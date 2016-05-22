@@ -35,7 +35,7 @@ gem "strip_attributes"
 gem "will_paginate"
 gem "will_paginate-bootstrap"
 gem "bootstrap-multiselect-rails"
-gem "cancancan"
+gem "cancancan", '1.13.1'
 gem "http_accept_language"
 gem "jquery-fileupload-rails"
 gem "copy_carrierwave_file"

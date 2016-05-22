@@ -128,16 +128,18 @@ class OrdersController < ApplicationController
   end
 
   def checkout
-    @order = current_order(params[:shop_id]).update_for_checkout!(current_user, params[:delivery_destination_id])
-    @cart = current_cart(params[:shop_id])
+    order = current_order(params[:shop_id]).update_for_checkout!(current_user, params[:delivery_destination_id])
+    order.save!
+
+    cart = current_cart(params[:shop_id])
 
     @wirecard = PrepareOrderForWirecardCheckout.perform({
 
       :user        => current_user,
-      :order       => @order,
-      :merchant_id => Rails.env.production? ? @cart.submerchant_id : 'dfc3a296-3faf-4a1d-a075-f72f1b67dd2a', # TO CHANGE DYNAMICALLY
+      :order       => order,
+      :merchant_id => Rails.env.production? ? cart.submerchant_id : 'dfc3a296-3faf-4a1d-a075-f72f1b67dd2a', # TO CHANGE DYNAMICALLY
       :secret_key  => "6cbfa34e-91a7-421a-8dde-069fc0f5e0b8", # TO CHANGE DYNAMICALLY 
-      :amount      => @cart.total,
+      :amount      => cart.total,
       :currency    => "CNY"
 
     })
@@ -145,6 +147,18 @@ class OrdersController < ApplicationController
 
   def checkout_success
     checkout_callback
+
+    order = Rails.env.production? ? current_order(params[:merchant_account_id]) : current_orders.first[1]
+    shop = Rails.env.production? ? Shop.find(params[:merchant_account_id]) : order.order_items.first.sku.product.shop
+
+    shipping = BorderGuru.get_shipping(
+        order: order,
+        shop: shop,
+        country_of_destination: ISO3166::Country.new('CN'),
+        currency: 'EUR'
+    )
+
+    asdfafa
   end
 
   def checkout_fail

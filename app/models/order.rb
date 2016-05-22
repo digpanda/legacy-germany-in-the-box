@@ -16,6 +16,9 @@ class Order
   embeds_one :shipping_address,     :inverse_of => :orders,   :class_name => 'Address'
   embeds_one :billing_address,      :inverse_of => :orders,   :class_name => 'Address'
 
+  accepts_nested_attributes_for :shipping_address
+  accepts_nested_attributes_for :billing_address
+
   has_many :order_items,            :inverse_of => :order,    dependent: :restrict
   has_many :order_payments,         :inverse_of => :order,    dependent: :restrict
 
@@ -40,7 +43,6 @@ class Order
   end
 
   def update_for_checkout!(user, delivery_destination_id)
-
     self.update({
 
       :status               => :paying,
@@ -50,7 +52,6 @@ class Order
     })
 
     self
-
   end
 
   private
