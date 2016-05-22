@@ -1,18 +1,18 @@
 .row
   %h3.text-center= I18n.t(:maximal_number_of_addresses, scope: :edit_address, num: Rails.configuration.max_num_addresses)
 
-= render partial: 'addresses/new', locals: {address: @address}
+= render partial: 'new_customer_address', locals: {address: @address}
 
 .row.row-wrap
   - current_user.addresses.each_with_index do |a, i|
     %div.mfp-with-anim.mfp-hide.mfp-dialog.clearfix{ :id => "edit-address-dialog-#{a.id}" }
-      = render partial: 'addresses/edit', locals: {a: a}
+      = render partial: 'edit_customer_address', locals: {a: a}
     .col-md-4
       .panel.panel-primary
         .panel-heading.text-center
           = I18n.t(:show_address_title, scope: :edit_address) + ' ' + (i+1).to_s
         .panel-body
-          = render partial: 'addresses/show', locals: {a: a}
+          = render partial: 'show_customer_address', locals: {a: a}
   - if current_user.addresses.size < Rails.configuration.max_num_addresses
     .col-md-4
       %a.address-box.address-box-new.popup-text{"data-effect" => "mfp-move-from-top", :href => "#add-address-dialog"}
