@@ -55,7 +55,8 @@ FactoryGirl.define do
 
     current_sign_in_ip "127.0.0.1"
 
-    addresses {[FactoryGirl.build(:customer_address)]}
-    
+    after(:create) do |user|
+      create_list(:customer_address, 1, user: user)
+    end
   end
 end
