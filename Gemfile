@@ -54,6 +54,14 @@ gem "mongoid_magic_counter_cache"
 gem "newrelic_rpm"
 gem "newrelic_moped"
 
+group :development do
+  gem 'capistrano'
+  gem 'capistrano-bundler'
+  gem 'capistrano-passenger', '>= 0.1.1'
+  gem 'capistrano-rails'
+  gem 'capistrano-rvm'
+end
+
 group :development, :test, :staging do
   gem "factory_girl_rails"
   gem "rspec-rails", "~> 3.0"
