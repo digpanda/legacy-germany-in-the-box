@@ -56,7 +56,7 @@ GEM
     bson (4.1.1)
     builder (3.2.2)
     byebug (9.0.4)
-    cancancan (1.14.0)
+    cancancan (1.13.1)
     capybara (2.7.1)
       addressable
       mime-types (>= 1.16)
@@ -382,7 +382,7 @@ DEPENDENCIES
   bootstrap-multiselect-rails
   bootstrap-validator-rails
   byebug
-  cancancan
+  cancancan (= 1.13.1)
   capybara
   carrierwave-mongoid
   carrierwave-qiniu
