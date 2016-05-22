@@ -13,8 +13,8 @@ class Order
 
   belongs_to :user,                 :inverse_of => :orders
 
-  embeds_one :shipping_address,     :inverse_of => :orders,   :class_name => 'Address'
-  embeds_one :billing_address,      :inverse_of => :orders,   :class_name => 'Address'
+  belongs_to :shipping_address,        :class_name => 'Address'
+  belongs_to :billing_address,         :class_name => 'Address'
 
   accepts_nested_attributes_for :shipping_address
   accepts_nested_attributes_for :billing_address
