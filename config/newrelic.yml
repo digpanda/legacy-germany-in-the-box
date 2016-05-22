@@ -11,9 +11,10 @@
 common: &default_settings
   license_key: 6402e613689416aeb21d9681d6926980801eb118
   app_name: Germany in the Box
-  # agent_enabled: false
+  agent_enabled: true
   log_level: info
   disable_mongodb: false
+  monitor_mode: true
 
 development:
   <<: *default_settings
