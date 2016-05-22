@@ -92,20 +92,19 @@ class ApplicationController < ActionController::Base
   end
 
   def current_cart(shop_id)
+    cart = Cart.new
     current_order(shop_id).order_items.each do |i|
-      cart = Cart.new
-
-      o.order_items.each do |i|
         cart.add(i.sku, i.quantity)
-
-        BorderGuru.calculate_quote(
-            cart: cart,
-            shop: Shop.find(shop_id),
-            country_of_destination: ISO3166::Country.new('CN'),
-            currency: 'EUR'
-        )
-      end
     end
+
+    BorderGuru.calculate_quote(
+        cart: cart,
+        shop: Shop.find(shop_id),
+        country_of_destination: ISO3166::Country.new('CN'),
+        currency: 'EUR'
+    )
+
+    cart
   end
 
   def has_order?(shop_id)

@@ -13,6 +13,7 @@ class Cart
   # when it comes to create the shipment for the final
   # order.
   field :border_guru_quote_id, type: String
+  field :submerchant_id, type: String
   field :shipping_cost, type: Float
   field :tax_and_duty_cost, type: Float
 

@@ -18,6 +18,7 @@ module BorderGuru
         country_of_destination: country_of_destination,
         currency: currency
       ) do |response|
+        cart.submerchant_id = shop.id
         cart.border_guru_quote_id = response.quote_identifier
         cart.shipping_cost = response.shipping_cost
         cart.tax_and_duty_cost = response.tax_and_duty_cost
