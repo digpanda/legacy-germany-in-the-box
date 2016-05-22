@@ -23,5 +23,7 @@ FactoryGirl.define do
     tel         '+89123456'
     email       'shopkeeper01@hotmail.com'
     type        'both'
+    company     'Supersoft'
+    province    'Bayern'
   end
 end
