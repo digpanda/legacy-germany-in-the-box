@@ -129,6 +129,8 @@ class OrdersController < ApplicationController
 
   def checkout
     order = current_order(params[:shop_id]).update_for_checkout!(current_user, params[:delivery_destination_id])
+    order.save!
+
     cart = current_cart(params[:shop_id])
 
     @wirecard = PrepareOrderForWirecardCheckout.perform({
@@ -146,13 +148,17 @@ class OrdersController < ApplicationController
   def checkout_success
     checkout_callback
 
-    order = current_order(params[:shop_id])
+    order = Rails.env.production? ? current_order(params[:merchant_account_id]) : current_orders.first[1]
+    shop = Rails.env.production? ? Shop.find(params[:merchant_account_id]) : order.order_items.first.sku.product.shop
+
     shipping = BorderGuru.get_shipping(
         order: order,
-        shop: order.shop,
+        shop: shop,
         country_of_destination: ISO3166::Country.new('CN'),
         currency: 'EUR'
     )
+
+    asdfafa
   end
 
   def checkout_fail
