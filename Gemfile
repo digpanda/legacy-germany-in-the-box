@@ -52,8 +52,9 @@ gem "abstract_method"
 gem "mongoid_magic_counter_cache"
 
 gem "newrelic_rpm"
+gem "newrelic_moped"
 
-group :development, :test do
+group :development, :test, :staging do
   gem "factory_girl_rails"
   gem "rspec-rails", "~> 3.0"
   gem "capybara"
@@ -63,7 +64,7 @@ group :development, :test do
   gem "pry-rails"
 end
 
-group :production do
+group :production, :staging do
   gem "exception_notification"
 end
 

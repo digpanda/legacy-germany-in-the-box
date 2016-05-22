@@ -1,4 +1,4 @@
-development:
+staging:
     scheme: sftp
     host: 52.28.89.25
     port: 22
