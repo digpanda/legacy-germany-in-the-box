@@ -1,111 +1,18 @@
 .row
   %h3.text-center= I18n.t(:maximal_number_of_addresses, scope: :edit_address, num: Rails.configuration.max_num_addresses)
 
-#add-address-dialog.mfp-with-anim.mfp-hide.mfp-dialog.clearfix
-  =form_for @address, html: {} do |f|
-    .form-group
-      %h4= I18n.t(:new_address_title, scope: :edit_address)
-    .form-group
-      .form-inline
-        .form-group
-          = f.text_field :lname, :value => current_user.lname, :class => 'form-control', :style => 'width:168px', :required => true, :placeholder => I18n.t(:lname, scope: :edit_address)
-        .form-group
-          = f.text_field :fname, :value => current_user.fname, :class => 'form-control', :style => 'width:168px', :required => true, :placeholder => I18n.t(:fname, scope: :edit_address)
-      .form-inline
-        .form-group
-          = f.text_field :mobile, :value => current_user.mobile, :class => 'form-control', :style => 'width:168px', :required => true, :placeholder => I18n.t(:mobile, scope: :edit_address), :pattern => I18n.t(:mobile, scope: :validation, locale: :'zh-CN'), :placeholder => '13802049772'
-        .form-group
-          = f.text_field :tel, :value => current_user.tel, :class => 'form-control', :style => 'width:168px', :placeholder => I18n.t(:tel, scope: :edit_address), :pattern => I18n.t(:tel, scope: :validation, locale: :'zh-CN'), :placeholder => '0571-12343434'
-    .form-group
-      .form-inline
-        .form-group
-          = f.text_field :street, :class => 'form-control', :style => 'width:248px', :required => true, :placeholder => I18n.t(:street, scope: :edit_address)
-        .form-group
-          = f.text_field :number, :class => 'form-control', :style => 'width:88px', :required => true, :placeholder => I18n.t(:house_number, scope: :edit_address), :pattern => '\d+'
-      = f.text_field :additional, :class => 'form-control', :placeholder => I18n.t(:additional, scope: :edit_address)
-    .city-group
-      .form-group
-        = f.select :province, options_for_select(ChinaCity.list), {  include_blank: I18n.t(:province_blank, scope: :edit_address) }, { :autocomplete => :off, class: 'form-control city-select city-province', :required => true }
-      .form-group
-        = f.select :city    , [], { include_blank: I18n.t(:city_blank, scope: :edit_address) }, { :autocomplete => :off, class: 'form-control city-select city-city', :required => true }
-      .form-group
-        = f.select :district, [], { include_blank: I18n.t(:district_blank, scope: :edit_address) }, { :autocomplete => :off, class: 'form-control city-select city-district', :required => true }
-    .form-group
-      = f.text_field :country, :value => ISO3166::Country[:CN].local_name, :readonly => true, :class => 'form-control', :placeholder => 'Country (*)'
-    .form-group
-      = f.text_field :zip, :class => 'form-control', :placeholder => I18n.t(:zip, scope: :edit_address), :required => true, :pattern => I18n.t(:zip, scope: :validation, locale: :'zh-CN')
-    .form-group
-      .checkbox
-        %label
-          = f.check_box :primary, {:class => 'i-check'}, true, false
-          =I18n.t(:set_primary, scope: :edit_address)
-    .form-group
-      %input.btn.btn-primary{:type => "submit", :value => I18n.t(:add_address, scope: :edit_address)}
+= render partial: 'new_customer_address', locals: {address: @address}
+
 .row.row-wrap
   - current_user.addresses.each_with_index do |a, i|
     %div.mfp-with-anim.mfp-hide.mfp-dialog.clearfix{ :id => "edit-address-dialog-#{a.id}" }
-      = form_for a, :url => address_path(a), :html => { :method => :patch }  do |f|
-        .form-group
-          %h4= I18n.t(:change_address_title, scope: :edit_address)
-        .form-group
-          .form-inline
-            .form-group
-              = f.text_field :lname, :value => a.lname ? a.lname : current_user.lname, :class => 'form-control', :style => 'width:168px', :required => true, :placeholder => I18n.t(:lname, scope: :edit_address)
-            .form-group
-              = f.text_field :fname, :value => a.fname ? a.fname : current_user.fname, :class => 'form-control', :style => 'width:168px', :required => true, :placeholder => I18n.t(:fname, scope: :edit_address)
-          .form-inline
-            .form-group
-              = f.text_field :mobile, :value => a.mobile ? a.mobile : current_user.mobile, :class => 'form-control', :style => 'width:168px', :required => true, :placeholder => I18n.t(:mobile, scope: :edit_address), :pattern => I18n.t(:mobile, scope: :validation, locale: :'zh-CN')
-            .form-group
-              = f.text_field :tel, :value => a.tel ? a.tel : current_user.tel, :class => 'form-control', :style => 'width:168px', :placeholder => I18n.t(:tel, scope: :edit_address), :pattern => I18n.t(:tel, scope: :validation, locale: :'zh-CN')
-        .form-group
-          .form-inline
-            .form-group
-              = f.text_field :street, :class => 'form-control', :style => 'width:248px', :required => true, :placeholder => I18n.t(:street, scope: :edit_address)
-            .form-group
-              = f.text_field :number, :class => 'form-control', :style => 'width:88px', :required => true, :placeholder => I18n.t(:house_number, scope: :edit_address), :pattern => '\d+'
-          = f.text_field :additional, :class => 'form-control', :placeholder => I18n.t(:additional, scope: :edit_address)
-        .city-group
-          .form-group
-            = f.select :province, options_for_select(get_provinces, get_code_for_province(a.province)), {  include_blank: I18n.t(:province_blank, scope: :edit_address) }, { :autocomplete => :off, class: 'form-control city-select city-province', :required => true }
-          .form-group
-            = f.select :city    , options_for_select(get_cities_for_province(a.province), get_code_for_city(a.province, a.city)), { include_blank: I18n.t(:city_blank, scope: :edit_address) }, { :autocomplete => :off, class: 'form-control city-select city-city', :required => true }
-          .form-group
-            = f.select :district, options_for_select(get_districts_for_city(a.province, a.city), get_code_for_district(a.province, a.city, a.district)), { include_blank: I18n.t(:district_blank, scope: :edit_address) }, { :autocomplete => :off, class: 'form-control city-select city-district', :required => true }
-        .form-group
-          = f.text_field :country, :value => ISO3166::Country[:CN].local_name, :readonly => true, :class => 'form-control'
-        .form-group
-          = f.text_field :zip, :value=> "#{a.zip}", :class => 'form-control', :placeholder => I18n.t(:zip, scope: :edit_address), :required => true, :pattern => '\d{6,6}'
-        .form-group
-          .checkbox
-            %label
-              = f.check_box :primary, {:class => 'i-check'}, true, false
-              = I18n.t(:set_primary, scope: :edit_address)
-        .form-group
-          %input.btn.btn-primary{:type => "submit", :value => I18n.t(:save_address, scope: :edit_address)}
+      = render partial: 'edit_customer_address', locals: {a: a}
     .col-md-4
       .panel.panel-primary
         .panel-heading.text-center
           = I18n.t(:show_address_title, scope: :edit_address) + ' ' + (i+1).to_s
         .panel-body
-          .address-box
-            = link_to '', address_path(a), method: :delete, data: { confirm: I18n.t(:delete_address_message, scope: :edit_address) }, "data-placement" => "right",  class: 'address-box-remove'
-            %a.address-box-edit.popup-text{"data-effect" => "mfp-move-from-top", "data-placement" => "right", "data-toggle" => "tooltip", :href => "#edit-address-dialog-#{a.id}",}
-            %ul
-              %li= "#{I18n.t(:name, scope: :edit_address)} : #{ a.lname }#{ a.fname }"
-              %li= "#{I18n.t(:mobile, scope: :edit_address)} : #{ a.mobile }"
-              %li= "#{I18n.t(:tel, scope: :edit_address)} : #{ a.tel }"
-              %li= "#{I18n.t(:street, scope: :edit_address)} : #{ a.street } #{ a.number }"
-              %li= "#{I18n.t(:additional, scope: :edit_address)} : #{ a.additional }"
-              %li= "#{I18n.t(:district, scope: :edit_address)} : #{ a.district }"
-              %li= "#{I18n.t(:city, scope: :edit_address)} : #{ a.city }"
-              %li= "#{I18n.t(:province, scope: :edit_address)} : #{ a.province }"
-              %li= "#{I18n.t(:country, scope: :edit_address)} : #{ a.country_local_name }"
-              %li= "#{I18n.t(:zip, scope: :edit_address)} : #{ a.zip }"
-            .radio
-              %label
-                = radio_button_tag :primary, a.primary, checked = a.primary, { :disabled => true, :class => 'i-radio' }
-                = I18n.t(:set_primary, scope: :edit_address)
+          = render partial: 'show_customer_address', locals: {a: a}
   - if current_user.addresses.size < Rails.configuration.max_num_addresses
     .col-md-4
       %a.address-box.address-box-new.popup-text{"data-effect" => "mfp-move-from-top", :href => "#add-address-dialog"}
