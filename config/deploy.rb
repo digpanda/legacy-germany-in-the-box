@@ -51,7 +51,7 @@ namespace :deploy do
     on roles(:web), in: :groups, limit: 3, wait: 10 do
 
       # brunch
-      execute "cd /var/www/germany_in_the_box/current/app_front | brunch build --production"
+      # execute "cd /var/www/germany_in_the_box/current/app_front | brunch build --production"
 
       # Here we can do anything such as:
       # within release_path do
