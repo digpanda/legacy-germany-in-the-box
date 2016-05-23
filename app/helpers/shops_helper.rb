@@ -52,7 +52,7 @@ module ShopsHelper
   end
 
   def get_allowed_locales
-    if current_user && current_user.role == :admin
+    if current_user&.is_admin?
       [:'zh-CN',:de]
     else
       [I18n.locale]
