@@ -8,6 +8,8 @@ var Home = {
    */
   init: function() {
 
+    $('#js-slider').show(); // Page hook fix : we display:none; and cancel it here
+
     $('#js-slider').lightSlider({
       "item": 1,
       "loop": true,
