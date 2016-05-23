@@ -1,9 +1,10 @@
 Rails.application.configure do
 
+
   config.cache_classes = true
   config.middleware.use(Mongoid::QueryCache::Middleware)
   config.eager_load = true
-  config.consider_all_requests_local = false
+  config.consider_all_requests_local = true
   config.action_controller.perform_caching = true
   config.action_mailer.raise_delivery_errors = false
   config.active_support.deprecation = :log
@@ -11,6 +12,7 @@ Rails.application.configure do
   config.assets.digest = true
   config.assets.raise_runtime_errors = true
   #config.force_ssl = true
+
 
   config.middleware.use ExceptionNotification::Rack,
   :email => {
