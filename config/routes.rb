@@ -59,6 +59,9 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :payments do
     end
+
+    resources :setting do
+    end
   end
 
   resources :addresses, except: [:new, :edit] do

@@ -50,7 +50,7 @@ class UsersController < ApplicationController
     if current_user.id.to_s == @user.id.to_s
       render :edit_account
     elsif current_user.is_admin?
-      render :edit_account_by_admin
+      render 'users/admin/edit_account_by_admin'
     end
   end
 
@@ -60,6 +60,11 @@ class UsersController < ApplicationController
 
   def edit_bank
     render :edit_bank
+  end
+
+  def edit_setting
+    @setting = Setting.first ? Setting.first : Setting.create!
+    render 'users/admin/edit_setting'
   end
 
   def edit
