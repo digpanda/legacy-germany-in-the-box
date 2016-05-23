@@ -24,35 +24,39 @@ module BorderGuru
                                             dimensionalWeight: @order.total_weight,
                                             dimensionalWeightScale: WEIGHT_UNIT,
                                             lineItems: line_items,
-                                            shippingAddress: [address(@order.shipping_address)],
-                                            billingAddress: [address(@order.shipping_address)],
-                                            submerchant: {
-                                                company: "ExampleInc.",
-                                                streetName: "SampleStreet",
-                                                houseNo: "6",
-                                                postcode: "20059",
-                                                city: "Hamburg",
-                                                state: "Hamburg",
-                                                email: "john@example.com",
-                                                countryCode:"DE"
-                                            }
+                                            shippingAddress: [customer_address(@order.shipping_address)],
+                                            billingAddress: [customer_address(@order.shipping_address)],
+                                            submerchant: submerchant_address(@shop.address)
                                         })
       end
 
       private
 
-      def address(address_model)
+      def submerchant_address(address_model)
+        {
+            company: address_model.company,
+            streetName: address_model.street,
+            houseNo: address_model.number,
+            postcode: address_model.zip,
+            city: address_model.city,
+            state: address_model.province,
+            email: @shop.shopkeeper.email,
+            countryCode: address_model.country_code
+        }.delete_if { |k,v| v.nil? }
+      end
+
+      def customer_address(address_model)
         {
             firstName: address_model.fname,
             lastName: address_model.lname,
             streetName: address_model.street,
             houseNo: address_model.number,
-            additionalInfo: '1234567',
+            additionalInfo: address_model.additional,
             postcode: address_model.zip,
             city: address_model.city,
             country: address_model.country_name,
             telephone: address_model.tel,
-            email: 'yu.liu@hotmail.com',
+            email: @order.user.email,
             countryCode: address_model.country_code
         }.delete_if { |k,v| v.nil? }
       end
