@@ -46,7 +46,14 @@ class ApplicationController < ActionController::Base
 
   def set_session_locale
     session[:locale] = params[:locale]
-    redirect_to request.referer
+
+    binding.pry
+    if request.referer.nil?
+      redirect_to root_url and return
+    else
+      redirect_to request.referer and return
+    end
+
   end
 
   protected
