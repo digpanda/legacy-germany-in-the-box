@@ -47,7 +47,6 @@ class ApplicationController < ActionController::Base
   def set_session_locale
     session[:locale] = params[:locale]
 
-    binding.pry
     if request.referer.nil?
       redirect_to root_url and return
     else
