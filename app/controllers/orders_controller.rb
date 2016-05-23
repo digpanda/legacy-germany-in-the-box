@@ -158,6 +158,8 @@ class OrdersController < ApplicationController
         currency: 'EUR'
     )
 
+    order.save!
+
     session[:order_ids].delete(shop.id)
   end
 
