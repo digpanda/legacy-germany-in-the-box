@@ -19,7 +19,7 @@
 
   </head>
   <body id="csstyle">
-     <%= console =%>
+     <%= console if Rails.env.development? %>
 
     <%= javascript_include_tag "application" %>
     <%= stylesheet_link_tag "application", :media => "all" %>
