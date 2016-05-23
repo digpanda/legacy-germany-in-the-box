@@ -540,3 +540,7 @@ de:
     buyer: Käufer
     amount: Summe
     action: Operation
+  edit_settings:
+    exchange_rate_to_yuan: Wechselkurs zu Yuan
+    exchange_rate_to_yuan_confirmation: Wechselkurs zu Yuan Wiederholen
+    save: Speichern

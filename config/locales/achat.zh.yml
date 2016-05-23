@@ -534,3 +534,7 @@ zh-CN:
     buyer: 买家
     amount: 总计
     action: 操作
+  edit_settings:
+    exchange_rate_to_yuan: 欧元对人民币汇率
+    exchange_rate_to_yuan_confirmation: 重复欧元对人民币汇率
+    save: 保存
