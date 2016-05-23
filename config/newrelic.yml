@@ -29,6 +29,7 @@ test:
 staging:
   <<: *default_settings
   app_name: Germany in the Box (Staging)
+  developer_mode: true
 
 production:
   <<: *default_settings
