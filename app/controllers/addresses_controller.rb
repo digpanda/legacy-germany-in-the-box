@@ -12,14 +12,14 @@ class AddressesController < ApplicationController
   end
 
   def index
-    if current_user.role == :customer
+    if current_user.is_customer?
       @addresses = current_user.addresses
       render :index, :status => :ok
     end
   end
 
   def create
-    if current_user.role == :customer
+    if current_user.is_customer?
       num_addresses = current_user.addresses.count
 
       if num_addresses >= Rails.configuration.max_num_addresses
@@ -56,7 +56,7 @@ class AddressesController < ApplicationController
           end
         end
       end
-    elsif current_user.role == :shopkeeper
+    elsif current_user.is_shopkeeper?
       num_addresses = current_user.shop.addresses.count
       max_num_addresses = Rails.configuration.max_num_shop_billing_addresses + Rails.configuration.max_num_shop_sender_addresses
 
@@ -108,7 +108,7 @@ class AddressesController < ApplicationController
   end
 
   def update
-    if current_user.role == :customer
+    if current_user.is_customer?
       if (address = current_user.addresses.find(params[:id]))
         ap = address_params
 
@@ -126,7 +126,7 @@ class AddressesController < ApplicationController
           end
         end
       end
-    elsif current_user.role == :shopkeeper
+    elsif current_user.is_shopkeeper?
       address = current_user.shop.addresses.find(params[:id])
 
       ap = address_params
@@ -161,7 +161,7 @@ class AddressesController < ApplicationController
   end
 
   def destroy
-    if current_user.role == :customer
+    if current_user.is_customer?
       if (address = current_user.addresses.find(params[:id]))
         flag = address.delete
 
@@ -174,7 +174,7 @@ class AddressesController < ApplicationController
           end
         end
       end
-    elsif current_user.role == :shopkeeper
+    elsif current_user.is_shopkeeper?
       address = current_user.shop.addresses.find(params[:id])
       flag = address.delete
     end
@@ -208,7 +208,7 @@ class AddressesController < ApplicationController
   private
 
   def address_params
-    if current_user.role == :customer
+    if current_user.is_customer?
       params.require(:address).permit(:number,
                                       :street,
                                       :additional,
@@ -222,7 +222,7 @@ class AddressesController < ApplicationController
                                       :tel,
                                       :fname,
                                       :lname)
-    elsif current_user.role == :shopkeeper
+    elsif current_user.is_shopkeeper?
       params.require(:address).permit(:number,
                                       :street,
                                       :additional,

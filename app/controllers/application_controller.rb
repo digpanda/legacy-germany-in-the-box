@@ -141,15 +141,15 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    if current_user.role == :customer
+    if current_user.is_customer?
       root_path
-    elsif current_user.role == :shopkeeper
+    elsif current_user.is_shopkeeper?
       if current_user.shop && (not current_user.shop.agb)
         edit_producer_shop_path(current_user.shop.id, :user_info_edit_part => :edit_producer)
       else
         edit_setting_shop_path(current_user.shop.id, :user_info_edit_part => :edit_shop)
       end
-    elsif current_user.role == :admin
+    elsif current_user.is_admin?
       shops_path(:user_info_edit_part => :edit_shops)
     end
   end
@@ -164,15 +164,15 @@ class ApplicationController < ActionController::Base
     if params[:locale]
       I18n.locale = params[:locale]
     else
-      if current_user and current_user.role == :customer
+      if current_user&.is_customer?
         if 'zh' == extract_locale
           I18n.locale = :'zh-CN'
         else
           I18n.locale = :de
         end
-      elsif current_user and current_user.role == :shopkeeper
+      elsif current_user&.is_shopkeeper?
         I18n.locale = :de
-      elsif current_user and current_user.role == :admin
+      elsif current_user&.is_admin?
         I18n.locale = :'zh-CN'
       else
         if 'zh' == extract_locale

@@ -1,6 +1,6 @@
 .thumbnail-img {
-    width: auto;
-    max-height: 200px;
+    width: auto !important;
+    max-height: 200px !important;
 }
 
 .detail-img {
