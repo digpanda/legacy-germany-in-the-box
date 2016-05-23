@@ -1,3 +1,3 @@
 .col-md-6.col-sm-9.col-xs-12
-  = form_for @setting, html: {method: 'patch', 'data-toggle': 'validator'} do |f|
+  = form_for admin_settings_path, html: {method: 'patch', 'data-toggle': 'validator'} do |f|
     = f.text_field :exchange_rate_to_yuan
