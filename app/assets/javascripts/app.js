@@ -266,7 +266,7 @@ var Home = {
    */
   init: function init() {
 
-    $('#js-slider').show();
+    $('#js-slider').show(); // Page hook fix : we display:none; and cancel it here
 
     $('#js-slider').lightSlider({
       "item": 1,

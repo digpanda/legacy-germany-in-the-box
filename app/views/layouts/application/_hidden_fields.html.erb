@@ -1,0 +1,9 @@
+<%= csrf_meta_tag %>
+
+<% if session[:login_advice_counter].present? %>
+<%= hidden_field_tag :login_advice_counter, "#{session[:login_advice_counter]}" %>
+<% end %>
+
+<% if session[:signup_advice_counter].present? %>
+<%= hidden_field_tag :signup_advice_counter, "#{session[:signup_advice_counter]}" %>
+<% end %>

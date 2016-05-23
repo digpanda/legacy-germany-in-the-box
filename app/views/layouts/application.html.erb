@@ -6,9 +6,10 @@
     <%= render "layouts/application/head" %>
 
   </head>
+
   <body id="csstyle">
 
-    <%= stylesheet_link_tag "application", :media => "all" %>
+    <%= render 'layouts/application/assets_pipeline_stylesheets' %>
 
     <!-- Base container -->
     <div class="container-fluid">
@@ -21,33 +22,11 @@
 
     </div>
 
-    <%= javascript_include_tag "application" %>
+    <%= render 'layouts/application/hidden_fields' %>
 
-    <%= csrf_meta_tag %>
+    <%= render 'layouts/application/assets_pipeline_javascripts' %>
 
-    <% if session[:login_advice_counter].present? %>
-      <%= hidden_field_tag :login_advice_counter, "#{session[:login_advice_counter]}" %>
-    <% end %>
-
-    <% if session[:signup_advice_counter].present? %>
-      <%= hidden_field_tag :signup_advice_counter, "#{session[:signup_advice_counter]}" %>
-    <% end %>
-
-    <script> 
-      <%= generate_validate_img_file_js.html_safe %>
-      <%= generate_set_datepicker_lang_js.html_safe %>
-      <%= gen_load_default_image_js.html_safe %>
-    </script>
-
-    <!-- Brunch compiled front-end -->
-    <%= javascript_include_tag "vendor" %>
-    <%= javascript_include_tag "app" %>
-    <script>
-      require('javascripts/initialize');
-    </script>
-
-    <!-- JS Routing system -->
-    <div id="js-routes" data-controller="<%=params[:controller]%>" data-action="<%=params[:action]%>"></div>
+    <%= render "layouts/application/brunch_javascripts" %>
 
   </body>
   </html>

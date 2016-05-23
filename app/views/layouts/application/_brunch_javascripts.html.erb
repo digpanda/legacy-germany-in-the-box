@@ -1,0 +1,9 @@
+<!-- Brunch compiled front-end -->
+<%= javascript_include_tag "vendor" %>
+<%= javascript_include_tag "app" %>
+<script>
+  require('javascripts/initialize');
+</script>
+
+<!-- JS Routing system -->
+<div id="js-routes" data-controller="<%=params[:controller]%>" data-action="<%=params[:action]%>"></div>
