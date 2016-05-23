@@ -8,10 +8,10 @@ set :rvm_ruby_version, '2.3.0'
 set :rvm_type, :user
 set :rvm_customer_path, '/usr/share/rvm/bin/rvm'
 
-set :passenger_environment_variables, { :path => '/usr/lib/ruby/vendor_ruby/phusion_passenger/bin:$PATH' }
-set :passenger_restart_command, '/usr/lib/ruby/vendor_ruby/phusion_passenger/bin/passenger-config restart-app'
+set :passenger_environment_variables, { :path => '/usr/bin:$PATH' }
+set :passenger_restart_command, '/usr/bin/passenger-config restart-app'
 
-set :linked_files, fetch(:linked_files, []).push('config/mongoid.yml', 'config/secrets.yml')
+#set :linked_files, fetch(:linked_files, []).push('config/mongoid.yml', 'config/secrets.yml')
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads')
 
 # Default branch is :master
