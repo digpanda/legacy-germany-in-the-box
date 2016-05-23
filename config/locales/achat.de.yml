@@ -214,6 +214,10 @@ de:
     add_product_ko: Der Vorrat reicht momentan leider nicht.
     adjust_product_ok: Die Anzahl der Produkte wurde erfolgreich geändert.
     adjust_product_ko: Der Vorrat reicht momentan leider nicht.
+    link_tracking: Sendung verfolgen
+    open: Öffnen
+    paying: in Zahlung
+    success: Erstellt
   edit_collection:
     new: Favorit erstellen
     edit: Ändern

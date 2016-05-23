@@ -214,6 +214,10 @@ zh-CN:
     add_product_ko: 产品缺货中
     adjust_product_ok: 产品数量修改成功
     adjust_product_ko: 产品缺货中
+    link_tracking: 物流查询
+    open: 打开
+    paying: 等待付款
+    success: 下单成功
   edit_collection:
     new: 新建收藏夹
     edit: 修改
