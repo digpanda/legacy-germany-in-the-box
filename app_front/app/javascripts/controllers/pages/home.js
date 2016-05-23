@@ -8,6 +8,8 @@ var Home = {
    */
   init: function() {
 
+    $('#js-slider').show();
+    
     $('#js-slider').lightSlider({
       "item": 1,
       "loop": true,

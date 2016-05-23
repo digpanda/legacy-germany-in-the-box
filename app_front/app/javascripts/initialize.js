@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+$(document).ready(() => {
 
   /**
    * Controllers loader by Loschcode
