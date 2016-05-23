@@ -19,6 +19,10 @@ module HasProductSummaries
     end
   end
 
+  def dimensional_weight
+    total_weight
+  end
+
   private
 
   def sku_list

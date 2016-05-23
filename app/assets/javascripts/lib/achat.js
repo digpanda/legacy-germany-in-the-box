@@ -38,3 +38,9 @@ $( function(){
     });
 });
 
+$( function(){
+    $("img").one("error", function(e){
+        $(this).attr('src','/assets/no_image_available.jpg');
+    });
+});
+
