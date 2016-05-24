@@ -9,7 +9,7 @@ class Admin::SettingsController < ApplicationController
 
   def update
     Settings.instance.update(settings_params)
-    Settings.instance.save
+    Settings.instance.save!
     redirect_to request.referer
   end
 
