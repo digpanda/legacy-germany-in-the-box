@@ -8,8 +8,8 @@ class Admin::SettingsController < ApplicationController
   end
 
   def update
-    Settings.first.update(settings_params)
-    Settings.first.save!
+    Settings.instance.update(settings_params)
+    Settings.instance.save!
     redirect_to request.referer
   end
 
