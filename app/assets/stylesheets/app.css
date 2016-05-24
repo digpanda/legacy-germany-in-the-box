@@ -233,6 +233,7 @@
 .product-box__thumb {
   min-height: 430px;
   z-index: 1;
+  background-color: white;
   position: relative;
   text-decoration: none !important;
   display: block;
@@ -254,7 +255,7 @@
   border-style: solid;
   border-width: 3px;
   border-color: #659443; }
-  /* line 28, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_product-box.sass */
+  /* line 29, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_product-box.sass */
   .product-box__thumb:hover {
     -webkit-transform: translate3d(0, -5px, 0);
     -moz-transform: translate3d(0, -5px, 0);
@@ -264,19 +265,20 @@
     -webkit-box-shadow: 0 4px 2px #e6fbd7;
     box-shadow: 0 4px 2px #e6fbd7; }
 
-/* line 38, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_product-box.sass */
+/* line 39, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_product-box.sass */
 .product-box__like a {
   font-size: 20px;
   color: #bdc3c7; }
-  /* line 42, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_product-box.sass */
+  /* line 43, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_product-box.sass */
   .product-box__like a:hover {
     color: #e74c3c; }
 
-/* line 47, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_product-box.sass */
+/* line 49, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_product-box.sass */
 .product-box__header img {
   display: block;
   margin: 0 auto;
-  width: 65%;
+  max-width: 65%;
+  max-height: 200px;
   -webkit-border-radius: 5px 5px 0 0;
   border-radius: 5px 5px 0 0; }
 
@@ -326,7 +328,7 @@
   margin-bottom: 0;
   color: #a3a3a3;
   font-size: 12px; }
-  /* line 90, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_product-box.sass */
+  /* line 93, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_product-box.sass */
   .product-box__location a, .product-box__location a:active, .product-box__location a:hover, .product-box__location a:visited {
     color: #bdc3c7; }
 
@@ -484,14 +486,18 @@ h1 {
   font-weight: 400; }
 
 /* line 8, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/_global.sass */
+body {
+  background-color: #ecf0f1; }
+
+/* line 11, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/_global.sass */
 textarea, input, a {
   outline: none; }
 
-/* line 11, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/_global.sass */
+/* line 14, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/_global.sass */
 *:focus {
   outline: none; }
 
-/* line 17, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/_global.sass */
+/* line 20, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/_global.sass */
 a, a:active, a:hover, a:visited {
   text-decoration: none !important;
   outline: none !important;
