@@ -17,6 +17,9 @@ defaults: &defaults
     payment_method: upop
     transaction_type: debit
 
+local:
+  <<: *defaults
+
 development:
   <<: *defaults
 

@@ -20,7 +20,7 @@ class ProductImageUploader < CarrierWave::Uploader::Base
 
   if Rails.env.local?
     version :thumb, :if => :image? do
-      process :resize_and_pad => [200, 200]
+      process :resize_and_pad => [400, 400]
     end
 
     version :detail, :if => :image? do

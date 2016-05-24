@@ -36,8 +36,12 @@ class Cart
     )
   end
 
-  def total
+  def total_in_euro
     shipping_cost.round(2) + tax_and_duty_cost.round(2) + cart_skus.inject(0) { |sum, s| sum += s.price }.round(2)
+  end
+
+  def total_in_yuan
+    (total_in_euro * Settings.instance.exchange_rate_to_yuan).round(2)
   end
 
   def create_order(options = {})
