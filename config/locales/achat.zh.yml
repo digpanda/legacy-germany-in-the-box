@@ -508,7 +508,7 @@ zh-CN:
     shop: 店铺名称
     shipping_cost: 物流费用
     duty_cost: 海关税费
-    total_price_in_yuan: 总计(元)
+    total_price_in_yuan: 总计
   checkout:
     my_destination: 收货地址
     setup_delivery_destination: 请您指定收货地址

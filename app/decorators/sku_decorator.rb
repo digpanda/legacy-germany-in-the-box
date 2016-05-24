@@ -19,7 +19,7 @@ class SkuDecorator < Draper::Decorator
   end
 
   def price_with_currency
-    "%.2f #{self.product.shop.currency.code}" % self.price
+    "%.2f #{Settings.instance.platform_currency.symbol}" % (self.price * Settings.instance.exchange_rate_to_yuan)
   end
   
   private

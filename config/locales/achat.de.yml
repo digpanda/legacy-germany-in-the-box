@@ -514,7 +514,7 @@ de:
     shop: Shop
     shipping_cost: Versendungskosten
     duty_cost: Zollgebühren
-    total_price_in_yuan: Gesamter(CNY)
+    total_price_in_yuan: Gesamter
   checkout:
     my_destination: Anlieferungsanschrift
     setup_delivery_destination: Bitte Anschrift auswählen
