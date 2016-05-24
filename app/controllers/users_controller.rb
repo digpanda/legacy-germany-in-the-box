@@ -62,11 +62,6 @@ class UsersController < ApplicationController
     render :edit_bank
   end
 
-  def edit_setting
-    @setting = Setting.first ? Setting.first : Setting.create!
-    render 'users/admin/edit_setting'
-  end
-
   def edit
     if params[:user_info_edit_part] == :edit_password_by_admin.to_s
       @user = User.find(params[:user_id])
