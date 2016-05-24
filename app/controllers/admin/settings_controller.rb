@@ -8,15 +8,15 @@ class Admin::SettingsController < ApplicationController
   end
 
   def update
-    Settings.instance.update(settings_params)
-    Settings.instance.save!
+    Settings.first.update(settings_params)
+    Settings.first.save!
     redirect_to request.referer
   end
 
   private
 
   def settings_params
-    delocalize_config = { settings: { :exchange_rate_to_yuan => :number} }
+    delocalize_config = { :exchange_rate_to_yuan => :number }
     params.require('/admin/settings').permit(:exchange_rate_to_yuan).delocalize(delocalize_config)
   end
 
