@@ -7,7 +7,8 @@
   margin: 0
   padding: 0
 
-=navbar-system
+=navbar-system-borders($color-base-text, $color-border, $color-over, $color-over-background)
+
   nav
       z-index: 5
       position: relative
@@ -17,14 +18,58 @@
 
         a
           display: block
-          color: $color-white
+          color: $color-base-text
           text-decoration: none
           line-height: 32px
           padding: 5px 20px
 
         li
           &:hover
-            background: $color-light-green-2nd
+            > ul
+              width: 100%
+              display: block
+              border-top: 2px solid $color-border
+            a
+              color: $color-base-text
+              &:hover
+                color: $color-over
+        ul
+          display: none
+          position: absolute
+          top: 100%
+          left: 0
+          background: $color-over-background
+          padding: 0
+          li
+            float: none
+            width: 100%
+          //a
+            //color: $color-black
+            //line-height: 120%
+            //padding: 15px 20px
+          ul
+            top: 0
+            left: 100%
+
+=navbar-system($color-base-text, $color-over, $color-over-select)
+
+  nav
+      z-index: 5
+      position: relative
+
+      ul
+        +no-list-style
+
+        a
+          display: block
+          color: $color-base-text
+          text-decoration: none
+          line-height: 32px
+          padding: 5px 20px
+
+        li
+          &:hover
+            background: $color-over-select
             > ul
               width: 100%
               display: block
@@ -37,7 +82,7 @@
           position: absolute
           top: 100%
           left: 0
-          background: $color-light-green
+          background: $color-over
           padding: 0
           li
             float: none
