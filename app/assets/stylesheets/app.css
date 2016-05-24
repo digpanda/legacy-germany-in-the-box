@@ -41,8 +41,9 @@
 /* line 85, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
 #csstyle .\+avatar {
   position: absolute;
-  top: -15px; }
-  /* line 32, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/helpers/_tweaks.sass */
+  top: -7px;
+  left: 10px; }
+  /* line 34, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/helpers/_tweaks.sass */
   #csstyle .\+avatar img {
     border-radius: 25px;
     width: 50px; }
