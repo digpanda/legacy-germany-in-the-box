@@ -49,8 +49,11 @@
                     %span= I18n.t(:shipping_cost, scope: :cart)
                     %span= "#{@carts[s].shipping_cost.round(2)} #{s.currency.code}"
                   %li
-                    %span= I18n.t(:total_price, scope: :cart)
-                    %span= "#{@carts[s].total} #{s.currency.code}"
+                    %span= I18n.t(:total_price_in_euro, scope: :cart)
+                    %span= "#{@carts[s].total_in_euro} #{s.currency.code}"
+                  %li
+                    %span= I18n.t(:total_price_in_yuan, scope: :cart)
+                    %span= "#{@carts[s].total_in_yuan} CNY"
   - else
     .row
       %h4= I18n.t(:no_products, scope: :cart)
