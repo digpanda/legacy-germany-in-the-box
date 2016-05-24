@@ -7,4 +7,8 @@ class OrderDecorator < Draper::Decorator
     "#{object.total_price} #{currency_code}"
   end
 
+  def is_success?
+    self.status == :success
+  end
+
 end

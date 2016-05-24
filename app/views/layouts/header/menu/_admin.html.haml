@@ -34,6 +34,10 @@
         %i.fa.fa-bank
         = I18n.t(:payments, scope: :top_menu)
     %li
+      %a{ :href => "#{ admin_settings_path(:user_info_edit_part => :edit_settings) }" }
+        %i.fa.fa-cog
+        = I18n.t(:settings, scope: :top_menu)
+    %li
       %a{ :href => "#{ signout_path }", :'data-method' => :delete }
         %i.fa.fa-sign-out
         = I18n.t(:sign_out, scope: :top_menu)
