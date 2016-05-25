@@ -132,14 +132,13 @@ class OrdersController < ApplicationController
     order = current_order(params[:shop_id]).update_for_checkout!(current_user, params[:delivery_destination_id], cart.border_guru_quote_id, cart.shipping_cost, cart.tax_and_duty_cost)
     order.save!
 
-
     @wirecard = PrepareOrderForWirecardCheckout.perform({
 
       :user        => current_user,
       :order       => order,
       :merchant_id => Rails.env.production? ? cart.submerchant_id : 'dfc3a296-3faf-4a1d-a075-f72f1b67dd2a', # TO CHANGE DYNAMICALLY
       :secret_key  => "6cbfa34e-91a7-421a-8dde-069fc0f5e0b8", # TO CHANGE DYNAMICALLY 
-      :amount      => cart.decorate.total_with_currency,
+      :amount      => cart.decorate.total_in_yuan,
       :currency    => "CNY"
 
     })
