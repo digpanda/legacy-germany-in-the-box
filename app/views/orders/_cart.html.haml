@@ -8,36 +8,40 @@
 
 
 - for_device_type :desktop, :tablet do
-  %table.table.cart-table
-    %thead
-      %tr
-        %th= I18n.t(:item, scope: :cart)
-        %th= I18n.t(:name, scope: :cart)
-        %th= I18n.t(:variant_option, scope: :cart)
-        %th= I18n.t(:quantity, scope: :cart)
-        %th= I18n.t(:unit_price, scope: :cart)
-        - unless @readonly
-          %th= I18n.t(:operations, scope: :cart)
-    %tbody
-      - order.order_items.each do |i|
+  = form_tag adjust_skus_amount_orders_path(s.id), :id => 'orders_adjust_products_amount', :method => :patch do
+    %table.table.cart-table
+      %thead
         %tr
-          %td.cart-item-image
-            %a{:href => "#"}
-              %img{:src => "#{i.sku.decorate.image_url(:img0, :thumb)}", :style => 'weight:48px;width:48px'}
-          %td
-            %a{:href => "#"}= i.product.name
-          %td
-            = select_tag :option_ids, grouped_options_for_select(i.product.decorate.grouped_variants_options, i.option_ids), {:multiple => 'multiple', :class => 'sku-variants-options'}
-          %td.cart-item-quantity
-            - unless @readonly
-              %i.fa.fa-minus.cart-item-minus
-            %input.cart-quantity{:id => "cart-quantity-of-product-#{i.product.id}", :name => "cart-quantity-of-product-#{i.product.id}", :type => 'text', :value => "#{i.quantity}", :disabled => "#{@readonly}"}
-            - unless @readonly
-              %i.fa.fa-plus.cart-item-plus
-          %td= i.sku.decorate.price_with_currency
+          %th= I18n.t(:item, scope: :cart)
+          %th= I18n.t(:name, scope: :cart)
+          %th= I18n.t(:variant_option, scope: :cart)
+          %th= I18n.t(:quantity, scope: :cart)
+          %th= I18n.t(:unit_price, scope: :cart)
           - unless @readonly
-            %td.cart-item-remove
-              =link_to '', '#', :class => 'fa fa-times', :onclick => "$('#cart-quantity-of-product-#{i.product.id}').val(0); $('#orders_adjust_products_amount').submit()"
+            %th= I18n.t(:operations, scope: :cart)
+      %tbody
+        - order.order_items.each do |i|
+          %tr
+            %td.cart-item-image
+              %a{:href => "#"}
+                %img{:src => "#{i.sku.decorate.image_url(:img0, :thumb)}", :style => 'weight:48px;width:48px'}
+            %td
+              %a{:href => "#"}= i.product.name
+            %td
+              = select_tag :option_ids, grouped_options_for_select(i.product.decorate.grouped_variants_options, i.option_ids), {:multiple => 'multiple', :class => 'sku-variants-options'}
+            %td.cart-item-quantity
+              - unless @readonly
+                %i.fa.fa-minus.cart-item-minus
+              = text_field_tag "cart-quantity-of-product-#{i.product.id}", i.quantity, :id => "cart-quantity-of-product-#{i.product.id}", :type => 'text', :class => 'cart-quantity', :value => "#{i.quantity}", :disabled => "#{@readonly}"
+              - unless @readonly
+                %i.fa.fa-plus.cart-item-plus
+            %td= i.sku.decorate.price_with_currency
+            - unless @readonly
+              %td.cart-item-remove
+                =link_to '', '#', :class => 'fa fa-times', :onclick => "$('#cart-quantity-of-product-#{i.product.id}').val(0); $('#orders_adjust_products_amount').submit()"
+    - unless @readonly
+      = submit_tag I18n.t(:update_cart, scope: :cart), :class => 'btn btn-primary btn-small'
+      = link_to I18n.t(:set_delivery_destination, scope: :cart), set_address_orders_path(s), :class => 'btn btn-primary btn-small js-set-address-link'
 - for_device_type :mobile do
   %table.table.cart-table
     %tbody

@@ -139,7 +139,7 @@ class OrdersController < ApplicationController
       :order       => order,
       :merchant_id => Rails.env.production? ? cart.submerchant_id : 'dfc3a296-3faf-4a1d-a075-f72f1b67dd2a', # TO CHANGE DYNAMICALLY
       :secret_key  => "6cbfa34e-91a7-421a-8dde-069fc0f5e0b8", # TO CHANGE DYNAMICALLY 
-      :amount      => cart.total_in_yuan,
+      :amount      => cart.decorate.total_with_currency,
       :currency    => "CNY"
 
     })
