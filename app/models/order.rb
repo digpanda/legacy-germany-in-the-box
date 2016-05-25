@@ -19,6 +19,8 @@ class Order
   has_many :order_items,            :inverse_of => :order,    dependent: :restrict
   has_many :order_payments,         :inverse_of => :order,    dependent: :restrict
 
+  scope :is_active, ->  { where( :status.ne => :success ) }
+
   # TODO : inclusion should be re-abilited when we are sure of what we include
   validates :status,                  presence: true #, inclusion: {in: [:new, :checked_out, :shipped, :paying,]}
   #validates :user,                    presence: true, :unless => lambda { :new == self.status }
@@ -52,7 +54,8 @@ class Order
       :tax_and_duty_cost    => tax_and_duty_cost
     })
 
-    self
+    # Todo: perhaps we don't need to return self. What we need is the result of last update.
+    #self
   end
 
   private

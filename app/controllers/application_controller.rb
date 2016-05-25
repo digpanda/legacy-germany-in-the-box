@@ -118,7 +118,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_orders
-    @current_orders ||= session[:order_ids].map { |sid, oid| [Shop.find(sid), Order.find(oid)].compact unless sid.empty? }.compact.uniq.reject(&:empty?)
+    @current_orders ||= session[:order_ids].map { |sid, oid| [Shop.find(sid), Order.find(oid).is_active ].compact unless sid.empty? }.compact.uniq.reject(&:empty?)
   end
 
   def current_carts
@@ -143,7 +143,7 @@ class ApplicationController < ActionController::Base
   end
 
   def total_number_of_products
-    @total_number ||= session[:order_ids] ? current_orders.inject(0) { |sum, so| sum += so.compact[1].total_amount } : 0
+    @total_number ||= (session[:order_ids] == nil || session[:order_ids].empty?) ?  0 : current_orders.inject(0) { |sum, so| sum += so.compact[1].total_amount }
   end
 
   def after_sign_in_path_for(resource)
