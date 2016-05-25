@@ -16,7 +16,7 @@
             %td= link_to o.id, order_path(o)
             %td= I18n.t(o.status, scope: :edit_order)
             %td= o.total_price
-            %td= o.border_guru_link_tracking ? (link_to I18n.t(:open, scope: :edit_order), o.border_guru_link_tracking) : ''
+            %td= o.border_guru_link_tracking ? (link_to I18n.t(:open, scope: :edit_order), o.border_guru_link_tracking, :target => '_blank') : ''
             %td= o.c_at.localtime.strftime('%Y-%m-%d %H:%M:%S')
             %td= o.u_at.localtime.strftime('%Y-%m-%d %H:%M:%S')
             -unless o.decorate.is_success?
