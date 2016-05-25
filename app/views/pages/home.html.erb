@@ -22,18 +22,31 @@
 
 <% if seems_like_a_customer? %>
 
-  <!-- Products List -->
-  <div class="row products-list">
+  <div class="row shops-list">
 
     <div class="+spacer"></div>
 
     <div class="col-md-10 col-md-push-1 col-md-pull-1">
-      <%= render partial: "products/products_list", :locals => { :products => @products } %>
+      <%= render partial: "shops/shops_list", :locals => { :shops => @shops } %>
     </div>
 
     
   </div>
 
+
+  <!-- Products List -->
+<!--
+  <div class="row products-list">
+
+    <div class="+spacer"></div>
+
+    <div class="col-md-10 col-md-push-1 col-md-pull-1">
+       render partial: "products/products_list", :locals => { :products => @products }
+    </div>
+
+    
+  </div>
+-->
 <% else %>
 
 <div class="row">
