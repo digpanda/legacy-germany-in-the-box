@@ -3,11 +3,13 @@
   <%= render 'layouts/dialogs' %>
 </nav>
 
+<div class="navbar-fixed-top">
+
 <!-- Main Menu Area -->
 <div class="row main-header">
 
   <!-- Left side -->
-  <div class="col-md-2">
+  <div class="col-md-2 col-md-push-1">
 
     <!-- Logo -->
     <a href="<%= root_path %>">
@@ -19,7 +21,7 @@
   </div>
 
   <!-- Right side -->
-  <div class="col-md-10 +vertical-centered">
+  <div class="col-md-9 +vertical-centered">
 
     <!-- My Account -->
     <div class="col-md-1 pull-right +centered">
@@ -128,5 +130,13 @@
   </div>
 
 <% end %>
+
+</div>
+
+<div class="+spacer"></div>
+<div class="+spacer"></div>
+<div class="+spacer"></div>
+<div class="+spacer"></div>
+<div class="+spacer"></div>
 
 <!-- End of Category Menu -->
