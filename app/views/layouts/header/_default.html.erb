@@ -7,8 +7,43 @@
 <div class="row main-header">
 
   <!-- Left side -->
-  <div class="col-md-4 +vertical-centered">
-    <div class="col-md-3 col-md-push-1 col-md-pull-8">
+  <div class="col-md-2">
+
+    <!-- Logo -->
+    <a href="<%= root_path %>">
+      <div class="main-header__logo +centered">
+        <img src="/assets/logo-half.png">
+      </div>
+    </a>
+
+  </div>
+
+  <!-- Right side -->
+  <div class="col-md-10 +vertical-centered">
+
+    <% if seems_like_a_customer? %>
+
+    <!-- Research area -->
+<!--
+    <div class="col-md-6">
+
+      <div id="js-search-click">
+        <a href="#"><span class="main-header__search"><i class="fa fa-search"></i> Search</span></a>
+      </div>
+
+      <div id="js-search-input" class="+hidden">
+        <div class="main-header__search --input">
+          <form action="<%= search_products_path %>">
+            <input type="query" id="search" name="query" autocomplete="off" placeholder="Search..." />
+            <button class="icon" type="submit"><i class="fa fa-search"></i></button>
+          </form>
+        </div>
+      </div>
+
+    </div>
+-->
+
+    <div class="col-md-1 pull-right">
 
       <!-- My Account -->
       <% if current_user&.is_admin? %>
@@ -26,120 +61,48 @@
       <% else %>
       <a class="popup-text" data-effect="mfp-zoom-out" href="#login-dialog" id="sign_in_link">
 
-        <span class="main-header__account"><i class="fa fa-sign-in"></i> Log-in</span>
+        <span class="main-header__account"><i class="fa fa-sign-in"></i> Sign in</span>
 
       </a>
       <% end %>
 
     </div>
 
-  </div>
+    <div class="col-md-1 pull-right +centered +menu-bordering">
 
-  <!-- Center side -->
-  <div class="col-md-4">
 
-    <!-- Logo -->
-    <a href="<%= root_path %>">
-      <div class="main-header__logo +centered">
-        <img src="/assets/logo-half.png">
-      </div>
-    </a>
+      <a href="<%= manage_cart_orders_path %>">
 
-  </div>
+        <div class="main-header__cart">
+        <i class="fa fa-shopping-cart"></i>
 
-  <!-- Right side -->
-  <div class="col-md-4 +vertical-centered">
-
-    <% if seems_like_a_customer? %>
-
-    <!-- Research area -->
-    <div class="col-md-6">
-
-      <div id="js-search-click">
-        <a href="#"><span class="main-header__search"><i class="fa fa-search"></i> Search</span></a>
-      </div>
-
-      <div id="js-search-input" class="+hidden">
-        <div class="main-header__search --input">
-          <form action="<%= search_products_path %>">
-            <input type="query" id="search" name="query" autocomplete="off" placeholder="Search..." />
-            <button class="icon" type="submit"><i class="fa fa-search"></i></button>
-          </form>
+        <%= total_number_of_products %>
         </div>
-      </div>
+
+      </a>
 
     </div>
 
+    <div class="col-md-1 pull-right +centered +menu-bordering">
 
-    <div class="col-md-3">
+
       <a href="<%= (current_user.nil? ? "#" : show_collections_user_path(current_user, :user_info_edit_part => :edit_collection)) %>">
-        <span class="main-header__likes"><i class="fa fa-heart"></i> 
+        
+        <div class="main-header__likes">
+        <i class="fa fa-heart"></i> 
 
         <span id="total-likes">
-        <% if current_user.nil? %>
-          0
-        <% else %>
-          <%= current_user.favorites.count %> <!-- Should be full AJAX not to slow everything down -->
-        <% end %>
-        </span>
-
-        </span>
-      </a>
-    </div>
-
-    <div class="col-md-3 +centered +strong">
-
-<!--
-
-<li class="shopping-cart">
-  <a href="<%= manage_cart_orders_path %>" title="<%= I18n.t(:my_cart, scope: :top_menu) %>">
-    <i class="fa fa-shopping-cart"></i>
-    <%= for_device_type :desktop do I18n.t(:my_cart, scope: :top_menu) end %>
-    <span class="numberCircle">
-      <%= total_number_of_products %>
-    </span>
-  </a>
-  <div class="shopping-cart-box">
-    <% if total_number_of_products > 0 %>
-      <% current_orders.each do |s, o| %>
-        <ul class="shopping-cart-items">
-          <% o.order_items.each do |i| %>
-            <li>
-              <a href="<%= manage_cart_orders_path %>">
-                <%= image_tag i.sku.decorate.image_url(:img0, :thumb), :class => 'thumbnail-img' %>
-                <h5>
-                  <%= i.product.name %>
-                </h5>
-                <span class="shopping-cart-item-price">
-                  <%= "Subtotal: $#{i.sku.price * i.quantity}" %>
-                </span>
-              </a>
-            </li>
+          <% if current_user.nil? %>
+            0
+          <% else %>
+            <%= current_user.favorites.count %>
           <% end %>
-        </ul>
-      <% end %>
-    <% else %>
-      <ul class="list-inline text-center">
-        <li>
-          <a href="<%= manage_cart_orders_path %>">
-            <i></i>
-            <%= I18n.t(:empty_cart, scope: :top_menu) %>
-          </a>
-        </li>
-      </ul>
-    <% end %>
-  </div>
-</li>
+        </span>
 
--->
+        </div>
+      </a>
 
-
-
-
-<a href="<%= manage_cart_orders_path %>">
-  <span class="main-header__cart"><i class="fa fa-shopping-cart"></i> <%= total_number_of_products %></span>
-</a>
-</div>
+    </div>
 
 <% end %>
 
@@ -151,7 +114,13 @@
 <!-- Category Menu -->
 <div class="row category-menu">
 
-  <div class="col-md-12">
+
+  <div class="col-md-4">
+
+
+  </div>
+
+  <div class="col-md-7">
 
     <div class="col-md-1"></div>
 
