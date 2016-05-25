@@ -1,4 +1,5 @@
 require 'border_guru'
+require 'will_paginate/array'
 
 class OrdersController < ApplicationController
 
@@ -13,6 +14,7 @@ class OrdersController < ApplicationController
   layout :custom_sublayout, only: [:show_orders]
 
   def show_orders
+    @orders = current_user.orders.order_by(:c_at => 'desc').paginate(:page => (params[:page] ? params[:page].to_i : 1), :per_page => 10);
     render :show_orders
   end
 
