@@ -26,7 +26,7 @@ module BorderGuru
                                             lineItems: line_items,
                                             shippingAddress: [customer_address(@order.shipping_address)],
                                             billingAddress: [customer_address(@order.shipping_address)],
-                                            submerchant: submerchant_address(@shop.address)
+                                            submerchant: submerchant_address(@shop.sender_address)
                                         })
       end
 
