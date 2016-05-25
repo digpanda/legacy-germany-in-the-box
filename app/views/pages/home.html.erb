@@ -1,6 +1,7 @@
 <!-- Slider -->
 <div class="row slider">
 
+  <!-- No slider anymore -->
   <!--
   = render partial: "pages/slider"
   -->
@@ -18,17 +19,25 @@
 
 </div>
 
-<!-- Products List -->
-<div class="row products-list">
 
-  <div class="+spacer"></div>
+<% if seems_like_a_customer? %>
 
-  <% if seems_like_a_customer? %>
+  <!-- Products List -->
+  <div class="row products-list">
 
-  <div class="col-md-10 col-md-push-1 col-md-pull-1">
-    <%= render partial: "products/products_list", :locals => { :products => @products } %>
+    <div class="+spacer"></div>
+
+    <div class="col-md-10 col-md-push-1 col-md-pull-1">
+      <%= render partial: "products/products_list", :locals => { :products => @products } %>
+    </div>
+
+    
   </div>
 
-  <% end %>
-  
+<% else %>
+
+<div class="row">
+  WE SHOULD PUT SOMETHING HERE FOR THE SHOPKEEPERS
 </div>
+
+<% end %>

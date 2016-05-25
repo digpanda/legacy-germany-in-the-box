@@ -94,36 +94,41 @@
 </div>
 <!-- End of Main Menu Area -->
 
-<!-- Category Menu -->
-<div class="row category-menu">
+<% if seems_like_a_customer? %>
 
-  <!-- Search -->
-  <div class="col-md-2 col-md-offset-2">
+  <!-- Category + Search Menu -->
+  <div class="row category-menu">
 
-    <div class="category-menu__search">
+    <!-- Search -->
+    <div class="col-md-2 col-md-offset-2">
 
-    <!-- Research area -->
-     <form action="<%= search_products_path %>">
-          <i class="fa fa-search"></i>
-          <input type="query" id="search" name="query" autocomplete="off" placeholder="Search" />
-          <button type="submit" class="+hidden"></button>
-        </form>
+      <div class="category-menu__search">
+
+       <form action="<%= search_products_path %>">
+        <i class="fa fa-search"></i>
+        <input type="query" id="search" name="query" autocomplete="off" placeholder="Search" />
+        <button type="submit" class="+hidden"></button>
+      </form>
+
+      </div>
+
+    </div>
+
+    <!-- Categories -->
+    <div class="col-md-7">
+
+      <div class="col-md-1"></div>
+
+      <nav>
+        <%= render partial: "layouts/header/parts/categories" %>
+      </nav>
+
+      <div class="col-md-1"></div>
 
     </div>
 
   </div>
 
-  <div class="col-md-7">
+<% end %>
 
-    <div class="col-md-1"></div>
-
-    <nav>
-      <%= render partial: "layouts/header/parts/categories" %>
-    </nav>
-
-    <div class="col-md-1"></div>
-
-  </div>
-
-</div>
 <!-- End of Category Menu -->
