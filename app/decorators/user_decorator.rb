@@ -9,6 +9,14 @@ class UserDecorator < Draper::Decorator
     "#{fname} #{lname}"
   end
 
+  def avatar
+    if self.pic.url.nil?
+     '/assets/icons/default_user_pic.png'
+    else
+      self.pic.url
+    end
+  end
+
   private
 
   def thumb_params

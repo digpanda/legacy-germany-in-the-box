@@ -21,55 +21,36 @@
   <!-- Right side -->
   <div class="col-md-10 +vertical-centered">
 
-    <% if seems_like_a_customer? %>
+    <!-- My Account -->
+    <div class="col-md-1 pull-right +centered">
 
-    <!-- Research area -->
-<!--
-    <div class="col-md-6">
+      <% if current_user.nil? %>
 
-      <div id="js-search-click">
-        <a href="#"><span class="main-header__search"><i class="fa fa-search"></i> Search</span></a>
-      </div>
-
-      <div id="js-search-input" class="+hidden">
-        <div class="main-header__search --input">
-          <form action="<%= search_products_path %>">
-            <input type="query" id="search" name="query" autocomplete="off" placeholder="Search..." />
-            <button class="icon" type="submit"><i class="fa fa-search"></i></button>
-          </form>
-        </div>
-      </div>
-
-    </div>
--->
-
-    <div class="col-md-1 pull-right">
-
-      <!-- My Account -->
-      <% if current_user&.is_admin? %>
-
-      <%= render 'layouts/header/menu/admin' %>
-
-      <% elsif current_user&.is_shopkeeper? %>
-
-      <%= render 'layouts/header/menu/shopkeeper' %>
-
-      <% elsif current_user&.is_customer? %>
-
-      <%= render 'layouts/header/menu/customer' %>
-
-      <% else %>
       <a class="popup-text" data-effect="mfp-zoom-out" href="#login-dialog" id="sign_in_link">
 
-        <span class="main-header__account"><i class="fa fa-sign-in"></i> Sign in</span>
+        <div class="main-header__account">
+        <i class="fa fa-sign-in"></i>
+        Sign in
+        </div>
 
       </a>
+
+      <% else %>
+
+      <div class="main-header__avatar">
+        <a href="<%= edit_account_user_path(current_user, :user_info_edit_part => :edit_account) %>">
+          <img src="<%= current_user.decorate.avatar %>">
+        </a>
+      </div>
+
       <% end %>
 
     </div>
 
-    <div class="col-md-1 pull-right +centered +menu-bordering">
+    <% if seems_like_a_customer? %>
 
+    <!-- Products Cart -->
+    <div class="col-md-1 pull-right +centered +menu-bordering">
 
       <a href="<%= manage_cart_orders_path %>">
 
@@ -83,8 +64,8 @@
 
     </div>
 
+    <!-- Customer Likes -->
     <div class="col-md-1 pull-right +centered +menu-bordering">
-
 
       <a href="<%= (current_user.nil? ? "#" : show_collections_user_path(current_user, :user_info_edit_part => :edit_collection)) %>">
         
@@ -111,26 +92,41 @@
 </div>
 <!-- End of Main Menu Area -->
 
-<!-- Category Menu -->
-<div class="row category-menu">
+<% if seems_like_a_customer? %>
 
+  <!-- Category + Search Menu -->
+  <div class="row category-menu">
 
-  <div class="col-md-4">
+    <!-- Search -->
+    <div class="col-md-2 col-md-offset-2">
 
+      <div class="category-menu__search">
+
+       <form action="<%= search_products_path %>">
+        <i class="fa fa-search"></i>
+        <input type="query" id="search" name="query" autocomplete="off" placeholder="Search" />
+        <button type="submit" class="+hidden"></button>
+      </form>
+
+      </div>
+
+    </div>
+
+    <!-- Categories -->
+    <div class="col-md-7">
+
+      <div class="col-md-1"></div>
+
+      <nav>
+        <%= render partial: "layouts/header/parts/categories" %>
+      </nav>
+
+      <div class="col-md-1"></div>
+
+    </div>
 
   </div>
 
-  <div class="col-md-7">
+<% end %>
 
-    <div class="col-md-1"></div>
-
-    <nav>
-      <%= render partial: "layouts/header/parts/categories" %>
-    </nav>
-
-    <div class="col-md-1"></div>
-
-  </div>
-
-</div>
 <!-- End of Category Menu -->

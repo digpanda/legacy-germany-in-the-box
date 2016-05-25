@@ -39,16 +39,6 @@
   height: 50px; }
 
 /* line 85, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
-#csstyle .\+avatar {
-  position: absolute;
-  top: -7px;
-  left: 10px; }
-  /* line 34, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/helpers/_tweaks.sass */
-  #csstyle .\+avatar img {
-    border-radius: 25px;
-    width: 50px; }
-
-/* line 85, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
 #csstyle .\+grey {
   color: #bdc3c7; }
 
@@ -72,11 +62,25 @@
 
 /* line 32, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
 .category-menu {
-  background-color: #fdfdfd;
+  line-height: 2;
+  background-color: white;
   font-weight: 400;
-  border-top: 2px solid #bdc3c7;
-  text-transform: uppercase;
+  border-top: 1px solid #bdc3c7;
+  border-bottom: 1px solid #bdc3c7;
   font-family: 'Raleway', sans-serif; }
+  /* line 76, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
+  .category-menu__search {
+    color: #666; }
+    /* line 7, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_category-menu.sass */
+    .category-menu__search input {
+      border: 0; }
+    /* line 9, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_category-menu.sass */
+    .category-menu__search button {
+      border: 0;
+      background-color: transparent; }
+    /* line 12, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_category-menu.sass */
+    .category-menu__search i {
+      color: #3498db; }
   /* line 12, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/helpers/_mixins.sass */
   .category-menu nav {
     z-index: 5;
@@ -109,7 +113,7 @@
         position: absolute;
         top: 100%;
         left: 0;
-        background: #fdfdfd;
+        background: white;
         padding: 0; }
         /* line 42, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/helpers/_mixins.sass */
         .category-menu nav ul ul li {
@@ -146,97 +150,42 @@
   padding-top: 1em;
   padding-bottom: 1em; }
   /* line 76, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
-  .main-header__account {
-    color: #666; }
-  /* line 76, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
   .main-header__logo {
     color: #666; }
-    /* line 10, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_main-header.sass */
+    /* line 7, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_main-header.sass */
     .main-header__logo img {
       max-width: 200px; }
   /* line 76, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
-  .main-header__search {
-    color: #666; }
-    /* line 15, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_main-header.sass */
-    .main-header__search i {
-      color: #3498db; }
-    /* line 40, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
-    .main-header__search.\--input {
-      overflow: hidden;
-      width: 300px;
-      vertical-align: middle;
-      white-space: nowrap; }
-      /* line 24, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_main-header.sass */
-      .main-header__search.\--input input#search {
-        width: 100px;
-        height: 30px;
-        background: #e6fbd7;
-        border: none;
-        font-size: 10pt;
-        float: left;
-        color: black;
-        padding-left: 15px;
-        -webkit-border-radius: 5px;
-        -moz-border-radius: 5px;
-        border-radius: 5px; }
-        /* line 36, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_main-header.sass */
-        .main-header__search.\--input input#search::-webkit-input-placeholder {
-          color: #65737e; }
-        /* line 38, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_main-header.sass */
-        .main-header__search.\--input input#search:-moz-placeholder {
-          color: #65737e; }
-        /* line 40, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_main-header.sass */
-        .main-header__search.\--input input#search::-moz-placeholder {
-          color: #65737e; }
-        /* line 42, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_main-header.sass */
-        .main-header__search.\--input input#search:-ms-input-placeholder {
-          color: #65737e; }
-      /* line 44, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_main-header.sass */
-      .main-header__search.\--input button.icon {
-        -webkit-border-top-right-radius: 5px;
-        -webkit-border-bottom-right-radius: 5px;
-        -moz-border-radius-topright: 5px;
-        -moz-border-radius-bottomright: 5px;
-        border-top-right-radius: 5px;
-        border-bottom-right-radius: 5px;
-        border: none;
-        background: #e6fbd7;
-        height: 30px;
-        width: 30px;
-        color: black !important;
-        font-size: 10pt;
-        -webkit-transition: all .55s ease;
-        -moz-transition: all .55s ease;
-        -ms-transition: all .55s ease;
-        -o-transition: all .55s ease;
-        transition: all .55s ease; }
-      /* line 63, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_main-header.sass */
-      .main-header__search.\--input:hover button.icon, .main-header__search.\--input:active button.icon, .main-header__search.\--input:focus button.icon {
-        outline: none;
-        opacity: 1;
-        margin-left: -10px; }
-      /* line 67, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_main-header.sass */
-      .main-header__search.\--input:hover button.icon:hover {
-        background: #659443; }
-        /* line 69, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_main-header.sass */
-        .main-header__search.\--input:hover button.icon:hover i {
-          color: white; }
+  .main-header__avatar {
+    margin-top: -0.5em; }
+    /* line 14, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_main-header.sass */
+    .main-header__avatar img {
+      border-radius: 25px;
+      width: 50px; }
   /* line 76, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
   .main-header__likes {
-    font-size: 16px;
-    color: #666;
-    border-color: #bdc3c7;
-    border-size: 2px; }
-    /* line 79, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_main-header.sass */
+    font-size: 14px;
+    color: #666; }
+    /* line 22, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_main-header.sass */
     .main-header__likes i {
       font-size: 20px;
       display: block;
       color: #e74c3c; }
   /* line 76, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
+  .main-header__account {
+    font-size: 14px;
+    color: #666;
+    display: block; }
+    /* line 31, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_main-header.sass */
+    .main-header__account i {
+      font-size: 20px;
+      display: block;
+      color: #666; }
+  /* line 76, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
   .main-header__cart {
-    font-size: 16px;
+    font-size: 14px;
     color: #666; }
-    /* line 87, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_main-header.sass */
+    /* line 39, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_main-header.sass */
     .main-header__cart i {
       font-size: 20px;
       display: block;
@@ -365,6 +314,14 @@
   /* line 76, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
   .slider__bottom-border {
     border-bottom: thick solid #659443; }
+
+/* line 32, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
+.home-steps {
+  background-color: #e6fbd7;
+  font-family: 'Raleway', sans-serif !important;
+  font-weight: 400;
+  padding-top: 3em;
+  padding-bottom: 3em; }
 
 /* line 3, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/hooks/_componia.sass */
 .btn-primary {

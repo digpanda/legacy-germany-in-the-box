@@ -2,89 +2,41 @@
 
   +padding-vertical(1em)
 
-  +part(account)
-    color: $color-black
-
   +part(logo)
     color: $color-black
     img
       max-width: 200px
 
-  +part(search)
-    color: $color-black
-    i
-      color: $color-blue
+  +part(avatar)
 
-    +option(input)
+    margin-top: -0.5em
+    
+    img
+      border-radius: 25px
+      width: 50px
 
-      overflow: hidden
-      width: 300px
-      vertical-align: middle
-      white-space: nowrap
-      input#search
-        width: 100px
-        height: 30px
-        background: $color-light-green
-        border: none
-        font-size: 10pt
-        float: left
-        color: black // text color
-        padding-left: 15px
-        -webkit-border-radius: 5px
-        -moz-border-radius: 5px
-        border-radius: 5px
-        &::-webkit-input-placeholder
-          color: #65737e
-        &:-moz-placeholder
-          color: #65737e
-        &::-moz-placeholder
-          color: #65737e
-        &:-ms-input-placeholder
-          color: #65737e
-      button.icon
-        -webkit-border-top-right-radius: 5px
-        -webkit-border-bottom-right-radius: 5px
-        -moz-border-radius-topright: 5px
-        -moz-border-radius-bottomright: 5px
-        border-top-right-radius: 5px
-        border-bottom-right-radius: 5px
-        border: none
-        background: $color-light-green
-        height: 30px
-        width: 30px
-        color: black !important
-        font-size: 10pt
-        -webkit-transition: all .55s ease
-        -moz-transition: all .55s ease
-        -ms-transition: all .55s ease
-        -o-transition: all .55s ease
-        transition: all .55s ease
 
-      &:hover button.icon, &:active button.icon, &:focus button.icon
-        outline: none
-        opacity: 1
-        margin-left: -10px
-      &:hover button.icon:hover
-        background: $color-green
-        i
-          color: white
-          
   +part(likes)
-    font-size: 16px
+    font-size: $header-buttons-text-size
     color: $color-black
-
-    border-color: $color-grey
-    border-size: 2px
-
     i
-      font-size: 20px
+      font-size: $header-buttons-icon-size
       display: block
       color: $color-red
 
+  +part(account)
+    font-size: $header-buttons-text-size
+    color: $color-black
+    display: block
+    i
+      font-size: $header-buttons-icon-size
+      display: block
+      color: $color-black
+
   +part(cart)
-    font-size: 16px
+    font-size: $header-buttons-text-size
     color: $color-black
     i
-      font-size: 20px
+      font-size: $header-buttons-icon-size
       display: block
       color: $color-black

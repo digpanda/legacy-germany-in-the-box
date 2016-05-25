@@ -23,7 +23,7 @@
           = captcha_tag
     .checkbox
       %label
-        %input{:type => 'checkbox'}
+        %input{:type => 'checkbox', :checked => 'checked'}
         = I18n.t(:remember_me, scope: :sign_in_dialog)
     
     %div{class: "col-md-12"}
