@@ -7,28 +7,26 @@
 
 </div>
 
-<!-- Products List -->
-<div class="products-list">
+<!-- Slider -->
+<div class="row home-steps">
 
-  <% if seems_like_a_customer? %>
-
-  <div class="row +centered">
+  <div class="+centered">
     <h1>
-    <br />
     HERE WE SHOW 3 COOL STEPS
-    <br />
-    <br />
     </h1>
   </div>
 
+</div>
+
+<!-- Products List -->
+<div class="row products-list">
+
   <div class="+spacer"></div>
 
-  <div class="row">
+  <% if seems_like_a_customer? %>
 
-    <div class="col-md-10 col-md-push-1 col-md-pull-1">
-      <%= render partial: "products/products_list", :locals => { :products => @products } %>
-    </div>
-
+  <div class="col-md-10 col-md-push-1 col-md-pull-1">
+    <%= render partial: "products/products_list", :locals => { :products => @products } %>
   </div>
 
   <% end %>
