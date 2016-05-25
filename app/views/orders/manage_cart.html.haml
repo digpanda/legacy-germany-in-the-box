@@ -31,26 +31,21 @@
                 = link_to s.name, shop_path(s)
             .panel-body
               .col-md-9
-                = form_tag adjust_skus_amount_orders_path(s.id), :id => 'orders_adjust_products_amount', :method => :patch do
-                  = render 'cart', order: o, currency_code: s.currency.code
-                  = submit_tag I18n.t(:update_cart, scope: :cart), :class => 'btn btn-primary btn-small'
-
-                  = link_to I18n.t(:set_delivery_destination, scope: :cart), set_address_orders_path(s), :class => 'btn btn-primary btn-small js-set-address-link'
-
+                = render partial: 'cart', locals: {order: o, s: s}
               .col-md-3
                 %ul.cart-total-list
                   %li
                     %span= I18n.t(:subtotal, scope: :cart)
-                    %span= "#{o.total_price} #{s.currency.code}"
+                    %span= o.decorate.total_price_with_currency
                   %li
                     %span= I18n.t(:duty_cost, scope: :cart)
-                    %span= "#{@carts[s].tax_and_duty_cost.round(2)} #{s.currency.code}"
+                    %span= @carts[s].decorate.duty_cost_with_currency
                   %li
                     %span= I18n.t(:shipping_cost, scope: :cart)
-                    %span= "#{@carts[s].shipping_cost.round(2)} #{s.currency.code}"
+                    %span= @carts[s].decorate.shipping_cost_with_currency
                   %li
-                    %span= I18n.t(:total_price, scope: :cart)
-                    %span= "#{@carts[s].total} #{s.currency.code}"
+                    %span= I18n.t(:total_price_in_yuan, scope: :cart)
+                    %span= @carts[s].decorate.total_with_currency
   - else
     .row
       %h4= I18n.t(:no_products, scope: :cart)

@@ -111,7 +111,6 @@ class Shop
 
   index({shopkeeper: 1},  {unique: true,   name: :idx_shop_shopkeeper})
 
-
   def country
     sender_address = addresses.find_sender
     sender_address ? sender_address.country : nil
@@ -129,6 +128,10 @@ class Shop
 
   def clean_sms_mobile
     self.sms_mobile = nil
+  end
+
+  def self.with_buyable_products
+    self.in(id: Product.buyable.map {|p| p.shop.id } ).all
   end
 
 end

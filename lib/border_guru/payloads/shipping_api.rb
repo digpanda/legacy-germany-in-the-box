@@ -21,12 +21,12 @@ module BorderGuru
                                             quoteIdentifier: @order.border_guru_quote_id,
                                             merchantOrderId: @order.id.to_s,
                                             storeName: @shop.name,
-                                            dimensionalWeight: @order.total_weight,
+                                            dimensionalWeight: @order.dimensional_weight,
                                             dimensionalWeightScale: WEIGHT_UNIT,
                                             lineItems: line_items,
                                             shippingAddress: [customer_address(@order.shipping_address)],
                                             billingAddress: [customer_address(@order.shipping_address)],
-                                            submerchant: submerchant_address(@shop.address)
+                                            submerchant: submerchant_address(@shop.sender_address)
                                         })
       end
 

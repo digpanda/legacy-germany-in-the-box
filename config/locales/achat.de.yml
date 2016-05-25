@@ -507,13 +507,14 @@ de:
     subtotal: Preis
     shipping: Tranport
     taxes: Steuer
-    total_price: Gesamter
+    total_price_in_euro: Gesamter(EUR)
     update_cart: Einkaufswagen ändern
     set_delivery_destination: Anschrift auswählen
     variant_option: Variante
     shop: Shop
     shipping_cost: Versendungskosten
     duty_cost: Zollgebühren
+    total_price_in_yuan: Gesamter
   checkout:
     my_destination: Anlieferungsanschrift
     setup_delivery_destination: Bitte Anschrift auswählen

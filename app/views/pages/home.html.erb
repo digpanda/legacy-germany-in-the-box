@@ -1,29 +1,57 @@
 <!-- Slider -->
 <div class="row slider">
 
-  <%= render partial: "pages/slider" %>
+  <!-- No slider anymore -->
+  <!--
+  = render partial: "pages/slider"
+  -->
 
 </div>
 
-<!-- Products List -->
-<div class="products-list">
+<!-- Slider -->
+<!--
+<div class="row home-steps">
 
-  <% if seems_like_a_customer? %>
-
-  <div class="row">
-    <h1>Our best selection ...</h1>
+  <div class="+centered">
+    <h1 style="color:white;">
+    HERE WE SHOW 3 COOL STEPS
+    </h1>
   </div>
 
-  <div class="+spacer"></div>
+</div>
+-->
 
-  <div class="row">
+<% if seems_like_a_customer? %>
 
-    <div class="col-md-10 col-md-push-1 col-md-pull-1">
-      <%= render partial: "products/products_list", :locals => { :products => @products } %>
+  <div class="row shops-list">
+
+    <div class="+spacer"></div>
+
+    <div class="col-md-8 col-md-push-2 col-md-pull-2">
+      <%= render partial: "shops/shops_list", :locals => { :shops => @shops } %>
     </div>
 
+    
   </div>
 
-  <% end %>
-  
+
+  <!-- Products List -->
+<!--
+  <div class="row products-list">
+
+    <div class="+spacer"></div>
+
+    <div class="col-md-10 col-md-push-1 col-md-pull-1">
+       render partial: "products/products_list", :locals => { :products => @products }
+    </div>
+
+    
+  </div>
+-->
+<% else %>
+
+<div class="row">
+  WE SHOULD PUT SOMETHING HERE FOR THE SHOPKEEPERS
 </div>
+
+<% end %>

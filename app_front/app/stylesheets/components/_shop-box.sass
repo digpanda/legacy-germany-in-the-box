@@ -1,0 +1,47 @@
++component(shop-box)
+
+  background-color: $color-light-white
+  padding: 2em
+  min-height: 15em
+  
+  //+border-radius(1em)
+  +part(overlay)
+    position: absolute
+    display: block
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+    content: ''
+    background-image: url('https://www-assets.carwow.co.uk/assets/beta-responsive/1x1-black-layer-41d38ffd1f9a359560152772ab4100f0.png')
+    
+    +border-radius(1em)
+
+  +part(cover)
+
+    background-size: cover
+    height: 15em
+
+    +border-radius(1em)
+    +option(image)
+
+    h2
+      color: $color-light-white
+      font-family: Raleway, sans-serif
+
+    +option(text)
+      margin: 0.5em
+      color: $color-light-white
+      position: relative
+      font-family: Raleway, sans-serif
+
+  +part(products)
+    background-color: $color-light-white
+    height: 15em
+    line-height: 13em
+
+    img
+      max-height: 100%
+
+    +option(product)
+      padding: 1em
