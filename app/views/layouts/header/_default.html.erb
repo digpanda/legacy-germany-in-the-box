@@ -24,19 +24,8 @@
     <!-- My Account -->
     <div class="col-md-1 pull-right +centered">
 
-      <% if current_user&.is_admin? %>
+      <% if current_user.nil? %>
 
-      <%= render 'layouts/header/menu/admin' %>
-
-      <% elsif current_user&.is_shopkeeper? %>
-
-      <%= render 'layouts/header/menu/shopkeeper' %>
-
-      <% elsif current_user&.is_customer? %>
-
-      <%= render 'layouts/header/menu/customer' %>
-
-      <% else %>
       <a class="popup-text" data-effect="mfp-zoom-out" href="#login-dialog" id="sign_in_link">
 
         <div class="main-header__account">
@@ -45,6 +34,15 @@
         </div>
 
       </a>
+
+      <% else %>
+
+      <div class="+avatar">
+        <a href="<%= edit_account_user_path(current_user, :user_info_edit_part => :edit_account) %>">
+          <img src="<%= current_user.decorate.avatar %>">
+        </a>
+      </div>
+
       <% end %>
 
     </div>
