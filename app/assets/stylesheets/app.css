@@ -11,12 +11,20 @@
   padding-top: 35px; }
 
 /* line 85, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
+#csstyle .\+small-spacer {
+  padding: 0.5em; }
+
+/* line 85, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
 #csstyle .\+spacer {
   padding: 1em; }
 
 /* line 85, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
 #csstyle .\+big-spacer {
   padding: 5em; }
+
+/* line 85, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
+#csstyle .\+bold {
+  font-weight: 600; }
 
 /* line 85, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
 #csstyle .\+red {
@@ -369,15 +377,18 @@
   padding-top: 3em;
   padding-bottom: 3em; }
 
+/* line 3, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_home-marketplace.sass */
+.home-marketplace li {
+  margin-left: -1.5em; }
+
 /* line 76, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
 .home-marketplace__first {
   min-height: 8em;
   background-color: #83be58;
   color: #fdfdfd; }
-  /* line 8, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_home-marketplace.sass */
+  /* line 10, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_home-marketplace.sass */
   .home-marketplace__first h2 {
-    line-height: 3em;
-    font-size: 3em;
+    font-size: 2.8em;
     color: #fdfdfd; }
   /* line 40, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
   .home-marketplace__first.\--paragraphs {
@@ -387,7 +398,7 @@
 .home-marketplace__second {
   min-height: 8em;
   background-color: #fdfdfd; }
-  /* line 19, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_home-marketplace.sass */
+  /* line 21, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_home-marketplace.sass */
   .home-marketplace__second h2 {
     line-height: 3em;
     font-size: 3em;
