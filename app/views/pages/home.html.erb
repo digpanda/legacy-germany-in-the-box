@@ -1,13 +1,11 @@
 <!-- Slider -->
+<!--
 <div class="row slider">
 
-  <!-- No slider anymore -->
-  <!--
   = render partial: "pages/slider"
-  -->
 
 </div>
-
+-->
 <!-- Slider -->
 <!--
 <div class="row home-steps">
@@ -26,6 +24,7 @@
   <div class="row shops-list">
 
     <div class="+spacer"></div>
+    <div class="+spacer"></div>
 
     <div class="col-md-8 col-md-push-2 col-md-pull-2">
       <%= render partial: "shops/shops_list", :locals => { :shops => @shops } %>
@@ -33,7 +32,6 @@
 
     
   </div>
-
 
   <!-- Products List -->
 <!--
@@ -51,7 +49,67 @@
 <% else %>
 
 <div class="row">
-  WE SHOULD PUT SOMETHING HERE FOR THE SHOPKEEPERS
+
+  <div class="+centered home-marketplace">
+
+    <div class="row home-marketplace__first">
+
+    <h2>We are marketplace.</h2>
+
+    <div class="row col-md-6 col-md-push-3 col-md-pull-3 home-marketplace__first --paragraphs">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer fringilla nibh et elit facilisis feugiat. Phasellus in dictum augue. Nunc euismod vel ex a euismod. Fusce viverra magna quis quam scelerisque, id sollicitudin neque ultricies.
+    </div>
+
+    <div class="+spacer"></div>
+
+    <div class="row col-md-8 col-md-push-2 col-md-pull-2">
+    <img src="assets/germany-in-the-box-marketplace.png" width="900px">
+    <div class="+spacer"></div>
+    </div>
+
+    </div>
+
+    <div class="row home-marketplace__second">
+
+    <h2>We take care of everything.</h2>
+    <div class="+spacer"></div>
+
+    <div class="col-md-10 col-md-push-1 col-md-pull-1 home-marketplace__second --paragraphs">
+
+    <div class="col-md-4">
+
+    <h3>Title</h3>
+    <div class="+spacer"></div>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer fringilla nibh et elit facilisis feugiat. Phasellus in dictum augue. Nunc euismod vel ex a euismod. Fusce viverra magna quis quam scelerisque, id sollicitudin neque ultricies. Aliquam erat volutpat. Suspendisse auctor, nisl at mattis pellentesque, nisl odio varius nisi, sagittis commodo mi mauris eget ipsum. Maecenas ac egestas dolor. Cras magna arcu, faucibus at venenatis non, tincidunt sed ante
+
+    </div>
+
+    <div class="col-md-4">
+    
+    <h3>Title</h3>
+    <div class="+spacer"></div>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer fringilla nibh et elit facilisis feugiat. Phasellus in dictum augue. Nunc euismod vel ex a euismod. Fusce viverra magna quis quam scelerisque, id sollicitudin neque ultricies. Aliquam erat volutpat. Suspendisse auctor, nisl at mattis pellentesque, nisl odio varius nisi, sagittis commodo mi mauris eget ipsum. Maecenas ac egestas dolor. Cras magna arcu, faucibus at venenatis non, tincidunt sed ante
+
+    </div>
+
+    <div class="col-md-4">
+    
+    <h3>Title</h3>
+    <div class="+spacer"></div>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer fringilla nibh et elit facilisis feugiat. Phasellus in dictum augue. Nunc euismod vel ex a euismod. Fusce viverra magna quis quam scelerisque, id sollicitudin neque ultricies. Aliquam erat volutpat. Suspendisse auctor, nisl at mattis pellentesque, nisl odio varius nisi, sagittis commodo mi mauris eget ipsum. Maecenas ac egestas dolor. Cras magna arcu, faucibus at venenatis non, tincidunt sed ante
+
+    </div>
+
+    </div>
+
+    </div>
+
+    <div class="+spacer"></div>
+    <div class="+spacer"></div>
+    <div class="+spacer"></div>
+
+  </div>
+
 </div>
 
 <% end %>
