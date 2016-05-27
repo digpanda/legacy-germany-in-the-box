@@ -21,17 +21,12 @@
 
 <% if seems_like_a_customer? %>
 
-  <div class="row shops-list">
+  <div class="+big-spacer"></div>
+  <div class="+centered"><h2>This part of the website isn't ready yet</h2></div>
 
-    <div class="+spacer"></div>
-    <div class="+spacer"></div>
-
-    <div class="col-md-8 col-md-push-2 col-md-pull-2">
-      <%= render partial: "shops/shops_list", :locals => { :shops => @shops } %>
-    </div>
-
-    
-  </div>
+  <!--
+  = render partial: "shops/shops_list", :locals => { :shops => @shops }
+  -->
 
   <!-- Products List -->
 <!--
@@ -48,94 +43,6 @@
 -->
 <% else %>
 
-  <div class="+centered home-marketplace">
-
-    <div class="row home-marketplace__first">
-
-    <div class="+spacer"></div>
-    <h2>Der erste grenzübergreifende Marktplatz <br /> von Deutschland nach China</h2>
-    <div class="+spacer"></div>
-
-<!--
-    <div class="row col-md-6 col-md-push-3 col-md-pull-3 home-marketplace__first --paragraphs">
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer fringilla nibh et elit facilisis feugiat. Phasellus in dictum augue. Nunc euismod vel ex a euismod. Fusce viverra magna quis quam scelerisque, id sollicitudin neque ultricies.
-    </div>
--->
-
-    <div class="row col-md-8 col-md-push-2 col-md-pull-2">
-    <img src="assets/germany-in-the-box-marketplace.png" width="900px">
-    <div class="+spacer"></div>
-    </div>
-
-    </div>
-
-    <div class="row home-marketplace__second">
-
-    <h2>Ihre Produkte, unser Markt.</h2>
-    <div class="+small-spacer"></div>
-
-    <div class="col-md-10 col-md-push-1 col-md-pull-1 home-marketplace__second --paragraphs">
-
-    <div class="col-md-4">
-
-    <h3>Was wir anbieten</h3>
-        End-to-End Marktplatz für deutsche Hersteller und chinesische Endverbraucher mit 
-
-    <div class="+small-spacer"></div>
-
-    <ul>
-      <li>
-      Lieferung per Luftfracht
-      </li>
-      <li>
-        Zollabwicklung für Export und Import
-      </li>
-      <li>RMB-EUR Zahlungslösung</li>
-      <li>Übersetzung der Produktinformationen</li>
-      <li>Kundenservice auf Deutsch und Chinesisch</li>
-    </ul>
-
-  </div>
-
-  <div class="col-md-4">
-
-    <h3>Ihre Vorteile</h3>
-    <div class="+small-spacer"></div>
-
-    <ul>
-      <li>Einfacher und direkter Zugang zu chinesischem Markt</li>
-      <li>Ohne aufwendige Vertriebsstruktur vor Ort</li>
-      <li>Ohne lästige Produkt-Zertifizierungen</li>
-      <li>Flexible Produktion- und Angebotsplanung</li>
-      <li>Schnelle Integration mit vorhandener Versandstruktur</li>
-    </ul>
-
-  </div>
-
-  <div class="col-md-4">
-
-    <h3>Unser Ziel</h3>
-    <div class="+small-spacer"></div>
-
-    <span class="+bold">Unsere Mission:</span> den regionalen deutschen Herstellern den einfachen und 
-    direkten Zugang zu chinesischem Markt zu ermöglichen
-    
-    <div class="+small-spacer"></div>
-    <span class="+bold">Unser Motto:</span> Germany In The Box ist die erste und letzte Station nach China
-
-  </div>
-
-    </div>
-
-    </div>
-
-    <div class="row">
-    <div class="+spacer"></div>
-    <h4>Wir bedanken uns bei IHK Bayern und Handwerkskammer Bayern für die Förderung unserer Mission.</h4>
-    </div>
-
-    <div class="+spacer"></div>
-
-  </div>
+  <%= render "pages/home_marketplace" %>
 
 <% end %>
