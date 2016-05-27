@@ -3,13 +3,16 @@ FactoryGirl.define do
     fname       '薇'
     lname       '李'
     additional  '309室'
-    street      '和平区华江里'
+    street      '华江里'
     number      '21'
     zip         '300222'
     city        '天津'
     country     'CN'
     tel         '+86123456'
     email       'customer01@hotmail.com'
+    mobile      '13802049778'
+    province    '天津'
+    district    '和平区'
   end
 
   factory :shop_address, class: Address do
@@ -23,5 +26,7 @@ FactoryGirl.define do
     tel         '+89123456'
     email       'shopkeeper01@hotmail.com'
     type        'both'
+    company     'Supersoft'
+    province    'Bayern'
   end
 end

@@ -1,65 +1,32 @@
- <!DOCTYPE html>
-  <html lang ="en">
-  <head>
-    <meta name ="viewport" content="width=device-width, initial-scale=1">
+<!DOCTYPE html>
+<html lang ="en">
+<head>
+  <meta name ="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- jQuery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <%= render "layouts/application/head" %>
 
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+</head>
 
-    <!-- Latest compiled and minified JavaScript --> <!-- ITS ALREADY LOADED IN COMPONIA -->
-    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>-->
+<body id="csstyle">
 
-    <!-- FontAwesome -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css">
+<%= render 'layouts/application/assets_pipeline_stylesheets' %>
 
-  </head>
-  <body id="csstyle">
+<!-- Base container -->
+<div class="container-fluid">
 
-    <%= javascript_include_tag "application" %>
-    <%= stylesheet_link_tag "application", :media => "all" %>
+  <%= render "layouts/header/default" %>
 
-    <%= csrf_meta_tag %>
+  <%= yield %>
 
-    <% if session[:login_advice_counter].present? %>
-      <%= hidden_field_tag :login_advice_counter, "#{session[:login_advice_counter]}" %>
-    <% end %>
+  <%= render "layouts/footer/default" %>
 
-    <% if session[:signup_advice_counter].present? %>
-      <%= hidden_field_tag :signup_advice_counter, "#{session[:signup_advice_counter]}" %>
-    <% end %>
+</div>
 
-    <script> 
-      <%= generate_validate_img_file_js.html_safe %>
-      <%= generate_set_datepicker_lang_js.html_safe %>
-      <%= gen_load_default_image_js.html_safe %>
-    </script>
+<%= render 'layouts/application/hidden_fields' %>
 
+<%= render 'layouts/application/assets_pipeline_javascripts' %>
 
-    <!-- Base container -->
-    <div class="container-fluid">
+<%= render "layouts/application/brunch_javascripts" %>
 
-      <%= render "layouts/header/default" %>
-
-      <%= yield %>
-
-      <%= render "layouts/footer/default" %>
-
-    </div>
-
-    <!-- Brunch compiled front-end -->
-    <%= javascript_include_tag "vendor" %>
-    <%= javascript_include_tag "app" %>
-    <script>
-      require('javascripts/initialize');
-    </script>
-
-    <!-- JS Routing system -->
-    <div id="js-routes" data-controller="<%=params[:controller]%>" data-action="<%=params[:action]%>"></div>
-
-  </body>
-  </html>
+</body>
+</html>

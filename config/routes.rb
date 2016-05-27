@@ -20,8 +20,8 @@ Rails.application.routes.draw do
   root to: 'pages#home'
 
   resource :page do
-    match :demo,         via: [:get],    action: :demo,         as: :demo 
-    match :menu,         via: [:get],    action: :menu,         as: :menu
+    match :demo,        via: [:get],    action: :demo,         as: :demo
+    match :menu,        via: [:get],    action: :menu,         as: :menu
     match :agb,         via: [:get],    action: :agb,         as: :agb
     match :privacy,     via: [:get],    action: :privacy,     as: :privacy
     match :imprint,     via: [:get],    action: :imprint,     as: :imprint
@@ -40,7 +40,7 @@ Rails.application.routes.draw do
     match :remove_products,             via: [:patch],  action: :remove_products,       as: :remove_products_from,      :on => :member
     match 'toggle_product/:product_id', via: [:get],    action: :toggle_product,        as: :toggle_product_in,         :on => :member
     match :like_collection,             via: [:patch],  action: :like_collection,       as: :like,                      :on => :member
-    match :unlike_collection,          via: [:patch],  action: :unlike_collection,    as: :unlike,                   :on => :member
+    match :unlike_collection,           via: [:patch],  action: :unlike_collection,     as: :unlike,                    :on => :member
 
     match 'is_collected/:product_id',         via: [:get],    action: :is_collected,            as: :is_collected,          :on => :collection
     match :create_and_add,                    via: [:post],   action: :create_and_add,          as: :create_and_add,        :on => :collection
@@ -58,6 +58,9 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :payments do
+    end
+
+    resource :settings, only: [:show, :update] do
     end
   end
 

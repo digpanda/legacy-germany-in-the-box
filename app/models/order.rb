@@ -13,11 +13,13 @@ class Order
 
   belongs_to :user,                 :inverse_of => :orders
 
-  embeds_one :shipping_address,     :inverse_of => :orders,   :class_name => 'Address'
-  embeds_one :billing_address,      :inverse_of => :orders,   :class_name => 'Address'
+  belongs_to :shipping_address,        :class_name => 'Address'
+  belongs_to :billing_address,         :class_name => 'Address'
 
   has_many :order_items,            :inverse_of => :order,    dependent: :restrict
   has_many :order_payments,         :inverse_of => :order,    dependent: :restrict
+
+  scope :is_active, ->  { where( :status.ne => :success ) }
 
   # TODO : inclusion should be re-abilited when we are sure of what we include
   validates :status,                  presence: true #, inclusion: {in: [:new, :checked_out, :shipped, :paying,]}
@@ -39,18 +41,21 @@ class Order
     order_items.inject(0) { |sum, i| sum += i.quantity }
   end
 
-  def update_for_checkout!(user, delivery_destination_id)
+  def update_for_checkout!(user, delivery_destination_id, border_guru_quote_id, shipping_cost, tax_and_duty_cost)
+    a = user.addresses.find(delivery_destination_id)
 
     self.update({
-
       :status               => :paying,
       :user                 => user,
-      :shipping_address     => user.addresses.find(delivery_destination_id).attributes,
-    
+      :shipping_address     => a,
+      :billing_address      => a,
+      :border_guru_quote_id => border_guru_quote_id,
+      :shipping_cost        => shipping_cost,
+      :tax_and_duty_cost    => tax_and_duty_cost
     })
 
-    self
-
+    # Todo: perhaps we don't need to return self. What we need is the result of last update.
+    #self
   end
 
   private

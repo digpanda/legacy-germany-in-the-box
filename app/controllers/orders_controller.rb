@@ -1,4 +1,5 @@
 require 'border_guru'
+require 'will_paginate/array'
 
 class OrdersController < ApplicationController
 
@@ -13,6 +14,7 @@ class OrdersController < ApplicationController
   layout :custom_sublayout, only: [:show_orders]
 
   def show_orders
+    @orders = current_user.orders.order_by(:c_at => 'desc').paginate(:page => (params[:page] ? params[:page].to_i : 1), :per_page => 10);
     render :show_orders
   end
 
@@ -50,7 +52,7 @@ class OrdersController < ApplicationController
         current_order_item.product_name = product.name
         current_order_item.sku_id = sku.id.to_s
         current_order_item.option_ids = sku.option_ids
-        current_order_item.option_names = get_options(sku)
+        current_order_item.option_names = sku.decorate.get_options
         current_order_item.save!
       end
 
@@ -128,56 +130,16 @@ class OrdersController < ApplicationController
   end
 
   def checkout
-    @order = current_order(params[:shop_id]).update_for_checkout!(current_user, params[:delivery_destination_id])
-    @cart = current_cart(params[:shop_id])
-
-    @wirecard = PrepareOrderForWirecardCheckout.perform({
-
-      :user        => current_user,
-      :order       => @order,
-      :merchant_id => Rails.env.production? ? @cart.submerchant_id : 'dfc3a296-3faf-4a1d-a075-f72f1b67dd2a', # TO CHANGE DYNAMICALLY
-      :secret_key  => "6cbfa34e-91a7-421a-8dde-069fc0f5e0b8", # TO CHANGE DYNAMICALLY 
-      :amount      => @cart.total,
-      :currency    => "CNY"
-
-    })
-  end
-
-  def checkout_success
-    checkout_callback
-  end
-
-  def checkout_fail
-    checkout_callback
-  end
-
-  def checkout_callback
-
-    customer_email = params["email"]
-
-    # corrupted transaction detected : not the same email -> should be improved / put somewhere else
-    if current_user.email != customer_email
-        flash[:error] = "An account conflict occurred. Please contact our support."
-        redirect_to root_url and return
-    end
-
-    UpdateOrderAndPaymentFromWirecardTransaction.perform(params.symbolize_keys)
-
-  end
-
-=begin
-  def checkout_OLD
-    current_order = current_order(params[:shop_id])
-    current_order.status = :checked_out
-    current_order.user = current_user
-    current_order.delivery_destination = current_user.addresses.find(params[:delivery_destination_id])
+    shop_id = params[:shop_id]
+    cart = current_cart(shop_id)
 
     all_products_available = true;
     shop_total_prices = {}
     product_name = nil
     sku = nil
+    order = current_order(shop_id)
 
-    current_order.order_items.each do |oi|
+    order.order_items.each do |oi|
       product = oi.product
       sku = oi.sku
 
@@ -188,7 +150,7 @@ class OrdersController < ApplicationController
           shop_total_prices[product.shop][:value] += sku.price * oi.quantity
         else
           shop_total_prices[product.shop] = { value: sku.price * oi.quantity }
-        end  
+        end
       else
         all_products_available = false
         product_name = product.name
@@ -198,7 +160,7 @@ class OrdersController < ApplicationController
     end
 
     if !all_products_available
-      msg = I18n.t(:not_all_available, scope: :checkout, :product_name => product_name, :option_names => get_options_txt(sku))
+      msg = I18n.t(:not_all_available, scope: :checkout, :product_name => product_name, :option_names => sku.decorate.get_options_txt)
 
       respond_to do |format|
         format.html {
@@ -208,7 +170,7 @@ class OrdersController < ApplicationController
 
         format.json {
           render :json => { :status => :ko, :msg => msg }, :status => :unprocessable_entity
-        }      
+        }
       end
 
       return
@@ -233,14 +195,43 @@ class OrdersController < ApplicationController
       return
     end
 
-    if current_order.save
-      current_order.order_items.each do |oi|
+    status = order.update_for_checkout!(current_user, params[:delivery_destination_id], cart.border_guru_quote_id, cart.shipping_cost, cart.tax_and_duty_cost)
+
+    if status
+      # @wirecard = PrepareOrderForWirecardCheckout.perform({
+      #
+      #   :user        => current_user,
+      #   :order       => order,
+      #   :merchant_id => Rails.env.production? ? cart.submerchant_id : 'dfc3a296-3faf-4a1d-a075-f72f1b67dd2a', # TO CHANGE DYNAMICALLY
+      #   :secret_key  => "6cbfa34e-91a7-421a-8dde-069fc0f5e0b8", # TO CHANGE DYNAMICALLY
+      #   :amount      => cart.decorate.total_in_yuan,
+      #   :currency    => "CNY"
+      #
+      # })
+
+      session[:order_ids].delete(params[:shop_id])
+    end
+  end
+
+  def checkout_success
+    checkout_callback
+
+    order = Rails.env.production? ? current_order(params[:merchant_account_id]) : current_orders.first[1]
+    shop = Rails.env.production? ? Shop.find(params[:merchant_account_id]) : order.order_items.first.sku.product.shop
+
+    shipping = BorderGuru.get_shipping(
+        order: order,
+        shop: shop,
+        country_of_destination: ISO3166::Country.new('CN'),
+        currency: 'EUR'
+    )
+
+    if shipping.success? && order.save
+      order.order_items.each do |oi|
         oi.sku.quantity -= oi.quantity if oi.sku.limited
         oi.price = oi.sku.price
         oi.save!
       end
-
-      session[:order_ids].delete(params[:shop_id])
 
       respond_to do |format|
         format.html {
@@ -265,7 +256,24 @@ class OrdersController < ApplicationController
       end
     end
   end
-=end
+
+  def checkout_fail
+    checkout_callback
+  end
+
+  def checkout_callback
+
+    customer_email = params["email"]
+
+    # corrupted transaction detected : not the same email -> should be improved / put somewhere else
+    if current_user.email != customer_email
+        flash[:error] = "An account conflict occurred. Please contact our support."
+        redirect_to root_url and return
+    end
+
+    UpdateOrderAndPaymentFromWirecardTransaction.perform(params.symbolize_keys)
+
+  end
 
   def destroy
     shop_id = @order.order_items.first.product.shop.id.to_s
@@ -319,7 +327,7 @@ class OrdersController < ApplicationController
             noi.product_name = sku.product.name
             noi.sku_id = sku.id.to_s
             noi.option_ids = sku.option_ids
-            noi.option_names = get_options(sku)
+            noi.option_names = sku.decorate.get_options
             noi.save
           end
 
@@ -342,29 +350,4 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
   end
 
-  def get_options(sku)
-    variants = sku.option_ids.map do |oid|
-      sku.product.options.detect do |v|
-        v.suboptions.find(oid)
-      end
-    end
-
-    variants.each_with_index.map do |v, i|
-      o = v.suboptions.find(sku.option_ids[i])
-      { name: v.name, option: { name: o.name } }
-    end
-  end
-
-  def get_options_txt(sku)
-    variants = sku.option_ids.map do |oid|
-      sku.product.options.detect do |v|
-        v.suboptions.find(oid)
-      end
-    end
-
-    variants.each_with_index.map do |v, i|
-      o = v.suboptions.find(sku.option_ids[i])
-      o.name
-    end.join(', ')
-  end
 end

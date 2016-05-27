@@ -21,27 +21,31 @@ module BorderGuru
                                             quoteIdentifier: @order.border_guru_quote_id,
                                             merchantOrderId: @order.id.to_s,
                                             storeName: @shop.name,
-                                            dimensionalWeight: @order.total_weight,
+                                            dimensionalWeight: @order.dimensional_weight,
                                             dimensionalWeightScale: WEIGHT_UNIT,
                                             lineItems: line_items,
-                                            shippingAddress: [address(@order.shipping_address)],
-                                            billingAddress: [address(@order.shipping_address)],
-                                            submerchant: {
-                                                company: "ExampleInc.",
-                                                streetName: "SampleStreet",
-                                                houseNo: "6",
-                                                postcode: "20059",
-                                                city: "Hamburg",
-                                                state: "Hamburg",
-                                                email: "john@example.com",
-                                                countryCode:"DE"
-                                            }
+                                            shippingAddress: [customer_address(@order.shipping_address)],
+                                            billingAddress: [customer_address(@order.shipping_address)],
+                                            submerchant: submerchant_address(@shop.sender_address)
                                         })
       end
 
       private
 
-      def address(address_model)
+      def submerchant_address(address_model)
+        {
+            company: address_model.company,
+            streetName: address_model.street,
+            houseNo: address_model.number,
+            postcode: address_model.zip,
+            city: address_model.city,
+            state: address_model.province,
+            email: @shop.shopkeeper.email,
+            countryCode: address_model.country_code
+        }.delete_if { |k,v| v.nil? }
+      end
+
+      def customer_address(address_model)
         {
             firstName: address_model.fname,
             lastName: address_model.lname,
@@ -52,9 +56,9 @@ module BorderGuru
             city: address_model.city,
             country: address_model.country_name,
             telephone: address_model.tel,
-            email: address_model.email,
+            email: @order.user.email,
             countryCode: address_model.country_code
-        }
+        }.delete_if { |k,v| v.nil? }
       end
 
       def line_items

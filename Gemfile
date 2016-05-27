@@ -7,6 +7,8 @@ gem "mongoid_includes"
 gem "mongoid_rails_migrations"
 #gem "mongoid_search" #, "~> 0.2.8"
 #gem "mongoid_fulltext"
+#
+
 gem "sass-rails", "~> 5.0.3"
 gem "uglifier", ">= 1.3.0" # Use Uglifier as compressor for JavaScript assets
 gem "turbolinks" # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
@@ -33,7 +35,7 @@ gem "strip_attributes"
 gem "will_paginate"
 gem "will_paginate-bootstrap"
 gem "bootstrap-multiselect-rails"
-gem "cancancan"
+gem "cancancan", '1.13.1'
 gem "http_accept_language"
 gem "jquery-fileupload-rails"
 gem "copy_carrierwave_file"
@@ -49,7 +51,18 @@ gem "bootstrap-validator-rails"
 gem "abstract_method"
 gem "mongoid_magic_counter_cache"
 
-group :development, :test do
+gem "newrelic_rpm"
+gem "newrelic_moped"
+
+group :development do
+  gem 'capistrano'
+  gem 'capistrano-bundler'
+  gem 'capistrano-passenger', '>= 0.1.1'
+  gem 'capistrano-rails'
+  gem 'capistrano-rvm'
+end
+
+group :development, :test, :staging do
   gem "factory_girl_rails"
   gem "rspec-rails", "~> 3.0"
   gem "capybara"
@@ -59,7 +72,7 @@ group :development, :test do
   gem "pry-rails"
 end
 
-group :production do
+group :production, :staging do
   gem "exception_notification"
 end
 

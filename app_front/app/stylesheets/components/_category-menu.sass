@@ -1,8 +1,20 @@
 +component(category-menu)
 
-  background-color: $color-green
+  line-height: 2
+  
+  +part(search)
+    color: $color-black
+    input
+      border: 0
+    button
+      border: 0
+      background-color: transparent
+    i
+      color: $color-blue
+
+  background-color: $color-light-white
   font-weight: 400
-  text-transform: uppercase
+  border-bottom: 2px solid $color-grey
   font-family: 'Raleway', sans-serif
 
-  +navbar-system
+  +navbar-system-borders($color-black, $color-green, $color-green,  $color-light-white)

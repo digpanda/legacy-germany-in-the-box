@@ -94,16 +94,6 @@ module ApplicationHelper
     }
   end
 
-  def gen_load_default_image_js
-    %Q{
-      $( function(){
-          $("img").one("error", function(e){
-              $(this).attr('src',"#{image_url('no_image_available.jpg')}");
-          });
-      });
-    }
-  end
-
   def inside_layout(layout = 'application', &block)
     render :inline => capture_haml(&block), :layout => "layouts/#{layout}"
   end

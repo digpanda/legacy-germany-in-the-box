@@ -11,6 +11,19 @@ production:
     use_activesupport_time_zone: true
     raise_not_found_error: false
 
+staging:
+  clients:
+    default:
+      database: a_chat_development # We could login to the production database for real test
+      hosts:
+        - dogen.mongohq.com:10020
+      options:
+        user: achat
+        password: achat2cool
+  options:
+    use_activesupport_time_zone: true
+    raise_not_found_error: false
+
 development:
   clients:
     default:

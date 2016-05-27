@@ -1,29 +1,47 @@
 <!-- Slider -->
+<!--
 <div class="row slider">
 
-  <%= render partial: "pages/slider" %>
+  = render partial: "pages/slider"
 
 </div>
+-->
+<!-- Slider -->
+<!--
+<div class="row home-steps">
 
-<!-- Products List -->
-<div class="products-list">
-
-  <% if seems_like_a_customer? %>
-
-  <div class="row">
-    <h1>Our best selection ...</h1>
+  <div class="+centered">
+    <h1 style="color:white;">
+    HERE WE SHOW 3 COOL STEPS
+    </h1>
   </div>
 
-  <div class="+spacer"></div>
+</div>
+-->
 
-  <div class="row">
+<% if seems_like_a_customer? %>
+
+  <div class="+centered"><h2>This part of the website isn't ready yet</h2></div>
+
+  <!--
+  = render partial: "shops/shops_list", :locals => { :shops => @shops }
+  -->
+
+  <!-- Products List -->
+<!--
+  <div class="row products-list">
+
+    <div class="+spacer"></div>
 
     <div class="col-md-10 col-md-push-1 col-md-pull-1">
-      <%= render partial: "products/products_list", :locals => { :products => @products } %>
+       render partial: "products/products_list", :locals => { :products => @products }
     </div>
 
+    
   </div>
+-->
+<% else %>
 
-  <% end %>
-  
-</div>
+  <%= render "pages/home_marketplace" %>
+
+<% end %>

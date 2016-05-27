@@ -49,8 +49,8 @@ class UsersController < ApplicationController
   def edit_account
     if current_user.id.to_s == @user.id.to_s
       render :edit_account
-    elsif current_user.role == :admin
-      render :edit_account_by_admin
+    elsif current_user.is_admin?
+      render 'users/admin/edit_account_by_admin'
     end
   end
 
@@ -107,7 +107,7 @@ class UsersController < ApplicationController
           format.json { render json: @user.errors, status: :unprocessable_entity }
         end
       end
-    elsif current_user.role == :admin
+    elsif current_user.is_admin?
       if ups[:password] && @user.update(ups.except(:email))
         respond_to do |format|
           format.html {

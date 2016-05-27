@@ -46,7 +46,13 @@ class ApplicationController < ActionController::Base
 
   def set_session_locale
     session[:locale] = params[:locale]
-    redirect_to request.referer
+
+    if request.referer.nil?
+      redirect_to root_url and return
+    else
+      redirect_to request.referer and return
+    end
+
   end
 
   protected
@@ -62,22 +68,19 @@ class ApplicationController < ActionController::Base
   end
   
   def current_order(shop_id)
-    @current_orders ||= {}
-    session[:order_ids] ||= {}
-
-    @current_orders[shop_id] ||= begin
+    @current_order ||= begin
       if has_order?(shop_id)
         order = Order.find(session[:order_ids][shop_id])
       end
 
       unless order
         order = Order.create
-        session[:order_ids][shop_id] = order.id
+        session[:order_ids][shop_id] = order.id.to_s
       end
 
       if user_signed_in?
-        if [:shopkeeper, :admin].include?(current_user.role)
-          @current_orders.values.each do |o|
+        unless current_user.is_customer?
+          current_orders.values.each do |o|
             o.order_items.delete_all
             o.delete
           end
@@ -93,6 +96,7 @@ class ApplicationController < ActionController::Base
 
   def current_cart(shop_id)
     cart = Cart.new
+
     current_order(shop_id).order_items.each do |i|
         cart.add(i.sku, i.quantity)
     end
@@ -108,11 +112,11 @@ class ApplicationController < ActionController::Base
   end
 
   def has_order?(shop_id)
-     session[:order_ids] ? session[:order_ids][shop_id].present? : false
+    session[:order_ids][shop_id].present? if (session[:order_ids] ||= {})
   end
 
   def current_orders
-    @current_orders ||= session[:order_ids].map { |sid, oid| [Shop.find(sid), Order.find(oid)].compact unless sid.empty? }.compact.uniq.reject(&:empty?)
+    @current_orders ||= session[:order_ids].compact.delete_if { |_, oid| oid.blank? } .map { |sid, oid| [sid, Order.find(oid)] }
   end
 
   def current_carts
@@ -137,19 +141,19 @@ class ApplicationController < ActionController::Base
   end
 
   def total_number_of_products
-    @total_number ||= session[:order_ids] ? current_orders.inject(0) { |sum, so| sum += so.compact[1].total_amount } : 0
+    @total_number ||= (session[:order_ids] == nil || session[:order_ids].empty?) ?  0 : current_orders.inject(0) { |sum, so| sum += so.compact[1].total_amount }
   end
 
   def after_sign_in_path_for(resource)
-    if current_user.role == :customer
+    if current_user.is_customer?
       root_path
-    elsif current_user.role == :shopkeeper
+    elsif current_user.is_shopkeeper?
       if current_user.shop && (not current_user.shop.agb)
         edit_producer_shop_path(current_user.shop.id, :user_info_edit_part => :edit_producer)
       else
         edit_setting_shop_path(current_user.shop.id, :user_info_edit_part => :edit_shop)
       end
-    elsif current_user.role == :admin
+    elsif current_user.is_admin?
       shops_path(:user_info_edit_part => :edit_shops)
     end
   end
@@ -164,15 +168,15 @@ class ApplicationController < ActionController::Base
     if params[:locale]
       I18n.locale = params[:locale]
     else
-      if current_user and current_user.role == :customer
+      if current_user&.is_customer?
         if 'zh' == extract_locale
           I18n.locale = :'zh-CN'
         else
           I18n.locale = :de
         end
-      elsif current_user and current_user.role == :shopkeeper
+      elsif current_user&.is_shopkeeper?
         I18n.locale = :de
-      elsif current_user and current_user.role == :admin
+      elsif current_user&.is_admin?
         I18n.locale = :'zh-CN'
       else
         if 'zh' == extract_locale

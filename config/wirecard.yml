@@ -11,16 +11,22 @@ defaults: &defaults
   customers:
     hosted_payment_url: https://sandbox-engine.thesolution.com/engine/hpp/
     default_redirect_url: https://sandbox-engine.thesolution.com/shop/complete.jsp
-    success_redirect_url : http://local.dev:3000/orders/checkout_success
-    fail_redirect_path : http://local.dev:3000/orders/checkout_fail
+    success_redirect_url : http://localhost:3000/orders/checkout_success
+    fail_redirect_path : http://localhost:3000/orders/checkout_fail
     psp_name: demo
     payment_method: upop
     transaction_type: debit
+
+local:
+  <<: *defaults
 
 development:
   <<: *defaults
 
 test:
+  <<: *defaults
+
+staging:
   <<: *defaults
 
 production:

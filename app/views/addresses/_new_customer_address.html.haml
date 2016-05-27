@@ -10,9 +10,9 @@
           = f.text_field :fname, :value => current_user.fname, :class => 'form-control', :style => 'width:168px', :required => true, :placeholder => I18n.t(:fname, scope: :edit_address)
       .form-inline
         .form-group
-          = f.text_field :mobile, :value => current_user.mobile, :class => 'form-control', :style => 'width:168px', :required => true, :placeholder => I18n.t(:mobile, scope: :edit_address), :pattern => I18n.t(:mobile, scope: :validation, locale: :'zh-CN'), :placeholder => '13802049772'
+          = f.text_field :mobile, :value => current_user.mobile, :class => 'form-control', :style => 'width:168px', :required => true, :pattern => I18n.t(:mobile, scope: :validation, locale: :'zh-CN'), :placeholder => '13802049772'
         .form-group
-          = f.text_field :tel, :value => current_user.tel, :class => 'form-control', :style => 'width:168px', :placeholder => I18n.t(:tel, scope: :edit_address), :pattern => I18n.t(:tel, scope: :validation, locale: :'zh-CN'), :placeholder => '0571-12343434'
+          = f.text_field :tel, :value => current_user.tel, :class => 'form-control', :style => 'width:168px', :pattern => I18n.t(:tel, scope: :validation, locale: :'zh-CN'), :placeholder => '0571-12343434'
     .form-group
       .form-inline
         .form-group

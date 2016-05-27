@@ -59,6 +59,7 @@ de:
     shops: Shops
     categories: Produktkategorien
     payments: Zahlungen
+    settings: Konfiguraiton
   footer:
     copyright: © DigPanda GmbH 2015-2016
     rheinmanufaktur: Rhein-Manufaktur
@@ -213,6 +214,10 @@ de:
     add_product_ko: Der Vorrat reicht momentan leider nicht.
     adjust_product_ok: Die Anzahl der Produkte wurde erfolgreich geändert.
     adjust_product_ko: Der Vorrat reicht momentan leider nicht.
+    link_tracking: Sendung verfolgen
+    open: Öffnen
+    paying: in Zahlung
+    success: Erstellt
   edit_collection:
     new: Favorit erstellen
     edit: Ändern
@@ -384,6 +389,7 @@ de:
     quantity: Verfügbarkeit
     duty_category: Zoll-Kategorie
     duty_category_info: Die Zuordnung der Käufer-Kategorien ist von dem Zoll in China gefordert.
+    status: Eingestellt
   edit_product_new:
     create_ok: Das Produkt wurde erfolgreich erstellt.
     create_ko: Ein Fehler ist beim
@@ -501,13 +507,14 @@ de:
     subtotal: Preis
     shipping: Tranport
     taxes: Steuer
-    total_price: Gesamter
+    total_price_in_euro: Gesamter(EUR)
     update_cart: Einkaufswagen ändern
     set_delivery_destination: Anschrift auswählen
     variant_option: Variante
     shop: Shop
     shipping_cost: Versendungskosten
     duty_cost: Zollgebühren
+    total_price_in_yuan: Gesamter
   checkout:
     my_destination: Anlieferungsanschrift
     setup_delivery_destination: Bitte Anschrift auswählen
@@ -534,3 +541,7 @@ de:
     buyer: Käufer
     amount: Summe
     action: Operation
+  edit_settings:
+    exchange_rate_to_yuan: Wechselkurs zu Yuan
+    exchange_rate_to_yuan_confirmation: Wechselkurs zu Yuan Wiederholen
+    save: Speichern

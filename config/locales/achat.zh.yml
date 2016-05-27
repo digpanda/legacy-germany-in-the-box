@@ -59,6 +59,7 @@ zh-CN:
     shops: 店铺管理
     categories: 产品目录管理
     payments: 支付管理
+    settings: 平台设置
   footer:
     copyright: 版权所有：莱茵工场 © 2016
     rheinmanufaktur: 莱茵工场
@@ -213,6 +214,10 @@ zh-CN:
     add_product_ko: 产品缺货中
     adjust_product_ok: 产品数量修改成功
     adjust_product_ko: 产品缺货中
+    link_tracking: 物流查询
+    open: 打开
+    paying: 等待付款
+    success: 下单成功
   edit_collection:
     new: 新建收藏夹
     edit: 修改
@@ -380,6 +385,7 @@ zh-CN:
     quantity: 数量
     duty_category: 报关产品分类
     duty_category_info: 明确的报关产品归类更好的对产品进行物流。
+    status: 上架
   edit_product_new:
     create_ok: 产品成功创建
     create_ko: 产品创建失败
@@ -495,13 +501,14 @@ zh-CN:
     subtotal: 产品总价
     shipping: 运费
     taxes: 税
-    total_price: 总计
+    total_price_in_euro: 总计(欧元)
     update_cart: 更新购物车
     set_delivery_destination: 确定收货地址
     variant_option: 系列型号
     shop: 店铺名称
     shipping_cost: 物流费用
     duty_cost: 海关税费
+    total_price_in_yuan: 总计
   checkout:
     my_destination: 收货地址
     setup_delivery_destination: 请您指定收货地址
@@ -528,3 +535,7 @@ zh-CN:
     buyer: 买家
     amount: 总计
     action: 操作
+  edit_settings:
+    exchange_rate_to_yuan: 欧元对人民币汇率
+    exchange_rate_to_yuan_confirmation: 重复欧元对人民币汇率
+    save: 保存

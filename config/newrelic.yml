@@ -1,0 +1,36 @@
+#
+# This file configures the New Relic Agent.  New Relic monitors Ruby, Java,
+# .NET, PHP, Python and Node applications with deep visibility and low
+# overhead.  For more information, visit www.newrelic.com.
+#
+# Generated May 22, 2016, for version 3.15.2.317
+#
+# For full documentation of agent configuration options, please refer to
+# https://docs.newrelic.com/docs/agents/ruby-agent/installation-configuration/ruby-agent-configuration
+
+common: &default_settings
+  license_key: 6402e613689416aeb21d9681d6926980801eb118
+  app_name: Germany in the Box
+  agent_enabled: true
+  log_level: info
+  disable_mongodb: false
+  monitor_mode: true
+
+development:
+  <<: *default_settings
+  app_name: Germany in the Box (Development)
+  developer_mode: true
+
+test:
+  <<: *default_settings
+  app_name: Germany in the Box (Test)
+  monitor_mode: false
+
+staging:
+  <<: *default_settings
+  app_name: Germany in the Box (Staging)
+  developer_mode: true
+
+production:
+  <<: *default_settings
+  app_name: Germany in the Box (Production)
