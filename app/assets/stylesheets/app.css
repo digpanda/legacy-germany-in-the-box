@@ -158,16 +158,19 @@
   background-color: #fdfdfd;
   padding-top: 1em;
   padding-bottom: 1em; }
+  /* line 7, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_main-header.sass */
+  .main-header a {
+    width: 100%; }
   /* line 76, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
   .main-header__logo {
     color: #666; }
-    /* line 9, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_main-header.sass */
+    /* line 12, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_main-header.sass */
     .main-header__logo img {
       max-width: 200px; }
   /* line 76, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
   .main-header__avatar {
     margin-top: -0.5em; }
-    /* line 14, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_main-header.sass */
+    /* line 17, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_main-header.sass */
     .main-header__avatar img {
       border-radius: 25px;
       width: 50px; }
@@ -175,7 +178,7 @@
   .main-header__likes {
     font-size: 14px;
     color: #666; }
-    /* line 21, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_main-header.sass */
+    /* line 24, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_main-header.sass */
     .main-header__likes i {
       font-size: 20px;
       display: block;
@@ -185,7 +188,7 @@
     font-size: 14px;
     color: #666;
     display: block; }
-    /* line 30, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_main-header.sass */
+    /* line 33, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_main-header.sass */
     .main-header__account i {
       font-size: 20px;
       display: block;
@@ -194,7 +197,7 @@
   .main-header__cart {
     font-size: 14px;
     color: #666; }
-    /* line 38, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_main-header.sass */
+    /* line 41, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_main-header.sass */
     .main-header__cart i {
       font-size: 20px;
       display: block;
