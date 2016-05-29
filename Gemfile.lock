@@ -89,6 +89,9 @@ GEM
       activesupport (>= 3.2.0)
       json (>= 1.7)
       mime-types (>= 1.16)
+    carrierwave-ftp (0.2.8)
+      carrierwave (>= 0.6.2)
+      net-sftp (~> 2.1.2)
     carrierwave-mongoid (0.8.1)
       carrierwave (>= 0.8.0, < 0.11.0)
       mongoid (>= 3.0, < 6.0)
@@ -242,6 +245,8 @@ GEM
     multi_xml (0.5.5)
     multipart-post (2.0.0)
     net-scp (1.2.1)
+      net-ssh (>= 2.6.5)
+    net-sftp (2.1.2)
       net-ssh (>= 2.6.5)
     net-ssh (3.1.1)
     netrc (0.11.0)
@@ -419,6 +424,7 @@ DEPENDENCIES
   capistrano-rails
   capistrano-rvm
   capybara
+  carrierwave-ftp
   carrierwave-mongoid
   carrierwave-qiniu
   china_city

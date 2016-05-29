@@ -50,6 +50,7 @@ gem 'bootstrap-datepicker-rails'
 gem "bootstrap-validator-rails"
 gem "abstract_method"
 gem "mongoid_magic_counter_cache"
+gem 'carrierwave-ftp', :require => 'carrierwave/storage/ftp' # FTP only
 
 gem "newrelic_rpm"
 gem "newrelic_moped"

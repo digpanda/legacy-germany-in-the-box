@@ -8,4 +8,10 @@
   config.qiniu_block_size     = 4*1024*1024
   config.qiniu_protocol       = 'http'
   config.qiniu_up_host        = 'http://up.qiniug.com'
+
+  config.ftp_host = '84.200.54.181'
+  config.ftp_port = 1348
+  config.ftp_user = 'ftp'
+  config.ftp_passwd = 'doNotAllowRetryMoreThan019'
+  config.ftp_folder = '/files'
 end
