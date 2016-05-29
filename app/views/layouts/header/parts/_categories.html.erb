@@ -8,7 +8,7 @@
 
       <a href="<%= show_products_in_category_path(category.id) %>"><%= category.name %></a>
 
-      <% if !category.children.empty? %>
+      <% if @category_navigation_store.has_children?(category) %>
         <ul>
           <%= @category_navigation_store.sub_tree(category) %>
         </ul>

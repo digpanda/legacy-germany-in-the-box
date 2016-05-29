@@ -19,11 +19,11 @@ class CategoryNavigationStore
     end.html_safe
   end
 
-  private
-
   def has_children?(category)
     categories_by_parent[category.id.to_s].any?
   end
+
+  private
 
   def children(category)
     categories_by_parent[category.id.to_s]
