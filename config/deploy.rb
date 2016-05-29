@@ -4,15 +4,6 @@ lock '3.5.0'
 set :application, 'germany_in_the_box'
 set :repo_url, 'https://digpanda:achat2cool@bitbucket.org/digpanda/achat-backend-main.git'
 
-set :rvm_ruby_version, '2.3.0'
-set :rvm_type, :user
-set :rvm_customer_path, '/usr/share/rvm/bin/rvm'
-
-set :nvm_node, 'v5.0.0'
-set :nvm_type, :user
-set :nvm_map_bins, %w{node npm}
-set :nvm_custom_path, '/home/ubuntu/.nvm'
-
 set :passenger_environment_variables, { :path => '/usr/bin:$PATH' }
 set :passenger_restart_command, '/usr/bin/passenger-config restart-app'
 
