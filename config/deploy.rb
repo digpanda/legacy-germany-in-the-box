@@ -8,6 +8,11 @@ set :rvm_ruby_version, '2.3.0'
 set :rvm_type, :user
 set :rvm_customer_path, '/usr/share/rvm/bin/rvm'
 
+set :nvm_node, 'v5.0.0'
+set :nvm_type, :user
+set :nvm_map_bins, %w{node npm}
+set :nvm_custom_path, '/home/ubuntu/.nvm'
+
 set :passenger_environment_variables, { :path => '/usr/bin:$PATH' }
 set :passenger_restart_command, '/usr/bin/passenger-config restart-app'
 
@@ -51,6 +56,7 @@ namespace :deploy do
     on roles(:web), in: :groups, limit: 3, wait: 10 do
 
       # brunch
+      # execute "alias node=/home/ubuntu/.nvm/v5.0.0/bin/node | node -v" # we artifically set the node version
       # execute "cd /var/www/germany_in_the_box/current/app_front | brunch build --production"
 
       # Here we can do anything such as:

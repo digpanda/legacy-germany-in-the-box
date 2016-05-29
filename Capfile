@@ -9,6 +9,7 @@ require 'capistrano/passenger'
 require 'capistrano/rails/assets'
 require 'capistrano/rails/migrations'
 require 'capistrano/rvm'
+require 'capistrano/nvm'
 
 # Include tasks from other gems included in your Gemfile
 #
