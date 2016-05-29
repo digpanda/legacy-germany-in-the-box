@@ -131,7 +131,7 @@ class Shop
   end
 
   def self.with_buyable_products
-    self.in(id: Product.buyable.map {|p| p.shop.id } ).all
+    self.in(id: Product.buyable.map {|p| p.shop_id } ).all
   end
 
 end
