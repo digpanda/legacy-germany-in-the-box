@@ -7,7 +7,7 @@ set :rvm_type, :user
 set :rvm_custom_path, '/usr/share/rvm'
 
 set :ssh_options, {
-  keys: %w(../private/production/digpanda-prod),
+  keys: %w(../private/production/digpanda-prod.pem),
   forward_agent: true,
   auth_methods: %w(publickey, password)
 }
