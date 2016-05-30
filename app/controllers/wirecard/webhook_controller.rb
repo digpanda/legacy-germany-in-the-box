@@ -36,11 +36,12 @@ class Wirecard::WebhookController < ApplicationController
 
       devlog.info "System is done."
 
-      render text: "Ok" and return
+
+      render status: 200, json: {success: true}.to_json and return
 
     end
     
-    render text: "Not ok" and return
+    render status: 500, json: {success: false}.to_json and return
 
   end
 
