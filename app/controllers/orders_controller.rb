@@ -196,8 +196,6 @@ class OrdersController < ApplicationController
 
     status = order.update_for_checkout!(current_user, params[:delivery_destination_id], cart.border_guru_quote_id, cart.shipping_cost, cart.tax_and_duty_cost)
 
-    binding.pry
-
     if status
       @wirecard = PrepareOrderForWirecardCheckout.perform({
 
@@ -215,8 +213,9 @@ class OrdersController < ApplicationController
   def checkout_success
     checkout_callback
 
-    order = Rails.env.production? ? current_order(params[:merchant_account_id]) : current_orders.first[1]
-    shop = Rails.env.production? ? Shop.find(params[:merchant_account_id]) : order.order_items.first.sku.product.shop
+    op = OrderPayment.where(:request_id => params[:request_id]).first
+    order = op.order
+    shop = order.order_items.first.sku.product.shop
 
     shipping = BorderGuru.get_shipping(
         order: order,
@@ -275,7 +274,7 @@ class OrdersController < ApplicationController
   end
 
   def destroy
-    shop_id = @order.order_items.first.product.shop.id.to_s
+    shop_id = @order.order_items.first.sku.product.shop.id.to_s
     session[:order_ids].delete(shop_id)
 
     if @order && @order.status == :new && @order.order_items.delete_all && @order.delete
