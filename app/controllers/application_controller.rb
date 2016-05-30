@@ -116,7 +116,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_orders
-    @current_orders ||= session[:order_ids].compact.delete_if { |_, oid| oid.blank? } .map { |sid, oid| [sid, Order.find(oid)] }
+    @current_orders ||= session[:order_ids].compact.delete_if { |_, oid| oid.blank? } .map { |sid, oid| [sid, Order.find(oid)] }.to_h
   end
 
   def current_carts

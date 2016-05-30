@@ -28,7 +28,7 @@
             .panel-heading
               %h4
                 = I18n.t(:shop, scope: :cart) + ': '
-                = link_to s.name, shop_path(s)
+                = link_to @shops[s][:name], shop_path(s)
             .panel-body
               .col-md-9
                 = render partial: 'cart', locals: {order: o, s: s}

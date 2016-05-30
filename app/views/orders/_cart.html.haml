@@ -8,7 +8,7 @@
 
 
 - for_device_type :desktop, :tablet do
-  = form_tag adjust_skus_amount_orders_path(s.id), :id => 'orders_adjust_products_amount', :method => :patch do
+  = form_tag adjust_skus_amount_orders_path(s), :id => 'orders_adjust_products_amount', :method => :patch do
     %table.table.cart-table
       %thead
         %tr

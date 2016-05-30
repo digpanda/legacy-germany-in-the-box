@@ -25,6 +25,7 @@ class OrdersController < ApplicationController
 
   def manage_cart
     @readonly = false
+    @shops = Shop.only(:name).where(:id.in => current_orders.keys).map { |s| [s.id.to_s, {:name => s.name}]}.to_h
     @carts = current_carts
   end
 
@@ -131,13 +132,14 @@ class OrdersController < ApplicationController
 
   def checkout
     shop_id = params[:shop_id]
+
     cart = current_cart(shop_id)
+    order = current_order(shop_id)
 
     all_products_available = true;
-    shop_total_prices = {}
+    products_total_price = 0
     product_name = nil
     sku = nil
-    order = current_order(shop_id)
 
     order.order_items.each do |oi|
       product = oi.product
@@ -145,16 +147,10 @@ class OrdersController < ApplicationController
 
       if (not sku.limited) or sku.quantity >= oi.quantity
         all_products_available = true
-
-        if shop_total_prices[product.shop]
-          shop_total_prices[product.shop][:value] += sku.price * oi.quantity
-        else
-          shop_total_prices[product.shop] = { value: sku.price * oi.quantity }
-        end
+        products_total_price += sku.price * oi.quantity
       else
         all_products_available = false
         product_name = product.name
-
         break
       end
     end
@@ -176,10 +172,13 @@ class OrdersController < ApplicationController
       return
     end
 
-    shop, total_price = shop_total_prices.detect { |s, t| t[:value] < s.min_total }
+    @shop = Shop.only(:currency, :min_total, :name).find(shop_id)
 
-    if shop
-      msg = I18n.t(:not_all_min_total_reached, scope: :checkout, :shop_name => shop.name, :total_price => total_price[:value], :currency => shop.currency.code, :min_total => shop.min_total)
+    if products_total_price < @shop.min_total
+      tp = "%.2f #{products_total_price * Settings.instance.exchange_rate_to_yuan}"
+      mt = "%.2f #{@shop.min_total * Settings.instance.exchange_rate_to_yuan}"
+
+      msg = I18n.t(:not_all_min_total_reached, scope: :checkout, :shop_name => @shop.name, :total_price => tp, :currency => Settings.instance.platform_currency.symbol, :min_total => mt)
 
       respond_to do |format|
         format.html {
