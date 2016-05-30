@@ -9,7 +9,7 @@ set :rvm_custom_path, '/home/digpanda/.rvm'
 set :nvm_node, 'v5.0.0'
 set :nvm_type, :user
 set :nvm_map_bins, %w{node npm}
-set :nvm_custom_path, '/home/digpanda/.nvm'
+# set :nvm_custom_path, '/home/digpanda/.nvm'
 
 set :ssh_options, {
   keys: %w(../private/production/digpanda-prod.pem),
