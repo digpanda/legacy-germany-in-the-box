@@ -217,30 +217,6 @@ class ProductsController < ApplicationController
 
     @products = Product.search(@query)
 
-=begin
-    founded_products = AppCache.get_products_from_search_cache_for_term( params[:products_search_keyword] )
-
-    tags_product_ids        = founded_products[:tags]
-    products_product_ids    = founded_products[:products]
-    categories_product_ids  = founded_products[:categories]
-    brands_product_ids      = founded_products[:brands]
-
-    @products = tags_product_ids + products_product_ids + categories_product_ids + brands_product_ids
-    @products = @products.compact.uniq
-    @products = @products.compact.uniq.paginate( :pages => (params[:pages] ? params[:pages].to_i : 1), :per_page => Rails.configuration.limit_for_products_search)
-
-    respond_to do |format|
-      format.html {
-        @categories_and_children, @categories_and_counters = AppCache.get_category_values_for_left_menu(@products)
-        render :index
-      }
-
-      format.json {
-        render :search
-      }
-    end
-=end
-
   end
 
   def popular
