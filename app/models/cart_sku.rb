@@ -22,14 +22,13 @@ class CartSku
     current_order_item = OrderItem.new
 
     current_order_item.price = sku.price
-    current_order_item.quantity = 2
+    current_order_item.quantity = sku.quantity
     current_order_item.weight = sku.weight
     current_order_item.product = sku.product
     current_order_item.product_name = sku.product.name
     current_order_item.sku_id = sku.id.to_s
     current_order_item.option_ids = sku.option_ids
     current_order_item.option_names = get_options(sku)
-    current_order_item.quantity = quantity_in_cart
 
     current_order_item
   end

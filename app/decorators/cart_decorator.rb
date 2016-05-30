@@ -11,7 +11,7 @@ class CartDecorator < Draper::Decorator
   end
 
   def total_in_yuan
-    sum = (shipping_cost + tax_and_duty_cost + cart_skus.inject(0) { |sum, s| sum += s.price }) * Settings.instance.exchange_rate_to_yuan
+    sum = (shipping_cost + tax_and_duty_cost + cart_skus.inject(0) { |sum, s| sum += (s.price * s.quantity) }) * Settings.instance.exchange_rate_to_yuan
     sum.round(2)
   end
 

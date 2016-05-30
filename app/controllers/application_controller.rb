@@ -71,6 +71,11 @@ class ApplicationController < ActionController::Base
     @current_order ||= begin
       if has_order?(shop_id)
         order = Order.find(session[:order_ids][shop_id])
+
+        if order.status == :success
+          session[:order_ids].delete(shop_id)
+          order = nil
+        end
       end
 
       unless order
@@ -80,10 +85,8 @@ class ApplicationController < ActionController::Base
 
       if user_signed_in?
         unless current_user.is_customer?
-          current_orders.values.each do |o|
-            o.order_items.delete_all
-            o.delete
-          end
+          order.order_items.delete_all
+          order.delete
         else
          order.user = current_user unless order.user
          order.save
@@ -98,7 +101,7 @@ class ApplicationController < ActionController::Base
     cart = Cart.new
 
     current_order(shop_id).order_items.each do |i|
-        cart.add(i.sku, i.quantity)
+      cart.add(i.sku, i.quantity)
     end
 
     BorderGuru.calculate_quote(
@@ -112,11 +115,11 @@ class ApplicationController < ActionController::Base
   end
 
   def has_order?(shop_id)
-    session[:order_ids][shop_id].present? if (session[:order_ids] ||= {})
+    session[:order_ids].delete_if{ |k,v| k.nil? || v.nil?}[shop_id].present? if (session[:order_ids] ||= {})
   end
 
   def current_orders
-    @current_orders ||= session[:order_ids].compact.delete_if { |_, oid| oid.blank? } .map { |sid, oid| [sid, Order.find(oid)] }.to_h
+    @current_orders ||= session[:order_ids].keys.compact.map { |sid| [sid, current_order(sid)] }.to_h
   end
 
   def current_carts
