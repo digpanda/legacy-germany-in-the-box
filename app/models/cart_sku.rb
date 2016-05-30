@@ -22,7 +22,7 @@ class CartSku
     current_order_item = OrderItem.new
 
     current_order_item.price = sku.price
-    current_order_item.quantity = sku.quantity
+    current_order_item.quantity = sku.quantity_in_cart
     current_order_item.weight = sku.weight
     current_order_item.product = sku.product
     current_order_item.product_name = sku.product.name
