@@ -17,11 +17,19 @@ var Search = {
      */
     searchableInput: function() {
 
-      $("search-form").submit(function(e) {
+      $(document).on('submit', '#search-form' ,function(e){
 
-        e.preventDefault();
-        console.log('yes it clicked');
-        
+        let search = $('#search').val();
+
+        /**
+         * If the research is empty it doesn't trigger the submit
+         */
+        if (!search.trim()) {
+          return false;
+        } else {
+          return true;
+        }
+
       });
 
     },

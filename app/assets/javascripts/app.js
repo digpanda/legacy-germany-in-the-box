@@ -713,7 +713,7 @@ module.exports = ProductLightbox;
 });
 
 require.register("javascripts/starters/search.js", function(exports, require, module) {
-"use strict";
+'use strict';
 
 /**
  * Search Class
@@ -733,10 +733,18 @@ var Search = {
    */
   searchableInput: function searchableInput() {
 
-    $("search-form").submit(function (e) {
+    $(document).on('submit', '#search-form', function (e) {
 
-      e.preventDefault();
-      console.log('yes it clicked');
+      var search = $('#search').val();
+
+      /**
+       * If the research is empty it doesn't trigger the submit
+       */
+      if (!search.trim()) {
+        return false;
+      } else {
+        return true;
+      }
     });
   }
 
