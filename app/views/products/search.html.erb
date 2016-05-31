@@ -1,24 +1,25 @@
 <!-- Search results -->
-<div class="products-list">
+<div class="products-list col-md-8 col-md-push-2 col-md-pull-2">
 
   <div class="row">
-    <h1>Results for <span class="+quoted">"<%= @query %>"</span> ...</h1>
+    <h2>Results for <span class="+quoted">"<%= @query %>"</span> ...</h2>
   </div>
-
-  <div class="+spacer"></div>
 
   <div class="row">
 
     <% if @products.count > 0 %>
 
-    <div class="col-md-10 col-md-push-1 col-md-pull-1">
-      <%= render partial: "products/products_list", :locals => { :products => @products } %>
-    </div>
+    <div class="+spacer"></div>
+    <%= render partial: "products/products_list", :locals => { :products => @products } %>
 
     <% else %>
 
     <!-- We should improve this and all the "no result" texts -->
-    <%= I18n.t(:no_product, scope: :search) %>
+    <div class="message">
+      <div class="message__simple">
+        <%= I18n.t(:no_product, scope: :search) %>
+      </div>
+    </div>
 
     <% end %>
 

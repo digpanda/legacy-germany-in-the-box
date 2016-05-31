@@ -1,6 +1,6 @@
 <div class="row">
-  <!-- Data needed for the payment service -->
-  <%= content_tag(:div, nil, :id => "bank-details", :data => @wirecard.hosted_payment_datas) %>
+  <!-- Data needed for the payment checkout -->
+  <%= content_tag(:div, nil, :id => "bank-details", :data => @wirecard.hosted_payment_datas.compact) %>
 </div>
 
 <div class="row message">

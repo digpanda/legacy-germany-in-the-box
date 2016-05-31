@@ -39,7 +39,7 @@ module ApplicationHelper
       function validateImgFile(inputFile) {
         var maxExceededMessage = "#{I18n.t(:max_exceeded_message, scope: :image_upload)}";
         var extErrorMessage = "#{I18n.t(:ext_error_message, scope: :image_upload)}";;
-        var allowedExtension = ["jpg", "JPG", jpeg", "JPEG", png", "PNG"];
+        var allowedExtension = ["jpg", "JPG", "jpeg", "JPEG", "png", "PNG"];
 
         var extName;
         var maxFileSize = 1048576;

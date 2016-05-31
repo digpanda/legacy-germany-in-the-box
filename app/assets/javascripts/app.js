@@ -713,7 +713,7 @@ module.exports = ProductLightbox;
 });
 
 require.register("javascripts/starters/search.js", function(exports, require, module) {
-"use strict";
+'use strict';
 
 /**
  * Search Class
@@ -733,36 +733,19 @@ var Search = {
    */
   searchableInput: function searchableInput() {
 
-    var self = this;
+    $(document).on('submit', '#search-form', function (e) {
 
-    $("#js-search-click").on("click", function () {
-      self.showSearcher();
+      var search = $('#search').val();
+
+      /**
+       * If the research is empty it doesn't trigger the submit
+       */
+      if (!search.trim()) {
+        return false;
+      } else {
+        return true;
+      }
     });
-
-    $(document).click(function () {
-      self.showClicker();
-    });
-
-    $("#js-search-input").click(function (e) {
-      e.stopPropagation();
-    });
-
-    $("#js-search-click").click(function (e) {
-      e.stopPropagation();
-    });
-  },
-
-  showClicker: function showClicker() {
-
-    $("#js-search-input").hide();
-    $("#js-search-click").show();
-  },
-
-  showSearcher: function showSearcher() {
-
-    $("#js-search-click").hide();
-    $("#js-search-input").show();
-    $("#js-search-input #search").focus();
   }
 
 };

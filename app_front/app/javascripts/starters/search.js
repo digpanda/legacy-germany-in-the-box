@@ -17,40 +17,22 @@ var Search = {
      */
     searchableInput: function() {
 
-      var self = this;
+      $(document).on('submit', '#search-form' ,function(e){
 
-      $("#js-search-click").on("click", function() {
-        self.showSearcher();
-      });
+        let search = $('#search').val();
 
-      $(document).click(function() {
-        self.showClicker();
-      });
+        /**
+         * If the research is empty it doesn't trigger the submit
+         */
+        if (!search.trim()) {
+          return false;
+        } else {
+          return true;
+        }
 
-      $("#js-search-input").click(function(e) {
-        e.stopPropagation(); 
-      });
-      
-      $("#js-search-click").click(function(e) {
-        e.stopPropagation();
       });
 
     },
-
-    showClicker: function() {
-
-      $("#js-search-input").hide();
-      $("#js-search-click").show();
-
-    },
-
-    showSearcher: function() {
-
-      $("#js-search-click").hide();
-      $("#js-search-input").show();
-      $("#js-search-input #search").focus();
-
-    }
 
 }
 
