@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
 
+  if Rails.env.production?
+    get '404', to: 'errors#page_not_found'
+    get '422', to: 'errors#server_error'
+    get '500', to:  'errors#server_error'
+  end
+
   devise_for :users, :controllers => { registrations: "registrations", sessions: "sessions" }
 
   devise_scope :user do

@@ -32,6 +32,9 @@ module AChat
     #config.active_record.raise_in_transactional_callbacks = true
     
     #config.assets.precompile = []
+    
+    # Customized error handling
+    config.exceptions_app = self.routes
 
     config.autoload_paths += %W(#{config.root}/lib)
     config.autoload_paths += %W(#{config.root}/services)

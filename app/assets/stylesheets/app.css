@@ -86,6 +86,19 @@
 #csstyle .\+menu-bordering {
   border-right: 1px solid #eeeeee; }
 
+/* line 3, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_page-error.sass */
+.page-error img {
+  width: 450px; }
+
+/* line 6, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_page-error.sass */
+.page-error a {
+  font-family: Raleway, sans-serif;
+  font-size: 20px;
+  color: #fdfdfd; }
+  /* line 10, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_page-error.sass */
+  .page-error a:hover {
+    color: #fdfdfd; }
+
 /* line 32, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
 .category-menu {
   line-height: 2;

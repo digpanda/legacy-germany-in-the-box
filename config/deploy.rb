@@ -48,7 +48,7 @@ namespace :deploy do
 
       # brunch
       # execute "alias node=/home/ubuntu/.nvm/v5.0.0/bin/node | node -v" # we artifically set the node version
-      # execute "cd /var/www/germany_in_the_box/current/app_front | brunch build --production"
+      execute "cd /var/www/germany_in_the_box/current/app_front | brunch build --production"
 
       # Here we can do anything such as:
       # within release_path do
