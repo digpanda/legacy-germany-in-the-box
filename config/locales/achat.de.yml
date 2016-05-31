@@ -523,6 +523,7 @@ de:
     checkout_ko: Ein Fehler ist bei der Durchführung des Auftrags aufgetreten.
     not_all_available: Der Vorrat des Products %{product_name} reicht momentan nicht. Bitte versuchen Sie später order reduzieren die Stückanzahl.
     not_all_min_total_reached: Ihr Einkauf bei %{shop_name} beträgt insgesamt %{total_price} %{currency} und es ist weniger als das Mindestbestellwert %{min_total} %{currency} des Online-Shops. Bitte erhöhen Sie die Einkaufsumme bei dem Shop.
+    redirect_to_payment: Der Prozess wird an unseren Zahlungspartnern weitergeleitet.
   edit_categories:
     operations: Aktionen
     remove: Entfernen
@@ -545,3 +546,5 @@ de:
     exchange_rate_to_yuan: Wechselkurs zu Yuan
     exchange_rate_to_yuan_confirmation: Wechselkurs zu Yuan Wiederholen
     save: Speichern
+  search:
+    no_product: keine entsprechende Produkte vorhanden

@@ -14,9 +14,10 @@
 
     <% else %>
 
+    <!-- We should improve this and all the "no result" texts -->
     <div class="message">
       <div class="message__simple">
-        No result found
+        <%= I18n.t(:no_product, scope: :search) %>
       </div>
     </div>
 
