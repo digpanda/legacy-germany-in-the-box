@@ -517,6 +517,7 @@ zh-CN:
     checkout_ko: 下单失败
     not_all_available: 产品： %{product_name}, 型号： (%{option_names}) 缺货中, 请您稍后再试或者减少这个产品订货数量
     not_all_min_total_reached: 您在 %{shop_name} 的购物额为 %{total_price} %{currency} 没有达到最小交易值 %{min_total} %{currency}, 请您增加您这个店铺的交易额
+    redirect_to_payment: 请您耐心等待，正在为您链接支付系统
   edit_categories:
     operations: 操作
     remove: 删除
@@ -539,3 +540,5 @@ zh-CN:
     exchange_rate_to_yuan: 欧元对人民币汇率
     exchange_rate_to_yuan_confirmation: 重复欧元对人民币汇率
     save: 保存
+  search:
+    no_product: 没有找到符合条件的产品
