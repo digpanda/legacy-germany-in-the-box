@@ -113,6 +113,9 @@ Rails.application.routes.draw do
   end
 
   resources :shops, except: [:new, :edit, :create] do
+    
+    match :approve, via: [:patch], action: :approve, as: :approve
+    match :disapprove, via: [:patch], action: :disapprove, as: :disapprove
     match :edit_setting,    via: [:get],    action: :edit_setting,    as: :edit_setting,    :on => :member
     match :edit_producer,   via: [:get],    action: :edit_producer,   as: :edit_producer,   :on => :member
     match :show_products,   via: [:get],    action: :show_products,   as: :show_products,   :on => :member

@@ -2,6 +2,7 @@ class ShopsController <  ApplicationController
 
   STRONG_PARAMS = [:shopname, :name, :desc, :logo, :banner, :seal0, :seal1, :seal2, :seal3, :seal4, :seal5, :seal6, :seal7, :philosophy, :stories, :german_essence, :uniqueness, :tax_number, :ustid, :eroi, :min_total, :status, :founding_year, :register, :website, :agb, :fname, :lname, :tel, :mobile, :mail, :function, sales_channels:[]]
 
+
   before_action :authenticate_user!, except: [:show]
   before_action :set_shop, except: [:index]
 
@@ -13,6 +14,24 @@ class ShopsController <  ApplicationController
 
   def index
     @shops = Shop.in(shopkeeper: User.where(role: 'shopkeeper').map { |u| u.id} ).all;
+  end
+
+  def approve
+    
+    @shop.approved = Time.now
+    @shop.save
+
+    redirect_to(:back) and return
+
+  end
+
+  def disapprove
+
+    @shop.approved = nil
+    @shop.save
+
+    redirect_to(:back) and return
+
   end
 
   def edit_setting
@@ -79,7 +98,7 @@ class ShopsController <  ApplicationController
   private
 
   def set_shop
-    @shop = Shop.find(params[:id]).decorate
+    @shop = Shop.find(params[:id] || params[:shop_id]).decorate
   end
 
   def shop_params(shop)
