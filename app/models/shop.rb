@@ -5,6 +5,7 @@ class Shop
 
   strip_attributes
 
+  field :approved,        type: Time
   field :name,            type: String
   field :shopname,        type: String,     localize: true
   field :desc,            type: String,     localize: true
@@ -104,8 +105,8 @@ class Shop
   validates :mobile,        length: {maximum: Rails.configuration.max_tiny_text_length}
   validates :function,      length: {maximum: Rails.configuration.max_tiny_text_length}
 
-  scope :is_active,       ->        { where( :status => true ) }
-
+  scope :is_active,       ->        { where( :status => true ).where( :approved.ne => nil ) }
+  
   before_save :ensure_shopkeeper
   before_save :clean_sms_mobile, :unless => lambda { self.sms }
 
