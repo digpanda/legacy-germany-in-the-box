@@ -83,15 +83,6 @@
   font-style: italic; }
 
 /* line 85, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
-#csstyle .\+no-result {
-  background-color: #e6fbd7;
-  padding: 0.5em;
-  margin: 0em;
-  font-family: 'Raleway', sans-serif !important;
-  font-weight: 400;
-  font-size: 28px; }
-
-/* line 85, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
 #csstyle .\+menu-bordering {
   border-right: 1px solid #eeeeee; }
 
@@ -160,18 +151,23 @@
           top: 0;
           left: 100%; }
 
-/* line 76, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
-.message__simple {
-  padding: 1em;
-  font-size: 18px;
-  color: #666; }
-
-/* line 76, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
-.message__neutral {
-  padding: 1em;
-  font-size: 18px;
-  color: #666;
-  background-color: #e6fbd7; }
+/* line 32, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
+.message {
+  padding: 0.5em;
+  margin: 0em;
+  font-family: 'Raleway', sans-serif !important;
+  font-weight: 400; }
+  /* line 76, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
+  .message__simple {
+    padding: 1em;
+    font-size: 18px;
+    color: #666; }
+  /* line 76, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
+  .message__neutral {
+    padding: 1em;
+    font-size: 18px;
+    color: #666;
+    background-color: #e6fbd7; }
 
 /* line 32, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
 .main-footer {

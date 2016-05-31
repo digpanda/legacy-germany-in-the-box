@@ -2,22 +2,23 @@
 
 <div class="row">
 
-  <% if @products.size > 0 %>
+  <div class="col-md-8 col-md-push-2 col-md-pull-2">
 
-    <!-- Categories list -->
-    <div class="col-md-2 col-md-offset-1">
-      <!-- Categories -->
-    </div>
+    <% if @products.size > 0 %>
 
-    <!-- Products list -->
-    <div class="col-md-8">
+      <!-- Products list -->
       <%= render partial: "products/products_list", :locals => { :products => @products } %>
-    </div>
 
-  <% else %>
+    <% else %>
 
-    <div class="+centered +no-result">Oops ! No product here ...</h4>
+      <div class="message">
+        <div class="message__simple">
+          Oops ! No product here ...
+        </div>
+      </div>
 
-  <% end %>
+    <% end %>
+
+  </div>
 
 </div>
