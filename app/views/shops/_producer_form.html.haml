@@ -186,7 +186,7 @@
             - else
               - if @shop.wirecard_status.nil?
                 - if current_user.is_shopkeeper?
-                  = link_to "Apply to WireCard now", apply_wirecard_shop_path, {class: "btn btn-danger", target: "_blank", disabled: "disabled"}
+                  = link_to "Apply to WireCard now", apply_wirecard_shop_path, {class: "btn btn-danger", target: "_blank" }
                 - else
                   This company didn't apply to WireCard yet.
               - elsif @shop.wirecard_status == :active
