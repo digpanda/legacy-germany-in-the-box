@@ -40,7 +40,7 @@ class Product
   validates :tags,        length: { maximum: Rails.configuration.max_num_tags }
 
   scope :has_tag,         ->(value) { where( :tags => value ) }
-  scope :is_active,       ->        { where( :status => true ).where( :approved.ne => nil ).where( :shop.in => Shop.only(:_id).where(:approved.ne => nil).map(&:_id) ) }
+  scope :is_active,       ->        { where( :status => true ).where( :approved.ne => nil ) }
   scope :has_sku,         ->        { where( "skus.0" => { "$exists" => true } ) }
   scope :buyable,         ->        { self.is_active.has_sku.in(shop: Address.is_sender.map {|a| a.shop_id}) }
 
