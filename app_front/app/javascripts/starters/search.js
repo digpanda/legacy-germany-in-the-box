@@ -17,40 +17,14 @@ var Search = {
      */
     searchableInput: function() {
 
-      var self = this;
+      $("search-form").submit(function(e) {
 
-      $("#js-search-click").on("click", function() {
-        self.showSearcher();
-      });
-
-      $(document).click(function() {
-        self.showClicker();
-      });
-
-      $("#js-search-input").click(function(e) {
-        e.stopPropagation(); 
-      });
-      
-      $("#js-search-click").click(function(e) {
-        e.stopPropagation();
+        e.preventDefault();
+        console.log('yes it clicked');
+        
       });
 
     },
-
-    showClicker: function() {
-
-      $("#js-search-input").hide();
-      $("#js-search-click").show();
-
-    },
-
-    showSearcher: function() {
-
-      $("#js-search-click").hide();
-      $("#js-search-input").show();
-      $("#js-search-input #search").focus();
-
-    }
 
 }
 

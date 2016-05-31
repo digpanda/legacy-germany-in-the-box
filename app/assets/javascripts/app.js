@@ -733,36 +733,11 @@ var Search = {
    */
   searchableInput: function searchableInput() {
 
-    var self = this;
+    $("search-form").submit(function (e) {
 
-    $("#js-search-click").on("click", function () {
-      self.showSearcher();
+      e.preventDefault();
+      console.log('yes it clicked');
     });
-
-    $(document).click(function () {
-      self.showClicker();
-    });
-
-    $("#js-search-input").click(function (e) {
-      e.stopPropagation();
-    });
-
-    $("#js-search-click").click(function (e) {
-      e.stopPropagation();
-    });
-  },
-
-  showClicker: function showClicker() {
-
-    $("#js-search-input").hide();
-    $("#js-search-click").show();
-  },
-
-  showSearcher: function showSearcher() {
-
-    $("#js-search-click").hide();
-    $("#js-search-input").show();
-    $("#js-search-input #search").focus();
   }
 
 };
