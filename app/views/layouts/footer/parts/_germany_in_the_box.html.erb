@@ -2,10 +2,9 @@
 
 <% if current_user&.is_shopkeeper? %>
 
-<div class="row"><%= link_to I18n.t(:terms_conditions, scope: :footer), agb_page_path, :target => 'blank' %></div>
+<div class="row"><%= link_to I18n.t(:terms_conditions, scope: :footer), agb_page_path %></div>
 
 <% end %>
 
-<div class="row"><%= link_to I18n.t(:privarcy_statement, scope: :footer), privacy_page_path, :target => 'blank' %></div>
-<div class="row"><%= link_to I18n.t(:imprint, scope: :footer), imprint_page_path, :target => 'blank' %></div>
-<div class="row"><%= link_to I18n.t(:vouchers, scope: :footer), '#' %></div>
+<div class="row"><%= link_to I18n.t(:privarcy_statement, scope: :footer), privacy_page_path %></div>
+<div class="row"><%= link_to I18n.t(:imprint, scope: :footer), imprint_page_path %></div>
