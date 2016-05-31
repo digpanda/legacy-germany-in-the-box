@@ -161,6 +161,12 @@
           left: 100%; }
 
 /* line 76, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
+.message__simple {
+  padding: 1em;
+  font-size: 18px;
+  color: #666; }
+
+/* line 76, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
 .message__neutral {
   padding: 1em;
   font-size: 18px;
@@ -385,6 +391,10 @@
 .shops-list {
   background-color: #F7F7F7; }
 
+/* line 3, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_products-list.sass */
+.products-list h2 {
+  margin: 0.5em; }
+
 /* line 32, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
 .slider {
   position: relative;
@@ -604,7 +614,7 @@ textarea, input, a {
 *:focus {
   outline: none; }
 
-/* line 26, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/_global.sass */
+/* line 23, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/_global.sass */
 a, a:active, a:hover, a:visited {
   text-decoration: none !important;
   outline: none !important;
@@ -615,22 +625,22 @@ a, a:active, a:hover, a:visited {
   bottom: 0;
   width: 100%
   height: 100px*/
-/* line 37, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/_global.sass */
+/* line 34, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/_global.sass */
 .thumbnail-img {
   width: auto !important;
   max-height: 200px !important; }
 
-/* line 41, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/_global.sass */
+/* line 38, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/_global.sass */
 .detail-img {
   width: auto;
   max-height: 400px; }
 
-/* line 45, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/_global.sass */
+/* line 42, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/_global.sass */
 .icon-img {
   width: auto;
   max-height: 48px; }
 
-/* line 49, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/_global.sass */
+/* line 46, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/_global.sass */
 .logo-img {
   width: auto;
   max-height: 96px; }
