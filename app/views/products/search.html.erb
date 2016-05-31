@@ -9,6 +9,7 @@
 
     <% if @products.count > 0 %>
 
+    <div class="+spacer"></div>
     <%= render partial: "products/products_list", :locals => { :products => @products } %>
 
     <% else %>
