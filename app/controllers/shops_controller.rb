@@ -44,10 +44,6 @@ class ShopsController <  ApplicationController
   def show_products
   end
 
-  def apply_wirecard
-    @wirecard = Wirecard::Merchant.new(shop)
-  end
-
   def show
     @categories_and_children, @categories_and_counters = AppCache.get_category_values_for_left_menu(shop.products)
 

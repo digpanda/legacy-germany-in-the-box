@@ -376,13 +376,13 @@ var ShopApplicationsNew = {
 module.exports = ShopApplicationsNew;
 });
 
-require.register("javascripts/controllers/shops/apply_wirecard.js", function(exports, require, module) {
+require.register("javascripts/controllers/shopkeeper/wirecards/apply.js", function(exports, require, module) {
 "use strict";
 
 /**
  * Apply Wirecard Class
  */
-var ApplyWirecard = {
+var ShopkeeperWirecardApply = {
 
   /**
    * Initializer
@@ -405,7 +405,7 @@ var ApplyWirecard = {
 
 };
 
-module.exports = ApplyWirecard;
+module.exports = ShopkeeperWirecardApply;
 });
 
 require.register("javascripts/initialize.js", function(exports, require, module) {

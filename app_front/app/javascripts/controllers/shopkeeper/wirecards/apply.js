@@ -1,7 +1,7 @@
 /**
  * Apply Wirecard Class
  */
-var ApplyWirecard = {
+var ShopkeeperWirecardApply = {
 
   /**
    * Initializer
@@ -26,4 +26,4 @@ var ApplyWirecard = {
 
 }
 
-module.exports = ApplyWirecard;
+module.exports = ShopkeeperWirecardApply;

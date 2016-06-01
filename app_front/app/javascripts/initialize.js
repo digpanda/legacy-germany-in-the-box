@@ -25,7 +25,7 @@ $(document).ready(() => {
     return;
 
   }
-  
+ 
   try {
 
     var obj = require("javascripts/controllers/"+routes.controller+"/"+routes.action);

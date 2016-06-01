@@ -2,9 +2,18 @@ class Ability
   include CanCan::Ability
   prepend Draper::CanCanCan
   
-  def initialize(user)
+  def initialize(user, controller_namespace)
 
     user ||= User.new
+
+    # Namespaced authorization
+    case controller_namespace
+
+      when 'Shopkeeper'
+        can :manage, :all if user.role == :shopkeeper
+
+    end
+    # End of namespaced authorization
 
     if user.role == :customer
 

@@ -14,3 +14,8 @@
 # ActiveSupport::Inflector.inflections(:en) do |inflect|
 #   inflect.acronym 'RESTful'
 # end
+
+# anti pluralization of controllers (in some peculiar cases)
+#ActiveSupport::Inflector.inflections do |inflect|
+#  inflect.uncountable %w( wirecard )
+#end

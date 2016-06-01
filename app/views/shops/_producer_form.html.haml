@@ -173,31 +173,4 @@
             .row-fluid
               = render partial: "addresses/addresses_table", :locals => { :addresses => @shop.addresses }
 
-    .panel.panel-info
-      .panel-heading.text-center
-        WireCard Payment Partnership
-      .panel-body
-        .form-group
-          .row-fluid
-            - if @shop.billing_address.nil?
-              You must add a 
-              = link_to "billing address", show_addresses_user_path
-              to activate this section
-            - else
-              - if @shop.wirecard_status.nil?
-                - if current_user.is_shopkeeper?
-                  = link_to "Apply to WireCard now", apply_wirecard_shop_path, {class: "btn btn-danger", target: "_blank" }
-                - else
-                  This company didn't apply to WireCard yet.
-              - elsif @shop.wirecard_status == :active
-                Your status was approved
-              - elsif @shop.wirecard_status == :processing
-                Your status is processing
-              - elsif @shop.wirecard_status == :documents_complete
-                Your documents are complete
-              - elsif @shop.wirecard_status == :declined
-                You were disapproved by WireCard
-              - elsif @shop.wirecard_status == :terminated
-                You were terminated by WireCard
-
   = f.button I18n.t(:save, scope: :edit_shop, locale: locale), :id => "edit_producer_submit_#{locale}", :class => 'btn btn-primary edit_producer_submit',  name: :user_info_edit_part, value: :edit_producer

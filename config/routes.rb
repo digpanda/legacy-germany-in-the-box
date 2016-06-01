@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  # customized error system
   if Rails.env.production?
     get '404', to: 'errors#page_not_found'
     get '422', to: 'errors#server_error'
@@ -70,6 +71,14 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :shopkeeper do
+    resources :payments do
+    end
+    resource :wirecard do
+      get :apply, :on => :member
+    end
+  end
+
   resources :addresses, except: [:new, :edit] do
   end
 
@@ -119,7 +128,6 @@ Rails.application.routes.draw do
     match :edit_setting,    via: [:get],    action: :edit_setting,    as: :edit_setting,    :on => :member
     match :edit_producer,   via: [:get],    action: :edit_producer,   as: :edit_producer,   :on => :member
     match :show_products,   via: [:get],    action: :show_products,   as: :show_products,   :on => :member
-    match :apply_wirecard,  via: [:get],    action: :apply_wirecard,  as: :apply_wirecard,  :on => :member
 
     resources :products,    only: [:new]
   end
