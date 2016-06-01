@@ -64,7 +64,7 @@ group :development do
   gem 'capistrano-nvm'
 end
 
-group :development, :test, :staging do
+group :development, :test, :staging, :local do
   gem "factory_girl_rails"
   gem "rspec-rails", "~> 3.0"
   gem "capybara"
