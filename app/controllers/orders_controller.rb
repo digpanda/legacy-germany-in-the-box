@@ -38,11 +38,10 @@ class OrdersController < ApplicationController
     sku = product.decorate.get_sku(params[:sku][:option_ids].split(','))
     quantity = params[:sku][:quantity].to_i
 
-    co = current_order(product.shop.id.to_s)
+    co = current_order(product.shop_id.to_s)
+    new_total = sku.price * quantity * Settings.first.exchange_rate_to_yuan
 
-    new_total = co.decorate.total_price_in_curreny + sku.price * quantity * Settings.instance.exchange_rate_to_yuan
-
-    if new_total > Settings.instance.max_total_per_day
+    if current_user.present? && current_user.decorate.reach_todays_limit?(new_total)
       respond_to do |format|
         format.html {
           flash[:error] = I18n.t(:override_maximal_total, scope: :edit_order, total: Settings.instance.max_total_per_day, currency: Settings.instance.platform_currency)
@@ -52,14 +51,14 @@ class OrdersController < ApplicationController
       end
     end
 
-    existing_order_item = co.order_items.to_a.find { |i| i.product.id == product.id && i.sku_id == sku.id.to_s}
+    existing_order_item = co.order_items.to_a.detect { |i| i.product_id == product.id.to_s && i.sku_id == sku.id.to_s}
 
     if not sku.limited or sku.quantity >= quantity
       if existing_order_item.present?
         existing_order_item.quantity += quantity
         existing_order_item.save!
       else
-        current_order_item = current_order(product.shop.id.to_s).order_items.build
+        current_order_item = co.order_items.build
         current_order_item.price = sku.price
         current_order_item.quantity = quantity
         current_order_item.weight = sku.weight
@@ -71,7 +70,7 @@ class OrdersController < ApplicationController
         current_order_item.save!
       end
 
-      if current_order(product.shop.id.to_s).save
+      if co.save
         respond_to do |format|
           format.html {
             flash[:info] = I18n.t(:add_product_ok, scope: :edit_order)
