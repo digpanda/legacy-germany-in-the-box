@@ -13,7 +13,7 @@
           <% else %>
             <% if @shop.wirecard_status.nil? %>
               <% if current_user.is_shopkeeper? %>
-                <%= link_to "Apply to WireCard now", apply_shopkeeper_wirecard_path, {class: "btn btn-danger", target: "_blank" } %>
+                <%= link_to "Registrieren für WireCard Checkoutportal", apply_shopkeeper_wirecard_path, {class: "btn btn-danger", target: "_blank" } %>
               <% else %>
                 This company didn't apply to WireCard yet.
               <% end %>
