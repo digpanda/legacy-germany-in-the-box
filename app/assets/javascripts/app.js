@@ -563,6 +563,32 @@ var Footer = {
 module.exports = Footer;
 });
 
+require.register("javascripts/starters/multi_select.js", function(exports, require, module) {
+"use strict";
+
+/**
+ * MultiSelect Class
+ */
+var MultiSelect = {
+
+  /**
+   * Initializer
+   */
+  init: function init() {
+
+    this.handleMultiSelect();
+  },
+
+  /**
+   * Put the footer on the bottom of the page
+   */
+  stickyMultiSelect: function stickyMultiSelect() {}
+
+};
+
+module.exports = MultiSelect;
+});
+
 require.register("javascripts/starters/product_favorite.js", function(exports, require, module) {
 "use strict";
 

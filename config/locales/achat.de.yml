@@ -295,7 +295,7 @@ de:
     philosophy: Philosophie
     stories: Geschichten
     ustid: Ust-ID
-    eroi: EROI-Nummer
+    eroi: Die EORI-Nummer ersetzt die alte Zollnummer und dient der Identifikation bei der Zollabwicklung. Für einen standardisierten Abwicklungsprozess müssen Sie die EORI-Nummer unserem Logistik-Partner vorlegen.
     sms:
       info: per SMS benachrichtigt
       'true': Ja

@@ -112,7 +112,8 @@
               %li= "#{I18n.t(:zip, scope: :edit_address)} : #{ a.zip }"
               %li= "#{I18n.t(:type, scope: :edit_address)} : #{ I18n.t(a.type, scope: :edit_address) }"
 
-  - if current_user.shop.addresses.in(:type => 'both').size < [Rails.configuration.max_num_shop_billing_addresses, Rails.configuration.max_num_shop_sender_addresses].min && (current_user.shop.addresses.in(:type => 'billing').size < Rails.configuration.max_num_shop_billing_addresses || current_user.shop.addresses.in(:type => 'sender').size < Rails.configuration.max_num_shop_sender_addresses)
+  - if current_user.addresses.size < Rails.configuration.max_num_addresses
+  - # if current_user.shop.addresses.in(:type => 'both').size < [Rails.configuration.max_num_shop_billing_addresses, Rails.configuration.max_num_shop_sender_addresses].min && (current_user.shop.addresses.in(:type => 'billing').size < Rails.configuration.max_num_shop_billing_addresses || current_user.shop.addresses.in(:type => 'sender').size < Rails.configuration.max_num_shop_sender_addresses)
     .col-md-4
       %a.address-box.address-box-new.popup-text{"data-effect" => "mfp-move-from-top", :href => "#add-address-dialog"}
         .vert-center
