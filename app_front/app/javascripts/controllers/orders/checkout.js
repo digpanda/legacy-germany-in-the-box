@@ -17,6 +17,9 @@ var Checkout = {
    */
    postBankDetails: function() {
 
+    var Casing = require("javascripts/lib/casing");
+    var PostForm = require("javascripts/lib/post_form.js");
+
     let bankDetails = $("#bank-details").data();
     let parsedBankDetails = Casing.objectToUnderscoreCase(bankDetails);
 

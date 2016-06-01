@@ -1,18 +1,8 @@
 /**
- * PostForm System
- * by Laurent Schaffner
+ * PostForm Class
  */
-var PostForm = (function($) {
-
-  return {
-
-    /**
-     * Initializer
-     */
-    init: function() {
-
-    },
-
+var PostForm = {
+  
     /**
      * Generate and create a form
      */
@@ -47,20 +37,7 @@ var PostForm = (function($) {
       form.submit();
 
     } 
+    
+}
 
-  };
-
-})(jQuery);
-
-/**
- * jQuery scope and such
- */
-(function ($) {
-
-  $(document).ready(function() {
-
-    PostForm.init($);
-
-  });
-
-})(jQuery, PostForm);
+module.exports = PostForm;

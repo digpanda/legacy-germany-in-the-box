@@ -1,5 +1,22 @@
-( function( $ ) {
-    $( document ).ready(function() {
+/**
+ * LeftMenu Class
+ */
+var LeftMenu = {
+
+    /**
+     * Initializer
+     */
+    init: function() {
+
+      this.startLeftMenu();
+
+    },
+
+    /**
+     * 
+     */
+    startLeftMenu: function() {
+
         $('#left_menu > ul > li > a').click(function() {
             $('#left_menu li').removeClass('active');
             $(this).closest('li').addClass('active');
@@ -18,5 +35,10 @@
                 return false;
             }
         });
-    });
-} )( jQuery );
+
+    },
+
+}
+
+module.exports = LeftMenu;
+

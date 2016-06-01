@@ -1,17 +1,7 @@
 /**
- * Casing System
- * by Laurent Schaffner
+ * Casing Class
  */
-var Casing = (function($) {
-
-  return {
-
-    /**
-     * Initializer
-     */
-    init: function() {
-
-    },
+var Casing = {
 
     /**
      * CamelCase to underscored case
@@ -35,7 +25,7 @@ var Casing = (function($) {
       var parsed = {};
       for (var key in obj) {
 
-        new_key = this.underscoreCase(key);
+        let new_key = this.underscoreCase(key);
         parsed[new_key] = obj[key];
 
       }
@@ -43,20 +33,7 @@ var Casing = (function($) {
       return parsed
 
     },
+    
+}
 
-  };
-
-})(jQuery);
-
-/**
- * jQuery scope and such
- */
-(function ($) {
-
-  $(document).ready(function() {
-
-    Casing.init($);
-
-  });
-
-})(jQuery, Casing);
+module.exports = Casing;
