@@ -218,6 +218,7 @@ de:
     open: Öffnen
     paying: in Zahlung
     success: Erstellt
+    override_maximal_total: Pro Tag können Sie bei usnerer Plattform mehrere Produkte nur in der Höhe unter  %{total} %{curreny} kaufen.
   edit_collection:
     new: Favorit erstellen
     edit: Ändern
