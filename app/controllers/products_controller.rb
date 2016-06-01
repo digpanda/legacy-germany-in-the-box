@@ -42,7 +42,7 @@ class ProductsController < ApplicationController
 
   def clone_sku
     @src = @product.skus.find(params[:sku_id])
-    @sku = @product.skus.build(@src.attributes.except(:_id, :img0, :img1, :img2, :img3))
+    @sku = @product.skus.build(@src.attributes.except(:_id, :img0, :img1, :img2, :img3, :c_ts, :u_ts, :currency))
     CopyCarrierwaveFile::CopyFileService.new(@src, @sku, :img0).set_file if @src.img0.url
     CopyCarrierwaveFile::CopyFileService.new(@src, @sku, :img1).set_file if @src.img1.url
     CopyCarrierwaveFile::CopyFileService.new(@src, @sku, :img2).set_file if @src.img2.url
