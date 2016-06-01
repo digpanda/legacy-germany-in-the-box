@@ -41,7 +41,7 @@ class OrdersController < ApplicationController
     co = current_order(product.shop_id.to_s)
     new_total = sku.price * quantity * Settings.first.exchange_rate_to_yuan
 
-    if current_user.present? && current_user.decorate.reach_todays_limit?(new_total)
+    if reach_today_limit?(co, new_total, quantity)
       respond_to do |format|
         format.html {
           flash[:error] = I18n.t(:override_maximal_total, scope: :edit_order, total: Settings.instance.max_total_per_day, currency: Settings.instance.platform_currency)
@@ -359,6 +359,10 @@ class OrdersController < ApplicationController
 
   def set_order
     @order = Order.find(params[:id])
+  end
+
+  def reach_today_limit?(order, new_total, quantity)
+    current_user.present? ? (current_user.decorate.reach_todays_limit?(new_total) || order.decorate.reach_todays_limit?(new_total, quantity)) : order.decorate.reach_todays_limit?(new_total, quantity)
   end
 
 end
