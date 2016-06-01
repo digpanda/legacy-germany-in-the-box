@@ -41,7 +41,7 @@ class OrdersController < ApplicationController
     co = current_order(product.shop_id.to_s)
     new_total = sku.price * quantity * Settings.first.exchange_rate_to_yuan
 
-    if current_user.present? && current_user.decorate.reach_todays_limit?(new_total)
+    if reach_today_limit?(co, new_total, quantity)
       respond_to do |format|
         format.html {
           flash[:error] = I18n.t(:override_maximal_total, scope: :edit_order, total: Settings.instance.max_total_per_day, currency: Settings.instance.platform_currency)
@@ -146,8 +146,19 @@ class OrdersController < ApplicationController
   def checkout
     shop_id = params[:shop_id]
 
-    cart = current_cart(shop_id)
     order = current_order(shop_id)
+
+    if reach_today_limit?(order)
+      respond_to do |format|
+        format.html {
+          flash[:error] = I18n.t(:override_maximal_total, scope: :edit_order, total: Settings.instance.max_total_per_day, currency: Settings.instance.platform_currency)
+          redirect_to request.referrer
+          return
+        }
+      end
+    end
+
+    cart = current_cart(shop_id)
 
     all_products_available = true;
     products_total_price = 0
@@ -359,6 +370,10 @@ class OrdersController < ApplicationController
 
   def set_order
     @order = Order.find(params[:id])
+  end
+
+  def reach_today_limit?(order, new_total = 0, quantity = 0)
+    current_user.present? ? (current_user.decorate.reach_todays_limit?(new_total) || order.decorate.reach_todays_limit?(new_total, quantity)) : order.decorate.reach_todays_limit?(new_total, quantity)
   end
 
 end

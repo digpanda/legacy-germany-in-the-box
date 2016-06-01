@@ -15,9 +15,6 @@
           <%= I18n.t(:link_tracking, scope: :edit_order) %>
         </th>
         <th>
-          <%= I18n.t(:created_at, scope: :edit_order) %>
-        </th>
-        <th>
           <%= I18n.t(:updated_at, scope: :edit_order) %>
         </th>
         <th>
@@ -35,13 +32,10 @@
             <%= I18n.t(o.status, scope: :edit_order) %>
           </td>
           <td>
-            <%= o.total_price %>
+            <%= o.decorate.total_price_with_currency %>
           </td>
           <td>
             <%= o.border_guru_link_tracking ? (link_to I18n.t(:open, scope: :edit_order), o.border_guru_link_tracking, :target => '_blank') : '' %>
-          </td>
-          <td>
-            <%= o.c_at.localtime.strftime('%Y-%m-%d %H:%M:%S') %>
           </td>
           <td>
             <%= o.u_at.localtime.strftime('%Y-%m-%d %H:%M:%S') %>
