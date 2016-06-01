@@ -17,5 +17,5 @@
   <%= link_to I18n.t(:my_collection, scope: :top_menu),  show_collections_user_path(:user_info_edit_part => :edit_collection) %>
 </li>
 <li>
-  <%= link_to "Sign out", signout_path, :method => :delete %>
+  <%= link_to I18n.t(:sign_out, scope: :top_menu), signout_path, :method => :delete %>
 </li>
