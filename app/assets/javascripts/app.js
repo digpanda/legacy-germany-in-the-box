@@ -602,9 +602,101 @@ require.register("javascripts/starters.js", function(exports, require, module) {
 /**
  * Starters Class
  */
-var Starters = ['footer', 'product_favorite', 'product_lightbox', 'search'];
+var Starters = ['bootstrap', 'footer', 'product_favorite', 'product_lightbox', 'search', 'left_menu', 'china_city'];
 
 module.exports = Starters;
+});
+
+require.register("javascripts/starters/bootstrap.js", function(exports, require, module) {
+"use strict";
+
+/**
+ * Bootstrap Class
+ */
+var Bootstrap = {
+
+  /**
+   * Initializer
+   */
+  init: function init() {
+
+    this.startPopover();
+    this.startTooltip();
+  },
+
+  /**
+   * 
+   */
+  startPopover: function startPopover() {
+
+    $("a[rel~=popover], .has-popover").popover();
+  },
+
+  startTooltip: function startTooltip() {
+
+    $("a[rel~=tooltip], .has-tooltip").tooltip();
+  }
+
+};
+
+module.exports = Bootstrap;
+});
+
+require.register("javascripts/starters/china_city.js", function(exports, require, module) {
+"use strict";
+
+/**
+ * ChinaCity Class
+ */
+var ChinaCity = {
+
+    /**
+     * Initializer
+     */
+    init: function init() {
+
+        this.startChinaCity();
+    },
+
+    /**
+     * 
+     */
+    startChinaCity: function startChinaCity() {
+
+        $.fn.china_city = function () {
+            return this.each(function () {
+                var selects;
+                selects = $(this).find('.city-select');
+                return selects.change(function () {
+                    var $this, next_selects;
+                    $this = $(this);
+                    next_selects = selects.slice(selects.index(this) + 1);
+                    $("option:gt(0)", next_selects).remove();
+                    if (next_selects.first()[0] && $this.val() && !$this.val().match(/--.*--/)) {
+                        return $.get("/china_city/" + $(this).val(), function (data) {
+                            var i, len, option;
+                            if (data.data != null) {
+                                data = data.data;
+                            }
+                            for (i = 0, len = data.length; i < len; i++) {
+                                option = data[i];
+                                next_selects.first()[0].options.add(new Option(option[0], option[1]));
+                            }
+                            return next_selects.trigger('china_city:load_data_completed');
+                        });
+                    }
+                });
+            });
+        };
+
+        $(document).ready(function () {
+            $('.city-group').china_city();
+        });
+    }
+
+};
+
+module.exports = ChinaCity;
 });
 
 require.register("javascripts/starters/footer.js", function(exports, require, module) {
@@ -659,30 +751,50 @@ var Footer = {
 module.exports = Footer;
 });
 
-require.register("javascripts/starters/multi_select.js", function(exports, require, module) {
-"use strict";
+require.register("javascripts/starters/left_menu.js", function(exports, require, module) {
+'use strict';
 
 /**
- * MultiSelect Class
+ * LeftMenu Class
  */
-var MultiSelect = {
+var LeftMenu = {
 
-  /**
-   * Initializer
-   */
-  init: function init() {
+    /**
+     * Initializer
+     */
+    init: function init() {
 
-    this.handleMultiSelect();
-  },
+        this.startLeftMenu();
+    },
 
-  /**
-   * Put the footer on the bottom of the page
-   */
-  stickyMultiSelect: function stickyMultiSelect() {}
+    /**
+     * 
+     */
+    startLeftMenu: function startLeftMenu() {
+
+        $('#left_menu > ul > li > a').click(function () {
+            $('#left_menu li').removeClass('active');
+            $(this).closest('li').addClass('active');
+            var checkElement = $(this).next();
+            if (checkElement.is('ul') && checkElement.is(':visible')) {
+                $(this).closest('li').removeClass('active');
+                checkElement.slideUp('normal');
+            }
+            if (checkElement.is('ul') && !checkElement.is(':visible')) {
+                $('#left_menu ul ul:visible').slideUp('normal');
+                checkElement.slideDown('normal');
+            }
+            if ($(this).closest('li').find('ul').children().length == 0) {
+                return true;
+            } else {
+                return false;
+            }
+        });
+    }
 
 };
 
-module.exports = MultiSelect;
+module.exports = LeftMenu;
 });
 
 require.register("javascripts/starters/product_favorite.js", function(exports, require, module) {
@@ -719,8 +831,7 @@ var ProductFavorite = {
 
         // We remove the favorite front data
         $(this).removeClass('+red');
-        $(this).attr('data-favorite', '0'); // marche pas
-        //$(this).data('favorite', '0') // marche pas non plus
+        $(this).attr('data-favorite', '0');
 
         ProductFavorite.doUnlike(this, productId, function (res) {
 
