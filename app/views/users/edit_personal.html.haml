@@ -4,7 +4,7 @@
       = image_tag (current_user.pic.url.nil? ? "icons/default_user_pic.png" : current_user.pic.url), :class => 'logo-img', :id => "pic_#{current_user.id}"
       = f.file_field :pic, :accept => "image/png, image/jpeg, image/jpg", :class => 'img-file-upload', :img_id => "#pic_#{current_user.id}", :onchange =>"validateImgFile(this);"
     .form-group
-      = f.text_field :lname, :class => 'form-control', placeholder: I18n.t(:lastname, scope: :edit_personal), :pattern => I18n.t(:mobile, scope: :validation, locale: :'zh-CN'), :placeholder => '13802049772'
+      = f.text_field :lname, :class => 'form-control', placeholder: I18n.t(:lastname, scope: :edit_personal), :pattern => I18n.t(:mobile, scope: :validation, locale: :'zh-CN')
     .form-group
       = f.text_field :fname, :class => 'form-control', placeholder: I18n.t(:firstname, scope: :edit_personal)
     .form-group

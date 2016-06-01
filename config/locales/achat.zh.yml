@@ -540,5 +540,6 @@ zh-CN:
     exchange_rate_to_yuan: 欧元对人民币汇率
     exchange_rate_to_yuan_confirmation: 重复欧元对人民币汇率
     save: 保存
+    max_total_per_day: 每天最大购物额度
   search:
     no_product: 没有找到符合条件的产品

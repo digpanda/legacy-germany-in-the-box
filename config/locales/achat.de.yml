@@ -545,6 +545,7 @@ de:
   edit_settings:
     exchange_rate_to_yuan: Wechselkurs zu Yuan
     exchange_rate_to_yuan_confirmation: Wechselkurs zu Yuan Wiederholen
+    max_total_per_day: Maximale Summe pro Tag
     save: Speichern
   search:
     no_product: keine entsprechende Produkte vorhanden
