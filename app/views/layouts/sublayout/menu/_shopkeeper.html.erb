@@ -19,9 +19,9 @@
     <%= link_to I18n.t(:my_address, scope: :top_menu),  show_addresses_user_path(current_user, :user_info_edit_part => :edit_shop_address) %>
   </li>
   <li class="<%= is_menu_active?(:payments) %>">
-    <%= link_to "Zahlungsmanagement", shopkeeper_payments_path(:user_info_edit_part => :payments) %>
+    <%= link_to I18n.t(:payments, scope: :top_menu), shopkeeper_payments_path(:user_info_edit_part => :payments) %>
   </li>
 <% end %>
 <li>
-  <%= link_to "Sign out", signout_path, :method => :delete %>
+  <%= link_to I18n.t(:sign_out, scope: :top_menu), signout_path, :method => :delete %>
 </li>

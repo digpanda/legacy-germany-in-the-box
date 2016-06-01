@@ -7,9 +7,6 @@
 <li class="<%= is_menu_active?(:edit_address) %>">
   <%= link_to I18n.t(:my_address, scope: :top_menu),  show_addresses_user_path(current_user, :user_info_edit_part => :edit_address) %>
 </li>
-<li class="<%= is_menu_active?(:edit_bank) %>">
-  <%= link_to I18n.t(:my_bank, scope: :top_menu),  edit_bank_user_path(current_user, :user_info_edit_part => :edit_bank) %>
-</li>
 <li class="<%= is_menu_active?(:edit_order) %>">
   <%= link_to I18n.t(:my_order, scope: :top_menu),  show_orders_user_path(current_user, :user_info_edit_part => :edit_order) %>
 </li>
@@ -17,5 +14,5 @@
   <%= link_to I18n.t(:my_collection, scope: :top_menu),  show_collections_user_path(:user_info_edit_part => :edit_collection) %>
 </li>
 <li>
-  <%= link_to "Sign out", signout_path, :method => :delete %>
+  <%= link_to I18n.t(:sign_out, scope: :top_menu), signout_path, :method => :delete %>
 </li>

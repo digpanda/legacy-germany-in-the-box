@@ -35,7 +35,7 @@ zh-CN:
     my_account: 我的账户
     my_personal: 个人信息
     my_bank: 支付方式
-    my_address: 收货地址
+    my_address: 地址管理
     my_order: 订单记录
     my_collection: 我的收藏
     my_following: 我的关注
@@ -218,6 +218,7 @@ zh-CN:
     open: 打开
     paying: 等待付款
     success: 下单成功
+    override_maximal_total: 您在本平台的购物额单件每天可以多于%{total}%{currency}，多件不能超过%{total}%{currency}.
   edit_collection:
     new: 新建收藏夹
     edit: 修改
@@ -540,5 +541,6 @@ zh-CN:
     exchange_rate_to_yuan: 欧元对人民币汇率
     exchange_rate_to_yuan_confirmation: 重复欧元对人民币汇率
     save: 保存
+    max_total_per_day: 每天最大购物额度
   search:
     no_product: 没有找到符合条件的产品

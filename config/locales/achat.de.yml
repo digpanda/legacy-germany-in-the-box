@@ -58,7 +58,7 @@ de:
     email_confirmation_msg: Sie erhalten von uns eine E-Mail für die Registrierung. Bitte bestätigen Sie durch den gegebenen Link in der Mail, bevor Sie fortfahren.
     shops: Shops
     categories: Produktkategorien
-    payments: Zahlungen
+    payments: Zahlungsmanagment
     settings: Konfiguraiton
   footer:
     copyright: © DigPanda GmbH 2015-2016
@@ -218,6 +218,7 @@ de:
     open: Öffnen
     paying: in Zahlung
     success: Erstellt
+    override_maximal_total: Pro Tag können Sie bei usnerer Plattform mehrere Produkte nur in der Höhe unter  %{total} %{curreny} kaufen.
   edit_collection:
     new: Favorit erstellen
     edit: Ändern
@@ -545,6 +546,7 @@ de:
   edit_settings:
     exchange_rate_to_yuan: Wechselkurs zu Yuan
     exchange_rate_to_yuan_confirmation: Wechselkurs zu Yuan Wiederholen
+    max_total_per_day: Maximale Summe pro Tag
     save: Speichern
   search:
     no_product: keine entsprechende Produkte vorhanden

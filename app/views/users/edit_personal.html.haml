@@ -1,0 +1,29 @@
+.col-md-6.col-sm-12.col-xs-12
+  = form_for @user, html: {'data-toggle': 'validator'} do |f|
+    .form-group
+      = image_tag (current_user.pic.url.nil? ? "icons/default_user_pic.png" : current_user.pic.url), :class => 'logo-img', :id => "pic_#{current_user.id}"
+      = f.file_field :pic, :accept => "image/png, image/jpeg, image/jpg", :class => 'img-file-upload', :img_id => "#pic_#{current_user.id}", :onchange =>"validateImgFile(this);"
+    .form-group
+      = f.text_field :lname, :class => 'form-control', placeholder: I18n.t(:lastname, scope: :edit_personal), :pattern => I18n.t(:mobile, scope: :validation, locale: :'zh-CN')
+    .form-group
+      = f.text_field :fname, :class => 'form-control', placeholder: I18n.t(:firstname, scope: :edit_personal)
+    .form-group
+      = f.text_field :birth, :class => 'form-control date-picker', placeholder: I18n.t(:birthday, scope: :edit_personal), 'data-provide': 'datepicker', 'data-date-format': 'yyyy-mm-dd', :required => true
+      %div.help-block.with-errors
+    .form-group
+      %label.radio-inline
+        = f.radio_button :gender, 'm'
+        = I18n.t(:'genderize.name.masculine')
+      %label.radio-inline
+        = f.radio_button :gender, 'f', :checked => @user.gender.present? ? @user.gender.female? : true
+        = I18n.t(:'genderize.name.feminine')
+    .form-group
+      = f.text_field :about, :class => 'form-control', placeholder: I18n.t(:about, scope: :edit_personal)
+    .form-group
+      = f.text_field :website, :class => 'form-control', placeholder: I18n.t(:website, scope: :edit_personal)
+    .form-group
+      = f.text_field :tel, :class => 'form-control', :pattern => I18n.t(:mobile, scope: :validation, locale: :'zh-CN'), :placeholder => '13802049772'
+    .form-group
+      = f.text_field :mobile, :class => 'form-control', :pattern => I18n.t(:tel, scope: :validation, locale: :'zh-CN'), :placeholder => '0571-12343434'
+    .form-group
+      = f.button I18n.t(:save, scope: :edit_personal), :class => 'btn btn-primary', name: :user_info_edit_part, value: :edit_personal

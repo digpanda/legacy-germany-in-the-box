@@ -38,7 +38,21 @@ class OrdersController < ApplicationController
     sku = product.decorate.get_sku(params[:sku][:option_ids].split(','))
     quantity = params[:sku][:quantity].to_i
 
-    existing_order_item = current_order(product.shop.id.to_s).order_items.to_a.find { |i| i.product.id == product.id && i.sku_id == sku.id.to_s}
+    co = current_order(product.shop.id.to_s)
+
+    new_total = co.decorate.total_price_in_curreny + sku.price * quantity * Settings.instance.exchange_rate_to_yuan
+
+    if new_total > Settings.instance.max_total_per_day
+      respond_to do |format|
+        format.html {
+          flash[:error] = I18n.t(:override_maximal_total, scope: :edit_order, total: Settings.instance.max_total_per_day, currency: Settings.instance.platform_currency)
+          redirect_to request.referrer
+          return
+        }
+      end
+    end
+
+    existing_order_item = co.order_items.to_a.find { |i| i.product.id == product.id && i.sku_id == sku.id.to_s}
 
     if not sku.limited or sku.quantity >= quantity
       if existing_order_item.present?
