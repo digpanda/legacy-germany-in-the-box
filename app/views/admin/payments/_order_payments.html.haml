@@ -1,9 +1,0 @@
-%tr
-  %td= order_payment.request_id
-  %td= order_payment.transaction_id
-  %td= order_payment.merchant_id
-  %td= order_payment.order_id
-  %td= order_payment.status
-  %td= order_payment.order.user.decorate.full_name if order_payment.order&.user
-  %td= order_payment.decorate.amount_with_currency
-  %td= link_to '', admin_payment_path(order_payment), :method => :delete, data: { confirm: "Are you sure ?" }, :class => 'fa fa-times-circle fa-2x', :title => "Remove"

@@ -1,0 +1,15 @@
+<%= inside_layout do %>
+  <div class="row">
+    <div class="+spacer"></div>
+    <div class="col-md-3">
+      <aside class="sidebar-left">
+        <ul class="nav nav-pills nav-stacked nav-arrow">
+          <%= render partial: "layouts/sublayout/menu/customer" %>
+        </ul>
+      </aside>
+    </div>
+    <div class="col-md-8">
+      <%= yield %>
+    </div>
+  </div>
+<% end %>

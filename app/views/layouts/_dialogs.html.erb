@@ -1,0 +1,180 @@
+<div class="mfp-with-anim mfp-hide mfp-dialog clearfix open-popup-link" id="login-dialog">
+  <i class="fa fa-sign-in dialog-icon"></i>
+  <% if session[:login_advice_counter] and flash[:error].present? %>
+    <h5 style="color:red">
+      <%= flash[:error] %>
+    </h5>
+  <% elsif session[:login_advice_counter] and flash[:info].present? %>
+    <h5 style="color:blue">
+      <%= flash[:info] %>
+    </h5>
+  <% else %>
+    <h3>
+      <%= I18n.t(:header, scope: :sign_in_dialog) %>
+    </h3>
+    <h5>
+      <%= I18n.t(:title, scope: :sign_in_dialog) %>
+    </h5>
+  <% end %>
+  <%= form_tag user_session_path, :method => :post, :class => 'dialog-form', 'data-toggle': 'validator'  do %>
+    <div class="form-group">
+      <label>
+        <%= I18n.t(:email, scope: :sign_in_dialog) %>
+      </label>
+      <%= email_field_tag 'user[email]',  nil, :class => 'form-control', :placeholder => 'email@domain.com', :required => true %>
+      <div class="help-block with-errors"></div>
+    </div>
+    <div class="form-group">
+      <label>
+        <%= I18n.t(:password, scope: :sign_in_dialog) %>
+      </label>
+      <%= password_field_tag 'user[password]', nil, :class => 'form-control', :placeholder => I18n.t(:password, scope: :sign_up_dialog), :required => true %>
+    </div>
+    <% if session[:login_advice_counter].present? and session[:login_advice_counter] >= Rails.configuration.login_failure_limit %>
+      <div class="form-inline">
+        <div class="form-group">
+          <%= text_field_tag :captcha, '', :autocomplete => :off,  placeholder: I18n.t(:captcha, scope: :sign_up_dialog), :required => true, :minLength => 4, :maxLength => 4, :class => 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= captcha_tag %>
+        </div>
+      </div>
+    <% end %>
+    <div class="checkbox">
+      <label>
+        <input checked="checked" type="checkbox"></input>
+        <%= I18n.t(:remember_me, scope: :sign_in_dialog) %>
+      </label>
+    </div>
+    <div class="col-md-12">
+      <div class="col-md-5">
+        <%= submit_tag I18n.t(:sign_in, scope: :sign_in_dialog), :class => 'btn btn-primary' %>
+      </div>
+      <div class="col-md-7">
+        <a class="btn btn-primary popup-text" data-effect="mfp-zoom-out" href="#register-dialog">
+          <%= I18n.t(:not_member_yet, scope: :sign_in_dialog) %>
+        </a>
+        <a class="simple-text popup-text" data-effect="mfp-zoom-out" href="#password-recover-dialog">
+          <%= I18n.t(:forgot_password, scope: :sign_in_dialog) %>
+        </a>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<div class="mfp-with-anim mfp-hide mfp-dialog clearfix" id="register-dialog">
+  <i class="fa fa-edit dialog-icon"></i>
+  <% if session[:signup_advice_counter] and flash[:error].present? %>
+    <h5 style="color:red">
+      <%= flash[:error] %>
+    </h5>
+  <% elsif session[:signup_advice_counter] and flash[:info].present? %>
+    <h5 style="color:blue">
+      <%= flash[:info] %>
+    </h5>
+  <% else %>
+    <% for_device_type :desktop do %>
+      <h3>
+        <%= I18n.t(:header, scope: :sign_up_dialog) %>
+      </h3>
+      <h5>
+        <%= I18n.t(:title, scope: :sign_up_dialog) %>
+      </h5>
+    <% end %>
+    <% for_device_type :mobile, :tablet do %>
+      <h4>
+        <%= I18n.t(:header, scope: :sign_up_dialog) %>
+      </h4>
+    <% end %>
+  <% end %>
+  <%= form_tag user_registration_path, :method => :post, :class => 'dialog-form', 'data-toggle': 'validator' do %>
+    <% for_device_type :desktop do %>
+      <div class="form-group">
+        <%= text_field_tag 'user[username]', nil, :class => 'form-control', :placeholder => I18n.t(:username, scope: :sign_up_dialog), :required => true %>
+      </div>
+      <div class="form-group">
+        <%= email_field_tag 'user[email]', nil, :class => 'form-control', :placeholder => I18n.t(:email, scope: :sign_up_dialog), :required => true %>
+      </div>
+      <div class="form-group">
+        <%= password_field_tag 'user[password]', nil, :class => 'form-control', :placeholder => I18n.t(:password, scope: :sign_up_dialog), :required => true, :minLength => Rails.configuration.min_password_length %>
+        <div class="help-block with-errors"></div>
+      </div>
+      <div class="form-group">
+        <%= password_field_tag 'user[password_confirmation]', nil, :class => 'form-control', :placeholder => I18n.t(:password_confirmation, scope: :sign_up_dialog), 'data-match' => '#user_password' %>
+        <div class="help-block with-errors"></div>
+      </div>
+      <div class="form-inline">
+        <div class="form-group">
+          <%= text_field_tag 'user[birth]', nil, :class => 'form-control date-picker', placeholder: I18n.t(:birthday, scope: :edit_personal), 'data-provide': 'datepicker', 'data-date-format': 'yyyy-mm-dd', :required => true %>
+        </div>
+        <div class="form-group col-md-offset-1">
+          <label class="radio-inline">
+            <%= radio_button_tag 'user[gender]', 'm' %>
+            <%= I18n.t(:'genderize.name.masculine') %>
+          </label>
+          <label class="radio-inline">
+            <%= radio_button_tag 'user[gender]', 'f', :checked => true %>
+            <%= I18n.t(:'genderize.name.feminine') %>
+          </label>
+        </div>
+      </div>
+      <div class="form-inline">
+        <div class="form-group">
+          <%= text_field_tag :captcha, nil, :autocomplete => :off, placeholder: I18n.t(:captcha, scope: :sign_up_dialog), :class => 'form-control', :style => 'margin-right:14px', :required => true, :minLength => 4, :maxLength => 4 %>
+        </div>
+        <div class="form-group">
+          <%= captcha_tag %>
+        </div>
+      </div>
+      <%= submit_tag I18n.t(:sign_up, scope: :sign_up_dialog), :class => 'btn btn-primary' %>
+    <% end %>
+    <% for_device_type :mobile, :tablet do %>
+      <%= text_field_tag 'user[username]', nil, :class => 'form-control', :placeholder => I18n.t(:username, scope: :sign_up_dialog), :required => true %>
+      <%= email_field_tag 'user[email]', nil, :class => 'form-control', :placeholder => I18n.t(:email, scope: :sign_up_dialog), :required => true %>
+      <%= password_field_tag 'user[password]', nil, :class => 'form-control', :placeholder => I18n.t(:password, scope: :sign_up_dialog), :required => true, :minLength => 8 %>
+      <div class="help-block with-errors"></div>
+      <%= password_field_tag 'user[password_confirmation]', nil, :class => 'form-control', :placeholder => I18n.t(:password_confirmation, scope: :sign_up_dialog), 'data-match' => '#user_password' %>
+      <div class="help-block with-errors"></div>
+      <div class="input-group">
+        <%= text_field_tag 'user[birth]', nil, :class => 'form-control date-picker', placeholder: I18n.t(:birthday, scope: :edit_personal), 'data-provide': 'datepicker', 'data-date-format': 'yyyy-mm-dd', :style => 'width:120px;margin-right:8px' %>
+        <label class="radio-inline">
+          <%= radio_button_tag 'user[gender]', 'm' %>
+          <%= I18n.t(:'genderize.name.masculine') %>
+        </label>
+        <label class="radio-inline">
+          <%= radio_button_tag 'user[gender]', 'f', :checked => true %>
+          <%= I18n.t(:'genderize.name.feminine') %>
+        </label>
+      </div>
+      <div class="input-group">
+        <%= captcha_tag %>
+        <%= text_field_tag :captcha, '', :autocomplete => :off, :placeholder => I18n.t(:captcha, scope: :sign_up_dialog), :class => 'form-control', :required => true, :minLength => 4, :maxLength => 4 %>
+      </div>
+      <%= submit_tag I18n.t(:sign_up, scope: :sign_up_dialog), :class => 'btn btn-primary' %>
+    <% end %>
+  <% end %>
+  <ul class="dialog-alt-links">
+    <li>
+      <a class="simple-text popup-text" data-effect="mfp-zoom-out" href="#login-dialog">
+        <%= I18n.t(:already_member, scope: :sign_up_dialog) %>
+      </a>
+    </li>
+  </ul>
+</div>
+
+<div class="mfp-with-anim mfp-hide mfp-dialog clearfix" id="password-recover-dialog">
+  <i class="icon-retweet dialog-icon"></i>
+  <h3>
+    <%= I18n.t(:header, scope: :password_recovery_dialog) %>
+  </h3>
+  <h5>
+    <%= I18n.t(:title, scope: :password_recovery_dialog) %>
+  </h5>
+  <form class="dialog-form" data-toggle="validator">
+    <label class="control-label">
+      <%= I18n.t(:email, scope: :password_recovery_dialog) %>
+    </label>
+    <input class="form-control span12" placeholder="email@domain.com" required="<%= true %>" type="email"></input>
+    <input class="btn btn-primary" type="submit" value="<%= I18n.t(:ok, scope: :password_recovery_dialog) %>"></input>
+  </form>
+</div>

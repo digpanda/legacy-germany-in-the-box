@@ -94,8 +94,9 @@ module ApplicationHelper
     }
   end
 
-  def inside_layout(layout = 'application', &block)
-    render :inline => capture_haml(&block), :layout => "layouts/#{layout}"
+  def inside_layout(parent_layout='application')
+    view_flow.set :layout, capture { yield }
+    render template: "layouts/#{parent_layout}"
   end
 
 end
