@@ -17,6 +17,11 @@ class UserDecorator < Draper::Decorator
     end
   end
 
+  def reach_todays_limit?(new = 0)
+    sum = self.orders.where(:status => :success).and(:u_ts.gte => Date.today, :u_ts.lt => Date.tomorrow).inject(0) { |sum, o| sum += o.decorate.total_price_in_curreny }
+    sum + new <= Settings.instance.max_total_per_day
+  end
+
   private
 
   def thumb_params
