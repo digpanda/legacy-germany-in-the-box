@@ -9,6 +9,8 @@ $(document).ready(() => {
 
   try {
 
+    var Casing = require("javascripts/lib/casing");
+
     for (var idx in starters) {
 
       console.warn('Loading starter : ' + starters[idx]);

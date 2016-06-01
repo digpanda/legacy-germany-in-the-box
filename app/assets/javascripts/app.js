@@ -169,6 +169,9 @@ var Checkout = {
    */
   postBankDetails: function postBankDetails() {
 
+    var Casing = require("javascripts/lib/casing");
+    var PostForm = require("javascripts/lib/post_form.js");
+
     var bankDetails = $("#bank-details").data();
     var parsedBankDetails = Casing.objectToUnderscoreCase(bankDetails);
 
@@ -430,6 +433,8 @@ $(document).ready(function () {
 
   try {
 
+    var Casing = require("javascripts/lib/casing");
+
     for (var idx in starters) {
 
       console.warn('Loading starter : ' + starters[idx]);
@@ -458,6 +463,97 @@ $(document).ready(function () {
    */
   obj.init();
 });
+});
+
+require.register("javascripts/lib/casing.js", function(exports, require, module) {
+"use strict";
+
+/**
+ * Casing Class
+ */
+var Casing = {
+
+  /**
+   * CamelCase to underscored case
+   */
+  underscoreCase: function underscoreCase(string) {
+    return string.replace(/(?:^|\.?)([A-Z])/g, function (x, y) {
+      return "_" + y.toLowerCase();
+    }).replace(/^_/, "");
+  },
+
+  /**
+   * Undescored to CamelCase
+   */
+  camelCase: function camelCase(string) {
+    return string.replace(/(\-[a-z])/g, function ($1) {
+      return $1.toUpperCase().replace('-', '');
+    });
+  },
+
+  /**
+   * Convert an object to underscore case
+   */
+  objectToUnderscoreCase: function objectToUnderscoreCase(obj) {
+
+    var parsed = {};
+    for (var key in obj) {
+
+      var new_key = this.underscoreCase(key);
+      parsed[new_key] = obj[key];
+    }
+
+    return parsed;
+  }
+
+};
+
+module.exports = Casing;
+});
+
+require.register("javascripts/lib/post_form.js", function(exports, require, module) {
+"use strict";
+
+/**
+ * PostForm Class
+ */
+var PostForm = {
+
+  /**
+   * Generate and create a form
+   */
+  send: function send(params, path, target, method) {
+
+    var method = method || "POST";
+    var path = path || "";
+    var target = target || "";
+
+    var form = document.createElement("form");
+    form.setAttribute("method", method);
+    form.setAttribute("action", path);
+    form.setAttribute("target", target);
+
+    for (var key in params) {
+
+      if (params.hasOwnProperty(key)) {
+
+        var f = document.createElement("input");
+        f.setAttribute("type", "hidden");
+        f.setAttribute("name", key);
+        f.setAttribute("value", params[key]);
+        form.appendChild(f);
+      }
+    }
+
+    document.body.appendChild(form); // <- JS way
+    // $('body').append(form); // <- jQuery way
+
+    form.submit();
+  }
+
+};
+
+module.exports = PostForm;
 });
 
 require.register("javascripts/models.js", function(exports, require, module) {
