@@ -1,0 +1,15 @@
+<div class="col-md-6 col-sm-9 col-xs-12">
+  <%= form_for admin_settings_path, html: {method: 'patch', 'data-toggle': 'validator'} do |f| %>
+    <div class="form-group">
+      <%= f.label :exchange_rate_to_yuan, I18n.t(:exchange_rate_to_yuan, scope: :edit_settings), :class => 'control-label' %>
+      <%= f.text_field :exchange_rate_to_yuan, value: number_with_precision(@settings.exchange_rate_to_yuan, :precision => 2), :class => 'form-control', :required => true, :autocomplete => :off, :id => 'exchange_rate' %>
+    </div>
+    <div class="form-group">
+      <%= f.label :exchange_rate_to_yuan_confirmation, I18n.t(:exchange_rate_to_yuan_confirmation, scope: :edit_settings), :class => 'control-label' %>
+      <%= f.text_field :exchange_rate_to_yuan_confirmation, value: number_with_precision(@settings.exchange_rate_to_yuan, :precision => 2), :class => 'form-control', :required => true, :autocomplete => :off, 'data-match': '#exchange_rate' %>
+    </div>
+    <div class="form-group">
+      <%= f.button I18n.t(:save, scope: :edit_settings), :type => 'submit', :class => 'btn btn-primary', name: :user_info_edit_part, value: :edit_settings %>
+    </div>
+  <% end %>
+</div>
