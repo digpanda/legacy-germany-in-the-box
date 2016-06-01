@@ -13,6 +13,7 @@ class CategoryNavigationStore
 
   def sub_tree(category)
     children(category).inject("") do |memo, child| # We should refacto this code and put the HTML in a view
+      # COULD BE TURNED TO capture { yield } and a bit of currying to do the magic WITHIN the view - Laurent
       memo << "<li class=\"dir\"><a href=\"#{Rails.application.routes.url_helpers.show_products_in_category_path(child.id)}\">#{child.name}</a>"
       memo << "<ul>#{sub_tree(child)}</ul>" if has_children?(child)
       memo << "</li>"

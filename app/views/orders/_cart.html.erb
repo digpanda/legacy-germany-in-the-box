@@ -1,0 +1,139 @@
+<% for_device_type :desktop, :tablet do %>
+  <%= form_tag adjust_skus_amount_orders_path(s), :id => 'orders_adjust_products_amount', :method => :patch do %>
+    <table class="table cart-table">
+      <thead>
+        <tr>
+          <th>
+            <%= I18n.t(:item, scope: :cart) %>
+          </th>
+          <th>
+            <%= I18n.t(:name, scope: :cart) %>
+          </th>
+          <th>
+            <%= I18n.t(:variant_option, scope: :cart) %>
+          </th>
+          <th>
+            <%= I18n.t(:quantity, scope: :cart) %>
+          </th>
+          <th>
+            <%= I18n.t(:unit_price, scope: :cart) %>
+          </th>
+          <% unless @readonly %>
+            <th>
+              <%= I18n.t(:operations, scope: :cart) %>
+            </th>
+          <% end %>
+        </tr>
+      </thead>
+      <tbody>
+        <% order.order_items.each do |i| %>
+          <tr>
+            <td class="cart-item-image">
+              <a href="#">
+                <img src="<%= i.sku.decorate.image_url(:img0, :thumb) %>" style="weight:48px;width:48px"/>
+              </a>
+            </td>
+            <td>
+              <a href="#">
+                <%= i.product.name %>
+              </a>
+            </td>
+            <td>
+              <%= select_tag :option_ids, grouped_options_for_select(i.product.decorate.grouped_variants_options, i.option_ids), {:multiple => 'multiple', :class => 'sku-variants-options'} %>
+            </td>
+            <td class="cart-item-quantity">
+              <% unless @readonly %>
+                <i class="fa fa-minus cart-item-minus"></i>
+              <% end %>
+              <%= text_field_tag "cart-quantity-of-product-#{i.product.id}", i.quantity, :id => "cart-quantity-of-product-#{i.product.id}", :type => 'text', :class => 'cart-quantity', :value => "#{i.quantity}", :disabled => "#{@readonly}" %>
+              <% unless @readonly %>
+                <i class="fa fa-plus cart-item-plus"></i>
+              <% end %>
+            </td>
+            <td>
+              <%= i.sku.decorate.price_with_currency %>
+            </td>
+            <% unless @readonly %>
+              <td class="cart-item-remove">
+                <%= link_to '', '#', :class => 'fa fa-times', :onclick => "$('#cart-quantity-of-product-#{i.product.id}').val(0); $('#orders_adjust_products_amount').submit()" %>
+              </td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <% unless @readonly %>
+      <%= submit_tag I18n.t(:update_cart, scope: :cart), :class => 'btn btn-primary btn-small' %>
+      <%= link_to I18n.t(:set_delivery_destination, scope: :cart), set_address_orders_path(s), :class => 'btn btn-primary btn-small js-set-address-link' %>
+    <% end %>
+  <% end %>
+<% end %>
+<% for_device_type :mobile do %>
+  <table class="table cart-table">
+    <tbody>
+      <% order.order_items.each do |i| %>
+        <tr class="info">
+          <th>
+            <%= I18n.t(:item, scope: :cart) %>
+          </th>
+          <td class="cart-item-image">
+            <a href="#">
+              <img src="<%= i.sku.decorate.img_url(:img0, :thumb) %>" style="weight:48px;width:48px"/>
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <th>
+            <%= I18n.t(:name, scope: :cart) %>
+          </th>
+          <td>
+            <a href="#">
+              <%= i.product.name %>
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <th>
+            <%= I18n.t(:variant_option, scope: :cart) %>
+          </th>
+          <td>
+            <%= select_tag :option_ids, grouped_options_for_select(i.product.decorate.grouped_variants_options, i.option_ids), {:multiple => 'multiple', :class => 'sku-variants-options'} %>
+          </td>
+        </tr>
+        <tr>
+          <th>
+            <%= I18n.t(:quantity, scope: :cart) %>
+          </th>
+          <td class="cart-item-quantity">
+            <% unless @readonly %>
+              <i class="fa fa-minus cart-item-minus"></i>
+            <% end %>
+            <input class="cart-quantity" disabled="<%= @readonly %>" id="cart-quantity-of-product-<%= i.product.id %>" name="cart-quantity-of-product-<%= i.product.id %>" type="text" value="<%= i.quantity %>"></input>
+            <% unless @readonly %>
+              <i class="fa fa-plus cart-item-plus"></i>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <th>
+            <%= I18n.t(:unit_price, scope: :cart) %>
+          </th>
+          <td>
+            <%= i.sku.decorate.price_with_currency %>
+          </td>
+        </tr>
+        <tr>
+          <th>
+            <%= I18n.t(:operations, scope: :cart) %>
+          </th>
+          <% unless @readonly %>
+            <td class="cart-item-remove">
+              <%= link_to '', '#', :class => 'fa fa-times', :onclick => "$('#cart-quantity-of-product-#{i.product.id}').val(0); $('#orders_adjust_products_amount').submit()" %>
+            </td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
+

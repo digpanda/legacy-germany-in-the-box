@@ -1,0 +1,36 @@
+<div class="row">
+  <%= render 'cart', order: @order, currency_code: @currency_code %>
+</div>
+<% if a = @order.shipping_address %>
+  <div class="row">
+    <div class="address-box">
+      <ul>
+        <li>
+          <%= "#{I18n.t(:street, scope: :edit_address)} : #{ a.street } #{ a.number }" %>
+        </li>
+        <li>
+          <%= "#{I18n.t(:additional, scope: :edit_address)} : #{ a.additional }" %>
+        </li>
+        <li>
+          <%= "#{I18n.t(:district, scope: :edit_address)} : #{ a.district }" %>
+        </li>
+        <li>
+          <%= "#{I18n.t(:city, scope: :edit_address)} : #{ a.city }" %>
+        </li>
+        <li>
+          <%= "#{I18n.t(:province, scope: :edit_address)} : #{ a.province }" %>
+        </li>
+        <li>
+          <%= "#{I18n.t(:country, scope: :edit_address)} : #{ a.country_local_name }" %>
+        </li>
+        <li>
+          <%= "#{I18n.t(:zip, scope: :edit_address)} : #{ a.zip }" %>
+        </li>
+      </ul>
+    </div>
+  </div>
+<% else %>
+  <div class="row">
+    <h4>Delivery destination is not set yet.</h4>
+  </div>
+<% end %>

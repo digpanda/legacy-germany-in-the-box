@@ -181,7 +181,7 @@ module.exports = Checkout;
 });
 
 require.register("javascripts/controllers/orders/manage_cart.js", function(exports, require, module) {
-"use strict";
+'use strict';
 
 /**
  * ManageCart class
@@ -194,6 +194,15 @@ var ManageCart = {
   init: function init() {
 
     this.onSetAddress();
+    this.multiSelectSystem();
+  },
+
+  multiSelectSystem: function multiSelectSystem() {
+
+    $('select.sku-variants-options').multiselect({
+      enableCaseInsensitiveFiltering: true,
+      maxHeight: 400
+    }).multiselect('disable');
   },
 
   onSetAddress: function onSetAddress() {
@@ -204,7 +213,6 @@ var ManageCart = {
       ManageCart.forceLogin(this);
     });
   },
-
 
   /**
    * Send next destination and trigger log-in if not logged-in already

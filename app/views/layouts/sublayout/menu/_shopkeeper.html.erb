@@ -19,7 +19,7 @@
     <%= link_to I18n.t(:my_address, scope: :top_menu),  show_addresses_user_path(current_user, :user_info_edit_part => :edit_shop_address) %>
   </li>
   <li class="<%= is_menu_active?(:payments) %>">
-    <%= link_to "Payments", shopkeeper_payments_path(:user_info_edit_part => :payments) %>
+    <%= link_to "Zahlungsmanagement", shopkeeper_payments_path(:user_info_edit_part => :payments) %>
   </li>
 <% end %>
 <li>

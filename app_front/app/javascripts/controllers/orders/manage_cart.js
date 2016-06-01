@@ -9,10 +9,20 @@ var ManageCart = {
    init: function() {
 
     this.onSetAddress();
+    this.multiSelectSystem();
 
   },
 
-  onSetAddress() {
+  multiSelectSystem: function() {
+
+    $('select.sku-variants-options').multiselect({
+      enableCaseInsensitiveFiltering: true,
+      maxHeight: 400,
+    }).multiselect('disable');
+
+  },
+
+  onSetAddress: function() {
 
     $(".js-set-address-link").click(function(e) {
 
