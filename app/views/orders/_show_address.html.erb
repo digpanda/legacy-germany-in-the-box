@@ -1,0 +1,14 @@
+<div class="panel panel-primary">
+  <div class="panel-heading text-center">
+    <%= I18n.t(:show_address_title, scope: :edit_address) + (i+1).to_s %>
+  </div>
+  <div class="panel-body">
+    <div class="address-box">
+      <%= render partial: 'addresses/_show_customer_address', locals: {a: a} %>
+      <label>
+        <%= radio_button_tag 'delivery_destination_id', a.id, checked = a.primary %>
+        <%= I18n.t(:my_destination, scope: :checkout) %>
+      </label>
+    </div>
+  </div>
+</div>

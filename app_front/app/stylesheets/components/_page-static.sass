@@ -1,10 +1,14 @@
 +component(page-static)
 
-  pre
-    word-wrap: break-word
+  +part(text)
+    word-wrap: normal
     white-space: -moz-pre-wrap
     white-space: pre-wrap
-
+    border: 1px solid $color-grey
+    background-color: $color-white
+    padding: 0.5em
+    margin-bottom: 1em
+    
   h1
     color: $color-green
     font-size: 28px

@@ -1,0 +1,64 @@
+<div class="+spacer"></div>
+<% if total_number_of_products > 0 %>
+  <div class="panel-group">
+    <div class="panel panel-info">
+      <% current_orders.each do |s, o| %>
+        <% if o.total_amount > 0 %>
+          <div class="panel-heading">
+            <h4>
+              <%= I18n.t(:shop, scope: :cart) + ': ' %>
+              <%= link_to @shops[s][:name], shop_path(s) %>
+            </h4>
+          </div>
+          <div class="panel-body">
+            <div class="col-md-9">
+              <%= render partial: 'cart', locals: {order: o, s: s} %>
+            </div>
+            <div class="col-md-3">
+              <ul class="cart-total-list">
+                <li>
+                  <span>
+                    <%= I18n.t(:subtotal, scope: :cart) %>
+                  </span>
+                  <span>
+                    <%= o.decorate.total_price_with_currency %>
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    <%= I18n.t(:duty_cost, scope: :cart) %>
+                  </span>
+                  <span>
+                    <%= @carts[s].decorate.duty_cost_with_currency %>
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    <%= I18n.t(:shipping_cost, scope: :cart) %>
+                  </span>
+                  <span>
+                    <%= @carts[s].decorate.shipping_cost_with_currency %>
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    <%= I18n.t(:total_price_in_yuan, scope: :cart) %>
+                  </span>
+                  <span>
+                    <%= @carts[s].decorate.total_with_currency %>
+                  </span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+<% else %>
+  <div class="row">
+    <h4>
+      <%= I18n.t(:no_products, scope: :cart) %>
+    </h4>
+  </div>
+<% end %>

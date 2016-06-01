@@ -90,21 +90,25 @@
 #csstyle .\+menu-bordering {
   border-right: 1px solid #eeeeee; }
 
-/* line 3, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_page-static.sass */
-.page-static pre {
-  word-wrap: break-word;
+/* line 76, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
+.page-static__text {
+  word-wrap: normal;
   white-space: -moz-pre-wrap;
-  white-space: pre-wrap; }
+  white-space: pre-wrap;
+  border: 1px solid #eeeeee;
+  background-color: #fdfdfd;
+  padding: 0.5em;
+  margin-bottom: 1em; }
 
-/* line 8, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_page-static.sass */
+/* line 12, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_page-static.sass */
 .page-static h1 {
   color: #659443;
   font-size: 28px; }
 
-/* line 12, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_page-static.sass */
+/* line 16, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_page-static.sass */
 .page-static a {
   color: #659443; }
-  /* line 14, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_page-static.sass */
+  /* line 18, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_page-static.sass */
   .page-static a:hover {
     color: #659443; }
 
