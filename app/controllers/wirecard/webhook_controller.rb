@@ -49,7 +49,12 @@ class Wirecard::WebhookController < ApplicationController
 
   def required_merchant_datas
 
-    @datas = ActiveSupport::JSON.decode(request.body.read)
+    devlog.info "We try to handle the postback data"
+    return false if params["postback"].nil?
+
+    json_body = params["postback"].gsub('\\', '')
+    @datas = ActiveSupport::JSON.decode(json_body)
+    #@datas = ActiveSupport::JSON.decode(request.body.read)
 
     devlog.info "Checking parameters ..."
     devlog.info "VARIABLES : #{params.inject({}){|memo,(k,v)| memo[k.to_sym] = v; memo}}" 
@@ -62,7 +67,7 @@ class Wirecard::WebhookController < ApplicationController
   end
 
   def validate_merchant_datas
-    render text: "Wrong arguments given." and return if !required_merchant_datas
+    render status: 500, json: {success: false, error: "Wrong arguments given."}.to_json and return if !required_merchant_datas
   end
 
   def devlog
