@@ -6,7 +6,7 @@ class ShopDecorator < Draper::Decorator
   decorates :shop
 
   def more_new_address?
-    current_user.shop.addresses.in(:type => 'both').size < [Rails.configuration.max_num_shop_billing_addresses, Rails.configuration.max_num_shop_sender_addresses].min && (current_user.shop.addresses.in(:type => 'billing').size < Rails.configuration.max_num_shop_billing_addresses || current_user.shop.addresses.in(:type => 'sender').size < Rails.configuration.max_num_shop_sender_addresses)
+    self.addresses.in(:type => 'both').size < [Rails.configuration.max_num_shop_billing_addresses, Rails.configuration.max_num_shop_sender_addresses].min && (self.addresses.in(:type => 'billing').size < Rails.configuration.max_num_shop_billing_addresses || self.addresses.in(:type => 'sender').size < Rails.configuration.max_num_shop_sender_addresses)
   end
 
   def more_billing_address?
