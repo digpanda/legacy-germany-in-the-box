@@ -34,7 +34,7 @@ module Wirecard
       @request_id          ||= [timestamp, user.id, order_number].join('-')
       @hosted_payment_url  ||= ::Rails.application.config.wirecard["customers"]["hosted_payment_url"]
       @default_redirect_url||= ::Rails.application.config.wirecard["customers"]["default_redirect_url"]
-      @success_redirect_url ||= ::Rails.application.config.wirecard["customers"]["success_redirect_url"] || "#{default_redirect_url}?state=success&"
+      @success_redirect_url||= ::Rails.application.config.wirecard["customers"]["success_redirect_url"] || "#{default_redirect_url}?state=success&"
       @fail_redirect_url   ||= ::Rails.application.config.wirecard["customers"]["fail_redirect_url"] || "#{default_redirect_url}?state=failed&"
 
     end

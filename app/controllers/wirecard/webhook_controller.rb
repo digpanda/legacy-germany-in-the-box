@@ -36,7 +36,6 @@ class Wirecard::WebhookController < ApplicationController
 
       devlog.info "System is done."
 
-
       render status: 200, json: {success: true}.to_json and return
 
     end
