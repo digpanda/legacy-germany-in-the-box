@@ -13,7 +13,8 @@ class UserFailure < Devise::FailureApp
       end
 
       flash[:error] = I18n.t(:unauthenticated, :scope => [:devise, :failure])
-      redirect_to(:back) and return
+      redirect_to new_user_session_path
+      return
 
     end
   end

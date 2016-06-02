@@ -64,7 +64,7 @@
     </table>
     <% unless @readonly %>
       <%= submit_tag I18n.t(:update_cart, scope: :cart), :class => 'btn btn-primary btn-small' %>
-      <%= link_to I18n.t(:set_delivery_destination, scope: :cart), set_address_orders_path(s), :class => 'btn btn-primary btn-small js-set-address-link' %>
+      <%= link_to I18n.t(:set_delivery_destination, scope: :cart), set_address_orders_path(s), :class => 'btn btn-primary btn-small' %>
     <% end %>
   <% end %>
 <% end %>
