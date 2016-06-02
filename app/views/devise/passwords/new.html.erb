@@ -1,13 +1,17 @@
-<h2>Forgot your password?</h2>
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: {method: :post}) do |f| %>
-  <%= devise_error_messages! %>
-  <div class="field">
-    <%= f.label :email %>
-    <br/>
-    <%= f.email_field :email, autofocus: true %>
-  </div>
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
-  </div>
-<% end %>
-<%= render "devise/shared/links" %>
+<div class="row col-md-4 col-md-push-4 col-md-pull-4">
+
+  <h3>
+    <%= I18n.t(:header, scope: :password_recovery_dialog) %>
+  </h3>
+  <h5>
+    <%= I18n.t(:title, scope: :password_recovery_dialog) %>
+  </h5>
+  <form class="dialog-form" data-toggle="validator">
+    <label class="control-label">
+      <%= I18n.t(:email, scope: :password_recovery_dialog) %>
+    </label>
+    <input class="form-control span12" placeholder="email@domain.com" required="<%= true %>" type="email"></input>
+    <input class="btn btn-primary" type="submit" value="<%= I18n.t(:ok, scope: :password_recovery_dialog) %>"></input>
+  </form>
+
+</div>

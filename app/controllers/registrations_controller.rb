@@ -12,7 +12,6 @@ class RegistrationsController < Devise::RegistrationsController
 
   def new
     session[:signup_advice_counter] = 1
-    redirect_to root_path
   end
 
   def cancel_signup

@@ -1,10 +1,7 @@
 class SessionsController < Devise::SessionsController
 
   skip_before_filter :verify_signed_out_user
-
-  before_action :authenticate_user!, except: [:new, :create, :set_redirect_location]
-
-  respond_to :html, :json
+  before_action :authenticate_user!, except: [:new, :create]
 
   def after_sign_in_path_for(resource)
     session[:previous_url] || root_path
@@ -12,7 +9,11 @@ class SessionsController < Devise::SessionsController
 
   def new
     session[:login_advice_counter] = 1
-    redirect_to root_path
+  end
+
+  def failure
+    warden.custom_failure!
+    redirect(:back) and return
   end
 
   def create
@@ -23,10 +24,10 @@ class SessionsController < Devise::SessionsController
         super
       else
         flash[:error] = I18n.t(:wrong_captcha, scope: :top_menu)
-        redirect_to root_path
+        redirect_to(:back)
       end
     else
-
+      
       self.resource = warden.authenticate!(auth_options)
       sign_in(resource_name, resource)
       yield resource if block_given?
