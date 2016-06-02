@@ -17,9 +17,11 @@ class ShopsController <  ApplicationController
   end
 
   def approve
-    
+
     @shop.approved = Time.now
-    @shop.save
+    if !@shop.save
+      flash[:error] = "Can't approve the shop : #{@shop.errors.full_messages.join(', ')}"
+    end
 
     redirect_to(:back) and return
 
@@ -28,7 +30,9 @@ class ShopsController <  ApplicationController
   def disapprove
 
     @shop.approved = nil
-    @shop.save
+    if !@shop.save
+      flash[:error] = "Can't disapprove the shop : #{@shop.errors.full_messages.join(', ')}"
+    end
 
     redirect_to(:back) and return
 
