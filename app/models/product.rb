@@ -54,7 +54,7 @@ class Product
   index({duty_category: 1},   {unique: false, name: :idx_product_duty_category,   sparse: true})
 
   def self.search(query)
-    Product.buyable
+    Product.buyable.where(name: /(#{query.split.join('|')})/i)
   end
 
   def is_favorite?(user)
