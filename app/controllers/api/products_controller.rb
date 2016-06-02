@@ -27,6 +27,7 @@ class Api::ProductsController < ProductsController
       end
     end
 
+    # Shoule be improved and normed - Laurent
     render :json => {}, :status => :not_found
     return
 

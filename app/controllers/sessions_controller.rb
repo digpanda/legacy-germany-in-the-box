@@ -17,64 +17,31 @@ class SessionsController < Devise::SessionsController
 
   def create
 
-    respond_to do |format|
+    if session[:login_advice_counter].present? and session[:login_advice_counter] >= Rails.configuration.login_failure_limit
+      if valid_captcha?(params[:captcha])
+        session.delete(:login_advice_counter)
+        super
+      else
+        flash[:error] = I18n.t(:wrong_captcha, scope: :top_menu)
+        redirect_to root_path
+      end
+    else
 
-      format.html {
-        if session[:login_advice_counter].present? and session[:login_advice_counter] >= Rails.configuration.login_failure_limit
-          if valid_captcha?(params[:captcha])
-            session.delete(:login_advice_counter)
-            super
-          else
-            flash[:error] = I18n.t(:wrong_captcha, scope: :top_menu)
-            redirect_to root_path
-          end
-        else
-
-            self.resource = warden.authenticate!(auth_options)
-            sign_in(resource_name, resource)
-            yield resource if block_given?
-            respond_with resource, location: after_sign_in_path_for(resource)
-
-        end
-      }
-
-      format.json {
-        self.resource = warden.authenticate!(auth_options)
-        sign_in(resource_name, resource)
-        current_user.update authentication_token: nil
-        render :login, :status => :ok
-      }
+      self.resource = warden.authenticate!(auth_options)
+      sign_in(resource_name, resource)
+      yield resource if block_given?
+      respond_with resource, location: after_sign_in_path_for(resource)
 
     end
+
   end
 
   def destroy
-
-    respond_to do |format|
-      format.html {
-        super
-      }
-
-      format.json {
-        if current_user
-          current_user.update authentication_token: nil
-          Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name)
-          render :json => ApiFormat.success(:user, current_user), :status => :ok
-        else
-          render :json => ApiFormat.fail("You are not logged-in"), :status => :unprocessable_entity
-        end
-      }
-    end
-    
+    super
   end
 
   def cancel_login
     session.delete(:login_advice_counter)
-    respond_to do |format|
-      format.json {
-        render :json => {}, :status => :ok
-      }
-    end
   end
 
 end

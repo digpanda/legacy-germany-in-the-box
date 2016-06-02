@@ -58,9 +58,6 @@ class ProductsController < ApplicationController
 
   # This will display the skus for the users (logged in or not)
   def skus
-    respond_to do |format|
-      format.json { render :skus}
-    end
   end
 
   def approve
@@ -127,11 +124,6 @@ class ProductsController < ApplicationController
   end
 
   def autocomplete_product_name
-    respond_to do |format|
-      format.json {
-        render :json => AppCache.get_products_for_autocompletion(params[:term], params[:pages] ? params[:pages].to_i : 1), :status => :ok
-      }
-    end
   end
 
   def search
@@ -148,98 +140,62 @@ class ProductsController < ApplicationController
     @products = Product.buyable.paginate(:pages => (params[:pages] ? params[:pages].to_i : 1), :per_page => Rails.configuration.limit_for_popular_products);
     @show_search_area = true
 
-    respond_to do |format|
-      
-      format.html {
-        @categories_and_children, @categories_and_counters = AppCache.get_category_values_for_left_menu(@products)
-        render :index
-      }
-
-      format.json {
-        render :popular
-      }
-    end
+    @categories_and_children, @categories_and_counters = AppCache.get_category_values_for_left_menu(@products)
+    render :index
 
   end
 
   def show
-
     @product = Product.find(params[:id])
-    
-    respond_to do |format|
-      format.json {
-        
-      }
-      format.html {
-
-      }
-    end
-
   end
 
   def create
     @product = Product.new(product_params)
     @product.shop = Shop.find(params[:shop_id])
 
-    respond_to do |format|
       if @product.save
-        format.html {
-          flash[:success] = I18n.t(:create_ok, scope: :edit_product_new)
-          redirect_to show_skus_product_path(@product.id, :user_info_edit_part => :edit_product)
-        }
+        flash[:success] = I18n.t(:create_ok, scope: :edit_product_new)
+        redirect_to show_skus_product_path(@product.id, :user_info_edit_part => :edit_product)
       else
-        format.html {
-          flash[:error] = @product.errors.full_messages.first
-          redirect_to request.referer
-        }
+        flash[:error] = @product.errors.full_messages.first
+        redirect_to request.referer
       end
-    end
   end
 
   def update
-    respond_to do |format|
-      if sku_attributes = params.require(:product)[:skus_attributes]
-        sku_attributes.each do |k,v|
-          v[:option_ids] = v[:option_ids].reject { |c| c.empty? }
-        end
+    if sku_attributes = params.require(:product)[:skus_attributes]
+      sku_attributes.each do |k,v|
+        v[:option_ids] = v[:option_ids].reject { |c| c.empty? }
+      end
+    end
+
+    if @product.update(product_params)
+
+      if params[:part] == :basic.to_s
+        flash[:success] = I18n.t(:update_ok, scope: :edit_product)
+        redirect_to show_products_shop_path(@product.shop.id, :user_info_edit_part => :edit_product)
+      elsif params[:part] == :sku.to_s
+        flash[:success] = I18n.t(:update_ok, scope: :edit_product_detail)
+        redirect_to show_skus_product_path(@product.id, :user_info_edit_part => :edit_product_detail)
+      elsif params[:part] == :variant.to_s
+        flash[:success] = I18n.t(:update_ok, scope: :edit_product_variant)
+        redirect_to edit_product_path(@product.id, :user_info_edit_part => :edit_product_variant)
       end
 
-      if @product.update(product_params)
-        format.html {
-          if params[:part] == :basic.to_s
-            flash[:success] = I18n.t(:update_ok, scope: :edit_product)
-            redirect_to show_products_shop_path(@product.shop.id, :user_info_edit_part => :edit_product)
-          elsif params[:part] == :sku.to_s
-            flash[:success] = I18n.t(:update_ok, scope: :edit_product_detail)
-            redirect_to show_skus_product_path(@product.id, :user_info_edit_part => :edit_product_detail)
-          elsif params[:part] == :variant.to_s
-            flash[:success] = I18n.t(:update_ok, scope: :edit_product_variant)
-            redirect_to edit_product_path(@product.id, :user_info_edit_part => :edit_product_variant)
-          end
-        }
-      else
-        format.html {
-          flash[:error] = @product.errors.full_messages.first
-          redirect_to edit_product_path(@product.id, :user_info_edit_part => :edit_product_update)
-        }
-      end
+    else
+      flash[:error] = @product.errors.full_messages.first
+      redirect_to edit_product_path(@product.id, :user_info_edit_part => :edit_product_update)
     end
   end
 
   def destroy
     sid = @product.shop.id
-    respond_to do |format|
-      if @product.destroy
-        format.html {
-          flash[:success] = I18n.t(:delete_ok, scope: :edit_product)
-          redirect_to show_products_shop_path(sid, :user_info_edit_part => :edit_product)
-        }
-      else
-        format.html {
-          flash[:error] = @product.errors.full_messages.first
-          redirect_to show_products_shop_path(sid, :user_info_edit_part => :edit_product)
-        }
-      end
+    if @product.destroy
+      flash[:success] = I18n.t(:delete_ok, scope: :edit_product)
+      redirect_to show_products_shop_path(sid, :user_info_edit_part => :edit_product)
+    else
+      flash[:error] = @product.errors.full_messages.first
+      redirect_to show_products_shop_path(sid, :user_info_edit_part => :edit_product)
     end
   end
 
