@@ -1,0 +1,2 @@
+0 22 * * * /var/www/germany_in_the_box/current/config/cron/mongodump_prod_and_staging_db.sh
+15 22 * * * /var/www/germany_in_the_box/current/config/cron/mongorestore_prod_into_staging_db.sh
