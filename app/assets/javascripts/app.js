@@ -210,11 +210,14 @@ var ManageCart = {
 
   onSetAddress: function onSetAddress() {
 
-    $(".js-set-address-link").click(function (e) {
-
-      e.preventDefault();
-      ManageCart.forceLogin(this);
-    });
+    /*
+        $(".js-set-address-link").click(function(e) {
+    
+          e.preventDefault();
+          ManageCart.forceLogin(this);
+    
+        });
+    */
   },
 
   /**
@@ -222,44 +225,53 @@ var ManageCart = {
    */
   forceLogin: function forceLogin(el) {
 
-    var location = $(el).attr("href");
-    var self = this;
+    /* WE DEPRECATED WITH THE NEW LOGIN SYSTEM
+        var location = $(el).attr("href");
+        var self = this;
+    
+        var User = require("javascripts/models/user");
+    
+        User.isAuth(function(res) {
+    
+          // If the user isn't auth
+          // We force the trigger and
+          // Set the new location programmatically
+          if (res === false) {
+    
+            self.setRedirectLocation(location);
+            $("#sign_in_link").click();
+    
+          } else {
+    
+            // Else we just continue to do what we were doing
+            window.location.href = location;
+            
+          }
+    
+        });
+    */
+  }
 
-    var User = require("javascripts/models/user");
+};
 
-    User.isAuth(function (res) {
-
-      // If the user isn't auth
-      // We force the trigger and
-      // Set the new location programmatically
-      if (res === false) {
-
-        self.setRedirectLocation(location);
-        $("#sign_in_link").click();
-      } else {
-
-        // Else we just continue to do what we were doing
-        window.location.href = location;
-      }
-    });
-  },
-
+/* SAME HERE
   // Should be in a lib
-  setRedirectLocation: function setRedirectLocation(location) {
+  setRedirectLocation: function(location) {
 
     $.ajax({
       method: "PATCH",
       url: "api/set_redirect_location",
-      data: { "location": location }
+      data: {"location": location}
 
-    }).done(function (res) {
+
+    }).done(function(res) {
 
       // callback {"status": "ok"}
 
     });
-  }
 
-};
+  },
+*/
 
 module.exports = ManageCart;
 });
@@ -547,35 +559,6 @@ require.register("javascripts/models.js", function(exports, require, module) {
 var Models = ['user'];
 
 module.exports = Models;
-});
-
-require.register("javascripts/models/user.js", function(exports, require, module) {
-"use strict";
-
-/**
- * User Class
- */
-var User = {
-
-  /**
-   * Check if user is auth or not via API call
-   */
-  isAuth: function isAuth(callback) {
-
-    $.ajax({
-      method: "GET",
-      url: "api/users/is_auth",
-      data: {}
-
-    }).done(function (res) {
-
-      callback(res.is_auth);
-    });
-  }
-
-};
-
-module.exports = User;
 });
 
 require.register("javascripts/starters.js", function(exports, require, module) {

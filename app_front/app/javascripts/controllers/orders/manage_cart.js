@@ -24,13 +24,14 @@ var ManageCart = {
 
   onSetAddress: function() {
 
+/*
     $(".js-set-address-link").click(function(e) {
 
       e.preventDefault();
       ManageCart.forceLogin(this);
 
     });
-
+*/
   },
 
   /**
@@ -38,6 +39,7 @@ var ManageCart = {
    */
    forceLogin: function(el) {
 
+/* WE DEPRECATED WITH THE NEW LOGIN SYSTEM
     var location = $(el).attr("href");
     var self = this;
 
@@ -61,9 +63,10 @@ var ManageCart = {
       }
 
     });
-
+*/
   },
 
+/* SAME HERE
   // Should be in a lib
   setRedirectLocation: function(location) {
 
@@ -80,6 +83,7 @@ var ManageCart = {
     });
 
   },
+*/
 
 }
 
