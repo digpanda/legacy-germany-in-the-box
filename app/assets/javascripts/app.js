@@ -1,1 +1,1002 @@
-!function(){"use strict";var t="undefined"==typeof window?global:window;if("function"!=typeof t.require){var e={},r={},i={},s={}.hasOwnProperty,n=/^\.\.?(\/|$)/,o=function(t,e){for(var r,i=[],s=(n.test(e)?t+"/"+e:e).split("/"),o=0,a=s.length;a>o;o++)r=s[o],".."===r?i.pop():"."!==r&&""!==r&&i.push(r);return i.join("/")},a=function(t){return t.split("/").slice(0,-1).join("/")},c=function(e){return function(r){var i=o(a(e),r);return t.require(i,e)}},u=function(t,e){var i=null;i=m&&m.createHot(t);var s={id:t,exports:{},hot:i};return r[t]=s,e(s.exports,c(t),s),s.exports},l=function(t){return i[t]?l(i[t]):t},p=function(t,e){return l(o(a(t),e))},d=function(t,i){null==i&&(i="/");var n=l(t);if(s.call(r,n))return r[n].exports;if(s.call(e,n))return u(n,e[n]);throw new Error("Cannot find module '"+t+"' from '"+i+"'")};d.alias=function(t,e){i[e]=t};var f=/\.[^.\/]+$/,v=/\/index(\.[^\/]+)?$/,h=function(t){if(f.test(t)){var e=t.replace(f,"");s.call(i,e)&&i[e].replace(f,"")!==e+"/index"||(i[e]=t)}if(v.test(t)){var r=t.replace(v,"");s.call(i,r)||(i[r]=t)}};d.register=d.define=function(t,i){if("object"==typeof t)for(var n in t)s.call(t,n)&&d.register(n,t[n]);else e[t]=i,delete r[t],h(t)},d.list=function(){var t=[];for(var r in e)s.call(e,r)&&t.push(r);return t};var m=t._hmr&&new t._hmr(p,d,e,r);d._cache=r,d.hmr=m&&m.wrap,d.brunch=!0,t.require=d}}(),function(){window;require.register("javascripts/controllers/orders/checkout.js",function(t,e,r){"use strict";var i={init:function(){this.postBankDetails()},postBankDetails:function(){var t=e("javascripts/lib/casing"),r=e("javascripts/lib/post_form.js"),i=$("#bank-details").data(),s=t.objectToUnderscoreCase(i);r.send(s,s.form_url)}};r.exports=i}),require.register("javascripts/controllers/orders/manage_cart.js",function(t,e,r){"use strict";var i={init:function(){this.onSetAddress(),this.multiSelectSystem()},multiSelectSystem:function(){$("select.sku-variants-options").multiselect({enableCaseInsensitiveFiltering:!0,maxHeight:400}).multiselect("disable")},onSetAddress:function(){$(".js-set-address-link").click(function(t){t.preventDefault(),i.forceLogin(this)})},forceLogin:function(t){var r=$(t).attr("href"),i=this,s=e("javascripts/models/user");s.isAuth(function(t){t===!1?(i.setRedirectLocation(r),$("#sign_in_link").click()):window.location.href=r})},setRedirectLocation:function(t){$.ajax({method:"PATCH",url:"/set_redirect_location",data:{location:t}}).done(function(t){})}};r.exports=i}),require.register("javascripts/controllers/pages/home.js",function(t,e,r){"use strict";var i={init:function(){$("#js-slider").show(),$("#js-slider").lightSlider({item:1,loop:!0,slideMargin:0,pager:!1,auto:!0,pause:"3000",speed:"1000",adaptiveHeight:!0,verticalHeight:1e3,mode:"fade",enableDrag:!1,enableTouch:!0}),$.widget("custom.catcomplete",$.ui.autocomplete,{_create:function(){this._super(),this.widget().menu("option","items","> :not(.ui-autocomplete-category)")},_renderMenu:function(t,e){var r=this,i="";$.each(e,function(e,s){var n;s.sc!=i&&(t.append("<li class='ui-autocomplete-category'>"+s.sc+"</li>"),i=s.sc),n=r._renderItemData(t,s),s.sc&&n.attr("aria-label",s.sc+" : "+s.label)})}}),$("#products_search_keyword").catcomplete({delay:1e3,source:"/products/autocomplete_product_name",select:function(t,e){$(this).val(e.item.value),$("#search_products_form").submit()}})}};r.exports=i}),require.register("javascripts/controllers/pages/menu.js",function(t,e,r){"use strict";var i={init:function(){}};r.exports=i}),require.register("javascripts/controllers/shop_applications/new.js",function(t,e,r){"use strict";var i={init:function(){$("#add_sales_channel_btn").length>0&&($("#add_sales_channel_btn").click(),$("#edit_app_submit_btn").click(function(){return $("input.dynamical-required").each(function(){0==$(this).val().length?$(this).addClass("invalidBorderClass"):$(this).removeClass("invalidBorderClass")}),$(".invalidBorderClass").length>0?!1:void 0}))}};r.exports=i}),require.register("javascripts/controllers/shopkeeper/wirecards/apply.js",function(t,e,r){"use strict";var i={init:function(){this.postShopDetails()},postShopDetails:function(){var t=$("#shop-details").data(),e=Casing.objectToUnderscoreCase(t);PostForm.send(e,e.form_url)}};r.exports=i}),require.register("javascripts/initialize.js",function(t,e,r){"use strict";$(document).ready(function(){var t=$("#js-routes").data(),r=e("javascripts/starters");try{var i=e("javascripts/lib/casing");for(var s in r){console.warn("Loading starter : "+r[s]);var n=i.underscoreCase(r[s]).replace("-","_"),o=e("javascripts/starters/"+n);o.init()}}catch(a){return void console.error("Unable to initialize #js-starters")}try{var c=e("javascripts/controllers/"+t.controller+"/"+t.action)}catch(a){return void console.error("Unable to initialize #js-routes `"+t.controller+"`.`"+t.action+"`")}c.init()})}),require.register("javascripts/lib/casing.js",function(t,e,r){"use strict";var i={underscoreCase:function(t){return t.replace(/(?:^|\.?)([A-Z])/g,function(t,e){return"_"+e.toLowerCase()}).replace(/^_/,"")},camelCase:function(t){return t.replace(/(\-[a-z])/g,function(t){return t.toUpperCase().replace("-","")})},objectToUnderscoreCase:function(t){var e={};for(var r in t){var i=this.underscoreCase(r);e[i]=t[r]}return e}};r.exports=i}),require.register("javascripts/lib/post_form.js",function(t,e,r){"use strict";var i={send:function(t,e,r,i){var i=i||"POST",e=e||"",r=r||"",s=document.createElement("form");s.setAttribute("method",i),s.setAttribute("action",e),s.setAttribute("target",r);for(var n in t)if(t.hasOwnProperty(n)){var o=document.createElement("input");o.setAttribute("type","hidden"),o.setAttribute("name",n),o.setAttribute("value",t[n]),s.appendChild(o)}document.body.appendChild(s),s.submit()}};r.exports=i}),require.register("javascripts/models.js",function(t,e,r){"use strict";var i=["user"];r.exports=i}),require.register("javascripts/models/user.js",function(t,e,r){"use strict";var i={isAuth:function(t){$.ajax({method:"GET",url:"/users/is_auth",data:{}}).done(function(e){t(e.is_auth)})}};r.exports=i}),require.register("javascripts/starters.js",function(t,e,r){"use strict";var i=["bootstrap","footer","product_favorite","product_lightbox","search","left_menu","china_city"];r.exports=i}),require.register("javascripts/starters/bootstrap.js",function(t,e,r){"use strict";var i={init:function(){this.startPopover(),this.startTooltip()},startPopover:function(){$("a[rel~=popover], .has-popover").popover()},startTooltip:function(){$("a[rel~=tooltip], .has-tooltip").tooltip()}};r.exports=i}),require.register("javascripts/starters/china_city.js",function(t,e,r){"use strict";var i={init:function(){this.startChinaCity()},startChinaCity:function(){$.fn.china_city=function(){return this.each(function(){var t;return t=$(this).find(".city-select"),t.change(function(){var e,r;return e=$(this),r=t.slice(t.index(this)+1),$("option:gt(0)",r).remove(),r.first()[0]&&e.val()&&!e.val().match(/--.*--/)?$.get("/china_city/"+$(this).val(),function(t){var e,i,s;for(null!=t.data&&(t=t.data),e=0,i=t.length;i>e;e++)s=t[e],r.first()[0].options.add(new Option(s[0],s[1]));return r.trigger("china_city:load_data_completed")}):void 0})})},$(document).ready(function(){$(".city-group").china_city()})}};r.exports=i}),require.register("javascripts/starters/footer.js",function(t,e,r){"use strict";var i={init:function(){this.stickyFooter()},stickyFooter:function(){self=this,$(".js-footer-stick").length>0&&(i.processStickyFooter(),$(window).resize(function(){i.processStickyFooter()}))},processStickyFooter:function(){var t,e,r;t=$(window).height(),e=$(".js-footer-stick").height(),r=$(".js-footer-stick").position().top+e,t>r&&$(".js-footer-stick").css("margin-top",10+(t-r)+"px")}};r.exports=i}),require.register("javascripts/starters/left_menu.js",function(t,e,r){"use strict";var i={init:function(){this.startLeftMenu()},startLeftMenu:function(){$("#left_menu > ul > li > a").click(function(){$("#left_menu li").removeClass("active"),$(this).closest("li").addClass("active");var t=$(this).next();return t.is("ul")&&t.is(":visible")&&($(this).closest("li").removeClass("active"),t.slideUp("normal")),t.is("ul")&&!t.is(":visible")&&($("#left_menu ul ul:visible").slideUp("normal"),t.slideDown("normal")),0==$(this).closest("li").find("ul").children().length})}};r.exports=i}),require.register("javascripts/starters/product_favorite.js",function(t,e,r){"use strict";var i={init:function(){this.manageHeartClick()},manageHeartClick:function(){self=this,$(".js-heart-click").on("click",function(t){t.preventDefault();var e=$(this).attr("data-product-id"),r=$(this).attr("data-favorite");"1"==r?($(this).removeClass("+red"),$(this).attr("data-favorite","0"),i.doUnlike(this,e,function(t){var e=t.favorites.length;$("#total-likes").html(e)})):($(this).addClass("+red"),$(this).attr("data-favorite","1"),i.doLike(this,e,function(t){var e=t.favorites.length;$("#total-likes").html(e)}))})},doLike:function(t,e,r){$.ajax({method:"PATCH",url:"/products/"+e+"/like",data:{}}).done(function(t){r(t)}).error(function(e){401==e.status&&($(t).removeClass("+red"),$("#sign_in_link").click())})},doUnlike:function(t,e,r){$.ajax({method:"PATCH",url:"/products/"+e+"/unlike",data:{}}).done(function(t){r(t)})}};r.exports=i}),require.register("javascripts/starters/product_lightbox.js",function(t,e,r){"use strict";var i={init:function(){this.selectVariantOptionLoader()},selectVariantOptionLoader:function(){$("select.variant-option").length>0&&$("select.variant-option").change(function(){var t=$(this).attr("product_id"),e=[];$('ul.product-page-meta-info [id^="product_'+t+'_variant"]').each(function(t){e.push($(this).val())}),$.ajax({dataType:"json",data:{option_ids:this.value.split(",")},url:"/products/"+t+"/get_sku_for_options",success:function(e){for(var r=$("#product_quantity_"+t).empty(),i=1;i<=parseInt(e.quantity);++i)r.append('<option value="'+i+'">'+i+"</option>");$("#product_price_"+t).text(e.price+" "+e.currency),$("#product_discount_"+t).text(e.discount+" %"),$("#product_saving_"+t).text(parseFloat(e.price)*parseInt(e.discount)/100+" "+e.currency),$("#product_inventory_"+t).text(e.quantity);var s=$("#product_quick_view_dialog_"+t).find(".fotorama").fotorama().data("fotorama");s.load([{img:e.img0_url},{img:e.img1_url},{img:e.img2_url},{img:e.img3_url}])}})})}};r.exports=i}),require.register("javascripts/starters/search.js",function(t,e,r){"use strict";var i={init:function(){this.searchableInput()},searchableInput:function(){$(document).on("submit","#search-form",function(t){var e=$("#search").val();return!!e.trim()})}};r.exports=i}),require.register("___globals___",function(t,e,r){})}(),require("___globals___");
+(function() {
+  'use strict';
+
+  var globals = typeof window === 'undefined' ? global : window;
+  if (typeof globals.require === 'function') return;
+
+  var modules = {};
+  var cache = {};
+  var aliases = {};
+  var has = ({}).hasOwnProperty;
+
+  var expRe = /^\.\.?(\/|$)/;
+  var expand = function(root, name) {
+    var results = [], part;
+    var parts = (expRe.test(name) ? root + '/' + name : name).split('/');
+    for (var i = 0, length = parts.length; i < length; i++) {
+      part = parts[i];
+      if (part === '..') {
+        results.pop();
+      } else if (part !== '.' && part !== '') {
+        results.push(part);
+      }
+    }
+    return results.join('/');
+  };
+
+  var dirname = function(path) {
+    return path.split('/').slice(0, -1).join('/');
+  };
+
+  var localRequire = function(path) {
+    return function expanded(name) {
+      var absolute = expand(dirname(path), name);
+      return globals.require(absolute, path);
+    };
+  };
+
+  var initModule = function(name, definition) {
+    var hot = null;
+    hot = hmr && hmr.createHot(name);
+    var module = {id: name, exports: {}, hot: hot};
+    cache[name] = module;
+    definition(module.exports, localRequire(name), module);
+    return module.exports;
+  };
+
+  var expandAlias = function(name) {
+    return aliases[name] ? expandAlias(aliases[name]) : name;
+  };
+
+  var _resolve = function(name, dep) {
+    return expandAlias(expand(dirname(name), dep));
+  };
+
+  var require = function(name, loaderPath) {
+    if (loaderPath == null) loaderPath = '/';
+    var path = expandAlias(name);
+
+    if (has.call(cache, path)) return cache[path].exports;
+    if (has.call(modules, path)) return initModule(path, modules[path]);
+
+    throw new Error("Cannot find module '" + name + "' from '" + loaderPath + "'");
+  };
+
+  require.alias = function(from, to) {
+    aliases[to] = from;
+  };
+
+  var extRe = /\.[^.\/]+$/;
+  var indexRe = /\/index(\.[^\/]+)?$/;
+  var addExtensions = function(bundle) {
+    if (extRe.test(bundle)) {
+      var alias = bundle.replace(extRe, '');
+      if (!has.call(aliases, alias) || aliases[alias].replace(extRe, '') === alias + '/index') {
+        aliases[alias] = bundle;
+      }
+    }
+
+    if (indexRe.test(bundle)) {
+      var iAlias = bundle.replace(indexRe, '');
+      if (!has.call(aliases, iAlias)) {
+        aliases[iAlias] = bundle;
+      }
+    }
+  };
+
+  require.register = require.define = function(bundle, fn) {
+    if (typeof bundle === 'object') {
+      for (var key in bundle) {
+        if (has.call(bundle, key)) {
+          require.register(key, bundle[key]);
+        }
+      }
+    } else {
+      modules[bundle] = fn;
+      delete cache[bundle];
+      addExtensions(bundle);
+    }
+  };
+
+  require.list = function() {
+    var list = [];
+    for (var item in modules) {
+      if (has.call(modules, item)) {
+        list.push(item);
+      }
+    }
+    return list;
+  };
+
+  var hmr = globals._hmr && new globals._hmr(_resolve, require, modules, cache);
+  require._cache = cache;
+  require.hmr = hmr && hmr.wrap;
+  require.brunch = true;
+  globals.require = require;
+})();
+
+(function() {
+var global = window;
+var __makeRelativeRequire = function(require, mappings, pref) {
+  var none = {};
+  var tryReq = function(name, pref) {
+    var val;
+    try {
+      val = require(pref + '/node_modules/' + name);
+      return val;
+    } catch (e) {
+      if (e.toString().indexOf('Cannot find module') === -1) {
+        throw e;
+      }
+
+      if (pref.indexOf('node_modules') !== -1) {
+        var s = pref.split('/');
+        var i = s.lastIndexOf('node_modules');
+        var newPref = s.slice(0, i).join('/');
+        return tryReq(name, newPref);
+      }
+    }
+    return none;
+  };
+  return function(name) {
+    if (name in mappings) name = mappings[name];
+    if (!name) return;
+    if (name[0] !== '.' && pref) {
+      var val = tryReq(name, pref);
+      if (val !== none) return val;
+    }
+    return require(name);
+  }
+};
+require.register("javascripts/controllers/orders/checkout.js", function(exports, require, module) {
+"use strict";
+
+/**
+ * Checkout class
+ */
+var Checkout = {
+
+  /**
+   * Initializer
+   */
+  init: function init() {
+
+    this.postBankDetails();
+  },
+
+  /**
+   * Post bank details to the `form_url`
+   */
+  postBankDetails: function postBankDetails() {
+
+    var Casing = require("javascripts/lib/casing");
+    var PostForm = require("javascripts/lib/post_form.js");
+
+    var bankDetails = $("#bank-details").data();
+    var parsedBankDetails = Casing.objectToUnderscoreCase(bankDetails);
+
+    PostForm.send(parsedBankDetails, parsedBankDetails['form_url']);
+  }
+
+};
+
+module.exports = Checkout;
+});
+
+require.register("javascripts/controllers/orders/manage_cart.js", function(exports, require, module) {
+'use strict';
+
+/**
+ * ManageCart class
+ */
+var ManageCart = {
+
+  /**
+   * Initializer
+   */
+  init: function init() {
+
+    this.onSetAddress();
+    this.multiSelectSystem();
+  },
+
+  multiSelectSystem: function multiSelectSystem() {
+
+    $('select.sku-variants-options').multiselect({
+      enableCaseInsensitiveFiltering: true,
+      maxHeight: 400
+    }).multiselect('disable');
+  },
+
+  onSetAddress: function onSetAddress() {
+
+    $(".js-set-address-link").click(function (e) {
+
+      e.preventDefault();
+      ManageCart.forceLogin(this);
+    });
+  },
+
+  /**
+   * Send next destination and trigger log-in if not logged-in already
+   */
+  forceLogin: function forceLogin(el) {
+
+    var location = $(el).attr("href");
+    var self = this;
+
+    var User = require("javascripts/models/user");
+
+    User.isAuth(function (res) {
+
+      // If the user isn't auth
+      // We force the trigger and
+      // Set the new location programmatically
+      if (res === false) {
+
+        self.setRedirectLocation(location);
+        $("#sign_in_link").click();
+      } else {
+
+        // Else we just continue to do what we were doing
+        window.location.href = location;
+      }
+    });
+  },
+
+  // Should be in a lib
+  setRedirectLocation: function setRedirectLocation(location) {
+
+    $.ajax({
+      method: "PATCH",
+      url: "/set_redirect_location",
+      data: { "location": location }
+
+    }).done(function (res) {
+
+      // callback {"status": "ok"}
+
+    });
+  }
+
+};
+
+module.exports = ManageCart;
+});
+
+require.register("javascripts/controllers/pages/home.js", function(exports, require, module) {
+'use strict';
+
+/**
+ * Apply Wirecard Class
+ */
+var Home = {
+
+  /**
+   * Initializer
+   */
+  init: function init() {
+
+    $('#js-slider').show(); // Page hook fix : we display:none; and cancel it here
+
+    $('#js-slider').lightSlider({
+      "item": 1,
+      "loop": true,
+      "slideMargin": 0,
+      "pager": false,
+      "auto": true,
+      "pause": "3000",
+      "speed": "1000",
+      "adaptiveHeight": true,
+      "verticalHeight": 1000,
+      "mode": "fade",
+      "enableDrag": false,
+      "enableTouch": true
+    });
+
+    $.widget('custom.catcomplete', $.ui.autocomplete, {
+      _create: function _create() {
+        this._super();
+        this.widget().menu('option', 'items', '> :not(.ui-autocomplete-category)');
+      },
+      _renderMenu: function _renderMenu(ul, items) {
+        var that = this,
+            search_category = '';
+        $.each(items, function (index, item) {
+          var li;
+          if (item.sc != search_category) {
+            ul.append("<li class='ui-autocomplete-category'>" + item.sc + '</li>');
+            search_category = item.sc;
+          }
+          li = that._renderItemData(ul, item);
+          if (item.sc) {
+            li.attr('aria-label', item.sc + ' : ' + item.label);
+          }
+        });
+      }
+    });
+
+    $('#products_search_keyword').catcomplete({
+      delay: 1000,
+      source: '/products/autocomplete_product_name',
+      select: function select(a, b) {
+        $(this).val(b.item.value);
+        $('#search_products_form').submit();
+      }
+    });
+  }
+
+};
+
+module.exports = Home;
+});
+
+require.register("javascripts/controllers/pages/menu.js", function(exports, require, module) {
+"use strict";
+
+/**
+ * Menu Class
+ */
+var Menu = {
+
+  /**
+   * Initializer
+   */
+  init: function init() {}
+
+};
+
+module.exports = Menu;
+});
+
+require.register("javascripts/controllers/shop_applications/new.js", function(exports, require, module) {
+'use strict';
+
+/**
+ * ShopApplicationsNew Class
+ */
+var ShopApplicationsNew = {
+
+  /**
+   * Initializer
+   */
+  init: function init() {
+
+    if ($('#add_sales_channel_btn').length > 0) {
+
+      $('#add_sales_channel_btn').click();
+
+      $('#edit_app_submit_btn').click(function () {
+        $('input.dynamical-required').each(function () {
+          if ($(this).val().length == 0) {
+            $(this).addClass('invalidBorderClass');
+          } else {
+            $(this).removeClass('invalidBorderClass');
+          }
+        });
+
+        if ($('.invalidBorderClass').length > 0) {
+          return false;
+        }
+      });
+    }
+  }
+
+};
+
+module.exports = ShopApplicationsNew;
+});
+
+require.register("javascripts/controllers/shopkeeper/wirecards/apply.js", function(exports, require, module) {
+"use strict";
+
+/**
+ * Apply Wirecard Class
+ */
+var ShopkeeperWirecardApply = {
+
+  /**
+   * Initializer
+   */
+  init: function init() {
+
+    this.postShopDetails();
+  },
+
+  /**
+   * Post shop details to the `form_url`
+   */
+  postShopDetails: function postShopDetails() {
+
+    var shopDetails = $("#shop-details").data();
+    var parsedShopDetails = Casing.objectToUnderscoreCase(shopDetails);
+
+    PostForm.send(parsedShopDetails, parsedShopDetails['form_url']);
+  }
+
+};
+
+module.exports = ShopkeeperWirecardApply;
+});
+
+require.register("javascripts/initialize.js", function(exports, require, module) {
+"use strict";
+
+$(document).ready(function () {
+
+  /**
+   * Controllers loader by Loschcode
+   * Damn simple class loader.
+   */
+  var routes = $("#js-routes").data();
+  var starters = require("javascripts/starters");
+
+  try {
+
+    var Casing = require("javascripts/lib/casing");
+
+    for (var idx in starters) {
+
+      console.warn('Loading starter : ' + starters[idx]);
+
+      var formatted_starter = Casing.underscoreCase(starters[idx]).replace('-', '_');
+      var _obj = require("javascripts/starters/" + formatted_starter);
+      _obj.init();
+    }
+  } catch (err) {
+
+    console.error("Unable to initialize #js-starters");
+    return;
+  }
+
+  try {
+
+    var obj = require("javascripts/controllers/" + routes.controller + "/" + routes.action);
+  } catch (err) {
+
+    console.error("Unable to initialize #js-routes `" + routes.controller + "`.`" + routes.action + "`");
+    return;
+  }
+
+  /**
+   * Initialization
+   */
+  obj.init();
+});
+});
+
+require.register("javascripts/lib/casing.js", function(exports, require, module) {
+"use strict";
+
+/**
+ * Casing Class
+ */
+var Casing = {
+
+  /**
+   * CamelCase to underscored case
+   */
+  underscoreCase: function underscoreCase(string) {
+    return string.replace(/(?:^|\.?)([A-Z])/g, function (x, y) {
+      return "_" + y.toLowerCase();
+    }).replace(/^_/, "");
+  },
+
+  /**
+   * Undescored to CamelCase
+   */
+  camelCase: function camelCase(string) {
+    return string.replace(/(\-[a-z])/g, function ($1) {
+      return $1.toUpperCase().replace('-', '');
+    });
+  },
+
+  /**
+   * Convert an object to underscore case
+   */
+  objectToUnderscoreCase: function objectToUnderscoreCase(obj) {
+
+    var parsed = {};
+    for (var key in obj) {
+
+      var new_key = this.underscoreCase(key);
+      parsed[new_key] = obj[key];
+    }
+
+    return parsed;
+  }
+
+};
+
+module.exports = Casing;
+});
+
+require.register("javascripts/lib/post_form.js", function(exports, require, module) {
+"use strict";
+
+/**
+ * PostForm Class
+ */
+var PostForm = {
+
+  /**
+   * Generate and create a form
+   */
+  send: function send(params, path, target, method) {
+
+    var method = method || "POST";
+    var path = path || "";
+    var target = target || "";
+
+    var form = document.createElement("form");
+    form.setAttribute("method", method);
+    form.setAttribute("action", path);
+    form.setAttribute("target", target);
+
+    for (var key in params) {
+
+      if (params.hasOwnProperty(key)) {
+
+        var f = document.createElement("input");
+        f.setAttribute("type", "hidden");
+        f.setAttribute("name", key);
+        f.setAttribute("value", params[key]);
+        form.appendChild(f);
+      }
+    }
+
+    document.body.appendChild(form); // <- JS way
+    // $('body').append(form); // <- jQuery way
+
+    form.submit();
+  }
+
+};
+
+module.exports = PostForm;
+});
+
+require.register("javascripts/models.js", function(exports, require, module) {
+'use strict';
+
+/**
+ * Models Class
+ */
+var Models = ['user'];
+
+module.exports = Models;
+});
+
+require.register("javascripts/models/user.js", function(exports, require, module) {
+"use strict";
+
+/**
+ * User Class
+ */
+var User = {
+
+  /**
+   * Check if user is auth or not via API call
+   */
+  isAuth: function isAuth(callback) {
+
+    $.ajax({
+      method: "GET",
+      url: "/users/is_auth",
+      data: {}
+
+    }).done(function (res) {
+
+      callback(res.is_auth);
+    });
+  }
+
+};
+
+module.exports = User;
+});
+
+require.register("javascripts/starters.js", function(exports, require, module) {
+'use strict';
+
+/**
+ * Starters Class
+ */
+var Starters = ['bootstrap', 'footer', 'product_favorite', 'product_lightbox', 'search', 'left_menu', 'china_city'];
+
+module.exports = Starters;
+});
+
+require.register("javascripts/starters/bootstrap.js", function(exports, require, module) {
+"use strict";
+
+/**
+ * Bootstrap Class
+ */
+var Bootstrap = {
+
+  /**
+   * Initializer
+   */
+  init: function init() {
+
+    this.startPopover();
+    this.startTooltip();
+  },
+
+  /**
+   * 
+   */
+  startPopover: function startPopover() {
+
+    $("a[rel~=popover], .has-popover").popover();
+  },
+
+  startTooltip: function startTooltip() {
+
+    $("a[rel~=tooltip], .has-tooltip").tooltip();
+  }
+
+};
+
+module.exports = Bootstrap;
+});
+
+require.register("javascripts/starters/china_city.js", function(exports, require, module) {
+"use strict";
+
+/**
+ * ChinaCity Class
+ */
+var ChinaCity = {
+
+    /**
+     * Initializer
+     */
+    init: function init() {
+
+        this.startChinaCity();
+    },
+
+    /**
+     * 
+     */
+    startChinaCity: function startChinaCity() {
+
+        $.fn.china_city = function () {
+            return this.each(function () {
+                var selects;
+                selects = $(this).find('.city-select');
+                return selects.change(function () {
+                    var $this, next_selects;
+                    $this = $(this);
+                    next_selects = selects.slice(selects.index(this) + 1);
+                    $("option:gt(0)", next_selects).remove();
+                    if (next_selects.first()[0] && $this.val() && !$this.val().match(/--.*--/)) {
+                        return $.get("/china_city/" + $(this).val(), function (data) {
+                            var i, len, option;
+                            if (data.data != null) {
+                                data = data.data;
+                            }
+                            for (i = 0, len = data.length; i < len; i++) {
+                                option = data[i];
+                                next_selects.first()[0].options.add(new Option(option[0], option[1]));
+                            }
+                            return next_selects.trigger('china_city:load_data_completed');
+                        });
+                    }
+                });
+            });
+        };
+
+        $(document).ready(function () {
+            $('.city-group').china_city();
+        });
+    }
+
+};
+
+module.exports = ChinaCity;
+});
+
+require.register("javascripts/starters/footer.js", function(exports, require, module) {
+'use strict';
+
+/**
+ * Footer Class
+ */
+var Footer = {
+
+  /**
+   * Initializer
+   */
+  init: function init() {
+
+    this.stickyFooter();
+  },
+
+  /**
+   * Put the footer on the bottom of the page
+   */
+  stickyFooter: function stickyFooter() {
+
+    self = this;
+
+    if ($('.js-footer-stick').length > 0) {
+
+      Footer.processStickyFooter();
+
+      $(window).resize(function () {
+
+        Footer.processStickyFooter();
+      });
+    }
+  },
+
+  processStickyFooter: function processStickyFooter() {
+
+    var docHeight, footerHeight, footerTop;
+
+    docHeight = $(window).height();
+    footerHeight = $('.js-footer-stick').height();
+    footerTop = $('.js-footer-stick').position().top + footerHeight;
+
+    if (footerTop < docHeight) {
+      $('.js-footer-stick').css('margin-top', 10 + (docHeight - footerTop) + 'px');
+    }
+  }
+
+};
+
+module.exports = Footer;
+});
+
+require.register("javascripts/starters/left_menu.js", function(exports, require, module) {
+'use strict';
+
+/**
+ * LeftMenu Class
+ */
+var LeftMenu = {
+
+    /**
+     * Initializer
+     */
+    init: function init() {
+
+        this.startLeftMenu();
+    },
+
+    /**
+     * 
+     */
+    startLeftMenu: function startLeftMenu() {
+
+        $('#left_menu > ul > li > a').click(function () {
+            $('#left_menu li').removeClass('active');
+            $(this).closest('li').addClass('active');
+            var checkElement = $(this).next();
+            if (checkElement.is('ul') && checkElement.is(':visible')) {
+                $(this).closest('li').removeClass('active');
+                checkElement.slideUp('normal');
+            }
+            if (checkElement.is('ul') && !checkElement.is(':visible')) {
+                $('#left_menu ul ul:visible').slideUp('normal');
+                checkElement.slideDown('normal');
+            }
+            if ($(this).closest('li').find('ul').children().length == 0) {
+                return true;
+            } else {
+                return false;
+            }
+        });
+    }
+
+};
+
+module.exports = LeftMenu;
+});
+
+require.register("javascripts/starters/product_favorite.js", function(exports, require, module) {
+"use strict";
+
+/**
+ * ProductFavorite Class
+ */
+var ProductFavorite = {
+
+  /**
+   * Initializer
+   */
+  init: function init() {
+
+    this.manageHeartClick();
+  },
+
+  /**
+   * When the heart is clicked
+   */
+  manageHeartClick: function manageHeartClick() {
+
+    self = this;
+
+    $(".js-heart-click").on("click", function (e) {
+
+      e.preventDefault();
+
+      var productId = $(this).attr('data-product-id');
+      var favorite = $(this).attr('data-favorite'); // Should be converted
+
+      if (favorite == '1') {
+
+        // We remove the favorite front data
+        $(this).removeClass('+red');
+        $(this).attr('data-favorite', '0');
+
+        ProductFavorite.doUnlike(this, productId, function (res) {
+
+          var favoritesCount = res.favorites.length;
+          $('#total-likes').html(favoritesCount);
+        });
+      } else {
+
+        // We change the style before the callback for speed reason
+        $(this).addClass('+red');
+        $(this).attr('data-favorite', '1');
+
+        ProductFavorite.doLike(this, productId, function (res) {
+
+          var favoritesCount = res.favorites.length;
+          $('#total-likes').html(favoritesCount);
+        });
+      }
+    });
+  },
+
+  doLike: function doLike(el, productId, callback) {
+
+    $.ajax({
+      method: "PATCH",
+      url: "/products/" + productId + "/like",
+      data: {}
+
+    }).done(function (res) {
+
+      callback(res);
+    }).error(function (err) {
+
+      // If it's a Unauthorized code, it means we are not logged in, let's trigger.
+      if (err.status == 401) {
+
+        $(el).removeClass('+red');
+        $("#sign_in_link").click();
+      }
+    });
+  },
+
+  doUnlike: function doUnlike(el, productId, callback) {
+
+    $.ajax({
+      method: "PATCH",
+      url: "/products/" + productId + "/unlike",
+      data: {}
+
+    }).done(function (res) {
+
+      callback(res);
+    });
+  }
+};
+
+module.exports = ProductFavorite;
+});
+
+require.register("javascripts/starters/product_lightbox.js", function(exports, require, module) {
+'use strict';
+
+/**
+ * ProductLightbox Class
+ */
+var ProductLightbox = {
+
+  /**
+   * Initializer
+   */
+  init: function init() {
+
+    this.selectVariantOptionLoader();
+  },
+
+  /**
+   * When in the lightbox if the customer change the variant option
+   * It will reload everything through AJAX
+   */
+  selectVariantOptionLoader: function selectVariantOptionLoader() {
+
+    if ($('select.variant-option').length > 0) {
+
+      $('select.variant-option').change(function () {
+
+        var product_id = $(this).attr('product_id');
+        var option_ids = [];
+
+        $('ul.product-page-meta-info [id^="product_' + product_id + '_variant"]').each(function (o) {
+          option_ids.push($(this).val());
+        });
+
+        $.ajax({
+          dataType: 'json',
+          data: { option_ids: this.value.split(',') },
+          url: '/products/' + product_id + '/get_sku_for_options',
+          success: function success(json) {
+            var qc = $('#product_quantity_' + product_id).empty();
+
+            for (var i = 1; i <= parseInt(json['quantity']); ++i) {
+              qc.append('<option value="' + i + '">' + i + '</option>');
+            }
+
+            $('#product_price_' + product_id).text(json['price'] + ' ' + json['currency']);
+            $('#product_discount_' + product_id).text(json['discount'] + ' ' + '%');
+            $('#product_saving_' + product_id).text(parseFloat(json['price']) * parseInt(json['discount']) / 100 + ' ' + json['currency']);
+            $('#product_inventory_' + product_id).text(json['quantity']);
+
+            var fotorama = $('#product_quick_view_dialog_' + product_id).find('.fotorama').fotorama().data('fotorama');
+            fotorama.load([{ img: json['img0_url'] }, { img: json['img1_url'] }, { img: json['img2_url'] }, { img: json['img3_url'] }]);
+          }
+        });
+      });
+    }
+  }
+
+};
+
+module.exports = ProductLightbox;
+});
+
+require.register("javascripts/starters/search.js", function(exports, require, module) {
+'use strict';
+
+/**
+ * Search Class
+ */
+var Search = {
+
+  /**
+   * Initializer
+   */
+  init: function init() {
+
+    this.searchableInput();
+  },
+
+  /**
+   * We make the input searchable on click
+   */
+  searchableInput: function searchableInput() {
+
+    $(document).on('submit', '#search-form', function (e) {
+
+      var search = $('#search').val();
+
+      /**
+       * If the research is empty it doesn't trigger the submit
+       */
+      if (!search.trim()) {
+        return false;
+      } else {
+        return true;
+      }
+    });
+  }
+
+};
+
+module.exports = Search;
+});
+
+require.register("___globals___", function(exports, require, module) {
+  
+});})();require('___globals___');
+
+
+//# sourceMappingURL=app.js.map
