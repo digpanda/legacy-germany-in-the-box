@@ -3,10 +3,6 @@ class SessionsController < Devise::SessionsController
   skip_before_filter :verify_signed_out_user
   before_action :authenticate_user!, except: [:new, :create]
 
-  def after_sign_in_path_for(resource)
-    session[:previous_url] || root_path
-  end
-
   def new
     session[:login_advice_counter] = 1
   end

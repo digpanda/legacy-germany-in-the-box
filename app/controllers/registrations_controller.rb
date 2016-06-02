@@ -54,10 +54,6 @@ class RegistrationsController < Devise::RegistrationsController
 
   protected
 
-  def after_sign_in_path_for(resource)
-    popular_products_path
-  end
-
   def after_inactive_sign_up_path_for(resource)
     flash[:info] = I18n.t(:email_confirmation_msg, scope: :top_menu)
     popular_products_path
