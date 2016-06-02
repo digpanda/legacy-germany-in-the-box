@@ -10,7 +10,7 @@ var User = {
 
     $.ajax({
       method: "GET",
-      url: "/users/is_auth",
+      url: "api/users/is_auth",
       data: {}
 
     }).done(function(res) {

@@ -4,7 +4,7 @@ class ProductsController < ApplicationController
 
   include AppCache
 
-  before_action :set_product, only: [:show, :edit, :update, :destroy, :get_sku_for_options, :remove_sku, :remove_option, :new_sku, :show_skus, :skus]
+  before_action :set_product, only: [:show, :edit, :update, :destroy, :remove_sku, :remove_option, :new_sku, :show_skus, :skus]
 
   before_action :authenticate_user!, except: [:autocomplete_product_name, :popular, :search, :show, :get_sku_for_options, :skus]
 
@@ -83,59 +83,6 @@ class ProductsController < ApplicationController
 
   end
 
-  def like
-
-    @product = Product.find(params[:id])
-    @favorites =  current_user.favorites
-    @favorites << @product
-
-=begin
-    current_user.dCollection = Collection.create( :name => :default, :user => current_user ) unless current_user.dCollection
-    
-    current_user.dCollection.products.push(@product) unless current_user.dCollection.products.find(@product)
-
-    if current_user.dCollection.save
-      respond_to do |format|
-        format.html { redirect_to request.referer }
-        format.json { render :json => { :status => :ok, :collection_id => current_user.dCollection.id }, :status => :ok }
-      end
-
-      return
-
-    end
-
-    respond_to do |format|
-      format.json { render :json => { :status => :lo }, :status => :unprocessable_entity }
-    end
-=end
-
-  end
-
-  def unlike
-
-    @product = Product.find(params[:id])
-    @favorites = current_user.favorites
-    @favorites.delete(@product)
-
-=begin
-    current_user.dCollection = Collection.create( :name => :default, :user => current_user ) unless current_user.dCollection
-    current_user.dCollection.products.delete(@product)
-
-    if current_user.dCollection.save
-      respond_to do |format|
-        format.html { redirect_to request.referer }
-        format.json { render :json => { :status => :ok, :collection_id => current_user.dCollection.id }, :status => :ok }
-      end
-
-      return
-    end
-
-    respond_to do |format|
-      format.json { render :json => { :status => :ko  }, :status => :unprocessable_entity }
-    end
-=end
-  end
-
   def remove_sku
     @product.skus.find(params[:sku_id]).delete
 
@@ -177,29 +124,6 @@ class ProductsController < ApplicationController
     end
 
     redirect_to edit_product_path(@product.id, :user_info_edit_part => :edit_product_update)
-  end
-
-  def get_sku_for_options
-    skus = @product.skus
-
-    skus.each do |s|
-      if s.option_ids.to_set == params[:option_ids].to_set
-        respond_to do |format|
-          format.json {
-            @sku = s
-            render :show_sku, locals: { sku: s }, :status => :ok
-          }
-        end
-
-        return
-      end
-    end
-
-    respond_to do |format|
-      format.json {
-        render :json => {}, :status => :not_found
-      }
-    end
   end
 
   def autocomplete_product_name

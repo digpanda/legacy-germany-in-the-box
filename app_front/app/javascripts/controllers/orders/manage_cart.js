@@ -69,7 +69,7 @@ var ManageCart = {
 
     $.ajax({
       method: "PATCH",
-      url: "/set_redirect_location",
+      url: "api/set_redirect_location",
       data: {"location": location}
 
 
