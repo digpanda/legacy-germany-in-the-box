@@ -26,21 +26,11 @@ class CategoriesController < ApplicationController
     #@products = @category.products.buyable.paginate( :pages => (params[:pages] ? params[:pages].to_i : 1), :per_page => Rails.configuration.limit_for_products_search)
     @categories_and_children, @categories_and_counters = AppCache.get_category_values_for_left_menu(@products)
 
-    respond_to do |format|
-      format.html { render 'products/index' }
-    end
+    render 'products/index' and return
+
   end
 
   def list_products
-    if @category
-      respond_to do |format|
-        format.json {
-          render :list_products, :status => :ok
-        }
-      end
-    else
-      format.json { render json: { status: :ko }, status: :unprocessable_entity }
-    end
   end
 
   private

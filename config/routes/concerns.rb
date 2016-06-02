@@ -5,8 +5,6 @@ concern :shared_errors do
 end
 
 concern :shared_user do
-  match 'set_redirect_location', via: [:patch], to: 'sessions#set_redirect_location', as: :set_redirection_location
-  match 'users/is_auth', via: [:get], to: 'sessions#is_auth', as: :is_auth
   match 'users/sign_out', via: [:delete],   to: 'sessions#destroy',             as: :signout
   match :cancel_login,    via: [:get],      to: 'sessions#cancel_login',        as: :cancel_login
   match :cancel_signup,   via: [:get] ,     to: 'registrations#cancel_signup',  as: :cancel_signup
@@ -29,9 +27,6 @@ concern :shared_products do
   match 'remove_sku/:sku_id',                     via: [:delete], action: :remove_sku,                  as: :remove_sku,                  :on => :member
   match 'remove_variant/:variant_id',             via: [:delete], action: :remove_variant,              as: :remove_variant,              :on => :member
   match 'remove_option/:variant_id/:option_id',   via: [:delete], action: :remove_option,               as: :remove_option,               :on => :member
-  match :get_sku_for_options,                     via: [:get],    action: :get_sku_for_options,         as: :get_sku_for_options,         :on => :member
-  match :like,                                    via: [:patch],  action: :like,                        as: :like,                        :on => :member
-  match :unlike,                                 via: [:patch],  action: :unlike,                     as: :unlike,                     :on => :member
   match :show_skus,                               via: [:get],    action: :show_skus,                   as: :show_skus,                   :on => :member
   match :skus,                                    via: [:get],    action: :skus,                        as: :skus,                        :on => :member
   match :new_sku,                                 via: [:get],    action: :new_sku,                     as: :new_sku,                     :on => :member

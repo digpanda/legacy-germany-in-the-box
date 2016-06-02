@@ -1,7 +1,9 @@
 <!-- Login and such (partials) -->
+<!--
 <nav class="<%= for_device_type :desktop do 'navbar-fixed-top' end %>">
-  <%= render 'layouts/dialogs' %>
+  render 'layouts/dialogs'
 </nav>
+-->
 
 <div class="navbar-fixed-top">
 
@@ -29,7 +31,7 @@
 
       <% if current_user.nil? %>
 
-      <a class="popup-text" data-effect="mfp-zoom-out" href="#login-dialog" id="sign_in_link">
+      <a href="<%= new_user_session_path %>">
 
         <div class="main-header__account">
         <i class="fa fa-sign-in"></i>

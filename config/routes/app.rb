@@ -1,4 +1,3 @@
-
 if Rails.env.production?
   concerns :shared_errors
 end

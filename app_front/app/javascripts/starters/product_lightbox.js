@@ -32,7 +32,7 @@ var ProductLightbox = {
           $.ajax({
             dataType: 'json',
             data: { option_ids: this.value.split(',') },
-            url: '/products/' + product_id + '/get_sku_for_options',
+            url: '/api/products/' + product_id + '/get_sku_for_options',
             success: function(json){
               var qc = $('#product_quantity_' + product_id).empty();
 

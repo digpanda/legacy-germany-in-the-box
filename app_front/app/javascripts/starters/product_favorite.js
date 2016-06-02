@@ -62,7 +62,7 @@ var ProductFavorite = {
 
       $.ajax({
         method: "PATCH",
-        url: "/products/"+productId+"/like",
+        url: "/api/products/"+productId+"/like",
         data: {}
 
       }).done(function(res) {
@@ -87,7 +87,7 @@ var ProductFavorite = {
 
       $.ajax({
         method: "PATCH",
-        url: "/products/"+productId+"/unlike",
+        url: "/api/products/"+productId+"/unlike",
         data: {}
 
       }).done(function(res) {
