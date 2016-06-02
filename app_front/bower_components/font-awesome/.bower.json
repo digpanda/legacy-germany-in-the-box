@@ -32,5 +32,6 @@
   },
   "_source": "https://github.com/FortAwesome/Font-Awesome.git",
   "_target": "^4.6.3",
-  "_originalSource": "font-awesome"
+  "_originalSource": "fontawesome",
+  "_direct": true
 }

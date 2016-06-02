@@ -561,35 +561,6 @@ var Models = ['user'];
 module.exports = Models;
 });
 
-require.register("javascripts/models/user.js", function(exports, require, module) {
-"use strict";
-
-/**
- * User Class
- */
-var User = {
-
-  /**
-   * Check if user is auth or not via API call
-   */
-  isAuth: function isAuth(callback) {
-
-    $.ajax({
-      method: "GET",
-      url: "api/users/is_auth",
-      data: {}
-
-    }).done(function (res) {
-
-      callback(res.is_auth);
-    });
-  }
-
-};
-
-module.exports = User;
-});
-
 require.register("javascripts/starters.js", function(exports, require, module) {
 'use strict';
 
