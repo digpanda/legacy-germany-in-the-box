@@ -166,12 +166,14 @@ class ApplicationController < ActionController::Base
   end
 
   def set_translation_locale
-    cl = I18n.locale
+
+    current_locale = I18n.locale
     I18n.locale = params[:translation].to_sym if params[:translation]
     yield
-    I18n.locale = cl
-  rescue
-    I18n.locale = cl
+    I18n.locale = current_locale
+    rescue
+    I18n.locale = current_locale
+
   end
 
   def extract_locale
