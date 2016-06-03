@@ -12,7 +12,7 @@ set :nvm_map_bins, %w{node npm}
 #set :nvm_custom_path, '/home/ubuntu/.nvm/bin'
 
 set :ssh_options, {
-  keys: %w(../private/staging/digpanda.pem),
+  keys: %w(/Users/haojiang/Downloads/keys/digpanda.pem),
   forward_agent: true,
   auth_methods: %w(publickey, password)
 }

@@ -37,3 +37,5 @@ bower.json
 
 # Ignore pow environment settings
 .powenv
+
+config/deploy/staging.rb
