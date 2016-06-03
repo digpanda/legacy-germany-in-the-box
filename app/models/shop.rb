@@ -113,7 +113,8 @@ class Shop
   before_save :ensure_shopkeeper
   before_save :clean_sms_mobile,  :unless => lambda { self.sms }
 
-  index({shopkeeper: 1},  {unique: true,   name: :idx_shop_shopkeeper})
+  index({shopkeeper: 1},    {unique: true,   name: :idx_shop_shopkeeper})
+  index({merchant_id: 1},   {unique: false,  name: :idx_shop_merchant_id})
 
   def country
     sender_address = addresses.find_sender
