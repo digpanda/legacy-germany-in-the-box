@@ -5,7 +5,8 @@ class ApplicationController < ActionController::Base
   include HttpAcceptLanguage::AutoLocale
 
   include UsersHelper
-  
+  include NavigationHistoryHelper
+
   include AppCache
 
   include Mobvious::Rails::Controller
@@ -31,17 +32,7 @@ class ApplicationController < ActionController::Base
   after_filter :store_location
 
   def store_location
-    # store last url - this is needed for post-login redirect to whatever the user last visited.
-    return unless request.get? 
-    if (request.path != "/users/sign_in" &&
-        request.path != "/users/sign_up" &&
-        request.path != "/users/password/new" &&
-        request.path != "/users/password/edit" &&
-        request.path != "/users/confirmation" &&
-        request.path != "/users/sign_out" &&
-        !request.xhr?) # don't store ajax calls
-      session[:previous_url] = request.fullpath 
-    end
+    store_navigation_history :except => ["/users/sign_in","/users/sign_up", "/users/sign_up", "/users/password/new", "/users/password/edit", "/users/confirmation", "/users/sign_out"]
   end
 
   def set_session_locale

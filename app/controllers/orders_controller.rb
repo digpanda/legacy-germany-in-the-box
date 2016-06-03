@@ -45,7 +45,6 @@ class OrdersController < ApplicationController
     if reach_today_limit?(co, new_total, quantity)
       flash[:error] = I18n.t(:override_maximal_total, scope: :edit_order, total: Settings.instance.max_total_per_day, currency: Settings.instance.platform_currency)
       redirect_to(:back)
-      return
     end
 
     existing_order_item = co.order_items.to_a.detect { |i| i.product_id == product.id.to_s && i.sku_id == sku.id.to_s}
@@ -68,8 +67,8 @@ class OrdersController < ApplicationController
       end
 
       if co.save
-        flash[:info] = I18n.t(:add_product_ok, scope: :edit_order)
-        redirect_to request.referrer
+        flash[:success] = I18n.t(:add_product_ok, scope: :edit_order)
+        redirect_to navigation_history(2, shop_path(product.shop_id))
       end
 
       return

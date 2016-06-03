@@ -8,7 +8,7 @@
     <!-- Preview -->
     <div class="col-md-5">
 
-      <%= render partial: "products/popup/preview", :locals => {product: @product} %>
+      <%= render partial: "products/show/preview", :locals => {product: @product} %>
 
     </div>
 
@@ -17,7 +17,7 @@
 
       <div class="product-page-meta">
 
-        <%= render partial: "products/popup/introduction", :locals => {product: @product} %>
+        <%= render partial: "products/show/introduction", :locals => {product: @product} %>
 
         <div class="gap"></div>
 
@@ -27,15 +27,15 @@
 
             <% if @product.decorate.get_mas %>
 
-                <%= render partial: "products/popup/select_quantity", :locals => {product: @product} %>
+                <%= render partial: "products/show/select_quantity", :locals => {product: @product} %>
 
                 <ul class="list @product-page-meta-info">
 
-                <%= render partial: "products/popup/select_sku", :locals => {product: @product} %>
+                <%= render partial: "products/show/select_sku", :locals => {product: @product} %>
 
                   <% if @product.decorate.get_mas %>
 
-                      <%= render partial: "products/popup/price_details", :locals => {product: @product} %>
+                      <%= render partial: "products/show/price_details", :locals => {product: @product} %>
 
                   <% end %>
 
