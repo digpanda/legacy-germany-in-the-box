@@ -1,0 +1,1 @@
+0 22 * * * /var/www/germany_in_the_box/current/config/cron/dump_and_restore.sh
