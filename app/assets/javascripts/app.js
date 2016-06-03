@@ -561,6 +561,35 @@ var Models = ['user'];
 module.exports = Models;
 });
 
+require.register("javascripts/models/user.js", function(exports, require, module) {
+"use strict";
+
+/**
+ * User Class
+ */
+var User = {
+
+  /**
+   * Check if user is auth or not via API call
+   */
+  isAuth: function isAuth(callback) {
+
+    $.ajax({
+      method: "GET",
+      url: "api/users/is_auth",
+      data: {}
+
+    }).done(function (res) {
+
+      callback(res.is_auth);
+    });
+  }
+
+};
+
+module.exports = User;
+});
+
 require.register("javascripts/starters.js", function(exports, require, module) {
 'use strict';
 
@@ -905,7 +934,7 @@ var ProductLightbox = {
             $('#product_saving_' + product_id).text(parseFloat(json['price']) * parseInt(json['discount']) / 100 + ' ' + json['currency']);
             $('#product_inventory_' + product_id).text(json['quantity']);
 
-            var fotorama = $('#product_quick_view_dialog_' + product_id).find('.fotorama').fotorama().data('fotorama');
+            var fotorama = $('.fotorama').fotorama().data('fotorama');
             fotorama.load([{ img: json['img0_url'] }, { img: json['img1_url'] }, { img: json['img2_url'] }, { img: json['img3_url'] }]);
           }
         });

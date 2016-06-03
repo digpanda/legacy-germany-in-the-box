@@ -341,9 +341,11 @@ $(document).ready(function() {
 
 
 $(window).load(function() {
+  /*
     if ($(window).width() > 992) {
         $('#masonry').masonry({
             itemSelector: '.col-masonry'
         });
     }
+    */
 });

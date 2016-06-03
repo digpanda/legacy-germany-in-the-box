@@ -13,6 +13,7 @@ set :nvm_map_bins, %w{node npm}
 
 set :ssh_options, {
   keys: %w(/Users/haojiang/Downloads/keys/digpanda.pem),
+  #keys: %w(/<some path to your local key>/digpanda.pem),
   forward_agent: true,
   auth_methods: %w(publickey, password)
 }

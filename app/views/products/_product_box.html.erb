@@ -13,7 +13,7 @@
                 </div>
 
                 <!-- Lightbox clickable area -->
-                <div class="popup-text" data-effect="mfp-move-from-top" href="#product_quick_view_dialog_<%= product.id %>">
+                <div href="<%= product_path(product) %>">
 
                   <header class="product-box__header">
 
@@ -39,9 +39,6 @@
                         <i class="fa fa-shopping-bag"></i> <%= product.shop.shopname %>
                       </a>
                     </p>
-
-                    <%= render partial: "products/product_popup", locals: {product: product} %>
-
                   </div>
 
                 </div>
