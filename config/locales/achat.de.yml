@@ -351,6 +351,7 @@ de:
     shopname_unknown: unbekannt
     shop_seal: Shopfotos
     shop_seal_info: Ein Bild sagt mehr als thausende Worte. Ergänzen Sie Ihre Herstellerbeschreibung mit Bildern, die die Qualität und Ihre Persöhnlichkeit unterstreichen. (Z.B. Bilder von Geschäft, Produktionsstätte, Team, Auszeichnungen, Magazinausschnitten, etc.) (max. 1MB pro Bild)
+    merchant_id: Herstellernummer
   edit_product:
     edit: Editieren
     remove: Entfernen

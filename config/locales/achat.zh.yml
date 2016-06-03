@@ -346,6 +346,7 @@ zh-CN:
       other: 其他
     shopname_unknown: 未命名
     shop_seal: 商家照片
+    merchant_id: 卖家ID
   edit_product:
     edit: 修改
     remove: 删除产品
