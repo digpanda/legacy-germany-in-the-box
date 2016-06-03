@@ -4,7 +4,7 @@ module NavigationHistoryHelper
   def store_navigation_history(conditions)
 
     return unless request.get? # Only GETs
-    return if request.xhr? # AJAX cal
+    return if request.xhr? # AJAX call
 
     exception_path = conditions[:except] || []
     return if exception_path.include? request.path

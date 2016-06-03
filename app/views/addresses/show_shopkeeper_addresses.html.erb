@@ -2,66 +2,66 @@
   <%= render partial: "addresses/popup/add_shopkeeper_address" %>
 </div>
 
-  <% current_user.shop.addresses.each_with_index do |a, i| %>
-    <div class="remodal" data-remodal-id="edit-address-dialog-<%= a.id %>">
-      <%= render partial: "addresses/popup/edit_shopkeeper_address", :locals => {:a => a, :i => i} %>
-    </div>
+<% current_user.shop.addresses.each_with_index do |a, i| %>
+  <div class="remodal" data-remodal-id="edit-address-dialog-<%= a.id %>">
+    <%= render partial: "addresses/popup/edit_shopkeeper_address", :locals => {:a => a, :i => i} %>
+  </div>
 
-<div class="col-md-4">
-  <div class="panel panel-primary">
-    <div class="panel-heading text-center">
-      <%= I18n.t(:show_address_title, scope: :edit_address) + ' ' + (i+1).to_s %>
-    </div>
-    <div class="panel-body">
-      <div class="address-box">
-        <%= link_to '', address_path(a), method: :delete, data: { confirm: I18n.t(:delete_address_message, scope: :edit_address) }, "data-placement" => "right",  class: 'address-box-remove' %>
-        <a class="address-box-edit popup-text" data-effect="mfp-move-from-top" data-placement="right" data-toggle="tooltip" href="#edit-address-dialog-<%= a.id %>"></a>
-        <ul>
-          <li>
-            <%= "#{I18n.t(:name, scope: :edit_address)} : #{ a.fname } #{ a.lname }" %>
-          </li>
-          <li>
-            <%= "#{I18n.t(:company, scope: :edit_address)} : #{ a.company }" %>
-          </li>
-          <li>
-            <%= "#{I18n.t(:street, scope: :edit_address)} : #{ a.street } #{ a.number }" %>
-          </li>
-          <li>
-            <%= "#{I18n.t(:additional, scope: :edit_address)} : #{ a.additional }" %>
-          </li>
-          <li>
-            <%= "#{I18n.t(:city, scope: :edit_address)} : #{ a.city }" %>
-          </li>
-          <li>
-            <%= "#{I18n.t(:province, scope: :edit_address)} : #{ a.province }" %>
-          </li>
-          <li>
-            <%= "#{I18n.t(:country, scope: :edit_address)} : #{ a.country_local_name }" %>
-          </li>
-          <li>
-            <%= "#{I18n.t(:zip, scope: :edit_address)} : #{ a.zip }" %>
-          </li>
-          <li>
-            <%= "#{I18n.t(:type, scope: :edit_address)} : #{ I18n.t(a.type, scope: :edit_address) }" %>
-          </li>
-        </ul>
+  <div class="col-md-4">
+    <div class="panel panel-primary">
+      <div class="panel-heading text-center">
+        <%= I18n.t(:show_address_title, scope: :edit_address) + ' ' + (i+1).to_s %>
+      </div>
+      <div class="panel-body">
+        <div class="address-box">
+          <%= link_to '', address_path(a), method: :delete, data: { confirm: I18n.t(:delete_address_message, scope: :edit_address) }, "data-placement" => "right",  class: 'address-box-remove' %>
+          <a class="address-box-edit popup-text" data-effect="mfp-move-from-top" data-placement="right" data-toggle="tooltip" href="#edit-address-dialog-<%= a.id %>"></a>
+          <ul>
+            <li>
+              <%= "#{I18n.t(:name, scope: :edit_address)} : #{ a.fname } #{ a.lname }" %>
+            </li>
+            <li>
+              <%= "#{I18n.t(:company, scope: :edit_address)} : #{ a.company }" %>
+            </li>
+            <li>
+              <%= "#{I18n.t(:street, scope: :edit_address)} : #{ a.street } #{ a.number }" %>
+            </li>
+            <li>
+              <%= "#{I18n.t(:additional, scope: :edit_address)} : #{ a.additional }" %>
+            </li>
+            <li>
+              <%= "#{I18n.t(:city, scope: :edit_address)} : #{ a.city }" %>
+            </li>
+            <li>
+              <%= "#{I18n.t(:province, scope: :edit_address)} : #{ a.province }" %>
+            </li>
+            <li>
+              <%= "#{I18n.t(:country, scope: :edit_address)} : #{ a.country_local_name }" %>
+            </li>
+            <li>
+              <%= "#{I18n.t(:zip, scope: :edit_address)} : #{ a.zip }" %>
+            </li>
+            <li>
+              <%= "#{I18n.t(:type, scope: :edit_address)} : #{ I18n.t(a.type, scope: :edit_address) }" %>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-  <% end %>
+<% end %>
 
 <% if current_user.shop.decorate.more_new_address? %>
-  <div class="col-md-4">
-    <a class="address-box address-box-new" href="#add-address-dialog">
-      <div class="vert-center">
-        <i class="fa fa-plus address-box-new-icon"></i>
-        <p>
-          <%= I18n.t(:add_new_address, scope: :edit_address) %>
-        </p>
-      </div>
-    </a>
-  </div>
+<div class="col-md-4">
+  <a class="address-box address-box-new" href="#add-address-dialog">
+    <div class="vert-center">
+      <i class="fa fa-plus address-box-new-icon"></i>
+      <p>
+        <%= I18n.t(:add_new_address, scope: :edit_address) %>
+      </p>
+    </div>
+  </a>
+</div>
 <% end %>
 
