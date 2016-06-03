@@ -112,7 +112,6 @@ class Shop
   
   before_save :ensure_shopkeeper
   before_save :clean_sms_mobile,  :unless => lambda { self.sms }
-  before_save :set_merchant_id,   :unless => lambda { self.merchant_id }
 
   index({shopkeeper: 1},  {unique: true,   name: :idx_shop_shopkeeper})
 
@@ -137,10 +136,6 @@ class Shop
 
   def self.with_buyable_products
     self.in(id: Product.buyable.map {|p| p.shop_id } ).all
-  end
-
-  def set_merchant_id
-    self.merchant_id ||= self.name[0,2].upcase + self.founding_year + self.c_at.strftime('%y%m%d')
   end
 
 end
