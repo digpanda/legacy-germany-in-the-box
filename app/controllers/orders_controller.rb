@@ -34,6 +34,7 @@ class OrdersController < ApplicationController
   end
 
   def add_product
+
     product = Product.find(params[:sku][:product_id])
     sku = product.decorate.get_sku(params[:sku][:option_ids].split(','))
     quantity = params[:sku][:quantity].to_i
@@ -43,7 +44,7 @@ class OrdersController < ApplicationController
 
     if reach_today_limit?(co, new_total, quantity)
       flash[:error] = I18n.t(:override_maximal_total, scope: :edit_order, total: Settings.instance.max_total_per_day, currency: Settings.instance.platform_currency)
-      redirect_to request.referrer
+      redirect_to(:back)
       return
     end
 

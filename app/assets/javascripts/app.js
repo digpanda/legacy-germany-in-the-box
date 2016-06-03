@@ -934,7 +934,7 @@ var ProductLightbox = {
             $('#product_saving_' + product_id).text(parseFloat(json['price']) * parseInt(json['discount']) / 100 + ' ' + json['currency']);
             $('#product_inventory_' + product_id).text(json['quantity']);
 
-            var fotorama = $('#product_quick_view_dialog_' + product_id).find('.fotorama').fotorama().data('fotorama');
+            var fotorama = $('.fotorama').fotorama().data('fotorama');
             fotorama.load([{ img: json['img0_url'] }, { img: json['img1_url'] }, { img: json['img2_url'] }, { img: json['img3_url'] }]);
           }
         });
