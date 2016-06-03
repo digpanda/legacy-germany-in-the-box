@@ -1,0 +1,15 @@
+<% if flash[:error] %>
+  <div class="row message">
+    <div class="col-md-6 col-md-push-3 col-md-pull-3 message__error +centered">
+    <%= flash[:error] %>
+    </div>
+  </div>
+<% end %>
+
+<% if flash[:success] %>
+  <div class="row message">
+    <div class="col-md-6 col-md-push-3 col-md-pull-3 message__success +centered">
+    <%= flash[:success] %>
+    </div>
+  </div>
+<% end %>

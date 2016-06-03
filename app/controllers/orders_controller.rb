@@ -38,28 +38,23 @@ class OrdersController < ApplicationController
     sku = product.decorate.get_sku(params[:sku][:option_ids].split(','))
     quantity = params[:sku][:quantity].to_i
 
-    co = current_order(product.shop.id.to_s)
+    co = current_order(product.shop_id.to_s)
+    new_total = sku.price * quantity * Settings.first.exchange_rate_to_yuan
 
-    new_total = co.decorate.total_price_in_curreny + sku.price * quantity * Settings.instance.exchange_rate_to_yuan
-
-    if new_total > Settings.instance.max_total_per_day
-      respond_to do |format|
-        format.html {
-          flash[:error] = I18n.t(:override_maximal_total, scope: :edit_order, total: Settings.instance.max_total_per_day, currency: Settings.instance.platform_currency)
-          redirect_to request.referrer
-          return
-        }
-      end
+    if reach_today_limit?(co, new_total, quantity)
+      flash[:error] = I18n.t(:override_maximal_total, scope: :edit_order, total: Settings.instance.max_total_per_day, currency: Settings.instance.platform_currency)
+      redirect_to request.referrer
+      return
     end
 
-    existing_order_item = co.order_items.to_a.find { |i| i.product.id == product.id && i.sku_id == sku.id.to_s}
+    existing_order_item = co.order_items.to_a.detect { |i| i.product_id == product.id.to_s && i.sku_id == sku.id.to_s}
 
     if not sku.limited or sku.quantity >= quantity
       if existing_order_item.present?
         existing_order_item.quantity += quantity
         existing_order_item.save!
       else
-        current_order_item = current_order(product.shop.id.to_s).order_items.build
+        current_order_item = co.order_items.build
         current_order_item.price = sku.price
         current_order_item.quantity = quantity
         current_order_item.weight = sku.weight
@@ -71,32 +66,17 @@ class OrdersController < ApplicationController
         current_order_item.save!
       end
 
-      if current_order(product.shop.id.to_s).save
-        respond_to do |format|
-          format.html {
-            flash[:info] = I18n.t(:add_product_ok, scope: :edit_order)
-            redirect_to request.referrer
-          }
-
-          format.json {
-            render :json => { :status => :ok }, :status => :ok
-          }
-        end
+      if co.save
+        flash[:info] = I18n.t(:add_product_ok, scope: :edit_order)
+        redirect_to request.referrer
       end
 
       return
     end
 
-    respond_to do |format|
-      format.html {
-        flash[:error] = I18n.t(:add_product_ko, scope: :edit_order)
-        redirect_to request.referrer
-      }
+    flash[:error] = I18n.t(:add_product_ko, scope: :edit_order)
+    redirect_to request.referrer
 
-      format.json {
-        render :json => { :status => :ko }, :status => :unprocessable_entity
-      }
-    end
   end
 
   def adjust_skus_amount
@@ -147,8 +127,15 @@ class OrdersController < ApplicationController
   def checkout
     shop_id = params[:shop_id]
 
-    cart = current_cart(shop_id)
     order = current_order(shop_id)
+
+    if reach_today_limit?(order)
+      flash[:error] = I18n.t(:override_maximal_total, scope: :edit_order, total: Settings.instance.max_total_per_day, currency: Settings.instance.platform_currency)
+      redirect_to request.referrer
+      return
+    end
+
+    cart = current_cart(shop_id)
 
     all_products_available = true;
     products_total_price = 0
@@ -171,18 +158,8 @@ class OrdersController < ApplicationController
 
     if !all_products_available
       msg = I18n.t(:not_all_available, scope: :checkout, :product_name => product_name, :option_names => sku.decorate.get_options_txt)
-
-      respond_to do |format|
-        format.html {
-          flash[:error] = msg
-          redirect_to request.referrer
-        }
-
-        format.json {
-          render :json => { :status => :ko, :msg => msg }, :status => :unprocessable_entity
-        }
-      end
-
+      flash[:error] = msg
+      redirect_to request.referrer
       return
     end
 
@@ -194,18 +171,10 @@ class OrdersController < ApplicationController
 
       msg = I18n.t(:not_all_min_total_reached, scope: :checkout, :shop_name => @shop.name, :total_price => tp, :currency => Settings.instance.platform_currency.symbol, :min_total => mt)
 
-      respond_to do |format|
-        format.html {
-          flash[:error] = msg
-          redirect_to request.referrer
-        }
-
-        format.json {
-          render :json => { :status => :ko, :msg => msg }, :status => :unprocessable_entity
-        }
-      end
-
+      flash[:error] = msg
+      redirect_to request.referrer
       return
+
     end
 
     status = order.update_for_checkout!(current_user, params[:delivery_destination_id], cart.border_guru_quote_id, cart.shipping_cost, cart.tax_and_duty_cost)
@@ -245,27 +214,14 @@ class OrdersController < ApplicationController
         oi.save!
       end
 
-      respond_to do |format|
-        format.html {
-          flash[:success] = I18n.t(:checkout_ok, scope: :checkout)
-          redirect_to popular_products_path
-        }
+      flash[:success] = I18n.t(:checkout_ok, scope: :checkout)
+      redirect_to popular_products_path
 
-        format.json {
-          render :json => { :status => :ok }, :status => :ok
-        }
-      end
     else
-      respond_to do |format|
-        format.html {
-          flash[:error] = current_order.errors.full_messages.first
-          redirect_to request.referrer
-        }
 
-        format.json {
-          render :json => { :status => :ko, :msg => current_order.errors.full_messages.first }, :status => :unprocessable_entity
-        }
-      end
+      flash[:error] = current_order.errors.full_messages.first
+      redirect_to request.referrer
+
     end
   end
 
@@ -292,27 +248,15 @@ class OrdersController < ApplicationController
     session[:order_ids].delete(shop_id)
 
     if @order && @order.status == :new && @order.order_items.delete_all && @order.delete
-      respond_to do |format|
-        format.html {
-          flash[:success] = I18n.t(:delete_ok, scope: :edit_order)
-          redirect_to request.referrer
-        }
 
-        format.json {
-          render :json => { :status => :ok }, :status => :ok
-        }
-      end
+      flash[:success] = I18n.t(:delete_ok, scope: :edit_order)
+      redirect_to request.referrer
+
     else
-      respond_to do |format|
-        format.html {
-          flash[:error] = I18n.t(:delete_ko, scope: :edit_order)
-          redirect_to request.referrer.merge(:params)
-        }
 
-        format.json {
-          render :json => { :status => :ko }, :status => :unprocessable_entity
-        }
-      end
+      flash[:error] = I18n.t(:delete_ko, scope: :edit_order)
+      redirect_to request.referrer.merge(:params)
+      
     end
   end
 
@@ -360,6 +304,10 @@ class OrdersController < ApplicationController
 
   def set_order
     @order = Order.find(params[:id])
+  end
+
+  def reach_today_limit?(order, new_total = 0, quantity = 0)
+    current_user.present? ? (current_user.decorate.reach_todays_limit?(new_total) || order.decorate.reach_todays_limit?(new_total, quantity)) : order.decorate.reach_todays_limit?(new_total, quantity)
   end
 
 end

@@ -63,13 +63,6 @@ class ShopApplicationsController < ApplicationController
   end
 
   def registered?
-    respond_to do |format|
-      if User.where(:email => shop_application_params[:email]).size == 0
-        format.json { render :json => {}, status: :ok}
-      else
-        format.json { render :json => {}, status: :found}
-      end
-    end
   end
 
   private

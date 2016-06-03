@@ -23,18 +23,11 @@ class AddressesController < ApplicationController
       num_addresses = current_user.addresses.count
 
       if num_addresses >= Rails.configuration.max_num_addresses
-        respond_to do |format|
-          format.html {
-            flash[:error] = I18n.t(:create_ko, scope: :edit_address)
-            redirect_to request.referrer
-          }
 
-          format.json {
-            render :json => { msg: I18n.t(:maximal_number_of_addresses, scope: :edit_address, num: Rails.configuration.max_num_addresses ) }.to_json, :status => :unprocessable_entity
-          }
-        end
-
+        flash[:error] = I18n.t(:create_ko, scope: :edit_address)
+        redirect_to request.referrer
         return
+
       else
         ap = address_params
         ap[:primary] = true if num_addresses == 0
@@ -61,16 +54,10 @@ class AddressesController < ApplicationController
       max_num_addresses = Rails.configuration.max_num_shop_billing_addresses + Rails.configuration.max_num_shop_sender_addresses
 
       if num_addresses >= max_num_addresses
-        respond_to do |format|
-          format.html {
-            flash[:error] = I18n.t(:create_ko, scope: :edit_address)
-            redirect_to request.referrer
-          }
 
-          format.json {
-            render :json => { msg: I18n.t(:maximal_number_of_addresses, scope: :edit_address, num: max_num_addresses) }.to_json, :status => :unprocessable_entity
-          }
-        end
+        flash[:error] = I18n.t(:create_ko, scope: :edit_address)
+        redirect_to request.referrer
+
       else
         ap = address_params
         ap[:country] = ISO3166::Country.find_by_name(ap[:country])[0]
@@ -83,27 +70,11 @@ class AddressesController < ApplicationController
     end
 
     if flag
-      respond_to do |format|
-        format.html {
-          flash[:success] = I18n.t(:create_ok, scope: :edit_address)
-          redirect_to request.referrer
-        }
-
-        format.json {
-          render :json => { :status => :ok }, :status => :ok
-        }
-      end
+      flash[:success] = I18n.t(:create_ok, scope: :edit_address)
+      redirect_to request.referrer
     else
-      respond_to do |format|
-        format.html {
-          flash[:error] = I18n.t(:create_ko, scope: :edit_address)
-          redirect_to request.referrer
-        }
-
-        format.json {
-          render :json => { :status => :ko, :msg => address.errors.full_messages.first }, :status => :unprocessable_entity
-        }
-      end
+      flash[:error] = I18n.t(:create_ko, scope: :edit_address)
+      redirect_to request.referrer
     end
   end
 
@@ -128,35 +99,17 @@ class AddressesController < ApplicationController
       end
     elsif current_user.is_shopkeeper?
       address = current_user.shop.addresses.find(params[:id])
-
       ap = address_params
       ap[:country] = ISO3166::Country.find_by_name(ap[:country])[0]
-
       flag = address.update(ap)
     end
 
     if flag
-      respond_to do |format|
-        format.html {
-          flash[:success] = I18n.t(:update_ok, scope: :edit_address)
-          redirect_to request.referer
-        }
-
-        format.json {
-          render :json => { :status => :ok }, :status => :ok
-        }
-      end
+      flash[:success] = I18n.t(:update_ok, scope: :edit_address)
+      redirect_to request.referer
     else
-      respond_to do |format|
-        format.html {
-          flash[:error] = I18n.t(:update_ko, scope: :edit_address)
-          redirect_to request.referer
-        }
-
-        format.json {
-          render :json => { :status => :ko, :msg => address.errors.full_messages.first }, :status => :unprocessable_entity
-        }
-      end
+      flash[:error] = I18n.t(:update_ko, scope: :edit_address)
+      redirect_to request.referer
     end
   end
 
@@ -181,27 +134,11 @@ class AddressesController < ApplicationController
 
 
     if flag
-      respond_to do |format|
-        format.html {
-          flash[:success] = I18n.t(:delete_ok, scope: :edit_address)
-          redirect_to request.referer
-        }
-
-        format.json {
-          render :json => { :status => :ok }, :status => :ok
-        }
-      end
+      flash[:success] = I18n.t(:delete_ok, scope: :edit_address)
+      redirect_to request.referer
     else
-      respond_to do |format|
-        format.html {
-          flash[:error] = I18n.t(:delete_ko, scope: :edit_address)
-          redirect_to request.referer
-        }
-
-        format.json {
-          render :json => { :status => :ko, :msg => address.errors.full_messages.first }, :status => :unprocessable_entity
-        }
-      end
+      flash[:error] = I18n.t(:delete_ko, scope: :edit_address)
+      redirect_to request.referer
     end
   end
 

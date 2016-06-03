@@ -30,9 +30,8 @@ var ProductFavorite = {
 
           // We remove the favorite front data
           $(this).removeClass('+red');
-          $(this).attr('data-favorite', '0'); // marche pas
-          //$(this).data('favorite', '0') // marche pas non plus
-
+          $(this).attr('data-favorite', '0');
+          
           ProductFavorite.doUnlike(this, productId, function(res) {
 
             let favoritesCount = res.favorites.length;
@@ -63,7 +62,7 @@ var ProductFavorite = {
 
       $.ajax({
         method: "PATCH",
-        url: "/products/"+productId+"/like",
+        url: "/api/products/"+productId+"/like",
         data: {}
 
       }).done(function(res) {
@@ -88,7 +87,7 @@ var ProductFavorite = {
 
       $.ajax({
         method: "PATCH",
-        url: "/products/"+productId+"/unlike",
+        url: "/api/products/"+productId+"/unlike",
         data: {}
 
       }).done(function(res) {

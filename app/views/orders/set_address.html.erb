@@ -1,32 +1,37 @@
 <%= render partial: 'addresses/new_customer_address',  locals: {address: @address} %>
-<div class="row">
-  <div class="h3 text-center">
-    <%= I18n.t(:setup_delivery_destination, scope: :checkout) %>
+
+<div class="col-md-10 col-md-push-1 col-md-pull-1">
+
+  <div class="row">
+    <div class="h3 text-center">
+      <%= I18n.t(:setup_delivery_destination, scope: :checkout) %>
+    </div>
   </div>
-</div>
-<div class="row row-wrap">
-  <%= form_tag checkout_orders_path %>
-  <% if current_user.addresses.size > 0 %>
-    <% current_user.addresses.each_with_index do |a, i| %>
+  <div class="row row-wrap">
+    <%= form_tag checkout_orders_path %>
+    <% if current_user.addresses.size > 0 %>
+      <% current_user.addresses.each_with_index do |a, i| %>
+        <div class="col-md-4">
+          <%= render partial: 'show_address', locals: {a: a, i: i} %>
+        </div>
+      <% end %>
+    <% end %>
+    <% if current_user.addresses.size < 3 %>
       <div class="col-md-4">
-        <%= render partial: 'show_address', locals: {a: a, i: i} %>
+        <a class="address-box address-box-new popup-text" data-effect="mfp-move-from-top" href="#add-address-dialog">
+          <div class="vert-center">
+            <i class="fa fa-plus address-box-new-icon"></i>
+            <p>
+              <%= I18n.t(:add_new_address, scope: :edit_address) %>
+            </p>
+          </div>
+        </a>
       </div>
     <% end %>
-  <% end %>
-  <% if current_user.addresses.size < 3 %>
-    <div class="col-md-4">
-      <a class="address-box address-box-new popup-text" data-effect="mfp-move-from-top" href="#add-address-dialog">
-        <div class="vert-center">
-          <i class="fa fa-plus address-box-new-icon"></i>
-          <p>
-            <%= I18n.t(:add_new_address, scope: :edit_address) %>
-          </p>
-        </div>
-      </a>
-    </div>
-  <% end %>
-</div>
-<div class="row">
-  <%= hidden_field_tag :shop_id, "#{params[:shop_id]}" %>
-  <%= submit_tag I18n.t(:checkout, scope: :checkout), :class => "btn btn-primary" %>
+  </div>
+  <div class="row">
+    <%= hidden_field_tag :shop_id, "#{params[:shop_id]}" %>
+    <%= submit_tag I18n.t(:checkout, scope: :checkout), :class => "btn btn-primary" %>
+  </div>
+
 </div>

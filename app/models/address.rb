@@ -56,15 +56,15 @@ class Address
   index({user: 1},      {unique: false, name: :idx_address_user, sparse: true})
 
   def country_code
-    country.alpha2
+    country.alpha2 unless country.nil?
   end
 
   def country_name
-    country.name
+    country.name unless country.nil?
   end
 
   def country_local_name
-    country.local_name
+    country.local_name unless country.nil?
   end
 
 end

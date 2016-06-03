@@ -7,7 +7,6 @@ class UsersController < ApplicationController
                                               :get_followers,
                                               :get_following]
 
-
   load_and_authorize_resource
 
   before_action :set_user, except: [:search,
@@ -24,22 +23,10 @@ class UsersController < ApplicationController
   }
 
   def index
-
     @users = User.all
-
-    respond_to do |format|
-      format.html { render :index }
-      format.json { render :index }
-    end
   end
 
   def show
-    respond_to do |format|
-      format.json {
-        render :json => { :status => :ok, :user => @user }
-      }
-    end
-
   end
 
   def new
@@ -77,44 +64,32 @@ class UsersController < ApplicationController
     ups = user_params
 
     if current_user.id.to_s == @user.id.to_s
-      respond_to do |format|
-        if ups[:password] && @user.update_with_password(ups.except(:email))
-          format.html {
-            flash[:success] = I18n.t(:update_password_ok, scope: :edit_personal)
-            sign_in(@user, :bypass => true)
-            redirect_to request.referer
-          }
+      if ups[:password] && @user.update_with_password(ups.except(:email))
 
-          format.json { render :show, status: :ok, location: @user }
-        elsif ups[:password].blank? && @user.update_without_password(ups.except(:email))
-          format.html {
-            flash[:success] = I18n.t(:update_ok, scope: :edit_personal)
-            redirect_to request.referer
-          }
+        flash[:success] = I18n.t(:update_password_ok, scope: :edit_personal)
+        sign_in(@user, :bypass => true)
+        redirect_to request.referer
 
-          format.json { render :show, status: :ok, location: @user }
-        else
-          format.html {
-            if @user.errors.any?
-              flash[:error] ||= @user.errors.full_messages.first
-            end
 
-            redirect_to request.referer
+      elsif ups[:password].blank? && @user.update_without_password(ups.except(:email))
 
-            flash.delete(:error)
-          }
+        flash[:success] = I18n.t(:update_ok, scope: :edit_personal)
+        redirect_to request.referer
 
-          format.json { render json: @user.errors, status: :unprocessable_entity }
+      else
+        if @user.errors.any?
+          flash[:error] ||= @user.errors.full_messages.first
         end
+
+        redirect_to request.referer
+
+        flash.delete(:error)
+
       end
     elsif current_user.is_admin?
       if ups[:password] && @user.update(ups.except(:email))
-        respond_to do |format|
-          format.html {
-            flash[:success] = I18n.t(:update_password_ok, scope: :edit_personal)
-            redirect_to request.referer
-          }
-        end
+        flash[:success] = I18n.t(:update_password_ok, scope: :edit_personal)
+        redirect_to request.referer
       end
     end
   end
@@ -136,21 +111,15 @@ class UsersController < ApplicationController
     current_user.following.push(@target)
 
     if @target && @target != current_user && @target.save && current_user.save
-      respond_to do |format|
-        format.html {
-          flash[:success] = I18n.t(:follow_ok, scope: :edit_following)
-          redirect_to request.referer
-        }
-        format.json { render :json => { status: :ok }, status: :ok}
-      end
+
+      flash[:success] = I18n.t(:follow_ok, scope: :edit_following)
+      redirect_to request.referer
+
     else
-      respond_to do |format|
-        format.html {
-          flash[:success] = I18n.t(:follow_ko, scope: :edit_following)
-          redirect_to request.referer
-        }
-        format.json { render :json => { status: :ko }, status: :unprocessable_entity}
-      end
+
+      flash[:success] = I18n.t(:follow_ko, scope: :edit_following)
+      redirect_to request.referer
+
     end
   end
 
@@ -160,42 +129,22 @@ class UsersController < ApplicationController
     current_user.following.delete(@target)
 
     if @target && @target != current_user && @target.save && current_user.save
-      respond_to do |format|
-        format.html {
-          flash[:success] = I18n.t(:unfollow_ok, scope: :edit_following)
-          redirect_to request.referer
-        }
-        format.json { render :json => { status: :ok }, status: :ok}
-      end
+      flash[:success] = I18n.t(:unfollow_ok, scope: :edit_following)
+      redirect_to request.referer
     else
-      respond_to do |format|
-        format.html {
-          flash[:success] = I18n.t(:follow_ko, scope: :edit_following)
-          redirect_to request.referer
-        }
-        format.json { render :json => { status: :ko }, status: :unprocessable_entity}
-      end
+      flash[:success] = I18n.t(:follow_ko, scope: :edit_following)
+      redirect_to request.referer
     end
   end
 
   def get_followers
     @followers = @user.followers.without_detail
-
     followers_with_reciprocity = JsonIntegrate.followers_reciprocity(@user, followers)
-
-    respond_to do |format|
-      format.html { render :index }
-      format.json { render :json => ApiFormat.success(:followers, followers_with_reciprocity) }
-    end
-
+    render :index
   end
 
   def get_following
-    respond_to do |format|
-      format.html { render :index }
-      format.json { render :json => ApiFormat.success(:followers, user.following) }
-    end
-
+    render :index
   end
 
   def search
@@ -203,10 +152,7 @@ class UsersController < ApplicationController
                      {fname: /.*#{params[:keyword]}.*/i},
                      {email: /.*#{params[:keyword]}.*/i}).limit(Rails.configuration.limit_for_users_search)
 
-    respond_to do |format|
-      format.html { render :index }
-      format.json { render :search }
-    end
+    render :index
   end
 
 

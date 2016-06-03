@@ -68,33 +68,7 @@ class ApplicationController < ActionController::Base
   end
   
   def current_order(shop_id)
-    @current_order ||= begin
-      if has_order?(shop_id)
-        order = Order.find(session[:order_ids][shop_id])
-
-        if order.status == :success
-          session[:order_ids].delete(shop_id)
-          order = nil
-        end
-      end
-
-      unless order
-        order = Order.create
-        session[:order_ids][shop_id] = order.id.to_s
-      end
-
-      if user_signed_in?
-        unless current_user.is_customer?
-          order.order_items.delete_all
-          order.delete
-        else
-         order.user = current_user unless order.user
-         order.save
-        end
-      end
-
-      order
-    end
+    @current_order ||= _current_order(shop_id)
   end
 
   def current_cart(shop_id)
@@ -119,7 +93,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_orders
-    @current_orders ||= session[:order_ids].keys.compact.map { |sid| [sid, current_order(sid)] }.to_h
+    @current_orders ||= session[:order_ids].keys.compact.map { |sid| [sid, _current_order(sid)] }.to_h
   end
 
   def current_carts
@@ -192,12 +166,14 @@ class ApplicationController < ActionController::Base
   end
 
   def set_translation_locale
-    cl = I18n.locale
+
+    current_locale = I18n.locale
     I18n.locale = params[:translation].to_sym if params[:translation]
     yield
-    I18n.locale = cl
-  rescue
-    I18n.locale = cl
+    I18n.locale = current_locale
+    rescue
+    I18n.locale = current_locale
+
   end
 
   def extract_locale
@@ -212,6 +188,34 @@ class ApplicationController < ActionController::Base
     controller_name_segments.pop
     controller_namespace = controller_name_segments.join('/').camelize
     Ability.new(current_user, controller_namespace)
+  end
+
+  def _current_order(shop_id)
+    if has_order?(shop_id)
+      order = Order.find(session[:order_ids][shop_id])
+
+      if order.status == :success
+        session[:order_ids].delete(shop_id)
+        order = nil
+      end
+    end
+
+    unless order
+      order = Order.create
+      session[:order_ids][shop_id] = order.id.to_s
+    end
+
+    if user_signed_in?
+      unless current_user.is_customer?
+        order.order_items.delete_all
+        order.delete
+      else
+        order.user = current_user unless order.user
+        order.save
+      end
+    end
+
+    order
   end
 
 end

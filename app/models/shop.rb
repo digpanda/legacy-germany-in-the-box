@@ -97,10 +97,11 @@ class Shop
   validates :shopname,        length: {maximum: Rails.configuration.max_short_text_length }
   validates :sales_channels,  length: {minimum: 2, maximum: Rails.configuration.max_num_sales_channels * 2}
 
-  validates :fname,         presence: true,   length: {maximum: Rails.configuration.max_tiny_text_length}
-  validates :lname,         presence: true,   length: {maximum: Rails.configuration.max_tiny_text_length}
-  validates :tel,           presence: true,   length: {maximum: Rails.configuration.max_tiny_text_length}
-  validates :mail,          presence: true,   length: {maximum: Rails.configuration.max_short_text_length}
+  # This seems to be systematically empty, should we keep the fields ? - Laurent on 02/06/2016 (i changed to presence: false)
+  validates :fname,         presence: false,   length: {maximum: Rails.configuration.max_tiny_text_length}
+  validates :lname,         presence: false,   length: {maximum: Rails.configuration.max_tiny_text_length}
+  validates :tel,           presence: false,   length: {maximum: Rails.configuration.max_tiny_text_length}
+  validates :mail,          presence: false,   length: {maximum: Rails.configuration.max_short_text_length}
 
   validates :mobile,        length: {maximum: Rails.configuration.max_tiny_text_length}
   validates :function,      length: {maximum: Rails.configuration.max_tiny_text_length}

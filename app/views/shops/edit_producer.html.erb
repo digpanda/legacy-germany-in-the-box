@@ -1,0 +1,45 @@
+<script>
+  
+  $(function() {
+    $('.edit_producer_submit').click( function() {
+      $('input.dynamical-required').each(
+        function () {
+          if ( $(this).val().length == 0 ) {
+            $(this).addClass('invalidBorderClass');
+          } else {
+            $(this).removeClass('invalidBorderClass');
+          }
+        }
+      );
+
+      if ( $('.invalidBorderClass').length > 0 ) {
+        return false;
+      }
+    });
+  });
+
+
+</script>
+<% if current_user&.is_admin? %>
+  <ul class="nav nav-pills">
+    <% get_allowed_locales.each_with_index do |locale, i| %>
+      <li class="<%=  i == 0 ? 'active' : ''  %>">
+        <a data-toggle="tab" href="#<%= locale %>">
+          <%= I18n.t(locale, scope: :locales) %>
+        </a>
+      </li>
+    <% end %>
+  </ul>
+  <div class="tab-content">
+    <% get_allowed_locales.each_with_index do |locale, i| %>
+      <div class="<%=  i == 0 ? 'active' : ''  %> tab-pane fade in" id="<%= locale %>">
+        <br/>
+        <%= render 'shops/producer_form', locale: locale %>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <% get_allowed_locales.each_with_index do |locale, i| %>
+    <%= render 'shops/producer_form', locale: locale %>
+  <% end %>
+<% end %>

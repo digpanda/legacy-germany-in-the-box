@@ -1,3 +1,5 @@
+// WHEN THERES NO LIGHT BOX ANYMORE = REMOVE THIS
+// 
 $( function () {
     $.magnificPopup.instance.close = function () {
         var t = this.st.el[0]

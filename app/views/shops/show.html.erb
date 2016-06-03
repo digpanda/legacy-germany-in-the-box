@@ -1,0 +1,107 @@
+<div class="container-fluider">
+  <div class="+spacer"></div>
+  <div class="row">
+    <div class="col-md-10 col-md-push-1 col-md-pull-1">
+      <div class="col-md-3">
+        <aside class="sidebar-left">
+          <div class="sidebar-box text-center">
+            <img src="<%= @shop.decorate.image_url(:logo, :thumb) %>" style="max-width:90px;max-height:auto"/>
+          </div>
+        </aside>
+        <aside class="sidebar-left">
+          <div id="left_menu">
+            <ul>
+              <li class="has-sub active" id="left_menu_header">
+                <a href="#">
+                  <%= I18n.t(:categories, scope: :category) %>
+                </a>
+              </li>
+              <% @categories_and_children.keys.each do |c| %>
+                <li class="has-sub">
+                  <a href="<%= show_products_in_category_path(c.id) %>">
+                    <i>
+                      <%= ' ' + c.name %>
+                    </i>
+                    <span>
+                      <%= @categories_and_counters[c] %>
+                    </span>
+                  </a>
+                  <ul>
+                    <% @categories_and_children[c].each do |cc| %>
+                      <li>
+                        <a href="<%= show_products_in_category_path(cc.id) %>">
+                          <i>
+                            <%= cc.name %>
+                          </i>
+                          <span>
+                            <%= @categories_and_counters[cc] %>
+                          </span>
+                        </a>
+                      </li>
+                    <% end %>
+                  </ul>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </aside>
+      </div>
+      <div class="col-md-9">
+        <div class="box">
+          <img src="<%= @shop.decorate.image_url(:banner, :thumb) %>" style="max-width:auto;max-height:90px"/>
+        </div>
+        <div class="gap"></div>
+        <h2>
+          <%= @shop.name %>
+        </h2>
+        <p class="text-muted">
+          <%= @shop.desc %>
+        </p>
+        <div class="gap"></div>
+        <div class="tabbable">
+          <ul class="nav nav-tabs" id="myTab">
+            <li class="active">
+              <a data-toggle="tab" href="#tab-1" title="<%= I18n.t(:philosophy_info, scope: :edit_shop) %>">
+                <i class="fa fa-info" title="<%= I18n.t(:philosophy_info, scope: :edit_shop) %>"></i>
+                <%= I18n.t(:philosophy, scope: :edit_shop) %>
+              </a>
+            </li>
+            <li>
+              <a data-toggle="tab" href="#tab-2" title="<%= I18n.t(:stories_info, scope: :edit_shop) %>">
+                <i class="fa fa-info" title="<%= I18n.t(:stories_info, scope: :edit_shop) %>"></i>
+                <%= I18n.t(:stories, scope: :edit_shop) %>
+              </a>
+            </li>
+            <li>
+              <a data-toggle="tab" href="#tab-3" title="<%= I18n.t(:uniqueness_info, scope: :edit_shop) %>">
+                <i class="fa fa-info" title="<%= I18n.t(:uniqueness_info, scope: :edit_shop) %>"></i>
+                <%= I18n.t(:uniqueness, scope: :edit_shop) %>
+              </a>
+            </li>
+            <li>
+              <a data-toggle="tab" href="#tab-4" title="<%= I18n.t(:german_essence_info, scope: :edit_shop) %>">
+                <i class="fa fa-info" title="<%= I18n.t(:german_essence_info, scope: :edit_shop) %>"></i>
+                <%= I18n.t(:german_essence, scope: :edit_shop) %>
+              </a>
+            </li>
+          </ul>
+          <div class="tab-content">
+            <div class="tab-pane fade in active" id="tab-1">
+              <%= @shop.philosophy %>
+            </div>
+            <div class="tab-pane fade in" id="tab-2">
+              <%= @shop.stories %>
+            </div>
+            <div class="tab-pane fade in" id="tab-3">
+              <%= @shop.uniqueness %>
+            </div>
+            <div class="tab-pane fade in" id="tab-4">
+              <%= @shop.german_essence %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

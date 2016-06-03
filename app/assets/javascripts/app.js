@@ -169,6 +169,9 @@ var Checkout = {
    */
   postBankDetails: function postBankDetails() {
 
+    var Casing = require("javascripts/lib/casing");
+    var PostForm = require("javascripts/lib/post_form.js");
+
     var bankDetails = $("#bank-details").data();
     var parsedBankDetails = Casing.objectToUnderscoreCase(bankDetails);
 
@@ -207,11 +210,14 @@ var ManageCart = {
 
   onSetAddress: function onSetAddress() {
 
-    $(".js-set-address-link").click(function (e) {
-
-      e.preventDefault();
-      ManageCart.forceLogin(this);
-    });
+    /*
+        $(".js-set-address-link").click(function(e) {
+    
+          e.preventDefault();
+          ManageCart.forceLogin(this);
+    
+        });
+    */
   },
 
   /**
@@ -219,44 +225,53 @@ var ManageCart = {
    */
   forceLogin: function forceLogin(el) {
 
-    var location = $(el).attr("href");
-    var self = this;
+    /* WE DEPRECATED WITH THE NEW LOGIN SYSTEM
+        var location = $(el).attr("href");
+        var self = this;
+    
+        var User = require("javascripts/models/user");
+    
+        User.isAuth(function(res) {
+    
+          // If the user isn't auth
+          // We force the trigger and
+          // Set the new location programmatically
+          if (res === false) {
+    
+            self.setRedirectLocation(location);
+            $("#sign_in_link").click();
+    
+          } else {
+    
+            // Else we just continue to do what we were doing
+            window.location.href = location;
+            
+          }
+    
+        });
+    */
+  }
 
-    var User = require("javascripts/models/user");
+};
 
-    User.isAuth(function (res) {
-
-      // If the user isn't auth
-      // We force the trigger and
-      // Set the new location programmatically
-      if (res === false) {
-
-        self.setRedirectLocation(location);
-        $("#sign_in_link").click();
-      } else {
-
-        // Else we just continue to do what we were doing
-        window.location.href = location;
-      }
-    });
-  },
-
+/* SAME HERE
   // Should be in a lib
-  setRedirectLocation: function setRedirectLocation(location) {
+  setRedirectLocation: function(location) {
 
     $.ajax({
       method: "PATCH",
-      url: "/set_redirect_location",
-      data: { "location": location }
+      url: "api/set_redirect_location",
+      data: {"location": location}
 
-    }).done(function (res) {
+
+    }).done(function(res) {
 
       // callback {"status": "ok"}
 
     });
-  }
 
-};
+  },
+*/
 
 module.exports = ManageCart;
 });
@@ -326,24 +341,6 @@ var Home = {
 };
 
 module.exports = Home;
-});
-
-require.register("javascripts/controllers/pages/menu.js", function(exports, require, module) {
-"use strict";
-
-/**
- * Menu Class
- */
-var Menu = {
-
-  /**
-   * Initializer
-   */
-  init: function init() {}
-
-};
-
-module.exports = Menu;
 });
 
 require.register("javascripts/controllers/shop_applications/new.js", function(exports, require, module) {
@@ -430,6 +427,8 @@ $(document).ready(function () {
 
   try {
 
+    var Casing = require("javascripts/lib/casing");
+
     for (var idx in starters) {
 
       console.warn('Loading starter : ' + starters[idx]);
@@ -460,6 +459,97 @@ $(document).ready(function () {
 });
 });
 
+require.register("javascripts/lib/casing.js", function(exports, require, module) {
+"use strict";
+
+/**
+ * Casing Class
+ */
+var Casing = {
+
+  /**
+   * CamelCase to underscored case
+   */
+  underscoreCase: function underscoreCase(string) {
+    return string.replace(/(?:^|\.?)([A-Z])/g, function (x, y) {
+      return "_" + y.toLowerCase();
+    }).replace(/^_/, "");
+  },
+
+  /**
+   * Undescored to CamelCase
+   */
+  camelCase: function camelCase(string) {
+    return string.replace(/(\-[a-z])/g, function ($1) {
+      return $1.toUpperCase().replace('-', '');
+    });
+  },
+
+  /**
+   * Convert an object to underscore case
+   */
+  objectToUnderscoreCase: function objectToUnderscoreCase(obj) {
+
+    var parsed = {};
+    for (var key in obj) {
+
+      var new_key = this.underscoreCase(key);
+      parsed[new_key] = obj[key];
+    }
+
+    return parsed;
+  }
+
+};
+
+module.exports = Casing;
+});
+
+require.register("javascripts/lib/post_form.js", function(exports, require, module) {
+"use strict";
+
+/**
+ * PostForm Class
+ */
+var PostForm = {
+
+  /**
+   * Generate and create a form
+   */
+  send: function send(params, path, target, method) {
+
+    var method = method || "POST";
+    var path = path || "";
+    var target = target || "";
+
+    var form = document.createElement("form");
+    form.setAttribute("method", method);
+    form.setAttribute("action", path);
+    form.setAttribute("target", target);
+
+    for (var key in params) {
+
+      if (params.hasOwnProperty(key)) {
+
+        var f = document.createElement("input");
+        f.setAttribute("type", "hidden");
+        f.setAttribute("name", key);
+        f.setAttribute("value", params[key]);
+        form.appendChild(f);
+      }
+    }
+
+    document.body.appendChild(form); // <- JS way
+    // $('body').append(form); // <- jQuery way
+
+    form.submit();
+  }
+
+};
+
+module.exports = PostForm;
+});
+
 require.register("javascripts/models.js", function(exports, require, module) {
 'use strict';
 
@@ -471,44 +561,107 @@ var Models = ['user'];
 module.exports = Models;
 });
 
-require.register("javascripts/models/user.js", function(exports, require, module) {
-"use strict";
-
-/**
- * User Class
- */
-var User = {
-
-  /**
-   * Check if user is auth or not via API call
-   */
-  isAuth: function isAuth(callback) {
-
-    $.ajax({
-      method: "GET",
-      url: "/users/is_auth",
-      data: {}
-
-    }).done(function (res) {
-
-      callback(res.is_auth);
-    });
-  }
-
-};
-
-module.exports = User;
-});
-
 require.register("javascripts/starters.js", function(exports, require, module) {
 'use strict';
 
 /**
  * Starters Class
  */
-var Starters = ['footer', 'product_favorite', 'product_lightbox', 'search'];
+var Starters = ['bootstrap', 'footer', 'product_favorite', 'product_lightbox', 'search', 'left_menu', 'china_city'];
 
 module.exports = Starters;
+});
+
+require.register("javascripts/starters/bootstrap.js", function(exports, require, module) {
+"use strict";
+
+/**
+ * Bootstrap Class
+ */
+var Bootstrap = {
+
+  /**
+   * Initializer
+   */
+  init: function init() {
+
+    this.startPopover();
+    this.startTooltip();
+  },
+
+  /**
+   * 
+   */
+  startPopover: function startPopover() {
+
+    $("a[rel~=popover], .has-popover").popover();
+  },
+
+  startTooltip: function startTooltip() {
+
+    $("a[rel~=tooltip], .has-tooltip").tooltip();
+  }
+
+};
+
+module.exports = Bootstrap;
+});
+
+require.register("javascripts/starters/china_city.js", function(exports, require, module) {
+"use strict";
+
+/**
+ * ChinaCity Class
+ */
+var ChinaCity = {
+
+    /**
+     * Initializer
+     */
+    init: function init() {
+
+        this.startChinaCity();
+    },
+
+    /**
+     * 
+     */
+    startChinaCity: function startChinaCity() {
+
+        $.fn.china_city = function () {
+            return this.each(function () {
+                var selects;
+                selects = $(this).find('.city-select');
+                return selects.change(function () {
+                    var $this, next_selects;
+                    $this = $(this);
+                    next_selects = selects.slice(selects.index(this) + 1);
+                    $("option:gt(0)", next_selects).remove();
+                    if (next_selects.first()[0] && $this.val() && !$this.val().match(/--.*--/)) {
+                        return $.get("/china_city/" + $(this).val(), function (data) {
+                            var i, len, option;
+                            if (data.data != null) {
+                                data = data.data;
+                            }
+                            for (i = 0, len = data.length; i < len; i++) {
+                                option = data[i];
+                                next_selects.first()[0].options.add(new Option(option[0], option[1]));
+                            }
+                            return next_selects.trigger('china_city:load_data_completed');
+                        });
+                    }
+                });
+            });
+        };
+
+        $(document).ready(function () {
+            $('.city-group').china_city();
+        });
+    }
+
+};
+
+module.exports = ChinaCity;
 });
 
 require.register("javascripts/starters/footer.js", function(exports, require, module) {
@@ -563,6 +716,52 @@ var Footer = {
 module.exports = Footer;
 });
 
+require.register("javascripts/starters/left_menu.js", function(exports, require, module) {
+'use strict';
+
+/**
+ * LeftMenu Class
+ */
+var LeftMenu = {
+
+    /**
+     * Initializer
+     */
+    init: function init() {
+
+        this.startLeftMenu();
+    },
+
+    /**
+     * 
+     */
+    startLeftMenu: function startLeftMenu() {
+
+        $('#left_menu > ul > li > a').click(function () {
+            $('#left_menu li').removeClass('active');
+            $(this).closest('li').addClass('active');
+            var checkElement = $(this).next();
+            if (checkElement.is('ul') && checkElement.is(':visible')) {
+                $(this).closest('li').removeClass('active');
+                checkElement.slideUp('normal');
+            }
+            if (checkElement.is('ul') && !checkElement.is(':visible')) {
+                $('#left_menu ul ul:visible').slideUp('normal');
+                checkElement.slideDown('normal');
+            }
+            if ($(this).closest('li').find('ul').children().length == 0) {
+                return true;
+            } else {
+                return false;
+            }
+        });
+    }
+
+};
+
+module.exports = LeftMenu;
+});
+
 require.register("javascripts/starters/product_favorite.js", function(exports, require, module) {
 "use strict";
 
@@ -597,8 +796,7 @@ var ProductFavorite = {
 
         // We remove the favorite front data
         $(this).removeClass('+red');
-        $(this).attr('data-favorite', '0'); // marche pas
-        //$(this).data('favorite', '0') // marche pas non plus
+        $(this).attr('data-favorite', '0');
 
         ProductFavorite.doUnlike(this, productId, function (res) {
 
@@ -624,7 +822,7 @@ var ProductFavorite = {
 
     $.ajax({
       method: "PATCH",
-      url: "/products/" + productId + "/like",
+      url: "/api/products/" + productId + "/like",
       data: {}
 
     }).done(function (res) {
@@ -645,7 +843,7 @@ var ProductFavorite = {
 
     $.ajax({
       method: "PATCH",
-      url: "/products/" + productId + "/unlike",
+      url: "/api/products/" + productId + "/unlike",
       data: {}
 
     }).done(function (res) {
@@ -694,7 +892,7 @@ var ProductLightbox = {
         $.ajax({
           dataType: 'json',
           data: { option_ids: this.value.split(',') },
-          url: '/products/' + product_id + '/get_sku_for_options',
+          url: '/api/products/' + product_id + '/get_sku_for_options',
           success: function success(json) {
             var qc = $('#product_quantity_' + product_id).empty();
 
