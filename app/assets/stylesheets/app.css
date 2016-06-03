@@ -643,6 +643,15 @@ a.simple-text {
 #left_menu a:hover {
   color: #659443 !important; }
 
+/* line 104, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/hooks/_componia.sass */
+.nav-pills > li:not(.active) > a {
+  color: #666 !important; }
+
+/* line 107, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/hooks/_componia.sass */
+.nav-pills > li.active > a {
+  cursor: default;
+  background: #659443 !important; }
+
 /* line 1, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/_global.sass */
 html {
   box-sizing: border-box; }
