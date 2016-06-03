@@ -1,3 +1,4 @@
+
 #add-address-dialog.mfp-with-anim.mfp-hide.mfp-dialog.clearfix
   =form_for @address do |f|
     .form-group

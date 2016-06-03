@@ -27,12 +27,13 @@ staging:
 development:
   clients:
     default:
-      database: a_chat_development
+      database: digpanda
       hosts:
-        - dogen.mongohq.com:10020
+        - localhost:27017
       options:
-        user: achat
+        user: loschcode
         password: achat2cool
+
   options:
     use_activesupport_time_zone: true
     raise_not_found_error: false

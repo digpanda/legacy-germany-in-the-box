@@ -1,0 +1,23 @@
+<div class="remodal" data-remodal-id="add-address-dialog">
+  <%= render partial: "addresses/popup/add_shopkeeper_address" %>
+</div>
+
+  <% current_user.shop.addresses.each_with_index do |a, i| %>
+    <div class="mfp-with-anim mfp-hide mfp-dialog clearfix" id="edit-address-dialog-<%= a.id %>">
+      <%= render partial: "addresses/popup/edit_shopkeeper_address", :locals => {:a => a, :i => i} %>
+    </div>
+  <% end %>
+
+<% if current_user.shop.decorate.more_new_address? %>
+  <div class="col-md-4">
+    <a class="address-box address-box-new" href="#add-address-dialog">
+      <div class="vert-center">
+        <i class="fa fa-plus address-box-new-icon"></i>
+        <p>
+          <%= I18n.t(:add_new_address, scope: :edit_address) %>
+        </p>
+      </div>
+    </a>
+  </div>
+<% end %>
+

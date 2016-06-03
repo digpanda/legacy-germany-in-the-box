@@ -1,0 +1,118 @@
+<%= form_for a, :url => address_path(a), :html => { :method => :patch }  do |f| %>
+<div class="form-group">
+  <h4>
+    <%= I18n.t(:change_address_title, scope: :edit_address) %>
+  </h4>
+</div>
+<div class="form-group">
+  <%= f.text_field :company, :class => 'form-control', :required => true, :placeholder => I18n.t(:company, scope: :edit_address) %>
+</div>
+<div class="form-group">
+  <div class="form-inline">
+    <div class="form-group">
+      <%= f.text_field :fname, :class => 'form-control', :style => 'width:168px', :required => true, :placeholder => I18n.t(:fname, scope: :edit_address) %>
+    </div>
+    <div class="form-group">
+      <%= f.text_field :lname, :class => 'form-control', :style => 'width:168px', :required => true, :placeholder => I18n.t(:lname, scope: :edit_address) %>
+    </div>
+  </div>
+</div>
+<div class="form-group">
+  <div class="form-inline">
+    <div class="form-group">
+      <%= f.text_field :street, :class => 'form-control', :style => 'width:248px', :required => true, :placeholder => I18n.t(:street, scope: :edit_address) %>
+    </div>
+    <div class="form-group">
+      <%= f.text_field :number, :class => 'form-control', :style => 'width:88px', :required => true, :placeholder => I18n.t(:house_number, scope: :edit_address), :pattern => '\d+' %>
+    </div>
+  </div>
+  <%= f.text_field :additional, :class => 'form-control', :placeholder => I18n.t(:additional, scope: :edit_address) %>
+</div>
+<div class="form-group">
+  <div class="form-inline">
+    <div class="form-group">
+      <%= f.text_field :zip, :class => 'form-control', :placeholder => I18n.t(:zip, scope: :edit_address), :required => true, :pattern => '^(?!01000|99999)(0[1-9]\d{3}|[1-9]\d{4})$', :style => 'width:88px' %>
+    </div>
+    <div class="form-group">
+      <%= f.text_field :city, class: 'form-control', :placeholder => I18n.t(:city, scope: :edit_address), :required => true, :style => 'width:120px' %>
+    </div>
+    <div class="form-group">
+      <%= f.text_field :province, class: 'form-control', :placeholder => I18n.t(:province, scope: :edit_address), :required => true, :style => 'width:120px' %>
+    </div>
+  </div>
+  <%= f.text_field :country, :class => 'form-control', :value => ISO3166::Country[:DE].local_name, :readonly => true %>
+</div>
+<div class="form-group">
+  <% if current_user.shop.decorate.can_change_to_billing? %>
+  <div class="row">
+    <div class="col-lg-offset-1 col-md-offset-1">
+      <%= f.radio_button :type, 'billing', :required => true, :class => 'i-radio' %>
+      <%= I18n.t('billing', scope: :edit_address) %>
+    </div>
+  </div>
+  <% end %>
+  <% if current_user.shop.decorate.can_change_to_sender? %>
+  <div class="row">
+    <div class="col-lg-offset-1 col-md-offset-1">
+      <%= f.radio_button :type, 'sender', :required => true, :class => 'i-radio' %>
+      <%= I18n.t('sender', scope: :edit_address) %>
+    </div>
+  </div>
+  <% end %>
+  <% if current_user.shop.decorate.can_change_to_both? %>
+  <div class="row">
+    <div class="col-lg-offset-1 col-md-offset-1">
+      <%= f.radio_button :type, 'both', :required => true, :class => 'i-radio' %>
+      <%= I18n.t('both', scope: :edit_address) %>
+    </div>
+  </div>
+  <% end %>
+</div>
+
+<div class="form-group">
+  <input class="btn btn-primary" type="submit" value="<%= I18n.t(:save_address, scope: :edit_address) %>"></input>
+</div>
+<% end %>
+</div>
+
+<div class="col-md-4">
+  <div class="panel panel-primary">
+    <div class="panel-heading text-center">
+      <%= I18n.t(:show_address_title, scope: :edit_address) + ' ' + (i+1).to_s %>
+    </div>
+    <div class="panel-body">
+      <div class="address-box">
+        <%= link_to '', address_path(a), method: :delete, data: { confirm: I18n.t(:delete_address_message, scope: :edit_address) }, "data-placement" => "right",  class: 'address-box-remove' %>
+        <a class="address-box-edit popup-text" data-effect="mfp-move-from-top" data-placement="right" data-toggle="tooltip" href="#edit-address-dialog-<%= a.id %>"></a>
+        <ul>
+          <li>
+            <%= "#{I18n.t(:name, scope: :edit_address)} : #{ a.fname } #{ a.lname }" %>
+          </li>
+          <li>
+            <%= "#{I18n.t(:company, scope: :edit_address)} : #{ a.company }" %>
+          </li>
+          <li>
+            <%= "#{I18n.t(:street, scope: :edit_address)} : #{ a.street } #{ a.number }" %>
+          </li>
+          <li>
+            <%= "#{I18n.t(:additional, scope: :edit_address)} : #{ a.additional }" %>
+          </li>
+          <li>
+            <%= "#{I18n.t(:city, scope: :edit_address)} : #{ a.city }" %>
+          </li>
+          <li>
+            <%= "#{I18n.t(:province, scope: :edit_address)} : #{ a.province }" %>
+          </li>
+          <li>
+            <%= "#{I18n.t(:country, scope: :edit_address)} : #{ a.country_local_name }" %>
+          </li>
+          <li>
+            <%= "#{I18n.t(:zip, scope: :edit_address)} : #{ a.zip }" %>
+          </li>
+          <li>
+            <%= "#{I18n.t(:type, scope: :edit_address)} : #{ I18n.t(a.type, scope: :edit_address) }" %>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
