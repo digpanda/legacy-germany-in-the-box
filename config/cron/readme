@@ -14,6 +14,11 @@ sudo apt-get install mongodb-org-shell
 
 ########### create dbback dir ################
 mkdir /home/ubuntu/dbbackup/
+mkdir /home/ubuntu/dbbackup/log
 
-########### config cron job ################
+########### create Linux cron job ################
 copy jobs defined in crontab.txt into linux cron, using command: crontab -e
+
+################ Image bucket Tool ################
+https://github.com/qiniu/qshell
+#we need automate the image clone from qiniu prod bucket -> qiniu stagging bucket

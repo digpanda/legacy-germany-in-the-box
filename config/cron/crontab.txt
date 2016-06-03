@@ -1,1 +1,7 @@
+# cron jonb for daily DB backup and recover prod->staging
 0 22 * * * /var/www/germany_in_the_box/current/config/cron/dump_and_restore.sh
+
+
+# cron jonb for EC2 staging server memory/disk monitoring
+# ask for the key/secrkey
+*/5 * * * * ~/aws-scripts-mon/mon-put-instance-data.pl --aws-access-key-id <key> --aws-secret-key <secrkey> --mem-util --disk-space-util --disk-path=/ --from-cron
