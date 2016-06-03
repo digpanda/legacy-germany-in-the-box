@@ -90,6 +90,14 @@
 #csstyle .\+menu-bordering {
   border-right: 1px solid #eeeeee; }
 
+/* line 32, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
+.address-popup {
+  text-align: left; }
+
+/* line 4, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_address-popup.sass */
+.remodal {
+  max-width: 40em !important; }
+
 /* line 76, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
 .page-static__text {
   word-wrap: normal;
