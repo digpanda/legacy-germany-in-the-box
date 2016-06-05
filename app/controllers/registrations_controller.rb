@@ -19,16 +19,23 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def create
-    if valid_captcha?(params[:captcha])
-      build_resource(sign_up_params)
 
-      resource.save
+    if valid_captcha?(params[:captcha])
+
+      build_resource(sign_up_params)
       yield resource if block_given?
+      resource.save
+
       if resource.persisted?
+
         if resource.active_for_authentication?
-          set_flash_message :notice, :signed_up if is_flashing_format?
+
+          flash[:success] = "You subscribed successfully !"
+          
           sign_up(resource_name, resource)
+          sign_in(:user, User.find(resource.id)) # auto sign in
           respond_with resource, location: after_sign_up_path_for(resource)
+
         else
           set_flash_message :notice, :"signed_up_but_#{resource.inactive_message}" if is_flashing_format?
           expire_data_after_sign_in!
@@ -41,13 +48,13 @@ class RegistrationsController < Devise::RegistrationsController
         set_minimum_password_length
 
         session[:signup_advice_counter] = 1
-        flash[:error] = resource.errors.full_messages.first
-        redirect_to root_path
+        flash[:error] = resource.errors.full_messages.join(', ')
+        redirect_to(:back)
       end
     else
       session[:signup_advice_counter] = 1
       flash[:error] = I18n.t(:wrong_captcha, scope: :top_menu)
-      redirect_to root_path
+      redirect_to(:back)
     end
 
   end
