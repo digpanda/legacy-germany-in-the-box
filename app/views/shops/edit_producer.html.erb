@@ -1,25 +1,3 @@
-<script>
-  
-  $(function() {
-    $('.edit_producer_submit').click( function() {
-      $('input.dynamical-required').each(
-        function () {
-          if ( $(this).val().length == 0 ) {
-            $(this).addClass('invalidBorderClass');
-          } else {
-            $(this).removeClass('invalidBorderClass');
-          }
-        }
-      );
-
-      if ( $('.invalidBorderClass').length > 0 ) {
-        return false;
-      }
-    });
-  });
-
-
-</script>
 <% if current_user&.is_admin? %>
   <ul class="nav nav-pills">
     <% get_allowed_locales.each_with_index do |locale, i| %>
