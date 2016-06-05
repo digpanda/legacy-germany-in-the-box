@@ -229,7 +229,7 @@
           </div>
         </div>
         <% unless readonly %>
-          <%= f.button I18n.t(:save, scope: :edit_shop_application), :id => 'edit_app_submit_btn', :class => 'btn btn-primary', name: :user_info_edit_part, value: :edit_shop %>
+          <%= f.button "Senden", :id => 'edit_app_submit_btn', :class => 'btn btn-primary', name: :user_info_edit_part, value: :edit_shop %>
         <% end %>
         <% if readonly %>
           <%= link_to I18n.t(:back, scope: :edit_shop_application), :back, :class => 'btn btn-primary' %>
