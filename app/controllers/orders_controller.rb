@@ -14,8 +14,15 @@ class OrdersController < ApplicationController
   layout :custom_sublayout, only: [:show_orders]
 
   def show_orders
-    @orders = current_user.orders.order_by(:c_at => 'desc').paginate(:page => (params[:page] ? params[:page].to_i : 1), :per_page => 10);
-    render :show_orders
+    if current_user.is_customer?
+      @orders = current_user.orders.order_by(:c_at => 'desc').paginate(:page => (params[:page] ? params[:page].to_i : 1), :per_page => 10);
+    elsif current_user.is_shopkeeper?
+      @orders = current_user.shop.orders.where(:status => :success).order_by(:c_at => 'desc').paginate(:page => (params[:page] ? params[:page].to_i : 1), :per_page => 10);
+    elsif current_user.is_admin?
+      Orders.all.order_by(:c_at => 'desc').paginate(:page => (params[:page] ? params[:page].to_i : 1), :per_page => 10);
+    end
+
+    render "orders/#{current_user.role.to_s}/show_orders"
   end
 
   def show
@@ -40,6 +47,8 @@ class OrdersController < ApplicationController
     quantity = params[:sku][:quantity].to_i
 
     co = current_order(product.shop_id.to_s)
+    co.shop = product.shop
+
     new_total = sku.price * quantity * Settings.first.exchange_rate_to_yuan
 
     if reach_today_limit?(co, new_total, quantity)
@@ -180,18 +189,18 @@ class OrdersController < ApplicationController
 
     status = order.update_for_checkout!(current_user, params[:delivery_destination_id], cart.border_guru_quote_id, cart.shipping_cost, cart.tax_and_duty_cost)
 
-    if status
-      @wirecard = PrepareOrderForWirecardCheckout.perform({
-
-        :user        => current_user,
-        :order       => order,
-        :merchant_id => Rails.env.production? ? cart.submerchant_id : 'dfc3a296-3faf-4a1d-a075-f72f1b67dd2a', # TO CHANGE DYNAMICALLY
-        :secret_key  => "6cbfa34e-91a7-421a-8dde-069fc0f5e0b8", # TO CHANGE DYNAMICALLY
-        :amount      => cart.decorate.total_in_yuan,
-        :currency    => "CNY"
-
-      })
-    end
+    # if status
+    #   @wirecard = PrepareOrderForWirecardCheckout.perform({
+    #
+    #     :user        => current_user,
+    #     :order       => order,
+    #     :merchant_id => Rails.env.production? ? cart.submerchant_id : 'dfc3a296-3faf-4a1d-a075-f72f1b67dd2a', # TO CHANGE DYNAMICALLY
+    #     :secret_key  => "6cbfa34e-91a7-421a-8dde-069fc0f5e0b8", # TO CHANGE DYNAMICALLY
+    #     :amount      => cart.decorate.total_in_yuan,
+    #     :currency    => "CNY"
+    #
+    #   })
+    # end
   end
 
   def checkout_success

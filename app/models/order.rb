@@ -11,6 +11,7 @@ class Order
   field :border_guru_link_tracking, type: String
   field :border_guru_link_payment,  type: String
 
+  belongs_to :shop,                 :inverse_of => :orders
   belongs_to :user,                 :inverse_of => :orders
 
   belongs_to :shipping_address,        :class_name => 'Address'

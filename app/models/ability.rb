@@ -127,6 +127,8 @@ class Ability
       can [:create,
            :update], User, :id => user.id
 
+      can :manage, Order, :shop => user.shop
+
       can [:index,
            :search], Collection
 
