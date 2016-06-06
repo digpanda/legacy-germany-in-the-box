@@ -1,2 +1,31 @@
 +component(category-blocks)
 
+  padding: 0
+
+  +part(block)
+    min-height: 13em
+    padding: 0
+    border: 2px white solid
+    color: $color-white
+
+    img
+      height: 100px
+
+    h2
+      color: $color-black
+
+    +option(food)
+      padding: 1em
+      background-color: $color-grey
+
+    +option(medicine)
+      padding: 1em
+      background-color: $color-grey
+
+    +option(cosmetics)
+      padding: 1em
+      background-color: $color-grey
+
+    +option(fashion)
+      padding: 1em
+      background-color: $color-grey

@@ -21,33 +21,49 @@
 
 <% if seems_like_a_customer? %>
 
+  <div class="+spacer"></div>
+
   <div class="col-md-8 col-md-push-2 col-md-pull-2 category-blocks">
 
     <div class="row">
 
-      <div class="col-md-6" style="height:200px;background-color:blue">
-        HELLO
+      <div class="col-md-6 category-blocks__block">
+        <div class="category-blocks__block --food +centered">
+        <img src="/images/categories/food.png">
+        <h2>Food</h2>
+        </div>
       </div>
 
-      <div class="col-md-6" style="height:200px;background-color:blue">
-        HELLO
+      <div class="col-md-6 category-blocks__block">
+        <div class="category-blocks__block --medicine +centered">
+        <img src="/images/categories/medicine.png" >
+        <h2>Medicine</h2>
+        </div>
       </div>
 
     </div>
 
     <div class="row">
 
-      <div class="col-md-6 +centered" style="height:200px;background-color:blue">
-        HELLO
+      <div class="col-md-6 category-blocks__block">
+        <div class="category-blocks__block --cosmetics +centered">
+        <img src="/images/categories/cosmetics.png">
+        <h2>Cosmetics</h2>
+        </div>
       </div>
 
-      <div class="col-md-6" style="height:200px;background-color:blue">
-        HELLO
+      <div class="col-md-6 category-blocks__block">
+        <div class="category-blocks__block --fashion +centered">
+        <img src="/images/categories/fashion.png">
+        <h2>Fashion</h2>
+        </div>
       </div>
 
     </div>
 
   </div>
+
+  <div class="+spacer"></div>
 
   <!--
   = render partial: "shops/shops_list", :locals => { :shops => @shops }

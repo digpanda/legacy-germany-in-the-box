@@ -134,6 +134,38 @@
     color: #fdfdfd; }
 
 /* line 32, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
+.category-blocks {
+  padding: 0; }
+  /* line 76, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
+  .category-blocks__block {
+    min-height: 13em;
+    padding: 0;
+    border: 2px white solid;
+    color: #fdfdfd; }
+    /* line 11, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_category-blocks.sass */
+    .category-blocks__block img {
+      height: 100px; }
+    /* line 14, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_category-blocks.sass */
+    .category-blocks__block h2 {
+      color: #666; }
+    /* line 40, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
+    .category-blocks__block.\--food {
+      padding: 1em;
+      background-color: #eeeeee; }
+    /* line 40, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
+    .category-blocks__block.\--medicine {
+      padding: 1em;
+      background-color: #eeeeee; }
+    /* line 40, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
+    .category-blocks__block.\--cosmetics {
+      padding: 1em;
+      background-color: #eeeeee; }
+    /* line 40, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
+    .category-blocks__block.\--fashion {
+      padding: 1em;
+      background-color: #eeeeee; }
+
+/* line 32, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
 .category-menu {
   line-height: 2;
   background-color: white;
