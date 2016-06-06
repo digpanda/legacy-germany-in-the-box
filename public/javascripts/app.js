@@ -334,7 +334,11 @@ var ShopApplicationsNew = {
       $('#add_sales_channel_btn').click();
 
       $('#edit_app_submit_btn').click(function () {
-        $('input.dynamical-required').each(function () {
+
+        $('input').each(function () {
+
+          console.log($(this));
+
           if ($(this).val().length == 0) {
             $(this).addClass('invalidBorderClass');
           } else {
@@ -404,7 +408,7 @@ $(document).ready(function () {
 
     for (var idx in starters) {
 
-      console.warn('Loading starter : ' + starters[idx]);
+      console.info('Loading starter : ' + starters[idx]);
 
       var formatted_starter = Casing.underscoreCase(starters[idx]).replace('-', '_');
       var _obj = require("javascripts/starters/" + formatted_starter);
@@ -419,6 +423,7 @@ $(document).ready(function () {
   try {
 
     var obj = require("javascripts/controllers/" + routes.controller + "/" + routes.action);
+    console.info("Loading controller " + routes.controller + "/" + routes.action);
   } catch (err) {
 
     console.error("Unable to initialize #js-routes `" + routes.controller + "`.`" + routes.action + "`");
