@@ -24,9 +24,9 @@ class OrdersController < ApplicationController
     if current_user.is_customer?
       @orders = current_user.orders.order_by(:c_at => 'desc').paginate(:page => (params[:page] ? params[:page].to_i : 1), :per_page => 10);
     elsif current_user.is_shopkeeper?
-      @orders = current_user.shop.orders.where(:status => :success).order_by(:c_at => 'desc').paginate(:page => (params[:page] ? params[:page].to_i : 1), :per_page => 10);
+      @orders = current_user.shop.orders.successful.order_by(:c_at => 'desc').paginate(:page => (params[:page] ? params[:page].to_i : 1), :per_page => 10);
     elsif current_user.is_admin?
-      Orders.all.order_by(:c_at => 'desc').paginate(:page => (params[:page] ? params[:page].to_i : 1), :per_page => 10);
+      Orders.successful.order_by(:c_at => 'desc').paginate(:page => (params[:page] ? params[:page].to_i : 1), :per_page => 10);
     end
 
     render "orders/#{current_user.role.to_s}/show_orders"
