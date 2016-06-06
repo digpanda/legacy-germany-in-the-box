@@ -12,6 +12,9 @@
           <%= I18n.t(:total_price, scope: :edit_order) %>
         </th>
         <th>
+          <%= I18n.t(:label, scope: :edit_order) %>
+        </th>
+        <th>
           <%= I18n.t(:updated_at, scope: :edit_order) %>
         </th>
       </tr>
@@ -27,6 +30,9 @@
           </td>
           <td>
             <%= o.decorate.total_price_with_currency %>
+          </td>
+          <td>
+            <%= o.border_guru_shipment_id ? (link_to I18n.t(:download, scope: :edit_order), dowload_label_order_path(o)) : '' %>
           </td>
           <td>
             <%= o.u_at.localtime.strftime('%Y-%m-%d %H:%M:%S') %>

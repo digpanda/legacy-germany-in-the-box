@@ -5,13 +5,19 @@ class OrdersController < ApplicationController
 
   before_action :authenticate_user!, :except => [:manage_cart, :add_product, :adjust_skus_amount]
 
-  before_action :set_order, only: [:show, :destroy, :continue]
+  before_action :set_order, only: [:show, :destroy, :continue, :download_label]
 
   protect_from_forgery :except => [:checkout_success, :checkout_fail]
 
   load_and_authorize_resource
 
   layout :custom_sublayout, only: [:show_orders]
+
+  def download_label
+    BorderGuru.get_label(
+        border_guru_shipment_id: @order.border_guru_shipment_id
+    )
+  end
 
   def show_orders
     if current_user.is_customer?
@@ -189,18 +195,18 @@ class OrdersController < ApplicationController
 
     status = order.update_for_checkout!(current_user, params[:delivery_destination_id], cart.border_guru_quote_id, cart.shipping_cost, cart.tax_and_duty_cost)
 
-    # if status
-    #   @wirecard = PrepareOrderForWirecardCheckout.perform({
-    #
-    #     :user        => current_user,
-    #     :order       => order,
-    #     :merchant_id => Rails.env.production? ? cart.submerchant_id : 'dfc3a296-3faf-4a1d-a075-f72f1b67dd2a', # TO CHANGE DYNAMICALLY
-    #     :secret_key  => "6cbfa34e-91a7-421a-8dde-069fc0f5e0b8", # TO CHANGE DYNAMICALLY
-    #     :amount      => cart.decorate.total_in_yuan,
-    #     :currency    => "CNY"
-    #
-    #   })
-    # end
+    if status
+      @wirecard = PrepareOrderForWirecardCheckout.perform({
+
+        :user        => current_user,
+        :order       => order,
+        :merchant_id => Rails.env.production? ? cart.submerchant_id : 'dfc3a296-3faf-4a1d-a075-f72f1b67dd2a', # TO CHANGE DYNAMICALLY
+        :secret_key  => "6cbfa34e-91a7-421a-8dde-069fc0f5e0b8", # TO CHANGE DYNAMICALLY
+        :amount      => cart.decorate.total_in_yuan,
+        :currency    => "CNY"
+
+      })
+    end
   end
 
   def checkout_success
