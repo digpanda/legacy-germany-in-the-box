@@ -335,9 +335,7 @@ var ShopApplicationsNew = {
 
       $('#edit_app_submit_btn').click(function () {
 
-        $('input').each(function () {
-
-          console.log($(this));
+        $('input.required').each(function () {
 
           if ($(this).val().length == 0) {
             $(this).addClass('invalidBorderClass');
