@@ -361,6 +361,9 @@ var ShopkeeperWirecardApply = {
    */
   postShopDetails: function postShopDetails() {
 
+    var Casing = require("javascripts/lib/casing");
+    var PostForm = require("javascripts/lib/post_form.js");
+
     var shopDetails = $("#shop-details").data();
     var parsedShopDetails = Casing.objectToUnderscoreCase(shopDetails);
 
