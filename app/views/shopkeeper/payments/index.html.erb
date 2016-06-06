@@ -8,7 +8,7 @@
         <div class="row-fluid">
           <% if @shop.billing_address.nil? %>
             You must add a 
-            <%= link_to "billing address", show_addresses_user_path %>
+            <%= link_to "billing address", show_addresses_user_path(current_user, :user_info_edit_part => :edit_shop_address) %>
             to activate this section
           <% else %>
             <% if @shop.wirecard_status.nil? %>

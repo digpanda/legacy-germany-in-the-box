@@ -13,23 +13,6 @@ var ShopApplicationsNew = {
 
       $('#add_sales_channel_btn').click();
 
-      $('#edit_app_submit_btn').click( function() {
-
-        $('input.required').each(function () {
-
-            if ( $(this).val().length == 0 ) {
-              $(this).addClass('invalidBorderClass');
-            } else {
-              $(this).removeClass('invalidBorderClass');
-            }
-
-        });
-
-        if ( $('.invalidBorderClass').length > 0 ) {
-          return false;
-        }
-      });
-
     }
 
   },
