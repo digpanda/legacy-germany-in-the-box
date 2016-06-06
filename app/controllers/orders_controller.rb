@@ -181,8 +181,8 @@ class OrdersController < ApplicationController
     @shop = Shop.only(:currency, :min_total, :name).find(shop_id)
 
     if products_total_price < @shop.min_total
-      tp = "%.2f #{products_total_price * Settings.instance.exchange_rate_to_yuan}"
-      mt = "%.2f #{@shop.min_total * Settings.instance.exchange_rate_to_yuan}"
+      tp = "%.2f" % (products_total_price * Settings.instance.exchange_rate_to_yuan)
+      mt = "%.2f" % (@shop.min_total * Settings.instance.exchange_rate_to_yuan)
 
       msg = I18n.t(:not_all_min_total_reached, scope: :checkout, :shop_name => @shop.name, :total_price => tp, :currency => Settings.instance.platform_currency.symbol, :min_total => mt)
 
