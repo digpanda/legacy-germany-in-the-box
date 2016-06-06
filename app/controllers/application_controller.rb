@@ -80,10 +80,12 @@ class ApplicationController < ActionController::Base
   end
 
   def has_order?(shop_id)
-    session[:order_ids].delete_if{ |k,v| k.nil? || v.nil?}[shop_id].present? if (session[:order_ids] ||= {})
+    session[:order_ids] ||= {}
+    session[:order_ids].delete_if{ |k,v| k.nil? || v.nil?}[shop_id].present?
   end
 
   def current_orders
+    session[:order_ids] ||= {}
     @current_orders ||= session[:order_ids].keys.compact.map { |sid| [sid, _current_order(sid)] }.to_h
   end
 

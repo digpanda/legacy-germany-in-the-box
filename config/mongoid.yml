@@ -57,7 +57,7 @@ local:
     default:
       database: a_chat_development
       hosts:
-        - localhost:37017
+        - localhost:27017
       options:
         user: achat
         password: achat2cool

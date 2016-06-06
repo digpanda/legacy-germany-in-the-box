@@ -14,9 +14,10 @@ class OrdersController < ApplicationController
   layout :custom_sublayout, only: [:show_orders]
 
   def download_label
-    BorderGuru.get_label(
+    response = BorderGuru.get_label(
         border_guru_shipment_id: @order.border_guru_shipment_id
     )
+    send_data response.bindata, filename: "#{@order.border_guru_shipment_id}.pdf", type: :pdf
   end
 
   def show_orders
@@ -62,7 +63,7 @@ class OrdersController < ApplicationController
       redirect_to(:back)
     end
 
-    existing_order_item = co.order_items.to_a.detect { |i| i.product_id == product.id.to_s && i.sku_id == sku.id.to_s}
+    existing_order_item = co.order_items.to_a.detect { |i| i.sku_id == sku.id.to_s}
 
     if not sku.limited or sku.quantity >= quantity
       if existing_order_item.present?
