@@ -1,28 +1,31 @@
-<div class="row">
-  <h3 class="text-center">
-    <%= I18n.t(:maximal_number_of_addresses, scope: :edit_address, num: Rails.configuration.max_num_addresses) %>
-  </h3>
+
+<div class="remodal" data-remodal-id="add-address-dialog">
+  <%= render partial: "addresses/popup/add_customer_address" %>
 </div>
-<%= render partial: 'new_customer_address', locals: {address: @address} %>
-<div class="row row-wrap">
-  <% current_user.addresses.each_with_index do |a, i| %>
-    <div class="mfp-with-anim mfp-hide mfp-dialog clearfix" id="edit-address-dialog-<%= a.id %>">
-      <%= render partial: 'edit_customer_address', locals: {a: a} %>
-    </div>
+
+  <% current_user.addresses.each_with_index do |address, i| %>
+
+  <div class="remodal" data-remodal-id="edit-address-dialog-<%= address.id %>">
+    <%= render partial: "edit_customer_address", :locals => {a: address} %>
+  </div>
+
     <div class="col-md-4">
       <div class="panel panel-primary">
         <div class="panel-heading text-center">
           <%= I18n.t(:show_address_title, scope: :edit_address) + ' ' + (i+1).to_s %>
         </div>
         <div class="panel-body">
-          <%= render partial: 'show_customer_address', locals: {a: a} %>
+          <%= render partial: 'show_customer_address', locals: {a: address} %>
         </div>
       </div>
     </div>
+
   <% end %>
+
   <% if current_user.addresses.size < Rails.configuration.max_num_addresses %>
+
     <div class="col-md-4">
-      <a class="address-box address-box-new popup-text" data-effect="mfp-move-from-top" href="#add-address-dialog">
+      <a class="address-box address-box-new" href="#add-address-dialog">
         <div class="vert-center">
           <i class="fa fa-plus address-box-new-icon"></i>
           <p>
@@ -31,5 +34,7 @@
         </div>
       </a>
     </div>
+
   <% end %>
+
 </div>

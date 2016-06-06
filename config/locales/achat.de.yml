@@ -250,7 +250,7 @@ de:
     remove: Entfernen
   edit_shop_application:
     shop_application: Verkäufer werden
-    shop_application_ok: Vielen Dank für Ihren Antrag! Wir werden uns bald mit Ihnen in Verbindung setzten.
+    shop_application_ok: Herzlichen Glückwunsch! Ihr erster Schritt nach China ist getan! Ihre Anfrage befindet sich jetzt in Bearbeitung. Wir werden uns bald mit Ihnen in Verbindung setzten.
     shopkeeper_info: Herstellerdetails
     title: Antragsformular
     email: Benutzerkonto
@@ -298,7 +298,7 @@ de:
     philosophy: Philosophie
     stories: Geschichten
     ustid: Ust-ID
-    eroi: Die EORI-Nummer ersetzt die alte Zollnummer und dient der Identifikation bei der Zollabwicklung. Für einen standardisierten Abwicklungsprozess müssen Sie die EORI-Nummer unserem Logistik-Partner vorlegen.
+    eroi: EORI-Nummer
     sms:
       info: per SMS benachrichtigt
       'true': Ja

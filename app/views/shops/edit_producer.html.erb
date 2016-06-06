@@ -20,6 +20,7 @@
 
 
 </script>
+
 <% if current_user&.is_admin? %>
   <ul class="nav nav-pills">
     <% get_allowed_locales.each_with_index do |locale, i| %>

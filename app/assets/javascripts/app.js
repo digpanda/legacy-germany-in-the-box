@@ -277,7 +277,7 @@ module.exports = ManageCart;
 });
 
 require.register("javascripts/controllers/pages/home.js", function(exports, require, module) {
-'use strict';
+"use strict";
 
 /**
  * Apply Wirecard Class
@@ -289,53 +289,26 @@ var Home = {
    */
   init: function init() {
 
-    $('#js-slider').show(); // Page hook fix : we display:none; and cancel it here
-
-    $('#js-slider').lightSlider({
-      "item": 1,
-      "loop": true,
-      "slideMargin": 0,
-      "pager": false,
-      "auto": true,
-      "pause": "3000",
-      "speed": "1000",
-      "adaptiveHeight": true,
-      "verticalHeight": 1000,
-      "mode": "fade",
-      "enableDrag": false,
-      "enableTouch": true
-    });
-
-    $.widget('custom.catcomplete', $.ui.autocomplete, {
-      _create: function _create() {
-        this._super();
-        this.widget().menu('option', 'items', '> :not(.ui-autocomplete-category)');
-      },
-      _renderMenu: function _renderMenu(ul, items) {
-        var that = this,
-            search_category = '';
-        $.each(items, function (index, item) {
-          var li;
-          if (item.sc != search_category) {
-            ul.append("<li class='ui-autocomplete-category'>" + item.sc + '</li>');
-            search_category = item.sc;
-          }
-          li = that._renderItemData(ul, item);
-          if (item.sc) {
-            li.attr('aria-label', item.sc + ' : ' + item.label);
-          }
+    /*
+        $('#js-slider').show(); // Page hook fix : we display:none; and cancel it here
+    
+    
+        $('#js-slider').lightSlider({
+          "item": 1,
+          "loop": true,
+          "slideMargin": 0,
+          "pager": false,
+          "auto": true,
+          "pause": "3000",
+          "speed": "1000",
+          "adaptiveHeight": true,
+          "verticalHeight": 1000,
+          "mode": "fade",
+          "enableDrag": false,
+          "enableTouch": true
         });
-      }
-    });
+    */
 
-    $('#products_search_keyword').catcomplete({
-      delay: 1000,
-      source: '/products/autocomplete_product_name',
-      select: function select(a, b) {
-        $(this).val(b.item.value);
-        $('#search_products_form').submit();
-      }
-    });
   }
 
 };
@@ -596,7 +569,7 @@ require.register("javascripts/starters.js", function(exports, require, module) {
 /**
  * Starters Class
  */
-var Starters = ['bootstrap', 'footer', 'product_favorite', 'product_lightbox', 'search', 'left_menu', 'china_city'];
+var Starters = ['bootstrap', 'footer', 'product_favorite', 'product_lightbox', 'search', 'left_menu', 'china_city', 'images_handler'];
 
 module.exports = Starters;
 });
@@ -743,6 +716,51 @@ var Footer = {
 };
 
 module.exports = Footer;
+});
+
+require.register("javascripts/starters/images_handler.js", function(exports, require, module) {
+"use strict";
+
+/**
+ * ImagesHandler Class
+ */
+var ImagesHandler = {
+
+  /**
+   * Initializer
+   */
+  init: function init() {
+
+    this.startImagesHandler();
+  },
+
+  /**
+   * 
+   */
+  startImagesHandler: function startImagesHandler() {
+
+    $(".img-file-upload").each(function () {
+      var fileElement = $(this);
+      $(this).change(function (event) {
+        var input = $(event.currentTarget);
+        var file = input[0].files[0];
+        var reader = new FileReader();
+        reader.onload = function (e) {
+          image_base64 = e.target.result;
+          $(fileElement.attr('img_id')).attr("src", image_base64);
+        };
+        reader.readAsDataURL(file);
+      });
+    });
+
+    $("img").one("error", function (e) {
+      $(this).attr('src', '/assets/no_image_available.jpg');
+    });
+  }
+
+};
+
+module.exports = ImagesHandler;
 });
 
 require.register("javascripts/starters/left_menu.js", function(exports, require, module) {

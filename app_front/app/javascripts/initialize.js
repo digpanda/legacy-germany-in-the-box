@@ -13,7 +13,7 @@ $(document).ready(() => {
 
     for (var idx in starters) {
 
-      console.warn('Loading starter : ' + starters[idx]);
+      console.info('Loading starter : ' + starters[idx]);
 
       let formatted_starter = Casing.underscoreCase(starters[idx]).replace('-', '_');
       let obj = require("javascripts/starters/"+formatted_starter);
@@ -31,6 +31,7 @@ $(document).ready(() => {
   try {
 
     var obj = require("javascripts/controllers/"+routes.controller+"/"+routes.action);
+    console.info("Loading controller "+routes.controller+"/"+routes.action);
 
   } catch(err) {
 

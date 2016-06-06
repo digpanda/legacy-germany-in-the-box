@@ -10,6 +10,7 @@ var Starters = [
   'search',
   'left_menu',
   'china_city',
+  'images_handler',
 
 ]
 

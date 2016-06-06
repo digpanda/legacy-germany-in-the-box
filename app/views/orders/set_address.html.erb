@@ -1,4 +1,6 @@
-<%= render partial: 'addresses/new_customer_address',  locals: {address: @address} %>
+<div class="remodal" data-remodal-id="add-address-dialog">
+  <%= render partial: "addresses/popup/add_customer_address", :locals => {address: @address} %>
+</div>
 
 <div class="col-md-10 col-md-push-1 col-md-pull-1">
 
@@ -16,9 +18,11 @@
         </div>
       <% end %>
     <% end %>
+
     <% if current_user.addresses.size < 3 %>
+
       <div class="col-md-4">
-        <a class="address-box address-box-new popup-text" data-effect="mfp-move-from-top" href="#add-address-dialog">
+        <a class="address-box address-box-new" href="#add-address-dialog">
           <div class="vert-center">
             <i class="fa fa-plus address-box-new-icon"></i>
             <p>
@@ -27,8 +31,10 @@
           </div>
         </a>
       </div>
+
     <% end %>
   </div>
+
   <div class="row">
     <%= hidden_field_tag :shop_id, "#{params[:shop_id]}" %>
     <%= submit_tag I18n.t(:checkout, scope: :checkout), :class => "btn btn-primary" %>
