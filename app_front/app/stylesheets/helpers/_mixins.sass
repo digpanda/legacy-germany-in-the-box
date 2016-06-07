@@ -10,6 +10,43 @@
     font-style: $style
     font-weight: $weight
 
+=avatar($border: 3px)
+  float: left
+  margin-top: 1em
+  margin-right: 1em
+  position: relative
+
+  -webkit-border-radius: 50%
+  -moz-border-radius: 50%
+  border-radius: 50%
+
+  border: $border white solid
+
+=overlay($color: black, $opacity: 0.4)
+  position: absolute
+  z-index: 1
+  left: 0
+  top: 0
+  right: 0
+  bottom: 0
+  background-color: $color
+  opacity: $opacity
+
+=onoverlay
+  position: absolute
+  z-index: 2
+  left: 0
+  top: 0
+  right: 0
+  bottom: 0
+
+=blurred-background($blur: 5px)
+  -webkit-filter: blur($blur);
+  -moz-filter: blur($blur);
+  -o-filter: blur($blur);
+  -ms-filter: blur($blur);
+  filter: blur($blur);
+
 =border-radius($radius: 1em)
   -webkit-border-radius: $radius
   -moz-border-radius: $radius

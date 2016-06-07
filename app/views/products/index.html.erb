@@ -1,43 +1,96 @@
-<div class="+centered category-header">
+<div class="+spacer"></div>
 
-  <div class="row category-header__first">
+<div class="col-md-8 col-md-push-2 col-md-pull-2">
 
-    <div class="col-md-2">
-    <img src="/images/categories/food.png" style="max-height:50px"> Food
+  <!-- Shop Blocks -->
+  <div class="shop-blocks">
+
+    <div class="row shop-blocks__main">
+
+      <div class="col-md-5 shop-blocks__main --category">
+        <h2>Food</h2>
+        Description of food
+      </div>
+
+      <div class="col-md-7 shop-blocks__main --shop" style="background-image:url(https://pixabay.com/static/uploads/photo/2015/12/08/00/26/coffee-shop-1081713_960_720.jpg);">
+        <div class="+overlay"></div>
+        <div class="+onoverlay">
+
+          <!-- Content -->
+          <div class="shop-blocks__main --content">
+
+            <div class="col-md-3">
+              <img src="https://www.menashion.de/wp-content/uploads/2015/06/Cardi-Bob-2015sw-300x300.jpg">
+            </div>
+
+            <div class="col-md-9">
+              <h3>Shop name</h3>
+              Shop description here
+            </div>
+
+          </div>
+          <!-- End of Content -->
+
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row shop-blocks__secondary">
+
+      <div class="col-md-4 shop-blocks__secondary --shop">
+        <div class="+overlay"></div>
+        
+        <div class="+onoverlay">
+
+          <!-- Content -->
+          <div class="shop-blocks__main --content">
+
+            <div class="col-md-4">
+              <img src="https://www.menashion.de/wp-content/uploads/2015/06/Cardi-Bob-2015sw-300x300.jpg">
+            </div>
+
+            <div class="col-md-8">
+              <h3>Shop name</h3>
+              Shop description here
+            </div>
+
+          </div>
+          <!-- End of Content -->
+
+        </div>
+
+      </div>
+
+      <div class="col-md-4 shop-blocks__secondary --shop">
+        <div class="+overlay"></div>
+      </div>
+
+      <div class="col-md-4 shop-blocks__secondary --shop">
+        <div class="+overlay"></div>
+      </div>
+
     </div>
 
   </div>
-
-</div>
-
-<div class="+spacer"></div>
-
-<div class="row">
-
-  <div class="col-md-8 col-md-push-2 col-md-pull-2">
-
-    <div style="background-color:red">
-      
-      <h2>Shop Title</h2>
-      <div>This is a shop description</div>
-
-    </div>
+  <!-- End of Shop Blocks -->
 
     <% if @products.size > 0 %>
 
-      <!-- Products list -->
-      <%= render partial: "products/products_list", :locals => { :products => @products } %>
+    <!-- Products list -->
+    <%= render partial: "products/products_list", :locals => { :products => @products } %>
 
     <% else %>
 
+    <div class="row">
       <div class="message">
         <div class="message__simple">
           Oops ! No product here ...
         </div>
       </div>
+    </div>
 
     <% end %>
 
-  </div>
 
 </div>
