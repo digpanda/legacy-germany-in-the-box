@@ -64,14 +64,8 @@ class Shop
 
   has_many :addresses,   inverse_of: :shop
 
-  def billing_address
-    addresses.is_billing.first
-  end
-  def sender_address
-    addresses.is_sender.first
-  end
-
   has_many  :products,        inverse_of: :shop,  dependent: :restrict
+  has_many  :orders,          inverse_of: :shop,  dependent: :restrict
 
   belongs_to :shopkeeper,   class_name: 'User',  inverse_of: :shop
 
@@ -115,6 +109,14 @@ class Shop
 
   index({shopkeeper: 1},    {unique: true,   name: :idx_shop_shopkeeper})
   index({merchant_id: 1},   {unique: false,  name: :idx_shop_merchant_id})
+
+  def billing_address
+    addresses.is_billing.first
+  end
+
+  def sender_address
+    addresses.is_sender.first
+  end
 
   def country
     sender_address = addresses.find_sender

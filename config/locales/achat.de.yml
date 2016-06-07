@@ -219,6 +219,8 @@ de:
     paying: in Zahlung
     success: Erstellt
     override_maximal_total: Pro Tag können Sie bei usnerer Plattform mehrere Produkte nur in der Höhe unter  %{total} %{curreny} kaufen.
+    label: Label
+    download: Runterladen
   edit_collection:
     new: Favorit erstellen
     edit: Ändern

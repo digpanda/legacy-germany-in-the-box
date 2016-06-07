@@ -10,11 +10,12 @@
   <li class="<%= is_menu_active?(:edit_shop) %>">
     <%= link_to I18n.t(:my_shop, scope: :top_menu), edit_setting_shop_path(current_user.shop.id, :user_info_edit_part => :edit_shop) %>
   </li>
-  <% if current_user.shop %>
-    <li class="<%= is_menu_active?([:edit_product, :edit_product_update, :edit_product_new, :edit_product_detail, :edit_product_detail_new, :edit_product_detail_update, :edit_product_detail_clone]) %>">
-      <%= link_to I18n.t(:my_product, scope: :top_menu),  show_products_shop_path(current_user.shop.id, :user_info_edit_part => :edit_product) %>
-    </li>
-  <% end %>
+  <li class="<%= is_menu_active?([:edit_product, :edit_product_update, :edit_product_new, :edit_product_detail, :edit_product_detail_new, :edit_product_detail_update, :edit_product_detail_clone]) %>">
+    <%= link_to I18n.t(:my_product, scope: :top_menu),  show_products_shop_path(current_user.shop.id, :user_info_edit_part => :edit_product) %>
+  </li>
+  <li class="<%= is_menu_active?(:edit_order) %>">
+      <%= link_to I18n.t(:my_order, scope: :top_menu),  show_orders_user_path(current_user.shop.id, :user_info_edit_part => :edit_order) %>
+  </li>
   <li class="<%= is_menu_active?(:edit_shop_address) %>">
     <%= link_to I18n.t(:my_address, scope: :top_menu),  show_addresses_user_path(current_user, :user_info_edit_part => :edit_shop_address) %>
   </li>

@@ -219,6 +219,8 @@ zh-CN:
     paying: 等待付款
     success: 下单成功
     override_maximal_total: 您在本平台的购物额单件每天可以多于%{total}%{currency}，多件不能超过%{total}%{currency}.
+    label: 运单
+    download: 下载
   edit_collection:
     new: 新建收藏夹
     edit: 修改

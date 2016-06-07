@@ -62,6 +62,8 @@ end
 
 resources :orders, only: [:destroy, :show] do
   concerns :shared_orders
+
+  match :download_label,  via: [:get],  action: :download_label,  as: :download_label,  :on => :member
 end
 
 resources :categories, only: [:show, :index] do

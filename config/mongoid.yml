@@ -3,7 +3,8 @@ production:
     default:
       database: a_chat_development
       hosts:
-        - 207.226.141.12:27017
+        #- 207.226.141.12:27017
+        - 192.168.100.100:27017
       options:
         user: achat
         password: achat2cool
@@ -56,7 +57,7 @@ local:
     default:
       database: a_chat_development
       hosts:
-        - localhost:37017
+        - localhost:27017
       options:
         user: achat
         password: achat2cool
