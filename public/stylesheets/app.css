@@ -133,6 +133,20 @@
   .page-error a:hover {
     color: #fdfdfd; }
 
+/* line 3, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_category-header.sass */
+.category-header a {
+  color: #659443; }
+  /* line 5, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_category-header.sass */
+  .category-header a:hover {
+    color: #659443; }
+
+/* line 76, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
+.category-header__first {
+  margin-top: -2em;
+  min-height: 5em;
+  background-color: #e6fbd7;
+  color: #fdfdfd; }
+
 /* line 32, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
 .category-blocks {
   padding: 0; }
@@ -147,7 +161,9 @@
       height: 100px; }
     /* line 14, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_category-blocks.sass */
     .category-blocks__block h2 {
-      color: #666; }
+      color: #666;
+      text-transform: uppercase;
+      font-family: inherit; }
     /* line 40, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
     .category-blocks__block.\--food {
       padding: 1em;
