@@ -186,7 +186,7 @@
     border-radius: 50%;
     border: 3px white solid;
     max-width: 100px;
-    background: white; }
+    background: #fdfdfd; }
   /* line 13, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_shop-blocks.sass */
   .shop-blocks__main.\--content h3 {
     margin-top: 1.5em;
@@ -196,7 +196,7 @@
 .shop-blocks__main.\--category {
   padding: 2em;
   border: 2px white solid;
-  background-color: #e6fbd7;
+  background-color: #659443;
   min-height: 200px;
   color: #fdfdfd; }
   /* line 24, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_shop-blocks.sass */
@@ -207,7 +207,7 @@
 /* line 40, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
 .shop-blocks__main.\--shop {
   border: 2px white solid;
-  background-color: white;
+  background-color: #eeeeee;
   background-position: center center;
   background-size: cover;
   min-height: 200px; }
@@ -215,7 +215,7 @@
 /* line 40, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
 .shop-blocks__secondary.\--shop {
   border: 2px white solid;
-  background-color: yellow;
+  background-color: #e6fbd7;
   min-height: 200px;
   background-position: center center;
   background-size: cover;

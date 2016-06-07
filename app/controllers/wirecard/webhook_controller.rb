@@ -54,8 +54,8 @@ class Wirecard::WebhookController < ApplicationController
     devlog.info "We try to handle the postback data"
     return false if params["postback"].nil?
 
-    json_body = params["postback"].gsub('\\\\\"', '') #params["postback"].gsub('\\', '')
-    @datas = ActiveSupport::JSON.decode(ActiveSupport::JSON.decode(json_body))
+    json_body = params["postback"].gsub('\\"', '') #params["postback"].gsub('\\', '')
+    @datas = ActiveSupport::JSON.decode(json_body)
     devlog.info "Checking parameters ..."
     devlog.info "JSON : #{datas.inject({}){|memo,(k,v)| memo[k.to_sym] = v; memo}}"
 
