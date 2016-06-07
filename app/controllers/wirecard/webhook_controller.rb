@@ -20,13 +20,11 @@ class Wirecard::WebhookController < ApplicationController
     merchant_id = datas["merchant_id"]
     merchant_status = datas["merchant_status"]
     reseller_id = datas["reseller_id"]
-    wirecard_credentials = datas["wirecard_credentials"]
-    
+
     devlog.info "Service received `#{merchant_id}`, `#{merchant_status}`, `#{reseller_id}`" 
 
     # we authenticate the source
-    if (wirecard_credentials["ee_user_cc"] == ::Rails.application.config.wirecard["reseller"]["username"]) &&
-       (wirecard_credentials["ee_password_cc"] == ::Rails.application.config.wirecard["reseller"]["password"])
+    if (reseller_id == ::Rails.application.config.wirecard["merchants"]["reseller_id"])
 
       devlog.info "It passed the authentication"
 
@@ -61,8 +59,8 @@ class Wirecard::WebhookController < ApplicationController
 
     !!(datas["merchant_id"].present? && 
        datas["merchant_status"].present? && 
-       datas["reseller_id"].present? &&
-       datas["wirecard_credentials"].present? && Hash === datas["wirecard_credentials"])
+       datas["reseller_id"].present?)
+
   end
 
   def validate_merchant_datas
