@@ -29,6 +29,11 @@ class Wirecard::WebhookController < ApplicationController
       devlog.info "It passed the authentication"
 
       shop = Shop.find(merchant_id)
+
+      if shop.nil?
+        render status: 500, json: {success: false, error: "Unknown merchant id."}.to_json and return
+      end
+
       shop.wirecard_status = merchant_status.downcase
       shop.save
 
@@ -38,7 +43,7 @@ class Wirecard::WebhookController < ApplicationController
 
     end
     
-    render status: 500, json: {success: false}.to_json and return
+    render status: 500, json: {success: false, error: "Bad credentials."}.to_json and return
 
   end
 
@@ -64,7 +69,7 @@ class Wirecard::WebhookController < ApplicationController
   end
 
   def validate_merchant_datas
-    render status: 500, json: {success: false, error: "Wrong arguments given."}.to_json and return if !required_merchant_datas
+    render status: 500, json: {success: false, error: "Bad arguments."}.to_json and return if !required_merchant_datas
   end
 
   def devlog
