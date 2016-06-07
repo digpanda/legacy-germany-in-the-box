@@ -393,6 +393,7 @@ de:
     quantity: Verfügbarkeit
     duty_category: Zoll-Kategorie
     duty_category_info: Die Zuordnung der Käufer-Kategorien ist von dem Zoll in China gefordert.
+    global_status: Global Eingestellt
     status: Eingestellt
   edit_product_new:
     create_ok: Das Produkt wurde erfolgreich erstellt.

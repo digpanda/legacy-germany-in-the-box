@@ -24,7 +24,7 @@ var ImagesHandler = {
           var file = input[0].files[0];
           var reader = new FileReader();
           reader.onload = function(e){
-            image_base64 = e.target.result;
+            var image_base64 = e.target.result;
             $(fileElement.attr('img_id')).attr("src", image_base64);
           };
           reader.readAsDataURL(file);
