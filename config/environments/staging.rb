@@ -5,12 +5,13 @@ Rails.application.configure do
   config.middleware.use(Mongoid::QueryCache::Middleware)
   config.eager_load = true
   config.consider_all_requests_local = true
-  config.action_controller.perform_caching = true
+  config.action_controller.perform_caching = false
   config.action_mailer.raise_delivery_errors = false
   config.active_support.deprecation = :log
   config.assets.debug = true
   config.assets.digest = true
   config.assets.raise_runtime_errors = true
+  config.log_level = :debug
   #config.force_ssl = true
 
 
