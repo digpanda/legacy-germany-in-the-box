@@ -12,10 +12,16 @@
           <%= I18n.t(:total_price, scope: :edit_order) %>
         </th>
         <th>
+          <%= I18n.t(:link_tracking, scope: :edit_order) %>
+        </th>
+        <th>
           <%= I18n.t(:label, scope: :edit_order) %>
         </th>
         <th>
           <%= I18n.t(:updated_at, scope: :edit_order) %>
+        </th>
+        <th>
+          <%= I18n.t(:operations, scope: :edit_order) %>
         </th>
       </tr>
     </thead>
@@ -32,11 +38,21 @@
             <%= o.decorate.total_price_with_currency %>
           </td>
           <td>
+            <%= o.border_guru_link_tracking ? (link_to I18n.t(:open, scope: :edit_order), o.border_guru_link_tracking, :target => '_blank') : '' %>
+          </td>
+          <td>
             <%= o.border_guru_shipment_id ? (link_to I18n.t(:download, scope: :edit_order), download_label_order_path(o)) : '' %>
           </td>
           <td>
             <%= o.u_at.localtime.strftime('%Y-%m-%d %H:%M:%S') %>
           </td>
+          <% unless o.decorate.is_success? %>
+              <td>
+                <%= link_to I18n.t(:delete, scope: :edit_order), order_path(o), method: :delete, data: { confirm: 'Are you certain you want to delete this?' }, :class => 'fa fa-times-circle' %>
+              </td>
+          <% else %>
+              <td></td>
+          <% end %>
         </tr>
       <% end %>
     </tbody>
