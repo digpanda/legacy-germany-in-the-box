@@ -133,6 +133,8 @@ class ProductsController < ApplicationController
 
     @products = Product.search(@query)
 
+    @products = Product.all
+
   end
 
   def popular

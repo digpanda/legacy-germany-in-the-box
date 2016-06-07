@@ -14,18 +14,19 @@ class OrdersController < ApplicationController
   layout :custom_sublayout, only: [:show_orders]
 
   def download_label
-    BorderGuru.get_label(
+    response = BorderGuru.get_label(
         border_guru_shipment_id: @order.border_guru_shipment_id
     )
+    send_data response.bindata, filename: "#{@order.border_guru_shipment_id}.pdf", type: :pdf
   end
 
   def show_orders
     if current_user.is_customer?
       @orders = current_user.orders.order_by(:c_at => 'desc').paginate(:page => (params[:page] ? params[:page].to_i : 1), :per_page => 10);
     elsif current_user.is_shopkeeper?
-      @orders = current_user.shop.orders.where(:status => :success).order_by(:c_at => 'desc').paginate(:page => (params[:page] ? params[:page].to_i : 1), :per_page => 10);
+      @orders = current_user.shop.orders.successful.order_by(:c_at => 'desc').paginate(:page => (params[:page] ? params[:page].to_i : 1), :per_page => 10);
     elsif current_user.is_admin?
-      Orders.all.order_by(:c_at => 'desc').paginate(:page => (params[:page] ? params[:page].to_i : 1), :per_page => 10);
+      Orders.successful.order_by(:c_at => 'desc').paginate(:page => (params[:page] ? params[:page].to_i : 1), :per_page => 10);
     end
 
     render "orders/#{current_user.role.to_s}/show_orders"
@@ -62,7 +63,7 @@ class OrdersController < ApplicationController
       redirect_to(:back)
     end
 
-    existing_order_item = co.order_items.to_a.detect { |i| i.product_id == product.id.to_s && i.sku_id == sku.id.to_s}
+    existing_order_item = co.order_items.to_a.detect { |i| i.sku_id == sku.id.to_s}
 
     if not sku.limited or sku.quantity >= quantity
       if existing_order_item.present?
@@ -181,8 +182,8 @@ class OrdersController < ApplicationController
     @shop = Shop.only(:currency, :min_total, :name).find(shop_id)
 
     if products_total_price < @shop.min_total
-      tp = "%.2f #{products_total_price * Settings.instance.exchange_rate_to_yuan}"
-      mt = "%.2f #{@shop.min_total * Settings.instance.exchange_rate_to_yuan}"
+      tp = "%.2f" % (products_total_price * Settings.instance.exchange_rate_to_yuan)
+      mt = "%.2f" % (@shop.min_total * Settings.instance.exchange_rate_to_yuan)
 
       msg = I18n.t(:not_all_min_total_reached, scope: :checkout, :shop_name => @shop.name, :total_price => tp, :currency => Settings.instance.platform_currency.symbol, :min_total => mt)
 
