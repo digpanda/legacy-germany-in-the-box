@@ -170,7 +170,7 @@
     <% end %>
     <div class="panel panel-info" id="variants_panel_<%= @product.id %>">
       <div class="panel-heading">
-        <a data-content="<%= image_tag('variant-example.png') %>" data-html="true" data-trigger="hover" rel="popover" title="<%= I18n.t(:variants_info, scope: :edit_product_detail, locale: locale) %>">
+        <a data-content="<img src='/images/variant-example.png' width='400px'>" data-html="true" data-trigger="hover" rel="popover" title="<%= I18n.t(:variants_info, scope: :edit_product_detail, locale: locale) %>">
           <i class="fa fa-info-circle"></i>
           <label class="required translation">
             <%= I18n.t(:variants, scope: :edit_product_variant, locale: locale) %>

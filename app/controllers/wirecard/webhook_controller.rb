@@ -51,7 +51,6 @@ class Wirecard::WebhookController < ApplicationController
 
   def required_merchant_datas
 
-
     devlog.info "We try to handle the postback data"
     return false if params["postback"].nil?
 

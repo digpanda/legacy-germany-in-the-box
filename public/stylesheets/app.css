@@ -828,19 +828,20 @@ a, a:active, a:hover, a:visited {
 /* line 34, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/_global.sass */
 .thumbnail-img {
   width: auto !important;
-  max-height: 200px !important; }
+  max-height: 200px !important;
+  max-width: 200px !important; }
 
-/* line 38, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/_global.sass */
+/* line 39, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/_global.sass */
 .detail-img {
   width: auto;
   max-height: 400px; }
 
-/* line 42, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/_global.sass */
+/* line 43, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/_global.sass */
 .icon-img {
   width: auto;
   max-height: 48px; }
 
-/* line 46, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/_global.sass */
+/* line 47, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/_global.sass */
 .logo-img {
   width: auto;
   max-height: 96px; }
