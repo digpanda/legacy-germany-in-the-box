@@ -9,39 +9,41 @@
   <%= f.text_field :company, :class => 'form-control', :required => true, :placeholder => I18n.t(:company, scope: :edit_address) %>
 </div>
 <div class="form-group">
-  <div class="form-inline">
-    <div class="form-group">
-      <%= f.text_field :fname, :class => 'form-control', :style => 'width:168px', :required => true, :placeholder => I18n.t(:fname, scope: :edit_address) %>
+  <div class="row">
+    <div class="col-md-6">
+      <%= f.text_field :fname, :class => 'form-control', :required => true, :placeholder => I18n.t(:fname, scope: :edit_address) %>
     </div>
-    <div class="form-group">
-      <%= f.text_field :lname, :class => 'form-control', :style => 'width:168px', :required => true, :placeholder => I18n.t(:lname, scope: :edit_address) %>
+    <div class="col-md-6">
+      <%= f.text_field :lname, :class => 'form-control', :required => true, :placeholder => I18n.t(:lname, scope: :edit_address) %>
     </div>
   </div>
 </div>
 <div class="form-group">
-  <div class="form-inline">
-    <div class="form-group">
-      <%= f.text_field :street, :class => 'form-control', :style => 'width:248px', :required => true, :placeholder => I18n.t(:street, scope: :edit_address) %>
+  <div class="row">
+    <div class="col-md-9">
+      <%= f.text_field :street, :class => 'form-control', :required => true, :placeholder => I18n.t(:street, scope: :edit_address) %>
     </div>
-    <div class="form-group">
-      <%= f.text_field :number, :class => 'form-control', :style => 'width:88px', :required => true, :placeholder => I18n.t(:house_number, scope: :edit_address), :pattern => '\d+' %>
+    <div class="col-md-3">
+      <%= f.text_field :number, :class => 'form-control', :required => true, :placeholder => I18n.t(:house_number, scope: :edit_address), :pattern => '\d+' %>
     </div>
   </div>
   <%= f.text_field :additional, :class => 'form-control', :placeholder => I18n.t(:additional, scope: :edit_address) %>
 </div>
 <div class="form-group">
-  <div class="form-inline">
-    <div class="form-group">
-      <%= f.text_field :zip, :class => 'form-control', :placeholder => I18n.t(:zip, scope: :edit_address), :required => true, :pattern => '^(?!01000|99999)(0[1-9]\d{3}|[1-9]\d{4})$', :style => 'width:88px' %>
+  <div class="row">
+    <div class="col-md-4">
+      <%= f.text_field :zip, :class => 'form-control', :placeholder => I18n.t(:zip, scope: :edit_address), :required => true, :pattern => '^(?!01000|99999)(0[1-9]\d{3}|[1-9]\d{4})$' %>
     </div>
-    <div class="form-group">
-      <%= f.text_field :city, class: 'form-control', :placeholder => I18n.t(:city, scope: :edit_address), :required => true, :style => 'width:120px' %>
+    <div class="col-md-4">
+      <%= f.text_field :city, class: 'form-control', :placeholder => I18n.t(:city, scope: :edit_address), :required => true %>
     </div>
-    <div class="form-group">
-      <%= f.text_field :province, class: 'form-control', :placeholder => I18n.t(:province, scope: :edit_address), :required => true, :style => 'width:120px' %>
+    <div class="col-md-4">
+      <%= f.text_field :province, class: 'form-control', :placeholder => I18n.t(:province, scope: :edit_address), :required => true %>
+    </div>
+    <div>
+      <%= f.hidden_field :country, :class => 'form-control', :value => ISO3166::Country[:DE].local_name, :readonly => true %>
     </div>
   </div>
-  <%= f.text_field :country, :class => 'form-control', :value => ISO3166::Country[:DE].local_name, :readonly => true %>
 </div>
 <div class="form-group">
   <% if current_user.shop.decorate.can_change_to_billing? %>
