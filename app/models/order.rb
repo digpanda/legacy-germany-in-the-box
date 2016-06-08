@@ -21,7 +21,7 @@ class Order
   has_many :order_payments,         :inverse_of => :order,    dependent: :restrict
 
   scope :is_active,   ->  { where( :status.ne => :success ) }
-  scope :successful,  ->  { where( :status.ne => :success ) }
+  scope :paid,        ->  { where( :status => :success ) }
 
 
   # TODO : inclusion should be re-abilited when we are sure of what we include

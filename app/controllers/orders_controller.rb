@@ -24,9 +24,9 @@ class OrdersController < ApplicationController
     if current_user.is_customer?
       @orders = current_user.orders.order_by(:c_at => 'desc').paginate(:page => (params[:page] ? params[:page].to_i : 1), :per_page => 10);
     elsif current_user.is_shopkeeper?
-      @orders = current_user.shop.orders.successful.order_by(:c_at => 'desc').paginate(:page => (params[:page] ? params[:page].to_i : 1), :per_page => 10);
+      @orders = current_user.shop.orders.paid.order_by(:c_at => 'desc').paginate(:page => (params[:page] ? params[:page].to_i : 1), :per_page => 10);
     elsif current_user.is_admin?
-      Orders.successful.order_by(:c_at => 'desc').paginate(:page => (params[:page] ? params[:page].to_i : 1), :per_page => 10);
+      @orders = Order.paid.order_by(:c_at => 'desc').paginate(:page => (params[:page] ? params[:page].to_i : 1), :per_page => 10);
     end
 
     render "orders/#{current_user.role.to_s}/show_orders"
@@ -261,9 +261,9 @@ class OrdersController < ApplicationController
 
   def destroy
     shop_id = @order.order_items.first.sku.product.shop.id.to_s
-    session[:order_ids].delete(shop_id)
+    session[:order_ids]&.delete(shop_id)
 
-    if @order && @order.status == :new && @order.order_items.delete_all && @order.delete
+    if @order && @order.status != :success && @order.order_items.delete_all && @order.delete
 
       flash[:success] = I18n.t(:delete_ok, scope: :edit_order)
       redirect_to request.referrer
@@ -271,7 +271,7 @@ class OrdersController < ApplicationController
     else
 
       flash[:error] = I18n.t(:delete_ko, scope: :edit_order)
-      redirect_to request.referrer.merge(:params)
+      redirect_to request.referrer
       
     end
   end

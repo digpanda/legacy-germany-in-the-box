@@ -83,24 +83,6 @@
             </div>
           </div>
         </div>
-        <div class="form-group">
-          <div class="row">
-            <div class="col-md-3">
-              <label class="required translation">
-                <%= I18n.t(:global_status, scope: :edit_product, locale: locale) %>
-              </label>
-            </div>
-            <div class="col-md-9">
-              <div class="checkbox" style="margin:0px">
-                <label>
-                  <%= f.hidden_field :status %>
-                  <%= f.check_box :status, { :class => 'i-check' }, true %>
-                  <%= I18n.t(true, scope: 'edit_product_detail.status', locale: locale) %>
-                </label>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
     <% if current_user.is_admin? %>
