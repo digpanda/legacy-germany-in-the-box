@@ -190,6 +190,7 @@ de:
     tel: Festnetz
     mobile: Handy
     name: Name
+    pid: Personalnummer
   edit_order:
     no_order: keine Aufträge vorhanden
     id: Auftragsnummer

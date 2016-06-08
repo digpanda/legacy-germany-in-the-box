@@ -158,7 +158,8 @@ class AddressesController < ApplicationController
                                       :mobile,
                                       :tel,
                                       :fname,
-                                      :lname)
+                                      :lname,
+                                      :pid)
     elsif current_user.is_shopkeeper?
       params.require(:address).permit(:number,
                                       :street,

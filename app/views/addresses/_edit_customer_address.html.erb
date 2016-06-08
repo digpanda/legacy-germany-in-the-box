@@ -5,30 +5,42 @@
     </h4>
   </div>
   <div class="form-group">
-    <div class="form-inline">
-      <div class="form-group">
-        <%= f.text_field :lname, :value => a.lname ? a.lname : current_user.lname, :class => 'form-control', :style => 'width:168px', :required => true, :placeholder => I18n.t(:lname, scope: :edit_address) %>
+    <div class="row">
+      <div class="col-md-6">
+        <%= f.text_field :lname, :value => a.lname ? a.lname : current_user.lname, :class => 'form-control', :required => true, :placeholder => I18n.t(:lname, scope: :edit_address) %>
       </div>
-      <div class="form-group">
-        <%= f.text_field :fname, :value => a.fname ? a.fname : current_user.fname, :class => 'form-control', :style => 'width:168px', :required => true, :placeholder => I18n.t(:fname, scope: :edit_address) %>
-      </div>
-    </div>
-    <div class="form-inline">
-      <div class="form-group">
-        <%= f.text_field :mobile, :value => a.mobile ? a.mobile : current_user.mobile, :class => 'form-control', :style => 'width:168px', :required => true, :placeholder => I18n.t(:mobile, scope: :edit_address), :pattern => I18n.t(:mobile, scope: :validation, locale: :'zh-CN') %>
-      </div>
-      <div class="form-group">
-        <%= f.text_field :tel, :value => a.tel ? a.tel : current_user.tel, :class => 'form-control', :style => 'width:168px', :placeholder => I18n.t(:tel, scope: :edit_address), :pattern => I18n.t(:tel, scope: :validation, locale: :'zh-CN') %>
+      <div class="col-md-6">
+        <%= f.text_field :fname, :value => a.fname ? a.fname : current_user.fname, :class => 'form-control', :required => true, :placeholder => I18n.t(:fname, scope: :edit_address) %>
       </div>
     </div>
   </div>
+
   <div class="form-group">
-    <div class="form-inline">
-      <div class="form-group">
-        <%= f.text_field :street, :class => 'form-control', :style => 'width:248px', :required => true, :placeholder => I18n.t(:street, scope: :edit_address) %>
+    <div class="row">
+      <div class="col-md-6">
+        <%= f.text_field :mobile, :value => a.mobile ? a.mobile : current_user.mobile, :class => 'form-control', :required => true, :placeholder => I18n.t(:mobile, scope: :edit_address), :pattern => I18n.t(:mobile, scope: :validation, locale: :'zh-CN') %>
+       </div>
+      <div class="col-md-6">
+        <%= f.text_field :tel, :value => a.tel ? a.tel : current_user.tel, :class => 'form-control', :placeholder => I18n.t(:tel, scope: :edit_address), :pattern => I18n.t(:tel, scope: :validation, locale: :'zh-CN') %>
       </div>
-      <div class="form-group">
-        <%= f.text_field :number, :class => 'form-control', :style => 'width:88px', :required => true, :placeholder => I18n.t(:house_number, scope: :edit_address), :pattern => '\d+' %>
+     </div>
+  </div>
+
+  <div class="form-group">
+    <div class="row">
+      <div class="col-md-12">
+        <%= f.text_field :pid, :class => 'form-control', :required => true, :placeholder => I18n.t(:pid, scope: :edit_address) %>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="row">
+      <div class="col-md-9">
+        <%= f.text_field :street, :class => 'form-control', :required => true, :placeholder => I18n.t(:street, scope: :edit_address) %>
+      </div>
+      <div class="col-md-3">
+        <%= f.text_field :number, :class => 'form-control', :required => true, :placeholder => I18n.t(:house_number, scope: :edit_address), :pattern => '\d+' %>
       </div>
     </div>
     <%= f.text_field :additional, :class => 'form-control', :placeholder => I18n.t(:additional, scope: :edit_address) %>
@@ -51,12 +63,9 @@
     <%= f.text_field :zip, :value=> "#{a.zip}", :class => 'form-control', :placeholder => I18n.t(:zip, scope: :edit_address), :required => true, :pattern => '\d{6,6}' %>
   </div>
   <div class="form-group">
-    <div class="checkbox">
-      <label>
-        <%= f.check_box :primary, {:class => 'i-check'}, true, false %>
-        <%= I18n.t(:set_primary, scope: :edit_address) %>
-      </label>
-    </div>
+    <%= f.label :primary do %>
+      <%= f.check_box :primary, {}, true, false %> <%=I18n.t(:set_primary, scope: :edit_address)%>
+    <% end %>
   </div>
   <div class="form-group">
     <input class="btn btn-primary" type="submit" value="<%= I18n.t(:save_address, scope: :edit_address) %>"></input>

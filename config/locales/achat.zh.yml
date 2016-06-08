@@ -190,6 +190,7 @@ zh-CN:
     tel: 固定电话
     mobile: 移动电话
     name: 姓名
+    pid: 身份证号
   edit_order:
     no_order: 您还没有任何订单
     id: 订单号

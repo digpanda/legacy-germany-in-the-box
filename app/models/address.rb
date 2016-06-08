@@ -16,6 +16,7 @@ class Address
 
   field :fname,         type: String
   field :lname,         type: String
+  field :pid,           type: String
   field :email,         type: String
   field :mobile,        type: String
   field :tel,           type: String
@@ -26,13 +27,14 @@ class Address
   belongs_to :shop,     :inverse_of => :address;
 
   scope :is_billing,        ->  { any_of({type: 'billing'}, {type: 'both'}) }
-  scope :is_sender,         ->  { any_of({type: 'sender'}, {type: 'both'}) }
-  scope :is_any,            ->  { any_of({type: 'sender'}, {type: 'billing'}, {type: 'both'}) }
+  scope :is_sender,         ->  { any_of({type: 'sender'},  {type: 'both'}) }
+  scope :is_any,            ->  { any_of({type: 'sender'},  {type: 'billing'}, {type: 'both'}) }
 
   scope :is_only_billing,   ->  { any_of({type: 'billing'}) }
   scope :is_only_sender,    ->  { any_of({type: 'sender'}) }
   scope :is_only_both,      ->  { any_of({type: 'both'}) }
 
+  validates :pid,       presence: true,   length: {minimum:15, maximum: 18}
   validates :fname,     presence: true,   length: {maximum: Rails.configuration.max_tiny_text_length}
   validates :lname,     presence: true,   length: {maximum: Rails.configuration.max_tiny_text_length}
   validates :mobile,    presence: true,   length: {maximum: Rails.configuration.max_tiny_text_length},  :if => lambda{ user != nil }
