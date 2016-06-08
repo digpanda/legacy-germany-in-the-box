@@ -195,14 +195,14 @@
                   .checkbox{:style => 'margin:0px'}
                     %label
                       = fs.hidden_field :customizable
-                      = fs.check_box :customizable, { :class => 'i-check' }, true
+                      = fs.check_box :customizable, {}, true
                       = I18n.t(true, scope: 'edit_product_detail.customizable')
               .col-md-6.nopadding
                 .form-group
                   .checkbox{:style => 'margin:0px'}
                     %label
                       = fs.hidden_field :status
-                      = fs.check_box :status, { :class => 'i-check' }, true
+                      = fs.check_box :status, {}, true
                       = I18n.t(true, scope: 'edit_product_detail.status')
 
       .panel.panel-info
@@ -213,11 +213,11 @@
             %strong= 'Einstellgebühr fällt zurzeit wegen Promotion nicht an.'
           .radio
             %label
-              = fs.radio_button :time, 'terminated', :class => 'i-radio', :required => true
+              = fs.radio_button :time, 'terminated', :required => true
               = I18n.t(:timed_info, scope: :edit_product_detail)
           .radio
             %label
-              = fs.radio_button :time, 'automatic', :class => 'i-radio', :required => true
+              = fs.radio_button :time, 'automatic', :required => true
               = I18n.t(:renew_info, scope: :edit_product_detail)
 
   = f.submit :class => 'btn btn-primary', :value => new ? I18n.t(:create_sku, scope: :edit_product_detail) : I18n.t(:update_sku, scope: :edit_product_detail), :part => :sku, :id => 'edit_product_detail_form_btn'
