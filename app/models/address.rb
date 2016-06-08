@@ -34,7 +34,7 @@ class Address
   scope :is_only_sender,    ->  { any_of({type: 'sender'}) }
   scope :is_only_both,      ->  { any_of({type: 'both'}) }
 
-  validates :pid,       presence: true,   length: {minimum:18, maximum: 18}
+  validates :pid,       presence: true,   length: {minimum:18, maximum: 18}, :if => lambda{ user&.role == :customer }
   validates :fname,     presence: true,   length: {maximum: Rails.configuration.max_tiny_text_length}
   validates :lname,     presence: true,   length: {maximum: Rails.configuration.max_tiny_text_length}
   validates :mobile,    presence: true,   length: {maximum: Rails.configuration.max_tiny_text_length},  :if => lambda{ user != nil }

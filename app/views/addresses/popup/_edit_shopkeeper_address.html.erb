@@ -40,35 +40,25 @@
     <div class="col-md-4">
       <%= f.text_field :province, class: 'form-control', :placeholder => I18n.t(:province, scope: :edit_address), :required => true %>
     </div>
-    <div>
-      <%= f.hidden_field :country, :class => 'form-control', :value => ISO3166::Country[:DE].local_name, :readonly => true %>
-    </div>
+    <%= f.hidden_field :country, :class => 'form-control', :value => ISO3166::Country[:DE].local_name, :readonly => true %>
   </div>
 </div>
+
 <div class="form-group">
   <% if current_user.shop.decorate.can_change_to_billing? %>
-  <div class="row">
-    <div class="col-lg-offset-1 col-md-offset-1">
-      <%= f.radio_button :type, 'billing', :required => true, :class => 'i-radio' %>
-      <%= I18n.t('billing', scope: :edit_address) %>
-    </div>
-  </div>
+    <%= f.label :type do %>
+      <%= f.radio_button :type, 'billing', :required => true %> <%= I18n.t('billing', scope: :edit_address) %>
+    <% end %>
   <% end %>
   <% if current_user.shop.decorate.can_change_to_sender? %>
-  <div class="row">
-    <div class="col-lg-offset-1 col-md-offset-1">
-      <%= f.radio_button :type, 'sender', :required => true, :class => 'i-radio' %>
-      <%= I18n.t('sender', scope: :edit_address) %>
-    </div>
-  </div>
+    <%= f.label :type do %>
+      <%= f.radio_button :type, 'sender', :required => true %> <%= I18n.t('sender', scope: :edit_address) %>
+    <% end %>
   <% end %>
   <% if current_user.shop.decorate.can_change_to_both? %>
-  <div class="row">
-    <div class="col-lg-offset-1 col-md-offset-1">
-      <%= f.radio_button :type, 'both', :required => true, :class => 'i-radio' %>
-      <%= I18n.t('both', scope: :edit_address) %>
-    </div>
-  </div>
+    <%= f.label :type do %>
+      <%= f.radio_button :type, 'both', :required => true %> <%= I18n.t('both', scope: :edit_address) %>
+    <% end %>
   <% end %>
 </div>
 
