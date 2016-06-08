@@ -4,28 +4,26 @@ Category.all.delete
 # root category - level 0
 #
 category_cosmetics_care = Category.create!(
-    :name_translations => {:en => 'Cosmetics & Care', :'zh-CN' => '美妆', :de => 'Kosmetik & Pflege'}
+    :name_translations => {:en => 'Cosmetics', :'zh-CN' => '美妆', :de => 'Kosmetik & Pflege'}
 )
 
 category_medicine_care = Category.create!(
-    :name_translations => {:en => 'Medicine & Care', :'zh-CN' => '药品保健', :de => 'Gesundheit & Medizin'}
+    :name_translations => {:en => 'Medicine', :'zh-CN' => '药品保健', :de => 'Gesundheit & Medizin'}
 )
 
 category_food_drinks = Category.create!(
-    :name_translations => {:en => 'Food & Drinks', :'zh-CN' => '食品和饮料', :de => 'Lebensmittel  & Getränke'}
+    :name_translations => {:en => 'Food', :'zh-CN' => '食品和饮料', :de => 'Lebensmittel  & Getränke'}
 )
 
 category_fashion = Category.create!(
     :name_translations => {:en => 'Fashion', :'zh-CN' => '时尚', :de => 'Mode'}
 )
 
-category_toys_home = Category.create!(
-    :name_translations => {:en => 'Toys & Home', :'zh-CN' => '玩具家居', :de => 'Spielzeuge & Heim'}
-)
 
 #
 # Cosmetics & Care - level 1
 #
+=begin
 Category.create!(
     :parent => category_cosmetics_care,
     :name_translations => {:en => 'Bath & Shower', :'zh-CN' => '沐浴', :de => 'Bad & Dusche'}
@@ -648,5 +646,6 @@ Category.create!(
     :name_translations => {:en => 'Other Footwear'},
     :status => false
 )
+=end
 
 Rails.cache.clear

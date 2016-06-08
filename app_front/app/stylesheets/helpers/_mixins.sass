@@ -10,6 +10,22 @@
     font-style: $style
     font-weight: $weight
 
+=background-transition($time: 200ms)
+  -webkit-transition: background-color $time linear;
+  -moz-transition: background-color $time linear;
+  -o-transition: background-color $time linear;
+  -ms-transition: background-color $time linear;
+  transition: background-color $time linear;
+
+=green-on-hover()
+  background-color: $color-green
+
+  h2
+    color: $color-white
+  img
+    -webkit-filter: brightness(0) invert(1)
+    filter: brightness(0) invert(1)
+
 =avatar($border: 3px)
   float: left
   margin-top: 1em
