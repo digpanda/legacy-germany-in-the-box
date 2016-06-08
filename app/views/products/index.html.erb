@@ -1,3 +1,4 @@
+<!-- This should be placed into /shops/ or /categories/ later on - Laurent -->
 <div class="+spacer"></div>
 
 <div class="col-md-8 col-md-push-2 col-md-pull-2">
@@ -8,10 +9,19 @@
     <div class="row shop-blocks__main">
 
       <div class="col-md-5 shop-blocks__main --category">
+
+        <div class="col-md-5">
+        <img src="/images/categories/food.png">
         <h2>Food</h2>
+        </div>
+
+        <div class="col-md-7">
         Description of food
+        </div>
+
       </div>
 
+      <a href="<%= shop_path(Shop.first) %>">
       <div class="col-md-7 shop-blocks__main --shop" style="background-image:url(https://pixabay.com/static/uploads/photo/2015/12/08/00/26/coffee-shop-1081713_960_720.jpg);">
         <div class="+overlay"></div>
         <div class="+onoverlay">
@@ -25,11 +35,10 @@
 
             <div class="col-md-9">
               
-              <a href="<%= shop_path(Shop.first) %>"> <!-- Temporary -->
-
               <h3>Menashion</h3>
+              <div class="shop-blocks__main --author">by Lorenzo Schaffnero</div>
 
-              </a> <!-- Temporary (end) -->
+              <div class="+small-spacer"></div>
 
               Shop description here
             </div>
@@ -39,6 +48,7 @@
 
         </div>
       </div>
+      </a>
 
     </div>
 
@@ -58,6 +68,10 @@
 
             <div class="col-md-8">
               <h3>Menashion</h3>
+              <div class="shop-blocks__main --author">by Lorenzo Schaffnero</div>
+
+              <div class="+small-spacer"></div>
+
               Shop description here
             </div>
 

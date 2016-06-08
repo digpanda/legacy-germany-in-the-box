@@ -1,0 +1,32 @@
++component(shop-page-cover)
+
+  color: $color-white
+
+  h2
+    color: $color-white
+    text-transform: uppercase
+
+  img
+    +avatar
+    max-width: 100px
+    background: $color-white
+
+  h3
+    margin-top: 1.5em
+    color: $color-white
+
+  +part(content)
+
+  +part(author)
+    font-size: 12px
+    margin-top: -1em
+    text-transform: uppercase
+
+  +part(shop)
+    border: 2px white solid
+    background-color: $color-grey
+
+    background-position: center center
+    background-size: cover
+
+    min-height: 200px

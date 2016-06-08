@@ -5,6 +5,7 @@ class Category
   has_and_belongs_to_many :products,  :inverse_of => :categories
   
   field :slug, type: String
+  field :desc, type: String, localize: true
 
   def self.only_with_products
     self.where(:product_ids.ne => nil).and(:product_ids.ne => [])
