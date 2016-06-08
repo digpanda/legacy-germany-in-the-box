@@ -25,71 +25,24 @@
 
   <div class="col-md-8 col-md-push-2 col-md-pull-2 category-blocks">
 
-    <div class="row">
-
-      <a href="#">
-      <div class="col-md-6 category-blocks__block">
-        <div class="category-blocks__block --food +centered">
-        <img src="/images/categories/food.png">
-        <h2>Food</h2>
-        </div>
-      </div>
-      </a>
-
-      <a href="#">
-      <div class="col-md-6 category-blocks__block">
-        <div class="category-blocks__block --medicine +centered">
-        <img src="/images/categories/medicine.png" >
-        <h2>Medicine</h2>
-        </div>
-      </div>
-      </a>
-
-    </div>
+    <% Category.all.in_groups_of(2, false).each do |category_groups| %>
 
     <div class="row">
 
-      <a href="#">
-      <div class="col-md-6 category-blocks__block">
-        <div class="category-blocks__block --cosmetics +centered">
-        <img src="/images/categories/cosmetics.png">
-        <h2>Cosmetics</h2>
-        </div>
-      </div>
-      </a>
+      <% category_groups.each do |category| %>
 
-      <a href="#">
-      <div class="col-md-6 category-blocks__block">
-        <div class="category-blocks__block --fashion +centered">
-        <img src="/images/categories/fashion.png">
-        <h2>Fashion</h2>
-        </div>
-      </div>
-      </a>
+      <%= render partial: "pages/home_category_block", :locals => {:category => category} %>
+
+      <% end %>
 
     </div>
 
-  </div>
+    <% end %>
 
   <div class="+spacer"></div>
 
-  <!--
-  = render partial: "shops/shops_list", :locals => { :shops => @shops }
-  -->
+</div>
 
-  <!-- Products List -->
-<!--
-  <div class="row products-list">
-
-    <div class="+spacer"></div>
-
-    <div class="col-md-10 col-md-push-1 col-md-pull-1">
-       render partial: "products/products_list", :locals => { :products => @products }
-    </div>
-
-    
-  </div>
--->
 <% else %>
 
   <%= render "pages/home_marketplace" %>

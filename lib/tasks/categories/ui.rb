@@ -15,7 +15,7 @@ category_medicine_care = Category.create!(
 
 category_food_drinks = Category.create!(
     :name_translations => {:en => 'Food', :'zh-CN' => '食品和饮料', :de => 'Lebensmittel  & Getränke'},
-    :slug => 'drinks'
+    :slug => 'food'
 )
 
 category_fashion = Category.create!(
