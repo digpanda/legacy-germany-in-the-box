@@ -103,7 +103,7 @@
 
 /* line 85, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
 #csstyle .\+onoverlay {
-  position: absolute;
+  position: relative;
   z-index: 2;
   left: 0;
   top: 0;
@@ -120,7 +120,6 @@
 
 /* line 85, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
 #csstyle .\+avatar {
-  float: left;
   margin-top: 1em;
   margin-right: 1em;
   position: relative;
@@ -175,9 +174,9 @@
 /* line 40, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
 .shop-blocks__main.\--content {
   color: #fdfdfd; }
-  /* line 8, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_shop-blocks.sass */
+  /* line 9, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_shop-blocks.sass */
   .shop-blocks__main.\--content img {
-    float: left;
+    margin-top: 2em !important;
     margin-top: 1em;
     margin-right: 1em;
     position: relative;
@@ -187,10 +186,16 @@
     border: 3px white solid;
     max-width: 100px;
     background: #fdfdfd; }
-  /* line 13, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_shop-blocks.sass */
+  /* line 15, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_shop-blocks.sass */
   .shop-blocks__main.\--content h3 {
     margin-top: 1.5em;
     color: #fdfdfd; }
+
+/* line 40, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
+.shop-blocks__main.\--author {
+  font-size: 12px;
+  margin-top: -1em;
+  text-transform: uppercase; }
 
 /* line 40, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
 .shop-blocks__main.\--category {
@@ -199,10 +204,16 @@
   background-color: #659443;
   min-height: 200px;
   color: #fdfdfd; }
-  /* line 24, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_shop-blocks.sass */
+  /* line 31, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_shop-blocks.sass */
+  .shop-blocks__main.\--category img {
+    height: 95px;
+    -webkit-filter: brightness(0) invert(1);
+    filter: brightness(0) invert(1); }
+  /* line 36, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_shop-blocks.sass */
   .shop-blocks__main.\--category h2 {
     color: #fdfdfd;
-    text-transform: uppercase; }
+    text-transform: uppercase;
+    font-family: inherit; }
 
 /* line 40, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
 .shop-blocks__main.\--shop {
@@ -325,33 +336,33 @@
     /* line 12, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_category-menu.sass */
     .category-menu__search i {
       color: #3498db; }
-  /* line 83, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/helpers/_mixins.sass */
+  /* line 86, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/helpers/_mixins.sass */
   .category-menu nav {
     z-index: 5;
     position: relative; }
-    /* line 87, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/helpers/_mixins.sass */
+    /* line 90, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/helpers/_mixins.sass */
     .category-menu nav ul {
       list-style: none;
       margin: 0;
       padding: 0; }
-      /* line 90, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/helpers/_mixins.sass */
+      /* line 93, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/helpers/_mixins.sass */
       .category-menu nav ul a {
         display: block;
         color: #666;
         text-decoration: none;
         line-height: 32px; }
-      /* line 98, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/helpers/_mixins.sass */
+      /* line 101, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/helpers/_mixins.sass */
       .category-menu nav ul li:hover > ul {
         width: 100%;
         display: block;
         border-top: 2px solid #659443; }
-      /* line 102, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/helpers/_mixins.sass */
+      /* line 105, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/helpers/_mixins.sass */
       .category-menu nav ul li:hover a {
         color: #666; }
-        /* line 104, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/helpers/_mixins.sass */
+        /* line 107, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/helpers/_mixins.sass */
         .category-menu nav ul li:hover a:hover {
           color: #659443; }
-      /* line 106, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/helpers/_mixins.sass */
+      /* line 109, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/helpers/_mixins.sass */
       .category-menu nav ul ul {
         display: none;
         position: absolute;
@@ -359,13 +370,13 @@
         left: 0;
         background: white;
         padding: 0; }
-        /* line 113, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/helpers/_mixins.sass */
+        /* line 116, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/helpers/_mixins.sass */
         .category-menu nav ul ul li {
           padding-left: 15px;
           padding-right: 15px;
           float: none;
           width: 100%; }
-        /* line 124, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/helpers/_mixins.sass */
+        /* line 127, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/helpers/_mixins.sass */
         .category-menu nav ul ul ul {
           top: 0;
           left: 100%; }
@@ -624,12 +635,15 @@
 .shops-list {
   background-color: #F7F7F7; }
 
-/* line 40, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
-.shop-page__main.\--content {
+/* line 32, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
+.shop-page-cover {
   color: #fdfdfd; }
-  /* line 8, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_shop-page.sass */
-  .shop-page__main.\--content img {
-    float: left;
+  /* line 5, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_shop-page-cover.sass */
+  .shop-page-cover h2 {
+    color: #fdfdfd;
+    text-transform: uppercase; }
+  /* line 9, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_shop-page-cover.sass */
+  .shop-page-cover img {
     margin-top: 1em;
     margin-right: 1em;
     position: relative;
@@ -639,39 +653,41 @@
     border: 3px white solid;
     max-width: 100px;
     background: #fdfdfd; }
-  /* line 13, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_shop-page.sass */
-  .shop-page__main.\--content h3 {
+  /* line 14, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_shop-page-cover.sass */
+  .shop-page-cover h3 {
     margin-top: 1.5em;
     color: #fdfdfd; }
-
-/* line 40, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
-.shop-page__main.\--category {
-  padding: 2em;
-  border: 2px white solid;
-  background-color: #659443;
-  min-height: 200px;
-  color: #fdfdfd; }
-  /* line 24, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_shop-page.sass */
-  .shop-page__main.\--category h2 {
-    color: #fdfdfd;
+  /* line 76, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
+  .shop-page-cover__author {
+    font-size: 12px;
+    margin-top: -1em;
     text-transform: uppercase; }
+  /* line 76, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
+  .shop-page-cover__shop {
+    border: 2px white solid;
+    background-color: #eeeeee;
+    background-position: center center;
+    background-size: cover;
+    min-height: 200px; }
 
-/* line 40, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
-.shop-page__main.\--shop {
-  border: 2px white solid;
-  background-color: #eeeeee;
-  background-position: center center;
-  background-size: cover;
-  min-height: 200px; }
-
-/* line 40, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
-.shop-page__secondary.\--shop {
-  border: 2px white solid;
-  background-color: #e6fbd7;
-  min-height: 200px;
-  background-position: center center;
-  background-size: cover;
-  background-image: url(https://images.unsplash.com/photo-1446034730750-a0b64d06ad13?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=cfec14f7b7a5269458ce76d08cb7696d); }
+/* line 32, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
+.shop-page-product {
+  background-color: grey;
+  min-height: 150px;
+  padding: 0; }
+  /* line 76, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
+  .shop-page-product__image {
+    background-color: blue; }
+    /* line 10, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_shop-page-product.sass */
+    .shop-page-product__image img {
+      max-width: 15em;
+      max-height: 15em; }
+  /* line 76, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
+  .shop-page-product__description {
+    background-color: yellow; }
+  /* line 76, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
+  .shop-page-product__purchase {
+    background-color: red; }
 
 /* line 3, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_products-list.sass */
 .products-list h2 {

@@ -1,11 +1,13 @@
 +component(shop-blocks)
   
+
   +part(main)
 
     +option(content)
       color: $color-white
 
       img
+        margin-top: 2em !important
         +avatar
         max-width: 100px
         background: $color-white
@@ -14,18 +16,30 @@
         margin-top: 1.5em
         color: $color-white
 
+    +option(author)
+      font-size: 12px
+      margin-top: -1em
+      text-transform: uppercase
+
     +option(category)
       padding: 2em
+
       border: 2px white solid
       background-color: $color-green
       min-height: 200px
+
+      img
+        height: 95px
+        +white-image
 
       color: $color-white
       h2
         color: $color-white
         text-transform: uppercase
+        font-family: inherit
 
     +option(shop)
+
       border: 2px white solid
       background-color: $color-grey
 

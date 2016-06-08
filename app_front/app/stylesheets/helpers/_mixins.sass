@@ -23,11 +23,14 @@
   h2
     color: $color-white
   img
-    -webkit-filter: brightness(0) invert(1)
-    filter: brightness(0) invert(1)
+    +white-image
+
+=white-image()
+  -webkit-filter: brightness(0) invert(1)
+  filter: brightness(0) invert(1)
 
 =avatar($border: 3px)
-  float: left
+  //float: left
   margin-top: 1em
   margin-right: 1em
   position: relative
@@ -49,7 +52,7 @@
   opacity: $opacity
 
 =onoverlay
-  position: absolute
+  position: relative //absolute
   z-index: 2
   left: 0
   top: 0
