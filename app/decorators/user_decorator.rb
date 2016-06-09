@@ -11,7 +11,7 @@ class UserDecorator < Draper::Decorator
 
   def avatar
     if self.pic.url.nil?
-     '/assets/icons/default_user_pic.png'
+     '/images/icons/default_user_pic.png'
     else
       self.pic.url
     end
