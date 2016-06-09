@@ -1,10 +1,11 @@
 +component(shop-page-product)
 
-  min-height: 120px
-  padding: 1em
+  padding: 0.5em
   margin: 0
+  border: 2px $color-grey solid
+  +border-radius(0.5em)
+
   background-color: white
-  border: 1px $color-grey solid
   
   color: $color-black
   a
@@ -16,8 +17,8 @@
   +part(image)
 
     img
-      max-width: 10em
-      max-height: 10em
+      max-width: 100%
+      max-height: 22em
 
   +part(description)
 
@@ -31,8 +32,7 @@
 
     +option(like)
       z-index: 3
-      color: $color-white
-      background-color: $color-red
+      color: $color-red
       min-height: 30px
       line-height: 1.5em
       text-align: center
@@ -40,8 +40,7 @@
 
     +option(buy)
       z-index: 3
-      color: $color-white
-      background-color: $color-blue
+      color: $color-blue
       min-height: 30px
       line-height: 1.5em
       text-align: center

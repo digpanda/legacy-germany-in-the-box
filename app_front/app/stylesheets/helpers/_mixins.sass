@@ -41,7 +41,7 @@
 
   border: $border white solid
 
-=overlay($color: black, $opacity: 0.4)
+=overlay($color: black, $opacity: 0.4, $radius: 0.5em)
   position: absolute
   z-index: 1
   left: 0
@@ -50,6 +50,7 @@
   bottom: 0
   background-color: $color
   opacity: $opacity
+  +border-radius($radius)
 
 =onoverlay
   position: relative //absolute

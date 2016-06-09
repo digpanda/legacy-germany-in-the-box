@@ -24,9 +24,10 @@
     +option(category)
       padding: 2em
 
-      border: 2px white solid
+      border: 2px $color-grey solid
       background-color: $color-green
       min-height: 200px
+      +border-radius(0.5em)
 
       img
         height: 95px
@@ -40,7 +41,8 @@
 
     +option(shop)
 
-      border: 2px white solid
+      border: 2px $color-grey solid
+      +border-radius(0.5em)
       background-color: $color-grey
 
       background-position: center center
@@ -51,7 +53,8 @@
   +part(secondary)
 
     +option(shop)
-      border: 2px white solid
+      border: 2px $color-grey solid
+      +border-radius(0.5em)
       background-color: $color-light-green
       min-height: 200px
 
