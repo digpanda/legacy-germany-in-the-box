@@ -18,7 +18,7 @@
 
         <% if @product.decorate.get_mas %>
 
-          <span class="+price-yuan">100¥</span> <span class="+price-euro">10€</span>
+          <span class="+price-yuan"><%= @product.skus.first.decorate.price_with_currency %></span> <span class="+price-euro">0€</span>
 
         <!--
               Price
@@ -62,13 +62,14 @@
 
         <h3>Description</h3>
 
-        JKLmljk lmkj mlkj mlkj klj mlkj lmj mlk jlmkj mljmlk jlJKLmljk lmkj mlkj mlkj klj mlkj lmj mlk jlmkj mljmlk jlJKLmljk lmkj mlkj mlkj klj mlkj lmj mlk jlmkj mljmlk jlJKLmljk lmkj mlkj mlkj klj mlkj lmj mlk jlmkj mljmlk jlJKLmljk lmkj mlkj mlkj klj mlkj lmj mlk jlmkj mljmlk jlJKLmljk lmkj mlkj mlkj klj mlkj lmj mlk jlmkj mljmlk jlJKLmljk lmkj mlkj mlkj klj mlkj lmj mlk jlmkj mljmlk jlJKLmljk lmkj mlkj mlkj klj mlkj lmj mlk jlmkj mljmlk jlJKLmljk lmkj mlkj mlkj klj mlkj lmj mlk jlmkj mljmlk jlJKLmljk lmkj mlkj mlkj klj mlkj lmj mlk jlmkj mljmlk jl
+        <%= @product.desc %>
 
         <div class="+small-spacer"></div>
         
-        <h3>Description</h3>
+        <h3>Other things</h3>
 
-        JKLmljk lmkj mlkj mlkj klj mlkj lmj mlk jlmkj mljmlk jlJKLmljk lmkj mlkj mlkj klj mlkj lmj mlk jlmkj mljmlk jlJKLmljk lmkj mlkj mlkj klj mlkj lmj mlk jlmkj mljmlk jlJKLmljk lmkj mlkj mlkj klj mlkj lmj mlk jlmkj mljmlk jlJKLmljk lmkj mlkj mlkj klj mlkj lmj mlk jlmkj mljmlk jlJKLmljk lmkj mlkj mlkj klj mlkj lmj mlk jlmkj mljmlk jlJKLmljk lmkj mlkj mlkj klj mlkj lmj mlk jlmkj mljmlk jlJKLmljk lmkj mlkj mlkj klj mlkj lmj mlk jlmkj mljmlk jlJKLmljk lmkj mlkj mlkj klj mlkj lmj mlk jlmkj mljmlk jlJKLmljk lmkj mlkj mlkj klj mlkj lmj mlk jlmkj mljmlk jl
+        Nothing yet
+        
     </div>
 
   </div>
