@@ -31,7 +31,8 @@ class Ability
 
       can [:skus], Product
 
-      can [:show_products,
+      can [:show,
+           :show_products,
            :list_products], Category
 
       can [:index,

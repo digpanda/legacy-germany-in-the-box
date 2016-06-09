@@ -6,11 +6,15 @@ class CategoriesController < ApplicationController
 
   before_action :set_category, except: [:index]
 
-  before_action :authenticate_user!, except: [:list_products, :show_products]
+  before_action :authenticate_user!, except: [:show, :list_products, :show_products]
 
   load_and_authorize_resource
 
   layout :custom_sublayout, only: [:index]
+
+  def show
+    binding.pry
+  end
 
   def index
     @root_categories = AppCache.get_root_level_categories_from_cache
@@ -18,16 +22,6 @@ class CategoriesController < ApplicationController
   end
 
   def show_products
-    # Very slow process -> should be improved somehow
-    @products = @subcategories.map do |category|
-      category.products.buyable.paginate( :pages => (params[:pages] ? params[:pages].to_i : 1), :per_page => Rails.configuration.limit_for_products_search)
-    end.flatten
-
-    #@products = @category.products.buyable.paginate( :pages => (params[:pages] ? params[:pages].to_i : 1), :per_page => Rails.configuration.limit_for_products_search)
-    @categories_and_children, @categories_and_counters = AppCache.get_category_values_for_left_menu(@products)
-
-    render 'products/index' and return
-
   end
 
   def list_products
@@ -37,7 +31,7 @@ class CategoriesController < ApplicationController
 
   def set_category
     @category = Category.find(params[:id])
-    @subcategories = @category.children
+    @shops = @category.shops
   end
 
 end
