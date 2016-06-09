@@ -5,6 +5,10 @@
   margin: 0
   background-color: white
   border: 1px $color-grey solid
+  
+  color: $color-black
+  a
+    color: $color-black
 
   h2
     font-size: 1.8em
@@ -26,6 +30,7 @@
   +part(purchase)
 
     +option(like)
+      z-index: 3
       color: $color-white
       background-color: $color-red
       min-height: 30px
@@ -34,6 +39,7 @@
       font-size: 20px
 
     +option(buy)
+      z-index: 3
       color: $color-white
       background-color: $color-blue
       min-height: 30px

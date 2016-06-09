@@ -686,11 +686,15 @@
   padding: 1em;
   margin: 0;
   background-color: white;
-  border: 1px #eeeeee solid; }
-  /* line 9, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_shop-page-product.sass */
+  border: 1px #eeeeee solid;
+  color: #666; }
+  /* line 10, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_shop-page-product.sass */
+  .shop-page-product a {
+    color: #666; }
+  /* line 13, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_shop-page-product.sass */
   .shop-page-product h2 {
     font-size: 1.8em; }
-  /* line 14, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_shop-page-product.sass */
+  /* line 18, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_shop-page-product.sass */
   .shop-page-product__image img {
     max-width: 10em;
     max-height: 10em; }
@@ -700,6 +704,7 @@
     font-size: 13px; }
   /* line 40, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
   .shop-page-product__purchase.\--like {
+    z-index: 3;
     color: #fdfdfd;
     background-color: #e74c3c;
     min-height: 30px;
@@ -708,6 +713,7 @@
     font-size: 20px; }
   /* line 40, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
   .shop-page-product__purchase.\--buy {
+    z-index: 3;
     color: #fdfdfd;
     background-color: #3498db;
     min-height: 30px;

@@ -116,7 +116,7 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource)
     if current_user.is_customer?
-      root_path
+      navigation_history(1)
     elsif current_user.is_shopkeeper?
       if current_user.shop && (not current_user.shop.agb)
         edit_producer_shop_path(current_user.shop.id, :user_info_edit_part => :edit_producer)
