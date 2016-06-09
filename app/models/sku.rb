@@ -57,7 +57,7 @@ class Sku
   private
 
   def clean_quantity
-    self.quantity = nil
+    self.quantity = 0
   end
 
   def clean_blank_and_duplicated_option_ids
