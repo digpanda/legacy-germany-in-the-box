@@ -13,7 +13,6 @@ class CategoriesController < ApplicationController
   layout :custom_sublayout, only: [:index]
 
   def show
-    binding.pry
   end
 
   def index
