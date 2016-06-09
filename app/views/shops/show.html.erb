@@ -38,13 +38,23 @@
 
     </div>
 
-    <div class="row">
+    <div class="row +nomargin">
 
       <div class="+small-spacer"></div>
 
-      <% @shop.products.each do |product| %>
+      <% if @shop.products.count > 0 %>
 
-        <%= render partial: "products/product_box", :locals => {:product => product} %>
+      <div class="+spacer"></div>
+      <%= render partial: "products/products_list", :locals => { :products => @shop.products } %>
+
+      <% else %>
+
+      <!-- We should improve this and all the "no result" texts -->
+      <div class="message">
+        <div class="message__simple">
+          <%= I18n.t(:no_product, scope: :search) %>
+        </div>
+      </div>
 
       <% end %>
 

@@ -1,10 +1,10 @@
-<% products.in_groups_of(4, false).each do |grouped_products| %>
+<% products.in_groups_of(3, false).each do |grouped_products| %>
 
   <div class="row">
 
     <% grouped_products.each do |product| %>
 
-    <div class="col-md-3">
+    <div class="col-md-4 shop-page-product">
 
       <%= render partial: 'products/product_box', :locals => {:product => product} %>
       
