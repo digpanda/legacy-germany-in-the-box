@@ -1,18 +1,42 @@
 +component(shop-page-product)
 
-  background-color: grey
-  min-height: 150px
-  padding: 0
+  min-height: 120px
+  padding: 1em
+  margin: 0
+  background-color: white
+  border: 1px $color-grey solid
+
+  h2
+    font-size: 1.8em
 
   +part(image)
-    background-color: blue
 
     img
-      max-width: 15em
-      max-height: 15em
+      max-width: 10em
+      max-height: 10em
 
   +part(description)
-    background-color: yellow
+
+    +option(text)
+      margin-top: -1em
+      font-size: 13px
+
+    +option(prices)
 
   +part(purchase)
-    background-color: red
+
+    +option(like)
+      color: $color-white
+      background-color: $color-red
+      min-height: 30px
+      line-height: 1.5em
+      text-align: center
+      font-size: 20px
+
+    +option(buy)
+      color: $color-white
+      background-color: $color-blue
+      min-height: 30px
+      line-height: 1.5em
+      text-align: center
+      font-size: 20px
