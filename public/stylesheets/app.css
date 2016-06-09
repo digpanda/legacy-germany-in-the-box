@@ -726,6 +726,12 @@
   margin: 0.5em; }
 
 /* line 32, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
+.product-page {
+  background-color: white;
+  border: 1px #eeeeee solid;
+  padding: 2em; }
+
+/* line 32, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
 .slider {
   position: relative;
   z-index: 1; }

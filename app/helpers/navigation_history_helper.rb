@@ -13,6 +13,10 @@ module NavigationHistoryHelper
     session[:previous_urls] = [] if session[:previous_urls].nil?
     session[:previous_urls].unshift session[:previous_url] unless session[:previous_urls].first == session[:previous_url]
 
+    if session[:previous_urls].size > 10
+      session[:previous_urls].pop # poping last element if too big
+    end
+
   end
 
   def navigation_history(n=1, default_redirect=nil)

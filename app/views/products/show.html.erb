@@ -1,24 +1,28 @@
 <div class="+spacer"></div>
 
-  <div class="row">
-
-    <div class="col-md-1"></div>
+  <div class="row col-md-8 col-md-push-2 col-md-pull-2 product-page">
 
     <!-- Preview -->
-    <div class="col-md-5">
+    <div class="col-md-6">
 
       <%= render partial: "products/show/preview", :locals => {product: @product} %>
 
     </div>
 
     <!-- Shop + Product description -->
-    <div class="col-md-5">
-
-      <div class="product-page-meta">
+    <div class="col-md-6">
 
         <%= render partial: "products/show/introduction", :locals => {product: @product} %>
 
-        <div class="gap"></div>
+        <div class="+small-spacer"></div>
+
+        <% if @product.decorate.get_mas %>
+
+        <%= render partial: "products/show/price_details", :locals => {product: @product} %>
+
+        <% end %>
+
+        <div class="+small-spacer"></div>
 
         <%= form_tag add_product_to_orders_path, :method => :patch do %>
 
@@ -26,19 +30,11 @@
 
             <% if @product.decorate.get_mas %>
 
-                <%= render partial: "products/show/select_quantity", :locals => {product: @product} %>
-
-                <ul class="list @product-page-meta-info">
-
                 <%= render partial: "products/show/select_sku", :locals => {product: @product} %>
 
-                  <% if @product.decorate.get_mas %>
+                <div class="+small-spacer"></div>
 
-                      <%= render partial: "products/show/price_details", :locals => {product: @product} %>
-
-                  <% end %>
-
-                </ul>
+                <%= render partial: "products/show/select_quantity", :locals => {product: @product} %>
 
             <% else %>
 
@@ -46,13 +42,7 @@
 
             <% end %>
         <% end %>
-      </div>
-
 
     </div>
 
-    <div class="col-md-1"></div>
-
   </div>
-
-  <hr/>
