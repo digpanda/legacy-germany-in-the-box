@@ -2,8 +2,8 @@
     text-decoration: underline;
 }
 
-.nopadding {
-    padding: 0 !important;
+.nopadding-lr {
+    padding: 6px 0px 6px 0px !important;
 }
 
 .popover{
