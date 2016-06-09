@@ -7,7 +7,7 @@ class NewCategoriesVersion2 < Mongoid::Migration
     # root category - level 0
     #
     category_food_drinks = Category.create!(
-        :name_translations => {:en => 'Food', :'zh-CN' => '食品和饮料', :de => 'Lebensmittel  & Getränke'},
+        :name_translations => {:en => 'Food', :'zh-CN' => '食品', :de => 'Lebensmittel  & Getränke'},
         :slug => 'food',
         :desc_translations => {:en => '', :de => '', :'zh-CN' => '有机食品不是潮流，是每个关心身体健康的消费者的权益。来因盒用心挑选安全的有机食品，让你吃得安心无负担。'}
     )

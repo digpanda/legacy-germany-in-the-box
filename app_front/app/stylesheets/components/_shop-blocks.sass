@@ -3,24 +3,6 @@
 
   +part(main)
 
-    +option(content)
-      color: $color-white
-
-      img
-        margin-top: 2em !important
-        +avatar
-        max-width: 100px
-        background: $color-white
-
-      h3
-        margin-top: 1.5em
-        color: $color-white
-
-    +option(author)
-      font-size: 12px
-      margin-top: -1em
-      text-transform: uppercase
-
     +option(category)
       padding: 2em
 
@@ -39,10 +21,27 @@
         text-transform: uppercase
         font-family: inherit
 
-    +option(shop)
+    +option(content)
+      color: $color-white
 
-      border: 2px $color-grey solid
+      img
+        +avatar
+        margin-top: 2em !important
+        max-width: 100px
+        background: $color-white
+
+      h3
+        margin-top: 1.5em
+        color: $color-white
+
+    +option(author)
+      font-size: 12px
+      margin-top: -1em
+      text-transform: uppercase
+
+    +option(shop)
       +border-radius(0.5em)
+      border: 2px $color-grey solid
       background-color: $color-grey
 
       background-position: center center
@@ -52,12 +51,30 @@
 
   +part(secondary)
 
+    +option(content)
+      color: $color-white
+
+      img
+        +avatar
+        margin-top: 2em !important
+        max-width: 75px
+        background: $color-white
+
+      h3
+        margin-top: 1.3em
+        color: $color-white
+
+    +option(author)
+      font-size: 10px
+      margin-top: -1em
+      text-transform: uppercase
+
     +option(shop)
-      border: 2px $color-grey solid
       +border-radius(0.5em)
-      background-color: $color-light-green
-      min-height: 200px
+      border: 2px $color-grey solid
+      background-color: $color-grey
 
       background-position: center center
       background-size: cover
-      background-image: url(https://images.unsplash.com/photo-1446034730750-a0b64d06ad13?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=cfec14f7b7a5269458ce76d08cb7696d)
+
+      min-height: 200px
