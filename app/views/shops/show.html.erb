@@ -40,7 +40,7 @@
 
     <div class="row +nomargin">
 
-      <% if @shop.products.count > 0 %>
+      <% if @shop.products.buyable.count > 0 %>
 
       <div class="+spacer"></div>
       <%= render partial: "products/products_list", :locals => { :products => @shop.products } %>
