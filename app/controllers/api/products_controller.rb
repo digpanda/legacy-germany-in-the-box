@@ -1,6 +1,6 @@
 class Api::ProductsController < ProductsController
 
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:get_sku_for_options]
 
   before_action :set_product, only: [:get_sku_for_options]
 

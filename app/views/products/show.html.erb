@@ -12,15 +12,30 @@
     <!-- Shop + Product description -->
     <div class="col-md-6">
 
-        <%= render partial: "products/show/introduction", :locals => {product: @product} %>
-
-        <div class="+small-spacer"></div>
+        <h2>
+          <%= @product.name %> 
+        </h2>
 
         <% if @product.decorate.get_mas %>
 
-        <%= render partial: "products/show/price_details", :locals => {product: @product} %>
+          <span class="+price-yuan">100¥</span> <span class="+price-euro">10€</span>
+
+        <!--
+              Price
+              <span id="product_price_<%= @product.id %>">
+                <%= "#{@product.decorate.get_mas.price} #{@product.shop.currency.code}" %>
+              </span>
+            </li>
+
+              Stocks
+              <span id="product_inventory_<%= @product.id %>">
+                <%= @product.decorate.get_mas.limited ? @product.decorate.get_mas.quantity : I18n.t(:unlimited, scope: :popular_products) %>
+              </span>
+        -->
 
         <% end %>
+
+        | <span class="+red +up +bold">Only 3 left</span>
 
         <div class="+small-spacer"></div>
 
@@ -45,4 +60,8 @@
 
     </div>
 
+  </div>
+
+  <div class="row">
+    <div class="+spacer"></div>
   </div>
