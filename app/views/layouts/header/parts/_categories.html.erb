@@ -6,7 +6,7 @@
     <% @category_navigation_store.roots.each do |category| %>
     <li class="col-md-2">
 
-      <a href="<%= show_products_in_category_path(category.id) %>"><%= category.name %></a>
+      <a href="<%= category_path(category) %>"><%= category.name %></a>
 
       <% if @category_navigation_store.has_children?(category) %>
         <ul>
