@@ -18,7 +18,7 @@
 
         <% if @product.decorate.get_mas %>
 
-          <span class="+price-yuan"><%= @product.skus.first.decorate.price_with_currency %></span> <span class="+price-euro">0€</span>
+          <span class="+price-yuan"><%= @product.preview_price %></span> <span class="+price-euro">0€</span>
 
         <!--
               Price
