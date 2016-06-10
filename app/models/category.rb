@@ -3,7 +3,6 @@ class Category
   include CategoryBase
 
   has_and_belongs_to_many :products,  :inverse_of => :categories
-  has_and_belongs_to_many :shops
   
   field :slug, type: String
   field :desc, type: String, localize: true
