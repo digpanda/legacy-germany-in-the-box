@@ -1,6 +1,7 @@
 class ShopDecorator < Draper::Decorator
 
   include Imageable
+  include ActionView::Helpers::TextHelper # load truncate
 
   delegate_all
   decorates :shop
@@ -35,6 +36,10 @@ class ShopDecorator < Draper::Decorator
 
   def gen_merchant_id
     (self.c_at ? self.c_at.strftime('%y%m%d') : Date.today.strftime('%y%m%d')) + self.name[0,3].upcase
+  end
+
+  def short_desc(characters=60)
+    truncate(self.desc, :length => characters)
   end
 
   private

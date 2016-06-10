@@ -31,6 +31,8 @@ class CategoriesController < ApplicationController
   def set_category
     @category = Category.find(params[:id])
     @shops = @category.shops
+    @featured_shop = @category.shops.first
+    @casual_shops = @category.shops #.skip(1)
   end
 
 end

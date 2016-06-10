@@ -20,7 +20,10 @@
 
       </div>
 
-      <a href="<%= shop_path(Shop.first) %>">
+      <!-- First Shop Display in Front -->
+      <% unless @featured_shop.nil? %>
+
+      <a href="<%= shop_path(@featured_shop) %>">
       <div class="col-md-7 shop-blocks__main --shop" style="background-image:url(https://pixabay.com/static/uploads/photo/2015/12/08/00/26/coffee-shop-1081713_960_720.jpg);">
         <div class="+overlay"></div>
         <div class="+onoverlay">
@@ -34,12 +37,12 @@
 
             <div class="col-md-9">
               
-              <h3>Menashion</h3>
-              <div class="shop-blocks__main --author">by Ricarda Haase</div>
+              <h3><%= @featured_shop.shopname %></h3>
+              <div class="shop-blocks__main --author">by <%= @featured_shop.shopkeeper.decorate.full_name %></div>
 
               <div class="+small-spacer"></div>
 
-              Shop description here
+              <%= @featured_shop.decorate.short_desc %>
             </div>
 
           </div>
@@ -49,12 +52,15 @@
       </div>
       </a>
 
+      <% end %>
+
     </div>
 
     <div class="row shop-blocks__secondary">
 
-      <% 3.times do %>
+      <% @casual_shops.each do |shop| %>
 
+      <a href="<%= shop_path(shop) %>">
       <div class="col-md-4 shop-blocks__secondary --shop" style="background-image:url(https://pixabay.com/static/uploads/photo/2015/12/08/00/26/coffee-shop-1081713_960_720.jpg);">
         <div class="+overlay"></div>
         
@@ -68,12 +74,12 @@
             </div>
 
             <div class="col-md-8">
-              <h3>Menashion</h3>
-              <div class="shop-blocks__secondary --author">by Ricarda Haase</div>
+              <h3><%= shop.shopname %></h3>
+              <div class="shop-blocks__secondary --author">by <%= shop.shopkeeper.decorate.full_name %></div>
 
               <div class="+small-spacer"></div>
 
-              Shop description here
+              <%= shop.decorate.short_desc %>
             </div>
 
           </div>
@@ -82,6 +88,7 @@
         </div>
 
       </div>
+      </a>
 
       <% end %>
 
@@ -99,6 +106,5 @@
       </div>
     </div>
 -->
-
 
 </div>
