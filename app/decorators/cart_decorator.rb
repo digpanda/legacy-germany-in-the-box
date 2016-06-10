@@ -3,11 +3,11 @@ class CartDecorator < Draper::Decorator
   decorates :cart
 
   def duty_cost_with_currency
-    "%.2f #{Settings.instance.platform_currency.symbol}" % (object.tax_and_duty_cost * Settings.instance.exchange_rate_to_yuan)
+    "%.2f #{Settings.instance.platform_currency}" % (object.tax_and_duty_cost * Settings.instance.exchange_rate_to_yuan)
   end
 
   def shipping_cost_with_currency
-    "%.2f #{Settings.instance.platform_currency.symbol}" % (object.shipping_cost * Settings.instance.exchange_rate_to_yuan)
+    "%.2f #{Settings.instance.platform_currency}" % (object.shipping_cost * Settings.instance.exchange_rate_to_yuan)
   end
 
   def total_in_yuan
@@ -16,7 +16,7 @@ class CartDecorator < Draper::Decorator
   end
 
   def total_with_currency
-    "%.2f #{Settings.instance.platform_currency.symbol}" % total_in_yuan
+    "%.2f #{Settings.instance.platform_currency}" % total_in_yuan
   end
 
 end
