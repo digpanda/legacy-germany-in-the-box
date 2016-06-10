@@ -50,7 +50,7 @@ class OrdersController < ApplicationController
   def add_product
 
     product = Product.find(params[:sku][:product_id])
-    sku = product.decorate.get_sku(params[:sku][:option_ids].split(','))
+    sku = product.get_sku(params[:sku][:option_ids].split(','))
     quantity = params[:sku][:quantity].to_i
 
     co = current_order(product.shop_id.to_s)
@@ -65,7 +65,7 @@ class OrdersController < ApplicationController
 
     existing_order_item = co.order_items.to_a.detect { |i| i.sku_id == sku.id.to_s}
 
-    if not sku.limited or sku.quantity >= quantity
+    if sku.unlimited or sku.quantity >= quantity
       if existing_order_item.present?
         existing_order_item.quantity += quantity
         existing_order_item.save!
@@ -78,7 +78,7 @@ class OrdersController < ApplicationController
         current_order_item.product_name = product.name
         current_order_item.sku_id = sku.id.to_s
         current_order_item.option_ids = sku.option_ids
-        current_order_item.option_names = sku.decorate.get_options
+        current_order_item.option_names = sku.get_options
         current_order_item.save!
       end
 
@@ -107,7 +107,7 @@ class OrdersController < ApplicationController
 
       product = Product.find(product_id)
 
-      if all_available && quantity >= 0 && ( not product.limited or product.inventory >= quantity )
+      if all_available && quantity >= 0 && product.inventory >= quantity
         all_available = true
       else
         all_available = false
@@ -290,7 +290,7 @@ class OrdersController < ApplicationController
             coi.quantity += ooi.quantity
             coi.save
           else
-            sku = ooi.product.decorate.get_sku(ooi.option_ids)
+            sku = ooi.product.get_sku(ooi.option_ids)
             noi = co.order_items.build
             noi.price = sku.price
             noi.quantity = ooi.quantity
@@ -299,7 +299,7 @@ class OrdersController < ApplicationController
             noi.product_name = sku.product.name
             noi.sku_id = sku.id.to_s
             noi.option_ids = sku.option_ids
-            noi.option_names = sku.decorate.get_options
+            noi.option_names = sku.get_options
             noi.save
           end
 
@@ -323,7 +323,7 @@ class OrdersController < ApplicationController
   end
 
   def reach_today_limit?(order, new_total = 0, quantity = 0)
-    current_user.present? ? (current_user.decorate.reach_todays_limit?(new_total) || order.decorate.reach_todays_limit?(new_total, quantity)) : order.decorate.reach_todays_limit?(new_total, quantity)
+    current_user.present? ? (current_user.reach_todays_limit?(new_total) || order.reach_todays_limit?(new_total, quantity)) : order.reach_todays_limit?(new_total, quantity)
   end
 
 end
