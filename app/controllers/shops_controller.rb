@@ -49,7 +49,7 @@ class ShopsController <  ApplicationController
   end
 
   def show
-    @categories_and_children, @categories_and_counters = AppCache.get_category_values_for_left_menu(shop.products)
+    @categories_and_children, @categories_and_counters = AppCache.get_category_values_for_left_menu(shop.products.has_sku)
   end
 
   def update
