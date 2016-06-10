@@ -63,7 +63,11 @@ class Product
   end
 
   def preview_price
-    (self.skus.first&.decorate.price_with_currency).to_f
+    if self.skus.first.nil?
+      "0" # Should be improved.
+    else
+      self.skus.first&.decorate.price_with_currency
+    end
   end
 
 end
