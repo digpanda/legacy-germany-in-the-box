@@ -40,4 +40,12 @@ class ProductDecorator < Draper::Decorator
   def first_sku_image
     skus.first ? skus.first.decorate.first_nonempty_img_url(:thumb) : 'no_image_available.jpg'
   end
+
+  def preview_price
+    if self.skus.first.nil?
+      "0.00 #{Settings.instance.platform_currency.symbol}" # Should be improved.
+    else
+      self.skus.first.decorate.price_with_currency
+    end
+  end
 end
