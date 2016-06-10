@@ -62,4 +62,8 @@ class Product
     user.favorites.find(self.id)
   end
 
+  def preview_price
+    (self.skus.first&.decorate.price_with_currency).to_f
+  end
+
 end
