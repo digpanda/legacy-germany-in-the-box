@@ -316,6 +316,37 @@ var Home = {
 module.exports = Home;
 });
 
+require.register("javascripts/controllers/products/show_skus.js", function(exports, require, module) {
+'use strict';
+
+/**
+ * ProductsShowSkus Class
+ */
+var ProductsShowSkus = {
+
+  /**
+   * Initializer
+   */
+  init: function init() {
+
+    if ($('#js-show-skus').length > 0) {
+
+      var showSkus = $('#js-show-skus').data();
+
+      $('select.sku-variants-options').multiselect({
+        nonSelectedText: showSkus.translationNonSelectedText,
+        nSelectedText: showSkus.translationNSelectedText,
+        numberDisplayed: 3,
+        maxHeight: 400
+      }).multiselect('disable');
+    }
+  }
+
+};
+
+module.exports = ProductsShowSkus;
+});
+
 require.register("javascripts/controllers/shop_applications/new.js", function(exports, require, module) {
 'use strict';
 
@@ -411,7 +442,7 @@ $(document).ready(function () {
     console.info("Loading controller " + routes.controller + "/" + routes.action);
   } catch (err) {
 
-    console.error("Unable to initialize #js-routes `" + routes.controller + "`.`" + routes.action + "`");
+    console.warn("Unable to initialize #js-routes `" + routes.controller + "`.`" + routes.action + "`");
     return;
   }
 
