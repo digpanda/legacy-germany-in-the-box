@@ -1,5 +1,4 @@
 Rails.application.configure do
-
   config.cache_classes = false
   config.middleware.use(Mongoid::QueryCache::Middleware)
   config.eager_load = false
