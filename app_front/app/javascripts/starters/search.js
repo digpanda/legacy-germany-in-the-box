@@ -7,7 +7,7 @@ var Search = {
      * Initializer
      */
     init: function() {
-
+      
       this.searchableInput();
 
     },

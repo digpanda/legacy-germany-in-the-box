@@ -1,38 +1,12 @@
-<script>
-  
-  $(function() {
-      $('select.product-categories').multiselect({
-        nonSelectedText: "#{I18n.t(:non_selected_text, scope: :multiselect)}",
-        nSelectedText: "#{I18n.t(:n_selected_text, scope: :multiselect)}",
-        numberDisplayed: 5,
-        maxHeight: 400
-      }).multiselect();
-  });
+<%= content_tag(:div, nil, :id => "js-product-form", :data => {
 
-  $(function() {
-    $('#edit_product_submit_btn').click( function() {
-      $('input.dynamical-required').each(
-        function () {
-          if ( $(this).val().length == 0 ) {
-            $(this).addClass('invalidBorderClass');
-          } else {
-            $(this).removeClass('invalidBorderClass');
-          }
-        }
-      );
+  :product_id                    => @product.id.to_s,
+  :translation_non_selected_text => I18n.t(:non_selected_text, scope: :multiselect),
+  :translation_n_selected_text   => I18n.t(:n_selected_text, scope: :multiselect)
 
-      if ( $('.invalidBorderClass').length > 0 ) {
-        return false;
-      }
-    });
+  })
 
-    $('a[rel=popover]').popover();
-
-    var panel_cnt = $("#variants_panel_#{@product.id}").children('.panel-body').find('.panel').length
-    if (panel_cnt == 0) $("#a_add_variant_#{@product.id}").click();
-  });
-
-</script>
+%>
 
 <%= form_for @product, :html => {'data-toggle': 'validator'} do |f| %>
   <%= hidden_field_tag :shop_id, value = @product.shop.id %>
