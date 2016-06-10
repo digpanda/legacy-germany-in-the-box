@@ -29,7 +29,7 @@
 
               Stocks
               <span id="product_inventory_<%= @product.id %>">
-                <%= @product.decorate.get_mas.limited ? @product.decorate.get_mas.quantity : I18n.t(:unlimited, scope: :popular_products) %>
+                <%= @product.decorate.get_mas.unlimited ? I18n.t(:unlimited, scope: :popular_products) : @product.decorate.get_mas.quantity %>
               </span>
         -->
 

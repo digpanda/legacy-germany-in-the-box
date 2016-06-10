@@ -115,7 +115,7 @@ module ProductsHelper
   end
 
   def enough_inventory(sku, quantity)
-    return sku && (not sku.limited or sku.quantity >= quantity )
+    return sku && (sku.unlimited or sku.quantity >= quantity )
   end
 
   def get_options_for_select(product)

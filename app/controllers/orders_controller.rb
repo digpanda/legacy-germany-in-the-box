@@ -65,7 +65,7 @@ class OrdersController < ApplicationController
 
     existing_order_item = co.order_items.to_a.detect { |i| i.sku_id == sku.id.to_s}
 
-    if not sku.limited or sku.quantity >= quantity
+    if sku.unlimited or sku.quantity >= quantity
       if existing_order_item.present?
         existing_order_item.quantity += quantity
         existing_order_item.save!
@@ -107,7 +107,7 @@ class OrdersController < ApplicationController
 
       product = Product.find(product_id)
 
-      if all_available && quantity >= 0 && ( not product.limited or product.inventory >= quantity )
+      if all_available && quantity >= 0 && product.inventory >= quantity
         all_available = true
       else
         all_available = false
