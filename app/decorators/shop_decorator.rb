@@ -5,6 +5,11 @@ class ShopDecorator < Draper::Decorator
   delegate_all
   decorates :shop
 
+  def categories
+    @categories = Category.all.map { |c| [c.id, c]}.to_h
+    products.inject(Set.new) {|cs, p| cs = cs + p.category_ids }.map { |c| @categories[c]}
+  end
+
   def more_new_address?
     self.addresses.is_only_both.size < [Rails.configuration.max_num_shop_billing_addresses, Rails.configuration.max_num_shop_sender_addresses].min && (self.addresses.is_only_billing.size < Rails.configuration.max_num_shop_billing_addresses || self.addresses.is_only_sender.size < Rails.configuration.max_num_shop_sender_addresses)
   end
