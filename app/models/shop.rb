@@ -127,6 +127,11 @@ class Shop
     sender_address.country
   end
 
+  def categories
+    all_categories = Category.all.map { |c| [c.id, c]}.to_h
+    products.inject(Set.new) {|cs, p| cs = cs + p.category_ids }.map { |c| all_categories[c]}
+  end
+
   private
 
   def ensure_shopkeeper
