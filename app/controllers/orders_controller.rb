@@ -59,8 +59,8 @@ class OrdersController < ApplicationController
     new_total = sku.price * quantity * Settings.first.exchange_rate_to_yuan
 
     if reach_today_limit?(co, new_total, quantity)
-      flash[:error] = I18n.t(:override_maximal_total, scope: :edit_order, total: Settings.instance.max_total_per_day, currency: Settings.instance.platform_currency)
-      redirect_to(:back)
+      flash[:error] = I18n.t(:override_maximal_total, scope: :edit_order, total: Settings.instance.max_total_per_day, currency: Settings.instance.platform_currency.symbol)
+      redirect_to(:back) and return
     end
 
     existing_order_item = co.order_items.to_a.detect { |i| i.sku_id == sku.id.to_s}
@@ -84,14 +84,13 @@ class OrdersController < ApplicationController
 
       if co.save
         flash[:success] = I18n.t(:add_product_ok, scope: :edit_order)
-        redirect_to navigation_history(2, shop_path(product.shop_id))
+        redirect_to navigation_history(2, shop_path(product.shop_id)) and return
       end
 
-      return
     end
 
     flash[:error] = I18n.t(:add_product_ko, scope: :edit_order)
-    redirect_to request.referrer
+    redirect_to request.referrer and return
 
   end
 
@@ -146,7 +145,7 @@ class OrdersController < ApplicationController
     order = current_order(shop_id)
 
     if reach_today_limit?(order)
-      flash[:error] = I18n.t(:override_maximal_total, scope: :edit_order, total: Settings.instance.max_total_per_day, currency: Settings.instance.platform_currency)
+      flash[:error] = I18n.t(:override_maximal_total, scope: :edit_order, total: Settings.instance.max_total_per_day, currency: Settings.instance.platform_currency.symbol)
       redirect_to request.referrer
       return
     end
