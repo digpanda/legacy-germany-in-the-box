@@ -414,8 +414,8 @@ de:
     price: Preis
     currency: Währung
     quantity: Verfügbarkeit
-    limited:
-      info: Menge begrenzt
+    unlimited:
+      info: Menge unbegrenzt
       'true': Ja
       'false': Nein
     weight: Gewicht

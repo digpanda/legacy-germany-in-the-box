@@ -130,10 +130,23 @@
               .form-group
                 = fs.select :option_ids, grouped_options_for_select(@product.decorate.grouped_variants_options, @sku.option_ids ), {}, {:multiple => 'multiple', :class => 'sku-variants-options', :required => true}
             .col-md-6
-              .input-group.form-group
-                = fs.text_field :quantity, :class => 'form-control', :disabled => (not @sku.limited), :placeholder => @sku.limited ? '' : I18n.t(@sku.limited.to_s.to_sym, scope: 'edit_product_detail.limited'), :pattern => I18n.t(:positive_integer, scope: :validation), :required => true
-                .input-group-addon
-                  = I18n.t(:piece, scope: :edit_product_detail)
+              - if @sku.unlimited
+                .form-group
+                  =fs.label :unlimited do
+                    = fs.check_box :unlimited, {}, true
+                    = I18n.t(:info, scope: 'edit_product_detail.unlimited')
+              - else
+                .row
+                  .col-md-6
+                    .input-group.form-group
+                      = fs.text_field :quantity, :class => 'form-control', :pattern => I18n.t(:positive_integer, scope: :validation), :required => true
+                      .input-group-addon
+                        = I18n.t(:piece, scope: :edit_product_detail)
+                  .col-md-6
+                    .form-group
+                      =fs.label :unlimited do
+                        = fs.check_box :unlimited, {}, true
+                        = I18n.t(:info, scope: 'edit_product_detail.unlimited')
           %br
           .row
             .col-md-6
@@ -157,14 +170,11 @@
               %i.fa.fa-info-circle{ :title => I18n.t(:space_weight_info, scope: :edit_product_detail) }
               %label.required= I18n.t(:space_weight, scope: :edit_product_detail)
             .col-md-6{ :title => I18n.t(:customizable_info, scope: :edit_product_detail) }
-              .col-md-4.nopadding-lr
+              .col-md-6.nopadding-lr
                 %i.fa.fa-info-circle{ :title => I18n.t(:customizable_info, scope: :edit_product_detail) }
                 %label= I18n.t('edit_product_detail.customizable.info')
-              .col-md-4.nopadding-lr
+              .col-md-6.nopadding-lr
                 %label= I18n.t('edit_product_detail.status.info')
-              .col-md-4.nopadding-lr
-                %label= I18n.t('edit_product_detail.limited.info')
-
           .row
             .col-md-6
               .row-fluid
@@ -194,22 +204,16 @@
                       .input-group-btn
                         = fs.select :unit, options_for_select(['kg'], @sku.unit), {}, { :class => 'form-control input-sm', :style => 'width:64px' }
             .col-md-6
-              .col-md-4.nopadding-lr
+              .col-md-6.nopadding-lr
                 .form-group
                   =fs.label :customizable do
                     = fs.check_box :customizable, {}, true
                     = I18n.t(true, scope: 'edit_product_detail.customizable')
-              .col-md-4.nopadding-lr
+              .col-md-6.nopadding-lr
                 .form-group
                   =fs.label :status do
                     = fs.check_box :status, {}, true
                     = I18n.t(true, scope: 'edit_product_detail.status')
-              .col-md-4.nopadding-lr
-                .form-group
-                  =fs.label :limited do
-                    = fs.check_box :limited, {}, true
-                    = I18n.t(true, scope: 'edit_product_detail.limited')
-
       .panel.panel-info
         .panel-heading.text-center
           %label.required= I18n.t(:time, scope: :edit_product_detail)

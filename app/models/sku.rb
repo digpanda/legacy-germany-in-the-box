@@ -9,7 +9,7 @@ class Sku
   field :img3,          type: String
   field :price,         type: BigDecimal
   field :quantity,      type: Integer
-  field :limited,       type: Boolean,    default: true
+  field :unlimited,     type: Boolean,    default: false
   field :weight,        type: Float
   field :status,        type: Boolean,    default: true
   field :customizable,  type: Boolean,    default: false
@@ -33,8 +33,8 @@ class Sku
   mount_uploader :attach0,  AttachmentUploader
 
   validates :price,         presence: true,   :numericality => { :greater_than => 0 }
-  validates :quantity,      presence: true,   :numericality => { :greater_than_or_equal_to => 0 }, :if => lambda { self.limited }
-  validates :limited,       presence: true
+  validates :quantity,      presence: true,   :numericality => { :greater_than_or_equal_to => 0 }, :unless => lambda { self.unlimited }
+  validates :unlimited,       presence: true
   validates :weight,        presence: true
   validates :status,        presence: true
   validates :customizable,  presence: true
@@ -52,7 +52,7 @@ class Sku
   scope :in_stock,        ->        { where( :quantity.gt => 0 ) }
 
   before_save :clean_blank_and_duplicated_option_ids
-  before_save :clean_quantity, :unless => lambda { self.limited }
+  before_save :clean_quantity, :if => lambda { self.unlimited }
 
   private
 

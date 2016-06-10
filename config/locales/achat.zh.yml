@@ -410,8 +410,8 @@ zh-CN:
     price: 价格
     currency: 货币
     quantity: 库存
-    limited:
-      info: 限量
+    unlimited:
+      info: 不限量
       'true': 限量
       'false': 不限量
     weight: 重量

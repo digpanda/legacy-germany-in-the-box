@@ -162,7 +162,7 @@ class OrdersController < ApplicationController
       product = oi.product
       sku = oi.sku
 
-      if (not sku.limited) or sku.quantity >= oi.quantity
+      if sku.unlimited or sku.quantity >= oi.quantity
         all_products_available = true
         products_total_price += sku.price * oi.quantity
       else
@@ -225,7 +225,7 @@ class OrdersController < ApplicationController
 
     if shipping.success? && order.save
       order.order_items.each do |oi|
-        oi.sku.quantity -= oi.quantity if oi.sku.limited
+        oi.sku.quantity -= oi.quantity unless oi.sku.unlimited
         oi.price = oi.sku.price
         oi.save!
       end

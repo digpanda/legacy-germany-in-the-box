@@ -44,7 +44,7 @@
           %td= select_tag :option_ids, grouped_options_for_select(@product.decorate.grouped_variants_options, s.option_ids ), :multiple => 'multiple', :class => 'sku-variants-options', :readonly=>true
           %td= number_with_precision(s.price ? s.price : 0, :precision => 2) + ' ' + @product.shop.currency.code
           %td= s.discount.to_s + '%' if s.discount != 0
-          %td= s.quantity
+          %td= s.unlimited ? I18n.t(:info, scope: 'edit_product_detail.unlimited') : s.quantity
           %td
             = link_to '', edit_sku_product_path(@product.id, :user_info_edit_part => :edit_product_detail_update, :sku_id => s.id), :class => 'fa fa-edit btn', :title => I18n.t(:edit, scope: :edit_product_detail)
             = link_to '', clone_sku_product_path(@product.id, :user_info_edit_part => :edit_product_detail_clone, :sku_id => s.id), :class => 'fa fa-files-o btn', :title => I18n.t(:clone, scope: :edit_product_detail)
