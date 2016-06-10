@@ -10,7 +10,7 @@ class DutyAndCustomerCategorySelectStore
 
   def grouped_categories_options(locale)
     @grouped_categories_options ||= {}
-    @grouped_categories_options[locale] = second_last_branches.sort {|a,b| a.name <=> b.name } .map {|rc| [rc.name_translations, children(rc).sort { |a,b| a.name <=> b.name }.map {|cc| [cc.decorate.name_translations, cc.id.to_s]} ] }.map { |c| [c[0][locale], c[1].map { |cc| [cc[0][locale], cc[1]]} ]}
+    @grouped_categories_options[locale] = categories.sort {|a,b| a.name <=> b.name } .map {|c| [c.name_translations[locale], c.id.to_s] }
   end
 
   def total_products(category)

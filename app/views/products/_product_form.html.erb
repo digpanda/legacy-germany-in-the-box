@@ -117,7 +117,7 @@
         <div class="panel-body">
           <div class="form-group">
             <div class="row-fluid">
-              <%= f.select :category_ids, grouped_options_for_select(@customer_categories_options.grouped_categories_options(locale), @product.categories.map { |c| c.id.to_s }), { :include_blank => I18n.t(:non_selected_text, scope: :multiselect, locale: locale) }, :multiple => 'multiple', :class => 'form-control product-categories' %>
+              <%= f.select :category_ids, options_for_select(@customer_categories_options.grouped_categories_options(locale), @product.categories.map { |c| c.id.to_s }), { :include_blank => I18n.t(:non_selected_text, scope: :multiselect, locale: locale) }, :class => 'form-control' %>
             </div>
           </div>
         </div>
