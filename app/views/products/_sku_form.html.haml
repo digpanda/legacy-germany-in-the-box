@@ -174,7 +174,6 @@
                 %i.fa.fa-info-circle{ :title => I18n.t(:customizable_info, scope: :edit_product_detail) }
                 %label= I18n.t('edit_product_detail.customizable.info')
               .col-md-6.nopadding-lr
-                %label= I18n.t('edit_product_detail.status.info')
           .row
             .col-md-6
               .row-fluid
@@ -209,14 +208,15 @@
                   =fs.label :customizable do
                     = fs.check_box :customizable, {}, true
                     = I18n.t(true, scope: 'edit_product_detail.customizable')
-              .col-md-6.nopadding-lr
-                .form-group
-                  =fs.label :status do
-                    = fs.check_box :status, {}, true
-                    = I18n.t(true, scope: 'edit_product_detail.status')
+
       .panel.panel-info
         .panel-heading.text-center
+          %label= I18n.t(:status_info, scope: 'edit_product_detail')
         .panel-body
+          .checkbox
+            =fs.label :status do
+              = fs.check_box :status, {}, true
+              = I18n.t(:info, scope: 'edit_product_detail.status')
 
       .panel.panel-info
         .panel-heading.text-center

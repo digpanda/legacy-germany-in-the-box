@@ -395,7 +395,6 @@ de:
     duty_category: Zoll-Kategorie
     duty_category_info: Die Zuordnung der Käufer-Kategorien ist von dem Zoll in China gefordert.
     global_status: Global Eingestellt
-    status: Eingestellt
   edit_product_new:
     create_ok: Das Produkt wurde erfolgreich erstellt.
     create_ko: Ein Fehler ist beim
@@ -420,7 +419,7 @@ de:
       'false': Nein
     weight: Gewicht
     status:
-      info: Eingestellt
+      info: Die Produktinformationen dieser Artikelposition (SKU) sind vollständig angegeben. Ich gebe diese Artikelposition für die Übersetztung frei.
       'true': Ja
       'false': Nein
     customizable:
@@ -457,6 +456,7 @@ de:
     attachment: Anhang
     attachment_info: Hier können Sie für Ihre Produktdaten eine PDF-Datei als Anhang hochladen.
     open: Ansehen
+    status_info: SKU freigeben
   edit_product_variant:
     new_variant: Neue Variante
     edit: Editieren
