@@ -11,7 +11,7 @@ concern :shared_user do
 end
 
 concern :shared_page do
-  match :demo,        via: [:get],    action: :demo,         as: :demo
+  match :sending_guide,        via: [:get],    action: :sending_guide,         as: :sending_guide
   match :menu,        via: [:get],    action: :menu,         as: :menu
   match :agb,         via: [:get],    action: :agb,         as: :agb
   match :privacy,     via: [:get],    action: :privacy,     as: :privacy

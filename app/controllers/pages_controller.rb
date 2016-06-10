@@ -22,6 +22,9 @@ class PagesController < ApplicationController
 
   def saleguide
   end
+
+  def sending_guide
+  end
   
   def fees
   end
