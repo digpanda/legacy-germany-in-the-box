@@ -185,7 +185,7 @@ class OrdersController < ApplicationController
       tp = "%.2f" % (products_total_price * Settings.instance.exchange_rate_to_yuan)
       mt = "%.2f" % (@shop.min_total * Settings.instance.exchange_rate_to_yuan)
 
-      msg = I18n.t(:not_all_min_total_reached, scope: :checkout, :shop_name => @shop.name, :total_price => tp, :currency => Settings.instance.platform_currency.symbol, :min_total => mt)
+      msg = I18n.t(:not_all_min_total_reached, scope: :checkout, :shop_name => @shop.name, :total_price => tp, :currency => Settings.instance.platform_currency, :min_total => mt)
 
       flash[:error] = msg
       redirect_to request.referrer
