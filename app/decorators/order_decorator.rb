@@ -12,7 +12,7 @@ class OrderDecorator < Draper::Decorator
   end
 
   def total_price_with_currency
-    "%.2f#{Settings.instance.platform_currency}" % total_price_in_currency
+    "%.2f#{Settings.instance.platform_currency.symbol}" % total_price_in_currency
   end
 
   def is_success?
