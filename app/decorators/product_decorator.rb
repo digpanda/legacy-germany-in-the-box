@@ -28,10 +28,6 @@ class ProductDecorator < Draper::Decorator
     self.options&.select { |o| o.suboptions&.size > 0 }.size > 0
   end
 
-  def get_sku(option_ids)
-    skus.detect {|s| s.option_ids.to_set == option_ids.to_set}
-  end
-
   def short_desc(characters=60)
     truncate(self.desc, :length => characters)
     #self.desc.chars[0..characters].push("...").join

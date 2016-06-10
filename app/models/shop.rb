@@ -110,6 +110,10 @@ class Shop
   index({shopkeeper: 1},    {unique: true,   name: :idx_shop_shopkeeper})
   index({merchant_id: 1},   {unique: false,  name: :idx_shop_merchant_id})
 
+  def gen_merchant_id
+    (self.c_at ? self.c_at.strftime('%y%m%d') : Date.today.strftime('%y%m%d')) + self.name[0,3].upcase
+  end
+
   def billing_address
     addresses.is_billing.first
   end

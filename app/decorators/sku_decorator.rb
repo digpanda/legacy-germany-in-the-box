@@ -22,19 +22,6 @@ class SkuDecorator < Draper::Decorator
     "%.2f #{Settings.instance.platform_currency.symbol}" % (self.price * Settings.instance.exchange_rate_to_yuan)
   end
 
-  def get_options
-    variants = self.option_ids.map do |oid|
-      self.product.options.detect do |v|
-        v.suboptions.find(oid)
-      end
-    end
-
-    variants.each_with_index.map do |v, i|
-      o = v.suboptions.find(self.option_ids[i])
-      { name: v.name, option: { name: o.name } }
-    end
-  end
-
   def get_options_txt
     variants = self.option_ids.map do |oid|
       self.product.options.detect do |v|
