@@ -23,7 +23,7 @@ $(document).ready(() => {
 
   } catch(err) {
 
-    console.error("Unable to initialize #js-starters");
+    console.error("Unable to initialize #js-starters ("+err+")");
     return;
 
   }

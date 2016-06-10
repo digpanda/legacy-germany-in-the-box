@@ -62,4 +62,12 @@ class Product
     user.favorites.find(self.id)
   end
 
+  def preview_price
+    if self.skus.first.nil?
+      "0 ¥" # Should be improved.
+    else
+      self.skus.first.decorate.price_with_currency
+    end
+  end
+
 end
