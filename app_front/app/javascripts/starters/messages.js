@@ -17,21 +17,15 @@ var Messages = {
      */
     hideMessages: function() {
 
-      if ($("#js-message-error").length > 0) {
-        Messages.activateHide('#js-message-error', 3000);
+      let Messages = require("javascripts/lib/messages");
+
+      if ($("#message-error").length > 0) {
+        Messages.activateHide('#message-error', 3000);
       }
 
-      if ($("#js-message-success").length > 0) {
-        Messages.activateHide('#js-message-error', 4000);
+      if ($("#message-success").length > 0) {
+        Messages.activateHide('#message-success', 4000);
       }
-
-    },
-
-    activateHide: function(el, time) {
-
-      setTimeout(function(){
-          $(el).fadeOut();
-      }, time);
 
     },
 

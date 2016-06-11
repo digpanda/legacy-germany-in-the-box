@@ -62,7 +62,10 @@
         <div class="main-header__cart">
         <i class="fa fa-shopping-cart"></i>
 
+        <span id="total-products">
         <%= total_number_of_products %>
+        </span>
+
         </div>
 
       </a>
@@ -145,5 +148,7 @@
 <% end %>
 
 <%= render partial: "layouts/header/parts/messages" %>
+
+<div class="+small-spacer"></div>
 
 <!-- End of Category Menu -->

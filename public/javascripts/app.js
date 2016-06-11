@@ -210,10 +210,10 @@ var ManageCart = {
 
   orderItemHandleQuantity: function orderItemHandleQuantity() {
 
-    $('#js-set-quantity-minus').click(function () {
+    $('.js-set-quantity-minus').click(function () {
 
-      var currentQuantity = $('#js-set-quantity-value').val();
-      var orderItemId = $('#js-set-quantity-value').data('orderItemId');
+      var orderItemId = $(this).data('orderItemId');
+      var currentQuantity = $('#order-item-quantity-' + orderItemId).val();
 
       if (currentQuantity > 0) {
         currentQuantity--;
@@ -221,28 +221,44 @@ var ManageCart = {
       }
     });
 
-    $('#js-set-quantity-plus').click(function () {
+    $('.js-set-quantity-plus').click(function () {
 
-      var currentQuantity = $('#js-set-quantity-value').val();
-      var orderItemId = $('#js-set-quantity-value').data('orderItemId');
+      var orderItemId = $(this).data('orderItemId');
+      var currentQuantity = $('#order-item-quantity-' + orderItemId).val();
 
       currentQuantity++;
       ManageCart.orderItemSetQuantity(orderItemId, currentQuantity);
     });
   },
 
-  orderItemSetQuantity: function orderItemSetQuantity(orderItemId, quantity) {
+  orderItemSetQuantity: function orderItemSetQuantity(orderItemId, orderItemQuantity) {
 
     var OrderItem = require("javascripts/models/order_item");
 
-    OrderItem.setQuantity(orderItemId, quantity, function (res) {
+    OrderItem.setQuantity(orderItemId, orderItemQuantity, function (res) {
 
-      console.log(res);
+      var Messages = require("javascripts/lib/messages");
 
-      if (res === false) {} else {
+      if (res.success === false) {
 
-        // No problem
+        Messages.makeError(res.error);
+      } else {
 
+        /**
+         * Scheme
+         * amount_in_carts integer
+         * duty_cost_with_currency string
+         * shipping_cost_with_currency string
+         * total_with_currency string
+         */
+
+        // We first refresh the value in the HTML
+        $('#order-item-quantity-' + orderItemId).val(orderItemQuantity);
+        $('#total-products').html(res.data.amount_in_carts);
+        $('#order-subtotal').html(res.data.total_price_with_currency);
+        $('#order-duty-cost').html(res.data.duty_cost_with_currency);
+        $('#order-shipping-cost').html(res.data.shipping_cost_with_currency);
+        $('#order-total-price-in-yuan').html(res.data.total_with_currency);
       }
     });
   }
@@ -570,6 +586,38 @@ require.register("javascripts/lib/foreign/datepicker-zh-CN.js", function(exports
 
   return datepicker.regional["zh-CN"];
 });
+});
+
+require.register("javascripts/lib/messages.js", function(exports, require, module) {
+'use strict';
+
+/**
+ * Messages Class
+ */
+var Messages = { // NOTE : We should use a template system to handle the HTML here
+
+  makeError: function makeError(error) {
+
+    $("#messages-container").html('<div id="message-error" class="col-md-6 col-md-push-3 col-md-pull-3 message__error +centered">' + error + '</div>');
+    Messages.activateHide('#message-error', 3000);
+  },
+
+  makeSuccess: function makeSuccess(success) {
+
+    $("#messages-container").html('<div id="message-success" class="col-md-6 col-md-push-3 col-md-pull-3 message__success +centered">' + success + '</div>');
+    Messages.activateHide('#message-success', 4000);
+  },
+
+  activateHide: function activateHide(el, time) {
+
+    setTimeout(function () {
+      $(el).fadeOut();
+    }, time);
+  }
+
+};
+
+module.exports = Messages;
 });
 
 require.register("javascripts/lib/post_form.js", function(exports, require, module) {
@@ -1055,20 +1103,15 @@ var Messages = {
    */
   hideMessages: function hideMessages() {
 
-    if ($("#js-message-error").length > 0) {
-      Messages.activateHide('#js-message-error', 3000);
+    var Messages = require("javascripts/lib/messages");
+
+    if ($("#message-error").length > 0) {
+      Messages.activateHide('#message-error', 3000);
     }
 
-    if ($("#js-message-success").length > 0) {
-      Messages.activateHide('#js-message-error', 4000);
+    if ($("#message-success").length > 0) {
+      Messages.activateHide('#message-success', 4000);
     }
-  },
-
-  activateHide: function activateHide(el, time) {
-
-    setTimeout(function () {
-      $(el).fadeOut();
-    }, time);
   }
 
 };

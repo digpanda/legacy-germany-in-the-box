@@ -42,15 +42,15 @@
       <td class="cart-item-quantity">
 
         <% unless @readonly %>
-          <a href="#" id="js-set-quantity-minus">
+          <a href="#" class="js-set-quantity-minus" data-order-item-id="<%= i.id.to_s %>">
             <i class="fa fa-minus cart-item-minus"></i>
           </a>
         <% end %>
 
-        <%= text_field_tag "", i.quantity, :id => "js-set-quantity-value", :type => 'text', :value => "#{i.quantity}", :disabled => "disabled", :data => { :order_item_id => i.id.to_s } %>
+        <%= text_field_tag "", i.quantity, :id => "order-item-quantity-#{i.id.to_s}", :type => 'text', :value => "#{i.quantity}", :disabled => "disabled", :data => { :order_item_id => i.id.to_s } %>
         
         <% unless @readonly %>
-          <a href="#" id="js-set-quantity-plus">
+          <a href="#" class="js-set-quantity-plus" data-order-item-id="<%= i.id.to_s %>">
             <i class="fa fa-plus cart-item-plus"></i>
           </a>
         <% end %>
