@@ -23,9 +23,9 @@ class Api::Guest::OrderItemsController < Guest::OrderItemsController
     end
 
     if @order_item.save
-      render :json => {}, :status => :ok
+      render :json => { :amount => total_number_of_products }, :status => :ok
     else
-      render :json => { :msg => I18n.t(:add_product_ko, scope: :edit_order) }, :status => :unprocessable_entity
+      render :json => { :msg => @order_item.errors.full_messages.first }, :status => :unprocessable_entity
     end
   end
 
