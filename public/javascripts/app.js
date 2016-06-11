@@ -885,7 +885,7 @@ module.exports = Footer;
 });
 
 require.register("javascripts/starters/images_control.js", function(exports, require, module) {
-"use strict";
+'use strict';
 
 /**
  * ImageControl Class
@@ -902,33 +902,40 @@ var ImagesControl = {
 
   validateImageFile: function validateImageFile() {
 
-    console.log('@yl what is this ? lets fix it');
+    console.log('loaded');
 
-    var maxExceededMessage = ""; // #{I18n.t(:max_exceeded_message, scope: :image_upload)} to catch
-    var extErrorMessage = ""; // #{I18n.t(:ext_error_message, scope: :image_upload)} to catch
-    var allowedExtension = ["jpg", "JPG", "jpeg", "JPEG", "png", "PNG"];
+    $("input[class^=img-file-upload]").on('change', function () {
 
-    var extName;
-    var maxFileSize = 1048576;
-    var sizeExceeded = false;
-    var extError = false;
+      var inputFile = this;
 
-    // inputFile ? What is it ?
-    /*
-    $.each(inputFile.files, function() {
-      if (this.size && maxFileSize && this.size > maxFileSize) {sizeExceeded=true;};
-      extName = this.name.split('.').pop();
-      if ($.inArray(extName, allowedExtension) == -1) {extError=true;};
+      var maxExceededMessage = ""; // #{I18n.t(:max_exceeded_message, scope: :image_upload)} to catch
+      var extErrorMessage = ""; // #{I18n.t(:ext_error_message, scope: :image_upload)} to catch
+      var allowedExtension = ["jpg", "JPG", "jpeg", "JPEG", "png", "PNG"];
+
+      var extName;
+      var maxFileSize = 1048576;
+      var sizeExceeded = false;
+      var extError = false;
+
+      $.each(inputFile.files, function () {
+        if (this.size && maxFileSize && this.size > maxFileSize) {
+          sizeExceeded = true;
+        };
+        extName = this.name.split('.').pop();
+        if ($.inArray(extName, allowedExtension) == -1) {
+          extError = true;
+        };
+      });
+      if (sizeExceeded) {
+        window.alert(maxExceededMessage);
+        $(inputFile).val('');
+      };
+
+      if (extError) {
+        window.alert(extErrorMessage);
+        $(inputFile).val('');
+      };
     });
-    if (sizeExceeded) {
-      window.alert(maxExceededMessage);
-      $(inputFile).val('');
-    };
-     if (extError) {
-      window.alert(extErrorMessage);
-      $(inputFile).val('');
-    };
-    */
   }
 
 };
