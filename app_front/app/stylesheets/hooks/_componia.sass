@@ -1,7 +1,3 @@
-// Global changes
-
-
-
 .btn-primary 
   background: $color-green !important
   border-color: $color-green !important
@@ -119,4 +115,33 @@ a.simple-text
     cursor: default
     background: $color-green !important
 
+.pagination > .active >
+  a
+    z-index: 3
+    color: $color-white
+    cursor: default
+    background-color: $color-green
+    border-color: $color-green
+    &:focus, &:hover
+      z-index: 3
+      color: $color-white
+      cursor: default
+      background-color: $color-green
+      border-color: $color-green
+  span
+    z-index: 3
+    color: $color-white
+    cursor: default
+    background-color: $color-green
+    border-color: $color-green
+    &:focus, &:hover
+      z-index: 3
+      color: $color-white
+      cursor: default
+      background-color: $color-green
+      border-color: $color-green
 
+ul.pagination li a
+  color: $color-green !important
+  &:hover
+    color: $color-green !important
