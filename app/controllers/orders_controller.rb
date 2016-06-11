@@ -185,7 +185,7 @@ class OrdersController < ApplicationController
       end
 
       flash[:success] = I18n.t(:checkout_ok, scope: :checkout)
-      redirect_to popular_products_path
+      redirect_to show_orders_users_path(:user_info_edit_part => :edit_order)
 
     else
 
