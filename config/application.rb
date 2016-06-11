@@ -46,6 +46,7 @@ module AChat
     config.i18n.default_locale = :de
     #config.time_zone = 'Beijing'
     config.wirecard = YAML.load_file("#{Rails.root.to_s}/config/wirecard.yml")[Rails.env]
+    config.digpanda= YAML.load_file("#{Rails.root.to_s}/config/digpanda.yml")[Rails.env]
 
     I18n::Backend::Simple.send(:include, I18n::Backend::Fallbacks)
     config.i18n.fallbacks = {'de' => 'en', 'zh-CN' => 'en'}
