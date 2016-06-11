@@ -60,6 +60,15 @@ resources :shop_applications, except: [:edit, :update] do
   concerns :shared_shop_applications
 end
 
+# Guest related
+namespace :guest do
+
+  resources :order_items  do
+    concerns :shared_guest_order_items
+  end
+
+end
+
 resources :orders, only: [:destroy, :show] do
   concerns :shared_orders
 

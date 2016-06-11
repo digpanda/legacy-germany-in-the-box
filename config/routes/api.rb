@@ -17,6 +17,7 @@ namespace :api, defaults: { format: 'json' }  do
       
       match :set_quantity, via: [:patch], action: :set_quantity, as: :set_quantity, :on => :member
 
+      concerns :shared_guest_order_items
     end
 
   end
