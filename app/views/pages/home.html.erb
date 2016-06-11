@@ -25,7 +25,7 @@
 
   <div class="col-md-8 col-md-push-2 col-md-pull-2 category-blocks">
 
-    <% Category.all.in_groups_of(2, false).each do |category_groups| %>
+    <% @categories.in_groups_of(2, false).each do |category_groups| %>
 
     <div class="row">
 

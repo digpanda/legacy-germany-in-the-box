@@ -615,7 +615,7 @@ require.register("javascripts/starters.js", function(exports, require, module) {
 /**
  * Starters Class
  */
-var Starters = ['bootstrap', 'china_city', 'footer', 'images_handler', 'left_menu', 'product_favorite', 'product_form', 'product_lightbox', 'search', 'datepicker'];
+var Starters = ['bootstrap', 'china_city', 'datepicker', 'footer', 'images_handler', 'left_menu', 'messages', 'product_favorite', 'product_form', 'product_lightbox', 'search'];
 
 module.exports = Starters;
 });
@@ -879,6 +879,48 @@ var LeftMenu = {
 };
 
 module.exports = LeftMenu;
+});
+
+require.register("javascripts/starters/messages.js", function(exports, require, module) {
+"use strict";
+
+/**
+ * Messages Class
+ */
+var Messages = {
+
+  /**
+   * Initializer
+   */
+  init: function init() {
+
+    this.hideMessages();
+  },
+
+  /**
+   * 
+   */
+  hideMessages: function hideMessages() {
+
+    if ($("#js-message-error").length > 0) {
+      Messages.activateHide('#js-message-error', 3000);
+    }
+
+    if ($("#js-message-success").length > 0) {
+      Messages.activateHide('#js-message-error', 4000);
+    }
+  },
+
+  activateHide: function activateHide(el, time) {
+
+    setTimeout(function () {
+      $(el).fadeOut();
+    }, time);
+  }
+
+};
+
+module.exports = Messages;
 });
 
 require.register("javascripts/starters/product_favorite.js", function(exports, require, module) {
