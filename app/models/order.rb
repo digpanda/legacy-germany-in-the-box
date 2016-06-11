@@ -36,8 +36,16 @@ class Order
 
   index({user: 1},  {unique: false,   name: :idx_order_user,   sparse: true})
 
-  def reach_todays_limit?(new_total = 0, new_quantity = 0)
-    order_items.size == 0 ? (new_quantity == 0 ? false : new_total > Settings.instance.max_total_per_day ) : (new_quantity == 0 ? false :(self.decorate.total_price_in_currency + new_total) > Settings.instance.max_total_per_day)
+  def total_price_in_currency
+    total_price * Settings.instance.exchange_rate_to_yuan
+  end
+
+  def reach_todays_limit?(new_total)
+    if order_items.size == 0
+      new_total == 0 ? false : new_total > Settings.instance.max_total_per_day
+    else
+      (self.total_price_in_currency + new_total) > Settings.instance.max_total_per_day
+    end
   end
 
   def total_price
