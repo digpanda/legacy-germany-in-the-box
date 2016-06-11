@@ -21,6 +21,8 @@ class Api::Guest::OrderItemsController < Guest::OrderItemsController
 
     if s.unlimited or s.quantity >= q
       @order_item.quantity = q
+    else
+      render :json => {:msg => I18n.t(:not_all_available, scope: :checkout, :product_name => p.name, :option_names => s.decorate.get_options_txt) }, :status => :unprocessable_entity
     end
 
     if @order_item.save
