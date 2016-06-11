@@ -48,7 +48,7 @@
           </td>
           <% unless o.decorate.is_success? %>
               <td>
-                <%= link_to I18n.t(:delete, scope: :edit_order), order_path(o), method: :delete, data: { confirm: 'Are you certain you want to delete this?' }, :class => 'fa fa-times-circle' %>
+                <%= link_to I18n.t(:delete, scope: :edit_order), order_path(o), method: :delete, data: { confirm: 'Are you certain you want to delete this?' } %>
               </td>
           <% else %>
               <td></td>
