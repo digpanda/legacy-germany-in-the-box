@@ -724,9 +724,13 @@ var Datepicker = {
    * Initializer
    */
   init: function init() {
-    var showDatepicker = $('#js-show-datepicker').data();
-    var lang = showDatepicker.language ? showDatepicker.language : 'en';
-    $('.date-picker').datepicker({ language: lang, autoclose: true, todayHighlight: true });
+
+    if ($('#js-show-datepicker').length > 0) {
+
+      var showDatepicker = $('#js-show-datepicker').data();
+      var lang = showDatepicker.language ? showDatepicker.language : 'en';
+      $('.date-picker').datepicker({ language: lang, autoclose: true, todayHighlight: true });
+    }
   }
 
 };
