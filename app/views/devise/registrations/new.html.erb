@@ -26,7 +26,7 @@
       </div>
       <div class="form-inline">
         <div class="form-group">
-          <%= text_field_tag 'user[birth]', nil, :class => 'form-control customized-datepicker', placeholder: I18n.t(:birthday, scope: :edit_personal), :required => true %>
+          <%= text_field_tag 'user[birth]', nil, :id => "datepicker", :class => 'form-control', placeholder: I18n.t(:birthday, scope: :edit_personal), :required => true %>
         </div>
         <div class="form-group col-md-offset-1">
           <label class="radio-inline">

@@ -1,0 +1,77 @@
+.ui-datepicker
+  background-color: #fff
+  border: 1px solid #66AFE9
+  border-radius: 4px
+  box-shadow: 0 0 8px rgba(102, 175, 233, 0.6)
+  display: none
+  margin-top: 4px
+  padding: 10px
+  width: 240px
+  a
+    text-decoration: none
+    &:hover
+      text-decoration: none
+      color: #2A6496
+      -webkit-transition: color 0.1s ease-in-out
+      -moz-transition: color 0.1s ease-in-out
+      -o-transition: color 0.1s ease-in-out
+      transition: color 0.1s ease-in-out
+  td:hover a
+    color: #2A6496
+    -webkit-transition: color 0.1s ease-in-out
+    -moz-transition: color 0.1s ease-in-out
+    -o-transition: color 0.1s ease-in-out
+    transition: color 0.1s ease-in-out
+  .ui-datepicker-header
+    margin-bottom: 4px
+    text-align: center
+  .ui-datepicker-title
+    font-weight: 700
+  .ui-datepicker-prev, .ui-datepicker-next
+    cursor: default
+    font-family: 'Glyphicons Halflings'
+    -webkit-font-smoothing: antialiased
+    font-style: normal
+    font-weight: normal
+    height: 20px
+    line-height: 1
+    margin-top: 2px
+    width: 30px
+  .ui-datepicker-prev
+    float: left
+    text-align: left
+  .ui-datepicker-next
+    float: right
+    text-align: right
+  .ui-datepicker-prev:before
+    content: "\e079"
+  .ui-datepicker-next:before
+    content: "\e080"
+  .ui-icon
+    display: none
+  .ui-datepicker-calendar
+    table-layout: fixed
+    width: 100%
+    th
+      text-align: center
+      padding: 4px 0
+    td
+      text-align: center
+      padding: 4px 0
+      border-radius: 4px
+      -webkit-transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out
+      -moz-transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out
+      -o-transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out
+      transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out
+      &:hover
+        background-color: #eee
+        cursor: pointer
+      a
+        text-decoration: none
+  .ui-datepicker-current-day
+    background-color: #4289cc
+    a
+      color: #fff
+  .ui-datepicker-calendar .ui-datepicker-unselectable:hover
+    background-color: #fff
+    cursor: default

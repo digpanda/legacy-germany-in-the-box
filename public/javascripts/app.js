@@ -494,6 +494,84 @@ var Casing = {
 module.exports = Casing;
 });
 
+require.register("javascripts/lib/foreign/datepicker-de.js", function(exports, require, module) {
+"use strict";
+
+/* German initialisation for the jQuery UI date picker plugin. */
+/* Written by Milian Wolff (mail@milianw.de). */
+(function (factory) {
+  if (typeof define === "function" && define.amd) {
+
+    // AMD. Register as an anonymous module.
+    define(["../widgets/datepicker"], factory);
+  } else {
+
+    // Browser globals
+    factory(jQuery.datepicker);
+  }
+})(function (datepicker) {
+
+  datepicker.regional.de = {
+    closeText: "Schließen",
+    prevText: "&#x3C;Zurück",
+    nextText: "Vor&#x3E;",
+    currentText: "Heute",
+    monthNames: ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"],
+    monthNamesShort: ["Jan", "Feb", "Mär", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"],
+    dayNames: ["Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"],
+    dayNamesShort: ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"],
+    dayNamesMin: ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"],
+    weekHeader: "KW",
+    dateFormat: "dd.mm.yy",
+    firstDay: 1,
+    isRTL: false,
+    showMonthAfterYear: false,
+    yearSuffix: "" };
+  datepicker.setDefaults(datepicker.regional.de);
+
+  return datepicker.regional.de;
+});
+});
+
+require.register("javascripts/lib/foreign/datepicker-zh-CN.js", function(exports, require, module) {
+"use strict";
+
+/* Chinese initialisation for the jQuery UI date picker plugin. */
+/* Written by Cloudream (cloudream@gmail.com). */
+(function (factory) {
+  if (typeof define === "function" && define.amd) {
+
+    // AMD. Register as an anonymous module.
+    define(["../widgets/datepicker"], factory);
+  } else {
+
+    // Browser globals
+    factory(jQuery.datepicker);
+  }
+})(function (datepicker) {
+
+  datepicker.regional["zh-CN"] = {
+    closeText: "关闭",
+    prevText: "&#x3C;上月",
+    nextText: "下月&#x3E;",
+    currentText: "今天",
+    monthNames: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
+    monthNamesShort: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
+    dayNames: ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"],
+    dayNamesShort: ["周日", "周一", "周二", "周三", "周四", "周五", "周六"],
+    dayNamesMin: ["日", "一", "二", "三", "四", "五", "六"],
+    weekHeader: "周",
+    dateFormat: "yy-mm-dd",
+    firstDay: 1,
+    isRTL: false,
+    showMonthAfterYear: true,
+    yearSuffix: "年" };
+  datepicker.setDefaults(datepicker.regional["zh-CN"]);
+
+  return datepicker.regional["zh-CN"];
+});
+});
+
 require.register("javascripts/lib/post_form.js", function(exports, require, module) {
 "use strict";
 
@@ -732,16 +810,23 @@ var Datepicker = {
     if ($('#js-show-datepicker').length > 0) {
 
       var showDatepicker = $('#js-show-datepicker').data();
-      var language = showDatepicker.language ? showDatepicker.language : 'en';
+      var language = showDatepicker.language ? showDatepicker.language : 'de';
 
-      //$.fn.datepicker.defaults.format = "yyyy-mm-dd";
+      if (language == 'de') {
+        require("javascripts/lib/foreign/datepicker-de.js");
+      } else {
+        require("javascripts/lib/foreign/datepicker-zh-CN.js");
+      }
 
-      $('input.customized-datepicker').datepicker({
+      //$("#datepicker").datepicker( $.datepicker.regional[ "fr" ] );
+      //$.datepicker.regional[ "de" ]
 
-        language: language,
-        autoclose: true,
-        todayHighlight: true,
-        format: 'yyyy-mm-dd'
+      $('#datepicker').datepicker({
+
+        //language: language,
+        //autoclose: true,
+        //todayHighlight: true,
+        dateFormat: "yy-mm-dd"
 
       });
     }

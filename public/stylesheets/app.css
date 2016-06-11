@@ -8740,5 +8740,103 @@ a, a:active, a:hover, a:visited {
   width: auto;
   max-height: 96px; }
 
+/* line 1, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/_test.sass */
+.ui-datepicker {
+  background-color: #fff;
+  border: 1px solid #66AFE9;
+  border-radius: 4px;
+  box-shadow: 0 0 8px rgba(102, 175, 233, 0.6);
+  display: none;
+  margin-top: 4px;
+  padding: 10px;
+  width: 240px; }
+  /* line 10, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/_test.sass */
+  .ui-datepicker a {
+    text-decoration: none; }
+    /* line 12, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/_test.sass */
+    .ui-datepicker a:hover {
+      text-decoration: none;
+      color: #2A6496;
+      -webkit-transition: color 0.1s ease-in-out;
+      -moz-transition: color 0.1s ease-in-out;
+      -o-transition: color 0.1s ease-in-out;
+      transition: color 0.1s ease-in-out; }
+  /* line 19, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/_test.sass */
+  .ui-datepicker td:hover a {
+    color: #2A6496;
+    -webkit-transition: color 0.1s ease-in-out;
+    -moz-transition: color 0.1s ease-in-out;
+    -o-transition: color 0.1s ease-in-out;
+    transition: color 0.1s ease-in-out; }
+  /* line 25, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/_test.sass */
+  .ui-datepicker .ui-datepicker-header {
+    margin-bottom: 4px;
+    text-align: center; }
+  /* line 28, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/_test.sass */
+  .ui-datepicker .ui-datepicker-title {
+    font-weight: 700; }
+  /* line 30, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/_test.sass */
+  .ui-datepicker .ui-datepicker-prev, .ui-datepicker .ui-datepicker-next {
+    cursor: default;
+    font-family: 'Glyphicons Halflings';
+    -webkit-font-smoothing: antialiased;
+    font-style: normal;
+    font-weight: normal;
+    height: 20px;
+    line-height: 1;
+    margin-top: 2px;
+    width: 30px; }
+  /* line 40, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/_test.sass */
+  .ui-datepicker .ui-datepicker-prev {
+    float: left;
+    text-align: left; }
+  /* line 43, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/_test.sass */
+  .ui-datepicker .ui-datepicker-next {
+    float: right;
+    text-align: right; }
+  /* line 46, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/_test.sass */
+  .ui-datepicker .ui-datepicker-prev:before {
+    content: "\e079"; }
+  /* line 48, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/_test.sass */
+  .ui-datepicker .ui-datepicker-next:before {
+    content: "\e080"; }
+  /* line 50, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/_test.sass */
+  .ui-datepicker .ui-icon {
+    display: none; }
+  /* line 52, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/_test.sass */
+  .ui-datepicker .ui-datepicker-calendar {
+    table-layout: fixed;
+    width: 100%; }
+    /* line 55, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/_test.sass */
+    .ui-datepicker .ui-datepicker-calendar th {
+      text-align: center;
+      padding: 4px 0; }
+    /* line 58, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/_test.sass */
+    .ui-datepicker .ui-datepicker-calendar td {
+      text-align: center;
+      padding: 4px 0;
+      border-radius: 4px;
+      -webkit-transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out;
+      -moz-transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out;
+      -o-transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out;
+      transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out; }
+      /* line 66, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/_test.sass */
+      .ui-datepicker .ui-datepicker-calendar td:hover {
+        background-color: #eee;
+        cursor: pointer; }
+      /* line 69, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/_test.sass */
+      .ui-datepicker .ui-datepicker-calendar td a {
+        text-decoration: none; }
+  /* line 71, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/_test.sass */
+  .ui-datepicker .ui-datepicker-current-day {
+    background-color: #4289cc; }
+    /* line 73, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/_test.sass */
+    .ui-datepicker .ui-datepicker-current-day a {
+      color: #fff; }
+  /* line 75, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/_test.sass */
+  .ui-datepicker .ui-datepicker-calendar .ui-datepicker-unselectable:hover {
+    background-color: #fff;
+    cursor: default; }
+
 
 /*# sourceMappingURL=app.css.map*/

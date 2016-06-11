@@ -11,19 +11,25 @@ var Datepicker = {
       if ($('#js-show-datepicker').length > 0) {
 
         let showDatepicker = $('#js-show-datepicker').data();
-        let language = showDatepicker.language ? showDatepicker.language : 'en'
+        let language = showDatepicker.language ? showDatepicker.language : 'de';
 
-        //$.fn.datepicker.defaults.format = "yyyy-mm-dd";
+        if (language == 'de') {
+          require("javascripts/lib/foreign/datepicker-de.js");
+        } else {
+          require("javascripts/lib/foreign/datepicker-zh-CN.js");
+        }
 
-        $('input.customized-datepicker').datepicker({
+        //$("#datepicker").datepicker( $.datepicker.regional[ "fr" ] );
+        //$.datepicker.regional[ "de" ]
 
-          language: language,
-          autoclose: true,
-          todayHighlight: true,
-          format: 'yyyy-mm-dd',
+        $('#datepicker').datepicker({
+
+          //language: language,
+          //autoclose: true,
+          //todayHighlight: true,
+          dateFormat: "yy-mm-dd"
 
         });
-
 
       }
 
