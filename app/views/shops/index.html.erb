@@ -44,7 +44,11 @@
             <% else %>
               <%= link_to '', shop_disapprove_path(s), :method => :patch, :class => 'fa fa-minus-circle fa-2x', :title => "Disapprove" %>
             <% end %>
-            <%= link_to '', shop_path(s), :method => :delete, data: { confirm: I18n.t(:delete_shop_message, scope: :edit_shops) }, :class => 'fa fa-times-circle fa-2x', :title => I18n.t(:remove, scope: :edit_shops) %>
+
+            <% if s.products.count == 0 %>
+              <%= link_to '', shop_path(s), :method => :delete, data: { confirm: I18n.t(:delete_shop_message, scope: :edit_shops) }, :class => 'fa fa-times-circle fa-2x', :title => I18n.t(:remove, scope: :edit_shops) %>
+            <% end %>
+
           </td>
         </tr>
       <% end %>
