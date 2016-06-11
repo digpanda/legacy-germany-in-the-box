@@ -13,6 +13,8 @@ class CountryDataConversion < Mongoid::Migration
         a.write_attribute(:country,'CN')
       end
 
+      a.save!
+
    end
 
   end

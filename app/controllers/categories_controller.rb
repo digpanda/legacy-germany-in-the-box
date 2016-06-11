@@ -32,7 +32,8 @@ class CategoriesController < ApplicationController
     @category = Category.find(params[:id])
     @shops = @category.shops
     @featured_shop = @category.shops.first
-    @casual_shops = @category.shops #.skip(1)
+    @casual_shops = @category.shops
+    @casual_shops.shift
   end
 
 end

@@ -74,6 +74,7 @@ class ShopsController <  ApplicationController
   end
 
   def destroy
+
     if shop.addresses.delete_all && (shop.bank_account ? shop.bank_account.delete : true) && shop.destroy
       flash[:success] = I18n.t(:delete_ok, scope: :edit_shops)
     else
