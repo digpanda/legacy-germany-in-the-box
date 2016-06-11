@@ -12,7 +12,7 @@ var Starters = [
   'product_form',
   'product_lightbox',
   'search',
-
+  'datepicker'
 ]
 
 module.exports = Starters;
