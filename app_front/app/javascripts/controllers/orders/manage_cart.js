@@ -6,10 +6,10 @@ var ManageCart = {
   /**
    * Initializer
    */
-   init: function() {
+  init: function() {
 
-    this.onSetAddress();
     this.multiSelectSystem();
+    this.orderItemHandleQuantity();
 
   },
 
@@ -22,49 +22,54 @@ var ManageCart = {
 
   },
 
-  onSetAddress: function() {
+  orderItemHandleQuantity: function() {
 
-/*
-    $(".js-set-address-link").click(function(e) {
+    $('#js-set-quantity-minus').click(function() {
 
-      e.preventDefault();
-      ManageCart.forceLogin(this);
+      let currentQuantity = $('#js-set-quantity-value').val();
+      let orderItemId = $('#js-set-quantity-value').data('orderItemId');
 
-    });
-*/
-  },
-
-  /**
-   * Send next destination and trigger log-in if not logged-in already
-   */
-   forceLogin: function(el) {
-
-/* WE DEPRECATED WITH THE NEW LOGIN SYSTEM
-    var location = $(el).attr("href");
-    var self = this;
-
-    var User = require("javascripts/models/user");
-
-    User.isAuth(function(res) {
-
-      // If the user isn't auth
-      // We force the trigger and
-      // Set the new location programmatically
-      if (res === false) {
-
-        self.setRedirectLocation(location);
-        $("#sign_in_link").click();
-
-      } else {
-
-        // Else we just continue to do what we were doing
-        window.location.href = location;
-        
+      if (currentQuantity > 0) {
+        currentQuantity--;
+        ManageCart.orderItemSetQuantity(orderItemId, currentQuantity);
       }
 
     });
-*/
+
+    $('#js-set-quantity-plus').click(function() {
+      
+      let currentQuantity = $('#js-set-quantity-value').val();
+      let orderItemId = $('#js-set-quantity-value').data('orderItemId');
+
+      currentQuantity++;
+      ManageCart.orderItemSetQuantity(orderItemId, currentQuantity);
+
+    });
+
   },
+
+  orderItemSetQuantity: function(orderItemId, quantity) {
+
+    var OrderItem = require("javascripts/models/order_item");
+
+
+    OrderItem.setQuantity(orderItemId, quantity, function(res) {
+
+      console.log(res);
+
+      if (res === false) {
+
+      } else {
+
+        // No problem
+
+      }
+
+    });
+
+  },
+
+
 
 /* SAME HERE
   // Should be in a lib

@@ -196,8 +196,8 @@ var ManageCart = {
    */
   init: function init() {
 
-    this.onSetAddress();
     this.multiSelectSystem();
+    this.orderItemHandleQuantity();
   },
 
   multiSelectSystem: function multiSelectSystem() {
@@ -208,48 +208,43 @@ var ManageCart = {
     }).multiselect('disable');
   },
 
-  onSetAddress: function onSetAddress() {
+  orderItemHandleQuantity: function orderItemHandleQuantity() {
 
-    /*
-        $(".js-set-address-link").click(function(e) {
-    
-          e.preventDefault();
-          ManageCart.forceLogin(this);
-    
-        });
-    */
+    $('#js-set-quantity-minus').click(function () {
+
+      var currentQuantity = $('#js-set-quantity-value').val();
+      var orderItemId = $('#js-set-quantity-value').data('orderItemId');
+
+      if (currentQuantity > 0) {
+        currentQuantity--;
+        ManageCart.orderItemSetQuantity(orderItemId, currentQuantity);
+      }
+    });
+
+    $('#js-set-quantity-plus').click(function () {
+
+      var currentQuantity = $('#js-set-quantity-value').val();
+      var orderItemId = $('#js-set-quantity-value').data('orderItemId');
+
+      currentQuantity++;
+      ManageCart.orderItemSetQuantity(orderItemId, currentQuantity);
+    });
   },
 
-  /**
-   * Send next destination and trigger log-in if not logged-in already
-   */
-  forceLogin: function forceLogin(el) {
+  orderItemSetQuantity: function orderItemSetQuantity(orderItemId, quantity) {
 
-    /* WE DEPRECATED WITH THE NEW LOGIN SYSTEM
-        var location = $(el).attr("href");
-        var self = this;
-    
-        var User = require("javascripts/models/user");
-    
-        User.isAuth(function(res) {
-    
-          // If the user isn't auth
-          // We force the trigger and
-          // Set the new location programmatically
-          if (res === false) {
-    
-            self.setRedirectLocation(location);
-            $("#sign_in_link").click();
-    
-          } else {
-    
-            // Else we just continue to do what we were doing
-            window.location.href = location;
-            
-          }
-    
-        });
-    */
+    var OrderItem = require("javascripts/models/order_item");
+
+    OrderItem.setQuantity(orderItemId, quantity, function (res) {
+
+      console.log(res);
+
+      if (res === false) {} else {
+
+        // No problem
+
+      }
+    });
   }
 
 };
@@ -555,6 +550,35 @@ var Models = ['user'];
 module.exports = Models;
 });
 
+require.register("javascripts/models/order_item.js", function(exports, require, module) {
+"use strict";
+
+/**
+ * OrderItem Class
+ */
+var OrderItem = {
+
+  /**
+   * Check if user is auth or not via API call
+   */
+  setQuantity: function setQuantity(orderItemId, quantity, callback) {
+
+    $.ajax({
+      method: "PATCH",
+      url: "/api/guest/order_items/" + orderItemId + "/set_quantity",
+      data: { "quantity": quantity }
+
+    }).done(function (res) {
+
+      callback(res);
+    });
+  }
+
+};
+
+module.exports = OrderItem;
+});
+
 require.register("javascripts/models/user.js", function(exports, require, module) {
 "use strict";
 
@@ -567,6 +591,7 @@ var User = {
    * Check if user is auth or not via API call
    */
   isAuth: function isAuth(callback) {
+    // NOT CURRENTLY IN USE IN THE SYSTEM (REMOVE COMMENT IF YOU ADD IT SOMEWHERE)
 
     $.ajax({
       method: "GET",
@@ -575,7 +600,7 @@ var User = {
 
     }).done(function (res) {
 
-      callback(res.is_auth);
+      callback(res);
     });
   }
 

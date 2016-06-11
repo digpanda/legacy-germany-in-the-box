@@ -9,10 +9,20 @@ class Ability
     # Namespaced authorization
     case controller_namespace
 
-      when 'Shopkeeper'
+      when 'Guest', 'Api::Guest'
+        can :manage, :all
+
+      when 'Customer', 'Api::Customer'
+        can :manage, :all if user.role == :customer
+
+      when 'Shopkeeper', 'Api::Shopkeeper'
         can :manage, :all if user.role == :shopkeeper
 
+      when 'Admin', 'Api::Admin'
+        can :manage, :all if user.role == :admin
+
     end
+
     # End of namespaced authorization
 
     if user.role == :customer

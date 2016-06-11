@@ -6,7 +6,7 @@ var User = {
   /**
    * Check if user is auth or not via API call
    */
-  isAuth: function(callback) {
+  isAuth: function(callback) { // NOT CURRENTLY IN USE IN THE SYSTEM (REMOVE COMMENT IF YOU ADD IT SOMEWHERE)
 
     $.ajax({
       method: "GET",
@@ -15,7 +15,7 @@ var User = {
 
     }).done(function(res) {
 
-      callback(res.is_auth);
+      callback(res);
 
     });
 
