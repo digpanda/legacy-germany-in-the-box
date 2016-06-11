@@ -615,7 +615,7 @@ require.register("javascripts/starters.js", function(exports, require, module) {
 /**
  * Starters Class
  */
-var Starters = ['bootstrap', 'china_city', 'footer', 'images_handler', 'left_menu', 'product_favorite', 'product_form', 'product_lightbox', 'search'];
+var Starters = ['bootstrap', 'china_city', 'footer', 'images_handler', 'left_menu', 'product_favorite', 'product_form', 'product_lightbox', 'search', 'datepicker'];
 
 module.exports = Starters;
 });
@@ -710,6 +710,28 @@ var ChinaCity = {
 };
 
 module.exports = ChinaCity;
+});
+
+require.register("javascripts/starters/datepicker.js", function(exports, require, module) {
+'use strict';
+
+/**
+ * Datepicker Class
+ */
+var Datepicker = {
+
+  /**
+   * Initializer
+   */
+  init: function init() {
+    var showDatepicker = $('#js-show-datepicker').data();
+    var lang = showDatepicker.language ? showDatepicker.language : 'en';
+    $('.date-picker').datepicker({ language: lang, autoclose: true, todayHighlight: true });
+  }
+
+};
+
+module.exports = Datepicker;
 });
 
 require.register("javascripts/starters/footer.js", function(exports, require, module) {
