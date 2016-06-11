@@ -55,7 +55,7 @@ module BorderGuru
             postcode: address_model.zip,
             city: address_model.city,
             country: address_model.country_name,
-            telephone: address_model.tel,
+            telephone: address_model.tel ? address_model.tel : address_model.mobile,
             email: @order.user.email,
             countryCode: address_model.country_code
         }.delete_if { |k,v| v.nil? }
