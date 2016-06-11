@@ -494,6 +494,84 @@ var Casing = {
 module.exports = Casing;
 });
 
+require.register("javascripts/lib/foreign/datepicker-de.js", function(exports, require, module) {
+"use strict";
+
+/* German initialisation for the jQuery UI date picker plugin. */
+/* Written by Milian Wolff (mail@milianw.de). */
+(function (factory) {
+  if (typeof define === "function" && define.amd) {
+
+    // AMD. Register as an anonymous module.
+    define(["../widgets/datepicker"], factory);
+  } else {
+
+    // Browser globals
+    factory(jQuery.datepicker);
+  }
+})(function (datepicker) {
+
+  datepicker.regional.de = {
+    closeText: "Schließen",
+    prevText: "&#x3C;Zurück",
+    nextText: "Vor&#x3E;",
+    currentText: "Heute",
+    monthNames: ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"],
+    monthNamesShort: ["Jan", "Feb", "Mär", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"],
+    dayNames: ["Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"],
+    dayNamesShort: ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"],
+    dayNamesMin: ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"],
+    weekHeader: "KW",
+    dateFormat: "dd.mm.yy",
+    firstDay: 1,
+    isRTL: false,
+    showMonthAfterYear: false,
+    yearSuffix: "" };
+  datepicker.setDefaults(datepicker.regional.de);
+
+  return datepicker.regional.de;
+});
+});
+
+require.register("javascripts/lib/foreign/datepicker-zh-CN.js", function(exports, require, module) {
+"use strict";
+
+/* Chinese initialisation for the jQuery UI date picker plugin. */
+/* Written by Cloudream (cloudream@gmail.com). */
+(function (factory) {
+  if (typeof define === "function" && define.amd) {
+
+    // AMD. Register as an anonymous module.
+    define(["../widgets/datepicker"], factory);
+  } else {
+
+    // Browser globals
+    factory(jQuery.datepicker);
+  }
+})(function (datepicker) {
+
+  datepicker.regional["zh-CN"] = {
+    closeText: "关闭",
+    prevText: "&#x3C;上月",
+    nextText: "下月&#x3E;",
+    currentText: "今天",
+    monthNames: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
+    monthNamesShort: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
+    dayNames: ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"],
+    dayNamesShort: ["周日", "周一", "周二", "周三", "周四", "周五", "周六"],
+    dayNamesMin: ["日", "一", "二", "三", "四", "五", "六"],
+    weekHeader: "周",
+    dateFormat: "yy-mm-dd",
+    firstDay: 1,
+    isRTL: false,
+    showMonthAfterYear: true,
+    yearSuffix: "年" };
+  datepicker.setDefaults(datepicker.regional["zh-CN"]);
+
+  return datepicker.regional["zh-CN"];
+});
+});
+
 require.register("javascripts/lib/post_form.js", function(exports, require, module) {
 "use strict";
 
@@ -540,12 +618,16 @@ module.exports = PostForm;
 });
 
 require.register("javascripts/models.js", function(exports, require, module) {
-'use strict';
+"use strict";
 
 /**
  * Models Class
  */
-var Models = ['user'];
+var Models = [
+
+  // Not currently in use (please load each model on a case per case basis)
+  //
+];
 
 module.exports = Models;
 });
@@ -615,7 +697,7 @@ require.register("javascripts/starters.js", function(exports, require, module) {
 /**
  * Starters Class
  */
-var Starters = ['bootstrap', 'china_city', 'datepicker', 'footer', 'images_handler', 'left_menu', 'messages', 'product_favorite', 'product_form', 'product_lightbox', 'search'];
+var Starters = ['bootstrap', 'china_city', 'datepicker', 'footer', 'images_control', 'images_handler', 'left_menu', 'messages', 'product_favorite', 'product_form', 'product_lightbox', 'search'];
 
 module.exports = Starters;
 });
@@ -728,8 +810,25 @@ var Datepicker = {
     if ($('#js-show-datepicker').length > 0) {
 
       var showDatepicker = $('#js-show-datepicker').data();
-      var lang = showDatepicker.language ? showDatepicker.language : 'en';
-      $('.date-picker').datepicker({ language: lang, autoclose: true, todayHighlight: true });
+      var language = showDatepicker.language ? showDatepicker.language : 'de';
+
+      if (language == 'de') {
+        require("javascripts/lib/foreign/datepicker-de.js");
+      } else {
+        require("javascripts/lib/foreign/datepicker-zh-CN.js");
+      }
+
+      //$("#datepicker").datepicker( $.datepicker.regional[ "fr" ] );
+      //$.datepicker.regional[ "de" ]
+
+      $('#datepicker').datepicker({
+
+        //language: language,
+        //autoclose: true,
+        //todayHighlight: true,
+        dateFormat: "yy-mm-dd"
+
+      });
     }
   }
 
@@ -788,6 +887,58 @@ var Footer = {
 };
 
 module.exports = Footer;
+});
+
+require.register("javascripts/starters/images_control.js", function(exports, require, module) {
+"use strict";
+
+/**
+ * ImageControl Class
+ */
+var ImagesControl = {
+
+  /**
+   * Initializer
+   */
+  init: function init() {
+
+    this.validateImageFile();
+  },
+
+  validateImageFile: function validateImageFile() {
+
+    console.log('@yl what is this ? lets fix it');
+
+    var maxExceededMessage = ""; // #{I18n.t(:max_exceeded_message, scope: :image_upload)} to catch
+    var extErrorMessage = ""; // #{I18n.t(:ext_error_message, scope: :image_upload)} to catch
+    var allowedExtension = ["jpg", "JPG", "jpeg", "JPEG", "png", "PNG"];
+
+    var extName;
+    var maxFileSize = 1048576;
+    var sizeExceeded = false;
+    var extError = false;
+
+    // inputFile ? What is it ?
+    /*
+    $.each(inputFile.files, function() {
+      if (this.size && maxFileSize && this.size > maxFileSize) {sizeExceeded=true;};
+      extName = this.name.split('.').pop();
+      if ($.inArray(extName, allowedExtension) == -1) {extError=true;};
+    });
+    if (sizeExceeded) {
+      window.alert(maxExceededMessage);
+      $(inputFile).val('');
+    };
+     if (extError) {
+      window.alert(extErrorMessage);
+      $(inputFile).val('');
+    };
+    */
+  }
+
+};
+
+module.exports = ImagesControl;
 });
 
 require.register("javascripts/starters/images_handler.js", function(exports, require, module) {
