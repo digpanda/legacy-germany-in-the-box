@@ -3,7 +3,7 @@ require 'will_paginate/array'
 
 class OrdersController < ApplicationController
 
-  before_action :authenticate_user!, :except => [:manage_cart, :add_product, :adjust_skus_amount]
+  before_action :authenticate_user!, :except => [:manage_cart, :add_product]
 
   before_action :set_order, only: [:show, :destroy, :continue, :download_label]
 
@@ -58,7 +58,7 @@ class OrdersController < ApplicationController
 
     new_total = sku.price * quantity * Settings.first.exchange_rate_to_yuan
 
-    if reach_today_limit?(co, new_total, quantity)
+    if reach_todays_limit?(co, new_total)
       flash[:error] = I18n.t(:override_maximal_total, scope: :edit_order, total: Settings.instance.max_total_per_day, currency: Settings.instance.platform_currency.symbol)
       redirect_to(:back) and return
     end
@@ -94,57 +94,12 @@ class OrdersController < ApplicationController
 
   end
 
-  def adjust_skus_amount
-    products = params.keys.select { |key| /^cart-quantity-of-product-[a-z0-9]+$/.match(key) }
-    existing_order_items = current_order(params[:shop_id]).order_items.to_a;
-
-    all_available = true;
-
-    products.each do |p|
-      quantity = params[p].to_i
-      product_id = p.sub(/cart-quantity-of-product-/, '')
-
-      product = Product.find(product_id)
-
-      if all_available && quantity >= 0 && product.inventory >= quantity
-        all_available = true
-      else
-        all_available = false
-        break
-      end
-    end
-
-    if all_available
-      products.each do |p|
-        quantity = params[p].to_i
-        product_id = p.sub(/cart-quantity-of-product-/, '')
-        order_item = existing_order_items.find { |i| i.product.id === product_id }
-
-        if quantity > 0
-          order_item.quantity = quantity
-        else
-          current_order(params[:shop_id]).order_items.delete(order_item)
-        end
-
-        if order_item.save
-          flash[:success] = I18n.t(:adjust_product_ok, scope: :edit_order)
-          redirect_to manage_cart_orders_path
-
-          return
-        end
-      end
-    end
-
-    flash[:error] = I18n.t(:adjust_product_ko, scope: :edit_order)
-    redirect_to manage_cart_orders_path
-  end
-
   def checkout
     shop_id = params[:shop_id]
 
     order = current_order(shop_id)
 
-    if reach_today_limit?(order)
+    if reach_todays_limit?(order, 0)
       flash[:error] = I18n.t(:override_maximal_total, scope: :edit_order, total: Settings.instance.max_total_per_day, currency: Settings.instance.platform_currency.symbol)
       redirect_to request.referrer
       return
@@ -319,10 +274,6 @@ class OrdersController < ApplicationController
 
   def set_order
     @order = Order.find(params[:id])
-  end
-
-  def reach_today_limit?(order, new_total = 0, quantity = 0)
-    current_user.present? ? (current_user.reach_todays_limit?(new_total) || order.reach_todays_limit?(new_total, quantity)) : order.reach_todays_limit?(new_total, quantity)
   end
 
 end

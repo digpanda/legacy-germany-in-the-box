@@ -1,4 +1,3 @@
-<%= form_tag adjust_skus_amount_orders_path(s), :id => 'orders_adjust_products_amount', :method => :patch do %>
 <table class="table cart-table">
   <thead>
     <tr>
@@ -71,5 +70,4 @@
 </table>
 <% unless @readonly %>
 <%= link_to I18n.t(:set_delivery_destination, scope: :cart), set_address_orders_path(s), :class => 'btn btn-primary btn-small' %>
-<% end %>
 <% end %>

@@ -46,6 +46,10 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  def reach_todays_limit?(order, new_total)
+    current_user.present? ? (current_user.reach_todays_limit?(new_total) || order.reach_todays_limit?(new_total)) : order.reach_todays_limit?(new_total)
+  end
+
   def set_all_categories
     if seems_like_a_customer?
       @category_navigation_store ||= CategoryNavigationStore.new

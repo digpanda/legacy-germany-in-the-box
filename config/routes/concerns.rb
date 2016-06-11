@@ -73,7 +73,6 @@ concern :shared_orders do
   match :checkout_fail,             via: [:post],         action: :checkout_fail,           as: :checkout_fail,               :on => :collection
   match :manage_cart,               via: [:get],          action: :manage_cart,             as: :manage_cart,                 :on => :collection
   match 'set_address/:shop_id/',          via: [:patch, :get],  action: :set_address,             as: :set_address,           :on => :collection
-  match 'adjust_skus_amount/:shop_id/',   via: [:patch],        action: :adjust_skus_amount,      as: :adjust_skus_amount,    :on => :collection
   match :continue,                        via: [:get],    action: :continue,                as: :continue,                    :on => :member
 end
 
