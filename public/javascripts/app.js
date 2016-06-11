@@ -540,12 +540,16 @@ module.exports = PostForm;
 });
 
 require.register("javascripts/models.js", function(exports, require, module) {
-'use strict';
+"use strict";
 
 /**
  * Models Class
  */
-var Models = ['user'];
+var Models = [
+
+  // Not currently in use (please load each model on a case per case basis)
+  //
+];
 
 module.exports = Models;
 });
@@ -615,7 +619,7 @@ require.register("javascripts/starters.js", function(exports, require, module) {
 /**
  * Starters Class
  */
-var Starters = ['bootstrap', 'china_city', 'datepicker', 'footer', 'images_handler', 'left_menu', 'messages', 'product_favorite', 'product_form', 'product_lightbox', 'search'];
+var Starters = ['bootstrap', 'china_city', 'datepicker', 'footer', 'images_control', 'images_handler', 'left_menu', 'messages', 'product_favorite', 'product_form', 'product_lightbox', 'search'];
 
 module.exports = Starters;
 });
@@ -728,8 +732,18 @@ var Datepicker = {
     if ($('#js-show-datepicker').length > 0) {
 
       var showDatepicker = $('#js-show-datepicker').data();
-      var lang = showDatepicker.language ? showDatepicker.language : 'en';
-      $('.date-picker').datepicker({ language: lang, autoclose: true, todayHighlight: true });
+      var language = showDatepicker.language ? showDatepicker.language : 'en';
+
+      //$.fn.datepicker.defaults.format = "yyyy-mm-dd";
+
+      $('input.customized-datepicker').datepicker({
+
+        language: language,
+        autoclose: true,
+        todayHighlight: true,
+        format: 'yyyy-mm-dd'
+
+      });
     }
   }
 
@@ -788,6 +802,58 @@ var Footer = {
 };
 
 module.exports = Footer;
+});
+
+require.register("javascripts/starters/images_control.js", function(exports, require, module) {
+"use strict";
+
+/**
+ * ImageControl Class
+ */
+var ImagesControl = {
+
+  /**
+   * Initializer
+   */
+  init: function init() {
+
+    this.validateImageFile();
+  },
+
+  validateImageFile: function validateImageFile() {
+
+    console.log('@yl what is this ? lets fix it');
+
+    var maxExceededMessage = ""; // #{I18n.t(:max_exceeded_message, scope: :image_upload)} to catch
+    var extErrorMessage = ""; // #{I18n.t(:ext_error_message, scope: :image_upload)} to catch
+    var allowedExtension = ["jpg", "JPG", "jpeg", "JPEG", "png", "PNG"];
+
+    var extName;
+    var maxFileSize = 1048576;
+    var sizeExceeded = false;
+    var extError = false;
+
+    // inputFile ? What is it ?
+    /*
+    $.each(inputFile.files, function() {
+      if (this.size && maxFileSize && this.size > maxFileSize) {sizeExceeded=true;};
+      extName = this.name.split('.').pop();
+      if ($.inArray(extName, allowedExtension) == -1) {extError=true;};
+    });
+    if (sizeExceeded) {
+      window.alert(maxExceededMessage);
+      $(inputFile).val('');
+    };
+     if (extError) {
+      window.alert(extErrorMessage);
+      $(inputFile).val('');
+    };
+    */
+  }
+
+};
+
+module.exports = ImagesControl;
 });
 
 require.register("javascripts/starters/images_handler.js", function(exports, require, module) {

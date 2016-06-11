@@ -7,6 +7,7 @@ var Starters = [
   'china_city',
   'datepicker',
   'footer',
+  'images_control',
   'images_handler',
   'left_menu',
   'messages',

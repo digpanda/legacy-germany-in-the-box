@@ -1,35 +1,25 @@
 <!DOCTYPE html>
-<html lang ="en">
+<html lang="<%= I18n.locale %>">
+
 <head>
-  <meta name ="viewport" content="width=device-width, initial-scale=1">
-
+  <%= render "layouts/application/meta" %>
   <%= render "layouts/application/head" %>
-
+  <%= render "layouts/application/brunch_stylesheets" %>
 </head>
 
 <body id="csstyle">
 
-<!-- console if Rails.env.local? || Rails.env.development? -->
+  <!-- Base container -->
+  <div class="container-fluid">
 
-<% #render 'layouts/application/assets_pipeline_stylesheets'
-%>
+    <%= render "layouts/header/default" %>
+    <%= yield %>
+    <%= render "layouts/footer/default" %>
 
-<!-- Base container -->
-<div class="container-fluid">
+  </div>
 
-  <%= render "layouts/header/default" %>
-
-  <%= yield %>
-
-  <%= render "layouts/footer/default" %>
-
-</div>
-
-<%= render 'layouts/application/hidden_fields' %>
-
-<%= render "layouts/application/brunch_javascripts" %>
-
-<%= render 'layouts/application/assets_pipeline_javascripts' %>
+  <%= render 'layouts/application/hidden_fields' %>
+  <%= render "layouts/application/brunch_javascripts" %>
 
 </body>
 </html>

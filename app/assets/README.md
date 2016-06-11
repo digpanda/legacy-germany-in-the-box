@@ -1,0 +1,1 @@
+Don't add anything here. We don't use Rails Assets Pipeline in this project.

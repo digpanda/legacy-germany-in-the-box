@@ -8,11 +8,22 @@ var Datepicker = {
      */
     init: function() {
 
-      if ( $('#js-show-datepicker').length > 0) {
+      if ($('#js-show-datepicker').length > 0) {
 
         let showDatepicker = $('#js-show-datepicker').data();
-        let lang = showDatepicker.language ? showDatepicker.language : 'en'
-        $('.date-picker').datepicker({ language: lang, autoclose: true, todayHighlight: true })
+        let language = showDatepicker.language ? showDatepicker.language : 'en'
+
+        //$.fn.datepicker.defaults.format = "yyyy-mm-dd";
+
+        $('input.customized-datepicker').datepicker({
+
+          language: language,
+          autoclose: true,
+          todayHighlight: true,
+          format: 'yyyy-mm-dd',
+
+        });
+
 
       }
 
