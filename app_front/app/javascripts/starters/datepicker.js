@@ -19,18 +19,13 @@ var Datepicker = {
           require("javascripts/lib/foreign/datepicker-zh-CN.js");
         }
 
-        //$("#datepicker").datepicker( $.datepicker.regional[ "fr" ] );
-        //$.datepicker.regional[ "de" ]
-
-        $('#datepicker').datepicker({
-
-          //language: language,
-          //autoclose: true,
-          //todayHighlight: true,
-          dateFormat: "yy-mm-dd"
-
+        $( "#datepicker" ).datepicker({
+          changeMonth: true,
+          changeYear: true,
+          yearRange: '1945:'+(new Date).getFullYear(),
+          dateFormat: "yy-mm-dd"    
         });
-
+     
       }
 
     },

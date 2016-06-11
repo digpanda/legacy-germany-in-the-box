@@ -35,7 +35,13 @@
 
         <% end %>
 
-        | <span class="+red +up +bold">Only 3 left</span>
+        
+
+        <% unless @product.decorate.get_mas.unlimited %>
+          <% if @product.decorate.get_mas.quantity <= ::Rails.application.config.digpanda["products_warning"] %>
+            | <span class="+red +up +bold"> Only <%= @product.decorate.get_mas.quantity %> left</span>
+          <% end %>
+        <% end %>
 
         <div class="+small-spacer"></div>
 

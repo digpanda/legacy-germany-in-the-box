@@ -13,7 +13,7 @@
       <%= f.text_field :fname, :class => 'form-control', placeholder: I18n.t(:firstname, scope: :edit_personal) %>
     </div>
     <div class="form-group">
-      <%= f.text_field :birth, :class => 'form-control date-picker', placeholder: I18n.t(:birthday, scope: :edit_personal), 'data-provide': 'datepicker', 'data-date-format': 'yyyy-mm-dd', :required => true %>
+      <%= f.text_field :birth, :id => 'datepicker', :class => 'form-control', placeholder: I18n.t(:birthday, scope: :edit_personal), :required => true %>
       <div class="help-block with-errors"></div>
     </div>
     <div class="form-group">

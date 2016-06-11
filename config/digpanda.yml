@@ -1,0 +1,18 @@
+
+defaults: &defaults
+  products_warning: 3 # "only X left" system on product page
+
+local:
+  <<: *defaults
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+staging:
+  <<: *defaults
+
+production:
+  <<: *defaults
