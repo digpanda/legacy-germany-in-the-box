@@ -327,6 +327,42 @@ var Home = {
 module.exports = Home;
 });
 
+require.register("javascripts/controllers/products/show.js", function(exports, require, module) {
+'use strict';
+
+/**
+ * ProductsShow Class
+ */
+var ProductsShow = {
+
+  /**
+   * Initializer
+   */
+  init: function init() {
+
+    $('#gallery a').on('click', function (e) {
+
+      /**
+       * Homemade Gallery System by Laurent
+       */
+      e.preventDefault();
+
+      $('#main_image').attr('src', $(this).data('image'));
+
+      $('#main_image').magnify({
+        speed: 0,
+        src: $(this).data('zoom-image')
+      });
+    });
+
+    $('#gallery a:first').trigger('click');
+  }
+
+};
+
+module.exports = ProductsShow;
+});
+
 require.register("javascripts/controllers/products/show_skus.js", function(exports, require, module) {
 'use strict';
 
@@ -453,7 +489,7 @@ $(document).ready(function () {
     console.info("Loading controller " + routes.controller + "/" + routes.action);
   } catch (err) {
 
-    console.warn("Unable to initialize #js-routes `" + routes.controller + "`.`" + routes.action + "`");
+    console.warn("Unable to initialize #js-routes `" + routes.controller + "`.`" + routes.action + "` (" + err + ")");
     return;
   }
 
@@ -1153,7 +1189,6 @@ var ProductFavorite = {
 
         // We remove the favorite front data
         $(this).removeClass('+red');
-        $(this).addClass('+grey');
         $(this).attr('data-favorite', '0');
 
         ProductFavorite.doUnlike(this, productId, function (res) {
@@ -1161,12 +1196,10 @@ var ProductFavorite = {
           var favoritesCount = res.favorites.length;
           $('#total-likes').html(favoritesCount);
         });
-
       } else {
 
         // We change the style before the callback for speed reason
         $(this).addClass('+red');
-        $(this).removeClass('+grey');
         $(this).attr('data-favorite', '1');
 
         ProductFavorite.doLike(this, productId, function (res) {

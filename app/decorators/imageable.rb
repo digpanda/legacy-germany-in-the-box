@@ -15,7 +15,7 @@ module Imageable
 
     private
 
-    abstract_method :thumb_params, :detail_params
+    abstract_method :thumb_params, :detail_params, :fullsize_params, :zoomin_params
   end
 
 end

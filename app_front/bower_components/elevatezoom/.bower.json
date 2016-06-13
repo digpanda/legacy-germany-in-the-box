@@ -1,0 +1,15 @@
+{
+  "name": "elevatezoom",
+  "homepage": "https://github.com/elevateweb/elevatezoom",
+  "version": "2.2.3",
+  "_release": "2.2.3",
+  "_resolution": {
+    "type": "version",
+    "tag": "2.2.3",
+    "commit": "f6bc619b16ae3d136de524a991dc71dd7e912849"
+  },
+  "_source": "https://github.com/elevateweb/elevatezoom.git",
+  "_target": "^2.2.3",
+  "_originalSource": "elevatezoom",
+  "_direct": true
+}

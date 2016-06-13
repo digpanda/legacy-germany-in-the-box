@@ -49,4 +49,11 @@ class SkuDecorator < Draper::Decorator
     Rails.configuration.product_image_detailview
   end
   
+  def fullsize_params(image_field)
+    Rails.configuration.product_image_fullsize
+  end
+
+  def zoomin_params(image_field)
+    Rails.configuration.product_image_zoomin
+  end
 end
