@@ -23,7 +23,7 @@ var ProductForm = {
           nonSelectedText: productForm.translationNonSelectedText,
           nSelectedText: productForm.translationNSelectedText,
           enableFiltering: true,
-          filterBehavior: 'value'
+          enableCaseInsensitiveFiltering: true
         }).multiselect();
 
         $('#edit_product_submit_btn').click( function() {

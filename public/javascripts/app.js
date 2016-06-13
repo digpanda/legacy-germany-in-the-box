@@ -1272,11 +1272,11 @@ var ProductForm = {
       var productForm = $("#js-product-form").data();
       var productId = productForm.productId;
 
-      $('select.product-categories').multiselect({
+      $('select.duty-categories').multiselect({
         nonSelectedText: productForm.translationNonSelectedText,
         nSelectedText: productForm.translationNSelectedText,
-        numberDisplayed: 5,
-        maxHeight: 400
+        enableFiltering: true,
+        enableCaseInsensitiveFiltering: true
       }).multiselect();
 
       $('#edit_product_submit_btn').click(function () {
