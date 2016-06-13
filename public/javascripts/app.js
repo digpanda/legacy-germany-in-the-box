@@ -1387,32 +1387,35 @@ var ProductsList = {
 
   manageProductsWall: function manageProductsWall() {
 
-    var wall;
+    if ($('#freewall-products').length > 0) {
 
-    wall = new freewall("#freewall-products");
+      var wall;
 
-    wall.reset({
-      selector: '.js-brick',
-      animate: false,
-      cellW: 260,
-      cellH: 'auto',
-      onResize: function onResize() {
-        return wall.fitWidth();
-      }
-    });
+      wall = new freewall("#freewall-products");
 
-    wall.fitWidth();
-    $('#freewall-products').hide();
+      wall.reset({
+        selector: '.js-brick',
+        animate: false,
+        cellW: 260,
+        cellH: 'auto',
+        onResize: function onResize() {
+          return wall.fitWidth();
+        }
+      });
 
-    /*wall.container.find('.js-brick img:first').load(function() {
-      return wall.fitWidth();
-    });*/
-    wall.container.find('.js-brick img:last').load(function () {
-      $('#freewall-products').show();
       wall.fitWidth();
-    });
+      $('#freewall-products').hide();
 
-    $(window).trigger('resize');
+      /*wall.container.find('.js-brick img:first').load(function() {
+        return wall.fitWidth();
+      });*/
+      wall.container.find('.js-brick img:last').load(function () {
+        $('#freewall-products').show();
+        wall.fitWidth();
+      });
+
+      $(window).trigger('resize');
+    }
   }
 
 };
