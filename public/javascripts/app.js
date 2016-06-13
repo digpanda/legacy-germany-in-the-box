@@ -839,7 +839,7 @@ require.register("javascripts/starters.js", function(exports, require, module) {
 /**
  * Starters Class
  */
-var Starters = ['bootstrap', 'china_city', 'datepicker', 'footer', 'images_control', 'images_handler', 'left_menu', 'messages', 'product_favorite', 'product_form', 'search'];
+var Starters = ['bootstrap', 'china_city', 'datepicker', 'footer', 'images_control', 'images_handler', 'left_menu', 'messages', 'product_favorite', 'product_form', 'products_list', 'search'];
 
 module.exports = Starters;
 });
@@ -1367,6 +1367,57 @@ var ProductForm = {
 };
 
 module.exports = ProductForm;
+});
+
+require.register("javascripts/starters/products_list.js", function(exports, require, module) {
+'use strict';
+
+/**
+ * ProductsList Class
+ */
+var ProductsList = {
+
+  /**
+   * Initializer
+   */
+  init: function init() {
+
+    this.manageProductsWall();
+  },
+
+  manageProductsWall: function manageProductsWall() {
+
+    var wall;
+
+    wall = new freewall("#freewall-products");
+
+    wall.reset({
+      selector: '.js-brick',
+      animate: false,
+      cellW: 260,
+      cellH: 'auto',
+      onResize: function onResize() {
+        return wall.fitWidth();
+      }
+    });
+
+    wall.fitWidth();
+    $('#freewall-products').hide();
+
+    /*wall.container.find('.js-brick img:first').load(function() {
+      return wall.fitWidth();
+    });*/
+    wall.container.find('.js-brick img:last').load(function () {
+      $('#freewall-products').show();
+      wall.fitWidth();
+    });
+
+    $(window).trigger('resize');
+  }
+
+};
+
+module.exports = ProductsList;
 });
 
 require.register("javascripts/starters/search.js", function(exports, require, module) {

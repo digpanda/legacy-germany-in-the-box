@@ -1,10 +1,11 @@
+<div id="freewall-products">
 <% products.in_groups_of(3, false).each do |grouped_products| %>
 
   <div class="row">
 
     <% grouped_products.each do |product| %>
 
-    <div class="col-md-4 shop-page-product">
+    <div class="col-md-4 shop-page-product js-brick">
 
       <%= render partial: 'products/product_box', :locals => {:product => product} %>
       
@@ -17,3 +18,4 @@
   <div class="+spacer"></div>
 
 <% end %>
+</div>
