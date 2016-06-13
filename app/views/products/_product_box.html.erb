@@ -4,15 +4,7 @@
 
     <div class="row shop-page-product__purchase --like">
 
-    <% unless current_user.nil? %>
-
-      <% if product.is_favorite?(current_user) %>
-      <a href="#" class="js-heart-click +red" data-product-id="<%= product.id %>" data-favorite="1"><i class="fa fa-heart"></i></a>
-      <% else %>
-      <a href="#" class="js-heart-click" data-product-id="<%= product.id %>" data-favorite="0"><i class="fa fa-heart"></i></a>
-      <% end %>
-
-    <% end %>
+      <%= render partial: "products/show/like", :locals => { :product => product } %>
 
     </div>
 
@@ -43,54 +35,3 @@
   </a>
 
 <!-- End Product -->
-
-<!--
-
-            <div class="product-box">
-
-              <div class="product-box__thumb">
-
-                <div class="product-box__like col-md-2 col-md-offset-10">
-
-                  <% if product.is_favorite?(current_user) %>
-                    <a href="#" class="js-heart-click +red" data-product-id="<%= product.id %>" data-favorite="1"><i class="fa fa-heart"></i></a>
-                  <% else %>
-                    <a href="#" class="js-heart-click" data-product-id="<%= product.id %>" data-favorite="0"><i class="fa fa-heart"></i></a>
-                  <% end %>
-                </div>
-
-
-                <div href="<%= product_path(product) %>">
-
-                  <header class="product-box__header">
-
-                    <a href="<%= product_path(product) %>">
-                      <img src="<%= product.decorate.product_cover_url %>" alt="<%= product.name %>" title="<%= product.name %>" class="<%='thumbnail-img'%>">
-                    </a>
-
-                  </header>
-
-                  <div class="product-box__inner">
-
-                    <h5 class="product-box__inner --title"><%= product.name %></h5>
-                    <p class="product-box__iner --desciption"><%= product.decorate.short_desc %></p>
-
-                    <div class="product-box__meta">
-
-                      <span class="product-box__meta --price"><%= product.decorate.preview_price %></span>
-
-                    </div>
-
-                    <p class="product-box__location">
-                      <a href="<%= shop_path(product.shop) %>">
-                        <i class="fa fa-shopping-bag"></i> <%= product.shop.shopname %>
-                      </a>
-                    </p>
-                  </div>
-
-                </div>
-
-              </div>
-
-            </div>
--->

@@ -1153,6 +1153,7 @@ var ProductFavorite = {
 
         // We remove the favorite front data
         $(this).removeClass('+red');
+        $(this).addClass('+grey');
         $(this).attr('data-favorite', '0');
 
         ProductFavorite.doUnlike(this, productId, function (res) {
@@ -1160,10 +1161,12 @@ var ProductFavorite = {
           var favoritesCount = res.favorites.length;
           $('#total-likes').html(favoritesCount);
         });
+
       } else {
 
         // We change the style before the callback for speed reason
         $(this).addClass('+red');
+        $(this).removeClass('+grey');
         $(this).attr('data-favorite', '1');
 
         ProductFavorite.doLike(this, productId, function (res) {
