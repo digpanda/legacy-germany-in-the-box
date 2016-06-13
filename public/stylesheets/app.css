@@ -7746,6 +7746,10 @@ img.mfp-img {
   color: #659443; }
 
 /* line 85, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
+#csstyle .\+grey {
+  color: #eeeeee; }
+
+/* line 85, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
 #csstyle .\+strong {
   font-weight: 600; }
 
@@ -8834,6 +8838,42 @@ ul.pagination li a {
   .ui-datepicker .ui-datepicker-calendar .ui-datepicker-unselectable:hover {
     background-color: #fff;
     cursor: default; }
+
+/* line 1, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/hooks/_magnify.sass */
+html.magnifying > body {
+  overflow-x: hidden !important; }
+
+/* line 4, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/hooks/_magnify.sass */
+.magnify {
+  position: relative;
+  display: inline-block; }
+  /* line 8, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/hooks/_magnify.sass */
+  .magnify .magnify-lens {
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    border-radius: 100%;
+    -webkit-box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.85), 0 0 2px 2px rgba(0, 0, 0, 0.25), inset 0 0 40px 2px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.85), 0 0 2px 2px rgba(0, 0, 0, 0.25), inset 0 0 40px 2px rgba(0, 0, 0, 0.25);
+    cursor: none;
+    display: none;
+    z-index: 100; }
+    /* line 19, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/hooks/_magnify.sass */
+    .magnify .magnify-lens.loading {
+      background: #333 !important;
+      opacity: 0.75; }
+      /* line 22, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/hooks/_magnify.sass */
+      .magnify .magnify-lens.loading:after {
+        position: absolute;
+        top: 45%;
+        left: 0;
+        width: 100%;
+        color: #fff;
+        content: 'Loading...';
+        font: italic normal 16px/1 Calibri, sans-serif;
+        text-align: center;
+        text-shadow: 0 0 2px rgba(51, 51, 51, 0.8);
+        text-transform: none; }
 
 /* line 1, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/_global.sass */
 html {

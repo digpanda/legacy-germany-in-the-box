@@ -1,5 +1,19 @@
-<div class="fotorama" data-allowfullscreen="1" data-nav="thumbs" data-thumbheight="96" data-thumbwidth="96">
-  <% product.decorate.get_mas.decorate.all_nonempty_img_fields.each do |f| %>
-    <%= image_tag product.decorate.get_mas_img_url(f, :detail), :class => 'detail-img' %>
+<img id="main_image" />
+
+<div id="gallery" class="row">
+
+  <% product.decorate.get_mas.decorate.all_nonempty_img_fields.each do |file| %>
+
+  <div class="col-md-4">
+
+  <a href="#" data-image="<%= product.decorate.get_mas_img_url(file, :fullsize) %>" data-zoom-image="<%= product.decorate.get_mas_img_url(file, :zoomin) %>">
+
+    <img src="<%= product.decorate.get_mas_img_url(file, :thumb) %>" width="100px" />
+
+  </a>
+
+  </div>
+
   <% end %>
+
 </div>

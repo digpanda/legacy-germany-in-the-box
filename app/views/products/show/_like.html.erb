@@ -1,0 +1,9 @@
+    <% unless current_user.nil? %>
+
+    <% if product.is_favorite?(current_user) %>
+    <a href="#" class="js-heart-click +red" data-product-id="<%= product.id %>" data-favorite="1"><i class="fa fa-heart"></i></a>
+    <% else %>
+    <a href="#" class="js-heart-click +grey" data-product-id="<%= product.id %>" data-favorite="0"><i class="fa fa-heart"></i></a>
+    <% end %>
+
+    <% end %>

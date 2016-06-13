@@ -1,0 +1,48 @@
+{
+  "name": "germany_in_the_box",
+  "version": "0.0.0",
+  "authors": [
+    "Loschcode <bonjour@laurentschaffner.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.6",
+    "font-awesome": "^4.6.3",
+    "jquery": "^2.2.4",
+    "remodal": "^1.0.7",
+    "bootstrap-multiselect": "^0.9.13",
+    "jquery-ui": "^1.11.4",
+    "jquery-ujs": "^1.2.1",
+    "magnify": "^1.6.6"
+  },
+  "overrides": {
+    "bootstrap": {
+      "main": [
+        "dist/css/bootstrap-theme.min.css",
+        "dist/css/bootstrap.min.css",
+        "dist/fonts/glyphicons-halflings-regular.woff2",
+        "dist/js/bootstrap.min.js"
+      ]
+    },
+    "remodal": {
+      "main": [
+        "dist/remodal-default-theme.css",
+        "dist/remodal.css",
+        "dist/remodal.min.js"
+      ]
+    },
+    "bootstrap-multiselect": {
+      "main": [
+        "dist/js/bootstrap-multiselect.js",
+        "dist/css/bootstrap-multiselect.css"
+      ]
+    }
+  }
+}

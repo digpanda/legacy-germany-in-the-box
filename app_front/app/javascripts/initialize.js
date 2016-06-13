@@ -35,7 +35,7 @@ $(document).ready(() => {
 
   } catch(err) {
 
-    console.warn("Unable to initialize #js-routes `"+routes.controller+"`.`"+routes.action+"`");
+    console.warn("Unable to initialize #js-routes `"+routes.controller+"`.`"+routes.action+"` ("+err+")");
     return;
 
   }

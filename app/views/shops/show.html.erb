@@ -40,19 +40,19 @@
 
     <div class="row +nomargin">
 
+      <div class="+spacer"></div>
+
       <% if @shop.products.buyable.count > 0 %>
 
-      <div class="+spacer"></div>
-      <%= render partial: "products/products_list", :locals => { :products => @shop.products } %>
+      <%= render partial: "products/products_list", :locals => { :products => @shop.products.buyable } %>
 
       <% else %>
 
-      <!-- We should improve this and all the "no result" texts -->
-      <div class="message">
-        <div class="message__simple">
-          <%= I18n.t(:no_product, scope: :search) %>
-        </div>
-      </div>
+      <div class="+white-box +centered">
+        <h4>
+         <%= I18n.t(:no_products, scope: :cart) %>
+       </h4>
+     </div>
 
       <% end %>
 
