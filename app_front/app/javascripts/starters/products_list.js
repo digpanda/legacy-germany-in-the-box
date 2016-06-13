@@ -22,6 +22,7 @@ var ProductsList = {
 
         wall.reset({
           selector: '.js-brick',
+          delay: 0,
           animate: false,
           cellW: 260,
           cellH: 'auto',
