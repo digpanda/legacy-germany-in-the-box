@@ -22,6 +22,10 @@ class SkuDecorator < Draper::Decorator
     "%.2f #{Settings.instance.platform_currency.symbol}" % (self.price * Settings.instance.exchange_rate_to_yuan)
   end
 
+  def price_with_currency_euro
+    "%.2f #{Settings.instance.supplier_currency.symbol}" % self.price
+  end
+
   def get_options_txt
     variants = self.option_ids.map do |oid|
       self.product.options.detect do |v|

@@ -43,9 +43,17 @@ class ProductDecorator < Draper::Decorator
 
   def preview_price
     if self.skus.first.nil?
-      "0.00 #{Settings.instance.platform_currency.symbol}" # Should be improved.
+      "0.00 #{Settings.instance.platform_currency.symbol}"
     else
       self.skus.first.decorate.price_with_currency
+    end
+  end
+
+  def preview_price_euro
+    if self.skus.first.nil?
+      "0.00 #{Settings.instance.supplier_currency.symbol}"
+    else
+      self.skus.first.decorate.price_with_currency_euro
     end
   end
 end
