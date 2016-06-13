@@ -1,9 +1,10 @@
 #!/bin/sh
-DIR=`date +%Y-%m-%d`
+DIR=`date +%Y-%m-%d-%H_%M_%S`
 BACKUP_DIR=/home/ubuntu/dbbackup
+LOG_DIR=$BACKUP_DIR/log
+
 PROD_BACKUP_DIR=$BACKUP_DIR/prod_$DIR
 STAGING_BACKUP_DIR=$BACKUP_DIR/staging_$DIR
-LOG_DIR=$BACKUP_DIR/log
 
 mkdir $PROD_BACKUP_DIR
 mkdir $STAGING_BACKUP_DIR

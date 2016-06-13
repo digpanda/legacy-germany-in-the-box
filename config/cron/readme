@@ -1,4 +1,5 @@
-########### install mongo tools ################
+////////////////////////////////////////////////////////////////
+########### Staging server: install mongo tools ################
 
 #first install mongo tools on linux server, for ubuntu 14.04 it is:
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
@@ -12,13 +13,35 @@ sudo apt-get install mongodb-org-tools
 #optional: install in case you need mongo shell
 sudo apt-get install mongodb-org-shell
 
-########### create dbback dir ################
+########### Staging server: create dbback dir ################
 mkdir /home/ubuntu/dbbackup/
 mkdir /home/ubuntu/dbbackup/log
 
-########### create Linux cron job ################
+########### Staging server: create Linux cron job ################
 copy jobs defined in crontab.txt into linux cron, using command: crontab -e
 
+
+
+
+
+////////////////////////////////////////////////////////////////
+########### Local dev machine: install mongodb #################
+1. install mongodb
+2. config you need:
+mkdir ~/dbbackup
+mkdir ~/dbbackup/log
+cp <project_dir>/config/cron/dump_and_restore_local_dev.sh ~/dbbackup
+cd ~/dbbackup
+chmod +x dump_and_restore_local_dev.sh
+3. config port in dump_and_restore_local_dev.sh if you are not using default 27017
+4. create alias for your shell e.g.: for bash add in ~/.bashrc this line:
+alias reloaddb="cd ~/dbbackup && ./dump_and_restore_local_dev.sh"
+5.run the DB load from staging db into local db:
+source ~/.bashrc
+reloaddb
+
+
+////////////////////////////////////////////////////////////////
 ################ Image bucket Tool ################
 https://github.com/qiniu/qshell
 #we need automate the image clone from qiniu prod bucket -> qiniu stagging bucket
