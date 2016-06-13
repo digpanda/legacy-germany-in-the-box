@@ -5,8 +5,8 @@ class Settings
   include MongoidBase
 
   field :exchange_rate_to_yuan, type: BigDecimal, default: 7.6
-  field :platform_currency,     type: ISO4217::Currency, default: 'CNY'
-  field :supplier_currency,     type: ISO4217::Currency, default: 'EUR'
+  field :platform_currency,     type: ISO4217::Currency, default: ISO4217::Currency.from_code('CNY')
+  field :supplier_currency,     type: ISO4217::Currency, default: ISO4217::Currency.from_code('EUR')
   field :max_total_per_day,    type: BigDecimal, default: 1000
 
   validates :platform_currency,       presence: true
