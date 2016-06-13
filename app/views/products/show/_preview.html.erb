@@ -16,13 +16,18 @@
 
   <div id="thumbnail-<%= num %>" class="col-md-4 +centered">
 
-    <a href="#" data-image="<%= product.decorate.get_mas_img_url(file, :fullsize) %>" data-zoom-image="<%= product.decorate.get_mas_img_url(file, :zoomin) %>">
+    <% unless file.nil? %>
 
-      <img src="<%= product.decorate.get_mas_img_url(file, :thumb) %>" width="100px" />
+      <a href="#" data-image="<%= product.decorate.get_mas_img_url(file, :fullsize) %>" data-zoom-image="<%= product.decorate.get_mas_img_url(file, :zoomin) %>">
 
-    </a>
+        <img src="<%= product.decorate.get_mas_img_url(file, :thumb) %>" width="100px" />
+
+      </a>
+
+    <% end %>
 
   </div>
+
 
   <% end %>
 
