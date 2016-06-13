@@ -4,25 +4,26 @@ class DutyAndCustomerCategorySelectStore
     @classz = Object.const_get(class_name)
   end
 
-  def categories
-    @categories ||= @classz.all.is_active.to_a
-  end
-
   def grouped_categories_options(locale)
-    @grouped_categories_options ||= {}
-    @grouped_categories_options[locale] = categories.sort {|a,b| a.name <=> b.name } .map {|c| [c.name_translations[locale], c.id.to_s] }
+    Rails.cache.fetch("grouped_categories_options_#{locale}") {
+      second_last_branches.sort {|a,b| a.name <=> b.name } .map {|c| [c.name_translations[locale], children(c).map { |cc| [cc.name_translations[locale], cc.id.to_s] }, c.id.to_s] }
+    }
   end
 
-  def total_products(category)
-    if category.children_count > 0
-      children(category).inject(0) { |sum, c| sum += total_products(c) }
-    else
-      category.product_ids ? category.product_ids.size : 0
-    end
+  private
+
+  def categories
+    @categories ||= @classz.all.is_active.to_a.map { |c| [c.id.to_s, c] }.to_h
   end
 
   def second_last_branches
-    @second_last_branches ||= categories.select { |c| c.children_count == 0 } .map { |c| categories.detect { |p| p.id.to_s == c.parent_id.to_s } }.uniq
+    @second_last_branches ||= categories.values.select { |c| c.children_count == 0 } .map { |c| categories[c.parent_id.to_s] }.compact.uniq
+
+    if @second_last_branches.size == 0
+      categories.values
+    else
+      @second_last_branches
+    end
   end
 
   def children(category)
@@ -31,7 +32,7 @@ class DutyAndCustomerCategorySelectStore
 
   def categories_by_parent
     @categories_by_parent ||=
-        categories.each_with_object(Hash.new{ |h,v| h[v] = [] }) do |category, memo|
+        categories.values.each_with_object(Hash.new{ |h,v| h[v] = [] }) do |category, memo|
             memo[category.parent_id.to_s] << category
         end
   end
