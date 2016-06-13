@@ -67,6 +67,10 @@ namespace :guest do
     concerns :shared_guest_order_items
   end
 
+  resources :products  do
+    concerns :shared_guest_products
+  end
+
 end
 
 resources :orders, only: [:destroy, :show] do

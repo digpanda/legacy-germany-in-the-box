@@ -18,13 +18,13 @@
 
         <% if @product.decorate.get_mas %>
 
-          <span class="+price-yuan"><%= @product.decorate.preview_price %></span> <span class="+price-euro"><%= @product.decorate.preview_price_euro %></span>
+          <span id="product_price_with_currency_yuan" class="+price-yuan"><%= @product.decorate.preview_price %></span> <span id="product_price_with_currency_euro" class="+price-euro"><%= @product.decorate.preview_price_euro %></span>
 
         <% end %>
 
         <% unless @product.decorate.get_mas.unlimited %>
           <% if @product.decorate.get_mas.quantity <= ::Rails.application.config.digpanda["products_warning"] %>
-            | <span class="+red +up +bold"> Only <%= @product.decorate.get_mas.quantity %> left</span>
+            | <span class="+red +up +bold"> Only <span id="quantity-left"><%= @product.decorate.get_mas.quantity %></span> left</span>
           <% end %>
         <% end %>
 

@@ -4,8 +4,6 @@ class Api::Guest::OrderItemsController < Guest::OrderItemsController
   
   # +/- items of the same product
   def set_quantity
-    # You can use @order_item here
-    # The json-view is in views/api/order_item/set_quantity.json.jbuilder
 
     product = @order_item.product
     skus = product.skus.find(@order_item.sku_id)

@@ -13,7 +13,6 @@ var Starters = [
   'messages',
   'product_favorite',
   'product_form',
-  'product_lightbox',
   'search',
 ]
 

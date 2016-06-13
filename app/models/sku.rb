@@ -50,6 +50,7 @@ class Sku
 
   scope :is_active,       ->        { where( :status => true ) }
   scope :in_stock,        ->        { where( :quantity.gt => 0 ) }
+  scope :buyable,         ->        { where( :status => true ).where( :quantity.gt => 0 ) }
 
   before_save :clean_blank_and_duplicated_option_ids
   before_save :clean_quantity, :if => lambda { self.unlimited }

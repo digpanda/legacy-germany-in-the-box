@@ -1,18 +1,33 @@
-<img id="main_image" />
+<div class="row +centered">
+  <img id="main_image" class="magnify-full-image" />
+</div>
 
-<div id="gallery" class="row">
+<div id="gallery">
 
-  <% product.decorate.get_mas.decorate.all_nonempty_img_fields.each do |file| %>
+  <%  files = product.decorate.get_mas.decorate.all_nonempty_img_fields %>
 
-  <div class="col-md-4">
+  <% [*0..20].in_groups_of(3, false).each do |num_groups| %>
 
-  <a href="#" data-image="<%= product.decorate.get_mas_img_url(file, :fullsize) %>" data-zoom-image="<%= product.decorate.get_mas_img_url(file, :zoomin) %>">
+  <div class="row">
 
-    <img src="<%= product.decorate.get_mas_img_url(file, :thumb) %>" width="100px" />
+  <% num_groups.each do |num| %>
 
-  </a>
+  <% file = files[num] %>
+
+  <div id="thumbnail-<%= num %>" class="col-md-4 +centered">
+
+    <a href="#" data-image="<%= product.decorate.get_mas_img_url(file, :fullsize) %>" data-zoom-image="<%= product.decorate.get_mas_img_url(file, :zoomin) %>">
+
+      <img src="<%= product.decorate.get_mas_img_url(file, :thumb) %>" width="100px" />
+
+    </a>
 
   </div>
+
+  <% end %>
+
+  </div>
+  <div class="+small-spacer"></div>
 
   <% end %>
 

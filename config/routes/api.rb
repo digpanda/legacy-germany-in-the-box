@@ -20,6 +20,13 @@ namespace :api, defaults: { format: 'json' }  do
       concerns :shared_guest_order_items
     end
 
+    resources :products  do
+      
+      match :show_sku, via: [:get], action: :show_sku, as: :show_sku, :on => :member
+
+      concerns :shared_guest_products
+    end
+
   end
 
   # Should be put somewhere

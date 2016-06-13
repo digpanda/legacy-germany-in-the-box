@@ -340,22 +340,80 @@ var ProductsShow = {
    */
   init: function init() {
 
-    $('#gallery a').on('click', function (e) {
+    this.handleProductGalery();
+    this.handleSkuChange();
+  },
+
+  handleProductGalery: function handleProductGalery() {
+
+    $(document).on('click', '#gallery a', function (e) {
+
+      console.log('click trigerring');
+
+      var image = $(this).data('image');
+      var zoomImage = $(this).data('zoom-image');
 
       /**
        * Homemade Gallery System by Laurent
        */
       e.preventDefault();
 
-      $('#main_image').attr('src', $(this).data('image'));
+      // Changing the image when we click on any thumbnail of the #gallery
+      $('#main_image').attr('src', image);
 
       $('#main_image').magnify({
         speed: 0,
-        src: $(this).data('zoom-image')
+        src: zoomImage
       });
     });
 
+    // We don't forget to trigger the click to load the first image
     $('#gallery a:first').trigger('click');
+  },
+
+  handleSkuChange: function handleSkuChange() {
+
+    $('select#option_ids').change(function () {
+
+      var product_id = $(this).attr('product_id');
+      var option_ids = [];
+
+      $('ul.product-page-meta-info [id^="product_' + product_id + '_variant"]').each(function (o) {
+        option_ids.push($(this).val());
+      });
+
+      $.ajax({
+
+        dataType: 'json',
+        data: { option_ids: this.value.split(',') },
+        url: '/api/guest/products/' + product_id + '/show_sku',
+        success: function success(json) {
+          var qc = $('#product_quantity_' + product_id).empty();
+
+          for (var i = 1; i <= parseInt(json['quantity']); ++i) {
+            qc.append('<option value="' + i + '">' + i + '</option>');
+          }
+
+          $('#product_price_with_currency_yuan').html(json['price_with_currency_yuan']);
+          $('#product_price_with_currency_euro').html(json['price_with_currency_euro']);
+          $('#quantity-left').html(json['quantity']);
+
+          var images = json['images'];
+
+          for (var _i = 0; _i < images.length; _i++) {
+
+            var image = images[_i];
+
+            if ($('#thumbnail-' + _i).length > 0) {
+              $('#thumbnail-' + _i).html('<a href="#" data-image="' + image.fullsize + '" data-zoom-image="' + image.zoomin + '"><img src="' + image.thumb + '" width="100px"></a>');
+            }
+          }
+
+          ProductsShow.handleProductGalery();
+        }
+
+      });
+    });
   }
 
 };
@@ -781,7 +839,7 @@ require.register("javascripts/starters.js", function(exports, require, module) {
 /**
  * Starters Class
  */
-var Starters = ['bootstrap', 'china_city', 'datepicker', 'footer', 'images_control', 'images_handler', 'left_menu', 'messages', 'product_favorite', 'product_form', 'product_lightbox', 'search'];
+var Starters = ['bootstrap', 'china_city', 'datepicker', 'footer', 'images_control', 'images_handler', 'left_menu', 'messages', 'product_favorite', 'product_form', 'search'];
 
 module.exports = Starters;
 });
@@ -1189,6 +1247,7 @@ var ProductFavorite = {
 
         // We remove the favorite front data
         $(this).removeClass('+red');
+        $(this).addClass('+grey');
         $(this).attr('data-favorite', '0');
 
         ProductFavorite.doUnlike(this, productId, function (res) {
@@ -1200,6 +1259,7 @@ var ProductFavorite = {
 
         // We change the style before the callback for speed reason
         $(this).addClass('+red');
+        $(this).removeClass('+grey');
         $(this).attr('data-favorite', '1');
 
         ProductFavorite.doLike(this, productId, function (res) {
@@ -1304,68 +1364,6 @@ var ProductForm = {
 };
 
 module.exports = ProductForm;
-});
-
-require.register("javascripts/starters/product_lightbox.js", function(exports, require, module) {
-'use strict';
-
-/**
- * ProductLightbox Class
- */
-var ProductLightbox = {
-
-  /**
-   * Initializer
-   */
-  init: function init() {
-
-    this.selectVariantOptionLoader();
-  },
-
-  /**
-   * When in the lightbox if the customer change the variant option
-   * It will reload everything through AJAX
-   */
-  selectVariantOptionLoader: function selectVariantOptionLoader() {
-
-    if ($('select.variant-option').length > 0) {
-
-      $('select.variant-option').change(function () {
-
-        var product_id = $(this).attr('product_id');
-        var option_ids = [];
-
-        $('ul.product-page-meta-info [id^="product_' + product_id + '_variant"]').each(function (o) {
-          option_ids.push($(this).val());
-        });
-
-        $.ajax({
-          dataType: 'json',
-          data: { option_ids: this.value.split(',') },
-          url: '/api/products/' + product_id + '/get_sku_for_options',
-          success: function success(json) {
-            var qc = $('#product_quantity_' + product_id).empty();
-
-            for (var i = 1; i <= parseInt(json['quantity']); ++i) {
-              qc.append('<option value="' + i + '">' + i + '</option>');
-            }
-
-            $('#product_price_' + product_id).text(json['price'] + ' ' + json['currency']);
-            $('#product_discount_' + product_id).text(json['discount'] + ' ' + '%');
-            $('#product_saving_' + product_id).text(parseFloat(json['price']) * parseInt(json['discount']) / 100 + ' ' + json['currency']);
-            $('#product_inventory_' + product_id).text(json['quantity']);
-
-            var fotorama = $('.fotorama').fotorama().data('fotorama');
-            fotorama.load([{ img: json['img0_url'] }, { img: json['img1_url'] }, { img: json['img2_url'] }, { img: json['img3_url'] }]);
-          }
-        });
-      });
-    }
-  }
-
-};
-
-module.exports = ProductLightbox;
 });
 
 require.register("javascripts/starters/search.js", function(exports, require, module) {
