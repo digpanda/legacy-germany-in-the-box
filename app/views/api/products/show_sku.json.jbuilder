@@ -1,4 +1,4 @@
-json.extract! sku, :id, :price, :limited, :weight, :status, :customizable, :discount, :quantity
+json.extract! sku, :id, :price, :weight, :status, :customizable, :discount, :quantity
 json.currency sku.product.shop.currency.code
 
 json.img0_url sku.img0.url
