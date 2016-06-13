@@ -37,7 +37,8 @@ class Ability
       can [:show,
            :like], Product, :status => true
 
-      can [:unlike], Product
+      can [:unlike,
+        ], Product
 
       can [:skus], Product
 
@@ -57,6 +58,7 @@ class Ability
       can [:create,
            :update,
            :edit_account,
+           :favorites,
            :edit_personal,
            :edit_bank], User, :id => user.id
 
@@ -114,6 +116,7 @@ class Ability
            :show_products,
            :edit_product,
            :show_skus,
+           :show_likes,
            :edit_sku,
            :clone_sku], Product, :shop => { :shopkeeper => user }
 
@@ -126,6 +129,7 @@ class Ability
 
       can [:index,
            :search,
+           :favorites,
            :unfollow], User
 
       can [:show,

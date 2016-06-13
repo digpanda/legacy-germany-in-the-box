@@ -14,9 +14,11 @@ class UsersController < ApplicationController
                                     :new,
                                     :create]
 
+  layout :custom_sublayout, only: [:favorites]
+
   include Base64ToUpload
 
-  layout :custom_sublayout, only: [:index, :edit_account, :edit_personal, :edit_bank]
+  layout :custom_sublayout, only: [:index, :edit_account, :edit_personal, :edit_bank, :favorites]
 
   before_action(:only =>  [:create, :update]) {
     base64_to_uploadedfile :user, :pic
@@ -27,6 +29,10 @@ class UsersController < ApplicationController
   end
 
   def show
+  end
+
+  def favorites
+    @favorites = current_user.favorites
   end
 
   def new
@@ -159,7 +165,7 @@ class UsersController < ApplicationController
   private
 
   def set_user
-    @user = User.find(params[:id])
+    @user = User.find(params[:id]) unless params[:id].nil?
   end
 
   def user_params
