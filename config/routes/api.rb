@@ -29,12 +29,20 @@ namespace :api, defaults: { format: 'json' }  do
 
   end
 
+  # Customer related
+  namespace :customer do
+
+    resources :favorites  do
+      concerns :shared_customer_favorites
+    end
+
+  end
+
+
   # Should be put somewhere
   resources :products  do
 
     match :get_sku_for_options,                     via: [:get],    action: :get_sku_for_options,         as: :get_sku_for_options,         :on => :member
-    match :like,                                    via: [:patch],  action: :like,                        as: :like,                        :on => :member
-    match :unlike,                                 via: [:patch],  action: :unlike,                     as: :unlike,                     :on => :member
 
     concerns :shared_products
   end

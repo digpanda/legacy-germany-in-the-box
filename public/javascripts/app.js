@@ -1273,9 +1273,10 @@ var ProductFavorite = {
 
   doLike: function doLike(el, productId, callback) {
 
+    // We should move it to front-end models
     $.ajax({
-      method: "PATCH",
-      url: "/api/products/" + productId + "/like",
+      method: "PUT",
+      url: "/api/customer/favorites/" + productId,
       data: {}
 
     }).done(function (res) {
@@ -1294,14 +1295,18 @@ var ProductFavorite = {
 
   doUnlike: function doUnlike(el, productId, callback) {
 
+    // We should move it to front-end models
     $.ajax({
-      method: "PATCH",
-      url: "/api/products/" + productId + "/unlike",
+      method: "DELETE",
+      url: "/api/customer/favorites/" + productId,
       data: {}
 
     }).done(function (res) {
 
       callback(res);
+    }).error(function (err) {
+
+      console.error(err.responseJSON.error);
     });
   }
 };

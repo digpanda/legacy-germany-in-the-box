@@ -31,10 +31,6 @@ class UsersController < ApplicationController
   def show
   end
 
-  def favorites
-    @favorites = current_user.favorites
-  end
-
   def new
     @user = User.new
   end

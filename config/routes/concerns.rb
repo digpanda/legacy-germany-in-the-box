@@ -8,7 +8,6 @@ concern :shared_user do
   match 'users/sign_out', via: [:delete],   to: 'sessions#destroy',             as: :signout
   match :cancel_login,    via: [:get],      to: 'sessions#cancel_login',        as: :cancel_login
   match :cancel_signup,   via: [:get] ,     to: 'registrations#cancel_signup',  as: :cancel_signup
-  match :favorites, via: [:get], to: 'users#favorites', as: :user_favorites
 end
 
 concern :shared_page do
@@ -20,6 +19,9 @@ concern :shared_page do
   match :saleguide,   via: [:get],    action: :saleguide,   as: :saleguide
   match :fees,        via: [:get],    action: :fees,        as: :fees
   match :home,        via: [:get],    action: :home,        as: :home
+end
+
+concern :shared_customer_favorites do
 end
 
 concern :shared_guest_order_items do

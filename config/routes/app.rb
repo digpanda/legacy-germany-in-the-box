@@ -73,6 +73,15 @@ namespace :guest do
 
 end
 
+# Customer related
+namespace :customer do
+
+  resources :favorites  do
+    concerns :shared_customer_favorites
+  end
+
+end
+
 resources :orders, only: [:destroy, :show] do
   concerns :shared_orders
 

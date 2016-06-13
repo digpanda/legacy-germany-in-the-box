@@ -75,7 +75,7 @@
     <!-- Customer Likes -->
     <div class="col-md-1 pull-right +centered +menu-bordering">
 
-      <a href="<%= (current_user.nil? ? "#" : user_favorites_path(:user_info_edit_part => :edit_collection)) %>">
+      <a href="<%= (current_user.nil? ? new_user_session_path : customer_favorites_path) %>">
         
         <div class="main-header__likes">
         <i class="fa fa-heart"></i> 
