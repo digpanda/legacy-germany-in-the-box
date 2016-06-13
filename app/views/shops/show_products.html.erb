@@ -1,4 +1,4 @@
-<a class="<%= for_device_type :desktop do 'btn-lg' end %> btn btn-primary" href="<%= new_shop_product_path(@shop, :user_info_edit_part => :edit_product_new) %>">
+<a class="btn-lg btn btn-primary" href="<%= new_shop_product_path(@shop, :user_info_edit_part => :edit_product_new) %>">
   <i class="fa fa-plus-circle"></i>
   <%= I18n.t(:new, scope: :edit_product) %>
 </a>
@@ -68,7 +68,9 @@
     </tbody>
   </table>
 <% else %>
+<div class="col-md-6 col-md-push-3 col-md-pull-3 +white-box +centered">
   <h4>
-    <%= I18n.t(:no_product, scope: :edit_product) %>
-  </h4>
+   <%= I18n.t(:no_products, scope: :cart) %>
+ </h4>
+</div>
 <% end %>
