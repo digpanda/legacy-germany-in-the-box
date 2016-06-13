@@ -14,8 +14,6 @@ var ImagesControl = {
 
     validateImageFile: function() {
 
-      console.log('loaded');
-
       $("input[class^=img-file-upload]").on('change', function() {
 
         var inputFile = this;

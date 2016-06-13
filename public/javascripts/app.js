@@ -1027,7 +1027,7 @@ module.exports = Footer;
 });
 
 require.register("javascripts/starters/images_control.js", function(exports, require, module) {
-'use strict';
+"use strict";
 
 /**
  * ImageControl Class
@@ -1043,8 +1043,6 @@ var ImagesControl = {
   },
 
   validateImageFile: function validateImageFile() {
-
-    console.log('loaded');
 
     $("input[class^=img-file-upload]").on('change', function () {
 
