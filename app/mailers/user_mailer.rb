@@ -5,7 +5,7 @@ class UserMailer < ApplicationMailer
     @user = user
     @title = title
     @url = url
-    mail(to: "laurent.schaffner@digpanda.com", subject: "Notification : #{@title}") # @user.email
+    mail(to: @user.email, subject: "Notification : #{@title}") # @user.email
   end
 
 end
