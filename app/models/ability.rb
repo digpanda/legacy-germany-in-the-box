@@ -9,17 +9,20 @@ class Ability
     # Namespaced authorization
     case controller_namespace
 
-      when 'Guest', 'Api::Guest'
+      when 'Guest', 'Api::Guest' # Anyone
         can :manage, :all
 
-      when 'Customer', 'Api::Customer'
+      when 'Customer', 'Api::Customer' # Customer only
         can :manage, :all if user.role == :customer
 
-      when 'Shopkeeper', 'Api::Shopkeeper'
+      when 'Shopkeeper', 'Api::Shopkeeper' # Shopkeeper only
         can :manage, :all if user.role == :shopkeeper
 
-      when 'Admin', 'Api::Admin'
+      when 'Admin', 'Api::Admin' # Admin only
         can :manage, :all if user.role == :admin
+
+      when 'Shared', 'Api::Shared' # If the user is logged-in in any type of account
+        can :manage, :all if user.id != nil
 
     end
 

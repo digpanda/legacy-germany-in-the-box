@@ -82,6 +82,14 @@ namespace :customer do
 
 end
 
+# Shared related
+namespace :shared do
+
+  resources :notifications do
+    concerns :shared_shared_notifications
+  end
+
+end
 resources :orders, only: [:destroy, :show] do
   concerns :shared_orders
 

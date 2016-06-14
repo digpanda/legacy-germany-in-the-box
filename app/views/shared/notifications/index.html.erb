@@ -1,0 +1,39 @@
+<% if @notifications.size > 0 %>
+  <table class="table cart-table">
+    <thead>
+      <tr>
+        <th>
+          Title
+        </th>
+        <th>
+          Description
+        </th>
+        <th>
+          Date
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @notifications.each do |notification| %>
+        <tr class="<% unless notification.is_read? %>+unread <% notification.has_read! %><% end %>">
+          <td>
+            <strong><%= notification.title %></strong>
+          </td>
+          <td>
+            <%= notification.desc %>
+          </td>
+          <td>
+            <%= notification.c_at %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= will_paginate @notifications, renderer: BootstrapPagination::Rails %>
+<% else %>
+<div class="+white-box +centered">
+  <h4>
+    <%= I18n.t(:no_order, scope: :edit_order) %>
+  </h4>
+</div>
+<% end %>

@@ -24,6 +24,9 @@ end
 concern :shared_customer_favorites do
 end
 
+concern :shared_shared_notifications do
+end
+
 concern :shared_guest_order_items do
 end
 

@@ -18,6 +18,25 @@
       border-radius: 25px
       width: 50px
 
+    +option(notification)
+
+      right: 15px
+      top: -5px
+      z-index: 5
+      position: absolute
+      width: 20px
+      height: 20px
+      margin-bottom: 2px
+      background-color: $color-red
+      color: $color-white
+      -webkit-border-radius: 50%
+      -moz-border-radius: 50%
+      border-radius: 50%
+      a
+        color: $color-white
+        &:hover
+          color: $color-white
+
   +part(likes)
     font-size: $header-buttons-text-size
     color: $color-black
