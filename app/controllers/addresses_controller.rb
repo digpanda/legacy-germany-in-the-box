@@ -97,7 +97,7 @@ class AddressesController < ApplicationController
         ap[:district] = ChinaCity.get(ap[:district])
         ap[:city] = ChinaCity.get(ap[:city])
         ap[:province] = ChinaCity.get(ap[:province])
-        ap[:country] = ISO3166::Country.find_by_name(ap[:country])[0]
+        ap[:country] = 'CN'
 
         if (flag = address.update(ap))
           if address.primary
@@ -111,7 +111,7 @@ class AddressesController < ApplicationController
     elsif current_user.is_shopkeeper?
       address = current_user.shop.addresses.find(params[:id])
       ap = address_params
-      ap[:country] = ISO3166::Country.find_by_name(ap[:country])[0]
+      ap[:country] = 'DE'
       flag = address.update(ap)
     elsif current_user.is_admin?
       address = Address.find(params[:id])
