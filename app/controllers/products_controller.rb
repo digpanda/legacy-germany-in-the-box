@@ -135,7 +135,7 @@ class ProductsController < ApplicationController
 
     @products = Product.search(@query)
 
-    @products = Product.all
+    @products = Product.buyable.all
 
   end
 
