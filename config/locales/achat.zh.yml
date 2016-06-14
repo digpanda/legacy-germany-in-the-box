@@ -285,6 +285,7 @@ zh-CN:
       info: AGB
       'true': 是
       'false': 否
+    addresses: 地址
   edit_shop:
     email: 邮箱
     name: 公司名或生产厂家
