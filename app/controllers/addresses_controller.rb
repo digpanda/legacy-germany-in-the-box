@@ -111,6 +111,10 @@ class AddressesController < ApplicationController
       ap = address_params
       ap[:country] = ISO3166::Country.find_by_name(ap[:country])[0]
       flag = address.update(ap)
+    elsif current_user.is_admin?
+      address = Address.find(params[:id])
+      ap = address_params
+      flag = address.update(ap)
     end
 
     if flag
@@ -162,14 +166,13 @@ class AddressesController < ApplicationController
                                       :city,
                                       :province,
                                       :zip,
-                                      :country,
                                       :primary,
                                       :mobile,
                                       :tel,
                                       :fname,
                                       :lname,
                                       :pid)
-    elsif current_user.is_shopkeeper?
+    elsif current_user.is_admin? || current_user.is_shopkeeper?
       params.require(:address).permit(:number,
                                       :street,
                                       :additional,
@@ -177,7 +180,6 @@ class AddressesController < ApplicationController
                                       :city,
                                       :province,
                                       :zip,
-                                      :country,
                                       :type,
                                       :mobile,
                                       :tel,
