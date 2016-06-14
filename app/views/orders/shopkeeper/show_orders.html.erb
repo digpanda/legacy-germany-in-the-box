@@ -43,7 +43,9 @@
   </table>
   <%= will_paginate @orders, renderer: BootstrapPagination::Rails %>
 <% else %>
+<div class="+white-box +centered">
   <h4>
     <%= I18n.t(:no_order, scope: :edit_order) %>
   </h4>
+</div>
 <% end %>

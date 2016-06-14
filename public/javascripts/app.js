@@ -1389,9 +1389,7 @@ var ProductsList = {
 
     if ($('#freewall-products').length > 0) {
 
-      var wall;
-
-      wall = new freewall("#freewall-products");
+      var wall = new freewall("#freewall-products");
 
       wall.reset({
         selector: '.js-brick',
@@ -1404,15 +1402,8 @@ var ProductsList = {
         }
       });
 
-      wall.fitWidth();
-      $('#freewall-products').hide();
-
-      /*wall.container.find('.js-brick img:first').load(function() {
-        return wall.fitWidth();
-      });*/
-      wall.container.find('.js-brick img:last').load(function () {
-        $('#freewall-products').show();
-        wall.fitWidth();
+      wall.container.find('.js-brick img').load(function () {
+        $(window).trigger('resize');
       });
 
       $(window).trigger('resize');
