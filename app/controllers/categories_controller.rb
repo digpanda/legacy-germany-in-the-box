@@ -12,7 +12,7 @@ class CategoriesController < ApplicationController
 
   layout :custom_sublayout, only: [:index]
 
-  before_action :breadcrumb_home
+  before_action :breadcrumb_home, only: [:show]
   before_action :breadcrumb_category, only: [:show]
 
   def show

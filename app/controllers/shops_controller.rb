@@ -10,7 +10,7 @@ class ShopsController <  ApplicationController
 
   load_and_authorize_resource
 
-  before_action :breadcrumb_home
+  before_action :breadcrumb_home, only: [:show]
   before_action :breadcrumb_category, :breadcrumb_shop, only: [:show]
 
   attr_reader :shop, :shops

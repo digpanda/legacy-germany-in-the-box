@@ -11,7 +11,7 @@ class ProductsController < ApplicationController
 
   layout :custom_sublayout, only: [:new, :new_sku, :edit, :edit_sku, :clone_sku, :show_skus]
 
-  before_action :breadcrumb_home
+  before_action :breadcrumb_home, only: [:show]
   before_action :breadcrumb_category, :breadcrumb_shop, :breadcrumb_product, only: [:show]
 
   def new
