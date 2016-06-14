@@ -202,12 +202,16 @@ class ApplicationController < ActionController::Base
     Ability.new(current_user, controller_namespace)
   end
 
+  def clean_shop_id(shop_id)
+    session[:order_ids]&.delete(shop_id)
+  end
+
   def _current_order(shop_id)
     if has_order?(shop_id)
       order = Order.find(session[:order_ids][shop_id])
 
       if order.status == :success
-        session[:order_ids].delete(shop_id)
+        clean_shop_id(shop_id)
         order = nil
       end
     end
