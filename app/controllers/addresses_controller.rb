@@ -28,8 +28,10 @@ class AddressesController < ApplicationController
   end
 
   def create
-    if current_user.is_customer?
-      num_addresses = current_user.addresses.count
+    user = User.find(params[:user_id])
+
+    if user.is_customer?
+      num_addresses = user.addresses.count
 
       if num_addresses >= Rails.configuration.max_num_addresses
 
@@ -44,22 +46,22 @@ class AddressesController < ApplicationController
         ap[:district] = ChinaCity.get(ap[:district])
         ap[:city] = ChinaCity.get(ap[:city])
         ap[:province] = ChinaCity.get(ap[:province])
-        ap[:country] = ISO3166::Country.find_by_name(ap[:country])[0]
+        ap[:country] = 'CN'
 
         address = Address.new(ap)
-        address.user = current_user
+        address.user = user
 
         if (flag = address.save)
           if address.primary and num_addresses > 0
-            current_user.addresses.select { |a| a.primary and a != address } .each do |a|
+            user.addresses.select { |a| a.primary and a != address } .each do |a|
               a.primary = false
               flag &&= a.save
             end
           end
         end
       end
-    elsif current_user.is_shopkeeper?
-      num_addresses = current_user.shop.addresses.count
+    elsif user.is_shopkeeper?
+      num_addresses = user.shop.addresses.count
       max_num_addresses = Rails.configuration.max_num_shop_billing_addresses + Rails.configuration.max_num_shop_sender_addresses
 
       if num_addresses >= max_num_addresses
@@ -69,10 +71,10 @@ class AddressesController < ApplicationController
 
       else
         ap = address_params
-        ap[:country] = ISO3166::Country.find_by_name(ap[:country])[0]
+        ap[:country] = 'DE'
 
         address = Address.new(ap)
-        address.shop = current_user.shop
+        address.shop = user.shop
 
         flag = address.save
       end
@@ -142,6 +144,9 @@ class AddressesController < ApplicationController
       end
     elsif current_user.is_shopkeeper?
       address = current_user.shop.addresses.find(params[:id])
+      flag = address.delete
+    elsif current_user.is_admin?
+      address = Address.find(params[:id])
       flag = address.delete
     end
 

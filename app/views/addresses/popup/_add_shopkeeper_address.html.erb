@@ -1,5 +1,7 @@
 <div class="row col-md-12 address-popup">
 <%= form_for @address do |f| %>
+  <%= hidden_field_tag :user_id, @user.id.to_s %>
+
   <div class="form-group">
     <h4>
       <%= I18n.t(:new_address_title, scope: :edit_address) %>
@@ -40,7 +42,6 @@
           <%= f.text_field :province, class: 'form-control', :placeholder => I18n.t(:province, scope: :edit_address), :required => true %>
         </div>
       </div>
-      <%= f.hidden_field :country, :class => 'form-control', :value => ISO3166::Country[:DE].local_name, :readonly => true %>
     </div>
     <div class="form-group">
       <% if @user.shop.decorate.more_billing_address? %>
