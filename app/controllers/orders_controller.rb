@@ -22,7 +22,7 @@ class OrdersController < ApplicationController
 
   def show_orders
     if current_user.is_customer?
-      @orders = current_user.orders.order_by(:c_at => 'desc').paginate(:page => (params[:page] ? params[:page].to_i : 1), :per_page => 10);
+      @orders = current_user.orders.nonempty.order_by(:c_at => 'desc').paginate(:page => (params[:page] ? params[:page].to_i : 1), :per_page => 10);
     elsif current_user.is_shopkeeper?
       @orders = current_user.shop.orders.paid.order_by(:c_at => 'desc').paginate(:page => (params[:page] ? params[:page].to_i : 1), :per_page => 10);
     elsif current_user.is_admin?
@@ -181,7 +181,10 @@ class OrdersController < ApplicationController
       order.order_items.each do |oi|
         oi.sku.quantity -= oi.quantity unless oi.sku.unlimited
         oi.price = oi.sku.price
-        oi.save!
+
+        if oi.save
+          session[:order_ids]&.delete(shop.id.to_s)
+        end
       end
 
       flash[:success] = I18n.t(:checkout_ok, scope: :checkout)

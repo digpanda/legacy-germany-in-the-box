@@ -20,6 +20,7 @@ class Order
   has_many :order_items,            :inverse_of => :order,    dependent: :restrict
   has_many :order_payments,         :inverse_of => :order,    dependent: :restrict
 
+  scope :nonempty,    ->  {  where( "order_items.0" => { "$exists" => true } ) }
   scope :is_active,   ->  { where( :status.ne => :success ) }
   scope :paid,        ->  { where( :status => :success ) }
 
