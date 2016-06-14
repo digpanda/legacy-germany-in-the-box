@@ -28,7 +28,7 @@ class EmitNotificationAndDispatchToUser
       #elsif notification.user.is_customer?
       #end
 
-      UserMailer.notify(notification.user, notification.title, shared_notifications_path(:user_info_edit_part => :edit_notification)).deliver_now
+      UserMailer.notify(notification.user, notification.title, Rails.application.routes.url_helpers.shared_notifications_path).deliver_now
 
     end
 
