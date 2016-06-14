@@ -181,7 +181,10 @@ class OrdersController < ApplicationController
       order.order_items.each do |oi|
         oi.sku.quantity -= oi.quantity unless oi.sku.unlimited
         oi.price = oi.sku.price
-        oi.save!
+
+        if oi.save
+          session[:order_ids]&.delete(shop.id.to_s)
+        end
       end
 
       flash[:success] = I18n.t(:checkout_ok, scope: :checkout)
