@@ -10,6 +10,7 @@ class Order
   field :border_guru_shipment_id,   type: String
   field :border_guru_link_tracking, type: String
   field :border_guru_link_payment,  type: String
+  field :order_items_count,         type: Fixnum, default: 0
 
   belongs_to :shop,                 :inverse_of => :orders
   belongs_to :user,                 :inverse_of => :orders
@@ -20,7 +21,7 @@ class Order
   has_many :order_items,            :inverse_of => :order,    dependent: :restrict
   has_many :order_payments,         :inverse_of => :order,    dependent: :restrict
 
-  scope :nonempty,    ->  {  where( "order_items.0" => { "$exists" => true } ) }
+  scope :nonempty,    ->  {  where( :order_items_count.gt => 0 ) }
   scope :is_active,   ->  { where( :status.ne => :success ) }
   scope :paid,        ->  { where( :status => :success ) }
 

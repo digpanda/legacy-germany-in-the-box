@@ -182,6 +182,13 @@ class OrdersController < ApplicationController
         oi.sku.quantity -= oi.quantity unless oi.sku.unlimited
         oi.price = oi.sku.price
         oi.save!
+<<<<<<< Updated upstream
+=======
+
+        #if oi.save
+        #  session[:order_ids]&.delete(shop.id.to_s)
+        #end
+>>>>>>> Stashed changes
       end
 
       remove_shop_id_from_session(shop.id.to_s)

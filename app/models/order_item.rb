@@ -11,7 +11,7 @@ class OrderItem
   field :option_ids,  type: Array,      default: []
 
   belongs_to :product,  :inverse_of => :order_items
-  belongs_to :order,    :inverse_of => :order_items,  touch: true
+  belongs_to :order,    :inverse_of => :order_items,  touch: true,  :counter_cache => true
 
   validates :quantity,      presence: true, :numericality => { :greater_than_or_equal_to => 1 }
   validates :weight,        presence: true, :numericality => { :greater_than_or_equal_to => 0 }
