@@ -23,7 +23,8 @@ var ProductForm = {
           nonSelectedText: productForm.translationNonSelectedText,
           nSelectedText: productForm.translationNSelectedText,
           enableFiltering: true,
-          enableCaseInsensitiveFiltering: true
+          enableCaseInsensitiveFiltering: true,
+          maxHeight: 400
         }).multiselect();
 
         $('#edit_product_submit_btn').click( function() {
