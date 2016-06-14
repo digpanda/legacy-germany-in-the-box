@@ -4,13 +4,14 @@ class ShopsController <  ApplicationController
 
 
   before_action :authenticate_user!, except: [:show]
-  before_action :set_shop, except: [:index]
+  before_action :set_shop, :set_category, except: [:index]
 
   layout :custom_sublayout, only: [:index, :edit_setting, :edit_producer, :show_products]
 
   load_and_authorize_resource
 
-  add_breadcrumb "Home", :root_path
+  before_action :breadcrumb_home
+  before_action :breadcrumb_category, :breadcrumb_shop, only: [:show]
 
   attr_reader :shop, :shops
 
@@ -51,8 +52,6 @@ class ShopsController <  ApplicationController
   end
 
   def show
-    add_breadcrumb @shop.categories.first.name, category_path(@shop.categories.first)
-    add_breadcrumb @shop.shopname, shop_path(@shop)
   end
 
   def update
@@ -91,6 +90,10 @@ class ShopsController <  ApplicationController
 
   def set_shop
     @shop = Shop.find(params[:id] || params[:shop_id]).decorate
+  end
+
+  def set_category
+    @category = @shop.categories.first
   end
 
   def shop_params(shop)

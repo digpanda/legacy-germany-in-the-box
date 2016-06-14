@@ -12,10 +12,10 @@ class CategoriesController < ApplicationController
 
   layout :custom_sublayout, only: [:index]
 
-  add_breadcrumb "Home", :root_path
+  before_action :breadcrumb_home
+  before_action :breadcrumb_category, only: [:show]
 
   def show
-    add_breadcrumb @category.name, category_path(@category)
   end
 
   def index
