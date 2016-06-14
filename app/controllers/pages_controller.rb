@@ -4,13 +4,6 @@ class PagesController < ApplicationController
 
   def home
     @categories = Category.all
-=begin
-    EmitNotificationAndDispatchToUser.perform({
-        :user_id => current_user.id,
-        :title => 'Test',
-        :description => 'Description'
-      })
-=end
   end
 
   def agb

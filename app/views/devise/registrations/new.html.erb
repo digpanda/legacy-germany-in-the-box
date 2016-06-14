@@ -11,10 +11,10 @@
 
   <%= form_tag user_registration_path, :method => :post, :class => 'dialog-form', 'data-toggle': 'validator' do %>
       <div class="form-group">
-        <%= text_field_tag 'user[username]', nil, :class => 'form-control', :placeholder => I18n.t(:username, scope: :sign_up_dialog), :required => true %>
+        <%= text_field_tag 'user[username]', (params.include?(:user) ? params[:user][:username] : nil), :class => 'form-control', :placeholder => I18n.t(:username, scope: :sign_up_dialog), :required => true %>
       </div>
       <div class="form-group">
-        <%= email_field_tag 'user[email]', nil, :class => 'form-control', :placeholder => I18n.t(:email, scope: :sign_up_dialog), :required => true %>
+        <%= email_field_tag 'user[email]', (params.include?(:user) ? params[:user][:email] : nil), :class => 'form-control', :placeholder => I18n.t(:email, scope: :sign_up_dialog), :required => true %>
       </div>
       <div class="form-group">
         <%= password_field_tag 'user[password]', nil, :class => 'form-control', :placeholder => I18n.t(:password, scope: :sign_up_dialog), :required => true, :minLength => Rails.configuration.min_password_length %>
@@ -26,15 +26,23 @@
       </div>
       <div class="form-inline">
         <div class="form-group">
-          <%= text_field_tag 'user[birth]', nil, :id => "datepicker", :class => 'form-control', placeholder: I18n.t(:birthday, scope: :edit_personal), :required => true %>
+          <%= text_field_tag 'user[birth]', (params.include?(:user) ? params[:user][:birth] : nil), :id => "datepicker", :class => 'form-control', placeholder: I18n.t(:birthday, scope: :edit_personal), :required => true %>
         </div>
         <div class="form-group col-md-offset-1">
           <label class="radio-inline">
+            <% if (params.include?(:user) && params[:user][:gender] == 'm') %>
+            <%= radio_button_tag 'user[gender]', 'm', :checked => true %>
+            <% else %>
             <%= radio_button_tag 'user[gender]', 'm' %>
+            <% end %>
             <%= I18n.t(:'genderize.name.masculine') %>
           </label>
           <label class="radio-inline">
+            <% if (params.include?(:user) && params[:user][:gender] == 'f') %>
             <%= radio_button_tag 'user[gender]', 'f', :checked => true %>
+            <% else %>
+            <%= radio_button_tag 'user[gender]', 'f' %>
+            <% end %>
             <%= I18n.t(:'genderize.name.feminine') %>
           </label>
         </div>

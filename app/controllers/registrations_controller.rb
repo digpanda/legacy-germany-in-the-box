@@ -11,7 +11,11 @@ class RegistrationsController < Devise::RegistrationsController
   respond_to :html, :json
 
   def new
+
     session[:signup_advice_counter] = 1
+    build_resource({})
+    yield resource if block_given?
+    respond_with resource
   end
 
   def cancel_signup
@@ -20,9 +24,10 @@ class RegistrationsController < Devise::RegistrationsController
 
   def create
 
+    build_resource(sign_up_params)
+
     if valid_captcha?(params[:captcha])
 
-      build_resource(sign_up_params)
       yield resource if block_given?
       resource.save
 
@@ -33,8 +38,17 @@ class RegistrationsController < Devise::RegistrationsController
           flash[:success] = "You subscribed successfully !"
           
           sign_up(resource_name, resource)
+
           sign_in(:user, User.find(resource.id)) # auto sign in
+
+          EmitNotificationAndDispatchToUser.perform({
+            :user_id => resource.id,
+            :title => 'Welcome to Germany In The Box !',
+            :description => "We are very pleased to know you just joined us :)"
+          })
+
           respond_with resource, location: after_sign_up_path_for(resource)
+          return
 
         else
           set_flash_message :notice, :"signed_up_but_#{resource.inactive_message}" if is_flashing_format?
@@ -49,12 +63,13 @@ class RegistrationsController < Devise::RegistrationsController
 
         session[:signup_advice_counter] = 1
         flash[:error] = resource.errors.full_messages.join(', ')
-        redirect_to(:back)
+        render "new"
+
       end
     else
       session[:signup_advice_counter] = 1
       flash[:error] = I18n.t(:wrong_captcha, scope: :top_menu)
-      redirect_to(:back)
+      render "new"
     end
 
   end
