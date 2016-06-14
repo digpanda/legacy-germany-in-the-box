@@ -4,12 +4,15 @@ class ProductsController < ApplicationController
 
   include AppCache
 
-  before_action :set_product, only: [:show, :edit, :update, :destroy, :remove_sku, :remove_option, :new_sku, :show_skus, :skus]
+  before_action :set_product, :set_category, :set_shop, only: [:show, :edit, :update, :destroy, :remove_sku, :remove_option, :new_sku, :show_skus, :skus]
   before_action :authenticate_user!, except: [:autocomplete_product_name, :popular, :search, :show, :skus]
 
   load_and_authorize_resource
 
   layout :custom_sublayout, only: [:new, :new_sku, :edit, :edit_sku, :clone_sku, :show_skus]
+
+  before_action :breadcrumb_home, only: [:show]
+  before_action :breadcrumb_category, :breadcrumb_shop, :breadcrumb_product, only: [:show]
 
   def new
     @shop = Shop.find(params[:shop_id])
@@ -147,7 +150,6 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @product = Product.find(params[:id])
   end
 
   def create
@@ -210,6 +212,14 @@ class ProductsController < ApplicationController
 
     def set_product
       @product = Product.find(params[:id])
+    end
+
+    def set_category
+      @category = @product.categories.first
+    end
+
+    def set_shop
+      @shop = @product.shop
     end
 
     def product_params

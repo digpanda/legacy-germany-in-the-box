@@ -1,10 +1,3 @@
-<!-- Login and such (partials) -->
-<!--
-<nav class="<%= for_device_type :desktop do 'navbar-fixed-top' end %>">
-  render 'layouts/dialogs'
-</nav>
--->
-
 <div class="navbar-fixed-top">
 
 <!-- Main Menu Area -->
@@ -148,6 +141,8 @@
 <% end %>
 
 <%= render partial: "layouts/header/parts/messages" %>
+
+<%= render partial: "layouts/header/parts/breadcrumb" %>
 
 <div class="+small-spacer"></div>
 

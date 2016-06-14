@@ -12,6 +12,9 @@ class CategoriesController < ApplicationController
 
   layout :custom_sublayout, only: [:index]
 
+  before_action :breadcrumb_home, only: [:show]
+  before_action :breadcrumb_category, only: [:show]
+
   def show
   end
 
@@ -32,8 +35,12 @@ class CategoriesController < ApplicationController
     @category = Category.find(params[:id])
     @shops = @category.shops
     @featured_shop = @category.shops.first
-    @casual_shops = @category.shops
+    @casual_shops = @category.shops.uniq # because it can fetch duplicate for no fucking reason.
     @casual_shops.shift
+  end
+
+  def categories_path
+    categories_path
   end
 
 end

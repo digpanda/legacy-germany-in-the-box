@@ -175,6 +175,23 @@ class ApplicationController < ActionController::Base
     request.env['HTTP_ACCEPT_LANGUAGE'] ? request.env['HTTP_ACCEPT_LANGUAGE'].scan(/^[a-z]{2}/).first : 'de'
   end
 
+  # we should put it into a library, there's an obvious possible abstraction here
+  def breadcrumb_category
+    add_breadcrumb @category.name, category_path(@category) unless @category.nil?
+  end
+
+  def breadcrumb_shop
+    add_breadcrumb @shop.shopname, shop_path(@shop) unless @shop.nil?
+  end
+
+  def breadcrumb_product
+    add_breadcrumb @product.name, product_path(@product) unless @product.name.nil?
+  end
+
+  def breadcrumb_home
+    add_breadcrumb "Home", :root_path
+  end
+
   private
 
   # cancancan hook
