@@ -7,10 +7,10 @@
   <div class="form-group">
     <div class="row">
       <div class="col-md-6">
-        <%= f.text_field :lname, :value => a.lname ? a.lname : current_user.lname, :class => 'form-control', :required => true, :placeholder => I18n.t(:lname, scope: :edit_address) %>
+        <%= f.text_field :lname, :value => a.lname ? a.lname : @user.lname, :class => 'form-control', :required => true, :placeholder => I18n.t(:lname, scope: :edit_address) %>
       </div>
       <div class="col-md-6">
-        <%= f.text_field :fname, :value => a.fname ? a.fname : current_user.fname, :class => 'form-control', :required => true, :placeholder => I18n.t(:fname, scope: :edit_address) %>
+        <%= f.text_field :fname, :value => a.fname ? a.fname : @user.fname, :class => 'form-control', :required => true, :placeholder => I18n.t(:fname, scope: :edit_address) %>
       </div>
     </div>
   </div>
@@ -18,10 +18,10 @@
   <div class="form-group">
     <div class="row">
       <div class="col-md-6">
-        <%= f.text_field :mobile, :value => a.mobile ? a.mobile : current_user.mobile, :class => 'form-control', :required => true, :placeholder => I18n.t(:mobile, scope: :edit_address), :pattern => I18n.t(:mobile, scope: :validation, locale: :'zh-CN') %>
+        <%= f.text_field :mobile, :value => a.mobile ? a.mobile : @user.mobile, :class => 'form-control', :required => true, :placeholder => I18n.t(:mobile, scope: :edit_address), :pattern => I18n.t(:mobile, scope: :validation, locale: :'zh-CN') %>
        </div>
       <div class="col-md-6">
-        <%= f.text_field :tel, :value => a.tel ? a.tel : current_user.tel, :class => 'form-control', :placeholder => I18n.t(:tel, scope: :edit_address), :pattern => I18n.t(:tel, scope: :validation, locale: :'zh-CN') %>
+        <%= f.text_field :tel, :value => a.tel ? a.tel : @user.tel, :class => 'form-control', :placeholder => I18n.t(:tel, scope: :edit_address), :pattern => I18n.t(:tel, scope: :validation, locale: :'zh-CN') %>
       </div>
      </div>
   </div>

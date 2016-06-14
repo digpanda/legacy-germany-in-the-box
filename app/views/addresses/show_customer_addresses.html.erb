@@ -22,7 +22,7 @@
 
   <% end %>
 
-  <% if current_user.addresses.size < Rails.configuration.max_num_addresses %>
+  <% if @addresses.size < Rails.configuration.max_num_addresses %>
 
     <div class="col-md-4">
       <a class="address-box address-box-new" href="#add-address-dialog">
