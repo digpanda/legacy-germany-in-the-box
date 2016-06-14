@@ -10,6 +10,8 @@ class ShopsController <  ApplicationController
 
   load_and_authorize_resource
 
+  add_breadcrumb "Home", :root_path
+
   attr_reader :shop, :shops
 
   def index
@@ -49,7 +51,8 @@ class ShopsController <  ApplicationController
   end
 
   def show
-    @categories_and_children, @categories_and_counters = AppCache.get_category_values_for_left_menu(shop.products.has_sku)
+    add_breadcrumb @shop.categories.first.name, category_path(@shop.categories.first)
+    add_breadcrumb @shop.shopname, shop_path(@shop)
   end
 
   def update

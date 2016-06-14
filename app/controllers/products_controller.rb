@@ -11,6 +11,8 @@ class ProductsController < ApplicationController
 
   layout :custom_sublayout, only: [:new, :new_sku, :edit, :edit_sku, :clone_sku, :show_skus]
 
+  add_breadcrumb "Home", :root_path
+
   def new
     @shop = Shop.find(params[:shop_id])
     @product = @shop.products.build
@@ -147,7 +149,9 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @product = Product.find(params[:id])
+    add_breadcrumb @product.categories.first.name, category_path(@product.categories.first)
+    add_breadcrumb @product.shop.shopname, shop_path(@product.shop)
+    add_breadcrumb @product.name, product_path(@product)
   end
 
   def create

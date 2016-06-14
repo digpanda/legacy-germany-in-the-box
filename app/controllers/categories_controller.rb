@@ -12,7 +12,10 @@ class CategoriesController < ApplicationController
 
   layout :custom_sublayout, only: [:index]
 
+  add_breadcrumb "Home", :root_path
+
   def show
+    add_breadcrumb @category.name, category_path(@category)
   end
 
   def index
@@ -34,6 +37,10 @@ class CategoriesController < ApplicationController
     @featured_shop = @category.shops.first
     @casual_shops = @category.shops
     @casual_shops.shift
+  end
+
+  def categories_path
+    categories_path
   end
 
 end
