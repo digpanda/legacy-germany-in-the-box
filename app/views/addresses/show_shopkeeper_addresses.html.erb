@@ -2,7 +2,7 @@
   <%= render partial: "addresses/popup/add_shopkeeper_address" %>
 </div>
 
-<% current_user.shop.addresses.each_with_index do |a, i| %>
+<% @addresses.each_with_index do |a, i| %>
   <div class="remodal" data-remodal-id="edit-address-dialog-<%= a.id %>">
     <%= render partial: "addresses/popup/edit_shopkeeper_address", :locals => {:a => a, :i => i} %>
   </div>
