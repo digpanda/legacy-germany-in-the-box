@@ -181,13 +181,10 @@ class OrdersController < ApplicationController
       order.order_items.each do |oi|
         oi.sku.quantity -= oi.quantity unless oi.sku.unlimited
         oi.price = oi.sku.price
-	   
-     oi.save!
-
-        #if oi.save
-        #  session[:order_ids]&.delete(shop.id.to_s)
-        #end
+        oi.save!
       end
+
+      remove_shop_id_from_session(shop.id.to_s)
 
       flash[:success] = I18n.t(:checkout_ok, scope: :checkout)
       redirect_to show_orders_users_path(:user_info_edit_part => :edit_order)
