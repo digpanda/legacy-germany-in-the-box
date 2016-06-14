@@ -26,6 +26,14 @@ class ProductImageUploader < CarrierWave::Uploader::Base
     version :detail, :if => :image? do
       process :resize_and_pad => [400, 400]
     end
+
+    version :fullsize, :if => :image? do
+      process :resize_and_pad => [600, 600]
+    end
+
+    version :zoomin, :if => :image? do
+      process :resize_and_pad => [1000, 1000]
+    end
   end
 
   def default_url

@@ -34,7 +34,7 @@ class Sku
 
   validates :price,         presence: true,   :numericality => { :greater_than => 0 }
   validates :quantity,      presence: true,   :numericality => { :greater_than_or_equal_to => 0 }, :unless => lambda { self.unlimited }
-  validates :unlimited,       presence: true
+  validates :unlimited,     presence: true
   validates :weight,        presence: true
   validates :status,        presence: true
   validates :customizable,  presence: true
