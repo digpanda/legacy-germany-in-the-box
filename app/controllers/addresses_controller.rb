@@ -9,12 +9,12 @@ class AddressesController < ApplicationController
   def show_addresses
     @address = Address.new
 
-    user = User.find(params[:id])
+    @user = User.find(params[:id])
 
-    if user.is_shopkeeper?
-      @addresses = user.shop.addresses
-    elsif user.is_customer?
-      @addresses = user.addresses
+    if @user.is_shopkeeper?
+      @addresses = @user.shop.addresses
+    elsif @user.is_customer?
+      @addresses = @user.addresses
     end
 
     render "show_#{current_user.role.to_s}_addresses"
