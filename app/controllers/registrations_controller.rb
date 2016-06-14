@@ -44,7 +44,7 @@ class RegistrationsController < Devise::RegistrationsController
           EmitNotificationAndDispatchToUser.perform({
             :user_id => resource.id,
             :title => 'Welcome to Germany In The Box !',
-            :description => "We are very pleased to know you just joined us :)"
+            :desc => "We are very pleased to know you just joined us :)"
           })
 
           respond_with resource, location: after_sign_up_path_for(resource)
