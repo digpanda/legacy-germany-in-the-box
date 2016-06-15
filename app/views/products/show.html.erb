@@ -22,9 +22,9 @@
 
         <% end %>
 
-        <% unless @product.decorate.get_mas.unlimited %>
+        <% unless @product.decorate.get_mas.unlimited || @product.decorate.get_mas.quantity == 0 %>
           <% if @product.decorate.get_mas.quantity <= ::Rails.application.config.digpanda["products_warning"] %>
-            | <span class="+red +up +bold"> Only <span id="quantity-left"><%= @product.decorate.get_mas.quantity %></span> left</span>
+            | if <span class="+red +up +bold"> Only <span id="quantity-left"><%= @product.decorate.get_mas.quantity %></span> left</span>
           <% end %>
         <% end %>
 
