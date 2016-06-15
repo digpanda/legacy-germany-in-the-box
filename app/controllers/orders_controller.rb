@@ -171,12 +171,18 @@ class OrdersController < ApplicationController
     order = op.order
     shop = order.order_items.first.sku.product.shop
 
-    shipping = BorderGuru.get_shipping(
-        order: order,
-        shop: shop,
-        country_of_destination: ISO3166::Country.new('CN'),
-        currency: 'EUR'
-    )
+    begin
+      shipping = BorderGuru.get_shipping(
+          order: order,
+          shop: shop,
+          country_of_destination: ISO3166::Country.new('CN'),
+          currency: 'EUR'
+      )
+    rescue
+      flash[:error] = I18n.t(:borderguru_unreachable_at_shipping, scope: :checkout)
+      redirect_to root_path
+      return
+    end
 
     if shipping.success? && order.save
       order.order_items.each do |oi|

@@ -72,12 +72,18 @@ class ApplicationController < ActionController::Base
       cart.add(i.sku, i.quantity)
     end
 
-    BorderGuru.calculate_quote(
-        cart: cart,
-        shop: Shop.find(shop_id),
-        country_of_destination: ISO3166::Country.new('CN'),
-        currency: 'EUR'
-    )
+    begin
+      BorderGuru.calculate_quote(
+          cart: cart,
+          shop: Shop.find(shop_id),
+          country_of_destination: ISO3166::Country.new('CN'),
+          currency: 'EUR'
+      )
+    rescue
+      flash[:error] = I18n.t(:borderguru_unreachable, scope: :checkout)
+      redirect_to root_path
+      return
+    end
 
     cart
   end
