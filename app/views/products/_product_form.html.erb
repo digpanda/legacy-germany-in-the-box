@@ -70,11 +70,11 @@
           <div class="row">
             <div class="col-md-3">
               <label class="required translation">
-                Duty Code
+                <%=I18n.t(:hs_code, scope: :edit_product) %>
               </label>
             </div>
             <div class="col-md-9">
-              <%= f.text_field :duty_code, :value => @product.duty_code, :class => 'form-control', :required => true %>
+              <%= f.text_field :duty_code, :value => @product.duty_code, :class => 'form-control', :required => true, :pattern => '^\d{8,8}$' %>
             </div>
           </div>
         </div>

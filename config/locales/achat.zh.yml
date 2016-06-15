@@ -394,6 +394,7 @@ zh-CN:
     duty_category_info: 明确的报关产品归类更好的对产品进行物流。
     global_status: 上架
     status: 上架
+    hs_code: 海关价目标识
   edit_product_new:
     create_ok: 产品成功创建
     create_ko: 产品创建失败

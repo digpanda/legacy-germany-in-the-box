@@ -397,6 +397,7 @@ de:
     duty_category: Zoll-Kategorie
     duty_category_info: Die Zuordnung der Käufer-Kategorien ist von dem Zoll in China gefordert.
     global_status: Global Eingestellt
+    hs_code: Zolltarifnummer
   edit_product_new:
     create_ok: Das Produkt wurde erfolgreich erstellt.
     create_ko: Ein Fehler ist beim
