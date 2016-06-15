@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset='utf-8' />
+    <style type='text/css'>
+    <!-- Please don't load the vendor, it makes problem with UTF-8 encoding -->
+    <!-- wicked_pdf_inject 'stylesheets/app.css' -->
+    </style>
+  </head>
+  <body style="background-color:white !important;" onload='number_pages'>
+    <div id="header">
+      <div style="text-align:center">
+      <img src="<%= wicked_pdf_asset 'images/logo-half.png' %>" width="200px">
+      <br />
+      <br />
+      </div>
+    </div>
+    <div id="content">
+      <%= yield %>
+    </div>
+  </body>
+</html>

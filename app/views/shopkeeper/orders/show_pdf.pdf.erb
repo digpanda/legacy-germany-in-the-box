@@ -1,0 +1,34 @@
+<table style="width:100%;border-color:black;border-width:1px;border-style:solid;">
+  <thead>
+    <tr>
+      <th>
+        <%= I18n.t(:name, scope: :cart) %>
+      </th>
+      <th>
+        <%= I18n.t(:variant_option, scope: :cart) %>
+      </th>
+      <th>
+        <%= I18n.t(:quantity, scope: :cart) %>
+      </th>
+      <th>
+        <%= I18n.t(:unit_price, scope: :cart) %>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @order.order_items.each do |i| %>
+    <tr>
+      <td>
+        <%= i.product.name %>
+      </td>
+      <td>
+        <%= i.selected_options.join(', ') %>
+      </td>
+      <td><%= i.quantity %></td>
+      <td>
+        <%= i.sku.decorate.price_with_currency %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

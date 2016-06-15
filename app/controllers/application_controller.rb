@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
 
   include UsersHelper
   include NavigationHistoryHelper
+  include WickedPdfHelper
 
   include AppCache
 

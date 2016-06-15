@@ -25,6 +25,16 @@ class OrderItem
 
   index({order: 1},  {unique: false,   name: :idx_order_item_order})
 
+  def selected_options
+    self.product.options.map do |option|
+      option.suboptions.map do |suboption|
+        if self.option_ids.include? suboption.id.to_s
+          suboption.name
+        end
+      end
+    end.flatten.compact
+  end
+
   def sku
     @sku ||= product.skus.find(self.sku_id)
   end

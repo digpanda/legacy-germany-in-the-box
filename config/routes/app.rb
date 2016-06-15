@@ -34,6 +34,9 @@ namespace :admin do
 end
 
 namespace :shopkeeper do
+  resources :orders do
+    get :show_pdf, :on => :member, defaults: { format: 'pdf' }
+  end
   resources :payments do
   end
   resource :wirecard do

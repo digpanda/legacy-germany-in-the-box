@@ -7,7 +7,9 @@ gem "mongoid_includes"
 gem "mongoid_rails_migrations"
 #gem "mongoid_search" #, "~> 0.2.8"
 #gem "mongoid_fulltext"
-#
+
+gem 'wkhtmltopdf-binary' # pdf generation (we need it coupled with wicked_pdf)
+gem 'wicked_pdf' # pdf generation
 gem "breadcrumbs_on_rails"
 gem "sass-rails", "~> 5.0.3"
 gem "uglifier", ">= 1.3.0" # Use Uglifier as compressor for JavaScript assets
