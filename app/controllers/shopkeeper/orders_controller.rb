@@ -5,12 +5,18 @@ class Shopkeeper::OrdersController < ApplicationController
 
   attr_reader :order
 
-  def show_pdf
+  def show
     respond_to do |format|
       format.pdf do
-        render pdf: order.id.to_s, disposition: 'attachment' # name of the pdf
+        render pdf: order.id.to_s, disposition: 'attachment'
       end
     end
+  end
+
+  def start_process
+    # Get datas
+    # Create XLS
+    # Send it over
   end
 
   private

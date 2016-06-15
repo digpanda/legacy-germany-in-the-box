@@ -18,7 +18,13 @@
           Files
         </th>
         <th>
+          Sending date
+        </th>
+        <th>
           <%= I18n.t(:updated_at, scope: :edit_order) %>
+        </th>
+        <th>
+        Action
         </th>
       </tr>
     </thead>
@@ -38,10 +44,16 @@
             <%= order.border_guru_shipment_id ? (link_to I18n.t(:download, scope: :edit_order), download_label_order_path(order)) : '' %>
           </td>
           <td>
-          <a href="<%= show_pdf_shopkeeper_order_path(order) %>">PDF</a>
+          <a href="<%= shopkeeper_order_path(order, format: "pdf") %>">PDF</a>
           </td>
+          <th>
+          N/A
+          </th>
           <td>
             <%= order.u_at.localtime.strftime('%Y-%m-%d %H:%M:%S') %>
+          </td>
+          <td>
+          <%= link_to 'Start to process', shopkeeper_order_start_process_path(order), method: :process, data: { confirm: "Are you sure you want to start to process this order ?" } %>
           </td>
         </tr>
       <% end %>

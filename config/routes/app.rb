@@ -35,7 +35,7 @@ end
 
 namespace :shopkeeper do
   resources :orders do
-    get :show_pdf, :on => :member, defaults: { format: 'pdf' }
+    patch :start_process
   end
   resources :payments do
   end
