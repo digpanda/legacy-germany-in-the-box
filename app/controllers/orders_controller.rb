@@ -178,7 +178,8 @@ class OrdersController < ApplicationController
           country_of_destination: ISO3166::Country.new('CN'),
           currency: 'EUR'
       )
-    rescue
+    rescue SocketError => e
+      logger.fatal "Failed to connect to Borderguru: #{e}"
       flash[:error] = I18n.t(:borderguru_unreachable_at_shipping, scope: :checkout)
       redirect_to root_path
       return
