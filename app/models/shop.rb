@@ -103,7 +103,9 @@ class Shop
   validates :function,      length: {maximum: Rails.configuration.max_tiny_text_length}
 
   scope :is_active,       ->        { where( :status => true ).where( :approved.ne => nil ) }
-  
+  scope :has_address,       ->        { self.in({:id => Address.is_sender.all.map(&:shop_id)}) }
+  scope :buyable,       ->        { is_active.has_address }
+
   before_save :ensure_shopkeeper
   before_save :clean_sms_mobile,  :unless => lambda { self.sms }
 
