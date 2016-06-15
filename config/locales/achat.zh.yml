@@ -351,6 +351,7 @@ zh-CN:
     shopname_unknown: 未命名
     shop_seal: 商家照片
     merchant_id: 卖家ID
+    bg_merchant_id: Borderguru商号
   edit_product:
     edit: 修改
     remove: 删除产品

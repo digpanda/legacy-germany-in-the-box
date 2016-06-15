@@ -47,6 +47,7 @@ class Shop
   field :function,        type: String
 
   field :merchant_id,     type: String
+  field :bg_merchant_id,  type: String
 
   mount_uploader :logo,   LogoImageUploader
   mount_uploader :banner, BannerImageUploader
@@ -102,9 +103,10 @@ class Shop
   validates :mobile,        length: {maximum: Rails.configuration.max_tiny_text_length}
   validates :function,      length: {maximum: Rails.configuration.max_tiny_text_length}
 
-  scope :is_active,       ->        { where( :status => true ).where( :approved.ne => nil ) }
-  scope :has_address,       ->        { self.in({:id => Address.is_sender.all.map(&:shop_id)}) }
-  scope :buyable,       ->        { is_active.has_address }
+  scope :is_active,       ->    { where( :status => true ).where( :approved.ne => nil ) }
+  scope :has_address,     ->    { self.in({:id => Address.is_sender.all.map(&:shop_id)}) }
+  scope :is_bg_merchant,  ->    { where(:bg_merchant_id.ne => nil) }
+  scope :buyable,         ->    { is_active.is_bg_merchant.has_address }
 
   before_save :ensure_shopkeeper
   before_save :clean_sms_mobile,  :unless => lambda { self.sms }

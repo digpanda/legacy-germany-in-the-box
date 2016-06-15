@@ -44,7 +44,7 @@ class Product
   scope :has_tag,         ->(value) { where( :tags => value ) }
   scope :is_active,       ->        { self.and(:status => true, :approved.ne => nil).in(shop: Shop.only(:id).where(:approved.ne => nil).map(&:id)) }
   scope :has_sku,         ->        { where( "skus.0" => { "$exists" => true } ) }
-  scope :buyable,         ->        { self.is_active.has_sku.in(shop: Address.is_sender.map {|a| a.shop_id}) }
+  scope :buyable,         ->        { self.is_active.has_sku.in(shop: Shop.only(:id).buyable) }
 
   index({name: 1},            {unique: false, name: :idx_product_name})
   index({brand: 1},           {unique: false, name: :idx_product_brand})

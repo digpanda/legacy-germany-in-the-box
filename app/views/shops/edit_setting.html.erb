@@ -74,6 +74,19 @@
             </div>
           </div>
         </div>
+        <% if current_user.is_admin? %>
+            <br/>
+            <div class="row">
+              <div class="form-group">
+                <div class="col-md-4">
+                  <%= f.label :bg_merchant_id, I18n.t(:bg_merchant_id, scope: :edit_shop), :class => 'required' %>
+                </div>
+                <div class="col-md-8">
+                  <%= f.text_field :bg_merchant_id, :class => 'form-control', :required => true, scope: :validation %>
+                </div>
+              </div>
+            </div>
+        <% end %>
       </div>
     </div>
     <div class="panel panel-info">
