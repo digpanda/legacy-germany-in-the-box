@@ -24,33 +24,40 @@ var ManageCart = {
 
   orderItemHandleQuantity: function() {
 
-    $('.js-set-quantity-minus').click(function() {
+    $('.js-set-quantity-minus').click(function(e) {
+
+      e.preventDefault();
 
       let orderItemId = $(this).data('orderItemId');
+      let orderShopId = $(this).data('orderShopId');
       let currentQuantity = $('#order-item-quantity-'+orderItemId).val();
 
       if (currentQuantity > 0) {
         currentQuantity--;
-        ManageCart.orderItemSetQuantity(orderItemId, currentQuantity);
+        ManageCart.orderItemSetQuantity(orderShopId, orderItemId, currentQuantity);
       }
 
     });
 
-    $('.js-set-quantity-plus').click(function() {
+    $('.js-set-quantity-plus').click(function(e) {
+
+      e.preventDefault();
       
       let orderItemId = $(this).data('orderItemId');
+      let orderShopId = $(this).data('orderShopId');
       let currentQuantity = $('#order-item-quantity-'+orderItemId).val();
 
       currentQuantity++;
-      ManageCart.orderItemSetQuantity(orderItemId, currentQuantity);
+      ManageCart.orderItemSetQuantity(orderShopId, orderItemId, currentQuantity);
 
     });
 
   },
 
-  orderItemSetQuantity: function(orderItemId, orderItemQuantity) {
+  orderItemSetQuantity: function(orderShopId, orderItemId, orderItemQuantity) {
 
     var OrderItem = require("javascripts/models/order_item");
+
 
     OrderItem.setQuantity(orderItemId, orderItemQuantity, function(res) {
 
@@ -69,14 +76,14 @@ var ManageCart = {
          * shipping_cost_with_currency string
          * total_with_currency string
          */
-        
+
         // We first refresh the value in the HTML
         $('#order-item-quantity-'+orderItemId).val(orderItemQuantity);
-        $('#total-products').html(res.data.amount_in_carts);
-        $('#order-subtotal').html(res.data.total_price_with_currency);
-        $('#order-duty-cost').html(res.data.duty_cost_with_currency);
-        $('#order-shipping-cost').html(res.data.shipping_cost_with_currency);
-        $('#order-total-price-in-yuan').html(res.data.total_with_currency);
+        $('#total-products-'+orderShopId).html(res.data.amount_in_carts);
+        $('#order-subtotal-'+orderShopId).html(res.data.total_price_with_currency);
+        $('#order-duty-cost-'+orderShopId).html(res.data.duty_cost_with_currency);
+        $('#order-shipping-cost-'+orderShopId).html(res.data.shipping_cost_with_currency);
+        $('#order-total-price-in-yuan-'+orderShopId).html(res.data.total_with_currency);
 
       }
 

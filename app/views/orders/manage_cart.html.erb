@@ -27,7 +27,7 @@
                   <span>
                     <%= I18n.t(:subtotal, scope: :cart) %>
                   </span>
-                  <span id="order-subtotal">
+                  <span id="order-subtotal-<%= s %>">
                     <%= o.decorate.total_price_with_currency %>
                   </span>
                 </li>
@@ -35,7 +35,7 @@
                   <span>
                     <%= I18n.t(:duty_cost, scope: :cart) %>
                   </span>
-                  <span id="order-duty-cost">
+                  <span id="order-duty-cost-<%= s %>">
                     <%= @carts[s].decorate.duty_cost_with_currency %>
                   </span>
                 </li>
@@ -43,7 +43,7 @@
                   <span>
                     <%= I18n.t(:shipping_cost, scope: :cart) %>
                   </span>
-                  <span id="order-shipping-cost">
+                  <span id="order-shipping-cost-<%= s %>">
                     <%= @carts[s].decorate.shipping_cost_with_currency %>
                   </span>
                 </li>
@@ -51,7 +51,7 @@
                   <span>
                     <%= I18n.t(:total_price_in_yuan, scope: :cart) %>
                   </span>
-                  <span id="order-total-price-in-yuan">
+                  <span id="order-total-price-in-yuan-<%= s %>">
                     <%= @carts[s].decorate.total_with_currency %>
                   </span>
                 </li>
