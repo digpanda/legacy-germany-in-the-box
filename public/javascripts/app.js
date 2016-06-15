@@ -293,6 +293,35 @@ var ManageCart = {
 module.exports = ManageCart;
 });
 
+require.register("javascripts/controllers/orders/show.js", function(exports, require, module) {
+'use strict';
+
+/**
+ * OrdersShow class
+ */
+var OrdersShow = {
+
+  /**
+   * Initializer
+   */
+  init: function init() {
+
+    this.multiSelectSystem();
+  },
+
+  multiSelectSystem: function multiSelectSystem() {
+
+    $('select.sku-variants-options').multiselect({
+      enableCaseInsensitiveFiltering: true,
+      maxHeight: 400
+    }).multiselect('disable');
+  }
+
+};
+
+module.exports = OrdersShow;
+});
+
 require.register("javascripts/controllers/pages/home.js", function(exports, require, module) {
 "use strict";
 
