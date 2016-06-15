@@ -45,6 +45,7 @@ class OrdersController < ApplicationController
 
   def set_address
     @address = Address.new
+    @user = current_user
   end
 
   def add_product
