@@ -1,16 +1,23 @@
-<div class="+spacer"></div>
 <% if total_number_of_products > 0 %>
-  <div class="panel-group">
-    <div class="panel panel-info">
+  <div>
       <% current_orders.each do |s, o| %>
         <% if o.total_amount > 0 %>
-          <div class="panel-heading">
+
+        <div class="row">
+
+        <div class="col-md-10 col-md-push-1 col-md-pull-1">
+
+            <div class="row">
+            <div class="col-md-9">
             <h4>
               <%= I18n.t(:shop, scope: :cart) + ': ' %>
               <%= link_to @shops[s][:name], shop_path(s) %>
             </h4>
-          </div>
-          <div class="panel-body">
+            </div>
+            </div>
+
+            <div class="row">
+
             <div class="col-md-9">
               <%= render partial: 'cart', locals: {order: o, s: s} %>
             </div>
@@ -50,11 +57,16 @@
                 </li>
               </ul>
             </div>
+            </div>
+
           </div>
+        </div>
+        </div>
+
+        <div class="+small-spacer"></div>
         <% end %>
       <% end %>
     </div>
-  </div>
 <% else %>
   <div class="row col-md-6 col-md-push-3 col-md-pull-3 +white-box +centered">
     <h4>
