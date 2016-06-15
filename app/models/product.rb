@@ -10,6 +10,7 @@ class Product
   field :tags,        type: Array,    default: Array.new(Rails.configuration.max_num_tags)
   field :status,      type: Boolean,  default: true
   field :approved,    type: Time
+  field :duty_code,  type: String
 
   embeds_many :options,   inverse_of: :product,   cascade_callbacks: true,  class_name: 'VariantOption'
   embeds_many :skus,      inverse_of: :product,   cascade_callbacks: true
@@ -35,6 +36,7 @@ class Product
   validates :brand ,      presence: true,   length: {maximum: (Rails.configuration.max_short_text_length * 1.25).round}
   validates :shop,        presence: true
   validates :status,      presence: true
+  validates :duty_code,      presence: true
 
   validates :desc,        length: { maximum: (Rails.configuration.max_long_text_length * 1.25).round}
   validates :tags,        length: { maximum: Rails.configuration.max_num_tags }
