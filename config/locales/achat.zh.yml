@@ -152,6 +152,8 @@ zh-CN:
     save: 保存
     update_ok: 您的个人信息成功更新
     update_password_ok: 密码成功更新
+    placeholder_tel: 固定电话 0571-12343434
+    placeholder_mobile: 移动电话 13802049772
   edit_address:
     maximal_number_of_addresses: 您最多可以设定三个地址
     add_new_address: 添加新地址

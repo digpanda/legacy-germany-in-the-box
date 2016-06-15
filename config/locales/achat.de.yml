@@ -152,6 +152,8 @@ de:
     save: Speichern
     update_ok: Ihre persöhnliche Daten wurden erfolgreich aktualisiert.
     update_password_ok: Ihr Passwort wurde erfolgreich aktualisiert.
+    placeholder_tel: Festnetz 0571-12343434
+    placeholder_mobile: Mobile 13802049772
   edit_address:
     maximal_number_of_addresses: Sie können maximal %{num} Adressen konfigurieren.
     add_new_address: Adresse hinzufügen
