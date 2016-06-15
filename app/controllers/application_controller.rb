@@ -123,7 +123,7 @@ class ApplicationController < ActionController::Base
       if current_user.shop && (not current_user.shop.agb)
         edit_producer_shop_path(current_user.shop.id, :user_info_edit_part => :edit_producer)
       else
-        edit_setting_shop_path(current_user.shop.id, :user_info_edit_part => :edit_shop)
+        show_orders_users_path(:user_info_edit_part => :edit_order)
       end
     elsif current_user.is_admin?
       shops_path(:user_info_edit_part => :edit_shops)
