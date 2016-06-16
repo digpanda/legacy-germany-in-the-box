@@ -13,7 +13,8 @@ class PushCsvsToBorderguruFtp
   end
 
   def perform
-
+    
+    FileUtils.mkdir_p(borderguru_local_directory) unless File.directory?(borderguru_local_directory)
     Dir.chdir(borderguru_local_directory)
     folders = Dir.glob('*').select {|f| File.directory? f}
 
