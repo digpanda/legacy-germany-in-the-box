@@ -10,7 +10,7 @@ class Product
   field :tags,        type: Array,    default: Array.new(Rails.configuration.max_num_tags)
   field :status,      type: Boolean,  default: true
   field :approved,    type: Time
-  field :duty_code,  type: String
+  field :hs_code,  type: String
 
   embeds_many :options,   inverse_of: :product,   cascade_callbacks: true,  class_name: 'VariantOption'
   embeds_many :skus,      inverse_of: :product,   cascade_callbacks: true
@@ -36,7 +36,7 @@ class Product
   validates :brand ,      presence: true,   length: {maximum: (Rails.configuration.max_short_text_length * 1.25).round}
   validates :shop,        presence: true
   validates :status,      presence: true
-  validates :duty_code,   presence: true
+  validates :hs_code,   presence: true
 
   validates :desc,        length: { maximum: (Rails.configuration.max_long_text_length * 1.25).round}
   validates :tags,        length: { maximum: Rails.configuration.max_num_tags }
@@ -44,8 +44,8 @@ class Product
   scope :has_tag,         ->(value) { where( :tags => value ) }
   scope :is_active,       ->        { self.and(:status => true, :approved.ne => nil).in(shop: Shop.only(:id).where(:approved.ne => nil).map(&:id)) }
   scope :has_sku,         ->        { where( "skus.0" => { "$exists" => true } ) }
-  scope :has_duty_code,   ->        { where( :duty_code.ne => nil ) }
-  scope :buyable,         ->        { self.is_active.has_duty_code.has_sku.in(shop: Shop.only(:id).buyable.map(&:id)) }
+  scope :has_hs_code,   ->        { where( :hs_code.ne => nil ) }
+  scope :buyable,         ->        { self.is_active.has_hs_code.has_sku.in(shop: Shop.only(:id).buyable.map(&:id)) }
 
   index({name: 1},            {unique: false, name: :idx_product_name})
   index({brand: 1},           {unique: false, name: :idx_product_brand})

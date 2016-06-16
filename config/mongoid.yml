@@ -55,11 +55,11 @@ test:
 local:
   clients:
     default:
-      database: a_chat_development
+      database: digpanda
       hosts:
         - localhost:27017
       options:
-        user: achat
+        user: loschcode
         password: achat2cool
 
   # Configure Mongoid specific options. (optional)

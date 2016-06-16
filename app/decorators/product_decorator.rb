@@ -33,6 +33,10 @@ class ProductDecorator < Draper::Decorator
     #self.desc.chars[0..characters].push("...").join
   end
 
+  def clean_desc(characters=240)
+    truncate(self.desc.squish.downcase, :length => characters)
+  end
+
   def grouped_variants_options
     options.map { |v| [v.name, v.suboptions.sort { |a,b| a.name <=> b.name }.map { |o| [ o.name, o.id.to_s]}] }.to_a
   end

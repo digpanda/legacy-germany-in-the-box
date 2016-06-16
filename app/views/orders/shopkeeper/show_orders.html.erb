@@ -53,7 +53,7 @@
             <%= order.u_at.localtime.strftime('%Y-%m-%d %H:%M:%S') %>
           </td>
           <td>
-          <%= link_to 'Start to process', shopkeeper_order_start_process_path(order), method: :process, data: { confirm: "Are you sure you want to start to process this order ?" } %>
+          <%= link_to 'Start to process', shopkeeper_order_start_process_path(order), method: :patch, data: { confirm: "Are you sure you want to start to process this order ?" } %>
           </td>
         </tr>
       <% end %>

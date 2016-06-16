@@ -1,4 +1,5 @@
 ::CarrierWave.configure do |config|
+
   config.storage              = :qiniu
   config.qiniu_access_key     = 'sjmi6rq8r6Z7oO84m9WQ3grXZJNaDmBlHC5eDWsu'
   config.qiniu_secret_key     = 'Vp_6J0c4GZML4PESk5vMv6yVgTCYY7x4XtKt3JCj'
@@ -9,9 +10,4 @@
   config.qiniu_protocol       = 'http'
   config.qiniu_up_host        = 'http://up.qiniug.com'
 
-  config.ftp_host = '84.200.54.181'
-  config.ftp_port = 1348
-  config.ftp_user = 'ftp'
-  config.ftp_passwd = 'doNotAllowRetryMoreThan019'
-  config.ftp_folder = '/files'
 end
