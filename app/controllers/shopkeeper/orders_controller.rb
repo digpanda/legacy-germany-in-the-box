@@ -20,76 +20,15 @@ class Shopkeeper::OrdersController < ApplicationController
     #
     # We start by processing into a CSV file
     #
-  
-    # Barcode ID
-    barcode_id = order.border_guru_shipment_id
-    # Merchant ID
-    borderguru_merchant_id = order.shop.bg_merchant_id || "1026-TEST"
-    # Country
-    country = "DE"
+    csv_file_path = TurnOrderIntoCsvAndStoreIt.perform({
 
-    csv_output = CSV.generate do |csv|
+      :order => order
 
-      csv << [
+    })
 
-        'Barcode ID',
-        'Merchant ID',
-        'Country ID',
-        'Item ID',
-        'HS Code',
-        'Description',
-        'Weight (g)',
-        'Price',
-        'Currency'
-
-      ]
-
-      order.order_items.each do |order_item|
-
-        csv << [
-
-          barcode_id,
-          borderguru_merchant_id,
-          country,
-
-          # Item ID
-          order_item.sku.id,
-          # HS Code
-          order_item.product.hs_code,
-          # Description
-          order_item.product.decorate.clean_desc(240), # check if including spaces
-          # Weight : current_order_item.weight
-          order_item.weight, # check it's in g
-          # Price
-          order_item.price, # check that to be sure
-          # Currency
-          'EUR'
-
-        ]
-
-      end
-
-    end
-
-    #
-    # We generate the file itself and store it into our server
-    # Filename : YYYMMDD_SUBMERCHANTID
-    # 
-    begin
-
-      directory = "public/uploads/borderguru/#{order.shop.id}"
-      formatted_date = Time.now.strftime("%Y%m%d")
-
-      require 'fileutils'
-      FileUtils::mkdir_p directory
-      file = File.open("public/uploads/borderguru/#{order.shop.id}/#{formatted_date}_#{borderguru_merchant_id}.csv", "w")
-      file.write(csv_output)
-
-    rescue IOError => e
-      flash[:error] = "A problem occured while preparing the order to our service."
+    if csv_file_path == false
+      flash[:error] = "A problem occured while preparing your order in our server. Please try again."
       redirect_to(:back) and return
-    ensure
-      file.close unless file.nil?
     end
 
     #
