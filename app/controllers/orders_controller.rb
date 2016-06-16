@@ -168,8 +168,12 @@ class OrdersController < ApplicationController
     checkout_callback
 
     op = OrderPayment.where(:request_id => params[:request_id]).first
+
     order = op.order
-    shop = order.order_items.first.sku.product.shop
+    order.status = :paid
+    order.save!
+
+    shop = order.shop
 
     begin
       shipping = BorderGuru.get_shipping(
@@ -185,12 +189,17 @@ class OrdersController < ApplicationController
       return
     end
 
-    if shipping.success? && order.save
-      order.order_items.each do |oi|
-        oi.sku.quantity -= oi.quantity unless oi.sku.unlimited
-        oi.price = oi.sku.price
-        oi.save!
+    if shipping.success?
+
+      order.status = :shipped
+      order.save!
+
+      order_items = order.order_items
+      order_items.each do |oi|
+        sku = oi.sku
+        sku.quantity -= oi.quantity unless sku.unlimited
       end
+      order_items.each(&:save!)
 
       reset_shop_id_from_session(shop.id.to_s)
 

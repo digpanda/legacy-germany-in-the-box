@@ -203,7 +203,6 @@ de:
     operations: Operationen
     delete: Löschen
     continue: Weiter
-    new: Neu
     checked_out: Bezahlt
     continue_ok: einen anderen Auftrag gewählt
     delete_order_message: Den Auftrag löschen?
@@ -219,14 +218,19 @@ de:
     adjust_product_ko: Der Vorrat reicht momentan leider nicht.
     link_tracking: Sendung verfolgen
     open: Öffnen
-    paying: in Zahlung
-    success: Erstellt
     override_maximal_total: Pro Tag können Sie bei usnerer Plattform mehrere Produkte nur in der Höhe unter  %{total} %{curreny} kaufen.
     label: Label
     download: Runterladen
     shipping_cost: Logistik Gebühren
     tax_and_duty_cost: Zoll Gebühren
     total_sum: Insgesamt
+    new: Neu
+    paying: in Zahlung
+    paid: Bezahlt
+    custom_checking: in Prüfung
+    shippable: Zum Verand bereit
+    shipped: Versendet
+    success: Erstellt
   edit_collection:
     new: Favorit erstellen
     edit: Ändern

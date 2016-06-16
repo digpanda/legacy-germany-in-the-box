@@ -203,7 +203,6 @@ zh-CN:
     operations: 操作
     delete: 删除
     continue: 继续
-    new: 尚未付款
     checked_out: 已经付款
     continue_ok: 您所选择的订单产品已经成为当前订单
     delete_order_message: 确定删除所选订单吗?
@@ -219,14 +218,19 @@ zh-CN:
     adjust_product_ko: 产品缺货中
     link_tracking: 物流查询
     open: 打开
-    paying: 等待付款
-    success: 下单成功
     override_maximal_total: 您在本平台的购物额单件每天可以多于%{total}%{currency}，多件不能超过%{total}%{currency}.
     label: 运单
     download: 下载
     shipping_cost: 物流费用
     tax_and_duty_cost: 海关税费
     total_sum: 总计
+    new: 尚未付款
+    paying: 等待付款
+    paid: 已付款
+    custom_checking: 审核中
+    shippable: 通知发货
+    shipped: 已发货
+    success: 下单成功
   edit_collection:
     new: 新建收藏夹
     edit: 修改
