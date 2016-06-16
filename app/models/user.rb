@@ -94,7 +94,7 @@ class User
   index({liked_collections: 1},   {unique: false, name: :idx_user_liked_collections,  sparse: true})
 
   def reach_todays_limit?(new)
-    todays_orders = self.orders.where(:status => :success).and(:u_at.gte => Date.today).and(:u_at.lt => Date.tomorrow)
+    todays_orders = self.orders.where(:status => :success).and(:u_at.gte => Date.today, :u_at.lt => Date.tomorrow)
     todays_orders.size == 0 ? false : (todays_orders.inject(0) { |sum, o| sum += o.total_price_in_currency } + new) > Settings.instance.max_total_per_day
   end
 
