@@ -18,10 +18,10 @@
 # end
 
 # Learn more: http://github.com/javan/whenever
+set :output, "#{::Rails.root}/log/borderguru_cron.log"
 
 every 2.minutes do
-  devlog ||= Logger.new("#{::Rails.root}/log/borderguru_cron.log")
-  devlog.info "This is a log which will appear every 2 minutes"
+  command 'echo "This is a log which will appear every 2 minutes"'
 end
 
 =begin
