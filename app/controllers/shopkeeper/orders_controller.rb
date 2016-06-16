@@ -36,39 +36,12 @@ class Shopkeeper::OrdersController < ApplicationController
     end
 
     #
-    # We start by processing into a CSV file
-    #
-    csv_file_path = TurnOrderIntoCsvAndStoreIt.new.perform({
-      :order => order
-    })
-
-    if csv_file_path == false
-      flash[:error] = "A problem occured while preparing your order in our server. Please try again."
-      redirect_to(:back) and return
-    end
-
-    #
-    # We transfer the information to BorderGuru
-    # We could avoid opening the file twice but it's a double process.
-    #
-    #file_pushed = PushCsvToBorderguruFtp.perform({
-    #  :csv_file_path => csv_file_path
-    #})
-
-    #if file_pushed == false
-    #  flash[:error] = "A problem occured while transfering your order to BorderGuru. Please try again."
-    #  redirect_to(:back) and return
-    #end
-
-    #
     # We don't forget to change status of orders and such
     # Only if everything was a success
     #
     order.status = :custom_checking
     order.minimum_sending_date = 1.business_days.from_now
     order.save
-
-    # DONT FORGET TO DEAL WITH MULTIPLE ORDER AND ONLY ONE CSV FILE.
 
     #
     # We go back now

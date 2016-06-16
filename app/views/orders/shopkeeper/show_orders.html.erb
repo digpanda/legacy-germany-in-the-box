@@ -39,9 +39,9 @@
           </td>
           <td>
           <% if order.border_guru_shipment_id %>
-          <%= link_to I18n.t(:download, scope: :edit_order), download_label_order_path(order) %> | 
+            <%= link_to I18n.t(:download, scope: :edit_order), download_label_order_path(order) %> | 
           <% end %>
-          <a href="<%= shopkeeper_order_path(order, format: "pdf") %>">PDF</a>
+          <a href="<%= shopkeeper_order_path(order, format: "pdf") %>">Products list</a>
           </td>
           <th>
           <% unless order.minimum_sending_date.nil? %>

@@ -8,6 +8,9 @@
 # For full documentation of agent configuration options, please refer to
 # https://docs.newrelic.com/docs/agents/ruby-agent/installation-configuration/ruby-agent-configuration
 
+# CURRENTLY NOT USED IN THE SYSTEM
+# /!\ New Relic is slowing down our system via external accesses
+# We should make it work better and then reput it.
 common: &default_settings
   license_key: 6402e613689416aeb21d9681d6926980801eb118
   app_name: Germany in the Box
