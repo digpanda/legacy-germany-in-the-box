@@ -79,7 +79,7 @@ class ApplicationController < ActionController::Base
           country_of_destination: ISO3166::Country.new('CN'),
           currency: 'EUR'
       )
-    rescue SocketError => e
+    rescue Net::ReadTimeout => e
       logger.fatal "Failed to connect to Borderguru: #{e}"
       flash[:error] = I18n.t(:borderguru_unreachable, scope: :checkout)
       redirect_to root_path
