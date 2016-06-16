@@ -544,6 +544,7 @@ de:
     redirect_to_payment: Der Prozess wird an unseren Zahlungspartnern weitergeleitet.
     borderguru_unreachable_at_quoting: Das Logistik-Partner-System ist beschäftigt. Bitte versuchen Sie später!
     borderguru_unreachable_at_shipping: Das Logistik-Partner-System ist beschäftigt. Bitte wenden Sie sich an unseren Admin!
+    borderguru_shipping_failed: Der Versand kann nicht gestartet werden.
   edit_categories:
     operations: Aktionen
     remove: Entfernen

@@ -538,6 +538,7 @@ zh-CN:
     redirect_to_payment: 请您耐心等待，正在为您链接支付系统
     borderguru_unreachable_at_quoting: 物流系统合作商的系统繁忙，请您稍后尝试！
     borderguru_unreachable_at_shipping: 物流系统合作商的系统繁忙，请您联系管理员！
+    borderguru_shipping_failed: 物流系统合作商的系统繁忙，不能启动物流。请您稍后尝试！
   edit_categories:
     operations: 操作
     remove: 删除
