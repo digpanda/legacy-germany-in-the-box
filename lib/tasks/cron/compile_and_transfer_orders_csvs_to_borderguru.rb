@@ -7,22 +7,26 @@ class CompileAndTransferOrdersCsvsToBorderguru
     #
     # We check the correct orders via a good old loop system (Viva Mongoid !)
     #
-    orders = []
     User.where(role: :shopkeeper).each do |user|
+
+      orders = []
+
       user.orders.where(status: :custom_checking).each do |order|
-        orders << order
+        orders  << order
       end
-    end
 
-    devlog "#{orders.length} orders were found."
-    devlog "Let's turn them into a CSV and store it under `/public/uploads/borderguru/MERCHANT-ID/`"
+      devlog "`#{orders.length}` orders were found for user `#{user.id}`."
+      devlog "Let's turn them into a CSV and store it under `/public/uploads/borderguru/#{user.id}/`"
 
-    # We start by processing into a CSV file
-    #
-    csv_file_path = TurnOrdersIntoCsvAndStoreIt.new(orders)
+      # We start by processing into a CSV file
+      #
+      csv_file_path = TurnOrdersIntoCsvAndStoreIt.new(orders)
 
-    if csv_file_path == false
-      devlog "A problem occured while preparing the orders."
+      if csv_file_path == false
+        devlog "A problem occured while preparing the orders."
+        return
+      end
+
     end
 
     devlog "Now let's push them into BorderGuru FTP. All of them because we are that crazy."
@@ -35,7 +39,13 @@ class CompileAndTransferOrdersCsvsToBorderguru
 
     if files_pushed == false
       devlog "A problem occured while transfering the files to BorderGuru."
+      return
     end
+
+    #
+    # If everything went well, we can now SAFELY remove the files inside this folder
+    #
+    # LAST TODO.
 
     devlog "Process finished."
 
