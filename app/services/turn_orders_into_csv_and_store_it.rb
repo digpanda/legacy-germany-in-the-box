@@ -3,12 +3,13 @@ require 'csv'
 
 class TurnOrdersIntoCsvAndStoreIt
 
-  attr_reader :orders, :shop, :borderguru_merchant_id, :origin_country
+  attr_reader :orders, :shop, :borderguru_merchant_id, :origin_country, :borderguru_local_directory
 
   def initialize(shop, orders)
 
     @orders ||= orders
     @shop ||= shop
+    @borderguru_local_directory ||= "#{::Rails.root}/public/uploads/borderguru/"
     @borderguru_merchant_id ||= shop.bg_merchant_id || "1026-TEST-#{Random.rand(1000)}"
     @origin_country ||= "DE"
 
@@ -84,7 +85,9 @@ class TurnOrdersIntoCsvAndStoreIt
     # 
     begin
 
-      directory = "public/uploads/borderguru/#{shop.id}"
+      FileUtils.mkdir_p(borderguru_local_directory) unless File.directory?(borderguru_local_directory)
+
+      directory = "#{borderguru_local_directory}/#{shop.id}"
       formatted_date = Time.now.strftime("%Y%m%d")
 
       FileUtils::mkdir_p directory
