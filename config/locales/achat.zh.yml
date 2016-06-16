@@ -197,7 +197,7 @@ zh-CN:
     no_order: 您还没有任何订单
     id: 订单号
     status: 状态
-    total_price: 总计
+    total_price: 商品总计
     created_at: 创建于
     updated_at: 修改于
     operations: 操作
@@ -224,6 +224,9 @@ zh-CN:
     override_maximal_total: 您在本平台的购物额单件每天可以多于%{total}%{currency}，多件不能超过%{total}%{currency}.
     label: 运单
     download: 下载
+    shipping_cost: 物流费用
+    tax_and_duty_cost: 海关税费
+    total_sum: 总计
   edit_collection:
     new: 新建收藏夹
     edit: 修改

@@ -42,6 +42,14 @@ class Order
     total_price * Settings.instance.exchange_rate_to_yuan
   end
 
+  def shipping_cost_in_currency
+    (shipping_cost ? shipping_cost : 0) * Settings.instance.exchange_rate_to_yuan
+  end
+
+  def tax_and_duty_cost_in_currency
+    (tax_and_duty_cost ? tax_and_duty_cost : 0 ) * Settings.instance.exchange_rate_to_yuan
+  end
+
   def reach_todays_limit?(new_total)
     if order_items.size == 0
       new_total == 0 ? false : new_total > Settings.instance.max_total_per_day

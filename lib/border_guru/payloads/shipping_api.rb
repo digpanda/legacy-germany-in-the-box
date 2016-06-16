@@ -49,11 +49,11 @@ module BorderGuru
         {
             firstName: address_model.fname,
             lastName: address_model.lname,
-            streetName: address_model.street,
+            streetName: "#{address_model.district} #{address_model.street}",
             houseNo: address_model.number,
             additionalInfo: address_model.additional,
             postcode: address_model.zip,
-            city: address_model.city,
+            city: "#{address_model.province} #{address_model.city}",
             country: address_model.country_name,
             telephone: address_model.tel ? address_model.tel : address_model.mobile,
             email: @order.user.email,

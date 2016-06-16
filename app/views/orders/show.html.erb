@@ -1,8 +1,45 @@
 <div class="row">
-  <div class="col-md-8 col-md-push-2 col-md-pull-2">
-  <%= render 'cart', order: @order, currency_code: @currency_code %>
+  <div class="col-md-8 col-md-push-1">
+    <%= render 'cart', order: @order, currency_code: @currency_code %>
+  </div>
+  <div class="col-md-4 col-md-push-1">
+    <ul class="cart-total-list">
+      <li>
+          <span>
+            <%= I18n.t(:total_price, scope: :edit_order) %>
+          </span>
+          <span>
+            <%= @order.decorate.total_price_with_currency %>
+          </span>
+      </li>
+      <li>
+          <span>
+            <%= I18n.t(:tax_and_duty_cost, scope: :edit_order) %>
+          </span>
+          <span>
+            <%= @order.decorate.tax_and_duty_cost_with_currency %>
+          </span>
+      </li>
+      <li>
+          <span>
+            <%= I18n.t(:shipping_cost, scope: :edit_order) %>
+          </span>
+          <span>
+            <%= @order.decorate.shipping_cost_with_currency %>
+          </span>
+      </li>
+      <li>
+          <span>
+            <%= I18n.t(:total_sum, scope: :edit_order) %>
+          </span>
+          <span>
+            <%= @order.decorate.total_sum_with_currency %>
+          </span>
+      </li>
+    </ul>
   </div>
 </div>
+
 <% if a = @order.shipping_address %>
   <div class="row col-md-4 col-md-push-4 col-md-pull-4 +white-box">
     <div class="address-box">
