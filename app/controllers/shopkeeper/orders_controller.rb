@@ -1,4 +1,5 @@
 require 'csv'
+require 'net/ftp'
 
 class Shopkeeper::OrdersController < ApplicationController
 
@@ -20,7 +21,7 @@ class Shopkeeper::OrdersController < ApplicationController
     #
     # We start by processing into a CSV file
     #
-    csv_file_path = TurnOrderIntoCsvAndStoreIt.perform({
+    csv_file_path = TurnOrderIntoCsvAndStoreIt.new.perform({
 
       :order => order
 
@@ -34,31 +35,17 @@ class Shopkeeper::OrdersController < ApplicationController
     #
     # We transfer the information to BorderGuru
     # We could avoid opening the file twice but it's a double process.
-    # 
-
-    require 'net/ftp'
-    ftp = Net::FTP.new
-    ftp.connect('84.200.54.181', '1348')  # here you can pass a non-standard port number
-    ftp.login('ftp','doNotAllowRetryMoreThan019')
-    #ftp.passive = true  # optional, if PASV mode is required
-
-    file = File.open("public/uploads/borderguru/#{order.shop.id}/#{formatted_date}_#{borderguru_merchant_id}.csv", "w")
-    ftp.putbinaryfile(file)
-    ftp.quit()
-
-=begin
-    file = File.open("public/uploads/borderguru/#{order.shop.id}/#{formatted_date}_#{borderguru_merchant_id}.csv", "w")
-    ftp = Net::FTP.new('84.200.54.181')
-    ftp.login(user = "***", passwd = "doNotAllowRetryMoreThan019")
-    ftp.putbinaryfile(file.read, File.basename(file.original_filename))
-    ftp.quit()
-=end
+    #
+    PushCsvToBorderguruFtp.perform({
+      :csv_file_path => csv_file_path
+    })
 
     #
     # We don't forget to change status of orders and such
     # Only if everything was a success
     #
-    order.status = :custom_processing
+    order.status = :custom_checking
+
     #
     # We go back now
     #
