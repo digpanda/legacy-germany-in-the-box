@@ -210,8 +210,13 @@ class ApplicationController < ActionController::Base
     Ability.new(current_user, controller_namespace)
   end
 
-  def remove_shop_id_from_session(shop_id)
+  def reset_shop_id_from_session(shop_id)
     session[:order_ids]&.delete(shop_id)
+  end
+
+  def set_order_id_in_session(shop_id, order_id)
+    session[:order_ids] ||= {}
+    session[:order_ids][shop_id] = order_id
   end
 
   def _current_order(shop_id)
@@ -219,14 +224,14 @@ class ApplicationController < ActionController::Base
       order = Order.find(session[:order_ids][shop_id])
 
       if order.status == :success
-        remove_shop_id_from_session(shop_id)
+        reset_shop_id_from_session(shop_id)
         order = nil
       end
     end
 
     unless order
       order = Order.create
-      session[:order_ids][shop_id] = order.id.to_s
+      set_order_id_in_session(shop_id, order.id.to_s)
     end
 
     if user_signed_in?

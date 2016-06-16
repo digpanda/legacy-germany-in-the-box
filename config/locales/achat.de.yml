@@ -205,7 +205,7 @@ de:
     continue: Weiter
     new: Neu
     checked_out: Bezahlt
-    continue_message: einen anderen Auftrag gewählt
+    continue_ok: einen anderen Auftrag gewählt
     delete_order_message: Den Auftrag löschen?
     delete_ok: Der Auftrag wurde erfolgreich gelöscht.
     delete_ko: Ein Fehler ist beim Löschen des Auftrags aufgetreten.

@@ -197,7 +197,7 @@ class OrdersController < ApplicationController
 
       end
 
-      remove_shop_id_from_session(shop.id.to_s)
+      reset_shop_id_from_session(shop.id.to_s)
 
       flash[:success] = I18n.t(:checkout_ok, scope: :checkout)
       redirect_to show_orders_users_path(:user_info_edit_part => :edit_order)
@@ -246,39 +246,30 @@ class OrdersController < ApplicationController
   end
 
   def continue
-    shop_id = @order.order_items.first.product.shop.id.to_s
+    shop_id = @order.shop_id.to_s
 
     unless (co = current_order(shop_id))
       session[:order_ids][shop_id] = @order.id.to_s
     else
       if @order != co
+
         @order.order_items.each do |ooi|
-          coi = co.order_items.detect { |coi| ooi.sku_id == coi.sku_id }
+          sku = ooi.sku
 
-          if coi
-            coi.quantity += ooi.quantity
-            coi.save
-          else
-            sku = ooi.product.get_sku(ooi.option_ids)
-            noi = co.order_items.build
-            noi.price = sku.price
-            noi.quantity = ooi.quantity
-            noi.weight = sku.weight
-            noi.product = sku.product
-            noi.product_name = sku.product.name
-            noi.sku_id = sku.id.to_s
-            noi.option_ids = sku.option_ids
-            noi.option_names = sku.get_options
-            noi.save
-          end
-
-          ooi.delete
+          ooi.price = sku.price
+          ooi.weight = sku.weight
+          ooi.product_name = sku.product.name
+          ooi.option_ids = sku.option_ids
+          ooi.option_names = sku.get_options
         end
 
-        @order.order_items.delete_all
-        @order.delete
+        if @order.order_items.each(&:save)
+          set_order_id_in_session(shop_id, @order.id.to_s)
+          flash[:success] = I18n.t(:continue_ok, scope: :edit_order)
+        else
+          flash[:error] = @orde.errors.full_messages.first
+        end
 
-        flash[:info] = I18n.t(:continue_message, scope: :edit_order)
       end
     end
 
