@@ -185,21 +185,20 @@ class OrdersController < ApplicationController
     rescue Net::ReadTimeout => e
       logger.fatal "Failed to connect to Borderguru: #{e}"
       flash[:error] = I18n.t(:borderguru_unreachable_at_shipping, scope: :checkout)
-      redirect_to root_path
-      return
+      redirect_to root_path and return
     end
 
     if shipping.success?
 
-      order.status = :shipped
+      order.status = :shippable
       order.save!
 
-      order_items = order.order_items
-      order_items.each do |oi|
+
+      order.order_items.each do |oi|
         sku = oi.sku
         sku.quantity -= oi.quantity unless sku.unlimited
+        sku.save!
       end
-      order_items.each(&:save!)
 
       reset_shop_id_from_session(shop.id.to_s)
 
