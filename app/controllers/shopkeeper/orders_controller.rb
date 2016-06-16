@@ -22,9 +22,7 @@ class Shopkeeper::OrdersController < ApplicationController
     # We start by processing into a CSV file
     #
     csv_file_path = TurnOrderIntoCsvAndStoreIt.new.perform({
-
       :order => order
-
     })
 
     if csv_file_path == false
@@ -36,9 +34,14 @@ class Shopkeeper::OrdersController < ApplicationController
     # We transfer the information to BorderGuru
     # We could avoid opening the file twice but it's a double process.
     #
-    PushCsvToBorderguruFtp.perform({
+    file_pushed = PushCsvToBorderguruFtp.perform({
       :csv_file_path => csv_file_path
     })
+
+    if file_pushed == false
+      flash[:error] = "A problem occured while transfering your order to BorderGuru. Please try again."
+      redirect_to(:back) and return
+    end
 
     #
     # We don't forget to change status of orders and such

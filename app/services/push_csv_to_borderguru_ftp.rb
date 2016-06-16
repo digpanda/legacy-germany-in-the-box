@@ -6,14 +6,23 @@ class PushCsvToBorderguruFtp
 
       csv_file_path = args[:csv_file_path]
 
-      ftp = Net::FTP.new
-      ftp.connect('84.200.54.181', '1348')  # here you can pass a non-standard port number
-      ftp.login('ftp','doNotAllowRetryMoreThan019')
-      #ftp.passive = true  # optional, if PASV mode is required
+      begin
 
-      file = File.open(csv_file_path, "w")
-      ftp.putbinaryfile(file)
-      ftp.quit()
+        ftp = Net::FTP.new
+        ftp.connect('84.200.54.181', '1348')  # here you can pass a non-standard port number
+        ftp.login('ftp','doNotAllowRetryMoreThan019')
+        #ftp.passive = true  # optional, if PASV mode is required
+
+        file = File.open(csv_file_path, "w")
+        ftp.putbinaryfile(file)
+        ftp.quit()
+        return true
+
+      rescue Exception => e
+        return false
+      ensure
+        file.close unless file.nil?
+      end
 
 =begin
     file = File.open("public/uploads/borderguru/#{order.shop.id}/#{formatted_date}_#{borderguru_merchant_id}.csv", "w")
