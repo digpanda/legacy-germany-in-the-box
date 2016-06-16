@@ -15,9 +15,6 @@
           Files
         </th>
         <th>
-          Tracking Id
-        </th>
-        <th>
           Sending date
         </th>
         <th>
@@ -47,15 +44,6 @@
           <a href="<%= shopkeeper_order_path(order, format: "pdf") %>">PDF</a>
           </td>
           <th>
-          <% if order.status == :shipped %>
-            <% if order.delivery_service_tracking_id.nil? %>
-              DEFINE HERE
-            <% else %>
-              <%= order.delivery_service_tracking_id %>
-            <% end %>
-          <% end %>
-          </th>
-          <th>
           <% unless order.minimum_sending_date.nil? %>
             <%= order.minimum_sending_date.strftime('%Y-%m-%d %H:%M:%S') %>
           <% end %>
@@ -65,8 +53,10 @@
           </td>
           <td>
           <!-- The order has been paid and shopkeeper can start the process -->
-          <% if order.status == :paid %>
+          <% if order.status == :paid  %>
+            <% if order.processable? %>
             <%= link_to 'Start to process', shopkeeper_order_start_process_path(order), method: :patch, data: { confirm: "Are you sure you want to start to process this order ?" } %>
+            <% end %>
           <!-- The order passed the custom and can be send -->
           <% elsif order.is_shippable? %>
             <%= link_to "The pack was sent", shopkeeper_order_shipped_path(order), method: :patch %>
