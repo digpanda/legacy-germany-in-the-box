@@ -18,7 +18,7 @@
 # end
 
 # Learn more: http://github.com/javan/whenever
-set :output, "#{::Rails.root}/log/borderguru_cron.log"
+set :output, "/var/www/germany_in_the_box/current/log/borderguru_cron.log"
 
 every 2.minutes do
   command 'echo "This is a log which will appear every 2 minutes"'
