@@ -85,7 +85,7 @@ class Order
   end
 
   def is_processable?
-    Time.now.strftime("%k").to_i < 12 && Time.now.strftime("%k").to_i > 13
+    self.status == :paid && Time.now.strftime("%k").to_i < 12 && Time.now.strftime("%k").to_i > 13
   end
 
   def is_shippable?

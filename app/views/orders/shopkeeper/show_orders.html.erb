@@ -55,7 +55,7 @@
           <!-- The order has been paid and shopkeeper can start the process -->
           <% if order.status == :paid  %>
             <% if order.processable? %>
-            <%= link_to 'Start to process', shopkeeper_order_start_process_path(order), method: :patch, data: { confirm: "Are you sure you want to start to process this order ?" } %>
+            <%= link_to 'Start to process', shopkeeper_order_process_path(order), method: :patch, data: { confirm: "Are you sure you want to start to process this order ?" } %>
             <% end %>
           <!-- The order passed the custom and can be send -->
           <% elsif order.is_shippable? %>

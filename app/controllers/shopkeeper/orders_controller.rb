@@ -28,7 +28,12 @@ class Shopkeeper::OrdersController < ApplicationController
 
   end
 
-  def start_process
+  def process
+
+    unless order.is_processable?
+      flash[:error] = "This order is not processable at the moment. Please try again later."
+      redirect_to(:back) and return
+    end
 
     #
     # We start by processing into a CSV file
