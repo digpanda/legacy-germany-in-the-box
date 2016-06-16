@@ -15,7 +15,6 @@ class CompileAndTransferOrdersCsvsToBorderguru
     require "#{::Rails.root}/app/services/turn_orders_into_csv_and_store_it.rb"
     require "#{::Rails.root}/app/services/push_csvs_to_borderguru_ftp.rb"
 
-
     devlog "Let's start to fetch all the current orders ..."
 
     #
