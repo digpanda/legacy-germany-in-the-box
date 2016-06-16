@@ -90,7 +90,7 @@ class TurnOrderIntoCsvAndStoreIt
       file.close unless file.nil?
     end
 
-    "#{directory}//#{formatted_date}_#{borderguru_params[:merchant_id]}.csv"
+    "#{directory}/#{formatted_date}_#{borderguru_params[:merchant_id]}.csv"
 
   end
 

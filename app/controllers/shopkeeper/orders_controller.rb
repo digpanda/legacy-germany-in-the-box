@@ -16,6 +16,18 @@ class Shopkeeper::OrdersController < ApplicationController
     end
   end
 
+  def shipped
+
+    if order.is_shippable?
+      order.status = :shipped
+      order.save
+    end
+
+    flash[:success] = "You successfully confirmed having sent this order."
+    redirect_to(:back) and return
+
+  end
+
   def start_process
 
     #
@@ -34,25 +46,29 @@ class Shopkeeper::OrdersController < ApplicationController
     # We transfer the information to BorderGuru
     # We could avoid opening the file twice but it's a double process.
     #
-    file_pushed = PushCsvToBorderguruFtp.perform({
-      :csv_file_path => csv_file_path
-    })
+    #file_pushed = PushCsvToBorderguruFtp.perform({
+    #  :csv_file_path => csv_file_path
+    #})
 
-    if file_pushed == false
-      flash[:error] = "A problem occured while transfering your order to BorderGuru. Please try again."
-      redirect_to(:back) and return
-    end
+    #if file_pushed == false
+    #  flash[:error] = "A problem occured while transfering your order to BorderGuru. Please try again."
+    #  redirect_to(:back) and return
+    #end
 
     #
     # We don't forget to change status of orders and such
     # Only if everything was a success
     #
     order.status = :custom_checking
+    order.minimum_sending_date = 1.business_days.from_now
+    order.save
+
+    # DONT FORGET TO DEAL WITH MULTIPLE ORDER AND ONLY ONE CSV FILE.
 
     #
     # We go back now
     #
-    flash[:success] = "Your order is being processed by our partner."
+    flash[:success] = "Your order is being processed by our partner. You'll soon be able to send it out."
     redirect_to(:back) and return
 
   end

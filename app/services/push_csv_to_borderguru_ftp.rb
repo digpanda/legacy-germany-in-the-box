@@ -5,15 +5,19 @@ class PushCsvToBorderguruFtp
     def perform(args={})
 
       csv_file_path = args[:csv_file_path]
+      csv_file_name = File.basename csv_file_path
 
       begin
+
+        remote_folder = "/CainiaoPreAlertCsv/files"
 
         ftp = Net::FTP.new
         ftp.connect('84.200.54.181', '1348')  # here you can pass a non-standard port number
         ftp.login('ftp','doNotAllowRetryMoreThan019')
+        ftp.chdir(remote_folder)
         #ftp.passive = true  # optional, if PASV mode is required
 
-        file = File.open(csv_file_path, "w")
+        file = File.open(csv_file_path, "r")
         ftp.putbinaryfile(file)
         ftp.quit()
         return true
@@ -23,14 +27,6 @@ class PushCsvToBorderguruFtp
       ensure
         file.close unless file.nil?
       end
-
-=begin
-    file = File.open("public/uploads/borderguru/#{order.shop.id}/#{formatted_date}_#{borderguru_merchant_id}.csv", "w")
-    ftp = Net::FTP.new('84.200.54.181')
-    ftp.login(user = "***", passwd = "doNotAllowRetryMoreThan019")
-    ftp.putbinaryfile(file.read, File.basename(file.original_filename))
-    ftp.quit()
-=end
 
     end
 

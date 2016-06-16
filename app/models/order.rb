@@ -9,8 +9,10 @@ class Order
   field :tax_and_duty_cost,         type: Float
   field :border_guru_shipment_id,   type: String
   field :border_guru_link_tracking, type: String
+  field :delivery_service_tracking_id, type: String
   field :border_guru_link_payment,  type: String
   field :order_items_count,         type: Fixnum, default: 0
+  field :minimum_sending_date,      type: Time
 
   belongs_to :shop,                 :inverse_of => :orders
   belongs_to :user,                 :inverse_of => :orders
@@ -81,6 +83,11 @@ class Order
 
     # Todo: perhaps we don't need to return self. What we need is the result of last update.
     #self
+  end
+
+  def is_shippable?
+    return true
+    self.status == :custom_checking && Time.now > self.minimum_sending_date
   end
 
   private

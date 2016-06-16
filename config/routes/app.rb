@@ -36,6 +36,7 @@ end
 namespace :shopkeeper do
   resources :orders do
     patch :start_process
+    patch :shipped
   end
   resources :payments do
   end

@@ -12,10 +12,10 @@
           <%= I18n.t(:total_price, scope: :edit_order) %>
         </th>
         <th>
-          <%= I18n.t(:label, scope: :edit_order) %>
+          Files
         </th>
         <th>
-          Files
+          Tracking Id
         </th>
         <th>
           Sending date
@@ -41,19 +41,36 @@
             <%= order.decorate.total_price_with_currency %>
           </td>
           <td>
-            <%= order.border_guru_shipment_id ? (link_to I18n.t(:download, scope: :edit_order), download_label_order_path(order)) : '' %>
-          </td>
-          <td>
+          <% if order.border_guru_shipment_id %>
+          <%= link_to I18n.t(:download, scope: :edit_order), download_label_order_path(order) %> | 
+          <% end %>
           <a href="<%= shopkeeper_order_path(order, format: "pdf") %>">PDF</a>
           </td>
           <th>
-          N/A
+          <% if order.status == :shipped %>
+            <% if order.delivery_service_tracking_id.nil? %>
+              DEFINE HERE
+            <% else %>
+              <%= order.delivery_service_tracking_id %>
+            <% end %>
+          <% end %>
+          </th>
+          <th>
+          <% unless order.minimum_sending_date.nil? %>
+            <%= order.minimum_sending_date.strftime('%Y-%m-%d %H:%M:%S') %>
+          <% end %>
           </th>
           <td>
             <%= order.u_at.localtime.strftime('%Y-%m-%d %H:%M:%S') %>
           </td>
           <td>
-          <%= link_to 'Start to process', shopkeeper_order_start_process_path(order), method: :patch, data: { confirm: "Are you sure you want to start to process this order ?" } %>
+          <!-- The order has been paid and shopkeeper can start the process -->
+          <% if order.status == :paid %>
+            <%= link_to 'Start to process', shopkeeper_order_start_process_path(order), method: :patch, data: { confirm: "Are you sure you want to start to process this order ?" } %>
+          <!-- The order passed the custom and can be send -->
+          <% elsif order.is_shippable? %>
+            <%= link_to "The pack was sent", shopkeeper_order_shipped_path(order), method: :patch %>
+          <% end %>
           </td>
         </tr>
       <% end %>
