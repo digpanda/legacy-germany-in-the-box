@@ -27,7 +27,7 @@ class Order
 
 
   # TODO : inclusion should be re-abilited when we are sure of what we include
-  validates :status,                  presence: true #, inclusion: {in: [:new, :checked_out, :shipped, :paying,]}
+  validates :status,                  presence: true #, inclusion: {in: [:new, :paying, :paid, :custom_check, :shippable, :shipped]}
   #validates :user,                    presence: true, :unless => lambda { :new == self.status }
   #validates :shipping_address,        presence: true, :unless => lambda { :new == self.status }
   #validates :billing_address,         presence: true, :unless => lambda { :new == self.status }

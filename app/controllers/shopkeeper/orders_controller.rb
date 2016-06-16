@@ -105,6 +105,7 @@ class Shopkeeper::OrdersController < ApplicationController
 
     file = File.open("public/uploads/borderguru/#{order.shop.id}/#{formatted_date}_#{borderguru_merchant_id}.csv", "w")
     ftp.putbinaryfile(file)
+    ftp.quit()
 
 =begin
     file = File.open("public/uploads/borderguru/#{order.shop.id}/#{formatted_date}_#{borderguru_merchant_id}.csv", "w")
@@ -113,19 +114,12 @@ class Shopkeeper::OrdersController < ApplicationController
     ftp.putbinaryfile(file.read, File.basename(file.original_filename))
     ftp.quit()
 =end
-=begin
-  config.ftp_host = '84.200.54.181'
-  config.ftp_port = 1348
-  config.ftp_user = 'ftp'
-  config.ftp_passwd = 'doNotAllowRetryMoreThan019'
-  config.ftp_folder = '/files'
-=end
 
     #
     # We don't forget to change status of orders and such
+    # Only if everything was a success
     #
-    # Todo
-
+    order.status = :custom_processing
     #
     # We go back now
     #

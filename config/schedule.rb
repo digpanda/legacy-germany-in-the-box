@@ -19,13 +19,12 @@
 
 # Learn more: http://github.com/javan/whenever
 
-=begin
-every 3.hours do
-  runner "MyModel.some_process"
-  rake "my:rake:task"
-  command "/usr/bin/my_great_command"
+every 2.minutes do
+  devlog ||= Logger.new("#{::Rails.root}/log/borderguru_cron.log")
+  devlog.info "This is a log which will appear every 2 minutes"
 end
 
+=begin
 every 1.day, :at => '4:30 am' do
   runner "MyModel.task_to_run_at_four_thirty_in_the_morning"
 end
