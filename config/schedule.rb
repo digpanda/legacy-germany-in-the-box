@@ -20,7 +20,7 @@
 # Learn more: http://github.com/javan/whenever
 set :output, "/var/www/germany_in_the_box/current/log/borderguru_cron.log"
 
-every 5.minutes do
+every 2.minutes do
   command 'The system has launched the rake task `cron:compile_and_transfer_orders_csvs_to_borderguru`'
   rake "cron:compile_and_transfer_orders_csvs_to_borderguru"
 end

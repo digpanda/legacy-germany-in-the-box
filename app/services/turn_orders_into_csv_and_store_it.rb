@@ -87,7 +87,7 @@ class TurnOrdersIntoCsvAndStoreIt
 
       FileUtils.mkdir_p(borderguru_local_directory) unless File.directory?(borderguru_local_directory)
 
-      directory = "#{borderguru_local_directory}/#{shop.id}"
+      directory = "#{borderguru_local_directory}#{shop.id}"
       formatted_date = Time.now.strftime("%Y%m%d")
 
       FileUtils::mkdir_p directory
