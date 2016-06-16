@@ -43,11 +43,11 @@ class Order
   end
 
   def shipping_cost_in_currency
-    shipping_cost * Settings.instance.exchange_rate_to_yuan
+    (shipping_cost ? shipping_cost : 0) * Settings.instance.exchange_rate_to_yuan
   end
 
   def tax_and_duty_cost_in_currency
-    tax_and_duty_cost * Settings.instance.exchange_rate_to_yuan
+    (tax_and_duty_cost ? tax_and_duty_cost : 0 ) * Settings.instance.exchange_rate_to_yuan
   end
 
   def reach_todays_limit?(new_total)

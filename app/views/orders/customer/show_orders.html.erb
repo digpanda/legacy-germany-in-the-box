@@ -9,7 +9,7 @@
           <%= I18n.t(:status, scope: :edit_order) %>
         </th>
         <th>
-          <%= I18n.t(:total_price, scope: :edit_order) %>
+          <%= I18n.t(:total_sum, scope: :edit_order) %>
         </th>
         <th>
           <%= I18n.t(:link_tracking, scope: :edit_order) %>
@@ -32,7 +32,7 @@
             <%= I18n.t(o.status, scope: :edit_order) %>
           </td>
           <td>
-            <%= o.decorate.total_price_with_currency %>
+            <%= o.decorate.total_sum_with_currency %>
           </td>
           <td>
             <%= o.border_guru_link_tracking ? (link_to I18n.t(:open, scope: :edit_order), o.border_guru_link_tracking, :target => '_blank') : '' %>

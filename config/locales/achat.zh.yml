@@ -226,6 +226,7 @@ zh-CN:
     download: 下载
     shipping_cost: 物流费用
     tax_and_duty_cost: 海关税费
+    total_sum: 总计
   edit_collection:
     new: 新建收藏夹
     edit: 修改

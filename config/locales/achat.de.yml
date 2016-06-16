@@ -226,6 +226,7 @@ de:
     download: Runterladen
     shipping_cost: Logistik Gebühren
     tax_and_duty_cost: Zoll Gebühren
+    total_sum: Insgesamt
   edit_collection:
     new: Favorit erstellen
     edit: Ändern
