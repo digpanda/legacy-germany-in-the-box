@@ -2,6 +2,8 @@ class CompileAndTransferOrdersCsvsToBorderguru
 
   def initialize
 
+    devlog "Let's start to fetch all the current orders ..."
+
     #
     # We check the correct orders via a good old loop system (Viva Mongoid !)
     #
@@ -12,6 +14,9 @@ class CompileAndTransferOrdersCsvsToBorderguru
       end
     end
 
+    devlog "#{orders.length} orders were found."
+    devlog "Let's turn them into a CSV and store it under `/public/uploads/borderguru/MERCHANT-ID/`"
+
     # We start by processing into a CSV file
     #
     csv_file_path = TurnOrdersIntoCsvAndStoreIt.new(orders)
@@ -19,6 +24,8 @@ class CompileAndTransferOrdersCsvsToBorderguru
     if csv_file_path == false
       devlog "A problem occured while preparing the orders."
     end
+
+    devlog "Now let's push them into BorderGuru FTP. All of them because we are that crazy."
 
     #
     # We transfer the information to BorderGuru
@@ -29,6 +36,8 @@ class CompileAndTransferOrdersCsvsToBorderguru
     if files_pushed == false
       devlog "A problem occured while transfering the files to BorderGuru."
     end
+
+    devlog "Process finished."
 
   end
 
