@@ -3,25 +3,23 @@ require 'csv'
 
 class TurnOrdersIntoCsvAndStoreIt
 
-  attr_reader :orders
+  attr_reader :orders, :shop, :borderguru_merchant_id, :origin_country
 
-  def initialize(orders)
+  def initialize(shop, orders)
 
     @orders ||= orders
+    @shop ||= shop
+    @borderguru_merchant_id ||= shop.bg_merchant_id || "1026-TEST-#{Random.rand(1000)}"
+    @origin_country ||= "DE"
+
+  end
+
+  def perform
     csv_output = generate_borderguru_csv(orders)
     store_csv_file(csv_output)
-
   end
 
   private
-
-  def borderguru_params
-    @borderguru_params ||= {
-      :merchant_id => order.shop.bg_merchant_id || "1026-TEST",
-      :barcode_id => order.border_guru_shipment_id,
-      :country => "DE"
-    }
-  end
 
   def generate_borderguru_csv(orders)
 
@@ -47,9 +45,9 @@ class TurnOrdersIntoCsvAndStoreIt
 
           csv << [
 
-            borderguru_params[:barcode_id],
-            borderguru_params[:merchant_id],
-            borderguru_params[:country],
+            order.border_guru_shipment_id,
+            borderguru_merchant_id,
+            origin_country,
 
             # Item ID
             order_item.sku.id,
@@ -77,7 +75,7 @@ class TurnOrdersIntoCsvAndStoreIt
   def store_csv_file(csv_output)
 
     if orders.empty?
-      return false
+      return {success: false, error: 'No order to place.'}
     end
 
     #
@@ -86,20 +84,21 @@ class TurnOrdersIntoCsvAndStoreIt
     # 
     begin
 
-      directory = "public/uploads/borderguru/#{orders.first.shop.id}"
+      directory = "public/uploads/borderguru/#{shop.id}"
       formatted_date = Time.now.strftime("%Y%m%d")
 
       FileUtils::mkdir_p directory
-      file = File.open("#{directory}/#{formatted_date}_#{borderguru_params[:merchant_id]}.csv", "w")
+
+      file = File.open("#{directory}/#{formatted_date}_#{borderguru_merchant_id}.csv", "w")
       file.write(csv_output)
       
     rescue IOError => e
-      return false
+      return {success: false, error: e}
     ensure
       file.close unless file.nil?
     end
 
-    "#{directory}/#{formatted_date}_#{borderguru_params[:merchant_id]}.csv"
+    return {success: true}
 
   end
 
