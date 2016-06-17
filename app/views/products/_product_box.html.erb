@@ -12,11 +12,13 @@
 
   <a href="<%= product_path(product) %>">
 
-    <div class="col-md-12 shop-page-product__image +centered">
+    <div class="col-md-12">
 
-      <img src="<%= product.decorate.product_cover_url %>" alt="<%= product.name %>" title="<%= product.name %>">
+      <div class="shop-page-product__image +centered" style="background-image:url('<%= product.decorate.product_cover_url %>');">
+      
+        <div class="+small-spacer"></div>
 
-      <div class="+small-spacer"></div>
+      </div>
 
     </div>
 

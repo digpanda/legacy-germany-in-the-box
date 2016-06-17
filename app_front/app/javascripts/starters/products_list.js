@@ -1,7 +1,7 @@
 /**
  * ProductsList Class
  */
-var ProductsList = {
+var ProductsList = { // CURRENTLY NOT IN USED IN THE SYSTEM
 
     /**
      * Initializer
@@ -14,7 +14,7 @@ var ProductsList = {
 
     manageProductsWall: function() {
 
-
+/*
       if ($('#freewall-products').length > 0) {
 
         var wall = new freewall("#freewall-products");
@@ -37,6 +37,7 @@ var ProductsList = {
         $(window).trigger('resize');
 
      }
+*/
 
     },
 

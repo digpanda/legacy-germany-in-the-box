@@ -1411,12 +1411,12 @@ module.exports = ProductForm;
 });
 
 require.register("javascripts/starters/products_list.js", function(exports, require, module) {
-'use strict';
+"use strict";
 
 /**
  * ProductsList Class
  */
-var ProductsList = {
+var ProductsList = { // CURRENTLY NOT IN USED IN THE SYSTEM
 
   /**
    * Initializer
@@ -1428,27 +1428,31 @@ var ProductsList = {
 
   manageProductsWall: function manageProductsWall() {
 
-    if ($('#freewall-products').length > 0) {
+    /*
+          if ($('#freewall-products').length > 0) {
+    
+            var wall = new freewall("#freewall-products");
+    
+            wall.reset({
+              selector: '.js-brick',
+              delay: 0,
+              animate: false,
+              cellW: 260,
+              cellH: 'auto',
+              onResize: function() {
+                return wall.fitWidth();
+              }
+            });
+    
+            wall.container.find('.js-brick img').load(function() {
+              $(window).trigger('resize');
+            });
+    
+            $(window).trigger('resize');
+    
+         }
+    */
 
-      var wall = new freewall("#freewall-products");
-
-      wall.reset({
-        selector: '.js-brick',
-        delay: 0,
-        animate: false,
-        cellW: 260,
-        cellH: 'auto',
-        onResize: function onResize() {
-          return wall.fitWidth();
-        }
-      });
-
-      wall.container.find('.js-brick img').load(function () {
-        $(window).trigger('resize');
-      });
-
-      $(window).trigger('resize');
-    }
   }
 
 };
