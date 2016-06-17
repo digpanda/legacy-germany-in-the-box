@@ -36,9 +36,12 @@ class RemoveAndCreateCompleteSampleData
     
     10.times { setup_customer create_user(:customer) }
     3.times { create_user(:admin) }
-    10.times { setup_shopkeeper create_user(:shopkeeper) }
 
+    1.times { setup_shopkeeper create_user(:shopkeeper) }
     convert_product_without_first_sku_left(random_product)
+
+    #10.times { setup_shopkeeper create_user(:shopkeeper) }
+
 
     Rails.cache.clear
 
@@ -49,6 +52,7 @@ class RemoveAndCreateCompleteSampleData
   private
 
   def convert_product_without_first_sku_left(product)
+    binding.pry
     puts "We convert #{product.name} to a `without_first_sku_left`"
     product.name += " NO FIRST SKU"
     product.desc = "The price of the first Sku is #{product.skus.first.price} and shouldn't appear."
@@ -282,9 +286,9 @@ class RemoveAndCreateCompleteSampleData
 
   end
 
-  def setup_shopkeeper(shopkeeper)
+  def setup_shopkeeper(shopkeeper, args={})
 
-    num_products = rand(0..20)
+    num_products = args[:num_products] || rand(0..20)
 
     shop = create_shop(shopkeeper)
     create_shop_address(shop)
