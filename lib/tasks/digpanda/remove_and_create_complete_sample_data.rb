@@ -12,9 +12,11 @@ class RemoveAndCreateCompleteSampleData
     I18n.locale = :de
 
     puts "We create the base customer, shopkeeper, admin"
-    base_customer = create_base_customer
-    base_shopkeeper = create_base_shopkeeper
-    base_admin = create_base_admin
+    base_customer = create_user(:customer)
+    base_shopkeeper = create_user(:shopkeeper)
+    base_admin = create_user(:admin)
+
+    create_open_shop(base_shopkeeper)
 
 =begin
 
@@ -183,49 +185,22 @@ class RemoveAndCreateCompleteSampleData
 
   private
 
-  def create_base_admin
+  def create_user(symbol=:customer)
     
+    num = User.where(:role => symbol).count + 1
+    name = symbol.to_s.capitalize
+
+    puts "Let's create #{symbol} N°#{num} ..."
+
     User.create!(
-      :fname                 => 'Admin',
-      :lname                 => 'Base',
+      :fname                 => name,
+      :lname                 => "N#{num}",
       :gender                => ['f', 'm'].sample,
-      :username              => 'AdminBase',
-      :email                 =>'admin@admin.com',
+      :username              => "#{name}#{num}",
+      :email                 => "#{symbol}#{num}@#{symbol}.com",
       :password              => '12345678',
       :password_confirmation => '12345678',
-      :role                  => :admin,
-      :birth => random_date,
-    )
-
-  end
-
-  def create_base_shopkeeper
-    
-    User.create!(
-      :fname                 => 'Shopkeeper',
-      :lname                 => 'Base',
-      :gender                => ['f', 'm'].sample,
-      :username              => 'ShopkeeperBase',
-      :email                 =>'shopkeeper@shopkeeper.com',
-      :password              => '12345678',
-      :password_confirmation => '12345678',
-      :role                  => :shopkeeper,
-      :birth => random_date,
-    )
-
-  end
-
-  def create_base_customer
-    
-    User.create!(
-      :fname                 => 'Customer',
-      :lname                 => 'Base',
-      :gender                => ['f', 'm'].sample,
-      :username              => 'CustomerBase',
-      :email                 =>'customer@customer.com',
-      :password              => '12345678',
-      :password_confirmation => '12345678',
-      :role                  => :customer,
+      :role                  => symbol,
       :birth => random_date,
     )
 
