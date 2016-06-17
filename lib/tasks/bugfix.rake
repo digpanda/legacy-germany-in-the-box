@@ -1,5 +1,6 @@
 namespace :bugfix do
-  desc "TODO"
+  
+  desc "different bugfixes"
 
   task fix_country: :environment do
     Address.all.each do |a|
