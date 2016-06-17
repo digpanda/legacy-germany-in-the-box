@@ -2,15 +2,6 @@ class CompileAndTransferOrdersCsvsToBorderguru
 
   def initialize
 
-=begin
-    Order.all.each do |order|
-      order.status = :custom_checking
-      order.save
-    end
-
-    return
-=end
-
     # To avoid library eager load failure (happens sometimes)
     require "#{::Rails.root}/app/services/turn_orders_into_csv_and_store_it.rb"
     require "#{::Rails.root}/app/services/push_csvs_to_borderguru_ftp.rb"
