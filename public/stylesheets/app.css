@@ -8470,7 +8470,6 @@ img.mfp-img {
 /* line 32, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
 .shop-page-product {
   padding: 0.5em;
-  margin: 0;
   border: 2px #eeeeee solid;
   -webkit-border-radius: 0.5em;
   -moz-border-radius: 0.5em;
@@ -8478,11 +8477,12 @@ img.mfp-img {
   border-radius: 0.5em;
   background-color: white;
   color: #666; }
-  /* line 11, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_shop-page-product.sass */
+  /* line 10, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_shop-page-product.sass */
   .shop-page-product a {
     color: #666; }
-  /* line 14, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_shop-page-product.sass */
+  /* line 13, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_shop-page-product.sass */
   .shop-page-product h2 {
+    margin: 0em;
     font-size: 1.8em; }
   /* line 76, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
   .shop-page-product__image {
@@ -8498,11 +8498,17 @@ img.mfp-img {
       max-height: 22em; }
   /* line 76, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
   .shop-page-product__description {
-    margin-bottom: 2em; }
+    width: 95%;
+    margin: 0 auto;
+    margin-top: 0.3em;
+    margin-bottom: 1em; }
     /* line 40, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
     .shop-page-product__description.\--text {
-      margin-top: -1em;
+      width: 100%;
       font-size: 13px; }
+    /* line 40, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
+    .shop-page-product__description.\--prices {
+      width: 100%; }
   /* line 40, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
   .shop-page-product__purchase.\--like {
     z-index: 3;
@@ -8519,10 +8525,6 @@ img.mfp-img {
     line-height: 1.5em;
     text-align: center;
     font-size: 20px; }
-
-/* line 3, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_products-list.sass */
-.products-list h2 {
-  margin: 0.5em; }
 
 /* line 32, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
 .product-page {

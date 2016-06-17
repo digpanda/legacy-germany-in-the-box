@@ -1,7 +1,6 @@
 +component(shop-page-product)
 
   padding: 0.5em
-  margin: 0
   border: 2px $color-grey solid
   +border-radius(0.5em)
 
@@ -12,6 +11,7 @@
     color: $color-black
 
   h2
+    margin: 0em
     font-size: 1.8em
 
   +part(image)
@@ -28,13 +28,17 @@
 
   +part(description)
 
-    margin-bottom: 2em
+    width: 95%
+    margin: 0 auto
+    margin-top: 0.3em
+    margin-bottom: 1em
 
     +option(text)
-      margin-top: -1em
+      width: 100%
       font-size: 13px
 
     +option(prices)
+      width: 100%
 
   +part(purchase)
 

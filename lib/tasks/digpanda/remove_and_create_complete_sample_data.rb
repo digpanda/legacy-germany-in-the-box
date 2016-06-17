@@ -63,9 +63,9 @@ class RemoveAndCreateCompleteSampleData
 
   def create_sku(product, args={})
 
-    price = args[:price] || 10 
+    price = args[:price] || 10 * Product.count
     quantity = args[:quantity] || rand(1..10)
-    num_options = args[:num_options] ||rand(1..3)
+    num_options = args[:num_options] || rand(1..3)
     weight = args[:weight] || 0.5
     space_length = args[:space_length] || 1.0
     space_width = args[:space_width] || 2.0
