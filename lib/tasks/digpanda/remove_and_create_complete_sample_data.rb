@@ -38,6 +38,8 @@ class RemoveAndCreateCompleteSampleData
     3.times { create_user(:admin) }
     10.times { setup_shopkeeper create_user(:shopkeeper) }
 
+    convert_product_without_first_sku_left(random_product)
+
     Rails.cache.clear
 
     puts "End of process."
@@ -45,6 +47,14 @@ class RemoveAndCreateCompleteSampleData
   end
 
   private
+
+  def convert_product_without_first_sku_left(product)
+    puts "We convert #{product.name} to a `without_first_sku_left`"
+    product.name += " NO FIRST SKU"
+    product.desc = "The price of the first Sku is #{product.skus.first.price} and shouldn't appear."
+    product.skus.first.quantity = 0
+    product.save!
+  end
 
   def create_pricey_sku(product)
     create_sku(product, {
@@ -63,7 +73,7 @@ class RemoveAndCreateCompleteSampleData
 
   def create_sku(product, args={})
 
-    price        = args[:price] || 2 * Product.count
+    price        = args[:price] || (2 * Product.count) + (product.skus.count * 10)
     quantity     = args[:quantity] || rand(1..10)
     num_options  = args[:num_options] || rand(1..5)
     weight       = args[:weight] || 0.5
@@ -84,7 +94,7 @@ class RemoveAndCreateCompleteSampleData
     num_options.times do |time|
       sku.option_ids << product.options.sample.suboptions.sample.id.to_s
     end
-    sku.option_ids.uniq # should be managed via model directly ?
+    sku.option_ids.uniq
 
     # This is terrible and we should never have to do this kind of shit.
     # Should be changed very soon.
@@ -257,6 +267,10 @@ class RemoveAndCreateCompleteSampleData
 
   def random_year
     Time.at(rand * Time.now.to_i).year
+  end
+
+  def random_product
+    Product.all.sample
   end
 
   def random_file(folder_path)
