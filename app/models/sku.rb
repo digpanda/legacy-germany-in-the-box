@@ -14,7 +14,6 @@ class Sku
   field :status,        type: Boolean,    default: true
   field :customizable,  type: Boolean,    default: false
   field :discount,      type: Integer,    default: 0
-  field :unit,          type: String,     default: 'kg'
   field :space_length,  type: Float
   field :space_width,   type: Float
   field :space_height,  type: Float
@@ -41,9 +40,6 @@ class Sku
   validates :discount,      presence: true,   :numericality => { :greater_than_or_equal_to => 0, :less_than_or_equal_to => 100 }
   validates :option_ids,    presence: true
   validates :time,          presence: true,   inclusion: {in: ['terminated', 'automatic']}
-
-  validates :unit,          presence: true,   inclusion: {in: ['g', 'kg', 'ml', 'l']}
-
   validates :space_length,  presence: true,   :numericality => { :greater_than => 0 }
   validates :space_width,   presence: true,   :numericality => { :greater_than => 0 }
   validates :space_height,  presence: true,   :numericality => { :greater_than => 0 }

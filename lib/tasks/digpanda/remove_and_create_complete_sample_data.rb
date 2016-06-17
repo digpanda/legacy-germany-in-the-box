@@ -1,3 +1,5 @@
+require 'faker'
+
 class RemoveAndCreateCompleteSampleData
 
   def initialize
@@ -7,183 +9,143 @@ class RemoveAndCreateCompleteSampleData
     #
     puts "We remove all users"
     User.delete_all
+    puts "We remove all shops"
+    Shop.delete_all
 
     puts "We set the locale to Germany"
     I18n.locale = :de
+    Faker::Config.locale = 'de'
 
     puts "We create the base customer, shopkeeper, admin"
     base_customer = create_user(:customer)
     base_shopkeeper = create_user(:shopkeeper)
     base_admin = create_user(:admin)
 
-    create_open_shop(base_shopkeeper)
-
-=begin
-
-    shop = Shop.create!(
-        :name => 'Herz-Buffet 01',
-        :desc => 'Alle Bestellungen werden automatisch bestätigt und können sofort bezahlt werden. Die Versandkosten betragen deutschlandweit pauschal 3,50€, egal wieviel ihr bestellt. Paypalgebühren werden nicht erhoben. Jeder Bestellung liegt eine Rechnung mit ausgewiesener Umsatzsteuer bei.',
-        #:logo => create_upload_from_image_file(Shop.name.downcase, 'herz-buffet-logo.jpg'),
-        #:banner => create_upload_from_image_file(Shop.name.downcase, 'herz-buffet-banner.jpg'),
-        :min_total => 20,
-        :shopkeeper => shopkeeper,
-        :founding_year => 1988,
-        :register => 12345678,
-        :philosophy => 'my philosohpy',
-        :stories => 'my stories',
-        :agb => true,
-        :tax_number => '12345678',
-        :ustid => 'DE123456789',
-        :sales_channels => [:third_online_platform, 'www.taobao.com'],
-        :shopname => 'Herz-Buffet 01',
-        :fname => 'Ray',
-        :lname => 'Liu',
-        :tel => '08912345678',
-        :mail => 'ray.liu@hotmai.com'
-    );
-
-    product = Product.new(
-        :name => '10 Blatt Seidenpapier ♥ Panda ♥ 01',
-        :desc => %Q{
-          ♥ 10 Bögen Seidenpapier
-          ♥ Panda
-          ♥ Größe je Bogen: 50 x 70cm
-          ♥ Das Papier eignet sich nicht nur wundervoll zum Verpacken
-          ♥ Das Papier wird auf 18x25cm gefaltet versendet
-        },
-        :brand => 'Herz-Buffet',
-        :tags => ['壁纸', '熊猫', 'buffet'],
-        :shop => shop
-    )
-
-    v1 = VariantOption.new(:name => 'Größe', :product => product)
-    v1_o1 = VariantOption.new(:parent => v1, :name => 'klein')
-    v1_o2 = VariantOption.new(:parent => v1, :name => 'mittel')
-    v1_o3 = VariantOption.new(:parent => v1, :name => 'groß')
-
-    v2 = VariantOption.new(:name => 'Farbe', :product => product)
-    v2_o1 = VariantOption.new(:parent => v2, :name => 'rot')
-    v2_o2 = VariantOption.new(:parent => v2, :name => 'blue')
-    v2_o3 = VariantOption.new(:parent => v2, :name => 'gold')
-
-    s1 = Sku.new(:price => 10, :product => product, :quantity => 5, :weight => 10, :unit => 'g', :discount => 10, :space_length => 1.0, :space_width => 2.0, :space_height => 3.0)
-    s1.option_ids << v1_o1.id.to_s
-    s1.option_ids << v2_o1.id.to_s
-    s1.img0 = create_upload_from_image_file(Product.name.downcase, 'herz_buffet_large_10_blatt_seidenpapier_panda.jpg')
-    s1.img1 = create_upload_from_image_file(Product.name.downcase, 'herz_buffet_large_10_blatt_seidenpapier_panda.jpg')
-    s1.img2 = create_upload_from_image_file(Product.name.downcase, 'herz_buffet_large_10_blatt_seidenpapier_panda.jpg')
-    s1.img3 = create_upload_from_image_file(Product.name.downcase, 'herz_buffet_large_10_blatt_seidenpapier_panda.jpg')
-    s1.save!
-
-    s2 = Sku.new(:price => 10, :product => product, :quantity => 4, :weight => 10, :unit => 'g', :space_length => 1.0, :space_width => 2.0, :space_height => 3.0)
-    s2.option_ids << v1_o2.id.to_s
-    s2.option_ids << v2_o1.id.to_s
-    s2.img0 = create_upload_from_image_file(Product.name.downcase, 'herz_buffet_large_10_blatt_seidenpapier_panda.jpg')
-    s2.img1 = create_upload_from_image_file(Product.name.downcase, 'herz_buffet_large_10_blatt_seidenpapier_panda.jpg')
-    s2.img2 = create_upload_from_image_file(Product.name.downcase, 'herz_buffet_large_10_blatt_seidenpapier_panda.jpg')
-    s2.img3 = create_upload_from_image_file(Product.name.downcase, 'herz_buffet_large_10_blatt_seidenpapier_panda.jpg')
-    s2.save!
-
-    s3 = Sku.new(:price => 20, :product => product, :quantity => 3, :weight => 10, :unit => 'g', :space_length => 1.0, :space_width => 2.0, :space_height => 3.0)
-    s3.option_ids << v1_o3.id.to_s
-    s3.option_ids << v2_o3.id.to_s
-    s3.img0 = create_upload_from_image_file(Product.name.downcase, 'herz_buffet_large_10_blatt_seidenpapier_panda.jpg')
-    s3.img1 = create_upload_from_image_file(Product.name.downcase, 'herz_buffet_large_10_blatt_seidenpapier_panda.jpg')
-    s3.img2 = create_upload_from_image_file(Product.name.downcase, 'herz_buffet_large_10_blatt_seidenpapier_panda.jpg')
-    s3.img3 = create_upload_from_image_file(Product.name.downcase, 'herz_buffet_large_10_blatt_seidenpapier_panda.jpg')
-    s3.save!
-
-    shop.products << product
-    shop.save!
-
-
-    shopkeeper = User.create!(:username => 'shopkeeper02', :email => 'shopkeeper02@hotmail.com', :password => '12345678', :password_confirmation => '12345678', :role => :shopkeeper)
-
-    shop = Shop.create!(
-        :name => 'Herz-Buffet 02',
-        :desc => 'Alle Bestellungen werden automatisch bestätigt und können sofort bezahlt werden. Die Versandkosten betragen deutschlandweit pauschal 3,50€, egal wieviel ihr bestellt. Paypalgebühren werden nicht erhoben. Jeder Bestellung liegt eine Rechnung mit ausgewiesener Umsatzsteuer bei.',
-        :logo => create_upload_from_image_file(Shop.name.downcase, 'herz-buffet-logo.jpg'),
-        :banner => create_upload_from_image_file(Shop.name.downcase, 'herz-buffet-banner.jpg'),
-        :min_total => 20,
-        :shopkeeper => shopkeeper,
-        :founding_year => 1988,
-        :register => 12345678,
-        :philosophy => 'my philosohpy',
-        :stories => 'my stories',
-        :agb => true,
-        :tax_number => '12345678',
-        :ustid => 'DE123456789',
-        :sales_channels => [:third_online_platform, 'www.taobao.com'],
-        :shopname => 'Herz-Buffet 02',
-        :fname => 'Ray',
-        :lname => 'Liu',
-        :tel => '08912345678',
-        :mail => 'ray.liu@hotmai.com'
-    );
-
-    product = Product.new(
-        :name => '10 Blatt Seidenpapier ♥ Panda ♥ 02',
-        :desc => %Q{
-            ♥ 10 Bögen Seidenpapier
-            ♥ Panda
-            ♥ Größe je Bogen: 50 x 70cm
-            ♥ Das Papier eignet sich nicht nur wundervoll zum Verpacken
-            ♥ Das Papier wird auf 18x25cm gefaltet versendet
-            },
-        :cover => 'https://images2.dawandastatic.com/23/c2/61/cf/40/44/4d/62/a4/30/1b/3c/00/7b/12/fe/product_l.JPEG',
-        :brand => 'Herz-Buffet',
-        :tags => ['壁纸', '熊猫', 'buffet'],
-        :shop => shop
-    )
-
-    v1 = VariantOption.new(:name => 'Größe', :product => product)
-    v1_o1 = VariantOption.new(:parent => v1, :name => 'klein')
-    v1_o2 = VariantOption.new(:parent => v1, :name => 'mittel')
-    v1_o3 = VariantOption.new(:parent => v1, :name => 'groß')
-
-    v2 = VariantOption.new(:name => 'Farbe', :product => product)
-    v2_o1 = VariantOption.new(:parent => v2, :name => 'rot')
-    v2_o2 = VariantOption.new(:parent => v2, :name => 'blau')
-    v2_o3 = VariantOption.new(:parent => v2, :name => 'gold')
-
-    s1 = Sku.new(:price => 10, :product => product, :quantity => 5, :weight => 10, :unit => 'g', :space_length => 1.0, :space_width => 2.0, :space_height => 3.0)
-    s1.option_ids << v1_o1.id.to_s
-    s1.option_ids << v2_o1.id.to_s
-    s1.img0 = create_upload_from_image_file(Product.name.downcase, 'herz_buffet_large_10_blatt_seidenpapier_panda.jpg')
-    s1.img1 = create_upload_from_image_file(Product.name.downcase, 'herz_buffet_large_10_blatt_seidenpapier_panda.jpg')
-    s1.img2 = create_upload_from_image_file(Product.name.downcase, 'herz_buffet_large_10_blatt_seidenpapier_panda.jpg')
-    s1.img3 = create_upload_from_image_file(Product.name.downcase, 'herz_buffet_large_10_blatt_seidenpapier_panda.jpg')
-    s1.save!
-
-    s2 = Sku.new(:price => 10, :product => product, :quantity => 4, :weight => 10, :unit => 'g', :space_length => 1.0, :space_width => 2.0, :space_height => 3.0)
-    s2.option_ids << v1_o2.id.to_s
-    s2.option_ids << v2_o1.id.to_s
-    s2.img0 = create_upload_from_image_file(Product.name.downcase, 'herz_buffet_large_10_blatt_seidenpapier_panda.jpg')
-    s2.img1 = create_upload_from_image_file(Product.name.downcase, 'herz_buffet_large_10_blatt_seidenpapier_panda.jpg')
-    s2.img2 = create_upload_from_image_file(Product.name.downcase, 'herz_buffet_large_10_blatt_seidenpapier_panda.jpg')
-    s2.img3 = create_upload_from_image_file(Product.name.downcase, 'herz_buffet_large_10_blatt_seidenpapier_panda.jpg')
-    s2.save!
-
-    s3 = Sku.new(:price => 20, :product => product, :unlimited => true, :weight => 10, :unit => 'g', :space_length => 1.0, :space_width => 2.0, :space_height => 3.0)
-    s3.option_ids << v1_o3.id.to_s
-    s3.option_ids << v2_o3.id.to_s
-    s3.img0 = create_upload_from_image_file(Product.name.downcase, 'herz_buffet_large_10_blatt_seidenpapier_panda.jpg')
-    s3.img1 = create_upload_from_image_file(Product.name.downcase, 'herz_buffet_large_10_blatt_seidenpapier_panda.jpg')
-    s3.img2 = create_upload_from_image_file(Product.name.downcase, 'herz_buffet_large_10_blatt_seidenpapier_panda.jpg')
-    s3.img3 = create_upload_from_image_file(Product.name.downcase, 'herz_buffet_large_10_blatt_seidenpapier_panda.jpg')
-    s3.save!
-
-    shop.products << product
-    shop.save!
+    shop = create_shop(base_shopkeeper)
+    product = create_product(shop)
 
     Rails.cache.clear
-=end
 
     puts "End of process."
 
   end
 
   private
+
+  def create_sku(product)
+
+    price = 10
+    quantity = 5
+    num_options = rand(1..3)
+    weight = 0.5 # kg
+    space_length = 1.0
+    space_width = 2.0
+    space_height = 3.0
+
+    sku = Sku.new(
+      :price => 10,
+      :product => product,
+      :quantity => 5,
+      :weight => weight,
+      :space_length => space_length,
+      :space_width => space_width,
+      :space_height => space_height
+    )
+
+    num_options.times do |time|
+      sku.option_ids << product.options.shuffle.first.id.to_s
+    end
+    sku.option_ids.uniq # should be managed via model directly ?
+
+    4.times do |time|
+      instance_variable_set("sku.img#{time}", setup_image(:product))
+    end
+
+    sku.save!
+
+  end
+
+  def create_variant_option(product)
+
+    num = VariantOption.count + 1
+    name = "Variation #{num}"
+    choices = rand(10)
+
+    puts "We create #{name}"
+
+    variant_option = VariantOption.new(:name => "Variation #{num}", :product => product)
+    choices.times do |time|
+      choice = VariantOption.new(:parent => variant_option, :name => "Choice #{time}")
+      choice.save!
+    end
+
+    variant_option.save!
+    product.save!
+
+  end
+
+  def create_product(shop)
+
+    num = Product.count + 1
+    num_variants = rand(1..10)
+
+    name = "Product #{num}"
+    brand = "Brand #{num}"
+    hs_code = 12212121
+
+    puts "We create #{name}"
+
+    product = Product.new(
+        :name => name,
+        :desc => Faker::Lorem.paragraph,
+        :cover => 'https://images2.dawandastatic.com/23/c2/61/cf/40/44/4d/62/a4/30/1b/3c/00/7b/12/fe/product_l.JPEG',
+        :brand => brand,
+        :shop => shop,
+        :hs_code => hs_code
+    )
+
+    num_variants.times do |time|
+      create_variant_option(product)
+    end
+    product.save!
+
+    create_sku(product)
+
+    shop.products << product
+    shop.save!
+
+  end
+
+  def create_shop(shopkeeper)
+
+    num = Shop.count + 1
+    name = "Shop #{num}"
+    min_total = num * 10
+
+    puts "We create #{name}"
+
+    Shop.create!(
+        :name          => name,
+        :desc          => Faker::Lorem.paragraph,
+        #:logo         => create_upload_from_image_file(Shop.name.downcase, 'herz-buffet-logo.jpg'),
+        #:banner       => create_upload_from_image_file(Shop.name.downcase, 'herz-buffet-banner.jpg'),
+        :min_total     => min_total,
+        :shopkeeper    => shopkeeper,
+        :founding_year => random_year,
+        :register      => 12345678,
+        :philosophy    => Faker::Lorem.paragraph,
+        :stories       => Faker::Lorem.paragraph,
+        :agb           => true,
+        :tax_number    => '12345678',
+        :ustid         => 'DE123456789',
+        :shopname      => name,
+        :fname         => shopkeeper.fname,
+        :lname         => shopkeeper.lname,
+        :tel           => shopkeeper.mobile,
+        :mail          => shopkeeper.email
+    );
+
+  end
 
   def create_user(symbol=:customer)
     
@@ -201,6 +163,8 @@ class RemoveAndCreateCompleteSampleData
       :password              => '12345678',
       :password_confirmation => '12345678',
       :role                  => symbol,
+      :tel                   => Faker::PhoneNumber.phone_number,
+      :mobile                => Faker::PhoneNumber.cell_phone,
       :birth => random_date,
     )
 
@@ -210,14 +174,28 @@ class RemoveAndCreateCompleteSampleData
     Time.at(rand * Time.now.to_i).strftime("%F")
   end
 
+  def random_year
+    Time.at(rand * Time.now.to_i).year
+  end
+
+  def get_random_file(folder_path)
+    Dir["#{folder_path}/*"].shuffle.first
+  end
+
   #
   # creates image upload file
   #
-  def create_upload_from_image_file(model, image_name, content_type = 'image/jpeg')
-    file = ActionDispatch::Http::UploadedFile.new(:tempfile => File.open(File.join(Rails.root, 'db', 'demo', 'images', model, image_name), 'rb'))
+  def setup_image(section)
+
+    content_type = 'image/jpeg'
+
+    file = get_random_file File.join(Rails.root, 'public', 'samples', 'images', section)
+
+    file = ActionDispatch::Http::UploadedFile.new(:tempfile => File.open(file)), 'rb'))
     file.original_filename = image_name
     file.content_type = content_type
     file
+
   end
 
 end
