@@ -2,6 +2,18 @@
 
 <div class="col-md-8 col-md-push-2 col-md-pull-2">
 
+  <% if @featured_shop.nil? && @casual_shops.empty? %>
+
+  <!-- There's no shop right now -->
+  <div class="+white-box +centered">
+    <h4>
+     There's no shop available right now.
+   </h4>
+ </div>
+
+
+  <% else %>
+
   <!-- Shop Blocks -->
   <div class="shop-blocks">
 
@@ -97,14 +109,6 @@
   </div>
   <!-- End of Shop Blocks -->
 
-<!--
-    <div class="row">
-      <div class="message">
-        <div class="message__simple">
-          Oops ! No product here ...
-        </div>
-      </div>
-    </div>
--->
+  <% end %>
 
 </div>
