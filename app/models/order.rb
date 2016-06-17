@@ -67,7 +67,7 @@ class Order
     order_items.inject(0) { |sum, i| sum += i.quantity }
   end
 
-  def update_for_checkout!(user, delivery_destination_id, border_guru_quote_id, shipping_cost, tax_and_duty_cost)
+  def update_for_checkout(user, delivery_destination_id, border_guru_quote_id, shipping_cost, tax_and_duty_cost)
     a = user.addresses.find(delivery_destination_id)
 
     self.update({

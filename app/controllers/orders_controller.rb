@@ -148,9 +148,10 @@ class OrdersController < ApplicationController
 
     end
 
-    status = order.update_for_checkout!(current_user, params[:delivery_destination_id], cart.border_guru_quote_id, cart.shipping_cost, cart.tax_and_duty_cost)
+    status = order.update_for_checkout(current_user, params[:delivery_destination_id], cart.border_guru_quote_id, cart.shipping_cost, cart.tax_and_duty_cost)
 
     if status
+
       @wirecard = PrepareOrderForWirecardCheckout.perform({
 
         :user        => current_user,
@@ -161,6 +162,12 @@ class OrdersController < ApplicationController
         :currency    => "CNY"
 
       })
+
+    else
+
+      flash[:error] = order.errors.full_messages.first
+      redirect_to root_path and return
+
     end
   end
 
@@ -168,8 +175,12 @@ class OrdersController < ApplicationController
     checkout_callback
 
     op = OrderPayment.where(:request_id => params[:request_id]).first
+
     order = op.order
-    shop = order.order_items.first.sku.product.shop
+    order.status = :paid
+    order.save!
+
+    shop = order.shop
 
     begin
       shipping = BorderGuru.get_shipping(
@@ -178,23 +189,21 @@ class OrdersController < ApplicationController
           country_of_destination: ISO3166::Country.new('CN'),
           currency: 'EUR'
       )
-    rescue SocketError => e
+    rescue Net::ReadTimeout => e
       logger.fatal "Failed to connect to Borderguru: #{e}"
       flash[:error] = I18n.t(:borderguru_unreachable_at_shipping, scope: :checkout)
-      redirect_to root_path
-      return
+      redirect_to root_path and return
     end
 
-    if shipping.success? && order.save
+    if shipping.success?
+
+      order.status = :shippable
+      order.save!
+
       order.order_items.each do |oi|
-        oi.sku.quantity -= oi.quantity unless oi.sku.unlimited
-        oi.price = oi.sku.price
-        oi.save!
-
-        #if oi.save
-        #  session[:order_ids]&.delete(shop.id.to_s)
-        #end
-
+        sku = oi.sku
+        sku.quantity -= oi.quantity unless sku.unlimited
+        sku.save!
       end
 
       reset_shop_id_from_session(shop.id.to_s)
@@ -204,7 +213,7 @@ class OrdersController < ApplicationController
 
     else
 
-      flash[:error] = current_order.errors.full_messages.first
+      flash[:error] = I18n.t(:borderguru_shipping_failed, scope: :checkout)
       redirect_to request.referrer
 
     end

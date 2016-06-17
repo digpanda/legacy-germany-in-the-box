@@ -79,11 +79,10 @@ class ApplicationController < ActionController::Base
           country_of_destination: ISO3166::Country.new('CN'),
           currency: 'EUR'
       )
-    rescue SocketError => e
+    rescue Net::ReadTimeout => e
       logger.fatal "Failed to connect to Borderguru: #{e}"
-      flash[:error] = I18n.t(:borderguru_unreachable, scope: :checkout)
-      redirect_to root_path
-      return
+      flash[:error] = I18n.t(:borderguru_unreachable_at_quoting, scope: :checkout)
+      redirect_to root_path and return
     end
 
     cart
@@ -102,19 +101,25 @@ class ApplicationController < ActionController::Base
   def current_carts
     carts = {}
 
-    current_orders.map do |s, o|
-      carts[s] = Cart.new
+    begin
+      current_orders.map do |s, o|
+        carts[s] = Cart.new
 
-      o.order_items.each do |i|
-        carts[s].add(i.sku, i.quantity)
+        o.order_items.each do |i|
+          carts[s].add(i.sku, i.quantity)
 
-        BorderGuru.calculate_quote(
-            cart: carts[s],
-            shop: Shop.find(s),
-            country_of_destination: ISO3166::Country.new('CN'),
-            currency: 'EUR'
-        )
+          BorderGuru.calculate_quote(
+              cart: carts[s],
+              shop: Shop.find(s),
+              country_of_destination: ISO3166::Country.new('CN'),
+              currency: 'EUR'
+          )
+        end
       end
+    rescue Net::ReadTimeout => e
+      logger.fatal "Failed to connect to Borderguru: #{e}"
+      flash[:error] = I18n.t(:borderguru_unreachable_at_quoting, scope: :checkout)
+      redirect_to root_path and return
     end
 
     carts
