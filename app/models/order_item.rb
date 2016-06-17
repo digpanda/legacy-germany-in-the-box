@@ -36,6 +36,6 @@ class OrderItem
   end
 
   def sku
-    @sku ||= product.skus.find(self.sku_id)
+    @sku ||= self.product.skus.find(self.sku_id)
   end
 end

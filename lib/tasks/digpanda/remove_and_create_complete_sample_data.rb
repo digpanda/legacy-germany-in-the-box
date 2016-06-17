@@ -11,18 +11,32 @@ class RemoveAndCreateCompleteSampleData
     User.delete_all
     puts "We remove all shops"
     Shop.delete_all
+    puts "We remove all products"
+    Product.delete_all
+    puts "We remove all the orders"
+    Order.delete_all
+    puts "We remove all the orders items"
+    OrderItem.delete_all
+    puts "We remove all addresses"
+    Address.delete_all
 
     puts "We set the locale to Germany"
     I18n.locale = :de
     Faker::Config.locale = 'de'
 
-    puts "We create the base customer, shopkeeper, admin"
-    base_customer = create_user(:customer)
-    base_shopkeeper = create_user(:shopkeeper)
-    base_admin = create_user(:admin)
+    puts "We repopulate the categories from another rake task"
+    puts "---"
+    load './lib/tasks/digpanda/remove_and_create_duty_categories.rb'
+    RemoveAndCreateDutyCategories.new
+    load './lib/tasks/digpanda/remove_and_create_ui_categories.rb'
+    RemoveAndCreateUiCategories.new
+    puts "---"
 
-    shop = create_shop(base_shopkeeper)
-    product = create_product(shop)
+    puts "We create the customers, shopkeepers, admins"
+    
+    10.times { setup_customer create_user(:customer) }
+    3.times { create_user(:admin) }
+    10.times { setup_shopkeeper create_user(:shopkeeper) }
 
     Rails.cache.clear
 
@@ -32,23 +46,38 @@ class RemoveAndCreateCompleteSampleData
 
   private
 
-  def create_sku(product)
+  def create_pricey_sku(product)
+    create_sku(product, {
+        :price => 500,
+      })
+  end
 
-    price = 10
-    quantity = 5
-    num_options = rand(1..3)
-    weight = 0.5 # kg
-    space_length = 1.0
-    space_width = 2.0
-    space_height = 3.0
+  def create_big_sku(product)
+    create_sku(product, {
+        :weight => 2.0,
+        :space_length => 10,
+        :space_width => 20,
+        :space_height => 30
+      })
+  end
+
+  def create_sku(product, args={})
+
+    price = args[:price] || 10 
+    quantity = args[:quantity] || rand(1..10)
+    num_options = args[:num_options] ||rand(1..3)
+    weight = args[:weight] || 0.5
+    space_length = args[:space_length] || 1.0
+    space_width = args[:space_width] || 2.0
+    space_height = args[:space_height] || 3.0
 
     sku = Sku.new(
-      :price => 10,
-      :product => product,
-      :quantity => 5,
-      :weight => weight,
+      :price        => price,
+      :product      => product,
+      :quantity     => quantity,
+      :weight       => weight,
       :space_length => space_length,
-      :space_width => space_width,
+      :space_width  => space_width,
       :space_height => space_height
     )
 
@@ -57,9 +86,12 @@ class RemoveAndCreateCompleteSampleData
     end
     sku.option_ids.uniq # should be managed via model directly ?
 
-    4.times do |time|
-      instance_variable_set("sku.img#{time}", setup_image(:product))
-    end
+    # This is terrible and we should never have to do this kind of shit.
+    # Should be changed very soon.
+    sku.img0 = setup_image(:product)
+    sku.img1 = setup_image(:product)
+    sku.img2 = setup_image(:product)
+    sku.img3 = setup_image(:product)
 
     sku.save!
 
@@ -67,9 +99,14 @@ class RemoveAndCreateCompleteSampleData
 
   def create_variant_option(product)
 
-    num = VariantOption.count + 1
+    # We use this variable because it's impossible to count variations
+    # It's embedded into product so not saved immediatly.
+    @variant_options = 0 if @variant_options.nil?
+    @variant_options += 1
+
+    num = VariantOption.count + @variant_options
     name = "Variation #{num}"
-    choices = rand(10)
+    choices = rand(1..5)
 
     puts "We create #{name}"
 
@@ -87,27 +124,34 @@ class RemoveAndCreateCompleteSampleData
   def create_product(shop)
 
     num = Product.count + 1
-    num_variants = rand(1..10)
+    num_variants = rand(1..4)
+    category_slug = [:food, :cosmetics, :fashion, :medicine].sample
+    approved = Time.now
 
     name = "Product #{num}"
     brand = "Brand #{num}"
     hs_code = 12212121
 
-    puts "We create #{name}"
+    puts "We create #{name} (#{category_slug})"
 
     product = Product.new(
-        :name => name,
-        :desc => Faker::Lorem.paragraph,
-        :cover => 'https://images2.dawandastatic.com/23/c2/61/cf/40/44/4d/62/a4/30/1b/3c/00/7b/12/fe/product_l.JPEG',
-        :brand => brand,
-        :shop => shop,
-        :hs_code => hs_code
+        :name    => name,
+        :desc    => Faker::Lorem.paragraph,
+        :cover   => setup_image(:banner),
+        :brand   => brand,
+        :shop    => shop,
+        :hs_code => hs_code,
+        :approved => approved,
+
     )
+
+    # Should be a one category system
+    product.category_ids << Category.where(:slug => category_slug.to_s).first.id
 
     num_variants.times do |time|
       create_variant_option(product)
+      product.save!
     end
-    product.save!
 
     create_sku(product)
 
@@ -121,29 +165,64 @@ class RemoveAndCreateCompleteSampleData
     num = Shop.count + 1
     name = "Shop #{num}"
     min_total = num * 10
+    approved = Time.now
+    agb = true
+    status = true
+    bg_merchant_id = "1024-TEST"
 
     puts "We create #{name}"
 
     Shop.create!(
         :name          => name,
         :desc          => Faker::Lorem.paragraph,
-        #:logo         => create_upload_from_image_file(Shop.name.downcase, 'herz-buffet-logo.jpg'),
-        #:banner       => create_upload_from_image_file(Shop.name.downcase, 'herz-buffet-banner.jpg'),
+        :logo          => setup_image(:logo),
+        :banner        => setup_image(:banner),
         :min_total     => min_total,
         :shopkeeper    => shopkeeper,
         :founding_year => random_year,
         :register      => 12345678,
         :philosophy    => Faker::Lorem.paragraph,
         :stories       => Faker::Lorem.paragraph,
-        :agb           => true,
         :tax_number    => '12345678',
         :ustid         => 'DE123456789',
         :shopname      => name,
         :fname         => shopkeeper.fname,
         :lname         => shopkeeper.lname,
         :tel           => shopkeeper.mobile,
-        :mail          => shopkeeper.email
+        :mail          => shopkeeper.email,
+        :approved      => approved,
+        :agb           => agb,
+        :status        => status,
+        :bg_merchant_id => bg_merchant_id,
     );
+
+  end
+
+  def create_shop_address(shop)
+
+    type = 'both'
+    country = 'DE'
+
+    puts "We create a shop address"
+
+    address = Address.create(
+
+      :number => '670000',
+      :street => Faker::Address.street_name,
+      :city => Faker::Address.city,
+      :province => Faker::Address.state,
+      :zip => Faker::Address.zip_code,
+      :type => type,
+      :fname => shop.shopkeeper.fname,
+      :lname => shop.shopkeeper.lname,
+      :company => shop.shopname,
+      :country => country,
+
+
+    )
+
+    address.shop = shop
+    address.save!
 
   end
 
@@ -152,7 +231,7 @@ class RemoveAndCreateCompleteSampleData
     num = User.where(:role => symbol).count + 1
     name = symbol.to_s.capitalize
 
-    puts "Let's create #{symbol} N°#{num} ..."
+    puts "Let's create #{symbol} N#{num} ..."
 
     User.create!(
       :fname                 => name,
@@ -165,7 +244,7 @@ class RemoveAndCreateCompleteSampleData
       :role                  => symbol,
       :tel                   => Faker::PhoneNumber.phone_number,
       :mobile                => Faker::PhoneNumber.cell_phone,
-      :birth => random_date,
+      :birth                 => random_date,
     )
 
   end
@@ -178,21 +257,43 @@ class RemoveAndCreateCompleteSampleData
     Time.at(rand * Time.now.to_i).year
   end
 
-  def get_random_file(folder_path)
-    Dir["#{folder_path}/*"].shuffle.first
+  def random_file(folder_path)
+    Dir["#{folder_path}/*"].shuffle.first unless Dir["#{folder_path}/*"].empty?
   end
 
-  #
-  # creates image upload file
-  #
+  def setup_customer(customer)
+
+
+  end
+
+  def setup_shopkeeper(shopkeeper)
+
+    num_products = rand(0..20)
+
+    shop = create_shop(shopkeeper)
+    create_shop_address(shop)
+
+    num_products.times do |time|
+      create_product(shop)
+    end
+
+  end
+
   def setup_image(section)
 
     content_type = 'image/jpeg'
+    folder = File.join(Rails.root, 'public', 'samples', 'images', section.to_s)
+    file = random_file folder
+    if file.nil?
+      puts "Impossible to get random image, empty folder `#{folder}`"
+      puts "We stop the process."
+      exit
+    end
 
-    file = get_random_file File.join(Rails.root, 'public', 'samples', 'images', section)
+    file_name = file.split('/').last
 
-    file = ActionDispatch::Http::UploadedFile.new(:tempfile => File.open(file)), 'rb'))
-    file.original_filename = image_name
+    file = ActionDispatch::Http::UploadedFile.new(:tempfile => File.open(file, 'rb'))
+    file.original_filename = file_name
     file.content_type = content_type
     file
 

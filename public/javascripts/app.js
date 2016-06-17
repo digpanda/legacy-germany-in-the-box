@@ -740,7 +740,9 @@ var Messages = { // NOTE : We should use a template system to handle the HTML he
   activateHide: function activateHide(el, time) {
 
     setTimeout(function () {
-      $(el).fadeOut();
+      $(el).fadeOut(function () {
+        $(document).trigger('message:hidden'); // To replace footer
+      });
     }, time);
   }
 
@@ -1035,6 +1037,11 @@ var Footer = {
     if ($('.js-footer-stick').length > 0) {
 
       Footer.processStickyFooter();
+
+      $(document).on('message:hidden', function () {
+        console.log('yo');
+        Footer.processStickyFooter();
+      });
 
       $(window).resize(function () {
 

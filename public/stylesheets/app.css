@@ -8147,6 +8147,7 @@ img.mfp-img {
     background-color: #e6fbd7; }
   /* line 76, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
   .message__error {
+    padding: 1em;
     background-color: #e74c3c;
     font-size: 20px;
     color: #fdfdfd;
@@ -8156,6 +8157,7 @@ img.mfp-img {
     border-radius: 1em; }
   /* line 76, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
   .message__success {
+    padding: 1em;
     background-color: #3498db;
     font-size: 20px;
     color: #fdfdfd;

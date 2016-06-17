@@ -20,7 +20,9 @@ var Messages = { // NOTE : We should use a template system to handle the HTML he
     activateHide: function(el, time) {
 
       setTimeout(function(){
-          $(el).fadeOut();
+          $(el).fadeOut(function() {
+            $(document).trigger('message:hidden'); // To replace footer
+          });
       }, time);
 
     },

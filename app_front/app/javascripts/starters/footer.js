@@ -23,6 +23,11 @@ var Footer = {
 
         Footer.processStickyFooter();
         
+        $(document).on('message:hidden', function() {
+          console.log('yo');
+          Footer.processStickyFooter();
+        });
+
         $(window).resize(function() {
 
           Footer.processStickyFooter();
