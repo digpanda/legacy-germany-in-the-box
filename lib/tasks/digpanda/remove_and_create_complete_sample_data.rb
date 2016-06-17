@@ -65,7 +65,7 @@ class RemoveAndCreateCompleteSampleData
 
     price        = args[:price] || 2 * Product.count
     quantity     = args[:quantity] || rand(1..10)
-    num_options  = args[:num_options] || rand(1..3)
+    num_options  = args[:num_options] || rand(1..5)
     weight       = args[:weight] || 0.5
     space_length = args[:space_length] || 1.0
     space_width  = args[:space_width] || 2.0
@@ -84,7 +84,7 @@ class RemoveAndCreateCompleteSampleData
     num_options.times do |time|
       sku.option_ids << product.options.sample.suboptions.sample.id.to_s
     end
-    #sku.option_ids.uniq # should be managed via model directly ?
+    sku.option_ids.uniq # should be managed via model directly ?
 
     # This is terrible and we should never have to do this kind of shit.
     # Should be changed very soon.
@@ -125,6 +125,7 @@ class RemoveAndCreateCompleteSampleData
 
     num           = Product.count + 1
     num_variants  = rand(1..4)
+    num_skus      = rand(1..5)
     category_slug = [:food, :cosmetics, :fashion, :medicine].sample
     approved      = Time.now
     
@@ -152,7 +153,9 @@ class RemoveAndCreateCompleteSampleData
       product.save!
     end
 
-    create_sku(product)
+    num_skus.times do
+      create_sku(product)
+    end
 
     shop.products << product
     shop.save!
