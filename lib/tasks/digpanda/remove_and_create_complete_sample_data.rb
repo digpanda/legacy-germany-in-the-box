@@ -54,21 +54,21 @@ class RemoveAndCreateCompleteSampleData
 
   def create_big_sku(product)
     create_sku(product, {
-        :weight => 2.0,
+        :weight       => 2.0,
         :space_length => 10,
-        :space_width => 20,
+        :space_width  => 20,
         :space_height => 30
       })
   end
 
   def create_sku(product, args={})
 
-    price = args[:price] || 2 * Product.count
-    quantity = args[:quantity] || rand(1..10)
-    num_options = args[:num_options] || rand(1..3)
-    weight = args[:weight] || 0.5
+    price        = args[:price] || 2 * Product.count
+    quantity     = args[:quantity] || rand(1..10)
+    num_options  = args[:num_options] || rand(1..3)
+    weight       = args[:weight] || 0.5
     space_length = args[:space_length] || 1.0
-    space_width = args[:space_width] || 2.0
+    space_width  = args[:space_width] || 2.0
     space_height = args[:space_height] || 3.0
 
     sku = Sku.new(
@@ -82,9 +82,9 @@ class RemoveAndCreateCompleteSampleData
     )
 
     num_options.times do |time|
-      sku.option_ids << product.options.shuffle.first.id.to_s
+      sku.option_ids << product.options.sample.suboptions.sample.id.to_s
     end
-    sku.option_ids.uniq # should be managed via model directly ?
+    #sku.option_ids.uniq # should be managed via model directly ?
 
     # This is terrible and we should never have to do this kind of shit.
     # Should be changed very soon.
@@ -104,8 +104,8 @@ class RemoveAndCreateCompleteSampleData
     @variant_options = 0 if @variant_options.nil?
     @variant_options += 1
 
-    num = VariantOption.count + @variant_options
-    name = "Variation #{num}"
+    num     = VariantOption.count + @variant_options
+    name    = "Variation #{num}"
     choices = rand(1..5)
 
     puts "We create #{name}"
@@ -123,26 +123,25 @@ class RemoveAndCreateCompleteSampleData
 
   def create_product(shop)
 
-    num = Product.count + 1
-    num_variants = rand(1..4)
+    num           = Product.count + 1
+    num_variants  = rand(1..4)
     category_slug = [:food, :cosmetics, :fashion, :medicine].sample
-    approved = Time.now
-
-    name = "Product #{num}"
-    brand = "Brand #{num}"
-    hs_code = 12212121
+    approved      = Time.now
+    
+    name          = "Product #{num}"
+    brand         = "Brand #{num}"
+    hs_code       = 12212121
 
     puts "We create #{name} (#{category_slug})"
 
     product = Product.new(
-        :name    => name,
-        :desc    => Faker::Lorem.paragraph,
-        :cover   => setup_image(:banner),
-        :brand   => brand,
-        :shop    => shop,
-        :hs_code => hs_code,
+        :name     => name,
+        :desc     => Faker::Lorem.paragraph,
+        :cover    => setup_image(:banner),
+        :brand    => brand,
+        :shop     => shop,
+        :hs_code  => hs_code,
         :approved => approved,
-
     )
 
     # Should be a one category system
@@ -162,37 +161,37 @@ class RemoveAndCreateCompleteSampleData
 
   def create_shop(shopkeeper)
 
-    num = Shop.count + 1
-    name = "Shop #{num}"
-    min_total = num * 10
-    approved = Time.now
-    agb = true
-    status = true
+    num            = Shop.count + 1
+    name           = "Shop #{num}"
+    min_total      = num * 10
+    approved       = Time.now
+    agb            = true
+    status         = true
     bg_merchant_id = "1024-TEST"
 
     puts "We create #{name}"
 
     Shop.create!(
-        :name          => name,
-        :desc          => Faker::Lorem.paragraph,
-        :logo          => setup_image(:logo),
-        :banner        => setup_image(:banner),
-        :min_total     => min_total,
-        :shopkeeper    => shopkeeper,
-        :founding_year => random_year,
-        :register      => 12345678,
-        :philosophy    => Faker::Lorem.paragraph(7),
-        :stories       => Faker::Lorem.paragraph(7),
-        :tax_number    => '12345678',
-        :ustid         => 'DE123456789',
-        :shopname      => name,
-        :fname         => shopkeeper.fname,
-        :lname         => shopkeeper.lname,
-        :tel           => shopkeeper.mobile,
-        :mail          => shopkeeper.email,
-        :approved      => approved,
-        :agb           => agb,
-        :status        => status,
+        :name           => name,
+        :desc           => Faker::Lorem.paragraph,
+        :logo           => setup_image(:logo),
+        :banner         => setup_image(:banner),
+        :min_total      => min_total,
+        :shopkeeper     => shopkeeper,
+        :founding_year  => random_year,
+        :register       => 12345678,
+        :philosophy     => Faker::Lorem.paragraph(7),
+        :stories        => Faker::Lorem.paragraph(7),
+        :tax_number     => '12345678',
+        :ustid          => 'DE123456789',
+        :shopname       => name,
+        :fname          => shopkeeper.fname,
+        :lname          => shopkeeper.lname,
+        :tel            => shopkeeper.mobile,
+        :mail           => shopkeeper.email,
+        :approved       => approved,
+        :agb            => agb,
+        :status         => status,
         :bg_merchant_id => bg_merchant_id,
     );
 
@@ -207,16 +206,16 @@ class RemoveAndCreateCompleteSampleData
 
     address = Address.create(
 
-      :number => '670000',
-      :street => Faker::Address.street_name,
-      :city => Faker::Address.city,
+      :number   => '670000',
+      :street   => Faker::Address.street_name,
+      :city     => Faker::Address.city,
       :province => Faker::Address.state,
-      :zip => Faker::Address.zip_code,
-      :type => type,
-      :fname => shop.shopkeeper.fname,
-      :lname => shop.shopkeeper.lname,
-      :company => shop.shopname,
-      :country => country,
+      :zip      => Faker::Address.zip_code,
+      :type     => type,
+      :fname    => shop.shopkeeper.fname,
+      :lname    => shop.shopkeeper.lname,
+      :company  => shop.shopname,
+      :country  => country,
 
 
     )
