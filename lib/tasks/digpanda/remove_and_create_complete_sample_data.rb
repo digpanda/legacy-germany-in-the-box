@@ -37,11 +37,8 @@ class RemoveAndCreateCompleteSampleData
     10.times { setup_customer create_user(:customer) }
     3.times { create_user(:admin) }
 
-    1.times { setup_shopkeeper create_user(:shopkeeper) }
+    10.times { setup_shopkeeper create_user(:shopkeeper) }
     convert_product_without_first_sku_left(random_product)
-
-    #10.times { setup_shopkeeper create_user(:shopkeeper) }
-
 
     Rails.cache.clear
 
