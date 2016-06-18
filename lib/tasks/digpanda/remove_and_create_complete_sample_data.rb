@@ -49,7 +49,6 @@ class RemoveAndCreateCompleteSampleData
   private
 
   def convert_product_without_first_sku_left(product)
-    binding.pry
     puts "We convert #{product.name} to a `without_first_sku_left`"
     product.name += " NO FIRST SKU"
     product.desc = "The price of the first Sku is #{product.skus.first.price} and shouldn't appear."
