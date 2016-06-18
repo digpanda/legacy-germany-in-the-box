@@ -8,7 +8,7 @@
     <div class="row">
 
       <!-- Shop Page Cover -->
-      <div class="col-md-12 shop-page-cover" style="background-image:url(https://pixabay.com/static/uploads/photo/2015/12/08/00/26/coffee-shop-1081713_960_720.jpg);">
+      <div class="col-md-12 shop-page-cover" style="background-image:url(<%= @shop.decorate.image_url(:detail, :banner) %>);">
         <div class="+overlay"></div>
 
         <div class="+onoverlay">
@@ -16,7 +16,7 @@
           <!-- Content -->
           <div class="shop-page-cover__content +centered">
 
-            <img src="https://www.menashion.de/wp-content/uploads/2015/06/Cardi-Bob-2015sw-300x300.jpg">
+            <img src="<%= @shop.decorate.image_url(:detail, :logo) %>">
 
             <div class="+small-spacer"></div>
 

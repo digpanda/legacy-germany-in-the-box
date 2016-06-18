@@ -35,13 +35,14 @@ var ImagesHandler = {
 
       }
 
+/* SADLY THIS SYSTEM SOUNDS HEAVY SO WE (maybe temporarily) REMOVE IT, ALSO IT WAS FAILING SOMETIMES.
       console.log('find img');
 
-      $(document).on("load", "img", function(){
+      $(document).one("img", "error", function(){
          console.log('error img loading')
         $(this).attr('src','/images/no_image_available.jpg');
       });
-
+*/
     },
 
 }
