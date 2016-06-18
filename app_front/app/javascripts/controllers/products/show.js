@@ -17,8 +17,6 @@ var ProductsShow = {
 
     $(document).on('click', '#gallery a', function(e) {
 
-      console.log('click trigerring');
-
       let image = $(this).data('image');
       let zoomImage = $(this).data('zoom-image');
 
@@ -77,7 +75,8 @@ var ProductsShow = {
             let image = images[i];
 
             if ($('#thumbnail-'+i).length > 0) {
-              $('#thumbnail-'+i).html('<a href="#" data-image="'+image.fullsize+'" data-zoom-image="'+image.zoomin+'"><img src="'+image.thumb+'" width="100px"></a>');
+              // DEPRECATED : $('#thumbnail-'+i).html('<a href="#" data-image="'+image.fullsize+'" data-zoom-image="'+image.zoomin+'"><img src="'+image.thumb+'" width="100px"></a>');
+              $('#thumbnail-'+i).html('<a href="#" data-image="'+image.fullsize+'" data-zoom-image="'+image.zoomin+'"><div class="product-page__thumbnail-image" style="background-image:'+image.thumb+'"></div></a>');
             }
 
           }

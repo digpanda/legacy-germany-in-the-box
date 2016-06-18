@@ -1,5 +1,16 @@
 +component(product-page)
 
-  background-color: white
+  background-color: $color-white
   border: 1px $color-grey solid
   padding: 2em
+
+  +part(fullsize-image)
+    background-color: $color-light-grey
+    min-height: 300px
+    margin-bottom: 1em
+    
+  +part(thumbnail-image)
+    background-color: $color-light-grey
+    background-position: center center
+    background-size: cover
+    min-height: 150px

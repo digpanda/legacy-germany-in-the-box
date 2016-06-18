@@ -383,8 +383,6 @@ var ProductsShow = {
 
     $(document).on('click', '#gallery a', function (e) {
 
-      console.log('click trigerring');
-
       var image = $(this).data('image');
       var zoomImage = $(this).data('zoom-image');
 
@@ -440,7 +438,8 @@ var ProductsShow = {
             var image = images[_i];
 
             if ($('#thumbnail-' + _i).length > 0) {
-              $('#thumbnail-' + _i).html('<a href="#" data-image="' + image.fullsize + '" data-zoom-image="' + image.zoomin + '"><img src="' + image.thumb + '" width="100px"></a>');
+              // DEPRECATED : $('#thumbnail-'+i).html('<a href="#" data-image="'+image.fullsize+'" data-zoom-image="'+image.zoomin+'"><img src="'+image.thumb+'" width="100px"></a>');
+              $('#thumbnail-' + _i).html('<a href="#" data-image="' + image.fullsize + '" data-zoom-image="' + image.zoomin + '"><div class="product-page__thumbnail-image" style="background-image:' + image.thumb + '"></div></a>');
             }
           }
 
@@ -1144,22 +1143,28 @@ var ImagesHandler = {
    */
   startImagesHandler: function startImagesHandler() {
 
-    $(".img-file-upload").each(function () {
-      var fileElement = $(this);
-      $(this).change(function (event) {
-        var input = $(event.currentTarget);
-        var file = input[0].files[0];
-        var reader = new FileReader();
-        reader.onload = function (e) {
-          var image_base64 = e.target.result;
-          $(fileElement.attr('img_id')).attr("src", image_base64);
-        };
-        reader.readAsDataURL(file);
-      });
-    });
+    if ($(".img-file-upload").length > 0) {
 
-    $("img").one("error", function (e) {
-      $(this).attr('src', '/assets/no_image_available.jpg');
+      $(".img-file-upload").each(function () {
+        var fileElement = $(this);
+        $(this).change(function (event) {
+          var input = $(event.currentTarget);
+          var file = input[0].files[0];
+          var reader = new FileReader();
+          reader.onload = function (e) {
+            var image_base64 = e.target.result;
+            $(fileElement.attr('img_id')).attr("src", image_base64);
+          };
+          reader.readAsDataURL(file);
+        });
+      });
+    }
+
+    console.log('find img');
+
+    $(document).on("load", "img", function () {
+      console.log('error img loading');
+      $(this).attr('src', '/images/no_image_available.jpg');
     });
   }
 

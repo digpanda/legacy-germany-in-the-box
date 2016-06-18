@@ -1,5 +1,7 @@
 <div class="row +centered">
-  <img id="main_image" class="magnify-full-image" />
+  <div class="product-page__fullsize-image">
+    <img id="main_image" class="magnify-full-image" />
+  </div>
 </div>
 
 <div id="gallery">
@@ -20,7 +22,8 @@
 
       <a href="#" data-image="<%= product.decorate.get_mas_img_url(file, :fullsize) %>" data-zoom-image="<%= product.decorate.get_mas_img_url(file, :zoomin) %>">
 
-        <img src="<%= product.decorate.get_mas_img_url(file, :thumb) %>" width="100px" />
+        <div class="product-page__thumbnail-image" style="background-image:<%= product.decorate.get_mas_img_url(file, :thumb) %>">
+        </div>
 
       </a>
 

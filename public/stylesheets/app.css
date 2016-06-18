@@ -8532,9 +8532,20 @@ img.mfp-img {
 
 /* line 32, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
 .product-page {
-  background-color: white;
+  background-color: #fdfdfd;
   border: 1px #eeeeee solid;
   padding: 2em; }
+  /* line 76, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
+  .product-page__fullsize-image {
+    background-color: #FBFBFB;
+    min-height: 300px;
+    margin-bottom: 1em; }
+  /* line 76, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
+  .product-page__thumbnail-image {
+    background-color: #FBFBFB;
+    background-position: center center;
+    background-size: cover;
+    min-height: 150px; }
 
 /* line 32, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
 .slider {
