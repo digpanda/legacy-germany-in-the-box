@@ -7836,8 +7836,8 @@ img.mfp-img {
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   border-radius: 50%;
-  min-height: 100px;
-  min-width: 100px;
+  min-height: 70px;
+  min-width: 70px;
   background-color: #FBFBFB;
   border: 3px white solid; }
 
@@ -7917,8 +7917,8 @@ img.mfp-img {
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
     border-radius: 50%;
-    min-height: 100px;
-    min-width: 100px;
+    min-height: 70px;
+    min-width: 70px;
     background-color: #FBFBFB;
     border: 3px white solid;
     margin-top: 2em !important;
@@ -7958,8 +7958,8 @@ img.mfp-img {
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
     border-radius: 50%;
-    min-height: 100px;
-    min-width: 100px;
+    min-height: 70px;
+    min-width: 70px;
     background-color: #FBFBFB;
     border: 3px white solid;
     margin-top: 2em !important;
@@ -8457,8 +8457,8 @@ img.mfp-img {
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
     border-radius: 50%;
-    min-height: 100px;
-    min-width: 100px;
+    min-height: 70px;
+    min-width: 70px;
     background-color: #FBFBFB;
     border: 3px white solid;
     max-width: 100px;
