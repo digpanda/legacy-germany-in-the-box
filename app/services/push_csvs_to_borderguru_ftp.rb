@@ -23,12 +23,11 @@ class PushCsvsToBorderguruFtp < BaseService
     create_directory! borderguru_local_directory
     open_directory borderguru_local_directory
 
-    binding.pry
+    fetch_current_directory :folders do |folder|
 
-    fetch_current_directory do |folder|
-
-      Dir["#{borderguru_local_directory}#{folder}/*"].each do |csv_file_path|
-        transfered = transfert_merchant_orders(csv_file_path)
+      open_directory folder
+      fetch_current_directory :files do |files|
+        transfered = transfert_merchant_orders(files)
         return transfered if transfered[:success] == false
       end
 
@@ -41,16 +40,23 @@ class PushCsvsToBorderguruFtp < BaseService
   private
 
   ## FILE MANIP
-  def create_directory!
-    FileUtils.mkdir_p(borderguru_local_directory) unless File.directory?(borderguru_local_directory)
+  def create_directory!(directory)
+    FileUtils.mkdir_p(directory) unless File.directory?(directory)
   end
 
-  def open_directory
-    Dir.chdir(borderguru_local_directory)
+  def open_directory(directory)
+    Dir.chdir(directory)
   end
 
-  def fetch_current_directory(&block)
-    Dir.glob('*').select {|f| File.directory? f}.each block
+  def fetch_current_directory(type, &block)
+    Dir.glob('*').select do |f|
+      case type
+      when :folders
+        File.directory? f
+      when :files
+        !(File.directory? f)
+      end
+    end.each { |file| block.call(file) }
   end
   ## FILE MANIP
 
