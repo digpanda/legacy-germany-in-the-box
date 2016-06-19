@@ -5,15 +5,16 @@
 #
 class PushCsvsToBorderguruFtp < BaseService
 
-  attr_reader :borderguru_local_directory, :ftp_host, :ftp_port, :ftp_username, :ftp_password
+  attr_reader :borderguru_local_directory, :borderguru_remote_directory, :ftp_host, :ftp_port, :ftp_username, :ftp_password
 
   def initialize
 
-    @borderguru_local_directory ||= "#{::Rails.root}/public/uploads/borderguru/"
-    @ftp_host ||= '84.200.54.181'
-    @ftp_port ||= '1348'
-    @ftp_username ||= 'ftp'
-    @ftp_password ||= 'doNotAllowRetryMoreThan019'
+    @borderguru_local_directory ||= "#{::Rails.root}#{::Rails.application.config.border_guru['ftp']['local_directory']}"
+    @borderguru_remote_directory ||= ::Rails.application.config.border_guru['ftp']['remote_directory']
+    @ftp_host ||= ::Rails.application.config.border_guru['ftp']['host']
+    @ftp_port ||= ::Rails.application.config.border_guru['ftp']['port']
+    @ftp_username ||= ::Rails.application.config.border_guru['ftp']['username']
+    @ftp_password ||= ::Rails.application.config.border_guru['ftp']['password']
 
   end
 
@@ -42,12 +43,10 @@ class PushCsvsToBorderguruFtp < BaseService
 
     begin
 
-      remote_folder = "/CainiaoPreAlertCsv/files"
-
       ftp = Net::FTP.new
       ftp.connect(ftp_host, ftp_port)  # here you can pass a non-standard port number
       ftp.login(ftp_username, ftp_password)
-      ftp.chdir(remote_folder)
+      ftp.chdir(borderguru_remote_directory)
       #ftp.passive = true  # optional, if PASV mode is required
 
       file = File.open(csv_file_path, "w")

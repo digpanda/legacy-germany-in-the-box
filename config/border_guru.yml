@@ -1,29 +1,28 @@
-development:
+defaults: &defaults
   merchantIdentifier: 5626377c4c7a961a00ece5c2
   key: e3725e9d99def24c824766b694df930e
   secret: da26c30cecd360bed2b18dde2a6cd4e5
   host: 'http://demo.borderguru.com/'
 
-staging:
-  merchantIdentifier: 5626377c4c7a961a00ece5c2
-  key: e3725e9d99def24c824766b694df930e
-  secret: da26c30cecd360bed2b18dde2a6cd4e5
-  host: 'http://demo.borderguru.com/'
-
-test:
-  merchantIdentifier: 5626377c4c7a961a00ece5c2
-  key: e3725e9d99def24c824766b694df930e
-  secret: da26c30cecd360bed2b18dde2a6cd4e5
-  host: 'http://demo.borderguru.com/'
+  ftp:
+    local_directory: /public/uploads/borderguru/
+    remote_directory: /CainiaoPreAlertCsv/files
+    host: 84.200.54.181
+    port: 1348
+    username: ftp
+    password: doNotAllowRetryMoreThan019
 
 local:
-  merchantIdentifier: 5626377c4c7a961a00ece5c2
-  key: e3725e9d99def24c824766b694df930e
-  secret: da26c30cecd360bed2b18dde2a6cd4e5
-  host: 'http://demo.borderguru.com/'
+  <<: *defaults
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+staging:
+  <<: *defaults
 
 production:
-  merchantIdentifier: 5626377c4c7a961a00ece5c2
-  key: e3725e9d99def24c824766b694df930e
-  secret: da26c30cecd360bed2b18dde2a6cd4e5
-  host: 'http://demo.borderguru.com/'
+  <<: *defaults
