@@ -14,7 +14,7 @@ class TurnOrdersIntoCsvAndStoreIt < BaseService
 
     @orders = orders
     @shop = shop
-    @borderguru_local_directory = "#{::Rails.root}/public/uploads/borderguru/"
+    @borderguru_local_directory = "#{Rails.root}#{borderguru[:ftp][:local_directory]}"
     @borderguru_merchant_id = shop.bg_merchant_id || "1026-TEST-#{Random.rand(1000)}"
     @origin_country = "DE"
 
@@ -98,10 +98,10 @@ class TurnOrdersIntoCsvAndStoreIt < BaseService
       file = File.open("#{directory}/#{formatted_date}_#{borderguru_merchant_id}.csv", "w")
       file.write(csv_output)
 
-      return success
+      success!
       
     rescue IOError => e
-      return error(e)
+      error!(e)
     ensure
       file.close unless file.nil?
     end

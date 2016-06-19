@@ -34,8 +34,8 @@ class CompileAndTransferOrdersCsvsToBorderguru
 
         turned = turn_orders_into_csv_and_store_it(user, orders)
 
-        unless turned[:success]
-          devlog "A problem occured while preparing the orders (#{turned[:error]})."
+        unless turned.is_success?
+          devlog "A problem occured while preparing the orders (#{turned.error})."
           return
         end
 
@@ -51,7 +51,7 @@ class CompileAndTransferOrdersCsvsToBorderguru
     #
     #if ::Rails.env.production?
       files_pushed = push_csvs_to_borderguru_ftp
-      unless files_pushed[:success]
+      unless files_pushed.is_success?
         devlog "A problem occured while transfering the files to BorderGuru (#{files_pushed[:error]})."
         return
       end
