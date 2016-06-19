@@ -200,8 +200,6 @@
                   .form-group
                     .input-group.input-group-sm
                       = fs.text_field :weight, value: number_with_precision(@sku.weight, :precision => 2), :class => 'form-control', :required => true, :pattern => I18n.t(:positive_float, scope: :validation)
-                      .input-group-btn
-                        = fs.select :unit, options_for_select(['kg'], @sku.unit), {}, { :class => 'form-control input-sm', :style => 'width:64px' }
             .col-md-6
               .col-md-6.nopadding-lr
                 .form-group

@@ -75,7 +75,7 @@ concern :shared_shops do
 end
 
 concern :shared_shop_applications do
-  match :is_registered,     via: [:get],  action: :registered?,         as: :is_registered,       :on => :collection
+  match :is_registered,     via: [:get],  action: :is_registered,         as: :is_registered,       :on => :collection
 end
 
 concern :shared_orders do

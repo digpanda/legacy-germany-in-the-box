@@ -3,7 +3,9 @@ require "net/http"
 
 class ShopApplicationsController < ApplicationController
 
-  before_action :authenticate_user!, except: [:new, :create, :registered?]
+  before_action :authenticate_user!, except: [:new, :create, :is_registered]
+
+  respond_to :js, only: [:is_registered]
 
   before_action(only: [:new])  { I18n.locale = :de }
 
@@ -63,7 +65,8 @@ class ShopApplicationsController < ApplicationController
     redirect_to request.referer
   end
 
-  def registered?
+  def is_registered
+    binding.pry
   end
 
   private
