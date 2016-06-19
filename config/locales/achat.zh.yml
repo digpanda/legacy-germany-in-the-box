@@ -95,6 +95,7 @@ zh-CN:
     forgot_password: 忘记密码
     captcha: 验证码
     sign_in: 确定
+    wechat_auth_failed: 请您授权我们的平台可以访问您的用户信息.
   sign_up_dialog:
     username: 用户昵称
     email: 登陆邮箱

@@ -10,12 +10,19 @@ class User
   field :fname,     type: String
   field :lname,     type: String
   field :birth,     type: String
+  field :city,      type: String
+  field :province,  type: String
   field :country,   type: String
   field :about,     type: String
   field :website,   type: String
   field :tel,       type: String
   field :mobile,    type: String
   field :status,    type: Boolean, default: true
+  field :provider,  type: String
+  field :uid,       type: String
+
+  field :wechat_unionid, type: String
+  field :wechat_openid,  type: String
 
   has_and_belongs_to_many :favorites, :class_name => 'Product'
 
@@ -57,8 +64,7 @@ class User
 
   validates_confirmation_of :password
 
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :omniauthable
 
   ## Database authenticatable
   field :email,               type: String, default: ''
@@ -92,6 +98,33 @@ class User
   index({followers: 1},           {unique: false, name: :idx_user_followers,          sparse: true})
   index({following: 1},           {unique: false, name: :idx_user_following,          sparse: true})
   index({liked_collections: 1},   {unique: false, name: :idx_user_liked_collections,  sparse: true})
+
+  def self.from_omniauth(auth)
+    where(auth.slice(:provider, :uid)).first_or_create do |user|
+      user.provider = auth.provider
+      user.uid = auth.uid
+      user.email = "#{auth.info.unionid}@wechat.com"
+      user.username = auth.info.nickname
+      user.role = :customer
+      user.gender = auth.info.sex == 1 ? 'm' : 'f'
+      user.birth = Date.today
+      user.password = auth.info.unionid[0,8]
+      user.password_confirmation = auth.info.unionid[0,8]
+      user.wechat_unionid = auth.info.unionid
+    end
+  end
+
+  def password_required?
+    super && provider.blank?
+  end
+
+  def update_with_password(params, *options)
+    if encrypted_password.blank?
+      update_attributes(params, *options)
+    else
+      super
+    end
+  end
 
   def reach_todays_limit?(new)
     todays_orders = self.orders.where(:status => :success).and(:u_at.gte => Date.today, :u_at.lt => Date.tomorrow)

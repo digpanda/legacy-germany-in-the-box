@@ -95,6 +95,7 @@ de:
     forgot_password: Passwort vergessen
     captcha: CAPTCHA
     sign_in: Los!
+    wechat_auth_failed: Leider haben Sie unsere Anfrage für den Zugriff auf Ihre Nutzerinfo bei Wechat abgelehnt.
   sign_up_dialog:
     username: Username
     email: E-Mail
