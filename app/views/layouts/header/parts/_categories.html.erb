@@ -1,18 +1,23 @@
-<% if @category_navigation_store.nil? %>
+<% if @categories.empty? %>
   <ul class="col-md-2">
   </ul>
 <% else %>
   <ul>
-    <% @category_navigation_store.roots.each do |category| %>
+    <% @categories.each do |category| %>
     <li class="col-md-2">
 
       <a href="<%= category_path(category) %>"><%= category.name %></a>
 
-      <% if @category_navigation_store.has_children?(category) %>
+      <!--
+      < if @category_navigation_store.has_children?(category) >
         <ul>
-          <%= @category_navigation_store.sub_tree(category) %>
+          memo << "<li class=\"dir\"><a href=\"#{Rails.application.routes.url_helpers.show_products_in_category_path(child.id)}\">#{child.name}</a>"
+          memo << "<ul>#{sub_tree(child)}</ul>" if has_children?(child)
+          memo << "</li>"
+          <= @category_navigation_store.sub_tree(category) >
         </ul>
-      <% end %>
+      < end >
+      -->
 
     </li>
     <% end %>

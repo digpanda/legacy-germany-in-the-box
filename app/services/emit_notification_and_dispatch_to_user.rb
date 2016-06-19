@@ -1,4 +1,8 @@
-class EmitNotificationAndDispatchToUser
+#
+# Emit a notification and set the correct model
+# Then dispatch the notification to the user email
+#
+class EmitNotificationAndDispatchToUser < BaseService
 
   class << self
 
@@ -17,7 +21,11 @@ class EmitNotificationAndDispatchToUser
 
       })
 
-      self.dispatch_notification(notification) unless notification.errors.any?
+      if notification.errors.any?
+        error(notification.errors.full_message.join(', '))
+      else
+        self.dispatch_notification(notification) and success
+      end
 
     end
 

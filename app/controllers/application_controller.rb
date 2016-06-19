@@ -26,7 +26,7 @@ class ApplicationController < ActionController::Base
 
   around_action :set_translation_locale, only: [:update], if: -> { current_user&.is_admin? }
 
-  before_action :set_all_categories
+  before_action :set_categories
 
   after_filter :store_location
 
@@ -51,9 +51,9 @@ class ApplicationController < ActionController::Base
     current_user.present? ? (current_user.reach_todays_limit?(new_total) || order.reach_todays_limit?(new_total)) : order.reach_todays_limit?(new_total)
   end
 
-  def set_all_categories
+  def set_categories
     if seems_like_a_customer?
-      @category_navigation_store ||= CategoryNavigationStore.new
+      @categories = Category.all
     end
   end
   

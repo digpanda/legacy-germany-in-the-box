@@ -1,4 +1,9 @@
-class PushCsvsToBorderguruFtp
+#
+# Take all the files (e.g. CSVs) stored on our local folder
+# Serialize them and uploads them to BorderGuru FTP
+# Then they are removed from our local server one after the other prevent crashing conflicts
+#
+class PushCsvsToBorderguruFtp < BaseService
 
   attr_reader :borderguru_local_directory, :ftp_host, :ftp_port, :ftp_username, :ftp_password
 
@@ -27,7 +32,7 @@ class PushCsvsToBorderguruFtp
 
     end
 
-    return {:success => true}
+    success
 
   end
 
@@ -52,10 +57,10 @@ class PushCsvsToBorderguruFtp
       # We don't forget to delete the file in the local version
       File.delete(file)
 
-      return {success: true}
+      return success
 
     rescue Exception => e
-      return {success: false, error: e}
+      return error(e)
     ensure
       file.close unless file.nil?
     end

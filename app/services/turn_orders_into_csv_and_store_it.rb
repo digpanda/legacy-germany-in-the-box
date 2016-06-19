@@ -1,7 +1,12 @@
 require 'fileutils'
 require 'csv'
 
-class TurnOrdersIntoCsvAndStoreIt
+#
+# Once per day we have to turn the orders which were approved by the shopkeepers
+# Into a series of CSVs files.
+# This will be stored locally.
+#
+class TurnOrdersIntoCsvAndStoreIt < BaseService
 
   attr_reader :orders, :shop, :borderguru_merchant_id, :origin_country, :borderguru_local_directory
 
@@ -75,9 +80,7 @@ class TurnOrdersIntoCsvAndStoreIt
 
   def store_csv_file(csv_output)
 
-    if orders.empty?
-      return {success: false, error: 'No order to place.'}
-    end
+    return error('No order to place.') if orders.empty?
 
     #
     # We generate the file itself and store it into our server
@@ -94,15 +97,14 @@ class TurnOrdersIntoCsvAndStoreIt
 
       file = File.open("#{directory}/#{formatted_date}_#{borderguru_merchant_id}.csv", "w")
       file.write(csv_output)
+
+      return success
       
     rescue IOError => e
-      return {success: false, error: e}
+      return error(e)
     ensure
       file.close unless file.nil?
     end
-
-    return {success: true}
-
   end
 
 end

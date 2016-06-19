@@ -36,7 +36,7 @@ class Product
   validates :brand ,      presence: true,   length: {maximum: (Rails.configuration.max_short_text_length * 1.25).round}
   validates :shop,        presence: true
   validates :status,      presence: true
-  validates :hs_code,   presence: true
+  validates :hs_code,     presence: true
 
   validates :desc,        length: { maximum: (Rails.configuration.max_long_text_length * 1.25).round}
   validates :tags,        length: { maximum: Rails.configuration.max_num_tags }

@@ -1,4 +1,8 @@
-class PrepareOrderForWirecardCheckout
+#
+# Prepare an order to be transmitted to the WireCard server
+# Those data will be used for the checkout process and, for instance UnionPay.
+#
+class PrepareOrderForWirecardCheckout < BaseService
 
   class << self
 

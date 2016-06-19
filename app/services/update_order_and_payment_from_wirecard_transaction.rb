@@ -1,4 +1,8 @@
-class UpdateOrderAndPaymentFromWirecardTransaction
+#
+# We update the order payment model depending on a server to server secure query
+# This is a double check usually made after the checkout process of our customers.
+#
+class UpdateOrderAndPaymentFromWirecardTransaction < BaseService
 
   class << self
 

@@ -1,4 +1,4 @@
-class DutyAndCustomerCategorySelectStore
+class DutyAndCustomerCategorySelectStore # Should be removed somehow
 
   def initialize(class_name)
     @classz = Object.const_get(class_name)

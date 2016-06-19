@@ -32,7 +32,7 @@ class CompileAndTransferOrdersCsvsToBorderguru
 
         devlog "Let's turn them into a CSV and store it under `/public/uploads/borderguru/#{user.id}/`"
 
-        turned = TurnOrdersIntoCsvAndStoreIt.new(user.shop, orders).perform
+        turned = turn_orders_into_csv_and_store_it(user, orders)
 
         unless turned[:success]
           devlog "A problem occured while preparing the orders (#{turned[:error]})."
@@ -50,19 +50,26 @@ class CompileAndTransferOrdersCsvsToBorderguru
     # We could avoid opening the file twice but it's a double process.
     #
     if ::Rails.env.production?
-      files_pushed = PushCsvsToBorderguruFtp.new.perform
+      files_pushed = push_csvs_to_borderguru_ftp
+      unless files_pushed[:success]
+        devlog "A problem occured while transfering the files to BorderGuru (#{files_pushed[:error]})."
+      return
+    end
     else
       devlog "We can't push files to BorderGuru FTP. We are not in production environment."
-    end
-
-    unless files_pushed[:success]
-      devlog "A problem occured while transfering the files to BorderGuru (#{files_pushed[:error]})."
-      return
     end
 
     devlog "Successfully transfered files were removed from our own server."
     devlog "Process finished."
 
+  end
+
+  def turn_order_into_csv_and_store_it(user, orders)
+    TurnOrdersIntoCsvAndStoreIt.new(user.shop, orders).perform
+  end
+
+  def push_csvs_to_borderguru_ftp
+    PushCsvsToBorderguruFtp.new.perform
   end
 
   def devlog(content)
