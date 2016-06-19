@@ -37,8 +37,9 @@ class RemoveAndCreateCompleteSampleData
     10.times { setup_customer create_user(:customer) }
     3.times { create_user(:admin) }
 
-    10.times { setup_shopkeeper create_user(:shopkeeper) }
+    1.times { setup_shopkeeper create_user(:shopkeeper) }
     convert_product_without_first_sku_left(random_product)
+    convert_product_with_documentation_attached(random_product)
 
     Rails.cache.clear
 
@@ -47,6 +48,14 @@ class RemoveAndCreateCompleteSampleData
   end
 
   private
+
+  def convert_product_with_documentation_attached(product)
+    puts "We convert #{product.name} to a `with_documentation_attached`"
+    product.name += " WITH DOCUMENTATION"
+    product.skus.first.attach0 = setup_documentation(:pdf)
+    product.save!
+  end
+
 
   def convert_product_without_first_sku_left(product)
     puts "We convert #{product.name} to a `without_first_sku_left`"
@@ -292,6 +301,26 @@ class RemoveAndCreateCompleteSampleData
     num_products.times do |time|
       create_product(shop)
     end
+
+  end
+
+  def setup_documentation(section)
+
+    content_type = "application/#{section}"
+    folder = File.join(Rails.root, 'public', 'samples', 'documentations', section.to_s)
+    file = random_file folder
+    if file.nil?
+      puts "Impossible to get random documentation, empty folder `#{folder}`"
+      puts "We stop the process."
+      exit
+    end
+
+    file_name = file.split('/').last
+
+    file = ActionDispatch::Http::UploadedFile.new(:tempfile => File.open(file, 'rb'))
+    file.original_filename = file_name
+    file.content_type = content_type
+    file
 
   end
 
