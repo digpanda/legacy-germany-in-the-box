@@ -14,9 +14,10 @@ class TurnOrdersIntoCsvAndStoreIt < BaseService
 
     @orders = orders
     @shop = shop
+    @borderguru = Rails.application.config.border_guru
     @borderguru_local_directory = "#{Rails.root}#{borderguru[:ftp][:local_directory]}"
     @borderguru_merchant_id = shop.bg_merchant_id || "1026-TEST-#{Random.rand(1000)}"
-    @origin_country = "DE"
+    @origin_country = "#{borderguru[:products][:origin]}"
 
   end
 
@@ -80,7 +81,7 @@ class TurnOrdersIntoCsvAndStoreIt < BaseService
 
   def store_csv_file(csv_output)
 
-    return error('No order to place.') if orders.empty?
+    return error!("No order to place.") if orders.empty?
 
     #
     # We generate the file itself and store it into our server

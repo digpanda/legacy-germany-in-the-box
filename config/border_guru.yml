@@ -12,6 +12,9 @@ defaults: &defaults
     username: ftp
     password: doNotAllowRetryMoreThan019
 
+  products:
+    origin: DE
+
 local:
   <<: *defaults
 
