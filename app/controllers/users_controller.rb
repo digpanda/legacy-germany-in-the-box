@@ -141,8 +141,13 @@ class UsersController < ApplicationController
 
   def get_followers
     @followers = @user.followers.without_detail
-    followers_with_reciprocity = JsonIntegrate.followers_reciprocity(@user, followers)
+    followers_with_reciprocity = followers_reciprocity(@user, followers)
     render :index
+  end
+
+  # SHOULD BE IN THE MODEL -> WE SHOULD ACTUALLY REDO THE WHOLE FOLLOWING SYSTEM
+  def followers_reciprocity(user, followers)
+    followers.map { |f| f.as_json.merge({:reciprocity => (f.followers.include? user._id)}) }
   end
 
   def get_following

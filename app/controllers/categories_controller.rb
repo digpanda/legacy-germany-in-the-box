@@ -19,6 +19,7 @@ class CategoriesController < ApplicationController
   end
 
   def index
+    # SHOULD BE REMOVED (we don't need it anymore, and we will switch to mongo)
     @root_categories = AppCache.get_root_level_categories_from_cache
     render :index
   end
