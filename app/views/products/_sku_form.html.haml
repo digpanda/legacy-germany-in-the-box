@@ -69,7 +69,7 @@
                   %i.fa.fa-info-circle{ :title => I18n.t(:attachment_info, scope: :edit_product_detail, num: Rails.configuration.max_additional_text_length, locale: locale) }
                   %label.translation= I18n.t(:attachment, scope: :edit_product_detail, locale: locale)
                 .col-md-9
-                  = fs.file_field :attach0, :accept => "application/pdf", :attach_id => "#attach_0_#{@sku.id}", :class => 'upload', :onchange =>"validatePdfFile(this);"
+                  = fs.file_field :attach0, :accept => "application/pdf", :attach_id => "#attach_0_#{@sku.id}", :class => 'upload'
                   - if @sku.attach0.file
                     = link_to  I18n.t(:open, scope: :edit_product_detail), @sku.attach0.url, :target => "_blank"
 

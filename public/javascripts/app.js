@@ -415,9 +415,12 @@ var ProductNewSku = {
 
   data: function data(_data) {
     return $('#js-new-sku').data();
-  },
+  }
 
-  validatePdfFile: function validatePdfFile(inputFile) {
+};
+
+/* UNUSED IN THE CURRENT SYSTEM
+  validatePdfFile: function(inputFile) {
 
     var maxExceededMessage = ProductNewSku.data().translationMaxExceedMessage;
     var extErrorMessage = ProductNewSku.data().translationExtErrorMessage;
@@ -428,14 +431,10 @@ var ProductNewSku = {
     var sizeExceeded = false;
     var extError = false;
 
-    $.each(inputFile.files, function () {
-      if (this.size && maxFileSize && this.size > maxFileSize) {
-        sizeExceeded = true;
-      };
+    $.each(inputFile.files, function() {
+      if (this.size && maxFileSize && this.size > maxFileSize) {sizeExceeded=true;};
       extName = this.name.split('.').pop();
-      if ($.inArray(extName, allowedExtension) == -1) {
-        extError = true;
-      };
+      if ($.inArray(extName, allowedExtension) == -1) {extError=true;};
     });
     if (sizeExceeded) {
       window.alert(maxExceededMessage);
@@ -447,9 +446,7 @@ var ProductNewSku = {
       $(inputFile).val('');
     };
   }
-
-};
-
+**/
 module.exports = ProductNewSku;
 });
 

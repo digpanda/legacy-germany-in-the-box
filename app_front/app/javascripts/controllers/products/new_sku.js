@@ -53,7 +53,8 @@ var ProductNewSku = {
   data: function(data) {
     return $('#js-new-sku').data()
   },
-  
+
+/* UNUSED IN THE CURRENT SYSTEM
   validatePdfFile: function(inputFile) {
 
     var maxExceededMessage = ProductNewSku.data().translationMaxExceedMessage;
@@ -80,7 +81,7 @@ var ProductNewSku = {
       $(inputFile).val('');
     };
   }
-
+**/
 }
 
 module.exports = ProductNewSku;
