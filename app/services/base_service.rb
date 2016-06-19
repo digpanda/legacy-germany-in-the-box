@@ -1,16 +1,15 @@
 class BaseService
 
-  def error(message)
-    {
-      :error => message,
-      :success => false
-    }
+  def setup
+    Struct.new(:is_error?, :is_success?, :message)
   end
 
-  def success
-    {
-      :success => true
-    }
+  def error!(message)
+    setup.new(true, false, message)
+  end
+
+  def success!
+    setup.new(false, true)
   end
 
 end

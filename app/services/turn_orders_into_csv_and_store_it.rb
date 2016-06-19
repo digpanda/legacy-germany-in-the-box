@@ -12,11 +12,11 @@ class TurnOrdersIntoCsvAndStoreIt < BaseService
 
   def initialize(shop, orders)
 
-    @orders ||= orders
-    @shop ||= shop
-    @borderguru_local_directory ||= "#{::Rails.root}/public/uploads/borderguru/"
-    @borderguru_merchant_id ||= shop.bg_merchant_id || "1026-TEST-#{Random.rand(1000)}"
-    @origin_country ||= "DE"
+    @orders = orders
+    @shop = shop
+    @borderguru_local_directory = "#{::Rails.root}/public/uploads/borderguru/"
+    @borderguru_merchant_id = shop.bg_merchant_id || "1026-TEST-#{Random.rand(1000)}"
+    @origin_country = "DE"
 
   end
 

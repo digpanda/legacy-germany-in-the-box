@@ -1,47 +1,54 @@
 #
 # Take all the files (e.g. CSVs) stored on our local folder
 # Serialize them and uploads them to BorderGuru FTP
-# Then they are removed from our local server one after the other prevent crashing conflicts
+# Then they are removed from our local server one after the other to prevent crashing conflicts
 #
 class PushCsvsToBorderguruFtp < BaseService
 
-  attr_reader :borderguru_local_directory, :borderguru_remote_directory, :ftp_host, :ftp_port, :ftp_username, :ftp_password
+  attr_reader :borderguru, :borderguru_local_directory
 
   def initialize
 
-    @borderguru_local_directory ||= "#{::Rails.root}#{::Rails.application.config.border_guru['ftp']['local_directory']}"
-    @borderguru_remote_directory ||= ::Rails.application.config.border_guru['ftp']['remote_directory']
-    @ftp_host ||= ::Rails.application.config.border_guru['ftp']['host']
-    @ftp_port ||= ::Rails.application.config.border_guru['ftp']['port']
-    @ftp_username ||= ::Rails.application.config.border_guru['ftp']['username']
-    @ftp_password ||= ::Rails.application.config.border_guru['ftp']['password']
+    @borderguru = Rails.application.config.border_guru
+    @borderguru_local_directory = "#{Rails.root}#{borderguru[:ftp][:local_directory]}"
 
   end
 
   def perform
-    
-    create_directory! borderguru_local_directory
-    open_directory borderguru_local_directory
-
+    open_directory! borderguru_local_directory
     fetch_current_directory :folders do |folder|
-
       open_directory folder
       fetch_current_directory :files do |files|
         transfered = transfert_merchant_orders(files)
-        return transfered if transfered[:success] == false
+        return transfered unless transfered.is_success?
       end
-
     end
-
-    success
-
+    success!
   end
 
   private
 
+
+  def transfert_merchant_orders(csv_file_path)
+    begin
+      ftp = connect_and_go(borderguru[:ftp])
+      file = push_and_destroy(ftp, file)
+      success!
+    rescue Exception => e
+      error!(e)
+    ensure
+      file.close unless file.nil?
+    end
+  end
+
   ## FILE MANIP
   def create_directory!(directory)
     FileUtils.mkdir_p(directory) unless File.directory?(directory)
+  end
+
+  def open_directory!(directory)
+    create_directory! borderguru_local_directory
+    open_directory(directory)
   end
 
   def open_directory(directory)
@@ -59,34 +66,23 @@ class PushCsvsToBorderguruFtp < BaseService
     end.each { |file| block.call(file) }
   end
   ## FILE MANIP
-
-  def transfert_merchant_orders(csv_file_path)
-
-    begin
-
-      ftp = Net::FTP.new
-      ftp.connect(ftp_host, ftp_port)  # here you can pass a non-standard port number
-      ftp.login(ftp_username, ftp_password)
-      ftp.chdir(borderguru_remote_directory)
-      #ftp.passive = true  # optional, if PASV mode is required
-
-      file = File.open(csv_file_path, "w")
-      ftp.putbinaryfile(file)
-      ftp.quit()
-      
-      # We don't forget to delete the file in the local version
-      File.delete(file)
-
-      return success
-
-    rescue Exception => e
-      return error(e)
-    ensure
-      file.close unless file.nil?
-    end
-
-
+  
+  ## FTP MANIP
+  def connect_and_go(credentials, &block)
+    ftp = Net::FTP.new
+    ftp.connect(credentials[:host], credentials[:port])
+    ftp.login(credentials[:username], credentials[:password])
+    ftp.chdir(credentials[:remote_directory])
+    ftp
   end
 
+  def push_and_destroy(ftp_instance, file)
+    file = File.open(csv_file_path, "w")
+    ftp_instance.putbinaryfile(file)
+    ftp_instance.quit()
+    File.delete(file)
+    file
+  end
+  ## FTP MANIP
 
 end
