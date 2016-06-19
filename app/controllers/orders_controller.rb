@@ -208,6 +208,12 @@ class OrdersController < ApplicationController
 
       reset_shop_id_from_session(shop.id.to_s)
 
+      EmitNotificationAndDispatchToUser.perform({
+        :user_id => shop.shopkeeper.id,
+        :title => 'You just received a new order',
+        :desc => "A customer just ordered in your shop. Check it out !"
+      })
+
       flash[:success] = I18n.t(:checkout_ok, scope: :checkout)
       redirect_to show_orders_users_path(:user_info_edit_part => :edit_order)
 
