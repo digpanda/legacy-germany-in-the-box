@@ -51,15 +51,22 @@
 
         <div class="+small-spacer"></div>
 
-        <h3>Description</h3>
+        <div class="product-page__description">
 
-        <%= @product.desc %>
+          <h3>Description</h3>
 
-        <div class="+small-spacer"></div>
-        
-        <h3>Other things</h3>
+          <%= @product.desc %>
 
-        Nothing yet
+          <div class="+small-spacer"></div>
+
+          <% if  @product.decorate.get_mas.attach0.file %>
+
+            <h3>More</h3>
+            <a class="btn btn-default" href="<%=  @product.decorate.get_mas.attach0.url %>">PDF Documentation</a>
+            
+          <% end %>
+
+        </div>
         
     </div>
 
