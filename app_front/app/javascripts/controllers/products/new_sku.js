@@ -4,10 +4,6 @@
  */
 var ProductNewSku = {
 
-  data: function(data) {
-    return $('#js-new-sku').data()
-  },
-
   /**
    * Initializer
    */
@@ -54,6 +50,10 @@ var ProductNewSku = {
 
   },
 
+  data: function(data) {
+    return $('#js-new-sku').data()
+  },
+  
   validatePdfFile: function(inputFile) {
 
     var maxExceededMessage = ProductNewSku.data().translationMaxExceedMessage;

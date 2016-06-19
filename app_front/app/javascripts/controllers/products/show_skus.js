@@ -11,17 +11,19 @@ var ProductsShowSkus = {
 
     if ($('#js-show-skus').length > 0) {
 
-      var showSkus = $('#js-show-skus').data();
-
       $('select.sku-variants-options').multiselect({
-        nonSelectedText: showSkus.translationNonSelectedText,
-        nSelectedText: showSkus.translationNSelectedText,
+        nonSelectedText: ProductsShowSkus.data().translationNonSelectedText,
+        nSelectedText:ProductsShowSkus.data().translationNSelectedText,
         numberDisplayed: 3,
         maxHeight: 400
       }).multiselect('disable');
 
     }
 
+  },
+
+  data: function() {
+     return $('#js-show-skus').data();
   },
 
 }
