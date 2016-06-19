@@ -20,11 +20,12 @@ class PushCsvsToBorderguruFtp < BaseService
 
   def perform
     
-    FileUtils.mkdir_p(borderguru_local_directory) unless File.directory?(borderguru_local_directory)
-    Dir.chdir(borderguru_local_directory)
-    folders = Dir.glob('*').select {|f| File.directory? f}
+    create_directory! borderguru_local_directory
+    open_directory borderguru_local_directory
 
-    folders.each do |folder|
+    binding.pry
+
+    fetch_current_directory do |folder|
 
       Dir["#{borderguru_local_directory}#{folder}/*"].each do |csv_file_path|
         transfered = transfert_merchant_orders(csv_file_path)
@@ -38,6 +39,20 @@ class PushCsvsToBorderguruFtp < BaseService
   end
 
   private
+
+  ## FILE MANIP
+  def create_directory!
+    FileUtils.mkdir_p(borderguru_local_directory) unless File.directory?(borderguru_local_directory)
+  end
+
+  def open_directory
+    Dir.chdir(borderguru_local_directory)
+  end
+
+  def fetch_current_directory(&block)
+    Dir.glob('*').select {|f| File.directory? f}.each block
+  end
+  ## FILE MANIP
 
   def transfert_merchant_orders(csv_file_path)
 
