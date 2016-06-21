@@ -3,7 +3,6 @@ FactoryGirl.define do
   factory :customer_address, class: Address do
     fname       '薇'
     lname       '李'
-    pid         { rand(100_000_000_000_000_000..999_999_999_999_999_999) }
     additional  '309室'
     street      '华江里'
     number      '21'
@@ -15,10 +14,10 @@ FactoryGirl.define do
     mobile      '13802049778'
     province    '天津'
     district    '和平区'
+    pid         { rand(100_000_000_000_000_000..999_999_999_999_999_999) }
   end
 
   factory :shop_address, class: Address do
-    
     fname       { Faker::Name.first_name }
     lname       { Faker::Name.last_name }
     street      { Faker::Address.street_name }
@@ -31,6 +30,19 @@ FactoryGirl.define do
     company     { Faker::Company.name }
     province    { Faker::Adress.state }
     type        'both'
+
+    trait :both do
+      type 'both'
+    end
+
+    trait :sender do
+      type 'sender'
+    end
+
+    trait :billing do
+      type 'billing'
+    end
+
   end
 end
 
