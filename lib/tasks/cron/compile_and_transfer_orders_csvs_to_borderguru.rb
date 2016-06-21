@@ -15,11 +15,12 @@ class CompileAndTransferOrdersCsvsToBorderguru
 
       orders = []
 
-      if user.shop.nil?
+      unless user.shop
         devlog "This user `#{user.id}` has no shop at the moment."
         next
       end
 
+      # THIS SHOULD BE SIMPLIFIED to a simple query (but you know mongo ...)
       user.shop.orders.where(status: :custom_checking).each do |order|
         orders  << order
       end
@@ -64,7 +65,7 @@ class CompileAndTransferOrdersCsvsToBorderguru
 
   end
 
-  def turn_order_into_csv_and_store_it(user, orders)
+  def turn_orders_into_csv_and_store_it(user, orders)
     TurnOrdersIntoCsvAndStoreIt.new(user.shop, orders).perform
   end
 

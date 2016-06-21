@@ -1,6 +1,5 @@
 class BaseService
 
-
   def return_with(state, message=nil)
     case state
     when :error

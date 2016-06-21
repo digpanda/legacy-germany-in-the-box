@@ -41,12 +41,12 @@ class PushCsvsToBorderguruFtp < BaseService
   end
 
   ## FILE MANIP
-  def create_directory!(directory)
-    FileUtils.mkdir_p(directory) unless File.directory?(directory)
+  def create_directory(directory)
+    FileUtils.mkdir_p(directory)
   end
 
   def open_directory!(directory)
-    create_directory! borderguru_local_directory
+    create_directory borderguru_local_directory
     open_directory(directory)
   end
 

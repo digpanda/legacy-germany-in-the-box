@@ -8,7 +8,7 @@ require 'csv'
 #
 class TurnOrdersIntoCsvAndStoreIt < BaseService
 
-  attr_reader :orders, :shop, :borderguru_merchant_id, :origin_country, :borderguru_local_directory
+  attr_reader :orders, :shop, :borderguru_merchant_id, :borderguru_local_directory
 
   def initialize(shop, orders)
 
@@ -17,8 +17,6 @@ class TurnOrdersIntoCsvAndStoreIt < BaseService
     @borderguru = Rails.application.config.border_guru
     @borderguru_local_directory = "#{Rails.root}#{borderguru[:ftp][:local_directory]}"
     @borderguru_merchant_id = shop.bg_merchant_id || "1026-TEST-#{Random.rand(1000)}"
-    @origin_country = "#{borderguru[:products][:origin]}"
-
   end
 
   def perform
@@ -54,7 +52,7 @@ class TurnOrdersIntoCsvAndStoreIt < BaseService
 
             order.border_guru_shipment_id,
             borderguru_merchant_id,
-            origin_country,
+            borderguru[:products][:origin],
 
             # Item ID
             order_item.sku.id,
