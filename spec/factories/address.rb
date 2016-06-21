@@ -1,7 +1,9 @@
 FactoryGirl.define do
+
   factory :customer_address, class: Address do
     fname       '薇'
     lname       '李'
+    pid         { rand(100_000_000_000_000_000..999_999_999_999_999_999) }
     additional  '309室'
     street      '华江里'
     number      '21'

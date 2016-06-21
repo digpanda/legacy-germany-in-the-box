@@ -41,8 +41,6 @@ describe ProductsController do
 
     it "should like a product" do
 
-      binding.pry
-
       # TODO : We should generate a new product from FactoryGirl here
       #product = Product.first
 

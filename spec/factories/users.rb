@@ -20,9 +20,9 @@ FactoryGirl.define do
     mobile                 { Faker::PhoneNumber.cell_phone }
     birth                  { Helpers::Global.random_date }
 
-  after(:create) do |user|
-    create_list(:customer_address, 1, user: customer)
-  end
+    after(:create) do |user|
+      create_list(:customer_address, 1, user: user)
+    end
 
   end
 
