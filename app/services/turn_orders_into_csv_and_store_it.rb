@@ -81,7 +81,7 @@ class TurnOrdersIntoCsvAndStoreIt < BaseService
 
   def store_csv_file(csv_output)
 
-    return error!("No order to place.") if orders.empty?
+    return return_with(:error, "No order to place.") if orders.empty?
 
     #
     # We generate the file itself and store it into our server
@@ -102,7 +102,7 @@ class TurnOrdersIntoCsvAndStoreIt < BaseService
       success!
       
     rescue IOError => e
-      error!(e)
+      return_with(:error, e)
     ensure
       file.close unless file.nil?
     end

@@ -20,22 +20,21 @@ class PushCsvsToBorderguruFtp < BaseService
       open_directory folder
       fetch_current_directory :files do |files|
         transfered = transfert_merchant_orders(files)
-        return transfered unless transfered.is_success?
+        return transfered unless transfered.success?
       end
     end
-    success!
+    return_with(:success)
   end
 
   private
-
 
   def transfert_merchant_orders(csv_file_path)
     begin
       ftp = connect_and_go(borderguru[:ftp])
       file = push_and_destroy(ftp, file)
-      success!
+      return_with(:success)
     rescue Exception => e
-      error!(e)
+      return_with(:error, e)
     ensure
       file.close unless file.nil?
     end
@@ -68,7 +67,7 @@ class PushCsvsToBorderguruFtp < BaseService
   ## FILE MANIP
   
   ## FTP MANIP
-  def connect_and_go(credentials, &block)
+  def connect_and_go(credentials)
     ftp = Net::FTP.new
     ftp.connect(credentials[:host], credentials[:port])
     ftp.login(credentials[:username], credentials[:password])

@@ -11,10 +11,10 @@ class PrepareOrderForWirecardCheckout < BaseService
       # Should be dynamic @yl
       merchant_id = args[:merchant_id]
       secret_key  = args[:secret_key]
-      user = args[:user]
-      order = args[:order]
-      amount = args[:amount]
-      currency = args[:currency]
+      user        = args[:user]
+      order       = args[:order]
+      amount      = args[:amount]
+      currency    = args[:currency]
 
       wirecard = Wirecard::Customer.new(user, {
         

@@ -34,8 +34,8 @@ class CompileAndTransferOrdersCsvsToBorderguru
 
         turned = turn_orders_into_csv_and_store_it(user, orders)
 
-        unless turned.is_success?
-          devlog "A problem occured while preparing the orders (#{turned.error})."
+        unless turned.success?
+          devlog "A problem occured while preparing the orders (#{turned.message})."
           return
         end
 
@@ -49,10 +49,10 @@ class CompileAndTransferOrdersCsvsToBorderguru
     # We transfer the information to BorderGuru
     # We could avoid opening the file twice but it's a double process.
     #
-    if ::Rails.env.production?
+    if Rails.env.production?
       files_pushed = push_csvs_to_borderguru_ftp
-      unless files_pushed.is_success?
-        devlog "A problem occured while transfering the files to BorderGuru (#{files_pushed[:error]})."
+      unless files_pushed.success?
+        devlog "A problem occured while transfering the files to BorderGuru (#{files_pushed.message})."
         return
       end
     else
