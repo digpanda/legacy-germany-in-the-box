@@ -1,6 +1,5 @@
-class Wirecard::WebhookController < ApplicationController
+class Api::Webhook::Wirecard::MerchantController < ApplicationController
 
-  # no authentication required
   before_action :authenticate_user!, except: [:merchant_status_change]
   acts_as_token_authentication_handler_for User, except: [:merchant_status_change]
 
@@ -9,17 +8,15 @@ class Wirecard::WebhookController < ApplicationController
   attr_reader :datas
   respond_to :json
 
-  # NOTE
-  # i made it fast, we should refacto and put some of this in libraries
-  # and organize it within an /api/ folder
-  # - Laurent
-  def merchant_status_change
+  def update
+
+    binding.pry
 
     devlog.info "Wirecard started to communicate with our system" 
-
-    merchant_id = datas["merchant_id"]
+    
+    merchant_id     = datas["merchant_id"]
     merchant_status = datas["merchant_status"]
-    reseller_id = datas["reseller_id"]
+    reseller_id     = datas["reseller_id"]
 
     devlog.info "Service received `#{merchant_id}`, `#{merchant_status}`, `#{reseller_id}`" 
 

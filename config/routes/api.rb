@@ -38,8 +38,18 @@ namespace :api, defaults: { format: 'json' }  do
 
   end
 
+  # Webhook related
+  namespace :webhook do
 
-  # Should be put somewhere
+    namespace :wirecard do
+      resource :merchant do
+      end
+    end
+
+  end
+
+
+  # TODO : SHOULD BE PUT SOMEWHERE + REFACTORED IN A BETTER WAT (RESTful)
   resources :products  do
 
     match :get_sku_for_options,                     via: [:get],    action: :get_sku_for_options,         as: :get_sku_for_options,         :on => :member

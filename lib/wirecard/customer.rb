@@ -32,10 +32,10 @@ module Wirecard
       @order_detail        ||= args[:order_detail]
       @request_time_stamp  ||= timestamp
       @request_id          ||= [timestamp, user.id, order_number].join('-')
-      @hosted_payment_url  ||= ::Rails.application.config.wirecard["customers"]["hosted_payment_url"]
-      @default_redirect_url||= ::Rails.application.config.wirecard["customers"]["default_redirect_url"]
-      @success_redirect_url||= ::Rails.application.config.wirecard["customers"]["success_redirect_url"] || "#{default_redirect_url}?state=success&"
-      @fail_redirect_url   ||= ::Rails.application.config.wirecard["customers"]["fail_redirect_url"] || "#{default_redirect_url}?state=failed&"
+      @hosted_payment_url  ||= ::Rails.application.config.wirecard[:customers][:hosted_payment_url]
+      @default_redirect_url||= ::Rails.application.config.wirecard[:customers][:default_redirect_url]
+      @success_redirect_url||= ::Rails.application.config.wirecard[:customers][:success_redirect_url] || "#{default_redirect_url}?state=success&"
+      @fail_redirect_url   ||= ::Rails.application.config.wirecard[:customers][:fail_redirect_url] || "#{default_redirect_url}?state=failed&"
 
     end
 
@@ -51,11 +51,11 @@ module Wirecard
         :request_id                => request_id,
         :request_time_stamp        => request_time_stamp,
         :merchant_account_id       => merchant_id,
-        :payment_method            => ::Rails.application.config.wirecard["customers"]["payment_method"],
-        :transaction_type          => ::Rails.application.config.wirecard["customers"]["transaction_type"],
+        :payment_method            => ::Rails.application.config.wirecard[:customers][:payment_method],
+        :transaction_type          => ::Rails.application.config.wirecard[:customers][:transaction_type],
         :redirect_url              => success_redirect_url.html_safe,
         :request_signature         => digital_signature,
-        :psp_name                  => ::Rails.application.config.wirecard["customers"]["psp_name"],
+        :psp_name                  => ::Rails.application.config.wirecard[:customers][:psp_name],
         :success_redirect_url      => success_redirect_url.html_safe,
         :fail_redirect_url         => fail_redirect_url.html_safe,
         :cancel_redirect_url       => "#{default_redirect_url}?state=cancel&".html_safe,
@@ -83,7 +83,7 @@ module Wirecard
       :request_time_stamp      => request_time_stamp,
       :request_id              => request_id,
       :merchant_account_id     => merchant_id,
-      :transaction_type        => ::Rails.application.config.wirecard["customers"]["transaction_type"],
+      :transaction_type        => ::Rails.application.config.wirecard[:customers][:transaction_type],
       :requested_amount        => amount,
       :request_amount_currency => currency,
       :redirect_url            => success_redirect_url.html_safe,
