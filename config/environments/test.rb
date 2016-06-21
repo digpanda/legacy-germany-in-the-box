@@ -13,10 +13,23 @@ Rails.application.configure do
 
   config.action_controller.allow_forgery_protection = false
 
-  config.action_mailer.delivery_method = :test
   config.active_support.test_order = :random
   config.active_support.deprecation = :stderr
 
+  config.action_mailer.default_url_options = {host: 'germanyinthebox.com', port: 80}
+  config.action_mailer.delivery_method = :smtp
+  #config.action_mailer.delivery_method = :test
+
+  config.action_mailer.smtp_settings = {
+      address: "mailtrap.io",
+      port: 25,
+      domain: 'mailtrap.io',
+      authentication: "plain",
+      enable_starttls_auto: true,
+      user_name: 'f396f41db34e22',
+      password: 'f4eede72e026e4'
+  }
+  
 end
 
 

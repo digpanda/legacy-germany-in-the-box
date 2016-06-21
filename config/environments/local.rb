@@ -1,4 +1,5 @@
 Rails.application.configure do
+  
   config.cache_classes = false
   config.middleware.use(Mongoid::QueryCache::Middleware)
   config.eager_load = false
@@ -14,13 +15,13 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
 
   config.action_mailer.smtp_settings = {
-      address: "smtp.gmail.com",
-      port: 587,
-      domain: 'gmail.com',
+      address: "mailtrap.io",
+      port: 25,
+      domain: 'mailtrap.io',
       authentication: "plain",
       enable_starttls_auto: true,
-      user_name: 'germanyinthebox@gmail.com',
-      password: 'pandarocks'
+      user_name: 'f396f41db34e22',
+      password: 'f4eede72e026e4'
   }
   
 end

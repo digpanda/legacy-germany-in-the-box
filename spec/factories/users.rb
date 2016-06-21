@@ -1,62 +1,44 @@
+require 'faker'
+
 FactoryGirl.define do
 
   factory :admin, :class => User do
 
-    role :admin
-    username "admin_testing"
-    email "admin@admin.com"
-    birth "1978-01"
-    gender "m"
-    status true
-
-    fname "Test"
-    lname "User"
-    country "GE"
-    about "I don't know"
-    website "http://www.mywebsite.com"
-    tel "267823687"
-    mobile "07890278927"
-
-
-    password "12345678"
-    #encrypted_password "$2a$10$s2dNnihkGCGAb9JGSigYduJdEccRdqJjs3JQjAmGYABJMpbt0qYw2"
-    authentication_token "xfu16vcEYGBweBiN1FVL"
-
-    current_sign_in_ip "127.0.0.1"
-
   end
 
   factory :shopkeeper, :class => User do
-    role      :shopkeeper
-    username  'dailycron'
-    email     'dailycron@hotmail.com'
+
   end
 
-  factory :user do
+  symbol = :customer
+  num = User.where(:role => symbol).count + 1
 
-    role :customer
-    username "mister_testing"
-    email "user@user.com"
-    birth "1978-01"
-    gender "m"
-    status true
+  def random_date
+    Time.at(rand * Time.now.to_i).strftime("%F")
+  end
 
-    fname "Test"
-    lname "User"
-    country "GE"
-    about "I don't know"
-    website "http://www.mywebsite.com"
-    tel "267823687"
-    mobile "07890278927"
+  def random_year
+    Time.at(rand * Time.now.to_i).year
+  end
 
-    password "12345678"
-    #encrypted_password "$2a$10$s2dNnihkGCGAb9JGSigYduJdEccRdqJjs3JQjAmGYABJMpbt0qYw2"
-    authentication_token "xfu16vcEYGBweBiN1FVL"
+  factory :customer do
 
-    current_sign_in_ip "127.0.0.1"
+    fname                  name
+    lname                  "N#{num}"
+    gender                 ['f', 'm'].sample
+    username               "#{name}#{num}"
+    email                  "#{symbol}#{num}@#{symbol}.com"
+    password               '12345678'
+    password_confirmation  '12345678'
+    role                   symbol
+    tel                    Faker::PhoneNumber.phone_number
+    mobile                 Faker::PhoneNumber.cell_phone
+    birth                  random_date
 
+=begin
     after(:create) do |user|
       create_list(:customer_address, 1, user: user)
     end
+=end
   end
 end

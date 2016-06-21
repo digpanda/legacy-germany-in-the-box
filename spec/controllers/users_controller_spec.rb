@@ -1,3 +1,4 @@
+=begin
 require 'rails_helper'
 
 describe UsersController do
@@ -16,7 +17,7 @@ describe UsersController do
     end
 
   end
-=begin
+
   context "user actions with authentificatio (API)" do
 
     let(:user) { build :user }
@@ -31,5 +32,5 @@ describe UsersController do
     end
 
   end
-=end
 end
+=end

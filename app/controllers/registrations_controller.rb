@@ -41,7 +41,7 @@ class RegistrationsController < Devise::RegistrationsController
 
           sign_in(:user, User.find(resource.id)) # auto sign in
 
-          EmitNotificationAndDispatchToUser.perform({
+          EmitNotificationAndDispatchToUser.new.perform({
             :user_id => resource.id,
             :title => 'Welcome to Germany In The Box !',
             :desc => "We are very pleased to know you just joined us :)"
