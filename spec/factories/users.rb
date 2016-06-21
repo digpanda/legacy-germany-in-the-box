@@ -8,13 +8,6 @@ FactoryGirl.define do
 
   factory :customer, :class => User do
 
-    before(:create) do |address|
-      #binding.pry
-      #I18n.locale = :de
-      #Faker::Config.locale = 'de'
-      #binding.pry
-    end
-
     fname                  { Faker::Name.first_name }
     lname                  { Faker::Name.last_name }
     gender                 { Helpers::Global.random_gender }

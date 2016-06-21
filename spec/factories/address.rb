@@ -18,12 +18,7 @@ FactoryGirl.define do
   end
 
   factory :shop_address, class: Address do
-
-    before(:create) do |address|
-      #I18n.locale = :de
-      #Faker::Config.locale = 'de'
-    end
-
+    
     fname       { Faker::Name.first_name }
     lname       { Faker::Name.last_name }
     street      { Faker::Address.street_name }
