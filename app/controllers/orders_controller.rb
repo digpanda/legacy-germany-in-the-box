@@ -108,6 +108,11 @@ class OrdersController < ApplicationController
 
     cart = current_cart(shop_id)
 
+    if cart.nil?
+      flash[:error] = I18n.t(:borderguru_unreachable_at_quoting, scope: :checkout)
+      redirect_to root_path and return
+    end
+
     all_products_available = true;
     products_total_price = 0
     product_name = nil

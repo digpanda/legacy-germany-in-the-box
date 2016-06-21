@@ -81,11 +81,10 @@ class ApplicationController < ActionController::Base
       )
     rescue Net::ReadTimeout => e
       logger.fatal "Failed to connect to Borderguru: #{e}"
-      flash[:error] = I18n.t(:borderguru_unreachable_at_quoting, scope: :checkout)
-      redirect_to root_path and return
+      return nil
+    else
+      return cart
     end
-
-    cart
   end
 
   def has_order?(shop_id)

@@ -10,7 +10,7 @@ get '/set_session_locale/:locale', to: 'application#set_session_locale', as: 'se
 
 captcha_route
 mount ChinaCity::Engine => '/china_city'
-devise_for :users, :controllers => { registrations: "registrations", sessions: "sessions" }
+devise_for :users, :controllers => { registrations: "registrations", sessions: "sessions", omniauth_callbacks: "omniauth_callbacks"}
 
 devise_scope :user do
   concerns :shared_user

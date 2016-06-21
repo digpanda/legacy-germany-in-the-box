@@ -1,3 +1,5 @@
+require 'omniauth/strategies/wechat'
+
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
@@ -260,7 +262,7 @@ Devise.setup do |config|
   # When using omniauth, Devise cannot automatically set Omniauth path,
   # so you need to do it manually. For the users scope, it would be:
   # config.omniauth_path_prefix = '/my_engine/users/auth'
-  config.omniauth :facebook, '671700962933961', '83310d867f2f32a50e57f71c04176325' ,scope: 'user_birthday'
+  config.omniauth :wechat, 'wx8ab7df24273a9a0c', 'aee7e495382a333e2c1e7ae063c00644',  :authorize_params => { :scope => 'snsapi_login' }
 
   config.secret_key = 'aae30f20a2753ea89c3b366e62ff792d0d22a6a986403fd5719120203bb898df4629ce6cc3e0d473d67766519d26950192d07b6bb11e8c66c5f2adc77209c764'
 end

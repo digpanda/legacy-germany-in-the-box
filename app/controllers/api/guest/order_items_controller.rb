@@ -24,7 +24,14 @@ class Api::Guest::OrderItemsController < Guest::OrderItemsController
     end
 
     if @order_item.save
-      @current_cart = current_cart(product.shop.id.to_s).decorate
+      cart = current_cart(product.shop.id.to_s)
+
+      if cart.nil?
+        flash[:error] = I18n.t(:borderguru_unreachable_at_quoting, scope: :checkout)
+        redirect_to root_path and return
+      end
+
+      @current_cart = cart
       @total_number_of_products = total_number_of_products
       @order = order
     else
