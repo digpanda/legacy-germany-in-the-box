@@ -18,17 +18,24 @@ FactoryGirl.define do
   end
 
   factory :shop_address, class: Address do
-    fname       'Thomas'
-    lname       'Kyte'
-    street      'Winibad str.'
-    number      '72'
-    zip         '85591'
-    city        'Vaterstetten'
+
+    before(:create) do |address|
+      #I18n.locale = :de
+      #Faker::Config.locale = 'de'
+    end
+
+    fname       { Faker::Name.first_name }
+    lname       { Faker::Name.last_name }
+    street      { Faker::Address.street_name }
+    number      { rand(1..200) }
+    zip         { Faker::Address.zip_code }
+    city        { Faker::Address.city }
     country     'DE'
-    tel         '+89123456'
-    email       'shopkeeper01@hotmail.com'
+    tel         { Faker::PhonNumber.phone_number }
+    email       { Faker::Internet.email }
+    company     { Faker::Company.name }
+    province    { Faker::Adress.state }
     type        'both'
-    company     'Supersoft'
-    province    'Bayern'
   end
 end
+
