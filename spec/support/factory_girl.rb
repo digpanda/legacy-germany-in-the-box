@@ -1,6 +1,12 @@
 # RSpec
 # spec/support/factory_girl.rb
+
 RSpec.configure do |config|
+
+  config.before do
+    config.include Helpers::Global
+  end
+
   config.include FactoryGirl::Syntax::Methods
 end
 

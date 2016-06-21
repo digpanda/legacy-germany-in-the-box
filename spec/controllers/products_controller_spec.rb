@@ -4,8 +4,6 @@ describe ProductsController do
 
   render_views # jbuilder requirement
 
-  #let(:product) { FactoryGirl.create(:product) }
-
   context "guest to the website" do
 
 =begin
@@ -31,19 +29,19 @@ describe ProductsController do
   context "authenticated customer to the website" do
 
     let(:customer) { FactoryGirl.create(:customer) }
-
-=begin
-    let(:product) { FactoryGirl.create(:product) }
+    #let(:product) { FactoryGirl.create(:product) }
 
     before {
-      allow(controller).to receive(:current_user) { user } 
-      allow(request.env['warden']).to receive(:authenticate!).and_return(user)
-      allow(controller).to receive(:current_user).and_return(user) 
+      allow(controller).to receive(:current_user) { customer } 
+      allow(request.env['warden']).to receive(:authenticate!).and_return(customer)
+      allow(controller).to receive(:current_user).and_return(customer) 
     }
     
-    let(:current_user) { user }
+    let(:current_user) { customer }
 
     it "should like a product" do
+
+      binding.pry
 
       # TODO : We should generate a new product from FactoryGirl here
       #product = Product.first
@@ -52,7 +50,6 @@ describe ProductsController do
       #expect(response).to be_success
 
     end
-=end
   end
 
 end

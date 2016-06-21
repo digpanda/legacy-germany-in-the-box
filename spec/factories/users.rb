@@ -1,39 +1,24 @@
-require 'faker'
-
 FactoryGirl.define do
 
   factory :admin, :class => User do
-
   end
 
   factory :shopkeeper, :class => User do
-
   end
 
-  symbol = :customer
-  num = User.where(:role => symbol).count + 1
+  factory :customer, :class => User do
 
-  def random_date
-    Time.at(rand * Time.now.to_i).strftime("%F")
-  end
-
-  def random_year
-    Time.at(rand * Time.now.to_i).year
-  end
-
-  factory :customer do
-
-    fname                  name
-    lname                  "N#{num}"
-    gender                 ['f', 'm'].sample
-    username               "#{name}#{num}"
-    email                  "#{symbol}#{num}@#{symbol}.com"
+    fname                  "Customer"
+    lname                  { "N#{Helpers::Global.next_number(:customer)}" }
+    gender                 { Helpers::Global.random_gender }
+    username               { "Customer#{Helpers::Global.next_number(:customer)}" }
+    email                  { "customer#{Helpers::Global.next_number(:customer)}@customer.com" }
     password               '12345678'
     password_confirmation  '12345678'
-    role                   symbol
-    tel                    Faker::PhoneNumber.phone_number
-    mobile                 Faker::PhoneNumber.cell_phone
-    birth                  random_date
+    role                   :customer
+    tel                    { Faker::PhoneNumber.phone_number }
+    mobile                 { Faker::PhoneNumber.cell_phone }
+    birth                  { Helpers::Global.random_date }
 
 =begin
     after(:create) do |user|
@@ -41,4 +26,5 @@ FactoryGirl.define do
     end
 =end
   end
+
 end
