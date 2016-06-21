@@ -1,6 +1,8 @@
+#
+# This controller is linked with an APP controller (Customer::FavoritesController)
+#
 class Api::Customer::FavoritesController < Customer::FavoritesController
 
-  # This controller is linked with an APP controller (Customer::FavoritesController)
   def update
     favorites << product
   end

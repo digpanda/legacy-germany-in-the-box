@@ -1,16 +1,25 @@
-class Api::Webhook::Wirecard::MerchantController < ApplicationController
+#
+# Webhook communication with Wirecard.
+# Any communication with Wirecard from server to server linked to the merchant / shopkeeper
+# Such as `wirecard_status` to activate their payment account is under this controller.
+#
+class Api::Webhook::Wirecard::MerchantsController < ApplicationController
 
-  before_action :authenticate_user!, except: [:merchant_status_change]
-  acts_as_token_authentication_handler_for User, except: [:merchant_status_change]
-
+  load_and_authorize_resource :class => User
   before_action :validate_merchant_datas
 
   attr_reader :datas
-  respond_to :json
+
+  #
+  # Wirecard don't respect a RESTful scheme. The `create` method is currently used
+  # To update the merchant / shopkeeper `wirecard_status`
+  # The system is nonetheless flexible and ready for this kind of change.
+  #
+  def create
+    update
+  end
 
   def update
-
-    binding.pry
 
     devlog.info "Wirecard started to communicate with our system" 
     

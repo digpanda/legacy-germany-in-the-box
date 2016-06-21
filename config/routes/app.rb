@@ -5,13 +5,6 @@ end
 # We should improve this by putting it into a home_controller with index
 root to: 'pages#home'
 
-namespace :wirecard do
-  namespace :webhook do 
-    post 'merchant_status_change', action: :merchant_status_change, as: :merchant_status_change
-  end
-end
-
-
 # We should improve this by creating a real controller
 get '/set_session_locale/:locale', to: 'application#set_session_locale', as: 'set_session_locale'
 

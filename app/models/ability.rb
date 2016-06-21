@@ -5,28 +5,47 @@ class Ability
   def initialize(user, controller_namespace)
 
     user ||= User.new
+    namespaces = controller_namespace.split('::')
+
+    # Currently there's no `app` so it's extremely difficult to differentiate the Api from the App
+    # Best is to avoid this differentiation until we have a strict organization of the folders and namespaces
+    # It will come progressively.
+    # - Laurent, 2016/06/21
+    #service = namespaces.shift
+    namespaces.shift if namespaces.first == "Api"
+    authorization = namespaces.shift
+
 
     # Namespaced authorization
-    case controller_namespace
+    case authorization
 
-      when 'Guest', 'Api::Guest' # Anyone
+      when 'Guest' # Anyone
         can :manage, :all
 
-      when 'Customer', 'Api::Customer' # Customer only
+      when 'Webhook' # Any server (API inter-communication) -> no difference from user so far, but the system is ready.
+        can :manage, :all
+
+      when 'Customer' # Customer only
         can :manage, :all if user.role == :customer
 
-      when 'Shopkeeper', 'Api::Shopkeeper' # Shopkeeper only
+      when 'Shopkeeper' # Shopkeeper only
         can :manage, :all if user.role == :shopkeeper
 
-      when 'Admin', 'Api::Admin' # Admin only
+      when 'Admin' # Admin only
         can :manage, :all if user.role == :admin
 
-      when 'Shared', 'Api::Shared' # If the user is logged-in in any type of account
+      when 'Shared' # If the user is logged-in in any type of account
         can :manage, :all if user.id != nil
 
     end
 
     # End of namespaced authorization
+
+    # 
+    # WARNING :
+    # THIS BELOW WILL BE REMOVED AT SOME POINT, DON'T GET HEADACHE FROM IT, IT WILL BE BETTER SECURED AFTER.
+    # - Laurent, 2016/06/21
+    # 
 
     if user.role == :customer
 
