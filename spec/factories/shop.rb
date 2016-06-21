@@ -12,7 +12,7 @@ FactoryGirl.define do
     tel                   '+89123434'
     mail                  'thomas.kyte@hotmail.com'
 
-    association :shopkeeper, factory: :shopkeeper, strategy: :build
+    #association :shopkeeper, factory: :shopkeeper, strategy: :build
 
     after(:create) do |shop|
       create_list(:product, 1, shop: shop)

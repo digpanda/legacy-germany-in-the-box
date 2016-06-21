@@ -25,10 +25,12 @@ FactoryGirl.define do
     zip         { Faker::Address.zip_code }
     city        { Faker::Address.city }
     country     'DE'
-    tel         { Faker::PhonNumber.phone_number }
+    tel         { Faker::PhoneNumber.phone_number }
     email       { Faker::Internet.email }
     company     { Faker::Company.name }
-    province    { Faker::Adress.state }
+    district    { Faker::Address.state }
+    province    { Faker::Address.state }
+    mobile      { Faker::PhoneNumber.phone_number }
     type        'both'
 
     trait :both do

@@ -13,7 +13,7 @@ class Api::Webhook::Wirecard::MerchantsController < ApplicationController
   #
   # Wirecard don't respect a RESTful scheme. The `create` method is currently used
   # To update the merchant / shopkeeper `wirecard_status`
-  # The system is nonetheless flexible and ready for this kind of change.
+  # The system is nonetheless flexible and ready for this kind of change, easily.
   #
   def create
     update
@@ -30,27 +30,27 @@ class Api::Webhook::Wirecard::MerchantsController < ApplicationController
     devlog.info "Service received `#{merchant_id}`, `#{merchant_status}`, `#{reseller_id}`" 
 
     # we authenticate the source
-    if (reseller_id == ::Rails.application.config.wirecard[:merchants][:reseller_id])
+    if (reseller_id == Rails.application.config.wirecard[:merchants][:reseller_id])
 
       devlog.info "It passed the authentication"
 
-      shop = Shop.find(merchant_id)
+      shop = Shop.where(id: merchant_id).first
       
       if shop.nil?
         devlog.info "Unknown merchant id."
-        render status: 500, json: {success: false, error: "Unknown merchant id."}.to_json and return
+        render status: :unprocessable_entity, json: {success: false, error: "Unknown merchant id."}.to_json and return
       end
 
       shop.wirecard_status = merchant_status.downcase
       shop.save
 
       devlog.info "System is done."
-      render status: 200, json: {success: true}.to_json and return
+      render status: :ok, json: {success: true}.to_json and return
 
     end
 
     devlog.info "Bad credentials."
-    render status: 500, json: {success: false, error: "Bad credentials."}.to_json and return
+    render status: :unauthorized, json: {success: false, error: "Bad credentials."}.to_json and return
 
   end
 
@@ -74,7 +74,7 @@ class Api::Webhook::Wirecard::MerchantsController < ApplicationController
 
   def validate_merchant_datas
     devlog.info "Bad arguments."
-    render status: 500, json: {success: false, error: "Bad arguments."}.to_json and return if !required_merchant_datas
+    render status: :bad_request, json: {success: false, error: "Bad arguments."}.to_json and return if !required_merchant_datas
   end
 
   def devlog
