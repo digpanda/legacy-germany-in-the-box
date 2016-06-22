@@ -35,6 +35,23 @@ class OrdersController < ApplicationController
   def show
     @readonly = true
     @currency_code = @order.order_items.first.sku.product.shop.currency.code
+    @cart = Cart.new
+
+    @order.order_items.each do |i|
+      @cart.add(i.sku, i.quantity)
+    end
+
+    begin
+      BorderGuru.calculate_quote(
+          cart: @cart,
+          shop: @order.shop,
+          country_of_destination: ISO3166::Country.new('CN'),
+          currency: 'EUR'
+      )
+    rescue Net::ReadTimeout => e
+      logger.fatal "Failed to connect to Borderguru: #{e}"
+      return nil
+    end
   end
 
   def manage_cart
