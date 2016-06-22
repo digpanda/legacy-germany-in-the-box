@@ -8,6 +8,7 @@ gem "mongoid_rails_migrations"
 #gem "mongoid_search" #, "~> 0.2.8"
 #gem "mongoid_fulltext"
 
+gem 'config'
 gem 'business_time'
 gem 'whenever', :require => false # cron job handling
 gem 'wkhtmltopdf-binary' # pdf generation (we need it coupled with wicked_pdf)

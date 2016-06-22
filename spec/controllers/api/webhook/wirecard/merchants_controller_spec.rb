@@ -17,7 +17,7 @@ describe Api::Webhook::Wirecard::MerchantsController do
 
     it "should throw a bad credentials error" do
 
-      params = {"merchant_id" => "something", "merchant_status": "anything", "reseller_id": "bad-reseller-id"}
+      params = {"merchant_id" => "#{shopkeeper.shop.id}", "merchant_status": "processing", "reseller_id": "bad-reseller-id"}
       post :create, request_wirecard_post(params)
       expect(response).to have_http_status(:unauthorized)
       expect(response_json_body["success"]).to eq(false) # Check if the server replied properly
@@ -26,15 +26,20 @@ describe Api::Webhook::Wirecard::MerchantsController do
 
     it "should throw a bad merchant id error" do
 
-      params = {"merchant_id" => "bad-merchant-id", "merchant_status": "anything", "reseller_id": Rails.application.config.wirecard[:merchants][:reseller_id]}
+      params = {"merchant_id" => "bad-merchant-id", "merchant_status": "processing", "reseller_id": Rails.application.config.wirecard[:merchants][:reseller_id]}
       post :create, request_wirecard_post(params)
       expect(response).to have_http_status(:unprocessable_entity)
       expect(response_json_body["success"]).to eq(false) # Check if the server replied properly
 
     end
 
-    it "should throw a bad status error" do
-      # WE HAVE TO CODE IT FIRST
+    it "should throw a validation error for bad wirecard status" do
+
+      params = {"merchant_id" => "#{shopkeeper.shop.id}", "merchant_status": "bad-merchant-status", "reseller_id": Rails.application.config.wirecard[:merchants][:reseller_id]}
+      post :create, request_wirecard_post(params)
+      expect(response).to have_http_status(:bad_request)
+      expect(response_json_body["success"]).to eq(false) # Check if the server replied properly
+
     end
 
     it "should change the merchant status and return a success" do

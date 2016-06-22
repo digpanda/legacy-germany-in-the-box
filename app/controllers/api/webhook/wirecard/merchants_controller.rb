@@ -44,8 +44,19 @@ class Api::Webhook::Wirecard::MerchantsController < ApplicationController
       shop.wirecard_status = merchant_status.downcase
       shop.save
 
-      devlog.info "System is done."
-      render status: :ok, json: {success: true}.to_json and return
+      binding.pry
+
+      if shop.save
+
+        devlog.info "System is done."
+        render status: :ok, json: {success: true}.to_json and return
+
+      else
+
+        devlog.info "Shop validation didn't pass (#{shop.errors.full_messages.join(', ')})"
+        render status: :bad_request, json: {success: false, error: shop.errors.full_messages.join(', ')}.to_json and return
+
+      end
 
     end
 

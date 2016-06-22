@@ -8,6 +8,12 @@ defaults: &defaults
     package_id: digpandapaket1
     country: DEU
     signup: https://www.checkoutportal.de/de_DE/signup/
+    status:
+      - active
+      - processing
+      - documents_complete
+      - declined
+      - terminated
   customers:
     hosted_payment_url: https://sandbox-engine.thesolution.com/engine/hpp/
     default_redirect_url: https://sandbox-engine.thesolution.com/shop/complete.jsp

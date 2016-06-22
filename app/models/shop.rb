@@ -83,6 +83,8 @@ class Shop
   validates :tax_number,    presence: true,   length: {maximum: Rails.configuration.max_tiny_text_length },   :if => lambda { self.agb }
   validates :ustid,         presence: true,   length: {maximum: Rails.configuration.max_tiny_text_length },   :if => lambda { self.agb }
 
+  validates :wirecard_status, :in => Rails.application.config.wirecard[:merchants][:status]
+
   validates :agb,           inclusion: {in: [true]},    :if => lambda { self.agb.present? }
 
   validates :register,        length: {maximum: Rails.configuration.max_tiny_text_length}

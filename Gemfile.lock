@@ -127,6 +127,9 @@ GEM
     coffee-script-source (1.10.0)
     commonjs (0.2.7)
     concurrent-ruby (1.0.2)
+    config (1.1.0)
+      activesupport (>= 3.0)
+      deep_merge (~> 1.0.1)
     copy_carrierwave_file (1.1.0)
       carrierwave (~> 0.9)
     countries (1.2.5)
@@ -136,6 +139,7 @@ GEM
     daemons (1.2.3)
     database_cleaner (1.5.3)
     debug_inspector (0.0.2)
+    deep_merge (1.0.1)
     delocalize (1.0.0)
       rails (>= 2)
     devise (3.5.3)
@@ -447,6 +451,7 @@ DEPENDENCIES
   carrierwave-mongoid
   carrierwave-qiniu
   china_city
+  config
   copy_carrierwave_file
   countries
   database_cleaner
