@@ -74,7 +74,7 @@ class Tasks::Cron::CompileAndTransferOrdersCsvsToBorderguru
   end
 
   def devlog(content)
-    @@devlog ||= Logger.new(Rails.root.join("/log/borderguru_cron.log"))
+    @@devlog ||= Logger.new(Rails.root.join("log/borderguru_cron.log"))
     @@devlog.info content
     puts content if Rails.env.development?
   end

@@ -14,7 +14,7 @@ class TurnOrdersIntoCsvAndStoreIt < BaseService
     @orders = orders
     @shop = shop
     @borderguru = Rails.application.config.border_guru
-    @borderguru_local_directory = Rails.root.join.borderguru[:ftp][:local_directory]
+    @borderguru_local_directory = Rails.root.join(borderguru[:ftp][:local_directory].reverse.chomp("/").reverse)
     @borderguru_merchant_id = shop.bg_merchant_id || "1026-TEST-#{Random.rand(1000)}"
   end
 
