@@ -29,7 +29,7 @@ class Api::Webhook::Wirecard::MerchantsController < ApplicationController
   def update
 
     devlog.info "Wirecard started to communicate with our system" 
-    devlog.info "Service received `#{datas[:merchant_id]}`, `#{atas[:merchant_status]}`, `#{datas[:reseller_id]}`" 
+    devlog.info "Service received `#{datas[:merchant_id]}`, `#{datas[:merchant_status]}`, `#{datas[:reseller_id]}`" 
 
     unless authenticate_resource(datas[:reseller_id])
       render status: :unauthorized, 
@@ -43,7 +43,7 @@ class Api::Webhook::Wirecard::MerchantsController < ApplicationController
              json: throw_error(:unknown_id).merge(error: "Unknown merchant id.").to_json and return
     end
 
-    shop.wirecard_status = atas[:merchant_status].downcase
+    shop.wirecard_status = datas[:merchant_status].downcase
     unless shop.save
       render status: :bad_request,
              json: throw_error(:fail_validation).merge(error: shop.errors.full_messages.join(', ')).to_json and return
