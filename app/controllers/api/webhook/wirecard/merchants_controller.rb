@@ -32,7 +32,6 @@ class Api::Webhook::Wirecard::MerchantsController < ApplicationController
       devlog.info "Bad credentials."
       render status: :unauthorized, json: {success: false, error: "Bad credentials."}.to_json and return
     end
-
     devlog.info "It passed the authentication"
 
     shop = Shop.where(id: merchant_id).first
