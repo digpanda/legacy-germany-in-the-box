@@ -20,8 +20,6 @@ class Tasks::Cron::CompileAndTransferOrdersCsvsToBorderguru
         next
       end
 
-      binding.pry
-
       # THIS SHOULD BE SIMPLIFIED to a simple query (but you know mongo ...)
       user.shop.orders.where(status: :custom_checking).each do |order|
         orders  << order

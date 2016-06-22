@@ -8,7 +8,7 @@ require 'csv'
 #
 class TurnOrdersIntoCsvAndStoreIt < BaseService
 
-  attr_reader :orders, :shop, :borderguru_merchant_id, :borderguru_local_directory
+  attr_reader :orders, :shop, :borderguru, :borderguru_merchant_id, :borderguru_local_directory
 
   def initialize(shop, orders)
 
