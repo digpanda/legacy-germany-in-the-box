@@ -4,7 +4,7 @@ module BorderGuru
 
       class << self
         private
-        def read_config(env)
+        def read_config
           @config_file ||= ::Rails.application.config.border_guru # IF ANYTHING BREAKS HERE ITS BECAUSE OFT HIS - Laurent on 19/06/2016 (couldn't test if from the hospital)
           #@config_file ||= Psych.load_file(CONFIG_PATH).symbolize_keys 
           #@config_file.fetch(env.to_sym).symbolize_keys
@@ -13,7 +13,7 @@ module BorderGuru
 
       #CONFIG_PATH = ::Rails.Rails.root + 'config/border_guru.yml' unless const_defined? :CONFIG_PATH
 
-      CONFIG = read_config(Rails.env) unless const_defined? :CONFIG
+      CONFIG = read_config unless const_defined? :CONFIG
 
       @@access_token =
         OAuth::AccessToken.new(OAuth::Consumer.new(
