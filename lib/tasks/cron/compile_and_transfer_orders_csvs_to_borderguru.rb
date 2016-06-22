@@ -3,8 +3,8 @@ class Tasks::Cron::CompileAndTransferOrdersCsvsToBorderguru
   def initialize
 
     # To avoid library eager load failure (happens sometimes)
-    require "#{::Rails.root}/app/services/turn_orders_into_csv_and_store_it.rb"
-    require "#{::Rails.root}/app/services/push_csvs_to_borderguru_ftp.rb"
+    require Rails.root.join("app/services/turn_orders_into_csv_and_store_it.rb")
+    require Rails.root.join("app/services/push_csvs_to_borderguru_ftp.rb")
 
     devlog "Let's start to fetch all the current orders ..."
 
@@ -19,6 +19,8 @@ class Tasks::Cron::CompileAndTransferOrdersCsvsToBorderguru
         devlog "This user `#{user.id}` has no shop at the moment."
         next
       end
+
+      binding.pry
 
       # THIS SHOULD BE SIMPLIFIED to a simple query (but you know mongo ...)
       user.shop.orders.where(status: :custom_checking).each do |order|

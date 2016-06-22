@@ -21,9 +21,7 @@ FactoryGirl.define do
 
     after(:create) do |shopkeeper|
       create_list(:shop_address, 1, user: shopkeeper)
-      shop = FactoryGirl.build(:shop) # that's how you associate when you have an ORM which sucks.
-      shop.shopkeeper_id = shopkeeper.id
-      shop.save
+      create_list(:shop, 1, shopkeeper_id: shopkeeper.id) unless shopkeeper.shop
       shopkeeper.reload
     end
 

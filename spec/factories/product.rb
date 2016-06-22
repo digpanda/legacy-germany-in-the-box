@@ -11,6 +11,7 @@ FactoryGirl.define do
     brand     'Brand 1'
     cover     'Cover 1'
     desc      'Description 1'
+    hs_code    "random"
     tags      ['tag1', 'tag2']
 
     options     {[FactoryGirl.build(:variant)]}
