@@ -12,6 +12,7 @@ describe Api::Webhook::Wirecard::MerchantsController do
       post :create, request_wirecard_post(params)
       expect(response).to have_http_status(:bad_request)
       expect(response_json_body["success"]).to eq(false) # Check if the server replied properly
+      expect(response_json_body["code"]).to eq(1) # Error code from errors.yml
 
     end
 
@@ -21,6 +22,7 @@ describe Api::Webhook::Wirecard::MerchantsController do
       post :create, request_wirecard_post(params)
       expect(response).to have_http_status(:unauthorized)
       expect(response_json_body["success"]).to eq(false) # Check if the server replied properly
+      expect(response_json_body["code"]).to eq(2) # Error code from errors.yml
 
     end
 
@@ -30,6 +32,7 @@ describe Api::Webhook::Wirecard::MerchantsController do
       post :create, request_wirecard_post(params)
       expect(response).to have_http_status(:unprocessable_entity)
       expect(response_json_body["success"]).to eq(false) # Check if the server replied properly
+      expect(response_json_body["code"]).to eq(3) # Error code from errors.yml
 
     end
 
@@ -39,6 +42,7 @@ describe Api::Webhook::Wirecard::MerchantsController do
       post :create, request_wirecard_post(params)
       expect(response).to have_http_status(:bad_request)
       expect(response_json_body["success"]).to eq(false) # Check if the server replied properly
+      expect(response_json_body["code"]).to eq(4) # Error code from errors.yml
 
     end
 

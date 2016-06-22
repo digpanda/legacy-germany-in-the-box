@@ -12,6 +12,7 @@ class ApplicationController < ActionController::Base
 
   include Mobvious::Rails::Controller
 
+
   protect_from_forgery with: :null_session, :if => Proc.new { |c| c.request.format.html? }
 
   acts_as_token_authentication_handler_for User, if: lambda { |controller| controller.request.format.json? }, :fallback => :none
@@ -34,7 +35,7 @@ class ApplicationController < ActionController::Base
     store_navigation_history :except => ["/users/sign_in","/users/sign_up", "/users/sign_up", "/users/password/new", "/users/password/edit", "/users/confirmation", "/users/sign_out"]
   end
 
-  def set_session_locale
+  def set_session_locle
     session[:locale] = params[:locale]
 
     if request.referer.nil?

@@ -1,0 +1,15 @@
+bad_format:
+  code: 1
+  error: "Bad format."
+
+bad_credentials:
+  code: 2
+  error: "Bad credentials."
+
+unknown_id:
+  code: 3
+  error: "Unknown ID."
+
+fail_validation:
+  code: 4
+  error: "Fail validation."

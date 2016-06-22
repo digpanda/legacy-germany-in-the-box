@@ -14,7 +14,7 @@ require "i18n/backend/fallbacks"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-module AChat
+module DigPanda
   class Application < Rails::Application
 
     config.exceptions_app = self.routes # customized error handling
@@ -28,9 +28,14 @@ module AChat
     config.i18n.available_locales = %w(de zh-CN en)
     config.i18n.default_locale = :de
     #config.time_zone = 'Beijing'
-    %W(wirecard digpanda border_guru).each do |config_file|
-        config.define_singleton_method "#{config_file}", -> { @config ||= YAML.load_file("#{Rails.root.to_s}/config/#{config_file}.yml")[Rails.env].deep_symbolize_keys! }
-    end
+    
+    # A loop here will make everything heavier and will force method definitions, better to keep it simple, sadly.
+    config.digpanda = YAML.load_file(Rails.root.join("config/digpanda.yml"))[Rails.env].deep_symbolize_keys!
+    config.wirecard = YAML.load_file(Rails.root.join("config/wirecard.yml"))[Rails.env].deep_symbolize_keys!
+    config.border_guru = YAML.load_file(Rails.root.join("config/border_guru.yml"))[Rails.env].deep_symbolize_keys!
+    
+    # No environment constraint
+    config.errors = YAML.load_file(Rails.root.join("config/errors.yml")).deep_symbolize_keys!
 
     I18n::Backend::Simple.send(:include, I18n::Backend::Fallbacks)
     config.i18n.fallbacks = {'de' => 'en', 'zh-CN' => 'en'}

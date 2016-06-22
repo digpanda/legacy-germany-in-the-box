@@ -3,4 +3,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-AChat::Application.load_tasks
+DigPanda::Application.load_tasks

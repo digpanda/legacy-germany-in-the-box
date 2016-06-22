@@ -5,10 +5,17 @@
 #
 class Api::Webhook::Wirecard::MerchantsController < ApplicationController
 
+  attr_reader :wirecard_config, :errors_config, :datas
+
   load_and_authorize_resource :class => User
+
+  before_action :load_configs
   before_action :validate_merchant_datas
 
-  attr_reader :datas
+  def load_configs
+    @wirecard_config = Rails.application.config.wirecard
+    @errors_config = Rails.application.config.errors
+  end
 
   #
   # Wirecard don't respect a RESTful scheme. The `create` method is currently used
@@ -22,49 +29,45 @@ class Api::Webhook::Wirecard::MerchantsController < ApplicationController
   def update
 
     devlog.info "Wirecard started to communicate with our system" 
+    devlog.info "Service received `#{datas[:merchant_id]}`, `#{atas[:merchant_status]}`, `#{datas[:reseller_id]}`" 
 
-    merchant_id     = datas[:merchant_id]
-    merchant_status = datas[:merchant_status]
-    reseller_id     = datas[:reseller_id]
-    devlog.info "Service received `#{merchant_id}`, `#{merchant_status}`, `#{reseller_id}`" 
-
-    unless authenticate_resource(reseller_id)
-      devlog.info "Bad credentials."
-      render status: :unauthorized, json: {success: false, error: "Bad credentials."}.to_json and return
+    unless authenticate_resource(datas[:reseller_id])
+      render status: :unauthorized, 
+             json: throw_error(:bad_credentials).to_json and return
     end
     devlog.info "It passed the authentication"
 
-    shop = Shop.where(id: merchant_id).first
+    shop = Shop.where(id: datas[:merchant_id]).first
     if shop.nil?
-      devlog.info "Unknown merchant id."
-      render status: :unprocessable_entity, json: {success: false, error: "Unknown merchant id."}.to_json and return
+      render status: :unprocessable_entity, 
+             json: throw_error(:unknown_id).merge(error: "Unknown merchant id.").to_json and return
     end
 
-    shop.wirecard_status = merchant_status.downcase
+    shop.wirecard_status = atas[:merchant_status].downcase
     unless shop.save
-      devlog.info "Shop validation didn't pass (#{shop.errors.full_messages.join(', ')})"
-      render status: :bad_request, json: {success: false, error: shop.errors.full_messages.join(', ')}.to_json and return
+      render status: :bad_request,
+             json: throw_error(:fail_validation).merge(error: shop.errors.full_messages.join(', ')).to_json and return
     end
 
     devlog.info "System is done."
-    render status: :ok, json: {success: true}.to_json and return
+    render status: :ok, 
+           json: {success: true}.to_json and return
 
   end
 
   private
 
   def authenticate_resource(reseller_id)
-    reseller_id == Rails.application.config.wirecard[:merchants][:reseller_id]
+    reseller_id == wirecard_config[:merchants][:reseller_id]
   end
 
   def required_merchant_datas
 
-    devlog.info "We try to handle the postback data"
+    devlog.info "We try to handle the `postback` data"
     return false if params["postback"].nil?
 
     @datas = process_postback(params["postback"])
-    devlog.info "Checking parameters ..."
-    devlog.info "JSON : #{output_hash(datas)}"
+    devlog.info "Parameters : #{output_hash(datas)}"
 
     datas[:merchant_id].present? && datas[:merchant_status].present? && datas[:reseller_id].present?
 
@@ -79,12 +82,17 @@ class Api::Webhook::Wirecard::MerchantsController < ApplicationController
   end
 
   def validate_merchant_datas
-    devlog.info "Bad arguments."
-    render status: :bad_request, json: {success: false, error: "Bad arguments."}.to_json and return if !required_merchant_datas
+    render status: :bad_request, 
+           json: throw_error(:bad_format).to_json and return if !required_merchant_datas
+  end
+
+  def throw_error(sym)
+    devlog.info errors_config[sym][:error]
+    {success: false}.merge(errors_config[sym])
   end
 
   def devlog
-    @@devlog ||= Logger.new("#{::Rails.root}/log/wirecard_webhook.log")
+    @@devlog ||= Logger.new(Rails.root.join("log/wirecard_webhook.log"))
   end
 
 end
