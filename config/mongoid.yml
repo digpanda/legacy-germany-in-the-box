@@ -42,12 +42,15 @@ development:
 test:
   clients:
     default:
-      database: a_chat_test
+      database: digpanda_test
       hosts:
         - localhost:27017
       options:
         read:
           mode: :primary
+        #user: loschcode
+        #password: achat2cool
+
         max_retries: 1
         retry_interval: 0
         use_activesupport_time_zone: true
@@ -55,11 +58,11 @@ test:
 local:
   clients:
     default:
-      database: a_chat_development
+      database: digpanda
       hosts:
         - localhost:27017
       options:
-        user: achat
+        user: loschcode
         password: achat2cool
 
   # Configure Mongoid specific options. (optional)

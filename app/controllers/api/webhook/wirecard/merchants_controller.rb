@@ -44,8 +44,6 @@ class Api::Webhook::Wirecard::MerchantsController < ApplicationController
       shop.wirecard_status = merchant_status.downcase
       shop.save
 
-      binding.pry
-
       if shop.save
 
         devlog.info "System is done."

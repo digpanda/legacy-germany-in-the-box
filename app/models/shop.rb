@@ -27,7 +27,7 @@ class Shop
   field :register,        type: String
   field :website,         type: String
   field :agb,             type: Boolean
-  field :wirecard_status, type: Symbol
+  field :wirecard_status, type: Symbol,     default: :unactive
   field :seal0,           type: String
   field :seal1,           type: String
   field :seal2,           type: String
@@ -83,7 +83,7 @@ class Shop
   validates :tax_number,    presence: true,   length: {maximum: Rails.configuration.max_tiny_text_length },   :if => lambda { self.agb }
   validates :ustid,         presence: true,   length: {maximum: Rails.configuration.max_tiny_text_length },   :if => lambda { self.agb }
 
-  validates :wirecard_status, :in => Rails.application.config.wirecard[:merchants][:status]
+  validates :wirecard_status, inclusion: {:in => Rails.application.config.wirecard[:merchants][:status].map(&:to_sym)}
 
   validates :agb,           inclusion: {in: [true]},    :if => lambda { self.agb.present? }
 
@@ -112,6 +112,7 @@ class Shop
 
   before_save :ensure_shopkeeper
   before_save :clean_sms_mobile,  :unless => lambda { self.sms }
+  before_save :force_wirecard_status
 
   index({shopkeeper: 1},    {unique: true,   name: :idx_shop_shopkeeper})
   index({merchant_id: 1},   {unique: false,  name: :idx_shop_merchant_id})
@@ -143,6 +144,10 @@ class Shop
   end
 
   private
+
+  def force_wirecard_status
+    self.wirecard_status = :unactive if self.wirecard_status.nil?
+  end
 
   def ensure_shopkeeper
     shopkeeper.role == :shopkeeper
