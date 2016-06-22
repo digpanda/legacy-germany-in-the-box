@@ -1,4 +1,3 @@
-
 /**
  * ProductNewSku Class
  */
