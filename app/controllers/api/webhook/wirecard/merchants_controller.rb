@@ -10,7 +10,7 @@ class Api::Webhook::Wirecard::MerchantsController < ApplicationController
   load_and_authorize_resource :class => User
 
   before_action :load_configs
-  before_action :validate_merchant_datas
+  before_action :validate_server_request
 
   def load_configs
     @wirecard_config = Rails.application.config.wirecard
@@ -49,7 +49,7 @@ class Api::Webhook::Wirecard::MerchantsController < ApplicationController
              json: throw_error(:wrong_update_attributes).merge(error: shop.errors.full_messages.join(', ')).to_json and return
     end
 
-    devlog.info "System is done."
+    devlog.info "End of process."
     render status: :ok, 
            json: {success: true}.to_json and return
 
@@ -81,7 +81,7 @@ class Api::Webhook::Wirecard::MerchantsController < ApplicationController
     ActiveSupport::JSON.decode(postback.gsub('\\"', '')).symbolize_keys
   end
 
-  def validate_merchant_datas
+  def validate_server_request
     render status: :bad_request, 
            json: throw_error(:bad_format).to_json and return if !required_merchant_datas
   end
