@@ -97,7 +97,7 @@ class TurnOrdersIntoCsvAndStoreIt < BaseService
       file = File.open("#{directory}/#{formatted_date}_#{borderguru_merchant_id}.csv", "w")
       file.write(csv_output)
 
-      success!
+      return_with(:success)
       
     rescue IOError => e
       return_with(:error, e)
