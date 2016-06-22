@@ -10,6 +10,10 @@ unknown_id:
   code: 3
   error: "Unknown ID."
 
-fail_validation:
+wrong_update_attributes:
   code: 4
-  error: "Fail validation."
+  error: "Wrong update attributes."
+
+impossible_to_remove:
+  code: 5
+  error: "Impossible to remove."

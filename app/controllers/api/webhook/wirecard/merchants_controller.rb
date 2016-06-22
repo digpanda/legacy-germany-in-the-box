@@ -46,7 +46,7 @@ class Api::Webhook::Wirecard::MerchantsController < ApplicationController
     shop.wirecard_status = datas[:merchant_status].downcase
     unless shop.save
       render status: :bad_request,
-             json: throw_error(:fail_validation).merge(error: shop.errors.full_messages.join(', ')).to_json and return
+             json: throw_error(:wrong_update_attributes).merge(error: shop.errors.full_messages.join(', ')).to_json and return
     end
 
     devlog.info "System is done."

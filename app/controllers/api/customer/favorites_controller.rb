@@ -9,7 +9,8 @@ class Api::Customer::FavoritesController < Customer::FavoritesController
 
   def destroy
     unless favorites.delete(product) # Example of a correct API callback
-      render json: {code: "TO DEFINE", error: "Can't remove this product from favorites"}, status: :unprocessable_entity
+      render status: :bad_request,
+             json: throw_error(:impossible_to_remove).merge(error: "Can't remove this product from favorites").to_json and return
     end
   end
 
