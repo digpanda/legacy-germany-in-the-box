@@ -12,7 +12,8 @@ class Api::Guest::ProductsController < Guest::ProductsController
       end
     end
 
-    render :json => { :success => false, :error => "Not found" }, :status => :not_found
+    render status: :not_found,
+           json: throw_error(:unknown_id).merge(error: "Sku not found.").to_json and return
     return
 
   end

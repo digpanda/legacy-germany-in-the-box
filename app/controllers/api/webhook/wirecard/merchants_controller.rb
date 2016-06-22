@@ -5,7 +5,7 @@
 #
 class Api::Webhook::Wirecard::MerchantsController < ApplicationController
 
-  attr_reader :wirecard_config, :errors_config, :datas
+  attr_reader :wirecard_config, :datas
 
   load_and_authorize_resource :class => User
 
@@ -13,8 +13,8 @@ class Api::Webhook::Wirecard::MerchantsController < ApplicationController
   before_action :validate_server_request
 
   def load_configs
+    super
     @wirecard_config = Rails.application.config.wirecard
-    @errors_config = Rails.application.config.errors
   end
 
   #
@@ -84,11 +84,6 @@ class Api::Webhook::Wirecard::MerchantsController < ApplicationController
   def validate_server_request
     render status: :bad_request, 
            json: throw_error(:bad_format).to_json and return if !required_merchant_datas
-  end
-
-  def throw_error(sym)
-    devlog.info errors_config[sym][:error]
-    {success: false}.merge(errors_config[sym])
   end
 
   def devlog

@@ -12,6 +12,7 @@ class ApplicationController < ActionController::Base
 
   include Mobvious::Rails::Controller
 
+  attr_reader :errors_config
 
   protect_from_forgery with: :null_session, :if => Proc.new { |c| c.request.format.html? }
 
@@ -29,6 +30,8 @@ class ApplicationController < ActionController::Base
 
   before_action :set_categories
 
+  before_action :load_configs
+
   after_filter :store_location
 
   def store_location
@@ -44,6 +47,16 @@ class ApplicationController < ActionController::Base
       redirect_to request.referer and return
     end
 
+  end
+
+  def load_configs
+    @errors_config = Rails.application.config.errors
+  end
+
+  # WILL BE PLACED INTO A LIBRARY / HELPER AT SOME POINT
+  def throw_error(sym)
+    devlog.info errors_config[sym][:error] if devlog
+    {success: false}.merge(errors_config[sym])
   end
 
   protected
