@@ -1,4 +1,4 @@
-class CheckDatabaseConsistency
+class Tasks::Digpanda::CheckDatabaseConsistency
 
   def initialize
 

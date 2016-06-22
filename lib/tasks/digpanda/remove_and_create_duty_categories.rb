@@ -1,6 +1,6 @@
 require 'csv'
 
-class RemoveAndCreateDutyCategories
+class Tasks::Digpanda::RemoveAndCreateDutyCategories
 
   def initialize
 

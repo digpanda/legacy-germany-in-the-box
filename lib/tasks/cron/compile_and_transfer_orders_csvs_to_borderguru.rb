@@ -1,4 +1,4 @@
-class CompileAndTransferOrdersCsvsToBorderguru
+class Tasks::Cron::CompileAndTransferOrdersCsvsToBorderguru
 
   def initialize
 

@@ -1,4 +1,4 @@
-class RemoveAndCreateUiCategories
+class Tasks::Digpanda::RemoveAndCreateUiCategories
 
   def initialize
 

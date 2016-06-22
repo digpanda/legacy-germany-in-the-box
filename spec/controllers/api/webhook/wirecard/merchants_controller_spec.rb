@@ -68,5 +68,3 @@ describe Api::Webhook::Wirecard::MerchantsController do
   end
 
 end
-
-#{"merchant_id":"\"merchant id\"","merchant_status":"anything","reseller_id":"nba81H29Gba"}

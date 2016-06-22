@@ -1,6 +1,6 @@
 require 'faker'
 
-class RemoveAndCreateCompleteSampleData
+class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
 
   def initialize
 
@@ -26,10 +26,8 @@ class RemoveAndCreateCompleteSampleData
 
     puts "We repopulate the categories from another rake task"
     puts "---"
-    load './lib/tasks/digpanda/remove_and_create_duty_categories.rb'
-    RemoveAndCreateDutyCategories.new
-    load './lib/tasks/digpanda/remove_and_create_ui_categories.rb'
-    RemoveAndCreateUiCategories.new
+    Tasks::Digpanda::RemoveAndCreateDutyCategories.new
+    Tasks::Digpanda::RemoveAndCreateUiCategories.new
     puts "---"
 
     puts "We create the customers, shopkeepers, admins"
