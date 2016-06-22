@@ -2,7 +2,6 @@ class UserMailer < ApplicationMailer
    default from: 'notifications@germanyinthebox.com'
  
   def notify(user, title, url)
-    binding.pry
     @user = user
     @title = title
     @url = url
