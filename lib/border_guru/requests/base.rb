@@ -7,7 +7,7 @@ module BorderGuru
         def read_config(env)
           @config_file ||= ::Rails.application.config.border_guru # IF ANYTHING BREAKS HERE ITS BECAUSE OFT HIS - Laurent on 19/06/2016 (couldn't test if from the hospital)
           #@config_file ||= Psych.load_file(CONFIG_PATH).symbolize_keys 
-          @config_file.fetch(env.to_sym).symbolize_keys
+          #@config_file.fetch(env.to_sym).symbolize_keys
         end
       end
 

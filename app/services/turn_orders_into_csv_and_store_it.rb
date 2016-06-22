@@ -11,11 +11,10 @@ class TurnOrdersIntoCsvAndStoreIt < BaseService
   attr_reader :orders, :shop, :borderguru, :borderguru_merchant_id, :borderguru_local_directory
 
   def initialize(shop, orders)
-
     @orders = orders
     @shop = shop
     @borderguru = Rails.application.config.border_guru
-    @borderguru_local_directory = "#{Rails.root}#{borderguru[:ftp][:local_directory]}"
+    @borderguru_local_directory = Rails.root.join.borderguru[:ftp][:local_directory]
     @borderguru_merchant_id = shop.bg_merchant_id || "1026-TEST-#{Random.rand(1000)}"
   end
 
