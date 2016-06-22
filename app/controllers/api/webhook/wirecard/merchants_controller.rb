@@ -70,15 +70,20 @@ class Api::Webhook::Wirecard::MerchantsController < ApplicationController
     devlog.info "We try to handle the postback data"
     return false if params["postback"].nil?
 
-    json_body = params["postback"].gsub('\\"', '') #params["postback"].gsub('\\', '')
-    @datas = ActiveSupport::JSON.decode(json_body)
+    @datas = process_postback(params["postback"])
     devlog.info "Checking parameters ..."
-    devlog.info "JSON : #{datas.inject({}){|memo,(k,v)| memo[k.to_sym] = v; memo}}"
+    devlog.info "JSON : #{output_hash(datas)}"
 
-    !!(datas["merchant_id"].present? && 
-       datas["merchant_status"].present? && 
-       datas["reseller_id"].present?)
+    datas["merchant_id"].present? && datas["merchant_status"].present? && datas["reseller_id"].present?
 
+  end
+
+  def output_hash(hash)
+    hash.inject({}){|memo,(k,v)| memo[k.to_sym] = v; memo}
+  end
+
+  def process_postback(postback)
+    ActiveSupport::JSON.decode(postback.gsub('\\"', ''))
   end
 
   def validate_merchant_datas
