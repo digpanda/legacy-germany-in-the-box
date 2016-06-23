@@ -10,9 +10,10 @@ set :nvm_node, 'v5.0.0'
 set :nvm_type, :user
 set :nvm_map_bins, %w{node npm}
 #set :nvm_custom_path, '/home/ubuntu/.nvm/bin'
+set :rails_env, "staging"
 
 set :ssh_options, {
-  keys: %w(../private/staging/digpanda.pem),
+  keys: %w(~/Downloads/keys/digpanda.pem),
   #keys: %w(/<some path to your local key>/digpanda.pem),
   forward_agent: true,
   auth_methods: %w(publickey, password)
