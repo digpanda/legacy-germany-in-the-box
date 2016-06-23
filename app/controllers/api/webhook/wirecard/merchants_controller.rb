@@ -10,7 +10,7 @@ class Api::Webhook::Wirecard::MerchantsController < ApplicationController
   load_and_authorize_resource :class => User
 
   before_action :load_configs
-  before_action :validate_server_request
+  before_action :validate_remote_server_request
 
   def load_configs
     super
@@ -81,7 +81,7 @@ class Api::Webhook::Wirecard::MerchantsController < ApplicationController
     ActiveSupport::JSON.decode(postback.gsub('\\"', '')).symbolize_keys
   end
 
-  def validate_server_request
+  def validate_remote_server_request
     render status: :bad_request, 
            json: throw_error(:bad_format).to_json and return if !required_merchant_datas
   end

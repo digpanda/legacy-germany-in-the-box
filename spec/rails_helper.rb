@@ -7,14 +7,16 @@ require 'rspec/rails'
 require 'capybara/rspec'
 require 'factory_girl_rails'
 require 'mongoid'
+require 'devise'
 require 'faker'
 
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
 
 RSpec.configure do |config|
-  
+
   config.infer_spec_type_from_file_location!
   config.filter_rails_from_backtrace!
+  config.include Devise::TestHelpers, :type => :controller
 
 end

@@ -1,9 +1,13 @@
 #
-# This controller is linked with an APP controller (Customer::FavoritesController)
+# This controller is linked with an App controller (Customer::FavoritesController)
+# We mainly manipulate the favorites product list via AJAX calls here
 #
 class Api::Customer::FavoritesController < Customer::FavoritesController
 
+  load_and_authorize_resource :class => Product
+  
   def update
+    binding.pry
     favorites << product
   end
 

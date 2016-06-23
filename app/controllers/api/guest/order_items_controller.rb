@@ -1,6 +1,6 @@
 class Api::Guest::OrderItemsController < Guest::OrderItemsController
 
-  load_and_authorize_resource
+  load_and_authorize_resource :class => OrderItem
   
   # +/- items of the same product
   def set_quantity

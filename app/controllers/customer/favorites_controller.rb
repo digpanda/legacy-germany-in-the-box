@@ -12,6 +12,12 @@ class Customer::FavoritesController < ApplicationController
   def index
   end
 
+  def update # handled via API
+  end
+
+  def destroy # handled via API
+  end
+
   private
 
   def set_favorites

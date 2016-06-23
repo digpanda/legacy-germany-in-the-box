@@ -1,5 +1,4 @@
-require 'rails_helper'
-
+# INVALID TESTS, DONT WRITE DOWN HERE
 describe ProductsController do
 
   render_views # jbuilder requirement
