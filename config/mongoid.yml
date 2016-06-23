@@ -55,6 +55,10 @@ test:
         retry_interval: 0
         use_activesupport_time_zone: true
         #allow_dynamic_fields: true
+  options:
+    use_activesupport_time_zone: true
+    raise_not_found_error: false
+    
 local:
   clients:
     default:

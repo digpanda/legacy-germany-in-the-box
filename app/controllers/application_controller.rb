@@ -14,6 +14,8 @@ class ApplicationController < ActionController::Base
 
   attr_reader :errors_config
 
+  #rescue_from Mongoid::Errors::DocumentNotFound, :with => :throw_page_not_found
+
   protect_from_forgery with: :null_session, :if => Proc.new { |c| c.request.format.html? }
 
   acts_as_token_authentication_handler_for User, if: lambda { |controller| controller.request.format.json? }, :fallback => :none
@@ -34,11 +36,15 @@ class ApplicationController < ActionController::Base
 
   after_filter :store_location
 
+  #def throw_page_not_found
+  #  render "errors/page_not_found", layout: "errors/default" and return
+  #end
+
   def store_location
     store_navigation_history :except => ["/users/sign_in","/users/sign_up", "/users/sign_up", "/users/password/new", "/users/password/edit", "/users/confirmation", "/users/sign_out"]
   end
 
-  def set_session_locle
+  def set_session_locale
     session[:locale] = params[:locale]
 
     if request.referer.nil?

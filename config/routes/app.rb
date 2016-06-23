@@ -1,6 +1,6 @@
-if Rails.env.production?
+#if Rails.env.production?
   concerns :shared_errors
-end
+#end
 
 # We should improve this by putting it into a home_controller with index
 root to: 'pages#home'

@@ -28,13 +28,19 @@ describe Api::Customer::FavoritesController, :type => :controller do
 
 
         put :update, :id => shop.products.first.id
-        
+
         current_user.reload
         expect(current_user.favorites.count).to eq(5)
 
       end
 
       it "refuse to add a wrong favorite" do
+
+        put :update, :id => "wrong-id"
+        expect(response_json_body["success"]).to eq(false)
+        current_user.reload
+        expect(current_user.favorites.count).to eq(0)
+
       end
 
     end
