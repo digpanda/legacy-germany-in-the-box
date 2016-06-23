@@ -5,9 +5,8 @@
 class Api::Customer::FavoritesController < Customer::FavoritesController
 
   load_and_authorize_resource :class => Product
-  
+
   def update
-    binding.pry
     favorites << product
   end
 

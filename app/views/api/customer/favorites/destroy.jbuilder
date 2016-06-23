@@ -8,3 +8,5 @@ json.product do
   json.name product.name
 
 end
+
+json.success true

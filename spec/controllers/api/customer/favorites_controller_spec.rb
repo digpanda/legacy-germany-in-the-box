@@ -6,14 +6,17 @@ describe Api::Customer::FavoritesController, :type => :controller do
 
     context "customer without favorite" do
 
-      before(:each) { login_customer }
+      let(:current_user) { FactoryGirl.create(:customer) }
+      before(:each) { login_customer current_user }
+      
       let(:shop) { FactoryGirl.create(:shop) }
 
       it "adds a favorite" do
 
         put :update, :id => shop.products.first.id
-        binding.pry
-        expect(response).to be_success
+        expect(response_json_body["success"]).to eq(true)
+        current_user.reload
+        expect(current_user.favorites.count).to eq(1)
 
       end
 
@@ -31,31 +34,6 @@ describe Api::Customer::FavoritesController, :type => :controller do
     context "unauthorized person" do
     end
 
-=begin
-  render_views # jbuilder requirement
-
-  context "server to server without authentication" do
-
-    let(:shopkeeper) { FactoryGirl.create(:shopkeeper) }
-
-    it "should throw a bad format error" do
-
-      params = {"random" => true}
-      post :create, request_wirecard_post(params)
-      expect(response).to have_http_status(:bad_request)
-      expect(response_json_body["success"]).to eq(false) # Check if the server replied properly
-      expect(response_json_body["code"]).to eq(1) # Error code from errors.yml
-
-    end
-=end
-
-=begin
-    def response_json_body
-      JSON.parse(response.body)
-    end
-
-  end
-=end
   end
 
 end

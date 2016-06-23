@@ -1,4 +1,4 @@
-describe Api::Webhook::Wirecard::MerchantsController do
+describe Api::Webhook::Wirecard::MerchantsController, :type => :controller do
 
   render_views # jbuilder requirement
 
