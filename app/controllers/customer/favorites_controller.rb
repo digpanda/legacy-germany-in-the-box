@@ -21,11 +21,11 @@ class Customer::FavoritesController < ApplicationController
   private
 
   def set_favorites
-    @favorites ||= current_user.favorites
+    @favorites = current_user.favorites
   end
 
   def set_product
-    @product ||= Product.find(params[:id])
+    @product = Product.find(params[:id])
   end
 
 end

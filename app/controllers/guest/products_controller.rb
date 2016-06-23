@@ -5,9 +5,11 @@ class Guest::ProductsController < ApplicationController
 
   attr_reader :product
   # Nothing yet (go to /api/)
+
+  private
   
   def set_product
-    @product ||= OrderItem::find(params[:id]) unless params[:id].nil?
+    @product = OrderItem::find(params[:id]) unless params[:id].nil?
   end
 
 end

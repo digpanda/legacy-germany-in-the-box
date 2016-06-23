@@ -21,6 +21,17 @@ describe Api::Customer::FavoritesController, :type => :controller do
       end
 
       it "keep the same number of favorites when adding the same product" do
+
+        shop.products[0..4].each do |product|
+          put :update, :id => product.id
+        end
+
+
+        put :update, :id => shop.products.first.id
+        
+        current_user.reload
+        expect(current_user.favorites.count).to eq(5)
+
       end
 
       it "refuse to add a wrong favorite" do
