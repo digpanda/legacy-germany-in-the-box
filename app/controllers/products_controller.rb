@@ -7,7 +7,7 @@ class ProductsController < ApplicationController
   before_action :set_product, :set_category, :set_shop, only: [:show, :edit, :update, :destroy, :remove_sku, :remove_option, :new_sku, :show_skus, :skus]
   before_action :authenticate_user!, except: [:autocomplete_product_name, :popular, :search, :show, :skus]
 
-  load_and_authorize_resource
+  load_and_authorize_resource :class => Product
 
   layout :custom_sublayout, only: [:new, :new_sku, :edit, :edit_sku, :clone_sku, :show_skus]
 
