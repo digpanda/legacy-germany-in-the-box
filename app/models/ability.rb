@@ -44,8 +44,10 @@ class Ability
     # THIS BELOW WILL BE REMOVED AT SOME POINT, DON'T GET HEADACHE FROM IT, IT WILL BE BETTER SECURED AFTER.
     # - Laurent, 2016/06/21
     # 
+    # 
+    user ||= User.new # THIS SHOULD DISAPPEAR, BUT WE NEED IT FOR GUESTS RIGHT NOW
 
-    if user&.role == :customer
+    if user.role == :customer
 
       can [:show], Shop, :status => true
 
@@ -109,7 +111,7 @@ class Ability
 
       can :manage, Address, :user => user
 
-    elsif user&.role == :shopkeeper
+    elsif user.role == :shopkeeper
 
       can [:show,
            :update,
@@ -187,7 +189,7 @@ class Ability
 
       can :manage, Address, :shop => user.shop
 
-    elsif user&.role == :admin
+    elsif user.role == :admin
       can :manage, :all
     end
   end
