@@ -63,13 +63,13 @@ class RegistrationsController < Devise::RegistrationsController
 
         session[:signup_advice_counter] = 1
         flash[:error] = resource.errors.full_messages.join(', ')
-        render "new"
+        render :new
 
       end
     else
       session[:signup_advice_counter] = 1
       flash[:error] = I18n.t(:wrong_captcha, scope: :top_menu)
-      render "new"
+      render :new
     end
 
   end
