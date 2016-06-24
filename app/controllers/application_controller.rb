@@ -72,6 +72,12 @@ class ApplicationController < ActionController::Base
     {success: false}.merge(errors_config[sym])
   end
 
+  def throw_validation_error(model)
+    flash[:error] = @user.errors.full_messages.join(', ')
+    redirect_to(:back)
+  end
+  # LIBRARY THROW OR SOMETHING (END)
+
   protected
 
   def reach_todays_limit?(order, new_total)

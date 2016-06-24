@@ -5,9 +5,9 @@ class ShopApplicationsController < ApplicationController
 
   before_action :authenticate_user!, except: [:new, :create, :is_registered]
 
-  respond_to :js, only: [:is_registered]
+  #respond_to :js, only: [:is_registered]
 
-  before_action(only: [:new])  { I18n.locale = :de }
+  #before_action(only: [:new])  { I18n.locale = :de }
 
   before_action :set_shop_application, only: [:show, :destroy]
 
@@ -25,48 +25,47 @@ class ShopApplicationsController < ApplicationController
   end
 
   def create
+
     @shop_application = ShopApplication.new(shop_application_params)
 
-    if @shop_application.save
-      user = {}
-      user[:username] = params[:shop_application][:email]
-      user[:email] = params[:shop_application][:email]
-      user[:password] = @shop_application.code[0, 8]
-      user[:password_confirmation] = @shop_application.code[0, 8]
-      user[:role] = :shopkeeper
+    unless @shop_application.save
+      return throw_validation_error(@shop_application)
+    end
 
-      @user = User.new(user)
+    @user = User.new({
 
-      unless @user.save
-        flash[:error] = @user.errors.full_messages.first
-      else
-        @shop = Shop.new(shop_application_params.except(:email))
-        @shop.shopname = @shop.name
-        @shop.shopkeeper = @user
-        @shop.merchant_id = @shop.gen_merchant_id
-        unless @shop.save
-          flash[:error] = @shop.errors.full_messages.first
-        end
-      end
-    else
-      flash[:error] = @shop_application.errors.full_messages.first
+      :username => params[:shop_application][:email],
+      :email => params[:shop_application][:email],
+      :password => @shop_application.code[0, 8],
+      :password_confirmation => @shop_application.code[0, 8],
+      :role => :shopkeeper
+
+    })
+
+    unless @user.save
+      return throw_validation_error(@user)
+    end
+
+    @shop = Shop.new(shop_application_params.except(:email))
+    @shop.shopname = @shop.name
+    @shop.shopkeeper = @user
+    @shop.merchant_id = @shop.gen_merchant_id
+
+    unless @shop.save
+      return throw_validation_error(@shop)
     end
 
     redirect_to new_shop_application_path(:finished => true)
   end
 
   def destroy
-    if  @shop_application.destroy
-      flash[:success] = I18n.t(:delete_ok, scope: :edit_shop_application)
-    else
-      flash[:error] = @shop_application.errors.full_messages.first
+
+    unless @shop_application.destroy
+      return throw_validation_error(@shop_application)
     end
 
-    redirect_to request.referer
-  end
-
-  def is_registered
-    binding.pry
+    flash[:success] = I18n.t(:delete_ok, scope: :edit_shop_application)
+    redirect_to(:back) and return
   end
 
   private
