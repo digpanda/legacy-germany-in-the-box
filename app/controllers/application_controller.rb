@@ -12,8 +12,10 @@ class ApplicationController < ActionController::Base
 
   include Mobvious::Rails::Controller
 
-  rescue_from Mongoid::Errors::DocumentNotFound, :with => :throw_resource_not_found
-  rescue_from CanCan::AccessDenied, :with => :throw_unauthorized_page
+  unless Rails.env.development? # only on staging / production / test otherwise we show the full error
+    rescue_from Mongoid::Errors::DocumentNotFound, :with => :throw_resource_not_found
+    rescue_from CanCan::AccessDenied, :with => :throw_unauthorized_page
+  end
 
   protect_from_forgery with: :null_session, :if => Proc.new { |c| c.request.format.html? }
 

@@ -1,12 +1,12 @@
 class AddressesController < ApplicationController
 
   before_action :authenticate_user!
-
   load_and_authorize_resource
 
   layout :custom_sublayout, only: [:show_addresses]
 
   def show_addresses
+    
     @address = Address.new
 
     @user = User.find(params[:id])
