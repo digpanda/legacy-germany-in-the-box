@@ -177,7 +177,7 @@
               </label>
             </div>
             <div class="col-md-8">
-              <%= f.text_field :eroi, :class => 'form-control', :placeholder => 'z.B. DE123456789', :maxLength => Rails.configuration.max_tiny_text_length, :pattern => '^DE[0-9]{15,15}$' %>
+              <%= f.text_field :eroi, :value => @shop.eroi ? @shop.eroi : 'DE', :class => 'form-control', :placeholder => 'z.B. DE123456789', :maxLength => Rails.configuration.max_tiny_text_length, :pattern => '^DE[0-9]{15,15}$' %>
               <div class="help-block with-errors"></div>
             </div>
           </div>
