@@ -2,11 +2,6 @@ FactoryGirl.define do
 
   factory :product do
 
-    # Todo: I think that code is wrong because a shop don't have a product field, only a products field
-    # before(:create) do |product|
-    #   create_list(:shop, 1, product: product)
-    # end
-
     name      'Product 1'
     brand     'Brand 1'
     cover     'Cover 1'
@@ -18,6 +13,14 @@ FactoryGirl.define do
     skus        {[FactoryGirl.build(:sku, :option_ids => [self.options.first.suboptions.first.id.to_s])]}
 
     association :duty_category, factory: :duty_medicine_category, strategy: :build
+
+    before(:create) do |product|
+      if product.shop_id.nil?
+        product.shop_id = create_list(:shop, 1).first.id
+        product.save
+      end
+    end
+
   end
 
   factory :variant,  :class => VariantOption do

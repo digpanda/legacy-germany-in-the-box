@@ -4,7 +4,6 @@ class Ability
   
   def initialize(user, controller_namespace)
 
-    user ||= User.new
     namespaces = controller_namespace.split('::')
 
     # Currently there's no `app` so it's extremely difficult to differentiate the Api from the App
@@ -14,7 +13,6 @@ class Ability
     #service = namespaces.shift
     namespaces.shift if namespaces.first == "Api"
     authorization = namespaces.shift
-
 
     # Namespaced authorization
     case authorization
@@ -26,16 +24,16 @@ class Ability
         can :manage, :all
 
       when 'Customer' # Customer only
-        can :manage, :all if user.role == :customer
+        can :manage, :all if user&.role == :customer
 
       when 'Shopkeeper' # Shopkeeper only
-        can :manage, :all if user.role == :shopkeeper
+        can :manage, :all if user&.role == :shopkeeper
 
       when 'Admin' # Admin only
-        can :manage, :all if user.role == :admin
+        can :manage, :all if user&.role == :admin
 
       when 'Shared' # If the user is logged-in in any type of account
-        can :manage, :all if user.id != nil
+        can :manage, :all if user != nil
 
     end
 
@@ -47,7 +45,7 @@ class Ability
     # - Laurent, 2016/06/21
     # 
 
-    if user.role == :customer
+    if user&.role == :customer
 
       can [:show], Shop, :status => true
 
@@ -111,7 +109,7 @@ class Ability
 
       can :manage, Address, :user => user
 
-    elsif user.role == :shopkeeper
+    elsif user&.role == :shopkeeper
 
       can [:show,
            :update,
@@ -189,7 +187,7 @@ class Ability
 
       can :manage, Address, :shop => user.shop
 
-    elsif user.role == :admin
+    elsif user&.role == :admin
       can :manage, :all
     end
   end

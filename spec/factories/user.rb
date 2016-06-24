@@ -46,6 +46,14 @@ FactoryGirl.define do
       create_list(:customer_address, 1, user: user)
     end
 
+    trait :with_favorites do
+      after(:create) do |user|
+        products = create_list(:product, 5)
+        user.favorites = products
+        user.save
+      end
+    end
+
   end
 
 end

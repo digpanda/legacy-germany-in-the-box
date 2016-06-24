@@ -21,3 +21,7 @@ impossible_to_remove:
 page_not_found:
   code: 6
   error: "Page not found."
+
+unauthorized_page:
+  code: 7
+  error: "Unauthorized page access."

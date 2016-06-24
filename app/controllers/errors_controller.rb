@@ -8,4 +8,7 @@ class ErrorsController < ActionController::Base # No application because it's a 
     def server_error
     end
 
+    def unauthorized_page
+    end
+
 end

@@ -7,8 +7,7 @@ describe Api::Customer::FavoritesController, :type => :controller do
     context "customer without favorite" do
 
       let(:current_user) { FactoryGirl.create(:customer) }
-      before(:each) { login_customer current_user }
-      
+      before(:each) { login_customer current_user }      
       let(:shop) { FactoryGirl.create(:shop) }
 
       it "adds a favorite" do
@@ -47,10 +46,38 @@ describe Api::Customer::FavoritesController, :type => :controller do
     end
 
     context "customer with favorites" do
+
+      let(:current_user) { FactoryGirl.create(:customer, :with_favorites) }
+      before(:each) { login_customer current_user }
+      let(:shop) { FactoryGirl.create(:shop) }
+
+      it "adds a favorite" do
+
+        num_favorites = current_user.favorites.count
+        put :update, :id => shop.products.first.id
+        expect(response_json_body["success"]).to eq(true)
+        current_user.reload
+        expect(current_user.favorites.count).to eq(num_favorites+1)
+
+      end
+
     end
 
     context "unauthorized person" do
+
+      let(:shop) { FactoryGirl.create(:shop) }
+
+      it "adds a favorite" do
+        put :update, :id => shop.products.first.id
+        expect(response_json_body["success"]).to eq(false)
+        expect(response_json_body["code"]).to eq(7)
+      end
+
     end
+
+  end
+
+  describe "#destroy" do
 
   end
 
