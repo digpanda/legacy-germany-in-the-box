@@ -12,9 +12,7 @@ class ApplicationController < ActionController::Base
 
   include Mobvious::Rails::Controller
 
-  attr_reader :errors_config
-
-  #rescue_from Mongoid::Errors::DocumentNotFound, :with => :throw_page_not_found
+  rescue_from Mongoid::Errors::DocumentNotFound, :with => :throw_page_not_found
 
   protect_from_forgery with: :null_session, :if => Proc.new { |c| c.request.format.html? }
 
@@ -31,8 +29,6 @@ class ApplicationController < ActionController::Base
   around_action :set_translation_locale, only: [:update], if: -> { current_user&.is_admin? }
 
   before_action :set_categories
-
-  before_action :load_configs
 
   after_filter :store_location
 
@@ -55,8 +51,12 @@ class ApplicationController < ActionController::Base
 
   end
 
-  def load_configs
-    @errors_config = Rails.application.config.errors
+  def errors_config
+    @error_configuration ||= Rails.application.config.errors
+  end
+
+  def wirecard_config
+    @wirecard_configuration ||= Rails.application.config.wirecard
   end
 
   # WILL BE PLACED INTO A LIBRARY / HELPER AT SOME POINT

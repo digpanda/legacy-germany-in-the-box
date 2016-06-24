@@ -3,19 +3,12 @@
 # Any communication with Wirecard from server to server linked to the merchant / shopkeeper
 # Such as `wirecard_status` to activate their payment account is under this controller.
 #
-class Api::Webhook::Wirecard::MerchantsController < ApplicationController
+class Api::Webhook::Wirecard::MerchantsController < Api::ApplicationController
 
-  attr_reader :wirecard_config, :datas
+  attr_reader :datas
 
   load_and_authorize_resource :class => User
-
-  before_action :load_configs
   before_action :validate_remote_server_request
-
-  def load_configs
-    super
-    @wirecard_config = Rails.application.config.wirecard
-  end
 
   #
   # Wirecard don't respect a RESTful scheme. The `create` method is currently used

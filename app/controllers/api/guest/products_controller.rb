@@ -1,4 +1,4 @@
-class Api::Guest::ProductsController < Guest::ProductsController
+class Api::Guest::ProductsController < Api::ApplicationController
 
   load_and_authorize_resource
 

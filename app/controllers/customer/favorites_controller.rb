@@ -1,21 +1,17 @@
+# 
+# This controller is linked with an API controller (Api::Customer::FavoritesController)
+# If you change something basic here, don't forget to add it to the API if needed.
+# 
 class Customer::FavoritesController < ApplicationController
 
-  # This controller is linked with an API controller (Api::Customer::FavoritesController)
   before_action :authenticate_user!
   attr_reader :favorites, :product
 
   before_action :set_favorites
-  before_action :set_product, only: [:update, :destroy]
 
   layout :custom_sublayout, only: [:index]
 
   def index
-  end
-
-  def update # handled via API
-  end
-
-  def destroy # handled via API
   end
 
   private

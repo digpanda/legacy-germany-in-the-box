@@ -2,9 +2,13 @@
 # This controller is linked with an App controller (Customer::FavoritesController)
 # We mainly manipulate the favorites product list via AJAX calls here
 #
-class Api::Customer::FavoritesController < Customer::FavoritesController
+class Api::Customer::FavoritesController < Api::ApplicationController
 
   load_and_authorize_resource :class => Product
+  attr_reader :favorites, :product
+
+  before_action :set_favorites
+  before_action :set_product, only: [:update, :destroy]
 
   def update
     favorites << product
@@ -15,6 +19,17 @@ class Api::Customer::FavoritesController < Customer::FavoritesController
       render status: :bad_request,
              json: throw_error(:impossible_to_remove).merge(error: "Can't remove this product from customer favorites").to_json and return
     end
+  end
+
+  private
+
+  # Could use some meta-programming here ?
+  def set_favorites
+    @favorites = current_user.favorites
+  end
+
+  def set_product
+    @product = Product.find(params[:id])
   end
 
 end

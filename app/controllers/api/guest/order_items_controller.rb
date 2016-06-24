@@ -1,4 +1,4 @@
-class Api::Guest::OrderItemsController < Guest::OrderItemsController
+class Api::Guest::OrderItemsController < Api::ApplicationController
 
   load_and_authorize_resource :class => OrderItem
   
