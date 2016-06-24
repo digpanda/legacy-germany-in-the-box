@@ -17,15 +17,15 @@ class Tasks::Digpanda::RemoveAndCreateDutyCategories
       else
 
         if row[3].blank?
-          parent = DutyCategory.find_by(:'name.en' => row[1].strip)
+          parent = DutyCategory.where(:'name.en' => row[1].strip).first
           DutyCategory.create!(:code => row[0].strip, :name_translations => {:en => row[2].strip}, :parent => parent )
         else
           
           if row[4].blank?
-            parent = DutyCategory.find_by(:'name.en' => row[2].strip)
+            parent = DutyCategory.where(:'name.en' => row[2].strip).first
             DutyCategory.create!(:code => row[0].strip, :name_translations => {:en => row[3].strip}, :parent => parent )
           else
-            parent = DutyCategory.find_by(:'name.en' => row[3].strip)
+            parent = DutyCategory.where(:'name.en' => row[3].strip).first
             DutyCategory.create!(:code => row[0].strip, :name_translations => {:en => row[4].strip}, :parent => parent )
           end
 
