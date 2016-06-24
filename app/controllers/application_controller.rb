@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
 
   include Mobvious::Rails::Controller
 
-  rescue_from Mongoid::Errors::DocumentNotFound, :with => :throw_page_not_found
+  rescue_from Mongoid::Errors::DocumentNotFound, :with => :throw_resource_not_found
   rescue_from CanCan::AccessDenied, :with => :throw_unauthorized_page
 
   protect_from_forgery with: :null_session, :if => Proc.new { |c| c.request.format.html? }
@@ -33,7 +33,7 @@ class ApplicationController < ActionController::Base
 
   after_filter :store_location
 
-  def throw_page_not_found
+  def throw_resource_not_found
     render "errors/page_not_found", layout: "errors/default" and return
   end
 
