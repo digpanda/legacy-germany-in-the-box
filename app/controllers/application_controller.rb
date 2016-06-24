@@ -32,9 +32,9 @@ class ApplicationController < ActionController::Base
 
   after_filter :store_location
 
-  #def throw_page_not_found
-  #  render "errors/page_not_found", layout: "errors/default" and return
-  #end
+  def throw_page_not_found
+    render "errors/page_not_found", layout: "errors/default" and return
+  end
 
   def store_location
     store_navigation_history :except => ["/users/sign_in","/users/sign_up", "/users/sign_up", "/users/password/new", "/users/password/edit", "/users/confirmation", "/users/sign_out"]
@@ -61,7 +61,7 @@ class ApplicationController < ActionController::Base
 
   # WILL BE PLACED INTO A LIBRARY / HELPER AT SOME POINT
   def throw_error(sym)
-    devlog.info errors_config[sym][:error] if devlog
+    devlog.info errors_config[sym][:error] if self.respond_to?(:devlog)
     {success: false}.merge(errors_config[sym])
   end
 

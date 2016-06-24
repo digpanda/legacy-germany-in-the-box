@@ -17,3 +17,7 @@ wrong_update_attributes:
 impossible_to_remove:
   code: 5
   error: "Impossible to remove."
+
+page_not_found:
+  code: 6
+  error: "Page not found."

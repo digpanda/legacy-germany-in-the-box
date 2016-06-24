@@ -10,7 +10,7 @@ production:
         password: lyh2good
   options:
     use_activesupport_time_zone: true
-    raise_not_found_error: false
+    raise_not_found_error: true
 
 staging:
   clients:
@@ -23,7 +23,7 @@ staging:
         password: lyh2cool
   options:
     use_activesupport_time_zone: true
-    raise_not_found_error: false
+    raise_not_found_error: true
 
 development:
   clients:
@@ -37,7 +37,7 @@ development:
 
   options:
     use_activesupport_time_zone: true
-    raise_not_found_error: false
+    raise_not_found_error: true
 
 test:
   clients:
@@ -57,7 +57,7 @@ test:
         #allow_dynamic_fields: true
   options:
     use_activesupport_time_zone: true
-    raise_not_found_error: false
+    raise_not_found_error: true
     
 local:
   clients:
@@ -72,4 +72,4 @@ local:
   # Configure Mongoid specific options. (optional)
   options:
     use_activesupport_time_zone: true
-    raise_not_found_error: false
+    raise_not_found_error: true
