@@ -34,7 +34,6 @@ test:
   <<: *defaults
 
 staging:
-defaults: &defaults
   reseller:
     username: engine.digpanda
     password: x3Zyr8MaY7TDxj6F
