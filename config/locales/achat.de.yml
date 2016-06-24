@@ -162,10 +162,10 @@ de:
     street: Straße
     house_number: Haus Nr.
     additional: Zusatz
-    province: Land
+    province: Bundesland
     city: Stadt
     district: Gemeinde
-    province_blank: --Land--
+    province_blank: --Bundesland--
     city_blank: --Stadt--
     district_blank: --Gemeinde--
     country: Staat
