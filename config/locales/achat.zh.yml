@@ -232,6 +232,7 @@ zh-CN:
     shippable: 通知发货
     shipped: 已发货
     success: 下单成功
+    destination_address_not_set: 还没有填写收件人地址
   edit_collection:
     new: 新建收藏夹
     edit: 修改

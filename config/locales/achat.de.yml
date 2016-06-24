@@ -232,6 +232,7 @@ de:
     shippable: Zum Verand bereit
     shipped: Versendet
     success: Erstellt
+    destination_address_not_set: keine Empfänger-Anschrift vorhanden
   edit_collection:
     new: Favorit erstellen
     edit: Ändern
