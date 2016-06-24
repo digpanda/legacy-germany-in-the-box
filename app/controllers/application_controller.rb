@@ -72,7 +72,7 @@ class ApplicationController < ActionController::Base
     {success: false}.merge(errors_config[sym])
   end
 
-  def throw_validation_error(model)
+  def throw_model_error(model)
     flash[:error] = @user.errors.full_messages.join(', ')
     redirect_to(:back)
   end

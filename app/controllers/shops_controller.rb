@@ -22,7 +22,7 @@ class ShopsController <  ApplicationController
   def approve
 
     @shop.approved = Time.now
-    if !@shop.save
+    unless @shop.save
       flash[:error] = "Can't approve the shop : #{@shop.errors.full_messages.join(', ')}"
     end
 
@@ -33,7 +33,7 @@ class ShopsController <  ApplicationController
   def disapprove
 
     @shop.approved = nil
-    if !@shop.save
+    unless @shop.save
       flash[:error] = "Can't disapprove the shop : #{@shop.errors.full_messages.join(', ')}"
     end
 

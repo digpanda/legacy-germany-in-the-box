@@ -6,7 +6,6 @@ class ShopApplicationsController < ApplicationController
   before_action :authenticate_user!, except: [:new, :create, :is_registered]
 
   #respond_to :js, only: [:is_registered]
-
   #before_action(only: [:new])  { I18n.locale = :de }
 
   before_action :set_shop_application, only: [:show, :destroy]
@@ -29,7 +28,7 @@ class ShopApplicationsController < ApplicationController
     @shop_application = ShopApplication.new(shop_application_params)
 
     unless @shop_application.save
-      return throw_validation_error(@shop_application)
+      return throw_model_error(@shop_application)
     end
 
     @user = User.new({
@@ -43,7 +42,7 @@ class ShopApplicationsController < ApplicationController
     })
 
     unless @user.save
-      return throw_validation_error(@user)
+      return throw_model_error(@user)
     end
 
     @shop = Shop.new(shop_application_params.except(:email))
@@ -52,7 +51,7 @@ class ShopApplicationsController < ApplicationController
     @shop.merchant_id = @shop.gen_merchant_id
 
     unless @shop.save
-      return throw_validation_error(@shop)
+      return throw_model_error(@shop)
     end
 
     redirect_to new_shop_application_path(:finished => true)
@@ -61,7 +60,7 @@ class ShopApplicationsController < ApplicationController
   def destroy
 
     unless @shop_application.destroy
-      return throw_validation_error(@shop_application)
+      return throw_model_error(@shop_application)
     end
 
     flash[:success] = I18n.t(:delete_ok, scope: :edit_shop_application)
