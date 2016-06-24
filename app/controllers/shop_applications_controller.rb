@@ -28,7 +28,7 @@ class ShopApplicationsController < ApplicationController
     @shop_application = ShopApplication.new(shop_application_params)
 
     unless @shop_application.save
-      return throw_model_error(@shop_application)
+      return throw_model_error(@shop_application, :new)
     end
 
     @user = User.new({
@@ -42,7 +42,8 @@ class ShopApplicationsController < ApplicationController
     })
 
     unless @user.save
-      return throw_model_error(@user)
+      @shop_application.delete
+      return throw_model_error(@user, :new)
     end
 
     @shop = Shop.new(shop_application_params.except(:email))
@@ -51,7 +52,9 @@ class ShopApplicationsController < ApplicationController
     @shop.merchant_id = @shop.gen_merchant_id
 
     unless @shop.save
-      return throw_model_error(@shop)
+      @shop_application.delete
+      @user.delete
+      return throw_model_error(@shop, :new)
     end
 
     redirect_to new_shop_application_path(:finished => true)
@@ -64,7 +67,7 @@ class ShopApplicationsController < ApplicationController
     end
 
     flash[:success] = I18n.t(:delete_ok, scope: :edit_shop_application)
-    redirect_to(:back) and return
+    redirect_to(:back)
   end
 
   private

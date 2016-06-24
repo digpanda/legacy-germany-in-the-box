@@ -72,9 +72,10 @@ class ApplicationController < ActionController::Base
     {success: false}.merge(errors_config[sym])
   end
 
-  def throw_model_error(model)
-    flash[:error] = @user.errors.full_messages.join(', ')
-    redirect_to(:back)
+  def throw_model_error(model, view=nil)
+    flash[:error] = model.errors.full_messages.join(', ')
+    return render view if view
+    return redirect_to(:back)
   end
   # LIBRARY THROW OR SOMETHING (END)
 
