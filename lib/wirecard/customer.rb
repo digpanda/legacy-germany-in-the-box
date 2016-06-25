@@ -80,15 +80,17 @@ module Wirecard
 
       # WARNING : the order of the hash matters
       signature = {
-      :request_time_stamp      => request_time_stamp,
-      :request_id              => request_id,
-      :merchant_account_id     => merchant_id,
-      :transaction_type        => ::Rails.application.config.wirecard[:customers][:transaction_type],
-      :requested_amount        => amount,
-      :request_amount_currency => currency,
-      :redirect_url            => success_redirect_url.html_safe,
-      :ip_address              => "127.0.0.1",
-      :secret_key              => secret_key
+
+        :request_time_stamp      => request_time_stamp,
+        :request_id              => request_id,
+        :merchant_account_id     => merchant_id,
+        :transaction_type        => ::Rails.application.config.wirecard[:customers][:transaction_type],
+        :requested_amount        => amount,
+        :request_amount_currency => currency,
+        :redirect_url            => success_redirect_url.html_safe,
+        :ip_address              => "127.0.0.1",
+        :secret_key              => secret_key
+      
       }
 
       Digest::SHA256.hexdigest(signature.values.join.squish)

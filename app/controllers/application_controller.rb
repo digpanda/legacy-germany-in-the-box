@@ -164,6 +164,7 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource)
     if current_user.is_customer?
+      session[:locale] = :'zh-CN' # We should refactor this area and put everything into one session setter somewhere
       navigation_history(1)
     elsif current_user.is_shopkeeper?
       if current_user.shop && (not current_user.shop.agb)
