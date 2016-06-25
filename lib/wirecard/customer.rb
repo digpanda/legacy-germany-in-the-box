@@ -23,19 +23,19 @@ module Wirecard
 
     def initialize(user, args={})
 
-      @user                ||= user
-      @merchant_id         ||= args[:merchant_id]
-      @secret_key          ||= args[:secret_key]
-      @amount              ||= args[:amount].to_s
-      @currency            ||= args[:currency]
-      @order_number        ||= args[:order_number]
-      @order_detail        ||= args[:order_detail]
-      @request_time_stamp  ||= timestamp
-      @request_id          ||= [timestamp, user.id, order_number].join('-')
-      @hosted_payment_url  ||= ::Rails.application.config.wirecard[:customers][:hosted_payment_url]
-      @default_redirect_url||= ::Rails.application.config.wirecard[:customers][:default_redirect_url]
-      @success_redirect_url||= ::Rails.application.config.wirecard[:customers][:success_redirect_url] || "#{default_redirect_url}?state=success&"
-      @fail_redirect_url   ||= ::Rails.application.config.wirecard[:customers][:fail_redirect_url] || "#{default_redirect_url}?state=failed&"
+      @user                = user
+      @merchant_id         = args[:merchant_id]
+      @secret_key          = args[:secret_key]
+      @amount              = args[:amount].to_s
+      @currency            = args[:currency]
+      @order_number        = args[:order_number]
+      @order_detail        = args[:order_detail]
+      @request_time_stamp  = timestamp
+      @request_id          = [timestamp, user.id, order_number].join('-')
+      @hosted_payment_url  = ::Rails.application.config.wirecard[:customers][:hosted_payment_url]
+      @default_redirect_url= ::Rails.application.config.wirecard[:customers][:default_redirect_url]
+      @success_redirect_url= ::Rails.application.config.wirecard[:customers][:success_redirect_url] || "#{default_redirect_url}?state=success&"
+      @fail_redirect_url   = ::Rails.application.config.wirecard[:customers][:fail_redirect_url] || "#{default_redirect_url}?state=failed&"
 
     end
 

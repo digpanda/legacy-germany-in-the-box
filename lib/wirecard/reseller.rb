@@ -11,9 +11,9 @@ module Wirecard
 
     def initialize(args={})
 
-      @username  ||= ::Rails.application.config.wirecard[:reseller][:username]
-      @password  ||= ::Rails.application.config.wirecard[:reseller][:password]
-      @engine_url||= ::Rails.application.config.wirecard[:reseller][:engine_url]
+      @username   = ::Rails.application.config.wirecard[:reseller][:username]
+      @password   = ::Rails.application.config.wirecard[:reseller][:password]
+      @engine_url = ::Rails.application.config.wirecard[:reseller][:engine_url]
 
       @merchant_id = args[:merchant_id]
 
