@@ -152,6 +152,7 @@ class Ability
       can [:index,
            :search,
            :favorites,
+           :show_addresses,
            :unfollow], User
 
       can [:show,
