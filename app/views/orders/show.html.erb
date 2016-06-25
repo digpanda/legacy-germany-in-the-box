@@ -71,7 +71,7 @@
 <% else %>
     <div class="row col-md-8 col-md-push-2 col-md-pull-2 +white-box +centered">
       <h4>
-      Delivery destination is not set yet.
+        <%= "#{I18n.t(:destination_address_not_set, scope: :edit_order)}" %>
       </h4>
     </div>
 <% end %>

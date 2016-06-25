@@ -162,10 +162,10 @@ de:
     street: Straße
     house_number: Haus Nr.
     additional: Zusatz
-    province: Land
+    province: Bundesland
     city: Stadt
     district: Gemeinde
-    province_blank: --Land--
+    province_blank: --Bundesland--
     city_blank: --Stadt--
     district_blank: --Gemeinde--
     country: Staat
@@ -232,6 +232,7 @@ de:
     shippable: Zum Verand bereit
     shipped: Versendet
     success: Erstellt
+    destination_address_not_set: keine Empfänger-Anschrift vorhanden
   edit_collection:
     new: Favorit erstellen
     edit: Ändern
