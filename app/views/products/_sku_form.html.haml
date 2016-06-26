@@ -90,23 +90,17 @@
               .form-group
                 = fs.select :option_ids, grouped_options_for_select(@product.decorate.grouped_variants_options, @sku.option_ids ), {}, {:multiple => 'multiple', :class => 'sku-variants-options', :required => true}
             .col-md-6
-              - if @sku.unlimited
-                .form-group
-                  =fs.label :unlimited do
-                    = fs.check_box :unlimited, {}, true
-                    = I18n.t(:info, scope: 'edit_product_detail.unlimited')
-              - else
-                .row
-                  .col-md-6
-                    .input-group.form-group
-                      = fs.text_field :quantity, :class => 'form-control', :pattern => I18n.t(:positive_integer, scope: :validation), :required => true
-                      .input-group-addon
-                        = I18n.t(:piece, scope: :edit_product_detail)
-                  .col-md-6
-                    .form-group
-                      =fs.label :unlimited do
-                        = fs.check_box :unlimited, {}, true
-                        = I18n.t(:info, scope: 'edit_product_detail.unlimited')
+              .row
+                .col-md-6
+                  .input-group.form-group
+                    = fs.text_field :quantity, :class => 'form-control', :pattern => I18n.t(:positive_integer, scope: :validation), :required => true, :disabled => @sku.unlimited
+                    .input-group-addon
+                      = I18n.t(:piece, scope: :edit_product_detail)
+                .col-md-6
+                  .form-group
+                    =fs.label :unlimited do
+                      = fs.check_box :unlimited, {}, true
+                      = I18n.t(:info, scope: 'edit_product_detail.unlimited')
           %br
           .row
             .col-md-6
