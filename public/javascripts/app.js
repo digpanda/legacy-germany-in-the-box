@@ -1025,7 +1025,7 @@ require.register("javascripts/starters.js", function(exports, require, module) {
 /**
  * Starters Class
  */
-var Starters = ['bootstrap', 'china_city', 'datepicker', 'footer', 'images_control', 'images_handler', 'left_menu', 'messages', 'product_favorite', 'product_form', 'products_list', 'search'];
+var Starters = ['bootstrap', 'china_city', 'datepicker', 'footer', 'images_control', 'images_handler', 'left_menu', 'messages', 'product_favorite', 'product_form', 'products_list', 'search', 'sku_form'];
 
 module.exports = Starters;
 });
@@ -1656,6 +1656,40 @@ var Search = {
 };
 
 module.exports = Search;
+});
+
+require.register("javascripts/starters/sku_form.js", function(exports, require, module) {
+"use strict";
+
+/**
+ * ProductsList Class
+ */
+var SkuForm = { // CURRENTLY NOT IN USED IN THE SYSTEM
+
+    /**
+     * Initializer
+     */
+    init: function init() {
+
+        this.turnUnlimit();
+    },
+
+    turnUnlimit: function turnUnlimit() {
+
+        if ($("#js-sku-form").length > 0) {
+            $('input[id^=product_skus_attributes_][id$=_unlimited]').change(function () {
+                if ($(this).is(":checked")) {
+                    $('input[id^=product_skus_attributes_][id$=quantity]').val(0).prop('disabled', 'true');
+                } else {
+                    $('input[id^=product_skus_attributes_][id$=quantity]').removeAttr('disabled');
+                }
+            });
+        }
+    }
+
+};
+
+module.exports = SkuForm;
 });
 
 require.register("___globals___", function(exports, require, module) {

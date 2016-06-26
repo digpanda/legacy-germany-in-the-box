@@ -1,3 +1,5 @@
+= content_tag(:div, nil, :id => "js-sku-form", :data => {})
+
 = form_for @product, :html => {'data-toggle': 'validator', :id => 'product_detail_form'} do |f|
   = hidden_field_tag :part, :sku
   = f.fields_for :skus, @sku do |fs|

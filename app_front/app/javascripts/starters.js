@@ -15,6 +15,7 @@ var Starters = [
   'product_form',
   'products_list',
   'search',
+  'sku_form'
 ]
 
 module.exports = Starters;
