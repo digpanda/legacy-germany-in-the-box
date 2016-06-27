@@ -36,15 +36,15 @@
       <% unless @featured_shop.nil? %>
 
       <a href="<%= shop_path(@featured_shop) %>">
-      <div class="col-md-7 shop-blocks__main --shop" style="background-image:url(<%= @featured_shop.decorate.image_url(:detail, :banner) %>);">
+      <div class="col-md-7 shop-blocks__main --shop" style="background-image:url(<%= @featured_shop.decorate.image_url(:banner, :detail) %>);">
         <div class="+overlay"></div>
         <div class="+onoverlay">
 
           <!-- Content -->
           <div class="shop-blocks__main --content">
 
-            <div class="col-md-3">
-              <img src="<%= @featured_shop.decorate.image_url(:detail, :logo) %>">
+
+            <div class="col-md-3 shop-blocks__main --avatar" style="background-image:url('<%= @featured_shop.decorate.image_url(:logo, :detail) %>');">
             </div>
 
             <div class="col-md-9">
@@ -73,7 +73,7 @@
       <% @casual_shops.each do |shop| %>
 
       <a href="<%= shop_path(shop) %>">
-      <div class="col-md-4 shop-blocks__secondary --shop" style="background-image:url(<%= shop.decorate.image_url(:detail, :banner) %>);">
+      <div class="col-md-4 shop-blocks__secondary --shop" style="background-image:url(<%= shop.decorate.image_url(:banner, :detail) %>);">
         <div class="+overlay"></div>
         
         <div class="+onoverlay">
@@ -81,8 +81,8 @@
           <!-- Content -->
           <div class="shop-blocks__secondary --content">
 
-            <div class="col-md-4">
-              <img src="<%= shop.decorate.image_url(:thumb, :logo) %>">
+            <div class="col-md-4 shop-blocks__secondary --avatar" style="background-image:url('<%= shop.decorate.image_url(:logo, :thumb) %>');">
+              <!-- <img src="<%= shop.decorate.image_url(:logo, :thumb) %>"> -->
             </div>
 
             <div class="col-md-8">

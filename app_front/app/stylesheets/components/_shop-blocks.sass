@@ -1,7 +1,16 @@
 +component(shop-blocks)
   
-
   +part(main)
+
+    +option(avatar)
+
+      +avatar
+      margin-top: 2em !important
+      width: 110px
+      height: 110px
+      background: $color-white
+      background-position: center center
+      background-size: cover
 
     +option(category)
       padding: 1.5em
@@ -54,15 +63,19 @@
     +option(content)
       color: $color-white
 
-      img
-        +avatar
-        margin-top: 2em !important
-        max-width: 75px
-        background: $color-white
+    +option(avatar)
 
-      h3
-        margin-top: 1.3em
-        color: $color-white
+      +avatar
+      margin-top: 2em !important
+      width: 90px
+      height: 90px
+      background: $color-white
+      background-position: center center
+      background-size: cover
+
+    h3
+      margin-top: 1.3em
+      color: $color-white
 
     +option(author)
       font-size: 10px
