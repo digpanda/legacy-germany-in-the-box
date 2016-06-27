@@ -113,12 +113,15 @@ class Shop
   before_save :ensure_shopkeeper
   before_save :clean_sms_mobile,  :unless => lambda { self.sms }
   before_save :force_wirecard_status
+  before_save :gen_merchant_id
 
   index({shopkeeper: 1},    {unique: true,   name: :idx_shop_shopkeeper})
   index({merchant_id: 1},   {unique: false,  name: :idx_shop_merchant_id})
 
   def gen_merchant_id
-    (self.c_at ? self.c_at.strftime('%y%m%d') : Date.today.strftime('%y%m%d')) + self.name[0,3].upcase
+    if self.merchant_id.nil?
+      (self.c_at ? self.c_at.strftime('%y%m%d') : Date.today.strftime('%y%m%d')) + self.name[0,3].upcase
+    end
   end
 
   def billing_address

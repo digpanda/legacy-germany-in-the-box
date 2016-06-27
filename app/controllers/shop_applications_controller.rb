@@ -49,7 +49,6 @@ class ShopApplicationsController < ApplicationController
     @shop = Shop.new(shop_application_params.except(:email))
     @shop.shopname = @shop.name
     @shop.shopkeeper = @user
-    @shop.merchant_id = @shop.gen_merchant_id
 
     unless @shop.save
       @shop_application.delete
