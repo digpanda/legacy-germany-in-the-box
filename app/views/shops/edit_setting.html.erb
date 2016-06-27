@@ -1,3 +1,11 @@
+<%= content_tag(:div, nil, :id => "js-shops-edit-setting", :data => {
+
+  :translation_max_exceeded_message => I18n.t(:max_exceeded_message, scope: :image_upload),
+  :translation_ext_error_message => I18n.t(:ext_error_message, scope: :image_upload),
+  })
+
+%>
+
 <%= form_for @shop, :html => {'data-toggle': 'validator', role: 'form'} do |f| %>
   <div class="panel-group">
     <div class="panel panel-default">

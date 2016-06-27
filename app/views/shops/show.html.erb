@@ -8,7 +8,7 @@
     <div class="row">
 
       <!-- Shop Page Cover -->
-      <div class="col-md-12 shop-page-cover" style="background-image:url(<%= @shop.decorate.image_url(:detail, :banner) %>);">
+      <div class="col-md-12 shop-page-cover" style="background-image:url(<%= @shop.decorate.image_url(:banner, :detail) %>);">
         <div class="+overlay"></div>
 
         <div class="+onoverlay">
@@ -16,7 +16,8 @@
           <!-- Content -->
           <div class="shop-page-cover__content +centered">
 
-            <img src="<%= @shop.decorate.image_url(:detail, :logo) %>">
+          <div class="shop-page-cover__content --avatar +centered" style="background-image:url('<%= @shop.decorate.image_url(:logo, :detail
+            ) %>');"></div>
 
             <div class="+small-spacer"></div>
 

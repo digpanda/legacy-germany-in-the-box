@@ -1,5 +1,8 @@
 +component(shop-page-cover)
 
+  background: no-repeat center center
+  background-size: cover
+
   color: $color-white
 
   border: 2px $color-grey solid
@@ -9,10 +12,21 @@
     color: $color-white
     text-transform: uppercase
 
-  img
-    +avatar
-    max-width: 100px
-    background: $color-white
+  //img
+  //  +avatar
+  //  max-width: 100px
+  //  background: $color-white
+
+  +part(content)
+
+    +option(avatar)
+      +avatar
+      margin-top: 2em !important
+      width: 120px
+      height: 120px
+      background: $color-white
+      background-position: center center
+      background-size: cover
 
   h3
     margin-top: 1.5em

@@ -1216,7 +1216,7 @@ module.exports = Footer;
 });
 
 require.register("javascripts/starters/images_control.js", function(exports, require, module) {
-"use strict";
+'use strict';
 
 /**
  * ImageControl Class
@@ -1231,14 +1231,19 @@ var ImagesControl = {
     this.validateImageFile();
   },
 
+  data: function data(_data) {
+    return $('#js-shops-edit-setting').data();
+  },
+
   validateImageFile: function validateImageFile() {
 
     $("input[class^=img-file-upload]").on('change', function () {
 
+      var Messages = require("javascripts/lib/messages");
       var inputFile = this;
 
-      var maxExceededMessage = ""; // #{I18n.t(:max_exceeded_message, scope: :image_upload)} to catch
-      var extErrorMessage = ""; // #{I18n.t(:ext_error_message, scope: :image_upload)} to catch
+      var maxExceededMessage = ImagesControl.data().translationMaxExceededMessage;
+      var extErrorMessage = ImagesControl.data().translationExtErrorMessage;
       var allowedExtension = ["jpg", "JPG", "jpeg", "JPEG", "png", "PNG"];
 
       var extName;
@@ -1255,13 +1260,15 @@ var ImagesControl = {
           extError = true;
         };
       });
+
       if (sizeExceeded) {
-        window.alert(maxExceededMessage);
+
+        Messages.makeError(maxExceededMessage);
         $(inputFile).val('');
       };
 
       if (extError) {
-        window.alert(extErrorMessage);
+        Messages.makeError(extErrorMessage);
         $(inputFile).val('');
       };
     });
