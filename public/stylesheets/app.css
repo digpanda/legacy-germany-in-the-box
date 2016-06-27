@@ -7858,8 +7858,12 @@ img.mfp-img {
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   border-radius: 50%;
-  min-height: 70px;
-  min-width: 70px;
+  margin-top: 2em !important;
+  width: 70px;
+  height: 70px;
+  background: #fdfdfd;
+  background-position: center center;
+  background-size: cover;
   background-color: #FBFBFB;
   border: 3px white solid; }
 
@@ -7914,16 +7918,14 @@ img.mfp-img {
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   border-radius: 50%;
-  min-height: 70px;
-  min-width: 70px;
-  background-color: #FBFBFB;
-  border: 3px white solid;
   margin-top: 2em !important;
   width: 110px;
   height: 110px;
   background: #fdfdfd;
   background-position: center center;
-  background-size: cover; }
+  background-size: cover;
+  background-color: #FBFBFB;
+  border: 3px white solid; }
 
 /* line 40, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
 .shop-blocks__main.\--category {
@@ -7936,12 +7938,12 @@ img.mfp-img {
   -ms-border-radius: 0.5em;
   border-radius: 0.5em;
   color: #fdfdfd; }
-  /* line 23, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_shop-blocks.sass */
+  /* line 16, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_shop-blocks.sass */
   .shop-blocks__main.\--category img {
     height: 95px;
     -webkit-filter: brightness(0) invert(1);
     filter: brightness(0) invert(1); }
-  /* line 28, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_shop-blocks.sass */
+  /* line 21, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_shop-blocks.sass */
   .shop-blocks__main.\--category h2 {
     color: #fdfdfd;
     text-transform: uppercase;
@@ -7950,7 +7952,7 @@ img.mfp-img {
 /* line 40, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
 .shop-blocks__main.\--content {
   color: #fdfdfd; }
-  /* line 36, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_shop-blocks.sass */
+  /* line 29, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_shop-blocks.sass */
   .shop-blocks__main.\--content img {
     margin-top: 1em;
     margin-right: 1em;
@@ -7958,14 +7960,18 @@ img.mfp-img {
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
     border-radius: 50%;
-    min-height: 70px;
-    min-width: 70px;
+    margin-top: 2em !important;
+    width: 70px;
+    height: 70px;
+    background: #fdfdfd;
+    background-position: center center;
+    background-size: cover;
     background-color: #FBFBFB;
     border: 3px white solid;
     margin-top: 2em !important;
     max-width: 100px;
     background: #fdfdfd; }
-  /* line 42, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_shop-blocks.sass */
+  /* line 35, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_shop-blocks.sass */
   .shop-blocks__main.\--content h3 {
     margin-top: 1.5em;
     color: #fdfdfd; }
@@ -8000,18 +8006,16 @@ img.mfp-img {
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   border-radius: 50%;
-  min-height: 70px;
-  min-width: 70px;
-  background-color: #FBFBFB;
-  border: 3px white solid;
   margin-top: 2em !important;
   width: 90px;
   height: 90px;
   background: #fdfdfd;
   background-position: center center;
-  background-size: cover; }
+  background-size: cover;
+  background-color: #FBFBFB;
+  border: 3px white solid; }
 
-/* line 76, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_shop-blocks.sass */
+/* line 62, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_shop-blocks.sass */
 .shop-blocks__secondary h3 {
   margin-top: 1.3em;
   color: #fdfdfd; }
@@ -8139,33 +8143,33 @@ img.mfp-img {
     /* line 13, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_category-menu.sass */
     .category-menu__search i {
       color: #3498db; }
-  /* line 91, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/helpers/_mixins.sass */
+  /* line 96, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/helpers/_mixins.sass */
   .category-menu nav {
     z-index: 5;
     position: relative; }
-    /* line 95, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/helpers/_mixins.sass */
+    /* line 100, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/helpers/_mixins.sass */
     .category-menu nav ul {
       list-style: none;
       margin: 0;
       padding: 0; }
-      /* line 98, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/helpers/_mixins.sass */
+      /* line 103, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/helpers/_mixins.sass */
       .category-menu nav ul a {
         display: block;
         color: #666;
         text-decoration: none;
         line-height: 32px; }
-      /* line 106, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/helpers/_mixins.sass */
+      /* line 111, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/helpers/_mixins.sass */
       .category-menu nav ul li:hover > ul {
         width: 100%;
         display: block;
         border-top: 2px solid #659443; }
-      /* line 110, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/helpers/_mixins.sass */
+      /* line 115, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/helpers/_mixins.sass */
       .category-menu nav ul li:hover a {
         color: #666; }
-        /* line 112, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/helpers/_mixins.sass */
+        /* line 117, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/helpers/_mixins.sass */
         .category-menu nav ul li:hover a:hover {
           color: #659443; }
-      /* line 114, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/helpers/_mixins.sass */
+      /* line 119, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/helpers/_mixins.sass */
       .category-menu nav ul ul {
         display: none;
         position: absolute;
@@ -8173,13 +8177,13 @@ img.mfp-img {
         left: 0;
         background: white;
         padding: 0; }
-        /* line 121, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/helpers/_mixins.sass */
+        /* line 126, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/helpers/_mixins.sass */
         .category-menu nav ul ul li {
           padding-left: 15px;
           padding-right: 15px;
           float: none;
           width: 100%; }
-        /* line 132, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/helpers/_mixins.sass */
+        /* line 137, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/helpers/_mixins.sass */
         .category-menu nav ul ul ul {
           top: 0;
           left: 100%; }
@@ -8510,17 +8514,15 @@ img.mfp-img {
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
     border-radius: 50%;
-    min-height: 70px;
-    min-width: 70px;
-    background-color: #FBFBFB;
-    border: 3px white solid;
     margin-top: 2em !important;
     width: 120px;
     height: 120px;
     background: #fdfdfd;
     background-position: center center;
-    background-size: cover; }
-  /* line 26, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_shop-page-cover.sass */
+    background-size: cover;
+    background-color: #FBFBFB;
+    border: 3px white solid; }
+  /* line 20, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_shop-page-cover.sass */
   .shop-page-cover h3 {
     margin-top: 1.5em;
     color: #fdfdfd; }
