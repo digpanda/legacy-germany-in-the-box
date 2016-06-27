@@ -6,18 +6,20 @@ class DutyAndCustomerCategorySelectStore # Should be removed somehow
 
   def grouped_categories_options(locale)
     Rails.cache.fetch("grouped_categories_options_#{locale}") {
-      second_last_branches.sort {|a,b| a.name <=> b.name } .map {|c| [c.name_translations[locale], children(c).map { |cc| [cc.name_translations[locale], cc.id.to_s] }, c.id.to_s] }
+      second_last_branches.sort {|a,b| a.name <=> b.name } .map {|c| [c.parent_id ? "#{c.parent.name_translations[locale]} >> #{c.name_translations[locale]}" : c.name_translations[locale], children(c).map { |cc| [cc.name_translations[locale], cc.id.to_s] }, c.id.to_s] }
     }
   end
 
-  private
+  def roots
+    @roots ||= categories.select { |_, c| c.parent_id.nil? }
+  end
 
   def categories
     @categories ||= @classz.all.is_active.to_a.map { |c| [c.id.to_s, c] }.to_h
   end
 
   def second_last_branches
-    @second_last_branches ||= categories.values.select { |c| c.children_count == 0 } .map { |c| categories[c.parent_id.to_s] }.compact.uniq
+    @second_last_branches ||= categories.values.select { |c| c.children_count == 0 } .map { |c| categories[c.parent_id.to_s] }.compact.uniq.reject { |c| roots.include?(c.id.to_s)}
 
     if @second_last_branches.size == 0
       categories.values
