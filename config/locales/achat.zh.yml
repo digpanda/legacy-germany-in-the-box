@@ -430,7 +430,7 @@ zh-CN:
       'false': 不限量
     weight: 重量
     status:
-      info: 状态
+      info: 这个SKU的信息已经完整正确，确认上线。
       'true': 上架
       'false': 下架
     customizable:
