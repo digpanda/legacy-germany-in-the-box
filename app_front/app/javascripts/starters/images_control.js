@@ -20,6 +20,7 @@ var ImagesControl = {
 
       $("input[class^=img-file-upload]").on('change', function() {
 
+        var Messages = require("javascripts/lib/messages");
         var inputFile = this;
 
         var maxExceededMessage = ImagesControl.data().translationMaxExceededMessage;
@@ -36,13 +37,15 @@ var ImagesControl = {
           extName = this.name.split('.').pop();
           if ($.inArray(extName, allowedExtension) == -1) {extError=true;};
         });
+
         if (sizeExceeded) {
-          window.alert(maxExceededMessage);
+
+          Messages.makeError(maxExceededMessage);
           $(inputFile).val('');
         };
 
         if (extError) {
-          window.alert(extErrorMessage);
+          Messages.makeError(extErrorMessage);
           $(inputFile).val('');
         };
 
