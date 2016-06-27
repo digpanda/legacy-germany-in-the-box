@@ -10,7 +10,7 @@ class Tasks::Digpanda::RemoveAndCreateDutyCategories
     csv_file = File.join(Rails.root, 'vendor', 'bg-duty-categories.csv')
     puts "We fetch the appropriate CSV file"
 
-    CSV.foreach(csv_file, quote_char: '"', col_sep: ';', row_sep: :auto, headers: true) do |row|
+    CSV.foreach(csv_file, quote_char: '"', col_sep: ';', row_sep: :auto, headers: false) do |row|
 
       if row[2].blank?
         DutyCategory.create!(:code => row[0].strip, :name_translations => {:en => row[1].strip} )

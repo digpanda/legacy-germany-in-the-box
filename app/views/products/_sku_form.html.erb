@@ -149,19 +149,19 @@
         <div class="col-md-6">
           <div class="row">
             <div class="col-md-6">
-              <div class="input-group form-group">
-                <%= fs.text_field :quantity, :class => 'form-control', :pattern => I18n.t(:positive_integer, scope: :validation), :required => true, :disabled => @sku.unlimited %>
-                <div class="input-group-addon">
-                  <%= I18n.t(:piece, scope: :edit_product_detail) %>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
               <div class="form-group">
                 <%= fs.label :unlimited do %>
                 <%= fs.check_box :unlimited, {}, true %>
                 <%= I18n.t(:info, scope: 'edit_product_detail.unlimited') %>
                 <% end %>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="input-group form-group">
+                <%= fs.text_field :quantity, :class => 'form-control', :pattern => I18n.t(:positive_integer, scope: :validation), :required => true, :disabled => @sku.unlimited %>
+                <div class="input-group-addon">
+                  <%= I18n.t(:piece, scope: :edit_product_detail) %>
+                </div>
               </div>
             </div>
           </div>
