@@ -35,6 +35,7 @@ class Api::Webhook::Wirecard::MerchantsController < Api::ApplicationController
       render status: :unprocessable_entity, 
              json: throw_error(:unknown_id).merge(error: "Unknown merchant id.").to_json and return
     end
+    devlog.info "It passed the merchant recognition."
 
     shop.wirecard_status = datas[:merchant_status].downcase
     unless shop.save
