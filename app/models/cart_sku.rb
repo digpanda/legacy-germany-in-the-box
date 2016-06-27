@@ -38,7 +38,7 @@ class CartSku
   def get_options(sku)
     variants = sku.option_ids.map do |oid|
       sku.product.options.detect do |v|
-        v.suboptions.find(oid)
+        v.suboptions.where(id: oid).first
       end
     end
 

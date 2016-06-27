@@ -123,7 +123,7 @@ module ProductsHelper
     values = skus.map { |s| s.option_ids.compact.join(',') }
     names  = skus.map do |s|
       s.option_ids.compact.map do |oid|
-        o = product.options.detect { |v| v.suboptions.find(oid) }.suboptions.find(oid)
+        o = product.options.detect { |v| v.suboptions.where(id: oid).first }.suboptions.find(oid)
         o.name
       end.join(', ')
     end
@@ -133,7 +133,7 @@ module ProductsHelper
   def get_options_json(sku)
     variants = sku.option_ids.map do |oid|
       sku.product.options.detect do |v|
-        v.suboptions.find(oid)
+        v.suboptions.where(id: oid).first
       end
     end
 

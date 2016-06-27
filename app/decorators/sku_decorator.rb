@@ -29,7 +29,7 @@ class SkuDecorator < Draper::Decorator
   def get_options_txt
     variants = self.option_ids.map do |oid|
       self.product.options.detect do |v|
-        v.suboptions.find(oid)
+        v.suboptions.where(id: oid).first
       end
     end
 
