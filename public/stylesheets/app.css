@@ -8490,18 +8490,20 @@ img.mfp-img {
 
 /* line 32, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
 .shop-page-cover {
+  background: no-repeat center center;
+  background-size: cover;
   color: #fdfdfd;
   border: 2px #eeeeee solid;
   -webkit-border-radius: 0.5em;
   -moz-border-radius: 0.5em;
   -ms-border-radius: 0.5em;
   border-radius: 0.5em; }
-  /* line 8, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_shop-page-cover.sass */
+  /* line 11, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_shop-page-cover.sass */
   .shop-page-cover h2 {
     color: #fdfdfd;
     text-transform: uppercase; }
-  /* line 12, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_shop-page-cover.sass */
-  .shop-page-cover img {
+  /* line 40, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
+  .shop-page-cover__content.\--avatar {
     margin-top: 1em;
     margin-right: 1em;
     position: relative;
@@ -8512,9 +8514,13 @@ img.mfp-img {
     min-width: 70px;
     background-color: #FBFBFB;
     border: 3px white solid;
-    max-width: 100px;
-    background: #fdfdfd; }
-  /* line 17, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_shop-page-cover.sass */
+    margin-top: 2em !important;
+    width: 120px;
+    height: 120px;
+    background: #fdfdfd;
+    background-position: center center;
+    background-size: cover; }
+  /* line 31, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_shop-page-cover.sass */
   .shop-page-cover h3 {
     margin-top: 1.5em;
     color: #fdfdfd; }
