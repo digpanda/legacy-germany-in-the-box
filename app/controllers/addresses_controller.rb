@@ -1,7 +1,7 @@
 class AddressesController < ApplicationController
 
   before_action :authenticate_user!
-  load_and_authorize_resource :class => User
+  load_and_authorize_resource :class => Address
 
   layout :custom_sublayout, only: [:show_addresses]
 
