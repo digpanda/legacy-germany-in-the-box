@@ -50,9 +50,10 @@ class ProductDecorator < Draper::Decorator
     if preview_sku.nil?
         preview_sku = self.skus.first
       if preview_sku.nil?
-        preview_sku.decorate.price_with_currency_euro
+        preview_sku.decorate.price_with_currency
       else
-        "0.00 #{Settings.instance.supplier_currency.symbol}"
+        self.get_mas.decorate.price_with_currency
+        #"0.00 #{Settings.instance.supplier_currency.symbol}"
       end
     else
       preview_sku.decorate.price_with_currency
@@ -66,7 +67,8 @@ class ProductDecorator < Draper::Decorator
       if preview_sku.nil?
         preview_sku.decorate.price_with_currency_euro
       else
-        "0.00 #{Settings.instance.supplier_currency.symbol}"
+        self.get_mas.decorate.price_with_currency_euro
+        #"0.00 #{Settings.instance.supplier_currency.symbol}"
       end
     else
       preview_sku.decorate.price_with_currency_euro
