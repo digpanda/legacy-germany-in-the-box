@@ -44,7 +44,7 @@ class Product
   scope :has_tag,         ->(value) { where( :tags => value ) }
   scope :is_active,       ->        { self.and(:status => true, :approved.ne => nil).in(shop: Shop.only(:id).where(:approved.ne => nil).map(&:id)) }
   scope :has_sku,         ->        { where( "skus.0" => { "$exists" => true } ) }
-  scope :has_hs_code,   ->        { where( :hs_code.ne => nil ) }
+  scope :has_hs_code,     ->        { where( :hs_code.ne => nil ) }
   scope :buyable,         ->        { self.is_active.has_hs_code.has_sku.in(shop: Shop.only(:id).buyable.map(&:id)) }
 
   index({name: 1},            {unique: false, name: :idx_product_name})
@@ -65,8 +65,8 @@ class Product
   end
 
   def is_favorite?(user)
-    return if user.nil?
-    user.favorites.find(self.id)
+    return unless user
+    user.favorites.where(id: self.id).first != nil 
   end
 
 end
