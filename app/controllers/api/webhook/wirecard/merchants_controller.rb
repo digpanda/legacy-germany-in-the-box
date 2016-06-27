@@ -24,7 +24,7 @@ class Api::Webhook::Wirecard::MerchantsController < Api::ApplicationController
     devlog.info "Wirecard started to communicate with our system" 
     devlog.info "Service received `#{datas[:merchant_id]}`, `#{datas[:merchant_status]}`, `#{datas[:reseller_id]}`" 
 
-    unless authenticate_resource(datas[:reseller_id])
+    unless authenticated_resource?(datas[:reseller_id])
       render status: :unauthorized, 
              json: throw_error(:bad_credentials).to_json and return
     end
@@ -49,9 +49,14 @@ class Api::Webhook::Wirecard::MerchantsController < Api::ApplicationController
 
   end
 
+  # WARNING : Must stay public for throw_error to work well for now.
+  def devlog
+    @@devlog ||= Logger.new(Rails.root.join("log/wirecard_webhook.log"))
+  end
+
   private
 
-  def authenticate_resource(reseller_id)
+  def authenticated_resource?(reseller_id)
     reseller_id == wirecard_config[:merchants][:reseller_id]
   end
 
@@ -78,10 +83,6 @@ class Api::Webhook::Wirecard::MerchantsController < Api::ApplicationController
   def validate_remote_server_request
     render status: :bad_request, 
            json: throw_error(:bad_format).to_json and return if !required_merchant_datas
-  end
-
-  def devlog
-    @@devlog ||= Logger.new(Rails.root.join("log/wirecard_webhook.log"))
   end
 
 end
