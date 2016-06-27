@@ -42,6 +42,10 @@ class ShopDecorator < Draper::Decorator
     truncate(self.desc, :length => characters)
   end
 
+  def manager_full_name
+    "#{fname} #{lname}"
+  end
+
   private
 
   def thumb_params(img_field)

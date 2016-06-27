@@ -22,7 +22,7 @@
             <div class="+small-spacer"></div>
 
             <h2><%= @shop.shopname %></h2>
-            <div class="shop-page-cover__author">by <%= @shop.shopkeeper.decorate.full_name %></div>
+            <div class="shop-page-cover__author">by <%= @shop.decorate.manager_full_name %></div>
 
             <div class="+small-spacer"></div>
             <%= @shop.desc %>
