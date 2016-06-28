@@ -38,15 +38,19 @@ class Order
 
   index({user: 1},  {unique: false,   name: :idx_order_user,   sparse: true})
 
-  def total_price_in_currency
+  def is_bought?
+    not [:new, :paying].include?(self.status)
+  end
+
+  def total_price_in_yuan
     total_price * Settings.instance.exchange_rate_to_yuan
   end
 
-  def shipping_cost_in_currency
+  def shipping_cost_in_yuan
     (shipping_cost ? shipping_cost : 0) * Settings.instance.exchange_rate_to_yuan
   end
 
-  def tax_and_duty_cost_in_currency
+  def tax_and_duty_cost_in_yuan
     (tax_and_duty_cost ? tax_and_duty_cost : 0 ) * Settings.instance.exchange_rate_to_yuan
   end
 
@@ -54,12 +58,16 @@ class Order
     if order_items.size == 0 && new_quantity_increase == 1
       false
     else
-      (self.total_price_in_currency + new_price_increase) > Settings.instance.max_total_per_day
+      (self.total_price_in_yuan + new_price_increase) > Settings.instance.max_total_per_day
     end
   end
 
   def total_price
-    order_items.inject(0) { |sum, i| sum += i.quantity * i.sku.price }
+    if self.is_bought?
+      order_items.inject(0) { |sum, i| sum += i.quantity * i.price }
+    else
+      order_items.inject(0) { |sum, i| sum += i.quantity * i.sku.price }
+    end
   end
 
   def total_amount

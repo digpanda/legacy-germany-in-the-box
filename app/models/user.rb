@@ -127,9 +127,9 @@ class User
   end
 
   def reach_todays_limit?(order, new_price_increase)
-    new_order_total = order.total_price_in_currency + new_price_increase
+    new_order_total = order.total_price_in_yuan + new_price_increase
     todays_orders = self.orders.bought.and(:u_at.gte => Date.today, :u_at.lt => Date.tomorrow)
-    todays_orders.size == 0 ? false : (todays_orders.inject(0) { |sum, o| sum += o.total_price_in_currency } + new_order_total) > Settings.instance.max_total_per_day
+    todays_orders.size == 0 ? false : (todays_orders.inject(0) { |sum, o| sum += o.total_price_in_yuan } + new_order_total) > Settings.instance.max_total_per_day
   end
 
   def is_admin?
