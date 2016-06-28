@@ -50,11 +50,11 @@ class Order
     (tax_and_duty_cost ? tax_and_duty_cost : 0 ) * Settings.instance.exchange_rate_to_yuan
   end
 
-  def reach_todays_limit?(new_total)
-    if order_items.size == 0
-      new_total == 0 ? false : new_total > Settings.instance.max_total_per_day
+  def reach_todays_limit?(new_price_increase, new_quantity_increase)
+    if order_items.size == 0 && new_quantity_increase == 1
+      false
     else
-      (self.total_price_in_currency + new_total) > Settings.instance.max_total_per_day
+      (self.total_price_in_currency + new_price_increase) > Settings.instance.max_total_per_day
     end
   end
 

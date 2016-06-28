@@ -81,9 +81,8 @@ class ApplicationController < ActionController::Base
 
   protected
 
-  def reach_todays_limit?(order, new_total)
-    new = order.total_price_in_currency + new_total
-    current_user.present? ? (current_user.reach_todays_limit?(new) || order.reach_todays_limit?(new_total)) : order.reach_todays_limit?(new_total)
+  def reach_todays_limit?(order, new_price_increase, new_quantity_increase)
+    current_user.present? ? (current_user.reach_todays_limit?(order, new_price_increase) || order.reach_todays_limit?(new_price_increase, new_quantity_increase)) : order.reach_todays_limit?(new_price_increase, new_quantity_increase)
   end
 
   def set_categories

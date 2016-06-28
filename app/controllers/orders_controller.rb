@@ -74,9 +74,9 @@ class OrdersController < ApplicationController
     co = current_order(product.shop_id.to_s)
     co.shop = product.shop
 
-    new_total = sku.price * quantity * Settings.first.exchange_rate_to_yuan
+    new_increment = sku.price * quantity * Settings.first.exchange_rate_to_yuan
 
-    if reach_todays_limit?(co, new_total)
+    if reach_todays_limit?(co, new_increment, quantity)
       flash[:error] = I18n.t(:override_maximal_total, scope: :edit_order, total: Settings.instance.max_total_per_day, currency: Settings.instance.platform_currency.symbol)
       redirect_to(:back) and return
     end
