@@ -13,7 +13,7 @@ class ProductDecorator < Draper::Decorator
   end
 
   def get_mas
-    @mas ||= skus.is_active.to_a.sort { |s1, s2| s1.quantity <=> s2.quantity }.last
+    @mas ||= skus.is_active.to_a.sort { |s1, s2| s1.decorate.quantity <=> s2.decorate.quantity }.last
   end
 
   def get_mas_img_url(img_field, version)

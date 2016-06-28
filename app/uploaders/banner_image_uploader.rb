@@ -26,6 +26,10 @@ class BannerImageUploader < CarrierWave::Uploader::Base
     version :thumb, :if => :image? do
       process :resize_and_pad => [728, 90]
     end
+
+    version :detail, :if => :image? do
+      process :resize_and_pad => [850, 400]
+    end
   end
 
 end

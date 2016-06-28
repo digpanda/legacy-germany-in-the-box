@@ -26,5 +26,9 @@ class LogoImageUploader < CarrierWave::Uploader::Base
     version :thumb, :if => :image? do
       process :resize_and_pad => [90, 90]
     end
+
+    version :detail, :if => :image? do
+      process :resize_and_pad => [350, 350]
+    end
   end
 end

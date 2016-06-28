@@ -5,6 +5,10 @@ class SkuDecorator < Draper::Decorator
   delegate_all
   decorates :sku
 
+  def quantity
+    self.unlimited ? Integer::MAX : object.quantity
+  end
+
   def all_nonempty_img_fields
     @img_fields ||= self.attributes.keys.grep(/^img\d/).map(&:to_sym).select { |f| f if sku.read_attribute(f) }
   end
