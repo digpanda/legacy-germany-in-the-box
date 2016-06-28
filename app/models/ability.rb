@@ -3,7 +3,7 @@ class Ability
   prepend Draper::CanCanCan
   
   def initialize(user, controller_namespace)
-
+    
     namespaces = controller_namespace.split('::')
 
     # Currently there's no `app` so it's extremely difficult to differentiate the Api from the App

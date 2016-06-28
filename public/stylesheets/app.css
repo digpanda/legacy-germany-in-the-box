@@ -8559,7 +8559,7 @@ img.mfp-img {
   .shop-page-product__image {
     background-color: #FBFBFB;
     height: 17em;
-    width: 95%;
+    width: 12em;
     margin: 0 auto;
     display: block;
     -webkit-background-size: cover;
@@ -8567,7 +8567,7 @@ img.mfp-img {
     -o-background-size: cover;
     background-size: cover;
     background-position: center center; }
-    /* line 30, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_shop-page-product.sass */
+    /* line 29, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_shop-page-product.sass */
     .shop-page-product__image img {
       max-width: 100%;
       max-height: 22em; }
