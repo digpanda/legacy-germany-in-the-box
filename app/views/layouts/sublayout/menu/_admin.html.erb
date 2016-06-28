@@ -22,5 +22,5 @@
   <%= link_to I18n.t(:settings, scope: :top_menu), admin_settings_path(:user_info_edit_part => :edit_settings) %>
 </li>
 <li>
-  <%= link_to I18n.t(:sign_out, scope: :top_menu), signout_path, :method => :delete %>
+  <%= link_to I18n.t(:sign_out, scope: :top_menu), destroy_user_session_path, :method => :delete %>
 </li>

@@ -19,8 +19,7 @@ gem "turbolinks" # Turbolinks makes following links in your web application fast
 gem "jbuilder", "~> 2.0" # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem "sdoc", "~> 0.4.0", group: :doc # bundle exec rake doc:rails generates the API under doc/api.
 gem "devise", "3.5.3"
-gem "omniauth"
-gem "omniauth-facebook"
+#gem "omniauth-facebook"
 gem "draper", "~> 1.3" # decorators
 gem "draper-cancancan"
 gem "carrierwave-mongoid", :require => "carrierwave/mongoid"
@@ -55,6 +54,8 @@ gem "bootstrap-validator-rails"
 gem "abstract_method"
 gem "mongoid_magic_counter_cache"
 gem 'carrierwave-ftp', :require => 'carrierwave/storage/ftp' # FTP only
+
+gem "omniauth"
 gem "omniauth-wechat-oauth2", git: 'https://github.com/yangsr/omniauth-wechat-oauth2.git'
 
 #gem 'omniauth-open_wechat'
