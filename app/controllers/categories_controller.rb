@@ -36,7 +36,7 @@ class CategoriesController < ApplicationController
     @category = Category.find(params[:id])
     @shops = @category.buyable_shops
     @featured_shop = @category.buyable_shops.first
-    @casual_shops = @category.buyable_shops.uniq # because it can fetch duplicate for no fucking reason.
+    @casual_shops = @category.buyable_shops.uniq.compact # because it can fetch duplicate for no fucking reason.
     @casual_shops.shift
   end
 
