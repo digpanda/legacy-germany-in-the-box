@@ -5,6 +5,10 @@ class SkuDecorator < Draper::Decorator
   delegate_all
   decorates :sku
 
+  def max_added_to_cart
+    [Rails.configuration.max_add_to_cart_each_time, (self.unlimited ? Rails.configuration.max_add_to_cart_each_time : self.quantity)].min
+  end
+
   def all_nonempty_img_fields
     @img_fields ||= self.attributes.keys.grep(/^img\d/).map(&:to_sym).select { |f| f if sku.read_attribute(f) }
   end
