@@ -1684,11 +1684,17 @@ var SkuForm = { // CURRENTLY NOT IN USED IN THE SYSTEM
     turnUnlimit: function turnUnlimit() {
 
         if ($("#js-sku-form").length > 0) {
-            $('input[id^=product_skus_attributes_][id$=_unlimited]').change(function () {
+            var component = $('input[id^=product_skus_attributes_][id$=_unlimited]');
+
+            if (component.is(":checked")) {
+                $('input[id^=product_skus_attributes_][id$=quantity]').val(0).prop('disabled', 'true').parent().hide();
+            }
+
+            component.change(function () {
                 if ($(this).is(":checked")) {
                     $('input[id^=product_skus_attributes_][id$=quantity]').val(0).prop('disabled', 'true').parent().hide();
                 } else {
-                    $('input[id^=product_skus_attributes_][id$=quantity]').removeAttr('disabled').parent().show();
+                    $('input[id^=product_skus_attributes_][id$=quantity]').val('').removeAttr('disabled').parent().show();
                 }
             });
         }
