@@ -38,4 +38,8 @@ class OrderItem
   def sku
     @sku ||= self.product.skus.find(self.sku_id)
   end
+
+  def price_in_yuan
+    self.price ? self.price * Settings.instance.exchange_rate_to_yuan : 0
+  end
 end

@@ -57,7 +57,7 @@
 
       </td>
       <td>
-        <%= i.sku.decorate.price_with_currency %>
+        <%= @order.is_bought? ? i.decorate.price_with_currency : i.sku.decorate.price_with_currency %>
       </td>
       <% unless @readonly %>
       <td class="cart-item-remove">
