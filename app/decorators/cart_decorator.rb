@@ -1,4 +1,7 @@
 class CartDecorator < Draper::Decorator
+
+  include OrderCartDecoratorCommon
+
   delegate_all
   decorates :cart
 

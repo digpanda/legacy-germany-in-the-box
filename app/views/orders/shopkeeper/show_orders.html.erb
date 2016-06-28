@@ -35,7 +35,7 @@
             <%= I18n.t(order.status, scope: :edit_order) %>
           </td>
           <td>
-            <%= order.decorate.total_sum_with_currency %>
+            <%= order.is_bought? ? order.decorate.total_sum_with_currency : '' %>
           </td>
           <td>
           <% if order.border_guru_shipment_id %>

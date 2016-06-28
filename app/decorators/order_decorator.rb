@@ -1,5 +1,7 @@
 class OrderDecorator < Draper::Decorator
 
+  include OrderCartDecoratorCommon
+
   delegate_all
   decorates :order
 

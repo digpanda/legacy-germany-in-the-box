@@ -32,7 +32,7 @@
             <%= I18n.t(o.status, scope: :edit_order) %>
           </td>
           <td>
-            <%= o.decorate.total_sum_with_currency %>
+            <%= o.is_bought? ? o.decorate.total_sum_with_currency : '' %>
           </td>
           <td>
             <%= o.border_guru_link_tracking ? (link_to I18n.t(:open, scope: :edit_order), o.border_guru_link_tracking, :target => '_blank') : '' %>
