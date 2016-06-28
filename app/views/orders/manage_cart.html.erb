@@ -52,7 +52,7 @@
                     <%= I18n.t(:total_price_in_yuan, scope: :cart) %>
                   </span>
                   <span id="order-total-price-in-yuan-<%= s %>">
-                    <%= @carts[s].decorate.total_price_with_currency %>
+                    <%= @carts[s].decorate.total_sum_with_currency %>
                   </span>
                 </li>
               </ul>

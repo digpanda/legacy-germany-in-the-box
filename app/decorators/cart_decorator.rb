@@ -10,7 +10,7 @@ class CartDecorator < Draper::Decorator
     "%.2f #{Settings.instance.platform_currency.symbol}" % (object.shipping_cost * Settings.instance.exchange_rate_to_yuan)
   end
 
-  def total_price_with_currency
+  def total_sum_with_currency
     "%.2f #{Settings.instance.platform_currency.symbol}" % total_price_in_yuan
   end
 
