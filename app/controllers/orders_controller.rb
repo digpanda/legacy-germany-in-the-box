@@ -117,6 +117,7 @@ class OrdersController < ApplicationController
 
     order = current_order(shop_id)
 
+    binding.pry
     if reach_todays_limit?(order, 0)
       flash[:error] = I18n.t(:override_maximal_total, scope: :edit_order, total: Settings.instance.max_total_per_day, currency: Settings.instance.platform_currency.symbol)
       redirect_to request.referrer
