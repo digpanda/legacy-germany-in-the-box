@@ -587,7 +587,7 @@ var ProductsShow = {
 
             if ($('#thumbnail-' + _i).length > 0) {
               // DEPRECATED : $('#thumbnail-'+i).html('<a href="#" data-image="'+image.fullsize+'" data-zoom-image="'+image.zoomin+'"><img src="'+image.thumb+'" width="100px"></a>');
-              $('#thumbnail-' + _i).html('<a href="#" data-image="' + image.fullsize + '" data-zoom-image="' + image.zoomin + '"><div class="product-page__thumbnail-image" style="background-image:' + image.thumb + '"></div></a>');
+              $('#thumbnail-' + _i).html('<a href="#" data-image="' + image.fullsize + '" data-zoom-image="' + image.zoomin + '"><div class="product-page__thumbnail-image" style="background-image:url(' + image.thumb + ');"></div></a>');
             }
           }
 

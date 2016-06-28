@@ -22,7 +22,7 @@
 
       <a href="#" data-image="<%= product.decorate.get_mas_img_url(file, :fullsize) %>" data-zoom-image="<%= product.decorate.get_mas_img_url(file, :zoomin) %>">
 
-        <div class="product-page__thumbnail-image" style="background-image:<%= product.decorate.get_mas_img_url(file, :thumb) %>">
+        <div class="product-page__thumbnail-image" style="background-image:url(<%= product.decorate.get_mas_img_url(file, :thumb) %>)">
         </div>
 
       </a>
