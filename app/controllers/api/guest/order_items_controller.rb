@@ -7,13 +7,13 @@ class Api::Guest::OrderItemsController < Api::ApplicationController
 
     product = @order_item.product
     sku = product.skus.find(@order_item.sku_id)
-    quantity = params[:quantity].to_i
-    diff = (quantity - @order_item.quantity)
     order = @order_item.order
+    quantity = params[:quantity].to_i
+    new_quantity_inc = (quantity - @order_item.quantity)
 
-    new_total = sku.price * diff * Settings.first.exchange_rate_to_yuan
+    new_price_inc = sku.price * new_quantity_inc * Settings.first.exchange_rate_to_yuan
 
-    if diff >= 0 && reach_todays_limit?(order, new_total)
+    if new_quantity_inc >= 0 && reach_todays_limit?(order, new_price_inc, new_quantity_inc)
       render :json => { :success => false, :error => I18n.t(:override_maximal_total, scope: :edit_order, total: Settings.instance.max_total_per_day, currency: Settings.instance.platform_currency.symbol) }
       return
     end
