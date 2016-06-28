@@ -255,6 +255,9 @@
               <div class="form-group">
                 <div class="input-group input-group-sm">
                   <%= fs.text_field :weight, value: number_with_precision(@sku.weight, :precision => 2), :class => 'form-control', :required => true, :pattern => I18n.t(:positive_float, scope: :validation) %>
+                  <div class="input-group-addon">
+                    kg
+                  </div>
                 </div>
               </div>
             </div>
