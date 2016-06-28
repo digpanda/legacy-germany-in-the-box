@@ -5,6 +5,10 @@ class ProductDecorator < Draper::Decorator
   delegate_all
   decorates :product
 
+  def max_added_to_cart
+    [Rails.configuration.max_add_to_cart_each_time, (product.decorate.get_mas.unlimited ? Rails.configuration.max_add_to_cart_each_time : product.decorate.get_mas.quantity)].min
+  end
+
   def product_cover_url
     if sku = skus.first
       first_nonempty = sku.decorate.all_nonempty_img_fields.first
@@ -13,7 +17,7 @@ class ProductDecorator < Draper::Decorator
   end
 
   def get_mas
-    @mas ||= skus.is_active.to_a.sort { |s1, s2| s1.decorate.quantity <=> s2.decorate.quantity }.last
+    @mas ||= skus.is_active.to_a.sort { |s1, s2| s1.unlimited ? 1 : s1.quantity <=> s2.quantity }.last
   end
 
   def get_mas_img_url(img_field, version)
