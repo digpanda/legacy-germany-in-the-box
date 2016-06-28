@@ -23,8 +23,7 @@ class Order
   has_many :order_payments,         :inverse_of => :order,    dependent: :restrict
 
   scope :nonempty,    ->  {  where( :order_items_count.gt => 0 ) }
-  scope :is_active,   ->  { where( :status.ne => :success ) }
-  scope :paid,        ->  { where( :status => :success ) }
+  scope :bought,      ->  { self.in( :status => [:paid, :custom_checking, :shippable, :shipped] ) }
 
 
   # TODO : inclusion should be re-abilited when we are sure of what we include
