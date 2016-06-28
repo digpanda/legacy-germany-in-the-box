@@ -17,7 +17,7 @@
             <%= I18n.t(:tax_and_duty_cost, scope: :edit_order) %>
           </span>
           <span>
-            <%= @cart.decorate.tax_and_duty_cost_with_currency %>
+            <%= @cart_or_order.decorate.tax_and_duty_cost_with_currency %>
           </span>
       </li>
       <li>
@@ -25,7 +25,7 @@
             <%= I18n.t(:shipping_cost, scope: :edit_order) %>
           </span>
           <span>
-            <%= @cart.decorate.shipping_cost_with_currency %>
+            <%= @cart_or_order.decorate.shipping_cost_with_currency %>
           </span>
       </li>
       <li>
@@ -33,7 +33,7 @@
             <%= I18n.t(:total_sum, scope: :edit_order) %>
           </span>
           <span>
-            <%= @cart.decorate.total_sum_with_currency %>
+            <%= @cart_or_order.decorate.total_sum_with_currency %>
           </span>
       </li>
     </ul>
