@@ -37,7 +37,16 @@ class Api::Webhook::Wirecard::MerchantsController < Api::ApplicationController
     end
     devlog.info "It passed the merchant recognition."
 
-    shop.wirecard_status = datas[:merchant_status].downcase
+    shop.wirecard_status = clean_merchant_status
+
+    if shop.wirecard_status == :active
+      credentials = datas[:wirecard_credentials]
+      shop.wirecard_ee_user_cc = credentials[:ee_user_cc]
+      shop.wirecard_ee_password_cc = credentials[:ee_password_cc]
+      shop.wirecard_ee_secret_cc = credentials[:ee_secret_cc]
+      shop.wirecard_ee_maid_cc = credentials[:ee_maid_cc]
+    end
+
     unless shop.save
       render status: :bad_request,
              json: throw_error(:wrong_update_attributes).merge(error: shop.errors.full_messages.join(', ')).to_json and return
@@ -68,8 +77,20 @@ class Api::Webhook::Wirecard::MerchantsController < Api::ApplicationController
     @datas = process_postback(params["postback"])
     devlog.info "Parameters : #{output_hash(datas)}"
 
-    datas[:merchant_id].present? && datas[:merchant_status].present? && datas[:reseller_id].present?
+    basic_consistent_datas? && active_consistent_datas?
 
+  end
+
+  def basic_consistent_datas?
+    datas[:merchant_id].present? && datas[:merchant_status].present? && datas[:reseller_id].present?
+  end
+
+  def active_consistent_datas?
+    clean_merchant_status == :active ? datas[:wirecard_credentials].present? : true
+  end
+
+  def clean_merchant_status
+    datas[:merchant_status].downcase.to_sym
   end
 
   def output_hash(hash)
@@ -77,7 +98,7 @@ class Api::Webhook::Wirecard::MerchantsController < Api::ApplicationController
   end
 
   def process_postback(postback)
-    ActiveSupport::JSON.decode(postback.gsub('\\"', '')).symbolize_keys
+    ActiveSupport::JSON.decode(postback.gsub('\\"', '')).deep_symbolize_keys
   end
 
   def validate_remote_server_request

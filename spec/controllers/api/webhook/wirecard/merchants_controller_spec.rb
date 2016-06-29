@@ -59,6 +59,26 @@ describe Api::Webhook::Wirecard::MerchantsController, :type => :controller do
 
       end
 
+      it "should change the merchant status as active, fill its wirecard credentials and return a success" do
+
+        params = {"merchant_id" => "#{shopkeeper.shop.id}", "merchant_status": "ACTIVE", "reseller_id": Rails.application.config.wirecard[:merchants][:reseller_id],
+                  "wirecard_credentials" => {"ee_user_cc"=>"TEST-USER",
+                                             "ee_password_cc"=>"TEST-PASSWORD", 
+                                             "ee_secret_cc"=>"TEST-SECRET", 
+                                             "ee_maid_cc"=>"TEST-MAID"}
+                  }
+        post :create, request_wirecard_post(params)
+        expect(response).to have_http_status(:ok)
+        expect(response_json_body["success"]).to eq(true) # Check if the server replied properly
+        shopkeeper.reload # database refreshed meanwhile
+        expect(shopkeeper.shop.wirecard_status).to eq(:active)
+        expect(shopkeeper.shop.wirecard_ee_user_cc).to eq("TEST-USER")
+        expect(shopkeeper.shop.wirecard_ee_password_cc).to eq("TEST-PASSWORD")
+        expect(shopkeeper.shop.wirecard_ee_secret_cc).to eq("TEST-SECRET")
+        expect(shopkeeper.shop.wirecard_ee_maid_cc).to eq("TEST-MAID")
+
+      end
+
     end
 
   end

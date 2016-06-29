@@ -51,12 +51,13 @@ class Tasks::Cron::CompileAndTransferOrdersCsvsToBorderguru
     # We could avoid opening the file twice but it's a double process.
     #
     if Rails.env.production?
-      files_pushed = push_csvs_to_borderguru_ftp
+      files_pushed = push_csvs_to_borderguru_ftp.perform
       unless files_pushed.success?
         devlog "A problem occured while transfering the files to BorderGuru (#{files_pushed.message})."
         return
       end
     else
+      push_csvs_to_borderguru_ftp.clean
       devlog "We can't push files to BorderGuru FTP. We are not in production environment."
     end
 
@@ -70,7 +71,7 @@ class Tasks::Cron::CompileAndTransferOrdersCsvsToBorderguru
   end
 
   def push_csvs_to_borderguru_ftp
-    PushCsvsToBorderguruFtp.new.perform
+    PushCsvsToBorderguruFtp.new
   end
 
   def devlog(content)

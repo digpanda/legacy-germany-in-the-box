@@ -26,6 +26,12 @@ class PushCsvsToBorderguruFtp < BaseService
     return_with(:success)
   end
 
+  # clean up the directory recursively ands recreate it
+  def clean
+    remove_content_recursively(borderguru_local_directory)
+    open_directory!(borderguru_local_directory)
+  end
+
   private
 
   def transfert_merchant_orders(csv_file_path)
@@ -63,6 +69,10 @@ class PushCsvsToBorderguruFtp < BaseService
         !(File.directory? f)
       end
     end.each { |file| block.call(file) }
+  end
+
+  def remove_content_recursively(directory)
+    FileUtils.rm_rf(directory)
   end
   ## FILE MANIP
   

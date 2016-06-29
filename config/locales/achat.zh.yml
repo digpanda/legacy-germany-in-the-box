@@ -224,6 +224,7 @@ zh-CN:
     download: 下载
     shipping_cost: 物流费用
     tax_and_duty_cost: 海关税费
+    duty_and_shipping_cost: 关税物流费用
     total_sum: 总计
     new: 尚未付款
     paying: 等待付款
@@ -528,6 +529,7 @@ zh-CN:
     shop: 店铺名称
     shipping_cost: 物流费用
     duty_cost: 海关税费
+    duty_and_shipping_cost: 关税物流费用
     total_price_in_yuan: 总计
   checkout:
     my_destination: 收货地址

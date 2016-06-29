@@ -28,6 +28,12 @@ class Shop
   field :website,         type: String
   field :agb,             type: Boolean
   field :wirecard_status, type: Symbol,     default: :unactive
+
+  field :wirecard_ee_user_cc, type: String
+  field :wirecard_ee_password_cc, type: String
+  field :wirecard_ee_secret_cc, type: String
+  field :wirecard_ee_maid_cc, type: String
+
   field :seal0,           type: String
   field :seal1,           type: String
   field :seal2,           type: String

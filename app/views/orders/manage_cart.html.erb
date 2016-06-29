@@ -31,27 +31,22 @@
                     <%= o.decorate.total_price_with_currency %>
                   </span>
                 </li>
+
                 <li>
                   <span>
-                    <%= I18n.t(:duty_cost, scope: :cart) %>
+                    <%= I18n.t(:duty_and_shipping_cost, scope: :cart) %>
                   </span>
-                  <span id="order-duty-cost-<%= s %>">
-                    <%= @carts[s].decorate.tax_and_duty_cost_with_currency %>
+                  <span id="order-duty-and-shipping-cost-<%= s %>">
+                    <%= @carts[s].decorate.duty_and_shipping_cost_with_currency %>
                   </span>
                 </li>
                 <li>
-                  <span>
-                    <%= I18n.t(:shipping_cost, scope: :cart) %>
-                  </span>
-                  <span id="order-shipping-cost-<%= s %>">
-                    <%= @carts[s].decorate.shipping_cost_with_currency %>
-                  </span>
-                </li>
+
                 <li>
                   <span>
                     <%= I18n.t(:total_price_in_yuan, scope: :cart) %>
                   </span>
-                  <span id="order-total-price-in-yuan-<%= s %>">
+                  <span id="order-total-sum-in-yuan-<%= s %>">
                     <%= @carts[s].decorate.total_sum_with_currency %>
                   </span>
                 </li>

@@ -33,7 +33,7 @@ class ShopApplication
   validates :website,         length: {maximum: (Rails.configuration.max_short_text_length * 1.25).round}
   validates :stories,         length: {maximum: (Rails.configuration.max_long_text_length * 1.25).round}
   validates :register,        length: {maximum: (Rails.configuration.max_tiny_text_length * 1.25).round}
-  validates :sales_channels,  length: {minimum: 2, maximum: Rails.configuration.max_num_sales_channels * 2}
+  #validates :sales_channels,  length: {minimum: 2, maximum: Rails.configuration.max_num_sales_channels * 2}
 
   validates :fname,         presence: true,   length: {maximum: Rails.configuration.max_tiny_text_length}
   validates :lname,         presence: true,   length: {maximum: Rails.configuration.max_tiny_text_length}

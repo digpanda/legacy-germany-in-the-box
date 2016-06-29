@@ -167,6 +167,7 @@ class ApplicationController < ActionController::Base
       session[:locale] = :'zh-CN' # We should refactor this area and put everything into one session setter somewhere
       navigation_history(1)
     elsif current_user.is_shopkeeper?
+      session[:locale] = :'de'
       if current_user.shop && (not current_user.shop.agb)
         edit_producer_shop_path(current_user.shop.id, :user_info_edit_part => :edit_producer)
       else
@@ -183,10 +184,11 @@ class ApplicationController < ActionController::Base
 
   def set_locale
     params[:locale]= session[:locale]
-
     if params[:locale]
       I18n.locale = params[:locale]
     else
+      I18n.locale = :'zh-CN'
+=begin
       if current_user&.is_customer?
         if 'zh' == extract_locale
           I18n.locale = :'zh-CN'
@@ -204,7 +206,9 @@ class ApplicationController < ActionController::Base
           I18n.locale = :de
         end
       end
+=end
     end
+
   end
 
   def set_translation_locale
