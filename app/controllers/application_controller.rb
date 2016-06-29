@@ -183,10 +183,11 @@ class ApplicationController < ActionController::Base
 
   def set_locale
     params[:locale]= session[:locale]
-
     if params[:locale]
       I18n.locale = params[:locale]
     else
+      I18n.locale = :'zh-CN'
+=begin
       if current_user&.is_customer?
         if 'zh' == extract_locale
           I18n.locale = :'zh-CN'
@@ -204,7 +205,9 @@ class ApplicationController < ActionController::Base
           I18n.locale = :de
         end
       end
+=end
     end
+
   end
 
   def set_translation_locale
