@@ -77,10 +77,16 @@ class Api::Webhook::Wirecard::MerchantsController < Api::ApplicationController
     @datas = process_postback(params["postback"])
     devlog.info "Parameters : #{output_hash(datas)}"
 
-    return false unless datas[:merchant_id].present? && datas[:merchant_status].present? && datas[:reseller_id].present?
-    return false if clean_merchant_status == :active && datas[:wirecard_credentials].present? == false
-    return true
+    basic_consistent_datas? && active_consistent_datas?
 
+  end
+
+  def basic_consistent_datas?
+    datas[:merchant_id].present? && datas[:merchant_status].present? && datas[:reseller_id].present?
+  end
+
+  def active_consistent_datas?
+    clean_merchant_status == :active ? datas[:wirecard_credentials].present? : true
   end
 
   def clean_merchant_status
