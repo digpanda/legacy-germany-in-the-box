@@ -21,8 +21,13 @@ class OrderDecorator < Draper::Decorator
     "%.2f#{Settings.instance.platform_currency.symbol}" % tax_and_duty_cost_in_yuan
   end
 
+  # DON'T EXIST ANYMORE ? - Laurent on 29/06/2016
   def is_success?
     self.status == :success
+  end
+
+  def paid?
+    ([:new, :paying].include? self.status) == false
   end
 
 end
