@@ -57,6 +57,8 @@ class Order
   def reach_todays_limit?(new_price_increase, new_quantity_increase)
     if order_items.size == 0 && new_quantity_increase == 1
       false
+    elsif order_items.size == 1 && new_quantity_increase == 0
+      false
     else
       (self.total_price_in_yuan + new_price_increase) > Settings.instance.max_total_per_day
     end
