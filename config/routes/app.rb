@@ -29,7 +29,7 @@ end
 
 namespace :shopkeeper do
   resources :orders do
-    patch :process
+    patch :process_order
     patch :shipped
   end
   resources :payments do

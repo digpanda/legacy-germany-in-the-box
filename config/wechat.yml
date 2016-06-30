@@ -1,0 +1,19 @@
+defaults: &defaults
+  username: wx8ab7df24273a9a0c
+  password: aee7e495382a333e2c1e7ae063c00644
+  scope: snsapi_login
+
+local:
+  <<: *defaults
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+staging:
+  <<: *defaults
+
+production:
+  <<: *defaults

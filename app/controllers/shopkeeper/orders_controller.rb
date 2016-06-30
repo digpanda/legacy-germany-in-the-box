@@ -28,7 +28,7 @@ class Shopkeeper::OrdersController < ApplicationController
 
   end
 
-  def process
+  def process_order # keyword `process` used for obscure reasons
 
     unless order.is_processable?
       flash[:error] = "This order is not processable at the moment. Please try again later."

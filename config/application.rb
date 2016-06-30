@@ -33,7 +33,8 @@ module DigPanda
     config.digpanda = YAML.load_file(Rails.root.join("config/digpanda.yml"))[Rails.env].deep_symbolize_keys!
     config.wirecard = YAML.load_file(Rails.root.join("config/wirecard.yml"))[Rails.env].deep_symbolize_keys!
     config.border_guru = YAML.load_file(Rails.root.join("config/border_guru.yml"))[Rails.env].deep_symbolize_keys!
-    
+    config.wechat = YAML.load_file(Rails.root.join("config/wechat.yml"))[Rails.env].deep_symbolize_keys!
+
     # No environment constraint
     config.errors = YAML.load_file(Rails.root.join("config/errors.yml")).deep_symbolize_keys!
 
