@@ -363,6 +363,67 @@ var Home = {
 module.exports = Home;
 });
 
+require.register("javascripts/controllers/products/clone_sku.js", function(exports, require, module) {
+'use strict';
+
+/**
+ * ProductCloneSku Class
+ */
+var ProductCloneSku = {
+
+  /**
+   * Initializer
+   */
+  init: function init() {
+    // WE SHOULD DEFINITELY REFACTOR THOSE 3 CLASSES (NEW, EDIT, CLONE) INTO ONE
+
+    $('select.sku-variants-options').multiselect({
+      nonSelectedText: ProductCloneSku.data().translationNonSelectedText,
+      nSelectedText: ProductCloneSku.data().translationNSelectedText,
+      numberDisplayed: 3,
+      maxHeight: 400,
+      onChange: function onChange(option, checked) {
+        var v = $('.sku-variants-options');
+        if (v.val()) {
+          v.next().removeClass('invalidBorderClass');
+        } else {
+          v.next().addClass('invalidBorderClass');
+        }
+      }
+    });
+
+    $('#edit_product_detail_form_btn').click(function () {
+      var v = $('select.sku-variants-options');
+
+      if (v.val() == null) {
+        v.next().addClass('invalidBorderClass');
+        return false;
+      }
+
+      if ($('img.img-responsive[src=""]').length >= 4) {
+        $('.fileUpload:first').addClass('invalidBorderClass');
+        return false;
+      }
+
+      return true;
+    });
+
+    $('input.img-file-upload').click(function () {
+      if ($('img.img-responsive[src=""]').length > 0) {
+        $('.fileUpload').removeClass('invalidBorderClass');
+      }
+    });
+  },
+
+  data: function data(_data) {
+    return $('#js-clone-sku').data();
+  }
+
+};
+
+module.exports = ProductCloneSku;
+});
+
 require.register("javascripts/controllers/products/edit_sku.js", function(exports, require, module) {
 'use strict';
 
@@ -375,6 +436,7 @@ var ProductEditSku = {
    * Initializer
    */
   init: function init() {
+    // WE SHOULD DEFINITELY REFACTOR THOSE 3 CLASSES (NEW, EDIT, CLONE) INTO ONE
 
     $('select.sku-variants-options').multiselect({
       nonSelectedText: ProductEditSku.data().translationNonSelectedText,
@@ -435,6 +497,7 @@ var ProductNewSku = {
    * Initializer
    */
   init: function init() {
+    // WE SHOULD DEFINITELY REFACTOR THOSE 3 CLASSES (NEW, EDIT, CLONE) INTO ONE
 
     $('select.sku-variants-options').multiselect({
       nonSelectedText: ProductNewSku.data().translationNonSelectedText,
