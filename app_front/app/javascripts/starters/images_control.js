@@ -13,7 +13,7 @@ var ImagesControl = {
     },
 
     data: function(data) {
-      $('#js-images-control').data()
+      return $('#js-images-control').data();
     },
 
     validateImageFile: function() {

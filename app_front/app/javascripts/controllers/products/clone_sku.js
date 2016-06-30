@@ -50,7 +50,7 @@ var ProductCloneSku = {
   },
 
   data: function(data) {
-    return $('#js-clone-sku').data()
+    return $('#js-images-control').data()
   },
 
 }

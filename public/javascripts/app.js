@@ -416,7 +416,7 @@ var ProductCloneSku = {
   },
 
   data: function data(_data) {
-    return $('#js-clone-sku').data();
+    return $('#js-images-control').data();
   }
 
 };
@@ -538,7 +538,7 @@ var ProductNewSku = {
   },
 
   data: function data(_data) {
-    return $('#js-new-sku').data();
+    return $('#js-images-control').data();
   }
 
 };
@@ -1304,7 +1304,7 @@ var ImagesControl = {
   },
 
   data: function data(_data) {
-    $('#js-images-control').data();
+    return $('#js-images-control').data();
   },
 
   validateImageFile: function validateImageFile() {

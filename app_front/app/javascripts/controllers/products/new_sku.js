@@ -50,7 +50,7 @@ var ProductNewSku = {
   },
 
   data: function(data) {
-    return $('#js-new-sku').data()
+    return $('#js-images-control').data()
   },
 
 /* UNUSED IN THE CURRENT SYSTEM
