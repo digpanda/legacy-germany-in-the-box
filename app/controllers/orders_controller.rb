@@ -223,7 +223,7 @@ class OrdersController < ApplicationController
 
     if shipping.success?
 
-      order.status = :shippable
+      order.status = :paid
       order.save!
 
       order.order_items.each do |oi|
