@@ -38,8 +38,8 @@ staging:
   customers:
     hosted_payment_url: https://sandbox-engine.thesolution.com/engine/hpp/
     default_redirect_url: https://sandbox-engine.thesolution.com/shop/complete.jsp
-    success_redirect_url : http://www.germanyintheboxdev.com/orders/checkout_success
-    fail_redirect_path : http://www.germanyintheboxdev.com/orders/checkout_fail
+    success_redirect_url : https://www.germanyintheboxdev.com/orders/checkout_success
+    fail_redirect_path : https://www.germanyintheboxdev.com/orders/checkout_fail
     psp_name: demo
     payment_method: upop
     transaction_type: debit
@@ -53,8 +53,8 @@ production:
   customers:
     hosted_payment_url: https://sandbox-engine.thesolution.com/engine/hpp/
     default_redirect_url: https://sandbox-engine.thesolution.com/shop/complete.jsp
-    success_redirect_url : http://www.germanyinthebox.com/orders/checkout_success
-    fail_redirect_path : http://www.germanyinthebox.com/orders/checkout_fail
+    success_redirect_url : https://www.germanyinthebox.com/orders/checkout_success
+    fail_redirect_path : https://www.germanyinthebox.com/orders/checkout_fail
     psp_name: demo
     payment_method: upop
     transaction_type: debit
