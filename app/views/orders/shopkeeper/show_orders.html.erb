@@ -56,6 +56,8 @@
           <% if order.status == :paid  %>
             <% if order.processable? %>
             <%= link_to 'Start to process the shippment', shopkeeper_order_process_order_path(order), method: :patch, data: { confirm: "Are you sure you want to start to process this order ? Please make sure all informations are correct before to confirm. If any problem, please contact us." } %>
+            <% else %>
+              This order isn't processable right now.
             <% end %>
           <!-- The order passed the custom and can be send -->
           <% elsif order.shippable? %>
