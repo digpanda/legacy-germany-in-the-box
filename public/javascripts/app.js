@@ -175,7 +175,8 @@ var Checkout = {
     var bankDetails = $("#bank-details").data();
     var parsedBankDetails = Casing.objectToUnderscoreCase(bankDetails);
 
-    PostForm.send(parsedBankDetails, parsedBankDetails['form_url']);
+    console.log(parsedBankDetails);
+    //PostForm.send(parsedBankDetails, parsedBankDetails['form_url']);
   }
 
 };
