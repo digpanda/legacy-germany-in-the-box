@@ -68,13 +68,23 @@ var ProductsShow = {
           $('#product_price_with_currency_euro').html(json['price_with_currency_euro']);
           $('#quantity-left').html(json['quantity']);
 
-          if (typeof json['file_attachment'] !== "undefined") {
+          // data means "description 2" here, yes i know.
+          if (typeof json['data'] !== "undefined") {
 
-            $('#product-file-attachment').html('<h3>More</h3><a class="btn btn-default" href="'+json['file_attachment']+'">PDF Documentation</a>');
+            $('#product-file-attachment-and-datas').html(json['data']);
 
           } else {
 
-            $('#product-file-attachment').html('');
+            $('#product-file-attachment-and-datas').html('');
+
+          }
+
+          if (typeof json['file_attachment'] !== "undefined") {
+
+            if (typeof json['data'] !== "undefined") {
+              $('#product-file-attachment-and-datas').html();
+            }
+            $('#product-file-attachment-and-datas').append('<br /><a class="btn btn-default" href="'+json['file_attachment']+'">PDF Documentation</a>');
 
           }
 

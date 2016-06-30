@@ -59,12 +59,21 @@
 
           <div class="+small-spacer"></div>
 
-          <div id="product-file-attachment">
+          <div id="product-file-attachment-and-data">
 
-          <% if  @product.decorate.get_mas.attach0.file %>
+          <% if @product.decorate.get_mas.attach0.file || @product.decorate.get_mas.data %>
 
             <h3>More</h3>
-            <a class="btn btn-default" href="<%=  @product.decorate.get_mas.attach0.url %>">PDF Documentation</a>
+
+            <% if @product.decorate.get_mas.data %>
+              <%= @product.decorate.get_mas.data %>
+            <% end %>
+
+            <br />
+
+            <% if @product.decorate.get_mas.attach0.file %>
+              <a class="btn btn-default" href="<%=  @product.decorate.get_mas.attach0.url %>">PDF Documentation</a>
+            <% end %>
             
           <% end %>
 
