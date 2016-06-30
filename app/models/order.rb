@@ -93,11 +93,11 @@ class Order
     #self
   end
 
-  def is_processable?
+  def processable?
     self.status == :paid && Time.now.strftime("%k").to_i < 12 && Time.now.strftime("%k").to_i > 13
   end
 
-  def is_shippable?
+  def shippable?
     self.status == :custom_checking && Time.now > self.minimum_sending_date
   end
 

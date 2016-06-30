@@ -21,7 +21,7 @@ class Shopkeeper::OrdersController < ApplicationController
 
   def shipped
 
-    if order.is_shippable?
+    if order.shippable?
       order.status = :shipped
       order.save
     end
@@ -33,7 +33,7 @@ class Shopkeeper::OrdersController < ApplicationController
 
   def process_order # keyword `process` used for obscure reasons
 
-    unless order.is_processable?
+    unless order.processable?
       flash[:error] = "This order is not processable at the moment. Please try again later."
       redirect_to(:back) and return
     end

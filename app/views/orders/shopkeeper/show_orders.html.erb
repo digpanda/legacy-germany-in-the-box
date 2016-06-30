@@ -58,7 +58,7 @@
             <%= link_to 'Start to process the shippment', shopkeeper_order_process_order_path(order), method: :patch, data: { confirm: "Are you sure you want to start to process this order ? Please make sure all informations are correct before to confirm. If any problem, please contact us." } %>
             <% end %>
           <!-- The order passed the custom and can be send -->
-          <% elsif order.is_shippable? %>
+          <% elsif order.shippable? %>
             <%= link_to "The pack was sent", shopkeeper_order_shipped_path(order), method: :patch %>
           <% end %>
           </td>
