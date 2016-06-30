@@ -68,6 +68,16 @@ var ProductsShow = {
           $('#product_price_with_currency_euro').html(json['price_with_currency_euro']);
           $('#quantity-left').html(json['quantity']);
 
+          if (typeof json['file_attachment'] !== "undefined") {
+
+            $('#product-file-attachment').html('<h3>More</h3><a class="btn btn-default" href="'+json['file_attachment']+'">PDF Documentation</a>');
+
+          } else {
+
+            $('#product-file-attachment').html('');
+
+          }
+
           let images = json['images'];
             
           for (let i = 0; i < images.length; i++) { 

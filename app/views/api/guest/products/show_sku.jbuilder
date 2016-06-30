@@ -19,3 +19,7 @@ json.images do
   end
 
 end
+
+if @sku.attach0
+  json.file_attachment @sku.attach0.url
+end
