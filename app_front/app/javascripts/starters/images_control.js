@@ -13,7 +13,7 @@ var ImagesControl = {
     },
 
     data: function(data) {
-      return $('#js-shops-edit-setting').data()
+      $('#js-images-control').data()
     },
 
     validateImageFile: function() {

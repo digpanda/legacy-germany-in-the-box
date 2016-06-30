@@ -50,7 +50,7 @@ var ProductEditSku = {
   },
 
   data: function(data) {
-    return $('#js-edit-sku').data()
+    return $('#js-images-control').data()
   },
 
 }

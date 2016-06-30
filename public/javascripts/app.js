@@ -477,7 +477,7 @@ var ProductEditSku = {
   },
 
   data: function data(_data) {
-    return $('#js-edit-sku').data();
+    return $('#js-images-control').data();
   }
 
 };
@@ -1304,7 +1304,7 @@ var ImagesControl = {
   },
 
   data: function data(_data) {
-    return $('#js-shops-edit-setting').data();
+    $('#js-images-control').data();
   },
 
   validateImageFile: function validateImageFile() {
