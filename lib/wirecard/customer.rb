@@ -61,8 +61,8 @@ module Wirecard
         :cancel_redirect_url       => "#{default_redirect_url}?state=cancel&".html_safe,
         :processing_redirect_url   => "#{default_redirect_url}?state=processing&".html_safe,
         
-        :first_name                => user.fname,
-        :last_name                 => user.lname,
+        #:first_name                => user.fname,
+        #:last_name                 => user.lname,
         :email                     => user.email,
         :phone                     => user.tel,
         :street1                   => user.addresses.first.decorate.street_and_number,

@@ -5,6 +5,8 @@ gem "rails", "4.2.1"
 gem "mongoid", "~> 5.0.0"
 gem "mongoid_includes"
 gem "mongoid_rails_migrations"
+
+gem "turnout"
 #gem "mongoid_search" #, "~> 0.2.8"
 #gem "mongoid_fulltext"
 #gem 'config'
