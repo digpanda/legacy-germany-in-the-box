@@ -4,7 +4,7 @@ require 'will_paginate/array'
 class OrdersController < ApplicationController
 
   before_action :authenticate_user!, :except => [:manage_cart, :add_product]
-  before_action :set_order, only: [:show, :destroy, :continue, :download_label]
+  before_action :set_order, :only => [:show, :destroy, :continue, :download_label]
   protect_from_forgery :except => [:checkout_success, :checkout_fail]
 
   load_and_authorize_resource
