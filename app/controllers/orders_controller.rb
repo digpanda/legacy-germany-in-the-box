@@ -4,9 +4,7 @@ require 'will_paginate/array'
 class OrdersController < ApplicationController
 
   before_action :authenticate_user!, :except => [:manage_cart, :add_product]
-
-  before_action :set_order, only: [:show, :destroy, :continue, :download_label]
-
+  before_action :set_order, :only => [:show, :destroy, :continue, :download_label]
   protect_from_forgery :except => [:checkout_success, :checkout_fail]
 
   load_and_authorize_resource
@@ -241,12 +239,12 @@ class OrdersController < ApplicationController
       })
 
       flash[:success] = I18n.t(:checkout_ok, scope: :checkout)
-      redirect_to show_orders_users_path(:user_info_edit_part => :edit_order)
+      redirect_to show_orders_users_path(:user_info_edit_part => :edit_order) and return
 
     else
 
       flash[:error] = I18n.t(:borderguru_shipping_failed, scope: :checkout)
-      redirect_to request.referrer
+      redirect_to request.referrer and return
 
     end
   end
