@@ -16,17 +16,17 @@
     </tr>
   </thead>
   <tbody>
-    <% @order.order_items.each do |i| %>
+    <% @order.order_items.each do |order_item| %>
     <tr>
       <td>
-        <%= i.product.name %>
+        <%= order_item.product.name %>
       </td>
       <td>
-        <%= i.selected_options.join(', ') %>
+        <%= order_item.selected_options.join(', ') %>
       </td>
-      <td><%= i.quantity %></td>
+      <td><%= order_item.quantity %></td>
       <td>
-        <%= i.sku.decorate.price_with_currency %>
+        <%= order_item.sku.decorate.price_with_currency %>
       </td>
     </tr>
     <% end %>

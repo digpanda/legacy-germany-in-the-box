@@ -19,8 +19,11 @@ class TurnOrdersIntoCsvAndStoreIt < BaseService
   end
 
   def perform
-    csv_output = generate_borderguru_csv(orders)
-    store_csv_file(csv_output)
+    store_csv_file(turn_orders)
+  end
+
+  def turn_orders
+    generate_borderguru_csv(orders)
   end
 
   private

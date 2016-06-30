@@ -13,6 +13,9 @@ class Shopkeeper::OrdersController < ApplicationController
       format.pdf do
         render pdf: order.id.to_s, disposition: 'attachment'
       end
+      format.csv do
+        render text: TurnOrdersIntoCsvAndStoreIt.new(order.shop, [order]).turn_orders, disposition: 'attachment'
+      end
     end
   end
 
