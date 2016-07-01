@@ -8020,6 +8020,10 @@ img.mfp-img {
     color: #fdfdfd; }
 
 /* line 40, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
+.shop-blocks__main.\--content-text {
+  margin-bottom: 2em; }
+
+/* line 40, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
 .shop-blocks__main.\--author {
   font-size: 12px;
   margin-top: -1em;
@@ -8042,6 +8046,10 @@ img.mfp-img {
   color: #fdfdfd; }
 
 /* line 40, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
+.shop-blocks__secondary.\--content-text {
+  margin-bottom: 2em; }
+
+/* line 40, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
 .shop-blocks__secondary.\--avatar {
   margin-top: 1em;
   margin-right: 1em;
@@ -8058,7 +8066,7 @@ img.mfp-img {
   background-color: #FBFBFB;
   border: 3px white solid; }
 
-/* line 63, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_shop-blocks.sass */
+/* line 70, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_shop-blocks.sass */
 .shop-blocks__secondary h3 {
   margin-top: 1.3em;
   color: #fdfdfd; }
