@@ -63,6 +63,7 @@ module Wirecard
         
         #:first_name                => user.fname,
         #:last_name                 => user.lname,
+
         :email                     => user.email,
         :phone                     => user.tel,
         :street1                   => user.addresses.first.decorate.street_and_number,

@@ -24,12 +24,12 @@
 
         <% unless @product.decorate.get_mas.unlimited || @product.decorate.get_mas.quantity == 0 %>
           <% if @product.decorate.get_mas.quantity <= ::Rails.application.config.digpanda[:products_warning] %>
-            | if <span class="+red +up +bold"> Only <span id="quantity-left"><%= @product.decorate.get_mas.quantity %></span> left</span>
+            | <span class="+red +up +bold"> Only <span id="quantity-left"><%= @product.decorate.get_mas.quantity %></span> left</span>
           <% end %>
         <% end %>
 
         <div class="+small-spacer"></div>
-
+        
         <%= form_tag add_product_to_orders_path, :method => :patch do %>
 
             <%= hidden_field_tag 'sku[product_id]', "#{@product.id}" %>
