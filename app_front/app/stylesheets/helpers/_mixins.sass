@@ -1,3 +1,11 @@
+=truncate($limit: 150px)
+  display: inline-block
+  white-space: nowrap
+  overflow: hidden
+  text-overflow: ellipsis
+  -o-text-overflow: ellipsis
+  width: $limit
+
 =load-font($family, $src, $style: normal, $weight: normal)
   @font-face
     font-family: $family
