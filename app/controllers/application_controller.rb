@@ -49,13 +49,14 @@ class ApplicationController < ActionController::Base
 
   def set_session_locale
     session[:locale] = params[:locale]
-
+    redirect_to root_url and return
+=begin
     if request.referer.nil?
       redirect_to root_url and return
     else
       redirect_to request.referer and return
     end
-
+=end
   end
 
   def errors_config
@@ -188,6 +189,7 @@ class ApplicationController < ActionController::Base
       I18n.locale = params[:locale]
     else
       I18n.locale = :'zh-CN'
+      session[:locale] = I18n.locale
 =begin
       if current_user&.is_customer?
         if 'zh' == extract_locale
