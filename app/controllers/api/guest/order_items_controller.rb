@@ -5,10 +5,17 @@ class Api::Guest::OrderItemsController < Api::ApplicationController
   # +/- items of the same product
   def set_quantity
 
+    quantity = params[:quantity].to_i
+
+    if quantity <= 0
+      render :json => { :success => false, :error => I18n.t(:greater_than_zero, :scope => :cart) }
+      return
+    end
+
     product = @order_item.product
     sku = product.skus.find(@order_item.sku_id)
     order = @order_item.order
-    quantity = params[:quantity].to_i
+
     new_quantity_inc = (quantity - @order_item.quantity)
 
     new_price_inc = sku.price * new_quantity_inc * Settings.first.exchange_rate_to_yuan
