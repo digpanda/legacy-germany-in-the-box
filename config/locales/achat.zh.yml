@@ -532,6 +532,7 @@ zh-CN:
     duty_and_shipping_cost: 关税物流费用
     total_price_in_yuan: 总计
     delete_sku_msg: 您确定要从购物车中删除此产品吗？
+    greater_than_zero: 产品数量必须大于1, 删除请您点击右侧的叉键。
   checkout:
     my_destination: 收货地址
     setup_delivery_destination: 请您指定收货地址

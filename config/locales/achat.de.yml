@@ -536,6 +536,7 @@ de:
     duty_cost: Zollgebühren
     total_price_in_yuan: Gesamter
     delete_sku_msg: Das Produkt vom dem Einkaufswagen entfernen
+    greater_than_zero: Die Anzahl muss größer al Null sein.
   checkout:
     my_destination: Anlieferungsanschrift
     setup_delivery_destination: Bitte Anschrift auswählen
