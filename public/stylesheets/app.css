@@ -8194,6 +8194,10 @@ img.mfp-img {
 .connect__alternative-login img {
   max-width: 75px; }
 
+/* line 6, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_connect.sass */
+.connect__alternative-login a {
+  color: #659443; }
+
 /* line 32, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
 .message {
   padding: 0.5em;
