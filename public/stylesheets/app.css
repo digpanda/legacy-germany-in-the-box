@@ -8715,13 +8715,17 @@ img.mfp-img {
   padding-bottom: 3em; }
 
 /* line 3, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_home-marketplace.sass */
+.home-marketplace img {
+  max-width: 100%; }
+
+/* line 6, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_home-marketplace.sass */
 .home-marketplace a {
   color: #659443; }
-  /* line 5, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_home-marketplace.sass */
+  /* line 8, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_home-marketplace.sass */
   .home-marketplace a:hover {
     color: #659443; }
 
-/* line 8, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_home-marketplace.sass */
+/* line 11, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_home-marketplace.sass */
 .home-marketplace li {
   margin-left: -1.5em; }
 
@@ -8731,7 +8735,7 @@ img.mfp-img {
   min-height: 8em;
   background-color: #659443;
   color: #fdfdfd; }
-  /* line 16, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_home-marketplace.sass */
+  /* line 19, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_home-marketplace.sass */
   .home-marketplace__first h2 {
     font-size: 2.8em;
     color: #fdfdfd; }
@@ -8743,7 +8747,7 @@ img.mfp-img {
 .home-marketplace__second {
   min-height: 8em;
   background-color: #eeeeee; }
-  /* line 27, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_home-marketplace.sass */
+  /* line 30, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_home-marketplace.sass */
   .home-marketplace__second h2 {
     line-height: 3em;
     font-size: 3em;
@@ -8755,7 +8759,7 @@ img.mfp-img {
 /* line 76, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
 .home-marketplace__third {
   background-color: #eeeeee; }
-  /* line 39, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_home-marketplace.sass */
+  /* line 42, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_home-marketplace.sass */
   .home-marketplace__third h2 {
     color: #659443; }
 
