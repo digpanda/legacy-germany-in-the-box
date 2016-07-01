@@ -1,6 +1,10 @@
-.main-footer
+.main-footer__logo
   +breakpoint('mobile')
     display: none
+
+.main-footer div[class^=col-md-]
+  +breakpoint('mobile')
+    margin-bottom: 2em
 
 .slicknav_menu
   display: none
@@ -9,7 +13,7 @@
   +breakpoint('mobile')
     display: none
 
-.main-header__right-side
+.main-header__right-side // to improve.
   +breakpoint('mobile')
     display: none
 
