@@ -1,5 +1,6 @@
-//.slicknav_menu 
-//  display: none
+.main-footer
+  +breakpoint('mobile')
+    display: none
 
 .slicknav_menu
   display: none
@@ -8,10 +9,16 @@
   +breakpoint('mobile')
     display: none
 
+.main-header__right-side
+  +breakpoint('mobile')
+    display: none
+
 .slicknav_menu
   +breakpoint('mobile')
     display: block
 
+#categories-menu
+  display: none
 
 .slicknav_btn
   margin-right: 1em

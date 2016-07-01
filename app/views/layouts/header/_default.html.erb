@@ -16,8 +16,7 @@
   </div>
 
   <!-- Right side -->
-  <div class="col-md-8 col-md-push-1 +vertical-centered">
-  
+  <div class="col-md-8 col-md-push-1 main-header__right-side +vertical-centered">
 
     <!-- My Account -->
     <div class="col-md-1 pull-right +centered">
@@ -99,6 +98,34 @@
 <% if seems_like_a_customer? %>
 
   <div class="row mobile-category-menu">
+
+    <!-- WE SHOULD PLACE THIS INTO A PARTIAL, IT'S THE MOBILE RESPONSIVE MENU -->
+    <nav id="categories-menu">
+      <ul>
+
+      <!-- Account side -->
+      <li><a href="<%= manage_cart_orders_path %>">Cart</a></li>
+      <li>
+
+      <% if current_user.nil? %>
+        <a href="<%= new_user_session_path %>">Sign in</a>
+      <% else %>
+        <a href="<%= edit_account_user_path(current_user, :user_info_edit_part => :edit_account) %>">My Account</a>
+      <% end %>
+
+      </li>
+      <li>-</li>
+
+      <% unless @categories.empty? %>
+        <% @categories.each do |category| %>
+        <li>
+          <a href="<%= category_path(category) %>"><%= category.name %></a>
+        </li>
+        <% end %>
+      <% end %>
+      </ul>
+    </nav>
+
   </div>
   
   <!-- Category + Search Menu -->

@@ -7867,30 +7867,44 @@ img.mfp-img {
   background-color: #FBFBFB;
   border: 3px white solid; }
 
-/* line 4, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/helpers/_responsive.sass */
+@media (max-width: 991px) {
+  /* line 1, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/helpers/_responsive.sass */
+  .main-footer {
+    display: none; } }
+
+/* line 5, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/helpers/_responsive.sass */
 .slicknav_menu {
   display: none; }
 
-@media (max-width: 980px) {
-  /* line 7, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/helpers/_responsive.sass */
+@media (max-width: 991px) {
+  /* line 8, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/helpers/_responsive.sass */
   .category-menu {
     display: none; } }
 
-@media (max-width: 980px) {
-  /* line 11, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/helpers/_responsive.sass */
+@media (max-width: 991px) {
+  /* line 12, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/helpers/_responsive.sass */
+  .main-header__right-side {
+    display: none; } }
+
+@media (max-width: 991px) {
+  /* line 16, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/helpers/_responsive.sass */
   .slicknav_menu {
     display: block; } }
 
-/* line 16, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/helpers/_responsive.sass */
+/* line 20, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/helpers/_responsive.sass */
+#categories-menu {
+  display: none; }
+
+/* line 23, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/helpers/_responsive.sass */
 .slicknav_btn {
   margin-right: 1em;
   background-color: #659443; }
 
-/* line 20, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/helpers/_responsive.sass */
+/* line 27, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/helpers/_responsive.sass */
 .slicknav_menu {
   background: #83be58; }
 
-/* line 23, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/helpers/_responsive.sass */
+/* line 30, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/helpers/_responsive.sass */
 .slicknav_nav a:hover {
   color: #fdfdfd;
   background: transparent; }
