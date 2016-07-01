@@ -1106,7 +1106,7 @@ require.register("javascripts/starters.js", function(exports, require, module) {
 /**
  * Starters Class
  */
-var Starters = ['bootstrap', 'china_city', 'datepicker', 'footer', 'images_control', 'images_handler', 'left_menu', 'messages', 'product_favorite', 'product_form', 'products_list', 'search', 'sku_form'];
+var Starters = ['bootstrap', 'china_city', 'datepicker', 'footer', 'images_control', 'images_handler', 'left_menu', 'messages', 'product_favorite', 'product_form', 'products_list', 'responsive', 'search', 'sku_form'];
 
 module.exports = Starters;
 });
@@ -1703,6 +1703,36 @@ var ProductsList = { // CURRENTLY NOT IN USED IN THE SYSTEM
 };
 
 module.exports = ProductsList;
+});
+
+require.register("javascripts/starters/responsive.js", function(exports, require, module) {
+"use strict";
+
+/**
+ * Responsive Class
+ */
+var Responsive = { // CURRENTLY NOT IN USED IN THE SYSTEM
+
+  /**
+   * Initializer
+   */
+  init: function init() {
+
+    this.manageCategoriesMenu();
+  },
+
+  manageCategoriesMenu: function manageCategoriesMenu() {
+
+    $('#categories-menu').slicknav({
+
+      "prependTo": ".mobile-category-menu" //".container-fluid"
+
+    });
+  }
+
+};
+
+module.exports = Responsive;
 });
 
 require.register("javascripts/starters/search.js", function(exports, require, module) {

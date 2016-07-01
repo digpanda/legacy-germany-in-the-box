@@ -21,7 +21,8 @@
     "jquery-ui": "^1.11.4",
     "jquery-ujs": "^1.2.1",
     "magnify": "^1.6.6",
-    "freewall": "^1.0.6"
+    "freewall": "^1.0.6",
+    "slicknav": "^1.0.7"
   },
   "overrides": {
     "freewall": {

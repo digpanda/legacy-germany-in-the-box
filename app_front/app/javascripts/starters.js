@@ -14,6 +14,7 @@ var Starters = [
   'product_favorite',
   'product_form',
   'products_list',
+  'responsive',
   'search',
   'sku_form'
 ]

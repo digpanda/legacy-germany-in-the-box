@@ -28,4 +28,4 @@ staging:
   <<: *defaults
 
 production:
-  <<: *defaults
+  host: 'http://app.borderguru.com/'

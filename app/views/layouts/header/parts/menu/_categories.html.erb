@@ -1,0 +1,25 @@
+<!--<div class="mobile-categories-menu">
+  <ul>
+    <li><a class="scroll" href="#features">Features</a></li>
+    <li><a class="scroll" href="#usage">Usage Instructions</a></li>
+    <li><a class="scroll" href="#examples">Examples</a></li>
+    <li><a href="http://github.com">View on Github</a></li>
+  </ul>
+</div>-->
+
+<nav id="categories-menu">
+<% if @categories.empty? %>
+  <ul class="col-md-2">
+  </ul>
+<% else %>
+  <ul>
+    <% @categories.each do |category| %>
+    <li class="col-md-2">
+
+      <a href="<%= category_path(category) %>"><%= category.name %></a>
+
+    </li>
+    <% end %>
+  </ul>
+<% end %>
+</nav>

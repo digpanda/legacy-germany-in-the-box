@@ -98,6 +98,9 @@
 
 <% if seems_like_a_customer? %>
 
+  <div class="row mobile-category-menu">
+  </div>
+  
   <!-- Category + Search Menu -->
   <div class="row category-menu">
 
@@ -119,16 +122,10 @@
 
     </div>
 
-    <!-- Categories -->
-    <div class="col-md-7">
+    <!-- Categories Menu -->
+    <div class="col-md-7 col-md-push-1 col-md-pull-1">
 
-      <div class="col-md-1"></div>
-
-      <nav>
-        <%= render partial: "layouts/header/parts/categories" %>
-      </nav>
-
-      <div class="col-md-1"></div>
+      <%= render partial: "layouts/header/parts/menu/categories" %>
 
     </div>
 
