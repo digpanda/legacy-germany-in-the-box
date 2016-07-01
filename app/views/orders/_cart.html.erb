@@ -62,7 +62,7 @@
       <% unless @readonly %>
       <td class="cart-item-remove">
 
-      <%= link_to '', guest_order_item_path(i), method: :delete, data: { confirm: "Are you sure you want to remove this item from your order ?" }, "data-placement" => "right",  class: 'fa fa-times' %>
+      <%= link_to '', guest_order_item_path(i), method: :delete, data: { confirm: I18n.t(:delete_sku_msg, :scope => :cart)  }, "data-placement" => "right",  class: 'fa fa-times' %>
 
       <!--
         <%= link_to '', '#', :class => 'fa fa-times', :onclick => "$('#cart-quantity-of-product-#{i.product.id}').val(0); $('#orders_adjust_products_amount').submit()" %>
