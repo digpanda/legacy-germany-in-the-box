@@ -29,7 +29,7 @@
         <% end %>
 
         <div class="+small-spacer"></div>
-
+        
         <%= form_tag add_product_to_orders_path, :method => :patch do %>
 
             <%= hidden_field_tag 'sku[product_id]', "#{@product.id}" %>
