@@ -38,7 +38,7 @@ class ShopDecorator < Draper::Decorator
     (self.c_at ? self.c_at.strftime('%y%m%d') : Date.today.strftime('%y%m%d')) + self.name[0,3].upcase
   end
 
-  def short_desc(characters=60)
+  def short_desc(characters=70)
     truncate(self.desc, :length => characters)
   end
 
