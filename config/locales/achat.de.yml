@@ -119,8 +119,6 @@ de:
     delete_shop_message: Das Konto löschen?
     remove: Entfernen
     accounts: Benutzerkonten
-    shopkeeper_photo: Portraitbild des Shop-Inhabers
-    shopkeeper_photo_info: Es kommt oft auf die Persönlichkeit an. Mit dem Portraitbild geben Sie Ihrem Shop ein Gesicht.
   edit_account:
     username: Username
     email: E-Mail
@@ -135,6 +133,8 @@ de:
     last_sign_in_at: Letzes Einloggen
     role: Rolle
     sign_in_count: Anzahl des Einloggens
+    shopkeeper_photo: Portraitbild des Shop-Inhabers
+    shopkeeper_photo_info: Es kommt oft auf die Persönlichkeit an. Mit dem Portraitbild geben Sie Ihrem Shop ein Gesicht.
   edit_following:
     follow_ok: Die Beobachtung für den Nutzer wurde erfolgreich aktiviert.
     follow_ko: Ein Fehler ist bei der Aktivierung der Beobachtung aufgetreten.
