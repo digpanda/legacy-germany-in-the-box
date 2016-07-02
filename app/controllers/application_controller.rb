@@ -160,6 +160,10 @@ class ApplicationController < ActionController::Base
     rescue BorderGuru::Error => e
       flash[:error] = "Our shipping partner got a problem. #{e.message} Please try again in a few minutes."
       redirect_to root_path and return
+    rescue Net::HTTPBadRequest => e
+      logger.fatal "Failed to connect to Borderguru: #{e}"
+      flash[:error] = "We are having trouble communicating with our shipping partner. #{e.message}. Please try again in a few minutes."
+      redirect_to root_path and return
     rescue Net::ReadTimeout => e
       logger.fatal "Failed to connect to Borderguru: #{e}"
       flash[:error] = I18n.t(:borderguru_unreachable_at_quoting, scope: :checkout)
