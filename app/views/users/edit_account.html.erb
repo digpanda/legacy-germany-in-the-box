@@ -1,4 +1,37 @@
-<div class="col-md-6 col-sm-9 col-xs-12 +white-box">
+<%= content_tag(:div, nil, :id => "js-images-control", :data => {
+
+                            :translation_max_exceeded_message => I18n.t(:max_exceeded_message, scope: :image_upload),
+                            :translation_ext_error_message => I18n.t(:ext_error_message, scope: :image_upload),
+                    })
+
+%>
+
+
+<% if @user.role == :shopkeeper %>
+    <div class="col-md-6 col-sm-12 col-xs-12 text-center +white-box">
+      <%= form_for @user, html: {method: 'patch', 'data-toggle': 'validator'} do |f| %>
+          <% if @user.role == :shopkeeper %>
+              <div class="form-group">
+                <%= image_tag (current_user.pic.url.nil? ? "/images/icons/default_user_pic.png" : current_user.pic.url), :class => 'logo-img-large', :id => "pic_#{current_user.id}" %>
+
+                <div class="fileUpload btn btn-default">
+                    <span>
+                      <i class="fa fa-cloud-upload"></i>
+                      <%= I18n.t(:upload, scope: :image_upload) %>
+                    </span>
+                  <%= f.file_field :pic, :accept => "image/png, image/jpeg, image/jpg", :class => 'img-file-upload upload', :img_id => "#pic_#{current_user.id}" %>
+                </div>
+
+              </div>
+          <% end %>
+          <div class="form-group">
+            <%= f.button I18n.t(:save, scope: :edit_account), :type => 'submit', :class => 'btn btn-primary', name: :user_info_edit_part, value: :edit_account %>
+          </div>
+      <% end %>
+    </div>
+<% end %>
+
+<div class="col-md-6 col-sm-12 col-xs-12 +white-box">
 
   <div class="form-group">
     <div class="pull-right required-info">
@@ -8,38 +41,38 @@
     </div>
   </div>
 
-
   <%= form_for @user, html: {method: 'patch', 'data-toggle': 'validator'} do |f| %>
-    <% unless @user.role == :shopkeeper %>
+      <% unless @user.role == :shopkeeper %>
+          <div class="form-group">
+            <%= f.label :username, I18n.t(:username, scope: :edit_account), :class => 'control-label' %>
+            <%= f.text_field :username, :class => 'form-control', :readonly => true %>
+          </div>
+      <% end %>
+
       <div class="form-group">
-        <%= f.label :username, I18n.t(:username, scope: :edit_account), :class => 'control-label' %>
-        <%= f.text_field :username, :class => 'form-control', :readonly => true %>
+        <%= f.label :email, I18n.t(:email, scope: :edit_account) %>
+        <%= f.text_field :email, :class => 'form-control', :readonly => true %>
       </div>
-    <% end %>
-    <div class="form-group">
-      <%= f.label :email, I18n.t(:email, scope: :edit_account) %>
-      <%= f.text_field :email, :class => 'form-control', :readonly => true %>
-    </div>
-    <div class="form-group">
-      <%= f.label :current_password, I18n.t(:current_password, scope: :edit_account), :class => 'required' %>
-      <%= f.password_field :current_password, :class => 'form-control', :autocomplete => :off, :required => true, :minLength => Rails.configuration.min_password_length %>
-      <div class="help-block with-errors"></div>
-    </div>
-    <div class="form-group">
-      <label class="required" for="user[password]" title="<%= I18n.t(:password_info, scope: :edit_account) %>">
-        <i class="fa fa-info-circle"></i>
-        <%= I18n.t(:password, scope: :edit_account) %>
-      </label>
-      <%= f.password_field :password, :class => 'form-control', :autocomplete => :off, :required => true, :minLength => Rails.configuration.min_password_length, :id=>'inputPassword' %>
-      <div class="help-block with-errors"></div>
-    </div>
-    <div class="form-group">
-      <%= f.label :password_confirmation, I18n.t(:password_confirmation, scope: :edit_account), :class => 'required' %>
-      <%= f.password_field :password_confirmation, :class => 'form-control', :autocomplete => :off, 'data-match': '#inputPassword', 'data-match-error': I18n.t(:password_match_error, scope: :edit_account) %>
-      <div class="help-block with-errors"></div>
-    </div>
-    <div class="form-group">
-      <%= f.button I18n.t(:save, scope: :edit_account), :type => 'submit', :class => 'btn btn-primary', name: :user_info_edit_part, value: :edit_account %>
-    </div>
+      <div class="form-group">
+        <%= f.label :current_password, I18n.t(:current_password, scope: :edit_account), :class => 'required' %>
+        <%= f.password_field :current_password, :class => 'form-control', :autocomplete => :off, :required => true, :minLength => Rails.configuration.min_password_length %>
+        <div class="help-block with-errors"></div>
+      </div>
+      <div class="form-group">
+        <label class="required" for="user[password]" title="<%= I18n.t(:password_info, scope: :edit_account) %>">
+          <i class="fa fa-info-circle"></i>
+          <%= I18n.t(:password, scope: :edit_account) %>
+        </label>
+        <%= f.password_field :password, :class => 'form-control', :autocomplete => :off, :required => true, :minLength => Rails.configuration.min_password_length, :id=>'inputPassword' %>
+        <div class="help-block with-errors"></div>
+      </div>
+      <div class="form-group">
+        <%= f.label :password_confirmation, I18n.t(:password_confirmation, scope: :edit_account), :class => 'required' %>
+        <%= f.password_field :password_confirmation, :class => 'form-control', :autocomplete => :off, 'data-match': '#inputPassword', 'data-match-error': I18n.t(:password_match_error, scope: :edit_account) %>
+        <div class="help-block with-errors"></div>
+      </div>
+      <div class="form-group">
+        <%= f.button I18n.t(:save, scope: :edit_account), :type => 'submit', :class => 'btn btn-primary', name: :user_info_edit_part, value: :edit_account %>
+      </div>
   <% end %>
 </div>

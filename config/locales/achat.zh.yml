@@ -60,6 +60,7 @@ zh-CN:
     categories: 产品目录管理
     payments: 支付管理
     settings: 平台设置
+    notifications: 平台通知
   footer:
     copyright: 版权所有：莱茵工场 © 2016
     rheinmanufaktur: 莱茵工场
@@ -348,7 +349,7 @@ zh-CN:
     website: 企业主页
     agb: 条款可法律声明
     agb_statement: 在此保证，我已经清楚的阅读DigPanda有限公司的<a href='/page/agb' target='blank'>使用条款</a>，并且同意并接受此条款。
-    required_field_info: '* 必填字段'
+    required_field_info: '必填字段'
     underline_field_info: '_ 翻译字段'
     company_name_placeholder: '示例 有限公司'
     shopname: 网店名称

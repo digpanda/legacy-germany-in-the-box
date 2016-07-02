@@ -9190,5 +9190,10 @@ a, a:active, a:hover, a:visited {
   width: auto;
   max-height: 96px; }
 
+/* line 60, /home/dev/devel/ruby/achat/ab/app_front/app/stylesheets/_global.sass */
+.logo-img-large {
+  width: auto;
+  max-height: 256px; }
+
 
 /*# sourceMappingURL=app.css.map*/

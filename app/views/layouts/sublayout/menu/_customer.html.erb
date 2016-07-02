@@ -1,5 +1,5 @@
 <li class="<%= is_menu_active?(:edit_notification) %>">
-  <%= link_to "Notifications",  shared_notifications_path(:user_info_edit_part => :edit_notification) %>
+  <%= link_to I18n.t(:notifications, scope: :top_menu),  shared_notifications_path(:user_info_edit_part => :edit_notification) %>
 </li>
 <li class="<%= is_menu_active?(:edit_account, true) %>">
   <%= link_to I18n.t(:my_account, scope: :top_menu),  edit_account_user_path(current_user, :user_info_edit_part => :edit_account) %>
