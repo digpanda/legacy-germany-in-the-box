@@ -18,6 +18,12 @@ FactoryGirl.define do
       if product.shop_id.nil?
         product.shop_id = create_list(:shop, 1).first.id
         product.save
+        product.reload
+      end
+      if product.duty_category_id.nil?
+        product.duty_category_id = create_list(:duty_health_category, 1).first.id
+        product.save
+        product.reload
       end
     end
 

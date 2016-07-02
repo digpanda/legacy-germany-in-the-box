@@ -18,7 +18,6 @@ FactoryGirl.define do
     after(:create) do |shop|
       create_list(:product, 10, shop: shop)
       create_list(:shop_address, 1, shop: shop)
-      shop.reload
     end
   end
 
@@ -43,7 +42,6 @@ FactoryGirl.define do
       create_list(:product, 10, shop: shop)
       create_list(:shop_address, 1, shop: shop)
       create_list(:order, 5, :with_custom_checking, shop_id: shop.id)
-      shop.reload
     end
 
   end
