@@ -14,9 +14,8 @@ class RecordedResponses
         @@shop = create :shop
         @@product = @@shop.products.first
         @@sku = @@product.skus.first
-
-
-        @@customer = create :user
+        
+        @@customer = create :customer
         @@shipping_address = @@customer.addresses.first
 
         calculate_quote
@@ -45,7 +44,6 @@ class RecordedResponses
       @@calculate_quote ||=
         begin
           cart.add @@sku, 2
-
           BorderGuru.calculate_quote(
             cart: cart,
             shop: @@shop,

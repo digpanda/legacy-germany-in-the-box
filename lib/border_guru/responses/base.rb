@@ -21,6 +21,7 @@ module BorderGuru
       def response_data
         response_body = JSON.parse(@request.response.body)
         raise BorderGuru::Error.new response_body["error"]["message"] if response_body["error"]
+        response_body["response"]
       rescue JSON::ParserError => e
         Rails.logger.error("JSON-parsing of #{@request.response.body} raised an error:")
         raise e
