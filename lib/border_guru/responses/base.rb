@@ -31,7 +31,6 @@ module BorderGuru
       end
 
       def response_data
-      begin
         devlog.info "TESTING BORDERGURU REQUEST AGAIN : #{@request}"
         devlog.info "TESTING BORDERGURU REQUEST RESPONSE : #{@request.response}"
         response_body = JSON.parse(@request.response.body)
