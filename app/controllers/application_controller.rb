@@ -138,6 +138,14 @@ class ApplicationController < ActionController::Base
     @current_orders ||= session[:order_ids].keys.compact.map { |sid| [sid, _current_order(sid)] }.to_h
   end
 
+  HTTP_ERRORS = [
+    Net::HTTPBadRequest
+    Net::HTTPBadResponse,
+    Net::HTTPHeaderSyntaxError,
+    Net::ProtocolError,
+    Net::ReadTimeout
+  ]
+
   def current_carts
     carts = {}
 
@@ -156,20 +164,16 @@ class ApplicationController < ActionController::Base
           )
         end
       end
-  
+
+    # TODO : THIS IS TERRIBLY UGLY, PUT EVERYTHING INTO LIBS WHEN WE HAVE TIME
     rescue BorderGuru::Error => e
       flash[:error] = "Our shipping partner got a problem. #{e.message} Please try again in a few minutes."
       redirect_to root_path and return
-    rescue Net::HTTPBadRequest => e
+    rescue *HTTP_ERRORS => e
       logger.fatal "Failed to connect to Borderguru: #{e}"
-      flash[:error] = "We are having trouble communicating with our shipping partner. #{e.message}. Please try again in a few minutes."
-      redirect_to root_path and return
-    rescue Net::ReadTimeout => e
-      logger.fatal "Failed to connect to Borderguru: #{e}"
-      flash[:error] = I18n.t(:borderguru_unreachable_at_quoting, scope: :checkout)
+      flash[:error] = "We are having trouble communicating with our shipping partner. #{e.message}. Please try again in a few minutes." # I18n.t(:borderguru_unreachable_at_quoting, scope: :checkout)
       redirect_to root_path and return
     end
-
     carts
   end
 
