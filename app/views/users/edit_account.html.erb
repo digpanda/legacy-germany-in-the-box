@@ -8,7 +8,7 @@
 
 
 <% if @user.role == :shopkeeper %>
-    <div class="col-md-6 col-sm-12 col-xs-12 text-center +white-box">
+    <div class="col-md-7 col-sm-12 col-xs-12 text-center +white-box">
       <%= form_for @user, html: {method: 'patch', 'data-toggle': 'validator'} do |f| %>
           <% if @user.role == :shopkeeper %>
               <div class="form-group">
@@ -21,7 +21,6 @@
                     </span>
                   <%= f.file_field :pic, :accept => "image/png, image/jpeg, image/jpg", :class => 'img-file-upload upload', :img_id => "#pic_#{current_user.id}" %>
                 </div>
-
               </div>
           <% end %>
           <div class="form-group">
@@ -31,7 +30,9 @@
     </div>
 <% end %>
 
-<div class="col-md-6 col-sm-12 col-xs-12 +white-box">
+<div class="gap"></div>
+
+<div class="col-md-7 col-sm-12 col-xs-12 +white-box">
 
   <div class="form-group">
     <div class="pull-right required-info">

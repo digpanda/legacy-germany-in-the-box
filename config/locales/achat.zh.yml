@@ -21,11 +21,11 @@ zh-CN:
   image_upload:
     max_exceeded_message: 上传的图片需要小于1兆
     ext_error_message: 只能上传.jpg,.jpeg和.png
-    upload: 上传
+    upload: 选择...
   pdf_upload:
     max_exceeded_message: 上传的PDF文档要小于2兆
     ext_error_message: 只能上传.pdf
-    upload: 上传
+    upload: 选择...
   top_menu:
     top_menu: 菜单
     sign_in: 登陆

@@ -21,11 +21,11 @@ de:
   image_upload:
     max_exceeded_message: Das Bild ist größer als 1 MB. Bitte laden Sie ein kleineres Bild hoch.
     ext_error_message: Akzeptierbare Formate sind JPG, JPEG und PNG.
-    upload: Hochladen
+    upload: Auswählen
   pdf_upload:
     max_exceeded_message: Die PDF ist größer als 2 MB. Bitte laden Sie eine kleinere PDF hoch.
     ext_error_message: Akzeptierbares Format ist PDF.
-    upload: Hochladen
+    upload: Auswählen
   top_menu:
     top_menu: Menü
     sign_in: Einloggen
