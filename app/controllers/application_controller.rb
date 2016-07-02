@@ -156,6 +156,7 @@ class ApplicationController < ActionController::Base
           )
         end
       end
+  
     rescue BorderGuru::Error => e
       flash[:error] = "Our shipping partner got a problem. #{e.message} Please try again in a few minutes."
       redirect_to root_path and return
