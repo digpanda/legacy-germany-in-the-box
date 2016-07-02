@@ -9,6 +9,7 @@ module BorderGuru
   end
 
       def initialize(finished_request)
+        devlog.info "TESTING BORDERGURU REQUEST : #{@request}"
         @request = finished_request
       end
 
@@ -23,7 +24,7 @@ module BorderGuru
       end
 
       def response_data
-        devlog.info "TESTING BORDERGURU REQUEST : #{@request.response}"
+        devlog.info "TESTING BORDERGURU REQUEST RESPONSE : #{@request.response}"
         response_body = JSON.parse(@request.response.body)
         raise BorderGuru::Error.new response_body["error"]["message"] if response_body["error"]
         response_body["response"]
