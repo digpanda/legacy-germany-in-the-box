@@ -31,6 +31,9 @@ body {
 .container-fluid,
 .row-fluid { height: inherit; }
 
+.has-error .form-control {
+    background-color: #ffdddd !important;
+}
 
 .invalidBorderClass{
     border-color: #A94442 !important;

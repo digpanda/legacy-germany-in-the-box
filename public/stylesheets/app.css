@@ -64,21 +64,24 @@ body {
 .row-fluid {
   height: inherit; }
 
-/* line 35, /home/dev/devel/ruby/achat/ab/app_front/app/stylesheets/old_assets/_achat.css */
+/* line 34, /home/dev/devel/ruby/achat/ab/app_front/app/stylesheets/old_assets/_achat.css */
+.has-error .form-control {
+  background-color: #ffdddd !important; }
+
+/* line 38, /home/dev/devel/ruby/achat/ab/app_front/app/stylesheets/old_assets/_achat.css */
 .invalidBorderClass {
   border-color: #A94442 !important;
-  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset !important;
-  border: 2px solid #D9D9D9;
-  border-radius: 3px;
-  outline: medium none; }
+  border-width: 1px !important;
+  border-style: solid !important;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset !important; }
 
-/* line 43, /home/dev/devel/ruby/achat/ab/app_front/app/stylesheets/old_assets/_achat.css */
+/* line 45, /home/dev/devel/ruby/achat/ab/app_front/app/stylesheets/old_assets/_achat.css */
 .fileUpload {
   position: relative;
   overflow: hidden;
   margin: 10px; }
 
-/* line 48, /home/dev/devel/ruby/achat/ab/app_front/app/stylesheets/old_assets/_achat.css */
+/* line 50, /home/dev/devel/ruby/achat/ab/app_front/app/stylesheets/old_assets/_achat.css */
 .fileUpload input.upload {
   position: absolute;
   top: 0;
@@ -90,30 +93,30 @@ body {
   opacity: 0;
   filter: alpha(opacity=0); }
 
-/* line 60, /home/dev/devel/ruby/achat/ab/app_front/app/stylesheets/old_assets/_achat.css */
+/* line 62, /home/dev/devel/ruby/achat/ab/app_front/app/stylesheets/old_assets/_achat.css */
 .table-borderless tbody tr td, .table-borderless tbody tr th, .table-borderless thead tr th {
   border: none; }
 
-/* line 64, /home/dev/devel/ruby/achat/ab/app_front/app/stylesheets/old_assets/_achat.css */
+/* line 66, /home/dev/devel/ruby/achat/ab/app_front/app/stylesheets/old_assets/_achat.css */
 textarea {
   resize: none; }
 
-/* line 68, /home/dev/devel/ruby/achat/ab/app_front/app/stylesheets/old_assets/_achat.css */
+/* line 70, /home/dev/devel/ruby/achat/ab/app_front/app/stylesheets/old_assets/_achat.css */
 .panel-group .panel {
   overflow: visible; }
 
-/* line 72, /home/dev/devel/ruby/achat/ab/app_front/app/stylesheets/old_assets/_achat.css */
+/* line 74, /home/dev/devel/ruby/achat/ab/app_front/app/stylesheets/old_assets/_achat.css */
 .scrollable-menu {
   height: auto;
   max-height: 80px;
   overflow-x: hidden; }
 
-/* line 78, /home/dev/devel/ruby/achat/ab/app_front/app/stylesheets/old_assets/_achat.css */
+/* line 80, /home/dev/devel/ruby/achat/ab/app_front/app/stylesheets/old_assets/_achat.css */
 .i-check.disabled.checked,
 .i-radio.disabled.checked {
   background: #49D2BE; }
 
-/* line 83, /home/dev/devel/ruby/achat/ab/app_front/app/stylesheets/old_assets/_achat.css */
+/* line 85, /home/dev/devel/ruby/achat/ab/app_front/app/stylesheets/old_assets/_achat.css */
 .numberCircle {
   border-radius: 3px;
   behavior: url(PIE.htc);
@@ -124,11 +127,11 @@ textarea {
   text-align: center;
   font: 10px; }
 
-/* line 94, /home/dev/devel/ruby/achat/ab/app_front/app/stylesheets/old_assets/_achat.css */
+/* line 96, /home/dev/devel/ruby/achat/ab/app_front/app/stylesheets/old_assets/_achat.css */
 .product_categoires {
   max-height: 400px; }
 
-/* line 98, /home/dev/devel/ruby/achat/ab/app_front/app/stylesheets/old_assets/_achat.css */
+/* line 100, /home/dev/devel/ruby/achat/ab/app_front/app/stylesheets/old_assets/_achat.css */
 .ui-autocomplete {
   position: absolute;
   z-index: 2000;
@@ -149,22 +152,22 @@ textarea {
   /* prevent horizontal scrollbar */
   overflow-x: hidden; }
 
-/* line 119, /home/dev/devel/ruby/achat/ab/app_front/app/stylesheets/old_assets/_achat.css */
+/* line 121, /home/dev/devel/ruby/achat/ab/app_front/app/stylesheets/old_assets/_achat.css */
 .ui-autocomplete > li {
   padding: 3px 20px; }
 
-/* line 123, /home/dev/devel/ruby/achat/ab/app_front/app/stylesheets/old_assets/_achat.css */
+/* line 125, /home/dev/devel/ruby/achat/ab/app_front/app/stylesheets/old_assets/_achat.css */
 .ui-autocomplete > li.ui-state-focus {
   background-color: #DDD; }
 
-/* line 127, /home/dev/devel/ruby/achat/ab/app_front/app/stylesheets/old_assets/_achat.css */
+/* line 129, /home/dev/devel/ruby/achat/ab/app_front/app/stylesheets/old_assets/_achat.css */
 .ui-autocomplete-category {
   font-weight: bold;
   padding: .2em .4em;
   margin: .8em 0 .2em;
   line-height: 1.5; }
 
-/* line 134, /home/dev/devel/ruby/achat/ab/app_front/app/stylesheets/old_assets/_achat.css */
+/* line 136, /home/dev/devel/ruby/achat/ab/app_front/app/stylesheets/old_assets/_achat.css */
 .shared_header_logo {
   left: 10px;
   height: 50px;
@@ -174,7 +177,7 @@ textarea {
   display: block;
   position: absolute; }
 
-/* line 144, /home/dev/devel/ruby/achat/ab/app_front/app/stylesheets/old_assets/_achat.css */
+/* line 146, /home/dev/devel/ruby/achat/ab/app_front/app/stylesheets/old_assets/_achat.css */
 .shared_header_logo_mobile {
   left: 2px;
   height: 50px;
@@ -184,7 +187,7 @@ textarea {
   display: none;
   position: absolute; }
 
-/* line 155, /home/dev/devel/ruby/achat/ab/app_front/app/stylesheets/old_assets/_achat.css */
+/* line 157, /home/dev/devel/ruby/achat/ab/app_front/app/stylesheets/old_assets/_achat.css */
 .bannerImg_shopkeeper {
   background-color: #edefed;
   padding-top: 3px;
@@ -194,7 +197,7 @@ textarea {
   width: 100%;
   height: auto; }
 
-/* line 165, /home/dev/devel/ruby/achat/ab/app_front/app/stylesheets/old_assets/_achat.css */
+/* line 167, /home/dev/devel/ruby/achat/ab/app_front/app/stylesheets/old_assets/_achat.css */
 .bannerImg_shopkeeper.orig {
   border-top: 3px solid #edefed;
   border-bottom: 3px solid #edefed;
