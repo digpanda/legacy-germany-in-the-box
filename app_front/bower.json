@@ -25,6 +25,12 @@
     "slicknav": "^1.0.7"
   },
   "overrides": {
+    "font-awesome": {
+      "main": [
+        "css/font-awesome.min.css",
+        "fonts/fontawesome-webfont.woff"
+      ]
+    },
     "freewall": {
       "main": [
         "freewall.js"
