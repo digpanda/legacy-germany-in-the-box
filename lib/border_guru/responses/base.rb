@@ -8,6 +8,15 @@ module BorderGuru
     @@devlog ||= Logger.new(Rails.root.join("log/testing_borderguru.log"))
   end
 
+
+  HTTP_ERRORS = [
+    Net::HTTPBadRequest,
+    Net::HTTPBadResponse,
+    Net::HTTPHeaderSyntaxError,
+    Net::ProtocolError,
+    Net::ReadTimeout
+  ]
+
       def initialize(finished_request)
         devlog.info "TESTING BORDERGURU REQUEST : #{@request}"
         @request = finished_request
@@ -29,6 +38,12 @@ module BorderGuru
         response_body = JSON.parse(@request.response.body)
         raise BorderGuru::Error.new response_body["error"]["message"] if response_body["error"]
         response_body["response"]
+      
+      rescue *HTTP_ERRORS => e
+        devlog.info "TESTING BORDERGURU ERROR CATCHED : #{e}"
+        logger.fatal "Failed to connect to Borderguru: #{e}"
+        flash[:error] = "We are having trouble communicating with our shipping partner. #{e.message}. Please try again in a few minutes." # I18n.t(:borderguru_unreachable_at_quoting, scope: :checkout)
+        redirect_to root_path and return
       rescue JSON::ParserError => e
         Rails.logger.error("JSON-parsing of #{@request.response.body} raised an error:")
         raise e
