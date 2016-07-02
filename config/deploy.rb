@@ -50,8 +50,10 @@ namespace :deploy do
 
       # brunch
       # execute "alias node=/home/ubuntu/.nvm/v5.0.0/bin/node | node -v" # we artifically set the node version
-      execute "cd /var/www/germany_in_the_box/current/app_front && npm install && brunch build --production"
-	     execute "chmod +x /var/www/germany_in_the_box/current/config/cron/dump_and_restore.sh"
+      #execute "cd /var/www/germany_in_the_box/current/app_front && npm install && brunch build --production"
+	    #ll ~/.nvm/versions/node/v5.0.0/bin/brunch
+      execute "cd /var/www/germany_in_the_box/current/app_front && npm install && ~/.nvm/versions/node/v5.0.0/bin/brunch build --production"
+      execute "chmod +x /var/www/germany_in_the_box/current/config/cron/dump_and_restore.sh"
 
       # Here we can do anything such as:
       # within release_path do
