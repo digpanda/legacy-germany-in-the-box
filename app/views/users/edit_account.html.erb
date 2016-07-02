@@ -1,4 +1,14 @@
 <div class="col-md-6 col-sm-9 col-xs-12 +white-box">
+
+  <div class="form-group">
+    <div class="pull-right required-info">
+      <strong>
+        <%= I18n.t(:required_field_info, scope: :edit_shop).html_safe %>
+      </strong>
+    </div>
+  </div>
+
+
   <%= form_for @user, html: {method: 'patch', 'data-toggle': 'validator'} do |f| %>
     <% unless @user.role == :shopkeeper %>
       <div class="form-group">
