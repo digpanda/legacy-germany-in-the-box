@@ -6,7 +6,6 @@ module BorderGuru
 
       def initialize(finished_request)
         @request = finished_request
-        Rails.logger.error("TESTING BORDERGURU REQUEST : #{@request}")
       end
 
       def success?
