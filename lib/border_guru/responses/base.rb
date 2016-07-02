@@ -1,3 +1,5 @@
+require 'border_guru/error'
+
 module BorderGuru
   module Responses
     class Base
@@ -17,13 +19,12 @@ module BorderGuru
       end
 
       def response_data
-        JSON.parse(@request.response.body)
+        response_body = JSON.parse(@request.response.body)
+        raise BorderGuru::Error.new response_body["error"]["message"] if response_body["error"]
       rescue JSON::ParserError => e
         Rails.logger.error("JSON-parsing of #{@request.response.body} raised an error:")
         raise e
       end
-
-
     end
   end
 end
