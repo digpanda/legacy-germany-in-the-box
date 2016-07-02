@@ -33,9 +33,10 @@ body {
 
 
 .invalidBorderClass{
-    border-color: darkred !important;
+    border-color: #A94442 !important;
     border-width:1px !important;
     border-style: solid !important;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset !important;
 }
 
 .fileUpload {
