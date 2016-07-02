@@ -139,7 +139,7 @@ class ApplicationController < ActionController::Base
   end
 
   HTTP_ERRORS = [
-    Net::HTTPBadRequest
+    Net::HTTPBadRequest,
     Net::HTTPBadResponse,
     Net::HTTPHeaderSyntaxError,
     Net::ProtocolError,
