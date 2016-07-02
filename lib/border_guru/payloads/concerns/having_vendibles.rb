@@ -22,7 +22,6 @@ module BorderGuru
             sku: s.id,
             shortDescription: s.sku.product.name,
             price: s.price,
-            #category: "test",
             category: (Rails.env.production? ? s.sku.product.duty_category.code : 'test'),
             weight: s.weight,
             weightScale: WEIGHT_UNIT,
