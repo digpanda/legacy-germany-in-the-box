@@ -4,21 +4,19 @@ module BorderGuru
   module Responses
     class Base
 
-  def devlog
-    @@devlog ||= Logger.new(Rails.root.join("log/testing_borderguru.log"))
-  end
+      def devlog
+        @@devlog ||= Logger.new(Rails.root.join("log/testing_borderguru.log"))
+      end
 
-
-  HTTP_ERRORS = [
-    Net::HTTPBadRequest,
-    Net::HTTPBadResponse,
-    Net::HTTPHeaderSyntaxError,
-    Net::ProtocolError,
-    Net::ReadTimeout
-  ]
+      HTTP_ERRORS = [
+        Net::HTTPBadRequest,
+        Net::HTTPBadResponse,
+        Net::HTTPHeaderSyntaxError,
+        Net::ProtocolError,
+        Net::ReadTimeout
+      ]
 
       def initialize(finished_request)
-        devlog.info "TESTING BORDERGURU REQUEST : #{@request}"
         @request = finished_request
       end
 
@@ -33,12 +31,12 @@ module BorderGuru
       end
 
       def response_data
+      begin
         devlog.info "TESTING BORDERGURU REQUEST AGAIN : #{@request}"
         devlog.info "TESTING BORDERGURU REQUEST RESPONSE : #{@request.response}"
         response_body = JSON.parse(@request.response.body)
         raise BorderGuru::Error.new response_body["error"]["message"] if response_body["error"]
         response_body["response"]
-      
       rescue *HTTP_ERRORS => e
         devlog.info "TESTING BORDERGURU ERROR CATCHED : #{e}"
         logger.fatal "Failed to connect to Borderguru: #{e}"
