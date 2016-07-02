@@ -28,5 +28,5 @@ staging:
   <<: *defaults
 
 production:
-  #<<: *defaults
+  <<: *defaults
   host: http://app.borderguru.com/
