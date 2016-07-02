@@ -119,6 +119,8 @@ zh-CN:
     delete_shop_message: 确定删除所选账户吗？
     remove: 删除
     accounts: 账户管理
+    shopkeeper_photo: 店主照片
+    shopkeeper_photo_info: 您的照片会给您的店铺增色不少
   edit_account:
     username: 用户ID
     email: 注册信箱
