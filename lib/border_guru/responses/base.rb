@@ -4,9 +4,13 @@ module BorderGuru
   module Responses
     class Base
 
+  def devlog
+    @@devlog ||= Logger.new(Rails.root.join("log/testing_borderguru.log"))
+  end
+
       def initialize(finished_request)
         @request = finished_request
-        Rails.logger.error("TESTING BORDERGURU REQUEST : #{@request}")
+        devlog.info "TESTING BORDERGURU REQUEST : #{@request}"
       end
 
       def success?
