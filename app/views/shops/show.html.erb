@@ -16,16 +16,31 @@
           <!-- Content -->
           <div class="shop-page-cover__content +centered">
 
-          <div class="shop-page-cover__content --avatar +centered" style="background-image:url('<%= @shop.decorate.image_url(:logo, :detail
-            ) %>');"></div>
+            <div class="row">
+
+              <div class="shop-page-cover__content --avatar +centered" style="background-image:url('<%= @shop.decorate.image_url(:logo, :detail
+              ) %>');"></div>
+
+            </div>
 
             <div class="+small-spacer"></div>
 
-            <h2><%= @shop.shopname %></h2>
-            <div class="shop-page-cover__author">by <%= @shop.decorate.manager_full_name %></div>
+            <div class="row">
+
+              <h2><%= @shop.shopname %></h2>
+              <div class="shop-page-cover__author">by <%= @shop.decorate.manager_full_name %></div>
+
+            </div>
 
             <div class="+small-spacer"></div>
-            <%= @shop.desc %>
+
+            <div class="row">
+
+              <div class="col-md-8 col-md-push-2 col-md-pull-2">
+                <%= @shop.desc %>
+              </div>
+
+            </div>
 
             <div class="+small-spacer"></div>
 
