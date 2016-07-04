@@ -17,7 +17,7 @@ var Footer = {
      */
     stickyFooter: function() {
 
-      self = this;
+      var self = this;
 
       if ($('.js-footer-stick').length > 0) {
 

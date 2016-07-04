@@ -18,8 +18,6 @@ var ImagesControl = {
 
     validateImageFile: function() {
 
-      console.log('WE ARE IN IMAGES CONTROL')
-
       $("input[class^=img-file-upload]").on('change', function() {
 
         var Messages = require("javascripts/lib/messages");
