@@ -8188,6 +8188,20 @@ img.mfp-img {
         .category-blocks__block.\--fashion:hover img {
           -webkit-filter: brightness(0) invert(1);
           filter: brightness(0) invert(1); }
+    /* line 40, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
+    .category-blocks__block.\--luxury {
+      padding: 1em;
+      background-color: #fdfdfd; }
+      /* line 50, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_category-blocks.sass */
+      .category-blocks__block.\--luxury:hover {
+        background-color: #659443; }
+        /* line 31, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/helpers/_mixins.sass */
+        .category-blocks__block.\--luxury:hover h2 {
+          color: #fdfdfd; }
+        /* line 33, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/helpers/_mixins.sass */
+        .category-blocks__block.\--luxury:hover img {
+          -webkit-filter: brightness(0) invert(1);
+          filter: brightness(0) invert(1); }
 
 /* line 32, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
 .category-menu {
