@@ -78,12 +78,15 @@
         <div class="form-group">
           <div class="row">
             <div class="col-md-3">
+              <i class="fa fa-info-circle" title="Zolltarifnummer ist ein 8-stellige Nummer, steht für jede Produkt. Ausfuhr, ist die Warenverzeichnis für die Außenhandelsstatistik gleich als Zolltarifnummer für Ausfuhr."></i>
               <label class="required">
-                <%=I18n.t(:hs_code, scope: :edit_product, locale: locale) %>
+                <%= I18n.t(:hs_code, scope: :edit_product, locale: locale) %>
               </label>
+              <br />
+              Sie können die 8-stellige Zolltarifnr. <a href="https://www.destatis.de/DE/Methoden/Klassifikationen/Aussenhandel/warenverzeichnis_downloads.html" target="_blank">HIER</a> finden.
             </div>
             <div class="col-md-9">
-              <%= f.text_field :hs_code, :value => @product.hs_code, :class => 'form-control', :required => true, :pattern => '^\d{8,8}$' %>
+              <%= f.text_field :hs_code, :value => @product.hs_code, :class => 'form-control', :required => true, :pattern => '^\d{8,8}$', :placeholder => '48191000' %>
             </div>
           </div>
         </div>

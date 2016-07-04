@@ -32,9 +32,11 @@
         "fonts/fontawesome-webfont.woff"
       ]
     },
-    "freewall": {
+    "magnify": {
       "main": [
-        "freewall.js"
+        "dist/js/jquery.magnify-mobile.js",
+        "dist/js/jquery.magnify.js",
+        "dist/css/magnify.css"
       ]
     },
     "bootstrap": {

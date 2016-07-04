@@ -19,7 +19,8 @@ module Wirecard
                 :request_id, 
                 :default_redirect_url,
                 :success_redirect_url,
-                :fail_redirect_url
+                :fail_redirect_url,
+                :order
 
     def initialize(user, args={})
 
@@ -30,6 +31,7 @@ module Wirecard
       @currency            = args[:currency]
       @order_number        = args[:order_number]
       @order_detail        = args[:order_detail]
+      @order               = args[:order]
       @request_time_stamp  = timestamp
       @request_id          = [timestamp, user.id, order_number].join('-')
       @hosted_payment_url  = ::Rails.application.config.wirecard[:customers][:hosted_payment_url]
@@ -66,12 +68,12 @@ module Wirecard
 
         :email                     => user.email,
         :phone                     => user.tel,
-        :street1                   => user.addresses.first.decorate.street_and_number,
+        :street1                   => order.billing_address.decorate.street_and_number,
         :street2                   => "",
-        :city                      => user.addresses.first.city,
-        :state                     => user.addresses.first.province,
-        :postal_code               => user.addresses.first.zip,
-        :country                   => user.addresses.first.country.alpha2,
+        :city                      => order.billing_address.city,
+        :state                     => order.billing_address.province,
+        :postal_code               => order.billing_address.zip,
+        :country                   => order.billing_address.country.alpha2,
         :ip_address                => "127.0.0.1"
       }
 
