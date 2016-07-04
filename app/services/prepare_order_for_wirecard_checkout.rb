@@ -22,6 +22,7 @@ class PrepareOrderForWirecardCheckout < BaseService
         :secret_key   => secret_key,
         
         :order_number => order.id,
+        :otfrt        => order, # this was added after, we need to GLOBALLY refacto the lib in a smarter way after TDD.
         
         :amount       => amount,
         :currency     => currency,
