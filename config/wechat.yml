@@ -13,7 +13,11 @@ test:
   <<: *defaults
 
 staging:
-  <<: *defaults
+  username: wx84debd17520da2a3
+  password: 07e1c9e9e850d3e6b8e0b8a83a9ac0e9
+  scope: snsapi_login
 
 production:
-  <<: *defaults
+  username: wx8ab7df24273a9a0c
+  password: aee7e495382a333e2c1e7ae063c00644
+  scope: snsapi_login
