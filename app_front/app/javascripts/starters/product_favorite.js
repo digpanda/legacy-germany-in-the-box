@@ -17,7 +17,7 @@ var ProductFavorite = {
      */
     manageHeartClick: function() {
 
-      self = this;
+      var self = this;
 
       $(".js-heart-click").on("click", function(e) {
 
