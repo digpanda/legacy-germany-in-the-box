@@ -7,7 +7,7 @@
   config.qiniu_bucket_domain  = Rails.env.production? ? 'o9fhtjfm2.qnssl.com' : 'o9fh2muer.qnssl.com'
   config.qiniu_bucket_private = true
   config.qiniu_block_size     = 4*1024*1024
-  config.qiniu_protocol       = 'http'
+  config.qiniu_protocol       = 'https'
   config.qiniu_up_host        = 'http://up.qiniug.com'
 
 end
