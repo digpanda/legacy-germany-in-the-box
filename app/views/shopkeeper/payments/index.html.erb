@@ -12,11 +12,7 @@
             to activate this section
           <% else %>
             <% if @shop.wirecard_status == :unactive %>
-              <% if current_user.is_shopkeeper? %>
-                <%= link_to "Registrieren für WireCard Checkoutportal", apply_shopkeeper_wirecard_path, {class: "btn btn-danger", target: "_blank" } %>
-              <% else %>
-                This company didn't apply to WireCard yet.
-              <% end %>
+              <%= link_to "Registrieren für WireCard Checkoutportal", apply_shopkeeper_wirecard_path, {class: "btn btn-danger", target: "_blank" } %>
             <% elsif @shop.wirecard_status == :active %>
               Your status was approved
             <% elsif @shop.wirecard_status == :processing %>

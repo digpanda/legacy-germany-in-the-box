@@ -17,6 +17,9 @@
         <%= I18n.t('agb.info', scope: :edit_shops) %>
       </th>
       <th>
+        Wirecard
+      </th>
+      <th>
         <%= I18n.t(:products, scope: :edit_shops) %>
       </th>
       <th>
@@ -40,6 +43,22 @@
           </td>
           <td>
             <%= s.agb ? I18n.t(s.agb.to_s, scope: 'edit_shops.agb') : '' %>
+          </td>
+          <td>
+          <!-- Should be refactored -->
+          <% if s.wirecard_status == :unactive %>
+              Not applied
+            <% elsif s.wirecard_status == :active %>
+              Active
+            <% elsif s.wirecard_status == :processing %>
+              Processing
+            <% elsif s.wirecard_status == :documents_complete %>
+             Documents complete
+            <% elsif s.wirecard_status == :declined %>
+              Disapproved
+            <% elsif s.wirecard_status == :terminated %>
+              Terminated
+            <% end %>
           </td>
           <td>
             <%= link_to I18n.t(:products_info, scope: :edit_shops, num: s.products.size), show_products_shop_path(s, :user_info_edit_part => :edit_shops) %>
