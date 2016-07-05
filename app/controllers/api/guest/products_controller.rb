@@ -2,6 +2,7 @@ class Api::Guest::ProductsController < Api::ApplicationController
 
   load_and_authorize_resource
 
+  # Refactorize into better controller (Skus)
   def show_sku
 
     skus = @product.skus

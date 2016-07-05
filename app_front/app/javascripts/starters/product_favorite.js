@@ -29,11 +29,8 @@ var ProductFavorite = {
         if (favorite == '1') {
 
           // We remove the favorite front data
-          $(this).removeClass('+red');
-          $(this).addClass('+grey');
-          $(this).attr('data-favorite', '0');
-          
-          ProductFavorite.doUnlike(this, productId, function(res) {
+          ProductFavorite.doUnlikeDisplay(this);
+          ProductFavorite.doUnlike(productId, function(res) {
 
             let favoritesCount = res.favorites.length;
             $('#total-likes').html(favoritesCount);
@@ -43,11 +40,8 @@ var ProductFavorite = {
         } else {
 
           // We change the style before the callback for speed reason
-          $(this).addClass('+red');
-          $(this).removeClass('+grey');
-          $(this).attr('data-favorite', '1');
-
-          ProductFavorite.doLike(this, productId, function(res) {
+          ProductFavorite.doLikeDisplay(this);
+          ProductFavorite.doLike(productId, function(res) {
 
             let favoritesCount = res.favorites.length;
             $('#total-likes').html(favoritesCount);
@@ -60,25 +54,20 @@ var ProductFavorite = {
 
     },
 
-    doLike: function(el, productId, callback) {
+    doLike: function(productId, callback) {
 
-      // We should move it to front-end models
-      $.ajax({
-        method: "PUT",
-        url: "/api/customer/favorites/"+productId,
-        data: {}
+      var Product = require("javascripts/models/product");
+      var Messages = require("javascripts/lib/messages");
 
-      }).done(function(res) {
+      Product.like(productId, function(res) {
 
-        callback(res);
+        if (res.success === false) {
 
-      }).error(function(err) {
+          Messages.makeError(res.error);
 
-        // If it's a Unauthorized code, it means we are not logged in, let's trigger.
-        if (err.status == 401) {
-          
-          $(el).removeClass('+red');
-          $("#sign_in_link").click();
+        } else {
+
+          callback(res);
 
         }
 
@@ -86,23 +75,40 @@ var ProductFavorite = {
 
     },
 
-    doUnlike: function(el, productId, callback) {
-      
-      // We should move it to front-end models
-      $.ajax({
-        method: "DELETE",
-        url: "/api/customer/favorites/"+productId,
-        data: {}
+    doLikeDisplay: function(el) {
 
-      }).done(function(res) {
+      $(el).addClass('+red');
+      $(el).removeClass('+grey');
+      $(el).attr('data-favorite', '1');
 
-        callback(res);
+    },
 
-      }).error(function(err) {
+    doUnlike: function(productId, callback) {
 
-        console.error(err.responseJSON.error);
+      var Product = require("javascripts/models/product");
+      var Messages = require("javascripts/lib/messages");
+
+      Product.unlike(productId, function(res) {
+
+        if (res.success === false) {
+
+          Messages.makeError(res.error);
+
+        } else {
+
+          callback(res);
+
+        }
 
       });
+
+    },
+
+    doUnlikeDisplay: function(el) {
+
+      $(el).removeClass('+red');
+      $(el).addClass('+grey');
+      $(el).attr('data-favorite', '0');
 
     },
 }

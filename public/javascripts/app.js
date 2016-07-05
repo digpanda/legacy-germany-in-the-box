@@ -1070,6 +1070,56 @@ var OrderItem = {
 module.exports = OrderItem;
 });
 
+require.register("javascripts/models/product.js", function(exports, require, module) {
+"use strict";
+
+/**
+ * Product Class
+ */
+var Product = {
+
+  /**
+   * Like a product
+   */
+  like: function like(productId, callback) {
+
+    $.ajax({
+      method: "PUT",
+      url: "/api/customer/favorites/" + productId,
+      data: {}
+
+    }).done(function (res) {
+
+      callback(res);
+    }).error(function (err) {
+
+      callback({ success: false, error: err });
+    });
+  },
+
+  /**
+   * Unlike a product
+   */
+  unlike: function unlike(productId, callback) {
+
+    $.ajax({
+      method: "DELETE",
+      url: "/api/customer/favorites/" + productId,
+      data: {}
+
+    }).done(function (res) {
+
+      callback(res);
+    }).error(function (err) {
+
+      callback({ success: false, error: err.responseJSON.error });
+    });
+  }
+};
+
+module.exports = Product;
+});
+
 require.register("javascripts/models/user.js", function(exports, require, module) {
 "use strict";
 
@@ -1529,11 +1579,8 @@ var ProductFavorite = {
       if (favorite == '1') {
 
         // We remove the favorite front data
-        $(this).removeClass('+red');
-        $(this).addClass('+grey');
-        $(this).attr('data-favorite', '0');
-
-        ProductFavorite.doUnlike(this, productId, function (res) {
+        ProductFavorite.doUnlikeDisplay(this);
+        ProductFavorite.doUnlike(productId, function (res) {
 
           var favoritesCount = res.favorites.length;
           $('#total-likes').html(favoritesCount);
@@ -1541,11 +1588,8 @@ var ProductFavorite = {
       } else {
 
         // We change the style before the callback for speed reason
-        $(this).addClass('+red');
-        $(this).removeClass('+grey');
-        $(this).attr('data-favorite', '1');
-
-        ProductFavorite.doLike(this, productId, function (res) {
+        ProductFavorite.doLikeDisplay(this);
+        ProductFavorite.doLike(productId, function (res) {
 
           var favoritesCount = res.favorites.length;
           $('#total-likes').html(favoritesCount);
@@ -1554,43 +1598,52 @@ var ProductFavorite = {
     });
   },
 
-  doLike: function doLike(el, productId, callback) {
+  doLike: function doLike(productId, callback) {
 
-    // We should move it to front-end models
-    $.ajax({
-      method: "PUT",
-      url: "/api/customer/favorites/" + productId,
-      data: {}
+    var Product = require("javascripts/models/product");
+    var Messages = require("javascripts/lib/messages");
 
-    }).done(function (res) {
+    Product.like(productId, function (res) {
 
-      callback(res);
-    }).error(function (err) {
+      if (res.success === false) {
 
-      // If it's a Unauthorized code, it means we are not logged in, let's trigger.
-      if (err.status == 401) {
+        Messages.makeError(res.error);
+      } else {
 
-        $(el).removeClass('+red');
-        $("#sign_in_link").click();
+        callback(res);
       }
     });
   },
 
-  doUnlike: function doUnlike(el, productId, callback) {
+  doLikeDisplay: function doLikeDisplay(el) {
 
-    // We should move it to front-end models
-    $.ajax({
-      method: "DELETE",
-      url: "/api/customer/favorites/" + productId,
-      data: {}
+    $(el).addClass('+red');
+    $(el).removeClass('+grey');
+    $(el).attr('data-favorite', '1');
+  },
 
-    }).done(function (res) {
+  doUnlike: function doUnlike(productId, callback) {
 
-      callback(res);
-    }).error(function (err) {
+    var Product = require("javascripts/models/product");
+    var Messages = require("javascripts/lib/messages");
 
-      console.error(err.responseJSON.error);
+    Product.unlike(productId, function (res) {
+
+      if (res.success === false) {
+
+        Messages.makeError(res.error);
+      } else {
+
+        callback(res);
+      }
     });
+  },
+
+  doUnlikeDisplay: function doUnlikeDisplay(el) {
+
+    $(el).removeClass('+red');
+    $(el).addClass('+grey');
+    $(el).attr('data-favorite', '0');
   }
 };
 

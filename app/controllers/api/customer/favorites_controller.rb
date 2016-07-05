@@ -1,5 +1,4 @@
 #
-# This controller is linked with an App controller (Customer::FavoritesController)
 # We mainly manipulate the favorites product list via AJAX calls here
 #
 class Api::Customer::FavoritesController < Api::ApplicationController
@@ -23,7 +22,6 @@ class Api::Customer::FavoritesController < Api::ApplicationController
 
   private
 
-  # Could use some meta-programming here ?
   def set_favorites
     @favorites = current_user.favorites
   end

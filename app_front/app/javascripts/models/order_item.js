@@ -6,7 +6,7 @@ var OrderItem = {
   /**
    * Check if user is auth or not via API call
    */
-  setQuantity: function(orderItemId, quantity ,callback) {
+  setQuantity: function(orderItemId, quantity, callback) {
 
     $.ajax({
       method: "PATCH",
