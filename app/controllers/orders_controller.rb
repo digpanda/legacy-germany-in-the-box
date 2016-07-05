@@ -180,6 +180,7 @@ class OrdersController < ApplicationController
 
         :user        => current_user,
         :order       => order,
+        # IN CASE THE merchant_id don't work (i don't know cart.submerchant_id) YOU MUST KNOW THIS SHOULD MATCH THE shop.merchant_id which's a unique id to recognize merchants through wirecard. - Laurent, 2016/07/05
         :merchant_id => Rails.env.production? ? cart.submerchant_id : 'dfc3a296-3faf-4a1d-a075-f72f1b67dd2a', # @yl are you sure it's good ?
         :secret_key  => Rails.env.production? ? order.shop.wirecard_ee_secret_cc : "6cbfa34e-91a7-421a-8dde-069fc0f5e0b8",
         :amount      => cart.total_price_in_yuan,
