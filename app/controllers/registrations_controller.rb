@@ -42,17 +42,21 @@ class RegistrationsController < Devise::RegistrationsController
           sign_in(:user, User.find(resource.id)) # auto sign in
 
           if resource.is_customer?
+
             EmitNotificationAndDispatchToUser.new.perform({
               :user => resource,
-              :title => 'Welcome to Germany In The Box !',
-              :desc => "We are very pleased to know you're going to shop with us :)"
+              :title => '欢迎到来因盒!',
+              :desc => "亲，欢迎你到来因盒购物。"
             })
+
           elsif resource.is_shopkeeper?
+
              EmitNotificationAndDispatchToUser.new.perform({
               :user => resource,
-              :title => 'Welcome to Germany In The Box !',
-              :desc => "We are glad that you joined us. We will contact you soon ;)"
+              :title => 'Wilkommen bei Germany In The Box !',
+              :desc => "Vielen Dank für Ihren Antrag. Wir werden uns bald mit Ihnen in Verbindung setzten."
             })
+
           end
 
           respond_with resource, location: after_sign_up_path_for(resource)
