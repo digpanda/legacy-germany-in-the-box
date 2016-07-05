@@ -10,13 +10,13 @@ class EmitNotificationAndDispatchToUser < BaseService
   def perform(args={})
 
     # Should be dynamic @yl
-    user_id = args[:user_id]
+    user = args[:user]
     title  = args[:title]
     desc = args[:desc]
 
     notification = Notification.create({
 
-      :user_id => user_id,
+      :user_id => user.id,
       :title => title,
       :desc => desc
 
@@ -32,13 +32,11 @@ class EmitNotificationAndDispatchToUser < BaseService
 
   def dispatch_notification(notification)
 
-    #if notification.user.is_admin?
-    #elsif notification.user.is_shopkeeper?
-    #elsif notification.user.is_customer?
-    #end
-
-    UserMailer.notify(notification.user, notification.title, Rails.application.routes.url_helpers.shared_notifications_path).deliver_now
-
+    if notification.user.is_shopkeeper?
+      ShopkeeperMailer.notify(notification.user, notification.title, Rails.application.routes.url_helpers.shared_notifications_path).deliver_now
+    elsif notification.user.is_customer?
+      CustomerMailer.notify(notification.user, notification.title, Rails.application.routes.url_helpers.shared_notifications_path).deliver_now
+    end
   end
 
 end

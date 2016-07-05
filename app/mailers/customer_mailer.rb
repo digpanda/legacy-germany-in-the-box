@@ -1,5 +1,7 @@
-class UserMailer < ApplicationMailer
+class CustomerMailer < ApplicationMailer
+  
    default from: 'notifications@germanyinthebox.com'
+   layout 'mailers/customer'
  
   def notify(user, title, url)
     @user = user

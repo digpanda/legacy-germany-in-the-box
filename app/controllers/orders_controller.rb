@@ -233,7 +233,7 @@ class OrdersController < ApplicationController
       reset_shop_id_from_session(shop.id.to_s)
 
       EmitNotificationAndDispatchToUser.new.perform({
-        :user_id => shop.shopkeeper.id,
+        :user => shop.shopkeeper,
         :title => 'You just received a new order',
         :desc => "A customer just ordered in your shop. Check it out !"
       })
