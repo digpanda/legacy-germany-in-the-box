@@ -27,6 +27,7 @@ module CategoryBase
     scope :has_children,    ->  { where(:children_count.gt => 0) }
 
     index({parent: 1},      {unique: false, name: :idx_category_parent, sparse: true})
+    index({"name.en": 1},  {unique: false, name: :idx_category_name_en, sparse: true})
 
 =begin
     def self.tree
