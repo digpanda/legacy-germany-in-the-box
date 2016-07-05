@@ -1262,7 +1262,7 @@ var Footer = {
    */
   stickyFooter: function stickyFooter() {
 
-    self = this;
+    var self = this;
 
     if ($('.js-footer-stick').length > 0) {
 
@@ -1517,7 +1517,7 @@ var ProductFavorite = {
    */
   manageHeartClick: function manageHeartClick() {
 
-    self = this;
+    var self = this;
 
     $(".js-heart-click").on("click", function (e) {
 

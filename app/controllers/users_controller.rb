@@ -14,8 +14,6 @@ class UsersController < ApplicationController
                                     :new,
                                     :create]
 
-  layout :custom_sublayout, only: [:favorites]
-
   include Base64ToUpload
 
   layout :custom_sublayout, only: [:index, :edit_account, :edit_personal, :edit_bank, :favorites]
