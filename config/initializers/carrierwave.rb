@@ -8,6 +8,6 @@
   config.qiniu_bucket_private = true
   config.qiniu_block_size     = 4*1024*1024
   config.qiniu_protocol       = 'https'
-  config.qiniu_up_host        = 'https://up.qiniug.com'
+  config.qiniu_up_host        = 'http://up.qiniug.com'
 
 end
