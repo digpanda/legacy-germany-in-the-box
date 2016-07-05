@@ -34,10 +34,6 @@ class ShopDecorator < Draper::Decorator
     self.shop.addresses.size == 1 || self.shop.addresses.is_only_both.size < [Rails.configuration.max_num_shop_billing_addresses, Rails.configuration.max_num_shop_sender_addresses].min && (self.shop.addresses.is_only_billing.size < Rails.configuration.max_num_shop_billing_addresses || self.shop.addresses.is_only_sender.size < Rails.configuration.max_num_shop_sender_addresses)
   end
 
-  def gen_merchant_id
-    (self.c_at ? self.c_at.strftime('%y%m%d') : Date.today.strftime('%y%m%d')) + self.name[0,3].upcase
-  end
-
   def short_desc(characters=70)
     truncate(self.desc, :length => characters)
   end

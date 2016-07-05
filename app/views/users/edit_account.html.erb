@@ -7,13 +7,13 @@
 %>
 
 
-<% if @user.role == :shopkeeper %>
+<% if @user.is_customer? %>
     <div class="col-md-7 col-sm-12 col-xs-12 text-center +white-box">
       <%= form_for @user, html: {method: 'patch', 'data-toggle': 'validator'} do |f| %>
           <div class="form-group">
             <div class="row">
-              <%= f.label :pic, I18n.t(:shopkeeper_photo, scope: :edit_account), :class => 'control-label' %>
-              <i class="fa fa-info-circle" title="<%= I18n.t(:shopkeeper_photo_info, scope: :edit_account) %>"></i>
+              <%= f.label :pic, "Profile picture", :class => 'control-label' %>
+              <i class="fa fa-info-circle" title="Profile picture"></i>
             </div>
 
             <div class="row">
@@ -36,9 +36,9 @@
     </div>
 <% end %>
 
-<div class="gap"></div>
-
 <div class="col-md-7 col-sm-12 col-xs-12 +white-box">
+
+  <%= form_for @user, html: {method: 'patch', 'data-toggle': 'validator'} do |f| %>
 
   <div class="form-group">
     <div class="pull-right required-info">
@@ -48,12 +48,16 @@
     </div>
   </div>
 
-  <%= form_for @user, html: {method: 'patch', 'data-toggle': 'validator'} do |f| %>
-      <% unless @user.role == :shopkeeper %>
-          <div class="form-group">
-            <%= f.label :username, I18n.t(:username, scope: :edit_account), :class => 'control-label' %>
-            <%= f.text_field :username, :class => 'form-control', :readonly => true %>
-          </div>
+      <% if @user.is_shopkeeper? %>
+
+          <%= fields_for :shop, @user.shop do |shop_fields| %>
+
+            <div class="form-group">
+              <%= shop_fields.label :merchant_id, "Merchant ID", :class => 'control-label' %>
+              <%= shop_fields.text_field :merchant_id, :class => 'form-control', :readonly => true %>
+            </div>
+          <% end %>
+
       <% end %>
 
       <div class="form-group">
