@@ -616,67 +616,100 @@ var ProductsShow = {
     $('#gallery a:first').trigger('click');
   },
 
+  /**
+   * When the customer change of sku selection, it refreshes some datas (e.g. price)
+   */
   handleSkuChange: function handleSkuChange() {
 
     $('select#option_ids').change(function () {
 
-      var product_id = $(this).attr('product_id');
-      var option_ids = [];
+      var productId = $(this).attr('product_id');
+      var optionIds = $(this).val().split(',');
 
-      $('ul.product-page-meta-info [id^="product_' + product_id + '_variant"]').each(function (o) {
-        option_ids.push($(this).val());
-      });
+      var ProductSku = require("javascripts/models/product_sku");
+      var Messages = require("javascripts/lib/messages");
 
-      $.ajax({
+      ProductSku.show(productId, optionIds, function (res) {
 
-        dataType: 'json',
-        data: { option_ids: this.value.split(',') },
-        url: '/api/guest/products/' + product_id + '/show_sku',
-        success: function success(json) {
-          var qc = $('#product_quantity_' + product_id).empty();
+        if (res.success === false) {
 
-          for (var i = 1; i <= parseInt(json['quantity']); ++i) {
-            qc.append('<option value="' + i + '">' + i + '</option>');
-          }
+          Messages.makeError(res.error);
+        } else {
 
-          $('#product_price_with_currency_yuan').html(json['price_with_currency_yuan']);
-          $('#product_price_with_currency_euro').html(json['price_with_currency_euro']);
-          $('#quantity-left').html(json['quantity']);
-
-          // data means "description 2" here, yes i know.
-          if (typeof json['data'] !== "undefined") {
-
-            $('#product-file-attachment-and-datas').html(json['data']);
-          } else {
-
-            $('#product-file-attachment-and-datas').html('');
-          }
-
-          if (typeof json['file_attachment'] !== "undefined") {
-
-            if (typeof json['data'] !== "undefined") {
-              $('#product-file-attachment-and-datas').html();
-            }
-            $('#product-file-attachment-and-datas').append('<br /><a class="btn btn-default" href="' + json['file_attachment'] + '">PDF Documentation</a>');
-          }
-
-          var images = json['images'];
-
-          for (var _i = 0; _i < images.length; _i++) {
-
-            var image = images[_i];
-
-            if ($('#thumbnail-' + _i).length > 0) {
-              // DEPRECATED : $('#thumbnail-'+i).html('<a href="#" data-image="'+image.fullsize+'" data-zoom-image="'+image.zoomin+'"><img src="'+image.thumb+'" width="100px"></a>');
-              $('#thumbnail-' + _i).html('<a href="#" data-image="' + image.fullsize + '" data-zoom-image="' + image.zoomin + '"><div class="product-page__thumbnail-image" style="background-image:url(' + image.thumb + ');"></div></a>');
-            }
-          }
-
-          ProductsShow.handleProductGalery();
+          ProductsShow.skuChangeDisplay(productId, res);
         }
-
       });
     });
+  },
+
+  /**
+   * Change the display of the product page sku datas 
+   */
+  skuChangeDisplay: function skuChangeDisplay(productId, skuDatas) {
+
+    ProductsShow.refreshSkuQuantitySelect(productId, skuDatas['quantity']); // productId is useless with the new system (should be refactored)
+
+    $('#product_price_with_currency_yuan').html(skuDatas['price_with_currency_yuan']);
+    $('#product_price_with_currency_euro').html(skuDatas['price_with_currency_euro']);
+    $('#quantity-left').html(skuDatas['quantity']);
+
+    ProductsShow.refreshSkuSecondDescription(skuDatas['data']);
+    ProductsShow.refreshSkuAttachment(skuDatas['data'], skuDatas['file_attachment']);
+    ProductsShow.refreshSkuThumbnailImages(skuDatas['images']);
+
+    ProductsShow.handleProductGalery();
+  },
+
+  /**
+   * Refresh sku quantity select (quantity dropdown)
+   */
+  refreshSkuQuantitySelect: function refreshSkuQuantitySelect(productId, quantity) {
+
+    var quantity_select = $('#product_quantity_' + productId).empty();
+
+    for (var i = 1; i <= parseInt(quantity); ++i) {
+      quantity_select.append('<option value="' + i + '">' + i + '</option>');
+    }
+  },
+
+  /**
+   * Refresh sku thumbnail images list
+   */
+  refreshSkuThumbnailImages: function refreshSkuThumbnailImages(images) {
+
+    for (var i = 0; i < images.length; i++) {
+
+      var image = images[i];
+
+      if ($('#thumbnail-' + i).length > 0) {
+        $('#thumbnail-' + i).html('<a href="#" data-image="' + image.fullsize + '" data-zoom-image="' + image.zoomin + '"><div class="product-page__thumbnail-image" style="background-image:url(' + image.thumb + ');"></div></a>');
+      }
+    }
+  },
+
+  /**
+   * Refresh the sku second description
+   */
+  refreshSkuSecondDescription: function refreshSkuSecondDescription(second_description) {
+
+    if (typeof second_description !== "undefined") {
+      $('#product-file-attachment-and-datas').html(second_description);
+    } else {
+      $('#product-file-attachment-and-datas').html('');
+    }
+  },
+
+  /**
+   * Refresh the sku attachment (depending on second description too)
+   */
+  refreshSkuAttachment: function refreshSkuAttachment(second_description, attachment) {
+
+    if (typeof attachment !== "undefined") {
+      if (typeof second_description !== "undefined") {
+        $('#product-file-attachment-and-datas').html();
+      }
+      $('#product-file-attachment-and-datas').append('<br /><a class="btn btn-default" href="' + attachment + '">PDF Documentation</a>');
+    }
   }
 
 };
@@ -1115,9 +1148,45 @@ var Product = {
       callback({ success: false, error: err.responseJSON.error });
     });
   }
+
 };
 
 module.exports = Product;
+});
+
+require.register("javascripts/models/product_sku.js", function(exports, require, module) {
+'use strict';
+
+/**
+ * ProductSku Class
+ */
+var ProductSku = {
+
+  /**
+   * Get the ProductSku details
+   */
+  show: function show(productId, optionIds, callback) {
+
+    console.log(option_ids);
+
+    $.ajax({
+
+      method: "GET",
+      url: '/api/guest/products/' + productId + '/show_sku',
+      data: { option_ids: optionIds }
+
+    }).done(function (res) {
+
+      callback(res);
+    }).error(function (err) {
+
+      callback({ success: false, error: err });
+    });
+  }
+
+};
+
+module.exports = ProductSku;
 });
 
 require.register("javascripts/models/user.js", function(exports, require, module) {
