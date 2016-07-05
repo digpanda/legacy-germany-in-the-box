@@ -20,7 +20,7 @@ describe Api::Webhook::Wirecard::MerchantsController, :type => :controller do
 
       it "should throw a bad credentials error" do
 
-        params = {"merchant_id" => "#{shopkeeper.shop.id}", "merchant_status": "processing", "reseller_id": "bad-reseller-id"}
+        params = {"merchant_id" => "#{shopkeeper.shop.merchant_id}", "merchant_status": "processing", "reseller_id": "bad-reseller-id"}
         post :create, request_wirecard_post(params)
         expect(response).to have_http_status(:unauthorized)
         expect(response_json_body["success"]).to eq(false) # Check if the server replied properly
@@ -40,7 +40,7 @@ describe Api::Webhook::Wirecard::MerchantsController, :type => :controller do
 
       it "should throw a validation error for bad wirecard status" do
 
-        params = {"merchant_id" => "#{shopkeeper.shop.id}", "merchant_status": "bad-merchant-status", "reseller_id": Rails.application.config.wirecard[:merchants][:reseller_id]}
+        params = {"merchant_id" => "#{shopkeeper.shop.merchant_id}", "merchant_status": "bad-merchant-status", "reseller_id": Rails.application.config.wirecard[:merchants][:reseller_id]}
         post :create, request_wirecard_post(params)
         expect(response).to have_http_status(:bad_request)
         expect(response_json_body["success"]).to eq(false) # Check if the server replied properly
@@ -50,7 +50,7 @@ describe Api::Webhook::Wirecard::MerchantsController, :type => :controller do
 
       it "should change the merchant status and return a success" do
 
-        params = {"merchant_id" => "#{shopkeeper.shop.id}", "merchant_status": "processing", "reseller_id": Rails.application.config.wirecard[:merchants][:reseller_id]}
+        params = {"merchant_id" => "#{shopkeeper.shop.merchant_id}", "merchant_status": "processing", "reseller_id": Rails.application.config.wirecard[:merchants][:reseller_id]}
         post :create, request_wirecard_post(params)
         expect(response).to have_http_status(:ok)
         expect(response_json_body["success"]).to eq(true) # Check if the server replied properly
@@ -61,7 +61,7 @@ describe Api::Webhook::Wirecard::MerchantsController, :type => :controller do
 
       it "should change the merchant status as active, fill its wirecard credentials and return a success" do
 
-        params = {"merchant_id" => "#{shopkeeper.shop.id}", "merchant_status": "ACTIVE", "reseller_id": Rails.application.config.wirecard[:merchants][:reseller_id],
+        params = {"merchant_id" => "#{shopkeeper.shop.merchant_id}", "merchant_status": "ACTIVE", "reseller_id": Rails.application.config.wirecard[:merchants][:reseller_id],
                   "wirecard_credentials" => {"ee_user_cc"=>"TEST-USER",
                                              "ee_password_cc"=>"TEST-PASSWORD", 
                                              "ee_secret_cc"=>"TEST-SECRET", 

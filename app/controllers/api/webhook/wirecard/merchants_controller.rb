@@ -30,7 +30,7 @@ class Api::Webhook::Wirecard::MerchantsController < Api::ApplicationController
     end
     devlog.info "It passed the authentication"
 
-    shop = Shop.where(id: datas[:merchant_id]).first
+    shop = Shop.where(merchant_id: datas[:merchant_id]).first
     if shop.nil?
       render status: :unprocessable_entity, 
              json: throw_error(:unknown_id).merge(error: "Unknown merchant id.").to_json and return
