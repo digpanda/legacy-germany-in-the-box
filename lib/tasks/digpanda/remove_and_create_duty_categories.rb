@@ -4,6 +4,9 @@ class Tasks::Digpanda::RemoveAndCreateDutyCategories
 
   def initialize
 
+    puts "We clear the file cache"
+    Rails.cache.clear
+
     puts "We first delete the duty categories"
     DutyCategory.all.delete
 
