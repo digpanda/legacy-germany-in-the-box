@@ -1126,7 +1126,7 @@ var Product = {
       callback(res);
     }).error(function (err) {
 
-      callback({ success: false, error: err });
+      callback({ success: false, error: err.responseJSON.error });
     });
   },
 
@@ -1180,7 +1180,7 @@ var ProductSku = {
       callback(res);
     }).error(function (err) {
 
-      callback({ success: false, error: err });
+      callback({ success: false, error: err.responseJSON.error });
     });
   }
 

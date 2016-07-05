@@ -19,7 +19,7 @@ var Product = {
 
       }).error(function(err) {
 
-        callback({success: false, error: err});
+        callback({success: false, error: err.responseJSON.error});
 
       });
 
