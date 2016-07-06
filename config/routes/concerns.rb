@@ -21,18 +21,6 @@ concern :shared_page do
   match :home,        via: [:get],    action: :home,        as: :home
 end
 
-concern :shared_customer_favorites do
-end
-
-concern :shared_shared_notifications do
-end
-
-concern :shared_guest_order_items do
-end
-
-concern :shared_guest_products do
-end
-
 concern :shared_products do
   match :approve, via: [:patch], action: :approve, as: :approve
   match :disapprove, via: [:patch], action: :disapprove, as: :disapprove

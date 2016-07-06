@@ -17,14 +17,13 @@ namespace :api, defaults: { format: 'json' }  do
       
       match :set_quantity, via: [:patch], action: :set_quantity, as: :set_quantity, :on => :member
 
-      concerns :shared_guest_order_items
     end
 
     resources :products  do
       
-      match :show_sku, via: [:get], action: :show_sku, as: :show_sku, :on => :member
+      resources :skus, :controller => 'products/skus' do
+      end
 
-      concerns :shared_guest_products
     end
 
   end
@@ -33,7 +32,6 @@ namespace :api, defaults: { format: 'json' }  do
   namespace :customer do
 
     resources :favorites  do
-      concerns :shared_customer_favorites
     end
 
   end

@@ -11,7 +11,7 @@ var ProductSku = {
       $.ajax({
 
         method: "GET",
-        url: '/api/guest/products/' + productId + '/show_sku',
+        url: '/api/guest/products/' + productId + '/skus/0',
         data: {option_ids: optionIds}
 
       }).done(function(res) {

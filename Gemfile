@@ -72,6 +72,9 @@ group :development do
   gem 'capistrano-rails'
   gem 'capistrano-rvm'
   gem 'capistrano-nvm'
+
+  gem 'rubocop', require: false
+
 end
 
 group :development, :test, :staging, :local do

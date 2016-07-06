@@ -62,11 +62,9 @@ end
 namespace :guest do
 
   resources :order_items  do
-    concerns :shared_guest_order_items
   end
 
   resources :products  do
-    concerns :shared_guest_products
   end
 
 end
@@ -75,7 +73,6 @@ end
 namespace :customer do
 
   resources :favorites  do
-    concerns :shared_customer_favorites
   end
 
 end
@@ -84,7 +81,6 @@ end
 namespace :shared do
 
   resources :notifications do
-    concerns :shared_shared_notifications
   end
 
 end
