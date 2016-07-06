@@ -172,7 +172,9 @@ class ProductsController < ApplicationController
       end
     end
 
-    if @product.update(product_params)
+    product_params_root = recursive_hash_delete(product_params, :suboptions_attributes) # To have mongoid to blow up by updating double attributes
+
+    if @product.update(product_params_root) && @product.update(product_params)
 
       if params[:part] == :basic.to_s
         flash[:success] = I18n.t(:update_ok, scope: :edit_product)
@@ -209,6 +211,14 @@ class ProductsController < ApplicationController
     end
 
   private
+
+  def recursive_hash_delete(hash, key)
+    p = proc do |_, v|
+      v.delete_if(&p) if v.respond_to? :delete_if
+      _ == key.to_s
+    end
+    hash.delete_if(&p)
+  end
 
     def set_product
       @product = Product.find(params[:id])
