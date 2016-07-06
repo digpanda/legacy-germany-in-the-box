@@ -71,7 +71,7 @@ class OrdersController < ApplicationController
   def add_product
 
     product = Product.find(params[:sku][:product_id])
-    sku = product.get_sku(params[:sku][:option_ids].split(','))
+    sku = product.sku_from_option_ids(params[:sku][:option_ids].split(','))
     quantity = params[:sku][:quantity].to_i
 
     co = current_order(product.shop_id.to_s)

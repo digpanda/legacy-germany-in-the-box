@@ -56,7 +56,7 @@ class Product
   index({categories: 1},      {unique: false, name: :idx_product_categories,      sparse: true})
   index({duty_category: 1},   {unique: false, name: :idx_product_duty_category,   sparse: true})
 
-  def get_sku(option_ids)
+  def sku_from_option_ids(option_ids)
     skus.detect {|s| s.option_ids.to_set == option_ids.to_set}
   end
 

@@ -1170,7 +1170,7 @@ var ProductSku = {
     $.ajax({
 
       method: "GET",
-      url: '/api/guest/products/' + productId + '/skus/0',
+      url: '/api/guest/products/' + productId + '/skus/0', // 0 is to match with the norm ... hopefully when we go away from mongo there's no such things
       data: { option_ids: optionIds }
 
     }).done(function (res) {
