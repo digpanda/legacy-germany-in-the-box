@@ -5,6 +5,10 @@ class ProductDecorator < Draper::Decorator
   delegate_all
   decorates :product
 
+  def sku_from_option_ids(option_ids)
+    skus.detect {|s| s.option_ids.to_set == option_ids.to_set}
+  end
+
   def product_cover_url
     if sku = skus.first
       first_nonempty = sku.decorate.all_nonempty_img_fields.first

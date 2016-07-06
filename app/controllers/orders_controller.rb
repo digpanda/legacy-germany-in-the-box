@@ -70,7 +70,7 @@ class OrdersController < ApplicationController
 
   def add_product
 
-    product = Product.find(params[:sku][:product_id])
+    product = Product.find(params[:sku][:product_id]).decorate
     sku = product.sku_from_option_ids(params[:sku][:option_ids].split(','))
     quantity = params[:sku][:quantity].to_i
 

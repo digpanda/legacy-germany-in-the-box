@@ -1,15 +1,14 @@
 class Api::Guest::OrderItemsController < Api::ApplicationController
 
   load_and_authorize_resource :class => OrderItem
-  
-  # +/- items of the same product
-  def set_quantity
 
-    quantity = params[:quantity].to_i
+  def update
+
+    quantity = order_item_params[:quantity].to_i
 
     if quantity <= 0
-      render :json => { :success => false, :error => I18n.t(:greater_than_zero, :scope => :cart) }
-      return
+      render status: :bad_request,
+           json: throw_error(:quantity_too_small).merge(error: I18n.t(:greater_than_zero, :scope => :cart)).to_json and return
     end
 
     product = @order_item.product
@@ -45,6 +44,12 @@ class Api::Guest::OrderItemsController < Api::ApplicationController
     else
       render :json => { :success => false, :error => @order_item.errors.full_messages.first }
     end
+  end
+
+  private
+
+  def order_item_params
+    params.permit(:quantity)
   end
 
 end

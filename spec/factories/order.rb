@@ -9,6 +9,7 @@ FactoryGirl.define do
       status :custom_checking
     end
 
+
     after(:build) do |order|
       order.order_items = build_list(:order_item, 2)
     end

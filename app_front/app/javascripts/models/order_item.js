@@ -10,12 +10,16 @@ var OrderItem = {
 
     $.ajax({
       method: "PATCH",
-      url: "/api/guest/order_items/"+orderItemId+"/set_quantity",
+      url: "/api/guest/order_items/"+orderItemId,
       data: {"quantity" : quantity}
 
     }).done(function(res) {
 
       callback(res);
+
+    }).error(function(err) {
+
+      callback({success: false, error: err.responseJSON.error});
 
     });
 

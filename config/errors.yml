@@ -25,3 +25,7 @@ resource_not_found:
 unauthorized_page:
   code: 7
   error: "Unauthorized page access."
+
+quantity_too_small:
+  code: 8
+  error: "Quantity too small."
