@@ -1167,8 +1167,6 @@ var ProductSku = {
    */
   show: function show(productId, optionIds, callback) {
 
-    console.log(option_ids);
-
     $.ajax({
 
       method: "GET",

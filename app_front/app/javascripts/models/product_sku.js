@@ -8,8 +8,6 @@ var ProductSku = {
    */
   show: function(productId, optionIds, callback) {
 
-      console.log(option_ids);
-
       $.ajax({
 
         method: "GET",
