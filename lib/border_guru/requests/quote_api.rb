@@ -5,7 +5,6 @@ module BorderGuru
     class QuoteApi < Base
 
       def dispatch!
-        binding.pry
         @raw_response = @@access_token.post(
           "/api/quotes/calculate?quoteParams=#{quote_params}",
           nil,
