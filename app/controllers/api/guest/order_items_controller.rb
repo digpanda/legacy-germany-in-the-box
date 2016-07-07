@@ -27,16 +27,18 @@ class Api::Guest::OrderItemsController < Api::ApplicationController
     if sku.unlimited or sku.quantity >= quantity
       @order_item.quantity = quantity
     else
-      render :json => { :success => false, :error => I18n.t(:not_all_available, scope: :checkout, :product_name => product.name, :option_names => sku.decorate.get_options_txt) }
+      render :json => { :success => false, :error => I18n.t(:not_all_available, scope: :checkout, :product_name => product.name, :option_names => sku.decorate.get_options_txt) } and return
     end
 
     if @order_item.save
+
       cart = current_cart(product.shop.id.to_s)
 
       if cart.nil?
         flash[:error] = I18n.t(:borderguru_unreachable_at_quoting, scope: :checkout)
         redirect_to root_path and return
       end
+
 
       @current_cart = cart
       @total_number_of_products = total_number_of_products

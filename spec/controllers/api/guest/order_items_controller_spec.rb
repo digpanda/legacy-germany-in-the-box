@@ -7,7 +7,8 @@ describe Api::Guest::OrderItemsController, :type => :controller do
     context "from guest customer" do
 
       let(:shop_with_orders) { FactoryGirl.create(:shop_with_orders) }
-      let(:settings) { FactoryGirl.create(:settings) } # important for the controller
+      let(:settings) { Settings.create! } # important for the controller
+      before { settings }
 
       it "set quantity to 0" do
 
@@ -25,7 +26,6 @@ describe Api::Guest::OrderItemsController, :type => :controller do
 
       it "set quantity to 2" do
 
-        settings
         order_item = shop_with_orders.orders.first.order_items.first
         product = order_item.product
 
@@ -34,8 +34,6 @@ describe Api::Guest::OrderItemsController, :type => :controller do
 
         expect(response).to have_http_status(:ok)
         expect(response_json_body["success"]).to eq(true) # Check if the server replied properly
-
-        binding.pry
 
       end
 
