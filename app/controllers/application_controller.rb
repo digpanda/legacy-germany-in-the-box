@@ -1,4 +1,5 @@
 require 'base64_to_upload'
+require 'border_guru'
 
 class ApplicationController < ActionController::Base
 
@@ -107,11 +108,13 @@ class ApplicationController < ActionController::Base
   end
 
   def current_cart(shop_id)
-    cart = Cart.new
 
+    cart = Cart.new
+    
     current_order(shop_id).order_items.each do |i|
       cart.add(i.sku, i.quantity)
     end
+
 
     begin
       BorderGuru.calculate_quote(

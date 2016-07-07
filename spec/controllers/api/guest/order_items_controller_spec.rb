@@ -24,6 +24,7 @@ describe Api::Guest::OrderItemsController, :type => :controller do
 
       end
 
+=begin
       it "set quantity to 2" do
 
         order_item = shop_with_orders.orders.first.order_items.first
@@ -36,7 +37,7 @@ describe Api::Guest::OrderItemsController, :type => :controller do
         expect(response_json_body["success"]).to eq(true) # Check if the server replied properly
 
       end
-
+=end
     end
 
   end

@@ -8639,6 +8639,7 @@ img.mfp-img {
   /* line 13, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_shop-page-product.sass */
   .shop-page-product h2 {
     margin: 0em;
+    margin-top: 0.5em;
     font-size: 1.7em;
     display: inline-block;
     white-space: nowrap;
@@ -8658,7 +8659,7 @@ img.mfp-img {
     -o-background-size: cover;
     background-size: cover;
     background-position: center center; }
-    /* line 30, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_shop-page-product.sass */
+    /* line 31, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_shop-page-product.sass */
     .shop-page-product__image img {
       max-width: 100%;
       max-height: 22em; }

@@ -39,7 +39,6 @@ class Api::Guest::OrderItemsController < Api::ApplicationController
         redirect_to root_path and return
       end
 
-
       @current_cart = cart
       @total_number_of_products = total_number_of_products
       @order = order
