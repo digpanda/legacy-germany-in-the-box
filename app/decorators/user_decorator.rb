@@ -13,7 +13,7 @@ class UserDecorator < Draper::Decorator
     if self.pic.url.nil?
      '/images/icons/default_user_pic.png'
     else
-      self.pic.url
+      self.pic.url(:thumb)
     end
   end
 
