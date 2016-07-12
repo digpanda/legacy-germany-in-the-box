@@ -79,9 +79,23 @@ var ProductsShow = {
 
     ProductsShow.refreshSkuQuantitySelect(productId, skuDatas['quantity']); // productId is useless with the new system (should be refactored)
 
-    $('#product_price_with_currency_yuan_yuan').html(skuDatas['price_with_currency_yuan_yuan']);
+    $('#product_price_with_currency_yuan').html(skuDatas['price_with_currency_yuan']);
     $('#product_price_with_currency_euro').html(skuDatas['price_with_currency_euro']);
     $('#quantity-left').html(skuDatas['quantity']);
+
+    if (skuDatas['discount'] == 0) {
+
+    $('#product_discount_with_currency_euro').html('');
+    $('#product_discount_with_currency_yuan').html('');
+    $('#product_discount').html('');
+
+    } else {
+
+    $('#product_discount_with_currency_euro').html(skuDatas['price_before_discount_in_euro']);
+    $('#product_discount_with_currency_yuan').html(skuDatas['price_before_discount_in_yuan']);
+    $('#product_discount').html(skuDatas['discount_with_percent']+'<br/>');
+
+    }
 
     ProductsShow.refreshSkuSecondDescription(skuDatas['data']);
     ProductsShow.refreshSkuAttachment(skuDatas['data'], skuDatas['file_attachment']);
