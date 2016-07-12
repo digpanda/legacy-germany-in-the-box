@@ -39,7 +39,6 @@ class ProductsController < ApplicationController
 
   def edit_sku
     @sku = @product.skus.find(params[:sku_id])
-    render :edit_sku
   end
 
   def clone_sku
@@ -173,7 +172,8 @@ class ProductsController < ApplicationController
     end
 
     product_params_root = recursive_hash_delete(product_params, :suboptions_attributes) # To have mongoid to blow up by updating double attributes
-
+    product_params_root.delete("category_ids") # replaced for no reason, we will refactor everything at some point
+    
     if @product.update(product_params_root) && @product.update(product_params)
 
       if params[:part] == :basic.to_s
