@@ -59,7 +59,7 @@
       <td>
         <%= i.order.is_bought? ? i.decorate.price_with_currency_yuan : i.sku.decorate.price_with_currency_yuan %>
         <% if i.sku.discount > 0 %>
-          <span class="+discount">(<%= i.sku.decorate.discount_with_percent %>)</span>
+          <span class="+discount"><%= i.sku.decorate.discount_with_percent %></span>
         <% end %>
       </td>
       <% unless @readonly %>
