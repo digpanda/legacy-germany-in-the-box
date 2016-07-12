@@ -81,14 +81,25 @@
   color: $color-grey
 
 +tweak(discount)
-  color: $color-red
+  background-color: $color-red
+  color: $color-white
   font-weight: 600
+  padding-left: 0.3em
+  +border-left-radius(2em)
 
 +tweak(big)
   font-size: 20px
-  
+
++tweak(medium)
+  font-size: 1.3em
+
 +tweak(barred)
-  text-decoration: line-through
+  border-bottom: 2px solid $color-red
+  margin-bottom: 2px
+  width: 6em
+  display: block
+  margin-top: 10px
+  position: absolute
 
 +tweak(unread)
   background-color: $color-light-yellow
