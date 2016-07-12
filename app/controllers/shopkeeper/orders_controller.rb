@@ -6,6 +6,8 @@ class Shopkeeper::OrdersController < ApplicationController
   load_and_authorize_resource
   before_action :set_order
 
+  CSV_ENCODE = "iso-8859-1"
+
   attr_reader :order
 
   def show
@@ -14,7 +16,9 @@ class Shopkeeper::OrdersController < ApplicationController
         render pdf: order.id.to_s, disposition: 'attachment'
       end
       format.csv do
-        render text: TurnOrdersIntoCsvAndStoreIt.new(order.shop, [order]).turn_orders, disposition: 'attachment'
+        render text: TurnOrdersIntoCsvAndStoreIt.new(order.shop, [order]).turn_orders.encode(CSV_ENCODE),
+               type: "text/csv; charset=#{CSV_ENCODE}; header=present", 
+               disposition: 'attachment'
       end
     end
   end
