@@ -35,11 +35,11 @@ class SkuDecorator < Draper::Decorator
   end
 
   def price_before_discount_in_yuan
-    "%.2f #{Settings.instance.platform_currency.symbol}" % (self.price_in_yuan * discount_calculation)
+    "%.2f #{Settings.instance.platform_currency.symbol}" % (self.price_in_yuan * 100 / discount_calculation)
   end
 
   def price_before_discount_in_euro
-    "%.2f #{Settings.instance.supplier_currency.symbol}" % (self.price * discount_calculation)
+    "%.2f #{Settings.instance.supplier_currency.symbol}" % (self.price * 100 / discount_calculation)
   end
 
   def discount_with_percent
@@ -47,7 +47,7 @@ class SkuDecorator < Draper::Decorator
   end
 
   def discount_calculation
-    (self.discount.to_f / 100) + 1
+    100-self.discount
   end
 
   def get_options_txt
