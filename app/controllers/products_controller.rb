@@ -165,16 +165,18 @@ class ProductsController < ApplicationController
   end
 
   def update
+
     if sku_attributes = params.require(:product)[:skus_attributes]
       sku_attributes.each do |k,v|
         v[:option_ids] = v[:option_ids].reject { |c| c.empty? }
       end
     end
 
-    product_params_root = recursive_hash_delete(product_params, :suboptions_attributes) # To have mongoid to blow up by updating double attributes
-    product_params_root.delete("category_ids") # replaced for no reason, we will refactor everything at some point
-    
-    if @product.update(product_params_root) && @product.update(product_params)
+    #param_options_only = {
+    #  :options_attributes => recursive_hash_delete(product_params.require(:options_attributes), :suboptions_attributes) # To have mongoid to blow up by updating double attributes
+    #}
+
+    if @product.update(product_params)
 
       if params[:part] == :basic.to_s
         flash[:success] = I18n.t(:update_ok, scope: :edit_product)

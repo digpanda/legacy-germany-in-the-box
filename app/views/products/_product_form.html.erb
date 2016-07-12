@@ -195,6 +195,7 @@
                     </div>
                   </div>
                   <div class="panel-body">
+
                     <%= fo.fields_for :suboptions do |fso| %>
                       <div class="form-inline">
                         <div class="form-group">
@@ -212,6 +213,7 @@
           </div>
         </div>
       </div>
+
       <% if @product.persisted? && @product.decorate.has_option? %>
         <div class="panel-footer clearfix">
           <a href="<%= show_skus_product_path(@product.id, :user_info_edit_part => :edit_product_detail) %>">

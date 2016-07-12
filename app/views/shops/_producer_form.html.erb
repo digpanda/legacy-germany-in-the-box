@@ -193,28 +193,6 @@
         </div>
       </div>
     </div>
-      <div class="panel-body">
-        <% if @shop.sales_channels %>
-          <% @shop.sales_channels.each_slice(2) do |sck, scv| %>
-            <div class="form-group">
-              <div class="row">
-                <div class="col-md-4">
-                  <%= select_tag 'shop[sales_channels][]', options_for_select(SalesChannelOptions::OPTIONS.map {|o| [I18n.t(o, scope: 'edit_shop.sales_channel_options', locale: locale), o]}, sck), :class => 'form-control' %>
-                </div>
-                <div class="col-md-6">
-                  <%= text_field_tag 'shop[sales_channels][]', scv, :class => 'form-control', :placeholder => I18n.t(:sales_channel, scope: :edit_shop, locale: locale), :required => true %>
-                </div>
-                <div class="col-md-2">
-                  <a class="btn" href="#" onclick="<%= gen_remove_sales_channel %>">
-                    <i class="fa fa-times-circle"></i>
-                    <%= I18n.t(:remove_sales_channel, scope: :edit_shop, locale: locale) %>
-                  </a>
-                </div>
-              </div>
-            </div>
-          <% end %>
-        <% end %>
-      </div>
     <div class="panel panel-info">
       <div class="panel-heading text-center">
         <h4>
