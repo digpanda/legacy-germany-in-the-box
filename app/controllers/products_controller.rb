@@ -149,6 +149,7 @@ class ProductsController < ApplicationController
   end
 
   def show
+    @mas = @product.decorate.get_mas.decorate
   end
 
   def create

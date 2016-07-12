@@ -16,23 +16,23 @@
           <%= @product.name %> <%= render partial: "products/show/like", :locals => { :product => @product } %>
         </h2>
 
-        <% if @product.decorate.get_mas %>
+        <% if @mas %>
 
           <span class="+discount"><%= @product.decorate.preview_discount %></span>
           <br />
           <span class="+barred +dark-grey">
-          <%= @product.decorate.preview_price_before_discount %>
-          <%= @product.decorate.preview_price_before_discount_with_currency_euro %>
+          <%= @mas.price_before_discount_in_yuan %>
+          <%= @mas.price_before_discount_in_euro %>
           </span>
 
-          <span id="product_price_with_currency_yuan" class="+price-yuan"><%= @product.decorate.preview_price %></span> <span id="product_price_with_currency_euro" class="+price-euro"><%= @product.decorate.preview_price_euro %></span>
+          <span id="product_price_with_currency_yuan_yuan" class="+price-yuan"><%= @product.decorate.preview_price_yuan %></span> <span id="product_price_with_currency_euro" class="+price-euro"><%= @product.decorate.preview_price_euro %></span>
 
 
         <% end %>
 
-        <% unless @product.decorate.get_mas.unlimited || @product.decorate.get_mas.quantity == 0 %>
-          <% if @product.decorate.get_mas.quantity <= ::Rails.application.config.digpanda[:products_warning] %>
-            | <span class="+red +up +bold"> Only <span id="quantity-left"><%= @product.decorate.get_mas.quantity %></span> left</span>
+        <% unless @mas.unlimited || @mas.quantity == 0 %>
+          <% if @mas.quantity <= ::Rails.application.config.digpanda[:products_warning] %>
+            | <span class="+red +up +bold"> Only <span id="quantity-left"><%= @mas.quantity %></span> left</span>
           <% end %>
         <% end %>
 
@@ -42,7 +42,7 @@
 
             <%= hidden_field_tag 'sku[product_id]', "#{@product.id}" %>
 
-            <% if @product.decorate.get_mas %>
+            <% if @mas %>
 
                 <%= render partial: "products/show/select_sku", :locals => {product: @product} %>
 
@@ -69,18 +69,18 @@
 
           <div id="product-file-attachment-and-data">
 
-          <% if @product.decorate.get_mas.attach0.file || @product.decorate.get_mas.data %>
+          <% if @mas.attach0.file || @mas.data %>
 
             <h3>More</h3>
 
-            <% if @product.decorate.get_mas.data %>
-              <%= @product.decorate.get_mas.data %>
+            <% if @mas.data %>
+              <%= @mas.data %>
             <% end %>
 
             <br />
 
-            <% if @product.decorate.get_mas.attach0.file %>
-              <a class="btn btn-default" href="<%=  @product.decorate.get_mas.attach0.url %>">PDF Documentation</a>
+            <% if @mas.attach0.file %>
+              <a class="btn btn-default" href="<%=  @mas.attach0.url %>">PDF Documentation</a>
             <% end %>
             
           <% end %>

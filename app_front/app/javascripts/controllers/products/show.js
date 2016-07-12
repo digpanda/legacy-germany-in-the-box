@@ -79,7 +79,7 @@ var ProductsShow = {
 
     ProductsShow.refreshSkuQuantitySelect(productId, skuDatas['quantity']); // productId is useless with the new system (should be refactored)
 
-    $('#product_price_with_currency_yuan').html(skuDatas['price_with_currency_yuan']);
+    $('#product_price_with_currency_yuan_yuan').html(skuDatas['price_with_currency_yuan_yuan']);
     $('#product_price_with_currency_euro').html(skuDatas['price_with_currency_euro']);
     $('#quantity-left').html(skuDatas['quantity']);
 

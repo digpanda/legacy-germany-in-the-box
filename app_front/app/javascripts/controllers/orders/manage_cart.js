@@ -80,7 +80,7 @@ var ManageCart = {
         // We first refresh the value in the HTML
         $('#order-item-quantity-'+orderItemId).val(orderItemQuantity);
         $('#total-products-'+orderShopId).html(res.data.amount_in_carts);
-        $('#order-subtotal-'+orderShopId).html(res.data.total_price_with_currency);
+        $('#order-subtotal-'+orderShopId).html(res.data.total_price_with_currency_yuan);
         //$('#order-duty-cost-'+orderShopId).html(res.data.duty_cost_with_currency);
         //$('#order-shipping-cost-'+orderShopId).html(res.data.shipping_cost_with_currency);
         $('#order-duty-and-shipping-cost-'+orderShopId).html(res.data.duty_and_shipping_cost_with_currency);

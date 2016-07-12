@@ -34,7 +34,6 @@ class ProductDecorator < Draper::Decorator
 
   def short_desc(characters=50)
     truncate(self.desc, :length => characters)
-    #self.desc.chars[0..characters].push("...").join
   end
 
   def clean_desc(characters=240)
@@ -50,33 +49,29 @@ class ProductDecorator < Draper::Decorator
   end
 
   def preview_discount
-    "-%.2f %" % (self.get_mas.discount)
+    self.get_mas.decorate.discount_with_percent
   end
 
-  def preview_price_before_discount
-    self.get_mas.decorate.price_before_discount
-  end
-
-  def preview_price_before_discount_with_currency_euro
-    self.get_mas.decorate.price_before_discount_with_currency_euro
-  end
-
-  def preview_price
+  def preview_price_yuan
+    self.get_mas.decorate.price_with_currency_yuan
+=begin
     preview_sku = self.skus.where(:quantity.ne => 0).first
     if preview_sku.nil?
         preview_sku = self.skus.first
       if preview_sku.nil?
-        preview_sku.decorate.price_with_currency
+        preview_sku.decorate.price_with_currency_yuan
       else
-        self.get_mas.decorate.price_with_currency
-        #"0.00 #{Settings.instance.supplier_currency.symbol}"
+        self.get_mas.decorate.price_with_currency_yuan
       end
     else
-      preview_sku.decorate.price_with_currency
+      preview_sku.decorate.price_with_currency_yuan
     end
+=end
   end
 
   def preview_price_euro
+    self.get_mas.decorate.price_with_currency_euro
+=begin
     preview_sku = self.skus.where(:quantity.ne => 0).first
     if preview_sku.nil?
       preview_sku = self.skus.first
@@ -89,5 +84,6 @@ class ProductDecorator < Draper::Decorator
     else
       preview_sku.decorate.price_with_currency_euro
     end
+=end
   end
 end

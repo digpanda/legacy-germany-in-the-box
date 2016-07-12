@@ -3,7 +3,7 @@ json.extract! @sku, :id, :weight, :status, :customizable, :discount
 
 json.quantity @sku.decorate.max_added_to_cart
 
-json.price_with_currency_yuan @sku.decorate.price_with_currency
+json.price_with_currency_yuan_yuan @sku.decorate.price_with_currency_yuan
 json.price_with_currency_euro @sku.decorate.price_with_currency_euro
 
 json.images do

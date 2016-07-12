@@ -9,7 +9,7 @@ class OrderDecorator < Draper::Decorator
     "%.2f#{Settings.instance.platform_currency.symbol}" % (total_price_in_yuan + shipping_cost_in_yuan + tax_and_duty_cost_in_yuan)
   end
 
-  def total_price_with_currency
+  def total_price_with_currency_yuan
     "%.2f#{Settings.instance.platform_currency.symbol}" % total_price_in_yuan
   end
 

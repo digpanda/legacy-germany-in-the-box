@@ -22,7 +22,7 @@ class SkuDecorator < Draper::Decorator
     all_nonempty_img_fields.map { |f| self.send(f).url }
   end
 
-  def price_with_currency
+  def price_with_currency_yuan
     "%.2f #{Settings.instance.platform_currency.symbol}" % (self.price_in_yuan)
   end
 
@@ -34,12 +34,16 @@ class SkuDecorator < Draper::Decorator
     "%.2f #{Settings.instance.supplier_currency.symbol}" % self.price
   end
 
-  def price_before_discount
+  def price_before_discount_in_yuan
     "%.2f #{Settings.instance.platform_currency.symbol}" % (self.price_in_yuan * discount_calculation)
   end
 
-  def price_before_discount_with_currency_euro
+  def price_before_discount_in_euro
     "%.2f #{Settings.instance.supplier_currency.symbol}" % (self.price * discount_calculation)
+  end
+
+  def discount_with_percent
+    "-%.2f %" % (self.discount)
   end
 
   def discount_calculation
