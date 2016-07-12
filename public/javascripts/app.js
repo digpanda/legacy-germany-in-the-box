@@ -665,7 +665,7 @@ var ProductsShow = {
       $('#product_discount').show();
 
       $('#product_discount_with_currency_euro').html(skuDatas['price_before_discount_in_euro']);
-      $('#product_discount_with_currency_yuan').html(skuDatas['price_before_discount_in_yuan']);
+      $('#product_discount_with_currency_yuan').html('<span class="+barred"></span>' + skuDatas['price_before_discount_in_yuan']);
       $('#product_discount').html(skuDatas['discount_with_percent'] + '<br/>');
     }
 
