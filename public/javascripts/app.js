@@ -655,10 +655,14 @@ var ProductsShow = {
 
     if (skuDatas['discount'] == 0) {
 
-      $('#product_discount_with_currency_euro').html('');
-      $('#product_discount_with_currency_yuan').html('');
-      $('#product_discount').html('');
+      $('#product_discount_with_currency_euro').hide();
+      $('#product_discount_with_currency_yuan').hide();
+      $('#product_discount').hide();
     } else {
+
+      $('#product_discount_with_currency_euro').show();
+      $('#product_discount_with_currency_yuan').show();
+      $('#product_discount').show();
 
       $('#product_discount_with_currency_euro').html(skuDatas['price_before_discount_in_euro']);
       $('#product_discount_with_currency_yuan').html(skuDatas['price_before_discount_in_yuan']);
