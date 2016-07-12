@@ -193,21 +193,6 @@
         </div>
       </div>
     </div>
-    <div class="panel panel-info">
-      <div class="panel-heading" title="<%= I18n.t(:sales_channels_info, scope: :edit_shop, num: Rails.configuration.max_num_sales_channels, locale: locale) %>">
-        <div class="btn-toolbar" style="margin-left:22px">
-          <i class="fa fa-info-circle" title="<%= I18n.t(:sales_channels_info, scope: :edit_shop, num: Rails.configuration.max_num_sales_channels, locale: locale) %>"></i>
-          <label>
-            <%= I18n.t(:sales_channels, scope: :edit_shop, locale: locale) %>
-          </label>
-          <div class="pull-right">
-            <a class="btn btn-sm" href="#" id="a_add_sales_channel_<%= @shop.id %>" onclick="<%= gen_add_sales_channel('shop', I18n.t(:sales_channel, scope: :edit_shop, locale: locale), I18n.t(:remove_sales_channel, scope: :edit_shop, locale: locale), gen_sales_channel_select_options(locale)) %>">
-              <i class="fa fa-plus-circle"></i>
-              <%= I18n.t(:add_sales_channel, scope: :edit_shop, locale: locale) %>
-            </a>
-          </div>
-        </div>
-      </div>
       <div class="panel-body">
         <% if @shop.sales_channels %>
           <% @shop.sales_channels.each_slice(2) do |sck, scv| %>
@@ -230,7 +215,6 @@
           <% end %>
         <% end %>
       </div>
-    </div>
     <div class="panel panel-info">
       <div class="panel-heading text-center">
         <h4>
