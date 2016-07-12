@@ -7806,6 +7806,16 @@ img.mfp-img {
   color: #eeeeee; }
 
 /* line 85, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
+#csstyle .\+discount {
+  color: #e74c3c;
+  font-weight: 600;
+  font-size: 20px; }
+
+/* line 85, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
+#csstyle .\+barred {
+  text-decoration: line-through; }
+
+/* line 85, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
 #csstyle .\+unread {
   background-color: #fffff0; }
 

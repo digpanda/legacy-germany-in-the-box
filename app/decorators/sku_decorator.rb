@@ -23,11 +23,27 @@ class SkuDecorator < Draper::Decorator
   end
 
   def price_with_currency
-    "%.2f #{Settings.instance.platform_currency.symbol}" % (self.price * Settings.instance.exchange_rate_to_yuan)
+    "%.2f #{Settings.instance.platform_currency.symbol}" % (self.price_in_yuan)
+  end
+
+  def price_in_yuan
+    self.price * Settings.instance.exchange_rate_to_yuan
   end
 
   def price_with_currency_euro
     "%.2f #{Settings.instance.supplier_currency.symbol}" % self.price
+  end
+
+  def price_before_discount
+    "%.2f #{Settings.instance.platform_currency.symbol}" % (self.price_in_yuan * discount_calculation)
+  end
+
+  def price_before_discount_with_currency_euro
+    "%.2f #{Settings.instance.supplier_currency.symbol}" % (self.price * discount_calculation)
+  end
+
+  def discount_calculation
+    (self.discount.to_f / 100) + 1
   end
 
   def get_options_txt

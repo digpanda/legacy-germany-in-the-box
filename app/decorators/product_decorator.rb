@@ -49,6 +49,18 @@ class ProductDecorator < Draper::Decorator
     skus.first ? skus.first.decorate.first_nonempty_img_url(:thumb) : 'no_image_available.jpg'
   end
 
+  def preview_discount
+    "-%.2f %" % (self.get_mas.discount)
+  end
+
+  def preview_price_before_discount
+    self.get_mas.decorate.price_before_discount
+  end
+
+  def preview_price_before_discount_with_currency_euro
+    self.get_mas.decorate.price_before_discount_with_currency_euro
+  end
+
   def preview_price
     preview_sku = self.skus.where(:quantity.ne => 0).first
     if preview_sku.nil?
