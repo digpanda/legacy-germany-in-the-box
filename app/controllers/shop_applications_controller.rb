@@ -5,7 +5,7 @@ class ShopApplicationsController < ApplicationController
 
   before_action :authenticate_user!, except: [:new, :create, :is_registered]
 
-  #respond_to :js, only: [:is_registered]
+  respond_to :js, only: [:is_registered]
   #before_action(only: [:new])  { I18n.locale = :de }
 
   before_action :set_shop_application, only: [:show, :destroy]
@@ -67,6 +67,23 @@ class ShopApplicationsController < ApplicationController
 
     flash[:success] = I18n.t(:delete_ok, scope: :edit_shop_application)
     redirect_to(:back)
+  end
+
+  def is_registered
+
+     render status: :not_found,
+            json: throw_error(:resource_not_found).to_json and return if shop_application_params["email"].nil?
+
+    if User.where(email: shop_application_params["email"]).first.nil?
+      render status: :ok, 
+             json: {success: true}.to_json and return
+    else
+      render status: :not_found,
+            json: throw_error(:resource_not_found).to_json and return if shop_application_params["email"].nil?
+
+    end
+
+
   end
 
   private
