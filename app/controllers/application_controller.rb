@@ -118,6 +118,7 @@ class ApplicationController < ActionController::Base
               country_of_destination: ISO3166::Country.new('CN'),
               currency: 'EUR'
           )
+
         end
       end
 
@@ -134,7 +135,7 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource)
     if current_user.is_customer?
-      session[:locale] = :'zh-CN' # We should refactor this area and put everything into one session setter somewhere
+      session[:locale] = :'zh-CN'
       navigation_history(1)
     elsif current_user.is_shopkeeper?
       session[:locale] = :'de'

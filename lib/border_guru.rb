@@ -11,7 +11,7 @@ module BorderGuru
 
   class << self
 
-    def calculate_quote(cart:, shop:, country_of_destination:, currency:)
+    def calculate_quote(cart:, shop:, country_of_destination:, currency:) 
       make_request(:QuoteApi,
         cart: cart,
         shop: shop,

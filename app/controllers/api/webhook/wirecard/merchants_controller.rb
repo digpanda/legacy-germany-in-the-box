@@ -36,14 +36,7 @@ class Api::Webhook::Wirecard::MerchantsController < Api::ApplicationController
     devlog.info "It passed the merchant recognition."
 
     shop.wirecard_status = clean_merchant_status
-
-    if shop.wirecard_status == :active
-      credentials = datas[:wirecard_credentials]
-      shop.wirecard_ee_user_cc = credentials[:ee_user_cc]
-      shop.wirecard_ee_password_cc = credentials[:ee_password_cc]
-      shop.wirecard_ee_secret_cc = credentials[:ee_secret_cc]
-      shop.wirecard_ee_maid_cc = credentials[:ee_maid_cc]
-    end
+    save_shop_wirecard_credentials!(shop, datas[:wirecard_credentials]) if shop.wirecard_status == :active
 
     throw_api_error(:wrong_update_attributes, {error: shop.errors.full_messages.join(', ')}) and return unless shop.save
 
@@ -59,6 +52,14 @@ class Api::Webhook::Wirecard::MerchantsController < Api::ApplicationController
   end
 
   private
+
+  def save_shop_wirecard_credentials!(shop, credentials)
+    shop.wirecard_ee_user_cc = credentials[:ee_user_cc]
+    shop.wirecard_ee_password_cc = credentials[:ee_password_cc]
+    shop.wirecard_ee_secret_cc = credentials[:ee_secret_cc]
+    shop.wirecard_ee_maid_cc = credentials[:ee_maid_cc]
+  end
+
 
   def authenticated_resource?(reseller_id)
     reseller_id == WIRECARD_CONFIG[:merchants][:reseller_id]
@@ -97,8 +98,7 @@ class Api::Webhook::Wirecard::MerchantsController < Api::ApplicationController
   end
 
   def validate_remote_server_request
-    render status: :bad_request, 
-           json: throw_error(:bad_format).to_json and return if !required_merchant_datas
+    throw_api_error(:bad_format, {}, :bad_request) and return if !required_merchant_datas
   end
 
 end
