@@ -12,21 +12,12 @@ class PrepareOrderForWirecardCheckout < BaseService
       merchant_id = args[:merchant_id]
       secret_key  = args[:secret_key]
       user        = args[:user]
-      order       = args[:order]
-      amount      = args[:amount]
-      currency    = args[:currency]
 
       wirecard = Wirecard::Customer.new(user, {
         
         :merchant_id  => merchant_id,
         :secret_key   => secret_key,
-        
-        :order_number => order.id,
-        :order        => order, # this was added after, we need to GLOBALLY refacto the lib in a smarter way after TDD.
-        
-        :amount       => amount,
-        :currency     => currency,
-        :order_detail => order.desc,
+        :order        => order,
 
       })
 
