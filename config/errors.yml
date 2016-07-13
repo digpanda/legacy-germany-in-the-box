@@ -1,3 +1,7 @@
+unknown_error:
+  code: 0
+  error: "Unknown error."
+
 bad_format:
   code: 1
   error: "Bad format."
@@ -29,3 +33,8 @@ unauthorized_page:
 quantity_too_small:
   code: 8
   error: "Quantity too small."
+
+bad_language:
+  code: 9
+  error: "Bad language."
+  

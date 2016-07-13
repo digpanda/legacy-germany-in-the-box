@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
   include UsersHelper
   include NavigationHistoryHelper
   include WickedPdfHelper
+  include ErrorsHelper
 
   include AppCache
 
@@ -24,7 +25,7 @@ class ApplicationController < ActionController::Base
 
   before_action { params[:top_menu_active_part] = current_top_menu_active_part }
 
-  before_action :set_locale, except: :set_session_locale
+  before_action :set_locale
 
   after_action :reset_last_captcha_code!
 
@@ -47,39 +48,6 @@ class ApplicationController < ActionController::Base
   def store_location
     store_navigation_history :except => ["/users/sign_in","/users/sign_up", "/users/sign_up", "/users/password/new", "/users/password/edit", "/users/confirmation", "/users/sign_out"]
   end
-
-  def set_session_locale
-    session[:locale] = params[:locale]
-    redirect_to root_url and return
-=begin
-    if request.referer.nil?
-      redirect_to root_url and return
-    else
-      redirect_to request.referer and return
-    end
-=end
-  end
-
-  def errors_config
-    @error_configuration ||= Rails.application.config.errors
-  end
-
-  def wirecard_config
-    @wirecard_configuration ||= Rails.application.config.wirecard
-  end
-
-  # WILL BE PLACED INTO A LIBRARY / HELPER AT SOME POINT
-  def throw_error(sym)
-    devlog.info errors_config[sym][:error] if self.respond_to?(:devlog)
-    {success: false}.merge(errors_config[sym])
-  end
-
-  def throw_model_error(model, view=nil)
-    flash[:error] = model.errors.full_messages.join(', ')
-    return render view if view
-    return redirect_to(:back)
-  end
-  # LIBRARY THROW OR SOMETHING (END)
 
   protected
 
@@ -198,27 +166,7 @@ class ApplicationController < ActionController::Base
     else
       I18n.locale = :'zh-CN'
       session[:locale] = I18n.locale
-=begin
-      if current_user&.is_customer?
-        if 'zh' == extract_locale
-          I18n.locale = :'zh-CN'
-        else
-          I18n.locale = :de
-        end
-      elsif current_user&.is_shopkeeper?
-        I18n.locale = :de
-      elsif current_user&.is_admin?
-        I18n.locale = :'zh-CN'
-      else
-        if 'zh' == extract_locale
-          I18n.locale = :'zh-CN'
-        else
-          I18n.locale = :de
-        end
-      end
-=end
     end
-
   end
 
   def set_translation_locale

@@ -10,6 +10,8 @@ class Api::Webhook::Wirecard::MerchantsController < Api::ApplicationController
   load_and_authorize_resource :class => User
   before_action :validate_remote_server_request
 
+  WIRECARD_CONFIG = Rails.application.config.wirecard
+
   #
   # Wirecard don't respect a RESTful scheme. The `create` method is currently used
   # To update the merchant / shopkeeper `wirecard_status`
@@ -66,7 +68,7 @@ class Api::Webhook::Wirecard::MerchantsController < Api::ApplicationController
   private
 
   def authenticated_resource?(reseller_id)
-    reseller_id == wirecard_config[:merchants][:reseller_id]
+    reseller_id == WIRECARD_CONFIG[:merchants][:reseller_id]
   end
 
   def required_merchant_datas

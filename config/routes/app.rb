@@ -5,8 +5,8 @@
 # We should improve this by putting it into a home_controller with index
 root to: 'pages#home'
 
-# We should improve this by creating a real controller
-get '/set_session_locale/:locale', to: 'application#set_session_locale', as: 'set_session_locale'
+resources :languages, only: [:update] do
+end
 
 captcha_route
 mount ChinaCity::Engine => '/china_city'
