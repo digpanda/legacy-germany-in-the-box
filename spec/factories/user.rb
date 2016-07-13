@@ -1,6 +1,19 @@
 FactoryGirl.define do
 
   factory :admin, :class => User do
+
+    fname                  { Faker::Name.first_name }
+    lname                  { Faker::Name.last_name }
+    gender                 { Helpers::Global.random_gender }
+    username               { "Admin#{Helpers::Global.next_number(:admin)}" }
+    email                  { Faker::Internet.email }
+    password               '12345678'
+    password_confirmation  '12345678'
+    role                   :admin
+    tel                    { Faker::PhoneNumber.phone_number }
+    mobile                 { Faker::PhoneNumber.cell_phone }
+    birth                  { Helpers::Global.random_date }
+
   end
 
   factory :shopkeeper, :class => User do

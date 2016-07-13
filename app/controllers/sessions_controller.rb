@@ -16,6 +16,7 @@ class SessionsController < Devise::SessionsController
 
   def create
 
+    # captcha isn't working properly, we should refactor it here (avoided via condition before)
     if session[:login_advice_counter].present? and session[:login_advice_counter] >= Rails.configuration.login_failure_limit
       if valid_captcha?(params[:captcha])
         session.delete(:login_advice_counter)
@@ -25,7 +26,7 @@ class SessionsController < Devise::SessionsController
         redirect_to(:back)
       end
     else
-      
+
       self.resource = warden.authenticate!(auth_options)
       sign_in(resource_name, resource)
       yield resource if block_given?

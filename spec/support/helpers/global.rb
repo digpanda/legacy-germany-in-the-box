@@ -4,10 +4,8 @@ module Helpers
     module_function
 
     def login_admin
-      before(:each) do
-        @request.env["devise.mapping"] = Devise.mappings[:admin]
-        sign_in FactoryGirl.create(:admin) # Using factory girl as an example
-      end
+      @request.env["devise.mapping"] = Devise.mappings[:admin]
+      sign_in FactoryGirl.create(:admin) # Using factory girl as an example
     end
 
     def login_customer(customer)
