@@ -6,8 +6,7 @@ class LanguagesController < ActionController::Base # No application because it's
 
   def update
 
-    render status: :bad_request,
-             json: throw_error(:bad_language).to_json and return unless valid_params?
+    throw_app_error(:bad_language) and return unless valid_params?
 
     session[:locale] = language_params[:id]
 

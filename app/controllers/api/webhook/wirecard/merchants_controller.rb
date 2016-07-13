@@ -26,17 +26,13 @@ class Api::Webhook::Wirecard::MerchantsController < Api::ApplicationController
     devlog.info "Wirecard started to communicate with our system" 
     devlog.info "Service received `#{datas[:merchant_id]}`, `#{datas[:merchant_status]}`, `#{datas[:reseller_id]}`" 
 
-    unless authenticated_resource?(datas[:reseller_id])
-      render status: :unauthorized, 
-             json: throw_error(:bad_credentials).to_json and return
-    end
+    throw_api_error(:bad_credentials, {}, :unauthorized) and return unless authenticated_resource?(datas[:reseller_id])
+
     devlog.info "It passed the authentication"
 
     shop = Shop.where(merchant_id: datas[:merchant_id]).first
-    if shop.nil?
-      render status: :unprocessable_entity, 
-             json: throw_error(:unknown_id).merge(error: "Unknown merchant id.").to_json and return
-    end
+    throw_api_error(:unknown_id, {error: "Unknown merchant id."}, :unprocessable_entity) and return if shop.nil?
+
     devlog.info "It passed the merchant recognition."
 
     shop.wirecard_status = clean_merchant_status
@@ -49,10 +45,7 @@ class Api::Webhook::Wirecard::MerchantsController < Api::ApplicationController
       shop.wirecard_ee_maid_cc = credentials[:ee_maid_cc]
     end
 
-    unless shop.save
-      render status: :bad_request,
-             json: throw_error(:wrong_update_attributes).merge(error: shop.errors.full_messages.join(', ')).to_json and return
-    end
+    throw_api_error(:wrong_update_attributes, {error: shop.errors.full_messages.join(', ')}) and return unless shop.save
 
     devlog.info "End of process."
     render status: :ok, 

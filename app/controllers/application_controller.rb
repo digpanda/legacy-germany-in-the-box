@@ -37,14 +37,6 @@ class ApplicationController < ActionController::Base
 
   after_filter :store_location
 
-  def throw_resource_not_found
-    render "errors/page_not_found", layout: "errors/default" and return
-  end
-
-  def throw_unauthorized_page
-    render "errors/unauthorized_page", layout: "errors/default" and return
-  end
-
   def store_location
     store_navigation_history :except => ["/users/sign_in","/users/sign_up", "/users/sign_up", "/users/password/new", "/users/password/edit", "/users/confirmation", "/users/sign_out"]
   end
