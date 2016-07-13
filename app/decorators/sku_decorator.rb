@@ -26,6 +26,15 @@ class SkuDecorator < Draper::Decorator
     self.discount > 0
   end
 
+  def quantity_warning?
+     return false if self.unlimited || self.quantity == 0 # no warning if unlimited or nothing left
+     self.quantity <= ::Rails.application.config.digpanda[:products_warning]
+  end
+
+  def more_description?
+    self.attach0.file || self.data
+  end
+
   def price_with_currency_yuan
     "%.2f #{Settings.instance.platform_currency.symbol}" % (self.price_in_yuan)
   end

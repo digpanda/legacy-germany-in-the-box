@@ -41,10 +41,8 @@
 
         <% end %>
 
-        <% unless @mas.unlimited || @mas.quantity == 0 %>
-          <% if @mas.quantity <= ::Rails.application.config.digpanda[:products_warning] %>
-            | <span class="+red +up +bold"> Only <span id="quantity-left"><%= @mas.quantity %></span> left</span>
-          <% end %>
+        <% if @mas.quantity_warning? %>
+          | <span class="+red +up +bold"> Only <span id="quantity-left"><%= @mas.quantity %></span> left</span>
         <% end %>
 
         <div class="+small-spacer"></div>
@@ -80,7 +78,7 @@
 
           <div id="product-file-attachment-and-data">
 
-          <% if @mas.attach0.file || @mas.data %>
+          <% if @mas.more_description? %>
 
             <h3>More</h3>
 
