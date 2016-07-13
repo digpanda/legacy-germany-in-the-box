@@ -240,7 +240,7 @@ class ProductsController < ApplicationController
       shopkeeper_strong_params = [:status, :desc, :name, :hs_code, :brand, :img, :data, tags:[], options_attributes: [:id, :name, suboptions_attributes: [:id, :name]], skus_attributes: [:unlimited, :id, :img0, :img1, :img2, :img3, :price, :discount, :quantity, :weight, :customizable, :status, :space_length, :space_width, :space_height, :time, :data, :attach0, option_ids: []]]
 
       if current_user.is_admin?
-        params.require(:product)[:category_ids] = [params.require(:product)[:category_ids]]
+        params.require(:product)[:category_ids] = [params.require(:product)[:category_ids]] unless params.require(:product)[:category_ids].nil?
         shopkeeper_strong_params += [:duty_category, category_ids:[]]
       end
 

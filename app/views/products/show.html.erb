@@ -14,27 +14,27 @@
 
         <h2>
           <%= @product.name %> <%= render partial: "products/show/like", :locals => { :product => @product } %>
-          <span id="product_discount" class="+discount">
-            <%= @product.decorate.preview_discount if @mas.discount > 0 %>
+          <span id="product_discount" class="<% if @mas.discount? %>+discount<% end %>">
+            <%= @product.decorate.preview_discount if @mas.discount? %>
           </span>
         </h2>
 
         <% if @mas %>
 
-          <% if @mas.discount %>
-
-            <span id="product_discount_with_currency_yuan" class="+dark-grey +medium">
-              <span class="+barred"></span>
-              <%= @mas.price_before_discount_in_yuan if @mas.discount > 0 %>
-            </span>
-
-            <span id="product_discount_with_currency_euro" class="+price-euro +dark-grey">
-              <%= @mas.price_before_discount_in_euro if @mas.discount > 0 %>
-            </span>
-
-            <br />
-
+          <span id="product_discount_with_currency_yuan" class="+dark-grey +medium">
+          <% if @mas.discount? %>
+            <span class="+barred"></span>
+            <%= @mas.price_before_discount_in_yuan %>
           <% end %>
+          </span>
+
+          <span id="product_discount_with_currency_euro" class="+price-euro +dark-grey">
+          <% if @mas.discount? %>
+            <%= @mas.price_before_discount_in_euro %>
+          <% end %>
+          </span>
+
+          <br />
 
           <span id="product_price_with_currency_yuan" class="+price-yuan"><%= @product.decorate.preview_price_yuan %></span> <span id="product_price_with_currency_euro" class="+price-euro"><%= @product.decorate.preview_price_euro %></span>
 

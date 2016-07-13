@@ -72,6 +72,26 @@ var ProductsShow = {
 
   },
 
+  skuHideDiscount: function() {
+
+    $('#product_discount_with_currency_euro').hide();
+    $('#product_discount_with_currency_yuan').hide();
+    $('#product_discount').hide();
+
+    $('#product_discount').removeClass('+discount');
+
+  },
+
+  skuShowDiscount: function() {
+
+    $('#product_discount_with_currency_euro').show();
+    $('#product_discount_with_currency_yuan').show();
+    $('#product_discount').show();
+    
+    $('#product_discount').addClass('+discount');
+
+  },
+
   /**
    * Change the display of the product page sku datas 
    */
@@ -85,15 +105,11 @@ var ProductsShow = {
 
     if (skuDatas['discount'] == 0) {
 
-      $('#product_discount_with_currency_euro').hide();
-      $('#product_discount_with_currency_yuan').hide();
-      $('#product_discount').hide();
+      ProductsShow.skuHideDiscount();
 
     } else {
 
-      $('#product_discount_with_currency_euro').show();
-      $('#product_discount_with_currency_yuan').show();
-      $('#product_discount').show();
+      ProductsShow.skuShowDiscount();
 
       $('#product_discount_with_currency_euro').html(skuDatas['price_before_discount_in_euro']);
       $('#product_discount_with_currency_yuan').html('<span class="+barred"></span>'+skuDatas['price_before_discount_in_yuan']);
