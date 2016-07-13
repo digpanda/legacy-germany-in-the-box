@@ -27,4 +27,9 @@ class LanguagesController < ActionController::Base # No application because it's
     ACCEPTED_LANGUAGES.include? language_params[:id] # small validation, could be put within a model without database
   end
 
+  # NOT CURRENTLY IN USE
+  def extract_locale
+    request.env['HTTP_ACCEPT_LANGUAGE'] ? request.env['HTTP_ACCEPT_LANGUAGE'].scan(/^[a-z]{2}/).first : 'de'
+  end
+
 end

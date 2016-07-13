@@ -9,6 +9,7 @@ class ApplicationController < ActionController::Base
   include NavigationHistoryHelper
   include WickedPdfHelper
   include ErrorsHelper
+  include LanguagesHelper
 
   include AppCache
 
@@ -25,11 +26,11 @@ class ApplicationController < ActionController::Base
 
   before_action { params[:top_menu_active_part] = current_top_menu_active_part }
 
-  before_action :set_locale
+  before_action :set_current_language
 
   after_action :reset_last_captcha_code!
 
-  helper_method :current_order, :current_orders, :total_number_of_products, :extract_locale
+  helper_method :current_order, :current_orders, :total_number_of_products
 
   around_action :set_translation_locale, only: [:update], if: -> { current_user&.is_admin? }
 
@@ -149,31 +150,6 @@ class ApplicationController < ActionController::Base
 
   def current_top_menu_active_part
     :home
-  end
-
-  def set_locale
-    params[:locale]= session[:locale]
-    if params[:locale]
-      I18n.locale = params[:locale]
-    else
-      I18n.locale = :'zh-CN'
-      session[:locale] = I18n.locale
-    end
-  end
-
-  def set_translation_locale
-
-    current_locale = I18n.locale
-    I18n.locale = params[:translation].to_sym if params[:translation]
-    yield
-    I18n.locale = current_locale
-    rescue
-    I18n.locale = current_locale
-
-  end
-
-  def extract_locale
-    request.env['HTTP_ACCEPT_LANGUAGE'] ? request.env['HTTP_ACCEPT_LANGUAGE'].scan(/^[a-z]{2}/).first : 'de'
   end
 
   # we should put it into a library, there's an obvious possible abstraction here
