@@ -12,7 +12,7 @@ class LanguagesController < ActionController::Base # No application because it's
 
     session[:locale] = language_params[:id]
 
-    redirect_to navigation_history(1) and return if seems_like_an_admin? # go back in case of admin
+    redirect_to navigation_history(1) and return if seems_like_an_admin? # go back on the current page in case of admin
     redirect_to root_url and return
 
   end
