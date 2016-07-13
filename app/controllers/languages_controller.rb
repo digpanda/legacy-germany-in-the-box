@@ -4,13 +4,15 @@ class LanguagesController < ActionController::Base # No application because it's
   include NavigationHistoryHelper
   include ErrorsHelper
 
+  ACCEPTED_LANGUAGES = ["zh-CN", "de"]
+
   def update
 
     throw_app_error(:bad_language) and return unless valid_params?
 
     session[:locale] = language_params[:id]
 
-    navigation_history(1) and return if seems_like_an_admin? # go back in case of admin
+    redirect_to navigation_history(1) and return if seems_like_an_admin? # go back in case of admin
     redirect_to root_url and return
 
   end
@@ -22,7 +24,7 @@ class LanguagesController < ActionController::Base # No application because it's
   end
 
   def valid_params?
-    ["zh-CN", "de"].include? language_params[:id] # small validation, could be put within a model without database
+    ACCEPTED_LANGUAGES.include? language_params[:id] # small validation, could be put within a model without database
   end
 
 end

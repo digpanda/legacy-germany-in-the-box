@@ -1,15 +1,14 @@
 <% if current_user.nil? %>
   <% if seems_like_a_customer? %>
       <div class="row"><h3>Want to work with us ?</h3></div>
-      <div class="row"><%= link_to "Become partner", language_path("de"), method: :patch #set_session_locale_path(locale: "de") 
-      %></div>
+      <div class="row"><%= link_to "Become partner", language_path("de"), method: :put %></div>
   <% elsif %>
       <div class="row"><h3>Want to buy products ?</h3></div>
-      <div class="row"><%= link_to "Switch back to the normal site", language_path("zh-CN"), method: :patch %></div>
+      <div class="row"><%= link_to "Switch back to the normal site", language_path("zh-CN"), method: :put %></div>
   <% end %>
 
 <% elsif current_user.is_admin? %>
   <div class="row"><h3><%= I18n.t(:language, scope: :top_menu) %></h3></div>
-  <div class="row"><%= link_to I18n.t(:chinese, scope: :top_menu), language_path("zh-CN") %></div>
-  <div class="row"><%= link_to I18n.t(:german, scope: :top_menu), language_path("de") %></div>
+  <div class="row"><%= link_to I18n.t(:chinese, scope: :top_menu), language_path("zh-CN"), method: :put %></div>
+  <div class="row"><%= link_to I18n.t(:german, scope: :top_menu), language_path("de"), method: :put %></div>
 <% end %>
