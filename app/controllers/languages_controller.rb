@@ -32,7 +32,7 @@ class LanguagesController < ActionController::Base # No application because it's
   end
 
   def valid_location?
-    (ACCEPTED_LOCATIONS.include? language_params[:location]) || language_params[:location].nil?
+    (ACCEPTED_LOCATIONS.include? language_params[:location]) || language_params[:location].nil? # valid location or nil
   end
 
   # NOT CURRENTLY IN USE
