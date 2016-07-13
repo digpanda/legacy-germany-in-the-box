@@ -2,6 +2,7 @@
   <% if seems_like_a_customer? %>
       <div class="row"><h3>Want to work with us ?</h3></div>
       <div class="row"><%= link_to "Become partner", language_path("de"), method: :put %></div>
+      <div class="row"><%= link_to "Sign-in as shopkeeper", language_path("de", location: new_user_session_path), method: :put %></div>
   <% elsif %>
       <div class="row"><h3>Want to buy products ?</h3></div>
       <div class="row"><%= link_to "Switch back to the normal site", language_path("zh-CN"), method: :put %></div>

@@ -4,14 +4,18 @@ class LanguagesController < ActionController::Base # No application because it's
   include NavigationHistoryHelper
   include ErrorsHelper
 
-  ACCEPTED_LANGUAGES = ["zh-CN", "de"]
+  include Rails.application.routes.url_helpers
+
+  ACCEPTED_LANGUAGES = %w(zh-CN de)
+  ACCEPTED_LOCATIONS = [Rails.application.routes.url_helpers.new_user_session_path]
 
   def update
 
-    throw_app_error(:bad_language) and return unless valid_params?
+    throw_app_error(:bad_language) and return unless valid_language? && valid_location?
 
     session[:locale] = language_params[:id]
 
+    redirect_to language_params[:location] and return if language_params[:location] # go to whatever location is authorized
     redirect_to navigation_history(1) and return if seems_like_an_admin? # go back on the current page in case of admin
     redirect_to root_url and return
 
@@ -20,11 +24,15 @@ class LanguagesController < ActionController::Base # No application because it's
   private
 
   def language_params
-    params.permit(:id)
+    params.permit(:id, :location)
   end
 
-  def valid_params?
+  def valid_language?
     ACCEPTED_LANGUAGES.include? language_params[:id] # small validation, could be put within a model without database
+  end
+
+  def valid_location?
+    (ACCEPTED_LOCATIONS.include? language_params[:location]) || language_params[:location].nil?
   end
 
   # NOT CURRENTLY IN USE
