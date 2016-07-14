@@ -8,7 +8,6 @@ class PrepareOrderForWirecardCheckout < BaseService
 
     def perform(args={})
 
-      # Should be dynamic
       merchant_id = args[:merchant_id]
       secret_key  = args[:secret_key]
       user        = args[:user]
