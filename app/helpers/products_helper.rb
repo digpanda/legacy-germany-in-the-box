@@ -1,6 +1,7 @@
 module ProductsHelper
   include AppCache
 
+  # should REALLY change all those things
   def gen_remove_variant_panel
     %Q{
       function () {

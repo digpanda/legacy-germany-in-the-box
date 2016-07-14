@@ -1,5 +1,6 @@
 module UsersHelper
 
+  # improve this system ?
   def seems_like_a_customer?
     (current_user.nil? && chinese?) || !!(current_user&.is_customer?)
   end
@@ -12,6 +13,7 @@ module UsersHelper
     current_user&.is_admin?
   end
 
+  # put this into language ?
   def german?
     I18n.locale == :de
   end

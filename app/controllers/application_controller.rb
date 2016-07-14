@@ -39,6 +39,7 @@ class ApplicationController < ActionController::Base
   after_filter :store_location
 
   def store_location
+    # should be refactored to dynamic paths (obviously)
     store_navigation_history :except => ["/users/sign_in","/users/sign_up", "/users/sign_up", "/users/password/new", "/users/password/edit", "/users/confirmation", "/users/sign_out"]
   end
 

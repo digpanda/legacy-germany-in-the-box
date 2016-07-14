@@ -1,5 +1,6 @@
 module ShopsHelper
 
+  # should really remove all those
   def gen_remove_sales_channel
     %Q{
       if ( $(this).closest('.form-group').siblings().length > 0 ) $(this).closest('.form-group').remove();
