@@ -27,7 +27,7 @@
 
         <div class="main-header__account">
         <i class="fa fa-sign-in"></i>
-        Signin
+        <%= I18n.t(:signin) %>
         </div>
 
       </a>
@@ -108,7 +108,7 @@
       <li>
 
       <% if current_user.nil? %>
-        <a href="<%= new_user_session_path %>">Signin</a>
+        <a href="<%= new_user_session_path %>"><%= I18n.t(:signin) %></a>
       <% else %>
         <a href="<%= edit_account_user_path(current_user, :user_info_edit_part => :edit_account) %>">My Account</a>
       <% end %>
