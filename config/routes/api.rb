@@ -26,6 +26,10 @@ namespace :api, defaults: { format: 'json' }  do
 
     end
 
+      namespace :users do
+        get :find_by_email
+      end
+
   end
 
   # Customer related
@@ -46,12 +50,8 @@ namespace :api, defaults: { format: 'json' }  do
 
   end
 
-
-  # TODO : SHOULD BE PUT SOMEWHERE + REFACTORED IN A BETTER WAT (RESTful)
+  # Products related
   resources :products  do
-
-    match :get_sku_for_options,                     via: [:get],    action: :get_sku_for_options,         as: :get_sku_for_options,         :on => :member
-
     concerns :shared_products
   end
 

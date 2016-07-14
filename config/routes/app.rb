@@ -28,15 +28,19 @@ namespace :admin do
 end
 
 namespace :shopkeeper do
+
   resources :orders do
     patch :process_order
     patch :shipped
   end
+
   resources :payments do
   end
+
   resource :wirecard do
     get :apply, :on => :member
   end
+
 end
 
 resources :addresses, except: [:new, :edit] do
@@ -55,7 +59,6 @@ resources :shops, except: [:new, :edit, :create] do
 end
 
 resources :shop_applications, except: [:edit, :update] do
-  concerns :shared_shop_applications
 end
 
 # Guest related
@@ -65,6 +68,9 @@ namespace :guest do
   end
 
   resources :products  do
+  end
+
+  resources :shop_applications, :only => [:new, :create] do # maybe it will become shops/applications at some point
   end
 
 end
@@ -84,6 +90,7 @@ namespace :shared do
   end
 
 end
+
 resources :orders, only: [:destroy, :show] do
   concerns :shared_orders
 

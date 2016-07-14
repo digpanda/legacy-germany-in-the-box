@@ -1,17 +1,13 @@
 <div class="row" id="messages-container">
-<% if flash[:error] %>
-  <div class="row message">
-    <div id="message-error" class="col-md-6 col-md-push-3 col-md-pull-3 message__error +centered">
+  <% if flash[:error] %>
+  <div id="message-error" class="col-md-6 col-md-push-3 col-md-pull-3 message message__error +centered">
     <%= flash[:error] %>
-    </div>
   </div>
-<% end %>
+  <% end %>
 
-<% if flash[:success] %>
-  <div class="row message">
-    <div id="message-success" class="col-md-6 col-md-push-3 col-md-pull-3 message__success +centered">
+  <% if flash[:success] %>
+  <div id="message-success" class="col-md-6 col-md-push-3 col-md-pull-3 message message__success +centered">
     <%= flash[:success] %>
-    </div>
   </div>
-<% end %>
+  <% end %>
 </div>

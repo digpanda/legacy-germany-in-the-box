@@ -8308,7 +8308,9 @@ img.mfp-img {
   padding: 0.5em;
   margin: 0em;
   font-family: 'Raleway', sans-serif !important;
-  font-weight: 400; }
+  font-weight: 400;
+  z-index: 10;
+  position: absolute; }
   /* line 76, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
   .message__simple {
     padding: 1em;

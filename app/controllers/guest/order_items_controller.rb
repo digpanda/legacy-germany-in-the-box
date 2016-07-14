@@ -4,7 +4,6 @@ class Guest::OrderItemsController < ApplicationController
   before_action :set_order_item
 
   attr_reader :order_item
-  # Nothing yet (go to /api/)
 
   def destroy
     if order_item.delete

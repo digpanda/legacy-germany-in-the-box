@@ -5,7 +5,6 @@ class ShopApplicationsController < ApplicationController
 
   before_action :authenticate_user!, except: [:new, :create, :is_registered]
 
-  respond_to :js, only: [:is_registered]
   #before_action(only: [:new])  { I18n.locale = :de }
 
   before_action :set_shop_application, only: [:show, :destroy]
@@ -19,46 +18,6 @@ class ShopApplicationsController < ApplicationController
     render :show, layout: "sublayout/_#{current_user.role.to_s}"
   end
 
-  def new
-    @shop_application = ShopApplication.new
-  end
-
-  def create
-
-    @shop_application = ShopApplication.new(shop_application_params)
-
-    unless @shop_application.save
-      return throw_model_error(@shop_application, :new)
-    end
-
-    @user = User.new({
-
-      :username => params[:shop_application][:email],
-      :email => params[:shop_application][:email],
-      :password => @shop_application.code[0, 8],
-      :password_confirmation => @shop_application.code[0, 8],
-      :role => :shopkeeper
-
-    })
-
-    unless @user.save
-      @shop_application.delete
-      return throw_model_error(@user, :new)
-    end
-
-    @shop = Shop.new(shop_application_params.except(:email))
-    @shop.shopname = @shop.name
-    @shop.shopkeeper = @user
-
-    unless @shop.save
-      @shop_application.delete
-      @user.delete
-      return throw_model_error(@shop, :new)
-    end
-
-    redirect_to new_shop_application_path(:finished => true)
-  end
-
   def destroy
 
     unless @shop_application.destroy
@@ -67,23 +26,6 @@ class ShopApplicationsController < ApplicationController
 
     flash[:success] = I18n.t(:delete_ok, scope: :edit_shop_application)
     redirect_to(:back)
-  end
-
-  def is_registered
-
-     render status: :not_found,
-            json: throw_error(:resource_not_found).to_json and return if shop_application_params["email"].nil?
-
-    if User.where(email: shop_application_params["email"]).first.nil?
-      render status: :ok, 
-             json: {success: true}.to_json and return
-    else
-      render status: :not_found,
-            json: throw_error(:resource_not_found).to_json and return if shop_application_params["email"].nil?
-
-    end
-
-
   end
 
   private
@@ -95,4 +37,5 @@ class ShopApplicationsController < ApplicationController
   def set_shop_application
     @shop_application = ShopApplication.find(params[:id])
   end
+
 end

@@ -1,4 +1,6 @@
-<% unless params[:finished] %>
+<!-- THIS WILL BE REPLACED AT SOME POINT BUT WE KEEP IT FOR THE ADMIN PART STILL 
+THERE IS A CLEAN TEMPORARY COPY PASTE IN GUEST/SHOP_APPLICATIONS
+-->
   <div class="row">
     <div class="+spacer"></div>
     <div class="col-md-8 col-md-offset-2">
@@ -28,7 +30,7 @@
                     </label>
                   </div>
                   <div class="col-md-9">
-                    <%= f.email_field :email, :class => 'form-control', :required => true, 'data-remote' => "#{is_registered_shop_applications_path}", 'data-remote-error': I18n.t(:duplicated_email, scope: :edit_shop_application), :maxLength => Rails.configuration.max_tiny_text_length, :placeholder => 'example@google.com' %>
+                    <%= f.email_field :email, :class => 'form-control', :required => true, 'data-remote-error': I18n.t(:duplicated_email, scope: :edit_shop_application), :maxLength => Rails.configuration.max_tiny_text_length, :placeholder => 'example@google.com' %>
                     <div class="help-block with-errors"></div>
                   </div>
                 </div>
@@ -247,10 +249,3 @@
       <% end %>
     </div>
   </div>
-<% else %>
-  <div class="gap"></div>
-  <h3 class="text-center">
-    <%= I18n.t(:shop_application_ok, scope: :edit_shop_application) %>
-  </h3>
-<% end %>
-

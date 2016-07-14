@@ -62,10 +62,6 @@ concern :shared_shops do
   resources :products,    only: [:new]
 end
 
-concern :shared_shop_applications do
-  match :is_registered,     via: [:get],  action: :is_registered,         as: :is_registered,       :on => :collection
-end
-
 concern :shared_orders do
   match :add_product,               via: [:patch],        action: :add_product,             as: :add_product_to,              :on => :collection
   match :checkout,                  via: [:post],         action: :checkout,                as: :checkout,                    :on => :collection

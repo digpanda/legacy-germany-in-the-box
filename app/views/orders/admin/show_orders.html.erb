@@ -48,7 +48,7 @@
           </td>
           <% unless order.decorate.is_success? %>
               <td>
-                <%= link_to I18n.t(:delete, scope: :edit_order), order_path(order), method: :delete, data: { confirm: 'Are you certain you want to delete this?' } %>
+                <%= link_to I18n.t(:delete, scope: :edit_order), order_path(order), method: :delete, data: { confirm: 'Are you certain you want to delete this ?' } %>
               </td>
           <% else %>
               <td></td>

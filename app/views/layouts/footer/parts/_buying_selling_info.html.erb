@@ -10,7 +10,7 @@
   <div class="row"><%=link_to I18n.t(:sell_on_gbox, scope: :footer), saleguide_page_path %></div>
 
   <% if current_user.nil? %>
-    <div class="row"><%=link_to I18n.t(:shop_application, scope: :edit_shop_application), new_shop_application_path %></div>
+    <div class="row"><%=link_to I18n.t(:shop_application, scope: :edit_shop_application), new_guest_shop_application_path %></div>
   <% end %>
 
 <% end %>
