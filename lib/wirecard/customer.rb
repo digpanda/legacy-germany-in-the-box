@@ -33,7 +33,7 @@ module Wirecard
 
       @currency            = DEFAULT_PAYMENT_CURRENCY
       @order_number        = "#{order.id}"
-      @amount              = order.total_price_in_yuan
+      @amount              = order.total_price_in_yuan.to_f
 
       @request_time_stamp  = time_stamp
       @request_id          = [request_time_stamp, user.id, order_number].join('-')
@@ -44,6 +44,7 @@ module Wirecard
 
     def hosted_payment_datas
 
+      binding.pry
       {
         :requested_amount          => amount,
         :requested_amount_currency => DEFAULT_PAYMENT_CURRENCY,

@@ -43,7 +43,7 @@ class Order
   end
 
   def total_price_in_yuan
-    total_price * Settings.instance.exchange_rate_to_yuan
+    (total_price * Settings.instance.exchange_rate_to_yuan).round(2)
   end
 
   def shipping_cost_in_yuan
