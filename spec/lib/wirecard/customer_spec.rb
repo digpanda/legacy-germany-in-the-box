@@ -15,18 +15,30 @@ describe Wirecard::Customer do
 
   }
 
-  it "set a valid digital signature" do
+
+  it "can access essential variables after creation" do
 
     wirecard = Wirecard::Customer.new(user, wirecard_hash_params)
-    # make a static user and check critical parameters from there
+
+    expect(wirecard.request_id).to be_kind_of(String)
+    expect(wirecard.amount).to be_kind_of(Float)
+    expect(wirecard.currency).to match("CNY")
 
   end
 
   it "has valid hosted payment data" do
 
+    # as it is very hard to test this payment library, i chose to stay global 
+    # and just see if it doesn't blow all the way up ; we should reinforce those tests at some point.
+    wirecard = Wirecard::Customer.new(user, wirecard_hash_params)
+    expect(wirecard.hosted_payment_datas).to be_kind_of(Hash)
+
   end
 
-  it "set wrong hosted payment data" do
+  it "has wrong arguments at initialization" do
+    
+    expect { Wirecard::Customer.new(user, {:merchant_id => 'test', :secret_key => 'test'}) }.to raise_error(Wirecard::Customer::Error)
+
   end
 
 end

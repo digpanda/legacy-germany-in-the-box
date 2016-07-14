@@ -10,6 +10,8 @@ module Wirecard
     DEFAULT_PAYMENT_LANGUAGE = 'en'
     DEFAULT_PAYMENT_CURRENCY = 'CNY'
 
+    Error = Class.new(StandardError)
+
     attr_reader :user,
                 :merchant_id, 
                 :secret_key,  
@@ -26,10 +28,12 @@ module Wirecard
 
     def initialize(user, args={})
 
+      raise Error, "Wrong arguments given" unless valid_args?(args)
+
       @user                = user
+      @order               = args[:order]
       @merchant_id         = args[:merchant_id]
       @secret_key          = args[:secret_key]
-      @order               = args[:order]
 
       @currency            = DEFAULT_PAYMENT_CURRENCY
       @order_number        = "#{order.id}"
@@ -44,7 +48,6 @@ module Wirecard
 
     def hosted_payment_datas
 
-      binding.pry
       {
         :requested_amount          => amount,
         :requested_amount_currency => DEFAULT_PAYMENT_CURRENCY,
@@ -124,6 +127,10 @@ module Wirecard
 
     def time_stamp
       Time.now.utc.strftime("%Y%m%d%H%M%S")
+    end
+
+    def valid_args?(args)
+      args[:order] && args[:merchant_id] && args[:secret_key]
     end
 
   end
