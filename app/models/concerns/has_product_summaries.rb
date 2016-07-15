@@ -21,7 +21,8 @@ module HasProductSummaries
 
   # here we can make all the calculations for the dimensional weight
   def total_dimensional_weight
-    sku_list.inject(0) { |sum, i| sum += (i.sku.space_length ) * (i.sku.space_width + 2) * (i.sku.space_height + 2) * i.quantity } / 5000
+    # 100.00 <--- testing
+    sku_list.inject(0) { |sum, i| sum += (i.sku.space_length ) * (i.sku.space_width) * (i.sku.space_height) * i.quantity } / 5000
   end
 
   private
