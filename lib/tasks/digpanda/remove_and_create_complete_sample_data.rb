@@ -50,7 +50,7 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
   def convert_product_with_documentation_attached(product)
     puts "We convert #{product.name} to a `with_documentation_attached`"
     product.name += " WITH DOCUMENTATION"
-    product.data = Faker::Lorem.paragraph
+    product.skus.first.data = Faker::Lorem.paragraph
     product.skus.first.attach0 = setup_documentation(:pdf)
     product.save!
   end

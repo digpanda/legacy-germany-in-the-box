@@ -14,23 +14,11 @@ class Guest::ShopApplicationsController < ApplicationController
     @shop_application = ShopApplication.new(shop_application_params)
     return throw_model_error(shop_application, :new) unless shop_application.save
 
-    user = User.new({
+    user = shopkeeper_from_shop_application!(shop_application)
+    shop_application.delete and return throw_model_error(user, :new) if user.errors.any? # rollback
 
-      :username => params[:shop_application][:email],
-      :email => params[:shop_application][:email],
-      :password => shop_application.code[0, 8],
-      :password_confirmation => shop_application.code[0, 8],
-      :role => :shopkeeper
-
-    })
-
-    unless user.save
-      shop_application.delete
-      return throw_model_error(@user, :new)
-    end
-
-    shop = Shop.new(shop_application_params.except(:email))
-    shop.shopname = shop.name
+    shop = Shop.new(shop_params)
+    shop.shopname = shop.name # marketing name
     shop.shopkeeper = user
 
     unless shop.save
@@ -45,6 +33,24 @@ class Guest::ShopApplicationsController < ApplicationController
   end
 
   private
+
+  def shopkeeper_from_shop_application!(shop_application)
+
+    User.create({
+
+      :username => shop_application.email,
+      :email => shop_application.email,
+      :password => shop_application.code[0, 8],
+      :password_confirmation => shop_application.code[0, 8],
+      :role => :shopkeeper
+
+    })
+
+  end
+
+  def shop_params
+    shop_application_params.except(:email)
+  end
 
   def shop_application_params
     params.require(:shop_application).permit(:email, :name, :shopname, :desc, :philosophy, :stories, :german_essence, :uniqueness, :founding_year, :register, :website, :fname, :lname, :tel, :mobile, :mail, :function)

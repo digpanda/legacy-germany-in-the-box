@@ -43,7 +43,6 @@ class ShopApplication
   validates :mobile,        length: {maximum: Rails.configuration.max_tiny_text_length}
   validates :function,      length: {maximum: Rails.configuration.max_tiny_text_length}
 
-
   before_save :gen_code;
 
   def gen_code
