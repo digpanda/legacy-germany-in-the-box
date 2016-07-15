@@ -68,8 +68,9 @@ module BorderGuru
     private
 
     def make_request(api_name, *payload_args)
-      payload = Payloads.const_get(api_name).new *payload_args
-      request = Requests.const_get(api_name).new payload
+
+      payload = Payloads.const_get(api_name).new(*payload_args)
+      request = Requests.const_get(api_name).new(payload)
       request.dispatch!
       Responses.const_get(api_name).new(request).tap do |response|
         yield response if block_given?

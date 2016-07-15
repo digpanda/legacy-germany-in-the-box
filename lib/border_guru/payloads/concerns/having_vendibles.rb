@@ -12,10 +12,14 @@ module BorderGuru
         {
           subtotal: list_holder.total_value,
           totalWeight: list_holder.total_weight,
+          dimensionalWeight: list_holder.total_dimensional_weight,
+          dimensionalWeightScale: WEIGHT_UNIT,
           totalWeightScale: WEIGHT_UNIT,
         }
       end
 
+      # we will transmit those informations for each single order item to borderguru
+      # this line is currently used in the system - Laurent 2016/07/15
       def line_items(skus)
         skus.map do |s|
           {
