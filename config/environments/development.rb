@@ -14,6 +14,14 @@ Rails.application.configure do
   config.action_mailer.default_url_options = {host: 'germanyinthebox.com', port: 80}
   config.action_mailer.delivery_method = :smtp
 
+  config.middleware.use ExceptionNotification::Rack,
+  :email => {
+    :email_prefix => "Report - ",
+    :sender_address => %{"Bug DigPanda Development" <notifier@digpanda.com>},
+    :exception_recipients => %w{laurent.schaffner@digpanda.com}
+  }
+
+
   config.action_mailer.smtp_settings = {
       address: "mailtrap.io",
       port: 25,

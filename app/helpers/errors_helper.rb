@@ -1,17 +1,32 @@
+# will be refactored to a true library later on
 module ErrorsHelper
 
   ERRORS_CONFIG = Rails.application.config.errors
 
-  def throw_resource_not_found
+  def throw_resource_not_found(exception=nil)
+    dispatch_error_email(exception)
     render "errors/page_not_found",
            status: :not_found,
            layout: "errors/default"
   end
 
-  def throw_unauthorized_page
+  def throw_unauthorized_page(exception=nil)
+    dispatch_error_email(exception)
     render "errors/unauthorized_page",
            status: :unauthorized,
            layout: "errors/default"
+  end
+
+  def throw_server_error_page(exception=nil)
+    dispatch_error_email(exception)
+    render "errors/server_error",
+           status: :unauthorized,
+           layout: "errors/default"
+  end
+
+  def dispatch_error_email(exception)
+    ::ExceptionNotifier.notify_exception(exception,
+    :env => request.env)
   end
 
   def throw_app_error(sym)

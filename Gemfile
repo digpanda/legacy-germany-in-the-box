@@ -87,7 +87,7 @@ group :development, :test, :staging, :local do
   gem "pry-rails"
 end
 
-group :production, :staging do
+group :development, :production, :staging do
   gem "exception_notification"
 end
 

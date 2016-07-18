@@ -18,7 +18,25 @@ class ApplicationController < ActionController::Base
   unless Rails.env.development? # only on staging / production / test otherwise we show the full error
     rescue_from Mongoid::Errors::DocumentNotFound, :with => :throw_resource_not_found
     rescue_from CanCan::AccessDenied, :with => :throw_unauthorized_page
+    rescue_from Exception, :width => :throw_server_error_page
   end
+  
+  #around_action :exception_handler
+# WE SHOULD CHANGE THE ERROR HANDLING TO THIS AT SOME POINT
+=begin
+  def exception_handler
+    yield
+  rescue Mongoid::Errors::DocumentNotFound => exception
+    dispatch_error_email(exception)
+    throw_resource_not_found
+  rescue CanCan::AccessDenied => exception
+    dispatch_error_email(exception)
+    throw_unauthorized_page
+  rescue Exception => exception
+    dispatch_error_email(exception)
+    throw_server_error_page
+  end
+=end
 
   protect_from_forgery with: :null_session, :if => Proc.new { |c| c.request.format.html? }
 
