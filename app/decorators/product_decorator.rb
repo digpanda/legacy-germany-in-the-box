@@ -37,7 +37,7 @@ class ProductDecorator < Draper::Decorator
   end
 
   def clean_desc(characters=240)
-    truncate(self.desc.squish.downcase, :length => characters).gsub!(',', '')
+    truncate(self.desc.squish.downcase, :length => characters).gsub(',', '')
   end
 
   def grouped_variants_options
