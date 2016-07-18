@@ -54,10 +54,12 @@ class Api::Webhook::Wirecard::MerchantsController < Api::ApplicationController
   private
 
   def save_shop_wirecard_credentials!(shop, credentials)
-    shop.wirecard_ee_user_cc = credentials[:ee_user_cc]
-    shop.wirecard_ee_password_cc = credentials[:ee_password_cc]
-    shop.wirecard_ee_secret_cc = credentials[:ee_secret_cc]
-    shop.wirecard_ee_maid_cc = credentials[:ee_maid_cc]
+    shop.tap do |shop|
+      shop.wirecard_ee_user_cc = credentials[:ee_user_cc]
+      shop.wirecard_ee_password_cc = credentials[:ee_password_cc]
+      shop.wirecard_ee_secret_cc = credentials[:ee_secret_cc]
+      shop.wirecard_ee_maid_cc = credentials[:ee_maid_cc]
+    end
   end
 
 
