@@ -37,7 +37,9 @@ module BorderGuru
       end
 
       def reason_error
-        response_body["reason"]["msg"] if response_body["reason"]
+        if response_body["reason"] && response_body["reason"]["msg"]
+          response_body["reason"]["msg"]
+        end
       end
 
       def camelize(str)
@@ -47,8 +49,8 @@ module BorderGuru
       def response_body
         @response_body ||= JSON.parse(@request.response.body)
       rescue JSON::ParserError => e
-        Rails.logger.error("JSON-parsing of #{@request.response.body} raised an error:")
-        raise e
+        Rails.logger.error("Tried to JSON.parse an incompatible body #{e}")
+        @response_body = {} # never fails
       end
 
     end
