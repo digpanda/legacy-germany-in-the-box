@@ -17,8 +17,8 @@ class Shopkeeper::OrdersController < ApplicationController
         render pdf: order.id.to_s, disposition: 'attachment'
       end
       format.csv do
-        render text: TurnOrdersIntoCsvAndStoreIt.new(order.shop, [order]).turn_orders.force_encoding(CSV_ENCODE),
-               type: "text/csv; charset=#{CSV_ENCODE}; header=present", 
+        render text: TurnOrdersIntoCsvAndStoreIt.new(order.shop, [order]).turn_orders.encode(CSV_ENCODE),
+               type: "text/csv; charset=#{CSV_ENCODE}; header=present",
                disposition: 'attachment'
       end
     end

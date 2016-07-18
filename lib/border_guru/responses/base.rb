@@ -31,13 +31,13 @@ module BorderGuru
       end
 
       def response_error
-        if response_body["response"] && response_body["response"]["error"]
+        if response_body.dig("response", "error")
           response_body["response"]["error"]["description"]
         end
       end
 
       def reason_error
-        if response_body["reason"] && response_body["reason"]["msg"]
+        if response_body.dig("reason", "msg")
           response_body["reason"]["msg"]
         end
       end
