@@ -16,6 +16,9 @@ class OrdersController < ApplicationController
         border_guru_shipment_id: @order.border_guru_shipment_id
     ) 
     send_data response.bindata, filename: "#{@order.border_guru_shipment_id}.pdf", type: :pdf
+  rescue SocketError => exception
+    Rails.logger.info "Label seems not to be ready for Order \##{@order.id} : #{exception}"
+    throw_app_error(:resource_not_found, {error: "Your label is not ready yet. Please try again in a few hours."})
   end
 
   def show_orders

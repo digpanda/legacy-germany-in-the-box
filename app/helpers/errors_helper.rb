@@ -29,11 +29,11 @@ module ErrorsHelper
     :env => request.env) if ExceptionNotifier # we need to test that
   end
 
-  def throw_app_error(sym)
+  def throw_app_error(sym, merged_attributes={}, status=:bad_request)
     render "errors/customized_error",
-           status: :bad_request,
+           status: status,
            layout: "errors/default",
-           locals: throw_error(sym)
+           locals: throw_error(sym).merge(merged_attributes)
   end
 
   def throw_api_error(sym, merged_attributes={}, status=:bad_request)
