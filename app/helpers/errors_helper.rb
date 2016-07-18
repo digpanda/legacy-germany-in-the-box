@@ -25,8 +25,8 @@ module ErrorsHelper
   end
 
   def dispatch_error_email(exception)
-    ::ExceptionNotifier.notify_exception(exception,
-    :env => request.env)
+    ExceptionNotifier.notify_exception(exception,
+    :env => request.env) if ExceptionNotifier # we need to test that
   end
 
   def throw_app_error(sym)

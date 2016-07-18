@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
   unless Rails.env.development? # only on staging / production / test otherwise we show the full error
     rescue_from Mongoid::Errors::DocumentNotFound, :with => :throw_resource_not_found
     rescue_from CanCan::AccessDenied, :with => :throw_unauthorized_page
-    rescue_from Exception, :width => :throw_server_error_page
+    rescue_from Exception, :with => :throw_server_error_page
   end
   
   #around_action :exception_handler
