@@ -11,6 +11,7 @@ module ErrorsHelper
   end
 
   def throw_unauthorized_page(exception=nil)
+    binding.pry
     dispatch_error_email(exception)
     render "errors/unauthorized_page",
            status: :unauthorized,
