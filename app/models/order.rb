@@ -47,8 +47,8 @@ class Order
     (total_price * Settings.instance.exchange_rate_to_yuan).round(2)
   end
 
-  def total_price_with_fees_and_shipping_in_yuan
-    (total_price_in_yuan + shipping_cost_in_yuan + tax_and_duty_cost_in_yuan).to_f
+  def total_sum_in_yuan
+    total_price_in_yuan + shipping_cost_in_yuan + tax_and_duty_cost_in_yuan
   end
 
   def shipping_cost_in_yuan
