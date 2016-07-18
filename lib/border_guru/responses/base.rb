@@ -14,6 +14,7 @@ module BorderGuru
 
       private
 
+      # it's the same variable as response_body, maybe we should change this duplicate and also symbolize everything
       def response_data
         raise BorderGuru::Error.new error unless error.nil?
         response_body
@@ -46,11 +47,17 @@ module BorderGuru
         str.to_s.camelize.sub(/^(.)/){|s| s.downcase}
       end
 
+      # after examination the response_body is transmitted to response_data and we should manage
+      # the errors better by analysing what it does in the system
+      # sometimes it's not JSON, there's a very bad error handling system behind all that
       def response_body
         @response_body ||= JSON.parse(@request.response.body)
       rescue JSON::ParserError => e
-        Rails.logger.error("Tried to JSON.parse an incompatible body #{e}")
-        @response_body = {} # never fails
+        Rails.logger.error("Tried to JSON.parse an incompatible body : #{e}")
+        #@response_body = {} # never fails
+        raise BorderGuru::Error.new e
+      ensure
+        @response_body
       end
 
     end
