@@ -20,7 +20,7 @@ module ErrorsHelper
   def throw_server_error_page(exception=nil)
     dispatch_error_email(exception)
     render "errors/server_error",
-           status: :unauthorized,
+           status: :not_found,
            layout: "errors/default"
   end
 

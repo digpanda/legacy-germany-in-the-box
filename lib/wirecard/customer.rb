@@ -30,19 +30,19 @@ module Wirecard
 
       raise Error, "Wrong arguments given" unless valid_args?(args)
 
-      @user                = user
-      @order               = args[:order]
-      @merchant_id         = args[:merchant_id]
-      @secret_key          = args[:secret_key]
+      @user                 = user
+      @order                = args[:order]
+      @merchant_id          = args[:merchant_id]
+      @secret_key           = args[:secret_key]
 
-      @currency            = DEFAULT_PAYMENT_CURRENCY
-      @order_number        = "#{order.id}"
-      @amount              = order.total_sum_in_yuan.to_f.round(2) # this round is necessary
+      @currency             = DEFAULT_PAYMENT_CURRENCY
+      @order_number         = "#{order.id}"
+      @amount               = order.total_sum_in_yuan.to_f.round(2) # this round is necessary
 
-      @request_time_stamp  = time_stamp
-      @request_id          = [request_time_stamp, user.id, order_number].join('-')
-      @hosted_payment_url  = CONFIG[:hosted_payment_url]
-      @default_redirect_url= CONFIG[:default_redirect_url]
+      @request_time_stamp   = time_stamp
+      @request_id           = [request_time_stamp, user.id, order_number].join('-')
+      @hosted_payment_url   = CONFIG[:hosted_payment_url]
+      @default_redirect_url = CONFIG[:default_redirect_url]
 
     end
 
