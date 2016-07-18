@@ -4,29 +4,23 @@ class Api::Guest::UsersController < ApplicationController
 
   def find_by_email
 
-    if missing_email_param?
+    if missing_email_param? || registered_email?
       render status: :not_found,
-             json: throw_error(:resource_not_found).to_json and return
-    end
-
-    if unregistered_email?
+             json: throw_error(:resource_not_found).to_json
+    else
       render status: :ok, 
-             json: {success: true}.to_json and return
+             json: {success: true}.to_json
     end
 
-    render status: :not_found,
-           json: throw_error(:resource_not_found).to_json and return
-           
   end
 
   private
 
-  # make protection and such ? -> this is pretty chaotic since it uses a weird pluggin to remotely check
   def missing_email_param?
     email_param.nil?
   end
 
-  def unregistered_email?
+  def registered_email?
     User.where(email: email_param).first
   end
 
