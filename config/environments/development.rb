@@ -21,7 +21,6 @@ Rails.application.configure do
     :exception_recipients => %w{laurent.schaffner@digpanda.com}
   }
 
-
   config.action_mailer.smtp_settings = {
       address: "mailtrap.io",
       port: 25,
