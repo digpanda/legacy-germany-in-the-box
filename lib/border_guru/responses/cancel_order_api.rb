@@ -7,7 +7,7 @@ module BorderGuru
       def reason
         response_data['reason']
       end
-
+      
     end
   end
 end

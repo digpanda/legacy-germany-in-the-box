@@ -11,11 +11,17 @@ class OrdersController < ApplicationController
 
   layout :custom_sublayout, only: [:show_orders]
 
+  # to refactor ..
   def download_label
     response = BorderGuru.get_label(
         border_guru_shipment_id: @order.border_guru_shipment_id
-    ) 
+    )
     send_data response.bindata, filename: "#{@order.border_guru_shipment_id}.pdf", type: :pdf
+
+  # to refactor (obviously)
+  rescue BorderGuru::Error => exception
+    Rails.logger.info "Label seems not to be ready for Order \##{@order.id} : #{exception}"
+    throw_app_error(:resource_not_found, {error: "Your label is not ready yet. Please try again in a few hours (#{exception})."})
   rescue SocketError => exception
     Rails.logger.info "Label seems not to be ready for Order \##{@order.id} : #{exception}"
     throw_app_error(:resource_not_found, {error: "Your label is not ready yet. Please try again in a few hours."})
