@@ -3,9 +3,7 @@ require 'border_guru_ftp'
 class Tasks::Cron::CompileAndTransferOrdersCsvsToBorderguru
 
   def initialize
-
-    # To avoid library eager load failure (happens sometimes)
-    require Rails.root.join("app/services/turn_orders_into_csv_and_store_it.rb")
+    
     require Rails.root.join("app/services/push_csvs_to_borderguru_ftp.rb")
 
     devlog "Let's start to fetch all the current orders ..."
@@ -71,14 +69,11 @@ class Tasks::Cron::CompileAndTransferOrdersCsvsToBorderguru
 
   end
 
-  def turn_orders_into_csv_and_store_it(user, orders)
-    TurnOrdersIntoCsvAndStoreIt.new(user.shop, orders).perform
-  end
-
   def push_csvs_to_borderguru_ftp
     PushCsvsToBorderguruFtp.new
   end
 
+  # should be improved
   def devlog(content)
     @@devlog ||= Logger.new(Rails.root.join("log/borderguru_cron.log"))
     @@devlog.info content

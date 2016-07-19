@@ -17,7 +17,7 @@ module BorderGuruFtp
     private
 
     def orders_csv
-      Makers::Generate.new(orders).to_csv
+      @orders_csv ||= Makers::Generate.new(orders).to_csv
     end
 
   end
