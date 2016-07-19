@@ -1,4 +1,4 @@
-require 'border_guru_ftp/order_csvs'
+require 'border_guru_ftp/order_transfers'
 
 module BorderGuruFtp
 
@@ -6,8 +6,8 @@ module BorderGuruFtp
   
   class << self
 
-    def process_orders(orders)
-      OrderCsvs.generate_and_store_local(orders)
+    def transfer_orders(orders)
+      OrderTransfers.new(orders).generate_and_store_local
     end
 
   end

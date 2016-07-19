@@ -37,7 +37,7 @@ class Tasks::Cron::CompileAndTransferOrdersCsvsToBorderguru
         devlog "Let's turn them into a CSV and store it under `/public/uploads/borderguru/#{user.id}/`"
 
         begin
-          BorderGuruFtp.process_orders(orders)
+          BorderGuruFtp.transfer_orders(orders)
         rescue BorderGuruFtp::Error => exception
           devlog "A problem occured while preparing the orders (#{exception.message})."
           return
