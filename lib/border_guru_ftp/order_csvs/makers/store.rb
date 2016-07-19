@@ -20,7 +20,7 @@ module BorderGuruFtp
       private
 
       def prepare_directories
-        FileUtils.mkdir_p(local_directory) unless File.directory?(local_directory)
+        FileUtils.mkdir_p(local_directory)
         FileUtils.mkdir_p(shop_directory)
       end
 
