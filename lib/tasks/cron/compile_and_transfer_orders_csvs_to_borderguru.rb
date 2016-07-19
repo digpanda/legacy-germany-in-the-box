@@ -52,7 +52,9 @@ class Tasks::Cron::CompileAndTransferOrdersCsvsToBorderguru
     #
     if Rails.env.production?
       files_pushed = push_csvs_to_borderguru_ftp.perform
-      unless files_pushed.success?
+      if files_pushed.success?
+        push_csvs_to_borderguru_ftp.clean
+      else
         devlog "A problem occured while transfering the files to BorderGuru (#{files_pushed.message})."
         return
       end
