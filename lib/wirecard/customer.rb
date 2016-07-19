@@ -4,13 +4,9 @@ require 'digest'
 module Wirecard
   class Customer < Base
 
-    include Rails.application.routes.url_helpers # manipulate paths
-
-    CONFIG = ::Rails.application.config.wirecard[:customers]
+    CONFIG = BASE_CONFIG[:customers]
     DEFAULT_PAYMENT_LANGUAGE = 'en'
     DEFAULT_PAYMENT_CURRENCY = 'CNY'
-
-    Error = Class.new(StandardError)
 
     attr_reader :user,
                 :merchant_id, 
@@ -79,12 +75,16 @@ module Wirecard
         :state                     => order.billing_address.province,
         :postal_code               => order.billing_address.zip,
         :country                   => order.billing_address.country.alpha2,
-        :ip_address                => "127.0.0.1"
+        :ip_address                => customer_ip_address
       }
 
     end
 
     private
+
+    def customer_ip_address
+      user.last_sign_in_ip || "127.0.0.1"
+    end
 
     def cancel_redirect_url
       "#{default_redirect_url}?state=cancel&"

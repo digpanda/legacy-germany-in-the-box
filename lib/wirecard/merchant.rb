@@ -1,29 +1,37 @@
 module Wirecard
   class Merchant < Base
 
-    attr_reader :shop
+    CONFIG = BASE_CONFIG[:merchants]
+
+    attr_reader :shop,
+                :shopkeeper,
+                :billing_address
 
     def initialize(shop)
       @shop = shop
+      @shopkeeper = shop.shopkeeper
+      @billing_address = shop.billing_address.decorate
     end
 
     def apply_partnership_datas
+      mandatory_datas.merge(optional_datas)
+    end
 
-      billing_address = shop.billing_address.decorate
-      shopkeeper = shop.shopkeeper
-      shopkeeper_address = shopkeeper.addresses.first || billing_address
+    private
 
+    def mandatory_datas
       {
-
-        # mandatory datas
-        :form_url         => ::Rails.application.config.wirecard[:merchants][:signup],
+        :form_url         => CONFIG[:signup],
         :merchant_id      => shop.merchant_id, # match reseller system
-        :merchant_country => ::Rails.application.config.wirecard[:merchants][:country],
+        :merchant_country => CONFIG[:country],
         :merchant_mcc     => '5499', # VISA MCC : 5499
-        :package_id       => ::Rails.application.config.wirecard[:merchants][:package_id],
-        :reseller_id      => ::Rails.application.config.wirecard[:merchants][:reseller_id],
-        
-        # optional datas
+        :package_id       => CONFIG[:package_id],
+        :reseller_id      => CONFIG[:reseller_id]
+      }
+    end
+
+    def optional_datas
+      {
         :representative_first_name => shop.fname,
         :representative_last_name  => shop.lname,
         :representative_address    => shopkeeper_address.street_and_number,
@@ -49,9 +57,11 @@ module Wirecard
         :bank_code           => '',
         :bank_account_number => '',
         :bank_owner          => '',
-
       }
+    end
 
+    def shopkeeper_address
+      shopkeeper.addresses.first.decorate || billing_address
     end
 
   end

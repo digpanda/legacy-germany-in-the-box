@@ -7,7 +7,7 @@ module Wirecard
 
     require 'net/http'
 
-    CONFIG = Rails.application.config.wirecard[:reseller]
+    CONFIG = BASE_CONFIG[:reseller]
 
     attr_reader :username, 
                 :password, 
