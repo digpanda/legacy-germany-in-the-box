@@ -12,12 +12,9 @@ module BorderGuruFtp
       end
 
       def to_local
-
         raise BorderGuruFtp::Error, "No order to place." if orders.empty?
-        
         prepare_directories
         write_csv_orders
-
       end
 
       private
@@ -35,7 +32,6 @@ module BorderGuruFtp
       ensure
         file.close unless file.nil?
       end
-
 
       def shop_directory
         "#{local_directory}#{shop.id}"

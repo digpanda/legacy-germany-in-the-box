@@ -32,7 +32,7 @@ class Tasks::Cron::CompileAndTransferOrdersCsvsToBorderguru
       # 
       # We start by processing into a CSV file
       #
-      unless orders.length == 0
+      unless orders.length.zero?
 
         devlog "Let's turn them into a CSV and store it under `/public/uploads/borderguru/#{user.id}/`"
 
