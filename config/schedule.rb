@@ -25,7 +25,7 @@ every :day, :at => '12:15pm' do
   rake "cron:compile_and_transfer_orders_csvs_to_borderguru"
 end
 
-every :day, :at => '6:30pm' do
+every :day, :at => '6:25pm' do
   command '(CHINESE HOUR) The system has launched the rake task `cron:compile_and_transfer_orders_csvs_to_borderguru`'
   rake "cron:compile_and_transfer_orders_csvs_to_borderguru"
 end
