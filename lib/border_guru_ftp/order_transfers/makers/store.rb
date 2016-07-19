@@ -4,17 +4,17 @@ module BorderGuruFtp
   module Makers
     class Store < Base
 
-      attr_reader :csv_orders
+      attr_reader :orders_csv
 
-      def initialize(orders, csv_orders)
+      def initialize(orders, orders_csv)
         super
-        @csv_orders = csv_orders
+        @orders_csv = orders_csv
       end
 
       def to_local
         raise BorderGuruFtp::Error, "No order to place." if orders.empty?
         prepare_directories
-        write_csv_orders
+        write_orders_csv
       end
 
       private
@@ -24,9 +24,9 @@ module BorderGuruFtp
         FileUtils.mkdir_p(shop_directory)
       end
 
-      def write_csv_orders
+      def write_orders_csv
         file = File.open(csv_file_with_path, "w")
-        file.write(csv_orders)
+        file.write(orders_csv)
       rescue IOError
         raise BorderGuruFtp::Error => "Impossible to write to file"
       ensure

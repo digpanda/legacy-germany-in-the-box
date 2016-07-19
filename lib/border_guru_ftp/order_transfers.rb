@@ -7,6 +7,7 @@ module BorderGuruFtp
 
     def initialize(orders)
       @orders = orders
+      # we could add a protection regarding the necessary format for the orders attributes here ? maybe.
     end
 
     def generate_and_store_local
