@@ -1,4 +1,4 @@
-require 'border_guru_ftp/order_transfers'
+require 'border_guru_ftp/transfer_orders'
 
 module BorderGuruFtp
 
@@ -6,8 +6,12 @@ module BorderGuruFtp
   
   class << self
 
-    def transfer_orders(orders)
-      OrderTransfers.new(orders).generate_and_store_local
+    def prepare_orders(orders)
+      TransferOrders.new(orders).generate_and_store_local
+    end
+
+    def transfer_orders
+      # to do
     end
 
   end

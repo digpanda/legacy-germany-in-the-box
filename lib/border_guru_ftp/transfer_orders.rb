@@ -1,7 +1,5 @@
-require 'border_guru_ftp/order_transfers/makers/all'
-
 module BorderGuruFtp
-  class OrderTransfers
+  class TransferOrders
 
     attr_reader :orders
 

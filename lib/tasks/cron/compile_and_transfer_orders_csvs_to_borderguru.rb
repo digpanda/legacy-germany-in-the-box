@@ -3,7 +3,7 @@ require 'border_guru_ftp'
 class Tasks::Cron::CompileAndTransferOrdersCsvsToBorderguru
 
   def initialize
-    
+
     require Rails.root.join("app/services/push_csvs_to_borderguru_ftp.rb")
 
     devlog "Let's start to fetch all the current orders ..."
@@ -35,7 +35,7 @@ class Tasks::Cron::CompileAndTransferOrdersCsvsToBorderguru
         devlog "Let's turn them into a CSV and store it under `/public/uploads/borderguru/#{user.id}/`"
 
         begin
-          BorderGuruFtp.transfer_orders(orders)
+          BorderGuruFtp.prepare_orders(orders)
         rescue BorderGuruFtp::Error => exception
           devlog "A problem occured while preparing the orders (#{exception.message})."
           return
