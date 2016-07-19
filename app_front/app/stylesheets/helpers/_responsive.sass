@@ -1,3 +1,13 @@
+//
+// right now the organization of the responsive was made centralized
+// we should improve it and respect BEM / CSStyle
+//
+
+.main-header__logo
+  +breakpoint('mobile')
+    img
+      max-width: 170px
+
 .main-footer__logo
   +breakpoint('mobile')
     display: none
