@@ -61,11 +61,11 @@ class TurnOrdersIntoCsvAndStoreIt < BaseService
             # HS Code
             order_item.product.hs_code,
             # Description
-              order_item.product.decorate.clean_desc(240), # check if including spaces
+            order_item.product.decorate.clean_desc(240), # check if including spaces
             # Weight : current_order_item.weight
-              (order_item.weight * 1000) ,
+            (order_item.weight * 1000),
             # Price
-              order_item.price, # check that to be sure
+            order_item.price, # check that to be sure
             # Currency
             'EUR'
 
