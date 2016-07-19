@@ -32,6 +32,10 @@ module BorderGuru
 
       private
 
+      def identification
+
+      end
+
       def submerchant_address(address_model)
         {
             company: address_model.company,
@@ -56,7 +60,7 @@ module BorderGuru
             city: "#{address_model.province} #{address_model.city}",
             country: address_model.country_name,
             telephone: address_model.tel ? address_model.tel : address_model.mobile,
-            email: @order.user.email,
+            email: @order.user.email, # should be better protected here (the user could be invalid)
             countryCode: address_model.country_code
         }.delete_if { |k,v| v.nil? }
       end

@@ -1,5 +1,5 @@
 module Wirecard
-  class Merchant
+  class Merchant < Base
 
     attr_reader :shop
 

@@ -4,9 +4,12 @@ require 'border_guru/payloads/tracking_api'
 describe BorderGuru::Payloads::TrackingApi do
 
   before do
+    @customer = create(:customer, :with_orders)
+    @order =  @customer.orders.first
+    @shop = @order.shop
     @payload = BorderGuru::Payloads::TrackingApi.new(
-        dispatcher: create(:shop).sender_address,
-        order: create(:order)
+        dispatcher: @shop.sender_address,
+        order: @order
     )
   end
 
@@ -15,7 +18,7 @@ describe BorderGuru::Payloads::TrackingApi do
   end
 
   it 'adds the dispatchers location to payload' do
-    assert_equal 'Vaterstetten, Germany', @payload.to_h[:trackingLocation]
+    assert_equal "#{@shop.billing_address.city}, Germany", @payload.to_h[:trackingLocation]
   end
 
 

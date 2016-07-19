@@ -2,7 +2,7 @@ require 'net/http'
 require 'digest'
 
 module Wirecard
-  class Customer
+  class Customer < Base
 
     include Rails.application.routes.url_helpers # manipulate paths
 

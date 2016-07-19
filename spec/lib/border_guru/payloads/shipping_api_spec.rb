@@ -4,9 +4,10 @@ require 'border_guru/payloads/shipping_api'
 describe BorderGuru::Payloads::ShippingApi do
 
   before do
-    @shop = create :shop
+    @customer = create(:customer, :with_orders)
+    @order = @customer.orders.first
+    @shop = @order.shop
     @country_of_destination = ISO3166::Country.new('CN')
-    @order = create :order
     @payload = BorderGuru::Payloads::ShippingApi.new(
         order: @order,
         shop: @shop,
@@ -64,19 +65,18 @@ describe BorderGuru::Payloads::ShippingApi do
     assert_equal 'BG-DE-CN-01234567898', @payload.to_h[:quoteIdentifier]
   end
 
-
   it 'adds the proper shipping address' do
     shipping_address = @payload.to_h[:shippingAddress].first
     {
         firstName:          '薇',
         lastName:           '李',
-        streetName:         '和平区华江里',
+        streetName:         '和平区 华江里',
         additionalInfo:     '309室',
         postcode:           '300222',
-        city:               '天津',
+        city:               '天津 天津',
         country:            'China',
         telephone:          '+86123456',
-        email:              'customer01@hotmail.com',
+        email:              @customer.email,
         countryCode:        'CN'
     }.each do |key, expected|
       assert_equal expected, shipping_address[key]
@@ -88,13 +88,13 @@ describe BorderGuru::Payloads::ShippingApi do
     {
         firstName:          '薇',
         lastName:           '李',
-        streetName:         '和平区华江里',
+        streetName:         '和平区 华江里',
         additionalInfo:     '309室',
         postcode:           '300222',
-        city:               '天津',
+        city:               '天津 天津',
         country:            'China',
         telephone:          '+86123456',
-        email:              'customer01@hotmail.com',
+        email:              @customer.email,
         countryCode:        'CN'
     }.each do |key, expected|
       assert_equal expected, billing_address[key]

@@ -2,6 +2,7 @@ Rails.application.configure do
 
   #ActiveSupport::Dependencies.autoload_paths << Rails.root.join('lib')
   #config.reload_plugins = true
+  config.eager_load_paths += ["#{Rails.root}/lib"]
 
   config.cache_classes = false
   config.middleware.use(Mongoid::QueryCache::Middleware)

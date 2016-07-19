@@ -1,7 +1,13 @@
+#
+# this library is currently not tested
+# be careful
+#
 module Wirecard
-  class Reseller
+  class Reseller < Base
 
     require 'net/http'
+
+    CONFIG = Rails.application.config.wirecard[:reseller]
 
     attr_reader :username, 
                 :password, 
@@ -11,9 +17,9 @@ module Wirecard
 
     def initialize(args={})
 
-      @username   = ::Rails.application.config.wirecard[:reseller][:username]
-      @password   = ::Rails.application.config.wirecard[:reseller][:password]
-      @engine_url = ::Rails.application.config.wirecard[:reseller][:engine_url]
+      @username   = CONFIG[:username]
+      @password   = CONFIG[:password]
+      @engine_url = CONFIG[:engine_url]
 
       @merchant_id = args[:merchant_id]
 
@@ -43,6 +49,7 @@ module Wirecard
       "#{engine_url}merchants/#{merchant_id}/payments/#{transaction_id}.json"
     end
 
+    # could be highly improved
     def payment_status(transaction_response=nil)
       
       return :corrupted unless transaction_response&.[]("payment")&.[]("transaction-state")
