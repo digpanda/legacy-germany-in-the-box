@@ -37,7 +37,7 @@ class PushCsvsToBorderguruFtp < BaseService
   def transfert_merchant_orders(csv_file_path)
     begin
       ftp = connect_and_go(borderguru[:ftp])
-      file = push_and_destroy(ftp, file)
+      file = push_and_destroy(csv_file_path, ftp, file)
       return_with(:success)
     rescue Exception => e
       return_with(:error, e)
@@ -85,7 +85,7 @@ class PushCsvsToBorderguruFtp < BaseService
     ftp
   end
 
-  def push_and_destroy(ftp_instance, file)
+  def push_and_destroy(csv_file_path, ftp_instance, file)
     file = File.open(csv_file_path, "w")
     ftp_instance.putbinaryfile(file)
     ftp_instance.quit()

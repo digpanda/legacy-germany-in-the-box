@@ -20,6 +20,7 @@
 # Learn more: http://github.com/javan/whenever
 set :output, "/var/www/germany_in_the_box/current/log/borderguru_cron.log"
 
+# change depending on prod or staging
 every :day, :at => '12:15pm' do
   command '(GERMAN HOUR) The system has launched the rake task `cron:compile_and_transfer_orders_csvs_to_borderguru`'
   rake "cron:compile_and_transfer_orders_csvs_to_borderguru"
@@ -29,7 +30,6 @@ every :day, :at => '6:25pm' do
   command '(CHINESE HOUR) The system has launched the rake task `cron:compile_and_transfer_orders_csvs_to_borderguru`'
   rake "cron:compile_and_transfer_orders_csvs_to_borderguru"
 end
-
 
 =begin
 every 1.day, :at => '4:30 am' do
