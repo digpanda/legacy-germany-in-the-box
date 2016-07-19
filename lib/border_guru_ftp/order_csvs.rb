@@ -6,7 +6,7 @@ module BorderGuruFtp
     class << self
 
       def generate_and_store_local(orders)
-        Makers::Store.new(orders, orders_csv).to_local
+        Makers::Store.new(orders, orders_csv(orders)).to_local
       end
 
       private
