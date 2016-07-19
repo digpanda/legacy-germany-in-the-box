@@ -42,7 +42,7 @@ module BorderGuruFtp
       end
 
       def formatted_date
-        Time.now.strftime("%Y%m%d")
+        @formatted_date ||= Time.now.strftime("%Y%m%d")
       end
 
       def local_directory
