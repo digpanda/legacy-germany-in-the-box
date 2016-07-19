@@ -96,7 +96,8 @@ class TurnOrdersIntoCsvAndStoreIt < BaseService
 
       FileUtils::mkdir_p directory
 
-      file = File.open("#{directory}/#{formatted_date}_#{borderguru_merchant_id}.csv", "w")
+      csv_file_with_path = "#{directory}/#{formatted_date}_#{borderguru_merchant_id}.csv"
+      file = File.open(csv_file_with_path, "w")
       file.write(csv_output)
 
       return_with(:success)

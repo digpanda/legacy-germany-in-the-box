@@ -1,3 +1,5 @@
+require 'border_guru_ftp'
+
 class Tasks::Cron::CompileAndTransferOrdersCsvsToBorderguru
 
   def initialize
@@ -27,16 +29,17 @@ class Tasks::Cron::CompileAndTransferOrdersCsvsToBorderguru
 
       devlog "`#{orders.length}` orders were found for user [shopkeeper] `#{user.id}`."
  
+      # 
       # We start by processing into a CSV file
       #
       unless orders.length == 0
 
         devlog "Let's turn them into a CSV and store it under `/public/uploads/borderguru/#{user.id}/`"
 
-        turned = turn_orders_into_csv_and_store_it(user, orders)
-
-        unless turned.success?
-          devlog "A problem occured while preparing the orders (#{turned.message})."
+        begin
+          BorderGuruFtp.process_orders(orders)
+        rescue BorderGuruFtp::Error => exception
+          devlog "A problem occured while preparing the orders (#{exception.message})."
           return
         end
 
@@ -79,7 +82,7 @@ class Tasks::Cron::CompileAndTransferOrdersCsvsToBorderguru
   def devlog(content)
     @@devlog ||= Logger.new(Rails.root.join("log/borderguru_cron.log"))
     @@devlog.info content
-    puts content if Rails.env.development?
+    puts content
   end
 
 end
