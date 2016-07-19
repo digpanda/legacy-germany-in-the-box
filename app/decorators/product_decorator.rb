@@ -32,6 +32,10 @@ class ProductDecorator < Draper::Decorator
     self.options&.select { |o| o.suboptions&.size > 0 }.size > 0
   end
 
+  def format_desc
+     simple_format(self.desc)
+  end
+
   def short_desc(characters=50)
     truncate(self.desc, :length => characters)
   end
