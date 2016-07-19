@@ -3,11 +3,13 @@ require 'will_paginate/array'
 
 class OrdersController < ApplicationController
 
+  LABEL_NOT_READY_EXCEPTIONS = BorderGuru::Error, SocketError
+
+  load_and_authorize_resource
+
   before_action :authenticate_user!, :except => [:manage_cart, :add_product]
   before_action :set_order, :only => [:show, :destroy, :continue, :download_label]
   protect_from_forgery :except => [:checkout_success, :checkout_fail]
-
-  load_and_authorize_resource
 
   layout :custom_sublayout, only: [:show_orders]
 
@@ -18,12 +20,9 @@ class OrdersController < ApplicationController
     send_data response.bindata, filename: "#{@order.border_guru_shipment_id}.pdf", type: :pdf
 
   # to refactor (obviously)
-  rescue BorderGuru::Error => exception
+  rescue LABEL_NOT_READY_EXCEPTIONS => exception
     Rails.logger.info "Error Download Label Order \##{@order.id} : #{exception.message}"
     throw_app_error(:resource_not_found, {error: "Your label is not ready yet. Please try again in a few hours."}) # (`#{exception.message}`)
-  rescue SocketError => exception
-    Rails.logger.info "Error Download Label Order \##{@order.id} : #{exception.message}"
-    throw_app_error(:resource_not_found, {error: "Your label is not ready yet. Please try again in a few hours."})
   end
 
   def show_orders

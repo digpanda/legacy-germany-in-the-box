@@ -21,13 +21,13 @@
 set :output, "/var/www/germany_in_the_box/current/log/borderguru_cron.log"
 
 # change depending on prod or staging
-every :day, :at => '12:15pm' do
-  command '(GERMAN HOUR) The system has launched the rake task `cron:compile_and_transfer_orders_csvs_to_borderguru`'
-  rake "cron:compile_and_transfer_orders_csvs_to_borderguru"
-end
+#every :day, :at => '12:15pm' do
+#  command '(GERMAN HOUR 12:15pm) The system has launched the rake task `cron:compile_and_transfer_orders_csvs_to_borderguru`'
+#  rake "cron:compile_and_transfer_orders_csvs_to_borderguru"
+#end
 
-every :day, :at => '6:25pm' do
-  command '(CHINESE HOUR) The system has launched the rake task `cron:compile_and_transfer_orders_csvs_to_borderguru`'
+every :day, :at => '6:15pm' do
+  command '(CHINESE HOUR 6:15pm) The system has launched the rake task `cron:compile_and_transfer_orders_csvs_to_borderguru`'
   rake "cron:compile_and_transfer_orders_csvs_to_borderguru"
 end
 
