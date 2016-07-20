@@ -10,7 +10,7 @@ module BorderGuruFtp
     def transfer_orders(orders)
       TransferOrders.new(orders).tap do |transfer|
         transfer.generate_and_store_local
-        transfer.connect_and_push_remote #if Rails.env.production?
+        transfer.connect_and_push_remote if Rails.env.production?
         transfer.clean_local_storage
       end
     end
