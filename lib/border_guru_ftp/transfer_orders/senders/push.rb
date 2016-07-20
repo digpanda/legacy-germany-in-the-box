@@ -36,7 +36,7 @@ module BorderGuruFtp
         end
 
         def close
-          file.close unless file.nil?
+          file.close if file.respond_to?(:close)
         end
 
       end
