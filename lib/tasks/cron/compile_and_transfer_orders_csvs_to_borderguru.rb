@@ -8,39 +8,15 @@ class Tasks::Cron::CompileAndTransferOrdersCsvsToBorderguru
 
     devlog "Let's start to fetch all the current orders ..."
 
-    #
-    # We check the correct orders via a good old loop system (Viva Mongoid !)
-    #
-    User.where(role: :shopkeeper).each do |user|
+    orders = Order.where(status: :custom_checking).all
 
-      orders = []
+    unless orders.length.zero?
 
-      unless user.shop
-        devlog "This user `#{user.id}` has no shop at the moment."
-        next
-      end
-
-      # THIS SHOULD BE SIMPLIFIED to a simple query (but you know mongo ...)
-      user.shop.orders.where(status: :custom_checking).each do |order|
-        orders  << order
-      end
-
-      devlog "`#{orders.length}` orders were found for user [shopkeeper] `#{user.id}`."
- 
-      # 
-      # We start by processing into a CSV file
-      #
-      unless orders.length.zero?
-
-        devlog "Let's turn them into a CSV and store it under `/public/uploads/borderguru/#{user.id}/`"
-
-        begin
-          BorderGuruFtp.prepare_orders(orders)
-        rescue BorderGuruFtp::Error => exception
-          devlog "A problem occured while preparing the orders (#{exception.message})."
-          return
-        end
-
+      begin
+        BorderGuruFtp.prepare_orders(orders)
+      rescue BorderGuruFtp::Error => exception
+        devlog "A problem occured while preparing the orders (#{exception.message})."
+        return
       end
 
     end
@@ -73,7 +49,7 @@ class Tasks::Cron::CompileAndTransferOrdersCsvsToBorderguru
     PushCsvsToBorderguruFtp.new
   end
 
-  # should be improved
+  # should be improved <-- should be placed into the lib itself
   def devlog(content)
     @@devlog ||= Logger.new(Rails.root.join("log/borderguru_cron.log"))
     @@devlog.info content

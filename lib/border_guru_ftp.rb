@@ -11,7 +11,7 @@ module BorderGuruFtp
     end
 
     def transfer_orders
-      # to do
+      # to do <-- maybe in the same ?
     end
 
   end

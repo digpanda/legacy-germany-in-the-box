@@ -5,17 +5,22 @@ module BorderGuruFtp
 
     def initialize(orders)
       @orders = orders
-      # we could add a protection regarding the necessary format for the orders attributes here ? maybe.
     end
 
     def generate_and_store_local
-      Makers::Store.new(orders, orders_csv).to_local
+      orders_by_shop.each do |shop_orders|
+        Makers::Store.new(shop_orders, orders_csv(shop_orders)).to_local
+      end
     end
 
     private
 
-    def orders_csv
-      @orders_csv ||= Makers::Generate.new(orders).to_csv
+    def orders_csv(orders)
+      Makers::Generate.new(orders).to_csv
+    end
+
+    def orders_by_shop
+      orders.group_by(&:shop_id).values
     end
 
   end
