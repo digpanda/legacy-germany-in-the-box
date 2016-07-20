@@ -3,8 +3,6 @@ module BorderGuruFtp
     module Makers
       class Base
 
-        CONFIG = Rails.application.config.border_guru
-
         attr_reader :orders, :shop
 
         def initialize(orders, *args)

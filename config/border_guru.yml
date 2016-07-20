@@ -11,6 +11,7 @@ defaults: &defaults
     port: 1348
     username: ftp
     password: doNotAllowRetryMoreThan019
+    log: borderguru_cron.log
 
   products:
     origin: DE

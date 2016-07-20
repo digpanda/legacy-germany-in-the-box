@@ -33,7 +33,7 @@ module BorderGuruFtp
           file = File.open(csv_file_with_path, "w")
           file.write(orders_csv)
         rescue IOError
-          raise BorderGuruFtp::Error => "Impossible to write to file"
+          raise BorderGuruFtp::Error => "Impossible to write to local file"
         ensure
           file.close unless file.nil?
         end

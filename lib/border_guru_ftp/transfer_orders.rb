@@ -13,7 +13,23 @@ module BorderGuruFtp
       end
     end
 
+    def connect_and_push_remote
+      Senders::Push.new(remote_connection, local_files).to_remote
+    end
+
+    def clean_local_storage
+      FileUtils.rm_rf(BorderGuruFtp.local_directory)
+    end
+
     private
+
+    def local_files
+      Senders::Prepare.new.fetch
+    end
+
+    def remote_connection
+      @remote_connection ||= Senders::Connect.new.establish
+    end
 
     def orders_csv(orders)
       Makers::Generate.new(orders).to_csv
@@ -22,6 +38,7 @@ module BorderGuruFtp
     def orders_by_shop
       @orders_by_shop ||= orders.group_by(&:shop_id).values
     end
+
 
   end
 end
