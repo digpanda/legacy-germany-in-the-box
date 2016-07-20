@@ -14,7 +14,9 @@ module BorderGuruFtp
     end
 
     def connect_and_push_remote
-      Senders::Push.new(remote_connection, local_files).to_remote
+      local_files.each do |local_file|
+        Senders::Push.new(remote_connection, local_file).to_remote
+      end
     end
 
     def clean_local_storage
@@ -26,7 +28,7 @@ module BorderGuruFtp
     def local_files
       Senders::Prepare.new.fetch
     end
-
+ 
     def remote_connection
       @remote_connection ||= Senders::Connect.new.establish
     end

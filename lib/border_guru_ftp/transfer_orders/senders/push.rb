@@ -3,40 +3,40 @@ module BorderGuruFtp
     module Senders
       class Push < Base
 
-        attr_reader :remote_connection, :local_files
+        attr_reader :remote_connection, :file_path, :file
 
-        def initialize(remote_connection, local_files)
+        def initialize(remote_connection, file_path)
           @remote_connection = remote_connection
-          @local_files = local_files
+          @file_path = file_path
+          @file = open(file_path)
         end
 
         def to_remote
-          local_files.each { |file_path| open_and_move(file_path) }
-        end
-
-        private
-
-        def open_and_move(file_path)
-          file = open(file_path)
-          move(file)
-          destroy(file)
+          move
+          destroy
         rescue Exception => exception
           raise BorderGuruFtp::Error, "Impossible to transfer file (#{exception})"
         ensure
-          file.close unless file.nil?
+          close
         end
+
+        private
 
         def open(file_path)
           File.open(file_path, "r")
         end
 
-        def destroy(file)
+        def move
+          remote_connection.putbinaryfile(file)
+          remote_connection.quit()
+        end
+
+        def destroy
           File.delete(file)
         end
 
-        def move(file)
-          remote_connection.putbinaryfile(file)
-          remote_connection.quit()
+        def close
+          file.close unless file.nil?
         end
 
       end
