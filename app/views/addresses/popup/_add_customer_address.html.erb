@@ -37,17 +37,6 @@
       </div>
     </div>
 
-    <div class="form-group">
-      <div class="row">
-        <div class="col-md-9">
-          <%= f.text_field :street, :class => 'form-control', :required => true, :placeholder => I18n.t(:street, scope: :edit_address) %>
-        </div>
-        <div class="col-md-3">
-          <%= f.text_field :number, :class => 'form-control', :required => true, :placeholder => I18n.t(:house_number, scope: :edit_address), :pattern => '\d+' %>
-        </div>
-      </div>
-      <%= f.text_field :additional, :class => 'form-control', :placeholder => I18n.t(:additional, scope: :edit_address) %>
-    </div>
     <div class="city-group">
       <div class="form-group">
         <%= f.select :province, options_for_select(ChinaCity.list), {  include_blank: I18n.t(:province_blank, scope: :edit_address) }, { :autocomplete => :off, class: 'form-control city-select city-province', :required => true } %>
@@ -59,6 +48,19 @@
         <%= f.select :district, [], { include_blank: I18n.t(:district_blank, scope: :edit_address) }, { :autocomplete => :off, class: 'form-control city-select city-district', :required => true } %>
       </div>
     </div>
+    
+    <div class="form-group">
+      <div class="row">
+        <div class="col-md-9">
+          <%= f.text_field :street, :class => 'form-control', :required => true, :placeholder => I18n.t(:street, scope: :edit_address) %>
+        </div>
+        <div class="col-md-3">
+          <%= f.text_field :number, :class => 'form-control', :required => true, :placeholder => I18n.t(:house_number, scope: :edit_address), :pattern => '\d+' %>
+        </div>
+      </div>
+      <%= f.text_field :additional, :class => 'form-control', :placeholder => I18n.t(:additional, scope: :edit_address) %>
+    </div>
+
     <div class="form-group">
       <%= f.text_field :zip, :class => 'form-control', :placeholder => I18n.t(:zip, scope: :edit_address), :required => true, :pattern => I18n.t(:zip, scope: :validation, locale: :'zh-CN') %>
     </div>
