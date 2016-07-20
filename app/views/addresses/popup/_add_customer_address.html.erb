@@ -21,10 +21,10 @@
     <div class="form-group">
       <div class="row">
         <div class="col-md-6">
-          <%= f.text_field :mobile, :value => @user.mobile, :class => 'form-control', :required => true, :pattern => I18n.t(:mobile, scope: :validation, locale: :'zh-CN'), :placeholder => '13802049772' %>
+          <%= f.text_field :mobile, :value => @user.mobile, :class => 'form-control', :required => true, :pattern => I18n.t(:mobile, scope: :validation, locale: :'zh-CN'), :placeholder => '手机号' %>
         </div>
         <div class="col-md-6">
-          <%= f.text_field :tel, :value => @user.tel, :class => 'form-control', :pattern => I18n.t(:tel, scope: :validation, locale: :'zh-CN'), :placeholder => '0571-12343434' %>
+          <%= f.text_field :tel, :value => @user.tel, :class => 'form-control', :pattern => I18n.t(:tel, scope: :validation, locale: :'zh-CN'), :placeholder => '座机号' %>
         </div>
       </div>
     </div>
@@ -39,7 +39,7 @@
 
     <div class="city-group">
       <div class="form-group">
-        <%= f.select :province, options_for_select(ChinaCity.list), {  include_blank: I18n.t(:province_blank, scope: :edit_address) }, { :autocomplete => :off, class: 'form-control city-select city-province', :required => true } %>
+        <%= f.select :province, options_for_select(china_city_ordered_list), {  include_blank: I18n.t(:province_blank, scope: :edit_address) }, { :autocomplete => :off, class: 'form-control city-select city-province', :required => true } %>
       </div>
       <div class="form-group">
         <%= f.select :city    , [], { include_blank: I18n.t(:city_blank, scope: :edit_address) }, { :autocomplete => :off, class: 'form-control city-select city-city', :required => true } %>
@@ -48,7 +48,7 @@
         <%= f.select :district, [], { include_blank: I18n.t(:district_blank, scope: :edit_address) }, { :autocomplete => :off, class: 'form-control city-select city-district', :required => true } %>
       </div>
     </div>
-    
+
     <div class="form-group">
       <div class="row">
         <div class="col-md-9">
