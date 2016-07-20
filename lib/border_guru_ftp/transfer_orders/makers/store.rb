@@ -16,6 +16,8 @@ module BorderGuruFtp
           @orders_csv = orders_csv
         end
 
+        # prepare the directories for the order throwing
+        # then store the CSV files in local directories
         def to_local
           raise BorderGuruFtp::Error, "No order to place." if orders.empty?
           prepare_directories

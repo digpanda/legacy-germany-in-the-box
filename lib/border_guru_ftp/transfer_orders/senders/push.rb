@@ -11,6 +11,7 @@ module BorderGuruFtp
           @file = open(file_path)
         end
 
+        # push the file to the remote server
         def to_remote
           move
           destroy
@@ -28,7 +29,6 @@ module BorderGuruFtp
 
         def move
           connection.putbinaryfile(file)
-          connection.quit()
         end
 
         def destroy

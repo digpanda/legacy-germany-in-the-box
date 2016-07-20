@@ -11,6 +11,8 @@ module BorderGuruFtp
         MAX_DESCRIPTION_CHARACTERS = 240
         HEADERS = ['Barcode ID', 'Merchant ID', 'Country ID', 'Item ID', 'HS Code', 'Description', 'Weight (g)', 'Price', 'Currency']
 
+        # convert a list of orders (model) into a normalized CSV file
+        # for BorderGuru to process them afterwards
         def to_csv
           CSV.generate do |csv|
             csv << HEADERS
