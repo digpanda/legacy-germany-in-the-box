@@ -1,5 +1,6 @@
 require 'csv'
 
+# take a succession of `orders` and turn it into a CSV file for BorderGuru
 module BorderGuruFtp
   class TransferOrders
     module Makers

@@ -1,9 +1,12 @@
 require 'fileutils'
 
+# store the orders into our local directories.
+# `orders` must be previously ordered by `shop` since the @shop data 
+# is taken and memoized on initialization
+# use #to_local to store them
 module BorderGuruFtp
   class TransferOrders
     module Makers
-
       class Store < Base
 
         attr_reader :orders_csv
