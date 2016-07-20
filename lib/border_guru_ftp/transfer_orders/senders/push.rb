@@ -3,10 +3,10 @@ module BorderGuruFtp
     module Senders
       class Push < Base
 
-        attr_reader :remote_connection, :file_path, :file
+        attr_reader :connection, :file_path, :file
 
-        def initialize(remote_connection, file_path)
-          @remote_connection = remote_connection
+        def initialize(connection, file_path)
+          @connection = connection
           @file_path = file_path
           @file = open(file_path)
         end
@@ -27,8 +27,8 @@ module BorderGuruFtp
         end
 
         def move
-          remote_connection.putbinaryfile(file)
-          remote_connection.quit()
+          connection.putbinaryfile(file)
+          connection.quit()
         end
 
         def destroy

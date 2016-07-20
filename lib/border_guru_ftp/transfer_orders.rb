@@ -14,8 +14,8 @@ module BorderGuruFtp
     end
 
     def connect_and_push_remote
-      local_files.each do |local_file|
-        Senders::Push.new(remote_connection, local_file).to_remote
+      orders_csv_files.each do |file_path|
+        Senders::Push.new(remote_connection, file_path).to_remote
       end
     end
 
@@ -24,15 +24,15 @@ module BorderGuruFtp
     end
 
     private
-
-    def local_files
-      Senders::Prepare.new.fetch
-    end
  
     def remote_connection
       @remote_connection ||= Senders::Connect.new.establish
     end
 
+    def orders_csv_files
+      Senders::Prepare.new.fetch
+    end
+    
     def orders_csv(orders)
       Makers::Generate.new(orders).to_csv
     end
