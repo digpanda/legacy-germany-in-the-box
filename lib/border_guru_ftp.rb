@@ -6,12 +6,8 @@ module BorderGuruFtp
   
   class << self
 
-    def prepare_orders(orders)
+    def transfer_orders(orders)
       TransferOrders.new(orders).generate_and_store_local
-    end
-
-    def transfer_orders
-      # to do <-- maybe in the same ?
     end
 
   end

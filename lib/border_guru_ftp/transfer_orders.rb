@@ -20,7 +20,7 @@ module BorderGuruFtp
     end
 
     def orders_by_shop
-      orders.group_by(&:shop_id).values
+      @orders_by_shop ||= orders.group_by(&:shop_id).values
     end
 
   end

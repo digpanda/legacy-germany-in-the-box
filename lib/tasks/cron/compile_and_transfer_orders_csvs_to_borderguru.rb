@@ -13,7 +13,7 @@ class Tasks::Cron::CompileAndTransferOrdersCsvsToBorderguru
     unless orders.length.zero?
 
       begin
-        BorderGuruFtp.prepare_orders(orders)
+        BorderGuruFtp.transfer_orders(orders)
       rescue BorderGuruFtp::Error => exception
         devlog "A problem occured while preparing the orders (#{exception.message})."
         return
