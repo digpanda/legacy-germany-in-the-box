@@ -52,13 +52,13 @@
     <div class="form-group">
       <div class="row">
         <div class="col-md-9">
-          <%= f.text_field :street, :class => 'form-control', :required => true, :placeholder => I18n.t(:street, scope: :edit_address) %>
+          <%= f.text_field :street, :class => 'form-control', :required => true, :placeholder => "如: 欧洲区德国路莱茵巷5弄" %>
         </div>
         <div class="col-md-3">
-          <%= f.text_field :number, :class => 'form-control', :required => true, :placeholder => I18n.t(:house_number, scope: :edit_address), :pattern => '\d+' %>
+          <%= f.text_field :number, :class => 'form-control', :required => true, :placeholder => "6", :pattern => '\d+' %>
         </div>
       </div>
-      <%= f.text_field :additional, :class => 'form-control', :placeholder => I18n.t(:additional, scope: :edit_address) %>
+      <%= f.text_field :additional, :class => 'form-control', :placeholder => "7栋8楼9室" %>
     </div>
 
     <div class="form-group">

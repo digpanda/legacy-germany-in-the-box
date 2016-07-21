@@ -1,3 +1,5 @@
+require 'fileutils'
+
 # any manipulation linked to the orders which goes to BorderGuru FTP is handable from here
 module BorderGuruFtp
   class TransferOrders
