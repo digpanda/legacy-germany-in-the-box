@@ -5,16 +5,16 @@ module BorderGuru
     class QuoteApi < Base
 
       def line_items
-        result['lineItems'].map do |line_item|
+        result[:lineItems].map do |line_item|
           line_item.tap do |h|
-            h.keys.each { |k| h[k.underscore] = h.delete(k) }
+            h.keys.each { |k| h[k.to_s.underscore.to_sym] = h.delete(k) }
           end
         end
       end
 
       def method_missing(method, *args, &block)
-        if result.has_key?(camelize(method))
-          result[camelize(method)]
+        if result.has_key?(camelize(method).to_sym)
+          result[camelize(method).to_sym]
         else
           super
         end
@@ -23,11 +23,11 @@ module BorderGuru
       private
 
       def result
-        response_data['result']
+        response_data[:result]
       end
 
       def response_data
-        super['response']
+        super[:response]
       end
 
     end

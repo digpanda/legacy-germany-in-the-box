@@ -19,18 +19,16 @@ class CartSku
   end
 
   def becomes_order_line_item
-    current_order_item = OrderItem.new
-
-    current_order_item.price = sku.price
-    current_order_item.quantity = sku.quantity_in_cart
-    current_order_item.weight = sku.weight
-    current_order_item.product = sku.product
-    current_order_item.product_name = sku.product.name
-    current_order_item.sku_id = sku.id.to_s
-    current_order_item.option_ids = sku.option_ids
-    current_order_item.option_names = get_options(sku)
-
-    current_order_item
+    OrderItem.new.tap do |current_order_item|
+      current_order_item.price = sku.price
+      #current_order_item.quantity = sku.quantity_in_cart
+      current_order_item.weight = sku.weight
+      current_order_item.product = sku.product
+      current_order_item.product_name = sku.product.name
+      current_order_item.sku_id = sku.id.to_s
+      current_order_item.option_ids = sku.option_ids
+      current_order_item.option_names = get_options(sku)
+    end
   end
 
   private

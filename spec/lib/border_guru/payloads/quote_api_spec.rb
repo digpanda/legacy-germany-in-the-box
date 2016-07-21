@@ -25,13 +25,12 @@ describe BorderGuru::Payloads::QuoteApi do
 
   it 'adds products attributes to line items' do
     line_item = @payload.to_h[:lineItems].first
-
     {
-        shortDescription: 'Product 1',
-        price: 11,
-        weight: 0.1,
-        quantity: 2,
-        countryOfManufacture: 'DE',
+        shortDescription: @shop.products.first.name,
+        price: @shop.products.first.skus.first.price.to_i,
+        weight: @shop.products.first.skus.first.weight,
+        quantity: @shop.products.first.skus.first.quantity,
+        countryOfManufacture: @shop.sender_address.country.alpha2,
         category: 'test'
     }.each do |key, expected|
       assert_equal expected, line_item[key]

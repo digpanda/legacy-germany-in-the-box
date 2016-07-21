@@ -23,7 +23,7 @@ describe BorderGuru::Payloads::TrackingApi do
 
 
   it "adds the order's weight" do
-    assert_equal 0.2, @payload.to_h[:trackingWeight]
+    assert_equal @order.total_weight, @payload.to_h[:trackingWeight]
   end
 
   it "adds the order's weight scale" do

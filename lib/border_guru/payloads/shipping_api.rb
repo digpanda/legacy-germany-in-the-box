@@ -44,7 +44,7 @@ module BorderGuru
             postcode: address_model.zip,
             city: address_model.city,
             state: address_model.province,
-            email: @shop.shopkeeper.email,
+            email: address_model.shop.mail,
             countryCode: address_model.country_code
         }.delete_if { |k,v| v.nil? }
       end
@@ -60,7 +60,7 @@ module BorderGuru
             city: "#{address_model.province} #{address_model.city}",
             country: address_model.country_name,
             telephone: address_model.tel ? address_model.tel : address_model.mobile,
-            email: @order.user.email, # should be better protected here (the user could be invalid)
+            email: address_model.user.email,
             countryCode: address_model.country_code
         }.delete_if { |k,v| v.nil? }
       end

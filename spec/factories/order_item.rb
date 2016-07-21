@@ -2,11 +2,8 @@ FactoryGirl.define do
 
   factory :order_item do
 
-    product_name  "Product 1"
     option_names  ['red']
-    price         BigDecimal.new(11)
     quantity      { rand(1..5) }
-    weight        { rand(0.1..2.00) }
 
     after(:build) do |order_item, context|
 
@@ -19,6 +16,9 @@ FactoryGirl.define do
         product = create(:product)
       end
 
+      order_item.product_name  = product.name
+      order_item.price = product.skus.first.price
+      order_item.weight = product.skus.first.weight
       order_item.sku_id = product.skus.first.id.to_s
       order_item.option_ids = product.skus.first.option_ids
       order_item.product = product

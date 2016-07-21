@@ -37,7 +37,7 @@ class Cart
   end
 
   def create_order(options = {})
-    order_line_items = cart_skus.map &:becomes_order_line_item
+    order_line_items = cart_skus.map(&:becomes_order_line_item)
 
     Order.new({
       border_guru_quote_id: border_guru_quote_id,

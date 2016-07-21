@@ -5,7 +5,7 @@ module BorderGuru
     class CancelOrderApi < Base
 
       def reason
-        response_data['reason']
+        response_data[:reason]
       end
       
     end

@@ -9,7 +9,7 @@ module BorderGuru
       end
 
       def success?
-        !!response_data['success']
+        !!response_data[:success]
       end
 
       private
@@ -28,18 +28,18 @@ module BorderGuru
       end
 
       def global_error
-        response_body["error"]["description"] if response_body["error"]
+        response_body[:error][:description] if response_body[:error]
       end
 
       def response_error
-        if response_body.dig("response", "error")
-          response_body["response"]["error"]["description"]
+        if response_body.dig(:response, :error)
+          response_body[:response][:error][:description]
         end
       end
 
       def reason_error
-        if response_body.dig("reason", "msg")
-          response_body["reason"]["msg"]
+        if response_body.dig(:success) && response_body[:success] == false
+          response_body[:reason][:message]
         end
       end
 
@@ -51,7 +51,7 @@ module BorderGuru
       # the errors better by analysing what it does in the system
       # sometimes it's not JSON, there's a very bad error handling system behind all that
       def response_body
-        @response_body ||= JSON.parse(@request.response.body)
+        @response_body ||= JSON.parse(@request.response.body).deep_symbolize_keys
       rescue JSON::ParserError => e
         Rails.logger.error("Tried to JSON.parse an incompatible body : #{e}")
         #@response_body = {} # never fails

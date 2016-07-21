@@ -11,6 +11,10 @@ module BorderGuru
         @request.response.body
       end
 
+      def success?
+        !!bindata && Net::HTTPSuccess === @request.response
+      end
+
       private
 
       def error_message
@@ -19,11 +23,6 @@ module BorderGuru
 
       def pdf? # if it's not a pdf, it's a json (let's hope.)
         @request.response.content_type == "application/pdf"
-      end
-
-      # it doesn't seem it's currently in use
-      def success?
-        !!bindata && Net::HTTPSuccess === @request.response
       end
 
     end

@@ -5,23 +5,23 @@ module BorderGuru
     class ShippingApi < Base
 
       def shipment_identifier
-        response_data['result']
+        response_data[:result]
       end
 
       def link_payment
-        response_data['linkPayment']
+        response_data[:linkPayment]
       end
 
       def method_missing(method, *args, &block)
-        if response_data.has_key?(camelize(method))
-          response_data[camelize(method)]
+        if response_data.has_key?(camelize(method).to_sym)
+          response_data[camelize(method).to_sym]
         else
           super
         end
       end
 
       def response_data
-        super['response']
+        super[:response]
       end
 
     end

@@ -11,7 +11,7 @@ class RecordedResponses
       if @@initialization_state == :uninitialized
         @@initialization_state = :ongoing
 
-        @@shop = create :shop
+        @@shop = create(:shop)
         @@product = @@shop.products.first
         @@sku = @@product.skus.first
         
@@ -93,8 +93,16 @@ class RecordedResponses
         end
     end
 
+    def product
+      @@product ||= create(:product)
+    end
+
+    def sku
+      @@sku ||= create(:sku)
+    end
+
     def cart
-      @@cart ||= create :cart
+      @@cart ||= create(:cart)
     end
 
     def order
@@ -130,30 +138,30 @@ end
 
 describe 'BorderGuruTest' do
 
-  it 'calculate_quote is success' do
+  it '.calculate_quote is success' do
     TestScheduler.on_ready do |response|
       assert response.calculate_quote.success?
     end
   end
 
-  it 'calculate_quote echos input request data' do
+  it '.calculate_quote echos input request data' do
     TestScheduler.on_ready do |response|
       {
-          :short_description => 'Product 1',
-          :price => 11,
-          :weight => 0.1,
+          :short_description => response.product.name,
+          :price => response.sku.price.to_i,
+          :weight => response.sku.weight,
           :weight_scale => "kg",
-          :quantity => 2
+          :quantity => response.sku.quantity # yes
       }.each do |key, value|
-        assert_equal response.calculate_quote.line_items.first[key.to_s], value
+        assert_equal response.calculate_quote.line_items.first[key], value
       end
     end
   end
 
   it 'calculate_quote has line items with tax and duty' do
     TestScheduler.on_ready do |response|
-      assert_kind_of ::Numeric, response.calculate_quote.line_items.first['tax']
-      assert_kind_of ::Numeric, response.calculate_quote.line_items.first['duty']
+      assert_kind_of ::Numeric, response.calculate_quote.line_items.first[:tax]
+      assert_kind_of ::Numeric, response.calculate_quote.line_items.first[:duty]
     end
   end
 
