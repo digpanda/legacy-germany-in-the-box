@@ -37,12 +37,9 @@ describe BorderGuru::Payloads::QuoteApi do
     end
   end
 
-  it 'adds cart value to the payload' do
-    assert_equal BigDecimal.new(22), @payload.to_h[:subtotal]
-  end
 
   it 'adds cart weight to the payload' do
-    assert_equal 0.1 * 2, @payload.to_h[:totalWeight]
+    assert_equal @cart.total_weight, @payload.to_h[:totalWeight]
     assert_equal 'kg', @payload.to_h[:totalWeightScale]
   end
 

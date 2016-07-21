@@ -60,9 +60,13 @@ module BorderGuru
             city: "#{address_model.province} #{address_model.city}",
             country: address_model.country_name,
             telephone: address_model.tel ? address_model.tel : address_model.mobile,
-            email: address_model.user.email,
+            email: customer_address_email(address_model),
             countryCode: address_model.country_code
         }.delete_if { |k,v| v.nil? }
+      end
+
+      def customer_address_email(address_model)
+        address_model.user&.email || @order.user.email
       end
 
       def line_items
