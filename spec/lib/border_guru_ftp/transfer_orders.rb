@@ -22,12 +22,14 @@ describe BorderGuruFtp::TransferOrders do
 
     end
 
-    it "should generate 10 CSV files from different shops" do
+    it "should generate 10 CSV files from different shops in 10 different folders" do
 
       orders = create_list(:order, 10)
       BorderGuruFtp::TransferOrders.new(orders).generate_and_store_local
       Dir.chdir(BorderGuruFtp.local_directory) do # buggy rspec when not used into a scope
         expect(Dir.glob('*/**').select(&:itself).length).to eq(10)
+        expect(Dir.glob('*').select(&:itself).length).to eq(10)
+        expect(Dir.glob('*').select(&:itself).first).to eq("#{orders.first.shop.id}")
       end
 
     end
