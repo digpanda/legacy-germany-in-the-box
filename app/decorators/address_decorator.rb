@@ -11,7 +11,7 @@ class AddressDecorator < Draper::Decorator
     end
   end
 
-  def chinese_stree_number
+  def chinese_street_number
     "#{number} 号"
   end
 
