@@ -25,7 +25,7 @@ module BorderGuruFtp
     def log(content)
       @@log ||= Logger.new(Rails.root.join("log/#{CONFIG[:ftp][:log]}"))
       @@log.info content
-      puts content unless Rails.env.production?
+      puts content if Rails.env.development?
     end
 
     # used in some precise point in the lib subclasses

@@ -7,7 +7,7 @@ module BorderGuruFtp
 
         def initialize(orders, *args)
           @orders = orders
-          @shop = orders.first.shop
+          @shop = orders.first.shop # the orders there should all be from one specific shop to avoid conflicts
         end
 
         def border_guru_merchant_id

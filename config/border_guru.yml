@@ -24,6 +24,14 @@ development:
 
 test:
   <<: *defaults
+  ftp:
+    local_directory: /public/uploads/borderguru_test/
+    remote_directory: /files
+    host: 0.0.0.0
+    port: 1000
+    username: username
+    password: password
+    log: borderguru_cron_test.log
 
 staging:
   <<: *defaults

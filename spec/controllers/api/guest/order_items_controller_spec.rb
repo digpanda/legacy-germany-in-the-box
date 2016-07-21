@@ -6,7 +6,7 @@ describe Api::Guest::OrderItemsController, :type => :controller do
 
     context "from guest customer" do
 
-      let(:shop_with_orders) { FactoryGirl.create(:shop_with_orders) }
+      let(:shop_with_orders) { FactoryGirl.create(:shop, :with_orders) }
       let(:settings) { Settings.create! } # important for the controller
       before { settings }
 

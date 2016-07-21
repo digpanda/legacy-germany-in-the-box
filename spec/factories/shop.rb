@@ -1,15 +1,17 @@
 FactoryGirl.define do
+
   factory :shop, :class => Shop do
+
     currency              'EUR'
-    name                  'Seppls Lederhosenladen'
-    shopname              'Seppls Lederhosenladen'
-    founding_year         '1989'
-    desc                  'Demo Shop'
-    philosophy            'nothing'
-    fname                 'Thomas'
-    lname                 'Kyte'
-    tel                   '+89123434'
-    mail                  'thomas.kyte@hotmail.com'
+    name                  { "#{Faker::Company.name} #{Faker::Company.suffix}"  }
+    shopname              { Faker::Company.name }
+    founding_year         { Helpers::Global.random_year }
+    desc                  { Faker::Company.catch_phrase }
+    philosophy            { Faker::Company.bs }
+    fname                 { Faker::Name.first_name }
+    lname                 { Faker::Name.last_name }
+    tel                   { Faker::PhoneNumber.phone_number }
+    mail                  { Faker::Internet.email }
 
     before(:create) do |shop|
       create_list(:shopkeeper, 1, shop: shop) unless shop.shopkeeper_id
@@ -19,55 +21,19 @@ FactoryGirl.define do
       create_list(:product, 10, shop: shop)
       create_list(:shop_address, 1, shop: shop)
     end
+
   end
 
-  factory :shop_with_orders, :class => Shop do
-
-    currency              'EUR'
-    name                  'Seppls Lederhosenladen'
-    shopname              'Seppls Lederhosenladen'
-    founding_year         '1989'
-    desc                  'Shop With Customer Checking Orders'
-    philosophy            'nothing'
-    fname                 'Thomas'
-    lname                 'Kyte'
-    tel                   '+89123434'
-    mail                  'thomas.kyte@hotmail.com'
-
-    before(:create) do |shop|
-      create_list(:shopkeeper, 1, shop: shop) unless shop.shopkeeper_id
-    end
-
+  trait(:with_orders) do
     after(:create) do |shop|
-      create_list(:product, 10, shop: shop)
-      create_list(:shop_address, 1, shop: shop)
       create_list(:order, 5, shop_id: shop.id)
     end
-
   end
 
-  factory :shop_with_custom_checking_orders, :class => Shop do
-
-    currency              'EUR'
-    name                  'Seppls Lederhosenladen'
-    shopname              'Seppls Lederhosenladen'
-    founding_year         '1989'
-    desc                  'Shop With Customer Checking Orders'
-    philosophy            'nothing'
-    fname                 'Thomas'
-    lname                 'Kyte'
-    tel                   '+89123434'
-    mail                  'thomas.kyte@hotmail.com'
-
-    before(:create) do |shop|
-      create_list(:shopkeeper, 1, shop: shop) unless shop.shopkeeper_id
-    end
-
+  trait(:with_custom_checking_orders) do
     after(:create) do |shop|
-      create_list(:product, 10, shop: shop)
-      create_list(:shop_address, 1, shop: shop)
       create_list(:order, 5, :with_custom_checking, shop_id: shop.id)
     end
-
   end
+
 end
