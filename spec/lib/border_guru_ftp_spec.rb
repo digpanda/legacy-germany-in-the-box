@@ -18,9 +18,10 @@ describe BorderGuruFtp do
   context "#log" do
 
     it "should log something in the correct folder" do
-      BorderGuruFtp.log("this is a fake log to see if it actually logs something")
+      paragraph = Faker::Lorem.paragraph
+      BorderGuruFtp.log(paragraph)
       file = File.open(LOG_FILE, "r")
-      expect(file.read).to include("this is a fake log to see if it actually logs something")
+      expect(file.read).to include(paragraph)
     end
 
   end

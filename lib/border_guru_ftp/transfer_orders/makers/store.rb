@@ -27,7 +27,7 @@ module BorderGuruFtp
         private
 
         def prepare_directories
-          FileUtils.mkdir_p(local_directory)
+          FileUtils.mkdir_p(BorderGuruFtp.local_directory)
           FileUtils.mkdir_p(shop_directory)
         end
 
@@ -41,7 +41,7 @@ module BorderGuruFtp
         end
 
         def shop_directory
-          "#{local_directory}#{shop.id}"
+          "#{BorderGuruFtp.local_directory}#{shop.id}"
         end
 
         def csv_file_with_path
@@ -51,15 +51,6 @@ module BorderGuruFtp
         def formatted_date
           @formatted_date ||= Time.now.strftime("%Y%m%d")
         end
-
-        def local_directory
-          @local_directory ||= Rails.root.join(chomped_local_directory)
-        end
-
-        def chomped_local_directory
-          CONFIG[:ftp][:local_directory].reverse.chomp("/").reverse
-        end
-
       end
     end
   end

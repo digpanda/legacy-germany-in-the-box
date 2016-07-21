@@ -5,6 +5,7 @@ module BorderGuruFtp
 
         # fetch all the files to send from the local directory
         def fetch
+          FileUtils.mkdir_p(BorderGuruFtp.local_directory)
           Dir.chdir(BorderGuruFtp.local_directory)
           Dir.glob('*/**').select(&:itself)
         end

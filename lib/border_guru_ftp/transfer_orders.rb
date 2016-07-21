@@ -26,7 +26,7 @@ module BorderGuruFtp
 
     # clean up the local folder after manipulations
     def clean_local_storage
-      FileUtils.rm_rf(BorderGuruFtp.local_directory)
+      FileUtils.rm_rf(BorderGuruFtp.local_directory) if File.exists?(BorderGuruFtp.local_directory)
     end
 
     private
