@@ -47,6 +47,11 @@ describe BorderGuruFtp::TransferOrders do
   context "#connect_and_push_remote" do
 
     it "should push the file and be present on the FTP" do
+
+      #
+      # complex test
+      #
+
     end
 
   end
@@ -54,6 +59,20 @@ describe BorderGuruFtp::TransferOrders do
   context "#clean_local_storage" do
 
     it "clean all files contained in the target folder" do
+
+      orders = create_list(:order, 10)
+      BorderGuruFtp::TransferOrders.new(orders).tap do |transfer|
+        # could be replaced by a manual file / folder creation 
+        # to avoid inter-dependance with other methods
+        # (but right now it's enough, if it breaks at any point, please chage this)
+        transfer.generate_and_store_local
+        transfer.clean_local_storage
+      end
+      FileUtils.mkdir_p(BorderGuruFtp.local_directory)
+      Dir.chdir(BorderGuruFtp.local_directory) do # buggy rspec when not used into a scope
+        expect(Dir.glob('*/**').select(&:itself).length).to eq(0)
+      end
+
     end
 
   end
