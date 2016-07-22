@@ -51,7 +51,7 @@ module BorderGuruFtp
       Makers::Generate.new(orders).to_csv
     end
 
-    def has_order_items?(orders)
+    def has_order_items?(orders) # could be refactored into a model ?
       orders.each do |order|
         return true if order.order_items.any?
       end
