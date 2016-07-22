@@ -16,7 +16,7 @@ module BorderGuruFtp
 
         # disconnect from BorderGuru FTP
         def leave!
-          current.quit unless current.nil?
+          current.quit if current
         end
 
       end

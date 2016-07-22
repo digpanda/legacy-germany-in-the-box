@@ -23,16 +23,23 @@ module BorderGuruFtp
 
         private
 
+        # we can't have more than a local scope here for testing purposes.
         def open(file_path)
-          File.open(file_path, "r")
+          Dir.chdir(BorderGuruFtp.local_directory) do
+            File.open(file_path, "r")
+          end
         end
 
         def move
-          connection.putbinaryfile(file)
+          Dir.chdir(BorderGuruFtp.local_directory) do
+            connection.putbinaryfile(file)
+          end
         end
 
         def destroy
-          File.delete(file)
+          Dir.chdir(BorderGuruFtp.local_directory) do
+            File.delete(file)
+          end
         end
 
         def close
