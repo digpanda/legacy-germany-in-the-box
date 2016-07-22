@@ -26,11 +26,11 @@ test:
   <<: *defaults
   ftp:
     local_directory: /public/uploads/borderguru_test/
-    remote_directory: /files
-    host: 0.0.0.0
-    port: 1000
-    username: username
-    password: password
+    remote_directory: /CainiaoPreAlertCsv/files
+    host: ftp.borderguru.com
+    port: 1348
+    username: ftp
+    password: doNotAllowRetryMoreThan019
     log: borderguru_cron_test.log
 
 staging:

@@ -5,7 +5,7 @@ describe BorderGuruFtp::TransferOrders do
   LOG_FILE = "#{Rails.root}/log/#{BorderGuruFtp::CONFIG[:ftp][:log]}"
 
   before(:each) do
-    FileUtils.rm_rf(BorderGuruFtp.local_directory)
+    border_guru_ftp_remove_local_directories
     File.delete(LOG_FILE) if File.exists?(LOG_FILE)
   end
 
@@ -43,22 +43,22 @@ describe BorderGuruFtp::TransferOrders do
   context "#connect_and_push_remote" do
 
     it "should push the file and be present on the FTP" do
-
+      # pre-clean of the test FTP files
+      border_guru_ftp_pre_clean_remote_test_files
+      # test the actual method
       orders = create_list(:order, 5)
       BorderGuruFtp::TransferOrders.new(orders).tap do |transfer|
         transfer.generate_and_store_local
         transfer.connect_and_push_remote
       end
+      # check if it worked and clean up
       Net::FTP.new.tap do |ftp|
         ftp.connect(BorderGuruFtp::CONFIG[:ftp][:host], BorderGuruFtp::CONFIG[:ftp][:port])
         ftp.login(BorderGuruFtp::CONFIG[:ftp][:username], BorderGuruFtp::CONFIG[:ftp][:password])
         ftp.chdir(BorderGuruFtp::CONFIG[:ftp][:remote_directory])
-        binding.pry
-        #ftp.list
+        expect(border_guru_ftp_remote_test_files(ftp).length).to eq(5)
+        border_guru_ftp_clean_up_remote_test_files(ftp)
       end
-      # check realness on FTP
-      # clean files on FTP (could become part of the library itself, it's useful)
-      
     end
 
   end
