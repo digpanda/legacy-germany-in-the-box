@@ -16,6 +16,13 @@ FactoryGirl.define do
       order.order_items = build_list(:order_item, 5, :product => {:shop => order.shop})
     end
 
+    trait :without_item do
+      # we remove afterwards because they are stored within the build and it's hard to prevent it
+      after(:build) do |order|
+        order.order_items = []
+      end
+    end
+
     after(:create) do |order|
       order.order_items.each { |i| i.save } # buggy mongo for no fucking reason ?
     end

@@ -7,7 +7,6 @@ describe BorderGuruFtp::TransferOrders do
   before(:each) do
     FileUtils.rm_rf(BorderGuruFtp.local_directory)
     File.delete(LOG_FILE) if File.exists?(LOG_FILE)
-
   end
 
   context "#generate_and_store_local" do
@@ -34,21 +33,29 @@ describe BorderGuruFtp::TransferOrders do
 
     end
 
+    it "should not convert orders without item into a CSV" do
+      orders = create_list(:order, 10, :without_item)
+      BorderGuruFtp::TransferOrders.new(orders).generate_and_store_local
+      FileUtils.mkdir_p(BorderGuruFtp.local_directory)
+      Dir.chdir(BorderGuruFtp.local_directory) do # buggy rspec when not used into a scope
+        expect(Dir.glob('*/**').select(&:itself).length).to eq(0)
+      end
+    end
+
   end
 
-=begin
   context "#connect_and_push_remote" do
 
-    it "" do
+    it "should push the file and be present on the FTP" do
     end
 
   end
 
   context "#clean_local_storage" do
 
-    it "" do
+    it "clean all files contained in the target folder" do
     end
 
   end
-=end
+
 end
