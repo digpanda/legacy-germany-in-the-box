@@ -8,7 +8,8 @@
 
       <div class="row">
 
-        <% if shop.philosophy %>
+        <!-- TODO: refactor this -->
+        <% if shop.philosophy && !shop.philosophy.empty? %>
 
           <div>
             <h3>Philosophy</h3>
@@ -19,7 +20,7 @@
 
         <% end %>
 
-        <% if shop.uniqueness %>
+        <% if shop.uniqueness && !shop.uniqueness.empty? %>
 
           <div>
             <h3>Uniqueness</h3>
@@ -30,7 +31,7 @@
 
         <% end %>
 
-        <% if shop.german_essence %>
+        <% if shop.german_essence && !shop.german_essence.empty? %>
 
           <div>
             <h3>German Design</h3>
