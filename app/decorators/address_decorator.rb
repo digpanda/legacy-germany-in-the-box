@@ -16,7 +16,7 @@ class AddressDecorator < Draper::Decorator
   end
 
   def chinese_full_name
-    "#{lname} #{fname}"
+    "#{lname}#{fname}"
   end
 
   def imprint_address

@@ -37,7 +37,7 @@ module BorderGuru
         {
           identificationNumber: shipping_address.pid,
           identificationName: shipping_address.decorate.chinese_full_name
-        }
+        } unless Rails.env.test? # if test environment we can't test this part because it has a delay.
       end
 
       def submerchant_address(address_model)
