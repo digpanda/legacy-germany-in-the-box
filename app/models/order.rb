@@ -23,11 +23,11 @@ class Order
   has_many :order_payments,         :inverse_of => :order,    dependent: :restrict
 
   scope :nonempty,    ->  {  where( :order_items_count.gt => 0 ) }
-  scope :bought,      ->  { self.in( :status => [:paid, :custom_checking, :shippable, :shipped] ) }
+  scope :bought,      ->  { self.in( :status => [:paid, :custom_checking, :shipped] ) }
 
 
   # TODO : inclusion should be re-abilited when we are sure of what we include
-  validates :status,                  presence: true #, inclusion: {in: [:new, :paying, :paid, :custom_checking, :shippable, :shipped]}
+  validates :status,                  presence: true #, inclusion: {in: [:new, :paying, :paid, :custom_checking, :shipped]}
   #validates :user,                    presence: true, :unless => lambda { :new == self.status }
   #validates :shipping_address,        presence: true, :unless => lambda { :new == self.status }
   #validates :billing_address,         presence: true, :unless => lambda { :new == self.status }
