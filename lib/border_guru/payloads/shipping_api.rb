@@ -26,14 +26,18 @@ module BorderGuru
                                             lineItems: line_items,
                                             shippingAddress: [customer_address(@order.shipping_address)],
                                             billingAddress: [customer_address(@order.shipping_address)],
-                                            submerchant: submerchant_address(@shop.sender_address)
+                                            submerchant: submerchant_address(@shop.sender_address),
+                                            identificationData: identification_data(@order.shipping_address)
                                         })
       end
 
       private
 
-      def identification
-
+      def identification_data(shipping_address)
+        {
+          identificationNumber: shipping_address.pid,
+          identificationName: shipping_address.decorate.chinese_full_name
+        }
       end
 
       def submerchant_address(address_model)

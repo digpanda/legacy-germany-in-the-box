@@ -15,6 +15,10 @@ class AddressDecorator < Draper::Decorator
     "#{number} 号"
   end
 
+  def chinese_full_name
+    "#{lname} #{fname}"
+  end
+
   def imprint_address
     "#{street} #{number} <br /> #{zip} #{city} <br /> #{country}"
   end
