@@ -8,17 +8,40 @@
 
       <div class="row">
 
-        <div class="col-md-4">
-          <h3>Philosophy</h3>
-          <%= shop.philosophy %>
-        </div>
+        <% unless shop.philosophy.nil? %>
 
-        <div class="col-md-4">
-          <h3>Uniqueness</h3>
-          <%= shop.uniqueness %>
-        </div>
+          <div>
+            <h3>Philosophy</h3>
+            <%= shop.philosophy %>
+          </div>
 
-        <div class="col-md-4">
+          <div class="+small-spacer"></div>
+
+        <% end %>
+
+        <% unless shop.uniqueness.nil? %>
+
+          <div>
+            <h3>Uniqueness</h3>
+            <%= shop.uniqueness %>
+          </div>
+
+          <div class="+small-spacer"></div>
+
+        <% end %>
+
+        <% unless shop.german_essence.nil? %>
+
+          <div>
+            <h3>German Design</h3>
+            <%= shop.german_essence %>
+          </div>
+
+          <div class="+small-spacer"></div>
+
+        <% end %>
+
+        <div>
           <h3>Impressum</h3>
           <%= shop.name %> <br />
           <%= shop.decorate.manager_full_name %> <br />
