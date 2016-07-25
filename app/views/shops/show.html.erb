@@ -6,76 +6,26 @@
   <div class="shop-page">
 
     <div class="row">
-
-      <!-- Shop Page Cover -->
-      <div class="col-md-12 shop-page-cover" style="background-image:url(<%= @shop.decorate.image_url(:banner, :detail) %>);">
-        <div class="+overlay"></div>
-
-        <div class="+onoverlay">
-
-          <!-- Content -->
-          <div class="shop-page-cover__content +centered">
-
-            <div class="row">
-
-              <div class="shop-page-cover__content --avatar +centered" style="background-image:url('<%= @shop.decorate.image_url(:logo, :detail
-              ) %>');"></div>
-
-            </div>
-
-            <div class="+small-spacer"></div>
-
-            <div class="row">
-
-              <h2><%= @shop.shopname %></h2>
-              <div class="shop-page-cover__author">by <%= @shop.decorate.manager_full_name %></div>
-
-            </div>
-
-            <div class="+small-spacer"></div>
-
-            <div class="row">
-
-              <div class="col-md-10 col-md-push-1 col-md-pull-1">
-                <%= @shop.desc %>
-              </div>
-
-            </div>
-
-            <div class="+small-spacer"></div>
-
-          </div>
-          <!-- End of Content -->
-
-        </div>
-
-      </div>
-      <!-- End of Shop Page Cover -->
-
-    </div>
-
-    <div class="row +nomargin">
-
-      <div class="+spacer"></div>
-
-      <% if @shop.products.buyable.count > 0 %>
-
-      <%= render partial: "products/products_list", :locals => { :products => @shop.products.buyable } %>
-
-      <% else %>
-
-      <div class="+white-box +centered">
-        <h4>
-         <%= I18n.t(:no_products, scope: :cart) %>
-       </h4>
-     </div>
-
-      <% end %>
-
+      <!-- Shop Header -->
+      <%= render partial: "shop_header", :locals => { :shop => @shop } %>
     </div>
 
     <div class="+spacer"></div>
 
+    <div class="row +nomargin">
+      <!-- Products list -->
+      <%= render partial: "products/products_list", :locals => { :products => @shop.products.buyable } %>
+    </div>
+
+    <div class="+spacer"></div>
+
+    <div class="row">
+      <!-- Shop Footer -->
+      <%= render partial: "shop_footer", :locals => { :shop => @shop } %>
+    </div>
+
+    <div class="+spacer"></div>
+    
   </div>
   <!-- End of Shop Blocks -->
 

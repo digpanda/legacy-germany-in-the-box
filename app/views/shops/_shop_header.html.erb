@@ -1,0 +1,42 @@
+<div class="col-md-12 shop-page-header" style="background-image:url(<%= shop.decorate.image_url(:banner, :detail) %>);">
+  <div class="+overlay"></div>
+
+  <div class="+onoverlay">
+
+    <!-- Content -->
+    <div class="shop-page-header__content +centered">
+
+      <div class="row">
+
+        <div class="shop-page-header__content --avatar +centered" style="background-image:url('<%= shop.decorate.image_url(:logo, :detail
+        ) %>');"></div>
+
+      </div>
+
+      <div class="+small-spacer"></div>
+
+      <div class="row">
+
+        <h2><%= shop.shopname %></h2>
+        <div class="shop-page-header__author">by <%= shop.decorate.manager_full_name %></div>
+
+      </div>
+
+      <div class="+small-spacer"></div>
+
+      <div class="row">
+
+        <div class="col-md-10 col-md-push-1 col-md-pull-1">
+          <%= shop.desc %>
+        </div>
+
+      </div>
+
+      <div class="+small-spacer"></div>
+
+    </div>
+    <!-- End of Content -->
+
+  </div>
+
+</div>

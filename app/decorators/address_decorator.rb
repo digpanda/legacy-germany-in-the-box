@@ -15,4 +15,8 @@ class AddressDecorator < Draper::Decorator
     "#{number} 号"
   end
 
+  def imprint_address
+    "#{street} #{number} <br /> #{zip} #{city} <br /> #{country}"
+  end
+
 end
