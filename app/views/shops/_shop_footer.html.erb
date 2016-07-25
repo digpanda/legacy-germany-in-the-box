@@ -8,7 +8,7 @@
 
       <div class="row">
 
-        <% unless shop.philosophy.nil? %>
+        <% if shop.philosophy %>
 
           <div>
             <h3>Philosophy</h3>
@@ -19,7 +19,7 @@
 
         <% end %>
 
-        <% unless shop.uniqueness.nil? %>
+        <% if shop.uniqueness %>
 
           <div>
             <h3>Uniqueness</h3>
@@ -30,7 +30,7 @@
 
         <% end %>
 
-        <% unless shop.german_essence.nil? %>
+        <% if shop.german_essence %>
 
           <div>
             <h3>German Design</h3>
