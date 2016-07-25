@@ -3,6 +3,8 @@ module Wirecard
 
     CONFIG = BASE_CONFIG[:merchants]
 
+    include Rails.application.routes.url_helpers
+
     attr_reader :shop,
                 :shopkeeper,
                 :billing_address
@@ -48,6 +50,7 @@ module Wirecard
         :company_zip         => billing_address.zip,
         :company_state       => billing_address.province,
         :company_url         => shop.website,
+        :shop_url            => shop_url(shop),
         :user_url            => '',
         :vat_number          => '',
         :bank_name           => '',
@@ -58,10 +61,11 @@ module Wirecard
         :bank_account_number => '',
         :bank_owner          => '',
       }
+      binding.pry
     end
 
     def shopkeeper_address
-      shopkeeper.addresses.first.decorate || billing_address
+      shopkeeper.addresses.first&.decorate || billing_address
     end
 
   end

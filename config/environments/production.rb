@@ -18,6 +18,8 @@ Rails.application.configure do
     :exception_recipients => %w{laurent.schaffner@digpanda.com, jiang@digpanda.com, dailycron@hotmail.com}
   }
 
+  # used for root_url and equivalent
+  Rails.application.routes.default_url_options = {host: 'germanyinthebox.com', port: 80}
 
   config.action_mailer.default_url_options = {host: 'germanyinthebox.com', port: 80}
   config.action_mailer.delivery_method = :smtp
