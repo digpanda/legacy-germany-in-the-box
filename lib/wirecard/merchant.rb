@@ -61,7 +61,6 @@ module Wirecard
         :bank_account_number => '',
         :bank_owner          => '',
       }
-      binding.pry
     end
 
     def shopkeeper_address

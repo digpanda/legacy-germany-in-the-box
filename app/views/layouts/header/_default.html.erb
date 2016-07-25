@@ -34,14 +34,13 @@
 
       <% else %>
 
-      <div class="main-header__avatar">
+      <a href="<%= edit_account_user_path(current_user, :user_info_edit_part => :edit_account) %>">
+      <div class="main-header__avatar" style="background-image:url(<%= current_user.decorate.avatar %>)">
         <% unless current_user.notifications.unreads.count == 0 %>
-        <div class="main-header__avatar --notification"><a href="<%= shared_notifications_path(:user_info_edit_part => :edit_notification) %>"><%= current_user.notifications.unreads.count %></a></div>
+        <div class="main-header__avatar --notification"><a href="<%= shared_notifications_path(:user_info_edit_part => :edit_notification) %>"><%= current_user.notifications.unreads.count %></a></div> 
         <% end %>
-        <a href="<%= edit_account_user_path(current_user, :user_info_edit_part => :edit_account) %>">
-          <img src="<%= current_user.decorate.avatar %>">
-        </a>
       </div>
+      </a>
 
       <% end %>
 
