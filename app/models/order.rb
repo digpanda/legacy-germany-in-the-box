@@ -25,7 +25,6 @@ class Order
   scope :nonempty,    ->  {  where( :order_items_count.gt => 0 ) }
   scope :bought,      ->  { self.in( :status => [:paid, :custom_checking, :shipped] ) }
 
-
   # TODO : inclusion should be re-abilited when we are sure of what we include
   validates :status,                  presence: true #, inclusion: {in: [:new, :paying, :paid, :custom_checking, :shipped]}
   #validates :user,                    presence: true, :unless => lambda { :new == self.status }
