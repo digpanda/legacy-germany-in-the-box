@@ -1,4 +1,8 @@
-<div class="col-md-12 shop-page-footer">
+<div class="col-md-12 shop-page-footer" style="background-image:url(<%= shop.decorate.image_url(:banner, :detail) %>);">
+  <div class="+overlay"></div>
+
+  <div class="+onoverlay">
+
     <!-- Content -->
     <div class="shop-page-footer__content">
 
@@ -15,7 +19,7 @@
         </div>
 
         <div class="col-md-4">
-          <h3>Imprint</h3>
+          <h3>Impressum</h3>
           <%= shop.name %> <br />
           <%= shop.decorate.manager_full_name %> <br />
           <%= shop.mail %> <br /> <br />
@@ -26,5 +30,7 @@
 
     </div>
     <!-- End of Content -->
+
+  </div>
 
 </div>
