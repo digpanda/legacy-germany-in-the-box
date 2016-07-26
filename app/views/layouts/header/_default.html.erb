@@ -103,13 +103,13 @@
       <ul>
 
       <!-- Account side -->
-      <li><a href="<%= manage_cart_orders_path %>">My Cart</a></li>
+      <li><a href="<%= manage_cart_orders_path %>"><%= I18n.t(:my_cart, scope: :menu) %></a></li>
       <li>
 
       <% if current_user.nil? %>
         <a href="<%= new_user_session_path %>"><%= I18n.t(:signin) %></a>
       <% else %>
-        <a href="<%= edit_account_user_path(current_user, :user_info_edit_part => :edit_account) %>">My Account</a>
+        <a href="<%= edit_account_user_path(current_user, :user_info_edit_part => :edit_account) %>"><%= I18n.t(:my_account, scope: :menu) %></a>
       <% end %>
 
       </li>

@@ -12,7 +12,7 @@
         <% if shop.philosophy && !shop.philosophy.empty? %>
 
           <div>
-            <h3>Philosophy</h3>
+            <h3><%= I18n.t(:philosophy, scope: :title) %></h3>
             <%= shop.philosophy %>
           </div>
 
@@ -23,7 +23,7 @@
         <% if shop.uniqueness && !shop.uniqueness.empty? %>
 
           <div>
-            <h3>Uniqueness</h3>
+            <h3><%= I18n.t(:uniqueness, scope: :title) %></h3>
             <%= shop.uniqueness %>
           </div>
 
@@ -34,7 +34,7 @@
         <% if shop.german_essence && !shop.german_essence.empty? %>
 
           <div>
-            <h3>German Design</h3>
+            <h3><%= I18n.t(:german_design, scope: :title) %></h3>
             <%= shop.german_essence %>
           </div>
 
@@ -43,7 +43,7 @@
         <% end %>
 
         <div>
-          <h3>Impressum</h3>
+          <h3><%= I18n.t(:impressum, scope: :title) %></h3>
           <%= shop.name %> <br />
           <%= shop.decorate.manager_full_name %> <br />
           <%= shop.mail %> <br /> <br />

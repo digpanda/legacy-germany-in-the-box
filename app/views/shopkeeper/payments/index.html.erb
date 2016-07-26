@@ -1,15 +1,15 @@
 <div class="panel-group">
   <div class="panel panel-info">
     <div class="panel-heading text-center">
-      WireCard Payment Partnership
+      <%= I18n.t(:wirecard_payment_partnership, scope: :title) %>
     </div>
     <div class="panel-body">
       <div class="form-group">
         <div class="row-fluid">
           <% if @shop.billing_address.nil? %>
-            You must add a 
-            <%= link_to "billing address", show_addresses_user_path(current_user, :user_info_edit_part => :edit_shop_address) %>
-            to activate this section
+            <%= I18n.t(:you_must_add, scope: :composed_text) %>
+            <%= link_to I18n.t(:billing_address, scope: :composed_text), show_addresses_user_path(current_user, :user_info_edit_part => :edit_shop_address) %>
+            <%= I18n.t(:to_activate_this_section, scope: :composed_text) %>
           <% else %>
             <% if @shop.wirecard_status == :unactive %>
               <%= link_to "Registrieren für WireCard Checkoutportal", apply_shopkeeper_wirecard_path, {class: "btn btn-danger", target: "_blank" } %>

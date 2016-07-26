@@ -7,7 +7,7 @@ class ShopkeeperMailer < ApplicationMailer
     @user = user
     @title = title
     @url = url
-    mail(to: @user.email, subject: "Notification : #{@title}") # @user.email
+    mail(to: @user.email, subject: "Benachrichtigung: #{@title}") # @user.email
   end
 
 end

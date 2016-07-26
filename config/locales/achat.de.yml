@@ -1,11 +1,29 @@
 de:
+  search:
+    results_for: Ergebnisse von
+  composed_text:
+    you_must_add: Sie brauchen eine
+    billing_address: Rechnungsadresse
+    to_activate_this_section: um weiter zu verfahren
   button:
     resend_confirmation: Bestätigungsmail erneut senden
     change_my_password: Passwort ändern
     go_back_home_page: Zurück zur Hauptseite
+    start_process_shipment: Starten das Versenden
+  menu:
+    my_cart: Einkaufskorb
+    my_account: Mein Konto
   breadcrumb:
     home: Home
   title:
+    title: Titel
+    date: Datum
+    philosophy: Philosophie
+    uniqueness: Einzigartigkeit
+    impressum: Impressum
+    wirecard_payment_partnership: WireCard Zahlungspartnerschaft
+    description: Beschreibung
+    more: Mehr
     partners: Partner
     want_buy_products: Möchten was kaufen?
     want_work_with_us: Möchten unser Partner werden?
@@ -27,6 +45,12 @@ de:
     account_conflict: Sitzung abgelaufen. Bitte Support kontaktieren.
     success_subscription: Anmeldung erfolgreich!
     no_shop_available: Es gibt noch keinen Shop.
+    confirm_want_delete: Möchten Sie diesen Artikel wirklich löschen?
+    confirm_start_processing: Überprüfen Sie bitte die Bestellung nochmal bevor Sie anfangen die Sendung vorzubereiten. Bei Unstimmigkeit unseren Support kontaktieren. 
+    package_was_sent: Das Paket wurde versandt
+    checkout_failed: Fehlgeschlagen!
+    checkout_succeeded: Erfolg!
+    being_redirected_to_payment_partner: Sie werden auf die Seite unseres Zahlungspartners umgeleitet. Bitte warten...
   label:
     new_password: neues Passwort
     confirm_new_password: neues Passwort bestätigen

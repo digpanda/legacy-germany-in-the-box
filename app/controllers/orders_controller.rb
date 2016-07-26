@@ -240,8 +240,8 @@ class OrdersController < ApplicationController
 
       EmitNotificationAndDispatchToUser.new.perform({
         :user => shop.shopkeeper,
-        :title => 'You just received a new order',
-        :desc => "A customer just ordered in your shop. Check it out !"
+        :title => 'Sie haben eine neue Bestellung aus dem Land der Mitte bekommen!',
+        :desc => "Eine neue Bestellung ist da. Zeit für die Vorbereitung!"
       })
 
       flash[:success] = I18n.t(:checkout_ok, scope: :checkout)

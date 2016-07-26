@@ -7,7 +7,7 @@ class CustomerMailer < ApplicationMailer
     @user = user
     @title = title
     @url = url
-    mail(to: @user.email, subject: "Notification : #{@title}") # @user.email
+    mail(to: @user.email, subject: "通知 : #{@title}") # @user.email
   end
 
 end

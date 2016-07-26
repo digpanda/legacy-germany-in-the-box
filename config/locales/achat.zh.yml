@@ -1,11 +1,29 @@
 zh-CN:
+  search:
+    results_for: 的结果
+  composed_text:
+    you_must_add: 你需要一个
+    billing_address: 账单地址
+    to_activate_this_section: 才能继续
   button:
     resend_confirmation: 重发确认邮件
     change_my_password: 更改密码
     go_back_home_page: 回到首页
+    start_process_shipment: 准备发货
+  menu:
+    my_cart: 购物筐
+    my_account: 我的账号
   breadcrumb:
     home: 首页
   title:
+    title: 名称
+    date: 日期
+    philosophy: 品牌理念
+    uniqueness: 独特之处
+    impressum: 版权说明
+    wirecard_payment_partnership: 支付合作商
+    description: 描述
+    more: 更多
     partners: 合作伙伴
     want_buy_products: 想对喜爱的产品下单吗？
     want_work_with_us: 希望成为我们的伙伴？
@@ -27,6 +45,12 @@ zh-CN:
     account_conflict: 浏览记录过期，请联系客服
     success_subscription: 祝贺你成功注册！ 
     no_shop_available: 目前还没有店铺
+    confirm_want_delete: 确实要删除这个产品吗？
+    confirm_start_processing: 准备订单前请再次确认该订单产品的正确性。如有问题请联系商家客服。
+    package_was_sent: 包裹已经发出
+    checkout_failed: 错误产生！
+    checkout_succeeded: 成功！
+    being_redirected_to_payment_partner: 您正在被连接到支付伙伴的页面，请稍等...
   label:
     new_password: 新密码
     confirm_new_password: 确认新密码
