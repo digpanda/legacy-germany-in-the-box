@@ -63,11 +63,12 @@ zh-CN:
     settings: 平台设置
     notifications: 平台通知
   footer:
+    ihk_munchen: 来因盒是德国工商联合会（IHK）资助项目。
     copyright: 版权所有：莱茵工场 © 2016
     rheinmanufaktur: 莱茵工场
     imprint: 关于我们
     terms_conditions: 法律声明
-    privarcy_statement: 数据隐私
+    privacy_statement: 数据隐私
     guidelines: 使用指南
     sell_on_gbox: 卖家指南
     charge_and_billing: 手续费和账单

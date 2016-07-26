@@ -63,11 +63,12 @@ de:
     settings: Konfiguraiton
     notifications: Nachrichte
   footer:
+    ihk_munchen: GBox wird von IHK München und Oberbayern gefördert.
     copyright: © DigPanda GmbH 2015-2016
     rheinmanufaktur: Rhein-Manufaktur
     imprint: Impressum
     terms_conditions: AGB
-    privarcy_statement: Datenschutzerklärung
+    privacy_statement: Datenschutzerklärung
     guidelines: Grundsätze
     sell_on_gbox: Verkaufen auf GBox
     charge_and_billing: Gebühren und Rechnungen
