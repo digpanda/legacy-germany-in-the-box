@@ -8,39 +8,21 @@
 
       <div class="row">
 
-        <!-- TODO: refactor this -->
-        <% if shop.philosophy && !shop.philosophy.empty? %>
+        <% %w(philosophy uniqueness german_essence).each do |detail_attribute| %>
 
-          <div>
-            <h3><%= I18n.t(:philosophy, scope: :title) %></h3>
-            <%= shop.philosophy %>
-          </div>
+          <% if shop.public_send("#{detail_attribute}?") %>
 
-          <div class="+small-spacer"></div>
+            <div>
+              <h3><%= I18n.t(detail_attribute.to_sym, scope: :title) %></h3>
+              <%= shop.public_send(detail_attribute) %>
+            </div>
 
-        <% end %>
+            <div class="+small-spacer"></div>
 
-        <% if shop.uniqueness && !shop.uniqueness.empty? %>
-
-          <div>
-            <h3><%= I18n.t(:uniqueness, scope: :title) %></h3>
-            <%= shop.uniqueness %>
-          </div>
-
-          <div class="+small-spacer"></div>
+          <% end %>
 
         <% end %>
 
-        <% if shop.german_essence && !shop.german_essence.empty? %>
-
-          <div>
-            <h3><%= I18n.t(:german_design, scope: :title) %></h3>
-            <%= shop.german_essence %>
-          </div>
-
-          <div class="+small-spacer"></div>
-
-        <% end %>
 
         <div>
           <h3><%= I18n.t(:impressum, scope: :title) %></h3>

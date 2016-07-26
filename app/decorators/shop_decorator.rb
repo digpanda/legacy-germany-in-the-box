@@ -6,6 +6,19 @@ class ShopDecorator < Draper::Decorator
   delegate_all
   decorates :shop
 
+
+  def philosophy?
+    shop.philosophy && !shop.philosophy.empty?
+  end
+
+  def uniqueness?
+    shop.uniqueness && !shop.uniqueness.empty?
+  end
+
+  def german_essence?
+    shop.german_essence && !shop.german_essence.empty?
+  end
+  
   def more_new_address?
     self.addresses.is_only_both.size < [Rails.configuration.max_num_shop_billing_addresses, Rails.configuration.max_num_shop_sender_addresses].min && (self.addresses.is_only_billing.size < Rails.configuration.max_num_shop_billing_addresses || self.addresses.is_only_sender.size < Rails.configuration.max_num_shop_sender_addresses)
   end
