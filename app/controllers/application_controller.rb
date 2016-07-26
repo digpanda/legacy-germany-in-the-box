@@ -186,7 +186,7 @@ class ApplicationController < ActionController::Base
   end
 
   def breadcrumb_home
-    add_breadcrumb I18n.t(:home, :breadcrumb), :root_path
+    add_breadcrumb I18n.t(:home, scope: :breadcrumb), :root_path
   end
 
   private

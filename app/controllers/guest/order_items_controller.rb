@@ -7,7 +7,7 @@ class Guest::OrderItemsController < ApplicationController
 
   def destroy
     if order_item.delete
-      flash[:success] = I18n.t(:item_removed, :notice)
+      flash[:success] = I18n.t(:item_removed, scope: :notice)
     else
       flash[:error] = order_item.errors.full_messages.join(', ')
     end

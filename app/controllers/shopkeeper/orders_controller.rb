@@ -31,7 +31,7 @@ class Shopkeeper::OrdersController < ApplicationController
       order.save
     end
 
-    flash[:success] = I18n.t(:order_sent, :notice)
+    flash[:success] = I18n.t(:order_sent, scope: :notice)
     redirect_to(:back)
     return
 
@@ -40,7 +40,7 @@ class Shopkeeper::OrdersController < ApplicationController
   def process_order # keyword `process` used for obscure reasons
 
     unless order.processable?
-      flash[:error] = I18n.t(:order_not_processable, :notice)
+      flash[:error] = I18n.t(:order_not_processable, scope: :notice)
       redirect_to(:back)
       return
     end
@@ -56,7 +56,7 @@ class Shopkeeper::OrdersController < ApplicationController
     #
     # We go back now
     #
-    flash[:success] = I18.t(:order_processing, :notice)
+    flash[:success] = I18.t(:order_processing, scope: :notice)
     redirect_to(:back)
     return
 
