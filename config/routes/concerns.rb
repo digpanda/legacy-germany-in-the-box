@@ -18,6 +18,7 @@ concern :shared_page do
   match :imprint,     via: [:get],    action: :imprint,     as: :imprint
   match :saleguide,   via: [:get],    action: :saleguide,   as: :saleguide
   match :customer_guide,   via: [:get],    action: :customer_guide,   as: :customer_guide
+  match :customer_agb,   via: [:get],    action: :customer_agb,   as: :customer_agb
   match :fees,        via: [:get],    action: :fees,        as: :fees
   match :home,        via: [:get],    action: :home,        as: :home
 end
