@@ -5,9 +5,9 @@ defaults: &defaults
   host: http://demo.borderguru.com/
 
   ftp:
-    local_directory: /public/uploads/borderguru/
+    local_directory: /public/uploads/border_guru_ftp/
     remote_directory: /CainiaoPreAlertCsv/files
-    host: 84.200.54.181
+    host: ftp.borderguru.com
     port: 1348
     username: ftp
     password: doNotAllowRetryMoreThan019
@@ -25,7 +25,7 @@ development:
 test:
   <<: *defaults
   ftp:
-    local_directory: /public/uploads/borderguru_test/
+    local_directory: /public/uploads/border_guru_test/
     remote_directory: /CainiaoPreAlertCsv/files
     host: ftp.borderguru.com
     port: 1348
