@@ -45,7 +45,19 @@
           </td>
           <th>
           <% unless order.minimum_sending_date.nil? %>
-            <%= order.minimum_sending_date.strftime('%Y-%m-%d %H:%M:%S') %>
+            <% if Time.now > order.minimum_sending_date %>
+              
+              <span class="+blue">
+              <%= order.minimum_sending_date.strftime('%Y-%m-%d %H:%M:%S') %>
+              </span>
+
+            <% else %>
+
+              <span class="+red">
+              <%= order.minimum_sending_date.strftime('%Y-%m-%d %H:%M:%S') %>
+              </span>
+
+            <% end %>
           <% end %>
           </th>
           <td>

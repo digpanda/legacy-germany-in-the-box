@@ -7729,6 +7729,10 @@ img.mfp-img {
   margin: 0 auto; }
 
 /* line 85, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
+#csstyle .\+blue {
+  color: #3498db; }
+
+/* line 85, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
 #csstyle .\+vertical-centered {
   padding-top: 2.5em; }
 
