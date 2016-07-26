@@ -1,4 +1,22 @@
 zh-CN:
+  breadcrumb:
+    home: 首页
+  tite:
+    partners: 合作伙伴
+    want_buy_products: 想对喜爱的产品下单吗？
+  notice:
+    payment_removed: 支付成功取消 
+    cannot_remove_from_favorite: 该产品未能从收藏列表中删除
+    sku_not_found: 该单品没有找到
+    item_removed: 产品成功删除
+    order_sent: 海关申报成功
+    order_not_processable: 该订单目前还不能处理，请稍候再试！
+    order_processing: 该订单正在处理，您很快就可以发货。
+    shipping_partner_problem: 物流系统错误 %{e.message}，请稍后再试。
+    wechat_login: 微信登陆成功！
+    wechat_login_fail: 不能取得你的微信身份，稍候再试一下吧！
+    account_conflict: 浏览记录过期，请联系客服
+    success_subscription: 祝贺你成功注册！ 
   signin: 登陆
   back: 返回
   locales:

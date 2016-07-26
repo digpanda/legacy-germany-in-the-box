@@ -265,7 +265,7 @@ class OrdersController < ApplicationController
 
     # corrupted transaction detected : not the same email -> should be improved / put somewhere else
     if current_user.email != customer_email
-        flash[:error] = "An account conflict occurred. Please contact our support."
+        flash[:error] = I18n.t(:account_conflict, :notice)
         redirect_to root_url and return
     end
 

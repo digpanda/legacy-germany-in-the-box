@@ -1,4 +1,22 @@
 de:
+  breadcrumb:
+    home: Home
+  title:
+    partners: Partner
+    want_buy_products: Möchten was kaufen?
+  notice:
+    payment_removed: Zahlung storniert
+    cannot_remove_from_favorite: Das Produkt kann nicht von Lieblingsprodukten entfernt werden.
+    sku_not_found: Artikelposition nicht gefunden
+    item_removed: Artikel erfolgreich gelöscht
+    order_sent: Sie haben die Zoll-Anmeldung dieser Sendung bestätigt.
+    order_not_processable: Diese Bestellung ist momentan nicht bearbeitbar. Bitte Versuchen später! 
+    order_processing: Diese Bestellung wird bearbeitet. Sie können sie bald verschicken. 
+    shipping_partner_problem: Die Logistik hat eine Fehlermeldung. %{e.message} Versuchen Sie in einigen Minuten erneut.
+    wechat_login: Sie sind erfolgreich mit WeChat ID eingeloggt.
+    wechat_login_fail: WeChat Login ist fehlgeschlagen. Bitte nochmal versuchen! 
+    account_conflict: Sitzung abgelaufen. Bitte Support kontaktieren.
+    success_subscription: Anmeldung erfolgreich!
   signin: Einloggen
   back: Zurück
   locales:

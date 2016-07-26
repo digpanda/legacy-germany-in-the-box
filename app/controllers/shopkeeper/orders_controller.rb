@@ -31,16 +31,18 @@ class Shopkeeper::OrdersController < ApplicationController
       order.save
     end
 
-    flash[:success] = "You successfully confirmed having sent this order."
-    redirect_to(:back) and return
+    flash[:success] = I18n.t(:order_sent, :notice)
+    redirect_to(:back)
+    return
 
   end
 
   def process_order # keyword `process` used for obscure reasons
 
     unless order.processable?
-      flash[:error] = "This order is not processable at the moment. Please try again later."
-      redirect_to(:back) and return
+      flash[:error] = I18n.t(:order_not_processable, :notice)
+      redirect_to(:back)
+      return
     end
 
     #
@@ -54,8 +56,9 @@ class Shopkeeper::OrdersController < ApplicationController
     #
     # We go back now
     #
-    flash[:success] = "Your order is being processed by our partner. You'll soon be able to send it out."
-    redirect_to(:back) and return
+    flash[:success] = I18.t(:order_processing, :notice)
+    redirect_to(:back)
+    return
 
   end
 

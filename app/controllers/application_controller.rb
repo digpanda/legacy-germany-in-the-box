@@ -142,7 +142,7 @@ class ApplicationController < ActionController::Base
       end
 
     rescue BorderGuru::Error => e
-      flash[:error] = "Our shipping partner got a problem. #{e.message} Please try again in a few minutes."
+      flash[:error] = I18n.t(:shipping_partner_problem, :notice, :e => e)
       redirect_to root_path and return
     end
     carts
@@ -186,7 +186,7 @@ class ApplicationController < ActionController::Base
   end
 
   def breadcrumb_home
-    add_breadcrumb "Home", :root_path
+    add_breadcrumb I18n.t(:home, :breadcrumb), :root_path
   end
 
   private

@@ -4,14 +4,15 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   load_and_authorize_resource :except => [:wechat, :failure]
 
   def wechat
-    flash[:success] = "You successfully logged-in via WeChat."
+    flash[:success] = I18n.t(:wechat_login, :notice)
     user = User.from_omniauth(request.env["omniauth.auth"])
     sign_in_and_redirect user, success: 'success'
   end
 
   def failure
-    flash[:error] = "We couldn't authenticate you via WeChat. Please try again."
-    redirect_to(:back) and return
+    flash[:error] = I18n.t(:wechat_login_fail, :notice)
+    redirect_to(:back)
+    return
   end
 
 end

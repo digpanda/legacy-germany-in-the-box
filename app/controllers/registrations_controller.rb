@@ -35,7 +35,7 @@ class RegistrationsController < Devise::RegistrationsController
 
         if resource.active_for_authentication?
 
-          flash[:success] = "You subscribed successfully !"
+          flash[:success] = I18n.t(:success_subscription, :notice)
           
           sign_up(resource_name, resource)
 
