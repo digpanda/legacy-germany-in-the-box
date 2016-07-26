@@ -6,7 +6,7 @@
     <%= f.email_field :email, autofocus: true %>
   </div>
   <div class="actions">
-    <%= f.submit "Resend confirmation instructions" %>
+    <%= f.submit I18n.t(:resend_confirmation, scope: :button) %>
   </div>
 <% end %>
 <%= render "devise/shared/links" %>

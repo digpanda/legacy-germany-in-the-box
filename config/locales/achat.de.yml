@@ -1,9 +1,18 @@
 de:
+  button:
+    resend_confirmation: Bestätigungsmail erneut senden
+    change_my_password: Passwort ändern
+    go_back_home_page: Zurück zur Hauptseite
   breadcrumb:
     home: Home
   title:
     partners: Partner
     want_buy_products: Möchten was kaufen?
+    want_work_with_us: Möchten unser Partner werden?
+    change_your_password: Passwort ändern
+    page_not_found: Seite nicht gefunden
+    server_error: Serverproblem
+    page_not_authorized: Sie haben keine Berechtigung für diese Seite
   notice:
     payment_removed: Zahlung storniert
     cannot_remove_from_favorite: Das Produkt kann nicht von Lieblingsprodukten entfernt werden.
@@ -17,6 +26,11 @@ de:
     wechat_login_fail: WeChat Login ist fehlgeschlagen. Bitte nochmal versuchen! 
     account_conflict: Sitzung abgelaufen. Bitte Support kontaktieren.
     success_subscription: Anmeldung erfolgreich!
+    no_shop_available: Es gibt noch keinen Shop.
+  label:
+    new_password: neues Passwort
+    confirm_new_password: neues Passwort bestätigen
+    login_or: ODER
   signin: Einloggen
   back: Zurück
   locales:

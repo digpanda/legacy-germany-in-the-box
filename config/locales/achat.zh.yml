@@ -1,9 +1,18 @@
 zh-CN:
+  button:
+    resend_confirmation: 重发确认邮件
+    change_my_password: 更改密码
+    go_back_home_page: 回到首页
   breadcrumb:
     home: 首页
   title:
     partners: 合作伙伴
     want_buy_products: 想对喜爱的产品下单吗？
+    want_work_with_us: 希望成为我们的伙伴？
+    change_your_password: 更改密码
+    page_not_found: 没有找到该页面
+    server_error: 服务器出错
+    page_not_authorized: 没有访问该页面的权限 
   notice:
     payment_removed: 支付成功取消 
     cannot_remove_from_favorite: 该产品未能从收藏列表中删除
@@ -17,6 +26,11 @@ zh-CN:
     wechat_login_fail: 不能取得你的微信身份，稍候再试一下吧！
     account_conflict: 浏览记录过期，请联系客服
     success_subscription: 祝贺你成功注册！ 
+    no_shop_available: 目前还没有店铺
+  label:
+    new_password: 新密码
+    confirm_new_password: 确认新密码
+    login_or: 或者
   signin: 登陆
   back: 返回
   locales:
