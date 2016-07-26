@@ -27,7 +27,7 @@
                 </label>
               </div>
               <div class="col-md-9">
-                <%= f.email_field :email, :class => 'form-control', :required => true, 'data-remote' => "#{api_guest_users_find_by_email_path}", 'data-remote-error': I18n.t(:duplicated_email, scope: :edit_shop_application), :maxLength => Rails.configuration.max_tiny_text_length, :placeholder => 'example@google.com' %>
+                <%= f.email_field :email, :class => 'form-control', :required => true, 'data-remote' => "#{api_guest_users_unknown_by_email_path}", 'data-remote-error': I18n.t(:duplicated_email, scope: :edit_shop_application), :maxLength => Rails.configuration.max_tiny_text_length, :placeholder => 'example@google.com' %>
                 <div class="help-block with-errors"></div>
               </div>
             </div>

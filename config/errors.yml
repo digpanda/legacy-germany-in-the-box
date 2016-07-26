@@ -37,3 +37,7 @@ quantity_too_small:
 bad_language:
   code: 9
   error: "Bad language."
+
+resource_found:
+  code: 10
+  error: "Resource found."

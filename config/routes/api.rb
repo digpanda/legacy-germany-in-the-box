@@ -28,6 +28,7 @@ namespace :api, defaults: { format: 'json' }  do
 
       namespace :users do
         get :find_by_email
+        get :unknown_by_email
       end
 
   end
