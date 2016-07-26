@@ -23,6 +23,9 @@
     <%= link_to I18n.t(:payments, scope: :top_menu), shopkeeper_payments_path(:user_info_edit_part => :payments) %>
   </li>
 <% end %>
+<li class="<%= is_menu_active?(:support) %>">
+<%= link_to I18n.t(:support, scope: :top_menu), shopkeeper_supports_path(:user_info_edit_part => :support) %>
+</li>
 <li>
   <%= link_to I18n.t(:sign_out, scope: :top_menu), destroy_user_session_path, :method => :delete %>
 </li>
