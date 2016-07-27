@@ -31,6 +31,12 @@ every :day, :at => '6:15pm' do
   rake "cron:compile_and_transfer_orders_csvs_to_borderguru"
 end
 
+# TODO : uncomment this
+#every :day, :at => '11:15pm' do
+#  command '(CHINESE HOUR 11:15pm) The system has launched the rake task `cron:transmit_pickup_orders_to_hermes`'
+#  rake "cron:transmit_pickup_orders_to_hermes"
+#end
+
 =begin
 every 1.day, :at => '4:30 am' do
   runner "MyModel.task_to_run_at_four_thirty_in_the_morning"
