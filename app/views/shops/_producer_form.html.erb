@@ -255,12 +255,14 @@
         </div>
       </div>
     </div>
+
     <div class="panel panel-info">
       <div class="panel-heading text-center">
         <label class="<%= (@shop.agb ? '' : 'required') %>">
           <%= I18n.t(:agb, scope: :edit_shop, locale: locale) %>
         </label>
       </div>
+
       <div class="panel-body">
         <div class="form-group">
           <div class="row-fluid">
@@ -276,6 +278,23 @@
         </div>
       </div>
     </div>
+
+    <div class="panel panel-info">
+      <div class="panel-heading text-center">
+        <label class="<%= (@shop.agb ? '' : 'required') %>">
+          Delivery Options
+        </label>
+      </div>
+      <div class="panel-body">
+        <div class="form-group">
+          <div class="row-fluid">
+              <%= f.check_box :hermes_pickup %>
+              Hermes PickUp Service
+          </div>
+        </div>
+      </div>
+      </div>
+
     <% if current_user.is_admin? %>
       <div class="panel panel-info">
         <div class="panel-heading text-center">
