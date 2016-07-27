@@ -31,9 +31,9 @@ class Tasks::Cron::TransmitPickupOrdersToHermes
         orders = sendable_orders(orders)
         next unless orders.any?
 
-        data = email_datas(shop, shopkeeper, orders)
-        csv = BorderGuruFtp::TransferOrders::Makers::Generate.new(orders).to_csv.encode(CSV_ENCODE)
-        HermesMailer.notify(shopkeeper.email, data, csv).deliver_now
+        datas = email_datas(shop, shopkeeper, orders)
+        csv_file = BorderGuruFtp::TransferOrders::Makers::Generate.new(orders).to_csv.encode(CSV_ENCODE)
+        HermesMailer.notify(shopkeeper.email, datas, csv_file).deliver_now
 
         # TODO : update transmitted orders (hermes_pickup_email_sent_at)
 
@@ -64,8 +64,8 @@ class Tasks::Cron::TransmitPickupOrdersToHermes
       :total_volume => total_volume(orders),
       :pickup_address => shop.billing_address.decorate.full_address,
       :destination => DESTINATION,
-      :orders_barcodes => barcodes(orders),
-      :orders_descriptions => descriptions(orders)
+      :orders_barcodes => barcodes_list(orders),
+      :orders_descriptions => descriptions_list(orders)
     }
   end
 
@@ -83,11 +83,11 @@ class Tasks::Cron::TransmitPickupOrdersToHermes
     orders.reduce(0) { |acc, order| acc + order.total_volume }
   end
 
-  def barcodes(orders)
+  def barcodes_list(orders)
     orders.reduce([]) { |acc, order| acc << order.border_guru_shipment_id }
   end
 
-  def descriptions(orders)
+  def descriptions_list(orders)
     orders.reduce([]) { |acc, order| acc << order.desc }
   end
 
