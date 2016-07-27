@@ -4,6 +4,8 @@ class Tasks::Cron::TransmitPickupOrdersToHermes
 
   CSV_ENCODE = "UTF-8"
   MEAN_OF_TRANSPORT = "Pakete"
+  DESTINATION = "FRA"
+  MINIMUM_EMAIL_SENDING_DATE = 80.hours.from_now
 
   attr_reader :orders
 
@@ -26,28 +28,10 @@ class Tasks::Cron::TransmitPickupOrdersToHermes
         shop = orders.first.shop.decorate
         shopkeeper = shop.shopkeeper.decorate
 
-        # only one shop and only the email sendable orders
-        orders = orders.select do |order|
-          email_sendable?(order)
-        end
+        orders = sendable_orders(orders)
+        next unless orders.any?
 
-        data = {
-
-          :company_name => shop.name,
-          :contact_name => shopkeeper.full_name,
-          :contact_phone => shopkeeper.mobile,
-          :number_of_packages => orders.length,
-          :total_weight_in_kg => orders.reduce(0) { |acc, order| acc + order.total_weight },
-          :mean_of_transport => MEAN_OF_TRANSPORT,
-          :number_of_mean_of_transport => orders.length, # alias of number of packages
-          :total_volume => orders.reduce(0) { |acc, order| acc + order.total_volume },
-          :pickup_address => shop.billing_address.decorate.full_address,
-          :destination => 'FRA',
-          :orders_barcodes => orders.reduce([]) { |acc, order| acc << order.border_guru_shipment_id },
-          :orders_descriptions => orders.reduce([]) { |acc, order| acc << order.desc }
-
-        }
-
+        data = email_datas(shop, shopkeeper, orders)
         csv = BorderGuruFtp::TransferOrders::Makers::Generate.new(orders).to_csv.encode(CSV_ENCODE)
         HermesMailer.notify(shopkeeper.email, data, csv).deliver_now
 
@@ -66,9 +50,49 @@ class Tasks::Cron::TransmitPickupOrdersToHermes
 
   private
 
+  # those params should be put into classes and be global
+  # same for most of the private methods here, refacto needed
+  def email_datas(shop, shopkeeper, orders)
+    {
+      :company_name => shop.name,
+      :contact_name => shopkeeper.full_name,
+      :contact_phone => shopkeeper.mobile,
+      :number_of_packages => orders.length,
+      :total_weight_in_kg => total_weight(orders),
+      :mean_of_transport => MEAN_OF_TRANSPORT,
+      :number_of_mean_of_transport => orders.length, # alias of number of packages
+      :total_volume => total_volume(orders),
+      :pickup_address => shop.billing_address.decorate.full_address,
+      :destination => DESTINATION,
+      :orders_barcodes => barcodes(orders),
+      :orders_descriptions => descriptions(orders)
+    }
+  end
+
+  def sendable_orders(orders)
+    orders.select do |order|
+      email_sendable?(order)
+    end
+  end
+
+  def total_weight(orders)
+    orders.reduce(0) { |acc, order| acc + order.total_weight }
+  end
+
+  def total_volume(orders)
+    orders.reduce(0) { |acc, order| acc + order.total_volume }
+  end
+
+  def barcodes(orders)
+    orders.reduce([]) { |acc, order| acc << order.border_guru_shipment_id }
+  end
+
+  def descriptions(orders)
+    orders.reduce([]) { |acc, order| acc << order.desc }
+  end
+
   def email_sendable?(order)
-    # TODO : put back to 24h when done
-    (order.minimum_sending_date < 80.hours.from_now) && !order.hermes_pickup_email_sent_at
+    (order.minimum_sending_date < MINIMUM_EMAIL_SENDING_DATE) && !order.hermes_pickup_email_sent_at
   end
 
   def orders_by_shop
