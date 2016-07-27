@@ -8176,17 +8176,17 @@ img.mfp-img {
           -webkit-filter: brightness(0) invert(1);
           filter: brightness(0) invert(1); }
     /* line 40, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
-    .category-blocks__block.\--luxury {
+    .category-blocks__block.\--household {
       padding: 1em;
       background-color: #fdfdfd; }
       /* line 50, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_category-blocks.sass */
-      .category-blocks__block.\--luxury:hover {
+      .category-blocks__block.\--household:hover {
         background-color: #659443; }
         /* line 40, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/helpers/_mixins.sass */
-        .category-blocks__block.\--luxury:hover h2 {
+        .category-blocks__block.\--household:hover h2 {
           color: #fdfdfd; }
         /* line 42, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/helpers/_mixins.sass */
-        .category-blocks__block.\--luxury:hover img {
+        .category-blocks__block.\--household:hover img {
           -webkit-filter: brightness(0) invert(1);
           filter: brightness(0) invert(1); }
 

@@ -37,6 +37,12 @@ class Tasks::Digpanda::RemoveAndCreateUiCategories
         :desc_translations => {:en => '', :de => '', :'zh-CN' => '想找些特别不跟别人撞衫的时装和配件？想为自己的孩子选件不会过敏的洋装？到来因盒里找找，包君满意。'}
     )
 
+    category_household = Category.create!(
+        :name_translations => {:en => 'Household', :'zh-CN' => '家居', :de => 'Haushalt'},
+        :slug => 'fashion',
+        :desc_translations => {:en => '', :de => '', :'zh-CN' => ''}
+    )
+
     Rails.cache.clear
 
     puts "End of process."
