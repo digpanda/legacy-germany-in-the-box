@@ -1,0 +1,16 @@
+<h1>Hallo,</h1>
+<p>
+  Company name : <%= @data[:company_name] %><br />
+  Contact name : <%= @data[:contact_name] %><br />
+  Contact phone : <%= @data[:contact_phone] %><br /> 
+  Gesamtanzahl der Pakete : <%= @data[:number_of_packages] %><br />
+  Gesamtgewicht der Sendung : <%= @data[:total_weight_in_kg] %><br />
+  Ladehilfsmittel : <%= @data[:mean_of_transport] %><br />
+  Anzahl der Ladehilfsmittel : <%= @data[:number_of_mean_of_transport] %><br />
+  Gesamtvolumen für Abholung : <%= @data[:total_volume] %><br />
+  Lageradresse : <%= @data[:pickup_address] %><br />
+  Destination : <%= @data[:destination] %><br />
+  Barcode ID pro Paket : <%= @data[:orders_barcodes].join(', ') %><br />
+  Artikelbeschreibung in Deutsch : <%= @data[:orders_descriptions].join(', ') %><br />
+</p>
+<p>Servus und dir einen schönen Tag!</p>

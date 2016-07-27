@@ -12,6 +12,7 @@ class Order
   field :border_guru_link_payment,  type: String
   field :order_items_count,         type: Fixnum, default: 0
   field :minimum_sending_date,      type: Time
+  field :hermes_pickup_email_sent_at,   type: Time
 
   belongs_to :shop,                 :inverse_of => :orders
   belongs_to :user,                 :inverse_of => :orders
@@ -77,7 +78,11 @@ class Order
   end
 
   def total_amount
-    order_items.inject(0) { |sum, i| sum += i.quantity }
+    order_items.inject(0) { |sum, order_item| sum += order_item.quantity }
+  end
+
+  def total_volume
+    order_items.inject(0) { |sum, order_item| sum += order_item.volume }
   end
 
   def update_for_checkout(user, delivery_destination_id, border_guru_quote_id, shipping_cost, tax_and_duty_cost)

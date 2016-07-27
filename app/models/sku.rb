@@ -51,6 +51,10 @@ class Sku
   before_save :clean_blank_and_duplicated_option_ids
   before_save :clean_quantity, :if => lambda { self.unlimited }
 
+  def volume
+    space_length * space_width * space_height
+  end
+
   def get_options
     variants = self.option_ids.map do |oid|
       self.product.options.detect do |v|

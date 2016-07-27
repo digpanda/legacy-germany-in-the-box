@@ -35,6 +35,10 @@ class OrderItem
     end.flatten.compact
   end
 
+  def volume
+    sku.volume
+  end
+
   def sku
     @sku ||= self.product.skus.find(self.sku_id)
   end

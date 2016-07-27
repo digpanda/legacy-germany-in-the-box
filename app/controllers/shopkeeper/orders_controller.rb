@@ -56,7 +56,7 @@ class Shopkeeper::OrdersController < ApplicationController
     #
     # We go back now
     #
-    flash[:success] = I18.t(:order_processing, scope: :notice)
+    flash[:success] = I18n.t(:order_processing, scope: :notice)
     redirect_to(:back)
     return
 
