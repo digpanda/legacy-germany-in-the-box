@@ -12,8 +12,14 @@ FactoryGirl.define do
 
     trait :with_custom_checking do
       status :custom_checking
-      minimum_sending_date 80.hours.from_now #1.hours.ago
+      minimum_sending_date { 48.hours.from_now }
     end
+
+    trait :with_shippable do
+      status :custom_checking
+      minimum_sending_date { 24.hours.ago }
+    end
+
 
     after(:build) do |order|
       order.order_items = build_list(:order_item, 5, :product => {:shop => order.shop})
