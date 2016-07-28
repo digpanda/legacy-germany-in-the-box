@@ -1,32 +1,42 @@
+
+
 <table style="text-align:left;width:100%;border-color:black;border-width:1px;border-style:solid;">
   <thead>
     <tr>
       <th>
-        <%= I18n.t(:name, scope: :cart) %>
+        Pos.
       </th>
       <th>
-        <%= I18n.t(:variant_option, scope: :cart) %>
+        Produktname
       </th>
       <th>
-        <%= I18n.t(:quantity, scope: :cart) %>
+        Preis (EUR)
       </th>
       <th>
-        <%= I18n.t(:unit_price, scope: :cart) %>
+        Menge
+      </th>
+      <th>
+        Netto-Umsatz (EUR)
       </th>
     </tr>
   </thead>
   <tbody>
-    <% @order.order_items.each do |order_item| %>
+    <% @order.order_items.each_with_index do |order_item, index| %>
     <tr>
       <td>
-        <%= order_item.product.name %>
+      <%= (index+1) %>
       </td>
       <td>
-        <%= order_item.selected_options.join(', ') %>
+        <%= order_item.product.name %> (<%= order_item.selected_options.join(', ') %>)
       </td>
-      <td><%= order_item.quantity %></td>
       <td>
-        <%= order_item.sku.decorate.price_with_currency_yuan %>
+        <%= order_item.sku.decorate.price_with_currency_euro %>
+      </td>
+      <td>
+        <%= order_item.quantity %>
+      </td>
+      <td>
+        <%= order_item.decorate.total_price_with_currency_euro %>
       </td>
     </tr>
     <% end %>

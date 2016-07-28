@@ -35,6 +35,10 @@ class OrderItem
     end.flatten.compact
   end
 
+  def total_price
+    quantity * price
+  end
+
   def volume
     sku.volume
   end
