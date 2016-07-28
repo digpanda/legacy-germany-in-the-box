@@ -1,10 +1,9 @@
 de:
-  search:
-    results_for: Ergebnisse von
   composed_text:
     you_must_add: Sie brauchen eine
     billing_address: Rechnungsadresse
     to_activate_this_section: um weiter zu verfahren
+  results_for: Ergebnisse von
   button:
     resend_confirmation: Bestätigungsmail erneut senden
     change_my_password: Passwort ändern

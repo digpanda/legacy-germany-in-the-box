@@ -1,10 +1,9 @@
 zh-CN:
-  search:
-    results_for: 的结果
   composed_text:
     you_must_add: 你需要一个
     billing_address: 账单地址
     to_activate_this_section: 才能继续
+  results_for: 的结果
   button:
     resend_confirmation: 重发确认邮件
     change_my_password: 更改密码
