@@ -1,12 +1,12 @@
 require 'rake'
 
-describe Tasks::Cron::CompileAndTransferOrdersCsvsToBorderguru do
+describe Tasks::Cron::TransmitPickupOrdersToHermes do
 
   context "basic invokation of the rake task" do
 
     it "should be executed without error" do
 
-      expect { Tasks::Cron::CompileAndTransferOrdersCsvsToBorderguru.new.perform }.not_to raise_exception
+      expect { Tasks::Cron::TransmitPickupOrdersToHermes.new.perform }.not_to raise_exception
 
     end
 
@@ -17,7 +17,7 @@ describe Tasks::Cron::CompileAndTransferOrdersCsvsToBorderguru do
     it "should process 5 orders with status `custom_checking`" do
 
       create(:shop, :with_custom_checking_orders)
-      expect { Tasks::Cron::CompileAndTransferOrdersCsvsToBorderguru.new.perform }.not_to raise_exception
+      expect { Tasks::Cron::TransmitPickupOrdersToHermes.new.perform }.not_to raise_exception
 
     end
     
