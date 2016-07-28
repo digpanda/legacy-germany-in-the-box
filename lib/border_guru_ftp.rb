@@ -1,5 +1,3 @@
-require 'border_guru_ftp/transfer_orders'
-
 # manage the files between the project and BorderGuru FTP
 # pretty self explanatory.
 module BorderGuruFtp
