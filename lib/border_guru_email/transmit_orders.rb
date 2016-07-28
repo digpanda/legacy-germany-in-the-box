@@ -11,13 +11,13 @@ module BorderGuruEmail
 
     def send_emails
       sendable_shop_orders.each do |shop_orders|
-        Dispatch.new(shop_orders).to_email
+        Dispatch.new(shop_orders).to_email if shop_orders.any?
       end
     end
 
     def update_orders!
       sendable_shop_orders.each do |shop_orders|
-        Update.new(shop_orders).confirm_sent!
+        Update.new(shop_orders).confirm_sent! if shop_orders.any?
       end
     end
 
