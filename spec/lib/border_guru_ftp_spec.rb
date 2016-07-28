@@ -33,5 +33,4 @@ describe BorderGuruFtp do
     end
   end
 
-
 end

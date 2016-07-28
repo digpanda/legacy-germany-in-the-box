@@ -1,4 +1,4 @@
-Rails.configuration.logo_image_thumbnail = 'imageView2/2/w/50/h/50'
+Rails.configuration.logo_image_thumbnail = 'imageView2/2/w/150/h/150'
 Rails.configuration.logo_image_detailview = 'imageView2/2/w/256/h/256'
 Rails.configuration.banner_image_thumbnail = 'imageView2/2/w/1500/h/500'
 Rails.configuration.banner_image_detailview = 'imageView2/2/w/1500/h/500'
