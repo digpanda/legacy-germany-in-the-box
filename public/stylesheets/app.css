@@ -7976,7 +7976,7 @@ img.mfp-img {
   padding: 1.5em;
   border: 2px #eeeeee solid;
   background-color: #659443;
-  min-height: 200px;
+  min-height: 230px;
   -webkit-border-radius: 0.5em;
   -moz-border-radius: 0.5em;
   -ms-border-radius: 0.5em;
@@ -8041,7 +8041,7 @@ img.mfp-img {
   background-color: #eeeeee;
   background-position: center center;
   background-size: cover;
-  min-height: 200px; }
+  min-height: 230px; }
 
 /* line 40, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
 .shop-blocks__secondary.\--content {
@@ -8089,7 +8089,7 @@ img.mfp-img {
   background-color: #eeeeee;
   background-position: center center;
   background-size: cover;
-  min-height: 200px; }
+  min-height: 230px; }
 
 /* line 32, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
 .category-blocks {
