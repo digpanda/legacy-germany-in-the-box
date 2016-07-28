@@ -5,11 +5,10 @@ class HermesMailer < ApplicationMailer
  
   def notify(shop_email, data, csv)
     @data = data
-    @csv = csv
+    attachments['orders.csv'] = csv
     mail(
          to: "operations.ecommerce@hermesworld.com", 
          cc: ["operations@borderguru.com", shop_email],
-         add_file: {:filename => 'orders.csv', :content => csv},
          subject: "Merchant PickUp Hermes" # to define
          )
   end
