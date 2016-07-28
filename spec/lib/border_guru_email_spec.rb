@@ -8,9 +8,10 @@ describe BorderGuruEmail do
 
     it "should transmit the separated orders" do
       # those orders are deliberately not on `custom_checking` to see if it breaks
-      # it shouldn't.
+      # it shouldn't. but it shouldn't send any email either (because no minimum sending date)
       transmit = BorderGuruEmail.transmit_orders(orders)
       expect(transmit).to be_a(BorderGuruEmail::TransmitOrders)
+      expect(HermesMailer.deliveries.count).to eq(0) # no email sent
     end
 
   end

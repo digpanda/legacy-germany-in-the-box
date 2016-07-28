@@ -17,11 +17,11 @@ Rails.application.configure do
   config.active_support.deprecation = :stderr
 
   config.action_mailer.default_url_options = {host: 'germanyinthebox.com', port: 80}
-  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.delivery_method = :test #:smtp
 
   # used for root_url and equivalent
   Rails.application.routes.default_url_options = {host: 'local.dev', port: 8000}
-
+=begin
   config.action_mailer.smtp_settings = {
       address: "mailtrap.io",
       port: 25,
@@ -31,7 +31,7 @@ Rails.application.configure do
       user_name: 'f396f41db34e22',
       password: 'f4eede72e026e4'
   }
-  
+=end
 end
 
 
