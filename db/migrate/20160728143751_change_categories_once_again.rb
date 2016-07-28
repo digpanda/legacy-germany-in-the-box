@@ -9,7 +9,7 @@ class ChangeCategoriesOnceAgain < Mongoid::Migration
 
     category = Category.where(slug: 'fashion').first
     if category
-      category.desc_translations = {:en => '', :de => '', :'zh-CN' => '德国和时尚？这是两个完全不相干的概念嘛😂－事实上从德国走出了很多世界顶级的设计师，如Karl Lagerfeld、Jil Sander等等。穿一件特立独行的德国独立设计师的衣服去下一个派对，让你的闺蜜们去猜这是谁的作品，也许Ta就是下一个Lagerfeld呢？'}
+      category.desc_translations = {:en => '', :de => '', :'zh-CN' => '德国和时尚？这是两个完全不相干的概念嘛😂－事实上从德国走出了很多世界顶级的设计师，如Karl Lagerfeld、Jil Sander等等。穿一件特立独行的德国独立设计师的衣服去下一个派对，让你的闺蜜们去猜这是谁的作品，也许Ta就是下一个Lagerfeld呢？😉'}
       category.save
     end
 
