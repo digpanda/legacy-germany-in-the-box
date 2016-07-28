@@ -1,7 +1,7 @@
 module BorderGuruEmail
   class TransmitOrders
 
-    MINIMUM_EMAIL_SENDING_DATE = 80.hours.from_now
+    MINIMUM_EMAIL_SENDING_DATE = 24.hours.from_now
 
     attr_reader :orders
 
