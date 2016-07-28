@@ -6,6 +6,8 @@ module BorderGuruEmail
       MEAN_OF_TRANSPORT = "Pakete"
       DESTINATION = "FRA" # Frankfurt
 
+      # dispatch into emails via our mailer
+      # including datas and a csv file
       def to_email
         if orders.any? # could have no orders ?
           HermesMailer.notify(shopkeeper.email, email_datas, csv_file).deliver_now

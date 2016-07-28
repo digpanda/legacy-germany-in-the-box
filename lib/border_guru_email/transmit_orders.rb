@@ -30,7 +30,7 @@ module BorderGuruEmail
     end
 
     def email_sendable?(order)
-      (order.minimum_sending_date < MINIMUM_EMAIL_SENDING_DATE) && !order.hermes_pickup_email_sent_at
+      (order.minimum_sending_date && order.minimum_sending_date < MINIMUM_EMAIL_SENDING_DATE) && !order.hermes_pickup_email_sent_at
     end
 
     def orders_by_shop

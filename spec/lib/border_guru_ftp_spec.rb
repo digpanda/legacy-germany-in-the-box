@@ -1,9 +1,8 @@
 describe BorderGuruFtp do
 
-  LOG_FILE = "#{Rails.root}/log/#{BorderGuruFtp::CONFIG[:ftp][:log]}"
-
+  let(:log_file) { "#{Rails.root}/log/#{BorderGuruFtp::CONFIG[:ftp][:log]}" }
   let(:orders) { create_list(:order, 10) }
-  before(:each) { File.delete(LOG_FILE) if File.exists?(LOG_FILE) }
+  before(:each) { File.delete(log_file) if File.exists?(log_file) }
 
   context "#transfer_orders" do
 
@@ -20,7 +19,7 @@ describe BorderGuruFtp do
     it "should log something in the correct folder" do
       paragraph = Faker::Lorem.paragraph
       BorderGuruFtp.log(paragraph)
-      file = File.open(LOG_FILE, "r")
+      file = File.open(log_file, "r")
       expect(file.read).to include(paragraph)
     end
 

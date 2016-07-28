@@ -1,15 +1,14 @@
 describe BorderGuruEmail do
 
-  LOG_FILE = "#{Rails.root}/log/#{BorderGuruEmail::CONFIG[:email][:log]}"
-
+  let(:log_file) { "#{Rails.root}/log/#{BorderGuruEmail::CONFIG[:email][:log]}" }
   let(:orders) { create_list(:order, 10) }
-  before(:each) { File.delete(LOG_FILE) if File.exists?(LOG_FILE) }
+  before(:each) { File.delete(log_file) if File.exists?(log_file) }
 
   context "#transmit_orders" do
 
     it "should transmit the separated orders" do
       transmit = BorderGuruEmail.transmit_orders(orders)
-      expect(transmit).to be_a(BorderGuruFtp::TransmitOrders)
+      expect(transmit).to be_a(BorderGuruEmail::TransmitOrders)
     end
 
   end
@@ -19,7 +18,7 @@ describe BorderGuruEmail do
     it "should log something in the correct folder" do
       paragraph = Faker::Lorem.paragraph
       BorderGuruEmail.log(paragraph)
-      file = File.open(LOG_FILE, "r")
+      file = File.open(log_file, "r")
       expect(file.read).to include(paragraph)
     end
 
