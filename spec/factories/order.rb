@@ -3,6 +3,8 @@ FactoryGirl.define do
 
     border_guru_quote_id    'BG-DE-CN-01234567898'
     status                  :new
+    border_guru_shipment_id 'TEST'
+    
     desc                    { Faker::Lorem.paragraph }
     shipping_address        { FactoryGirl.create(:customer_address) }
     billing_address         { FactoryGirl.create(:customer_address) }
@@ -10,6 +12,7 @@ FactoryGirl.define do
 
     trait :with_custom_checking do
       status :custom_checking
+      minimum_sending_date 1.hours.ago
     end
 
     after(:build) do |order|
