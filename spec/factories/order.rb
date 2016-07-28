@@ -12,7 +12,7 @@ FactoryGirl.define do
 
     trait :with_custom_checking do
       status :custom_checking
-      minimum_sending_date 1.hours.ago
+      minimum_sending_date 80.hours.from_now #1.hours.ago
     end
 
     after(:build) do |order|

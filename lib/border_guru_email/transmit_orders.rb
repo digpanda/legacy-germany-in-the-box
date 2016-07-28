@@ -24,7 +24,7 @@ module BorderGuruEmail
     private
 
     def sendable_shop_orders
-      orders_by_shop.each do |shop_orders|
+      orders_by_shop.map do |shop_orders|
         shop_orders.select { |order| email_sendable?(order) && order.order_items.any? }
       end
     end
