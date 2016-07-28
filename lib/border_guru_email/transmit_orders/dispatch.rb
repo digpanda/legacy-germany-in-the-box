@@ -4,11 +4,12 @@ module BorderGuruEmail
 
       CSV_ENCODE = "UTF-8"
       MEAN_OF_TRANSPORT = "Pakete"
-      DESTINATION = "FRA"
+      DESTINATION = "FRA" # Frankfurt
 
       def to_email
-        return unless orders.any? # make the protection somewhere else maybe ?
-        HermesMailer.notify(shopkeeper.email, email_datas, csv_file).deliver_now
+        if orders.any? # could have no orders ?
+          HermesMailer.notify(shopkeeper.email, email_datas, csv_file).deliver_now
+        end
       end
 
       private

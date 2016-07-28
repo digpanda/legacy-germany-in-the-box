@@ -10,19 +10,21 @@ module BorderGuruEmail
     end
 
     def send_emails
-      orders_by_shop.each do |shop_orders|
-        Dispatch.new(sendable_orders(shop_orders)).to_email
+      sendable_shop_orders.each do |shop_orders|
+        Dispatch.new(shop_orders).to_email
       end
     end
 
     def update_orders!
-      #Update.new(sendable_orders(orders)).confirm_sent!
+      sendable_shop_orders.each do |shop_orders|
+        Update.new(shop_orders).confirm_sent!
+      end
     end
 
     private
 
-    def sendable_orders(orders)
-      orders.select { |order| email_sendable?(order) && order.order_items.any? }
+    def sendable_shop_orders
+      orders_by_shop.select { |order| email_sendable?(order) && order.order_items.any? }
     end
 
     def email_sendable?(order)

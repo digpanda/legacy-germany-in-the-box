@@ -1,2 +1,14 @@
+module BorderGuruEmail
+  class TransmitOrders
+    class Update < Base
 
-        # TODO : update transmitted orders (hermes_pickup_email_sent_at)
+      def confirm_sent!
+        orders.each do |order|
+          order.hermes_pickup_email_sent_at = Time.now
+          order.save
+        end
+      end
+      
+    end
+  end
+end
