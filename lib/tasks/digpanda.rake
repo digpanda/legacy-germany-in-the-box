@@ -17,7 +17,7 @@ namespace :digpanda do
 
   desc 'remove and create complete sample data'
   task remove_and_create_complete_sample_data: :environment do
-    Tasks::Digpanda::RemoveAndCreateCompleteSampleData.new
+    Tasks::Digpanda::RemoveAndCreateCompleteSampleData.new.perform
   end
 
 end
