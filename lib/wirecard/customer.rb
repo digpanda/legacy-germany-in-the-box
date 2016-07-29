@@ -33,7 +33,7 @@ module Wirecard
 
       @currency             = DEFAULT_PAYMENT_CURRENCY
       @order_number         = "#{order.id}"
-      @amount               = order.total_sum_in_yuan.to_f.round(2) # this round is necessary
+      @amount               = order.decorate.total_sum_in_yuan.to_f.round(2) # this round is necessary
 
       @request_time_stamp   = time_stamp
       @request_id           = [request_time_stamp, user.id, order_number].join('-')

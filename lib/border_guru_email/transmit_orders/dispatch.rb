@@ -39,11 +39,11 @@ module BorderGuruEmail
 
       # everything below could be put into the model directly ?
       def total_weight
-        orders.reduce(0) { |acc, order| acc + order.total_weight }
+        orders.reduce(0) { |acc, order| acc + order.decorate.total_weight }
       end
 
       def total_volume
-        orders.reduce(0) { |acc, order| acc + order.total_volume }
+        orders.reduce(0) { |acc, order| acc + order.decorate.total_volume }
       end
 
       def barcodes_list

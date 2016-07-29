@@ -28,21 +28,7 @@ module CategoryBase
 
     index({parent: 1},      {unique: false, name: :idx_category_parent, sparse: true})
     index({"name.en": 1},  {unique: false, name: :idx_category_name_en, sparse: true})
-
-=begin
-    def self.tree
-      is_active.includes(:children, from: :parent).map(&:restricted)
-    end
-
-    def restricted
-      [self, children_tree]
-    end
-
-    def children_tree
-      children.tree
-    end
-=end
-
+    
     abstract_method :total_products, :second_last_branche?
   end
 end

@@ -66,11 +66,11 @@ class ApplicationController < ActionController::Base
   def reach_todays_limit?(order, new_price_increase, new_quantity_increase)
     # if the user has logged in, we should check, whether the user has reached the limit today and the order itself has reached the the limit today
     if current_user.present?
-      return current_user.reach_todays_limit?(order, new_price_increase) || order.reach_todays_limit?(new_price_increase, new_quantity_increase)
+      return current_user.decorate.reach_todays_limit?(order, new_price_increase) || order.decorate.reach_todays_limit?(new_price_increase, new_quantity_increase)
     end
 
     # if not, just check if the order has reached the limit today. The further check will be done on the checkout step, after the user has logged in.
-    return order.reach_todays_limit?(new_price_increase, new_quantity_increase)
+    return order.decorate.reach_todays_limit?(new_price_increase, new_quantity_increase)
   end
 
   def set_categories
@@ -149,7 +149,7 @@ class ApplicationController < ActionController::Base
   end
 
   def total_number_of_products
-    @total_number ||= (session[:order_ids] == nil || session[:order_ids].empty?) ?  0 : current_orders.inject(0) { |sum, so| sum += so.compact[1].total_amount }
+    @total_number ||= (session[:order_ids] == nil || session[:order_ids].empty?) ?  0 : current_orders.inject(0) { |sum, so| sum += so.compact[1].decorate.total_quantity }
   end
 
   def after_sign_in_path_for(resource)

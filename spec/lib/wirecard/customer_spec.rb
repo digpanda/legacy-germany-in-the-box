@@ -15,7 +15,6 @@ describe Wirecard::Customer do
 
   }
 
-
   it "can access essential variables after creation" do
 
     wirecard = Wirecard::Customer.new(user, wirecard_hash_params)

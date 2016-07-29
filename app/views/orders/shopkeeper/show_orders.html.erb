@@ -35,7 +35,7 @@
             <%= I18n.t(order.status, scope: :edit_order) %>
           </td>
           <td>
-            <%= order.is_bought? ? order.decorate.total_sum_with_currency : '' %>
+            <%= order.is_bought? ? order.decorate.total_sum_in_yuan : '' %>
           </td>
           <td>
           <% if order.border_guru_shipment_id %>
@@ -66,13 +66,13 @@
           <td>
           <!-- The order has been paid and shopkeeper can start the process -->
           <% if order.status == :paid  %>
-            <% if order.processable? %>
+            <% if order.decorate.processable? %>
             <%= link_to I18n.t(:start_process_shipment, scope: :button), shopkeeper_order_process_order_path(order), method: :patch, data: { confirm: I18n.t(:confirm_start_processing, scope: :notice) } %>
             <% else %>
               This order isn't processable right now.
             <% end %>
           <!-- The order passed the custom and can be send -->
-          <% elsif order.shippable? %>
+          <% elsif order.decorate.shippable? %>
             <%= link_to I18n.t(:package_was_sent, scope: :notice), shopkeeper_order_shipped_path(order), method: :patch %>
           <% end %>
           </td>

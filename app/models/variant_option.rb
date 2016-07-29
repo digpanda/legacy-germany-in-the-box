@@ -13,4 +13,5 @@ class VariantOption
   accepts_nested_attributes_for :suboptions
 
   validates :name,      presence: true, length: {maximum: Rails.configuration.max_tiny_text_length}
+
 end

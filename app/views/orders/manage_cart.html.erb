@@ -1,7 +1,7 @@
 <% if total_number_of_products > 0 %>
   <div>
-      <% current_orders.each do |s, o| %>
-        <% if o.total_amount > 0 %>
+      <% current_orders.each do |s, order| %>
+        <% if order.decorate.total_quantity > 0 %>
 
         <div class="row">
 
@@ -19,7 +19,7 @@
             <div class="row">
 
             <div class="col-md-9">
-              <%= render partial: 'cart', locals: {order: o, s: s} %>
+              <%= render partial: 'cart', locals: {order: order, s: s} %>
             </div>
             <div class="col-md-3">
               <ul class="cart-total-list">
@@ -28,7 +28,7 @@
                     <%= I18n.t(:subtotal, scope: :cart) %>
                   </span>
                   <span id="order-subtotal-<%= s %>">
-                    <%= o.decorate.total_price_with_currency_yuan %>
+                    <%= order.decorate.total_price_with_currency_yuan %>
                   </span>
                 </li>
 
@@ -37,17 +37,17 @@
                     <%= I18n.t(:duty_and_shipping_cost, scope: :cart) %>
                   </span>
                   <span id="order-duty-and-shipping-cost-<%= s %>">
-                    <%= @carts[s].decorate.duty_and_shipping_cost_with_currency %>
+                    <%= @carts[s].decorate.duty_and_shipping_cost_with_currency_yuan %>
                   </span>
                 </li>
                 <li>
 
                 <li>
                   <span>
-                    <%= I18n.t(:total_price_in_yuan, scope: :cart) %>
+                    <%= I18n.t(:total_price_with_currency_yuan, scope: :cart) %>
                   </span>
                   <span id="order-total-sum-in-yuan-<%= s %>">
-                    <%= @carts[s].decorate.total_sum_with_currency %>
+                    <%= @carts[s].decorate.total_sum_in_yuan %>
                   </span>
                 </li>
               </ul>

@@ -596,7 +596,7 @@ de:
     shop: Shop
     shipping_cost: Versendungskosten
     duty_cost: Zollgebühren
-    total_price_in_yuan: Gesamter
+    total_price_with_currency_yuan: Gesamter
     delete_sku_msg: Das Produkt vom dem Einkaufswagen entfernen
     greater_than_zero: Die Anzahl muss größer al Null sein.
   checkout:

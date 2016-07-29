@@ -23,7 +23,7 @@ class SkuDecorator < Draper::Decorator
   end
 
   def discount?
-    self.discount > 0
+    discount > 0
   end
 
   def quantity_warning?
@@ -36,31 +36,31 @@ class SkuDecorator < Draper::Decorator
   end
 
   def price_with_currency_yuan
-    "%.2f #{Settings.instance.platform_currency.symbol}" % (self.price_in_yuan)
+    Currency.new(price).to_yuan.display
   end
 
   def price_in_yuan
-    self.price * Settings.instance.exchange_rate_to_yuan
+    Currency.new(price).to_yuan.amount
   end
 
   def price_with_currency_euro
-    "%.2f #{Settings.instance.supplier_currency.symbol}" % self.price
+    Currency.new(price).display
   end
 
   def price_before_discount_in_yuan
-    "%.2f #{Settings.instance.platform_currency.symbol}" % (self.price_in_yuan * 100 / discount_calculation)
+    Currency.new(before_discount_price).to_yuan.display
   end
 
   def price_before_discount_in_euro
-    "%.2f #{Settings.instance.supplier_currency.symbol}" % (self.price * 100 / discount_calculation)
+    Currency.new(before_discount_price).display
+  end
+
+  def before_discount_price
+    price * 100 / (100 - discount)
   end
 
   def discount_with_percent
-    "-%.2f %" % (self.discount)
-  end
-
-  def discount_calculation
-    100-self.discount
+    "-%.2f %" % discount
   end
 
   def get_options_txt

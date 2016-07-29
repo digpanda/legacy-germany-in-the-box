@@ -7,6 +7,8 @@ class OrdersController < ApplicationController
 
   load_and_authorize_resource
 
+  decorates_assigned :order, :orders
+
   before_action :authenticate_user!, :except => [:manage_cart, :add_product]
   before_action :set_order, :only => [:show, :destroy, :continue, :download_label]
   protect_from_forgery :except => [:checkout_success, :checkout_fail]
@@ -179,7 +181,8 @@ class OrdersController < ApplicationController
 
     end
 
-    status = order.update_for_checkout(current_user, params[:delivery_destination_id], cart.border_guru_quote_id, cart.shipping_cost, cart.tax_and_duty_cost)
+    # should be put into a service or something instead of being here - Laurent
+    status = update_for_checkout(current_user, order, params[:delivery_destination_id], cart.border_guru_quote_id, cart.shipping_cost, cart.tax_and_duty_cost)
 
     if status
 
@@ -322,6 +325,20 @@ class OrdersController < ApplicationController
   end
 
   private
+
+  def update_for_checkout(user, order, delivery_destination_id, border_guru_quote_id, shipping_cost, tax_and_duty_cost)
+    user.addresses.find(delivery_destination_id).tap do |address|
+      order.update({
+        :status               => :paying,
+        :user                 => user,
+        :shipping_address     => address,
+        :billing_address      => address,
+        :border_guru_quote_id => border_guru_quote_id,
+        :shipping_cost        => shipping_cost,
+        :tax_and_duty_cost    => tax_and_duty_cost
+      })
+   end
+  end
 
   def set_order
     @order = Order.find(params[:id])

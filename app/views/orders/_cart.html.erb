@@ -24,51 +24,51 @@
     </tr>
   </thead>
   <tbody>
-    <% order.order_items.each do |i| %>
+    <% order.order_items.each do |order_item| %>
     <tr>
       <td class="cart-item-image">
-        <a href="<%= product_path(i.product) %>">
-          <img src="<%= i.sku.decorate.image_url(:img0, :thumb) %>" class="icon-img"/>
+        <a href="<%= product_path(order_item.product) %>">
+          <img src="<%= order_item.sku.decorate.image_url(:img0, :thumb) %>" class="icon-img"/>
         </a>
       </td>
       <td>
-        <a href="<%= product_path(i.product) %>">
-          <%= i.product.name %>
+        <a href="<%= product_path(order_item.product) %>">
+          <%= order_item.product.name %>
         </a>
       </td>
       <td>
-        <%= select_tag :option_ids, grouped_options_for_select(i.product.decorate.grouped_variants_options, i.option_ids), {:multiple => 'multiple', :class => 'sku-variants-options'} %>
+        <%= select_tag :option_ids, grouped_options_for_select(order_item.product.decorate.grouped_variants_options, order_item.option_ids), {:multiple => 'multiple', :class => 'sku-variants-options'} %>
       </td>
       <td class="cart-item-quantity">
 
         <% unless @readonly %>
-          <a href="#" class="js-set-quantity-minus" data-order-item-id="<%= i.id.to_s %>" data-order-shop-id="<%= s %>">
+          <a href="#" class="js-set-quantity-minus" data-order-item-id="<%= order_item.id.to_s %>" data-order-shop-id="<%= s %>">
             <i class="fa fa-minus cart-item-minus"></i>
           </a>
         <% end %>
 
-        <%= text_field_tag "", i.quantity, :id => "order-item-quantity-#{i.id.to_s}", :type => 'text', :value => "#{i.quantity}", :disabled => "disabled", :data => { :order_item_id => i.id.to_s } %>
+        <%= text_field_tag "", order_item.quantity, :id => "order-item-quantity-#{order_item.id.to_s}", :type => 'text', :value => "#{order_item.quantity}", :disabled => "disabled", :data => { :order_item_id => order_item.id.to_s } %>
         
         <% unless @readonly %>
-          <a href="#" class="js-set-quantity-plus" data-order-item-id="<%= i.id.to_s %>" data-order-shop-id="<%= s %>">
+          <a href="#" class="js-set-quantity-plus" data-order-item-id="<%= order_item.id.to_s %>" data-order-shop-id="<%= s %>">
             <i class="fa fa-plus cart-item-plus"></i>
           </a>
         <% end %>
 
       </td>
       <td>
-        <%= i.order.is_bought? ? i.decorate.price_with_currency_yuan : i.sku.decorate.price_with_currency_yuan %>
-        <% if i.sku.discount > 0 %>
-          <span class="+discount"><%= i.sku.decorate.discount_with_percent %></span>
+        <%= order_item.order.decorate.is_bought? ? order_item.decorate.price_with_currency_yuan : order_item.sku.decorate.price_with_currency_yuan %>
+        <% if order_item.sku.discount > 0 %>
+          <span class="+discount"><%= order_item.sku.decorate.discount_with_percent %></span>
         <% end %>
       </td>
       <% unless @readonly %>
       <td class="cart-item-remove">
 
-      <%= link_to '', guest_order_item_path(i), method: :delete, data: { confirm: I18n.t(:delete_sku_msg, :scope => :cart)  }, "data-placement" => "right",  class: 'fa fa-times' %>
+      <%= link_to '', guest_order_item_path(order_item), method: :delete, data: { confirm: I18n.t(:delete_sku_msg, :scope => :cart)  }, "data-placement" => "right",  class: 'fa fa-times' %>
 
       <!--
-        <%= link_to '', '#', :class => 'fa fa-times', :onclick => "$('#cart-quantity-of-product-#{i.product.id}').val(0); $('#orders_adjust_products_amount').submit()" %>
+        <%= link_to '', '#', :class => 'fa fa-times', :onclick => "$('#cart-quantity-of-product-#{order_item.product.id}').val(0); $('#orders_adjust_products_amount').submit()" %>
       -->
 
       </td>
