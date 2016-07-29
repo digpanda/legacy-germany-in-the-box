@@ -6,8 +6,8 @@ module Imageable
   included do
 
     def image_url(img_field, version)
-      if Rails.env.local?
-        read_attribute(img_field) ? send(img_field).url(version) : send(img_field).default_url
+      if Rails.env.development?
+        send(img_field).url
       else
         send(img_field).url + '&' + self.send("#{version.to_s}_params", img_field) if read_attribute(img_field)
       end

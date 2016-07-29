@@ -27,7 +27,8 @@ class Api::Guest::OrderItemsController < Api::ApplicationController
     if sku.unlimited or sku.quantity >= quantity
       @order_item.quantity = quantity
     else
-      render :json => { :success => false, :error => I18n.t(:not_all_available, scope: :checkout, :product_name => product.name, :option_names => sku.decorate.get_options_txt) } and return
+      render :json => { :success => false, :error => I18n.t(:not_all_available, scope: :checkout, :product_name => product.name, :option_names => sku.decorate.get_options_txt) }
+      return
     end
 
     if @order_item.save

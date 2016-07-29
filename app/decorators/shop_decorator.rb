@@ -6,7 +6,6 @@ class ShopDecorator < Draper::Decorator
   delegate_all
   decorates :shop
 
-
   def philosophy?
     shop.philosophy && !shop.philosophy.empty?
   end

@@ -58,36 +58,9 @@ class ProductDecorator < Draper::Decorator
 
   def preview_price_yuan
     self.get_mas.decorate.price_with_currency_yuan
-=begin
-    preview_sku = self.skus.where(:quantity.ne => 0).first
-    if preview_sku.nil?
-        preview_sku = self.skus.first
-      if preview_sku.nil?
-        preview_sku.decorate.price_with_currency_yuan
-      else
-        self.get_mas.decorate.price_with_currency_yuan
-      end
-    else
-      preview_sku.decorate.price_with_currency_yuan
-    end
-=end
   end
 
   def preview_price_euro
     self.get_mas.decorate.price_with_currency_euro
-=begin
-    preview_sku = self.skus.where(:quantity.ne => 0).first
-    if preview_sku.nil?
-      preview_sku = self.skus.first
-      if preview_sku.nil?
-        preview_sku.decorate.price_with_currency_euro
-      else
-        self.get_mas.decorate.price_with_currency_euro
-        #"0.00 #{Settings.instance.supplier_currency.symbol}"
-      end
-    else
-      preview_sku.decorate.price_with_currency_euro
-    end
-=end
   end
 end
