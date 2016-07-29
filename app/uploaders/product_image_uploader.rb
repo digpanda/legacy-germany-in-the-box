@@ -2,7 +2,7 @@ class ProductImageUploader < CarrierWave::Uploader::Base
 
   include CarrierWave::MiniMagick
 
-  storage Rails.env.local? ? :file : :qiniu
+  storage Rails.env.development? ? :file : :qiniu
 
   self.qiniu_can_overwrite = true
 

@@ -1,9 +1,5 @@
 Rails.application.configure do
 
-  #ActiveSupport::Dependencies.autoload_paths << Rails.root.join('lib')
-  #config.reload_plugins = true
-  config.eager_load_paths += ["#{Rails.root}/lib"]
-
   config.cache_classes = false
   config.middleware.use(Mongoid::QueryCache::Middleware)
   config.eager_load = false
@@ -20,15 +16,6 @@ Rails.application.configure do
 
   # used for root_url and equivalent
   Rails.application.routes.default_url_options = {host: 'local.dev', port: 8000}
-
-=begin
-  config.middleware.use ExceptionNotification::Rack,
-  :email => {
-    :email_prefix => "Report - ",
-    :sender_address => %{"Bug DigPanda Development" <notifier@digpanda.com>},
-    :exception_recipients => %w{laurent.schaffner@digpanda.com}
-  }
-=end
 
   config.action_mailer.smtp_settings = {
       address: "mailtrap.io",
