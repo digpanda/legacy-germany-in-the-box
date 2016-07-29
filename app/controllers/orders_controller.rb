@@ -43,7 +43,7 @@ class OrdersController < ApplicationController
     @readonly = true
     @currency_code = @order.order_items.first.sku.product.shop.currency.code
 
-    if @order.is_bought?
+    if @order.decorate.is_bought?
       @cart_or_order = @order
     else
       @cart_or_order = Cart.new
