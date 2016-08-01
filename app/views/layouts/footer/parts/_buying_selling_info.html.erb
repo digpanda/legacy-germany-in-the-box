@@ -16,7 +16,7 @@
 
 <% end %>
 
-<% if current_user&.is_shopkeeper? %>
+<% if current_user&.shopkeeper? %>
 
   <div class="row"><%= link_to I18n.t(:fees_invoices, scope: :footer), fees_page_path %></div>
 

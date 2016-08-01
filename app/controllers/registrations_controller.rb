@@ -41,7 +41,7 @@ class RegistrationsController < Devise::RegistrationsController
 
           sign_in(:user, User.find(resource.id)) # auto sign in
 
-          if resource.is_customer?
+          if resource.customer?
 
             EmitNotificationAndDispatchToUser.new.perform({
               :user => resource,
@@ -49,7 +49,7 @@ class RegistrationsController < Devise::RegistrationsController
               :desc => "亲，欢迎你到来因盒购物。"
             })
 
-          elsif resource.is_shopkeeper?
+          elsif resource.shopkeeper?
 
              EmitNotificationAndDispatchToUser.new.perform({
               :user => resource,

@@ -1,6 +1,6 @@
 <div class="row"><h3>Germany in the Box</h3></div>
 
-<% if current_user&.is_shopkeeper? %>
+<% if current_user&.shopkeeper? %>
 
 <div class="row"><%= link_to I18n.t(:terms_conditions, scope: :footer), agb_page_path %></div>
 

@@ -28,11 +28,11 @@ class OrdersController < ApplicationController
   end
 
   def show_orders
-    if current_user.is_customer?
+    if current_user.customer?
       @orders = current_user.orders.nonempty.order_by(:c_at => 'desc').paginate(:page => (params[:page] ? params[:page].to_i : 1), :per_page => 10);
-    elsif current_user.is_shopkeeper?
+    elsif current_user.shopkeeper?
       @orders = current_user.shop.orders.bought.order_by(:c_at => 'desc').paginate(:page => (params[:page] ? params[:page].to_i : 1), :per_page => 10);
-    elsif current_user.is_admin?
+    elsif current_user.admin?
       @orders = Order.nonempty.order_by(:c_at => 'desc').paginate(:page => (params[:page] ? params[:page].to_i : 1), :per_page => 10);
     end
 

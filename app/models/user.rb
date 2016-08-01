@@ -136,15 +136,15 @@ class User
     todays_orders.size == 0 ? false : (todays_orders.inject(0) { |sum, order| sum += order.decorate.total_price_in_yuan } + new_order_total) > Settings.instance.max_total_per_day
   end
 
-  def is_admin?
+  def admin?
     self.role == :admin
   end
 
-  def is_shopkeeper?
+  def shopkeeper?
     self.role == :shopkeeper
   end
 
-  def is_customer?
+  def customer?
     self.role == :customer
   end
 

@@ -13,9 +13,9 @@ class AddressesController < ApplicationController
 
     @user = User.find(params[:id])
 
-    if @user.is_shopkeeper?
+    if @user.shopkeeper?
       @addresses = @user.shop.addresses
-    elsif @user.is_customer?
+    elsif @user.customer?
       @addresses = @user.addresses
     end
 
@@ -23,7 +23,7 @@ class AddressesController < ApplicationController
   end
 
   def index
-    if current_user.is_customer?
+    if current_user.customer?
       @addresses = current_user.addresses
       render :index, :status => :ok
     end
@@ -32,7 +32,7 @@ class AddressesController < ApplicationController
   def create
     user = User.find(params[:user_id])
 
-    if user.is_customer?
+    if user.customer?
       num_addresses = user.addresses.count
 
       if num_addresses >= Rails.configuration.max_num_addresses
@@ -62,7 +62,7 @@ class AddressesController < ApplicationController
           end
         end
       end
-    elsif user.is_shopkeeper?
+    elsif user.shopkeeper?
       num_addresses = user.shop.addresses.count
       max_num_addresses = Rails.configuration.max_num_shop_billing_addresses + Rails.configuration.max_num_shop_sender_addresses
 
@@ -92,7 +92,7 @@ class AddressesController < ApplicationController
   end
 
   def update
-    if current_user.is_customer?
+    if current_user.customer?
       if (address = current_user.addresses.find(params[:id]))
         ap = address_params
 
@@ -110,12 +110,12 @@ class AddressesController < ApplicationController
           end
         end
       end
-    elsif current_user.is_shopkeeper?
+    elsif current_user.shopkeeper?
       address = current_user.shop.addresses.find(params[:id])
       ap = address_params
       ap[:country] = 'DE'
       flag = address.update(ap)
-    elsif current_user.is_admin?
+    elsif current_user.admin?
       address = Address.find(params[:id])
       ap = address_params
       flag = address.update(ap)
@@ -131,7 +131,7 @@ class AddressesController < ApplicationController
   end
 
   def destroy
-    if current_user.is_customer?
+    if current_user.customer?
       if (address = current_user.addresses.find(params[:id]))
         flag = address.delete
 
@@ -144,10 +144,10 @@ class AddressesController < ApplicationController
           end
         end
       end
-    elsif current_user.is_shopkeeper?
+    elsif current_user.shopkeeper?
       address = current_user.shop.addresses.find(params[:id])
       flag = address.delete
-    elsif current_user.is_admin?
+    elsif current_user.admin?
       address = Address.find(params[:id])
       flag = address.delete
     end
@@ -165,7 +165,7 @@ class AddressesController < ApplicationController
   private
 
   def address_params
-    if current_user.is_customer?
+    if current_user.customer?
       params.require(:address).permit(:number,
                                       :street,
                                       :additional,
@@ -179,7 +179,7 @@ class AddressesController < ApplicationController
                                       :fname,
                                       :lname,
                                       :pid)
-    elsif current_user.is_admin? || current_user.is_shopkeeper?
+    elsif current_user.admin? || current_user.shopkeeper?
       params.require(:address).permit(:number,
                                       :street,
                                       :additional,

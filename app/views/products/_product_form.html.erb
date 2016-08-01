@@ -93,7 +93,7 @@
 
       </div>
     </div>
-    <% if current_user.is_admin? %>
+    <% if current_user.admin? %>
       <div class="panel panel-info">
         <div class="panel-heading" title="<%= I18n.t(:duty_category_info, scope: :edit_product, locale: locale) %>">
           <div class="text-center">
@@ -112,7 +112,7 @@
         </div>
       </div>
     <% end %>
-    <% if current_user.is_admin? %>
+    <% if current_user.admin? %>
       <div class="panel panel-info">
         <div class="panel-heading" title="<%= I18n.t(:categories_info, scope: :edit_product, locale: locale) %>">
           <div class="text-center">
@@ -131,7 +131,7 @@
         </div>
       </div>
     <% end %>
-    <% if current_user.is_admin? && locale == :'zh-CN' %>
+    <% if current_user.admin? && locale == :'zh-CN' %>
       <div class="panel panel-info">
         <div class="panel-heading" title="<%= I18n.t(:keywords_info, scope: :edit_product, num: Rails.configuration.max_num_addresses, locale: locale) %>">
           <div class="text-center">

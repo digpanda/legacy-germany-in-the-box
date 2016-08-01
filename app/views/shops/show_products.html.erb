@@ -54,7 +54,7 @@
             <%= link_to I18n.t(:quantity_info, scope: :edit_product, num1: p.skus.inject(0) { |sum, s| sum += s.quantity }, num2: p.options.size), show_skus_product_path(p.id, :user_info_edit_part => :edit_product_detail) %>
           </td>
           <td align="left">
-            <% if current_user.is_admin? %>
+            <% if current_user.admin? %>
               <% if p.approved.nil? %>
                 <%= link_to '', product_approve_path(p), :method => :patch, :class => 'fa fa-check-circle fa-2x', :title => "Approve" %>
               <% else %>

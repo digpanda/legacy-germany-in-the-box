@@ -49,12 +49,9 @@ class ProductsController < ApplicationController
     CopyCarrierwaveFile::CopyFileService.new(@src, @sku, :img2).set_file if @src.img2.url
     CopyCarrierwaveFile::CopyFileService.new(@src, @sku, :img3).set_file if @src.img3.url
     @sku.save
-
-    render :clone_sku
   end
 
   def show_skus 
-    render :show_skus
   end
 
   # This will display the skus for the users (logged in or not)
@@ -133,7 +130,6 @@ class ProductsController < ApplicationController
     @query = params["query"]
 
     @products = Product.search(@query)
-
     @products = Product.buyable.all
 
   end
@@ -239,7 +235,7 @@ class ProductsController < ApplicationController
       delocalize_config = { skus_attributes: { :price => :number,:space_length => :number, :space_width => :number, :space_height => :number, :discount => :number, :quantity => :number, :weight => :number} }
       shopkeeper_strong_params = [:status, :desc, :name, :hs_code, :brand, :img, :data, tags:[], options_attributes: [:id, :name, suboptions_attributes: [:id, :name]], skus_attributes: [:unlimited, :id, :img0, :img1, :img2, :img3, :price, :discount, :quantity, :weight, :customizable, :status, :space_length, :space_width, :space_height, :time, :data, :attach0, option_ids: []]]
 
-      if current_user.is_admin?
+      if current_user.admin?
         params.require(:product)[:category_ids] = [params.require(:product)[:category_ids]] unless params.require(:product)[:category_ids].nil?
         shopkeeper_strong_params += [:duty_category, category_ids:[]]
       end

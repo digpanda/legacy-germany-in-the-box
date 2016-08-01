@@ -50,7 +50,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_order, :current_orders, :total_number_of_products
 
-  around_action :set_translation_locale, only: [:update], if: -> { current_user&.is_admin? }
+  around_action :set_translation_locale, only: [:update], if: -> { current_user&.admin? }
 
   before_action :set_categories
 
@@ -153,17 +153,17 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    if current_user.is_customer?
+    if current_user.customer?
       session[:locale] = :'zh-CN'
       navigation_history(1)
-    elsif current_user.is_shopkeeper?
+    elsif current_user.shopkeeper?
       session[:locale] = :'de'
       if current_user.shop && (not current_user.shop.agb)
         edit_producer_shop_path(current_user.shop.id, :user_info_edit_part => :edit_producer)
       else
         show_orders_users_path(:user_info_edit_part => :edit_order)
       end
-    elsif current_user.is_admin?
+    elsif current_user.admin?
       shops_path(:user_info_edit_part => :edit_shops)
     end
   end
@@ -224,7 +224,7 @@ class ApplicationController < ActionController::Base
     end
 
     if user_signed_in?
-      unless current_user.is_customer?
+      unless current_user.customer?
         order.order_items.delete_all
         order.delete
       else

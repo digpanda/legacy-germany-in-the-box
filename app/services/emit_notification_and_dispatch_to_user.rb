@@ -34,9 +34,9 @@ class EmitNotificationAndDispatchToUser < BaseService
 
   def dispatch_notification(notification)
 
-    if notification.user.is_shopkeeper?
+    if notification.user.shopkeeper?
       ShopkeeperMailer.notify(notification.user, notification.title, shared_notifications_path).deliver_now
-    elsif notification.user.is_customer?
+    elsif notification.user.customer?
       CustomerMailer.notify(notification.user, notification.title, shared_notifications_path).deliver_now
     end
   end
