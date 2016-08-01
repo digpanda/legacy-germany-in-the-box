@@ -126,6 +126,10 @@ class User
     end
   end
 
+  def new_notifications?
+    notifications.unreads.count > 0
+  end
+
   def reach_todays_limit?(order, new_price_increase)
     new_order_total = order.decorate.total_price_in_yuan + new_price_increase
     todays_orders = self.orders.bought.and(:u_at.gte => Date.today, :u_at.lt => Date.tomorrow)
