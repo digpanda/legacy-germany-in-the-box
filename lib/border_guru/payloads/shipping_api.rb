@@ -49,7 +49,7 @@ module BorderGuru
             city: address_model.city,
             state: address_model.province,
             email: address_model.shop.mail,
-            countryCode: address_model.country_code
+            countryCode: address_model.decorate.country_code
         }.delete_if { |k,v| v.nil? }
       end
 
@@ -62,10 +62,10 @@ module BorderGuru
             additionalInfo: address_model.additional,
             postcode: address_model.zip,
             city: "#{address_model.province} #{address_model.city}",
-            country: address_model.country_name,
+            country: address_model.decorate.country_name,
             telephone: address_model.tel ? address_model.tel : address_model.mobile,
             email: customer_address_email(address_model),
-            countryCode: address_model.country_code
+            countryCode: address_model.decorate.country_code
         }.delete_if { |k,v| v.nil? }
       end
 

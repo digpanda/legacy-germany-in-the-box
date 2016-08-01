@@ -27,4 +27,16 @@ class AddressDecorator < Draper::Decorator
     "#{street} #{number}, #{zip} #{city}, #{country}"
   end
 
+  def country_code
+    country.alpha2 unless country.nil?
+  end
+
+  def country_name
+    country.name unless country.nil?
+  end
+
+  def country_local_name
+    country.local_name unless country.nil?
+  end
+  
 end

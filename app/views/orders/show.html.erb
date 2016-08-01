@@ -60,7 +60,7 @@
           <%= "#{I18n.t(:province, scope: :edit_address)} : #{ a.province }" %>
         </li>
         <li>
-          <%= "#{I18n.t(:country, scope: :edit_address)} : #{ a.country_local_name }" %>
+          <%= "#{I18n.t(:country, scope: :edit_address)} : #{ a.decorate.country_local_name }" %>
         </li>
         <li>
           <%= "#{I18n.t(:zip, scope: :edit_address)} : #{ a.zip }" %>
