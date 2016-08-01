@@ -1,5 +1,7 @@
 class UserDecorator < Draper::Decorator
 
+  PICTURE_URL = '/images/icons/default_user_pic.png'
+  
   include Imageable
 
   delegate_all
@@ -11,7 +13,7 @@ class UserDecorator < Draper::Decorator
 
   def avatar
     if self.pic.url.nil?
-     '/images/icons/default_user_pic.png'
+     PICTURE_URL
     else
       self.image_url(:pic, :thumb)
     end
