@@ -198,8 +198,7 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
     Shop.create!(
         :name           => name,
         :desc           => Faker::Lorem.paragraph,
-        :philosophy     => Faker::Lorem.paragraph,
-        :german_essence => Faker::Lorem.paragraph,
+        :german_essence => Faker::Lorem.paragraph(7),
         :logo           => setup_image(:logo),
         :banner         => setup_image(:banner),
         :min_total      => min_total,
