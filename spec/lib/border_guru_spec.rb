@@ -43,7 +43,7 @@ class RecordedResponses
     def calculate_quote
       @@calculate_quote ||=
         begin
-          cart.add @@sku, 2
+          cart.decorate.add @@sku, 2
           BorderGuru.calculate_quote(
             cart: cart,
             shop: @@shop,
@@ -109,7 +109,7 @@ class RecordedResponses
       @@order ||=
         begin
           calculate_quote
-          order = cart.create_order(
+          order = cart.decorate.create_order(
             shipping_address: @@shipping_address,
             billing_address: @@shipping_address
           )

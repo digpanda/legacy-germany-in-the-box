@@ -29,24 +29,6 @@ class Cart
   embeds_many :cart_skus
   summarizes sku_list: :cart_skus, by: :quantity_in_cart
 
-  def add(sku, quantity)
-    cart_skus << CartSku.new(
-      sku: sku,
-      quantity_in_cart: quantity
-    )
-  end
-
-  def create_order(options = {})
-    order_line_items = cart_skus.map(&:becomes_order_line_item)
-
-    Order.new({
-      border_guru_quote_id: border_guru_quote_id,
-      order_items: order_line_items,
-      shipping_cost: shipping_cost,
-      tax_and_duty_cost: tax_and_duty_cost
-    }.merge(options))
-  end
-
   def total_price_in_yuan
     sum = (shipping_cost + tax_and_duty_cost + cart_skus.inject(0) { |sum, s| sum += (s.price * s.quantity_in_cart) }) * Settings.instance.exchange_rate_to_yuan
     sum.round(2)

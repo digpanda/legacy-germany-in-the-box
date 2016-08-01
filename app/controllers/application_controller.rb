@@ -92,7 +92,7 @@ class ApplicationController < ActionController::Base
     cart = Cart.new
     
     current_order(shop_id).order_items.each do |i|
-      cart.add(i.sku, i.quantity)
+      cart.decorate.add(i.sku, i.quantity)
     end
 
 
@@ -129,7 +129,7 @@ class ApplicationController < ActionController::Base
         carts[s] = Cart.new
 
         o.order_items.each do |i|
-          carts[s].add(i.sku, i.quantity)
+          carts[s].decorate.add(i.sku, i.quantity)
 
           BorderGuru.calculate_quote(
               cart: carts[s],

@@ -8,7 +8,7 @@ describe BorderGuru::Payloads::QuoteApi do
     @country_of_destination = ISO3166::Country.new('CN')
     @cart = create :cart
     @product = @shop.products.first
-    @cart.add @product.skus.first, 2
+    @cart.decorate.add @product.skus.first, 2
 
     @payload = BorderGuru::Payloads::QuoteApi.new(
         cart: @cart,

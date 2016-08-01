@@ -5,6 +5,26 @@ class CartDecorator < Draper::Decorator
   delegate_all
   decorates :cart
 
+  def add(sku, quantity)
+    cart_skus << CartSku.new(
+      sku: sku,
+      quantity_in_cart: quantity
+    )
+  end
+
+  # not currently in use in the real system (but still in tests)
+  def create_order(options = {})
+    order_line_items = cart_skus.map(&:becomes_order_line_item)
+
+    Order.new({
+      border_guru_quote_id: border_guru_quote_id,
+      order_items: order_line_items,
+      shipping_cost: shipping_cost,
+      tax_and_duty_cost: tax_and_duty_cost
+    }.merge(options))
+  end
+  
+  # should be refactored via the currency system
   def tax_and_duty_cost_with_currency_yuan
     "%.2f #{Settings.instance.platform_currency.symbol}" % (in_yuan(object.tax_and_duty_cost))
   end

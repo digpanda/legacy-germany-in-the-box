@@ -49,7 +49,7 @@ class OrdersController < ApplicationController
       @cart_or_order = Cart.new
 
       @order.order_items.each do |i|
-        @cart_or_order.add(i.sku, i.quantity)
+        @cart_or_order.decorate.add(i.sku, i.quantity)
       end
 
       begin

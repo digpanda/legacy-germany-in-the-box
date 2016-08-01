@@ -60,6 +60,7 @@ gem 'carrierwave-ftp', :require => 'carrierwave/storage/ftp' # FTP only
 gem "omniauth"
 gem "omniauth-wechat-oauth2", git: 'https://github.com/yangsr/omniauth-wechat-oauth2.git'
 
+gem "exception_notification"
 #gem 'omniauth-open_wechat'
 
 #gem "newrelic_rpm"
@@ -85,10 +86,6 @@ group :development, :test, :staging, :local do
   #gem "cucumber-rails", :require => false
   gem "database_cleaner"
   gem "pry-rails"
-end
-
-group :development, :production, :staging do
-  gem "exception_notification"
 end
 
 group :development, :local do
