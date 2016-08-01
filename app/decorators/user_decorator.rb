@@ -17,18 +17,4 @@ class UserDecorator < Draper::Decorator
     end
   end
 
-  private
-
-  def thumb_params(img_field)
-    if img_field == :pic
-      Rails.configuration.logo_image_thumbnail
-    end
-  end
-
-  def detail_params
-    if img_field == :pic
-      Rails.configuration.logo_image_detailview
-    end
-  end
-
 end

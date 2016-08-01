@@ -76,21 +76,4 @@ class SkuDecorator < Draper::Decorator
     end.join(', ')
   end
 
-  private
-
-  def thumb_params(image_field)
-    Rails.configuration.product_image_thumbnail
-  end
-
-  def detail_params(image_field)
-    Rails.configuration.product_image_detailview
-  end
-  
-  def fullsize_params(image_field)
-    Rails.configuration.product_image_fullsize
-  end
-
-  def zoomin_params(image_field)
-    Rails.configuration.product_image_zoomin
-  end
 end

@@ -1,21 +1,34 @@
-require "abstract_method"
-
 module Imageable
   extend ActiveSupport::Concern
 
   included do
 
-    def image_url(img_field, version)
+    def image_url(image_field, version)
       if Rails.env.development?
-        send(img_field).url
+        send(image_field).url
       else
-        send(img_field).url + '&' + self.send("#{version.to_s}_params", img_field) if read_attribute(img_field)
+        send(image_field).url + '&' + self.send("#{version.to_s}_params", image_field) if read_attribute(image_field)
       end
     end
 
     private
 
-    abstract_method :thumb_params, :detail_params, :fullsize_params, :zoomin_params
+    def thumb_params(image_field)
+      Rails.configuration.product_image_thumbnail
+    end
+
+    def detail_params(image_field)
+      Rails.configuration.product_image_detailview
+    end
+    
+    def fullsize_params(image_field)
+      Rails.configuration.product_image_fullsize
+    end
+
+    def zoomin_params(image_field)
+      Rails.configuration.product_image_zoomin
+    end
+
   end
 
 end
