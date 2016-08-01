@@ -26,24 +26,23 @@ class CartDecorator < Draper::Decorator
   
   # should be refactored via the currency system
   def tax_and_duty_cost_with_currency_yuan
-    "%.2f #{Settings.instance.platform_currency.symbol}" % (in_yuan(object.tax_and_duty_cost))
+    Currency.new(tax_and_duty_cost).to_yuan.display
   end
 
   def shipping_cost_with_currency_yuan
-    "%.2f #{Settings.instance.platform_currency.symbol}" % (in_yuan(object.shipping_cost))
+    Currency.new(shipping_cost).to_yuan.display
   end
 
   def duty_and_shipping_cost_with_currency_yuan
-    "%.2f #{Settings.instance.platform_currency.symbol}" % (in_yuan(object.tax_and_duty_cost) + (in_yuan(object.shipping_cost)))
+    Currency.new(tax_and_duty_cost + shipping_cost).to_yuan.display
   end
 
   def total_sum_in_yuan
-    "%.2f #{Settings.instance.platform_currency.symbol}" % total_price_in_yuan
+    Currency.new(total_price).to_yuan.display
   end
 
-  def total_price_in_yuan
-    sum = (shipping_cost + tax_and_duty_cost + cart_skus.inject(0) { |sum, s| sum += (s.price * s.quantity_in_cart) }) * Settings.instance.exchange_rate_to_yuan
-    sum.round(2)
+  def total_price
+    (shipping_cost + tax_and_duty_cost + cart_skus.inject(0) { |sum, s| sum += (s.price * s.quantity_in_cart) })
   end
 
   private
