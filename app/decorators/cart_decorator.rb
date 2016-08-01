@@ -41,6 +41,11 @@ class CartDecorator < Draper::Decorator
     "%.2f #{Settings.instance.platform_currency.symbol}" % total_price_in_yuan
   end
 
+  def total_price_in_yuan
+    sum = (shipping_cost + tax_and_duty_cost + cart_skus.inject(0) { |sum, s| sum += (s.price * s.quantity_in_cart) }) * Settings.instance.exchange_rate_to_yuan
+    sum.round(2)
+  end
+
   private
 
   # COULD BE IMPROVED WAY MORE BY USING A GEM OR ABSTRACTING IT ELSEWHERE
