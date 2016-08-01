@@ -68,6 +68,19 @@
         <div class="row">
           <div class="form-group">
             <div class="col-md-4">
+              <strong>Shop URL</strong>
+            </div>
+            <div class="col-md-8">
+              <%= text_field_tag :shop_url, shop_url(@shop), :class => 'form-control', :disabled => "disabled" %>
+            </div>
+          </div>
+        </div>
+
+        <br />
+
+        <div class="row">
+          <div class="form-group">
+            <div class="col-md-4">
               <%= f.label :shopname, I18n.t(:shopname, scope: :edit_shop), :class => 'required' %>
             </div>
             <div class="col-md-8">

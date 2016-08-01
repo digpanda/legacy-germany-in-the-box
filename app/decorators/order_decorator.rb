@@ -52,7 +52,7 @@ class OrderDecorator < Draper::Decorator
   end
 
   def processable_time?
-    Time.now.strftime("%k").to_i < 12 || Time.now.strftime("%k").to_i > 13
+    Time.now.strftime("%k").to_i < 9 || Time.now.strftime("%k").to_i > 10
   end
 
   def shippable?
