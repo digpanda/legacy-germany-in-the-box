@@ -7,7 +7,7 @@ module Imageable
       if Rails.env.development?
         send(image_field).url
       else
-        send(image_field).url + '&' + self.send("#{version.to_s}_params", image_field) if read_attribute(image_field)
+        send(image_field).url + '&' + self.send("#{version}_params", image_field) if read_attribute(image_field)
       end
     end
 
