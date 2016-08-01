@@ -42,14 +42,11 @@ class CartDecorator < Draper::Decorator
   end
 
   def total_price
-    (shipping_cost + tax_and_duty_cost + cart_skus.inject(0) { |sum, s| sum += (s.price * s.quantity_in_cart) })
+    shipping_cost + tax_and_duty_cost + cart_skus_price
   end
 
-  private
-
-  # COULD BE IMPROVED WAY MORE BY USING A GEM OR ABSTRACTING IT ELSEWHERE
-  def in_yuan(price)
-    price * Settings.instance.exchange_rate_to_yuan
+  def cart_skus_price
+    cart_skus.inject(0) { |sum, cart_sku| sum += (cart_sku.price * cart_sku.quantity_in_cart) }
   end
 
 end
