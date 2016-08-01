@@ -13,13 +13,4 @@ class Notification
 
   scope :unreads, -> { where({:read_at => nil}) }
 
-  def is_read?
-    !!(self.read_at)
-  end
-
-  def has_read!
-    self.read_at = Time.now
-    self.save
-  end
-
 end

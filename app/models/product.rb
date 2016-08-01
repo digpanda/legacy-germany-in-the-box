@@ -60,7 +60,7 @@ class Product
     Product.buyable.where(name: /(#{query.split.join('|')})/i)
   end
 
-  def is_favorite?(user)
+  def favorite?(user)
     return unless user
     user.favorites.where(id: self.id).first != nil 
   end
