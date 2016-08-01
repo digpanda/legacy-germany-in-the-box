@@ -7,11 +7,9 @@ module NotDeleteable
     self.update_attribute :deleted, true
   end
 
-
   def delete
     self.destroy
   end
-
 
   def self.included(base)
     base.class_eval do
@@ -19,7 +17,6 @@ module NotDeleteable
     end
   end
 end
-
 
 class MissingMigrationException < Exception
   def message

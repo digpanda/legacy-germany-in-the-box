@@ -7,17 +7,7 @@ class Category
   field :slug, type: String
   field :desc, type: String, localize: true
 
-  def self.only_with_products
-    self.where(:product_ids.ne => nil).and(:product_ids.ne => [])
-  end
-
-  def total_products
-    if children_count > 0
-      children.is_active.inject(0) { |sum, c| sum += c.total_products }
-    else
-      product_ids ? product_ids.size : 0
-    end
-  end
+  scope :only_with_products,       ->    { where(:product_ids.ne => nil).and(:product_ids.ne => []) }
 
   def shops
     all_shops = Shop.all.map { |s| [s.id, s] }.to_h

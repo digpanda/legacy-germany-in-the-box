@@ -23,4 +23,5 @@ class Collection
   scope :is_public, -> { where(:public => true) }
 
   index({user: 1},  {unique: false,   name: :idx_collection_user})
+  
 end

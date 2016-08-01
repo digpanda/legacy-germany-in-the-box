@@ -29,6 +29,6 @@ module CategoryBase
     index({parent: 1},      {unique: false, name: :idx_category_parent, sparse: true})
     index({"name.en": 1},  {unique: false, name: :idx_category_name_en, sparse: true})
     
-    abstract_method :total_products, :second_last_branche?
+    abstract_method :total_products
   end
 end

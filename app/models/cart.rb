@@ -29,9 +29,11 @@ class Cart
   embeds_many :cart_skus
   summarizes sku_list: :cart_skus, by: :quantity_in_cart
 
+=begin
   def total_price_in_yuan
     sum = (shipping_cost + tax_and_duty_cost + cart_skus.inject(0) { |sum, s| sum += (s.price * s.quantity_in_cart) }) * Settings.instance.exchange_rate_to_yuan
     sum.round(2)
   end
+=end
 
 end

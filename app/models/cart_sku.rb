@@ -18,6 +18,9 @@ class CartSku
     end
   end
 
+  # BETTER NOT TO CHANGE THE SYSTEM BELOW UNTIL WE REPLACE IT OR UNDERSTAND IT FULLY
+  # - Laurent, 2016/08/01
+
   def becomes_order_line_item
     OrderItem.new.tap do |current_order_item|
       current_order_item.price = sku.price
