@@ -20,7 +20,6 @@ FactoryGirl.define do
       minimum_sending_date { 24.hours.ago }
     end
 
-
     after(:build) do |order|
       order.order_items = build_list(:order_item, 5, :product => {:shop => order.shop})
     end
@@ -29,6 +28,14 @@ FactoryGirl.define do
       # we remove afterwards because they are stored within the build and it's hard to prevent it
       after(:build) do |order|
         order.order_items = []
+      end
+    end
+
+    trait :with_small_volume_items do
+      after(:build) do |order|
+        # we remove to better rebuild the items
+        order.order_items = []
+        order.order_items = build_list(:order_item, 5, :with_small_volume)
       end
     end
 

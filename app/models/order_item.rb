@@ -40,7 +40,7 @@ class OrderItem
   end
 
   def volume
-    sku.volume
+    sku.volume * quantity  # can be many items
   end
 
   def sku

@@ -42,5 +42,4 @@ describe Currency do
 
   end
 
-
 end

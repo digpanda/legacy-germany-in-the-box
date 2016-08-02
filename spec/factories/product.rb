@@ -29,6 +29,20 @@ FactoryGirl.define do
 
   end
 
+  trait(:with_small_volume) do
+    before(:create) do |product|
+      # remove and make new skus
+      product.skus = [FactoryGirl.build(:sku, :with_small_volume, :option_ids => [product.options.first.suboptions.first.id.to_s])]
+    end
+  end
+
+  trait(:with_big_volume) do
+    before(:create) do |product|
+      # remove and make new skus
+      product.skus = [FactoryGirl.build(:sku, :with_big_volume, :option_ids => [product.options.first.suboptions.first.id.to_s])]
+    end
+  end
+
   factory :variant,  :class => VariantOption do
     name 'Color'
     suboptions {[FactoryGirl.build(:option)]}
