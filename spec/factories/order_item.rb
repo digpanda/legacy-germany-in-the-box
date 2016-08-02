@@ -3,7 +3,7 @@ FactoryGirl.define do
   factory :order_item do
 
     option_names  ['red']
-    quantity      { rand(1..5) }
+    quantity      3
 
     after(:build) do |order_item, context|
 
