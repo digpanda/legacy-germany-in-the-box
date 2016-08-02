@@ -29,23 +29,27 @@ FactoryGirl.define do
 
     trait :with_small_volume do
       after(:build) do |order_item|
-        binding.pry
-        sku = create(:product, :with_small_volume).skus.first
+        product = create(:product, :with_small_volume)
+        sku = product.skus.first
         order_item.price = sku.price
         order_item.weight = sku.weight
         order_item.sku_id = sku.id.to_s
         order_item.option_ids = sku.option_ids
+        order_item.product = product
+        order_item.save
       end
     end
 
     trait :with_big_volume do
       after(:build) do |order_item|
-        binding.pry
-        sku = create(:product, :with_big_volume).skus.first
+        product = create(:product, :with_big_volume)
+        sku = product.skus.first
         order_item.price = sku.price
         order_item.weight = sku.weight
         order_item.sku_id = sku.id.to_s
         order_item.option_ids = sku.option_ids
+        order_item.product = product
+        order_item.save
       end
     end
 

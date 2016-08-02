@@ -11,12 +11,12 @@ FactoryGirl.define do
 
     trait :with_small_volume do
       space_length 5
-      space_width 15
-      space_height 10
+      space_width 5
+      space_height 8
     end
 
     trait :with_big_volume do
-      space_length 20
+      space_length 15
       space_width 20
       space_height 15
     end

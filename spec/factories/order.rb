@@ -32,10 +32,20 @@ FactoryGirl.define do
     end
 
     trait :with_small_volume_items do
-      after(:build) do |order|
+      after(:create) do |order|
         # we remove to better rebuild the items
         order.order_items = []
-        order.order_items = build_list(:order_item, 5, :with_small_volume)
+        order.order_items = build_list(:order_item, 5, :with_small_volume, :product => {:shop => order.shop})
+        order.save
+      end
+    end
+
+    trait :with_big_volume_items do
+      after(:create) do |order|
+        # we remove to better rebuild the items
+        order.order_items = []
+        order.order_items = build_list(:order_item, 5, :with_big_volume, :product => {:shop => order.shop})
+        order.save
       end
     end
 
