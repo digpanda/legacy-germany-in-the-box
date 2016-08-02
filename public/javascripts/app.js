@@ -605,11 +605,11 @@ var ProductsShow = {
 
       // Changing the image when we click on any thumbnail of the #gallery
       $('#main_image').attr('src', image);
-
+      /*
       $('#main_image').magnify({
         speed: 0,
-        src: zoomImage
-      });
+        src: zoomImage,
+      });*/
     });
 
     // We don't forget to trigger the click to load the first image
