@@ -1,3 +1,29 @@
+
+<br />
+<h1><strong>Warenliste (Beipackzettel)</strong></h1>
+<br />
+<br />
+
+<strong>
+MerchantName <%= @order.shop.decorate.manager_full_name %><br />
+MerchantID <%= @order.shop.merchant_id %><br />
+Ust-ID <%= @order.shop.ustid %><br />
+</strong>
+
+<br />
+
+<strong>
+CustomerName <%= @order.user.decorate.full_name %><br />
+CustomerAddress <%= @order.decorate.billing_address.decorate.full_address %><br />
+</strong>
+
+<br />
+
+<%= @order.bill_id %>
+
+<br />
+<br />
+
 <table style="text-align:left;width:100%;border-color:black;border-width:1px;border-style:solid;">
   <thead>
     <tr>
@@ -38,5 +64,19 @@
       </td>
     </tr>
     <% end %>
+    <tr>
+      <td>
+      </td>
+      <td>
+      </td>
+      <td>
+      </td>
+      <td>
+      Gesamt
+      </td>
+      <td>
+      <%= @order.decorate.total_price_with_currency_euro %>
+      </td>
+    </tr>
   </tbody>
 </table>

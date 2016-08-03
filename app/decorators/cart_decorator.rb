@@ -15,7 +15,6 @@ class CartDecorator < Draper::Decorator
   # not currently in use in the real system (but still in tests)
   def create_order(options = {})
     order_line_items = cart_skus.map(&:becomes_order_line_item)
-
     Order.new({
       border_guru_quote_id: border_guru_quote_id,
       order_items: order_line_items,
@@ -23,8 +22,9 @@ class CartDecorator < Draper::Decorator
       tax_and_duty_cost: tax_and_duty_cost
     }.merge(options))
   end
-  
-  # should be refactored via the currency system
+
+  # we should definitely use only one system (order or cart) but not both.
+  # refactorization needed at some point to avoid duplication
   def tax_and_duty_cost_with_currency_yuan
     Currency.new(tax_and_duty_cost).to_yuan.display
   end
@@ -43,6 +43,10 @@ class CartDecorator < Draper::Decorator
 
   def total_price
     shipping_cost + tax_and_duty_cost + cart_skus_price
+  end
+
+  def total_volume
+    cart_skus.inject(0) { |sum, cart_skus| sum += cart_skus.volume }
   end
 
   def cart_skus_price

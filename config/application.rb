@@ -19,9 +19,9 @@ module DigPanda
 
     config.exceptions_app = self.routes # customized error handling
 
-    config.autoload_paths += %W(#{config.root}/lib)
-    config.autoload_paths += %W(#{config.root}/services)
-    
+    config.autoload_paths += %W(#{config.root}/lib #{config.root}/services)
+    config.eager_load_paths += %W(#{config.root}/lib) if Rails.env.development?
+
     config.middleware.use Mongoid::QueryCache::Middleware
     config.middleware.use Mobvious::Manager
     config.middleware.use HttpAcceptLanguage::Middleware

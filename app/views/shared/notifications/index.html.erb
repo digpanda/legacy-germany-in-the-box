@@ -15,7 +15,7 @@
     </thead>
     <tbody>
       <% @notifications.each do |notification| %>
-        <tr class="<% unless notification.decorator.read? %>+unread <% notification.decorator.read! %><% end %>">
+        <tr class="<% unless notification.decorate.read? %>+unread <% notification.decorate.read! %><% end %>">
           <td>
             <strong><%= notification.title %></strong>
           </td>

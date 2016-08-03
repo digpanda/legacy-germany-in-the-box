@@ -17,7 +17,8 @@ module BorderGuru
           countryOfOrigin: @shop.country_of_dispatcher.alpha2,
           countryOfDestination: @country_of_destination.alpha2,
           currency: @currency,
-          lineItems: line_items
+          lineItems: line_items,
+          shippingCost: ShippingPrice.new(@cart).price
         })
       end
 

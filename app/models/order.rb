@@ -13,6 +13,7 @@ class Order
   field :order_items_count,         type: Fixnum, default: 0
   field :minimum_sending_date,      type: Time
   field :hermes_pickup_email_sent_at,   type: Time
+  field :bill_id, type: String
 
   belongs_to :shop,                 :inverse_of => :orders
   belongs_to :user,                 :inverse_of => :orders
@@ -31,5 +32,17 @@ class Order
   summarizes sku_list: :order_items, by: :quantity
 
   index({user: 1},  {unique: false,   name: :idx_order_user,   sparse: true})
+
+  before_save :make_bill_id
+
+  private
+
+  def make_bill_id
+    if bill_id.nil?
+      year = c_at.strftime("%Y")
+      num = Order.where(:bill_id.ne => nil).count + 1 # mongoid not able to count entry position, classical stuff.
+      self.bill_id = "#{year}-P#{num}"
+    end
+  end
 
 end

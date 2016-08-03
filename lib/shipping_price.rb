@@ -6,7 +6,7 @@ class ShippingPrice
   FIRST_KILO_PRICE = 8.8
   PRICE_PER_KILO = 2.2
 
-  APPROXIMATION_PERCENT = 15.00 # %
+  APPROXIMATION_PERCENT = 20.00 # %
 
   # add `to_b` functionality to floats
   Float.include CoreExtensions::Float::BigDecimalConverter

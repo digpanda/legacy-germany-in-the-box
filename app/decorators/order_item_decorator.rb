@@ -8,7 +8,7 @@ class OrderItemDecorator < Draper::Decorator
   end
 
   def total_price_with_currency_euro
-    Currency.new(total_priceprice).display
+    Currency.new(total_price).display
   end
 
 end
