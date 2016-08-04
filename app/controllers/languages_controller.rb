@@ -1,7 +1,6 @@
 class LanguagesController < ActionController::Base # No application because it's a standalone service
 
   include UsersHelper
-  include NavigationHistoryHelper
   include ErrorsHelper
 
   include Rails.application.routes.url_helpers
@@ -16,7 +15,7 @@ class LanguagesController < ActionController::Base # No application because it's
     session[:locale] = language_params[:id]
 
     redirect_to language_params[:location] and return if language_params[:location] # go to whatever location is authorized
-    redirect_to navigation_history(1) and return if potential_admin? # go back on the current page in case of admin
+    redirect_to navigation.back(1) and return if potential_admin? # go back on the current page in case of admin
     redirect_to root_url and return
 
   end

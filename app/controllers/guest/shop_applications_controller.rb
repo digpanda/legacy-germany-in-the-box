@@ -28,7 +28,7 @@ class Guest::ShopApplicationsController < ApplicationController
     end
 
     flash[:success] = I18n.t(:no_applications, scope: :edit_shop_application)
-    redirect_to navigation_history(2) and return
+    redirect_to navigation.back(2) and return
 
   end
 

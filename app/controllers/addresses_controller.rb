@@ -13,9 +13,9 @@ class AddressesController < ApplicationController
 
     @user = User.find(params[:id])
 
-    if @user.shopkeeper?
+    if @user.decorate.shopkeeper?
       @addresses = @user.shop.addresses
-    elsif @user.customer?
+    elsif @user.decorate.customer?
       @addresses = @user.addresses
     end
 
@@ -32,7 +32,7 @@ class AddressesController < ApplicationController
   def create
     user = User.find(params[:user_id])
 
-    if user.customer?
+    if user.decorate.customer?
       num_addresses = user.addresses.count
 
       if num_addresses >= Rails.configuration.max_num_addresses
@@ -62,7 +62,7 @@ class AddressesController < ApplicationController
           end
         end
       end
-    elsif user.shopkeeper?
+    elsif user.decorate.shopkeeper?
       num_addresses = user.shop.addresses.count
       max_num_addresses = Rails.configuration.max_num_shop_billing_addresses + Rails.configuration.max_num_shop_sender_addresses
 

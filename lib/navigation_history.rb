@@ -1,7 +1,15 @@
-# By Loschcode (should be way improved and turned into a gem or something)
-module NavigationHistoryHelper
+# manage the navigation history
+# gets back to previous pages easily
+class NavigationHistory
 
-  def store_navigation_history(conditions)
+  attr_reader :request, :session
+
+  def initialize(request, session)
+    @request = request
+    @session = session
+  end
+
+  def store(conditions)
 
     return unless request.get? # Only GETs
     return if request.xhr? # AJAX call
@@ -19,7 +27,7 @@ module NavigationHistoryHelper
 
   end
 
-  def navigation_history(n=1, default_redirect=nil)
+  def back(n=1, default_redirect=nil)
 
     if default_redirect.nil?
       default_redirect = root_path

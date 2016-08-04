@@ -116,7 +116,7 @@ class OrdersController < ApplicationController
 
       if co.save
         flash[:success] = I18n.t(:add_product_ok, scope: :edit_order)
-        redirect_to navigation_history(2, shop_path(product.shop_id))
+        redirect_to navigation.back(2, shop_path(product.shop_id))
         return
       end
 
@@ -207,7 +207,7 @@ class OrdersController < ApplicationController
         # we should catch the error in the lib or something like this
         # and raise one if the merchant wirecard status isn't active yet
         flash[:error] = "This shop is not ready to accept payments yet (#{exception})"
-        redirect_to navigation_history(1)
+        redirect_to navigation.back(1)
         return
 
       end

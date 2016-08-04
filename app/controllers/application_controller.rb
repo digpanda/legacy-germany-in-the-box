@@ -6,7 +6,6 @@ class ApplicationController < ActionController::Base
   include HttpAcceptLanguage::AutoLocale
 
   include UsersHelper
-  include NavigationHistoryHelper
   include WickedPdfHelper
   include ErrorsHelper
   include LanguagesHelper
@@ -58,10 +57,14 @@ class ApplicationController < ActionController::Base
 
   def store_location
     # should be refactored to dynamic paths (obviously)
-    store_navigation_history :except => ["/users/sign_in","/users/sign_up", "/users/sign_up", "/users/password/new", "/users/password/edit", "/users/confirmation", "/users/sign_out"]
+    navigation.store :except => %w(/users/sign_in /users/sign_up /users/password/new /users/password/edit /users/confirmation /users/sign_out)
   end
 
   protected
+
+  def navigation
+    @navigation ||= NavigationHistory.new(request, session)
+  end
 
   def reach_todays_limit?(order, new_price_increase, new_quantity_increase)
     # if the user has logged in, we should check
@@ -160,7 +163,7 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
     if current_user.decorate.customer?
       session[:locale] = :'zh-CN'
-      navigation_history(1)
+      navigation.back(1)
     elsif current_user.decorate.shopkeeper?
       session[:locale] = :'de'
       if current_user.shop && (not current_user.shop.agb)

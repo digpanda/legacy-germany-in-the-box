@@ -7,7 +7,7 @@
 %>
 
 
-<% if @user.customer? %>
+<% if @user.decorate.customer? %>
     <div class="col-md-7 col-sm-12 col-xs-12 text-center +white-box">
       <%= form_for @user, html: {method: 'patch', 'data-toggle': 'validator'} do |f| %>
           <div class="form-group">
@@ -48,7 +48,7 @@
     </div>
   </div>
 
-      <% if @user.shopkeeper? %>
+      <% if @user.decorate.shopkeeper? %>
 
           <%= fields_for :shop, @user.shop do |shop_fields| %>
 
