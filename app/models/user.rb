@@ -107,7 +107,7 @@ class User
       user.username = auth.info.nickname
       user.role = :customer
       user.gender = auth.info.sex == 1 ? 'm' : 'f'
-      user.birth = Date.today
+      user.birth = Date.today # what the fuck ? is that normal ? - Laurent 04/08/2016
       user.password = auth.info.unionid[0,8]
       user.password_confirmation = auth.info.unionid[0,8]
       user.wechat_unionid = auth.info.unionid
@@ -128,12 +128,6 @@ class User
 
   def new_notifications?
     notifications.unreads.count > 0
-  end
-
-  def reach_todays_limit?(order, new_price_increase)
-    new_order_total = order.decorate.total_price_in_yuan + new_price_increase
-    todays_orders = self.orders.bought.and(:paid_at.gte => Date.today, :paid_at.lt => Date.tomorrow)
-    todays_orders.size == 0 ? false : (todays_orders.inject(0) { |sum, order| sum += order.decorate.total_price_in_yuan } + new_order_total) > Settings.instance.max_total_per_day
   end
 
   def admin?
