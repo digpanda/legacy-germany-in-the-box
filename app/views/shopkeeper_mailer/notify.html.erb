@@ -3,6 +3,6 @@
   Wir haben eine Nachricht über "<%= @title %>" für dich!<br>
 </p>
 <p>
-  Klicke den Link: <a href="<%= root_url %><%= @url %>">um mehr zu erfahren.</a>.
+  Klicke den Link: <a href="<%= root_url.chomp('/') %><%= @url %>">um mehr zu erfahren.</a>.
 </p>
 <p>Servus und dir einen schönen Tag!</p>
