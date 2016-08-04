@@ -43,23 +43,11 @@ class ShopApplication
   validates :mobile,        length: {maximum: Rails.configuration.max_tiny_text_length}
   validates :function,      length: {maximum: Rails.configuration.max_tiny_text_length}
 
-=begin frank idea
-  before_save :add_encryted_code
-
-  def self.encryptor
-    @encryptor ||=  ActiveSupport::MessageEncryptor.new(Rails.application.secrets.secret_key_base)
-  end
-
-  def add_encryted_code
-    self.code = self.class.encryptor.encrypt_and_sign(email)
-  end
-=end
-
-  before_save :gen_code;
+  before_save :gen_code
 
   def gen_code
     crypt = ActiveSupport::MessageEncryptor.new(Rails.application.secrets.secret_key_base)
-    self.code = crypt.encrypt_and_sign(self.email)
+    code = crypt.encrypt_and_sign(email)
   end
 
   index({code: 1},          {unique: false, name: :idx_shop_application_code})
