@@ -97,7 +97,6 @@ class ApplicationController < ActionController::Base
       cart.decorate.add(i.sku, i.quantity)
     end
 
-
     begin
       BorderGuru.calculate_quote(
           cart: cart,
@@ -115,7 +114,11 @@ class ApplicationController < ActionController::Base
 
   def has_order?(shop_id)
     session[:order_ids] ||= {}
-    session[:order_ids].delete_if{ |k,v| k.nil? || v.nil?}[shop_id].present?
+    clean_up_orders![shop_id].present?
+  end
+
+  def clean_up_orders!
+    session[:order_ids].delete_if { |k,v| k.nil? || v.nil? }
   end
 
   def current_orders
@@ -153,7 +156,7 @@ class ApplicationController < ActionController::Base
   def total_number_of_products
     current_orders.inject(0) { |sum, so| sum += so.compact[1].decorate.total_quantity }
   end
-  
+
   def after_sign_in_path_for(resource)
     if current_user.customer?
       session[:locale] = :'zh-CN'

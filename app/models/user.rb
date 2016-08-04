@@ -132,7 +132,7 @@ class User
 
   def reach_todays_limit?(order, new_price_increase)
     new_order_total = order.decorate.total_price_in_yuan + new_price_increase
-    todays_orders = self.orders.bought.and(:u_at.gte => Date.today, :u_at.lt => Date.tomorrow)
+    todays_orders = self.orders.bought.and(:paid_at.gte => Date.today, :paid_at.lt => Date.tomorrow)
     todays_orders.size == 0 ? false : (todays_orders.inject(0) { |sum, order| sum += order.decorate.total_price_in_yuan } + new_order_total) > Settings.instance.max_total_per_day
   end
 
