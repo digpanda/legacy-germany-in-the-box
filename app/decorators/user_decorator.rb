@@ -20,7 +20,7 @@ class UserDecorator < Draper::Decorator
   end
     
   def today_paid_orders_total_price
-    @today_paid_orders_total_price ||= todays_paid_orders.inject(0) { |sum, order| sum += order.decorate.total_price_in_yuan }
+    @today_paid_orders_total_price ||= today_paid_orders.inject(0) { |sum, order| sum += order.decorate.total_price_in_yuan }
   end
 
   def full_name
