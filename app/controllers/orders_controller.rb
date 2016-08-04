@@ -201,16 +201,19 @@ class OrdersController < ApplicationController
 
         })
 
-      rescue Wirecard::Base::Error
+      rescue Wirecard::Base::Error => exception
 
-
+        flash[:error] = "Shop not ready to accept checkouts (#{exception})"
+        redirect_to(:back)
+        return
 
       end
 
     else
 
       flash[:error] = order.errors.full_messages.first
-      redirect_to root_path and return
+      redirect_to root_path
+      return
 
     end
   end
