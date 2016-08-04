@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
 
   include Mobvious::Rails::Controller
 
-  unless Rails.env.development? # only on staging / production / test otherwise we show the full error
+  unless Rails.env.development? || Rails.env.test? # only on staging / production / test otherwise we show the full error
     rescue_from Exception, :with => :throw_server_error_page
     rescue_from CanCan::AccessDenied, :with => :throw_unauthorized_page
     rescue_from Mongoid::Errors::DocumentNotFound, :with => :throw_resource_not_found
@@ -49,7 +49,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_order, :current_orders, :total_number_of_products
 
-  around_action :set_translation_locale, only: [:update], if: -> { current_user&.admin? }
+  around_action :set_translation_locale, only: [:update], if: -> { current_user&.decorate&.admin? }
 
   before_action :set_categories
 

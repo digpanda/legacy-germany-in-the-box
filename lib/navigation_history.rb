@@ -4,6 +4,8 @@ class NavigationHistory
 
   attr_reader :request, :session
 
+  include Rails.application.routes.url_helpers
+  
   def initialize(request, session)
     @request = request
     @session = session

@@ -9,6 +9,8 @@ class Customer::FavoritesController < ApplicationController
 
   before_action :set_favorites
 
+  binding.pry
+  
   layout :custom_sublayout, only: [:index]
 
   def index

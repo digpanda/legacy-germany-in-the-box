@@ -15,7 +15,7 @@ class LanguagesController < ActionController::Base # No application because it's
     session[:locale] = language_params[:id]
 
     redirect_to language_params[:location] and return if language_params[:location] # go to whatever location is authorized
-    redirect_to navigation.back(1) and return if potential_admin? # go back on the current page in case of admin
+    redirect_to NavigationHistory.new(request, session).back(1) and return if potential_admin? # go back on the current page in case of admin
     redirect_to root_url and return
 
   end
