@@ -4,7 +4,7 @@ class ShippingPrice
   VOLUMETRIC_DIVIDOR = 5000.00
 
   FIRST_KILO_PRICE = 8.8
-  PRICE_PER_KILO = 2.2
+  PRICE_PER_KILO = 2.3
 
   APPROXIMATION_PERCENT = 20.00 # %
 
@@ -32,6 +32,7 @@ class ShippingPrice
   end
 
   def products_volumetric_weight
+
     @volumetric_weight ||= order.total_volume.to_b / VOLUMETRIC_DIVIDOR.to_b
   end
 

@@ -4,6 +4,8 @@ require 'will_paginate/array'
 class OrdersController < ApplicationController
 
   LABEL_NOT_READY_EXCEPTIONS = BorderGuru::Error, SocketError
+  DEMO_MERCHANT_ID = 'dfc3a296-3faf-4a1d-a075-f72f1b67dd2a'
+  DEMO_WIRECARD_EE_SECRET_CC = '6cbfa34e-91a7-421a-8dde-069fc0f5e0b8'
 
   load_and_authorize_resource
 
@@ -186,16 +188,24 @@ class OrdersController < ApplicationController
 
     if status
 
-      @wirecard = PrepareOrderForWirecardCheckout.perform({
+      begin
 
-        :user        => current_user,
-        :order       => order,
-        # IN CASE THE merchant_id don't work (i don't know cart.submerchant_id) YOU MUST KNOW 
-        # THIS SHOULD MATCH THE shop.merchant_id which's a unique id to recognize merchants through wirecard. - Laurent, 2016/07/05
-        :merchant_id => Rails.env.production? ? cart.submerchant_id : 'dfc3a296-3faf-4a1d-a075-f72f1b67dd2a',
-        :secret_key  => Rails.env.production? ? order.shop.wirecard_ee_secret_cc : "6cbfa34e-91a7-421a-8dde-069fc0f5e0b8",
+        @wirecard = PrepareOrderForWirecardCheckout.perform({
 
-      })
+          :user        => current_user,
+          :order       => order,
+          # IN CASE THE merchant_id don't work (i don't know cart.submerchant_id) YOU MUST KNOW 
+          # THIS SHOULD MATCH THE shop.merchant_id which's a unique id to recognize merchants through wirecard. - Laurent, 2016/07/05
+          :merchant_id => Rails.env.production? ? cart.submerchant_id : DEMO_MERCHANT_ID,
+          :secret_key  => Rails.env.production? ? order.shop.wirecard_ee_secret_cc : DEMO_WIRECARD_EE_SECRET_CC,
+
+        })
+
+      rescue Wirecard::Base::Error
+
+
+
+      end
 
     else
 
