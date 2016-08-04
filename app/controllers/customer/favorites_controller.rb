@@ -8,8 +8,6 @@ class Customer::FavoritesController < ApplicationController
   attr_reader :favorites, :product
 
   before_action :set_favorites
-
-  binding.pry
   
   layout :custom_sublayout, only: [:index]
 
