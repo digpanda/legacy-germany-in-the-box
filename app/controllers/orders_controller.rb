@@ -203,7 +203,9 @@ class OrdersController < ApplicationController
 
       rescue Wirecard::Base::Error => exception
 
-        flash[:error] = "Shop not ready to accept checkouts (#{exception})"
+        # we should catch the error in the lib or something like this
+        # and raise one if the merchant wirecard status isn't active yet
+        flash[:error] = "This shop is not ready to accept payments yet (#{exception})"
         redirect_to(:back)
         return
 
