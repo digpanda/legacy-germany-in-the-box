@@ -14,6 +14,9 @@
         <%= I18n.t(:addresses, scope: :edit_shops) %>
       </th>
       <th>
+        Merchant ID
+      </th>
+      <th>
         <%= I18n.t('agb.info', scope: :edit_shops) %>
       </th>
       <th>
@@ -40,6 +43,9 @@
           </td>
           <td>
             <%= link_to s.addresses.size, show_addresses_user_path(s.shopkeeper, :user_info_edit_part => :edit_shops) %>
+          </td>
+          <td>
+            <%= s.merchant_id %>
           </td>
           <td>
             <%= s.agb ? I18n.t(s.agb.to_s, scope: 'edit_shops.agb') : '' %>
