@@ -30,6 +30,7 @@ end
 namespace :shopkeeper do
 
   resources :orders do
+    get   :bill
     patch :process_order
     patch :shipped
   end

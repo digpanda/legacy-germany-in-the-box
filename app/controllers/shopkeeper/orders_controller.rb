@@ -24,6 +24,14 @@ class Shopkeeper::OrdersController < ApplicationController
     end
   end
 
+  def bill
+    respond_to do |format|
+      format.pdf do
+        render pdf: order.id.to_s, disposition: 'attachment'
+      end
+    end
+  end
+
   def shipped
 
     if order.shippable?

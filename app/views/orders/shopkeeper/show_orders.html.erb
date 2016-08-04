@@ -41,7 +41,7 @@
           <% if order.border_guru_shipment_id %>
             <%= link_to I18n.t(:download, scope: :edit_order), download_label_order_path(order) %> | 
           <% end %>
-          <a href="<%= shopkeeper_order_path(order, format: "pdf") %>">Products list</a> | <a href="<%= shopkeeper_order_path(order, format: "csv") %>">Shippment CSV</a>
+          <a href="<%= shopkeeper_order_path(order, format: "pdf") %>">Products list</a> | <a href="<%= shopkeeper_order_path(order, format: "csv") %>">Shippment CSV</a> | <a href="<%= shopkeeper_order_bill_path(order, format: "pdf") %>">Informal Bill</a>
           </td>
           <th>
           <% unless order.minimum_sending_date.nil? %>

@@ -33,6 +33,10 @@ class OrderDecorator < Draper::Decorator
     Currency.new(total_sum).to_yuan.display
   end
 
+  def total_sum_in_euro
+    Currency.new(total_sum).display
+  end
+
   def reach_todays_limit?(new_price_increase, new_quantity_increase)
     if order_items.size == 0 && new_quantity_increase == 1
       false
@@ -71,8 +75,16 @@ class OrderDecorator < Draper::Decorator
     Currency.new(shipping_cost).to_yuan.display
   end
 
+  def shipping_cost_with_currency_euro
+    Currency.new(shipping_cost).display
+  end
+
   def tax_and_duty_cost_with_currency_yuan
     Currency.new(tax_and_duty_cost).to_yuan.display
+  end
+
+  def tax_and_duty_cost_with_currency_euro
+    Currency.new(tax_and_duty_cost).display
   end
 
   # DON'T EXIST ANYMORE ? - Laurent on 29/06/2016

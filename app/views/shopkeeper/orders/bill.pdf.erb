@@ -1,0 +1,140 @@
+
+<br />
+<h1><strong>Proformarechnung</strong></h1>
+<br />
+<br />
+
+<strong>
+MerchantName <%= @order.shop.decorate.manager_full_name %><br />
+MerchantID <%= @order.shop.merchant_id %><br />
+Ust-ID <%= @order.shop.ustid %><br />
+</strong>
+
+<br />
+
+<strong>
+CustomerName <%= @order.user.decorate.full_name %><br />
+CustomerAddress <%= @order.decorate.billing_address.decorate.full_address %><br />
+</strong>
+
+<br />
+
+NR.: <%= @order.bill_id %><br />
+Datum: <%= @order.c_at.strftime("%d-%m-%Y") %>
+
+<br />
+<br />
+
+<table style="text-align:left;width:100%;border-color:black;border-width:1px;border-style:solid;">
+  <thead>
+    <tr>
+      <th>
+        Pos.
+      </th>
+      <th>
+        Produktname
+      </th>
+      <th>
+        Preis (EUR)
+      </th>
+      <th>
+        Menge
+      </th>
+      <th>
+        Netto-Umsatz (EUR)
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @order.order_items.each_with_index do |order_item, index| %>
+    <tr>
+      <td>
+      <%= (index+1) %>
+      </td>
+      <td>
+        <%= order_item.product.name %> (<%= order_item.selected_options.join(', ') %>)
+      </td>
+      <td>
+        <%= order_item.sku.decorate.price_with_currency_euro %>
+      </td>
+      <td>
+        <%= order_item.quantity %>
+      </td>
+      <td>
+        <%= order_item.decorate.total_price_with_currency_euro %>
+      </td>
+    </tr>
+    <% end %>
+    <tr>
+      <td>
+      </td>
+      <td>
+      </td>
+      <td>
+      </td>
+      <td>
+      Gesamt netto
+      </td>
+      <td>
+      <%= @order.decorate.total_price_with_currency_euro %>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<br />
+<br />
+
+<table style="text-align:left;width:100%;border-color:black;border-width:1px;border-style:solid;">
+  <thead>
+    <tr>
+      <th>
+      </th>
+      <th>
+        Prozzeskosten
+      </th>
+      <th>
+        Betrag (EUR)
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <tr>
+      <td>
+        <%= @order.order_items.count+1 %>
+      </td>
+      <td>
+        Internationale Versandkosten
+        FRA-Endkunden(China)
+      </td>
+      <td>
+        <%= @order.decorate.shipping_cost_with_currency_euro %>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <%= @order.order_items.count+2 %>
+      </td>
+      <td>
+        Persönliche Importsteuern
+      </td>
+      <td>
+        <%= @order.decorate.tax_and_duty_cost_with_currency_euro %>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+      </td>
+      <td style="text-align:right;">
+        Gesamt netto
+      </td>
+      <td>
+        <%= @order.decorate.total_sum_in_euro %>
+      </td>
+    </tr>
+
+  </tbody>
+</table>
