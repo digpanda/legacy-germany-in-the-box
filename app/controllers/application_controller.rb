@@ -76,7 +76,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_categories
-    if seems_like_a_customer?
+    if potential_customer?
       @categories = Category.all
     end
   end

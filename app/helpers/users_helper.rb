@@ -1,15 +1,14 @@
 module UsersHelper
 
-  # improve this system ?
-  def seems_like_a_customer?
+  def potential_customer?
     (current_user.nil? && chinese?) || !!(current_user&.decorate&.customer?)
   end
 
-  def seems_like_a_shopkeeper?
+  def potential_shopkeeper?
     (current_user.nil? && german?) || !!(current_user&.decorate&.shopkeeper?)
   end
 
-  def seems_like_an_admin?
+  def potential_admin?
     current_user&.decorate&.admin?
   end
 

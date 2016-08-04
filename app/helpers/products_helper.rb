@@ -2,6 +2,7 @@ module ProductsHelper
   include AppCache
 
   # should REALLY change all those things
+
   def gen_remove_variant_panel
     %Q{
       function () {
@@ -109,10 +110,6 @@ module ProductsHelper
 
       return false;
     }
-  end
-
-  def gen_upload_image
-
   end
 
   def enough_inventory(sku, quantity)
