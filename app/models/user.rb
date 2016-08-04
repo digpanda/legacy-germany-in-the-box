@@ -118,28 +118,4 @@ class User
     super && provider.blank?
   end
 
-  def update_with_password(params, *options)
-    if encrypted_password.blank?
-      update_attributes(params, *options)
-    else
-      super
-    end
-  end
-
-  def new_notifications?
-    notifications.unreads.count > 0
-  end
-
-  def admin?
-    self.role == :admin
-  end
-
-  def shopkeeper?
-    self.role == :shopkeeper
-  end
-
-  def customer?
-    self.role == :customer
-  end
-
 end

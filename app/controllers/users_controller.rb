@@ -36,7 +36,7 @@ class UsersController < ApplicationController
   def edit_account
     if current_user.id.to_s == @user.id.to_s
       render :edit_account
-    elsif current_user.admin?
+    elsif current_user.decorate.admin?
       render 'users/admin/edit_account_by_admin'
     end
   end
@@ -64,7 +64,7 @@ class UsersController < ApplicationController
     ups = user_params
 
     if current_user.id.to_s == @user.id.to_s
-      if ups[:password] && @user.update_with_password(ups.except(:email))
+      if ups[:password] && @user.decorate.update_with_password(ups.except(:email))
 
         flash[:success] = I18n.t(:update_password_ok, scope: :edit_personal)
         sign_in(@user, :bypass => true)
@@ -86,7 +86,7 @@ class UsersController < ApplicationController
         flash.delete(:error)
 
       end
-    elsif current_user.admin?
+    elsif current_user.decorate.admin?
       if ups[:password] && @user.update(ups.except(:email))
         flash[:success] = I18n.t(:update_password_ok, scope: :edit_personal)
         redirect_to request.referer

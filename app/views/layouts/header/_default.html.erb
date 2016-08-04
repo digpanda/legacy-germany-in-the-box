@@ -34,7 +34,7 @@
 
       <% else %>
 
-      <% if current_user.new_notifications? %>
+      <% if current_user.decorate.new_notifications? %>
         <a href="<%= shared_notifications_path(:user_info_edit_part => :edit_notification) %>">
       <% else %>
         <a href="<%= edit_account_user_path(current_user, :user_info_edit_part => :edit_account) %>">
@@ -42,7 +42,7 @@
 
       <div class="main-header__avatar" style="background-image:url(<%= current_user.decorate.avatar %>)">
 
-        <% if current_user.new_notifications? %>
+        <% if current_user.decorate.new_notifications? %>
         <div class="main-header__avatar --notification">
           <%= current_user.notifications.unreads.count %>
         </div> 

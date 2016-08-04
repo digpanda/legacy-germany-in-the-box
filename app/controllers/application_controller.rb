@@ -158,17 +158,17 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    if current_user.customer?
+    if current_user.decorate.customer?
       session[:locale] = :'zh-CN'
       navigation_history(1)
-    elsif current_user.shopkeeper?
+    elsif current_user.decorate.shopkeeper?
       session[:locale] = :'de'
       if current_user.shop && (not current_user.shop.agb)
         edit_producer_shop_path(current_user.shop.id, :user_info_edit_part => :edit_producer)
       else
         show_orders_users_path(:user_info_edit_part => :edit_order)
       end
-    elsif current_user.admin?
+    elsif current_user.decorate.admin?
       shops_path(:user_info_edit_part => :edit_shops)
     end
   end
@@ -229,7 +229,7 @@ class ApplicationController < ActionController::Base
     end
 
     if user_signed_in?
-      unless current_user.customer?
+      unless current_user.decorate.customer?
         order.order_items.delete_all
         order.delete
       else
