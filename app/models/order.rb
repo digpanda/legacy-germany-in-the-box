@@ -33,7 +33,7 @@ class Order
 
   index({user: 1},  {unique: false,   name: :idx_order_user,   sparse: true})
 
-  before_save :make_bill_id
+  after_save :make_bill_id
 
   private
 
@@ -42,6 +42,7 @@ class Order
       year = c_at.strftime("%Y")
       num = Order.where(:bill_id.ne => nil).count + 1 # mongoid not able to count entry position, classical stuff.
       self.bill_id = "#{year}-P#{num}"
+      self.save
     end
   end
 
