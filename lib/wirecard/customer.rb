@@ -118,7 +118,7 @@ module Wirecard
         :requested_amount        => amount,
         :request_amount_currency => currency,
         :redirect_url            => success_redirect_url.html_safe,
-        :ip_address              => "127.0.0.1",
+        :ip_address              => customer_ip_address,
         :secret_key              => secret_key
       
       }
