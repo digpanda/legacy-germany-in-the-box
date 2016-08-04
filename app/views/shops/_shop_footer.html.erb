@@ -14,7 +14,7 @@
 
             <div>
               <h3><%= I18n.t(detail_attribute.to_sym, scope: :title) %></h3>
-              <%= shop.public_send(detail_attribute) %>
+              <%= simple_format(shop.public_send(detail_attribute)) %>
             </div>
 
             <div class="+small-spacer"></div>
