@@ -6,6 +6,27 @@
     <!-- Content -->
     <div class="shop-page-footer__content">
 
+      <!-- Images of the shop -->
+        <% 8.times.to_a.in_groups_of(4, false).each do |group| %>
+          
+          <div class="row">
+
+            <% group.each do |number| %>
+              <% unless shop.public_send("seal#{number}").url.empty? %>
+              <div class="col-md-3">
+                <img src="<%= shop.public_send("seal#{number}") %>">
+              </div>
+              <% end %>
+            <% end %>
+
+          </div>
+          <div class="+small-spacer"></div>
+
+        <% end %>
+
+      <div class="+small-spacer"></div>
+
+      <!-- Details about the Shop -->
       <div class="row">
 
         <% %w(philosophy stories uniqueness german_essence).each do |detail_attribute| %>

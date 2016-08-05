@@ -37,6 +37,6 @@ class ProductImageUploader < CarrierWave::Uploader::Base
   end
 
   def default_url
-    [version_name, "no_image_available.png"].compact.join('_')
+    [version_name].compact.join('_')
   end
 end
