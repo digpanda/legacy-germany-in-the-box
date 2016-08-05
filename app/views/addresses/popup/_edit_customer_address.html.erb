@@ -17,12 +17,9 @@
 
   <div class="form-group">
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-12">
         <%= f.text_field :mobile, :value => a.mobile ? a.mobile : @user.mobile, :class => 'form-control', :required => true, :placeholder => I18n.t(:mobile, scope: :edit_address), :pattern => I18n.t(:mobile, scope: :validation, locale: :'zh-CN') %>
        </div>
-      <div class="col-md-6">
-        <%= f.text_field :tel, :value => a.tel ? a.tel : @user.tel, :class => 'form-control', :placeholder => I18n.t(:tel, scope: :edit_address), :pattern => I18n.t(:tel, scope: :validation, locale: :'zh-CN') %>
-      </div>
      </div>
   </div>
 

@@ -19,8 +19,6 @@ class Address
   field :pid,           type: String
   field :email,         type: String
   field :mobile,        type: String
-  field :tel,           type: String
-
   field :primary,       type: Boolean,    default: false
 
   belongs_to :user,     :inverse_of => :addresses;
