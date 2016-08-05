@@ -21,15 +21,16 @@
 set :output, "/var/www/germany_in_the_box/current/log/borderguru_cron.log"
 
 every :day, :at => '3:15pm' do
-  command '(CHINESE HOUR 5:15pm / GERMAN HOUR 9:15am) The system has launched the rake task `cron:compile_and_transfer_orders_csvs_to_borderguru`'
+  command '(CHINESE HOUR 3:15pm / GERMAN HOUR 9:15am) The system has launched the rake task `cron:compile_and_transfer_orders_csvs_to_borderguru`'
   rake "cron:compile_and_transfer_orders_csvs_to_borderguru"
 end
 
-# TODO : uncomment this
-#every :day, :at => '11:15pm' do
-#  command '(CHINESE HOUR 11:15pm) The system has launched the rake task `cron:transmit_pickup_orders_to_hermes`'
-#  rake "cron:transmit_pickup_orders_to_hermes"
-#end
+=begin
+every :day, :at => '4:15pm' do
+  command '(CHINESE HOUR 4:15pm / GERMAN HOUR 10:15am) The system has launched the rake task `cron:transmit_pickup_orders_to_hermes`'
+  rake "cron:transmit_pickup_orders_to_hermes"
+end
+=end
 
 =begin
 every 1.day, :at => '4:30 am' do
