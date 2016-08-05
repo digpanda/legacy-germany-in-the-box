@@ -1,5 +1,7 @@
 describe NavigationHistory do
 
+  #include Rails.application.routes.url_helpers
+
   context "#store" do
 
     it "should not store if it is not a GET request" do
@@ -44,6 +46,16 @@ describe NavigationHistory do
 
       nav = NavigationHistory.new(request, session)
       expect(nav.back(3)).to eql('3')
+
+    end
+
+    it "should not find the URL back so redirect to root_url" do
+
+      request = double(:get? => true, :xhr? => false)
+      session = {:previous_urls => ['1', '2', '3', '4', '5']}
+
+      nav = NavigationHistory.new(request, session)
+      expect(nav.back(10)).to eql(root_url)
 
     end
 

@@ -3,10 +3,9 @@
 class NavigationHistory
 
   MAX_HISTORY = 10
+  DEFAULT_REDIRECT_URL = Rails.application.routes.url_helpers.root_url
 
   attr_reader :request, :session
-
-  include Rails.application.routes.url_helpers
   
   def initialize(request, session)
     @request = request
@@ -15,45 +14,56 @@ class NavigationHistory
 
   def store(conditions={})
 
-    return false unless request.get? # Only GETs
-    return false if request.xhr? # AJAX call
+    return false unless acceptable_request?
+    return false if excluded_path?(conditions)
 
-    exception_path = conditions[:except] || []
-    return false if exception_path.include? request.path
-
-    session[:previous_url] = request.fullpath 
-    session[:previous_urls] = [] if session[:previous_urls].nil?
-    session[:previous_urls].unshift session[:previous_url] unless session[:previous_urls].first == session[:previous_url]
-
-    if session[:previous_urls].size > MAX_HISTORY
-      session[:previous_urls].pop # poping last element if too big
-    end
+    # could be a new class but it's useless right now
+    prepare_storage
+    add_storage
+    limit_storage!
 
     session[:previous_urls]
-    
+
   end
 
   def back(raw_position=1, default_redirect=nil)
-
-    default_redirect = root_path unless default_redirect
-
     position = raw_position-1
-    if !session[:previous_urls].is_a? Array || session[:previous_urls][position].nil?
-      default_redirect
-    else
+    if history_found?(position)
       session[:previous_urls][position]
+    else
+      default_redirect || DEFAULT_REDIRECT_URL
     end
-
   end
 
   private
-=begin
-  def storage
-    session[:previous_url] || []
+
+  def history_found?(position)
+    session[:previous_urls].is_a?(Array) && session[:previous_urls][position].present?
   end
 
-  def storage=(data)
-    session[:previous_url] = data
+  def excluded_path?(conditions)
+    excluded_paths = conditions[:except] || []
+    excluded_paths.include? request.path
   end
-=end
+
+  def acceptable_request?
+    request.get? && !request.xhr? # GET and not AJAX
+  end
+
+  def already_last_stored?
+    session[:previous_urls].first == request.fullpath
+  end
+
+  def prepare_storage
+    session[:previous_urls] ||= [] # we need it because we use session
+  end
+
+  def add_storage
+    session[:previous_urls].unshift request.fullpath unless already_last_stored?
+  end
+
+  def limit_storage!
+    session[:previous_urls].pop if session[:previous_urls].size > MAX_HISTORY
+  end
+
 end
