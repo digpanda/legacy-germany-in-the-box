@@ -14,6 +14,10 @@ class ShopDecorator < Draper::Decorator
     shop.uniqueness && !shop.uniqueness.empty?
   end
 
+  def stories?
+    shop.stories && !shop.stories.empty?
+  end
+
   def german_essence?
     shop.german_essence && !shop.german_essence.empty?
   end
