@@ -57,6 +57,7 @@ class ShopsController <  ApplicationController
     sp = shop_params(@shop)
 
     if shop.agb && shop.update(sp)
+      
       if params[:user_info_edit_part] == :edit_producer.to_s
         flash[:success] = I18n.t(:update_producer_ok, scope: :edit_shop)
       else
@@ -65,7 +66,7 @@ class ShopsController <  ApplicationController
 
       redirect_to request.referer
 
-    elsif (not shop.agb) && shop.update(sp)
+    elsif (!shop.agb) && shop.update(sp)
       flash[:success] = I18n.t(:update_agb_ok, scope: :edit_shop)
       redirect_to edit_setting_shop_path(shop, :user_info_edit_part => :edit_shop)
     else
