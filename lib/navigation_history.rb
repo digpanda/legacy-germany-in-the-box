@@ -31,9 +31,7 @@ class NavigationHistory
 
   def back(n=1, default_redirect=nil)
 
-    if default_redirect.nil?
-      default_redirect = root_path
-    end
+    default_redirect = root_path unless default_redirect
 
     array_n = n-1
     if !session[:previous_urls].is_a? Array || session[:previous_urls][array_n].nil?

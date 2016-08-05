@@ -6,7 +6,7 @@ defaults: &defaults
 
   ftp:
     local_directory: /public/uploads/border_guru_ftp/
-    remote_directory: /CainiaoPreAlertCsv/files
+    remote_directory: /files
     host: ftp.borderguru.com
     port: 1348
     username: CainiaoPreAlertCsv
@@ -29,7 +29,7 @@ test:
   <<: *defaults
   ftp:
     local_directory: /public/uploads/border_guru_test/
-    remote_directory: /CainiaoPreAlertCsv/files
+    remote_directory: /files
     host: ftp.borderguru.com
     port: 1348
     username: CainiaoPreAlertCsv
