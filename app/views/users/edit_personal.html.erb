@@ -9,7 +9,7 @@
 <%= content_tag(:div, nil, :id => "js-show-datepicker", :data => { :language => I18n.locale }) %>
 
 <div class="col-md-6 col-sm-12 col-xs-12 +white-box">
-  <%= form_for @user, html: {'data-toggle': 'validator'} do |f| %>
+  <%= form_for @user, html: {:data => {:toggle => 'validator'}} do |f| %>
     <div class="form-group">
       <%= image_tag (current_user.pic.url.nil? ? "/images/icons/default_user_pic.png" : current_user.pic.url), :class => 'logo-img', :id => "pic_#{current_user.id}" %>
       <%= f.file_field :pic, :accept => "image/png, image/jpeg, image/jpg", :class => 'img-file-upload upload', :img_id => "#pic_#{current_user.id}" %>

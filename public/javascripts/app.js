@@ -780,30 +780,6 @@ var ProductsShowSkus = {
 module.exports = ProductsShowSkus;
 });
 
-require.register("javascripts/controllers/shop_applications/new.js", function(exports, require, module) {
-'use strict';
-
-/**
- * ShopApplicationsNew Class
- */
-var ShopApplicationsNew = {
-
-  /**
-   * Initializer
-   */
-  init: function init() {
-
-    if ($('#add_sales_channel_btn').length > 0) {
-
-      $('#add_sales_channel_btn').click();
-    }
-  }
-
-};
-
-module.exports = ShopApplicationsNew;
-});
-
 require.register("javascripts/controllers/shopkeeper/wirecards/apply.js", function(exports, require, module) {
 "use strict";
 

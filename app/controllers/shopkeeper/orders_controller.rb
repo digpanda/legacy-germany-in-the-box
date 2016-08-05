@@ -3,11 +3,10 @@ require 'net/ftp'
 
 class Shopkeeper::OrdersController < ApplicationController
 
+  CSV_ENCODE = "UTF-8"
+
   load_and_authorize_resource
   before_action :set_order
-
-  #CSV_ENCODE = "iso-8859-1" # latin languages
-  CSV_ENCODE = "UTF-8"
 
   attr_reader :order
 

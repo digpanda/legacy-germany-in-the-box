@@ -1,5 +1,6 @@
 <div class="row col-md-12 address-popup">
-  <%= form_for @address, html: {} do |f| %>
+
+  <%= form_for @address, :data => {:toggle => 'validator'} do |f| %>
     <%= hidden_field_tag :user_id, @user.id.to_s %>
 
     <div class="form-group">

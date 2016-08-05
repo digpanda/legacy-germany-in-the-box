@@ -1,6 +1,6 @@
 describe NavigationHistory do
 
-  #include Rails.application.routes.url_helpers
+  include Rails.application.routes.url_helpers
 
   context "#store" do
 

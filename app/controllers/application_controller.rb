@@ -70,12 +70,12 @@ class ApplicationController < ActionController::Base
     # if the user has logged in, we should check
     # whether the user has reached the limit today and the order itself has reached the the limit today
     if current_user.present?
-      return current_user.decorate.reach_todays_limit?(order, new_price_increase) || order.decorate.reach_todays_limit?(new_price_increase, new_quantity_increase)
-    end
-
+      current_user.decorate.reach_todays_limit?(order, new_price_increase) || order.decorate.reach_todays_limit?(new_price_increase, new_quantity_increase)
+    else
     # if not, just check if the order has reached the limit today.
     # The further check will be done on the checkout step, after the user has logged in.
-    return order.decorate.reach_todays_limit?(new_price_increase, new_quantity_increase)
+      order.decorate.reach_todays_limit?(new_price_increase, new_quantity_increase)
+    end
   end
 
   def set_categories

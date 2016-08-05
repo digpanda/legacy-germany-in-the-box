@@ -9,7 +9,7 @@
 
 <% if @user.decorate.customer? %>
     <div class="col-md-7 col-sm-12 col-xs-12 text-center +white-box">
-      <%= form_for @user, html: {method: 'patch', 'data-toggle': 'validator'} do |f| %>
+      <%= form_for @user, html: {method: 'patch', :data => {:toggle => 'validator'}} do |f| %>
           <div class="form-group">
             <div class="row">
               <%= f.label :pic, "Profile picture", :class => 'control-label' %>
@@ -38,7 +38,7 @@
 
 <div class="col-md-7 col-sm-12 col-xs-12 +white-box">
 
-  <%= form_for @user, html: {method: 'patch', 'data-toggle': 'validator'} do |f| %>
+  <%= form_for @user, html: {method: 'patch', :data => {:toggle => 'validator'}} do |f| %>
 
   <div class="form-group">
     <div class="pull-right required-info">

@@ -4,7 +4,7 @@ THERE IS A CLEAN TEMPORARY COPY PASTE IN GUEST/SHOP_APPLICATIONS
   <div class="row">
     <div class="+spacer"></div>
     <div class="col-md-8 col-md-offset-2">
-      <%= form_for @shop_application, html: {'data-toggle': 'validator'}, method: :post do |f| %>
+      <%= form_for @shop_application, html: {:data => {:toggle => 'validator'}}, method: :post do |f| %>
         <div class="panel-group">
           <div class="panel panel-info">
             <div class="panel-heading text-center">
