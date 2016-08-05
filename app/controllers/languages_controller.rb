@@ -10,13 +10,20 @@ class LanguagesController < ActionController::Base # No application because it's
 
   def update
 
-    throw_app_error(:bad_language) and return unless valid_language? && valid_location?
+    unless valid_language? && valid_location?
+      throw_app_error(:bad_language)
+      return
+    end
 
     session[:locale] = language_params[:id]
 
-    redirect_to language_params[:location] and return if language_params[:location] # go to whatever location is authorized
-    redirect_to NavigationHistory.new(request, session).back(1) and return if potential_admin? # go back on the current page in case of admin
-    redirect_to root_url and return
+    if language_params[:location] # go to whatever location is authorized
+      redirect_to language_params[:location]
+    elsif potential_admin? # go back on the current page in case of admin
+      redirect_to NavigationHistory.new(request, session).back(1)
+    else
+      redirect_to root_url
+    end
 
   end
 
@@ -34,9 +41,10 @@ class LanguagesController < ActionController::Base # No application because it's
     (ACCEPTED_LOCATIONS.include? language_params[:location]) || language_params[:location].nil? # valid location or nil
   end
 
-  # NOT CURRENTLY IN USE
+  # NOT CURRENTLY IN USE BUT COULD BE USEFUL
+=begin
   def extract_locale
     request.env['HTTP_ACCEPT_LANGUAGE'] ? request.env['HTTP_ACCEPT_LANGUAGE'].scan(/^[a-z]{2}/).first : 'de'
   end
-
+=end
 end
