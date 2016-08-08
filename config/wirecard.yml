@@ -49,13 +49,12 @@ production:
   reseller:
     username: 000000316FF50E1E-EMDigPanda
     password: pdE_cf0SnYAq
-    engine_url: https://sandbox-engine.thesolution.com/engine/rest/
+    engine_url: http://www.elastic-payments.com/schema/payment
   customers:
-    hosted_payment_url: https://sandbox-engine.thesolution.com/engine/hpp/
-    default_redirect_url: https://sandbox-engine.thesolution.com/shop/complete.jsp
+    hosted_payment_url: http://www.elastic-payments.com/schema/payment
+    default_redirect_url: http://www.elastic-payments.com/schema/payment/shop/complete.jsp
     success_redirect_url : https://www.germanyinthebox.com/orders/checkout_success
     fail_redirect_path : https://www.germanyinthebox.com/orders/checkout_fail
     psp_name: demo
     payment_method: upop
     transaction_type: debit
-
