@@ -21,6 +21,7 @@ Rails.application.configure do
 
   # used for root_url and equivalent
   Rails.application.routes.default_url_options = {host: 'local.dev', port: 8000}
+
 =begin
   config.action_mailer.smtp_settings = {
       address: "mailtrap.io",
@@ -32,6 +33,5 @@ Rails.application.configure do
       password: 'f4eede72e026e4'
   }
 =end
+
 end
-
-

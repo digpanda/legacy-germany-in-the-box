@@ -25,12 +25,10 @@ every :day, :at => '3:15pm' do
   rake "cron:compile_and_transfer_orders_csvs_to_borderguru"
 end
 
-=begin
 every :day, :at => '4:15pm' do
   command '(CHINESE HOUR 4:15pm / GERMAN HOUR 10:15am) The system has launched the rake task `cron:transmit_pickup_orders_to_hermes`'
   rake "cron:transmit_pickup_orders_to_hermes"
 end
-=end
 
 =begin
 every 1.day, :at => '4:30 am' do

@@ -1,3 +1,5 @@
+require 'border_guru_email'
+
 describe BorderGuruEmail do
 
   let(:log_file) { "#{Rails.root}/log/#{BorderGuruEmail::CONFIG[:email][:log]}" }

@@ -33,7 +33,7 @@ module BorderGuruEmail
           :pickup_address => shop.billing_address.decorate.full_address,
           :destination => DESTINATION,
           :orders_barcodes => barcodes_list,
-          :orders_descriptions => descriptions_list
+          :orders_descriptions => clean_descriptions_list
         }
       end
 
@@ -50,8 +50,8 @@ module BorderGuruEmail
         orders.reduce([]) { |acc, order| acc << order.border_guru_shipment_id }
       end
 
-      def descriptions_list
-        orders.reduce([]) { |acc, order| acc << order.desc }
+      def clean_descriptions_list
+        orders.reduce([]) { |acc, order| acc << order.decorate.clean_desc }
       end
 
     end

@@ -5,6 +5,10 @@ class OrderDecorator < Draper::Decorator
   delegate_all
   decorates :order
 
+  def clean_desc
+    self.desc.squish.downcase.gsub(',', '')
+  end
+
   def is_bought?
     not [:new, :paying].include?(self.status)
   end
