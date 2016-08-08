@@ -8,8 +8,8 @@ describe BorderGuru::Payloads::TrackingApi do
     @order =  @customer.orders.first
     @shop = @order.shop
     @payload = BorderGuru::Payloads::TrackingApi.new(
-        dispatcher: @shop.sender_address,
-        order: @order
+    dispatcher: @shop.sender_address,
+    order: @order
     )
   end
 
@@ -31,4 +31,3 @@ describe BorderGuru::Payloads::TrackingApi do
   end
 
 end
-

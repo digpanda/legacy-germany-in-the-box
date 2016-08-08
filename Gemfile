@@ -78,6 +78,12 @@ group :development do
 
 end
 
+group :development, :test do
+  gem "vcr"
+  gem "webmock" # http service loader
+end
+
+
 group :development, :test, :staging, :local do
   gem "factory_girl_rails"
   gem "rspec-rails", "~> 3.0"
@@ -96,7 +102,3 @@ group :development, :local do
   gem "minitest", "5.8.3"
   gem "faker"
 end
-
-
-
-

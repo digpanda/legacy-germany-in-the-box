@@ -29,7 +29,7 @@ class PagesController < ApplicationController
 
   def customer_qa
   end
-  
+
   def fees
   end
 
@@ -37,4 +37,3 @@ class PagesController < ApplicationController
   end
 
 end
-

@@ -9,13 +9,13 @@ FactoryGirl.define do
     zip         '300222'
     city        '天津'
     country     'CN'
-    tel         '+86123456'
     email       'customer01@hotmail.com'
     mobile      '13802049778'
     province    '天津'
     district    '和平区'
     pid         { rand(100_000_000_000_000_000..999_999_999_999_999_999) }
   end
+
 
   factory :shop_address, class: Address do
     fname       { Faker::Name.first_name }
@@ -25,7 +25,6 @@ FactoryGirl.define do
     zip         { Faker::Address.zip_code }
     city        { Faker::Address.city }
     country     'DE'
-    tel         { Faker::PhoneNumber.phone_number }
     email       { Faker::Internet.email }
     company     { Faker::Company.name }
     district    { Faker::Address.state }
@@ -47,4 +46,3 @@ FactoryGirl.define do
 
   end
 end
-

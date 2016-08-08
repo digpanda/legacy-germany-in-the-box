@@ -63,7 +63,7 @@ module BorderGuru
             postcode: address_model.zip,
             city: "#{address_model.province} #{address_model.city}",
             country: address_model.decorate.country_name,
-            telephone: address_model.tel ? address_model.tel : address_model.mobile,
+            telephone: address_model.mobile,
             email: customer_address_email(address_model),
             countryCode: address_model.decorate.country_code
         }.delete_if { |k,v| v.nil? }
