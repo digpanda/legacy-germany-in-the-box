@@ -21,14 +21,15 @@ class PrepareOrderForWirecardCheckout < BaseService
 
       })
 
-      order_payment             = OrderPayment.new
-      order_payment.merchant_id = merchant_id
-      order_payment.request_id  = wirecard.request_id
-      order_payment.user_id     = user.id # shouldn't be duplicated, but mongoid added it automatically ...
-      order_payment.order_id    = order.id
-      order_payment.amount      = wirecard.amount
-      order_payment.currency    = wirecard.currency
-      order_payment.save
+      OrderPayment.new.tap do |order_payment|
+        order_payment.merchant_id = merchant_id
+        order_payment.request_id  = wirecard.request_id
+        order_payment.user_id     = user.id # shouldn't be duplicated, but mongoid added it automatically ...
+        order_payment.order_id    = order.id
+        order_payment.amount      = wirecard.amount
+        order_payment.currency    = wirecard.currency
+        order_payment.save
+      end
 
       wirecard
 

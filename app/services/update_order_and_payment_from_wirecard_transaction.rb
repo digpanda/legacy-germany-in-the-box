@@ -26,15 +26,11 @@ class UpdateOrderAndPaymentFromWirecardTransaction < BaseService
 
       })
 
-      # we update the order depending on the REAL server side state
+      # we update the order payment depending on the REAL server side state
       transaction = wirecard.transaction(transaction_id)
       order_payment.status = wirecard.payment_status(transaction)
       order_payment.save
-
-      # we update the order
-      order_payment.order.status = order_payment.status # duplicate, should be avoided somehow
-      order_payment.order.save(validate: false) # TODO @yl : we should check the validation here and change it
-
+      
     end
 
   end

@@ -224,14 +224,15 @@ class OrdersController < ApplicationController
   def checkout_success
     checkout_callback
 
-    op = OrderPayment.where(:request_id => params[:request_id]).first
-
-    order = op.order
-    order.status = :paid
-    order.save!
-
+    order_payment = OrderPayment.where(:request_id => params[:request_id]).first
+    order = order_payment.order
     shop = order.shop
 
+    if order_payment.status == :success
+      order.status = :paid
+      order.save!
+    end
+    
     begin
       shipping = BorderGuru.get_shipping(
           order: order,
@@ -288,7 +289,8 @@ class OrdersController < ApplicationController
     # corrupted transaction detected : not the same email -> should be improved / put somewhere else
     if current_user.email != customer_email
         flash[:error] = I18n.t(:account_conflict, scope: :notice)
-        redirect_to root_url and return
+        redirect_to root_url
+        return
     end
 
     UpdateOrderAndPaymentFromWirecardTransaction.perform(params.symbolize_keys)

@@ -9,8 +9,8 @@ module Wirecard
 
     CONFIG = BASE_CONFIG[:reseller]
 
-    attr_reader :username, 
-                :password, 
+    attr_reader :username,
+                :password,
                 :engine_url,
                 :merchant_id,
                 :transaction_id
@@ -35,7 +35,7 @@ module Wirecard
     def get_with_authentification(raw_url)
       uri = URI(raw_url)
       Net::HTTP.start(uri.host, uri.port,
-        :use_ssl     => uri.scheme == 'https', 
+        :use_ssl     => uri.scheme == 'https',
         :verify_mode => OpenSSL::SSL::VERIFY_NONE) { |http| make_http_request(http, uri).body }
     end
 
@@ -51,7 +51,7 @@ module Wirecard
 
     # could be highly improved
     def payment_status(transaction_response=nil)
-      
+
       return :corrupted unless transaction_response&.[]("payment")&.[]("transaction-state")
 
       case transaction_response["payment"]["transaction-state"]
