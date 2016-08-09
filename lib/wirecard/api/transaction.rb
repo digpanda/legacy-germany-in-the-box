@@ -1,5 +1,3 @@
-require 'net/http'
-
 module Wirecard
   class Api
     class Transaction
