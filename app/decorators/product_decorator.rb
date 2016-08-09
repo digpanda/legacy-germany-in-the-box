@@ -5,6 +5,11 @@ class ProductDecorator < Draper::Decorator
   delegate_all
   decorates :product
 
+  def favorite_of?(user)
+    return unless user
+    user.favorites.where(id: self.id).first != nil
+  end
+
   def buyable?
     active? && hs_code != nil && skus.count > 0 && shop.decorate.buyable?
   end

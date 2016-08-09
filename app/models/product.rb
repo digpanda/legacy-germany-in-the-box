@@ -59,13 +59,12 @@ class Product
   index({categories: 1},      {unique: false, name: :idx_product_categories,      sparse: true})
   index({duty_category: 1},   {unique: false, name: :idx_product_duty_category,   sparse: true})
 
-  def self.search(query)
-    Product.buyable.where(name: /(#{query.split.join('|')})/i)
-  end
+  class << self
 
-  def favorite?(user)
-    return unless user
-    user.favorites.where(id: self.id).first != nil
+    def search(query)
+      Product.buyable.where(name: /(#{query.split.join('|')})/i)
+    end
+
   end
 
 end
