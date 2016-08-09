@@ -14,7 +14,7 @@
 
     <div class="row +nomargin">
       <!-- Products list -->
-      <%= render partial: "products/products_list", :locals => { :products => @shop.products.buyable } %>
+      <%= render partial: "products/products_list", :locals => { :products => @shop.products.showable } %>
     </div>
 
     <div class="+spacer"></div>
@@ -25,7 +25,7 @@
     </div>
 
     <div class="+spacer"></div>
-    
+
   </div>
   <!-- End of Shop Blocks -->
 

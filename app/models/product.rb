@@ -31,7 +31,7 @@ class Product
   mount_uploader :cover,   ProductImageUploader # deprecated ?
 
   scope :without_detail, -> { only(:_id, :name, :brand, :shop_id, :cover) }
-  
+
   validates :name,        presence: true,   length: {maximum: (Rails.configuration.max_short_text_length * 1.25).round}
   validates :brand ,      presence: true,   length: {maximum: (Rails.configuration.max_short_text_length * 1.25).round}
   validates :shop,        presence: true
@@ -42,10 +42,13 @@ class Product
   validates :tags,        length: { maximum: Rails.configuration.max_num_tags }
 
   scope :has_tag,         ->(value) { where( :tags => value ) }
-  scope :is_active,       ->        { self.and(:status => true, :approved.ne => nil).in(shop: Shop.only(:id).where(:approved.ne => nil).map(&:id)) }
+  scope :is_active,       ->        { self.and(:status => true, :approved.ne => nil) }
+  # truly active : scope :is_active,       ->        { self.and(:status => true, :approved.ne => nil).in(shop: Shop.only(:id).where(:approved.ne => nil).map(&:id)) }
   scope :has_sku,         ->        { where( "skus.0" => { "$exists" => true } ) }
   scope :has_hs_code,     ->        { where( :hs_code.ne => nil ) }
-  scope :buyable,         ->        { self.is_active.has_hs_code.has_sku.in(shop: Shop.only(:id).buyable.map(&:id)) }
+  scope :showable,        ->        { self.is_active.has_sku } # can be shown but not necessiraly buyable
+  scope :buyable,         ->        { self.is_active.has_hs_code.has_sku.in_buyable_shop }
+  scope :in_buyable_shop, ->        { self.in(shop: Shop.only(:id).buyable.map(&:id)) }
 
   index({name: 1},            {unique: false, name: :idx_product_name})
   index({brand: 1},           {unique: false, name: :idx_product_brand})
@@ -62,7 +65,7 @@ class Product
 
   def favorite?(user)
     return unless user
-    user.favorites.where(id: self.id).first != nil 
+    user.favorites.where(id: self.id).first != nil
   end
 
 end

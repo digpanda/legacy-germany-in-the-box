@@ -16,8 +16,8 @@ defaults: &defaults
       - declined
       - terminated
   customers:
-    hosted_payment_url: https://sandbox-engine.thesolution.com/engine/hpp/
-    default_redirect_url: https://sandbox-engine.thesolution.com/shop/complete.jsp
+    hosted_payment_url: http://api-test.wirecard.com/engine/hpp/ # https://sandbox-engine.thesolution.com/engine/hpp/
+    default_redirect_url: http://local.dev:3000/orders/checkout_success # https://sandbox-engine.thesolution.com/shop/complete.jsp
     success_redirect_url : http://local.dev:3000/orders/checkout_success
     fail_redirect_path : http://local.dev:3000/orders/checkout_fail
     psp_name: demo

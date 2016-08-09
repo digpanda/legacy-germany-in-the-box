@@ -6,6 +6,14 @@ class ShopDecorator < Draper::Decorator
   delegate_all
   decorates :shop
 
+  def buyable?
+    active? && bg_merchant_id != nil && addresses.is_sender.count > 0
+  end
+
+  def active?
+    status == true && approved != nil
+  end
+
   def philosophy?
     shop.philosophy && !shop.philosophy.empty?
   end
@@ -21,11 +29,11 @@ class ShopDecorator < Draper::Decorator
   def german_essence?
     shop.german_essence && !shop.german_essence.empty?
   end
-  
+
   def more_new_address?
     self.addresses.is_only_both.size < [Rails.configuration.max_num_shop_billing_addresses, Rails.configuration.max_num_shop_sender_addresses].min && (self.addresses.is_only_billing.size < Rails.configuration.max_num_shop_billing_addresses || self.addresses.is_only_sender.size < Rails.configuration.max_num_shop_sender_addresses)
   end
-  
+
   def more_billing_address?
    self.addresses.is_billing.size < Rails.configuration.max_num_shop_billing_addresses
   end
@@ -59,4 +67,3 @@ class ShopDecorator < Draper::Decorator
   end
 
 end
-

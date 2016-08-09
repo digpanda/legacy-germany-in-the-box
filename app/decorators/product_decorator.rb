@@ -5,6 +5,14 @@ class ProductDecorator < Draper::Decorator
   delegate_all
   decorates :product
 
+  def buyable?
+    active? && hs_code != nil && skus.count > 0 && shop.decorate.buyable?
+  end
+
+  def active?
+    status == true && approved != nil
+  end
+
   def sku_from_option_ids(option_ids)
     skus.detect {|s| s.option_ids.to_set == option_ids.to_set}
   end
