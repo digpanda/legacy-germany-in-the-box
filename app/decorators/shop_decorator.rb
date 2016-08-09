@@ -6,7 +6,7 @@ class ShopDecorator < Draper::Decorator
   delegate_all
   decorates :shop
 
-  def buyable?
+  def can_buy?
     active? && bg_merchant_id != nil && addresses.is_sender.count > 0
   end
 

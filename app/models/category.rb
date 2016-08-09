@@ -14,8 +14,8 @@ class Category
     Product.only(:shop_id).where(:category_ids => self.id ).to_a.map { |p| all_shops[p.shop_id] }
   end
 
-  def buyable_shops
-    all_shops = Shop.buyable.map { |s| [s.id, s] }.to_h
+  def can_buy_shops
+    all_shops = Shop.can_buy.map { |s| [s.id, s] }.to_h
     Product.only(:shop_id).where(:category_ids => self.id ).to_a.map { |p| all_shops[p.shop_id] }
   end
 

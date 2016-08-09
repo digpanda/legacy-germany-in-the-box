@@ -14,7 +14,7 @@ class PrepareOrderForWirecardCheckout < BaseService
       order       = args[:order]
 
       wirecard = Wirecard::Customer.new(user, {
-        
+
         :merchant_id  => merchant_id,
         :secret_key   => secret_key,
         :order        => order,

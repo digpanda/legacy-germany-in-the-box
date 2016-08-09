@@ -6,7 +6,7 @@
 
 <div id="gallery">
 
-  <%  files = product.decorate.get_mas.decorate.all_nonempty_img_fields %>
+  <%  files = product.decorate.featured_sku.decorate.all_nonempty_img_fields %>
 
   <% [*0..6].in_groups_of(3, false).each do |num_groups| %>
 
@@ -20,9 +20,9 @@
 
     <% unless file.nil? %>
 
-      <a href="#" data-image="<%= product.decorate.get_mas_img_url(file, :fullsize) %>" data-zoom-image="<%= product.decorate.get_mas_img_url(file, :zoomin) %>">
+      <a href="#" data-image="<%= product.decorate.featured_sku_img_url(file, :fullsize) %>" data-zoom-image="<%= product.decorate.featured_sku_img_url(file, :zoomin) %>">
 
-        <div class="product-page__thumbnail-image" style="background-image:url(<%= product.decorate.get_mas_img_url(file, :thumb) %>)">
+        <div class="product-page__thumbnail-image" style="background-image:url(<%= product.decorate.featured_sku_img_url(file, :thumb) %>)">
         </div>
 
       </a>

@@ -130,13 +130,13 @@ class ProductsController < ApplicationController
     @query = params["query"]
 
     @products = Product.search(@query)
-    @products = Product.buyable.all
+    @products = Product.can_buy.all
 
   end
 
   def popular
 
-    @products = Product.buyable.paginate(:pages => (params[:pages] ? params[:pages].to_i : 1), :per_page => Rails.configuration.limit_for_popular_products);
+    @products = Product.can_buy.paginate(:pages => (params[:pages] ? params[:pages].to_i : 1), :per_page => Rails.configuration.limit_for_popular_products);
     @show_search_area = true
 
     @categories_and_children, @categories_and_counters = AppCache.get_category_values_for_left_menu(@products)
@@ -145,7 +145,7 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @mas = @product.decorate.get_mas.decorate
+    @mas = @product.decorate.featured_sku.decorate
   end
 
   def create

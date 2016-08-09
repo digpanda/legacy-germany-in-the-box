@@ -195,7 +195,7 @@ class OrdersController < ApplicationController
 
           :user        => current_user,
           :order       => order,
-          # IN CASE THE merchant_id don't work (i don't know cart.submerchant_id) YOU MUST KNOW 
+          # IN CASE THE merchant_id don't work (i don't know cart.submerchant_id) YOU MUST KNOW
           # THIS SHOULD MATCH THE shop.merchant_id which's a unique id to recognize merchants through wirecard. - Laurent, 2016/07/05
           :merchant_id => Rails.env.production? ? cart.submerchant_id : DEMO_MERCHANT_ID,
           :secret_key  => Rails.env.production? ? order.shop.wirecard_ee_secret_cc : DEMO_WIRECARD_EE_SECRET_CC,
@@ -265,12 +265,14 @@ class OrdersController < ApplicationController
       })
 
       flash[:success] = I18n.t(:checkout_ok, scope: :checkout)
-      redirect_to show_orders_users_path(:user_info_edit_part => :edit_order) and return
+      redirect_to show_orders_users_path(:user_info_edit_part => :edit_order)
+      return
 
     else
 
       flash[:error] = I18n.t(:borderguru_shipping_failed, scope: :checkout)
-      redirect_to request.referrer and return
+      redirect_to request.referrer
+      return
 
     end
   end
@@ -306,7 +308,7 @@ class OrdersController < ApplicationController
 
       flash[:error] = I18n.t(:delete_ko, scope: :edit_order)
       redirect_to request.referrer
-      
+
     end
   end
 

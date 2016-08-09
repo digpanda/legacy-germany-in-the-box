@@ -113,7 +113,7 @@ class Shop
   scope :is_active,       ->    { where( :status => true ).where( :approved.ne => nil ) }
   scope :has_address,     ->    { self.in({:id => Address.is_sender.all.map(&:shop_id)}) }
   scope :is_bg_merchant,  ->    { where(:bg_merchant_id.ne => nil) }
-  scope :buyable,         ->    { is_active.is_bg_merchant.has_address }
+  scope :can_buy,         ->    { is_active.is_bg_merchant.has_address }
 
   before_save :ensure_shopkeeper
   before_save :clean_sms_mobile,  :unless => lambda { self.sms }
@@ -165,8 +165,8 @@ class Shop
     self.sms_mobile = nil
   end
 
-  def self.with_buyable_products
-    self.in(id: Product.buyable.map {|p| p.shop_id } ).all
+  def self.with_can_buy_products
+    self.in(id: Product.can_buy.map {|p| p.shop_id } ).all
   end
 
 end

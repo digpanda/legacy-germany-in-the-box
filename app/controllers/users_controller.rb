@@ -138,7 +138,7 @@ class UsersController < ApplicationController
   end
 
   def get_followers
-    @followers = @user.followers.without_detail
+    @followers = @user.followers
     followers_with_reciprocity = followers_reciprocity(@user, followers)
     render :index
   end
