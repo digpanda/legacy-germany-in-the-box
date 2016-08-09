@@ -20,17 +20,10 @@ class UpdateOrderAndPaymentFromWirecardTransaction < BaseService
       order_payment.transaction_id = transaction_id
       order_payment.save
 
-      wirecard = Wirecard::Reseller.new({
-
-        :merchant_id  => merchant_id,
-
-      })
-
       # we update the order payment depending on the REAL server side state
-      transaction = wirecard.transaction(transaction_id)
-      order_payment.status = wirecard.payment_status(transaction)
+      order_payment.status = Wirecard::Api.transaction(merchant_id, transaction_id).status
       order_payment.save
-      
+
     end
 
   end
