@@ -1,8 +1,8 @@
 module Wirecard
-  class Merchants
+  class Merchant
     class CheckoutPortal
 
-      CONFIG = BASE_CONFIG[:merchants]
+      CONFIG = Wirecard::Base::BASE_CONFIG[:merchants]
 
       include Rails.application.routes.url_helpers
       attr_reader :shop, :shopkeeper, :billing_address

@@ -1,10 +1,10 @@
 module Wirecard
-  class Merchants < Base
+  class Merchant < Base
 
     class << self
 
       def checkout_portal(shop)
-       CheckoutPortal.new(shop)
+        Merchant::CheckoutPortal.new(shop)
       end
 
     end
