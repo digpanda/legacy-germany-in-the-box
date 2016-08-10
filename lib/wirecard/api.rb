@@ -1,3 +1,6 @@
+#require 'wirecard/base'
+#require 'wirecard/api/transaction'
+
 module Wirecard
   class Api < Base
 
