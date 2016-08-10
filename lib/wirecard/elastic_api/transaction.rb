@@ -1,7 +1,7 @@
 require 'net/http'
 
 module Wirecard
-  class Api
+  class ElasticApi
     class Transaction
 
       VALID_STATUS_LIST = [:success, :in_progress, :failed, :corrupted]

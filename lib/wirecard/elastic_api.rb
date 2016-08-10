@@ -2,7 +2,7 @@
 #require 'wirecard/api/transaction'
 
 module Wirecard
-  class Api < Base
+  class ElasticApi < Base
 
     class << self
 

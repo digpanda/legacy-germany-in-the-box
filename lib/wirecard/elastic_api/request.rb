@@ -1,7 +1,7 @@
 require 'net/http'
 
 module Wirecard
-  class Api
+  class ElasticApi
     class Request
 
       CONFIG = Wirecard::Api::BASE_CONFIG[:api]

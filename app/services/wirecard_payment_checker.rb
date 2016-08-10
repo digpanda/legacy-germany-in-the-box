@@ -29,7 +29,7 @@ class WirecardPaymentChecker < BaseService
   private
 
   def transaction_status
-    Wirecard::Api.transaction(merchant_id, transaction_id).status
+    Wirecard::ElasticApi.transaction(merchant_id, transaction_id).status
   rescue Wirecard::Api::Error
     :corrupted
   end
