@@ -1,4 +1,4 @@
-describe Wirecard::Customer do
+describe Wirecard::Hpp do
 
   let(:user) { FactoryGirl.create(:customer, :with_orders) } # not current_user, we are testing a lib here
   let(:order) { user.orders.first }
@@ -17,7 +17,7 @@ describe Wirecard::Customer do
 
   it "can access essential variables after creation" do
 
-    wirecard = Wirecard::Customer.new(user, wirecard_hash_params)
+    wirecard = Wirecard::Hpp.new(user, wirecard_hash_params)
 
     expect(wirecard.request_id).to be_kind_of(String)
     expect(wirecard.amount).to be_kind_of(Float)
@@ -29,14 +29,14 @@ describe Wirecard::Customer do
 
     # as it is very hard to test this payment library, i chose to stay global 
     # and just see if it doesn't blow all the way up ; we should reinforce those tests at some point.
-    wirecard = Wirecard::Customer.new(user, wirecard_hash_params)
+    wirecard = Wirecard::Hpp.new(user, wirecard_hash_params)
     expect(wirecard.hosted_payment_datas).to be_kind_of(Hash)
 
   end
 
   it "has wrong arguments at initialization" do
     
-    expect { Wirecard::Customer.new(user, {:merchant_id => 'test', :secret_key => 'test'}) }.to raise_error(Wirecard::Customer::Error)
+    expect { Wirecard::Hpp.new(user, {:merchant_id => 'test', :secret_key => 'test'}) }.to raise_error(Wirecard::Hpp::Error)
 
   end
 

@@ -4,7 +4,7 @@ module Wirecard
   class ElasticApi
     class Request
 
-      CONFIG = Wirecard::Api::BASE_CONFIG[:api]
+      CONFIG = Wirecard::ElasticApi::BASE_CONFIG[:elastic_api]
       attr_reader :engine_url, :username, :password, :query
 
       def initialize(uri_query)

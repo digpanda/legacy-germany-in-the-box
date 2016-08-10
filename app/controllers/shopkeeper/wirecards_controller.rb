@@ -6,7 +6,7 @@ class Shopkeeper::WirecardsController < ApplicationController
   attr_reader :shop, :wirecard
 
   def apply
-    @wirecard = Wirecard::Merchant.new(shop)
+    @checkout_portal = Wirecard::Merchant.checkout_portal(shop)
   end
 
   private
@@ -15,4 +15,3 @@ class Shopkeeper::WirecardsController < ApplicationController
     @shop ||= current_user.shop
   end
 end
-

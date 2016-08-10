@@ -2,22 +2,22 @@ require 'net/http'
 require 'digest'
 
 module Wirecard
-  class Customer < Base
+  class Hpp < Base
 
-    CONFIG = BASE_CONFIG[:customers]
+    CONFIG = BASE_CONFIG[:hpp]
     DEFAULT_PAYMENT_LANGUAGE = 'en'
     DEFAULT_PAYMENT_CURRENCY = 'CNY'
 
     attr_reader :user,
-                :merchant_id, 
-                :secret_key,  
-                :hosted_payment_url, 
-                :amount, 
-                :currency, 
-                :request_id, 
+                :merchant_id,
+                :secret_key,
+                :hosted_payment_url,
+                :amount,
+                :currency,
+                :request_id,
                 :order_number,
-                :request_time_stamp,  
-                :request_id, 
+                :request_time_stamp,
+                :request_id,
                 :default_redirect_url,
                 :order
 
@@ -63,7 +63,7 @@ module Wirecard
         :fail_redirect_url         => fail_redirect_url.html_safe,
         :cancel_redirect_url       => cancel_redirect_url.html_safe,
         :processing_redirect_url   => processing_redirect_url.html_safe,
-        
+
         #:first_name                => user.fname,
         #:last_name                 => user.lname,
 
@@ -120,7 +120,7 @@ module Wirecard
         :redirect_url            => success_redirect_url.html_safe,
         :ip_address              => customer_ip_address,
         :secret_key              => secret_key
-      
+
       }
 
     end

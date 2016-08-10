@@ -13,7 +13,7 @@ class PrepareOrderForWirecardCheckout < BaseService
       user        = args[:user]
       order       = args[:order]
 
-      wirecard = Wirecard::Customer.new(user, {
+      wirecard = Wirecard::Hpp.new(user, {
 
         :merchant_id  => merchant_id,
         :secret_key   => secret_key,

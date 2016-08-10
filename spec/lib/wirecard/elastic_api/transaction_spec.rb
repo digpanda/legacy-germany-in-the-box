@@ -8,7 +8,7 @@ describe Wirecard::ElasticApi::Transaction do
     it 'should return a response hash' do
 
       VCR.use_cassette("wirecard-api-transaction", :record => :new_episodes) do
-        response = Wirecard::Api::Transaction.new(TEST_MERCHANT, TEST_TRANSACTION).response
+        response = Wirecard::ElasticApi::Transaction.new(TEST_MERCHANT, TEST_TRANSACTION).response
         assert_instance_of Hash, response
         expect(response[:payment][:"transaction-state"]).to eql("success")
       end
@@ -18,7 +18,7 @@ describe Wirecard::ElasticApi::Transaction do
     it 'should not find the transaction and raise an error' do
 
       VCR.use_cassette("wirecard-api-transaction", :record => :new_episodes) do
-        expect{Wirecard::Api::Transaction.new(TEST_MERCHANT, "fake-transaction").response}.to raise_error(Wirecard::Api::Error)
+        expect{Wirecard::ElasticApi::Transaction.new(TEST_MERCHANT, "fake-transaction").response}.to raise_error(Wirecard::ElasticApi::Error)
       end
 
     end
@@ -30,7 +30,7 @@ describe Wirecard::ElasticApi::Transaction do
     it 'should return the status' do
 
       VCR.use_cassette("wirecard-api-transaction", :record => :new_episodes) do
-        status = Wirecard::Api::Transaction.new(TEST_MERCHANT, TEST_TRANSACTION).status
+        status = Wirecard::ElasticApi::Transaction.new(TEST_MERCHANT, TEST_TRANSACTION).status
         expect(status).to eql(:success)
       end
 
@@ -39,13 +39,13 @@ describe Wirecard::ElasticApi::Transaction do
     it 'should raise a status error' do
 
       VCR.use_cassette("wirecard-api-transaction", :record => :new_episodes) do
-        transaction = Wirecard::Api::Transaction.new(TEST_MERCHANT, TEST_TRANSACTION)
+        transaction = Wirecard::ElasticApi::Transaction.new(TEST_MERCHANT, TEST_TRANSACTION)
         allow(transaction).to receive(:response) { {} }
-        expect{transaction.status}.to raise_error(Wirecard::Api::Error)
+        expect{transaction.status}.to raise_error(Wirecard::ElasticApi::Error)
 
-        transaction = Wirecard::Api::Transaction.new(TEST_MERCHANT, TEST_TRANSACTION)
+        transaction = Wirecard::ElasticApi::Transaction.new(TEST_MERCHANT, TEST_TRANSACTION)
         allow(transaction).to receive(:response) { {:payment => {:"transaction-state" => "fake-status"}} }
-        expect{transaction.status}.to raise_error(Wirecard::Api::Error)
+        expect{transaction.status}.to raise_error(Wirecard::ElasticApi::Error)
       end
 
     end

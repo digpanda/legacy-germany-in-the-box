@@ -1,5 +1,5 @@
 defaults: &defaults
-  api:
+  elastic_api:
     username: engine.digpanda
     password: x3Zyr8MaY7TDxj6F
     engine_url: https://sandbox-engine.thesolution.com/engine/rest/
@@ -15,7 +15,7 @@ defaults: &defaults
       - documents_complete
       - declined
       - terminated
-  customers:
+  hpp:
     hosted_payment_url: https://sandbox-engine.thesolution.com/engine/hpp/ # http://api-test.wirecard.com/engine/hpp/ # https://sandbox-engine.thesolution.com/engine/hpp/
     default_redirect_url: http://local.dev:3000/orders/checkout_success # https://sandbox-engine.thesolution.com/shop/complete.jsp
     success_redirect_url : http://local.dev:3000/orders/checkout_success
@@ -23,7 +23,7 @@ defaults: &defaults
     psp_name: demo
     payment_method: upop
     transaction_type: debit
-    
+
 local:
   <<: *defaults
 
@@ -35,7 +35,7 @@ test:
 
 staging:
   <<: *defaults
-  customers:
+  hpp:
     hosted_payment_url: https://sandbox-engine.thesolution.com/engine/hpp/
     default_redirect_url: https://sandbox-engine.thesolution.com/shop/complete.jsp
     success_redirect_url : https://www.germanyintheboxdev.com/orders/checkout_success
@@ -46,11 +46,11 @@ staging:
 
 production:
   <<: *defaults
-  api:
+  elastic_api:
     username: 000000316FF50E1E-EMDigPanda
     password: pdE_cf0SnYAq
     engine_url: http://www.elastic-payments.com/schema/payment
-  customers:
+  hpp:
     hosted_payment_url: http://www.elastic-payments.com/schema/payment
     default_redirect_url: http://www.elastic-payments.com/schema/payment/shop/complete.jsp
     success_redirect_url : https://www.germanyinthebox.com/orders/checkout_success

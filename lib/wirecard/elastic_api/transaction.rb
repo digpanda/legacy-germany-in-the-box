@@ -17,7 +17,7 @@ module Wirecard
         @response ||= begin
           response = Request.new(query).response
           if response.nil?
-            raise Wirecard::Api::Error, "The transaction was not found"
+            raise Wirecard::ElasticApi::Error, "The transaction was not found"
           else
             response
           end
@@ -29,7 +29,7 @@ module Wirecard
       end
 
       def status
-        raise Wirecard::Api::Error, "The status of the transaction was not found" unless valid_status?
+        raise Wirecard::ElasticApi::Error, "The status of the transaction was not found" unless valid_status?
         clean_status
       end
 
