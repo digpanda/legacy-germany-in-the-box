@@ -232,7 +232,7 @@ class OrdersController < ApplicationController
       order.status = :paid
       order.save!
     end
-    
+
     begin
       shipping = BorderGuru.get_shipping(
           order: order,
@@ -293,7 +293,7 @@ class OrdersController < ApplicationController
         return
     end
 
-    UpdateOrderAndPaymentFromWirecardTransaction.perform(params.symbolize_keys)
+    WirecardPaymentChecker.new(params.symbolize_keys).update_order_payment!
 
   end
 
