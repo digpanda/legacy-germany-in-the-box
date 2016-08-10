@@ -1,5 +1,5 @@
 defaults: &defaults
-  reseller:
+  api:
     username: engine.digpanda
     password: x3Zyr8MaY7TDxj6F
     engine_url: https://sandbox-engine.thesolution.com/engine/rest/
@@ -23,7 +23,7 @@ defaults: &defaults
     psp_name: demo
     payment_method: upop
     transaction_type: debit
-
+    
 local:
   <<: *defaults
 
@@ -46,7 +46,7 @@ staging:
 
 production:
   <<: *defaults
-  reseller:
+  api:
     username: 000000316FF50E1E-EMDigPanda
     password: pdE_cf0SnYAq
     engine_url: http://www.elastic-payments.com/schema/payment

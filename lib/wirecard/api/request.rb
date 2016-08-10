@@ -4,7 +4,7 @@ module Wirecard
   class Api
     class Request
 
-      CONFIG = Wirecard::Api::BASE_CONFIG[:reseller]
+      CONFIG = Wirecard::Api::BASE_CONFIG[:api]
       attr_reader :engine_url, :username, :password, :query
 
       def initialize(uri_query)
@@ -16,8 +16,8 @@ module Wirecard
 
       def raw_response
         @raw_response ||= Net::HTTP.start(request_uri.host, request_uri.port,
-                    :use_ssl     => https_request?,
-                    :verify_mode => OpenSSL::SSL::VERIFY_NONE) { |connection| dispatch!(connection) }
+                          :use_ssl     => https_request?,
+                          :verify_mode => OpenSSL::SSL::VERIFY_NONE) { |connection| dispatch!(connection) }
       end
 
       def response
