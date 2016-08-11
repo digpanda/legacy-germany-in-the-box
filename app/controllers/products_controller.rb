@@ -145,7 +145,7 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @mas = @product.decorate.featured_sku.decorate
+    @featured_sku = @product.decorate.featured_sku.decorate
   end
 
   def create
