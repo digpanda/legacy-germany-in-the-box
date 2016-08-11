@@ -35,6 +35,7 @@
               </span>
               <%= f.file_field :logo, :accept => "image/png, image/jpeg, image/jpg", :class => 'img-file-upload upload', :img_id => "#logo_#{@shop.id}" %>
             </div>
+            <%= link_to I18n.t(:remove), shop_destroy_image_path(@shop, image_field: :logo), :method => :delete, :class => 'btn btn-default' %>
           </div>
           <div class="col-md-8">
             <div class="fileUpload btn btn-default">
@@ -44,6 +45,7 @@
               </span>
               <%= f.file_field :banner, :accept => "image/png, image/jpeg, image/jpg", :class => 'img-file-upload upload', :img_id => "#banner_#{@shop.id}" %>
             </div>
+            <%= link_to I18n.t(:remove), shop_destroy_image_path(@shop, image_field: :banner), :method => :delete, :class => 'btn btn-default' %>
           </div>
         </div>
       </div>
@@ -148,6 +150,7 @@
               </span>
               <%= f.file_field :seal0, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#seal_0_#{@shop.id}", :class => 'img-file-upload upload' %>
             </div>
+            <%= link_to I18n.t(:remove), shop_destroy_image_path(@shop, image_field: :seal0), :method => :delete, :class => 'btn btn-default' %>
           </div>
 
           <div class="col-md-3">
@@ -158,6 +161,7 @@
               </span>
               <%= f.file_field :seal1, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#seal_1_#{@shop.id}", :class => 'img-file-upload upload' %>
             </div>
+            <%= link_to I18n.t(:remove), shop_destroy_image_path(@shop, image_field: :seal1), :method => :delete, :class => 'btn btn-default' %>
           </div>
           <div class="col-md-3">
             <div class="fileUpload btn btn-default">
@@ -167,6 +171,7 @@
               </span>
               <%= f.file_field :seal2, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#seal_2_#{@shop.id}", :class => 'img-file-upload upload' %>
             </div>
+            <%= link_to I18n.t(:remove), shop_destroy_image_path(@shop, image_field: :seal2), :method => :delete, :class => 'btn btn-default' %>
           </div>
           <div class="col-md-3">
             <div class="fileUpload btn btn-default">
@@ -176,6 +181,7 @@
               </span>
               <%= f.file_field :seal3, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#seal_3_#{@shop.id}", :class => 'img-file-upload upload' %>
             </div>
+            <%= link_to I18n.t(:remove), shop_destroy_image_path(@shop, image_field: :seal3), :method => :delete, :class => 'btn btn-default' %>
           </div>
         </div>
       </div>
@@ -213,6 +219,7 @@
               </span>
               <%= f.file_field :seal4, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#seal_4_#{@shop.id}", :class => 'img-file-upload upload' %>
             </div>
+            <%= link_to I18n.t(:remove), shop_destroy_image_path(@shop, image_field: :seal4), :method => :delete, :class => 'btn btn-default' %>
           </div>
           <div class="col-md-3">
             <div class="fileUpload btn btn-default">
@@ -222,6 +229,7 @@
               </span>
               <%= f.file_field :seal5, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#seal_5_#{@shop.id}", :class => 'img-file-upload upload' %>
             </div>
+            <%= link_to I18n.t(:remove), shop_destroy_image_path(@shop, image_field: :seal5), :method => :delete, :class => 'btn btn-default' %>
           </div>
           <div class="col-md-3">
             <div class="fileUpload btn btn-default">
@@ -231,6 +239,7 @@
               </span>
               <%= f.file_field :seal6, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#seal_6_#{@shop.id}", :class => 'img-file-upload upload' %>
             </div>
+            <%= link_to I18n.t(:remove), shop_destroy_image_path(@shop, image_field: :seal6), :method => :delete, :class => 'btn btn-default' %>
           </div>
           <div class="col-md-3">
             <div class="fileUpload btn btn-default">
@@ -240,6 +249,7 @@
               </span>
               <%= f.file_field :seal7, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#seal_7_#{@shop.id}", :class => 'img-file-upload upload' %>
             </div>
+            <%= link_to I18n.t(:remove), shop_destroy_image_path(@shop, image_field: :seal7), :method => :delete, :class => 'btn btn-default' %>
           </div>
         </div>
       </div>

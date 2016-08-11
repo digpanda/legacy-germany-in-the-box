@@ -1,6 +1,7 @@
 class ShopsController <  ApplicationController
 
   STRONG_PARAMS = [:bg_merchant_id, :shopname, :name, :desc, :logo, :banner, :seal0, :seal1, :seal2, :seal3, :seal4, :seal5, :seal6, :seal7, :philosophy, :stories, :german_essence, :uniqueness, :tax_number, :ustid, :eroi, :min_total, :status, :founding_year, :register, :website, :agb, :fname, :lname, :tel, :mobile, :mail, :function, :hermes_pickup]
+  SHOP_IMAGE_FIELDS = [:logo, :banner, :seal0, :seal1, :seal2, :seal3, :seal4, :seal5, :seal6, :seal7]
 
   before_action :authenticate_user!, except: [:show]
   before_action :set_shop, :set_category, except: [:index]
@@ -57,7 +58,7 @@ class ShopsController <  ApplicationController
     sp = shop_params(@shop)
 
     if shop.agb && shop.update(sp)
-      
+
       if params[:user_info_edit_part] == :edit_producer.to_s
         flash[:success] = I18n.t(:update_producer_ok, scope: :edit_shop)
       else
@@ -73,6 +74,26 @@ class ShopsController <  ApplicationController
       flash[:error] = shop.errors.full_messages.first
       redirect_to request.referer
     end
+  end
+
+  def destroy_image
+    image_field = params[:image_field].to_sym
+    if valid_shop_image?(image_field)
+      shop.send("remove_#{image_field}=", true)
+      shop.save
+      #image_instance = shop.send("#{image_field}")
+      #image_instance.remove!
+      #shop.send(:write_attribute, image_field, nil)
+      #shop.save
+      flash[:success] = "Image removed successfully"
+    else
+      flash[:error] = "Can't remove this image"
+    end
+    redirect_to navigation.back(1)
+  end
+
+  def valid_shop_image?(image_field)
+    shop.respond_to?(image_field) && SHOP_IMAGE_FIELDS.include?(image_field)
   end
 
   def destroy

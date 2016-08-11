@@ -58,7 +58,7 @@ resources :users do
   concerns :shared_users
 end
 
-resources :shops, except: [:new, :edit, :create] do
+resources :shops, except: [:new, :edit, :create] do  
   concerns :shared_shops
 end
 
