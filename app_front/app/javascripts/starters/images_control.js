@@ -1,3 +1,5 @@
+var Translation = require('javascripts/lib/translation');
+
 /**
  * ImageControl Class
  */
@@ -12,10 +14,6 @@ var ImagesControl = {
 
     },
 
-    data: function(data) {
-      return $('#js-images-control').data();
-    },
-
     validateImageFile: function() {
 
       $("input[class^=img-file-upload]").on('change', function() {
@@ -23,8 +21,8 @@ var ImagesControl = {
         var Messages = require("javascripts/lib/messages");
         var inputFile = this;
 
-        var maxExceededMessage = ImagesControl.data().translationMaxExceededMessage;
-        var extErrorMessage = ImagesControl.data().translationExtErrorMessage;
+        var maxExceededMessage = Translation.find('max_exceeded_message', 'image_upload');
+        var extErrorMessage = Translation.find('ext_error_message', 'image_upload');
         var allowedExtension = ["jpg", "JPG", "jpeg", "JPEG", "png", "PNG"];
 
         var extName;

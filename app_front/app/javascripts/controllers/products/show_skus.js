@@ -1,3 +1,4 @@
+var Translation = require('javascripts/lib/translation');
 
 /**
  * ProductsShowSkus Class
@@ -9,21 +10,17 @@ var ProductsShowSkus = {
    */
   init: function() {
 
-    if ($('#js-show-skus').length > 0) {
+    if ($('select.sku-variants-options').length > 0) {
 
       $('select.sku-variants-options').multiselect({
-        nonSelectedText: ProductsShowSkus.data().translationNonSelectedText,
-        nSelectedText:ProductsShowSkus.data().translationNSelectedText,
+        nonSelectedText: Translation.find('non_selected_text', 'multiselect'),
+        nSelectedText: Translation.find('n_selected_text', 'multiselect'),
         numberDisplayed: 3,
         maxHeight: 400
       }).multiselect('disable');
 
     }
 
-  },
-
-  data: function() {
-     return $('#js-show-skus').data();
   },
 
 }

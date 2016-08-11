@@ -1,12 +1,6 @@
-<%= content_tag(:div, nil, :id => "js-images-control", :data => {
-
-  :translation_non_selected_text => I18n.t(:non_selected_text, scope: :multiselect),
-  :translation_n_selected_text   => I18n.t(:n_selected_text, scope: :multiselect),
-
-  :translation_max_exceeded_message => I18n.t(:max_exceeded_message, scope: :image_upload),
-  :translation_ext_error_message => I18n.t(:ext_error_message, scope: :image_upload),
-  })
-
-%>
+<%= translation_js(:non_selected_text, :multiselect) %>
+<%= translation_js(:n_selected_text, :multiselect) %>
+<%= translation_js(:max_exceeded_message, :image_upload) %>
+<%= translation_js(:ext_error_message, :image_upload) %>
 
 <%= render 'sku_form', :new => true %>

@@ -1,10 +1,5 @@
-<%= content_tag(:div, nil, :id => "js-images-control", :data => {
-
-  :translation_max_exceeded_message => I18n.t(:max_exceeded_message, scope: :image_upload),
-  :translation_ext_error_message => I18n.t(:ext_error_message, scope: :image_upload),
-  })
-
-%>
+<%= translation_js(:max_exceeded_message, :image_upload) %>
+<%= translation_js(:ext_error_message, :image_upload) %>
 
 <%= form_for @shop, :html => {:data => {:toggle => 'validator'}, role: 'form'} do |f| %>
   <div class="panel-group">
@@ -252,4 +247,3 @@
   </div>
   <%= f.button I18n.t(:save, scope: :edit_shop), :class => 'btn btn-primary', name: :user_info_edit_part, value: :edit_shop %>
 <% end %>
-

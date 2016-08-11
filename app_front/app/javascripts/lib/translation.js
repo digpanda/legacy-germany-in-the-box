@@ -25,13 +25,9 @@
      TranslationModel.show(translationSlug, translationScope, function(res) {
 
        if (res.success === false) {
-
          console.error("Translation not found `"+translationSlug+"` ("+res.error+")");
-
        } else {
-
-        callback(res.translation);
-
+         callback(res.translation);
        }
 
      });

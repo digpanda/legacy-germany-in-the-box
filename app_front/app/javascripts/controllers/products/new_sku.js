@@ -1,3 +1,5 @@
+var Translation = require('javascripts/lib/translation');
+
 /**
  * ProductNewSku Class
  */
@@ -9,8 +11,8 @@ var ProductNewSku = {
   init: function() { // WE SHOULD DEFINITELY REFACTOR THOSE 3 CLASSES (NEW, EDIT, CLONE) INTO ONE
 
     $('select.sku-variants-options').multiselect({
-      nonSelectedText: ProductNewSku.data().translationNonSelectedText,
-      nSelectedText: ProductNewSku.data().translationNSelectedText,
+      nonSelectedText: Translation.find('non_selected_text', 'multiselect'),
+      nSelectedText: Translation.find('n_selected_text', 'multiselect'),
       numberDisplayed: 3,
       maxHeight: 400,
       onChange: function(option, checked) {
@@ -47,10 +49,6 @@ var ProductNewSku = {
 
 
 
-  },
-
-  data: function(data) {
-    return $('#js-images-control').data()
   },
 
 /* UNUSED IN THE CURRENT SYSTEM

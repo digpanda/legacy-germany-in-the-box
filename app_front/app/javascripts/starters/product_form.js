@@ -18,10 +18,10 @@ var ProductForm = {
 
         var productForm = $("#js-product-form").data();
         var productId = productForm.productId;
-        
+
         $('select.duty-categories').multiselect({
-          nonSelectedText: productForm.translationNonSelectedText,
-          nSelectedText: productForm.translationNSelectedText,
+          nonSelectedText: Translation.find('non_selected_text', 'multiselect'),
+          nSelectedText: Translation.find('n_selected_text', 'multiselect'),
           enableFiltering: true,
           enableCaseInsensitiveFiltering: true,
           maxHeight: 400

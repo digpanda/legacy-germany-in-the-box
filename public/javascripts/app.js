@@ -366,6 +366,8 @@ module.exports = Home;
 require.register("javascripts/controllers/products/clone_sku.js", function(exports, require, module) {
 'use strict';
 
+var Translation = require('javascripts/lib/translation');
+
 /**
  * ProductCloneSku Class
  */
@@ -378,8 +380,8 @@ var ProductCloneSku = {
     // WE SHOULD DEFINITELY REFACTOR THOSE 3 CLASSES (NEW, EDIT, CLONE) INTO ONE
 
     $('select.sku-variants-options').multiselect({
-      nonSelectedText: ProductCloneSku.data().translationNonSelectedText,
-      nSelectedText: ProductCloneSku.data().translationNSelectedText,
+      nonSelectedText: Translation.find('non_selected_text', 'multiselect'),
+      nSelectedText: Translation.find('n_selected_text', 'multiselect'),
       numberDisplayed: 3,
       maxHeight: 400,
       onChange: function onChange(option, checked) {
@@ -413,10 +415,6 @@ var ProductCloneSku = {
         $('.fileUpload').removeClass('invalidBorderClass');
       }
     });
-  },
-
-  data: function data(_data) {
-    return $('#js-images-control').data();
   }
 
 };
@@ -426,6 +424,8 @@ module.exports = ProductCloneSku;
 
 require.register("javascripts/controllers/products/edit_sku.js", function(exports, require, module) {
 'use strict';
+
+var Translation = require('javascripts/lib/translation');
 
 /**
  * ProductEditSku Class
@@ -439,8 +439,8 @@ var ProductEditSku = {
     // WE SHOULD DEFINITELY REFACTOR THOSE 3 CLASSES (NEW, EDIT, CLONE) INTO ONE
 
     $('select.sku-variants-options').multiselect({
-      nonSelectedText: ProductEditSku.data().translationNonSelectedText,
-      nSelectedText: ProductEditSku.data().translationNSelectedText,
+      nonSelectedText: Translation.find('non_selected_text', 'multiselect'),
+      nSelectedText: Translation.find('n_selected_text', 'multiselect'),
       numberDisplayed: 3,
       maxHeight: 400,
       onChange: function onChange(option, checked) {
@@ -474,10 +474,6 @@ var ProductEditSku = {
         $('.fileUpload').removeClass('invalidBorderClass');
       }
     });
-  },
-
-  data: function data(_data) {
-    return $('#js-images-control').data();
   }
 
 };
@@ -487,6 +483,8 @@ module.exports = ProductEditSku;
 
 require.register("javascripts/controllers/products/new_sku.js", function(exports, require, module) {
 'use strict';
+
+var Translation = require('javascripts/lib/translation');
 
 /**
  * ProductNewSku Class
@@ -500,8 +498,8 @@ var ProductNewSku = {
     // WE SHOULD DEFINITELY REFACTOR THOSE 3 CLASSES (NEW, EDIT, CLONE) INTO ONE
 
     $('select.sku-variants-options').multiselect({
-      nonSelectedText: ProductNewSku.data().translationNonSelectedText,
-      nSelectedText: ProductNewSku.data().translationNSelectedText,
+      nonSelectedText: Translation.find('non_selected_text', 'multiselect'),
+      nSelectedText: Translation.find('n_selected_text', 'multiselect'),
       numberDisplayed: 3,
       maxHeight: 400,
       onChange: function onChange(option, checked) {
@@ -535,10 +533,6 @@ var ProductNewSku = {
         $('.fileUpload').removeClass('invalidBorderClass');
       }
     });
-  },
-
-  data: function data(_data) {
-    return $('#js-images-control').data();
   }
 
 };
@@ -756,6 +750,8 @@ module.exports = ProductsShow;
 require.register("javascripts/controllers/products/show_skus.js", function(exports, require, module) {
 'use strict';
 
+var Translation = require('javascripts/lib/translation');
+
 /**
  * ProductsShowSkus Class
  */
@@ -766,19 +762,15 @@ var ProductsShowSkus = {
    */
   init: function init() {
 
-    if ($('#js-show-skus').length > 0) {
+    if ($('select.sku-variants-options').length > 0) {
 
       $('select.sku-variants-options').multiselect({
-        nonSelectedText: ProductsShowSkus.data().translationNonSelectedText,
-        nSelectedText: ProductsShowSkus.data().translationNSelectedText,
+        nonSelectedText: Translation.find('non_selected_text', 'multiselect'),
+        nSelectedText: Translation.find('n_selected_text', 'multiselect'),
         numberDisplayed: 3,
         maxHeight: 400
       }).multiselect('disable');
     }
-  },
-
-  data: function data() {
-    return $('#js-show-skus').data();
   }
 
 };
@@ -1135,10 +1127,8 @@ var Translation = {
     TranslationModel.show(translationSlug, translationScope, function (res) {
 
       if (res.success === false) {
-
         console.error("Translation not found `" + translationSlug + "` (" + res.error + ")");
       } else {
-
         callback(res.translation);
       }
     });
@@ -1542,6 +1532,8 @@ module.exports = Footer;
 require.register("javascripts/starters/images_control.js", function(exports, require, module) {
 'use strict';
 
+var Translation = require('javascripts/lib/translation');
+
 /**
  * ImageControl Class
  */
@@ -1555,10 +1547,6 @@ var ImagesControl = {
     this.validateImageFile();
   },
 
-  data: function data(_data) {
-    return $('#js-images-control').data();
-  },
-
   validateImageFile: function validateImageFile() {
 
     $("input[class^=img-file-upload]").on('change', function () {
@@ -1566,8 +1554,8 @@ var ImagesControl = {
       var Messages = require("javascripts/lib/messages");
       var inputFile = this;
 
-      var maxExceededMessage = ImagesControl.data().translationMaxExceededMessage;
-      var extErrorMessage = ImagesControl.data().translationExtErrorMessage;
+      var maxExceededMessage = Translation.find('max_exceeded_message', 'image_upload');
+      var extErrorMessage = Translation.find('ext_error_message', 'image_upload');
       var allowedExtension = ["jpg", "JPG", "jpeg", "JPEG", "png", "PNG"];
 
       var extName;
@@ -1858,8 +1846,8 @@ var ProductForm = {
       var productId = productForm.productId;
 
       $('select.duty-categories').multiselect({
-        nonSelectedText: productForm.translationNonSelectedText,
-        nSelectedText: productForm.translationNSelectedText,
+        nonSelectedText: Translation.find('non_selected_text', 'multiselect'),
+        nSelectedText: Translation.find('n_selected_text', 'multiselect'),
         enableFiltering: true,
         enableCaseInsensitiveFiltering: true,
         maxHeight: 400
