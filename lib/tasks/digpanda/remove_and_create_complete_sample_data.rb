@@ -100,7 +100,8 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
       :weight       => weight,
       :space_length => space_length,
       :space_width  => space_width,
-      :space_height => space_height
+      :space_height => space_height,
+      :data         => "#{Faker::Lorem.paragraph(1)}\n\n#{Faker::Lorem.paragraph(2)}"
     )
 
     num_options.times do |time|
@@ -159,7 +160,7 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
 
     product = Product.new(
         :name     => name,
-        :desc     => Faker::Lorem.paragraph,
+        :desc     => "#{Faker::Lorem.paragraph(1)}\n\n#{Faker::Lorem.paragraph(2)}",
         :cover    => setup_image(:banner),
         :brand    => brand,
         :shop     => shop,

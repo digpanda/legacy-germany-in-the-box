@@ -36,7 +36,7 @@ module Wirecard
       @amount               = order.decorate.total_sum_in_yuan.to_f.round(2) # this round is necessary
 
       @request_time_stamp   = time_stamp
-      @request_id           = [request_time_stamp, user.id, order_number].join('-')
+      @request_id           = SecureRandom.uuid
       @hosted_payment_url   = CONFIG[:hosted_payment_url]
       @default_redirect_url = CONFIG[:default_redirect_url]
 

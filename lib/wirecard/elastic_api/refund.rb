@@ -9,7 +9,7 @@ module Wirecard
       def initialize(merchant_id, parent_transaction_id)
         @merchant_id = merchant_id
         @parent_transaction_id = parent_transaction_id
-        @request_id = [merchant_id, Time.now.nsec].join('-')
+        @request_id = SecureRandom.uuid
       end
 
       def response
