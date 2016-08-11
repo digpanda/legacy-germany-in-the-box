@@ -5,13 +5,17 @@ module Wirecard
     class Request
 
       CONFIG = Wirecard::ElasticApi::BASE_CONFIG[:elastic_api]
-      attr_reader :engine_url, :username, :password, :query
+      CONTENT_TYPE = 'text/xml'
+      
+      attr_reader :engine_url, :username, :password, :query, :method, :body
 
-      def initialize(uri_query)
+      def initialize(uri_query, method=:get, body='')
         @engine_url = CONFIG[:engine_url]
         @username = CONFIG[:username]
         @password = CONFIG[:password]
         @query = "#{engine_url}#{uri_query}.json"
+        @method = method
+        @body = body
       end
 
       def raw_response
@@ -27,9 +31,22 @@ module Wirecard
       private
 
       def dispatch!(connection)
-        request = Net::HTTP::Get.new request_uri.request_uri # prepare the request
         request.basic_auth username, password # authentification here
+        request.body = body # body (XML for instance)
+        request.content_type = CONTENT_TYPE # XML
         connection.request request # give a response
+      end
+
+      def request
+        @request ||= begin
+          if method == :get
+            Net::HTTP::Get.new(request_uri.request_uri)
+          elsif method == :post
+            Net::HTTP::Post.new(request_uri.request_uri)
+          else
+            raise Wirecard::ElasticApi::Error, "Request method not recognized"
+          end
+        end
       end
 
       def request_uri
