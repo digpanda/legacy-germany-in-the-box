@@ -161,12 +161,11 @@ var ProductsShow = {
    */
   refreshSkuSecondDescription: function(secondDescription) {
 
-    t = Translation.find('more', 'title');
-    console.log(t);
+    var more = "<h3>"+Translation.find('more', 'title')+"</h3>";
 
     if (typeof secondDescription !== "undefined") {
 
-      $('#product-file-attachment-and-data').html(secondDescription);
+      $('#product-file-attachment-and-data').html(more+secondDescription);
     } else {
       $('#product-file-attachment-and-data').html('');
     }
@@ -177,10 +176,12 @@ var ProductsShow = {
    * Refresh the sku attachment (depending on second description too)
    */
   refreshSkuAttachment: function(secondDescription, attachment) {
+    
+    var more = "<h3>"+Translation.find('more', 'title')+"</h3>";
 
     if (typeof attachment !== "undefined") {
       if (typeof secondDescription !== "undefined") {
-        $('#product-file-attachment-and-data').html();
+        $('#product-file-attachment-and-data').html(more);
       }
       $('#product-file-attachment-and-data').append('<br /><a class="btn btn-default" href="'+attachment+'">PDF Documentation</a>');
     }

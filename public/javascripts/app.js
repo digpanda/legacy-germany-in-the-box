@@ -723,12 +723,11 @@ var ProductsShow = {
    */
   refreshSkuSecondDescription: function refreshSkuSecondDescription(secondDescription) {
 
-    t = Translation.find('more', 'title');
-    console.log(t);
+    var more = "<h3>" + Translation.find('more', 'title') + "</h3>";
 
     if (typeof secondDescription !== "undefined") {
 
-      $('#product-file-attachment-and-data').html(secondDescription);
+      $('#product-file-attachment-and-data').html(more + secondDescription);
     } else {
       $('#product-file-attachment-and-data').html('');
     }
@@ -739,9 +738,11 @@ var ProductsShow = {
    */
   refreshSkuAttachment: function refreshSkuAttachment(secondDescription, attachment) {
 
+    var more = "<h3>" + Translation.find('more', 'title') + "</h3>";
+
     if (typeof attachment !== "undefined") {
       if (typeof secondDescription !== "undefined") {
-        $('#product-file-attachment-and-data').html();
+        $('#product-file-attachment-and-data').html(more);
       }
       $('#product-file-attachment-and-data').append('<br /><a class="btn btn-default" href="' + attachment + '">PDF Documentation</a>');
     }
@@ -1113,10 +1114,21 @@ require.register("javascripts/lib/translation.js", function(exports, require, mo
  */
 var Translation = {
 
+  find: function find(translationSlug, translationScope) {
+
+    var selector = ".js-translation[data-slug='" + translationSlug + "'][data-scope='" + translationScope + "']";
+    if ($(selector).length > 0) {
+      return $(selector).data('content');
+    } else {
+      console.error("Translation not found : ``" + translationScope + "`.`" + translationSlug + "`");
+      return '';
+    }
+  },
+
   /**
-  * Find a translation and return the string
+  * Find a translation and return the string from AJAX with callbacks
   */
-  find: function find(translationSlug, translationScope, callback) {
+  findViaAjax: function findViaAjax(translationSlug, translationScope, callback) {
 
     var TranslationModel = require("javascripts/models/translation");
 
