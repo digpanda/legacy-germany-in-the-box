@@ -1,7 +1,8 @@
 class SkuDecorator < Draper::Decorator
 
   include Imageable
-
+  include ActionView::Helpers::TextHelper # load some important helpers
+  
   delegate_all
   decorates :sku
 
@@ -24,6 +25,10 @@ class SkuDecorator < Draper::Decorator
 
   def discount?
     discount > 0
+  end
+
+  def format_data
+    simple_format(self.data)
   end
 
   def quantity_warning?

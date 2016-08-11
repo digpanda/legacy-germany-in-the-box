@@ -1,6 +1,6 @@
 class ProductDecorator < Draper::Decorator
 
-  include ActionView::Helpers::TextHelper # load truncate
+  include ActionView::Helpers::TextHelper # load some important helpers
 
   delegate_all
   decorates :product

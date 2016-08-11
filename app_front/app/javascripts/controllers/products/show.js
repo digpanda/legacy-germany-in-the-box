@@ -1,3 +1,4 @@
+var Translation = require("javascripts/lib/translation");
 /**
  * ProductsShow Class
  */
@@ -87,13 +88,13 @@ var ProductsShow = {
     $('#product_discount_with_currency_euro').show();
     $('#product_discount_with_currency_yuan').show();
     $('#product_discount').show();
-    
+
     $('#product_discount').addClass('+discount');
 
   },
 
   /**
-   * Change the display of the product page sku datas 
+   * Change the display of the product page sku datas
    */
   skuChangeDisplay: function(productId, skuDatas) {
 
@@ -143,7 +144,7 @@ var ProductsShow = {
    */
   refreshSkuThumbnailImages: function(images) {
 
-    for (let i = 0; i < images.length; i++) { 
+    for (let i = 0; i < images.length; i++) {
 
       let image = images[i];
 
@@ -158,12 +159,16 @@ var ProductsShow = {
   /**
    * Refresh the sku second description
    */
-  refreshSkuSecondDescription: function(second_description) {
+  refreshSkuSecondDescription: function(secondDescription) {
 
-    if (typeof second_description !== "undefined") {
-      $('#product-file-attachment-and-datas').html(second_description);
+    t = Translation.find('more', 'title');
+    console.log(t);
+
+    if (typeof secondDescription !== "undefined") {
+
+      $('#product-file-attachment-and-data').html(secondDescription);
     } else {
-      $('#product-file-attachment-and-datas').html('');
+      $('#product-file-attachment-and-data').html('');
     }
 
   },
@@ -171,13 +176,13 @@ var ProductsShow = {
   /**
    * Refresh the sku attachment (depending on second description too)
    */
-  refreshSkuAttachment: function(second_description, attachment) {
+  refreshSkuAttachment: function(secondDescription, attachment) {
 
     if (typeof attachment !== "undefined") {
-      if (typeof second_description !== "undefined") {
-        $('#product-file-attachment-and-datas').html();
+      if (typeof secondDescription !== "undefined") {
+        $('#product-file-attachment-and-data').html();
       }
-      $('#product-file-attachment-and-datas').append('<br /><a class="btn btn-default" href="'+attachment+'">PDF Documentation</a>');
+      $('#product-file-attachment-and-data').append('<br /><a class="btn btn-default" href="'+attachment+'">PDF Documentation</a>');
     }
 
   },

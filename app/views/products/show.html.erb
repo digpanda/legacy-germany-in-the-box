@@ -46,7 +46,7 @@
         <% end %>
 
         <div class="+small-spacer"></div>
-        
+
         <%= form_tag add_product_to_orders_path, :method => :patch do %>
 
             <%= hidden_field_tag 'sku[product_id]', "#{@product.id}" %>
@@ -83,7 +83,7 @@
             <h3><%= I18n.t(:more, scope: :title) %></h3>
 
             <% if @mas.data %>
-              <%= @mas.data %>
+              <%= @mas.decorate.format_data %>
             <% end %>
 
             <br />
@@ -91,13 +91,13 @@
             <% if @mas.attach0.file %>
               <a class="btn btn-default" href="<%=  @mas.attach0.url %>">PDF Documentation</a>
             <% end %>
-            
+
           <% end %>
 
           </div>
 
         </div>
-        
+
     </div>
 
   </div>

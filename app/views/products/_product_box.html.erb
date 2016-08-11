@@ -28,7 +28,7 @@
 
         <h2><%= product.name %></h2>
         <div class="shop-page-product__description --text">
-          <%= simple_format(product.decorate.short_desc) %>
+          <%= product.decorate.short_desc %>
         </div>
         <div class="shop-page-product__description --prices">
           <span class="+price-yuan"><%= product.decorate.preview_price_yuan%></span> <span class="+price-euro"><%= product.decorate.preview_price_euro %></span>

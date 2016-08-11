@@ -577,6 +577,7 @@ module.exports = ProductNewSku;
 require.register("javascripts/controllers/products/show.js", function(exports, require, module) {
 'use strict';
 
+var Translation = require("javascripts/lib/translation");
 /**
  * ProductsShow Class
  */
@@ -661,7 +662,7 @@ var ProductsShow = {
   },
 
   /**
-   * Change the display of the product page sku datas 
+   * Change the display of the product page sku datas
    */
   skuChangeDisplay: function skuChangeDisplay(productId, skuDatas) {
 
@@ -720,25 +721,29 @@ var ProductsShow = {
   /**
    * Refresh the sku second description
    */
-  refreshSkuSecondDescription: function refreshSkuSecondDescription(second_description) {
+  refreshSkuSecondDescription: function refreshSkuSecondDescription(secondDescription) {
 
-    if (typeof second_description !== "undefined") {
-      $('#product-file-attachment-and-datas').html(second_description);
+    t = Translation.find('more', 'title');
+    console.log(t);
+
+    if (typeof secondDescription !== "undefined") {
+
+      $('#product-file-attachment-and-data').html(secondDescription);
     } else {
-      $('#product-file-attachment-and-datas').html('');
+      $('#product-file-attachment-and-data').html('');
     }
   },
 
   /**
    * Refresh the sku attachment (depending on second description too)
    */
-  refreshSkuAttachment: function refreshSkuAttachment(second_description, attachment) {
+  refreshSkuAttachment: function refreshSkuAttachment(secondDescription, attachment) {
 
     if (typeof attachment !== "undefined") {
-      if (typeof second_description !== "undefined") {
-        $('#product-file-attachment-and-datas').html();
+      if (typeof secondDescription !== "undefined") {
+        $('#product-file-attachment-and-data').html();
       }
-      $('#product-file-attachment-and-datas').append('<br /><a class="btn btn-default" href="' + attachment + '">PDF Documentation</a>');
+      $('#product-file-attachment-and-data').append('<br /><a class="btn btn-default" href="' + attachment + '">PDF Documentation</a>');
     }
   }
 
@@ -1100,6 +1105,38 @@ var PostForm = {
 module.exports = PostForm;
 });
 
+require.register("javascripts/lib/translation.js", function(exports, require, module) {
+"use strict";
+
+/**
+ * Translation Class
+ */
+var Translation = {
+
+  /**
+  * Find a translation and return the string
+  */
+  find: function find(translationSlug, translationScope, callback) {
+
+    var TranslationModel = require("javascripts/models/translation");
+
+    TranslationModel.show(translationSlug, translationScope, function (res) {
+
+      if (res.success === false) {
+
+        console.error("Translation not found `" + translationSlug + "` (" + res.error + ")");
+      } else {
+
+        callback(res.translation);
+      }
+    });
+  }
+
+};
+
+module.exports = Translation;
+});
+
 require.register("javascripts/models.js", function(exports, require, module) {
 "use strict";
 
@@ -1229,6 +1266,39 @@ var ProductSku = {
 };
 
 module.exports = ProductSku;
+});
+
+require.register("javascripts/models/translation.js", function(exports, require, module) {
+"use strict";
+
+/**
+ * Translations Class
+ */
+var Translations = {
+
+  /**
+   * Get the Translations details
+   */
+  show: function show(translationSlug, translationScope, callback) {
+
+    $.ajax({
+
+      method: "GET",
+      url: '/api/guest/translations/0',
+      data: { translation_slug: translationSlug, translation_scope: translationScope }
+
+    }).done(function (res) {
+
+      callback(res);
+    }).error(function (err) {
+
+      callback({ success: false, error: err.responseJSON.error });
+    });
+  }
+
+};
+
+module.exports = Translations;
 });
 
 require.register("javascripts/models/user.js", function(exports, require, module) {
