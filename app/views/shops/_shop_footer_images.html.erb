@@ -1,0 +1,15 @@
+<% 8.times.to_a.in_groups_of(4, false).each do |group| %>
+
+  <div class="row shop-page-footer__images">
+
+    <% group.each do |number| %>
+      <% unless shop.public_send("seal#{number}").url.empty? %>
+      <div class="col-md-3 shop-page-footer__images --image" style="background-image:url('<%= shop.public_send("seal#{number}") %>');">
+      </div>
+      <% end %>
+    <% end %>
+
+  </div>
+  <div class="+small-spacer"></div>
+
+<% end %>

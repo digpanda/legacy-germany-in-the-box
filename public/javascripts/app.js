@@ -1120,7 +1120,7 @@ var Translation = {
   /**
   * Find a translation and return the string from AJAX with callbacks
   */
-  findViaAjax: function findViaAjax(translationSlug, translationScope, callback) {
+  findAsync: function findAsync(translationSlug, translationScope, callback) {
 
     var TranslationModel = require("javascripts/models/translation");
 

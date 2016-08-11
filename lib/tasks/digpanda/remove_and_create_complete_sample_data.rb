@@ -194,10 +194,20 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
     agb            = true
     status         = true
     bg_merchant_id = "1024-TEST"
+    seals = {
+      :seal0 => setup_image(:seal),
+      :seal1 => setup_image(:seal),
+      :seal2 => setup_image(:seal),
+      :seal3 => setup_image(:seal),
+      :seal4 => setup_image(:seal),
+      :seal5 => setup_image(:seal),
+      :seal6 => setup_image(:seal),
+      :seal7 => setup_image(:seal)
+    }
 
     puts "We create #{name}"
 
-    Shop.create!(
+    Shop.create!({
         :name           => name,
         :desc           => Faker::Lorem.paragraph,
         :german_essence => Faker::Lorem.paragraph(7),
@@ -220,7 +230,7 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
         :agb            => agb,
         :status         => status,
         :bg_merchant_id => bg_merchant_id,
-    );
+    }.merge(seals));
 
   end
 

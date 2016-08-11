@@ -1,30 +1,18 @@
-<div class="col-md-12 shop-page-footer" style="background-image:url(<%= shop.decorate.image_url(:banner, :detail) %>);">
-  <div class="+overlay"></div>
-
-  <div class="+onoverlay">
+<div class="col-md-12 shop-page-footer"> <!-- style="background-image:url(<%= shop.decorate.image_url(:banner, :detail) %>);" -->
 
     <!-- Content -->
     <div class="shop-page-footer__content">
 
-      <!-- Images of the shop -->
-        <% 8.times.to_a.in_groups_of(4, false).each do |group| %>
-          
-          <div class="row">
+      <div class="row">
 
-            <% group.each do |number| %>
-              <% unless shop.public_send("seal#{number}").url.empty? %>
-              <div class="col-md-3">
-                <img src="<%= shop.public_send("seal#{number}") %>">
-              </div>
-              <% end %>
-            <% end %>
+        <h3><%= I18n.t(:shop_photo, scope: :title) %></h3>
 
-          </div>
-          <div class="+small-spacer"></div>
+        <!-- Images of the shop -->
+        <%= render partial: "shop_footer_images", :locals => {shop: shop} %>
 
-        <% end %>
+        <div class="+small-spacer"></div>
 
-      <div class="+small-spacer"></div>
+      </div>
 
       <!-- Details about the Shop -->
       <div class="row">
@@ -57,7 +45,5 @@
 
     </div>
     <!-- End of Content -->
-
-  </div>
 
 </div>

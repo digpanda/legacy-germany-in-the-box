@@ -16,6 +16,7 @@ zh-CN:
     home: 首页
   title:
     title: 名称
+    shop_photo: 商家照片
     date: 日期
     philosophy: 品牌理念
     uniqueness: 独特之处
@@ -31,9 +32,9 @@ zh-CN:
     change_your_password: 更改密码
     page_not_found: 没有找到该页面
     server_error: 服务器出错
-    page_not_authorized: 没有访问该页面的权限 
+    page_not_authorized: 没有访问该页面的权限
   notice:
-    payment_removed: 支付成功取消 
+    payment_removed: 支付成功取消
     cannot_remove_from_favorite: 该产品未能从收藏列表中删除
     sku_not_found: 该单品没有找到
     item_removed: 产品成功删除
@@ -44,7 +45,7 @@ zh-CN:
     wechat_login: 微信登陆成功！
     wechat_login_fail: 不能取得你的微信身份，稍候再试一下吧！
     account_conflict: 浏览记录过期，请联系客服
-    success_subscription: 祝贺你成功注册！ 
+    success_subscription: 祝贺你成功注册！
     no_shop_available: 目前还没有店铺
     confirm_want_delete: 确实要删除这个产品吗？
     confirm_start_processing: 准备订单前请再次确认该订单产品的正确性。如有问题请联系商家客服。

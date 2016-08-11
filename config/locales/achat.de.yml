@@ -16,6 +16,7 @@ de:
     home: Home
   title:
     title: Titel
+    shop_photo: Shop photo
     date: Datum
     philosophy: Philosophie
     uniqueness: Einzigartigkeit
@@ -38,16 +39,16 @@ de:
     sku_not_found: Artikelposition nicht gefunden
     item_removed: Artikel erfolgreich gelöscht
     order_sent: Sie haben die Zoll-Anmeldung dieser Sendung bestätigt.
-    order_not_processable: Diese Bestellung ist momentan nicht bearbeitbar. Bitte Versuchen später! 
-    order_processing: Diese Bestellung wird bearbeitet. Sie können sie bald verschicken. 
+    order_not_processable: Diese Bestellung ist momentan nicht bearbeitbar. Bitte Versuchen später!
+    order_processing: Diese Bestellung wird bearbeitet. Sie können sie bald verschicken.
     shipping_partner_problem: Die Logistik hat eine Fehlermeldung. %{e.message} Versuchen Sie in einigen Minuten erneut.
     wechat_login: Sie sind erfolgreich mit WeChat ID eingeloggt.
-    wechat_login_fail: WeChat Login ist fehlgeschlagen. Bitte nochmal versuchen! 
+    wechat_login_fail: WeChat Login ist fehlgeschlagen. Bitte nochmal versuchen!
     account_conflict: Sitzung abgelaufen. Bitte Support kontaktieren.
     success_subscription: Anmeldung erfolgreich!
     no_shop_available: Es gibt noch keinen Shop.
     confirm_want_delete: Möchten Sie diesen Artikel wirklich löschen?
-    confirm_start_processing: Überprüfen Sie bitte die Bestellung nochmal bevor Sie anfangen die Sendung vorzubereiten. Bei Unstimmigkeit unseren Support kontaktieren. 
+    confirm_start_processing: Überprüfen Sie bitte die Bestellung nochmal bevor Sie anfangen die Sendung vorzubereiten. Bei Unstimmigkeit unseren Support kontaktieren.
     package_was_sent: Das Paket wurde versandt
     checkout_failed: Fehlgeschlagen!
     checkout_succeeded: Erfolg!
