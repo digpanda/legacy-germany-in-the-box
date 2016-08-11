@@ -7,7 +7,7 @@ module Wirecard
     class << self
 
       def transaction(merchant_id, transaction_id)
-        Transaction.new(merchant_id, transaction_id)
+        ElasticApi::Transaction.new(merchant_id, transaction_id)
       end
 
     end

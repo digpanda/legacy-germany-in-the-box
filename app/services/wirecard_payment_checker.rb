@@ -2,7 +2,7 @@
 # this is a double check usually made after the checkout process of our customers.
 class WirecardPaymentChecker < BaseService
 
-  attr_reader :transaction_id, :merchant_id, :request_id, :request_amount, :requested_amount_currency
+  attr_reader :transaction_id, :merchant_id, :request_id, :amount, :currency
   attr_accessor :order_payment
 
   def initialize(args)

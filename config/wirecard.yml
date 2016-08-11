@@ -49,7 +49,7 @@ production:
   elastic_api:
     username: 000000316FF50E1E-EMDigPanda
     password: pdE_cf0SnYAq
-    engine_url: http://www.elastic-payments.com/schema/payment
+    engine_url: https://api-test.wirecard.com/engine/hpp/
   hpp:
     hosted_payment_url: http://www.elastic-payments.com/schema/payment
     default_redirect_url: http://www.elastic-payments.com/schema/payment/shop/complete.jsp

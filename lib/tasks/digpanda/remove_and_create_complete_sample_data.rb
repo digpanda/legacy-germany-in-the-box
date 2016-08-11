@@ -16,8 +16,9 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
     Shop.delete_all
     puts "We remove all products"
     Product.delete_all
-    puts "We remove all the orders"
+    puts "We remove all the orders / order payments"
     Order.delete_all
+    OrderPayment.delete_all
     puts "We remove all the orders items"
     OrderItem.delete_all
     puts "We remove all addresses"
@@ -34,7 +35,7 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
     puts "---"
 
     puts "We create the customers, shopkeepers, admins"
-    
+
     10.times { setup_customer create_user(:customer) }
     3.times { create_user(:admin) }
 
@@ -149,7 +150,7 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
     num_skus      = rand(1..5)
     category_slug = [:food, :cosmetics, :fashion, :medicine, :household].sample
     approved      = Time.now
-    
+
     name          = "Product #{num}"
     brand         = "Brand #{num}"
     hs_code       = 12212121
@@ -251,7 +252,7 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
   end
 
   def create_user(symbol=:customer)
-    
+
     num = User.where(:role => symbol).count + 1
     name = symbol.to_s.capitalize
 
