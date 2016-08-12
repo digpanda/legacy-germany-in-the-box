@@ -2,14 +2,11 @@ require 'csv'
 
 class Tasks::Digpanda::RemoveAndCreateDutyCategories
 
+  BORDER_GURU_FILE = 'border-guru-duty-categories.csv'
+
   # add `to_slug` functionality to strings
   String.include CoreExtensions::String::SlugConverter
 
-=begin
-slave = DutyCategory.where(slug: "Blouses & Shirts of knitted cotton".to_slug).first
-submaster = slave.parent
-master = submaster.parent
-=end
   def initialize
 
     puts "We are running on `#{Rails.env}` environment"
@@ -60,7 +57,7 @@ master = submaster.parent
   end
 
   def csv_file
-    @csv_file ||= File.join(Rails.root, 'vendor', 'border-guru-duty-categories.csv')
+    @csv_file ||= File.join(Rails.root, 'vendor', BORDER_GURU_FILE)
   end
 
   def duty_finder(name)
