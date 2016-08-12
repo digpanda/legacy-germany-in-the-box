@@ -58,7 +58,11 @@ class Tasks::Digpanda::RemoveAndCreateDutyCategories
   end
 
   def duty_finder(name)
-    DutyCategory.where(slug: name.to_slug).first
+    category = DutyCategory.where(slug: name.to_slug).first
+    if category.nil?
+      puts "DutyCategory searched but not found, exiting."
+      exit
+    end
   end
 
   def master?(column)
