@@ -2,23 +2,35 @@ require 'csv'
 
 class Tasks::Digpanda::RemoveAndCreateDutyCategories
 
-  #Todo: can also to create categories in a recursive way, but for the man who do it later.
+  def csv_fetch
+    CSV.foreach(csv_file, quote_char: '"', col_sep: ';', row_sep: :auto, headers: false) do |column|
+      yield(column.map(&:to_s).map(&:strip))
+    end
+  end
+
+  def csv_file
+    @csv_file ||= File.join(Rails.root, 'vendor', 'border-guru-duty-categories.csv')
+  end
+
   def initialize
 
     puts "We clear the file cache"
     Rails.cache.clear
 
     puts "We first delete the duty categories"
-    DutyCategory.all.delete
+    DutyCategory.delete_all
 
-    csv_file = File.join(Rails.root, 'vendor', 'bg-duty-categories.csv')
-    puts "We fetch the appropriate CSV file"
+    csv_fetch do |column|
 
-    level1 = {}
-    level2 = {}
-    level3 = {}
+      code = column[0]
+      if code.empty?
+        puts "There we a problem trying to generate `code`"
+        return
+      end
 
-    CSV.foreach(csv_file, quote_char: '"', col_sep: ';', row_sep: :auto, headers: false) do |row|
+      #DutyCategory.where()
+
+      binding.pry
 
       if row[2].blank?
 
@@ -40,7 +52,7 @@ class Tasks::Digpanda::RemoveAndCreateDutyCategories
           level2[[l1_name, l2_name]] = l2
 
         else
-          
+
           if row[4].blank?
 
             l1_name = row[1].strip

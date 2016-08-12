@@ -27,6 +27,7 @@
 
 <% end %>
 
+<!-- Warnings -->
 <% if @featured_sku.quantity_warning? %>
   | <span class="+red +up +bold"> Only <span id="quantity-left"><%= @featured_sku.quantity %></span> left</span>
 <% elsif @featured_sku.nothing_left? %>
