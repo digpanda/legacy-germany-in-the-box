@@ -77,23 +77,12 @@ class ShopsController <  ApplicationController
   end
 
   def destroy_image
-    image_field = params[:image_field].to_sym
-    if valid_shop_image?(image_field)
-      shop.send("remove_#{image_field}=", true)
-      shop.save
-      #image_instance = shop.send("#{image_field}")
-      #image_instance.remove!
-      #shop.send(:write_attribute, image_field, nil)
-      #shop.save
+    if ImageDestroyer.new(shop, SHOP_IMAGE_FIELDS).perform(image_field)
       flash[:success] = "Image removed successfully"
     else
       flash[:error] = "Can't remove this image"
     end
     redirect_to navigation.back(1)
-  end
-
-  def valid_shop_image?(image_field)
-    shop.respond_to?(image_field) && SHOP_IMAGE_FIELDS.include?(image_field)
   end
 
   def destroy
