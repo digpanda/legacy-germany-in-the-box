@@ -2,7 +2,7 @@ class SkuDecorator < Draper::Decorator
 
   include Imageable
   include ActionView::Helpers::TextHelper # load some important helpers
-  
+
   delegate_all
   decorates :sku
 
@@ -37,7 +37,7 @@ class SkuDecorator < Draper::Decorator
   end
 
   def more_description?
-    self.attach0.file || self.data
+    self.attach0.file || !self.data.nil? || self.data.trim.empty?
   end
 
   def price_with_currency_yuan
