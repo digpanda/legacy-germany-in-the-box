@@ -5,6 +5,11 @@ class Tasks::Digpanda::RemoveAndCreateDutyCategories
   # add `to_slug` functionality to strings
   String.include CoreExtensions::String::SlugConverter
 
+=begin
+slave = DutyCategory.where(slug: "Blouses & Shirts of knitted cotton".to_slug).first
+submaster = slave.parent
+master = submaster.parent
+=end
   def initialize
 
     puts "We are running on `#{Rails.env}` environment"
@@ -59,7 +64,7 @@ class Tasks::Digpanda::RemoveAndCreateDutyCategories
   end
 
   def duty_finder(name)
-    category = DutyCategory.where(slug: name.to_slug).first
+    category = DutyCategory.where(slug: name.to_slug).order_by(:created_at => 'desc').order_by(:_id => 'desc').first
     if category.nil?
       puts "DutyCategory searched but not found, exiting."
       exit
