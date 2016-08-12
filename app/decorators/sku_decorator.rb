@@ -37,7 +37,7 @@ class SkuDecorator < Draper::Decorator
   end
 
   def nothing_left?
-     self.quantity == 0
+     self.quantity == 0 && !self.unlimited
   end
 
   def more_description?
