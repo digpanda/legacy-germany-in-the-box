@@ -41,7 +41,11 @@ class SkuDecorator < Draper::Decorator
   end
 
   def more_description?
-    self.attach0.file || !self.data.nil? || self.data.trim.empty?
+    self.attach0.file || self.data?
+  end
+
+  def data?
+    !self.data.nil? || self.data.trim.empty?
   end
 
   def price_with_currency_yuan

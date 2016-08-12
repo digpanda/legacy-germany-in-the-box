@@ -29,6 +29,6 @@ if @sku.attach0
   json.file_attachment @sku.attach0.url
 end
 
-if @sku.data
+if @sku.data?
   json.data @sku.data
 end
