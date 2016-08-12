@@ -1112,7 +1112,7 @@ var Translation = {
     if ($(selector).length > 0) {
       return $(selector).data('content');
     } else {
-      console.error("Translation not found : ``" + translationScope + "`.`" + translationSlug + "`");
+      console.error("Translation not found : `" + translationScope + "`.`" + translationSlug + "`");
       return '';
     }
   },
@@ -1824,6 +1824,8 @@ module.exports = ProductFavorite;
 
 require.register("javascripts/starters/product_form.js", function(exports, require, module) {
 "use strict";
+
+var Translation = require('javascripts/lib/translation');
 
 /**
  * ProductForm Class

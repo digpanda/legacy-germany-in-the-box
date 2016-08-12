@@ -1,3 +1,5 @@
+var Translation = require('javascripts/lib/translation');
+
 /**
  * ProductForm Class
  */

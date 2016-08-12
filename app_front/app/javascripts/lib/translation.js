@@ -9,7 +9,7 @@
      if ($(selector).length > 0) {
        return $(selector).data('content');
      } else {
-       console.error("Translation not found : ``"+translationScope+"`.`"+translationSlug+"`");
+       console.error("Translation not found : `"+translationScope+"`.`"+translationSlug+"`");
        return '';
      }
 

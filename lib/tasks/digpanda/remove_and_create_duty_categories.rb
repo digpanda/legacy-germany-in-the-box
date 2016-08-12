@@ -2,31 +2,8 @@ require 'csv'
 
 class Tasks::Digpanda::RemoveAndCreateDutyCategories
 
-  def csv_fetch
-    CSV.foreach(csv_file, quote_char: '"', col_sep: ';', row_sep: :auto, headers: false) do |column|
-      yield(column.map(&:to_s).map(&:strip))
-    end
-  end
-
-  def csv_file
-    @csv_file ||= File.join(Rails.root, 'vendor', 'border-guru-duty-categories.csv')
-  end
-
-  def duty_finder(name)
-    DutyCategory.where(:name_translations => {:en => name}).first
-  end
-
-  def master?(column)
-    column[1].present? && column[2].empty? && column[3].empty?
-  end
-
-  def submaster?(column)
-    column[1].present? && column[2].present? && column[3].empty?
-  end
-
-  def slave?(column) # funny name right
-    column[1].present? && column[2].present? && column[3].present?
-  end
+  # add `to_slug` functionality to strings
+  String.include CoreExtensions::String::SlugConverter
 
   def initialize
 
@@ -68,6 +45,32 @@ class Tasks::Digpanda::RemoveAndCreateDutyCategories
 
     puts "End of process."
 
+  end
+
+  def csv_fetch
+    CSV.foreach(csv_file, quote_char: '"', col_sep: ';', row_sep: :auto, headers: false) do |column|
+      yield(column.map(&:to_s).map(&:strip))
+    end
+  end
+
+  def csv_file
+    @csv_file ||= File.join(Rails.root, 'vendor', 'border-guru-duty-categories.csv')
+  end
+
+  def duty_finder(name)
+    DutyCategory.where(slug: name.to_slug).first
+  end
+
+  def master?(column)
+    column[1].present? && column[2].empty? && column[3].empty?
+  end
+
+  def submaster?(column)
+    column[1].present? && column[2].present? && column[3].empty?
+  end
+
+  def slave?(column) # funny name right
+    column[1].present? && column[2].present? && column[3].present?
   end
 
 end
