@@ -4,6 +4,8 @@ class ProductsController < ApplicationController
 
   include AppCache
 
+  SKU_IMAGE_FIELDS = [:img0, :img1, :img2, :img3]
+
   before_action :set_product, :set_category, :set_shop, only: [:show, :edit, :update, :destroy, :remove_sku, :remove_option, :new_sku, :show_skus, :skus]
   before_action :authenticate_user!, except: [:autocomplete_product_name, :popular, :search, :show, :skus]
 
@@ -51,7 +53,17 @@ class ProductsController < ApplicationController
     @sku.save
   end
 
-  def show_skus 
+  def show_skus
+  end
+
+  def destroy_sku_image
+    sku = Product.find(params[:product_id]).skus.find(params[:sku_id])
+    if ImageDestroyer.new(sku, SKU_IMAGE_FIELDS).perform(params[:image_field])
+      flash[:success] = "Image removed successfully"
+    else
+      flash[:error] = "Can't remove this image"
+    end
+    redirect_to navigation.back(1)
   end
 
   # This will display the skus for the users (logged in or not)
@@ -59,7 +71,7 @@ class ProductsController < ApplicationController
   end
 
   def approve
-    
+
     @product = Product.find(params[:product_id])
     @product.approved = Time.now
     @product.save
@@ -243,9 +255,3 @@ class ProductsController < ApplicationController
       params.require(:product).permit(*shopkeeper_strong_params).delocalize(delocalize_config)
     end
 end
-
-
-
-
-
-

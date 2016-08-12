@@ -49,6 +49,7 @@
             </span>
             <%= fs.file_field :img0, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#img_0_#{@sku.id}", :class => 'img-file-upload upload' %>
           </div>
+          <%= link_to I18n.t(:remove), product_destroy_sku_image_path(@product, sku_id: @sku.id, image_field: :img0), :method => :delete, :class => 'btn btn-default' %>
         </div>
         <div class="col-md-3">
           <div class="fileUpload btn btn-default">
@@ -58,6 +59,7 @@
             </span>
             <%= fs.file_field :img1, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#img_1_#{@sku.id}", :class => 'img-file-upload upload' %>
           </div>
+          <%= link_to I18n.t(:remove), product_destroy_sku_image_path(@product, sku_id: @sku.id, image_field: :img1), :method => :delete, :class => 'btn btn-default' %>
         </div>
         <div class="col-md-3">
           <div class="fileUpload btn btn-default">
@@ -67,6 +69,7 @@
             </span>
             <%= fs.file_field :img2, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#img_2_#{@sku.id}", :class => 'img-file-upload upload' %>
           </div>
+          <%= link_to I18n.t(:remove), product_destroy_sku_image_path(@product, sku_id: @sku.id, image_field: :img2), :method => :delete, :class => 'btn btn-default' %>
         </div>
         <div class="col-md-3">
           <div class="fileUpload btn btn-default">
@@ -76,6 +79,7 @@
             </span>
             <%= fs.file_field :img3, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#img_3_#{@sku.id}", :class => 'img-file-upload upload' %>
           </div>
+          <%= link_to I18n.t(:remove), product_destroy_sku_image_path(@product, sku_id: @sku.id, image_field: :img3), :method => :delete, :class => 'btn btn-default' %>
         </div>
       </div>
     </div>

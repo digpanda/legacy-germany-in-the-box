@@ -35,6 +35,7 @@ concern :shared_products do
   match :new_sku,                                 via: [:get],    action: :new_sku,                     as: :new_sku,                     :on => :member
   match :edit_sku,                                via: [:get],    action: :edit_sku,                    as: :edit_sku,                    :on => :member
   match :clone_sku,                               via: [:get],    action: :clone_sku,                   as: :clone_sku,                   :on => :member
+  match :destroy_sku_image, via: [:delete], action: :destroy_sku_image, as: :destroy_sku_image
   match :autocomplete_product_name,               via: [:get],    action: :autocomplete_product_name,   as: :autocomplete_product_name,   :on => :collection
   match :search,                                 via: [:get],    action: :search,                      as: :search,                      :on => :collection
   match :popular,                                 via: [:get],    action: :popular,                     as: :popular,                                  :on => :collection
