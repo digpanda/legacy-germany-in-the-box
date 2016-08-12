@@ -4,6 +4,7 @@ module Imageable
   included do
 
     def image_url(image_field, version)
+      image_field = image_field.to_sym
       if Rails.env.development?
         send(image_field).url
       else
@@ -20,7 +21,7 @@ module Imageable
     def detail_params(image_field)
       Rails.configuration.product_image_detailview
     end
-    
+
     def fullsize_params(image_field)
       Rails.configuration.product_image_fullsize
     end
