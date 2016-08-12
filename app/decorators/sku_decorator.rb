@@ -32,8 +32,12 @@ class SkuDecorator < Draper::Decorator
   end
 
   def quantity_warning?
-     return false if self.unlimited || self.quantity == 0 # no warning if unlimited or nothing left
+     return false if self.unlimited || nothing_left? # no warning if unlimited or nothing left
      self.quantity <= ::Rails.application.config.digpanda[:products_warning]
+  end
+
+  def nothing_left?
+     self.quantity == 0
   end
 
   def more_description?
