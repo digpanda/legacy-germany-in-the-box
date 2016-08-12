@@ -16,7 +16,9 @@ class SkuDecorator < Draper::Decorator
 
   def first_nonempty_img_url(version)
     f = self.attributes.keys.grep(/^img\d/).map(&:to_sym).detect { |f| f if sku.read_attribute(f) }
-    image_url(f, version)
+    unless f.nil?
+      image_url(f, version)
+    end
   end
 
   def raw_images_urls
