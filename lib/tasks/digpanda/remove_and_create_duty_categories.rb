@@ -7,6 +7,7 @@ class Tasks::Digpanda::RemoveAndCreateDutyCategories
 
   def initialize
 
+    puts "We are running on `#{Rails.env}` environment"
     puts "We clear the file cache"
     Rails.cache.clear
 
