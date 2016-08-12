@@ -15,19 +15,19 @@ class ShopDecorator < Draper::Decorator
   end
 
   def philosophy?
-    shop.philosophy && !shop.philosophy.empty?
+    shop.philosophy && shop.philosophy.strip.present?
   end
 
   def uniqueness?
-    shop.uniqueness && !shop.uniqueness.empty?
+    shop.uniqueness && shop.uniqueness.strip.present?
   end
 
   def stories?
-    shop.stories && !shop.stories.empty?
+    shop.stories && shop.stories.strip.present?
   end
 
   def german_essence?
-    shop.german_essence && !shop.german_essence.empty?
+    shop.german_essence && shop.german_essence.strip.present?
   end
 
   def more_new_address?
