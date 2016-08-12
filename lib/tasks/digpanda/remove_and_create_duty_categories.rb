@@ -64,6 +64,7 @@ class Tasks::Digpanda::RemoveAndCreateDutyCategories
       puts "DutyCategory searched but not found, exiting."
       exit
     end
+    category
   end
 
   def master?(column)
