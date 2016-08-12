@@ -12,6 +12,22 @@ class Tasks::Digpanda::RemoveAndCreateDutyCategories
     @csv_file ||= File.join(Rails.root, 'vendor', 'border-guru-duty-categories.csv')
   end
 
+  def duty_finder(name)
+    DutyCategory.where(:name_translations => {:en => name}).first
+  end
+
+  def master?(column)
+    column[1].present? && column[2].empty? && column[3].empty?
+  end
+
+  def submaster?(column)
+    column[1].present? && column[2].present? && column[3].empty?
+  end
+
+  def slave?(column) # funny name right
+    column[1].present? && column[2].present? && column[3].present?
+  end
+
   def initialize
 
     puts "We clear the file cache"
@@ -28,55 +44,24 @@ class Tasks::Digpanda::RemoveAndCreateDutyCategories
         return
       end
 
-      #DutyCategory.where()
+      if master?(column)
+        name = column[1]
+        puts "Parent : NONE / Self : #{name}"
+        DutyCategory.create!(:code => code, :name_translations => {:en => name})
+      end
 
-      binding.pry
+      if submaster?(column)
+        parent_name = column[1]
+        name = column[2]
+        puts "Parent : #{parent_name} / Self : #{name}"
+        DutyCategory.create!(:code => code, :name_translations => {:en => name}, :parent => duty_finder(parent_name))
+      end
 
-      if row[2].blank?
-
-        l1_name = row[1].strip
-        l1 = DutyCategory.create!(:code => row[0].strip, :name_translations => {:en => l1_name} )
-
-        level1[l1_name]=l1
-
-      else
-
-        if row[3].blank?
-
-          l1_name = row[1].strip
-          l1 = level1[l1_name]
-
-          l2_name = row[2].strip
-          l2 = DutyCategory.create!(:code => row[0].strip, :name_translations => {:en => l2_name }, :parent => l1 )
-
-          level2[[l1_name, l2_name]] = l2
-
-        else
-
-          if row[4].blank?
-
-            l1_name = row[1].strip
-            l2_name = row[2].strip
-            l2 = level2[[l1_name, l2_name]]
-
-            l3_name = row[3].strip
-            l3 = DutyCategory.create!(:code => row[0].strip, :name_translations => {:en => l3_name }, :parent => l2 )
-
-            level3[[l1_name, l2_name, l3_name]] = l3
-          else
-
-            l1_name = row[1].strip
-            l2_name = row[2].strip
-            l3_name = row[3].strip
-            l3 = level3[[l1_name, l2_name, l3_name]]
-
-            l4_name = row[4].strip
-            DutyCategory.create!(:code => row[0].strip, :name_translations => {:en => l4_name}, :parent => l3 )
-
-          end
-
-        end
-
+      if slave?(column)
+        parent_name = column[2]
+        name = column[3]
+        puts "Parent : #{parent_name} / Self : #{name}"
+        DutyCategory.create!(:code => code, :name_translations => {:en => name}, :parent => duty_finder(parent_name))
       end
 
     end
