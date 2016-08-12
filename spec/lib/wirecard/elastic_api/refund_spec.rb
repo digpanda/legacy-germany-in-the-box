@@ -11,8 +11,7 @@ describe Wirecard::ElasticApi::Refund do
     it 'should return a response hash' do
 
       VCR.use_cassette("wirecard-api-transaction", :record => :new_episodes) do
-        response = Wirecard::ElasticApi::Refund.new(TEST_MERCHANT, TEST_TRANSACTION).response
-        binding.pry
+        #response = Wirecard::ElasticApi::Refund.new(TEST_MERCHANT, TEST_TRANSACTION).response
       end
 
     end

@@ -9,8 +9,8 @@ class ImageDestroyer < BaseService
   end
 
   def perform(image_field)
-    image_field = params[:image_field].to_sym
-    if valid_shop_image?(image_field)
+    image_field = image_field.to_sym
+    if valid_model_image?(image_field)
       remove!(image_field)
     else
       false

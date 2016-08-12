@@ -77,7 +77,7 @@ class ShopsController <  ApplicationController
   end
 
   def destroy_image
-    if ImageDestroyer.new(shop, SHOP_IMAGE_FIELDS).perform(image_field)
+    if ImageDestroyer.new(shop, SHOP_IMAGE_FIELDS).perform(params[:image_field])
       flash[:success] = "Image removed successfully"
     else
       flash[:error] = "Can't remove this image"
