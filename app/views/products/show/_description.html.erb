@@ -31,6 +31,8 @@
   | <span class="+red +up +bold"> Only <span id="quantity-left"><%= @featured_sku.quantity %></span> left</span>
 <% elsif @featured_sku.nothing_left? %>
   | <span class="+red +up +bold"> No stock left</span>
+<% elsif !product.decorate.can_buy? %>
+  | <span class="+red +up +bold"> This shop is not ready to sell</span>
 <% end %>
 
 <div class="+small-spacer"></div>
