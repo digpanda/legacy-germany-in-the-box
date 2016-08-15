@@ -54,7 +54,7 @@ module Wirecard
         :request_id                => request_id,
         :request_time_stamp        => request_time_stamp,
         :merchant_account_id       => merchant_id,
-        :payment_method            => CONFIG[:payment_method],
+        :payment_method            => CONFIG[:payment_method], # "creditcad" or "" are valid too
         :transaction_type          => CONFIG[:transaction_type],
         :redirect_url              => success_redirect_url.html_safe,
         :request_signature         => digital_signature,
