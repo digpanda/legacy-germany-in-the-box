@@ -3,7 +3,7 @@ class Product
 
   MAX_SHORT_TEXT_LENGTH = (Rails.configuration.max_short_text_length * 1.25).round
   MAX_LONG_TEXT_LENGTH = (Rails.configuration.max_long_text_length * 1.25).round
-
+  
   strip_attributes
 
   field :name, type: String, localize: true

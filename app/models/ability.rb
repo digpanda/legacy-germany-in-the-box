@@ -1,9 +1,9 @@
 class Ability
   include CanCan::Ability
   prepend Draper::CanCanCan
-  
+
   def initialize(user, controller_namespace)
-    
+
     namespaces = controller_namespace.split('::')
 
     # Currently there's no `app` so it's extremely difficult to differentiate the Api from the App
@@ -39,12 +39,12 @@ class Ability
 
     # End of namespaced authorization
 
-    # 
+    #
     # WARNING :
     # THIS BELOW WILL BE REMOVED AT SOME POINT, DON'T GET HEADACHE FROM IT, IT WILL BE BETTER SECURED AFTER.
     # - Laurent, 2016/06/21
-    # 
-    # 
+    #
+    #
     user ||= User.new # THIS SHOULD DISAPPEAR, BUT WE NEED IT FOR GUESTS RIGHT NOW
 
     if user.role == :customer
@@ -117,6 +117,7 @@ class Ability
            :update,
            :edit_setting,
            :edit_producer,
+           :destroy_image,
            :show_products,
            :apply_wirecard], Shop, :shopkeeper => user
 
