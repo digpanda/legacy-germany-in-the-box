@@ -13,7 +13,6 @@ json.discount @sku.discount
 
 json.images do
 
-  #todo Hi Laurent, I think you can just change [*0..3].each to (0..3).each. Regards Yu
   [*0..3].each do |n|
     label = "img#{n}"
     json.array! [{

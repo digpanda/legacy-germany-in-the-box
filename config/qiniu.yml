@@ -1,0 +1,21 @@
+defaults: &defaults
+  size:
+    thumb: 400
+    detail: 1000
+    fullsize: 800
+    zoomin: 1000
+
+local:
+  <<: *defaults
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+staging:
+  <<: *defaults
+
+production:
+  <<: *defaults

@@ -1,11 +1,3 @@
-Rails.configuration.logo_image_thumbnail = 'imageView2/2/w/150/h/150'
-Rails.configuration.logo_image_detailview = 'imageView2/2/w/256/h/256'
-Rails.configuration.banner_image_thumbnail = 'imageView2/2/w/1500/h/500'
-Rails.configuration.banner_image_detailview = 'imageView2/2/w/1500/h/500'
-Rails.configuration.product_image_thumbnail = 'imageView2/2/w/400/h/400'
-Rails.configuration.product_image_detailview = 'imageView2/2/w/600/h/600'
-Rails.configuration.product_image_fullsize = 'imageView2/2/w/800/h/800'
-Rails.configuration.product_image_zoomin = 'imageView2/2/w/1000/h/1000'
 Rails.configuration.login_failure_limit = 3
 Rails.configuration.app_cache_expire_limit = Rails.env.production? ? 1.hours : 10.minutes
 Rails.configuration.max_num_addresses = 3
@@ -33,5 +25,3 @@ Rails.configuration.max_additional_text_length = 10000
 Rails.configuration.min_password_length = 8
 
 Rails.cache.clear
-
-

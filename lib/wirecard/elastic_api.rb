@@ -10,6 +10,10 @@ module Wirecard
         ElasticApi::Transaction.new(merchant_id, transaction_id)
       end
 
+      def refund(merchant_id, parent_transaction_id)
+        ElasticApi::Transaction.new(merchant_id, parent_transaction_id)
+      end
+      
     end
 
   end
