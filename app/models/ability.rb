@@ -136,6 +136,7 @@ class Ability
            :remove_variant,
            :update,
            :destroy,
+           :destroy_sku_image,
            :show_products,
            :edit_product,
            :show_skus,
