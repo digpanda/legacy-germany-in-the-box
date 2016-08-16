@@ -1,6 +1,6 @@
 #!/bin/sh
 DIR=`date +%Y-%m-%d-%H_%M_%S`
-BACKUP_DIR=/home/ubuntu/dbbackup
+BACKUP_DIR=/home/digpanda/dbbackup
 LOG_DIR=$BACKUP_DIR/log
 
 PROD_BACKUP_DIR=$BACKUP_DIR/prod_$DIR
@@ -9,7 +9,8 @@ STAGING_BACKUP_DIR=$BACKUP_DIR/staging_$DIR
 mkdir $PROD_BACKUP_DIR
 mkdir $STAGING_BACKUP_DIR
 
-PROD_DB_HOST=207.226.141.12
+#PROD_DB_HOST=207.226.141.12
+PROD_DB_HOST=192.168.100.100
 PROD_DB_PORT=27017
 PROD_DB_NAME=a_chat_development
 PROD_DB_USER=gitb

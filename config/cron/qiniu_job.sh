@@ -55,7 +55,7 @@ CMD_CLEAN_STAGING="./qshell batchdelete $BUCKET_NAME_STAGING $BUCKET_NAME_STAGIN
 # copy from prod bucket to staging bucket
 CMD_PROD_TO_STAGING="./qshell batchcopy $BUCKET_NAME_PROD $BUCKET_NAME_STAGING $BUCKET_NAME_PROD$FIRST_COLUMN.txt"
 
-PS3='Please enter your choice: '
+PS3='Please enter your next choice from 1 to 11:'
 options=("export prod bucket file list" "process prod bucket file list" "export prod-backup bucket file list" "process prod-backup bucket file list" "export staging bucket file list" "process staging bucket file list" "clean prod backup" "backup prod" "clean staging" "prod to staging" "Quit")
 select opt in "${options[@]}"
 do
