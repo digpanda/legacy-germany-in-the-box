@@ -7,6 +7,7 @@ module Wirecard
     CONFIG = BASE_CONFIG[:hpp]
     DEFAULT_PAYMENT_LANGUAGE = 'en'
     DEFAULT_PAYMENT_CURRENCY = 'CNY'
+    ACCEPTED_PAYMENT_METHODS = [:upop, :creditcard]
 
     attr_reader :user,
                 :merchant_id,
@@ -16,9 +17,9 @@ module Wirecard
                 :currency,
                 :request_id,
                 :order_number,
-                :request_time_stamp,
                 :request_id,
                 :default_redirect_url,
+                :payment_method,
                 :order
 
 
@@ -31,11 +32,13 @@ module Wirecard
       @merchant_id          = args[:merchant_id]
       @secret_key           = args[:secret_key]
 
+      @payment_method       = args[:payment_method] || CONFIG[:default_payment_method]
+      raise Error, "Payment method not authorized" ACCEPTED_PAYMENT_METHODS.include?(payment_method)
+
       @currency             = DEFAULT_PAYMENT_CURRENCY
       @order_number         = "#{order.id}"
       @amount               = order.decorate.total_sum_in_yuan.to_f.round(2) # this round is necessary
 
-      @request_time_stamp   = time_stamp
       @request_id           = SecureRandom.uuid
       @hosted_payment_url   = CONFIG[:hosted_payment_url]
       @default_redirect_url = CONFIG[:default_redirect_url]
@@ -43,7 +46,12 @@ module Wirecard
     end
 
     def hosted_payment_datas
+      transaction_datas.merge.(redirection_datas).merge(customer_datas)
+    end
 
+    private
+
+    def transaction_datas
       {
         :requested_amount          => amount,
         :requested_amount_currency => DEFAULT_PAYMENT_CURRENCY,
@@ -54,16 +62,25 @@ module Wirecard
         :request_id                => request_id,
         :request_time_stamp        => request_time_stamp,
         :merchant_account_id       => merchant_id,
-        :payment_method            => CONFIG[:payment_method], # "creditcad" or "" are valid too
+        :payment_method            => payment_method,
         :transaction_type          => CONFIG[:transaction_type],
-        :redirect_url              => success_redirect_url.html_safe,
         :request_signature         => digital_signature,
         :psp_name                  => CONFIG[:psp_name],
+      }
+    end
+
+    def redirection_datas
+      {
+        :redirect_url              => success_redirect_url.html_safe,
         :success_redirect_url      => success_redirect_url.html_safe,
         :fail_redirect_url         => fail_redirect_url.html_safe,
         :cancel_redirect_url       => cancel_redirect_url.html_safe,
         :processing_redirect_url   => processing_redirect_url.html_safe,
+      }
+    end
 
+    def customer_datas
+      {
         #:first_name                => user.fname,
         #:last_name                 => user.lname,
 
@@ -77,10 +94,7 @@ module Wirecard
         :country                   => order.billing_address.country.alpha2,
         :ip_address                => customer_ip_address
       }
-
     end
-
-    private
 
     def customer_ip_address
       user.last_sign_in_ip || "127.0.0.1"
@@ -125,8 +139,8 @@ module Wirecard
 
     end
 
-    def time_stamp
-      Time.now.utc.strftime("%Y%m%d%H%M%S")
+    def request_time_stamp
+      @request_time_stamp ||= Time.now.utc.strftime("%Y%m%d%H%M%S")
     end
 
     def valid_args?(args)
