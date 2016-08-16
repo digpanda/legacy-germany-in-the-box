@@ -2,7 +2,7 @@ defaults: &defaults
   elastic_api:
     username: engine.digpanda
     password: x3Zyr8MaY7TDxj6F
-    engine_url: https://sandbox-engine.thesolution.com/engine/rest/
+    engine_url: # https://sandbox-engine.thesolution.com/engine/rest/
   merchants:
     reseller_id: nba81H29Gba
     package_id: digpandapaket1
@@ -16,12 +16,12 @@ defaults: &defaults
       - declined
       - terminated
   hpp:
-    hosted_payment_url: https://sandbox-engine.thesolution.com/engine/hpp/ # http://api-test.wirecard.com/engine/hpp/ # https://sandbox-engine.thesolution.com/engine/hpp/
+    hosted_payment_url: http://api-test.wirecard.com/engine/hpp/ # https://sandbox-engine.thesolution.com/engine/hpp/ # http://api-test.wirecard.com/engine/hpp/ # https://sandbox-engine.thesolution.com/engine/hpp/
     default_redirect_url: http://local.dev:3000/orders/checkout_success # https://sandbox-engine.thesolution.com/shop/complete.jsp
     success_redirect_url : http://local.dev:3000/orders/checkout_success
     fail_redirect_path : http://local.dev:3000/orders/checkout_fail
     psp_name: demo
-    default_payment_method: upop
+    default_payment_method: creditcard # upop
     transaction_type: debit
 
 local:
