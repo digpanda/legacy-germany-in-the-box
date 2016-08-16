@@ -17,13 +17,13 @@ class WirecardPaymentChecker < BaseService
   def update_order_payment!
     checking_order_payment!
     order_payment.status = remote_transaction.status
+    order_payment.transaction_type = remote_transaction.type
     order_payment.save
   end
 
   def checking_order_payment!
     order_payment.status         = :checking
     order_payment.transaction_id = transaction_id
-    order_payment.transaction_type = remote_transaction.type
     order_payment.save
   end
 
@@ -31,9 +31,10 @@ class WirecardPaymentChecker < BaseService
 
   def remote_transaction
     Wirecard::ElasticApi.transaction(merchant_id, transaction_id).request!
-    binding.pry
   rescue Wirecard::ElasticApi::Error
-    :corrupted
+    # could be improved : "debit" is a very manual way to go.
+    # we may prefer to the `transaction_type` before the transaction to avoid this kind of static data
+    Struct.new(:status, :type).new(:corrupted, "debit")
   end
 
 end

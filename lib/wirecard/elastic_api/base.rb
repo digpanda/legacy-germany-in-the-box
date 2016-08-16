@@ -2,7 +2,7 @@ module Wirecard
   class ElasticApi
     module Base
 
-      # pre-memoization of the response to use multiple methods afterwards
+      # pre-memoization of the response and return self to use entire class afterwards
       def request!
         response
         self

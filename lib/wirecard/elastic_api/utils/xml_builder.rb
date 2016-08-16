@@ -24,7 +24,7 @@ module Wirecard
         end
 
         def template_path
-          File.expand_path "../templates/#{template_file}", __FILE__
+          File.expand_path "../../templates/#{template_file}", __FILE__
         end
 
         def template_file
