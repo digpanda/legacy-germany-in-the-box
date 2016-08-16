@@ -35,7 +35,9 @@
             <%= I18n.t(order.status, scope: :edit_order) %>
           </td>
           <td>
-            <%= order.decorate.is_bought? ? order.decorate.total_sum_in_yuan : ''%>
+            <% if order.decorate.is_bought? %>
+            <%= order.decorate.total_sum_in_yuan %>
+            <% end %>
           </td>
           <td>
             <%= order.border_guru_link_tracking ? (link_to I18n.t(:open, scope: :edit_order), order.border_guru_link_tracking, :target => '_blank') : '' %>

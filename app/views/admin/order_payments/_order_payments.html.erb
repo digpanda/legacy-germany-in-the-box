@@ -1,0 +1,30 @@
+<tr>
+  <td>
+    <%= order_payment.request_id %>
+  </td>
+  <td>
+    <%= order_payment.transaction_id %>
+  </td>
+  <td>
+    <%= link_to order_payment.shop.name, edit_producer_shop_path(order_payment.shop, :user_info_edit_part => :edit_shops) %>
+  </td>
+  <td>
+    <%= link_to order_payment.order_id, order_path(order_payment.order_id) %>
+  </td>
+  <td>
+    <%= order_payment.status %>
+  </td>
+  <td>
+    <%= order_payment.order.user.decorate.full_name if order_payment.order&.user %>
+  </td>
+  <td>
+    <%= order_payment.decorate.amount_cny_with_currency %>
+  </td>
+  <td>
+    <%= order_payment.decorate.amount_eur_with_currency %>
+  </td>
+  <td>
+    <%= link_to '', admin_order_payment_refund_path(order_payment), :method => :post, data: { confirm: "Are you sure you want to refund this transaction ?" }, :class => 'fa fa-reply fa-2x', :title => "Refund" %>
+    <%= link_to '', admin_order_payment_path(order_payment), :method => :delete, data: { confirm: "Are you sure you want to remove a transaction ? This cannot be undone." }, :class => 'fa fa-times-circle fa-2x', :title => "Remove" %>
+  </td>
+</tr>

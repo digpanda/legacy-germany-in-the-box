@@ -15,8 +15,8 @@
 <li class="<%= is_menu_active?(:edit_order) %>">
   <%= link_to I18n.t(:my_order, scope: :top_menu), show_orders_users_path(:user_info_edit_part => :edit_order) %>
 </li>
-<li class="<%= is_menu_active?(:admin_payments) %>">
-  <%= link_to I18n.t(:payments, scope: :top_menu), admin_payments_path(:user_info_edit_part => :admin_payments) %>
+<li class="<%= is_menu_active?(:admin_order_payments) %>">
+  <%= link_to I18n.t(:payments, scope: :top_menu), admin_order_payments_path(:user_info_edit_part => :admin_order_payments) %>
 </li>
 <li class="<%= is_menu_active?(:edit_settings) %>">
   <%= link_to I18n.t(:settings, scope: :top_menu), admin_settings_path(:user_info_edit_part => :edit_settings) %>

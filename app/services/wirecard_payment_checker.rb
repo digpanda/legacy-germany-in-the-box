@@ -17,8 +17,11 @@ class WirecardPaymentChecker < BaseService
   def update_order_payment!
     checking_order_payment!
     order_payment.status = remote_transaction.status
-    order_payment.transaction_type = remote_transaction.type
     order_payment.save
+    # this was already set at some point in the system
+    # we just update the payment in case the currency conversion
+    # would different between the order and payment time
+    order_payment.refresh_currency_amounts!
   end
 
   def checking_order_payment!
@@ -34,6 +37,7 @@ class WirecardPaymentChecker < BaseService
   rescue Wirecard::ElasticApi::Error
     # could be improved : "debit" is a very manual way to go.
     # we may prefer to the `transaction_type` before the transaction to avoid this kind of static data
+    # TODO UPDATE : we don't actually use it anymore
     Struct.new(:status, :type).new(:corrupted, "debit")
   end
 

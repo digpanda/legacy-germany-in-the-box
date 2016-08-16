@@ -1,0 +1,40 @@
+<% if @order_payments.size > 0 %>
+  <table class="table cart-table">
+    <thead>
+      <th>
+        <%= I18n.t(:request_number, scope: :edit_payments) %>
+      </th>
+      <th>
+        <%= I18n.t(:transaction_number, scope: :edit_payments) %>
+      </th>
+      <th>
+        Shop
+      </th>
+      <th>
+        Order #
+      </th>
+      <th>
+        <%= I18n.t(:status, scope: :edit_payments) %>
+      </th>
+      <th>
+        <%= I18n.t(:buyer, scope: :edit_payments) %>
+      </th>
+      <th>
+        Amount (CNY)
+      </th>
+      <th>
+        Amount (EUR)
+      </th>
+      <th>
+        <%= I18n.t(:action, scope: :edit_payments) %>
+      </th>
+    </thead>
+    <tbody>
+      <%= render partial: "order_payments", collection: @order_payments, :as => :order_payment %>
+    </tbody>
+  </table>
+<% else %>
+  <h4>
+    <%= I18n.t(:no_payments, scope: :edit_payments) %>
+  </h4>
+<% end %>

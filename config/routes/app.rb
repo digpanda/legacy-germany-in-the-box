@@ -21,7 +21,8 @@ resource :page do
 end
 
 namespace :admin do
-  resources :payments do
+  resources :order_payments do
+    post :refund
   end
   resource :settings, only: [:show, :update] do
   end
@@ -58,7 +59,7 @@ resources :users do
   concerns :shared_users
 end
 
-resources :shops, except: [:new, :edit, :create] do  
+resources :shops, except: [:new, :edit, :create] do
   concerns :shared_shops
 end
 

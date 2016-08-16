@@ -4,6 +4,8 @@
 #
 class PrepareOrderForWirecardCheckout < BaseService
 
+  DEBIT_TRANSACTION_TYPE = "debit"
+
   class << self
 
     def perform(args={})
@@ -26,10 +28,15 @@ class PrepareOrderForWirecardCheckout < BaseService
         order_payment.request_id     = wirecard.request_id
         order_payment.user_id        = user.id # shouldn't be duplicated, but mongoid added it automatically ...
         order_payment.order_id       = order.id
-        order_payment.amount         = wirecard.amount
-        order_payment.currency       = wirecard.currency
+        order_payment.transaction_type = DEBIT_TRANSACTION_TYPE
+        # conversion is done on the fly while creating the payment
+        # we store it because it change over time.
+        # best would be to update it automatically when the order is paid
         order_payment.payment_method = wirecard.payment_method
         order_payment.save
+        # we dynamically set the amount via API response and set the other one via currency exchange
+        order_payment.save_origin_amount!(wirecard.amount, wirecard.currency)
+        order_payment.refresh_currency_amounts!
       end
 
       wirecard
