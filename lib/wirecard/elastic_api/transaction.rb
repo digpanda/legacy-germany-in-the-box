@@ -1,8 +1,8 @@
-require 'net/http'
-
 module Wirecard
   class ElasticApi
     class Transaction
+
+      include Wirecard::ElasticApi::Base
 
       VALID_STATUS_LIST = [:success, :in_progress, :failed, :corrupted]
 
@@ -15,7 +15,7 @@ module Wirecard
 
       def response
         @response ||= begin
-          response = Request.new(query).response
+          response = Utils::Request.new(query).response
           if response.nil?
             raise Wirecard::ElasticApi::Error, "The transaction was not found"
           else
@@ -29,22 +29,26 @@ module Wirecard
       end
 
       def status
-        raise Wirecard::ElasticApi::Error, "The status of the transaction was not found" unless valid_status?
-        clean_status
+        raise Wirecard::ElasticApi::Error, "The status of the transaction is not correct" unless valid_status?
+        symbolize_data(raw_status)
+      end
+
+      def type
+        symbolize_data(raw_type)
       end
 
       private
 
-      def symbolize_status(status)
-        status.to_s.gsub("-", "_").to_sym
+      def symbolize_data(data)
+        data.to_s.gsub("-", "_").to_sym
       end
 
       def valid_status?
-        VALID_STATUS_LIST.include? clean_status
+        VALID_STATUS_LIST.include? symbolize_data(raw_status)
       end
 
-      def clean_status
-        symbolize_status(raw_status)
+      def raw_type
+        response&.[](:payment)&.[](:"transaction-type")
       end
 
       def raw_status

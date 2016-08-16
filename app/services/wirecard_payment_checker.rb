@@ -16,20 +16,22 @@ class WirecardPaymentChecker < BaseService
 
   def update_order_payment!
     checking_order_payment!
-    order_payment.status = transaction_status
+    order_payment.status = remote_transaction.status
     order_payment.save
   end
 
   def checking_order_payment!
     order_payment.status         = :checking
     order_payment.transaction_id = transaction_id
+    order_payment.transaction_type = remote_transaction.type
     order_payment.save
   end
 
   private
 
-  def transaction_status
-    Wirecard::ElasticApi.transaction(merchant_id, transaction_id).status
+  def remote_transaction
+    Wirecard::ElasticApi.transaction(merchant_id, transaction_id).request!
+    binding.pry
   rescue Wirecard::ElasticApi::Error
     :corrupted
   end

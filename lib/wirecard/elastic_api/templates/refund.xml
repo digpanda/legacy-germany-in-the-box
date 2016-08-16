@@ -3,5 +3,11 @@
   <request-id>{{REQUEST_ID}}</request-id>
   <transaction-type>refund-debit</transaction-type>
   <parent-transaction-id>{{PARENT_TRANSACTION_ID}}</parent-transaction-id>
+
+  <requested-amount currency="{{CURRENCY}}">{{AMOUNT}}</requested-amount>
+     <payment-methods>
+                <payment-method name="{{PAYMENT_METHOD}}"/>
+   </payment-methods>
+
   <ip-address>{{IP_ADDRESS}}</ip-address>
 </payment>
