@@ -42,7 +42,7 @@ zh-CN:
     order_sent: 海关申报成功
     order_not_processable: 该订单目前还不能处理，请稍候再试！
     order_processing: 该订单正在处理，您很快就可以发货。
-    shipping_partner_problem: 物流系统错误 %{e.message}，请稍后再试。
+    shipping_partner_problem: 物流系统错误，请稍后再试。
     wechat_login: 微信登陆成功！
     wechat_login_fail: 不能取得你的微信身份，稍候再试一下吧！
     account_conflict: 浏览记录过期，请联系客服

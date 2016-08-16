@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
     rescue_from CanCan::AccessDenied, :with => :throw_unauthorized_page
     rescue_from Mongoid::Errors::DocumentNotFound, :with => :throw_resource_not_found
   end
-  
+
   #around_action :exception_handler
 # WE SHOULD CHANGE THE ERROR HANDLING TO THIS AT SOME POINT
 =begin
@@ -83,11 +83,11 @@ class ApplicationController < ActionController::Base
       @categories = Category.all
     end
   end
-  
+
   def custom_sublayout
     "sublayout/_#{current_user.role}"
   end
-  
+
   def current_order(shop_id)
     @current_order ||= _current_order(shop_id)
   end
@@ -95,7 +95,7 @@ class ApplicationController < ActionController::Base
   def current_cart(shop_id)
 
     cart = Cart.new
-    
+
     current_order(shop_id).order_items.each do |i|
       cart.decorate.add(i.sku, i.quantity)
     end
@@ -133,15 +133,15 @@ class ApplicationController < ActionController::Base
     carts = {}
 
     begin
-      current_orders.map do |s, o|
-        carts[s] = Cart.new
+      current_orders.map do |shop_id, order|
+        carts[shop_id] = Cart.new
 
-        o.order_items.each do |i|
-          carts[s].decorate.add(i.sku, i.quantity)
+        order.order_items.each do |order_item|
+          carts[shop_id].decorate.add(order_item.sku, order_item.quantity)
 
           BorderGuru.calculate_quote(
-              cart: carts[s],
-              shop: Shop.find(s),
+              cart: carts[shop_id],
+              shop: Shop.find(shop_id),
               country_of_destination: ISO3166::Country.new('CN'),
               currency: 'EUR'
           )
@@ -149,9 +149,11 @@ class ApplicationController < ActionController::Base
         end
       end
 
-    rescue BorderGuru::Error => e
-      flash[:error] = I18n.t(:shipping_partner_problem, :notice, :e => e)
-      redirect_to root_path and return
+    rescue BorderGuru::Error, Net::ReadTimeout => exception
+      binding.pry
+      flash[:error] = I18n.t(:shipping_partner_problem, :scope => :notice, :e => exception)
+      redirect_to navigation.back(1)
+      return
     end
     carts
   end

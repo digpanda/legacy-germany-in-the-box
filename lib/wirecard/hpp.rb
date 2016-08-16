@@ -32,8 +32,8 @@ module Wirecard
       @merchant_id          = args[:merchant_id]
       @secret_key           = args[:secret_key]
 
-      @payment_method       = args[:payment_method] || CONFIG[:default_payment_method]
-      raise Error, "Payment method not authorized" ACCEPTED_PAYMENT_METHODS.include?(payment_method)
+      @payment_method       = (args[:payment_method] || CONFIG[:default_payment_method]).to_sym
+      raise Error, "Payment method not authorized" unless ACCEPTED_PAYMENT_METHODS.include?(payment_method)
 
       @currency             = DEFAULT_PAYMENT_CURRENCY
       @order_number         = "#{order.id}"
@@ -46,7 +46,7 @@ module Wirecard
     end
 
     def hosted_payment_datas
-      transaction_datas.merge.(redirection_datas).merge(customer_datas)
+      transaction_datas.merge(redirection_datas).merge(customer_datas)
     end
 
     private
