@@ -26,15 +26,16 @@ class OrderPayment
     elsif currency == 'EUR'
       self.amount_eur = amount
     end
+    self.origin_currency = currency
     save
   end
 
   # this automatically update the amounts depending on what was the original amount
   def refresh_currency_amounts!
     if origin_currency == 'CNY'
-      self.amount_eur = Currency.new(order_payment.amount_cny, 'CNY').to_euro
+      self.amount_eur = Currency.new(amount_cny, 'CNY').to_euro.amount
     elsif origin_currency == 'EUR'
-      self.amount_cny = Currency.new(order_payment.amount_eur, 'EUR').to_cny
+      self.amount_cny = Currency.new(amount_eur, 'EUR').to_cny.amount
     end
     save
   end

@@ -11,7 +11,8 @@ class WirecardPaymentChecker < BaseService
     @request_id     = args[:request_id]
     @amount         = args[:requested_amount]
     @currency       = args[:requested_amount_currency]
-    @order_payment  = OrderPayment.where({merchant_id: merchant_id, request_id: request_id, amount: amount, currency: currency}).first
+    @order_payment  = OrderPayment.where({merchant_id: merchant_id, request_id: request_id}).first
+    #TODO: make protection here in case we can't recover this transaction
   end
 
   def update_order_payment!

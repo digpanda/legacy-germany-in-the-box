@@ -21,13 +21,14 @@ class WirecardPaymentRefunder < BaseService
 
   def create_refund_order_payment(response)
     OrderPayment.new.tap do |order_payment|
-      order_payment.merchant_id    = order_payment.merchant_id
-      order_payment.request_id     = response[:"request-id"]
-      order_payment.transaction_id = response[:"transaction-id"]
+      order_payment.merchant_id      = order_payment.merchant_id
+      order_payment.request_id       = response[:"request-id"]
+      order_payment.transaction_id   = response[:"transaction-id"]
       order_payment.transaction_type = REFUND_TRANSACTION_TYPE
-      order_payment.user_id        = order_payment.user_id
-      order_payment.order_id       = order_payment.order_id
-      order_payment.payment_method = order_payment.payment_method
+      order_payment.user_id          = order_payment.user_id
+      binding.pry
+      order_payment.order_id         = order_payment.order_id
+      order_payment.payment_method   = order_payment.payment_method
       order_payment.save
       # we dynamically set the amount via API response and set the other one via currency exchange
       order_payment.save_origin_amount!(response[:"requested-amount"][:"value"], response[:"requested-amount"][:"currency"])
