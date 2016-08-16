@@ -40,5 +40,9 @@ class OrderPayment
     save
   end
 
+  def refund?
+    transaction_type == "refund"
+  end
+
 
 end
