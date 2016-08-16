@@ -1,15 +1,16 @@
 class BaseService
 
-  def return_with(state, data=nil)
+  Response = Struct.new(:success?, :data, :error)
+  Error = Class.new(StandardError)
+
+  def return_with(state, details=nil)
     case state
     when :error
-      Response.new(false, data)
+      Response.new(false, nil, details)
     when :success
-      Response.new(true, data)
+      Response.new(true, details)
     else throw "Bad state."
     end
   end
 
 end
-
-Response = Struct.new(:success?, :data)

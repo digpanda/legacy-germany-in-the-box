@@ -16,6 +16,7 @@ module Wirecard
       def response
         @response ||= begin
           response = Utils::Request.new(query, :post, body).response
+          # TODO a better response manager with data we need put into a well done class
           if response.nil?
             raise Wirecard::ElasticApi::Error, "The refund was not processed"
           else

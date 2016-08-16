@@ -13,11 +13,11 @@ class Admin::OrderPaymentsController < ApplicationController
   end
 
   def refund
-    refund = WirecardPaymentRefunder.new(order_payment).perform!
+    refund = WirecardPaymentRefunder.new(order_payment).perform
     if refund.success?
-      flash[:success] = "Refund was successfull"
+      flash[:success] = "Refund was successful"
     else
-      flash[:error] = refund.message
+      flash[:error] = refund.error.message
     end
     redirect_to navigation.back(1)
   end
