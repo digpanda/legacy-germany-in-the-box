@@ -44,4 +44,4 @@ reloaddb
 ////////////////////////////////////////////////////////////////
 ################ Image bucket Tool ################
 https://github.com/qiniu/qshell
-#we need automate the image clone from qiniu prod bucket -> qiniu stagging bucket
+#we partially automated the image clone from qiniu prod bucket -> qiniu stagging bucket, pls use the qiniu_job.sh (based on qshell)
