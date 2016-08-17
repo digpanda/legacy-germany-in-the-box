@@ -38,6 +38,7 @@ class WirecardCheckout < BaseService
       {
         :merchant_id  => CONFIG_HPP[:demo][:merchant_id],
         :secret_key   => CONFIG_HPP[:demo][:secret_key],
+        # :payment_method => :upop # we can force a payment method here
       }
     end
   end
