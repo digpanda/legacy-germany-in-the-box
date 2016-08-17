@@ -10,36 +10,30 @@ module Wirecard
     ACCEPTED_PAYMENT_METHODS = [:upop, :creditcard]
 
     attr_reader :user,
+                :order
                 :merchant_id,
                 :secret_key,
-                :hosted_payment_url,
                 :amount,
+                :request_id,
                 :currency,
-                :request_id,
-                :order_number,
-                :request_id,
+                :hosted_payment_url,
                 :default_redirect_url,
-                :payment_method,
-                :order
 
 
     def initialize(user, args={})
 
       raise Error, "Wrong arguments given" unless valid_args?(args)
+      raise Error, "Payment method not authorized" unless ACCEPTED_PAYMENT_METHODS.include?(payment_method)
 
       @user                 = user
       @order                = args[:order]
       @merchant_id          = args[:merchant_id]
       @secret_key           = args[:secret_key]
 
-      @payment_method       = (args[:payment_method] || CONFIG[:default_payment_method]).to_sym
-      raise Error, "Payment method not authorized" unless ACCEPTED_PAYMENT_METHODS.include?(payment_method)
-
-      @currency             = DEFAULT_PAYMENT_CURRENCY
-      @order_number         = "#{order.id}"
-      @amount               = order.decorate.total_sum_in_yuan.to_f.round(2) # this round is necessary
-
       @request_id           = SecureRandom.uuid
+      @amount               = order.decorate.total_sum_in_yuan.to_f.round(2) # this round is necessary
+      @currency             = DEFAULT_PAYMENT_CURRENCY
+
       @hosted_payment_url   = CONFIG[:hosted_payment_url]
       @default_redirect_url = CONFIG[:default_redirect_url]
 
@@ -51,12 +45,20 @@ module Wirecard
 
     private
 
+    def currency
+      DEFAULT_PAYMENT_CURRENCY
+    end
+
+    def payment_method
+      @payment_method ||= (args[:payment_method] || CONFIG[:default_payment_method]).to_sym
+    end
+
     def transaction_datas
       {
         :requested_amount          => amount,
         :requested_amount_currency => DEFAULT_PAYMENT_CURRENCY,
         :locale                    => DEFAULT_PAYMENT_LANGUAGE,
-        :order_number              => order_number,
+        :order_number              => "#{order.id}",
         :order_detail              => order.desc,
         :form_url                  => hosted_payment_url,
         :request_id                => request_id,
