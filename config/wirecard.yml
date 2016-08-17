@@ -22,7 +22,7 @@ defaults: &defaults
     fail_redirect_path : http://local.dev:3000/orders/checkout_fail
     psp_name: demo
     default_payment_method: creditcard # upop
-    transaction_type: debit
+    transaction_type: purchase #debit
 
 local:
   <<: *defaults

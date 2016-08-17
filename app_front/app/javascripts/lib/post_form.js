@@ -2,7 +2,7 @@
  * PostForm Class
  */
 var PostForm = {
-  
+
     /**
      * Generate and create a form
      */
@@ -15,7 +15,7 @@ var PostForm = {
       var form = document.createElement("form");
       form.setAttribute("method", method);
       form.setAttribute("action", path);
-      form.setAttribute("target", target); 
+      form.setAttribute("target", target);
 
       for (var key in params) {
 
@@ -36,8 +36,8 @@ var PostForm = {
       //console.log(form);
       form.submit();
 
-    } 
-    
+    }
+
 }
 
 module.exports = PostForm;

@@ -10,25 +10,29 @@ module Wirecard
     ACCEPTED_PAYMENT_METHODS = [:upop, :creditcard]
 
     attr_reader :user,
-                :order
+                :order,
                 :merchant_id,
                 :secret_key,
                 :amount,
                 :request_id,
                 :currency,
+                :payment_method,
                 :hosted_payment_url,
-                :default_redirect_url,
+                :default_redirect_url
 
 
-    def initialize(user, args={})
+    def initialize(user, order, credentials={})
 
-      raise Error, "Wrong arguments given" unless valid_args?(args)
+      raise Error, "Wrong arguments given" unless valid_credentials?(credentials)
+
+      @payment_method ||= (credentials[:payment_method] || CONFIG[:default_payment_method]).to_sym
       raise Error, "Payment method not authorized" unless ACCEPTED_PAYMENT_METHODS.include?(payment_method)
 
       @user                 = user
-      @order                = args[:order]
-      @merchant_id          = args[:merchant_id]
-      @secret_key           = args[:secret_key]
+      @order                = order
+
+      @merchant_id          = credentials[:merchant_id]
+      @secret_key           = credentials[:secret_key]
 
       @request_id           = SecureRandom.uuid
       @amount               = order.decorate.total_sum_in_yuan.to_f.round(2) # this round is necessary
@@ -45,13 +49,6 @@ module Wirecard
 
     private
 
-    def currency
-      DEFAULT_PAYMENT_CURRENCY
-    end
-
-    def payment_method
-      @payment_method ||= (args[:payment_method] || CONFIG[:default_payment_method]).to_sym
-    end
 
     def transaction_datas
       {
@@ -145,8 +142,9 @@ module Wirecard
       @request_time_stamp ||= Time.now.utc.strftime("%Y%m%d%H%M%S")
     end
 
-    def valid_args?(args)
-      args[:order] && args[:merchant_id] && args[:secret_key]
+    def valid_credentials?(credentials)
+      credentials[:merchant_id] && credentials[:secret_key]
+      # TODO: could check from model in prod (to be sure)
     end
 
   end
