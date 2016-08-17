@@ -1,8 +1,15 @@
 defaults: &defaults
   elastic_api:
-    username: engine.digpanda
-    password: x3Zyr8MaY7TDxj6F
-    engine_url: # https://sandbox-engine.thesolution.com/engine/rest/
+
+    username: 70000-APITEST-AP
+    password: qD2wzQ_hrc!8
+    engine_url: https://test-api.wirecard.com/engine/rest
+    # TEST MERCHANT_ID MASTER : 8bc8ed6d-81a8-43be-bd7b-75b008f89fa6
+    # TEST MERCHANT_ID SEPA : 4c901196-eff7-411e-82a3-5ef6b6860d64
+
+    # username: engine.digpanda
+    # password: x3Zyr8MaY7TDxj6F
+    # engine_url: https://sandbox-engine.thesolution.com/engine/rest/
   merchants:
     reseller_id: nba81H29Gba
     package_id: digpandapaket1
@@ -16,13 +23,31 @@ defaults: &defaults
       - declined
       - terminated
   hpp:
-    hosted_payment_url: https://sandbox-engine.thesolution.com/engine/hpp/ # http://api-test.wirecard.com/engine/hpp/ #
-    default_redirect_url: http://local.dev:3000/orders/checkout_success # https://sandbox-engine.thesolution.com/shop/complete.jsp
+    # VISA / MASTERCARD
+    demo: # needed in development and testing only
+     merchant_id: 9105bb4f-ae68-4768-9c3b-3eda968f57ea # TODO: should be merchant_account_id everywhere to norm wirecard
+     secret_key: d1efed51-4cb9-46a5-ba7b-0fdc87a66544
+
+    hosted_payment_url: https://api-test.wirecard.com/engine/hpp/
+    default_redirect_url: http://local.dev:3000/orders/checkout_success
     success_redirect_url : http://local.dev:3000/orders/checkout_success
     fail_redirect_path : http://local.dev:3000/orders/checkout_fail
-    psp_name: demo
-    default_payment_method: upop #creditcard # upop
-    transaction_type: debit #purchase #debit
+    psp_name: wirecard
+    default_payment_method: creditcard
+    transaction_type: purchase
+
+    # UNION PAY :
+    #demo: # needed in development and testing only
+    #  merchant_id: dfc3a296-3faf-4a1d-a075-f72f1b67dd2a
+    #  secret_key: 6cbfa34e-91a7-421a-8dde-069fc0f5e0b8
+
+    #hosted_payment_url: https://sandbox-engine.thesolution.com/engine/hpp/ # http://api-test.wirecard.com/engine/hpp/ #
+    #default_redirect_url: http://local.dev:3000/orders/checkout_success # https://sandbox-engine.thesolution.com/shop/complete.jsp
+    #success_redirect_url : http://local.dev:3000/orders/checkout_success
+    #fail_redirect_path : http://local.dev:3000/orders/checkout_fail
+    #psp_name: demo
+    #default_payment_method: upop #creditcard # upop
+    #transaction_type: debit #purchase #debit
 
 local:
   <<: *defaults

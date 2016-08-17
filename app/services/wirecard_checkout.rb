@@ -2,9 +2,8 @@
 # those data will be used for the checkout process and, for instance UnionPay.
 class WirecardCheckout < BaseService
 
-  DEBIT_TRANSACTION_TYPE         = "debit"
-  DEMO_UOP_MERCHANT_ID           = 'dfc3a296-3faf-4a1d-a075-f72f1b67dd2a' # UNION PAY
-  DEMO_UOP_WIRECARD_EE_SECRET_CC = '6cbfa34e-91a7-421a-8dde-069fc0f5e0b8' # UNION PAY
+  DEBIT_TRANSACTION_TYPE = "debit"
+  CONFIG_HPP             = Rails.configuration.wirecard[:hpp]
 
   # :merchant_id => cart.submerchant_id <- original
   # :secret_key  => order.shop.wirecard_ee_secret_cc <- original
@@ -25,6 +24,10 @@ class WirecardCheckout < BaseService
 
   private
 
+  # /!\ WARNING
+  # always access the credentials throughout this class via this method
+  # it changes depending on the environment and
+  # has consequences on the database itself
   def merchant_credentials
     if Rails.env.production?
       {
@@ -33,8 +36,8 @@ class WirecardCheckout < BaseService
       }
     else
       {
-        :merchant_id  => DEMO_UOP_MERCHANT_ID,
-        :secret_key   => DEMO_UOP_WIRECARD_EE_SECRET_CC,
+        :merchant_id  => CONFIG_HPP[:demo][:merchant_id],
+        :secret_key   => CONFIG_HPP[:demo][:secret_key],
       }
     end
   end

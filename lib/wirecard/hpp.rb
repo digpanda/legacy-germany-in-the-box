@@ -49,20 +49,19 @@ module Wirecard
 
     private
 
-
     def transaction_datas
       {
+        :request_id                => request_id,
+        :request_time_stamp        => request_time_stamp,
+        :merchant_account_id       => merchant_id,
+        :transaction_type          => CONFIG[:transaction_type],
         :requested_amount          => amount,
         :requested_amount_currency => DEFAULT_PAYMENT_CURRENCY,
         :locale                    => DEFAULT_PAYMENT_LANGUAGE,
         :order_number              => "#{order.id}",
         :order_detail              => order.desc,
         :form_url                  => hosted_payment_url,
-        :request_id                => request_id,
-        :request_time_stamp        => request_time_stamp,
-        :merchant_account_id       => merchant_id,
         :payment_method            => payment_method,
-        :transaction_type          => CONFIG[:transaction_type],
         :request_signature         => digital_signature,
         :psp_name                  => CONFIG[:psp_name],
       }
