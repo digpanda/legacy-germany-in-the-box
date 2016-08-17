@@ -25,8 +25,8 @@ module Wirecard
 
       raise Error, "Wrong arguments given" unless valid_credentials?(credentials)
 
-      @payment_method ||= (credentials[:payment_method] || CONFIG[:default_payment_method]).to_sym
-      raise Error, "Payment method not authorized" unless ACCEPTED_PAYMENT_METHODS.include?(payment_method)
+      @payment_method ||= nil #(credentials[:payment_method] || CONFIG[:default_payment_method]).to_sym
+      #raise Error, "Payment method not authorized" unless ACCEPTED_PAYMENT_METHODS.include?(payment_method)
 
       @user                 = user
       @order                = order

@@ -20,6 +20,7 @@ module Wirecard
         end
 
         def raw_response
+          # TODO: manage HTTP error here (and email send to admin ?)
           @raw_response ||= Net::HTTP.start(request_uri.host, request_uri.port,
                                 :use_ssl     => https_request?,
                                 :verify_mode => OpenSSL::SSL::VERIFY_NONE) { |connection| dispatch!(connection) }
