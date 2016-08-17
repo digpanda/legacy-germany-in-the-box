@@ -1,15 +1,14 @@
 #!/bin/bash
 # Bash Menu Script Example
 
-#PROD_BACKUP="-backup"
-PROD_BACKUP="-replica" #swap to this only when manual updating prod replica bucket! Normally you do not use it! use task1:1-4/task2:1-2 for making prod->replica. 
+PROD_BACKUP="-backup"
+#PROD_BACKUP="-replica" #swap to this only when manual updating prod replica bucket! Normally you do not use it! use task1:1-4/task2:1-2 for making prod->replica. 
 STAGING_BACKUP="-backup"
 FIRST_COLUMN="_1st_col"
 
 ############### Qiniu Bucket names ###############
 BUCKET_NAME_PROD=carrierwave-laiyinn-prod
 BUCKET_NAME_PROD_BACKUP=$BUCKET_NAME_PROD$PROD_BACKUP
-#BUCKET_NAME_PROD_BACKUP=$BUCKET_NAME_PROD$PROD_BACKUP #swap to this only when manual updating prod replica bucket! Normally you do not use it! use task1:1-4/task2:1-2 for making prod->replica. 
 
 BUCKET_NAME_STAGING=carrierwave-laiyinn-staging
 BUCKET_NAME_STAGING_BACKUP=$BUCKET_NAME_STAGING$STAGING_BACKUP
