@@ -33,6 +33,7 @@ class WirecardCheckout < BaseService
       {
         :merchant_id  => order.shop.wirecard_ee_user_cc, # or maybe `merchant_id` ? TODO: check it out with Timo
         :secret_key   => order.shop.wirecard_ee_secret_cc,
+        # :payment_method => :creditcard # we can force a payment method here
       }
     else
       {

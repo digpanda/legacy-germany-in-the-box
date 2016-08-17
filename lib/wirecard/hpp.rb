@@ -45,7 +45,11 @@ module Wirecard
     end
 
     def payment_method
-      credentials[:payment_method].to_sym || CONFIG[:default_payment_method]
+      if credentials[:payment_method]
+        credentials[:payment_method].to_sym
+      elsif CONFIG[:default_payment_method]
+        CONFIG[:default_payment_method].to_sym
+      end
     end
 
     def hosted_payment_datas
@@ -150,7 +154,7 @@ module Wirecard
     def digital_signature
       Digest::SHA256.hexdigest(signature_hash.values.join.squish)
     end
-    
+
     def request_time_stamp
       @request_time_stamp ||= Time.now.utc.strftime("%Y%m%d%H%M%S")
     end

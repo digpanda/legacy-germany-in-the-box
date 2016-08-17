@@ -31,7 +31,7 @@ defaults: &defaults
     hosted_payment_url: https://sandbox-engine.thesolution.com/engine/hpp/
     psp_name: demo
     default_payment_method: upop # let empty to make no choice
-    transaction_type: purchase # debit
+    transaction_type: debit # only upop
 
     # UNIVERSAL
     default_redirect_url: http://local.dev:3000/orders/checkout_success
