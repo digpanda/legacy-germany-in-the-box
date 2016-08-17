@@ -28,7 +28,15 @@ class Order
   scope :nonempty,    ->  {  where( :order_items_count.gt => 0 ) }
   scope :bought,      ->  { self.in( :status => [:paid, :custom_checking, :shipped] ) }
 
-  validates :status,                  presence: true , inclusion: {in: [:new, :paying, :paid, :custom_checking, :shipped]}
+  # :new -> didn't try to pay
+  # :paying -> is inside the process of payment
+  # :payment_unverified -> we couldn't verify the payment (contact admin)
+  # :payment_failed -> the payment failed (make another try when we got the functionality)
+  # :paid -> it was paid
+  # :custom_checkable -> the order has been handled by the shopkeeper (TODO: make the new system for it)
+  # :custom_checking -> the order is being checked by the customs
+  # :shipped -> the shopkepper has sent the package
+  validates :status, presence: true , inclusion: {in: [:new, :paying, :payment_unverified, :payment_failed, :paid, :custom_checking, :shipped]}
 
   summarizes sku_list: :order_items, by: :quantity
 

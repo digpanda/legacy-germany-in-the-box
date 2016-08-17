@@ -10,7 +10,7 @@ class OrderDecorator < Draper::Decorator
   end
 
   def is_bought?
-    not [:new, :paying].include?(self.status)
+    not [:new, :paying, :payment_failed, :payment_unverified].include?(self.status)
   end
 
   def total_price

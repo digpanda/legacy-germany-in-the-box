@@ -4,7 +4,7 @@ module Wirecard
 
       include Wirecard::ElasticApi::Base
 
-      VALID_STATUS_LIST = [:success, :in_progress, :failed, :corrupted]
+      VALID_STATUS_LIST = [:success, :failed]
 
       attr_reader :merchant_id, :transaction_id
 
@@ -29,12 +29,22 @@ module Wirecard
       end
 
       def status
-        raise Wirecard::ElasticApi::Error, "The status of the transaction is not correct" unless valid_status?
         symbolize_data(raw_status)
       end
 
       def type
         symbolize_data(raw_type)
+      end
+
+      # check the response consistency and raise possible issues
+      # if the response got errors, otherwise it continues to process
+      def raise_response_issues
+        if valid_status?
+          raise Wirecard::ElasticApi::Error, "The status of the transaction is not correct"
+        elsif negative_response?
+          raise Wirecard::ElasticApi::Error, "The transaction could not be verified"
+        end
+        self
       end
 
       private
@@ -45,6 +55,10 @@ module Wirecard
 
       def valid_status?
         VALID_STATUS_LIST.include? symbolize_data(raw_status)
+      end
+
+      def negative_response?
+        raw_status == "failed" && response[:payment][:statuses][:status].first[:severity] == "error"
       end
 
       def raw_type
