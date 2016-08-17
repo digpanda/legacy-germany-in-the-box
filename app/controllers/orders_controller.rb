@@ -189,7 +189,7 @@ class OrdersController < ApplicationController
 
       begin
 
-        @wirecard = PrepareOrderForWirecardCheckout.new(current_user, order).checkout!
+        @checkout = WirecardCheckout.new(current_user, order).checkout!
 
       rescue Wirecard::Base::Error => exception
 

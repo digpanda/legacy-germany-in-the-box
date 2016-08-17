@@ -2,7 +2,7 @@
 # Prepare an order to be transmitted to the WireCard server
 # Those data will be used for the checkout process and, for instance UnionPay.
 #
-class PrepareOrderForWirecardCheckout < BaseService
+class WirecardCheckout < BaseService
 
   DEBIT_TRANSACTION_TYPE = "debit"
   DEMO_UOP_MERCHANT_ID = 'dfc3a296-3faf-4a1d-a075-f72f1b67dd2a' # UNION PAY
@@ -19,7 +19,7 @@ class PrepareOrderForWirecardCheckout < BaseService
   end
 
   def checkout!
-    make_order_payment!(user, order, wirecard_hpp)
+    create_order_payment!(user, order, wirecard_hpp)
     wirecard_hpp
   end
 
@@ -43,7 +43,7 @@ class PrepareOrderForWirecardCheckout < BaseService
     @wirecard_hpp ||= Wirecard::Hpp.new(user, order, shopkeeper_credentials)
   end
 
-  def make_order_payment!(wirecard_hpp)
+  def create_order_payment!(wirecard_hpp)
     OrderPayment.new.tap do |order_payment|
       order_payment.merchant_id    = merchant_id
       order_payment.request_id     = wirecard_hpp.request_id
