@@ -44,6 +44,10 @@ module Wirecard
       @amount ||= order.decorate.total_sum_in_yuan.to_f.round(2)
     end
 
+    def transaction_type
+      CONFIG[:transaction_types][payment_method] || CONFIG[:transaction_types][:default]
+    end
+
     def payment_method
       if credentials[:payment_method]
         credentials[:payment_method].to_sym

@@ -2,8 +2,7 @@
 # those data will be used for the checkout process and, for instance UnionPay.
 class WirecardCheckout < BaseService
 
-  DEBIT_TRANSACTION_TYPE = "debit"
-  CONFIG_HPP             = Rails.configuration.wirecard[:hpp]
+  CONFIG_HPP = Rails.configuration.wirecard[:hpp]
 
   # :merchant_id => cart.submerchant_id <- original
   # :secret_key  => order.shop.wirecard_ee_secret_cc <- original
@@ -56,7 +55,7 @@ class WirecardCheckout < BaseService
       :merchant_id      => merchant_credentials[:merchant_id],
       :order_id         => order.id,
       :payment_method   => hpp.payment_method,
-      :transaction_type => DEBIT_TRANSACTION_TYPE,
+      :transaction_type => hpp.transaction_type,
       :status           => :scheduled,
       :user_id          => user.id
     }).first || OrderPayment.new
@@ -69,8 +68,8 @@ class WirecardCheckout < BaseService
       order_payment.user_id          = user.id # shouldn't be duplicated, but mongoid added it automatically ...
       order_payment.order_id         = order.id
       order_payment.status           = :scheduled
-      order_payment.transaction_type = DEBIT_TRANSACTION_TYPE
       order_payment.payment_method   = hpp.payment_method
+      order_payment.transaction_type = hpp.transaction_type
       order_payment.save
       # conversion is done on the fly while creating the payment
       # we store it because it change over time.
