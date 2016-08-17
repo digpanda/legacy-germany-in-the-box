@@ -1,7 +1,5 @@
-#
-# Prepare an order to be transmitted to the WireCard server
-# Those data will be used for the checkout process and, for instance UnionPay.
-#
+# prepare an order to be transmitted to the WireCard server
+# those data will be used for the checkout process and, for instance UnionPay.
 class WirecardCheckout < BaseService
 
   DEBIT_TRANSACTION_TYPE = "debit"
@@ -18,14 +16,16 @@ class WirecardCheckout < BaseService
     @order = order
   end
 
+  # we access the Wirecard::Hpp library and generate the needed datas
+  # make a new OrderPayment linked to the request which we will manipulate later on
   def checkout!
-    create_order_payment!(user, order, wirecard_hpp)
-    wirecard_hpp
+    prepare_order_payment!
+    hpp
   end
 
   private
 
-  def shopkeeper_credentials
+  def merchant_credentials
     if Rails.env.production?
       {
         :merchant_id  => order.shop.wirecard_ee_user_cc, # or maybe `merchant_id` ? TODO: check it out with Timo
@@ -39,24 +39,25 @@ class WirecardCheckout < BaseService
     end
   end
 
-  def wirecard_hpp
-    @wirecard_hpp ||= Wirecard::Hpp.new(user, order, shopkeeper_credentials)
+  def hpp
+    @hpp ||= Wirecard::Hpp.new(user, order, merchant_credentials)
   end
 
-  def create_order_payment!(wirecard_hpp)
+  # TODO: instead of create a new order payment, we should recover the old one in case we do it many times
+  def prepare_order_payment!
     OrderPayment.new.tap do |order_payment|
       order_payment.merchant_id    = merchant_id
-      order_payment.request_id     = wirecard_hpp.request_id
+      order_payment.request_id     = hpp.request_id
       order_payment.user_id        = user.id # shouldn't be duplicated, but mongoid added it automatically ...
       order_payment.order_id       = order.id
       order_payment.transaction_type = DEBIT_TRANSACTION_TYPE
       # conversion is done on the fly while creating the payment
       # we store it because it change over time.
       # best would be to update it automatically when the order is paid
-      order_payment.payment_method = wirecard_hpp.payment_method
+      order_payment.payment_method = hpp.payment_method
       order_payment.save
       # we dynamically set the amount via API response and set the other one via currency exchange
-      order_payment.save_origin_amount!(wirecard_hpp.amount, wirecard_hpp.currency)
+      order_payment.save_origin_amount!(hpp.amount, hpp.currency)
       order_payment.refresh_currency_amounts!
     end
   end
