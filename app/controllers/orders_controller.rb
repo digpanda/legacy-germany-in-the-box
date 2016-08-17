@@ -204,7 +204,7 @@ class OrdersController < ApplicationController
     else
 
       flash[:error] = order.errors.full_messages.join(', ')
-      redirect_to root_path
+      redirect_to navigation.back(1)
       return
 
     end

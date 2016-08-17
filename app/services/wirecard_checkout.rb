@@ -54,7 +54,7 @@ class WirecardCheckout < BaseService
       :transaction_type => DEBIT_TRANSACTION_TYPE,
       :status           => :scheduled,
       :user_id          => user.id
-    }).first || OrderPayment.new
+    }).first || OrderPayment.new
   end
 
   def prepare_order_payment!
