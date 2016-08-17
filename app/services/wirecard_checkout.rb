@@ -19,6 +19,7 @@ class WirecardCheckout < BaseService
   # we access the Wirecard::Hpp library and generate the needed datas
   # make a new OrderPayment linked to the request which we will manipulate later on
   def checkout!
+    binding.pry
     prepare_order_payment!
     hpp
   end
@@ -46,7 +47,7 @@ class WirecardCheckout < BaseService
   # TODO: instead of create a new order payment, we should recover the old one in case we do it many times
   def prepare_order_payment!
     OrderPayment.new.tap do |order_payment|
-      order_payment.merchant_id    = merchant_id
+      order_payment.merchant_id    = merchant_credentials[:merchant_id]
       order_payment.request_id     = hpp.request_id
       order_payment.user_id        = user.id # shouldn't be duplicated, but mongoid added it automatically ...
       order_payment.order_id       = order.id
