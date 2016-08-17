@@ -12,11 +12,11 @@ class WirecardPaymentChecker < BaseService
     @amount         = args[:requested_amount]
     @currency       = args[:requested_amount_currency]
     @order_payment  = OrderPayment.where({merchant_id: merchant_id, request_id: request_id}).first
-    #TODO: make protection here in case we can't recover this transaction
+    # TODO : make protection here in case we can't recover this transaction
   end
 
   def update_order_payment!
-    checking_order_payment!
+    unverified_order_payment!
     order_payment.status = remote_transaction.status
     order_payment.save
     # this was already set at some point in the system
@@ -25,8 +25,8 @@ class WirecardPaymentChecker < BaseService
     order_payment.refresh_currency_amounts!
   end
 
-  def checking_order_payment!
-    order_payment.status         = :checking
+  def unverified_order_payment!
+    order_payment.status         = :unverified
     order_payment.transaction_id = transaction_id
     order_payment.save
   end
@@ -34,11 +34,12 @@ class WirecardPaymentChecker < BaseService
   private
 
   def remote_transaction
-    Wirecard::ElasticApi.transaction(merchant_id, transaction_id).request!
+    Wirecard::ElasticApi.transaction(merchant_id, transaction_id).raise_response_issues
   rescue Wirecard::ElasticApi::Error
-    # TODO UPDATE : we don't actually use it anymore
-    # We should raise an error or something ? be careful about what to do here
-    Struct.new(:status).new(:corrupted)
+    # the status will stay unverified because a problem occured
+    # while trying to access the API
+    # NOTE : we could make a better system than this
+    Struct.new(:status).new(:unverified)
   end
 
 end

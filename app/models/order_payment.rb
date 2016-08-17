@@ -7,7 +7,7 @@ class OrderPayment
   field :transaction_type, type: String
   field :payment_method , type: String
   field :merchant_id    , type: String
-  field :status         , type: Symbol, default: :scheduled
+  field :status         , type: Symbol, default: :scheduled # [:scheduled, :unverified, :success, :failed]
   field :amount_cny         , type: Float, default: 0.0
   field :amount_eur         , type: Float, default: 0.0
   field :origin_currency     , type: String

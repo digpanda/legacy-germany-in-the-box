@@ -217,10 +217,17 @@ class OrdersController < ApplicationController
     order = order_payment.order
     shop = order.shop
 
+    # if it's a success, it paid
+    # we freeze the status to unverified for security reason
+    # and the payment status freeze on checking
     if order_payment.status == :success
       order.status = :paid
-      order.save!
+    elsif order_payment.status == :unverified
+      order.status = :payment_unverified
+    elsif order_payment.status == :failed
+      order.status = :payment_failed
     end
+    order.save!
 
     begin
       shipping = BorderGuru.get_shipping(
@@ -236,9 +243,6 @@ class OrdersController < ApplicationController
     end
 
     if shipping.success?
-
-      order.status = :paid
-      order.save!
 
       order.order_items.each do |oi|
         sku = oi.sku
