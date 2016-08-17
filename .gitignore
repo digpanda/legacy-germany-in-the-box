@@ -4,6 +4,8 @@ Dockerfile
 *.rbc
 capybara-*.html
 .rspec
+.tags
+.tags_swap
 /log
 /tmp
 /db/*.sqlite3
