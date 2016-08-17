@@ -36,11 +36,9 @@ class WirecardPaymentChecker < BaseService
   def remote_transaction
     Wirecard::ElasticApi.transaction(merchant_id, transaction_id).request!
   rescue Wirecard::ElasticApi::Error
-    # could be improved : "debit" is a very manual way to go.
-    # we may prefer to the `transaction_type` before the transaction to avoid this kind of static data
     # TODO UPDATE : we don't actually use it anymore
     # We should raise an error or something ? be careful about what to do here
-    Struct.new(:status, :type).new(:corrupted, "debit")
+    Struct.new(:status).new(:corrupted)
   end
 
 end
