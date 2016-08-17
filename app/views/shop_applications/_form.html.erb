@@ -1,4 +1,4 @@
-<!-- THIS WILL BE REPLACED AT SOME POINT BUT WE KEEP IT FOR THE ADMIN PART STILL 
+<!-- THIS WILL BE REPLACED AT SOME POINT BUT WE KEEP IT FOR THE ADMIN PART STILL
 THERE IS A CLEAN TEMPORARY COPY PASTE IN GUEST/SHOP_APPLICATIONS
 -->
   <div class="row">
@@ -205,7 +205,7 @@ THERE IS A CLEAN TEMPORARY COPY PASTE IN GUEST/SHOP_APPLICATIONS
                 <div class="col-md-6">
                   <div class="form-group">
                     <%= f.label :tel, I18n.t(:contact_tel, scope: :edit_shop_application), :class => 'required' %>
-                    <%= f.text_field :tel, :class => 'form-control', :maxLength => Rails.configuration.max_tiny_text_length, :required => true, :pattern => I18n.t(:tel, scope: :validation, locale: :de), :placeholder => '+49(89)123456' %>
+                    <%= f.text_field :tel, :class => 'form-control', :maxLength => Rails.configuration.max_tiny_text_length, :required => true, :placeholder => '+49(89)123456' %>
                     <div class="help-block with-errors"></div>
                   </div>
                 </div>
