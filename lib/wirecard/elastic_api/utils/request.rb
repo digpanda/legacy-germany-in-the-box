@@ -19,6 +19,10 @@ module Wirecard
           @body = body
         end
 
+        # if anything happen here it won't process further (TODO)
+        # for requests to check valid transaction, the status will stay on `checking`
+        # an email should be send to the admin and the payment should be checked manually
+        # via a method on the admin dashboard
         def raw_response
           # TODO: manage HTTP error here (and email send to admin ?)
           @raw_response ||= Net::HTTP.start(request_uri.host, request_uri.port,

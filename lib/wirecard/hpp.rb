@@ -7,7 +7,7 @@ module Wirecard
     CONFIG = BASE_CONFIG[:hpp]
     DEFAULT_PAYMENT_LANGUAGE = 'en'
     DEFAULT_PAYMENT_CURRENCY = 'CNY'
-    ACCEPTED_PAYMENT_METHODS = [:upop, :creditcard]
+    ACCEPTED_PAYMENT_METHODS = [nil, :upop, :creditcard]
 
     attr_reader :user,
                 :order,
