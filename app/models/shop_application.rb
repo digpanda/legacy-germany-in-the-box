@@ -47,7 +47,7 @@ class ShopApplication
 
   def gen_code
     crypt = ActiveSupport::MessageEncryptor.new(Rails.application.secrets.secret_key_base)
-    code = crypt.encrypt_and_sign(email)
+    self.code = crypt.encrypt_and_sign(email)
   end
 
   index({code: 1},          {unique: false, name: :idx_shop_application_code})
