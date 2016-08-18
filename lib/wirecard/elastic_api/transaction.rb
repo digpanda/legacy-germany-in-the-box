@@ -65,29 +65,43 @@ module Wirecard
       end
 
       def negative_response?
-        raw_status == "failed" && response[:payment][:statuses][:status].first[:severity] == "error"
+        raw_status == "failed" && raw_request_status == "error"
       end
 
       # we should put it into another class showing the formatted response
       # could be recursive and nice via metaprogramming
+      def raw_request_status
+        try_fetch(response, :payment, :statuses, :status, 0, :severity)
+      end
+
       def raw_currency
-        response&.[](:payment)&.[](:"requested-amount")&.[](:currency)
+        try_fetch(response, :payment, :"requested-amount", :currency)
       end
 
       def raw_amount
-        response&.[](:payment)&.[](:"requested-amount")&.[](:value)
+        try_fetch(response, :payment, :"requested-amount", :value)
       end
 
       def raw_type
-        response&.[](:payment)&.[](:"transaction-type")
+        try_fetch(response, :payment, :"transaction-type")
       end
 
       def raw_status
-        response&.[](:payment)&.[](:"transaction-state")
+        try_fetch(response, :payment, :"transaction-state")
       end
 
       def raw_method
-        response&.[](:payment)&.[](:"payment-methods")&.[](:"payment-method")&.first&.[](:name)
+        try_fetch(response, :payment, :"payment-methods", :"payment-method", 0, :name)
+      end
+
+      # cool method to try to go through a hash, could be improved.
+      def try_fetch(source, *elements)
+        position = source
+        elements.each do |element|
+          position = position&.[](element)
+          return position if position.nil?
+        end
+        position
       end
 
     end
