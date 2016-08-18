@@ -45,7 +45,7 @@ module Wirecard
       # by returning the object itself
       def raise_response_issues
         raise Wirecard::ElasticApi::Error, "The status of the transaction is not correct" unless valid_status?
-        raise Wirecard::ElasticApi::Error, "The transaction could not be verified" if negative_response?
+        raise Wirecard::ElasticApi::Error, "The transaction could not be verified. API access refused." if negative_response?
         self
       end
 
@@ -72,7 +72,7 @@ module Wirecard
       end
 
       def raw_method
-        binding.pry
+        # TODO try to recover the payment mehtod is no issues is raised
       end
 
     end

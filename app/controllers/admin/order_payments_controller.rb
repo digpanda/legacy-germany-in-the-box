@@ -13,22 +13,28 @@ class Admin::OrderPaymentsController < ApplicationController
   end
 
   def refund
-    if payment_refunder.perform.success?
+    refunder = payment_refunder
+    if refunder.perform.success?
       flash[:success] = "Refund was successful"
     else
-      flash[:error] = payment_refunder.error.message
+      flash[:error] = refunder.error
     end
     redirect_to navigation.back(1)
   end
 
+  # check the order payment through the API and refresh the order matching with it
+  # /!\ WARNING : right now the checker first set the payment status to `:unverified`
+  # before to call the API which means if we can't establish API communication it can
+  # put back the status of the transaction as `:unverified` while it's paid. 
   def check
-    if payment_checker.success?
-      flash[:success] = "The order was refreshed and seem to be paid."
-    else
-      flash[:error] = "The order was refreshed but don't seem to be paid. (#{checker.data})"
-    end
+    checker = payment_checker.update_order_payment!
     # it doesn't matter if the API call failed, the order has to be systematically up to date with the order payment in case it's not already sent
     order_payment.order.refresh_order_from!(order_payment)
+    if checker.success?
+      flash[:success] = "The order was refreshed and seem to be paid."
+    else
+      flash[:error] = "The order was refreshed but don't seem to be paid. (#{checker.error})"
+    end
     redirect_to navigation.back(1)
   end
 
@@ -46,10 +52,11 @@ class Admin::OrderPaymentsController < ApplicationController
   def payment_refunder
     @payment_refunder ||= WirecardPaymentRefunder.new(order_payment)
   end
+
   # make API call which refresh order payment
   # TODO : could be refactored to communicate the model directly ? Yes
   def payment_checker
-    @payment_checker ||= WirecardPaymentChecker.new({:transaction_id => order_payment.transaction_id, :merchant_account_id => order_payment.merchant_id, :request_id => order_payment.request_id}).update_order_payment!
+    @payment_checker ||= WirecardPaymentChecker.new({:transaction_id => order_payment.transaction_id, :merchant_account_id => order_payment.merchant_id, :request_id => order_payment.request_id})
   end
 
   def set_order_payment
