@@ -20,6 +20,7 @@ class WirecardPaymentRefunder < BaseService
   private
 
   def response
+    # TODO : refactor and don't consider the raw amount but use the ResponseFormat class to handle this
     @response ||= Wirecard::ElasticApi.refund(order_payment.merchant_id, order_payment.transaction_id).response.raw
   rescue Wirecard::ElasticApi::Error
     raise Error, "A problem occured while trying to refund this transaction"
