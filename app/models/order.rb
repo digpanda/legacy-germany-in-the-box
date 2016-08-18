@@ -47,7 +47,7 @@ class Order
   # refresh order status from payment
   # if the order is still not send / paid, it checks
   # if there's any change from the payment model
-  def refresh_order_from!(order_payment)
+  def refresh_status_from!(order_payment)
     unless is_bought?
       if order_payment.status == :success
         self.status = :paid

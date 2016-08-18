@@ -11,7 +11,7 @@ module BorderGuru
 
   class << self
 
-    def calculate_quote(cart:, shop:, country_of_destination:, currency:) 
+    def calculate_quote(cart:, shop:, country_of_destination:, currency:)
       make_request(:QuoteApi,
         cart: cart,
         shop: shop,
@@ -35,6 +35,7 @@ module BorderGuru
         order.border_guru_shipment_id = response.shipment_identifier
         order.border_guru_link_tracking = response.link_tracking
         order.border_guru_link_payment = response.link_payment
+        order.save
       end
     end
 
@@ -80,4 +81,3 @@ module BorderGuru
   end
 
 end
-

@@ -25,11 +25,11 @@ class Admin::OrderPaymentsController < ApplicationController
   # check the order payment through the API and refresh the order matching with it
   # /!\ WARNING : right now the checker first set the payment status to `:unverified`
   # before to call the API which means if we can't establish API communication it can
-  # put back the status of the transaction as `:unverified` while it's paid. 
+  # put back the status of the transaction as `:unverified` while it's paid.
   def check
     checker = payment_checker.update_order_payment!
     # it doesn't matter if the API call failed, the order has to be systematically up to date with the order payment in case it's not already sent
-    order_payment.order.refresh_order_from!(order_payment)
+    order_payment.order.refresh_status_from!(order_payment)
     if checker.success?
       flash[:success] = "The order was refreshed and seem to be paid."
     else

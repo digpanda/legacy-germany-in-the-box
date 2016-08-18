@@ -28,6 +28,7 @@ module Wirecard
         @query ||= "merchants/#{merchant_id}/payments/#{transaction_id}"
       end
 
+      # we should put it into another class showing the formatted response
       def status
         symbolize_data(raw_status)
       end
@@ -38,6 +39,10 @@ module Wirecard
 
       def method
         symbolize_data(raw_method)
+      end
+
+      def amount
+        raw_amount
       end
 
       # check the response consistency and raise possible issues
@@ -63,6 +68,16 @@ module Wirecard
         raw_status == "failed" && response[:payment][:statuses][:status].first[:severity] == "error"
       end
 
+      # we should put it into another class showing the formatted response
+      # could be recursive and nice via metaprogramming
+      def raw_currency
+        response&.[](:payment)&.[](:"requested-amount")&.[](:currency)
+      end
+
+      def raw_amount
+        response&.[](:payment)&.[](:"requested-amount")&.[](:value)
+      end
+
       def raw_type
         response&.[](:payment)&.[](:"transaction-type")
       end
@@ -72,7 +87,7 @@ module Wirecard
       end
 
       def raw_method
-        # TODO try to recover the payment mehtod is no issues is raised
+        response&.[](:payment)&.[](:"payment-methods")&.[](:"payment-method")&.first&.[](:name)
       end
 
     end

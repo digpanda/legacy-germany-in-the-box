@@ -326,6 +326,8 @@ de:
     delete_ok: Die Beantragung wurde erfolgreich entfernt.
     delete_application_message: Die Beantragungen löschen?
     remove: Entfernen
+  shop_application:
+    application_submitted: Ihre Anmeldung wurde eingereicht
   edit_shop_application:
     shop_application: Verkäufer werden
     shop_application_ok: Herzlichen Glückwunsch! Ihr erster Schritt nach China ist getan! Ihre Anfrage befindet sich jetzt in Bearbeitung. Wir werden uns bald mit Ihnen in Verbindung setzten.

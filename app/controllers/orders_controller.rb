@@ -219,7 +219,7 @@ class OrdersController < ApplicationController
     # if it's a success, it paid
     # we freeze the status to unverified for security reason
     # and the payment status freeze on checking
-    refresh_order_from!(order_payment)
+    order.refresh_status_from!(order_payment)
 
     begin
       shipping = BorderGuru.get_shipping(
@@ -231,7 +231,8 @@ class OrdersController < ApplicationController
     rescue Net::ReadTimeout => e
       logger.fatal "Failed to connect to Borderguru: #{e}"
       flash[:error] = I18n.t(:borderguru_unreachable_at_shipping, scope: :checkout)
-      redirect_to root_path and return
+      redirect_to root_path
+      return
     end
 
     if shipping.success?

@@ -2,6 +2,8 @@ module Wirecard
   class ElasticApi
     class Refund
 
+      REQUEST_IP_ADDRESS = "127.0.0.1"
+
       include Wirecard::ElasticApi::Base
 
       attr_reader :merchant_id, :parent_transaction_id, :request_id
@@ -43,22 +45,22 @@ module Wirecard
           :merchant_account_id => merchant_id,
           :request_id => request_id,
           :parent_transaction_id => parent_transaction_id,
-          :ip_address => "127.0.0.1"
+          :ip_address => REQUEST_IP_ADDRESS
         }.merge(remote_params)
       end
 
       # get some body params from the remote elastic API itslef rather than our database (safer)
       def remote_params
         {
-          :currency => remote_origin_transaction[:payment][:"requested-amount"][:currency],
-          :amount => remote_origin_transaction[:payment][:"requested-amount"][:value],
-          :payment_method => remote_origin_transaction[:payment][:"payment-methods"][:"payment-method"].first[:name]
+          :currency => origin_transaction.currency,
+          :amount => origin_transaction.amount,
+          :payment_method => origin_transaction.method # potential bug because it's a symbol ?
         }
       end
 
       # original transaction of the refund, requested remotely to elastic API
-      def remote_origin_transaction
-        @remote_origin_transaction ||= Wirecard::ElasticApi::Transaction.new(merchant_id, parent_transaction_id).response
+      def origin_transaction
+        @origin_transaction ||= Wirecard::ElasticApi::Transaction.new(merchant_id, parent_transaction_id)
       end
 
     end

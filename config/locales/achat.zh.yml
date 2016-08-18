@@ -322,6 +322,8 @@ zh-CN:
     create_ok: 收藏夹创建成功
     create_ko: 收藏夹创建失败
     create_with_existing_name: 已经存在同名的收藏夹
+  shop_application:
+    application_submitted: 您的注册申请已提交
   edit_shop_applications:
     operations: 操作
     delete_ok: 开店申请成功删除。
