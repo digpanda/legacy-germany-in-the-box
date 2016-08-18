@@ -22,6 +22,21 @@ class Admin::OrderPaymentsController < ApplicationController
     redirect_to navigation.back(1)
   end
 
+  def check
+    # make API call which refresh order payment
+    # TODO : could be refactored to communicate the model directly ? Yes
+    WirecardPaymentChecker.new({:transaction_id => order_payment.transaction_id, :merchant_account_id => order_payment.merchant_id, :request_id => order_payment.request_id}).update_order_payment!
+    # refresh the order status with the method in the model
+    order_payment.order.refresh_order_from!(order_payment)
+
+    if order_payment.status == :paid
+      flash[:success] = "The order was refreshed and seem to be paid."
+    else
+      flash[:error] = "The order was refreshed but don't seem to be paid. This could be cause by an API call failure."
+    end
+    redirect_to navigation.back(1)
+  end
+
   def destroy
     if order_payment.destroy
       flash[:success] = I18n.t(:payment_removed, scope: :notice)

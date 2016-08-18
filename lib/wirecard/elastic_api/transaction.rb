@@ -36,14 +36,16 @@ module Wirecard
         symbolize_data(raw_type)
       end
 
+      def method
+        symbolize_data(raw_method)
+      end
+
       # check the response consistency and raise possible issues
       # if the response got errors, otherwise it continues to process
+      # by returning the object itself
       def raise_response_issues
-        if valid_status?
-          raise Wirecard::ElasticApi::Error, "The status of the transaction is not correct"
-        elsif negative_response?
-          raise Wirecard::ElasticApi::Error, "The transaction could not be verified"
-        end
+        raise Wirecard::ElasticApi::Error, "The status of the transaction is not correct" unless valid_status?
+        raise Wirecard::ElasticApi::Error, "The transaction could not be verified" if negative_response?
         self
       end
 
@@ -67,6 +69,10 @@ module Wirecard
 
       def raw_status
         response&.[](:payment)&.[](:"transaction-state")
+      end
+
+      def raw_method
+        binding.pry
       end
 
     end

@@ -216,18 +216,10 @@ class OrdersController < ApplicationController
     order_payment = OrderPayment.where(:request_id => params[:request_id]).first
     order = order_payment.order
     shop = order.shop
-
     # if it's a success, it paid
     # we freeze the status to unverified for security reason
     # and the payment status freeze on checking
-    if order_payment.status == :success
-      order.status = :paid
-    elsif order_payment.status == :unverified
-      order.status = :payment_unverified
-    elsif order_payment.status == :failed
-      order.status = :payment_failed
-    end
-    order.save!
+    refresh_order_from!(order_payment)
 
     begin
       shipping = BorderGuru.get_shipping(

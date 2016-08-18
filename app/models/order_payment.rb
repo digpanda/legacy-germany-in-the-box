@@ -44,5 +44,9 @@ class OrderPayment
     transaction_type == "refund"
   end
 
+  def unverified?
+    status == :unverified
+  end
+
 
 end

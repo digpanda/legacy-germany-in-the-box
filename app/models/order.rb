@@ -36,13 +36,34 @@ class Order
   # :custom_checkable -> the order has been handled by the shopkeeper (TODO: make the new system for it)
   # :custom_checking -> the order is being checked by the customs
   # :shipped -> the shopkepper has sent the package
-  validates :status, presence: true , inclusion: {in: [:new, :paying, :payment_unverified, :payment_failed, :paid, :custom_checking, :shipped]}
+  validates :status, presence: true , inclusion: {in: [:new, :paying, :payment_unverified, :payment_failed, :paid, :custom_checkable, :custom_checking, :shipped]}
 
   summarizes sku_list: :order_items, by: :quantity
 
   index({user: 1},  {unique: false,   name: :idx_order_user,   sparse: true})
 
   after_save :make_bill_id, :update_paid_at
+
+  # refresh order status from payment
+  # if the order is still not send / paid, it checks
+  # if there's any change from the payment model
+  def refresh_order_from!(order_payment)
+    unless is_bought?
+      if order_payment.status == :success
+        self.status = :paid
+      elsif order_payment.status == :unverified
+        self.status = :payment_unverified
+      elsif order_payment.status == :failed
+        self.status = :payment_failed
+      end
+      self.save!
+    end
+  end
+
+  # we considered as bought any status after paid
+  def is_bought?
+    [:paid, :custom_checkable, :custom_checking, :shipped].include?(status)
+  end
 
   private
 
