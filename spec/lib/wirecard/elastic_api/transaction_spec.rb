@@ -8,7 +8,7 @@ describe Wirecard::ElasticApi::Transaction do
     it 'should return a response hash' do
 
       VCR.use_cassette("wirecard-api-transaction", :record => :new_episodes) do
-        response = Wirecard::ElasticApi::Transaction.new(TEST_MERCHANT, TEST_TRANSACTION).response
+        response = Wirecard::ElasticApi::Transaction.new(TEST_MERCHANT, TEST_TRANSACTION).response.raw
         assert_instance_of Hash, response
         expect(response[:payment][:"transaction-state"]).to eql("success")
       end
@@ -18,7 +18,7 @@ describe Wirecard::ElasticApi::Transaction do
     it 'should not find the transaction and raise an error' do
 
       VCR.use_cassette("wirecard-api-transaction", :record => :new_episodes) do
-        expect{Wirecard::ElasticApi::Transaction.new(TEST_MERCHANT, "fake-transaction").response}.to raise_error(Wirecard::ElasticApi::Error)
+        expect{Wirecard::ElasticApi::Transaction.new(TEST_MERCHANT, "fake-transaction").response.raw}.to raise_error(Wirecard::ElasticApi::Error)
       end
 
     end

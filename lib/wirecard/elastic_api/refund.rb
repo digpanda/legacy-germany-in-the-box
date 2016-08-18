@@ -15,19 +15,19 @@ module Wirecard
       end
 
       # process the query response
+      # return the response format
       def response
         @response ||= begin
           response = Utils::Request.new(query, :post, body).response
-          # TODO a better response manager with data we need put into a well done class
           if response.nil?
             raise Wirecard::ElasticApi::Error, "The refund was not processed"
           else
-            response
+            Utils::ResponseFormat.new(self, response)
           end
         end
       end
 
-      # this will be merged with the engine URL and turned into a query with a body
+      # query URI to the API
       def query
         @query ||= "paymentmethods"
       end
@@ -52,15 +52,15 @@ module Wirecard
       # get some body params from the remote elastic API itslef rather than our database (safer)
       def remote_params
         {
-          :currency => origin_transaction.currency,
-          :amount => origin_transaction.amount,
-          :payment_method => origin_transaction.method # potential bug because it's a symbol ?
+          :currency => parent_transaction.response.currency,
+          :amount => parent_transaction.response.amount,
+          :payment_method => parent_transaction.response.payment_method # potential bug because it's a symbol ?
         }
       end
 
       # original transaction of the refund, requested remotely to elastic API
-      def origin_transaction
-        @origin_transaction ||= Wirecard::ElasticApi::Transaction.new(merchant_id, parent_transaction_id)
+      def parent_transaction
+        @parent_transaction ||= Wirecard::ElasticApi::Transaction.new(merchant_id, parent_transaction_id)
       end
 
     end

@@ -13,11 +13,11 @@ class Admin::OrderPaymentsController < ApplicationController
   end
 
   def refund
-    refunder = payment_refunder
-    if refunder.perform.success?
+    refund = payment_refunder.perform
+    if refund.success?
       flash[:success] = "Refund was successful"
     else
-      flash[:error] = refunder.error
+      flash[:error] = "#{refund.error}"
     end
     redirect_to navigation.back(1)
   end
