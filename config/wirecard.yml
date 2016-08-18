@@ -2,8 +2,8 @@ defaults: &defaults
   elastic_api:
 
     # CREDIT CARD :
-    username: 70000-APITEST-AP
-    password: qD2wzQ_hrc!8
+    username: 70000-APILUHN-CARD
+    password: 8mhwavKVb91T
     engine_url: https://api-test.wirecard.com/engine/rest/
 
     # UNIONPAY :
@@ -15,7 +15,6 @@ defaults: &defaults
 
     # CREDITCARD :
     demo: # needed in development and testing only
-     #merchant_id: 8bc8ed6d-81a8-43be-bd7b-75b008f89fa6
      merchant_id: 9105bb4f-ae68-4768-9c3b-3eda968f57ea
      secret_key: d1efed51-4cb9-46a5-ba7b-0fdc87a66544
 

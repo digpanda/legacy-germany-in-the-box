@@ -68,7 +68,7 @@ module Wirecard
         raw_status == "failed" && raw_request_status == "error"
       end
 
-      # we should put it into another class showing the formatted response
+      # TODO : we should put it into another class showing the formatted response
       # could be recursive and nice via metaprogramming
       def raw_request_status
         try_fetch(response, :payment, :statuses, :status, 0, :severity)
