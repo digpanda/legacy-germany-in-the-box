@@ -10,20 +10,19 @@ class WirecardPaymentChecker < BaseService
     @merchant_id    = args[:merchant_account_id]
     @request_id     = args[:request_id]
     @order_payment  = OrderPayment.where({merchant_id: merchant_id, request_id: request_id}).first
-    # TODO : make protection here in case we can't recover this transaction
+    # TODO : make protection here in case we can't recover this transaction -> or we could call the service directly via the order_payment which makes things way lighter
   end
 
   def update_order_payment!
     unverified_order_payment!
-    if remote_transaction # a problem occurred ... we should actually tell the admin and put back the info to the controller
-      order_payment.status = remote_transaction.status
-      order_payment.payment_method = remote_transaction.method
-      order_payment.save
-    end
+    refresh_order_payment_from_api! # this part can raise errors easily
     # this was already set at some point in the system
     # we just update the payment in case the currency conversion
     # would different between the order and payment time
     order_payment.refresh_currency_amounts!
+    return_with(:success)
+  rescue Wirecard::ElasticApi::Error => exception
+    return_with(:error, exception)
   end
 
   def unverified_order_payment!
@@ -34,10 +33,16 @@ class WirecardPaymentChecker < BaseService
 
   private
 
+  # get the remote transaction and raise error in case the connection isn't correctly established
+  # or the transaction has basically failed
   def remote_transaction
     @remote_transaction ||= Wirecard::ElasticApi.transaction(merchant_id, transaction_id).raise_response_issues
-  rescue Wirecard::ElasticApi::Error
-    false # instead of this we could return_with after the raise or something like that so we have the exact reason put to the controller
+  end
+
+  def refresh_order_payment_from_api!
+    order_payment.status = remote_transaction.status
+    order_payment.payment_method = remote_transaction.method
+    order_payment.save
   end
 
 end

@@ -13,27 +13,22 @@ class Admin::OrderPaymentsController < ApplicationController
   end
 
   def refund
-    refund = WirecardPaymentRefunder.new(order_payment).perform
-    if refund.success?
+    if payment_refunder.perform.success?
       flash[:success] = "Refund was successful"
     else
-      flash[:error] = refund.error.message
+      flash[:error] = payment_refunder.error.message
     end
     redirect_to navigation.back(1)
   end
 
   def check
-    # make API call which refresh order payment
-    # TODO : could be refactored to communicate the model directly ? Yes
-    WirecardPaymentChecker.new({:transaction_id => order_payment.transaction_id, :merchant_account_id => order_payment.merchant_id, :request_id => order_payment.request_id}).update_order_payment!
-    # refresh the order status with the method in the model
-    order_payment.order.refresh_order_from!(order_payment)
-
-    if order_payment.status == :paid
+    if payment_checker.success?
       flash[:success] = "The order was refreshed and seem to be paid."
     else
-      flash[:error] = "The order was refreshed but don't seem to be paid. This could be cause by an API call failure."
+      flash[:error] = "The order was refreshed but don't seem to be paid. (#{checker.data})"
     end
+    # it doesn't matter if the API call failed, the order has to be systematically up to date with the order payment in case it's not already sent
+    order_payment.order.refresh_order_from!(order_payment)
     redirect_to navigation.back(1)
   end
 
@@ -47,6 +42,15 @@ class Admin::OrderPaymentsController < ApplicationController
   end
 
   private
+
+  def payment_refunder
+    @payment_refunder ||= WirecardPaymentRefunder.new(order_payment)
+  end
+  # make API call which refresh order payment
+  # TODO : could be refactored to communicate the model directly ? Yes
+  def payment_checker
+    @payment_checker ||= WirecardPaymentChecker.new({:transaction_id => order_payment.transaction_id, :merchant_account_id => order_payment.merchant_id, :request_id => order_payment.request_id}).update_order_payment!
+  end
 
   def set_order_payment
     @order_payment = OrderPayment.find(params[:id] || params[:order_payment_id])
