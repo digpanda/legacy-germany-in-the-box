@@ -28,29 +28,12 @@ module Wirecard
           end
         end
 
-        def raw_request_status
-          cycle(:payment, :statuses, :status, 0, :severity)
-        end
-
-        def raw_currency
-          cycle(:payment, :"requested-amount", :currency)
-        end
-
-        def raw_amount
-          cycle(:payment, :"requested-amount", :value)
-        end
-
-        def raw_type
-          cycle(:payment, :"transaction-type")
-        end
-
-        def raw_status
-          cycle(:payment, :"transaction-state")
-        end
-
-        def raw_payment_method
-          cycle(:payment, :"payment-methods", :"payment-method", 0, :name)
-        end
+        def raw_request_status; cycle(:payment, :statuses, :status, 0, :severity); end
+        def raw_currency; cycle(:payment, :"requested-amount", :currency); end
+        def raw_amount; cycle(:payment, :"requested-amount", :value); end
+        def raw_type; cycle(:payment, :"transaction-type"); end
+        def raw_status; cycle(:payment, :"transaction-state"); end
+        def raw_payment_method; cycle(:payment, :"payment-methods", :"payment-method", 0, :name); end
 
         private
 
