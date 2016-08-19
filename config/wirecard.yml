@@ -77,6 +77,11 @@ staging:
     default_payment_method: creditcard # let empty to make no choice
 
     # UNIVERSAL
+    transaction_types:
+      upop: debit
+      creditcard: purchase
+      default: purchase
+      
     default_redirect_url: https://www.germanyintheboxdev/com/orders/checkout_success
     success_redirect_url : https://www.germanyintheboxdev/com/orders/checkout_success
     fail_redirect_path : https://www.germanyintheboxdev/com/orders/checkout_fail
