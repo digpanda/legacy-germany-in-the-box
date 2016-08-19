@@ -136,8 +136,7 @@ module Wirecard
     end
 
     def customer_ip_address
-      "127.0.0.1"
-      #user.last_sign_in_ip || "127.0.0.1"
+      user.last_sign_in_ip || "127.0.0.1"
     end
 
     def cancel_redirect_url
