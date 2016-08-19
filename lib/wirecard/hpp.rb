@@ -140,19 +140,19 @@ module Wirecard
     end
 
     def cancel_redirect_url
-      "#{default_redirect_url}?state=cancel&"
+      CONFIG[:cancel_redirect_url]
     end
 
     def processing_redirect_url
-      "#{default_redirect_url}?state=processing&"
+      CONFIG[:processing_redirect_url]
     end
 
     def success_redirect_url
-      CONFIG[:success_redirect_url] || "#{default_redirect_url}?state=success&"
+      CONFIG[:success_redirect_url]
     end
 
     def fail_redirect_url
-      CONFIG[:fail_redirect_url] || "#{default_redirect_url}?state=failed&"
+      CONFIG[:fail_redirect_url]
     end
 
     def digital_signature

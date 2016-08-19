@@ -38,8 +38,10 @@ defaults: &defaults
       default: purchase
 
     default_redirect_url: http://local.dev:3000/orders/checkout_success
+    cancel_redirect_url: http://local.dev:3000/orders/checkout_cancel
+    processing_redirect_url: http://local.dev:3000/orders/checkout_processing
     success_redirect_url : http://local.dev:3000/orders/checkout_success
-    fail_redirect_path : http://local.dev:3000/orders/checkout_fail
+    fail_redirect_url: http://local.dev:3000/orders/checkout_fail
 
   merchants:
     reseller_id: nba81H29Gba
@@ -82,9 +84,11 @@ staging:
       creditcard: purchase
       default: purchase
 
-    default_redirect_url: https://www.germanyintheboxdev/com/orders/checkout_success
-    success_redirect_url : https://www.germanyintheboxdev/com/orders/checkout_success
-    fail_redirect_path : https://www.germanyintheboxdev/com/orders/checkout_fail
+    default_redirect_url: https://www.germanyintheboxdev.com/orders/checkout_success
+    cancel_redirect_url: https://www.germanyintheboxdev.com/orders/checkout_cancel
+    processing_redirect_url: https://www.germanyintheboxdev.com/orders/checkout_processing
+    success_redirect_url : https://www.germanyintheboxdev.com/orders/checkout_success
+    fail_redirect_url: https://www.germanyintheboxdev.com/orders/checkout_fail
 
 production:
   <<: *defaults
@@ -104,5 +108,7 @@ production:
       default: purchase
 
     default_redirect_url: https://www.germanyinthebox.com/orders/checkout_success
+    cancel_redirect_url: https://www.germanyinthebox.com/orders/checkout_cancel
+    processing_redirect_url: https://www.germanyinthebox.com/orders/checkout_processing
     success_redirect_url : https://www.germanyinthebox.com/orders/checkout_success
-    fail_redirect_path : https://www.germanyinthebox.com/orders/checkout_fail
+    fail_redirect_url: https://www.germanyinthebox.com/orders/checkout_fail

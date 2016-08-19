@@ -68,10 +68,10 @@ concern :shared_shops do
 end
 
 concern :shared_orders do
+
   match :add_product,               via: [:patch],        action: :add_product,             as: :add_product_to,              :on => :collection
   match :checkout,                  via: [:post],         action: :checkout,                as: :checkout,                    :on => :collection
-  match :checkout_success,          via: [:post],         action: :checkout_success,        as: :checkout_success,            :on => :collection
-  match :checkout_fail,             via: [:post],         action: :checkout_fail,           as: :checkout_fail,               :on => :collection
+
   match :manage_cart,               via: [:get],          action: :manage_cart,             as: :manage_cart,                 :on => :collection
   match 'set_address/:shop_id/',          via: [:patch, :get],  action: :set_address,             as: :set_address,           :on => :collection
   match :continue,                        via: [:get],    action: :continue,                as: :continue,                    :on => :member

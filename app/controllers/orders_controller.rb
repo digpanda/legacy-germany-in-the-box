@@ -11,7 +11,8 @@ class OrdersController < ApplicationController
 
   before_action :authenticate_user!, :except => [:manage_cart, :add_product]
   before_action :set_order, :only => [:show, :destroy, :continue, :download_label]
-  protect_from_forgery :except => [:checkout_success, :checkout_fail]
+
+  protect_from_forgery :except => [:checkout_success, :checkout_fail, :checkout_cancel, :checkout_processing]
 
   layout :custom_sublayout, only: [:show_orders]
 
@@ -264,7 +265,16 @@ class OrdersController < ApplicationController
     end
   end
 
-  def checkout_fail
+  # make the user return to the previous page
+  def checkout_cancel
+    redirect_to navigation.back(1)
+    return
+  end
+
+  def checkout_processing # TODO: manage that better, with front-end javascript loop until the payment is a success or something
+  end
+
+  def checkout_fail # TODO: manage that better, right now it doesn't work
     checkout_callback
   end
 
