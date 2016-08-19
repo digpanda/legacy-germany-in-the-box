@@ -54,9 +54,9 @@ class Admin::OrderPaymentsController < ApplicationController
   end
 
   # make API call which refresh order payment
-  # TODO : could be refactored to communicate the model directly ? Yes
+  # TODO : could be refactored to communicate the model directly ? Yes -> UPDATE : should recover most of those arguments via the model itself
   def payment_checker
-    @payment_checker ||= WirecardPaymentChecker.new({:transaction_id => order_payment.transaction_id, :merchant_account_id => order_payment.merchant_id, :request_id => order_payment.request_id})
+    @payment_checker ||= WirecardPaymentChecker.new({:transaction_id => order_payment.transaction_id, :merchant_account_id => order_payment.merchant_id, :request_id => order_payment.request_id}.merge({:order_payment => order_payment}))
   end
 
   def set_order_payment

@@ -9,8 +9,7 @@ class WirecardPaymentChecker < BaseService
     @transaction_id = args[:transaction_id]
     @merchant_id    = args[:merchant_account_id]
     @request_id     = args[:request_id]
-    @order_payment  = OrderPayment.where({merchant_id: merchant_id, request_id: request_id}).first
-    # TODO : make protection here in case we can't recover this transaction -> or we could call the service directly via the order_payment which makes things way lighter
+    @order_payment  = args[:order_payment]
   end
 
   def update_order_payment!

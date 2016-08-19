@@ -301,7 +301,16 @@ class OrdersController < ApplicationController
         return
     end
 
-    WirecardPaymentChecker.new(params.symbolize_keys).update_order_payment!
+    # TODO : TO IMPROVE
+    merchant_id = params["merchant_account_id"]
+    request_id = params["request_id"]
+    order_payment = OrderPayment.where({merchant_id: merchant_id, request_id: request_id}).first
+    # TODO : make protection here in case we can't recover this transaction -> or we could call the service directly via the order_payment which makes things way lighter
+    order = order_payment.order
+    order.status = :payment_unverified
+    order.save
+
+    WirecardPaymentChecker.new(params.symbolize_keys.merge({:order_payment => order_payment})).update_order_payment!
 
   end
 
