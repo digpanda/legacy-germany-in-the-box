@@ -267,7 +267,7 @@ class OrdersController < ApplicationController
 
   # make the user return to the previous page
   def checkout_cancel
-    redirect_to navigation.back(1)
+    redirect_to navigation.back(2)
     return
   end
 
