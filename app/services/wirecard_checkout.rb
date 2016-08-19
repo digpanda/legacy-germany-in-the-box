@@ -36,8 +36,8 @@ class WirecardCheckout < BaseService
       }
     else
       {
-        :merchant_id  => CONFIG_HPP[:demo][:merchant_id],
-        :secret_key   => CONFIG_HPP[:demo][:secret_key],
+        :merchant_id  => CONFIG_HPP[:demo][:ee_maid_cc],
+        :secret_key   => CONFIG_HPP[:demo][:ee_secret_cc],
         # :payment_method => :upop # we can force a payment method here
       }
     end

@@ -15,8 +15,8 @@ defaults: &defaults
 
     # CREDITCARD :
     demo: # needed in development and testing only
-     merchant_id: 9105bb4f-ae68-4768-9c3b-3eda968f57ea
-     secret_key: d1efed51-4cb9-46a5-ba7b-0fdc87a66544
+     ee_maid_cc: 9105bb4f-ae68-4768-9c3b-3eda968f57ea
+     ee_secret_cc: d1efed51-4cb9-46a5-ba7b-0fdc87a66544
 
     hosted_payment_url: https://api-test.wirecard.com/engine/hpp/
     psp_name: wirecard
@@ -24,8 +24,8 @@ defaults: &defaults
 
     # UNION PAY :
     # demo: # needed in development and testing only
-    #   merchant_id: dfc3a296-3faf-4a1d-a075-f72f1b67dd2a
-    #   secret_key: 6cbfa34e-91a7-421a-8dde-069fc0f5e0b8
+    #   ee_maid_cc: dfc3a296-3faf-4a1d-a075-f72f1b67dd2a
+    #   ee_secret_cc: 6cbfa34e-91a7-421a-8dde-069fc0f5e0b8
     #
     # hosted_payment_url: https://sandbox-engine.thesolution.com/engine/hpp/
     # psp_name: demo
@@ -69,8 +69,8 @@ staging:
 
     # CREDITCARD :
     demo: # needed in development and testing only
-     merchant_id: 9105bb4f-ae68-4768-9c3b-3eda968f57ea
-     secret_key: d1efed51-4cb9-46a5-ba7b-0fdc87a66544
+     ee_maid_cc: 9105bb4f-ae68-4768-9c3b-3eda968f57ea
+     ee_secret_cc: d1efed51-4cb9-46a5-ba7b-0fdc87a66544
 
     hosted_payment_url: https://api-test.wirecard.com/engine/hpp/
     psp_name: wirecard
