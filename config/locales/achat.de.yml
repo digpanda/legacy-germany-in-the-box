@@ -261,6 +261,8 @@ de:
     name: Name
     pid: Personalnummer
   edit_order:
+    payment_unverified: Nicht geprüft
+    payment_failed: Zahlung fehlgeschlagen
     no_order: keine Aufträge vorhanden
     id: Auftragsnummer
     status: Status

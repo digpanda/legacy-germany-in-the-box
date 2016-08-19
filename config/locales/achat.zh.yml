@@ -261,6 +261,8 @@ zh-CN:
     name: 姓名
     pid: 身份证号
   edit_order:
+    payment_unverified: 付款尚未验证
+    payment_failed: 付款失败
     no_order: 您还没有任何订单
     id: 订单号
     status: 状态
