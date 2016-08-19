@@ -101,13 +101,13 @@ resources :orders, only: [:destroy, :show] do
 
   concerns :shared_orders
 
-  match :checkout_success, via: [:get], action: :checkout_success, as: :checkout_success, :on => :collection
-  match :checkout_fail, via: [:get], action: :checkout_fail, as: :checkout_fail, :on => :collection
+  match :checkout_success, via: [:post], action: :checkout_success, as: :checkout_success, :on => :collection
+  match :checkout_fail, via: [:post], action: :checkout_fail, as: :checkout_fail, :on => :collection
   match :checkout_cancel, via: [:get], action: :checkout_cancel, as: :checkout_cancel, :on => :collection
-  match :checkout_processing, via: [:get], action: :checkout_processing, as: :checkout_processing, :on => :collection
+  match :checkout_processing, via: [:post], action: :checkout_processing, as: :checkout_processing, :on => :collection
 
   match :download_label,  via: [:get],  action: :download_label,  as: :download_label,  :on => :member
-  
+
 end
 
 resources :categories, only: [:show, :index] do

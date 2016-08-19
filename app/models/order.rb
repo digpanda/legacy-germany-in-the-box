@@ -59,6 +59,7 @@ class Order
       end
       self.save!
     end
+    binding.pry
   end
 
   # we considered as bought any status after paid

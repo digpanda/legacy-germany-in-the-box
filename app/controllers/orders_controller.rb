@@ -305,7 +305,7 @@ class OrdersController < ApplicationController
 
     # if it's a success, it paid
     # we freeze the status to unverified for security reason
-    # and the payment status freeze on checking
+    # and the payment status freeze on unverified
     order_payment.order.refresh_status_from!(order_payment)
 
   end
