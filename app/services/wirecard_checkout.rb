@@ -30,7 +30,7 @@ class WirecardCheckout < BaseService
   def merchant_credentials
     if Rails.env.production?
       {
-        :merchant_id  => order.shop.wircard_ee_maid_cc,
+        :merchant_id  => order.shop.wirecard_ee_maid_cc,
         :secret_key   => order.shop.wirecard_ee_secret_cc,
         # :payment_method => :creditcard # we can force a payment method here
       }
