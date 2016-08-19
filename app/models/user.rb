@@ -31,14 +31,14 @@ class User
   has_and_belongs_to_many :liked_collections, :class_name => 'Collection',  :inverse_of => :users
 
   scope :without_detail, -> { only(:_id, :pic, :country, :username) }
-  
+
   has_one  :dCollection,  class_name: 'Collection', :inverse_of => :user
 
   has_many :oCollections, class_name: 'Collection', :inverse_of => :user
   has_many :orders,                                 :inverse_of => :user,   :dependent => :restrict
   has_many :addresses,                              :inverse_of => :user
   has_many :notifications
-  
+
   has_one  :shop,         :inverse_of => :shopkeeper,   :dependent => :restrict
 
   genderize (:gender)
@@ -112,6 +112,10 @@ class User
       user.password_confirmation = auth.info.unionid[0,8]
       user.wechat_unionid = auth.info.unionid
     end
+  end
+
+  def valid_email?
+    !self.email.include?("@wechat.com")
   end
 
   def password_required?
