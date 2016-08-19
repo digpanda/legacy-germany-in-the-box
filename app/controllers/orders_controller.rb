@@ -130,7 +130,6 @@ class OrdersController < ApplicationController
 
     # Small hack to be improved - Laurent
     if params[:valid_email]
-      binding.pry
       if User.where(email: params[:valid_email]).first
         flash[:error] = "This email is currently used by someone else."
         redirect_to navigation.back(1)
