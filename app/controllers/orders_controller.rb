@@ -229,10 +229,6 @@ class OrdersController < ApplicationController
     order_payment = OrderPayment.where(:request_id => params[:request_id]).first
     order = order_payment.order
     shop = order.shop
-    # if it's a success, it paid
-    # we freeze the status to unverified for security reason
-    # and the payment status freeze on checking
-    order.refresh_status_from!(order_payment)
 
     begin
       shipping = BorderGuru.get_shipping(
@@ -305,12 +301,12 @@ class OrdersController < ApplicationController
     merchant_id = params["merchant_account_id"]
     request_id = params["request_id"]
     order_payment = OrderPayment.where({merchant_id: merchant_id, request_id: request_id}).first
-    # TODO : make protection here in case we can't recover this transaction -> or we could call the service directly via the order_payment which makes things way lighter
-    order = order_payment.order
-    order.status = :payment_unverified
-    order.save
-
     WirecardPaymentChecker.new(params.symbolize_keys.merge({:order_payment => order_payment})).update_order_payment!
+
+    # if it's a success, it paid
+    # we freeze the status to unverified for security reason
+    # and the payment status freeze on checking
+    order_payment.order.refresh_status_from!(order_payment)
 
   end
 
