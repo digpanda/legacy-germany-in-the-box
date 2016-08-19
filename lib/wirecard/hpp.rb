@@ -5,7 +5,7 @@ module Wirecard
   class Hpp < Base
 
     CONFIG = BASE_CONFIG[:hpp]
-    DEFAULT_PAYMENT_LANGUAGE = 'en'
+    DEFAULT_PAYMENT_LANGUAGE = 'zh-CN'
     DEFAULT_PAYMENT_CURRENCY = 'CNY'
     ACCEPTED_PAYMENT_METHODS = [nil, :upop, :creditcard]
 
