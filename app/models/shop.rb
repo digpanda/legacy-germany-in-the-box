@@ -151,12 +151,6 @@ class Shop
     products.inject(Set.new) {|cs, p| cs = cs + p.category_ids }.map { |c| all_categories[c]}
   end
 
-  # wirecard has specific double quote added
-  # until we BUG FIX this problem we need to use this method
-  def wirecard_merchant_id
-    "\"#{self.merchant_id}\""
-  end
-
   private
 
   def force_wirecard_status

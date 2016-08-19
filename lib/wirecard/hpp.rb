@@ -165,7 +165,6 @@ module Wirecard
 
     def valid_credentials?(credentials)
       credentials[:merchant_id] && credentials[:secret_key]
-      # TODO: could check from model in prod (to be sure)
     end
 
   end

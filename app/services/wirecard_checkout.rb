@@ -30,7 +30,7 @@ class WirecardCheckout < BaseService
   def merchant_credentials
     if Rails.env.production?
       {
-        :merchant_id  => order.shop.wirecard_merchant_id,
+        :merchant_id  => order.shop.merchant_id,
         :secret_key   => order.shop.wirecard_ee_secret_cc,
         # :payment_method => :creditcard # we can force a payment method here
       }
@@ -54,7 +54,7 @@ class WirecardCheckout < BaseService
     @matching_order_payment ||= OrderPayment.where({
       :merchant_id      => merchant_credentials[:merchant_id],
       :order_id         => order.id,
-      :payment_method   => hpp.payment_method, # TODO : refresh the payment_method in the payment_checker afterwards
+      :payment_method   => hpp.payment_method,
       :transaction_type => hpp.transaction_type,
       :status           => :scheduled,
       :user_id          => user.id
