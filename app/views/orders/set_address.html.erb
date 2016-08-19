@@ -41,7 +41,7 @@
   <div class="row">
     <div class="col-md-4 col-md-push-4 col-md-pull-4">
       <div class="row">
-        <% if current_user.valid_email? %>
+        <% unless current_user.valid_email? %>
           <%= text_field_tag :valid_email, nil, :type => 'email', :class => 'form-control', :required => true, :placeholder => "Enter your email address" %>
         <% end %>
       </div>
