@@ -1,7 +1,7 @@
 <payment xmlns="http://www.elastic-payments.com/schema/payment">
   <merchant-account-id>{{MERCHANT_ACCOUNT_ID}}</merchant-account-id>
   <request-id>{{REQUEST_ID}}</request-id>
-  <transaction-type>refund-debit</transaction-type>
+  <transaction-type>{{TRANSACTION_TYPE}}</transaction-type>
   <parent-transaction-id>{{PARENT_TRANSACTION_ID}}</parent-transaction-id>
 
   <requested-amount currency="{{CURRENCY}}">{{AMOUNT}}</requested-amount>

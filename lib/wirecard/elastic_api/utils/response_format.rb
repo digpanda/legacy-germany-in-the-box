@@ -24,23 +24,27 @@ module Wirecard
           to_call = ResponseFormat.to_call(method_symbol)
           if self.respond_to?(to_call)
             response = self.send(to_call)
-            symbolize_data(response) if RESPOND_WITH_SYMBOL.include?(method_symbol)
+            if RESPOND_WITH_SYMBOL.include?(method_symbol)
+              symbolize_data(response)
+            else
+              response
+            end
           end
         end
 
-        def raw_request_status; cycle(:payment, :statuses, :status, 0, :severity); end
-        def raw_currency; cycle(:payment, :"requested-amount", :currency); end
-        def raw_amount; cycle(:payment, :"requested-amount", :value); end
-        def raw_type; cycle(:payment, :"transaction-type"); end
-        def raw_status; cycle(:payment, :"transaction-state"); end
-        def raw_payment_method; cycle(:payment, :"payment-methods", :"payment-method", 0, :name); end
+        def raw_request_status; cycle(:statuses, :status, 0, :severity); end
+        def raw_currency; cycle(:"requested-amount", :currency); end
+        def raw_amount; cycle(:"requested-amount", :value); end
+        def raw_type; cycle(:"transaction-type"); end
+        def raw_status; cycle(:"transaction-state"); end
+        def raw_payment_method; cycle(:"payment-methods", :"payment-method", 0, :name); end
 
         private
 
         # cool method to try to go through a hash, could be WAY improved
         # but who got time for that ?
         def cycle(*elements)
-          position = raw
+          position = raw[:payment] || raw[:payment]&.[](:"merchant-account-id")
           elements.each do |element|
             position = position&.[](element)
             return position if position.nil?

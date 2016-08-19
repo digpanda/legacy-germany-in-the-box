@@ -54,8 +54,17 @@ module Wirecard
         {
           :currency => parent_transaction.response.currency,
           :amount => parent_transaction.response.amount,
-          :payment_method => parent_transaction.response.payment_method # potential bug because it's a symbol ?
+          :payment_method => parent_transaction.response.payment_method, # potential bug because it's a symbol ?
+          :transaction_type => refund_transaction_type
         }
+      end
+
+      def refund_transaction_type
+        if parent_transaction.response.type == :purchase
+          "refund-purchase"
+        elsif parent_transaction.response.type == :debit
+          "refund-debit"
+        end
       end
 
       # original transaction of the refund, requested remotely to elastic API

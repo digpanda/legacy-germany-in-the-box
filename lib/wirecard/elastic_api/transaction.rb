@@ -45,7 +45,6 @@ module Wirecard
       end
 
       def negative_response?
-        binding.pry
         response.status == :failed && response.request_status == :error
       end
 
