@@ -5,7 +5,7 @@ module Wirecard
     module Utils
       class ResponseFormat
 
-        RESPOND_WITH_SYMBOL = [:request_status, :status, :type, :payment_method]
+        SYMBOLS_MAP = [:request_status, :status, :transaction_type, :payment_method]
 
         attr_reader :origin, :raw
 
@@ -24,7 +24,7 @@ module Wirecard
           to_call = ResponseFormat.to_call(method_symbol)
           if self.respond_to?(to_call)
             response = self.send(to_call)
-            if RESPOND_WITH_SYMBOL.include?(method_symbol)
+            if SYMBOLS_MAP.include?(method_symbol)
               symbolize_data(response)
             else
               response
@@ -32,10 +32,11 @@ module Wirecard
           end
         end
 
+        # TODO : improve this to be normed to the API names
         def raw_request_status; cycle(:statuses, :status, 0, :severity); end
         def raw_currency; cycle(:"requested-amount", :currency); end
-        def raw_amount; cycle(:"requested-amount", :value); end
-        def raw_type; cycle(:"transaction-type"); end
+        def raw_requested_amount; cycle(:"requested-amount", :value); end
+        def raw_transaction_type; cycle(:"transaction-type"); end
         def raw_status; cycle(:"transaction-state"); end
         def raw_payment_method; cycle(:"payment-methods", :"payment-method", 0, :name); end
 
@@ -44,7 +45,7 @@ module Wirecard
         # cool method to try to go through a hash, could be WAY improved
         # but who got time for that ?
         def cycle(*elements)
-          position = raw[:payment] || raw[:payment]&.[](:"merchant-account-id")
+          position = raw[:payment] || raw[:payment]&.[](:"merchant-account-id")
           elements.each do |element|
             position = position&.[](element)
             return position if position.nil?
