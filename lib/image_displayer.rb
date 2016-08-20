@@ -15,7 +15,7 @@ class ImageDisplayer
     if Rails.env.development?
       field_url
     else
-      qiniu_url(version)
+      remote_url(version)
     end
   end
 
@@ -23,6 +23,10 @@ class ImageDisplayer
 
   def field_url
     model.send(image_field).url
+  end
+
+  def remote_url(version)
+    qiniu_url(version) unless qiniu_url(version).empty?
   end
 
   def qiniu_url(version)
