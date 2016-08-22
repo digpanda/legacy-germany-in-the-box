@@ -30,7 +30,11 @@ module Wirecard
 
       # query URI to the API
       def query
-        @query ||= "paymentmethods"
+        if parent_transaction.response.transaction_type == :purchase
+          @query ||= "payments"
+        elsif parent_transaction.response.transaction_type == :debit
+          @query ||= "paymentmethods"
+        end
       end
 
       # XML body we will send to the elastic API
