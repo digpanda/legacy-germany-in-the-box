@@ -279,9 +279,8 @@ class OrdersController < ApplicationController
     return
   end
 
-  def checkout_processing # TODO: manage that better, with front-end javascript loop until the payment is a success or something
-    checkout_callback
-
+  def checkout_processing
+    checkout_success
   end
 
   def checkout_fail # TODO: manage that better, right now it doesn't work
@@ -309,7 +308,7 @@ class OrdersController < ApplicationController
     WirecardPaymentChecker.new(params.symbolize_keys.merge({:order_payment => order_payment})).update_order_payment!
     order_payment.status = forced_status unless forced_status.nil? # TODO : improve this
     order_payment.save
-    
+
     # if it's a success, it paid
     # we freeze the status to unverified for security reason
     # and the payment status freeze on unverified
