@@ -26,8 +26,8 @@ class Order
   has_many :order_payments,         :inverse_of => :order,    dependent: :restrict
 
   scope :nonempty,    ->  {  where( :order_items_count.gt => 0 ) }
-  scope :bought,      ->  { self.in( :status => [:paid, :custom_checking, :shipped] ) }
-  scope :bought_or_unverified,      ->  { self.in( :status => [:payment_unverified, :paid, :custom_checking, :shipped] ) }
+  scope :bought,      ->  { self.in( :status => [:paid, :custom_checkable, :custom_checking, :shipped] ) }
+  scope :bought_or_unverified,      ->  { self.in( :status => [:payment_unverified, :paid, :custom_checkable, :custom_checking, :shipped] ) }
 
   # :new -> didn't try to pay
   # :paying -> is inside the process of payment

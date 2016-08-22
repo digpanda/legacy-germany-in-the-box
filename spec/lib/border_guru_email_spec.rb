@@ -18,7 +18,7 @@ describe BorderGuruEmail do
     end
 
     it "shouldn't transmit orders which are still under custom checking" do
-      orders = create_list(:order, 5, :with_custom_checking)
+      orders = create_list(:order, 5, :with_custom_checkable)
       transmit = BorderGuruEmail.transmit_orders(orders)
       expect(transmit).to be_a(BorderGuruEmail::TransmitOrders)
       expect(HermesMailer.deliveries.count).to eq(0) # no email sent

@@ -30,9 +30,9 @@ FactoryGirl.define do
     end
   end
 
-  trait(:with_custom_checking_orders) do
+  trait(:with_custom_checkable_orders) do
     after(:create) do |shop|
-      create_list(:order, 5, :with_custom_checking, shop_id: shop.id)
+      create_list(:order, 5, :with_custom_checkable, shop_id: shop.id)
     end
   end
 
