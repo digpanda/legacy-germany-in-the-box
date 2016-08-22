@@ -38,7 +38,7 @@ class WirecardPaymentRefunder < BaseService
       order_payment_refund.request_id       = response[:payment][:"request-id"]
       order_payment_refund.transaction_id   = response[:payment][:"transaction-id"]
       order_payment_refund.parent_transaction_id = order_payment.transaction_id
-      order_payment_refund.transaction_type = REFUND_MAP[response[:payment][:"transaction-type"]]
+      order_payment_refund.transaction_type = response[:payment][:"transaction-type"]
       order_payment_refund.user_id          = order_payment.user_id
       order_payment_refund.order_id         = order_payment.order_id
       order_payment_refund.payment_method   = order_payment.payment_method
@@ -53,7 +53,7 @@ class WirecardPaymentRefunder < BaseService
     OrderPayment.where({
       merchant_id: order_payment.merchant_id,
       parent_transaction_id: order_payment.transaction_id,
-      transaction_type: REFUND_TRANSACTION_TYPE}).first
+      transaction_type: response[:payment][:"transaction-type"]}).first
   end
 
   def transaction_success?
