@@ -8,7 +8,7 @@ class OrderDecorator < Draper::Decorator
   def clean_desc
     self.desc.squish.downcase.gsub(',', '')
   end
-  
+
   def total_price
     if self.is_bought?
       order_items.inject(0) { |sum, i| sum += i.quantity * i.price }
