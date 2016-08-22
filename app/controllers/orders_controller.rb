@@ -286,12 +286,12 @@ class OrdersController < ApplicationController
 
   def checkout_fail # TODO: manage that better, right now it doesn't work
     flash[:error] = "The payment failed. Please try again."
-    checkout_callback
+    checkout_callback(:failed)
     redirect_to navigation.back(2)
     return
   end
 
-  def checkout_callback
+  def checkout_callback(forced_status=nil)
 
     customer_email = params["email"]
 
@@ -307,7 +307,9 @@ class OrdersController < ApplicationController
     request_id = params["request_id"]
     order_payment = OrderPayment.where({merchant_id: merchant_id, request_id: request_id}).first
     WirecardPaymentChecker.new(params.symbolize_keys.merge({:order_payment => order_payment})).update_order_payment!
-
+    order_payment.status = forced_status unless forced_status.nil? # TODO : improve this
+    order_payment.save
+    
     # if it's a success, it paid
     # we freeze the status to unverified for security reason
     # and the payment status freeze on unverified
