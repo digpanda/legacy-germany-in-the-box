@@ -81,7 +81,7 @@ staging:
     hosted_payment_url: https://api-test.wirecard.com/engine/hpp/
     psp_name: wirecard
     default_payment_method: creditcard # let empty to make no choice
-
+    
     # UNIVERSAL
     transaction_types:
       upop: debit

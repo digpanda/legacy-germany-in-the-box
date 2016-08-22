@@ -150,7 +150,6 @@ class ApplicationController < ActionController::Base
       end
 
     rescue BorderGuru::Error, Net::ReadTimeout => exception
-      binding.pry
       flash[:error] = I18n.t(:shipping_partner_problem, :scope => :notice, :e => exception)
       redirect_to navigation.back(1)
       return
