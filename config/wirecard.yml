@@ -41,10 +41,10 @@ defaults: &defaults
       creditcard: purchase
       default: purchase
 
-    default_redirect_url: http://local.dev:3000/orders/checkout_success
+    default_redirect_url: http://local.dev:3000/orders/checkout_succes
     cancel_redirect_url: http://local.dev:3000/orders/checkout_cancel
     processing_redirect_url: http://local.dev:3000/orders/checkout_processing
-    success_redirect_url : http://local.dev:3000/orders/checkout_success
+    success_redirect_url : http://local.dev:3000/orders/checkout_fail
     fail_redirect_url: http://local.dev:3000/orders/checkout_fail
 
   merchants:

@@ -280,10 +280,15 @@ class OrdersController < ApplicationController
   end
 
   def checkout_processing # TODO: manage that better, with front-end javascript loop until the payment is a success or something
+    checkout_callback
+
   end
 
   def checkout_fail # TODO: manage that better, right now it doesn't work
+    flash[:error] = "The payment failed. Please try again."
     checkout_callback
+    redirect_to navigation.back(2)
+    return
   end
 
   def checkout_callback
