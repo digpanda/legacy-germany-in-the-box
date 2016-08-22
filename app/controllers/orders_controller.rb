@@ -285,9 +285,9 @@ class OrdersController < ApplicationController
 
   def checkout_fail # TODO: manage that better, right now it doesn't work
     flash[:error] = "The payment failed. Please try again."
+    ExceptionNotifier.notify_exception(Wirecard::Base::Error, :env => request.env, :data => {:message => "Something went wrong during the payment."})
     checkout_callback(:failed)
     redirect_to navigation.back(2)
-    return
   end
 
   def checkout_callback(forced_status=nil)
