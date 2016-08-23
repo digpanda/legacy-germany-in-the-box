@@ -229,22 +229,22 @@ class OrdersController < ApplicationController
     order_payment = OrderPayment.where(:request_id => params[:request_id]).first
     order = order_payment.order
     shop = order.shop
+    
+    order.order_items.each do |oi|
+      sku = oi.sku
+      sku.quantity -= oi.quantity unless sku.unlimited
+      sku.save!
+    end
+
+    reset_shop_id_from_session(shop.id.to_s)
+
+    EmitNotificationAndDispatchToUser.new.perform({
+      :user => shop.shopkeeper,
+      :title => 'Sie haben eine neue Bestellung aus dem Land der Mitte bekommen!',
+      :desc => "Eine neue Bestellung ist da. Zeit für die Vorbereitung!"
+      })
 
     if BorderGuruApiHandler.new(order).track!.success?
-
-      order.order_items.each do |oi|
-        sku = oi.sku
-        sku.quantity -= oi.quantity unless sku.unlimited
-        sku.save!
-      end
-
-      reset_shop_id_from_session(shop.id.to_s)
-
-      EmitNotificationAndDispatchToUser.new.perform({
-        :user => shop.shopkeeper,
-        :title => 'Sie haben eine neue Bestellung aus dem Land der Mitte bekommen!',
-        :desc => "Eine neue Bestellung ist da. Zeit für die Vorbereitung!"
-      })
 
       flash[:success] = I18n.t(:checkout_ok, scope: :checkout)
       redirect_to show_orders_users_path(:user_info_edit_part => :edit_order)
