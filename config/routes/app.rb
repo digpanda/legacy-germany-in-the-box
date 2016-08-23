@@ -84,6 +84,17 @@ end
 # Customer related
 namespace :customer do
 
+    resources :orders  do
+      resource :border_guru, :controller => 'orders/border_guru' do
+        get :tracking_id
+      end
+    end
+=begin
+      namespace :users do
+        get :find_by_email
+        get :unknown_by_email
+      end
+=end
   resources :favorites  do
   end
 

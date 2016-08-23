@@ -35,14 +35,16 @@
             <%= order.decorate.is_bought? ? order.decorate.total_sum_in_yuan : '' %>
           </td>
           <td>
-            <%= order.border_guru_link_tracking ? (link_to I18n.t(:open, scope: :edit_order), order.border_guru_link_tracking, :target => '_blank') : '' %>
+            <% if order.is_bought? %>
+            <%= link_to I18n.t(:open, scope: :edit_order), tracking_id_customer_order_border_guru_path(order), :target => '_blank' %>
+            <% end %>
           </td>
           <td>
             <%= order.u_at.localtime.strftime('%Y-%m-%d %H:%M:%S') %>
           </td>
           <% unless order.decorate.paid? %>
             <td>
-              <%= link_to I18n.t(:continue, scope: :edit_order), continue_order_path(order) %> | 
+              <%= link_to I18n.t(:continue, scope: :edit_order), continue_order_path(order) %> |
               <%= link_to I18n.t(:delete, scope: :edit_order), order_path(order), method: :delete, data: { confirm: I18n.t(:confirm_want_delete, scope: :notice) } %>
             </td>
           <% else %>
