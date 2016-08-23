@@ -34,7 +34,7 @@ var PostForm = {
       document.body.appendChild(form); // <- JS way
       // $('body').append(form); // <- jQuery way
       //console.log(form);
-      form.submit();
+      //form.submit();
 
     }
 

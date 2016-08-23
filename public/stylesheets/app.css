@@ -8634,15 +8634,13 @@ img.mfp-img {
   border-radius: 0.5em;
   min-height: 200px;
   color: #666;
-  padding: 0; }
-  /* line 8, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_shop-page-footer.sass */
+  padding: 0;
+  background-color: white; }
+  /* line 9, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_shop-page-footer.sass */
   .shop-page-footer h3 {
+    margin-top: 1em;
     color: #666;
     text-transform: uppercase; }
-  /* line 76, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
-  .shop-page-footer__content {
-    margin: 0;
-    text-align: justify; }
   /* line 76, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
   .shop-page-footer__images {
     margin: auto; }
