@@ -9,7 +9,7 @@ class BorderGuruApiHandler < BaseService
     @shop = order.shop
   end
 
-  def trash!
+  def track!
     get_shipping
     return_with(:success)
     # too much things can happen inside our system
