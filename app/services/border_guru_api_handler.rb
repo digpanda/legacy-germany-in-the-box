@@ -9,9 +9,11 @@ class BorderGuruApiHandler < BaseService
     @shop = order.shop
   end
 
-  def link_tracking
-    refresh_order_shipping!
-    return_with(:success, url: order.border_guru_link_tracking)
+  def trash!
+    get_shipping
+    return_with(:success)
+    # too much things can happen inside our system
+    # so we catch the exception globally
   rescue StandardError => exception
     return_with(:error, exception)
   end
@@ -19,7 +21,7 @@ class BorderGuruApiHandler < BaseService
   private
 
   # the library is made as it update the order model automatically
-  def refresh_order_shipping!
+  def get_shipping
     BorderGuru.get_shipping(
         order: order,
         shop: shop,

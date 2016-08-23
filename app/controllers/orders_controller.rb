@@ -230,21 +230,7 @@ class OrdersController < ApplicationController
     order = order_payment.order
     shop = order.shop
 
-    begin
-      shipping = BorderGuru.get_shipping(
-          order: order,
-          shop: shop,
-          country_of_destination: ISO3166::Country.new('CN'),
-          currency: 'EUR'
-      )
-    rescue Net::ReadTimeout => e
-      logger.fatal "Failed to connect to Borderguru: #{e}"
-      flash[:error] = I18n.t(:borderguru_unreachable_at_shipping, scope: :checkout)
-      redirect_to root_path
-      return
-    end
-
-    if shipping.success?
+    if BorderGuruApiHandler.new(order).track!.success?
 
       order.order_items.each do |oi|
         sku = oi.sku
@@ -271,6 +257,7 @@ class OrdersController < ApplicationController
       return
 
     end
+
   end
 
   # make the user return to the previous page

@@ -27,4 +27,3 @@ module BorderGuru
     end
   end
 end
-

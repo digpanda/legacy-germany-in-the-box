@@ -13,8 +13,8 @@ class Customer::Orders::BorderGuruController < ApplicationController
       redirect_to order.border_guru_link_tracking
       return
     end
-    if link_tracking.success?
-      redirect_to link_tracking.data.url
+    if track!.success?
+      redirect_to order.border_guru_link_tracking
     else
       flash[:error] = "We can't recover your tracking ID. Try again in a few minutes."
       redirect_to navigation.back(1)
@@ -23,8 +23,8 @@ class Customer::Orders::BorderGuruController < ApplicationController
 
   private
 
-  def link_tracking
-    @link_tracking ||= BorderGuruApiHandler.new(order).link_tracking
+  def track!
+    @track ||= BorderGuruApiHandler.new(order).track!
   end
 
   def set_order

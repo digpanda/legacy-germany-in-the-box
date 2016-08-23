@@ -89,12 +89,7 @@ namespace :customer do
         get :tracking_id
       end
     end
-=begin
-      namespace :users do
-        get :find_by_email
-        get :unknown_by_email
-      end
-=end
+
   resources :favorites  do
   end
 
