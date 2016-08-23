@@ -253,7 +253,7 @@ class OrdersController < ApplicationController
     else
 
       flash[:error] = I18n.t(:borderguru_shipping_failed, scope: :checkout)
-      redirect_to request.referrer
+      redirect_to show_orders_users_path(:user_info_edit_part => :edit_order)
       return
 
     end
