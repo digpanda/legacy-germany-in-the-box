@@ -39,14 +39,6 @@ module BorderGuru
       end
     end
 
-    # You can call #bindata on the return value and make the
-    # returned bindata the body of a new outgoing HTTP response.
-    # This will make the server reply with a PDF download.
-    def get_label(border_guru_shipment_id:)
-      make_request :LabelApi,
-        border_guru_shipment_id: border_guru_shipment_id
-    end
-
     def cancel_order(border_guru_shipment_id:)
       make_request :CancelOrderApi,
         border_guru_shipment_id: border_guru_shipment_id
