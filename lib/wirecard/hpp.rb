@@ -79,7 +79,7 @@ module Wirecard
         :transaction_type          => transaction_type,
         :requested_amount          => amount,
         :requested_amount_currency => DEFAULT_PAYMENT_CURRENCY,
-        #:attempt_three_d           => true,
+        :attempt_three_d           => true,
         :ip_address                => customer_ip_address,
         :request_signature         => digital_signature,
       }
