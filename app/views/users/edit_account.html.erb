@@ -57,7 +57,7 @@
 
       <div class="form-group">
         <%= f.label :email, I18n.t(:email, scope: :edit_account) %>
-        <%= f.text_field :email, :class => 'form-control', :readonly => true %>
+        <%= f.text_field :email, :class => 'form-control' %>
       </div>
       <div class="form-group">
         <%= f.label :current_password, I18n.t(:current_password, scope: :edit_account), :class => 'required' %>
@@ -65,15 +65,14 @@
         <div class="help-block with-errors"></div>
       </div>
       <div class="form-group">
-        <label class="required" for="user[password]" title="<%= I18n.t(:password_info, scope: :edit_account) %>">
-          <i class="fa fa-info-circle"></i>
+        <label for="user[password]" title="<%= I18n.t(:password_info, scope: :edit_account) %>">
           <%= I18n.t(:password, scope: :edit_account) %>
         </label>
-        <%= f.password_field :password, :class => 'form-control', :autocomplete => :off, :required => true, :minLength => Rails.configuration.min_password_length, :id=>'inputPassword' %>
+        <%= f.password_field :password, :class => 'form-control', :autocomplete => :off, :minLength => Rails.configuration.min_password_length, :id=>'inputPassword' %>
         <div class="help-block with-errors"></div>
       </div>
       <div class="form-group">
-        <%= f.label :password_confirmation, I18n.t(:password_confirmation, scope: :edit_account), :class => 'required' %>
+        <%= f.label :password_confirmation, I18n.t(:password_confirmation, scope: :edit_account) %>
         <%= f.password_field :password_confirmation, :class => 'form-control', :autocomplete => :off, 'data-match': '#inputPassword', 'data-match-error': I18n.t(:password_match_error, scope: :edit_account) %>
         <div class="help-block with-errors"></div>
       </div>
