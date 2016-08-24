@@ -57,7 +57,7 @@ class WirecardPaymentRefunder < BaseService
   end
 
   def transaction_success?
-    ExceptionNotifier.notify_exception(Wirecard::Base::Error.new, :env => request.env, :data => response)
+    ExceptionNotifier.notify_exception(Wirecard::Base::Error.new, :env => Rails.env, :data => response)
     response[:payment][:"transaction-state"] == "success"
   end
 
