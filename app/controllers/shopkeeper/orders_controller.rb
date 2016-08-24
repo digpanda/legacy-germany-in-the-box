@@ -46,7 +46,7 @@ class Shopkeeper::OrdersController < ApplicationController
 
   def process_order # keyword `process` used for obscure reasons
 
-    unless order.processable?
+    unless order.decorate.processable?
       flash[:error] = I18n.t(:order_not_processable, scope: :notice)
       redirect_to(:back)
       return
