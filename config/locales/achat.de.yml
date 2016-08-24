@@ -261,6 +261,9 @@ de:
     name: Name
     pid: Personalnummer
   edit_order:
+    custom_checkable: Bereit für Ausfuhr
+    custom_checking: Waren beim Zoll zur Ausfuhr anmelden
+    shipped: Waren werden abgeschickt
     payment_unverified: Nicht geprüft
     payment_failed: Zahlung fehlgeschlagen
     no_order: keine Aufträge vorhanden
