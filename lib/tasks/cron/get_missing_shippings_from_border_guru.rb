@@ -17,7 +17,7 @@ class Tasks::Cron::GetMissingShippingsFromBorderGuru
           if response.success?
             devlog "Order processed correctly."
           else
-            devlog "A problem occurred while communicating with BorderGuru Api (#{response.error.message})"
+            devlog "A problem occurred while communicating with BorderGuru Api (#{response.error.message}) for Order `#{order.id}`"
           end
         end
       rescue StandardError => exception
@@ -30,7 +30,7 @@ class Tasks::Cron::GetMissingShippingsFromBorderGuru
   end
 
   def devlog(content)
-    @@log ||= Logger.new(Rails.root.join("log/border_guru_shipment_id_recovery"))
+    @@log ||= Logger.new(Rails.root.join("log/border_guru_shipment_id_recovery.log"))
     @@log.info content
     puts content if Rails.env.development?
   end
