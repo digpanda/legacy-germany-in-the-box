@@ -8,7 +8,7 @@ class HermesMailer < ApplicationMailer
     attachments['orders.csv'] = csv
     mail(
          to: "operations.ecommerce@hermesworld.com",
-         cc: ["operations@borderguru.com", shop_email],
+         cc: ["merchant@borderguru.com", shop_email, "shop@germanyinthebox.com"],
          subject: "Merchant PickUp Hermes"
          )
   end
