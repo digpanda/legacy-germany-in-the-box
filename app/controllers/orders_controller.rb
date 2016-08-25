@@ -3,8 +3,6 @@ require 'will_paginate/array'
 
 class OrdersController < ApplicationController
 
-  LABEL_NOT_READY_EXCEPTIONS = BorderGuru::Error, SocketError
-
   load_and_authorize_resource
 
   decorates_assigned :order, :orders
@@ -23,7 +21,7 @@ class OrdersController < ApplicationController
     send_data response.bindata, filename: "#{@order.border_guru_shipment_id}.pdf", type: :pdf
 
   # to refactor (obviously)
-  rescue LABEL_NOT_READY_EXCEPTIONS => exception
+  rescue BorderGuru::Error, SocketError => exception
     Rails.logger.info "Error Download Label Order \##{@order.id} : #{exception.message}"
     throw_app_error(:resource_not_found, {error: "Your label is not ready yet. Please try again in a few hours."}) # (`#{exception.message}`)
   end
@@ -229,7 +227,7 @@ class OrdersController < ApplicationController
     order_payment = OrderPayment.where(:request_id => params[:request_id]).first
     order = order_payment.order
     shop = order.shop
-    
+
     order.order_items.each do |oi|
       sku = oi.sku
       sku.quantity -= oi.quantity unless sku.unlimited
