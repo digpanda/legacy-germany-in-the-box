@@ -12,7 +12,7 @@ class AddressDecorator < Draper::Decorator
   end
 
   def chinese_street_number
-    "#{number} 号"
+    "#{number}" # 号
   end
 
   def chinese_full_name
@@ -38,5 +38,5 @@ class AddressDecorator < Draper::Decorator
   def country_local_name
     country.local_name unless country.nil?
   end
-  
+
 end

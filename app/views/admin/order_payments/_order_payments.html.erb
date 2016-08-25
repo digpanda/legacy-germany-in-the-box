@@ -30,7 +30,7 @@
     <%= order_payment.transaction_type %>
   </td>
   <td>
-    <%= order_payment.c_at.strftime('%Y-%m-%d %H:%M:%S') %>
+    <%= order_payment.c_at.strftime('%Y-%m-%d %H:%M:%S').in_time_zone %>
   </td>
   <td>
     <% if order_payment.unverified? %>
