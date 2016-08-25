@@ -3,7 +3,6 @@ class UsersController < ApplicationController
   attr_reader :followers
 
   before_action :authenticate_user!, except: [:search,
-                                              :index,
                                               :get_followers,
                                               :get_following]
 
