@@ -22,6 +22,7 @@ class UsersController < ApplicationController
   }
 
   def index
+    redirect_to root_url unless current_user.decorate.admin?
     @users = User.all
   end
 
