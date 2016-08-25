@@ -40,7 +40,7 @@ class OrdersController < ApplicationController
 
   def show
     @readonly = true
-    @currency_code = @order.order_items.first.sku.product.shop.currency.code
+    @currency_code = @order.shop.currency.code
 
     if @order.decorate.is_bought?
       @cart_or_order = @order
