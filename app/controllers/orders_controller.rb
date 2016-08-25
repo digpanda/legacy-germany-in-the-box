@@ -302,8 +302,8 @@ class OrdersController < ApplicationController
   end
 
   def destroy
-    
-    shop_id = @order.order_items.first.sku.product.shop.id.to_s
+
+    shop_id = @order.shop.id.to_s
     session[:order_ids]&.delete(shop_id)
     @order.status = :canceled
     @order.save
