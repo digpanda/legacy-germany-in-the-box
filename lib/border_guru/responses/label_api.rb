@@ -11,6 +11,11 @@ module BorderGuru
         @request.response.body
       end
 
+      # added to seet the error more clearly
+      def raw_body
+        @request.response.body
+      end
+
       def success?
         !!bindata && Net::HTTPSuccess === @request.response
       end
@@ -28,5 +33,3 @@ module BorderGuru
     end
   end
 end
-
-
