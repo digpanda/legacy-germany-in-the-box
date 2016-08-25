@@ -37,6 +37,10 @@ class SessionsController < Devise::SessionsController
   end
 
   def destroy
+    if current_user.nil?
+      redirect_to root_url
+      return
+    end
     super
   end
 
