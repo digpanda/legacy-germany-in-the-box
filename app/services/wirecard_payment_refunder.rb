@@ -42,6 +42,7 @@ class WirecardPaymentRefunder < BaseService
       order_payment_refund.user_id          = order_payment.user_id
       order_payment_refund.order_id         = order_payment.order_id
       order_payment_refund.payment_method   = order_payment.payment_method
+      order_payment_refund.status           = :success
       order_payment_refund.save
       # we dynamically set the amount via API response and set the other one via currency exchange
       order_payment_refund.save_origin_amount!(response[:payment][:"requested-amount"][:"value"], response[:payment][:"requested-amount"][:"currency"])
