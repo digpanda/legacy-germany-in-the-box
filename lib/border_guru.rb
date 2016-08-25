@@ -32,6 +32,11 @@ module BorderGuru
         country_of_destination: country_of_destination,
         currency: currency
       ) do |response|
+        # could be refactored way better but we got no time for that
+        # the error managing system is very bad in this library and should be taken care of
+        if response.response_data[:success] == false
+          raise BorderGuru::Error, response.response_data[:error][:detail][:error][:response][:error][:message]
+        end
         order.border_guru_shipment_id = response.shipment_identifier
         order.border_guru_link_tracking = response.link_tracking
         order.border_guru_link_payment = response.link_payment

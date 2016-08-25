@@ -30,6 +30,11 @@ every :day, :at => '4:15pm' do
   rake "cron:transmit_pickup_orders_to_hermes"
 end
 
+every :hour do
+  command 'THe system has launched the rake task `cron:get_missing_shippings_from_border_guru`'
+  rake "cron:get_missing_shippings_from_border_guru"
+end
+
 =begin
 every 1.day, :at => '4:30 am' do
   runner "MyModel.task_to_run_at_four_thirty_in_the_morning"

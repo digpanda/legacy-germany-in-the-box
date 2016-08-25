@@ -10,4 +10,9 @@ namespace :cron do
     Tasks::Cron::TransmitPickupOrdersToHermes.new.perform
   end
 
+  desc "get the shipping ids and sending informations for uncomplete orders from Border Guru"
+  task get_missing_shippings_from_border_guru: :environment do
+    Tasks::Cron::GetMissingShippingsFromBorderGuru.new.perform
+  end
+
 end
