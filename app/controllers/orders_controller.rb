@@ -302,20 +302,21 @@ class OrdersController < ApplicationController
   end
 
   def destroy
+    
     shop_id = @order.order_items.first.sku.product.shop.id.to_s
     session[:order_ids]&.delete(shop_id)
+    @order.status = :canceled
+    @order.save
 
-    if @order && @order.status != :success && @order.order_items.delete_all && @order.delete
-
-      flash[:success] = I18n.t(:delete_ok, scope: :edit_order)
-      redirect_to request.referrer
-
-    else
-
-      flash[:error] = I18n.t(:delete_ko, scope: :edit_order)
-      redirect_to request.referrer
-
+    if current_user&.decorate.admin?
+      @order && @order.status != :success
+      @order.order_items.delete_all
+      @order.delete
     end
+
+    flash[:success] = I18n.t(:delete_ok, scope: :edit_order)
+    redirect_to request.referrer
+
   end
 
   def continue

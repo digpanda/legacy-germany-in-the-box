@@ -33,11 +33,12 @@ class Order
   # :paying -> is inside the process of payment
   # :payment_unverified -> we couldn't verify the payment (contact admin)
   # :payment_failed -> the payment failed (make another try when we got the functionality)
+  # :canceled -> the order has been canceled
   # :paid -> it was paid
   # :custom_checkable -> the order has been handled by the shopkeeper
   # :custom_checking -> the order is being checked by the customs
   # :shipped -> the shopkepper has sent the package
-  validates :status, presence: true , inclusion: {in: [:new, :paying, :payment_unverified, :payment_failed, :paid, :custom_checkable, :custom_checking, :shipped]}
+  validates :status, presence: true , inclusion: {in: [:new, :paying, :payment_unverified, :payment_failed, :canceled, :paid, :custom_checkable, :custom_checking, :shipped]}
 
   summarizes sku_list: :order_items, by: :quantity
 
