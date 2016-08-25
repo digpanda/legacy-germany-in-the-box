@@ -6,6 +6,7 @@ class OrderDecorator < Draper::Decorator
   decorates :order
 
   def clean_desc
+    return '' if self.desc.nil?
     self.desc.squish.downcase.gsub(',', '')
   end
 
