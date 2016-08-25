@@ -14,7 +14,7 @@ module BorderGuruEmail
     def transmit_orders(orders)
       TransmitOrders.new(orders).tap do |transmit|
         transmit.send_emails
-        #transmit.update_orders!
+        transmit.update_orders!
       end
     end
 
@@ -22,7 +22,7 @@ module BorderGuruEmail
     def log(content)
       @@log ||= Logger.new(Rails.root.join("log/#{CONFIG[:email][:log]}"))
       @@log.info content
-      puts content #if Rails.env.development?
+      puts content if Rails.env.development?
     end
 
   end
