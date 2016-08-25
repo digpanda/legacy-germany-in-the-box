@@ -36,12 +36,12 @@ class RegistrationsController < Devise::RegistrationsController
         if resource.active_for_authentication?
 
           flash[:success] = I18n.t(:success_subscription, scope: :notice)
-          
+
           sign_up(resource_name, resource)
 
           sign_in(:user, User.find(resource.id)) # auto sign in
 
-          if resource.customer?
+          if resource.decorate.customer?
 
             EmitNotificationAndDispatchToUser.new.perform({
               :user => resource,
@@ -49,7 +49,7 @@ class RegistrationsController < Devise::RegistrationsController
               :desc => "亲，欢迎你到来因盒购物。"
             })
 
-          elsif resource.shopkeeper?
+          elsif resource.decorate.shopkeeper?
 
              EmitNotificationAndDispatchToUser.new.perform({
               :user => resource,
