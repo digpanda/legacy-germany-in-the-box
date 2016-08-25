@@ -61,7 +61,11 @@ class OrderDecorator < Draper::Decorator
   end
 
   def processable_time?
-    Time.now.strftime("%k").to_i < 9 || Time.now.strftime("%k").to_i > 10
+    if Rails.env.production?
+      Time.now.strftime("%k").to_i < 15 || Time.now.strftime("%k").to_i > 16
+    else
+      Time.now.strftime("%k").to_i < 3 || Time.now.strftime("%k").to_i > 4
+    end
   end
 
   def shippable?
