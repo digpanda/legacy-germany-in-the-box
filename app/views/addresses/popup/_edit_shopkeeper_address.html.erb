@@ -20,11 +20,16 @@
 </div>
 <div class="form-group">
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-9">
       <%= f.text_field :street, :class => 'form-control', :required => true, :placeholder => I18n.t(:street, scope: :edit_address) %>
     </div>
+    <div class="col-md-3">
+      <%= f.text_field :number, :class => 'form-control', :required => true, :placeholder => I18n.t(:house_number, scope: :edit_address), :pattern => '\d+' %>
+    </div>
   </div>
+  <%= f.text_field :additional, :class => 'form-control', :placeholder => I18n.t(:additional, scope: :edit_address) %>
 </div>
+
 <div class="form-group">
   <div class="row-fluid">
     <div class="col-md-4 nopadding-lr">
