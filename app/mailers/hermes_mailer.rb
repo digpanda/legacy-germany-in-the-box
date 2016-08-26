@@ -10,7 +10,7 @@ class HermesMailer < ApplicationMailer
     mail(
          to: "operations.ecommerce@hermesworld.com",
          cc: ["merchant@borderguru.com", shopkeeper.email, "shop@germanyinthebox.com"],
-         subject: "Pickup Avisierung: #{shop.bg_merchant_id}, #{shopkeeper.lname}, DATE_OF_SENDING_THIS_EMAIL"
+         subject: "Pickup Avisierung: #{shop.bg_merchant_id}, #{shop.lname}, #{Time.now.strftime("%Y-%m-%d")}"
          )
   end
 
