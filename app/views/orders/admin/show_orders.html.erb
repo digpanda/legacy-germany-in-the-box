@@ -43,7 +43,7 @@
             <%= order.border_guru_link_tracking ? (link_to I18n.t(:open, scope: :edit_order), order.border_guru_link_tracking, :target => '_blank') : '' %>
           </td>
           <td>
-            <%= order.border_guru_shipment_id ? (link_to I18n.t(:download, scope: :edit_order), download_label_order_path(order)) : '' %>
+            <%= order.border_guru_shipment_id ? (link_to I18n.t(:download, scope: :edit_order), download_label_order_path(order)) : '' %> |
           <a href="<%= shopkeeper_order_path(order, format: "pdf") %>">Products list</a> | <a href="<%= shopkeeper_order_path(order, format: "csv") %>">Shippment CSV</a> | <a href="<%= shopkeeper_order_bill_path(order, format: "pdf") %>">Informal Bill</a>
           </td>
           <td>
