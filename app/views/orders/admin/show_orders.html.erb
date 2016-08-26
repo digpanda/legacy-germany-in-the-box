@@ -38,8 +38,8 @@
             <%= link_to order.id, order_path(order) %>
           </td>
           <td>
-            <% unless order.user.nil? %>
-            <%= order.user.decorate.full_name %>
+            <% unless order.shipping_address.nil? %>
+            <%= order.shipping_address.decorate.chinese_full_name %>
             <% end %>
           </td>
           <td>
