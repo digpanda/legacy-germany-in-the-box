@@ -38,7 +38,9 @@
             <%= link_to order.id, order_path(order) %>
           </td>
           <td>
+            <% unless order.user.nil? %>
             <%= order.user.decorate.full_name %>
+            <% end %>
           </td>
           <td>
             N/A
