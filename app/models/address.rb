@@ -32,11 +32,11 @@ class Address
   scope :is_only_sender,    ->  { any_of({type: 'sender'}) }
   scope :is_only_both,      ->  { any_of({type: 'both'}) }
 
-  validates :pid,       presence: true,   length: {minimum:18, maximum: 18}, :if => lambda{ user&.role == :customer }
+  validates :pid,       presence: true,   length: {minimum:18}, :if => lambda{ user&.role == :customer }
   validates :fname,     presence: true,   length: {maximum: Rails.configuration.max_tiny_text_length}
   validates :lname,     presence: true,   length: {maximum: Rails.configuration.max_tiny_text_length}
   validates :mobile,    presence: true,   length: {maximum: Rails.configuration.max_tiny_text_length},  :if => lambda{ user != nil }
-  validates :number,    presence: true,   length: {maximum: Rails.configuration.max_tiny_text_length}
+  validates :number,    presence: false,   length: {maximum: Rails.configuration.max_tiny_text_length}
   validates :street,    presence: true,   length: {maximum: Rails.configuration.max_short_text_length}
   validates :city,      presence: true,   length: {maximum: Rails.configuration.max_tiny_text_length}
   validates :zip,       presence: true,   length: {maximum: Rails.configuration.max_tiny_text_length}

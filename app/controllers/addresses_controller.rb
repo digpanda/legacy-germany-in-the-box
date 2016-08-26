@@ -8,7 +8,7 @@ class AddressesController < ApplicationController
   layout :custom_sublayout, only: [:show_addresses]
 
   def show_addresses
-    
+
     @address = Address.new
 
     @user = User.find(params[:id])
@@ -166,9 +166,7 @@ class AddressesController < ApplicationController
 
   def address_params
     if current_user.decorate.customer?
-      params.require(:address).permit(:number,
-                                      :street,
-                                      :additional,
+      params.require(:address).permit(:street,
                                       :district,
                                       :city,
                                       :province,
