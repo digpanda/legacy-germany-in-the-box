@@ -12,6 +12,9 @@
     <%= link_to order_payment.order_id, order_path(order_payment.order_id) %>
   </td>
   <td>
+    <%= order_payment.order.user.decorate.full_name %>
+  </td>
+  <td>
     <%= order_payment.status %>
   </td>
   <td>

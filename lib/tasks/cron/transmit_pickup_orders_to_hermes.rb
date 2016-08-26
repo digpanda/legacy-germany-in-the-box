@@ -6,7 +6,7 @@ class Tasks::Cron::TransmitPickupOrdersToHermes
 
   def initialize
     devlog "Let's start to fetch all the current orders ..."
-    @orders = Order.where(status: :custom_checkable).all
+    @orders = Order.where(status: :custom_checking).all
   end
 
   def perform

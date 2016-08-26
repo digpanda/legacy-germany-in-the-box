@@ -6,6 +6,12 @@
           <%= I18n.t(:id, scope: :edit_order) %>
         </th>
         <th>
+          Name
+        </th>
+        <td>
+          Paid
+        </th>
+        <th>
           <%= I18n.t(:status, scope: :edit_order) %>
         </th>
         <th>
@@ -30,6 +36,12 @@
         <tr>
           <td>
             <%= link_to order.id, order_path(order) %>
+          </td>
+          <td>
+            <%= order.user.decorate.full_name %>
+          </td>
+          <td>
+            N/A
           </td>
           <td>
             <%= I18n.t(order.status, scope: :edit_order) %>

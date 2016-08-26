@@ -33,7 +33,7 @@ class Shopkeeper::OrdersController < ApplicationController
 
   def shipped
 
-    if order.shippable?
+    if order.decorate.shippable?
       order.status = :shipped
       order.save
     end
