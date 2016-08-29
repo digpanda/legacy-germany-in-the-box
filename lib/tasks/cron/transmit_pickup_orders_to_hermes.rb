@@ -6,14 +6,6 @@ class Tasks::Cron::TransmitPickupOrdersToHermes
 
   def initialize
     devlog "Let's start to fetch all the current orders ..."
-
-    hack = Order.where(border_guru_shipment_id: "14721405156233822").first
-    if hack
-      hack.minimum_sending_date = nil
-      hack.save
-      devlog "HACK ORDER ID #{hack.id}"
-    end
-
     @orders = Order.where(status: :custom_checking).all
   end
 

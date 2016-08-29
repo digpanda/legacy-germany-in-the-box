@@ -51,7 +51,7 @@ module BorderGuruEmail
       end
 
       def clean_descriptions_list
-        orders.reduce([]) { |acc, order| acc << order.product.decorate.clean_desc }
+        orders.reduce([]) { |acc, order| acc << order.decorate.clean_order_items_description }
       end
 
     end
