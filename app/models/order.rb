@@ -62,9 +62,14 @@ class Order
     end
   end
 
-  def total_paid_in_cny
-    Currency.new(total_paid, 'CNY').display
+  def total_paid_in_yuan
+    Currency.new(total_paid(:cny), 'CNY').display
   end
+
+  def total_paid_in_euro
+    Currency.new(total_paid(:cny), 'CNY').display
+  end
+
 
   def total_paid(currency=:cny)
     self.order_payments.where(status: :success).all.reduce(0) do |acc, order_payment|

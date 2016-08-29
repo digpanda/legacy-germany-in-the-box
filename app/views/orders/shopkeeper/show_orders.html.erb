@@ -46,7 +46,7 @@
             <%= I18n.t(order.status, scope: :edit_order) %>
           </td>
           <td>
-            <%= order.total_paid_in_cny %>
+            <%= order.total_paid_in_yuan %>
           </td>
           <td>
             <%= order.decorate.is_bought? ? order.decorate.total_sum_in_yuan : '' %>
