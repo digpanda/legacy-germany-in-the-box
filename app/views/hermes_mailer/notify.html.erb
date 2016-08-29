@@ -2,12 +2,12 @@
 <p>
   Company name : <%= @data[:company_name] %><br />
   Contact name : <%= @data[:contact_name] %><br />
-  Contact phone : <%= @data[:contact_phone] %><br /> 
+  Contact phone : <%= @data[:contact_phone] %><br />
   Gesamtanzahl der Pakete : <%= @data[:number_of_packages] %><br />
-  Gesamtgewicht der Sendung : <%= @data[:total_weight_in_kg] %><br />
+  Gesamtgewicht der Sendung : <%= @data[:total_weight_in_kg] %> kg<br />
   Ladehilfsmittel : <%= @data[:mean_of_transport] %><br />
   Anzahl der Ladehilfsmittel : <%= @data[:number_of_mean_of_transport] %><br />
-  Gesamtvolumen für Abholung : <%= @data[:total_volume] %><br />
+  Gesamtvolumen für Abholung : <%= @data[:total_volume] %> cm3<br />
   Lageradresse : <%= @data[:pickup_address] %><br />
   Destination : <%= @data[:destination] %><br />
   Barcode ID pro Paket : <%= @data[:orders_barcodes].join(', ') %><br />

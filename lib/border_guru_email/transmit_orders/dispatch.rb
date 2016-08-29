@@ -23,8 +23,8 @@ module BorderGuruEmail
       def email_datas
         {
           :company_name => shop.name,
-          :contact_name => shopkeeper.decorate.full_name,
-          :contact_phone => shopkeeper.mobile,
+          :contact_name => shop.decorate.manager_full_name,
+          :contact_phone => shop.tel,
           :number_of_packages => orders.length,
           :total_weight_in_kg => total_weight,
           :mean_of_transport => MEAN_OF_TRANSPORT,
@@ -51,7 +51,7 @@ module BorderGuruEmail
       end
 
       def clean_descriptions_list
-        orders.reduce([]) { |acc, order| acc << order.decorate.clean_desc }
+        orders.reduce([]) { |acc, order| acc << order.product.decorate.clean_desc }
       end
 
     end
