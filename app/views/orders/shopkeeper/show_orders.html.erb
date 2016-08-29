@@ -8,11 +8,11 @@
         <th>
           Delivery Address Name
         </th>
-        <td>
-          Paid
-        </th>
         <th>
           <%= I18n.t(:status, scope: :edit_order) %>
+        </th>
+        <td>
+          Total Paid
         </th>
         <th>
           <%= I18n.t(:total_price, scope: :edit_order) %>
@@ -43,10 +43,10 @@
             <% end %>
           </td>
           <td>
-            N/A
+            <%= I18n.t(order.status, scope: :edit_order) %>
           </td>
           <td>
-            <%= I18n.t(order.status, scope: :edit_order) %>
+            <%= order.total_paid_in_cny %>
           </td>
           <td>
             <%= order.decorate.is_bought? ? order.decorate.total_sum_in_yuan : '' %>

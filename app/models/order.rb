@@ -62,6 +62,21 @@ class Order
     end
   end
 
+  def total_paid_in_cny
+    Currency.new(total_paid, 'CNY').display
+  end
+
+  def total_paid(currency=:cny)
+    self.order_payments.where(status: :success).all.reduce(0) do |acc, order_payment|
+      amount = order_payment.send("amount_#{currency}")
+      if order_payment.refund?
+        acc + -(amount)
+      else
+        acc + amount
+      end
+    end
+  end
+
   # we considered as bought any status after paid
   def is_bought?
     [:paid, :custom_checkable, :custom_checking, :shipped].include?(status)

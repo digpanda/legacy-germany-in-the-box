@@ -41,7 +41,7 @@ class OrderPayment
   end
 
   def refund?
-    transaction_type == "refund"
+    transaction_type == "refund-purchase" || transaction_type == "refund-debit"
   end
 
   def unverified?
