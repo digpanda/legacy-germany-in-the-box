@@ -1,0 +1,15 @@
+<a href="<%= (current_user.nil? ? new_user_session_path : customer_favorites_path) %>">
+
+  <div class="main-header__likes">
+  <i class="fa fa-heart"></i>
+
+  <span id="total-likes">
+    <% if current_user.nil? %>
+      0
+    <% else %>
+      <%= current_user.favorites.count %>
+    <% end %>
+  </span>
+
+  </div>
+</a>

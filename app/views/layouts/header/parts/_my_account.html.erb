@@ -1,0 +1,17 @@
+<% if current_user.nil? %>
+
+  <%= render partial: "layouts/header/parts/my_account/signin" %>
+
+<% else %>
+
+  <% if current_user.decorate.new_notifications? %>
+    <a href="<%= shared_notifications_path(:user_info_edit_part => :edit_notification) %>">
+  <% else %>
+    <a href="<%= edit_account_user_path(current_user, :user_info_edit_part => :edit_account) %>">
+  <% end %>
+
+  <%= render partial: "layouts/header/parts/my_account/avatar" %>
+
+  </a>
+
+<% end %>
