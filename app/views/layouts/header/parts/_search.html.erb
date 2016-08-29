@@ -1,12 +1,7 @@
-<div class="category-menu__search">
-
-<% if Rails.env.development? %>
-<!-- This functionality should only be visible in development to help developer troubleshoot things -->
- <form id="search-form" action="<%= search_products_path %>">
-  <i class="fa fa-search"></i>
-  <input type="query" id="search" name="query" autocomplete="off" placeholder="Search" />
-  <button type="submit" class="+hidden"></button>
-</form>
-<% end %>
-
-</div>
+  <div class="category-menu__search">
+   <form id="search-form" action="<%= search_products_path %>">
+    <i class="fa fa-search"></i>
+    <input type="query" id="search" name="query" autocomplete="off" placeholder="Search" />
+    <button type="submit" class="+hidden"></button>
+  </form>
+  </div>

@@ -1339,7 +1339,7 @@ require.register("javascripts/starters.js", function(exports, require, module) {
 /**
  * Starters Class
  */
-var Starters = ['bootstrap', 'china_city', 'datepicker', 'footer', 'images_control', 'images_handler', 'left_menu', 'messages', 'product_favorite', 'product_form', 'products_list', 'responsive', 'search', 'sku_form'];
+var Starters = ['bootstrap', 'china_city', 'datepicker', 'footer', 'images_control', 'images_handler', 'left_menu', 'messages', 'product_favorite', 'product_form', 'products_list', 'refresh_time', 'responsive', 'search', 'sku_form'];
 
 module.exports = Starters;
 });
@@ -1930,6 +1930,51 @@ var ProductsList = { // CURRENTLY NOT IN USED IN THE SYSTEM
 };
 
 module.exports = ProductsList;
+});
+
+require.register("javascripts/starters/refresh_time.js", function(exports, require, module) {
+'use strict';
+
+/**
+ * RefreshTime Class
+ */
+var RefreshTime = {
+
+  /**
+   * Initializer
+   */
+  init: function init() {
+
+    this.refreshTime('#server-time');
+    this.refreshTime('#china-time');
+    this.refreshTime('#germany-time');
+  },
+
+  /**
+   * Change the current time html
+   * @param  {#} selector
+   * @return void
+   */
+  displayTime: function displayTime(selector) {
+    var current = $(selector).html();
+    var time = moment(current, 'HH:mm:ss').add('seconds', 1).format('HH:mm:ss');
+    $(selector).html(time);
+  },
+
+  /**
+   * Activate the time refresh for specific selector
+   * @param  {#} selector
+   * @return void
+   */
+  refreshTime: function refreshTime(selector) {
+    setInterval(function () {
+      RefreshTime.displayTime(selector);
+    }, 1000);
+  }
+
+};
+
+module.exports = RefreshTime;
 });
 
 require.register("javascripts/starters/responsive.js", function(exports, require, module) {

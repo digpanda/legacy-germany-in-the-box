@@ -8747,6 +8747,12 @@ img.mfp-img {
     min-height: 150px; }
 
 /* line 32, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
+.server-menu {
+  line-height: 2;
+  color: #fdfdfd;
+  background-color: #83be58; }
+
+/* line 32, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
 .slider {
   position: relative;
   z-index: 1; }
