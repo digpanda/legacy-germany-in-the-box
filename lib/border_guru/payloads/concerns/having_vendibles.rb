@@ -20,17 +20,17 @@ module BorderGuru
 
       # we will transmit those informations for each single order item to borderguru
       # this line is currently used in the system - Laurent 2016/07/15
-      def line_items(skus)
-        skus.map do |s|
+      def line_items(order_items)
+        order_items.map do |order_item|
           {
-            sku: s.id,
-            shortDescription: s.sku.product.name,
-            price: s.price,
-            category: Rails.env.production? ? s.sku.product.duty_category.code : 'test',
-            weight: s.weight,
+            sku: order_item.sku.id,
+            shortDescription: order_item.sku.product.name,
+            price: order_item.price,
+            category: Rails.env.production? ? order_item.sku.product.duty_category.code : 'test',
+            weight: order_item.weight,
             weightScale: WEIGHT_UNIT,
-            countryOfManufacture: s.sku.product.shop.sender_address.country.alpha2
-          }.merge yield s
+            countryOfManufacture: order_item.sku.product.shop.sender_address.country.alpha2
+          }.merge yield order_item
         end
       end
     end
