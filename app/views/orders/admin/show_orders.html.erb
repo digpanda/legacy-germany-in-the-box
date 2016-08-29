@@ -9,7 +9,7 @@
           Delivery Address Names
         </th>
         <td>
-          Paid
+          Total Paid
         </th>
         <th>
           <%= I18n.t(:status, scope: :edit_order) %>
@@ -43,7 +43,7 @@
             <% end %>
           </td>
           <td>
-            N/A
+            <%= order.total_paid_in_yuan %>
           </td>
           <td>
             <%= I18n.t(order.status, scope: :edit_order) %>
