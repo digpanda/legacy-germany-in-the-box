@@ -30,7 +30,7 @@
 
     <% end %>
 
-</div>
+  </div>
 
 </div>
 <!-- End of Main Menu Area -->
@@ -38,7 +38,7 @@
 <% if potential_customer? %>
 
   <div class="row mobile-category-menu">
-    <%= render partial: "layouts/header/menu/mobile_categories" %>
+    <%= render partial: "layouts/header/parts/menu/mobile_categories" %>
   </div>
 
   <!-- Category + Search Menu -->
@@ -51,7 +51,7 @@
 
     <!-- Categories Menu -->
     <div class="col-md-7 col-md-push-1 col-md-pull-1">
-      <%= render partial: "layouts/header/parts/menu/categories_menu" %>
+      <%= render partial: "layouts/header/parts/menu/categories" %>
     </div>
 
   </div>
