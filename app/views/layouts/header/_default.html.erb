@@ -67,7 +67,7 @@
     <!-- Server details -->
     <div class="col-md-6 col-md-offset-1">
       <% if current_user.decorate.admin? %>
-        Client <%= request.remote_ip %> - Server <%= server_ip %> - Time <span id="server-time"><%= 2.hours.ago.strftime("%T") %></span>
+        Client <%= request.remote_ip %> - Server <%= server_ip %> - Time <span id="server-time"><%= Time.now.strftime("%T") %></span>
       <% end %>
     </div>
 
