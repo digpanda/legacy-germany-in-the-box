@@ -57,7 +57,6 @@ class Shopkeeper::OrdersController < ApplicationController
     # Only if everything was a success
     #
     order.status = :custom_checkable
-    order.minimum_sending_date = 1.business_days.from_now
     order.save
 
     #

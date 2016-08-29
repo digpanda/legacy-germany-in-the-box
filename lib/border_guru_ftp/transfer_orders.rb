@@ -34,6 +34,7 @@ module BorderGuruFtp
         if has_order_items?(shop_orders)
           shop_orders.each do |shop_order|
             shop_order.status = :custom_checking
+            shop_order.minimum_sending_date = 1.business_days.from_now
             shop_order.save
           end
         end
