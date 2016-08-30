@@ -45,8 +45,11 @@
       <%= render partial: "order_payments", collection: @order_payments, :as => :order_payment %>
     </tbody>
   </table>
+  <%= will_paginate @order_payments, renderer: BootstrapPagination::Rails %>
 <% else %>
+<div class="+white-box +centered">
   <h4>
     <%= I18n.t(:no_payments, scope: :edit_payments) %>
   </h4>
+</div>
 <% end %>
