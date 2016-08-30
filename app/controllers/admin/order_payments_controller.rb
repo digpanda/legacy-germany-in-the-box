@@ -1,3 +1,5 @@
+require 'will_paginate/array'
+
 class Admin::OrderPaymentsController < ApplicationController
 
   load_and_authorize_resource
@@ -10,6 +12,25 @@ class Admin::OrderPaymentsController < ApplicationController
 
   def index
     @order_payments = OrderPayment.order_by(c_at: :desc).paginate(:page => (params[:page] ? params[:page].to_i : 1), :per_page => 10);
+  end
+
+  # PATCH
+  # when the order payment is stuck on `scheduled` you can manually update the transaction_id
+  def transaction_id
+
+    if order_payment.transaction_id
+      flash[:error] = "Transaction ID is already present for this payment."
+      redirect_to navigation.back(1)
+      return
+    end
+
+    order_payment.transaction_id = params["transaction_id"]
+    order_payment.save
+    flash[:success] = "Transaction ID was set manually."
+
+    redirect_to navigation.back(1)
+    return
+
   end
 
   def refund

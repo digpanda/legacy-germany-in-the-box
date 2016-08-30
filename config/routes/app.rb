@@ -24,6 +24,7 @@ namespace :admin do
   resources :order_payments do
     post :refund
     post :check
+    patch :transaction_id
   end
   resource :settings, only: [:show, :update] do
   end

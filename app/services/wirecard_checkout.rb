@@ -51,14 +51,19 @@ class WirecardCheckout < BaseService
   # we already tried to pay but failed at any point of the process
   # before the `:scheduled` status changed
   def matching_order_payment
-    @matching_order_payment ||= (OrderPayment.where({
+    @matching_order_payment ||= (recovered_order_payment || OrderPayment.new)
+  end
+
+  # may return nil
+  def recovered_order_payment
+    OrderPayment.where({
       :merchant_id      => merchant_credentials[:merchant_id],
       :order_id         => order.id,
       :payment_method   => hpp.payment_method,
       :transaction_type => hpp.transaction_type,
       :status           => :scheduled,
       :user_id          => user.id
-    }).first || OrderPayment.new)
+    }).first
   end
 
   def prepare_order_payment!
