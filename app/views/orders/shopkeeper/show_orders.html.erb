@@ -49,7 +49,7 @@
             <%= order.total_paid_in_yuan %>
           </td>
           <td>
-            <%= order.decorate.is_bought? ? order.decorate.total_sum_in_yuan : '' %>
+            <%= order.decorate.total_sum_in_yuan %>
           </td>
           <td>
           <% if order.border_guru_shipment_id %>
