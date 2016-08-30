@@ -2,6 +2,8 @@
 # this is a double check usually made after the checkout process of our customers.
 class WirecardPaymentChecker < BaseService
 
+  VALID_FINALIZED_TRANSACTION_STATE = [:debit, :purchase]
+
   attr_reader :transaction_id, :merchant_id, :request_id
   attr_accessor :order_payment
 
@@ -38,10 +40,17 @@ class WirecardPaymentChecker < BaseService
     @remote_transaction ||= Wirecard::ElasticApi.transaction(merchant_id, transaction_id).raise_response_issues
   end
 
+  # the elastic API can reply positively even if it's a simple `get-url` transaction
+  # it can occur if someone put a get url transaction id by mistake which would
+  # set a false positive (:success) so we better check it's in the correct transaction type.
+  def finalized_transaction?
+    VALID_FINALIZED_TRANSACTION_STATE.include?(remote_transaction.response.transaction_type)
+  end
+
   def refresh_order_payment_from_api!
-    order_payment.status = remote_transaction.response.status
-    order_payment.payment_method = remote_transaction.response.payment_method
-    order_payment.save
+      order_payment.status = remote_transaction.response.status if finalized_transaction?
+      order_payment.payment_method = remote_transaction.response.payment_method
+      order_payment.save
   end
 
 end

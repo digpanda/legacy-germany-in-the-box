@@ -7,7 +7,7 @@ class Shopkeeper::OrdersController < ApplicationController
 
   load_and_authorize_resource
   before_action :set_order
-  #before_filter :is_shop_order
+  #before_filter :is_shop_order TODO (check if it's the current shop order or not, to avoid hacks)
 
   attr_accessor :order
 
@@ -74,6 +74,13 @@ class Shopkeeper::OrdersController < ApplicationController
       return
     end
 
+    # we cancel from the BorderGuru API
+    unless border_guru_cancel_order!
+      flash[:error] = "We could not cancel the order from BorderGuru API"
+      redirect_to(:back)
+      return
+    end
+
     # we cancel the order
     order.status = :cancelled
     order.save
@@ -86,6 +93,12 @@ class Shopkeeper::OrdersController < ApplicationController
   end
 
   private
+
+  def border_guru_cancel_order!
+    BorderGuru.cancel_order(border_guru_shipment_id: order.border_guru_shipment_id)
+  rescue StandardError
+    false
+  end
 
   def set_order
     @order ||= Order.find(params[:id] || params[:order_id])
