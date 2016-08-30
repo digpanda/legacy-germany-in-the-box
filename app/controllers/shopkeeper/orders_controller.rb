@@ -92,7 +92,6 @@ class Shopkeeper::OrdersController < ApplicationController
   end
 
   def is_shop_order
-    binding.pry
   end
 
 end
