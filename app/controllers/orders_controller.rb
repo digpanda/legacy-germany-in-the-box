@@ -302,13 +302,15 @@ class OrdersController < ApplicationController
   end
 
   def destroy
-
+    
     shop_id = @order.shop.id.to_s
     session[:order_ids]&.delete(shop_id)
     @order.status = :canceled
     @order.save
 
-    # TODO: differentiate cancel from destroy better than that
+    # NOTE : for legacy purpose this method is still here.
+    # but the cancel by shopkeeper are used on another side from now on
+    # it's only for admins until we refactor the whole controller
     if current_user&.decorate.admin?
       @order && @order.status != :success
       @order.order_items.delete_all

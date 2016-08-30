@@ -54,7 +54,7 @@ class WirecardCheckout < BaseService
     @matching_order_payment ||= OrderPayment.where({
       :merchant_id      => merchant_credentials[:merchant_id],
       :order_id         => order.id,
-      :payment_method   => hpp.payment_method,
+      #:payment_method   => hpp.payment_method,
       :transaction_type => hpp.transaction_type,
       :status           => :scheduled,
       :user_id          => user.id
