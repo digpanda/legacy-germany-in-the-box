@@ -7,7 +7,7 @@ class Shopkeeper::OrdersController < ApplicationController
 
   load_and_authorize_resource
   before_action :set_order
-  before_filter :is_shop_order
+  #before_filter :is_shop_order
 
   attr_accessor :order
 
