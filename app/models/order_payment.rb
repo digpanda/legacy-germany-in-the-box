@@ -46,7 +46,7 @@ class OrderPayment
 
   def refundable?
     return false if self.refund?
-    self.order.decorate.total_paid == 0
+    self.order.decorate.total_paid != 0
   end
 
   def unverified?
