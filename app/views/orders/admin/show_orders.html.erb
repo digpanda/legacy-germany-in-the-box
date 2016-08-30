@@ -61,13 +61,14 @@
           <td>
             <%= order.u_at.localtime.strftime('%Y-%m-%d %H:%M:%S') %>
           </td>
-          <% unless order.decorate.is_success? %>
-              <td>
-                <%= link_to I18n.t(:delete, scope: :edit_order), order_path(order), method: :delete, data: { confirm: I18n.t(:confirm_want_delete, scope: :notice) } %>
-              </td>
-          <% else %>
-              <td></td>
+          <td>
+          <!-- Cancel order -->
+          <% if order.decorate.cancellable? %>
+            <%= link_to "Cancel", shopkeeper_order_cancel_path(order), method: :patch %>
           <% end %>
+          <!-- Destroy order -->
+          <%= link_to I18n.t(:delete, scope: :edit_order), order_path(order), method: :delete, data: { confirm: I18n.t(:confirm_want_delete, scope: :notice) } %>
+        </td>
         </tr>
       <% end %>
     </tbody>

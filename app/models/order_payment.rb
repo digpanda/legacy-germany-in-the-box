@@ -44,6 +44,11 @@ class OrderPayment
     transaction_type == "refund-purchase" || transaction_type == "refund-debit"
   end
 
+  def refundable?
+    return false if self.refund?
+    self.order.decorate.total_paid == 0
+  end
+
   def unverified?
     status == :unverified
   end

@@ -41,7 +41,7 @@
     <% if order_payment.unverified? %>
       <%= link_to '', admin_order_payment_check_path(order_payment), :method => :post, data: { confirm: "Are you sure you want to refresh this order from the Elastic API ?" }, :class => 'fa fa-magic fa-2x', :title => "Check remotely" %>
     <% end %>
-    <% unless order_payment.refund? %>
+    <% if order_payment.refundable? %>
       <%= link_to '', admin_order_payment_refund_path(order_payment), :method => :post, data: { confirm: "Are you sure you want to refund this transaction ?" }, :class => 'fa fa-reply fa-2x', :title => "Refund" %>
     <% end %>
       <%= link_to '', admin_order_payment_path(order_payment), :method => :delete, data: { confirm: "Are you sure you want to remove a transaction ? This cannot be undone." }, :class => 'fa fa-times-circle fa-2x', :title => "Remove" %>

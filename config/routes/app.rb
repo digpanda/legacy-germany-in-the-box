@@ -35,6 +35,7 @@ namespace :shopkeeper do
     get   :bill
     patch :process_order
     patch :shipped
+    patch :cancel
   end
 
   resources :payments do

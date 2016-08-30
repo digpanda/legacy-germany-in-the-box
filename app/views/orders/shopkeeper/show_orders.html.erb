@@ -93,6 +93,12 @@
           <% elsif order.decorate.shippable? %>
             <%= link_to I18n.t(:package_was_sent, scope: :notice), shopkeeper_order_shipped_path(order), method: :patch %>
           <% end %>
+
+          <!-- Cancel order -->
+          <% if order.decorate.cancellable? %>
+            <%= link_to "Cancel", shopkeeper_order_cancel_path(order), method: :patch %>
+          <% end %>
+
           </td>
         </tr>
       <% end %>

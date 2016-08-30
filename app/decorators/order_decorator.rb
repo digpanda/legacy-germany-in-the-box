@@ -64,6 +64,10 @@ class OrderDecorator < Draper::Decorator
     status == :paid && processable_time?
   end
 
+  def cancellable?
+    status != :cancelled
+  end
+
   def processable_time?
     if Rails.env.production?
       Time.now.strftime("%k").to_i < 15 || Time.now.strftime("%k").to_i > 16

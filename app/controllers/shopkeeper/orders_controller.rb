@@ -7,8 +7,9 @@ class Shopkeeper::OrdersController < ApplicationController
 
   load_and_authorize_resource
   before_action :set_order
+  before_filter :is_shop_order
 
-  attr_reader :order
+  attr_accessor :order
 
   def show
     respond_to do |format|
@@ -45,7 +46,7 @@ class Shopkeeper::OrdersController < ApplicationController
 
   end
 
-  def process_order # keyword `process` used for obscure reasons
+  def process_order # can't just put `process` it seems to be reserved term in Rails
 
     unless order.decorate.processable?
       flash[:error] = I18n.t(:order_not_processable, scope: :notice)
@@ -53,17 +54,32 @@ class Shopkeeper::OrdersController < ApplicationController
       return
     end
 
-    #
-    # We don't forget to change status of orders and such
-    # Only if everything was a success
-    #
+    # we don't forget to change status of orders and such
+    # only if everything was a success
     order.status = :custom_checkable
     order.save
 
-    #
-    # We go back now
-    #
+    # we go back now
     flash[:success] = I18n.t(:order_processing, scope: :notice)
+    redirect_to(:back)
+    return
+
+  end
+
+  def cancel
+
+    unless order.decorate.cancellable?
+      flash[:error] = "Impossible to cancel order"
+      redirect_to(:back)
+      return
+    end
+
+    # we cancel the order
+    order.status = :cancelled
+    order.save
+
+    # we go back now
+    flash[:success] = "Order was cancelled successfully."
     redirect_to(:back)
     return
 
@@ -74,4 +90,9 @@ class Shopkeeper::OrdersController < ApplicationController
   def set_order
     @order ||= Order.find(params[:id] || params[:order_id])
   end
+
+  def is_shop_order
+    binding.pry
+  end
+
 end
