@@ -308,6 +308,7 @@ class OrdersController < ApplicationController
     @order.status = :canceled
     @order.save
 
+    # TODO: differentiate cancel from destroy better than that
     if current_user&.decorate.admin?
       @order && @order.status != :success
       @order.order_items.delete_all
