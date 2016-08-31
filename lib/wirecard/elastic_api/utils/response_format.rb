@@ -1,5 +1,8 @@
 require 'rexml/text'
 
+# format the response and handle / convert the result hash
+# it's used throughout the whole ElasticApi library when a `response`
+# has to be returned
 module Wirecard
   class ElasticApi
     module Utils

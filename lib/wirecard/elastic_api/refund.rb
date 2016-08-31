@@ -1,3 +1,6 @@
+# refund a customer via the API
+# this will make a double API call
+# to first recover the original payment transaction
 module Wirecard
   class ElasticApi
     class Refund
@@ -59,7 +62,8 @@ module Wirecard
         {
           :currency => parent_transaction.response.requested_currency,
           :amount => parent_transaction.response.requested_amount,
-          :payment_method => parent_transaction.response.payment_method, # potential bug because it's a symbol ?
+          # potential bug because it's a symbol ?
+          :payment_method => parent_transaction.response.payment_method,
           :transaction_type => refund_transaction_type
         }
       end
