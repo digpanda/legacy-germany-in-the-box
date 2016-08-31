@@ -1945,9 +1945,9 @@ var RefreshTime = {
    */
   init: function init() {
 
-    this.refreshTime('#server-time');
-    this.refreshTime('#china-time');
-    this.refreshTime('#germany-time');
+    //this.refreshTime('#server-time', 'America/Los_Angeles');
+    this.refreshTime('#china-time', 'Asia/Shanghai');
+    this.refreshTime('#germany-time', 'Europe/Berlin');
   },
 
   /**
@@ -1955,9 +1955,8 @@ var RefreshTime = {
    * @param  {#} selector
    * @return void
    */
-  displayTime: function displayTime(selector) {
-    var current = $(selector).html();
-    var time = moment(current, 'HH:mm:ss').add('seconds', 1).format('HH:mm:ss');
+  displayTime: function displayTime(selector, time_zone) {
+    var time = moment().tz(time_zone).format('HH:mm:ss');
     $(selector).html(time);
   },
 
@@ -1966,10 +1965,13 @@ var RefreshTime = {
    * @param  {#} selector
    * @return void
    */
-  refreshTime: function refreshTime(selector) {
-    setInterval(function () {
-      RefreshTime.displayTime(selector);
-    }, 1000);
+  refreshTime: function refreshTime(selector, time_zone) {
+    var remote_time = $(selector).html();
+    if (typeof remote_time != "undefined") {
+      setInterval(function () {
+        RefreshTime.displayTime(selector, time_zone);
+      }, 1000);
+    }
   }
 
 };

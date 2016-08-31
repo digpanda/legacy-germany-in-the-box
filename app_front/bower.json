@@ -24,7 +24,8 @@
     "magnify": "^1.6.6",
     "freewall": "^1.0.6",
     "slicknav": "^1.0.7",
-    "moment": "*"
+    "moment": "*",
+    "moment-timezone": "^0.5.5"
   },
   "overrides": {
     "font-awesome": {
