@@ -21,7 +21,7 @@ class WirecardPaymentRefunder < BaseService
   private
 
   def response
-    @response ||= Wirecard::ElasticApi.refund(order_payment.merchant_id, order_payment.transaction_id).response.raw
+    @response ||= Wirecard::ElasticApi.refund(order_payment.merchant_id, order_payment.transaction_id).response
   rescue Wirecard::ElasticApi::Error
     raise Error, "A problem occured while trying to refund this transaction"
   end
@@ -34,22 +34,22 @@ class WirecardPaymentRefunder < BaseService
   def create_refund_order_payment
     OrderPayment.new.tap do |order_payment_refund|
       order_payment_refund.merchant_id      = order_payment.merchant_id
-      order_payment_refund.request_id       = response[:payment][:"request-id"]
-      order_payment_refund.transaction_id   = response[:payment][:"transaction-id"]
+      order_payment_refund.request_id       = response.request_id
+      order_payment_refund.transaction_id   = response.transaction_id
       order_payment_refund.parent_transaction_id = order_payment.transaction_id
-      order_payment_refund.transaction_type = response[:payment][:"transaction-type"]
+      order_payment_refund.transaction_type = response.transaction_type
       order_payment_refund.user_id          = order_payment.user_id
       order_payment_refund.order_id         = order_payment.order_id
       order_payment_refund.payment_method   = order_payment.payment_method
       # TODO: refactor this
       if transaction_success?
-        order_payment_refund.status = response[:payment][:"transaction-state"]
+        order_payment_refund.status = response.transaction_state
       else
         order_payment_refund.status = :failed
       end
       order_payment_refund.save
       # we dynamically set the amount via API response and set the other one via currency exchange
-      order_payment_refund.save_origin_amount!(response[:payment][:"requested-amount"][:"value"], response[:payment][:"requested-amount"][:"currency"])
+      order_payment_refund.save_origin_amount!(response.requested_amount, response.requested_amount_currency)
       order_payment_refund.refresh_currency_amounts!
     end
   end
@@ -58,12 +58,12 @@ class WirecardPaymentRefunder < BaseService
     OrderPayment.where({
       merchant_id: order_payment.merchant_id,
       parent_transaction_id: order_payment.transaction_id,
-      transaction_type: response[:payment][:"transaction-type"]}).first
+      transaction_type: response.transaction_type}).first
   end
 
   def transaction_success?
     #ExceptionNotifier.notify_exception(Wirecard::Base::Error.new, :env => Rails.env, :data => response)
-    response[:payment][:"transaction-state"] == "success"
+    response.transaction_state == :success
   end
 
 end

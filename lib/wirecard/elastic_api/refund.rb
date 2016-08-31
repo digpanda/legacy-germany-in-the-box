@@ -57,7 +57,7 @@ module Wirecard
       # get some body params from the remote elastic API itslef rather than our database (safer)
       def remote_params
         {
-          :currency => parent_transaction.response.currency,
+          :currency => parent_transaction.response.requested_currency,
           :amount => parent_transaction.response.requested_amount,
           :payment_method => parent_transaction.response.payment_method, # potential bug because it's a symbol ?
           :transaction_type => refund_transaction_type

@@ -41,12 +41,15 @@ module Wirecard
           end
         end
 
-        # TODO : improve this to be normed to the API names
+        def raw_request_id; cycle(:"request-id"); end
         def raw_request_status; cycle(:statuses, :status, 0, :severity); end
-        def raw_currency; cycle(:"requested-amount", :currency); end
         def raw_requested_amount; cycle(:"requested-amount", :value); end
+        # raw_currency original
+        def raw_requested_amount_currency; cycle(:"requested-amount", :currency); end
+        def raw_transaction_id; cycle(:"transaction-id"); end
         def raw_transaction_type; cycle(:"transaction-type"); end
-        def raw_status; cycle(:"transaction-state"); end
+        # raw_status originaly (TO TEST A LOT BEFORE TO REMOVE THIS COMMENT)
+        def raw_transaction_state; cycle(:"transaction-state"); end
         def raw_payment_method; cycle(:"payment-methods", :"payment-method", 0, :name); end
 
         private
