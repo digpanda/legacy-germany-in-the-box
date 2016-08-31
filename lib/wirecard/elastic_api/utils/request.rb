@@ -31,10 +31,14 @@ module Wirecard
         end
 
         def response
-          @response ||= JSON.parse(raw_response.body).deep_symbolize_keys if valid_json?(raw_response.body)
+          @response ||= JSON.parse(raw_response.body).deep_symbolize_keys if valid_body?
         end
 
         private
+
+        def valid_body?
+          raw_response.body && valid_json?(raw_response.body)
+        end
 
         # TODO: could be placed somewhere else i guess
         def valid_json?(json)
