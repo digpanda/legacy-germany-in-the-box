@@ -5,10 +5,15 @@ module Wirecard
     module Utils
       class ResponseFormat
 
+        # will force symbol conversion for those specific methods calls
+        # *method.status will return a symbol
+        # *method.anything will return the raw value
         SYMBOLS_MAP = [:request_status, :status, :transaction_type, :payment_method]
 
         attr_reader :origin, :raw
 
+        # .to_call will convert the `method_name` into
+        # the raw method matching to it and sybmolize
         class << self
           def to_call(method_name)
             "raw_#{method_name}".to_sym
@@ -20,6 +25,10 @@ module Wirecard
           @raw = raw
         end
 
+        # we are calling the different raw_* methods
+        # if someone tries to access an unknown method
+        # it can also convert some strings responses
+        # into symbols on the way
         def method_missing(method_symbol, *arguments, &block)
           to_call = ResponseFormat.to_call(method_symbol)
           if self.respond_to?(to_call)
@@ -45,7 +54,7 @@ module Wirecard
         # cool method to try to go through a hash, could be WAY improved
         # but who got time for that ?
         def cycle(*elements)
-          position = raw[:payment] || raw[:payment]&.[](:"merchant-account-id")
+          position = raw[:payment]&.[](:"merchant-account-id") || raw[:payment]
           elements.each do |element|
             position = position&.[](element)
             return position if position.nil?
@@ -53,6 +62,7 @@ module Wirecard
           position
         end
 
+        # convert the data to a symbol
         def symbolize_data(data)
           data.to_s.gsub("-", "_").to_sym
         end

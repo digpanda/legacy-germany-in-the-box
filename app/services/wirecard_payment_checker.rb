@@ -32,6 +32,7 @@ class WirecardPaymentChecker < BaseService
     return_with(:error, exception)
   end
 
+  # force the unverified status for this payment
   def unverified_order_payment!
     order_payment.status         = :unverified
     order_payment.transaction_id = transaction_id
