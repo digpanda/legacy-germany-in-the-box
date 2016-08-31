@@ -55,7 +55,7 @@
           <% if order.border_guru_shipment_id %>
             <%= link_to I18n.t(:download, scope: :edit_order), download_label_order_path(order) %> |
           <% end %>
-          <a href="<%= shopkeeper_order_path(order, format: "pdf") %>">Products list</a> | <a href="<%= shopkeeper_order_path(order, format: "csv") %>">Shippment CSV</a> | <a href="<%= shopkeeper_order_bill_path(order, format: "pdf") %>">Informal Bill</a>
+          <a href="<%= shared_order_path(order, format: "pdf") %>">Products list</a> | <a href="<%= shared_order_path(order, format: "csv") %>">Shippment CSV</a> | <a href="<%= shared_order_bill_path(order, format: "pdf") %>">Informal Bill</a>
           </td>
           <th>
           <% unless order.minimum_sending_date.nil? %>
@@ -96,7 +96,7 @@
 
           <!-- Cancel order -->
           <% if order.decorate.cancellable? %>
-            <%= link_to "Cancel", shopkeeper_order_cancel_path(order), method: :patch, data: { confirm: "Are you sure you want to cancel this order ?" } %>
+            <%= link_to "Cancel", shared_order_cancel_path(order), method: :patch, data: { confirm: "Are you sure you want to cancel this order ?" } %>
           <% end %>
 
           </td>

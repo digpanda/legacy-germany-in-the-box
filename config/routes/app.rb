@@ -22,8 +22,6 @@ end
 
 namespace :admin do
   resources :orders do
-    get :bill
-    patch :cancel
   end
   resources :order_payments do
     post :refund
@@ -37,10 +35,8 @@ end
 namespace :shopkeeper do
 
   resources :orders do
-    get   :bill
     patch :process_order
     patch :shipped
-    patch :cancel
   end
 
   resources :payments do
@@ -103,7 +99,10 @@ end
 
 # Shared related
 namespace :shared do
-
+  resources :orders do
+    get   :bill
+    patch :cancel
+  end
   resources :notifications do
   end
 
