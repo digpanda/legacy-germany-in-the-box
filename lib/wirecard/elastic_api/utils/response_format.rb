@@ -54,7 +54,7 @@ module Wirecard
         # cool method to try to go through a hash, could be WAY improved
         # but who got time for that ?
         def cycle(*elements)
-          position = raw[:payment]&.[](:"merchant-account-id") || raw[:payment]
+          position = raw[:payment] || raw[:payment]&.[](:"merchant-account-id")
           elements.each do |element|
             position = position&.[](element)
             return position if position.nil?
