@@ -18,11 +18,11 @@ class Admin::OrderPaymentsController < ApplicationController
   # when the order payment is stuck on `scheduled` you can manually update the transaction_id
   def transaction_id
 
-    if order_payment.transaction_id
-      flash[:error] = "Transaction ID is already present for this payment."
-      redirect_to navigation.back(1)
-      return
-    end
+    #if order_payment.transaction_id
+    #  flash[:error] = "Transaction ID is already present for this payment."
+    #  redirect_to navigation.back(1)
+    #  return
+    #end
 
     order_payment.transaction_id = params["transaction_id"]
     order_payment.status = :unverified

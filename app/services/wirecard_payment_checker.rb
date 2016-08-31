@@ -16,7 +16,13 @@ class WirecardPaymentChecker < BaseService
 
   def update_order_payment!
     unverified_order_payment!
-    refresh_order_payment_from_api! # this part can raise errors easily
+    # originally silent error turned into a raise error to be more clear
+    # it won't get the transaction detail if it's not a purchase / debit
+    if finalized_transaction?
+      raise Wirecard::ElasticApi::Error, "Transaction type is not valid. Please verify you used the correct transaction-id"
+    end
+    # this part can raise errors easily
+    refresh_order_payment_from_api!
     # this was already set at some point in the system
     # we just update the payment in case the currency conversion
     # would different between the order and payment time
@@ -48,9 +54,9 @@ class WirecardPaymentChecker < BaseService
   end
 
   def refresh_order_payment_from_api!
-      order_payment.status = remote_transaction.response.status if finalized_transaction?
-      order_payment.payment_method = remote_transaction.response.payment_method
-      order_payment.save
+    order_payment.status = remote_transaction.response.status
+    order_payment.payment_method = remote_transaction.response.payment_method
+    order_payment.save
   end
 
 end

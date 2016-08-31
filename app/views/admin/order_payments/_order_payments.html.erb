@@ -5,7 +5,7 @@
   <td>
     <% if order_payment.transaction_id %>
     <%= order_payment.transaction_id %>
-    <% else %>
+    <% #else %>
 
       <%= form_tag admin_order_payment_transaction_id_path(order_payment), method: :patch do %>
         <%= text_field_tag :transaction_id %>

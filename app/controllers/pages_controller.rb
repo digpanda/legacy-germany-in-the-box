@@ -4,7 +4,6 @@ class PagesController < ApplicationController
 
   def home
     @categories = Category.all
-    binding.pry
   end
 
   def agb

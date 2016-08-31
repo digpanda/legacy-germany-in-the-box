@@ -33,6 +33,7 @@ module Wirecard
       # if the response got errors, otherwise it continues to process
       # by returning the object itself
       def raise_response_issues
+        raise Wirecard::ElasticApi::Error, "The transaction could not be verified. API access refused." if negative_response?
         raise Wirecard::ElasticApi::Error, "The status of the transaction is not correct" unless valid_status?
         raise Wirecard::ElasticApi::Error, "The transaction could not be verified. API access refused." if negative_response?
         self
