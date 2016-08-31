@@ -31,10 +31,18 @@ module Wirecard
         end
 
         def response
-          @response ||= JSON.parse(raw_response.body).deep_symbolize_keys unless raw_response.body.nil?
+          @response ||= JSON.parse(raw_response.body).deep_symbolize_keys if valid_json?(raw_response.body)
         end
 
         private
+
+        # TODO: could be placed somewhere else i guess
+        def valid_json?(json)
+          JSON.parse(json)
+          true
+        rescue JSON::ParserError
+          false
+        end
 
         def dispatch!(connection)
           request.basic_auth username, password # authentification here
