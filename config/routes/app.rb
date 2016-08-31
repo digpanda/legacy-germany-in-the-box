@@ -21,6 +21,9 @@ resource :page do
 end
 
 namespace :admin do
+  resources :orders do
+    patch :cancel
+  end
   resources :order_payments do
     post :refund
     post :check

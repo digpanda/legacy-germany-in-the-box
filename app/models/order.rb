@@ -38,7 +38,7 @@ class Order
   # :custom_checkable -> the order has been handled by the shopkeeper
   # :custom_checking -> the order is being checked by the customs
   # :shipped -> the shopkepper has sent the package
-  validates :status, presence: true , inclusion: {in: [:new, :paying, :payment_unverified, :payment_failed, :canceled, :paid, :custom_checkable, :custom_checking, :shipped]}
+  validates :status, presence: true , inclusion: {in: [:new, :paying, :payment_unverified, :payment_failed, :cancelled, :paid, :custom_checkable, :custom_checking, :shipped]}
 
   summarizes sku_list: :order_items, by: :quantity
 

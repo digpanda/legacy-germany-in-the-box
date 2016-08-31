@@ -80,7 +80,7 @@ class Shopkeeper::OrdersController < ApplicationController
   private
 
   def set_order
-    @order ||= Order.find(params[:id] || params[:order_id])
+    @order = Order.find(params[:id] || params[:order_id])
   end
 
   def is_shop_order

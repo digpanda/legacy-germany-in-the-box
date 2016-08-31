@@ -96,7 +96,7 @@
 
           <!-- Cancel order -->
           <% if order.decorate.cancellable? %>
-            <%= link_to "Cancel", shopkeeper_order_cancel_path(order), method: :patch %>
+            <%= link_to "Cancel", shopkeeper_order_cancel_path(order), method: :patch, data: { confirm: "Are you sure you want to cancel this order ?" } %>
           <% end %>
 
           </td>

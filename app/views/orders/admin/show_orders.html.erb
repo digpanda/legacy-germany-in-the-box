@@ -64,7 +64,7 @@
           <td>
           <!-- Cancel order -->
           <% if order.decorate.cancellable? %>
-            <%= link_to "Cancel", shopkeeper_order_cancel_path(order), method: :patch %>
+            <%= link_to "Cancel", admin_order_cancel_path(order), method: :patch, data: { confirm: "Are you sure you want to cancel this order ?" } %>
           <% end %>
           <!-- Destroy order -->
           <%= link_to I18n.t(:delete, scope: :edit_order), order_path(order), method: :delete, data: { confirm: I18n.t(:confirm_want_delete, scope: :notice) } %>

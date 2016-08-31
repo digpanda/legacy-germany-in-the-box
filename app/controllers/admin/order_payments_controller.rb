@@ -24,9 +24,7 @@ class Admin::OrderPaymentsController < ApplicationController
       return
     end
 
-    if params["transaction_id"].empty?
-      params["transaction_id"] = nil
-    end
+    params["transaction_id"] = nil if params["transaction_id"].empty?
 
     order_payment.transaction_id = params["transaction_id"]
     order_payment.status = :unverified
