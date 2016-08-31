@@ -24,7 +24,7 @@ class Customer::Orders::BorderGuruController < ApplicationController
   private
 
   def track!
-    @track ||= BorderGuruApiHandler.new(order).track!
+    @track ||= BorderGuruApiHandler.new(order).get_shipping!
   end
 
   def set_order

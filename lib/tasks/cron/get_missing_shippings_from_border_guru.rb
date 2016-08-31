@@ -13,7 +13,7 @@ class Tasks::Cron::GetMissingShippingsFromBorderGuru
     unless orders.length.zero?
       begin
         orders.each do |order|
-          response = BorderGuruApiHandler.new(order).track!
+          response = BorderGuruApiHandler.new(order).get_shipping!
           if response.success?
             devlog "Order processed correctly."
           else

@@ -242,7 +242,7 @@ class OrdersController < ApplicationController
       :desc => "Eine neue Bestellung ist da. Zeit für die Vorbereitung!"
       })
 
-    if BorderGuruApiHandler.new(order).track!.success?
+    if BorderGuruApiHandler.new(order).get_shipping!.success?
 
       flash[:success] = I18n.t(:checkout_ok, scope: :checkout)
       redirect_to show_orders_users_path(:user_info_edit_part => :edit_order)
