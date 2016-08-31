@@ -14,13 +14,10 @@ class Shopkeeper::OrdersController < ApplicationController
   def show
     respond_to do |format|
       format.pdf do
-        render pdf: order.id.to_s, disposition: 'attachment'
+        OrderDisplay.new(order).render_to_pdf
       end
       format.csv do
-        I18n.locale = :de # force german for CSV
-        render text: BorderGuruFtp::TransferOrders::Makers::Generate.new([order]).to_csv.encode(CSV_ENCODE),
-               type: "text/csv; charset=#{CSV_ENCODE}; header=present",
-               disposition: 'attachment'
+        OrderDisplayer.new(order).render_to_csv
       end
     end
   end
@@ -28,7 +25,7 @@ class Shopkeeper::OrdersController < ApplicationController
   def bill
     respond_to do |format|
       format.pdf do
-        render pdf: order.id.to_s, disposition: 'attachment'
+        OrderDisplay.new(order).render_to_pdf
       end
     end
   end

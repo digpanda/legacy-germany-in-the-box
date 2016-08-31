@@ -22,6 +22,7 @@ end
 
 namespace :admin do
   resources :orders do
+    get :bill
     patch :cancel
   end
   resources :order_payments do
