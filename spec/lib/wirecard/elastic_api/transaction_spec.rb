@@ -31,8 +31,8 @@ describe Wirecard::ElasticApi::Transaction do
     it 'should return the status' do
 
       VCR.use_cassette("wirecard-api-transaction", :record => :new_episodes) do
-        status = Wirecard::ElasticApi::Transaction.new(TEST_MERCHANT, TEST_TRANSACTION).response.status
-        expect(status).to eql(:success)
+        transaction_state = Wirecard::ElasticApi::Transaction.new(TEST_MERCHANT, TEST_TRANSACTION).response.transaction_state
+        expect(transaction_state).to eql(:success)
       end
 
     end

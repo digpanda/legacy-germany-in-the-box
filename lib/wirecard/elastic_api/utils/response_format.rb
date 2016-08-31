@@ -8,7 +8,7 @@ module Wirecard
         # will force symbol conversion for those specific methods calls
         # *method.status will return a symbol
         # *method.anything will return the raw value
-        SYMBOLS_MAP = [:request_status, :status, :transaction_type, :payment_method]
+        SYMBOLS_MAP = [:request_status, :transaction_type, :transaction_state, :payment_method]
 
         attr_reader :origin, :raw
 
