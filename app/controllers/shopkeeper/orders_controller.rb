@@ -7,7 +7,7 @@ class Shopkeeper::OrdersController < ApplicationController
 
   load_and_authorize_resource
   before_action :set_order
-  #before_filter :is_shop_order TODO (check if it's the current shop order or not, to avoid hacks)
+  before_filter :is_shop_order
 
   attr_accessor :order
 
@@ -105,6 +105,7 @@ class Shopkeeper::OrdersController < ApplicationController
   end
 
   def is_shop_order
+    order.shop.id == current_user.shop.id
   end
 
 end
