@@ -23,6 +23,10 @@ class Admin::OrderPaymentsController < ApplicationController
     #  redirect_to navigation.back(1)
     #  return
     #end
+    #
+    if params["transaction_id"].empty?
+      params["transaction_id"] = nil
+    end
 
     order_payment.transaction_id = params["transaction_id"]
     order_payment.status = :scheduled #:unverified
