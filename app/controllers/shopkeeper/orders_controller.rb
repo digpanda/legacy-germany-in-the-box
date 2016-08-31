@@ -67,38 +67,17 @@ class Shopkeeper::OrdersController < ApplicationController
   end
 
   def cancel
-
-    unless order.decorate.cancellable?
-      flash[:error] = "Impossible to cancel order"
+    canceller = OrderCanceller.new(order).perform
+    if canceller.success?
+      flash[:success] = "Order was cancelled successfully."
       redirect_to(:back)
-      return
-    end
-
-    # we cancel from the BorderGuru API
-    unless border_guru_cancel_order!
-      flash[:error] = "We could not cancel the order from BorderGuru API"
+    else
+      flash[:error] = "#{canceller.error}"
       redirect_to(:back)
-      return
     end
-
-    # we cancel the order
-    order.status = :cancelled
-    order.save
-
-    # we go back now
-    flash[:success] = "Order was cancelled successfully."
-    redirect_to(:back)
-    return
-
   end
 
   private
-
-  def border_guru_cancel_order!
-    BorderGuru.cancel_order(border_guru_shipment_id: order.border_guru_shipment_id)
-  rescue StandardError
-    false
-  end
 
   def set_order
     @order ||= Order.find(params[:id] || params[:order_id])
