@@ -18,7 +18,7 @@ class WirecardPaymentChecker < BaseService
     unverified_order_payment!
     # originally silent error turned into a raise error to be more clear
     # it won't get the transaction detail if it's not a purchase / debit
-    if finalized_transaction?
+    unless finalized_transaction?
       raise Wirecard::ElasticApi::Error, "Transaction type is not valid. Please verify you used the correct transaction-id"
     end
     # this part can raise errors easily

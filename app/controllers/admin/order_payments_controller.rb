@@ -29,7 +29,7 @@ class Admin::OrderPaymentsController < ApplicationController
     end
 
     order_payment.transaction_id = params["transaction_id"]
-    order_payment.status = :unverified #:scheduled #:unverified
+    order_payment.status = :unverified
     order_payment.save
     flash[:success] = "Transaction ID was set manually."
 
