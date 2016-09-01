@@ -8,14 +8,19 @@ class Tasks::Digpanda::ResetBillIds
   private
 
   def reset_all_bill_ids!
+    puts "Numer of bill id before removal : #{Order.where(:bill_id.ne => nil).count}"
     # we first reset all the bill ids to 0 to start with
     # we skip the callbacks to remove it without any auto make bill id trigger
     Order.skip_callback(:save, :after, :make_bill_id)
     Order.all.each do |order|
       order.bill_id = nil
-      order.save
+      order.save(validation: false)
+      if order.save == false
+        binding.pry
+      end
     end
     Order.set_callback(:save, :after, :make_bill_id)
+    puts "Number of bill id after removal : #{Order.where(:bill_id.ne => nil).count}"
   end
 
   def assign_bill_ids!
