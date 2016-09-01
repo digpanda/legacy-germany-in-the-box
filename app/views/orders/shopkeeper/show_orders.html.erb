@@ -6,6 +6,9 @@
           <%= I18n.t(:id, scope: :edit_order) %>
         </th>
         <th>
+          BorderGuru Shipment Id
+        </th>
+        <th>
           Delivery Address Name
         </th>
         <th>
@@ -36,6 +39,9 @@
         <tr>
           <td>
             <%= link_to order.id, order_path(order) %>
+          </td>
+          <td>
+            <%= order.border_guru_shipment_id %>
           </td>
           <td>
             <% unless order.shipping_address.nil? %>
