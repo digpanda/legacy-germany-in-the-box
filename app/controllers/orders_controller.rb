@@ -51,16 +51,23 @@ class OrdersController < ApplicationController
         @cart_or_order.decorate.add(i.sku, i.quantity)
       end
 
-      begin
-        BorderGuru.calculate_quote(
-            cart: @cart_or_order,
-            shop: @order.shop,
-            country_of_destination: ISO3166::Country.new('CN'),
-            currency: 'EUR'
-        )
-      rescue Net::ReadTimeout => e
-        logger.fatal "Failed to connect to Borderguru: #{e}"
-        return nil
+      # THIS SHOULD BE REALLY FUCKING REFACTORED
+      # THIS IS DISGUSTING.
+      # - Laurent 01/09/2016
+      if @order.order_items.count > 0
+
+        begin
+          BorderGuru.calculate_quote(
+              cart: @cart_or_order,
+              shop: @order.shop,
+              country_of_destination: ISO3166::Country.new('CN'),
+              currency: 'EUR'
+          )
+        rescue Net::ReadTimeout => e
+          logger.fatal "Failed to connect to Borderguru: #{e}"
+          return nil
+        end
+
       end
     end
   end
