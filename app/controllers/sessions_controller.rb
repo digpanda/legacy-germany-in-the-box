@@ -3,7 +3,7 @@ require 'open-uri'
 class SessionsController < Devise::SessionsController
 
   skip_before_filter :verify_signed_out_user
-  before_action :authenticate_user!, except: [:new, :create]
+  before_action :authenticate_user!, except: [:new, :create, :destroy]
 
   def new
     session[:login_advice_counter] = 1
