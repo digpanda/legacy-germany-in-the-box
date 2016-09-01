@@ -13,9 +13,6 @@ class Shared::OrdersController < ApplicationController
 
   def show
     respond_to do |format|
-      format.pdf do
-        render pdf: order.id.to_s, disposition: 'attachment'
-      end
       format.csv do
         render text: BorderGuruFtp::TransferOrders::Makers::Generate.new([order]).to_csv.encode(CSV_ENCODE),
                type: "text/csv; charset=#{CSV_ENCODE}; header=present",
