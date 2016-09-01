@@ -20,4 +20,9 @@ namespace :digpanda do
     Tasks::Digpanda::RemoveAndCreateCompleteSampleData.new.perform
   end
 
+  desc 'reset all the bill ids'
+  task reset_bill_ids: :environment do
+    Tasks::Digpanda::ResetBillIds.new
+  end
+
 end

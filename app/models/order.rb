@@ -27,6 +27,7 @@ class Order
 
   scope :nonempty,    ->  {  where( :order_items_count.gt => 0 ) }
   scope :bought,      ->  { self.in( :status => [:paid, :custom_checkable, :custom_checking, :shipped] ) }
+  scope :bought_or_cancelled, -> { self.in( :status => [:paid, :custom_checkable, :custom_checking, :shipped, :cancelled] ) }
   scope :bought_or_unverified,      ->  { self.in( :status => [:payment_unverified, :paid, :custom_checkable, :custom_checking, :shipped] ) }
 
   # :new -> didn't try to pay
@@ -97,10 +98,14 @@ class Order
   end
 
   def make_bill_id
-    if bill_id.nil?
-      year = c_at.strftime("%Y")
-      num = Order.where(:bill_id.ne => nil).count + 1 # mongoid not able to count entry position, classical stuff.
-      self.bill_id = "#{year}-P#{num}"
+    # only the orders which were at some point will be assigned a bill id
+    # the unique number in it will be equal to the total of the previous bills + 1.
+    # every year the system got reset
+    if bill_id.nil? && self.is_bought?
+      start_year = c_at.beginning_of_year
+      year_digits = start_year.strftime("%Y")
+      num = Order.where({:bill_id.ne => nil}).where({:c_at.gte => start_year}).count + 1
+      self.bill_id = "#{year_digits}-P#{num}"
       self.save
     end
   end
