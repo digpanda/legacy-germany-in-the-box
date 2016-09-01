@@ -34,7 +34,7 @@ class Order
   # :paying -> is inside the process of payment
   # :payment_unverified -> we couldn't verify the payment (contact admin)
   # :payment_failed -> the payment failed (make another try when we got the functionality)
-  # :canceled -> the order has been canceled
+  # :cancelled -> the order has been canceled
   # :paid -> it was paid
   # :custom_checkable -> the order has been handled by the shopkeeper
   # :custom_checking -> the order is being checked by the customs

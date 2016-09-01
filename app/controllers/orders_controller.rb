@@ -305,7 +305,7 @@ class OrdersController < ApplicationController
 
     shop_id = @order.shop.id.to_s
     session[:order_ids]&.delete(shop_id)
-    @order.status = :canceled
+    @order.status = :cancelled
     @order.save
 
     # NOTE : for legacy purpose this method is still here.
