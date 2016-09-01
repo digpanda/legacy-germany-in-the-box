@@ -5,7 +5,7 @@ class Currency
   attr_reader :amount, :currency
 
   def initialize(amount, currency='EUR')
-    @amount = amount
+    @amount = amount.to_i
     @currency = currency
   end
 
