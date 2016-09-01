@@ -9,8 +9,9 @@ class ShippingPrice
   VAT_PERCENT = 19.00 # %
   APPROXIMATION_PERCENT = 20.00 # %
 
-  # add `to_b` functionality to floats
+  # add `to_b` functionality to floats / fixnum
   Float.include CoreExtensions::Float::BigDecimalConverter
+  Fixnum.include CoreExtensions::Fixnum::BigDecimalConverter
 
   attr_reader :order
 
