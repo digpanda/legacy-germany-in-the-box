@@ -655,4 +655,52 @@ http_interactions:
         Denied - User doesn''t have the access for the requested operation!","severity":"error"}]}}}'
     http_version: 
   recorded_at: Mon, 29 Aug 2016 10:13:34 GMT
+- request:
+    method: get
+    uri: https://sandbox-engine.thesolution.com/engine/rest/merchants/9105bb4f-ae68-4768-9c3b-3eda968f57ea/payments/c4b5a4bf-d328-4be3-9c0b-66d54e09752a.json
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Authorization:
+      - Basic ZW5naW5lLmRpZ3BhbmRhOngzWnlyOE1hWTdURHhqNkY=
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 403
+      message: Forbidden
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Thu, 01 Sep 2016 11:38:47 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Pragma:
+      - no-cache
+      Cache-Control:
+      - no-cache, no-store, max-age=0
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      Content-Language:
+      - en-US
+      Set-Cookie:
+      - SERVERID=n101; path=/
+    body:
+      encoding: UTF-8
+      string: '{"payment":{"transaction-state":"failed","statuses":{"status":[{"code":"403.1166","description":"Access
+        Denied - User doesn''t have the access for the requested operation!","severity":"error"}]}}}'
+    http_version: 
+  recorded_at: Thu, 01 Sep 2016 11:38:47 GMT
 recorded_with: VCR 3.0.3

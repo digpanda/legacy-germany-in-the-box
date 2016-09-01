@@ -20,7 +20,7 @@ describe Wirecard::ElasticApi::Transaction do
 
       VCR.use_cassette("wirecard-api-transaction", :record => :new_episodes) do
         response = Wirecard::ElasticApi::Transaction.new(TEST_MERCHANT, TEST_TRANSACTION).response
-        assert_instance_of Hash, response
+        assert_instance_of Wirecard::ElasticApi::Utils::ResponseFormat, response
         expect(response.transaction_state).to eql(:success)
       end
 

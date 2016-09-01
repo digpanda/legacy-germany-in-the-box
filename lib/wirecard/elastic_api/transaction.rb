@@ -42,11 +42,11 @@ module Wirecard
       private
 
       def valid_status?
-        VALID_STATUS_LIST.include? response.status
+        VALID_STATUS_LIST.include? response.transaction_state
       end
 
       def negative_response?
-        response.status == :failed && response.request_status == :error
+        response.transaction_state == :failed && response.request_status == :error
       end
 
     end
