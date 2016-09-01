@@ -3,9 +3,10 @@ describe WirecardPaymentChecker  do
   context "#update_order_payment!" do
 
     let(:current_user) { FactoryGirl.create(:customer) }
-    let(:order_payment) { FactoryGirl.create(:order_payment, :with_scheduled) }
 
     it "succeed and update the order payment" do
+
+      order_payment = FactoryGirl.create(:order_payment, :with_scheduled)
 
       VCR.use_cassette("wirecard-api-transaction", :record => :new_episodes) do
 
@@ -26,7 +27,24 @@ describe WirecardPaymentChecker  do
 
     end
 
+    it "succeed and update the order payment via order payments args only" do
+
+      order_payment = FactoryGirl.create(:order_payment, :with_unverified_success)
+
+      VCR.use_cassette("wirecard-api-transaction", :record => :new_episodes) do
+
+        expect(order_payment.status).to eql(:unverified)
+        payment_checker = WirecardPaymentChecker.new({:order_payment => order_payment})
+        expect(payment_checker.update_order_payment!.success?).to eql(true)
+        expect(order_payment.status).to eql(:success)
+
+      end
+
+    end
+
     it "throw an invalid transaction" do
+
+      order_payment = FactoryGirl.create(:order_payment, :with_scheduled)
 
       VCR.use_cassette("wirecard-api-transaction", :record => :new_episodes) do
 

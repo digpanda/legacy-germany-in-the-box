@@ -703,4 +703,98 @@ http_interactions:
         Denied - User doesn''t have the access for the requested operation!","severity":"error"}]}}}'
     http_version: 
   recorded_at: Thu, 01 Sep 2016 11:38:47 GMT
+- request:
+    method: get
+    uri: https://sandbox-engine.thesolution.com/engine/rest/merchants/dfc3a296-3faf-4a1d-a075-f72f1b67dd2a/payments/.json
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Authorization:
+      - Basic ZW5naW5lLmRpZ3BhbmRhOngzWnlyOE1hWTdURHhqNkY=
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 400
+      message: Bad Request
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Thu, 01 Sep 2016 12:26:13 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Pragma:
+      - no-cache
+      Cache-Control:
+      - no-cache, no-store, max-age=0
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      Content-Language:
+      - en-US
+      Set-Cookie:
+      - SERVERID=n102; path=/
+    body:
+      encoding: UTF-8
+      string: '{"payments":{}}'
+    http_version: 
+  recorded_at: Thu, 01 Sep 2016 12:26:13 GMT
+- request:
+    method: get
+    uri: https://sandbox-engine.thesolution.com/engine/rest/merchants/dfc3a296-3faf-4a1d-a075-f72f1b67dd2a/payments/.json
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Authorization:
+      - Basic ZW5naW5lLmRpZ3BhbmRhOngzWnlyOE1hWTdURHhqNkY=
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 400
+      message: Bad Request
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Thu, 01 Sep 2016 12:30:50 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Pragma:
+      - no-cache
+      Cache-Control:
+      - no-cache, no-store, max-age=0
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      Content-Language:
+      - en-US
+      Set-Cookie:
+      - SERVERID=n102; path=/
+    body:
+      encoding: UTF-8
+      string: '{"payments":{}}'
+    http_version: 
+  recorded_at: Thu, 01 Sep 2016 12:30:49 GMT
 recorded_with: VCR 3.0.3

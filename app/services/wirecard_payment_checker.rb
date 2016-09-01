@@ -32,14 +32,14 @@ class WirecardPaymentChecker < BaseService
     return_with(:error, exception)
   end
 
+  private
+
   # force the unverified status for this payment
   def unverified_order_payment!
     order_payment.status         = :unverified
     order_payment.transaction_id = transaction_id
     order_payment.save
   end
-
-  private
 
   # get the remote transaction and raise error in case the connection isn't correctly established
   # or the transaction has basically failed
