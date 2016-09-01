@@ -1,5 +1,4 @@
 module ProductsHelper
-  include AppCache
 
   # should REALLY change all those things
 

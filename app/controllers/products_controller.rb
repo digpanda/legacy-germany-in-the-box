@@ -2,8 +2,6 @@ require 'will_paginate/array'
 
 class ProductsController < ApplicationController
 
-  include AppCache
-
   SKU_IMAGE_FIELDS = [:img0, :img1, :img2, :img3]
 
   before_action :set_product, :set_category, :set_shop, only: [:show, :edit, :update, :destroy, :remove_sku, :remove_option, :new_sku, :show_skus, :skus]
@@ -143,16 +141,6 @@ class ProductsController < ApplicationController
 
     @products = Product.search(@query)
     @products = Product.can_buy.all
-
-  end
-
-  def popular
-
-    @products = Product.can_buy.paginate(:pages => (params[:pages] ? params[:pages].to_i : 1), :per_page => Rails.configuration.limit_for_popular_products);
-    @show_search_area = true
-
-    @categories_and_children, @categories_and_counters = AppCache.get_category_values_for_left_menu(@products)
-    render :index
 
   end
 

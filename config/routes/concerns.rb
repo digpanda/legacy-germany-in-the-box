@@ -38,7 +38,6 @@ concern :shared_products do
   match :destroy_sku_image, via: [:delete], action: :destroy_sku_image, as: :destroy_sku_image
   match :autocomplete_product_name,               via: [:get],    action: :autocomplete_product_name,   as: :autocomplete_product_name,   :on => :collection
   match :search,                                 via: [:get],    action: :search,                      as: :search,                      :on => :collection
-  match :popular,                                 via: [:get],    action: :popular,                     as: :popular,                                  :on => :collection
 end
 
 concern :shared_users do

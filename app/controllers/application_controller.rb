@@ -10,8 +10,6 @@ class ApplicationController < ActionController::Base
   include ErrorsHelper
   include LanguagesHelper
 
-  include AppCache
-
   include Mobvious::Rails::Controller
 
   unless Rails.env.development? || Rails.env.test? # only on staging / production / test otherwise we show the full error
