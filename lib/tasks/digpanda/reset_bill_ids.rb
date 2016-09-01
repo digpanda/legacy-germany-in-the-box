@@ -15,9 +15,6 @@ class Tasks::Digpanda::ResetBillIds
     Order.all.each do |order|
       order.bill_id = nil
       order.save(validation: false)
-      if order.save == false
-        binding.pry
-      end
     end
     Order.set_callback(:save, :after, :make_bill_id)
     puts "Number of bill id after removal : #{Order.where(:bill_id.ne => nil).count}"
