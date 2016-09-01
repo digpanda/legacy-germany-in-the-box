@@ -1,5 +1,7 @@
 class OrderDecorator < Draper::Decorator
 
+  MAX_DESCRIPTION_CHARACTERS = 200
+
   include OrderCartDecoratorCommon
 
   delegate_all
@@ -19,7 +21,7 @@ class OrderDecorator < Draper::Decorator
   end
 
   def clean_order_items_description
-    self.order_items.reduce([]) { |acc, order_item| acc << order_item.product.decorate.clean_desc }.join(', ')
+    self.order_items.reduce([]) { |acc, order_item| acc << "#{order_item.product.name}: #{order_item.product.decorate.clean_desc(MAX_DESCRIPTION_CHARACTERS)}" }.join(', ')
   end
 
   def total_price_in_yuan
