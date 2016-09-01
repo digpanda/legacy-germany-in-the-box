@@ -302,7 +302,7 @@ class OrdersController < ApplicationController
   end
 
   def destroy
-    
+
     shop_id = @order.shop.id.to_s
     session[:order_ids]&.delete(shop_id)
     @order.status = :canceled

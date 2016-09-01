@@ -8,10 +8,10 @@ class WirecardPaymentChecker < BaseService
   attr_accessor :order_payment
 
   def initialize(args)
-    @transaction_id = args[:transaction_id]
-    @merchant_id    = args[:merchant_account_id]
-    @request_id     = args[:request_id]
     @order_payment  = args[:order_payment]
+    @transaction_id = args[:transaction_id] || order_payment.transaction_id
+    @merchant_id    = args[:merchant_account_id] || order_payment.merchant_id
+    @request_id     = args[:request_id] || order_payment.request_id
   end
 
   def update_order_payment!

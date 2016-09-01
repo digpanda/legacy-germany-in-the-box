@@ -16,6 +16,16 @@ describe Wirecard::ElasticApi::Transaction do
 
     end
 
+    it 'should return a formatted response' do
+
+      VCR.use_cassette("wirecard-api-transaction", :record => :new_episodes) do
+        response = Wirecard::ElasticApi::Transaction.new(TEST_MERCHANT, TEST_TRANSACTION).response
+        assert_instance_of Hash, response
+        expect(response.transaction_state).to eql(:success)
+      end
+
+    end
+
     it 'should not find the transaction and raise an error' do
 
       VCR.use_cassette("wirecard-api-transaction", :record => :new_episodes) do
