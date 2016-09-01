@@ -5,10 +5,10 @@ class Currency
   attr_reader :amount, :currency
 
   def initialize(amount, currency='EUR')
-    @amount = amount.to_i
+    @amount = amount
     @currency = currency
   end
-
+  
   def to_yuan
     update_currency!('CNY', amount * Settings.instance.exchange_rate_to_yuan)
   end
