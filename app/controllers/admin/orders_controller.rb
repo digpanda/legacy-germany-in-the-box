@@ -3,7 +3,7 @@ class Admin::OrdersController < ApplicationController
   load_and_authorize_resource
   before_action :set_order, :except => [:index]
 
-  layout :custom_sublayout, only: [:index]
+  layout :custom_sublayout, only: [:index, :show]
 
   attr_accessor :order
 
