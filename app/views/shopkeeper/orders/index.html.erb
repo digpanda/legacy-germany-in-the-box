@@ -87,6 +87,7 @@
           <td>
             <%= order.u_at.localtime.strftime('%Y-%m-%d %H:%M:%S') %>
           </td>
+          <td>
           <!-- The order has been paid and shopkeeper can start the process -->
           <% if order.status == :paid  %>
             <% if order.decorate.processable? %>
