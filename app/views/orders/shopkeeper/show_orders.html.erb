@@ -38,7 +38,11 @@
       <% @orders.each do |order| %>
         <tr>
           <td>
-            <%= link_to order.id, order_path(order) %>
+            <% if order.decorate.total_sum > 0 %>
+              <%= link_to order.id, order_path(order) %>
+            <% else %>
+              <%= order.id %>
+            <% end %>
           </td>
           <td>
             <%= order.border_guru_shipment_id %>
