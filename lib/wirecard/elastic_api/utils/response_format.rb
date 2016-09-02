@@ -11,8 +11,10 @@ module Wirecard
         # will force symbol conversion for those specific methods calls
         # *method.status will return a symbol
         # *method.anything will return the raw value
+        # NOTE : `transaction_type` isn't here because we don't want to turn `refund-purchase` into `refund_purchase`
+        # we use UNDERSCORE_MAP for that
         SYMBOLS_MAP = [:request_status, :transaction_type, :transaction_state, :payment_method]
-
+        UNDERSCORE_MAP = [:request_status, :transaction_state, :payment_method]
         attr_reader :origin, :raw
 
         # .to_call will convert the `method_name` into
@@ -32,12 +34,17 @@ module Wirecard
         # if someone tries to access an unknown method
         # it can also convert some strings responses
         # into symbols on the way
+        # TODO : could be refactored (chaining if are bad.)
         def method_missing(method_symbol, *arguments, &block)
           to_call = ResponseFormat.to_call(method_symbol)
           if self.respond_to?(to_call)
             response = self.send(to_call)
             if SYMBOLS_MAP.include?(method_symbol)
-              symbolize_data(response)
+              if UNDERSCORE_MAP.include?(method_symbol)
+                symbolize_data(underscore_data(response))
+              else
+                symbolize_data(response)
+              end
             else
               response
             end
@@ -70,7 +77,11 @@ module Wirecard
 
         # convert the data to a symbol
         def symbolize_data(data)
-          data.to_s.gsub("-", "_").to_sym
+          data.to_s.to_sym
+        end
+
+        def underscore_data(data)
+          data.to_s.gsub("-", "_")
         end
 
       end
