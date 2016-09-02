@@ -43,9 +43,13 @@
 
 <h3>BorderGuru</h3>
 
-  BorderGuru Link Tracking <%= @order.border_guru_link_tracking ? (link_to @order.border_guru_shipment_id, :target => '_blank') : '' %><br />
+  <% if @order.border_guru_link_tracking %>
+  <%= link_to "BorderGuru Link Tracking", @order.border_guru_link_tracking, :target => '_blank', :class => "btn btn-primary" %>
+  <% end %>
 
-  BorderGuru Label <%= @order.border_guru_shipment_id ? (link_to "Click here", download_label_order_path(@order)) : '' %>
+  <% if @order.border_guru_shipment_id %>
+    <% link_to "BorderGuru Label", download_label_order_path(@order), class: "btn btn-primary" %>
+  <% end %>
 
 </div>
 
@@ -56,8 +60,8 @@
   <h3>Files</h3>
   <hr>
 
-  <a href="<%= shared_order_path(@order, format: "csv") %>">Shippment CSV</a><br />
-  <a href="<%= shared_order_bill_path(@order, format: "pdf") %>">Informal Bill</a>
+  <a href="<%= shared_order_path(@order, format: "csv") %>" class="btn btn-primary">Shippment CSV</a>
+  <a href="<%= shared_order_bill_path(@order, format: "pdf") %>" class="btn btn-primary">Informal Bill</a>
 
 </div>
 
@@ -67,8 +71,8 @@
 <h3>Dates</h3>
 <hr>
 
-<%= @order.u_at.localtime.strftime('%Y-%m-%d %H:%M:%S') %>
-<%= @order.c_at.localtime.strftime('%Y-%m-%d %H:%M:%S') %>
+Created at <%= @order.u_at.localtime.strftime('%Y-%m-%d %H:%M:%S') %><br />
+Updated at <%= @order.c_at.localtime.strftime('%Y-%m-%d %H:%M:%S') %>
 
 </div>
 
@@ -80,12 +84,10 @@
 
 <!-- Cancel @order -->
 <% if @order.decorate.cancellable? %>
-  <%= link_to "Cancel this order", shared_order_cancel_path(@order), method: :patch, data: { confirm: "Are you sure you want to cancel this @order ?" } %>
+  <%= link_to "Cancel this order", shared_order_cancel_path(@order), method: :patch, data: { confirm: "Are you sure you want to cancel this order ?" }, class: "btn btn-info" %>
 <% end %>
 
-<br />
-
 <!-- Destroy @order -->
-<%= link_to "Destroy this order (cannot be undone)", order_path(@order), method: :delete, data: { confirm: I18n.t(:confirm_want_delete, scope: :notice) } %>
+<%= link_to "Destroy this order", order_path(@order), method: :delete, data: { confirm: "Are you sure you want to destroy this order ? It cannot be undone." } , class: "btn btn-danger" %>
 
 </div>
