@@ -8,7 +8,7 @@ var RefreshTime = {
      */
     init: function() {
 
-      //this.refreshTime('#server-time', 'America/Los_Angeles');
+      this.refreshTime('#utc-time', 'UTC');
       this.refreshTime('#china-time', 'Asia/Shanghai');
       this.refreshTime('#germany-time', 'Europe/Berlin');
 

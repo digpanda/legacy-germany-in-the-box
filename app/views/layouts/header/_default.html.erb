@@ -67,7 +67,7 @@
     <!-- Server details -->
     <div class="col-md-6 col-md-offset-1">
       <% if current_user.decorate.admin? %>
-        <strong><%= Rails.env.capitalize %> Mode</strong> - Client <%= request.remote_ip %> - Server <%= server_ip %> - Time <span id="server-time"><%= Time.now.strftime("%T") %></span>
+        <strong><%= Rails.env.capitalize %> Mode</strong> - Client <%= request.remote_ip %> - Server <%= server_ip %> - UTC <span id="utc-time"><%= Time.now.utc.strftime("%T") %></span>
       <% end %>
     </div>
 
