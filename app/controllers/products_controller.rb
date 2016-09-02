@@ -71,7 +71,7 @@ class ProductsController < ApplicationController
   def approve
 
     @product = Product.find(params[:product_id])
-    @product.approved = Time.now
+    @product.approved = Time.now.utc
     @product.save
 
     redirect_to(:back) and return

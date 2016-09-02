@@ -8,7 +8,7 @@ class NotificationDecorator < Draper::Decorator
   end
 
   def read!
-    self.read_at = Time.now
+    self.read_at = Time.now.utc
     self.save
   end
 

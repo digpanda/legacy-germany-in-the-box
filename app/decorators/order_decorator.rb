@@ -1,7 +1,7 @@
 class OrderDecorator < Draper::Decorator
 
   MAX_DESCRIPTION_CHARACTERS = 200
-  UNPROCESSABLE_TIME = [9,10] # 9am to 10am
+  UNPROCESSABLE_TIME = [9,10] # 9am to 10am -> German Hour
 
   include OrderCartDecoratorCommon
 
@@ -72,11 +72,11 @@ class OrderDecorator < Draper::Decorator
   end
 
   def processable_time?
-    Time.now.strftime("%k").to_i < UNPROCESSABLE_TIME.first || Time.now.strftime("%k").to_i > UNPROCESSABLE_TIME.last
+    Time.now.utc.in_time_zone("Berlin").strftime("%k").to_i < UNPROCESSABLE_TIME.first || Time.now.utc.in_time_zone("Berlin").strftime("%k").to_i > UNPROCESSABLE_TIME.last
   end
 
   def shippable?
-    self.status == :custom_checking && Time.now > minimum_sending_date
+    self.status == :custom_checking && Time.now.utc > minimum_sending_date
   end
 
   def total_price_with_currency_yuan

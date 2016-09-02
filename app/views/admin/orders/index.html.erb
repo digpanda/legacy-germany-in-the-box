@@ -63,7 +63,7 @@
           <a href="<%= shared_order_path(order, format: "csv") %>">Shippment CSV</a> | <a href="<%= shared_order_bill_path(order, format: "pdf") %>">Informal Bill</a>
           </td>
           <td>
-            <%= order.u_at.localtime.strftime('%Y-%m-%d %H:%M:%S') %>
+            <%= order.u_at.localtime.strftime('%Y-%m-%d %H:%M:%S').in_time_zone %>
           </td>
           <td>
             <%= link_to "Details", admin_order_path(order) %>

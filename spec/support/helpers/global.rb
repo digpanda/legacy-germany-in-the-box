@@ -16,7 +16,7 @@ module Helpers
     end
 
     def random_time
-      rand * Time.now.to_i
+      rand * Time.now.utc.to_i
     end
 
     def random_date

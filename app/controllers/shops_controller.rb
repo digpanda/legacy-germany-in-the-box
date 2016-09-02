@@ -21,7 +21,7 @@ class ShopsController <  ApplicationController
 
   def approve
 
-    @shop.approved = Time.now
+    @shop.approved = Time.now.utc
     unless @shop.save
       flash[:error] = "Can't approve the shop : #{@shop.errors.full_messages.join(', ')}"
     end

@@ -69,23 +69,23 @@
           </td>
           <th>
           <% unless order.minimum_sending_date.nil? %>
-            <% if Time.now > order.minimum_sending_date %>
+            <% if Time.now.utc > order.minimum_sending_date %>
 
               <span class="+blue">
-              <%= order.minimum_sending_date.strftime('%Y-%m-%d %H:%M:%S') %>
+              <%= order.minimum_sending_date.strftime('%Y-%m-%d %H:%M:%S').in_time_zone("Berlin") %>
               </span>
 
             <% else %>
 
               <span class="+red">
-              <%= order.minimum_sending_date.strftime('%Y-%m-%d %H:%M:%S') %>
+              <%= order.minimum_sending_date.strftime('%Y-%m-%d %H:%M:%S').in_time_zone("Berlin") %>
               </span>
 
             <% end %>
           <% end %>
           </th>
           <td>
-            <%= order.u_at.localtime.strftime('%Y-%m-%d %H:%M:%S') %>
+            <%= order.u_at.localtime.strftime('%Y-%m-%d %H:%M:%S').in_time_zone %>
           </td>
           <td>
           <!-- The order has been paid and shopkeeper can start the process -->

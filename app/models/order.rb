@@ -92,7 +92,7 @@ class Order
 
   def update_paid_at
     if paid_at.nil? && status == :paid
-      self.paid_at = Time.now
+      self.paid_at = Time.now.utc
       self.save
     end
   end

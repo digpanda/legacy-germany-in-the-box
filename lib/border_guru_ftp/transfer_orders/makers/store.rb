@@ -53,7 +53,7 @@ module BorderGuruFtp
         end
 
         def formatted_date
-          @formatted_date ||= Time.now.strftime("%Y%m%d")
+          @formatted_date ||= Time.now.utc.strftime("%Y%m%d")
         end
       end
     end

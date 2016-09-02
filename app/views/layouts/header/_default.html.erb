@@ -73,8 +73,8 @@
 
     <!-- Time zones -->
     <div class="col-md-4 col-md-push-2">
-      China <span id="china-time"><%= Time.now.in_time_zone("Beijing").strftime("%T") %></span> -
-      Germany <span id="germany-time"><%= Time.now.in_time_zone("Berlin").strftime("%T") %></span>
+      China <span id="china-time"><%= Time.now.utc.in_time_zone("Beijing").strftime("%T") %></span> -
+      Germany <span id="germany-time"><%= Time.now.utc.in_time_zone("Berlin").strftime("%T") %></span>
     </div>
 
   </div>
