@@ -14,7 +14,7 @@
     <%= link_to I18n.t(:my_product, scope: :top_menu),  show_products_shop_path(current_user.shop.id, :user_info_edit_part => :edit_product) %>
   </li>
   <li class="<%= is_menu_active?(:edit_order) %>">
-      <%= link_to I18n.t(:my_order, scope: :top_menu),  show_orders_users_path(:user_info_edit_part => :edit_order) %>
+      <%= link_to I18n.t(:my_order, scope: :top_menu),  shopkeeper_orders_path(:user_info_edit_part => :edit_order) %>
   </li>
   <li class="<%= is_menu_active?(:edit_shop_address) %>">
     <%= link_to I18n.t(:my_address, scope: :top_menu),  show_addresses_user_path(current_user, :user_info_edit_part => :edit_shop_address) %>

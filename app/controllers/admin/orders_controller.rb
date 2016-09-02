@@ -1,12 +1,15 @@
 class Admin::OrdersController < ApplicationController
 
   load_and_authorize_resource
-  before_action :set_order
+  before_action :set_order, :except => [:index]
+
+  layout :custom_sublayout, only: [:index]
 
   attr_accessor :order
 
-  # Check Shared::OrdersController
-  # It was moved there.
+  def index
+    @orders = Order.nonempty.order_by(:c_at => 'desc').paginate(:page => (params[:page] ? params[:page].to_i : 1), :per_page => 10);
+  end
 
   private
 

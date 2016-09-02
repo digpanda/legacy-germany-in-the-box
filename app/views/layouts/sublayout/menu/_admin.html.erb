@@ -13,7 +13,7 @@
   <%= link_to I18n.t(:shops, scope: :top_menu),  shops_path(:user_info_edit_part => :edit_shops) %>
 </li>
 <li class="<%= is_menu_active?(:edit_order) %>">
-  <%= link_to I18n.t(:my_order, scope: :top_menu), show_orders_users_path(:user_info_edit_part => :edit_order) %>
+  <%= link_to I18n.t(:my_order, scope: :top_menu), admin_orders_path(:user_info_edit_part => :edit_order) %>
 </li>
 <li class="<%= is_menu_active?(:admin_order_payments) %>">
   <%= link_to I18n.t(:payments, scope: :top_menu), admin_order_payments_path(:user_info_edit_part => :admin_order_payments) %>

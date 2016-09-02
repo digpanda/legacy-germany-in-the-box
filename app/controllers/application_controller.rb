@@ -58,6 +58,14 @@ class ApplicationController < ActionController::Base
     navigation.store :except => %w(/users/sign_in /users/sign_up /users/password/new /users/password/edit /users/confirmation /users/sign_out)
   end
 
+  def current_page
+    if params[:page]
+      params[:page].to_i
+    else
+      1
+    end
+  end
+
   protected
 
   def navigation
@@ -168,7 +176,7 @@ class ApplicationController < ActionController::Base
       if current_user.shop && (not current_user.shop.agb)
         edit_producer_shop_path(current_user.shop.id, :user_info_edit_part => :edit_producer)
       else
-        show_orders_users_path(:user_info_edit_part => :edit_order)
+        shopkeeper_orders_path(:user_info_edit_part => :edit_order)
       end
     elsif current_user.decorate.admin?
       shops_path(:user_info_edit_part => :edit_shops)

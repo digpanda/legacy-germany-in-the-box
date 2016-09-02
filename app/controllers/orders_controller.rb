@@ -26,13 +26,15 @@ class OrdersController < ApplicationController
     throw_app_error(:resource_not_found, {error: "Your label is not ready yet. Please try again in a few hours."}) # (`#{exception.message}`)
   end
 
+  # THIS WILL BE REMOVED SOON
+  # - Laurent
   def show_orders
     if current_user.decorate.customer?
-      @orders = current_user.orders.nonempty.order_by(:c_at => 'desc').paginate(:page => (params[:page] ? params[:page].to_i : 1), :per_page => 10);
+      #@orders = current_user.orders.nonempty.order_by(:c_at => 'desc').paginate(:page => (params[:page] ? params[:page].to_i : 1), :per_page => 10);
     elsif current_user.decorate.shopkeeper?
-      @orders = current_user.shop.orders.bought_or_unverified.order_by(:c_at => 'desc').paginate(:page => (params[:page] ? params[:page].to_i : 1), :per_page => 10);
+      #@orders = current_user.shop.orders.bought_or_unverified.order_by(:c_at => 'desc').paginate(:page => (params[:page] ? params[:page].to_i : 1), :per_page => 10);
     elsif current_user.decorate.admin?
-      @orders = Order.nonempty.order_by(:c_at => 'desc').paginate(:page => (params[:page] ? params[:page].to_i : 1), :per_page => 10);
+      #@orders = Order.nonempty.order_by(:c_at => 'desc').paginate(:page => (params[:page] ? params[:page].to_i : 1), :per_page => 10);
     end
 
     render "orders/#{current_user.role.to_s}/show_orders"

@@ -11,7 +11,7 @@ class Admin::OrderPaymentsController < ApplicationController
   attr_reader :order_payment, :order_payments
 
   def index
-    @order_payments = OrderPayment.order_by(c_at: :desc).paginate(:page => (params[:page] ? params[:page].to_i : 1), :per_page => 10);
+    @order_payments = OrderPayment.order_by(c_at: :desc).paginate(:page => current_page, :per_page => 10);
   end
 
   # PATCH
