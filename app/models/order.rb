@@ -102,10 +102,10 @@ class Order
     # the unique number in it will be equal to the total of the previous bills + 1.
     # every year the system got reset
     if bill_id.nil? && self.is_bought?
-      start_year = c_at.beginning_of_year
-      year_digits = start_year.strftime("%Y")
-      num = Order.where({:bill_id.ne => nil}).where({:c_at.gte => start_year}).count + 1
-      self.bill_id = "#{year_digits}-P#{num}"
+      start_day = c_at.beginning_of_day
+      digits = start_day.strftime("%Y%m%d")
+      num = Order.where({:bill_id.ne => nil}).where({:c_at.gte => start_day}).count + 1
+      self.bill_id = "P#{digits}-#{num}"
       self.save
     end
   end
