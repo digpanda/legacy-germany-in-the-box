@@ -49,7 +49,6 @@ concern :shared_users do
   match :unfollow,          via: [:patch],  action: :unfollow,          as: :unfollow,            :on => :member
   match :get_followers,     via: [:get],    action: :get_followers,     as: :get_followers,       :on => :member
   match :get_following,     via: [:get],    action: :get_following,     as: :get_following,       :on => :member
-  match :show_orders,       via: [:get],    action: :show_orders,       :controller => :orders,             as: :show_orders,         :on => :collection
   match :show_addresses,    via: [:get],    action: :show_addresses,    :controller => :addresses,          as: :show_addresses,      :on => :member
   match :show_collections,  via: [:get],    action: :show_collections,  :controller => :collections,        as: :show_collections,    :on => :member
   #match :new_collection,    via: [:get],    action: :new,               :controller => :collections,        as: :new_collection,      :on => :member
