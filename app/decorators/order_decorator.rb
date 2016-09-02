@@ -1,6 +1,7 @@
 class OrderDecorator < Draper::Decorator
 
   MAX_DESCRIPTION_CHARACTERS = 200
+  UNPROCESSABLE_TIME = [9,10] # 9am to 10am
 
   include OrderCartDecoratorCommon
 
@@ -71,11 +72,7 @@ class OrderDecorator < Draper::Decorator
   end
 
   def processable_time?
-    if Rails.env.production?
-      Time.now.strftime("%k").to_i < 15 || Time.now.strftime("%k").to_i > 16
-    else
-      Time.now.strftime("%k").to_i < 3 || Time.now.strftime("%k").to_i > 4
-    end
+    Time.now.strftime("%k").to_i < UNPROCESSABLE_TIME.first || Time.now.strftime("%k").to_i > UNPROCESSABLE_TIME.last
   end
 
   def shippable?
