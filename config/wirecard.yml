@@ -2,14 +2,14 @@ defaults: &defaults
 
   elastic_api:
     # PROD
-    username: 000000316FF50E1E-EMDigPanda
-    password: pdE_cf0SnYAq
-    engine_url: https://api.wirecard.com/engine/rest/
+    # username: 000000316FF50E1E-EMDigPanda
+    # password: pdE_cf0SnYAq
+    # engine_url: https://api.wirecard.com/engine/rest/
 
     # CREDIT CARD :
-    # username: 70000-APILUHN-CARD
-    # password: 8mhwavKVb91T
-    # engine_url: https://api-test.wirecard.com/engine/rest/
+    username: 70000-APILUHN-CARD
+    password: 8mhwavKVb91T
+    engine_url: https://api-test.wirecard.com/engine/rest/
 
     # UNIONPAY :
     # username: engine.digpanda
