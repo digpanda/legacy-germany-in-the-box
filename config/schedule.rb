@@ -21,11 +21,14 @@
 set :output, "/var/www/germany_in_the_box/current/log/borderguru_cron.log"
 
 # We are currently in UTC time
+
+# 9:15am Germany
 every :day, :at => '7:15am' do
   command 'The system has launched the rake task `cron:compile_and_transfer_orders_csvs_to_borderguru`'
   rake "cron:compile_and_transfer_orders_csvs_to_borderguru"
 end
 
+# 10:15am Germany
 every :day, :at => '8:15am' do
   command 'The system has launched the rake task `cron:transmit_pickup_orders_to_hermes`'
   rake "cron:transmit_pickup_orders_to_hermes"
