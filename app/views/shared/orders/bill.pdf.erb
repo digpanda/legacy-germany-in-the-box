@@ -4,23 +4,41 @@
 <br />
 <br />
 
-<strong>
-MerchantName <%= @order.shop.decorate.manager_full_name %><br />
-MerchantID <%= @order.shop.merchant_id %><br />
-Ust-ID <%= @order.shop.ustid %><br />
-</strong>
+<div style="width:300px;float:left">
+<strong>Herstellername</strong><br />
+<strong>Hersteller ID</strong><br />
+<strong>Ust-ID</strong><br />
+</div>
 
-<br />
+<div style="width:300px;float:left">
+ <%= @order.shop.decorate.manager_full_name %><br />
+ <%= @order.shop.merchant_id %><br />
+ <%= @order.shop.ustid %><br /><br /><br />
+</div>
 
-<strong>
-CustomerName <%= @order.user.decorate.full_name %><br />
-CustomerAddress <%= @order.decorate.billing_address.decorate.full_address %><br />
-</strong>
+<div style="clear:both;"></div>
 
-<br />
+<div style="width:300px;float:left">
+<strong>Kundename</strong><br />
+<strong>Lieferadresse</strong><br />
+</div>
+
+<div style="width:300px;float:left">
+<%= @order.decorate.billing_address.decorate.chinese_full_name %><br />
+<%= @order.decorate.billing_address.decorate.full_address %><br /><br /><br />
+</div>
+
+<div style="clear:both;"></div>
+
+<div style="width:300px;float:left">
 
 NR.: <%= @order.bill_id %><br />
-Datum: <%= @order.c_at.strftime("%d-%m-%Y") %>
+BorderGuru Shipment ID: <%= @order.border_guru_shipment_id %><br />
+Datum: <%= @order.c_at.utc.strftime("%d-%m-%Y") %>
+
+</div>
+
+<div style="clear:both;"></div>
 
 <br />
 <br />
@@ -52,7 +70,7 @@ Datum: <%= @order.c_at.strftime("%d-%m-%Y") %>
       <%= (index+1) %>
       </td>
       <td>
-        <%= order_item.product.name %> (<%= order_item.selected_options.join(', ') %>)
+        <%= order_item.product.name_translations[:de] %> (<%= order_item.selected_options(:de).join(', ') %>)
       </td>
       <td>
         <%= order_item.sku.decorate.price_with_currency_euro %>
@@ -73,7 +91,7 @@ Datum: <%= @order.c_at.strftime("%d-%m-%Y") %>
       <td>
       </td>
       <td>
-      Gesamt netto
+      Gesamt Produktpreis
       </td>
       <td>
       <%= @order.decorate.total_price_with_currency_euro %>
@@ -127,14 +145,27 @@ Datum: <%= @order.c_at.strftime("%d-%m-%Y") %>
 
     <tr>
       <td>
-      </td>
-      <td style="text-align:right;">
-        Gesamt netto
+        <%= @order.order_items.count+3 %>
       </td>
       <td>
-        <%= @order.decorate.total_sum_in_euro %>
+        Gesamt Prozzeskosten
+      </td>
+      <td>
+        <%= @order.decorate.duty_and_shipping_cost_with_currency_euro %>
       </td>
     </tr>
 
   </tbody>
 </table>
+
+<br /><br /><br />
+
+<div style="width:300px;float:left">
+<strong>Gesamt Netto (EUR)</strong><br />
+</div>
+
+<div style="width:300px;float:left">
+<%= @order.decorate.total_sum_in_euro %>
+</div>
+
+<div style="clear:both;"></div>

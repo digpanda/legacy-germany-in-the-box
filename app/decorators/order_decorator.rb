@@ -83,6 +83,10 @@ class OrderDecorator < Draper::Decorator
     Currency.new(total_price).to_yuan.display
   end
 
+  def duty_and_shipping_cost_with_currency_euro
+    Currency.new(tax_and_duty_cost + shipping_cost).display
+  end
+
   def shipping_cost_with_currency_yuan
     Currency.new(shipping_cost).to_yuan.display
   end
