@@ -1,17 +1,22 @@
 <div class="details">
 <%= form_for @order, url: admin_order_path, method: :patch do |form| %>
-<h2>Order <%= @order.id %></h2>
+
+<div class="row">
+  <div class="col-md-10">
+    <h2>Order <%= @order.id %></h2>
+  </div>
+  <div class="col-md-2 details__action">
+    <a href="#" id="editable-click"><i class="fa fa-edit"></i></a>
+  </div>
+</div>
+
+<div class="+small-spacer"></div>
 
 <div class="row details__block">
 
   <div class="col-md-12">
     <div class="row">
-      <div class="col-md-10 details__block --title">
         <h3>Shipping details</h3>
-      </div>
-      <div class="col-md-2 details__block --action">
-        <a href="#" id="editable-click"><i class="fa fa-edit"></i></a>
-      </div>
       <hr>
     </div>
     <div class="row">
