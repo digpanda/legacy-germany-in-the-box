@@ -15,12 +15,22 @@ class Admin::OrdersController < ApplicationController
   end
 
   def update
+    if order.update(order_params)
+      flash[:success] = "The order was updated."
+    else
+      flash[:error] = "The order was not updated (#{order.erros.full_messages.join(', ')})"
+    end
+    redirect_to navigation.back(1)
   end
 
   private
 
   def set_order
     @order = Order.find(params[:id] || params[:order_id])
+  end
+
+  def order_params
+    params.require(:order).permit(:bill_id)
   end
 
 end

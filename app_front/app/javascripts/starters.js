@@ -6,6 +6,7 @@ var Starters = [
   'bootstrap',
   'china_city',
   'datepicker',
+  'editable_fields',
   'footer',
   'images_control',
   'images_handler',

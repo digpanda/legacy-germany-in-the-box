@@ -25,7 +25,7 @@
 
 +tweak(blue)
   color: $color-blue
-  
+
 +tweak(vertical-centered)
   padding-top: 2.5em
 
@@ -49,10 +49,8 @@
     overflow: hidden
 
 +tweak(white-box) // everything with this style should have their own component
-  background-color: $color-white
-  padding: 1em
-  +border-radius
-
+  +white-box
+    
 +tweak(nomargin)
   margin: 0
 
@@ -110,7 +108,7 @@
 +tweak(price-yuan)
   font-size: 1.6em
   color: $color-green
-  
+
 +tweak(price-euro)
   font-size: 1em
   color: $color-dark-grey
@@ -124,7 +122,7 @@
 
 +tweak(overlay)
   +overlay(black, 0.5)
-  
+
 +tweak(onoverlay)
   +onoverlay
 
