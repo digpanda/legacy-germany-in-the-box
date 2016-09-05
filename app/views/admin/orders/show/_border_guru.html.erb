@@ -1,0 +1,9 @@
+<h3>BorderGuru</h3>
+
+  <% if @order.border_guru_link_tracking %>
+  <%= link_to "BorderGuru Link Tracking", @order.border_guru_link_tracking, :target => '_blank', :class => "btn btn-primary" %>
+  <% end %>
+
+  <% if @order.border_guru_shipment_id %>
+    <% link_to "BorderGuru Label", download_label_order_path(@order), class: "btn btn-primary" %>
+  <% end %>

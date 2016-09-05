@@ -1,0 +1,16 @@
+<div class="col-md-12">
+  <div class="row">
+    <h3>Finances</h3>
+    <hr>
+  </div>
+  <div class="row">
+
+    Bill ID : <span class="js-editable"><%= @order.bill_id ? @order.bill_id : "N/A" %></span>
+    <input type="text" class="js-editable-field" value="<%= @order.bill_id %>" name="order[bill_id]" id="order_bill_id">
+    <br />
+
+    Total Paid : <%= @order.total_paid_in_yuan %><br />
+    Total Price : <%= @order.decorate.total_sum_in_yuan %><br />
+
+  </div>
+</div>

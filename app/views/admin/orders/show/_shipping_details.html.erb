@@ -1,0 +1,14 @@
+<div class="col-md-12">
+  <div class="row">
+    <h3>Shipping details</h3>
+    <hr>
+  </div>
+  <div class="row">
+    <% if @order.shipping_address.nil? %>
+    No data
+    <% else %>
+    Name : <%= @order.shipping_address.decorate.chinese_full_name %>
+    Address : <%= @order.shipping_address.decorate.full_address %>
+    <% end %>
+  </div>
+</div>
