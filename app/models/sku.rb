@@ -20,6 +20,7 @@ class Sku
   field :time,          type: String,     default: 'terminated'
   field :data,          type: String,     localize: true
   field :attach0,       type: String
+  field :country_of_origin, type: String, default: 'DE'
 
   field :option_ids,    type: Array,      default: []
 

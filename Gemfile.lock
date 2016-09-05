@@ -133,6 +133,9 @@ GEM
     countries (1.2.5)
       currencies (~> 0.4.2)
       i18n_data (~> 0.7.0)
+    country_select (2.5.2)
+      countries (~> 1.2.0)
+      sort_alphabetical (~> 1.0)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
     currencies (0.4.2)
@@ -390,6 +393,8 @@ GEM
       simplecov-html (~> 0.10.0)
     simplecov-html (0.10.0)
     slop (3.6.0)
+    sort_alphabetical (1.0.2)
+      unicode_utils (>= 1.2.2)
     spring (1.7.1)
     sprockets (3.6.0)
       concurrent-ruby (~> 1.0)
@@ -426,6 +431,7 @@ GEM
     uglifier (3.0.0)
       execjs (>= 0.3.0, < 3)
     unicode-display_width (1.1.0)
+    unicode_utils (1.4.0)
     vcr (3.0.3)
     warden (1.2.6)
       rack (>= 1.0)
@@ -475,6 +481,7 @@ DEPENDENCIES
   china_city
   copy_carrierwave_file
   countries
+  country_select
   database_cleaner
   delocalize
   devise (= 3.5.3)

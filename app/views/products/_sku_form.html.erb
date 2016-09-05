@@ -106,6 +106,7 @@
         </div>
       </div>
       <div class="form-group">
+
         <div class="row">
           <div class="col-md-3" title="<%= I18n.t(:attachment_info, scope: :edit_product_detail, num: Rails.configuration.max_additional_text_length, locale: locale) %>">
             <i class="fa fa-info-circle" title="<%= I18n.t(:attachment_info, scope: :edit_product_detail, num: Rails.configuration.max_additional_text_length, locale: locale) %>"></i>
@@ -120,9 +121,20 @@
             <% end %>
           </div>
         </div>
+
+        <div class="row">
+          <div class="col-md-3">
+            Country of Origin
+          </div>
+          <div class="col-md-9">
+            <%= country_select("product[skus_attributes][0]", "country_of_origin", priority_countries: ["DE"], format: :translated, selected: @sku.country_of_origin) %>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
+
 
   <div class="panel panel-info">
     <div class="panel-heading text-center">

@@ -26,8 +26,6 @@ class ProductsController < ApplicationController
 
   def new_sku
     @sku = @product.skus.build
-
-    render :new_sku
   end
 
   def edit
@@ -43,11 +41,13 @@ class ProductsController < ApplicationController
 
   def clone_sku
     @src = @product.skus.find(params[:sku_id])
-    @sku = @product.skus.build(@src.attributes.keep_if { |k| Sku.fields.keys.include?(k) }.except(:_id, :img0, :img1, :img2, :img3, :c_at, :u_at, :currency))
+    @sku = @product.skus.build(@src.attributes.keep_if { |k| Sku.fields.keys.include?(k) }.except(:_id, :img0, :img1, :img2, :img3, :attach0, :data, :c_at, :u_at, :currency))
     CopyCarrierwaveFile::CopyFileService.new(@src, @sku, :img0).set_file if @src.img0.url
     CopyCarrierwaveFile::CopyFileService.new(@src, @sku, :img1).set_file if @src.img1.url
     CopyCarrierwaveFile::CopyFileService.new(@src, @sku, :img2).set_file if @src.img2.url
     CopyCarrierwaveFile::CopyFileService.new(@src, @sku, :img3).set_file if @src.img3.url
+    CopyCarrierwaveFile::CopyFileService.new(@src, @sku, :attach0).set_file if @src.attach0.url
+    @sku.data = @src.data # this is buggy because of the translation system
     @sku.save
   end
 
@@ -233,7 +233,7 @@ class ProductsController < ApplicationController
 
     def product_params
       delocalize_config = { skus_attributes: { :price => :number,:space_length => :number, :space_width => :number, :space_height => :number, :discount => :number, :quantity => :number, :weight => :number} }
-      shopkeeper_strong_params = [:status, :desc, :name, :hs_code, :brand, :img, :data, tags:[], options_attributes: [:id, :name, suboptions_attributes: [:id, :name]], skus_attributes: [:unlimited, :id, :img0, :img1, :img2, :img3, :price, :discount, :quantity, :weight, :customizable, :status, :space_length, :space_width, :space_height, :time, :data, :attach0, option_ids: []]]
+      shopkeeper_strong_params = [:status, :desc, :name, :hs_code, :brand, :img, :data, tags:[], options_attributes: [:id, :name, suboptions_attributes: [:id, :name]], skus_attributes: [:unlimited, :id, :img0, :img1, :img2, :img3, :price, :discount, :country_of_origin, :quantity, :weight, :customizable, :status, :space_length, :space_width, :space_height, :time, :data, :attach0, option_ids: []]]
 
       if current_user.decorate.admin?
         params.require(:product)[:category_ids] = [params.require(:product)[:category_ids]] unless params.require(:product)[:category_ids].nil?

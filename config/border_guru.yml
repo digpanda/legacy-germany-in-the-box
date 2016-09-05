@@ -12,12 +12,9 @@ defaults: &defaults
     username: CainiaoPreAlertCsv
     password: merchantDataValidationCheckX33
     log: borderguru_cron.log
-    
+
   email:
     log: borderguru_email.log
-
-  products:
-    origin: DE
 
 local:
   <<: *defaults
