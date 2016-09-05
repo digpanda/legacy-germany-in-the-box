@@ -124,7 +124,7 @@
 
         <div class="row">
           <div class="col-md-3">
-            Country of Origin
+            <%= I18n.t(:country_of_origin) %>
           </div>
           <div class="col-md-9">
             <%= country_select("product[skus_attributes][0]", "country_of_origin", priority_countries: ["DE"], format: :translated, selected: @sku.country_of_origin) %>
