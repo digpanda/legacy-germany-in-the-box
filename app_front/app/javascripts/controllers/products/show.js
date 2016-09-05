@@ -167,6 +167,8 @@ var ProductsShow = {
 
     if (typeof secondDescription !== "undefined") {
 
+      console.log('second description lets go');
+
       $('#product-file-attachment-and-data').html(more+secondDescription);
     } else {
       $('#product-file-attachment-and-data').html('');
@@ -183,7 +185,7 @@ var ProductsShow = {
 
     if (typeof attachment !== "undefined") {
       if (typeof secondDescription !== "undefined") {
-        $('#product-file-attachment-and-data').html(more);
+        $('#product-file-attachment-and-data').html(more+secondDescription);
       }
       $('#product-file-attachment-and-data').append('<br /><a class="btn btn-default" target="_blank" href="'+attachment+'">PDF Documentation</a>');
     }
