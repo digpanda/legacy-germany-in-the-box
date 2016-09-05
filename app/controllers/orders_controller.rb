@@ -289,6 +289,11 @@ class OrdersController < ApplicationController
     order_payment.status = forced_status unless forced_status.nil? # TODO : improve this
     order_payment.save
 
+    # TODO: TO IMPROVE TOO
+    if order_payment.status == :success
+      SlackDispatcher.new_paid_transaction(order_payment)
+    end
+
     # if it's a success, it paid
     # we freeze the status to unverified for security reason
     # and the payment status freeze on unverified
