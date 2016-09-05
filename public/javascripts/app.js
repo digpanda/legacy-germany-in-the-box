@@ -717,6 +717,8 @@ var ProductsShow = {
    */
   refreshSkuSecondDescription: function refreshSkuSecondDescription(secondDescription) {
 
+    console.log('SECD: ' + secondDescription);
+
     var more = "<h3>" + Translation.find('more', 'title') + "</h3>";
 
     if (typeof secondDescription !== "undefined") {
@@ -738,7 +740,7 @@ var ProductsShow = {
       if (typeof secondDescription !== "undefined") {
         $('#product-file-attachment-and-data').html(more);
       }
-      $('#product-file-attachment-and-data').append('<br /><a class="btn btn-default" href="' + attachment + '">PDF Documentation</a>');
+      $('#product-file-attachment-and-data').append('<br /><a class="btn btn-default" target="_blank" href="' + attachment + '">PDF Documentation</a>');
     }
   }
 

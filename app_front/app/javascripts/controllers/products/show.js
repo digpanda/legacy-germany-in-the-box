@@ -161,6 +161,8 @@ var ProductsShow = {
    */
   refreshSkuSecondDescription: function(secondDescription) {
 
+    console.log('SECD: '+secondDescription);
+
     var more = "<h3>"+Translation.find('more', 'title')+"</h3>";
 
     if (typeof secondDescription !== "undefined") {
@@ -176,14 +178,14 @@ var ProductsShow = {
    * Refresh the sku attachment (depending on second description too)
    */
   refreshSkuAttachment: function(secondDescription, attachment) {
-    
+
     var more = "<h3>"+Translation.find('more', 'title')+"</h3>";
 
     if (typeof attachment !== "undefined") {
       if (typeof secondDescription !== "undefined") {
         $('#product-file-attachment-and-data').html(more);
       }
-      $('#product-file-attachment-and-data').append('<br /><a class="btn btn-default" href="'+attachment+'">PDF Documentation</a>');
+      $('#product-file-attachment-and-data').append('<br /><a class="btn btn-default" target="_blank" href="'+attachment+'">PDF Documentation</a>');
     }
 
   },
