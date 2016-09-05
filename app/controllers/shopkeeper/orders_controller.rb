@@ -12,7 +12,7 @@ class Shopkeeper::OrdersController < ApplicationController
   attr_accessor :order
 
   def index
-    @orders = current_user.shop.orders.bought_or_unverified.order_by(:c_at => :desc).paginate(:page => current_page, :per_page => 10);
+    @orders = current_user.shop.orders.bought_or_unverified.order_by(:c_at => :desc).paginate(:page => current_page, :per_page => 10)
   end
 
   def shipped

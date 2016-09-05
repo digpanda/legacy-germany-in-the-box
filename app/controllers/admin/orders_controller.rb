@@ -8,7 +8,7 @@ class Admin::OrdersController < ApplicationController
   attr_accessor :order
 
   def index
-    @orders = Order.nonempty.order_by(:c_at => :desc).paginate(:page => current_page, :per_page => 10);
+    @orders = Order.nonempty.order_by(:c_at => :desc).paginate(:page => current_page, :per_page => 10)
   end
 
   def show
