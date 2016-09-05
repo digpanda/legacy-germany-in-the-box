@@ -70,7 +70,7 @@
       <th>
         Menge
       </th>
-      <th>
+      <th style="text-align:right;">
         Netto-Umsatz (EUR)
       </th>
     </tr>
@@ -90,7 +90,7 @@
       <td>
         <%= order_item.quantity %>
       </td>
-      <td>
+      <td style="text-align:right;">
         <%= order_item.decorate.total_price_with_currency_euro %>
       </td>
     </tr>
@@ -105,7 +105,7 @@
       <td>
       Gesamt Produktpreis
       </td>
-      <td>
+      <td style="text-align:right;">
       <%= @order.decorate.total_price_with_currency_euro %>
       </td>
     </tr>
@@ -123,7 +123,7 @@
       <th>
         Prozzeskosten
       </th>
-      <th>
+      <th style="text-align:right;">
         Betrag (EUR)
       </th>
     </tr>
@@ -138,7 +138,7 @@
         Internationale Versandkosten
         FRA-Endkunden(China)
       </td>
-      <td>
+      <td style="text-align:right;">
         <%= @order.decorate.shipping_cost_with_currency_euro %>
       </td>
     </tr>
@@ -150,7 +150,7 @@
       <td>
         Persönliche Importsteuern
       </td>
-      <td>
+      <td style="text-align:right;">
         <%= @order.decorate.tax_and_duty_cost_with_currency_euro %>
       </td>
     </tr>
@@ -158,10 +158,10 @@
     <tr>
       <td>
       </td>
-      <td>
+      <td style="text-align:right;width:460px;">
         Gesamt Prozzeskosten
       </td>
-      <td>
+      <td style="text-align:right;">
         <%= @order.decorate.duty_and_shipping_cost_with_currency_euro %>
       </td>
     </tr>
@@ -172,10 +172,10 @@
 <br /><br /><br />
 
 <div style="width:300px;float:left">
-<strong>Gesamt Netto (EUR)</strong><br />
+<strong>Gesamt Preis (EUR)</strong><br />
 </div>
 
-<div style="width:300px;float:left">
+<div style="width:375px;float:left;text-align:right;">
 <%= @order.decorate.total_sum_in_euro %>
 </div>
 
