@@ -161,14 +161,9 @@ var ProductsShow = {
    */
   refreshSkuSecondDescription: function(secondDescription) {
 
-    console.log('SECD: '+secondDescription);
-
     var more = "<h3>"+Translation.find('more', 'title')+"</h3>";
 
     if (typeof secondDescription !== "undefined") {
-
-      console.log('second description lets go');
-
       $('#product-file-attachment-and-data').html(more+secondDescription);
     } else {
       $('#product-file-attachment-and-data').html('');
