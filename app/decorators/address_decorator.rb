@@ -24,7 +24,7 @@ class AddressDecorator < Draper::Decorator
   end
 
   def full_address
-    "#{street} #{number}, #{zip} #{city}, #{country}"
+    "#{street} #{number}, #{zip} #{city}, #{district}, #{province} #{country}"
   end
 
   def country_code
