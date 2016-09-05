@@ -4,38 +4,50 @@
 <br />
 <br />
 
-<div style="width:300px;float:left">
-<strong>Herstellername</strong><br />
-<strong>Hersteller ID</strong><br />
-<strong>Ust-ID</strong><br />
+<div style="width:200px;float:left">
+  <strong>Herstellername</strong><br />
+  <strong>Hersteller ID</strong><br />
+  <strong>Ust-ID</strong><br />
 </div>
 
 <div style="width:300px;float:left">
- <%= @order.shop.decorate.manager_full_name %><br />
- <%= @order.shop.merchant_id %><br />
- <%= @order.shop.ustid %><br /><br /><br />
-</div>
-
-<div style="clear:both;"></div>
-
-<div style="width:300px;float:left">
-<strong>Kundename</strong><br />
-<strong>Lieferadresse</strong><br />
-</div>
-
-<div style="width:300px;float:left">
-<%= @order.decorate.billing_address.decorate.chinese_full_name %><br />
-<%= @order.decorate.billing_address.decorate.full_address %><br /><br /><br />
+  <%= @order.shop.decorate.manager_full_name %><br />
+  <%= @order.shop.merchant_id %><br />
+  <%= @order.shop.ustid %><br /><br /><br />
 </div>
 
 <div style="clear:both;"></div>
 
+<div style="width:200px;float:left">
+  <strong>Kundename</strong><br />
+  <strong>Lieferadresse</strong><br />
+</div>
+
 <div style="width:300px;float:left">
+  <%= @order.decorate.billing_address.decorate.chinese_full_name %><br />
+  <%= @order.decorate.billing_address.decorate.full_address %><br /><br /><br />
+</div>
 
-NR.: <%= @order.bill_id %><br />
-BorderGuru Shipment ID: <%= @order.border_guru_shipment_id %><br />
-Datum: <%= @order.c_at.utc.strftime("%d-%m-%Y") %>
+<div style="clear:both;"></div>
 
+<div style="width:200px;float:left">
+  <strong>
+    Proformarchnungsnr.<br />
+    BorderGuru Shipment ID<br />
+    Datum<br />
+  </strong>
+</div>
+
+<div style="width:200px;float:left">
+
+  <% if @order.bill_id %>
+  <%= @order.bill_id %>
+  <% else %>
+  N/A
+  <% end %>
+  <br />
+  <%= @order.c_at.utc.strftime("%Y-%m-%d") %><br />
+  <%= @order.border_guru_shipment_id %><br />
 </div>
 
 <div style="clear:both;"></div>
@@ -145,7 +157,6 @@ Datum: <%= @order.c_at.utc.strftime("%d-%m-%Y") %>
 
     <tr>
       <td>
-        <%= @order.order_items.count+3 %>
       </td>
       <td>
         Gesamt Prozzeskosten
