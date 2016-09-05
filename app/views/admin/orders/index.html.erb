@@ -6,6 +6,9 @@
           <%= I18n.t(:id, scope: :edit_order) %>
         </th>
         <th>
+          BorderGuru Shipment ID
+        </th>
+        <th>
           Delivery Address Names
         </th>
         <td>
@@ -40,6 +43,9 @@
             <% else %>
               <%= order.id %>
             <% end %>
+          </td>
+          <td>
+            <%= order.border_guru_shipment_id %>
           </td>
           <td>
             <% unless order.shipping_address.nil? %>
