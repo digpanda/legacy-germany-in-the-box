@@ -9,17 +9,25 @@ class SlackDispatcher < BaseService
 
   include Rails.application.routes.url_helpers
 
+  attr_reader :counter
+
   def initialize
-    slack.ping "--- *#{Rails.env.capitalize} Mode*"
+    @counter = 0
+    slack.ping "--- *#{Rails.env.capitalize} Mode* #{Time.now.utc}"
   end
 
   def new_paid_transaction(order_payment)
     order = order_payment.order
-    slack.ping "*#{order.billing_address.decorate.chinese_full_name}* just paid *#{order.total_paid_in_euro} / #{order.decorate.total_sum_in_euro}*"
-    slack.ping "Trace : Order ID *#{order.id}* URL : #{admin_order_url(order)}"
+    push "*#{order.billing_address.decorate.chinese_full_name}* just paid *#{order.total_paid_in_euro} / #{order.decorate.total_sum_in_euro}*"
+    push "Order ID : `#{order.id}` - URL : #{admin_order_url(order)}"
   end
 
   private
+
+  def push(message)
+    slack.ping "[#{counter}] #{message}"
+    @counter += 1
+  end
 
   def slack
     @slack ||= Slack::Notifier.new WEBHOOK_URL, channel: CHANNEL, username: USERNAME
