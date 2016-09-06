@@ -1,5 +1,15 @@
 <h3>Dates</h3>
 <hr>
 
-Created at <%= @order.u_at.localtime.strftime('%Y-%m-%d %H:%M:%S') %><br />
-Updated at <%= @order.c_at.localtime.strftime('%Y-%m-%d %H:%M:%S') %>
+<% if @order.paid_at %>
+  Paid at <strong><%= @order.paid_at.utc %></strong><br />
+<% end %>
+
+<% if @order.minimum_sending_date %>
+  Sendable since <strong><%= @order.minimum_sending_date.utc %></strong><br />
+<% end %>
+
+<br />
+
+Created at <strong><%= @order.u_at.utc %><br /></strong>
+Updated at <strong><%= @order.c_at.utc %></strong>
