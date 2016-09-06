@@ -1,39 +1,21 @@
 class Customer::CheckoutController < ApplicationController
 
   before_action :authenticate_user!
+  before_action :set_shop, :only => [:create]
 
   protect_from_forgery :except => [:success, :fail, :cancel, :processing]
+  attr_reader :shop
 
   def create
 
-    # Small hack to be improved - Laurent
-    if params[:valid_email]
-      if User.where(email: params[:valid_email]).first
-        flash[:error] = "This email is currently used by someone else."
-        redirect_to navigation.back(1)
-        return
-      end
-      current_user.email = params[:valid_email]
-      current_user.save
-    end
+    order = current_order(shop.id.to_s)
+    cart = current_cart(shop.id.to_s)
 
-    shop_id = params[:shop_id]
-    order = current_order(shop_id)
+    return if wrong_email_update?
+    return if today_limit?(order)
+    return if invalid_cart?(cart)
 
-    if reach_todays_limit?(order, 0, 0)
-      flash[:error] = I18n.t(:override_maximal_total, scope: :edit_order, total: Settings.instance.max_total_per_day, currency: Settings.instance.platform_currency.symbol)
-      redirect_to request.referrer
-      return
-    end
-
-    cart = current_cart(shop_id)
-
-    if cart.nil?
-      flash[:error] = I18n.t(:borderguru_unreachable_at_quoting, scope: :checkout)
-      redirect_to root_path and return
-    end
-
-    all_products_available = true;
+    all_products_available = true
     products_total_price = 0
     product_name = nil
     sku = nil
@@ -59,7 +41,7 @@ class Customer::CheckoutController < ApplicationController
       return
     end
 
-    @shop = Shop.only(:currency, :min_total, :name).find(shop_id)
+    @shop = Shop.only(:currency, :min_total, :name).find(shop.id.to_s)
 
     if products_total_price < @shop.min_total
       tp = "%.2f" % (products_total_price * Settings.instance.exchange_rate_to_yuan)
@@ -202,6 +184,35 @@ class Customer::CheckoutController < ApplicationController
           :tax_and_duty_cost    => tax_and_duty_cost
         })
      end
+    end
+
+    def wrong_email_update?
+      params[:valid_email]
+      if User.where(email: params[:valid_email]).first
+        flash[:error] = "This email is currently used by someone else."
+        redirect_to navigation.back(1)
+        return true
+      end
+    end
+
+    def today_limit?(order)
+      if reach_todays_limit?(order, 0, 0)
+        flash[:error] = I18n.t(:override_maximal_total, scope: :edit_order, total: Settings.instance.max_total_per_day, currency: Settings.instance.platform_currency.symbol)
+        redirect_to request.referrer
+        return true
+      end
+    end
+
+    def invalid_cart?(cart)
+      if cart.nil?
+        flash[:error] = I18n.t(:borderguru_unreachable_at_quoting, scope: :checkout)
+        redirect_to root_path
+        return true
+      end
+    end
+
+    def set_shop
+      @shop = Shop.find(params[:shop_id])
     end
 
 end
