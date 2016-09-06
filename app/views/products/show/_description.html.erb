@@ -61,9 +61,13 @@
 
 <div class="product-page__description">
 
-  <h3><% I18n.t(:description, scope: :title) %></h3>
+  <% unless product.decorate.format_desc.empty? %>
 
-  <%= product.decorate.format_desc %>
+    <h3><% I18n.t(:description, scope: :title) %></h3>
+
+    <%= product.decorate.format_desc %>
+
+  <% end %>
 
   <div class="+small-spacer"></div>
 
