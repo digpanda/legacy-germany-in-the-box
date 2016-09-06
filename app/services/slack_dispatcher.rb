@@ -16,6 +16,10 @@ class SlackDispatcher < BaseService
     slack.ping "--- *#{Rails.env.capitalize} Mode* #{Time.now.utc}"
   end
 
+  def new_error(error)
+    push "An error occurred (#{error})"
+  end
+
   def new_paid_transaction(order_payment)
     order = order_payment.order
     push "*#{order.billing_address.decorate.chinese_full_name}* just paid *#{order.total_paid_in_euro} / #{order.decorate.total_sum_in_euro}*"

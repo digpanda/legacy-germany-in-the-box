@@ -97,7 +97,7 @@
             <%= link_to I18n.t(:start_process_shipment, scope: :button), shopkeeper_order_process_order_path(order), method: :patch, data: { confirm: I18n.t(:confirm_start_processing, scope: :notice) } %>
             <% end %>
             <% else %>
-              This order isn't processable right now. Please come back later today.
+              <%= I18n.t(:order_not_processable, scope: :message) %>
             <% end %>
           <!-- The order passed the custom and can be send -->
           <% elsif order.decorate.shippable? %>

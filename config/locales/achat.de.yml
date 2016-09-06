@@ -1,4 +1,6 @@
 de:
+  message:
+    order_not_processable: System ist zwischen 9 und 10 Uhr wegen Datei Sendung gesperrt. Bitten prüfen Sie CSV-Datei nach 10Uhr wieder.
   country_of_origin: Herstellungsland
   remove: Entfernen
   composed_text:

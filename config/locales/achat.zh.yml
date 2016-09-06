@@ -1,4 +1,6 @@
 zh-CN:
+  message:
+    order_not_processable: 系统传送CSV档案，请10点后再访问。
   country_of_origin: 制造国
   remove: 删除
   composed_text:
