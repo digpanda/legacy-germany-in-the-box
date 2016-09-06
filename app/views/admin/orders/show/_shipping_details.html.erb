@@ -7,7 +7,7 @@
     <% if @order.shipping_address.nil? %>
     No data
     <% else %>
-    Name : <%= @order.shipping_address.decorate.chinese_full_name %>
+    Name : <%= @order.shipping_address.decorate.chinese_full_name %><br />
     Address : <%= @order.shipping_address.decorate.full_address %>
     <% end %>
   </div>
