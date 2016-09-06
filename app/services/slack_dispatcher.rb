@@ -26,6 +26,12 @@ class SlackDispatcher < BaseService
     push "Order ID : `#{order.id}` - URL : #{admin_order_url(order)}"
   end
 
+  def new_failed_transaction(order_payment)
+    order = order_payment.order
+    push "*#{order.billing_address.decorate.chinese_full_name}* just *FAILED* to pay *#{order.total_paid_in_euro} / #{order.decorate.total_sum_in_euro}*"
+    push "Order ID : `#{order.id}` - URL : #{admin_order_url(order)}"
+  end
+
   private
 
   def push(message)

@@ -292,6 +292,8 @@ class OrdersController < ApplicationController
     # TODO: TO IMPROVE TOO
     if order_payment.status == :success
       SlackDispatcher.new_paid_transaction(order_payment)
+    else
+      SlackDispatcher.new_failed_transaction(order_payment)
     end
 
     # if it's a success, it paid
