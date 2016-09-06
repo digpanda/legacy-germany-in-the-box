@@ -1,7 +1,7 @@
 /**
- * Checkout class
+ * CustomerCheckoutCreate class
  */
-var Checkout = {
+var CustomerCheckoutCreate = {
 
   /**
    * Initializer
@@ -29,4 +29,4 @@ var Checkout = {
 
 }
 
-module.exports = Checkout;
+module.exports = CustomerCheckoutCreate;

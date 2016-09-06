@@ -5,7 +5,7 @@ class Customer::OrdersController < ApplicationController
 
   load_and_authorize_resource
   before_action :set_order, :except => [:index]
-  before_filter :is_customer_order, :except => [:index]
+  before_filter :customer_order?, :except => [:index]
 
   layout :custom_sublayout, only: [:index]
 
@@ -21,8 +21,12 @@ class Customer::OrdersController < ApplicationController
     @order = Order.find(params[:id] || params[:order_id])
   end
 
-  def is_customer_order
-    current_user.orders.where(id: order.id).count
+  # if it's not the customer order, we prevent him to go further
+  def customer_order?
+    if Order.where(id: order.id, user_id: current_user.id).first.nil?
+      redirect_to navigation.back(1)
+      return
+    end
   end
 
 end

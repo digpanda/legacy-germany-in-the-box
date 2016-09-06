@@ -42,11 +42,11 @@ defaults: &defaults
       creditcard: purchase
       default: purchase
 
-    default_redirect_url: http://local.dev:3000/orders/checkout_success
-    cancel_redirect_url: http://local.dev:3000/orders/checkout_cancel
-    processing_redirect_url: http://local.dev:3000/orders/checkout_processing
-    success_redirect_url : http://local.dev:3000/orders/checkout_success
-    fail_redirect_url: http://local.dev:3000/orders/checkout_fail
+    default_redirect_url: http://local.dev:3000/customer/checkout/success
+    cancel_redirect_url: http://local.dev:3000/customer/checkout/cancel
+    processing_redirect_url: http://local.dev:3000/customer/checkout/processing
+    success_redirect_url : http://local.dev:3000/customer/checkout/success
+    fail_redirect_url: http://local.dev:3000/customer/checkout/fail
 
   merchants:
     reseller_id: nba81H29Gba
