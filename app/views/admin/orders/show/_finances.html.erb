@@ -3,7 +3,7 @@
     <h3>Finances</h3>
     <hr>
   </div>
-  <div class="row">
+  <div class="row +overflow">
 
     Bill ID : <span class="js-editable"><%= @order.bill_id ? @order.bill_id : "N/A" %></span>
     <input type="text" class="js-editable-field" value="<%= @order.bill_id %>" name="order[bill_id]" id="order_bill_id">
