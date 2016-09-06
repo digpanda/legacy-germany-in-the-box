@@ -1338,7 +1338,7 @@ require.register("javascripts/starters.js", function(exports, require, module) {
 /**
  * Starters Class
  */
-var Starters = ['bootstrap', 'china_city', 'datepicker', 'editable_fields', 'footer', 'images_control', 'images_handler', 'left_menu', 'messages', 'product_favorite', 'product_form', 'products_list', 'refresh_time', 'responsive', 'search', 'sku_form'];
+var Starters = ['bootstrap', 'china_city', 'datepicker', 'editable_fields', 'footer', 'images_control', 'images_handler', 'left_menu', 'messages', 'product_favorite', 'product_form', 'products_list', 'refresh_time', 'responsive', 'search', 'sku_form', 'tooltipster'];
 
 module.exports = Starters;
 });
@@ -2133,6 +2133,32 @@ var SkuForm = { // CURRENTLY NOT IN USED IN THE SYSTEM
 };
 
 module.exports = SkuForm;
+});
+
+require.register("javascripts/starters/tooltipster.js", function(exports, require, module) {
+'use strict';
+
+/**
+ * Tooltipster Class
+ */
+var Tooltipster = {
+
+  /**
+   * Initializer
+   */
+  init: function init() {
+
+    this.activateTooltipster();
+  },
+
+  activateTooltipster: function activateTooltipster() {
+
+    $('.tooltipster').tooltipster();
+  }
+
+};
+
+module.exports = Tooltipster;
 });
 
 require.register("___globals___", function(exports, require, module) {

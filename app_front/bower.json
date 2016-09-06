@@ -25,7 +25,8 @@
     "freewall": "^1.0.6",
     "slicknav": "^1.0.7",
     "moment": "*",
-    "moment-timezone": "^0.5.5"
+    "moment-timezone": "^0.5.5",
+    "tooltipster": "^4.1.4"
   },
   "overrides": {
     "font-awesome": {

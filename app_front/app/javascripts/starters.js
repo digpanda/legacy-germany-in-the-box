@@ -18,7 +18,8 @@ var Starters = [
   'refresh_time',
   'responsive',
   'search',
-  'sku_form'
+  'sku_form',
+  'tooltipster',
 ]
 
 module.exports = Starters;
