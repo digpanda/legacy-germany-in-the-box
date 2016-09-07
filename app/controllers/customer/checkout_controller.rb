@@ -54,38 +54,34 @@ class Customer::CheckoutController < ApplicationController
   end
 
   def success
-    callback!
+    return unless callback!
 
     order_payment = OrderPayment.where(:request_id => params[:request_id]).first
     order = order_payment.order
     shop = order.shop
 
-    order.order_items.each do |oi|
-      sku = oi.sku
-      sku.quantity -= oi.quantity unless sku.unlimited
+    order.order_items.each do |order_item|
+      sku = order_item.sku
+      sku.quantity -= order_item.quantity unless sku.unlimited
       sku.save!
     end
 
     reset_shop_id_from_session(shop.id.to_s)
 
-    EmitNotificationAndDispatchToUser.new.perform({
-      :user => shop.shopkeeper,
-      :title => 'Sie haben eine neue Bestellung aus dem Land der Mitte bekommen!',
-      :desc => "Eine neue Bestellung ist da. Zeit für die Vorbereitung!"
+      EmitNotificationAndDispatchToUser.new.perform({
+        :user => shop.shopkeeper,
+        :title => 'Sie haben eine neue Bestellung aus dem Land der Mitte bekommen!',
+        :desc => "Eine neue Bestellung ist da. Zeit für die Vorbereitung!"
       })
 
       if BorderGuruApiHandler.new(order).get_shipping!.success?
-
         flash[:success] = I18n.t(:checkout_ok, scope: :checkout)
         redirect_to customer_orders_path(:user_info_edit_part => :edit_order)
         return
-
       else
-
         flash[:error] = I18n.t(:borderguru_shipping_failed, scope: :checkout)
         redirect_to customer_orders_path(:user_info_edit_part => :edit_order)
         return
-
       end
 
     end
@@ -105,7 +101,7 @@ class Customer::CheckoutController < ApplicationController
     def fail
       flash[:error] = "The payment failed. Please try again."
       ExceptionNotifier.notify_exception(Wirecard::Base::Error.new, :env => request.env, :data => {:message => "Something went wrong during the payment."})
-      callback!(:failed)
+      return unless callback!(:failed)
       redirect_to navigation.back(2)
     end
 
@@ -118,7 +114,7 @@ class Customer::CheckoutController < ApplicationController
       if current_user.email != customer_email
         flash[:error] = I18n.t(:account_conflict, scope: :notice)
         redirect_to root_url
-        return
+        return false
       end
 
       merchant_id = params["merchant_account_id"]
@@ -138,7 +134,7 @@ class Customer::CheckoutController < ApplicationController
       # we freeze the status to unverified for security reason
       # and the payment status freeze on unverified
       order_payment.order.refresh_status_from!(order_payment)
-
+      return true
     end
 
     def prepare_checkout(status, order)
@@ -174,13 +170,15 @@ class Customer::CheckoutController < ApplicationController
     end
 
     def wrong_email_update?
-      if User.where(email: params[:valid_email]).first
-        flash[:error] = "This email is currently used by someone else."
-        redirect_to navigation.back(1)
-        return true
+      if params[:valid_email]
+        if User.where(email: params[:valid_email]).first
+          flash[:error] = "This email is currently used by someone else."
+          redirect_to navigation.back(1)
+          return true
+        end
+        current_user.email = params[:valid_email]
+        current_user.save
       end
-      current_user.email = params[:valid_email]
-      current_user.save
     end
 
     def today_limit?(order)
