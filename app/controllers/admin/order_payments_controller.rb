@@ -5,7 +5,7 @@ class Admin::OrderPaymentsController < ApplicationController
   load_and_authorize_resource
   #authorize_resource :class => false
 
-  layout :custom_sublayout, only: [:index]
+  layout :custom_sublayout, only: [:index, :show]
   before_action :set_order_payment, except: [:index]
 
   attr_reader :order_payment, :order_payments
@@ -14,26 +14,16 @@ class Admin::OrderPaymentsController < ApplicationController
     @order_payments = OrderPayment.order_by(c_at: :desc).paginate(:page => current_page, :per_page => 10);
   end
 
-  # PATCH
-  # when the order payment is stuck on `scheduled` you can manually update the transaction_id
-  def transaction_id
+  def show
+  end
 
-    if order_payment.transaction_id
-      flash[:error] = "Transaction ID is already present for this payment."
-      redirect_to navigation.back(1)
-      return
+  def update
+    if order_payment.update(order_payment_params)
+      flash[:success] = "The order payment was updated."
+    else
+      flash[:error] = "The order payment was not updated (#{order.erros.full_messages.join(', ')})"
     end
-
-    params["transaction_id"] = nil if params["transaction_id"].empty?
-
-    order_payment.transaction_id = params["transaction_id"]
-    order_payment.status = :unverified
-    order_payment.save
-    flash[:success] = "Transaction ID was set manually."
-
     redirect_to navigation.back(1)
-    return
-
   end
 
   def refund
@@ -72,6 +62,10 @@ class Admin::OrderPaymentsController < ApplicationController
   end
 
   private
+
+  def order_payment_params
+    params.require(:order_payment).permit(:transaction_id)
+  end
 
   def payment_refunder
     @payment_refunder ||= WirecardPaymentRefunder.new(order_payment)

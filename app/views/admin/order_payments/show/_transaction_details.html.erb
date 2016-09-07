@@ -1,0 +1,15 @@
+<div class="col-md-12">
+  <div class="row">
+    <h3>Transaction details</h3>
+    <hr>
+  </div>
+  <div class="row">
+    Request ID : <%= @order_payment.request_id %><br />
+    <% if @order_payment.transaction_id %>
+    Transaction ID : <span class="js-editable"><%= @order_payment.transaction_id %></span>
+    <input type="text" size="50" class="js-editable-field" value="<%= @order_payment.transaction_id %>" name="order_payment[transaction_id]" id="order_payment_transaction_id"><br />
+    <% end %>
+    Payment Method : <%= @order_payment.payment_method %><br />
+    Transaction Type : <%= @order_payment.transaction_type %><br />
+  </div>
+</div>
