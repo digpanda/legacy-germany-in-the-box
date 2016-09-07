@@ -20,13 +20,13 @@ class Customer::CheckoutController < ApplicationController
     product_name = nil
     sku = nil
 
-    order.order_items.each do |oi|
-      product = oi.product
-      sku = oi.sku
+    order.order_items.each do |order_item|
+      product = order_item.product
+      sku = order_item.sku
 
-      if sku.unlimited or sku.quantity >= oi.quantity
+      if sku.unlimited or sku.quantity >= order_item.quantity
         all_products_available = true
-        products_total_price += sku.price * oi.quantity
+        products_total_price += sku.price * order_item.quantity
       else
         all_products_available = false
         product_name = product.name
@@ -41,46 +41,16 @@ class Customer::CheckoutController < ApplicationController
       return
     end
 
-    @shop = Shop.only(:currency, :min_total, :name).find(shop.id.to_s)
-
-    if products_total_price < @shop.min_total
-      tp = "%.2f" % (products_total_price * Settings.instance.exchange_rate_to_yuan)
-      mt = "%.2f" % (@shop.min_total * Settings.instance.exchange_rate_to_yuan)
-
-      msg = I18n.t(:not_all_min_total_reached, scope: :checkout, :shop_name => @shop.name, :total_price => tp, :currency => Settings.instance.platform_currency.symbol, :min_total => mt)
-
-      flash[:error] = msg
-      redirect_to request.referrer
-      return
-
-    end
-
-    # should be put into a service or something instead of being here - Laurent
-    status = update_for_checkout(current_user, order, params[:delivery_destination_id], cart.border_guru_quote_id, cart.shipping_cost, cart.tax_and_duty_cost)
-
-    if status
-
-      begin
-
-        @checkout = WirecardCheckout.new(current_user, order).checkout!
-
-      rescue Wirecard::Base::Error => exception
-
-        # we should catch the error in the lib or something like this
-        # and raise one if the merchant wirecard status isn't active yet
-        flash[:error] = "This shop is not ready to accept payments yet (#{exception})"
-        redirect_to navigation.back(1)
-        return
-
-      end
-
-    else
-
-      flash[:error] = order.errors.full_messages.join(', ')
+    if products_total_price < shop.min_total
+      total_price = Currency.new(products_total_price).to_yuan.display
+      min_total = Currency.new(shop.min_total).to_yuan.display
+      flash[:error] = I18n.t(:not_all_min_total_reached, scope: :checkout, :shop_name => shop.name, :total_price => total_price, :currency => Settings.instance.platform_currency.symbol, :min_total => min_total)
       redirect_to navigation.back(1)
       return
-
     end
+
+    status = update_for_checkout(current_user, order, params[:delivery_destination_id], cart.border_guru_quote_id, cart.shipping_cost, cart.tax_and_duty_cost)
+    prepare_checkout(status)
   end
 
   def success
@@ -126,11 +96,13 @@ class Customer::CheckoutController < ApplicationController
       return
     end
 
+    # alias of success
     def processing
       success
     end
 
-    def checkout_fail # TODO: manage that better, right now it doesn't work
+    # the card processing failed
+    def fail
       flash[:error] = "The payment failed. Please try again."
       ExceptionNotifier.notify_exception(Wirecard::Base::Error.new, :env => request.env, :data => {:message => "Something went wrong during the payment."})
       callback!(:failed)
@@ -143,14 +115,12 @@ class Customer::CheckoutController < ApplicationController
 
       customer_email = params["email"]
 
-      # corrupted transaction detected : not the same email -> should be improved / put somewhere else
       if current_user.email != customer_email
         flash[:error] = I18n.t(:account_conflict, scope: :notice)
         redirect_to root_url
         return
       end
 
-      # TODO : TO IMPROVE
       merchant_id = params["merchant_account_id"]
       request_id = params["request_id"]
       order_payment = OrderPayment.where({merchant_id: merchant_id, request_id: request_id}).first
@@ -158,7 +128,6 @@ class Customer::CheckoutController < ApplicationController
       order_payment.status = forced_status unless forced_status.nil? # TODO : improve this
       order_payment.save
 
-      # TODO: TO IMPROVE TOO
       if order_payment.status == :success
         SlackDispatcher.new.paid_transaction(order_payment)
       else
@@ -170,6 +139,24 @@ class Customer::CheckoutController < ApplicationController
       # and the payment status freeze on unverified
       order_payment.order.refresh_status_from!(order_payment)
 
+    end
+
+    def prepare_checkout(status)
+      if status
+        begin
+          @checkout = WirecardCheckout.new(current_user, order).checkout!
+        rescue Wirecard::Base::Error => exception
+          # we should catch the error in the lib or something like this
+          # and raise one if the merchant wirecard status isn't active yet
+          flash[:error] = "This shop is not ready to accept payments yet (#{exception})"
+          redirect_to navigation.back(1)
+          return
+        end
+      else
+        flash[:error] = order.errors.full_messages.join(', ')
+        redirect_to navigation.back(1)
+        return
+      end
     end
 
     def update_for_checkout(user, order, delivery_destination_id, border_guru_quote_id, shipping_cost, tax_and_duty_cost)
@@ -187,7 +174,6 @@ class Customer::CheckoutController < ApplicationController
     end
 
     def wrong_email_update?
-      params[:valid_email]
       if User.where(email: params[:valid_email]).first
         flash[:error] = "This email is currently used by someone else."
         redirect_to navigation.back(1)
