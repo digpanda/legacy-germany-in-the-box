@@ -1,3 +1,6 @@
+<li class="<%= is_menu_active?(:shared_notifications) %>">
+  <%= link_to I18n.t(:notifications, scope: :top_menu), shared_notifications_path %>
+</li>
 <li class="<%= is_menu_active?(:edit_notification) %>">
   <%= link_to I18n.t(:notifications, scope: :top_menu),  shared_notifications_path(:user_info_edit_part => :edit_notification) %>
 </li>

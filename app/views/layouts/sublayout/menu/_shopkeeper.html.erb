@@ -1,3 +1,6 @@
+<li class="<%= is_menu_active?(:shared_notifications) %>">
+  <%= link_to I18n.t(:notifications, scope: :top_menu), shared_notifications_path %>
+</li>
 <% if current_user.shop&.agb %>
   <li class="<%= is_menu_active?(:edit_account, true) %>">
     <%= link_to I18n.t(:my_account, scope: :top_menu),  edit_account_user_path(current_user, :user_info_edit_part => :edit_account) %>
