@@ -7,7 +7,7 @@
 <% end %>
 
 <% if chinese? %>
-<div class="row"><%= link_to "Give your feedback", guest_feedback_path %></div>
+<div class="row"><%= link_to I18n.t(:feedback, scope: :footer), guest_feedback_path %></div>
 
 <% end %>
 

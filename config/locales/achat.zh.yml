@@ -1,4 +1,9 @@
 zh-CN:
+  feedback:
+    bug_report:  纠错处
+    payment_speed_report: 支付页面速度反馈
+    overall_rate: 消费满意度调查
+    production_suggestions: 产品建议
   message:
     order_not_processable: 系统传送CSV档案，请10点后再访问。
   country_of_origin: 制造国
@@ -127,6 +132,7 @@ zh-CN:
     settings: 平台设置
     notifications: 平台通知
   footer:
+    feedback: 反馈及建议
     ihk_munchen: 来因盒是德国工商联合会（IHK）资助项目。
     copyright: 版权所有：莱茵工场 © 2016
     rheinmanufaktur: 莱茵工场

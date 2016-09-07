@@ -1,4 +1,9 @@
 de:
+  feedback:
+    bug_report: Fehler Report
+    payment_speed_report: Laufzeit der Zahlung
+    overall_rate: Bewertung
+    production_suggestions: Produkt Empfehlung
   message:
     order_not_processable: System ist zwischen 9 und 10 Uhr wegen Datei Sendung gesperrt. Bitten prüfen Sie CSV-Datei nach 10Uhr wieder.
   country_of_origin: Herstellungsland
@@ -127,6 +132,7 @@ de:
     settings: Konfiguraiton
     notifications: Nachrichte
   footer:
+    feedback: Feedback
     ihk_munchen: GBox wird von IHK München und Oberbayern gefördert.
     copyright: © DigPanda GmbH 2015-2016
     rheinmanufaktur: Rhein-Manufaktur
