@@ -6,7 +6,7 @@ class EmitNotificationAndDispatchToUser < BaseService
 
   include Rails.application.routes.url_helpers
 
-  def initialize 
+  def initialize
   end
 
   def perform(args={})
@@ -35,9 +35,9 @@ class EmitNotificationAndDispatchToUser < BaseService
   def dispatch_notification(notification)
 
     if notification.user.decorate.shopkeeper?
-      ShopkeeperMailer.notify(notification.user, notification.title, shared_notifications_path).deliver_now
+      ShopkeeperMailer.notify(notification.user, notification.title, shared_notifications_path).deliver_later
     elsif notification.user.decorate.customer?
-      CustomerMailer.notify(notification.user, notification.title, shared_notifications_path).deliver_now
+      CustomerMailer.notify(notification.user, notification.title, shared_notifications_path).deliver_later
     end
   end
 
