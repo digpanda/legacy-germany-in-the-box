@@ -132,6 +132,8 @@ de:
     settings: Konfiguraiton
     notifications: Nachrichte
   footer:
+    payment_methods: Zahlungsarten
+    germany_in_the_box: Germany In The Box
     feedback: Feedback
     ihk_munchen: GBox wird von IHK München und Oberbayern gefördert.
     copyright: © DigPanda GmbH 2015-2016

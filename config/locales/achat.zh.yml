@@ -132,6 +132,8 @@ zh-CN:
     settings: 平台设置
     notifications: 平台通知
   footer:
+    payment_methods: 支付方式
+    germany_in_the_box: 来因盒
     feedback: 反馈及建议
     ihk_munchen: 来因盒是德国工商联合会（IHK）资助项目。
     copyright: 版权所有：莱茵工场 © 2016
