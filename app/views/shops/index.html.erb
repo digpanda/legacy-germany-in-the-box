@@ -36,13 +36,13 @@
             <%= s.shopkeeper.email %>
           </td>
           <td>
-            <%= link_to s.name, edit_producer_shop_path(s, :user_info_edit_part => :edit_shops) %>
+            <%= link_to s.name, edit_producer_shop_path(s) %>
           </td>
           <td>
-            <%= link_to s.shopname ? s.shopname : (s.shopname_translations[I18n.default_locale] ? s.shopname_translations[I18n.default_locale] : I18n.t(:shopname_unknown, scope: :edit_shop)), edit_setting_shop_path(s, :user_info_edit_part => :edit_shops) %>
+            <%= link_to s.shopname ? s.shopname : (s.shopname_translations[I18n.default_locale] ? s.shopname_translations[I18n.default_locale] : I18n.t(:shopname_unknown, scope: :edit_shop)), edit_setting_shop_path(s) %>
           </td>
           <td>
-            <%= link_to s.addresses.size, show_addresses_user_path(s.shopkeeper, :user_info_edit_part => :edit_shops) %>
+            <%= link_to s.addresses.size, show_addresses_user_path(s.shopkeeper) %>
           </td>
           <td>
             <%= s.merchant_id %>
@@ -67,7 +67,7 @@
             <% end %>
           </td>
           <td>
-            <%= link_to I18n.t(:products_info, scope: :edit_shops, num: s.products.size), show_products_shop_path(s, :user_info_edit_part => :edit_shops) %>
+            <%= link_to I18n.t(:products_info, scope: :edit_shops, num: s.products.size), show_products_shop_path(s) %>
           </td>
           <td>
             <% if s.approved.nil? %>

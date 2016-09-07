@@ -1,11 +1,11 @@
 <%= translation_js(:non_selected_text, :multiselect) %>
 <%= translation_js(:n_selected_text, :multiselect) %>
 
-<a class="btn-lg btn btn-primary" href="<%= show_products_shop_path(@product.shop.id, :user_info_edit_part => :edit_product ) %>">
+<a class="btn-lg btn btn-primary" href="<%= show_products_shop_path(@product.shop.id) %>">
   <i class="fa fa-chevron-left"></i>
   <%= I18n.t(:return, scope: :edit_product_detail) %>
 </a>
-<a class="btn-lg btn btn-primary" href="<%= new_sku_product_path(@product.id, :user_info_edit_part => :edit_product_detail_new) %>">
+<a class="btn-lg btn btn-primary" href="<%= new_sku_product_path(@product.id) %>">
   <i class="fa fa-plus-circle"></i>
   <%= I18n.t(:new_sku, scope: :edit_product_detail) %>
 </a>
@@ -54,7 +54,7 @@
       <% @product.skus.each do |s| %>
         <tr>
           <td>
-            <%= link_to image_tag(s.decorate.first_nonempty_img_url(:thumb), :style => 'max-width:48px;max-height:auto'), edit_sku_product_path(@product.id, :user_info_edit_part => :edit_product_detail_update, :sku_id => s.id) %>
+            <%= link_to image_tag(s.decorate.first_nonempty_img_url(:thumb), :style => 'max-width:48px;max-height:auto'), edit_sku_product_path(@product.id, :sku_id => s.id) %>
           </td>
           <td>
             <%= select_tag :option_ids, grouped_options_for_select(@product.decorate.grouped_variants_options, s.option_ids ), :multiple => 'multiple', :class => 'sku-variants-options', :readonly=>true %>
@@ -69,8 +69,8 @@
             <%= s.unlimited ? I18n.t(:info, scope: 'edit_product_detail.unlimited') : s.quantity %>
           </td>
           <td>
-            <%= link_to '', edit_sku_product_path(@product.id, :user_info_edit_part => :edit_product_detail_update, :sku_id => s.id), :class => 'fa fa-edit btn', :title => I18n.t(:edit, scope: :edit_product_detail) %>
-            <%= link_to '', clone_sku_product_path(@product.id, :user_info_edit_part => :edit_product_detail_clone, :sku_id => s.id), :class => 'fa fa-files-o btn', :title => I18n.t(:clone, scope: :edit_product_detail) %>
+            <%= link_to '', edit_sku_product_path(@product.id, :sku_id => s.id), :class => 'fa fa-edit btn', :title => I18n.t(:edit, scope: :edit_product_detail) %>
+            <%= link_to '', clone_sku_product_path(@product.id, :sku_id => s.id), :class => 'fa fa-files-o btn', :title => I18n.t(:clone, scope: :edit_product_detail) %>
             <%= link_to '', remove_sku_product_path(@product.id, s.id), method: :delete, data: { confirm: "#{I18n.t(:delete_sku_message, scope: :edit_product_detail)}" }, :class => 'fa fa-times-circle btn', :title => I18n.t(:remove, scope: :edit_product_detail) %>
           </td>
         </tr>

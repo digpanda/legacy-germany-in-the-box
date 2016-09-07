@@ -6,7 +6,7 @@
     <%= order_payment.transaction_id %>
   </td>
   <td>
-    <%= link_to order_payment.shop.name, edit_producer_shop_path(order_payment.shop, :user_info_edit_part => :edit_shops) %>
+    <%= link_to order_payment.shop.name, edit_producer_shop_path(order_payment.shop) %>
   </td>
   <td>
     <%= link_to order_payment.order_id, order_path(order_payment.order_id) %>

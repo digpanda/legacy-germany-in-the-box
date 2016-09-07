@@ -216,12 +216,12 @@
 
       <% if @product.persisted? && @product.decorate.has_option? %>
         <div class="panel-footer clearfix">
-          <a href="<%= show_skus_product_path(@product.id, :user_info_edit_part => :edit_product_detail) %>">
+          <a href="<%= show_skus_product_path(@product.id) %>">
             <i class="fa fa-edit"></i>
             <%= I18n.t(:sku_manage, scope: :edit_product_detail, locale: locale) %>
           </a>
           <div class="pull-right">
-            <a href="<%= new_sku_product_path(@product.id, :user_info_edit_part => :edit_product_detail_new) %>">
+            <a href="<%= new_sku_product_path(@product.id) %>">
               <i class="fa fa-plus-circle"></i>
               <%= I18n.t(:new_sku, scope: :edit_product_detail, locale: locale) %>
             </a>
@@ -231,5 +231,5 @@
     </div>
   </div>
   <%= f.submit :id => 'edit_product_submit_btn', :class => 'btn btn-primary', :value => @product.persisted? ? I18n.t(:update_basic, scope: :edit_product, locale: locale) : I18n.t(:new_basic, scope: :edit_product, locale: locale) %>
-  <%= link_to I18n.t(:cancel, scope: :edit_product, locale: locale), show_products_shop_path(@product.shop.id, :user_info_edit_part => :edit_product), :class => 'btn btn-primary' %>
+  <%= link_to I18n.t(:cancel, scope: :edit_product, locale: locale), show_products_shop_path(@product.shop.id), :class => 'btn btn-primary' %>
 <% end %>

@@ -82,7 +82,7 @@ class Customer::CheckoutController < ApplicationController
       :desc => "Eine neue Bestellung ist da. Zeit für die Vorbereitung!"
       })
 
-      redirect_to customer_orders_path(:user_info_edit_part => :edit_order)
+      redirect_to customer_orders_path
 
   end
 

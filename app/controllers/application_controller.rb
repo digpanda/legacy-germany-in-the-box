@@ -174,12 +174,12 @@ class ApplicationController < ActionController::Base
     elsif current_user.decorate.shopkeeper?
       session[:locale] = :'de'
       if current_user.shop && (not current_user.shop.agb)
-        edit_producer_shop_path(current_user.shop.id, :user_info_edit_part => :edit_producer)
+        edit_producer_shop_path(current_user.shop.id)
       else
-        shopkeeper_orders_path(:user_info_edit_part => :edit_order)
+        shopkeeper_orders_path
       end
     elsif current_user.decorate.admin?
-      shops_path(:user_info_edit_part => :edit_shops)
+      shops_path
     end
   end
 

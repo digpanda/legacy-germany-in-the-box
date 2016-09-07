@@ -8,7 +8,7 @@
         <div class="row-fluid">
           <% if @shop.billing_address.nil? %>
             <%= I18n.t(:you_must_add, scope: :composed_text) %>
-            <%= link_to I18n.t(:billing_address, scope: :composed_text), show_addresses_user_path(current_user, :user_info_edit_part => :edit_shop_address) %>
+            <%= link_to I18n.t(:billing_address, scope: :composed_text), show_addresses_user_path(current_user) %>
             <%= I18n.t(:to_activate_this_section, scope: :composed_text) %>
           <% else %>
             <% if @shop.wirecard_status == :unactive %>

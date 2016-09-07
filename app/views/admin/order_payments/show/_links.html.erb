@@ -4,7 +4,7 @@
     <hr>
   </div>
   <div class="row">
-    <a href="<%= edit_producer_shop_path(@order_payment.shop, :user_info_edit_part => :edit_shops) %>" class="btn btn-primary"><%= @order_payment.shop.name %></a>
+    <a href="<%= edit_producer_shop_path(@order_payment.shop) %>" class="btn btn-primary"><%= @order_payment.shop.name %></a>
     <a href="<%= admin_order_path(@order_payment.order_id) %>" class="btn btn-primary"><%= @order_payment.order_id %></a>
   </div>
 </div>
