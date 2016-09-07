@@ -68,22 +68,20 @@ class Customer::CheckoutController < ApplicationController
 
     reset_shop_id_from_session(shop.id.to_s)
 
+      if BorderGuruApiHandler.new(order).get_shipping!.success?
+        flash[:success] = I18n.t(:checkout_ok, scope: :checkout)
+      else
+        flash[:error] = I18n.t(:borderguru_shipping_failed, scope: :checkout)
+      end
+
       EmitNotificationAndDispatchToUser.new.perform({
         :user => shop.shopkeeper,
         :title => 'Sie haben eine neue Bestellung aus dem Land der Mitte bekommen!',
         :desc => "Eine neue Bestellung ist da. Zeit für die Vorbereitung!"
       })
 
-      if BorderGuruApiHandler.new(order).get_shipping!.success?
-        flash[:success] = I18n.t(:checkout_ok, scope: :checkout)
-        redirect_to customer_orders_path(:user_info_edit_part => :edit_order)
-        return
-      else
-        flash[:error] = I18n.t(:borderguru_shipping_failed, scope: :checkout)
-        redirect_to customer_orders_path(:user_info_edit_part => :edit_order)
-        return
-      end
-
+      redirect_to customer_orders_path(:user_info_edit_part => :edit_order)
+      
     end
 
     # make the user return to the previous page
