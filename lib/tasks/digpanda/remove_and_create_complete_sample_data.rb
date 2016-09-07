@@ -36,7 +36,7 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
 
     puts "We create the customers, shopkeepers, admins"
 
-    10.times { setup_customer create_user(:customer) }
+    25.times { setup_customer create_user(:customer) }
     3.times { create_user(:admin) }
 
     10.times { setup_shopkeeper create_user(:shopkeeper) }

@@ -142,6 +142,12 @@ GEM
     daemons (1.2.3)
     database_cleaner (1.5.3)
     debug_inspector (0.0.2)
+    delayed_job (4.1.2)
+      activesupport (>= 3.0, < 5.1)
+    delayed_job_mongoid (2.2.0)
+      delayed_job (>= 3.0, < 5)
+      mongoid (>= 3.0, < 6)
+      mongoid-compatibility
     delocalize (1.0.0)
       rails (>= 2)
     devise (3.5.3)
@@ -250,6 +256,9 @@ GEM
       mongo (~> 2.1)
       origin (~> 2.1)
       tzinfo (>= 0.3.37)
+    mongoid-compatibility (0.4.0)
+      activesupport
+      mongoid (>= 2.0)
     mongoid-grid_fs (2.2.1)
       mime-types (>= 1.0, < 3.0)
       mongoid (>= 3.0, < 6.0)
@@ -484,6 +493,7 @@ DEPENDENCIES
   countries
   country_select
   database_cleaner
+  delayed_job_mongoid
   delocalize
   devise (= 3.5.3)
   diff-lcs (= 1.2.5)

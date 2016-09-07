@@ -3,8 +3,8 @@ class HermesMailer < ApplicationMailer
    default from: 'hermes@germanyinthebox.com'
    layout 'mailers/hermes'
 
-  def notify(shopkeeper, data, csv)
-    shop = shopkeeper.shop
+  def notify(shopkeeper_id, data, csv)
+    shop = User.find(shopkeeper_id).shop
     @data = data
     attachments['orders.csv'] = csv
     mail(

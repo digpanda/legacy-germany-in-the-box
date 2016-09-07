@@ -10,7 +10,7 @@ module BorderGuruEmail
       # including datas and a csv file
       def to_email
         if orders.any? # could have no orders ?
-          HermesMailer.notify(shopkeeper, email_datas, csv_file).deliver_now
+          HermesMailer.notify(shopkeeper.id.to_s, email_datas, csv_file).deliver_now
         end
       end
 

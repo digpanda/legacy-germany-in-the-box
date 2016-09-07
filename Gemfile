@@ -7,6 +7,7 @@ gem "mongoid_includes"
 gem "mongoid_rails_migrations"
 gem "country_select"
 gem "slack-notifier"
+gem 'delayed_job_mongoid'
 
 gem "turnout"
 #gem "mongoid_search" #, "~> 0.2.8"

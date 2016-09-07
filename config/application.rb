@@ -39,6 +39,9 @@ module DigPanda
     # No environment constraint
     config.errors = YAML.load_file(Rails.root.join("config/errors.yml")).deep_symbolize_keys!
 
+    # Delayed job
+    config.active_job.queue_adapter = :delayed_job
+
     I18n::Backend::Simple.send(:include, I18n::Backend::Fallbacks)
     config.i18n.fallbacks = {'de' => 'en', 'zh-CN' => 'en'}
     config.web_console.development_only = false if Rails.env.local?
