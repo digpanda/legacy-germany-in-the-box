@@ -1,0 +1,27 @@
++component(feedback-blocks)
+
+  padding: 0
+
+  +part(block)
+    min-height: 7em
+    padding: 0
+    border: 2px $color-grey solid
+    color: $color-white
+    +border-radius(0.5em)
+    +background-transition
+
+    img
+      margin-top: 1em
+      height: 100px
+
+    h2
+      margin-top: 0.3em
+      color: $color-black
+      text-transform: uppercase
+      font-family: inherit
+
+    +option(general)
+      padding: 1em
+      background-color: $color-white
+      &:hover
+        +green-on-hover

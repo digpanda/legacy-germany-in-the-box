@@ -8287,6 +8287,49 @@ img.mfp-img {
   margin-bottom: 1em; }
 
 /* line 32, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
+.feedback-blocks {
+  padding: 0; }
+  /* line 76, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
+  .feedback-blocks__block {
+    min-height: 7em;
+    padding: 0;
+    border: 2px #eeeeee solid;
+    color: #fdfdfd;
+    -webkit-border-radius: 0.5em;
+    -moz-border-radius: 0.5em;
+    -ms-border-radius: 0.5em;
+    border-radius: 0.5em;
+    -webkit-transition: background-color 200ms linear;
+    -moz-transition: background-color 200ms linear;
+    -o-transition: background-color 200ms linear;
+    -ms-transition: background-color 200ms linear;
+    transition: background-color 200ms linear; }
+    /* line 13, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_feedback-blocks.sass */
+    .feedback-blocks__block img {
+      margin-top: 1em;
+      height: 100px; }
+    /* line 17, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_feedback-blocks.sass */
+    .feedback-blocks__block h2 {
+      margin-top: 0.3em;
+      color: #666;
+      text-transform: uppercase;
+      font-family: inherit; }
+    /* line 40, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
+    .feedback-blocks__block.\--general {
+      padding: 1em;
+      background-color: #fdfdfd; }
+      /* line 26, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_feedback-blocks.sass */
+      .feedback-blocks__block.\--general:hover {
+        background-color: #659443; }
+        /* line 45, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/helpers/_mixins.sass */
+        .feedback-blocks__block.\--general:hover h2 {
+          color: #fdfdfd; }
+        /* line 47, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/helpers/_mixins.sass */
+        .feedback-blocks__block.\--general:hover img {
+          -webkit-filter: brightness(0) invert(1);
+          filter: brightness(0) invert(1); }
+
+/* line 32, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
 .message {
   padding: 0.5em;
   margin: 0em;
