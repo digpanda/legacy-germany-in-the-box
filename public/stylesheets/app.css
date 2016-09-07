@@ -7960,8 +7960,8 @@ img.mfp-img {
 
 /* line 2, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_payment-methods.sass */
 .payment-methods img {
-  max-width: 100%;
-  opacity: 0.4; }
+  max-width: 80%;
+  opacity: 0.9; }
 
 /* line 76, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
 .payment-methods__block {

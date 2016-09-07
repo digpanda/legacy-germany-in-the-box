@@ -4,29 +4,33 @@
 
 <div class="row js-footer-stick">
 
-  <div class="col-md-2 col-md-push-5 col-md-pull-5 payment-methods">
-    <div class="row">
-      <div class="col-md-6 payment-methods__block --visa">
-        <img src="/images/logos/visa-logo.png">
-      </div>
-      <div class="col-md-6 payment-methods__block --mastercard">
-        <img src="/images/logos/mastercard-logo.png">
-      </div>
-      <!--<div class="col-md-4 payment-methods__block --chinaunionpay">
-        <img src="/images/logos/chinaunionpay-logo.png">
-      </div>-->
-    </div>
-    <div class="+small-spacer"></div>
-  </div>
-
   <div class="col-md-12 main-footer">
 
-    <div class="main-footer__logo col-md-2 col-md-offset-1">
+    <div class="main-footer__logo col-md-1">
       <img src="/images/logo-min-white.png">
     </div>
 
-    <div class="col-md-1 col-md-pull-1">
+    <div class="col-md-2">
       <%= render "layouts/footer/parts/partners" %>
+    </div>
+
+    <div class="col-md-2">
+       线上支付
+
+       <div class="payment-methods">
+         <div class="row">
+           <div class="col-md-6 payment-methods__block --visa">
+             <img src="/images/logos/visa-logo-white.png">
+           </div>
+         </div>
+         <div class="row">
+           <div class="col-md-6 payment-methods__block --mastercard">
+             <img src="/images/logos/mastercard-logo-white.png">
+           </div>
+         </div>
+         <div class="+small-spacer"></div>
+       </div>
+
     </div>
 
     <div class="col-md-2">
