@@ -50,7 +50,7 @@ class Customer::CheckoutController < ApplicationController
     end
 
     status = update_for_checkout(current_user, order, params[:delivery_destination_id], cart.border_guru_quote_id, cart.shipping_cost, cart.tax_and_duty_cost)
-    prepare_checkout(status)
+    prepare_checkout(status, order)
   end
 
   def success
@@ -141,7 +141,7 @@ class Customer::CheckoutController < ApplicationController
 
     end
 
-    def prepare_checkout(status)
+    def prepare_checkout(status, order)
       if status
         begin
           @checkout = WirecardCheckout.new(current_user, order).checkout!
@@ -179,12 +179,14 @@ class Customer::CheckoutController < ApplicationController
         redirect_to navigation.back(1)
         return true
       end
+      current_user.email = params[:valid_email]
+      current_user.save
     end
 
     def today_limit?(order)
       if reach_todays_limit?(order, 0, 0)
         flash[:error] = I18n.t(:override_maximal_total, scope: :edit_order, total: Settings.instance.max_total_per_day, currency: Settings.instance.platform_currency.symbol)
-        redirect_to request.referrer
+        redirect_to navigation.back(1)
         return true
       end
     end
