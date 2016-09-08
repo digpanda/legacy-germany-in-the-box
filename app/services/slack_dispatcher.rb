@@ -16,6 +16,10 @@ class SlackDispatcher < BaseService
     slack.ping "--- *#{Rails.env.capitalize} Mode* #{Time.now.utc}"
   end
 
+  def message(message)
+    push "#{message}"
+  end
+
   def new_error(error)
     push "An error occurred (#{error})"
   end
