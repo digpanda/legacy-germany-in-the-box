@@ -4,24 +4,26 @@ describe NavigationHistory do
 
   context "#store" do
 
+=begin
     it "should not store if it is not a GET request" do
 
       request = double(:get? => false)
       expect(NavigationHistory.new(request, {}).store).to eql(false)
 
     end
-
+=end
+=begin DOESNT EXIST ANYMORE
     it "should not store if it is an AJAX call" do
 
       request = double(:get? => true, :xhr? => true)
       expect(NavigationHistory.new(request, {}).store).to eql(false)
 
     end
-
+=end
     it "should store the successive paths and return the correct one" do
 
       request = double(:get? => true, :xhr? => false, :path => 'ONE_PATH', :fullpath => 'ONE_FULL_PATH')
-      expect(NavigationHistory.new(request, {}).store.count).to eql(1)
+      expect(NavigationHistory.new(request, {}).store('A_PATH').count).to eql(1)
 
     end
 

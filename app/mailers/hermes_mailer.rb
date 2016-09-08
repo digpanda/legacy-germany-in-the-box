@@ -4,7 +4,8 @@ class HermesMailer < ApplicationMailer
    layout 'mailers/hermes'
 
   def notify(shopkeeper_id, data, csv)
-    shop = User.find(shopkeeper_id).shop
+    shopkeeper = User.find(shopkeeper_id)
+    shop = shopkeeper.shop
     @data = data
     attachments['orders.csv'] = csv
     mail(
