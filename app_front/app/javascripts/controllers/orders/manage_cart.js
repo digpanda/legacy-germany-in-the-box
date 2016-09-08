@@ -42,7 +42,7 @@ var ManageCart = {
     $('.js-set-quantity-plus').click(function(e) {
 
       e.preventDefault();
-      
+
       let orderItemId = $(this).data('orderItemId');
       let orderShopId = $(this).data('orderShopId');
       let currentQuantity = $('#order-item-quantity-'+orderItemId).val();
@@ -91,27 +91,6 @@ var ManageCart = {
     });
 
   },
-
-
-
-/* SAME HERE
-  // Should be in a lib
-  setRedirectLocation: function(location) {
-
-    $.ajax({
-      method: "PATCH",
-      url: "api/set_redirect_location",
-      data: {"location": location}
-
-
-    }).done(function(res) {
-
-      // callback {"status": "ok"}
-
-    });
-
-  },
-*/
 
 }
 

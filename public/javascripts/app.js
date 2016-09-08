@@ -272,25 +272,6 @@ var ManageCart = {
 
 };
 
-/* SAME HERE
-  // Should be in a lib
-  setRedirectLocation: function(location) {
-
-    $.ajax({
-      method: "PATCH",
-      url: "api/set_redirect_location",
-      data: {"location": location}
-
-
-    }).done(function(res) {
-
-      // callback {"status": "ok"}
-
-    });
-
-  },
-*/
-
 module.exports = ManageCart;
 });
 
