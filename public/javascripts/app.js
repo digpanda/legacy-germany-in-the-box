@@ -217,10 +217,11 @@ var ManageCart = {
       var orderItemId = $(this).data('orderItemId');
       var orderShopId = $(this).data('orderShopId');
       var currentQuantity = $('#order-item-quantity-' + orderItemId).val();
+      var originQuantity = currentQuantity;
 
       if (currentQuantity > 0) {
         currentQuantity--;
-        ManageCart.orderItemSetQuantity(orderShopId, orderItemId, currentQuantity);
+        ManageCart.orderItemSetQuantity(orderShopId, orderItemId, originQuantity, currentQuantity);
       }
     });
 
@@ -231,22 +232,27 @@ var ManageCart = {
       var orderItemId = $(this).data('orderItemId');
       var orderShopId = $(this).data('orderShopId');
       var currentQuantity = $('#order-item-quantity-' + orderItemId).val();
+      var originQuantity = currentQuantity;
 
       currentQuantity++;
-      ManageCart.orderItemSetQuantity(orderShopId, orderItemId, currentQuantity);
+      ManageCart.orderItemSetQuantity(orderShopId, orderItemId, originQuantity, currentQuantity);
     });
   },
 
-  orderItemSetQuantity: function orderItemSetQuantity(orderShopId, orderItemId, orderItemQuantity) {
+  orderItemSetQuantity: function orderItemSetQuantity(orderShopId, orderItemId, originQuantity, orderItemQuantity) {
+
+    // We first setup a temporary number before the AJAX callback
+    $('#order-item-quantity-' + orderItemId).val(orderItemQuantity);
 
     var OrderItem = require("javascripts/models/order_item");
-
     OrderItem.setQuantity(orderItemId, orderItemQuantity, function (res) {
 
       var Messages = require("javascripts/lib/messages");
 
       if (res.success === false) {
 
+        // We rollback the quantity
+        $('#order-item-quantity-' + orderItemId).val(originQuantity);
         Messages.makeError(res.error);
       } else {
 
@@ -1799,7 +1805,7 @@ var Navigation = {
 
     var NavigationModel = require("javascripts/models/navigation_model");
     NavigationModel.setLocation(window.location.href, function (res) {
-      console.log(res);
+      // Nothing yet
     });
   }
 

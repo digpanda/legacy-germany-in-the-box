@@ -31,10 +31,11 @@ var ManageCart = {
       let orderItemId = $(this).data('orderItemId');
       let orderShopId = $(this).data('orderShopId');
       let currentQuantity = $('#order-item-quantity-'+orderItemId).val();
+      let originQuantity = currentQuantity;
 
       if (currentQuantity > 0) {
         currentQuantity--;
-        ManageCart.orderItemSetQuantity(orderShopId, orderItemId, currentQuantity);
+        ManageCart.orderItemSetQuantity(orderShopId, orderItemId, originQuantity, currentQuantity);
       }
 
     });
@@ -46,25 +47,29 @@ var ManageCart = {
       let orderItemId = $(this).data('orderItemId');
       let orderShopId = $(this).data('orderShopId');
       let currentQuantity = $('#order-item-quantity-'+orderItemId).val();
+      let originQuantity = currentQuantity;
 
       currentQuantity++;
-      ManageCart.orderItemSetQuantity(orderShopId, orderItemId, currentQuantity);
+      ManageCart.orderItemSetQuantity(orderShopId, orderItemId, originQuantity, currentQuantity);
 
     });
 
   },
 
-  orderItemSetQuantity: function(orderShopId, orderItemId, orderItemQuantity) {
+  orderItemSetQuantity: function(orderShopId, orderItemId, originQuantity, orderItemQuantity) {
+
+    // We first setup a temporary number before the AJAX callback
+    $('#order-item-quantity-'+orderItemId).val(orderItemQuantity);
 
     var OrderItem = require("javascripts/models/order_item");
-
-
     OrderItem.setQuantity(orderItemId, orderItemQuantity, function(res) {
 
       var Messages = require("javascripts/lib/messages");
 
       if (res.success === false) {
 
+        // We rollback the quantity
+        $('#order-item-quantity-'+orderItemId).val(originQuantity);
         Messages.makeError(res.error);
 
       } else {

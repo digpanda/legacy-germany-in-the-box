@@ -19,7 +19,7 @@ var Navigation = {
 
       var NavigationModel = require("javascripts/models/navigation_model");
       NavigationModel.setLocation(window.location.href, function(res) {
-        console.log(res);
+        // Nothing yet
       });
 
 
