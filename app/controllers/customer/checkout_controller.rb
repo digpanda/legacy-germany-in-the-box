@@ -78,7 +78,7 @@ class Customer::CheckoutController < ApplicationController
 
     EmitNotificationAndDispatchToUser.new.perform({
       :user => shop.shopkeeper,
-      :title => 'Sie haben eine neue Bestellung aus dem Land der Mitte bekommen!',
+      :title => "Auftrag #{order.id} am #{order.c_at}",
       :desc => "Eine neue Bestellung ist da. Zeit für die Vorbereitung!"
       })
 
