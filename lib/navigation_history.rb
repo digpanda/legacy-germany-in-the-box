@@ -14,8 +14,9 @@ class NavigationHistory
 
   def store(location, conditions={})
 
+    location = location_path(location)
     return false unless acceptable_request?(location)
-    return false if excluded_path?(conditions)
+    return false if excluded_path?(location, conditions)
 
     # could be a new class but it's useless right now
     prepare_storage
@@ -37,13 +38,17 @@ class NavigationHistory
 
   private
 
+  def location_path(location)
+    URI(location).path
+  end
+
   def history_found?(position)
     session[:previous_urls].is_a?(Array) && session[:previous_urls][position].present?
   end
 
-  def excluded_path?(conditions)
+  def excluded_path?(location, conditions)
     excluded_paths = conditions[:except] || []
-    excluded_paths.include? request.path
+    excluded_paths.include? location
   end
 
   def acceptable_request?(location)
