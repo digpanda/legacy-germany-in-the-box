@@ -38,7 +38,6 @@ concern :shared_products do
   match :destroy_sku_image, via: [:delete], action: :destroy_sku_image, as: :destroy_sku_image
   match :autocomplete_product_name,               via: [:get],    action: :autocomplete_product_name,   as: :autocomplete_product_name,   :on => :collection
   match :search,                                 via: [:get],    action: :search,                      as: :search,                      :on => :collection
-  match :popular,                                 via: [:get],    action: :popular,                     as: :popular,                                  :on => :collection
 end
 
 concern :shared_users do
@@ -50,7 +49,6 @@ concern :shared_users do
   match :unfollow,          via: [:patch],  action: :unfollow,          as: :unfollow,            :on => :member
   match :get_followers,     via: [:get],    action: :get_followers,     as: :get_followers,       :on => :member
   match :get_following,     via: [:get],    action: :get_following,     as: :get_following,       :on => :member
-  match :show_orders,       via: [:get],    action: :show_orders,       :controller => :orders,             as: :show_orders,         :on => :collection
   match :show_addresses,    via: [:get],    action: :show_addresses,    :controller => :addresses,          as: :show_addresses,      :on => :member
   match :show_collections,  via: [:get],    action: :show_collections,  :controller => :collections,        as: :show_collections,    :on => :member
   #match :new_collection,    via: [:get],    action: :new,               :controller => :collections,        as: :new_collection,      :on => :member
@@ -68,10 +66,10 @@ concern :shared_shops do
 end
 
 concern :shared_orders do
+
   match :add_product,               via: [:patch],        action: :add_product,             as: :add_product_to,              :on => :collection
   match :checkout,                  via: [:post],         action: :checkout,                as: :checkout,                    :on => :collection
-  match :checkout_success,          via: [:post],         action: :checkout_success,        as: :checkout_success,            :on => :collection
-  match :checkout_fail,             via: [:post],         action: :checkout_fail,           as: :checkout_fail,               :on => :collection
+
   match :manage_cart,               via: [:get],          action: :manage_cart,             as: :manage_cart,                 :on => :collection
   match 'set_address/:shop_id/',          via: [:patch, :get],  action: :set_address,             as: :set_address,           :on => :collection
   match :continue,                        via: [:get],    action: :continue,                as: :continue,                    :on => :member

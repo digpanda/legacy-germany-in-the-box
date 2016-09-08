@@ -717,6 +717,8 @@ var ProductsShow = {
    */
   refreshSkuSecondDescription: function refreshSkuSecondDescription(secondDescription) {
 
+    console.log('SECD: ' + secondDescription);
+
     var more = "<h3>" + Translation.find('more', 'title') + "</h3>";
 
     if (typeof secondDescription !== "undefined") {
@@ -738,7 +740,7 @@ var ProductsShow = {
       if (typeof secondDescription !== "undefined") {
         $('#product-file-attachment-and-data').html(more);
       }
-      $('#product-file-attachment-and-data').append('<br /><a class="btn btn-default" href="' + attachment + '">PDF Documentation</a>');
+      $('#product-file-attachment-and-data').append('<br /><a class="btn btn-default" target="_blank" href="' + attachment + '">PDF Documentation</a>');
     }
   }
 
@@ -1339,7 +1341,7 @@ require.register("javascripts/starters.js", function(exports, require, module) {
 /**
  * Starters Class
  */
-var Starters = ['bootstrap', 'china_city', 'datepicker', 'footer', 'images_control', 'images_handler', 'left_menu', 'messages', 'product_favorite', 'product_form', 'products_list', 'responsive', 'search', 'sku_form'];
+var Starters = ['bootstrap', 'china_city', 'datepicker', 'footer', 'images_control', 'images_handler', 'left_menu', 'messages', 'product_favorite', 'product_form', 'products_list', 'refresh_time', 'responsive', 'search', 'sku_form'];
 
 module.exports = Starters;
 });
@@ -1930,6 +1932,53 @@ var ProductsList = { // CURRENTLY NOT IN USED IN THE SYSTEM
 };
 
 module.exports = ProductsList;
+});
+
+require.register("javascripts/starters/refresh_time.js", function(exports, require, module) {
+'use strict';
+
+/**
+ * RefreshTime Class
+ */
+var RefreshTime = {
+
+  /**
+   * Initializer
+   */
+  init: function init() {
+
+    this.refreshTime('#utc-time', 'UTC');
+    this.refreshTime('#china-time', 'Asia/Shanghai');
+    this.refreshTime('#germany-time', 'Europe/Berlin');
+  },
+
+  /**
+   * Change the current time html
+   * @param  {#} selector
+   * @return void
+   */
+  displayTime: function displayTime(selector, time_zone) {
+    var time = moment().tz(time_zone).format('HH:mm:ss');
+    $(selector).html(time);
+  },
+
+  /**
+   * Activate the time refresh for specific selector
+   * @param  {#} selector
+   * @return void
+   */
+  refreshTime: function refreshTime(selector, time_zone) {
+    var remote_time = $(selector).html();
+    if (typeof remote_time != "undefined") {
+      setInterval(function () {
+        RefreshTime.displayTime(selector, time_zone);
+      }, 1000);
+    }
+  }
+
+};
+
+module.exports = RefreshTime;
 });
 
 require.register("javascripts/starters/responsive.js", function(exports, require, module) {

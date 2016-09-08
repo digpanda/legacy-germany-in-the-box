@@ -23,6 +23,9 @@ module BorderGuru
       private
 
       def result
+        if response_data.nil?
+          raise BorderGuru::Error, "Logistic partner busy. Please try again in a few minutes."
+        end
         response_data[:result]
       end
 
@@ -33,4 +36,3 @@ module BorderGuru
     end
   end
 end
-

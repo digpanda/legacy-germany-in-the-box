@@ -17,6 +17,7 @@ module BorderGuruFtp
       TransferOrders.new(orders).tap do |transfer|
         transfer.generate_and_store_local
         transfer.connect_and_push_remote if Rails.env.production?
+        transfer.refresh_orders_status
         transfer.clean_local_storage
       end
     end

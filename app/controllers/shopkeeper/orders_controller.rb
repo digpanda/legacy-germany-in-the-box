@@ -3,37 +3,21 @@ require 'net/ftp'
 
 class Shopkeeper::OrdersController < ApplicationController
 
-  CSV_ENCODE = "UTF-8"
-
   load_and_authorize_resource
-  before_action :set_order
+  before_action :set_order, :except => [:index]
+  before_filter :is_shop_order, :except => [:index]
 
-  attr_reader :order
+  layout :custom_sublayout, only: [:index]
 
-  def show
-    respond_to do |format|
-      format.pdf do
-        render pdf: order.id.to_s, disposition: 'attachment'
-      end
-      format.csv do
-        render text: BorderGuruFtp::TransferOrders::Makers::Generate.new([order]).to_csv.encode(CSV_ENCODE),
-               type: "text/csv; charset=#{CSV_ENCODE}; header=present",
-               disposition: 'attachment'
-      end
-    end
-  end
+  attr_accessor :order
 
-  def bill
-    respond_to do |format|
-      format.pdf do
-        render pdf: order.id.to_s, disposition: 'attachment'
-      end
-    end
+  def index
+    @orders = current_user.shop.orders.bought_or_unverified.order_by(:c_at => :desc).paginate(:page => current_page, :per_page => 10)
   end
 
   def shipped
 
-    if order.shippable?
+    if order.decorate.shippable?
       order.status = :shipped
       order.save
     end
@@ -44,25 +28,20 @@ class Shopkeeper::OrdersController < ApplicationController
 
   end
 
-  def process_order # keyword `process` used for obscure reasons
+  def process_order # can't just put `process` it seems to be reserved term in Rails
 
-    unless order.processable?
+    unless order.decorate.processable?
       flash[:error] = I18n.t(:order_not_processable, scope: :notice)
       redirect_to(:back)
       return
     end
 
-    #
-    # We don't forget to change status of orders and such
-    # Only if everything was a success
-    #
-    order.status = :custom_checking
-    order.minimum_sending_date = 1.business_days.from_now
+    # we don't forget to change status of orders and such
+    # only if everything was a success
+    order.status = :custom_checkable
     order.save
 
-    #
-    # We go back now
-    #
+    # we go back now
     flash[:success] = I18n.t(:order_processing, scope: :notice)
     redirect_to(:back)
     return
@@ -72,6 +51,11 @@ class Shopkeeper::OrdersController < ApplicationController
   private
 
   def set_order
-    @order ||= Order.find(params[:id] || params[:order_id])
+    @order = Order.find(params[:id] || params[:order_id])
   end
+
+  def is_shop_order
+    order.shop.id == current_user.shop.id
+  end
+
 end

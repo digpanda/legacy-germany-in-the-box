@@ -12,11 +12,12 @@ FactoryGirl.define do
     lname                 { Faker::Name.last_name }
     tel                   { Faker::PhoneNumber.phone_number }
     mail                  { Faker::Internet.email }
+    hermes_pickup         true
 
     before(:create) do |shop|
       create_list(:shopkeeper, 1, shop: shop) unless shop.shopkeeper_id
     end
-    
+
     after(:create) do |shop|
       create_list(:product, 10, shop: shop)
       create_list(:shop_address, 1, shop: shop)
@@ -30,9 +31,9 @@ FactoryGirl.define do
     end
   end
 
-  trait(:with_custom_checking_orders) do
+  trait(:with_custom_checkable_orders) do
     after(:create) do |shop|
-      create_list(:order, 5, :with_custom_checking, shop_id: shop.id)
+      create_list(:order, 5, :with_custom_checkable, shop_id: shop.id)
     end
   end
 

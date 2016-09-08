@@ -1,7 +1,7 @@
 module BorderGuruEmail
   class TransmitOrders
 
-    MINIMUM_EMAIL_SENDING_DATE = 24.hours.from_now
+    MINIMUM_EMAIL_SENDING_DATE = 27.hours.from_now
 
     attr_reader :orders
 
@@ -25,7 +25,7 @@ module BorderGuruEmail
 
     def sendable_shop_orders
       orders_by_shop.map do |shop_orders|
-        shop_orders.select { |order| email_sendable?(order) && order.order_items.any? }
+        shop_orders.select { |order| email_sendable?(order) && order.order_items.any? && order.shop.hermes_pickup }
       end
     end
 

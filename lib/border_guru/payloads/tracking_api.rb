@@ -15,7 +15,7 @@ module BorderGuru
           trackingStatus: 'EN_ROUTE',
           trackingLocation: location,
           trackingMessage: 'Parcel left warehouse',
-          trackingTimestamp: Time.now.to_i * 1000,
+          trackingTimestamp: Time.now.utc.to_i * 1000,
           trackingWeight: @order.total_weight,
           trackingWeightScale: BorderGuru::Payloads::HavingVendibles::WEIGHT_UNIT
         }

@@ -150,7 +150,7 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
     num_variants  = rand(1..4)
     num_skus      = rand(1..5)
     category_slug = [:food, :cosmetics, :fashion, :medicine, :household].sample
-    approved      = Time.now
+    approved      = Time.now.utc
 
     name          = "Product #{num}"
     brand         = "Brand #{num}"
@@ -190,7 +190,7 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
     num            = Shop.count + 1
     name           = "Shop #{num}"
     min_total      = num * 10
-    approved       = Time.now
+    approved       = Time.now.utc
     agb            = true
     status         = true
     bg_merchant_id = "1024-TEST"
@@ -286,11 +286,11 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
   end
 
   def random_date
-    Time.at(rand * Time.now.to_i).strftime("%F")
+    Time.at(rand * Time.now.utc.to_i).strftime("%F")
   end
 
   def random_year
-    Time.at(rand * Time.now.to_i).year
+    Time.at(rand * Time.now.utc.to_i).year
   end
 
   def random_product

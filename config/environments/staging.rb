@@ -19,7 +19,7 @@ Rails.application.configure do
   :email => {
     :email_prefix => "Report - ",
     :sender_address => %{"Bug DigPanda Staging" <notifier@digpanda.com>},
-    :exception_recipients => %w{laurent.schaffner@digpanda.com, jiang@digpanda.com, dailycron@hotmail.com}
+    :exception_recipients => %w{laurent.schaffner@digpanda.com, jiang@digpanda.com}
   }
 
   # used for root_url and equivalent

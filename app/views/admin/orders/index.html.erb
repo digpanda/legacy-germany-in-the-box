@@ -1,0 +1,82 @@
+<% if @orders.size > 0 %>
+  <table class="table cart-table">
+    <thead>
+      <tr>
+        <th>
+          <%= I18n.t(:id, scope: :edit_order) %>
+        </th>
+        <th>
+          Delivery Address Names
+        </th>
+        <td>
+          Total Paid
+        </th>
+        <th>
+          <%= I18n.t(:status, scope: :edit_order) %>
+        </th>
+        <th>
+          <%= I18n.t(:total_price, scope: :edit_order) %>
+        </th>
+        <th>
+          <%= I18n.t(:link_tracking, scope: :edit_order) %>
+        </th>
+        <th>
+          <%= I18n.t(:label, scope: :edit_order) %>
+        </th>
+        <th>
+          <%= I18n.t(:updated_at, scope: :edit_order) %>
+        </th>
+        <th>
+          <%= I18n.t(:operations, scope: :edit_order) %>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @orders.each do |order| %>
+        <tr>
+          <td>
+            <% if order.decorate.total_sum > 0 %>
+              <%= link_to order.id, order_path(order) %>
+            <% else %>
+              <%= order.id %>
+            <% end %>
+          </td>
+          <td>
+            <% unless order.shipping_address.nil? %>
+            <%= order.shipping_address.decorate.chinese_full_name %>
+            <% end %>
+          </td>
+          <td>
+            <%= order.total_paid_in_yuan %>
+          </td>
+          <td>
+            <%= I18n.t(order.status, scope: :edit_order) %>
+          </td>
+          <td>
+            <%= order.decorate.total_sum_in_yuan %>
+          </td>
+          <td>
+            <%= order.border_guru_link_tracking ? (link_to I18n.t(:open, scope: :edit_order), order.border_guru_link_tracking, :target => '_blank') : '' %>
+          </td>
+          <td>
+            <%= order.border_guru_shipment_id ? (link_to I18n.t(:download, scope: :edit_order), download_label_order_path(order)) : '' %> |
+          <a href="<%= shared_order_path(order, format: "csv") %>">Shippment CSV</a> | <a href="<%= shared_order_bill_path(order, format: "pdf") %>">Informal Bill</a>
+          </td>
+          <td>
+            <%= order.u_at.localtime.strftime('%Y-%m-%d %H:%M:%S').in_time_zone %>
+          </td>
+          <td>
+            <%= link_to "Details", admin_order_path(order) %>
+        </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= will_paginate @orders, renderer: BootstrapPagination::Rails %>
+<% else %>
+<div class="+white-box +centered">
+  <h4>
+    <%= I18n.t(:no_order, scope: :edit_order) %>
+  </h4>
+</div>
+<% end %>

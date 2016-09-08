@@ -20,15 +20,24 @@
 # Learn more: http://github.com/javan/whenever
 set :output, "/var/www/germany_in_the_box/current/log/borderguru_cron.log"
 
-#every :day, :at => '3:15pm' do
-#  command '(CHINESE HOUR 3:15pm / GERMAN HOUR 9:15am) The system has launched the rake task `cron:compile_and_transfer_orders_csvs_to_borderguru`'
-#  rake "cron:compile_and_transfer_orders_csvs_to_borderguru"
-#end
+# We are currently in UTC time
 
-#every :day, :at => '4:15pm' do
-#  command '(CHINESE HOUR 4:15pm / GERMAN HOUR 10:15am) The system has launched the rake task `cron:transmit_pickup_orders_to_hermes`'
-#  rake "cron:transmit_pickup_orders_to_hermes"
-#end
+# 9:15am Germany
+every :day, :at => '7:15am' do
+  command 'The system has launched the rake task `cron:compile_and_transfer_orders_csvs_to_borderguru`'
+  rake "cron:compile_and_transfer_orders_csvs_to_borderguru"
+end
+
+# 10:15am Germany
+every :day, :at => '8:15am' do
+  command 'The system has launched the rake task `cron:transmit_pickup_orders_to_hermes`'
+  rake "cron:transmit_pickup_orders_to_hermes"
+end
+
+every :hour do
+  command 'The system has launched the rake task `cron:get_missing_shippings_from_border_guru`'
+  rake "cron:get_missing_shippings_from_border_guru"
+end
 
 =begin
 every 1.day, :at => '4:30 am' do

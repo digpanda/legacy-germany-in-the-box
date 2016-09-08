@@ -1,6 +1,12 @@
+# refund a customer via the API
+# this will make a double API call
+# to first recover the original payment transaction
 module Wirecard
   class ElasticApi
     class Refund
+
+      REQUEST_IP_ADDRESS = "127.0.0.1"
+      REFUND_MAP = {:purchase => :'refund-purchase', :debit => :'refund-debit'}
 
       include Wirecard::ElasticApi::Base
 
@@ -13,21 +19,25 @@ module Wirecard
       end
 
       # process the query response
+      # return the response format
       def response
         @response ||= begin
           response = Utils::Request.new(query, :post, body).response
-          # TODO a better response manager with data we need put into a well done class
           if response.nil?
             raise Wirecard::ElasticApi::Error, "The refund was not processed"
           else
-            response
+            Utils::ResponseFormat.new(self, response)
           end
         end
       end
 
-      # this will be merged with the engine URL and turned into a query with a body
+      # query URI to the API
       def query
-        @query ||= "paymentmethods"
+        if parent_transaction.response.transaction_type == :purchase
+          @query ||= "payments"
+        elsif parent_transaction.response.transaction_type == :debit
+          @query ||= "paymentmethods"
+        end
       end
 
       # XML body we will send to the elastic API
@@ -43,22 +53,28 @@ module Wirecard
           :merchant_account_id => merchant_id,
           :request_id => request_id,
           :parent_transaction_id => parent_transaction_id,
-          :ip_address => "127.0.0.1"
+          :ip_address => REQUEST_IP_ADDRESS
         }.merge(remote_params)
       end
 
       # get some body params from the remote elastic API itslef rather than our database (safer)
       def remote_params
         {
-          :currency => remote_origin_transaction[:payment][:"requested-amount"][:currency],
-          :amount => remote_origin_transaction[:payment][:"requested-amount"][:value],
-          :payment_method => remote_origin_transaction[:payment][:"payment-methods"][:"payment-method"].first[:name]
+          :currency => parent_transaction.response.requested_amount_currency,
+          :amount => parent_transaction.response.requested_amount,
+          # potential bug because it's a symbol ?
+          :payment_method => parent_transaction.response.payment_method,
+          :transaction_type => refund_transaction_type
         }
       end
 
+      def refund_transaction_type
+        REFUND_MAP[parent_transaction.response.transaction_type]
+      end
+
       # original transaction of the refund, requested remotely to elastic API
-      def remote_origin_transaction
-        @remote_origin_transaction ||= Wirecard::ElasticApi::Transaction.new(merchant_id, parent_transaction_id).response
+      def parent_transaction
+        @parent_transaction ||= Wirecard::ElasticApi::Transaction.new(merchant_id, parent_transaction_id)
       end
 
     end

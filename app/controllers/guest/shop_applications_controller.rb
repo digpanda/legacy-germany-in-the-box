@@ -27,8 +27,9 @@ class Guest::ShopApplicationsController < ApplicationController
       return throw_model_error(shop, :new)
     end
 
-    flash[:success] = I18n.t(:no_applications, scope: :edit_shop_application)
-    redirect_to navigation.back(2) and return
+    flash[:success] = I18n.t(:application_submitted, scope: :shop_application)
+    redirect_to navigation.back(2)
+    return
 
   end
 
@@ -37,13 +38,11 @@ class Guest::ShopApplicationsController < ApplicationController
   def shopkeeper_from_shop_application!(shop_application)
 
     User.create({
-
       :username => shop_application.email,
       :email => shop_application.email,
       :password => shop_application.code[0, 8],
       :password_confirmation => shop_application.code[0, 8],
       :role => :shopkeeper
-
     })
 
   end

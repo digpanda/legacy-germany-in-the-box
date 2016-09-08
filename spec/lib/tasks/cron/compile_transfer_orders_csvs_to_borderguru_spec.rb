@@ -16,7 +16,7 @@ describe Tasks::Cron::CompileAndTransferOrdersCsvsToBorderguru do
 
     it "should process 5 orders with status `custom_checking`" do
 
-      create(:shop, :with_custom_checking_orders)
+      create(:shop, :with_custom_checkable_orders)
       expect { Tasks::Cron::CompileAndTransferOrdersCsvsToBorderguru.new.perform }.not_to raise_exception
 
     end

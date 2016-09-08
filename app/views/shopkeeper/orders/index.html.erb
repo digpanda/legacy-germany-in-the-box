@@ -1,0 +1,124 @@
+<% if @orders.size > 0 %>
+  <table class="table cart-table">
+    <thead>
+      <tr>
+        <th>
+          <%= I18n.t(:id, scope: :edit_order) %>
+        </th>
+        <th>
+          BorderGuru Shipment Id
+        </th>
+        <th>
+          Delivery Address Name
+        </th>
+        <th>
+          <%= I18n.t(:status, scope: :edit_order) %>
+        </th>
+        <td>
+          Total Paid
+        </th>
+        <th>
+          <%= I18n.t(:total_price, scope: :edit_order) %>
+        </th>
+        <th>
+          Files
+        </th>
+        <th>
+          Sending date
+        </th>
+        <th>
+          <%= I18n.t(:updated_at, scope: :edit_order) %>
+        </th>
+        <th>
+        Action
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @orders.each do |order| %>
+        <tr>
+          <td>
+            <% if order.decorate.total_sum > 0 %>
+              <%= link_to order.id, order_path(order) %>
+            <% else %>
+              <%= order.id %>
+            <% end %>
+          </td>
+          <td>
+            <%= order.border_guru_shipment_id %>
+          </td>
+          <td>
+            <% unless order.shipping_address.nil? %>
+            <%= order.shipping_address.decorate.chinese_full_name %>
+            <% end %>
+          </td>
+          <td>
+            <%= I18n.t(order.status, scope: :edit_order) %>
+          </td>
+          <td>
+            <%= order.total_paid_in_yuan %>
+          </td>
+          <td>
+            <%= order.decorate.total_sum_in_yuan %> (<%= order.decorate.total_sum_in_euro %>)
+          </td>
+          <td>
+          <% if order.border_guru_shipment_id %>
+            <%= link_to I18n.t(:download, scope: :edit_order), download_label_order_path(order) %> |
+          <% end %>
+          <a href="<%= shared_order_path(order, format: "csv") %>">Shippment CSV</a> | <a href="<%= shared_order_bill_path(order, format: "pdf") %>">Informal Bill</a>
+          </td>
+          <th>
+          <% unless order.minimum_sending_date.nil? %>
+            <% if Time.now.utc > order.minimum_sending_date %>
+
+              <span class="+blue">
+              <%= order.minimum_sending_date.strftime('%Y-%m-%d %H:%M:%S').in_time_zone("Berlin") %>
+              </span>
+
+            <% else %>
+
+              <span class="+red">
+              <%= order.minimum_sending_date.strftime('%Y-%m-%d %H:%M:%S').in_time_zone("Berlin") %>
+              </span>
+
+            <% end %>
+          <% end %>
+          </th>
+          <td>
+            <%= order.u_at.localtime.strftime('%Y-%m-%d %H:%M:%S').in_time_zone %>
+          </td>
+          <td>
+          <!-- The order has been paid and shopkeeper can start the process -->
+          <% if order.status == :paid  %>
+            <% if order.decorate.processable? %>
+            <% if order.border_guru_shipment_id.nil? %>
+              You can't process this order. Our Shipping Partner has not yet returned the shipping details.
+            <% else %>
+            <%= link_to I18n.t(:start_process_shipment, scope: :button), shopkeeper_order_process_order_path(order), method: :patch, data: { confirm: I18n.t(:confirm_start_processing, scope: :notice) } %>
+            <% end %>
+            <% else %>
+              This order isn't processable right now. Please come back later today.
+            <% end %>
+          <!-- The order passed the custom and can be send -->
+          <% elsif order.decorate.shippable? %>
+            <%= link_to I18n.t(:package_was_sent, scope: :notice), shopkeeper_order_shipped_path(order), method: :patch %>
+          <% end %>
+
+          <!-- Cancel order -->
+          <% if order.decorate.cancellable? %>
+            <%= link_to "Cancel", shared_order_cancel_path(order), method: :patch, data: { confirm: "Are you sure you want to cancel this order ?" } %>
+          <% end %>
+
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= will_paginate @orders, renderer: BootstrapPagination::Rails %>
+<% else %>
+<div class="+white-box +centered">
+  <h4>
+    <%= I18n.t(:no_order, scope: :edit_order) %>
+  </h4>
+</div>
+<% end %>

@@ -1,16 +1,16 @@
 class OrderDecorator < Draper::Decorator
 
+  MAX_DESCRIPTION_CHARACTERS = 200
+  UNPROCESSABLE_TIME = [9,10] # 9am to 10am -> German Hour
+
   include OrderCartDecoratorCommon
 
   delegate_all
   decorates :order
 
   def clean_desc
+    return '' if self.desc.nil?
     self.desc.squish.downcase.gsub(',', '')
-  end
-
-  def is_bought?
-    not [:new, :paying, :payment_failed, :payment_unverified].include?(self.status)
   end
 
   def total_price
@@ -19,6 +19,10 @@ class OrderDecorator < Draper::Decorator
     else
       order_items.inject(0) { |sum, i| sum += i.quantity * i.sku.price }
     end
+  end
+
+  def clean_order_items_description
+    self.order_items.reduce([]) { |acc, order_item| acc << "#{order_item.product.name}: #{order_item.product.decorate.clean_desc(MAX_DESCRIPTION_CHARACTERS)}" }.join(', ')
   end
 
   def total_price_in_yuan
@@ -63,12 +67,16 @@ class OrderDecorator < Draper::Decorator
     status == :paid && processable_time?
   end
 
+  def cancellable?
+    status != :cancelled
+  end
+
   def processable_time?
-    Time.now.strftime("%k").to_i < 9 || Time.now.strftime("%k").to_i > 10
+    Time.now.utc.in_time_zone("Berlin").strftime("%k").to_i < UNPROCESSABLE_TIME.first || Time.now.utc.in_time_zone("Berlin").strftime("%k").to_i > UNPROCESSABLE_TIME.last
   end
 
   def shippable?
-    self.status == :custom_checking && Time.now > minimum_sending_date
+    self.status == :custom_checking && Time.now.utc > minimum_sending_date
   end
 
   def total_price_with_currency_yuan

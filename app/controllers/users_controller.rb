@@ -3,7 +3,6 @@ class UsersController < ApplicationController
   attr_reader :followers
 
   before_action :authenticate_user!, except: [:search,
-                                              :index,
                                               :get_followers,
                                               :get_following]
 
@@ -23,6 +22,7 @@ class UsersController < ApplicationController
   }
 
   def index
+    redirect_to root_url unless current_user.decorate.admin?
     @users = User.all
   end
 
@@ -61,17 +61,18 @@ class UsersController < ApplicationController
   end
 
   def update
+
     ups = user_params
 
     if current_user.id.to_s == @user.id.to_s
-      if ups[:password] && @user.decorate.update_with_password(ups.except(:email))
+      if ups[:password] && @user.decorate.update_with_password(ups)
 
         flash[:success] = I18n.t(:update_password_ok, scope: :edit_personal)
         sign_in(@user, :bypass => true)
         redirect_to request.referer
 
 
-      elsif ups[:password].blank? && @user.update_without_password(ups.except(:email))
+      elsif ups[:password].blank? && @user.update_without_password(ups)
 
         flash[:success] = I18n.t(:update_ok, scope: :edit_personal)
         redirect_to request.referer
@@ -87,7 +88,7 @@ class UsersController < ApplicationController
 
       end
     elsif current_user.decorate.admin?
-      if ups[:password] && @user.update(ups.except(:email))
+      if ups[:password] && @user.update(ups)
         flash[:success] = I18n.t(:update_password_ok, scope: :edit_personal)
         redirect_to request.referer
       end

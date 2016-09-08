@@ -2,12 +2,14 @@
 
   <div class="row shop-page-footer__images">
 
-    <% group.each do |number| %>
-      <% unless shop.public_send("seal#{number}").url.empty? %>
-      <div class="col-md-3 shop-page-footer__images --image" style="background-image:url('<%= shop.decorate.image_url("seal#{number}", :thumb) %>');">
-      </div>
+    <div class="col-md-10 col-md-push-1 col-md-pull-1">
+      <% group.each do |number| %>
+        <% unless shop.public_send("seal#{number}").url.empty? %>
+        <div class="col-md-3 shop-page-footer__images --image" style="background-image:url('<%= shop.decorate.image_url("seal#{number}", :thumb) %>');">
+        </div>
+        <% end %>
       <% end %>
-    <% end %>
+    </div>
 
   </div>
   <div class="+small-spacer"></div>

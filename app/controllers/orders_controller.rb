@@ -3,15 +3,14 @@ require 'will_paginate/array'
 
 class OrdersController < ApplicationController
 
-  LABEL_NOT_READY_EXCEPTIONS = BorderGuru::Error, SocketError
-
   load_and_authorize_resource
 
   decorates_assigned :order, :orders
 
   before_action :authenticate_user!, :except => [:manage_cart, :add_product]
   before_action :set_order, :only => [:show, :destroy, :continue, :download_label]
-  protect_from_forgery :except => [:checkout_success, :checkout_fail]
+
+  protect_from_forgery :except => [:checkout_success, :checkout_fail, :checkout_cancel, :checkout_processing]
 
   layout :custom_sublayout, only: [:show_orders]
 
@@ -22,26 +21,14 @@ class OrdersController < ApplicationController
     send_data response.bindata, filename: "#{@order.border_guru_shipment_id}.pdf", type: :pdf
 
   # to refactor (obviously)
-  rescue LABEL_NOT_READY_EXCEPTIONS => exception
+  rescue BorderGuru::Error, SocketError => exception
     Rails.logger.info "Error Download Label Order \##{@order.id} : #{exception.message}"
     throw_app_error(:resource_not_found, {error: "Your label is not ready yet. Please try again in a few hours."}) # (`#{exception.message}`)
   end
 
-  def show_orders
-    if current_user.decorate.customer?
-      @orders = current_user.orders.nonempty.order_by(:c_at => 'desc').paginate(:page => (params[:page] ? params[:page].to_i : 1), :per_page => 10);
-    elsif current_user.decorate.shopkeeper?
-      @orders = current_user.shop.orders.bought.order_by(:c_at => 'desc').paginate(:page => (params[:page] ? params[:page].to_i : 1), :per_page => 10);
-    elsif current_user.decorate.admin?
-      @orders = Order.nonempty.order_by(:c_at => 'desc').paginate(:page => (params[:page] ? params[:page].to_i : 1), :per_page => 10);
-    end
-
-    render "orders/#{current_user.role.to_s}/show_orders"
-  end
-
   def show
     @readonly = true
-    @currency_code = @order.order_items.first.sku.product.shop.currency.code
+    @currency_code = @order.shop.currency.code
 
     if @order.decorate.is_bought?
       @cart_or_order = @order
@@ -52,16 +39,23 @@ class OrdersController < ApplicationController
         @cart_or_order.decorate.add(i.sku, i.quantity)
       end
 
-      begin
-        BorderGuru.calculate_quote(
-            cart: @cart_or_order,
-            shop: @order.shop,
-            country_of_destination: ISO3166::Country.new('CN'),
-            currency: 'EUR'
-        )
-      rescue Net::ReadTimeout => e
-        logger.fatal "Failed to connect to Borderguru: #{e}"
-        return nil
+      # THIS SHOULD BE REALLY FUCKING REFACTORED
+      # THIS IS DISGUSTING.
+      # - Laurent 01/09/2016
+      if @order.order_items.count > 0
+
+        begin
+          BorderGuru.calculate_quote(
+              cart: @cart_or_order,
+              shop: @order.shop,
+              country_of_destination: ISO3166::Country.new('CN'),
+              currency: 'EUR'
+          )
+        rescue Net::ReadTimeout => e
+          logger.fatal "Failed to connect to Borderguru: #{e}"
+          return nil
+        end
+
       end
     end
   end
@@ -126,6 +120,18 @@ class OrdersController < ApplicationController
   end
 
   def checkout
+
+    # Small hack to be improved - Laurent
+    if params[:valid_email]
+      if User.where(email: params[:valid_email]).first
+        flash[:error] = "This email is currently used by someone else."
+        redirect_to navigation.back(1)
+        return
+      end
+      current_user.email = params[:valid_email]
+      current_user.save
+    end
+
     shop_id = params[:shop_id]
     order = current_order(shop_id)
 
@@ -217,65 +223,54 @@ class OrdersController < ApplicationController
     order = order_payment.order
     shop = order.shop
 
-    # if it's a success, it paid
-    # we freeze the status to unverified for security reason
-    # and the payment status freeze on checking
-    if order_payment.status == :success
-      order.status = :paid
-    elsif order_payment.status == :unverified
-      order.status = :payment_unverified
-    elsif order_payment.status == :failed
-      order.status = :payment_failed
-    end
-    order.save!
-
-    begin
-      shipping = BorderGuru.get_shipping(
-          order: order,
-          shop: shop,
-          country_of_destination: ISO3166::Country.new('CN'),
-          currency: 'EUR'
-      )
-    rescue Net::ReadTimeout => e
-      logger.fatal "Failed to connect to Borderguru: #{e}"
-      flash[:error] = I18n.t(:borderguru_unreachable_at_shipping, scope: :checkout)
-      redirect_to root_path and return
+    order.order_items.each do |oi|
+      sku = oi.sku
+      sku.quantity -= oi.quantity unless sku.unlimited
+      sku.save!
     end
 
-    if shipping.success?
+    reset_shop_id_from_session(shop.id.to_s)
 
-      order.order_items.each do |oi|
-        sku = oi.sku
-        sku.quantity -= oi.quantity unless sku.unlimited
-        sku.save!
-      end
-
-      reset_shop_id_from_session(shop.id.to_s)
-
-      EmitNotificationAndDispatchToUser.new.perform({
-        :user => shop.shopkeeper,
-        :title => 'Sie haben eine neue Bestellung aus dem Land der Mitte bekommen!',
-        :desc => "Eine neue Bestellung ist da. Zeit für die Vorbereitung!"
+    EmitNotificationAndDispatchToUser.new.perform({
+      :user => shop.shopkeeper,
+      :title => 'Sie haben eine neue Bestellung aus dem Land der Mitte bekommen!',
+      :desc => "Eine neue Bestellung ist da. Zeit für die Vorbereitung!"
       })
 
+    if BorderGuruApiHandler.new(order).get_shipping!.success?
+
       flash[:success] = I18n.t(:checkout_ok, scope: :checkout)
-      redirect_to show_orders_users_path(:user_info_edit_part => :edit_order)
+      redirect_to customer_orders_path(:user_info_edit_part => :edit_order)
       return
 
     else
 
       flash[:error] = I18n.t(:borderguru_shipping_failed, scope: :checkout)
-      redirect_to request.referrer
+      redirect_to customer_orders_path(:user_info_edit_part => :edit_order)
       return
 
     end
+
   end
 
-  def checkout_fail
-    checkout_callback
+  # make the user return to the previous page
+  def checkout_cancel
+    redirect_to navigation.back(2)
+    return
   end
 
-  def checkout_callback
+  def checkout_processing
+    checkout_success
+  end
+
+  def checkout_fail # TODO: manage that better, right now it doesn't work
+    flash[:error] = "The payment failed. Please try again."
+    ExceptionNotifier.notify_exception(Wirecard::Base::Error.new, :env => request.env, :data => {:message => "Something went wrong during the payment."})
+    checkout_callback(:failed)
+    redirect_to navigation.back(2)
+  end
+
+  def checkout_callback(forced_status=nil)
 
     customer_email = params["email"]
 
@@ -286,25 +281,40 @@ class OrdersController < ApplicationController
         return
     end
 
-    WirecardPaymentChecker.new(params.symbolize_keys).update_order_payment!
+    # TODO : TO IMPROVE
+    merchant_id = params["merchant_account_id"]
+    request_id = params["request_id"]
+    order_payment = OrderPayment.where({merchant_id: merchant_id, request_id: request_id}).first
+    WirecardPaymentChecker.new(params.symbolize_keys.merge({:order_payment => order_payment})).update_order_payment!
+    order_payment.status = forced_status unless forced_status.nil? # TODO : improve this
+    order_payment.save
+
+    # if it's a success, it paid
+    # we freeze the status to unverified for security reason
+    # and the payment status freeze on unverified
+    order_payment.order.refresh_status_from!(order_payment)
 
   end
 
   def destroy
-    shop_id = @order.order_items.first.sku.product.shop.id.to_s
+
+    shop_id = @order.shop.id.to_s
     session[:order_ids]&.delete(shop_id)
+    @order.status = :cancelled
+    @order.save
 
-    if @order && @order.status != :success && @order.order_items.delete_all && @order.delete
-
-      flash[:success] = I18n.t(:delete_ok, scope: :edit_order)
-      redirect_to request.referrer
-
-    else
-
-      flash[:error] = I18n.t(:delete_ko, scope: :edit_order)
-      redirect_to request.referrer
-
+    # NOTE : for legacy purpose this method is still here.
+    # but the cancel by shopkeeper are used on another side from now on
+    # it's only for admins until we refactor the whole controller
+    if current_user&.decorate.admin?
+      @order && @order.status != :success
+      @order.order_items.delete_all
+      @order.delete
     end
+
+    flash[:success] = I18n.t(:delete_ok, scope: :edit_order)
+    redirect_to request.referrer
+
   end
 
   def continue

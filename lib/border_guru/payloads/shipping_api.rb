@@ -74,9 +74,9 @@ module BorderGuru
       end
 
       def line_items
-        super @order.order_items.each do |i|
+        super @order.order_items.each do |order_item|
           {
-              quantity: i.quantity
+              quantity: order_item.quantity
           }
         end
       end

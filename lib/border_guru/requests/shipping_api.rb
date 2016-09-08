@@ -13,7 +13,6 @@ module BorderGuru
         nil
       end
 
-
     end
   end
 end

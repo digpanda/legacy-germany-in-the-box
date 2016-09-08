@@ -5,14 +5,7 @@
 
   <!-- Left side -->
   <div class="col-md-2 col-md-push-1">
-
-    <!-- Logo -->
-    <div class="main-header__logo +centered">
-      <a href="<%= root_path %>">
-        <img src="/images/logo-half.png">
-      </a>
-    </div>
-
+    <%= render partial: "layouts/header/parts/logo" %>
   </div>
 
   <!-- Right side -->
@@ -20,148 +13,68 @@
 
     <!-- My Account -->
     <div class="col-md-1 pull-right +centered">
-
-      <% if current_user.nil? %>
-
-      <a href="<%= new_user_session_path %>">
-
-        <div class="main-header__account">
-        <i class="fa fa-sign-in"></i>
-        <%= I18n.t(:signin) %>
-        </div>
-
-      </a>
-
-      <% else %>
-
-      <% if current_user.decorate.new_notifications? %>
-        <a href="<%= shared_notifications_path(:user_info_edit_part => :edit_notification) %>">
-      <% else %>
-        <a href="<%= edit_account_user_path(current_user, :user_info_edit_part => :edit_account) %>">
-      <% end %>
-
-      <div class="main-header__avatar" style="background-image:url(<%= current_user.decorate.avatar %>)">
-
-        <% if current_user.decorate.new_notifications? %>
-        <div class="main-header__avatar --notification">
-          <%= current_user.notifications.unreads.count %>
-        </div> 
-        <% end %>
-
-      </div>
-
-      </a>
-
-      <% end %>
-
+      <%= render partial: "layouts/header/parts/my_account" %>
     </div>
 
     <% if potential_customer? %>
 
-    <!-- Products Cart -->
-    <div class="col-md-1 pull-right +centered +menu-bordering">
+      <!-- Products Cart -->
+      <div class="col-md-1 pull-right +centered +menu-bordering">
+        <%= render partial: "layouts/header/parts/products_cart" %>
+      </div>
 
-      <a href="<%= manage_cart_orders_path %>">
+      <!-- Customer Likes -->
+      <div class="col-md-1 pull-right +centered +menu-bordering">
+        <%= render partial: "layouts/header/parts/customer_likes" %>
+      </div>
 
-        <div class="main-header__cart">
-        <i class="fa fa-shopping-cart"></i>
+    <% end %>
 
-        <span id="total-products">
-        <%= total_number_of_products %>
-        </span>
-
-        </div>
-
-      </a>
-
-    </div>
-
-    <!-- Customer Likes -->
-    <div class="col-md-1 pull-right +centered +menu-bordering">
-
-      <a href="<%= (current_user.nil? ? new_user_session_path : customer_favorites_path) %>">
-        
-        <div class="main-header__likes">
-        <i class="fa fa-heart"></i> 
-
-        <span id="total-likes">
-          <% if current_user.nil? %>
-            0
-          <% else %>
-            <%= current_user.favorites.count %>
-          <% end %>
-        </span>
-
-        </div>
-      </a>
-
-    </div>
-
-<% end %>
-
-</div>
+  </div>
 
 </div>
 <!-- End of Main Menu Area -->
 
 <% if potential_customer? %>
 
+  <!-- Mobile Category -->
   <div class="row mobile-category-menu">
-
-    <!-- WE SHOULD PLACE THIS INTO A PARTIAL, IT'S THE MOBILE RESPONSIVE MENU -->
-    <nav id="categories-menu">
-      <ul>
-
-      <!-- Account side -->
-      <li><a href="<%= manage_cart_orders_path %>"><%= I18n.t(:my_cart, scope: :menu) %></a></li>
-      <li>
-
-      <% if current_user.nil? %>
-        <a href="<%= new_user_session_path %>"><%= I18n.t(:signin) %></a>
-      <% else %>
-        <a href="<%= edit_account_user_path(current_user, :user_info_edit_part => :edit_account) %>"><%= I18n.t(:my_account, scope: :menu) %></a>
-      <% end %>
-
-      </li>
-
-      <% unless @categories.empty? %>
-        <% @categories.each do |category| %>
-        <li>
-          <a href="<%= category_path(category) %>"><%= category.name %></a>
-        </li>
-        <% end %>
-      <% end %>
-      </ul>
-    </nav>
-
+    <%= render partial: "layouts/header/parts/menu/mobile_categories" %>
   </div>
-  
+
   <!-- Category + Search Menu -->
   <div class="row category-menu">
 
     <!-- Search -->
     <div class="col-md-2 col-md-offset-2">
-
-      <div class="category-menu__search">
-
       <% if Rails.env.development? %>
-      <!-- This functionality should only be visible in development to help developer troubleshoot things -->
-       <form id="search-form" action="<%= search_products_path %>">
-        <i class="fa fa-search"></i>
-        <input type="query" id="search" name="query" autocomplete="off" placeholder="Search" />
-        <button type="submit" class="+hidden"></button>
-      </form>
+        <%= render partial: "layouts/header/parts/search" %>
       <% end %>
-
-      </div>
-
     </div>
 
     <!-- Categories Menu -->
     <div class="col-md-7 col-md-push-1 col-md-pull-1">
-
       <%= render partial: "layouts/header/parts/menu/categories" %>
+    </div>
 
+  </div>
+
+<% elsif current_user %>
+
+  <!-- Category + Search Menu -->
+  <div class="row server-menu">
+
+    <!-- Server details -->
+    <div class="col-md-6 col-md-offset-1">
+      <% if current_user.decorate.admin? %>
+        <strong><%= Rails.env.capitalize %> Mode</strong> - Client <%= request.remote_ip %> - Server <%= server_ip %> - UTC <span id="utc-time"><%= Time.now.utc.strftime("%T") %></span>
+      <% end %>
+    </div>
+
+    <!-- Time zones -->
+    <div class="col-md-4 col-md-push-2">
+      China <span id="china-time"><%= Time.now.utc.in_time_zone("Beijing").strftime("%T") %></span> -
+      Germany <span id="germany-time"><%= Time.now.utc.in_time_zone("Berlin").strftime("%T") %></span>
     </div>
 
   </div>
@@ -173,7 +86,7 @@
 <div class="+big-spacer"></div>
 
 <% if potential_customer? %>
-  
+
   <div class="+spacer"></div>
 
 <% end %>

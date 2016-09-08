@@ -4,6 +4,7 @@ class AttachmentUploader < CarrierWave::Uploader::Base
   storage Rails.env.development? ? :file : :qiniu
 
   self.qiniu_can_overwrite = true
+  self.qiniu_protocal = 'https'
 
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"

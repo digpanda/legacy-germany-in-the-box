@@ -11,7 +11,7 @@ module BorderGuru
 
   class << self
 
-    def calculate_quote(cart:, shop:, country_of_destination:, currency:) 
+    def calculate_quote(cart:, shop:, country_of_destination:, currency:)
       make_request(:QuoteApi,
         cart: cart,
         shop: shop,
@@ -32,18 +32,16 @@ module BorderGuru
         country_of_destination: country_of_destination,
         currency: currency
       ) do |response|
+        # could be refactored way better but we got no time for that
+        # the error managing system is very bad in this library and should be taken care of
+        if response.response_data[:success] == false
+          raise BorderGuru::Error, response.response_data[:error][:detail][:error][:response][:error][:message]
+        end
         order.border_guru_shipment_id = response.shipment_identifier
         order.border_guru_link_tracking = response.link_tracking
         order.border_guru_link_payment = response.link_payment
+        order.save
       end
-    end
-
-    # You can call #bindata on the return value and make the
-    # returned bindata the body of a new outgoing HTTP response.
-    # This will make the server reply with a PDF download.
-    def get_label(border_guru_shipment_id:)
-      make_request :LabelApi,
-        border_guru_shipment_id: border_guru_shipment_id
     end
 
     def cancel_order(border_guru_shipment_id:)
@@ -80,4 +78,3 @@ module BorderGuru
   end
 
 end
-

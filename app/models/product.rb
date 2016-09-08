@@ -3,7 +3,7 @@ class Product
 
   MAX_SHORT_TEXT_LENGTH = (Rails.configuration.max_short_text_length * 1.25).round
   MAX_LONG_TEXT_LENGTH = (Rails.configuration.max_long_text_length * 1.25).round
-  
+
   strip_attributes
 
   field :name, type: String, localize: true
@@ -46,6 +46,7 @@ class Product
   scope :has_hs_code,     ->         { where(:hs_code.ne => nil)                         }
   scope :has_tag,         -> (value) { where(:tags       => value)                       }
   scope :can_show,        ->         { self.is_active.has_sku                             }
+  scope :by_brand,        ->         { self.order(:brand => :asc)                                }
   scope :can_buy,         ->         { self.is_active.has_hs_code.has_sku.can_buy_from_shop }
   scope :can_buy_from_shop, ->       { self.in(shop: Shop.only(:id).can_buy.map(&:id))   }
 

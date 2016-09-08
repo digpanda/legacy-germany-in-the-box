@@ -26,6 +26,21 @@ module BorderGuruFtp
       connection.leave! if connection
     end
 
+    # it refreshes each order status
+    # NOTE : it's kind of a replica of generate_and_store_local and could be better managed
+    # in the current system we don't check if the order was actually sent
+    def refresh_orders_status
+      orders_by_shop.each do |shop_orders|
+        if has_order_items?(shop_orders)
+          shop_orders.each do |shop_order|
+            shop_order.status = :custom_checking
+            shop_order.minimum_sending_date = 1.business_days.from_now
+            shop_order.save
+          end
+        end
+      end
+    end
+
     # clean up the local folder after manipulations
     def clean_local_storage
       FileUtils.rm_rf(BorderGuruFtp.local_directory)
@@ -46,7 +61,7 @@ module BorderGuruFtp
     def csv_files
       Senders::Prepare.new.fetch
     end
-    
+
     def generate_csv(orders)
       Makers::Generate.new(orders).to_csv
     end

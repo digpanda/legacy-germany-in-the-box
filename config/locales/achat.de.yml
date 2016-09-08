@@ -261,6 +261,12 @@ de:
     name: Name
     pid: Personalnummer
   edit_order:
+    cancelled: Abbrechen
+    custom_checkable: Bereit für Ausfuhr
+    custom_checking: Waren beim Zoll zur Ausfuhr anmelden
+    shipped: Waren werden abgeschickt
+    payment_unverified: Nicht geprüft
+    payment_failed: Zahlung fehlgeschlagen
     no_order: keine Aufträge vorhanden
     id: Auftragsnummer
     status: Status
@@ -326,6 +332,8 @@ de:
     delete_ok: Die Beantragung wurde erfolgreich entfernt.
     delete_application_message: Die Beantragungen löschen?
     remove: Entfernen
+  shop_application:
+    application_submitted: Ihre Anmeldung wurde eingereicht
   edit_shop_application:
     shop_application: Verkäufer werden
     shop_application_ok: Herzlichen Glückwunsch! Ihr erster Schritt nach China ist getan! Ihre Anfrage befindet sich jetzt in Bearbeitung. Wir werden uns bald mit Ihnen in Verbindung setzten.

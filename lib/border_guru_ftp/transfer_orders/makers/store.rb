@@ -1,7 +1,7 @@
 require 'fileutils'
 
 # store the orders into our local directories.
-# `orders` must be previously ordered by `shop` since the @shop data 
+# `orders` must be previously ordered by `shop` since the @shop data
 # is taken and memoized on initialization
 # use #to_local to store them
 module BorderGuruFtp
@@ -45,11 +45,15 @@ module BorderGuruFtp
         end
 
         def csv_file_with_path
-          "#{shop_directory}/#{formatted_date}_#{border_guru_merchant_id}.csv"
+          if Rails.env.production?
+            "#{shop_directory}/#{formatted_date}_#{border_guru_merchant_id}.csv"
+          else
+            "#{shop_directory}/#{formatted_date}_#{border_guru_merchant_id}_TEST.csv"
+          end
         end
 
         def formatted_date
-          @formatted_date ||= Time.now.strftime("%Y%m%d")
+          @formatted_date ||= Time.now.utc.strftime("%Y%m%d")
         end
       end
     end

@@ -23,8 +23,8 @@ class Api::Webhook::Wirecard::MerchantsController < Api::ApplicationController
 
   def update
 
-    devlog.info "Wirecard started to communicate with our system" 
-    devlog.info "Service received `#{datas[:merchant_id]}`, `#{datas[:merchant_status]}`, `#{datas[:reseller_id]}`" 
+    devlog.info "Wirecard started to communicate with our system"
+    devlog.info "Service received `#{datas[:merchant_id]}`, `#{datas[:merchant_status]}`, `#{datas[:reseller_id]}`"
 
     throw_api_error(:bad_credentials, {}, :unauthorized) and return unless authenticated_resource?(datas[:reseller_id])
 
@@ -41,7 +41,7 @@ class Api::Webhook::Wirecard::MerchantsController < Api::ApplicationController
     throw_api_error(:wrong_update_attributes, {error: shop.errors.full_messages.join(', ')}) and return unless shop.save
 
     devlog.info "End of process."
-    render status: :ok, 
+    render status: :ok,
            json: {success: true}.to_json and return
 
   end
@@ -54,12 +54,10 @@ class Api::Webhook::Wirecard::MerchantsController < Api::ApplicationController
   private
 
   def save_shop_wirecard_credentials!(shop, credentials)
-    shop.tap do |shop|
-      shop.wirecard_ee_user_cc = credentials[:ee_user_cc]
-      shop.wirecard_ee_password_cc = credentials[:ee_password_cc]
-      shop.wirecard_ee_secret_cc = credentials[:ee_secret_cc]
-      shop.wirecard_ee_maid_cc = credentials[:ee_maid_cc]
-    end
+    shop.wirecard_ee_user_cc = credentials[:ee_user_cc]
+    shop.wirecard_ee_password_cc = credentials[:ee_password_cc]
+    shop.wirecard_ee_secret_cc = credentials[:ee_secret_cc]
+    shop.wirecard_ee_maid_cc = credentials[:ee_maid_cc]
   end
 
 

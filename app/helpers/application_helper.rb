@@ -1,5 +1,4 @@
 module ApplicationHelper
-  include AppCache
   include Mobvious::Rails::Helper
 
   def get_provinces

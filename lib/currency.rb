@@ -8,7 +8,7 @@ class Currency
     @amount = amount
     @currency = currency
   end
-
+  
   def to_yuan
     update_currency!('CNY', amount * Settings.instance.exchange_rate_to_yuan)
   end

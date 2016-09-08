@@ -1,7 +1,7 @@
 class UserDecorator < Draper::Decorator
 
   PICTURE_URL = '/images/icons/default_user_pic.png'
-  
+
   include Imageable
 
   delegate_all
@@ -18,7 +18,7 @@ class UserDecorator < Draper::Decorator
   def today_paid_orders
     @today_paid_orders ||= orders.bought.and(:paid_at.gte => Date.today, :paid_at.lt => Date.tomorrow)
   end
-    
+
   def today_paid_orders_total_price
     @today_paid_orders_total_price ||= today_paid_orders.inject(0) { |sum, order| sum += order.decorate.total_price_in_yuan }
   end

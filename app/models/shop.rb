@@ -30,8 +30,8 @@ class Shop
   field :hermes_pickup,   type: Boolean,    default: false
   field :wirecard_status, type: Symbol,     default: :unactive
 
-  field :wirecard_ee_user_cc, type: String
-  field :wirecard_ee_password_cc, type: String
+  field :wirecard_ee_user_cc, type: String # this is the user digpanda engine, not the merchant (we don't need to save it.)
+  field :wirecard_ee_password_cc, type: String # this is the password digpanda engine, not the merchant (we don't need to save it.)
   field :wirecard_ee_secret_cc, type: String
   field :wirecard_ee_maid_cc, type: String
 

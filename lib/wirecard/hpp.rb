@@ -5,7 +5,7 @@ module Wirecard
   class Hpp < Base
 
     CONFIG = BASE_CONFIG[:hpp]
-    DEFAULT_PAYMENT_LANGUAGE = 'en'
+    DEFAULT_PAYMENT_LANGUAGE = 'zh_CN'
     DEFAULT_PAYMENT_CURRENCY = 'CNY'
     ACCEPTED_PAYMENT_METHODS = [nil, :upop, :creditcard]
 
@@ -79,6 +79,7 @@ module Wirecard
         :transaction_type          => transaction_type,
         :requested_amount          => amount,
         :requested_amount_currency => DEFAULT_PAYMENT_CURRENCY,
+        :attempt_three_d           => true,
         :ip_address                => customer_ip_address,
         :request_signature         => digital_signature,
       }
@@ -140,19 +141,19 @@ module Wirecard
     end
 
     def cancel_redirect_url
-      "#{default_redirect_url}?state=cancel&"
+      CONFIG[:cancel_redirect_url]
     end
 
     def processing_redirect_url
-      "#{default_redirect_url}?state=processing&"
+      CONFIG[:processing_redirect_url]
     end
 
     def success_redirect_url
-      CONFIG[:success_redirect_url] || "#{default_redirect_url}?state=success&"
+      CONFIG[:success_redirect_url]
     end
 
     def fail_redirect_url
-      CONFIG[:fail_redirect_url] || "#{default_redirect_url}?state=failed&"
+      CONFIG[:fail_redirect_url]
     end
 
     def digital_signature
@@ -165,7 +166,6 @@ module Wirecard
 
     def valid_credentials?(credentials)
       credentials[:merchant_id] && credentials[:secret_key]
-      # TODO: could check from model in prod (to be sure)
     end
 
   end

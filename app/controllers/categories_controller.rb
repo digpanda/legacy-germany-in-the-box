@@ -2,8 +2,6 @@ require 'will_paginate/array'
 
 class CategoriesController < ApplicationController
 
-  include AppCache
-
   before_action :set_category, except: [:index]
 
   before_action :authenticate_user!, except: [:show, :list_products, :show_products]
@@ -19,9 +17,6 @@ class CategoriesController < ApplicationController
   end
 
   def index
-    # SHOULD BE REMOVED (we don't need it anymore, and we will switch to mongo)
-    @root_categories = AppCache.get_root_level_categories_from_cache
-    render :index
   end
 
   def show_products
