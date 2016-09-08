@@ -25,7 +25,7 @@ class AddressDecorator < Draper::Decorator
 
   # NOTE : street number aren't used anymore, it's one block in the system.
   def full_address
-    "#{province}#{city}#{district}#{street}#{number}#{zip}, #{country}"
+    "#{province}#{city}#{district}#{street}#{number}#{additional}, #{zip}, #{country}"
   end
 
   def country_code
