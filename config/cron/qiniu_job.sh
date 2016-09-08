@@ -58,7 +58,7 @@ CMD_CLEAN_STAGING="./qshell batchdelete $BUCKET_NAME_STAGING $BUCKET_NAME_STAGIN
 CMD_PROD_TO_STAGING="./qshell batchcopy $BUCKET_NAME_PROD $BUCKET_NAME_STAGING $BUCKET_NAME_PROD$FIRST_COLUMN.txt"
 
 function print_quit_message() {
-    bye="        Oops, you chose Quit/Skip, bye bye!\n"
+    bye="        Oops, bye bye!\n"
     printf "$bye"
     printf "$1"
 }
@@ -137,7 +137,9 @@ function image_bucket_imagefile_list {
             *) echo "        invalid option, please choose 1-8";;
         
         esac
-        echo "    Next Step: $Stepcount"
+        #echo "    Next Step: $Stepcount"
+        echo "    Step done! normally you go to the next number :)"
+
     done
 }
 
@@ -191,7 +193,8 @@ function image_bucket_imagefile_export_import {
                 ;;
             *) echo "        invalid option, please choose 1-6";;
         esac
-        echo "    Next Step: $Stepcount"
+        #echo "    Next Step: $Stepcount"
+        echo "    Step done! normally you go to the next number :)"
     done
 }
 
@@ -211,11 +214,11 @@ do
 
     case $REPLY in
         "Q")
-            echo "        Oops, you chose Quit/Skip, bye bye!"
+            echo "        you chose quit"
             break
             ;;
         "q")
-            echo "        Oops, you chose Quit/Skip, bye bye!"
+            echo "        you chose quit"
             break
             ;;
     esac
