@@ -1,9 +1,6 @@
 <li class="<%= menu_active? shared_notifications_path %>">
   <%= link_to I18n.t(:notifications, scope: :top_menu), shared_notifications_path %>
 </li>
-<li class="<%= menu_active? shared_notifications_path %>">
-  <%= link_to I18n.t(:notifications, scope: :top_menu), shared_notifications_path %>
-</li>
 <li class="<%= menu_active? edit_account_user_path(current_user) %>">
   <%= link_to I18n.t(:my_account, scope: :top_menu), edit_account_user_path(current_user) %>
 </li>
