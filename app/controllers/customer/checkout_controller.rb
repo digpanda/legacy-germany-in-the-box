@@ -178,6 +178,7 @@ class Customer::CheckoutController < ApplicationController
       end
       current_user.email = params[:valid_email]
       current_user.save
+      return false
     end
   end
 
