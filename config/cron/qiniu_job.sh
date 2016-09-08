@@ -214,11 +214,11 @@ do
 
     case $REPLY in
         "Q")
-            echo "        Oops, bye bye!"
+            echo "        you chose quit"
             break
             ;;
         "q")
-            echo "        Oops, bye bye!"
+            echo "        you chose quit"
             break
             ;;
     esac
