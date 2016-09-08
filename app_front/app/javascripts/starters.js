@@ -12,6 +12,7 @@ var Starters = [
   'images_handler',
   'left_menu',
   'messages',
+  'navigation',
   'product_favorite',
   'product_form',
   'products_list',

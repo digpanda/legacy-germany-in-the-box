@@ -1153,6 +1153,38 @@ var Models = [
 module.exports = Models;
 });
 
+require.register("javascripts/models/navigation_model.js", function(exports, require, module) {
+"use strict";
+
+/**
+ * NavigationModel Class
+ */
+var NavigationModel = {
+
+  /**
+   * Check if user is auth or not via API call
+   */
+  setLocation: function setLocation(location, callback) {
+
+    $.ajax({
+      method: "PATCH",
+      url: "/api/guest/navigation/",
+      data: { "location": location }
+
+    }).done(function (res) {
+
+      callback(res);
+    }).error(function (err) {
+
+      callback({ success: false, error: err.responseJSON.error });
+    });
+  }
+
+};
+
+module.exports = NavigationModel;
+});
+
 require.register("javascripts/models/order_item.js", function(exports, require, module) {
 "use strict";
 
@@ -1338,7 +1370,7 @@ require.register("javascripts/starters.js", function(exports, require, module) {
 /**
  * Starters Class
  */
-var Starters = ['bootstrap', 'china_city', 'datepicker', 'editable_fields', 'footer', 'images_control', 'images_handler', 'left_menu', 'messages', 'product_favorite', 'product_form', 'products_list', 'refresh_time', 'responsive', 'search', 'sku_form', 'tooltipster'];
+var Starters = ['bootstrap', 'china_city', 'datepicker', 'editable_fields', 'footer', 'images_control', 'images_handler', 'left_menu', 'messages', 'navigation', 'product_favorite', 'product_form', 'products_list', 'refresh_time', 'responsive', 'search', 'sku_form', 'tooltipster'];
 
 module.exports = Starters;
 });
@@ -1761,6 +1793,38 @@ var Messages = {
 };
 
 module.exports = Messages;
+});
+
+require.register("javascripts/starters/navigation.js", function(exports, require, module) {
+"use strict";
+
+/**
+ * Navigation Class
+ */
+var Navigation = {
+
+  /**
+   * Initializer
+   */
+  init: function init() {
+
+    this.storeNavigation();
+  },
+
+  /**
+   * We send the navigation to the back-end
+   */
+  storeNavigation: function storeNavigation() {
+
+    var NavigationModel = require("javascripts/models/navigation_model");
+    NavigationModel.setLocation(window.location.href, function (res) {
+      console.log(res);
+    });
+  }
+
+};
+
+module.exports = Navigation;
 });
 
 require.register("javascripts/starters/product_favorite.js", function(exports, require, module) {

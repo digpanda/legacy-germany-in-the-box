@@ -6,20 +6,20 @@ class NavigationHistory
   DEFAULT_REDIRECT_URL = Rails.application.routes.url_helpers.root_url
 
   attr_reader :request, :session
-  
+
   def initialize(request, session)
     @request = request
     @session = session
   end
 
-  def store(conditions={})
+  def store(location, conditions={})
 
-    return false unless acceptable_request?
+    return false unless acceptable_request?(location)
     return false if excluded_path?(conditions)
 
     # could be a new class but it's useless right now
     prepare_storage
-    add_storage
+    add_storage(location)
     limit_storage!
 
     session[:previous_urls]
@@ -46,20 +46,22 @@ class NavigationHistory
     excluded_paths.include? request.path
   end
 
-  def acceptable_request?
-    request.get? && !request.xhr? # GET and not AJAX
+  def acceptable_request?(location)
+    location || (request.get? && !request.xhr?) # GET and not AJAX
   end
 
-  def already_last_stored?
-    session[:previous_urls].first == request.fullpath
+  def already_last_stored?(location)
+    session[:previous_urls].first == (location || request.fullpath)
   end
 
   def prepare_storage
     session[:previous_urls] ||= [] # we need it because we use session
   end
 
-  def add_storage
-    session[:previous_urls].unshift request.fullpath unless already_last_stored?
+  def add_storage(location)
+    unless already_last_stored?(location)
+      session[:previous_urls].unshift (location || request.fullpath)
+    end
   end
 
   def limit_storage!

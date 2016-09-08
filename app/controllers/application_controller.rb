@@ -55,7 +55,7 @@ class ApplicationController < ActionController::Base
 
   def store_location
     # should be refactored to dynamic paths (obviously)
-    navigation.store :except => %w(/users/sign_in /users/sign_up /users/password/new /users/password/edit /users/confirmation /users/sign_out)
+    #navigation.store :except => %w(/users/sign_in /users/sign_up /users/password/new /users/password/edit /users/confirmation /users/sign_out)
   end
 
   def current_page

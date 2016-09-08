@@ -16,6 +16,9 @@ namespace :api, defaults: { format: 'json' }  do
     resources :translations  do
     end
 
+    resource :navigation, :controller => 'navigation' do
+    end
+
     resources :order_items  do
       match :set_quantity, via: [:patch], action: :set_quantity, as: :set_quantity, :on => :member
     end
