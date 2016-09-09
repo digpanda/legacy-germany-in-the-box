@@ -2187,7 +2187,7 @@ module.exports = SkuForm;
 });
 
 require.register("javascripts/starters/sweet_alert.js", function(exports, require, module) {
-'use strict';
+"use strict";
 
 /**
  * SweetAlert Class
@@ -2207,29 +2207,41 @@ var SweetAlert = {
    */
   startAlert: function startAlert() {
 
-    $('.js-alert').click(function (e) {
+    $.rails.allowAction = function (link) {
+      if (link.data("confirm") == undefined) {
+        console.log("fuck it");
+        return true;
+      }
+      $.rails.showConfirmationDialog(link);
+      return false;
+    };
 
-      e.preventDefault();
-      self = this;
-
-      swal({
-        title: $(self).data('title') || "Are you sure ?",
-        text: $(self).data('text') || "This action cannot be undone.",
-        type: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#DD6B55",
-        confirmButtonText: "Yes, delete it!",
-        closeOnConfirm: false
-      }, function () {
-        swal({
-          title: "Processing!",
-          text: "Your request is being processed ...",
-          type: "success",
-          showConfirmButton: false
-        });
-        window.location.href = $(self).attr('href');
-      });
-    });
+    /* NOT COMPATIBLE WITH RAILS SYSTEM ...
+          $('.js-alert').click(function(e) {
+    
+            e.preventDefault();
+            self = this;
+    
+            swal({
+              title: $(self).data('title') || "Are you sure ?",
+              text: $(self).data('text') || "This action cannot be undone.",
+              type: "warning",
+              showCancelButton: true,
+              confirmButtonColor: "#DD6B55",
+              confirmButtonText: "Yes, delete it!",
+              closeOnConfirm: false
+            }, function(){
+              swal({
+                title: "Processing!",
+                text: "Your request is being processed ...",
+                type: "success",
+                showConfirmButton: false
+              });
+              window.location.href = $(self).attr('href');
+            });
+    
+          })
+    */
   }
 
 };
