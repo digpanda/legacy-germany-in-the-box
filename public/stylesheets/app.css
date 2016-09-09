@@ -7964,12 +7964,12 @@ img.mfp-img {
 
 /* line 2, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_payment-methods.sass */
 .payment-methods img {
-  max-width: 80%;
+  max-width: 65%;
   opacity: 0.9; }
-
-/* line 76, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
-.payment-methods__block {
-  text-align: center; }
+  @media (max-width: 991px) {
+    /* line 2, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_payment-methods.sass */
+    .payment-methods img {
+      max-width: 30%; } }
 
 /* line 40, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
 .shop-blocks__main.\--avatar {
@@ -8826,7 +8826,6 @@ img.mfp-img {
 
 /* line 32, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
 .server-menu {
-  padding: 0.5em;
   line-height: 2;
   color: #fdfdfd;
   background-color: #83be58; }
