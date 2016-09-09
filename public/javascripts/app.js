@@ -2206,15 +2206,16 @@ var SweetAlert = {
    *
    */
   startAlert: function startAlert() {
-
-    $.rails.allowAction = function (link) {
-      if (link.data("confirm") == undefined) {
+    /*
+          $.rails.allowAction = function(link){
+      if (link.data("confirm") == undefined){
         console.log("fuck it");
         return true;
       }
       $.rails.showConfirmationDialog(link);
       return false;
-    };
+    */
+    //}
 
     /* NOT COMPATIBLE WITH RAILS SYSTEM ...
           $('.js-alert').click(function(e) {

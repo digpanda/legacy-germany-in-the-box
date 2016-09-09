@@ -25,7 +25,7 @@ var SweetAlert = {
   $.rails.showConfirmationDialog(link);
   return false;
 */
-}
+//}
 
 /* NOT COMPATIBLE WITH RAILS SYSTEM ...
       $('.js-alert').click(function(e) {
