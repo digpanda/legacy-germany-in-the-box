@@ -30,4 +30,5 @@ end
 
 if @sku.data?
   json.data @sku.data
+  json.data_format @sku.decorate.format_data
 end

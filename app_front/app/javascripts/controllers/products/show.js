@@ -118,8 +118,8 @@ var ProductsShow = {
 
     }
 
-    ProductsShow.refreshSkuSecondDescription(skuDatas['data']);
-    ProductsShow.refreshSkuAttachment(skuDatas['data'], skuDatas['file_attachment']);
+    ProductsShow.refreshSkuSecondDescription(skuDatas['format_data']);
+    ProductsShow.refreshSkuAttachment(skuDatas['format_data'], skuDatas['file_attachment']);
     ProductsShow.refreshSkuThumbnailImages(skuDatas['images']);
 
     ProductsShow.handleProductGalery();
