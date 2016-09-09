@@ -665,8 +665,8 @@ var ProductsShow = {
       $('#product_discount').html(skuDatas['discount_with_percent'] + '<br/>');
     }
 
-    ProductsShow.refreshSkuSecondDescription(skuDatas['format_data']);
-    ProductsShow.refreshSkuAttachment(skuDatas['format_data'], skuDatas['file_attachment']);
+    ProductsShow.refreshSkuSecondDescription(skuDatas['data_format']);
+    ProductsShow.refreshSkuAttachment(skuDatas['data_format'], skuDatas['file_attachment']);
     ProductsShow.refreshSkuThumbnailImages(skuDatas['images']);
 
     ProductsShow.handleProductGalery();
