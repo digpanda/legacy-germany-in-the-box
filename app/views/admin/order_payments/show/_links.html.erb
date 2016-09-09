@@ -5,6 +5,6 @@
   </div>
   <div class="row">
     <a href="<%= shop_path(@order_payment.shop) %>" class="btn btn-primary"><%= @order_payment.shop.name %></a>
-    <a href="<%= admin_order_path(@order_payment.order_id) %>" class="btn btn-primary"><%= @order_payment.order_id %></a>
+    <a href="<%= admin_order_path(@order_payment.order_id) %>" class="btn btn-primary">Order <%= @order_payment.order_id %></a>
   </div>
 </div>

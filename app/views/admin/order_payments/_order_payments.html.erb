@@ -20,9 +20,6 @@
     <%= order_payment.status %>
   </td>
   <td>
-    <%= order_payment.order.user.decorate.full_name if order_payment.order&.user %>
-  </td>
-  <td>
     <%= order_payment.decorate.amount_cny_with_currency %>
   </td>
   <td>
@@ -35,9 +32,9 @@
     <%= order_payment.transaction_type %>
   </td>
   <td>
-    <%= order_payment.c_at.strftime('%Y-%m-%d %H:%M:%S').in_time_zone %>
+    <%= order_payment.c_at.strftime('%Y-%m-%d %H:%M:%S') %>
   </td>
   <td>
-    <%= link_to "Details", admin_order_payment_path(order_payment) %>
+    <a href="<%= admin_order_payment_path(order_payment) %>"><i class="fa fa-cog fa-2x tooltipster" title="Details and configuration"></i></a>
   </td>
 </tr>
