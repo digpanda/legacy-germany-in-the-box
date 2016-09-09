@@ -1,0 +1,30 @@
+<div class="col-md-12">
+  <div class="row">
+    <h3>Address details</h3>
+    <hr>
+  </div>
+  <div class="row">
+
+    <div class="col-md-6">
+      <h4>Shipping Address</h4>
+      <% if @order.shipping_address.nil? %>
+      No shipping data
+      <% else %>
+      Name : <%= @order.shipping_address.decorate.chinese_full_name %><br />
+      Address : <%= @order.shipping_address.decorate.full_address %>
+      <% end %>
+    </div>
+
+    <div class="col-md-6">
+      <h4>Billing Address</h4>
+      <% if @order.billing_address.nil? %>
+      No billing data
+      <% else %>
+      Name : <%= @order.billing_address.decorate.chinese_full_name %><br />
+      Address : <%= @order.billing_address.decorate.full_address %>
+      <% end %>
+    </div>
+
+  </div>
+
+</div>

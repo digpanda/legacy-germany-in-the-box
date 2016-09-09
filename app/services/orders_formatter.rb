@@ -7,6 +7,8 @@ class OrdersFormatter < BaseService
   MAX_DESCRIPTION_CHARACTERS = 200
   HEADERS = [
     'Order ID',
+    'Customer',
+    'Billing Address',
     'Status',
     'Description',
     'Clean Description',
@@ -25,6 +27,8 @@ class OrdersFormatter < BaseService
     'BorderGuru Shipment ID',
     'BorderGuru Link Tracking',
     'BorderGuru Link Payment',
+    'Payments IDs',
+    'Wirecard Transactions IDs',
     'Minimum Sending Date',
     'Hermes Pickup Email Sent At',
     'Bill ID',
@@ -57,6 +61,8 @@ class OrdersFormatter < BaseService
   def csv_line(order)
     [
       order.id,
+      order.decorate.chinese_full_name,
+      order.billing_address.decorate.full_address,
       order.status,
       order.desc,
       order.decorate.clean_desc,
@@ -75,6 +81,8 @@ class OrdersFormatter < BaseService
       order.border_guru_shipment_id,
       order.border_guru_link_tracking,
       order.border_guru_link_payment,
+      payments_ids(order),
+      wirecard_transactions_ids(order),
       order.minimum_sending_date,
       order.hermes_pickup_email_sent_at,
       order.bill_id,
@@ -82,6 +90,13 @@ class OrdersFormatter < BaseService
       order.c_at,
       order.u_at,
     ]
+  end
+  def payments_ids(order)
+    order.order_payments.reduce([]) { |acc, order_payment| acc << order_payment.id }.join(', ')
+  end
+
+  def wirecard_transactions_ids(order)
+    order.order_payments.reduce([]) { |acc, order_payment| acc << order_payment.transaction_id }.join(', ')
   end
 
 end
