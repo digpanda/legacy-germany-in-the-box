@@ -1,5 +1,7 @@
 class Admin::OrdersController < ApplicationController
 
+  CSV_ENCODE = "UTF-8"
+  
   load_and_authorize_resource
   before_action :set_order, :except => [:index]
 
@@ -13,10 +15,9 @@ class Admin::OrdersController < ApplicationController
         @orders = Order.nonempty.order_by(:c_at => :desc).paginate(:page => current_page, :per_page => 10)
       end
       format.csv do
-        # TODO : make this work correctly
-        #render text: OrdersToCsv.new(orders).to_csv.encode(CSV_ENCODE),
-        #       type: "text/csv; charset=#{CSV_ENCODE}; header=present",
-        #       disposition: 'attachment'
+        render text: OrdersFormatter.new(orders).to_csv.encode(CSV_ENCODE),
+               type: "text/csv; charset=#{CSV_ENCODE}; header=present",
+               disposition: 'attachment'
       end
     end
   end
