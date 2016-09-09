@@ -32,7 +32,7 @@
     <%= order_payment.transaction_type %>
   </td>
   <td>
-    <%= order_payment.c_at.strftime('%Y-%m-%d %H:%M:%S') %>
+    <%= order_payment.c_at %>
   </td>
   <td>
     <a href="<%= admin_order_payment_path(order_payment) %>"><i class="fa fa-cog fa-2x tooltipster" title="Details and configuration"></i></a>
