@@ -5,5 +5,5 @@
     <% if @order_payment.refundable? %>
       <%= link_to 'Refund this transaction', admin_order_payment_refund_path(@order_payment), :method => :post, data: { confirm: "Are you sure you want to refund this transaction ?" }, class: "btn btn-info" %>
     <% end %>
-      <%= link_to 'Remove this transaction', admin_order_payment_path(@order_payment), :method => :delete, data: { confirm: "Are you sure you want to remove a transaction ? This cannot be undone." }, class: "btn btn-danger" %>
+      <%= link_to 'Remove this transaction', admin_order_payment_path(@order_payment), :method => :delete, data: { title: "Are you sure ?", text: "Are you sure you want to remove a transaction ? This cannot be undone." }, class: "btn btn-danger js-alert" %>
   </td>

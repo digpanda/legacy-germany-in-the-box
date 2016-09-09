@@ -20,6 +20,7 @@ var Starters = [
   'responsive',
   'search',
   'sku_form',
+  'sweet_alert',
   'tooltipster',
 ]
 

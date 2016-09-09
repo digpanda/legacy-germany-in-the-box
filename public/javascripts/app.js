@@ -1357,7 +1357,7 @@ require.register("javascripts/starters.js", function(exports, require, module) {
 /**
  * Starters Class
  */
-var Starters = ['bootstrap', 'china_city', 'datepicker', 'editable_fields', 'footer', 'images_control', 'images_handler', 'left_menu', 'messages', 'navigation', 'product_favorite', 'product_form', 'products_list', 'refresh_time', 'responsive', 'search', 'sku_form', 'tooltipster'];
+var Starters = ['bootstrap', 'china_city', 'datepicker', 'editable_fields', 'footer', 'images_control', 'images_handler', 'left_menu', 'messages', 'navigation', 'product_favorite', 'product_form', 'products_list', 'refresh_time', 'responsive', 'search', 'sku_form', 'sweet_alert', 'tooltipster'];
 
 module.exports = Starters;
 });
@@ -2184,6 +2184,57 @@ var SkuForm = { // CURRENTLY NOT IN USED IN THE SYSTEM
 };
 
 module.exports = SkuForm;
+});
+
+require.register("javascripts/starters/sweet_alert.js", function(exports, require, module) {
+'use strict';
+
+/**
+ * SweetAlert Class
+ */
+var SweetAlert = {
+
+  /**
+   * Initializer
+   */
+  init: function init() {
+
+    this.startAlert();
+  },
+
+  /**
+   *
+   */
+  startAlert: function startAlert() {
+
+    $('.js-alert').click(function (e) {
+
+      e.preventDefault();
+      self = this;
+
+      swal({
+        title: $(self).data('title') || "Are you sure ?",
+        text: $(self).data('text') || "This action cannot be undone.",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "Yes, delete it!",
+        closeOnConfirm: false
+      }, function () {
+        swal({
+          title: "Processing!",
+          text: "Your request is being processed ...",
+          type: "success",
+          showConfirmButton: false
+        });
+        window.location.href = $(self).attr('href');
+      });
+    });
+  }
+
+};
+
+module.exports = SweetAlert;
 });
 
 require.register("javascripts/starters/tooltipster.js", function(exports, require, module) {
