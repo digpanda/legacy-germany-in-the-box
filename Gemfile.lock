@@ -492,6 +492,7 @@ DEPENDENCIES
   copy_carrierwave_file
   countries
   country_select
+  daemons
   database_cleaner
   delayed_job_mongoid
   delocalize

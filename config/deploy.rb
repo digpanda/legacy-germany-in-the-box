@@ -43,7 +43,13 @@ set :whenever_identifier, ->{ "#{fetch(:application)}_#{fetch(:stage)}" }
 # Default value for keep_releases is 5
 # set :keep_releases, 5
 
+after 'deploy:publishing', 'deploy:restart'
+
 namespace :deploy do
+
+  task :restart do
+    invoke 'delayed_job:restart'
+  end
 
   after :restart, :clear_cache do
     on roles(:web), in: :groups, limit: 3, wait: 10 do
