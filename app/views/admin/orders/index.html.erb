@@ -1,3 +1,14 @@
+<div class="+white-box +overflow">
+<div class="row">
+  <div class="col-md-10">
+    <h2>Orders</h2>
+    <hr>
+  </div>
+  <div class="col-md-2 details__action">
+    <a href="<%= admin_orders_path(format: "csv") %>"><i class="fa fa-download tooltipster" title="Download CSV format"></i></a>
+  </div>
+</div>
+
 <% if @orders.size > 0 %>
   <table class="table cart-table">
     <thead>
@@ -86,3 +97,4 @@
   </h4>
 </div>
 <% end %>
+</div>

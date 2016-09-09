@@ -1,9 +1,39 @@
+require 'csv'
+
 # generate format for orders model (CSV for admin, ...)
 class OrdersFormatter < BaseService
 
   CSV_LINE_CURRENCY = 'EUR'
   MAX_DESCRIPTION_CHARACTERS = 200
-  HEADERS = ['Barcode ID', 'Merchant ID', 'Country ID', 'Item ID', 'HS Code', 'Description', 'Weight (g)', 'Price', 'Currency']
+  HEADERS = [
+    'Order ID',
+    'Status',
+    'Description',
+    'Clean Description',
+    'Clean Description with Order Items',
+    'Total Quantity',
+    'Total Volume',
+    'Total products price (EUR)',
+    'Total products price (CNY)',
+    'Shipping Cost (EUR)',
+    'Shipping Cost (CNY)',
+    'Tax and Duty Cost (EUR)',
+    'Tax and Duty Cost (CNY)',
+    'Total price (EUR)',
+    'Total price (CNY)',
+    'BorderGuru Quote ID',
+    'BorderGuru Shipment ID',
+    'BorderGuru Link Tracking',
+    'BorderGuru Link Payment',
+    'Minimum Sending Date',
+    'Hermes Pickup Email Sent At',
+    'Bill ID',
+    'Paid At',
+    'Ceeated At',
+    'Updated At',
+  ]
+
+  attr_reader :orders
 
   def initialize(orders)
     @orders = orders
@@ -15,27 +45,42 @@ class OrdersFormatter < BaseService
     CSV.generate do |csv|
       csv << HEADERS
       orders.each do |order|
-        order.order_items.each do |order_item|
-          csv << csv_line(order_item)
-        end
+        csv << csv_line(order)
       end
     end
   end
 
   private
 
-  # TODO: CHANGE ORDER ITEM TO ORDERS IF NEEDED
-  def csv_line(order_item)
+  # TODO: we shouldn't show the currency symbol sometimes,
+  # we should refactor the whole model for it
+  def csv_line(order)
     [
-      order_item.order.border_guru_shipment_id,
-      border_guru_merchant_id,
-      order_item.sku.country_of_origin,
-      order_item.sku.id, # Item ID
-      order_item.product.hs_code, # HS Code
-      "#{order_item.product.name}: #{order_item.product.decorate.clean_desc(MAX_DESCRIPTION_CHARACTERS)}", # Description
-      (order_item.weight * 1000), # Weight : current_order_item.weight
-      order_item.price, # Price
-      CSV_LINE_CURRENCY # Currency
+      order.id,
+      order.status,
+      order.desc,
+      order.decorate.clean_desc,
+      order.decorate.clean_order_items_description,
+      order.decorate.total_quantity,
+      order.decorate.total_volume,
+      order.decorate.total_price_with_currency_euro,
+      order.decorate.total_price_with_currency_yuan,
+      order.decorate.shipping_cost_with_currency_euro,
+      order.decorate.shipping_cost_with_currency_yuan,
+      order.decorate.tax_and_duty_cost_with_currency_euro,
+      order.decorate.tax_and_duty_cost_with_currency_yuan,
+      order.decorate.total_sum_in_euro,
+      order.decorate.total_sum_in_yuan,
+      order.border_guru_quote_id,
+      order.border_guru_shipment_id,
+      order.border_guru_link_tracking,
+      order.border_guru_link_payment,
+      order.minimum_sending_date,
+      order.hermes_pickup_email_sent_at,
+      order.bill_id,
+      order.paid_at,
+      order.c_at,
+      order.u_at,
     ]
   end
 
