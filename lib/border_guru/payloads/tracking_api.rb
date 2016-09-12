@@ -5,6 +5,7 @@ module BorderGuru
     class TrackingApi
 
       def initialize(order:, dispatcher:)
+        I18n.locale = :'zh-CN'
         @order = order
         @dispatcher = dispatcher
       end

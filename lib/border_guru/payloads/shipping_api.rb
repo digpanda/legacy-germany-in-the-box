@@ -6,6 +6,7 @@ module BorderGuru
       include HavingVendibles
 
       def initialize(order:, shop:, country_of_destination:, currency:)
+        I18n.locale = :'zh-CN'
         @order = order
         @shop = shop
         @country_of_destination = country_of_destination

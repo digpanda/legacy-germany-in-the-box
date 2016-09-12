@@ -3,6 +3,7 @@ module BorderGuru
     class CancelOrderApi
 
       def initialize(border_guru_shipment_id:)
+        I18n.locale = :'zh-CN'
         @border_guru_shipment_id = border_guru_shipment_id
       end
 
