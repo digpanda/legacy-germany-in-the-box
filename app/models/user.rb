@@ -114,7 +114,7 @@ class User
         user.password = auth.info.unionid[0,8]
         user.password_confirmation = auth.info.unionid[0,8]
         user.wechat_unionid = auth.info.unionid
-      end
+      end.save
     end
   end
 
