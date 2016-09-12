@@ -1708,40 +1708,24 @@ require.register("javascripts/starters/lazy_loader.js", function(exports, requir
  */
 var LazyLoader = {
 
-    /**
-     * Initializer
-     */
-    init: function init() {
+  /**
+   * Initializer
+   */
+  init: function init() {
 
-        this.startLazyLoader();
-    },
+    this.startLazyLoader();
+  },
 
-    /**
-     *
-     */
-    startLazyLoader: function startLazyLoader() {
+  /**
+   *
+   */
+  startLazyLoader: function startLazyLoader() {
 
-        console.log('lazy');
-
-        $(".lazy").lazy({
-            // callback
-            beforeLoad: function beforeLoad(element) {
-                console.log("start loading " + element.prop("tagName"));
-            },
-
-            // custom loaders
-            customLoaderName: function customLoaderName(element) {
-                element.html("element handled by custom loader");
-                element.load();
-            },
-            asyncLoader: function asyncLoader(element, response) {
-                setTimeout(function () {
-                    element.html("element handled by async loader");
-                    response(true);
-                }, 1000);
-            }
-        });
-    }
+    console.log('lazy');
+    $("div.lazy").lazyload({
+      effect: "fadeIn"
+    });
+  }
 
 };
 

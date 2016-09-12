@@ -17158,10 +17158,6 @@ d.parent(".dropdown-menu").length&&(d=d.closest("li.dropdown").addClass("active"
 
 })(window.Zepto || window.jQuery);
 
-/*! jQuery & Zepto Lazy v1.7.3 - http://jquery.eisbehr.de/lazy - MIT&GPL-2.0 license - Copyright 2012-2016 Daniel 'Eisbehr' Kern */
-!function(t,e){"use strict";function r(r,a,i,l,u){function c(){L=t.devicePixelRatio>1,f(i),a.delay>=0&&setTimeout(function(){s(!0)},a.delay),(a.delay<0||a.combined)&&(l.e=v(a.throttle,function(t){"resize"===t.type&&(w=B=-1),s(t.all)}),l.a=function(t){f(t),i.push.apply(i,t)},l.g=function(){return i=n(i).filter(function(){return!n(this).data(a.loadedName)})},s(),n(a.appendScroll).on("scroll."+u+" resize."+u,l.e))}function f(t){var i=a.defaultImage,o=a.placeholder,l=a.imageBase,u=a.srcsetAttribute,c=a.loaderAttribute,f=a._f||{};t=n(t).filter(function(){var t=n(this),r=b(this);return!t.data(a.handledName)&&(t.attr(a.attribute)||t.attr(u)||t.attr(c)||f[r]!==e)}).data("plugin_"+a.name,r);for(var s=0,d=t.length;s<d;s++){var A=n(t[s]),m=b(t[s]),h=A.attr(a.imageBaseAttribute)||l;m==N&&h&&A.attr(u)&&A.attr(u,g(A.attr(u),h)),f[m]===e||A.attr(c)||A.attr(c,f[m]),m==N&&i&&!A.attr(E)?A.attr(E,i):m==N||!o||A.css(O)&&"none"!=A.css(O)||A.css(O,"url('"+o+"')")}}function s(t){if(!i.length)return void(a.autoDestroy&&r.destroy());for(var e=!1,o=a.imageBase||"",l=a.srcsetAttribute,u=a.handledName,c=0;c<i.length;c++)if(t||A(i[c])){var f=n(i[c]),s=b(i[c]),m=f.attr(a.attribute),h=f.attr(a.imageBaseAttribute)||o,g=f.attr(a.loaderAttribute);f.data(u)||a.visibleOnly&&!f.is(":visible")||!((m||f.attr(l))&&(s==N&&(h+m!=f.attr(E)||f.attr(l)!=f.attr(F))||s!=N&&h+m!=f.css(O))||g)||(e=!0,f.data(u,!0),d(f,s,h,g))}e&&(i=n(i).filter(function(){return!n(this).data(u)}))}function d(t,e,r,i){++z;var o=function(){y("onError",t),p(),o=n.noop};y("beforeLoad",t);var l=a.attribute,u=a.srcsetAttribute,c=a.sizesAttribute,f=a.retinaAttribute,s=a.removeAttribute,d=a.loadedName,A=t.attr(f);if(i){var m=function(){s&&t.removeAttr(a.loaderAttribute),t.data(d,!0),y(T,t),setTimeout(p,1),m=n.noop};t.off(I).one(I,o).one(D,m),y(i,t,function(e){e?(t.off(D),m()):(t.off(I),o())})||t.trigger(I)}else{var h=n(new Image);h.one(I,o).one(D,function(){t.hide(),e==N?t.attr(C,h.attr(C)).attr(F,h.attr(F)).attr(E,h.attr(E)):t.css(O,"url('"+h.attr(E)+"')"),t[a.effect](a.effectTime),s&&(t.removeAttr(l+" "+u+" "+f+" "+a.imageBaseAttribute),c!==C&&t.removeAttr(c)),t.data(d,!0),y(T,t),h.remove(),p()});var b=(L&&A?A:t.attr(l))||"";h.attr(C,t.attr(c)).attr(F,t.attr(u)).attr(E,b?r+b:null),h.complete&&h.load()}}function A(t){var e=t.getBoundingClientRect(),r=a.scrollDirection,n=a.threshold,i=h()+n>e.top&&-n<e.bottom,o=m()+n>e.left&&-n<e.right;return"vertical"==r?i:"horizontal"==r?o:i&&o}function m(){return w>=0?w:w=n(t).width()}function h(){return B>=0?B:B=n(t).height()}function b(t){return t.tagName.toLowerCase()}function g(t,e){if(e){var r=t.split(",");t="";for(var a=0,n=r.length;a<n;a++)t+=e+r[a].trim()+(a!==n-1?",":"")}return t}function v(t,e){var n,i=0;return function(o,l){function u(){i=+new Date,e.call(r,o)}var c=+new Date-i;n&&clearTimeout(n),c>t||!a.enableThrottle||l?u():n=setTimeout(u,t-c)}}function p(){--z,i.length||z||y("onFinishedAll")}function y(t,e,n){return!!(t=a[t])&&(t.apply(r,[].slice.call(arguments,1)),!0)}var z=0,w=-1,B=-1,L=!1,T="afterLoad",D="load",I="error",N="img",E="src",F="srcset",C="sizes",O="background-image";"event"==a.bind||o?c():n(t).on(D+"."+u,c)}function a(a,o){var l=this,u=n.extend({},l.config,o),c={},f=u.name+"-"+ ++i;return l.config=function(t,r){return r===e?u[t]:(u[t]=r,l)},l.addItems=function(t){return c.a&&c.a("string"===n.type(t)?n(t):t),l},l.getItems=function(){return c.g?c.g():{}},l.update=function(t){return c.e&&c.e({},!t),l},l.loadAll=function(){return c.e&&c.e({all:!0},!0),l},l.destroy=function(){return n(u.appendScroll).off("."+f,c.e),n(t).off("."+f),c={},e},r(l,u,a,c,f),u.chainable?a:l}var n=t.jQuery||t.Zepto,i=0,o=!1;n.fn.Lazy=n.fn.lazy=function(t){return new a(this,t)},n.Lazy=n.lazy=function(t,r,i){if(n.isFunction(r)&&(i=r,r=[]),n.isFunction(i)){t=n.isArray(t)?t:[t],r=n.isArray(r)?r:[r];for(var o=a.prototype.config,l=o._f||(o._f={}),u=0,c=t.length;u<c;u++)(o[t[u]]===e||n.isFunction(o[t[u]]))&&(o[t[u]]=i);for(var f=0,s=r.length;f<s;f++)l[r[f]]=t[0]}},a.prototype.config={name:"lazy",chainable:!0,autoDestroy:!0,bind:"load",threshold:500,visibleOnly:!1,appendScroll:t,scrollDirection:"both",imageBase:null,defaultImage:"data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==",placeholder:null,delay:-1,combined:!1,attribute:"data-src",srcsetAttribute:"data-srcset",sizesAttribute:"data-sizes",retinaAttribute:"data-retina",loaderAttribute:"data-loader",imageBaseAttribute:"data-imagebase",removeAttribute:!0,handledName:"handled",loadedName:"loaded",effect:"show",effectTime:0,enableThrottle:!0,throttle:250,beforeLoad:e,afterLoad:e,onError:e,onFinishedAll:e},n(t).on("load",function(){o=!0})}(window);
-/*! jQuery & Zepto Lazy - All Plugins v1.7.3 - http://jquery.eisbehr.de/lazy - MIT&GPL-2.0 license - Copyright 2012-2016 Daniel 'Eisbehr' Kern */
-!function(t){function e(e,r,a,o){t.ajax({url:r.attr("data-src"),type:o||"get",dataType:r.attr("data-type")||"html",success:function(t){r.html(t),a(!0),e.config("removeAttribute")&&r.removeAttr("data-src data-method data-type")},error:function(){a(!1)}})}t.lazy("ajax",function(t,r){e(this,t,r,t.attr("data-method"))}),t.lazy("get",function(t,r){e(this,t,r,"get")}),t.lazy("post",function(t,r){e(this,t,r,"post")})}(window.jQuery||window.Zepto),function(t){t.lazy(["av","audio","video"],["audio","video"],function(e,r){var a=e[0].tagName.toLowerCase();if("audio"==a||"video"==a){var o="data-src",i=e.find(o),n=e.find("data-track"),c=0,s=function(){++c==i.length&&r(!1)},u=function(){var e=t(this),r=e[0].tagName.toLowerCase(),a=e.prop("attributes"),i=t(r==o?"<source>":"<track>");r==o&&i.one("error",s),t.each(a,function(t,e){i.attr(e.name,e.value)}),e.replaceWith(i)};e.one("loadedmetadata",function(){r(!0)}).off("load error").attr("poster",e.attr("data-poster")),i.length?i.each(u):e.attr(o)?(t.each(e.attr(o).split(","),function(r,a){var o=a.split("|");e.append(t("<source>").one("error",s).attr({src:o[0].trim(),type:o[1].trim()}))}),this.config("removeAttribute")&&e.removeAttr(o)):r(!1),n.length&&n.each(u)}else r(!1)})}(window.jQuery||window.Zepto),function(t){t.lazy(["frame","iframe"],"iframe",function(e,r){var a=this;if("iframe"==e[0].tagName.toLowerCase()){var o="data-src",i="data-error-detect",n=e.attr(i);"true"!=n&&"1"!=n?(e.attr("src",e.attr(o)),a.config("removeAttribute")&&e.removeAttr(o+" "+i)):t.ajax({url:e.attr(o),dataType:"html",crossDomain:!0,xhrFields:{withCredentials:!0},success:function(t){e.html(t).attr("src",e.attr(o)),a.config("removeAttribute")&&e.removeAttr(o+" "+i)},error:function(){r(!1)}})}else r(!1)})}(window.jQuery||window.Zepto),function(t){t.lazy("noop",function(){}),t.lazy("noop-success",function(t,e){e(!0)}),t.lazy("noop-error",function(t,e){e(!1)})}(window.jQuery||window.Zepto),function(t){function e(e,r){var a=e.prop("attributes"),o=t("<"+r+">");return t.each(a,function(t,e){o.attr(e.name,e.value)}),e.replaceWith(o),o}function r(e,r,a){var o=t("<img>").one("load",function(){a(!0)}).one("error",function(){a(!1)}).appendTo(e).attr("src",r);o.complete&&o.load()}t.lazy(["pic","picture"],["picture"],function(a,o){var i=a[0].tagName.toLowerCase();if("picture"==i){var n="data-src",c="data-srcset",s="data-media",u="data-sizes",d="data-type",f=a.find(n),m=a.find("data-img");f.length?(f.each(function(){e(t(this),"source")}),1==m.length?(m=e(m,"img"),m.on("load",function(){o(!0)}).on("error",function(){o(!1)}),m.attr("src",m.attr(n)),this.config("removeAttribute")&&m.removeAttr(n)):a.attr(n)?(r(a,a.attr(n),o),this.config("removeAttribute")&&a.removeAttr(n)):o(!1)):a.attr(c)?(t("<source>").attr({media:a.attr(s),sizes:a.attr(u),type:a.attr(d),srcset:a.attr(c)}).appendTo(a),r(a,a.attr(n),o),this.config("removeAttribute")&&a.removeAttr(n+" "+c+" "+s+" "+u+" "+d)):o(!1)}else o(!1)})}(window.jQuery||window.Zepto),function(t){t.lazy(["js","javascript","script"],"script",function(t,e){"script"==t[0].tagName.toLowerCase()?(t.attr("src",t.attr("data-src")),this.config("removeAttribute")&&t.removeAttr("data-src")):e(!1)})}(window.jQuery||window.Zepto),function(t){t.lazy("vimeo",function(t,e){"iframe"==t[0].tagName.toLowerCase()?(t.attr("src","https://player.vimeo.com/video/"+t.attr("data-src")),this.config("removeAttribute")&&t.removeAttr("data-src")):e(!1)})}(window.jQuery||window.Zepto),function(t){t.lazy(["yt","youtube"],function(t,e){"iframe"==t[0].tagName.toLowerCase()?(t.attr("src","https://www.youtube.com/embed/"+t.attr("data-src")+"?rel=0&amp;showinfo=0"),this.config("removeAttribute")&&t.removeAttr("data-src")):e(!1)})}(window.jQuery||window.Zepto);
 /*! jQuery UI - v1.11.4 - 2015-03-11
 * http://jqueryui.com
 * Includes: core.js, widget.js, mouse.js, position.js, accordion.js, autocomplete.js, button.js, datepicker.js, dialog.js, draggable.js, droppable.js, effect.js, effect-blind.js, effect-bounce.js, effect-clip.js, effect-drop.js, effect-explode.js, effect-fade.js, effect-fold.js, effect-highlight.js, effect-puff.js, effect-pulsate.js, effect-scale.js, effect-shake.js, effect-size.js, effect-slide.js, effect-transfer.js, menu.js, progressbar.js, resizable.js, selectable.js, selectmenu.js, slider.js, sortable.js, spinner.js, tabs.js, tooltip.js
@@ -34335,6 +34331,321 @@ var tooltip = $.widget( "ui.tooltip", {
 
 })( jQuery );
 
+/*!
+ * Lazy Load - jQuery plugin for lazy loading images
+ *
+ * Copyright (c) 2007-2015 Mika Tuupola
+ *
+ * Licensed under the MIT license:
+ *   http://www.opensource.org/licenses/mit-license.php
+ *
+ * Project home:
+ *   http://www.appelsiini.net/projects/lazyload
+ *
+ * Version:  1.9.7
+ *
+ */
+
+(function($, window, document, undefined) {
+    var $window = $(window);
+
+    $.fn.lazyload = function(options) {
+        var elements = this;
+        var $container;
+        var settings = {
+            threshold       : 0,
+            failure_limit   : 0,
+            event           : "scroll",
+            effect          : "show",
+            container       : window,
+            data_attribute  : "original",
+            skip_invisible  : false,
+            appear          : null,
+            load            : null,
+            placeholder     : "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC"
+        };
+
+        function update() {
+            var counter = 0;
+
+            elements.each(function() {
+                var $this = $(this);
+                if (settings.skip_invisible && !$this.is(":visible")) {
+                    return;
+                }
+                if ($.abovethetop(this, settings) ||
+                    $.leftofbegin(this, settings)) {
+                        /* Nothing. */
+                } else if (!$.belowthefold(this, settings) &&
+                    !$.rightoffold(this, settings)) {
+                        $this.trigger("appear");
+                        /* if we found an image we'll load, reset the counter */
+                        counter = 0;
+                } else {
+                    if (++counter > settings.failure_limit) {
+                        return false;
+                    }
+                }
+            });
+
+        }
+
+        if(options) {
+            /* Maintain BC for a couple of versions. */
+            if (undefined !== options.failurelimit) {
+                options.failure_limit = options.failurelimit;
+                delete options.failurelimit;
+            }
+            if (undefined !== options.effectspeed) {
+                options.effect_speed = options.effectspeed;
+                delete options.effectspeed;
+            }
+
+            $.extend(settings, options);
+        }
+
+        /* Cache container as jQuery as object. */
+        $container = (settings.container === undefined ||
+                      settings.container === window) ? $window : $(settings.container);
+
+        /* Fire one scroll event per scroll. Not one scroll event per image. */
+        if (0 === settings.event.indexOf("scroll")) {
+            $container.bind(settings.event, function() {
+                return update();
+            });
+        }
+
+        this.each(function() {
+            var self = this;
+            var $self = $(self);
+
+            self.loaded = false;
+
+            /* If no src attribute given use data:uri. */
+            if ($self.attr("src") === undefined || $self.attr("src") === false) {
+                if ($self.is("img")) {
+                    $self.attr("src", settings.placeholder);
+                }
+            }
+
+            /* When appear is triggered load original image. */
+            $self.one("appear", function() {
+                if (!this.loaded) {
+                    if (settings.appear) {
+                        var elements_left = elements.length;
+                        settings.appear.call(self, elements_left, settings);
+                    }
+                    $("<img />")
+                        .bind("load", function() {
+
+                            var original = $self.attr("data-" + settings.data_attribute);
+                            $self.hide();
+                            if ($self.is("img")) {
+                                $self.attr("src", original);
+                            } else {
+                                $self.css("background-image", "url('" + original + "')");
+                            }
+                            $self[settings.effect](settings.effect_speed);
+
+                            self.loaded = true;
+
+                            /* Remove image from array so it is not looped next time. */
+                            var temp = $.grep(elements, function(element) {
+                                return !element.loaded;
+                            });
+                            elements = $(temp);
+
+                            if (settings.load) {
+                                var elements_left = elements.length;
+                                settings.load.call(self, elements_left, settings);
+                            }
+                        })
+                        .attr("src", $self.attr("data-" + settings.data_attribute));
+                }
+            });
+
+            /* When wanted event is triggered load original image */
+            /* by triggering appear.                              */
+            if (0 !== settings.event.indexOf("scroll")) {
+                $self.bind(settings.event, function() {
+                    if (!self.loaded) {
+                        $self.trigger("appear");
+                    }
+                });
+            }
+        });
+
+        /* Check if something appears when window is resized. */
+        $window.bind("resize", function() {
+            update();
+        });
+
+        /* With IOS5 force loading images when navigating with back button. */
+        /* Non optimal workaround. */
+        if ((/(?:iphone|ipod|ipad).*os 5/gi).test(navigator.appVersion)) {
+            $window.bind("pageshow", function(event) {
+                if (event.originalEvent && event.originalEvent.persisted) {
+                    elements.each(function() {
+                        $(this).trigger("appear");
+                    });
+                }
+            });
+        }
+
+        /* Force initial check if images should appear. */
+        $(document).ready(function() {
+            update();
+        });
+
+        return this;
+    };
+
+    /* Convenience methods in jQuery namespace.           */
+    /* Use as  $.belowthefold(element, {threshold : 100, container : window}) */
+
+    $.belowthefold = function(element, settings) {
+        var fold;
+
+        if (settings.container === undefined || settings.container === window) {
+            fold = (window.innerHeight ? window.innerHeight : $window.height()) + $window.scrollTop();
+        } else {
+            fold = $(settings.container).offset().top + $(settings.container).height();
+        }
+
+        return fold <= $(element).offset().top - settings.threshold;
+    };
+
+    $.rightoffold = function(element, settings) {
+        var fold;
+
+        if (settings.container === undefined || settings.container === window) {
+            fold = $window.width() + $window.scrollLeft();
+        } else {
+            fold = $(settings.container).offset().left + $(settings.container).width();
+        }
+
+        return fold <= $(element).offset().left - settings.threshold;
+    };
+
+    $.abovethetop = function(element, settings) {
+        var fold;
+
+        if (settings.container === undefined || settings.container === window) {
+            fold = $window.scrollTop();
+        } else {
+            fold = $(settings.container).offset().top;
+        }
+
+        return fold >= $(element).offset().top + settings.threshold  + $(element).height();
+    };
+
+    $.leftofbegin = function(element, settings) {
+        var fold;
+
+        if (settings.container === undefined || settings.container === window) {
+            fold = $window.scrollLeft();
+        } else {
+            fold = $(settings.container).offset().left;
+        }
+
+        return fold >= $(element).offset().left + settings.threshold + $(element).width();
+    };
+
+    $.inviewport = function(element, settings) {
+         return !$.rightoffold(element, settings) && !$.leftofbegin(element, settings) &&
+                !$.belowthefold(element, settings) && !$.abovethetop(element, settings);
+     };
+
+    /* Custom selectors for your convenience.   */
+    /* Use as $("img:below-the-fold").something() or */
+    /* $("img").filter(":below-the-fold").something() which is faster */
+
+    $.extend($.expr[":"], {
+        "below-the-fold" : function(a) { return $.belowthefold(a, {threshold : 0}); },
+        "above-the-top"  : function(a) { return !$.belowthefold(a, {threshold : 0}); },
+        "right-of-screen": function(a) { return $.rightoffold(a, {threshold : 0}); },
+        "left-of-screen" : function(a) { return !$.rightoffold(a, {threshold : 0}); },
+        "in-viewport"    : function(a) { return $.inviewport(a, {threshold : 0}); },
+        /* Maintain BC for couple of versions. */
+        "above-the-fold" : function(a) { return !$.belowthefold(a, {threshold : 0}); },
+        "right-of-fold"  : function(a) { return $.rightoffold(a, {threshold : 0}); },
+        "left-of-fold"   : function(a) { return !$.rightoffold(a, {threshold : 0}); }
+    });
+
+})(jQuery, window, document);
+
+/* http://james.padolsey.com/javascript/special-scroll-events-for-jquery/ */
+
+(function(){
+    
+    var special = jQuery.event.special,
+        uid1 = "D" + (+new Date()),
+        uid2 = "D" + (+new Date() + 1);
+        
+    special.scrollstart = {
+        setup: function() {
+            
+            var timer,
+                handler =  function(evt) {
+                    
+                    var _self = this,
+                        _args = arguments;
+                    
+                    if (timer) {
+                        clearTimeout(timer);
+                    } else {
+                        evt.type = "scrollstart";
+                        jQuery.event.dispatch.apply(_self, _args);
+                    }
+                    
+                    timer = setTimeout( function(){
+                        timer = null;
+                    }, special.scrollstop.latency);
+                    
+                };
+            
+            jQuery(this).bind("scroll", handler).data(uid1, handler);
+            
+        },
+        teardown: function(){
+            jQuery(this).unbind( "scroll", jQuery(this).data(uid1) );
+        }
+    };
+    
+    special.scrollstop = {
+        latency: 300,
+        setup: function() {
+            
+            var timer,
+                    handler = function(evt) {
+                    
+                    var _self = this,
+                        _args = arguments;
+                    
+                    if (timer) {
+                        clearTimeout(timer);
+                    }
+                    
+                    timer = setTimeout( function(){
+                        
+                        timer = null;
+                        evt.type = "scrollstop";
+                        jQuery.event.dispatch.apply(_self, _args);
+                        
+                        
+                    }, special.scrollstop.latency);
+                    
+                };
+            
+            jQuery(this).bind("scroll", handler).data(uid2, handler);
+            
+        },
+        teardown: function() {
+            jQuery(this).unbind( "scroll", jQuery(this).data(uid2) );
+        }
+    };
+    
+})();
 /*!
  * Mobile plugin for jQuery Magnify (http://thdoan.github.io/magnify/)
  *
