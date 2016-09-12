@@ -58,23 +58,14 @@ class ShopsController <  ApplicationController
     sp = shop_params(@shop)
 
     if shop.agb && shop.update(sp)
-
-      # TODO : this is freaking disgusting.
-      # - Laurent
-      if params[:user_info_edit_part] == :edit_producer.to_s
-        flash[:success] = I18n.t(:update_producer_ok, scope: :edit_shop)
-      else
-        flash[:success] = I18n.t(:update_ok, scope: :edit_shop)
-      end
-
-      redirect_to request.referer
-
+      flash[:success] = I18n.t(:update_ok, scope: :edit_shop)
+      redirect_to navigation.back(1)
     elsif (!shop.agb) && shop.update(sp)
       flash[:success] = I18n.t(:update_agb_ok, scope: :edit_shop)
       redirect_to edit_setting_shop_path(shop)
     else
       flash[:error] = shop.errors.full_messages.first
-      redirect_to request.referer
+      redirect_to navigation.back(1)
     end
   end
 
