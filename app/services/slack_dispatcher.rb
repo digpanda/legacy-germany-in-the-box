@@ -13,7 +13,6 @@ class SlackDispatcher < BaseService
 
   def initialize
     @counter = 0
-    binding.pry
     slack.delay.ping "--- *#{Rails.env.capitalize} Mode* #{Time.now.utc}"
   end
 
