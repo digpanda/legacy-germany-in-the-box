@@ -59,23 +59,29 @@
         <%= f.label :email, I18n.t(:email, scope: :edit_account) %>
         <%= f.text_field :email, :class => 'form-control' %>
       </div>
-      <div class="form-group">
-        <%= f.label :current_password, I18n.t(:current_password, scope: :edit_account), :class => 'required' %>
-        <%= f.password_field :current_password, :class => 'form-control', :autocomplete => :off, :required => true, :minLength => Rails.configuration.min_password_length %>
-        <div class="help-block with-errors"></div>
-      </div>
-      <div class="form-group">
-        <label for="user[password]" title="<%= I18n.t(:password_info, scope: :edit_account) %>">
-          <%= I18n.t(:password, scope: :edit_account) %>
-        </label>
-        <%= f.password_field :password, :class => 'form-control', :autocomplete => :off, :minLength => Rails.configuration.min_password_length, :id=>'inputPassword' %>
-        <div class="help-block with-errors"></div>
-      </div>
-      <div class="form-group">
-        <%= f.label :password_confirmation, I18n.t(:password_confirmation, scope: :edit_account) %>
-        <%= f.password_field :password_confirmation, :class => 'form-control', :autocomplete => :off, 'data-match': '#inputPassword', 'data-match-error': I18n.t(:password_match_error, scope: :edit_account) %>
-        <div class="help-block with-errors"></div>
-      </div>
+
+      <% unless @user.wechat? %>
+
+        <div class="form-group">
+          <%= f.label :current_password, I18n.t(:current_password, scope: :edit_account), :class => 'required' %>
+          <%= f.password_field :current_password, :class => 'form-control', :autocomplete => :off, :required => true, :minLength => Rails.configuration.min_password_length %>
+          <div class="help-block with-errors"></div>
+        </div>
+        <div class="form-group">
+          <label for="user[password]" title="<%= I18n.t(:password_info, scope: :edit_account) %>">
+            <%= I18n.t(:password, scope: :edit_account) %>
+          </label>
+          <%= f.password_field :password, :class => 'form-control', :autocomplete => :off, :minLength => Rails.configuration.min_password_length, :id=>'inputPassword' %>
+          <div class="help-block with-errors"></div>
+        </div>
+        <div class="form-group">
+          <%= f.label :password_confirmation, I18n.t(:password_confirmation, scope: :edit_account) %>
+          <%= f.password_field :password_confirmation, :class => 'form-control', :autocomplete => :off, 'data-match': '#inputPassword', 'data-match-error': I18n.t(:password_match_error, scope: :edit_account) %>
+          <div class="help-block with-errors"></div>
+        </div>
+
+      <% end %>
+
       <div class="form-group">
         <%= f.button I18n.t(:save, scope: :edit_account), :type => 'submit', :class => 'btn btn-primary' %>
       </div>

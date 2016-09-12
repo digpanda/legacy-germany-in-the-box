@@ -99,6 +99,10 @@ class User
   index({following: 1},           {unique: false, name: :idx_user_following,          sparse: true})
   index({liked_collections: 1},   {unique: false, name: :idx_user_liked_collections,  sparse: true})
 
+  def wechat?
+    self.provider == :wechat
+  end
+
   def self.from_omniauth(auth)
     if User.where(provider: auth.provider, uid: auth.uid).first
       User.where(provider: auth.provider, uid: auth.uid).first
