@@ -61,8 +61,8 @@ class OrdersFormatter < BaseService
   def csv_line(order)
     [
       order.id,
-      order.decorate.chinese_full_name,
-      order.billing_address.decorate.full_address,
+      chinese_full_name(order),
+      full_address(order),
       order.status,
       order.desc,
       order.decorate.clean_desc,
@@ -91,6 +91,15 @@ class OrdersFormatter < BaseService
       order.u_at,
     ]
   end
+
+  def chinese_full_name(order)
+    order.billing_address.decorate.chinese_full_name if order.billing_address
+  end
+
+  def full_address(order)
+    order.billing_address.decorate.full_address if order.billing_address
+  end
+
   def payments_ids(order)
     order.order_payments.reduce([]) { |acc, order_payment| acc << order_payment.id }.join(', ')
   end

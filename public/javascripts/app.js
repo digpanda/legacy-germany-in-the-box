@@ -1721,7 +1721,9 @@ var LazyLoader = {
      */
     startLazyLoader: function startLazyLoader() {
 
-        $(".lazy").Lazy({
+        console.log('lazy');
+
+        $(".lazy").lazy({
             // callback
             beforeLoad: function beforeLoad(element) {
                 console.log("start loading " + element.prop("tagName"));

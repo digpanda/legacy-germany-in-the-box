@@ -31,6 +31,12 @@
     "jquery-lazy": "^1.7.3"
   },
   "overrides": {
+    "jquery-lazy": {
+      "main": [
+        "jquery.lazy.min.js",
+        "jquery.lazy.plugins.min.js"
+      ]
+    },
     "font-awesome": {
       "main": [
         "css/font-awesome.min.css",
