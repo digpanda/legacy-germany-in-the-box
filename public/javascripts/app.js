@@ -575,25 +575,19 @@ var ProductsShow = {
 
   handleProductGalery: function handleProductGalery() {
 
+    /**
+     * Homemade Gallery System by Laurent
+     */
     $(document).on('click', '#gallery a', function (e) {
 
       var image = $(this).data('image');
       var zoomImage = $(this).data('zoom-image');
 
-      /**
-       * Homemade Gallery System by Laurent
-       */
       e.preventDefault();
 
       // Changing the image when we click on any thumbnail of the #gallery
       // We also manage a small pre-loader in case it's slow.
-      $('#main_image').attr('src', image).load(function () {
-        $('.js-loader').hide();
-        $(this).show();
-      }).before(function () {
-        $('.js-loader').show();
-        $(this).hide();
-      });
+      ProductsShow.changeMainImage(image, '.js-loader');
 
       /*
       $('#main_image').magnify({
@@ -605,10 +599,27 @@ var ProductsShow = {
     // We don't forget to trigger the click to load the first image
     $('#gallery a:first').trigger('click');
 
-    // We hide the button because there's only one element
+    // We hide the button because
+    // if there's only one element
+    ProductsShow.manageClickableImages();
+  },
+
+  manageClickableImages: function manageClickableImages() {
+
     if ($('#gallery a').size() <= 1) {
       $('#gallery a:first').hide();
     }
+  },
+
+  changeMainImage: function changeMainImage(image, loader_selector) {
+
+    $('#main_image').attr('src', image).load(function () {
+      $(loader_selector).hide();
+      $(this).show();
+    }).before(function () {
+      $(loader_selector).show();
+      $(this).hide();
+    });
   },
 
   /**
