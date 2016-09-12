@@ -1,6 +1,6 @@
 <div class="row +centered">
   <div class="product-page__fullsize-image">
-    <img id="main_image" class="magnify-full-image" />
+    <img id="main_image" class="magnify-full-image lazy" />
   </div>
 </div>
 
@@ -22,7 +22,7 @@
 
       <a href="#" data-image="<%= product.decorate.featured_sku_img_url(file, :fullsize) %>" data-zoom-image="<%= product.decorate.featured_sku_img_url(file, :zoomin) %>">
 
-        <div class="product-page__thumbnail-image" style="background-image:url(<%= product.decorate.featured_sku_img_url(file, :thumb) %>)">
+        <div class="product-page__thumbnail-image lazy" style="background-image:url(<%= product.decorate.featured_sku_img_url(file, :thumb) %>)">
         </div>
 
       </a>

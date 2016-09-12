@@ -28,6 +28,7 @@ var ProductsShow = {
 
       // Changing the image when we click on any thumbnail of the #gallery
       $('#main_image').attr('src', image);
+      
       /*
       $('#main_image').magnify({
         speed: 0,
@@ -117,7 +118,7 @@ var ProductsShow = {
       $('#product_discount').html(skuDatas['discount_with_percent']+'<br/>');
 
     }
-    
+
     ProductsShow.refreshSkuSecondDescription(skuDatas['data_format']);
     ProductsShow.refreshSkuAttachment(skuDatas['data_format'], skuDatas['file_attachment']);
     ProductsShow.refreshSkuThumbnailImages(skuDatas['images']);

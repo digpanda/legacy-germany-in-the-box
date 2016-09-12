@@ -10,6 +10,7 @@ var Starters = [
   'footer',
   'images_control',
   'images_handler',
+  'lazy_loader',
   'left_menu',
   'messages',
   'navigation',

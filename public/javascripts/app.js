@@ -587,6 +587,7 @@ var ProductsShow = {
 
       // Changing the image when we click on any thumbnail of the #gallery
       $('#main_image').attr('src', image);
+
       /*
       $('#main_image').magnify({
         speed: 0,
@@ -1357,7 +1358,7 @@ require.register("javascripts/starters.js", function(exports, require, module) {
 /**
  * Starters Class
  */
-var Starters = ['bootstrap', 'china_city', 'datepicker', 'editable_fields', 'footer', 'images_control', 'images_handler', 'left_menu', 'messages', 'navigation', 'product_favorite', 'product_form', 'products_list', 'refresh_time', 'responsive', 'search', 'sku_form', 'sweet_alert', 'tooltipster'];
+var Starters = ['bootstrap', 'china_city', 'datepicker', 'editable_fields', 'footer', 'images_control', 'images_handler', 'lazy_loader', 'left_menu', 'messages', 'navigation', 'product_favorite', 'product_form', 'products_list', 'refresh_time', 'responsive', 'search', 'sku_form', 'sweet_alert', 'tooltipster'];
 
 module.exports = Starters;
 });
@@ -1697,6 +1698,52 @@ var ImagesHandler = {
 };
 
 module.exports = ImagesHandler;
+});
+
+require.register("javascripts/starters/lazy_loader.js", function(exports, require, module) {
+"use strict";
+
+/**
+ * LazyLoader Class
+ */
+var LazyLoader = {
+
+    /**
+     * Initializer
+     */
+    init: function init() {
+
+        this.startLazyLoader();
+    },
+
+    /**
+     *
+     */
+    startLazyLoader: function startLazyLoader() {
+
+        $(".lazy").Lazy({
+            // callback
+            beforeLoad: function beforeLoad(element) {
+                console.log("start loading " + element.prop("tagName"));
+            },
+
+            // custom loaders
+            customLoaderName: function customLoaderName(element) {
+                element.html("element handled by custom loader");
+                element.load();
+            },
+            asyncLoader: function asyncLoader(element, response) {
+                setTimeout(function () {
+                    element.html("element handled by async loader");
+                    response(true);
+                }, 1000);
+            }
+        });
+    }
+
+};
+
+module.exports = LazyLoader;
 });
 
 require.register("javascripts/starters/left_menu.js", function(exports, require, module) {
