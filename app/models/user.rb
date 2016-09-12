@@ -103,7 +103,7 @@ class User
     if User.where(provider: auth.provider, uid: auth.uid).first
       User.where(provider: auth.provider, uid: auth.uid).first
     else
-      User.new.tap do |user|
+      user = User.new.tap do |user|
         user.provider = auth.provider
         user.uid = auth.uid
         user.email = "#{auth.info.unionid}@wechat.com"
@@ -115,6 +115,7 @@ class User
         user.password_confirmation = auth.info.unionid[0,8]
         user.wechat_unionid = auth.info.unionid
       end.save
+      user
     end
   end
 
