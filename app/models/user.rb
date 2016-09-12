@@ -100,17 +100,21 @@ class User
   index({liked_collections: 1},   {unique: false, name: :idx_user_liked_collections,  sparse: true})
 
   def self.from_omniauth(auth)
-    where(auth.slice(:provider, :uid)).first_or_create do |user|
-      user.provider = auth.provider
-      user.uid = auth.uid
-      user.email = "#{auth.info.unionid}@wechat.com"
-      user.username = auth.info.nickname
-      user.role = :customer
-      user.gender = auth.info.sex == 1 ? 'm' : 'f'
-      user.birth = Date.today # what the fuck ? is that normal ? - Laurent 04/08/2016
-      user.password = auth.info.unionid[0,8]
-      user.password_confirmation = auth.info.unionid[0,8]
-      user.wechat_unionid = auth.info.unionid
+    if User.where(provider: auth.provider, uid: auth.uid).first
+      User.where(provider: auth.provider, uid: auth.uid).first
+    else
+      User.new.tap do |user|
+        user.provider = auth.provider
+        user.uid = auth.uid
+        user.email = "#{auth.info.unionid}@wechat.com"
+        user.username = auth.info.nickname
+        user.role = :customer
+        user.gender = auth.info.sex == 1 ? 'm' : 'f'
+        user.birth = Date.today # what the fuck ? is that normal ? - Laurent 04/08/2016
+        user.password = auth.info.unionid[0,8]
+        user.password_confirmation = auth.info.unionid[0,8]
+        user.wechat_unionid = auth.info.unionid
+      end
     end
   end
 
