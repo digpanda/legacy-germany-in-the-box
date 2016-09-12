@@ -176,9 +176,7 @@ class Customer::CheckoutController < ApplicationController
         redirect_to navigation.back(1)
         return true
       end
-      SlackDispatcher.new.message("OLD EMAIL PROFILE : #{current_user}")
       current_user.email = params[:valid_email]
-      SlackDispatcher.new.message("NEW EMAIL PROFILE : #{current_user}")
       current_user.save
 
       return false
