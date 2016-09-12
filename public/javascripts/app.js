@@ -584,9 +584,12 @@ var ProductsShow = {
        * Homemade Gallery System by Laurent
        */
       e.preventDefault();
+      $('.js-loader').show();
 
       // Changing the image when we click on any thumbnail of the #gallery
-      $('#main_image').attr('src', image);
+      $('#main_image').attr('src', image).load(function () {
+        $('.js-loader').hide();
+      });
 
       /*
       $('#main_image').magnify({
