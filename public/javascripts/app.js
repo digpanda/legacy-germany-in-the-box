@@ -584,11 +584,15 @@ var ProductsShow = {
        * Homemade Gallery System by Laurent
        */
       e.preventDefault();
-      $('.js-loader').show();
 
       // Changing the image when we click on any thumbnail of the #gallery
+      // We also manage a small pre-loader in case it's slow.
       $('#main_image').attr('src', image).load(function () {
         $('.js-loader').hide();
+        $(this).show();
+      }).before(function () {
+        $('.js-loader').show();
+        $(this).hide();
       });
 
       /*
@@ -600,6 +604,11 @@ var ProductsShow = {
 
     // We don't forget to trigger the click to load the first image
     $('#gallery a:first').trigger('click');
+
+    // We hide the button because there's only one element
+    if ($('#gallery a').size() <= 1) {
+      $('#gallery a:first').hide();
+    }
   },
 
   /**
