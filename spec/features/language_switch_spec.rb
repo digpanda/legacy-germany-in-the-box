@@ -2,7 +2,6 @@ describe "language#update process", :type => :feature, :js => true  do
 
   context "logged-in as admin" do
 
-
       before(:each) do
         VCR.turn_off!
         WebMock.allow_net_connect!
@@ -18,11 +17,17 @@ describe "language#update process", :type => :feature, :js => true  do
 
     it "sets the language to german from the admin shop page" do
 
+      include Capybara::DSL
+
+      Capybara.app_host =  "http://localhost:3000"
+      Capybara.run_server = false
+      Capybara.current_driver = :selenium
+
+
+      binding.pry
         visit '/users/sign_in'
-        within("#session") do
-          fill_in 'Email', :with => current_user.email
-          fill_in 'Password', :with => '12345678'
-        end
+        fill_in 'user[email]', :with => current_user.email
+        fill_in 'user[password]', :with => '12345678'
         click_button '确定'
 
         visit shops_path
