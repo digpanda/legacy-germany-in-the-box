@@ -4,6 +4,7 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 
 require 'pry'
 require 'rspec/rails'
+require 'capybara/rails'
 require 'capybara/rspec'
 require 'factory_girl_rails'
 require 'mongoid'

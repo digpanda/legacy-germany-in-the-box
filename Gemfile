@@ -88,6 +88,7 @@ group :development, :test, :staging, :local do
   gem "factory_girl_rails"
   gem "rspec-rails", "~> 3.0"
   gem "capybara"
+  gem "selenium-webdriver"
   #gem "mongoid-rspec", "3.0.0"
   #gem "cucumber-rails", :require => false
   gem "database_cleaner"
