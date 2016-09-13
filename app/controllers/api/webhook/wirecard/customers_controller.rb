@@ -17,39 +17,15 @@ class Api::Webhook::Wirecard::CustomersController < Api::ApplicationController
 
     # we get the important datas
     # customer_email = datas[:email].first
-    merchant_id = datas[:merchant_account_id].first
-    transaction_id = datas[:transaction_id].first
-
-    # COPIES FROM HERE <-- we should avoid duplication
-    order_payment = OrderPayment.where({merchant_id: merchant_id, request_id: request_id}).first
-    WirecardPaymentChecker.new({transaction_id: transaction_id}.merge({:order_payment => order_payment})).update_order_payment!
-
-    order_payment.status = forced_status unless forced_status.nil? # TODO : improve this
-    order_payment.save
-
-    if order_payment.status == :success
-      SlackDispatcher.new.paid_transaction(order_payment)
-    else
-      SlackDispatcher.new.failed_transaction(order_payment)
-    end
-
-    # if it's a success, it paid
-    # we freeze the status to unverified for security reason
-    # and the payment status freeze on unverified
+    # transaction_id = datas[:transaction_id].first
+    checker = payment_checker.update_order_payment!
+    # it doesn't matter if the API call failed, the order has to be systematically up to date with the order payment in case it's not already sent
     order_payment.order.refresh_status_from!(order_payment)
-    # END OF COPY
-
-    # we update the linked payment without considering the callback itself
-    # because we already have a system to do this kind of things
-    # we will use all the datas available.
-=begin    WirecardPaymentChecker.new({
-
-      :order_payment => order_payment,
-      :transaction_id => transaction_id,
-      :merchant_account_id => merchant_account_id,
-
-      }).update_order_payment!
-=end
+    if checker.success?
+      devlog "The order was refreshed and seem to be paid."
+    else
+      devlog "The order was refreshed but don't seem to be paid. (#{checker.error})"
+    end
     devlog.info "End of process."
     render status: :ok,
             json: {success: true}.to_json and return
@@ -65,6 +41,15 @@ class Api::Webhook::Wirecard::CustomersController < Api::ApplicationController
     @datas ||= CGI.parse(request.body.read).deep_symbolize_keys
   end
 
+  def order_payment
+    @order_payment ||= OrderPayment.where({merchant_id: merchant_id, request_id: request_id}).first
+  end
+
+  # make API call which refresh order payment
+  def payment_checker
+    @payment_checker ||= WirecardPaymentChecker.new({:order_payment => order_payment})
+  end
+
   def request_id
     @request_id ||= begin
       raw_request_id = datas[:request_id].first
@@ -73,6 +58,10 @@ class Api::Webhook::Wirecard::CustomersController < Api::ApplicationController
       end
       raw_request_id
     end
+  end
+
+  def merchant_id
+    datas[:merchant_account_id].first
   end
 
 end
