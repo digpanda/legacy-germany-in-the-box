@@ -2,6 +2,11 @@ describe "language#update process", :type => :feature, :js => true  do
 
   context "logged-in as admin" do
 
+
+    let(:current_user) { FactoryGirl.create(:admin) }
+
+    it "sets the language to german from the admin shop page" do
+
       before(:each) do
         VCR.turn_off!
         WebMock.allow_net_connect!
@@ -11,11 +16,6 @@ describe "language#update process", :type => :feature, :js => true  do
         VCR.turn_on!
         WebMock.disable_net_connect!
       end
-
-
-    let(:current_user) { FactoryGirl.create(:admin) }
-
-    it "sets the language to german from the admin shop page" do
 
       include Capybara::DSL
 

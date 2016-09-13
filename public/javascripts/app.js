@@ -172,7 +172,7 @@ var CustomerCheckoutCreate = {
     var Casing = require("javascripts/lib/casing");
     var PostForm = require("javascripts/lib/post_form.js");
 
-    var bankDetails = $("#bank-details").data();
+    var bankDetails = $("#bank-details")[0].dataset;
     var parsedBankDetails = Casing.objectToUnderscoreCase(bankDetails);
 
     PostForm.send(parsedBankDetails, parsedBankDetails['form_url']);
