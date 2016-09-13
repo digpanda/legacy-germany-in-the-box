@@ -88,7 +88,7 @@ module Wirecard
     def transaction_details_datas
       {
         :psp_name                  => CONFIG[:psp_name],
-        :notification_url_1        => 'http://wirecard.germanyintebox.ultrahook.com',
+        :notification_url_1        => CONFIG[:notification_url],
         :notification_transaction_state_1 => 'success',
         :locale                    => DEFAULT_PAYMENT_LANGUAGE,
         :order_number              => "#{order.id}",

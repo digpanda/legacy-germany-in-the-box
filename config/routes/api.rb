@@ -49,6 +49,8 @@ namespace :api, defaults: { format: 'json' }  do
     namespace :wirecard do
       resource :merchant do
       end
+      resource :customer do
+      end
     end
 
   end

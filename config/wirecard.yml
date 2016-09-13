@@ -26,6 +26,7 @@ defaults: &defaults
     hosted_payment_url: https://api-test.wirecard.com/engine/hpp/
     psp_name: wirecard
     default_payment_method: # let empty to make no choice
+    notification_url: http://wirecard.germanyintebox.ultrahook.com
 
     # UNION PAY :
     # demo: # needed in development and testing only
@@ -81,9 +82,11 @@ test:
       ee_maid_cc: dfc3a296-3faf-4a1d-a075-f72f1b67dd2a
       ee_secret_cc: 6cbfa34e-91a7-421a-8dde-069fc0f5e0b8
 
-      hosted_payment_url: https://sandbox-engine.thesolution.com/engine/hpp/
-      psp_name: demo
-      default_payment_method: upop # let empty to make no choice
+    hosted_payment_url: https://sandbox-engine.thesolution.com/engine/hpp/
+    psp_name: demo
+    default_payment_method: upop # let empty to make no choice
+    notification_url: http://local.dev:3000/api/webhook/wirecard/customer
+
     # UNIVERSAL
     transaction_types:
       upop: debit
@@ -108,6 +111,7 @@ staging:
     hosted_payment_url: https://api-test.wirecard.com/engine/hpp/
     psp_name: wirecard
     default_payment_method: creditcard # let empty to make no choice
+    notification_url: https://www.germanyintheboxdev.com/api/webhook/wirecard/customer
 
     # UNIVERSAL
     transaction_types:
@@ -131,6 +135,7 @@ production:
     hosted_payment_url: https://api.wirecard.com/engine/hpp/
     psp_name: wirecard
     default_payment_method: # let empty to make no choice
+    notification_url: https://www.germanyinthebox.com/api/webhook/wirecard/customer
 
     # UNIVERSAL
     transaction_types:
