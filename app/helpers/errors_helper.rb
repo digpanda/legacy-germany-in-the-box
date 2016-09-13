@@ -12,9 +12,12 @@ module ErrorsHelper
 
   def throw_unauthorized_page(exception=nil)
     dispatch_error_email(exception)
-    render "errors/unauthorized_page",
-           status: :unauthorized,
-           layout: "errors/default"
+    flash[:error] = "You are not authorized to access this page"
+    NavigationHistory.new(request, session).store_current # TODO : currently not working well, it redirects on admin panel for some reason -> maybe change to force_current in a special redirection system over the admin redirect
+    redirect_to new_user_session_path
+    #render "errors/unauthorized_page",
+    #       status: :unauthorized,
+    #       layout: "errors/default"
   end
 
   def throw_server_error_page(exception=nil)
@@ -37,7 +40,7 @@ module ErrorsHelper
   end
 
   def throw_api_error(sym, merged_attributes={}, status=:bad_request)
-    render status: status, 
+    render status: status,
            json: throw_error(sym).merge(merged_attributes).to_json
   end
 
@@ -55,5 +58,5 @@ module ErrorsHelper
     return render view if view
     return redirect_to(:back)
   end
-  
+
 end

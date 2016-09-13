@@ -12,10 +12,10 @@ class NavigationHistory
       @location = location
     end
 
-    def add(conditions={})
+    def add(exceptions=nil)
 
       return false unless acceptable_request?
-      return false if excluded_path?(conditions)
+      return false if excluded_path?(exceptions)
 
       # could be a new class but it's useless right now
       prepare_storage
@@ -32,8 +32,8 @@ class NavigationHistory
       @location_path ||= URI(location).path || request.fullpath
     end
 
-    def excluded_path?(conditions)
-      excluded_paths = conditions[:except] || []
+    def excluded_path?(exceptions)
+      excluded_paths = exceptions || []
       excluded_paths.include? location_path
     end
 
