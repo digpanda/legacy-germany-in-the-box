@@ -7,7 +7,7 @@ var Casing = {
      * CamelCase to underscored case
      */
     underscoreCase: function(string) {
-     return string.replace(/(?:^|\.?)([A-Z])/g, function (x,y){return "_" + y.toLowerCase()}).replace(/^_/, "")
+     return string.replace(/(?:^|\.?)([A-Z])/g, function (x,y){return "_" + y.toLowerCase()}).replace(/^_/, "").replace('-', '_');
     },
 
     /**
@@ -33,7 +33,7 @@ var Casing = {
       return parsed
 
     },
-    
+
 }
 
 module.exports = Casing;

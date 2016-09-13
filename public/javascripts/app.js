@@ -919,7 +919,7 @@ var Casing = {
   underscoreCase: function underscoreCase(string) {
     return string.replace(/(?:^|\.?)([A-Z])/g, function (x, y) {
       return "_" + y.toLowerCase();
-    }).replace(/^_/, "");
+    }).replace(/^_/, "").replace('-', '_');
   },
 
   /**
