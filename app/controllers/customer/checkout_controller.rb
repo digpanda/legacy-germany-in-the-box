@@ -119,8 +119,11 @@ class Customer::CheckoutController < ApplicationController
 
       merchant_id = params["merchant_account_id"]
       request_id = params["request_id"]
+
+      # COPIES FROM HERE
       order_payment = OrderPayment.where({merchant_id: merchant_id, request_id: request_id}).first
       WirecardPaymentChecker.new(params.symbolize_keys.merge({:order_payment => order_payment})).update_order_payment!
+
       order_payment.status = forced_status unless forced_status.nil? # TODO : improve this
       order_payment.save
 
@@ -134,6 +137,8 @@ class Customer::CheckoutController < ApplicationController
       # we freeze the status to unverified for security reason
       # and the payment status freeze on unverified
       order_payment.order.refresh_status_from!(order_payment)
+      # END OF COPY
+      
       return true
   end
 

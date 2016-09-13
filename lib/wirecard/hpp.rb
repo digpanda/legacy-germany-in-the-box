@@ -89,7 +89,7 @@ module Wirecard
       {
         :psp_name                  => CONFIG[:psp_name],
         :notification_url_1        => CONFIG[:notification_url],
-        :notification_transaction_state_1 => 'success',
+        #:notification_transaction_state_1 => 'success',
         :locale                    => DEFAULT_PAYMENT_LANGUAGE,
         :order_number              => "#{order.id}",
         :order_detail              => order.desc,
