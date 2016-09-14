@@ -12,6 +12,7 @@ class Shared::OrdersController < ApplicationController
   attr_accessor :order
 
   def show
+    I18n.locale = :de # TODO : make a helper for that
     respond_to do |format|
       format.csv do
         render text: BorderGuruFtp::TransferOrders::Makers::Generate.new([order]).to_csv.encode(CSV_ENCODE),
