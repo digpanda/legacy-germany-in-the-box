@@ -72,7 +72,7 @@ class OrderDecorator < Draper::Decorator
   end
 
   def processable_time?
-    Time.now.utc.in_time_zone("Berlin").strftime("%k").to_i < UNPROCESSABLE_TIME.first || Time.now.utc.in_time_zone("Berlin").strftime("%k").to_i > UNPROCESSABLE_TIME.last
+    Time.now.utc.in_time_zone("Berlin").strftime("%k").to_i < UNPROCESSABLE_TIME.first || Time.now.utc.in_time_zone("Berlin").strftime("%k").to_i >= UNPROCESSABLE_TIME.last
   end
 
   def shippable?
