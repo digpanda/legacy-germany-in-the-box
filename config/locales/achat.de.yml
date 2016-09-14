@@ -282,7 +282,7 @@ de:
     no_order: keine Aufträge vorhanden
     id: Auftragsnummer
     status: Status
-    total_price: Gesamter Preis
+    total_price: Gesamtpreis
     created_at: Erstellt am
     updated_at: Geändert am
     operations: Operationen
