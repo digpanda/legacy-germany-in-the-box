@@ -2,39 +2,36 @@
 describe "language#update process", :type => :feature, :js => true  do
 
   include Capybara::DSL
-  
+
   context "logged-in as admin" do
 
-    let(:current_user) { FactoryGirl.create(:admin) }
+    let(:admin) { FactoryGirl.create(:admin) }
 
-    it "sets the language to german from the admin shop page" do
+    it "click in switch language button from chinese to german after login" do
 
-      visit '/users/sign_in'
-      fill_in 'user[email]', :with => current_user.email
+      visit new_user_session_path
+      fill_in 'user[email]', :with => admin.email
       fill_in 'user[password]', :with => '12345678'
-      click_button '确定'
-
-      visit shops_path
-      #expect(response).to have_http_status(:ok)
-      #patch language_path("de")
-      #expect(session[:locale]).to eq("de")
-      #expect(response).to redirect_to shops_path
+      click_button 'sign_in'
+      expect(page).to have_content('语言') # footer language switcher in Chinese
+      click_link '德语/DE'
+      expect(page).to have_content('Sprache') # footer language switcher in German
 
     end
 
   end
 
-=begin
   context "as guest" do
 
-    it "sets the language to german and relocate automatically to the sign-in" do
+    it "switch from customer to shopkeeper site and change language automatically" do
 
-      patch language_path("de", location: new_user_session_path)
-      expect(session[:locale]).to eq("de")
-      expect(response).to redirect_to new_user_session_path
+      visit root_path
+      expect(page).to have_content('来因盒') # Germany in the Box (in Chinese)
+      click_link 'Partner-Hersteller Werden'
+      expect(page).to have_content('Möchten was kaufen?') # We are on the shopkeeper site
 
     end
 
   end
-=end
+
 end

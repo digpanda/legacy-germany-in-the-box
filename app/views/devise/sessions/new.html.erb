@@ -39,7 +39,7 @@
     </div>
     <div class="col-md-12">
       <div class="col-md-5">
-        <%= submit_tag I18n.t(:sign_in, scope: :sign_in_dialog), :class => 'btn btn-primary' %>
+        <%= submit_tag I18n.t(:sign_in, scope: :sign_in_dialog), :id => 'sign_in', :class => 'btn btn-primary' %>
       </div>
       <div class="col-md-7">
         <a class="btn btn-primary" href="<%= new_user_registration_path %>">
@@ -56,4 +56,3 @@
 </div>
 
 <%= render partial: "devise/shared/alternative_login" %>
-

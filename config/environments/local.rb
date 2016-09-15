@@ -1,5 +1,5 @@
 Rails.application.configure do
-  
+
   config.cache_classes = false
   config.middleware.use(Mongoid::QueryCache::Middleware)
   config.eager_load = false
@@ -15,8 +15,8 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
 
   # used for root_url and equivalent
-  Rails.application.routes.default_url_options = {host: 'local.dev', port: 8000}
-  
+  Rails.application.routes.default_url_options = {host: 'local.dev', port: 3000}
+
   config.action_mailer.smtp_settings = {
       address: "mailtrap.io",
       port: 25,
@@ -26,5 +26,5 @@ Rails.application.configure do
       user_name: 'f396f41db34e22',
       password: 'f4eede72e026e4'
   }
-  
+
 end

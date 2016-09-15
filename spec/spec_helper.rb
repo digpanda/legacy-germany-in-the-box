@@ -12,10 +12,9 @@ Capybara.register_driver :selenium do |app|
   Capybara::Selenium::Driver.new(app, :browser => :chrome)
 end
 
-Capybara.app_host =  "http://local.dev:3000"
-Capybara.run_server = false
-Capybara.current_driver = :selenium
-
+#Capybara.app_host =  "http://local.dev:3000"
+#Capybara.run_server = false
+#Capybara.current_driver = :selenium
 VCR.turn_off!
 WebMock.allow_net_connect!
 # WebMock.disable_net_connect!
