@@ -10,10 +10,10 @@ gem "slack-notifier"
 gem "delayed_job_mongoid"
 gem "daemons"
 gem "turnout"
-gem 'business_time'
-gem 'whenever', :require => false # cron job handling
-gem 'wkhtmltopdf-binary' # pdf generation (we need it coupled with wicked_pdf)
-gem 'wicked_pdf' # pdf generation
+gem "business_time"
+gem "whenever", :require => false # cron job handling
+gem "wkhtmltopdf-binary" # pdf generation (we need it coupled with wicked_pdf)
+gem "wicked_pdf" # pdf generation
 gem "breadcrumbs_on_rails"
 gem "sass-rails", "~> 5.0.3"
 gem "uglifier", ">= 1.3.0" # Use Uglifier as compressor for JavaScript assets
@@ -40,7 +40,7 @@ gem "strip_attributes"
 gem "will_paginate"
 gem "will_paginate-bootstrap"
 gem "bootstrap-multiselect-rails"
-gem "cancancan", '1.13.1'
+gem "cancancan", "1.13.1"
 gem "http_accept_language"
 gem "jquery-fileupload-rails"
 gem "copy_carrierwave_file"
@@ -51,30 +51,30 @@ gem "oauth"
 gem "magnific-popup-rails"
 gem "font-awesome-rails"
 gem "twitter-bootstrap-rails"
-gem 'bootstrap-datepicker-rails'
+gem "bootstrap-datepicker-rails"
 gem "bootstrap-validator-rails"
 gem "abstract_method"
 gem "mongoid_magic_counter_cache"
-gem 'carrierwave-ftp', :require => 'carrierwave/storage/ftp' # FTP only
+gem "carrierwave-ftp", :require => "carrierwave/storage/ftp" # FTP only
 
 gem "omniauth"
-gem "omniauth-wechat-oauth2", git: 'https://github.com/yangsr/omniauth-wechat-oauth2.git'
+gem "omniauth-wechat-oauth2", git: "https://github.com/yangsr/omniauth-wechat-oauth2.git"
 
 gem "exception_notification"
-#gem 'omniauth-open_wechat'
+#gem "omniauth-open_wechat"
 
 #gem "newrelic_rpm"
 #gem "newrelic_moped"
 
 group :development do
-  gem 'capistrano'
-  gem 'capistrano-bundler'
-  gem 'capistrano-passenger', '>= 0.1.1'
-  gem 'capistrano-rails'
-  gem 'capistrano-rvm'
-  gem 'capistrano-nvm'
+  gem "capistrano"
+  gem "capistrano-bundler"
+  gem "capistrano-passenger", ">= 0.1.1"
+  gem "capistrano-rails"
+  gem "capistrano-rvm"
+  gem "capistrano-nvm"
 
-  gem 'rubocop', require: false
+  gem "rubocop", require: false
 
 end
 
