@@ -27,17 +27,21 @@ $(document).ready(() => {
     return;
 
   }
- 
+
   try {
-
-    var obj = require("javascripts/controllers/"+routes.controller+"/"+routes.action);
-    console.info("Loading controller "+routes.controller+"/"+routes.action);
-
+    var meta_obj = require("javascripts/controllers/"+routes.controller);
+    console.info("Loading controller "+routes.controller);
+    meta_obj.init();
   } catch(err) {
+    console.warn("Unable to initialize #js-routes `"+routes.controller+"` ("+err+")");
+  }
 
+  try {
+    var obj = require("javascripts/controllers/"+routes.controller+"/"+routes.action);
+    console.info("Loading controller-action "+routes.controller+"/"+routes.action);
+  } catch(err) {
     console.warn("Unable to initialize #js-routes `"+routes.controller+"`.`"+routes.action+"` ("+err+")");
     return;
-
   }
 
   /**

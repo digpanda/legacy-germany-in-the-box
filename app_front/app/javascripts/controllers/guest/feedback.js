@@ -1,7 +1,7 @@
 /**
- * GuestFeedbackReturnApplication Class
+ * GuestFeedback Class
  */
-var GuestFeedbackReturnApplication = {
+var GuestFeedback = {
 
     /**
      * Initializer
@@ -10,11 +10,11 @@ var GuestFeedbackReturnApplication = {
 
       var Preloader = require("javascripts/lib/preloader");
       Preloader.dispatchLoader('#external-script','.js-loader', 'iframe#WJ_survey');
-
+      
     },
 
 
 
 }
 
-module.exports = GuestFeedbackReturnApplication;
+module.exports = GuestFeedback;

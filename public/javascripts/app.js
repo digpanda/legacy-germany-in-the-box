@@ -183,13 +183,13 @@ var CustomerCheckoutCreate = {
 module.exports = CustomerCheckoutCreate;
 });
 
-require.register("javascripts/controllers/guest/feedback/return_application.js", function(exports, require, module) {
+require.register("javascripts/controllers/guest/feedback.js", function(exports, require, module) {
 'use strict';
 
 /**
- * GuestFeedbackReturnApplication Class
+ * GuestFeedback Class
  */
-var GuestFeedbackReturnApplication = {
+var GuestFeedback = {
 
   /**
    * Initializer
@@ -202,7 +202,7 @@ var GuestFeedbackReturnApplication = {
 
 };
 
-module.exports = GuestFeedbackReturnApplication;
+module.exports = GuestFeedback;
 });
 
 require.register("javascripts/controllers/orders/manage_cart.js", function(exports, require, module) {
@@ -911,11 +911,17 @@ $(document).ready(function () {
   }
 
   try {
-
-    var obj = require("javascripts/controllers/" + routes.controller + "/" + routes.action);
-    console.info("Loading controller " + routes.controller + "/" + routes.action);
+    var meta_obj = require("javascripts/controllers/" + routes.controller);
+    console.info("Loading controller " + routes.controller);
+    meta_obj.init();
   } catch (err) {
+    console.warn("Unable to initialize #js-routes `" + routes.controller + "` (" + err + ")");
+  }
 
+  try {
+    var obj = require("javascripts/controllers/" + routes.controller + "/" + routes.action);
+    console.info("Loading controller-action " + routes.controller + "/" + routes.action);
+  } catch (err) {
     console.warn("Unable to initialize #js-routes `" + routes.controller + "`.`" + routes.action + "` (" + err + ")");
     return;
   }
