@@ -111,7 +111,7 @@ class Shop
   validates :function,      length: {maximum: Rails.configuration.max_tiny_text_length}
 
   scope :is_active,       ->    { where( :status => true ).where( :approved.ne => nil ) }
-  scope :has_address,     ->    { self.in({:id => Address.is_sender.all.map(&:shop_id)}) }
+  scope :has_address,     ->    { self.in({:id => Address.is_shipping.all.map(&:shop_id)}) }
   scope :is_bg_merchant,  ->    { where(:bg_merchant_id.ne => nil) }
   scope :can_buy,         ->    { is_active.is_bg_merchant.has_address }
 
@@ -134,7 +134,7 @@ class Shop
   end
 
   def sender_address
-    addresses.is_sender.first
+    addresses.is_shipping.first
   end
 
   def country

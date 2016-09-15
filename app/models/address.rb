@@ -11,7 +11,7 @@ class Address
   field :province,      type: String
   field :zip,           type: String
   field :country,       type: ISO3166::Country
-  field :type,          type: String # billing, sender, both
+  field :type,          type: Symbol, default: :both
   field :company,       type: String
 
   field :fname,         type: String
@@ -24,32 +24,26 @@ class Address
   belongs_to :user,     :inverse_of => :addresses;
   belongs_to :shop,     :inverse_of => :address;
 
-  scope :is_billing,        ->  { any_of({type: 'billing'}, {type: 'both'}) }
-  scope :is_sender,         ->  { any_of({type: 'sender'},  {type: 'both'}) }
-  scope :is_any,            ->  { any_of({type: 'sender'},  {type: 'billing'}, {type: 'both'}) }
+  scope :is_billing,          ->  { any_of({type: :billing}, {type: :both}) }
+  scope :is_shipping,         ->  { any_of({type: :shipping},  {type: :both}) }
+  scope :is_any,              ->  { any_of({type: :shipping},  {type: :billing}, {type: :both}) }
 
-  scope :is_only_billing,   ->  { any_of({type: 'billing'}) }
-  scope :is_only_sender,    ->  { any_of({type: 'sender'}) }
-  scope :is_only_both,      ->  { any_of({type: 'both'}) }
+  scope :is_only_billing,     ->  { any_of({type: :billing}) }
+  scope :is_only_shipping,    ->  { any_of({type: :shipping}) }
+  scope :is_only_both,        ->  { any_of({type: :both}) }
 
-  validates :pid,       presence: true,   length: {minimum:18}, :if => lambda{ user&.role == :customer }
-  validates :fname,     presence: true,   length: {maximum: Rails.configuration.max_tiny_text_length}
-  validates :lname,     presence: true,   length: {maximum: Rails.configuration.max_tiny_text_length}
-  validates :mobile,    presence: true,   length: {maximum: Rails.configuration.max_tiny_text_length},  :if => lambda{ user != nil }
-  validates :number,    presence: false,   length: {maximum: Rails.configuration.max_tiny_text_length}
-  validates :street,    presence: true,   length: {maximum: Rails.configuration.max_short_text_length}
-  validates :city,      presence: true,   length: {maximum: Rails.configuration.max_tiny_text_length}
-  validates :zip,       presence: true,   length: {maximum: Rails.configuration.max_tiny_text_length}
-  validates :country,   presence: true
-  validates :primary,   presence: true
-
-  validates :district,  length: {maximum: Rails.configuration.max_tiny_text_length}, :if => lambda{ user == nil && shop != nil }
-
-  validates :district,  presence: true,   length: {maximum: Rails.configuration.max_tiny_text_length},  :if => lambda{ user != nil && shop == nil }
-  validates :company,   presence: true,   length: {maximum: Rails.configuration.max_tiny_text_length},  :if => lambda{ shop != nil }
-  validates :province,  presence: true,   length: {maximum: Rails.configuration.max_tiny_text_length}
-
-  validates :type,      presence: true,   inclusion: {in: ['billing', 'sender', 'both']},    :if => lambda{ shop != nil && user == nil }
+  validates :pid, presence: true,   length: {minimum:18}, :if => lambda { user.decorate.customer? }
+  validates :fname, presence: true
+  validates :lname, presence: true
+  validates :mobile, presence: true
+  validates :street, presence: true
+  validates :city, presence: true
+  validates :zip, presence: true
+  validates :country, presence: true
+  validates :primary, presence: true
+  validates :company, presence: true, :if => lambda{ user.decorate.shopkeeper? }
+  validates :province, presence: true
+  validates :type, presence: true , inclusion: {in: [:billing, :shipping, :both]}
 
   index({shop: 1},      {unique: false, name: :idx_address_shop, sparse: true})
   index({type: 1},      {unique: false, name: :idx_address_type, sparse: true})

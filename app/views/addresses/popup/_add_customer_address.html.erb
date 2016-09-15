@@ -1,6 +1,7 @@
 <div class="row col-md-12 address-popup">
 
   <%= form_for @address, :data => {:toggle => 'validator'} do |f| %>
+
     <%= hidden_field_tag :user_id, @user.id.to_s %>
 
     <div class="form-group">
@@ -65,7 +66,7 @@
       <% end %>
     </div>
     <div class="form-group">
-      <input class="btn btn-primary" type="submit" value="<%= I18n.t(:add_address, scope: :edit_address) %>"></input>
+      <input class="btn btn-primary disabled" type="submit" value="<%= I18n.t(:add_address, scope: :edit_address) %>"></input>
     </div>
   <% end %>
 </div>

@@ -7,7 +7,7 @@ class ShopDecorator < Draper::Decorator
   decorates :shop
 
   def can_buy?
-    active? && bg_merchant_id != nil && addresses.is_sender.count > 0
+    active? && bg_merchant_id != nil && addresses.is_shipping.count > 0
   end
 
   def active?
@@ -39,7 +39,7 @@ class ShopDecorator < Draper::Decorator
   end
 
   def more_sender_address?
-    self.addresses.is_sender.size < Rails.configuration.max_num_shop_sender_addresses
+    self.addresses.is_shipping.size < Rails.configuration.max_num_shop_sender_addresses
   end
 
   def more_both_address?
