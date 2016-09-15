@@ -2,6 +2,7 @@ de:
   feedback:
     bug_report: Fehler Report
     payment_speed_report: Laufzeit der Zahlung
+    return_application: Retouren
     overall_rate: Bewertung
     product_suggestions: Produkt Empfehlung
   message:

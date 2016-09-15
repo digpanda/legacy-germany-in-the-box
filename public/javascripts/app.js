@@ -183,6 +183,28 @@ var CustomerCheckoutCreate = {
 module.exports = CustomerCheckoutCreate;
 });
 
+require.register("javascripts/controllers/guest/feedback/return_application.js", function(exports, require, module) {
+'use strict';
+
+/**
+ * GuestFeedbackReturnApplication Class
+ */
+var GuestFeedbackReturnApplication = {
+
+  /**
+   * Initializer
+   */
+  init: function init() {
+
+    var Preloader = require("javascripts/lib/preloader");
+    Preloader.dispatchLoader('#external-script', '.js-loader', 'iframe#WJ_survey');
+  }
+
+};
+
+module.exports = GuestFeedbackReturnApplication;
+});
+
 require.register("javascripts/controllers/orders/manage_cart.js", function(exports, require, module) {
 'use strict';
 
@@ -1106,6 +1128,34 @@ var PostForm = {
 };
 
 module.exports = PostForm;
+});
+
+require.register("javascripts/lib/preloader.js", function(exports, require, module) {
+"use strict";
+
+/**
+* Preloader Class
+*/
+var Preloader = {
+
+  /**
+  * Check an element and hide it until the trigger is loaded itself
+  * Show a loder `.js-loader` if possible
+  */
+  dispatchLoader: function dispatchLoader(element, loader_selector, trigger) {
+
+    $(loader_selector).show();
+    $(element).hide();
+
+    $(trigger).load(function () {
+      $(loader_selector).hide();
+      $(element).show();
+    });
+  }
+
+};
+
+module.exports = Preloader;
 });
 
 require.register("javascripts/lib/translation.js", function(exports, require, module) {

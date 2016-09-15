@@ -12,6 +12,9 @@ class Guest::FeedbackController < ApplicationController
   def bug_report
   end
 
+  def return_application
+  end
+
   def overall_rate
   end
 
