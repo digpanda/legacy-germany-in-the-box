@@ -1,7 +1,7 @@
 describe LanguagesController, :type => :controller  do
 
   render_views # jbuilder requirement
-  
+
   context "guest to the website" do
 
     it "set the language to chinese" do
@@ -25,7 +25,6 @@ describe LanguagesController, :type => :controller  do
       put :update, :id => "wrong"
       expect(session[:locale]).not_to eq("wrong")
       expect(response).to have_http_status(:bad_request)
-      expect(response.body).to have_content 'Bad language'
 
     end
 

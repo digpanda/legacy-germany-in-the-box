@@ -3,6 +3,8 @@ describe WirecardPaymentChecker  do
   context "#update_order_payment!" do
 
     let(:current_user) { FactoryGirl.create(:customer) }
+    before(:each) { VCR.turn_on! }
+    after(:each) { VCR.turn_off! }
 
     it "succeed and update the order payment" do
 

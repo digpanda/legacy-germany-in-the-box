@@ -4,6 +4,9 @@ describe Wirecard::ElasticApi::Transaction do
   TEST_MERCHANT = "dfc3a296-3faf-4a1d-a075-f72f1b67dd2a"
   TEST_TRANSACTION = "af3864e1-0b2b-11e6-9e82-00163e64ea9f"
 
+  before(:each) { VCR.turn_on! }
+  after(:each) { VCR.turn_off! }
+  
   context "#response" do
 
     it 'should return a response hash' do

@@ -6,6 +6,9 @@ describe Wirecard::ElasticApi::Refund do
   TEST_MERCHANT = "dfc3a296-3faf-4a1d-a075-f72f1b67dd2a"
   TEST_TRANSACTION = "6bbaa57c-8e36-47de-8035-10121256d39b"
 
+  before(:each) { VCR.turn_on! }
+  after(:each) { VCR.turn_off! }
+  
   context "#response" do
 
     it 'should return a response hash' do

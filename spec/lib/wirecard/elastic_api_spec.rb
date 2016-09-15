@@ -1,5 +1,8 @@
 describe Wirecard::Hpp do
 
+  before(:each) { VCR.turn_on! }
+  after(:each) { VCR.turn_off! }
+  
   it "can access essential variables after creation" do
 
     valid_merchant = "dfc3a296-3faf-4a1d-a075-f72f1b67dd2a"
