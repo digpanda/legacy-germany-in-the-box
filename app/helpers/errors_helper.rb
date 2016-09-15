@@ -10,14 +10,12 @@ module ErrorsHelper
            layout: "errors/default"
   end
 
+  # force log-in and redirect to the actual page later on
   def throw_unauthorized_page(exception=nil)
     dispatch_error_email(exception)
     flash[:error] = "You are not authorized to access this page"
-    NavigationHistory.new(request, session).store_current # TODO : currently not working well, it redirects on admin panel for some reason -> maybe change to force_current in a special redirection system over the admin redirect
+    NavigationHistory.new(request, session).store(:current, :force)
     redirect_to new_user_session_path
-    #render "errors/unauthorized_page",
-    #       status: :unauthorized,
-    #       layout: "errors/default"
   end
 
   def throw_server_error_page(exception=nil)

@@ -12,18 +12,22 @@ class NavigationHistory
       @location = location
     end
 
-    def add(exceptions=nil)
+    def add(exceptions=nil, option=nil)
 
       return false unless acceptable_request?
       return false if excluded_path?(exceptions)
 
-      # could be a new class but it's useless right now
-      prepare_storage
-      add_storage
-      limit_storage!
-
+      # force add a session and force the last entered URL
+      # and don't add it to the history to avoid bugs
+      if option == :force
+        session[:force_url] = location_path
+      else
+        # could be a new class but it's useless right now
+        prepare_storage
+        add_storage
+        limit_storage!
+      end
       session[:previous_urls]
-
     end
 
     private

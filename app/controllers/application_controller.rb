@@ -12,28 +12,32 @@ class ApplicationController < ActionController::Base
 
   include Mobvious::Rails::Controller
 
-  unless Rails.env.development? || Rails.env.test? # only on staging / production / test otherwise we show the full error
-    rescue_from Exception, :with => :throw_server_error_page
-    rescue_from CanCan::AccessDenied, :with => :throw_unauthorized_page
-    rescue_from Mongoid::Errors::DocumentNotFound, :with => :throw_resource_not_found
+  # handle hard exception (which will throw a page error)
+  # and soft ones even on dev / test (which will usually redirect the customer)
+  unless Rails.env.development? || Rails.env.test?
+
+    around_action :hard_exception_handler
+
+    def hard_exception_handler
+      yield
+    rescue Mongoid::Errors::DocumentNotFound => exception
+      throw_resource_not_found
+    rescue Exception => exception
+      throw_server_error_page
+    ensure
+      dispatch_error_email(exception)
+    end
+
   end
 
-  #around_action :exception_handler
-# WE SHOULD CHANGE THE ERROR HANDLING TO THIS AT SOME POINT
-=begin
-  def exception_handler
+  around_action :soft_exception_handler
+
+  def soft_exception_handler
     yield
-  rescue Mongoid::Errors::DocumentNotFound => exception
-    dispatch_error_email(exception)
-    throw_resource_not_found
-  rescue CanCan::AccessDenied => exception
-    dispatch_error_email(exception)
+  rescue CanCan::AccessDenied
     throw_unauthorized_page
-  rescue Exception => exception
-    dispatch_error_email(exception)
-    throw_server_error_page
   end
-=end
+
 
   protect_from_forgery with: :null_session, :if => Proc.new { |c| c.request.format.html? }
 
@@ -168,6 +172,9 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
+
+    return navigation.force! if navigation.force?
+
     if current_user.decorate.customer?
       session[:locale] = :'zh-CN'
       navigation.back(1)
