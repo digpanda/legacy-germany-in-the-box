@@ -71,7 +71,7 @@ class Order
   end
 
   def total_paid_in_euro
-    Currency.new(total_paid(:cny), 'CNY').display
+    Currency.new(total_paid(:eur)).display
   end
 
 
