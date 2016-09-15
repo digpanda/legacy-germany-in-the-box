@@ -7,3 +7,11 @@ RSpec.configure do |config|
 
   end
 end
+
+Capybara.register_driver :selenium do |app|
+  Capybara::Selenium::Driver.new(app, :browser => :chrome)
+end
+
+Capybara.app_host =  "http://local.dev:3000"
+Capybara.run_server = false
+Capybara.current_driver = :selenium

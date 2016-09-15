@@ -89,10 +89,12 @@ group :development, :test, :staging, :local do
   gem "rspec-rails", "~> 3.0"
   gem "capybara"
   gem "selenium-webdriver"
+  gem "chromedriver-helper"
   #gem "mongoid-rspec", "3.0.0"
   #gem "cucumber-rails", :require => false
   gem "database_cleaner"
   gem "pry-rails"
+
 end
 
 group :development, :local do
