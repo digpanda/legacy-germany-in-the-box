@@ -16,7 +16,7 @@ module ErrorsHelper
     dispatch_error_email(exception)
     flash[:error] = "You are not authorized to access this page"
     if current_user
-      redirect_to NavigationHistory.new(request, session).back(2)
+      redirect_to NavigationHistory.new(request, session).back(1)
     else
       NavigationHistory.new(request, session).store(:current, :force)
       redirect_to new_user_session_path

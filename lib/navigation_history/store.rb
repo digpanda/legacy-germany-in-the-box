@@ -17,15 +17,14 @@ class NavigationHistory
       return false unless acceptable_request?
       return false if excluded_path?(exceptions)
 
-      # could be a new class but it's useless right now
-      prepare_storage
-      add_storage
-      limit_storage!
-
       # force add a session and force the last entered URL
-      # then remove it from history
       if option == :force
-        session[:force_url] = session[:previous_urls].first
+        session[:force_url] = location_path
+      else
+        # normal process without force URL
+        prepare_storage
+        add_storage
+        trim_storage
       end
 
       session[:previous_urls]
@@ -61,7 +60,7 @@ class NavigationHistory
       end
     end
 
-    def limit_storage!
+    def trim_storage
       session[:previous_urls].pop if session[:previous_urls].size > MAX_HISTORY
     end
 
