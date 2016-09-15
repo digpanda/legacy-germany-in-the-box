@@ -4,7 +4,6 @@ class NavigationHistory
 
   DEFAULT_REDIRECT_URL = Rails.application.routes.url_helpers.root_url
   BASE_EXCEPT = %w(/users/sign_in /users/sign_up /users/password/new /users/password/edit /users/confirmation /users/sign_out)
-  FORCE_LIMIT = 5.seconds
 
   attr_reader :request, :session
 
@@ -30,25 +29,17 @@ class NavigationHistory
 
   # is there any force URL stored ?
   def force?
-    session[:force_url] = nil unless acceptable_force_timing?
     session[:force_url] != nil
   end
 
   # destroy the session force URL and return it
   def force!
-    session[:force_time] = Time.now.utc
     force = session[:force_url]
     session[:force_url] = nil
     force
   end
 
   private
-
-  def acceptable_force_timing?
-    return true unless session[:force_time]
-    Time.now.utc > (session[:force_time].to_time.utc + FORCE_LIMIT)
-  end
-
 
   def understood(location)
     if location == :current
