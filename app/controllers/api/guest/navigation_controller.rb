@@ -1,6 +1,8 @@
 class Api::Guest::NavigationController < Api::ApplicationController
 
   def show
+    render status: :not_found,
+           json: throw_error(:resource_not_found).to_json
   end
 
   def update
