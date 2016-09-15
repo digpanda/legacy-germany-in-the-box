@@ -79,7 +79,7 @@ class ApplicationController < ActionController::Base
   def reach_todays_limit?(order, new_price_increase, new_quantity_increase)
     # if the user has logged in, we should check
     # whether the user has reached the limit today and the order itself has reached the the limit today
-    if current_user.present?
+    if current_user
       current_user.decorate.reach_todays_limit?(order, new_price_increase) || order.decorate.reach_todays_limit?(new_price_increase, new_quantity_increase)
     else
     # if not, just check if the order has reached the limit today.
