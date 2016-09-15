@@ -12,11 +12,11 @@ class ApplicationController < ActionController::Base
 
   include Mobvious::Rails::Controller
 
-  #unless Rails.env.development? || Rails.env.test? # only on staging / production / test otherwise we show the full error
+  unless Rails.env.development? || Rails.env.test? # only on staging / production / test otherwise we show the full error
     rescue_from Exception, :with => :throw_server_error_page
     rescue_from CanCan::AccessDenied, :with => :throw_unauthorized_page
     rescue_from Mongoid::Errors::DocumentNotFound, :with => :throw_resource_not_found
-  #end
+  end
 
   #around_action :exception_handler
 # WE SHOULD CHANGE THE ERROR HANDLING TO THIS AT SOME POINT
