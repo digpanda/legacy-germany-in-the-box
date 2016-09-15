@@ -7,7 +7,7 @@ class OrdersController < ApplicationController
 
   decorates_assigned :order, :orders
 
-  before_action :authenticate_user!, :except => [:manage_cart, :add_product]
+  before_action :authenticate_user_with_force!, :except => [:manage_cart, :add_product]
   before_action :set_order, :only => [:show, :destroy, :continue, :download_label]
 
   layout :custom_sublayout, only: [:show_orders]

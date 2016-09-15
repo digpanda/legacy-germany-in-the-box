@@ -72,6 +72,11 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  def authenticate_user_with_force!
+    NavigationHistory.new(request, session).store(:current, :force)
+    authenticate_user!
+  end
+
   def navigation
     @navigation ||= NavigationHistory.new(request, session)
   end
