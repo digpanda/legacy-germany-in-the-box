@@ -8859,34 +8859,38 @@ img.mfp-img {
   .slider__bottom-border {
     border-bottom: thick solid #659443; }
 
-/* line 32, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
-.home-steps {
-  background-color: #659443; }
-  /* line 5, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_home-steps.sass */
-  .home-steps img {
-    max-width: 100%; }
-  /* line 8, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_home-steps.sass */
-  .home-steps a {
+/* line 5, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_home-steps.sass */
+.home-steps img {
+  max-width: 100%; }
+
+/* line 8, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_home-steps.sass */
+.home-steps a {
+  color: #659443; }
+  /* line 11, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_home-steps.sass */
+  .home-steps a:hover {
     color: #659443; }
-    /* line 11, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_home-steps.sass */
-    .home-steps a:hover {
-      color: #659443; }
-  /* line 14, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_home-steps.sass */
-  .home-steps li {
-    margin-left: -1.5em; }
-  /* line 76, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
-  .home-steps__container {
-    background-color: #659443;
-    color: #fdfdfd;
-    margin-top: -3em;
-    min-height: 8em; }
-    /* line 23, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_home-steps.sass */
-    .home-steps__container h2 {
-      color: #fdfdfd;
-      font-size: 2.8em; }
-    /* line 40, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
-    .home-steps__container.\--paragraphs {
-      text-align: left; }
+
+/* line 14, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_home-steps.sass */
+.home-steps li {
+  margin-left: -1.5em; }
+
+/* line 76, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
+.home-steps__container {
+  color: #666;
+  margin-top: -3em; }
+  /* line 40, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
+  .home-steps__container.\--step {
+    padding-top: 5em; }
+    /* line 24, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_home-steps.sass */
+    .home-steps__container.\--step img {
+      max-width: 200px; }
+  /* line 40, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
+  .home-steps__container.\--paragraph {
+    margin-top: 2em;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 70%;
+    text-align: left; }
 
 /* line 3, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_home-marketplace.sass */
 .home-marketplace img {
