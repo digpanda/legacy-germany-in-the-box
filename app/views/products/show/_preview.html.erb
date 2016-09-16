@@ -1,7 +1,6 @@
 <div class="row +centered">
   <div class="product-page__fullsize-image">
-    <div class="+big-spacer"></div>
-    <%= render 'shared/partials/loader' %>
+    <%= render partial: 'shared/partials/loader', locals: { :options => { :spacer => true } } %>
     <img id="main_image" class="magnify-full-image lazy" />
   </div>
 </div>

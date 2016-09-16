@@ -21,27 +21,7 @@
 
 <% if potential_customer? %>
 
-  <div class="+spacer"></div>
-
-  <div class="col-md-8 col-md-push-2 col-md-pull-2 category-blocks">
-
-      <% @categories.in_groups_of(2, false).each do |category_groups| %>
-
-      <div class="row">
-
-        <% category_groups.each do |category| %>
-
-        <%= render partial: "pages/home/category_block", :locals => {:category => category} %>
-
-        <% end %>
-
-      </div>
-
-      <% end %>
-
-    <div class="+spacer"></div>
-
-  </div>
+  <%= render "pages/home/categories" %>
 
 <% else %>
 
