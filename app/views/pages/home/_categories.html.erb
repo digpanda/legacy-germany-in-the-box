@@ -1,23 +1,23 @@
 <div class="+small-spacer"></div>
 
 <div class="row">
-<div class="col-md-8 col-md-push-2 col-md-pull-2 category-blocks">
+  <div class="col-md-8 col-md-push-2 col-md-pull-2 category-blocks">
 
-  <% @categories.in_groups_of(2, false).each do |category_groups| %>
+    <% @categories.in_groups_of(2, false).each do |category_groups| %>
 
-  <div class="row">
+    <div class="row">
 
-    <% category_groups.each do |category| %>
+      <% category_groups.each do |category| %>
 
-    <%= render partial: "pages/home/category_block", :locals => {:category => category} %>
+      <%= render partial: "pages/home/category_block", :locals => {:category => category} %>
+
+      <% end %>
+
+    </div>
 
     <% end %>
 
+    <div class="+spacer"></div>
+
   </div>
-
-  <% end %>
-
-  <div class="+spacer"></div>
-
-</div>
 </div>
