@@ -10,10 +10,8 @@ var GuestFeedback = {
 
       var Preloader = require("javascripts/lib/preloader");
       Preloader.dispatchLoader('#external-script','.js-loader', 'iframe#WJ_survey');
-      
+
     },
-
-
 
 }
 
