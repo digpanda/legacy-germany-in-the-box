@@ -87,7 +87,7 @@
         <%= order_item.product.name_translations[:de] %> (<%= order_item.selected_options(:de).join(', ') %>)
       </td>
       <td>
-        <%= order_item.sku.decorate.price_with_currency_euro %>
+        <%= order_item.decorate.price_with_currency_euro %>
       </td>
       <td>
         <%= order_item.quantity %>
