@@ -38,7 +38,6 @@ class ApplicationController < ActionController::Base
     throw_unauthorized_page
   end
 
-
   protect_from_forgery with: :null_session, :if => Proc.new { |c| c.request.format.html? }
 
   acts_as_token_authentication_handler_for User, if: lambda { |controller| controller.request.format.json? }, :fallback => :none
