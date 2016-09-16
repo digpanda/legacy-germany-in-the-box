@@ -17,6 +17,7 @@ class Order
   field :hermes_pickup_email_sent_at,   type: Time
   field :bill_id, type: String
   field :paid_at, type: Time
+  field :cancelled_at, type: Time
 
   belongs_to :shop,                 :inverse_of => :orders
   belongs_to :user,                 :inverse_of => :orders
@@ -48,7 +49,7 @@ class Order
 
   index({user: 1},  {unique: false,   name: :idx_order_user,   sparse: true})
 
-  after_save :make_bill_id, :update_paid_at
+  after_save :make_bill_id, :update_paid_at, :update_cancelled_at
 
   # refresh order status from payment
   # if the order is still not send / paid, it checks
@@ -96,6 +97,13 @@ class Order
   def update_paid_at
     if paid_at.nil? && status == :paid
       self.paid_at = Time.now.utc
+      self.save
+    end
+  end
+
+  def update_cancelled_at
+    if cancelled_at.nil? && status == :cancelled
+      self.cancelled_at = Time.now.utc
       self.save
     end
   end
