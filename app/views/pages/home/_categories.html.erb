@@ -1,57 +1,23 @@
-<div class="+centered home-steps">
-  <div class="row home-steps__container">
+<div class="+small-spacer"></div>
 
-    <!-- Step 1 -->
-    <div class="col-md-push-1 col-md-4 home-steps__container --step">
-      <div class="row">
-        <img src="/images/mascotte/step1-grey.png">
-      </div>
-      <div class="row home-steps__container --paragraph">
-        为你精挑细选，品质卓越的德国产品。热门个性化皆呈现，趣味多多。去中间化，来因盒的德国厂家及商家给你最具优势的价格！
-      </div>
-    </div>
+<div class="row">
+<div class="col-md-8 col-md-push-2 col-md-pull-2 category-blocks">
 
-    <!-- Step 1 -->
-    <div class="col-md-4 home-steps__container --step">
-      <div class="row">
-        <img src="/images/mascotte/step2-grey.png">
-      </div>
-      <div class="row home-steps__container --paragraph">
-        德国厂家或商家直接仓库发货，100%保证货源，阳光清关，下单后在来因盒里全程追踪。
-      </div>
-    </div>
+  <% @categories.in_groups_of(2, false).each do |category_groups| %>
 
-    <!-- Step 1 -->
-    <div class="col-md-pull-1 col-md-4 home-steps__container --step">
-      <div class="row">
-        <img src="/images/mascotte/step3-grey.png">
-      </div>
-      <div class="row home-steps__container --paragraph">
-        来因盒用最实惠的价格把德国高品质送到你家，体验德国生活品质。
-      </div>
-    </div>
+  <div class="row">
+
+    <% category_groups.each do |category| %>
+
+    <%= render partial: "pages/home/category_block", :locals => {:category => category} %>
+
+    <% end %>
 
   </div>
+
+  <% end %>
+
+  <div class="+spacer"></div>
+
 </div>
-
-  <div class="+small-spacer"></div>
-
-  <div class="col-md-8 col-md-push-2 col-md-pull-2 category-blocks">
-
-      <% @categories.in_groups_of(2, false).each do |category_groups| %>
-
-      <div class="row">
-
-        <% category_groups.each do |category| %>
-
-        <%= render partial: "pages/home/category_block", :locals => {:category => category} %>
-
-        <% end %>
-
-      </div>
-
-      <% end %>
-
-    <div class="+spacer"></div>
-
-  </div>
+</div>
