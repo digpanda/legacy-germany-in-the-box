@@ -31,7 +31,7 @@ class ShopDecorator < Draper::Decorator
   end
 
   def more_new_address?
-    self.addresses.is_only_both.size < [Rails.configuration.max_num_shop_billing_addresses, Rails.configuration.max_num_shop_sender_addresses].min && (self.addresses.is_only_billing.size < Rails.configuration.max_num_shop_billing_addresses || self.addresses.is_only_sender.size < Rails.configuration.max_num_shop_sender_addresses)
+    self.addresses.is_only_both.size < [Rails.configuration.max_num_shop_billing_addresses, Rails.configuration.max_num_shop_sender_addresses].min && (self.addresses.is_only_billing.size < Rails.configuration.max_num_shop_billing_addresses || self.addresses.is_only_shipping.size < Rails.configuration.max_num_shop_sender_addresses)
   end
 
   def more_billing_address?
@@ -51,11 +51,11 @@ class ShopDecorator < Draper::Decorator
   end
 
   def can_change_to_sender?
-    self.shop.addresses.size == 1 || self.shop.addresses.is_only_sender.size < Rails.configuration.max_num_shop_sender_addresses
+    self.shop.addresses.size == 1 || self.shop.addresses.is_only_shipping.size < Rails.configuration.max_num_shop_sender_addresses
   end
 
   def can_change_to_both?
-    self.shop.addresses.size == 1 || self.shop.addresses.is_only_both.size < [Rails.configuration.max_num_shop_billing_addresses, Rails.configuration.max_num_shop_sender_addresses].min && (self.shop.addresses.is_only_billing.size < Rails.configuration.max_num_shop_billing_addresses || self.shop.addresses.is_only_sender.size < Rails.configuration.max_num_shop_sender_addresses)
+    self.shop.addresses.size == 1 || self.shop.addresses.is_only_both.size < [Rails.configuration.max_num_shop_billing_addresses, Rails.configuration.max_num_shop_sender_addresses].min && (self.shop.addresses.is_only_billing.size < Rails.configuration.max_num_shop_billing_addresses || self.shop.addresses.is_only_shipping.size < Rails.configuration.max_num_shop_sender_addresses)
   end
 
   def short_desc(characters=70)
