@@ -5,6 +5,10 @@
   Paid at <strong><%= @order.paid_at.utc %></strong><br />
 <% end %>
 
+<% if @order.cancelled_at %>
+  Cancelled at <strong><%= @order.cancelled_at.utc %><br /></strong>
+<% end %>
+
 <% if @order.minimum_sending_date %>
   Sendable since <strong><%= @order.minimum_sending_date.utc %></strong><br />
 <% end %>
