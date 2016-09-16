@@ -8412,8 +8412,8 @@ img.mfp-img {
 
 /* line 32, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
 .main-footer {
-  padding-top: 1em;
-  padding-bottom: 1em;
+  padding-top: 1.3em;
+  padding-bottom: 1.3em;
   background-color: #659443;
   color: #fdfdfd !important;
   min-height: 100px; }
