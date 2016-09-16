@@ -45,15 +45,8 @@
   <!-- Category + Search Menu -->
   <div class="row category-menu">
 
-    <!-- Search -->
-    <div class="col-md-2 col-md-offset-2">
-      <% if Rails.env.development? %>
-        <%= render partial: "layouts/header/parts/search" %>
-      <% end %>
-    </div>
-
     <!-- Categories Menu -->
-    <div class="col-md-7 col-md-push-1 col-md-pull-1">
+    <div class="col-md-7 col-md-push-5 col-md-pull-1">
       <%= render partial: "layouts/header/parts/menu/categories" %>
     </div>
 
