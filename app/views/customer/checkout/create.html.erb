@@ -5,7 +5,7 @@
 
 <div class="row col-md-8 col-md-push-2 col-md-pull-2 +white-box +centered">
     <img src="/images/mascotte/step3.png" width="400px">
-    <%= render 'shared/partials/loader' %>
+    <%= render partial: 'shared/partials/loader', locals: { :options => {} } %>
     <div class="+spacer"></div>
   <h3>
     <%= I18n.t(:redirect_to_payment, scope: :checkout) %>
