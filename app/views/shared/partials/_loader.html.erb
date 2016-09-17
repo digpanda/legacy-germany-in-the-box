@@ -1,5 +1,5 @@
 <div class="js-loader +green">
-  <% if options&.[](:spacer) %>
+  <% if options.present? && options[:spacer] %>
     <div class="+big-spacer"></div>
   <% end %>
   <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw margin-bottom"></i>
