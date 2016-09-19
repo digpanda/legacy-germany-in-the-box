@@ -7702,6 +7702,13 @@ img.mfp-img {
   pointer-events: auto; }
 
 /* line 85, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
+#csstyle .\+checkout-label {
+  margin: auto;
+  margin-top: -3em;
+  margin-left: -1em;
+  text-transform: uppercase; }
+
+/* line 85, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
 #csstyle .\+overflow {
   overflow-x: auto; }
 
@@ -7718,7 +7725,7 @@ img.mfp-img {
   margin-bottom: 10px;
   margin-top: 10px;
   text-transform: uppercase; }
-  /* line 17, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/helpers/_tweaks.sass */
+  /* line 26, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/helpers/_tweaks.sass */
   #csstyle .\+divider:before, #csstyle .\+divider:after {
     border-top: 3px solid #c9d4d7;
     display: table-cell;
@@ -9218,6 +9225,10 @@ ul.pagination li a {
   /* line 150, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/hooks/_couponia.sass */
   ul.pagination li a:hover {
     color: #659443 !important; }
+
+/* line 1, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/hooks/_bootstrap.sass */
+.label-blue {
+  background-color: #3498db; }
 
 /* line 1, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/hooks/_datepicker.sass */
 .ui-datepicker-prev {
