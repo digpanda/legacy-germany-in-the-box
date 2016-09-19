@@ -1,4 +1,5 @@
-<table class="table cart-table">
+<div class="+overflow">
+<table class="white-table">
   <thead>
     <tr>
       <th>
@@ -39,19 +40,19 @@
       <td>
         <%= select_tag :option_ids, grouped_options_for_select(order_item.product.decorate.grouped_variants_options, order_item.option_ids), {:multiple => 'multiple', :class => 'sku-variants-options'} %>
       </td>
-      <td class="cart-item-quantity">
+      <td class="white-table__quantity">
 
         <% unless @readonly %>
           <a href="#" class="js-set-quantity-minus" data-order-item-id="<%= order_item.id.to_s %>" data-order-shop-id="<%= s %>">
-            <i class="fa fa-minus cart-item-minus"></i>
+            <i class="fa fa-minus"></i>
           </a>
         <% end %>
 
         <%= text_field_tag "", order_item.quantity, :id => "order-item-quantity-#{order_item.id.to_s}", :type => 'text', :value => "#{order_item.quantity}", :disabled => "disabled", :data => { :order_item_id => order_item.id.to_s } %>
-        
+
         <% unless @readonly %>
           <a href="#" class="js-set-quantity-plus" data-order-item-id="<%= order_item.id.to_s %>" data-order-shop-id="<%= s %>">
-            <i class="fa fa-plus cart-item-plus"></i>
+            <i class="fa fa-plus"></i>
           </a>
         <% end %>
 
@@ -63,13 +64,9 @@
         <% end %>
       </td>
       <% unless @readonly %>
-      <td class="cart-item-remove">
+      <td class="white-table__remove">
 
       <%= link_to '', guest_order_item_path(order_item), method: :delete, data: { confirm: I18n.t(:delete_sku_msg, :scope => :cart)  }, "data-placement" => "right",  class: 'fa fa-times' %>
-
-      <!--
-        <%= link_to '', '#', :class => 'fa fa-times', :onclick => "$('#cart-quantity-of-product-#{order_item.product.id}').val(0); $('#orders_adjust_products_amount').submit()" %>
-      -->
 
       </td>
       <% end %>
@@ -77,6 +74,7 @@
     <% end %>
   </tbody>
 </table>
+</div>
 <% unless @readonly %>
 <%= link_to I18n.t(:set_delivery_destination, scope: :cart), set_address_orders_path(s), :class => 'btn btn-primary btn-small' %>
 <% end %>

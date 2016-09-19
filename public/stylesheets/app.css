@@ -8311,6 +8311,74 @@ img.mfp-img {
   margin-bottom: 1em; }
 
 /* line 32, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
+.white-table {
+  background-color: #fdfdfd;
+  padding: 1em;
+  -webkit-border-radius: 1em;
+  -moz-border-radius: 1em;
+  -ms-border-radius: 1em;
+  border-radius: 1em;
+  width: 100%;
+  padding: 2em;
+  margin-bottom: 1em;
+  vertical-align: middle; }
+  /* line 4, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_white-table.sass */
+  .white-table a, .white-table a:active, .white-table a:hover, .white-table a:visited {
+    color: #659443; }
+  /* line 12, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_white-table.sass */
+  .white-table > thead > tr > th {
+    vertical-align: middle;
+    padding: 1em; }
+  /* line 16, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_white-table.sass */
+  .white-table > tbody > tr > td {
+    vertical-align: middle;
+    padding: 1em;
+    border-bottom: #eeeeee solid 1px; }
+  /* line 21, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_white-table.sass */
+  .white-table > thead {
+    border-bottom: #eeeeee solid 2px; }
+  /* line 24, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_white-table.sass */
+  .white-table img {
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    border-radius: 5px; }
+  /* line 28, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_white-table.sass */
+  .white-table__remove > a {
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+    background: #ABABA8;
+    color: #fdfdfd;
+    text-align: center;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    margin-right: 20px;
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+    -o-transition: 0.3s;
+    -ms-transition: 0.3s;
+    transition: 0.3s; }
+    /* line 44, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_white-table.sass */
+    .white-table__remove > a:hover {
+      color: #fdfdfd;
+      background-color: #e74c3c; }
+  /* line 49, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_white-table.sass */
+  .white-table__quantity > input {
+    width: 25px;
+    text-align: center;
+    outline: none;
+    display: inline-block;
+    line-height: 20px;
+    margin: 0 7px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    -webkit-box-shadow: none;
+    box-shadow: none; }
+
+/* line 32, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
 .feedback-blocks {
   padding: 0; }
   /* line 76, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
@@ -8901,6 +8969,26 @@ img.mfp-img {
   /* line 76, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
   .slider__bottom-border {
     border-bottom: thick solid #659443; }
+
+/* line 32, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
+.total-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px 0;
+  font-size: 13px;
+  color: #7d7d7d; }
+  /* line 8, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_total-list.sass */
+  .total-list > li {
+    margin-bottom: 5px; }
+    /* line 11, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_total-list.sass */
+    .total-list > li > span {
+      width: 35%;
+      display: inline-block; }
+    /* line 14, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_total-list.sass */
+    .total-list > li:last-child {
+      font-size: 17px;
+      font-weight: 600;
+      color: #666; }
 
 /* line 32, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
 .home-steps {

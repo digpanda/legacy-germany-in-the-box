@@ -1,0 +1,60 @@
++component(white-table)
+
+  +white-box
+  #{$a-tags}
+    color: $color-green
+
+  width: 100%
+  padding: 2em
+  margin-bottom: 1em
+  vertical-align: middle
+
+  >thead >tr >th
+    vertical-align: middle
+    padding: 1em
+
+  >tbody >tr >td
+    vertical-align: middle
+    padding: 1em
+    border-bottom: $color-grey solid 1px
+
+  >thead
+    border-bottom: $color-grey solid 2px
+
+  img
+    +border-radius(5px)
+
+  +part(remove)
+    > a
+      display: inline-block
+      width: 25px
+      height: 25px
+      line-height: 25px
+      background: $color-dark-grey
+      color: $color-white
+      text-align: center
+      -webkit-border-radius: 50%
+      border-radius: 50%
+      margin-right: 20px
+      -webkit-transition: 0.3s
+      -moz-transition: 0.3s
+      -o-transition: 0.3s
+      -ms-transition: 0.3s
+      transition: 0.3s
+      &:hover
+        color: $color-white
+        background-color: $color-red
+
+  +part(quantity)
+    > input
+      width: 25px
+      text-align: center
+      outline: none
+      display: inline-block
+      line-height: 20px
+      margin: 0 7px
+      -webkit-border-radius: 4px
+      border-radius: 4px
+      border: 1px solid #ccc
+      -webkit-box-shadow: none
+      box-shadow: none
