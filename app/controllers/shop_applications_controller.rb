@@ -14,9 +14,6 @@ class ShopApplicationsController < ApplicationController
     @shop_applications = ShopApplication.all
   end
 
-  def show
-  end
-
   def destroy
 
     unless @shop_application.destroy

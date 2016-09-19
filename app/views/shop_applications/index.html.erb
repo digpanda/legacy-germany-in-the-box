@@ -18,22 +18,22 @@
       </th>
     </thead>
     <tbody>
-      <% @shop_applications.each do |a| %>
+      <% @shop_applications.each do |address| %>
         <tr>
           <td>
-            <%= link_to a.email, shop_application_path(a, :user_info_edit_part => :edit_shop_applications) %>
+            <%= address.email %>
           </td>
           <td>
-            <%= a.name %>
+            <%= address.name %>
           </td>
           <td>
-            <%= a.code[0,8] unless a.code.nil? %>
+            <%= address.code[0,8] unless address.code.nil? %>
           </td>
           <td>
-            <%= a.c_at.strftime('%Y-%m-%d %H:%M:%S') %>
+            <%= address.c_at.strftime('%Y-%m-%d %H:%M:%S') %>
           </td>
           <td>
-            <%= link_to '', shop_application_path(a), :method => :delete, data: { confirm: I18n.t(:delete_application_message, scope: :edit_shop_applications) }, :class => 'fa fa-times-circle fa-2x', :title => I18n.t(:remove, scope: :edit_shop_applications) %>
+            <%= link_to '', shop_application_path(address), :method => :delete, data: { confirm: I18n.t(:delete_application_message, scope: :edit_shop_applications) }, :class => 'fa fa-times-circle fa-2x', :title => I18n.t(:remove, scope: :edit_shop_applications) %>
           </td>
         </tr>
       <% end %>
