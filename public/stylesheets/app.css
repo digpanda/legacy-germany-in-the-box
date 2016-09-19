@@ -7705,7 +7705,7 @@ img.mfp-img {
 #csstyle .\+checkout-label {
   margin: auto;
   margin-top: -3em;
-  margin-left: -1em;
+  margin-left: -0.5em;
   text-transform: uppercase; }
 
 /* line 85, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
