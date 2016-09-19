@@ -15,9 +15,11 @@
       <div class="col-md-1 pull-right +centered">
       </div>
       <div class="col-md-1 pull-right +centered">
-        <div class="label label-blue +checkout-label">
-          Checkout
-        </div>
+        <% if total_number_of_products > 0 %>
+          <div class="label label-blue +checkout-label">
+            Checkout
+          </div>
+        <% end %>
         <div class="+micro-spacer"></div>
       </div>
       <div class="col-md-1 pull-right +centered">
