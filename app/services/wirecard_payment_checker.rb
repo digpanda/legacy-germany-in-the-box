@@ -2,7 +2,7 @@
 # this is a double check usually made after the checkout process of our customers.
 class WirecardPaymentChecker < BaseService
 
-  VALID_FINALIZED_TRANSACTION_STATE = [:debit, :purchase]
+  VALID_FINALIZED_TRANSACTION_STATE = [:debit, :purchase, :'refund-purchase', :'refund-debit']
 
   attr_reader :transaction_id, :merchant_id, :request_id
   attr_accessor :order_payment
