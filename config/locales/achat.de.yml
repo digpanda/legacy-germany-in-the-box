@@ -306,7 +306,7 @@ de:
     open: Öffnen
     override_maximal_total: Pro Tag können Sie bei usnerer Plattform mehrere Produkte nur in der Höhe unter  %{total} %{currency} kaufen.
     label: Label
-    download: Runterladen
+    download: Herunterladen
     shipping_cost: Logistik Gebühren
     tax_and_duty_cost: Zoll Gebühren
     total_sum: Insgesamt
