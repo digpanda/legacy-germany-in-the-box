@@ -8387,11 +8387,11 @@ img.mfp-img {
     border-radius: 1em; }
 
 /* line 76, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
-.mobile-category-menu__left {
-  float: left;
+.mobile-category-menu__right {
+  float: right;
   padding-top: 0.3em; }
   /* line 40, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
-  .mobile-category-menu__left.\--checkout {
+  .mobile-category-menu__right.\--checkout {
     position: relative;
     background-color: #3498db;
     text-align: center;
@@ -9376,6 +9376,11 @@ html.magnifying > body {
 /* line 34, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/hooks/_magnify.sass */
 .magnify-full-image {
   max-width: 100%; }
+
+/* line 1, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/hooks/_slicknav.sass */
+.slicknav_btn {
+  float: left;
+  margin-left: 1em; }
 
 /* line 1, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/_global.sass */
 .tips-template {

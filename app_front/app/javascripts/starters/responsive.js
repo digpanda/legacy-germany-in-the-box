@@ -17,8 +17,9 @@ var Responsive = { // CURRENTLY NOT IN USED IN THE SYSTEM
       $('#categories-menu').slicknav({
 
         "prependTo": ".mobile-category-menu", //".container-fluid"
-        "label": 'MENU' // to translate
-
+        "label": 'MENU', // to translate
+        "closeOnClick": true
+        
       });
 
       // We hook the slicknav menu with some HTML content
