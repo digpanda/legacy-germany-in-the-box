@@ -1828,7 +1828,7 @@ var LeftMenu = {
     },
 
     /**
-     * 
+     *
      */
     startLeftMenu: function startLeftMenu() {
 
@@ -2207,9 +2207,16 @@ var Responsive = { // CURRENTLY NOT IN USED IN THE SYSTEM
 
     $('#categories-menu').slicknav({
 
-      "prependTo": ".mobile-category-menu" //".container-fluid"
+      "prependTo": ".mobile-category-menu", //".container-fluid"
+      "label": 'MENU' // to translate
 
     });
+
+    // We hook the slicknav menu with some HTML content
+    // It will occur after the menu is ready.
+    // To stay clean it takes an invisible element within the HTML
+    var left_side_content = $('#categories-menu-left-side').html();
+    $('.slicknav_menu').prepend(left_side_content);
   }
 
 };

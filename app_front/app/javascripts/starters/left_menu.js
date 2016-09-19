@@ -13,7 +13,7 @@ var LeftMenu = {
     },
 
     /**
-     * 
+     *
      */
     startLeftMenu: function() {
 
@@ -41,4 +41,3 @@ var LeftMenu = {
 }
 
 module.exports = LeftMenu;
-
