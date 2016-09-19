@@ -236,9 +236,9 @@ class ApplicationController < ActionController::Base
 
   def _current_order(shop_id)
     if has_order?(shop_id)
-      order = Order.find(session[:order_ids][shop_id])
+      order = Order.where(id: session[:order_ids][shop_id]).first
 
-      if order.status == :success
+      if order && order.status == :success
         reset_shop_id_from_session(shop_id)
         order = nil
       end
