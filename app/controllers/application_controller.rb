@@ -99,7 +99,7 @@ class ApplicationController < ActionController::Base
   end
 
   def custom_sublayout
-    "sublayout/_#{current_user.role}"
+    "sublayout/_menu"
   end
 
   def current_order(shop_id)
