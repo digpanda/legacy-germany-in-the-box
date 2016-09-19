@@ -22,16 +22,11 @@ Rails.application.configure do
   Rails.application.routes.default_url_options = {host: 'germanyinthebox.com', port: 80}
 
   config.action_mailer.default_url_options = {host: 'germanyinthebox.com', port: 80}
-  config.action_mailer.delivery_method = :smtp
 
-  config.action_mailer.smtp_settings = {
-      address: "smtp.gmail.com",
-      port: 587,
-      domain: 'gmail.com',
-      authentication: "plain",
-      enable_starttls_auto: true,
-      user_name: 'germanyinthebox@gmail.com',
-      password: 'pandarocks'
+  config.action_mailer.delivery_method = :mailgun
+  config.action_mailer.mailgun_settings = {
+          api_key: 'germanyinthebox.com',
+          domain: 'key-57fccf0c1fa0bf601a25865e43e0f742'
   }
 
   config.active_support.deprecation = :notify

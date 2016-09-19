@@ -11,6 +11,7 @@ gem "delayed_job_mongoid"
 gem "daemons"
 gem "turnout"
 gem "business_time"
+gem "mailgun_rails"
 gem "whenever", :require => false # cron job handling
 gem "wkhtmltopdf-binary" # pdf generation (we need it coupled with wicked_pdf)
 gem "wicked_pdf" # pdf generation
