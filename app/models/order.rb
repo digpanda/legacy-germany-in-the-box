@@ -31,7 +31,7 @@ class Order
   scope :nonempty,    ->  {  where( :order_items_count.gt => 0 ) }
   scope :bought,      ->  { self.in( :status => [:paid, :custom_checkable, :custom_checking, :shipped] ) }
   scope :bought_or_cancelled, -> { self.in( :status => [:paid, :custom_checkable, :custom_checking, :shipped, :cancelled] ) }
-  scope :bought_or_unverified,      ->  { self.in( :status => [:payment_unverified, :paid, :custom_checkable, :custom_checking, :shipped] ) }
+  scope :bought_or_unverified,      ->  { self.in( :status => [:payment_unverified, :paid, :custom_checkable, :custom_checking, :shipped] ) } # cancelled isn't included in this
 
   # :new -> didn't try to pay
   # :paying -> is inside the process of payment
