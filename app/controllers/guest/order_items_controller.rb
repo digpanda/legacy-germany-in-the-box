@@ -1,6 +1,5 @@
 class Guest::OrderItemsController < ApplicationController
 
-  load_and_authorize_resource
   before_action :set_order_item
 
   attr_reader :order_item
