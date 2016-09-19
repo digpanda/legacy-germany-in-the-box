@@ -68,7 +68,7 @@ class OrderDecorator < Draper::Decorator
   end
 
   def cancellable?
-    status != :cancelled
+    status != :cancelled && status != :unverified
   end
 
   def processable_time?
