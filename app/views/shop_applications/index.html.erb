@@ -1,4 +1,4 @@
-<% if @applications.size > 0 %>
+<% if @shop_applications.size > 0 %>
   <table class="white-table">
     <thead>
       <th>
@@ -18,7 +18,7 @@
       </th>
     </thead>
     <tbody>
-      <% @applications.each do |a| %>
+      <% @shop_applications.each do |a| %>
         <tr>
           <td>
             <%= link_to a.email, shop_application_path(a, :user_info_edit_part => :edit_shop_applications) %>

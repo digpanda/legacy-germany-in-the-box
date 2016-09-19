@@ -3128,141 +3128,19 @@ ul.dropdown-menu {
   font-size: 13px; }
 
 /* line 2487, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
-.cart-table {
-  padding: 20px;
-  -webkit-box-shadow: 0 3px 1px rgba(0, 0, 0, 0.2);
-  box-shadow: 0 3px 1px rgba(0, 0, 0, 0.2);
-  background: #fff;
-  -webkit-border-radius: 5px;
-  border-radius: 5px; }
-
-/* line 2495, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
-.cart-table > thead > tr > td,
-.cart-table > tbody > tr > td,
-.cart-table > tfoot > tr > td,
-.cart-table > thead > tr > th,
-.cart-table > tbody > tr > th,
-.cart-table > tfoot > tr > th {
-  padding: 10px 15px;
-  vertical-align: middle; }
-
-/* line 2504, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
-.cart-table > thead > tr > td:last-child,
-.cart-table > tbody > tr > td:last-child,
-.cart-table > tfoot > tr > td:last-child,
-.cart-table > thead > tr > th:last-child,
-.cart-table > tbody > tr > th:last-child,
-.cart-table > tfoot > tr > th:last-child {
-  text-align: right; }
-
-/* line 2512, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
-.cart-table > thead > tr > th,
-.cart-table > tbody > tr > th,
-.cart-table > tfoot > tr > th {
-  border-width: 1px;
-  font-weight: 400;
-  font-size: 16px; }
-
-/* line 2519, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
-.cart-table .cart-item-image img {
-  width: auto;
-  -webkit-border-radius: 4px;
-  border-radius: 4px; }
-
-/* line 2524, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
-.cart-table .cart-item-remove > a {
-  display: inline-block;
-  width: 25px;
-  height: 25px;
-  line-height: 25px;
-  background: #999;
-  color: #fff;
-  text-align: center;
-  -webkit-border-radius: 50%;
-  border-radius: 50%;
-  margin-right: 20px;
-  -webkit-transition: 0.3s;
-  -moz-transition: 0.3s;
-  -o-transition: 0.3s;
-  -ms-transition: 0.3s;
-  transition: 0.3s; }
-
-/* line 2541, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
-.cart-table .cart-item-remove > a:hover {
-  background: #808080; }
-
-/* line 2544, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
-.cart-table .cart-item-quantity > input {
-  width: 25px;
-  text-align: center;
-  outline: none;
-  display: inline-block;
-  line-height: 20px;
-  margin: 0 7px;
-  -webkit-border-radius: 4px;
-  border-radius: 4px;
-  border: 1px solid #ccc;
-  -webkit-box-shadow: none;
-  box-shadow: none; }
-
-/* line 2557, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
-.cart-table .cart-item-quantity .cart-item-minus,
-.cart-table .cart-item-quantity .cart-item-plus {
-  -webkit-transition: 0.3s;
-  -moz-transition: 0.3s;
-  -o-transition: 0.3s;
-  -ms-transition: 0.3s;
-  transition: 0.3s;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  cursor: pointer;
-  color: #b3b3b3;
-  font-size: 12px; }
-
-/* line 2572, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
-.cart-table .cart-item-quantity .cart-item-minus:hover,
-.cart-table .cart-item-quantity .cart-item-plus:hover {
-  color: #666; }
-
-/* line 2576, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
-.cart-total-list {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 20px 0;
-  font-size: 13px;
-  color: #7d7d7d; }
-
-/* line 2583, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
-.cart-total-list > li {
-  margin-bottom: 5px; }
-
-/* line 2586, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
-.cart-total-list > li > span {
-  width: 35%;
-  display: inline-block; }
-
-/* line 2590, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
-.cart-total-list > li:last-child {
-  font-size: 17px;
-  font-weight: 600;
-  color: #666; }
-
-/* line 2595, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .thumb-list {
   list-style: none;
   margin: 0;
   padding: 0; }
 
-/* line 2600, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 2492, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .thumb-list > li {
   margin-bottom: 7px;
   padding-bottom: 7px;
   border-bottom: 1px dashed #e6e6e6;
   overflow: hidden; }
 
-/* line 2606, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 2498, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .thumb-list > li img {
   float: left;
   width: 50px;
@@ -3270,41 +3148,41 @@ ul.dropdown-menu {
   -webkit-border-radius: 3px;
   border-radius: 3px; }
 
-/* line 2613, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 2505, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .thumb-list > li .thumb-list-item-caption {
   display: table; }
 
-/* line 2616, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 2508, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .thumb-list > li .thumb-list-item-caption .icon-list-rating {
   font-size: 9px;
   color: #48aad6;
   margin-bottom: -3px; }
 
-/* line 2621, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 2513, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .thumb-list > li .thumb-list-item-caption .icon-list-rating.icon-list-non-rated {
   color: #858585 !important; }
 
-/* line 2624, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 2516, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .thumb-list > li .thumb-list-item-caption .thumb-list-item-title {
   font-size: 13px;
   margin-bottom: 3px;
   margin-top: 2px; }
 
-/* line 2629, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 2521, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .thumb-list > li .thumb-list-item-caption .thumb-list-item-title a {
   color: #5c5c5c; }
 
-/* line 2632, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 2524, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .thumb-list > li .thumb-list-item-caption .thumb-list-item-title a:hover {
   text-decoration: underline; }
 
-/* line 2635, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 2527, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .thumb-list > li .thumb-list-item-caption .thumb-list-item-desciption {
   font-size: 12px;
   margin: 0;
   color: #8c8c8c; }
 
-/* line 2640, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 2532, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .thumb-list > li .thumb-list-item-caption .thumb-list-item-meta {
   margin-bottom: 5px;
   line-height: 1em;
@@ -3312,31 +3190,31 @@ ul.dropdown-menu {
   color: #858585;
   font-style: italic; }
 
-/* line 2647, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 2539, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .thumb-list > li .thumb-list-item-caption .thumb-list-item-price {
   font-size: 16px;
   color: #757575;
   margin-bottom: 0; }
 
-/* line 2652, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 2544, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .thumb-list > li .thumb-list-item-caption .thumb-list-item-author {
   font-size: 11px;
   color: #858585;
   font-style: italic; }
 
-/* line 2657, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 2549, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .thumb-list > li:last-child {
   margin-bottom: 0;
   padding-bottom: 0;
   border: none; }
 
-/* line 2662, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 2554, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .thumb-list.thumb-list-right > li img {
   float: right;
   margin-right: 0;
   margin-left: 10px; }
 
-/* line 2667, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 2559, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .vert-center {
   left: 50%;
   right: 0;
@@ -3348,7 +3226,7 @@ ul.dropdown-menu {
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%); }
 
-/* line 2678, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 2570, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .slider-caption {
   padding: 20px 30px;
   background: rgba(0, 0, 0, 0.5);
@@ -3357,7 +3235,7 @@ ul.dropdown-menu {
   border-radius: 5px;
   display: table; }
 
-/* line 2686, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 2578, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .slider-caption.slider-caption-bottom {
   position: absolute;
   bottom: 0;
@@ -3366,7 +3244,7 @@ ul.dropdown-menu {
   -webkit-border-radius: 0;
   border-radius: 0; }
 
-/* line 2694, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 2586, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .bg-cover {
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -3375,16 +3253,16 @@ ul.dropdown-menu {
   background-position: center center;
   background-repeat: no-repeat; }
 
-/* line 2702, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 2594, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .bg-white {
   background-color: #fff; }
 
-/* line 2705, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 2597, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .bg-holder {
   position: relative;
   overflow: hidden; }
 
-/* line 2709, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 2601, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .bg-holder > .bg-mask,
 .bg-holder > .bg-blur,
 .bg-holder > .bg-mask-darken,
@@ -3397,13 +3275,13 @@ ul.dropdown-menu {
   -moz-background-size: cover;
   background-size: cover; }
 
-/* line 2721, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 2613, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .bg-holder > .bg-mask,
 .bg-holder > .bg-parallax {
   width: 100%;
   height: 100%; }
 
-/* line 2726, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 2618, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .bg-holder > .bg-mask,
 .bg-holder > .bg-mask-darken,
 .bg-holder > .bg-mask-lighten,
@@ -3418,35 +3296,35 @@ ul.dropdown-menu {
   filter: alpha(opacity=50);
   background: #000; }
 
-/* line 2740, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 2632, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .bg-holder > .bg-mask-lighten {
   opacity: 0.3;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
   filter: alpha(opacity=30); }
 
-/* line 2745, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 2637, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .bg-holder > .bg-mask-darken {
   opacity: 0.8;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
   filter: alpha(opacity=80); }
 
-/* line 2750, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 2642, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .bg-holder > .bg-mask-color {
   background: #49D2BE; }
 
-/* line 2753, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 2645, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .bg-holder > .bg-mask-white {
   background: #fff; }
 
 /*.bg-holder > .bg-mask-color-invert {
   background: $base_color_invert;
 }*/
-/* line 2759, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 2651, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .bg-holder > .bg-parallax {
   background-position: 50% 0;
   background-attachment: fixed; }
 
-/* line 2763, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 2655, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .bg-holder > .bg-blur {
   width: 50% !important;
   height: 50% !important;
@@ -3469,7 +3347,7 @@ ul.dropdown-menu {
   filter: blur(2px);
   z-index: 0; }
 
-/* line 2785, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 2677, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .bg-holder > .bg-blur:before {
   content: '';
   -webkit-backface-visibility: hidden;
@@ -3477,20 +3355,20 @@ ul.dropdown-menu {
   -ms-backface-visibility: hidden;
   backface-visibility: hidden; }
 
-/* line 2792, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 2684, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .bg-holder > .bg-blur.bg-parallax {
   background-attachment: scroll; }
 
-/* line 2795, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 2687, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .bg-holder > .bg-holder-content {
   position: relative;
   z-index: 6; }
 
-/* line 2799, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 2691, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .bg-holder > .bg-front {
   z-index: 6; }
 
-/* line 2802, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 2694, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .address-box {
   position: relative;
   -webkit-border-radius: 5px;
@@ -3499,7 +3377,7 @@ ul.dropdown-menu {
   padding: 10px 15px;
   display: block; }
 
-/* line 2810, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 2702, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .address-box .address-box-remove,
 .address-box .address-box-edit {
   position: absolute;
@@ -3521,44 +3399,44 @@ ul.dropdown-menu {
   -ms-transition: 0.3s;
   transition: 0.3s; }
 
-/* line 2831, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 2723, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .address-box .address-box-remove:before,
 .address-box .address-box-edit:before {
   font-family: 'FontAwesome';
   content: '\f00d'; }
 
-/* line 2836, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 2728, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .address-box .address-box-edit {
   margin-top: 27px; }
 
-/* line 2839, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 2731, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .address-box .address-box-edit:before {
   content: '\f040'; }
 
-/* line 2842, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 2734, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .address-box > ul {
   list-style: none;
   padding-left: 0;
   font-size: 13px;
   padding-right: 20px; }
 
-/* line 2848, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 2740, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .address-box > ul li {
   margin-bottom: 3px; }
 
-/* line 2851, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 2743, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .address-box.address-box-new {
   height: 141px;
   width: 100%;
   text-align: center; }
 
-/* line 2856, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 2748, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .address-box.address-box-new p {
   color: #858585;
   font-size: 12px;
   margin-bottom: 0; }
 
-/* line 2861, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 2753, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .address-box .address-box-new-icon {
   font-size: 30px;
   background: #737373;
@@ -3576,61 +3454,61 @@ ul.dropdown-menu {
   -ms-transition: 0.3s;
   transition: 0.3s; }
 
-/* line 2878, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 2770, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .address-box:hover .address-box-remove,
 .address-box:hover .address-box-edit {
   background: #565a5c;
   color: #fff; }
 
-/* line 2883, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 2775, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .address-box:hover .address-box-remove:hover,
 .address-box:hover .address-box-edit:hover {
   background: #31B3A0; }
 
-/* line 2887, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 2779, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .address-box:hover .address-box-new-icon {
   background: #31B3A0; }
 
-/* line 2890, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 2782, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .table-order {
   padding: 20px;
   background: #fff;
   -webkit-border-radius: 5px;
   border-radius: 5px; }
 
-/* line 2896, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 2788, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .table-order .table-order-img img {
   width: 50px;
   -webkit-border-radius: 5px;
   border-radius: 5px; }
 
-/* line 2901, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 2793, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .table-order td {
   vertical-align: middle !important;
   font-size: 13px; }
 
-/* line 2905, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 2797, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .table-order th {
   border-bottom: none !important;
   font-weight: normal; }
 
-/* line 2909, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 2801, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .panel-default > .panel-heading {
   background: #fff;
   padding: 0; }
 
-/* line 2913, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 2805, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .panel-title {
   font-weight: 400; }
 
-/* line 2916, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 2808, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .panel-title > a {
   display: block;
   position: relative;
   padding: 10px 15px;
   background: #fff; }
 
-/* line 2922, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 2814, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .panel-title > a:before {
   font-family: 'FontAwesome';
   content: '\f107';
@@ -3639,46 +3517,46 @@ ul.dropdown-menu {
   top: 10px;
   right: 15px; }
 
-/* line 2930, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 2822, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .row-no-gutter {
   margin: 0 !important; }
 
-/* line 2933, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 2825, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .row-no-gutter > [class^="col-"] {
   padding: 0 !important; }
 
-/* line 2936, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 2828, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .team-member {
   text-align: center; }
 
-/* line 2939, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 2831, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .team-member > img {
   margin-bottom: 10px;
   -webkit-border-radius: 4px;
   border-radius: 4px; }
 
-/* line 2944, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 2836, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .team-member .team-member-position {
   font-style: italic;
   margin-bottom: 5px; }
 
-/* line 2948, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 2840, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .team-member .team-member-desciption {
   font-size: 13px;
   color: #858585; }
 
-/* line 2952, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 2844, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .team-member .team-member-social {
   list-style: none;
   margin: 0;
   padding: 0; }
 
-/* line 2957, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 2849, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .team-member .team-member-social > li {
   display: inline-block;
   margin: 0 3px; }
 
-/* line 2961, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 2853, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .team-member .team-member-social > li .fa {
   display: block;
   width: 28px;
@@ -3694,11 +3572,11 @@ ul.dropdown-menu {
   -ms-transition: 0.3s;
   transition: 0.3s; }
 
-/* line 2976, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 2868, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .team-member .team-member-social > li .fa:hover {
   background: #31B3A0; }
 
-/* line 2979, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 2871, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .breadcrumb {
   background: none;
   padding: 5px 10px;
@@ -3709,26 +3587,26 @@ ul.dropdown-menu {
   border-radius: 0;
   text-align: center; }
 
-/* line 2989, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 2881, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .breadcrumb > li + li:before {
   content: '\f105';
   font-family: 'FontAwesome';
   padding: 0 7px; }
 
-/* line 2994, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 2886, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .tags-list {
   list-style: none;
   margin: 0;
   padding: 0;
   margin-bottom: -7px; }
 
-/* line 3000, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 2892, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .tags-list > li {
   display: inline-block;
   margin-right: 7px;
   margin-bottom: 7px; }
 
-/* line 3005, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 2897, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .tags-list > li > a {
   display: inline-block;
   padding: 5px 7px;
@@ -3745,7 +3623,7 @@ ul.dropdown-menu {
   transition: 0.3s;
   position: relative; }
 
-/* line 3021, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 2913, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .tags-list > li > a:before {
   content: '';
   position: absolute;
@@ -3758,24 +3636,24 @@ ul.dropdown-menu {
   left: 5px;
   margin-top: -3px; }
 
-/* line 3033, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 2925, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .tags-list > li > a:hover {
   background: #247aa1; }
 
-/* line 3036, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 2928, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .blog-category-list > li {
   margin-bottom: 7px;
   padding-bottom: 7px;
   border-bottom: 1px dashed #ededed; }
 
-/* line 3041, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 2933, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .blog-category-list > li:last-child {
   margin: 0;
   padding: 0;
   border: none; }
 
 @media (max-width: 992px) {
-  /* line 3047, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+  /* line 2939, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
   .col-masonry > div {
     margin: 0 15px; } }
 
@@ -3784,7 +3662,7 @@ ul.dropdown-menu {
 ****************PLUGIN STYLES********************
 ************************************************/
 /*COUNTDOWN*/
-/* line 3056, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 2948, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .countdown {
   width: 400px;
   overflow: hidden;
@@ -3792,38 +3670,38 @@ ul.dropdown-menu {
   margin: 20px 0;
   display: table; }
 
-/* line 3063, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 2955, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .countdown > div {
   display: table-cell; }
 
-/* line 3066, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 2958, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .countdown > div > span {
   display: block;
   text-align: center; }
 
-/* line 3070, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 2962, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 span.count {
   font-size: 48px;
   line-height: 48px; }
 
-/* line 3074, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 2966, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .countdown.countdown-inline {
   width: 100%;
   margin: 10px 0 0 0;
   height: auto; }
 
-/* line 3079, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 2971, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .countdown.countdown-inline > div {
   display: inline; }
 
-/* line 3082, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 2974, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .countdown.countdown-inline > div:first-child span.count {
   font-size: 25px;
   font-weight: bold;
   margin-right: 5px;
   color: #49D2BE; }
 
-/* line 3088, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 2980, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .countdown.countdown-inline > div:first-child span.title {
   font-size: 20px;
   font-weight: bold;
@@ -3831,53 +3709,53 @@ span.count {
   margin-right: 10px;
   color: #49D2BE; }
 
-/* line 3095, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 2987, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .countdown.countdown-inline > div:first-child span.count:after,
 .countdown.countdown-inline > div:last-child span.count:after {
   content: '';
   margin: 0; }
 
-/* line 3100, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 2992, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .countdown.countdown-inline > div > span {
   display: inline;
   line-height: 1em; }
 
-/* line 3104, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 2996, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .countdown.countdown-inline > div span.count {
   font-size: 20px; }
 
-/* line 3107, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 2999, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .countdown.countdown-inline > div span.count:after {
   content: ':';
   margin: 0 2px; }
 
-/* line 3111, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3003, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .countdown.countdown-inline > div span.title {
   display: none; }
 
-/* line 3114, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3006, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .countdown-big {
   margin: 20px auto;
   padding: 15px 0;
   border-top: 1px solid rgba(255, 255, 255, 0.15);
   border-bottom: 1px solid rgba(255, 255, 255, 0.15); }
 
-/* line 3120, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3012, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .countdown-big .title {
   color: rgba(255, 255, 255, 0.7); }
 
 /*END COUNTDOWN*/
 /*BOOTSTRAP CAROUSEL*/
-/* line 3125, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3017, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .carousel {
   margin-bottom: 0; }
 
-/* line 3128, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3020, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .carousel img {
   max-width: none;
   width: 100%; }
 
-/* line 3132, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3024, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .carousel .carousel-control {
   -webkit-border-radius: 0;
   border-radius: 0;
@@ -3893,29 +3771,29 @@ span.count {
   font-size: 14px;
   color: #fff; }
 
-/* line 3147, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3039, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .carousel .carousel-control:hover {
   color: #fff; }
 
-/* line 3150, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3042, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .carousel .carousel-control:before {
   font-family: 'FontAwesome'; }
 
-/* line 3153, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3045, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .carousel .carousel-control.right:before {
   content: '\f054'; }
 
-/* line 3156, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3048, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .carousel .carousel-control.left:before {
   content: '\f053'; }
 
-/* line 3159, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3051, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .carousel .carousel-caption {
   color: #fff; }
 
 /*END BOOTSTRAP CAROUSEL*/
 /*FLEXNAV*/
-/* line 3164, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3056, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .flexnav {
   margin: 0;
   *zoom: 1;
@@ -3932,42 +3810,42 @@ span.count {
   transform-style: preserve-3d;
   z-index: 100; }
 
-/* line 3180, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3072, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .flexnav ul {
   list-style: none;
   margin-left: 0;
   padding-left: 0; }
 
-/* line 3185, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3077, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .flexnav:after {
   content: '';
   display: table;
   clear: both; }
 
-/* line 3190, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3082, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .flexnav.one-page {
   position: fixed;
   top: 50px;
   right: 5%;
   max-width: 200px; }
 
-/* line 3196, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3088, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .flexnav li {
   margin: 0 !important;
   position: relative; }
 
-/* line 3200, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3092, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .flexnav li.active > a {
   background: #49D2BE;
   color: #fff;
   border-color: #49D2BE !important; }
 
-/* line 3205, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3097, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .flexnav li.active > a:hover {
   background: #49D2BE;
   color: #fff; }
 
-/* line 3209, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3101, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .flexnav li a {
   margin: 0;
   position: relative;
@@ -3975,12 +3853,12 @@ span.count {
   padding: 10px 15px;
   background: #fff; }
 
-/* line 3216, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3108, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .flexnav li > a {
   line-height: 1em;
   text-decoration: none; }
 
-/* line 3220, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3112, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .touch-button {
   position: absolute;
   z-index: 999;
@@ -3995,24 +3873,24 @@ span.count {
   background: #49D2BE;
   color: #fff; }
 
-/* line 3234, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3126, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .touch-button:before {
   content: '\f078';
   -webkit-font-smoothing: antialiased; }
 
-/* line 3238, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3130, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .touch-button:hover {
   cursor: pointer; }
 
-/* line 3241, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3133, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .touch-button.active {
   background: #247aa1; }
 
-/* line 3244, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3136, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .touch-button.active:before {
   content: '\f077'; }
 
-/* line 3247, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3139, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .flexnav-menu-button {
   margin-bottom: 10px;
   position: relative;
@@ -4023,14 +3901,14 @@ span.count {
   color: #fff;
   font-size: 20px; }
 
-/* line 3257, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3149, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .flexnav-menu-button.one-page {
   position: fixed;
   top: 0;
   right: 5%;
   padding-right: 45px; }
 
-/* line 3263, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3155, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .flexnav-menu-button .touch-button {
   background: none;
   width: 60px;
@@ -4038,21 +3916,21 @@ span.count {
   line-height: 60px;
   font-size: 20px; }
 
-/* line 3270, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3162, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .flexnav-menu-button .touch-button:before {
   content: '\f0c9'; }
 
 @media all and (min-width: 800px) {
-  /* line 3274, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+  /* line 3166, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
   .flexnav {
     overflow: visible; }
-  /* line 3277, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+  /* line 3169, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
   .flexnav > li > ul {
     padding-top: 0; }
-  /* line 3280, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+  /* line 3172, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
   .flexnav > li > ul a {
     line-height: 1.4em; }
-  /* line 3283, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+  /* line 3175, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
   .flexnav a {
     -webkit-transition: 0.3s;
     -moz-transition: 0.3s;
@@ -4060,62 +3938,62 @@ span.count {
     -ms-transition: 0.3s;
     transition: 0.3s;
     font-size: 13px; }
-  /* line 3291, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+  /* line 3183, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
   .flexnav > li > a {
     background: none;
     color: #fff;
     height: 50px;
     line-height: 50px;
     padding: 0 15px; }
-  /* line 3298, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+  /* line 3190, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
   .flexnav > li > a:hover {
     background: #edefed;
     color: #49d2be; }
-  /* line 3302, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+  /* line 3194, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
   .flexnav li {
     overflow: visible; }
-  /* line 3305, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+  /* line 3197, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
   .flexnav li .touch-button {
     display: none; }
-  /* line 3308, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+  /* line 3200, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
   .flexnav li ul {
     z-index: 1;
     width: 150px;
     position: absolute;
     display: none; }
-  /* line 3314, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+  /* line 3206, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
   .flexnav li ul li > a {
     border-top: 1px solid #ffffff;
     background: #edefed;
     color: #565a5c; }
-  /* line 3319, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+  /* line 3211, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
   .flexnav li ul li > a:hover {
     background: #565a5c;
     color: #ffffff; }
-  /* line 3323, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+  /* line 3215, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
   .flexnav li ul li > ul {
     left: -1px;
     margin-left: 100%;
     top: 0; }
-  /* line 3328, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+  /* line 3220, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
   .flexnav li > ul {
     top: auto;
     left: 0; }
-  /* line 3332, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+  /* line 3224, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
   .flexnav li > ul li {
     width: 100%; }
-  /* line 3335, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+  /* line 3227, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
   .flexnav-menu-button {
     display: none; } }
 
 @media all and (max-width: 800px) {
-  /* line 3340, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+  /* line 3232, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
   .flexnav {
     overflow: hidden;
     width: 100%;
     margin: 0 auto;
     max-height: 0; }
-  /* line 3346, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+  /* line 3238, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
   .flexnav.show {
     max-height: 2000px;
     -webkit-transition: 1s;
@@ -4124,24 +4002,24 @@ span.count {
     -ms-transition: 1s;
     transition: 1s;
     z-index: 1500; }
-  /* line 3355, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+  /* line 3247, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
   .flexnav li {
     display: block;
     width: 100%;
     overflow: hidden;
     position: relative; }
-  /* line 3361, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+  /* line 3253, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
   .flexnav li a {
     border-bottom: 1px solid #e6e6e6;
     padding: 15px 22.5px;
     color: #666 !important; }
-  /* line 3366, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+  /* line 3258, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
   .flexnav li.active > a {
     color: #fff !important; }
-  /* line 3369, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+  /* line 3261, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
   .flexnav li .touch-button {
     display: block; }
-  /* line 3372, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+  /* line 3264, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
   .flexnav li ul {
     margin-bottom: 15px;
     -webkit-box-sizing: border-box;
@@ -4149,28 +4027,28 @@ span.count {
     box-sizing: border-box;
     padding-left: 5%;
     width: 100%; }
-  /* line 3380, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+  /* line 3272, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
   .flexnav li ul li {
     overflow: hidden; }
-  /* line 3383, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+  /* line 3275, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
   .flexnav li ul li.show {
     overflow: visible; } }
 
-/* line 3387, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3279, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .oldie body.one-page {
   padding-top: 70px; }
 
-/* line 3390, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3282, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .oldie .flexnav {
   overflow: visible; }
 
-/* line 3393, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3285, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .oldie .flexnav.one-page {
   top: 0;
   right: auto;
   max-width: 1080px; }
 
-/* line 3398, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3290, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .oldie .flexnav li {
   position: relative;
   list-style: none;
@@ -4181,24 +4059,24 @@ span.count {
   min-height: 50px;
   overflow: visible; }
 
-/* line 3408, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3300, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .oldie .flexnav li:hover > ul {
   display: block;
   width: 100%;
   overflow: visible; }
 
-/* line 3413, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3305, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .oldie .flexnav li:hover > ul li {
   width: 100%;
   float: none; }
 
-/* line 3417, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3309, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .oldie .flexnav li a {
   border-left: 1px solid #acaca1;
   border-bottom: none;
   overflow: visible; }
 
-/* line 3422, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3314, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .oldie .flexnav li > ul {
   position: absolute;
   top: auto;
@@ -4207,25 +4085,25 @@ span.count {
   z-index: 1;
   overflow: visible; }
 
-/* line 3430, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3322, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .oldie .flexnav li ul li ul {
   top: 0; }
 
-/* line 3433, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3325, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .oldie .flexnav li ul li a {
   border-bottom: none; }
 
-/* line 3436, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3328, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .oldie .flexnav li ul.open {
   display: block;
   width: 100%;
   overflow: visible; }
 
-/* line 3441, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3333, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .oldie .flexnav li ul.open li {
   width: 100%; }
 
-/* line 3444, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3336, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .oldie .flexnav li ul.open ul.open {
   margin-left: 100%;
   top: 0;
@@ -4233,25 +4111,25 @@ span.count {
   width: 100%;
   overflow: visible; }
 
-/* line 3451, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3343, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .oldie .flexnav li:hover ul {
   margin-left: 100%;
   top: 0; }
 
-/* line 3455, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3347, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .oldie .flexnav-menu-button {
   display: none; }
 
-/* line 3458, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3350, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .oldie.ie7 .flexnav li {
   width: 19.9%; }
 
-/* line 3461, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3353, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .flexnav-center {
   display: table;
   margin: 0 auto; }
 
-/* line 3465, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3357, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .flexnav-icons .fa {
   margin-right: 5px;
   background: rgba(0, 0, 0, 0.5);
@@ -4264,7 +4142,7 @@ span.count {
   -webkit-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.6);
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.6); }
 
-/* line 3477, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3369, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .flexnav-icons-top .fa {
   width: 40px;
   height: 40px;
@@ -4273,82 +4151,82 @@ span.count {
   display: block;
   margin: 0 auto 7px auto; }
 
-/* line 3485, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3377, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .flexnav-icons-top > li > a {
   height: auto !important;
   line-height: 1em;
   padding: 10px 20px; }
 
-/* line 3490, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3382, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .flexnav-border > li {
   border-left: 1px solid rgba(0, 0, 0, 0.1); }
 
-/* line 3493, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3385, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .flexnav-border > li:last-child {
   border-right: 1px solid rgba(0, 0, 0, 0.1); }
 
-/* line 3496, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3388, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 header.main-color li.active > a {
   background: #565a5c;
   color: #fff;
   border-color: #565a5c !important; }
 
-/* line 3501, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3393, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 header.main-color li.active > a:hover {
   background: #565a5c;
   color: #fff; }
 
-/* line 3505, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3397, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 header.main-color li a:hover {
   background: #31B3A0; }
 
-/* line 3508, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3400, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 header.main-white .flexnav-icons .fa {
   background: rgba(0, 0, 0, 0.05);
   -webkit-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15);
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15); }
 
-/* line 3513, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3405, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 header.main-white .flexnav > li > a {
   color: #666 !important; }
 
-/* line 3516, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3408, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 header.main-white .flexnav > li > a:hover {
   background: rgba(0, 0, 0, 0.07); }
 
-/* line 3519, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3411, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 header.main-white .flexnav > li.active > a {
   color: #fff !important;
   background: #49D2BE; }
 
-/* line 3523, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3415, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 header.main-white .flexnav > li.active > a:hover {
   background: #49D2BE;
   color: #fff; }
 
-/* line 3527, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3419, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 header.main-white .flexnav > li ul li > a {
   background: #fff;
   color: #666 !important;
   border-color: #d9d9d9; }
 
-/* line 3532, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3424, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 header.main-white .flexnav > li ul li > a:hover {
   background: #e6e6e6; }
 
-/* line 3535, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3427, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 header.main-white .flexnav > li ul li.active > a {
   background: #49D2BE;
   color: #fff !important; }
 
-/* line 3539, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3431, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 header.main-white .flexnav > li ul li.active > a:hover {
   background: #49D2BE;
   color: #fff; }
 
 /*END FLEXNAV*/
 /*MAGNIFIC LIGTHBOX*/
-/* line 3545, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3437, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-bg {
   top: 0;
   left: 0;
@@ -4362,7 +4240,7 @@ header.main-white .flexnav > li ul li.active > a:hover {
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
   filter: alpha(opacity=80); }
 
-/* line 3558, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3450, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-wrap {
   top: 0;
   left: 0;
@@ -4376,7 +4254,7 @@ header.main-white .flexnav > li ul li.active > a:hover {
   -ms-backface-visibility: hidden;
   backface-visibility: hidden; }
 
-/* line 3571, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3463, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-container {
   text-align: center;
   position: absolute;
@@ -4389,18 +4267,18 @@ header.main-white .flexnav > li ul li.active > a:hover {
   -moz-box-sizing: border-box;
   box-sizing: border-box; }
 
-/* line 3583, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3475, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-container:before {
   content: '';
   display: inline-block;
   height: 100%;
   vertical-align: middle; }
 
-/* line 3589, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3481, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-align-top .mfp-container:before {
   display: none; }
 
-/* line 3592, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3484, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-content {
   position: relative;
   display: inline-block;
@@ -4409,45 +4287,45 @@ header.main-white .flexnav > li ul li.active > a:hover {
   text-align: left;
   z-index: 1045; }
 
-/* line 3600, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3492, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-inline-holder .mfp-content,
 .mfp-ajax-holder .mfp-content {
   width: 100%;
   cursor: auto; }
 
-/* line 3605, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3497, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-ajax-cur {
   cursor: progress; }
 
-/* line 3608, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3500, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-zoom-out-cur,
 .mfp-zoom-out-cur .mfp-image-holder .mfp-close {
   cursor: zoom-out; }
 
-/* line 3612, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3504, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-zoom {
   cursor: zoom-in; }
 
-/* line 3615, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3507, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-auto-coursor .mfp-content {
   cursor: auto; }
 
-/* line 3618, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3510, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-counter {
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none; }
 
-/* line 3624, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3516, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-loading.mfp-figure {
   display: none; }
 
-/* line 3627, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3519, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-hide {
   display: none !important; }
 
-/* line 3630, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3522, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-preloader {
   color: #ccc;
   position: absolute;
@@ -4459,23 +4337,23 @@ header.main-white .flexnav > li ul li.active > a:hover {
   right: 8px;
   z-index: 1044; }
 
-/* line 3641, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3533, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-preloader a {
   color: #ccc; }
 
-/* line 3644, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3536, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-preloader a:hover {
   color: #fff; }
 
-/* line 3647, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3539, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-s-ready .mfp-preloader {
   display: none; }
 
-/* line 3650, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3542, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-s-error .mfp-content {
   display: none; }
 
-/* line 3653, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3545, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 button.mfp-close,
 button.mfp-arrow {
   overflow: visible;
@@ -4489,12 +4367,12 @@ button.mfp-arrow {
   padding: 0;
   z-index: 1046; }
 
-/* line 3666, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3558, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 button::-moz-focus-inner {
   padding: 0;
   margin: 0; }
 
-/* line 3670, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3562, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-close {
   width: 44px;
   height: 44px;
@@ -4512,22 +4390,22 @@ button::-moz-focus-inner {
   font-style: normal;
   font-size: 28px; }
 
-/* line 3687, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3579, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-close:hover,
 .mfp-close:focus {
   opacity: 1;
   -ms-filter: none;
   filter: none; }
 
-/* line 3693, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3585, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-close:active {
   top: 1px; }
 
-/* line 3696, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3588, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-close-btn-in .mfp-close {
   color: #565a5c; }
 
-/* line 3699, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3591, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-image-holder .mfp-close,
 .mfp-iframe-holder .mfp-close {
   color: #fff;
@@ -4536,7 +4414,7 @@ button::-moz-focus-inner {
   padding-right: 6px;
   width: 100%; }
 
-/* line 3707, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3599, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-counter {
   position: absolute;
   top: 0;
@@ -4545,7 +4423,7 @@ button::-moz-focus-inner {
   font-size: 12px;
   line-height: 18px; }
 
-/* line 3715, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3607, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-arrow {
   position: absolute;
   opacity: 0.65;
@@ -4559,18 +4437,18 @@ button::-moz-focus-inner {
   height: 110px;
   -webkit-tap-highlight-color: transparent; }
 
-/* line 3728, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3620, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-arrow:active {
   margin-top: -54px; }
 
-/* line 3731, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3623, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-arrow:hover,
 .mfp-arrow:focus {
   opacity: 1;
   -ms-filter: none;
   filter: none; }
 
-/* line 3737, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3629, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-arrow:before,
 .mfp-arrow:after,
 .mfp-arrow .mfp-b,
@@ -4586,63 +4464,63 @@ button::-moz-focus-inner {
   margin-left: 35px;
   border: solid transparent; }
 
-/* line 3752, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3644, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-arrow:after,
 .mfp-arrow .mfp-a {
   border-top-width: 13px;
   border-bottom-width: 13px;
   top: 8px; }
 
-/* line 3758, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3650, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-arrow:before,
 .mfp-arrow .mfp-a {
   border-top-width: 21px;
   border-bottom-width: 21px; }
 
-/* line 3763, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3655, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-arrow-left {
   left: 0; }
 
-/* line 3766, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3658, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-arrow-left:after,
 .mfp-arrow-left .mfp-a {
   border-right: 17px solid #fff;
   margin-left: 31px; }
 
-/* line 3771, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3663, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-arrow-left:before,
 .mfp-arrow-left .mfp-b {
   margin-left: 25px; }
 
-/* line 3775, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3667, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-arrow-right {
   right: 0; }
 
-/* line 3778, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3670, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-arrow-right:after,
 .mfp-arrow-right .mfp-a {
   border-left: 17px solid #fff;
   margin-left: 39px; }
 
-/* line 3783, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3675, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-iframe-holder {
   padding-top: 40px;
   padding-bottom: 40px; }
 
-/* line 3787, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3679, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-iframe-holder .mfp-content {
   line-height: 0;
   width: 100%;
   max-width: 900px; }
 
-/* line 3792, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3684, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-iframe-scaler {
   width: 100%;
   height: 0;
   overflow: hidden;
   padding-top: 56.25%; }
 
-/* line 3798, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3690, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-iframe-scaler iframe {
   position: absolute;
   display: block;
@@ -4654,11 +4532,11 @@ button::-moz-focus-inner {
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
   background: #000; }
 
-/* line 3809, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3701, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-iframe-holder .mfp-close {
   top: -40px; }
 
-/* line 3812, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3704, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 img.mfp-img {
   width: auto;
   max-width: 100%;
@@ -4671,11 +4549,11 @@ img.mfp-img {
   padding: 40px 0 40px;
   margin: 0 auto; }
 
-/* line 3824, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3716, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-figure {
   line-height: 0; }
 
-/* line 3827, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3719, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-figure:after {
   content: '';
   position: absolute;
@@ -4691,7 +4569,7 @@ img.mfp-img {
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
   background: #444; }
 
-/* line 3842, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3734, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-bottom-bar {
   margin-top: -36px;
   position: absolute;
@@ -4700,7 +4578,7 @@ img.mfp-img {
   width: 100%;
   cursor: auto; }
 
-/* line 3850, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3742, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-title {
   text-align: left;
   line-height: 18px;
@@ -4708,22 +4586,22 @@ img.mfp-img {
   word-break: break-word;
   padding-right: 36px; }
 
-/* line 3857, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3749, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-figure small {
   color: #bdbdbd;
   display: block;
   font-size: 12px;
   line-height: 14px; }
 
-/* line 3863, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3755, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-image-holder .mfp-content {
   max-width: 100%; }
 
-/* line 3866, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3758, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-gallery .mfp-image-holder .mfp-figure {
   cursor: pointer; }
 
-/* line 3869, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3761, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-fade.mfp-bg {
   opacity: 0;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
@@ -4734,19 +4612,19 @@ img.mfp-img {
   -ms-transition: all 0.15s ease-out;
   transition: all 0.15s ease-out; }
 
-/* line 3879, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3771, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-fade.mfp-bg.mfp-ready {
   opacity: 0.8;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
   filter: alpha(opacity=80); }
 
-/* line 3884, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3776, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-fade.mfp-bg.mfp-removing {
   opacity: 0;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   filter: alpha(opacity=0); }
 
-/* line 3889, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3781, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-fade.mfp-wrap .mfp-content {
   opacity: 0;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
@@ -4757,19 +4635,19 @@ img.mfp-img {
   -ms-transition: all 0.15s ease-out;
   transition: all 0.15s ease-out; }
 
-/* line 3899, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3791, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-fade.mfp-wrap.mfp-ready .mfp-content {
   opacity: 1;
   -ms-filter: none;
   filter: none; }
 
-/* line 3904, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3796, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-fade.mfp-wrap.mfp-removing .mfp-content {
   opacity: 0;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   filter: alpha(opacity=0); }
 
-/* line 3909, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3801, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-zoom-in .mfp-with-anim {
   opacity: 0;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
@@ -4785,7 +4663,7 @@ img.mfp-img {
   -ms-transform: scale(0.8);
   transform: scale(0.8); }
 
-/* line 3924, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3816, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-zoom-in.mfp-bg {
   opacity: 0;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
@@ -4796,7 +4674,7 @@ img.mfp-img {
   -ms-transition: all 0.3s ease-out;
   transition: all 0.3s ease-out; }
 
-/* line 3934, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3826, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-zoom-in.mfp-ready .mfp-with-anim {
   opacity: 1;
   -ms-filter: none;
@@ -4807,13 +4685,13 @@ img.mfp-img {
   -ms-transform: scale(1);
   transform: scale(1); }
 
-/* line 3944, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3836, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-zoom-in.mfp-ready.mfp-bg {
   opacity: 0.8;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
   filter: alpha(opacity=80); }
 
-/* line 3949, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3841, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-zoom-in.mfp-removing .mfp-with-anim {
   -webkit-transform: scale(0.8);
   -moz-transform: scale(0.8);
@@ -4824,13 +4702,13 @@ img.mfp-img {
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   filter: alpha(opacity=0); }
 
-/* line 3959, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3851, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-zoom-in.mfp-removing.mfp-bg {
   opacity: 0;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   filter: alpha(opacity=0); }
 
-/* line 3964, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3856, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-newspaper .mfp-with-anim {
   opacity: 0;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
@@ -4846,7 +4724,7 @@ img.mfp-img {
   -ms-transform: scale(0) rotate(500deg);
   transform: scale(0) rotate(500deg); }
 
-/* line 3979, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3871, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-newspaper.mfp-bg {
   opacity: 0;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
@@ -4857,7 +4735,7 @@ img.mfp-img {
   -ms-transition: 0.5s;
   transition: 0.5s; }
 
-/* line 3989, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3881, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-newspaper.mfp-ready .mfp-with-anim {
   opacity: 1;
   -ms-filter: none;
@@ -4868,13 +4746,13 @@ img.mfp-img {
   -ms-transform: scale(1) rotate(0deg);
   transform: scale(1) rotate(0deg); }
 
-/* line 3999, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3891, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-newspaper.mfp-ready.mfp-bg {
   opacity: 0.8;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
   filter: alpha(opacity=80); }
 
-/* line 4004, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3896, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-newspaper.mfp-removing .mfp-with-anim {
   -webkit-transform: scale(0) rotate(500deg);
   -moz-transform: scale(0) rotate(500deg);
@@ -4885,13 +4763,13 @@ img.mfp-img {
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   filter: alpha(opacity=0); }
 
-/* line 4014, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3906, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-newspaper.mfp-removing.mfp-bg {
   opacity: 0;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   filter: alpha(opacity=0); }
 
-/* line 4019, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3911, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-move-horizontal .mfp-with-anim {
   opacity: 0;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
@@ -4907,7 +4785,7 @@ img.mfp-img {
   -ms-transform: translateX(-50px);
   transform: translateX(-50px); }
 
-/* line 4034, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3926, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-move-horizontal.mfp-bg {
   opacity: 0;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
@@ -4918,7 +4796,7 @@ img.mfp-img {
   -ms-transition: 0.3s;
   transition: 0.3s; }
 
-/* line 4044, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3936, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-move-horizontal.mfp-ready .mfp-with-anim {
   opacity: 1;
   -ms-filter: none;
@@ -4929,13 +4807,13 @@ img.mfp-img {
   -ms-transform: translateX(0);
   transform: translateX(0); }
 
-/* line 4054, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3946, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-move-horizontal.mfp-ready.mfp-bg {
   opacity: 0.8;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
   filter: alpha(opacity=80); }
 
-/* line 4059, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3951, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-move-horizontal.mfp-removing .mfp-with-anim {
   -webkit-transform: translateX(50px);
   -moz-transform: translateX(50px);
@@ -4946,17 +4824,17 @@ img.mfp-img {
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   filter: alpha(opacity=0); }
 
-/* line 4069, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3961, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-move-horizontal.mfp-removing.mfp-bg {
   opacity: 0;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   filter: alpha(opacity=0); }
 
-/* line 4074, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3966, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-move-from-top .mfp-content {
   vertical-align: top; }
 
-/* line 4077, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3969, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-move-from-top .mfp-with-anim {
   opacity: 0;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
@@ -4972,7 +4850,7 @@ img.mfp-img {
   -ms-transform: translateY(-100px);
   transform: translateY(-100px); }
 
-/* line 4092, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3984, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-move-from-top.mfp-bg {
   opacity: 0;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
@@ -4983,7 +4861,7 @@ img.mfp-img {
   -ms-transition: 0.2s;
   transition: 0.2s; }
 
-/* line 4102, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 3994, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-move-from-top.mfp-ready .mfp-with-anim {
   opacity: 1;
   -ms-filter: none;
@@ -4994,13 +4872,13 @@ img.mfp-img {
   -ms-transform: translateY(0);
   transform: translateY(0); }
 
-/* line 4112, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4004, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-move-from-top.mfp-ready.mfp-bg {
   opacity: 0.8;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
   filter: alpha(opacity=80); }
 
-/* line 4117, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4009, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-move-from-top.mfp-removing .mfp-with-anim {
   -webkit-transform: translateY(-50px);
   -moz-transform: translateY(-50px);
@@ -5011,20 +4889,20 @@ img.mfp-img {
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   filter: alpha(opacity=0); }
 
-/* line 4127, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4019, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-move-from-top.mfp-removing.mfp-bg {
   opacity: 0;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   filter: alpha(opacity=0); }
 
-/* line 4132, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4024, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-3d-unfold .mfp-content {
   -webkit-perspective: 2000px;
   -moz-perspective: 2000px;
   -ms-perspective: 2000px;
   perspective: 2000px; }
 
-/* line 4138, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4030, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-3d-unfold .mfp-with-anim {
   opacity: 0;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
@@ -5045,7 +4923,7 @@ img.mfp-img {
   -ms-transform: rotateY(-60deg);
   transform: rotateY(-60deg); }
 
-/* line 4158, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4050, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-3d-unfold.mfp-bg {
   opacity: 0;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
@@ -5056,7 +4934,7 @@ img.mfp-img {
   -ms-transition: 0.5s;
   transition: 0.5s; }
 
-/* line 4168, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4060, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-3d-unfold.mfp-ready .mfp-with-anim {
   opacity: 1;
   -ms-filter: none;
@@ -5067,13 +4945,13 @@ img.mfp-img {
   -ms-transform: rotateY(0deg);
   transform: rotateY(0deg); }
 
-/* line 4178, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4070, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-3d-unfold.mfp-ready.mfp-bg {
   opacity: 0.8;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
   filter: alpha(opacity=80); }
 
-/* line 4183, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4075, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-3d-unfold.mfp-removing .mfp-with-anim {
   -webkit-transform: rotateY(60deg);
   -moz-transform: rotateY(60deg);
@@ -5084,13 +4962,13 @@ img.mfp-img {
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   filter: alpha(opacity=0); }
 
-/* line 4193, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4085, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-3d-unfold.mfp-bg {
   opacity: 0;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   filter: alpha(opacity=0); }
 
-/* line 4198, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4090, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-zoom-out .mfp-with-anim {
   opacity: 0;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
@@ -5106,7 +4984,7 @@ img.mfp-img {
   -ms-transform: scale(1.3);
   transform: scale(1.3); }
 
-/* line 4213, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4105, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-zoom-out.mfp-bg {
   opacity: 0;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
@@ -5117,7 +4995,7 @@ img.mfp-img {
   -ms-transition: 0.3s ease-out;
   transition: 0.3s ease-out; }
 
-/* line 4223, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4115, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-zoom-out.mfp-ready .mfp-with-anim {
   opacity: 1;
   -ms-filter: none;
@@ -5128,13 +5006,13 @@ img.mfp-img {
   -ms-transform: scale(1);
   transform: scale(1); }
 
-/* line 4233, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4125, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-zoom-out.mfp-ready.mfp-bg {
   opacity: 0.8;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
   filter: alpha(opacity=80); }
 
-/* line 4238, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4130, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-zoom-out.mfp-removing .mfp-with-anim {
   -webkit-transform: scale(1.3);
   -moz-transform: scale(1.3);
@@ -5145,13 +5023,13 @@ img.mfp-img {
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   filter: alpha(opacity=0); }
 
-/* line 4248, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4140, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-zoom-out.mfp-removing.mfp-bg {
   opacity: 0;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   filter: alpha(opacity=0); }
 
-/* line 4253, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4145, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-dialog {
   background: #fff;
   padding: 20px 30px;
@@ -5162,11 +5040,11 @@ img.mfp-img {
   -webkit-border-radius: 5px;
   border-radius: 5px; }
 
-/* line 4263, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4155, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-dialog > h5 {
   margin-bottom: 0; }
 
-/* line 4266, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4158, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-dialog .dialog-icon {
   position: absolute;
   left: -60px;
@@ -5182,7 +5060,7 @@ img.mfp-img {
   -webkit-border-radius: 3px 0 0 3px;
   border-radius: 3px 0 0 3px; }
 
-/* line 4281, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4173, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-dialog .dialog-form,
 .mfp-dialog .social-media-login {
   padding-top: 15px;
@@ -5190,12 +5068,12 @@ img.mfp-img {
   margin-bottom: 0;
   border-top: 1px solid #d9d9d9; }
 
-/* line 4288, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4180, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-dialog .dialog-form > .btn,
 .mfp-dialog .social-media-login > .btn {
   margin-top: 10px; }
 
-/* line 4292, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4184, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-dialog .dialog-alt-links {
   list-style: none;
   margin: 0;
@@ -5204,32 +5082,32 @@ img.mfp-img {
   bottom: 20px;
   font-size: 13px; }
 
-/* line 4300, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4192, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-dialog .dialog-alt-links li {
   line-height: 1em;
   float: left;
   margin-left: 15px; }
 
-/* line 4305, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4197, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .mfp-dialog-big {
   max-width: 800px; }
 
 /*END MAGNIFIC LIGHTBOX*/
 /*TWITTER*/
-/* line 4310, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4202, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .tweet-list {
   list-style: none;
   margin: 0;
   padding: 0; }
 
-/* line 4315, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4207, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .twitter .tweet-list li {
   margin-bottom: 15px;
   position: relative;
   padding-left: 25px;
   line-height: 16px; }
 
-/* line 4321, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4213, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .twitter .tweet-list li:before {
   font-size: 17px;
   color: rgba(0, 0, 0, 0.3);
@@ -5239,12 +5117,12 @@ img.mfp-img {
   top: 0;
   left: 0; }
 
-/* line 4330, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4222, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .twitter .tweet-list li .time {
   display: block;
   font-size: 13px; }
 
-/* line 4334, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4226, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .twitter-ticker {
   padding: 15px;
   background: #141414;
@@ -5252,18 +5130,18 @@ img.mfp-img {
   margin-bottom: 56px;
   font-size: 14px -1; }
 
-/* line 4341, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4233, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .twitter-ticker .tweet-list {
   height: 9em;
   overflow: hidden; }
 
-/* line 4345, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4237, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .twitter-ticker .tweet-list li {
   line-height: 16px;
   height: 9em;
   color: #b3b3b3; }
 
-/* line 4350, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4242, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .twitter-ticker:before {
   position: absolute;
   content: '';
@@ -5279,7 +5157,7 @@ img.mfp-img {
   -ms-transform: rotate(45deg);
   transform: rotate(45deg); }
 
-/* line 4365, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4257, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .twitter-ticker:after {
   position: absolute;
   content: '\f099';
@@ -5294,13 +5172,13 @@ img.mfp-img {
   bottom: -56px;
   text-align: center; }
 
-/* line 4379, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4271, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .tweet-time {
   font-size: 13px;
   display: block;
   margin-bottom: 5px; }
 
-/* line 4384, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4276, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .tweet-text {
   font-size: 13px; }
 
@@ -5308,13 +5186,13 @@ img.mfp-img {
 /*GOOGLE MAPS*/
 /*END GOOGLE MAPS*/
 /*IONRANGE SLIDER*/
-/* line 4391, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4283, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .irs {
   position: relative;
   display: block;
   height: 40px; }
 
-/* line 4396, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4288, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .irs-line {
   position: relative;
   display: block;
@@ -5325,7 +5203,7 @@ img.mfp-img {
   -webkit-border-radius: 5px;
   border-radius: 5px; }
 
-/* line 4406, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4298, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .irs-line-left,
 .irs-line-mid,
 .irs-line-right {
@@ -5334,22 +5212,22 @@ img.mfp-img {
   top: 0;
   height: 10px; }
 
-/* line 4414, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4306, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .irs-line-left {
   left: 0;
   width: 10%; }
 
-/* line 4418, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4310, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .irs-line-mid {
   left: 10%;
   width: 10%; }
 
-/* line 4422, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4314, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .irs-line-right {
   right: 0;
   width: 10%; }
 
-/* line 4426, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4318, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .irs-diapason {
   position: absolute;
   display: block;
@@ -5359,7 +5237,7 @@ img.mfp-img {
   top: 26px;
   background: #d9d9d9; }
 
-/* line 4435, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4327, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .irs-slider {
   position: absolute;
   display: block;
@@ -5372,11 +5250,11 @@ img.mfp-img {
   background: #49D2BE;
   cursor: pointer; }
 
-/* line 4447, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4339, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .irs-slider.single {
   left: 10px; }
 
-/* line 4450, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4342, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .irs-slider.single:before {
   content: '';
   position: absolute;
@@ -5386,11 +5264,11 @@ img.mfp-img {
   width: 160%;
   height: 160%; }
 
-/* line 4459, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4351, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .irs-slider.from {
   left: 100px; }
 
-/* line 4462, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4354, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .irs-slider.from:before {
   content: '';
   position: absolute;
@@ -5400,11 +5278,11 @@ img.mfp-img {
   width: 200%;
   height: 170%; }
 
-/* line 4471, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4363, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .irs-slider.to {
   left: 300px; }
 
-/* line 4474, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4366, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .irs-slider.to:before {
   content: '';
   position: absolute;
@@ -5414,11 +5292,11 @@ img.mfp-img {
   width: 200%;
   height: 170%; }
 
-/* line 4483, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4375, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .irs-slider.last {
   z-index: 2; }
 
-/* line 4486, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4378, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .irs-min,
 .irs-max {
   position: absolute;
@@ -5429,15 +5307,15 @@ img.mfp-img {
   line-height: 1.565a5c;
   top: 4px; }
 
-/* line 4496, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4388, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .irs-min {
   left: 0; }
 
-/* line 4499, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4391, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .irs-max {
   right: 0; }
 
-/* line 4502, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4394, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .irs-from,
 .irs-to,
 .irs-single {
@@ -5452,7 +5330,7 @@ img.mfp-img {
   line-height: 1.565a5c;
   font-weight: 600; }
 
-/* line 4516, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4408, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .irs-grid {
   position: absolute;
   display: none;
@@ -5461,15 +5339,15 @@ img.mfp-img {
   width: 100%;
   height: 20px; }
 
-/* line 4524, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4416, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .irs-with-grid {
   height: 60px; }
 
-/* line 4527, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4419, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .irs-with-grid .irs-grid {
   display: block; }
 
-/* line 4530, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4422, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .irs-grid-pol {
   position: absolute;
   top: 0;
@@ -5478,11 +5356,11 @@ img.mfp-img {
   height: 8px;
   background: #b3b3b3; }
 
-/* line 4538, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4430, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .irs-grid-pol.small {
   height: 4px; }
 
-/* line 4541, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4433, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .irs-grid-text {
   position: absolute;
   bottom: 0;
@@ -5494,7 +5372,7 @@ img.mfp-img {
   line-height: 9px;
   color: #808080; }
 
-/* line 4552, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4444, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .irs-disable-mask {
   position: absolute;
   display: block;
@@ -5506,7 +5384,7 @@ img.mfp-img {
   background: #000;
   z-index: 2; }
 
-/* line 4563, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4455, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .irs-disabled {
   opacity: 0.4;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=40)";
@@ -5516,7 +5394,7 @@ img.mfp-img {
 /*MEDIA ELEMENT*/
 /*END MEDIA ELEMENT*/
 /*ICHECK CHECKBOXES*/
-/* line 4572, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4464, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .i-check,
 .i-radio {
   display: inline-block;
@@ -5544,7 +5422,7 @@ img.mfp-img {
   position: relative;
   overflow: hidden; }
 
-/* line 4599, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4491, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .i-check:before,
 .i-radio:before {
   content: '\f00c';
@@ -5566,18 +5444,18 @@ img.mfp-img {
   color: #fff;
   font-size: 12px; }
 
-/* line 4620, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4512, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .i-check.hover,
 .i-radio.hover {
   border: 1px solid #49D2BE; }
 
-/* line 4624, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4516, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .i-check.checked,
 .i-radio.checked {
   border: 1px solid #49D2BE;
   background: #49D2BE; }
 
-/* line 4629, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4521, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .i-check.checked:before,
 .i-radio.checked:before {
   -webkit-transform: translate3d(0, 0, 0);
@@ -5589,37 +5467,37 @@ img.mfp-img {
   -ms-filter: none;
   filter: none; }
 
-/* line 4640, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4532, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .i-check.disabled,
 .i-radio.disabled {
   border-color: #d9d9d9; }
 
-/* line 4644, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4536, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .i-check.disabled.checked,
 .i-radio.disabled.checked {
   background: #ccc; }
 
-/* line 4648, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4540, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .i-check.i-check-stroke.checked {
   background: #fff; }
 
-/* line 4651, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4543, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .i-check.i-check-stroke.checked:before {
   color: #49D2BE; }
 
-/* line 4654, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4546, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .i-radio {
   -webkit-border-radius: 50%;
   border-radius: 50%; }
 
-/* line 4658, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4550, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .i-radio:before {
   content: '\f111';
   font-size: 12px; }
 
 /*END ICHECK CHECKBOXES*/
 /*FOTORAMA CHECKBOXES*/
-/* line 4664, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4556, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__html,
 .fotorama__stage__frame,
 .fotorama__stage__shaft,
@@ -5632,7 +5510,7 @@ img.mfp-img {
   left: 0;
   bottom: 0; }
 
-/* line 4676, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4568, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama--fullscreen,
 .fotorama__img {
   max-width: 99999px !important;
@@ -5645,28 +5523,28 @@ img.mfp-img {
   box-shadow: none !important;
   padding: 0 !important; }
 
-/* line 4688, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4580, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__wrap .fotorama__grab {
   cursor: grab; }
 
-/* line 4691, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4583, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__grabbing * {
   cursor: grabbing; }
 
-/* line 4694, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4586, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__img,
 .fotorama__spinner {
   position: absolute !important;
   top: 50% !important;
   left: 50% !important; }
 
-/* line 4700, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4592, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__img {
   margin: -50% 0 0 -50%;
   width: 100%;
   height: 100%; }
 
-/* line 4705, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4597, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__wrap--css3 .fotorama__arr,
 .fotorama__wrap--css3 .fotorama__fullscreen-icon,
 .fotorama__wrap--css3 .fotorama__nav__shaft,
@@ -5681,7 +5559,7 @@ img.mfp-img {
   -ms-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0); }
 
-/* line 4719, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4611, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__caption,
 .fotorama__nav:after,
 .fotorama__nav:before,
@@ -5700,7 +5578,7 @@ img.mfp-img {
   -ms-transform: translateZ(0);
   transform: translateZ(0); }
 
-/* line 4737, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4629, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__wrap--video .fotorama__stage,
 .fotorama__wrap--video .fotorama__stage__frame--video,
 .fotorama__wrap--video .fotorama__stage__frame--video .fotorama__html,
@@ -5713,7 +5591,7 @@ img.mfp-img {
   -ms-transform: none !important;
   transform: none !important; }
 
-/* line 4749, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4641, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__wrap--css3 .fotorama__nav__shaft,
 .fotorama__wrap--css3 .fotorama__stage__shaft,
 .fotorama__wrap--css3 .fotorama__thumb-border {
@@ -5736,7 +5614,7 @@ img.mfp-img {
   -ms-transition-duration: 0ms;
   transition-duration: 0ms; }
 
-/* line 4771, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4663, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__arr,
 .fotorama__fullscreen-icon,
 .fotorama__no-select,
@@ -5751,7 +5629,7 @@ img.mfp-img {
   -ms-user-select: none;
   user-select: none; }
 
-/* line 4785, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4677, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__select {
   -webkit-user-select: text;
   -moz-user-select: text;
@@ -5761,13 +5639,13 @@ img.mfp-img {
   -ms-user-select: text;
   user-select: text; }
 
-/* line 4794, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4686, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__nav,
 .fotorama__nav__frame {
   margin: 0;
   padding: 0; }
 
-/* line 4799, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4691, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__caption__wrap,
 .fotorama__nav__frame,
 .fotorama__nav__shaft {
@@ -5777,21 +5655,21 @@ img.mfp-img {
   *display: inline;
   *zoom: 1; }
 
-/* line 4808, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4700, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__wrap * {
   -moz-box-sizing: content-box;
   -webkit-box-sizing: content-box;
   -moz-box-sizing: content-box;
   box-sizing: content-box; }
 
-/* line 4814, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4706, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__caption__wrap {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box; }
 
-/* line 4820, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4712, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama--hidden,
 .fotorama__load {
   position: absolute;
@@ -5799,7 +5677,7 @@ img.mfp-img {
   top: -99999px;
   z-index: -1; }
 
-/* line 4827, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4719, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__arr,
 .fotorama__fullscreen-icon,
 .fotorama__nav,
@@ -5811,27 +5689,27 @@ img.mfp-img {
 .fotorama__video-play {
   -webkit-tap-highlight-color: transparent; }
 
-/* line 4838, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4730, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__arr:before,
 .fotorama__fullscreen-icon:before,
 .fotorama__video-close:before,
 .fotorama__video-play:before {
   font-family: 'FontAwesome'; }
 
-/* line 4844, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4736, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__thumb {
   background-color: rgba(127, 127, 127, 0.2); }
 
-/* line 4847, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4739, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama {
   min-width: 1px;
   overflow: hidden; }
 
-/* line 4851, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4743, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama:not(.fotorama--unobtrusive) > :not(:first-child) {
   display: none; }
 
-/* line 4854, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4746, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fullscreen {
   width: 100% !important;
   height: 100% !important;
@@ -5842,7 +5720,7 @@ img.mfp-img {
   overflow: hidden !important;
   background: #000; }
 
-/* line 4864, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4756, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama--fullscreen {
   position: absolute !important;
   top: 0 !important;
@@ -5856,55 +5734,55 @@ img.mfp-img {
   height: 100% !important;
   margin: 0 !important; }
 
-/* line 4877, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4769, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama--fullscreen .fotorama__nav,
 .fotorama--fullscreen .fotorama__stage {
   background: #000; }
 
-/* line 4881, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4773, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__wrap {
   -webkit-text-size-adjust: 100%;
   position: relative;
   direction: ltr; }
 
-/* line 4886, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4778, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__wrap--rtl .fotorama__stage__frame {
   direction: rtl; }
 
-/* line 4889, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4781, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__nav,
 .fotorama__stage {
   overflow: hidden;
   position: relative;
   max-width: 100%; }
 
-/* line 4895, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4787, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__wrap--pan-y {
   -ms-touch-action: pan-y; }
 
-/* line 4898, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4790, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__wrap .fotorama__pointer {
   cursor: pointer; }
 
-/* line 4901, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4793, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__wrap--slide .fotorama__stage__frame {
   opacity: 1 !important;
   -ms-filter: none;
   filter: none; }
 
-/* line 4906, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4798, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__stage__frame {
   overflow: hidden; }
 
-/* line 4909, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4801, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__stage__frame.fotorama__active {
   z-index: 8; }
 
-/* line 4912, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4804, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__wrap--fade .fotorama__stage__frame {
   display: none; }
 
-/* line 4915, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4807, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__wrap--fade .fotorama__fade-front,
 .fotorama__wrap--fade .fotorama__fade-rear,
 .fotorama__wrap--fade .fotorama__stage__frame.fotorama__active {
@@ -5912,59 +5790,59 @@ img.mfp-img {
   left: 0;
   top: 0; }
 
-/* line 4922, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4814, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__wrap--fade .fotorama__fade-front {
   z-index: 8; }
 
-/* line 4925, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4817, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__wrap--fade .fotorama__fade-rear {
   z-index: 7; }
 
-/* line 4928, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4820, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__wrap--fade .fotorama__fade-rear.fotorama__active {
   z-index: 9; }
 
-/* line 4931, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4823, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__wrap--fade .fotorama__stage .fotorama__shadow {
   display: none; }
 
-/* line 4934, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4826, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__img {
   opacity: 0;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   filter: alpha(opacity=0);
   border: none !important; }
 
-/* line 4940, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4832, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__error .fotorama__img,
 .fotorama__loaded .fotorama__img {
   opacity: 1;
   -ms-filter: none;
   filter: none; }
 
-/* line 4946, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4838, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama--fullscreen .fotorama__loaded--full .fotorama__img,
 .fotorama__img--full {
   display: none; }
 
-/* line 4950, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4842, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama--fullscreen .fotorama__loaded--full .fotorama__img--full {
   display: block; }
 
-/* line 4953, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4845, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__wrap--only-active .fotorama__nav,
 .fotorama__wrap--only-active .fotorama__stage {
   max-width: 99999px !important; }
 
-/* line 4957, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4849, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__wrap--only-active .fotorama__stage__frame {
   visibility: hidden; }
 
-/* line 4960, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4852, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__wrap--only-active .fotorama__stage__frame.fotorama__active {
   visibility: visible; }
 
-/* line 4963, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4855, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__nav {
   font-size: 0;
   line-height: 0;
@@ -5973,51 +5851,51 @@ img.mfp-img {
   white-space: nowrap;
   z-index: 5; }
 
-/* line 4971, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4863, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__nav__shaft {
   position: relative;
   left: 0;
   top: 0;
   text-align: left; }
 
-/* line 4977, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4869, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__nav__frame {
   position: relative;
   cursor: pointer; }
 
-/* line 4981, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4873, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__nav--dots {
   display: block;
   position: absolute;
   bottom: 0; }
 
-/* line 4986, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4878, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__nav--dots .fotorama__nav__frame {
   width: 18px;
   height: 30px; }
 
-/* line 4990, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4882, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__nav--dots .fotorama__nav__frame--thumb,
 .fotorama__nav--dots .fotorama__thumb-border {
   display: none; }
 
-/* line 4994, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4886, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__nav--thumbs {
   display: block; }
 
-/* line 4997, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4889, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__nav--thumbs .fotorama__nav__frame {
   padding-left: 0 !important; }
 
-/* line 5000, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4892, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__nav--thumbs .fotorama__nav__frame:last-child {
   padding-right: 0 !important; }
 
-/* line 5003, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4895, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__nav--thumbs .fotorama__nav__frame--dot {
   display: none; }
 
-/* line 5006, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4898, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__dot {
   display: block;
   width: 6px;
@@ -6032,29 +5910,29 @@ img.mfp-img {
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
   filter: alpha(opacity=50); }
 
-/* line 5020, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4912, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__nav__frame.fotorama__active {
   pointer-events: none;
   cursor: default; }
 
-/* line 5024, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4916, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__nav__frame.fotorama__active .fotorama__dot {
   opacity: 1;
   -ms-filter: none;
   filter: none; }
 
-/* line 5029, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4921, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__active .fotorama__dot {
   background-color: #fff; }
 
-/* line 5032, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4924, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__thumb {
   overflow: hidden;
   position: relative;
   width: 100%;
   height: 100%; }
 
-/* line 5038, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4930, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__thumb-border {
   position: absolute;
   z-index: 9;
@@ -6063,7 +5941,7 @@ img.mfp-img {
   border-style: solid;
   border-color: #49D2BE; }
 
-/* line 5046, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4938, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__caption {
   position: absolute;
   z-index: 12;
@@ -6074,34 +5952,34 @@ img.mfp-img {
   line-height: 1.5;
   color: #000; }
 
-/* line 5056, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4948, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__caption a {
   text-decoration: none;
   color: #000;
   border-bottom: 1px solid;
   border-color: rgba(0, 0, 0, 0.5); }
 
-/* line 5062, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4954, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__caption a:hover {
   color: #565a5c;
   border-color: rgba(51, 51, 51, 0.5); }
 
-/* line 5066, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4958, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__wrap--rtl .fotorama__caption {
   left: auto;
   right: 0; }
 
-/* line 5070, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4962, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__wrap--no-captions .fotorama__caption,
 .fotorama__wrap--video .fotorama__caption {
   display: none; }
 
-/* line 5074, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4966, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__caption__wrap {
   background-color: rgba(255, 255, 255, 0.9);
   padding: 5px 10px; }
 
-/* line 5078, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4970, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__wrap--css3 .fotorama__spinner {
   -webkit-animation: spinner 24s infinite linear;
   -webkit-animation: spinner 24s infinite linear;
@@ -6110,7 +5988,7 @@ img.mfp-img {
   -ms-animation: spinner 24s infinite linear;
   animation: spinner 24s infinite linear; }
 
-/* line 5086, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4978, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__wrap--css3 .fotorama__html,
 .fotorama__wrap--css3 .fotorama__stage .fotorama__img {
   -webkit-transition-property: opacity;
@@ -6129,18 +6007,18 @@ img.mfp-img {
   -ms-transition-duration: 0.3s;
   transition-duration: 0.3s; }
 
-/* line 5104, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 4996, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__wrap--video .fotorama__stage__frame--video .fotorama__html,
 .fotorama__wrap--video .fotorama__stage__frame--video .fotorama__img {
   opacity: 0;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   filter: alpha(opacity=0); }
 
-/* line 5110, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5002, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__select {
   cursor: auto; }
 
-/* line 5113, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5005, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__video {
   top: 32px;
   right: 0;
@@ -6149,7 +6027,7 @@ img.mfp-img {
   position: absolute;
   z-index: 10; }
 
-/* line 5121, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5013, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__arr,
 .fotorama__fullscreen-icon,
 .fotorama__video-close,
@@ -6158,7 +6036,7 @@ img.mfp-img {
   z-index: 11;
   cursor: pointer; }
 
-/* line 5129, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5021, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__arr {
   text-align: center;
   display: block;
@@ -6174,27 +6052,27 @@ img.mfp-img {
   color: #fff;
   font-size: 20px; }
 
-/* line 5144, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5036, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__arr:hover {
   background: rgba(0, 0, 0, 0.6); }
 
-/* line 5147, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5039, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__arr--prev {
   left: 0; }
 
-/* line 5150, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5042, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__arr--prev:before {
   content: '\f104'; }
 
-/* line 5153, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5045, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__arr--next {
   right: 0; }
 
-/* line 5156, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5048, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__arr--next:before {
   content: '\f105'; }
 
-/* line 5159, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5051, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__arr--disabled {
   pointer-events: none;
   cursor: default;
@@ -6203,7 +6081,7 @@ img.mfp-img {
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
   filter: alpha(opacity=30); }
 
-/* line 5167, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5059, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__fullscreen-icon {
   width: 32px;
   height: 32px;
@@ -6221,21 +6099,21 @@ img.mfp-img {
   text-align: center;
   margin: 10px; }
 
-/* line 5184, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5076, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__fullscreen-icon:hover {
   opacity: 1;
   -ms-filter: none;
   filter: none; }
 
-/* line 5189, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5081, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__fullscreen-icon:before {
   content: '\f065'; }
 
-/* line 5192, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5084, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama--fullscreen .fotorama__fullscreen-icon:before {
   content: '\f066'; }
 
-/* line 5195, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5087, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__video-play {
   width: 96px;
   height: 96px;
@@ -6248,12 +6126,12 @@ img.mfp-img {
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   filter: alpha(opacity=0); }
 
-/* line 5207, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5099, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__wrap--css2 .fotorama__video-play,
 .fotorama__wrap--video .fotorama__stage .fotorama__video-play {
   display: none; }
 
-/* line 5211, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5103, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__error .fotorama__video-play,
 .fotorama__loaded .fotorama__video-play {
   opacity: 1;
@@ -6261,7 +6139,7 @@ img.mfp-img {
   filter: none;
   display: block; }
 
-/* line 5218, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5110, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__nav__frame .fotorama__video-play {
   width: 32px;
   height: 32px;
@@ -6269,7 +6147,7 @@ img.mfp-img {
   margin-top: -16px;
   background-position: -64px -32px; }
 
-/* line 5225, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5117, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__video-close {
   width: 32px;
   height: 32px;
@@ -6281,11 +6159,11 @@ img.mfp-img {
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   filter: alpha(opacity=0); }
 
-/* line 5236, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5128, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__wrap--css2 .fotorama__video-close {
   display: none; }
 
-/* line 5239, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5131, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__wrap--css3 .fotorama__video-close {
   -webkit-transform: translate3d(32px, -32px, 0);
   -moz-transform: translate3d(32px, -32px, 0);
@@ -6293,14 +6171,14 @@ img.mfp-img {
   -ms-transform: translate3d(32px, -32px, 0);
   transform: translate3d(32px, -32px, 0); }
 
-/* line 5246, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5138, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__wrap--video .fotorama__video-close {
   display: block;
   opacity: 1;
   -ms-filter: none;
   filter: none; }
 
-/* line 5252, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5144, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__wrap--css3.fotorama__wrap--video .fotorama__video-close {
   -webkit-transform: translate3d(0, 0, 0);
   -moz-transform: translate3d(0, 0, 0);
@@ -6308,7 +6186,7 @@ img.mfp-img {
   -ms-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0); }
 
-/* line 5259, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5151, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__wrap--no-controls.fotorama__wrap--toggle-arrows .fotorama__arr,
 .fotorama__wrap--no-controls.fotorama__wrap--toggle-arrows .fotorama__fullscreen-icon,
 .fotorama__wrap--video .fotorama__arr,
@@ -6317,14 +6195,14 @@ img.mfp-img {
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   filter: alpha(opacity=0); }
 
-/* line 5267, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5159, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__wrap--css2.fotorama__wrap--no-controls .fotorama__arr,
 .fotorama__wrap--css2.fotorama__wrap--no-controls .fotorama__fullscreen-icon,
 .fotorama__wrap--css2.fotorama__wrap--video .fotorama__arr,
 .fotorama__wrap--css2.fotorama__wrap--video .fotorama__fullscreen-icon {
   display: none; }
 
-/* line 5273, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5165, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__wrap--css3.fotorama__wrap--no-controls.fotorama__wrap--slide.fotorama__wrap--toggle-arrows .fotorama__fullscreen-icon,
 .fotorama__wrap--css3.fotorama__wrap--video .fotorama__fullscreen-icon {
   -webkit-transform: translate3d(32px, -32px, 0);
@@ -6333,7 +6211,7 @@ img.mfp-img {
   -ms-transform: translate3d(32px, -32px, 0);
   transform: translate3d(32px, -32px, 0); }
 
-/* line 5281, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5173, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__wrap--css3.fotorama__wrap--no-controls.fotorama__wrap--slide.fotorama__wrap--toggle-arrows .fotorama__arr--prev,
 .fotorama__wrap--css3.fotorama__wrap--video .fotorama__arr--prev {
   -webkit-transform: translate3d(-48px, 0, 0);
@@ -6342,7 +6220,7 @@ img.mfp-img {
   -ms-transform: translate3d(-48px, 0, 0);
   transform: translate3d(-48px, 0, 0); }
 
-/* line 5289, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5181, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__wrap--css3.fotorama__wrap--no-controls.fotorama__wrap--slide.fotorama__wrap--toggle-arrows .fotorama__arr--next,
 .fotorama__wrap--css3.fotorama__wrap--video .fotorama__arr--next {
   -webkit-transform: translate3d(48px, 0, 0);
@@ -6351,7 +6229,7 @@ img.mfp-img {
   -ms-transform: translate3d(48px, 0, 0);
   transform: translate3d(48px, 0, 0); }
 
-/* line 5297, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5189, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__wrap--css3 .fotorama__arr,
 .fotorama__wrap--css3 .fotorama__fullscreen-icon,
 .fotorama__wrap--css3 .fotorama__video-close,
@@ -6367,7 +6245,7 @@ img.mfp-img {
   -ms-transition-duration: 0.3s;
   transition-duration: 0.3s; }
 
-/* line 5312, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5204, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__nav:after,
 .fotorama__nav:before,
 .fotorama__stage:after,
@@ -6387,29 +6265,29 @@ img.mfp-img {
   -moz-background-size: 1px 100%, 5px 100%;
   background-size: 1px 100%, 5px 100%; }
 
-/* line 5331, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5223, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__nav:before,
 .fotorama__stage:before {
   background-position: 0 0, 0 0;
   left: -10px; }
 
-/* line 5336, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5228, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__nav.fotorama__shadows--left:before,
 .fotorama__stage.fotorama__shadows--left:before {
   left: 0; }
 
-/* line 5340, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5232, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__nav:after,
 .fotorama__stage:after {
   background-position: 100% 0, 100% 0;
   right: -10px; }
 
-/* line 5345, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5237, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama__nav.fotorama__shadows--right:after,
 .fotorama__stage.fotorama__shadows--right:after {
   right: 0; }
 
-/* line 5349, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5241, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fotorama--fullscreen .fotorama__nav:after,
 .fotorama--fullscreen .fotorama__nav:before,
 .fotorama--fullscreen .fotorama__stage:after,
@@ -6465,14 +6343,14 @@ img.mfp-img {
     transform: rotate(360deg); } }
 
 @-ms-keyframes spinner {
-  /* line 5413, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+  /* line 5305, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
   0% {
     -webkit-transform: rotate(0);
     -moz-transform: rotate(0);
     -o-transform: rotate(0);
     -ms-transform: rotate(0);
     transform: rotate(0); }
-  /* line 5421, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+  /* line 5313, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
   100% {
     -webkit-transform: rotate(360deg);
     -moz-transform: rotate(360deg);
@@ -6495,23 +6373,23 @@ img.mfp-img {
     transform: rotate(360deg); } }
 
 /*END FOTORAMA CHECKBOXES*/
-/* line 5447, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5339, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .cc-form .form-group {
   float: left;
   position: relative; }
 
-/* line 5451, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5343, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .cc-form .form-group.form-group-cc-number,
 .cc-form .form-group.form-group-cc-name {
   width: 70%;
   margin-right: 5%; }
 
-/* line 5456, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5348, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .cc-form .form-group.form-group-cc-date,
 .cc-form .form-group.form-group-cc-cvc {
   width: 25%; }
 
-/* line 5460, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5352, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .cc-form .form-group.form-group-cc-number .cc-card-icon {
   display: block;
   width: 41px;
@@ -6534,7 +6412,7 @@ img.mfp-img {
   -ms-transform: translate3d(0, -10px, 0);
   transform: translate3d(0, -10px, 0); }
 
-/* line 5482, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5374, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .cc-form .form-group.form-group-cc-number input.identified + .cc-card-icon {
   -webkit-transform: translate3d(0, 0, 0);
   -moz-transform: translate3d(0, 0, 0);
@@ -6550,27 +6428,27 @@ img.mfp-img {
   -ms-transition: 0.3s;
   transition: 0.3s; }
 
-/* line 5497, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5389, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .cc-form .form-group.form-group-cc-number input.visa + .cc-card-icon {
   background-image: url("../img/payment/visa-curved-32px.png"); }
 
-/* line 5500, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5392, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .cc-form .form-group.form-group-cc-number input.mastercard + .cc-card-icon {
   background-image: url("../img/payment/mastercard-curved-32px.png"); }
 
-/* line 5503, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5395, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .cc-form .form-group.form-group-cc-number input.amex + .cc-card-icon {
   background-image: url("../img/payment/american-express-curved-32px.png"); }
 
-/* line 5506, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5398, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .cc-form .form-group.form-group-cc-number input.discover + .cc-card-icon {
   background-image: url("../img/payment/discover-curved-32px.png"); }
 
-/* line 5509, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5401, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .cc-form .form-group.form-group-cc-number input.maestro + .cc-card-icon {
   background-image: url("../img/payment/maestro-curved-32px.png"); }
 
-/* line 5512, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5404, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .owl-carousel .owl-wrapper:after {
   content: '.';
   display: block;
@@ -6579,7 +6457,7 @@ img.mfp-img {
   line-height: 0;
   height: 0; }
 
-/* line 5520, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5412, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .owl-carousel {
   display: none;
   position: relative;
@@ -6587,32 +6465,32 @@ img.mfp-img {
   margin: 0 -15px;
   padding: 0 45px; }
 
-/* line 5527, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5419, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .owl-carousel[data-nav="false"] {
   padding: 0 !important; }
 
-/* line 5530, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5422, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .owl-carousel[data-nav="false"] .owl-buttons {
   display: none !important; }
 
-/* line 5533, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5425, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .owl-carousel[data-pagination="false"] .owl-pagination {
   display: none !important; }
 
-/* line 5536, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5428, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .owl-carousel.owl-slider {
   margin: 0;
   padding: 0; }
 
-/* line 5540, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5432, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .owl-carousel.owl-slider .owl-controls .owl-buttons div.owl-next {
   right: 30px; }
 
-/* line 5543, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5435, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .owl-carousel.owl-slider .owl-controls .owl-buttons div.owl-prev {
   left: 30px; }
 
-/* line 5546, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5438, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .owl-carousel.owl-slider[data-nav="top-right"] .owl-buttons div {
   top: 20px;
   margin: 0;
@@ -6621,20 +6499,20 @@ img.mfp-img {
   line-height: 25px;
   font-size: 15px; }
 
-/* line 5554, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5446, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .owl-carousel.owl-slider[data-nav="top-right"] .owl-buttons div.owl-next {
   right: 15px; }
 
-/* line 5557, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5449, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .owl-carousel.owl-slider[data-nav="top-right"] .owl-buttons div.owl-prev {
   left: auto;
   right: 50px; }
 
-/* line 5561, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5453, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .owl-carousel.owl-slider .owl-item {
   padding: 0; }
 
-/* line 5564, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5456, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .owl-carousel .owl-wrapper {
   display: none;
   position: relative;
@@ -6644,13 +6522,13 @@ img.mfp-img {
   -ms-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0); }
 
-/* line 5573, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5465, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .owl-carousel .owl-wrapper-outer {
   overflow: hidden;
   position: relative;
   width: 100%; }
 
-/* line 5578, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5470, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .owl-carousel .owl-wrapper-outer.autoHeight {
   -webkit-transition: height 500ms ease-in-out;
   -moz-transition: height 500ms ease-in-out;
@@ -6658,17 +6536,17 @@ img.mfp-img {
   -ms-transition: height 500ms ease-in-out;
   transition: height 500ms ease-in-out; }
 
-/* line 5585, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5477, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .owl-carousel .owl-item {
   float: left;
   padding: 0 15px; }
 
-/* line 5589, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5481, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .owl-carousel .owl-item.loading {
   min-height: 150px;
   background: url("AjaxLoader.gif") no-repeat center center; }
 
-/* line 5593, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5485, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .owl-carousel .owl-item .owl-caption {
   position: absolute;
   z-index: 99;
@@ -6677,7 +6555,7 @@ img.mfp-img {
   color: #fff;
   width: 50%; }
 
-/* line 5601, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5493, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 [data-inner-pagination="true"] .owl-controls .owl-pagination {
   margin: 0;
   position: absolute;
@@ -6685,15 +6563,15 @@ img.mfp-img {
   width: 100%; }
 
 @media (max-width: 992px) {
-  /* line 5608, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+  /* line 5500, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
   [data-inner-pagination="true"] .owl-controls .owl-pagination {
     display: none; } }
 
-/* line 5612, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5504, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 [data-white-pagination="true"] .owl-controls .owl-pagination .owl-page span {
   background: #fff; }
 
-/* line 5615, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5507, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .owl-controls {
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -6702,11 +6580,11 @@ img.mfp-img {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0.01);
   text-align: center; }
 
-/* line 5623, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5515, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .owl-controls .owl-pagination {
   margin-top: 10px; }
 
-/* line 5626, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5518, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .owl-controls .owl-page,
 .owl-controls .owl-buttons div {
   cursor: pointer;
@@ -6718,7 +6596,7 @@ img.mfp-img {
   -webkit-border-radius: 50%;
   border-radius: 50%; }
 
-/* line 5637, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5529, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .owl-controls .owl-page:hover,
 .owl-controls .owl-buttons div:hover {
   opacity: 1;
@@ -6726,13 +6604,13 @@ img.mfp-img {
   filter: none;
   text-decoration: none; }
 
-/* line 5644, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5536, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .owl-controls .owl-page {
   display: inline-block;
   zoom: 1;
   *display: inline; }
 
-/* line 5649, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5541, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .owl-controls .owl-page span {
   display: block;
   width: 12px;
@@ -6749,19 +6627,19 @@ img.mfp-img {
   -ms-transition: 0.3s;
   transition: 0.3s; }
 
-/* line 5665, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5557, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .owl-controls .owl-page.active span {
   opacity: 1;
   -ms-filter: none;
   filter: none; }
 
-/* line 5670, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5562, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .owl-controls.clickable .owl-page:hover span {
   opacity: 1;
   -ms-filter: none;
   filter: none; }
 
-/* line 5675, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5567, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .owl-controls span.owl-numbers {
   height: auto;
   width: auto;
@@ -6771,7 +6649,7 @@ img.mfp-img {
   -webkit-border-radius: 30px;
   border-radius: 30px; }
 
-/* line 5684, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5576, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .owl-controls .owl-buttons div {
   position: absolute;
   top: 50%;
@@ -6790,37 +6668,37 @@ img.mfp-img {
   transition: 0.3s;
   font-size: 17px; }
 
-/* line 5702, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5594, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .owl-controls .owl-buttons div:hover {
   background: #49D2BE;
   -webkit-box-shadow: 0 0 0 1px #49D2BE;
   box-shadow: 0 0 0 1px #49D2BE; }
 
-/* line 5707, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5599, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .owl-controls .owl-buttons div:before {
   font-family: 'FontAwesome'; }
 
-/* line 5710, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5602, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .owl-controls .owl-buttons div.owl-next {
   right: 0; }
 
-/* line 5713, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5605, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .owl-controls .owl-buttons div.owl-next:before {
   content: '\f105'; }
 
-/* line 5716, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5608, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .owl-controls .owl-buttons div.owl-prev {
   left: 0; }
 
-/* line 5719, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5611, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .owl-controls .owl-buttons div.owl-prev:before {
   content: '\f104'; }
 
-/* line 5722, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5614, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .grabbing {
   cursor: url("../img/grabbing.png") 8 8, move; }
 
-/* line 5725, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5617, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .owl-carousel .owl-wrapper,
 .owl-carousel .owl-item {
   -webkit-backface-visibility: hidden;
@@ -6833,7 +6711,7 @@ img.mfp-img {
   -ms-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0); }
 
-/* line 5737, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5629, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .owl-origin {
   -webkit-perspective: 1200px;
   -moz-perspective: 1200px;
@@ -6842,7 +6720,7 @@ img.mfp-img {
   perspective-x: 50%;
   perspective-y: 50%; }
 
-/* line 5745, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5637, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .owl-fade-out {
   z-index: 10;
   -webkit-animation: fadeOut 0.7s both ease;
@@ -6851,7 +6729,7 @@ img.mfp-img {
   -ms-animation: fadeOut 0.7s both ease;
   animation: fadeOut 0.7s both ease; }
 
-/* line 5753, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5645, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .owl-fade-in {
   -webkit-animation: fadeIn 0.7s both ease;
   -moz-animation: fadeIn 0.7s both ease;
@@ -6859,7 +6737,7 @@ img.mfp-img {
   -ms-animation: fadeIn 0.7s both ease;
   animation: fadeIn 0.7s both ease; }
 
-/* line 5760, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5652, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .owl-backSlide-out {
   -webkit-animation: backSlideOut 1s both ease;
   -moz-animation: backSlideOut 1s both ease;
@@ -6867,7 +6745,7 @@ img.mfp-img {
   -ms-animation: backSlideOut 1s both ease;
   animation: backSlideOut 1s both ease; }
 
-/* line 5767, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5659, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .owl-backSlide-in {
   -webkit-animation: backSlideIn 1s both ease;
   -moz-animation: backSlideIn 1s both ease;
@@ -6875,7 +6753,7 @@ img.mfp-img {
   -ms-animation: backSlideIn 1s both ease;
   animation: backSlideIn 1s both ease; }
 
-/* line 5774, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5666, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .owl-goDown-out {
   -webkit-animation: scaleToFade 0.7s ease both;
   -moz-animation: scaleToFade 0.7s ease both;
@@ -6883,7 +6761,7 @@ img.mfp-img {
   -ms-animation: scaleToFade 0.7s ease both;
   animation: scaleToFade 0.7s ease both; }
 
-/* line 5781, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5673, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .owl-goDown-in {
   -webkit-animation: goDown 0.6s ease both;
   -moz-animation: goDown 0.6s ease both;
@@ -6891,7 +6769,7 @@ img.mfp-img {
   -ms-animation: goDown 0.6s ease both;
   animation: goDown 0.6s ease both; }
 
-/* line 5788, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5680, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .owl-fadeUp-in {
   -webkit-animation: scaleUpFrom 0.5s ease both;
   -moz-animation: scaleUpFrom 0.5s ease both;
@@ -6899,7 +6777,7 @@ img.mfp-img {
   -ms-animation: scaleUpFrom 0.5s ease both;
   animation: scaleUpFrom 0.5s ease both; }
 
-/* line 5795, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 5687, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .owl-fadeUp-out {
   -webkit-animation: scaleUpTo 0.5s ease both;
   -moz-animation: scaleUpTo 0.5s ease both;
@@ -6926,7 +6804,7 @@ img.mfp-img {
     filter: none; } }
 
 @-ms-keyframes empty {
-  /* line 5824, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+  /* line 5716, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
   0% {
     opacity: 1;
     -ms-filter: none;
@@ -6969,12 +6847,12 @@ img.mfp-img {
     filter: none; } }
 
 @-ms-keyframes fadeIn {
-  /* line 5877, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+  /* line 5769, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
   0% {
     opacity: 0;
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
     filter: alpha(opacity=0); }
-  /* line 5883, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+  /* line 5775, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
   100% {
     opacity: 1;
     -ms-filter: none;
@@ -7021,12 +6899,12 @@ img.mfp-img {
     filter: alpha(opacity=0); } }
 
 @-ms-keyframes fadeOut {
-  /* line 5942, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+  /* line 5834, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
   0% {
     opacity: 1;
     -ms-filter: none;
     filter: none; }
-  /* line 5948, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+  /* line 5840, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
   100% {
     opacity: 0;
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
@@ -7130,7 +7008,7 @@ img.mfp-img {
     transform: translateZ(-500px) translateX(-200%); } }
 
 @-ms-keyframes backSlideOut {
-  /* line 6070, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+  /* line 5962, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
   25% {
     opacity: 0.5;
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
@@ -7140,7 +7018,7 @@ img.mfp-img {
     -o-transform: translateZ(-500px);
     -ms-transform: translateZ(-500px);
     transform: translateZ(-500px); }
-  /* line 6081, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+  /* line 5973, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
   75% {
     opacity: 0.5;
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
@@ -7150,7 +7028,7 @@ img.mfp-img {
     -o-transform: translateZ(-500px) translateX(-200%);
     -ms-transform: translateZ(-500px) translateX(-200%);
     transform: translateZ(-500px) translateX(-200%); }
-  /* line 6092, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+  /* line 5984, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
   100% {
     opacity: 0.5;
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
@@ -7278,7 +7156,7 @@ img.mfp-img {
     transform: translateZ(0) translateX(0); } }
 
 @-ms-keyframes backSlideIn {
-  /* line 6240, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+  /* line 6132, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
   0%, 25% {
     opacity: 0.5;
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
@@ -7288,7 +7166,7 @@ img.mfp-img {
     -o-transform: translateZ(-500px) translateX(200%);
     -ms-transform: translateZ(-500px) translateX(200%);
     transform: translateZ(-500px) translateX(200%); }
-  /* line 6251, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+  /* line 6143, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
   75% {
     opacity: 0.5;
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
@@ -7298,7 +7176,7 @@ img.mfp-img {
     -o-transform: translateZ(-500px);
     -ms-transform: translateZ(-500px);
     transform: translateZ(-500px); }
-  /* line 6262, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+  /* line 6154, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
   100% {
     opacity: 1;
     -ms-filter: none;
@@ -7372,7 +7250,7 @@ img.mfp-img {
     transform: scale(0.8); } }
 
 @-ms-keyframes scaleToFade {
-  /* line 6344, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+  /* line 6236, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
   100% {
     opacity: 0;
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
@@ -7419,7 +7297,7 @@ img.mfp-img {
     transform: translateY(-100%); } }
 
 @-ms-keyframes goDown {
-  /* line 6395, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+  /* line 6287, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
   0% {
     -webkit-transform: translateY(-100%);
     -moz-transform: translateY(-100%);
@@ -7469,7 +7347,7 @@ img.mfp-img {
     transform: scale(1.5); } }
 
 @-ms-keyframes scaleUpFrom {
-  /* line 6449, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+  /* line 6341, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
   0% {
     opacity: 0;
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
@@ -7525,7 +7403,7 @@ img.mfp-img {
     transform: scale(1.5); } }
 
 @-ms-keyframes scaleUpTo {
-  /* line 6509, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+  /* line 6401, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
   100% {
     opacity: 0;
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
@@ -7551,36 +7429,36 @@ img.mfp-img {
 ****************CUSTOMIZATION********************
 ************************************************/
 /*DEMO*/
-/* line 6536, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 6428, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .demo-buttons .btn {
   margin-right: 7px;
   margin-bottom: 7px; }
 
-/* line 6540, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 6432, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .demo-grid .row {
   margin-bottom: 20px; }
 
-/* line 6543, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 6435, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .demo-grid .row [class^="col-"] > div {
   height: 20px;
   background: #ccc; }
 
-/* line 6547, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 6439, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .demo-icons .span3 > span {
   font-size: 15px;
   margin-bottom: 10px;
   display: block; }
 
-/* line 6552, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 6444, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fontawesome-icon-list .fa-hover {
   margin-bottom: 10px; }
 
-/* line 6555, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 6447, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fontawesome-icon-list .fa-hover > a {
   color: #666;
   font-size: 13px; }
 
-/* line 6559, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
+/* line 6451, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/old_assets/_couponia.css */
 .fontawesome-icon-list .fa-hover > a .fa {
   color: #575757;
   width: 20px;

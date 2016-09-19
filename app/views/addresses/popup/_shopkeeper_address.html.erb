@@ -1,5 +1,5 @@
 <div class="address-popup">
-<%= form_for a, :url => address_path(a), :html => { :method => :patch }, :data => {:toggle => 'validator'}  do |f| %>
+<%= form_for address, :data => {:toggle => 'validator'} do |f| %>
 <div class="form-group">
   <h4>
     <%= I18n.t(:change_address_title, scope: :edit_address) %>

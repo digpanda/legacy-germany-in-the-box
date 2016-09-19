@@ -30,7 +30,8 @@ class AddressesController < ApplicationController
   end
 
   def create
-    user = User.find(params[:user_id])
+    user = current_user # changed by Laurent to hook fast the system
+    # we should refactor all this.
 
     if user.decorate.customer?
       num_addresses = user.addresses.count
@@ -63,6 +64,7 @@ class AddressesController < ApplicationController
         end
       end
     elsif user.decorate.shopkeeper?
+
       num_addresses = user.shop.addresses.count
       max_num_addresses = Rails.configuration.max_num_shop_billing_addresses + Rails.configuration.max_num_shop_sender_addresses
 
@@ -80,6 +82,7 @@ class AddressesController < ApplicationController
 
         flag = address.save
       end
+
     end
 
     if flag

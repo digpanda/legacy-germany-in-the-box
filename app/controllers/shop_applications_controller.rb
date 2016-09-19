@@ -8,14 +8,13 @@ class ShopApplicationsController < ApplicationController
   #before_action(only: [:new])  { I18n.locale = :de }
 
   before_action :set_shop_application, only: [:show, :destroy]
+  layout :custom_sublayout, only: [:index, :show]
 
   def index
-    @applications = ShopApplication.all
-    render :index, layout: "sublayout/_#{current_user.role.to_s}"
+    @shop_applications = ShopApplication.all
   end
 
   def show
-    render :show, layout: "sublayout/_#{current_user.role.to_s}"
   end
 
   def destroy
