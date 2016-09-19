@@ -15,6 +15,8 @@ zh-CN:
     to_activate_this_section: 才能继续
   results_for: 的结果
   button:
+    checkout: 下单
+    menu: 选单
     resend_confirmation: 重发确认邮件
     change_my_password: 更改密码
     go_back_home_page: 回到首页

@@ -2188,7 +2188,7 @@ module.exports = RefreshTime;
 });
 
 require.register("javascripts/starters/responsive.js", function(exports, require, module) {
-"use strict";
+'use strict';
 
 /**
  * Responsive Class
@@ -2205,10 +2205,12 @@ var Responsive = { // CURRENTLY NOT IN USED IN THE SYSTEM
 
   manageCategoriesMenu: function manageCategoriesMenu() {
 
+    var Translation = require('javascripts/lib/translation');
+
     $('#categories-menu').slicknav({
 
       "prependTo": ".mobile-category-menu", //".container-fluid"
-      "label": 'MENU', // to translate
+      "label": Translation.find('menu', 'button'),
       "closeOnClick": true
 
     });

@@ -15,6 +15,8 @@ de:
     to_activate_this_section: um weiter zu verfahren
   results_for: Ergebnisse von
   button:
+    checkout: Kasse
+    menu: Menu
     resend_confirmation: Bestätigungsmail erneut senden
     change_my_password: Passwort ändern
     go_back_home_page: Zurück zur Hauptseite

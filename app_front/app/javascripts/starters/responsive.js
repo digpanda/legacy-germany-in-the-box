@@ -14,12 +14,14 @@ var Responsive = { // CURRENTLY NOT IN USED IN THE SYSTEM
 
     manageCategoriesMenu: function() {
 
+      var Translation = require('javascripts/lib/translation');
+
       $('#categories-menu').slicknav({
 
         "prependTo": ".mobile-category-menu", //".container-fluid"
-        "label": 'MENU', // to translate
+        "label": Translation.find('menu', 'button'),
         "closeOnClick": true
-        
+
       });
 
       // We hook the slicknav menu with some HTML content
