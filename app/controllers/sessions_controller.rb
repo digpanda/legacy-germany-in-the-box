@@ -41,7 +41,8 @@ class SessionsController < Devise::SessionsController
       redirect_to root_url
       return
     end
-    super
+    reset_session
+    redirect_to root_url
   end
 
   def cancel_login
