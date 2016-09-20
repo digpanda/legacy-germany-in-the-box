@@ -31,15 +31,6 @@
     </div>
   </div>
 
-  <div class="form-group">
-    <div class="row">
-      <div class="col-md-12">
-        <%= f.text_field :street, :class => 'form-control', :required => true, :placeholder => "欧洲区德国路莱茵巷5弄6号7栋8楼9室" %>
-      </div>
-    </div>
-
-  </div>
-
 <% if address.province.nil? %>
 
   <div class="city-group">
@@ -70,6 +61,15 @@
 
 <% end %>
 
+
+  <div class="form-group">
+    <div class="row">
+      <div class="col-md-12">
+        <%= f.text_field :street, :class => 'form-control', :required => true, :placeholder => "欧洲区德国路莱茵巷5弄6号7栋8楼9室" %>
+      </div>
+    </div>
+
+  </div>
   <div class="form-group">
     <%= f.text_field :country, :value => ISO3166::Country[:CN].local_name, :readonly => true, :class => 'form-control' %>
   </div>
