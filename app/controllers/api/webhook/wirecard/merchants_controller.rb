@@ -7,7 +7,6 @@ class Api::Webhook::Wirecard::MerchantsController < Api::ApplicationController
 
   attr_reader :datas
 
-  load_and_authorize_resource :class => User
   before_action :validate_remote_server_request
 
   WIRECARD_CONFIG = Rails.application.config.wirecard
