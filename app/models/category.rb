@@ -3,9 +3,10 @@ class Category
   include CategoryBase
 
   has_and_belongs_to_many :products,  :inverse_of => :categories
-  
+
   field :slug, type: String
   field :desc, type: String, localize: true
+  field :position, type: Integer
 
   scope :only_with_products,       ->    { where(:product_ids.ne => nil).and(:product_ids.ne => []) }
 

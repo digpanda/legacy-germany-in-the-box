@@ -3,7 +3,7 @@ class PagesController < ApplicationController
   before_action :authenticate_user!, except: [:home, :privacy, :imprint, :saleguide, :fees, :menu, :customer_guide, :customer_agb, :customer_qa]
 
   def home
-    @categories = Category.all
+    @categories = Category.order(position: :asc).all
   end
 
   def agb
