@@ -82,6 +82,13 @@ class Customer::CheckoutController < ApplicationController
       :desc => "Eine neue Bestellung ist da. Zeit für die Vorbereitung!"
       })
 
+    EmitNotificationAndDispatchToUser.new.perform({
+      :user => order.user,
+      :title => "来因盒通知：付款成功，已通知商家准备发货 （订单号：#{order.id})",
+      :desc => ""
+      })
+
+
       redirect_to customer_orders_path
 
   end
