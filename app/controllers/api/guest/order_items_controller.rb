@@ -1,5 +1,8 @@
 class Api::Guest::OrderItemsController < Api::ApplicationController
 
+  attr_reader :order_item
+  before_action :set_order_item
+
   def update
 
     quantity = order_item_params[:quantity].to_i
@@ -50,6 +53,10 @@ class Api::Guest::OrderItemsController < Api::ApplicationController
 
   def order_item_params
     params.permit(:quantity)
+  end
+
+  def set_order_item
+    @order_item = OrderItem.find(params[:id])
   end
 
 end

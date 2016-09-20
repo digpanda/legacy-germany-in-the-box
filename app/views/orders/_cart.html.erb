@@ -42,17 +42,19 @@
       </td>
       <td class="white-table__quantity">
 
+        <!-- Minus -->
         <% unless @readonly %>
           <a href="#" class="js-set-quantity-minus" data-order-item-id="<%= order_item.id.to_s %>" data-order-shop-id="<%= s %>">
-            <i class="fa fa-minus"></i>
+            <i class="fa fa-minus buttons buttons__quantity"></i>
           </a>
         <% end %>
 
         <%= text_field_tag "", order_item.quantity, :id => "order-item-quantity-#{order_item.id.to_s}", :type => 'text', :value => "#{order_item.quantity}", :disabled => "disabled", :data => { :order_item_id => order_item.id.to_s } %>
 
+        <!-- Plus -->
         <% unless @readonly %>
           <a href="#" class="js-set-quantity-plus" data-order-item-id="<%= order_item.id.to_s %>" data-order-shop-id="<%= s %>">
-            <i class="fa fa-plus"></i>
+            <i class="fa fa-plus buttons buttons__quantity"></i>
           </a>
         <% end %>
 
@@ -64,9 +66,9 @@
         <% end %>
       </td>
       <% unless @readonly %>
-      <td class="white-table__remove">
+      <td>
 
-      <%= link_to '', guest_order_item_path(order_item), method: :delete, data: { confirm: I18n.t(:delete_sku_msg, :scope => :cart)  }, "data-placement" => "right",  class: 'fa fa-times' %>
+      <%= link_to '', guest_order_item_path(order_item), method: :delete, data: { confirm: I18n.t(:delete_sku_msg, :scope => :cart)  }, "data-placement" => "right",  class: 'fa fa-times buttons buttons__delete' %>
 
       </td>
       <% end %>
