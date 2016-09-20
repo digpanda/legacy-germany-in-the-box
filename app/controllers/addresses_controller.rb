@@ -19,7 +19,7 @@ class AddressesController < ApplicationController
       @addresses = @user.addresses
     end
 
-    render "show_#{current_user.role.to_s}_addresses"
+    render "#{current_user.role.to_s}_addresses"
   end
 
   def index
