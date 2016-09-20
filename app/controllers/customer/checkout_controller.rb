@@ -88,7 +88,6 @@ class Customer::CheckoutController < ApplicationController
       :desc => ""
       })
 
-
       redirect_to customer_orders_path
 
   end
