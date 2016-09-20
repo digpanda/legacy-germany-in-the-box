@@ -1,7 +1,5 @@
 class Api::Guest::OrderItemsController < Api::ApplicationController
 
-  load_and_authorize_resource :class => OrderItem
-
   def update
 
     quantity = order_item_params[:quantity].to_i
