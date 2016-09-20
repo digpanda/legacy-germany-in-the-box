@@ -85,7 +85,7 @@ class Customer::CheckoutController < ApplicationController
     EmitNotificationAndDispatchToUser.new.perform({
       :user => order.user,
       :title => "来因盒通知：付款成功，已通知商家准备发货 （订单号：#{order.id})",
-      :desc => ""
+      :desc => "你好，你的订单#{order.id}已成功付款，已通知商家准备发货。若有疑问，欢迎随时联系来因盒客服：customer@germanyinthebox.com。"
       })
 
       redirect_to customer_orders_path
