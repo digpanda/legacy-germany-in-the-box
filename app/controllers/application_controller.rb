@@ -92,7 +92,7 @@ class ApplicationController < ActionController::Base
 
   def set_categories
     if potential_customer?
-      @categories = Category.all
+      @categories = Category.order(position: :desc).all
     end
   end
 
