@@ -32,7 +32,7 @@ class Address
   scope :is_only_shipping,    ->  { any_of({type: :shipping}) }
   scope :is_only_both,        ->  { any_of({type: :both}) }
 
-  validates :pid, presence: true,   length: {minimum:18}, :if => lambda { shop.nil? || user&.decorate&.customer? }
+  validates :pid, presence: true,   length: {minimum:18} , :if => lambda { shop.nil? && user&.decorate&.customer? }
   validates :fname, presence: true
   validates :lname, presence: true
   validates :street, presence: true

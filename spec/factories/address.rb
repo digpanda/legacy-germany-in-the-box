@@ -30,18 +30,18 @@ FactoryGirl.define do
     district    { Faker::Address.state }
     province    { Faker::Address.state }
     mobile      { Faker::PhoneNumber.phone_number }
-    type        'both'
+    type        :both
 
     trait :both do
-      type 'both'
+      type :both
     end
 
     trait :sender do
-      type 'sender'
+      type :sender
     end
 
     trait :billing do
-      type 'billing'
+      type :billing
     end
 
   end
