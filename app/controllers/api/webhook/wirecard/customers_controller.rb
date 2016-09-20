@@ -20,9 +20,9 @@ class Api::Webhook::Wirecard::CustomersController < Api::ApplicationController
     # it doesn't matter if the API call failed, the order has to be systematically up to date with the order payment in case it's not already sent
     order_payment.order.refresh_status_from!(order_payment)
     if checker.success?
-      devlog "The order was refreshed and seem to be paid."
+      devlog.info "The order was refreshed and seem to be paid."
     else
-      devlog "The order was refreshed but don't seem to be paid. (#{checker.error})"
+      devlog.info "The order was refreshed but don't seem to be paid. (#{checker.error})"
     end
     devlog.info "End of process."
     render status: :ok,
