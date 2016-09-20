@@ -62,10 +62,7 @@
             <%= order.decorate.total_sum_in_yuan %> (<%= order.decorate.total_sum_in_euro %>)
           </td>
           <td>
-          <% if order.border_guru_shipment_id %>
-            <%= link_to I18n.t(:download, scope: :edit_order), download_label_order_path(order) %> |
-          <% end %>
-          <a href="<%= shared_order_path(order, format: "csv") %>">Shippment CSV</a> | <a href="<%= shared_order_bill_path(order, format: "pdf") %>">Informal Bill</a>
+            <%= render partial: "shared/orders/partials/files_buttons", locals: { :order => order } %>
           </td>
           <th>
           <% unless order.minimum_sending_date.nil? %>

@@ -22,8 +22,8 @@ class UsersController < ApplicationController
   }
 
   def index
-    redirect_to root_url unless current_user.decorate.admin?
-    @users = User.all
+    redirect_to root_url unless current_user.decorate.admin? # To refactor completely
+    @users = User.order(last_sign_in_at: :desc).all
   end
 
   def show

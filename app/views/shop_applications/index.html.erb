@@ -33,7 +33,7 @@
             <%= address.c_at.strftime('%Y-%m-%d %H:%M:%S') %>
           </td>
           <td>
-            <%= link_to '', shop_application_path(address), :method => :delete, data: { confirm: I18n.t(:delete_application_message, scope: :edit_shop_applications) }, :class => 'fa fa-times-circle fa-2x', :title => I18n.t(:remove, scope: :edit_shop_applications) %>
+            <%= link_to '', shop_application_path(address), :method => :delete, data: { confirm: I18n.t(:delete_application_message, scope: :edit_shop_applications) }, :class => 'tooltipster fa fa-times buttons buttons__delete', :title => I18n.t(:remove, scope: :edit_shop_applications) %>
           </td>
         </tr>
       <% end %>
