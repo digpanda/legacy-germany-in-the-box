@@ -78,7 +78,7 @@ class Customer::CheckoutController < ApplicationController
 
     EmitNotificationAndDispatchToUser.new.perform({
       :user => shop.shopkeeper,
-      :title => "Auftrag #{order.id} am #{order.c_at}",
+      :title => "Auftrag #{order.id} am #{order.paid_at}",
       :desc => "Eine neue Bestellung ist da. Zeit für die Vorbereitung!"
       })
 
@@ -138,7 +138,7 @@ class Customer::CheckoutController < ApplicationController
       # and the payment status freeze on unverified
       order_payment.order.refresh_status_from!(order_payment)
       # END OF COPY
-      
+
       return true
   end
 
