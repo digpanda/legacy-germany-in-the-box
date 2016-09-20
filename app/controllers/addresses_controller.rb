@@ -18,7 +18,7 @@ class AddressesController < ApplicationController
     elsif @user.decorate.customer?
       @addresses = @user.addresses
     end
-    render "#{@user.role}_addresses" # definitely to refactor
+    render "show_#{@user.role}_addresses" # definitely to refactor
   end
 
   def index
