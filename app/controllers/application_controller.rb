@@ -46,8 +46,6 @@ class ApplicationController < ActionController::Base
 
   before_action :set_current_language
 
-  after_action :reset_last_captcha_code!
-
   helper_method :current_order, :current_orders, :total_number_of_products
 
   around_action :set_translation_locale, only: [:update], if: -> { current_user&.decorate&.admin? }

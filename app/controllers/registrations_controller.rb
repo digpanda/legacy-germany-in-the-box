@@ -26,8 +26,6 @@ class RegistrationsController < Devise::RegistrationsController
 
     build_resource(sign_up_params)
 
-    if valid_captcha?(params[:captcha])
-
       yield resource if block_given?
       resource.save
 
@@ -78,11 +76,6 @@ class RegistrationsController < Devise::RegistrationsController
         render :new
 
       end
-    else
-      session[:signup_advice_counter] = 1
-      flash[:error] = I18n.t(:wrong_captcha, scope: :top_menu)
-      render :new
-    end
 
   end
 
