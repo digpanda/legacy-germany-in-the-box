@@ -11,7 +11,6 @@ class UserDecorator < Draper::Decorator
     if today_paid_orders.size == 0
       false
     else
-      binding.pry
      (today_paid_orders_total_price + order.decorate.total_price_in_yuan + new_price_increase) > Settings.instance.max_total_per_day
     end
   end
