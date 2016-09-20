@@ -7,8 +7,8 @@ class Order
   field :status,                    type: Symbol, default: :new
   field :desc,                      type: String
   field :border_guru_quote_id,      type: String
-  field :shipping_cost,             type: Float
-  field :tax_and_duty_cost,         type: Float
+  field :shipping_cost,             type: Float, default: 0
+  field :tax_and_duty_cost,         type: Float, default: 0
   field :border_guru_shipment_id,   type: String
   field :border_guru_link_tracking, type: String
   field :border_guru_link_payment,  type: String
