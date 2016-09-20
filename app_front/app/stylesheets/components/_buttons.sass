@@ -6,7 +6,7 @@
   background-color: $color-dark-grey
   +transition(0.3s)
   +border-radius(50%)
-  +button-size(25px)
+  +button-size(2em)
 
   +part(delete)
     &:hover
@@ -15,6 +15,10 @@
   +part(edit)
     &:hover
       background-color: $color-blue
+
+  +part(add)
+    &:hover
+      background-color: $color-green
 
   +part(quantity)
     background-color: transparent
