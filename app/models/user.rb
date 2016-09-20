@@ -5,6 +5,30 @@ class User
 
   strip_attributes
 
+  ## Database authenticatable
+  field :email,               type: String, default: ''
+  field :encrypted_password,  type: String, default: ''
+
+  ## Recoverable
+  field :reset_password_token,   type: String
+  field :reset_password_sent_at, type: Time
+
+  ## Rememberable
+  field :remember_created_at, type: Time
+
+  ## Trackable
+  field :sign_in_count,      type: Integer, default: 0
+  field :current_sign_in_at, type: Time
+  field :last_sign_in_at,    type: Time
+  field :current_sign_in_ip, type: String
+  field :last_sign_in_ip,    type: String
+
+  ## Confirmable
+  field :confirmation_token,   type: String
+  field :confirmed_at,         type: Time
+  field :confirmation_sent_at, type: Time
+  field :unconfirmed_email,    type: String # Only if using reconfirmable
+
   field :username,  type: String
   field :role,      type: Symbol, default: :customer
   field :fname,     type: String
@@ -24,10 +48,10 @@ class User
   field :wechat_unionid, type: String
   field :wechat_openid,  type: String
 
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :omniauthable
+
   has_and_belongs_to_many :favorites, :class_name => 'Product'
 
-  has_and_belongs_to_many :followers,         :class_name => 'User',        :inverse_of => :following
-  has_and_belongs_to_many :following,         :class_name => 'User',        :inverse_of => :followers
   has_and_belongs_to_many :liked_collections, :class_name => 'Collection',  :inverse_of => :users
 
   scope :without_detail, -> { only(:_id, :pic, :country, :username) }
@@ -64,32 +88,6 @@ class User
 
   validates_confirmation_of :password
 
-  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :omniauthable
-
-  ## Database authenticatable
-  field :email,               type: String, default: ''
-  field :encrypted_password,  type: String, default: ''
-
-  ## Recoverable
-  field :reset_password_token,   type: String
-  field :reset_password_sent_at, type: Time
-
-  ## Rememberable
-  field :remember_created_at, type: Time
-
-  ## Trackable
-  field :sign_in_count,      type: Integer, default: 0
-  field :current_sign_in_at, type: Time
-  field :last_sign_in_at,    type: Time
-  field :current_sign_in_ip, type: String
-  field :last_sign_in_ip,    type: String
-
-  ## Confirmable
-  field :confirmation_token,   type: String
-  field :confirmed_at,         type: Time
-  field :confirmation_sent_at, type: Time
-  field :unconfirmed_email,    type: String # Only if using reconfirmable
-
   acts_as_token_authenticatable
 
   field :authentication_token
@@ -98,6 +96,29 @@ class User
   index({followers: 1},           {unique: false, name: :idx_user_followers,          sparse: true})
   index({following: 1},           {unique: false, name: :idx_user_following,          sparse: true})
   index({liked_collections: 1},   {unique: false, name: :idx_user_liked_collections,  sparse: true})
+
+  before_destroy :destroy_has_shop, :destroy_has_orders
+  def destroy_has_shop
+    if self.shop
+      errors.add :base, "Cannot delete user with a shop"
+      false
+    else
+      true
+    end
+  end
+
+  def destroy_has_orders
+    if self.orders.count > 0
+      errors.add :base, "Cannot delete user with orders"
+      false
+    else
+      true
+    end
+  end
+
+  def destroyable?
+    !self.decorate.admin?
+  end
 
   def wechat?
     self.provider == "wechat"

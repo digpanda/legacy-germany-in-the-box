@@ -5,7 +5,7 @@ class Admin::OrdersController < ApplicationController
   load_and_authorize_resource
   before_action :set_order, :except => [:index]
 
-  layout :custom_sublayout, only: [:index, :show]
+  layout :custom_sublayout
 
   attr_accessor :order, :orders
 
@@ -29,7 +29,7 @@ class Admin::OrdersController < ApplicationController
     if order.update(order_params)
       flash[:success] = "The order was updated."
     else
-      flash[:error] = "The order was not updated (#{order.erros.full_messages.join(', ')})"
+      flash[:error] = "The order was not updated (#{order.errors.full_messages.join(', ')})"
     end
     redirect_to navigation.back(1)
   end

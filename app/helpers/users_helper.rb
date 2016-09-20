@@ -1,5 +1,8 @@
 module UsersHelper
 
+  def user_roles
+    [['Administrator', :admin],['Shopkeeper', :shopkeeper],['Customer', :customer]]
+  end
   def potential_customer?
     (current_user.nil? && chinese?) || !!(current_user&.decorate&.customer?)
   end

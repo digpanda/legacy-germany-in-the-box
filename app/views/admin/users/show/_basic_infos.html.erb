@@ -1,0 +1,48 @@
+<div class="col-md-12">
+  <div class="row">
+    <h3>Basic Infos</h3>
+    <hr>
+  </div>
+  <div class="row">
+
+    <div class="col-md-6">
+
+      Email : <span class="js-editable"><%= @user.email %></span>
+      <input type="text" class="js-editable-field" value="<%= @user.email %>" name="user[email]" id="user_email">
+      <br />
+      Username : <%= @user.username %>
+      <br />
+      Role : <span class="js-editable"><%= @user.role %></span>
+      <%= form.select(:role, options_for_select(user_roles, {:selected => @user.role}), {}, {:class => "js-editable-field"}) %>
+      <br />
+      First name : <%= @user.fname %>
+      <br />
+      Last name : <%= @user.lname %>
+      <br />
+      Status : <%= @user.status %>
+
+    </div>
+
+    <div class="col-md-6">
+
+      Birth : <%= @user.birth %>
+      <br />
+      City : <%= @user.city %>
+      <br />
+      Province : <%= @user.province %>
+      <br />
+      Country : <%= @user.country %>
+      <br />
+      About : <%= @user.about %>
+      <br />
+      Website : <%= @user.website %>
+      <br />
+      Phone : <%= @user.tel %>
+      <br />
+      Mobile : <%= @user.mobile %>
+
+    </div>
+
+  </div>
+
+</div>

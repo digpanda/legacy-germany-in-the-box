@@ -15,16 +15,11 @@ class UsersController < ApplicationController
 
   include Base64ToUpload
 
-  layout :custom_sublayout, only: [:index, :edit_account, :edit_personal, :edit_bank, :favorites]
+  layout :custom_sublayout, only: [:edit_account, :edit_personal, :edit_bank, :favorites]
 
   before_action(:only =>  [:create, :update]) {
     base64_to_uploadedfile :user, :pic
   }
-
-  def index
-    redirect_to root_url unless current_user.decorate.admin? # To refactor completely
-    @users = User.order(last_sign_in_at: :desc).all
-  end
 
   def show
   end
@@ -94,73 +89,6 @@ class UsersController < ApplicationController
       end
     end
   end
-
-  def destroy
-    if  @user.oCollections.delete_all && @user.addresses.delete_all && @user.destroy
-      flash[:success] = I18n.t(:delete_ok, scope: :edit_accounts)
-    else
-      flash[:error] = @user.errors.full_messages.first
-    end
-
-    redirect_to request.referer
-  end
-
-  def follow
-
-    @target = @user
-    @target.followers.push(current_user)
-    current_user.following.push(@target)
-
-    if @target && @target != current_user && @target.save && current_user.save
-
-      flash[:success] = I18n.t(:follow_ok, scope: :edit_following)
-      redirect_to request.referer
-
-    else
-
-      flash[:success] = I18n.t(:follow_ko, scope: :edit_following)
-      redirect_to request.referer
-
-    end
-  end
-
-  def unfollow
-    @target = @user
-    @target.followers.delete(current_user)
-    current_user.following.delete(@target)
-
-    if @target && @target != current_user && @target.save && current_user.save
-      flash[:success] = I18n.t(:unfollow_ok, scope: :edit_following)
-      redirect_to request.referer
-    else
-      flash[:success] = I18n.t(:follow_ko, scope: :edit_following)
-      redirect_to request.referer
-    end
-  end
-
-  def get_followers
-    @followers = @user.followers
-    followers_with_reciprocity = followers_reciprocity(@user, followers)
-    render :index
-  end
-
-  # SHOULD BE IN THE MODEL -> WE SHOULD ACTUALLY REDO THE WHOLE FOLLOWING SYSTEM
-  def followers_reciprocity(user, followers)
-    followers.map { |f| f.as_json.merge({:reciprocity => (f.followers.include? user._id)}) }
-  end
-
-  def get_following
-    render :index
-  end
-
-  def search
-    @users = User.or({username: /.*#{params[:keyword]}.*/i},
-                     {fname: /.*#{params[:keyword]}.*/i},
-                     {email: /.*#{params[:keyword]}.*/i}).limit(Rails.configuration.limit_for_users_search)
-
-    render :index
-  end
-
 
   private
 

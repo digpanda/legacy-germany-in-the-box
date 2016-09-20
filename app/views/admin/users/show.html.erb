@@ -1,0 +1,30 @@
+<div class="details">
+
+  <%= form_for @user, url: admin_user_path, method: :patch do |form| %>
+
+  <div class="row">
+    <div class="col-md-10">
+      <h2>User <%= @user.id %></h2>
+    </div>
+    <div class="col-md-2 details__action">
+      <a href="#" id="editable-click"><i class="fa fa-edit tooltipster" title="Edit the fields"></i></a>
+    </div>
+  </div>
+
+  <div class="+small-spacer"></div>
+
+  <div class="row details__block">
+    <%= render partial: "admin/users/show/basic_infos", locals: { form: form } %>
+  </div>
+
+  <div class="row details__block">
+    <%= render partial: "admin/users/show/sign_in" %>
+  </div>
+
+  <div class="row details__block">
+    <%= render partial: "admin/users/show/action" %>
+  </div>
+
+  <% end %>
+
+</div>

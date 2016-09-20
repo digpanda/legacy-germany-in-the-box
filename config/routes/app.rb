@@ -23,6 +23,8 @@ end
 namespace :admin do
   resources :orders do
   end
+  resources :users do
+  end
   resources :order_payments do
     post :refund
     post :check

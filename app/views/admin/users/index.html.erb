@@ -21,36 +21,40 @@
       </th>
     </thead>
     <tbody>
-      <% @users.each do |u| %>
+      <% @users.each do |user| %>
         <tr>
           <td>
-            <%= u.email %>
+            <%= user.email %>
           </td>
           <td>
-            <%= u.username %>
+            <%= user.username %>
           </td>
           <td>
-            <%= u.role %>
+            <%= user.role %>
           </td>
           <td>
-            <%= u.sign_in_count %>
+            <%= user.sign_in_count %>
           </td>
           <td>
-            <%= u.last_sign_in_at ? l(u.last_sign_in_at, :format => '%Y-%m-%d %H:%M:%S') : '' %>
+            <%= user.last_sign_in_at ? l(user.last_sign_in_at, :format => '%Y-%m-%d %H:%M:%S') : '' %>
           </td>
           <td>
-            <% if u.id != current_user.id %>
-              <%= link_to '', user_path(u), :method => :delete, data: { confirm: I18n.t(:delete_application_message, scope: :edit_accounts) }, :class => 'tooltipster fa fa-times buttons buttons__delete', :title => "Delete this user" %>
+              <a href="<%= admin_user_path(user) %>"><i class="fa fa-pencil tooltipster buttons buttons__edit tooltipstered"></i></a>
+
+            <% if user.destroyable? %>
+              <%= link_to '', admin_user_path(user), :method => :delete, data: { confirm: "Are you sure to remove this user account ?" }, :class => 'tooltipster fa fa-times buttons buttons__delete', :title => "Delete this user" %>
             <% end %>
           </td>
         </tr>
       <% end %>
     </tbody>
   </table>
+  <%= will_paginate @orders, renderer: BootstrapPagination::Rails %>
 <% else %>
   <div class="+white-box +centered">
     <h4>
-    <%= I18n.t(:no_applications, scope: :edit_shop_application) %>
-   </h4>
- </div>
+      No user
+    </h4>
+  </div>
 <% end %>
+</div>
