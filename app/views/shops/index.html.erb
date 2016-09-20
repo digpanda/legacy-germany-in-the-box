@@ -73,11 +73,11 @@
             <% if s.approved.nil? %>
               <%= link_to '', shop_approve_path(s), :method => :patch, :class => 'tooltipster fa fa-check buttons buttons__add', :title => "Approve" %>
             <% else %>
-              <%= link_to '', shop_disapprove_path(s), :method => :patch, :class => 'tooltipster fa fa-minus buttons buttons__delete', :title => "Disapprove" %>
+              <%= link_to '', shop_disapprove_path(s), :method => :patch, :class => 'tooltipster fa fa-minus buttons buttons__cancel', :title => "Disapprove" %>
             <% end %>
 
             <% if s.products.count == 0 %>
-              <%= link_to '', shop_path(s), :method => :delete, data: { confirm: I18n.t(:delete_shop_message, scope: :edit_shops) }, :class => 'fa fa-times-circle fa-2x', :title => I18n.t(:remove, scope: :edit_shops) %>
+              <%= link_to '', shop_path(s), :method => :delete, data: { confirm: I18n.t(:delete_shop_message, scope: :edit_shops) }, :class => 'tooltipster fa fa-times-circle buttons buttons__delete', :title => I18n.t(:remove, scope: :edit_shops) %>
             <% end %>
 
           </td>

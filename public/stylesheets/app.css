@@ -7829,13 +7829,16 @@ img.mfp-img {
   .buttons__edit:hover {
     background-color: #3498db; }
   /* line 20, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_buttons.sass */
+  .buttons__cancel:hover {
+    background-color: #e67e22; }
+  /* line 24, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_buttons.sass */
   .buttons__add:hover {
     background-color: #659443; }
   /* line 76, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
   .buttons__quantity {
     background-color: transparent;
     color: #ABABA8 !important; }
-    /* line 26, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_buttons.sass */
+    /* line 30, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_buttons.sass */
     .buttons__quantity:hover {
       color: #3498db !important; }
 

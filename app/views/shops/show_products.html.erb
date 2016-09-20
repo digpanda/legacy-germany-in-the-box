@@ -58,11 +58,12 @@
           <td align="left">
             <% if current_user.decorate.admin? %>
               <% if p.approved.nil? %>
-                <%= link_to '', product_approve_path(p), :method => :patch, :class => 'fa fa-check-circle fa-2x', :title => "Approve" %>
+                <%= link_to '', product_approve_path(p), :method => :patch, :class => 'tooltipster fa fa-check buttons buttons__add', :title => "Approve this product" %>
               <% else %>
-                <%= link_to '', product_disapprove_path(p), :method => :patch, :class => 'fa fa-minus-circle fa-2x', :title => "Disapprove" %>
+                <%= link_to '', product_disapprove_path(p), :method => :patch, :class => 'tooltipster fa fa-minus buttons buttons__cancel', :title => "Disapprove this product" %>
               <% end %>
-              <%= link_to '', product_path(p), :method => :delete, data: { confirm: I18n.t(:delete_product_message, scope: :edit_product) }, :class => 'fa fa-times-circle fa-2x', :title => I18n.t(:remove, scope: :edit_product) %>
+
+              <%= link_to '', product_path(p), :method => :delete, data: { confirm: I18n.t(:delete_product_message, scope: :edit_product) }, :class => 'tooltipster fa fa-times buttons buttons__delete', :title => "Remove this product" %>
             <% end %>
           </td>
         </tr>
