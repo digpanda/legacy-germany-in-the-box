@@ -26,7 +26,7 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :mailgun
   config.action_mailer.mailgun_settings = {
           api_key: 'key-57fccf0c1fa0bf601a25865e43e0f742',
-          domain: 'sandboxf507885e459a4b7484539fc0cbcf144a.mailgun.org'
+          domain: 'germanyinthebox.com'
   }
 
   config.active_support.deprecation = :notify
