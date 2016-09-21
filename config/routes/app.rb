@@ -24,7 +24,7 @@ end
 namespace :admin do
   resources :orders do
   end
-  resource :user, :controller => 'user' do
+  resource :account, :controller => 'account' do
   end
   resources :users do
   end
@@ -45,7 +45,7 @@ namespace :shopkeeper do
     patch :shipped
   end
 
-  resource :user, :controller => 'user' do
+  resource :account, :controller => 'account' do
   end
 
   resources :payments do
@@ -110,7 +110,7 @@ namespace :customer do
     get :cancel
   end
 
-  resource :user, :controller => 'user' do
+  resource :account, :controller => 'account' do
   end
 
   resources :orders  do

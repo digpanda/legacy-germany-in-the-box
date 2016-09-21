@@ -1,6 +1,6 @@
-class Admin::UserController < ApplicationController
+class Customer::AccountController < ApplicationController
 
-  load_and_authorize_resource
+  load_and_authorize_resource :class => false
   before_action :set_user
 
   layout :custom_sublayout
@@ -27,7 +27,10 @@ class Admin::UserController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation, :fname, :lname, :tel, :mobile)
+    if params[:user][:password].empty?
+      params[:user][:password] = params[:user][:password_confirmation] = params[:user][:current_password]
+    end
+    params.require(:user).permit(:username, :email, :password, :password_confirmation, :fname, :lname, :birth, :gender, :about, :website, :pic, :tel, :mobile)
   end
 
 end

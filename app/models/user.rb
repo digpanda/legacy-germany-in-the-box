@@ -150,7 +150,7 @@ class User
     if self.valid_password?(params[:user][:current_password])
       true
     else
-      self.errors.add(:password, "not matching")
+      self.errors.add(:password, "wrong")
       false
     end
   end
