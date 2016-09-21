@@ -43,7 +43,7 @@ class RegistrationsController < Devise::RegistrationsController
 
             EmitNotificationAndDispatchToUser.new.perform({
               :user => resource,
-              :title => '欢迎到来因盒!',
+              :title => '来因盒通知：<注册成功，欢迎光临来因盒！>',
               :desc => "亲，欢迎你到来因盒购物。"
             })
 

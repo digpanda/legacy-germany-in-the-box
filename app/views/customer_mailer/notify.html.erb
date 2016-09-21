@@ -1,8 +1,16 @@
-<h1>嗨， <%= @user.decorate.full_name %></h1>
+<h1><%= @user.decorate.full_name %> 你好, </h1>
+
 <p>
-  你有来因盒来的新消息啦："<%= @title %>"<br>
+你有新的来因盒通知： "<%= @title %>"  <br>
+详情请点击这里：<a href="<%= root_url.chomp('/') %><%= @url %>"></a>.<br>
 </p>
+
 <p>
-  详情请轻戳这里: <a href="<%= root_url.chomp('/') %><%= @url %>"></a>.
+祝你购物愉快，让优质的德国产品带给你美好的一天。 <br>
 </p>
-<p>谢谢，祝你度过愉快的一天!</p>
+
+<p>
+来因盒服务团队 <br>
+customer@germanyinthebox.com <br>
+www.germanyinthebox.com <br>
+</p>

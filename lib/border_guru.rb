@@ -22,6 +22,7 @@ module BorderGuru
         cart.border_guru_quote_id = response.quote_identifier
         cart.shipping_cost = ShippingPrice.new(cart).price # could be inside the model #response.shipping_cost <-- replace by our own system because borderguru is unable to give it to us
         cart.tax_and_duty_cost = response.tax_and_duty_cost
+        cart.save
       end
     end
 
