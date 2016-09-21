@@ -24,8 +24,6 @@
         </span>
         <%= f.file_field :pic, :accept => "image/png, image/jpeg, image/jpg", :class => 'img-file-upload upload', :img_id => "#pic_#{current_user.id}" %>
       </div>
-
-      <%= f.button I18n.t(:save, scope: :edit_account), :type => 'submit', :class => 'btn btn-primary' %>
     </div>
   </div>
 </div>
@@ -71,10 +69,6 @@
 
     <% end %>
 
-    <div class="form-group">
-      <%= f.button I18n.t(:save, scope: :edit_account), :type => 'submit', :class => 'btn btn-primary' %>
-    </div>
-
   </div>
 
   <%= content_tag(:div, nil, :id => "js-show-datepicker", :data => { :language => I18n.locale }) %>
@@ -107,11 +101,15 @@
     <div class="form-group">
       <%= f.text_field :mobile, :class => 'form-control', :pattern => I18n.t(:tel, scope: :validation, locale: :'zh-CN'), placeholder: I18n.t(:placeholder_tel, scope: :edit_personal) %>
     </div>
-    <div class="form-group">
-      <%= f.button I18n.t(:save, scope: :edit_personal), :class => 'btn btn-primary' %>
-    </div>
   </div>
 
+</div>
+
+<div class="+small-spacer"></div>
+<div class="row">
+  <div class="col-md-11 +centered +white-box">
+      <%= f.button I18n.t(:save, scope: :edit_account), :type => 'submit', :class => 'btn btn-primary' %>
+  </div>
 </div>
 
 <% end %>
