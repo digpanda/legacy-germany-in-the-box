@@ -20,8 +20,11 @@ resource :page do
   concerns :shared_page
 end
 
+# Admin related
 namespace :admin do
   resources :orders do
+  end
+  resource :user, :controller => 'user' do
   end
   resources :users do
   end
@@ -44,7 +47,7 @@ namespace :shopkeeper do
 
   resource :user, :controller => 'user' do
   end
-  
+
   resources :payments do
   end
 

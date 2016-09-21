@@ -1,3 +1,5 @@
+require 'will_paginate/array'
+
 class User
   include MongoidBase
 
@@ -141,6 +143,15 @@ class User
       user.wechat_unionid = auth.info.unionid
       user.save
       user
+    end
+  end
+
+  def check_valid_password?(params)
+    if self.valid_password?(params[:user][:current_password])
+      true
+    else
+      self.errors.add(:password, "not matching")
+      false
     end
   end
 

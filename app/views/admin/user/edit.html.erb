@@ -1,0 +1,32 @@
+<%= form_for @user, :data => {:toggle => 'validator'}, :url => admin_user_path, :method => :patch do |f| %>
+
+<div class="+spacer"></div>
+<div class="row">
+
+  <div class="col-md-5 +white-box">
+
+    <div class="form-group">
+      <%= f.label :email, I18n.t(:email, scope: :edit_account) %>
+      <%= f.text_field :email, :class => 'form-control', :type => 'email' %>
+    </div>
+
+    <%= render partial: "shared/user/partials/edit_password", :locals => { :f => f } %>
+
+  </div>
+
+  <%= content_tag(:div, nil, :id => "js-show-datepicker", :data => { :language => I18n.locale }) %>
+
+  <div class="col-md-5 col-md-push-1 +white-box">
+    <%= render partial: "shared/user/partials/user_details", :locals => { :f => f } %>
+  </div>
+
+</div>
+
+<div class="+small-spacer"></div>
+<div class="row">
+  <div class="col-md-11 +centered +white-box">
+      <%= f.button I18n.t(:save, scope: :edit_account), :type => 'submit', :class => 'btn btn-primary' %>
+  </div>
+</div>
+
+<% end %>
