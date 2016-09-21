@@ -48,25 +48,7 @@
     </div>
 
     <% unless @user.wechat? %>
-
-    <div class="form-group">
-      <%= f.label :current_password, I18n.t(:current_password, scope: :edit_account), :class => 'required' %>
-      <%= f.password_field :current_password, :class => 'form-control', :autocomplete => :off, :required => true, :minLength => Rails.configuration.min_password_length %>
-      <div class="help-block with-errors"></div>
-    </div>
-    <div class="form-group">
-      <label for="user[password]" title="<%= I18n.t(:password_info, scope: :edit_account) %>">
-        <%= I18n.t(:password, scope: :edit_account) %>
-      </label>
-      <%= f.password_field :password, :class => 'form-control', :autocomplete => :off, :minLength => Rails.configuration.min_password_length, :id => 'inputPassword' %>
-      <div class="help-block with-errors"></div>
-    </div>
-    <div class="form-group">
-      <%= f.label :password_confirmation, I18n.t(:password_confirmation, scope: :edit_account) %>
-      <%= f.password_field :password_confirmation, :class => 'form-control', :autocomplete => :off, 'data-match': '#inputPassword', 'data-match-error': I18n.t(:password_match_error, scope: :edit_account) %>
-      <div class="help-block with-errors"></div>
-    </div>
-
+      <%= render partial: "shared/user/partials/edit_password", :locals => { :f => f } %>
     <% end %>
 
   </div>
@@ -74,33 +56,7 @@
   <%= content_tag(:div, nil, :id => "js-show-datepicker", :data => { :language => I18n.locale }) %>
 
   <div class="col-md-5 col-md-push-1 +white-box">
-
-    <div class="form-group">
-      <%= f.text_field :lname, :class => 'form-control', placeholder: I18n.t(:lastname, scope: :edit_personal) %>
-    </div>
-    <div class="form-group">
-      <%= f.text_field :fname, :class => 'form-control', placeholder: I18n.t(:firstname, scope: :edit_personal) %>
-    </div>
-    <div class="form-group">
-      <%= f.text_field :birth, :id => 'datepicker', :class => 'form-control', placeholder: I18n.t(:birthday, scope: :edit_personal), :required => true %>
-      <div class="help-block with-errors"></div>
-    </div>
-    <div class="form-group">
-      <label class="radio-inline">
-        <%= f.radio_button :gender, 'm' %>
-        <%= I18n.t(:'genderize.name.masculine') %>
-      </label>
-      <label class="radio-inline">
-        <%= f.radio_button :gender, 'f', :checked => @user.gender.present? ? @user.gender.female? : true %>
-        <%= I18n.t(:'genderize.name.feminine') %>
-      </label>
-    </div>
-    <div class="form-group">
-      <%= f.text_field :tel, :class => 'form-control', :pattern => I18n.t(:mobile, scope: :validation, locale: :'zh-CN'), placeholder: I18n.t(:placeholder_mobile, scope: :edit_personal) %>
-    </div>
-    <div class="form-group">
-      <%= f.text_field :mobile, :class => 'form-control', :pattern => I18n.t(:tel, scope: :validation, locale: :'zh-CN'), placeholder: I18n.t(:placeholder_tel, scope: :edit_personal) %>
-    </div>
+    <%= render partial: "shared/user/partials/user_details", :locals => { :f => f } %>
   </div>
 
 </div>

@@ -34,6 +34,7 @@ namespace :admin do
   end
 end
 
+# Shopkeeper related
 namespace :shopkeeper do
 
   resources :orders do
@@ -41,6 +42,9 @@ namespace :shopkeeper do
     patch :shipped
   end
 
+  resource :user, :controller => 'user' do
+  end
+  
   resources :payments do
   end
 

@@ -1,4 +1,4 @@
-class Customer::UserController < ApplicationController
+class Shopkeeper::UserController < ApplicationController
 
   load_and_authorize_resource
   before_action :set_user
@@ -36,7 +36,7 @@ class Customer::UserController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:username, :email, :password, :password_confirmation, :fname, :lname, :birth, :gender, :about, :website, :pic, :tel, :mobile)
+    params.require(:user).permit(:email, :password, :password_confirmation, :fname, :lname, :tel, :mobile)
   end
 
 end
