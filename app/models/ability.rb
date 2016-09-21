@@ -49,6 +49,7 @@ class Ability
     # - Laurent, 2016/06/21
     #
     #
+
     user ||= User.new # THIS SHOULD DISAPPEAR, BUT WE NEED IT FOR GUESTS RIGHT NOW
 
     if user.role == :customer
@@ -199,5 +200,6 @@ class Ability
     elsif user.role == :admin
       can :manage, :all
     end
+
   end
 end
