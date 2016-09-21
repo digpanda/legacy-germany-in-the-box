@@ -1,9 +1,13 @@
 <%= translation_js(:max_exceeded_message, :image_upload) %>
 <%= translation_js(:ext_error_message, :image_upload) %>
+<!-- TODO :
+BE CAREFUL ITS USED BY ADMIN / SHOPKEEPER / USERS
+WE SHOULD REFACTOR THE WHOLE SECTION AND SPLIT IT
+-->
 
-
+<div class="row">
 <% if @user.decorate.customer? %>
-    <div class="col-md-7 col-sm-12 col-xs-12 text-center +white-box">
+    <div class="col-md-11 +centered +white-box">
       <%= form_for @user, html: {method: 'patch', :data => {:toggle => 'validator'}} do |f| %>
           <div class="form-group">
             <div class="row">
@@ -30,8 +34,13 @@
       <% end %>
     </div>
 <% end %>
+</div>
 
-<div class="col-md-7 col-sm-12 col-xs-12 +white-box">
+<div class="+spacer"></div>
+
+<div class="row">
+
+<div class="col-md-5 +white-box">
 
   <%= form_for @user, html: {method: 'patch', :data => {:toggle => 'validator'}} do |f| %>
 
@@ -86,4 +95,43 @@
         <%= f.button I18n.t(:save, scope: :edit_account), :type => 'submit', :class => 'btn btn-primary' %>
       </div>
   <% end %>
+</div>
+
+<%= content_tag(:div, nil, :id => "js-show-datepicker", :data => { :language => I18n.locale }) %>
+
+<div class="col-md-5 col-md-push-1 +white-box">
+  <%= form_for @user, html: {:data => {:toggle => 'validator'}} do |f| %>
+
+    <div class="form-group">
+      <%= f.text_field :lname, :class => 'form-control', placeholder: I18n.t(:lastname, scope: :edit_personal) %>
+    </div>
+    <div class="form-group">
+      <%= f.text_field :fname, :class => 'form-control', placeholder: I18n.t(:firstname, scope: :edit_personal) %>
+    </div>
+    <div class="form-group">
+      <%= f.text_field :birth, :id => 'datepicker', :class => 'form-control', placeholder: I18n.t(:birthday, scope: :edit_personal), :required => true %>
+      <div class="help-block with-errors"></div>
+    </div>
+    <div class="form-group">
+      <label class="radio-inline">
+        <%= f.radio_button :gender, 'm' %>
+        <%= I18n.t(:'genderize.name.masculine') %>
+      </label>
+      <label class="radio-inline">
+        <%= f.radio_button :gender, 'f', :checked => @user.gender.present? ? @user.gender.female? : true %>
+        <%= I18n.t(:'genderize.name.feminine') %>
+      </label>
+    </div>
+    <div class="form-group">
+      <%= f.text_field :tel, :class => 'form-control', :pattern => I18n.t(:mobile, scope: :validation, locale: :'zh-CN'), placeholder: I18n.t(:placeholder_mobile, scope: :edit_personal) %>
+    </div>
+    <div class="form-group">
+      <%= f.text_field :mobile, :class => 'form-control', :pattern => I18n.t(:tel, scope: :validation, locale: :'zh-CN'), placeholder: I18n.t(:placeholder_tel, scope: :edit_personal) %>
+    </div>
+    <div class="form-group">
+      <%= f.button I18n.t(:save, scope: :edit_personal), :class => 'btn btn-primary' %>
+    </div>
+  <% end %>
+</div>
+
 </div>

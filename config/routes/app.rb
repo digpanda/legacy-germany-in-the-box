@@ -103,6 +103,9 @@ namespace :customer do
     get :cancel
   end
 
+  resource :user, :controller => 'user' do
+  end
+
   resources :orders  do
     resource :border_guru, :controller => 'orders/border_guru' do
       get :tracking_id

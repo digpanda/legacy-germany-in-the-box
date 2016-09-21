@@ -51,7 +51,9 @@ class UserDecorator < Draper::Decorator
     self.role == :customer
   end
 
+  # TODO : to remove when update of user will be refactored completely (shopkeeper and admin too)
   def update_with_password(params, *options)
+
     if encrypted_password.blank?
       update_attributes(params, *options)
     else

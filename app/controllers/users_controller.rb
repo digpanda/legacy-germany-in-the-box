@@ -15,7 +15,7 @@ class UsersController < ApplicationController
 
   include Base64ToUpload
 
-  layout :custom_sublayout, only: [:edit_account, :edit_personal, :edit_bank, :favorites]
+  layout :custom_sublayout, only: [:edit_account, :edit_personal, :favorites]
 
   before_action(:only =>  [:create, :update]) {
     base64_to_uploadedfile :user, :pic
@@ -40,10 +40,6 @@ class UsersController < ApplicationController
     render :edit_personal
   end
 
-  def edit_bank
-    render :edit_bank
-  end
-
   def edit
     if params[:user_info_edit_part] == :edit_password_by_admin.to_s
       @user = User.find(params[:user_id])
@@ -55,6 +51,8 @@ class UsersController < ApplicationController
     @user.save
   end
 
+  # TODO : this will be removed
+  # it's already not in used anymore for the customer
   def update
 
     ups = user_params

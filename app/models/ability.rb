@@ -87,7 +87,7 @@ class Ability
            :edit_account,
            :favorites,
            :edit_personal,
-           :edit_bank, :show_addresses, :set_address], User, :id => user.id
+           :show_addresses, :set_address], User, :id => user.id
 
       can :manage, Order, :user => user
 

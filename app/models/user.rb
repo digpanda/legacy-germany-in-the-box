@@ -152,4 +152,13 @@ class User
     super && provider.blank?
   end
 
+  def change_params_password(params)
+    if params[:password] == params[:password_confirmation] && params[:new_password]
+      params[:password] = params[:password_confirmation] = params[:new_password]
+      params[:new_password] = nil
+    end
+    binding.pry
+    params
+  end
+
 end

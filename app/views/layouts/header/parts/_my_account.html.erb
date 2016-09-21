@@ -7,7 +7,7 @@
   <% if current_user.decorate.new_notifications? %>
     <a href="<%= shared_notifications_path %>">
   <% else %>
-    <a href="<%= edit_account_user_path(current_user) %>">
+    <a href="<%= edit_customer_user_path %>">
   <% end %>
 
   <%= render partial: "layouts/header/parts/my_account/avatar" %>

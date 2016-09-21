@@ -44,15 +44,8 @@ concern :shared_users do
   match 'search/:keyword',  via: [:get],    action: :search,            as: :search,              :on => :collection
   match :edit_account,      via: [:get],    action: :edit_account,      as: :edit_account,        :on => :member
   match :edit_personal,     via: [:get],    action: :edit_personal,     as: :edit_personal,       :on => :member
-  match :edit_bank,         via: [:get],    action: :edit_bank,         as: :edit_bank,           :on => :member
-  match :follow,            via: [:patch],  action: :follow,            as: :follow,              :on => :member
-  match :unfollow,          via: [:patch],  action: :unfollow,          as: :unfollow,            :on => :member
-  match :get_followers,     via: [:get],    action: :get_followers,     as: :get_followers,       :on => :member
-  match :get_following,     via: [:get],    action: :get_following,     as: :get_following,       :on => :member
   match :show_addresses,    via: [:get],    action: :show_addresses,    :controller => :addresses,          as: :show_addresses,      :on => :member
   match :show_collections,  via: [:get],    action: :show_collections,  :controller => :collections,        as: :show_collections,    :on => :member
-  #match :new_collection,    via: [:get],    action: :new,               :controller => :collections,        as: :new_collection,      :on => :member
-  #match :edit_collection,   via: [:get],    action: :edit,              :controller => :collections,        as: :edit_collection,     :on => :member
 end
 
 concern :shared_shops do
