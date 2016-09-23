@@ -30,6 +30,7 @@ module BorderGuru
                                             submerchant: submerchant_address(@shop.sender_address),
                                             identificationData: identification_data(@order.shipping_address)
                                         })
+                                        binding.pry
       end
 
       private
@@ -51,7 +52,7 @@ module BorderGuru
             state: address_model.province,
             email: address_model.shop.mail,
             countryCode: address_model.decorate.country_code
-        }.delete_if { |k,v| v.nil? }
+        }
       end
 
       def customer_address(address_model)
@@ -67,7 +68,7 @@ module BorderGuru
             telephone: address_model.mobile,
             email: customer_address_email(address_model),
             countryCode: address_model.decorate.country_code
-        }.delete_if { |k,v| v.nil? }
+        }
       end
 
       def customer_address_email(address_model)

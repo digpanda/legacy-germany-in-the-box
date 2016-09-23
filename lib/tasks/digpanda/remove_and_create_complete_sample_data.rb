@@ -243,7 +243,7 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
 
     address = Address.create(
 
-      :number   => '670000',
+      :number   => rand(1..20),
       :street   => Faker::Address.street_name,
       :city     => Faker::Address.city,
       :province => Faker::Address.state,
