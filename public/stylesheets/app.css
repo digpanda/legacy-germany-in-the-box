@@ -7850,6 +7850,13 @@ img.mfp-img {
 .remodal {
   max-width: 40em !important; }
 
+/* line 32, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
+.announcement {
+  line-height: 2;
+  color: #fdfdfd;
+  background-color: #3498db;
+  text-align: center; }
+
 /* line 76, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
 .page-static__text {
   word-wrap: normal;
