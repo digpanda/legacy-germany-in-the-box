@@ -15,12 +15,36 @@ var ProductsShow = {
 
   },
 
+  /**
+   * Grow price system from the display itself
+   */
+  growPrice: function(old_quantity, selector) {
+    old_quantity = parseInt(old_quantity);
+    let old_price = $(selector).html();
+    let unit_price = parseFloat(old_price) / parseInt(old_quantity);
+    let new_price = unit_price * (old_quantity + 1);
+    $(selector).html(new_price.toFixed(2));
+  },
+
+  /**
+   * Reduce price system from the display itself
+   */
+  reducePrice: function(old_quantity, selector) {
+    old_quantity = parseInt(old_quantity);
+    let old_price = $(selector).html();
+    let unit_price = parseFloat(old_price) / parseInt(old_quantity);
+    let new_price = unit_price * (old_quantity - 1);
+    $(selector).html(new_price.toFixed(2));
+  },
+
   handleQuantityChange: function() {
 
     $('#quantity-minus').on('click', function(e) {
       e.preventDefault();
-      let quantity = $('#quantity').val();
+      let quantity = $('#quantity').val();;
       if (quantity > 1) {
+        ProductsShow.reducePrice(quantity, '#product_price_with_currency_yuan .amount');
+        ProductsShow.reducePrice(quantity, '#product_price_with_currency_euro .amount')
         quantity--;
       }
       $('#quantity').val(quantity);
@@ -30,6 +54,8 @@ var ProductsShow = {
       e.preventDefault();
       let quantity = $('#quantity').val();
       if (quantity < $('#quantity').data('max')) {
+        ProductsShow.growPrice(quantity, '#product_price_with_currency_yuan .amount');
+        ProductsShow.growPrice(quantity, '#product_price_with_currency_euro .amount');
         quantity++;
       }
       $('#quantity').val(quantity);

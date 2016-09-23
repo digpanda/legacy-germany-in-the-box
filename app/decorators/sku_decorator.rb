@@ -54,12 +54,20 @@ class SkuDecorator < Draper::Decorator
     Currency.new(price).to_yuan.display
   end
 
+  def price_with_currency_yuan_html
+    Currency.new(price).to_yuan.display_html
+  end
+
   def price_in_yuan
     Currency.new(price).to_yuan.amount
   end
 
   def price_with_currency_euro
     Currency.new(price).display
+  end
+
+  def price_with_currency_euro_html
+    Currency.new(price).display_html
   end
 
   def price_before_discount_in_yuan

@@ -44,7 +44,16 @@ class ProductDecorator < Draper::Decorator
     self.featured_sku.decorate.price_with_currency_yuan
   end
 
+  def preview_price_yuan_html
+    self.featured_sku.decorate.price_with_currency_yuan_html
+  end
+
   def preview_price_euro
     self.featured_sku.decorate.price_with_currency_euro
   end
+
+  def preview_price_euro_html
+    self.featured_sku.decorate.price_with_currency_euro_html
+  end
+
 end

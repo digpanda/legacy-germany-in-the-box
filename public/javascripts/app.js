@@ -596,12 +596,36 @@ var ProductsShow = {
     this.handleQuantityChange();
   },
 
+  /**
+   * Grow price system from the display itself
+   */
+  growPrice: function growPrice(old_quantity, selector) {
+    old_quantity = parseInt(old_quantity);
+    var old_price = $(selector).html();
+    var unit_price = parseFloat(old_price) / parseInt(old_quantity);
+    var new_price = unit_price * (old_quantity + 1);
+    $(selector).html(new_price.toFixed(2));
+  },
+
+  /**
+   * Reduce price system from the display itself
+   */
+  reducePrice: function reducePrice(old_quantity, selector) {
+    old_quantity = parseInt(old_quantity);
+    var old_price = $(selector).html();
+    var unit_price = parseFloat(old_price) / parseInt(old_quantity);
+    var new_price = unit_price * (old_quantity - 1);
+    $(selector).html(new_price.toFixed(2));
+  },
+
   handleQuantityChange: function handleQuantityChange() {
 
     $('#quantity-minus').on('click', function (e) {
       e.preventDefault();
-      var quantity = $('#quantity').val();
+      var quantity = $('#quantity').val();;
       if (quantity > 1) {
+        ProductsShow.reducePrice(quantity, '#product_price_with_currency_yuan .amount');
+        ProductsShow.reducePrice(quantity, '#product_price_with_currency_euro .amount');
         quantity--;
       }
       $('#quantity').val(quantity);
@@ -611,6 +635,8 @@ var ProductsShow = {
       e.preventDefault();
       var quantity = $('#quantity').val();
       if (quantity < $('#quantity').data('max')) {
+        ProductsShow.growPrice(quantity, '#product_price_with_currency_yuan .amount');
+        ProductsShow.growPrice(quantity, '#product_price_with_currency_euro .amount');
         quantity++;
       }
       $('#quantity').val(quantity);
