@@ -44,11 +44,11 @@ module BorderGuru
       def submerchant_address(address_model)
         {
             company: address_model.company,
-            streetName: address_model.street,
-            houseNo: address_model.number,
+            streetName: "#{address_model.street}",
+            houseNo: "#{address_model.number}",
             postcode: address_model.zip,
             city: address_model.city,
-            state: address_model.province,
+            state: "#{address_model.province}",
             email: address_model.shop.mail,
             countryCode: address_model.decorate.country_code
         }
@@ -59,8 +59,8 @@ module BorderGuru
             firstName: address_model.fname,
             lastName: address_model.lname,
             streetName: "#{address_model.district} #{address_model.street}",
-            houseNo: address_model.decorate.chinese_street_number,
-            additionalInfo: address_model.additional,
+            houseNo: "#{address_model.decorate.chinese_street_number}",
+            additionalInfo: "#{address_model.additional}",
             postcode: address_model.zip,
             city: "#{address_model.province} #{address_model.city}",
             country: address_model.decorate.country_name,
