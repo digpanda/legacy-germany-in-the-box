@@ -1,4 +1,4 @@
-<div class="navbar"> <!-- navbar-fixed-top -->
+<div class="navbar-top"> <!-- navbar-fixed-top -->
 
 <!-- Main Menu Area -->
 <div class="row main-header">
@@ -90,7 +90,7 @@
   <div class="row server-menu">
 
     <!-- Server details -->
-    <div class="col-md-6 col-md-offset-1">
+    <div class="col-md-6">
       <% if current_user.decorate.admin? %>
         <strong><%= Rails.env.capitalize %> Mode</strong> - Client <%= request.remote_ip %> - Server <%= server_ip %> - UTC <span id="utc-time"><%= Time.now.utc.strftime("%T") %></span>
       <% end %>
@@ -113,11 +113,6 @@
 -->
 <div class="+spacer"></div>
 <div class="+small-spacer"></div>
-<% if potential_customer? %>
-
-  <div class="+spacer"></div>
-
-<% end %>
 
 <%= render partial: "layouts/header/parts/messages" %>
 
