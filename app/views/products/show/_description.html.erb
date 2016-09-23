@@ -43,7 +43,6 @@
     <%= hidden_field_tag 'sku[product_id]', "#{product.id}" %>
 
     <% if @featured_sku %>
-
         <%= render partial: "products/show/select_sku", :locals => {product: product} %>
 
         <div class="+small-spacer"></div>
