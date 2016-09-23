@@ -91,7 +91,13 @@
             <% if order.border_guru_shipment_id.nil? %>
               You can't process this order. Our Shipping Partner has not yet returned the shipping details.
             <% else %>
+
+            Order processing is temporary disabled (Chinese holidays)
+
+            <!-- TEMPORARY DISABLED BY LAURENT
             <%= link_to I18n.t(:start_process_shipment, scope: :button), shopkeeper_order_process_order_path(order), method: :patch, data: { confirm: I18n.t(:confirm_start_processing, scope: :notice) } %>
+            -->
+
             <% end %>
             <% else %>
               <%= I18n.t(:order_not_processable, scope: :message) %>

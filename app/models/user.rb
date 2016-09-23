@@ -126,26 +126,6 @@ class User
     self.provider == "wechat"
   end
 
-  def self.from_omniauth(auth)
-    if User.where(provider: auth.provider, uid: auth.uid).first
-      User.where(provider: auth.provider, uid: auth.uid).first
-    else
-      user = User.new
-      user.provider = auth.provider
-      user.uid = auth.uid
-      user.email = "#{auth.info.unionid}@wechat.com"
-      user.username = auth.info.nickname
-      user.role = :customer
-      user.gender = auth.info.sex == 1 ? 'm' : 'f'
-      user.birth = Date.today # what the fuck ? is that normal ? - Laurent 04/08/2016
-      user.password = auth.info.unionid[0,8]
-      user.password_confirmation = auth.info.unionid[0,8]
-      user.wechat_unionid = auth.info.unionid
-      user.save
-      user
-    end
-  end
-
   def check_valid_password?(params)
     if self.valid_password?(params[:user][:current_password])
       true
