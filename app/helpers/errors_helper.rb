@@ -5,7 +5,7 @@ module ErrorsHelper
 
   def throw_resource_not_found(exception=nil)
     dispatch_error_email(exception)
-    render "errors/page_not_found",
+    render "/errors/page_not_found",
            status: :not_found,
            layout: "errors/default"
   end
@@ -25,7 +25,7 @@ module ErrorsHelper
 
   def throw_server_error_page(exception=nil)
     dispatch_error_email(exception)
-    render "errors/server_error",
+    render "/errors/server_error",
            status: :not_found,
            layout: "errors/default"
   end
@@ -36,7 +36,7 @@ module ErrorsHelper
   end
 
   def throw_app_error(sym, merged_attributes={}, status=:bad_request)
-    render "errors/customized_error",
+    render "/errors/customized_error",
            status: status,
            layout: "errors/default",
            locals: throw_error(sym).merge(merged_attributes)
