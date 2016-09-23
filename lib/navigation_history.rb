@@ -3,7 +3,7 @@
 class NavigationHistory
 
   DEFAULT_REDIRECT_URL = Rails.application.routes.url_helpers.root_url
-  BASE_EXCEPT = %w(/users/sign_in /users/sign_up /users/password/new /users/password/edit /users/confirmation /users/sign_out)
+  BASE_EXCEPT = %w(/users/sign_in /users/sign_up /users/password/new /users/password/edit /users/confirmation /users/sign_out /api/guest/navigation)
 
   attr_reader :request, :session
 
