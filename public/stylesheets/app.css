@@ -8443,8 +8443,8 @@ img.mfp-img {
 .main-header {
   border-bottom: 2px solid #659443;
   background-color: #fdfdfd;
-  padding-top: 1em;
-  padding-bottom: 1em; }
+  padding-top: 0.5em;
+  padding-bottom: 0.5em; }
   /* line 7, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_main-header.sass */
   .main-header a {
     width: 100%; }
