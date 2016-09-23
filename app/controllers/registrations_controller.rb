@@ -87,7 +87,7 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def configure_devise_permitted_parameters
-    registration_params = [:username, :email, :password, :password_confirmation, :birth, :gender, :pic]
+    registration_params = [:fname, :lname, :email, :password, :password_confirmation, :birth, :gender, :pic]
 
     if params[:action] == 'update'
       devise_parameter_sanitizer.for(:account_update) {

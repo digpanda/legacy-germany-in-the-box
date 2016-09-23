@@ -71,15 +71,11 @@ class User
   mount_uploader :pic, LogoImageUploader
 
   validates :role,          presence: true, inclusion: {in: [:customer, :shopkeeper, :admin]}
-  validates :username,      presence: true, length: {maximum: Rails.configuration.max_tiny_text_length}
   validates :email,         presence: true, length: {maximum: Rails.configuration.max_tiny_text_length}
-  validates :birth,         presence: true, :if => lambda { :customer == self.role }
-  validates :gender,        presence: true, :if => lambda { :customer == self.role }
   validates :status,        presence: true
 
-  validates :fname,         presence: false, :if => lambda { :customer == self.role }, length: {maximum: Rails.configuration.max_tiny_text_length}
-  validates :lname,         presence: false, :if => lambda { :customer == self.role }, length: {maximum: Rails.configuration.max_tiny_text_length}
-  validates :birth,         presence: true, :if => lambda { :customer == self.role }, length: {maximum: 10}
+  validates :fname,         presence: true, :if => lambda { :customer == self.role }, length: {maximum: Rails.configuration.max_tiny_text_length}
+  validates :lname,         presence: true, :if => lambda { :customer == self.role }, length: {maximum: Rails.configuration.max_tiny_text_length}
   validates :about,         length: {maximum: Rails.configuration.max_medium_text_length}
   validates :website,       length: {maximum: Rails.configuration.max_short_text_length}
 
