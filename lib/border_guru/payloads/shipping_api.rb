@@ -30,7 +30,6 @@ module BorderGuru
                                             submerchant: submerchant_address(@shop.sender_address),
                                             identificationData: identification_data(@order.shipping_address)
                                         })
-                                        binding.pry
       end
 
       private

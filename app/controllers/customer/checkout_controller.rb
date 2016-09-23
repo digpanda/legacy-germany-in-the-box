@@ -49,8 +49,6 @@ class Customer::CheckoutController < ApplicationController
       return
     end
 
-    # here we should debug
-    # TODO
     status = update_for_checkout(current_user, order, params[:delivery_destination_id], cart.border_guru_quote_id, cart.shipping_cost, cart.tax_and_duty_cost)
     prepare_checkout(status, order)
 
