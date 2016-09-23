@@ -747,6 +747,8 @@ var ProductsShow = {
     $('#product_price_with_currency_euro').html(skuDatas['price_with_currency_euro']);
     $('#quantity-left').html(skuDatas['quantity']);
 
+    $('#quantity').val(1); // we reset the quantity to 1
+
     if (skuDatas['discount'] == 0) {
 
       ProductsShow.skuHideDiscount();
