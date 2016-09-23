@@ -15,15 +15,15 @@
           <div class="row">
 
             <div class="col-md-1">
-              <a id="minus" class="product-quantity__minus" href="#"><i class="fa fa-minus"></i></a>
+              <a id="quantity-minus" class="product-quantity__minus" href="#"><i class="fa fa-minus"></i></a>
             </div>
 
             <div class="col-md-2">
-              <input name="quantity" class="product-quantity__quantity" type="text" value="1">
+              <input id="quantity" name="sku[quantity]" data-max="<%= product.decorate.featured_sku.decorate.max_added_to_cart %>" class="product-quantity__quantity" type="text" value="1">
             </div>
 
             <div class="col-md-1">
-              <a id="plus" class="product-quantity__plus" href="#"><i class="fa fa-plus"></i></a>
+              <a id="quantity-plus" class="product-quantity__plus" href="#"><i class="fa fa-plus"></i></a>
             </div>
 
           </div>

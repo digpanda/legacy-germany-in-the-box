@@ -593,6 +593,28 @@ var ProductsShow = {
 
     this.handleProductGalery();
     this.handleSkuChange();
+    this.handleQuantityChange();
+  },
+
+  handleQuantityChange: function handleQuantityChange() {
+
+    $('#quantity-minus').on('click', function (e) {
+      e.preventDefault();
+      var quantity = $('#quantity').val();
+      if (quantity > 1) {
+        quantity--;
+      }
+      $('#quantity').val(quantity);
+    });
+
+    $('#quantity-plus').on('click', function (e) {
+      e.preventDefault();
+      var quantity = $('#quantity').val();
+      if (quantity < $('#quantity').data('max')) {
+        quantity++;
+      }
+      $('#quantity').val(quantity);
+    });
   },
 
   handleProductGalery: function handleProductGalery() {
