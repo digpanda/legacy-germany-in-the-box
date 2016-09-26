@@ -1,4 +1,13 @@
-<div class="col-md-6 col-sm-9 col-xs-12 +white-box">
+<div class="row">
+  <div class="col-md-10">
+    <h2>Settings</h2>
+    <hr>
+  </div>
+  <div class="col-md-2 details__action">
+  </div>
+</div>
+
+<div class="col-md-6 +white-box">
   <%= form_for admin_settings_path, html: {method: 'patch', :data => {:toggle => 'validator'}} do |f| %>
     <div class="form-group">
       <%= f.label :exchange_rate_to_yuan, I18n.t(:exchange_rate_to_yuan, scope: :edit_settings), :class => 'control-label' %>

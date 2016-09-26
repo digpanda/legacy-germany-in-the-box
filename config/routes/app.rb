@@ -22,6 +22,10 @@ end
 
 # Admin related
 namespace :admin do
+  resources :shops do
+    get :emails, on: :collection
+  end
+
   resources :orders do
   end
   resource :account, :controller => 'account' do

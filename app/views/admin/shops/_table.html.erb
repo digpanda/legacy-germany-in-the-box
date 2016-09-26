@@ -1,0 +1,95 @@
+
+<% if shops.size > 0 %>
+  <table class="white-table">
+    <thead>
+      <th>
+        <%= I18n.t(:email, scope: :edit_account) %>
+      </th>
+      <th>
+        <%= I18n.t(:name, scope: :edit_shop) %>
+      </th>
+      <th>
+        <%= I18n.t(:shopname, scope: :edit_shop) %>
+      </th>
+      <th>
+        <%= I18n.t(:addresses, scope: :edit_shops) %>
+      </th>
+      <th>
+        Merchant ID
+      </th>
+      <th>
+        <%= I18n.t('agb.info', scope: :edit_shops) %>
+      </th>
+      <th>
+        Wirecard
+      </th>
+      <th>
+        <%= I18n.t(:products, scope: :edit_shops) %>
+      </th>
+      <th>
+        <%= I18n.t(:operations, scope: :edit_shops) %>
+      </th>
+    </thead>
+    <tbody>
+      <% shops.each do |shop| %>
+        <tr>
+          <td>
+            <%= shop.shopkeeper.email %>
+          </td>
+          <td>
+            <%= link_to shop.name, edit_producer_shop_path(shop) %>
+          </td>
+          <td>
+            <%= link_to shop.shopname ? shop.shopname : (shop.shopname_translations[I18n.default_locale] ? shop.shopname_translations[I18n.default_locale] : I18n.t(:shopname_unknown, scope: :edit_shop)), edit_setting_shop_path(shop) %>
+          </td>
+          <td>
+            <%= link_to shop.addresses.size, show_addresses_user_path(shop.shopkeeper) %>
+          </td>
+          <td>
+            <%= shop.merchant_id %>
+          </td>
+          <td>
+            <%= shop.agb ? I18n.t(shop.agb.to_s, scope: 'edit_shopshop.agb') : '' %>
+          </td>
+          <td>
+          <!-- Should be refactored -->
+          <% if shop.wirecard_status == :unactive %>
+              Not applied
+            <% elsif shop.wirecard_status == :active %>
+              Active
+            <% elsif shop.wirecard_status == :processing %>
+              Processing
+            <% elsif shop.wirecard_status == :documents_complete %>
+             Documents complete
+            <% elsif shop.wirecard_status == :declined %>
+              Disapproved
+            <% elsif shop.wirecard_status == :terminated %>
+              Terminated
+            <% end %>
+          </td>
+          <td>
+            <%= link_to I18n.t(:products_info, scope: :edit_shops, num: shop.products.size), show_products_shop_path(shop) %>
+          </td>
+          <td>
+            <% if shop.approved.nil? %>
+              <%= link_to '', shop_approve_path(shop), :method => :patch, :class => 'tooltipster fa fa-check buttons buttons__add', :title => "Approve" %>
+            <% else %>
+              <%= link_to '', shop_disapprove_path(shop), :method => :patch, :class => 'tooltipster fa fa-minus buttons buttons__cancel', :title => "Disapprove" %>
+            <% end %>
+
+            <% if shop.products.count == 0 %>
+              <%= link_to '', shop_path(shop), :method => :delete, data: { confirm: I18n.t(:delete_shop_message, scope: :edit_shops) }, :class => 'tooltipster fa fa-times buttons buttons__delete', :title => I18n.t(:remove, scope: :edit_shops) %>
+            <% end %>
+
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <div class="+white-box +centered">
+    <h4>
+    <%= I18n.t(:no_applications, scope: :edit_shop_application) %>
+   </h4>
+ </div>
+<% end %>

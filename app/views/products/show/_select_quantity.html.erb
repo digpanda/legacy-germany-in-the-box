@@ -5,10 +5,6 @@
 <div>
   <% if product.decorate.can_buy? %>
 
-<!--
-    <%= select_tag 'sku[quantity]', options_for_select(1..product.decorate.featured_sku.decorate.max_added_to_cart, 1), :class => 'form-control input-lg', :id => "product_quantity_#{product.id}" %>
--->
-
       <div class="product-quantity">
 
         <div class="col-md-10 col-xs-6">
