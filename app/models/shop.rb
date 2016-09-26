@@ -32,8 +32,9 @@ class Shop
 
   field :wirecard_ee_user_cc, type: String # this is the user digpanda engine, not the merchant (we don't need to save it.)
   field :wirecard_ee_password_cc, type: String # this is the password digpanda engine, not the merchant (we don't need to save it.)
-  field :wirecard_ee_secret_cc, type: String
-  field :wirecard_ee_maid_cc, type: String
+
+  field :wirecard_ee_maid_cc, type: String # will be REMOVED after we change the system
+  field :wirecard_ee_secret_cc, type: String # will be REMOVED after we change the system
 
   field :seal0,           type: String
   field :seal1,           type: String
@@ -72,7 +73,8 @@ class Shop
 
   has_many  :products,        inverse_of: :shop,  dependent: :restrict
   has_many  :orders,          inverse_of: :shop,  dependent: :restrict
-
+  has_many  :payment_gateways,  inverse_of: :shop,  dependent: :restrict
+  
   belongs_to :shopkeeper,   class_name: 'User',  inverse_of: :shop
 
   validates :name,          presence: true,   length: {maximum: (Rails.configuration.max_tiny_text_length * 1.25).round}

@@ -29,7 +29,7 @@ class ProductDecorator < Draper::Decorator
   end
 
   def clean_desc(characters=240)
-    I18n.transliterate(truncate(self.desc.squish.downcase, :length => characters).gsub(',', ''))
+    I18n.transliterate(truncate(self.desc.squish.downcase, :length => characters).gsub(/[,\`\"\']/, ''))
   end
 
   def first_sku_image
