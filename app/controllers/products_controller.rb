@@ -203,12 +203,6 @@ class ProductsController < ApplicationController
     end
   end
 
-  protected
-
-    def current_top_menu_active_part
-      :product
-    end
-
   private
 
   def recursive_hash_delete(hash, key)

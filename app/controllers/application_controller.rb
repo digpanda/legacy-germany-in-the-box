@@ -42,8 +42,6 @@ class ApplicationController < ActionController::Base
 
   acts_as_token_authentication_handler_for User, if: lambda { |controller| controller.request.format.json? }, :fallback => :none
 
-  before_action { params[:top_menu_active_part] = current_top_menu_active_part }
-
   before_action :set_current_language
 
   helper_method :current_order, :current_orders, :total_number_of_products
@@ -190,10 +188,6 @@ class ApplicationController < ActionController::Base
     elsif current_user.decorate.admin?
       admin_shops_path
     end
-  end
-
-  def current_top_menu_active_part
-    :home
   end
 
   # we should put it into a library, there's an obvious possible abstraction here
