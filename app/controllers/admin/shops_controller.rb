@@ -1,7 +1,5 @@
 class Admin::ShopsController < ApplicationController
 
-  CSV_ENCODE = "UTF-8"
-
   load_and_authorize_resource
   before_action :set_shop, :except => [:index, :emails]
 
@@ -11,9 +9,6 @@ class Admin::ShopsController < ApplicationController
 
   def index
     @shops = Shop.order_by(:c_at => :desc).paginate(:page => current_page, :per_page => 10)
-  end
-
-  def show
   end
 
   def emails
@@ -27,10 +22,6 @@ class Admin::ShopsController < ApplicationController
 
   def set_shop
     @shop = Shop.find(params[:id] || params[:shop_id])
-  end
-
-  def shop_params
-    params.require(:shop).permit(:bill_id)
   end
 
 end

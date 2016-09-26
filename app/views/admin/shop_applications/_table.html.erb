@@ -1,4 +1,4 @@
-<% if @shop_applications.size > 0 %>
+<% if shop_applications.size > 0 %>
   <table class="white-table">
     <thead>
       <th>
@@ -18,22 +18,22 @@
       </th>
     </thead>
     <tbody>
-      <% @shop_applications.each do |address| %>
+      <% shop_applications.each do |shop_application| %>
         <tr>
           <td>
-            <%= address.email %>
+            <%= shop_application.email %>
           </td>
           <td>
-            <%= address.name %>
+            <%= shop_application.name %>
           </td>
           <td>
-            <%= address.code[0,8] unless address.code.nil? %>
+            <%= shop_application.code[0,8] unless shop_application.code.nil? %>
           </td>
           <td>
-            <%= address.c_at.strftime('%Y-%m-%d %H:%M:%S') %>
+            <%= shop_application.c_at.strftime('%Y-%m-%d %H:%M:%S') %>
           </td>
           <td>
-            <%= link_to '', shop_application_path(address), :method => :delete, data: { confirm: I18n.t(:delete_application_message, scope: :edit_shop_applications) }, :class => 'tooltipster fa fa-times buttons buttons__delete', :title => I18n.t(:remove, scope: :edit_shop_applications) %>
+            <%= link_to '', admin_shop_application_path(shop_application), :method => :delete, data: { confirm: I18n.t(:delete_application_message, scope: :edit_shop_applications) }, :class => 'tooltipster fa fa-times buttons buttons__delete', :title => I18n.t(:remove, scope: :edit_shop_applications) %>
           </td>
         </tr>
       <% end %>
