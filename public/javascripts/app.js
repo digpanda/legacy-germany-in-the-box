@@ -597,57 +597,84 @@ var ProductsShow = {
   },
 
   /**
-   * Grow price system from the display itself
+   * Grow or reduce price on the display
+   * @param  {String} [option] `grow` or `reduce` price
+   * @param  {Integer} old_quantity    the original old quantity
+   * @param  {String} selector        the area the HTML had to be changed
+   * @return {void}
    */
-  growPrice: function growPrice(old_quantity, selector) {
+  changePrice: function changePrice() {
+    var option = arguments.length <= 0 || arguments[0] === undefined ? 'grow' : arguments[0];
+    var old_quantity = arguments[1];
+    var selector = arguments[2];
+
+
     old_quantity = parseInt(old_quantity);
     var old_price = $(selector).html();
     var unit_price = parseFloat(old_price) / parseInt(old_quantity);
-    var new_price = unit_price * (old_quantity + 1);
+
+    if (option == 'grow') {
+      var new_quantity = old_quantity + 1;
+    } else if (option == 'reduce') {
+      var new_quantity = old_quantity - 1;
+    }
+
+    var new_price = unit_price * new_quantity;
     $(selector).html(new_price.toFixed(2));
   },
 
   /**
-   * Reduce price system from the display itself
+   * Handle the quantity change with different selector (minus or plus)
+   * @return {void}
    */
-  reducePrice: function reducePrice(old_quantity, selector) {
-    old_quantity = parseInt(old_quantity);
-    var old_price = $(selector).html();
-    var unit_price = parseFloat(old_price) / parseInt(old_quantity);
-    var new_price = unit_price * (old_quantity - 1);
-    $(selector).html(new_price.toFixed(2));
+  handleQuantityChange: function handleQuantityChange() {
+
+    this.manageQuantityMinus();
+    this.manageQuantityPlus();
   },
 
-  handleQuantityChange: function handleQuantityChange() {
+  /**
+   * Reduce the quantity by clicking on the minus symbol on the page
+   * @return {void}
+   */
+  manageQuantityMinus: function manageQuantityMinus() {
 
     $('#quantity-minus').on('click', function (e) {
       e.preventDefault();
       var quantity = $('#quantity').val();;
       if (quantity > 1) {
-        ProductsShow.reducePrice(quantity, '#product_price_with_currency_yuan .amount');
-        ProductsShow.reducePrice(quantity, '#product_price_with_currency_euro .amount');
+        ProductsShow.changePrice('reduce', quantity, '#product_price_with_currency_yuan .amount');
+        ProductsShow.changePrice('reduce', quantity, '#product_price_with_currency_euro .amount');
         quantity--;
       }
       $('#quantity').val(quantity);
     });
+  },
+
+  /**
+   * Grow the quantity by clicking on the plus symbol on the page
+   * @return {void}
+   */
+  manageQuantityPlus: function manageQuantityPlus() {
 
     $('#quantity-plus').on('click', function (e) {
       e.preventDefault();
       var quantity = $('#quantity').val();
       if (quantity < $('#quantity').data('max')) {
-        ProductsShow.growPrice(quantity, '#product_price_with_currency_yuan .amount');
-        ProductsShow.growPrice(quantity, '#product_price_with_currency_euro .amount');
+        ProductsShow.changePrice('grow', quantity, '#product_price_with_currency_yuan .amount');
+        ProductsShow.changePrice('grow', quantity, '#product_price_with_currency_euro .amount');
         quantity++;
       }
       $('#quantity').val(quantity);
     });
   },
 
+  /**
+   * Manage the whole gallery selection
+   * @return {void}
+   */
   handleProductGalery: function handleProductGalery() {
 
-    /**
-     * Homemade Gallery System by Laurent
-     */
     $(document).on('click', '#gallery a', function (e) {
 
       var image = $(this).data('image');
@@ -674,6 +701,11 @@ var ProductsShow = {
     ProductsShow.manageClickableImages();
   },
 
+  /**
+   * Hide the thumbnail clickables images of the gallery
+   * If not needed (such as one image total)
+   * @return {void}
+   */
   manageClickableImages: function manageClickableImages() {
 
     if ($('#gallery a').size() <= 1) {
@@ -681,6 +713,12 @@ var ProductsShow = {
     }
   },
 
+  /**
+   * Load a new main image from a thumbanil
+   * @param  {String} image new image source
+   * @param  {String} loader_selector loader to display
+   * @return {void} 
+   */
   changeMainImage: function changeMainImage(image, loader_selector) {
 
     $('#main_image').attr('src', image).load(function () {

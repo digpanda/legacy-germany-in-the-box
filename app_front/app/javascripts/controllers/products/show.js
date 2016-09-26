@@ -16,46 +16,70 @@ var ProductsShow = {
   },
 
   /**
-   * Grow price system from the display itself
+   * Grow or reduce price on the display
+   * @param  {String} [option] `grow` or `reduce` price
+   * @param  {Integer} old_quantity    the original old quantity
+   * @param  {String} selector        the area the HTML had to be changed
+   * @return {void}
    */
-  growPrice: function(old_quantity, selector) {
+  changePrice: function(option='grow', old_quantity, selector) {
+
     old_quantity = parseInt(old_quantity);
     let old_price = $(selector).html();
     let unit_price = parseFloat(old_price) / parseInt(old_quantity);
-    let new_price = unit_price * (old_quantity + 1);
+
+    if (option == 'grow') {
+      var new_quantity = old_quantity+1;
+    } else if (option == 'reduce') {
+      var new_quantity = old_quantity-1;
+    }
+
+    let new_price = unit_price * new_quantity;
     $(selector).html(new_price.toFixed(2));
   },
 
   /**
-   * Reduce price system from the display itself
+   * Handle the quantity change with different selector (minus or plus)
+   * @return {void}
    */
-  reducePrice: function(old_quantity, selector) {
-    old_quantity = parseInt(old_quantity);
-    let old_price = $(selector).html();
-    let unit_price = parseFloat(old_price) / parseInt(old_quantity);
-    let new_price = unit_price * (old_quantity - 1);
-    $(selector).html(new_price.toFixed(2));
+  handleQuantityChange: function() {
+
+    this.manageQuantityMinus();
+    this.manageQuantityPlus();
+
   },
 
-  handleQuantityChange: function() {
+  /**
+   * Reduce the quantity by clicking on the minus symbol on the page
+   * @return {void}
+   */
+  manageQuantityMinus: function() {
 
     $('#quantity-minus').on('click', function(e) {
       e.preventDefault();
       let quantity = $('#quantity').val();;
       if (quantity > 1) {
-        ProductsShow.reducePrice(quantity, '#product_price_with_currency_yuan .amount');
-        ProductsShow.reducePrice(quantity, '#product_price_with_currency_euro .amount')
+        ProductsShow.changePrice('reduce', quantity, '#product_price_with_currency_yuan .amount');
+        ProductsShow.changePrice('reduce', quantity, '#product_price_with_currency_euro .amount')
         quantity--;
       }
       $('#quantity').val(quantity);
     })
 
+  },
+
+  /**
+   * Grow the quantity by clicking on the plus symbol on the page
+   * @return {void}
+   */
+  manageQuantityPlus: function() {
+
     $('#quantity-plus').on('click', function(e) {
       e.preventDefault();
       let quantity = $('#quantity').val();
       if (quantity < $('#quantity').data('max')) {
-        ProductsShow.growPrice(quantity, '#product_price_with_currency_yuan .amount');
-        ProductsShow.growPrice(quantity, '#product_price_with_currency_euro .amount');
+        ProductsShow.changePrice('grow', quantity, '#product_price_with_currency_yuan .amount');
+        ProductsShow.changePrice('grow', quantity, '#product_price_with_currency_euro .amount');
         quantity++;
       }
       $('#quantity').val(quantity);
@@ -63,11 +87,12 @@ var ProductsShow = {
 
   },
 
+  /**
+   * Manage the whole gallery selection
+   * @return {void}
+   */
   handleProductGalery: function() {
 
-    /**
-     * Homemade Gallery System by Laurent
-     */
     $(document).on('click', '#gallery a', function(e) {
 
       let image = $(this).data('image');
@@ -96,6 +121,11 @@ var ProductsShow = {
 
   },
 
+  /**
+   * Hide the thumbnail clickables images of the gallery
+   * If not needed (such as one image total)
+   * @return {void}
+   */
   manageClickableImages: function() {
 
     if ($('#gallery a').size() <= 1) {
@@ -104,6 +134,12 @@ var ProductsShow = {
 
   },
 
+  /**
+   * Load a new main image from a thumbanil
+   * @param  {String} image new image source
+   * @param  {String} loader_selector loader to display
+   * @return {void} 
+   */
   changeMainImage: function(image, loader_selector) {
 
     $('#main_image').attr('src', image).load(function() {
