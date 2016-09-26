@@ -188,7 +188,7 @@ class ApplicationController < ActionController::Base
         shopkeeper_orders_path
       end
     elsif current_user.decorate.admin?
-      shops_path
+      admin_shops_path
     end
   end
 
