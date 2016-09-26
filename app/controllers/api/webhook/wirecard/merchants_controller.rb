@@ -5,11 +5,16 @@
 #
 class Api::Webhook::Wirecard::MerchantsController < Api::ApplicationController
 
+  WIRECARD_CONFIG = Rails.application.config.wirecard
+  CREDENTIALS_PAYMENT_METHODS = {
+    :creditcard => [:ee_maid_cc, :ee_secret_cc],
+    :upop => [:ee_maid_cup, :ee_secret_cup],
+    :paypal => [:ee_maid_paypal, :ee_secret_paypal]
+  }
+
   attr_reader :datas
 
   before_action :validate_remote_server_request
-
-  WIRECARD_CONFIG = Rails.application.config.wirecard
 
   #
   # Wirecard don't respect a RESTful scheme. The `create` method is currently used
@@ -52,7 +57,28 @@ class Api::Webhook::Wirecard::MerchantsController < Api::ApplicationController
 
   private
 
+  def matching_payment_method_scheme?(scheme, credentials)
+    scheme.each do |field|
+      return false if credentials[field].nil?
+    end
+    true
+  end
+
+  def processed_credentials(credentials)
+    CREDENTIALS_PAYMENT_METHODS.each do |payment_method|
+      if matching_payment_method_scheme?(payment_method.last, credentials)
+        return {
+          :payment_method => payment_method.first,
+          :merchant_id => credentials[payment_method.last.first],
+          :merchant_secret => credentials[payment_method.last.last],
+        }
+      end
+    end
+    false
+  end
+
   def save_shop_wirecard_credentials!(shop, credentials)
+    processed_credentials(credentials)
     shop.wirecard_ee_user_cc = credentials[:ee_user_cc]
     shop.wirecard_ee_password_cc = credentials[:ee_password_cc]
     shop.wirecard_ee_secret_cc = credentials[:ee_secret_cc]
