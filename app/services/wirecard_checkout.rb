@@ -8,11 +8,12 @@ class WirecardCheckout < BaseService
   # :merchant_id => cart.submerchant_id <- original
   # :secret_key  => order.shop.wirecard_ee_secret_cc <- original
 
-  attr_reader :user, :order
+  attr_reader :user, :order, :payment_method
 
-  def initialize(user, order)
+  def initialize(user, order, payment_method=:creditcard)
     @user  = user
     @order = order
+    @payment_method = payment_method
   end
 
   # we access the Wirecard::Hpp library and generate the needed datas
@@ -29,9 +30,6 @@ class WirecardCheckout < BaseService
   # has consequences on the database itself
   # on staging we will simply use the demo datas
   def merchant_credentials
-
-    # TODO: make a new page to manage that
-    payment_method = :creditcard
 
     # staging have real database datas
     # but we need to match with the demo mode

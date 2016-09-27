@@ -7,16 +7,17 @@ module Wirecard
 
       VALID_STATUS_LIST = [:success, :failed]
 
-      attr_reader :merchant_id, :transaction_id
+      attr_reader :merchant_id, :transaction_id, :payment_method
 
-      def initialize(merchant_id, transaction_id)
+      def initialize(merchant_id, transaction_id, payment_method)
         @merchant_id = merchant_id
         @transaction_id = transaction_id
+        @payment_method = payment_method
       end
 
       def response
         @response ||= begin
-          response = Utils::Request.new(query).response
+          response = Utils::Request.new(query, payment_method).response
           if response.nil?
             raise Wirecard::ElasticApi::Error, "The transaction was not found"
           else

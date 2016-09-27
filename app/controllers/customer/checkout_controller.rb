@@ -50,7 +50,9 @@ class Customer::CheckoutController < ApplicationController
     end
 
     status = update_for_checkout(current_user, order, params[:delivery_destination_id], cart.border_guru_quote_id, cart.shipping_cost, cart.tax_and_duty_cost)
-    prepare_checkout(status, order)
+
+    # TODO: make de :upop / :creditcard dynamic
+    prepare_checkout(status, order, :upop)
 
   end
 
@@ -148,10 +150,10 @@ class Customer::CheckoutController < ApplicationController
       return true
   end
 
-  def prepare_checkout(status, order)
+  def prepare_checkout(status, order, payment_method)
     if status
       begin
-        @checkout = WirecardCheckout.new(current_user, order).checkout!
+        @checkout = WirecardCheckout.new(current_user, order, payment_method).checkout!
       rescue Wirecard::Base::Error => exception
         # we should catch the error in the lib or something like this
         # and raise one if the merchant wirecard status isn't active yet

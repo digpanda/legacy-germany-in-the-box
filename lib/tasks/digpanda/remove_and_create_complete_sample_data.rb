@@ -234,7 +234,7 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
         :agb            => agb,
         :status         => status,
         :bg_merchant_id => bg_merchant_id,
-    }.merge(seals).merge(wirecard));
+    }.merge(seals))
 
 
 
