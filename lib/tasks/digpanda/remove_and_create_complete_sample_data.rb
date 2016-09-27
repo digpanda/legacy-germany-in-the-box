@@ -2,6 +2,8 @@ require 'faker'
 
 class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
 
+  WIRECARD_DEMO = Rails.configuration.wirecard[:demo]
+
   def initialize
   end
 
@@ -14,6 +16,8 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
     User.delete_all
     puts "We remove all shops"
     Shop.delete_all
+    puts "We remove all the payment gateways"
+    PaymentGateway.delete_all
     puts "We remove all products"
     Product.delete_all
     puts "We remove all the orders / order payments"
@@ -230,7 +234,9 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
         :agb            => agb,
         :status         => status,
         :bg_merchant_id => bg_merchant_id,
-    }.merge(seals));
+    }.merge(seals).merge(wirecard));
+
+
 
   end
 
@@ -306,12 +312,34 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
 
   end
 
+  def active_wirecard(shop, num)
+    shop.wirecard_status = :active
+    shop.save
+    if num == 2
+      payment_methods = [:creditcard, :upop]
+    else
+      payment_methods = [:creditcard]
+    end
+    payment_methods.each do |payment_method|
+    PaymentGateway.create({
+        :shop_id => shop.id,
+        :payment_method => payment_method,
+        :provider => :wirecard,
+        :merchant_id => WIRECARD_DEMO[payment_method][:merchant_id],
+        :merchant_secret => WIRECARD_DEMO[payment_method][:merchant_secret]
+      })
+    end
+  end
+
   def setup_shopkeeper(shopkeeper, args={})
 
     num_products = args[:num_products] || rand(0..20)
 
     shop = create_shop(shopkeeper)
     create_shop_address(shop)
+
+    # wirecard
+    active_wirecard(shop, rand(1..2))
 
     num_products.times do |time|
       create_product(shop)

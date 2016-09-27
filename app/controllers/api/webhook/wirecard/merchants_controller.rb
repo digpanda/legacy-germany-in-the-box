@@ -16,11 +16,9 @@ class Api::Webhook::Wirecard::MerchantsController < Api::ApplicationController
 
   before_action :validate_remote_server_request
 
-  #
-  # Wirecard don't respect a RESTful scheme. The `create` method is currently used
-  # To update the merchant / shopkeeper `wirecard_status`
-  # The system is nonetheless flexible and ready for this kind of change, easily.
-  #
+  # wirecard don't respect a RESTful scheme. The `create` method is currently used
+  # to update the merchant / shopkeeper `wirecard_status`
+  # the system is nonetheless flexible and ready for this kind of change, easily.
   def create
     update
   end
@@ -40,8 +38,6 @@ class Api::Webhook::Wirecard::MerchantsController < Api::ApplicationController
     devlog.info "It passed the merchant recognition."
 
     shop.wirecard_status = clean_merchant_status
-
-    # HERE WE SHOULD CHECK USER / PASSWORD FOR THE ENGINE
 
     if shop.wirecard_status == :active
       unless save_shop_wirecard_credentials!(shop, datas[:wirecard_credentials])
@@ -104,13 +100,12 @@ class Api::Webhook::Wirecard::MerchantsController < Api::ApplicationController
     end
   end
 
-
+  # check if there's a correct reseller id
   def authenticated_resource?(reseller_id)
     reseller_id == WIRECARD_CONFIG[:merchants][:reseller_id]
   end
 
   def required_merchant_datas
-
     devlog.info "We try to handle the `postback` data"
     return false if params["postback"].nil?
 
@@ -118,7 +113,6 @@ class Api::Webhook::Wirecard::MerchantsController < Api::ApplicationController
     devlog.info "Parameters : #{output_hash(datas)}"
 
     basic_consistent_datas? && active_consistent_datas?
-
   end
 
   def basic_consistent_datas?
