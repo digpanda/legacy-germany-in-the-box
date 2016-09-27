@@ -40,7 +40,15 @@ class Api::Webhook::Wirecard::MerchantsController < Api::ApplicationController
     devlog.info "It passed the merchant recognition."
 
     shop.wirecard_status = clean_merchant_status
-    save_shop_wirecard_credentials!(shop, datas[:wirecard_credentials]) if shop.wirecard_status == :active
+
+    # HERE WE SHOULD CHECK USER / PASSWORD FOR THE ENGINE
+
+    if shop.wirecard_status == :active
+      unless save_shop_wirecard_credentials!(shop, datas[:wirecard_credentials])
+        throw_api_error(:bad_format, {error: "Credentials not recognized or not saved."}, :bad_request)
+        return
+      end
+    end
 
     throw_api_error(:wrong_update_attributes, {error: shop.errors.full_messages.join(', ')}) and return unless shop.save
 
@@ -77,12 +85,23 @@ class Api::Webhook::Wirecard::MerchantsController < Api::ApplicationController
     false
   end
 
+  # recognize the payment method from the type of fields we receive as credentials
+  # process it and create a new payment gateway if needed
+  # can update the current credentials for a specific payment method
   def save_shop_wirecard_credentials!(shop, credentials)
-    processed_credentials(credentials)
-    shop.wirecard_ee_user_cc = credentials[:ee_user_cc]
-    shop.wirecard_ee_password_cc = credentials[:ee_password_cc]
-    shop.wirecard_ee_secret_cc = credentials[:ee_secret_cc]
-    shop.wirecard_ee_maid_cc = credentials[:ee_maid_cc]
+    processed = processed_credentials(credentials)
+    if processed
+      payment_gateway = PaymentGateway.where(payment_method: processed[:payment_method]).first || PaymentGateway.new
+      payment_gateway.shop_id = shop.id
+      payment_gateway.provider = :wirecard
+      payment_gateway.payment_method = processed[:payment_method]
+      payment_gateway.merchant_id = processed[:merchant_id]
+      payment_gateway.merchant_secret = processed[:merchant_secret]
+      payment_gateway.save
+    else
+      devlog.info "The payment method was not recognized. Please try again with correct credential fields."
+      false
+    end
   end
 
 
