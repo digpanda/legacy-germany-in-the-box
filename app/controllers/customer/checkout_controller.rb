@@ -181,7 +181,6 @@ class Customer::CheckoutController < ApplicationController
     # and raise one if the merchant wirecard status isn't active yet
     flash[:error] = "This shop is not ready to accept payments yet (#{exception})"
     redirect_to navigation.back(1)
-    return
   end
 
   def update_for_checkout(user, order, delivery_destination_id, border_guru_quote_id, shipping_cost, tax_and_duty_cost)
