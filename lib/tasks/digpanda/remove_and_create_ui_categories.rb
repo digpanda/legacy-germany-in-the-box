@@ -10,7 +10,7 @@ class Tasks::Digpanda::RemoveAndCreateUiCategories
     #
     puts "Let's generate them again"
     category_food = Category.create!(
-        :name_translations => {:en => 'Food', :'zh-CN' => '食品', :de => 'Lebensmittel  & Getränke'},
+        :name_translations => {:en => 'Food', :'zh-CN' => '食品佳酿', :de => 'Lebensmittel  & Getränke'},
         :slug => 'food',
         :desc_translations => {:en => '', :de => '', :'zh-CN' => '有机食品不是潮流，是每个关心身体健康的消费者的权益。来因盒用心挑选安全的有机食品，让你吃得安心无负担。'}
     )
@@ -22,7 +22,7 @@ class Tasks::Digpanda::RemoveAndCreateUiCategories
     )
 
     category_cosmetics = Category.create!(
-        :name_translations => {:en => 'Cosmetics', :'zh-CN' => '美妆', :de => 'Kosmetik & Pflege'},
+        :name_translations => {:en => 'Cosmetics', :'zh-CN' => '美妆护肤', :de => 'Kosmetik & Pflege'},
         :slug => 'cosmetics',
         :desc_translations => {:en => '', :de => '', :'zh-CN' => '德国有机护肤品给妳全身肌肤的照顾，来因盒里众多品牌兼顾男女护肤需求、夏季防晒和除毛后保养任君挑选。'}
 
@@ -46,7 +46,7 @@ class Tasks::Digpanda::RemoveAndCreateUiCategories
       category.position = index
       category.save
     end
-    
+
     Rails.cache.clear
 
     puts "End of process."
