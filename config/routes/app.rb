@@ -112,6 +112,7 @@ namespace :customer do
     post :success
     post :fail
     post :processing
+    post :gateway
     get :cancel
   end
 

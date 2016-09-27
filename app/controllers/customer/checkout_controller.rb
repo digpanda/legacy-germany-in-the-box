@@ -1,14 +1,16 @@
 class Customer::CheckoutController < ApplicationController
 
+  ACCEPTABLE_PAYMENT_METHOD = [:upop, :creditcard]
+
   before_action :authenticate_user!
   before_action :set_shop, :only => [:create]
 
   protect_from_forgery :except => [:success, :fail, :cancel, :processing]
-  attr_reader :shop
+  attr_reader :shop, :order
 
   def create
 
-    order = current_order(shop.id.to_s)
+    @order = current_order(shop.id.to_s)
     cart = current_cart(shop.id.to_s)
 
     return if wrong_email_update?
@@ -51,9 +53,31 @@ class Customer::CheckoutController < ApplicationController
 
     status = update_for_checkout(current_user, order, params[:delivery_destination_id], cart.border_guru_quote_id, cart.shipping_cost, cart.tax_and_duty_cost)
 
-    # TODO: make de :upop / :creditcard dynamic
-    prepare_checkout(status, order, :upop)
+    unless status
+      flash[:error] = order.errors.full_messages.join(', ')
+      redirect_to navigation.back(1)
+      return
+    end
 
+  end
+
+  def gateway
+
+    payment_method = params[:payment_method].to_sym
+    order = Order.find(params[:order_id])
+
+    unless acceptable_payment_method?(payment_method)
+      flash[:error] = "Invalid payment method."
+      redirect_to navigation.back(1)
+      return
+    end
+
+    prepare_checkout(order, payment_method)
+
+  end
+
+  def acceptable_payment_method?(payment_method)
+    ACCEPTABLE_PAYMENT_METHOD.include? payment_method
   end
 
   def success
@@ -150,22 +174,14 @@ class Customer::CheckoutController < ApplicationController
       return true
   end
 
-  def prepare_checkout(status, order, payment_method)
-    if status
-      begin
-        @checkout = WirecardCheckout.new(current_user, order, payment_method).checkout!
-      rescue Wirecard::Base::Error => exception
-        # we should catch the error in the lib or something like this
-        # and raise one if the merchant wirecard status isn't active yet
-        flash[:error] = "This shop is not ready to accept payments yet (#{exception})"
-        redirect_to navigation.back(1)
-        return
-      end
-    else
-      flash[:error] = order.errors.full_messages.join(', ')
-      redirect_to navigation.back(1)
-      return
-    end
+  def prepare_checkout(order, payment_method)
+    @checkout = WirecardCheckout.new(current_user, order, payment_method).checkout!
+  rescue Wirecard::Base::Error => exception
+    # we should catch the error in the lib or something like this
+    # and raise one if the merchant wirecard status isn't active yet
+    flash[:error] = "This shop is not ready to accept payments yet (#{exception})"
+    redirect_to navigation.back(1)
+    return
   end
 
   def update_for_checkout(user, order, delivery_destination_id, border_guru_quote_id, shipping_cost, tax_and_duty_cost)

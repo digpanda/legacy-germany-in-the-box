@@ -148,13 +148,13 @@ var __makeRelativeRequire = function(require, mappings, pref) {
     return require(name);
   }
 };
-require.register("javascripts/controllers/customer/checkout/create.js", function(exports, require, module) {
+require.register("javascripts/controllers/customer/checkout/gateway.js", function(exports, require, module) {
 "use strict";
 
 /**
- * CustomerCheckoutCreate class
+ * CustomerGatewayCreate class
  */
-var CustomerCheckoutCreate = {
+var CustomerGatewayCreate = {
 
   /**
    * Initializer
@@ -180,7 +180,7 @@ var CustomerCheckoutCreate = {
 
 };
 
-module.exports = CustomerCheckoutCreate;
+module.exports = CustomerGatewayCreate;
 });
 
 require.register("javascripts/controllers/guest/feedback.js", function(exports, require, module) {

@@ -1,15 +1,33 @@
-<div class="row">
-  <!-- Data needed for the payment checkout -->
-  <%= content_tag(:div, nil, :id => "bank-details", :data => @checkout.hosted_payment_datas.compact) %>
-</div>
+<div class="row col-md-8 col-md-push-2 col-md-pull-2 +centered +white-box">
+  <h2><%= I18n.t(:choose_your_payment_method, scope: :checkout) %></h2>
 
-<div class="+spacer"></div>
+  <%= form_tag gateway_customer_checkout_path, :class => 'dialog-form', :method => :post, :data => {:toggle => 'validator'} do %>
 
-<div class="row col-md-8 col-md-push-2 col-md-pull-2 +white-box +centered">
-  <img src="/images/mascotte/step3.png" width="400px">
-  <%= render partial: 'shared/partials/loader', locals: { :options => {} } %>
-  <div class="+spacer"></div>
-  <h3>
-    <%= I18n.t(:redirect_to_payment, scope: :checkout) %>
-  </h3>
+  <%= hidden_field_tag :order_id, @order.id %>
+
+  <div class="+small-spacer"></div>
+  <div class="row">
+
+    <div class="col-md-4">
+      <button type="submit" name="payment_method" value="creditcard" class="btn btn-default">
+        <img src="/images/logos/raw-visa-logo.png" width="200px"><br />
+      </button>
+    </div>
+
+    <div class="col-md-4">
+      <button type="submit" name="payment_method" value="creditcard" class="btn btn-default">
+        <img src="/images/logos/raw-mastercard-logo.png" width="200px"><br />
+      </button>
+    </div>
+
+    <div class="col-md-4">
+      <button type="submit" name="payment_method" value="upop" class="btn btn-default">
+        <img src="/images/logos/raw-chinaunionpay-logo.png" width="200px">
+      </button>
+    </div>
+
+  </div>
+
+  <% end %>
+
 </div>
