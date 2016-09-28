@@ -77,7 +77,7 @@
             <% end %>
 
             <% if shop.products.count == 0 %>
-              <%= link_to '', shop_path(shop), :method => :delete, data: { confirm: I18n.t(:delete_shop_message, scope: :edit_shops) }, :class => 'tooltipster fa fa-times buttons buttons__delete', :title => I18n.t(:remove, scope: :edit_shops) %>
+              <%= link_to '', admin_shop_path(shop), :method => :delete, data: { confirm: I18n.t(:delete_shop_message, scope: :edit_shops) }, :class => 'tooltipster fa fa-times buttons buttons__delete', :title => I18n.t(:remove, scope: :edit_shops) %>
             <% end %>
 
           </td>

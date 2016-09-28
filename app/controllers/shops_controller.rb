@@ -56,15 +56,6 @@ class ShopsController <  ApplicationController
     redirect_to navigation.back(1)
   end
 
-  def destroy
-    if shop.addresses.delete_all && shop.destroy
-      flash[:success] = I18n.t(:delete_ok, scope: :edit_shops)
-    else
-      flash[:error] = @shop_application.errors.full_messages.first
-    end
-    redirect_to navigation.back(1)
-  end
-
   private
 
   def set_shop
