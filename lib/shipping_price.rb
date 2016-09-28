@@ -36,7 +36,6 @@ class ShippingPrice
   end
 
   def price_without_vat
-    binding.pry
     (below_two_kilos_price.to_b + other_kilos * PRICE_PER_KILO.to_b)
   end
 
