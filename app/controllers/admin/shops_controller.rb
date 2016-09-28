@@ -11,6 +11,9 @@ class Admin::ShopsController < ApplicationController
     @shops = Shop.order_by(:c_at => :desc).paginate(:page => current_page, :per_page => 10)
   end
 
+  def show
+  end
+
   def emails
     shops = Shop.all
     shop_emails = shops.reduce([]) { |acc, shop| acc << shop.mail } # could be in model

@@ -1,3 +1,7 @@
+<a href="<%= admin_shop_path(shop) %>" title="Details and configuration">
+  <i class="fa fa-pencil tooltipster buttons buttons__edit"></i>
+</a>
+
 <% if shop.approved.nil? %>
   <%= link_to '', admin_shop_approve_path(shop), :method => :patch, :class => 'tooltipster fa fa-check buttons buttons__add', :title => "Approve" %>
 <% else %>

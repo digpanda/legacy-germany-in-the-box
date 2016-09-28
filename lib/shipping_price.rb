@@ -4,14 +4,11 @@
 class ShippingPrice
 
   VOLUMETRIC_DIVIDOR = 5000.00
-
+  APPROXIMATION_PERCENT = 20.00 # %
   FIRST_PRICES = [5.19, 9.19, 10.49, 11.79]
   FIRST_PRICES_KILOS_SEGMENTS = [0.5, 1.0, 1.5, 2.0]
-
   PRICE_PER_KILO = 2.5
-
   VAT_PERCENT = 19.00 # %
-  APPROXIMATION_PERCENT = 20.00 # %
 
   # add `to_b`, `ceil_tp` functionality to floats / fixnum
   Float.include CoreExtensions::Float::BigDecimalConverter
@@ -56,7 +53,6 @@ class ShippingPrice
   end
 
   def rounded_volumetric_weight
-    # i'm not sure about the to_f before which was added
     @rounded_volumetric_weight ||= (products_volumetric_weight * approximation).to_f.ceil_to(1)
   end
 
