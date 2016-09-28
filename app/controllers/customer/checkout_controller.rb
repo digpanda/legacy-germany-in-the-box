@@ -59,6 +59,27 @@ class Customer::CheckoutController < ApplicationController
       return
     end
 
+    session[:current_checkout_order] = order.id
+    redirect_to payment_method_customer_checkout_path
+
+  end
+
+  def payment_method
+
+    if session[:current_checkout_order].nil?
+      redirect_to navigation.back(1)
+      return
+    end
+
+    @order = Order.find(session[:current_checkout_order])
+    @shop = order.shop
+
+    if order.is_bought?
+      flash[:success] = "Your order has already been paid."
+      redirect_to navigation.back(1)
+      return
+    end
+
   end
 
   def gateway

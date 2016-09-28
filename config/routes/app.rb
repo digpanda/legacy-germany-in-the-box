@@ -109,10 +109,12 @@ end
 namespace :customer do
 
   resource :checkout, :controller => 'checkout' do
+    get :payment_method
+    post :gateway
+    
     post :success
     post :fail
     post :processing
-    post :gateway
     get :cancel
   end
 

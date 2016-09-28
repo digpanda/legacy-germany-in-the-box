@@ -183,6 +183,39 @@ var CustomerGatewayCreate = {
 module.exports = CustomerGatewayCreate;
 });
 
+require.register("javascripts/controllers/customer/checkout/payment_method.js", function(exports, require, module) {
+'use strict';
+
+/**
+ * CustomerCheckoutPaymentMethod class
+ */
+var CustomerCheckoutPaymentMethod = {
+
+  /**
+   * Initializer
+   */
+  init: function init() {
+
+    this.handleMethodSelection();
+  },
+
+  /**
+   * Will process after someone click to go through the payment gateway (blank page)
+   */
+  handleMethodSelection: function handleMethodSelection() {
+
+    $('button[name=payment_method]').click(function (e) {
+
+      $('#payment_method_area').hide();
+      $('#after_payment_method_area').removeClass('hidden');
+    });
+  }
+
+};
+
+module.exports = CustomerCheckoutPaymentMethod;
+});
+
 require.register("javascripts/controllers/guest/feedback.js", function(exports, require, module) {
 'use strict';
 
