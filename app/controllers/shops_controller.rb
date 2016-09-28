@@ -15,31 +15,9 @@ class ShopsController <  ApplicationController
 
   attr_reader :shop, :shops
 
-  def index
-    @shops = Shop.in(shopkeeper: User.where(role: 'shopkeeper').map { |u| u.id} ).all;
-  end
-
-  def approve
-
-    @shop.approved = Time.now.utc
-    unless @shop.save
-      flash[:error] = "Can't approve the shop : #{@shop.errors.full_messages.join(', ')}"
-    end
-
-    redirect_to(:back) and return
-
-  end
-
-  def disapprove
-
-    @shop.approved = nil
-    unless @shop.save
-      flash[:error] = "Can't disapprove the shop : #{@shop.errors.full_messages.join(', ')}"
-    end
-
-    redirect_to(:back) and return
-
-  end
+  # def index
+  #   @shops = Shop.in(shopkeeper: User.where(role: 'shopkeeper').map { |u| u.id} ).all;
+  # end
 
   def edit_setting
   end

@@ -71,9 +71,9 @@
           </td>
           <td>
             <% if shop.approved.nil? %>
-              <%= link_to '', shop_approve_path(shop), :method => :patch, :class => 'tooltipster fa fa-check buttons buttons__add', :title => "Approve" %>
+              <%= link_to '', admin_shop_approve_path(shop), :method => :patch, :class => 'tooltipster fa fa-check buttons buttons__add', :title => "Approve" %>
             <% else %>
-              <%= link_to '', shop_disapprove_path(shop), :method => :patch, :class => 'tooltipster fa fa-minus buttons buttons__cancel', :title => "Disapprove" %>
+              <%= link_to '', admin_shop_disapprove_path(shop), :method => :patch, :class => 'tooltipster fa fa-minus buttons buttons__cancel', :title => "Disapprove" %>
             <% end %>
 
             <% if shop.products.count == 0 %>

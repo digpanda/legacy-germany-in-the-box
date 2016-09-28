@@ -18,6 +18,22 @@ class Admin::ShopsController < ApplicationController
     @emails_list = (shop_emails + shopkeeper_emails).uniq
   end
 
+  def approve
+    @shop.approved = Time.now.utc
+    unless @shop.save
+      flash[:error] = "Can't approve the shop : #{@shop.errors.full_messages.join(', ')}"
+    end
+    redirect_to navigation.back(1)
+  end
+
+  def disapprove
+    @shop.approved = nil
+    unless @shop.save
+      flash[:error] = "Can't disapprove the shop : #{@shop.errors.full_messages.join(', ')}"
+    end
+    redirect_to navigation.back(1)
+  end
+
   private
 
   def set_shop
