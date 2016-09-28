@@ -60,8 +60,6 @@ concern :shared_orders do
 
   match :add_product,               via: [:patch],        action: :add_product,             as: :add_product_to,              :on => :collection
   match :checkout,                  via: [:post],         action: :checkout,                as: :checkout,                    :on => :collection
-
-  match :manage_cart,               via: [:get],          action: :manage_cart,             as: :manage_cart,                 :on => :collection
   match 'set_address/:shop_id/',          via: [:patch, :get],  action: :set_address,             as: :set_address,           :on => :collection
   match :continue,                        via: [:get],    action: :continue,                as: :continue,                    :on => :member
 end

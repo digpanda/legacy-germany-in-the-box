@@ -7,7 +7,7 @@ class OrdersController < ApplicationController
 
   decorates_assigned :order, :orders
 
-  before_action :authenticate_user_with_force!, :except => [:manage_cart, :add_product]
+  before_action :authenticate_user_with_force!, :except => [:add_product]
   before_action :set_order, :only => [:show, :destroy, :continue, :download_label]
 
   layout :custom_sublayout, only: [:show_orders]
@@ -56,12 +56,6 @@ class OrdersController < ApplicationController
 
       end
     end
-  end
-
-  def manage_cart
-    @readonly = false
-    @shops = Shop.only(:name).where(:id.in => current_orders.keys).map { |s| [s.id.to_s, {:name => s.name}]}.to_h
-    @carts = current_carts
   end
 
   def set_address
@@ -138,6 +132,7 @@ class OrdersController < ApplicationController
 
   end
 
+  # TODO to obviously refactor
   def continue
     shop_id = @order.shop_id.to_s
 
@@ -166,7 +161,7 @@ class OrdersController < ApplicationController
       end
     end
 
-    redirect_to manage_cart_orders_path
+    redirect_to customer_cart_path
   end
 
   private

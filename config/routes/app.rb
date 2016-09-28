@@ -110,6 +110,9 @@ end
 # Customer related
 namespace :customer do
 
+  resource :cart, :controller => 'cart' do
+  end
+  
   resource :checkout, :controller => 'checkout' do
     get :payment_method
     post :gateway

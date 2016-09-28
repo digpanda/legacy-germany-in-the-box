@@ -44,7 +44,7 @@
 
         <!-- Minus -->
         <% unless @readonly %>
-          <a href="#" class="js-set-quantity-minus" data-order-item-id="<%= order_item.id.to_s %>" data-order-shop-id="<%= s %>">
+          <a href="#" class="js-set-quantity-minus" data-order-item-id="<%= order_item.id.to_s %>" data-order-shop-id="<%= order.shop %>">
             <i class="fa fa-minus buttons buttons__quantity"></i>
           </a>
         <% end %>
@@ -53,7 +53,7 @@
 
         <!-- Plus -->
         <% unless @readonly %>
-          <a href="#" class="js-set-quantity-plus" data-order-item-id="<%= order_item.id.to_s %>" data-order-shop-id="<%= s %>">
+          <a href="#" class="js-set-quantity-plus" data-order-item-id="<%= order_item.id.to_s %>" data-order-shop-id="<%= order.shop %>">
             <i class="fa fa-plus buttons buttons__quantity"></i>
           </a>
         <% end %>
@@ -78,5 +78,5 @@
 </table>
 </div>
 <% unless @readonly %>
-<%= link_to I18n.t(:set_delivery_destination, scope: :cart), set_address_orders_path(s), :class => 'btn btn-primary btn-small' %>
+<%= link_to I18n.t(:set_delivery_destination, scope: :cart), set_address_orders_path(order.shop), :class => 'btn btn-primary btn-small' %>
 <% end %>
