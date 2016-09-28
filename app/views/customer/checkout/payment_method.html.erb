@@ -7,7 +7,7 @@
     <%= form_tag gateway_customer_checkout_path, :class => 'dialog-form', :method => :post, :data => {:toggle => 'validator'} do %>
 
     <%= hidden_field_tag :order_id, @order.id %>
-    
+
     <div class="row" id="payment_method_area">
 
       <% if @shop.accepted_payment_methods.include? :creditcard %>
@@ -44,10 +44,10 @@
 
       <div class="col-md-8 col-md-push-2 col-md-pull-2">
         <h2>
-          You went through the payment process. Have your payment been successful ?
+          <%= I18n.t(:have_your_payment_been_successful, scope: :checkout) %>
         </h2>
         <div class="+spacer"></div>
-        <a href="<%= payment_method_customer_checkout_path %>" class="btn-lg btn-success">Click here to refresh the page</a>
+        <a href="<%= payment_method_customer_checkout_path %>" class="btn-lg btn-success"><% I18n.t(:refresh_page_button, scope: :checkout) %></a>
         <div class="+spacer"></div>
       </div>
 

@@ -75,7 +75,7 @@ class Customer::CheckoutController < ApplicationController
     @shop = order.shop
 
     if order.is_bought?
-      flash[:success] = "Your order has already been paid."
+      flash[:success] = I18n.t(:notice_order_already_paid, scope: :checkout)
       redirect_to navigation.back(1)
       return
     end

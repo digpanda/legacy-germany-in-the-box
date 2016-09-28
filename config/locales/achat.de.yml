@@ -627,6 +627,9 @@ de:
     delete_sku_msg: Das Produkt vom dem Einkaufswagen entfernen
     greater_than_zero: Die Anzahl muss größer al Null sein.
   checkout:
+    have_your_payment_been_successful: Zahlung wurdet beenedet, klicken Sie um Zahlung Verfolgen und zurück in GBox.
+    refresh_page_button: Zahlung Verfolgen.
+    notice_order_already_paid: Ihre Zahlung ist erfolgreich. 
     choose_your_payment_method:  Bitte eine Zahlungsmethode wählen
     my_destination: Anlieferungsanschrift
     setup_delivery_destination: Bitte Anschrift auswählen
