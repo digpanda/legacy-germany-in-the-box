@@ -8,7 +8,7 @@ class ShippingPrice
   FIRST_PRICES = [5.19, 9.19, 10.49, 11.79]
   FIRST_PRICES_KILOS_SEGMENTS = [0.5, 1.0, 1.5, 2.0]
   PRICE_PER_KILO = 2.5
-  VAT_PERCENT = 19.00 # %
+  VAT_PERCENT = 0.0 # %
 
   # add `to_b`, `ceil_tp` functionality to floats / fixnum
   Float.include CoreExtensions::Float::BigDecimalConverter
@@ -41,10 +41,10 @@ class ShippingPrice
   private
 
   def other_kilos
-    if rounded_volumetric_weight > FIRST_PRICES_KILOS_SEGMENTS.last
-      rounded_volumetric_weight - FIRST_PRICES_KILOS_SEGMENTS.last
+    if rounded_volumetric_weight.ceil > FIRST_PRICES_KILOS_SEGMENTS.last
+      (rounded_volumetric_weight.ceil - FIRST_PRICES_KILOS_SEGMENTS.last)
     else
-      0.0
+      0
     end
   end
 
