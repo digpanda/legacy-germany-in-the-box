@@ -8,7 +8,7 @@ var Footer = {
      */
     init: function() {
 
-      //this.stickyFooter();
+      this.stickyFooter();
 
     },
 

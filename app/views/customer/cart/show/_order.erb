@@ -1,3 +1,7 @@
+<% unless @readonly %>
+<%= link_to I18n.t(:set_delivery_destination, scope: :cart), set_address_orders_path(order.shop), :class => 'btn btn-primary btn-small' %>
+<% end %>
+<div class="+small-spacer"></div>
 <div class="+overflow">
 <table class="white-table">
   <thead>

@@ -1752,8 +1752,7 @@ var Footer = {
    */
   init: function init() {
 
-    //this.stickyFooter();
-
+    this.stickyFooter();
   },
 
   /**
