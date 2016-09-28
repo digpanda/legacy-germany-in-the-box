@@ -1340,38 +1340,6 @@ var NavigationModel = {
 module.exports = NavigationModel;
 });
 
-require.register("javascripts/models/order_item.js", function(exports, require, module) {
-"use strict";
-
-/**
- * OrderItem Class
- */
-var OrderItem = {
-
-  /**
-   * Check if user is auth or not via API call
-   */
-  setQuantity: function setQuantity(orderItemId, quantity, callback) {
-
-    $.ajax({
-      method: "PATCH",
-      url: "/api/guest/order_items/" + orderItemId,
-      data: { "quantity": quantity }
-
-    }).done(function (res) {
-
-      callback(res);
-    }).error(function (err) {
-
-      callback({ success: false, error: err.responseJSON.error });
-    });
-  }
-
-};
-
-module.exports = OrderItem;
-});
-
 require.register("javascripts/models/product.js", function(exports, require, module) {
 "use strict";
 
