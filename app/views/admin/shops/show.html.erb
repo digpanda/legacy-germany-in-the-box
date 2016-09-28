@@ -1,0 +1,30 @@
+<div class="details">
+
+  <%= form_for @shop, url: admin_shop_path, method: :patch do |form| %>
+
+  <div class="row">
+    <div class="col-md-10">
+      <h2>Shop <%= @shop.id %></h2>
+    </div>
+    <div class="col-md-2 details__action">
+      <% if @shop.shopkeeper %>
+        <a href="<%= admin_user_path(@shop.shopkeeper) %>"><i class="fa fa-user tooltipster" title="<%= @shop.shopkeeper.email %>"></i></a>
+      <% end %>
+      <a href="#" id="editable-click"><i class="fa fa-edit tooltipster" title="Edit the fields"></i></a>
+    </div>
+  </div>
+
+  <div class="+small-spacer"></div>
+
+  <div class="row details__block">
+
+    <h3>BshopGuru</h3>
+
+      Blablabla
+      TODO : decide if we use edit or do a edit page
+
+  </div>
+
+  <% end %>
+
+</div>

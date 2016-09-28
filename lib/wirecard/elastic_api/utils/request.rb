@@ -10,15 +10,15 @@ module Wirecard
         CONFIG = Wirecard::ElasticApi::BASE_CONFIG[:elastic_api]
         CONTENT_TYPE = 'text/xml'
 
-        attr_reader :engine_url, :username, :password, :query, :method, :body
+        attr_reader :engine_url, :username, :password, :query, :method, :body, :payment_method
 
         # uri_query gets the URI of request to the API
         # method specify if it has to be a :get or :post
         # body understood by the API is basically XML
-        def initialize(uri_query, method=:get, body='')
-          @engine_url = CONFIG[:engine_url]
-          @username = CONFIG[:username]
-          @password = CONFIG[:password]
+        def initialize(uri_query, payment_method, method=:get, body='')
+          @engine_url = CONFIG[payment_method][:engine_url]
+          @username = CONFIG[payment_method][:username]
+          @password = CONFIG[payment_method][:password]
           @query = "#{engine_url}#{uri_query}.json"
           @method = method
           @body = body

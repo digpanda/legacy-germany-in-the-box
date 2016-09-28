@@ -1,41 +1,37 @@
 defaults: &defaults
 
-  elastic_api:
-    # PROD
-    # username: 000000316FF50E1E-EMDigPanda
-    # password: pdE_cf0SnYAq
-    # engine_url: https://api.wirecard.com/engine/rest/
-
-    # CREDIT CARD :
-    username: 70000-APILUHN-CARD
-    password: 8mhwavKVb91T
-    engine_url: https://api-test.wirecard.com/engine/rest/
-
+  demo:
+    # CREDITCARD :
+    creditcard: # needed in development and testing only (we use it for the samples as well)
+      merchant_id: 9105bb4f-ae68-4768-9c3b-3eda968f57ea
+      merchant_secret: d1efed51-4cb9-46a5-ba7b-0fdc87a66544
     # UNIONPAY :
-    # username: engine.digpanda
-    # password: x3Zyr8MaY7TDxj6F
-    # engine_url: https://sandbox-engine.thesolution.com/engine/rest/
+    upop: # needed in development and testing only (we use it for the samples as well)
+      merchant_id: dfc3a296-3faf-4a1d-a075-f72f1b67dd2a
+      merchant_secret: 6cbfa34e-91a7-421a-8dde-069fc0f5e0b8
+
+  elastic_api:
+    # CREDIT CARD :
+    creditcard:
+      username: 70000-APILUHN-CARD
+      password: 8mhwavKVb91T
+      engine_url: https://api-test.wirecard.com/engine/rest/
+    # UNIONPAY :
+    upop:
+      username: engine.digpanda
+      password: x3Zyr8MaY7TDxj6F
+      engine_url: https://sandbox-engine.thesolution.com/engine/rest/
 
   hpp:
-
-    # CREDITCARD :
-    demo: # needed in development and testing only
-     ee_maid_cc: 9105bb4f-ae68-4768-9c3b-3eda968f57ea
-     ee_secret_cc: d1efed51-4cb9-46a5-ba7b-0fdc87a66544
-
-    hosted_payment_url: https://api-test.wirecard.com/engine/hpp/
-    psp_name: wirecard
-    default_payment_method: # let empty to make no choice
-    notification_url: http://wirecard.germanyintebox.ultrahook.com
-
-    # UNION PAY :
-    # demo: # needed in development and testing only
-    #   ee_maid_cc: dfc3a296-3faf-4a1d-a075-f72f1b67dd2a
-    #   ee_secret_cc: 6cbfa34e-91a7-421a-8dde-069fc0f5e0b8
-    #
-    # hosted_payment_url: https://sandbox-engine.thesolution.com/engine/hpp/
-    # psp_name: demo
-    # default_payment_method: upop # let empty to make no choice
+    # CREDIT CARD :
+    creditcard:
+      hosted_payment_url: https://api-test.wirecard.com/engine/hpp/
+      psp_name: wirecard
+      notification_url: http://wirecard.germanyintebox.ultrahook.com
+    # UNIONPAY :
+    upop:
+      hosted_payment_url: https://sandbox-engine.thesolution.com/engine/hpp/
+      psp_name: demo
 
     # UNIVERSAL
     transaction_types:
@@ -72,20 +68,25 @@ test:
   <<: *defaults
 
   elastic_api:
-    UNIONPAY :
-    username: engine.digpanda
-    password: x3Zyr8MaY7TDxj6F
-    engine_url: https://sandbox-engine.thesolution.com/engine/rest/
-  hpp:
-    # UNION PAY :
-    demo: # needed in development and testing only
-      ee_maid_cc: dfc3a296-3faf-4a1d-a075-f72f1b67dd2a
-      ee_secret_cc: 6cbfa34e-91a7-421a-8dde-069fc0f5e0b8
+    # CREDIT CARD :
+    creditcard:
+      username: 70000-APILUHN-CARD
+      password: 8mhwavKVb91T
+      engine_url: https://api-test.wirecard.com/engine/rest/
+    # UNIONPAY :
+    upop:
+      username: engine.digpanda
+      password: x3Zyr8MaY7TDxj6F
+      engine_url: https://sandbox-engine.thesolution.com/engine/rest/
 
-    hosted_payment_url: https://sandbox-engine.thesolution.com/engine/hpp/
-    psp_name: demo
-    default_payment_method: upop # let empty to make no choice
-    notification_url: http://local.dev:3000/api/webhook/wirecard/customer
+  hpp:
+    creditcard:
+      hosted_payment_url: https://api-test.wirecard.com/engine/hpp/
+      psp_name: wirecard
+      notification_url: http://wirecard.germanyintebox.ultrahook.com
+    upop:
+      hosted_payment_url: https://sandbox-engine.thesolution.com/engine/hpp/
+      psp_name: demo
 
     # UNIVERSAL
     transaction_types:
@@ -102,16 +103,13 @@ test:
 staging:
   <<: *defaults
   hpp:
-
-    # CREDITCARD :
-    demo: # needed in development and testing only
-     ee_maid_cc: 9105bb4f-ae68-4768-9c3b-3eda968f57ea
-     ee_secret_cc: d1efed51-4cb9-46a5-ba7b-0fdc87a66544
-
-    hosted_payment_url: https://api-test.wirecard.com/engine/hpp/
-    psp_name: wirecard
-    default_payment_method: creditcard # let empty to make no choice
-    notification_url: https://www.germanyintheboxdev.com/api/webhook/wirecard/customer
+    creditcard:
+      hosted_payment_url: https://api-test.wirecard.com/engine/hpp/
+      psp_name: wirecard
+      notification_url: https://www.germanyintheboxdev.com/api/webhook/wirecard/customer
+    upop:
+      hosted_payment_url: https://sandbox-engine.thesolution.com/engine/hpp/
+      psp_name: demo
 
     # UNIVERSAL
     transaction_types:
@@ -124,18 +122,48 @@ staging:
     processing_redirect_url: https://www.germanyintheboxdev.com/customer/checkout/processing
     success_redirect_url : https://www.germanyintheboxdev.com/customer/checkout/success
     fail_redirect_url: https://www.germanyintheboxdev.com/customer/checkout/fail
+    
+  merchants:
+    reseller_id: nba81H29Gba
+    package_id: digpandapaket1
+    country: DEU
+    signup: https://www.checkoutportal.de/de_DE/signup/
+    status:
+      - unactive
+      - active
+      - processing
+      - documents_complete
+      - declined
+      - terminated
 
 production:
   <<: *defaults
   elastic_api:
-    username: 000000316FF50E1E-EMDigPanda
-    password: pdE_cf0SnYAq
-    engine_url: https://api.wirecard.com/engine/rest/
+    # CREDIT CARD :
+    creditcard:
+      username: 000000316FF50E1E-EMDigPanda
+      password: pdE_cf0SnYAq
+      engine_url: https://api.wirecard.com/engine/rest/
+    # UNIONPAY :
+    upop: # TODO : we might have to change that for UNIONPAY integration in prod
+      username: 000000316FF50E1E-EMDigPanda
+      password: pdE_cf0SnYAq
+      engine_url: https://api.wirecard.com/engine/rest/
+
+
   hpp:
-    hosted_payment_url: https://api.wirecard.com/engine/hpp/
-    psp_name: wirecard
-    default_payment_method: # let empty to make no choice
-    notification_url: https://www.germanyinthebox.com/api/webhook/wirecard/customer
+    # CREDIT CARD :
+    creditcard:
+      hosted_payment_url: https://api.wirecard.com/engine/hpp/
+      psp_name: wirecard
+      default_payment_method: # let empty to make no choice
+      notification_url: https://www.germanyinthebox.com/api/webhook/wirecard/customer
+    # UNIONPAY :
+    upop: # TODO : we might have to change that for UNIONPAY integration in prod
+      hosted_payment_url: https://api.wirecard.com/engine/hpp/
+      psp_name: wirecard
+      default_payment_method: # let empty to make no choice
+      notification_url: https://www.germanyinthebox.com/api/webhook/wirecard/customer
 
     # UNIVERSAL
     transaction_types:

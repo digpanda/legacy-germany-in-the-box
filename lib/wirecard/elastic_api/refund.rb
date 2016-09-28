@@ -10,19 +10,20 @@ module Wirecard
 
       include Wirecard::ElasticApi::Base
 
-      attr_reader :merchant_id, :parent_transaction_id, :request_id
+      attr_reader :merchant_id, :parent_transaction_id, :request_id, :payment_method
 
-      def initialize(merchant_id, parent_transaction_id)
+      def initialize(merchant_id, parent_transaction_id, payment_method)
         @merchant_id = merchant_id
         @parent_transaction_id = parent_transaction_id
         @request_id = SecureRandom.uuid
+        @payment_method = payment_method
       end
 
       # process the query response
       # return the response format
       def response
         @response ||= begin
-          response = Utils::Request.new(query, :post, body).response
+          response = Utils::Request.new(query, payment_method, :post, body).response
           if response.nil?
             raise Wirecard::ElasticApi::Error, "The refund was not processed"
           else
@@ -74,7 +75,7 @@ module Wirecard
 
       # original transaction of the refund, requested remotely to elastic API
       def parent_transaction
-        @parent_transaction ||= Wirecard::ElasticApi::Transaction.new(merchant_id, parent_transaction_id)
+        @parent_transaction ||= Wirecard::ElasticApi::Transaction.new(merchant_id, parent_transaction_id, payment_method)
       end
 
     end

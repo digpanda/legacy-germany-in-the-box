@@ -24,6 +24,8 @@ end
 namespace :admin do
   resources :shops do
     get :emails, on: :collection
+    patch :approve
+    patch :disapprove
   end
   resources :shop_applications do
   end
@@ -108,7 +110,13 @@ end
 # Customer related
 namespace :customer do
 
+  resource :cart, :controller => 'cart' do
+  end
+  
   resource :checkout, :controller => 'checkout' do
+    get :payment_method
+    post :gateway
+
     post :success
     post :fail
     post :processing

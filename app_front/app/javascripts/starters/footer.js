@@ -22,7 +22,7 @@ var Footer = {
       if ($('.js-footer-stick').length > 0) {
 
         Footer.processStickyFooter();
-        
+
         $(document).on('message:hidden', function() {
           Footer.processStickyFooter();
         });

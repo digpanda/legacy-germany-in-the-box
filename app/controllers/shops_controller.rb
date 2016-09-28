@@ -15,31 +15,9 @@ class ShopsController <  ApplicationController
 
   attr_reader :shop, :shops
 
-  def index
-    @shops = Shop.in(shopkeeper: User.where(role: 'shopkeeper').map { |u| u.id} ).all;
-  end
-
-  def approve
-
-    @shop.approved = Time.now.utc
-    unless @shop.save
-      flash[:error] = "Can't approve the shop : #{@shop.errors.full_messages.join(', ')}"
-    end
-
-    redirect_to(:back) and return
-
-  end
-
-  def disapprove
-
-    @shop.approved = nil
-    unless @shop.save
-      flash[:error] = "Can't disapprove the shop : #{@shop.errors.full_messages.join(', ')}"
-    end
-
-    redirect_to(:back) and return
-
-  end
+  # def index
+  #   @shops = Shop.in(shopkeeper: User.where(role: 'shopkeeper').map { |u| u.id} ).all;
+  # end
 
   def edit_setting
   end
@@ -74,15 +52,6 @@ class ShopsController <  ApplicationController
       flash[:success] = "Image removed successfully"
     else
       flash[:error] = "Can't remove this image"
-    end
-    redirect_to navigation.back(1)
-  end
-
-  def destroy
-    if shop.addresses.delete_all && shop.destroy
-      flash[:success] = I18n.t(:delete_ok, scope: :edit_shops)
-    else
-      flash[:error] = @shop_application.errors.full_messages.first
     end
     redirect_to navigation.back(1)
   end

@@ -74,7 +74,7 @@ class Shop
   has_many  :products,        inverse_of: :shop,  dependent: :restrict
   has_many  :orders,          inverse_of: :shop,  dependent: :restrict
   has_many  :payment_gateways,  inverse_of: :shop,  dependent: :restrict
-  
+
   belongs_to :shopkeeper,   class_name: 'User',  inverse_of: :shop
 
   validates :name,          presence: true,   length: {maximum: (Rails.configuration.max_tiny_text_length * 1.25).round}
@@ -151,6 +151,10 @@ class Shop
   def categories
     all_categories = Category.all.map { |c| [c.id, c]}.to_h
     products.inject(Set.new) {|cs, p| cs = cs + p.category_ids }.map { |c| all_categories[c]}
+  end
+
+  def accepted_payment_methods
+    self.payment_gateways.map { |payment_gateway| payment_gateway.payment_method.to_sym }
   end
 
   private

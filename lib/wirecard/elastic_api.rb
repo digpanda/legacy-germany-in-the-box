@@ -6,12 +6,12 @@ module Wirecard
 
     class << self
 
-      def transaction(merchant_id, transaction_id)
-        ElasticApi::Transaction.new(merchant_id, transaction_id)
+      def transaction(merchant_id, transaction_id, payment_method)
+        ElasticApi::Transaction.new(merchant_id, transaction_id, payment_method)
       end
 
-      def refund(merchant_id, parent_transaction_id)
-        ElasticApi::Refund.new(merchant_id, parent_transaction_id)
+      def refund(merchant_id, parent_transaction_id, payment_method)
+        ElasticApi::Refund.new(merchant_id, parent_transaction_id, payment_method)
       end
 
     end

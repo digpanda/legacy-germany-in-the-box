@@ -623,6 +623,10 @@ zh-CN:
     delete_sku_msg: 您确定要从购物车中删除此产品吗？
     greater_than_zero: 产品数量必须大于1, 删除请您点击右侧的叉键。
   checkout:
+    have_your_payment_been_successful: 支付流程已结束，点击下方按钮查看支付结果。
+    refresh_page_button: 查看支付结果
+    notice_order_already_paid: 支付成功
+    choose_your_payment_method: 请选择支付方式
     my_destination: 收货地址
     setup_delivery_destination: 请您指定收货地址
     checkout: 下单

@@ -5,7 +5,7 @@ class OrderPayment
   field :parent_transaction_id, type: String
   field :transaction_id , type: String
   field :transaction_type, type: String
-  field :payment_method , type: String
+  field :payment_method , type: Symbol
   field :merchant_id    , type: String
   field :status         , type: Symbol, default: :scheduled # [:scheduled, :unverified, :success, :failed]
   field :amount_cny         , type: Float, default: 0.0

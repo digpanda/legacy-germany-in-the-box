@@ -1,7 +1,8 @@
 <div class="+spacer"></div>
 <div class="row">
   <div class="col-md-8 col-md-push-1">
-    <%= render 'cart', order: @order, currency_code: @currency_code %>
+    <!-- TODO: refaco this -->
+    <%= render 'customer/cart/show/order', order: @order, currency_code: @currency_code %>
   </div>
   <div class="col-md-1">
   </div>

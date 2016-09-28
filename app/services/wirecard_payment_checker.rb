@@ -4,7 +4,7 @@ class WirecardPaymentChecker < BaseService
 
   VALID_FINALIZED_TRANSACTION_STATE = [:debit, :purchase, :'refund-purchase', :'refund-debit']
 
-  attr_reader :transaction_id, :merchant_id, :request_id
+  attr_reader :transaction_id, :merchant_id, :request_id, :payment_method
   attr_accessor :order_payment
 
   def initialize(args)
@@ -12,6 +12,7 @@ class WirecardPaymentChecker < BaseService
     @transaction_id = args[:transaction_id] || order_payment.transaction_id
     @merchant_id    = args[:merchant_account_id] || order_payment.merchant_id
     @request_id     = args[:request_id] || order_payment.request_id
+    @payment_method = args[:payment_method] || order_payment.payment_method
   end
 
   def update_order_payment!
@@ -44,7 +45,7 @@ class WirecardPaymentChecker < BaseService
   # get the remote transaction and raise error in case the connection isn't correctly established
   # or the transaction has basically failed
   def remote_transaction
-    @remote_transaction ||= Wirecard::ElasticApi.transaction(merchant_id, transaction_id).raise_response_issues
+    @remote_transaction ||= Wirecard::ElasticApi.transaction(merchant_id, transaction_id, payment_method).raise_response_issues
   end
 
   # the elastic API can reply positively even if it's a simple `get-url` transaction

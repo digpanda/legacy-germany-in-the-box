@@ -1,0 +1,13 @@
+<a href="<%= admin_shop_path(shop) %>" title="Details and configuration">
+  <i class="fa fa-pencil tooltipster buttons buttons__edit"></i>
+</a>
+
+<% if shop.approved.nil? %>
+  <%= link_to '', admin_shop_approve_path(shop), :method => :patch, :class => 'tooltipster fa fa-check buttons buttons__add', :title => "Approve" %>
+<% else %>
+  <%= link_to '', admin_shop_disapprove_path(shop), :method => :patch, :class => 'tooltipster fa fa-minus buttons buttons__cancel', :title => "Disapprove" %>
+<% end %>
+
+<% if shop.products.count == 0 %>
+  <%= link_to '', admin_shop_path(shop), :method => :delete, data: { confirm: I18n.t(:delete_shop_message, scope: :edit_shops) }, :class => 'tooltipster fa fa-times buttons buttons__delete', :title => I18n.t(:remove, scope: :edit_shops) %>
+<% end %>

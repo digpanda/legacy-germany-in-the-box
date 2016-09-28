@@ -148,70 +148,13 @@ var __makeRelativeRequire = function(require, mappings, pref) {
     return require(name);
   }
 };
-require.register("javascripts/controllers/customer/checkout/create.js", function(exports, require, module) {
-"use strict";
-
-/**
- * CustomerCheckoutCreate class
- */
-var CustomerCheckoutCreate = {
-
-  /**
-   * Initializer
-   */
-  init: function init() {
-
-    this.postBankDetails();
-  },
-
-  /**
-   * Post bank details to the `form_url`
-   */
-  postBankDetails: function postBankDetails() {
-
-    var Casing = require("javascripts/lib/casing");
-    var PostForm = require("javascripts/lib/post_form.js");
-
-    var bankDetails = $("#bank-details")[0].dataset;
-    var parsedBankDetails = Casing.objectToUnderscoreCase(bankDetails);
-
-    PostForm.send(parsedBankDetails, parsedBankDetails['form_url']);
-  }
-
-};
-
-module.exports = CustomerCheckoutCreate;
-});
-
-require.register("javascripts/controllers/guest/feedback.js", function(exports, require, module) {
+require.register("javascripts/controllers/customer/cart/show.js", function(exports, require, module) {
 'use strict';
 
 /**
- * GuestFeedback Class
+ * CustomerCartShow class
  */
-var GuestFeedback = {
-
-  /**
-   * Initializer
-   */
-  init: function init() {
-
-    var Preloader = require("javascripts/lib/preloader");
-    Preloader.dispatchLoader('#external-script', '.js-loader', 'iframe#WJ_survey');
-  }
-
-};
-
-module.exports = GuestFeedback;
-});
-
-require.register("javascripts/controllers/orders/manage_cart.js", function(exports, require, module) {
-'use strict';
-
-/**
- * ManageCart class
- */
-var ManageCart = {
+var CustomerCartShow = {
 
   /**
    * Initializer
@@ -243,7 +186,7 @@ var ManageCart = {
 
       if (currentQuantity > 0) {
         currentQuantity--;
-        ManageCart.orderItemSetQuantity(orderShopId, orderItemId, originQuantity, currentQuantity);
+        CustomerCartShow.orderItemSetQuantity(orderShopId, orderItemId, originQuantity, currentQuantity);
       }
     });
 
@@ -257,7 +200,7 @@ var ManageCart = {
       var originQuantity = currentQuantity;
 
       currentQuantity++;
-      ManageCart.orderItemSetQuantity(orderShopId, orderItemId, originQuantity, currentQuantity);
+      CustomerCartShow.orderItemSetQuantity(orderShopId, orderItemId, originQuantity, currentQuantity);
     });
   },
 
@@ -300,7 +243,97 @@ var ManageCart = {
 
 };
 
-module.exports = ManageCart;
+module.exports = CustomerCartShow;
+});
+
+require.register("javascripts/controllers/customer/checkout/gateway.js", function(exports, require, module) {
+"use strict";
+
+/**
+ * CustomerGatewayCreate class
+ */
+var CustomerGatewayCreate = {
+
+  /**
+   * Initializer
+   */
+  init: function init() {
+
+    this.postBankDetails();
+  },
+
+  /**
+   * Post bank details to the `form_url`
+   */
+  postBankDetails: function postBankDetails() {
+
+    var Casing = require("javascripts/lib/casing");
+    var PostForm = require("javascripts/lib/post_form.js");
+
+    var bankDetails = $("#bank-details")[0].dataset;
+    var parsedBankDetails = Casing.objectToUnderscoreCase(bankDetails);
+
+    PostForm.send(parsedBankDetails, parsedBankDetails['form_url']);
+  }
+
+};
+
+module.exports = CustomerGatewayCreate;
+});
+
+require.register("javascripts/controllers/customer/checkout/payment_method.js", function(exports, require, module) {
+'use strict';
+
+/**
+ * CustomerCheckoutPaymentMethod class
+ */
+var CustomerCheckoutPaymentMethod = {
+
+  /**
+   * Initializer
+   */
+  init: function init() {
+
+    this.handleMethodSelection();
+  },
+
+  /**
+   * Will process after someone click to go through the payment gateway (blank page)
+   */
+  handleMethodSelection: function handleMethodSelection() {
+
+    $('button[name=payment_method]').click(function (e) {
+
+      $('#payment_method_area').hide();
+      $('#after_payment_method_area').removeClass('hidden');
+    });
+  }
+
+};
+
+module.exports = CustomerCheckoutPaymentMethod;
+});
+
+require.register("javascripts/controllers/guest/feedback.js", function(exports, require, module) {
+'use strict';
+
+/**
+ * GuestFeedback Class
+ */
+var GuestFeedback = {
+
+  /**
+   * Initializer
+   */
+  init: function init() {
+
+    var Preloader = require("javascripts/lib/preloader");
+    Preloader.dispatchLoader('#external-script', '.js-loader', 'iframe#WJ_survey');
+  }
+
+};
+
+module.exports = GuestFeedback;
 });
 
 require.register("javascripts/controllers/orders/show.js", function(exports, require, module) {
@@ -1338,6 +1371,38 @@ var NavigationModel = {
 };
 
 module.exports = NavigationModel;
+});
+
+require.register("javascripts/models/order_item.js", function(exports, require, module) {
+"use strict";
+
+/**
+ * OrderItem Class
+ */
+var OrderItem = {
+
+  /**
+   * Check if user is auth or not via API call
+   */
+  setQuantity: function setQuantity(orderItemId, quantity, callback) {
+
+    $.ajax({
+      method: "PATCH",
+      url: "/api/guest/order_items/" + orderItemId,
+      data: { "quantity": quantity }
+
+    }).done(function (res) {
+
+      callback(res);
+    }).error(function (err) {
+
+      callback({ success: false, error: err.responseJSON.error });
+    });
+  }
+
+};
+
+module.exports = OrderItem;
 });
 
 require.register("javascripts/models/product.js", function(exports, require, module) {

@@ -1,7 +1,7 @@
 /**
- * ManageCart class
+ * CustomerCartShow class
  */
-var ManageCart = {
+var CustomerCartShow = {
 
   /**
    * Initializer
@@ -35,7 +35,7 @@ var ManageCart = {
 
       if (currentQuantity > 0) {
         currentQuantity--;
-        ManageCart.orderItemSetQuantity(orderShopId, orderItemId, originQuantity, currentQuantity);
+        CustomerCartShow.orderItemSetQuantity(orderShopId, orderItemId, originQuantity, currentQuantity);
       }
 
     });
@@ -50,7 +50,7 @@ var ManageCart = {
       let originQuantity = currentQuantity;
 
       currentQuantity++;
-      ManageCart.orderItemSetQuantity(orderShopId, orderItemId, originQuantity, currentQuantity);
+      CustomerCartShow.orderItemSetQuantity(orderShopId, orderItemId, originQuantity, currentQuantity);
 
     });
 
@@ -99,4 +99,4 @@ var ManageCart = {
 
 }
 
-module.exports = ManageCart;
+module.exports = CustomerCartShow;
