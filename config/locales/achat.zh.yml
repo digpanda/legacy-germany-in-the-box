@@ -44,6 +44,7 @@ zh-CN:
     change_your_password: 更改密码
     page_not_found: 没有找到该页面
     server_error: 服务器出错
+    page_not_authozied_login: 请先登录或者注册进行下步操作！
     page_not_authorized: 没有访问该页面的权限
   notice:
     payment_removed: 支付成功取消

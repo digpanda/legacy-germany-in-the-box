@@ -44,6 +44,7 @@ de:
     change_your_password: Passwort ändern
     page_not_found: Seite nicht gefunden
     server_error: Serverproblem
+    page_not_authorized_login: Bitte einloggen oder registrieren um fortzufahren!
     page_not_authorized: Sie haben keine Berechtigung für diese Seite
   notice:
     payment_removed: Zahlung storniert
@@ -629,7 +630,7 @@ de:
   checkout:
     have_your_payment_been_successful: Zahlung wurdet beenedet, klicken Sie um Zahlung Verfolgen und zurück in GBox.
     refresh_page_button: Zahlung Verfolgen.
-    notice_order_already_paid: Ihre Zahlung ist erfolgreich. 
+    notice_order_already_paid: Ihre Zahlung ist erfolgreich.
     choose_your_payment_method:  Bitte eine Zahlungsmethode wählen
     my_destination: Anlieferungsanschrift
     setup_delivery_destination: Bitte Anschrift auswählen

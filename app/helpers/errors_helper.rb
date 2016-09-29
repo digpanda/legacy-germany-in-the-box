@@ -14,10 +14,11 @@ module ErrorsHelper
   # or redirect back if already logged-in
   def throw_unauthorized_page(exception=nil)
     dispatch_error_email(exception)
-    flash[:error] = "You are not authorized to access this page"
     if current_user
+      flash[:error] = I18n.t(:page_not_authorized_login, scope: :title)
       redirect_to NavigationHistory.new(request, session).back(1)
     else
+      flash[:error] = I18n.t(:page_not_authorized, scope: :title)
       NavigationHistory.new(request, session).store(:current, :force)
       redirect_to new_user_session_path
     end
