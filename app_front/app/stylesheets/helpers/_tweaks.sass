@@ -10,6 +10,41 @@
 +tweak(overflow)
   overflow-x: auto
 
+// WARNING : this is a copy of `mobile-category-menu --checkout`
+// It was done fast because of a bug. Please improve it.
++tweak(checkout-button)
+  position: relative
+  background-color: $color-blue
+  text-align: center
+
+  outline: 0
+  border: 1px
+  //border-bottom: 9px solid $color-dark-blue
+  -webkit-border-radius: 5px
+  -khtml-border-radius: 5px
+  -moz-border-radius: 5px
+  -ms-border-radius: 5px
+  -o-border-radius: 5px
+  border-radius: 5px
+  color: #fff
+  display: block
+  padding: 5px 20px
+  font-size: 18px
+  -moz-transition: border .1s
+  -o-transition: border .1s
+  -webkit-transition: border .1s
+  transition: border .1s
+  font-weight: 900
+  cursor: pointer
+
+  font-family: 'Open Sans', Arial, helvetica, sans-serif
+  color: #fff
+  font-weight: bold
+  text-shadow: 0 1px 3px #000
+
+  text-transform: uppercase
+
+
 +tweak(divider)
   display: table
   white-space: nowrap
@@ -30,6 +65,9 @@
     top: 10px
     width: 45%
     content: " "
+
++tweak(right)
+  text-align: right
 
 +tweak(centered)
   text-align: center

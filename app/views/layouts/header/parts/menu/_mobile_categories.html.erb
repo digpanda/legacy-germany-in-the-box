@@ -3,7 +3,7 @@
 <div id="categories-menu-left-side" class="hidden">
 
   <!-- Left side content start -->
-  <% if total_number_of_products > 0 %>
+  <% if total_number_of_products > 0 && !checkout_path? %>
     <div class="col-md-6 mobile-category-menu__right">
       <a href="<%= customer_cart_path %>" class="mobile-category-menu__right --checkout"><%= I18n.t(:checkout, scope: :button) %> <i class="fa fa-check-circle"></i></a>
     </div>
