@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
 
-  before_action :authenticate_user!, except: [:home, :privacy, :imprint, :saleguide, :fees, :menu, :customer_guide, :customer_agb, :customer_qa]
+  before_action :authenticate_user!, except: [:home, :privacy, :imprint, :saleguide, :fees, :menu, :customer_guide, :customer_agb, :customer_qa, :shipping_cost]
 
   def home
     @categories = Category.order(position: :asc).all
@@ -28,6 +28,9 @@ class PagesController < ApplicationController
   end
 
   def customer_qa
+  end
+
+  def shipping_cost
   end
 
   def fees
