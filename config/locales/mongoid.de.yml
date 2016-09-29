@@ -171,6 +171,8 @@ de:
       weight: Gewicht
       product: Produkt
     user:
+      password: Passwort
+      password_confirmation: Passwort wiederholen
       about: worüber
       birth: Geburtsdatum
       country: Land
@@ -201,10 +203,8 @@ de:
     messages:
       blank: ist leer
       invalid: ist ungültig
-
-      #too_short: IS TOO SHORT %{count}
-      #confirmation: "DOES NOT MATCH"
-
+      too_short: ist zu kurz.
+      confirmation: stimmt nicht überein.
       document_not_found:
         message: "Dokument(e) nicht gefunden für Klasse %{klass} mit id(s) %{missing}."
         summary: "Die gesuchten Dokumente waren für IDs: %{searched} (%{total} total) und die folgenden sind nicht gefunden: %{missing}."

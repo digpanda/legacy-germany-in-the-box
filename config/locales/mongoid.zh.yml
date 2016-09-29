@@ -171,6 +171,8 @@ zh-CN:
       weight: 重量
       product: 产品
     user:
+      password: 密码
+      password_confirmation: 重复密码
       about: 关于
       birth: 生日
       country: 国家
@@ -200,6 +202,8 @@ zh-CN:
 
   errors: &errors
     messages:
+      too_short: 太短
+      confirmation: 不一致
       blank: 不能为空
       invalid: 无效
       document_not_found:
