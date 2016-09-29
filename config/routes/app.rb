@@ -10,7 +10,7 @@ end
 
 captcha_route
 mount ChinaCity::Engine => '/china_city'
-devise_for :users, :controllers => { registrations: "registrations", sessions: "sessions", omniauth_callbacks: "omniauth_callbacks"}
+devise_for :users, :controllers => { registrations: "registrations", sessions: "sessions", passwords: "passwords", omniauth_callbacks: "omniauth_callbacks"}
 
 devise_scope :user do
   concerns :shared_user
@@ -112,7 +112,7 @@ namespace :customer do
 
   resource :cart, :controller => 'cart' do
   end
-  
+
   resource :checkout, :controller => 'checkout' do
     get :payment_method
     post :gateway

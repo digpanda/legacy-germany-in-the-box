@@ -931,6 +931,24 @@ var ProductsShowSkus = {
 module.exports = ProductsShowSkus;
 });
 
+require.register("javascripts/controllers/registrations/new.js", function(exports, require, module) {
+"use strict";
+
+/**
+ * RegistrationNew Class
+ */
+var RegistrationNew = {
+
+  /**
+   * Initializer
+   */
+  init: function init() {}
+
+};
+
+module.exports = RegistrationNew;
+});
+
 require.register("javascripts/controllers/shopkeeper/wirecards/apply.js", function(exports, require, module) {
 "use strict";
 
