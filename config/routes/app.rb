@@ -17,7 +17,18 @@ devise_scope :user do
 end
 
 resource :page do
-  concerns :shared_page
+  get :shipping_cost
+  get :sending_guide
+  get :menu
+  get :agb
+  get :privacy
+  get :imprint
+  get :saleguide
+  get :customer_guide
+  get :customer_qa
+  get :customer_agb
+  get :fees
+  get :home
 end
 
 # Admin related

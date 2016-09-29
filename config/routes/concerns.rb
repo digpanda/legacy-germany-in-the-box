@@ -10,21 +10,6 @@ concern :shared_user do
   match :cancel_signup,   via: [:get] ,     to: 'registrations#cancel_signup',  as: :cancel_signup
 end
 
-concern :shared_page do
-  get :shipping_cost
-  match :sending_guide,        via: [:get],    action: :sending_guide,         as: :sending_guide
-  match :menu,        via: [:get],    action: :menu,         as: :menu
-  match :agb,         via: [:get],    action: :agb,         as: :agb
-  match :privacy,     via: [:get],    action: :privacy,     as: :privacy
-  match :imprint,     via: [:get],    action: :imprint,     as: :imprint
-  match :saleguide,   via: [:get],    action: :saleguide,   as: :saleguide
-  match :customer_guide,   via: [:get],    action: :customer_guide,   as: :customer_guide
-  match :customer_qa,   via: [:get],    action: :customer_qa,   as: :customer_qa
-  match :customer_agb,   via: [:get],    action: :customer_agb,   as: :customer_agb
-  match :fees,        via: [:get],    action: :fees,        as: :fees
-  match :home,        via: [:get],    action: :home,        as: :home
-end
-
 concern :shared_products do
   match :approve, via: [:patch], action: :approve, as: :approve
   match :disapprove, via: [:patch], action: :disapprove, as: :disapprove
