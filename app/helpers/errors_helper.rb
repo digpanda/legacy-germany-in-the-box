@@ -15,10 +15,10 @@ module ErrorsHelper
   def throw_unauthorized_page(exception=nil)
     dispatch_error_email(exception)
     if current_user
-      flash[:error] = I18n.t(:page_not_authorized_login, scope: :title)
+      flash[:error] = I18n.t(:page_not_authorized, scope: :title)
       redirect_to NavigationHistory.new(request, session).back(1)
     else
-      flash[:error] = I18n.t(:page_not_authorized, scope: :title)
+      flash[:error] = I18n.t(:page_not_authorized_login, scope: :title)
       NavigationHistory.new(request, session).store(:current, :force)
       redirect_to new_user_session_path
     end
