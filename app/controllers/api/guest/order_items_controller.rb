@@ -21,14 +21,14 @@ class Api::Guest::OrderItemsController < Api::ApplicationController
     new_price_inc = sku.price * new_quantity_inc * Settings.first.exchange_rate_to_yuan
 
     if new_quantity_inc >= 0 && reach_todays_limit?(order, new_price_inc, new_quantity_inc)
-      render :json => { :success => false, :error => I18n.t(:override_maximal_total, scope: :edit_order, total: Settings.instance.max_total_per_day, currency: Settings.instance.platform_currency.symbol) }
+      render :json => { :success => false, :original_quantity => @order_item.quantity, :error => I18n.t(:override_maximal_total, scope: :edit_order, total: Settings.instance.max_total_per_day, currency: Settings.instance.platform_currency.symbol) }
       return
     end
 
     if sku.unlimited or sku.quantity >= quantity
       @order_item.quantity = quantity
     else
-      render :json => { :success => false, :error => I18n.t(:not_all_available, scope: :checkout, :product_name => product.name, :option_names => sku.decorate.get_options_txt) }
+      render :json => { :success => false, :original_quantity => @order_item.quantity, :error => I18n.t(:not_all_available, scope: :checkout, :product_name => product.name, :option_names => sku.decorate.get_options_txt) }
       return
     end
 
@@ -45,7 +45,7 @@ class Api::Guest::OrderItemsController < Api::ApplicationController
       @total_number_of_products = total_number_of_products
       @order = order
     else
-      render :json => { :success => false, :error => @order_item.errors.full_messages.join(", ") }
+      render :json => { :success => false, :original_quantity => @order_item.quantity, :error => @order_item.errors.full_messages.join(", ") }
     end
   end
 

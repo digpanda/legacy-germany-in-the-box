@@ -217,6 +217,12 @@ var CustomerCartShow = {
       if (res.success === false) {
 
         // We rollback the quantity
+
+        // We try to get back the correct value from AJAX if we can
+        // To avoid the system to show a wrong quantity on the display
+        if (typeof res.original_quantity != "undefined") {
+          originQuantity = res.original_quantity;
+        }
         $('#order-item-quantity-' + orderItemId).val(originQuantity);
         Messages.makeError(res.error);
       } else {
