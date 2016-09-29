@@ -1,0 +1,9 @@
+de:
+  mailers:
+    password_recovery:
+      hello: Liebe Nutzerin, lieber Nutzer,
+      someone_requested: Das Passwort vergessen? Dann bitte den unterstehenden Link klicken und ein neues Passwort kreieren
+      did_not_request: Wenn Du das alte Passwort noch kennst, bitte hier Dich einloggen
+      password_will_not_change:
+      change_password: Passwort ändern
+      sign_in: Einloggen

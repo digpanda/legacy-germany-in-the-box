@@ -1,4 +1,8 @@
 zh-CN:
+  password_recovery:
+    email_not_found: 这个邮件地址没有找到哦
+    instruction_sent: 请检查你的收件箱，按提示操作重新设置密码！
+    password_updated: 恭喜！你已经成功设置了一个新的密码！
   feedback:
     bug_report:  纠错处
     payment_speed_report: 支付页面速度反馈

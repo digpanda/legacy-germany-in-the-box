@@ -1,4 +1,8 @@
 de:
+  password_recovery:
+    email_not_found: Diese E-Mail ist uns nicht bekannt.
+    instruction_sent: Bitte checke Deine E-Mail und folge dem Hinweis.
+    password_updated: Dein Passort wurde aktualisiert!
   feedback:
     bug_report: Fehler Report
     payment_speed_report: Laufzeit der Zahlung

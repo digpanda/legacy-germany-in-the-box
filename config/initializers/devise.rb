@@ -9,10 +9,10 @@ Devise.setup do |config|
   end
 
 
-  config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
+  config.mailer_sender = 'no-reply@germanyinthebox.com'
 
   # Configure the class responsible to send e-mails.
-  # config.mailer = 'Devise::Mailer'
+  # config.mailer = 'UserMailer'
   # config.authentication_keys = [ :email ]
   # config.request_keys = []
   config.case_insensitive_keys = [:email]
