@@ -17,12 +17,7 @@
   <div class="+small-spacer"></div>
 
   <div class="row details__block">
-
-    <h3>BshopGuru</h3>
-
-      Blablabla
-      TODO : decide if we use edit or do a edit page
-
+    <%= render partial: "admin/shops/show/payment_gateways", :locals => { :payment_gateways => @shop.payment_gateways } %>
   </div>
 
   <% end %>
