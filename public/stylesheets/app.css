@@ -8830,7 +8830,6 @@ img.mfp-img {
 
 /* line 32, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
 .shop-page-product {
-  padding: 0.5em;
   border: 5px #eeeeee solid;
   -webkit-border-radius: 0.5em;
   -moz-border-radius: 0.5em;
@@ -8851,12 +8850,12 @@ img.mfp-img {
     overflow: hidden;
     text-overflow: ellipsis;
     -o-text-overflow: ellipsis;
-    width: 90%; }
+    width: 95%; }
   /* line 76, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
   .shop-page-product__image {
     background-color: #FBFBFB;
     height: 17em;
-    width: 12em;
+    width: 70%;
     margin: 0 auto;
     display: block;
     -webkit-background-size: cover;
@@ -8864,7 +8863,11 @@ img.mfp-img {
     -o-background-size: cover;
     background-size: cover;
     background-position: center center; }
-    /* line 31, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_shop-page-product.sass */
+    @media (max-width: 991px) {
+      /* line 76, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
+      .shop-page-product__image {
+        width: 100%; } }
+    /* line 35, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_shop-page-product.sass */
     .shop-page-product__image img {
       max-width: 100%;
       max-height: 22em; }
@@ -8878,6 +8881,16 @@ img.mfp-img {
     .shop-page-product__description.\--text {
       width: 100%;
       font-size: 13px; }
+      @media (max-width: 991px) {
+        /* line 40, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
+        .shop-page-product__description.\--text {
+          font-size: 10px;
+          display: inline-block;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          -o-text-overflow: ellipsis;
+          width: 100%; } }
     /* line 40, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
     .shop-page-product__description.\--prices {
       width: 100%; }

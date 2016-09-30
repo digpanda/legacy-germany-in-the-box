@@ -1,11 +1,11 @@
 +component(shop-page-product)
 
-  padding: 0.5em
+  //padding: 0.5em
   border: 5px $color-grey solid
   +border-radius(0.5em)
 
   background-color: white
-  
+
   color: $color-black
   a
     color: $color-black
@@ -14,12 +14,16 @@
     margin: 0em
     margin-top: 0.5em
     font-size: 1.7em
-    +truncate(90%)
+    +truncate(95%)
 
   +part(image)
     background-color: $color-light-grey
     height: 17em
-    width: 12em
+
+    width: 70%
+    +breakpoint('mobile')
+      width: 100%
+
     margin: 0 auto
     display: block
     -webkit-background-size: cover
@@ -42,6 +46,9 @@
     +option(text)
       width: 100%
       font-size: 13px
+      +breakpoint('mobile') // will cut the text at the end of the square div
+        font-size: 10px
+        +truncate(100%)
 
     +option(prices)
       width: 100%

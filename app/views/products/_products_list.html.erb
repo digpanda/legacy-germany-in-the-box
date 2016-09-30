@@ -3,19 +3,19 @@
   <div id="freewall-products">
   <% products.in_groups_of(3, false).each do |grouped_products| %>
 
-    <div class="row">
+    <!--<div class="row">-->
 
       <% grouped_products.each do |product| %>
 
-      <div class="col-md-4 shop-page-product">
+      <div class="col-md-4 col-xs-6 shop-page-product">
 
         <%= render partial: 'products/product_box', :locals => {:product => product} %>
-        
+
       </div>
 
       <% end %>
 
-    </div>
+    <!--</div>-->
 
   <% end %>
   </div>
