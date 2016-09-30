@@ -1,0 +1,24 @@
++component(notes)
+
+  textarea
+    width: 100%
+
+  input
+    float: right
+    clear: both
+    
+  +part(author)
+    font-size: 11px
+    text-align: right
+    #{$a-tags}
+      color: $color-white
+
+  +part(message)
+    padding: 0.5em
+
+  +part(general)
+    +border-radius(1em)
+    padding: 1em
+    font-size: 13px
+    background-color: $color-blue
+    color: $color-white

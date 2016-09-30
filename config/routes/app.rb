@@ -33,6 +33,8 @@ end
 
 # Admin related
 namespace :admin do
+  resources :notes do
+  end
   resources :shops do
     get :emails, on: :collection
     patch :approve

@@ -12,30 +12,36 @@ var EditableFields = {
      */
     init: function() {
 
-      EditableFields.hideEditable();
+      EditableFields.hideAllEditable();
 
-      $('#editable-click').on('click', function() {
-        EditableFields.showEditable();
-        EditableFields.makeButton();
+      $('.js-editable-click').on('click', function(e) {
+        e.preventDefault();
+        EditableFields.showEditable(this);
       })
 
     },
 
-    hideEditable: function() {
-      $('.js-editable').show();
+    hideAllEditable: function(element) {
+      $('.js-editable-text').show();
       $('.js-editable-field').hide();
-      $('#editable-send').hide();
+      $('.js-editable-click').show();
+      $('.js-editable-submit').hide();
     },
 
-    showEditable: function() {
-      $('.js-editable').hide();
-      $('.js-editable-field').show();
-      $('#editable-send').show();
+    hideEditable: function(element) {
+      $(element).parent().find('.js-editable-text').show();
+      $(element).parent().find('.js-editable-field').hide();
+      $(element).parent().find('.js-editable-click').show();
+      $(element).parent().find('.js-editable-submit').hide();
     },
 
-    makeButton: function() {
-      $('#editable-click').parent().html('<input href="#" id="editable-send" type="submit" value="Update" class="btn btn-primary">');
-    }
+    showEditable: function(element) {
+      $(element).parent().find('.js-editable-text').hide();
+      $(element).parent().find('.js-editable-field').show();
+      $(element).parent().find('.js-editable-click').hide();
+      $(element).parent().find('.js-editable-submit').show();
+    },
+
 
 }
 

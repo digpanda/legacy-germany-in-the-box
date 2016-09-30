@@ -27,6 +27,7 @@ class Order
 
   has_many :order_items,            :inverse_of => :order,    dependent: :restrict
   has_many :order_payments,         :inverse_of => :order,    dependent: :restrict
+  has_many :notes,                  :inverse_of => :order,    dependent: :restrict
 
   scope :nonempty,    ->  {  where( :order_items_count.gt => 0 ) }
   scope :bought,      ->  { self.in( :status => [:paid, :custom_checkable, :custom_checking, :shipped] ) }

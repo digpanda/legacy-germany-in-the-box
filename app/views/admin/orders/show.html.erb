@@ -1,7 +1,5 @@
 <div class="details">
 
-  <%= form_for @order, url: admin_order_path, method: :patch do |form| %>
-
   <div class="row">
     <div class="col-md-10">
       <h2>Order <%= @order.id %></h2>
@@ -10,7 +8,6 @@
       <% if @order.user %>
         <a href="<%= admin_user_path(@order.user) %>"><i class="fa fa-user tooltipster" title="<%= @order.user.email %>"></i></a>
       <% end %>
-      <a href="#" id="editable-click"><i class="fa fa-edit tooltipster" title="Edit the fields"></i></a>
     </div>
   </div>
 
@@ -41,9 +38,11 @@
   </div>
 
   <div class="row details__block">
-    <%= render partial: "admin/orders/show/action" %>
+    <%= render partial: "admin/orders/show/notes" %>
   </div>
 
-  <% end %>
+  <div class="row details__block">
+    <%= render partial: "admin/orders/show/action" %>
+  </div>
 
 </div>
