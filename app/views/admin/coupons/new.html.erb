@@ -1,0 +1,28 @@
+<div class="details">
+  <div class="row details__block">
+    <h3>New coupon</h3>
+    <hr>
+
+    <%= form_for :coupon, url: admin_coupons_path, method: :post do |f| %>
+
+      Code <%= f.text_field :code %>
+      <br />
+
+      Discount <%= f.text_field :discount %><%= f.select(:unit, {'%' => :percent, 'CNY' => :value}) %>
+      <br />
+      <br />
+      Minimum order <%= f.text_field :minimum_order %> CNY
+      <br />
+
+      Unique <%= f.select(:unit, {'Yes' => true, 'No' => false}) %>
+      <br />
+      <br />
+      Description <%= f.text_field :desc %>
+      <br />
+      <br />
+      
+      <%= f.submit "Create coupon", {:class => "btn btn-primary"} %>
+    <% end %>
+
+  </div>
+</div>

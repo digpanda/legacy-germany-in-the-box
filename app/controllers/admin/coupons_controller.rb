@@ -1,7 +1,7 @@
 class Admin::CouponsController < ApplicationController
 
   load_and_authorize_resource
-  before_action :set_coupon, :except => [:index, :create]
+  before_action :set_coupon, :except => [:index, :create, :new]
 
   layout :custom_sublayout
 
@@ -9,6 +9,9 @@ class Admin::CouponsController < ApplicationController
 
   def index
     @coupons = Coupon.order_by(:c_at => :desc).paginate(:page => current_page, :per_page => 10)
+  end
+
+  def new
   end
 
   def show
@@ -21,7 +24,7 @@ class Admin::CouponsController < ApplicationController
     else
       flash[:error] = "The coupon was not created (#{coupon.errors.full_messages.join(', ')})"
     end
-    redirect_to navigation.back(1)
+    redirect_to admin_coupons_path
   end
 
   def update
@@ -41,7 +44,6 @@ class Admin::CouponsController < ApplicationController
     end
     redirect_to navigation.back(1)
   end
-
 
   private
 
