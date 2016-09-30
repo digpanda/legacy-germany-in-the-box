@@ -34,7 +34,13 @@ class NavigationHistory
     private
 
     def location_path
-      @location_path ||= URI(location).path || request.fullpath
+      @location_path ||= begin
+        if location
+          URI(location).path
+        else
+          request.fullpath
+        end
+      end
     end
 
     def excluded_path?(exceptions)
