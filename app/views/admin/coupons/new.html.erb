@@ -17,10 +17,15 @@
       Unique <%= f.select(:unit, {'Yes' => true, 'No' => false}) %>
       <br />
       <br />
+
+      User <%= f.collection_select(:user_id, User.all, :id, :email, prompt: true) %>
+      <br />
+      <br />
+
       Description <%= f.text_field :desc %>
       <br />
       <br />
-      
+
       <%= f.submit "Create coupon", {:class => "btn btn-primary"} %>
     <% end %>
 
