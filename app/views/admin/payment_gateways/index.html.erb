@@ -1,0 +1,14 @@
+<div class="row">
+  <div class="col-md-10">
+    <h2>Payment Gateways</h2>
+    <hr>
+  </div>
+  <div class="col-md-2 details__action">
+  </div>
+</div>
+
+<div class="+overflow">
+  <%= render partial: "admin/payment_gateways/table", :locals => { :payment_gateways => @payment_gateways } %>
+</div>
+
+<%= will_paginate @payment_gateways, renderer: BootstrapPagination::Rails %>

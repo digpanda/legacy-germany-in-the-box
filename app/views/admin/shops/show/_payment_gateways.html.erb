@@ -4,58 +4,6 @@
     <hr>
   </div>
   <div class="row +overflow">
-
-    <% if payment_gateways.size > 0 %>
-      <table class="white-table">
-        <thead>
-          <th>
-            Provider
-          </th>
-          <th>
-            Payment Method
-          </th>
-          <th>
-            Merchant ID
-          </th>
-          <th>
-            Merchant Secret
-          </th>
-          <th>
-            Created At
-          </th>
-        </thead>
-        <tbody>
-          <% payment_gateways.each do |payment_gateway| %>
-            <%= fields_for :payment_gateways, payment_gateway do |payment_gateway_field| %>
-              <tr>
-                <td>
-                  <%= payment_gateway.provider %>
-                </td>
-                <td>
-                  <%= payment_gateway.payment_method %>
-                </td>
-                <td>
-                  <%= payment_gateway.merchant_id %>
-                </td>
-                <td>
-                  <%= payment_gateway.merchant_secret %>
-                </td>
-                <td>
-                  <%= payment_gateway.c_at %>
-                </td>
-              </tr>
-            <% end %>
-          <% end %>
-        </tbody>
-      </table>
-    <% else %>
-      <div class="+white-box +centered">
-        <h4>
-        No payment gateway found
-       </h4>
-     </div>
-    <% end %>
-
-
+    <%= render partial: "admin/payment_gateways/table", :locals => { :payment_gateways => @shop.payment_gateways } %>
   </div>
 </div>

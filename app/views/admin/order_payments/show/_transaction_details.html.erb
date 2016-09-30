@@ -6,7 +6,7 @@
   <div class="row">
     Request ID : <%= @order_payment.request_id %>
     <br />
-    Transaction ID : <%= editable_field(@order_payment, admin_order_payment_path, :transaction_id, :text_field) %>
+    Transaction ID : <%= editable_field(@order_payment, admin_order_payment_path(@order_payment), :transaction_id, :text_field) %>
     <br />
     Payment Method : <%= @order_payment.payment_method %>
     <br />

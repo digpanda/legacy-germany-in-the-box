@@ -1,14 +1,12 @@
 <div class="details">
 
-  <%= form_for @shop, url: admin_shop_path, method: :patch do |form| %>
-
   <div class="row">
     <div class="col-md-10">
       <h2>Shop <%= @shop.id %></h2>
     </div>
     <div class="col-md-2 details__action">
       <% if @shop.shopkeeper %>
-        <a href="<%= admin_user_path(@shop.shopkeeper) %>"><i class="fa fa-user tooltipster" title="<%= @shop.shopkeeper.email %>"></i></a>
+      <a href="<%= admin_user_path(@shop.shopkeeper) %>"><i class="fa fa-user tooltipster" title="<%= @shop.shopkeeper.email %>"></i></a>
       <% end %>
     </div>
   </div>
@@ -18,7 +16,5 @@
   <div class="row details__block">
     <%= render partial: "admin/shops/show/payment_gateways", :locals => { :payment_gateways => @shop.payment_gateways } %>
   </div>
-
-  <% end %>
 
 </div>
