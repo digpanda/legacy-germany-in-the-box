@@ -14,6 +14,7 @@ class Admin::NotesController < ApplicationController
   end
 
   def create
+    binding.pry
     if note.create(note_params)
       flash[:success] = "The note was created."
     else

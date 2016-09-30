@@ -8,10 +8,26 @@ module EditableHelper
     """
   end
 
-  def editable_text_field(form, model, field)
+  def editable_chosen_field(form, field, type, options)
+    if type == :text_field
+      editable_text_field(form, field)
+    elsif type == :select
+      editable_select(form, field, options)
+    end
+  end
+
+  def editable_text_field(form, field)
     """
     <span class=\"js-editable-field\">
     #{form.text_field field}
+    </span>
+    """
+  end
+
+  def editable_select(form, field, options)
+    """
+    <span class=\"js-editable-field\">
+    #{form.select(field, options_for_select(*options))}
     </span>
     """
   end
@@ -32,13 +48,13 @@ module EditableHelper
     """
   end
 
-  def editable_field(model, field, type, path)
+  def editable_field(model, path, field, type, options=nil)
 
     form_for model, url: path, method: :patch, html: {:class => '+inline'} do |form|
       """
       <span class=\"js-editable\">
         #{editable_text(form, model, field)}
-        #{editable_text_field(form, model, field)}
+        #{editable_chosen_field(form, field, type, options)}
         #{editable_click}
         #{editable_send}
       </span>

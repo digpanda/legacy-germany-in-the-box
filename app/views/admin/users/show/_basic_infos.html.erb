@@ -7,13 +7,11 @@
 
     <div class="col-md-6">
 
-      Email : <span class="js-editable"><%= @user.email %></span>
-      <input type="text" class="js-editable-field" value="<%= @user.email %>" name="user[email]" id="user_email">
+      Email : <%= editable_field(@user, admin_user_path, :email, :text_field) %>
       <br />
       Username : <%= @user.username %>
       <br />
-      Role : <span class="js-editable"><%= @user.role %></span>
-      <%= form.select(:role, options_for_select(user_roles, {:selected => @user.role}), {}, {:class => "js-editable-field"}) %>
+      Role :<%= editable_field(@user, admin_user_path, :role, :select, [user_roles, {:selected => @user.role}]) %>
       <br />
       First name : <%= @user.fname %>
       <br />
