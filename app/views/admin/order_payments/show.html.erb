@@ -1,13 +1,8 @@
 <div class="details">
 
-  <%= form_for @order_payment, url: admin_order_payment_path, method: :patch do |form| %>
-
   <div class="row">
     <div class="col-md-10">
       <h2>Order Payment <%= @order_payment.id %></h2>
-    </div>
-    <div class="col-md-2 details__action">
-      <a href="#" id="editable-click"><i class="fa fa-edit"></i></a>
     </div>
   </div>
 
@@ -36,7 +31,5 @@
   <div class="row details__block">
     <%= render partial: "admin/order_payments/show/action" %>
   </div>
-
-  <% end %>
 
 </div>

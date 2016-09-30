@@ -10,15 +10,17 @@
   <div class="row">
     <div class="col-md-8">
 
+      <% @order.notes.each do |note| %>
       <div class="notes__general">
         <div class="notes__message">
-          Description hereDescription hereDescription hereDescription hereDescription hereDescription here
+          <%= note.message %>
         </div>
         <div class="notes__author">
-          by <a href="#">Laurent Schaffner</a> on 29302°2930°
+          in <%= note.type %> by <a href="<%= admin_user_path(note.author) %>"><%= note.author.decorate.full_name %></a> on <%= note.c_at.utc %>
         </div>
       </div>
       <hr />
+      <% end %>
 
     </div>
   </div>
@@ -26,7 +28,8 @@
     <div class="col-md-8">
 
       <div class="notes">
-      <%= form_for Note.new, :data => {:toggle => 'validator'}, :url => admin_note_path, :method => :post do |f| %>
+      <%= form_for :note, :data => {:toggle => 'validator'}, :url => admin_notes_path, :method => :post do |f| %>
+        <%= f.hidden_field :order_id, :value => @order.id %>
         Type <%= f.select(:type, {"General" => :general}) %><br />
         Message <%= f.text_area :message %><br />
         <%= f.submit "Create new note", :class => "btn btn-info" %>

@@ -10,8 +10,4 @@ class Note
   belongs_to :user
   belongs_to :order
 
-  validates :title,       presence: true
-
-  scope :unreads, -> { where({:read_at => nil}) }
-
 end

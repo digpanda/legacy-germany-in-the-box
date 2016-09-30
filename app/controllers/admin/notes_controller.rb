@@ -1,7 +1,7 @@
 class Admin::NotesController < ApplicationController
 
   load_and_authorize_resource
-  before_action :set_note, :except => [:index]
+  before_action :set_note, :except => [:index, :create]
 
   layout :custom_sublayout
 
@@ -14,8 +14,8 @@ class Admin::NotesController < ApplicationController
   end
 
   def create
-    binding.pry
-    if note.create(note_params)
+    note = Note.create(note_params)
+    if note
       flash[:success] = "The note was created."
     else
       flash[:error] = "The note was not created (#{note.errors.full_messages.join(', ')})"
@@ -39,7 +39,7 @@ class Admin::NotesController < ApplicationController
   end
 
   def note_params
-    params.require(:note).permit(:order_id, :user_id, :author_id, :message, :type)
+    params.require(:note).permit(:order_id, :user_id, :message, :type).merge({:author_id => current_user.id})
   end
 
 end
