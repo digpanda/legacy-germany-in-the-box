@@ -19,6 +19,9 @@
 <li class="<%= menu_active? admin_order_payments_path %>">
   <%= link_to I18n.t(:payments, scope: :top_menu), admin_order_payments_path %>
 </li>
+<li class="<%= menu_active? admin_coupons_path %>">
+  <%= link_to "Coupons", admin_coupons_path %>
+</li>
 <li class="<%= menu_active? admin_settings_path %>">
   <%= link_to I18n.t(:settings, scope: :top_menu), admin_settings_path %>
 </li>

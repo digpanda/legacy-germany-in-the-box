@@ -33,6 +33,8 @@ end
 
 # Admin related
 namespace :admin do
+  resources :coupons do
+  end
   resources :payment_gateways do
   end
   resources :notes do
