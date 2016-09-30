@@ -52,12 +52,16 @@
       </td>
       <td>
         <% if coupon.order %>
-          <%= coupon.order.id %>
+          <a href="<%= admin_order_path(coupon.order) %>">
+          <%= coupon.order.email %>
+          </a>
         <% end %>
       </td>
       <td>
         <% if coupon.user %>
-          <%= coupon.user.id %>
+          <a href="<%= admin_user_path(coupon.user) %>">
+          <%= coupon.user.email %>
+          </a>
         <% end %>
       </td>
       <td>
