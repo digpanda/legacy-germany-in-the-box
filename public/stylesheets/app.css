@@ -8881,16 +8881,6 @@ img.mfp-img {
     .shop-page-product__description.\--text {
       width: 100%;
       font-size: 13px; }
-      @media (max-width: 991px) {
-        /* line 40, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
-        .shop-page-product__description.\--text {
-          font-size: 10px;
-          display: inline-block;
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          -o-text-overflow: ellipsis;
-          width: 100%; } }
     /* line 40, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
     .shop-page-product__description.\--prices {
       width: 100%; }
