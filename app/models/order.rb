@@ -4,6 +4,9 @@ class Order
   include MongoidBase
   include HasProductSummaries
 
+  Float.include CoreExtensions::Float::CurrencyLibrary
+  Fixnum.include CoreExtensions::Fixnum::CurrencyLibrary
+
   field :status,                    type: Symbol, default: :new
   field :desc,                      type: String
   field :border_guru_quote_id,      type: String

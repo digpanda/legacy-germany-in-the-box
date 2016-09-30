@@ -1,6 +1,9 @@
 class Sku
   include MongoidBase
 
+  Float.include CoreExtensions::Float::CurrencyLibrary
+  Fixnum.include CoreExtensions::Fixnum::CurrencyLibrary
+
   strip_attributes
 
   field :img0,          type: String
@@ -68,7 +71,6 @@ class Sku
       { name: v.name, option: { name: o.name } }
     end
   end
-
 
   private
 

@@ -80,27 +80,27 @@ class OrderDecorator < Draper::Decorator
   end
 
   def total_price_with_currency_yuan
-    Currency.new(total_price).to_yuan.display
+    total_price.in_euro.to_yuan.display
   end
 
   def duty_and_shipping_cost_with_currency_euro
-    Currency.new(tax_and_duty_cost + shipping_cost).display
+    (tax_and_duty_cost + shipping_cost).in_euro.display
   end
 
   def shipping_cost_with_currency_yuan
-    Currency.new(shipping_cost).to_yuan.display
+    shipping_cost.in_euro.to_yuan.display
   end
 
   def shipping_cost_with_currency_euro
-    Currency.new(shipping_cost).display
+    shipping_cost.in_euro.display
   end
 
   def tax_and_duty_cost_with_currency_yuan
-    Currency.new(tax_and_duty_cost).to_yuan.display
+    tax_and_duty_cost.in_euro.to_yuan.display
   end
 
   def tax_and_duty_cost_with_currency_euro
-    Currency.new(tax_and_duty_cost).display
+    tax_and_duty_cost.in_euro.display
   end
 
   # DON'T EXIST ANYMORE ? - Laurent on 29/06/2016
