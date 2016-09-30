@@ -1,5 +1,5 @@
 module CoreExtensions
-  module Fixnum
+  module Numeric
     module CurrencyLibrary
       def in_euro
         Currency.new(self, 'EUR')

@@ -1,8 +1,7 @@
 class Sku
   include MongoidBase
 
-  Float.include CoreExtensions::Float::CurrencyLibrary
-  Fixnum.include CoreExtensions::Fixnum::CurrencyLibrary
+  Numeric.include CoreExtensions::Numeric::CurrencyLibrary
 
   strip_attributes
 
