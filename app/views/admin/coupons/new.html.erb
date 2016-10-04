@@ -3,7 +3,7 @@
     <h3>New coupon</h3>
     <hr>
 
-    <%= form_for :coupon, url: admin_coupons_path, method: :post do |f| %>
+    <%= form_for @coupon, url: admin_coupons_path, method: :post do |f| %>
 
       Code <%= f.text_field :code %>
       <br />

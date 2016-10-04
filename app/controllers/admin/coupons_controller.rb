@@ -12,6 +12,7 @@ class Admin::CouponsController < ApplicationController
   end
 
   def new
+    @coupon = Coupon.new
   end
 
   def show
@@ -21,19 +22,21 @@ class Admin::CouponsController < ApplicationController
     coupon = Coupon.create(coupon_params)
     if coupon.errors.empty?
       flash[:success] = "The coupon was created."
+      redirect_to admin_coupons_path
     else
       flash[:error] = "The coupon was not created (#{coupon.errors.full_messages.join(', ')})"
+      render :new
     end
-    redirect_to admin_coupons_path
   end
 
   def update
     if coupon.update(coupon_params)
       flash[:success] = "The coupon was updated."
+      redirect_to navigation.back(1)
     else
       flash[:error] = "The coupon was not updated (#{coupon.errors.full_messages.join(', ')})"
+      render :new
     end
-    redirect_to navigation.back(1)
   end
 
   def destroy
