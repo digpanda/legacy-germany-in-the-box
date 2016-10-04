@@ -6,4 +6,8 @@
 
   <% if @order.border_guru_shipment_id %>
     <% link_to "BorderGuru Label", download_label_order_path(@order), class: "btn btn-primary" %>
+  <% else %>
+
+  <%= link_to "Force get shipping from BorderGuru Api", admin_order_force_get_shipping_path(@order), method: :patch, class: "btn btn-primary" %>
+
   <% end %>

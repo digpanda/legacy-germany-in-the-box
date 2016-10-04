@@ -47,6 +47,7 @@ namespace :admin do
   resources :shop_applications do
   end
   resources :orders do
+    patch :force_get_shipping
   end
   resource :account, :controller => 'account' do
   end
