@@ -1,51 +1,14 @@
 <div class="+spacer"></div>
 <div class="row">
   <div class="col-md-8 col-md-push-1">
-    <!-- TODO: refaco this -->
+    <!-- TODO: refacto this -->
     <%= render 'customer/cart/show/order', order: @order, currency_code: @currency_code %>
-  </div>
-  <div class="col-md-1">
-  </div>
-  <div class="col-md-3">
-    <ul class="cart-total-list">
-      <li>
-          <span>
-            <%= I18n.t(:total_price, scope: :edit_order) %>
-          </span>
-          <span>
-            <%= @order.decorate.total_price_with_currency_yuan %>
-          </span>
-      </li>
-      <li>
-          <span>
-            <%= I18n.t(:tax_and_duty_cost, scope: :edit_order) %>
-          </span>
-          <span>
-            <%= @cart_or_order.decorate.tax_and_duty_cost_with_currency_yuan %>
-          </span>
-      </li>
-      <li>
-          <span>
-            <%= I18n.t(:shipping_cost, scope: :edit_order) %>
-          </span>
-          <span>
-            <%= @cart_or_order.decorate.shipping_cost_with_currency_yuan %>
-          </span>
-      </li>
-      <li>
-          <span>
-            <%= I18n.t(:total_sum, scope: :edit_order) %>
-          </span>
-          <span>
-            <%= @cart_or_order.decorate.total_sum_in_yuan %>
-          </span>
-      </li>
-    </ul>
   </div>
 </div>
 
-<% if a = @order.shipping_address %>
-  <div class="row col-md-4 col-md-push-4 col-md-pull-4 col-xs-10 col-xs-push-1 col-xs-pull-1 +white-box">
+<div cass="row">
+  <% if a = @order.shipping_address %>
+  <div class="col-md-4 col-md-push-1 +white-box">
     <div class="address-box">
       <ul>
         <li>
@@ -72,13 +35,50 @@
       </ul>
     </div>
   </div>
-<% else %>
-    <div class="row col-md-8 col-md-push-2 col-md-pull-2 +white-box +centered">
-      <h4>
-        <%= "#{I18n.t(:destination_address_not_set, scope: :edit_order)}" %>
-      </h4>
-    </div>
-<% end %>
+  <% else %>
+    <div class="col-md-4 col-md-push-2 +white-box +centered">
+    <h4>
+      <%= "#{I18n.t(:destination_address_not_set, scope: :edit_order)}" %>
+    </h4>
+  </div>
+  <% end %>
+  <div class="col-md-3 col-md-push-2 +white-box">
+      <ul class="cart-total-list">
+        <li>
+            <span>
+              <%= I18n.t(:total_price, scope: :edit_order) %>
+            </span>
+            <span>
+              <%= @order.decorate.total_price_with_currency_yuan %>
+            </span>
+        </li>
+        <li>
+            <span>
+              <%= I18n.t(:tax_and_duty_cost, scope: :edit_order) %>
+            </span>
+            <span>
+              <%= @cart_or_order.decorate.tax_and_duty_cost_with_currency_yuan %>
+            </span>
+        </li>
+        <li>
+            <span>
+              <%= I18n.t(:shipping_cost, scope: :edit_order) %>
+            </span>
+            <span>
+              <%= @cart_or_order.decorate.shipping_cost_with_currency_yuan %>
+            </span>
+        </li>
+        <li>
+            <span>
+              <%= I18n.t(:total_sum, scope: :edit_order) %>
+            </span>
+            <span>
+              <%= @cart_or_order.decorate.total_sum_in_yuan %>
+            </span>
+        </li>
+      </ul>
+  </div>
+</div>
 
 <div class="row">
   <div class="+spacer">
