@@ -45,7 +45,7 @@
         <%= editable_field(coupon, admin_coupon_path(coupon), :discount, :text_field) %>
       </td>
       <td>
-        <%= editable_field(coupon, admin_coupon_path(coupon), :unit, :text_field) %>
+        <%= coupon.unit %>
       </td>
       <td>
         <%= editable_field(coupon, admin_coupon_path(coupon), :minimum_order, :text_field) %>

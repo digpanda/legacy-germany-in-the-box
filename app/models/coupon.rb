@@ -13,4 +13,9 @@ class Coupon
   belongs_to :order
   belongs_to :user
 
+  validates :code, presence: true
+  validates :discount, presence: true
+  validates :unit, presence: true
+  validates :unique, presence: true
+
 end

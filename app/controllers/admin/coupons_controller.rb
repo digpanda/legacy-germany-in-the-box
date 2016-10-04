@@ -19,7 +19,7 @@ class Admin::CouponsController < ApplicationController
 
   def create
     coupon = Coupon.create(coupon_params)
-    if coupon
+    if coupon.errors.empty?
       flash[:success] = "The coupon was created."
     else
       flash[:error] = "The coupon was not created (#{coupon.errors.full_messages.join(', ')})"
