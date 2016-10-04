@@ -17,6 +17,11 @@ class CurrentOrderHandler < BaseService
     end
   end
 
+  def store(order)
+    setup_session!
+    session[:order_shop_ids]["#{shop.id}"] = "#{order.id}"
+  end
+
   private
 
   def setup_session!
@@ -25,6 +30,7 @@ class CurrentOrderHandler < BaseService
 
   # make sure all the datas are current and valid within the session
   def safe_recovery!
+    return if session[:order_shop_ids].nil?
     session[:order_shop_ids] = session[:order_shop_ids].map do |shop_id, order_id|
       shop = Shop.where(id: shop_id).first
       order = Order.where(id: order_id).first
@@ -34,6 +40,7 @@ class CurrentOrderHandler < BaseService
         end
       end
     end.compact.inject(&:update)
+
   end
 
 

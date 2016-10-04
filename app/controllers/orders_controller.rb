@@ -59,24 +59,24 @@ class OrdersController < ApplicationController
     sku = product.sku_from_option_ids(params[:sku][:option_ids].split(','))
     quantity = params[:sku][:quantity].to_i
 
-    co = current_order(product.shop_id.to_s)
-    co.shop = product.shop
+    order = current_order(product.shop_id)
+    order.shop = product.shop
 
     new_increment = sku.price * quantity * Settings.first.exchange_rate_to_yuan
-
-    if reach_todays_limit?(co, new_increment, quantity)
+    if reach_todays_limit?(order, new_increment, quantity)
       flash[:error] = I18n.t(:override_maximal_total, scope: :edit_order, total: Settings.instance.max_total_per_day, currency: Settings.instance.platform_currency.symbol)
-      redirect_to(:back) and return
+      redirect_to(:back)
+      return
     end
 
-    existing_order_item = co.order_items.to_a.detect { |i| i.sku_id == sku.id.to_s}
+    existing_order_item = order.order_items.to_a.detect { |i| i.sku_id == sku.id.to_s}
 
     if sku.unlimited or sku.quantity >= quantity
       if existing_order_item.present?
         existing_order_item.quantity += quantity
         existing_order_item.save!
       else
-        current_order_item = co.order_items.build
+        current_order_item = order.order_items.build
         current_order_item.price = sku.price
         current_order_item.quantity = quantity
         current_order_item.weight = sku.weight
@@ -88,7 +88,8 @@ class OrdersController < ApplicationController
         current_order_item.save!
       end
 
-      if co.save
+      if order.save
+        CurrentOrderHandler.new(session, order.shop).store(order)
         flash[:success] = I18n.t(:add_product_ok, scope: :edit_order)
         redirect_to navigation.back(2, shop_path(product.shop_id))
         return

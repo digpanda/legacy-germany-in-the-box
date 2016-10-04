@@ -99,7 +99,6 @@ class ApplicationController < ActionController::Base
   end
 
   def current_order(shop_id)
-    @current_order ||= begin
 
       shop = Shop.find(shop_id)
       order = CurrentOrderHandler.new(session, shop).retrieve
@@ -108,11 +107,11 @@ class ApplicationController < ActionController::Base
         # we don't forget to systematically get the quote api if the order has items
         refresh_order_quote!(order) if order.order_items.count > 0
       else
-        order = Order.create
-        set_order_id_in_session(shop.id, order.id.to_s)
+        order = Order.new
       end
 
       if user_signed_in?
+        # if the user isn't a customer we should remove everything systematically
         unless current_user.decorate.customer?
           order.order_items.delete_all
           order.delete
@@ -123,8 +122,7 @@ class ApplicationController < ActionController::Base
       end
 
       order
-
-    end
+      
   end
 
   def refresh_order_quote!(order)
@@ -192,15 +190,6 @@ class ApplicationController < ActionController::Base
     controller_name_segments.pop
     controller_namespace = controller_name_segments.join('/').camelize
     Ability.new(current_user, controller_namespace)
-  end
-
-  def reset_shop_id_from_session(shop_id)
-    session[:order_shop_ids]&.delete(shop_id)
-  end
-
-  def set_order_id_in_session(shop_id, order_id)
-    session[:order_shop_ids] ||= {}
-    session[:order_shop_ids]["#{shop_id}"] = order_id
   end
 
 end

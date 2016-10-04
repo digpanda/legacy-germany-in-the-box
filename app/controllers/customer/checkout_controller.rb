@@ -11,11 +11,9 @@ class Customer::CheckoutController < ApplicationController
   def create
 
     @order = current_order(shop.id.to_s)
-    cart = current_cart(shop.id.to_s)
 
     return if wrong_email_update?
     return if today_limit?(order)
-    return if invalid_cart?(cart)
 
     all_products_available = true
     products_total_price = 0
@@ -51,7 +49,7 @@ class Customer::CheckoutController < ApplicationController
       return
     end
 
-    status = update_for_checkout(current_user, order, params[:delivery_destination_id], cart.border_guru_quote_id, cart.shipping_cost, cart.tax_and_duty_cost)
+    status = update_for_checkout(current_user, order, params[:delivery_destination_id], order.border_guru_quote_id, order.shipping_cost, order.tax_and_duty_cost)
 
     unless status
       flash[:error] = order.errors.full_messages.join(', ')
@@ -160,6 +158,11 @@ class Customer::CheckoutController < ApplicationController
 
   private
 
+  # TODO: could be moved inside CurrentOrderHandler
+  def reset_shop_id_from_session(shop_id)
+    session[:order_shop_ids]&.delete(shop_id)
+  end
+
   def callback!(forced_status=nil)
 
       customer_email = params["email"]
@@ -236,14 +239,6 @@ class Customer::CheckoutController < ApplicationController
     if reach_todays_limit?(order, 0, 0)
       flash[:error] = I18n.t(:override_maximal_total, scope: :edit_order, total: Settings.instance.max_total_per_day, currency: Settings.instance.platform_currency.symbol)
       redirect_to navigation.back(1)
-      return true
-    end
-  end
-
-  def invalid_cart?(cart)
-    if cart.nil?
-      flash[:error] = I18n.t(:borderguru_unreachable_at_quoting, scope: :checkout)
-      redirect_to root_path
       return true
     end
   end
