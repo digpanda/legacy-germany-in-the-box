@@ -234,7 +234,6 @@ var CustomerCartShow = {
          * shipping_cost_with_currency_yuan string
          * total_with_currency string
          */
-
         // We first refresh the value in the HTML
         $('#order-item-quantity-' + orderItemId).val(orderItemQuantity);
         $('#total-products-' + orderShopId).html(res.data.amount_in_carts);

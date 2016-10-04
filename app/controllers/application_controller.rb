@@ -77,13 +77,13 @@ class ApplicationController < ActionController::Base
   end
 
   def reach_todays_limit?(order, new_price_increase, new_quantity_increase)
-    # if the user has logged in, we should check
-    # whether the user has reached the limit today and the order itself has reached the the limit today
     if current_user
+      # if the user has logged in, we should check
+      # whether the user has reached the limit today and the order itself has reached the the limit today
       current_user.decorate.reach_todays_limit?(order, new_price_increase) || order.decorate.reach_todays_limit?(new_price_increase, new_quantity_increase)
     else
-    # if not, just check if the order has reached the limit today.
-    # The further check will be done on the checkout step, after the user has logged in.
+      # if not, just check if the order has reached the limit today.
+      # The further check will be done on the checkout step, after the user has logged in.
       order.decorate.reach_todays_limit?(new_price_increase, new_quantity_increase)
     end
   end
@@ -99,76 +99,53 @@ class ApplicationController < ActionController::Base
   end
 
   def current_order(shop_id)
-    @current_order ||= _current_order(shop_id)
-  end
+    @current_order ||= begin
 
-  def current_cart(shop_id)
+      shop = Shop.find(shop_id)
+      order = CurrentOrderHandler.new(session, shop).retrieve
 
-    cart = Cart.new
+      if order
+        # we don't forget to systematically get the quote api if the order has items
+        refresh_order_quote!(order) if order.order_items.count > 0
+      else
+        order = Order.create
+        set_order_id_in_session(shop.id, order.id.to_s)
+      end
 
-    current_order(shop_id).order_items.each do |i|
-      cart.decorate.add(i.sku, i.quantity)
-    end
-
-    begin
-      BorderGuru.calculate_quote(
-          cart: cart,
-          shop: Shop.find(shop_id),
-          country_of_destination: ISO3166::Country.new('CN'),
-          currency: 'EUR'
-      )
-    rescue Net::ReadTimeout => e
-      logger.fatal "Failed to connect to Borderguru: #{e}"
-      return nil
-    else
-      return cart
-    end
-  end
-
-  def has_order?(shop_id)
-    session[:order_ids] ||= {}
-    clean_up_orders![shop_id].present?
-  end
-
-  def clean_up_orders!
-    session[:order_ids].delete_if { |k,v| k.nil? || v.nil? }
-  end
-
-  def current_orders
-    session[:order_ids] ||= {}
-    @current_orders ||= session[:order_ids].keys.compact.map { |sid| [sid, _current_order(sid)] }.to_h
-  end
-
-  def current_carts
-    carts = {}
-
-    begin
-      current_orders.map do |shop_id, order|
-        carts[shop_id] = Cart.new
-
-        order.order_items.each do |order_item|
-          carts[shop_id].decorate.add(order_item.sku, order_item.quantity)
-
-          BorderGuru.calculate_quote(
-              cart: carts[shop_id],
-              shop: Shop.find(shop_id),
-              country_of_destination: ISO3166::Country.new('CN'),
-              currency: 'EUR'
-          )
-
+      if user_signed_in?
+        unless current_user.decorate.customer?
+          order.order_items.delete_all
+          order.delete
+        else
+          order.user = current_user unless order.user
+          order.save
         end
       end
 
-    rescue BorderGuru::Error, Net::ReadTimeout => exception
-      flash[:error] = I18n.t(:shipping_partner_problem, :scope => :notice, :e => exception)
-      redirect_to navigation.back(1)
-      return
+      order
+
     end
-    carts
+  end
+
+  def refresh_order_quote!(order)
+    BorderGuru.calculate_quote(
+    order: order,
+    shop: order.shop,
+    country_of_destination: ISO3166::Country.new('CN'),
+    currency: 'EUR'
+    )
+  rescue Net::ReadTimeout => e
+    logger.fatal "Failed to connect to Borderguru: #{e}"
+    return
+  end
+
+  def current_orders
+    session[:order_shop_ids] ||= {}
+    @current_orders ||= session[:order_shop_ids].keys.compact.map { |shop_id| [shop_id, current_order(shop_id)] }.to_h
   end
 
   def total_number_of_products
-    current_orders.inject(0) { |sum, so| sum += so.compact[1].decorate.total_quantity }
+    @total_number_of_products ||= current_orders.inject(0) { |sum, so| sum += so.compact[1].decorate.total_quantity }
   end
 
   def after_sign_in_path_for(resource)
@@ -218,40 +195,12 @@ class ApplicationController < ActionController::Base
   end
 
   def reset_shop_id_from_session(shop_id)
-    session[:order_ids]&.delete(shop_id)
+    session[:order_shop_ids]&.delete(shop_id)
   end
 
   def set_order_id_in_session(shop_id, order_id)
-    session[:order_ids] ||= {}
-    session[:order_ids][shop_id] = order_id
-  end
-
-  def _current_order(shop_id)
-    if has_order?(shop_id)
-      order = Order.where(id: session[:order_ids][shop_id]).first
-
-      if order && order.status == :success
-        reset_shop_id_from_session(shop_id)
-        order = nil
-      end
-    end
-
-    unless order
-      order = Order.create
-      set_order_id_in_session(shop_id, order.id.to_s)
-    end
-
-    if user_signed_in?
-      unless current_user.decorate.customer?
-        order.order_items.delete_all
-        order.delete
-      else
-        order.user = current_user unless order.user
-        order.save
-      end
-    end
-
-    order
+    session[:order_shop_ids] ||= {}
+    session[:order_shop_ids]["#{shop_id}"] = order_id
   end
 
 end

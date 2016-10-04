@@ -73,7 +73,7 @@ var CustomerCartShow = {
         if (typeof res.original_quantity != "undefined") {
           originQuantity = res.original_quantity;
         }
-        
+
         // We rollback the quantity
         $('#order-item-quantity-'+orderItemId).val(originQuantity);
         Messages.makeError(res.error);
@@ -87,7 +87,6 @@ var CustomerCartShow = {
          * shipping_cost_with_currency_yuan string
          * total_with_currency string
          */
-
         // We first refresh the value in the HTML
         $('#order-item-quantity-'+orderItemId).val(orderItemQuantity);
         $('#total-products-'+orderShopId).html(res.data.amount_in_carts);

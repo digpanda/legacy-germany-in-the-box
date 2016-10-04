@@ -11,18 +11,18 @@ module BorderGuru
 
   class << self
 
-    def calculate_quote(cart:, shop:, country_of_destination:, currency:)
+    def calculate_quote(order:, shop:, country_of_destination:, currency:)
       make_request(:QuoteApi,
-        cart: cart,
+        order: order,
         shop: shop,
         country_of_destination: country_of_destination,
         currency: currency
       ) do |response|
-        cart.submerchant_id = shop.id
-        cart.border_guru_quote_id = response.quote_identifier
-        cart.shipping_cost = ShippingPrice.new(cart).price # could be inside the model #response.shipping_cost <-- replace by our own system because borderguru is unable to give it to us
-        cart.tax_and_duty_cost = response.tax_and_duty_cost
-        cart.save
+        order.shop_id = shop.id
+        order.border_guru_quote_id = response.quote_identifier
+        order.shipping_cost = ShippingPrice.new(order).price # could be inside the model #response.shipping_cost <-- replace by our own system because borderguru is unable to give it to us
+        order.tax_and_duty_cost = response.tax_and_duty_cost
+        order.save
       end
     end
 

@@ -28,26 +28,16 @@ class OrdersController < ApplicationController
     @readonly = true
     @currency_code = @order.shop.currency.code
 
-    if @order.decorate.is_bought?
-      @cart_or_order = @order
-    else
-      @cart_or_order = Cart.new
+    unless @order.decorate.is_bought?
 
-      @order.order_items.each do |i|
-        @cart_or_order.decorate.add(i.sku, i.quantity)
-      end
-
-      # THIS SHOULD BE REALLY FUCKING REFACTORED
-      # THIS IS DISGUSTING.
-      # - Laurent 01/09/2016
       if @order.order_items.count > 0
 
         begin
           BorderGuru.calculate_quote(
-              cart: @cart_or_order,
-              shop: @order.shop,
-              country_of_destination: ISO3166::Country.new('CN'),
-              currency: 'EUR'
+          order: @order,
+          shop: @order.shop,
+          country_of_destination: ISO3166::Country.new('CN'),
+          currency: 'EUR'
           )
         rescue Net::ReadTimeout => e
           logger.fatal "Failed to connect to Borderguru: #{e}"
@@ -114,7 +104,7 @@ class OrdersController < ApplicationController
   def destroy
 
     shop_id = @order.shop.id.to_s
-    session[:order_ids]&.delete(shop_id)
+    session[:order_shop_ids]&.delete(shop_id)
     @order.status = :cancelled
     @order.save
 
@@ -137,7 +127,7 @@ class OrdersController < ApplicationController
     shop_id = @order.shop_id.to_s
 
     unless (co = current_order(shop_id))
-      session[:order_ids][shop_id] = @order.id.to_s
+      session[:order_shop_ids][shop_id] = @order.id.to_s
     else
       if @order != co
 

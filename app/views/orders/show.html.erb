@@ -57,7 +57,7 @@
               <%= I18n.t(:tax_and_duty_cost, scope: :edit_order) %>
             </span>
             <span>
-              <%= @cart_or_order.decorate.tax_and_duty_cost_with_currency_yuan %>
+              <%= @order.decorate.tax_and_duty_cost_with_currency_yuan %>
             </span>
         </li>
         <li>
@@ -65,7 +65,7 @@
               <%= I18n.t(:shipping_cost, scope: :edit_order) %>
             </span>
             <span>
-              <%= @cart_or_order.decorate.shipping_cost_with_currency_yuan %>
+              <%= @order.decorate.shipping_cost_with_currency_yuan %>
             </span>
         </li>
         <li>
@@ -73,7 +73,7 @@
               <%= I18n.t(:total_sum, scope: :edit_order) %>
             </span>
             <span>
-              <%= @cart_or_order.decorate.total_sum_in_yuan %>
+              <%= @order.decorate.total_sum_in_yuan %>
             </span>
         </li>
       </ul>

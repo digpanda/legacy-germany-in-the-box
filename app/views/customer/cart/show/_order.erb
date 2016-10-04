@@ -45,7 +45,7 @@
 
           <!-- Minus -->
           <% unless @readonly %>
-          <a href="#" class="js-set-quantity-minus" data-order-item-id="<%= order_item.id.to_s %>" data-order-shop-id="<%= order.shop %>">
+          <a href="#" class="js-set-quantity-minus" data-order-item-id="<%= order_item.id.to_s %>" data-order-shop-id="<%= order.shop.id %>">
             <i class="fa fa-minus buttons buttons__quantity"></i>
           </a>
           <% end %>
@@ -54,7 +54,7 @@
 
           <!-- Plus -->
           <% unless @readonly %>
-          <a href="#" class="js-set-quantity-plus" data-order-item-id="<%= order_item.id.to_s %>" data-order-shop-id="<%= order.shop %>">
+          <a href="#" class="js-set-quantity-plus" data-order-item-id="<%= order_item.id.to_s %>" data-order-shop-id="<%= order.shop.id %>">
             <i class="fa fa-plus buttons buttons__quantity"></i>
           </a>
           <% end %>

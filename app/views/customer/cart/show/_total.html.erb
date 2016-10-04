@@ -1,0 +1,37 @@
+<div class="row">
+
+  <div class="col-md-12">
+
+    <ul class="total-list">
+      <li>
+        <span>
+          <%= I18n.t(:subtotal, scope: :cart) %>
+        </span>
+        <span id="order-subtotal-<%= shop %>">
+          <%= order.decorate.total_price_with_currency_yuan %>
+        </span>
+      </li>
+
+      <li>
+        <span>
+          <%= I18n.t(:duty_and_shipping_cost, scope: :cart) %>
+        </span>
+        <span id="order-duty-and-shipping-cost-<%= shop %>">
+          <%= order.decorate.duty_and_shipping_cost_with_currency_yuan %>
+        </span>
+      </li>
+      <li>
+
+        <li>
+          <span>
+            <%= I18n.t(:total_price_with_currency_yuan, scope: :cart) %>
+          </span>
+          <span id="order-total-sum-in-yuan-<%= shop %>">
+            <%= order.decorate.total_sum_in_yuan %>
+          </span>
+        </li>
+      </ul>
+
+    </div>
+
+  </div>
