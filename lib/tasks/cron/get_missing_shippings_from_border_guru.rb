@@ -4,7 +4,7 @@ class Tasks::Cron::GetMissingShippingsFromBorderGuru
 
   def initialize
     devlog "Let's start to fetch all the orders without border guru shipping ids ..."
-    @orders = Order.where(border_guru_shipment_id: nil).all
+    @orders = Order.bought.where(border_guru_shipment_id: nil).all
   end
 
   # it will try to get the shipping id and all other information to the orders that don't have it
