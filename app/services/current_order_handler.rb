@@ -25,7 +25,7 @@ class CurrentOrderHandler < BaseService
       if current_user.decorate.customer?
         setup_user_order!
       else
-        # remove_order! NOTE : i don't think it's used anymore since the whole system depend on logged-in customer now -> need to be tested and checked
+        remove_order! # NOTE : if user isn't customer, then we don't permit him to have any order (to be refactored)
       end
     end
     order

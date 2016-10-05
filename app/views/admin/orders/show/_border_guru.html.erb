@@ -2,11 +2,18 @@
 
   <% if @order.border_guru_link_tracking %>
   <%= link_to "BorderGuru Link Tracking", @order.border_guru_link_tracking, :target => '_blank', :class => "btn btn-primary" %>
+  <% else %>
+  BorderGuru Link Tracking : <%= editable_field(@order, admin_order_path(@order), :border_guru_link_tracking, :text_field) %>
   <% end %>
+  <br />
 
   <% if @order.border_guru_shipment_id %>
     <% link_to "BorderGuru Label", download_label_order_path(@order), class: "btn btn-primary" %>
   <% else %>
+
+  BorderGuru Shipment ID : <%= editable_field(@order, admin_order_path(@order), :border_guru_shipment_id, :text_field) %>
+
+  <br />
 
   <%= link_to "Force get shipping from BorderGuru Api", admin_order_force_get_shipping_path(@order), method: :patch, class: "btn btn-primary" %>
 

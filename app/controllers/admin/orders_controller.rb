@@ -52,7 +52,7 @@ class Admin::OrdersController < ApplicationController
   end
 
   def order_params
-    params.require(:order).permit(:bill_id)
+    params.require(:order).permit!
   end
 
 end
