@@ -20,9 +20,12 @@ class Order
   field :bill_id, type: String
   field :paid_at, type: Time
   field :cancelled_at, type: Time
+  field :coupon_applied_at, type: Time
 
-  belongs_to :shop,                 :inverse_of => :orders
-  belongs_to :user,                 :inverse_of => :orders
+  belongs_to :shop, :inverse_of => :orders
+  belongs_to :user, :inverse_of => :orders
+
+  belongs_to :coupon, :inverse_of => :orders
 
   belongs_to :shipping_address,        :class_name => 'Address'
   belongs_to :billing_address,         :class_name => 'Address'

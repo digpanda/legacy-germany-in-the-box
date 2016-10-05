@@ -10,8 +10,7 @@ class Coupon
   field :minimum_order, type: Float
   field :unique, type: Boolean
 
-  belongs_to :order
-  belongs_to :user
+  has_many :orders
 
   validates :code, presence: true
   validates :discount, presence: true

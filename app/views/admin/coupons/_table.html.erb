@@ -14,13 +14,10 @@
       Unit
     </th>
     <th>
-      Minimum Order
+      Minimum Order Amount
     </th>
     <th>
-      Order
-    </th>
-    <th>
-      User
+      Orders
     </th>
     <th>
       Created At
@@ -51,18 +48,7 @@
         <%= editable_field(coupon, admin_coupon_path(coupon), :minimum_order, :text_field) %>
       </td>
       <td>
-        <% if coupon.order %>
-          <a href="<%= admin_order_path(coupon.order) %>">
-          <%= coupon.order.email %>
-          </a>
-        <% end %>
-      </td>
-      <td>
-        <% if coupon.user %>
-          <a href="<%= admin_user_path(coupon.user) %>">
-          <%= coupon.user.email %>
-          </a>
-        <% end %>
+        <%= coupon.orders.count %>
       </td>
       <td>
         <%= coupon.c_at %>

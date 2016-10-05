@@ -38,15 +38,15 @@
 
 <!-- Apply a coupon -->
 <div class="row">
-  <div class="col-md-12">
-<!--
-    < form_for @coupon, url: '/', method: :post do |f| %>
--->
-      <%= f.text_field :code %>
-      <%= f.input %>
+  <div class="col-md-12 coupon">
+
+    <%= form_for :coupon, url: customer_order_coupons_path(order), method: :post do |f| %>
+
+      <%= f.text_field :code, :class => 'coupon__field', :placeholder => 'COUPON' %>
+      <%= f.submit "Apply", :class => 'coupon__apply' %>
       <br />
 
-    < end %>
+    <% end %>
 
   </div>
 </div>
