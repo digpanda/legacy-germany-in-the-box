@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
 
   # handle hard exception (which will throw a page error)
   # and soft ones even on dev / test (which will usually redirect the customer)
-  unless Rails.env.development? || Rails.env.test?
+  unless Rails.env.development?
 
     around_action :hard_exception_handler
 
@@ -122,7 +122,7 @@ class ApplicationController < ActionController::Base
       end
 
       order
-      
+
   end
 
   def refresh_order_quote!(order)

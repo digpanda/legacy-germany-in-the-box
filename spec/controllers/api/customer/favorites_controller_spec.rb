@@ -7,7 +7,7 @@ describe Api::Customer::FavoritesController, :type => :controller do
     context "customer without favorite" do
 
       let(:current_user) { FactoryGirl.create(:customer) }
-      before(:each) { login_customer current_user }      
+      before(:each) { login_customer current_user }
       let(:shop) { FactoryGirl.create(:shop) }
 
       it "adds a favorite" do
@@ -82,7 +82,7 @@ describe Api::Customer::FavoritesController, :type => :controller do
     context "customer with favorites" do
 
       let(:current_user) { FactoryGirl.create(:customer, :with_favorites) }
-      before(:each) { login_customer current_user }      
+      before(:each) { login_customer current_user }
       let(:shop) { FactoryGirl.create(:shop) }
 
       it "deletes a favorite" do
