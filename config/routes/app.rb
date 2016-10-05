@@ -145,6 +145,7 @@ namespace :customer do
   end
 
   resources :orders  do
+    patch :continue
     resource :border_guru, :controller => 'orders/border_guru' do
       get :tracking_id
     end

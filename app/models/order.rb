@@ -95,6 +95,10 @@ class Order
     [:paid, :custom_checkable, :custom_checking, :shipped].include?(status)
   end
 
+  def new?
+    [:new].include?(status)
+  end
+
   def destroyable?
     order_items.count == 0 && order_payments.count == 0
   end

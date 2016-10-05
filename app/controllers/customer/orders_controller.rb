@@ -15,6 +15,25 @@ class Customer::OrdersController < ApplicationController
     @orders = current_user.orders.nonempty.order_by(:c_at => :desc).paginate(:page => current_page, :per_page => 10);
   end
 
+  # destroy completely the order or cancel it if has sensitive datas
+  # sensitive datas occurs if the customer tries to pay the order itself
+  def destroy
+    if order.new?
+      order.order_items.delete_all
+      order.delete
+    else
+      order.status = :cancelled
+      order.save
+    end
+    flash[:success] = I18n.t(:delete_ok, scope: :edit_order)
+    redirect_to navigation.back(1)
+  end
+
+  def continue
+    cart_manager.store(order)
+    redirect_to customer_cart_path
+  end
+
   private
 
   def set_order

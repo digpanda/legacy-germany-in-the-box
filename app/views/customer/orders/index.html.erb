@@ -46,14 +46,12 @@
           <td>
             <%= order.u_at.localtime.strftime('%Y-%m-%d %H:%M:%S') %>
           </td>
+          <td>
           <% unless order.decorate.paid? %>
-            <td>
-              <%= link_to I18n.t(:continue, scope: :edit_order), continue_order_path(order) %> |
-              <%= link_to I18n.t(:delete, scope: :edit_order), order_path(order), method: :delete, data: { confirm: I18n.t(:confirm_want_delete, scope: :notice) } %>
-            </td>
-          <% else %>
-            <td></td>
+              <%= link_to I18n.t(:continue, scope: :edit_order), customer_order_continue_path(order), method: :patch %> |
+              <%= link_to I18n.t(:delete, scope: :edit_order), customer_order_path(order), method: :delete, data: { confirm: I18n.t(:confirm_want_delete, scope: :notice) } %>
           <% end %>
+          </td>
         </tr>
       <% end %>
     </tbody>
