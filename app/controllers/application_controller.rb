@@ -98,6 +98,7 @@ class ApplicationController < ActionController::Base
     "sublayout/_menu"
   end
 
+  # rename this into CartManager (or Handler) and put the current subclass into it
   def current_order(shop_id)
     CurrentOrderHandler.new(session, current_user, Shop.find(shop_id)).process
   end
@@ -108,6 +109,7 @@ class ApplicationController < ActionController::Base
     @current_orders ||= session[:order_shop_ids].keys.compact.map { |shop_id| [shop_id, current_order(shop_id)] }.to_h
   end
 
+  # put this too inside the CartManager or something
   def total_number_of_products
     @total_number_of_products ||= current_orders.inject(0) { |sum, so| sum += so.compact[1].decorate.total_quantity }
   end
