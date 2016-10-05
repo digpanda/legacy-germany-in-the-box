@@ -107,6 +107,7 @@ class ApplicationController < ActionController::Base
     cart_manager.products_number
   end
 
+  # should be refactored / put into a module or something
   def after_sign_in_path_for(resource)
 
     return navigation.force! if navigation.force?
@@ -116,13 +117,22 @@ class ApplicationController < ActionController::Base
       navigation.back(1)
     elsif current_user.decorate.shopkeeper?
       session[:locale] = :'de'
+      remove_all_orders!
       if current_user.shop && (not current_user.shop.agb)
         edit_producer_shop_path(current_user.shop.id)
       else
         shopkeeper_orders_path
       end
     elsif current_user.decorate.admin?
+      remove_all_orders!
       admin_shops_path
+    end
+  end
+
+  def remove_all_orders!
+    current_user.orders.each do |order|
+      order.order_items.delete_all
+      order.delete
     end
   end
 
