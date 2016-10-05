@@ -20,7 +20,7 @@ class CurrentOrderHandler < BaseService
       refresh_with_quote_api!
     end
 
-    setup_user_order!
+    # TODO : if we don't need the remove_order! those conditions could be reduced to a simple `setup_user_order!` without anything
     if current_user
       if current_user.decorate.customer?
         setup_user_order!
