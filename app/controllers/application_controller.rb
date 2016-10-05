@@ -100,13 +100,13 @@ class ApplicationController < ActionController::Base
 
   # rename this into CartManager (or Handler) and put the current subclass into it
   def current_order(shop_id)
-    CurrentOrderHandler.new(session, current_user, Shop.find(shop_id)).process
+    shop = Shop.find(shop_id)
+    CartManager.new(session, current_user).order(shop)
   end
 
   # should be put into the current order handler or something like that
   def current_orders
-    session[:order_shop_ids] ||= {}
-    @current_orders ||= session[:order_shop_ids].keys.compact.map { |shop_id| [shop_id, current_order(shop_id)] }.to_h
+    CartManager.new(session, current_user).orders
   end
 
   # put this too inside the CartManager or something
