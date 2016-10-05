@@ -1,9 +1,11 @@
+require "abstract_method"
+
 class OrderDecorator < Draper::Decorator
 
   MAX_DESCRIPTION_CHARACTERS = 200
   UNPROCESSABLE_TIME = [9,10] # 9am to 10am -> German Hour
 
-  include OrderCartDecoratorCommon
+  abstract_method :tax_and_duty_cost_with_currency_yuan, :shipping_cost_with_currency_yuan, :total_sum_in_yuan
 
   delegate_all
   decorates :order
