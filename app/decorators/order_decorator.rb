@@ -16,7 +16,7 @@ class OrderDecorator < Draper::Decorator
   end
 
   def total_price
-    if self.is_bought?
+    if self.bought?
       order_items.inject(0) { |sum, i| sum += i.quantity * i.price }
     else
       order_items.inject(0) { |sum, i| sum += i.quantity * i.sku.price }

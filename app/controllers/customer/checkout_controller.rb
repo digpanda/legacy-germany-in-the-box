@@ -72,7 +72,7 @@ class Customer::CheckoutController < ApplicationController
     @order = Order.find(session[:current_checkout_order])
     @shop = order.shop
 
-    if order.is_bought?
+    if order.bought?
       flash[:success] = I18n.t(:notice_order_already_paid, scope: :checkout)
       redirect_to navigation.back(1)
       return

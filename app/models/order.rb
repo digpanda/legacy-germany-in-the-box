@@ -58,7 +58,7 @@ class Order
   # if the order is still not send / paid, it checks
   # if there's any change from the payment model
   def refresh_status_from!(order_payment)
-    unless is_bought?
+    unless bought?
       if order_payment.status == :success
         self.status = :paid
       elsif order_payment.status == :unverified
@@ -91,7 +91,7 @@ class Order
   end
 
   # we considered as bought any status after paid
-  def is_bought?
+  def bought?
     [:paid, :custom_checkable, :custom_checking, :shipped].include?(status)
   end
 
@@ -123,7 +123,7 @@ class Order
     # only the orders which were at some point will be assigned a bill id
     # the unique number in it will be equal to the total of the previous bills + 1.
     # every year the system got reset
-    if bill_id.nil? && self.is_bought?
+    if bill_id.nil? && self.bought?
       start_day = c_at.beginning_of_day
       digits = start_day.strftime("%Y%m%d")
       num = Order.where({:bill_id.ne => nil}).where({:c_at.gte => start_day}).count + 1

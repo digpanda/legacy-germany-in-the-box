@@ -28,7 +28,7 @@ class OrdersController < ApplicationController
     @readonly = true
     @currency_code = @order.shop.currency.code
 
-    unless @order.decorate.is_bought?
+    unless @order.decorate.bought?
 
       if @order.order_items.count > 0
 
