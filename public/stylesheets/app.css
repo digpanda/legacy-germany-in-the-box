@@ -8940,6 +8940,14 @@ img.mfp-img {
   .product-quantity input__add-to-cart {
     background-color: #659443; }
 
+/* line 76, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
+.product-quantity__minus {
+  margin: 0.5em; }
+
+/* line 76, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
+.product-quantity__plus {
+  margin: 0.5em; }
+
 /* line 32, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
 .server-menu {
   line-height: 2;
