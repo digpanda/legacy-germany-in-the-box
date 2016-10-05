@@ -1,3 +1,4 @@
+<!-- Total price and details -->
 <div class="row">
 
   <div class="col-md-12">
@@ -33,5 +34,19 @@
       </ul>
 
     </div>
+  </div>
+
+<!-- Apply a coupon -->
+<div class="row">
+  <div class="col-md-12">
+<!--
+    < form_for @coupon, url: '/', method: :post do |f| %>
+-->
+      <%= f.text_field :code %>
+      <%= f.input %>
+      <br />
+
+    < end %>
 
   </div>
+</div>

@@ -1,4 +1,9 @@
 zh-CN:
+  product_left:
+    only: 只剩
+    left: 件
+    no_stock_left: 已售罄
+    not_ready_to_sell: 该店铺正在装修，尚未营业
   password_recovery:
     email_not_found: 这个邮件地址没有找到哦
     instruction_sent: 请检查你的收件箱，按提示操作重新设置密码！

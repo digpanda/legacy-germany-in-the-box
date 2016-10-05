@@ -1,4 +1,9 @@
 de:
+  product_left:
+    only: Noch
+    left: übrig
+    no_stock_left: Ausverkauft
+    not_ready_to_sell: Dieser Shop kommt bald
   password_recovery:
     email_not_found: Diese E-Mail ist uns nicht bekannt.
     instruction_sent: Bitte checke Deine E-Mail und folge dem Hinweis.

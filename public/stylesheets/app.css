@@ -8983,7 +8983,7 @@ img.mfp-img {
 .total-list {
   list-style: none;
   padding: 0;
-  margin: 0 0 20px 0;
+  margin: 0;
   font-size: 13px;
   color: #7d7d7d; }
   /* line 8, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_total-list.sass */

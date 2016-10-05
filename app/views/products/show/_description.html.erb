@@ -29,11 +29,11 @@
 
 <!-- Warnings -->
 <% if @featured_sku.quantity_warning? %>
-  | <span class="+red +up +bold"> Only <span id="quantity-left"><%= @featured_sku.quantity %></span> left</span>
+  | <span class="+red +up +bold"> <%= I18n.t(:only, scope: :product_left) %> <span id="quantity-left"><%= @featured_sku.quantity %></span> <%= I18n.t(:left, scope: :product_left) %></span>
 <% elsif @featured_sku.nothing_left? %>
-  | <span class="+red +up +bold"> No stock left</span>
+  | <span class="+red +up +bold"> <%= I18n.t(:not_stock_left, scope: :product_left) %></span>
 <% elsif !product.decorate.can_buy? %>
-  | <span class="+red +up +bold"> This shop is not ready to sell</span>
+  | <span class="+red +up +bold"> <%= I18n.t(:not_ready_to_sell, scope: :product_left) %></span>
 <% end %>
 
 <div class="+small-spacer"></div>
@@ -43,7 +43,7 @@
     <%= hidden_field_tag 'sku[product_id]', "#{product.id}" %>
 
     <% if @featured_sku %>
-    
+
         <%= render partial: "products/show/select_sku", :locals => {product: product} %>
         <div class="+small-spacer"></div>
         <%= render partial: "products/show/select_quantity", :locals => {product: product} %>
