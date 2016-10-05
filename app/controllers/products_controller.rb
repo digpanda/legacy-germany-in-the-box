@@ -61,7 +61,10 @@ class ProductsController < ApplicationController
     else
       flash[:error] = "Can't remove this image"
     end
-    redirect_to navigation.back(1)
+    # TODO : this breaks because we need to refacto the system and avoid get variables like this
+    # we should do this later when we refacto the whole controller - Laurent, 05/10/2016
+    # redirect_to navigation.back(1)
+    redirect_to edit_sku_product_path(sku.product.id, :sku_id => sku.id)
   end
 
   # This will display the skus for the users (logged in or not)
