@@ -89,7 +89,7 @@ class OrdersController < ApplicationController
       end
 
       if order.save
-        CurrentOrderHandler.new(session, order.shop).store(order)
+        CurrentOrderHandler.new(session, current_user, order.shop).store(order)
         flash[:success] = I18n.t(:add_product_ok, scope: :edit_order)
         redirect_to navigation.back(2, shop_path(product.shop_id))
         return

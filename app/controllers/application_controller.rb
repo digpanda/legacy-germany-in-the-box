@@ -99,42 +99,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_order(shop_id)
-
-      shop = Shop.find(shop_id)
-      order = CurrentOrderHandler.new(session, shop).retrieve
-
-      if order
-        # we don't forget to systematically get the quote api if the order has items
-        refresh_order_quote!(order) if order.order_items.count > 0
-      else
-        order = Order.new
-      end
-
-      if user_signed_in?
-        # if the user isn't a customer we should remove everything systematically
-        unless current_user.decorate.customer?
-          order.order_items.delete_all
-          order.delete
-        else
-          order.user = current_user unless order.user
-          order.save
-        end
-      end
-
-      order
-
-  end
-
-  def refresh_order_quote!(order)
-    BorderGuru.calculate_quote(
-    order: order,
-    shop: order.shop,
-    country_of_destination: ISO3166::Country.new('CN'),
-    currency: 'EUR'
-    )
-  rescue Net::ReadTimeout => e
-    logger.fatal "Failed to connect to Borderguru: #{e}"
-    return
+    CurrentOrderHandler.new(session, current_user, Shop.find(shop_id)).process
   end
 
   def current_orders
