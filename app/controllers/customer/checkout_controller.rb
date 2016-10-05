@@ -10,7 +10,7 @@ class Customer::CheckoutController < ApplicationController
 
   def create
 
-    @order = current_order(shop.id.to_s)
+    @order = cart_manager.order(shop)
 
     return if wrong_email_update?
     return if today_limit?(order)

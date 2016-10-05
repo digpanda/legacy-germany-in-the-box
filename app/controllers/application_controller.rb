@@ -44,7 +44,7 @@ class ApplicationController < ActionController::Base
 
   before_action :set_current_language
 
-  helper_method :current_order, :current_orders, :total_number_of_products
+  helper_method :cart_manager, :total_number_of_products
 
   around_action :set_translation_locale, only: [:update], if: -> { current_user&.decorate&.admin? }
 
@@ -98,20 +98,13 @@ class ApplicationController < ActionController::Base
     "sublayout/_menu"
   end
 
-  # rename this into CartManager (or Handler) and put the current subclass into it
-  def current_order(shop_id)
-    shop = Shop.find(shop_id)
-    CartManager.new(session, current_user).order(shop)
-  end
-
-  # should be put into the current order handler or something like that
-  def current_orders
-    CartManager.new(session, current_user).orders
+  def cart_manager
+    @cart_manager ||= CartManager.new(session, current_user)
   end
 
   # put this too inside the CartManager or something
   def total_number_of_products
-    @total_number_of_products ||= current_orders.inject(0) { |sum, so| sum += so.compact[1].decorate.total_quantity }
+    cart_manager.products_number
   end
 
   def after_sign_in_path_for(resource)

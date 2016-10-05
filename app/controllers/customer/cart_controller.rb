@@ -7,8 +7,8 @@ class Customer::CartController < ApplicationController
 
   def show
     @readonly = false
-    @shops = Shop.only(:name).where(:id.in => current_orders.keys).map { |shop| [shop.id.to_s, {:name => shop.name}]}.to_h
-    @orders = current_orders
+    @shops = Shop.only(:name).where(:id.in => cart_manager.orders.keys).map { |shop| [shop.id.to_s, {:name => shop.name}]}.to_h
+    @orders = cart_manager.orders
   end
 
   def edit

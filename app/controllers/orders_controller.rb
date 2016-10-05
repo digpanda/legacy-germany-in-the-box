@@ -59,7 +59,7 @@ class OrdersController < ApplicationController
     sku = product.sku_from_option_ids(params[:sku][:option_ids].split(','))
     quantity = params[:sku][:quantity].to_i
 
-    order = current_order(product.shop_id)
+    order = cart_manager.order(product.shop)
     order.shop = product.shop
 
     new_increment = sku.price * quantity * Settings.first.exchange_rate_to_yuan
@@ -89,7 +89,7 @@ class OrdersController < ApplicationController
       end
 
       if order.save
-        CartManager.new(session, current_user).store(order)
+        cart_manager.store(order)
         flash[:success] = I18n.t(:add_product_ok, scope: :edit_order)
         redirect_to navigation.back(2, shop_path(product.shop_id))
         return
@@ -123,35 +123,8 @@ class OrdersController < ApplicationController
 
   end
 
-  # TODO to obviously refactor
   def continue
-    shop_id = @order.shop_id.to_s
-
-    unless (co = current_order(shop_id))
-      session[:order_shop_ids][shop_id] = @order.id.to_s
-    else
-      if @order != co
-
-        @order.order_items.each do |ooi|
-          sku = ooi.sku
-
-          ooi.price = sku.price
-          ooi.weight = sku.weight
-          ooi.product_name = sku.product.name
-          ooi.option_ids = sku.option_ids
-          ooi.option_names = sku.get_options
-        end
-
-        if @order.order_items.each(&:save)
-          set_order_id_in_session(shop_id, @order.id.to_s)
-          flash[:success] = I18n.t(:continue_ok, scope: :edit_order)
-        else
-          flash[:error] = @orde.errors.full_messages.first
-        end
-
-      end
-    end
-
+    cart_manager.store(@order)
     redirect_to customer_cart_path
   end
 

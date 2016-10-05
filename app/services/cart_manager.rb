@@ -36,6 +36,14 @@ class CartManager < BaseService
     session[:order_shop_ids] = {}
   end
 
+  def products_number
+    @number ||= begin
+      orders.inject(0) do |acc, shop_order|
+        acc += shop_order.last.decorate.total_quantity
+      end
+    end
+  end
+
   private
 
   # create the session variable

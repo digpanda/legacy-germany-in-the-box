@@ -47,7 +47,7 @@ class Api::Guest::OrderItemsController < Api::ApplicationController
     # we save it now
     if order_item.save
 
-      @order = current_order(product.shop.id.to_s)
+      @order = cart_manager.order(product.shop)
 
       unless @order
         flash[:error] = I18n.t(:borderguru_unreachable_at_quoting, scope: :checkout)
