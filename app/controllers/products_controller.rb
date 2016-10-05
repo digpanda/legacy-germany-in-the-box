@@ -69,23 +69,17 @@ class ProductsController < ApplicationController
   end
 
   def approve
-
     @product = Product.find(params[:product_id])
     @product.approved = Time.now.utc
     @product.save
-
-    redirect_to(:back) and return
-
+    redirect_to navigation.back(1)
   end
 
   def disapprove
-
     @product = Product.find(params[:product_id])
     @product.approved = nil
     @product.save
-
-    redirect_to(:back) and return
-
+    redirect_to navigation.back(1)
   end
 
   def remove_sku
