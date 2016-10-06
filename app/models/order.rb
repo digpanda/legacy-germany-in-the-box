@@ -6,6 +6,8 @@ class Order
 
   Numeric.include CoreExtensions::Numeric::CurrencyLibrary
 
+  UNPROCESSABLE_TIME = [9,10] # 9am to 10am -> German Hour
+
   field :status,                    type: Symbol, default: :new
   field :desc,                      type: String
   field :border_guru_quote_id,      type: String
@@ -20,7 +22,7 @@ class Order
   field :bill_id, type: String
   field :paid_at, type: Time
   field :cancelled_at, type: Time
-  
+
   field :coupon_applied_at, type: Time
   field :coupon_discount, type: Float
 
@@ -75,6 +77,21 @@ class Order
     end
   end
 
+  def total_price
+    if self.bought?
+      order_items.inject(0) { |sum, i| sum += i.quantity * i.price }
+    else
+      order_items.inject(0) { |sum, i| sum += i.quantity * i.sku.price }
+    end
+  end
+
+  def end_price
+  end
+
+  def total_sum
+    total_price.to_f + shipping_cost.to_f + tax_and_duty_cost.to_f
+  end
+
   def total_paid_in_yuan
     Currency.new(total_paid(:cny), 'CNY').display
   end
@@ -94,6 +111,39 @@ class Order
     end
   end
 
+  def total_quantity
+    order_items.inject(0) { |sum, order_item| sum += order_item.quantity }
+  end
+
+  def total_volume
+    order_items.inject(0) { |sum, order_item| sum += order_item.volume }
+  end
+
+  def processable?
+    status == :paid && processable_time?
+  end
+
+  def cancellable?
+    status != :cancelled && status != :unverified
+  end
+
+  def processable_time?
+    Time.now.utc.in_time_zone("Berlin").strftime("%k").to_i < UNPROCESSABLE_TIME.first || Time.now.utc.in_time_zone("Berlin").strftime("%k").to_i >= UNPROCESSABLE_TIME.last
+  end
+
+  def shippable?
+    self.status == :custom_checking && Time.now.utc > minimum_sending_date
+  end
+
+  # DON'T EXIST ANYMORE ? - Laurent on 29/06/2016
+  def is_success?
+    self.status == :success
+  end
+
+  def paid?
+    ([:new, :paying].include? self.status) == false
+  end
+
   # we considered as bought any status after paid
   def bought?
     [:paid, :custom_checkable, :custom_checking, :shipped].include?(status)
@@ -105,6 +155,16 @@ class Order
 
   def destroyable?
     order_items.count == 0 && order_payments.count == 0
+  end
+
+  def reach_todays_limit?(new_price_increase, new_quantity_increase)
+    if order_items.size == 0 && new_quantity_increase == 1
+      false
+    elsif order_items.size == 1 && new_quantity_increase == 0
+      false
+    else
+      (total_price_in_yuan + new_price_increase) > Settings.instance.max_total_per_day
+    end
   end
 
   private
