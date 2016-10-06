@@ -111,6 +111,22 @@
       <%= @order.decorate.total_price_with_currency_euro %>
       </td>
     </tr>
+    <% if @order.discount? %>
+    <tr>
+      <td>
+      </td>
+      <td>
+      </td>
+      <td>
+      </td>
+      <td>
+      Discount <%= @order.coupon.decorate.discount_display %> (<%= @order.coupon_discount.in_euro.display %>)
+      </td>
+      <td style="text-align:right;">
+      <%= @order.total_price_with_discount.in_euro.display %>
+      </td>
+    </tr>
+    <% end %>
   </tbody>
 </table>
 
@@ -178,7 +194,7 @@
 </div>
 
 <div style="width:375px;float:left;text-align:right;">
-<%= @order.decorate.total_price_with_extra_costs_in_euro %>
+<%= @order.decorate.end_price.in_euro.display %>
 </div>
 
 <div style="clear:both;"></div>
