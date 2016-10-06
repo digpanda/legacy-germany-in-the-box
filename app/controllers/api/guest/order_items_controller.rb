@@ -60,6 +60,12 @@ class Api::Guest::OrderItemsController < Api::ApplicationController
     else
       render :json => { :success => false, :original_quantity => @order_item.quantity, :error => order_item.errors.full_messages.join(", ") }
     end
+
+    # we don't forget to refresh the discount (coupon system)
+    unless order.coupon.nil?
+      CouponHandler.new(order.coupon, order).reset
+    end
+
   end
 
   private

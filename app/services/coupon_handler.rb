@@ -24,6 +24,13 @@ class CouponHandler < BaseService
     return_with(:success)
   end
 
+  # often with AJAX call we change prices on the fly
+  # we will need to reset the application to the coupon from here
+  def reset
+    unapply
+    apply
+  end
+
   private
 
   # all the calculations will be based on the result of this method

@@ -87,14 +87,24 @@ var CustomerCartShow = {
          * shipping_cost_with_currency_yuan string
          * total_with_currency string
          */
+
         // We first refresh the value in the HTML
+        //$('#total-products-'+orderShopId).html(res.data.amount_in_carts);
+
+        // Quantity changes
         $('#order-item-quantity-'+orderItemId).val(orderItemQuantity);
-        $('#total-products-'+orderShopId).html(res.data.amount_in_carts);
-        $('#order-subtotal-'+orderShopId).html(res.data.total_price_with_currency_yuan);
-        //$('#order-duty-cost-'+orderShopId).html(res.data.duty_cost_with_currency);
-        //$('#order-shipping-cost-'+orderShopId).html(res.data.shipping_cost_with_currency_yuan);
-        $('#order-duty-and-shipping-cost-'+orderShopId).html(res.data.duty_and_shipping_cost_with_currency_yuan);
-        $('#order-total-sum-in-yuan-'+orderShopId).html(res.data.total_price_with_extra_costs_in_yuan);
+
+        // Total changes
+        $('#order-total-price-'+orderShopId).html(res.data.total_price);
+        $('#order-tax-and-shipping-cost-'+orderShopId).html(res.data.tax_and_shipping_cost);
+        $('#order-end-price-'+orderShopId).html(res.data.end_price);
+
+        // Discount management
+        if (typeof res.data.total_price_with_discount != "undefined") {
+          $('#order-total-price-with-extra-costs-'+orderShopId).html(res.data.total_price_with_extra_costs);
+          $('#order-total-price-with-discount-'+orderShopId).html(res.data.total_price_with_discount);
+          $('#order-discount-display-'+orderShopId).html(res.data.discount_display);
+        }
 
       }
 
