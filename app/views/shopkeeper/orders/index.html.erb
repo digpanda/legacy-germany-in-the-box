@@ -1,3 +1,4 @@
+<div class="+overflow">
 <% if @orders.size > 0 %>
   <table class="white-table">
     <thead>
@@ -59,7 +60,7 @@
             <%= order.total_paid_in_yuan %>
           </td>
           <td>
-            <%= order.decorate.total_price_with_extra_costs_in_yuan %> (<%= order.decorate.total_price_with_extra_costs_in_euro %>)
+            <%= order.decorate.end_price.in_euro.to_yuan.display %> (<%= order.decorate.end_price.in_euro.display %>)
           </td>
           <td>
             <%= render partial: "shared/orders/partials/files_buttons", locals: { :order => order } %>
@@ -124,3 +125,4 @@
   </h4>
 </div>
 <% end %>
+</div>

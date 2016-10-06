@@ -19,6 +19,7 @@ class CouponHandler < BaseService
 
   # unapply the coupon to this specific order
   def unapply
+    return return_with(:error, "You can't remove this coupon to this order.") unless unappliable_order?
     return return_with(:error, "An error occurred while removing this coupon.") unless reset_order! && reset_coupon!
     return_with(:success)
   end
@@ -29,6 +30,11 @@ class CouponHandler < BaseService
   # for more flexibility
   def original_price
     order.total_price
+  end
+
+  # order that already bought shouldn't remove any coupon (obviously)
+  def unappliable_order?
+    order.bought? == false
   end
 
   # we check for the minimum order price
