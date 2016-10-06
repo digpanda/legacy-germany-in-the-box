@@ -9006,10 +9006,11 @@ img.mfp-img {
   /* line 5, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_total.sass */
   .total td {
     padding: 0.2em;
-    min-width: 7em; }
+    min-width: 5em; }
   /* line 76, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
   .total__total-sum {
-    font-weight: bold; }
+    font-weight: bold;
+    font-size: 17px; }
 
 /* line 32, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
 .home-steps {
