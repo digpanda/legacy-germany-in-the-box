@@ -3,38 +3,50 @@
 
   <div class="col-md-12">
 
-    <ul class="total-list">
-      <li>
-        <span>
-          <%= I18n.t(:subtotal, scope: :cart) %>
-        </span>
-        <span id="order-subtotal-<%= shop %>">
-          <%= order.decorate.total_price_with_currency_yuan %>
-        </span>
-      </li>
+    <table class="total">
 
-      <li>
-        <span>
-          <%= I18n.t(:duty_and_shipping_cost, scope: :cart) %>
-        </span>
-        <span id="order-duty-and-shipping-cost-<%= shop %>">
-          <%= order.decorate.duty_and_shipping_cost_with_currency_yuan %>
-        </span>
-      </li>
-      <li>
+      <tr>
+        <td>
+          <span>
+            <%= I18n.t(:subtotal, scope: :cart) %>
+          </span>
+        </td>
+        <td>
+          <span id="order-subtotal-<%= shop %>">
+            <%= order.decorate.total_price_with_currency_yuan %>
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <span>
+            <%= I18n.t(:duty_and_shipping_cost, scope: :cart) %>
+          </span>
+        </td>
+        <td>
+          <span id="order-subtotal-<%= shop %>">
+            <%= order.decorate.total_price_with_currency_yuan %>
+          </span>
+        </td>
+      </tr>
 
-        <li>
+      <tr class="total__total-sum">
+        <td>
           <span>
             <%= I18n.t(:total_price_with_currency_yuan, scope: :cart) %>
           </span>
+        </td>
+        <td>
           <span id="order-total-sum-in-yuan-<%= shop %>">
             <%= order.decorate.total_sum_in_yuan %>
           </span>
-        </li>
-      </ul>
+        </td>
+      </tr>
 
-    </div>
+    </table>
+
   </div>
+</div>
 
 <!-- Apply a coupon -->
 <div class="row">
@@ -42,7 +54,7 @@
 
     <%= form_for :coupon, url: customer_order_coupons_path(order), method: :post do |f| %>
 
-      <%= f.text_field :code, :class => 'coupon__field', :placeholder => 'COUPON' %>
+      <%= f.text_field :code, :class => 'coupon__field', :placeholder => 'COUPON', :autocomplete => 'off' %>
       <%= f.submit "Apply", :class => 'coupon__apply' %>
       <br />
 
