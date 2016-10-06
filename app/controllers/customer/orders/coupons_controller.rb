@@ -12,7 +12,14 @@ class Customer::Orders::CouponsController < ApplicationController
     if coupon.nil?
       flash[:error] = "This coupon doesn't exist."
       redirect_to navigation.back(1)
+      return
     end
+    if apply_coupon!
+      flash[:success] = "The coupon was applied successfully."
+    else
+      flash[:error] = "The coupon coudln't be applied."
+    end
+    redirect_to navigation.back(1)
   end
 
   # unapply the coupon to the order
@@ -21,6 +28,10 @@ class Customer::Orders::CouponsController < ApplicationController
   end
 
   private
+
+  def apply_coupon!
+    CouponHandler.new(order, coupon).apply
+  end
 
   def set_order
     @order = current_user.orders.find(params[:order_id])

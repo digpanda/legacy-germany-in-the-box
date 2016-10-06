@@ -20,7 +20,9 @@ class Order
   field :bill_id, type: String
   field :paid_at, type: Time
   field :cancelled_at, type: Time
+  
   field :coupon_applied_at, type: Time
+  field :coupon_discount, type: Float
 
   belongs_to :shop, :inverse_of => :orders
   belongs_to :user, :inverse_of => :orders
@@ -81,7 +83,6 @@ class Order
     Currency.new(total_paid(:eur)).display
   end
 
-
   def total_paid(currency=:cny)
     self.order_payments.where(status: :success).all.reduce(0) do |acc, order_payment|
       amount = order_payment.send("amount_#{currency}")
@@ -122,10 +123,10 @@ class Order
     end
   end
 
+  # only the orders which were at some point will be assigned a bill id
+  # the unique number in it will be equal to the total of the previous bills + 1.
+  # every year the system got reset
   def make_bill_id
-    # only the orders which were at some point will be assigned a bill id
-    # the unique number in it will be equal to the total of the previous bills + 1.
-    # every year the system got reset
     if bill_id.nil? && self.bought?
       start_day = c_at.beginning_of_day
       digits = start_day.strftime("%Y%m%d")
