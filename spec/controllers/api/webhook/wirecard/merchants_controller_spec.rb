@@ -105,7 +105,6 @@ describe Api::Webhook::Wirecard::MerchantsController, :type => :controller do
                                              "ee_maid_cc"=>"TEST-MAID-CREDITCARD"}
                   }
 
-
         post :create, request_wirecard_post(params)
         expect(response).to have_http_status(:ok)
 

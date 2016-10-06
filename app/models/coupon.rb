@@ -3,6 +3,8 @@ require 'will_paginate/array'
 class Coupon
   include MongoidBase
 
+  Numeric.include CoreExtensions::Numeric::CurrencyLibrary
+
   field :code, type: String
   field :discount, type: Float
   field :desc, type: String
@@ -10,6 +12,7 @@ class Coupon
   field :minimum_order, type: Float
   field :unique, type: Boolean
   field :last_used_at, type: Time
+  field :cancelled_at, type: Time, default: false
 
   has_many :orders
 

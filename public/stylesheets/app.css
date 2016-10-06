@@ -7867,20 +7867,25 @@ img.mfp-img {
   /* line 12, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_buttons.sass */
   .buttons__delete:hover {
     background-color: #e74c3c; }
-  /* line 16, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_buttons.sass */
+  /* line 40, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
+  .buttons__delete.\--small {
+    width: 1.2em;
+    height: 1.2em;
+    line-height: 1.2em; }
+  /* line 19, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_buttons.sass */
   .buttons__edit:hover {
     background-color: #3498db; }
-  /* line 20, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_buttons.sass */
+  /* line 23, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_buttons.sass */
   .buttons__cancel:hover {
     background-color: #e67e22; }
-  /* line 24, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_buttons.sass */
+  /* line 27, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_buttons.sass */
   .buttons__add:hover {
     background-color: #659443; }
   /* line 76, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
   .buttons__quantity {
     background-color: transparent;
     color: #ABABA8 !important; }
-    /* line 30, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_buttons.sass */
+    /* line 33, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_buttons.sass */
     .buttons__quantity:hover {
       color: #3498db !important; }
 
@@ -9008,9 +9013,17 @@ img.mfp-img {
     padding: 0.2em;
     min-width: 5em; }
   /* line 76, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
-  .total__total-sum {
+  .total__total-discount {
+    color: #3498db;
+    font-weight: bold; }
+  /* line 76, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
+  .total__end-price {
     font-weight: bold;
     font-size: 17px; }
+    /* line 40, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
+    .total__end-price.\--cross {
+      color: #e74c3c;
+      text-decoration: line-through; }
 
 /* line 32, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
 .home-steps {

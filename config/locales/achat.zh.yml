@@ -322,7 +322,7 @@ zh-CN:
     shipping_cost: 物流费用
     tax_and_duty_cost: 海关税费
     duty_and_shipping_cost: 关税物流费用
-    total_sum: 总计
+    total_price_with_extra_costs: 总计
     new: 尚未付款
     paying: 等待付款
     paid: 已付款

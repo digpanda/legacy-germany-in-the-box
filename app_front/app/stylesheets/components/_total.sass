@@ -6,6 +6,16 @@
     padding: 0.2em
     min-width: 5em
 
-  +part(total-sum)
+  +part(total-discount)
+    color: $color-blue
+    font-weight: bold
+
+  +part(end-price)
     font-weight: bold
     font-size: 17px
+
+    +option(cross)
+      color: $color-red
+      text-decoration: line-through
+      
+    +option(higlight)

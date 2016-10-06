@@ -1,7 +1,8 @@
 class Customer::Orders::CouponsController < ApplicationController
 
   before_action :authenticate_user!
-  before_action :set_order, :set_coupon
+  before_action :set_order
+  before_action :set_coupon, :except => [:destroy]
 
   layout :custom_sublayout
 
@@ -17,20 +18,27 @@ class Customer::Orders::CouponsController < ApplicationController
     if apply_coupon.success?
       flash[:success] = "The coupon was applied successfully."
     else
-      flash[:error] = "The coupon coudln't be applied."
+      flash[:error] = "#{apply_coupon.error}"
     end
     redirect_to navigation.back(1)
   end
 
   # unapply the coupon to the order
   def destroy
+    unless unapply_coupon.success?
+      flash[:error] = "#{unapply_coupon.error}"
+    end
     redirect_to navigation.back(1)
   end
 
   private
 
+  def unapply_coupon
+    @unapply_coupon ||= CouponHandler.new(order.coupon, order).unapply
+  end
+
   def apply_coupon
-    CouponHandler.new(coupon, order).apply
+    @apply_coupon ||= CouponHandler.new(coupon, order).apply
   end
 
   def set_order

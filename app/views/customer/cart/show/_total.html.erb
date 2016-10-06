@@ -2,63 +2,13 @@
 <div class="row">
 
   <div class="col-md-12">
-
-    <table class="total">
-
-      <tr>
-        <td>
-          <span>
-            <%= I18n.t(:subtotal, scope: :cart) %>
-          </span>
-        </td>
-        <td>
-          <span id="order-subtotal-<%= shop %>">
-            <%= order.decorate.total_price_with_currency_yuan %>
-          </span>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <span>
-            <%= I18n.t(:duty_and_shipping_cost, scope: :cart) %>
-          </span>
-        </td>
-        <td>
-          <span id="order-subtotal-<%= shop %>">
-            <%= order.decorate.duty_and_shipping_cost_with_currency_yuan %>
-          </span>
-        </td>
-      </tr>
-
-      <tr class="total__total-sum">
-        <td>
-          <span>
-            <%= I18n.t(:total_price_with_currency_yuan, scope: :cart) %>
-          </span>
-        </td>
-        <td>
-          <span id="order-total-sum-in-yuan-<%= shop %>">
-            <%= order.decorate.total_sum_in_yuan %>
-          </span>
-        </td>
-      </tr>
-
-    </table>
-
+    <%= render partial: "customer/cart/show/total/list", :locals => { :order => order } %>
   </div>
 </div>
 
 <!-- Apply a coupon -->
 <div class="row">
   <div class="col-md-12 coupon">
-
-    <%= form_for :coupon, url: customer_order_coupons_path(order), method: :post do |f| %>
-
-      <%= f.text_field :code, :class => 'coupon__field', :placeholder => 'COUPON', :autocomplete => 'off' %>
-      <%= f.submit "Apply", :class => 'coupon__apply' %>
-      <br />
-
-    <% end %>
-
+    <%= render partial: "customer/cart/show/total/coupon_form", :locals => { :order => order } %>
   </div>
 </div>

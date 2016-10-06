@@ -43,7 +43,7 @@ module Wirecard
     end
 
     def amount
-      @amount ||= order.decorate.total_sum_in_yuan.to_f.round(2)
+      @amount ||= order.end_price.in_euro.to_yuan.amount.round(2)
     end
 
     def transaction_type

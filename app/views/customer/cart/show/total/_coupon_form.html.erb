@@ -1,0 +1,11 @@
+<% unless order.discount? %>
+
+  <%= form_for :coupon, url: customer_order_coupons_path(order), method: :post do |f| %>
+
+    <%= f.text_field :code, :class => 'coupon__field', :placeholder => 'COUPON', :autocomplete => 'off' %>
+    <%= f.submit "Apply", :class => 'coupon__apply' %>
+    <br />
+
+  <% end %>
+
+<% end %>

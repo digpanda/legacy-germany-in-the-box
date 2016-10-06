@@ -4,7 +4,7 @@ class OrderDecorator < Draper::Decorator
 
   MAX_DESCRIPTION_CHARACTERS = 200
 
-  abstract_method :tax_and_duty_cost_with_currency_yuan, :shipping_cost_with_currency_yuan, :total_sum_in_yuan
+  abstract_method :tax_and_duty_cost_with_currency_yuan, :shipping_cost_with_currency_yuan, :total_price_with_extra_costs_in_yuan
 
   delegate_all
   decorates :order
@@ -26,12 +26,12 @@ class OrderDecorator < Draper::Decorator
     Currency.new(total_price).display
   end
 
-  def total_sum_in_yuan
-    Currency.new(total_sum).to_yuan.display
+  def total_price_with_extra_costs_in_yuan
+    Currency.new(total_price_with_extra_costs).to_yuan.display
   end
 
-  def total_sum_in_euro
-    Currency.new(total_sum).display
+  def total_price_with_extra_costs_in_euro
+    Currency.new(total_price_with_extra_costs).display
   end
 
   def total_price_with_currency_yuan

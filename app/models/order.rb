@@ -18,13 +18,13 @@ class Order
   field :border_guru_link_payment,  type: String
   field :order_items_count,         type: Fixnum, default: 0
   field :minimum_sending_date,      type: Time
-  field :hermes_pickup_email_sent_at,   type: Time
+  field :hermes_pickup_email_sent_at, type: Time
   field :bill_id, type: String
   field :paid_at, type: Time
   field :cancelled_at, type: Time
 
   field :coupon_applied_at, type: Time
-  field :coupon_discount, type: Float
+  field :coupon_discount, type: Float, default: 0.0
 
   belongs_to :shop, :inverse_of => :orders
   belongs_to :user, :inverse_of => :orders
@@ -77,27 +77,54 @@ class Order
     end
   end
 
+  # total price of the products in the order (raw price before any alteration)
+  # memoization for performance
   def total_price
-    if self.bought?
-      order_items.inject(0) { |sum, i| sum += i.quantity * i.price }
-    else
-      order_items.inject(0) { |sum, i| sum += i.quantity * i.sku.price }
+    @total_price ||= begin
+      if self.bought?
+        order_items.inject(0) { |sum, order_item| sum += order_item.quantity * order_item.price }
+      else
+        order_items.inject(0) { |sum, order_item| sum += order_item.quantity * order_item.sku.price }
+      end
     end
   end
 
-  def end_price
+  def total_discount
+    coupon_discount
   end
 
-  def total_sum
-    total_price.to_f + shipping_cost.to_f + tax_and_duty_cost.to_f
+  # extra costs (shipping and taxes)
+  def extra_costs
+    shipping_cost + tax_and_duty_cost
+  end
+
+  # total price with the coupon discount if any
+  def total_price_with_discount
+    total_price - coupon_discount
+  end
+
+  # total price of the products with the shipping cost
+  def total_price_with_extra_costs
+    total_price + extra_costs
+  end
+
+  # this the price with discount applied and adding up the extra costs afterwards
+  def total_price_with_discount_and_extra_costs
+    total_price_with_discount + extra_costs
+  end
+
+  # this is the end price which the customer has to pay
+  # this consider everything that has to be applied such discount and extra costs
+  def end_price
+    total_price_with_discount_and_extra_costs
   end
 
   def total_paid_in_yuan
-    Currency.new(total_paid(:cny), 'CNY').display
+    total_paid(:cny).in_yuan.display
   end
 
   def total_paid_in_euro
-    Currency.new(total_paid(:eur)).display
+    total_paid(:eur).in_euro.display
   end
 
   def total_paid(currency=:cny)
@@ -117,6 +144,10 @@ class Order
 
   def total_volume
     order_items.inject(0) { |sum, order_item| sum += order_item.volume }
+  end
+
+  def discount?
+    coupon_applied_at.present?
   end
 
   def processable?

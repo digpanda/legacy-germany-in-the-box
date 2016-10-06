@@ -94,7 +94,7 @@ var CustomerCartShow = {
         //$('#order-duty-cost-'+orderShopId).html(res.data.duty_cost_with_currency);
         //$('#order-shipping-cost-'+orderShopId).html(res.data.shipping_cost_with_currency_yuan);
         $('#order-duty-and-shipping-cost-'+orderShopId).html(res.data.duty_and_shipping_cost_with_currency_yuan);
-        $('#order-total-sum-in-yuan-'+orderShopId).html(res.data.total_sum_in_yuan);
+        $('#order-total-sum-in-yuan-'+orderShopId).html(res.data.total_price_with_extra_costs_in_yuan);
 
       }
 

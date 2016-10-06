@@ -43,40 +43,7 @@
   </div>
   <% end %>
   <div class="col-md-3 col-md-push-2 +white-box">
-      <ul class="cart-total-list">
-        <li>
-            <span>
-              <%= I18n.t(:total_price, scope: :edit_order) %>
-            </span>
-            <span>
-              <%= @order.decorate.total_price_with_currency_yuan %>
-            </span>
-        </li>
-        <li>
-            <span>
-              <%= I18n.t(:tax_and_duty_cost, scope: :edit_order) %>
-            </span>
-            <span>
-              <%= @order.decorate.tax_and_duty_cost_with_currency_yuan %>
-            </span>
-        </li>
-        <li>
-            <span>
-              <%= I18n.t(:shipping_cost, scope: :edit_order) %>
-            </span>
-            <span>
-              <%= @order.decorate.shipping_cost_with_currency_yuan %>
-            </span>
-        </li>
-        <li>
-            <span>
-              <%= I18n.t(:total_sum, scope: :edit_order) %>
-            </span>
-            <span>
-              <%= @order.decorate.total_sum_in_yuan %>
-            </span>
-        </li>
-      </ul>
+    <%= render partial: "customer/cart/show/total/list", :locals => { :order => @order } %>
   </div>
 </div>
 
