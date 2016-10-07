@@ -74,8 +74,16 @@ class SkuDecorator < Draper::Decorator
     before_discount_price.in_euro.to_yuan.display
   end
 
+  def price_before_discount_in_yuan_html
+    before_discount_price.in_euro.to_yuan.display_html
+  end
+
   def price_before_discount_in_euro
     before_discount_price.in_euro.display
+  end
+
+  def price_before_discount_in_euro_html
+    before_discount_price.in_euro.display_html
   end
 
   def before_discount_price

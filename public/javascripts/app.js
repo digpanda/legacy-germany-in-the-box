@@ -706,6 +706,10 @@ var ProductsShow = {
     var selector = arguments[2];
 
 
+    if (typeof $(selector) == 'undefined') {
+      return;
+    }
+
     old_quantity = parseInt(old_quantity);
     var old_price = $(selector).html();
     var unit_price = parseFloat(old_price) / parseInt(old_quantity);
@@ -737,9 +741,15 @@ var ProductsShow = {
   manageQuantityMinus: function manageQuantityMinus() {
 
     $('#quantity-minus').on('click', function (e) {
+
       e.preventDefault();
       var quantity = $('#quantity').val();;
+
       if (quantity > 1) {
+
+        ProductsShow.changePrice('reduce', quantity, '#product_discount_with_currency_yuan .amount');
+        ProductsShow.changePrice('reduce', quantity, '#product_discount_with_currency_euro .amount');
+
         ProductsShow.changePrice('reduce', quantity, '#product_price_with_currency_yuan .amount');
         ProductsShow.changePrice('reduce', quantity, '#product_price_with_currency_euro .amount');
         quantity--;
@@ -755,9 +765,15 @@ var ProductsShow = {
   manageQuantityPlus: function manageQuantityPlus() {
 
     $('#quantity-plus').on('click', function (e) {
+
       e.preventDefault();
       var quantity = $('#quantity').val();
+
       if (quantity < $('#quantity').data('max')) {
+
+        ProductsShow.changePrice('grow', quantity, '#product_discount_with_currency_yuan .amount');
+        ProductsShow.changePrice('grow', quantity, '#product_discount_with_currency_euro .amount');
+
         ProductsShow.changePrice('grow', quantity, '#product_price_with_currency_yuan .amount');
         ProductsShow.changePrice('grow', quantity, '#product_price_with_currency_euro .amount');
         quantity++;
