@@ -111,12 +111,24 @@ var CustomerCartShow = {
       } else {
 
         // We first refresh the value in the HTML
+        CustomerCartShow.resetHeaderCartQuantity();
         CustomerCartShow.resetDisplay(orderItemQuantity, orderItemId, orderShopId, res);
         CustomerCartShow.loaded();
 
       }
 
     });
+
+  },
+
+  resetHeaderCartQuantity: function() {
+
+    var total = 0;
+
+    $('[id^="order-item-quantity-"]').each(function(e) {
+      total += parseInt($(this).val());
+      $('#total-products').html(total);
+    })
 
   },
 
