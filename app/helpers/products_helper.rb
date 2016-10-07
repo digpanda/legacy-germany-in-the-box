@@ -116,7 +116,7 @@ module ProductsHelper
   end
 
   def get_options_for_select(product)
-    skus = product.skus.is_active.in_stock
+    skus = product.available_skus
     values = skus.map { |s| s.option_ids.compact.join(',') }
     names  = skus.map do |s|
       s.option_ids.compact.map do |oid|

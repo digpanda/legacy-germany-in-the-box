@@ -89,9 +89,13 @@ class Product
   end
 
   def featured_sku
-    @featured_sku ||= skus.is_active.to_a.sort { |s1, s2| s1.unlimited ? 1 : s1.quantity <=> s2.quantity }.last
+    @featured_sku ||= available_skus.first
   end
 
+  def available_skus
+    skus.is_active.any_of({:unlimited => true}, {:quantity.gt => 0}).order_by({:discount => :desc}, {:quantity => :desc})
+  end
+  
   def sku_from_option_ids(option_ids)
     skus.detect {|s| s.option_ids.to_set == option_ids.to_set}
   end
