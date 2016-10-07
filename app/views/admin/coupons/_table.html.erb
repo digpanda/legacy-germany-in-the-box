@@ -8,10 +8,7 @@
       Description
     </th>
     <th>
-      Discount (% / EUR)
-    </th>
-    <th>
-      Unit
+      Discount
     </th>
     <th>
       Minimum Order Amount (EUR)
@@ -33,19 +30,16 @@
     <% coupons.each do |coupon| %>
     <tr>
       <td>
-        <%= editable_field(coupon, admin_coupon_path(coupon), :code, :text_field) %>
+        <%= coupon.code %>
       </td>
       <td>
-        <%= editable_field(coupon, admin_coupon_path(coupon), :desc, :text_field) %>
+        <%= coupon.desc %>
       </td>
       <td>
-        <%= editable_field(coupon, admin_coupon_path(coupon), :discount, :text_field) %>
+        <%= coupon.decorate.discount_display %>
       </td>
       <td>
-        <%= coupon.unit %>
-      </td>
-      <td>
-        <%= editable_field(coupon, admin_coupon_path(coupon), :minimum_order, :text_field) %>
+        <%= coupon.minimum_order %>
       </td>
       <td>
         <%= coupon.orders.count %>
@@ -57,7 +51,7 @@
         <%= coupon.u_at %>
       </td>
       <td>
-        <%= link_to '', admin_coupon_path(coupon), :method => :delete, data: { confirm: "Are you sure to remove this coupon ?" }, :class => 'tooltipster fa fa-times buttons buttons__delete', :title => "Delete this coupon" %>
+        <%= render partial: 'admin/coupons/table/action', :locals => { :coupon => coupon } %>
       </td>
     </tr>
   <% end %>

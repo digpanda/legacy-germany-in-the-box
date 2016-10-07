@@ -29,14 +29,37 @@ class Admin::CouponsController < ApplicationController
     end
   end
 
+  def edit
+  end
+
   def update
     if coupon.update(coupon_params)
       flash[:success] = "The coupon was updated."
-      redirect_to navigation.back(1)
+      redirect_to admin_coupons_path
     else
       flash[:error] = "The coupon was not updated (#{coupon.errors.full_messages.join(', ')})"
       render :new
     end
+  end
+
+  def cancel
+    coupon.cancelled_at = Time.now
+    if coupon.save
+      flash[:success] = "The coupon was cancelled"
+    else
+      flash[:error] = "The coupon was not cancelled (#{coupon.errors.full_messages.join(', ')})"
+    end
+    redirect_to navigation.back(1)
+  end
+
+  def approve
+    coupon.cancelled_at = nil
+    if coupon.save
+      flash[:success] = "The coupon was approved"
+    else
+      flash[:error] = "The coupon was not approved (#{coupon.errors.full_messages.join(', ')})"
+    end
+    redirect_to navigation.back(1)
   end
 
   def destroy

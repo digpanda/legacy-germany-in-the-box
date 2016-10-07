@@ -39,7 +39,7 @@
             <%= user.last_sign_in_at ? l(user.last_sign_in_at, :format => '%Y-%m-%d %H:%M:%S') : '' %>
           </td>
           <td>
-              <a href="<%= admin_user_path(user) %>"><i class="fa fa-pencil tooltipster buttons buttons__edit tooltipstered"></i></a>
+              <a href="<%= admin_user_path(user) %>"><i class="fa fa-eye tooltipster buttons buttons__edit tooltipstered"></i></a>
 
             <% if user.destroyable? %>
               <%= link_to '', admin_user_path(user), :method => :delete, data: { confirm: "Are you sure to remove this user account ?" }, :class => 'tooltipster fa fa-times buttons buttons__delete', :title => "Delete this user" %>

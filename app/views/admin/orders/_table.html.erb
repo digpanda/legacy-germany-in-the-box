@@ -71,7 +71,7 @@
         <%= order.u_at.localtime.strftime('%Y-%m-%d %H:%M:%S').in_time_zone %>
       </td>
       <td>
-        <a href="<%= admin_order_path(order) %>"><i class="fa fa-pencil tooltipster buttons buttons__edit" title="Details and configuration"></i></a>
+        <a href="<%= admin_order_path(order) %>"><i class="fa fa-eye tooltipster buttons buttons__edit" title="Details and configuration"></i></a>
       </td>
     </tr>
     <% end %>

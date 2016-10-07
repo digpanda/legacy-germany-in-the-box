@@ -20,4 +20,9 @@ class Coupon
   validates :discount, presence: true
   validates :unit, presence: true, inclusion: {in: [:percent, :value]}
   validates :unique, presence: true
+
+  def cancelled?
+    cancelled_at.present?
+  end
+
 end

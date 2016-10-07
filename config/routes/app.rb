@@ -34,6 +34,8 @@ end
 # Admin related
 namespace :admin do
   resources :coupons do
+    patch :cancel
+    patch :approve
   end
   resources :payment_gateways do
   end
