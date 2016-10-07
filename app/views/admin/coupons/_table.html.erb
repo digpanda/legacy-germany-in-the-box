@@ -11,7 +11,7 @@
       Discount
     </th>
     <th>
-      Minimum Order Amount (EUR)
+      Minimum Order Amount
     </th>
     <th>
       Orders
@@ -39,7 +39,9 @@
         <%= coupon.decorate.discount_display %>
       </td>
       <td>
-        <%= coupon.minimum_order %>
+        <% if coupon.minimum_order %>
+        <%= coupon.minimum_order.in_euro.display %> (<%= coupon.minimum_order.in_euro.to_yuan.display %>)
+        <% end %>
       </td>
       <td>
         <%= coupon.orders.count %>
