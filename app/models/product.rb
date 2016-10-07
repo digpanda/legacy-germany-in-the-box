@@ -92,10 +92,18 @@ class Product
     @featured_sku ||= available_skus.first
   end
 
+  def best_discount_sku
+    @best_discount_sku ||= skus.where(:discount.gt => 0).order_by({:discount => :desc}).first
+  end
+
+  def discount?
+    skus.where(:discount.gt => 0).count > 0
+  end
+
   def available_skus
     skus.is_active.any_of({:unlimited => true}, {:quantity.gt => 0}).order_by({:discount => :desc}, {:quantity => :desc})
   end
-  
+
   def sku_from_option_ids(option_ids)
     skus.detect {|s| s.option_ids.to_set == option_ids.to_set}
   end

@@ -36,10 +36,16 @@ class ProductDecorator < Draper::Decorator
     skus.first ? skus.first.decorate.first_nonempty_img_url(:thumb) : 'no_image_available.png' # to be refactored ?
   end
 
+  def best_discount
+    if best_discount_sku
+      best_discount_sku.decorate.discount_with_percent
+    end
+  end
+
   def preview_discount
     self.featured_sku.decorate.discount_with_percent
   end
-  
+
   def preview_price_yuan
     self.featured_sku.decorate.price_with_currency_yuan
   end
