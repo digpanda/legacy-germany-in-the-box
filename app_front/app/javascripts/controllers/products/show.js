@@ -138,17 +138,12 @@ var ProductsShow = {
    * Load a new main image from a thumbanil
    * @param  {String} image new image source
    * @param  {String} loader_selector loader to display
-   * @return {void} 
+   * @return {void}
    */
   changeMainImage: function(image, loader_selector) {
 
-    $('#main_image').attr('src', image).load(function() {
-      $(loader_selector).hide();
-      $(this).show();
-    }).before(function() {
-      $(loader_selector).show();
-      $(this).hide();
-    });
+    var ContentPreloader = require("javascripts/lib/content_preloader");
+    ContentPreloader.process($('#main_image').attr('src', image), loader_selector);
 
   },
 

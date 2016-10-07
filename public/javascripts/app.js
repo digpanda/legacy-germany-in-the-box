@@ -156,6 +156,9 @@ require.register("javascripts/controllers/customer/cart/show.js", function(expor
  */
 var CustomerCartShow = {
 
+  click_chain: 0, // init click chain system
+  chain_timing: 500, // in ms
+
   /**
    * Initializer
    */
@@ -178,6 +181,7 @@ var CustomerCartShow = {
     $('.js-set-quantity-minus').click(function (e) {
 
       e.preventDefault();
+      CustomerCartShow.click_chain++;
 
       var orderItemId = $(this).data('orderItemId');
       var orderShopId = $(this).data('orderShopId');
@@ -193,6 +197,7 @@ var CustomerCartShow = {
     $('.js-set-quantity-plus').click(function (e) {
 
       e.preventDefault();
+      CustomerCartShow.click_chain++;
 
       var orderItemId = $(this).data('orderItemId');
       var orderShopId = $(this).data('orderShopId');
@@ -204,10 +209,37 @@ var CustomerCartShow = {
     });
   },
 
+  loaded: function loaded() {
+
+    $('.js-loader').hide();
+    $('#cart-total').show();
+  },
+
+  loading: function loading() {
+
+    $('.js-loader').show();
+    $('#cart-total').hide();
+  },
+
   orderItemSetQuantity: function orderItemSetQuantity(orderShopId, orderItemId, originQuantity, orderItemQuantity) {
 
     // We first setup a temporary number before the AJAX callback
     $('#order-item-quantity-' + orderItemId).val(orderItemQuantity);
+    CustomerCartShow.loading();
+
+    var current_click_chain = CustomerCartShow.click_chain;
+
+    setTimeout(function () {
+
+      // We basically prevent multiple click by considering only the last click as effective
+      // It won't call the API if we clicked more than once on the + / - within the second
+      if (current_click_chain == CustomerCartShow.click_chain) {
+        CustomerCartShow.processQuantity(orderShopId, orderItemId, originQuantity, orderItemQuantity);
+      }
+    }, CustomerCartShow.chain_timing);
+  },
+
+  processQuantity: function processQuantity(orderShopId, orderItemId, originQuantity, orderItemQuantity) {
 
     var OrderItem = require("javascripts/models/order_item");
     OrderItem.setQuantity(orderItemId, orderItemQuantity, function (res) {
@@ -216,44 +248,45 @@ var CustomerCartShow = {
 
       if (res.success === false) {
 
-        // We try to get back the correct value from AJAX if we can
-        // To avoid the system to show a wrong quantity on the display
-        if (typeof res.original_quantity != "undefined") {
-          originQuantity = res.original_quantity;
-        }
-
-        // We rollback the quantity
-        $('#order-item-quantity-' + orderItemId).val(originQuantity);
+        CustomerCartShow.rollbackQuantity(originQuantity, res);
         Messages.makeError(res.error);
       } else {
 
-        /**
-         * Scheme
-         * amount_in_carts integer
-         * duty_cost_with_currency string
-         * shipping_cost_with_currency_yuan string
-         * total_with_currency string
-         */
-
         // We first refresh the value in the HTML
-        //$('#total-products-'+orderShopId).html(res.data.amount_in_carts);
-
-        // Quantity changes
-        $('#order-item-quantity-' + orderItemId).val(orderItemQuantity);
-
-        // Total changes
-        $('#order-total-price-' + orderShopId).html(res.data.total_price);
-        $('#order-tax-and-shipping-cost-' + orderShopId).html(res.data.tax_and_shipping_cost);
-        $('#order-end-price-' + orderShopId).html(res.data.end_price);
-
-        // Discount management
-        if (typeof res.data.total_price_with_discount != "undefined") {
-          $('#order-total-price-with-extra-costs-' + orderShopId).html(res.data.total_price_with_extra_costs);
-          $('#order-total-price-with-discount-' + orderShopId).html(res.data.total_price_with_discount);
-          $('#order-discount-display-' + orderShopId).html(res.data.discount_display);
-        }
+        CustomerCartShow.resetDisplay(orderItemQuantity, orderItemId, orderShopId, res.data);
+        CustomerCartShow.loaded();
       }
     });
+  },
+
+  rollbackQuantity: function rollbackQuantity(originQuantity, res) {
+
+    // We try to get back the correct value from AJAX if we can
+    // To avoid the system to show a wrong quantity on the display
+    if (typeof res.original_quantity != "undefined") {
+      originQuantity = res.original_quantity;
+    }
+
+    // We rollback the quantity
+    $('#order-item-quantity-' + orderItemId).val(originQuantity);
+  },
+
+  resetDisplay: function resetDisplay(orderItemQuantity, orderItemId, orderShopId, data) {
+
+    // Quantity changes
+    $('#order-item-quantity-' + orderItemId).val(orderItemQuantity);
+
+    // Total changes
+    $('#order-total-price-' + orderShopId).html(data.total_price);
+    $('#order-tax-and-shipping-cost-' + orderShopId).html(data.tax_and_shipping_cost);
+    $('#order-end-price-' + orderShopId).html(data.end_price);
+
+    // Discount management
+    if (typeof data.total_price_with_discount != "undefined") {
+      $('#order-total-price-with-extra-costs-' + orderShopId).html(data.total_price_with_extra_costs);
+      $('#order-total-price-with-discount-' + orderShopId).html(data.total_price_with_discount);
+      $('#order-discount-display-' + orderShopId).html(data.discount_display);
+    }
   }
 
 };
@@ -765,17 +798,12 @@ var ProductsShow = {
    * Load a new main image from a thumbanil
    * @param  {String} image new image source
    * @param  {String} loader_selector loader to display
-   * @return {void} 
+   * @return {void}
    */
   changeMainImage: function changeMainImage(image, loader_selector) {
 
-    $('#main_image').attr('src', image).load(function () {
-      $(loader_selector).hide();
-      $(this).show();
-    }).before(function () {
-      $(loader_selector).show();
-      $(this).hide();
-    });
+    var ContentPreloader = require("javascripts/lib/content_preloader");
+    ContentPreloader.process($('#main_image').attr('src', image), loader_selector);
   },
 
   /**
@@ -1113,6 +1141,36 @@ var Casing = {
 };
 
 module.exports = Casing;
+});
+
+require.register("javascripts/lib/content_preloader.js", function(exports, require, module) {
+"use strict";
+
+/**
+ * ContentPreloader Class
+ */
+var ContentPreloader = {
+
+  /**
+   * Preload some content inside the system
+   * @param  {String} image new image source
+   * @param  {String} loader_selector loader to display
+   * @return {void}
+   */
+  process: function process(selected_attr, loader_selector) {
+
+    selected_attr.load(function () {
+      $(loader_selector).hide();
+      $(this).show();
+    }).before(function () {
+      $(loader_selector).show();
+      $(this).hide();
+    });
+  }
+
+};
+
+module.exports = ContentPreloader;
 });
 
 require.register("javascripts/lib/foreign/datepicker-de.js", function(exports, require, module) {
