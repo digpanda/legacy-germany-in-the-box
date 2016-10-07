@@ -29,7 +29,7 @@ class Shop
   field :agb,             type: Boolean
   field :hermes_pickup,   type: Boolean,    default: false
   field :wirecard_status, type: Symbol,     default: :unactive
-  
+
   field :seal0,           type: String
   field :seal1,           type: String
   field :seal2,           type: String
@@ -149,6 +149,10 @@ class Shop
 
   def accepted_payment_methods
     self.payment_gateways.map { |payment_gateway| payment_gateway.payment_method.to_sym }
+  end
+
+  def discount?
+    self.products.discount_products
   end
 
   private

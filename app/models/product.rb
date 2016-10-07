@@ -65,6 +65,15 @@ class Product
       Product.can_buy.where(name: /(#{query.split.join('|')})/i)
     end
 
+    def discount_products
+      self.all.to_a.each do |product|
+        if product.discount?
+          return true
+        end
+      end
+      false
+    end
+
   end
 
   def favorite_of?(user)

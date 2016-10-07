@@ -1,4 +1,6 @@
 de:
+  discount:
+    discount: Rabatt
   coupon:
     cannot_apply: Der Gutschein ist für diese Bestellung nicht gültig.
     error_occurred_applying: Fehler beim Einlösen des Gutscheins.
