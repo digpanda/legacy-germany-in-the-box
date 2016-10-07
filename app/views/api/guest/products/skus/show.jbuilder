@@ -6,8 +6,8 @@ json.quantity @sku.decorate.max_added_to_cart
 json.price_with_currency_yuan @sku.decorate.price_with_currency_yuan_html
 json.price_with_currency_euro @sku.decorate.price_with_currency_euro_html
 
-json.price_before_discount_in_yuan @sku.decorate.price_before_discount_in_yuan
-json.price_before_discount_in_euro @sku.decorate.price_before_discount_in_euro
+json.price_before_discount_in_yuan @sku.decorate.price_before_discount_in_yuan_html
+json.price_before_discount_in_euro @sku.decorate.price_before_discount_in_euro_html
 json.discount_with_percent @sku.decorate.discount_with_percent
 json.discount @sku.discount
 
