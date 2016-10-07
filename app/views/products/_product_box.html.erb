@@ -23,10 +23,11 @@
 
       <div class="shop-page-product__description">
 
-        <h2><%= product.name %>
+        <h2>
           <span class="shop-page-product__discount">
             <% if product.discount? %><%= product.decorate.best_discount %><% end %>
           </span>
+          <%= product.name %>
         </h2>
         <div class="shop-page-product__description --text">
           <%= product.decorate.short_desc %>
