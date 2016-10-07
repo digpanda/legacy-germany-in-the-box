@@ -1,4 +1,14 @@
 zh-CN:
+  coupon:
+    cannot_apply:  此折扣码不适用于该订单。
+    error_occurred_applying: 使用折扣码时出现错误。
+    not_valid_anymore: 此折扣码已失效。
+    cannot_remove: 无法删除已用于该订单的折扣码。
+    error_occurred_removing: 删除折扣码时出现错误。
+    apply: 使用
+    remove_coupon: 删除折扣码。
+    new_price: 折后价格。
+    coupon: 折扣码
   product_left:
     only: 只剩
     left: 件

@@ -1,4 +1,14 @@
 de:
+  coupon:
+    cannot_apply: Der Gutschein ist für diese Bestellung nicht gültig.
+    error_occurred_applying: Fehler beim Einlösen des Gutscheins.
+    not_valid_anymore: Der Gutschein ist ungültig.
+    cannot_remove: Der eingelöste Gutschein lässt sich nicht löschen.
+    error_occurred_applying: Fehler beim Löschen des Gutscheins.
+    apply: Einlösen
+    remove_coupon: Gutschein löschen.
+    new_price: Aktueller Preis.
+    coupon: Gutschein
   product_left:
     only: Noch
     left: übrig

@@ -11,16 +11,16 @@ class CouponHandler < BaseService
 
   # try to apply the coupon to this specific order
   def apply
-    return return_with(:error, "You can't apply this coupon to this order.") unless valid_order?
-    return return_with(:error, "This coupon is not valid anymore.") unless valid_coupon?
-    return return_with(:error, "An error occurred while applying this coupon.") unless update_order! && update_coupon!
+    return return_with(:error, I18n.t(:cannot_apply, scope: :coupon)) unless valid_order?
+    return return_with(:error, I18n.t(:not_valid_anymore, scope: :coupon)) unless valid_coupon?
+    return return_with(:error, I18n.t(:error_occurred_applying, scope: :coupon)) unless update_order! && update_coupon!
     return_with(:success)
   end
 
   # unapply the coupon to this specific order
   def unapply
-    return return_with(:error, "You can't remove this coupon to this order.") unless unappliable_order?
-    return return_with(:error, "An error occurred while removing this coupon.") unless reset_order! && reset_coupon!
+    return return_with(:error, I18n.t(:cannot_remove, scope: :coupon)) unless unappliable_order?
+    return return_with(:error, I18n.t(:error_occurred_applying, scope: :coupon)) unless reset_order! && reset_coupon!
     return_with(:success)
   end
 

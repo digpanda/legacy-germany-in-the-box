@@ -19,7 +19,7 @@
     <tr class="total__total-discount">
       <td>
         <span>
-          New price
+          <%= I18n.t(:new_price, scope: :coupon) %>
         </span>
       </td>
       <td>
@@ -28,7 +28,7 @@
         </span> (<span id="order-discount-display-<%= order.shop.id %>"><%= order.coupon.decorate.discount_display %></span>)
 
         <% unless order.bought? %>
-        <%= link_to '', customer_order_coupons_path(order), :method => :delete, :class => 'tooltipster fa fa-times buttons buttons__delete --small', :title => "Remove coupon" %>
+        <%= link_to '', customer_order_coupons_path(order), :method => :delete, :class => 'tooltipster fa fa-times buttons buttons__delete --small', :title => I18n.t(:remove_coupon, scope: :coupon) %>
         <% end %>
 
       </td>
