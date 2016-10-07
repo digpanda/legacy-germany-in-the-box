@@ -37,7 +37,7 @@ var CustomerCartShow = {
       let currentQuantity = $('#order-item-quantity-'+orderItemId).val();
       let originQuantity = currentQuantity;
 
-      if (currentQuantity > 0) {
+      if (currentQuantity > 1) {
         currentQuantity--;
         CustomerCartShow.orderItemSetQuantity(orderShopId, orderItemId, originQuantity, currentQuantity);
       }
@@ -104,13 +104,14 @@ var CustomerCartShow = {
 
       if (res.success === false) {
 
-        CustomerCartShow.rollbackQuantity(originQuantity, res);
+        CustomerCartShow.rollbackQuantity(originQuantity, orderItemId, res);
+        CustomerCartShow.loaded();
         Messages.makeError(res.error);
 
       } else {
 
         // We first refresh the value in the HTML
-        CustomerCartShow.resetDisplay(orderItemQuantity, orderItemId, orderShopId, res.data);
+        CustomerCartShow.resetDisplay(orderItemQuantity, orderItemId, orderShopId, res);
         CustomerCartShow.loaded();
 
       }
@@ -119,7 +120,7 @@ var CustomerCartShow = {
 
   },
 
-  rollbackQuantity: function(originQuantity, res) {
+  rollbackQuantity: function(originQuantity, orderItemId, res) {
 
     // We try to get back the correct value from AJAX if we can
     // To avoid the system to show a wrong quantity on the display
@@ -132,21 +133,21 @@ var CustomerCartShow = {
 
   },
 
-  resetDisplay: function(orderItemQuantity, orderItemId, orderShopId, data) {
+  resetDisplay: function(orderItemQuantity, orderItemId, orderShopId, res) {
 
     // Quantity changes
     $('#order-item-quantity-'+orderItemId).val(orderItemQuantity);
 
     // Total changes
-    $('#order-total-price-'+orderShopId).html(data.total_price);
-    $('#order-tax-and-shipping-cost-'+orderShopId).html(data.tax_and_shipping_cost);
-    $('#order-end-price-'+orderShopId).html(data.end_price);
+    $('#order-total-price-'+orderShopId).html(res.data.total_price);
+    $('#order-tax-and-shipping-cost-'+orderShopId).html(res.data.tax_and_shipping_cost);
+    $('#order-end-price-'+orderShopId).html(res.data.end_price);
 
     // Discount management
-    if (typeof data.total_price_with_discount != "undefined") {
-      $('#order-total-price-with-extra-costs-'+orderShopId).html(data.total_price_with_extra_costs);
-      $('#order-total-price-with-discount-'+orderShopId).html(data.total_price_with_discount);
-      $('#order-discount-display-'+orderShopId).html(data.discount_display);
+    if (typeof res.data.total_price_with_discount != "undefined") {
+      $('#order-total-price-with-extra-costs-'+orderShopId).html(res.data.total_price_with_extra_costs);
+      $('#order-total-price-with-discount-'+orderShopId).html(res.data.total_price_with_discount);
+      $('#order-discount-display-'+orderShopId).html(res.data.discount_display);
     }
 
   },
