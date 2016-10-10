@@ -6,6 +6,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def wechat
     flash[:success] = I18n.t(:wechat_login, scope: :notice)
     user = user_from_omniauth(request.env["omniauth.auth"])
+    user.reload
     sign_in(:user, user)
     redirect_to after_sign_in_path_for(user)
   end
