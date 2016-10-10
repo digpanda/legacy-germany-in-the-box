@@ -40,7 +40,8 @@ class OrderItem
   end
 
   def end_price
-    #order.coupon_discount
+    binding.pry
+    order.price * total_discount_percent
   end
 
   def total_price

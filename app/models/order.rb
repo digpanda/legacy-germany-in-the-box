@@ -93,6 +93,10 @@ class Order
     coupon_discount
   end
 
+  def total_discount_percent
+    total_price_with_discount / total_price
+  end
+
   # extra costs (shipping and taxes)
   def extra_costs
     shipping_cost + tax_and_duty_cost
