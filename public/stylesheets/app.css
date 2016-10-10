@@ -7937,7 +7937,6 @@ img.mfp-img {
 
 /* line 6, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_page-error.sass */
 .page-error a {
-  font-family: Raleway, sans-serif;
   font-size: 20px;
   color: #fdfdfd; }
   /* line 10, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_page-error.sass */
@@ -8534,8 +8533,7 @@ img.mfp-img {
   /* line 15, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_main-footer.sass */
   .main-footer h3 {
     font-size: 18px;
-    color: #e6fbd7;
-    font-family: Raleway, sans-serif; }
+    color: #e6fbd7; }
   /* line 22, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_main-footer.sass */
   .main-footer__logo img {
     max-width: 70px; }

@@ -39,6 +39,10 @@ class OrderItem
     end.flatten.compact
   end
 
+  def end_price
+    #order.coupon_discount
+  end
+
   def total_price
     quantity * price
   end
