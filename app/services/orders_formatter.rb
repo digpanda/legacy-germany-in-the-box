@@ -3,6 +3,8 @@ require 'csv'
 # generate format for orders model (CSV for admin, ...)
 class OrdersFormatter < BaseService
 
+  include Rails.application.routes.url_helpers
+
   CSV_LINE_CURRENCY = 'EUR'
   MAX_DESCRIPTION_CHARACTERS = 200
   HEADERS = [
@@ -12,7 +14,8 @@ class OrdersFormatter < BaseService
     'Status',
     'Description',
     'Clean Description',
-    'Clean Description with Order Items',
+    'Products',
+    'Products descriptions',
     'Total Quantity',
     'Total Volume',
     'Total products price (EUR)',
@@ -73,7 +76,10 @@ class OrdersFormatter < BaseService
       full_address(order),
       order.status,
       order.desc,
+
       order.decorate.clean_desc,
+      order_item_names(order),
+
       order.decorate.clean_order_items_description,
       order.decorate.total_quantity,
       order.decorate.total_volume,
@@ -115,6 +121,10 @@ class OrdersFormatter < BaseService
       order.c_at,
       order.u_at,
     ]
+  end
+
+  def order_item_names(order)
+    order.order_items.reduce([]) { |acc, order_item| acc << order_item.product_name }.join(', ')
   end
 
   def chinese_full_name(order)
