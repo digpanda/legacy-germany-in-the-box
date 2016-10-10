@@ -8,7 +8,7 @@
     Real discount <strong><%= @order.coupon_discount.in_euro.display %></strong><br />
   </div>
   <div class="row">
-    <%= render partial: 'admin/coupons/table', :locals => { :coupons => [@order.coupon] } %>
+    <%= render partial: 'admin/coupons/table', :locals => { :coupons => [@order.coupon].compact } %>
   </div>
 
 </div>
