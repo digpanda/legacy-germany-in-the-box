@@ -210,27 +210,28 @@ class ProductsController < ApplicationController
     hash.delete_if(&p)
   end
 
-    def set_product
-      @product = Product.find(params[:id])
+  def set_product
+    @product = Product.find(params[:id])
+  end
+
+  def set_category
+    @category = @product.categories.first
+  end
+
+  def set_shop
+    @shop = @product.shop
+  end
+
+  def product_params
+    delocalize_config = { skus_attributes: { :price => :number,:space_length => :number, :space_width => :number, :space_height => :number, :discount => :number, :quantity => :number, :weight => :number} }
+    shopkeeper_strong_params = [:status, :desc, :name, :hs_code, :brand, :img, :data, tags:[], options_attributes: [:id, :name, suboptions_attributes: [:id, :name]], skus_attributes: [:unlimited, :id, :img0, :img1, :img2, :img3, :price, :discount, :country_of_origin, :quantity, :weight, :customizable, :status, :space_length, :space_width, :space_height, :time, :data, :attach0, option_ids: []]]
+
+    if current_user.decorate.admin?
+      params.require(:product)[:category_ids] = [params.require(:product)[:category_ids]] unless params.require(:product)[:category_ids].nil?
+      shopkeeper_strong_params += [:duty_category, category_ids:[]]
     end
 
-    def set_category
-      @category = @product.categories.first
-    end
-
-    def set_shop
-      @shop = @product.shop
-    end
-
-    def product_params
-      delocalize_config = { skus_attributes: { :price => :number,:space_length => :number, :space_width => :number, :space_height => :number, :discount => :number, :quantity => :number, :weight => :number} }
-      shopkeeper_strong_params = [:status, :desc, :name, :hs_code, :brand, :img, :data, tags:[], options_attributes: [:id, :name, suboptions_attributes: [:id, :name]], skus_attributes: [:unlimited, :id, :img0, :img1, :img2, :img3, :price, :discount, :country_of_origin, :quantity, :weight, :customizable, :status, :space_length, :space_width, :space_height, :time, :data, :attach0, option_ids: []]]
-
-      if current_user.decorate.admin?
-        params.require(:product)[:category_ids] = [params.require(:product)[:category_ids]] unless params.require(:product)[:category_ids].nil?
-        shopkeeper_strong_params += [:duty_category, category_ids:[]]
-      end
-
-      params.require(:product).permit(*shopkeeper_strong_params).delocalize(delocalize_config)
-    end
+    params.require(:product).permit(*shopkeeper_strong_params).delocalize(delocalize_config)
+  end
+  
 end
