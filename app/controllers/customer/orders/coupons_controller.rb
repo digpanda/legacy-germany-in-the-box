@@ -11,12 +11,12 @@ class Customer::Orders::CouponsController < ApplicationController
   # we apply the coupon to the order
   def create
     if coupon.nil?
-      flash[:error] = "This coupon doesn't exist."
+      flash[:error] = I18n.t(:applied_fail, scope: :coupon)
       redirect_to navigation.back(1)
       return
     end
     if apply_coupon.success?
-      flash[:success] = "The coupon was applied successfully."
+      flash[:success] = I18n.t(:applied_successfully, scope: :coupon)
     else
       flash[:error] = "#{apply_coupon.error}"
     end

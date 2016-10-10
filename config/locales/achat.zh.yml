@@ -11,6 +11,8 @@ zh-CN:
     remove_coupon: 删除折扣码。
     new_price: 折后价格。
     coupon: 折扣码
+    applied_successfully: 此优惠券已被成功使用。
+    applied_fail: 此优惠券不存在。
   product_left:
     only: 只剩
     left: 件

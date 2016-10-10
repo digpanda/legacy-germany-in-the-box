@@ -39,9 +39,12 @@ class OrderItem
     end.flatten.compact
   end
 
-  def end_price
-    binding.pry
-    order.price * total_discount_percent
+  # this method should be used in only a few cases
+  # we originally created it to call the BorderGuru API with the correct prices
+  # considering the coupon system.
+  # using it as end_price would make a double discount which would be false. please avoid this.
+  def price_with_coupon_applied
+    price * order.total_discount_percent
   end
 
   def total_price

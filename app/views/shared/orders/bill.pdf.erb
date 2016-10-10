@@ -120,7 +120,7 @@
       <td>
       </td>
       <td>
-      Discount <%= @order.coupon.decorate.discount_display %> (<%= @order.coupon_discount.in_euro.display %>)
+      Discount <%= @order.coupon.code %> <%= @order.coupon.decorate.discount_display %> (<%= @order.coupon_discount.in_euro.display %>)
       </td>
       <td style="text-align:right;">
       <%= @order.total_price_with_discount.in_euro.display %>

@@ -9,7 +9,7 @@ class Coupon
   field :discount, type: Float
   field :desc, type: String
   field :unit, type: Symbol # [:percent, :value]
-  field :minimum_order, type: Float
+  field :minimum_order, type: Float, default: 0
   field :unique, type: Boolean
   field :last_used_at, type: Time
   field :cancelled_at, type: Time, default: false

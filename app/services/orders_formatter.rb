@@ -21,19 +21,29 @@ class OrdersFormatter < BaseService
     'Shipping Cost (CNY)',
     'Tax and Duty Cost (EUR)',
     'Tax and Duty Cost (CNY)',
-    'Total price (EUR)',
-    'Total price (CNY)',
+    'End price (EUR)',
+    'End price (CNY)',
+    'Coupon code',
+    'Coupon discount',
+    'Coupon description',
+    'Total paid (EUR)',
+    'Total paid (CNY)',
+    'Total items',
+    'Merchant Id',
+    'BorderGuru Merchant Id',
     'BorderGuru Quote ID',
     'BorderGuru Shipment ID',
     'BorderGuru Link Tracking',
     'BorderGuru Link Payment',
     'Payments IDs',
+    'Payments Methods',
+    'Transactions Types',
     'Wirecard Transactions IDs',
     'Minimum Sending Date',
     'Hermes Pickup Email Sent At',
     'Bill ID',
     'Paid At',
-    'Ceeated At',
+    'Created At',
     'Updated At',
   ]
 
@@ -56,8 +66,6 @@ class OrdersFormatter < BaseService
 
   private
 
-  # TODO: we shouldn't show the currency symbol sometimes,
-  # we should refactor the whole model for it
   def csv_line(order)
     [
       order.id,
@@ -69,20 +77,37 @@ class OrdersFormatter < BaseService
       order.decorate.clean_order_items_description,
       order.decorate.total_quantity,
       order.decorate.total_volume,
-      order.decorate.total_price_with_currency_euro,
-      order.decorate.total_price_with_currency_yuan,
-      order.decorate.shipping_cost_with_currency_euro,
-      order.decorate.shipping_cost_with_currency_yuan,
-      order.decorate.tax_and_duty_cost_with_currency_euro,
-      order.decorate.tax_and_duty_cost_with_currency_yuan,
-      order.decorate.total_price_with_extra_costs_in_euro,
-      order.decorate.total_price_with_extra_costs_in_yuan,
+
+      order.decorate.total_price.in_euro.amount,
+      order.decorate.total_price.in_euro.to_yuan.amount,
+      order.decorate.shipping_cost.in_euro.amount,
+      order.decorate.shipping_cost.in_euro.to_yuan.amount,
+      order.decorate.tax_and_duty_cost.in_euro.amount,
+      order.decorate.tax_and_duty_cost.in_euro.to_yuan.amount,
+      order.decorate.end_price.in_euro.amount,
+      order.decorate.end_price.in_euro.to_yuan.amount,
+
+      (order.coupon ? order.coupon.code : ''),
+      (order.coupon ? order.coupon.decorate.discount_display : ''),
+      (order.coupon ? order.coupon.desc : ''),
+
+      order.total_paid(:eur),
+      order.total_paid(:cny),
+      order.order_items.count,
+
+      (order.shop ? order.shop.merchant_id : ''),
+      (order.shop ? order.shop.bg_merchant_id : ''),
+
       order.border_guru_quote_id,
       order.border_guru_shipment_id,
       order.border_guru_link_tracking,
       order.border_guru_link_payment,
       payments_ids(order),
+
       wirecard_transactions_ids(order),
+      payment_methods(order),
+      transaction_types(order),
+
       order.minimum_sending_date,
       order.hermes_pickup_email_sent_at,
       order.bill_id,
@@ -106,6 +131,14 @@ class OrdersFormatter < BaseService
 
   def wirecard_transactions_ids(order)
     order.order_payments.reduce([]) { |acc, order_payment| acc << order_payment.transaction_id }.join(', ')
+  end
+
+  def payment_methods(order)
+    order.order_payments.reduce([]) { |acc, order_payment| acc << order_payment.payment_method }.join(', ')
+  end
+
+  def transaction_types(order)
+    order.order_payments.reduce([]) { |acc, order_payment| acc << order_payment.transaction_type }.join(', ')
   end
 
 end

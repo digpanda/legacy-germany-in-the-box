@@ -11,6 +11,8 @@ de:
     remove_coupon: Gutschein löschen.
     new_price: Aktueller Preis.
     coupon: Gutschein
+    applied_successfully: Dieser Gutschein wurde erfolgreich eingelöst.
+    applied_fail: Dieser Gutschein ist nicht vorhanden.
   product_left:
     only: Noch
     left: übrig

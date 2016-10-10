@@ -25,7 +25,7 @@ module BorderGuru
           {
             sku: order_item.sku.id,
             shortDescription: order_item.sku.product.name,
-            price: order_item.end_price,
+            price: order_item.price_with_coupon_applied,
             category: Rails.env.production? ? order_item.sku.product.duty_category.code : 'test',
             weight: order_item.weight,
             weightScale: WEIGHT_UNIT,
