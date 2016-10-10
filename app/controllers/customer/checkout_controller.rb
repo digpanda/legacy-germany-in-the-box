@@ -74,7 +74,7 @@ class Customer::CheckoutController < ApplicationController
 
     if order.bought?
       flash[:success] = I18n.t(:notice_order_already_paid, scope: :checkout)
-      redirect_to navigation.back(1)
+      redirect_to customer_orders_path
       return
     end
 
@@ -115,11 +115,13 @@ class Customer::CheckoutController < ApplicationController
 
     reset_shop_id_from_session(shop.id.to_s)
 
-    if BorderGuruApiHandler.new(order).get_shipping!.success?
-      flash[:success] = I18n.t(:checkout_ok, scope: :checkout)
-    else
-      flash[:error] = I18n.t(:borderguru_shipping_failed, scope: :checkout)
+    unless BorderGuruApiHandler.new(order).get_shipping!.success?
+      SlackDispatcher.new.borderguru_get_shipping_error(order)
     end
+
+    # whatever happens with BorderGuru, if the payment is a success we consider
+    # the transaction / order as successful, we will deal with BorderGuru through Slack / Emails
+    flash[:success] = I18n.t(:checkout_ok, scope: :checkout)
 
     EmitNotificationAndDispatchToUser.new.perform({
       :user => shop.shopkeeper,

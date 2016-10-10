@@ -36,6 +36,12 @@ class SlackDispatcher < BaseService
     push "Order ID : `#{order.id}` - URL : #{admin_order_url(order)}"
   end
 
+  def borderguru_get_shipping_error(order)
+    push "*#{order.billing_address.decorate.chinese_full_name}* just *FAILED* to *GetShipping* from *BorderGuru*"
+    push "The label was not retrieved. Please have a look and solve the problem."
+    push "Order ID : `#{order.id}` - URL : #{admin_order_url(order)}"
+  end
+
   private
 
   def push(message)
