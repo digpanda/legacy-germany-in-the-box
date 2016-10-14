@@ -20,4 +20,9 @@ module LanguagesHelper
     I18n.locale = current_locale
   end
 
+  def force_german!
+    session[:locale] = :de
+    I18n.locale = session[:locale]
+  end
+
 end

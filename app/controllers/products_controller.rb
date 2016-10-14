@@ -233,5 +233,5 @@ class ProductsController < ApplicationController
 
     params.require(:product).permit(*shopkeeper_strong_params).delocalize(delocalize_config)
   end
-  
+
 end
