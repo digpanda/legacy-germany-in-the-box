@@ -16,9 +16,9 @@ class CartManager
     # when we first call order it either retrieve a current existing order
     # or create a new one
     # we will avoid calling BorderGuru for empty orders (like new ones)
-    def recover
+    def recover(call_api=true)
       if order.order_items.count > 0
-        refresh_with_quote_api!
+        refresh_with_quote_api! if call_api
       end
       setup_user_order!
       self
