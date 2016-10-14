@@ -6,7 +6,7 @@ class LanguagesController < ActionController::Base # No application because it's
   include Rails.application.routes.url_helpers
 
   ACCEPTED_LANGUAGES = %w(zh-CN de)
-  ACCEPTED_LOCATIONS = [Rails.application.routes.url_helpers.new_user_session_path, "/guest/shop_applications/new"]
+  ACCEPTED_LOCATIONS = [Rails.application.routes.url_helpers.new_user_session_path]
 
   def update
 
