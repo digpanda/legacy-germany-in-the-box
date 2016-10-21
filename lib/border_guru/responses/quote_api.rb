@@ -24,12 +24,12 @@ module BorderGuru
 
       def result
         if response_data.nil?
+          slack_feedback
           if error_message
             raise BorderGuru::Error, error_message
           else
             raise BorderGuru::Error, "Logistic partner busy. Please try again in a few minutes."
           end
-          slack_feedback
         end
         response_data[:result]
       end
