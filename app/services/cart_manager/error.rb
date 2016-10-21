@@ -1,4 +1,4 @@
-module CartManager
+class CartManager
   class Error < StandardError
     attr_reader :message
 
