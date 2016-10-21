@@ -47,6 +47,10 @@ module BorderGuru
         str.to_s.camelize.sub(/^(.)/){|s| s.downcase}
       end
 
+      def slack_feedback
+        SlackDispatcher.new.message("#{@request.response.body}")
+      end
+
       # after examination the response_body is transmitted to response_data and we should manage
       # the errors better by analysing what it does in the system
       # sometimes it's not JSON, there's a very bad error handling system behind all that
@@ -63,4 +67,3 @@ module BorderGuru
     end
   end
 end
-
