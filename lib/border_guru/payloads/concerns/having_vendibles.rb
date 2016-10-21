@@ -21,6 +21,7 @@ module BorderGuru
       # we will transmit those informations for each single order item to borderguru
       # this line is currently used in the system - Laurent 2016/07/15
       def line_items(order_items)
+        SlackDispatcher.new.message("DUTY CATEGORY CODE FOR `#{order_item.sku.product.name}` : #{order_item.sku.product.duty_category.code}")
         order_items.map do |order_item|
           {
             sku: order_item.sku.id,
