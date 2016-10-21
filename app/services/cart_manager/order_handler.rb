@@ -55,7 +55,7 @@ class CartManager
       currency: 'EUR'
       )
     rescue BorderGuru::Error, Net::ReadTimeout => e
-      raise CartManager::Error.new e
+      raise CartManager::Error, e
     end
 
   end
