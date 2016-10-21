@@ -38,8 +38,8 @@ module BorderGuru
       end
 
       def error_message
-        if response_body.dig(:response, :error)
-          response_body[:response][:error][:message]
+        if response_body.dig(:error)
+          response_body[:error][:message]
         end
       end
 
