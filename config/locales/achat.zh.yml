@@ -159,6 +159,7 @@ zh-CN:
     settings: 平台设置
     notifications: 平台通知
   footer:
+    shipping_price: 运费表
     payment_methods: 支付方式
     germany_in_the_box: 来因盒
     feedback: 反馈及建议

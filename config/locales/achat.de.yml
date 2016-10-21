@@ -159,6 +159,7 @@ de:
     settings: Konfiguraiton
     notifications: Nachrichten
   footer:
+    shipping_price: Versandkosten
     payment_methods: Zahlungsarten
     germany_in_the_box: Germany In The Box
     feedback: Feedback
