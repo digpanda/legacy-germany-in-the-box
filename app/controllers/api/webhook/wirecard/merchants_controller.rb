@@ -87,7 +87,7 @@ class Api::Webhook::Wirecard::MerchantsController < Api::ApplicationController
   def save_shop_wirecard_credentials!(shop, credentials)
     processed = processed_credentials(credentials)
     if processed
-      payment_gateway = PaymentGateway.where(payment_method: processed[:payment_method]).first || PaymentGateway.new
+      payment_gateway = matching_payment_gateway(shop, processed[:payment_method])
       payment_gateway.shop_id = shop.id
       payment_gateway.provider = :wirecard
       payment_gateway.payment_method = processed[:payment_method]
@@ -98,6 +98,10 @@ class Api::Webhook::Wirecard::MerchantsController < Api::ApplicationController
       devlog.info "The payment method was not recognized. Please try again with correct credential fields."
       false
     end
+  end
+
+  def matching_payment_gateway(shop, payment_method)
+    PaymentGateway.where(shop_id: shop.id).where(payment_method: payment_method).first || PaymentGateway.new
   end
 
   # check if there's a correct reseller id

@@ -16,7 +16,7 @@ describe Wirecard::Hpp do
     wirecard = Wirecard::Hpp.new(user, order, wirecard_hash_params)
 
     expect(wirecard.request_id).to be_kind_of(String)
-    expect(wirecard.amount).to be_kind_of(Float)
+    expect(wirecard.amount).to be_kind_of(BigDecimal)
     expect(wirecard.currency).to match("CNY")
 
   end
