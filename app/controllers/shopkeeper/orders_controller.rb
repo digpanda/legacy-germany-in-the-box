@@ -23,8 +23,7 @@ class Shopkeeper::OrdersController < ApplicationController
     end
 
     flash[:success] = I18n.t(:order_sent, scope: :notice)
-    redirect_to(:back)
-    return
+    redirect_to navigation.back(1)
 
   end
 
