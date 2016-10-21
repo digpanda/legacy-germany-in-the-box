@@ -4,11 +4,15 @@ class Customer::CartController < ApplicationController
   #before_action :set_user
 
   attr_accessor :user
+  attr_reader :orders
 
   def show
     @readonly = false
-    @shops = Shop.only(:name).where(:id.in => cart_manager.orders.keys).map { |shop| [shop.id.to_s, {:name => shop.name}]}.to_h
     @orders = cart_manager.orders
+    @shops = Shop.only(:name).where(:id.in => orders.keys).map { |shop| [shop.id.to_s, {:name => shop.name}]}.to_h
+  rescue CartManager::Error => e
+    flash[:error] = "#{e}"
+    redirect_to navigation.back(1)
   end
 
   def edit

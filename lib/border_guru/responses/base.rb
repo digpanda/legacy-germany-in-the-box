@@ -37,6 +37,12 @@ module BorderGuru
         end
       end
 
+      def error_message
+        if response_body.dig(:response, :error)
+          response_body[:response][:error][:message]
+        end
+      end
+
       def reason_error
         if response_body.dig(:success) && response_body[:success] == false
           response_body[:reason][:message]
@@ -58,7 +64,6 @@ module BorderGuru
         @response_body ||= JSON.parse(@request.response.body).deep_symbolize_keys
       rescue JSON::ParserError => e
         Rails.logger.error("Tried to JSON.parse an incompatible body : #{e}")
-        #@response_body = {} # never fails
         raise BorderGuru::Error.new e
       ensure
         @response_body

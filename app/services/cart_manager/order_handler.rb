@@ -54,9 +54,9 @@ class CartManager
       country_of_destination: ISO3166::Country.new('CN'),
       currency: 'EUR'
       )
-    rescue Net::ReadTimeout => e
-      logger.fatal "Failed to connect to Borderguru: #{e}"
-      return
+    rescue BorderGuru::Error, Net::ReadTimeout => e
+      logger.fatal "Failed to connect to BorderGuru: #{e}"
+      raise CartManager::Error.new e
     end
 
   end
