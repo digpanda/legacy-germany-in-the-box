@@ -55,7 +55,6 @@ class CartManager
       currency: 'EUR'
       )
     rescue BorderGuru::Error, Net::ReadTimeout => e
-      logger.fatal "Failed to connect to BorderGuru: #{e}"
       raise CartManager::Error.new e
     end
 
