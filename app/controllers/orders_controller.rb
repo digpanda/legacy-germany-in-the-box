@@ -59,7 +59,7 @@ class OrdersController < ApplicationController
     sku = product.sku_from_option_ids(params[:sku][:option_ids].split(','))
     quantity = params[:sku][:quantity].to_i
 
-    order = cart_manager.order(product.shop)
+    order = cart_manager.order(shop: product.shop, call_api: false)
     order.shop = product.shop
 
     new_increment = sku.price * quantity * Settings.first.exchange_rate_to_yuan
