@@ -9,12 +9,20 @@
 
   <% if @featured_sku.discount? %>
 
-    <span class="+barred"></span>
-    <span id="product_discount_with_currency_yuan" class="+dark-grey +medium">
-      <%= @featured_sku.price_before_discount_in_yuan_html.html_safe %>
-    </span>
-    <span id="product_discount_with_currency_euro" class="+price-euro +dark-grey">
-      <%= @featured_sku.price_before_discount_in_euro_html.html_safe %>
+      <span id="product_discount_with_currency_yuan" class="+medium">
+        <span class="+barred">
+          <span class="+black">
+            <%= @featured_sku.price_before_discount_in_yuan_html.html_safe %>
+          </span>
+        </span>
+      </span>
+      <span id="product_discount_with_currency_euro" class="+price-euro">
+        <span class="+barred">
+          <span class="+dark-grey">
+            <%= @featured_sku.price_before_discount_in_euro_html.html_safe %>
+          </span>
+        </span>
+      </span>
     </span>
 
     <br />

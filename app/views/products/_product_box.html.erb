@@ -36,12 +36,13 @@
 
           <% if product.discount? %>
 
-          <span class="+dark-grey +medium">
-            <span class="+barred"></span>
-            <%= product.featured_sku.decorate.price_before_discount_in_yuan_html.html_safe %>
-          </span>
-          <span class="+price-euro +dark-grey">
-            <%= product.featured_sku.decorate.price_before_discount_in_euro_html.html_safe %>
+          <span class="+barred">
+            <span class="+black +medium">
+              <%= product.featured_sku.decorate.price_before_discount_in_yuan_html.html_safe %>
+            </span>
+            <span class="+price-euro +dark-grey">
+              <%= product.featured_sku.decorate.price_before_discount_in_euro_html.html_safe %>
+            </span>
           </span>
 
           <% end %>

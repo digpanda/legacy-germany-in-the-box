@@ -902,8 +902,8 @@ var ProductsShow = {
 
       ProductsShow.skuShowDiscount();
 
-      $('#product_discount_with_currency_euro').html(skuDatas['price_before_discount_in_euro']);
-      $('#product_discount_with_currency_yuan').html('<span class="+barred"></span>' + skuDatas['price_before_discount_in_yuan']);
+      $('#product_discount_with_currency_euro').html('<span class="+barred"><span class="+dark-grey">' + skuDatas['price_before_discount_in_euro'] + '</span></span>');
+      $('#product_discount_with_currency_yuan').html('<span class="+barred"><span class="+black">' + skuDatas['price_before_discount_in_yuan'] + '</span></span>');
       $('#product_discount').html(skuDatas['discount_with_percent'] + '<br/>');
     }
 
