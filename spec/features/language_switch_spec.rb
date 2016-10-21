@@ -28,7 +28,7 @@ describe "language#update process", :type => :feature, :js => true  do
       visit root_path
       expect(page).to have_content('来因盒') # Germany in the Box (in Chinese)
       click_link 'Partner-Hersteller Werden'
-      expect(page).to have_content('Möchten was kaufen?') # We are on the shopkeeper site
+      expect(page).to have_content('Möchten Sie etwas kaufen?') # We are on the shopkeeper site
 
     end
 
