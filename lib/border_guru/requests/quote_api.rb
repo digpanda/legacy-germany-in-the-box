@@ -5,7 +5,6 @@ module BorderGuru
     class QuoteApi < Base
 
       def dispatch!
-        SlackDispatcher.new.message("/api/quotes/calculate?quoteParams=#{quote_params}")
         @raw_response = @@access_token.post(
           "/api/quotes/calculate?quoteParams=#{quote_params}",
           nil,
