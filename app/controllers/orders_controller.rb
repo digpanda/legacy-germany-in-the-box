@@ -16,6 +16,9 @@ class OrdersController < ApplicationController
     response = BorderGuru.get_label(
         border_guru_shipment_id: @order.border_guru_shipment_id
     )
+
+    SlackDispatcher.new.message("RAW RESPONSE LABEL : #{response.body}")
+
     send_data response.bindata, filename: "#{@order.border_guru_shipment_id}.pdf", type: :pdf
 
   # to refactor (obviously)
