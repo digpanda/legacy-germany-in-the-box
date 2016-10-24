@@ -28,6 +28,10 @@ class AddressDecorator < Draper::Decorator
     "#{province}#{city}#{district}#{street}#{number}#{additional}, #{zip}, #{country}"
   end
 
+  def german_full_address
+    "#{street} #{number}, #{zip} #{city}, #{country}"
+  end
+
   def country_code
     country.alpha2 unless country.nil?
   end
