@@ -5,14 +5,13 @@ module BorderGuru
 
       WEIGHT_UNIT = 'kg'
 
-      # list_holder is usually a cart or an order,
-      # both models that implement the HasProductSummaries
+      # HasProductSummaries
       # concern which provides #total_value and #total_weight.
-      def product_summaries(list_holder)
+      def product_summaries(order)
         {
-          subtotal: list_holder.total_value,
-          totalWeight: list_holder.total_weight,
-          dimensionalWeight: list_holder.total_dimensional_weight,
+          subtotal: order.total_price_with_discount, #order.total_value,
+          totalWeight: order.total_weight,
+          dimensionalWeight: order.total_dimensional_weight,
           dimensionalWeightScale: WEIGHT_UNIT,
           totalWeightScale: WEIGHT_UNIT,
         }

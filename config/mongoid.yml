@@ -3,7 +3,6 @@ production:
     default:
       database: a_chat_development
       hosts:
-        #- 207.226.141.12:27017
         - 192.168.100.100:27017
       options:
         user: gitb
