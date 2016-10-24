@@ -25,7 +25,7 @@ class Shared::OrdersController < ApplicationController
   def bill
     respond_to do |format|
       format.pdf do
-        render pdf: order.id.to_s, disposition: 'attachment'
+        render pdf: order.bill_id.to_s, disposition: 'attachment'
       end
     end
   end
