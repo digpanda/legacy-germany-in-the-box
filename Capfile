@@ -11,8 +11,7 @@ require 'capistrano/rails/migrations'
 require 'capistrano/rvm'
 require 'capistrano/nvm'
 
-# Manage the secrets.yml
-require 'capistrano/secrets_yml'
+require 'capistrano/linked_files'
 
 require "whenever/capistrano"
 

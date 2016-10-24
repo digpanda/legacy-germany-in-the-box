@@ -7,8 +7,8 @@ set :repo_url, 'https://digpanda:achat2cool@bitbucket.org/digpanda/achat-backend
 set :passenger_environment_variables, { :path => '/usr/bin:$PATH' }
 set :passenger_restart_command, '/usr/bin/passenger-config restart-app'
 
-set :linked_files, fetch(:linked_files, []).push('config/mongoid.yml', 'config/secrets.yml', 'config/application.yml')
-set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads')
+set :linked_files, %w(config/mongoid.yml config/secrets.yml) # config/application.yml
+set :linked_dirs, %w(log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system public/uploads)
 
 set :whenever_identifier, ->{ "#{fetch(:application)}_#{fetch(:stage)}" }
 
@@ -42,10 +42,11 @@ set :whenever_identifier, ->{ "#{fetch(:application)}_#{fetch(:stage)}" }
 
 # Default value for keep_releases is 5
 # set :keep_releases, 5
-
-after 'deploy:publishing', 'deploy:restart'
-
+#
 namespace :deploy do
+
+  # Uploading only linked_files
+  before :finishing, 'linked_files:upload_files'
 
   task :restart do
     invoke 'delayed_job:restart'

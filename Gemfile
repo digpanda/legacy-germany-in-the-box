@@ -75,6 +75,7 @@ group :development do
   gem "capistrano-rails"
   gem "capistrano-rvm"
   gem "capistrano-nvm"
+  gem 'capistrano-linked-files'
 
   gem "rubocop", require: false
 
