@@ -1,6 +1,8 @@
 de:
   discount:
     discount: Rabatt
+  product_box:
+    shipping_and_taxes_excluded: Versandkosten & Steuer zzgl.
   coupon:
     cannot_apply: Der Gutschein ist für diese Bestellung nicht gültig.
     error_occurred_applying: Fehler beim Einlösen des Gutscheins.

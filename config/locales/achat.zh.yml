@@ -1,6 +1,8 @@
 zh-CN:
   discount:
     discount: 打折
+  product_box:
+    shipping_and_taxes_excluded: 不含运费及关税
   coupon:
     cannot_apply:  此折扣码不适用于该订单。
     error_occurred_applying: 使用折扣码时出现错误。

@@ -22,7 +22,7 @@ class OrdersController < ApplicationController
   # to refactor (obviously)
   rescue BorderGuru::Error, SocketError => exception
     Rails.logger.info "Error Download Label Order \##{@order.id} : #{exception.message}"
-    throw_app_error(:resource_not_found, {error: "Your label is not ready yet. Please try again in a few hours."}) # (`#{exception.message}`)
+    throw_app_error(:resource_not_found, {error: "Your label is not ready yet. Please try again in a few hours."})
   end
 
   def show
