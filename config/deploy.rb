@@ -7,7 +7,7 @@ set :repo_url, 'https://digpanda:achat2cool@bitbucket.org/digpanda/achat-backend
 set :passenger_environment_variables, { :path => '/usr/bin:$PATH' }
 set :passenger_restart_command, '/usr/bin/passenger-config restart-app'
 
-set :linked_files, %w(config/mongoid.yml config/secrets.yml) # config/application.yml
+set :linked_files, %w(config/mongoid.yml config/secrets.yml config/application.yml)
 set :linked_dirs, %w(log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system public/uploads)
 
 set :whenever_identifier, ->{ "#{fetch(:application)}_#{fetch(:stage)}" }
