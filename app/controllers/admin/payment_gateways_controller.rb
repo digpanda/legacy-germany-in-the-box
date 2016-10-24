@@ -15,9 +15,18 @@ class Admin::PaymentGatewaysController < ApplicationController
 
   def update
     if payment_gateway.update(payment_gateway_params)
-      flash[:success] = "The payment_gateway was updated."
+      flash[:success] = "The payment gateway was updated."
     else
-      flash[:error] = "The payment_gateway was not updated (#{payment_gateway.errors.full_messages.join(', ')})"
+      flash[:error] = "The payment gateway was not updated (#{payment_gateway.errors.full_messages.join(', ')})"
+    end
+    redirect_to navigation.back(1)
+  end
+
+  def destroy
+    if payment_gateway.destroy
+      flash[:success] = "The payment gateway account was successfully destroyed."
+    else
+      flash[:error] = "The payment gateway was not destroyed (#{payment_gateway.errors.full_messages.join(', ')})"
     end
     redirect_to navigation.back(1)
   end
