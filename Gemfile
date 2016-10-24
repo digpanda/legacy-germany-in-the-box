@@ -74,6 +74,7 @@ group :development do
   gem "capistrano-rails"
   gem "capistrano-rvm"
   gem "capistrano-nvm"
+  gem 'capistrano-secrets-yml', '~> 1.0.0'
 
   gem "rubocop", require: false
 

@@ -91,6 +91,9 @@ GEM
     capistrano-rvm (0.1.2)
       capistrano (~> 3.0)
       sshkit (~> 1.2)
+    capistrano-secrets-yml (1.0.0)
+      capistrano (>= 3.1)
+      sshkit (>= 1.2.0)
     capybara (2.7.1)
       addressable
       mime-types (>= 1.16)
@@ -493,6 +496,7 @@ DEPENDENCIES
   capistrano-passenger (>= 0.1.1)
   capistrano-rails
   capistrano-rvm
+  capistrano-secrets-yml (~> 1.0.0)
   capybara
   carrierwave-ftp
   carrierwave-mongoid

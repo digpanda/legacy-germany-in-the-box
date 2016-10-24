@@ -122,7 +122,7 @@ staging:
     processing_redirect_url: https://www.germanyintheboxdev.com/customer/checkout/processing
     success_redirect_url : https://www.germanyintheboxdev.com/customer/checkout/success
     fail_redirect_url: https://www.germanyintheboxdev.com/customer/checkout/fail
-    
+
   merchants:
     reseller_id: nba81H29Gba
     package_id: digpandapaket1
