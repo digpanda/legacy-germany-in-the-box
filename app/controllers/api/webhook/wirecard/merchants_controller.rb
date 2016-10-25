@@ -101,7 +101,7 @@ class Api::Webhook::Wirecard::MerchantsController < Api::ApplicationController
   end
 
   def matching_payment_gateway(shop, payment_method)
-    PaymentGateway.where(shop_id: shop.id).where(payment_method: payment_method).first || PaymentGateway.new
+    PaymentGateway.where(shop_id: shop.id, payment_method: payment_method).first || PaymentGateway.new
   end
 
   # check if there's a correct reseller id
