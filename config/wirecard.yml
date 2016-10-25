@@ -13,21 +13,22 @@ defaults: &defaults
   elastic_api:
     # CREDIT CARD :
     creditcard:
-      username: 70000-APILUHN-CARD
-      password: 8mhwavKVb91T
+      username: <%= ENV["wirecard_elastic_api_creditcard_username"] %>
+      password: <%= ENV["wirecard_elastic_api_creditcard_password"] %>
       engine_url: https://api-test.wirecard.com/engine/rest/
     # UNIONPAY :
     upop:
-      username: engine.digpanda
-      password: x3Zyr8MaY7TDxj6F
+      username: <%= ENV["wirecard_elastic_api_upop_username"] %>
+      password: <%= ENV["wirecard_elastic_api_upop_password"] %>
       engine_url: https://sandbox-engine.thesolution.com/engine/rest/
 
   hpp:
     # CREDIT CARD :
     creditcard:
       hosted_payment_url: https://api-test.wirecard.com/engine/hpp/
-      psp_name: wirecard
       notification_url: http://wirecard.germanyintebox.ultrahook.com
+      psp_name: wirecard
+
     # UNIONPAY :
     upop:
       hosted_payment_url: https://sandbox-engine.thesolution.com/engine/hpp/
@@ -46,8 +47,8 @@ defaults: &defaults
     fail_redirect_url: http://local.dev:3000/customer/checkout/fail
 
   merchants:
-    reseller_id: nba81H29Gba
-    package_id: digpandapaket1
+    reseller_id: <%= ENV["wirecard_merchants_reseller_id"] %>
+    package_id: <%= ENV["wirecard_merchants_package_id"] %>
     country: DEU
     signup: https://www.checkoutportal.de/de_DE/signup/
     status:
@@ -67,41 +68,9 @@ development:
 test:
   <<: *defaults
 
-  elastic_api:
-    # CREDIT CARD :
-    creditcard:
-      username: 70000-APILUHN-CARD
-      password: 8mhwavKVb91T
-      engine_url: https://api-test.wirecard.com/engine/rest/
-    # UNIONPAY :
-    upop:
-      username: engine.digpanda
-      password: x3Zyr8MaY7TDxj6F
-      engine_url: https://sandbox-engine.thesolution.com/engine/rest/
-
-  hpp:
-    creditcard:
-      hosted_payment_url: https://api-test.wirecard.com/engine/hpp/
-      psp_name: wirecard
-      notification_url: http://wirecard.germanyintebox.ultrahook.com
-    upop:
-      hosted_payment_url: https://sandbox-engine.thesolution.com/engine/hpp/
-      psp_name: demo
-
-    # UNIVERSAL
-    transaction_types:
-      upop: debit
-      creditcard: purchase
-      default: purchase
-
-    default_redirect_url: http://local.dev:3000/customer/checkout/success
-    cancel_redirect_url: http://local.dev:3000/customer/checkout/cancel
-    processing_redirect_url: http://local.dev:3000/customer/checkout/processing
-    success_redirect_url : http://local.dev:3000/customer/checkout/success
-    fail_redirect_url: http://local.dev:3000/customer/checkout/fail
-
 staging:
   <<: *defaults
+
   hpp:
     creditcard:
       hosted_payment_url: https://api-test.wirecard.com/engine/hpp/
@@ -113,9 +82,9 @@ staging:
 
     # UNIVERSAL
     transaction_types:
+      default: purchase
       upop: debit
       creditcard: purchase
-      default: purchase
 
     default_redirect_url: https://www.germanyintheboxdev.com/customer/checkout/success
     cancel_redirect_url: https://www.germanyintheboxdev.com/customer/checkout/cancel
@@ -123,47 +92,36 @@ staging:
     success_redirect_url : https://www.germanyintheboxdev.com/customer/checkout/success
     fail_redirect_url: https://www.germanyintheboxdev.com/customer/checkout/fail
 
-  merchants:
-    reseller_id: nba81H29Gba
-    package_id: digpandapaket1
-    country: DEU
-    signup: https://www.checkoutportal.de/de_DE/signup/
-    status:
-      - unactive
-      - active
-      - processing
-      - documents_complete
-      - declined
-      - terminated
-
 production:
   <<: *defaults
+
   elastic_api:
     # CREDIT CARD :
     creditcard:
-      username: 000000316FF50E1E-EMDigPanda
-      password: pdE_cf0SnYAq
+      username: <%= ENV["wirecard_elastic_api_creditcard_username"] %>
+      password: <%= ENV["wirecard_elastic_api_creditcard_password"] %>
       engine_url: https://api.wirecard.com/engine/rest/
+
     # UNIONPAY :
-    upop: # TODO : we might have to change that for UNIONPAY integration in prod
-      username: 000000316FF50E1E-EMDigPanda
-      password: pdE_cf0SnYAq
+    upop:
+      username: <%= ENV["wirecard_elastic_api_upop_username"] %>
+      password: <%= ENV["wirecard_elastic_api_upop_password"] %>
       engine_url: https://api.wirecard.com/engine/rest/
 
 
   hpp:
+
     # CREDIT CARD :
     creditcard:
       hosted_payment_url: https://api.wirecard.com/engine/hpp/
-      psp_name: wirecard
-      default_payment_method: # let empty to make no choice
       notification_url: https://www.germanyinthebox.com/api/webhook/wirecard/customer
+      psp_name: wirecard
+
     # UNIONPAY :
-    upop: # TODO : we might have to change that for UNIONPAY integration in prod
+    upop:
       hosted_payment_url: https://api.wirecard.com/engine/hpp/
-      psp_name: wirecard
-      default_payment_method: # let empty to make no choice
       notification_url: https://www.germanyinthebox.com/api/webhook/wirecard/customer
+      psp_name: wirecard
 
     # UNIVERSAL
     transaction_types:

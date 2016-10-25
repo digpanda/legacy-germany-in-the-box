@@ -1,8 +1,6 @@
-#
-# Webhook communication with Wirecard.
-# Any communication with Wirecard from server to server linked to the merchant / shopkeeper
-# Such as `wirecard_status` to activate their payment account is under this controller.
-#
+# webhook communication with Wirecard.
+# any communication with Wirecard from server to server linked to the merchant / shopkeeper
+# such as `wirecard_status` to activate their payment account is under this controller.
 class Api::Webhook::Wirecard::MerchantsController < Api::ApplicationController
 
   WIRECARD_CONFIG = Rails.application.config.wirecard
