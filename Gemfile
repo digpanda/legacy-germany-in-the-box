@@ -1,4 +1,7 @@
+
 source "https://rubygems.org"
+
+gem "wirecard-elastic", :path => "../../wirecard-elastic"
 
 gem "thin"
 gem "rails", "4.2.1"

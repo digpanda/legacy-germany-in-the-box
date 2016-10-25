@@ -6,6 +6,11 @@ GIT
       omniauth (~> 1.0)
       omniauth-oauth2 (~> 1.0)
 
+PATH
+  remote: ../../wirecard-elastic
+  specs:
+    wirecard-elastic (0.1.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -563,6 +568,7 @@ DEPENDENCIES
   wicked_pdf
   will_paginate
   will_paginate-bootstrap
+  wirecard-elastic!
   wkhtmltopdf-binary
 
 BUNDLED WITH

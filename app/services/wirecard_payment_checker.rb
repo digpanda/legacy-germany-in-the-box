@@ -45,7 +45,7 @@ class WirecardPaymentChecker < BaseService
   # get the remote transaction and raise error in case the connection isn't correctly established
   # or the transaction has basically failed
   def remote_transaction
-    @remote_transaction ||= Wirecard::ElasticApi.transaction(merchant_id, transaction_id, payment_method).raise_response_issues
+    @remote_transaction ||= Wirecard::Elastic.transaction(merchant_id, transaction_id, payment_method).raise_response_issues
   end
 
   # the elastic API can reply positively even if it's a simple `get-url` transaction
