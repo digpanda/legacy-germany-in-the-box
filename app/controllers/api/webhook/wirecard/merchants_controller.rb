@@ -112,7 +112,6 @@ class Api::Webhook::Wirecard::MerchantsController < Api::ApplicationController
   def required_merchant_datas
     devlog.info "We try to handle the `postback` data"
     return false if params["postback"].nil?
-
     @datas = process_postback(params["postback"])
     devlog.info "Parameters : #{output_hash(datas)}"
 
