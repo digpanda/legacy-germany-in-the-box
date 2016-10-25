@@ -4,6 +4,9 @@
 <li class="<%= menu_active? shared_notifications_path %>">
   <%= link_to I18n.t(:notifications, scope: :top_menu), shared_notifications_path %>
 </li>
+<li class="<%= menu_active? admin_categories_path %>">
+  <%= link_to "Categories", admin_categories_path %>
+</li>
 <li class="<%= menu_active? admin_users_path %>">
   <%= link_to I18n.t(:accounts, scope: :edit_accounts), admin_users_path %>
 </li>

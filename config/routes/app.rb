@@ -33,6 +33,8 @@ end
 
 # Admin related
 namespace :admin do
+  resources :categories do
+  end
   resources :coupons do
     patch :cancel
     patch :approve

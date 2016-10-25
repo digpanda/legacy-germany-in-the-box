@@ -1,0 +1,54 @@
+<% if categories.size > 0 %>
+<table class="white-table">
+  <thead>
+    <th>
+      Slug
+    </th>
+    <th>
+      Description
+    </th>
+    <th>
+      Shops
+    </th>
+    <th>
+      Position
+    </th>
+    <th>
+      Created At
+    </th>
+    <th>
+      Updated At
+    </th>
+  </thead>
+  <tbody>
+    <% categories.each do |category| %>
+    <tr>
+      <td>
+        <%= category.slug %>
+      </td>
+      <td>
+        <%= editable_field(category, admin_category_path(category), :desc, :text_field) %>
+      </td>
+      <td>
+        <%= category.shops.count %>
+      </td>
+      <td>
+        <%= editable_field(category, admin_category_path(category), :position, :text_field) %>
+      </td>
+      <td>
+        <%= category.c_at %>
+      </td>
+      <td>
+        <%= category.u_at %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<% else %>
+<div class="+white-box +centered">
+  <h4>
+    No category found
+  </h4>
+</div>
+<% end %>
