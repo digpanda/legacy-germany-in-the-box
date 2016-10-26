@@ -10,6 +10,7 @@ PATH
   remote: ../../wirecard-elastic
   specs:
     wirecard-elastic (0.1.0)
+      activesupport
 
 GEM
   remote: https://rubygems.org/
