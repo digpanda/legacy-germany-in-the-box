@@ -45,6 +45,8 @@ class WirecardPaymentChecker < BaseService
   # get the remote transaction and raise error in case the connection isn't correctly established
   # or the transaction has basically failed
   def remote_transaction
+    SlackDispatcher.new.message("#{merchant_id} #{transaction_id} #{payment_method}")
+    SlackDispatcher.new.message("#{Wirecard.configuration.creditcard} / #{Wirecard.configuration.upop}")
     @remote_transaction ||= Wirecard::Elastic.transaction(merchant_id, transaction_id, payment_method).raise_response_issues
   end
 
