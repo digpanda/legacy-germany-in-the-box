@@ -1,7 +1,11 @@
 
 source "https://rubygems.org"
 
-gem "wirecard-elastic", :path => "../../wirecard-elastic"
+# Loschcode gems
+# for casual installation, just use the version (e.g. "0.1.1")
+# the git repo is locally override, i need to detail the remote repo for it to work
+# for direct local change without repo, use :path => "../../wirecard-elastic"
+gem "wirecard-elastic", github: "Loschcode/wirecard-elastic", branch: "master"
 
 gem "thin"
 gem "rails", "4.2.1"
@@ -103,9 +107,11 @@ group :development, :test, :staging, :local do
 
 end
 
+
 group :development, :local do
   gem "spring" # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem "better_errors"
   gem "minitest", "5.8.3"
   gem "faker"
+
 end

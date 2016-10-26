@@ -20,7 +20,7 @@ class WirecardPaymentChecker < BaseService
     # originally silent error turned into a raise error to be more clear
     # it won't get the transaction detail if it's not a purchase / debit
     unless finalized_transaction?
-      raise Wirecard::ElasticApi::Error, "Transaction type is not valid. Please verify you used the correct transaction-id (#{remote_transaction.response.transaction_type})"
+      raise Wirecard::Elastic::Error, "Transaction type is not valid. Please verify you used the correct transaction-id (#{remote_transaction.response.transaction_type})"
     end
     # this part can raise errors easily
     refresh_order_payment_from_api!
@@ -29,7 +29,7 @@ class WirecardPaymentChecker < BaseService
     # would different between the order and payment time
     order_payment.refresh_currency_amounts!
     return_with(:success)
-  rescue Wirecard::ElasticApi::Error => exception
+  rescue Wirecard::Elastic::Error => exception
     return_with(:error, exception)
   end
 

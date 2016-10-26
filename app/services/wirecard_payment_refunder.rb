@@ -22,7 +22,7 @@ class WirecardPaymentRefunder < BaseService
 
   def response
     @response ||= Wirecard::Elastic.refund(order_payment.merchant_id, order_payment.transaction_id, order_payment.payment_method).response
-  rescue Wirecard::ElasticApi::Error
+  rescue Wirecard::Elastic::Error
     raise Error, "A problem occured while trying to refund this transaction"
   end
 
