@@ -4,7 +4,7 @@ source "https://rubygems.org"
 # for casual installation, just use the version (e.g. "0.1.1")
 # the git repo is locally override, i need to detail the remote repo for it to work
 # for direct local change without repo, use :path => "../../wirecard-elastic"
-gem "wirecard-elastic", git: "https://github.com/Loschcode/wirecard-elastic", branch: "master", tag: "v0.2.2"
+gem "wirecard-elastic", git: "https://github.com/Loschcode/wirecard-elastic.git", branch: "master", tag: "v0.2.2"
 
 gem "thin"
 gem "rails", "4.2.1"

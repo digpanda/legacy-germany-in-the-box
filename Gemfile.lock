@@ -1,10 +1,10 @@
 GIT
-  remote: git://github.com/Loschcode/wirecard-elastic.git
+  remote: https://github.com/Loschcode/wirecard-elastic.git
   revision: dbf8bf2aee5a887e031ce50706d0d4bcdb0477b9
   branch: master
   tag: v0.2.2
   specs:
-    wirecard-elastic (0.2.3)
+    wirecard-elastic (0.2.2)
       activesupport
 
 GIT
