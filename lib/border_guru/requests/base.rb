@@ -2,7 +2,7 @@ module BorderGuru
   module Requests
     class Base
 
-      CONFIG = Rails.application.config.border_guru  unless const_defined? :CONFIG
+      CONFIG = Rails.application.config.border_guru unless const_defined? :CONFIG
 
       @@access_token =
         OAuth::AccessToken.new(OAuth::Consumer.new(

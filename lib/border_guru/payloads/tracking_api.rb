@@ -1,4 +1,4 @@
-require 'border_guru/payloads/concerns/having_vendibles'
+require_relative 'concerns/having_vendibles'
 
 module BorderGuru
   module Payloads
