@@ -6,6 +6,7 @@ source "https://rubygems.org"
 # for direct local change without repo, use :path => "../../wirecard-elastic"
 #gem "wirecard-elastic", github: "Loschcode/wirecard-elastic", branch: "master", tag: "v0.2.2"
 
+gem "nokogiri", "1.6.7.2"
 gem "thin"
 gem "rails", "4.2.1"
 gem "mongoid", "~> 5.0.0"

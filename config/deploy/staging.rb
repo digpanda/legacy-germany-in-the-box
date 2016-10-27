@@ -6,6 +6,8 @@ set :rvm_ruby_version, '2.3.0'
 set :rvm_type, :user
 set :rvm_custom_path, '/usr/share/rvm'
 
+set :bundle_env_variables, { 'NOKOGIRI_USE_SYSTEM_LIBRARIES' => 1 }
+
 set :nvm_node, 'v5.0.0'
 set :nvm_type, :user
 set :nvm_map_bins, %w{node npm}
