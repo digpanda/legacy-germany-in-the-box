@@ -2,6 +2,8 @@
 # on the wirecard elastic api gem
 Wirecard::Elastic.config do |config|
 
+  # the engine URL must be a full URL to the elastic engine you use
+  # you can add different credentials for each type of payment (Credit Card, China Union Pay, ...)
   config.creditcard = {
     :username   => ENV["wirecard_elastic_api_creditcard_username"],
     :password   => ENV["wirecard_elastic_api_creditcard_password"],

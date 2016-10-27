@@ -14,7 +14,7 @@ class WirecardPaymentChecker < BaseService
     @request_id     = args[:request_id] || order_payment.request_id
     @payment_method = args[:payment_method] || order_payment.payment_method
   end
-  
+
   def update_order_payment!
     unverified_order_payment!
     # originally silent error turned into a raise error to be more clear
@@ -45,7 +45,7 @@ class WirecardPaymentChecker < BaseService
   # get the remote transaction and raise error in case the connection isn't correctly established
   # or the transaction has basically failed
   def remote_transaction
-    @remote_transaction ||= Wirecard::Elastic.transaction(merchant_id, transaction_id, payment_method).raise_response_issues
+    @remote_transaction ||= Wirecard::Elastic.transaction(merchant_id, transaction_id, payment_method).safe
   end
 
   # the elastic API can reply positively even if it's a simple `get-url` transaction
