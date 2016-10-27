@@ -537,6 +537,7 @@ DEPENDENCIES
   mongoid_includes
   mongoid_magic_counter_cache
   mongoid_rails_migrations
+  nokogiri (= 1.6.7.2)
   oauth
   omniauth
   omniauth-wechat-oauth2!
