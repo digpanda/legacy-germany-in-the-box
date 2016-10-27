@@ -1,12 +1,4 @@
 GIT
-  remote: git://github.com/Loschcode/wirecard-elastic.git
-  revision: 21d6cec2fcc01a7916e41ca0176e8455b0103f09
-  branch: master
-  specs:
-    wirecard-elastic (0.1.1)
-      activesupport
-
-GIT
   remote: https://github.com/yangsr/omniauth-wechat-oauth2.git
   revision: 3dd51708e2fc4019a5c58dbf92e2c17d1733fc0c
   specs:
@@ -571,7 +563,6 @@ DEPENDENCIES
   wicked_pdf
   will_paginate
   will_paginate-bootstrap
-  wirecard-elastic!
   wkhtmltopdf-binary
 
 BUNDLED WITH
