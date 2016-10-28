@@ -74,6 +74,19 @@ class Product
       false
     end
 
+    # fetch the product and place them sorted by category
+    # one product can have multiple categories
+    def categories_array
+      products_hash ||= {}
+      self.all.each do |product|
+        product.categories.each do |category|
+          products_hash["#{category.id}"] ||= []
+          products_hash["#{category.id}"] << product
+        end
+      end
+      products_hash
+    end
+
   end
 
   def favorite_of?(user)

@@ -8983,6 +8983,13 @@ img.mfp-img {
 .product-quantity__plus {
   margin: 0.5em; }
 
+/* line 2, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_products-list.sass */
+.products-list hr {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  border: 0;
+  border-top: 1px solid #fdfdfd; }
+
 /* line 32, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
 .server-menu {
   line-height: 2;
