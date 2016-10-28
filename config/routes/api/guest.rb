@@ -8,7 +8,7 @@ namespace :guest do
   end
 
   resources :order_items  do
-    match :set_quantity, via: [:patch], action: :set_quantity, as: :set_quantity, :on => :member
+    patch :set_quantity
   end
 
   resources :products  do

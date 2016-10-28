@@ -1,8 +1,8 @@
 concerns :shared_errors
 
-# We should improve this by putting it into a home_controller with index
 root to: 'guest/home#show'
 
+# we load the different routes depending on subsections
 draw :app, :admin
 draw :app, :customer
 draw :app, :guest
