@@ -11,7 +11,7 @@
         <div class="col-md-9">
           <h4>
             <%= I18n.t(:shop, scope: :cart) + ': ' %>
-            <%= link_to @shops[shop][:name], shop_path(shop) %>
+            <%= link_to @shops[shop][:name], guest_shop_path(shop) %>
           </h4>
         </div>
       </div>

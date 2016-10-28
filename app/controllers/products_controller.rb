@@ -140,11 +140,7 @@ class ProductsController < ApplicationController
     @products = Product.can_buy.all
 
   end
-
-  def show
-    @featured_sku = @product.decorate.featured_sku.decorate
-  end
-
+  
   def create
     @product = Product.new(product_params)
     @product.shop = Shop.find(params[:shop_id])

@@ -3,12 +3,15 @@ class Guest::ProductsController < ApplicationController
   before_action :set_product
 
   attr_reader :product
-  # Nothing yet (go to /api/)
+
+  def show
+    @featured_sku = @product.decorate.featured_sku.decorate
+  end
 
   private
 
   def set_product
-    @product = OrderItem::find(params[:id]) unless params[:id].nil?
+    @product = Product::find(params[:id])
   end
 
 end
