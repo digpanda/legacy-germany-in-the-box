@@ -121,9 +121,12 @@ namespace :guest do
   resources :order_items  do
   end
 
+  resources :categories do
+  end
+
   resources :shops do
   end
-  
+
   resources :products  do
   end
 
