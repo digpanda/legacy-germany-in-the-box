@@ -1587,36 +1587,6 @@ var Translations = {
 module.exports = Translations;
 });
 
-require.register("javascripts/models/user.js", function(exports, require, module) {
-"use strict";
-
-/**
- * User Class
- */
-var User = {
-
-  /**
-   * Check if user is auth or not via API call
-   */
-  isAuth: function isAuth(callback) {
-    // NOT CURRENTLY IN USE IN THE SYSTEM (REMOVE COMMENT IF YOU ADD IT SOMEWHERE)
-
-    $.ajax({
-      method: "GET",
-      url: "api/users/is_auth",
-      data: {}
-
-    }).done(function (res) {
-
-      callback(res);
-    });
-  }
-
-};
-
-module.exports = User;
-});
-
 require.register("javascripts/starters.js", function(exports, require, module) {
 'use strict';
 

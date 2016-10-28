@@ -4,12 +4,6 @@ concern :shared_errors do
   get '500', to:  'errors#server_error'
 end
 
-concern :shared_user do
-  match 'users/sign_out', via: [:delete],   to: 'sessions#destroy',             as: :signout
-  match :cancel_login,    via: [:get],      to: 'sessions#cancel_login',        as: :cancel_login
-  match :cancel_signup,   via: [:get] ,     to: 'registrations#cancel_signup',  as: :cancel_signup
-end
-
 concern :shared_products do
   match :approve, via: [:patch], action: :approve, as: :approve
   match :disapprove, via: [:patch], action: :disapprove, as: :disapprove

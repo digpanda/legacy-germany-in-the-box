@@ -1,9 +1,13 @@
-#if Rails.env.production?
-  concerns :shared_errors
-#end
+concerns :shared_errors
 
 # We should improve this by putting it into a home_controller with index
 root to: 'guest/home#show'
+
+draw :app, :admin
+draw :app, :customer
+draw :app, :guest
+draw :app, :shared
+draw :app, :shopkeeper
 
 resources :languages, only: [:update] do
 end
@@ -13,65 +17,9 @@ mount ChinaCity::Engine => '/china_city'
 devise_for :users, :controllers => { registrations: "registrations", sessions: "sessions", passwords: "passwords", omniauth_callbacks: "omniauth_callbacks"}
 
 devise_scope :user do
-  concerns :shared_user
-end
-
-# Admin related
-namespace :admin do
-  resources :categories do
-  end
-  resources :coupons do
-    patch :cancel
-    patch :approve
-  end
-  resources :payment_gateways do
-  end
-  resources :notes do
-  end
-  resources :shops do
-    get :emails, on: :collection
-    patch :approve
-    patch :disapprove
-  end
-  resources :shop_applications do
-  end
-  resources :orders do
-    patch :force_get_shipping
-  end
-  resource :account, :controller => 'account' do
-  end
-  resources :users do
-  end
-  resources :order_payments do
-    post :refund
-    post :check
-    patch :transaction_id
-  end
-  resource :settings, only: [:show, :update] do
-  end
-end
-
-# Shopkeeper related
-namespace :shopkeeper do
-
-  resources :orders do
-    patch :process_order
-    patch :shipped
-  end
-
-  resource :account, :controller => 'account' do
-  end
-
-  resources :payments do
-  end
-
-  resources :supports do
-  end
-
-  resource :wirecard do
-    get :apply, :on => :member
-  end
-
+  match 'users/sign_out', via: [:delete],   to: 'sessions#destroy',             as: :signout
+  match :cancel_login,    via: [:get],      to: 'sessions#cancel_login',        as: :cancel_login
+  match :cancel_signup,   via: [:get] ,     to: 'registrations#cancel_signup',  as: :cancel_signup
 end
 
 resources :addresses, except: [:new, :edit] do
@@ -90,97 +38,6 @@ resources :shops, except: [:new, :edit, :create] do
 end
 
 resources :shop_applications, except: [:edit, :update] do
-end
-
-# Guest related
-namespace :guest do
-
-  resource :pages do
-    get :shipping_cost
-    get :sending_guide
-    get :menu
-    get :agb
-    get :privacy
-    get :imprint
-    get :saleguide
-    get :customer_guide
-    get :customer_qa
-    get :customer_agb
-    get :fees
-    get :home
-  end
-
-  resource :home, :controller => 'home' do
-  end
-
-  resource :feedback, :controller => 'feedback' do
-    get :product_suggestions
-    get :payment_speed_report
-    get :bug_report
-    get :return_application
-    get :overall_rate
-  end
-
-  resources :order_items  do
-  end
-
-  resources :categories do
-  end
-
-  resources :shops do
-  end
-
-  resources :products  do
-  end
-
-  resources :shop_applications, :only => [:new, :create] do # maybe it will become shops/applications at some point
-  end
-
-end
-
-# Customer related
-namespace :customer do
-
-  resource :cart, :controller => 'cart' do
-  end
-
-  resource :checkout, :controller => 'checkout' do
-    get :payment_method
-    post :gateway
-
-    post :success
-    post :fail
-    post :processing
-    get :cancel
-  end
-
-  resource :account, :controller => 'account' do
-  end
-
-  resources :orders  do
-    patch :continue
-
-    resource :border_guru, :controller => 'orders/border_guru' do
-      get :tracking_id
-    end
-    resource :coupons, :controller => 'orders/coupons' do
-    end
-  end
-
-  resources :favorites  do
-  end
-
-end
-
-# Shared related
-namespace :shared do
-  resources :orders do
-    get   :bill
-    patch :cancel
-  end
-  resources :notifications do
-  end
-
 end
 
 resources :orders, only: [:destroy, :show] do
