@@ -133,7 +133,7 @@ zh-CN:
       addresses: 地址集
       products: 产品集
     shop_application:
-      code: 首次登陆密码
+      code: 首次登录密码
       desc: 描述
       email: 注册邮件
       fname: 名
