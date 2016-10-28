@@ -429,46 +429,6 @@ var OrdersShow = {
 module.exports = OrdersShow;
 });
 
-require.register("javascripts/controllers/pages/home.js", function(exports, require, module) {
-"use strict";
-
-/**
- * Apply Wirecard Class
- */
-var Home = {
-
-  /**
-   * Initializer
-   */
-  init: function init() {
-
-    /*
-        $('#js-slider').show(); // Page hook fix : we display:none; and cancel it here
-    
-    
-        $('#js-slider').lightSlider({
-          "item": 1,
-          "loop": true,
-          "slideMargin": 0,
-          "pager": false,
-          "auto": true,
-          "pause": "3000",
-          "speed": "1000",
-          "adaptiveHeight": true,
-          "verticalHeight": 1000,
-          "mode": "fade",
-          "enableDrag": false,
-          "enableTouch": true
-        });
-    */
-
-  }
-
-};
-
-module.exports = Home;
-});
-
 require.register("javascripts/controllers/products/clone_sku.js", function(exports, require, module) {
 'use strict';
 

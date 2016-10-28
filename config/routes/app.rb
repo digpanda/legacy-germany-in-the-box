@@ -3,7 +3,7 @@
 #end
 
 # We should improve this by putting it into a home_controller with index
-root to: 'pages#home'
+root to: 'guest/home#show'
 
 resources :languages, only: [:update] do
 end
@@ -14,21 +14,6 @@ devise_for :users, :controllers => { registrations: "registrations", sessions: "
 
 devise_scope :user do
   concerns :shared_user
-end
-
-resource :page do
-  get :shipping_cost
-  get :sending_guide
-  get :menu
-  get :agb
-  get :privacy
-  get :imprint
-  get :saleguide
-  get :customer_guide
-  get :customer_qa
-  get :customer_agb
-  get :fees
-  get :home
 end
 
 # Admin related
@@ -109,6 +94,24 @@ end
 
 # Guest related
 namespace :guest do
+
+  resource :pages do
+    get :shipping_cost
+    get :sending_guide
+    get :menu
+    get :agb
+    get :privacy
+    get :imprint
+    get :saleguide
+    get :customer_guide
+    get :customer_qa
+    get :customer_agb
+    get :fees
+    get :home
+  end
+
+  resource :home, :controller => 'home' do
+  end
 
   resource :feedback, :controller => 'feedback' do
     get :product_suggestions
