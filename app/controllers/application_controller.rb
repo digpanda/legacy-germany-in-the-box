@@ -142,11 +142,11 @@ class ApplicationController < ActionController::Base
   end
 
   def breadcrumb_shop
-    add_breadcrumb @shop.shopname, shop_path(@shop) unless @shop.nil?
+    add_breadcrumb @shop.shopname, guest_shop_path(@shop) unless @shop.nil?
   end
 
   def breadcrumb_product
-    add_breadcrumb @product.name, product_path(@product) unless @product.name.nil?
+    add_breadcrumb @product.name, guest_product_path(@product) unless @product.name.nil?
   end
 
   def breadcrumb_home

@@ -65,6 +65,18 @@ class Product
       Product.can_buy.where(name: /(#{query.split.join('|')})/i)
     end
 
+    # TODO : to improve
+    # right now it doesn't order by discount
+    def with_discount
+      with_discount ||= []
+      self.all.each do |product|
+        if product.skus.where(:discount.gt => 0).count > 0
+          with_discount << product
+        end
+      end
+      with_discount
+    end
+
     def discount_products
       self.all.to_a.each do |product|
         if product.discount?
@@ -72,6 +84,19 @@ class Product
         end
       end
       false
+    end
+
+    # fetch the product and place them sorted by category
+    # one product can have multiple categories
+    def categories_array
+      products_hash ||= {}
+      self.all.each do |product|
+        product.categories.each do |category|
+          products_hash["#{category.id}"] ||= []
+          products_hash["#{category.id}"] << product
+        end
+      end
+      products_hash
     end
 
   end

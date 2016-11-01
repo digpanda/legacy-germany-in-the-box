@@ -2,7 +2,7 @@
 <!--
 <div class="row slider">
 
-  = render partial: "pages/slider"
+  = render partial: "guest/home/show/slider"
 
 </div>
 -->
@@ -21,11 +21,12 @@
 
 <% if potential_customer? %>
 
-  <%= render "pages/home/categories" %>
-  <%= render "pages/home/home_steps" %>
-  
+  <%= render "guest/home/show/announcements" %>
+  <%= render "guest/home/show/categories" %>
+  <%= render "guest/home/show/home_steps" %>
+
 <% else %>
 
-  <%= render "pages/home/marketplace" %>
+  <%= render "guest/home/show/marketplace" %>
 
 <% end %>

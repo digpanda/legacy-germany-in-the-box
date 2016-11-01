@@ -35,7 +35,7 @@
       <!-- First Shop Display in Front -->
       <% unless @featured_shop.nil? %>
 
-      <a href="<%= shop_path(@featured_shop) %>">
+      <a href="<%= guest_shop_path(@featured_shop) %>">
       <div class="col-md-7 shop-blocks__main --shop" style="background-image:url(<%= @featured_shop.decorate.image_url(:banner, :detail) %>);">
         <div class="+overlay"></div>
         <div class="+onoverlay">
@@ -76,7 +76,7 @@
 
       <% @casual_shops.each do |shop| %>
 
-      <a href="<%= shop_path(shop) %>">
+      <a href="<%= guest_shop_path(shop) %>">
       <div class="col-md-4 shop-blocks__secondary --shop" style="background-image:url(<%= shop.decorate.image_url(:banner, :detail) %>);">
         <div class="+overlay"></div>
 

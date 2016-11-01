@@ -5,6 +5,7 @@
     <div class="shop-page-footer__content">
 
         <h3><%= I18n.t(:shop_photo, scope: :title) %></h3>
+        <hr>
 
         <!-- Images of the shop -->
         <%= render partial: "shops/shop_footer_images", :locals => {shop: shop} %>
@@ -18,6 +19,7 @@
 
             <div>
               <h3><%= I18n.t(detail_attribute.to_sym, scope: :title) %></h3>
+              <hr>
               <%= simple_format(shop.public_send(detail_attribute)) %>
             </div>
 

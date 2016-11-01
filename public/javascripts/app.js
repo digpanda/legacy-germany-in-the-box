@@ -400,281 +400,7 @@ var GuestFeedback = {
 module.exports = GuestFeedback;
 });
 
-require.register("javascripts/controllers/orders/show.js", function(exports, require, module) {
-'use strict';
-
-/**
- * OrdersShow class
- */
-var OrdersShow = {
-
-  /**
-   * Initializer
-   */
-  init: function init() {
-
-    this.multiSelectSystem();
-  },
-
-  multiSelectSystem: function multiSelectSystem() {
-
-    $('select.sku-variants-options').multiselect({
-      enableCaseInsensitiveFiltering: true,
-      maxHeight: 400
-    }).multiselect('disable');
-  }
-
-};
-
-module.exports = OrdersShow;
-});
-
-require.register("javascripts/controllers/pages/home.js", function(exports, require, module) {
-"use strict";
-
-/**
- * Apply Wirecard Class
- */
-var Home = {
-
-  /**
-   * Initializer
-   */
-  init: function init() {
-
-    /*
-        $('#js-slider').show(); // Page hook fix : we display:none; and cancel it here
-    
-    
-        $('#js-slider').lightSlider({
-          "item": 1,
-          "loop": true,
-          "slideMargin": 0,
-          "pager": false,
-          "auto": true,
-          "pause": "3000",
-          "speed": "1000",
-          "adaptiveHeight": true,
-          "verticalHeight": 1000,
-          "mode": "fade",
-          "enableDrag": false,
-          "enableTouch": true
-        });
-    */
-
-  }
-
-};
-
-module.exports = Home;
-});
-
-require.register("javascripts/controllers/products/clone_sku.js", function(exports, require, module) {
-'use strict';
-
-var Translation = require('javascripts/lib/translation');
-
-/**
- * ProductCloneSku Class
- */
-var ProductCloneSku = {
-
-  /**
-   * Initializer
-   */
-  init: function init() {
-    // WE SHOULD DEFINITELY REFACTOR THOSE 3 CLASSES (NEW, EDIT, CLONE) INTO ONE
-
-    $('select.sku-variants-options').multiselect({
-      nonSelectedText: Translation.find('non_selected_text', 'multiselect'),
-      nSelectedText: Translation.find('n_selected_text', 'multiselect'),
-      numberDisplayed: 3,
-      maxHeight: 400,
-      onChange: function onChange(option, checked) {
-        var v = $('.sku-variants-options');
-        if (v.val()) {
-          v.next().removeClass('invalidBorderClass');
-        } else {
-          v.next().addClass('invalidBorderClass');
-        }
-      }
-    });
-
-    $('#edit_product_detail_form_btn').click(function () {
-      var v = $('select.sku-variants-options');
-
-      if (v.val() == null) {
-        v.next().addClass('invalidBorderClass');
-        return false;
-      }
-
-      if ($('img.img-responsive[src=""]').length >= 4) {
-        $('.fileUpload:first').addClass('invalidBorderClass');
-        return false;
-      }
-
-      return true;
-    });
-
-    $('input.img-file-upload').click(function () {
-      if ($('img.img-responsive[src=""]').length > 0) {
-        $('.fileUpload').removeClass('invalidBorderClass');
-      }
-    });
-  }
-
-};
-
-module.exports = ProductCloneSku;
-});
-
-require.register("javascripts/controllers/products/edit_sku.js", function(exports, require, module) {
-'use strict';
-
-var Translation = require('javascripts/lib/translation');
-
-/**
- * ProductEditSku Class
- */
-var ProductEditSku = {
-
-  /**
-   * Initializer
-   */
-  init: function init() {
-    // WE SHOULD DEFINITELY REFACTOR THOSE 3 CLASSES (NEW, EDIT, CLONE) INTO ONE
-
-    $('select.sku-variants-options').multiselect({
-      nonSelectedText: Translation.find('non_selected_text', 'multiselect'),
-      nSelectedText: Translation.find('n_selected_text', 'multiselect'),
-      numberDisplayed: 3,
-      maxHeight: 400,
-      onChange: function onChange(option, checked) {
-        var v = $('.sku-variants-options');
-        if (v.val()) {
-          v.next().removeClass('invalidBorderClass');
-        } else {
-          v.next().addClass('invalidBorderClass');
-        }
-      }
-    });
-
-    $('#edit_product_detail_form_btn').click(function () {
-      var v = $('select.sku-variants-options');
-
-      if (v.val() == null) {
-        v.next().addClass('invalidBorderClass');
-        return false;
-      }
-
-      if ($('img.img-responsive[src=""]').length >= 4) {
-        $('.fileUpload:first').addClass('invalidBorderClass');
-        return false;
-      }
-
-      return true;
-    });
-
-    $('input.img-file-upload').click(function () {
-      if ($('img.img-responsive[src=""]').length > 0) {
-        $('.fileUpload').removeClass('invalidBorderClass');
-      }
-    });
-  }
-
-};
-
-module.exports = ProductEditSku;
-});
-
-require.register("javascripts/controllers/products/new_sku.js", function(exports, require, module) {
-'use strict';
-
-var Translation = require('javascripts/lib/translation');
-
-/**
- * ProductNewSku Class
- */
-var ProductNewSku = {
-
-  /**
-   * Initializer
-   */
-  init: function init() {
-    // WE SHOULD DEFINITELY REFACTOR THOSE 3 CLASSES (NEW, EDIT, CLONE) INTO ONE
-
-    $('select.sku-variants-options').multiselect({
-      nonSelectedText: Translation.find('non_selected_text', 'multiselect'),
-      nSelectedText: Translation.find('n_selected_text', 'multiselect'),
-      numberDisplayed: 3,
-      maxHeight: 400,
-      onChange: function onChange(option, checked) {
-        var v = $('.sku-variants-options');
-        if (v.val()) {
-          v.next().removeClass('invalidBorderClass');
-        } else {
-          v.next().addClass('invalidBorderClass');
-        }
-      }
-    });
-
-    $('#edit_product_detail_form_btn').click(function () {
-      var v = $('select.sku-variants-options');
-
-      if (v.val() == null) {
-        v.next().addClass('invalidBorderClass');
-        return false;
-      }
-
-      if ($('img.img-responsive[src=""]').length >= 4) {
-        $('.fileUpload:first').addClass('invalidBorderClass');
-        return false;
-      }
-
-      return true;
-    });
-
-    $('input.img-file-upload').click(function () {
-      if ($('img.img-responsive[src=""]').length > 0) {
-        $('.fileUpload').removeClass('invalidBorderClass');
-      }
-    });
-  }
-
-};
-
-/* UNUSED IN THE CURRENT SYSTEM
-  validatePdfFile: function(inputFile) {
-
-    var maxExceededMessage = ProductNewSku.data().translationMaxExceedMessage;
-    var extErrorMessage = ProductNewSku.data().translationExtErrorMessage;
-    var allowedExtension = ["pdf"];
-
-    var extName;
-    var maxFileSize = 2097152;
-    var sizeExceeded = false;
-    var extError = false;
-
-    $.each(inputFile.files, function() {
-      if (this.size && maxFileSize && this.size > maxFileSize) {sizeExceeded=true;};
-      extName = this.name.split('.').pop();
-      if ($.inArray(extName, allowedExtension) == -1) {extError=true;};
-    });
-    if (sizeExceeded) {
-      window.alert(maxExceededMessage);
-      $(inputFile).val('');
-    };
-
-    if (extError) {
-      window.alert(extErrorMessage);
-      $(inputFile).val('');
-    };
-  }
-**/
-module.exports = ProductNewSku;
-});
-
-require.register("javascripts/controllers/products/show.js", function(exports, require, module) {
+require.register("javascripts/controllers/guest/products/show.js", function(exports, require, module) {
 'use strict';
 
 var Translation = require("javascripts/lib/translation");
@@ -975,6 +701,240 @@ var ProductsShow = {
 module.exports = ProductsShow;
 });
 
+require.register("javascripts/controllers/orders/show.js", function(exports, require, module) {
+'use strict';
+
+/**
+ * OrdersShow class
+ */
+var OrdersShow = {
+
+  /**
+   * Initializer
+   */
+  init: function init() {
+
+    this.multiSelectSystem();
+  },
+
+  multiSelectSystem: function multiSelectSystem() {
+
+    $('select.sku-variants-options').multiselect({
+      enableCaseInsensitiveFiltering: true,
+      maxHeight: 400
+    }).multiselect('disable');
+  }
+
+};
+
+module.exports = OrdersShow;
+});
+
+require.register("javascripts/controllers/products/clone_sku.js", function(exports, require, module) {
+'use strict';
+
+var Translation = require('javascripts/lib/translation');
+
+/**
+ * ProductCloneSku Class
+ */
+var ProductCloneSku = {
+
+  /**
+   * Initializer
+   */
+  init: function init() {
+    // WE SHOULD DEFINITELY REFACTOR THOSE 3 CLASSES (NEW, EDIT, CLONE) INTO ONE
+
+    $('select.sku-variants-options').multiselect({
+      nonSelectedText: Translation.find('non_selected_text', 'multiselect'),
+      nSelectedText: Translation.find('n_selected_text', 'multiselect'),
+      numberDisplayed: 3,
+      maxHeight: 400,
+      onChange: function onChange(option, checked) {
+        var v = $('.sku-variants-options');
+        if (v.val()) {
+          v.next().removeClass('invalidBorderClass');
+        } else {
+          v.next().addClass('invalidBorderClass');
+        }
+      }
+    });
+
+    $('#edit_product_detail_form_btn').click(function () {
+      var v = $('select.sku-variants-options');
+
+      if (v.val() == null) {
+        v.next().addClass('invalidBorderClass');
+        return false;
+      }
+
+      if ($('img.img-responsive[src=""]').length >= 4) {
+        $('.fileUpload:first').addClass('invalidBorderClass');
+        return false;
+      }
+
+      return true;
+    });
+
+    $('input.img-file-upload').click(function () {
+      if ($('img.img-responsive[src=""]').length > 0) {
+        $('.fileUpload').removeClass('invalidBorderClass');
+      }
+    });
+  }
+
+};
+
+module.exports = ProductCloneSku;
+});
+
+require.register("javascripts/controllers/products/edit_sku.js", function(exports, require, module) {
+'use strict';
+
+var Translation = require('javascripts/lib/translation');
+
+/**
+ * ProductEditSku Class
+ */
+var ProductEditSku = {
+
+  /**
+   * Initializer
+   */
+  init: function init() {
+    // WE SHOULD DEFINITELY REFACTOR THOSE 3 CLASSES (NEW, EDIT, CLONE) INTO ONE
+
+    $('select.sku-variants-options').multiselect({
+      nonSelectedText: Translation.find('non_selected_text', 'multiselect'),
+      nSelectedText: Translation.find('n_selected_text', 'multiselect'),
+      numberDisplayed: 3,
+      maxHeight: 400,
+      onChange: function onChange(option, checked) {
+        var v = $('.sku-variants-options');
+        if (v.val()) {
+          v.next().removeClass('invalidBorderClass');
+        } else {
+          v.next().addClass('invalidBorderClass');
+        }
+      }
+    });
+
+    $('#edit_product_detail_form_btn').click(function () {
+      var v = $('select.sku-variants-options');
+
+      if (v.val() == null) {
+        v.next().addClass('invalidBorderClass');
+        return false;
+      }
+
+      if ($('img.img-responsive[src=""]').length >= 4) {
+        $('.fileUpload:first').addClass('invalidBorderClass');
+        return false;
+      }
+
+      return true;
+    });
+
+    $('input.img-file-upload').click(function () {
+      if ($('img.img-responsive[src=""]').length > 0) {
+        $('.fileUpload').removeClass('invalidBorderClass');
+      }
+    });
+  }
+
+};
+
+module.exports = ProductEditSku;
+});
+
+require.register("javascripts/controllers/products/new_sku.js", function(exports, require, module) {
+'use strict';
+
+var Translation = require('javascripts/lib/translation');
+
+/**
+ * ProductNewSku Class
+ */
+var ProductNewSku = {
+
+  /**
+   * Initializer
+   */
+  init: function init() {
+    // WE SHOULD DEFINITELY REFACTOR THOSE 3 CLASSES (NEW, EDIT, CLONE) INTO ONE
+
+    $('select.sku-variants-options').multiselect({
+      nonSelectedText: Translation.find('non_selected_text', 'multiselect'),
+      nSelectedText: Translation.find('n_selected_text', 'multiselect'),
+      numberDisplayed: 3,
+      maxHeight: 400,
+      onChange: function onChange(option, checked) {
+        var v = $('.sku-variants-options');
+        if (v.val()) {
+          v.next().removeClass('invalidBorderClass');
+        } else {
+          v.next().addClass('invalidBorderClass');
+        }
+      }
+    });
+
+    $('#edit_product_detail_form_btn').click(function () {
+      var v = $('select.sku-variants-options');
+
+      if (v.val() == null) {
+        v.next().addClass('invalidBorderClass');
+        return false;
+      }
+
+      if ($('img.img-responsive[src=""]').length >= 4) {
+        $('.fileUpload:first').addClass('invalidBorderClass');
+        return false;
+      }
+
+      return true;
+    });
+
+    $('input.img-file-upload').click(function () {
+      if ($('img.img-responsive[src=""]').length > 0) {
+        $('.fileUpload').removeClass('invalidBorderClass');
+      }
+    });
+  }
+
+};
+
+/* UNUSED IN THE CURRENT SYSTEM
+  validatePdfFile: function(inputFile) {
+
+    var maxExceededMessage = ProductNewSku.data().translationMaxExceedMessage;
+    var extErrorMessage = ProductNewSku.data().translationExtErrorMessage;
+    var allowedExtension = ["pdf"];
+
+    var extName;
+    var maxFileSize = 2097152;
+    var sizeExceeded = false;
+    var extError = false;
+
+    $.each(inputFile.files, function() {
+      if (this.size && maxFileSize && this.size > maxFileSize) {sizeExceeded=true;};
+      extName = this.name.split('.').pop();
+      if ($.inArray(extName, allowedExtension) == -1) {extError=true;};
+    });
+    if (sizeExceeded) {
+      window.alert(maxExceededMessage);
+      $(inputFile).val('');
+    };
+
+    if (extError) {
+      window.alert(extErrorMessage);
+      $(inputFile).val('');
+    };
+  }
+**/
+module.exports = ProductNewSku;
+});
+
 require.register("javascripts/controllers/products/show_skus.js", function(exports, require, module) {
 'use strict';
 
@@ -1173,6 +1133,36 @@ var Casing = {
 };
 
 module.exports = Casing;
+});
+
+require.register("javascripts/lib/content_preloader.js", function(exports, require, module) {
+"use strict";
+
+/**
+ * ContentPreloader Class
+ */
+var ContentPreloader = {
+
+  /**
+   * Preload some content inside the system
+   * @param  {String} image new image source
+   * @param  {String} loader_selector loader to display
+   * @return {void}
+   */
+  process: function process(selected_attr, loader_selector) {
+
+    selected_attr.load(function () {
+      $(loader_selector).hide();
+      $(this).show();
+    }).before(function () {
+      $(loader_selector).show();
+      $(this).hide();
+    });
+  }
+
+};
+
+module.exports = ContentPreloader;
 });
 
 require.register("javascripts/lib/foreign/datepicker-de.js", function(exports, require, module) {
@@ -1531,6 +1521,39 @@ var Product = {
 module.exports = Product;
 });
 
+require.register("javascripts/models/product_sku.js", function(exports, require, module) {
+'use strict';
+
+/**
+ * ProductSku Class
+ */
+var ProductSku = {
+
+  /**
+   * Get the ProductSku details
+   */
+  show: function show(productId, optionIds, callback) {
+
+    $.ajax({
+
+      method: "GET",
+      url: '/api/guest/products/' + productId + '/skus/0', // 0 is to match with the norm ... hopefully when we go away from mongo there's no such things
+      data: { option_ids: optionIds }
+
+    }).done(function (res) {
+
+      callback(res);
+    }).error(function (err) {
+
+      callback({ success: false, error: err.responseJSON.error });
+    });
+  }
+
+};
+
+module.exports = ProductSku;
+});
+
 require.register("javascripts/models/translation.js", function(exports, require, module) {
 "use strict";
 
@@ -1562,36 +1585,6 @@ var Translations = {
 };
 
 module.exports = Translations;
-});
-
-require.register("javascripts/models/user.js", function(exports, require, module) {
-"use strict";
-
-/**
- * User Class
- */
-var User = {
-
-  /**
-   * Check if user is auth or not via API call
-   */
-  isAuth: function isAuth(callback) {
-    // NOT CURRENTLY IN USE IN THE SYSTEM (REMOVE COMMENT IF YOU ADD IT SOMEWHERE)
-
-    $.ajax({
-      method: "GET",
-      url: "api/users/is_auth",
-      data: {}
-
-    }).done(function (res) {
-
-      callback(res);
-    });
-  }
-
-};
-
-module.exports = User;
 });
 
 require.register("javascripts/starters.js", function(exports, require, module) {
@@ -2042,18 +2035,18 @@ var Messages = {
   },
 
   /**
-   * 
+   *
    */
   hideMessages: function hideMessages() {
 
     var Messages = require("javascripts/lib/messages");
 
     if ($("#message-error").length > 0) {
-      Messages.activateHide('#message-error', 3000);
+      Messages.activateHide('#message-error', 5000);
     }
 
     if ($("#message-success").length > 0) {
-      Messages.activateHide('#message-success', 4000);
+      Messages.activateHide('#message-success', 6000);
     }
   }
 

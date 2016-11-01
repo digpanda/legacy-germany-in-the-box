@@ -11,9 +11,6 @@ class ProductsController < ApplicationController
 
   layout :custom_sublayout, only: [:new, :new_sku, :edit, :edit_sku, :clone_sku, :show_skus]
 
-  before_action :breadcrumb_home, only: [:show]
-  before_action :breadcrumb_category, :breadcrumb_shop, :breadcrumb_product, only: [:show]
-
   def new
     @shop = Shop.find(params[:shop_id])
     @product = @shop.products.build
@@ -139,10 +136,6 @@ class ProductsController < ApplicationController
     @products = Product.search(@query)
     @products = Product.can_buy.all
 
-  end
-
-  def show
-    @featured_sku = @product.decorate.featured_sku.decorate
   end
 
   def create

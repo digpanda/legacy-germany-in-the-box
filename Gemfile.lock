@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/Loschcode/wirecard-elastic.git
-  revision: f94ca955842ea7daafc241afbcf2d928a5a75ccb
+  revision: 3fdd4e1b664ab82216e72fe57516280592cee2f5
   branch: master
   tag: v0.2.2
   specs:

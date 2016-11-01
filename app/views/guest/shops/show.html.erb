@@ -7,21 +7,21 @@
 
     <div class="row">
       <!-- Shop Header -->
-      <%= render partial: "shop_header", :locals => { :shop => @shop } %>
+      <%= render partial: "guest/shops/show/header", :locals => { :shop => @shop } %>
     </div>
 
     <div class="+spacer"></div>
 
     <div class="row +nomargin">
       <!-- Products list -->
-      <%= render partial: "products/products_list", :locals => { :products => @shop.products.can_show.by_brand } %>
+      <%= render partial: "guest/shops/show/products_list", :locals => { :products => @shop.products.can_show.by_brand } %>
     </div>
 
     <div class="+spacer"></div>
 
     <div class="row">
       <!-- Shop Footer -->
-      <%= render partial: "shop_footer", :locals => { :shop => @shop } %>
+      <%= render partial: "guest/shops/show/footer", :locals => { :shop => @shop } %>
     </div>
 
     <div class="+spacer"></div>

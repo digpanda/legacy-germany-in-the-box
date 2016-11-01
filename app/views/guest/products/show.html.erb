@@ -7,14 +7,14 @@
     <!-- Preview -->
     <div class="col-md-6">
 
-      <%= render partial: "products/show/preview", :locals => {product: @product} %>
+      <%= render partial: "guest/products/show/preview", :locals => {product: @product} %>
 
     </div>
 
     <!-- Shop + Product description -->
     <div class="col-md-6 col-xs-12">
 
-      <%= render partial: "products/show/description", :locals => {product: @product} %>
+      <%= render partial: "guest/products/show/description", :locals => {product: @product} %>
 
     </div>
 
@@ -24,7 +24,7 @@
     <div class="row col-md-8 col-md-push-2 col-md-pull-2">
 
       <div class="+spacer"></div>
-      <%= render partial: "shops/shop_footer", :locals => { :shop => @shop.decorate } %>
+      <%= render partial: "guest/shops/show/footer", :locals => { :shop => @product.shop.decorate } %>
 
     </div>
 
