@@ -4,16 +4,17 @@
 
       <div class="row">
         <div class="col-md-4">
-          <div class="announcement-landing__bubble">
-            北京时间11月5 – 6日“莱茵购物节”，德国本土好物5折起，不要错过！
-          </div>
-          <div class="announcement-landing__bubble-arrow">
-          </div>
+
         </div>
       </div>
 
       <div class="row">
         <div class="col-md-3 announcement-landing__girl">
+          <div class="announcement-landing__bubble">
+            北京时间11月5 – 6日“莱茵购物节”，德国本土好物5折起，不要错过！
+          </div>
+          <div class="announcement-landing__bubble-arrow">
+          </div>
           <img src="images/mascotte/announcement-girl.png">
         </div>
 
@@ -23,6 +24,9 @@
             </div>
             <div class="row">
               <div class="announcement-landing__products-inside">
+                  <div class="col-md-12 announcement-landing__products-title">
+                    <h3>Highlights of the day</h3>
+                  </div>
                   <% Product.with_discount.take(3).each do |product| %>
                   <div class="col-md-4 shop-page-product --no-border">
                     <%= render partial: 'products/product_box', :locals => {:product => product} %>

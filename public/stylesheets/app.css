@@ -7923,7 +7923,12 @@ img.mfp-img {
 
 /* line 76, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
 .announcement-landing__products-inside {
-  margin-top: -8em; }
+  margin-top: -17em; }
+
+/* line 76, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
+.announcement-landing__products-title {
+  color: #732c51;
+  text-align: center; }
 
 /* line 76, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
 .announcement-landing__products-arrow {
@@ -7933,7 +7938,7 @@ img.mfp-img {
   border-bottom: 20px solid transparent;
   border-right: 20px solid #fdfdfd;
   margin-left: -2.5em;
-  margin-top: 4em; }
+  margin-top: 15em; }
 
 /* line 76, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
 .announcement-landing__bubble {
@@ -7957,6 +7962,10 @@ img.mfp-img {
   border-top: 20px solid #fdfdfd;
   text-align: center;
   margin-left: 4em; }
+
+/* line 33, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_announcement-landing.sass */
+.announcement-landing__girl img {
+  width: 90%; }
 
 /* line 32, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
 .announcement {
