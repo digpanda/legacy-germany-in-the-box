@@ -87,6 +87,8 @@ class Order
         order_items.inject(0) do |sum, order_item|
           if order_item.product
             sum += order_item.quantity * order_item.sku.price
+          else
+            sum += 0
           end
         end
       end
