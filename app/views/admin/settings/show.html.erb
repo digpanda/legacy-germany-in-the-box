@@ -7,6 +7,7 @@
   </div>
 </div>
 
+<div class="row">
 <div class="col-md-6 +white-box">
   <%= form_for admin_settings_path, html: {method: 'patch', :data => {:toggle => 'validator'}} do |f| %>
     <div class="form-group">
@@ -21,4 +22,20 @@
       <%= f.button I18n.t(:save, scope: :edit_settings), :type => 'submit', :class => 'btn btn-primary', name: :user_info_edit_part, value: :edit_settings %>
     </div>
   <% end %>
+</div>
+</div>
+
+<div class="+small-spacer"></div>
+
+<div class="row">
+<div class="col-md-6 +white-box">
+  <%= form_for admin_settings_path, html: {method: 'patch', :data => {:toggle => 'validator'}} do |f| %>
+    <div class="form-group">
+      <%= f.label :highlight_title, "Highlight title" %>
+      <%= f.text_field :highlight_title, value: Settings.instance.highlight_title, :autocomplete => :off %>
+    </div>
+    <%= f.button "Update highlight", :type => 'submit', :class => 'btn btn-primary', name: :user_info_edit_part, value: :edit_settings %>
+  </div>
+  <% end %>
+</div>
 </div>
