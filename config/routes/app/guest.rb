@@ -36,6 +36,9 @@ namespace :guest do
   resources :shops do
   end
 
+  resource :products_highlight, :controller => 'products_highlight' do
+  end
+
   resources :products  do
   end
 
