@@ -11,7 +11,7 @@
       <div class="+small-spacer"></div>
       <div class="col-md-8">
           <div class="row">
-            <% Product.order_by(:discount => :desc).limit(3).each do |product| %>
+            <% Product.with_discount.take(3).each do |product| %>
             <div class="col-md-4 shop-page-product">
               <%= render partial: 'products/product_box', :locals => {:product => product} %>
             </div>
