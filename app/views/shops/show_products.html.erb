@@ -70,7 +70,10 @@
                 <%= link_to '', product_disapprove_path(p), :method => :patch, :class => 'tooltipster fa fa-minus buttons buttons__cancel', :title => "Disapprove this product" %>
               <% end %>
 
-              <%= link_to '', product_path(p), :method => :delete, data: { confirm: I18n.t(:delete_product_message, scope: :edit_product) }, :class => 'tooltipster fa fa-times buttons buttons__delete', :title => "Remove this product" %>
+              <% if p.removable? %>
+                <%= link_to '', product_path(p), :method => :delete, data: { confirm: I18n.t(:delete_product_message, scope: :edit_product) }, :class => 'tooltipster fa fa-times buttons buttons__delete', :title => "Remove this product" %>
+              <% end %>
+              
             <% end %>
           </td>
         </tr>

@@ -119,6 +119,10 @@ class Product
     status == true && approved != nil
   end
 
+  def removable?
+    order_items.count == 0
+  end
+
   def has_option?
     options&.select { |o| o.suboptions&.size > 0 }.size > 0
   end
