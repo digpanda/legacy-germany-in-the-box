@@ -35,7 +35,7 @@ class WirecardCheckout < BaseService
     # but we need to match with the demo mode
     # so it's a special case
     # TODO : don't forget to remove after testings
-    binding.pry
+    #binding.pry
     if Rails.env.staging?
       {
         :merchant_id => CONFIG_DEMO[payment_method][:merchant_id],
