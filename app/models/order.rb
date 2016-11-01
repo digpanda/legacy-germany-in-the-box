@@ -84,7 +84,11 @@ class Order
       if self.bought?
         order_items.inject(0) { |sum, order_item| sum += order_item.quantity * order_item.price }
       else
-        order_items.inject(0) { |sum, order_item| sum += order_item.quantity * order_item.sku.price }
+        if order_item.product.nil?
+          0
+        else
+          order_items.inject(0) { |sum, order_item| sum += order_item.quantity * order_item.sku.price }
+        end
       end
     end
   end
