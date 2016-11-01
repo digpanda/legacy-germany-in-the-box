@@ -6,12 +6,7 @@ class RemoveCorruptedOrderItems < Mongoid::Migration
     # the following script clean the corrupted order_items
     OrderItem.all.each do |order_item|
       if order_item.product.nil?
-        order = order_item.order
         order_item.delete
-        order.reload
-        if order.order_items.count == 0
-          order.delete
-        end
       end
     end
   end
