@@ -1175,36 +1175,6 @@ var Casing = {
 module.exports = Casing;
 });
 
-require.register("javascripts/lib/content_preloader.js", function(exports, require, module) {
-"use strict";
-
-/**
- * ContentPreloader Class
- */
-var ContentPreloader = {
-
-  /**
-   * Preload some content inside the system
-   * @param  {String} image new image source
-   * @param  {String} loader_selector loader to display
-   * @return {void}
-   */
-  process: function process(selected_attr, loader_selector) {
-
-    selected_attr.load(function () {
-      $(loader_selector).hide();
-      $(this).show();
-    }).before(function () {
-      $(loader_selector).show();
-      $(this).hide();
-    });
-  }
-
-};
-
-module.exports = ContentPreloader;
-});
-
 require.register("javascripts/lib/foreign/datepicker-de.js", function(exports, require, module) {
 "use strict";
 
@@ -1559,39 +1529,6 @@ var Product = {
 };
 
 module.exports = Product;
-});
-
-require.register("javascripts/models/product_sku.js", function(exports, require, module) {
-'use strict';
-
-/**
- * ProductSku Class
- */
-var ProductSku = {
-
-  /**
-   * Get the ProductSku details
-   */
-  show: function show(productId, optionIds, callback) {
-
-    $.ajax({
-
-      method: "GET",
-      url: '/api/guest/products/' + productId + '/skus/0', // 0 is to match with the norm ... hopefully when we go away from mongo there's no such things
-      data: { option_ids: optionIds }
-
-    }).done(function (res) {
-
-      callback(res);
-    }).error(function (err) {
-
-      callback({ success: false, error: err.responseJSON.error });
-    });
-  }
-
-};
-
-module.exports = ProductSku;
 });
 
 require.register("javascripts/models/translation.js", function(exports, require, module) {
