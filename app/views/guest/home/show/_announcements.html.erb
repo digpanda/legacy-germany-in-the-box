@@ -27,7 +27,7 @@
                   <div class="col-md-12 announcement-landing__products-title">
                     <h3>Highlights of the day</h3>
                   </div>
-                  <% Product.with_discount.take(3).each do |product| %>
+                  <% Product.with_highlight.take(3).each do |product| %>
                   <div class="col-md-4 shop-page-product --no-border">
                     <%= render partial: 'products/product_box', :locals => {:product => product} %>
                   </div>

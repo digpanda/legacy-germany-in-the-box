@@ -57,6 +57,13 @@
           </td>
           <td align="left">
             <% if current_user.decorate.admin? %>
+
+              <% if p.highlight %>
+                <%= link_to '', product_regular_path(p), :method => :patch, :class => 'tooltipster fa fa-low-vision buttons buttons__delete', :title => "No highlight for this product" %>
+              <% else %>
+                <%= link_to '', product_highlight_path(p), :method => :patch, :class => 'tooltipster fa fa-magic buttons buttons__purple', :title => "Highlight this product" %>
+              <% end %>
+
               <% if p.approved.nil? %>
                 <%= link_to '', product_approve_path(p), :method => :patch, :class => 'tooltipster fa fa-check buttons buttons__add', :title => "Approve this product" %>
               <% else %>

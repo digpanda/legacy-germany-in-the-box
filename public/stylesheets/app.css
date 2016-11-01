@@ -7880,6 +7880,9 @@ img.mfp-img {
   height: 2em;
   line-height: 2em; }
   /* line 12, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_buttons.sass */
+  .buttons__purple:hover {
+    background-color: #732c51; }
+  /* line 16, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_buttons.sass */
   .buttons__delete:hover {
     background-color: #e74c3c; }
   /* line 40, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
@@ -7887,20 +7890,20 @@ img.mfp-img {
     width: 1.2em;
     height: 1.2em;
     line-height: 1.2em; }
-  /* line 19, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_buttons.sass */
+  /* line 23, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_buttons.sass */
   .buttons__edit:hover {
     background-color: #3498db; }
-  /* line 23, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_buttons.sass */
+  /* line 27, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_buttons.sass */
   .buttons__cancel:hover {
     background-color: #e67e22; }
-  /* line 27, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_buttons.sass */
+  /* line 31, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_buttons.sass */
   .buttons__add:hover {
     background-color: #659443; }
   /* line 76, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
   .buttons__quantity {
     background-color: transparent;
     color: #ABABA8 !important; }
-    /* line 33, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_buttons.sass */
+    /* line 37, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_buttons.sass */
     .buttons__quantity:hover {
       color: #3498db !important; }
 

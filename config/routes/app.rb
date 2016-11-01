@@ -28,6 +28,8 @@ resources :addresses, except: [:new, :edit] do
 end
 
 resources :products, except: [:index, :new] do
+  patch :regular
+  patch :highlight
   match :approve, via: [:patch], action: :approve, as: :approve
   match :disapprove, via: [:patch], action: :disapprove, as: :disapprove
   match 'remove_sku/:sku_id',                     via: [:delete], action: :remove_sku,                  as: :remove_sku,                  :on => :member

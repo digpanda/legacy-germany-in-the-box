@@ -68,6 +68,20 @@ class ProductsController < ApplicationController
   def skus
   end
 
+  def highlight
+    @product = Product.find(params[:product_id])
+    @product.highlight = true
+    @product.save
+    redirect_to navigation.back(1)
+  end
+
+  def regular
+    @product = Product.find(params[:product_id])
+    @product.highlight = false
+    @product.save
+    redirect_to navigation.back(1)
+  end
+
   def approve
     @product = Product.find(params[:product_id])
     @product.approved = Time.now.utc

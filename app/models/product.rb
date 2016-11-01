@@ -14,6 +14,7 @@ class Product
   field :status, type: Boolean, default: true
   field :approved, type: Time
   field :hs_code, type: String
+  field :highlight, type: Boolean, default: false
 
   embeds_many :options, inverse_of: :product, cascade_callbacks: true, class_name: 'VariantOption'
   embeds_many :skus, inverse_of: :product, cascade_callbacks: true
@@ -75,6 +76,10 @@ class Product
         end
       end
       with_discount
+    end
+
+    def with_highlight
+      self.where(highlight: true)
     end
 
     def discount_products
