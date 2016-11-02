@@ -138,7 +138,7 @@ class ApplicationController < ActionController::Base
 
   # we should put it into a library, there's an obvious possible abstraction here
   def breadcrumb_category
-    add_breadcrumb @category.name, category_path(@category) unless @category.nil?
+    add_breadcrumb @category.name, guest_category_path(@category) unless @category.nil?
   end
 
   def breadcrumb_shop
