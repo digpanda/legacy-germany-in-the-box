@@ -153,7 +153,7 @@ class Customer::CheckoutController < ApplicationController
   # the card processing failed
   def fail
     flash[:error] = "The payment failed. Please try again."
-    ExceptionNotifier.notify_exception(Wirecard::Base::Error.new, :env => request.env, :data => {:message => "Something went wrong during the payment."})
+    warn_developers(Wirecard::Base::Error.new, "Something went wrong during the payment.")
     return unless callback!(:failed)
     redirect_to navigation.back(2)
   end

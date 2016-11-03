@@ -12,6 +12,15 @@ class ApplicationController < ActionController::Base
 
   include Mobvious::Rails::Controller
 
+  before_action :setup_request
+
+  # this variable setup is very sensitive
+  # we use it in exceptional context
+  # please be aware of how it works before to use it
+  def setup_request
+    $request = request
+  end
+
   # handle hard exception (which will throw a page error)
   # and soft ones even on dev / test (which will usually redirect the customer)
   unless Rails.env.development?

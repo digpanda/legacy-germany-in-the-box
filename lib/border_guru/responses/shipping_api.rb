@@ -21,7 +21,7 @@ module BorderGuru
       end
 
       def response_data
-        super[:response]
+        super[:response] || super
       end
 
     end

@@ -3,7 +3,8 @@
 class BorderGuruApiHandler < BaseService
 
   attr_reader :order, :shop
-
+  include ErrorsHelper
+  
   def initialize(order)
     @order = order
     @shop = order.shop
@@ -21,6 +22,7 @@ class BorderGuruApiHandler < BaseService
     # too much things can happen inside our system
     # so we catch the exception globally
   rescue StandardError => exception
+    warn_developers(StandardError.new, "Issue while trying to call get_shipping from BorderGuru")
     return_with(:error, exception)
   end
 
