@@ -91,7 +91,7 @@ class SkuDecorator < Draper::Decorator
   end
 
   def discount_with_percent
-    "-%.2f %" % discount
+    "-%.0f%" % discount
   end
 
   def get_options_txt
