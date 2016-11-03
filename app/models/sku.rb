@@ -58,6 +58,10 @@ class Sku
     space_length * space_width * space_height
   end
 
+  def estimated_fees
+    SkuFeesEstimation.new(self).provide.data[:taxAndDutyCost]
+  end
+
   def get_options
     variants = self.option_ids.map do |oid|
       self.product.options.detect do |v|
