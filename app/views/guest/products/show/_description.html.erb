@@ -7,6 +7,9 @@
 
 <% if @featured_sku %>
 
+  FEES EURO - <%= @featured_sku.fees_estimation.in_euro.display %><br />
+  FEES YUAN - <%= @featured_sku.fees_estimation.in_euro.to_yuan.display %><br />
+
   <% if @featured_sku.discount? %>
 
       <span id="product_discount_with_currency_yuan" class="+medium">
