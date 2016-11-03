@@ -5,6 +5,7 @@ zh-CN:
   discount:
     discount: 打折
   product_box:
+    taxes_per_unit: 税额
     shipping_and_taxes_excluded: 不含运费及关税
   coupon:
     cannot_apply:  此折扣码不适用于该订单。

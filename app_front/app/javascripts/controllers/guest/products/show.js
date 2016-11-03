@@ -69,6 +69,9 @@ var ProductsShow = {
         ProductsShow.changePrice('reduce', quantity, '#product_discount_with_currency_yuan .amount');
         ProductsShow.changePrice('reduce', quantity, '#product_discount_with_currency_euro .amount');
 
+        // We show per unit
+        //ProductsShow.changePrice('reduce', quantity, '#product_fees_with_currency_yuan .amount');
+
         ProductsShow.changePrice('reduce', quantity, '#product_price_with_currency_yuan .amount');
         ProductsShow.changePrice('reduce', quantity, '#product_price_with_currency_euro .amount');
         quantity--;
@@ -95,6 +98,8 @@ var ProductsShow = {
         ProductsShow.changePrice('grow', quantity, '#product_discount_with_currency_yuan .amount');
         ProductsShow.changePrice('grow', quantity, '#product_discount_with_currency_euro .amount');
 
+        // We show per unit only because it's not growable accurately
+        //ProductsShow.changePrice('grow', quantity, '#product_fees_with_currency_yuan .amount');
         ProductsShow.changePrice('grow', quantity, '#product_price_with_currency_yuan .amount');
         ProductsShow.changePrice('grow', quantity, '#product_price_with_currency_euro .amount');
         quantity++;
@@ -223,6 +228,7 @@ var ProductsShow = {
 
     ProductsShow.refreshSkuQuantitySelect(productId, skuDatas['quantity']); // productId is useless with the new system (should be refactored)
 
+    $('#product_fees_with_currency_yuan').html(skuDatas['fees_with_currency_yuan']);
     $('#product_price_with_currency_yuan').html(skuDatas['price_with_currency_yuan']);
     $('#product_price_with_currency_euro').html(skuDatas['price_with_currency_euro']);
     $('#quantity-left').html(skuDatas['quantity']);

@@ -7,9 +7,6 @@
 
 <% if @featured_sku %>
 
-  FEES EURO - <%= @featured_sku.fees_estimation.in_euro.display %><br />
-  FEES YUAN - <%= @featured_sku.fees_estimation.in_euro.to_yuan.display %><br />
-
   <% if @featured_sku.discount? %>
 
       <span id="product_discount_with_currency_yuan" class="+medium">
@@ -34,7 +31,9 @@
   <span id="product_price_with_currency_yuan" class="+price-yuan"><%= product.decorate.preview_price_yuan_html.html_safe %></span> <span id="product_price_with_currency_euro" class="+price-euro"><%= product.decorate.preview_price_euro_html.html_safe %></span>
 
   <%= I18n.t(:shipping_and_taxes_excluded, scope: :product_box) %>
-
+  <br />
+  <!-- <br />
+  <%= I18n.t(:taxes_per_unit, scope: :product_box) %> <span id="product_fees_with_currency_yuan">< product.decorate.preview_fees_yuan_html.html_safe ></span><br /> -->
 
 <% end %>
 

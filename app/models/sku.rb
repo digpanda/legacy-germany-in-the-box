@@ -58,11 +58,6 @@ class Sku
   before_save :clean_blank_and_duplicated_option_ids
   before_save :clean_quantity, :if => lambda { self.unlimited }
 
-  # every time we save the sku
-  # we will call BorderGuru API
-  # to get the fees estimation
-  before_save :update_estimated_fees!
-
   def volume
     space_length * space_width * space_height
   end
@@ -71,10 +66,13 @@ class Sku
     price + estimated_fees
   end
 
-  def updated_estimased_fees!
-    self.fees_estimation = SkuFeesEstimation.new(self).provide.data[:taxAndDutyCost]
-    self.fees_estimated_at = Time.now
-    self.save
+  def update_estimated_fees!
+    sku_fees_estimation = SkuFeesEstimation.new(self).provide
+    if sku_fees_estimation.success?
+      self.fees_estimation = sku_fees_estimation.data[:taxAndDutyCost]
+      self.fees_estimated_at = Time.now
+      self.save
+    end
   end
 
   # this system was made in emergency situation and should be replaced
