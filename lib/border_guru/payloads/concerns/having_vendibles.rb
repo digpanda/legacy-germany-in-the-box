@@ -37,7 +37,7 @@ module BorderGuru
       # NOTE : this can be slightly different from the subtotal / totalPrice
       def adjusted_price(order)
         order.order_items.inject(0) do |acc, current_order_item|
-          acc = acc + current_order_item.price_with_coupon_applied.round(2)
+          acc = acc + current_order_item.price_with_coupon_applied.round(2).to_f
         end
       end
 
@@ -45,7 +45,7 @@ module BorderGuru
       # which have to be compensated to the first order item if needed
       # to stay exact through the API
       def subtotal_difference(order)
-        order.total_price_with_discount.round(2) - adjusted_price(order)
+        order.total_price_with_discount.round(2).to_f - adjusted_price(order)
       end
 
       # we adjust the item price by adding the difference with the rounded subtotal
@@ -55,9 +55,9 @@ module BorderGuru
       # with the price the customers pay therefore i made it this way.
       def adjusted_order_item_price(order_item, index)
         if index == 0
-          order_item.price_with_coupon_applied.round(2) + subtotal_difference(order_item.order)
+          order_item.price_with_coupon_applied.round(2).to_f + subtotal_difference(order_item.order)
         else
-          order_item.price_with_coupon_applied.round(2)
+          order_item.price_with_coupon_applied.round(2).to_f
         end
       end
 
