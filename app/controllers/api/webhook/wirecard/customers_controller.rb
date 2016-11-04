@@ -15,6 +15,11 @@ class Api::Webhook::Wirecard::CustomersController < Api::ApplicationController
 
     devlog.info "Wirecard started to communicate with us ..."
 
+    if wrong_datas?
+        throw_api_error(:bad_format, {error: "Wrong datas transmitted"}, :bad_request)
+      return
+    end
+
     # we get the important datas
     # customer_email = datas[:email].first
     # transaction_id = datas[:transaction_id].first
@@ -40,8 +45,14 @@ class Api::Webhook::Wirecard::CustomersController < Api::ApplicationController
     @@devlog ||= Logger.new(Rails.root.join("log/wirecard_customers_webhook.log"))
   end
 
+  private
+
   def datas
     @datas ||= CGI.parse(request.body.read).deep_symbolize_keys
+  end
+
+  def wrong_datas?
+    datas[:merchant_account_id].nil? || datas[:request_id].nil?
   end
 
   def order_payment
