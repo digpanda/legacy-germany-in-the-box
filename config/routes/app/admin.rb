@@ -18,7 +18,7 @@ namespace :admin do
   resources :shop_applications do
   end
   resources :orders do
-    patch :force_get_shipping
+    patch :reset_border_guru_order
   end
   resource :account, :controller => 'account' do
   end

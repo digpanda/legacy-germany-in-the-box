@@ -14,8 +14,7 @@
     <%= link_to "BorderGuru Label", download_label_order_path(@order), class: "btn btn-primary" %>
   <% else %>
     BorderGuru Shipment ID : <%= editable_field(@order, admin_order_path(@order), :border_guru_shipment_id, :text_field) %>
-  <br />
-
-  <%= link_to "Force get shipping from BorderGuru Api", admin_order_force_get_shipping_path(@order), method: :patch, class: "btn btn-primary" %>
-
   <% end %>
+
+  <br />
+  <%= link_to "Reset Order from BorderGuru Api", admin_order_reset_border_guru_order_path(@order), method: :patch, class: "btn btn-primary" %>

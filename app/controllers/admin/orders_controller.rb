@@ -34,8 +34,7 @@ class Admin::OrdersController < ApplicationController
     redirect_to navigation.back(1)
   end
 
-  # could be placed after a while into a new controller
-  def force_get_shipping
+  def reset_border_guru_order
     response = get_shipping_refresh!
     if response.success?
       flash[:success] = "Shipping was attributed."
@@ -43,6 +42,7 @@ class Admin::OrdersController < ApplicationController
       flash[:error] = "A problem occurred while communicating with BorderGuru Api (#{response.error.message})"
     end
     redirect_to navigation.back(1)
+
   end
 
   private
