@@ -2,7 +2,10 @@ require 'open-uri'
 
 class SessionsController < Devise::SessionsController
 
-  skip_before_filter :verify_signed_out_user
+  prepend_before_action :require_no_authentication, only: [:new, :create]
+  prepend_before_action :verify_signed_out_user, only: :destroy
+  prepend_before_action only: [:create, :destroy] { request.env["devise.skip_timeout"] = true }
+  
   before_action :authenticate_user!, except: [:new, :create, :destroy]
 
   def new

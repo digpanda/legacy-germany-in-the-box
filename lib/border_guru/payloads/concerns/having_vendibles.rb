@@ -17,6 +17,24 @@ module BorderGuru
         }
       end
 
+      def line_items(order_items)
+        order_items.map.each_with_index do |order_item, index|
+          {
+            sku: order_item.sku.id,
+            shortDescription: order_item.sku.product.name,
+            price: adjusted_order_item_price(order_item, index),
+            category: Rails.env.production? ? order_item.sku.product.duty_category.code : 'test',
+            weight: order_item.weight,
+            weightScale: WEIGHT_UNIT,
+            countryOfManufacture: order_item.sku.product.shop.sender_address.country.alpha2
+          }.merge yield(order_item)
+        end
+      end
+
+      private
+
+      # sum of the rounded order items
+      # NOTE : this can be slightly different from the subtotal / totalPrice
       def adjusted_price(order)
         order.order_items.inject(0) do |acc, current_order_item|
           acc = acc + current_order_item.price_with_coupon_applied.round(2)
@@ -43,19 +61,6 @@ module BorderGuru
         end
       end
 
-      def line_items(order_items)
-        order_items.map.each_with_index do |order_item, index|
-          {
-            sku: order_item.sku.id,
-            shortDescription: order_item.sku.product.name,
-            price: adjusted_order_item_price(order_item, index),
-            category: Rails.env.production? ? order_item.sku.product.duty_category.code : 'test',
-            weight: order_item.weight,
-            weightScale: WEIGHT_UNIT,
-            countryOfManufacture: order_item.sku.product.shop.sender_address.country.alpha2
-          }.merge yield(order_item)
-        end
-      end
     end
   end
 end
