@@ -31,6 +31,8 @@ class BuyingBreaker < BaseService
 
   private
 
+  # TODO : we should refactor this and put it inside the model because it belongs to it
+  # and its decorator
   def address_today_paid(address)
     address_today_orders(address).inject(0) do |sum, current_order|
       sum += current_order.decorate.total_price_in_yuan

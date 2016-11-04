@@ -14,12 +14,7 @@ class Customer::CheckoutController < ApplicationController
 
     # we update the delivery address before everything
     # this will be used to check the limit reach
-    current_user.addresses.find(params[:delivery_destination_id]).tap do |address|
-      order.update({
-        :shipping_address     => address,
-        :billing_address      => address,
-      })
-    end
+    update_addresses!
 
     return if wrong_email_update?
     return if today_limit?
@@ -58,7 +53,7 @@ class Customer::CheckoutController < ApplicationController
       return
     end
 
-    status = update_for_checkout(current_user, order, order.border_guru_quote_id, order.shipping_cost, order.tax_and_duty_cost)
+    status = update_for_checkout(order, order.border_guru_quote_id, order.shipping_cost, order.tax_and_duty_cost)
 
     unless status
       flash[:error] = order.errors.full_messages.join(', ')
@@ -218,14 +213,23 @@ class Customer::CheckoutController < ApplicationController
     redirect_to navigation.back(1)
   end
 
-  def update_for_checkout(user, order, border_guru_quote_id, shipping_cost, tax_and_duty_cost)
+  def update_for_checkout(order, border_guru_quote_id, shipping_cost, tax_and_duty_cost)
     order.update({
       :status               => :paying,
-      :user                 => user,
+      :user                 => current_user,
       :border_guru_quote_id => border_guru_quote_id,
       :shipping_cost        => shipping_cost,
       :tax_and_duty_cost    => tax_and_duty_cost
       })
+  end
+
+  def update_addresses!
+    current_user.addresses.find(params[:delivery_destination_id]).tap do |address|
+      order.update({
+        :shipping_address     => address,
+        :billing_address      => address,
+      })
+    end
   end
 
   def wrong_email_update?
