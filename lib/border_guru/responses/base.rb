@@ -12,6 +12,10 @@ module BorderGuru
         !!response_data[:success]
       end
 
+      def slack_feedback
+        SlackDispatcher.new.message("#{@request.response.body}")
+      end
+      
       private
 
       # it's the same variable as response_body, maybe we should change this duplicate and also symbolize everything
@@ -51,10 +55,6 @@ module BorderGuru
 
       def camelize(str)
         str.to_s.camelize.sub(/^(.)/){|s| s.downcase}
-      end
-
-      def slack_feedback
-        SlackDispatcher.new.message("#{@request.response.body}")
       end
 
       # after examination the response_body is transmitted to response_data and we should manage
