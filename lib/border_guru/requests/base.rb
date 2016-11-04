@@ -2,6 +2,8 @@ module BorderGuru
   module Requests
     class Base
 
+      include ErrorsHelper
+
       CONFIG = Rails.application.config.border_guru unless const_defined? :CONFIG
 
       @@access_token =
