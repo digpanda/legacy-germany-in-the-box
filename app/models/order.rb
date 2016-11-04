@@ -61,14 +61,13 @@ class Order
   index({user: 1},  {unique: false,   name: :idx_order_user,   sparse: true})
 
   after_save :make_bill_id, :update_paid_at, :update_cancelled_at
-  #before_save :create_border_guru_order_id
+  before_save :create_border_guru_order_id
 
-  # def create_border_guru_order_id
-  #   unless self.border_guru_order_id
-  #     self.border_guru_order_id = SecureRandom.hex(10)
-  #     self.save
-  #   end
-  # end
+  def create_border_guru_order_id
+    unless self.border_guru_order_id
+      self.border_guru_order_id = SecureRandom.hex(10)
+    end
+  end
 
   # refresh order status from payment
   # if the order is still not send / paid, it checks
