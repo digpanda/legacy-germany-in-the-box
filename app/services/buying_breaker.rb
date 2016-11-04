@@ -22,10 +22,11 @@ class BuyingBreaker < BaseService
 
   # we check if he reached the limit
   # after he selected an address
+  # and we try to add up this order to the total for today
   # NOTE : the address must be a shipping_address
   # the comparison is made on the recipient of the package
   def with_address?(address)
-    address_today_paid(address) > BUYING_LIMIT_CNY
+    (order.decorate.total_price_in_yuan + address_today_paid(address)) > BUYING_LIMIT_CNY
   end
 
   private
@@ -40,7 +41,7 @@ class BuyingBreaker < BaseService
     @address_today_orders ||= begin
       today_paid_orders.each.inject([]) do |memo, current_order|
         if address == current_order.shipping_address
-          memo << order
+          memo << current_order
         end
       end || []
     end

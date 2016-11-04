@@ -12,8 +12,17 @@ class Customer::CheckoutController < ApplicationController
 
     @order = cart_manager.order(shop: shop)
 
+    # we update the delivery address before everything
+    # this will be used to check the limit reach
+    current_user.addresses.find(params[:delivery_destination_id]).tap do |address|
+      order.update({
+        :shipping_address     => address,
+        :billing_address      => address,
+      })
+    end
+
     return if wrong_email_update?
-    return if today_limit?(order)
+    return if today_limit?
 
     all_products_available = true
     products_total_price = 0
@@ -49,7 +58,7 @@ class Customer::CheckoutController < ApplicationController
       return
     end
 
-    status = update_for_checkout(current_user, order, params[:delivery_destination_id], order.border_guru_quote_id, order.shipping_cost, order.tax_and_duty_cost)
+    status = update_for_checkout(current_user, order, order.border_guru_quote_id, order.shipping_cost, order.tax_and_duty_cost)
 
     unless status
       flash[:error] = order.errors.full_messages.join(', ')
@@ -209,18 +218,14 @@ class Customer::CheckoutController < ApplicationController
     redirect_to navigation.back(1)
   end
 
-  def update_for_checkout(user, order, delivery_destination_id, border_guru_quote_id, shipping_cost, tax_and_duty_cost)
-    user.addresses.find(delivery_destination_id).tap do |address|
-      order.update({
-        :status               => :paying,
-        :user                 => user,
-        :shipping_address     => address,
-        :billing_address      => address,
-        :border_guru_quote_id => border_guru_quote_id,
-        :shipping_cost        => shipping_cost,
-        :tax_and_duty_cost    => tax_and_duty_cost
-        })
-    end
+  def update_for_checkout(user, order, border_guru_quote_id, shipping_cost, tax_and_duty_cost)
+    order.update({
+      :status               => :paying,
+      :user                 => user,
+      :border_guru_quote_id => border_guru_quote_id,
+      :shipping_cost        => shipping_cost,
+      :tax_and_duty_cost    => tax_and_duty_cost
+      })
   end
 
   def wrong_email_update?
@@ -237,8 +242,8 @@ class Customer::CheckoutController < ApplicationController
     end
   end
 
-  def today_limit?(order)
-    if reach_todays_limit?(order, 0, 0)
+  def today_limit?
+    if BuyingBreaker.new(order).with_address?(order.shipping_address)
       flash[:error] = I18n.t(:override_maximal_total, scope: :edit_order, total: Settings.instance.max_total_per_day, currency: Settings.instance.platform_currency.symbol)
       redirect_to navigation.back(1)
       return true
