@@ -118,7 +118,7 @@ class Order
 
   # total price with the coupon discount if any
   def total_price_with_discount
-    ((total_price - coupon_discount)*100).round / 100.0
+    (total_price - coupon_discount).round(2)
   end
 
   # total price of the products with the shipping cost

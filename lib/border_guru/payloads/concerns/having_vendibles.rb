@@ -45,7 +45,7 @@ module BorderGuru
       # which have to be compensated to the first order item if needed
       # to stay exact through the API
       def subtotal_difference(order)
-        order.total_price_with_discount.round(2) - adjusted_price(order)
+        (order.total_price_with_discount - adjusted_price(order).round(2))
       end
 
       # we adjust the item price by adding the difference with the rounded subtotal
