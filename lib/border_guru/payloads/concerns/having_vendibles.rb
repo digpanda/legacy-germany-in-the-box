@@ -24,10 +24,23 @@ module BorderGuru
       end
 
       # the fact we use discount can make a few cents difference
-      # which have to be compensated to the last order item if needed
+      # which have to be compensated to the first order item if needed
       # to stay exact through the API
       def subtotal_difference(order)
         order.total_price_with_discount.round(2) - adjusted_price(order)
+      end
+
+      # we adjust the item price by adding the difference with the rounded subtotal
+      # to the first order item
+      # so the system is always very exact.
+      # we could have gone the other way around (adjust the total_price) but it wouldn't match
+      # with the price the customers pay therefore i made it this way.
+      def adjusted_order_item_price(order_item, index)
+        if index == 0
+          order_item.price_with_coupon_applied.round(2) + subtotal_difference(order_item.order)
+        else
+          order_item.price_with_coupon_applied.round(2)
+        end
       end
 
       def line_items(order_items)
@@ -35,7 +48,7 @@ module BorderGuru
           {
             sku: order_item.sku.id,
             shortDescription: order_item.sku.product.name,
-            price: (index == 0 ? (order_item.price_with_coupon_applied.round(2) + subtotal_difference(order_item.order)) : order_item.price_with_coupon_applied.round(2)),
+            price: adjusted_order_item_price(order_item, index),
             category: Rails.env.production? ? order_item.sku.product.duty_category.code : 'test',
             weight: order_item.weight,
             weightScale: WEIGHT_UNIT,
