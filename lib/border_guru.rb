@@ -34,10 +34,11 @@ module BorderGuru
         country_of_destination: COUNTRY_OF_DESTINATION,
         currency: CURRENCY
       ) do |response|
+        binding.pry
         # could be refactored way better but we got no time for that
         # the error managing system is very bad in this library and should be taken care of
         if response.response_data[:success] == false || response.response_data[:error]
-          raise BorderGuru::Error, response.response_data[:error][:detail][:error][:response][:error][:message] || response.response_data[:error][:msg]
+          raise BorderGuru::Error, output_error(response)
         end
         order.border_guru_shipment_id = response.shipment_identifier
         order.border_guru_link_tracking = response.link_tracking
@@ -77,6 +78,10 @@ module BorderGuru
       Responses.const_get(api_name).new(request).tap do |response|
         yield response if block_given?
       end
+    end
+
+    def output_error(response)
+      response.response_data&.[](:error)&.[](:detail)&.[](:error)&.[](:response)&.[](:error)&.[](:message) || response.response_data&.[](:error)&.[](:msg) || response.response_data&.[](:error)
     end
 
   end
