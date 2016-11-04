@@ -14,11 +14,14 @@ class Api::Webhook::Wirecard::CustomersController < Api::ApplicationController
   def create
 
     devlog.info "Wirecard started to communicate with us ..."
+    devlog.info("Raw datas : #{datas}")
 
     if wrong_datas?
         throw_api_error(:bad_format, {error: "Wrong datas transmitted"}, :bad_request)
       return
     end
+
+    devlog.info "Service received `#{datas[:request_id]}`, `#{datas[:merchant_account_id]}`, `#{datas[:reseller_id]}`"
 
     # we get the important datas
     # customer_email = datas[:email].first
