@@ -56,7 +56,7 @@ class WirecardPaymentChecker < BaseService
   end
 
   def refresh_order_payment_from_api!
-    order_payment.status = remote_transaction.response.transaction_state
+    order_payment.status         = remote_transaction.response.transaction_state
     order_payment.payment_method = remote_transaction.response.payment_method
     order_payment.save
   end
