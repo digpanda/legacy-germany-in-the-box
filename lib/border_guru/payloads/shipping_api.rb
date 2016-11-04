@@ -15,7 +15,7 @@ module BorderGuru
 
       def to_h
         product_summaries(@order).merge({
-                                            totalPrice: @order.total_price_with_discount.to_f.round(2), # was total_value before
+                                            totalPrice: @order.total_price_with_discount.round(2), # was total_value before
                                             countryOfOrigin: @shop.country_of_dispatcher.alpha2,
                                             countryOfDestination: @country_of_destination.alpha2,
                                             currency: @currency,
