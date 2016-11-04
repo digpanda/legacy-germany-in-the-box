@@ -44,7 +44,7 @@ class OrderItem
   # considering the coupon system.
   # using it as end_price would make a double discount which would be false. please avoid this.
   def price_with_coupon_applied
-    (price * order.total_discount_percent).round(2)
+    (quantity * price * order.total_discount_percent).round(2)
   end
 
   def total_price
