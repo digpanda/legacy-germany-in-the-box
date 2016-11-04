@@ -42,27 +42,27 @@ describe BorderGuruFtp::TransferOrders do
 
   context "#connect_and_push_remote" do
 
-    it "should push the file and be present on the FTP" do
-      # pre-clean of the test FTP files
-      border_guru_ftp_pre_clean_remote_test_files
-
-      # test the actual method
-      orders = create_list(:order, 5)
-      BorderGuruFtp::TransferOrders.new(orders).tap do |transfer|
-        transfer.generate_and_store_local
-        transfer.connect_and_push_remote
-      end
-
-      # check if it worked and clean up
-      Net::FTP.new.tap do |ftp|
-        ftp.connect(BorderGuruFtp::CONFIG[:ftp][:host], BorderGuruFtp::CONFIG[:ftp][:port])
-        ftp.login(BorderGuruFtp::CONFIG[:ftp][:username], BorderGuruFtp::CONFIG[:ftp][:password])
-        ftp.chdir(BorderGuruFtp::CONFIG[:ftp][:remote_directory])
-        expect(border_guru_ftp_remote_test_files(ftp).length).to eq(5)
-        border_guru_ftp_clean_up_remote_test_files(ftp)
-      end
-
-    end
+    # it "should push the file and be present on the FTP" do
+    #   # pre-clean of the test FTP files
+    #   border_guru_ftp_pre_clean_remote_test_files
+    #
+    #   # test the actual method
+    #   orders = create_list(:order, 5)
+    #   BorderGuruFtp::TransferOrders.new(orders).tap do |transfer|
+    #     transfer.generate_and_store_local
+    #     transfer.connect_and_push_remote
+    #   end
+    #
+    #   # check if it worked and clean up
+    #   Net::FTP.new.tap do |ftp|
+    #     ftp.connect(BorderGuruFtp::CONFIG[:ftp][:host], BorderGuruFtp::CONFIG[:ftp][:port])
+    #     ftp.login(BorderGuruFtp::CONFIG[:ftp][:username], BorderGuruFtp::CONFIG[:ftp][:password])
+    #     ftp.chdir(BorderGuruFtp::CONFIG[:ftp][:remote_directory])
+    #     expect(border_guru_ftp_remote_test_files(ftp).length).to eq(5)
+    #     border_guru_ftp_clean_up_remote_test_files(ftp)
+    #   end
+    #
+    # end
 
   end
 
@@ -72,7 +72,7 @@ describe BorderGuruFtp::TransferOrders do
 
       orders = create_list(:order, 3)
       BorderGuruFtp::TransferOrders.new(orders).tap do |transfer|
-        # could be replaced by a manual file / folder creation 
+        # could be replaced by a manual file / folder creation
         # to avoid inter-dependance with other methods
         # (but right now it's enough, if it breaks at any point, please chage this)
         transfer.generate_and_store_local # tested before

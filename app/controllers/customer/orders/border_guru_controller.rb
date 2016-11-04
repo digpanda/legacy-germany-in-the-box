@@ -5,7 +5,7 @@ class Customer::Orders::BorderGuruController < ApplicationController
   before_action :set_order
 
   attr_reader :order
-  
+
   # get the border guru tracking id from API call or the model itself
   def tracking_id
     if order.border_guru_link_tracking

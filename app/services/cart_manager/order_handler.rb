@@ -48,12 +48,7 @@ class CartManager
     end
 
     def refresh_with_quote_api!
-      BorderGuru.calculate_quote(
-      order: order,
-      shop: shop,
-      country_of_destination: ISO3166::Country.new('CN'),
-      currency: 'EUR'
-      )
+      BorderGuru.calculate_quote(order: order)
     rescue BorderGuru::Error, Net::ReadTimeout => e
       raise CartManager::Error, e.message
     end

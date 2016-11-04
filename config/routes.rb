@@ -1,6 +1,6 @@
 class ActionDispatch::Routing::Mapper
-  def draw(routes_name)
-    instance_eval(File.read(Rails.root.join("config/routes/#{routes_name}.rb")))
+  def draw(*routes_names)
+    instance_eval(File.read(Rails.root.join("config/routes/#{routes_names.join('/')}.rb")))
   end
 end
 
@@ -11,4 +11,3 @@ Rails.application.routes.draw do
   draw :api
 
 end
-

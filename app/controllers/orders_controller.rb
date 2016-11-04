@@ -34,12 +34,7 @@ class OrdersController < ApplicationController
       if @order.order_items.count > 0
 
         begin
-          BorderGuru.calculate_quote(
-          order: @order,
-          shop: @order.shop,
-          country_of_destination: ISO3166::Country.new('CN'),
-          currency: 'EUR'
-          )
+          BorderGuru.calculate_quote(order: @order)
         rescue Net::ReadTimeout => e
           logger.fatal "Failed to connect to Borderguru: #{e}"
           return nil
@@ -63,8 +58,7 @@ class OrdersController < ApplicationController
     order = cart_manager.order(shop: product.shop, call_api: false)
     order.shop = product.shop
 
-    new_increment = sku.price * quantity * Settings.first.exchange_rate_to_yuan
-    if reach_todays_limit?(order, new_increment, quantity)
+    if BuyingBreaker.new(order).with_sku?(sku, quantity)
       flash[:error] = I18n.t(:override_maximal_total, scope: :edit_order, total: Settings.instance.max_total_per_day, currency: Settings.instance.platform_currency.symbol)
       redirect_to(:back)
       return
@@ -72,21 +66,12 @@ class OrdersController < ApplicationController
 
     existing_order_item = order.order_items.to_a.detect { |i| i.sku_id == sku.id.to_s}
 
-    if sku.unlimited or sku.quantity >= quantity
+    if sku.unlimited || (sku.quantity >= quantity)
       if existing_order_item.present?
         existing_order_item.quantity += quantity
         existing_order_item.save!
       else
-        current_order_item = order.order_items.build
-        current_order_item.price = sku.price
-        current_order_item.quantity = quantity
-        current_order_item.weight = sku.weight
-        current_order_item.product = product
-        current_order_item.product_name = product.name
-        current_order_item.sku_id = sku.id.to_s
-        current_order_item.option_ids = sku.option_ids
-        current_order_item.option_names = sku.get_options
-        current_order_item.save!
+        OrderMaker.new(order).add(sku, quantity)
       end
 
       if order.save

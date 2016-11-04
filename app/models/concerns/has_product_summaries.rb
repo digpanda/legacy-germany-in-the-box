@@ -1,5 +1,7 @@
 module HasProductSummaries
 
+  Numeric.include CoreExtensions::Numeric::CurrencyLibrary
+
   def self.included(base)
     def base.summarizes(sku_list:, by:)
       mattr_accessor(:sku_list_identifier){ sku_list }
@@ -28,7 +30,7 @@ module HasProductSummaries
   private
 
   def sku_list
-    send sku_list_identifier
+    send(sku_list_identifier)
   end
 
 end

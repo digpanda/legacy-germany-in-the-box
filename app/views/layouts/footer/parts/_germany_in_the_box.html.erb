@@ -2,7 +2,7 @@
 
 <% if current_user&.decorate&.shopkeeper? %>
 
-<div class="row"><%= link_to I18n.t(:terms_conditions, scope: :footer), agb_page_path %></div>
+<div class="row"><%= link_to I18n.t(:terms_conditions, scope: :footer), agb_guest_pages_path %></div>
 
 <% end %>
 
@@ -11,5 +11,5 @@
 
 <% end %>
 
-<div class="row"><%= link_to I18n.t(:privacy_statement, scope: :footer), privacy_page_path %></div>
-<div class="row"><%= link_to I18n.t(:imprint, scope: :footer), imprint_page_path %></div>
+<div class="row"><%= link_to I18n.t(:privacy_statement, scope: :footer), privacy_guest_pages_path %></div>
+<div class="row"><%= link_to I18n.t(:imprint, scope: :footer), imprint_guest_pages_path %></div>

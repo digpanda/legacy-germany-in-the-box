@@ -11,8 +11,10 @@ class ProductsController < ApplicationController
 
   layout :custom_sublayout, only: [:new, :new_sku, :edit, :edit_sku, :clone_sku, :show_skus]
 
-  before_action :breadcrumb_home, only: [:show]
-  before_action :breadcrumb_category, :breadcrumb_shop, :breadcrumb_product, only: [:show]
+  # conversion to new folder structure
+  def show
+    redirect_to guest_product_path(@product)
+  end
 
   def new
     @shop = Shop.find(params[:shop_id])
@@ -69,6 +71,20 @@ class ProductsController < ApplicationController
 
   # This will display the skus for the users (logged in or not)
   def skus
+  end
+
+  def highlight
+    @product = Product.find(params[:product_id])
+    @product.highlight = true
+    @product.save
+    redirect_to navigation.back(1)
+  end
+
+  def regular
+    @product = Product.find(params[:product_id])
+    @product.highlight = false
+    @product.save
+    redirect_to navigation.back(1)
   end
 
   def approve
@@ -139,10 +155,6 @@ class ProductsController < ApplicationController
     @products = Product.search(@query)
     @products = Product.can_buy.all
 
-  end
-
-  def show
-    @featured_sku = @product.decorate.featured_sku.decorate
   end
 
   def create

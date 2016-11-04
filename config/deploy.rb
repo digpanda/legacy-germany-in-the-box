@@ -1,5 +1,5 @@
 # config valid only for current version of Capistrano
-lock '3.6.1'
+lock '3.5.0'
 
 set :application, 'germany_in_the_box'
 set :repo_url, 'https://digpanda:achat2cool@bitbucket.org/digpanda/achat-backend-main.git'

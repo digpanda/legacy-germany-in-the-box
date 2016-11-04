@@ -400,6 +400,313 @@ var GuestFeedback = {
 module.exports = GuestFeedback;
 });
 
+require.register("javascripts/controllers/guest/products/show.js", function(exports, require, module) {
+'use strict';
+
+var Translation = require("javascripts/lib/translation");
+/**
+ * ProductsShow Class
+ */
+var ProductsShow = {
+
+  /**
+   * Initializer
+   */
+  init: function init() {
+
+    this.handleProductGalery();
+    this.handleSkuChange();
+    this.handleQuantityChange();
+  },
+
+  /**
+   * Grow or reduce price on the display
+   * @param  {String} [option] `grow` or `reduce` price
+   * @param  {Integer} old_quantity    the original old quantity
+   * @param  {String} selector        the area the HTML had to be changed
+   * @return {void}
+   */
+  changePrice: function changePrice() {
+    var option = arguments.length <= 0 || arguments[0] === undefined ? 'grow' : arguments[0];
+    var old_quantity = arguments[1];
+    var selector = arguments[2];
+
+
+    if (typeof $(selector) == 'undefined') {
+      return;
+    }
+
+    old_quantity = parseInt(old_quantity);
+    var old_price = $(selector).html();
+    var unit_price = parseFloat(old_price) / parseInt(old_quantity);
+
+    if (option == 'grow') {
+      var new_quantity = old_quantity + 1;
+    } else if (option == 'reduce') {
+      var new_quantity = old_quantity - 1;
+    }
+
+    var new_price = unit_price * new_quantity;
+    $(selector).html(new_price.toFixed(2));
+  },
+
+  /**
+   * Handle the quantity change with different selector (minus or plus)
+   * @return {void}
+   */
+  handleQuantityChange: function handleQuantityChange() {
+
+    this.manageQuantityMinus();
+    this.manageQuantityPlus();
+  },
+
+  /**
+   * Reduce the quantity by clicking on the minus symbol on the page
+   * @return {void}
+   */
+  manageQuantityMinus: function manageQuantityMinus() {
+
+    $('#quantity-minus').on('click', function (e) {
+
+      e.preventDefault();
+      var quantity = $('#quantity').val();;
+
+      if (quantity > 1) {
+
+        ProductsShow.changePrice('reduce', quantity, '#product_discount_with_currency_yuan .amount');
+        ProductsShow.changePrice('reduce', quantity, '#product_discount_with_currency_euro .amount');
+
+        // We show per unit
+        //ProductsShow.changePrice('reduce', quantity, '#product_fees_with_currency_yuan .amount');
+
+        ProductsShow.changePrice('reduce', quantity, '#product_price_with_currency_yuan .amount');
+        ProductsShow.changePrice('reduce', quantity, '#product_price_with_currency_euro .amount');
+        quantity--;
+      }
+      $('#quantity').val(quantity);
+    });
+  },
+
+  /**
+   * Grow the quantity by clicking on the plus symbol on the page
+   * @return {void}
+   */
+  manageQuantityPlus: function manageQuantityPlus() {
+
+    $('#quantity-plus').on('click', function (e) {
+
+      e.preventDefault();
+      var quantity = $('#quantity').val();
+
+      if (quantity < $('#quantity').data('max')) {
+
+        ProductsShow.changePrice('grow', quantity, '#product_discount_with_currency_yuan .amount');
+        ProductsShow.changePrice('grow', quantity, '#product_discount_with_currency_euro .amount');
+
+        // We show per unit only because it's not growable accurately
+        //ProductsShow.changePrice('grow', quantity, '#product_fees_with_currency_yuan .amount');
+        ProductsShow.changePrice('grow', quantity, '#product_price_with_currency_yuan .amount');
+        ProductsShow.changePrice('grow', quantity, '#product_price_with_currency_euro .amount');
+        quantity++;
+      }
+      $('#quantity').val(quantity);
+    });
+  },
+
+  /**
+   * Manage the whole gallery selection
+   * @return {void}
+   */
+  handleProductGalery: function handleProductGalery() {
+
+    $(document).on('click', '#gallery a', function (e) {
+
+      var image = $(this).data('image');
+      var zoomImage = $(this).data('zoom-image');
+
+      e.preventDefault();
+
+      // Changing the image when we click on any thumbnail of the #gallery
+      // We also manage a small pre-loader in case it's slow.
+      ProductsShow.changeMainImage(image, '.js-loader');
+
+      /*
+      $('#main_image').magnify({
+        speed: 0,
+        src: zoomImage,
+      });*/
+    });
+
+    // We don't forget to trigger the click to load the first image
+    $('#gallery a:first').trigger('click');
+
+    // We hide the button because
+    // if there's only one element
+    ProductsShow.manageClickableImages();
+  },
+
+  /**
+   * Hide the thumbnail clickables images of the gallery
+   * If not needed (such as one image total)
+   * @return {void}
+   */
+  manageClickableImages: function manageClickableImages() {
+
+    if ($('#gallery a').size() <= 1) {
+      $('#gallery a:first').hide();
+    }
+  },
+
+  /**
+   * Load a new main image from a thumbanil
+   * @param  {String} image new image source
+   * @param  {String} loader_selector loader to display
+   * @return {void}
+   */
+  changeMainImage: function changeMainImage(image, loader_selector) {
+
+    var ContentPreloader = require("javascripts/lib/content_preloader");
+    ContentPreloader.process($('#main_image').attr('src', image), loader_selector);
+  },
+
+  /**
+   * When the customer change of sku selection, it refreshes some datas (e.g. price)
+   */
+  handleSkuChange: function handleSkuChange() {
+
+    $('select#option_ids').change(function () {
+
+      var productId = $(this).attr('product_id');
+      var optionIds = $(this).val().split(',');
+
+      var ProductSku = require("javascripts/models/product_sku");
+      var Messages = require("javascripts/lib/messages");
+
+      ProductSku.show(productId, optionIds, function (res) {
+
+        if (res.success === false) {
+
+          Messages.makeError(res.error);
+        } else {
+
+          ProductsShow.skuChangeDisplay(productId, res);
+        }
+      });
+    });
+  },
+
+  skuHideDiscount: function skuHideDiscount() {
+
+    $('#product_discount_with_currency_euro').hide();
+    $('#product_discount_with_currency_yuan').hide();
+    $('#product_discount').hide();
+
+    $('#product_discount').removeClass('+discount');
+  },
+
+  skuShowDiscount: function skuShowDiscount() {
+
+    $('#product_discount_with_currency_euro').show();
+    $('#product_discount_with_currency_yuan').show();
+    $('#product_discount').show();
+
+    $('#product_discount').addClass('+discount');
+  },
+
+  /**
+   * Change the display of the product page sku datas
+   */
+  skuChangeDisplay: function skuChangeDisplay(productId, skuDatas) {
+
+    ProductsShow.refreshSkuQuantitySelect(productId, skuDatas['quantity']); // productId is useless with the new system (should be refactored)
+
+    $('#product_fees_with_currency_yuan').html(skuDatas['fees_with_currency_yuan']);
+    $('#product_price_with_currency_yuan').html(skuDatas['price_with_currency_yuan']);
+    $('#product_price_with_currency_euro').html(skuDatas['price_with_currency_euro']);
+    $('#quantity-left').html(skuDatas['quantity']);
+
+    $('#quantity').val(1); // we reset the quantity to 1
+
+    if (skuDatas['discount'] == 0) {
+
+      ProductsShow.skuHideDiscount();
+    } else {
+
+      ProductsShow.skuShowDiscount();
+
+      $('#product_discount_with_currency_euro').html('<span class="+barred"><span class="+dark-grey">' + skuDatas['price_before_discount_in_euro'] + '</span></span>');
+      $('#product_discount_with_currency_yuan').html('<span class="+barred"><span class="+black">' + skuDatas['price_before_discount_in_yuan'] + '</span></span>');
+      $('#product_discount').html(skuDatas['discount_with_percent'] + '<br/>');
+    }
+
+    ProductsShow.refreshSkuSecondDescription(skuDatas['data_format']);
+    ProductsShow.refreshSkuAttachment(skuDatas['data_format'], skuDatas['file_attachment']);
+    ProductsShow.refreshSkuThumbnailImages(skuDatas['images']);
+
+    ProductsShow.handleProductGalery();
+  },
+
+  /**
+   * Refresh sku quantity select (quantity dropdown)
+   */
+  refreshSkuQuantitySelect: function refreshSkuQuantitySelect(productId, quantity) {
+
+    var quantity_select = $('#product_quantity_' + productId).empty();
+
+    for (var i = 1; i <= parseInt(quantity); ++i) {
+      quantity_select.append('<option value="' + i + '">' + i + '</option>');
+    }
+  },
+
+  /**
+   * Refresh sku thumbnail images list
+   */
+  refreshSkuThumbnailImages: function refreshSkuThumbnailImages(images) {
+
+    for (var i = 0; i < images.length; i++) {
+
+      var image = images[i];
+
+      if ($('#thumbnail-' + i).length > 0) {
+        $('#thumbnail-' + i).html('<a href="#" data-image="' + image.fullsize + '" data-zoom-image="' + image.zoomin + '"><div class="product-page__thumbnail-image" style="background-image:url(' + image.thumb + ');"></div></a>');
+      }
+    }
+  },
+
+  /**
+   * Refresh the sku second description
+   */
+  refreshSkuSecondDescription: function refreshSkuSecondDescription(secondDescription) {
+
+    var more = "<h3>" + Translation.find('more', 'title') + "</h3>";
+
+    if (typeof secondDescription !== "undefined") {
+      $('#product-file-attachment-and-data').html(more + secondDescription);
+    } else {
+      $('#product-file-attachment-and-data').html('');
+    }
+  },
+
+  /**
+   * Refresh the sku attachment (depending on second description too)
+   */
+  refreshSkuAttachment: function refreshSkuAttachment(secondDescription, attachment) {
+
+    var more = "<h3>" + Translation.find('more', 'title') + "</h3>";
+
+    if (typeof attachment !== "undefined") {
+      if (typeof secondDescription !== "undefined") {
+        $('#product-file-attachment-and-data').html(more + secondDescription);
+      }
+      $('#product-file-attachment-and-data').append('<br /><a class="btn btn-default" target="_blank" href="' + attachment + '">PDF Documentation</a>');
+    }
+  }
+
+};
+
+module.exports = ProductsShow;
+});
+
 require.register("javascripts/controllers/orders/show.js", function(exports, require, module) {
 'use strict';
 
@@ -427,46 +734,6 @@ var OrdersShow = {
 };
 
 module.exports = OrdersShow;
-});
-
-require.register("javascripts/controllers/pages/home.js", function(exports, require, module) {
-"use strict";
-
-/**
- * Apply Wirecard Class
- */
-var Home = {
-
-  /**
-   * Initializer
-   */
-  init: function init() {
-
-    /*
-        $('#js-slider').show(); // Page hook fix : we display:none; and cancel it here
-    
-    
-        $('#js-slider').lightSlider({
-          "item": 1,
-          "loop": true,
-          "slideMargin": 0,
-          "pager": false,
-          "auto": true,
-          "pause": "3000",
-          "speed": "1000",
-          "adaptiveHeight": true,
-          "verticalHeight": 1000,
-          "mode": "fade",
-          "enableDrag": false,
-          "enableTouch": true
-        });
-    */
-
-  }
-
-};
-
-module.exports = Home;
 });
 
 require.register("javascripts/controllers/products/clone_sku.js", function(exports, require, module) {
@@ -672,307 +939,6 @@ var ProductNewSku = {
   }
 **/
 module.exports = ProductNewSku;
-});
-
-require.register("javascripts/controllers/products/show.js", function(exports, require, module) {
-'use strict';
-
-var Translation = require("javascripts/lib/translation");
-/**
- * ProductsShow Class
- */
-var ProductsShow = {
-
-  /**
-   * Initializer
-   */
-  init: function init() {
-
-    this.handleProductGalery();
-    this.handleSkuChange();
-    this.handleQuantityChange();
-  },
-
-  /**
-   * Grow or reduce price on the display
-   * @param  {String} [option] `grow` or `reduce` price
-   * @param  {Integer} old_quantity    the original old quantity
-   * @param  {String} selector        the area the HTML had to be changed
-   * @return {void}
-   */
-  changePrice: function changePrice() {
-    var option = arguments.length <= 0 || arguments[0] === undefined ? 'grow' : arguments[0];
-    var old_quantity = arguments[1];
-    var selector = arguments[2];
-
-
-    if (typeof $(selector) == 'undefined') {
-      return;
-    }
-
-    old_quantity = parseInt(old_quantity);
-    var old_price = $(selector).html();
-    var unit_price = parseFloat(old_price) / parseInt(old_quantity);
-
-    if (option == 'grow') {
-      var new_quantity = old_quantity + 1;
-    } else if (option == 'reduce') {
-      var new_quantity = old_quantity - 1;
-    }
-
-    var new_price = unit_price * new_quantity;
-    $(selector).html(new_price.toFixed(2));
-  },
-
-  /**
-   * Handle the quantity change with different selector (minus or plus)
-   * @return {void}
-   */
-  handleQuantityChange: function handleQuantityChange() {
-
-    this.manageQuantityMinus();
-    this.manageQuantityPlus();
-  },
-
-  /**
-   * Reduce the quantity by clicking on the minus symbol on the page
-   * @return {void}
-   */
-  manageQuantityMinus: function manageQuantityMinus() {
-
-    $('#quantity-minus').on('click', function (e) {
-
-      e.preventDefault();
-      var quantity = $('#quantity').val();;
-
-      if (quantity > 1) {
-
-        ProductsShow.changePrice('reduce', quantity, '#product_discount_with_currency_yuan .amount');
-        ProductsShow.changePrice('reduce', quantity, '#product_discount_with_currency_euro .amount');
-
-        ProductsShow.changePrice('reduce', quantity, '#product_price_with_currency_yuan .amount');
-        ProductsShow.changePrice('reduce', quantity, '#product_price_with_currency_euro .amount');
-        quantity--;
-      }
-      $('#quantity').val(quantity);
-    });
-  },
-
-  /**
-   * Grow the quantity by clicking on the plus symbol on the page
-   * @return {void}
-   */
-  manageQuantityPlus: function manageQuantityPlus() {
-
-    $('#quantity-plus').on('click', function (e) {
-
-      e.preventDefault();
-      var quantity = $('#quantity').val();
-
-      if (quantity < $('#quantity').data('max')) {
-
-        ProductsShow.changePrice('grow', quantity, '#product_discount_with_currency_yuan .amount');
-        ProductsShow.changePrice('grow', quantity, '#product_discount_with_currency_euro .amount');
-
-        ProductsShow.changePrice('grow', quantity, '#product_price_with_currency_yuan .amount');
-        ProductsShow.changePrice('grow', quantity, '#product_price_with_currency_euro .amount');
-        quantity++;
-      }
-      $('#quantity').val(quantity);
-    });
-  },
-
-  /**
-   * Manage the whole gallery selection
-   * @return {void}
-   */
-  handleProductGalery: function handleProductGalery() {
-
-    $(document).on('click', '#gallery a', function (e) {
-
-      var image = $(this).data('image');
-      var zoomImage = $(this).data('zoom-image');
-
-      e.preventDefault();
-
-      // Changing the image when we click on any thumbnail of the #gallery
-      // We also manage a small pre-loader in case it's slow.
-      ProductsShow.changeMainImage(image, '.js-loader');
-
-      /*
-      $('#main_image').magnify({
-        speed: 0,
-        src: zoomImage,
-      });*/
-    });
-
-    // We don't forget to trigger the click to load the first image
-    $('#gallery a:first').trigger('click');
-
-    // We hide the button because
-    // if there's only one element
-    ProductsShow.manageClickableImages();
-  },
-
-  /**
-   * Hide the thumbnail clickables images of the gallery
-   * If not needed (such as one image total)
-   * @return {void}
-   */
-  manageClickableImages: function manageClickableImages() {
-
-    if ($('#gallery a').size() <= 1) {
-      $('#gallery a:first').hide();
-    }
-  },
-
-  /**
-   * Load a new main image from a thumbanil
-   * @param  {String} image new image source
-   * @param  {String} loader_selector loader to display
-   * @return {void}
-   */
-  changeMainImage: function changeMainImage(image, loader_selector) {
-
-    var ContentPreloader = require("javascripts/lib/content_preloader");
-    ContentPreloader.process($('#main_image').attr('src', image), loader_selector);
-  },
-
-  /**
-   * When the customer change of sku selection, it refreshes some datas (e.g. price)
-   */
-  handleSkuChange: function handleSkuChange() {
-
-    $('select#option_ids').change(function () {
-
-      var productId = $(this).attr('product_id');
-      var optionIds = $(this).val().split(',');
-
-      var ProductSku = require("javascripts/models/product_sku");
-      var Messages = require("javascripts/lib/messages");
-
-      ProductSku.show(productId, optionIds, function (res) {
-
-        if (res.success === false) {
-
-          Messages.makeError(res.error);
-        } else {
-
-          ProductsShow.skuChangeDisplay(productId, res);
-        }
-      });
-    });
-  },
-
-  skuHideDiscount: function skuHideDiscount() {
-
-    $('#product_discount_with_currency_euro').hide();
-    $('#product_discount_with_currency_yuan').hide();
-    $('#product_discount').hide();
-
-    $('#product_discount').removeClass('+discount');
-  },
-
-  skuShowDiscount: function skuShowDiscount() {
-
-    $('#product_discount_with_currency_euro').show();
-    $('#product_discount_with_currency_yuan').show();
-    $('#product_discount').show();
-
-    $('#product_discount').addClass('+discount');
-  },
-
-  /**
-   * Change the display of the product page sku datas
-   */
-  skuChangeDisplay: function skuChangeDisplay(productId, skuDatas) {
-
-    ProductsShow.refreshSkuQuantitySelect(productId, skuDatas['quantity']); // productId is useless with the new system (should be refactored)
-
-    $('#product_price_with_currency_yuan').html(skuDatas['price_with_currency_yuan']);
-    $('#product_price_with_currency_euro').html(skuDatas['price_with_currency_euro']);
-    $('#quantity-left').html(skuDatas['quantity']);
-
-    $('#quantity').val(1); // we reset the quantity to 1
-
-    if (skuDatas['discount'] == 0) {
-
-      ProductsShow.skuHideDiscount();
-    } else {
-
-      ProductsShow.skuShowDiscount();
-
-      $('#product_discount_with_currency_euro').html('<span class="+barred"><span class="+dark-grey">' + skuDatas['price_before_discount_in_euro'] + '</span></span>');
-      $('#product_discount_with_currency_yuan').html('<span class="+barred"><span class="+black">' + skuDatas['price_before_discount_in_yuan'] + '</span></span>');
-      $('#product_discount').html(skuDatas['discount_with_percent'] + '<br/>');
-    }
-
-    ProductsShow.refreshSkuSecondDescription(skuDatas['data_format']);
-    ProductsShow.refreshSkuAttachment(skuDatas['data_format'], skuDatas['file_attachment']);
-    ProductsShow.refreshSkuThumbnailImages(skuDatas['images']);
-
-    ProductsShow.handleProductGalery();
-  },
-
-  /**
-   * Refresh sku quantity select (quantity dropdown)
-   */
-  refreshSkuQuantitySelect: function refreshSkuQuantitySelect(productId, quantity) {
-
-    var quantity_select = $('#product_quantity_' + productId).empty();
-
-    for (var i = 1; i <= parseInt(quantity); ++i) {
-      quantity_select.append('<option value="' + i + '">' + i + '</option>');
-    }
-  },
-
-  /**
-   * Refresh sku thumbnail images list
-   */
-  refreshSkuThumbnailImages: function refreshSkuThumbnailImages(images) {
-
-    for (var i = 0; i < images.length; i++) {
-
-      var image = images[i];
-
-      if ($('#thumbnail-' + i).length > 0) {
-        $('#thumbnail-' + i).html('<a href="#" data-image="' + image.fullsize + '" data-zoom-image="' + image.zoomin + '"><div class="product-page__thumbnail-image" style="background-image:url(' + image.thumb + ');"></div></a>');
-      }
-    }
-  },
-
-  /**
-   * Refresh the sku second description
-   */
-  refreshSkuSecondDescription: function refreshSkuSecondDescription(secondDescription) {
-
-    var more = "<h3>" + Translation.find('more', 'title') + "</h3>";
-
-    if (typeof secondDescription !== "undefined") {
-      $('#product-file-attachment-and-data').html(more + secondDescription);
-    } else {
-      $('#product-file-attachment-and-data').html('');
-    }
-  },
-
-  /**
-   * Refresh the sku attachment (depending on second description too)
-   */
-  refreshSkuAttachment: function refreshSkuAttachment(secondDescription, attachment) {
-
-    var more = "<h3>" + Translation.find('more', 'title') + "</h3>";
-
-    if (typeof attachment !== "undefined") {
-      if (typeof secondDescription !== "undefined") {
-        $('#product-file-attachment-and-data').html(more + secondDescription);
-      }
-      $('#product-file-attachment-and-data').append('<br /><a class="btn btn-default" target="_blank" href="' + attachment + '">PDF Documentation</a>');
-    }
-  }
-
-};
-
-module.exports = ProductsShow;
 });
 
 require.register("javascripts/controllers/products/show_skus.js", function(exports, require, module) {
@@ -1564,36 +1530,6 @@ var Translations = {
 module.exports = Translations;
 });
 
-require.register("javascripts/models/user.js", function(exports, require, module) {
-"use strict";
-
-/**
- * User Class
- */
-var User = {
-
-  /**
-   * Check if user is auth or not via API call
-   */
-  isAuth: function isAuth(callback) {
-    // NOT CURRENTLY IN USE IN THE SYSTEM (REMOVE COMMENT IF YOU ADD IT SOMEWHERE)
-
-    $.ajax({
-      method: "GET",
-      url: "api/users/is_auth",
-      data: {}
-
-    }).done(function (res) {
-
-      callback(res);
-    });
-  }
-
-};
-
-module.exports = User;
-});
-
 require.register("javascripts/starters.js", function(exports, require, module) {
 'use strict';
 
@@ -2042,18 +1978,18 @@ var Messages = {
   },
 
   /**
-   * 
+   *
    */
   hideMessages: function hideMessages() {
 
     var Messages = require("javascripts/lib/messages");
 
     if ($("#message-error").length > 0) {
-      Messages.activateHide('#message-error', 3000);
+      Messages.activateHide('#message-error', 5000);
     }
 
     if ($("#message-success").length > 0) {
-      Messages.activateHide('#message-success', 4000);
+      Messages.activateHide('#message-success', 6000);
     }
   }
 

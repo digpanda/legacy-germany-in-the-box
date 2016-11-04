@@ -48,7 +48,7 @@ module Wirecard
           :company_zip         => billing_address.zip,
           :company_state       => billing_address.province,
           :company_url         => shop.website,
-          :shop_url            => shop_url(shop),
+          :shop_url            => guest_shop_url(shop),
           :user_url            => '',
           :vat_number          => '',
           :bank_name           => '',

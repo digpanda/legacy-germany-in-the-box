@@ -10,14 +10,15 @@ class ShopsController <  ApplicationController
 
   load_and_authorize_resource
 
-  before_action :breadcrumb_home, only: [:show]
-  before_action :breadcrumb_category, :breadcrumb_shop, only: [:show]
-
   attr_reader :shop, :shops
 
   # def index
   #   @shops = Shop.in(shopkeeper: User.where(role: 'shopkeeper').map { |u| u.id} ).all;
   # end
+  #
+  def show
+    redirect_to guest_shop_path(shop)
+  end
 
   def edit_setting
   end
@@ -27,9 +28,6 @@ class ShopsController <  ApplicationController
   end
 
   def show_products
-  end
-
-  def show
   end
 
   def update

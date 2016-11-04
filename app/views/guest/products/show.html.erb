@@ -1,0 +1,34 @@
+<%= translation_js(:more, :title) %>
+
+<div class="+spacer"></div>
+
+  <div class="row col-md-8 col-md-push-2 col-md-pull-2 product-page">
+
+    <!-- Preview -->
+    <div class="col-md-6">
+
+      <%= render partial: "guest/products/show/preview", :locals => {product: @product} %>
+
+    </div>
+
+    <!-- Shop + Product description -->
+    <div class="col-md-6 col-xs-12">
+
+      <%= render partial: "guest/products/show/description", :locals => {product: @product} %>
+
+    </div>
+
+    </div>
+
+    <!-- Shop Footer -->
+    <div class="row col-md-8 col-md-push-2 col-md-pull-2">
+
+      <div class="+spacer"></div>
+      <%= render partial: "guest/shops/show/footer", :locals => { :shop => @product.shop.decorate } %>
+
+    </div>
+
+
+  <div class="row">
+    <div class="+spacer"></div>
+  </div>

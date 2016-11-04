@@ -12,6 +12,15 @@ class ApplicationController < ActionController::Base
 
   include Mobvious::Rails::Controller
 
+  before_action :setup_request
+
+  # this variable setup is very sensitive
+  # we use it in exceptional context
+  # please be aware of how it works before to use it
+  def setup_request
+    $request = request
+  end
+
   # handle hard exception (which will throw a page error)
   # and soft ones even on dev / test (which will usually redirect the customer)
   unless Rails.env.development?
@@ -76,18 +85,6 @@ class ApplicationController < ActionController::Base
     @navigation ||= NavigationHistory.new(request, session)
   end
 
-  def reach_todays_limit?(order, new_price_increase, new_quantity_increase)
-    if current_user
-      # if the user has logged in, we should check
-      # whether the user has reached the limit today and the order itself has reached the the limit today
-      current_user.decorate.reach_todays_limit?(order, new_price_increase) || order.decorate.reach_todays_limit?(new_price_increase, new_quantity_increase)
-    else
-      # if not, just check if the order has reached the limit today.
-      # The further check will be done on the checkout step, after the user has logged in.
-      order.decorate.reach_todays_limit?(new_price_increase, new_quantity_increase)
-    end
-  end
-
   def set_categories
     if potential_customer?
       @categories = Category.order(position: :asc).all
@@ -138,15 +135,15 @@ class ApplicationController < ActionController::Base
 
   # we should put it into a library, there's an obvious possible abstraction here
   def breadcrumb_category
-    add_breadcrumb @category.name, category_path(@category) unless @category.nil?
+    add_breadcrumb @category.name, guest_category_path(@category) unless @category.nil?
   end
 
   def breadcrumb_shop
-    add_breadcrumb @shop.shopname, shop_path(@shop) unless @shop.nil?
+    add_breadcrumb @shop.shopname, guest_shop_path(@shop) unless @shop.nil?
   end
 
   def breadcrumb_product
-    add_breadcrumb @product.name, product_path(@product) unless @product.name.nil?
+    add_breadcrumb @product.name, guest_product_path(@product) unless @product.name.nil?
   end
 
   def breadcrumb_home

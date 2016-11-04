@@ -10,18 +10,6 @@ defaults: &defaults
       merchant_id: dfc3a296-3faf-4a1d-a075-f72f1b67dd2a
       merchant_secret: 6cbfa34e-91a7-421a-8dde-069fc0f5e0b8
 
-  # elastic_api:
-  #   CREDIT CARD :
-  #  creditcard:
-  #    username: <%= ENV["wirecard_elastic_api_creditcard_username"] %>
-  #    password: <%= ENV["wirecard_elastic_api_creditcard_password"] %>
-  #    engine_url: https://api-test.wirecard.com/engine/rest/
-  #   UNIONPAY :
-  #  upop:
-  #    username: <%= ENV["wirecard_elastic_api_upop_username"] %>
-  #    password: <%= ENV["wirecard_elastic_api_upop_password"] %>
-  #    engine_url: https://sandbox-engine.thesolution.com/engine/rest/
-
   hpp:
     # CREDIT CARD :
     creditcard:
@@ -94,20 +82,6 @@ staging:
 
 production:
   <<: *defaults
-
-  # elastic_api:
-  #   # CREDIT CARD :
-  #   creditcard:
-  #     username: <%= ENV["wirecard_elastic_api_creditcard_username"] %>
-  #     password: <%= ENV["wirecard_elastic_api_creditcard_password"] %>
-  #     engine_url: https://api.wirecard.com/engine/rest/
-  #
-  #   # UNIONPAY :
-  #   upop:
-  #     username: <%= ENV["wirecard_elastic_api_upop_username"] %>
-  #     password: <%= ENV["wirecard_elastic_api_upop_password"] %>
-  #     engine_url: https://api.wirecard.com/engine/rest/
-
 
   hpp:
 

@@ -1,7 +1,11 @@
 zh-CN:
+  landing_page:
+    highlight_of_the_day: 本日精选
+    see_more: 更多精选商品
   discount:
     discount: 打折
   product_box:
+    taxes_per_unit: 税额
     shipping_and_taxes_excluded: 不含运费及关税
   coupon:
     cannot_apply:  此折扣码不适用于该订单。
@@ -80,7 +84,7 @@ zh-CN:
     order_not_processable: 该订单目前还不能处理，请稍候再试！
     order_processing: 该订单正在处理，您很快就可以发货。
     shipping_partner_problem: 物流系统错误，请稍后再试。
-    wechat_login: 微信登陆成功！
+    wechat_login: 微信登录成功！
     wechat_login_fail: 不能取得你的微信身份，稍候再试一下吧！
     account_conflict: 浏览记录过期，请联系客服
     success_subscription: 祝贺你成功注册！
@@ -95,7 +99,7 @@ zh-CN:
     new_password: 新密码
     confirm_new_password: 确认新密码
     login_or: 或者
-  signin: 登陆
+  signin: 登录
   back: 返回
   locales:
     de: 德语
@@ -127,7 +131,7 @@ zh-CN:
     notifications: 平台通知
     support: Support
     top_menu: 菜单
-    sign_in: 登陆
+    sign_in: 登录
     sign_up: 注册
     sign_out: 登出
     my_cart: 购物车
@@ -154,7 +158,7 @@ zh-CN:
     german: 德语/DE
     user_profile: 用户概要
     wrong_captcha: 验证码不一致
-    email_confirmation_msg: 我们已经向您的注册邮箱发送了一封确认邮件，请您登陆前先确认。
+    email_confirmation_msg: 我们已经向您的注册邮箱发送了一封确认邮件，请您登录前先确认。
     shops: 店铺管理
     categories: 产品目录管理
     payments: 支付管理
@@ -192,11 +196,11 @@ zh-CN:
     news_ihk_titel: 诚挚感谢！
     news_ihk: 我们诚挚感谢德国巴伐利亚州工商联（<strong>IHK Bayern</strong>）和手工业联（<strong>Handwerkskammer Bayern</strong>）对来因盒的赞助。感谢对我们模式的认可，支持我们把高品质德国产品从制造端直接带给中国消费者。
   sign_in_dialog:
-    email: 登陆邮箱
+    email: 登录邮箱
     password: 密码
-    header: 用户登陆
-    title: 亲，欢迎您回来！快点登陆吧!
-    remember_me: 保持登陆
+    header: 用户登录
+    title: 亲，欢迎您回来！快点登录吧!
+    remember_me: 保持登录
     not_member_yet: 我要注册
     forgot_password: 忘记密码
     captcha: 验证码
@@ -204,7 +208,7 @@ zh-CN:
     wechat_auth_failed: 请您授权我们的平台可以访问您的用户信息.
   sign_up_dialog:
     username: 用户昵称
-    email: 登陆邮箱
+    email: 登录邮箱
     password: 密码
     password_confirmation: 重复密码
     header: 新用户注册
@@ -216,7 +220,7 @@ zh-CN:
   password_recovery_dialog:
     header: 密码恢复
     title: 忘记密码？别担心，我们来帮！
-    email: 登陆邮箱
+    email: 登录邮箱
     ok: 获取新密码
   edit_accounts:
     operations: 操作
@@ -235,9 +239,9 @@ zh-CN:
     change_initial_password: 我们建议，修改系统给您设定初始密码，方便您记忆。
     password_info: 密码最小长度为8个字符
     password_match_error: 密码必须一致
-    last_sign_in_at: 最后登陆
+    last_sign_in_at: 最后登录
     role: 角色
-    sign_in_count: 登陆次数
+    sign_in_count: 登录次数
     shopkeeper_photo: 店主照片
     shopkeeper_photo_info: 您的照片会给您的店铺增色不少
   edit_following:

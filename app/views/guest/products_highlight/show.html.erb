@@ -1,0 +1,4 @@
+<div class="col-md-8 col-md-push-2 col-md-pull-2">
+  <!-- Products list -->
+  <%= render partial: "guest/shops/show/products_list", :locals => { :products => @products.can_show.by_brand } %>
+</div>

@@ -1,0 +1,102 @@
+<h2>
+  <%= product.name %> <%= render partial: "guest/products/show/like", :locals => { :product => product } %>
+  <span id="product_discount" class="<% if @featured_sku.discount? %>+discount<% end %>">
+    <%= product.decorate.preview_discount if @featured_sku.discount? %>
+  </span>
+</h2>
+
+<% if @featured_sku %>
+
+  <% if @featured_sku.discount? %>
+
+      <span id="product_discount_with_currency_yuan" class="+medium">
+        <span class="+barred">
+          <span class="+black">
+            <%= @featured_sku.price_before_discount_in_yuan_html.html_safe %>
+          </span>
+        </span>
+      </span>
+      <span id="product_discount_with_currency_euro" class="+price-euro">
+        <span class="+barred">
+          <span class="+dark-grey">
+            <%= @featured_sku.price_before_discount_in_euro_html.html_safe %>
+          </span>
+        </span>
+      </span>
+
+    <br />
+
+  <% end %>
+
+  <span id="product_price_with_currency_yuan" class="+price-yuan"><%= product.decorate.preview_price_yuan_html.html_safe %></span> <span id="product_price_with_currency_euro" class="+price-euro"><%= product.decorate.preview_price_euro_html.html_safe %></span>
+
+  <%= I18n.t(:shipping_and_taxes_excluded, scope: :product_box) %>
+  <br />
+  <!-- <br />
+  <%= I18n.t(:taxes_per_unit, scope: :product_box) %> <span id="product_fees_with_currency_yuan">< product.decorate.preview_fees_yuan_html.html_safe ></span><br /> -->
+
+<% end %>
+
+<!-- Warnings -->
+<% if @featured_sku.quantity_warning? %>
+  | <span class="+red +up +bold"> <%= I18n.t(:only, scope: :product_left) %> <span id="quantity-left"><%= @featured_sku.quantity %></span> <%= I18n.t(:left, scope: :product_left) %></span>
+<% elsif @featured_sku.nothing_left? %>
+  | <span class="+red +up +bold"> <%= I18n.t(:no_stock_left, scope: :product_left) %></span>
+<% elsif !product.decorate.can_buy? %>
+  | <span class="+red +up +bold"> <%= I18n.t(:not_ready_to_sell, scope: :product_left) %></span>
+<% end %>
+
+<div class="+small-spacer"></div>
+
+<%= form_tag add_product_to_orders_path, :method => :patch do %>
+
+    <%= hidden_field_tag 'sku[product_id]', "#{product.id}" %>
+
+    <% if @featured_sku %>
+
+        <%= render partial: "guest/products/show/select_sku", :locals => {product: product} %>
+        <div class="+small-spacer"></div>
+        <%= render partial: "guest/products/show/select_quantity", :locals => {product: product} %>
+
+    <% else %>
+
+        <%= submit_tag "#{I18n.t(:not_available, scope: :popular_products)}", :class => 'btn btn-primary btn-lg', :disabled => true %>
+
+    <% end %>
+<% end %>
+
+<div class="+small-spacer"></div>
+
+<div class="product-page__description">
+
+  <% unless product.decorate.format_desc.empty? %>
+
+    <h3><% I18n.t(:description, scope: :title) %></h3>
+
+    <%= product.decorate.format_desc %>
+
+  <% end %>
+
+  <div class="+small-spacer"></div>
+
+  <div id="product-file-attachment-and-data">
+
+  <% if @featured_sku.more_description? %>
+
+    <h3><%= I18n.t(:more, scope: :title) %></h3>
+
+    <% if @featured_sku.data? %>
+      <%= @featured_sku.decorate.format_data %>
+    <% end %>
+
+    <br />
+
+    <% if @featured_sku.attach0.file %>
+      <a class="btn btn-default" target="_blank" href="<%=  @featured_sku.attach0.url %>">PDF Documentation</a>
+    <% end %>
+
+  <% end %>
+
+  </div>
+
+</div>

@@ -12,7 +12,7 @@ module BorderGuru
 
       def to_h
         {
-          merchantOrderId: @order.id.to_s,
+          merchantOrderId: @order.border_guru_order_id,
           trackingStatus: 'EN_ROUTE',
           trackingLocation: location,
           trackingMessage: 'Parcel left warehouse',

@@ -2,6 +2,7 @@ class Sku
   include MongoidBase
 
   Numeric.include CoreExtensions::Numeric::CurrencyLibrary
+  FEES_ESTIMATION_EXPIRATION = 1.week.ago
 
   strip_attributes
 
@@ -23,6 +24,9 @@ class Sku
   field :data,          type: String,     localize: true
   field :attach0,       type: String
   field :country_of_origin, type: String, default: 'DE'
+
+  field :fees_estimation, type: Float, default: 0.0
+  field :fees_estimated_at, type: Date
 
   field :option_ids,    type: Array,      default: []
 
@@ -56,6 +60,30 @@ class Sku
 
   def volume
     space_length * space_width * space_height
+  end
+
+  def price_with_fees
+    price + estimated_fees
+  end
+
+  def update_estimated_fees!
+    sku_fees_estimation = SkuFeesEstimation.new(self).provide
+    if sku_fees_estimation.success?
+      self.fees_estimation = sku_fees_estimation.data[:taxAndDutyCost]
+      self.fees_estimated_at = Time.now
+      self.save
+    end
+  end
+
+  # this system was made in emergency situation and should be replaced
+  # by a CRON job and an automatic refresh without the whole logic at each call
+  def estimated_fees
+    @estimated_fees ||= begin
+      if self.fees_estimated_at.nil? || (self.fees_estimated_at < FEES_ESTIMATION_EXPIRATION)
+        update_estimated_fees!
+      end
+      self.fees_estimation
+    end
   end
 
   def get_options

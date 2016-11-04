@@ -31,7 +31,7 @@ class Shared::OrdersController < ApplicationController
   end
 
   def cancel
-    canceller = OrderCanceller.new(order).perform
+    canceller = OrderCanceller.new(order).cancel_all!
     if canceller.success?
       flash[:success] = "Order was cancelled successfully."
       redirect_to(:back)
