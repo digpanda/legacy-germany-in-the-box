@@ -7,7 +7,7 @@ class OrderCanceller < BaseService
     @order = order
   end
 
-  def perform
+  def cancel_all!
     # managing possible problems
     unless order.decorate.cancellable?
       return return_with(:error, "Impossible to cancel order")

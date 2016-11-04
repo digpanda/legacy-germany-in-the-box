@@ -20,7 +20,7 @@ module BorderGuru
                                             countryOfDestination: @country_of_destination.alpha2,
                                             currency: @currency,
                                             quoteIdentifier: @order.border_guru_quote_id,
-                                            merchantOrderId: @order.id.to_s,
+                                            merchantOrderId: @order.border_guru_order_id,
                                             storeName: @shop.name,
                                             dimensionalWeight: @order.total_dimensional_weight,
                                             dimensionalWeightScale: WEIGHT_UNIT,

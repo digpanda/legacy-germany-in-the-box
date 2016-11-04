@@ -1,5 +1,7 @@
 <h3>BorderGuru</h3>
 
+  BorderGuru Order Id : <%= @order.border_guru_order_id %><br />
+
   <% if @order.border_guru_link_tracking %>
     <%= link_to "BorderGuru Link Tracking", @order.border_guru_link_tracking, :target => '_blank', :class => "btn btn-primary" %>
   <% else %>

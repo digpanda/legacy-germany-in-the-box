@@ -13,6 +13,7 @@ class Order
   field :border_guru_quote_id,      type: String
   field :shipping_cost,             type: Float, default: 0
   field :tax_and_duty_cost,         type: Float, default: 0
+  field :border_guru_order_id,      type: String
   field :border_guru_shipment_id,   type: String
   field :border_guru_link_tracking, type: String
   field :border_guru_link_payment,  type: String
@@ -60,6 +61,14 @@ class Order
   index({user: 1},  {unique: false,   name: :idx_order_user,   sparse: true})
 
   after_save :make_bill_id, :update_paid_at, :update_cancelled_at
+  before_save :create_border_guru_order_id
+
+  def create_border_guru_order_id
+    unless self.border_guru_order_id
+      self.border_guru_order_id = SecureRandom.hex(10)
+      self.save
+    end
+  end
 
   # refresh order status from payment
   # if the order is still not send / paid, it checks

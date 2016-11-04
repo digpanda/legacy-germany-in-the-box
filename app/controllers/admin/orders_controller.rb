@@ -36,7 +36,7 @@ class Admin::OrdersController < ApplicationController
 
   # could be placed after a while into a new controller
   def force_get_shipping
-    response = BorderGuruApiHandler.new(order).get_shipping!
+    response = get_shipping_refresh!
     if response.success?
       flash[:success] = "Shipping was attributed."
     else
@@ -46,6 +46,17 @@ class Admin::OrdersController < ApplicationController
   end
 
   private
+
+  def get_shipping_refresh!
+    # we cancel the order from BorderGuru ONLY
+    # not the order itself
+    OrderCanceller.new(order).border_guru_cancel_order!
+    # we recreate a new order ID
+    order.border_guru_order_id = nil
+    order.save
+    # now we get the fresh shipping
+    BorderGuruApiHandler.new(order).get_shipping!
+  end
 
   def set_order
     @order = Order.find(params[:id] || params[:order_id])
