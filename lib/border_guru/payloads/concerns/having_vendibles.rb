@@ -9,7 +9,7 @@ module BorderGuru
       # concern which provides #total_value and #total_weight.
       def product_summaries(order)
         {
-          subtotal: order.total_price_with_discount, #order.total_value,
+          subtotal: order.total_price_with_discount.to_f.round(2), #order.total_value,
           totalWeight: order.total_weight,
           dimensionalWeight: order.total_dimensional_weight,
           dimensionalWeightScale: WEIGHT_UNIT,
@@ -24,7 +24,7 @@ module BorderGuru
           {
             sku: order_item.sku.id,
             shortDescription: order_item.sku.product.name,
-            price: order_item.price_with_coupon_applied,
+            price: order_item.price_with_coupon_applied.to_f.round(2),
             category: Rails.env.production? ? order_item.sku.product.duty_category.code : 'test',
             weight: order_item.weight,
             weightScale: WEIGHT_UNIT,
