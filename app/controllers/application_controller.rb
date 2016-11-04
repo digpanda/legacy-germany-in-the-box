@@ -85,18 +85,6 @@ class ApplicationController < ActionController::Base
     @navigation ||= NavigationHistory.new(request, session)
   end
 
-  def reach_todays_limit?(order, new_price_increase, new_quantity_increase)
-    if current_user
-      # if the user has logged in, we should check
-      # whether the user has reached the limit today and the order itself has reached the the limit today
-      current_user.decorate.reach_todays_limit?(order, new_price_increase) || order.decorate.reach_todays_limit?(new_price_increase, new_quantity_increase)
-    else
-      # if not, just check if the order has reached the limit today.
-      # The further check will be done on the checkout step, after the user has logged in.
-      order.decorate.reach_todays_limit?(new_price_increase, new_quantity_increase)
-    end
-  end
-
   def set_categories
     if potential_customer?
       @categories = Category.order(position: :asc).all

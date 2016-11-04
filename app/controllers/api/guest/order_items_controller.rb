@@ -18,10 +18,9 @@ class Api::Guest::OrderItemsController < Api::ApplicationController
     end
 
     quantity_difference = quantity - order_item.quantity
-    price_difference = sku.decorate.price_in_yuan * quantity_difference
 
     # reach daily limit
-    if quantity_difference >= 0 && reach_todays_limit?(order, price_difference, quantity_difference)
+    if quantity_difference >= 0 && BuyingBreaker.new(order).with_sku?(sku, quantity_difference)
       # refactor error message (with throw error)
       render :json => {
         :success => false,

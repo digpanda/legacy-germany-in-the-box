@@ -58,8 +58,7 @@ class OrdersController < ApplicationController
     order = cart_manager.order(shop: product.shop, call_api: false)
     order.shop = product.shop
 
-    new_increment = sku.price * quantity * Settings.first.exchange_rate_to_yuan
-    if reach_todays_limit?(order, new_increment, quantity)
+    if BuyingBreaker.new(order).with_sku?(sku, quantity)
       flash[:error] = I18n.t(:override_maximal_total, scope: :edit_order, total: Settings.instance.max_total_per_day, currency: Settings.instance.platform_currency.symbol)
       redirect_to(:back)
       return
