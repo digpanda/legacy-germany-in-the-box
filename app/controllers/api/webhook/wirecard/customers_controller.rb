@@ -39,7 +39,7 @@ class Api::Webhook::Wirecard::CustomersController < Api::ApplicationController
     end
     devlog.info "End of process."
     render status: :ok,
-            json: {success: true}.to_json and return
+            json: {success: true}.to_json
 
   end
 

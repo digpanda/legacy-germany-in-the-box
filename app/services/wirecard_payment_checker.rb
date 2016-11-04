@@ -29,7 +29,7 @@ class WirecardPaymentChecker < BaseService
     # would different between the order and payment time
     order_payment.refresh_currency_amounts!
     return_with(:success)
-  rescue Wirecard::Elastic::Error => exception
+  rescue Wirecard::Elastic::Error, Wirecard::Elastic::ConfigError => exception
     return_with(:error, exception)
   end
 
