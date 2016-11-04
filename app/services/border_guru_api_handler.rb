@@ -16,9 +16,9 @@ class BorderGuruApiHandler < BaseService
   # so we catch the exception globally
   def get_shipping!
     BorderGuru.get_shipping(order: order)
+    warn_developers(StandardError.new, "Issue while trying to call get_shipping from BorderGuru")
     return_with(:success)
   rescue StandardError => exception
-    #warn_developers(StandardError.new, "Issue while trying to call get_shipping from BorderGuru")
     return_with(:error, exception)
   end
 

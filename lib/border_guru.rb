@@ -34,7 +34,6 @@ module BorderGuru
         country_of_destination: COUNTRY_OF_DESTINATION,
         currency: CURRENCY
       ) do |response|
-        response.slack_feedback
         # could be refactored way better but we got no time for that
         # the error managing system is very bad in this library and should be taken care of
         if response.response_data[:success] == false || response.response_data[:error]
