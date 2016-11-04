@@ -31,6 +31,8 @@ module BorderGuru
       end
 
       def quote_params
+        # temporary check of all transactions given to BorderGuru
+        warn_developers(StandardError.new, "#{quote_params}")
         CGI.escape(payload_hash.to_json)
       end
 
