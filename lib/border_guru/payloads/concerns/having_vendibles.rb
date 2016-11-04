@@ -9,7 +9,7 @@ module BorderGuru
       # concern which provides #total_value and #total_weight.
       def product_summaries(order)
         {
-          subtotal: order.total_price_with_discount,
+          subtotal: order.total_price_with_discount.to_f,
           totalWeight: order.total_weight,
           dimensionalWeight: order.total_dimensional_weight,
           dimensionalWeightScale: WEIGHT_UNIT,
