@@ -22,8 +22,8 @@ module BorderGuru
           {
             sku: order_item.sku.id,
             shortDescription: order_item.sku.product.name,
-            price: order_item.price, #adjusted_order_item_price(order_item, index).to_f,
-            category: Rails.env.production? ? order_item.sku.product.duty_category.code : 'test',
+            price: adjusted_order_item_price(order_item, index).to_f,
+            category: 'test', #Rails.env.production? ? order_item.sku.product.duty_category.code : 'test',
             weight: order_item.weight,
             weightScale: WEIGHT_UNIT,
             countryOfManufacture: order_item.sku.product.shop.sender_address.country.alpha2
