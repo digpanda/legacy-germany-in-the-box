@@ -38,4 +38,19 @@
   </div>
   <% end %>
 </div>
+
+<div class="+small-spacer"></div>
+
+<div class="row">
+<div class="col-md-6 +white-box">
+  <%= form_for admin_settings_path, html: {method: 'patch', :data => {:toggle => 'validator'}} do |f| %>
+    <div class="form-group">
+      <%= f.label :alert, "Alert" %>
+      <%= f.text_field :alert, value: Settings.instance.alert, :autocomplete => :off %>
+    </div>
+    <%= f.button "Update alert", :type => 'submit', :class => 'btn btn-primary', name: :user_info_edit_part, value: :edit_settings %>
+  </div>
+  <% end %>
+</div>
+
 </div>

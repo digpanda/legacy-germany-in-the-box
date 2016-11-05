@@ -76,9 +76,11 @@
 
   <!-- Announcement -->
   <div class="row announcement">
-    <div class="col-md-12">
-      系统公告：因访问量过高，购物车出现系统问题，请你稍后再来。造成不便请见谅。
-    </div>
+    <% if Settings.instance.alert.present? %>
+      <div class="col-md-12">
+        <%= Settings.instance.alert %>
+      </div>
+    <% end %>
   </div>
 
 <% elsif current_user %>

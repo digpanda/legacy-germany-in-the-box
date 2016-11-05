@@ -9,6 +9,7 @@ class Settings
   field :supplier_currency,     type: ISO4217::Currency, default: ISO4217::Currency.from_code('EUR')
   field :max_total_per_day,     type: BigDecimal, default: 1000
   field :highlight_title,       type: String
+  field :alert, type: String
 
   validates :platform_currency,       presence: true
   validates :supplier_currency,       presence: true
