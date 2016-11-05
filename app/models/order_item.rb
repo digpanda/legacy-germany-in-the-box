@@ -43,8 +43,9 @@ class OrderItem
   # we originally created it to call the BorderGuru API with the correct prices
   # considering the coupon system.
   # using it as end_price would make a double discount which would be false. please avoid this.
-  def total_price_with_coupon_applied
-    (total_price * order.total_discount_percent).round(2)
+  # NOTE : we want to get the `price` per unit not the `total_price` because of BorderGuru API
+  def price_with_coupon_applied
+    (price * order.total_discount_percent).round(2)
   end
 
   def total_price

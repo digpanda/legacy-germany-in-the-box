@@ -37,7 +37,9 @@ module BorderGuru
       # NOTE : this can be slightly different from the subtotal / totalPrice
       def adjusted_price(order)
         order.order_items.inject(0) do |acc, current_order_item|
-          acc = acc + current_order_item.total_price_with_coupon_applied
+          # we need the quantity because the shown price is per unit
+          # but the adjusted price need the `total_price`
+          acc = acc + (current_order_item.price_with_coupon_applied * current_order_item.quantity)
         end
       end
 
@@ -55,9 +57,9 @@ module BorderGuru
       # with the price the customers pay therefore i made it this way.
       def adjusted_order_item_price(order_item, index)
         if index == 0
-          order_item.total_price_with_coupon_applied - subtotal_difference(order_item.order)
+          order_item.price_with_coupon_applied - subtotal_difference(order_item.order)
         else
-          order_item.total_price_with_coupon_applied
+          order_item.price_with_coupon_applied
         end
       end
 
