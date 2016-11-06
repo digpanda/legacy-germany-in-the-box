@@ -26,7 +26,9 @@ class BuyingBreaker < BaseService
   # NOTE : the address must be a shipping_address
   # the comparison is made on the recipient of the package
   def with_address?(address)
-    (order.decorate.total_price_in_yuan + address_today_paid(address)) > BUYING_LIMIT_CNY
+    if address_today_paid(address) > 0
+      (order.decorate.total_price_in_yuan + address_today_paid(address)) > BUYING_LIMIT_CNY
+    end
   end
 
   private
