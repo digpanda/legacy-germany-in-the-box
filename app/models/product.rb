@@ -43,7 +43,7 @@ class Product
   #validates :tags, length:                   { maximum: Rails.configuration.max_num_tags                        }
 
   scope :is_active,   -> { self.and(:status  => true, :approved.ne => nil) }
-  scope :has_sku,     -> { self.where("skus.0" => {"$exists" => true }) }
+  scope :has_sku,     -> { self.where(:'skus.0' => {:$exists => true }) }
   scope :has_hs_code, -> { self.where(:hs_code.ne => nil) }
 
   # we fetch all the `available_skus` and only select

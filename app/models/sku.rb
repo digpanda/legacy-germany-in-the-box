@@ -38,21 +38,24 @@ class Sku
   mount_uploader :img3,     ProductImageUploader
   mount_uploader :attach0,  AttachmentUploader
 
-  validates :price,         presence: true,   :numericality => { :greater_than => 0 }
-  validates :quantity,      presence: true,   :numericality => { :greater_than_or_equal_to => 0 }, :unless => lambda { self.unlimited }
+  validates :price,         presence: true, :numericality => { :greater_than => 0 }
+  validates :quantity,      presence: true, :numericality => { :greater_than_or_equal_to => 0 }, :unless => lambda { self.unlimited }
   validates :unlimited,     presence: true
   validates :weight,        presence: true
   validates :status,        presence: true
   validates :customizable,  presence: true
-  validates :discount,      presence: true,   :numericality => { :greater_than_or_equal_to => 0, :less_than_or_equal_to => 100 }
+  validates :discount,      presence: true, :numericality => { :greater_than_or_equal_to => 0, :less_than_or_equal_to => 100 }
   validates :option_ids,    presence: true
-  validates :time,          presence: true,   inclusion: {in: ['terminated', 'automatic']}
-  validates :space_length,  presence: true,   :numericality => { :greater_than => 0 }
-  validates :space_width,   presence: true,   :numericality => { :greater_than => 0 }
-  validates :space_height,  presence: true,   :numericality => { :greater_than => 0 }
+  validates :time,          presence: true, inclusion: {in: ['terminated', 'automatic']}
+  validates :space_length,  presence: true, :numericality => { :greater_than => 0 }
+  validates :space_width,   presence: true, :numericality => { :greater_than => 0 }
+  validates :space_height,  presence: true, :numericality => { :greater_than => 0 }
 
   scope :is_active, -> { where(:status      => true) }
   scope :in_stock,  -> { any_of({:unlimited => true  }, {:quantity.gt => 0}) }
+
+  # currently not working properly, please do not use this scope
+  # NOTE : http://stackoverflow.com/questions/40464883/mongoid-chaining-and-scopes
   scope :can_buy,   -> { is_active.in_stock }
 
   before_save :clean_blank_and_duplicated_option_ids
