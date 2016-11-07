@@ -15,6 +15,26 @@ class Customer::OrdersController < ApplicationController
     @orders = current_user.orders.nonempty.order_by(:c_at => :desc).paginate(:page => current_page, :per_page => 10);
   end
 
+  # TODO : refactor this
+  def show
+    @readonly = true
+    @currency_code = order.shop.currency.code
+
+    unless order.decorate.bought?
+
+      if order.order_items.count > 0
+
+        begin
+          BorderGuru.calculate_quote(order: order)
+        rescue Net::ReadTimeout => e
+          logger.fatal "Failed to connect to Borderguru: #{e}"
+          return nil
+        end
+
+      end
+    end
+  end
+
   # destroy completely the order or cancel it if has sensitive datas
   # sensitive datas occurs if the customer tries to pay the order itself
   def destroy

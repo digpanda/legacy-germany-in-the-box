@@ -20,7 +20,7 @@ var OrdersShow = {
     }).multiselect('disable');
 
   },
-  
+
 }
 
 module.exports = OrdersShow;

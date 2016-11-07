@@ -25,25 +25,6 @@ class OrdersController < ApplicationController
     throw_app_error(:resource_not_found, {error: "Your label is not ready yet. Please try again in a few hours."})
   end
 
-  def show
-    @readonly = true
-    @currency_code = @order.shop.currency.code
-
-    unless @order.decorate.bought?
-
-      if @order.order_items.count > 0
-
-        begin
-          BorderGuru.calculate_quote(order: @order)
-        rescue Net::ReadTimeout => e
-          logger.fatal "Failed to connect to Borderguru: #{e}"
-          return nil
-        end
-
-      end
-    end
-  end
-
   def set_address
     @address = Address.new
     @user = current_user

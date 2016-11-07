@@ -305,7 +305,8 @@
         <div class="panel-body">
           <div class="form-group">
             <div class="row-fluid">
-              <%= render partial: "addresses/addresses_table", :locals => { :addresses => @shop.addresses } %>
+              <!-- TODO: this part has to be improved and put a real controller on the admin side -->
+              <%= render partial: "admin/addresses/addresses_table", :locals => { :addresses => @shop.addresses } %>
             </div>
           </div>
         </div>
@@ -314,4 +315,3 @@
   </div>
   <%= f.button I18n.t(:save, scope: :edit_shop, locale: locale), :id => "edit_producer_submit_#{locale}", :class => 'btn btn-primary edit_producer_submit',  name: :user_info_edit_part, value: :edit_producer %>
 <% end %>
-

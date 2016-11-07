@@ -378,6 +378,35 @@ var CustomerCheckoutPaymentMethod = {
 module.exports = CustomerCheckoutPaymentMethod;
 });
 
+require.register("javascripts/controllers/customer/orders/show.js", function(exports, require, module) {
+'use strict';
+
+/**
+ * OrdersShow class
+ */
+var OrdersShow = {
+
+  /**
+   * Initializer
+   */
+  init: function init() {
+
+    this.multiSelectSystem();
+  },
+
+  multiSelectSystem: function multiSelectSystem() {
+
+    $('select.sku-variants-options').multiselect({
+      enableCaseInsensitiveFiltering: true,
+      maxHeight: 400
+    }).multiselect('disable');
+  }
+
+};
+
+module.exports = OrdersShow;
+});
+
 require.register("javascripts/controllers/guest/feedback.js", function(exports, require, module) {
 'use strict';
 
@@ -705,35 +734,6 @@ var ProductsShow = {
 };
 
 module.exports = ProductsShow;
-});
-
-require.register("javascripts/controllers/orders/show.js", function(exports, require, module) {
-'use strict';
-
-/**
- * OrdersShow class
- */
-var OrdersShow = {
-
-  /**
-   * Initializer
-   */
-  init: function init() {
-
-    this.multiSelectSystem();
-  },
-
-  multiSelectSystem: function multiSelectSystem() {
-
-    $('select.sku-variants-options').multiselect({
-      enableCaseInsensitiveFiltering: true,
-      maxHeight: 400
-    }).multiselect('disable');
-  }
-
-};
-
-module.exports = OrdersShow;
 });
 
 require.register("javascripts/controllers/products/clone_sku.js", function(exports, require, module) {
