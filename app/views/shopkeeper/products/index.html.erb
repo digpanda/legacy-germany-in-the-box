@@ -1,0 +1,89 @@
+<a class="btn-lg btn btn-primary" href="<%= new_shop_product_path(@shop, :user_info_edit_part => :edit_product_new) %>">
+  <i class="fa fa-plus-circle"></i>
+  <%= I18n.t(:new, scope: :edit_product) %>
+</a>
+<br/>
+<br/>
+<% if @shop.products.size > 0 %>
+  <table class="white-table">
+    <thead>
+      <tr>
+        <th>
+          <label>
+            <%= I18n.t(:image, scope: :edit_product_detail) %>
+          </label>
+        </th>
+        <th>
+          <label>
+            <%= I18n.t(:name, scope: :edit_product) %>
+          </label>
+        </th>
+        <th>
+          <label>
+            <%= I18n.t(:brand, scope: :edit_product) %>
+          </label>
+        </th>
+        <% #%th{ :title => I18n.t(:categories_info, scope: :edit_product) } %>
+        <% #  %i.fa.fa-info-circle{ :title => I18n.t(:categories_info, scope: :edit_product) } %>
+        <% #  %label= I18n.t(:categories, scope: :edit_product) %>
+        <th>
+          <label>
+            <%= I18n.t(:quantity, scope: :edit_product_detail) %>
+          </label>
+        </th>
+        <th>
+          <label>
+            <%= I18n.t(:operations, scope: :edit_product) %>
+          </label>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @shop.products.each do |p| %>
+        <tr>
+          <td>
+            <%= image_tag p.decorate.first_sku_image, :class => 'icon-img' %>
+          </td>
+          <td>
+            <%= link_to p.name ? p.name : p.name_translations[I18n.default_locale], edit_product_path(p.id, :user_info_edit_part => :edit_product_update) %>
+          </td>
+          <td>
+            <%= p.brand ? p.brand : p.brand_translations[I18n.default_locale] %>
+          </td>
+          <td>
+            <% num1 = p.skus.inject(0) { |sum, s| sum += s.quantity } %>
+            <% num2 = p.options.size %>
+            <%= link_to I18n.t(:quantity_info, scope: :edit_product, num1: num1, num2: num2), show_skus_product_path(p.id, :user_info_edit_part => :edit_product_detail) %>
+          </td>
+          <td align="left">
+            <% if current_user.decorate.admin? %>
+
+              <% if p.highlight %>
+                <%= link_to '', product_regular_path(p), :method => :patch, :class => 'tooltipster fa fa-low-vision buttons buttons__delete', :title => "No highlight for this product" %>
+              <% else %>
+                <%= link_to '', product_highlight_path(p), :method => :patch, :class => 'tooltipster fa fa-magic buttons buttons__purple', :title => "Highlight this product" %>
+              <% end %>
+
+              <% if p.approved.nil? %>
+                <%= link_to '', product_approve_path(p), :method => :patch, :class => 'tooltipster fa fa-check buttons buttons__add', :title => "Approve this product" %>
+              <% else %>
+                <%= link_to '', product_disapprove_path(p), :method => :patch, :class => 'tooltipster fa fa-minus buttons buttons__cancel', :title => "Disapprove this product" %>
+              <% end %>
+
+              <% if p.removable? %>
+                <%= link_to '', guest_product_path(p), :method => :delete, data: { confirm: I18n.t(:delete_product_message, scope: :edit_product) }, :class => 'tooltipster fa fa-times buttons buttons__delete', :title => "Remove this product" %>
+              <% end %>
+
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+<div class="col-md-6 col-md-push-3 col-md-pull-3 +white-box +centered">
+  <h4>
+   <%= I18n.t(:no_products, scope: :cart) %>
+ </h4>
+</div>
+<% end %>

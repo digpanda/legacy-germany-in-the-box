@@ -11,9 +11,6 @@ class CategoriesController < ApplicationController
   layout :custom_sublayout, only: [:index]
 
   # for shopkeepers and stuff (to move soon and then remove this shit controller)
-  def show_products
-  end
-
   def list_products
   end
 

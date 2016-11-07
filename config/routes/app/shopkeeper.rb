@@ -9,6 +9,9 @@ namespace :shopkeeper do
   resource :account, :controller => 'account' do
   end
 
+  resources :products do
+  end
+
   resources :addresses do
   end
 

@@ -12,8 +12,8 @@
   <li class="<%= menu_active? edit_setting_shop_path(current_user.shop.id) %>">
     <%= link_to I18n.t(:my_shop, scope: :top_menu), edit_setting_shop_path(current_user.shop.id) %>
   </li>
-  <li class="<%= menu_active? show_products_shop_path(current_user.shop.id) %>">
-    <%= link_to I18n.t(:my_product, scope: :top_menu), show_products_shop_path(current_user.shop.id) %>
+  <li class="<%= menu_active? shopkeeper_products_path %>">
+    <%= link_to I18n.t(:my_product, scope: :top_menu), shopkeeper_products_path %>
   </li>
   <li class="<%= menu_active? shopkeeper_orders_path %>">
     <%= link_to I18n.t(:my_order, scope: :top_menu), shopkeeper_orders_path %>

@@ -59,13 +59,6 @@ class ApplicationController < ActionController::Base
 
   before_action :set_categories
 
-  after_filter :store_location
-
-  def store_location
-    # should be refactored to dynamic paths (obviously)
-    #navigation.store :except => %w(/users/sign_in /users/sign_up /users/password/new /users/password/edit /users/confirmation /users/sign_out)
-  end
-
   def current_page
     if params[:page]
       params[:page].to_i
