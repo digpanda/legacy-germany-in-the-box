@@ -1,8 +1,10 @@
 class Customer::AddressesController < ApplicationController
 
-  load_and_authorize_resource :class => false
+  attr_reader :address
+
+  load_and_authorize_resource
   layout :custom_sublayout, only: [:index]
-  before_action :set_address, only: [:show, :create, :update, :destroy]
+  before_action :set_address, only: [:show, :update, :destroy]
 
   def index
     @addresses = current_user.addresses
@@ -28,7 +30,7 @@ class Customer::AddressesController < ApplicationController
     address_params[:province] = ChinaCity.get(address_params[:province])
     address_params[:country] = 'CN'
 
-    address = Address.new(adress_params)
+    address = Address.new(address_params)
     address.user = current_user
 
     if address.save
@@ -73,6 +75,7 @@ class Customer::AddressesController < ApplicationController
     if address.primary
       set_alternative_primary_address(address)
     end
+    redirect_to navigation.back(1)
   end
 
   private
@@ -85,7 +88,7 @@ class Customer::AddressesController < ApplicationController
     end
   end
 
-  def reset_primary_address(address)
+  def reset_primary_address!(address)
     # TODO : we refresh the primary address
     # This should be put into model
     current_user.addresses.select do |current_address|
@@ -97,7 +100,7 @@ class Customer::AddressesController < ApplicationController
   end
 
   def set_address
-    current_user.addresses.find(params[:id])
+    @address = current_user.addresses.find(params[:id])
   end
 
   def address_params

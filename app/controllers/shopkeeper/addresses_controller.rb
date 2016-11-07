@@ -1,167 +1,73 @@
-class Customer::AddressesController < ApplicationController
+class Shopkeeper::AddressesController < ApplicationController
 
-  before_action :authenticate_user!
+  attr_reader :address
 
-  layout :custom_sublayout, only: [:show_addresses]
-
-  def show_addresses
-
-    @address = Address.new
-
-    @user = User.find(params[:id])
-
-    if @user.decorate.shopkeeper?
-      @addresses = @user.shop.addresses
-    elsif @user.decorate.customer?
-      @addresses = @user.addresses
-    end
-    render "show_#{@user.role}_addresses" # definitely to refactor
-  end
+  load_and_authorize_resource
+  layout :custom_sublayout, only: [:index]
+  before_action :set_address, only: [:show, :create, :update, :destroy]
 
   def index
-    if current_user.decorate.customer?
-      @addresses = current_user.addresses
-      render :index, :status => :ok
-    end
+    @addresses = current_user.addresses
+  end
+
+  def show
   end
 
   def create
-    user = current_user # changed by Laurent to hook fast the system
-    # we should refactor all this.
 
-    if user.decorate.customer?
-      num_addresses = user.addresses.count
+    num_addresses = current_user.addresses.count
 
-      if num_addresses >= Rails.configuration.max_num_addresses
-
-        flash[:error] = I18n.t(:create_ko, scope: :edit_address)
-        redirect_to request.referrer
-        return
-
-      else
-        ap = address_params
-        ap[:primary] = true if num_addresses == 0
-
-        ap[:district] = ChinaCity.get(ap[:district])
-        ap[:city] = ChinaCity.get(ap[:city])
-        ap[:province] = ChinaCity.get(ap[:province])
-        ap[:country] = 'CN'
-
-        address = Address.new(ap)
-        address.user = user
-
-        if (flag = address.save)
-          if address.primary and num_addresses > 0
-            user.addresses.select { |a| a.primary and a != address } .each do |a|
-              a.primary = false
-              flag &&= a.save
-            end
-          end
-        end
-      end
-    elsif user.decorate.shopkeeper?
-
-      num_addresses = user.shop.addresses.count
-      max_num_addresses = Rails.configuration.max_num_shop_billing_addresses + Rails.configuration.max_num_shop_sender_addresses
-
-      if num_addresses >= max_num_addresses
-
-        flash[:error] = I18n.t(:create_ko, scope: :edit_address)
-        redirect_to request.referrer
-
-      else
-        ap = address_params
-        ap[:country] = 'DE'
-
-        address = Address.new(ap)
-        address.shop = user.shop
-
-        flag = address.save
-      end
-
-    end
-
-    if flag
-      flash[:success] = I18n.t(:create_ok, scope: :edit_address)
-      redirect_to request.referrer
-    else
+    if num_addresses >= (Rails.configuration.max_num_shop_billing_addresses + Rails.configuration.max_num_shop_sender_addresses)
       flash[:error] = I18n.t(:create_ko, scope: :edit_address)
-      redirect_to request.referrer
+      redirect_to redirect_to navigation.back(1)
+      return
     end
+
+    # this should be turned into a create
+    address_params[:country] = 'DE'
+
+    address = Address.new(address_params)
+    address.shop = current_user.shop
+
+    if address.save
+      flash[:success] = I18n.t(:create_ok, scope: :edit_address)
+      redirect_to navigation.back(1)
+      return
+    end
+
+    flash[:error] = I18n.t(:create_ko, scope: :edit_address)
+    redirect_to navigation.back(1)
+
   end
 
   def update
-    if current_user.decorate.customer?
-      if (address = current_user.addresses.find(params[:id]))
-        ap = address_params
 
-        ap[:district] = ChinaCity.get(ap[:district])
-        ap[:city] = ChinaCity.get(ap[:city])
-        ap[:province] = ChinaCity.get(ap[:province])
-        ap[:country] = 'CN'
+    # TODO : this should be changed and the update
+    # should occur in a row without changing the params like this
+    address_params[:country] = 'DE'
 
-        if (flag = address.update(ap))
-          if address.primary
-            current_user.addresses.select { |a| a.primary and a != address } .each do |a|
-              a.primary = false
-              flag &&= a.save
-            end
-          end
-        end
-      end
-    elsif current_user.decorate.shopkeeper?
-      address = current_user.shop.addresses.find(params[:id])
-      ap = address_params
-      ap[:country] = 'DE'
-      flag = address.update(ap)
-    elsif current_user.decorate.admin?
-      address = Address.find(params[:id])
-      ap = address_params
-      flag = address.update(ap)
-    end
-
-    if flag
+    if address.update(address_params)
       flash[:success] = I18n.t(:update_ok, scope: :edit_address)
-      redirect_to request.referer
-    else
-      flash[:error] = I18n.t(:update_ko, scope: :edit_address)
-      redirect_to request.referer
+      redirect_to navigation.back(1)
+      return
     end
+
+    flash[:error] = I18n.t(:update_ko, scope: :edit_address)
+    redirect_to navigation.back(1)
+
   end
 
   def destroy
-    if current_user.decorate.customer?
-      if (address = current_user.addresses.find(params[:id]))
-        flag = address.delete
-
-        if address.primary
-          candidate = current_user.addresses.not.where(:id => address.id).first
-
-          if candidate
-            candidate.primary = true
-            flag &&= candidate.save
-          end
-        end
-      end
-    elsif current_user.decorate.shopkeeper?
-      address = current_user.shop.addresses.find(params[:id])
-      flag = address.delete
-    elsif current_user.decorate.admin?
-      address = Address.find(params[:id])
-      flag = address.delete
+    address.delete
+    if address.primary
+      set_alternative_primary_address(address)
     end
-
-
-    if flag
-      flash[:success] = I18n.t(:delete_ok, scope: :edit_address)
-      redirect_to request.referer
-    else
-      flash[:error] = I18n.t(:delete_ko, scope: :edit_address)
-      redirect_to request.referer
-    end
+    redirect_to navigation.back(1)
   end
 
-  private
+  def set_address
+    @address = current_user.addresses.find(params[:id])
+  end
 
   def address_params
     params.require(:address).permit!
