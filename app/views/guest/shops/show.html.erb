@@ -14,7 +14,7 @@
 
     <div class="row +nomargin">
       <!-- Products list -->
-      <%= render partial: "guest/shops/show/products_list", :locals => { :products => @shop.products.can_show.by_brand } %>
+      <%= render partial: "guest/shops/show/products_list", :locals => { :products => @shop.products.can_buy.by_brand } %>
     </div>
 
     <div class="+spacer"></div>

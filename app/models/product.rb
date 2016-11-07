@@ -42,14 +42,36 @@ class Product
   validates :desc, length:                   { maximum: MAX_LONG_TEXT_LENGTH }
   #validates :tags, length:                   { maximum: Rails.configuration.max_num_tags                        }
 
-  scope :is_active,       ->         { self.and(:status  => true, :approved.ne => nil)   }
-  scope :has_sku,         ->         { where("skus.0"    => {"$exists" => true})         }
-  scope :has_hs_code,     ->         { where(:hs_code.ne => nil)                         }
-  scope :has_tag,         -> (value) { where(:tags       => value)                       }
-  scope :can_show,        ->         { self.is_active.has_sku                             }
-  scope :by_brand,        ->         { self.order(:brand => :asc)                                }
-  scope :can_buy,         ->         { self.is_active.has_hs_code.has_sku.can_buy_from_shop }
-  scope :can_buy_from_shop, ->       { self.in(shop: Shop.only(:id).can_buy.map(&:id))   }
+  scope :is_active,   -> { self.and(:status  => true, :approved.ne => nil) }
+  scope :has_sku,     -> { self.where("skus.0" => {"$exists" => true }) }
+  scope :has_hs_code, -> { self.where(:hs_code.ne => nil)                       }
+  scope :has_available_sku, -> do
+    # skus = self.all.inject([]) do |acc, product|
+    #   if product.available_skus.count > 0
+    #     acc << product.available_skus.map { |sku| "#{sku.id}" }
+    #     # User.only(:_id).where(:foo => :bar).map(&:_id)
+    #   end
+    # end.flatten
+    #
+    #self.where("skus.id" => skus)
+    #self.where("skus": {"$elemMatch": {"status" => true, "unlimited" => true}})
+  end
+  # scope :yes, -> { self.or("skus.quantity.gt" => 0).or("skus.unlimited" => true) }
+
+  # scope :has_tag,     -> (value) { where(:tags       => value)                     }
+
+  # only available products which are active and got skus
+  scope :can_show,          -> { self.is_active.has_sku.has_available_sku }
+
+  # the main difference between can show and can buy is the fact the customer
+  # can effectively select the sku and buy the item because
+  # it has stocks and is available
+  scope :can_buy,           -> { self.can_show.has_hs_code.available_from_shop }
+
+  # we should investigate on the exact reason this line exists
+  scope :available_from_shop, -> { self.in(shop: Shop.only(:id).map(&:id)) }
+
+  scope :by_brand,          -> { self.order(:brand => :asc)                      }
 
   index( {name: 1          }, {unique: false, name: :idx_product_name                        })
   index( {brand: 1         }, {unique: false, name: :idx_product_brand                       })
@@ -144,7 +166,7 @@ class Product
   end
 
   def available_skus
-    skus.is_active.any_of({:unlimited => true}, {:quantity.gt => 0}).order_by({:discount => :desc}, {:quantity => :desc})
+    skus #.can_buy
   end
 
   def sku_from_option_ids(option_ids)
