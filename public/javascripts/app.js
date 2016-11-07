@@ -1007,41 +1007,6 @@ var ShopkeeperWirecardApply = {
 module.exports = ShopkeeperWirecardApply;
 });
 
-require.register("javascripts/controllers/shops/edit_producer.js", function(exports, require, module) {
-'use strict';
-
-/**
- * ShopsEditProducer Class
- */
-var ShopsEditProducer = {
-
-  /**
-   * Initializer
-   */
-  init: function init() {
-
-    $(function () {
-      $('.edit_producer_submit').click(function () {
-        $('input.dynamical-required').each(function () {
-          if ($(this).val().length == 0) {
-            $(this).addClass('invalidBorderClass');
-          } else {
-            $(this).removeClass('invalidBorderClass');
-          }
-        });
-
-        if ($('.invalidBorderClass').length > 0) {
-          return false;
-        }
-      });
-    });
-  }
-
-};
-
-module.exports = ShopsEditProducer;
-});
-
 require.register("javascripts/initialize.js", function(exports, require, module) {
 "use strict";
 
