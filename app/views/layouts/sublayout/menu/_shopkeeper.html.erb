@@ -9,8 +9,8 @@
   <li class="<%= menu_active? edit_shopkeeper_account_path %>">
     <%= link_to I18n.t(:my_account, scope: :top_menu), edit_shopkeeper_account_path %>
   </li>
-  <li class="<%= menu_active? edit_setting_shop_path(current_user.shop.id) %>">
-    <%= link_to I18n.t(:my_shop, scope: :top_menu), edit_setting_shop_path(current_user.shop.id) %>
+  <li class="<%= menu_active? shopkeeper_shop_path %>">
+    <%= link_to I18n.t(:my_shop, scope: :top_menu), shopkeeper_shop_path %>
   </li>
   <li class="<%= menu_active? shopkeeper_products_path %>">
     <%= link_to I18n.t(:my_product, scope: :top_menu), shopkeeper_products_path %>

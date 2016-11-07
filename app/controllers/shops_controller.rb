@@ -1,6 +1,5 @@
 class ShopsController <  ApplicationController
 
-  STRONG_PARAMS = [:bg_merchant_id, :shopname, :name, :desc, :logo, :banner, :seal0, :seal1, :seal2, :seal3, :seal4, :seal5, :seal6, :seal7, :philosophy, :stories, :german_essence, :uniqueness, :tax_number, :ustid, :eroi, :min_total, :status, :founding_year, :register, :website, :agb, :fname, :lname, :tel, :mobile, :mail, :function, :hermes_pickup]
   SHOP_IMAGE_FIELDS = [:logo, :banner, :seal0, :seal1, :seal2, :seal3, :seal4, :seal5, :seal6, :seal7]
 
   before_action :authenticate_user!, except: [:show]
@@ -68,9 +67,9 @@ class ShopsController <  ApplicationController
     delocalize_config = { :min_total => :number }
 
     unless shop.agb
-      params.require(:shop).permit(*STRONG_PARAMS).delocalize(delocalize_config)
+      params.require(:shop).permit!.delocalize(delocalize_config)
     else
-      params.require(:shop).permit(*STRONG_PARAMS).except(:agb).delocalize(delocalize_config)
+      params.require(:shop).permit!.except(:agb).delocalize(delocalize_config)
     end
   end
 end
