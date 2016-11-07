@@ -10,8 +10,13 @@ namespace :shopkeeper do
   end
 
   resource :shop, :controller => 'shop' do
+    delete :destroy_image
+    # TODO : this part of the system is actually semantically incorrect
+    # we should totally split up the shop into sections linked with producer, history, etc.
+    resource :producer, :controller => 'shop/producer' do
+    end
   end
-  
+
   resources :products do
   end
 

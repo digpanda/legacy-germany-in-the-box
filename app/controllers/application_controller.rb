@@ -109,7 +109,7 @@ class ApplicationController < ActionController::Base
       session[:locale] = :'de'
       remove_all_orders!
       if current_user.shop && (not current_user.shop.agb)
-        edit_producer_shop_path(current_user.shop.id)
+        shopkeeper_shop_producer_path
       else
         shopkeeper_orders_path
       end

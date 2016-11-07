@@ -35,7 +35,7 @@
               </span>
               <%= f.file_field :logo, :accept => "image/png, image/jpeg, image/jpg", :class => 'img-file-upload upload', :img_id => "#logo_#{@shop.id}" %>
             </div>
-            <%= link_to I18n.t(:remove), shop_destroy_image_path(@shop, image_field: :logo), :method => :delete, :class => 'btn btn-default' %>
+            <%= link_to I18n.t(:remove), destroy_image_shopkeeper_shop_path(@shop, image_field: :logo), :method => :delete, :class => 'btn btn-default' %>
           </div>
           <div class="col-md-8">
             <div class="fileUpload btn btn-default">
@@ -45,7 +45,7 @@
               </span>
               <%= f.file_field :banner, :accept => "image/png, image/jpeg, image/jpg", :class => 'img-file-upload upload', :img_id => "#banner_#{@shop.id}" %>
             </div>
-            <%= link_to I18n.t(:remove), shop_destroy_image_path(@shop, image_field: :banner), :method => :delete, :class => 'btn btn-default' %>
+            <%= link_to I18n.t(:remove), destroy_image_shopkeeper_shop_path(@shop, image_field: :banner), :method => :delete, :class => 'btn btn-default' %>
           </div>
         </div>
       </div>
