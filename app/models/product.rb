@@ -163,7 +163,7 @@ class Product
   end
 
   def available_skus
-    skus.is_active.any_of({:unlimited => true}, {:quantity.gt => 0}).order_by({:discount => :desc}, {:quantity => :desc})
+    skus.is_active.in_stock.order_by({:discount => :desc}, {:quantity => :desc})
   end
 
   def sku_from_option_ids(option_ids)
