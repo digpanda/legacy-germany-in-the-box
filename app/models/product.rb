@@ -48,6 +48,8 @@ class Product
 
   # we fetch all the `available_skus` and only select
   # the product containing the correct skus
+  # NOTE : this method could be shortened
+  # and extended via metaprogramming
   scope :has_available_sku, -> do
     skus_ids = self.all.inject([]) do |acc, product|
         acc << product.available_skus.map { |sku| sku.id }
