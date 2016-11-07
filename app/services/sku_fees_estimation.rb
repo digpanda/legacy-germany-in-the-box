@@ -43,7 +43,7 @@ class SkuFeesEstimation < BaseService
       OrderMaker.new(Order.new).add(sku, 1).data[:order].tap do |order|
         # we have to manually add the shop
         # this could be better done but for now it works well
-        # refer to `add_product` method to see
+        # refer to `add_product` method to see (moved to guest/order_items#create)
         # the other system to place orders
         order.shop_id = sku.product.shop.id
         order.save

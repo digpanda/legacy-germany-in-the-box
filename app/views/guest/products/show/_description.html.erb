@@ -48,7 +48,7 @@
 
 <div class="+small-spacer"></div>
 
-<%= form_tag add_product_to_orders_path, :method => :patch do %>
+<%= form_tag guest_order_items_path, :method => :post do %>
 
     <%= hidden_field_tag 'sku[product_id]', "#{product.id}" %>
 

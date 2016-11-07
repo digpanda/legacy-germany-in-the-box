@@ -1,6 +1,7 @@
 # Shared related
 namespace :shared do
   resources :orders do
+    get   :label
     get   :bill
     patch :cancel
   end

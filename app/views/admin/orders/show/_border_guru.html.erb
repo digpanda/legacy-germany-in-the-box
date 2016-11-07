@@ -11,7 +11,8 @@
   <br />
 
   <% if @order.border_guru_shipment_id %>
-    <%= link_to "BorderGuru Label", download_label_order_path(@order), class: "btn btn-primary" %>
+  <!-- TODO: shouldn't we use the same way than when we want the track id from the admin ? I think so. This is then to refactor -->
+    <%= link_to "BorderGuru Label", shared_order_label_path(@order), class: "btn btn-primary" %>
   <% else %>
     BorderGuru Shipment ID : <%= editable_field(@order, admin_order_path(@order), :border_guru_shipment_id, :text_field) %>
   <% end %>
