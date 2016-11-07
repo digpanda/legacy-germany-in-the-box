@@ -44,19 +44,16 @@ class Product
 
   scope :is_active,   -> { self.and(:status  => true, :approved.ne => nil) }
   scope :has_sku,     -> { self.where("skus.0" => {"$exists" => true }) }
-  scope :has_hs_code, -> { self.where(:hs_code.ne => nil)                       }
+  scope :has_hs_code, -> { self.where(:hs_code.ne => nil) }
+
+  # we fetch all the `available_skus` and only select
+  # the product containing the correct skus
   scope :has_available_sku, -> do
-    # skus = self.all.inject([]) do |acc, product|
-    #   if product.available_skus.count > 0
-    #     acc << product.available_skus.map { |sku| "#{sku.id}" }
-    #     # User.only(:_id).where(:foo => :bar).map(&:_id)
-    #   end
-    # end.flatten
-    #
-    #self.where("skus.id" => skus)
-    #self.where("skus": {"$elemMatch": {"status" => true, "unlimited" => true}})
+    skus_ids = self.all.inject([]) do |acc, product|
+        acc << product.available_skus.map { |sku| sku.id }
+    end.flatten
+    self.where("skus._id" => {"$in" => skus_ids})
   end
-  # scope :yes, -> { self.or("skus.quantity.gt" => 0).or("skus.unlimited" => true) }
 
   # scope :has_tag,     -> (value) { where(:tags       => value)                     }
 
@@ -166,7 +163,7 @@ class Product
   end
 
   def available_skus
-    skus #.can_buy
+    skus.is_active.any_of({:unlimited => true}, {:quantity.gt => 0}).order_by({:discount => :desc}, {:quantity => :desc})
   end
 
   def sku_from_option_ids(option_ids)

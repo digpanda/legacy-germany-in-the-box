@@ -51,10 +51,10 @@ class Sku
   validates :space_width,   presence: true,   :numericality => { :greater_than => 0 }
   validates :space_height,  presence: true,   :numericality => { :greater_than => 0 }
 
-  scope :is_active,       ->        { where( :status => true ) }
-  scope :in_stock,        ->        { self.or(:quantity.gt => 0).or(:unlimited => true) }
+  scope :is_active,       -> { where( :status => true ) }
+  scope :in_stock,        -> { self.any_of({:unlimited => true}, {:quantity.gt => 0}) }
   # any_of({:unlimited => true}, {:quantity.gt => 0}).order_by({:discount => :desc}, {:quantity => :desc})
-  scope :can_buy,         ->        { self.is_active.in_stock }
+  scope :can_buy, -> { is_active.in_stock }
 
   before_save :clean_blank_and_duplicated_option_ids
   before_save :clean_quantity, :if => lambda { self.unlimited }
