@@ -51,7 +51,7 @@ class Sku
   validates :space_width,   presence: true, :numericality => { :greater_than => 0 }
   validates :space_height,  presence: true, :numericality => { :greater_than => 0 }
 
-  scope :is_active, -> { where(:status      => true) }
+  scope :is_active, -> { where(:status => true) }
   scope :in_stock,  -> { any_of({:unlimited => true  }, {:quantity.gt => 0}) }
 
   # currently not working properly, please do not use this scope

@@ -15,7 +15,7 @@ class Customer::FavoritesController < ApplicationController
   private
 
   def set_favorites
-    @favorites = current_user.favorites
+    @favorites = current_user.favorites.has_available_sku
   end
 
   def set_product

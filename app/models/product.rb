@@ -83,9 +83,9 @@ class Product
 
   class << self
 
-    def search(query)
-      Product.can_buy.where(name: /(#{query.split.join('|')})/i)
-    end
+    # def search(query)
+    #   Product.can_buy.where(name: /(#{query.split.join('|')})/i)
+    # end
 
     # TODO : to improve
     # right now it doesn't order by discount
