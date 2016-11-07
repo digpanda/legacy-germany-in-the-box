@@ -1,4 +1,4 @@
-class AddressesController < ApplicationController
+class Customer::AddressesController < ApplicationController
 
   before_action :authenticate_user!
 
@@ -164,33 +164,7 @@ class AddressesController < ApplicationController
   private
 
   def address_params
-    if current_user.decorate.customer?
-      params.require(:address).permit(:street,
-                                      :district,
-                                      :city,
-                                      :province,
-                                      :zip,
-                                      :primary,
-                                      :mobile,
-                                      :tel,
-                                      :fname,
-                                      :lname,
-                                      :pid)
-    elsif current_user.decorate.admin? || current_user.decorate.shopkeeper?
-      params.require(:address).permit(:number,
-                                      :street,
-                                      :additional,
-                                      :district,
-                                      :city,
-                                      :province,
-                                      :zip,
-                                      :type,
-                                      :mobile,
-                                      :tel,
-                                      :fname,
-                                      :lname,
-                                      :company)
-    end
+    params.require(:address).permit!
   end
 
 end

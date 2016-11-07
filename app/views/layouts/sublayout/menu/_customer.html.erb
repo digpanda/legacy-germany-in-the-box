@@ -4,8 +4,8 @@
 <li class="<%= menu_active? shared_notifications_path %>">
   <%= link_to I18n.t(:notifications, scope: :top_menu), shared_notifications_path %>
 </li>
-<li class="<%= menu_active? show_addresses_user_path(current_user) %>">
-  <%= link_to I18n.t(:my_address, scope: :top_menu),  show_addresses_user_path(current_user) %>
+<li class="<%= menu_active? customer_addresses_path %>">
+  <%= link_to I18n.t(:my_address, scope: :top_menu),  customer_addresses_path %>
 </li>
 <li class="<%= menu_active? customer_orders_path %>">
   <%= link_to I18n.t(:my_order, scope: :top_menu),  customer_orders_path %>

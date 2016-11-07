@@ -42,7 +42,8 @@
             <%= link_to shop.shopname ? shop.shopname : (shop.shopname_translations[I18n.default_locale] ? shop.shopname_translations[I18n.default_locale] : I18n.t(:shopname_unknown, scope: :edit_shop)), edit_setting_shop_path(shop) %>
           </td>
           <td>
-            <%= link_to shop.addresses.size, show_addresses_user_path(shop.shopkeeper) %>
+            THIS SECTION HAS BE REDONE
+            <!-- link_to shop.addresses.size, show_addresses_user_path(shop.shopkeeper) -->
           </td>
           <td>
             <%= shop.merchant_id %>

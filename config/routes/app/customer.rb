@@ -17,6 +17,9 @@ namespace :customer do
   resource :account, :controller => 'account' do
   end
 
+  resources :addresses do
+  end
+
   resources :orders  do
     patch :continue
 
