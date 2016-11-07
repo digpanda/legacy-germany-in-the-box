@@ -1,17 +1,16 @@
-
 <div class="row +nomargin">
 
   <% if @favorites.count > 0 %>
 
-  <%= render partial: "products/products_list", :locals => { :products => @favorites } %>
+    <%= render partial: "guest/shops/show/products_list", :locals => { :products => @favorites.has_available_sku } %>
 
   <% else %>
 
-  <div class="+white-box +centered">
-    <h4>
-     <%= I18n.t(:no_products, scope: :cart) %>
-   </h4>
- </div>
+    <div class="+white-box +centered">
+      <h4>
+       <%= I18n.t(:no_products, scope: :cart) %>
+     </h4>
+   </div>
 
  <% end %>
 
