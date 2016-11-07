@@ -4,10 +4,10 @@ class Shopkeeper::AddressesController < ApplicationController
 
   load_and_authorize_resource
   layout :custom_sublayout, only: [:index]
-  before_action :set_address, only: [:show, :create, :update, :destroy]
+  before_action :set_address, only: [:show, :update, :destroy]
 
   def index
-    @addresses = current_user.addresses
+    @addresses = current_user.shop.addresses
   end
 
   def show
@@ -23,7 +23,7 @@ class Shopkeeper::AddressesController < ApplicationController
       return
     end
 
-    # this should be turned into a create
+    # this should be tackled differently
     address_params[:country] = 'DE'
 
     address = Address.new(address_params)
@@ -59,14 +59,11 @@ class Shopkeeper::AddressesController < ApplicationController
 
   def destroy
     address.delete
-    if address.primary
-      set_alternative_primary_address(address)
-    end
     redirect_to navigation.back(1)
   end
 
   def set_address
-    @address = current_user.addresses.find(params[:id])
+    @address = current_user.shop.addresses.find(params[:id])
   end
 
   def address_params

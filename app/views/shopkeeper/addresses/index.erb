@@ -24,8 +24,8 @@
 
         <div class="form-group">
           <%= label_tag :primary do %>
-          <% checked = address.primary %>
-          <%= radio_button_tag :primary, address.primary, checked, {:disabled => true} %> <%=I18n.t(:set_primary, scope: :edit_address)%>
+            <% checked = address.primary %>
+            <%= "#{I18n.t(:type, scope: :edit_address)} : #{ I18n.t(address.type, scope: :edit_address) }" %>
           <% end %>
         </div>
       </div>
