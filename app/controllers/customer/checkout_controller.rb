@@ -8,6 +8,10 @@ class Customer::CheckoutController < ApplicationController
   protect_from_forgery :except => [:success, :fail, :cancel, :processing]
   attr_reader :shop, :order
 
+  def address
+    
+  end
+
   def create
 
     @order = cart_manager.order(shop: shop)

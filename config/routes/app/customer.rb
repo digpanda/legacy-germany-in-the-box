@@ -7,10 +7,9 @@ namespace :customer do
   resource :checkout, :controller => 'checkout' do
     get :payment_method
     post :gateway
-
+    post :processing
     post :success
     post :fail
-    post :processing
     get :cancel
   end
 
@@ -23,6 +22,9 @@ namespace :customer do
   resources :orders  do
     patch :continue
 
+    resources :addresses, :controller => 'orders/addresses' do
+    end
+    
     resource :border_guru, :controller => 'orders/border_guru' do
       get :tracking_id
     end
