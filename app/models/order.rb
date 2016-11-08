@@ -120,7 +120,7 @@ class Order
   # WE MADE IT FOR A FEW STUCK ORDERS BUT IT'S VERY SPAGHETTI.
   def total_price_with_discount_from_product
     order_items.inject([]) do |sum, order_item|
-        sum += (order_item.price_with_coupon_applied * order_item.quantity)
+        sum << (order_item.price_with_coupon_applied * order_item.quantity)
     end.reduce(&:+)
   end
 
