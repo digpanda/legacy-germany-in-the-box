@@ -1,4 +1,4 @@
-<a class="btn-lg btn btn-primary" href="<%= new_shared_product_path %>">
+<a class="btn-lg btn btn-primary" href="<%= new_shopkeeper_product_path %>">
   <i class="fa fa-plus-circle"></i>
   <%= I18n.t(:new, scope: :edit_product) %>
 </a>
@@ -45,7 +45,7 @@
             <%= image_tag product.decorate.first_sku_image, :class => 'icon-img' %>
           </td>
           <td>
-            <%= link_to product.name ? product.name : product.name_translations[I18n.default_locale], edit_shared_product_path(product) %>
+            <%= link_to product.name ? product.name : product.name_translations[I18n.default_locale], edit_shopkeeper_product_path(product) %>
           </td>
           <td>
             <%= product.brand ? product.brand : product.brand_translations[I18n.default_locale] %>

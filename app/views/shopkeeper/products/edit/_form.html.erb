@@ -8,7 +8,7 @@
 
 %>
 
-<%= form_for [:shared, @product], :html => {:data => {:toggle => 'validator'}} do |f| %>
+<%= form_for [:shopkeeper, @product], :html => {:data => {:toggle => 'validator'}} do |f| %>
   <%= hidden_field_tag :shop_id, value = @product.shop.id %>
   <%= hidden_field_tag :translation, value = locale %>
   <%= hidden_field_tag :part, :basic %>

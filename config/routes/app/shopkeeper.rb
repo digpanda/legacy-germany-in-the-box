@@ -1,6 +1,9 @@
 # Shopkeeper related
 namespace :shopkeeper do
 
+  resources :products do
+  end
+  
   resources :orders do
     patch :process_order
     patch :shipped
