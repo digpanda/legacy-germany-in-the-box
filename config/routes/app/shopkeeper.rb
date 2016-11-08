@@ -2,8 +2,10 @@
 namespace :shopkeeper do
 
   resources :products do
+    resources :skus, :controller => 'products/skus' do
+    end
   end
-  
+
   resources :orders do
     patch :process_order
     patch :shipped

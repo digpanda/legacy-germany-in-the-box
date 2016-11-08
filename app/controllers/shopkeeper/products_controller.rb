@@ -14,13 +14,10 @@ class Shopkeeper::ProductsController < ApplicationController
   end
 
   def new
-    # NOTE : not sure this is used in the system actually
-    setup_categories_options!
     @product = shop.products.build
   end
 
   def create
-
     @product = shop.products.build(product_params)
 
     if product.save
@@ -31,15 +28,12 @@ class Shopkeeper::ProductsController < ApplicationController
 
     flash[:error] = product.errors.full_messages.first
     redirect_to navigation.back(1)
-
   end
 
   def edit
-    setup_categories_options!
   end
 
   def update
-
     if @product.update(product_params)
       flash[:success] = I18n.t(:update_ok, scope: :edit_product)
       redirect_to edit_shopkeeper_product_path(product)
@@ -48,7 +42,6 @@ class Shopkeeper::ProductsController < ApplicationController
 
     flash[:error] = product.errors.full_messages.first
     redirect_to navigation.back(1)
-
   end
 
   def destroy
@@ -63,11 +56,6 @@ class Shopkeeper::ProductsController < ApplicationController
   end
 
   private
-
-  def setup_categories_options!
-    @customer_categories_options = DutyAndCustomerCategorySelectStore.new(Category.name)
-    @duty_categories_options = DutyAndCustomerCategorySelectStore.new(DutyCategory.name)
-  end
 
   # TODO : this is fat and disgusting
   # it should be refactored entirely

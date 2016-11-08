@@ -23,9 +23,6 @@
             <%= I18n.t(:brand, scope: :edit_product) %>
           </label>
         </th>
-        <% #%th{ :title => I18n.t(:categories_info, scope: :edit_product) } %>
-        <% #  %i.fa.fa-info-circle{ :title => I18n.t(:categories_info, scope: :edit_product) } %>
-        <% #  %label= I18n.t(:categories, scope: :edit_product) %>
         <th>
           <label>
             <%= I18n.t(:quantity, scope: :edit_product_detail) %>
@@ -51,9 +48,10 @@
             <%= product.brand ? product.brand : product.brand_translations[I18n.default_locale] %>
           </td>
           <td>
+            <!-- TODO : this is fucking disgusting, please change this -->
             <% num1 = product.skus.inject(0) { |sum, s| sum += s.quantity } %>
             <% num2 = product.options.size %>
-            <%= link_to I18n.t(:quantity_info, scope: :edit_product, num1: num1, num2: num2), show_skus_product_path(product.id, :user_info_edit_part => :edit_product_detail) %>
+            <%= link_to I18n.t(:quantity_info, scope: :edit_product, num1: num1, num2: num2), shopkeeper_product_skus_path(product) %>
           </td>
           <td align="left">
             <% if current_user.decorate.admin? %>

@@ -1,3 +1,4 @@
+<!-- TODO: move this part into the admin version of the same views -->
 <% if current_user&.decorate&.admin? %>
   <ul class="nav nav-pills">
     <% get_allowed_locales.each_with_index do |locale, i| %>

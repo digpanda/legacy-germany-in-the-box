@@ -22,7 +22,7 @@ class Shopkeeper::Shop::ProducerController < ApplicationController
   private
 
   def set_shop
-    @shop ||= current_user.shop
+    @shop = current_user.shop
   end
 
   def shop_params
