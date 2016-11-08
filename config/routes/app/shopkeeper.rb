@@ -17,9 +17,6 @@ namespace :shopkeeper do
     end
   end
 
-  resources :products do
-  end
-
   resources :addresses do
   end
 
