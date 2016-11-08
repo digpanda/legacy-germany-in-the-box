@@ -750,7 +750,6 @@ var ProductNewSku = {
    * Initializer
    */
   init: function init() {
-    // WE SHOULD DEFINITELY REFACTOR THOSE 3 CLASSES (NEW, EDIT, CLONE) INTO ONE
 
     $('select.sku-variants-options').multiselect({
       nonSelectedText: Translation.find('non_selected_text', 'multiselect'),

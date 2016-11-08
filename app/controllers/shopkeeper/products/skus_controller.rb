@@ -4,7 +4,7 @@ class Shopkeeper::Products::SkusController < ApplicationController
   layout :custom_sublayout
   before_action :set_product
 
-  attr_reader :products, :product
+  attr_reader :products, :product, :sku, :skus
 
   def index
   end
@@ -17,8 +17,25 @@ class Shopkeeper::Products::SkusController < ApplicationController
     @sku = Sku.new
   end
 
+  # the sku create is actually an update of the product itself
+  # because it's an embedded document.
+  def create
+
+    @sku = Sku.new(sku_params)
+    @sku.product = product
+
+    if sku.save && product.save
+      flash[:success] = I18n.t(:update_ok, scope: :edit_product)
+      redirect_to shopkeeper_product_skus_path(product)
+      return
+    end
+
+    flash[:error] = sku.errors.full_messages.join(', ')
+    redirect_to navigation.back(1)
+
+  end
+
   def update
-    setup_categories_options!
   end
 
   private
@@ -30,6 +47,14 @@ class Shopkeeper::Products::SkusController < ApplicationController
 
   def set_product
     @product = Product.find(params[:product_id])
+  end
+
+  def sku_params
+    delocalize_config = { :price => :number,:space_length => :number, :space_width => :number, :space_height => :number, :discount => :number, :quantity => :number, :weight => :number}
+    sku_params = params.require(:sku).permit!.delocalize(delocalize_config)
+    # we throw away the useless option ids
+    sku_params[:option_ids].reject!(&:empty?)
+    sku_params
   end
 
 end

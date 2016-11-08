@@ -26,7 +26,7 @@ class Shopkeeper::ProductsController < ApplicationController
       return
     end
 
-    flash[:error] = product.errors.full_messages.first
+    flash[:error] = product.errors.full_messages.join(', ')
     redirect_to navigation.back(1)
   end
 
@@ -57,26 +57,16 @@ class Shopkeeper::ProductsController < ApplicationController
 
   private
 
-  # TODO : this is fat and disgusting
-  # it should be refactored entirely
   def product_params
-    delocalize_config = { skus_attributes: { :price => :number,:space_length => :number, :space_width => :number, :space_height => :number, :discount => :number, :quantity => :number, :weight => :number} }
 
     # NOTE TODO : THIS WILL BE PLACED WHEN WE DO THE ADMIN SECTION OF PRODUCTS
-    if current_user.decorate.admin?
-      params.require(:product)[:category_ids] = [params.require(:product)[:category_ids]] unless params.require(:product)[:category_ids].nil?
-      shopkeeper_strong_params += [:duty_category, category_ids:[]]
-    end
+    # NOTE 2 : THIS LOOKS ACTUALLY COMPLETELY USELESS AT THE END.
+    # if current_user.decorate.admin?
+    #   params.require(:product)[:category_ids] = [params.require(:product)[:category_ids]] unless params.require(:product)[:category_ids].nil?
+    #   shopkeeper_strong_params += [:duty_category, category_ids:[]]
+    # end
 
-    # TODO : THIS DOES NOT SEEM TO HAVE IMPACT ANYWHERE ON THE SYSTEM
-    # PLEASE TEST IT AND CHANGE IT ACCORDINGLY
-    if sku_attributes = params.require(:product)[:skus_attributes]
-      sku_attributes.each do |k,v|
-        v[:option_ids] = v[:option_ids].reject { |c| c.empty? }
-      end
-    end
-
-    params.require(:product).permit!.delocalize(delocalize_config)
+    params.require(:product).permit!
   end
 
   def set_shop

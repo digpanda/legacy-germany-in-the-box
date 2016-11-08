@@ -1,8 +1,6 @@
 <%= content_tag(:div, nil, :id => "js-sku-form", :data => {}) %>
 
-<%= form_for @product, :html => {:data => {:toggle => 'validator'}, :id => 'product_detail_form'} do |f| %>
-<%= hidden_field_tag :part, :sku %>
-<%= f.fields_for :skus, @sku do |field_sku| %>
+<%= form_for [:shopkeeper, :product, @sku], :html => {:data => {:toggle => 'validator'}, :id => 'product_detail_form'} do |form| %>
 <div class="panel-group">
   <div class="panel panel-info">
     <div class="panel-heading text-center" colspan="8" title="<%= I18n.t(:images_info, scope: :edit_product_detail) %>">
@@ -47,7 +45,7 @@
               <i class="fa fa-cloud-upload"></i>
               <%= I18n.t(:upload, scope: :image_upload) %>
             </span>
-            <%= field_sku.file_field :img0, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#img_0_#{@sku.id}", :class => 'img-file-upload upload' %>
+            <%= form.file_field :img0, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#img_0_#{@sku.id}", :class => 'img-file-upload upload' %>
           </div>
           <%= link_to I18n.t(:remove), product_destroy_sku_image_path(@product, sku_id: @sku.id, image_field: :img0), :method => :delete, :class => 'btn btn-default' %>
         </div>
@@ -57,7 +55,7 @@
               <i class="fa fa-cloud-upload"></i>
               <%= I18n.t(:upload, scope: :image_upload) %>
             </span>
-            <%= field_sku.file_field :img1, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#img_1_#{@sku.id}", :class => 'img-file-upload upload' %>
+            <%= form.file_field :img1, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#img_1_#{@sku.id}", :class => 'img-file-upload upload' %>
           </div>
           <%= link_to I18n.t(:remove), product_destroy_sku_image_path(@product, sku_id: @sku.id, image_field: :img1), :method => :delete, :class => 'btn btn-default' %>
         </div>
@@ -67,7 +65,7 @@
               <i class="fa fa-cloud-upload"></i>
               <%= I18n.t(:upload, scope: :image_upload) %>
             </span>
-            <%= field_sku.file_field :img2, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#img_2_#{@sku.id}", :class => 'img-file-upload upload' %>
+            <%= form.file_field :img2, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#img_2_#{@sku.id}", :class => 'img-file-upload upload' %>
           </div>
           <%= link_to I18n.t(:remove), product_destroy_sku_image_path(@product, sku_id: @sku.id, image_field: :img2), :method => :delete, :class => 'btn btn-default' %>
         </div>
@@ -77,7 +75,7 @@
               <i class="fa fa-cloud-upload"></i>
               <%= I18n.t(:upload, scope: :image_upload) %>
             </span>
-            <%= field_sku.file_field :img3, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#img_3_#{@sku.id}", :class => 'img-file-upload upload' %>
+            <%= form.file_field :img3, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#img_3_#{@sku.id}", :class => 'img-file-upload upload' %>
           </div>
           <%= link_to I18n.t(:remove), product_destroy_sku_image_path(@product, sku_id: @sku.id, image_field: :img3), :method => :delete, :class => 'btn btn-default' %>
         </div>
@@ -101,7 +99,7 @@
             </label>
           </div>
           <div class="col-md-9">
-            <%= field_sku.text_area :data, :value => @sku.data_translations[locale], :class => 'form-control', rows: 8, :maxLength => Rails.configuration.max_additional_text_length %>
+            <%= form.text_area :data, :value => @sku.data_translations[locale], :class => 'form-control', rows: 8, :maxLength => Rails.configuration.max_additional_text_length %>
           </div>
         </div>
       </div>
@@ -115,7 +113,7 @@
             </label>
           </div>
           <div class="col-md-9">
-            <%= field_sku.file_field :attach0, :accept => "application/pdf", :attach_id => "#attach_0_#{@sku.id}", :class => 'upload' %>
+            <%= form.file_field :attach0, :accept => "application/pdf", :attach_id => "#attach_0_#{@sku.id}", :class => 'upload' %>
             <% if @sku.attach0.file %>
             <%= link_to  I18n.t(:open, scope: :edit_product_detail), @sku.attach0.url, :target => "_blank" %>
             <% end %>
@@ -159,22 +157,22 @@
       <div class="row">
         <div class="col-md-6">
           <div class="form-group">
-            <%= field_sku.select :option_ids, grouped_options_for_select(@product.decorate.grouped_variants_options, @sku.option_ids), {}, {:multiple => 'multiple', :class => 'sku-variants-options', :required => true} %>
+            <%= form.select :option_ids, grouped_options_for_select(@product.decorate.grouped_variants_options, @sku.option_ids), {}, {:multiple => 'multiple', :class => 'sku-variants-options', :required => true} %>
           </div>
         </div>
         <div class="col-md-6">
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
-                <%= field_sku.label :unlimited do %>
-                <%= field_sku.check_box :unlimited, {}, true %>
+                <%= form.label :unlimited do %>
+                <%= form.check_box :unlimited, {}, true %>
                 <%= I18n.t(:info, scope: 'edit_product_detail.unlimited') %>
                 <% end %>
               </div>
             </div>
             <div class="col-md-6">
               <div class="input-group form-group">
-                <%= field_sku.text_field :quantity, :class => 'form-control', :pattern => I18n.t(:positive_integer, scope: :validation), :required => true, :disabled => @sku.unlimited %>
+                <%= form.text_field :quantity, :class => 'form-control', :pattern => I18n.t(:positive_integer, scope: :validation), :required => true, :disabled => @sku.unlimited %>
                 <div class="input-group-addon">
                   <%= I18n.t(:piece, scope: :edit_product_detail) %>
                 </div>
@@ -199,7 +197,7 @@
       <div class="row">
         <div class="col-md-6">
           <div class="input-group form-group">
-            <%= field_sku.text_field :price, value: number_with_precision(@sku.price, :precision => 2), :class => 'form-control', :required => true, :pattern => I18n.t(:positive_float, scope: :validation) %>
+            <%= form.text_field :price, value: number_with_precision(@sku.price, :precision => 2), :class => 'form-control', :required => true, :pattern => I18n.t(:positive_float, scope: :validation) %>
             <span class="input-group-addon">
               <%= @product.shop.currency.code %>
             </span>
@@ -207,7 +205,7 @@
         </div>
         <div class="col-md-6">
           <div class="input-group form-group">
-            <%= field_sku.text_field :discount, :class => 'form-control', :pattern => I18n.t(:positive_integer_less_or_equal_than_100, scope: :validation), :required => true %>
+            <%= form.text_field :discount, :class => 'form-control', :pattern => I18n.t(:positive_integer_less_or_equal_than_100, scope: :validation), :required => true %>
             <div class="input-group-addon">
               <%= '%' %>
             </div>
@@ -238,7 +236,7 @@
             <div class="col-md-4 nopadding-lr">
               <div class="form-group">
                 <div class="input-group input-group-sm">
-                  <%= field_sku.text_field :space_length, value: number_with_precision(@sku.space_length, :precision => 2), :class => 'form-control input-sm', :required => true, :pattern => I18n.t(:positive_float, scope: :validation) %>
+                  <%= form.text_field :space_length, value: number_with_precision(@sku.space_length, :precision => 2), :class => 'form-control input-sm', :required => true, :pattern => I18n.t(:positive_float, scope: :validation) %>
                   <div class="input-group-addon">
                     <%= I18n.t('cm', scope: :edit_product_detail) %>
                   </div>
@@ -248,7 +246,7 @@
             <div class="col-md-4 nopadding-lr">
               <div class="form-group">
                 <div class="input-group input-group-sm">
-                  <%= field_sku.text_field :space_width, value: number_with_precision(@sku.space_width, :precision => 2), :class => 'form-control', :required => true, :pattern => I18n.t(:positive_float, scope: :validation) %>
+                  <%= form.text_field :space_width, value: number_with_precision(@sku.space_width, :precision => 2), :class => 'form-control', :required => true, :pattern => I18n.t(:positive_float, scope: :validation) %>
                   <div class="input-group-addon">
                     <%= I18n.t('cm', scope: :edit_product_detail) %>
                   </div>
@@ -258,7 +256,7 @@
             <div class="col-md-4 nopadding-lr">
               <div class="form-group">
                 <div class="input-group input-group-sm">
-                  <%= field_sku.text_field :space_height, value: number_with_precision(@sku.space_height, :precision => 2), :class => 'form-control', :required => true, :pattern => I18n.t(:positive_float, scope: :validation) %>
+                  <%= form.text_field :space_height, value: number_with_precision(@sku.space_height, :precision => 2), :class => 'form-control', :required => true, :pattern => I18n.t(:positive_float, scope: :validation) %>
                   <div class="input-group-addon">
                     <%= I18n.t('cm', scope: :edit_product_detail) %>
                   </div>
@@ -270,7 +268,7 @@
             <div class="col-md-12 nopadding-lr">
               <div class="form-group">
                 <div class="input-group input-group-sm">
-                  <%= field_sku.text_field :weight, value: number_with_precision(@sku.weight, :precision => 2), :class => 'form-control', :required => true, :pattern => I18n.t(:positive_float, scope: :validation) %>
+                  <%= form.text_field :weight, value: number_with_precision(@sku.weight, :precision => 2), :class => 'form-control', :required => true, :pattern => I18n.t(:positive_float, scope: :validation) %>
                   <div class="input-group-addon">
                     kg
                   </div>
@@ -282,8 +280,8 @@
         <div class="col-md-6">
           <div class="col-md-6 nopadding-lr">
             <div class="form-group">
-              <%= field_sku.label :customizable do %>
-              <%= field_sku.check_box :customizable, {}, true %>
+              <%= form.label :customizable do %>
+              <%= form.check_box :customizable, {}, true %>
               <%= I18n.t(true, scope: 'edit_product_detail.customizable') %>
               <% end %>
             </div>
@@ -309,8 +307,8 @@
     </div>
     <div class="panel-body">
       <div class="checkbox">
-        <%= field_sku.label :status do %>
-        <%= field_sku.check_box :status, {}, true %>
+        <%= form.label :status do %>
+        <%= form.check_box :status, {}, true %>
         <%= I18n.t(:info, scope: 'edit_product_detail.status') %>
         <% end %>
       </div>
@@ -330,20 +328,19 @@
       </h5>
       <div class="radio">
         <label>
-          <%= field_sku.radio_button :time, 'terminated', :required => true %>
+          <%= form.radio_button :time, 'terminated', :required => true %>
           <%= I18n.t(:timed_info, scope: :edit_product_detail) %>
         </label>
       </div>
       <div class="radio">
         <label>
-          <%= field_sku.radio_button :time, 'automatic', :required => true %>
+          <%= form.radio_button :time, 'automatic', :required => true %>
           <%= I18n.t(:renew_info, scope: :edit_product_detail) %>
         </label>
       </div>
     </div>
   </div>
 </div>
-<% end %>
-<%= f.submit :class => 'btn btn-primary', :value => new ? I18n.t(:create_sku, scope: :edit_product_detail) : I18n.t(:update_sku, scope: :edit_product_detail), :part => :sku, :id => 'edit_product_detail_form_btn' %>
+<%= form.submit :class => 'btn btn-primary', :value => new ? I18n.t(:create_sku, scope: :edit_product_detail) : I18n.t(:update_sku, scope: :edit_product_detail), :part => :sku, :id => 'edit_product_detail_form_btn' %>
 <%= link_to I18n.t(:cancel, scope: :edit_product_detail), :back, :class => 'btn btn-primary' %>
 <% end %>
