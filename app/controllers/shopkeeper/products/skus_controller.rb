@@ -4,9 +4,10 @@ class Shopkeeper::Products::SkusController < ApplicationController
   layout :custom_sublayout
   before_action :set_product
 
-  attr_reader :products, :product, :sku, :skus
+  attr_reader :product, :sku, :skus
 
   def index
+    @skus = product.skus.order_by(:c_at => :desc).paginate(:page => current_page, :per_page => 10)
   end
 
   def show
