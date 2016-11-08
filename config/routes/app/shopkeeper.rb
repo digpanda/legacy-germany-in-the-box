@@ -3,6 +3,7 @@ namespace :shopkeeper do
 
   resources :products do
     resources :skus, :controller => 'products/skus' do
+      patch :clone
     end
   end
 

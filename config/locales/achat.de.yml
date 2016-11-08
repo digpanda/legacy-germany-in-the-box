@@ -489,6 +489,7 @@ de:
     merchant_id: Herstellernummer
     bg_merchant_id: Borderguru-Kundennummer
   edit_product:
+    skus: Artikelpositionen
     edit: Editieren
     remove: Entfernen
     basic_info: Allgmeine Information
@@ -523,7 +524,7 @@ de:
     cancel: Abbrechen
     product_seal: Produktsiegel
     product_seal_info: Besitzen Ihre Produkte Qualitäts- oder Handelssigel? (Z.B. Bio-Siegel, Fairtrade-Siegel)   (max. 1MB pro Bild)
-    quantity_info: '%{num1} Stk. von %{num2} Varianten'
+    quantity_info: '%{total_skus_quantities} Stk. von %{product_options_size} Varianten'
     quantity: Verfügbarkeit
     duty_category: Zoll-Kategorie
     duty_category_info: Die Zuordnung der Käufer-Kategorien ist von dem Zoll in China gefordert.

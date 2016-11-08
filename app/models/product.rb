@@ -127,6 +127,12 @@ class Product
 
   end
 
+  # total item available to sell
+  # NOTE : calculation for the display on shopkeeper area, might be a duplicate but no time to check
+  def total_skus_quantities
+    skus.map(&:quantity).reduce(:+)
+  end
+
   def favorite_of?(user)
     return unless user
     user.favorites.where(id: self.id).first != nil

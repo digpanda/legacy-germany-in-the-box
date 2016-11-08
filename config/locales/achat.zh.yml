@@ -485,6 +485,7 @@ zh-CN:
     merchant_id: 卖家ID
     bg_merchant_id: Borderguru商号
   edit_product:
+    skus: 库存管理
     edit: 修改
     remove: 删除产品
     basic_info: 产品概要
@@ -520,7 +521,7 @@ zh-CN:
     cancel: 取消
     product_seal: 产品认证
     product_seal_info: 这里您可以上传产品认证。
-    quantity_info: '%{num2}个型号，共%{num1}件'
+    quantity_info: '%{product_options_size}个型号，共%{total_skus_quantities}件'
     quantity: 数量
     duty_category: 报关产品分类
     duty_category_info: 明确的报关产品归类更好的对产品进行物流。

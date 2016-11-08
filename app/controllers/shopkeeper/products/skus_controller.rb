@@ -38,6 +38,9 @@ class Shopkeeper::Products::SkusController < ApplicationController
   def update
   end
 
+  def clone
+  end
+
   private
 
   def setup_categories_options!
