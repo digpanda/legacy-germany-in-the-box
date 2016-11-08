@@ -18,7 +18,7 @@ var SkuForm = {
     init: function() {
 
       this.setupLimitSystem();
-
+      
     },
 
     /**
@@ -27,15 +27,17 @@ var SkuForm = {
      * @return {void}
      */
     setupLimitSystem: function() {
-      if ($("#js-sku-form").length > 0) {
 
-        SkuForm.resetLimitDisplay();
-
-        $(SkuForm.elements.checkbox).on('click', function() {
-          SkuForm.resetLimitDisplay();
-        });
-
+      if ($("#js-sku-form").length == 0) {
+        return;
       }
+
+      SkuForm.resetLimitDisplay();
+
+      $(SkuForm.elements.checkbox).on('click', function() {
+        SkuForm.resetLimitDisplay();
+      });
+
     },
 
     /**
@@ -46,9 +48,9 @@ var SkuForm = {
     resetLimitDisplay: function() {
       if ($(SkuForm.elements.checkbox).is(":checked")) {
         SkuForm.switchOffLimit();
-      } else {
-        SkuForm.switchOnLimit();
+        return;
       }
+      SkuForm.switchOnLimit();
     },
 
     /**

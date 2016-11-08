@@ -2347,14 +2347,16 @@ var SkuForm = {
    * @return {void}
    */
   setupLimitSystem: function setupLimitSystem() {
-    if ($("#js-sku-form").length > 0) {
 
-      SkuForm.resetLimitDisplay();
-
-      $(SkuForm.elements.checkbox).on('click', function () {
-        SkuForm.resetLimitDisplay();
-      });
+    if ($("#js-sku-form").length == 0) {
+      return;
     }
+
+    SkuForm.resetLimitDisplay();
+
+    $(SkuForm.elements.checkbox).on('click', function () {
+      SkuForm.resetLimitDisplay();
+    });
   },
 
   /**
@@ -2365,9 +2367,9 @@ var SkuForm = {
   resetLimitDisplay: function resetLimitDisplay() {
     if ($(SkuForm.elements.checkbox).is(":checked")) {
       SkuForm.switchOffLimit();
-    } else {
-      SkuForm.switchOnLimit();
+      return;
     }
+    SkuForm.switchOnLimit();
   },
 
   /**
