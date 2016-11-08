@@ -116,6 +116,14 @@ class Order
     shipping_cost + tax_and_duty_cost
   end
 
+  # NOTE : THIS HAS TO BE REMOVED WHEN STAGING CHANGES WILL BE DONE.
+  # WE MADE IT FOR A FEW STUCK ORDERS BUT IT'S VERY SPAGHETTI.
+  def total_price_with_discount_from_product
+    order_items.inject(0) do |sum, order_item|
+        sum += (order_item.price_with_coupon_applied * order_item.quantity)
+    end.reduce(&:+)
+  end
+
   # total price with the coupon discount if any
   def total_price_with_discount
     (total_price - coupon_discount).round(2)
