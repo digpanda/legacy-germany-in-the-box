@@ -2,6 +2,7 @@
 namespace :guest do
 
   resource :pages do
+    get :business_model
     get :shipping_cost
     get :sending_guide
     get :menu
