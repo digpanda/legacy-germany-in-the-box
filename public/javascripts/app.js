@@ -2317,39 +2317,74 @@ module.exports = Search;
 });
 
 require.register("javascripts/starters/sku_form.js", function(exports, require, module) {
-"use strict";
+'use strict';
 
 /**
- * ProductsList Class
+ * SkuForm Class
+ * TODO : this classe should be moved over to the sku area only
+ * it's not a starter or anything like that, spreading prop changes
+ * on the global system is not safe.
  */
-var SkuForm = { // CURRENTLY NOT IN USED IN THE SYSTEM
+var SkuForm = {
 
-    /**
-     * Initializer
-     */
-    init: function init() {
+  elements: {
+    form: '#sku_form',
+    checkbox: '#sku_unlimited',
+    input: '#sku_quantity'
+  },
 
-        this.turnUnlimit();
-    },
+  /**
+   * Initializer
+   */
+  init: function init() {
 
-    turnUnlimit: function turnUnlimit() {
+    this.setupLimitSystem();
+  },
 
-        if ($("#js-sku-form").length > 0) {
-            var component = $('input[id^=product_skus_attributes_][id$=_unlimited]');
+  /**
+   * If we are on the correct page containing `js-sku-form`
+   * We setup the limit display and activate the checkbox click listener
+   * @return {void}
+   */
+  setupLimitSystem: function setupLimitSystem() {
+    if ($("#js-sku-form").length > 0) {
 
-            if (component.is(":checked")) {
-                $('input[id^=product_skus_attributes_][id$=quantity]').val(0).prop('disabled', 'true').parent().hide();
-            }
+      SkuForm.resetLimitDisplay();
 
-            component.change(function () {
-                if ($(this).is(":checked")) {
-                    $('input[id^=product_skus_attributes_][id$=quantity]').val(0).prop('disabled', 'true').parent().hide();
-                } else {
-                    $('input[id^=product_skus_attributes_][id$=quantity]').val('').removeAttr('disabled').parent().show();
-                }
-            });
-        }
+      $(SkuForm.elements.checkbox).on('click', function () {
+        SkuForm.resetLimitDisplay();
+      });
     }
+  },
+
+  /**
+   * Reset the limit display
+   * It will show or hide the input
+   * @return {void}
+   */
+  resetLimitDisplay: function resetLimitDisplay() {
+    if ($(SkuForm.elements.checkbox).is(":checked")) {
+      SkuForm.switchOffLimit();
+    } else {
+      SkuForm.switchOnLimit();
+    }
+  },
+
+  /**
+   * We disable the limit input and make it unlimited
+   * @return {void}
+   */
+  switchOffLimit: function switchOffLimit() {
+    $(SkuForm.elements.form).find(SkuForm.elements.input).val('0').prop('disabled', 'true').parent().hide();
+  },
+
+  /**
+   * We activate the limit input and make it limited
+   * @return {void}
+   */
+  switchOnLimit: function switchOnLimit() {
+    $(SkuForm.elements.form).find(SkuForm.elements.input).val('').removeAttr('disabled').parent().show();
+  }
 
 };
 
