@@ -36,6 +36,9 @@ class Shopkeeper::Products::SkusController < ApplicationController
 
   end
 
+  def edit
+  end
+
   def update
   end
 
@@ -54,7 +57,7 @@ class Shopkeeper::Products::SkusController < ApplicationController
   end
 
   def sku_params
-    delocalize_config = { :price => :number,:space_length => :number, :space_width => :number, :space_height => :number, :discount => :number, :quantity => :number, :weight => :number}
+    delocalize_config = {:price => :number,:space_length => :number, :space_width => :number, :space_height => :number, :discount => :number, :quantity => :number, :weight => :number}
     sku_params = params.require(:sku).permit!.delocalize(delocalize_config)
     # we throw away the useless option ids
     sku_params[:option_ids].reject!(&:empty?)
