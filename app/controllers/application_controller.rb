@@ -97,26 +97,38 @@ class ApplicationController < ActionController::Base
     cart_manager.products_number
   end
 
-  # should be refactored / put into a module or something
+  # NOTE : this should be placed into a module linked to the login / subscription
+  # this is a devise hook. we basically check the kind of customer and redirect
+  # there can be forced redirection if the user tried to access a forbidden area
+  # and was redirected to the login side
+  # TODO : this should definitely be refactored into a clean class
+  # but it's alright for now
   def after_sign_in_path_for(resource)
 
-    return navigation.force! if navigation.force?
-
     if current_user.decorate.customer?
-      session[:locale] = :'zh-CN'
-      navigation.back(1)
-    elsif current_user.decorate.shopkeeper?
-      session[:locale] = :'de'
-      remove_all_orders!
-      if current_user.shop && (not current_user.shop.agb)
-        shopkeeper_shop_producer_path
-      else
-        shopkeeper_orders_path
-      end
-    elsif current_user.decorate.admin?
-      remove_all_orders!
-      admin_shops_path
+      force_chinese!
+      return navigation.force! if navigation.force?
+      return navigation.back(1)
     end
+
+    # if the person is not a customer
+    # he doesn't need any order.
+    remove_all_orders!
+
+    if current_user.decorate.shopkeeper?
+      force_german!
+      if current_user.shop.agb
+        return shopkeeper_orders_path
+      end
+      return navigation.force! if navigation.force?
+      return shopkeeper_shop_producer_path
+    end
+
+    if current_user.decorate.admin?
+      return navigation.force! if navigation.force?
+      return admin_shops_path
+    end
+
   end
 
   def remove_all_orders!
