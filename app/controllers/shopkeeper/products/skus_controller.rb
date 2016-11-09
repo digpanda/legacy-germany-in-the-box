@@ -49,7 +49,7 @@ class Shopkeeper::Products::SkusController < ApplicationController
     redirect_to navigation.back(1)
   end
 
-  # this should be put into a service
+  # TODO : this should be put into a service
   # it's a complex operation that can grow.
   def clone
     source_sku = sku

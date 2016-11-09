@@ -9,18 +9,6 @@ class ProductsController < ApplicationController
 
   layout :custom_sublayout, only: [:new, :new_sku, :edit, :edit_sku, :clone_sku, :show_skus]
 
-  def clone_sku
-    @src = @product.skus.find(params[:sku_id])
-    @sku = @product.skus.build(@src.attributes.keep_if { |k| Sku.fields.keys.include?(k) }.except(:_id, :img0, :img1, :img2, :img3, :attach0, :data, :c_at, :u_at, :currency))
-    CopyCarrierwaveFile::CopyFileService.new(@src, @sku, :img0).set_file if @src.img0.url
-    CopyCarrierwaveFile::CopyFileService.new(@src, @sku, :img1).set_file if @src.img1.url
-    CopyCarrierwaveFile::CopyFileService.new(@src, @sku, :img2).set_file if @src.img2.url
-    CopyCarrierwaveFile::CopyFileService.new(@src, @sku, :img3).set_file if @src.img3.url
-    CopyCarrierwaveFile::CopyFileService.new(@src, @sku, :attach0).set_file if @src.attach0.url
-    @sku.data = @src.data # this is buggy because of the translation system
-    @sku.save
-  end
-
   # this belong to the sku admin part and the last piece of this mess
   def highlight
     @product = Product.find(params[:product_id])
