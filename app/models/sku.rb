@@ -102,18 +102,15 @@ class Sku
     end
   end
 
-  # TODO :this is a piece of shit.
-  # it's not working properly and the timing complexity is shit too.
+  # TODO : not sure it works perfect, it seems it "forgets" some of the option_ids.
   def option_names
-    option_ids.map do |option_id|
-      product.options.map do |option|
-        option.suboptions.inject([]) do |acc, suboption|
-          if "#{suboption.id}" == option_id
-            acc << suboption.name unless acc.nil? # wat ?
-          end
+    product.options.map do |option|
+      option.suboptions.inject([]) do |acc, suboption|
+        if option_ids.include? "#{suboption.id}"
+          acc << suboption.name
         end
       end
-    end.flatten.compact
+    end
   end
 
   private
