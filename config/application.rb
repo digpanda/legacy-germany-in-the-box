@@ -19,8 +19,18 @@ module DigPanda
 
     config.exceptions_app = self.routes # customized error handling
 
-    config.autoload_paths += %W(#{config.root}/lib #{config.root}/services)
-    config.eager_load_paths += %W(#{config.root}/lib) if Rails.env.development?
+    config.autoload_paths += %W(#{config.root}/lib)
+    #config.eager_load_paths += %W(#{config.root}/lib)
+
+    # config.autoload_paths << Rails.root.join("lib")
+    # config.eager_load_paths << Rails.root.join("lib")
+    #
+    # if Rails.env.development?
+    #   # this will reload the libraries we are working on
+    #   # keep it within the development environment
+    #   # to do not over-load production
+    #   ActiveSupport::Dependencies.explicitly_unloadable_constants << "BorderGuru"
+    # end
 
     config.middleware.use Mongoid::QueryCache::Middleware
     config.middleware.use Mobvious::Manager

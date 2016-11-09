@@ -11,6 +11,12 @@
 
     <div class="col-md-12">
 
+      <% if product.discount? %>
+      <div class="shop-page-product__discount">
+        <div><%= product.decorate.best_discount %></div>
+      </div>
+      <% end %>
+
       <div class="shop-page-product__image +centered lazy" data-original="<%= product.decorate.product_cover_url %>" style="background-image:url('/images/grey.gif');">
 
         <div class="+small-spacer"></div>
@@ -24,9 +30,6 @@
       <div class="shop-page-product__description">
 
         <h2>
-          <span class="shop-page-product__discount">
-            <% if product.discount? %><%= product.decorate.best_discount %><% end %>
-          </span>
           <%= product.name %>
         </h2>
         <div class="shop-page-product__description --text">

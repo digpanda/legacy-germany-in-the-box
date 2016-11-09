@@ -42,14 +42,35 @@ class Product
   validates :desc, length:                   { maximum: MAX_LONG_TEXT_LENGTH }
   #validates :tags, length:                   { maximum: Rails.configuration.max_num_tags                        }
 
-  scope :is_active,       ->         { self.and(:status  => true, :approved.ne => nil)   }
-  scope :has_sku,         ->         { where("skus.0"    => {"$exists" => true})         }
-  scope :has_hs_code,     ->         { where(:hs_code.ne => nil)                         }
-  scope :has_tag,         -> (value) { where(:tags       => value)                       }
-  scope :can_show,        ->         { self.is_active.has_sku                             }
-  scope :by_brand,        ->         { self.order(:brand => :asc)                                }
-  scope :can_buy,         ->         { self.is_active.has_hs_code.has_sku.can_buy_from_shop }
-  scope :can_buy_from_shop, ->       { self.in(shop: Shop.only(:id).can_buy.map(&:id))   }
+  scope :is_active,   -> { self.and(:status  => true, :approved.ne => nil) }
+  scope :has_sku,     -> { self.where(:'skus.0' => {:$exists => true }) }
+  scope :has_hs_code, -> { self.where(:hs_code.ne => nil) }
+
+  # we fetch all the `available_skus` and only select
+  # the product containing the correct skus
+  # NOTE : this method could be shortened
+  # and improved via metaprogramming
+  scope :has_available_sku, -> do
+    skus_ids = self.all.reduce([]) do |acc, product|
+        acc << product.available_skus.map(&:id)
+    end.flatten
+    self.where("skus._id" => {"$in" => skus_ids})
+  end
+
+  # scope :has_tag,     -> (value) { where(:tags       => value)                     }
+
+  # only available products which are active and got skus
+  scope :can_show,          -> { self.is_active.has_sku.has_available_sku }
+
+  # the main difference between can show and can buy is the fact the customer
+  # can effectively select the sku and buy the item because
+  # it has stocks and is available
+  scope :can_buy,           -> { self.can_show.has_hs_code.available_from_shop }
+
+  # we should investigate on the exact reason this line exists
+  scope :available_from_shop, -> { self.in(shop: Shop.only(:id).map(&:id)) }
+
+  scope :by_brand,          -> { self.order(:brand => :asc)                      }
 
   index( {name: 1          }, {unique: false, name: :idx_product_name                        })
   index( {brand: 1         }, {unique: false, name: :idx_product_brand                       })
@@ -62,9 +83,9 @@ class Product
 
   class << self
 
-    def search(query)
-      Product.can_buy.where(name: /(#{query.split.join('|')})/i)
-    end
+    # def search(query)
+    #   Product.can_buy.where(name: /(#{query.split.join('|')})/i)
+    # end
 
     # TODO : to improve
     # right now it doesn't order by discount
@@ -106,6 +127,12 @@ class Product
 
   end
 
+  # total item available to sell
+  # NOTE : calculation for the display on shopkeeper area, might be a duplicate but no time to check
+  def total_skus_quantities
+    skus.map(&:quantity).reduce(:+)
+  end
+
   def favorite_of?(user)
     return unless user
     user.favorites.where(id: self.id).first != nil
@@ -128,7 +155,15 @@ class Product
   end
 
   def grouped_variants_options
-    options.map { |v| [v.name, v.suboptions.sort { |a,b| a.name <=> b.name }.map { |o| [ o.name, o.id.to_s]}] }.to_a
+    options.map do |option|
+      [option.name, option.suboptions.names_array]
+    end
+  end
+
+  def grouped_variants_options_names
+    options.map do |option|
+      option.suboptions.names
+    end.join(', ')
   end
 
   def featured_sku
@@ -144,7 +179,7 @@ class Product
   end
 
   def available_skus
-    skus.is_active.any_of({:unlimited => true}, {:quantity.gt => 0}).order_by({:discount => :desc}, {:quantity => :desc})
+    skus.is_active.in_stock.order_by({:discount => :desc}, {:quantity => :desc})
   end
 
   def sku_from_option_ids(option_ids)

@@ -3,7 +3,7 @@
   //padding: 0.5em
   border: 5px $color-grey solid
   +border-radius(0.5em)
-    
+
   +option(no-border)
     border: 0px
 
@@ -20,7 +20,22 @@
     +truncate(95%)
 
   +part(discount)
-    color: $color-red
+    position: absolute
+    left: 70%
+    top: -10px
+    width: 60px
+    height: 60px
+    padding: 0.8em
+    color: $color-white
+    background-color: $color-red
+    z-index: 5
+    +border-radius(50%)
+    +rotate(20deg)
+    div
+      font-size: 18px
+      margin-top: 0.3em
+      font-weight: bold
+      text-align: center
 
   +part(image)
     background-color: $color-light-grey

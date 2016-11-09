@@ -22,7 +22,7 @@
       <% if current_user.nil? %>
       <a href="<%= new_user_session_path %>"><%= I18n.t(:signin) %></a>
       <% else %>
-      <a href="<%= edit_account_user_path(current_user) %>"><%= I18n.t(:my_account, scope: :menu) %></a>
+      <a href="<%= Rails.application.routes.url_helpers.send("edit_#{current_user.role}_account_path") %>"><%= I18n.t(:my_account, scope: :menu) %></a>
       <% end %>
 
     </li>
@@ -30,7 +30,7 @@
     <% unless @categories.empty? %>
     <% @categories.each do |category| %>
     <li>
-      <a href="<%= category_path(category) %>"><%= category.name %></a>
+      <a href="<%= guest_category_path(category) %>"><%= category.name %></a>
     </li>
     <% end %>
     <% end %>

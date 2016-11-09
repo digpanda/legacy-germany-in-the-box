@@ -15,12 +15,12 @@ module BorderGuru
 
       def to_h
         product_summaries(@order).merge({
-                                            totalPrice: @order.total_value,
+                                            totalPrice: @order.total_price_with_discount.to_f,
                                             countryOfOrigin: @shop.country_of_dispatcher.alpha2,
                                             countryOfDestination: @country_of_destination.alpha2,
                                             currency: @currency,
                                             quoteIdentifier: @order.border_guru_quote_id,
-                                            merchantOrderId: @order.id.to_s,
+                                            merchantOrderId: @order.border_guru_order_id,
                                             storeName: @shop.name,
                                             dimensionalWeight: @order.total_dimensional_weight,
                                             dimensionalWeightScale: WEIGHT_UNIT,

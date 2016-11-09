@@ -49,6 +49,10 @@ class OrderPayment
     self.order.decorate.total_paid != 0
   end
 
+  def scheduled?
+    status == :scheduled
+  end
+
   def unverified?
     status == :unverified
   end

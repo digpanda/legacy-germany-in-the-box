@@ -1,0 +1,701 @@
+de:
+  landing_page:
+    highlight_of_the_day: Produkt der Tages
+    see_more: mehr Produkt mit Highlights
+  discount:
+    discount: Rabatt
+  product_box:
+    taxes_per_unit: Geschätzt Importsteuer
+    shipping_and_taxes_excluded: Versandkosten & Steuer zzgl.
+  coupon:
+    cannot_apply: Der Gutschein ist für diese Bestellung nicht gültig.
+    error_occurred_applying: Fehler beim Einlösen des Gutscheins.
+    not_valid_anymore: Der Gutschein ist ungültig.
+    cannot_remove: Der eingelöste Gutschein lässt sich nicht löschen.
+    error_occurred_applying: Fehler beim Löschen des Gutscheins.
+    apply: Einlösen
+    remove_coupon: Gutschein löschen.
+    new_price: Aktueller Preis.
+    coupon: Gutschein
+    applied_successfully: Dieser Gutschein wurde erfolgreich eingelöst.
+    applied_fail: Dieser Gutschein ist nicht vorhanden.
+  product_left:
+    only: Noch
+    left: übrig
+    no_stock_left: Ausverkauft
+    not_ready_to_sell: Dieser Shop kommt bald
+  password_recovery:
+    email_not_found: Diese E-Mail ist uns nicht bekannt.
+    instruction_sent: Bitte checke Deine E-Mail und folge dem Hinweis.
+    password_updated: Dein Passort wurde aktualisiert!
+  feedback:
+    bug_report: Fehler Report
+    payment_speed_report: Laufzeit der Zahlung
+    return_application: Retouren
+    overall_rate: Bewertung
+    product_suggestions: Produkt Empfehlung
+  message:
+    order_not_processable: System ist zwischen 9 und 10 Uhr wegen Datei Sendung gesperrt. Bitten prüfen Sie CSV-Datei nach 10Uhr wieder.
+  country_of_origin: Herstellungsland
+  remove: Entfernen
+  composed_text:
+    you_must_add: Sie brauchen eine
+    billing_address: Rechnungsadresse
+    to_activate_this_section: um weiter zu verfahren
+  results_for: Ergebnisse von
+  button:
+    checkout: Kasse
+    menu: Menu
+    resend_confirmation: Bestätigungsmail erneut senden
+    change_my_password: Passwort ändern
+    go_back_home_page: Zurück zur Hauptseite
+    start_process_shipment: Starten das Versenden
+  menu:
+    my_cart: Einkaufskorb
+    my_account: Mein Konto
+  breadcrumb:
+    home: Home
+  title:
+    title: Titel
+    shop_photo: Shop Bilder
+    date: Datum
+    philosophy: Philosophie
+    uniqueness: Einzigartigkeit
+    stories: Geschichte
+    impressum: Impressum
+    german_essence: German Design
+    wirecard_payment_partnership: WireCard Zahlungspartnerschaft
+    description: Beschreibung
+    more: Mehr
+    partners: Partner
+    want_buy_products: Möchten Sie etwas kaufen?
+    want_work_with_us: Möchten Sie unser Partner werden?
+    change_your_password: Passwort ändern
+    page_not_found: Seite nicht gefunden
+    server_error: Serverproblem
+    page_not_authorized_login: Bitte einloggen oder registrieren um fortzufahren!
+    page_not_authorized: Sie haben keine Berechtigung für diese Seite
+  notice:
+    payment_removed: Zahlung storniert
+    cannot_remove_from_favorite: Das Produkt kann nicht von Lieblingsprodukten entfernt werden.
+    sku_not_found: Artikelposition nicht gefunden
+    item_removed: Artikel erfolgreich gelöscht
+    order_sent: Sie haben die Zoll-Anmeldung dieser Sendung bestätigt.
+    order_not_processable: Diese Bestellung ist momentan nicht bearbeitbar. Bitte Versuchen später!
+    order_processing: Diese Bestellung wird bearbeitet. Sie können sie bald verschicken.
+    shipping_partner_problem: Die Logistik hat eine Fehlermeldung. %{e.message} Versuchen Sie in einigen Minuten erneut.
+    wechat_login: Sie sind erfolgreich mit WeChat ID eingeloggt.
+    wechat_login_fail: WeChat Login ist fehlgeschlagen. Bitte nochmal versuchen!
+    account_conflict: Sitzung abgelaufen. Bitte Support kontaktieren.
+    success_subscription: Anmeldung erfolgreich!
+    no_shop_available: Es gibt noch keinen Shop.
+    confirm_want_delete: Möchten Sie diesen Artikel wirklich löschen?
+    confirm_start_processing: Überprüfen Sie bitte die Bestellung nochmal bevor Sie anfangen die Sendung vorzubereiten. Bei Unstimmigkeit unseren Support kontaktieren.
+    package_was_sent: Das Paket wurde versandt
+    checkout_failed: Fehlgeschlagen!
+    checkout_succeeded: Erfolg!
+    being_redirected_to_payment_partner: Sie werden auf die Seite unseres Zahlungspartners umgeleitet. Bitte warten...
+  label:
+    new_password: neues Passwort
+    confirm_new_password: neues Passwort bestätigen
+    login_or: ODER
+  signin: Einloggen
+  back: Zurück
+  locales:
+    de: Deutsch
+    zh-CN: Chinesisch
+  number:
+    format:
+      separator: ','
+      delimiter: '.'
+  validation:
+    positive_integer: '^[0-9]*$'
+    positive_integer_less_or_equal_than_100: '^[1-9][0-9]?$|^100$|^0$'
+    positive_float: '^([0-9]*[1-9][0-9]*(,[0-9]{1,2})?|[0]+,[0-9]*[1-9][0-9]*)$'
+    positive_float_equal_or_greater_than_0: '^(0(,[0]{1,2})?|[0-9]*[1-9][0-9]*(,[0-9]{1,2})?|[0]+,[0-9]*[1-9][0-9]*)$'
+    zip: '^(?!01000|99999)(0[1-9]\d{3}|[1-9]\d{4})$'
+    mobile: ''
+    tel: ''
+  multiselect:
+    non_selected_text: Nicht ausgewählt
+    n_selected_text: ausgewählt
+  image_upload:
+    max_exceeded_message: Das Bild ist größer als 1 MB. Bitte laden Sie ein kleineres Bild hoch.
+    ext_error_message: Akzeptierbare Formate sind JPG, JPEG und PNG.
+    upload: Auswählen
+  pdf_upload:
+    max_exceeded_message: Die PDF ist größer als 2 MB. Bitte laden Sie eine kleinere PDF hoch.
+    ext_error_message: Akzeptierbares Format ist PDF.
+    upload: Auswählen
+  top_menu:
+    notifications: Nachrichten
+    top_menu: Menü
+    support: Support
+    sign_in: Einloggen
+    sign_up: Registieren
+    sign_out: Ausloggen
+    my_cart: Einkaufswagen
+    my_account: Mein Konto
+    my_personal: Person
+    my_bank: Zahlung
+    my_address: Adressen
+    my_order: Aufträge
+    my_collection: Favorit
+    my_following: Beobachtung
+    my_followers: Anhänger
+    my_shop: Shop-Einstellungen
+    my_producer: Herstellerdetails & AGB
+    my_product: Produktmanagment
+    my_agb: AGB
+    shop_applications: Beantragungen
+    view_cart: Ansehen
+    checkout: Zur Kasse
+    empty_cart: Kein Produkt vorhanden
+    start: Start
+    popular_product: Produkte
+    language: Sprache
+    chinese: Chinesisch
+    german: Deutsch
+    user_profile: Nutzerprofil
+    wrong_captcha: Captcha stimmt nicht überein.
+    email_confirmation_msg: Sie erhalten von uns eine E-Mail für die Registrierung. Bitte bestätigen Sie durch den gegebenen Link in der Mail, bevor Sie fortfahren.
+    shops: Shops
+    categories: Produktkategorien
+    payments: Zahlungsmanagment
+    settings: Konfiguraiton
+    notifications: Nachrichten
+  footer:
+    shipping_price: Versandkosten
+    payment_methods: Zahlungsarten
+    germany_in_the_box: Germany In The Box
+    feedback: Feedback
+    ihk_munchen: GBox wird von IHK München und Oberbayern gefördert.
+    copyright: © DigPanda GmbH 2015-2016
+    rheinmanufaktur: Rhein-Manufaktur
+    imprint: Impressum
+    terms_conditions: AGB
+    privacy_statement: Datenschutzerklärung
+    guidelines: Grundsätze
+    sell_on_gbox: Verkaufen auf GBox
+    charge_and_billing: Gebühren und Rechnungen
+    press_portal: Presse
+    status: Status
+    career: Karriere
+    recent_news: Akutelle Nachrichten
+    selling: Verkaufen
+    seller_portal: Verkäuferportal
+    seller_faq: FAQ zum Verkaufen
+    selling_in_3_steps: Verkaufen in 3 Schritten
+    fees_invoices: Gebühren & Rechnungen
+    buying: Kaufen
+    buyer_guide: Käufer Führer
+    buyer_qa: FAQ zum Kaufen
+    buyer_agb: AGB zum Kaufen
+    vouchers: Gutscheine
+    contact_us: Kontakt
+    news_ihk_titel: Herzlichen Dank!
+    news_ihk: Wir bedanken uns herzlich bei <strong>IHK Bayern</strong> und <strong>Handwerkskammer Bayern</strong> für ihre gemeinsame Förderung und Bezuschussen! Sie helfen uns, unsere Mission zu erreichern, nämlich den deutschen Herstellern den direkten Vertriebsweg zu chinesischen Markt zu etablieren.
+  sign_in_dialog:
+    email: E-Mail
+    password: Passwort
+    header: Einloggen
+    title: Herzlich willkommen zurück!
+    remember_me:  Angemeldet bleiben
+    not_member_yet: Jetzt registieren
+    forgot_password: Passwort vergessen
+    captcha: CAPTCHA
+    sign_in: Los!
+    wechat_auth_failed: Leider haben Sie unsere Anfrage für den Zugriff auf Ihre Nutzerinfo bei Wechat abgelehnt.
+  sign_up_dialog:
+    username: Username
+    email: E-Mail
+    password: Passwort
+    password_confirmation: Passwort wiederholen
+    header: Registieren
+    title: Herzlich willkommen zu Ihrer Registierung!
+    captcha: CAPTCHA
+    sign_up: Los!
+    already_member: Ich bin breits Kunde
+    product_news: Newsletter erhalten
+  password_recovery_dialog:
+    header: Passwort wiederherstellen
+    title: Passwort vergessen? Keine Sorge und wir helfen Ihnen gern.
+    email: E-Mail
+    ok: Neues Passwort vergeben
+  edit_accounts:
+    operations: Aktionen
+    delete_ok: Das Konto wurde erfolgreich entfernt.
+    delete_shop_message: Das Konto löschen?
+    remove: Entfernen
+    accounts: Benutzerkonten
+  edit_account:
+    username: Username
+    email: E-Mail
+    current_password: Aktuelles Passwort
+    password: Neues Passwort
+    password_confirmation: Passwort wiederholen
+    save: Speichern
+    success: Ihr Passwort wurde erfolgreich aktualisiert.
+    change_initial_password: Wir empfehlen Ihnen, das Initialpasswort zu ändern.
+    password_info:  Es umfasst mindestens 8 Zeichen.
+    password_match_error: Das Passwort muss gleich sein.
+    last_sign_in_at: Letzes Einloggen
+    role: Rolle
+    sign_in_count: Anzahl des Einloggens
+    shopkeeper_photo: Portraitbild des Shop-Inhabers
+    shopkeeper_photo_info: Es kommt oft auf die Persönlichkeit an. Mit dem Portraitbild geben Sie Ihrem Shop ein Gesicht.
+  edit_following:
+    follow_ok: Die Beobachtung für den Nutzer wurde erfolgreich aktiviert.
+    follow_ko: Ein Fehler ist bei der Aktivierung der Beobachtung aufgetreten.
+    unfollow_ok: Die Beobachtung für den Nutzer wurde erfolgreich deaktiviert.
+    unfoolow_ko: Ein Fehler ist bei der Deaktivierung der Beobachtung aufgetreten.
+  edit_followers:
+  edit_personal:
+    firstname: Vorname
+    lastname: Nachname
+    birthday: Geburtstag
+    gender: Geschlecht
+    about: Über mich
+    website: Website
+    country: Staat
+    language: Sprache
+    provider: Anbieter
+    telephone: Telephone
+    mobile: Handy
+    save: Speichern
+    update_ok: Ihre persöhnliche Daten wurden erfolgreich aktualisiert.
+    update_password_ok: Ihr Passwort wurde erfolgreich aktualisiert.
+    placeholder_tel: Festnetz 0571-12343434
+    placeholder_mobile: Mobile 13802049772
+  edit_address:
+    maximal_number_of_addresses: Sie können maximal %{num} Adressen konfigurieren.
+    add_new_address: Adresse hinzufügen
+    new_address_title: Ihre neue Adresse
+    street: Straße
+    house_number: Haus Nr.
+    additional: Zusatz
+    province: Bundesland
+    city: Stadt
+    district: Gemeinde
+    province_blank: --Bundesland--
+    city_blank: --Stadt--
+    district_blank: --Gemeinde--
+    country: Staat
+    zip: PLZ
+    set_primary: primär
+    add_address: hinzufügen
+    change_address_title: Adresse ändern
+    save_address: Speichern
+    show_address_title: Adresse
+    delete_address_message: Möchten Sie die Adresse löschen??
+    delete_ok: Die Adresse wurde erfolgreich gelöscht.
+    delete_ko: Ein Fehler ist bei der Löschung der Adresse aufgetreten.
+    create_ok: Die Adresse wurde erfolgreich angelegt.
+    create_ko: Ein Fehler ist beim Anlegen der Adresse aufgetreten.
+    update_ok: Die Adresse wurde erfolgreich aktualisiert.
+    update_ko: Ein Fehler ist bei der Änderung der Adresse aufgetreten.
+    addresses: Adressen
+    billing: Rechnung
+    sender: Absender
+    both: Rechnung und Absender
+    type: Typ
+    fname: Vorname
+    lname: Nachname
+    company: Firmenname
+    tel: Festnetz
+    mobile: Handy
+    name: Name
+    pid: Personalnummer
+  edit_order:
+    cancelled: Abbrechen
+    custom_checkable: Bereit für Ausfuhr
+    custom_checking: Waren beim Zoll zur Ausfuhr anmelden
+    shipped: Waren werden abgeschickt
+    payment_unverified: Nicht geprüft
+    payment_failed: Zahlung fehlgeschlagen
+    no_order: keine Aufträge vorhanden
+    id: Auftragsnummer
+    status: Status
+    total_price: Gesamtpreis
+    created_at: Erstellt am
+    updated_at: Geändert am
+    operations: Operationen
+    delete: Löschen
+    continue: Weiter
+    checked_out: Bezahlt
+    continue_ok: einen anderen Auftrag gewählt
+    delete_order_message: Den Auftrag löschen?
+    delete_ok: Der Auftrag wurde erfolgreich gelöscht.
+    delete_ko: Ein Fehler ist beim Löschen des Auftrags aufgetreten.
+    create_ok: Der Auftrag wurde erfolgreich angelegt.
+    create_ko: Ein Fehler ist beim Anlegen des Auftrags aufgetreten.
+    update_ok: Der Auftrag wurde erfolgreich aktualisiert.
+    update_ko: Ein Fehler ist bei der Änderung des Auftrags aufgetreten.
+    add_product_ok: Der Produkt wurde erfolgreich hinzugefügt.
+    add_product_ko: Der Vorrat reicht momentan leider nicht.
+    adjust_product_ok: Die Anzahl der Produkte wurde erfolgreich geändert.
+    adjust_product_ko: Der Vorrat reicht momentan leider nicht.
+    link_tracking: Sendung verfolgen
+    open: Öffnen
+    override_maximal_total: Pro Tag können Sie bei usnerer Plattform mehrere Produkte nur in der Höhe unter  %{total} %{currency} kaufen.
+    label: Label
+    download: Herunterladen
+    shipping_cost: Logistik Gebühren
+    tax_and_duty_cost: Zoll Gebühren
+    total_price_with_extra_costs: Insgesamt
+    new: Neu
+    paying: in Zahlung
+    paid: Bezahlt
+    custom_checking: in Prüfung
+    shippable: Zum Versand bereit
+    shipped: Versendet
+    success: Erstellt
+    destination_address_not_set: keine Empfänger-Anschrift vorhanden
+  edit_collection:
+    new: Favorit erstellen
+    edit: Ändern
+    remove: Löschen
+    public: Öffentlich
+    no_products: Kein Produkt vorhanden
+    delete_collection_message: Löschen Sie den gewählten Favorit?
+    unlike: Entfernen
+    update_ok: Der Favorit wurde erfolgreich aktualisiert.
+    update_ko: Ein Fehler ist bei der Änderung des Favorits aufgetreten.
+    update_with_existing_name: Ein gleichnämiger Favorit ist bereits vorhanden.
+  edit_collection_new:
+    name: Name
+    description: Beschreibung
+    visibility: Sichtbarkeit
+    public: Öffentlich
+    collection_type: Typ des Favorits
+    icon: Icon
+    save: Speichern
+    create_ok: Der Favorit wurde erfolgreich erstellt.
+    create_ko: Ein Fehler ist bei der Erstellung des Favorits aufgetreten.
+    create_with_existing_name: Ein gleichnämiger Favorit ist bereits vorhanden.
+  edit_shop_applications:
+    operations: Aktionen
+    delete_ok: Die Beantragung wurde erfolgreich entfernt.
+    delete_application_message: Die Beantragungen löschen?
+    remove: Entfernen
+  shop_application:
+    application_submitted: Ihre Anmeldung wurde eingereicht
+  edit_shop_application:
+    shop_application: Verkäufer werden
+    shop_application_ok: Herzlichen Glückwunsch! Ihr erster Schritt nach China ist getan! Ihre Anfrage befindet sich jetzt in Bearbeitung. Wir werden uns bald mit Ihnen in Verbindung setzten.
+    shopkeeper_info: Herstellerdetails
+    title: Antragsformular
+    email: Benutzerkonto
+    email_info: Geben Sie bitte Ihre E-Mail-Adresse an, die in der Zukunft als Benutzerkonto dient.
+    contact_person_info: Ansprechpartner
+    contact_fname: Vorname
+    contact_lname: Nachname
+    contact_tel: Festnetznummer
+    contact_mobile: Mobile
+    contact_email: E-Mail
+    contact_function: Position
+    statements: Erklärungen
+    statement_0: Hiermit versichere ich, dass ich der Hersteller der hochzuladenen Produkte bin bzw. den Hersteller repräsentiere darf. 
+    statement_1: Hiermit versichere ich, dass die von mir angebotenen Produkte "Made in Germany" sind. Der Begriff "Made in Germany" lehnt sich an die Rechtsprechung des BGH zur Nutzung des Begriffs „Made in Germany“ an und schreibt vor, dass die für die wertbestimmenden Eigenschaften eines Produktes wesentlichen Herstellvorgänge in Deutschland erfolgen müssen.
+    statement_2: Hiermit bestätige ich, dass die von mir angebotenen Produkte die notwendigen Zertifizierungen für den Absatz auf dem deutschen Markt besitzen. 
+    password: Initialpasswort
+    duplicated_email: Die E-Mail ist schon besetzt. Bitte geben Sie eine andere E-Mail ein.
+    application_finished: Antrag abgeschlossen
+    application_timestamp: Zeitstempel
+    no_applications: keine neue Beantragungen vorhanden
+    save: Speichern
+    back: Zurück
+    operations: Aktionen
+    delete_ok: Die Beantragung wurde erfolgreich entfernt.
+    delete_application_message: Die Beantragungen löschen?
+  edit_shops:
+    operations: Aktionen
+    reset_password: Passwort Rücksetzen
+    delete_ok: Der Shop wurde erfolgreich entfernt.
+    delete_shop_message: Den Shop löschen?
+    remove: Entfernen
+    products: Produkte
+    products_info: '%{num} Produktserie(n)'
+    agb:
+      info: AGB
+      'true': Ja
+      'false': Nein
+    addresses: Anschriften
+  edit_shop:
+    email: E-Mail
+    name: Hersteller-/Firmenname
+    desc: Beschreibung
+    logo: Logo
+    banner: Banner
+    banner_info: Die empfohlenen Größen des Banners sind 468x60 oder 728x90. (max. 1 MB pro Bild)
+    philosophy: Philosophie
+    stories: Geschichten
+    ustid: Ust-ID
+    eroi: EORI-Nummer
+    sms:
+      info: per SMS benachrichtigt
+      'true': Ja
+      'false': Nein
+    sms_mobile: Handynummer
+    min_total: Mindestbestellwert
+    currency: Währung
+    status: Status
+    save: Speichern
+    update_ok: Der Shop wurde erfolgreich aktualisiert.
+    update_producer_ok: Herstellerdetails wurde erfolgreich aktualisiert.
+    update_agb_ok: Vielen Dank für das Einverständnis unserer allgeimeinen Geschäftsbedingungen!
+    desc_info: Wer sind Sie? Was bieten Sie an?  (max. %{num} Buchstaben)
+    philosophy_info: Welche Grundidee und Grundüberzeugung unterliegen Ihren Produkten? (max. %{num} Buchstaben)
+    stories_info: Haben Ihre Produkte bemerkenswerte Geschichten, z.B dass Ihre Marke Sponsor für lokale Kinderevents, Elternverein, Sportverein ist, oder dass die Rezepte oder Herstellungen einer langen Familientradition folgen? Welche Zeitungen und Magazine haben von Ihren Produkten positiv berichtet? (max. %{num} Buchstaben)
+    ust_id_info: Als Exportierender Hersteller führen Sie keine Ust-Vorsteuer ab. Falls Sie eine Ust-ID besitzen, benötigen wir sie für Ausfuhrbescheinigungen.
+    eroi_number_info: Die EORI-Nummer ersetzt die alte Zollnummer und dient der Identifikation bei der Zollabwicklung. Für einen standardisierten Abwicklungsprozess müssen Sie die EORI-Nummer unserem Logistik-Partner vorlegen.
+    min_total_info: Sie können einen Mindestbestellwert für jede Bestellung im Ihren Shop festlegen. Geben Sie 0 an, falls Sie keinen Mindestwert wünschen.
+    sms_info: Möchten Sie über einen Verkauf von Rhein-Manufaktur benachrichtigt werden? Wenn ja, dann geben Sie uns Ihre Mobilephone Nummber. Selbstverständlich ist das ein kostenloser Service. Bitte achten Sie darauf, dass die nummer keinen Trennstrich "-" enthält.
+    founding_year: Gründungsjahr
+    founding_year_info: Wann wurde Ihre Marke gegründet? (Jahr)
+    german_essence: German-Design
+    german_essence_info: Die deutsche Herstellung ist weltweit bekannt für seine Effizienz, Schlichheit und Qualität. Wie spiegeln Ihre Produkte die Essenz von "German-Design" hinsichtlich ihrer Herstellung und Gestaltung wider? (max. %{num} Buchstaben)
+    uniqueness: Einzigartigkeit
+    uniqueness_info: Was hebt Ihre Produkte von anderen ähnlichen Produkten auf dem Markt ab? (max. %{num} Buchstaben)
+    target_groups: Zielgruppen
+    target_groups_info: Wer gehört zur Zielgruppe für Ihre Produkte in Deutschland? Sie können bis zu %{num} Zielgruppen eintragen.
+    target_group: Zielgruppe
+    sales_channels: Vertriebswege
+    sales_channels_info: Über welche Vertriebswege verfügen Sie? (Bespielsweise eigener Online-Shop, dritte Online-Plattform, Präsenzshop, Einzelhandel, Direktvertrieb...) Sie können max. %{num} Vertriebswege eintragen.
+    register: Handelsregister
+    add_target_group: Hinzufügen
+    remove_target_group: Entfernen
+    add_sales_channel: Hinzufügen
+    remove_sales_channel: Entfernen
+    sales_channel: Link oder Name
+    website: Website
+    agb: Allgemeine Geschäftsbedingungen
+    agb_statement: Hiermit versichere ich, dass ich die <a href='/page/agb' target='blank'>AGB</a> der DigPanda GmbH komplett gelesen habe und ich mit den Inhalten dieser AGB einverstanden bin. 
+    required_field_info: 'Pflichtfeld'
+    underline_field_info: '_ Übersetzungsfeld'
+    company_name_placeholder: 'Beispiel GmbH'
+    shopname: Shopname
+    tax_number: Steuernummer
+    sales_channel_options:
+      own_online_shop: eingener Online-Shop
+      third_online_platform: dritte Online-Plattform
+      presence_shop: Präsenzshop
+      retail: Einzelhandel
+      direct_selling: Direktvertrieb
+      other: Sonstiges
+    shopname_unknown: unbekannt
+    shop_seal: Shopfotos
+    shop_seal_info: Ein Bild sagt mehr als thausende Worte. Ergänzen Sie Ihre Herstellerbeschreibung mit Bildern, die die Qualität und Ihre Persöhnlichkeit unterstreichen. (Z.B. Bilder von Geschäft, Produktionsstätte, Team, Auszeichnungen, Magazinausschnitten, etc.) (max. 1MB pro Bild)
+    merchant_id: Herstellernummer
+    bg_merchant_id: Borderguru-Kundennummer
+  edit_product:
+    skus: Artikelpositionen
+    edit: Editieren
+    remove: Entfernen
+    basic_info: Allgmeine Information
+    new: Neues Produkt
+    tags: Stichwörter
+    tag1: Stichwort 1
+    tag2: Stichwort 2
+    tag3: Stichwort 3
+    name: Produktname
+    desc: Beschreibung
+    cover: Deckenbild
+    brand: Markennamen
+    variant_name: Variantentyp
+    created_at: erstellt am
+    updated_at: aktualisiert am
+    operations: Aktionen
+    delete: Entfernen
+    no_product: Sie haben noch kein Produkt im Sortiment. Klicken Sie oben die Schaltfläche an, um ein neues Produkt zu erstellen.
+    delete_product_message: Das Produkt entfernen?
+    delete_ok: Das Produkt wurde erfolgreich entfernt.
+    delete_ko: Ein Fehler ist bei der Lösung des Produkts aufgetreten.
+    update_ok: Das Produkt wurde erfolgreich aktualisiert.
+    update_ko: Ein Fehler ist bei der Änderung des Produkts aufgetreten.
+    categories: Käufer-Kategorie
+    skus: Aritkelpositionen
+    new_basic: Erstellen
+    update_basic: Akutalisieren
+    variant: Variante
+    categories_info: Die Zuordnung der Käufer-Kategorien hilft den Käufern, Ihr Produkt zu finden.
+    keywords_info: Wir empfehlen Ihnen, mit %{num} Stichwörtern das Produkt zu charakterisieren. Diese Stickwörtern dienen sowohl dem internen als auch externem Search.
+    desc_info: Beschreiben Sie Ihr Produkt mit all den ansprechenden Eigenschaften, die für Käufer relevant sind. (max. %{num} Buchstaben)
+    cancel: Abbrechen
+    product_seal: Produktsiegel
+    product_seal_info: Besitzen Ihre Produkte Qualitäts- oder Handelssigel? (Z.B. Bio-Siegel, Fairtrade-Siegel)   (max. 1MB pro Bild)
+    quantity_info: '%{total_skus_quantities} Stk. von %{product_options_size} Varianten'
+    quantity: Verfügbarkeit
+    duty_category: Zoll-Kategorie
+    duty_category_info: Die Zuordnung der Käufer-Kategorien ist von dem Zoll in China gefordert.
+    global_status: Global Eingestellt
+    hs_code: Zolltarifnummer
+  edit_product_new:
+    create_ok: Das Produkt wurde erfolgreich erstellt.
+    create_ko: Ein Fehler ist beim
+    create_with_existing_name: Ein gleichnämiges Produkt ist bereits vorhanden.
+  edit_product_detail:
+    sku_manage: Artikelpositionen
+    variant_manage: Varianten
+    edit: Editieren
+    remove: Entfernen
+    delete_sku_message: Die gewählte Artikelposition löschen?
+    new_variant: Neuen Variantentyp erstellen
+    img0: Bild 1
+    img1: Bild 2
+    img2: Bild 3
+    img3: Bild 4
+    price: Preis
+    currency: Währung
+    quantity: Verfügbarkeit
+    unlimited:
+      info: Menge unbegrenzt
+      'true': Ja
+      'false': Nein
+    weight: Gewicht
+    status:
+      info: Die Produktinformationen dieser Artikelposition (SKU) sind vollständig angegeben. Ich gebe diese Artikelposition für die Übersetztung frei.
+      'true': Ja
+      'false': Nein
+    customizable:
+      info: Anpassbar
+      'true': Ja
+      'false': Nein
+    time: Dauer der Einstellung
+    renew_info: Die Einstellung verlängert sich automatisch um weitere 120 Tage wenn diese Zeit abläuft.
+    timed_info: Das Produkt wird für nur 120 Tage auf RM eingestellt.
+    discount: Rabatt
+    create_ok: Die Artikelposition wurde erfolgreich erstellt.
+    create_ko: Ein Fehler ist beim Anlegen der Artikelpositionen aufgetreten.
+    sku_variants_options: Varianten
+    images: Produktbilder
+    image: Produktbild
+    sku_options: Details der Artikelposition
+    update_sku: Aktualisieren
+    new_sku: Neue Artikelposition
+    create_sku: Erstellen
+    update_ok: Die Artikelposition wurde erfolgreich aktualisiert.
+    images_info: Laden Sie bitte min. ein Produktbild in PNG, JPG oder JPEG Format für das Produkt hoch. (max. 1 MB pro Bild)
+    variants_info: Variante beschreibt als Gegenstände ähnlicher Form und/oder Funktion mit einem in der Regel hohen Anteil identischer Gruppen oder Teile.
+    customizable_info: Dieses Produkt kann nach Kundenwunsch individuell angefertig werden.
+    return: Zurück zur Produktliste
+    cancel: Abbrechen
+    space_weight: Produktmaße (Länge x Breite x Höhe) und Gewicht
+    space_weight_info: Geben Sie bitte die Maße und das Gewicht des Produkts an. Es handelt sich hier um das Produkt mit Verpackung, aber ohne Karton. Bei Kleidungen bitte orientieren Sie sich an den kleinsten Quader, in den das Produkt rein passt.
+    cm: cm
+    clone: Klonen
+    piece: Stk.
+    no_detail: Bitte klicken Sie oben <strong>Neue Artikelposition</strong> an, um eine Artikelposition zu erstellen.
+    product_data: Produktdaten
+    product_data_info: Hier können Sie Ihre Produktdaten angeben. (max. %{num} Buchstaben)
+    attachment: Anhang
+    attachment_info: Hier können Sie für Ihre Produktdaten eine PDF-Datei als Anhang hochladen.
+    open: Ansehen
+    status_info: SKU freigeben
+  edit_product_variant:
+    new_variant: Neue Variante
+    edit: Editieren
+    remove: Entfernen
+    edit_option: Editieren
+    remove_option: Entfernen
+    delete_option_message: Die gewählte Variantenausprägung löschen?
+    name: Wahlmöglichkeit
+    option_name: Variantenausprägung
+    sku_dependent: Es gibt Produkte, welche gerade diese gewählte verwenden. Die Löschung ist daher unmöglich.
+    create_variant: Erstellen
+    update_variant: Aktualisieren
+    create_option: Erstellen
+    update_option: Akutalisieren
+    update_ok: Die Variantenausprägung wurde erfolgreich aktualisiert.
+    variant_name: Variante
+    option_name: V-Ausprägung
+    new_option: Neue Variantenausprägung
+    delete_variant_ok: Die Variante wurde erfolgreich gelöscht.
+    delete_option_ok: Die Variantenausprägung wurde erfolgreich gelöscht.
+    return: Zurück zur Produktliste
+    cancel: Abbrechen
+    variants: Varianten
+    variant_usage: Jede Aritkelposition muss einer Variante zugeordnet werden. Falls das Produkt nur eine Variante hat, tragen Sie bitte das Wort <strong>Standard</strong> in die Felder Variante und V-Ausprägung ein.
+  popular_products:
+    search_prompt: Ich suche
+    search_placeholder: ein Produkt
+    add_to_favorite: Hinzufügen
+    create_and_add_to_favorite: Erstellen
+    add_to_cart: Hinzufügen
+    not_available: Ausverkauft
+    create_favorite: Erstellen
+    new_favorite: Neuer Favorit
+    product: Produktname
+    category: Kategorienname
+    brand: Markenname
+    tag: Schlüsselwort
+    inventory: Vorrat
+    price: Preis
+    discount: Rabbat
+    saving: Preisvorteil
+    variant: Variante
+    variant_option: Option
+    unlimited: Unbegrenzt
+  category:
+    categories: Kategorien
+  cart:
+    no_products: Kein Produkt vorhanden
+    item: Icon
+    name: Name
+    quantity: Quantity
+    unit_price: Preis
+    operations: Aktionen
+    subtotal: Preis
+    shipping: Tranport
+    taxes: Steuer
+    total_price_in_euro: Gesamter(EUR)
+    update_cart: Einkaufswagen ändern
+    set_delivery_destination: Anschrift auswählen
+    variant_option: Variante
+    shop: Shop
+    shipping_cost: Versendungskosten
+    duty_cost: Zollgebühren
+    total_price_with_currency_yuan: Gesamter
+    delete_sku_msg: Das Produkt vom dem Einkaufswagen entfernen
+    greater_than_zero: Die Anzahl muss größer al Null sein.
+  checkout:
+    have_your_payment_been_successful: Zahlung wurdet beenedet, klicken Sie um Zahlung Verfolgen und zurück in GBox.
+    refresh_page_button: Zahlung Verfolgen.
+    notice_order_already_paid: Ihre Zahlung ist erfolgreich.
+    choose_your_payment_method:  Bitte eine Zahlungsmethode wählen
+    my_destination: Anlieferungsanschrift
+    setup_delivery_destination: Bitte Anschrift auswählen
+    checkout: Bestätigen
+    checkout_ok: Der Auftrag wurde erfolgreich durchgeführt.
+    checkout_ko: Ein Fehler ist bei der Durchführung des Auftrags aufgetreten.
+    not_all_available: Der Vorrat des Products %{product_name} reicht momentan nicht. Bitte versuchen Sie später order reduzieren die Stückanzahl.
+    not_all_min_total_reached: Ihr Einkauf bei %{shop_name} beträgt insgesamt %{total_price} %{currency} und es ist weniger als das Mindestbestellwert %{min_total} %{currency} des Online-Shops. Bitte erhöhen Sie die Einkaufsumme bei dem Shop.
+    redirect_to_payment: Liebe Kunde, unser Zahlungsserver liegt in Deutschland. Bitte entschuldigen Sie den etwas langsamen Zahlungsvorgang. Danke schön!
+    borderguru_unreachable_at_quoting: Das Logistik-Partner-System ist beschäftigt. Bitte versuchen Sie später!
+    borderguru_unreachable_at_shipping: Das Logistik-Partner-System ist beschäftigt. Bitte wenden Sie sich an unseren Admin!
+    borderguru_shipping_failed: Der Versand kann nicht gestartet werden.
+  edit_categories:
+    operations: Aktionen
+    remove: Entfernen
+    no_categories: keine Kategorie vorhanden
+    delete_category_message: Die Kategorie löschen?
+  edit_category:
+    name: Name
+    code: Code
+  edit_payments:
+    no_payments: Keine Zahlungen vorhanden
+    request_number: Anfrage-ID
+    transaction_number: Vorgangsnummer
+    merchant_nummber: Händler-ID
+    order_nummber: Auftragsnummer
+    status: Status
+    buyer: Käufer
+    amount: Summe
+    action: Operation
+  edit_settings:
+    exchange_rate_to_yuan: Wechselkurs zu Yuan
+    exchange_rate_to_yuan_confirmation: Wechselkurs zu Yuan Wiederholen
+    max_total_per_day: Maximale Summe pro Tag
+    save: Speichern
+  search:
+    no_product: keine entsprechende Produkte vorhanden

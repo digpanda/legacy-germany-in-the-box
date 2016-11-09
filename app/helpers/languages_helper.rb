@@ -11,6 +11,14 @@ module LanguagesHelper
     end
   end
 
+  def force_chinese!
+    session[:locale] = :'zh-CN'
+  end
+
+  def force_german!
+    session[:locale] = :'zh-CN'
+  end
+
   # Not 100% sure it's used in the system, but it's called at some point
   def set_translation_locale
     current_locale = I18n.locale

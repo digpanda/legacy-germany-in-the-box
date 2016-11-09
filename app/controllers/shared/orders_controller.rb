@@ -7,7 +7,7 @@ class Shared::OrdersController < ApplicationController
 
   load_and_authorize_resource
   before_action :set_order
-  before_filter :is_admin_or_shop_order
+  before_filter :is_admin_or_shop_order, except: [:label]
 
   attr_accessor :order
 
@@ -30,8 +30,25 @@ class Shared::OrdersController < ApplicationController
     end
   end
 
+  # TODO: this is to refactor
+  # it was just taken away from
+  # a dirty controller for logic purpose
+  def label
+    response = BorderGuru.get_label(
+        border_guru_shipment_id: @order.border_guru_shipment_id
+    )
+
+    send_data response.bindata, filename: "#{@order.border_guru_shipment_id}.pdf", type: :pdf
+
+  # to refactor (obviously)
+  rescue BorderGuru::Error, SocketError => exception
+    Rails.logger.info "Error Download Label Order \##{@order.id} : #{exception.message}"
+    throw_app_error(:resource_not_found, {error: "Your label is not ready yet. Please try again in a few hours."})
+  end
+
+
   def cancel
-    canceller = OrderCanceller.new(order).perform
+    canceller = OrderCanceller.new(order).cancel_all!
     if canceller.success?
       flash[:success] = "Order was cancelled successfully."
       redirect_to(:back)

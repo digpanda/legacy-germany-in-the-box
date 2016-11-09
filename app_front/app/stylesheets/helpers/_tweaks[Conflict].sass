@@ -1,0 +1,186 @@
++tweak(inline)
+  display: inline
+
++tweak(block)
+  display: block
+
++tweak(clear-button)
+  border: none
+  background: none
+
++tweak(checkout-label)
+  margin: auto
+  margin-top: -3em
+  margin-left: -0.5em
+  //left: 0.1em
+  //top: -18px
+  //position: absolute
+  text-transform: uppercase
+
++tweak(overflow)
+  overflow-x: auto
+
+// WARNING : this is a copy of `mobile-category-menu --checkout`
+// It was done fast because of a bug. Please improve it.
++tweak(checkout-button)
+  position: relative
+  background-color: $color-blue
+  text-align: center
+  outline: 0
+  border: 1px
+  +special-button
+
++tweak(discount-button)
+  position: relative
+  background-color: $color-purple
+  text-align: center
+
+  outline: 0
+  border: 1px
+  +special-button
+
++tweak(divider)
+  display: table
+  white-space: nowrap
+  width: 100%
+  text-align: center
+  color: #b1c2c6
+  vertical-align: top
+  font-family: Lato,sans-serif
+  font-weight: 400
+  margin-bottom: 10px
+  margin-top: 10px
+  text-transform: uppercase
+
+  &:before, &:after
+    border-top: 3px solid #c9d4d7
+    display: table-cell
+    position: relative
+    top: 10px
+    width: 45%
+    content: " "
+
++tweak(right)
+  text-align: right
+
++tweak(centered)
+  text-align: center
+  margin: 0 auto
+
++tweak(green)
+  color: $color-green
+
++tweak(dark-grey)
+  color: $color-dark-grey
+
++tweak(blue)
+  color: $color-blue
+
++tweak(vertical-centered)
+  padding-top: 2.5em
+
++tweak(micro-spacer)
+  padding: 0.2em
+
++tweak(small-spacer)
+  padding: 0.5em
+
++tweak(spacer)
+  padding: 1em
+
++tweak(big-spacer)
+  padding: 5em
+
++tweak(bold)
+  font-weight: 600
+
++tweak(small-gap)
+    display: block
+    position: relative
+    margin: 0.2em 0 0.2em 0
+    clear: both
+    overflow: hidden
+
++tweak(white-box) // everything with this style should have their own component
+  +white-box
+
++tweak(nomargin)
+  margin: 0
+
++tweak(nopadding)
+  padding: 0
+
++tweak(red)
+  color: $color-red
+
++tweak(green)
+  color: $color-green
+
++tweak(grey)
+  color: $color-grey
+
++tweak(strong)
+  font-weight: 600
+
++tweak(up)
+  text-transform: uppercase
+
++tweak(hidden)
+  display: none
+
++tweak(empty-space)
+  height: 50px
+
++tweak(grey)
+  color: $color-grey
+
++tweak(black)
+  color: $color-black
+
++tweak(discount)
+  background-color: $color-red
+  color: $color-white
+  font-weight: 600
+  padding-left: 0.3em
+  font-size: 18px
+  +border-left-radius(2em)
+
++tweak(big)
+  font-size: 20px
+
++tweak(medium)
+  font-size: 1.3em
+
++tweak(barred)
+  color: $color-red
+  text-decoration: line-through
+
++tweak(unread)
+  background-color: $color-light-yellow
+
++tweak(price-yuan)
+  font-size: 1.6em
+  color: $color-green
+
++tweak(price-euro)
+  font-size: 1em
+  color: $color-dark-grey
+
++tweak(quoted)
+  font-family: 'Raleway', sans-serif
+  font-style: italic
+
++tweak(menu-bordering)
+  border-right: 1px solid $color-grey
+
++tweak(overlay)
+  +overlay(black, 0.4)
+
++tweak(onoverlay)
+  +onoverlay
+
++tweak(blurred)
+  +blurred-background(3px)
+
++tweak(avatar)
+  +avatar

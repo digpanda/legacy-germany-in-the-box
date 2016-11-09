@@ -1,0 +1,85 @@
+<% if products.size > 0 %>
+  <table class="white-table">
+    <thead>
+      <tr>
+        <th>
+          <label>
+            <%= I18n.t(:image, scope: :edit_product_detail) %>
+          </label>
+        </th>
+        <th>
+          <label>
+            <%= I18n.t(:name, scope: :edit_product) %>
+          </label>
+        </th>
+        <th>
+          <label>
+            <%= I18n.t(:brand, scope: :edit_product) %>
+          </label>
+        </th>
+        <th>
+          <label>
+            <%= I18n.t(:quantity, scope: :edit_product_detail) %>
+          </label>
+        </th>
+        <th>
+          <label>
+            <%= I18n.t(:operations, scope: :edit_product) %>
+          </label>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% products.each do |product| %>
+        <tr>
+          <td>
+            <%= image_tag product.decorate.first_sku_image, :class => 'icon-img' %>
+          </td>
+          <td>
+            <%= product.name %>
+          </td>
+          <td>
+            <%= product.brand %>
+          </td>
+          <td>
+            <%= I18n.t(:quantity_info, scope: :edit_product, total_skus_quantities: product.total_skus_quantities, product_options_size: product.options.size) %>
+          </td>
+          <td align="left">
+
+            <%= link_to '', edit_shopkeeper_product_path(product), :class => 'tooltipster fa fa-pencil buttons buttons__edit', :title => I18n.t(:edit, scope: :edit_product) %>
+
+            <%= link_to '', shopkeeper_product_skus_path(product), :class => 'tooltipster fa fa-tags buttons buttons__add', :title => I18n.t(:skus, scope: :edit_product) %>
+
+            <!-- TODO : this has to be removed when the admin will have its clone of this section -->
+            <!-- MAYBE DEPENDING ON THE PARTIAL ORGANIZATION -->
+            <% if current_user.decorate.admin? %>
+
+              <% if product.highlight %>
+                <%= link_to '', product_regular_path(product), :method => :patch, :class => 'tooltipster fa fa-low-vision buttons buttons__delete', :title => "No highlight for this product" %>
+              <% else %>
+                <%= link_to '', product_highlight_path(product), :method => :patch, :class => 'tooltipster fa fa-magic buttons buttons__purple', :title => "Highlight this product" %>
+              <% end %>
+
+              <% if product.approved.nil? %>
+                <%= link_to '', product_approve_path(product), :method => :patch, :class => 'tooltipster fa fa-check buttons buttons__add', :title => "Approve this product" %>
+              <% else %>
+                <%= link_to '', product_disapprove_path(product), :method => :patch, :class => 'tooltipster fa fa-minus buttons buttons__cancel', :title => "Disapprove this product" %>
+              <% end %>
+
+              <% if product.removable? %>
+                <%= link_to '', guest_product_path(product), :method => :delete, data: { confirm: I18n.t(:delete_product_message, scope: :edit_product) }, :class => 'tooltipster fa fa-times buttons buttons__delete', :title => "Remove this product" %>
+              <% end %>
+
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+<div class="col-md-6 col-md-push-3 col-md-pull-3 +white-box +centered">
+  <h4>
+   <%= I18n.t(:no_products, scope: :cart) %>
+ </h4>
+</div>
+<% end %>

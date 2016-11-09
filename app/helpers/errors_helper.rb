@@ -3,6 +3,12 @@ module ErrorsHelper
 
   ERRORS_CONFIG = Rails.application.config.errors
 
+  def warn_developers(exception, message='')
+    if $request
+      ExceptionNotifier.notify_exception(exception, :env => $request.env, :data => {:message => message})
+    end
+  end
+
   def throw_resource_not_found(exception=nil)
     dispatch_error_email(exception)
     render "/errors/page_not_found",

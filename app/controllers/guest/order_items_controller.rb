@@ -4,6 +4,49 @@ class Guest::OrderItemsController < ApplicationController
 
   attr_reader :order_item, :order
 
+  # TODO : this was moved here as `add_product` but needs to be hardly refactored
+  # it's very shitty code.
+  # it actually adds an order item to the cart itself.
+  # maybe we should move it somewhere else
+  def create
+
+    product = Product.find(params[:sku][:product_id]).decorate
+    sku = product.sku_from_option_ids(params[:sku][:option_ids].split(','))
+    quantity = params[:sku][:quantity].to_i
+
+    order = cart_manager.order(shop: product.shop, call_api: false)
+    order.shop = product.shop
+
+    if BuyingBreaker.new(order).with_sku?(sku, quantity)
+      flash[:error] = I18n.t(:override_maximal_total, scope: :edit_order, total: Settings.instance.max_total_per_day, currency: Settings.instance.platform_currency.symbol)
+      redirect_to(:back)
+      return
+    end
+
+    existing_order_item = order.order_items.to_a.detect { |i| i.sku_id == sku.id.to_s}
+
+    if sku.unlimited || (sku.quantity >= quantity)
+      if existing_order_item.present?
+        existing_order_item.quantity += quantity
+        existing_order_item.save!
+      else
+        OrderMaker.new(order).add(sku, quantity)
+      end
+
+      if order.save
+        cart_manager.store(order)
+        flash[:success] = I18n.t(:add_product_ok, scope: :edit_order)
+        redirect_to navigation.back(2, shop_path(product.shop_id))
+        return
+      end
+
+    end
+
+    flash[:error] = I18n.t(:add_product_ko, scope: :edit_order)
+    redirect_to request.referrer and return
+
+  end
+
   def destroy
     if order_item.delete && destroy_empty_order!
       flash[:success] = I18n.t(:item_removed, scope: :notice)
@@ -24,7 +67,7 @@ class Guest::OrderItemsController < ApplicationController
   end
 
   def set_order_item
-    @order_item = OrderItem::find(params[:id]) unless params[:id].nil?
+    @order_item = OrderItem.find(params[:id]) unless params[:id].nil?
   end
 
   def set_order

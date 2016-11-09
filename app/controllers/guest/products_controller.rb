@@ -14,7 +14,7 @@ class Guest::ProductsController < ApplicationController
   private
 
   def set_product
-    @product = Product::find(params[:id])
+    @product = Product.find(params[:id])
   end
 
   def set_shop

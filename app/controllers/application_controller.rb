@@ -12,6 +12,15 @@ class ApplicationController < ActionController::Base
 
   include Mobvious::Rails::Controller
 
+  before_action :setup_request
+
+  # this variable setup is very sensitive
+  # we use it in exceptional context
+  # please be aware of how it works before to use it
+  def setup_request
+    $request = request
+  end
+
   # handle hard exception (which will throw a page error)
   # and soft ones even on dev / test (which will usually redirect the customer)
   unless Rails.env.development?
@@ -50,13 +59,6 @@ class ApplicationController < ActionController::Base
 
   before_action :set_categories
 
-  after_filter :store_location
-
-  def store_location
-    # should be refactored to dynamic paths (obviously)
-    #navigation.store :except => %w(/users/sign_in /users/sign_up /users/password/new /users/password/edit /users/confirmation /users/sign_out)
-  end
-
   def current_page
     if params[:page]
       params[:page].to_i
@@ -74,18 +76,6 @@ class ApplicationController < ActionController::Base
 
   def navigation
     @navigation ||= NavigationHistory.new(request, session)
-  end
-
-  def reach_todays_limit?(order, new_price_increase, new_quantity_increase)
-    if current_user
-      # if the user has logged in, we should check
-      # whether the user has reached the limit today and the order itself has reached the the limit today
-      current_user.decorate.reach_todays_limit?(order, new_price_increase) || order.decorate.reach_todays_limit?(new_price_increase, new_quantity_increase)
-    else
-      # if not, just check if the order has reached the limit today.
-      # The further check will be done on the checkout step, after the user has logged in.
-      order.decorate.reach_todays_limit?(new_price_increase, new_quantity_increase)
-    end
   end
 
   def set_categories
@@ -107,26 +97,38 @@ class ApplicationController < ActionController::Base
     cart_manager.products_number
   end
 
-  # should be refactored / put into a module or something
+  # NOTE : this should be placed into a module linked to the login / subscription
+  # this is a devise hook. we basically check the kind of customer and redirect
+  # there can be forced redirection if the user tried to access a forbidden area
+  # and was redirected to the login side
+  # TODO : this should definitely be refactored into a clean class
+  # but it's alright for now
   def after_sign_in_path_for(resource)
 
-    return navigation.force! if navigation.force?
-
     if current_user.decorate.customer?
-      session[:locale] = :'zh-CN'
-      navigation.back(1)
-    elsif current_user.decorate.shopkeeper?
-      session[:locale] = :'de'
-      remove_all_orders!
-      if current_user.shop && (not current_user.shop.agb)
-        edit_producer_shop_path(current_user.shop.id)
-      else
-        shopkeeper_orders_path
-      end
-    elsif current_user.decorate.admin?
-      remove_all_orders!
-      admin_shops_path
+      force_chinese!
+      return navigation.force! if navigation.force?
+      return navigation.back(1)
     end
+
+    # if the person is not a customer
+    # he doesn't need any order.
+    remove_all_orders!
+
+    if current_user.decorate.shopkeeper?
+      force_german!
+      if current_user.shop.agb
+        return shopkeeper_orders_path
+      end
+      return navigation.force! if navigation.force?
+      return shopkeeper_shop_producer_path
+    end
+
+    if current_user.decorate.admin?
+      return navigation.force! if navigation.force?
+      return admin_shops_path
+    end
+
   end
 
   def remove_all_orders!
@@ -138,7 +140,7 @@ class ApplicationController < ActionController::Base
 
   # we should put it into a library, there's an obvious possible abstraction here
   def breadcrumb_category
-    add_breadcrumb @category.name, category_path(@category) unless @category.nil?
+    add_breadcrumb @category.name, guest_category_path(@category) unless @category.nil?
   end
 
   def breadcrumb_shop

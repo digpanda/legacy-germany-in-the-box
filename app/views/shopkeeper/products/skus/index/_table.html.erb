@@ -1,0 +1,75 @@
+<% if skus.size > 0 %>
+  <table class="white-table">
+    <thead>
+      <tr>
+        <th>
+          <label>
+            <%= I18n.t(:image, scope: :edit_product_detail) %>
+          </label>
+        </th>
+        <th>
+          <label>
+            <i class="fa fa-info-circle" title="<%= I18n.t(:variants_info, scope: :edit_product_detail) %>"></i>
+            <%= I18n.t(:sku_variants_options, scope: :edit_product_detail) %>
+          </label>
+        </th>
+        <th>
+          <label>
+            <%= I18n.t(:price, scope: :edit_product_detail) %>
+          </label>
+        </th>
+        <th>
+          <label>
+            <%= I18n.t(:discount, scope: :edit_product_detail) %>
+          </label>
+        </th>
+        <th>
+          <label>
+            <%= I18n.t(:quantity, scope: :edit_product_detail) %>
+          </label>
+        </th>
+        <th>
+          <label>
+            <%= I18n.t(:operations, scope: :edit_product) %>
+          </label>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% skus.each do |sku| %>
+        <tr>
+          <td>
+            <%= link_to image_tag(sku.decorate.first_nonempty_img_url(:thumb), :class => 'icon-img'), edit_sku_product_path(sku.product.id, :sku_id => sku.id) %>
+          </td>
+          <td>
+            <!-- TODO: this should be changed because you cannot edit it, better to keep it as a string but it sounds tricky with the methods availables right now -->
+            <%= sku.option_names %>
+            <%= select_tag :option_ids, grouped_options_for_select(sku.product.decorate.grouped_variants_options, sku.option_ids ), :multiple => 'multiple', :class => 'sku-variants-options', :readonly=>true %>
+          </td>
+          <td>
+            <%= number_with_precision(sku.price ? sku.price : 0, :precision => 2) + ' ' + sku.product.shop.currency.code %>
+          </td>
+          <td>
+            <%= sku.discount.to_s + '%' if sku.discount != 0 %>
+          </td>
+          <td>
+            <%= sku.unlimited ? I18n.t(:info, scope: 'edit_product_detail.unlimited') : sku.quantity %>
+          </td>
+          <td>
+
+            <%= link_to '', edit_shopkeeper_product_sku_path(sku.product, sku), :class => 'tooltipster fa fa-pencil buttons buttons__add', :title => I18n.t(:edit, scope: :edit_product_detail) %>
+
+            <%= link_to '', shopkeeper_product_sku_clone_path(sku.product, sku), :class => 'tooltipster fa fa-clone buttons buttons__cancel', method: :patch, :title => I18n.t(:clone, scope: :edit_product_detail) %>
+
+            <%= link_to '', shopkeeper_product_sku_path(sku.product, sku), method: :delete, data: { confirm: "#{I18n.t(:delete_sku_message, scope: :edit_product_detail)}" }, :class => 'tooltipster fa fa-times buttons buttons__delete', :title => I18n.t(:remove, scope: :edit_product_detail) %>
+
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <h4>
+    <%= I18n.t(:no_detail, scope: :edit_product_detail).html_safe %>
+  </h4>
+<% end %>

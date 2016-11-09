@@ -50,6 +50,10 @@ class SkuDecorator < Draper::Decorator
     !self.data.nil? || (self.data.is_a?(String) && !self.data.trim.empty?)
   end
 
+  def fees_with_currency_yuan_html
+    estimated_fees.in_euro.to_yuan.display_html
+  end
+
   def price_with_currency_yuan
     price.in_euro.to_yuan.display
   end
@@ -91,7 +95,7 @@ class SkuDecorator < Draper::Decorator
   end
 
   def discount_with_percent
-    "-%.2f %" % discount
+    "-%.0f%" % discount
   end
 
   def get_options_txt

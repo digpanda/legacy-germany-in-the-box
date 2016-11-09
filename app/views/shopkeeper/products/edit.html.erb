@@ -1,0 +1,28 @@
+<%= translation_js(:non_selected_text, :multiselect) %>
+<%= translation_js(:n_selected_text, :multiselect) %>
+
+<!-- TODO : this has to be removed progrissvely by splitting up the section when it'll
+be a bit cleaner -->
+<% if current_user&.decorate&.admin? %>
+  <ul class="nav nav-pills">
+    <% get_allowed_locales.each_with_index do |locale, i| %>
+      <li class="<%=  i == 0 ? 'active' : ''  %>">
+        <a data-toggle="tab" href="#<%= locale %>">
+          <%= I18n.t(locale, scope: :locales) %>
+        </a>
+      </li>
+    <% end %>
+  </ul>
+  <div class="tab-content">
+    <% get_allowed_locales.each_with_index do |locale, i| %>
+      <div class="<%=  i == 0 ? 'active' : ''  %> tab-pane fade in" id="<%= locale %>">
+        <br/>
+        <%= render 'shopkeeper/products/edit/form', locale: locale %>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <% get_allowed_locales.each_with_index do |locale, i| %>
+    <%= render 'shopkeeper/products/edit/form', locale: locale %>
+  <% end %>
+<% end %>

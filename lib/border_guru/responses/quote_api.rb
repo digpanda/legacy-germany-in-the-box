@@ -20,8 +20,6 @@ module BorderGuru
         end
       end
 
-      private
-
       def result
         if response_data.nil?
           slack_feedback
@@ -33,6 +31,8 @@ module BorderGuru
         end
         response_data[:result]
       end
+
+      private
 
       def response_data
         super[:response]

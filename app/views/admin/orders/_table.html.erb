@@ -56,7 +56,7 @@
         <%= order.total_paid_in_yuan %> (<%= order.total_paid_in_euro %>)
       </td>
       <td>
-        <%= I18n.t(order.status, scope: :edit_order) %>
+        <%= order.status %>
       </td>
       <td>
         <%= order.decorate.total_price_with_extra_costs_in_yuan %> (<%= order.decorate.total_price_with_extra_costs_in_euro %>)

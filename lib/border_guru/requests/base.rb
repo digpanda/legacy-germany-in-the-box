@@ -2,6 +2,8 @@ module BorderGuru
   module Requests
     class Base
 
+      include ErrorsHelper
+
       CONFIG = Rails.application.config.border_guru unless const_defined? :CONFIG
 
       @@access_token =
@@ -31,6 +33,8 @@ module BorderGuru
       end
 
       def quote_params
+        # temporary check of all transactions given to BorderGuru
+        # warn_developers(StandardError.new, "#{payload_hash}")
         CGI.escape(payload_hash.to_json)
       end
 

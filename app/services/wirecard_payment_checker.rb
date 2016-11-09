@@ -29,7 +29,7 @@ class WirecardPaymentChecker < BaseService
     # would different between the order and payment time
     order_payment.refresh_currency_amounts!
     return_with(:success)
-  rescue Wirecard::Elastic::Error => exception
+  rescue Wirecard::Elastic::Error, Wirecard::Elastic::ConfigError => exception
     return_with(:error, exception)
   end
 
@@ -56,7 +56,7 @@ class WirecardPaymentChecker < BaseService
   end
 
   def refresh_order_payment_from_api!
-    order_payment.status = remote_transaction.response.transaction_state
+    order_payment.status         = remote_transaction.response.transaction_state
     order_payment.payment_method = remote_transaction.response.payment_method
     order_payment.save
   end
