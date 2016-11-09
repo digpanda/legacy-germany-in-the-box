@@ -11,19 +11,6 @@ class ProductsController < ApplicationController
 
   layout :custom_sublayout, only: [:new, :new_sku, :edit, :edit_sku, :clone_sku, :show_skus]
 
-  # conversion to new folder structure
-  def show
-    redirect_to guest_product_path(@product)
-  end
-
-  def new_sku
-    @sku = @product.skus.build
-  end
-
-  def edit_sku
-    @sku = @product.skus.find(params[:sku_id])
-  end
-
   def clone_sku
     @src = @product.skus.find(params[:sku_id])
     @sku = @product.skus.build(@src.attributes.keep_if { |k| Sku.fields.keys.include?(k) }.except(:_id, :img0, :img1, :img2, :img3, :attach0, :data, :c_at, :u_at, :currency))

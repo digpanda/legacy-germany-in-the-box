@@ -1,6 +1,6 @@
 <%= content_tag(:div, nil, :id => "js-sku-form", :data => {}) %>
 
-<%= form_for [:shopkeeper, :product, @sku], :html => {:data => {:toggle => 'validator'}, :id => 'sku_form'} do |form| %>
+<%= form_for [:shopkeeper, @product, @sku], :html => {:data => {:toggle => 'validator'}, :id => 'sku_form'} do |form| %>
 <div class="panel-group">
   <div class="panel panel-info">
     <div class="panel-heading text-center" colspan="8" title="<%= I18n.t(:images_info, scope: :edit_product_detail) %>">

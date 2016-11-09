@@ -1,16 +1,14 @@
 class Shopkeeper::Products::SkusController < ApplicationController
 
-  load_and_authorize_resource
+  #load_and_authorize_resource <-- freaking buggy
   layout :custom_sublayout
   before_action :set_product
+  before_action :set_sku, only: [:edit]
 
   attr_reader :product, :sku, :skus
 
   def index
     @skus = product.skus.order_by(:c_at => :desc).paginate(:page => current_page, :per_page => 10)
-  end
-
-  def show
   end
 
   def new
@@ -54,6 +52,10 @@ class Shopkeeper::Products::SkusController < ApplicationController
 
   def set_product
     @product = Product.find(params[:product_id])
+  end
+
+  def set_sku
+    @sku = product.skus.find(params[:id])
   end
 
   def sku_params
