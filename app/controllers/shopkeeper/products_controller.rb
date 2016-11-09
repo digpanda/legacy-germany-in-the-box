@@ -36,7 +36,7 @@ class Shopkeeper::ProductsController < ApplicationController
   def update
     # we split up the update into two to avoid conflict
     # on updating the options and suboptions at the same time
-    if product.update(product_params_without_suboptions) && product.update(product_params)
+    if product.update(product_params_without_option) && product.update(product_params)
       flash[:success] = I18n.t(:update_ok, scope: :edit_product)
       redirect_to edit_shopkeeper_product_path(product)
       return
@@ -99,13 +99,14 @@ class Shopkeeper::ProductsController < ApplicationController
   # then we remove the `suboptons_attributes` to have a clean `product_params`
   # this doesn't affect the original object
   # NOTE : since it's converted to an hash, we cannot use symbols anymore
-  def product_params_without_suboptions
+  def product_params_without_option
     product_params.to_h.tap do |product_param|
-      product_param["options_attributes"].each do |key, option_attribute|
-        unless option_attribute["suboptions_attributes"].nil?
-          option_attribute.delete("suboptions_attributes")
-        end
-      end
+      product_param.delete("options_attributes")
+      # product_param["options_attributes"].each do |key, option_attribute|
+      #   unless option_attribute["suboptions_attributes"].nil?
+      #     option_attribute.delete("suboptions_attributes")
+      #   end
+      # end
     end
   end
 
