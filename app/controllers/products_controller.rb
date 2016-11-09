@@ -2,8 +2,6 @@ require 'will_paginate/array'
 
 class ProductsController < ApplicationController
 
-  SKU_IMAGE_FIELDS = [:img0, :img1, :img2, :img3]
-
   before_action :set_product, :set_category, :set_shop, only: [:show, :edit, :update, :destroy, :remove_sku, :remove_option, :new_sku, :show_skus, :skus]
   before_action :authenticate_user!, except: [:autocomplete_product_name, :popular, :search, :show, :skus]
 
@@ -24,19 +22,6 @@ class ProductsController < ApplicationController
   end
 
   def show_skus
-  end
-
-  def destroy_sku_image
-    sku = Product.find(params[:product_id]).skus.find(params[:sku_id])
-    if ImageDestroyer.new(sku, SKU_IMAGE_FIELDS).perform(params[:image_field])
-      flash[:success] = "Image removed successfully"
-    else
-      flash[:error] = "Can't remove this image"
-    end
-    # TODO : this breaks because we need to refacto the system and avoid get variables like this
-    # we should do this later when we refacto the whole controller - Laurent, 05/10/2016
-    # redirect_to navigation.back(1)
-    redirect_to edit_sku_product_path(sku.product.id, :sku_id => sku.id)
   end
 
   # This will display the skus for the users (logged in or not)

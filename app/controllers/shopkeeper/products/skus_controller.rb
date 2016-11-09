@@ -1,9 +1,11 @@
 class Shopkeeper::Products::SkusController < ApplicationController
 
-  #load_and_authorize_resource <-- freaking buggy
+  SKU_IMAGE_FIELDS = [:img0, :img1, :img2, :img3]
+
+  # load_and_authorize_resource <-- freaking buggy
   layout :custom_sublayout
   before_action :set_product
-  before_action :set_sku, only: [:edit]
+  before_action :set_sku, except: [:index, :new]
 
   attr_reader :product, :sku, :skus
 
@@ -38,9 +40,26 @@ class Shopkeeper::Products::SkusController < ApplicationController
   end
 
   def update
+    if sku.update(sku_params)
+      flash[:success] = I18n.t(:update_ok, scope: :edit_product)
+      redirect_to shopkeeper_product_skus_path
+      return
+    end
+    flash[:error] = product.errors.full_messages.first
+    redirect_to navigation.back(1)
   end
 
   def clone
+  end
+
+  def destroy_image
+    if ImageDestroyer.new(sku, SKU_IMAGE_FIELDS).perform(params[:image_field])
+      flash[:success] = "Image removed successfully"
+      redirect_to navigation.back(1)
+      return
+    end
+    flash[:error] = "Can't remove this image"
+    redirect_to navigation.back(1)
   end
 
   private
@@ -55,7 +74,7 @@ class Shopkeeper::Products::SkusController < ApplicationController
   end
 
   def set_sku
-    @sku = product.skus.find(params[:id])
+    @sku = product.skus.find(params[:id] || params[:sku_id])
   end
 
   def sku_params

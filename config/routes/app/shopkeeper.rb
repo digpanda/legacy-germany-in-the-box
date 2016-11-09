@@ -3,6 +3,7 @@ namespace :shopkeeper do
 
   resources :products do
     resources :skus, :controller => 'products/skus' do
+      delete :destroy_image
       patch :clone
     end
   end

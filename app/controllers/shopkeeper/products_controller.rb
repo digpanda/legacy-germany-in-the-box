@@ -34,7 +34,7 @@ class Shopkeeper::ProductsController < ApplicationController
   end
 
   def update
-    if @product.update(product_params)
+    if product.update(product_params)
       flash[:success] = I18n.t(:update_ok, scope: :edit_product)
       redirect_to edit_shopkeeper_product_path(product)
       return
@@ -45,7 +45,7 @@ class Shopkeeper::ProductsController < ApplicationController
   end
 
   def destroy
-    if @product.destroy
+    if product.destroy
       flash[:success] = I18n.t(:delete_ok, scope: :edit_product)
       redirect_to shopkeeper_shop_path
       return
@@ -57,14 +57,12 @@ class Shopkeeper::ProductsController < ApplicationController
   private
 
   def product_params
-
     # NOTE TODO : THIS WILL BE PLACED WHEN WE DO THE ADMIN SECTION OF PRODUCTS
     # NOTE 2 : THIS LOOKS ACTUALLY COMPLETELY USELESS AT THE END.
     # if current_user.decorate.admin?
     #   params.require(:product)[:category_ids] = [params.require(:product)[:category_ids]] unless params.require(:product)[:category_ids].nil?
     #   shopkeeper_strong_params += [:duty_category, category_ids:[]]
     # end
-
     params.require(:product).permit!
   end
 
