@@ -11,6 +11,9 @@ draw :app, :guest
 draw :app, :shared
 draw :app, :shopkeeper
 
+# SEO redirections
+get '/shops/:id', to: redirect('/guest/shops/%{id}', status: 302)
+
 resources :languages, only: [:update] do
 end
 

@@ -378,6 +378,35 @@ var CustomerCheckoutPaymentMethod = {
 module.exports = CustomerCheckoutPaymentMethod;
 });
 
+require.register("javascripts/controllers/customer/orders/show.js", function(exports, require, module) {
+'use strict';
+
+/**
+ * OrdersShow class
+ */
+var OrdersShow = {
+
+  /**
+   * Initializer
+   */
+  init: function init() {
+
+    this.multiSelectSystem();
+  },
+
+  multiSelectSystem: function multiSelectSystem() {
+
+    $('select.sku-variants-options').multiselect({
+      enableCaseInsensitiveFiltering: true,
+      maxHeight: 400
+    }).multiselect('disable');
+  }
+
+};
+
+module.exports = OrdersShow;
+});
+
 require.register("javascripts/controllers/guest/feedback.js", function(exports, require, module) {
 'use strict';
 
@@ -707,154 +736,7 @@ var ProductsShow = {
 module.exports = ProductsShow;
 });
 
-require.register("javascripts/controllers/orders/show.js", function(exports, require, module) {
-'use strict';
-
-/**
- * OrdersShow class
- */
-var OrdersShow = {
-
-  /**
-   * Initializer
-   */
-  init: function init() {
-
-    this.multiSelectSystem();
-  },
-
-  multiSelectSystem: function multiSelectSystem() {
-
-    $('select.sku-variants-options').multiselect({
-      enableCaseInsensitiveFiltering: true,
-      maxHeight: 400
-    }).multiselect('disable');
-  }
-
-};
-
-module.exports = OrdersShow;
-});
-
-require.register("javascripts/controllers/products/clone_sku.js", function(exports, require, module) {
-'use strict';
-
-var Translation = require('javascripts/lib/translation');
-
-/**
- * ProductCloneSku Class
- */
-var ProductCloneSku = {
-
-  /**
-   * Initializer
-   */
-  init: function init() {
-    // WE SHOULD DEFINITELY REFACTOR THOSE 3 CLASSES (NEW, EDIT, CLONE) INTO ONE
-
-    $('select.sku-variants-options').multiselect({
-      nonSelectedText: Translation.find('non_selected_text', 'multiselect'),
-      nSelectedText: Translation.find('n_selected_text', 'multiselect'),
-      numberDisplayed: 3,
-      maxHeight: 400,
-      onChange: function onChange(option, checked) {
-        var v = $('.sku-variants-options');
-        if (v.val()) {
-          v.next().removeClass('invalidBorderClass');
-        } else {
-          v.next().addClass('invalidBorderClass');
-        }
-      }
-    });
-
-    $('#edit_product_detail_form_btn').click(function () {
-      var v = $('select.sku-variants-options');
-
-      if (v.val() == null) {
-        v.next().addClass('invalidBorderClass');
-        return false;
-      }
-
-      if ($('img.img-responsive[src=""]').length >= 4) {
-        $('.fileUpload:first').addClass('invalidBorderClass');
-        return false;
-      }
-
-      return true;
-    });
-
-    $('input.img-file-upload').click(function () {
-      if ($('img.img-responsive[src=""]').length > 0) {
-        $('.fileUpload').removeClass('invalidBorderClass');
-      }
-    });
-  }
-
-};
-
-module.exports = ProductCloneSku;
-});
-
-require.register("javascripts/controllers/products/edit_sku.js", function(exports, require, module) {
-'use strict';
-
-var Translation = require('javascripts/lib/translation');
-
-/**
- * ProductEditSku Class
- */
-var ProductEditSku = {
-
-  /**
-   * Initializer
-   */
-  init: function init() {
-    // WE SHOULD DEFINITELY REFACTOR THOSE 3 CLASSES (NEW, EDIT, CLONE) INTO ONE
-
-    $('select.sku-variants-options').multiselect({
-      nonSelectedText: Translation.find('non_selected_text', 'multiselect'),
-      nSelectedText: Translation.find('n_selected_text', 'multiselect'),
-      numberDisplayed: 3,
-      maxHeight: 400,
-      onChange: function onChange(option, checked) {
-        var v = $('.sku-variants-options');
-        if (v.val()) {
-          v.next().removeClass('invalidBorderClass');
-        } else {
-          v.next().addClass('invalidBorderClass');
-        }
-      }
-    });
-
-    $('#edit_product_detail_form_btn').click(function () {
-      var v = $('select.sku-variants-options');
-
-      if (v.val() == null) {
-        v.next().addClass('invalidBorderClass');
-        return false;
-      }
-
-      if ($('img.img-responsive[src=""]').length >= 4) {
-        $('.fileUpload:first').addClass('invalidBorderClass');
-        return false;
-      }
-
-      return true;
-    });
-
-    $('input.img-file-upload').click(function () {
-      if ($('img.img-responsive[src=""]').length > 0) {
-        $('.fileUpload').removeClass('invalidBorderClass');
-      }
-    });
-  }
-
-};
-
-module.exports = ProductEditSku;
-});
-
-require.register("javascripts/controllers/products/new_sku.js", function(exports, require, module) {
+require.register("javascripts/controllers/shopkeeper/products/skus.js", function(exports, require, module) {
 'use strict';
 
 var Translation = require('javascripts/lib/translation');
@@ -868,7 +750,6 @@ var ProductNewSku = {
    * Initializer
    */
   init: function init() {
-    // WE SHOULD DEFINITELY REFACTOR THOSE 3 CLASSES (NEW, EDIT, CLONE) INTO ONE
 
     $('select.sku-variants-options').multiselect({
       nonSelectedText: Translation.find('non_selected_text', 'multiselect'),
@@ -941,7 +822,7 @@ var ProductNewSku = {
 module.exports = ProductNewSku;
 });
 
-require.register("javascripts/controllers/products/show_skus.js", function(exports, require, module) {
+require.register("javascripts/controllers/shopkeeper/products/skus/index.js", function(exports, require, module) {
 'use strict';
 
 var Translation = require('javascripts/lib/translation');
@@ -970,6 +851,41 @@ var ProductsShowSkus = {
 };
 
 module.exports = ProductsShowSkus;
+});
+
+require.register("javascripts/controllers/shopkeeper/shop/producer/show.js", function(exports, require, module) {
+'use strict';
+
+/**
+ * ShopsEditProducer Class
+ */
+var ShopsEditProducer = {
+
+  /**
+   * Initializer
+   */
+  init: function init() {
+
+    $(function () {
+      $('.edit_producer_submit').click(function () {
+        $('input.dynamical-required').each(function () {
+          if ($(this).val().length == 0) {
+            $(this).addClass('invalidBorderClass');
+          } else {
+            $(this).removeClass('invalidBorderClass');
+          }
+        });
+
+        if ($('.invalidBorderClass').length > 0) {
+          return false;
+        }
+      });
+    });
+  }
+
+};
+
+module.exports = ShopsEditProducer;
 });
 
 require.register("javascripts/controllers/shopkeeper/wirecards/apply.js", function(exports, require, module) {
@@ -1005,41 +921,6 @@ var ShopkeeperWirecardApply = {
 };
 
 module.exports = ShopkeeperWirecardApply;
-});
-
-require.register("javascripts/controllers/shops/edit_producer.js", function(exports, require, module) {
-'use strict';
-
-/**
- * ShopsEditProducer Class
- */
-var ShopsEditProducer = {
-
-  /**
-   * Initializer
-   */
-  init: function init() {
-
-    $(function () {
-      $('.edit_producer_submit').click(function () {
-        $('input.dynamical-required').each(function () {
-          if ($(this).val().length == 0) {
-            $(this).addClass('invalidBorderClass');
-          } else {
-            $(this).removeClass('invalidBorderClass');
-          }
-        });
-
-        if ($('.invalidBorderClass').length > 0) {
-          return false;
-        }
-      });
-    });
-  }
-
-};
-
-module.exports = ShopsEditProducer;
 });
 
 require.register("javascripts/initialize.js", function(exports, require, module) {
@@ -2436,39 +2317,76 @@ module.exports = Search;
 });
 
 require.register("javascripts/starters/sku_form.js", function(exports, require, module) {
-"use strict";
+'use strict';
 
 /**
- * ProductsList Class
+ * SkuForm Class
+ * TODO : this classe should be moved over to the sku area only
+ * it's not a starter or anything like that, spreading prop changes
+ * on the global system is not safe.
  */
-var SkuForm = { // CURRENTLY NOT IN USED IN THE SYSTEM
+var SkuForm = {
 
-    /**
-     * Initializer
-     */
-    init: function init() {
+  elements: {
+    form: '#sku_form',
+    checkbox: '#sku_unlimited',
+    input: '#sku_quantity'
+  },
 
-        this.turnUnlimit();
-    },
+  /**
+   * Initializer
+   */
+  init: function init() {
 
-    turnUnlimit: function turnUnlimit() {
+    this.setupLimitSystem();
+  },
 
-        if ($("#js-sku-form").length > 0) {
-            var component = $('input[id^=product_skus_attributes_][id$=_unlimited]');
+  /**
+   * If we are on the correct page containing `js-sku-form`
+   * We setup the limit display and activate the checkbox click listener
+   * @return {void}
+   */
+  setupLimitSystem: function setupLimitSystem() {
 
-            if (component.is(":checked")) {
-                $('input[id^=product_skus_attributes_][id$=quantity]').val(0).prop('disabled', 'true').parent().hide();
-            }
-
-            component.change(function () {
-                if ($(this).is(":checked")) {
-                    $('input[id^=product_skus_attributes_][id$=quantity]').val(0).prop('disabled', 'true').parent().hide();
-                } else {
-                    $('input[id^=product_skus_attributes_][id$=quantity]').val('').removeAttr('disabled').parent().show();
-                }
-            });
-        }
+    if ($("#js-sku-form").length == 0) {
+      return;
     }
+
+    SkuForm.resetLimitDisplay();
+
+    $(SkuForm.elements.checkbox).on('click', function () {
+      SkuForm.resetLimitDisplay();
+    });
+  },
+
+  /**
+   * Reset the limit display
+   * It will show or hide the input
+   * @return {void}
+   */
+  resetLimitDisplay: function resetLimitDisplay() {
+    if ($(SkuForm.elements.checkbox).is(":checked")) {
+      SkuForm.switchOffLimit();
+      return;
+    }
+    SkuForm.switchOnLimit();
+  },
+
+  /**
+   * We disable the limit input and make it unlimited
+   * @return {void}
+   */
+  switchOffLimit: function switchOffLimit() {
+    $(SkuForm.elements.form).find(SkuForm.elements.input).val('0').prop('disabled', 'true').parent().hide();
+  },
+
+  /**
+   * We activate the limit input and make it limited
+   * @return {void}
+   */
+  switchOnLimit: function switchOnLimit() {
+    $(SkuForm.elements.form).find(SkuForm.elements.input).val('').removeAttr('disabled').parent().show();
+  }
 
 };
 

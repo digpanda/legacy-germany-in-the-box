@@ -16,25 +16,8 @@ class ProductsController < ApplicationController
     redirect_to guest_product_path(@product)
   end
 
-  def new
-    @shop = Shop.find(params[:shop_id])
-    @product = @shop.products.build
-
-    @customer_categories_options = DutyAndCustomerCategorySelectStore.new(Category.name)
-    @duty_categories_options = DutyAndCustomerCategorySelectStore.new(DutyCategory.name)
-
-    render :new_product
-  end
-
   def new_sku
     @sku = @product.skus.build
-  end
-
-  def edit
-    @customer_categories_options = DutyAndCustomerCategorySelectStore.new(Category.name)
-    @duty_categories_options = DutyAndCustomerCategorySelectStore.new(DutyCategory.name)
-
-    render :edit_product
   end
 
   def edit_sku
@@ -103,7 +86,6 @@ class ProductsController < ApplicationController
 
   def remove_sku
     @product.skus.find(params[:sku_id]).delete
-
     redirect_to show_skus_product_path(@product.id)
   end
 
@@ -144,83 +126,8 @@ class ProductsController < ApplicationController
     redirect_to edit_product_path(@product.id)
   end
 
-  def autocomplete_product_name
-  end
-
-  def search
-
-    redirect_to(:back) and return if params["query"].nil?
-    @query = params["query"]
-
-    @products = Product.search(@query)
-    @products = Product.can_buy.all
-
-  end
-
-  def create
-    @product = Product.new(product_params)
-    @product.shop = Shop.find(params[:shop_id])
-
-      if @product.save
-        flash[:success] = I18n.t(:create_ok, scope: :edit_product_new)
-        redirect_to show_skus_product_path(@product.id)
-      else
-        flash[:error] = @product.errors.full_messages.first
-        redirect_to request.referer
-      end
-  end
-
-  def update
-
-    if sku_attributes = params.require(:product)[:skus_attributes]
-      sku_attributes.each do |k,v|
-        v[:option_ids] = v[:option_ids].reject { |c| c.empty? }
-      end
-    end
-
-    #param_options_only = {
-    #  :options_attributes => recursive_hash_delete(product_params.require(:options_attributes), :suboptions_attributes) # To have mongoid to blow up by updating double attributes
-    #}
-
-    if @product.update(product_params)
-
-      if params[:part] == :basic.to_s
-        flash[:success] = I18n.t(:update_ok, scope: :edit_product)
-        redirect_to show_products_shop_path(@product.shop.id)
-      elsif params[:part] == :sku.to_s
-        flash[:success] = I18n.t(:update_ok, scope: :edit_product_detail)
-        redirect_to show_skus_product_path(@product.id)
-      elsif params[:part] == :variant.to_s
-        flash[:success] = I18n.t(:update_ok, scope: :edit_product_variant)
-        redirect_to edit_product_path(@product.id)
-      end
-
-    else
-      flash[:error] = @product.errors.full_messages.first
-      redirect_to edit_product_path(@product.id)
-    end
-  end
-
-  def destroy
-    sid = @product.shop.id
-    if @product.destroy
-      flash[:success] = I18n.t(:delete_ok, scope: :edit_product)
-      redirect_to show_products_shop_path(sid)
-    else
-      flash[:error] = @product.errors.full_messages.first
-      redirect_to show_products_shop_path(sid)
-    end
-  end
-
   private
 
-  def recursive_hash_delete(hash, key)
-    p = proc do |_, v|
-      v.delete_if(&p) if v.respond_to? :delete_if
-      _ == key.to_s
-    end
-    hash.delete_if(&p)
-  end
 
   def set_product
     @product = Product.find(params[:id])
@@ -232,18 +139,6 @@ class ProductsController < ApplicationController
 
   def set_shop
     @shop = @product.shop
-  end
-
-  def product_params
-    delocalize_config = { skus_attributes: { :price => :number,:space_length => :number, :space_width => :number, :space_height => :number, :discount => :number, :quantity => :number, :weight => :number} }
-    shopkeeper_strong_params = [:status, :desc, :name, :hs_code, :brand, :img, :data, tags:[], options_attributes: [:id, :name, suboptions_attributes: [:id, :name]], skus_attributes: [:unlimited, :id, :img0, :img1, :img2, :img3, :price, :discount, :country_of_origin, :quantity, :weight, :customizable, :status, :space_length, :space_width, :space_height, :time, :data, :attach0, option_ids: []]]
-
-    if current_user.decorate.admin?
-      params.require(:product)[:category_ids] = [params.require(:product)[:category_ids]] unless params.require(:product)[:category_ids].nil?
-      shopkeeper_strong_params += [:duty_category, category_ids:[]]
-    end
-
-    params.require(:product).permit(*shopkeeper_strong_params).delocalize(delocalize_config)
   end
 
 end
