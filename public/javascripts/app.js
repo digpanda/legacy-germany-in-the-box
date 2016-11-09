@@ -2385,7 +2385,7 @@ var SkuForm = {
    * @return {void}
    */
   switchOnLimit: function switchOnLimit() {
-    $(SkuForm.elements.form).find(SkuForm.elements.input).val('').removeAttr('disabled').parent().show();
+    $(SkuForm.elements.form).find(SkuForm.elements.input).removeAttr('disabled').parent().show();
   }
 
 };

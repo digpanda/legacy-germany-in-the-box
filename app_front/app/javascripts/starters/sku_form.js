@@ -18,7 +18,7 @@ var SkuForm = {
     init: function() {
 
       this.setupLimitSystem();
-      
+
     },
 
     /**
@@ -66,7 +66,7 @@ var SkuForm = {
      * @return {void}
      */
     switchOnLimit: function() {
-      $(SkuForm.elements.form).find(SkuForm.elements.input).val('').removeAttr('disabled').parent().show();
+      $(SkuForm.elements.form).find(SkuForm.elements.input).removeAttr('disabled').parent().show();
     }
 
 }
