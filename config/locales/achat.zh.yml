@@ -1,4 +1,6 @@
 zh-CN:
+  sku:
+    clone_successful: The clonage was successful
   landing_page:
     highlight_of_the_day: 本日精选
     see_more: 更多精选商品

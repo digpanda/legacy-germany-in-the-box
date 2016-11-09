@@ -5,7 +5,7 @@ class Shopkeeper::Products::SkusController < ApplicationController
   # load_and_authorize_resource <-- freaking buggy
   layout :custom_sublayout
   before_action :set_product
-  before_action :set_sku, except: [:index, :new]
+  before_action :set_sku, except: [:index, :new, :create]
 
   attr_reader :product, :sku, :skus
 
@@ -49,7 +49,22 @@ class Shopkeeper::Products::SkusController < ApplicationController
     redirect_to navigation.back(1)
   end
 
+  # this should be put into a service
+  # it's a complex operation that can grow.
   def clone
+    source_sku = sku
+    new_sku = product.skus.build(source_sku.attributes.keep_if { |k| Sku.fields.keys.include?(k) }.except(:_id, :img0, :img1, :img2, :img3, :attach0, :data, :c_at, :u_at, :currency))
+    CopyCarrierwaveFile::CopyFileService.new(source_sku, new_sku, :img0).set_file if source_sku.img0.url
+    CopyCarrierwaveFile::CopyFileService.new(source_sku, new_sku, :img1).set_file if source_sku.img1.url
+    CopyCarrierwaveFile::CopyFileService.new(source_sku, new_sku, :img2).set_file if source_sku.img2.url
+    CopyCarrierwaveFile::CopyFileService.new(source_sku, new_sku, :img3).set_file if source_sku.img3.url
+    CopyCarrierwaveFile::CopyFileService.new(source_sku, new_sku, :attach0).set_file if source_sku.attach0.url
+    # TODO : this is buggy because of the translation system
+    # we should investigate.
+    new_sku.data = source_sku.data
+    new_sku.save
+    flash[:success] = I18n.t(:clone_successful, scope: :sku)
+    redirect_to navigation.back(1)
   end
 
   def destroy
@@ -84,7 +99,7 @@ class Shopkeeper::Products::SkusController < ApplicationController
   end
 
   def set_sku
-    @sku = product.skus.find(params[:id] || params[:sku_id])
+    @sku = product.skus.find(params[:sku_id] || params[:id])
   end
 
   def sku_params

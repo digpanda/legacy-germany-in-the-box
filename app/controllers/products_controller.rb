@@ -21,13 +21,7 @@ class ProductsController < ApplicationController
     @sku.save
   end
 
-  def show_skus
-  end
-
-  # This will display the skus for the users (logged in or not)
-  def skus
-  end
-
+  # this belong to the sku admin part and the last piece of this mess
   def highlight
     @product = Product.find(params[:product_id])
     @product.highlight = true
@@ -54,11 +48,6 @@ class ProductsController < ApplicationController
     @product.approved = nil
     @product.save
     redirect_to navigation.back(1)
-  end
-
-  def remove_sku
-    @product.skus.find(params[:sku_id]).delete
-    redirect_to show_skus_product_path(@product.id)
   end
 
   def remove_variant
