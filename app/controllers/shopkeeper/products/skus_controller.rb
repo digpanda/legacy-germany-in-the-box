@@ -45,11 +45,21 @@ class Shopkeeper::Products::SkusController < ApplicationController
       redirect_to shopkeeper_product_skus_path
       return
     end
-    flash[:error] = product.errors.full_messages.first
+    flash[:error] = sku.errors.full_messages.join(', ')
     redirect_to navigation.back(1)
   end
 
   def clone
+  end
+
+  def destroy
+    if sku.destroy
+      flash[:success] = I18n.t(:delete_ok, scope: :edit_sku)
+      redirect_to navigation.back(1)
+      return
+    end
+    flash[:error] = sku.errors.full_messages.join(', ')
+    redirect_to navigation.back(1)
   end
 
   def destroy_image
