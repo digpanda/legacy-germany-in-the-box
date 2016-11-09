@@ -95,12 +95,15 @@ class Shopkeeper::ProductsController < ApplicationController
 
   private
 
-  def product_params_without_suboptions #option_without_suboptions
-    copy = product_params.dup
-    copy.tap do |product_param|
-      product_param[:options_attributes].each do |key, option_attribute|
-        unless option_attribute[:suboptions_attributes].nil?
-          option_attribute[:suboptions_attributes] = nil
+  # we convert to a hash to avoid to keep the params class even we cloned
+  # then we remove the `suboptons_attributes` to have a clean `product_params`
+  # this doesn't affect the original object
+  # NOTE : since it's converted to an hash, we cannot use symbols anymore
+  def product_params_without_suboptions
+    product_params.to_h.tap do |product_param|
+      product_param["options_attributes"].each do |key, option_attribute|
+        unless option_attribute["suboptions_attributes"].nil?
+          option_attribute.delete("suboptions_attributes")
         end
       end
     end
