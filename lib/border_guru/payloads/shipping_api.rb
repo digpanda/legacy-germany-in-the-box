@@ -14,8 +14,10 @@ module BorderGuru
       end
 
       def to_h
+        # NOTE : total_price_with_discount_from_product is not meant to stay this way.
+        # we should change it as fast as possible. For more details check `having_vendibles.rb`
         product_summaries(@order).merge({
-                                            totalPrice: @order.total_price_with_discount.to_f,
+                                            totalPrice: @order.total_price_with_discount_from_product, # @order.total_price_with_discount.to_f,
                                             countryOfOrigin: @shop.country_of_dispatcher.alpha2,
                                             countryOfDestination: @country_of_destination.alpha2,
                                             currency: @currency,

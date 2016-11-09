@@ -5,6 +5,9 @@ class Guest::PagesController < ApplicationController
   # - Laurent
   before_action :authenticate_user!, only: [:agb, :sending_guide]
 
+  def business_model
+  end
+  
   def agb
   end
 

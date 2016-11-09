@@ -57,6 +57,8 @@ class Sku
   # currently not working properly, please do not use this scope
   # NOTE : http://stackoverflow.com/questions/40464883/mongoid-chaining-and-scopes
   scope :can_buy,   -> { is_active.in_stock }
+  scope :is_active, -> { where(:status      => true) }
+  scope :in_stock,  -> { any_of({:unlimited => true  }, {:quantity.gt => 0}) }
 
   before_save :clean_blank_and_duplicated_option_ids
   before_save :clean_quantity, :if => lambda { self.unlimited }

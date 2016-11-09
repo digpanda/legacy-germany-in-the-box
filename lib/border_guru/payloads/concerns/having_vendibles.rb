@@ -7,9 +7,13 @@ module BorderGuru
 
       # HasProductSummaries
       # concern which provides #total_value and #total_weight.
+      # BIG NOTE : total_price_with_discount_from_product was originally total_price_with_discount
+      # IT MUST BE REMOVED AFTER I MERGE THE NEW CHANGES FROM STAGING
+      # WE SHOULD BASICALLY REVERSE THE CALCULATIONS TO BE CLEAN.
+      # IT WAS MADE BECAUSE OF THE FEW ORDERS THAT GOT STUCK
       def product_summaries(order)
         {
-          subtotal: order.total_price_with_discount.to_f,
+          subtotal: order.total_price_with_discount_from_product,
           totalWeight: order.total_weight,
           dimensionalWeight: order.total_dimensional_weight,
           dimensionalWeightScale: WEIGHT_UNIT,
@@ -21,8 +25,8 @@ module BorderGuru
         order_items.map.each_with_index do |order_item, index|
           {
             sku: order_item.sku.id,
-            shortDescription: order_item.sku.product.name,
-            price: adjusted_order_item_price(order_item, index).to_f,
+            # NOTE : the adjusted price was commented temporarily, see above.
+            price: order_item.price_with_coupon_applied, #adjusted_order_item_price(order_item, index).to_f,
             category: Rails.env.production? ? order_item.sku.product.duty_category.code : 'test',
             weight: order_item.weight,
             weightScale: WEIGHT_UNIT,

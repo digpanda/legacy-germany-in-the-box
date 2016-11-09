@@ -13,6 +13,7 @@ class Order
   field :border_guru_quote_id,      type: String
   field :shipping_cost,             type: Float, default: 0
   field :tax_and_duty_cost,         type: Float, default: 0
+  field :border_guru_order_id,      type: String
   field :border_guru_shipment_id,   type: String
   field :border_guru_link_tracking, type: String
   field :border_guru_link_payment,  type: String
@@ -60,6 +61,13 @@ class Order
   index({user: 1},  {unique: false,   name: :idx_order_user,   sparse: true})
 
   after_save :make_bill_id, :update_paid_at, :update_cancelled_at
+  before_save :create_border_guru_order_id
+
+  def create_border_guru_order_id
+    unless self.border_guru_order_id
+      self.border_guru_order_id = SecureRandom.hex(10)
+    end
+  end
 
   # refresh order status from payment
   # if the order is still not send / paid, it checks
@@ -108,9 +116,17 @@ class Order
     shipping_cost + tax_and_duty_cost
   end
 
+  # NOTE : THIS HAS TO BE REMOVED WHEN STAGING CHANGES WILL BE DONE.
+  # WE MADE IT FOR A FEW STUCK ORDERS BUT IT'S VERY SPAGHETTI.
+  def total_price_with_discount_from_product
+    order_items.inject([]) do |sum, order_item|
+        sum << (order_item.price_with_coupon_applied * order_item.quantity)
+    end.reduce(&:+)
+  end
+
   # total price with the coupon discount if any
   def total_price_with_discount
-    total_price - coupon_discount
+    (total_price - coupon_discount).round(2)
   end
 
   # total price of the products with the shipping cost

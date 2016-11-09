@@ -11,6 +11,11 @@ class ProductsController < ApplicationController
 
   layout :custom_sublayout, only: [:new, :new_sku, :edit, :edit_sku, :clone_sku, :show_skus]
 
+  # conversion to new folder structure
+  def show
+    redirect_to guest_product_path(@product)
+  end
+
   def new
     @shop = Shop.find(params[:shop_id])
     @product = @shop.products.build
