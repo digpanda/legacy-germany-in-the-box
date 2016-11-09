@@ -102,15 +102,19 @@ class Sku
     end
   end
 
-  # TODO : not sure it works perfect, it seems it "forgets" some of the option_ids.
   def option_names
     product.options.map do |option|
       option.suboptions.inject([]) do |acc, suboption|
         if option_ids.include? "#{suboption.id}"
           acc << suboption.name
+        else
+          # not sure about the logic
+          # it seems very weird to me
+          # but otherwise it blows up
+          acc
         end
       end
-    end
+    end.flatten
   end
 
   private

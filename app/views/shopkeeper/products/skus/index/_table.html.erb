@@ -42,9 +42,7 @@
             <%= link_to image_tag(sku.decorate.first_nonempty_img_url(:thumb), :class => 'icon-img'), edit_sku_product_path(sku.product.id, :sku_id => sku.id) %>
           </td>
           <td>
-            <!-- TODO: this should be changed because you cannot edit it, better to keep it as a string but it sounds tricky with the methods availables right now -->
-            <%= sku.option_names %>
-            <%= select_tag :option_ids, grouped_options_for_select(sku.product.decorate.grouped_variants_options, sku.option_ids ), :multiple => 'multiple', :class => 'sku-variants-options', :readonly=>true %>
+            <%= sku.option_names.join(', ') %>
           </td>
           <td>
             <%= number_with_precision(sku.price ? sku.price : 0, :precision => 2) + ' ' + sku.product.shop.currency.code %>
