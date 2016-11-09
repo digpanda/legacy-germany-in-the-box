@@ -1,6 +1,6 @@
 class Shopkeeper::SettingsController < ApplicationController
 
-  load_and_authorize_resource :class => false
+  # load_and_authorize_resource :class => false
   layout :custom_sublayout
   before_action :set_shop
 
@@ -12,10 +12,9 @@ class Shopkeeper::SettingsController < ApplicationController
   def update
     if shop.update(shop_params)
       flash[:success] = I18n.t(:update_agb_ok, scope: :edit_shop)
-      redirect_to shopkeeper_shop_path
-      return
+    else
+      flash[:error] = shop.errors.full_messages.first
     end
-    flash[:error] = shop.errors.full_messages.first
     redirect_to navigation.back(1)
   end
 

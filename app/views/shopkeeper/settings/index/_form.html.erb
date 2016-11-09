@@ -1,4 +1,4 @@
-<%= form_for @shop, :url => shopkeeper_settings_path, :html => {:data => {:toggle => 'validator'}, id: "edit_producer_form_#{locale}" } do |f| %>
+<%= form_for @shop, :url => shopkeeper_setting_path(@shop), :html => {:data => {:toggle => 'validator'}, id: "edit_producer_form_#{locale}" } do |f| %>
   <%= hidden_field_tag :translation, value = locale %>
   <div class="panel-group">
     <div class="panel panel-info">
