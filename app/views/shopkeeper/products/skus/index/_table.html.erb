@@ -39,7 +39,7 @@
       <% skus.each do |sku| %>
         <tr>
           <td>
-            <%= link_to image_tag(sku.decorate.first_nonempty_img_url(:thumb), :class => 'icon-img'), edit_sku_product_path(sku.product.id, :sku_id => sku.id) %>
+            <%= image_tag(sku.decorate.first_nonempty_img_url(:thumb), :class => 'icon-img') %>
           </td>
           <td>
             <%= sku.option_names.join(', ') %>
