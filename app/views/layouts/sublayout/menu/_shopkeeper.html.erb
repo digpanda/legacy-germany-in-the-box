@@ -1,8 +1,8 @@
 <li class="<%= menu_active? shared_notifications_path %>">
   <%= link_to I18n.t(:notifications, scope: :top_menu), shared_notifications_path %>
 </li>
-<li class="<%= menu_active? shopkeeper_shop_producer_path %>">
-  <%= link_to I18n.t(:my_producer, scope: :top_menu), shopkeeper_shop_producer_path %>
+<li class="<%= menu_active? shopkeeper_settings_path %>">
+  <%= link_to I18n.t(:my_producer, scope: :top_menu), shopkeeper_settings_path %>
 </li>
 
 <% if current_user.shop&.agb %>

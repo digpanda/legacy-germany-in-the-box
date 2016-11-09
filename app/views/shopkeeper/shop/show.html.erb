@@ -73,35 +73,7 @@
           </div>
         </div>
 
-        <br />
-
-        <div class="row">
-          <div class="form-group">
-            <div class="col-md-4">
-              <%= f.label :shopname, I18n.t(:shopname, scope: :edit_shop), :class => 'required' %>
-            </div>
-            <div class="col-md-8">
-              <%= f.text_field :shopname, :class => 'form-control', :required => true, :maxLength => Rails.configuration.max_short_text_length %>
-            </div>
-          </div>
-        </div>
-        <br/>
-        <div class="row">
-          <div class="form-group">
-            <div class="col-md-4" title="<%= I18n.t(:min_total_info, scope: :edit_shop) %>">
-              <i class="fa fa-info-circle" title="<%= I18n.t(:min_total_info, scope: :edit_shop) %>"></i>
-              <%= f.label :min_total, I18n.t(:min_total, scope: :edit_shop), :class => 'required' %>
-            </div>
-            <div class="col-md-8">
-              <div class="input-group">
-                <%= f.text_field :min_total, value: number_with_precision(@shop.min_total ? @shop.min_total : 0, :precision => 2), :class => 'form-control', :required => true, :pattern => I18n.t(:positive_float_equal_or_greater_than_0, scope: :validation) %>
-                <span class="input-group-addon">
-                  <%= @shop.currency.code %>
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
+        <!-- TODO : this is to move (obviously) later on) -->
         <% if current_user.decorate.admin? %>
             <br/>
             <div class="row">
@@ -144,6 +116,184 @@
       </div>
     </div>
   </div>
+
+
+  <div class="panel panel-info">
+    <div class="panel-heading" title="Texts">
+      <div class="text-center">
+        <i class="fa fa-info-circle" title="Texts"></i>
+        <label>
+         Texts
+        </label>
+      </div>
+    </div>
+    <div class="panel-body">
+
+  <div class="form-group">
+    <div class="row">
+      <div class="col-md-4" title="<%= I18n.t(:desc_info, scope: :edit_shop, num: Rails.configuration.max_medium_text_length, locale: locale) %>">
+        <i class="fa fa-info-circle" title="<%= I18n.t(:desc_info, scope: :edit_shop, num: Rails.configuration.max_medium_text_length, locale: locale) %>"></i>
+        <label class="required translation">
+          <%= I18n.t(:desc, scope: :edit_shop, locale: locale) %>
+        </label>
+      </div>
+      <div class="col-md-8">
+        <%= f.text_area :desc, :value => @shop.desc_translations[locale], :class => 'form-control', rows: 4, :required => true, :maxLength => Rails.configuration.max_medium_text_length %>
+        <div class="help-block with-errors"></div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="row">
+      <div class="col-md-4" locale="<%= locale %>" title="<%= I18n.t(:philosophy_info, scope: :edit_shop, num: Rails.configuration.max_long_text_length) %>">
+        <i class="fa fa-info-circle" title="<%= I18n.t(:philosophy_info, scope: :edit_shop, num: Rails.configuration.max_long_text_length, locale: locale) %>"></i>
+        <label class="required translation">
+          <%= I18n.t(:philosophy, scope: :edit_shop, locale: locale) %>
+        </label>
+      </div>
+      <div class="col-md-8">
+        <%= f.text_area :philosophy, :value => @shop.philosophy_translations[locale], :class => 'form-control', rows: 4, :required => true, :maxLength => Rails.configuration.max_long_text_length %>
+        <div class="help-block with-errors"></div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="row">
+      <div class="col-md-4" title="<%= I18n.t(:stories_info, scope: :edit_shop, num: Rails.configuration.max_long_text_length, locale: locale) %>">
+        <i class="fa fa-info-circle" title="<%= I18n.t(:stories_info, scope: :edit_shop, num: Rails.configuration.max_long_text_length, locale: locale) %>"></i>
+        <label class="translation">
+          <%= I18n.t(:stories, scope: :edit_shop, locale: locale) %>
+        </label>
+      </div>
+      <div class="col-md-8">
+        <%= f.text_area :stories, :value => @shop.stories_translations[locale], :class => 'form-control', rows: 4, :maxLength => Rails.configuration.max_long_text_length %>
+        <div class="help-block with-errors"></div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="row">
+      <div class="col-md-4" title="<%= I18n.t(:uniqueness_info, scope: :edit_shop, num: Rails.configuration.max_medium_text_length, locale: locale) %>">
+        <i class="fa fa-info-circle" title="<%= I18n.t(:uniqueness_info, scope: :edit_shop, num: Rails.configuration.max_medium_text_length, locale: locale) %>"></i>
+        <label class="translation">
+          <%= I18n.t(:uniqueness, scope: :edit_shop, locale: locale) %>
+        </label>
+      </div>
+      <div class="col-md-8">
+        <%= f.text_area :uniqueness, :value => @shop.uniqueness_translations[locale], :class => 'form-control', rows: 4, :maxLength => Rails.configuration.max_medium_text_length %>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="row">
+      <div class="col-md-4" title="<%= I18n.t(:german_essence_info, scope: :edit_shop, num: Rails.configuration.max_medium_text_length, locale: locale) %>">
+        <i class="fa fa-info-circle" title="<%= I18n.t(:german_essence_info, scope: :edit_shop, num: Rails.configuration.max_medium_text_length, locale: locale) %>"></i>
+        <label class="translation">
+          <%= I18n.t(:german_essence, scope: :edit_shop, locale: locale) %>
+        </label>
+      </div>
+      <div class="col-md-8">
+        <%= f.text_area :german_essence, :value => @shop.german_essence_translations[locale], :class => 'form-control', rows: 4, :maxLength => Rails.configuration.max_medium_text_length %>
+        <div class="help-block with-errors"></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+
+
+
+
+
+<div class="panel panel-info">
+  <div class="panel-heading text-center">
+    <h4>
+      Public informations
+    </h4>
+  </div>
+  <div class="panel-body">
+
+
+    <div class="row">
+      <div class="col-md-6">
+      <div class="form-group">
+          <%= f.label :shopname, I18n.t(:shopname, scope: :edit_shop), :class => 'required' %>
+          <%= f.text_field :shopname, :class => 'form-control', :required => true, :maxLength => Rails.configuration.max_short_text_length %>
+      </div>
+      </div>
+      <div class="col-md-6">
+      <div class="form-group">
+      <%= I18n.t(:website, scope: :edit_shop) %>
+      <%= f.text_field :website, :class => 'form-control', :maxLength => Rails.configuration.max_short_text_length, :placeholder => 'www.mydomain.com' %>
+      </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="pull-right required-info">
+        <strong>
+          <%= I18n.t(:required_field_info, scope: :edit_shop).html_safe %>
+        </strong>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= f.label :fname, I18n.t(:contact_fname, scope: :edit_shop_application), :class => 'required' %>
+          <%= f.text_field :fname, :class => 'form-control', :maxLength => Rails.configuration.max_tiny_text_length, :required => true %>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= f.label :lname, I18n.t(:contact_lname, scope: :edit_shop_application), :class => 'required' %>
+          <%= f.text_field :lname, :class => 'form-control', :maxLength => Rails.configuration.max_tiny_text_length, :required => true %>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= f.label :function, I18n.t(:contact_function, scope: :edit_shop_application) %>
+          <%= f.text_field :function, :class => 'form-control', :maxLength => Rails.configuration.max_short_text_length %>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= f.label :mail, I18n.t(:contact_email, scope: :edit_shop_application), :class => 'required' %>
+          <%= f.email_field :mail, :class => 'form-control', :maxLength => Rails.configuration.max_short_text_length, :placeholder => 'example@google.com', :required => true %>
+          <div class="help-block with-errors"></div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= f.label :tel, I18n.t(:contact_tel, scope: :edit_shop_application), :class => 'required' %>
+          <%= f.text_field :tel, :class => 'form-control', :maxLength => Rails.configuration.max_tiny_text_length, :required => true, :placeholder => '+49(89)123456' %>
+          <div class="help-block with-errors"></div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= f.label :mobile, I18n.t(:contact_mobile, scope: :edit_shop_application) %>
+          <%= f.text_field :mobile, :class => 'form-control', :maxLength => Rails.configuration.max_tiny_text_length, :placeholder => '+49(151)12345678' %>
+          <div class="help-block with-errors"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
   <%= f.button I18n.t(:save, scope: :edit_shop), :class => 'btn btn-primary' %>
 <% end %>
 <div class="+small-spacer"></div>
