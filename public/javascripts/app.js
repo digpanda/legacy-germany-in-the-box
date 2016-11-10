@@ -779,13 +779,13 @@ var ProductNewSku = {
         return false;
       }
 
-      return true;
-    });
+      $('input.img-file-upload').click(function () {
+        if ($('img.img-responsive[src=""]').length > 0) {
+          $('.fileUpload').removeClass('invalidBorderClass');
+        }
+      });
 
-    $('input.img-file-upload').click(function () {
-      if ($('img.img-responsive[src=""]').length > 0) {
-        $('.fileUpload').removeClass('invalidBorderClass');
-      }
+      return true;
     });
   }
 
@@ -1445,7 +1445,7 @@ require.register("javascripts/starters.js", function(exports, require, module) {
 /**
  * Starters Class
  */
-var Starters = ['bootstrap', 'china_city', 'datepicker', 'editable_fields', 'footer', 'images_control', 'images_handler', 'lazy_loader', 'left_menu', 'messages', 'navigation', 'product_favorite', 'product_form', 'products_list', 'refresh_time', 'responsive', 'search', 'sku_form', 'sweet_alert', 'tooltipster'];
+var Starters = ['bootstrap', 'china_city', 'datepicker', 'editable_fields', 'footer', 'images_handler', 'lazy_loader', 'left_menu', 'messages', 'navigation', 'product_favorite', 'product_form', 'products_list', 'refresh_time', 'responsive', 'search', 'sku_form', 'sweet_alert', 'tooltipster'];
 
 module.exports = Starters;
 });
@@ -1686,35 +1686,42 @@ var Footer = {
 module.exports = Footer;
 });
 
-require.register("javascripts/starters/images_control.js", function(exports, require, module) {
-'use strict';
-
-var Translation = require('javascripts/lib/translation');
+require.register("javascripts/starters/images_handler.js", function(exports, require, module) {
+"use strict";
 
 /**
- * ImageControl Class
+ * ImagesHandler Class
  */
-var ImagesControl = {
+var ImagesHandler = {
+
+  elements: {
+    image: ".js-file-upload"
+  },
 
   /**
    * Initializer
    */
   init: function init() {
 
+    this.imageLiveRefresh();
     this.validateImageFile();
   },
 
+  /**
+   * Validate the image itself when it's changed
+   * @return {void}
+   */
   validateImageFile: function validateImageFile() {
 
-    $("input[class^=img-file-upload]").on('change', function () {
+    $(ImagesHandler.elements.image).on('change', function () {
 
       var Messages = require("javascripts/lib/messages");
+      var Translation = require("javascripts/lib/translation");
       var inputFile = this;
 
       var maxExceededMessage = Translation.find('max_exceeded_message', 'image_upload');
       var extErrorMessage = Translation.find('ext_error_message', 'image_upload');
       var allowedExtension = ["jpg", "JPG", "jpeg", "JPEG", "png", "PNG"];
-
       var extName;
       var maxFileSize = 1048576;
       var sizeExceeded = false;
@@ -1731,7 +1738,6 @@ var ImagesControl = {
       });
 
       if (sizeExceeded) {
-
         Messages.makeError(maxExceededMessage);
         $(inputFile).val('');
       };
@@ -1741,37 +1747,19 @@ var ImagesControl = {
         $(inputFile).val('');
       };
     });
-  }
-
-};
-
-module.exports = ImagesControl;
-});
-
-require.register("javascripts/starters/images_handler.js", function(exports, require, module) {
-"use strict";
-
-/**
- * ImagesHandler Class
- */
-var ImagesHandler = {
-
-  /**
-   * Initializer
-   */
-  init: function init() {
-
-    this.startImagesHandler();
   },
 
   /**
-   * 
+   * This system is basically live refreshing the images when you select one from your browser
+   * It's mainly used by the shopkeepers
+   * TODO: this method should be highly refactored.
+   * @return {void}
    */
-  startImagesHandler: function startImagesHandler() {
+  imageLiveRefresh: function imageLiveRefresh() {
 
-    if ($(".img-file-upload").length > 0) {
+    if ($(ImagesHandler.elements.image).length > 0) {
 
-      $(".img-file-upload").each(function () {
+      $(ImagesHandler.elements.image).each(function () {
         var fileElement = $(this);
         $(this).change(function (event) {
           var input = $(event.currentTarget);
@@ -1779,7 +1767,7 @@ var ImagesHandler = {
           var reader = new FileReader();
           reader.onload = function (e) {
             var image_base64 = e.target.result;
-            $(fileElement.attr('img_id')).attr("src", image_base64);
+            $(fileElement.attr('image_id')).attr("src", image_base64);
           };
           reader.readAsDataURL(file);
         });

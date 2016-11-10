@@ -8,7 +8,6 @@ var Starters = [
   'datepicker',
   'editable_fields',
   'footer',
-  'images_control',
   'images_handler',
   'lazy_loader',
   'left_menu',

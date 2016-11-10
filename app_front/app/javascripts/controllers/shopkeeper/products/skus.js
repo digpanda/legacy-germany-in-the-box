@@ -38,16 +38,14 @@ var ProductNewSku = {
         return false;
       }
 
+      $('input.img-file-upload').click( function() {
+        if ( $('img.img-responsive[src=""]').length > 0) {
+          $('.fileUpload').removeClass('invalidBorderClass');
+        }
+      });
+
       return true;
     });
-
-    $('input.img-file-upload').click( function() {
-      if ( $('img.img-responsive[src=""]').length > 0) {
-        $('.fileUpload').removeClass('invalidBorderClass');
-      }
-    });
-
-
 
   },
 

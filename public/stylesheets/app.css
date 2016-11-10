@@ -8482,7 +8482,13 @@ img.mfp-img {
           -webkit-filter: brightness(0) invert(1);
           filter: brightness(0) invert(1); }
 
-/* line 4, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_file-upload.sass */
+/* line 3, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_file-upload.sass */
+.file-upload img {
+  cursor: pointer;
+  width: auto;
+  max-height: 96px; }
+
+/* line 9, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_file-upload.sass */
 .file-upload__browser input {
   display: none; }
 

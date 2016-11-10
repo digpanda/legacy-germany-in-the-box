@@ -13,7 +13,7 @@
       <!-- Thumbnail -->
       <div class="row">
         <%= f.label :logo do %>
-          <%= image_tag @shop.decorate.image_url(:logo, :thumb, :fallback => true), :class => 'logo-img', :id =>
+          <%= image_tag @shop.decorate.image_url(:logo, :thumb, :fallback => true), :id =>
            "logo_#{@shop.id}" %>
          <% end %>
        </div>
@@ -21,7 +21,7 @@
       <!-- Invisible browsing input -->
       <div class="row">
          <div class="file-upload__browser">
-          <%= f.file_field :logo, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#logo_#{@shop.id}", :class => 'img-file-upload upload' %> <!-- TODO : improve this img-file-upload -->
+          <%= f.file_field :logo, :accept => "image/png, image/jpeg, image/jpg", :image_id => "#logo_#{@shop.id}", :class => 'js-file-upload' %>
         </div>
       </div>
 
