@@ -25,7 +25,7 @@ class Shopkeeper::SettingsController < ApplicationController
   end
 
   def shop_params
-      params.require(:shop).permit!.delocalize({:min_total => :number})
+    params.require(:shop).permit!.except(:agb).delocalize({:min_total => :number})
   end
 
 end

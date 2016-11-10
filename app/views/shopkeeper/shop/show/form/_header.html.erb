@@ -1,0 +1,38 @@
+<div class="col-md-12">
+  <div class="row">
+    <h3>Header</h3>
+    <!-- TODO: don't forget the shopname which was removed by accident, put it on top of everything -->
+    <hr>
+  </div>
+  <div class="row">
+    <div class="col-md-6 file-upload">
+
+      <!-- Thumbnail -->
+      <div class="row">
+        <%= image_tag @shop.decorate.image_url(:logo, :thumb), :class => 'logo-img', :id =>
+         "logo_#{@shop.id}" %>
+       </div>
+
+      <!-- Actions -->
+      <div class="row">
+
+        <!-- Upload Button -->
+        <div class="btn btn-default file-upload__browser">
+            <span>
+              <i class="fa fa-cloud-upload"></i>
+              <%= I18n.t(:upload, scope: :image_upload) %>
+            </span>
+            <%= f.file_field :logo, :accept => "image/png, image/jpeg, image/jpg", :class => 'img-file-upload upload', :img_id => "#logo_#{@shop.id}" %>
+        </div>
+
+        <!-- Delete Button -->
+        <%= link_to I18n.t(:remove), destroy_image_shopkeeper_shop_path(@shop, image_field: :logo), :method => :delete, :class => 'btn btn-default' %>
+
+      </div>
+
+    </div>
+    <div class="col-md-6">
+    </div>
+  </div>
+
+</div>

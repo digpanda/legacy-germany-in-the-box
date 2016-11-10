@@ -13,7 +13,7 @@
   </div>
 
   <!-- Merchant ID -->
-  <div class="row">
+  <div class="row form-group">
     <div class="col-md-4">
       <label>
         <%= I18n.t(:merchant_id, scope: :edit_shop) %>
@@ -23,8 +23,6 @@
       <%= form.text_field :merchant_id, :value => @shop.merchant_id, :class => 'form-control', :disabled => true %>
     </div>
   </div>
-
-  <div class="+spacer"></div>
 
   <!-- Legal Company Name -->
   <div class="row form-group">

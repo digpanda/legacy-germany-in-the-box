@@ -5,7 +5,8 @@
   </div>
   <div class="row">
     <div class="col-md-2">
-      <% if @shop.agb %>
+      <!-- the `form.object` represents the `shop` model -->
+      <% if form.object.agb %>
         <%= form.label :agb, :class => 'switch' do %>
           <%= form.check_box :agb, {:disabled => true} %>
           <div class="switch__slider"></div>
