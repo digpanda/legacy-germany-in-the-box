@@ -4,9 +4,14 @@
     <hr>
   </div>
   <div class="row">
-    <div class="col-md-12">
-    <%= form.check_box :hermes_pickup %>
-    <%= form.label :hermes_pickup, "Hermes PickUp Service" %>
+    <div class="col-md-2">
+    <%= form.label :hermes_pickup, :class => 'switch' do %>
+      <%= form.check_box :hermes_pickup %>
+      <div class="switch__slider"></div>
+    <% end %>
+    </div>
+    <div class="col-md-10">
+      Hermes Pickup Service
     </div>
   </div>
 

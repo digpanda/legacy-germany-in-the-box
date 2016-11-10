@@ -4,14 +4,22 @@
     <hr>
   </div>
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-2">
+      <% if @shop.agb %>
+        <%= form.label :agb, :class => 'switch' do %>
+          <%= form.check_box :agb, {:disabled => true} %>
+          <div class="switch__slider"></div>
+        <% end %>
+      <% else %>
+        <%= form.label :agb, :class => 'switch' do %>
+          <%= form.check_box :agb, {:required => true} %>
+          <div class="switch__slider"></div>
+        <% end %>
+      <% end %>
 
-    <% if @shop.agb %>
-      <%= form.check_box :agb, { :disabled => true } %>
-    <% else %>
-      <%= form.check_box :agb, { :required => true }, true %>
-    <% end %>
-    <%= form.label :agb, I18n.t(:agb_statement, scope: :edit_shop).html_safe %>
+      </div>
+    <div class="col-md-10">
+      <%= I18n.t(:agb_statement, scope: :edit_shop).html_safe %>
     </div>
   </div>
 
