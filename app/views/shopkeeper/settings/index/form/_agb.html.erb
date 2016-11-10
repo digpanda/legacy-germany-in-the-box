@@ -4,6 +4,7 @@
     <hr>
   </div>
   <div class="row">
+    <div class="col-md-12">
 
     <% if @shop.agb %>
       <%= f.check_box :agb, { :disabled => true } %>
@@ -13,7 +14,7 @@
     <% end %>
 
     <%= I18n.t(:agb_statement, scope: :edit_shop).html_safe %>
-
+    </div>
   </div>
 
 </div>
