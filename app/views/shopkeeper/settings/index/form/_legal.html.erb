@@ -11,7 +11,7 @@
       <hr>
     </div>
   </div>
-  
+
   <!-- Merchant ID -->
   <div class="row">
     <div class="col-md-4">
@@ -20,7 +20,7 @@
       </label>
     </div>
     <div class="col-md-8">
-      <%= f.text_field :merchant_id, :value => @shop.merchant_id, :class => 'form-control', :disabled => true %>
+      <%= form.text_field :merchant_id, :value => @shop.merchant_id, :class => 'form-control', :disabled => true %>
     </div>
   </div>
 
@@ -34,7 +34,7 @@
       </label>
     </div>
     <div class="col-md-8">
-      <%= f.text_field :name, :class => 'form-control', :required => true, :maxLength => Rails.configuration.max_short_text_length, :placeholder => I18n.t(:company_name_placeholder, scope: :edit_shop) %>
+      <%= form.text_field :name, :class => 'form-control', :required => true, :maxLength => Rails.configuration.max_short_text_length, :placeholder => I18n.t(:company_name_placeholder, scope: :edit_shop) %>
       <div class="help-block with-errors"></div>
     </div>
   </div>
@@ -47,7 +47,7 @@
       </label>
     </div>
     <div class="col-md-8">
-      <%= f.text_field :founding_year, :class => 'form-control', :required => true, :pattern => '^(18|19|20)\d{2}$', :maxLength => 4, :placeholder => '2016' %>
+      <%= form.text_field :founding_year, :class => 'form-control', :required => true, :pattern => '^(18|19|20)\d{2}$', :maxLength => 4, :placeholder => '2016' %>
       <div class="help-block with-errors"></div>
     </div>
   </div>
@@ -60,7 +60,7 @@
       </label>
     </div>
     <div class="col-md-8">
-      <%= f.text_field :tax_number, :class => 'form-control', :placeholder => 'z.B. 9181081508155', :required => true, :maxLength => Rails.configuration.max_tiny_text_length %>
+      <%= form.text_field :tax_number, :class => 'form-control', :placeholder => 'z.B. 9181081508155', :required => true, :maxLength => Rails.configuration.max_tiny_text_length %>
       <div class="help-block with-errors"></div>
     </div>
   </div>
@@ -73,7 +73,7 @@
       </label>
     </div>
     <div class="col-md-8">
-      <%= f.text_field :register, :class => 'form-control', :maxLength => Rails.configuration.max_tiny_text_length, :placeholder => 'HRB 123456' %>
+      <%= form.text_field :register, :class => 'form-control', :maxLength => Rails.configuration.max_tiny_text_length, :placeholder => 'HRB 123456' %>
       <div class="help-block with-errors"></div>
     </div>
   </div>
@@ -88,7 +88,7 @@
       </label>
     </div>
     <div class="col-md-8">
-      <%= f.text_field :ustid, :class => 'form-control', :placeholder => 'z.B. DE123456789', :required => true, :maxLength => Rails.configuration.max_tiny_text_length, :pattern => '^DE[0-9]{9,9}$' %>
+      <%= form.text_field :ustid, :class => 'form-control', :placeholder => 'z.B. DE123456789', :required => true, :maxLength => Rails.configuration.max_tiny_text_length, :pattern => '^DE[0-9]{9,9}$' %>
       <div class="help-block with-errors"></div>
     </div>
   </div>
@@ -102,7 +102,7 @@
       </label>
     </div>
     <div class="col-md-8">
-      <%= f.text_field :eroi, :value => @shop.eroi ? @shop.eroi : nil, :class => 'form-control', :placeholder => 'z.B. DE123456789', :maxLength => Rails.configuration.max_tiny_text_length %>
+      <%= form.text_field :eroi, :value => @shop.eroi ? @shop.eroi : nil, :class => 'form-control', :placeholder => 'z.B. DE123456789', :maxLength => Rails.configuration.max_tiny_text_length %>
       <div class="help-block with-errors"></div>
     </div>
   </div>

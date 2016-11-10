@@ -7,13 +7,11 @@
     <div class="col-md-12">
 
     <% if @shop.agb %>
-      <%= f.check_box :agb, { :disabled => true } %>
+      <%= form.check_box :agb, { :disabled => true } %>
     <% else %>
-      <%= f.hidden_field :agb %>
-      <%= f.check_box :agb, { :required => true }, true %>
+      <%= form.check_box :agb, { :required => true }, true %>
     <% end %>
-
-    <%= I18n.t(:agb_statement, scope: :edit_shop).html_safe %>
+    <%= form.label :agb, I18n.t(:agb_statement, scope: :edit_shop).html_safe %>
     </div>
   </div>
 

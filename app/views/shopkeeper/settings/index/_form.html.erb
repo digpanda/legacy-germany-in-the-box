@@ -1,21 +1,21 @@
 <%= form_for @shop, :url => shopkeeper_setting_path(@shop), :data => {:toggle => 'validator'} do |form| %>
 
   <div class="row details__block">
-    <%= render partial: "shopkeeper/settings/index/form/legal", :locals => {:f => form} %>
+    <%= render partial: "shopkeeper/settings/index/form/legal", :locals => {:form => form} %>
   </div>
 
   <div class="row details__block">
-    <%= render partial: "shopkeeper/settings/index/form/agb", :locals => {:f => form} %>
+    <%= render partial: "shopkeeper/settings/index/form/agb", :locals => {:form => form} %>
   </div>
 
   <div class="row details__block">
-    <%= render partial: "shopkeeper/settings/index/form/delivery_options", :locals => {:f => form} %>
+    <%= render partial: "shopkeeper/settings/index/form/delivery_options", :locals => {:form => form} %>
   </div>
 
   <div class="row details__block">
-    <%= render partial: "shopkeeper/settings/index/form/pricing", :locals => {:f => form} %>
+    <%= render partial: "shopkeeper/settings/index/form/pricing", :locals => {:form => form} %>
   </div>
 
-  <%= form.button I18n.t(:save, scope: :edit_shop, locale: locale), :class => 'btn btn-primary' %>
+  <%= form.button I18n.t(:save, scope: :edit_shop), :class => 'btn btn-primary' %>
 
 <% end %>
