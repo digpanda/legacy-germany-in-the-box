@@ -1,17 +1,19 @@
 
 <div class="col-md-12">
+
   <div class="row">
+    <div class="col-md-8 +nopadding">
     <h3><%= I18n.t(:shopkeeper_info, scope: :edit_shop_application) %></h3>
     <hr>
+    </div>
+    <div class="col-md-4 +right">
+      <span class="+red">*</span> <%= I18n.t(:required_field_info, scope: :edit_shop) %>
+      <hr>
+    </div>
   </div>
+
   <div class="row">
     <div class="col-md-12">
-
-      <div class="row">
-      <div class="pull-right">
-        <%= I18n.t(:required_field_info, scope: :edit_shop).html_safe %>
-      </div>
-      </div>
 
       <!-- Merchant ID -->
       <div class="row">
@@ -28,10 +30,10 @@
       <div class="+spacer"></div>
 
       <!-- Legal Company Name -->
-      <div class="row">
+      <div class="row form-group">
         <div class="col-md-4">
           <label>
-            <%= I18n.t(:name, scope: :edit_shop) %>
+            <%= I18n.t(:name, scope: :edit_shop) %> <span class="+red">*</span>
           </label>
         </div>
         <div class="col-md-8">
@@ -41,10 +43,10 @@
       </div>
 
       <!-- Founding Year -->
-      <div class="row">
+      <div class="row form-group">
         <div class="col-md-4">
           <label>
-            <%= I18n.t(:founding_year_info, scope: :edit_shop) %>
+            <%= I18n.t(:founding_year_info, scope: :edit_shop) %> <span class="+red">*</span>
           </label>
         </div>
         <div class="col-md-8">
@@ -53,8 +55,21 @@
         </div>
       </div>
 
+      <!-- Tax Number -->
+      <div class="row form-group">
+        <div class="col-md-4">
+          <label>
+            <%= I18n.t(:tax_number, scope: :edit_shop) %> <span class="+red">*</span>
+          </label>
+        </div>
+        <div class="col-md-8">
+          <%= f.text_field :tax_number, :class => 'form-control', :placeholder => 'z.B. 9181081508155', :required => true, :maxLength => Rails.configuration.max_tiny_text_length %>
+          <div class="help-block with-errors"></div>
+        </div>
+      </div>
+
       <!-- Registration -->
-      <div class="row">
+      <div class="row form-group">
         <div class="col-md-4">
           <label>
             <%= I18n.t(:register, scope: :edit_shop) %>
@@ -66,21 +81,8 @@
         </div>
       </div>
 
-      <!-- Tax Number -->
-      <div class="row">
-        <div class="col-md-4">
-          <label>
-            <%= I18n.t(:tax_number, scope: :edit_shop) %>
-          </label>
-        </div>
-        <div class="col-md-8">
-          <%= f.text_field :tax_number, :class => 'form-control', :placeholder => 'z.B. 9181081508155', :required => true, :maxLength => Rails.configuration.max_tiny_text_length %>
-          <div class="help-block with-errors"></div>
-        </div>
-      </div>
-
       <!-- Ust ID -->
-      <div class="row">
+      <div class="row form-group">
         <div class="col-md-4">
           <label>
             <!-- NOTE : missing translation here -->
@@ -94,8 +96,8 @@
         </div>
       </div>
 
-      <!-- Ust ID -->
-      <div class="row">
+      <!-- EROI Number -->
+      <div class="row form-group">
         <div class="col-md-4">
           <label>
             <%= I18n.t(:eroi, scope: :edit_shop) %>
