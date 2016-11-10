@@ -853,41 +853,6 @@ var ProductsShowSkus = {
 module.exports = ProductsShowSkus;
 });
 
-require.register("javascripts/controllers/shopkeeper/shop/producer/show.js", function(exports, require, module) {
-'use strict';
-
-/**
- * ShopsEditProducer Class
- */
-var ShopsEditProducer = {
-
-  /**
-   * Initializer
-   */
-  init: function init() {
-
-    $(function () {
-      $('.edit_producer_submit').click(function () {
-        $('input.dynamical-required').each(function () {
-          if ($(this).val().length == 0) {
-            $(this).addClass('invalidBorderClass');
-          } else {
-            $(this).removeClass('invalidBorderClass');
-          }
-        });
-
-        if ($('.invalidBorderClass').length > 0) {
-          return false;
-        }
-      });
-    });
-  }
-
-};
-
-module.exports = ShopsEditProducer;
-});
-
 require.register("javascripts/controllers/shopkeeper/wirecards/apply.js", function(exports, require, module) {
 "use strict";
 

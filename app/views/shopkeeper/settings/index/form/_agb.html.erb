@@ -1,0 +1,19 @@
+<div class="col-md-12">
+  <div class="row">
+    <h3><%= I18n.t(:agb, scope: :edit_shop) %></h3>
+    <hr>
+  </div>
+  <div class="row">
+
+    <% if @shop.agb %>
+      <%= f.check_box :agb, { :disabled => true } %>
+    <% else %>
+      <%= f.hidden_field :agb %>
+      <%= f.check_box :agb, { :required => true }, true %>
+    <% end %>
+
+    <%= I18n.t(:agb_statement, scope: :edit_shop).html_safe %>
+
+  </div>
+
+</div>

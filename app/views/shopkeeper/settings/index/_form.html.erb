@@ -1,23 +1,21 @@
-<%= form_for @shop, :url => shopkeeper_setting_path(@shop), :html => {:data => {:toggle => 'validator'}, id: "edit_producer_form_#{locale}" } do |f| %>
-<!-- TODO : maybe this id (above) is useless, maybe we should remove the whole `locale` old system, also the hidden field is utter bullshit i think. -->
-  <%= hidden_field_tag :translation, value = locale %>
+<%= form_for @shop, :url => shopkeeper_setting_path(@shop), :data => {:toggle => 'validator'} do |form| %>
 
-    <div class="row details__block">
-      <%= render partial: "shopkeeper/settings/index/legal", :locals => {:f => f} %>
-    </div>
+  <div class="row details__block">
+    <%= render partial: "shopkeeper/settings/index/form/legal", :locals => {:f => form} %>
+  </div>
 
-    <div class="row details__block">
-      <%= render partial: "shopkeeper/settings/index/agb", :locals => {:f => f} %>
-    </div>
+  <div class="row details__block">
+    <%= render partial: "shopkeeper/settings/index/form/agb", :locals => {:f => form} %>
+  </div>
 
-    <div class="row details__block">
-      <%= render partial: "shopkeeper/settings/index/delivery_options", :locals => {:f => f} %>
-    </div>
+  <div class="row details__block">
+    <%= render partial: "shopkeeper/settings/index/form/delivery_options", :locals => {:f => form} %>
+  </div>
 
-    <div class="row details__block">
-      <%= render partial: "shopkeeper/settings/index/pricing", :locals => {:f => f} %>
-    </div>
+  <div class="row details__block">
+    <%= render partial: "shopkeeper/settings/index/form/pricing", :locals => {:f => form} %>
+  </div>
 
-  <%= f.button I18n.t(:save, scope: :edit_shop, locale: locale), :id => "edit_producer_submit_#{locale}", :class => 'btn btn-primary edit_producer_submit',  name: :user_info_edit_part, value: :edit_producer %>
+  <%= form.button I18n.t(:save, scope: :edit_shop, locale: locale), :class => 'btn btn-primary' %>
 
 <% end %>

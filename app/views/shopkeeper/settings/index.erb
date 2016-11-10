@@ -1,25 +1,12 @@
-<!-- <% if current_user&.decorate&.admin? %>
-  <ul class="nav nav-pills">
-    <% get_allowed_locales.each_with_index do |locale, i| %>
-      <li class="<%=  i == 0 ? 'active' : ''  %>">
-        <a data-toggle="tab" href="#<%= locale %>">
-          <%= I18n.t(locale, scope: :locales) %>
-        </a>
-      </li>
-    <% end %>
-  </ul>
-  <div class="tab-content">
-    <% get_allowed_locales.each_with_index do |locale, i| %>
-      <div class="<%=  i == 0 ? 'active' : ''  %> tab-pane fade in" id="<%= locale %>">
-        <br/>
-        <%= render 'shopkeeper/settings/index/form', locale: locale %>
-      </div>
-    <% end %>
+<div class="row">
+  <div class="col-md-10">
+    <h2>Legal &amp; Settings</h2>
+    <hr>
   </div>
-<% else %> -->
+  <div class="col-md-2 details__action">
+  </div>
+</div>
 
-<!-- <% end %> -->
-
-<% get_allowed_locales.each_with_index do |locale, i| %>
-  <%= render 'shopkeeper/settings/index/form', locale: locale %>
-<% end %>
+<div>
+  <%= render 'shopkeeper/settings/index/form', :locals => { :shop => @shop } %>
+</div>
