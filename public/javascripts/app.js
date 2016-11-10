@@ -2440,7 +2440,9 @@ var Tooltipster = {
 
   activateTooltipster: function activateTooltipster() {
 
-    $('.tooltipster').tooltipster();
+    $('.tooltipster').tooltipster({
+      'maxWidth': 350
+    });
   }
 
 };

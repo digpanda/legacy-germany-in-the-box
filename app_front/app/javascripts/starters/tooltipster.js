@@ -14,7 +14,9 @@ var Tooltipster = {
 
     activateTooltipster: function() {
 
-      $('.tooltipster').tooltipster();
+      $('.tooltipster').tooltipster({
+        'maxWidth': 350
+      });
 
     },
 
