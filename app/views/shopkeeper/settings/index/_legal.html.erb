@@ -1,0 +1,112 @@
+<div class="panel panel-info">
+  <div class="panel-heading text-center">
+    <label>
+      <%= I18n.t(:shopkeeper_info, scope: :edit_shop_application, locale: locale) %>
+    </label>
+  </div>
+  <div class="panel-body">
+    <div class="form-group">
+      <div class="pull-right required-info">
+        <strong>
+          <%= I18n.t(:required_field_info, scope: :edit_shop).html_safe %>
+        </strong>
+      </div>
+      <br>
+    </div>
+    <div class="form-group">
+      <div class="row">
+        <div class="col-md-4">
+          <label>
+            <%= I18n.t(:merchant_id, scope: :edit_shop, locale: locale) %>
+          </label>
+        </div>
+        <div class="col-md-8">
+          <%= f.text_field :merchant_id, :value => @shop.merchant_id, :class => 'form-control', :disabled => true %>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="row">
+        <div class="col-md-4">
+          <label class="required">
+            <%= I18n.t(:name, scope: :edit_shop, locale: locale) %>
+          </label>
+        </div>
+        <div class="col-md-8">
+          <%= f.text_field :name, :class => 'form-control', :required => true, :maxLength => Rails.configuration.max_short_text_length, :placeholder => I18n.t(:company_name_placeholder, scope: :edit_shop) %>
+          <div class="help-block with-errors"></div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="row">
+        <div class="col-md-4" title="<%= I18n.t(:founding_year_info, scope: :edit_shop, locale: locale) %>">
+          <i class="fa fa-info-circle" title="<%= I18n.t(:founding_year_info, scope: :edit_shop, locale: locale) %>"></i>
+          <label class="required">
+            <%= I18n.t(:founding_year, scope: :edit_shop, locale: locale) %>
+          </label>
+        </div>
+        <div class="col-md-8">
+          <%= f.text_field :founding_year, :class => 'form-control', :required => true, :pattern => '^(18|19|20)\d{2}$', :maxLength => 4, :placeholder => '2016' %>
+          <div class="help-block with-errors"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="row">
+        <div class="col-md-4">
+          <label>
+            <%= I18n.t(:register, scope: :edit_shop, locale: locale) %>
+          </label>
+        </div>
+        <div class="col-md-8">
+          <%= f.text_field :register, :class => 'form-control', :maxLength => Rails.configuration.max_tiny_text_length, :placeholder => 'HRB 123456' %>
+          <div class="help-block with-errors"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="row">
+        <div class="col-md-4">
+          <label class="required">
+            <%= I18n.t(:tax_number, scope: :edit_shop, locale: locale) %>
+          </label>
+        </div>
+        <div class="col-md-8">
+          <%= f.text_field :tax_number, :class => 'form-control', :placeholder => 'z.B. 9181081508155', :required => true, :maxLength => Rails.configuration.max_tiny_text_length %>
+          <div class="help-block with-errors"></div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="row">
+        <div class="col-md-4" title="<%= I18n.t(:ust_id_info, scope: :edit_shop, locale: locale) %>">
+          <i class="fa fa-info-circle" title="<%= I18n.t(:ust_id_info, scope: :edit_shop, locale: locale) %>"></i>
+          <label class="required">
+            <%= I18n.t(:ustid, scope: :edit_shop, locale: locale) %>
+          </label>
+        </div>
+        <div class="col-md-8">
+          <%= f.text_field :ustid, :class => 'form-control', :placeholder => 'z.B. DE123456789', :required => true, :maxLength => Rails.configuration.max_tiny_text_length, :pattern => '^DE[0-9]{9,9}$' %>
+          <div class="help-block with-errors"></div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="row">
+        <div class="col-md-4" title="<%= I18n.t(:eroi_number_info, scope: :edit_shop, locale: locale) %>">
+          <i class="fa fa-info-circle" title="<%= I18n.t(:eroi_number_info, scope: :edit_shop, locale: locale) %>"></i>
+          <label>
+            <%= I18n.t(:eroi, scope: :edit_shop, locale: locale) %>
+          </label>
+        </div>
+        <div class="col-md-8">
+          <%= f.text_field :eroi, :value => @shop.eroi ? @shop.eroi : nil, :class => 'form-control', :placeholder => 'z.B. DE123456789', :maxLength => Rails.configuration.max_tiny_text_length %>
+          <div class="help-block with-errors"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

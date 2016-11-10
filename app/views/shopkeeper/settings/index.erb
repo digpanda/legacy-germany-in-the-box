@@ -1,4 +1,4 @@
-<% if current_user&.decorate&.admin? %>
+<!-- <% if current_user&.decorate&.admin? %>
   <ul class="nav nav-pills">
     <% get_allowed_locales.each_with_index do |locale, i| %>
       <li class="<%=  i == 0 ? 'active' : ''  %>">
@@ -16,8 +16,10 @@
       </div>
     <% end %>
   </div>
-<% else %>
-  <% get_allowed_locales.each_with_index do |locale, i| %>
-    <%= render 'shopkeeper/settings/index/form', locale: locale %>
-  <% end %>
+<% else %> -->
+
+<!-- <% end %> -->
+
+<% get_allowed_locales.each_with_index do |locale, i| %>
+  <%= render 'shopkeeper/settings/index/form', locale: locale %>
 <% end %>

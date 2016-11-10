@@ -1,191 +1,23 @@
 <%= form_for @shop, :url => shopkeeper_setting_path(@shop), :html => {:data => {:toggle => 'validator'}, id: "edit_producer_form_#{locale}" } do |f| %>
+<!-- TODO : maybe this id (above) is useless, maybe we should remove the whole `locale` old system, also the hidden field is utter bullshit i think. -->
   <%= hidden_field_tag :translation, value = locale %>
-  <div class="panel-group">
-    <div class="panel panel-info">
-      <div class="panel-heading text-center">
-        <label>
-          <%= I18n.t(:shopkeeper_info, scope: :edit_shop_application, locale: locale) %>
-        </label>
-      </div>
-      <div class="panel-body">
-        <div class="form-group">
-          <div class="pull-right required-info">
-            <strong>
-              <%= I18n.t(:required_field_info, scope: :edit_shop).html_safe %>
-            </strong>
-          </div>
-          <br>
-        </div>
 
-        <div class="form-group">
-          <div class="row">
-            <div class="col-md-4">
-              <label>
-                <%= I18n.t(:merchant_id, scope: :edit_shop, locale: locale) %>
-              </label>
-            </div>
-            <div class="col-md-8">
-              <%= f.text_field :merchant_id, :value => @shop.merchant_id, :class => 'form-control', :disabled => true %>
-            </div>
-          </div>
-        </div>
-        <div class="form-group">
-          <div class="row">
-            <div class="col-md-4">
-              <label class="required">
-                <%= I18n.t(:name, scope: :edit_shop, locale: locale) %>
-              </label>
-            </div>
-            <div class="col-md-8">
-              <%= f.text_field :name, :class => 'form-control', :required => true, :maxLength => Rails.configuration.max_short_text_length, :placeholder => I18n.t(:company_name_placeholder, scope: :edit_shop) %>
-              <div class="help-block with-errors"></div>
-            </div>
-          </div>
-        </div>
-        <div class="form-group">
-          <div class="row">
-            <div class="col-md-4" title="<%= I18n.t(:founding_year_info, scope: :edit_shop, locale: locale) %>">
-              <i class="fa fa-info-circle" title="<%= I18n.t(:founding_year_info, scope: :edit_shop, locale: locale) %>"></i>
-              <label class="required">
-                <%= I18n.t(:founding_year, scope: :edit_shop, locale: locale) %>
-              </label>
-            </div>
-            <div class="col-md-8">
-              <%= f.text_field :founding_year, :class => 'form-control', :required => true, :pattern => '^(18|19|20)\d{2}$', :maxLength => 4, :placeholder => '2016' %>
-              <div class="help-block with-errors"></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <div class="row">
-            <div class="col-md-4">
-              <label>
-                <%= I18n.t(:register, scope: :edit_shop, locale: locale) %>
-              </label>
-            </div>
-            <div class="col-md-8">
-              <%= f.text_field :register, :class => 'form-control', :maxLength => Rails.configuration.max_tiny_text_length, :placeholder => 'HRB 123456' %>
-              <div class="help-block with-errors"></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <div class="row">
-            <div class="col-md-4">
-              <label class="required">
-                <%= I18n.t(:tax_number, scope: :edit_shop, locale: locale) %>
-              </label>
-            </div>
-            <div class="col-md-8">
-              <%= f.text_field :tax_number, :class => 'form-control', :placeholder => 'z.B. 9181081508155', :required => true, :maxLength => Rails.configuration.max_tiny_text_length %>
-              <div class="help-block with-errors"></div>
-            </div>
-          </div>
-        </div>
-        <div class="form-group">
-          <div class="row">
-            <div class="col-md-4" title="<%= I18n.t(:ust_id_info, scope: :edit_shop, locale: locale) %>">
-              <i class="fa fa-info-circle" title="<%= I18n.t(:ust_id_info, scope: :edit_shop, locale: locale) %>"></i>
-              <label class="required">
-                <%= I18n.t(:ustid, scope: :edit_shop, locale: locale) %>
-              </label>
-            </div>
-            <div class="col-md-8">
-              <%= f.text_field :ustid, :class => 'form-control', :placeholder => 'z.B. DE123456789', :required => true, :maxLength => Rails.configuration.max_tiny_text_length, :pattern => '^DE[0-9]{9,9}$' %>
-              <div class="help-block with-errors"></div>
-            </div>
-          </div>
-        </div>
-        <div class="form-group">
-          <div class="row">
-            <div class="col-md-4" title="<%= I18n.t(:eroi_number_info, scope: :edit_shop, locale: locale) %>">
-              <i class="fa fa-info-circle" title="<%= I18n.t(:eroi_number_info, scope: :edit_shop, locale: locale) %>"></i>
-              <label>
-                <%= I18n.t(:eroi, scope: :edit_shop, locale: locale) %>
-              </label>
-            </div>
-            <div class="col-md-8">
-              <%= f.text_field :eroi, :value => @shop.eroi ? @shop.eroi : nil, :class => 'form-control', :placeholder => 'z.B. DE123456789', :maxLength => Rails.configuration.max_tiny_text_length %>
-              <div class="help-block with-errors"></div>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div class="row details__block">
+      <%= render partial: "shopkeeper/settings/index/legal", :locals => {:f => f} %>
     </div>
 
-
-    <div class="panel panel-info">
-      <div class="panel-heading text-center">
-        <label class="<%= (@shop.agb ? '' : 'required') %>">
-          <%= I18n.t(:agb, scope: :edit_shop, locale: locale) %>
-        </label>
-      </div>
-
-      <div class="panel-body">
-        <div class="form-group">
-          <div class="row-fluid">
-            <% if @shop && (not @shop.agb) %>
-              <%= f.hidden_field :agb %>
-              <%= f.check_box :agb, { :required => true }, true %>
-              <%= I18n.t(:agb_statement, scope: :edit_shop, locale: locale).html_safe %>
-            <% else %>
-              <%= f.check_box :agb, { :disabled => true } %>
-              <%= I18n.t(:agb_statement, scope: :edit_shop, locale: locale).html_safe %>
-            <% end %>
-          </div>
-        </div>
-      </div>
+    <div class="row details__block">
+      <%= render partial: "shopkeeper/settings/index/agb", :locals => {:f => f} %>
     </div>
 
-    <div class="panel panel-info">
-      <div class="panel-heading text-center">
-        <label class="<%= (@shop.agb ? '' : 'required') %>">
-          Delivery Options
-        </label>
-      </div>
-      <div class="panel-body">
-        <div class="form-group">
-          <div class="row-fluid">
-              <%= f.check_box :hermes_pickup %>
-              Hermes PickUp Service
-          </div>
-        </div>
-      </div>
-      </div>
+    <div class="row details__block">
+      <%= render partial: "shopkeeper/settings/index/delivery_options", :locals => {:f => f} %>
+    </div>
 
-      <div class="panel panel-info">
-        <div class="panel-heading text-center">
-          <label class="<%= (@shop.agb ? '' : 'required') %>">
-            Pricing
-          </label>
-        </div>
-        <div class="panel-body">
-          <div class="form-group">
-              <%= f.label :min_total, I18n.t(:min_total, scope: :edit_shop), :class => 'required' %> (EUR)
-              <%= f.text_field :min_total, value: number_with_precision(@shop.min_total ? @shop.min_total : 0, :precision => 2), :class => 'form-control', :required => true, :pattern => I18n.t(:positive_float_equal_or_greater_than_0, scope: :validation) %>
-          </div>
-        </div>
-        </div>
+    <div class="row details__block">
+      <%= render partial: "shopkeeper/settings/index/pricing", :locals => {:f => f} %>
+    </div>
 
-    <% if current_user.decorate.admin? %>
-      <div class="panel panel-info">
-        <div class="panel-heading text-center">
-          <label>
-            Addresses
-          </label>
-        </div>
-        <div class="panel-body">
-          <div class="form-group">
-            <div class="row-fluid">
-              <!-- TODO: this part has to be improved and put a real controller on the admin side -->
-              <%= render partial: "admin/addresses/addresses_table", :locals => { :addresses => @shop.addresses } %>
-            </div>
-          </div>
-        </div>
-      </div>
-    <% end %>
-  </div>
   <%= f.button I18n.t(:save, scope: :edit_shop, locale: locale), :id => "edit_producer_submit_#{locale}", :class => 'btn btn-primary edit_producer_submit',  name: :user_info_edit_part, value: :edit_producer %>
+
 <% end %>
