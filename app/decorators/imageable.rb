@@ -3,8 +3,8 @@ module Imageable
 
   included do
 
-    def image_url(image_field, version)
-      ImageDisplayer.new(self, image_field).process(version)
+    def image_url(image_field, version, options={})
+      ImageDisplayer.new(self, image_field, options).process(version)
     end
 
   end

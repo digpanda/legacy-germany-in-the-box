@@ -1,14 +1,19 @@
 require 'image_displayer/qiniu'
 
 # manage the image display depending on the environment
+# get the model and the image field and make the upload local or remote
 # generate qiniu URLs and such
 class ImageDisplayer
 
-  attr_reader :model, :image_field, :version
+  attr_reader :model, :image_field, :options, :version
 
-  def initialize(model, image_field)
+  # the options possible are :fallback => true which return an image URL
+  # in case no image is available whatsoever. this is mainly used
+  # when the shopkeeper manipulate his images, it's very important.
+  def initialize(model, image_field, options={})
     @model = model
     @image_field = image_field.to_sym
+    @options = options
   end
 
   def process(version)
@@ -22,7 +27,15 @@ class ImageDisplayer
   private
 
   def field_url
-    model.send(image_field).url
+    if model.send(image_field).present?
+      model.send(image_field).url
+    elsif options[:fallback]
+      fallback_url
+    end
+  end
+
+  def fallback_url
+    "/images/no_image_available.png"
   end
 
   def remote_url(version)

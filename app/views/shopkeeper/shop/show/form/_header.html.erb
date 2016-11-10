@@ -1,33 +1,35 @@
 <div class="col-md-12">
   <div class="row">
     <h3>Header</h3>
-    <!-- TODO: don't forget the shopname which was removed by accident, put it on top of everything -->
     <hr>
   </div>
   <div class="row">
-    <div class="col-md-6 file-upload">
+    <div class="col-md-6 file-upload +centered">
+
+      <div class="row">
+        <h4>Avatar</h4>
+      </div>
 
       <!-- Thumbnail -->
       <div class="row">
-        <%= image_tag @shop.decorate.image_url(:logo, :thumb), :class => 'logo-img', :id =>
-         "logo_#{@shop.id}" %>
+        <%= f.label :logo do %>
+          <%= image_tag @shop.decorate.image_url(:logo, :thumb, :fallback => true), :class => 'logo-img', :id =>
+           "logo_#{@shop.id}" %>
+         <% end %>
        </div>
+
+      <!-- Invisible browsing input -->
+      <div class="row">
+         <div class="file-upload__browser">
+          <%= f.file_field :logo, :accept => "image/png, image/jpeg, image/jpg", :img_id => "#logo_#{@shop.id}", :class => 'img-file-upload upload' %> <!-- TODO : improve this img-file-upload -->
+        </div>
+      </div>
 
       <!-- Actions -->
       <div class="row">
-
-        <!-- Upload Button -->
-        <div class="btn btn-default file-upload__browser">
-            <span>
-              <i class="fa fa-cloud-upload"></i>
-              <%= I18n.t(:upload, scope: :image_upload) %>
-            </span>
-            <%= f.file_field :logo, :accept => "image/png, image/jpeg, image/jpg", :class => 'img-file-upload upload', :img_id => "#logo_#{@shop.id}" %>
-        </div>
-
-        <!-- Delete Button -->
-        <%= link_to I18n.t(:remove), destroy_image_shopkeeper_shop_path(@shop, image_field: :logo), :method => :delete, :class => 'btn btn-default' %>
-
+        <% if @shop.logo.present? %>
+        <%= link_to '', destroy_image_shopkeeper_shop_path(@shop, image_field: :logo), :method => :delete, :class => 'tooltipster fa fa-times buttons buttons__delete', :title => "Delete this image" %>
+        <% end %>
       </div>
 
     </div>
