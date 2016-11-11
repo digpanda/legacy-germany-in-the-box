@@ -4,15 +4,17 @@
     <hr>
   </div>
 
-
   <div class="row">
     <div class="col-md-6">
-      <!-- <div class="row">
-        <h4>Avatar</h4>
-      </div> -->
+      <div class="row +centered">
+        <h4>Owner image</h4>
+      </div>
       <%= js_file_upload(form: f, field: :logo) %>
     </div>
     <div class="col-md-6">
+      <div class="row +centered">
+        <h4>Cover image</h4>
+      </div>
       <%= js_file_upload(form: f, field: :banner) %>
     </div>
   </div>
