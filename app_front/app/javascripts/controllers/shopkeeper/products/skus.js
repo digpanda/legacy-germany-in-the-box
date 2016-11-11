@@ -49,34 +49,6 @@ var ProductNewSku = {
 
   },
 
-/* UNUSED IN THE CURRENT SYSTEM
-  validatePdfFile: function(inputFile) {
-
-    var maxExceededMessage = ProductNewSku.data().translationMaxExceedMessage;
-    var extErrorMessage = ProductNewSku.data().translationExtErrorMessage;
-    var allowedExtension = ["pdf"];
-
-    var extName;
-    var maxFileSize = 2097152;
-    var sizeExceeded = false;
-    var extError = false;
-
-    $.each(inputFile.files, function() {
-      if (this.size && maxFileSize && this.size > maxFileSize) {sizeExceeded=true;};
-      extName = this.name.split('.').pop();
-      if ($.inArray(extName, allowedExtension) == -1) {extError=true;};
-    });
-    if (sizeExceeded) {
-      window.alert(maxExceededMessage);
-      $(inputFile).val('');
-    };
-
-    if (extError) {
-      window.alert(extErrorMessage);
-      $(inputFile).val('');
-    };
-  }
-**/
 }
 
 module.exports = ProductNewSku;

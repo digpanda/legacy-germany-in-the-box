@@ -3,37 +3,17 @@
     <h3>Header</h3>
     <hr>
   </div>
+
+
   <div class="row">
-    <div class="col-md-6 file-upload +centered">
-
-      <div class="row">
+    <div class="col-md-6">
+      <!-- <div class="row">
         <h4>Avatar</h4>
-      </div>
-
-      <!-- Thumbnail -->
-      <div class="row">
-        <%= f.label :logo do %>
-          <%= image_tag @shop.decorate.image_url(:logo, :thumb, :fallback => true), :id =>
-           "logo_#{@shop.id}" %>
-         <% end %>
-       </div>
-
-      <!-- Invisible browsing input -->
-      <div class="row">
-         <div class="file-upload__browser">
-          <%= f.file_field :logo, :accept => "image/png, image/jpeg, image/jpg", :image_id => "#logo_#{@shop.id}", :class => 'js-file-upload' %>
-        </div>
-      </div>
-
-      <!-- Actions -->
-      <div class="row">
-        <% if @shop.logo.present? %>
-        <%= link_to '', destroy_image_shopkeeper_shop_path(@shop, image_field: :logo), :method => :delete, :class => 'tooltipster fa fa-times buttons buttons__delete', :title => "Delete this image" %>
-        <% end %>
-      </div>
-
+      </div> -->
+      <%= js_file_upload(form: f, field: :logo) %>
     </div>
     <div class="col-md-6">
+      <%= js_file_upload(form: f, field: :banner) %>
     </div>
   </div>
 

@@ -1,0 +1,36 @@
+<!--
+    file_upload(form: form, field: :logo)
+    -> form makes it possible to generate field
+    -> it also allow use to recover our model with `form.object`
+    -> :logo is the field name
+-->
+
+<div class="file-upload">
+
+  <!-- Thumbnail -->
+  <div class="row">
+    <%= form.label field do %>
+    <%= image_tag form.object.decorate.image_url(field, :thumb, :fallback => true), :id =>
+    "#{field}_#{form.object.id}" %>
+    <% end %>
+  </div>
+
+  <!-- Invisible browsing input -->
+  <div class="row">
+    <div class="file-upload__browser">
+      <%= form.file_field field, :accept => "image/png, image/jpeg, image/jpg", :image_selector => "##{field}_#{form.object.id}", :class => 'js-file-upload' %>
+    </div>
+  </div>
+
+  <!-- Actions -->
+  <div class="row">
+    <div class="file-upload__action">
+      <% if form.object.send(field).present? %>
+      <!-- NOTE : right now the path to the destroy image is static, it may be changed in the future
+      don't hesitate to manipulate this -->
+      <%= link_to '', destroy_image_shopkeeper_shop_path(form.object, image_field: field), :method => :delete, :class => 'tooltipster fa fa-times buttons buttons__delete', :title => "Delete this image" %>
+      <% end %>
+    </div>
+  </div>
+
+</div>

@@ -8482,20 +8482,17 @@ img.mfp-img {
           -webkit-filter: brightness(0) invert(1);
           filter: brightness(0) invert(1); }
 
-/* line 3, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_file-upload.sass */
-.file-upload img {
-  cursor: pointer;
-  width: auto;
-  max-height: 96px; }
-
-/* line 9, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_file-upload.sass */
-.file-upload__browser input {
-  display: none; }
-
-/* line 76, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
-.file-upload__arrow-up {
-  color: #659443;
-  font-size: 50px; }
+/* line 32, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
+.file-upload {
+  text-align: center; }
+  /* line 5, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_file-upload.sass */
+  .file-upload img {
+    cursor: pointer;
+    width: auto;
+    max-height: 200px; }
+  /* line 11, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_file-upload.sass */
+  .file-upload__browser input {
+    display: none; }
 
 /* line 32, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
 .message {
