@@ -17,8 +17,9 @@ class Shopkeeper::Products::VariantsController < ApplicationController
 
   # NOTE : we use the create method but it is actually an update one.
   # we should never recreate the variants because they are linked to skus and such in our system.
-  # we use the `create` route to avoid the ID `update` forces us to use
-  # and we cannot provide because of the multiple-update.
+  # also the creation is systematically multiple so we use this method for everything.
+  # we use the `create` route to avoid the `update` forces us to provide an id.
+  # we cannot provide it because of the multiple-update.
   # there may be a better solution but this one does the work for now.
   def create
     # we split up the update into two to avoid conflict
@@ -33,7 +34,6 @@ class Shopkeeper::Products::VariantsController < ApplicationController
     redirect_to navigation.back(1)
   end
 
-  # destroy variant only
   def destroy
 
     ids = variant.suboptions.map { |o| o.id.to_s }
