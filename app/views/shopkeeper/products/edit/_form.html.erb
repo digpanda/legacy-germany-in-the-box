@@ -1,8 +1,3 @@
-<%= content_tag(:div, nil, :id => "js-product-form", :data => {
-    :product_id => @product.id.to_s,
-  })
-%>
-
 <%= translation_js(:non_selected_text, :multiselect) %>
 <%= translation_js(:n_selected_text, :multiselect) %>
 
@@ -15,7 +10,6 @@
   <%= f.submit :id => 'edit_product_submit_btn', :class => 'btn btn-primary', :value =>  I18n.t(:update_basic, scope: :edit_product) %>
 
 <% end %>
-
 
 <!-- TODO : don't forge to put back the duty category and normal category system in the admn -->
 <!-- <% if current_user.decorate.admin? %>

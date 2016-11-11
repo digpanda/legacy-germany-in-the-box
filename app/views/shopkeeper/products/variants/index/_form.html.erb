@@ -13,51 +13,16 @@
     <%= I18n.t(:variant_usage, scope: :edit_product_variant).html_safe %>
   </div>
 
+  <div class="+small-spacer"></div>
+
   <!-- Variant boxes -->
   <div class="row form-group">
-    <div class="col-md-4">
-
-      <div class="variant-box">
-
-        <!-- Variant Name -->
-        <div class="row">
-          <div class="col-md-8">
-            <div class="variant-box__variant-name">
-              VARIANT NAME
-            </div>
-          </div>
-          <div class="col-md-4">
-            X
-          </div>
+    <%= f.fields_for :options do |field_option| %>
+        <div class="col-md-4">
+          <%= render partial: "shopkeeper/products/variants/index/form/variant_box", :locals => {:form => field_option} %>
         </div>
-
-        <!-- Option -->
-        <div class="row">
-          <div class="col-md-8">
-            <div class="variant-box__option-name">
-              OPTION NAME
-            </div>
-          </div>
-          <div class="col-md-4">
-            X
-          </div>
-        </div>
-
-        <!-- Add option -->
-        <div class="row">
-          <div class="col-md-12">
-            <div class="variant-box__add-option">
-              +
-            </div>
-          </div>
-        </div>
-
       </div>
-
-    </div>
-    <div class="col-md-8">
-      BOX
-    </div>
+    <% end %>
   </div>
 
 </div>

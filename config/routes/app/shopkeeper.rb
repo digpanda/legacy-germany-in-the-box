@@ -8,6 +8,7 @@ namespace :shopkeeper do
     # TODO : put the one above in `variants`
 
     resources :variants, :controller => 'products/variants' do
+      delete '/option/:option_id', action: :destroy_option, as: :destroy_option
     end
 
     resources :skus, :controller => 'products/skus' do

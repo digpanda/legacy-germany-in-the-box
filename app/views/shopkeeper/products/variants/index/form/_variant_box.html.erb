@@ -1,0 +1,34 @@
+<div class="variant-box">
+
+  <!-- Variant Name -->
+  <div class="row variant-box__variant-name">
+    <div class="col-md-8">
+      <%= form.text_field :name, :placeholder => 'Size' %>
+    </div>
+    <div class="col-md-4">
+      <%= link_to '', shopkeeper_product_variant_path(form.object.product, form.object), :class => 'tooltipster fa fa-times buttons buttons__delete', :title => "Remove variant", :method => :delete %>
+    </div>
+  </div>
+
+  <%= form.fields_for :suboptions do |field_suboption| %>
+    <!-- Option -->
+    <div class="row variant-box__option-name">
+      <div class="col-md-8">
+        <%= field_suboption.text_field :name, :placeholder => 'XXL' %>
+      </div>
+      <div class="col-md-4">
+        <%= link_to '', shopkeeper_product_variant_destroy_option_path(form.object.product, form.object, field_suboption.object), :class => 'tooltipster fa fa-times buttons buttons__delete', :title => "Remove option" %>
+      </div>
+    </div>
+  <% end %>
+
+  <!-- Add option -->
+  <div class="row">
+    <div class="col-md-12">
+      <div class="variant-box__add-option">
+        <%= link_to '', '#', :class => 'tooltipster fa fa-plus', :title => "Add option" %>
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -2,14 +2,14 @@
 # this is an embedded collection within the product model used on the skus
 class Shopkeeper::Products::VariantsController < ApplicationController
 
-  load_and_authorize_resource :class => false
+  #load_and_authorize_resource :class => false
 
-  before_action :set_shop
-  before_action :set_product
+  before_action :set_shop, :set_product
+  before_action :set_variant, except: [:index]
 
   layout :custom_sublayout
 
-  attr_reader :shop, :product, :variants
+  attr_reader :shop, :product, :variants, :variant
 
   def index
     @variants = product.options
@@ -30,7 +30,6 @@ class Shopkeeper::Products::VariantsController < ApplicationController
 
   # destroy variant only
   def destroy
-    variant = @product.options.find(params[:variant_id])
 
     ids = variant.suboptions.map { |o| o.id.to_s }
 
@@ -89,6 +88,10 @@ class Shopkeeper::Products::VariantsController < ApplicationController
 
   def set_product
     @product = Product.find(params[:product_id] || params[:id])
+  end
+
+  def set_variant
+    @variant = product.options.find(params[:variant_id] || params[:id])
   end
 
 end
