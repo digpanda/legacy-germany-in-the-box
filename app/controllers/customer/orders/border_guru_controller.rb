@@ -1,7 +1,7 @@
 # manage all the direct request from customer to border guru API and such
 class Customer::Orders::BorderGuruController < ApplicationController
 
-  before_action :authenticate_user!
+  authorize_resource :class => false
   before_action :set_order
 
   attr_reader :order

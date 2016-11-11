@@ -3,7 +3,7 @@ require 'net/ftp'
 
 class Shopkeeper::OrdersController < ApplicationController
 
-  load_and_authorize_resource :class => false
+  authorize_resource :class => false
   before_action :set_order, :except => [:index]
   before_filter :is_shop_order, :except => [:index]
 

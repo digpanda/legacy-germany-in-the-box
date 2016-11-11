@@ -1,5 +1,6 @@
 class Admin::SettingsController < ApplicationController
 
+  authorize_resource :class => false
   layout :custom_sublayout
 
   def show

@@ -2,7 +2,7 @@
 # this is an embedded collection within the product model used on the skus
 class Shopkeeper::Products::VariantsController < ApplicationController
 
-  #load_and_authorize_resource :class => false
+  authorize_resource :class => false
 
   before_action :set_shop, :set_product
   before_action :set_variant, except: [:index]

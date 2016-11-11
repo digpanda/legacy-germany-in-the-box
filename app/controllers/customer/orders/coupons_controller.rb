@@ -1,6 +1,6 @@
 class Customer::Orders::CouponsController < ApplicationController
 
-  before_action :authenticate_user!
+  authorize_resource :class => false
   before_action :set_order
   before_action :set_coupon, :except => [:destroy]
 

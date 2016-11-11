@@ -1,6 +1,6 @@
 class Customer::CartController < ApplicationController
 
-  load_and_authorize_resource :class => false
+  authorize_resource :class => false
 
   attr_accessor :user
   attr_reader :orders

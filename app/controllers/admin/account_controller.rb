@@ -1,6 +1,6 @@
 class Admin::AccountController < ApplicationController
 
-  load_and_authorize_resource :class => false
+  authorize_resource :class => false
   before_action :set_user
 
   layout :custom_sublayout

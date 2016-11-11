@@ -1,6 +1,6 @@
 class Admin::CouponsController < ApplicationController
 
-  load_and_authorize_resource
+  authorize_resource :class => false
   before_action :set_coupon, :except => [:index, :create, :new]
 
   layout :custom_sublayout

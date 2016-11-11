@@ -3,7 +3,7 @@
 #
 class Api::Customer::FavoritesController < Api::ApplicationController
 
-  load_and_authorize_resource :class => Product
+  authorize_resource :class => false
   attr_reader :favorites, :product
 
   before_action :set_favorites

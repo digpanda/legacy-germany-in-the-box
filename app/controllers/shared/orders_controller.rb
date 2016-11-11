@@ -5,7 +5,7 @@ class Shared::OrdersController < ApplicationController
 
   CSV_ENCODE = "UTF-8"
 
-  load_and_authorize_resource
+  authorize_resource :class => false
   before_action :set_order
   before_filter :is_admin_or_shop_order, except: [:label]
 

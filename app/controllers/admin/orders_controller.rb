@@ -2,7 +2,7 @@ class Admin::OrdersController < ApplicationController
 
   CSV_ENCODE = "UTF-8"
 
-  load_and_authorize_resource
+  authorize_resource :class => false
   before_action :set_order, :except => [:index]
 
   layout :custom_sublayout

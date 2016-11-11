@@ -2,7 +2,7 @@ class Customer::Orders::AddressesController < ApplicationController
 
   attr_reader :order
 
-  load_and_authorize_resource
+  authorize_resource :class => false
   before_action :set_order
 
   def index
@@ -12,5 +12,5 @@ class Customer::Orders::AddressesController < ApplicationController
   def set_order
     @order = current_user.orders.find(params[:order_id])
   end
-  
+
 end

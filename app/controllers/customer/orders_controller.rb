@@ -3,7 +3,7 @@ require 'net/ftp'
 
 class Customer::OrdersController < ApplicationController
 
-  load_and_authorize_resource
+  authorize_resource :class => false
   before_action :set_order, :except => [:index]
   before_filter :customer_order?, :except => [:index]
 

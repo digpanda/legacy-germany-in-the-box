@@ -1,6 +1,6 @@
 class Shopkeeper::WirecardsController < ApplicationController
 
-  load_and_authorize_resource :class => false
+  authorize_resource :class => false
   before_action :set_shop
 
   attr_reader :shop, :wirecard

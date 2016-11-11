@@ -2,7 +2,8 @@ class Shopkeeper::Products::SkusController < ApplicationController
 
   SKU_IMAGE_FIELDS = [:img0, :img1, :img2, :img3]
 
-  # load_and_authorize_resource <-- freaking buggy
+  authorize_resource :class => false
+  
   layout :custom_sublayout
   before_action :set_product
   before_action :set_sku, except: [:index, :new, :create]
