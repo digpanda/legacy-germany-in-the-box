@@ -59,7 +59,6 @@ var ImagesHandler = {
     /**
      * This system is basically live refreshing the images when you select one from your browser
      * It's mainly used by the shopkeepers
-     * TODO: this method should be highly refactored.
      * @return {void}
      */
     imageLiveRefresh: function() {
@@ -67,17 +66,27 @@ var ImagesHandler = {
       if ($(ImagesHandler.elements.image).length > 0) {
 
         $(ImagesHandler.elements.image).each(function() {
+
           var fileElement = $(this)
+
           $(this).change(function(event){
             var input = $(event.currentTarget);
             var file = input[0].files[0];
             var reader = new FileReader();
             reader.onload = function(e){
               var image_base64 = e.target.result;
-              $(fileElement.attr('image_selector')).attr("src", image_base64);
+
+              let image_div = fileElement.attr('image_selector');
+              $(image_div).attr("src", image_base64);
+
+              // we show the update
+              let add_link = fileElement.attr('image_selector')+'_add';
+              $(add_link).removeClass('hidden');
+
             };
             reader.readAsDataURL(file);
           });
+
         });
 
       }

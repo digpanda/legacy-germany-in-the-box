@@ -12,6 +12,7 @@ var Starters = [
   'images_handler',
   'lazy_loader',
   'left_menu',
+  'links_behaviour',
   'messages',
   'navigation',
   'product_favorite',

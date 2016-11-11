@@ -1417,7 +1417,7 @@ require.register("javascripts/starters.js", function(exports, require, module) {
 /**
  * Starters Class
  */
-var Starters = ['auto_resize', 'bootstrap', 'china_city', 'datepicker', 'editable_fields', 'footer', 'images_handler', 'lazy_loader', 'left_menu', 'messages', 'navigation', 'product_favorite', 'product_form', 'products_list', 'refresh_time', 'responsive', 'search', 'sku_form', 'sweet_alert', 'tooltipster'];
+var Starters = ['auto_resize', 'bootstrap', 'china_city', 'datepicker', 'editable_fields', 'footer', 'images_handler', 'lazy_loader', 'left_menu', 'links_behaviour', 'messages', 'navigation', 'product_favorite', 'product_form', 'products_list', 'refresh_time', 'responsive', 'search', 'sku_form', 'sweet_alert', 'tooltipster'];
 
 module.exports = Starters;
 });
@@ -1749,7 +1749,6 @@ var ImagesHandler = {
   /**
    * This system is basically live refreshing the images when you select one from your browser
    * It's mainly used by the shopkeepers
-   * TODO: this method should be highly refactored.
    * @return {void}
    */
   imageLiveRefresh: function imageLiveRefresh() {
@@ -1757,14 +1756,22 @@ var ImagesHandler = {
     if ($(ImagesHandler.elements.image).length > 0) {
 
       $(ImagesHandler.elements.image).each(function () {
+
         var fileElement = $(this);
+
         $(this).change(function (event) {
           var input = $(event.currentTarget);
           var file = input[0].files[0];
           var reader = new FileReader();
           reader.onload = function (e) {
             var image_base64 = e.target.result;
-            $(fileElement.attr('image_selector')).attr("src", image_base64);
+
+            var image_div = fileElement.attr('image_selector');
+            $(image_div).attr("src", image_base64);
+
+            // we show the update
+            var add_link = fileElement.attr('image_selector') + '_add';
+            $(add_link).removeClass('hidden');
           };
           reader.readAsDataURL(file);
         });
@@ -1878,6 +1885,38 @@ var LeftMenu = {
 };
 
 module.exports = LeftMenu;
+});
+
+require.register("javascripts/starters/links_behaviour.js", function(exports, require, module) {
+'use strict';
+
+/**
+ * LinkBehaviour Class
+ */
+var LinkBehaviour = {
+
+  /**
+   * Initializer
+   */
+  init: function init() {
+
+    this.setupSubmitForm();
+  },
+
+  /**
+   * If we use the data-submit-form it will force submit with a simple link
+   */
+  setupSubmitForm: function setupSubmitForm() {
+
+    $(document).on('click', '[data-form="submit"]', function (e) {
+      e.preventDefault();
+      $(this).closest('form').submit();
+    });
+  }
+
+};
+
+module.exports = LinkBehaviour;
 });
 
 require.register("javascripts/starters/messages.js", function(exports, require, module) {
