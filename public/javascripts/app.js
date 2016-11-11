@@ -1417,9 +1417,34 @@ require.register("javascripts/starters.js", function(exports, require, module) {
 /**
  * Starters Class
  */
-var Starters = ['bootstrap', 'china_city', 'datepicker', 'editable_fields', 'footer', 'images_handler', 'lazy_loader', 'left_menu', 'messages', 'navigation', 'product_favorite', 'product_form', 'products_list', 'refresh_time', 'responsive', 'search', 'sku_form', 'sweet_alert', 'tooltipster'];
+var Starters = ['auto_resize', 'bootstrap', 'china_city', 'datepicker', 'editable_fields', 'footer', 'images_handler', 'lazy_loader', 'left_menu', 'messages', 'navigation', 'product_favorite', 'product_form', 'products_list', 'refresh_time', 'responsive', 'search', 'sku_form', 'sweet_alert', 'tooltipster'];
 
 module.exports = Starters;
+});
+
+require.register("javascripts/starters/auto_resize.js", function(exports, require, module) {
+'use strict';
+
+/**
+ * AutoResize Class
+ */
+var AutoResize = {
+
+  /**
+   * Initializer
+   */
+  init: function init() {
+
+    this.setupAutoResize();
+  },
+
+  setupAutoResize: function setupAutoResize() {
+
+    $('textarea').textareaAutoSize();
+  }
+};
+
+module.exports = AutoResize;
 });
 
 require.register("javascripts/starters/bootstrap.js", function(exports, require, module) {

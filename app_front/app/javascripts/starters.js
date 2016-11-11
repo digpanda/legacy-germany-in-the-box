@@ -3,6 +3,7 @@
  */
 var Starters = [
 
+  'auto_resize',
   'bootstrap',
   'china_city',
   'datepicker',
@@ -22,6 +23,7 @@ var Starters = [
   'sku_form',
   'sweet_alert',
   'tooltipster',
+
 ]
 
 module.exports = Starters;
