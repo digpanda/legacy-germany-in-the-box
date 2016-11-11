@@ -89,6 +89,7 @@ class Shopkeeper::Products::SkusController < ApplicationController
 
   private
 
+  # TODO : this concerns only the admin, we should refactor it a bit and remove it from this section after understanding fully how it works
   def setup_categories_options!
     @customer_categories_options = DutyAndCustomerCategorySelectStore.new(Category.name)
     @duty_categories_options = DutyAndCustomerCategorySelectStore.new(DutyCategory.name)
@@ -103,6 +104,8 @@ class Shopkeeper::Products::SkusController < ApplicationController
   end
 
   def sku_params
+    # TODO : i don't know what it is about but the admin won't have to deal with this kind of stuff
+    # try to remove it and see if it blows anything
     delocalize_config = {:price => :number,:space_length => :number, :space_width => :number, :space_height => :number, :discount => :number, :quantity => :number, :weight => :number}
     sku_params = params.require(:sku).permit!.delocalize(delocalize_config)
     # we throw away the useless option ids

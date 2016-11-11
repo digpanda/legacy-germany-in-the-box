@@ -127,6 +127,23 @@ class Product
 
   end
 
+  before_save :ensure_base_variant
+
+  # if the product is saved without variant option
+  # we will force to create at least one which's standard
+  # this is to make sure the product will be complete
+  # and not half-done the way (price etc.)
+  # we should make the global system better but for now it stays
+  # consistent.
+  def ensure_base_variant
+    if self.options.count == 0
+      option = self.options.build
+      option.name = "Standard"
+      suboption = option.suboptions.build
+      suboption.name = "Standard"
+    end
+  end
+
   # total item available to sell
   # NOTE : calculation for the display on shopkeeper area, might be a duplicate but no time to check
   def total_skus_quantities

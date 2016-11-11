@@ -1,235 +1,58 @@
 <%= content_tag(:div, nil, :id => "js-product-form", :data => {
-
-  :product_id                    => @product.id.to_s,
-  :translation_non_selected_text => I18n.t(:non_selected_text, scope: :multiselect),
-  :translation_n_selected_text   => I18n.t(:n_selected_text, scope: :multiselect)
-
+    :product_id => @product.id.to_s,
   })
-
 %>
 
+<%= translation_js(:non_selected_text, :multiselect) %>
+<%= translation_js(:n_selected_text, :multiselect) %>
+
 <%= form_for [:shopkeeper, @product], :html => {:data => {:toggle => 'validator'}} do |f| %>
-  <%= hidden_field_tag :shop_id, value = @product.shop.id %>
-  <%= hidden_field_tag :translation, value = locale %>
-  <%= hidden_field_tag :part, :basic %>
-  <div class="panel-group">
-    <div class="panel panel-info">
-      <div class="panel-heading text-center">
-        <label>
-          <%= I18n.t(:basic_info, scope: :edit_product, locale: locale) %>
+
+  <div class="row details__block">
+    <%= render partial: "shopkeeper/products/edit/form/informations", :locals => {:f => f} %>
+  </div>
+
+  <%= f.submit :id => 'edit_product_submit_btn', :class => 'btn btn-primary', :value =>  I18n.t(:update_basic, scope: :edit_product) %>
+
+<% end %>
+
+
+<!-- TODO : don't forge to put back the duty category and normal category system in the admn -->
+<!-- <% if current_user.decorate.admin? %>
+  <div class="panel panel-info">
+    <div class="panel-heading" title="<%= I18n.t(:duty_category_info, scope: :edit_product, locale: locale) %>">
+      <div class="text-center">
+        <i class="fa fa-info-circle" title="<%= I18n.t(:duty_category_info, scope: :edit_product, locale: locale) %>"></i>
+        <label class="required">
+          <%= I18n.t(:duty_category, scope: :edit_product, locale: locale) %>
         </label>
       </div>
-
-      <div class="panel-body">
-
-        <div class="form-group">
-          <div class="pull-right required-info">
-            <strong>
-              <%= I18n.t(:required_field_info, scope: :edit_shop).html_safe %>
-            </strong>
-          </div>
-          <br>
-        </div>
-
-        <!-- Product Name -->
-        <div class="form-group">
-          <div class="row">
-            <div class="col-md-3">
-              <label class="required translation">
-                <%= I18n.t(:name, scope: :edit_product, locale: locale) %>
-              </label>
-            </div>
-            <div class="col-md-9">
-              <%= f.text_field :name, :value => @product.name_translations[locale], :class => 'form-control', :required => true, :maxLength => Rails.configuration.max_short_text_length %>
-            </div>
-          </div>
-        </div>
-
-        <!-- Product Brand -->
-        <div class="form-group">
-          <div class="row">
-            <div class="col-md-3">
-              <label class="required translation">
-                <%= I18n.t(:brand, scope: :edit_product, locale: locale) %>
-              </label>
-            </div>
-            <div class="col-md-9">
-              <%= f.text_field :brand, :value => @product.brand_translations[locale], :class => 'form-control', :required => true, :maxLength => Rails.configuration.max_short_text_length %>
-            </div>
-          </div>
-        </div>
-
-        <!-- Product Description -->
-        <div class="form-group">
-          <div class="row">
-            <div class="col-md-3" title="<%= I18n.t(:desc_info, scope: :edit_product, num: Rails.configuration.max_long_text_length, locale: locale) %>">
-              <i class="fa fa-info-circle" title="<%= I18n.t(:desc_info, scope: :edit_product, num: Rails.configuration.max_long_text_length, locale: locale) %>"></i>
-              <label class="required translation">
-                <%= I18n.t(:desc, scope: :edit_product, locale: locale) %>
-              </label>
-            </div>
-            <div class="col-md-9">
-              <%= f.text_area :desc, :value => @product.desc_translations[locale], :class => 'form-control', rows: 8, :required => true, :maxLength => Rails.configuration.max_long_text_length %>
-            </div>
-          </div>
-        </div>
-
-        <!-- Product Duty Code -->
-        <div class="form-group">
-          <div class="row">
-            <div class="col-md-3">
-              <i class="fa fa-info-circle" title="Die Zolltarifnummer ist eine 8-stellige Nummer für jedes Produkt bei Ausfuhr. Sie entspricht der Bezeichnung 'Warennummer' in der Außenhandelsstatistik."></i>
-              <label class="required">
-                <%= I18n.t(:hs_code, scope: :edit_product, locale: locale) %>
-              </label>
-              <br />
-              Sie können die 8-stellige Zolltarifnr. <a href="https://www.destatis.de/DE/Methoden/Klassifikationen/Aussenhandel/warenverzeichnis_downloads.html" target="_blank">HIER</a> finden.
-            </div>
-            <div class="col-md-9">
-              <%= f.text_field :hs_code, :value => @product.hs_code, :class => 'form-control', :required => true, :pattern => '^\d{8,8}$', :placeholder => '48191000' %>
-            </div>
-          </div>
-        </div>
-
-      </div>
     </div>
-    <% if current_user.decorate.admin? %>
-      <div class="panel panel-info">
-        <div class="panel-heading" title="<%= I18n.t(:duty_category_info, scope: :edit_product, locale: locale) %>">
-          <div class="text-center">
-            <i class="fa fa-info-circle" title="<%= I18n.t(:duty_category_info, scope: :edit_product, locale: locale) %>"></i>
-            <label class="required">
-              <%= I18n.t(:duty_category, scope: :edit_product, locale: locale) %>
-            </label>
-          </div>
-        </div>
-        <div class="panel-body">
-          <div class="form-group">
-            <div class="row-fluid">
-              <%= f.select :duty_category, grouped_options_for_select(@duty_categories_options.grouped_categories_options(:en), @product.duty_category ? @product.duty_category.id : nil), { :include_blank => I18n.t(:non_selected_text, scope: :multiselect, locale: locale) }, :class => 'form-control duty-categories' %>
-            </div>
-          </div>
+    <div class="panel-body">
+      <div class="form-group">
+        <div class="row-fluid">
+          <%= f.select :duty_category, grouped_options_for_select(@duty_categories_options.grouped_categories_options(:en), @product.duty_category ? @product.duty_category.id : nil), { :include_blank => I18n.t(:non_selected_text, scope: :multiselect, locale: locale) }, :class => 'form-control duty-categories' %>
         </div>
       </div>
-    <% end %>
-    <% if current_user.decorate.admin? %>
-      <div class="panel panel-info">
-        <div class="panel-heading" title="<%= I18n.t(:categories_info, scope: :edit_product, locale: locale) %>">
-          <div class="text-center">
-            <i class="fa fa-info-circle" title="<%= I18n.t(:categories_info, scope: :edit_product, locale: locale) %>"></i>
-            <label class="required">
-              <%= I18n.t(:categories, scope: :edit_product, locale: locale) %>
-            </label>
-          </div>
-        </div>
-        <div class="panel-body">
-          <div class="form-group">
-            <div class="row-fluid">
-              <%= f.select :category_ids, options_for_select(@customer_categories_options.grouped_categories_options(locale), @product.categories.map { |c| c.id.to_s }), { :include_blank => I18n.t(:non_selected_text, scope: :multiselect, locale: locale) }, :class => 'form-control' %>
-            </div>
-          </div>
-        </div>
-      </div>
-    <% end %>
-    <% if current_user.decorate.admin? && locale == :'zh-CN' %>
-      <div class="panel panel-info">
-        <div class="panel-heading" title="<%= I18n.t(:keywords_info, scope: :edit_product, num: Rails.configuration.max_num_addresses, locale: locale) %>">
-          <div class="text-center">
-            <i class="fa fa-info-circle" title="<%= I18n.t(:keywords_info, scope: :edit_product, num: Rails.configuration.max_num_addresses, locale: locale) %>"></i>
-            <label>
-              <%= I18n.t(:tags, scope: :edit_product, locale: locale) %>
-            </label>
-          </div>
-        </div>
-        <div class="panel-body">
-          <div class="form-group">
-            <div class="row">
-              <div class="col-md-4">
-                <%= text_field_tag "product[tags][]", @product.tags[0], :class => 'form-control', :placeholder => I18n.t(:tag1, scope: :edit_product, locale: locale), :maxLength => Rails.configuration.max_tiny_text_length %>
-              </div>
-              <div class="col-md-4">
-                <%= text_field_tag "product[tags][]", @product.tags[1], :class => 'form-control', :placeholder => I18n.t(:tag2, scope: :edit_product, locale: locale), :maxLength => Rails.configuration.max_tiny_text_length %>
-              </div>
-              <div class="col-md-4">
-                <%= text_field_tag "product[tags][]", @product.tags[2], :class => 'form-control', :placeholder => I18n.t(:tag3, scope: :edit_product, locale: locale), :maxLength => Rails.configuration.max_tiny_text_length %>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    <% end %>
-    <div class="panel panel-info" id="variants_panel_<%= @product.id %>">
-      <div class="panel-heading">
-        <a data-content="<img src='/images/variant-example.png' width='400px'>" data-html="true" data-trigger="hover" rel="popover" title="<%= I18n.t(:variants_info, scope: :edit_product_detail, locale: locale) %>">
-          <i class="fa fa-info-circle"></i>
-          <label class="required translation">
-            <%= I18n.t(:variants, scope: :edit_product_variant, locale: locale) %>
-          </label>
-        </a>
-        <div class="pull-right">
-          <a class="btn btn-sm" href="#" id="a_add_variant_<%= @product.id %>" onclick="<%= gen_add_variant_panel(I18n.t(:variant_name, scope: :edit_product_variant, locale: locale), I18n.t(:option_name, scope: :edit_product_variant, locale: locale)) %>">
-            <i class="fa fa-plus-circle"></i>
-            <%= I18n.t(:new_variant, scope: :edit_product_variant, locale: locale) %>
-          </a>
-        </div>
-      </div>
-      <div class="panel-body">
-        <h5>
-          <%= I18n.t(:variant_usage, scope: :edit_product_variant, locale: locale).html_safe %>
-        </h5>
-        <br/>
-        <div class="form-group">
-          <div class="row">
-            <%= f.fields_for :options do |fo| %>
-              <div class="col-md-4">
-                <div class="panel panel-info">
-                  <div class="panel-heading">
-                    <div class="form-inline">
-                      <div class="form-group">
-                        <%= fo.text_field :name, :value => fo.object.name_translations[locale], :style => 'max-width:120px', :class => 'form-control input-sm', :required => true, :maxLength => Rails.configuration.max_tiny_text_length, :placeholder => I18n.t(:variant_name, scope: :edit_product_variant, locale: locale) %>
-                      </div>
-                      <div class="btn-group pull-right">
-                        <%= link_to '', shopkeeper_product_destroy_variant_path(@product.id, fo.object.id), method: :delete, data: { confirm: "#{I18n.t(:delete_option_message, scope: :edit_product_variant, locale: locale)}" }, :class => 'fa fa-times-circle btn', :title => I18n.t(:remove, scope: :edit_product_variant, locale: locale) %>
-                        <%= link_to '', '#', :onclick => "#{gen_add_option_to_existing_variant(I18n.t(:option_name, scope: :edit_product_variant, locale: locale))}", :index => fo.index, :class => 'fa fa-plus btn', :title => I18n.t(:new_option, scope: :edit_product_variant, locale: locale) %>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="panel-body">
-
-                    <%= fo.fields_for :suboptions do |fso| %>
-                      <div class="form-inline">
-                        <div class="form-group">
-                          <%= fso.text_field :name, :value => fso.object.name_translations[locale], :style => 'max-width:120px', :class => 'form-control input-sm', :required => true, :maxLength => Rails.configuration.max_tiny_text_length, :placeholder => I18n.t(:option_name, scope: :edit_product_variant, locale: locale) %>
-                        </div>
-                        <div class="btn-group pull-right">
-                          <%= link_to '', shopkeeper_product_destroy_option_path(@product.id, fo.object.id, fso.object.id), method: :delete, data: { confirm: "#{I18n.t(:delete_option_message, scope: :edit_product_variant, locale: locale)}" }, :class => 'btn fa fa-times-circle', :title => I18n.t(:remove_option, scope: :edit_product_variant, locale: locale) %>
-                        </div>
-                      </div>
-                    <% end %>
-                  </div>
-                </div>
-              </div>
-            <% end %>
-          </div>
-        </div>
-      </div>
-
-      <% if @product.persisted? && @product.decorate.has_option? %>
-        <div class="panel-footer clearfix">
-          <a href="<%= show_skus_product_path(@product.id) %>">
-            <i class="fa fa-edit"></i>
-            <%= I18n.t(:sku_manage, scope: :edit_product_detail, locale: locale) %>
-          </a>
-          <div class="pull-right">
-            <a href="<%= new_sku_product_path(@product.id) %>">
-              <i class="fa fa-plus-circle"></i>
-              <%= I18n.t(:new_sku, scope: :edit_product_detail, locale: locale) %>
-            </a>
-          </div>
-        </div>
-      <% end %>
     </div>
   </div>
-  <%= f.submit :id => 'edit_product_submit_btn', :class => 'btn btn-primary', :value => @product.persisted? ? I18n.t(:update_basic, scope: :edit_product, locale: locale) : I18n.t(:new_basic, scope: :edit_product, locale: locale) %>
-  <%= link_to I18n.t(:cancel, scope: :edit_product, locale: locale), show_products_shop_path(@product.shop.id), :class => 'btn btn-primary' %>
 <% end %>
+<% if current_user.decorate.admin? %>
+  <div class="panel panel-info">
+    <div class="panel-heading" title="<%= I18n.t(:categories_info, scope: :edit_product, locale: locale) %>">
+      <div class="text-center">
+        <i class="fa fa-info-circle" title="<%= I18n.t(:categories_info, scope: :edit_product, locale: locale) %>"></i>
+        <label class="required">
+          <%= I18n.t(:categories, scope: :edit_product, locale: locale) %>
+        </label>
+      </div>
+    </div>
+    <div class="panel-body">
+      <div class="form-group">
+        <div class="row-fluid">
+          <%= f.select :category_ids, options_for_select(@customer_categories_options.grouped_categories_options(locale), @product.categories.map { |c| c.id.to_s }), { :include_blank => I18n.t(:non_selected_text, scope: :multiselect, locale: locale) }, :class => 'form-control' %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %> -->
