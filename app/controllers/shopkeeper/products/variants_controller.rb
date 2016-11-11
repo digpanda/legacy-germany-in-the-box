@@ -15,7 +15,12 @@ class Shopkeeper::Products::VariantsController < ApplicationController
     @variants = product.options
   end
 
-  def update
+  # NOTE : we use the create method but it is actually an update one.
+  # we should never recreate the variants because they are linked to skus and such in our system.
+  # we use the `create` route to avoid the ID `update` forces us to use
+  # and we cannot provide because of the multiple-update.
+  # there may be a better solution but this one does the work for now.
+  def create
     # we split up the update into two to avoid conflict
     # on updating the options and suboptions at the same time
     if product.update(product_params_without_option) && product.update(product_params)
