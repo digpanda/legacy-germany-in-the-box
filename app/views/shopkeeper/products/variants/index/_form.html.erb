@@ -1,15 +1,13 @@
 <!-- Variant boxes -->
 <div class="row">
   <div class="col-md-10 col-md-push-1 col-md-pull-1">
-<div class="row form-group">
-  <%= f.fields_for :options do |field_option| %>
-  <div class="col-md-4">
-    <%= render partial: "shopkeeper/products/variants/index/form/variant_box", :locals => {:form => field_option} %>
+    <div class="row form-group">
+      <%= f.fields_for :options do |field_option| %>
+      <div class="col-md-4">
+        <%= render partial: "shopkeeper/products/variants/index/form/variant_box", :locals => {:form => field_option} %>
+      </div>
+      <% end %>
+    </div>
+
   </div>
-  <% end %>
-</div>
-
-</div>
-
-</div>
 </div>
