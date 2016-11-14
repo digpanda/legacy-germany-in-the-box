@@ -751,6 +751,10 @@ var ProductNewSku = {
    */
   init: function init() {
 
+    /**
+     * TODO: THIS SEEMS TO BE HIGHLY DEPRECATED BUT WE SHOULD MAKE SURE IT IS BEFORZ TO REMOVE
+     */
+
     $('select.sku-variants-options').multiselect({
       nonSelectedText: Translation.find('non_selected_text', 'multiselect'),
       nSelectedText: Translation.find('n_selected_text', 'multiselect'),
