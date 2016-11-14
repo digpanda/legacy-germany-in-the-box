@@ -11,27 +11,14 @@
   </div>
 
   <%= form.fields_for :suboptions do |field_suboption| %>
-    <!-- Option -->
-    <div class="row variant-box__option-name">
-      <div class="col-md-8">
-        <%= field_suboption.text_field :name, :placeholder => 'XXL' %>
-      </div>
-      <div class="col-md-4">
-        <% if field_suboption.object.name %>
-          <%= link_to '', shopkeeper_product_variant_destroy_option_path(form.object.product, form.object, field_suboption.object), :method => :delete, :class => 'tooltipster fa fa-times buttons buttons__delete', :title => "Remove option" %>
-        <% else %>
-        <!-- HERE PUT LOGIC OF TEMPORARY OPTION -->
-        <% end %>
-      </div>
-    </div>
+    <%= render partial: 'shopkeeper/products/variants/index/form/options_fields', :locals => {:form => form, :field_suboption => field_suboption} %>
   <% end %>
 
   <!-- Add option -->
   <div class="row">
     <div class="col-md-12">
       <div class="variant-box__add-option">
-        <!-- TODO: the add system is just a show / hide because it's way easier to manage and to limit, we need to make it. please remove the whole system that was done beforehand. it's pure shit. -->
-        <%= link_to '', '#', :class => 'tooltipster fa fa-plus', :title => "Add option" %>
+        <%= link_to '', '#', :class => 'tooltipster fa fa-plus', :title => "Add option", :id => 'add-option' %>
       </div>
     </div>
   </div>

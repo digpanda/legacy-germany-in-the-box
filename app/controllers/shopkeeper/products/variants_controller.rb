@@ -5,7 +5,7 @@ class Shopkeeper::Products::VariantsController < ApplicationController
   authorize_resource :class => false
 
   before_action :set_shop, :set_product
-  before_action :set_variant, except: [:index]
+  before_action :set_variant, except: [:index, :create]
 
   layout :custom_sublayout
 
@@ -25,9 +25,11 @@ class Shopkeeper::Products::VariantsController < ApplicationController
   # we cannot provide it because of the multiple-update.
   # there may be a better solution but this one does the work for now.
   def create
+    remove_empty_options_from_params!
     # we split up the update into two to avoid conflict
     # on updating the options and suboptions at the same time
     if product.update(product_params_without_option) && product.update(product_params)
+      ensure_suboption_saved!
       flash[:success] = I18n.t(:update_ok, scope: :edit_product)
       redirect_to edit_shopkeeper_product_path(product)
       return
@@ -78,6 +80,17 @@ class Shopkeeper::Products::VariantsController < ApplicationController
 
   private
 
+  # for some reason mongoid struggle to update / save the suboptions
+  # when it's updated in the attributes
+  # we make sure it occurs by saving each one manually
+  def ensure_suboption_saved!
+    product.options.each do |option|
+      option.suboptions.each do |suboption|
+        suboption.save
+      end
+    end
+  end
+
   # we convert to a hash to avoid to keep the params class even we cloned
   # then we remove the `suboptons_attributes` to have a clean `product_params`
   # this doesn't affect the original object
@@ -85,6 +98,16 @@ class Shopkeeper::Products::VariantsController < ApplicationController
   def product_params_without_option
     product_params.to_h.tap do |product_param|
       product_param.delete("options_attributes")
+    end
+  end
+
+  def remove_empty_options_from_params!
+    params.require(:product).require(:options_attributes).each do |key, option|
+      option.require(:suboptions_attributes).each do |suboption_key, suboption|
+        if suboption[:name].empty?
+          option.require(:suboptions_attributes).delete(suboption_key)
+        end
+      end
     end
   end
 

@@ -1,0 +1,27 @@
+<!-- Option -->
+
+<!-- Option that already existed from the model -->
+<% if field_suboption.object.name %>
+
+  <div class="row variant-box__option-name">
+    <div class="col-md-8">
+      <%= field_suboption.text_field :name, :placeholder => 'XXL' %>
+    </div>
+    <div class="col-md-4">
+        <%= link_to '', shopkeeper_product_variant_destroy_option_path(form.object.product, form.object, field_suboption.object), :method => :delete, :class => 'tooltipster fa fa-times buttons buttons__delete', :title => "Remove option" %>
+    </div>
+  </div>
+
+<!-- Option that have to be filled in -->
+<% else %>
+
+  <div class="row variant-box__option-name hidden js-temporary-option">
+    <div class="col-md-8">
+      <%= field_suboption.text_field :name, :placeholder => 'XS' %>
+    </div>
+    <div class="col-md-4">
+      <%= link_to '', '#', :class => 'tooltipster fa fa-times buttons buttons__delete js-remove-option', :title => "Remove option" %>
+    </div>
+  </div>
+
+<% end %>

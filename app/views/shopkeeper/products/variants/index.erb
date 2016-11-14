@@ -1,4 +1,4 @@
-<%= form_for [:shopkeeper, @product], :path => shopkeeper_product_variants_path(@product), :html => {:data => {:toggle => 'validator'}} do |f| %>
+<%= form_for [:shopkeeper, @product], :url => shopkeeper_product_variants_path(@product), :method => :post, :html => {:data => {:toggle => 'validator'}} do |f| %>
 
   <div class="row details__block">
     <%= render partial: "shopkeeper/products/variants/index/form", :locals => {:f => f} %>
