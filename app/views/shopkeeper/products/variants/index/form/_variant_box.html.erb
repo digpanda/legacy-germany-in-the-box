@@ -17,7 +17,7 @@
         <%= field_suboption.text_field :name, :placeholder => 'XXL' %>
       </div>
       <div class="col-md-4">
-        <%= link_to '', shopkeeper_product_variant_destroy_option_path(form.object.product, form.object, field_suboption.object), :class => 'tooltipster fa fa-times buttons buttons__delete', :title => "Remove option" %>
+        <%= link_to '', shopkeeper_product_variant_destroy_option_path(form.object.product, form.object, field_suboption.object), :method => :delete, :class => 'tooltipster fa fa-times buttons buttons__delete', :title => "Remove option" %>
       </div>
     </div>
   <% end %>

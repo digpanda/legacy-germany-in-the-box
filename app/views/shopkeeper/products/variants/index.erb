@@ -4,6 +4,8 @@
     <%= render partial: "shopkeeper/products/variants/index/form", :locals => {:f => f} %>
   </div>
 
-  <%= f.submit :id => 'edit_product_submit_btn', :class => 'btn btn-primary', :value =>  I18n.t(:update_basic, scope: :edit_product) %>
+  <div class="row">
+    <%= f.submit :class => 'btn btn-primary', :value =>  I18n.t(:update_basic, scope: :edit_product) %>
+  </div>
 
 <% end %>

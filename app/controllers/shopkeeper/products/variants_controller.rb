@@ -54,7 +54,9 @@ class Shopkeeper::Products::VariantsController < ApplicationController
   # we did not put this destroy into a new controller
   # because this is the only method used to manipulate suboption directly so far
   # we might need to move it if more methods are made.
-  def destroy_suboption
+  # we turned the `suboption` into `option` because the new differenciation between option / suboption
+  # is actually variant / option which's more logical.
+  def destroy_option
     if @product.skus.detect { |s| s.option_ids.to_set.include?(params[:option_id]) }
       flash[:error] = I18n.t(:sku_dependent, scope: :edit_product_variant)
     else
