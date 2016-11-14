@@ -36,7 +36,13 @@ class Shopkeeper::Products::VariantsController < ApplicationController
     if product.update(product_params_without_option) && product.update(product_params)
       ensure_suboption_saved!
       flash[:success] = I18n.t(:update_ok, scope: :edit_product)
-      redirect_to edit_shopkeeper_product_path(product)
+      # if the user didn't add any sku yet, we redirect him automatically
+      # to add some after creating those
+      if product.skus.count == 0
+        redirect_to shopkeeper_product_skus_path(product)
+      else
+        redirect_to navigation.back(1)
+      end
       return
     end
 
