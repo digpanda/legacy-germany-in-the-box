@@ -1,7 +1,7 @@
 <%= form_for [:shopkeeper, shop], :data => {:toggle => 'validator'} do |f| %>
 
   <div class="row details__block">
-    <%= render partial: "shopkeeper/shop/show/form/header", :locals => {:f => f} %>
+    <%= render partial: "shopkeeper/shop/show/form/header", :locals => {:form => f} %>
   </div>
 
   <div class="row details__block">

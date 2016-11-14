@@ -12,7 +12,7 @@ module FileUploadHelper
     when Sku
       shopkeeper_product_sku_destroy_image_path(form.object.product, form.object, image_field: field)
     when Shop
-      destroy_image_shopkeeper_shop_path(f.object, image_field: field)
+      destroy_image_shopkeeper_shop_path(form.object, image_field: field)
     end
   end
 
