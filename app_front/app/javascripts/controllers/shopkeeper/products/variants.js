@@ -21,10 +21,10 @@ var Variants = {
    */
   addOptionHandler: function() {
 
-    $('#add-option').on('click', function(e) {
+    $('.js-add-option').on('click', function(e) {
 
       e.preventDefault();
-      let target = $('.js-temporary-option.hidden:first');
+      let target = $(this).closest('.variant-box').find('.js-temporary-option.hidden:first');
       target.removeClass('hidden');
 
     })
@@ -40,7 +40,7 @@ var Variants = {
     $('.js-remove-option').on('click', function(e) {
 
       e.preventDefault();
-      let container = $(this).parent().parent();
+      let container = $(this).closest('.js-temporary-option');
       let input_target = container.find('input');
       input_target.val('');
       container.addClass('hidden');

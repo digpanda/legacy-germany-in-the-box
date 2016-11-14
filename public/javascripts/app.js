@@ -850,10 +850,10 @@ var Variants = {
    */
   addOptionHandler: function addOptionHandler() {
 
-    $('#add-option').on('click', function (e) {
+    $('.js-add-option').on('click', function (e) {
 
       e.preventDefault();
-      var target = $('.js-temporary-option.hidden:first');
+      var target = $(this).closest('.variant-box').find('.js-temporary-option.hidden:first');
       target.removeClass('hidden');
     });
   },
@@ -867,7 +867,7 @@ var Variants = {
     $('.js-remove-option').on('click', function (e) {
 
       e.preventDefault();
-      var container = $(this).parent().parent();
+      var container = $(this).closest('.js-temporary-option');
       var input_target = container.find('input');
       input_target.val('');
       container.addClass('hidden');
