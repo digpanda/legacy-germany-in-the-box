@@ -9,12 +9,10 @@
       <!-- Agreement -->
       <div class="row form-group">
         <div class="col-md-2">
-
           <%= form.label :status, :class => 'switch' do %>
             <%= form.check_box :status, {:required => true} %>
             <div class="switch__slider"></div>
           <% end %>
-
         </div>
         <div class="col-md-10">
           <%= I18n.t(:info, scope: 'edit_product_detail.status') %>

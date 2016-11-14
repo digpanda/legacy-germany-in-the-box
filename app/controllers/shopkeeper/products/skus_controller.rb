@@ -3,7 +3,7 @@ class Shopkeeper::Products::SkusController < ApplicationController
   SKU_IMAGE_FIELDS = [:img0, :img1, :img2, :img3]
 
   authorize_resource :class => false
-  
+
   layout :custom_sublayout
   before_action :set_product
   before_action :set_sku, except: [:index, :new, :create]
@@ -17,6 +17,7 @@ class Shopkeeper::Products::SkusController < ApplicationController
   def new
     setup_categories_options!
     @sku = Sku.new
+    sku.product = product
   end
 
   # the sku create is actually an update of the product itself

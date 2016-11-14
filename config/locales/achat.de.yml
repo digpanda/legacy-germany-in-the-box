@@ -583,8 +583,11 @@ de:
     customizable_info: Dieses Produkt kann nach Kundenwunsch individuell angefertig werden.
     return: Zurück zur Produktliste
     cancel: Abbrechen
-    space_weight: Produktmaße (Länge x Breite x Höhe) und Gewicht
-    space_weight_info: Geben Sie bitte die Maße und das Gewicht des Produkts an. Es handelt sich hier um das Produkt mit Verpackung, aber ohne Karton. Bei Kleidungen bitte orientieren Sie sich an den kleinsten Quader, in den das Produkt rein passt.
+    space: Produktmaße
+    space_length: Länge
+    space_width: Breite
+    space_height: Höhe
+    space_info: Geben Sie bitte die Maße und das Gewicht des Produkts an. Es handelt sich hier um das Produkt mit Verpackung, aber ohne Karton. Bei Kleidungen bitte orientieren Sie sich an den kleinsten Quader, in den das Produkt rein passt.
     cm: cm
     clone: Klonen
     piece: Stk.

@@ -1,165 +1,100 @@
-<div class="panel panel-info">
-  <div class="panel-heading text-center">
-    <label>
-      <%= I18n.t(:sku_options, scope: :edit_product_detail) %>
-    </label>
+<div class="col-md-12">
+  <div class="row">
+    <h3><%= I18n.t(:sku_options, scope: :edit_product_detail) %></h3>
+    <hr>
   </div>
-  <div class="panel-body">
-    <div class="row">
-      <div class="col-md-6" title="<%= I18n.t(:variants_info, scope: :edit_product_detail) %>">
-        <i class="fa fa-info-circle" title="<%= I18n.t(:variants_info, scope: :edit_product_detail) %>"></i>
-        <label class="required">
+  <div class="row">
+    <div class="col-md-12">
+
+      <!-- Variant Selection -->
+      <div class="row form-group">
+        <div class="col-md-4">
           <%= I18n.t(:sku_variants_options, scope: :edit_product_detail) %>
-        </label>
+          <%= js_tips(:id => :product_data, :tip => I18n.t(:variants_info, scope: :edit_product_detail)) %>
+        </div>
+        <div class="col-md-8">
+          <%= form.select :option_ids, grouped_options_for_select(form.object.product.decorate.grouped_variants_options, form.object.option_ids), {}, {:multiple => 'multiple', :class => 'sku-variants-options', :required => true} %>
+        </div>
       </div>
-      <div class="col-md-6">
-        <label class="required">
+
+      <!-- Quantity -->
+      <div class="row form-group">
+        <div class="col-md-4">
           <%= I18n.t(:quantity, scope: :edit_product_detail) %>
-        </label>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-6">
-        <div class="form-group">
-          <%= form.select :option_ids, grouped_options_for_select(@product.decorate.grouped_variants_options, @sku.option_ids), {}, {:multiple => 'multiple', :class => 'sku-variants-options', :required => true} %>
         </div>
-      </div>
-      <div class="col-md-6">
-        <div class="row">
-          <div class="col-md-6">
-            <div class="form-group">
-              <%= form.label :unlimited do %>
-              <%= form.check_box :unlimited, {}, true %>
-              <%= I18n.t(:info, scope: 'edit_product_detail.unlimited') %>
-              <% end %>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="input-group form-group">
-              <%= form.text_field :quantity, :class => 'form-control', :pattern => I18n.t(:positive_integer, scope: :validation), :required => true, :disabled => @sku.unlimited %>
-              <div class="input-group-addon">
-                <%= I18n.t(:piece, scope: :edit_product_detail) %>
+        <div class="col-md-8">
+          <div class="row">
+            <div class="col-md-2">
+              <div class="row tooltipster" title="Unlimited">
+                  <%= form.label :unlimited, :class => 'switch' do %>
+                  <%= form.check_box :unlimited %>
+                  <div class="switch__slider"></div>
+                  <% end %>
               </div>
+
+            </div>
+            <div class="col-md-8">
+              <%= form.text_field :quantity, :class => 'form-control', :pattern => I18n.t(:positive_integer, scope: :validation), :required => true, :disabled => form.object.unlimited %>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <br/>
-    <div class="row">
-      <div class="col-md-6">
-        <label class="required">
-          <%= I18n.t(:price, scope: :edit_product_detail) %>
-        </label>
-      </div>
-      <div class="col-md-6">
-        <label class="required">
-          <%= I18n.t(:discount, scope: :edit_product_detail) %>
-        </label>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-6">
-        <div class="input-group form-group">
+
+      <!-- Price -->
+      <div class="row form-group">
+        <div class="col-md-4">
+          <%= I18n.t(:price, scope: :edit_product_detail) %> (EUR)
+        </div>
+        <div class="col-md-8">
           <%= form.text_field :price, value: number_with_precision(@sku.price, :precision => 2), :class => 'form-control', :required => true, :pattern => I18n.t(:positive_float, scope: :validation) %>
-          <span class="input-group-addon">
-            <%= @product.shop.currency.code %>
-          </span>
         </div>
       </div>
-      <div class="col-md-6">
-        <div class="input-group form-group">
+
+      <!-- Discount -->
+      <div class="row form-group">
+        <div class="col-md-4">
+          <%= I18n.t(:discount, scope: :edit_product_detail) %> (EUR)
+        </div>
+        <div class="col-md-8">
           <%= form.text_field :discount, :class => 'form-control', :pattern => I18n.t(:positive_integer_less_or_equal_than_100, scope: :validation), :required => true %>
-          <div class="input-group-addon">
-            <%= '%' %>
-          </div>
         </div>
       </div>
-    </div>
-    <br/>
-    <div class="row">
-      <div class="col-md-6" title="<%= I18n.t(:space_weight_info, scope: :edit_product_detail) %>">
-        <i class="fa fa-info-circle" title="<%= I18n.t(:space_weight_info, scope: :edit_product_detail) %>"></i>
-        <label class="required">
-          <%= I18n.t(:space_weight, scope: :edit_product_detail) %>
-        </label>
-      </div>
-      <div class="col-md-6" title="<%= I18n.t(:customizable_info, scope: :edit_product_detail) %>">
-        <div class="col-md-6 nopadding-lr">
-          <i class="fa fa-info-circle" title="<%= I18n.t(:customizable_info, scope: :edit_product_detail) %>"></i>
-          <label>
-            <%= I18n.t('edit_product_detail.customizable.info') %>
-          </label>
+
+      <!-- Space -->
+      <div class="row form-group">
+        <div class="col-md-4">
+          <%= I18n.t(:space, scope: :edit_product_detail) %> (CM)
+          <%= js_tips(:id => :space, :tip => I18n.t(:space_info, scope: :edit_product_detail)) %>
         </div>
-        <div class="col-md-6 nopadding-lr"></div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-6">
-        <div class="row-fluid">
-          <div class="col-md-4 nopadding-lr">
-            <div class="form-group">
-              <div class="input-group input-group-sm">
-                <%= form.text_field :space_length, value: number_with_precision(@sku.space_length, :precision => 2), :class => 'form-control input-sm', :required => true, :pattern => I18n.t(:positive_float, scope: :validation) %>
-                <div class="input-group-addon">
-                  <%= I18n.t('cm', scope: :edit_product_detail) %>
-                </div>
-              </div>
+        <div class="col-md-8">
+          <div class="row">
+
+            <div class="col-md-4">
+              <%= form.text_field :space_length, value: number_with_precision(@sku.space_length, :precision => 2), :class => 'form-control input-sm', :required => true, :pattern => I18n.t(:positive_float, scope: :validation), :placeholder => I18n.t(:space_length, scope: :edit_product_detail) %>
             </div>
-          </div>
-          <div class="col-md-4 nopadding-lr">
-            <div class="form-group">
-              <div class="input-group input-group-sm">
-                <%= form.text_field :space_width, value: number_with_precision(@sku.space_width, :precision => 2), :class => 'form-control', :required => true, :pattern => I18n.t(:positive_float, scope: :validation) %>
-                <div class="input-group-addon">
-                  <%= I18n.t('cm', scope: :edit_product_detail) %>
-                </div>
-              </div>
+            <div class="col-md-4">
+              <%= form.text_field :space_width, value: number_with_precision(@sku.space_width, :precision => 2), :class => 'form-control', :required => true, :pattern => I18n.t(:positive_float, scope: :validation), :placeholder => I18n.t(:space_width, scope: :edit_product_detail) %>
             </div>
-          </div>
-          <div class="col-md-4 nopadding-lr">
-            <div class="form-group">
-              <div class="input-group input-group-sm">
-                <%= form.text_field :space_height, value: number_with_precision(@sku.space_height, :precision => 2), :class => 'form-control', :required => true, :pattern => I18n.t(:positive_float, scope: :validation) %>
-                <div class="input-group-addon">
-                  <%= I18n.t('cm', scope: :edit_product_detail) %>
-                </div>
-              </div>
+            <div class="col-md-4">
+              <%= form.text_field :space_height, value: number_with_precision(@sku.space_height, :precision => 2), :class => 'form-control', :required => true, :pattern => I18n.t(:positive_float, scope: :validation), :placeholder => I18n.t(:space_height, scope: :edit_product_detail) %>
             </div>
-          </div>
-        </div>
-        <div class="row-fluid">
-          <div class="col-md-12 nopadding-lr">
-            <div class="form-group">
-              <div class="input-group input-group-sm">
-                <%= form.text_field :weight, value: number_with_precision(@sku.weight, :precision => 2), :class => 'form-control', :required => true, :pattern => I18n.t(:positive_float, scope: :validation) %>
-                <div class="input-group-addon">
-                  kg
-                </div>
-              </div>
-            </div>
+
           </div>
         </div>
       </div>
-      <div class="col-md-6">
-        <div class="col-md-6 nopadding-lr">
-          <div class="form-group">
-            <%= form.label :customizable do %>
-            <%= form.check_box :customizable, {}, true %>
-            <%= I18n.t(true, scope: 'edit_product_detail.customizable') %>
-            <% end %>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="pull-right required-info">
-        <strong>
-          <%= I18n.t(:required_field_info, scope: :edit_shop).html_safe %>
-        </strong>
-      </div>
-    </div>
 
 
+      <!-- Weight -->
+      <div class="row form-group">
+        <div class="col-md-4">
+          <%= I18n.t(:weight, scope: :edit_product_detail) %> (KG)
+        </div>
+        <div class="col-md-8">
+          <%= form.text_field :weight, value: number_with_precision(@sku.weight, :precision => 2), :class => 'form-control', :required => true, :pattern => I18n.t(:positive_float, scope: :validation) %>
+        </div>
+      </div>
+
+    </div>
   </div>
+
 </div>
