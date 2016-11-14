@@ -840,6 +840,32 @@ var Variants = {
 
     this.addOptionHandler();
     this.removeOptionHandler();
+
+    this.addVariantHandler();
+    this.removeVariantHandler();
+  },
+
+  addVariantHandler: function addVariantHandler() {
+
+    $('#add-variant').on('click', function (e) {
+
+      e.preventDefault();
+      var target = $('.js-temporary-variant.hidden:first');
+      console.log(target);
+      target.removeClass('hidden');
+    });
+  },
+
+  removeVariantHandler: function removeVariantHandler() {
+
+    $('.js-remove-variant').on('click', function (e) {
+
+      e.preventDefault();
+      var container = $(this).closest('.js-temporary-variant');
+      var input_target = container.find('input');
+      input_target.val('');
+      container.addClass('hidden');
+    });
   },
 
   /**

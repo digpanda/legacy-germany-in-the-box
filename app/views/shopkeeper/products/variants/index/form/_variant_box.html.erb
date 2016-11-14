@@ -1,26 +1,63 @@
-<div class="variant-box">
+<!-- Variant -->
 
-  <!-- Variant Name -->
-  <div class="row variant-box__variant-name">
-    <div class="col-md-8">
-      <%= form.text_field :name, :placeholder => 'Size' %>
-    </div>
-    <div class="col-md-4">
-      <%= link_to '', shopkeeper_product_variant_path(form.object.product, form.object), :class => 'tooltipster fa fa-times buttons buttons__delete', :title => "Remove variant", :method => :delete %>
-    </div>
-  </div>
+<!-- Variant that already existed from the model -->
+<% if form.object.name %>
 
-  <%= form.fields_for :suboptions do |field_suboption| %>
-    <%= render partial: 'shopkeeper/products/variants/index/form/options_fields', :locals => {:form => form, :field_suboption => field_suboption} %>
-  <% end %>
+  <div class="variant-box">
 
-  <!-- Add option -->
-  <div class="row">
-    <div class="col-md-12">
-      <div class="variant-box__add-option">
-        <%= link_to '', '#', :class => 'tooltipster fa fa-plus js-add-option', :title => "Add option" %>
+    <!-- Variant Name -->
+    <div class="row variant-box__variant-name">
+      <div class="col-md-8">
+        <%= form.text_field :name, :placeholder => 'Size' %>
+      </div>
+      <div class="col-md-4">
+        <%= link_to '', shopkeeper_product_variant_path(form.object.product, form.object), :class => 'tooltipster fa fa-times buttons buttons__delete', :title => "Remove variant", :method => :delete %>
       </div>
     </div>
+
+    <%= form.fields_for :suboptions do |field_suboption| %>
+      <%= render partial: 'shopkeeper/products/variants/index/form/options_fields', :locals => {:form => form, :field_suboption => field_suboption} %>
+    <% end %>
+
+    <!-- Add option -->
+    <div class="row">
+      <div class="col-md-12">
+        <div class="variant-box__add-option">
+          <%= link_to '', '#', :class => 'tooltipster fa fa-plus js-add-option', :title => "Add option" %>
+        </div>
+      </div>
+    </div>
+
   </div>
 
-</div>
+<!-- Variant that we build up -->
+<% else %>
+
+  <div class="variant-box js-temporary-variant hidden">
+
+    <!-- Variant Name -->
+    <div class="row variant-box__variant-name">
+      <div class="col-md-8">
+        <%= form.text_field :name, :placeholder => 'Size' %>
+      </div>
+      <div class="col-md-4">
+        <%= link_to '', '#', :class => 'tooltipster fa fa-times buttons buttons__delete js-remove-variant', :title => "Remove variant" %>
+      </div>
+    </div>
+
+    <%= form.fields_for :suboptions do |field_suboption| %>
+      <%= render partial: 'shopkeeper/products/variants/index/form/options_fields', :locals => {:form => form, :field_suboption => field_suboption} %>
+    <% end %>
+
+    <!-- Add option -->
+    <div class="row">
+      <div class="col-md-12">
+        <div class="variant-box__add-option">
+          <%= link_to '', '#', :class => 'tooltipster fa fa-plus js-add-option', :title => "Add option" %>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+<% end %>

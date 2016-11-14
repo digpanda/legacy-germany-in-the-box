@@ -11,6 +11,36 @@ var Variants = {
     this.addOptionHandler();
     this.removeOptionHandler();
 
+    this.addVariantHandler();
+    this.removeVariantHandler();
+
+  },
+
+  addVariantHandler: function() {
+
+    $('#add-variant').on('click', function(e) {
+
+      e.preventDefault();
+      let target = $('.js-temporary-variant.hidden:first');
+      console.log(target);
+      target.removeClass('hidden');
+
+    })
+
+  },
+
+  removeVariantHandler: function() {
+
+    $('.js-remove-variant').on('click', function(e) {
+
+      e.preventDefault();
+      let container = $(this).closest('.js-temporary-variant');
+      let input_target = container.find('input');
+      input_target.val('');
+      container.addClass('hidden');
+
+    });
+
   },
 
   /**

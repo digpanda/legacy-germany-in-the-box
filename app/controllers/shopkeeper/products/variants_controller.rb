@@ -12,6 +12,9 @@ class Shopkeeper::Products::VariantsController < ApplicationController
   attr_reader :shop, :product, :variants, :variant
 
   def index
+
+    10.times { product.options.build }
+
     @variants = product.options
     variants.map do |variant|
        10.times { variant.suboptions.build }
@@ -26,6 +29,7 @@ class Shopkeeper::Products::VariantsController < ApplicationController
   # there may be a better solution but this one does the work for now.
   def create
     remove_empty_options_from_params!
+    remove_empty_variants_from_params!
     # we split up the update into two to avoid conflict
     # on updating the options and suboptions at the same time
     if product.update(product_params_without_option) && product.update(product_params)
@@ -101,12 +105,24 @@ class Shopkeeper::Products::VariantsController < ApplicationController
     end
   end
 
+  # remove any empty option from the parameters
+  # there will be some which are systematically empty because of the hide / show in front-end
   def remove_empty_options_from_params!
     params.require(:product).require(:options_attributes).each do |key, option|
       option.require(:suboptions_attributes).each do |suboption_key, suboption|
         if suboption[:name].empty?
           option.require(:suboptions_attributes).delete(suboption_key)
         end
+      end
+    end
+  end
+
+  # remove any empty variant from the parameters
+  # there will be some which are systematically empty because of the hide / show in front-end
+  def remove_empty_variants_from_params!
+    params.require(:product).require(:options_attributes).each do |key, option|
+      if option[:name].empty?
+        params.require(:product).require(:options_attributes).delete(key)
       end
     end
   end
