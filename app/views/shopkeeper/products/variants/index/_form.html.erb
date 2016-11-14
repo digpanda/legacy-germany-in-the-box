@@ -3,9 +3,21 @@
   <div class="col-md-10 col-md-push-1 col-md-pull-1">
     <div class="row form-group">
       <%= f.fields_for :options do |field_option| %>
+
+      <!-- TODO : this has to be improved. i didn't find any better solution so far than using pure mathematics. if you have time, please investigate to find something like a `in_groups_of` -->
+      <% if (field_option.index + 1) % 3 == 0 %>
+        <div class="row">
+      <% end %>
+
       <div class="col-md-4">
         <%= render partial: "shopkeeper/products/variants/index/form/variant_box", :locals => {:form => field_option} %>
       </div>
+
+      <% if (field_option.index + 1) % 3 == 0 %>
+        </div>
+        <div class="+small-spacer"></div>
+      <% end %>
+
       <% end %>
     </div>
 
