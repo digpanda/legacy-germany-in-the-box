@@ -3,10 +3,6 @@
 <%= form_for [:shopkeeper, @product, @sku], :html => {:data => {:toggle => 'validator'}, :id => 'sku_form'} do |form| %>
 
   <div class="row details__block">
-    <%= render partial: "shopkeeper/products/skus/form/images", :locals => {:form => form} %>
-  </div>
-
-  <div class="row details__block">
     <%= render partial: "shopkeeper/products/skus/form/main_data", :locals => {:form => form} %>
   </div>
 
@@ -15,9 +11,14 @@
   </div>
 
   <div class="row details__block">
+    <%= render partial: "shopkeeper/products/skus/form/images", :locals => {:form => form} %>
+  </div>
+
+  <div class="row details__block">
     <%= render partial: "shopkeeper/products/skus/form/agreement", :locals => {:form => form} %>
   </div>
 
+
   <%= form.submit :class => 'btn btn-primary', :value => I18n.t(:update_sku, scope: :edit_product_detail), :id => 'edit_product_detail_form_btn' %>
-  
+
 <% end %>
