@@ -33,7 +33,7 @@
               </div>
 
             </div>
-            <div class="col-md-8">
+            <div class="col-md-10">
               <%= form.text_field :quantity, :class => 'form-control', :pattern => I18n.t(:positive_integer, scope: :validation), :required => true, :disabled => form.object.unlimited %>
             </div>
           </div>

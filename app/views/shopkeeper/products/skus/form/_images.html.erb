@@ -9,7 +9,10 @@
   <div class="row">
     <% [:img0, :img1, :img2, :img3].each do |field| %>
     <div class="col-md-3">
-      <%= js_file_upload(form: form, field: field) %>
+      <%= js_file_upload(
+          form: form,
+          field: field,
+          destroy_image_path: shopkeeper_product_sku_destroy_image_path(form.object.product, form.object, image_field: field)) %>
     </div>
     <% end %>
   </div>

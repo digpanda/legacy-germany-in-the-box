@@ -29,9 +29,7 @@
       <%= link_to '', '#', :class => 'tooltipster fa fa-check buttons buttons__add hidden', :id => "#{field}_#{form.object.id}_add", :title => "Update changes", :data => {:form => 'submit'} %>
 
       <% if form.object.send(field).present? %>
-      <!-- NOTE : right now the path to the destroy image is static, it may be changed in the future
-      don't hesitate to manipulate this -->
-      <%= link_to '', destroy_image_shopkeeper_shop_path(form.object, image_field: field), :method => :delete, :class => 'tooltipster fa fa-times buttons buttons__delete', :title => "Delete this image" %>
+      <%= link_to '', destroy_image_path, :method => :delete, :class => 'tooltipster fa fa-times buttons buttons__delete', :title => "Delete this image" %>
       <% end %>
     </div>
   </div>

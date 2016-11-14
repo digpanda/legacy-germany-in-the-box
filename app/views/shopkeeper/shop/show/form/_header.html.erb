@@ -9,13 +9,19 @@
       <div class="row +centered">
         <h4>Owner image</h4>
       </div>
-      <%= js_file_upload(form: f, field: :logo) %>
+      <%= js_file_upload(
+          form: f,
+          field: :logo,
+          destroy_image_path: destroy_image_shopkeeper_shop_path(f.object, image_field: :logo)) %>
     </div>
     <div class="col-md-6">
       <div class="row +centered">
         <h4>Cover image</h4>
       </div>
-      <%= js_file_upload(form: f, field: :banner) %>
+      <%= js_file_upload(
+          form: form,
+          field: :banner,
+          destroy_image_path: destroy_image_shopkeeper_shop_path(f.object, image_field: :banner)) %>
     </div>
   </div>
 
