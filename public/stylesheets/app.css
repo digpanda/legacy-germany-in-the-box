@@ -9218,13 +9218,13 @@ img.mfp-img {
     background-color: #eeeeee; }
     /* line 12, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_variant-box.sass */
     .variant-box__variant-name input {
-      max-width: 160px; }
+      max-width: 140px; }
   /* line 76, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
   .variant-box__option-name {
     padding: 1em; }
     /* line 17, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_variant-box.sass */
     .variant-box__option-name input {
-      max-width: 120px; }
+      max-width: 110px; }
   /* line 76, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
   .variant-box__add-option {
     background-color: #666;

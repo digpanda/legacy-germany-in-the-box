@@ -1,28 +1,15 @@
-<div class="col-md-12">
-
-  <div class="row">
-    <div class="col-md-8 +nopadding">
-      <h3><%= I18n.t(:variants, scope: :edit_product_variant) %></h3>
-      <hr>
-    </div>
-    <div class="col-md-4 +right">
-      <a href="#" class="+dark-grey" id="add-variant"><i class="fa fa-plus"></i></a>
-      <hr>
-    </div>
+<!-- Variant boxes -->
+<div class="row">
+  <div class="col-md-10 col-md-push-1 col-md-pull-1">
+<div class="row form-group">
+  <%= f.fields_for :options do |field_option| %>
+  <div class="col-md-4">
+    <%= render partial: "shopkeeper/products/variants/index/form/variant_box", :locals => {:form => field_option} %>
   </div>
-  <div class="row">
-    <%= I18n.t(:variant_usage, scope: :edit_product_variant).html_safe %>
-  </div>
+  <% end %>
+</div>
 
-  <div class="+small-spacer"></div>
+</div>
 
-  <!-- Variant boxes -->
-  <div class="row form-group">
-    <%= f.fields_for :options do |field_option| %>
-        <div class="col-md-4">
-          <%= render partial: "shopkeeper/products/variants/index/form/variant_box", :locals => {:form => field_option} %>
-        </div>
-    <% end %>
-  </div>
-
+</div>
 </div>

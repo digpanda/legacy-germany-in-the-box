@@ -1,11 +1,26 @@
-<%= form_for [:shopkeeper, @product], :url => shopkeeper_product_variants_path(@product), :method => :post, :html => {:data => {:toggle => 'validator'}} do |f| %>
-
-  <div class="row details__block">
-    <%= render partial: "shopkeeper/products/variants/index/form", :locals => {:f => f} %>
+<div class="row">
+  <div class="col-md-10">
+    <h2><%= I18n.t(:variants, scope: :edit_product_variant) %></h2>
+    <%= I18n.t(:variant_usage, scope: :edit_product_variant).html_safe %>
+    <hr>
   </div>
-
-  <div class="row">
-    <%= f.submit :class => 'btn btn-primary', :value =>  I18n.t(:update_basic, scope: :edit_product) %>
+  <div class="col-md-2 details__action">
+    <a href="#" id="add-variant"><i class="fa fa-plus tooltipster" class="Add variant"></i></a>
   </div>
+</div>
 
-<% end %>
+<div class="row">
+
+  <%= form_for [:shopkeeper, @product], :url => shopkeeper_product_variants_path(@product), :method => :post, :html => {:data => {:toggle => 'validator'}} do |f| %>
+
+    <div class="row details__block">
+      <%= render partial: "shopkeeper/products/variants/index/form", :locals => {:f => f} %>
+
+      <%= f.submit :class => 'btn btn-primary', :value =>  I18n.t(:update_basic, scope: :edit_product) %>
+
+    </div>
+
+
+  <% end %>
+
+</div>
