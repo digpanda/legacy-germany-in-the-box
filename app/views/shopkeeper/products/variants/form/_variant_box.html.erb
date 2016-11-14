@@ -16,7 +16,7 @@
     </div>
 
     <%= form.fields_for :suboptions do |field_suboption| %>
-      <%= render partial: 'shopkeeper/products/variants/index/form/options_fields', :locals => {:form => form, :field_suboption => field_suboption} %>
+      <%= render partial: 'shopkeeper/products/variants/form/options_fields', :locals => {:form => form, :field_suboption => field_suboption} %>
     <% end %>
 
     <!-- Add option -->
@@ -46,7 +46,7 @@
     </div>
 
     <%= form.fields_for :suboptions do |field_suboption| %>
-      <%= render partial: 'shopkeeper/products/variants/index/form/options_fields', :locals => {:form => form, :field_suboption => field_suboption} %>
+      <%= render partial: 'shopkeeper/products/variants/form/options_fields', :locals => {:form => form, :field_suboption => field_suboption} %>
     <% end %>
 
     <!-- Add option -->

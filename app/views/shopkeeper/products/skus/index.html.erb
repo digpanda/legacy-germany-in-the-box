@@ -12,7 +12,7 @@
 </div>
 
 <div class="+overflow">
-  <%= render partial: "shopkeeper/products/skus/index/table", :locals => { :skus => @skus } %>
+  <%= render partial: "shopkeeper/products/skus/table", :locals => { :skus => @skus } %>
 </div>
 
 <%= will_paginate @skus, renderer: BootstrapPagination::Rails %>
