@@ -9232,7 +9232,7 @@ img.mfp-img {
     font-size: 20px; }
     /* line 24, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_variant-box.sass */
     .variant-box__add-option a, .variant-box__add-option a:active, .variant-box__add-option a:hover, .variant-box__add-option a:visited {
-      color: #fdfdfd; }
+      color: #fdfdfd !important; }
 
 /* line 32, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
 .home-steps {

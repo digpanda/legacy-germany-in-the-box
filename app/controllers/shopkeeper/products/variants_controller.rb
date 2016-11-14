@@ -13,6 +13,9 @@ class Shopkeeper::Products::VariantsController < ApplicationController
 
   def index
     @variants = product.options
+    variants.map do |variant|
+       10.times { variant.suboptions.build }
+    end
   end
 
   # NOTE : we use the create method but it is actually an update one.
