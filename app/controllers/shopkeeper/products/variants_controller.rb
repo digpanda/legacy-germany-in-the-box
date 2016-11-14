@@ -2,6 +2,9 @@
 # this is an embedded collection within the product model used on the skus
 class Shopkeeper::Products::VariantsController < ApplicationController
 
+  MAX_NEW_VARIANTS = 10.freeze
+  MAX_NEW_OPTIONS = 10.freeze
+
   authorize_resource :class => false
 
   before_action :set_shop, :set_product
@@ -12,12 +15,10 @@ class Shopkeeper::Products::VariantsController < ApplicationController
   attr_reader :shop, :product, :variants, :variant
 
   def index
-
-    10.times { product.options.build }
-
+    MAX_NEW_VARIANTS.times { product.options.build }
     @variants = product.options
     variants.map do |variant|
-       10.times { variant.suboptions.build }
+      MAX_NEW_OPTIONS.times { variant.suboptions.build }
     end
   end
 
