@@ -14,6 +14,25 @@ class Admin::ShopsController < ApplicationController
   def show
   end
 
+  def update
+    if shop.update(shop_params)
+      flash[:success] = I18n.t(:update_ok, scope: :edit_shop)
+      redirect_to navigation.back(1)
+    else
+      flash[:error] = shop.errors.full_messages.first
+      redirect_to navigation.back(1)
+    end
+  end
+
+  def destroy
+    if shop.addresses.delete_all && shop.payment_gateways.delete_all && shop.destroy
+      flash[:success] = I18n.t(:delete_ok, scope: :edit_shops)
+    else
+      flash[:error] = shop.errors.full_messages.join(', ')
+    end
+    redirect_to navigation.back(1)
+  end
+
   def emails
     shops = Shop.all
     shop_emails = shops.reduce([]) { |acc, shop| acc << shop.mail } # could be in model
@@ -37,16 +56,11 @@ class Admin::ShopsController < ApplicationController
     redirect_to navigation.back(1)
   end
 
-  def destroy
-    if shop.addresses.delete_all && shop.payment_gateways.delete_all && shop.destroy
-      flash[:success] = I18n.t(:delete_ok, scope: :edit_shops)
-    else
-      flash[:error] = shop.errors.full_messages.join(', ')
-    end
-    redirect_to navigation.back(1)
-  end
-
   private
+
+  def shop_params
+    params.require(:shop).permit!
+  end
 
   def set_shop
     @shop = Shop.find(params[:id] || params[:shop_id])
