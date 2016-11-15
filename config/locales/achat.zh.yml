@@ -1,4 +1,7 @@
 zh-CN:
+  action:
+    removed_image: 图片被成功删除
+    no_removed_image: 删除图片未能成功
   sku:
     clone_successful: 复制成功
   landing_page:

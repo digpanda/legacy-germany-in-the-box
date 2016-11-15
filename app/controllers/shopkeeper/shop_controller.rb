@@ -28,9 +28,9 @@ class Shopkeeper::ShopController < ApplicationController
 
   def destroy_image
     if ImageDestroyer.new(shop, SHOP_IMAGE_FIELDS).perform(params[:image_field])
-      flash[:success] = "Image removed successfully"
+      flash[:success] = I18n.t(:removed_image, scope: :action)
     else
-      flash[:error] = "Can't remove this image"
+      flash[:error] = I18n.t(:no_removed_image, scope: :action)
     end
     redirect_to navigation.back(1)
   end
