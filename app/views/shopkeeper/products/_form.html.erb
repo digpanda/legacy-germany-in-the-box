@@ -1,13 +1,11 @@
-<%= translation_js(:non_selected_text, :multiselect) %>
-<%= translation_js(:n_selected_text, :multiselect) %>
-
 <%= form_for [:shopkeeper, @product], :html => {:data => {:toggle => 'validator'}} do |form| %>
 
   <div class="row details__block">
     <%= render partial: "shopkeeper/products/form/informations", :locals => {:form => form} %>
   </div>
 
-  <%= form.submit :id => 'edit_product_submit_btn', :class => 'btn btn-primary', :value =>  I18n.t(:update_basic, scope: :edit_product) %>
+  <%= form.submit :class => 'btn btn-primary', :value =>  I18n.t(:update_basic, scope: :edit_product) %>
+  <!-- :id => 'edit_product_submit_btn' -->
 
 <% end %>
 
