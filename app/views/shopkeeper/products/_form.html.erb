@@ -1,13 +1,13 @@
 <%= translation_js(:non_selected_text, :multiselect) %>
 <%= translation_js(:n_selected_text, :multiselect) %>
 
-<%= form_for [:shopkeeper, @product], :html => {:data => {:toggle => 'validator'}} do |f| %>
+<%= form_for [:shopkeeper, @product], :html => {:data => {:toggle => 'validator'}} do |form| %>
 
   <div class="row details__block">
-    <%= render partial: "shopkeeper/products/form/informations", :locals => {:f => f} %>
+    <%= render partial: "shopkeeper/products/form/informations", :locals => {:form => form} %>
   </div>
 
-  <%= f.submit :id => 'edit_product_submit_btn', :class => 'btn btn-primary', :value =>  I18n.t(:update_basic, scope: :edit_product) %>
+  <%= form.submit :id => 'edit_product_submit_btn', :class => 'btn btn-primary', :value =>  I18n.t(:update_basic, scope: :edit_product) %>
 
 <% end %>
 
@@ -25,7 +25,7 @@
     <div class="panel-body">
       <div class="form-group">
         <div class="row-fluid">
-          <%= f.select :duty_category, grouped_options_for_select(@duty_categories_options.grouped_categories_options(:en), @product.duty_category ? @product.duty_category.id : nil), { :include_blank => I18n.t(:non_selected_text, scope: :multiselect, locale: locale) }, :class => 'form-control duty-categories' %>
+          <%= form.select :duty_category, grouped_options_for_select(@duty_categories_options.grouped_categories_options(:en), @product.duty_category ? @product.duty_category.id : nil), { :include_blank => I18n.t(:non_selected_text, scope: :multiselect, locale: locale) }, :class => 'form-control duty-categories' %>
         </div>
       </div>
     </div>
@@ -44,7 +44,7 @@
     <div class="panel-body">
       <div class="form-group">
         <div class="row-fluid">
-          <%= f.select :category_ids, options_for_select(@customer_categories_options.grouped_categories_options(locale), @product.categories.map { |c| c.id.to_s }), { :include_blank => I18n.t(:non_selected_text, scope: :multiselect, locale: locale) }, :class => 'form-control' %>
+          <%= form.select :category_ids, options_for_select(@customer_categories_options.grouped_categories_options(locale), @product.categories.map { |c| c.id.to_s }), { :include_blank => I18n.t(:non_selected_text, scope: :multiselect, locale: locale) }, :class => 'form-control' %>
         </div>
       </div>
     </div>

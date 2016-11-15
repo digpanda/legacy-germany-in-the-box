@@ -11,14 +11,14 @@
 
 <div class="row">
 
-  <%= form_for [:shopkeeper, @product], :url => shopkeeper_product_variants_path(@product), :method => :post, :html => {:data => {:toggle => 'validator'}} do |f| %>
+  <%= form_for [:shopkeeper, @product], :url => shopkeeper_product_variants_path(@product), :method => :post, :html => {:data => {:toggle => 'validator'}} do |form| %>
 
     <div class="row details__block">
-      <%= render partial: "shopkeeper/products/variants/form", :locals => {:f => f} %>
+      <%= render partial: "shopkeeper/products/variants/form", :locals => {:form => form} %>
     </div>
 
     <div class="row">
-      <%= f.submit :class => 'btn btn-primary', :value =>  I18n.t(:update_basic, scope: :edit_product) %>
+      <%= form.submit :class => 'btn btn-primary', :value =>  I18n.t(:update_basic, scope: :edit_product) %>
     </div>
 
 

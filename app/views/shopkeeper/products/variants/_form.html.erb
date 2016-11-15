@@ -2,7 +2,7 @@
 <div class="row">
   <div class="col-md-10 col-md-push-1 col-md-pull-1">
     <div class="row form-group">
-      <%= f.fields_for :options do |field_option| %>
+      <%= form.fields_for :options do |field_option| %>
 
       <!-- TODO : this has to be improved. i didn't find any better solution so far than using pure mathematics. if you have time, please investigate to find something like a `in_groups_of` -->
       <% if (field_option.index + 1) % 3 == 0 %>

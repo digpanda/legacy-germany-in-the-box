@@ -25,7 +25,7 @@
       </label>
     </div>
     <div class="col-md-8">
-      <%= f.text_field :name, :value => @product.name_translations[locale], :class => 'form-control', :required => true, :maxLength => Rails.configuration.max_short_text_length %>
+      <%= form.text_field :name, :value => @product.name_translations[locale], :class => 'form-control', :required => true, :maxLength => Rails.configuration.max_short_text_length %>
       <div class="help-block with-errors"></div>
     </div>
   </div>
@@ -38,7 +38,7 @@
       </label>
     </div>
     <div class="col-md-8">
-      <%= f.text_field :brand, :value => @product.brand_translations[locale], :class => 'form-control', :required => true, :maxLength => Rails.configuration.max_short_text_length %>
+      <%= form.text_field :brand, :value => @product.brand_translations[locale], :class => 'form-control', :required => true, :maxLength => Rails.configuration.max_short_text_length %>
       <div class="help-block with-errors"></div>
     </div>
   </div>
@@ -52,7 +52,7 @@
       </label>
     </div>
     <div class="col-md-8">
-        <%= f.text_area :desc, :value => @product.desc_translations[locale], :class => 'form-control', rows: 2, :required => true, :maxLength => Rails.configuration.max_long_text_length %>
+        <%= form.text_area :desc, :value => @product.desc_translations[locale], :class => 'form-control', rows: 2, :required => true, :maxLength => Rails.configuration.max_long_text_length %>
       <div class="help-block with-errors"></div>
     </div>
   </div>
@@ -68,7 +68,7 @@
       </label>
     </div>
     <div class="col-md-8">
-        <%= f.text_field :hs_code, :value => @product.hs_code, :class => 'form-control', :required => true, :pattern => '^\d{8,8}$', :placeholder => '48191000' %>
+        <%= form.text_field :hs_code, :value => @product.hs_code, :class => 'form-control', :required => true, :pattern => '^\d{8,8}$', :placeholder => '48191000' %>
       <div class="help-block with-errors"></div>
     </div>
   </div>
