@@ -22,17 +22,17 @@ class Admin::ShopsController < ApplicationController
   end
 
   def approve
-    @shop.approved = Time.now.utc
+    shop.approved = Time.now.utc
     unless @shop.save
-      flash[:error] = "Can't approve the shop : #{@shop.errors.full_messages.join(', ')}"
+      flash[:error] = "Can't approve the shop : #{shop.errors.full_messages.join(', ')}"
     end
     redirect_to navigation.back(1)
   end
 
   def disapprove
-    @shop.approved = nil
+    shop.approved = nil
     unless @shop.save
-      flash[:error] = "Can't disapprove the shop : #{@shop.errors.full_messages.join(', ')}"
+      flash[:error] = "Can't disapprove the shop : #{shop.errors.full_messages.join(', ')}"
     end
     redirect_to navigation.back(1)
   end
@@ -41,7 +41,7 @@ class Admin::ShopsController < ApplicationController
     if shop.addresses.delete_all && shop.payment_gateways.delete_all && shop.destroy
       flash[:success] = I18n.t(:delete_ok, scope: :edit_shops)
     else
-      flash[:error] = @shop_application.errors.full_messages.first
+      flash[:error] = shop.errors.full_messages.join(', ')
     end
     redirect_to navigation.back(1)
   end

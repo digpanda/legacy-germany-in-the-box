@@ -1,9 +1,9 @@
 <%= link_to '', admin_shop_path(shop), :class => 'tooltipster fa fa-eye buttons buttons__edit', :title => "Details and configuration" %>
 
-<% if shop.approved.nil? %>
-  <%= link_to '', admin_shop_approve_path(shop), :method => :patch, :class => 'tooltipster fa fa-check buttons buttons__add', :title => "Approve" %>
-<% else %>
+<% if shop.approved %>
   <%= link_to '', admin_shop_disapprove_path(shop), :method => :patch, :class => 'tooltipster fa fa-minus buttons buttons__cancel', :title => "Disapprove" %>
+<% else %>
+  <%= link_to '', admin_shop_approve_path(shop), :method => :patch, :class => 'tooltipster fa fa-check buttons buttons__add', :title => "Approve" %>
 <% end %>
 
 <% if shop.products.count == 0 %>
