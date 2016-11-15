@@ -1,40 +1,3 @@
-class TranslatorField
-  LANGUAGES = [:de, :'zh-CN']
-  class << self
-
-    def translate_fields(form, field, &block)
-      form.fields_for "#{field}_translations" do |form_field|
-        LANGUAGES.each do |language|
-          yield(TranslatorFieldMapping.new(form, form_field, field, language))
-        end
-      end
-    end
-
-  end
-end
-
-class TranslatorFieldMapping
-
-  attr_reader :form, :form_field, :field, :language
-
-  def initialize(form, form_field, field, language)
-    @form = form
-    @form_field = form_field
-    @field = field
-    @language = language
-  end
-
-  def text_area(*args)
-    arguments = {:value => object_field[language]}.merge(*args)
-    form_field.text_area(language, arguments)
-  end
-
-  def object_field
-    form.object.send("#{field}_translations")
-  end
-
-end
-
 module TranslationHelper
 
   def translation_js(slug, scope=nil)
@@ -45,8 +8,10 @@ module TranslationHelper
     })
   end
 
+  # we use a homemade class to communicate the instructions and turn it
+  # into an improved text_field, text_area while keeping the HTML outside.
   def translate_fields(form, field, &block)
-    TranslatorField.translate_fields(form, field, &block)
+    FieldsTranslator.translate_fields(form, field, &block)
   end
 
 end

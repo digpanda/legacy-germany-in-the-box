@@ -19,18 +19,6 @@
       </label>
     </div>
 
-
-    <!-- <%= form.fields_for :desc_translations do |trans_field| %>
-      <div class="col-md-5">
-        <%= trans_field.text_area :de, :value => form.object.desc_translations[:de], :class => 'form-control', :required => true %>
-        <div class="help-block with-errors"></div>
-      </div>
-      <div class="col-md-5">
-        <%= trans_field.text_area :'zh-CN', :value => form.object.desc_translations[:'zh-CN'], :class => 'form-control', :required => true %>
-        <div class="help-block with-errors"></div>
-      </div>
-    <% end %> -->
-
     <%= translate_fields form, :desc do |form_field| %>
       <div class="col-md-5">
         <%= form_field.text_area :class => 'form-control', :required => true %>
@@ -38,20 +26,23 @@
       </div>
     <% end %>
 
-
   </div>
 
   <!-- Philosophie -->
   <div class="row form-group">
-    <div class="col-md-4">
+    <div class="col-md-2">
       <label>
         <%= I18n.t(:philosophy, scope: :edit_shop) %> <span class="+red">*</span>
       </label>
     </div>
-    <div class="col-md-8">
-      <%= form.text_area :philosophy, :class => 'form-control', :required => true, :maxLength => Rails.configuration.max_medium_text_length %>
-      <div class="help-block with-errors"></div>
-    </div>
+
+    <%= translate_fields form, :philosophy do |form_field| %>
+      <div class="col-md-5">
+        <%= form_field.text_area :class => 'form-control', :required => true %>
+        <div class="help-block with-errors"></div>
+      </div>
+    <% end %>
+
   </div>
 
   <!-- Stories -->
