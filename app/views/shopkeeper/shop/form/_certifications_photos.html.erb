@@ -1,0 +1,17 @@
+<div class="col-md-12">
+  <div class="row">
+    <h3><%= I18n.t(:product_seal, scope: :edit_product) %>
+      <%= js_tips(:id => :seals, :tip => I18n.t(:product_seal_info, scope: :edit_product)) %>
+    </h3>
+    <hr>
+  </div>
+
+  <div class="row">
+    <% [:seal4, :seal5, :seal6, :seal7].each do |field| %>
+    <div class="col-md-3">
+      <%= js_file_upload(form: f, field: field) %>
+    </div>
+    <% end %>
+  </div>
+
+</div>

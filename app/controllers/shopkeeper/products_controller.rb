@@ -1,7 +1,7 @@
 class Shopkeeper::ProductsController < ApplicationController
 
   authorize_resource :class => false
-  
+
   before_action :set_shop
   before_action :set_product, except: [:index, :new, :create]
 
@@ -42,17 +42,16 @@ class Shopkeeper::ProductsController < ApplicationController
       return
     end
 
-    flash[:error] = product.errors.full_messages.first
+    flash[:error] = product.errors.full_messages.join(', ')
     redirect_to navigation.back(1)
   end
 
   def destroy
     if product.destroy
       flash[:success] = I18n.t(:delete_ok, scope: :edit_product)
-      redirect_to shopkeeper_shop_path
-      return
+    else
+      flash[:error] = product.errors.full_messages.join(', ')
     end
-    flash[:error] = product.errors.full_messages.first
     redirect_to shopkeeper_shop_path
   end
 

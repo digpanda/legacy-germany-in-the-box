@@ -23,9 +23,8 @@ class Shopkeeper::Products::SkusController < ApplicationController
   # the sku create is actually an update of the product itself
   # because it's an embedded document.
   def create
-
     @sku = Sku.new(sku_params)
-    @sku.product = product
+    sku.product = product
 
     if sku.save && product.save
       flash[:success] = I18n.t(:update_ok, scope: :edit_product)
@@ -35,7 +34,6 @@ class Shopkeeper::Products::SkusController < ApplicationController
 
     flash[:error] = sku.errors.full_messages.join(', ')
     redirect_to navigation.back(1)
-
   end
 
   def edit
@@ -47,6 +45,7 @@ class Shopkeeper::Products::SkusController < ApplicationController
       redirect_to shopkeeper_product_skus_path
       return
     end
+
     flash[:error] = sku.errors.full_messages.join(', ')
     redirect_to navigation.back(1)
   end
@@ -72,30 +71,28 @@ class Shopkeeper::Products::SkusController < ApplicationController
   def destroy
     if sku.destroy
       flash[:success] = I18n.t(:delete_ok, scope: :edit_sku)
-      redirect_to navigation.back(1)
-      return
+    else
+      flash[:error] = sku.errors.full_messages.join(', ')
     end
-    flash[:error] = sku.errors.full_messages.join(', ')
     redirect_to navigation.back(1)
   end
 
   def destroy_image
     if ImageDestroyer.new(sku, SKU_IMAGE_FIELDS).perform(params[:image_field])
       flash[:success] = "Image removed successfully"
-      redirect_to navigation.back(1)
-      return
+    else
+      flash[:error] = "Can't remove this image"
     end
-    flash[:error] = "Can't remove this image"
     redirect_to navigation.back(1)
   end
 
   private
 
   # TODO : this concerns only the admin, we should refactor it a bit and remove it from this section after understanding fully how it works
-  def setup_categories_options!
-    @customer_categories_options = DutyAndCustomerCategorySelectStore.new(Category.name)
-    @duty_categories_options = DutyAndCustomerCategorySelectStore.new(DutyCategory.name)
-  end
+  # def setup_categories_options!
+  #   @customer_categories_options = DutyAndCustomerCategorySelectStore.new(Category.name)
+  #   @duty_categories_options = DutyAndCustomerCategorySelectStore.new(DutyCategory.name)
+  # end
 
   def set_product
     @product = Product.find(params[:product_id])

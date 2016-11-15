@@ -4,6 +4,7 @@ class Shopkeeper::ShopController < ApplicationController
   # the structure of the model itself should be changed
   # this is pathetic to have such fields in the database.
   # we are not a bunch of amateurs.
+  # - Laurent
   SHOP_IMAGE_FIELDS = [:logo, :banner, :seal0, :seal1, :seal2, :seal3, :seal4, :seal5, :seal6, :seal7]
 
   authorize_resource :class => false

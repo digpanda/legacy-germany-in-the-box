@@ -14,34 +14,40 @@ class Ability
     namespaces.shift if namespaces.first == "Api"
     authorization = namespaces.shift
 
+    # namespaced authorization
     if user
 
-      # Namespaced authorization
       case authorization
 
-        when 'Guest' # Anyone
+        # anyone
+        when 'Guest'
           can :manage, :all
 
-        when 'Webhook' # Any server (API inter-communication) -> no difference from user so far, but the system is ready.
+        # any server (API inter-communication)
+        # NOTE : no difference from user so far, but the system is ready.
+        when 'Webhook'
           can :manage, :all
 
-        when 'Customer' # Customer only
+        # customer section
+        when 'Customer'
           can :manage, :all if user.decorate.customer?
 
-        when 'Shopkeeper' # Shopkeeper only
+        # shopkeeper section
+        when 'Shopkeeper'
           can :manage, :all if user.decorate.shopkeeper?
 
-        when 'Admin' # Admin only
+        # admin section
+        when 'Admin'
           can :manage, :all if user.decorate.admin?
 
-        when 'Shared' # If the user is logged-in in any type of account
+        # if the user is logged-in in any type of account
+        when 'Shared'
           can :manage, :all if user
 
       end
 
     end
-
-    # End of namespaced authorization
+    # end of namespaced authorization
 
     #
     # WARNING :

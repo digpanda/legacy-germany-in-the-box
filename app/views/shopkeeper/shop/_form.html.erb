@@ -1,0 +1,24 @@
+<%= form_for [:shopkeeper, shop], :data => {:toggle => 'validator'} do |f| %>
+
+  <div class="row details__block">
+    <%= render partial: "shopkeeper/shop/form/header", :locals => {:form => f} %>
+  </div>
+
+  <div class="row details__block">
+    <%= render partial: "shopkeeper/shop/form/about", :locals => {:f => f} %>
+  </div>
+
+  <div class="row details__block">
+    <%= render partial: "shopkeeper/shop/form/shop_photos", :locals => {:f => f} %>
+  </div>
+
+  <div class="row details__block">
+    <%= render partial: "shopkeeper/shop/form/certifications_photos", :locals => {:f => f} %>
+  </div>
+
+  <div class="row details__block">
+    <%= render partial: "shopkeeper/shop/form/public_informations", :locals => {:f => f} %>
+  </div>
+
+  <%= f.button I18n.t(:save, scope: :edit_shop), :class => 'btn btn-primary' %>
+<% end %>
