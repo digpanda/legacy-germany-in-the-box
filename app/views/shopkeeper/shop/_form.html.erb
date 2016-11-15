@@ -1,23 +1,23 @@
-<%= form_for [:shopkeeper, shop], :data => {:toggle => 'validator'} do |f| %>
+<%= form_for [:shopkeeper, shop], :data => {:toggle => 'validator'} do |form| %>
 
   <div class="row details__block">
-    <%= render partial: "shopkeeper/shop/form/header", :locals => {:form => f} %>
+    <%= render partial: "shopkeeper/shop/form/header", :locals => {:form => form} %>
   </div>
 
   <div class="row details__block">
-    <%= render partial: "shopkeeper/shop/form/about", :locals => {:f => f} %>
+    <%= render partial: "shopkeeper/shop/form/about", :locals => {:form => form} %>
   </div>
 
   <div class="row details__block">
-    <%= render partial: "shopkeeper/shop/form/shop_photos", :locals => {:f => f} %>
+    <%= render partial: "shopkeeper/shop/form/shop_photos", :locals => {:form => form} %>
   </div>
 
   <div class="row details__block">
-    <%= render partial: "shopkeeper/shop/form/certifications_photos", :locals => {:f => f} %>
+    <%= render partial: "shopkeeper/shop/form/certifications_photos", :locals => {:form => form} %>
   </div>
 
   <div class="row details__block">
-    <%= render partial: "shopkeeper/shop/form/public_informations", :locals => {:f => f} %>
+    <%= render partial: "shopkeeper/shop/form/public_informations", :locals => {:form => form} %>
   </div>
 
   <%= f.button I18n.t(:save, scope: :edit_shop), :class => 'btn btn-primary' %>

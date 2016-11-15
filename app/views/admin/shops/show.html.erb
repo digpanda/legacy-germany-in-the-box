@@ -5,16 +5,14 @@
       <h2><%= @shop.shopname %></h2>
     </div>
     <div class="col-md-2 details__action">
-      <% if @shop.shopkeeper %>
       <a href="<%= admin_user_path(@shop.shopkeeper) %>"><i class="fa fa-user tooltipster" title="<%= @shop.shopkeeper.email %>"></i></a>
-      <% end %>
     </div>
   </div>
 
   <div class="+small-spacer"></div>
 
-  <div class="row details__block">
-    <%= render partial: "admin/shops/show/payment_gateways", :locals => { :payment_gateways => @shop.payment_gateways } %>
+  <div>
+    <%= render partial: 'admin/shops/form', :locals => { :shop => @shop } %>
   </div>
 
 </div>
