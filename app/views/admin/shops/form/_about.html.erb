@@ -53,10 +53,14 @@
         <%= js_tips(:id => :stories, :tip => I18n.t(:stories_info, scope: :edit_shop)) %>
       </label>
     </div>
-    <div class="col-md-8">
-      <%= form.text_area :stories, :class => 'form-control', :required => true, :maxLength => Rails.configuration.max_medium_text_length %>
-      <div class="help-block with-errors"></div>
-    </div>
+
+    <%= translate_fields form, :stories do |form_field| %>
+      <div class="col-md-5">
+        <%= form_field.text_area :class => 'form-control', :required => true %>
+        <div class="help-block with-errors"></div>
+      </div>
+    <% end %>
+
   </div>
 
   <!-- Uniqueness -->
@@ -67,10 +71,14 @@
         <%= js_tips(:id => :uniqueness, :tip => I18n.t(:uniqueness_info, scope: :edit_shop)) %>
       </label>
     </div>
-    <div class="col-md-8">
-      <%= form.text_area :uniqueness, :class => 'form-control', :maxLength => Rails.configuration.max_medium_text_length %>
-      <div class="help-block with-errors"></div>
-    </div>
+
+    <%= translate_fields form, :uniqueness do |form_field| %>
+      <div class="col-md-5">
+        <%= form_field.text_area :class => 'form-control' %>
+        <div class="help-block with-errors"></div>
+      </div>
+    <% end %>
+
   </div>
 
   <!-- German Essence -->
@@ -81,10 +89,14 @@
         <%= js_tips(:id => :german_essence, :tip => I18n.t(:german_essence_info, scope: :edit_shop)) %>
       </label>
     </div>
-    <div class="col-md-8">
-      <%= form.text_area :german_essence, :class => 'form-control', :maxLength => Rails.configuration.max_medium_text_length %>
-      <div class="help-block with-errors"></div>
-    </div>
+
+    <%= translate_fields form, :german_essence do |form_field| %>
+      <div class="col-md-5">
+        <%= form_field.text_area :class => 'form-control', :required => true %>
+        <div class="help-block with-errors"></div>
+      </div>
+    <% end %>
+    
   </div>
 
 </div>
