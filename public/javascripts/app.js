@@ -148,6 +148,62 @@ var __makeRelativeRequire = function(require, mappings, pref) {
     return require(name);
   }
 };
+require.register("javascripts/controllers/admin/shops/products.js", function(exports, require, module) {
+'use strict';
+
+/**
+ * Products Class
+ */
+var Products = {
+
+  /**
+   * Initializer
+   */
+  init: function init() {
+
+    this.handleDutyCategoryChange();
+  },
+
+  /**
+   * We check if the duty category exists through AJAX
+   * and throw it / an error on the display
+   * @return {void}
+   */
+  handleDutyCategoryChange: function handleDutyCategoryChange() {
+
+    var DutyCategory = require("javascripts/models/duty_category");
+
+    $('#duty-category').on('keyup', function (e) {
+
+      var dutyCategoryId = $(this).val();
+      DutyCategory.find(dutyCategoryId, function (res) {
+
+        if (res.success) {
+
+          Products.showDutyCategory(res.datas.duty_category);
+        } else {
+
+          Products.throwNotFoundDutyCategory();
+        }
+      });
+    });
+  },
+
+  showDutyCategory: function showDutyCategory(duty_category) {
+
+    $('.js-duty-category').html('<span class="+blue">' + duty_category.name + '</span>');
+  },
+
+  throwNotFoundDutyCategory: function throwNotFoundDutyCategory() {
+
+    $('.js-duty-category').html('<span class="+red">Duty Category not found</span>');
+  }
+
+};
+
+module.exports = Products;
+});
+
 require.register("javascripts/controllers/customer/cart/show.js", function(exports, require, module) {
 'use strict';
 
@@ -1312,6 +1368,38 @@ var Models = [
 ];
 
 module.exports = Models;
+});
+
+require.register("javascripts/models/duty_category.js", function(exports, require, module) {
+"use strict";
+
+/**
+ * Duty Category Class
+ */
+var DutyCategory = {
+
+  /**
+   * Check if user is auth or not via API call
+   */
+  find: function find(dutyCategoryId, callback) {
+
+    $.ajax({
+      method: "GET",
+      url: "/api/admin/duty_categories/" + dutyCategoryId,
+      data: {}
+
+    }).done(function (res) {
+
+      callback(res);
+    }).error(function (err) {
+
+      callback({ success: false, error: err.responseJSON.error });
+    });
+  }
+
+};
+
+module.exports = DutyCategory;
 });
 
 require.register("javascripts/models/navigation_model.js", function(exports, require, module) {

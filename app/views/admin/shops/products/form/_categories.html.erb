@@ -12,13 +12,13 @@
 
   <!-- Customer Categories -->
   <div class="row form-group">
-    <div class="col-md-2">
+    <div class="col-md-4">
       <label>
         <%= I18n.t(:categories, scope: :edit_product) %>
       </label>
     </div>
 
-    <div class="col-md-10">
+    <div class="col-md-8">
       <%= form.fields_for :categories do |form_field| %>
 
         <%= form_field.select '', options_from_collection_for_select(Category.all, :id, :name), { :include_blank => I18n.t(:non_selected_text, scope: :multiselect) }, :class => 'form-control' %>
@@ -30,16 +30,19 @@
 
   <!-- Duty Categories -->
   <div class="row form-group">
-    <div class="col-md-2">
+    <div class="col-md-4">
       <label>
         <%= I18n.t(:duty_category, scope: :edit_product) %>
       </label>
     </div>
 
+    <div class="col-md-8">
 
-    <!-- <div class="col-md-10">
-      <%= form.select :duty_category, grouped_options_for_select(@duty_categories_options.grouped_categories_options(:en), @product.duty_category ? @product.duty_category.id : nil), { :include_blank => I18n.t(:non_selected_text, scope: :multiselect) }, :class => 'form-control duty-categories' %>
-    </div> -->
+      <%= form.text_field :duty_category, :id => 'duty-category', :class => 'form-control', :required => true, :placeholder => '27289' %>
+      <div class="help-block with-errors"></div>
+      <div class="js-duty-category"></div>
+
+    </div>
 
   </div>
 
