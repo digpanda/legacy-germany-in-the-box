@@ -2,11 +2,7 @@
 namespace :shopkeeper do
 
   resources :products do
-    # TODO : this should be refactored and maybe put into individual controllers
-    # delete '/destroy_variant/:variant_id', action: :destroy_variant, as: :destroy_variant
-    # delete '/destroy_option/:variant_id/:option_id', action: :destroy_option, as: :destroy_option
-    # TODO : put the one above in `variants`
-
+    
     resources :variants, :controller => 'products/variants' do
       delete '/option/:option_id', action: :destroy_option, as: :destroy_option
     end
@@ -30,7 +26,6 @@ namespace :shopkeeper do
 
   resource :shop, :controller => 'shop' do
     delete :destroy_image
-
   end
 
   resources :addresses do

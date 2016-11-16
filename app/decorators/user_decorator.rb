@@ -23,18 +23,6 @@ class UserDecorator < Draper::Decorator
     notifications.unreads.count > 0
   end
 
-  def admin?
-    self.role == :admin
-  end
-
-  def shopkeeper?
-    self.role == :shopkeeper
-  end
-
-  def customer?
-    self.role == :customer
-  end
-
   # TODO : to remove when update of user will be refactored completely (shopkeeper and admin too)
   def update_with_password(params, *options)
 

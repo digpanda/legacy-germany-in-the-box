@@ -15,6 +15,7 @@ class ImageDestroyer < BaseService
     @model = model
   end
 
+  # will effectively destroy an image field
   def perform(image_field)
     image_field = image_field.to_sym
     if valid_model_image?(image_field)
@@ -26,6 +27,8 @@ class ImageDestroyer < BaseService
 
   private
 
+  # get the authorized fields
+  # depending on the model itself
   def authorized_fields
     @authorized_fields ||= begin
       case model

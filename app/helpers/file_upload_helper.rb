@@ -7,12 +7,23 @@ module FileUploadHelper
   # this helper is solely used in the file_upload partial
   # to guess what path to use to destroy any image
   # depending on the form class
+  # TODO : this system is ok for now but it's too many conditions
+  # we should group those methods into a shared controller rather than duplicating it. very useless.
+  # PROBLEM : the controllers don't have the exact same name. i suppose we should first refactor the model and create an `image` model which would simplify everything.
   def guess_destroy_image_path(form, field)
     case form.object
     when Sku
-      shopkeeper_product_sku_destroy_image_path(form.object.product, form.object, image_field: field)
+      if current_user.shopkeeper?
+        shopkeeper_product_sku_destroy_image_path(form.object.product, form.object, image_field: field)
+      else
+        admin_product_sku_destroy_image_path(form.object.product, form.object, image_field: field)
+      end
     when Shop
-      destroy_image_shopkeeper_shop_path(form.object, image_field: field)
+      if current_user.shopkeeper?
+        destroy_image_shopkeeper_shop_path(form.object, image_field: field)
+      else
+        admin_shop_destroy_image_path(form.object, image_field: field)
+      end
     end
   end
 

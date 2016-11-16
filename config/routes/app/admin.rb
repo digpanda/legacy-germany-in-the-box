@@ -16,9 +16,10 @@ namespace :admin do
   end
 
   resources :shops do
-    get :emails, on: :collection
+    get :emails
     patch :approve
     patch :disapprove
+    delete :destroy_image
   end
 
   resources :shop_applications do
@@ -42,5 +43,5 @@ namespace :admin do
 
   resource :settings, only: [:show, :update] do
   end
-  
+
 end

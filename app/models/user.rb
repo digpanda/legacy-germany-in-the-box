@@ -115,6 +115,18 @@ class User
     end
   end
 
+  def admin?
+    self.role == :admin
+  end
+
+  def shopkeeper?
+    self.role == :shopkeeper
+  end
+
+  def customer?
+    self.role == :customer
+  end
+  
   def destroyable?
     !self.decorate.admin?
   end
