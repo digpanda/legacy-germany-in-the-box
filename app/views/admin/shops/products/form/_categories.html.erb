@@ -1,0 +1,41 @@
+<div class="col-md-12">
+
+  <div class="row">
+    <div class="col-md-8 +nopadding">
+      <h3>Categories</h3>
+      <hr>
+    </div>
+    <div class="col-md-4 +right">
+      <hr>
+    </div>
+  </div>
+
+  <!-- Customer Categories -->
+  <div class="row form-group">
+    <div class="col-md-2">
+      <label>
+        <%= I18n.t(:categories, scope: :edit_product) %>
+      </label>
+    </div>
+
+    <div class="col-md-10">
+      <%= form.select :category_ids, options_for_select(@customer_categories_options.grouped_categories_options(locale), @product.categories.map { |c| c.id.to_s }), { :include_blank => I18n.t(:non_selected_text, scope: :multiselect) }, :class => 'form-control' %>
+    </div>
+
+  </div>
+
+  <!-- Duty Categories -->
+  <div class="row form-group">
+    <div class="col-md-2">
+      <label>
+        <%= I18n.t(:duty_category, scope: :edit_product) %>
+      </label>
+    </div>
+
+    <div class="col-md-10">
+      <%= form.select :duty_category, grouped_options_for_select(@duty_categories_options.grouped_categories_options(:en), @product.duty_category ? @product.duty_category.id : nil), { :include_blank => I18n.t(:non_selected_text, scope: :multiselect) }, :class => 'form-control duty-categories' %>
+    </div>
+
+  </div>
+
+</div>

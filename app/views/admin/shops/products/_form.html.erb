@@ -1,54 +1,14 @@
-<%= form_for [:admin, @product], :html => {:data => {:toggle => 'validator'}} do |form| %>
+<%= form_for [:admin, @shop, @product], :html => {:data => {:toggle => 'validator'}} do |form| %>
 
   <div class="row details__block">
     <%= render partial: "shopkeeper/products/form/informations", :locals => {:form => form} %>
   </div>
 
   <div class="row details__block">
-    <!-- DUTY CATEGORY AND STUFF -->
+    <%= render partial: "admin/shops/products/form/categories", :locals => {:form => form} %>
   </div>
 
   <%= form.submit :class => 'btn btn-primary', :value =>  I18n.t(:update_basic, scope: :edit_product) %>
   <!-- :id => 'edit_product_submit_btn' -->
 
 <% end %>
-
-<!-- TODO : don't forge to put back the duty category and normal category system in the admin -->
-<!-- <% if current_user.decorate.admin? %>
-  <div class="panel panel-info">
-    <div class="panel-heading" title="<%= I18n.t(:duty_category_info, scope: :edit_product, locale: locale) %>">
-      <div class="text-center">
-        <i class="fa fa-info-circle" title="<%= I18n.t(:duty_category_info, scope: :edit_product, locale: locale) %>"></i>
-        <label class="required">
-          <%= I18n.t(:duty_category, scope: :edit_product, locale: locale) %>
-        </label>
-      </div>
-    </div>
-    <div class="panel-body">
-      <div class="form-group">
-        <div class="row-fluid">
-          <%= form.select :duty_category, grouped_options_for_select(@duty_categories_options.grouped_categories_options(:en), @product.duty_category ? @product.duty_category.id : nil), { :include_blank => I18n.t(:non_selected_text, scope: :multiselect, locale: locale) }, :class => 'form-control duty-categories' %>
-        </div>
-      </div>
-    </div>
-  </div>
-<% end %>
-<% if current_user.decorate.admin? %>
-  <div class="panel panel-info">
-    <div class="panel-heading" title="<%= I18n.t(:categories_info, scope: :edit_product, locale: locale) %>">
-      <div class="text-center">
-        <i class="fa fa-info-circle" title="<%= I18n.t(:categories_info, scope: :edit_product, locale: locale) %>"></i>
-        <label class="required">
-          <%= I18n.t(:categories, scope: :edit_product, locale: locale) %>
-        </label>
-      </div>
-    </div>
-    <div class="panel-body">
-      <div class="form-group">
-        <div class="row-fluid">
-          <%= form.select :category_ids, options_for_select(@customer_categories_options.grouped_categories_options(locale), @product.categories.map { |c| c.id.to_s }), { :include_blank => I18n.t(:non_selected_text, scope: :multiselect, locale: locale) }, :class => 'form-control' %>
-        </div>
-      </div>
-    </div>
-  </div>
-<% end %> -->

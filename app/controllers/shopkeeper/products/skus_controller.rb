@@ -85,12 +85,6 @@ class Shopkeeper::Products::SkusController < ApplicationController
 
   private
 
-  # TODO : this concerns only the admin, we should refactor it a bit and remove it from this section after understanding fully how it works
-  # def setup_categories_options!
-  #   @customer_categories_options = DutyAndCustomerCategorySelectStore.new(Category.name)
-  #   @duty_categories_options = DutyAndCustomerCategorySelectStore.new(DutyCategory.name)
-  # end
-
   def set_product
     @product = Product.find(params[:product_id])
   end
