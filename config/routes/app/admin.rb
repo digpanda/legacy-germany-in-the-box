@@ -20,6 +20,14 @@ namespace :admin do
     patch :approve
     patch :disapprove
     delete :destroy_image
+
+    resources :products, :controller => 'shops/products' do
+      patch :regular
+      patch :highlight
+      patch :approve
+      patch :disapprove
+    end
+
   end
 
   resources :shop_applications do
