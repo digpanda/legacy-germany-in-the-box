@@ -33,6 +33,7 @@ class Admin::Shops::ProductsController < ApplicationController
   end
 
   def update
+    binding.pry
     if product.update(product_params)
       flash[:success] = I18n.t(:update_ok, scope: :edit_product)
     else
