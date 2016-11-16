@@ -23,13 +23,9 @@ class Admin::Shops::ProductsController < ApplicationController
 
     if product.save
       flash[:success] = I18n.t(:update_ok, scope: :edit_product)
-      # we redirect the user directly to the variants setup
-      # because it's a new product.
-      redirect_to shopkeeper_product_variants_path(product)
-      return
+    else
+      flash[:error] = product.errors.full_messages.join(', ')
     end
-
-    flash[:error] = product.errors.full_messages.join(', ')
     redirect_to navigation.back(1)
   end
 
@@ -39,11 +35,9 @@ class Admin::Shops::ProductsController < ApplicationController
   def update
     if product.update(product_params)
       flash[:success] = I18n.t(:update_ok, scope: :edit_product)
-      redirect_to edit_shopkeeper_product_path(product)
-      return
+    else
+      flash[:error] = product.errors.full_messages.join(', ')
     end
-
-    flash[:error] = product.errors.full_messages.join(', ')
     redirect_to navigation.back(1)
   end
 
@@ -53,7 +47,7 @@ class Admin::Shops::ProductsController < ApplicationController
     else
       flash[:error] = product.errors.full_messages.join(', ')
     end
-    redirect_to shopkeeper_shop_path
+    redirect_to navigation.back(1)
   end
 
   def highlight
@@ -82,6 +76,8 @@ class Admin::Shops::ProductsController < ApplicationController
 
   private
 
+  # this is to setup the listing of the customer categories and duty categories
+  # when creating / editing a product
   def set_categories_options
     @customer_categories_options = DutyAndCustomerCategorySelectStore.new(Category.name)
     @duty_categories_options = DutyAndCustomerCategorySelectStore.new(DutyCategory.name)

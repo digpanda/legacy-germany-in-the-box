@@ -17,11 +17,10 @@ class Admin::ShopsController < ApplicationController
   def update
     if shop.update(shop_params)
       flash[:success] = I18n.t(:update_ok, scope: :edit_shop)
-      redirect_to navigation.back(1)
     else
-      flash[:error] = shop.errors.full_messages.first
-      redirect_to navigation.back(1)
+      flash[:error] = shop.errors.full_messages.join(', ')
     end
+    redirect_to navigation.back(1)
   end
 
   def destroy

@@ -22,7 +22,7 @@
       </label>
     </div>
     <div class="col-md-8">
-      <%= form.text_field :name, :value => @product.name_translations[locale], :class => 'form-control', :required => true, :maxLength => Rails.configuration.max_short_text_length %>
+      <%= form.text_field :name, :class => 'form-control', :required => true, :maxLength => Rails.configuration.max_short_text_length %>
       <div class="help-block with-errors"></div>
     </div>
   </div>
@@ -35,7 +35,7 @@
       </label>
     </div>
     <div class="col-md-8">
-      <%= form.text_field :brand, :value => @product.brand_translations[locale], :class => 'form-control', :required => true, :maxLength => Rails.configuration.max_short_text_length %>
+      <%= form.text_field :brand, :class => 'form-control', :required => true, :maxLength => Rails.configuration.max_short_text_length %>
       <div class="help-block with-errors"></div>
     </div>
   </div>
@@ -49,23 +49,7 @@
       </label>
     </div>
     <div class="col-md-8">
-        <%= form.text_area :desc, :value => @product.desc_translations[locale], :class => 'form-control', rows: 2, :required => true, :maxLength => Rails.configuration.max_long_text_length %>
-      <div class="help-block with-errors"></div>
-    </div>
-  </div>
-
-  <!-- Product Duty Code -->
-  <div class="row form-group">
-    <div class="col-md-4">
-      <label>
-        <%= I18n.t(:hs_code, scope: :edit_product) %> <span class="+red">*</span>
-        <%= js_tips(:id => :hs_code, :tip => "Die Zolltarifnummer ist eine 8-stellige Nummer für jedes Produkt bei Ausfuhr. Sie entspricht der Bezeichnung 'Warennummer' in der Außenhandelsstatistik.") %>
-        <div class="+small-spacer"></div>
-        Sie können die 8-stellige Zolltarifnr. <a href="https://www.destatis.de/DE/Methoden/Klassifikationen/Aussenhandel/warenverzeichnis_downloads.html" target="_blank">HIER</a> finden.
-      </label>
-    </div>
-    <div class="col-md-8">
-        <%= form.text_field :hs_code, :value => @product.hs_code, :class => 'form-control', :required => true, :pattern => '^\d{8,8}$', :placeholder => '48191000' %>
+        <%= form.text_area :desc, :class => 'form-control', rows: 2, :required => true, :maxLength => Rails.configuration.max_long_text_length %>
       <div class="help-block with-errors"></div>
     </div>
   </div>

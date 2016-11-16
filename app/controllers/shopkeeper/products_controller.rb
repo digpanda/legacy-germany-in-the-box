@@ -52,7 +52,7 @@ class Shopkeeper::ProductsController < ApplicationController
     else
       flash[:error] = product.errors.full_messages.join(', ')
     end
-    redirect_to shopkeeper_shop_path
+    redirect_to navigation.back(1)
   end
 
   private

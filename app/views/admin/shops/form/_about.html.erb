@@ -12,7 +12,7 @@
   </div>
 
   <!-- Description -->
-  <div class="row form-group">
+  <div class="row">
     <div class="col-md-2">
       <label>
         <%= I18n.t(:desc, scope: :edit_shop) %> <span class="+red">*</span>
@@ -20,7 +20,7 @@
     </div>
 
     <%= translate_fields form, :desc do |form_field| %>
-      <div class="col-md-5">
+      <div class="col-md-5 form-group">
         <%= form_field.text_area :class => 'form-control', :required => true %>
         <div class="help-block with-errors"></div>
       </div>
@@ -29,7 +29,7 @@
   </div>
 
   <!-- Philosophie -->
-  <div class="row form-group">
+  <div class="row">
     <div class="col-md-2">
       <label>
         <%= I18n.t(:philosophy, scope: :edit_shop) %> <span class="+red">*</span>
@@ -37,7 +37,7 @@
     </div>
 
     <%= translate_fields form, :philosophy do |form_field| %>
-      <div class="col-md-5">
+      <div class="col-md-5 form-group">
         <%= form_field.text_area :class => 'form-control', :required => true %>
         <div class="help-block with-errors"></div>
       </div>
@@ -46,7 +46,7 @@
   </div>
 
   <!-- Stories -->
-  <div class="row form-group">
+  <div class="row">
     <div class="col-md-2">
       <label>
         <%= I18n.t(:stories, scope: :edit_shop) %> <span class="+red">*</span>
@@ -54,7 +54,7 @@
     </div>
 
     <%= translate_fields form, :stories do |form_field| %>
-      <div class="col-md-5">
+      <div class="col-md-5 form-group">
         <%= form_field.text_area :class => 'form-control', :required => true %>
         <div class="help-block with-errors"></div>
       </div>
@@ -63,7 +63,7 @@
   </div>
 
   <!-- Uniqueness -->
-  <div class="row form-group">
+  <div class="row">
     <div class="col-md-2">
       <label>
         <%= I18n.t(:uniqueness, scope: :edit_shop) %>
@@ -71,7 +71,7 @@
     </div>
 
     <%= translate_fields form, :uniqueness do |form_field| %>
-      <div class="col-md-5">
+      <div class="col-md-5 form-group">
         <%= form_field.text_area :class => 'form-control' %>
         <div class="help-block with-errors"></div>
       </div>
@@ -80,7 +80,7 @@
   </div>
 
   <!-- German Essence -->
-  <div class="row form-group">
+  <div class="row">
     <div class="col-md-2">
       <label>
         <%= I18n.t(:german_essence, scope: :edit_shop) %>
@@ -88,7 +88,7 @@
     </div>
 
     <%= translate_fields form, :german_essence do |form_field| %>
-      <div class="col-md-5">
+      <div class="col-md-5 form-group">
         <%= form_field.text_area :class => 'form-control', :required => true %>
         <div class="help-block with-errors"></div>
       </div>

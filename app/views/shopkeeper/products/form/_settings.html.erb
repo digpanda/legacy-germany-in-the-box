@@ -1,0 +1,29 @@
+<div class="col-md-12">
+
+  <div class="row">
+    <div class="col-md-8 +nopadding">
+      <h3>Settings</h3>
+      <hr>
+    </div>
+    <div class="col-md-4 +right">
+      <hr>
+    </div>
+  </div>
+
+  <!-- Product Duty Code -->
+  <div class="row form-group">
+    <div class="col-md-4">
+      <label>
+        <%= I18n.t(:hs_code, scope: :edit_product) %> <span class="+red">*</span>
+        <%= js_tips(:id => :hs_code, :tip => "Die Zolltarifnummer ist eine 8-stellige Nummer für jedes Produkt bei Ausfuhr. Sie entspricht der Bezeichnung 'Warennummer' in der Außenhandelsstatistik.") %>
+        <div class="+small-spacer"></div>
+        Sie können die 8-stellige Zolltarifnr. <a href="https://www.destatis.de/DE/Methoden/Klassifikationen/Aussenhandel/warenverzeichnis_downloads.html" target="_blank">HIER</a> finden.
+      </label>
+    </div>
+    <div class="col-md-8">
+        <%= form.text_field :hs_code, :value => @product.hs_code, :class => 'form-control', :required => true, :pattern => '^\d{8,8}$', :placeholder => '48191000' %>
+      <div class="help-block with-errors"></div>
+    </div>
+  </div>
+
+</div>
