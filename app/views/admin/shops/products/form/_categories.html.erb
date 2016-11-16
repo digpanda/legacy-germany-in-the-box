@@ -21,7 +21,10 @@
     <div class="col-md-10">
       <%= form.fields_for :categories do |form_field| %>
 
-      <!-- TODO : MAKE THIS WORKING -->
+        <!--
+        TODO : put in model : @customer_categories_options.grouped_categories_options(locale), @product.categories.map { |c| c.id.to_s }
+        -->
+        <%= form_field.select '', options_for_select(@customer_categories_options.grouped_categories_options(locale), @product.categories.map { |c| c.id.to_s }), { :include_blank => I18n.t(:non_selected_text, scope: :multiselect) }, :class => 'form-control' %>
 
       <!-- <%= form.select :category_ids, options_for_select(@customer_categories_options.grouped_categories_options(locale), @product.categories.map { |c| c.id.to_s }), { :include_blank => I18n.t(:non_selected_text, scope: :multiselect) }, :class => 'form-control' %> -->
 
