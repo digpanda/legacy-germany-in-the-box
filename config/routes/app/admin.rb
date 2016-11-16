@@ -16,7 +16,7 @@ namespace :admin do
   end
 
   resources :shops do
-    get :emails
+    get :emails, on: :collection
     patch :approve
     patch :disapprove
     delete :destroy_image

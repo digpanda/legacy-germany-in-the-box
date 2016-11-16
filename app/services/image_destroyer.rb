@@ -9,7 +9,7 @@ class ImageDestroyer < BaseService
   SHOP_IMAGE_FIELDS = [:logo, :banner, :seal0, :seal1, :seal2, :seal3, :seal4, :seal5, :seal6, :seal7]
   SKU_IMAGE_FIELDS = [:img0, :img1, :img2, :img3]
 
-  attr_reader :model, :authorized_fields
+  attr_reader :model
 
   def initialize(model)
     @model = model
