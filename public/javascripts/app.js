@@ -171,21 +171,30 @@ var Products = {
    */
   handleDutyCategoryChange: function handleDutyCategoryChange() {
 
-    var DutyCategory = require("javascripts/models/duty_category");
+    Products.refreshDutyCategory('#duty-category');
 
     $('#duty-category').on('keyup', function (e) {
 
-      var dutyCategoryId = $(this).val();
-      DutyCategory.find(dutyCategoryId, function (res) {
+      Products.refreshDutyCategory(this);
+    });
+  },
 
-        if (res.success) {
+  refreshDutyCategory: function refreshDutyCategory(selector) {
 
-          Products.showDutyCategory(res.datas.duty_category);
-        } else {
+    var DutyCategory = require("javascripts/models/duty_category");
+    var dutyCategoryId = $(selector).val();
 
-          Products.throwNotFoundDutyCategory();
-        }
-      });
+    if (dutyCategoryId === '') {
+      return;
+    }
+
+    DutyCategory.find(dutyCategoryId, function (res) {
+
+      if (res.success) {
+        Products.showDutyCategory(res.datas.duty_category);
+      } else {
+        Products.throwNotFoundDutyCategory();
+      }
     });
   },
 

@@ -4,6 +4,7 @@ class Admin::Shops::ProductsController < ApplicationController
 
   before_action :set_shop
   before_action :set_product, except: [:index, :new, :create]
+  before_action :recover_categories_from_ids, :recover_duty_category_from_code, only: [:create, :update]
 
   layout :custom_sublayout
 
@@ -19,7 +20,6 @@ class Admin::Shops::ProductsController < ApplicationController
 
   def create
     @product = shop.products.build(product_params)
-
     if product.save
       flash[:success] = I18n.t(:update_ok, scope: :edit_product)
     else
@@ -32,7 +32,6 @@ class Admin::Shops::ProductsController < ApplicationController
   end
 
   def update
-    binding.pry
     if product.update(product_params)
       flash[:success] = I18n.t(:update_ok, scope: :edit_product)
     else
@@ -78,6 +77,20 @@ class Admin::Shops::ProductsController < ApplicationController
 
   def product_params
     params.require(:product).permit!
+  end
+
+  # we basically get an array of ids and replace it by the entire model
+  # this is to go well with the automatic update provided by rails
+  def recover_categories_from_ids
+    product_params.require(:categories).map! do |category_id|
+      Category.where(_id: category_id).first
+    end.compact
+  end
+
+  def recover_duty_category_from_code
+    product_params.require(:duty_category).tap do |duty_category_code|
+      product_params[:duty_category] = DutyCategory.where(code: duty_category_code).first
+    end
   end
 
   def set_shop

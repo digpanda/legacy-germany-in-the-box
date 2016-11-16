@@ -21,7 +21,7 @@
     <div class="col-md-8">
       <%= form.fields_for :categories do |form_field| %>
 
-        <%= form_field.select '', options_from_collection_for_select(Category.all, :id, :name), { :include_blank => I18n.t(:non_selected_text, scope: :multiselect) }, :class => 'form-control' %>
+        <%= form_field.select '', options_from_collection_for_select(Category.all, :id, :name, form.object.categories.first&.id), { :include_blank => I18n.t(:non_selected_text, scope: :multiselect) }, :class => 'form-control' %>
 
       <% end %>
     </div>
@@ -38,7 +38,7 @@
 
     <div class="col-md-8">
 
-      <%= form.text_field :duty_category, :id => 'duty-category', :class => 'form-control', :required => true, :placeholder => '27289' %>
+      <%= form.text_field :duty_category, :value => form.object.duty_category&.code, :id => 'duty-category', :class => 'form-control', :required => true, :placeholder => '27289' %>
       <div class="help-block with-errors"></div>
       <div class="js-duty-category"></div>
 

@@ -19,24 +19,32 @@ var Products = {
      */
     handleDutyCategoryChange: function() {
 
-      var DutyCategory = require("javascripts/models/duty_category");
+      Products.refreshDutyCategory('#duty-category');
 
       $('#duty-category').on('keyup', function(e) {
 
-        let dutyCategoryId = $(this).val();
-        DutyCategory.find(dutyCategoryId, function(res) {
+        Products.refreshDutyCategory(this);
 
-          if (res.success) {
+      });
 
-            Products.showDutyCategory(res.datas.duty_category);
+    },
 
-          } else {
+    refreshDutyCategory: function(selector) {
 
-            Products.throwNotFoundDutyCategory();
+      var DutyCategory = require("javascripts/models/duty_category");
+      let dutyCategoryId = $(selector).val();
 
-          }
+      if (dutyCategoryId === '') {
+        return;
+      }
 
-        });
+      DutyCategory.find(dutyCategoryId, function(res) {
+
+        if (res.success) {
+          Products.showDutyCategory(res.datas.duty_category);
+        } else {
+          Products.throwNotFoundDutyCategory();
+        }
 
       });
 
