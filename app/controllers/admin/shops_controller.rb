@@ -33,6 +33,15 @@ class Admin::ShopsController < ApplicationController
     redirect_to navigation.back(1)
   end
 
+  def destroy_image
+    if ImageDestroyer.new(shop).perform(params[:image_field])
+      flash[:success] = I18n.t(:removed_image, scope: :action)
+    else
+      flash[:error] = I18n.t(:no_removed_image, scope: :action)
+    end
+    redirect_to navigation.back(1)
+  end
+
   def emails
     shops = Shop.all
     shop_emails = shops.reduce([]) { |acc, shop| acc << shop.mail } # could be in model

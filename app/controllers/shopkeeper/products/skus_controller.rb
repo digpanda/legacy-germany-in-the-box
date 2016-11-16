@@ -1,7 +1,5 @@
 class Shopkeeper::Products::SkusController < ApplicationController
 
-  SKU_IMAGE_FIELDS = [:img0, :img1, :img2, :img3]
-
   authorize_resource :class => false
 
   layout :custom_sublayout
@@ -77,7 +75,7 @@ class Shopkeeper::Products::SkusController < ApplicationController
   end
 
   def destroy_image
-    if ImageDestroyer.new(sku, SKU_IMAGE_FIELDS).perform(params[:image_field])
+    if ImageDestroyer.new(sku).perform(params[:image_field])
       flash[:success] = I18n.t(:removed_image, scope: :action)
     else
       flash[:error] = I18n.t(:no_removed_image, scope: :action)
