@@ -3,7 +3,6 @@ class Admin::Shops::ProductsController < ApplicationController
   authorize_resource :class => false
 
   before_action :set_shop
-  before_action :set_categories_options, only: [:new, :edit]
   before_action :set_product, except: [:index, :new, :create]
 
   layout :custom_sublayout
@@ -76,13 +75,6 @@ class Admin::Shops::ProductsController < ApplicationController
   end
 
   private
-
-  # this is to setup the listing of the customer categories and duty categories
-  # when creating / editing a product
-  def set_categories_options
-    @customer_categories_options = DutyAndCustomerCategorySelectStore.new(Category.name)
-    @duty_categories_options = DutyAndCustomerCategorySelectStore.new(DutyCategory.name)
-  end
 
   def product_params
     params.require(:product).permit!

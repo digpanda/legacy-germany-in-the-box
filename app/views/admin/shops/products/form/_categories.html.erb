@@ -21,12 +21,7 @@
     <div class="col-md-10">
       <%= form.fields_for :categories do |form_field| %>
 
-        <!--
-        TODO : put in model : @customer_categories_options.grouped_categories_options(locale), @product.categories.map { |c| c.id.to_s }
-        -->
-        <%= form_field.select '', options_for_select(@customer_categories_options.grouped_categories_options(locale), @product.categories.map { |c| c.id.to_s }), { :include_blank => I18n.t(:non_selected_text, scope: :multiselect) }, :class => 'form-control' %>
-
-      <!-- <%= form.select :category_ids, options_for_select(@customer_categories_options.grouped_categories_options(locale), @product.categories.map { |c| c.id.to_s }), { :include_blank => I18n.t(:non_selected_text, scope: :multiselect) }, :class => 'form-control' %> -->
+        <%= form_field.select '', options_from_collection_for_select(Category.all, :id, :name), { :include_blank => I18n.t(:non_selected_text, scope: :multiselect) }, :class => 'form-control' %>
 
       <% end %>
     </div>
@@ -40,6 +35,7 @@
         <%= I18n.t(:duty_category, scope: :edit_product) %>
       </label>
     </div>
+
 
     <!-- <div class="col-md-10">
       <%= form.select :duty_category, grouped_options_for_select(@duty_categories_options.grouped_categories_options(:en), @product.duty_category ? @product.duty_category.id : nil), { :include_blank => I18n.t(:non_selected_text, scope: :multiselect) }, :class => 'form-control duty-categories' %>
