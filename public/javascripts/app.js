@@ -213,6 +213,32 @@ var Products = {
 module.exports = Products;
 });
 
+require.register("javascripts/controllers/admin/shops/products/skus.js", function(exports, require, module) {
+"use strict";
+
+/**
+ * ProductsSkus Class
+ */
+var ProductsSkus = {
+
+  /**
+   * Initializer
+   */
+  init: function init() {
+
+    /**
+     * Since the system is cloned on the admin we try
+     * to limit the code duplication by abstracting into a library
+     */
+    var Skus = require("javascripts/lib/skus");
+    Skus.setup();
+  }
+
+};
+
+module.exports = ProductsSkus;
+});
+
 require.register("javascripts/controllers/admin/shops/products/variants.js", function(exports, require, module) {
 "use strict";
 
@@ -1293,6 +1319,78 @@ var Preloader = {
 };
 
 module.exports = Preloader;
+});
+
+require.register("javascripts/lib/skus.js", function(exports, require, module) {
+'use strict';
+
+/**
+ * Skus Class
+ */
+var Skus = {
+
+  setup: function setup() {
+
+    this.handleMultiSelect();
+    this.handleForm();
+  },
+
+  /**
+   * We turn the multi-select of the sku dashboard management into a readable checkbox select
+   * @return {void}
+   */
+  handleMultiSelect: function handleMultiSelect() {
+
+    var Translation = require('javascripts/lib/translation');
+
+    $('select.sku-variants-options').multiselect({
+      nonSelectedText: Translation.find('non_selected_text', 'multiselect'),
+      nSelectedText: Translation.find('n_selected_text', 'multiselect'),
+      numberDisplayed: 3,
+      maxHeight: 400,
+      onChange: function onChange(option, checked) {
+        var v = $('.sku-variants-options');
+        if (v.val()) {
+          v.next().removeClass('invalidBorderClass');
+        } else {
+          v.next().addClass('invalidBorderClass');
+        }
+      }
+    });
+  },
+
+  /**
+   * This seems to handle the images warning on the skus form for shopkeeper and admin
+   * NOTE : i didn't refactor this, it should be made cleaner and check the use.
+   */
+  handleForm: function handleForm() {
+
+    $('#edit_product_detail_form_btn').click(function () {
+      var v = $('select.sku-variants-options');
+
+      if (v.val() == null) {
+        v.next().addClass('invalidBorderClass');
+        return false;
+      }
+
+      if ($('img.img-responsive[src=""]').length >= 4) {
+        $('.fileUpload:first').addClass('invalidBorderClass');
+        return false;
+      }
+
+      $('input.img-file-upload').click(function () {
+        if ($('img.img-responsive[src=""]').length > 0) {
+          $('.fileUpload').removeClass('invalidBorderClass');
+        }
+      });
+
+      return true;
+    });
+  }
+
+};
+
+module.exports = Skus;
 });
 
 require.register("javascripts/lib/translation.js", function(exports, require, module) {

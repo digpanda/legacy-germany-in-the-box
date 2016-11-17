@@ -10,7 +10,7 @@ class Shopkeeper::ProductsController < ApplicationController
   attr_reader :shop, :products, :product
 
   def index
-    @products = current_user.shop.products.order_by(:c_at => :desc).paginate(:page => current_page, :per_page => 10)
+    @products = shop.products.order_by(:c_at => :desc).paginate(:page => current_page, :per_page => 10)
   end
 
   def new

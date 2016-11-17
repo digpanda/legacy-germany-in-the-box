@@ -25,7 +25,7 @@ class Shopkeeper::Products::SkusController < ApplicationController
 
     if sku.save && product.save
       flash[:success] = I18n.t(:update_ok, scope: :edit_product)
-      redirect_to shopkeeper_product_skus_path(product)
+      redirection_after_update
       return
     end
 
@@ -39,7 +39,7 @@ class Shopkeeper::Products::SkusController < ApplicationController
   def update
     if sku.update(sku_params)
       flash[:success] = I18n.t(:update_ok, scope: :edit_product)
-      redirect_to shopkeeper_product_skus_path
+      redirection_after_update
       return
     end
 
@@ -85,6 +85,10 @@ class Shopkeeper::Products::SkusController < ApplicationController
 
   private
 
+  def redirection_after_update
+    redirect_to shopkeeper_product_skus_path(product)
+  end
+
   def set_product
     @product = Product.find(params[:product_id])
   end
@@ -94,13 +98,10 @@ class Shopkeeper::Products::SkusController < ApplicationController
   end
 
   def sku_params
-    # TODO : i don't know what it is about but the admin won't have to deal with this kind of stuff
-    # try to remove it and see if it blows anything
-    delocalize_config = {:price => :number,:space_length => :number, :space_width => :number, :space_height => :number, :discount => :number, :quantity => :number, :weight => :number}
-    sku_params = params.require(:sku).permit!.delocalize(delocalize_config)
-    # we throw away the useless option ids
-    sku_params[:option_ids].reject!(&:empty?)
-    sku_params
+    params.require(:sku).permit!.tap do |sku_params|
+      # we throw away the useless option ids
+      sku_params[:option_ids].reject!(&:empty?)
+    end
   end
 
 end

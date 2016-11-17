@@ -27,15 +27,14 @@ namespace :admin do
       patch :approve
       patch :disapprove
 
-
       resources :variants, :controller => 'shops/products/variants' do
         delete '/option/:option_id', action: :destroy_option, as: :destroy_option
       end
 
-      # resources :skus, :controller => 'products/skus' do
-      #   delete :destroy_image
-      #   patch :clone
-      # end
+      resources :skus, :controller => 'shops/products/skus' do
+        delete :destroy_image
+        patch :clone
+      end
 
     end
 

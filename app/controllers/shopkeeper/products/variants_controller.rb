@@ -1,5 +1,6 @@
 # focus on the variant (known as option at the database level)
 # this is an embedded collection within the product model used on the skus
+# NOTE : be careful, this method is being inherited in the Admin side
 class Shopkeeper::Products::VariantsController < ApplicationController
 
   MAX_NEW_VARIANTS = 10.freeze

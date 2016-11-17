@@ -16,7 +16,7 @@ module FileUploadHelper
       if current_user.shopkeeper?
         shopkeeper_product_sku_destroy_image_path(form.object.product, form.object, image_field: field)
       else
-        admin_product_sku_destroy_image_path(form.object.product, form.object, image_field: field)
+        admin_shop_product_sku_destroy_image_path(form.object.product.shop, form.object.product, form.object, image_field: field)
       end
     when Shop
       if current_user.shopkeeper?

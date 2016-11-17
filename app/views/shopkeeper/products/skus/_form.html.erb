@@ -13,6 +13,10 @@
   </div>
 
   <div class="row details__block">
+    <%= render partial: "shopkeeper/products/skus/form/options", :locals => {:form => form} %>
+  </div>
+
+  <div class="row details__block">
     <%= render partial: "shopkeeper/products/skus/form/details", :locals => {:form => form} %>
   </div>
 
