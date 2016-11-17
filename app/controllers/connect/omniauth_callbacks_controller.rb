@@ -1,5 +1,5 @@
 class Connect::OmniauthCallbacksController < Devise::OmniauthCallbacksController
-  
+
   #skip CSRF on create.
   skip_before_filter :verify_authenticity_token
   load_and_authorize_resource :except => [:wechat, :failure]
@@ -15,7 +15,6 @@ class Connect::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def failure
     flash[:error] = I18n.t(:wechat_login_fail, scope: :notice)
     redirect_to(:back)
-    return
   end
 
   def user_from_omniauth(auth)
