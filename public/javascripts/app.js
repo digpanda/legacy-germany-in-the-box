@@ -213,6 +213,32 @@ var Products = {
 module.exports = Products;
 });
 
+require.register("javascripts/controllers/admin/shops/products/variants.js", function(exports, require, module) {
+"use strict";
+
+/**
+ * ProductsVariants Class
+ */
+var ProductsVariants = {
+
+  /**
+   * Initializer
+   */
+  init: function init() {
+
+    /**
+     * Since the system is cloned on the admin we try
+     * to limit the code duplication by abstracting into a library
+     */
+    var Variants = require("javascripts/lib/variants");
+    Variants.setup();
+  }
+
+};
+
+module.exports = ProductsVariants;
+});
+
 require.register("javascripts/controllers/customer/cart/show.js", function(exports, require, module) {
 'use strict';
 
@@ -895,83 +921,29 @@ module.exports = ProductsShowSkus;
 });
 
 require.register("javascripts/controllers/shopkeeper/products/variants.js", function(exports, require, module) {
-'use strict';
+"use strict";
 
 /**
- * Variants Class
+ * ProductsVariants Class
  */
-var Variants = {
+var ProductsVariants = {
 
   /**
    * Initializer
    */
   init: function init() {
 
-    this.addOptionHandler();
-    this.removeOptionHandler();
-
-    this.addVariantHandler();
-    this.removeVariantHandler();
-  },
-
-  addVariantHandler: function addVariantHandler() {
-
-    $('#add-variant').on('click', function (e) {
-
-      e.preventDefault();
-      var target = $('.js-temporary-variant.hidden:first');
-      console.log(target);
-      target.removeClass('hidden');
-    });
-  },
-
-  removeVariantHandler: function removeVariantHandler() {
-
-    $('.js-remove-variant').on('click', function (e) {
-
-      e.preventDefault();
-      var container = $(this).closest('.js-temporary-variant');
-      var input_target = container.find('input');
-      input_target.val('');
-      container.addClass('hidden');
-    });
-  },
-
-  /**
-   * We add an option (aka suboption in some cases) to the variant
-   * It will just show a field which was previously hidden
-   * NOTE : everything is managed by rails itself beforehand
-   * to make it flexible in the front-end side
-   */
-  addOptionHandler: function addOptionHandler() {
-
-    $('.js-add-option').on('click', function (e) {
-
-      e.preventDefault();
-      var target = $(this).closest('.variant-box').find('.js-temporary-option.hidden:first');
-      target.removeClass('hidden');
-    });
-  },
-
-  /**
-   * Set the value of the field to empty
-   * and hide it from the display
-   */
-  removeOptionHandler: function removeOptionHandler() {
-
-    $('.js-remove-option').on('click', function (e) {
-
-      e.preventDefault();
-      var container = $(this).closest('.js-temporary-option');
-      var input_target = container.find('input');
-      input_target.val('');
-      container.addClass('hidden');
-    });
+    /**
+     * Since the system is cloned on the admin we try
+     * to limit the code duplication by abstracting into a library
+     */
+    var Variants = require("javascripts/lib/variants");
+    Variants.setup();
   }
 
 };
 
-module.exports = Variants;
+module.exports = ProductsVariants;
 });
 
 require.register("javascripts/controllers/shopkeeper/wirecards/apply.js", function(exports, require, module) {
@@ -1362,6 +1334,83 @@ var Translation = {
 };
 
 module.exports = Translation;
+});
+
+require.register("javascripts/lib/variants.js", function(exports, require, module) {
+'use strict';
+
+/**
+ * Variants Class
+ */
+var Variants = {
+
+  setup: function setup() {
+
+    this.addOptionHandler();
+    this.removeOptionHandler();
+
+    this.addVariantHandler();
+    this.removeVariantHandler();
+  },
+
+  addVariantHandler: function addVariantHandler() {
+
+    $('#add-variant').on('click', function (e) {
+
+      e.preventDefault();
+      var target = $('.js-temporary-variant.hidden:first');
+      console.log(target);
+      target.removeClass('hidden');
+    });
+  },
+
+  removeVariantHandler: function removeVariantHandler() {
+
+    $('.js-remove-variant').on('click', function (e) {
+
+      e.preventDefault();
+      var container = $(this).closest('.js-temporary-variant');
+      var input_target = container.find('input');
+      input_target.val('');
+      container.addClass('hidden');
+    });
+  },
+
+  /**
+   * We add an option (aka suboption in some cases) to the variant
+   * It will just show a field which was previously hidden
+   * NOTE : everything is managed by rails itself beforehand
+   * to make it flexible in the front-end side
+   */
+  addOptionHandler: function addOptionHandler() {
+
+    $('.js-add-option').on('click', function (e) {
+
+      e.preventDefault();
+      var target = $(this).closest('.variant-box').find('.js-temporary-option.hidden:first');
+      target.removeClass('hidden');
+    });
+  },
+
+  /**
+   * Set the value of the field to empty
+   * and hide it from the display
+   */
+  removeOptionHandler: function removeOptionHandler() {
+
+    $('.js-remove-option').on('click', function (e) {
+
+      e.preventDefault();
+      var container = $(this).closest('.js-temporary-option');
+      var input_target = container.find('input');
+      input_target.val('');
+      container.addClass('hidden');
+    });
+  }
+
+};
+
+module.exports = Variants;
 });
 
 require.register("javascripts/models.js", function(exports, require, module) {

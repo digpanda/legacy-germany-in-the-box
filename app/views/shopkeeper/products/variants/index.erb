@@ -5,7 +5,7 @@
     <hr>
   </div>
   <div class="col-md-2 details__action">
-    <a href="#" id="add-variant"><i class="fa fa-plus tooltipster" title="Add variant"></i></a>
+    <%= render partial: "shopkeeper/products/variants/form/action" %>
   </div>
 </div>
 
@@ -20,7 +20,6 @@
     <div class="row">
       <%= form.submit :class => 'btn btn-primary', :value =>  I18n.t(:update_basic, scope: :edit_product) %>
     </div>
-
 
   <% end %>
 
