@@ -6,7 +6,6 @@ class Connect::SessionsController < Devise::SessionsController
   # prepend_before_action :verify_signed_out_user, only: :destroy
   # prepend_before_action only: [:create, :destroy] { request.env["devise.skip_timeout"] = true }
 
-
   def new
   end
 

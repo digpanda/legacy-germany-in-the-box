@@ -18,10 +18,6 @@ class Connect::RegistrationsController < Devise::RegistrationsController
     respond_with resource
   end
 
-  def cancel_signup
-    session.delete(:signup_advice_counter)
-  end
-
   def create
 
     build_resource(sign_up_params)
