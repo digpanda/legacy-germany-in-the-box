@@ -3,7 +3,11 @@
 class NavigationHistory
 
   DEFAULT_REDIRECT_URL = Rails.application.routes.url_helpers.root_url
-  BASE_EXCEPT = %w(/users/sign_in /users/sign_up /users/password/new /users/password/edit /users/confirmation /users/sign_out /api/guest/navigation)
+
+  # will exclude those paths from the history store. the system is based on implicit wildcard
+  # the less precise you are in the paths, the more path and subpath it excludes
+  # /connect also means everything inside /connect/ such as /connect/sign_in, etc.
+  BASE_EXCEPT = %w(/connect /api/guest/navigation)
 
   attr_reader :request, :session
 

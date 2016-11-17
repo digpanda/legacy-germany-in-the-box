@@ -43,7 +43,8 @@ namespace :guest do
   resources :products  do
   end
 
-  resources :shop_applications, :only => [:new, :create] do # maybe it will become shops/applications at some point
+  # maybe it will become shops/applications at some point
+  resources :shop_applications, :only => [:new, :create] do
   end
 
 end

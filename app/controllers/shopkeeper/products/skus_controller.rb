@@ -48,7 +48,7 @@ class Shopkeeper::Products::SkusController < ApplicationController
   end
 
   # TODO : this should be put into a service
-  # it's a complex operation that can grow.
+  # it was imported from the old system and it's very much disgusting.
   def clone
     source_sku = sku
     new_sku = product.skus.build(source_sku.attributes.keep_if { |k| Sku.fields.keys.include?(k) }.except(:_id, :img0, :img1, :img2, :img3, :attach0, :data, :c_at, :u_at, :currency))

@@ -1818,6 +1818,8 @@ require.register("javascripts/starters/china_city.js", function(exports, require
  */
 var ChinaCity = {
 
+    ajax_url: "/api/guest/china_city/",
+
     /**
      * Initializer
      */
@@ -1827,7 +1829,9 @@ var ChinaCity = {
     },
 
     /**
-     * 
+     * Get the china cities
+     * NOTE : this was taken from the old system and is very very disgusting.
+     * Don't hesitate to refactor all this shit when you get the time.
      */
     startChinaCity: function startChinaCity() {
 
@@ -1841,7 +1845,7 @@ var ChinaCity = {
                     next_selects = selects.slice(selects.index(this) + 1);
                     $("option:gt(0)", next_selects).remove();
                     if (next_selects.first()[0] && $this.val() && !$this.val().match(/--.*--/)) {
-                        return $.get("/china_city/" + $(this).val(), function (data) {
+                        return $.get(ChinaCity.ajax_url + $(this).val(), function (data) {
                             var i, len, option;
                             if (data.data != null) {
                                 data = data.data;

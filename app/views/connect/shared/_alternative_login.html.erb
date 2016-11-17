@@ -1,0 +1,15 @@
+<div class="row">
+  <div class="col-md-4 col-md-push-4 col-md-pull-4 connect__separator">
+    <div class="+divider"><%= I18n.t(:login_or, scope: :label) %></div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-4 col-md-push-4 col-md-pull-4 connect__alternative-login +centered">
+    <a href="<%= user_omniauth_authorize_path(:wechat) %>">
+      <img src="/images/logos/wechat.png">
+      <br />
+      微信登录
+    </a>
+  </div>
+</div>
