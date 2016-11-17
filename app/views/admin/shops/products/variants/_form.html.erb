@@ -5,20 +5,20 @@
       <%= form.fields_for :options do |field_option| %>
 
       <!-- TODO : this should be turned into a method with blocks -->
-      <% if (field_option.index + 1) % 3 == 0 %>
+      <% if every(field_option, 2) %>
         <div class="row">
       <% end %>
 
-      <div class="col-md-4">
-        <%= render partial: "shopkeeper/products/variants/form/variant_box", :locals => {:form => field_option, :translation => true} %>
+      <div class="col-md-6">
+        <%= render partial: "shopkeeper/products/variants/form/variant_box", :locals => {:form => field_option, :options => {:translation => true}} %>
       </div>
 
-      <% if (field_option.index + 1) % 3 == 0 %>
+      <% if every(field_option, 2) %>
         </div>
         <div class="+small-spacer"></div>
       <% end %>
 
-      <% end %>
+    <% end %>
     </div>
 
   </div>

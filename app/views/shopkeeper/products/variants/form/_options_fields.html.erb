@@ -4,10 +4,24 @@
 <% if field_suboption.object.name %>
 
   <div class="row variant-box__option-name">
-    <div class="col-md-8">
-      <%= field_suboption.text_field :name, :placeholder => 'XXL' %>
-    </div>
-    <div class="col-md-4">
+
+    <% if options[:translation] %>
+
+      <%= translate_fields field_suboption, :name do |form_field| %>
+        <div class="col-md-4">
+          <%= form_field.text_field :placeholder => 'XXL' %>
+        </div>
+      <% end %>
+
+    <% else %>
+
+      <div class="col-md-8">
+        <%= field_suboption.text_field :name, :placeholder => 'XXL' %>
+      </div>
+
+    <% end %>
+
+    <div class="col-md-4 +right">
         <%= link_to '', shopkeeper_product_variant_destroy_option_path(form.object.product, form.object, field_suboption.object), :method => :delete, :class => 'tooltipster fa fa-times buttons buttons__delete', :title => "Remove option" %>
     </div>
   </div>
@@ -19,7 +33,7 @@
     <div class="col-md-8">
       <%= field_suboption.text_field :name, :placeholder => 'XS' %>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-4 +right">
       <%= link_to '', '#', :class => 'tooltipster fa fa-times buttons buttons__delete js-remove-option', :title => "Remove option" %>
     </div>
   </div>

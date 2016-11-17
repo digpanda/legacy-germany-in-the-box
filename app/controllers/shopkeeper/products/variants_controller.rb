@@ -38,11 +38,7 @@ class Shopkeeper::Products::VariantsController < ApplicationController
       flash[:success] = I18n.t(:update_ok, scope: :edit_product)
       # if the user didn't add any sku yet, we redirect him automatically
       # to add some after creating those
-      if product.skus.count == 0
-        redirect_to shopkeeper_product_skus_path(product)
-      else
-        redirect_to navigation.back(1)
-      end
+      redirection_after_update
       return
     end
 
@@ -54,14 +50,14 @@ class Shopkeeper::Products::VariantsController < ApplicationController
 
     ids = variant.suboptions.map { |o| o.id.to_s }
 
-    if @product.skus.detect { |s| s.option_ids.to_set.intersect?(ids.to_set) }
+    if product.skus.detect { |s| s.option_ids.to_set.intersect?(ids.to_set) }
       flash[:error] = I18n.t(:sku_dependent, scope: :edit_product_variant)
     else
-      if variant.delete && @product.save
+      if variant.delete && product.save
         flash[:success] = I18n.t(:delete_variant_ok, scope: :edit_product_variant)
       else
         flash[:error] = variant.errors.full_messages.first
-        flash[:error] ||= @product.errors.full_messages.first
+        flash[:error] ||= product.errors.full_messages.first
       end
     end
     redirect_to navigation.back(1)
@@ -73,23 +69,34 @@ class Shopkeeper::Products::VariantsController < ApplicationController
   # we turned the `suboption` into `option` because the new differenciation between option / suboption
   # is actually variant / option which's more logical.
   def destroy_option
-    if @product.skus.detect { |s| s.option_ids.to_set.include?(params[:option_id]) }
+    if product.skus.detect { |s| s.option_ids.to_set.include?(params[:option_id]) }
       flash[:error] = I18n.t(:sku_dependent, scope: :edit_product_variant)
     else
-      variant = @product.options.find(params[:variant_id])
+      variant = product.options.find(params[:variant_id])
       option = variant.suboptions.find(params[:option_id])
 
       if option.delete && variant.save && @product.save
         flash[:success] = I18n.t(:delete_option_ok, scope: :edit_product_variant)
       else
-        flash[:error] = option.errors.full_messages.first
-        flash[:error] ||= @product.errors.full_messages.first
+        flash[:error] = option.errors.full_messages.join(', ')
+        flash[:error] ||= product.errors.full_messages.join(', ')
       end
     end
     redirect_to navigation.back(1)
   end
 
   private
+
+  # we abstracted this into a new method because
+  # it will be hooked by the admin side which
+  # inherit from shopkeeper
+  def redirection_after_update
+    if product.skus.count == 0
+      redirect_to shopkeeper_product_skus_path(product)
+    else
+      redirect_to navigation.back(1)
+    end
+  end
 
   # for some reason mongoid struggle to update / save the suboptions
   # when it's updated in the attributes
@@ -117,7 +124,7 @@ class Shopkeeper::Products::VariantsController < ApplicationController
   def remove_empty_options_from_params!
     params.require(:product).require(:options_attributes).each do |key, option|
       option.require(:suboptions_attributes).each do |suboption_key, suboption|
-        if suboption[:name].empty?
+        if suboption[:name]&.empty?
           option.require(:suboptions_attributes).delete(suboption_key)
         end
       end
@@ -128,7 +135,7 @@ class Shopkeeper::Products::VariantsController < ApplicationController
   # there will be some which are systematically empty because of the hide / show in front-end
   def remove_empty_variants_from_params!
     params.require(:product).require(:options_attributes).each do |key, option|
-      if option[:name].empty?
+      if option[:name]&.empty?
         params.require(:product).require(:options_attributes).delete(key)
       end
     end

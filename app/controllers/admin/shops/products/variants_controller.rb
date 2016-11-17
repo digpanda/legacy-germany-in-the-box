@@ -1,20 +1,17 @@
 class Admin::Shops::Products::VariantsController < Shopkeeper::Products::VariantsController
 
-  # MAX_NEW_VARIANTS = 10.freeze
-  # MAX_NEW_OPTIONS = 10.freeze
-
   authorize_resource :class => false
 
-  # before_action :set_shop, :set_product
-  # before_action :set_variant, except: [:index, :create]
-  #
-  # layout :custom_sublayout
-  #
-  # attr_reader :shop, :product, :variants, :variant
-
   # NOTE : we inherit from the Shopkeeper side
-  # because the methods are pratically all the same
+  # because the methods are all the same for now
   # this is a very rare case.
+  # we hook the way to setup variables and some redirections
+
+  private
+
+  def redirection_after_update
+    redirect_to navigation.back(1)
+  end
 
   def set_shop
     @shop = Shop.find(params[:shop_id] || params[:id])
