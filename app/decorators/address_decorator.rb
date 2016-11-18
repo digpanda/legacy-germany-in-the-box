@@ -3,6 +3,19 @@ class AddressDecorator < Draper::Decorator
   delegate_all
   decorates :address
 
+  def readable_type
+    case type
+    when :both
+      "Shipping & Billing"
+    when :billing
+      "Billing"
+    when :shipping
+      "Shipping"
+    else
+      "Unknown"
+    end
+  end
+
   def street_and_number
     if country_code == 'zh-CN'
       "#{number} #{street}"

@@ -28,7 +28,13 @@
   <%= form.button I18n.t(:save, scope: :edit_shop), :class => 'btn btn-primary' %>
 <% end %>
 
+<!-- Everything below is not linked to the direct save of the shop -->
 <div class="+small-spacer"></div>
+
+<!-- Addresses -->
+<div class="row details__block">
+  <%= render partial: "admin/addresses/table", :locals => { :addresses => shop.addresses } %>
+</div>
 
 <!-- Payment Gateways -->
 <div class="row details__block">
