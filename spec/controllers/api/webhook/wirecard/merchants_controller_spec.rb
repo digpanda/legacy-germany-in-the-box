@@ -1,5 +1,6 @@
 describe Api::Webhook::Wirecard::MerchantsController, :type => :controller do
 
+
   # for further test with postman :
   # {"merchant_id":"160927SHO","merchant_status":"ACTIVE","reseller_id":"nba81H29Gba","wirecard_credentials":{"ee_user_cc":"TEST-USER","ee_password_cc":"TEST-PASSWORD","ee_secret_cc":"TEST-SECRET-CREDITCARD","ee_maid_cc":"TEST-MAID-CREDITCARD"}}
   # don't forget to replace the merchant_id by a valid one on database (User.where(role: :shopkeeper).first for instance)
@@ -8,7 +9,7 @@ describe Api::Webhook::Wirecard::MerchantsController, :type => :controller do
 
   describe "#create" do
 
-    context "server to server without authentication" do
+    context "server to server without authentication", :vcr do
 
       let(:shopkeeper) { FactoryGirl.create(:shopkeeper) }
 

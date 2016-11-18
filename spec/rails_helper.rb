@@ -10,6 +10,7 @@ require 'factory_girl_rails'
 require 'mongoid'
 require 'devise'
 require 'faker'
+require 'vcr'
 
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 

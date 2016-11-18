@@ -1,5 +1,5 @@
 # INVALID TESTS, DONT WRITE DOWN HERE
-describe ProductsController do
+describe Guest::ProductsController do
 
   render_views # jbuilder requirement
 
@@ -31,11 +31,11 @@ describe ProductsController do
     #let(:product) { FactoryGirl.create(:product) }
 
     before {
-      allow(controller).to receive(:current_user) { customer } 
+      allow(controller).to receive(:current_user) { customer }
       allow(request.env['warden']).to receive(:authenticate!).and_return(customer)
-      allow(controller).to receive(:current_user).and_return(customer) 
+      allow(controller).to receive(:current_user).and_return(customer)
     }
-    
+
     let(:current_user) { customer }
 
     it "should like a product" do
