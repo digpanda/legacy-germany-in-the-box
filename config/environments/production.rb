@@ -10,6 +10,7 @@ Rails.application.configure do
   config.assets.digest = true
   config.force_ssl = false
   config.log_level = :debug
+  config.logger = Logger.new("#{RAILS_ENV}.log", :shift_age => "daily")
 
   config.middleware.use ExceptionNotification::Rack,
   :email => {

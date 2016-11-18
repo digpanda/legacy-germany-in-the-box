@@ -1,0 +1,2 @@
+# Logfile created on 2016-11-18 15:39:54 +0100 by logger.rb/53141
+I, [2016-11-18T15:39:54.614524 #5440]  INFO -- : Processing by Api::Guest::NavigationController#update as JSON

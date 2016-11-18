@@ -1,4 +1,3 @@
-
 describe "language#update process", :type => :feature, :js => true  do
 
   include Capybara::DSL

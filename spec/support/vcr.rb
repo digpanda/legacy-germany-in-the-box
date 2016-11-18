@@ -1,6 +1,9 @@
 VCR.configure do |config|
 
-  VCR_LOG_FILE = 'log/spec/vcr'.freeze
+  # we quickly setup a logger for it
+  # NOTE : we can't really setup the logger with daily file
+  # becaue the process is kind of recreating a file all the time
+  logger = Logger.new("#{Rails.root}/log/vcr.log")
 
   config.cassette_library_dir = 'spec/vcr'
 
@@ -11,16 +14,12 @@ VCR.configure do |config|
 
   # writing log
   config.before_http_request(:real?) do |request|
-    File.open(VCR_LOG_FILE, 'w') do |file|
-      file.write("VCR is writing #{request.method} #{request.uri}")
-    end
+    logger.info "VCR is writing #{request.method} #{request.uri}"
   end
 
   # reading log
   config.before_http_request(:stubbed?) do |request|
-    File.open(VCR_LOG_FILE, 'w') do |file|
-      file.write("VCR is reading #{request.method} #{request.uri}")
-    end
+    logger.info "VCR is reading #{request.method} #{request.uri}"
   end
 
 end

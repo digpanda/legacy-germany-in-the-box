@@ -1,0 +1,2 @@
+# Logfile created on 2016-11-18 15:40:30 +0100 by logger.rb/53141
+I, [2016-11-18T15:40:30.472996 #5440]  INFO -- :   Rendered layouts/header/parts/_my_account.html.erb (9.2ms)

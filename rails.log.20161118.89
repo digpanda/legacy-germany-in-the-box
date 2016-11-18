@@ -1,0 +1,2 @@
+# Logfile created on 2016-11-18 15:40:30 +0100 by logger.rb/53141
+I, [2016-11-18T15:40:30.484917 #5440]  INFO -- :   Rendered layouts/header/parts/_products_cart.html.erb (0.4ms)

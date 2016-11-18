@@ -1,0 +1,2 @@
+# Logfile created on 2016-11-18 15:39:52 +0100 by logger.rb/53141
+D, [2016-11-18T15:39:52.848454 #5440] DEBUG -- : MONGODB | localhost:27017 | digpanda.find | STARTED | {"find"=>"categories", "filter"=>{}, "sort"=>{"position"=>1}, "projection"=>{"_id"=>1}, "limit"=>1}

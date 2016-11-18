@@ -54,7 +54,7 @@ class Api::Webhook::Wirecard::MerchantsController < Api::ApplicationController
 
   # WARNING : Must stay public for throw_error to work well for now.
   def devlog
-    @@devlog ||= Logger.new(Rails.root.join("log/wirecard_merchants_webhook.log"))
+    @@devlog ||= Logger.new(Rails.root.join("log/wirecard_merchants_webhook.log"), :shit_age => "daily")
   end
 
   private

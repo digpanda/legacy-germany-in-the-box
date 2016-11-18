@@ -25,5 +25,5 @@ Rails.application.configure do
       user_name: 'f396f41db34e22',
       password: 'f4eede72e026e4'
   }
-  
+
 end

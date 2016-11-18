@@ -30,7 +30,7 @@ class Tasks::Cron::GetMissingShippingsFromBorderGuru
   end
 
   def devlog(content)
-    @@log ||= Logger.new(Rails.root.join("log/border_guru_shipment_id_recovery.log"))
+    @@log ||= Logger.new(Rails.root.join("log/border_guru_shipment_id_recovery.log"), :shift_age => "daily")
     @@log.info content
     puts content if Rails.env.development?
   end
