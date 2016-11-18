@@ -20,7 +20,7 @@ module BorderGuruEmail
 
     # you can add any BorderGuru Email specifig logs by doing BorderGuruFtp.log('message')
     def log(content)
-      @@log ||= Logger.new(Rails.root.join("log/#{CONFIG[:email][:log]}"), :shit_age => "daily")
+      @@log ||= Logger.new(Rails.root.join("log/#{CONFIG[:email][:log]}"))
       @@log.info content
       puts content if Rails.env.development?
     end

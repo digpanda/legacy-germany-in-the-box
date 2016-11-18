@@ -24,7 +24,7 @@ module BorderGuruFtp
 
     # you can add any BorderGuru FTP specifig logs by doing BorderGuruFtp.log('message')
     def log(content)
-      @@log ||= Logger.new(Rails.root.join("log/#{CONFIG[:ftp][:log]}"), :shit_age => "daily")
+      @@log ||= Logger.new(Rails.root.join("log/#{CONFIG[:ftp][:log]}"))
       @@log.info content
       puts content if Rails.env.development?
     end
