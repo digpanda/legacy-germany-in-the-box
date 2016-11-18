@@ -21,11 +21,13 @@
       </th>
     </thead>
     <tbody>
-      <%= render partial: "addresses/addresses_table_list", collection: addresses, :as => :address %>
+      <%= render partial: "admin/addresses/table/data", collection: addresses, :as => :address %>
     </tbody>
   </table>
-<% else %>
-  <h4>
-    No address
-  </h4>
-<% end %>
+  <% else %>
+  <div class="+white-box +centered">
+    <h4>
+      No address found
+    </h4>
+  </div>
+  <% end %>

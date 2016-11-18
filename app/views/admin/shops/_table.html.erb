@@ -33,20 +33,7 @@
             <%= boolean_icon(shop.agb) %>
           </td>
           <td>
-          <!-- Should be refactored -->
-          <% if shop.wirecard_status == :unactive %>
-              Not applied
-            <% elsif shop.wirecard_status == :active %>
-              Active
-            <% elsif shop.wirecard_status == :processing %>
-              Processing
-            <% elsif shop.wirecard_status == :documents_complete %>
-             Documents complete
-            <% elsif shop.wirecard_status == :declined %>
-              Disapproved
-            <% elsif shop.wirecard_status == :terminated %>
-              Terminated
-            <% end %>
+            <%= shop.decorate.readable_wirecard_status %>
           </td>
           <td>
             <%= shop.products.size %>
