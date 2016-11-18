@@ -121,7 +121,7 @@ class Shop
 
   def force_merchant_id
     if self.merchant_id.nil?
-      self.merchant_id = (self.c_at ? self.c_at.strftime('%y%m%d') : Date.today.strftime('%y%m%d')) + self.name[0,3].upcase
+      self.merchant_id = (self.c_at ? self.c_at.strftime('%y%m%d') : Date.today.strftime('%y%m%d')) + self.name.delete("\s")[0,3].upcase
     end
   end
 

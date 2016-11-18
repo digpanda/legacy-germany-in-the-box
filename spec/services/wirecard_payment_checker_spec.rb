@@ -43,8 +43,6 @@ describe WirecardPaymentChecker  do
 
       order_payment = FactoryGirl.create(:order_payment, :with_scheduled)
 
-      # VCR.use_cassette("wirecard-api-transaction", :record => :new_episodes) do
-
         valid_merchant = "dfc3a296-3faf-4a1d-a075-f72f1b67dd2a"
         invalid_transaction = "fake-transaction"
 
@@ -57,8 +55,6 @@ describe WirecardPaymentChecker  do
 
         expect(payment_checker.update_order_payment!.success?).to eql(false)
         expect(order_payment.status).to eql(:unverified)
-
-      # end
 
     end
 

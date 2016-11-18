@@ -111,6 +111,7 @@ describe Api::Webhook::Wirecard::MerchantsController, :type => :controller do
                   }
 
         post :create, request_wirecard_post(params)
+
         expect(response).to have_http_status(:ok)
 
         # UNION PAY

@@ -15,6 +15,7 @@ FactoryGirl.define do
     hermes_pickup         true
 
     before(:create) do |shop|
+      Faker::Config.locale = :de # to avoid weird chinese names
       create_list(:shopkeeper, 1, shop: shop) unless shop.shopkeeper_id
     end
 
