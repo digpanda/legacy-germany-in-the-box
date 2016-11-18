@@ -15,6 +15,6 @@ end
 #Capybara.current_driver = :selenium
 
 # we turn VCR off by default because we don't want to use it systematically
-VCR.turn_on!
-# WebMock.allow_net_connect!
+VCR.turn_off!
+WebMock.allow_net_connect!
 # WebMock.disable_net_connect!

@@ -9,7 +9,7 @@ describe Api::Webhook::Wirecard::MerchantsController, :type => :controller do
 
   describe "#create" do
 
-    context "server to server without authentication", :vcr do
+    context "server to server without authentication" do
 
       let(:shopkeeper) { FactoryGirl.create(:shopkeeper) }
 

@@ -1,34 +1,26 @@
 VCR.configure do |config|
+
+  VCR_LOG_FILE = 'log/spec/vcr'.freeze
+
   config.cassette_library_dir = 'spec/vcr'
 
-  # your HTTP request service. You can also use fakeweb, webmock, and more
+  # http request service used within the project
   config.hook_into :webmock
   # config.default_cassette_options = {:record => :new_episodes}
   config.configure_rspec_metadata!
 
+  # writing log
   config.before_http_request(:real?) do |request|
-    puts "VCR is writing #{request.method} #{request.uri}"
+    File.open(VCR_LOG_FILE, 'w') do |file|
+      file.write("VCR is writing #{request.method} #{request.uri}")
+    end
   end
 
+  # reading log
   config.before_http_request(:stubbed?) do |request|
-    puts "VCR is reading #{request.method} #{request.uri}"
+    File.open(VCR_LOG_FILE, 'w') do |file|
+      file.write("VCR is reading #{request.method} #{request.uri}")
+    end
   end
-
-  # config.around_http_request do |request|
-  #
-  #   uri = URI(request.uri)
-  #   name = "#{[uri.host, uri.path, request.method].join('/')}"
-  #   VCR.use_cassette(name, &request)
-
-    # if request.uri =~ /api.stripe.com/
-    #   uri = URI(request.uri)
-    #   name = "#{[uri.host, uri.path, request.method].join('/')}"
-    #   VCR.use_cassette(name, &request)
-    # elsif request.uri =~ /twitter.com/
-    #   VCR.use_cassette('twitter', &request)
-    # else
-    # end
-
-  # end
 
 end
