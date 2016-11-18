@@ -25,6 +25,7 @@ module BorderGuru
         order_items.map.each_with_index do |order_item, index|
           {
             sku: order_item.sku.id,
+            shortDescription: order_item.sku.product.name,
             # NOTE : the adjusted price was commented temporarily, see above.
             price: order_item.price_with_coupon_applied, #adjusted_order_item_price(order_item, index).to_f,
             category: Rails.env.production? ? order_item.sku.product.duty_category.code : 'test',
