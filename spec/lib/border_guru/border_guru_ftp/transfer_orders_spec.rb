@@ -1,4 +1,4 @@
-include Helpers::BorderGuruFtp
+include Helpers::Lib::BorderGuruFtp
 
 describe BorderGuruFtp::TransferOrders do
 
