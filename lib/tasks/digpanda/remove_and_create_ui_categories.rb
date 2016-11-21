@@ -2,13 +2,13 @@ class Tasks::Digpanda::RemoveAndCreateUiCategories
 
   def initialize
 
-    puts "We first delete the UI categories"
+    devlog "We first delete the UI categories"
     Category.all.delete
 
     #
     # root category - level 0
     #
-    puts "Let's generate them again"
+    devlog "Let's generate them again"
     category_food = Category.create!(
         :name_translations => {:en => 'Food', :'zh-CN' => '食品佳酿', :de => 'Lebensmittel  & Getränke'},
         :slug => 'food',
@@ -49,8 +49,14 @@ class Tasks::Digpanda::RemoveAndCreateUiCategories
 
     Rails.cache.clear
 
-    puts "End of process."
+    devlog "End of process."
 
+  end
+
+  def devlog(message)
+    unless Rails.env.test?
+      puts message
+    end
   end
 
 end
