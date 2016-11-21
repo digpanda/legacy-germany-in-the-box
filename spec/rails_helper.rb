@@ -23,6 +23,7 @@ RSpec.configure do |config|
     config.include Helpers::Devise
     config.include Helpers::Features::OnPage
     config.include Helpers::Features::ShowOnPage
+    config.include Helpers::Features::Login
   end
 
   config.infer_spec_type_from_file_location!
