@@ -21,6 +21,8 @@ RSpec.configure do |config|
     config.include Helpers::Request
     config.include Helpers::Response
     config.include Helpers::Devise
+    config.include Helpers::Features::OnPage
+    config.include Helpers::Features::ShowOnPage
   end
 
   config.infer_spec_type_from_file_location!

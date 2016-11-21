@@ -25,7 +25,7 @@ feature "visits the shops", :js => true  do
     on_product_page?
     page.first('.product-quantity button').click
     on_shop_page?
-    expect(page).to have_css "#total-products", text: "1"
+    show_total_products(1)
 
   end
 
@@ -38,18 +38,8 @@ feature "visits the shops", :js => true  do
     2.times { page.first('#quantity-plus').click } # click 2 times to make 3
     page.first('.product-quantity button').click
     on_shop_page?
-    expect(page).to have_css "#total-products", text: "3"
+    show_total_products(3)
 
   end
 
-end
-
-def on_shop_page?
-  # contains a shop-page header content
-  expect(page).to have_css '.shop-page-header__content'
-end
-
-def on_product_page?
-  # contains a product-page description
-  expect(page).to have_css '.product-page__description'
 end
