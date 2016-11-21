@@ -35,7 +35,7 @@ class Admin::NotesController < ApplicationController
   private
 
   def set_note
-    @note = Note.find(params[:id] || params[:note_id])
+    @note = Note.find(params[:note_id] || params[:id])
   end
 
   def note_params

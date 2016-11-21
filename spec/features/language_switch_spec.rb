@@ -1,10 +1,10 @@
-describe "language#update process", :type => :feature, :js => true  do
+feature "language#update process", :js => true  do
 
   context "logged-in as admin" do
 
     let(:admin) { FactoryGirl.create(:admin) }
 
-    it "click in switch language button from chinese to german after login" do
+    scenario "click in switch language button from chinese to german after login" do
 
       visit new_user_session_path
       fill_in 'user[email]', :with => admin.email
@@ -20,7 +20,7 @@ describe "language#update process", :type => :feature, :js => true  do
 
   context "as guest" do
 
-    it "switch from customer to shopkeeper site and change language automatically" do
+    scenario "switch from customer to shopkeeper site and change language automatically" do
 
       visit root_path
       expect(page).to have_content('来因盒') # Germany in the Box (in Chinese)

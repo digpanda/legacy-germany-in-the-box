@@ -13,6 +13,9 @@ FactoryGirl.define do
     tel                   { Faker::PhoneNumber.phone_number }
     mail                  { Faker::Internet.email }
     hermes_pickup         true
+    wirecard_status :active
+    approved { Time.now }
+    bg_merchant_id { "#{Faker::Number.number(20)}" }
 
     before(:create) do |shop|
       Faker::Config.locale = :de # to avoid weird chinese names

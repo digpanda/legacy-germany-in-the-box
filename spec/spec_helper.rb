@@ -6,8 +6,16 @@ RSpec.configure do |config|
   end
 end
 
+require "selenium/webdriver"
+
 Capybara.register_driver :selenium do |app|
   Capybara::Selenium::Driver.new(app, :browser => :chrome)
+
+  args = []
+  args << "--window-size=1400,1000" # window size
+
+  Capybara::Selenium::Driver.new(app, :browser => :chrome, :args => args)
+
 end
 
 #Capybara.app_host =  "http://local.dev:3000"

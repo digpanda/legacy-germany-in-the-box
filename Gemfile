@@ -103,7 +103,6 @@ group :development, :test, :staging, :local do
   #gem "cucumber-rails", :require => false
   gem "database_cleaner"
   gem "pry-rails"
-
 end
 
 

@@ -8,10 +8,6 @@ class Admin::CategoriesController < ApplicationController
 
   attr_accessor :address
 
-  # TODO : this section has to be done in its integrality
-  # we should use the same strategy as we used
-  # for coupons and such
-
   def index
   end
 

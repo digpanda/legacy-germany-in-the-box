@@ -4,6 +4,8 @@ FactoryGirl.define do
 
     price { BigDecimal.new(rand(1..10)) }
     quantity 5
+    status true
+    unlimited true
     weight { rand(0.01..3.00) }
     space_length { rand(1..4) }
     space_width { rand(1..4) }
@@ -20,7 +22,7 @@ FactoryGirl.define do
       space_width 20
       space_height 15
     end
-    
+
   end
 
 end

@@ -12,7 +12,7 @@ class Customer::OrdersController < ApplicationController
   attr_accessor :order
 
   def index
-    @orders = current_user.orders.nonempty.order_by(:c_at => :desc).paginate(:page => current_page, :per_page => 10);
+    @orders = current_user.orders.nonempty.order_by(:c_at => :desc).paginate(:page => current_page, :per_page => 10)
   end
 
   # TODO : refactor this

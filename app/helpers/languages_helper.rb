@@ -16,7 +16,7 @@ module LanguagesHelper
   end
 
   def force_german!
-    session[:locale] = :'zh-CN'
+    session[:locale] = :de
   end
 
   # Not 100% sure it's used in the system, but it's called at some point

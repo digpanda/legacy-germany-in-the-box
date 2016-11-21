@@ -7,12 +7,21 @@ FactoryGirl.define do
     cover     "Cover 1"
     desc      { Faker::Lorem.paragraph }
     hs_code    "random"
-    tags      ["tag1", "tag2"]
+    approved { Time.now }
+    status true
 
     options   { [FactoryGirl.build(:variant)] }
     skus      { [FactoryGirl.build(:sku, :option_ids => [self.options.first.suboptions.first.id.to_s])] }
 
     association :duty_category, factory: :duty_medicine_category, strategy: :build
+
+    before(:create) do |product|
+      if product.categories.count == 0
+        category = Category.offset(rand(Category.count)).first || FactoryGirl.create(:category)
+        product.categories << category
+        product.save
+      end
+    end
 
     before(:create) do |product|
       if product.shop_id.nil?
