@@ -1,6 +1,8 @@
 module Helpers
   module Global
 
+    module_function
+    
     def random_time
       rand * Time.now.utc.to_i
     end

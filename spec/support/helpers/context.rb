@@ -1,5 +1,7 @@
 module Helpers
   module Context
+
+    module_function
     
     def create_ui_categories!
       unless Category.first

@@ -9,7 +9,7 @@ class Guest::OrderItemsController < ApplicationController
   # it actually adds an order item to the cart itself.
   # maybe we should move it somewhere else
   def create
-
+    
     product = Product.find(params[:sku][:product_id]).decorate
     sku = product.sku_from_option_ids(params[:sku][:option_ids].split(','))
     quantity = params[:sku][:quantity].to_i
@@ -36,7 +36,7 @@ class Guest::OrderItemsController < ApplicationController
       if order.save
         cart_manager.store(order)
         flash[:success] = I18n.t(:add_product_ok, scope: :edit_order)
-        redirect_to navigation.back(2, shop_path(product.shop_id))
+        redirect_to navigation.back(2, guest_shop_path(product.shop))
         return
       end
 
