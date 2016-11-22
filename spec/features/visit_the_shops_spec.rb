@@ -1,7 +1,7 @@
 feature "visits the shops", :js => true  do
 
   before(:each) {
-    create_ui_categories!
+    create_categories!
     FactoryGirl.create_list(:product, 20)
   }
 

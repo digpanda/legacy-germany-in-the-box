@@ -3,7 +3,7 @@ class Tasks::Digpanda::RemoveAndCreateUiCategories
   def initialize
 
     devlog "We first delete the UI categories"
-    Category.all.delete
+    Category.delete_all
 
     #
     # root category - level 0

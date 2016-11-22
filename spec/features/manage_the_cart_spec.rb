@@ -1,7 +1,7 @@
 feature "manage the cart", :js => true  do
 
   before(:each) {
-    create_ui_categories!
+    create_categories!
   }
 
   let(:product) { FactoryGirl.create(:product) }
@@ -28,7 +28,6 @@ feature "manage the cart", :js => true  do
 
     scenario "go to the empty cart manager" do
 
-
       visit customer_cart_path
       expect(page).to have_current_path(customer_cart_path) # empty cart manager page
 
@@ -36,13 +35,7 @@ feature "manage the cart", :js => true  do
 
     context "with filled cart" do
 
-      before(:each) do
-
-        # fill the cart
-        visit guest_product_path(product)
-        page.first('.product-quantity button').click
-
-      end
+      before(:each) { add_to_cart!(product) }
 
       scenario "cart manager shows checkout button" do
 
