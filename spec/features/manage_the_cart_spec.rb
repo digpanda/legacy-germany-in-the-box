@@ -24,9 +24,10 @@ feature "manage the cart", :js => true  do
   context "as customer" do
 
     let(:customer) { FactoryGirl.create(:customer) }
-    before(:each) { login!(customer); puts "login" }
+    before(:each) { login!(customer) }
 
     scenario "go to the empty cart manager" do
+
 
       visit customer_cart_path
       expect(page).to have_current_path(customer_cart_path) # empty cart manager page
@@ -44,7 +45,7 @@ feature "manage the cart", :js => true  do
       end
 
       scenario "cart manager shows checkout button" do
-        
+
         visit customer_cart_path
         expect(page).to have_current_path(customer_cart_path)
         expect(page).to have_css("btn-large +checkout-button") # have a checkout button on the cart
