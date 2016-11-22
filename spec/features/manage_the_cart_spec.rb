@@ -48,7 +48,7 @@ feature "manage the cart", :js => true  do
 
         visit customer_cart_path
         expect(page).to have_current_path(customer_cart_path)
-        expect(page).to have_css("btn-large +checkout-button") # have a checkout button on the cart
+        expect(page).to have_css ".\\+checkout-button", text: "确定收货地址" # go checkout
 
       end
 
@@ -56,9 +56,9 @@ feature "manage the cart", :js => true  do
 
         visit customer_cart_path
         2.times { page.first('.js-set-quantity-plus').click } # raise quantity
-        page.first('.order-item-quantity').to have_content("3")
+        expect(page.first('input[id^=order-item-quantity]').value).to eql("3")
         1.times { page.first('.js-set-quantity-minus').click }
-        page.first('.order-item-quantity').to have_content("2")
+        expect(page.first('input[id^=order-item-quantity]').value).to eql("2")
 
       end
 
