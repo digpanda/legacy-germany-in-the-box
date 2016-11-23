@@ -16,6 +16,13 @@ class Customer::CheckoutController < ApplicationController
 
     @order = cart_manager.order(shop: shop)
 
+    # we check the address has been selected
+    unless params[:delivery_destination_id]
+      flash[:error] = "Please choose a delivery address."
+      redirect_to navigation.back(1)
+      return
+    end
+
     # we update the delivery address before everything
     # this will be used to check the limit reach
     update_addresses!
