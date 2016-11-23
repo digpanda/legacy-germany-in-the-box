@@ -30,9 +30,9 @@ feature "checkout process", :js => true  do
 
     context "with correct address" do
 
-      before(:each) {
+      before(:each) do
         add_address_from_lightbox!
-      }
+      end
 
       scenario "pay successfully" do
 
@@ -44,8 +44,42 @@ feature "checkout process", :js => true  do
 
         within_window checkout_window do
           wait_for_page('#hpp-logo') # we are on wirecard hpp
-          apply_wirecard_creditcard!
+          apply_wirecard_success_creditcard!
           expect(page).to have_content("下单成功") # means success in chinese
+        end
+
+      end
+
+      scenario "cancel payment" do
+
+        page.first('.\\+checkout-button').click # go to payment step
+        on_payment_method_page?
+        checkout_window = window_opened_by do
+          page.first('button[value=creditcard]').click # pay with wirecard
+        end
+
+        within_window checkout_window do
+          wait_for_page('#hpp-logo') # we are on wirecard hpp
+          find('#hpp-form-cancel').click
+          find('#hpp-confirm-button-yes').click
+          on_payment_method_page?
+        end
+
+      end
+
+      scenario "fail to pay" do
+
+        page.first('.\\+checkout-button').click # go to payment step
+        on_payment_method_page?
+        checkout_window = window_opened_by do
+          page.first('button[value=creditcard]').click # pay with wirecard
+        end
+
+        within_window checkout_window do
+          wait_for_page('#hpp-logo') # we are on wirecard hpp
+          apply_wirecard_failed_creditcard!
+          on_payment_method_page?
+          expect(page).to have_css("#message-error")
         end
 
       end
