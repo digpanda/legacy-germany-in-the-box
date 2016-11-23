@@ -46,7 +46,7 @@ feature "checkout process", :js => true  do
         within_window checkout_window do
           wait_for_page('#hpp-logo') # we are on wirecard hpp
           apply_wirecard_creditcard!
-          binding.pry
+          expect(page).to have_content("下单成功") # means success in chinese
         end
 
       end
