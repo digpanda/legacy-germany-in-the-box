@@ -55,6 +55,29 @@ development:
 
 test:
   <<: *defaults
+  hpp:
+    # CREDIT CARD :
+    creditcard:
+      hosted_payment_url: https://api-test.wirecard.com/engine/hpp/
+      notification_url: http://wirecard.germanyintebox.ultrahook.com
+      psp_name: wirecard
+
+    # UNIONPAY :
+    upop:
+      hosted_payment_url: https://sandbox-engine.thesolution.com/engine/hpp/
+      psp_name: demo
+
+    # UNIVERSAL
+    transaction_types:
+      upop: debit
+      creditcard: purchase
+      default: purchase
+
+    default_redirect_url: http://local.dev:3333/customer/checkout/success
+    cancel_redirect_url: http://local.dev:3333/customer/checkout/cancel
+    processing_redirect_url: http://local.dev:3333/customer/checkout/processing
+    success_redirect_url : http://local.dev:3333/customer/checkout/success
+    fail_redirect_url: http://local.dev:3333/customer/checkout/fail
 
 staging:
   <<: *defaults

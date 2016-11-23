@@ -18,7 +18,14 @@ Capybara.register_driver :selenium do |app|
 
 end
 
-Capybara.app_host =  "http://local.dev:3000"
+# Capybara.app_host =  "http://local.dev:3000"
+Capybara.app_host = "http://local.dev:3333"
+Capybara.always_include_port = true
+Capybara.default_host = "http://local.dev:3333"
+#Capybara.default_host
+Capybara.server_port = 3333
+Capybara.server_host = "local.dev"
+
 #Capybara.run_server = false
 Capybara.current_driver = :selenium
 Capybara.default_max_wait_time = 30
