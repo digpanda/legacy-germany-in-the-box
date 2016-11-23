@@ -29,6 +29,13 @@ FactoryGirl.define do
 
   end
 
+  trait(:with_payment_gateways) do
+    after(:create) do |shop|
+      create(:payment_gateway, shop_id: shop.id) # creditcard one
+      create(:payment_gateway, :with_upop, shop_id: shop.id)
+    end
+  end
+
   trait(:with_orders) do
     after(:create) do |shop|
       create_list(:order, 5, shop_id: shop.id)

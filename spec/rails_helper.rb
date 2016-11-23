@@ -25,6 +25,7 @@ RSpec.configure do |config|
     config.include Helpers::Features::Checkout
     config.include Helpers::Features::OnPage
     config.include Helpers::Features::ShowOnPage
+    config.include Helpers::Features::WaitForFront
     config.include Helpers::Features::Login
   end
 

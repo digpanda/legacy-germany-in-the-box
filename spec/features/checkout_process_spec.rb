@@ -8,7 +8,8 @@ feature "checkout process", :js => true  do
 
   context "checkout one product" do
 
-    let(:product) { FactoryGirl.create(:product) }
+    let(:shop) { FactoryGirl.create(:shop, :with_payment_gateways) }
+    let(:product) { FactoryGirl.create(:product, shop_id: shop.id) }
 
     before(:each) {
       add_to_cart!(product)
@@ -19,17 +20,29 @@ feature "checkout process", :js => true  do
     context "with no address" do
 
       scenario "can not go further" do
-        # TODO
+
+        page.first('.\\+checkout-button').click # go to payment step
+        on_order_address_page? # go back to the current page
+        # TODO : fix this so it doesn't blow up anymore
+
       end
 
     end
 
     context "with correct address" do
 
+      before(:each) {
+        add_address_from_lightbox!
+      }
+
       scenario "pay successfully" do
 
-        add_address_from_lightbox!
-        binding.pry
+        page.first('.\\+checkout-button').click # go to payment step
+        on_payment_method_page?
+        page.first('button[value=creditcard]').click # pay with creditcard
+        wait_for_redirection
+        apply_wirecard_creditcard!
+        # TODO : go back here
 
       end
 
