@@ -9,7 +9,7 @@ module Helpers
         fill_in 'address[mobile]', :with => '13802049742'
         fill_in 'address[pid]', :with => '11000019790225207X'
 
-        all('#address_province option')[rand(0..5)].select_option
+        all('#address_province option')[2].select_option
         all('#address_city option')[1].select_option
         all('#address_district option')[1].select_option
 
@@ -26,11 +26,9 @@ module Helpers
         fill_in 'last_name', :with => 'He'
         fill_in 'account_number', :with => '4012000300001003'
         fill_in 'card_security_code', :with => '003'
-        binding.pry
-        all('#expiration_month_list option')[0].select_option # 01
-        all('#expiration_month_list option')[0].select_option # 01
-
-        binding.pry
+        find("#expiration_month_list").find("option[value='01']").click
+        find("#expiration_year_list").find("option[value='2019']").click
+        page.first('#hpp-form-submit').click
       end
 
     end

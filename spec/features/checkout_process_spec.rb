@@ -39,10 +39,15 @@ feature "checkout process", :js => true  do
 
         page.first('.\\+checkout-button').click # go to payment step
         on_payment_method_page?
-        page.first('button[value=creditcard]').click # pay with creditcard
-        wait_for_redirection
-        apply_wirecard_creditcard!
-        # TODO : go back here
+        checkout_window = window_opened_by do
+          page.first('button[value=creditcard]').click # pay with wirecard
+        end
+
+        within_window checkout_window do
+          wait_for_page('#hpp-logo') # we are on wirecard hpp
+          apply_wirecard_creditcard!
+          binding.pry
+        end
 
       end
 

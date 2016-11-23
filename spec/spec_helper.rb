@@ -18,9 +18,9 @@ Capybara.register_driver :selenium do |app|
 
 end
 
-#Capybara.app_host =  "http://local.dev:3000"
+Capybara.app_host =  "http://local.dev:3000"
 #Capybara.run_server = false
-#Capybara.current_driver = :selenium
+Capybara.current_driver = :selenium
 Capybara.default_max_wait_time = 30
 
 # we turn VCR off by default because we don't want to use it systematically
