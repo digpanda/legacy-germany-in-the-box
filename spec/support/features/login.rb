@@ -11,6 +11,13 @@ module Helpers
         click_button 'sign_in'
       end
 
+      def logout!
+        visit new_user_session_path
+        fill_in 'user[email]', :with => account.email
+        fill_in 'user[password]', :with => '12345678'
+        click_button 'sign_in'
+      end
+
     end
   end
 end
