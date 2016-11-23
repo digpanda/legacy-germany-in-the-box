@@ -4,8 +4,9 @@ FactoryGirl.define do
 
     status true
     position { Helpers::Global.next_number(:category) }
-    name_translations { {:'zh-CN' => 'Category 1', :de => 'Category 1'} }
-    desc { {:'zh-CN' => 'Category Description 1', :de => 'Category Description 1'} }
+    slug 'food'
+    name_translations { {:'zh-CN' => 'Food', :de => 'Food'} }
+    desc { {:'zh-CN' => 'Food Description', :de => 'Food Description'} }
 
   end
 

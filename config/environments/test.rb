@@ -20,7 +20,7 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :test #:smtp
 
   # used for root_url and equivalent
-  Rails.application.routes.default_url_options = {host: 'local.dev', port: 3000}
+  Rails.application.routes.default_url_options = {host: 'local.dev', port: 3333}
 
 =begin
   config.action_mailer.smtp_settings = {

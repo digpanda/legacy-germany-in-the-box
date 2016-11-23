@@ -22,8 +22,7 @@ feature "checkout process", :js => true  do
       scenario "can not go further" do
 
         page.first('.\\+checkout-button').click # go to payment step
-        on_order_address_page? # go back to the current page
-        # TODO : fix this so it doesn't blow up anymore
+        expect(page).to have_css("#message-error") # error output
 
       end
 
