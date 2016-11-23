@@ -1,6 +1,6 @@
 module Helpers
   module Features
-    module Login
+    module AddToCart
 
       module_function
 
