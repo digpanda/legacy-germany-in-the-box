@@ -7688,6 +7688,10 @@ img.mfp-img {
   text-align: right; }
 
 /* line 85, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
+#csstyle .\+left {
+  text-align: left; }
+
+/* line 85, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
 #csstyle .\+centered {
   text-align: center;
   margin: 0 auto; }

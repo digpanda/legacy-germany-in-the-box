@@ -1,6 +1,9 @@
 class Address
   include MongoidBase
 
+  CHINESE_CHARACTERS = '[\u4e00-\u9fa5]+'
+  CHINESE_ID = '^(\\d{6})(19|20)(\\d{2})(1[0-2]|0[1-9])(0[1-9]|[1-2][0-9]|3[0-1])(\\d{3})(\\d|X|x)?$'
+
   strip_attributes
 
   field :additional,    type: String
@@ -32,9 +35,10 @@ class Address
   scope :is_only_shipping,    ->  { any_of({type: :shipping}) }
   scope :is_only_both,        ->  { any_of({type: :both}) }
 
-  validates :pid, presence: true,   length: {minimum:18} , :if => lambda { shop.nil? && user&.decorate&.customer? }
-  validates :fname, presence: true
-  validates :lname, presence: true
+  # validates :pid, presence: true, :format => { :with => CHINESE_ID }
+  # validates :fname, presence: true, :format => { :with => CHINESE_CHARACTERS }
+  # validates :lname, presence: true, :format => { :with => CHINESE_CHARACTERS }
+
   validates :street, presence: true
   validates :city, presence: true
   validates :zip, presence: true

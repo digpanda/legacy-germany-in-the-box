@@ -1872,14 +1872,14 @@ module.exports = ChinaCity;
 });
 
 require.register("javascripts/starters/chinese_input.js", function(exports, require, module) {
-"use strict";
+'use strict';
 
 /**
 * ChineseInput Class
 */
 var ChineseInput = {
 
-  chinese_regex: /[\u4E00-\u9FFF\u3400-\u4DFF\uF900-\uFAFF]+/g,
+  // chinese_regex: /[\u4E00-\u9FFF\u3400-\u4DFF\uF900-\uFAFF]+/g,
 
   /**
   * Initializer
@@ -1890,6 +1890,18 @@ var ChineseInput = {
   },
 
   restrictToChinese: function restrictToChinese() {
+
+    $("input").on('invalid', function (e) {
+      if ($(this).data('error') != "") {
+        this.setCustomValidity($(this).data('error'));
+      }
+    });
+
+    $("input").on('keyup', function (e) {
+      this.setCustomValidity("");
+    });
+
+    // THIS IS CURRENTLY NOT IN USE
     //
     //     $(".js-only-chinese").ready(function(e) {
     //
@@ -1912,7 +1924,6 @@ var ChineseInput = {
     //   }
     //
     // });
-
   }
 
 };
