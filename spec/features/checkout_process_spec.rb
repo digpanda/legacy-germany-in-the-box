@@ -1,40 +1,37 @@
 feature "checkout process", :js => true  do
 
-  let(:customer) { FactoryGirl.create(:customer, :without_address) }
+  let(:customer) { FactoryGirl.create(:customer) }
 
-  before(:each) {
+  before(:each) do
     login!(customer)
-  }
+  end
 
   context "checkout one product" do
 
     let(:shop) { FactoryGirl.create(:shop, :with_payment_gateways) }
     let(:product) { FactoryGirl.create(:product, shop_id: shop.id) }
 
-    before(:each) {
+    before(:each) do
       add_to_cart!(product)
       page.first('#total-products').click # go to checkout
       page.first('.\\+checkout-button').click # go to address step
-    }
+    end
 
-    context "with no address" do
+    context "address built from scratch" do
 
-      scenario "can not go further" do
+      let(:customer) { FactoryGirl.create(:customer, :without_address) }
+
+      scenario "can not go further without address created" do
 
         page.first('.\\+checkout-button').click # go to payment step
         expect(page).to have_css("#message-error") # error output
 
       end
 
-    end
-
-    context "with correct address" do
-
-      before(:each) do
-        add_address_from_lightbox!
-      end
-
       scenario "pay successfully" do
+
+        # add address from scratch
+        add_address_from_lightbox!
 
         page.first('.\\+checkout-button').click # go to payment step
         on_payment_method_page?
@@ -50,8 +47,22 @@ feature "checkout process", :js => true  do
 
       end
 
+    end
+
+    context "address already setup" do
+
+      # we use the default `customer` which includes a valid address
+
+      scenario "can not go further without address selected" do
+
+        page.first('.\\+checkout-button').click # go to payment step
+        expect(page).to have_css("#message-error") # error output
+
+      end
+
       scenario "cancel payment" do
 
+        page.first('input[id^=delivery_destination_id').click # click on the first address
         page.first('.\\+checkout-button').click # go to payment step
         on_payment_method_page?
         checkout_window = window_opened_by do
@@ -69,6 +80,7 @@ feature "checkout process", :js => true  do
 
       scenario "fail to pay" do
 
+        page.first('input[id^=delivery_destination_id').click # click on the first address
         page.first('.\\+checkout-button').click # go to payment step
         on_payment_method_page?
         checkout_window = window_opened_by do

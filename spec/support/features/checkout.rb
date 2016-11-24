@@ -5,7 +5,6 @@ module Helpers
       def add_address_from_lightbox!
 
         page.first('.address-box').click # open address box
-        binding.pry
         fill_in 'address[fname]', :with => '薇'
         fill_in 'address[lname]', :with => '李'
         fill_in 'address[mobile]', :with => '13802049742'

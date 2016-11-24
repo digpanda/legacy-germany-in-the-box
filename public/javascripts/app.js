@@ -1745,7 +1745,7 @@ require.register("javascripts/starters.js", function(exports, require, module) {
 /**
  * Starters Class
  */
-var Starters = ['auto_resize', 'bootstrap', 'china_city', 'datepicker', 'editable_fields', 'footer', 'images_handler', 'lazy_loader', 'left_menu', 'links_behaviour', 'messages', 'navigation', 'product_favorite', 'product_form', 'products_list', 'refresh_time', 'responsive', 'search', 'sku_form', 'sweet_alert', 'tooltipster'];
+var Starters = ['auto_resize', 'bootstrap', 'china_city', 'chinese_input', 'datepicker', 'editable_fields', 'footer', 'images_handler', 'lazy_loader', 'left_menu', 'links_behaviour', 'messages', 'navigation', 'product_favorite', 'product_form', 'products_list', 'refresh_time', 'responsive', 'search', 'sku_form', 'sweet_alert', 'tooltipster'];
 
 module.exports = Starters;
 });
@@ -1869,6 +1869,55 @@ var ChinaCity = {
 };
 
 module.exports = ChinaCity;
+});
+
+require.register("javascripts/starters/chinese_input.js", function(exports, require, module) {
+"use strict";
+
+/**
+* ChineseInput Class
+*/
+var ChineseInput = {
+
+  chinese_regex: /[\u4E00-\u9FFF\u3400-\u4DFF\uF900-\uFAFF]+/g,
+
+  /**
+  * Initializer
+  */
+  init: function init() {
+
+    this.restrictToChinese();
+  },
+
+  restrictToChinese: function restrictToChinese() {
+    //
+    //     $(".js-only-chinese").ready(function(e) {
+    //
+    //       console.log('fuck this');
+    //       $(this).attr('oninvalid', "setCustomValidity('Debe completar este campo.');");
+    //       $(this).attr('pattern', "/[\u4E00-\u9FFF\u3400-\u4DFF\uF900-\uFAFF]+/g")
+    //
+    // // :pattern => "/[\u4E00-\u9FFF\u3400-\u4DFF\uF900-\uFAFF]+/g", :oninvalid => "setCustomValidity('Should not be left empty.')"
+    //
+    //
+    //     });
+
+    // $(".js-only-chinese").keypress(function(e) {
+    //
+    //   let key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+    //   var regex = new RegExp(ChineseInput.chinese_regex);
+    //   if (!regex.test(key)) {
+    //      e.preventDefault();
+    //      return false;
+    //   }
+    //
+    // });
+
+  }
+
+};
+
+module.exports = ChineseInput;
 });
 
 require.register("javascripts/starters/datepicker.js", function(exports, require, module) {

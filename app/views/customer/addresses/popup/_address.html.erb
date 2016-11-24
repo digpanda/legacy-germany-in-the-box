@@ -7,11 +7,14 @@
   <div class="form-group">
     <div class="row">
       <div class="col-md-6">
-        <%= f.text_field :lname, :value => address.lname ? address.lname : current_user.lname, :class => 'form-control', :required => true, :placeholder => I18n.t(:lname, scope: :edit_address) %>
+        <%= f.text_field :lname, :value => address.lname ? address.lname : current_user.lname, :class => 'form-control js-only-chinese', :required => true, :placeholder => I18n.t(:lname, scope: :edit_address), :pattern => "/[\u4E00-\u9FFF\u3400-\u4DFF\uF900-\uFAFF]+/g", :oninvalid => "setCustomValidity('Please use only Chinese characters.')" %>
       </div>
       <div class="col-md-6">
-        <%= f.text_field :fname, :value => address.fname ? address.fname : current_user.fname, :class => 'form-control', :required => true, :placeholder => I18n.t(:fname, scope: :edit_address) %>
+        <%= f.text_field :fname, :value => address.fname ? address.fname : current_user.fname, :class => 'form-control js-only-chinese', :required => true, :placeholder => I18n.t(:fname, scope: :edit_address) %>
       </div>
+    </div>
+    <div class="row">
+      <div class="help-block with-errors"></div>
     </div>
   </div>
 

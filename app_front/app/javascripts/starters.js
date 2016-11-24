@@ -6,6 +6,7 @@ var Starters = [
   'auto_resize',
   'bootstrap',
   'china_city',
+  'chinese_input',
   'datepicker',
   'editable_fields',
   'footer',
