@@ -28,7 +28,7 @@ feature "checkout process", :js => true  do
 
       end
 
-      scenario "pay successfully" do
+      scenario "pay successfully and generate shipping label correctly" do
 
         # add address from scratch
         add_address_from_lightbox!
@@ -43,6 +43,7 @@ feature "checkout process", :js => true  do
           wait_for_page('#hpp-logo') # we are on wirecard hpp
           apply_wirecard_success_creditcard!
           expect(page).to have_content("下单成功") # means success in chinese
+          binding.pry
         end
 
       end

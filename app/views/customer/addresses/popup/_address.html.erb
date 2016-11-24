@@ -14,9 +14,9 @@
         <%= f.text_field :fname, :value => address.fname ? address.fname : current_user.fname, :class => 'form-control', :required => true, :placeholder => I18n.t(:fname, scope: :edit_address), :pattern => '[\u4e00-\u9fa5]+', :data => {:error => "Please use only Chinese characters"} %>
       </div>
     </div>
-    <div class="row +left">
+    <div class="row">
       <div class="col-md-12">
-        <div class="help-block with-errors"></div>
+        <div class="+left help-block with-errors"></div>
       </div>
     </div>
   </div>
