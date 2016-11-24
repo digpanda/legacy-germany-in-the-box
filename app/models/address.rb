@@ -2,7 +2,7 @@ class Address
   include MongoidBase
 
   CHINESE_CHARACTERS = /[\u4e00-\u9fa5]+/
-  CHINESE_ID = /(\\d{6})(19|20)(\\d{2})(1[0-2]|0[1-9])(0[1-9]|[1-2][0-9]|3[0-1])(\\d{3})(\\d|X|x)?/
+  CHINESE_ID = /(\d{6})(19|20)(\d{2})(1[0-2]|0[1-9])(0[1-9]|[1-2][0-9]|3[0-1])(\d{3})(\d|X|x)/
 
   strip_attributes
 
