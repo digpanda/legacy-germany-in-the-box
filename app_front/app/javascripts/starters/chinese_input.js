@@ -17,7 +17,7 @@ var ChineseInput = {
   restrictToChinese: function() {
 
     $("input").on('invalid', function (e) {
-      if ($(this).data('error') != "") {
+      if (typeof $(this).data('error') != "undefined") {
         this.setCustomValidity($(this).data('error'));
       }
     });
