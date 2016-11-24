@@ -1,5 +1,6 @@
 feature "checkout process", :js => true  do
 
+  BORDERGURU_BASE_URL = "borderguru.com".freeze unless defined? BORDERGURU_BASE_URL
   let(:customer) { FactoryGirl.create(:customer) }
 
   before(:each) do
@@ -43,7 +44,14 @@ feature "checkout process", :js => true  do
           wait_for_page('#hpp-logo') # we are on wirecard hpp
           apply_wirecard_success_creditcard!
           expect(page).to have_content("下单成功") # means success in chinese
-          binding.pry
+          @borderguru_label_window = window_opened_by do
+            click_link "打开" # click on "download your label" in chinese
+            # expect(page).to have_no_css('#message-error')
+          end
+        end
+
+        within_window @borderguru_label_window do
+          expect(page.current_url).to have_content(BORDERGURU_BASE_URL) # we check we accessed borderguru
         end
 
       end
