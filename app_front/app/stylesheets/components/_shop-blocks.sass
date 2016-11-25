@@ -1,23 +1,19 @@
 +component(shop-blocks)
 
-  +part(main)
+  color: $color-white
+  #{$a-tags}
+    color: $color-white
 
-    +option(avatar)
+  +part(avatar)
+    +avatar
+    margin-top: 2em !important
+    max-width: 100px
+    background: $color-white
+
+    +option(big)
       +avatar(110px)
 
-    +option(content)
-      color: $color-white
-
-      img
-        +avatar
-        margin-top: 2em !important
-        max-width: 100px
-        background: $color-white
-
-      h3
-        margin-top: 1.5em
-        color: $color-white
-
+  +part(main)
 
     +option(content-text)
       margin-bottom: 2em
@@ -47,6 +43,8 @@
 
   +part(featured-shop)
     +border-radius(0.5em)
+    img
+      width: 110px
     border: 2px $color-grey solid
     background-color: $color-grey
 
