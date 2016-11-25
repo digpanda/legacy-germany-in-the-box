@@ -24,15 +24,27 @@
 
       <div class="+small-spacer"></div>
 
+      <!-- Description of the shop -->
       <div class="row">
-
         <div class="col-md-10 col-md-push-1 col-md-pull-1">
           <%= simple_format(shop.desc) %>
         </div>
-
       </div>
 
-      <div class="+small-spacer"></div>
+      <!-- Categories shortcut anchor -->
+      <% unless shop.categories.count <= 1 %>
+        <div class="row">
+          <div class="col-md-10 col-md-push-1 col-md-pull-1">
+            <div class="tags">
+              <% shop.categories.each do |category| %>
+                <span class="tags__tag">
+                  <a href="#<%= category.slug %>"><%= category.name %></a>
+                </span>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
 
     </div>
     <!-- End of Content -->

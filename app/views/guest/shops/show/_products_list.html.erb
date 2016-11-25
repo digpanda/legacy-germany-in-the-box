@@ -7,6 +7,7 @@
     <% category = Category.find(category_id) %>
 
       <% if products.categories_array.size > 1 %>
+        <a name="<%= category.slug %>"></a>
         <h3><%= category.name %></h3>
         <hr>
       <% end %>

@@ -9190,6 +9190,19 @@ img.mfp-img {
       border-radius: 50%; }
 
 /* line 32, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
+.tags {
+  padding: 0.8em; }
+  /* line 76, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
+  .tags__tag {
+    background-color: #3498db;
+    padding: 0.5em;
+    margin-left: 0.5em;
+    margin-right: 0.5em; }
+    /* line 10, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_tags.sass */
+    .tags__tag a, .tags__tag a:active, .tags__tag a:hover, .tags__tag a:visited {
+      color: white; }
+
+/* line 32, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
 .total {
   color: #666; }
   /* line 5, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_total.sass */
