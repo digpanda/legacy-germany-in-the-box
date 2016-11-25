@@ -3,8 +3,6 @@ require "net/http"
 
 class Guest::ShopApplicationsController < ApplicationController
 
-  include LanguagesHelper
-  
   before_action :force_german
   attr_reader :shop_application
 

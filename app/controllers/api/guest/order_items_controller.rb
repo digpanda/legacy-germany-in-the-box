@@ -54,8 +54,6 @@ class Api::Guest::OrderItemsController < Api::ApplicationController
         return
       end
 
-      @total_number_of_products = total_number_of_products
-
     else
       render :json => { :success => false, :original_quantity => @order_item.quantity, :error => order_item.errors.full_messages.join(", ") }
     end

@@ -1,4 +1,4 @@
-<% if total_number_of_products > 0 %>
+<% if cart_manager.products_number > 0 %>
 <div>
   <% cart_manager.orders.each do |shop, order| %>
   <% if order.decorate.total_quantity > 0 %>
