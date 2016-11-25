@@ -1,6 +1,12 @@
 # Guest related
 namespace :guest do
 
+  resource :home, :controller => 'home' do
+  end
+
+  resources :campaigns, :only => [:index] do
+  end
+
   resource :pages do
     get :business_model
     get :shipping_cost
@@ -16,9 +22,6 @@ namespace :guest do
     get :customer_about
     get :fees
     get :home
-  end
-
-  resource :home, :controller => 'home' do
   end
 
   resource :feedback, :controller => 'feedback' do
