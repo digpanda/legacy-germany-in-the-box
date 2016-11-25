@@ -57,6 +57,7 @@ GEM
     addressable (2.4.0)
     airbrussh (1.0.2)
       sshkit (>= 1.6.1, != 1.7.0)
+    api_cache (0.3.0)
     archive-zip (0.7.0)
       io-like (~> 0.3.0)
     arel (6.0.3)
@@ -493,6 +494,7 @@ PLATFORMS
 
 DEPENDENCIES
   abstract_method
+  api_cache
   better_errors
   bootstrap-datepicker-rails
   bootstrap-multiselect-rails
