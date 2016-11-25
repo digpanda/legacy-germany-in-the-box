@@ -105,8 +105,15 @@ class ApplicationController < ActionController::Base
   # but it's alright for now
   def after_sign_in_path_for(resource)
 
-    if current_user.decorate.customer?
+    if current_user.customer?
       force_chinese!
+
+      # we get the last order which's not paid yet
+      last_order = current_user.orders.unpaid.order_by(:u_at => :desc).first
+      if last_order
+        cart_manager.store(last_order)
+      end
+
       return navigation.force! if navigation.force?
       return navigation.back(1)
     end
@@ -115,7 +122,7 @@ class ApplicationController < ActionController::Base
     # he doesn't need any order.
     remove_all_orders!
 
-    if current_user.decorate.shopkeeper?
+    if current_user.shopkeeper?
       force_german!
       if current_user.shop.agb
         return shopkeeper_orders_path
@@ -124,7 +131,7 @@ class ApplicationController < ActionController::Base
       return shopkeeper_shop_producer_path
     end
 
-    if current_user.decorate.admin?
+    if current_user.admin?
       return navigation.force! if navigation.force?
       return admin_shops_path
     end
