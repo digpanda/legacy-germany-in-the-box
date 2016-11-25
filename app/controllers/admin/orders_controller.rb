@@ -34,6 +34,15 @@ class Admin::OrdersController < ApplicationController
     redirect_to navigation.back(1)
   end
 
+  def destroy
+    if order.delete
+      flash[:success] = "The order was deleted."
+    else
+      flash[:error] = "The order was not deleted (#{order.errors.full_messages.join(', ')})"
+    end
+    redirect_to navigation.back(1)
+  end
+
   def reset_border_guru_order
     response = get_shipping_refresh!
     if response.success?

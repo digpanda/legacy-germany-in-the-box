@@ -38,11 +38,7 @@
     <% orders.each do |order| %>
     <tr>
       <td>
-        <% if order.decorate.total_price_with_extra_costs > 0 %>
-        <%= link_to order.id, order_path(order) %>
-        <% else %>
         <%= order.id %>
-        <% end %>
       </td>
       <td>
         <%= order.border_guru_shipment_id %>
