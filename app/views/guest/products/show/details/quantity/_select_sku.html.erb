@@ -1,0 +1,2 @@
+<%= I18n.t(:variant_option, scope: :cart) %>
+<%= select_tag 'sku[option_ids]', options_for_select( get_options_for_select(product), product.decorate.featured_sku.option_ids.join(',') ), :class => 'form-control', :id => 'option_ids', :product_id => product.id %>
