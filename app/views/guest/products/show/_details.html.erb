@@ -1,5 +1,5 @@
 <h2>
-  <%= product.name %> <%= render partial: "guest/products/show/like", :locals => { :product => product } %>
+  <%= product.name %> <%= render partial: "guest/products/show/details/like", :locals => { :product => product } %>
   <span id="product_discount" class="<% if @featured_sku.discount? %>+discount<% end %>">
     <%= product.decorate.preview_discount if @featured_sku.discount? %>
   </span>
@@ -54,9 +54,9 @@
 
     <% if @featured_sku %>
 
-        <%= render partial: "guest/products/show/select_sku", :locals => {product: product} %>
+        <%= render partial: "guest/products/show/details/select_sku", :locals => {product: product} %>
         <div class="+small-spacer"></div>
-        <%= render partial: "guest/products/show/select_quantity", :locals => {product: product} %>
+        <%= render partial: "guest/products/show/details/select_quantity", :locals => {product: product} %>
 
     <% else %>
 
