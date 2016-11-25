@@ -33,7 +33,7 @@ module BorderGuruFtp
             order_item.sku.id, # Item ID
             order_item.product.hs_code, # HS Code
             order_item.sku.country_of_origin,
-            "#{order_item.product.name}: #{order_item.product.decorate.clean_desc(MAX_DESCRIPTION_CHARACTERS)}", # Description
+            "#{order_item.product.name.upcase}  #{order_item.product.decorate.clean_desc(MAX_DESCRIPTION_CHARACTERS)}", # Description
             (order_item.weight * 1000), # Weight : current_order_item.weight
             order_item.price, # Price
             CSV_LINE_CURRENCY # Currency
