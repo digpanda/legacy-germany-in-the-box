@@ -6,10 +6,10 @@
     <%= order_payment.transaction_id %>
   </td>
   <td>
-    <%= link_to order_payment.shop.name, edit_producer_shop_path(order_payment.shop) %>
+    <%= link_to order_payment.shop.name, admin_shop_path(order_payment.shop) %>
   </td>
   <td>
-    <%= link_to order_payment.order_id, order_path(order_payment.order_id) %>
+    <%= link_to order_payment.order_id, admin_order_path(order_payment.order_id) %>
   </td>
   <td>
     <% unless order_payment&.order&.shipping_address.nil? %>
