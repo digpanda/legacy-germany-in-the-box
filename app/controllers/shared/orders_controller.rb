@@ -25,7 +25,7 @@ class Shared::OrdersController < ApplicationController
   def bill
     respond_to do |format|
       format.pdf do
-        render pdf: order.bill_id.to_s, disposition: 'attachment'
+        render pdf: "#{bill_file_name}", disposition: 'attachment'
       end
     end
   end
@@ -59,6 +59,10 @@ class Shared::OrdersController < ApplicationController
   end
 
   private
+
+  def bill_file_name
+    order.bill_id || order.id
+  end
 
   def set_order
     @order = Order.find(params[:id] || params[:order_id])
