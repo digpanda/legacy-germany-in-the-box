@@ -213,58 +213,6 @@ var Products = {
 module.exports = Products;
 });
 
-require.register("javascripts/controllers/admin/shops/products/skus.js", function(exports, require, module) {
-"use strict";
-
-/**
- * ProductsSkus Class
- */
-var ProductsSkus = {
-
-  /**
-   * Initializer
-   */
-  init: function init() {
-
-    /**
-     * Since the system is cloned on the admin we try
-     * to limit the code duplication by abstracting into a library
-     */
-    var Skus = require("javascripts/lib/skus");
-    Skus.setup();
-  }
-
-};
-
-module.exports = ProductsSkus;
-});
-
-require.register("javascripts/controllers/admin/shops/products/variants.js", function(exports, require, module) {
-"use strict";
-
-/**
- * ProductsVariants Class
- */
-var ProductsVariants = {
-
-  /**
-   * Initializer
-   */
-  init: function init() {
-
-    /**
-     * Since the system is cloned on the admin we try
-     * to limit the code duplication by abstracting into a library
-     */
-    var Variants = require("javascripts/lib/variants");
-    Variants.setup();
-  }
-
-};
-
-module.exports = ProductsVariants;
-});
-
 require.register("javascripts/controllers/customer/cart/show.js", function(exports, require, module) {
 'use strict';
 
@@ -913,37 +861,6 @@ var ProductNewSku = {
 };
 
 module.exports = ProductNewSku;
-});
-
-require.register("javascripts/controllers/shopkeeper/products/skus/index.js", function(exports, require, module) {
-'use strict';
-
-var Translation = require('javascripts/lib/translation');
-
-/**
- * ProductsShowSkus Class
- */
-var ProductsShowSkus = {
-
-  /**
-   * Initializer
-   */
-  init: function init() {
-
-    if ($('select.sku-variants-options').length > 0) {
-
-      $('select.sku-variants-options').multiselect({
-        nonSelectedText: Translation.find('non_selected_text', 'multiselect'),
-        nSelectedText: Translation.find('n_selected_text', 'multiselect'),
-        numberDisplayed: 3,
-        maxHeight: 400
-      }).multiselect('disable');
-    }
-  }
-
-};
-
-module.exports = ProductsShowSkus;
 });
 
 require.register("javascripts/controllers/shopkeeper/products/variants.js", function(exports, require, module) {

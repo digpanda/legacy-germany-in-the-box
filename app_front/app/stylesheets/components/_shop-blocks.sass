@@ -5,25 +5,6 @@
     +option(avatar)
       +avatar(110px)
 
-    +option(category)
-      padding: 1.5em
-
-      border: 2px $color-grey solid
-      background-color: $color-green
-      min-height: 250px
-      +border-radius(0.5em)
-
-      img
-        height: 95px
-        +white-image
-
-      color: $color-white
-      h2
-        margin-top: 0.3em
-        color: $color-white
-        text-transform: uppercase
-        font-family: inherit
-
     +option(content)
       color: $color-white
 
@@ -46,15 +27,33 @@
       margin-top: -1em
       text-transform: uppercase
 
-    +option(shop)
-      +border-radius(0.5em)
-      border: 2px $color-grey solid
-      background-color: $color-grey
+  +part(main-category)
+    padding: 1.5em
+    border: 2px $color-grey solid
+    background-color: $color-green
+    color: $color-white
+    min-height: 250px
+    +border-radius(0.5em)
 
-      background-position: center center
-      background-size: cover
+    img
+      height: 95px
+      +white-image
+      color: $color-white
+    h2
+      margin-top: 0.3em
+      color: $color-white
+      text-transform: uppercase
+      font-family: inherit
 
-      min-height: 250px
+  +part(featured-shop)
+    +border-radius(0.5em)
+    border: 2px $color-grey solid
+    background-color: $color-grey
+
+    background-position: center center
+    background-size: cover
+
+    min-height: 250px
 
   +part(secondary)
 
