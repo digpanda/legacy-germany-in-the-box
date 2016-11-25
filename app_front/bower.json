@@ -30,9 +30,15 @@
     "sweetalert": "^1.1.3",
     "jquery_lazyload": "jquery.lazyload#^1.9.7",
     "hover": "Hover#^2.0.2",
-    "textarea-autosize": "^0.4.2"
+    "textarea-autosize": "^0.4.2",
+    "underscore": "^1.8.3"
   },
   "overrides": {
+    "underscore": {
+      "main": [
+        "underscore-min.js"
+      ]
+    },
     "textarea-autosize": {
       "main": [
         "dist/jquery.textarea_autosize.min.js"
