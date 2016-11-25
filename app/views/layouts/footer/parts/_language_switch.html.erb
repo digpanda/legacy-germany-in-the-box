@@ -7,7 +7,7 @@
         </h3></div>
       <div class="row"><%= link_to "Partner-Hersteller Werden", language_path("de"), method: :put %></div>
       <div class="row"><%= link_to "Einloggen als Verkäufer", language_path("de", location: new_user_session_path), method: :put %></div>
-  <% elsif %>
+  <% else %>
       <div class="row"><h3><%= I18n.t(:want_buy_products, scope: :title) %></h3></div>
       <div class="row"><%= link_to "Käuferportal", language_path("zh-CN"), method: :put %></div>
   <% end %>
