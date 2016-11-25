@@ -31,9 +31,15 @@
     "jquery_lazyload": "jquery.lazyload#^1.9.7",
     "hover": "Hover#^2.0.2",
     "textarea-autosize": "^0.4.2",
-    "underscore": "^1.8.3"
+    "underscore": "^1.8.3",
+    "rsvp.js": "rsvp#^3.3.3"
   },
   "overrides": {
+    "rsvp": {
+      "main": [
+        "rsvp.min.js"
+      ]
+    },
     "underscore": {
       "main": [
         "underscore-min.js"
