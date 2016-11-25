@@ -12,9 +12,19 @@
 <% end %>
 
 <% if chinese? %>
+
 <div class="row"><%= link_to I18n.t(:feedback, scope: :footer), guest_feedback_path %></div>
 
 <% end %>
 
 <div class="row"><%= link_to I18n.t(:privacy_statement, scope: :footer), privacy_guest_pages_path %></div>
+
+<% if chinese? %>
+
+<div class="row"><%= link_to I18n.t(:imprint, scope: :footer), customer_about_guest_pages_path %></div>
+
+<% else %>
+
 <div class="row"><%= link_to I18n.t(:imprint, scope: :footer), imprint_guest_pages_path %></div>
+
+<% end %>

@@ -13,6 +13,7 @@ namespace :guest do
     get :customer_guide
     get :customer_qa
     get :customer_agb
+    get :customer_about
     get :fees
     get :home
   end

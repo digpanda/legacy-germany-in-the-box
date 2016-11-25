@@ -7,7 +7,7 @@ class Guest::PagesController < ApplicationController
 
   def business_model
   end
-  
+
   def agb
   end
 
@@ -29,6 +29,9 @@ class Guest::PagesController < ApplicationController
   def customer_agb
   end
 
+  def customer_about
+  end
+
   def customer_qa
   end
 
@@ -36,10 +39,6 @@ class Guest::PagesController < ApplicationController
   end
 
   def fees
-  end
-
-  # no ideas what it is - Laurent, 28 October 2016
-  def menu
   end
 
 end
