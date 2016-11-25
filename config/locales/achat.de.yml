@@ -1,4 +1,6 @@
 de:
+  shop:
+    minimum_order: Mindestbestellwert
   action:
     removed_image: Bild erfolgreich gelöscht
     no_removed_image: Das Bild wurde nicht gelöscht

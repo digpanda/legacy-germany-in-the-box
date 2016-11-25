@@ -3,6 +3,8 @@ require 'iso4217/currency_mongoid'
 class Shop
   include MongoidBase
 
+  Numeric.include CoreExtensions::Numeric::CurrencyLibrary
+
   strip_attributes
 
   field :approved,        type: Time

@@ -1,4 +1,6 @@
 zh-CN:
+  shop:
+    minimum_order: 本店最少购物额
   action:
     removed_image: 图片被成功删除
     no_removed_image: 删除图片未能成功

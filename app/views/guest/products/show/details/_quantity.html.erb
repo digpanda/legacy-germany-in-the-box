@@ -11,7 +11,7 @@
 
 <%= form_tag guest_order_items_path, :method => :post do %>
 
-    <%= hidden_field_tag 'sku[sku.product_id]', "#{sku.product.id}" %>
+    <%= hidden_field_tag 'sku[product_id]', "#{sku.product.id}" %>
 
     <% if sku %>
 
