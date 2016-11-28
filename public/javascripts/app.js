@@ -686,6 +686,8 @@ var ProductsShow = {
     // We don't forget to trigger the click to load the first image
     $('#gallery a:first').trigger('click');
 
+    console.log('yoyoyo');
+
     // We hide the button because
     // if there's only one element
     ProductsShow.manageClickableImages();
@@ -728,23 +730,14 @@ var ProductsShow = {
       var ProductSku = require("javascripts/models/product_sku");
       var Messages = require("javascripts/lib/messages");
 
-      console.log("we call a product sku"), ProductSku.show(productId, optionIds, function (res) {
-
-        console.log("we received the answer");
+      ProductSku.show(productId, optionIds, function (res) {
 
         if (res.success === false) {
-
-          console.log("error");
 
           Messages.makeError(res.error);
         } else {
 
-          console.log("success");
-
           ProductsShow.skuChangeDisplay(productId, res);
-
-          console.log(res);
-          console.log("changed display");
         }
       });
     });
@@ -773,11 +766,7 @@ var ProductsShow = {
    */
   skuChangeDisplay: function skuChangeDisplay(productId, skuDatas) {
 
-    console.log('refresh sku quantity');
-
     ProductsShow.refreshSkuQuantitySelect(productId, skuDatas['quantity']); // productId is useless with the new system (should be refactored)
-
-    console.log('done without callback');
 
     $('#product_fees_with_currency_yuan').html(skuDatas['fees_with_currency_yuan']);
     $('#product_price_with_currency_yuan').html(skuDatas['price_with_currency_yuan']);
@@ -785,8 +774,6 @@ var ProductsShow = {
     $('#quantity-left').html(skuDatas['quantity']);
 
     $('#quantity').val(1); // we reset the quantity to 1
-
-    console.log('do some stuff');
 
     if (skuDatas['discount'] == 0) {
 
@@ -800,20 +787,12 @@ var ProductsShow = {
       $('#product_discount').html(skuDatas['discount_with_percent'] + '<br/>');
     }
 
-    console.log("last piece, let's hope it's here");
-
     ProductsShow.refreshSkuSecondDescription(skuDatas['data_format']);
-
-    console.log('something happened');
 
     ProductsShow.refreshSkuAttachment(skuDatas['data_format'], skuDatas['file_attachment']);
     ProductsShow.refreshSkuThumbnailImages(skuDatas['images']);
 
-    console.log('something else');
-
     ProductsShow.handleProductGalery();
-
-    console.log('pretty much finished)');
   },
 
   /**
