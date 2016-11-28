@@ -1,6 +1,6 @@
 class Connect::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
-  #skip CSRF on create.
+  # skip CSRF on create.
   skip_before_filter :verify_authenticity_token
   load_and_authorize_resource :except => [:wechat, :failure]
 
@@ -16,21 +16,26 @@ class Connect::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     redirect_to(:back)
   end
 
-  # TODO : improve the login and add the image of the user when it's the firs time he logs-in
   def user_from_omniauth(auth)
-    User.where({
-        provider: auth.provider,
-        uid: auth.uid
-      }).first || User.create({
-        :provider => auth.provider,
-        :uid => auth.uid,
-        :email => "#{auth.info.unionid}@wechat.com",
-        :role => :customer,
-        :gender => guess_sex(auth),
-        :password => random_password,
-        :password_confirmation => random_password,
-        :wechat_unionid => auth.info.unionid # what is it for ?
-      })
+    existing_customer(auth) || new_customer(auth)
+  end
+
+  def existing_customer(auth)
+    User.where(provider: auth.provider, uid: auth.uid).first
+  end
+
+  # TODO : improve the login and add the image of the user when it's the firs time he logs-in
+  def new_customer(auth)
+    User.create({
+      :provider => auth.provider,
+      :uid => auth.uid,
+      :email => "#{auth.info.unionid}@wechat.com",
+      :role => :customer,
+      :gender => guess_sex(auth),
+      :password => random_password,
+      :password_confirmation => random_password,
+      :wechat_unionid => auth.info.unionid # what is it for ?
+    })
   end
 
   def guess_sex(auth)
