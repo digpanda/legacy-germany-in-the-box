@@ -138,8 +138,6 @@ var ProductsShow = {
     // We don't forget to trigger the click to load the first image
     $('#gallery a:first').trigger('click');
 
-    console.log('yoyoyo');
-
     // We hide the button because
     // if there's only one element
     ProductsShow.manageClickableImages();
@@ -255,6 +253,7 @@ var ProductsShow = {
     ProductsShow.refreshSkuSecondDescription(skuDatas['data_format']);
 
     ProductsShow.refreshSkuAttachment(skuDatas['data_format'], skuDatas['file_attachment']);
+    console.log(skuDatas['images']);
     ProductsShow.refreshSkuThumbnailImages(skuDatas['images']);
 
     ProductsShow.handleProductGalery();
