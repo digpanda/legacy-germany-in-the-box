@@ -250,7 +250,7 @@ var ProductsShow = {
 
     $('#quantity').val(1); // we reset the quantity to 1
 
-    console;log('do some stuff');
+    console.log('do some stuff');
 
     if (skuDatas['discount'] == 0) {
 
