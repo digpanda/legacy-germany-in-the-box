@@ -183,13 +183,21 @@ var ProductsShow = {
       var ProductSku = require("javascripts/models/product_sku");
       var Messages = require("javascripts/lib/messages");
 
+      console.log("we call a product sku"),
+
       ProductSku.show(productId, optionIds, function(res) {
 
+        console.log("we received the answer");
+
         if (res.success === false) {
+
+          console.log("error");
 
           Messages.makeError(res.error);
 
         } else {
+
+          console.log("success");
 
           ProductsShow.skuChangeDisplay(productId, res);
 
