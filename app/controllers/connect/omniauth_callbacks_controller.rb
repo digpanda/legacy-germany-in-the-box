@@ -7,7 +7,6 @@ class Connect::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def wechat
     flash[:success] = I18n.t(:wechat_login, scope: :notice)
     user = user_from_omniauth(request.env["omniauth.auth"])
-    user.reload
     sign_in(:user, user)
     redirect_to after_sign_in_path_for(user)
   end
@@ -17,24 +16,33 @@ class Connect::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     redirect_to(:back)
   end
 
+  # TODO : improve the login and add the image of the user when it's the firs time he logs-in
   def user_from_omniauth(auth)
-    if User.where(provider: auth.provider, uid: auth.uid).first
-      User.where(provider: auth.provider, uid: auth.uid).first
-    else
-      User.new.tap do |user|
-        user.provider = auth.provider
-        user.uid = auth.uid
-        user.email = "#{auth.info.unionid}@wechat.com"
-        user.username = auth.info.nickname
-        user.role = :customer
-        user.gender = auth.info.sex == 1 ? 'm' : 'f'
-        user.birth = Date.today # what the fuck ? is that normal ? - Laurent 04/08/2016
-        user.password = auth.info.unionid[0,8]
-        user.password_confirmation = auth.info.unionid[0,8]
-        user.wechat_unionid = auth.info.unionid
-        user.save
-      end
-    end
+    User.where({
+        provider: auth.provider,
+        uid: auth.uid
+      }).first || User.create({
+        :provider => auth.provider,
+        :uid => auth.uid,
+        :email => "#{auth.info.unionid}@wechat.com",
+        :role => :customer,
+        :gender => guess_sex(auth),
+        :password => random_password,
+        :password_confirmation => random_password,
+        :wechat_unionid => auth.info.unionid # what is it for ?
+      })
+  end
+
+  def guess_sex(auth)
+     if auth.info.sex == 1
+       'm'
+     else
+       'f'
+     end
+  end
+
+  def random_password
+    @random_password ||= SecureRandom.uuid
   end
 
 end

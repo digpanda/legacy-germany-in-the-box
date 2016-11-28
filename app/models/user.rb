@@ -75,8 +75,14 @@ class User
   validates :email,         presence: true, length: {maximum: Rails.configuration.max_tiny_text_length}
   validates :status,        presence: true
 
-  validates :fname,         presence: true, :if => lambda { :customer == self.role }, length: {maximum: Rails.configuration.max_tiny_text_length}
-  validates :lname,         presence: true, :if => lambda { :customer == self.role }, length: {maximum: Rails.configuration.max_tiny_text_length}
+  # TODO : we deactivated this protection because wechat don't return it
+  # but we need to create the customer anyway.
+  # we should add a system to force people to add those important information before they buy if we don't have it.
+  # NOTE : we could actually refactor it with the short email forcing we did before, but in another controller to stay clean. (`ensure user information blbalbla`)
+
+  # validates :fname,         presence: true, :if => lambda { :customer == self.role }, length: {maximum: Rails.configuration.max_tiny_text_length}
+  # validates :lname,         presence: true, :if => lambda { :customer == self.role }, length: {maximum: Rails.configuration.max_tiny_text_length}
+  #
   validates :about,         length: {maximum: Rails.configuration.max_medium_text_length}
   validates :website,       length: {maximum: Rails.configuration.max_short_text_length}
 
@@ -126,7 +132,7 @@ class User
   def customer?
     self.role == :customer
   end
-  
+
   def destroyable?
     !self.decorate.admin?
   end
