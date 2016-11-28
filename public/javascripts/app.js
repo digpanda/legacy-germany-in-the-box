@@ -788,7 +788,6 @@ var ProductsShow = {
     ProductsShow.refreshSkuSecondDescription(skuDatas['data_format']);
 
     ProductsShow.refreshSkuAttachment(skuDatas['data_format'], skuDatas['file_attachment']);
-    console.log(skuDatas['images']);
     ProductsShow.refreshSkuThumbnailImages(skuDatas['images']);
 
     ProductsShow.handleProductGalery();
@@ -815,8 +814,13 @@ var ProductsShow = {
 
       var image = images[i];
 
-      if ($('#thumbnail-' + i).length > 0) {
-        $('#thumbnail-' + i).html('<a href="#" data-image="' + image.fullsize + '" data-zoom-image="' + image.zoomin + '"><div class="product-page__thumbnail-image" style="background-image:url(' + image.thumb + ');"></div></a>');
+      // protection to avoid empty images
+      // in case of transfer bug to the front-end
+      if (image.fullsize != null) {
+
+        if ($('#thumbnail-' + i).length > 0) {
+          $('#thumbnail-' + i).html('<a href="#" data-image="' + image.fullsize + '" data-zoom-image="' + image.zoomin + '"><div class="product-page__thumbnail-image" style="background-image:url(' + image.thumb + ');"></div></a>');
+        }
       }
     }
   },
