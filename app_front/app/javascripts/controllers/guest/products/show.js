@@ -201,6 +201,7 @@ var ProductsShow = {
 
           ProductsShow.skuChangeDisplay(productId, res);
 
+          console.log(res);
           console.log("changed display");
 
         }
@@ -249,6 +250,8 @@ var ProductsShow = {
 
     $('#quantity').val(1); // we reset the quantity to 1
 
+    console;log('do some stuff');
+
     if (skuDatas['discount'] == 0) {
 
       ProductsShow.skuHideDiscount();
@@ -263,11 +266,20 @@ var ProductsShow = {
 
     }
 
+    console.log("last piece, let's hope it's here");
+
     ProductsShow.refreshSkuSecondDescription(skuDatas['data_format']);
+
+    console.log('something happened');
+
     ProductsShow.refreshSkuAttachment(skuDatas['data_format'], skuDatas['file_attachment']);
     ProductsShow.refreshSkuThumbnailImages(skuDatas['images']);
 
+    console.log('something else');
+
     ProductsShow.handleProductGalery();
+
+    console.log('pretty much finished)')
 
   },
 
@@ -275,8 +287,6 @@ var ProductsShow = {
    * Refresh sku quantity select (quantity dropdown)
    */
   refreshSkuQuantitySelect: function(productId, quantity) {
-
-    console.log('doing some weird stuff i dont know about');
 
     var quantity_select = $('#product_quantity_' + productId).empty();
 
