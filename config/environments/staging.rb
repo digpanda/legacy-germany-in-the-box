@@ -12,7 +12,7 @@ Rails.application.configure do
   config.assets.digest = true
   config.assets.raise_runtime_errors = true
   config.log_level = :debug
-  config.logger = Logger.new("#{RAILS_ENV}.log", :shift_age => "daily")
+  # config.logger = Logger.new("#{Rails.env}.log", :shift_age => "daily")
   #config.force_ssl = true
 
   config.middleware.use ExceptionNotification::Rack,
