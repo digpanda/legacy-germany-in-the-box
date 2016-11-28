@@ -201,6 +201,8 @@ var ProductsShow = {
 
           ProductsShow.skuChangeDisplay(productId, res);
 
+          console.log("changed display");
+
         }
 
       });
@@ -234,7 +236,11 @@ var ProductsShow = {
    */
   skuChangeDisplay: function(productId, skuDatas) {
 
+    console.log('refresh sku quantity');
+
     ProductsShow.refreshSkuQuantitySelect(productId, skuDatas['quantity']); // productId is useless with the new system (should be refactored)
+
+    console.log('done without callback');
 
     $('#product_fees_with_currency_yuan').html(skuDatas['fees_with_currency_yuan']);
     $('#product_price_with_currency_yuan').html(skuDatas['price_with_currency_yuan']);
@@ -269,6 +275,8 @@ var ProductsShow = {
    * Refresh sku quantity select (quantity dropdown)
    */
   refreshSkuQuantitySelect: function(productId, quantity) {
+
+    console.log('doing some weird stuff i dont know about');
 
     var quantity_select = $('#product_quantity_' + productId).empty();
 
