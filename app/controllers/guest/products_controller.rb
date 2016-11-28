@@ -8,7 +8,7 @@ class Guest::ProductsController < ApplicationController
   attr_reader :product, :shop
 
   def show
-    @featured_sku = @product.decorate.featured_sku.decorate
+    @featured_sku = product.decorate.featured_sku.decorate
   end
 
   private
