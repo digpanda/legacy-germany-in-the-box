@@ -63,7 +63,7 @@
       <!-- Discount -->
       <div class="row form-group">
         <div class="col-md-4">
-          <%= I18n.t(:discount, scope: :edit_product_detail) %> (EUR)
+          <%= I18n.t(:discount, scope: :edit_product_detail) %> (%)
         </div>
         <div class="col-md-8">
           <%= form.text_field :discount, :class => 'form-control', :pattern => I18n.t(:positive_integer_less_or_equal_than_100, scope: :validation), :required => true %>
