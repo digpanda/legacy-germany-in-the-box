@@ -42,8 +42,12 @@ class ImageDisplayer
     qiniu_url(version)
   end
 
+  def valid_field_url?
+    (!field_url.nil? && !field_url.empty?) || field_url != fallback_url
+  end
+
   def qiniu_url(version)
-    if !field_url.nil? && !field_url.empty? # TODO: improve the little hack
+    if valid_field_url?
       ImageDisplayer::Qiniu.new(field_url, version).url
     end
   end
