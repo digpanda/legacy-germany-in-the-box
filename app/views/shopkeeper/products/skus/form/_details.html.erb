@@ -80,7 +80,7 @@
           <div class="row">
 
             <div class="col-md-4">
-              <%= form.text_field :space_length, value: number_with_precision(@sku.space_length, :precision => 2), :class => 'form-control input-sm', :required => true, :pattern => I18n.t(:positive_float, scope: :validation), :placeholder => I18n.t(:space_length, scope: :edit_product_detail) %>
+              <%= form.text_field :space_length, value: number_with_precision(@sku.space_length, :precision => 2), :class => 'form-control', :required => true, :pattern => I18n.t(:positive_float, scope: :validation), :placeholder => I18n.t(:space_length, scope: :edit_product_detail) %>
             </div>
             <div class="col-md-4">
               <%= form.text_field :space_width, value: number_with_precision(@sku.space_width, :precision => 2), :class => 'form-control', :required => true, :pattern => I18n.t(:positive_float, scope: :validation), :placeholder => I18n.t(:space_width, scope: :edit_product_detail) %>
