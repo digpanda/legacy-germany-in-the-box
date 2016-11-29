@@ -5,8 +5,8 @@ class Connect::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   def wechat
     if wechat_solver.success?
-      sign_in(:user, wechat_solver.data[:customer])
       flash[:success] = I18n.t(:wechat_login, scope: :notice)
+      sign_in(:user, wechat_solver.data[:customer])
       redirect_to after_sign_in_path_for(wechat_solver.data[:customer])
     else
       failure

@@ -11,7 +11,7 @@ class WechatConnectSolver < BaseService
   # we try to recover the customer matching the `auth_data`
   # or create a new one with the wechat informations
   def resolve!
-    if customer.instance_of?(User)
+    if customer.save
       return_with(:success, :customer => customer)
     else
       return_with(:error, "Could not create customer.")
@@ -21,9 +21,6 @@ class WechatConnectSolver < BaseService
   private
 
   def customer
-    if existing_customer
-      existing_customer.delete
-    end
     @customer ||= existing_customer || new_customer
   end
 
@@ -35,7 +32,7 @@ class WechatConnectSolver < BaseService
     User.create({
       :provider => auth_data.provider,
       :uid => auth_data.uid,
-      :remote_pic_url => auth_data.info.headimgurl,
+      #:remote_pic_url => auth_data.info.headimgurl,
       :email => "#{auth_data.info.unionid}@wechat.com",
       :role => :customer,
       :gender => gender,
