@@ -32,10 +32,10 @@ class WechatConnectSolver < BaseService
   end
 
   def new_customer
-    binding.pry
     User.create({
       :provider => auth_data.provider,
       :uid => auth_data.uid,
+      :remote_pic_url => auth_data.info.headimgurl,
       :email => "#{auth_data.info.unionid}@wechat.com",
       :role => :customer,
       :gender => gender,
@@ -43,11 +43,6 @@ class WechatConnectSolver < BaseService
       :password_confirmation => random_password,
       :wechat_unionid => auth_data.info.unionid # what is it for ?
     })
-  end
-
-  def avatar
-    auth_data.info.headimgurl
-    customer.picpic
   end
 
   def gender
