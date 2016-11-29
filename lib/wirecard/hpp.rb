@@ -82,8 +82,8 @@ module Wirecard
     def transaction_details_datas
       {
         :psp_name                  => CONFIG[payment_method][:psp_name],
-        :notification_url        => CONFIG[:notification_url],
-        #:notification_transaction_state => 'success',
+        :notification_url        => CONFIG[payment_method][:notification_url],
+        :notification_transaction_state => 'success',
         :locale                    => DEFAULT_PAYMENT_LANGUAGE,
         :order_number              => "#{order.id}",
         :order_detail              => order.desc,
