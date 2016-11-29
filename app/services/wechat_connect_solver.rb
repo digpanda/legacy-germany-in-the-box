@@ -35,15 +35,14 @@ class WechatConnectSolver < BaseService
   end
 
   def existing_customer
-    User.where(provider: auth_data.provider, uid: auth_data.uid).first.delete
-    nil
+    User.where(provider: auth_data.provider, uid: auth_data.uid).first
   end
 
   def new_customer
     User.create({
       :provider => auth_data.provider,
       :uid => auth_data.uid,
-      #:remote_pic_url => avatar,
+      :remote_pic_url => avatar,
       :email => "#{auth_data.info.unionid}@wechat.com",
       :role => :customer,
       :gender => gender,
