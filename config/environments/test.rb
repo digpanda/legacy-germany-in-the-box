@@ -22,6 +22,8 @@ Rails.application.configure do
   # used for root_url and equivalent
   Rails.application.routes.default_url_options = {host: 'local.dev', port: 3333}
 
+  OmniAuth.config.test_mode = true
+
 =begin
   config.action_mailer.smtp_settings = {
       address: "mailtrap.io",
