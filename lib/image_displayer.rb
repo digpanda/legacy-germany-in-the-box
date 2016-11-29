@@ -29,8 +29,6 @@ class ImageDisplayer
   def field_url
     if model.send(image_field).present?
       model.send(image_field).url
-    elsif options[:fallback]
-      fallback_url
     end
   end
 
@@ -43,12 +41,14 @@ class ImageDisplayer
   end
 
   def valid_field_url?
-    (!field_url.nil? && !field_url.empty?) || field_url != fallback_url
+    !field_url.nil? && !field_url.empty?
   end
 
   def qiniu_url(version)
     if valid_field_url?
       ImageDisplayer::Qiniu.new(field_url, version).url
+    elsif options[:fallback]
+      fallback_url
     end
   end
 
