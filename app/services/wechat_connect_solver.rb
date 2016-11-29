@@ -1,3 +1,4 @@
+# connect the customer from wechat omniauth system
 class WechatConnectSolver < BaseService
 
   attr_reader :auth_data
@@ -6,6 +7,9 @@ class WechatConnectSolver < BaseService
     @auth_data = auth_data
   end
 
+  # we will resolve the wechat connection
+  # we try to recover the customer matching the `auth_data`
+  # or create a new one with the wechat informations
   def resolve!
     if customer.instance_of?(User)
       return_with(:success, :customer => customer)
@@ -17,6 +21,9 @@ class WechatConnectSolver < BaseService
   private
 
   def customer
+    if existing_customer
+      existing_customer.delete
+    end
     @customer ||= existing_customer || new_customer
   end
 
@@ -24,21 +31,26 @@ class WechatConnectSolver < BaseService
     User.where(provider: auth_data.provider, uid: auth_data.uid).first
   end
 
-  # TODO : improve the login and add the image of the user when it's the firs time he logs-in
   def new_customer
+    binding.pry
     User.create({
       :provider => auth_data.provider,
       :uid => auth_data.uid,
       :email => "#{auth_data.info.unionid}@wechat.com",
       :role => :customer,
-      :gender => guess_sex,
+      :gender => gender,
       :password => random_password,
       :password_confirmation => random_password,
       :wechat_unionid => auth_data.info.unionid # what is it for ?
     })
   end
 
-  def guess_sex
+  def avatar
+    auth_data.info.headimgurl
+    customer.picpic
+  end
+
+  def gender
      if auth_data.info.sex == 1
        'm'
      else

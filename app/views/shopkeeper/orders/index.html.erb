@@ -40,7 +40,7 @@
         <tr>
           <td>
             <% if order.decorate.total_price_with_extra_costs > 0 %>
-              <%= link_to order.id, order_path(order) %>
+              <%= link_to order.id, shopkeeper_order_path(order) %>
             <% else %>
               <%= order.id %>
             <% end %>
