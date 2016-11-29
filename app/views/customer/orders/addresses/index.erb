@@ -56,18 +56,12 @@ WE SHOULD DEFINITELY MAKE IT MORE DRY VIA customer/addresses/popup AND SUCH -->
 
   <div class="row">
     <div class="col-md-4 col-md-push-4 col-md-pull-4">
-      <div class="row">
-        <% unless current_user.valid_email? %>
-          <%= text_field_tag :valid_email, nil, :type => 'email', :class => 'form-control', :required => true, :placeholder => "Enter your email address" %>
-        <% end %>
+      <div class="row +centered">
+        <div class="+small-spacer"></div>
+        <button type="submit" class="btn-large +checkout-button +centered"> <%= I18n.t(:checkout, scope: :checkout) %> <i class="fa fa-check-circle"></i></button>
+        <div class="+small-spacer"></div>
       </div>
-    <div class="row +centered">
-      <div class="+small-spacer"></div>
-      <button type="submit" class="btn-large +checkout-button +centered"> <%= I18n.t(:checkout, scope: :checkout) %> <i class="fa fa-check-circle"></i></button>
-      <div class="+small-spacer"></div>
-
     </div>
-  </div>
   </div>
 
 </div>

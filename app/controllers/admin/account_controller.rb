@@ -11,7 +11,7 @@ class Admin::AccountController < ApplicationController
   end
 
   def update
-    if user.check_valid_password?(params) && user.update(user_params)
+    if check_valid_password?(params) && user.update(user_params)
       flash[:success] = "Your account was successfully updated."
       sign_in(user, :bypass => true)
     else
@@ -27,10 +27,23 @@ class Admin::AccountController < ApplicationController
   end
 
   def user_params
+    bypass_password!
+    params.require(:user).permit(:username, :email, :password, :password_confirmation, :fname, :lname, :birth, :gender, :about, :website, :pic, :tel, :mobile)
+  end
+
+  def check_valid_password?(params)
+    if user.valid_password?(params[:user][:current_password])
+      true
+    else
+      user.errors.add(:password, "wrong")
+      false
+    end
+  end
+
+  def bypass_password!
     if params[:user][:password].empty?
       params[:user][:password] = params[:user][:password_confirmation] = params[:user][:current_password]
     end
-    params.require(:user).permit(:username, :email, :password, :password_confirmation, :fname, :lname, :birth, :gender, :about, :website, :pic, :tel, :mobile)
   end
 
 end

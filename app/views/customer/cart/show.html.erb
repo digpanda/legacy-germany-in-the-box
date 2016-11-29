@@ -1,38 +1,38 @@
 <% if cart_manager.products_number > 0 %>
 <div>
   <% cart_manager.orders.each do |shop, order| %>
-  <% if order.decorate.total_quantity > 0 %>
+    <% if order.decorate.total_quantity > 0 %>
 
-  <div class="row">
+    <div class="row">
 
-    <div class="col-md-10 col-md-push-1 col-md-pull-1">
+      <div class="col-md-10 col-md-push-1 col-md-pull-1">
 
-      <div class="row">
-        <div class="col-md-9">
-          <h4>
-            <%= I18n.t(:shop, scope: :cart) + ': ' %>
-            <%= link_to @shops[shop][:name], guest_shop_path(shop) %>
-          </h4>
-        </div>
-      </div>
-
-      <div class="row">
-
-        <div class="col-md-8">
-          <%= render partial: 'customer/cart/show/order', locals: {order: order} %>
+        <div class="row">
+          <div class="col-md-9">
+            <h4>
+              <%= I18n.t(:shop, scope: :cart) %> :
+              <%= link_to @shops[shop][:name], guest_shop_path(shop) %>
+            </h4>
+          </div>
         </div>
 
-        <div class="+spacer"></div>
+        <div class="row">
 
-        <div class="col-md-4">
-          <%= render partial: 'customer/cart/show/total', locals: {order: order, shop: shop} %>
+          <div class="col-md-8">
+            <%= render partial: 'customer/cart/show/order', locals: {order: order} %>
+          </div>
+
+          <div class="+spacer"></div>
+
+          <div class="col-md-4">
+            <%= render partial: 'customer/cart/show/total', locals: {order: order, shop: shop} %>
+          </div>
+
         </div>
-
       </div>
     </div>
-  </div>
 
-  <% end %>
+    <% end %>
   <% end %>
 
   <% else %>

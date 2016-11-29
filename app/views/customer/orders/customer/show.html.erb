@@ -1,0 +1,53 @@
+<%= form_for @customer, :data => {:toggle => 'validator'}, :url => customer_account_path, :method => :patch do |f| %>
+
+<div class="row">
+
+  <div class="col-md-6 col-md-push-3 col-md-pull-3">
+
+    <div class="row">
+    <h2 class="+centered">We need some more informations about you</h2>
+    <div class="+spacer"></div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-8 col-md-push-2 col-md-pull-2">
+
+      <% unless @customer.valid_email? %>
+        <div class="form-group">
+          <%= f.label :email, I18n.t(:email, scope: :edit_account) %>
+          <%= f.text_field :email, :class => 'form-control', :value => '', :type => 'email', :required => true %>
+        </div>
+      <% end %>
+
+      <% unless @customer.fname %>
+        <div class="form-group">
+          <%= f.label :fname, I18n.t(:fname, scope: :edit_address) %>
+          <%= f.text_field :fname, :class => 'form-control', :required => true %>
+        </div>
+      <% end %>
+
+      <% unless @customer.lname %>
+        <div class="form-group">
+          <%= f.label :lname, I18n.t(:lname, scope: :edit_address) %>
+          <%= f.text_field :lname, :class => 'form-control', :required => true %>
+        </div>
+      <% end %>
+
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4 col-md-push-4 col-md-pull-4">
+        <div class="row +centered">
+          <div class="+small-spacer"></div>
+          <button type="submit" class="btn-large +checkout-button +centered"> <%= I18n.t(:checkout, scope: :checkout) %> <i class="fa fa-check-circle"></i></button>
+          <div class="+small-spacer"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<% end %>

@@ -141,17 +141,12 @@ class User
     self.provider == "wechat"
   end
 
-  def check_valid_password?(params)
-    if self.valid_password?(params[:user][:current_password])
-      true
-    else
-      self.errors.add(:password, "wrong")
-      false
-    end
+  def valid_for_checkout?
+    valid_email? && fname && lname
   end
 
   def valid_email?
-    !self.email.include?("@wechat.com")
+    !email.include?("@wechat.com")
   end
 
   def password_required?

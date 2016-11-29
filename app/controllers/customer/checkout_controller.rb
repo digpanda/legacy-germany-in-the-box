@@ -8,10 +8,6 @@ class Customer::CheckoutController < ApplicationController
   protect_from_forgery :except => [:success, :fail, :cancel, :processing]
   attr_reader :shop, :order
 
-  def address
-
-  end
-
   def create
 
     @order = cart_manager.order(shop: shop)
@@ -27,7 +23,8 @@ class Customer::CheckoutController < ApplicationController
     # this will be used to check the limit reach
     update_addresses!
 
-    return if wrong_email_update?
+    # TODO : this should be in a before action or something (or at least something more logical and also grouped with the delivery destination id check)
+    return unless current_user.valid_for_checkout?
     return if today_limit?
 
     all_products_available = true
@@ -240,20 +237,6 @@ class Customer::CheckoutController < ApplicationController
         :shipping_address     => address,
         :billing_address      => address,
       })
-    end
-  end
-
-  def wrong_email_update?
-    if params[:valid_email]
-      if User.where(email: params[:valid_email]).first
-        flash[:error] = "This email is currently used by someone else."
-        redirect_to navigation.back(1)
-        return true
-      end
-      current_user.email = params[:valid_email]
-      current_user.save
-
-      return false
     end
   end
 
