@@ -38,6 +38,18 @@ FactoryGirl.define do
 
   end
 
+  trait(:with_20_percent_discount) do
+    after(:create) do |product|
+      # we apply the discount to each sku of the product
+      product.skus.each do |sku|
+        sku.discount = 20
+        sku.save
+      end
+      product.save
+      product.reload
+    end
+  end
+
   trait(:with_small_volume) do
     before(:create) do |product|
       # remove and make new skus

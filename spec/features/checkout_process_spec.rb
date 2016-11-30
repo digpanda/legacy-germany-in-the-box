@@ -7,7 +7,7 @@ feature "checkout process", :js => true  do
     login!(customer)
   end
 
-  context "checkout one product" do
+  context "checkout one normal product" do
 
     let(:shop) { FactoryGirl.create(:shop, :with_payment_gateways) }
     let(:product) { FactoryGirl.create(:product, shop_id: shop.id) }
@@ -31,27 +31,24 @@ feature "checkout process", :js => true  do
 
       scenario "pay successfully and generate shipping label correctly" do
 
-        # add address from scratch
-        add_address_from_lightbox!
+        pay_and_get_label
 
-        page.first('.\\+checkout-button').click # go to payment step
-        on_payment_method_page?
-        checkout_window = window_opened_by do
-          page.first('button[value=creditcard]').click # pay with wirecard
-        end
+      end
 
-        within_window checkout_window do
-          wait_for_page('#hpp-logo') # we are on wirecard hpp
-          apply_wirecard_success_creditcard!
-          expect(page).to have_content("下单成功") # means success in chinese
-          @borderguru_label_window = window_opened_by do
-            click_link "打开" # click on "download your label" in chinese
-            # expect(page).to have_no_css('#message-error')
-          end
-        end
+      context "product got a discount" do
 
-        within_window @borderguru_label_window do
-          expect(page.current_url).to have_content(BORDERGURU_BASE_URL) # we check we accessed borderguru
+        let(:product) { FactoryGirl.create(:product, :with_20_percent_discount, shop_id: shop.id) }
+
+        scenario "pay successfully and generate shipping label correctly" do
+
+          # we go back to the cart
+          page.first('#total-products').click
+          expect(page).to have_content("-20%")
+          # we check the 20% off is shown on the cart before all
+          page.first('.\\+checkout-button').click # go to address step
+          # now we go through the whole process
+          pay_and_get_label
+
         end
 
       end
@@ -110,4 +107,31 @@ feature "checkout process", :js => true  do
 
   end
 
+end
+
+def pay_and_get_label
+  # add address from scratch
+  add_address_from_lightbox!
+
+  page.first('.\\+checkout-button').click # go to payment step
+  on_payment_method_page?
+  checkout_window = window_opened_by do
+    page.first('button[value=creditcard]').click # pay with wirecard
+  end
+
+  within_window checkout_window do
+    wait_for_page('#hpp-logo') # we are on wirecard hpp
+    apply_wirecard_success_creditcard!
+    expect(page).to have_content("下单成功") # means success in chinese
+    @borderguru_label_window = window_opened_by do
+      click_link "打开" # click on "download your label" in chinese
+      # expect(page).to have_no_css('#message-error')
+    end
+  end
+
+  within_window @borderguru_label_window do
+    expect(page.current_url).to have_content(BORDERGURU_BASE_URL) # we check we accessed borderguru
+  end
+
+  @borderguru_label_window = nil
 end
