@@ -1,6 +1,7 @@
- #  small library to guess the shipping prices via calculations
- #  it takes the first prices into consideration and couple them with the < weight to match
- #  if it goes more than the last `special kilo price` segment, it simply use the casual price per kilo
+ # small library to guess the shipping prices via calculations
+ # it takes the first prices into consideration and couple them with the < weight to match
+ # if it goes more than the last `special kilo price` segment
+ # it simply use the casual price per kilo
 class ShippingPrice
 
   VOLUMETRIC_DIVIDOR = 5000.00
@@ -10,7 +11,7 @@ class ShippingPrice
   PRICE_PER_KILO = 2.5
   VAT_PERCENT = 0.0 # %
 
-  # add `to_b`, `ceil_tp` functionality to floats / fixnum
+  # add `to_b`, `ceil_to` functionality to floats / fixnum
   Float.include CoreExtensions::Float::BigDecimalConverter
   Float.include CoreExtensions::Float::CeilTo
   Fixnum.include CoreExtensions::Fixnum::BigDecimalConverter

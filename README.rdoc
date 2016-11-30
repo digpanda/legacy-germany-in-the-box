@@ -1,28 +1,33 @@
-== README
+# DigPanda Technical Guideline
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Getting Started
 
-Things you may want to cover:
+### Ecosystem
 
-* Ruby version
+#### Front-end
+- Brunch 2.7
+- SASS / CSStyle / BEM conventions
+- Homemade MVC JavaScript framework
 
-* System dependencies
+#### Back-end
+- Ruby 2.3
+- Ruby on Rails 4.2
+- MongoID
 
-* Configuration
+#### Testing
+- RSpec 3.4
+- FactoryGirl
+- VCR
 
-* Database creation
+#### Deployment
+- Capistrano 3.5
 
-* Database initialization
+### Setup your application
 
-* How to run the test suite
+### Start your application
 
-* Services (job queues, cache servers, search engines, etc.)
+### Conventions
 
-* Deployment instructions
+### Migrations
 
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+### Deploymnet

@@ -15,4 +15,8 @@ class OrderItemDecorator < Draper::Decorator
     Currency.new(total_price).display
   end
 
+  def total_price_with_currency_yuan
+    Currency.new(total_price).in_euro.to_yuan.display
+  end
+
 end
