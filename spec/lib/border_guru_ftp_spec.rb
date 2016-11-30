@@ -1,6 +1,6 @@
 describe BorderGuruFtp do
 
-  let(:log_file) { "#{Rails.root}/log/#{CONFIG[:ftp][:log]}-#{Time.now.strftime('%Y-%m-%d')}.log" }
+  let(:log_file) { "#{Rails.root}/log/#{BorderGuruFtp::CONFIG[:ftp][:log]}-#{Time.now.strftime('%Y-%m-%d')}.log" }
   let(:orders) { create_list(:order, 10) }
   before(:each) { File.delete(log_file) if File.exists?(log_file) }
 
