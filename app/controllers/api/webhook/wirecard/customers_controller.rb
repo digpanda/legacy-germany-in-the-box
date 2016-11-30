@@ -17,11 +17,12 @@ class Api::Webhook::Wirecard::CustomersController < Api::ApplicationController
     devlog.info("Raw datas : #{datas}")
 
     if wrong_datas?
-        throw_api_error(:bad_format, {error: "Wrong datas transmitted"}, :bad_request)
+      throw_api_error(:bad_format, {error: "Wrong datas transmitted"}, :bad_request)
       return
     end
 
-    devlog.info "Service received `#{datas[:request_id]}`, `#{datas[:merchant_account_id]}`, `#{datas[:reseller_id]}`"
+    devlog.info "Service received `#{datas[:request_id]}`, `#{datas[:merchant_account_id]}`, `#{datas[:transaction_id]}`"
+    devlog.info "It will be considered as `#{request_id}`, `#{merchant_id}`, `#{transaction_id}`"
 
     # we get the important datas
     # customer_email = datas[:email].first
@@ -29,14 +30,17 @@ class Api::Webhook::Wirecard::CustomersController < Api::ApplicationController
     devlog.info "We will update the order payment ..."
     checker = payment_checker.update_order_payment!
     devlog.info "Order payment was refreshed."
+    
     # it doesn't matter if the API call failed, the order has to be systematically up to date with the order payment in case it's not already sent
     devlog.info "We synchronize the order status depending on the refreshed payment one ..."
     order_payment.order.refresh_status_from!(order_payment)
+
     if checker.success?
       devlog.info "The order was refreshed and seem to be paid."
     else
       devlog.info "The order was refreshed but don't seem to be paid. (#{checker.error})"
     end
+
     devlog.info "End of process."
     render status: :ok,
             json: {success: true}.to_json
@@ -55,7 +59,7 @@ class Api::Webhook::Wirecard::CustomersController < Api::ApplicationController
   end
 
   def wrong_datas?
-    datas[:merchant_account_id].nil? || datas[:request_id].nil?
+    datas[:merchant_account_id].nil? || datas[:request_id].nil? || datas[:transaction_id].nil?
   end
 
   def order_payment
@@ -63,8 +67,14 @@ class Api::Webhook::Wirecard::CustomersController < Api::ApplicationController
   end
 
   # make API call which refresh order payment
+  # this will also update the `transaction_id` if needed
+  # sometimes people are cut in the middle of the transactions
+  # and the order payment transaction_id is not recovered. this is made to solve this problem.
   def payment_checker
-    @payment_checker ||= WirecardPaymentChecker.new({:order_payment => order_payment})
+    @payment_checker ||= WirecardPaymentChecker.new({
+      :transaction_id => transaction_id,
+      :order_payment => order_payment
+    })
   end
 
   def request_id
@@ -77,10 +87,12 @@ class Api::Webhook::Wirecard::CustomersController < Api::ApplicationController
     end
   end
 
+  def transaction_id
+    datas[:transaction_id].first
+  end
+
   def merchant_id
-    unless datas[:merchant_account_id].nil?
-      datas[:merchant_account_id].first
-    end
+    datas[:merchant_account_id].first
   end
 
 end
