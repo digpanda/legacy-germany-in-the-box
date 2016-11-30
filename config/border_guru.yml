@@ -11,6 +11,10 @@ defaults: &defaults
     port: 1348
     username: <%= ENV["border_guru_ftp_username"] %>
     password: <%= ENV["border_guru_ftp_password"] %>
+    log: border-guru-ftp
+
+  email:
+    log: border-guru-email
 
 local:
   <<: *defaults
@@ -27,7 +31,9 @@ test:
     port: 1348
     username: <%= ENV["border_guru_ftp_username"] %>
     password: <%= ENV["border_guru_ftp_password"] %>
-    log: borderguru_cron_test.log
+    log: border-guru-ftp-test
+  email:
+    log: border-guru-email-test
 
 staging:
   <<: *defaults

@@ -2,7 +2,7 @@ include Helpers::Lib::BorderGuruFtp
 
 describe BorderGuruFtp::TransferOrders do
 
-  LOG_FILE = "#{Rails.root}/log/#{BorderGuruFtp::CONFIG[:ftp][:log]}"
+  LOG_FILE = "#{Rails.root}/log/#{CONFIG[:ftp][:log]}-#{Time.now.strftime('%Y-%m-%d')}.log"
 
   before(:each) do
     FileUtils.rm_rf(BorderGuruFtp.local_directory)

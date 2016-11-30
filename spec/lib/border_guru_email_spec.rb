@@ -2,7 +2,7 @@ require 'border_guru_email'
 
 describe BorderGuruEmail do
 
-  let(:log_file) { "#{Rails.root}/log/#{BorderGuruEmail::CONFIG[:email][:log]}" }
+  let(:log_file) { "#{Rails.root}/log/border-guru-email-test.log" }
   before(:each) { File.delete(log_file) if File.exists?(log_file) }
   before { HermesMailer.deliveries = [] }
 
