@@ -3,7 +3,7 @@ VCR.configure do |config|
   # we quickly setup a logger for it
   # NOTE : we can't really setup the logger with daily file
   # becaue the process is kind of recreating a file all the time
-  logger = Logger.new("#{Rails.root}/log/vcr.log")
+  logger = Logger.new("#{Rails.root}/log/vcr-#{Time.now.strftime('%Y-%m-%d')}.log")
 
   config.cassette_library_dir = 'spec/vcr'
 
