@@ -62,25 +62,6 @@ feature "checkout process", :js => true  do
 
       end
 
-      context "product got a discount" do
-
-        let(:product) { FactoryGirl.create(:product, :with_20_percent_discount, shop_id: shop.id) }
-
-        scenario "pay successfully and generate shipping label correctly" do
-
-          # we go back to the cart
-          page.first('#total-products').click
-          expect(page).to have_content("-20%")
-          # we check the 20% off is shown on the cart before all
-          page.first('.\\+checkout-button').click # go to address step
-          # now we go through the whole process
-          add_address_from_lightbox!
-          pay_and_get_label
-
-        end
-
-      end
-
     end
 
     context "address already setup" do
@@ -126,6 +107,24 @@ feature "checkout process", :js => true  do
           apply_wirecard_failed_creditcard!
           on_payment_method_page?
           expect(page).to have_css("#message-error")
+        end
+
+      end
+
+      context "product got a discount" do
+
+        let(:product) { FactoryGirl.create(:product, :with_20_percent_discount, shop_id: shop.id) }
+
+        scenario "pay successfully and generate shipping label correctly" do
+
+          # we go back to the cart
+          page.first('#total-products').click
+          expect(page).to have_content("-20%")
+          # we check the 20% off is shown on the cart before all
+          page.first('.\\+checkout-button').click # go to address step
+          page.first('input[id^=delivery_destination_id').click # click on the first address
+          pay_and_get_label
+
         end
 
       end
