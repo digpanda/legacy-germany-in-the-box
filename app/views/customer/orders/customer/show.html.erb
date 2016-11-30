@@ -5,7 +5,7 @@
   <div class="col-md-6 col-md-push-3 col-md-pull-3">
 
     <div class="row">
-    <h2 class="+centered">We need some more informations about you</h2>
+    <h2 class="+centered"><%= I18n.t(:we_need_more_info, scope: :title) %></h2>
     <div class="+spacer"></div>
     </div>
 
@@ -19,17 +19,17 @@
         </div>
       <% end %>
 
-      <% unless @customer.fname %>
-        <div class="form-group">
-          <%= f.label :fname, I18n.t(:fname, scope: :edit_address) %>
-          <%= f.text_field :fname, :class => 'form-control', :required => true %>
-        </div>
-      <% end %>
-
       <% unless @customer.lname %>
         <div class="form-group">
           <%= f.label :lname, I18n.t(:lname, scope: :edit_address) %>
           <%= f.text_field :lname, :class => 'form-control', :required => true %>
+        </div>
+      <% end %>
+      
+      <% unless @customer.fname %>
+        <div class="form-group">
+          <%= f.label :fname, I18n.t(:fname, scope: :edit_address) %>
+          <%= f.text_field :fname, :class => 'form-control', :required => true %>
         </div>
       <% end %>
 

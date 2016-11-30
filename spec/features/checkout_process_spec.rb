@@ -18,6 +18,32 @@ feature "checkout process", :js => true  do
       page.first('.\\+checkout-button').click # go to address step
     end
 
+    context "without essential informations (wechat like)" do
+
+      let(:customer) { FactoryGirl.create(:customer, :from_wechat, :without_name, :without_address) }
+
+      scenario "fill essential information and pay successfully" do
+
+        on_missing_info_page?
+        fill_in 'user[email]', :with => 'random-valid-email@email.com'
+        fill_in 'user[lname]', :with => '前'
+        fill_in 'user[fname]', :with => '单'
+        page.first('.\\+checkout-button').click # go to address step
+        on_order_address_page?
+
+      end
+
+      scenario "try checking out directly and is redirected to fulfil informations" do
+
+        # short hook to check if we cannot access
+        # the checkout without fulfilling those informations
+        visit payment_method_customer_checkout_path
+        on_missing_info_page?
+
+      end
+
+    end
+
     context "address built from scratch" do
 
       let(:customer) { FactoryGirl.create(:customer, :without_address) }
@@ -31,6 +57,7 @@ feature "checkout process", :js => true  do
 
       scenario "pay successfully and generate shipping label correctly" do
 
+        add_address_from_lightbox!
         pay_and_get_label
 
       end
@@ -47,6 +74,7 @@ feature "checkout process", :js => true  do
           # we check the 20% off is shown on the cart before all
           page.first('.\\+checkout-button').click # go to address step
           # now we go through the whole process
+          add_address_from_lightbox!
           pay_and_get_label
 
         end
@@ -110,8 +138,6 @@ feature "checkout process", :js => true  do
 end
 
 def pay_and_get_label
-  # add address from scratch
-  add_address_from_lightbox!
 
   page.first('.\\+checkout-button').click # go to payment step
   on_payment_method_page?

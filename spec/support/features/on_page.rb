@@ -26,6 +26,10 @@ module Helpers
         expect(page).to have_css('.address-box')
       end
 
+      def on_missing_info_page?
+        expect(page).to have_css "h2", text: "下单前，我们必须知道你的联系方式" # "we need more info"
+      end
+
     end
   end
 end

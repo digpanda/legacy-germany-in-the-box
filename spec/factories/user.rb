@@ -33,6 +33,21 @@ FactoryGirl.define do
       create(:customer_address, user: user)
     end
 
+    trait :from_wechat do
+      before(:create) do |user|
+        user.provider = "wechat"
+        user.uid = "0123456789"
+        user.email = "0123456789@wechat.com"
+      end
+    end
+
+    trait :without_name do
+      before(:create) do |user|
+        user.fname = nil
+        user.lname = nil
+      end
+    end
+
     trait :without_address do
       after(:create) do |user|
         user.addresses.delete_all # creation / destruction
