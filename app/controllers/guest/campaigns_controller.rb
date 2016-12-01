@@ -13,7 +13,7 @@ class Guest::CampaignsController < ApplicationController
   private
 
   def production_only
-    unless Rails.env.production?
+    unless Rails.env.production? || Rails.env.staging?
       flash[:error] = "You must be on the real site to access this area."
       redirect_to navigation.back(1)
     end
