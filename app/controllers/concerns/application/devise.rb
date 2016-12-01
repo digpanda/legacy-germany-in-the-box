@@ -18,9 +18,10 @@ module Application
       if current_user.customer?
         force_chinese!
 
-        # we must remove the empty orders in case it exists
+        # we must remove the empty orders in case they exist
         # NOTE : normally it shouldn't happen in the normal behaviour
-        # but it appeared sometimes for some unknown reason still.
+        # but it appeared sometimes for some unknown reason
+        # and made people blow up on sign-in
         remove_all_empty_orders!
 
         # we get the last order which's not paid yet
