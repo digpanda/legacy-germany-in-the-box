@@ -65,7 +65,6 @@ module Application
     def remove_all_empty_orders!
       current_user.orders.each do |order|
         if order.order_items.count == 0
-          binding.pry
           order.delete
         end
       end
