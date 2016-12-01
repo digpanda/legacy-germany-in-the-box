@@ -5,7 +5,9 @@
   </div>
   <div class="row">
 
-    <%= render partial: "admin/orders/table", :locals => { :orders => @user.orders } %>
+    <div class="+overflow">
+      <%= render partial: "admin/orders/table", :locals => { :orders => @user.orders } %>
+    </div>
 
   </div>
 

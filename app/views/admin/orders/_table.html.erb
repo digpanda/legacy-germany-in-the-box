@@ -1,9 +1,9 @@
 <% if orders.size > 0 %>
-<table class="white-table">
+<table class="white-table +overflow">
   <thead>
     <tr>
       <th>
-        <%= I18n.t(:id, scope: :edit_order) %>
+        ID
       </th>
       <th>
         BorderGuru Shipment ID
@@ -15,22 +15,22 @@
         Total Paid
       </th>
       <th>
-        <%= I18n.t(:status, scope: :edit_order) %>
+        Status
       </th>
       <th>
-        <%= I18n.t(:total_price, scope: :edit_order) %>
+        Total Price
       </th>
       <th>
-        <%= I18n.t(:link_tracking, scope: :edit_order) %>
+        Link Tracking
       </th>
       <th>
-        <%= I18n.t(:label, scope: :edit_order) %>
+        Label
       </th>
       <th>
-        <%= I18n.t(:updated_at, scope: :edit_order) %>
+        Updated At
       </th>
       <th>
-        <%= I18n.t(:operations, scope: :edit_order) %>
+        Action
       </th>
     </tr>
   </thead>
