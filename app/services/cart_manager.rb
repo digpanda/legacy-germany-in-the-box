@@ -2,11 +2,11 @@
 # this is linked to the cart system itself (with session + database)
 class CartManager < BaseService
 
-  attr_reader :shop, :session, :current_user
+  attr_reader :shop, :session, :user
 
-  def initialize(session, current_user)
+  def initialize(session, user)
     @session = session
-    @current_user = current_user
+    @user = user
     safe_recovery!
     setup_session!
   end
@@ -14,7 +14,7 @@ class CartManager < BaseService
   # try to get an order
   # if it doesn't work it'll make a new one which's empty
   def order(shop:, call_api: true)
-    CartManager::OrderHandler.new(session, current_user, shop).recover(call_api).order
+    CartManager::OrderHandler.new(session, user, shop).recover(call_api).order
   end
 
   # get all the orders we have in the cart

@@ -5,11 +5,11 @@
 class CartManager
   class OrderHandler < BaseService
 
-    attr_reader :session, :current_user, :shop
+    attr_reader :session, :user, :shop
 
-    def initialize(session, current_user, shop)
+    def initialize(session, user, shop)
       @session = session
-      @current_user = current_user
+      @user = user
       @shop = shop
     end
 
@@ -42,7 +42,7 @@ class CartManager
     # if it wasn't attributed already
     def setup_user_order!
       unless order.user
-        order.user = current_user
+        order.user = user
         order.save
       end
     end
