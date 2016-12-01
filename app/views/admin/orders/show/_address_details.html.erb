@@ -3,16 +3,20 @@
     <h3>Address details</h3>
     <hr>
   </div>
-  
+
   <div class="row">
     <div class="col-md-12">
       <h4>Customer details</h4>
-      Email : <%= @order.user.email %><br />
-      <% if @order.shipping_address %>
-        PID : <%= @order.shipping_address.pid %><br />
+      <% if @order.user %>
+        Email : <%= @order.user.email %><br />
+        <% if @order.shipping_address %>
+          PID : <%= @order.shipping_address.pid %><br />
+        <% end %>
+        Phone : <%= @order.user.tel %><br />
+        Mobile : <%= @order.user.mobile %>
+      <% else %>
+        No customer attached
       <% end %>
-      Phone : <%= @order.user.tel %><br />
-      Mobile : <%= @order.user.mobile %>
     </div>
   </div>
 
