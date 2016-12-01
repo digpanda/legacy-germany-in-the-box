@@ -56,7 +56,7 @@
           <%= I18n.t(:price, scope: :edit_product_detail) %> (EUR)
         </div>
         <div class="col-md-8">
-          <%= form.text_field :price, value: number_with_precision(@sku.price, :precision => 2), :class => 'form-control', :required => true, :pattern => I18n.t(:positive_float, scope: :validation) %>
+          <%= form.text_field :price, value: number_with_precision(@sku.price, :precision => 2), :class => 'form-control', :required => true %>
         </div>
       </div>
 
@@ -80,13 +80,13 @@
           <div class="row">
 
             <div class="col-md-4">
-              <%= form.text_field :space_length, value: number_with_precision(@sku.space_length, :precision => 2), :class => 'form-control', :required => true, :pattern => I18n.t(:positive_float, scope: :validation), :placeholder => I18n.t(:space_length, scope: :edit_product_detail) %>
+              <%= form.text_field :space_length, value: number_with_precision(@sku.space_length, :precision => 2), :class => 'form-control', :required => true, :placeholder => I18n.t(:space_length, scope: :edit_product_detail) %>
             </div>
             <div class="col-md-4">
-              <%= form.text_field :space_width, value: number_with_precision(@sku.space_width, :precision => 2), :class => 'form-control', :required => true, :pattern => I18n.t(:positive_float, scope: :validation), :placeholder => I18n.t(:space_width, scope: :edit_product_detail) %>
+              <%= form.text_field :space_width, value: number_with_precision(@sku.space_width, :precision => 2), :class => 'form-control', :required => true, :placeholder => I18n.t(:space_width, scope: :edit_product_detail) %>
             </div>
             <div class="col-md-4">
-              <%= form.text_field :space_height, value: number_with_precision(@sku.space_height, :precision => 2), :class => 'form-control', :required => true, :pattern => I18n.t(:positive_float, scope: :validation), :placeholder => I18n.t(:space_height, scope: :edit_product_detail) %>
+              <%= form.text_field :space_height, value: number_with_precision(@sku.space_height, :precision => 2), :class => 'form-control', :required => true, :placeholder => I18n.t(:space_height, scope: :edit_product_detail) %>
             </div>
 
           </div>
@@ -100,7 +100,7 @@
           <%= I18n.t(:weight, scope: :edit_product_detail) %> (KG)
         </div>
         <div class="col-md-8">
-          <%= form.text_field :weight, value: number_with_precision(@sku.weight, :precision => 2), :class => 'form-control', :required => true, :pattern => I18n.t(:positive_float, scope: :validation) %>
+          <%= form.text_field :weight, value: number_with_precision(@sku.weight, :precision => 2), :class => 'form-control', :required => true %>
         </div>
       </div>
 
