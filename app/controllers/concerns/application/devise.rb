@@ -25,9 +25,8 @@ module Application
         remove_all_empty_orders!
 
         # we get the last order which's not paid yet
-        last_order = current_user.orders.unpaid.order_by(:u_at => :desc).first
-        if last_order
-          cart_manager.store(last_order)
+        if current_user.cart_orders.first
+          cart_manager.store(current_user.cart_orders.first)
         end
 
         return navigation.force! if navigation.force?
@@ -66,6 +65,7 @@ module Application
     def remove_all_empty_orders!
       current_user.orders.each do |order|
         if order.order_items.count == 0
+          binding.pry
           order.delete
         end
       end

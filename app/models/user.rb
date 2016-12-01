@@ -121,6 +121,12 @@ class User
     end
   end
 
+  # this was made to get only the appropriate orders
+  # of the customer to get back to the cart
+  def cart_orders
+    orders.unpaid.order_by(:u_at => :desc)
+  end
+
   def admin?
     self.role == :admin
   end
