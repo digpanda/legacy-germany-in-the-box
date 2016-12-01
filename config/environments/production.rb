@@ -10,7 +10,7 @@ Rails.application.configure do
   config.assets.digest = true
   config.force_ssl = false
   config.log_level = :debug
-  config.logger = Logger.new("#{Rails.env}-#{Time.now.strftime('%Y-%m-%d')}.log")
+  config.logger = Logger.new("log/#{Rails.env}-#{Time.now.strftime('%Y-%m-%d')}.log")
 
   config.middleware.use ExceptionNotification::Rack,
   :email => {
