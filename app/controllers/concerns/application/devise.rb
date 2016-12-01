@@ -18,6 +18,11 @@ module Application
       if current_user.customer?
         force_chinese!
 
+        # we must remove the empty orders in case it exists
+        # NOTE : normally it shouldn't happen in the normal behaviour
+        # but it appeared sometimes for some unknown reason still.
+        remove_all_empty_orders!
+
         # we get the last order which's not paid yet
         last_order = current_user.orders.unpaid.order_by(:u_at => :desc).first
         if last_order
@@ -54,6 +59,14 @@ module Application
       current_user.orders.each do |order|
         order.order_items.delete_all
         order.delete
+      end
+    end
+
+    def remove_all_empty_orders!
+      current_user.orders.each do |order|
+        if order.order_items.count == 0
+          order.delete
+        end
       end
     end
 
