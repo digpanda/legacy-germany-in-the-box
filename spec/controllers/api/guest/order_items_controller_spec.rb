@@ -7,8 +7,7 @@ describe Api::Guest::OrderItemsController, :type => :controller do
     context "from guest customer" do
 
       let(:shop_with_orders) { FactoryGirl.create(:shop, :with_orders) }
-      let(:settings) { Settings.create! } # important for the controller
-      before { settings }
+      let!(:settings) { Settings.create! } # important for the controller
 
       it "set quantity to 0" do
 
