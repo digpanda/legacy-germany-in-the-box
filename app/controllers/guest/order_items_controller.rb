@@ -9,7 +9,6 @@ class Guest::OrderItemsController < ApplicationController
   # it actually adds an order item to the cart itself.
   # maybe we should move it somewhere else
   def create
-
     product = Product.find(params[:sku][:product_id]).decorate
     sku = product.sku_from_option_ids(params[:sku][:option_ids].split(','))
     quantity = params[:sku][:quantity].to_i
@@ -32,7 +31,6 @@ class Guest::OrderItemsController < ApplicationController
 
     flash[:error] = I18n.t(:add_product_ko, scope: :edit_order)
     redirect_to navigation.back(1)
-
   end
 
   def destroy
@@ -41,7 +39,7 @@ class Guest::OrderItemsController < ApplicationController
     else
       flash[:error] = order_item.errors.full_messages.join(', ')
     end
-    redirect_to(:back) and return
+    redirect_to navigation.back(1)
   end
 
   private
