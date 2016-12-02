@@ -9,7 +9,7 @@ class Guest::OrderItemsController < ApplicationController
   # it actually adds an order item to the cart itself.
   # maybe we should move it somewhere else
   def create
-    
+
     product = Product.find(params[:sku][:product_id]).decorate
     sku = product.sku_from_option_ids(params[:sku][:option_ids].split(','))
     quantity = params[:sku][:quantity].to_i
@@ -19,31 +19,19 @@ class Guest::OrderItemsController < ApplicationController
 
     if BuyingBreaker.new(order).with_sku?(sku, quantity)
       flash[:error] = I18n.t(:override_maximal_total, scope: :edit_order, total: Settings.instance.max_total_per_day, currency: Settings.instance.platform_currency.symbol)
-      redirect_to(:back)
+      redirect_to navigation.back(1)
       return
     end
 
-    existing_order_item = order.order_items.to_a.detect { |i| i.sku_id == sku.id.to_s}
-
-    if sku.unlimited || (sku.quantity >= quantity)
-      if existing_order_item.present?
-        existing_order_item.quantity += quantity
-        existing_order_item.save!
-      else
-        OrderMaker.new(order).add(sku, quantity)
-      end
-
-      if order.save
-        cart_manager.store(order)
-        flash[:success] = I18n.t(:add_product_ok, scope: :edit_order)
-        redirect_to navigation.back(2, guest_shop_path(product.shop))
-        return
-      end
-
+    if OrderMaker.new(order).add(sku, quantity).success?
+      cart_manager.store(order)
+      flash[:success] = I18n.t(:add_product_ok, scope: :edit_order)
+      redirect_to navigation.back(2, guest_shop_path(product.shop))
+      return
     end
 
     flash[:error] = I18n.t(:add_product_ko, scope: :edit_order)
-    redirect_to request.referrer and return
+    redirect_to navigation.back(1)
 
   end
 

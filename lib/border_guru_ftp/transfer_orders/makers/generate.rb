@@ -30,7 +30,7 @@ module BorderGuruFtp
           [
             order_item.order.border_guru_shipment_id,
             border_guru_merchant_id,
-            order_item.sku.id, # Item ID
+            order_item.sku_origin.id, # Origin SKU ID
             order_item.product.hs_code, # HS Code
             order_item.sku.country_of_origin,
             "#{order_item.product.name.upcase}  #{order_item.product.decorate.clean_desc(MAX_DESCRIPTION_CHARACTERS)}", # Description

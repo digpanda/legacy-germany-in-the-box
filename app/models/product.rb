@@ -10,7 +10,6 @@ class Product
   field :brand, type: String, localize: true
   field :cover, type: String # deprecated ?
   field :desc, type: String, localize: true
-  field :tags, type: Array, default: Array.new(Rails.configuration.max_num_tags)
   field :status, type: Boolean, default: true
   field :approved, type: Time
   field :hs_code, type: String

@@ -16,7 +16,7 @@ FactoryGirl.define do
       end
 
       sku = product.skus.first
-      order_item.product_name  = product.name
+      order_item.product.name  = product.name
       update_with_sku!(order_item, product, sku)
 
     end

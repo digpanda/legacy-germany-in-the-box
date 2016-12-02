@@ -23,6 +23,7 @@ class Sku
   field :attach0,       type: String
   field :country_of_origin, type: String, default: 'DE'
 
+  # TODO : this will be changed after cleansing of the model
   field :fees_estimation, type: Float, default: 0.0
   field :fees_estimated_at, type: Date
 
@@ -58,8 +59,12 @@ class Sku
   scope :in_stock,  -> { any_of({:unlimited => true  }, {:quantity.gt => 0}) }
 
 
-  before_save :clean_blank_and_duplicated_option_ids
+  before_save :ensure_valid_option_ids
   before_save :clean_quantity, :if => lambda { self.unlimited }
+
+  def enough_stock?(quantity)
+    unlimited || (quantity >= quantity)
+  end
 
   def volume
     space_length * space_width * space_height
@@ -69,6 +74,7 @@ class Sku
     price + estimated_fees
   end
 
+  # TODO : this will be completely changed when we stop to call borderguru
   def update_estimated_fees!
     sku_fees_estimation = SkuFeesEstimation.new(self).provide
     if sku_fees_estimation.success?
@@ -80,6 +86,7 @@ class Sku
 
   # this system was made in emergency situation and should be replaced
   # by a CRON job and an automatic refresh without the whole logic at each call
+  # TODO : let's remove this all shit and do something better
   def estimated_fees
     @estimated_fees ||= begin
       if self.fees_estimated_at.nil? || (self.fees_estimated_at < FEES_ESTIMATION_EXPIRATION)
@@ -90,15 +97,15 @@ class Sku
   end
 
   def get_options
-    variants = self.option_ids.map do |oid|
-      self.product.options.detect do |v|
-        v.suboptions.where(id: oid).first
+    variants = option_ids.map do |option_id|
+      product.options.detect do |variant|
+        variant.suboptions.where(id: option_id).first
       end
     end
 
-    variants.each_with_index.map do |v, i|
-      o = v.suboptions.find(self.option_ids[i])
-      { name: v.name, option: { name: o.name } }
+    variants.each_with_index.map do |variant, index|
+      option = variant.suboptions.find(self.option_ids[index])
+      { name: variant.name, option: { name: option.name } }
     end
   end
 
@@ -123,7 +130,7 @@ class Sku
     self.quantity = 0
   end
 
-  def clean_blank_and_duplicated_option_ids
+  def ensure_valid_option_ids
     self.option_ids = self.option_ids.reject { |c| c.empty? }.to_set.to_a
   end
 

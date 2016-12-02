@@ -124,7 +124,7 @@ class OrdersFormatter < BaseService
   end
 
   def order_item_names(order)
-    order.order_items.reduce([]) { |acc, order_item| acc << order_item.product_name }.join(', ')
+    order.order_items.reduce([]) { |acc, order_item| acc << order_item.product.name }.join(', ')
   end
 
   def chinese_full_name(order)
