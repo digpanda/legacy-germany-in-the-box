@@ -14,7 +14,7 @@ class OrderMaker < BaseService
       order_item.weight = sku.weight
       order_item.product = sku.product
       order_item.product_name = sku.product.name
-      order_item.sku_id = sku.id.to_s
+      order_item.sku = sku
       order_item.option_ids = sku.option_ids
       order_item.option_names = sku.get_options
     end.save!

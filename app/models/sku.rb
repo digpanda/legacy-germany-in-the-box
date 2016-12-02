@@ -15,12 +15,10 @@ class Sku
   field :unlimited,     type: Boolean,    default: false
   field :weight,        type: Float
   field :status,        type: Boolean,    default: true
-  field :customizable,  type: Boolean,    default: false
   field :discount,      type: Integer,    default: 0
   field :space_length,  type: Float
   field :space_width,   type: Float
   field :space_height,  type: Float
-  field :time,          type: String,     default: 'terminated'
   field :data,          type: String,     localize: true
   field :attach0,       type: String
   field :country_of_origin, type: String, default: 'DE'
@@ -30,8 +28,12 @@ class Sku
 
   field :option_ids,    type: Array,      default: []
 
-  embedded_in :product, :inverse_of => :skus
+  embedded_in :product
+  embedded_in :order_item
 
+  # TODO : this might be in a issue when using the sku from the order item
+  # make sure to put the clonage of the images / documentation in the model
+  # so it also duplicated when creating from order_item
   mount_uploader :img0,     ProductImageUploader
   mount_uploader :img1,     ProductImageUploader
   mount_uploader :img2,     ProductImageUploader
@@ -43,10 +45,8 @@ class Sku
   validates :unlimited,     presence: true
   validates :weight,        presence: true
   validates :status,        presence: true
-  validates :customizable,  presence: true
   validates :discount,      presence: true, :numericality => { :greater_than_or_equal_to => 0, :less_than_or_equal_to => 100 }
   validates :option_ids,    presence: true
-  validates :time,          presence: true, inclusion: {in: ['terminated', 'automatic']}
   validates :space_length,  presence: true, :numericality => { :greater_than => 0 }
   validates :space_width,   presence: true, :numericality => { :greater_than => 0 }
   validates :space_height,  presence: true, :numericality => { :greater_than => 0 }
