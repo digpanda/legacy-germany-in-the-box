@@ -41,7 +41,6 @@ end
 def update_with_sku!(order_item, product, sku)
   order_item.product = sku.product
   order_item.sku = sku.clone
-  binding.pry
   order_item.sku_origin = sku
   order_item.save
 end
