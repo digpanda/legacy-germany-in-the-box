@@ -32,7 +32,7 @@
           <%= form.label :min_total, I18n.t(:min_total, scope: :edit_shop), :class => 'required' %> (EUR)
         </div>
         <div class="col-md-8">
-          <%= form.text_field :min_total, value: number_with_precision(@shop.min_total ? @shop.min_total : 0, :precision => 2), :class => 'form-control', :required => true, :pattern => I18n.t(:positive_float_equal_or_greater_than_0, scope: :validation) %>
+          <%= form.text_field :min_total, value: @shop.min_total, :class => 'form-control', :required => true, :pattern => I18n.t(:positive_float_equal_or_greater_than_0, scope: :validation) %>
         </div>
       </div>
 

@@ -45,7 +45,9 @@
             <%= sku.option_names.join(', ') %>
           </td>
           <td>
-            <%= number_with_precision(sku.price ? sku.price : 0, :precision => 2) + ' ' + sku.product.shop.currency.code %>
+            <% if sku.price %>
+              <%= sku.price.in_euro.display %>
+            <% end %>
           </td>
           <td>
             <%= sku.discount.to_s + '%' if sku.discount != 0 %>
