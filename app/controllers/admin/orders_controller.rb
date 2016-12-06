@@ -10,9 +10,9 @@ class Admin::OrdersController < ApplicationController
   attr_accessor :order, :orders
 
   def index
+    @orders = Order.nonempty.order_by(:c_at => :desc).paginate(:page => current_page, :per_page => 10)
     respond_to do |format|
       format.html do
-        @orders = Order.nonempty.order_by(:c_at => :desc).paginate(:page => current_page, :per_page => 10)
       end
       format.csv do
         render text: OrdersFormatter.new(orders).to_csv.encode(CSV_ENCODE),
