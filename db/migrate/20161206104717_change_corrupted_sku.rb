@@ -10,7 +10,15 @@ class ChangeCorruptedSku < Mongoid::Migration
           next
         end
         puts "We will call the sku_finder method ..."
-        original_sku = sku_finder(order_item.sku_id)
+        original_sku = begin
+          puts "Sku finder will fetch data ..."
+          Product.all.each do |product|
+            if product.skus.where(id: order_item.sku_id).first
+              puts "We found the sku in Product `#{product.id}`"
+              return product.skus.where(id: order_item.sku_id).first
+            end
+          end
+        end
         if original_sku.nil?
           puts "Could not find original Sku. Aborting."
           next
@@ -32,15 +40,5 @@ class ChangeCorruptedSku < Mongoid::Migration
   end
 
   def self.down
-  end
-end
-
-def sku_finder(sku_id)
-  puts "Sku finder will fetch data ..."
-  Product.all.each do |product|
-    if product.skus.where(id: sku_id).first
-      puts "We found the sku in Product `#{product.id}`"
-      return product.skus.where(id: sku_id).first
-    end
   end
 end
