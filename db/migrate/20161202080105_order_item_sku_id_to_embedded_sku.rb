@@ -26,3 +26,8 @@ class OrderItemSkuIdToEmbeddedSku < Mongoid::Migration
   def self.down
   end
 end
+
+# official issue from mongoid
+def session
+  Mongoid::VERSION > "5.0.0" ? ::Mongoid.default_client : ::Mongoid.default_session
+end
