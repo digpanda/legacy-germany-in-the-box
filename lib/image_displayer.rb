@@ -5,6 +5,7 @@ require 'image_displayer/qiniu'
 # generate qiniu URLs and such
 class ImageDisplayer
 
+  FALLBACK_IMAGE = "/images/no_image_available.png"
   attr_reader :model, :image_field, :options, :version
 
   # the options possible are :fallback => true which return an image URL
@@ -29,11 +30,13 @@ class ImageDisplayer
   def field_url
     if model.send(image_field).present?
       model.send(image_field).url
+    else
+      fallback_url
     end
   end
 
   def fallback_url
-    "/images/no_image_available.png"
+    FALLBACK_IMAGE
   end
 
   def remote_url(version)

@@ -50,18 +50,20 @@ class Shopkeeper::Products::SkusController < ApplicationController
   # TODO : this should be put into a service
   # it was imported from the old system and it's very much disgusting.
   def clone
-    source_sku = sku
-    new_sku = product.skus.build(source_sku.attributes.keep_if { |k| Sku.fields.keys.include?(k) }.except(:_id, :img0, :img1, :img2, :img3, :attach0, :data, :c_at, :u_at, :currency))
-    CopyCarrierwaveFile::CopyFileService.new(source_sku, new_sku, :img0).set_file if source_sku.img0.url
-    CopyCarrierwaveFile::CopyFileService.new(source_sku, new_sku, :img1).set_file if source_sku.img1.url
-    CopyCarrierwaveFile::CopyFileService.new(source_sku, new_sku, :img2).set_file if source_sku.img2.url
-    CopyCarrierwaveFile::CopyFileService.new(source_sku, new_sku, :img3).set_file if source_sku.img3.url
-    CopyCarrierwaveFile::CopyFileService.new(source_sku, new_sku, :attach0).set_file if source_sku.attach0.url
-    # TODO : this is buggy because of the translation system
-    # we should investigate.
-    new_sku.data = source_sku.data
-    new_sku.save
-    binding.pry
+    new_sku = sku.clone
+    product.skus << new_sku
+    product.save
+    # source_sku = sku
+    # new_sku = product.skus.build(source_sku.attributes.keep_if { |k| Sku.fields.keys.include?(k) }.except(:_id, :img0, :img1, :img2, :img3, :attach0, :data, :c_at, :u_at, :currency))
+    # CopyCarrierwaveFile::CopyFileService.new(source_sku, new_sku, :img0).set_file if source_sku.img0.url
+    # CopyCarrierwaveFile::CopyFileService.new(source_sku, new_sku, :img1).set_file if source_sku.img1.url
+    # CopyCarrierwaveFile::CopyFileService.new(source_sku, new_sku, :img2).set_file if source_sku.img2.url
+    # CopyCarrierwaveFile::CopyFileService.new(source_sku, new_sku, :img3).set_file if source_sku.img3.url
+    # CopyCarrierwaveFile::CopyFileService.new(source_sku, new_sku, :attach0).set_file if source_sku.attach0.url
+    # # TODO : this is buggy because of the translation system
+    # # we should investigate.
+    # new_sku.data = source_sku.data
+    # new_sku.save
     flash[:success] = I18n.t(:clone_successful, scope: :sku)
     redirect_to navigation.back(1)
   end
