@@ -3,9 +3,9 @@ module Helpers
 
     module_function
 
-    def login_admin
+    def login_admin(admin)
       @request.env["devise.mapping"] = ::Devise.mappings[:admin]
-      sign_in FactoryGirl.create(:admin) # Using factory girl as an example
+      sign_in admin # Using factory girl as an example
     end
 
     def login_customer(customer)
