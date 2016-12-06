@@ -19,6 +19,10 @@ class ChangeCorruptedSku < Mongoid::Migration
         end
 
         if original_sku.nil?
+          # since we could not find the exact sku we replace it
+          # by the first one from the product, this shouldn't alter the system too much.
+          # and it's only a few orders.
+          original_sku = order_item.order.product.skus.first
           puts "Could not find original Sku. Aborting."
           next
         else
