@@ -13,10 +13,11 @@ class ChangeCorruptedSku < Mongoid::Migration
         original_sku = begin
           puts "Sku finder will fetch data ..."
           Product.all.each do |product|
-            puts "Product fetching ..."
-            if product.skus.where(id: order_item.sku_id).first
+            fetching = product.skus.where(id: order_item.sku_id).first
+            puts "Yep fetching"
+            if fetching
               puts "We found the sku in Product `#{product.id}`"
-              return product.skus.where(id: order_item.sku_id).first
+              return fetching
             end
           end
         end
