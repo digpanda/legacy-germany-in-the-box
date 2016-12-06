@@ -5,8 +5,8 @@ class OrderItem
 
   # TODO : REMOVE THIS AFTER MIGRATION
   field :sku_id,      type: String
-  field :weight,          type: Float,      default: 0
-  field :price,           type: BigDecimal, default: 0
+  # field :weight,          type: Float,      default: 0
+  # field :price,           type: BigDecimal, default: 0
   field :option_ids,  type: Array,      default: []
   # END OF TODO
 

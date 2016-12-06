@@ -38,7 +38,7 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :mailgun
   config.action_mailer.mailgun_settings = {
           api_key: 'key-57fccf0c1fa0bf601a25865e43e0f742',
-          domain: 'germanyinthebox.com'
+          domain: 'germanyinthebox.de'
   }
 
 

@@ -7,6 +7,9 @@ class OrderMaker < BaseService
     @order = order
   end
 
+  # NOTE : this could be way improved but it was directly
+  # taken from the controller and slightly changed
+  # maybe, split it up into subclasses for each main method.
   def add(sku, quantity)
 
     return return_with(:error) unless sku.enough_stock?(quantity)
@@ -20,7 +23,7 @@ class OrderMaker < BaseService
 
     end
 
-    if refresh_order_items(sku, quantity)
+    if refresh_order_items!(sku, quantity)
       return return_with(:success, order: order)
     end
 
@@ -30,7 +33,7 @@ class OrderMaker < BaseService
 
   private
 
-  def refresh_order_items!
+  def refresh_order_items!(sku, quantity)
     order.order_items.build.tap do |order_item|
       order_item.quantity = quantity
       order_item.product = sku.product

@@ -32,7 +32,6 @@ class Guest::OrderItemsController < ApplicationController
 
     flash[:error] = I18n.t(:add_product_ko, scope: :edit_order)
     redirect_to navigation.back(1)
-
   end
 
   def destroy
@@ -41,7 +40,7 @@ class Guest::OrderItemsController < ApplicationController
     else
       flash[:error] = order_item.errors.full_messages.join(', ')
     end
-    redirect_to(:back) and return
+    redirect_to navigation.back(1)
   end
 
   private
