@@ -37,6 +37,7 @@ end
 def sku_finder(sku_id)
   Product.all.each do |product|
     if product.skus.where(id: sku_id).first
+      puts "We found the sku in Product `#{product.id}`"
       return product.skus.where(id: sku_id).first
     end
   end
