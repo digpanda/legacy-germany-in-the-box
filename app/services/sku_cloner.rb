@@ -19,8 +19,11 @@ class SkuCloner < BaseService
     images!
     attach!
     # we save after all alterations
-    origin.save
-    return_with(:success)
+    if origin.save
+      return_with(:success)
+    else
+      return_with(:error, :origin => origin)
+    end
   end
 
   def clone
