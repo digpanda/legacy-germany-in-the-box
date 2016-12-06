@@ -2,6 +2,7 @@ class OrderItemSkuIdToEmbeddedSku < Mongoid::Migration
   def self.up
     # we need to convert the sku_id and incorporate it
     # as embedded document
+    ::Mongoid.default_session = ::Mongoid.default_client
     OrderItem.all.each do |order_item|
       puts "OrderItem Sku ID `#{order_item.sku_id}`"
       if order_item.product.skus.where(id: order_item.sku_id).first
@@ -19,15 +20,9 @@ class OrderItemSkuIdToEmbeddedSku < Mongoid::Migration
       else
         puts "Won't be applied to `#{order_item.id}` from order `#{order.id}` you may need to delete this corrupted order."
       end
-      # TODO : don't forget to replace the fields which were in the order_item before to commit and convert the sku in this migration
     end
   end
 
   def self.down
   end
-end
-
-# official issue from mongoid
-def session
-  Mongoid::VERSION > "5.0.0" ? ::Mongoid.default_client : ::Mongoid.default_session
 end
