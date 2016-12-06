@@ -8,6 +8,11 @@ module Helpers
       sign_in admin # Using factory girl as an example
     end
 
+    def login_shopkeeper(shopkeeper)
+      @request.env["devise.mapping"] = ::Devise.mappings[:shopkeeper]
+      sign_in shopkeeper
+    end
+
     def login_customer(customer)
       @request.env["devise.mapping"] = ::Devise.mappings[:user]
       sign_in customer

@@ -61,6 +61,7 @@ class Shopkeeper::Products::SkusController < ApplicationController
     # we should investigate.
     new_sku.data = source_sku.data
     new_sku.save
+    binding.pry
     flash[:success] = I18n.t(:clone_successful, scope: :sku)
     redirect_to navigation.back(1)
   end
