@@ -2,7 +2,6 @@ class OrderItemSkuIdToEmbeddedSku < Mongoid::Migration
   def self.up
     # we need to convert the sku_id and incorporate it
     # as embedded document
-    ::Mongoid.default_session = ::Mongoid.default_client
     OrderItem.all.each do |order_item|
       puts "OrderItem Sku ID `#{order_item.sku_id}`"
       if order_item.product.skus.where(id: order_item.sku_id).first

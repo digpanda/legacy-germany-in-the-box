@@ -8,6 +8,18 @@ GIT
       activesupport
 
 GIT
+  remote: https://github.com/adacosta/mongoid_rails_migrations
+  revision: 0074dbf81bcd5eb35ad35ba14a36dc3a7bf7a34d
+  branch: master
+  specs:
+    mongoid_rails_migrations (1.1.0)
+      activesupport (>= 4.2.0)
+      bundler (>= 1.0.0)
+      mongoid (>= 4.0.0)
+      rails (>= 4.2.0)
+      railties (>= 4.2.0)
+
+GIT
   remote: https://github.com/yangsr/omniauth-wechat-oauth2.git
   revision: 3dd51708e2fc4019a5c58dbf92e2c17d1733fc0c
   specs:
@@ -299,12 +311,6 @@ GEM
     mongoid_magic_counter_cache (1.1.1)
       mongoid
       rake
-    mongoid_rails_migrations (1.1.0)
-      activesupport (>= 4.2.0)
-      bundler (>= 1.0.0)
-      mongoid (>= 4.0.0)
-      rails (>= 4.2.0)
-      railties (>= 4.2.0)
     multi_json (1.12.1)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
@@ -559,7 +565,7 @@ DEPENDENCIES
   mongoid (~> 5.0.0)
   mongoid_includes
   mongoid_magic_counter_cache
-  mongoid_rails_migrations
+  mongoid_rails_migrations!
   oauth
   omniauth
   omniauth-wechat-oauth2!
