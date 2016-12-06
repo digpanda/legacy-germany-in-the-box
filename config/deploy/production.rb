@@ -17,4 +17,4 @@ set :ssh_options, {
   auth_methods: %w(publickey, password)
 }
 
-set :branch, :'old-branch' #ENV['BRANCH'] || :production
+set :branch, ENV['BRANCH'] || :production
