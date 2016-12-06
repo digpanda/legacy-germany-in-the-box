@@ -9,18 +9,15 @@ class ChangeCorruptedSku < Mongoid::Migration
           puts "SkuId is nil, we forget about this entry."
           next
         end
-        puts "We will call the sku_finder method ..."
-        original_sku = begin
-          puts "Sku finder will fetch data ..."
-          Product.all.each do |product|
-            fetching = product.skus.where(id: order_item.sku_id).first
-            puts "Yep fetching"
-            if fetching
-              puts "We found the sku in Product `#{product.id}`"
-              return fetching
-            end
+
+        original_sku = nil
+        # dirty, yes i know.
+        Product.all.each do |product|
+          if product.skus.where(id: order_item.sku_id).first
+            original_sku = product.skus.where(id: order_item.sku_id).first
           end
         end
+
         if original_sku.nil?
           puts "Could not find original Sku. Aborting."
           next
