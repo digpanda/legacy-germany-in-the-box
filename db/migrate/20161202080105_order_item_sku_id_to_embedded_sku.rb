@@ -17,7 +17,7 @@ class OrderItemSkuIdToEmbeddedSku < Mongoid::Migration
         # end of change through the time
         order_item.save
       else
-        puts "Won't be applied to `#{order_item.id}` from order `#{order.id}` you may need to delete this corrupted order."
+        puts "Won't be applied to `#{order_item.id}` from order `#{order_item.order.id}` you may need to delete this corrupted order."
       end
     end
   end
