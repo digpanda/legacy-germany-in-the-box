@@ -11,23 +11,11 @@ class ChangeCorruptedSku < Mongoid::Migration
           next
         end
 
-        # let's try to find this through
-        # all the products possible
-        original_sku = begin
-            Product.all.each do |product|
-            if product.skus.where(id: order_item.sku_id).first
-              product.skus.where(id: order_item.sku_id).first
-            end
-          end
-        end
-
         # since we could not find the exact sku we replace it
         # by the first one from the product, this shouldn't alter the system too much.
         # and it's only a few orders.
-        if original_sku.nil?
-          original_sku = order_item.product.skus.first
-          puts "Could not find original Sku. We select the first one from the Product."
-        end
+        original_sku = order_item.product.skus.first
+        puts "Could not find original Sku. We select the first one from the Product."
 
         # REPLICA OF PREVIOUS MIGRATION
         new_sku = original_sku.clone
