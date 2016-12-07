@@ -90,10 +90,7 @@ class User
   field :authentication_token
 
   index({email: 1},               {unique: true,  name: :idx_user_email})
-  index({followers: 1},           {unique: false, name: :idx_user_followers,          sparse: true})
-  index({following: 1},           {unique: false, name: :idx_user_following,          sparse: true})
-  index({liked_collections: 1},   {unique: false, name: :idx_user_liked_collections,  sparse: true})
-
+  
   before_destroy :destroy_has_shop, :destroy_has_orders
   def destroy_has_shop
     if self.shop
