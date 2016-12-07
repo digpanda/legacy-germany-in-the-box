@@ -96,7 +96,6 @@ group :development, :test do
   gem "webmock" # http service loader
 end
 
-
 group :development, :test, :staging, :local do
   gem "factory_girl_rails"
   gem "rspec-rails", "~> 3.0"
@@ -108,7 +107,6 @@ group :development, :test, :staging, :local do
   gem "database_cleaner"
   gem "pry-rails"
 end
-
 
 group :development, :local do
   gem "spring" # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
