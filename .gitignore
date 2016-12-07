@@ -5,6 +5,7 @@ Dockerfile
 capybara-*.html
 .rspec
 .tags
+*.tags
 .tags_swap
 /log
 /tmp
