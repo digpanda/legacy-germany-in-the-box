@@ -137,7 +137,7 @@ feature "checkout process", :js => true  do
 end
 
 def pay_and_get_label
-  
+
   page.first('.\\+checkout-button').click # go to payment step
   on_payment_method_page?
   checkout_window = window_opened_by do

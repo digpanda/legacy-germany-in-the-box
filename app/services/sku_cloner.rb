@@ -2,16 +2,18 @@
 # in the `target` model which's most of the time `product`
 # but it's flexible.
 # sku can be present in other part of the system such as `order_item`
+# the `relationship` is the way we should integrate the sku to the `target` (many or one sku relationship)
 class SkuCloner < BaseService
 
   IMAGES_MAP = [:img0, :img1, :img2, :img3]
   ATTACH_MAP = [:attach0]
 
-  attr_reader :target, :sku
+  attr_reader :target, :sku, :relationship
 
-  def initialize(target, sku)
+  def initialize(target, sku, relationship=:plural)
     @target = target
     @sku = sku
+    @relationship = relationship
   end
 
   def process
@@ -29,7 +31,11 @@ class SkuCloner < BaseService
   def clone
     @clone ||= begin
       sku.clone.tap do |clone|
-        target.skus << clone
+        if relationship == :plural
+          target.skus << clone
+        elsif relationship == :singular
+          target.sku = clone
+        end
       end
     end
   end
