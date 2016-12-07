@@ -54,13 +54,8 @@ class User
 
   has_and_belongs_to_many :favorites, :class_name => 'Product'
 
-  has_and_belongs_to_many :liked_collections, :class_name => 'Collection',  :inverse_of => :users
-
   scope :without_detail, -> { only(:_id, :pic, :country, :username) }
 
-  has_one  :dCollection,  class_name: 'Collection', :inverse_of => :user
-
-  has_many :oCollections, class_name: 'Collection', :inverse_of => :user
   has_many :orders,                                 :inverse_of => :user,   :dependent => :restrict
   has_many :addresses,                              :inverse_of => :user
   has_many :notifications
@@ -85,9 +80,6 @@ class User
   #
   validates :about,         length: {maximum: Rails.configuration.max_medium_text_length}
   validates :website,       length: {maximum: Rails.configuration.max_short_text_length}
-
-  validates :oCollections, :length => { :maximum => Rails.configuration.max_customer_collections },   :if => lambda { :customer   == self.role }
-  validates :oCollections, :length => { :maximum => Rails.configuration.max_shopkeeper_collections }, :if => lambda { :shopkeeper == self.role }
 
   validates :addresses,    :length => { :maximum => Rails.configuration.max_num_addresses }, :if => lambda { :customer == self.role }
 
