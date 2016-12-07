@@ -64,8 +64,11 @@ module Application
 
     def remove_all_empty_orders!
       current_user.orders.each do |order|
-        if order.order_items.count == 0
-          order.delete
+        # TODO : detection of paid orders should be way improved
+        unless order.order_payments.first
+          if order.order_items.count == 0
+            order.delete
+          end
         end
       end
     end
