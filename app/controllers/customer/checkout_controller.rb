@@ -47,8 +47,7 @@ class Customer::CheckoutController < ApplicationController
     end
 
     if !all_products_available
-      msg = I18n.t(:not_all_available, scope: :checkout, :product_name => product_name, :option_names => sku.decorate.get_options_txt)
-      flash[:error] = msg
+      flash[:error] = I18n.t(:not_all_available, scope: :checkout, :product_name => product_name, :option_names => sku.option_names.join(', '))
       redirect_to navigation.back(1)
       return
     end

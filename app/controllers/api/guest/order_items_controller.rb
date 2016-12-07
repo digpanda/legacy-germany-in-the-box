@@ -36,7 +36,7 @@ class Api::Guest::OrderItemsController < Api::ApplicationController
       render :json => {
         :success => false,
         :original_quantity => @order_item.quantity,
-        :error => I18n.t(:not_all_available, scope: :checkout, :product_name => product.name, :option_names => sku.decorate.get_options_txt)
+        :error => I18n.t(:not_all_available, scope: :checkout, :product_name => product.name, :option_names => sku.option_names.join(', '))
       }
       return
     end

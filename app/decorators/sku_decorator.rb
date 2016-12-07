@@ -98,17 +98,4 @@ class SkuDecorator < Draper::Decorator
     "-%.0f%" % discount
   end
 
-  def get_options_txt
-    variants = self.option_ids.map do |oid|
-      self.product.options.detect do |v|
-        v.suboptions.where(id: oid).first
-      end
-    end
-
-    variants.each_with_index.map do |v, i|
-      o = v.suboptions.find(self.option_ids[i])
-      o.name
-    end.join(', ')
-  end
-
 end
