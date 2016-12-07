@@ -86,6 +86,7 @@ class Product
 
     # TODO : to improve
     # right now it doesn't order by discount
+    # also the `each` could be replaced by something for sure.
     def with_discount
       with_discount ||= []
       self.all.each do |product|
