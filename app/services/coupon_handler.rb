@@ -1,6 +1,8 @@
 # destroy / apply coupon and update
 # different areas depending on it
 class CouponHandler < BaseService
+  
+  Numeric.include CoreExtensions::Numeric::CurrencyLibrary
 
   attr_reader :coupon, :order
 
@@ -11,6 +13,9 @@ class CouponHandler < BaseService
 
   # try to apply the coupon to this specific order
   def apply
+    unless reached_minimum_order?
+      return return_with(:error, I18n.t(:no_minimum_price, scope: :coupon, minimum: coupon.minimum_order.in_euro.to_yuan.display))
+    end
     return return_with(:error, I18n.t(:cannot_apply, scope: :coupon)) unless valid_order?
     return return_with(:error, I18n.t(:not_valid_anymore, scope: :coupon)) unless valid_coupon?
     return return_with(:error, I18n.t(:error_occurred_applying, scope: :coupon)) unless update_order! && update_coupon!
@@ -47,7 +52,11 @@ class CouponHandler < BaseService
   # we check for the minimum order price
   # and if the order doesn't have a coupon already
   def valid_order?
-    (original_price >= coupon.minimum_order) && (order.coupon.nil?) && (coupon.cancelled_at.nil?)
+    reached_minimum_order && order.coupon.nil? && coupon.cancelled_at.nil?
+  end
+
+  def reached_minimum_order?
+    original_price >= coupon.minimum_order
   end
 
   # if the coupon is unique it shouldn't have been used already

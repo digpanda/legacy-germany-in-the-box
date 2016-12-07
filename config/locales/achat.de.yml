@@ -16,6 +16,7 @@ de:
     shipping_and_taxes_excluded: Versandkosten & Steuer zzgl.
   coupon:
     cannot_apply: Der Gutschein ist für diese Bestellung nicht gültig.
+    no_minimum_price: "Sie können nicht die Gutschein benutzen, weil die Mindestabnahmemenge (ausschließen Prozesskosten) geringer als die Verwendung von Gutscheinen ist : %{minimum} RMB."
     error_occurred_applying: Fehler beim Einlösen des Gutscheins.
     not_valid_anymore: Der Gutschein ist ungültig.
     cannot_remove: Der eingelöste Gutschein lässt sich nicht löschen.
