@@ -13,7 +13,7 @@ class Customer::AccountController < ApplicationController
   # NOTE : this update is used from many different points
   # within the system (e.g checkout process) be careful with this.
   def update
-    if check_valid_password?(params) && user.update(user_params)
+    if valid_password? && ensure_password! && user.update(user_params)
       flash[:success] = "Your account was successfully updated."
       sign_in(user, :bypass => true)
     else
@@ -28,14 +28,16 @@ class Customer::AccountController < ApplicationController
     @user = current_user
   end
 
-  # TODO : we should refactor this into something better
   def user_params
-    check_password! unless user.wechat?
     params.require(:user).permit(:username, :email, :password, :password_confirmation, :fname, :lname, :birth, :gender, :about, :website, :pic, :tel, :mobile)
   end
 
-  def check_valid_password?(params)
-    return true if user.wechat?
+  def password_needed?
+    !user.wechat? && params[:user][:password].present?
+  end
+
+  def valid_password?
+    return true unless password_needed?
     if user.valid_password?(params[:user][:current_password])
       true
     else
@@ -44,10 +46,11 @@ class Customer::AccountController < ApplicationController
     end
   end
 
-  def check_password!
-    if params[:user][:password].empty?
+  def ensure_password!
+    unless password_needed?
       params[:user][:password] = params[:user][:password_confirmation] = params[:user][:current_password]
     end
+    true
   end
 
 end
