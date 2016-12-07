@@ -29,28 +29,30 @@ var ProductForm = {
           maxHeight: 400
         }).multiselect();
 
-        $('#edit_product_submit_btn').click( function() {
-
-              $('input.dynamical-required').each(
-                function () {
-                  if ( $(this).val().length == 0 ) {
-                    $(this).addClass('invalidBorderClass');
-                  } else {
-                    $(this).removeClass('invalidBorderClass');
-                  }
-                }
-              );
-
-              if ( $('.invalidBorderClass').length > 0 ) {
-                return false;
-              }
-
-            });
-
-            $('a[rel=popover]').popover();
-
-            var panel_cnt = $("#variants_panel_"+productId).children('.panel-body').find('.panel').length
-            if (panel_cnt == 0) $("#a_add_variant_"+productId).click();
+        // TODO : it doesn't seems it's used in the system anymore
+        // $('#edit_product_submit_btn').click( function() {
+        //
+        //       $('input.dynamical-required').each(
+        //         function () {
+        //           if ( $(this).val().length == 0 ) {
+        //             console.log('yes');
+        //             $(this).addClass('invalidBorderClass');
+        //           } else {
+        //             $(this).removeClass('invalidBorderClass');
+        //           }
+        //         }
+        //       );
+        //
+        //       if ( $('.invalidBorderClass').length > 0 ) {
+        //         return false;
+        //       }
+        //
+        //     });
+        //
+        //     $('a[rel=popover]').popover();
+        //
+        //     var panel_cnt = $("#variants_panel_"+productId).children('.panel-body').find('.panel').length
+        //     if (panel_cnt == 0) $("#a_add_variant_"+productId).click();
 
       }
 

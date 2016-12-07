@@ -1,0 +1,18 @@
+<%= form_for [:admin, @shop, @product], :html => {:data => {:toggle => 'validator'}} do |form| %>
+
+  <div class="row details__block">
+    <%= render partial: "admin/shops/products/form/informations", :locals => {:form => form} %>
+  </div>
+
+  <div class="row details__block">
+    <%= render partial: "shopkeeper/products/form/settings", :locals => {:form => form} %>
+  </div>
+
+  <div class="row details__block">
+    <%= render partial: "admin/shops/products/form/categories", :locals => {:form => form} %>
+  </div>
+
+  <%= form.submit :class => 'btn btn-primary', :value =>  I18n.t(:update_basic, scope: :edit_product) %>
+  <!-- :id => 'edit_product_submit_btn' -->
+
+<% end %>

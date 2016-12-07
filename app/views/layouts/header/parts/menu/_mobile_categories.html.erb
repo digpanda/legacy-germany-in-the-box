@@ -3,9 +3,9 @@
 <div id="categories-menu-left-side" class="hidden">
 
   <!-- Left side content start -->
-  <% if total_number_of_products > 0 %>
+  <% if cart_manager.products_number > 0 && !checkout_path? %>
     <div class="col-md-6 mobile-category-menu__right">
-      <a href="<%= manage_cart_orders_path %>" class="mobile-category-menu__right --checkout"><%= I18n.t(:checkout, scope: :button) %> <i class="fa fa-check-circle"></i></a>
+      <a href="<%= customer_cart_path %>" class="mobile-category-menu__right --checkout"><%= I18n.t(:checkout, scope: :button) %> <i class="fa fa-check-circle"></i></a>
     </div>
   <% end %>
   <!-- End of left side content -->
@@ -16,13 +16,13 @@
   <ul>
 
     <!-- Account side -->
-    <li><a href="<%= manage_cart_orders_path %>"><%= I18n.t(:my_cart, scope: :menu) %></a></li>
+    <li><a href="<%= customer_cart_path %>"><%= I18n.t(:my_cart, scope: :menu) %></a></li>
     <li>
 
       <% if current_user.nil? %>
       <a href="<%= new_user_session_path %>"><%= I18n.t(:signin) %></a>
       <% else %>
-      <a href="<%= edit_account_user_path(current_user) %>"><%= I18n.t(:my_account, scope: :menu) %></a>
+      <a href="<%= Rails.application.routes.url_helpers.send("edit_#{current_user.role}_account_path") %>"><%= I18n.t(:my_account, scope: :menu) %></a>
       <% end %>
 
     </li>
@@ -30,7 +30,7 @@
     <% unless @categories.empty? %>
     <% @categories.each do |category| %>
     <li>
-      <a href="<%= category_path(category) %>"><%= category.name %></a>
+      <a href="<%= guest_category_path(category) %>"><%= category.name %></a>
     </li>
     <% end %>
     <% end %>

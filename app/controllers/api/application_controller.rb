@@ -1,8 +1,5 @@
 class Api::ApplicationController < ApplicationController
 
-  rescue_from Mongoid::Errors::DocumentNotFound, :with => :throw_resource_not_found
-  rescue_from CanCan::AccessDenied, :with => :throw_unauthorized_page
-
   # Should be slightly refactored and put into libraries ?
   def throw_resource_not_found
     render status: :not_found,

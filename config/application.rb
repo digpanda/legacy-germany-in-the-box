@@ -19,8 +19,18 @@ module DigPanda
 
     config.exceptions_app = self.routes # customized error handling
 
-    config.autoload_paths += %W(#{config.root}/lib #{config.root}/services)
-    config.eager_load_paths += %W(#{config.root}/lib) if Rails.env.development?
+    config.autoload_paths += %W(#{config.root}/lib)
+    #config.eager_load_paths += %W(#{config.root}/lib)
+
+    # config.autoload_paths << Rails.root.join("lib")
+    # config.eager_load_paths << Rails.root.join("lib")
+    #
+    # if Rails.env.development?
+    #   # this will reload the libraries we are working on
+    #   # keep it within the development environment
+    #   # to do not over-load production
+    #   ActiveSupport::Dependencies.explicitly_unloadable_constants << "BorderGuru"
+    # end
 
     config.middleware.use Mongoid::QueryCache::Middleware
     config.middleware.use Mobvious::Manager
@@ -30,14 +40,14 @@ module DigPanda
     #config.time_zone = 'Beijing'
 
     # A loop here will make everything heavier and will force method definitions, better to keep it simple, sadly.
-    config.qiniu = YAML.load_file(Rails.root.join("config/qiniu.yml"))[Rails.env].deep_symbolize_keys!
-    config.digpanda = YAML.load_file(Rails.root.join("config/digpanda.yml"))[Rails.env].deep_symbolize_keys!
-    config.wirecard = YAML.load_file(Rails.root.join("config/wirecard.yml"))[Rails.env].deep_symbolize_keys!
-    config.border_guru = YAML.load_file(Rails.root.join("config/border_guru.yml"))[Rails.env].deep_symbolize_keys!
-    config.wechat = YAML.load_file(Rails.root.join("config/wechat.yml"))[Rails.env].deep_symbolize_keys!
+    config.qiniu = YAML.load(ERB.new(File.read(Rails.root.join("config/qiniu.yml"))).result)[Rails.env].deep_symbolize_keys!
+    config.digpanda = YAML.load(ERB.new(File.read(Rails.root.join("config/digpanda.yml"))).result)[Rails.env].deep_symbolize_keys!
+    config.wirecard = YAML.load(ERB.new(File.read(Rails.root.join("config/wirecard.yml"))).result)[Rails.env].deep_symbolize_keys!
+    config.border_guru = YAML.load(ERB.new(File.read(Rails.root.join("config/border_guru.yml"))).result)[Rails.env].deep_symbolize_keys!
+    config.wechat = YAML.load(ERB.new(File.read(Rails.root.join("config/wechat.yml"))).result)[Rails.env].deep_symbolize_keys!
 
     # No environment constraint
-    config.errors = YAML.load_file(Rails.root.join("config/errors.yml")).deep_symbolize_keys!
+    config.errors = YAML.load(ERB.new(File.read(Rails.root.join("config/errors.yml"))).result).deep_symbolize_keys!
 
     # Delayed job
     config.active_job.queue_adapter = :delayed_job

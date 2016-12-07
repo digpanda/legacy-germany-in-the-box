@@ -1,6 +1,6 @@
 defaults: &defaults
-  username: wx84debd17520da2a3
-  password: 07e1c9e9e850d3e6b8e0b8a83a9ac0e9
+  username: <%= ENV["wechat_username"] %>
+  password: <%= ENV["wechat_password"] %>
   scope: snsapi_login
 
 local:
@@ -13,11 +13,9 @@ test:
   <<: *defaults
 
 staging:
-  username: wx84debd17520da2a3
-  password: 07e1c9e9e850d3e6b8e0b8a83a9ac0e9
-  scope: snsapi_login
+  <<: *defaults
 
 production:
-  username: wx8ab7df24273a9a0c
-  password: aee7e495382a333e2c1e7ae063c00644
+  username: <%= ENV["wechat_username"] %>
+  password: <%= ENV["wechat_password"] %>
   scope: snsapi_login

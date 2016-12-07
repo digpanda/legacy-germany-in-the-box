@@ -3,15 +3,17 @@
  */
 var Starters = [
 
+  'auto_resize',
   'bootstrap',
   'china_city',
   'datepicker',
   'editable_fields',
   'footer',
-  'images_control',
+  'input_validation',
   'images_handler',
   'lazy_loader',
   'left_menu',
+  'links_behaviour',
   'messages',
   'navigation',
   'product_favorite',
@@ -23,6 +25,7 @@ var Starters = [
   'sku_form',
   'sweet_alert',
   'tooltipster',
+
 ]
 
 module.exports = Starters;

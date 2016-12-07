@@ -9,6 +9,7 @@ class DutyCategory
 
   field :code,            type: String
   field :slug,            type: String
+  field :tax_rate,        type: Float, default: 0.0
   field :products_count,  type: Fixnum, default: 0
 
   has_many :products,  :inverse_of => :duty_category

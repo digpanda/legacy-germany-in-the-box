@@ -1,0 +1,15 @@
+<div class="row">
+  <div class="col-md-10">
+    <h2>Coupons</h2>
+    <hr>
+  </div>
+  <div class="col-md-2 details__action">
+    <a href="<%= new_admin_coupon_path %>"><i class="fa fa-plus tooltipster" title="Create new coupon"></i></a>
+  </div>
+</div>
+
+<div class="+overflow">
+  <%= render partial: "admin/coupons/table", :locals => { :coupons => @coupons } %>
+</div>
+
+<%= will_paginate @coupons, renderer: BootstrapPagination::Rails %>

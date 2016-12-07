@@ -1,7 +1,7 @@
 defaults: &defaults
-  merchantIdentifier: 5626377c4c7a961a00ece5c2
-  key: e3725e9d99def24c824766b694df930e
-  secret: da26c30cecd360bed2b18dde2a6cd4e5
+  merchantIdentifier: <%= ENV["border_guru_merchant_identifier"] %>
+  key: <%= ENV["border_guru_key"] %>
+  secret: <%= ENV["border_guru_secret"] %>
   host: http://demo.borderguru.com/
 
   ftp:
@@ -9,12 +9,12 @@ defaults: &defaults
     remote_directory: /files
     host: ftp.borderguru.com
     port: 1348
-    username: CainiaoPreAlertCsv
-    password: merchantDataValidationCheckX33
-    log: borderguru_cron.log
+    username: <%= ENV["border_guru_ftp_username"] %>
+    password: <%= ENV["border_guru_ftp_password"] %>
+    log: border-guru-ftp
 
   email:
-    log: borderguru_email.log
+    log: border-guru-email
 
 local:
   <<: *defaults
@@ -29,9 +29,11 @@ test:
     remote_directory: /files
     host: ftp.borderguru.com
     port: 1348
-    username: CainiaoPreAlertCsv
-    password: merchantDataValidationCheckX33
-    log: borderguru_cron_test.log
+    username: <%= ENV["border_guru_ftp_username"] %>
+    password: <%= ENV["border_guru_ftp_password"] %>
+    log: border-guru-ftp-test
+  email:
+    log: border-guru-email-test
 
 staging:
   <<: *defaults

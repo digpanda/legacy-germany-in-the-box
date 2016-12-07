@@ -1,4 +1,4 @@
-<div class="navbar-fixed-top">
+<div class="navbar-top"> <!-- navbar-fixed-top -->
 
 <!-- Main Menu Area -->
 <div class="row main-header">
@@ -14,14 +14,16 @@
     <div class="row">
       <div class="col-md-1 pull-right +centered">
       </div>
+      <!--
       <div class="col-md-1 pull-right +centered">
-        <% if total_number_of_products > 0 %>
+        <% if cart_manager.products_number > 0 %>
           <div class="label label-blue +checkout-label">
             <%= I18n.t(:checkout, scope: :button) %>
           </div>
         <% end %>
         <div class="+micro-spacer"></div>
       </div>
+      -->
       <div class="col-md-1 pull-right +centered">
 
       </diV>
@@ -66,10 +68,19 @@
   <div class="row category-menu">
 
     <!-- Categories Menu -->
-    <div class="col-md-7 col-md-push-5 col-md-pull-1">
+    <div class="col-md-push-5 col-md-7">
       <%= render partial: "layouts/header/parts/menu/categories" %>
     </div>
 
+  </div>
+
+  <!-- Announcement -->
+  <div class="row announcement">
+    <% if Settings.instance.alert.present? %>
+      <div class="col-md-12">
+        <%= Settings.instance.alert %>
+      </div>
+    <% end %>
   </div>
 
 <% elsif current_user %>
@@ -78,7 +89,7 @@
   <div class="row server-menu">
 
     <!-- Server details -->
-    <div class="col-md-6 col-md-offset-1">
+    <div class="col-md-6">
       <% if current_user.decorate.admin? %>
         <strong><%= Rails.env.capitalize %> Mode</strong> - Client <%= request.remote_ip %> - Server <%= server_ip %> - UTC <span id="utc-time"><%= Time.now.utc.strftime("%T") %></span>
       <% end %>
@@ -96,13 +107,11 @@
 
 </div>
 
+<!--
 <div class="+big-spacer"></div>
-
-<% if potential_customer? %>
-
-  <div class="+spacer"></div>
-
-<% end %>
+-->
+<div class="+spacer"></div>
+<div class="+small-spacer"></div>
 
 <%= render partial: "layouts/header/parts/messages" %>
 

@@ -4,7 +4,7 @@ class WirecardPaymentChecker < BaseService
 
   VALID_FINALIZED_TRANSACTION_STATE = [:debit, :purchase, :'refund-purchase', :'refund-debit']
 
-  attr_reader :transaction_id, :merchant_id, :request_id
+  attr_reader :transaction_id, :merchant_id, :request_id, :payment_method
   attr_accessor :order_payment
 
   def initialize(args)
@@ -12,6 +12,7 @@ class WirecardPaymentChecker < BaseService
     @transaction_id = args[:transaction_id] || order_payment.transaction_id
     @merchant_id    = args[:merchant_account_id] || order_payment.merchant_id
     @request_id     = args[:request_id] || order_payment.request_id
+    @payment_method = args[:payment_method] || order_payment.payment_method
   end
 
   def update_order_payment!
@@ -19,7 +20,7 @@ class WirecardPaymentChecker < BaseService
     # originally silent error turned into a raise error to be more clear
     # it won't get the transaction detail if it's not a purchase / debit
     unless finalized_transaction?
-      raise Wirecard::ElasticApi::Error, "Transaction type is not valid. Please verify you used the correct transaction-id (#{remote_transaction.response.transaction_type})"
+      raise Wirecard::Elastic::Error, "Transaction type is not valid. Please verify you used the correct transaction-id (#{remote_transaction.response.transaction_type})"
     end
     # this part can raise errors easily
     refresh_order_payment_from_api!
@@ -28,7 +29,7 @@ class WirecardPaymentChecker < BaseService
     # would different between the order and payment time
     order_payment.refresh_currency_amounts!
     return_with(:success)
-  rescue Wirecard::ElasticApi::Error => exception
+  rescue Wirecard::Elastic::Error, Wirecard::Elastic::ConfigError => exception
     return_with(:error, exception)
   end
 
@@ -44,7 +45,7 @@ class WirecardPaymentChecker < BaseService
   # get the remote transaction and raise error in case the connection isn't correctly established
   # or the transaction has basically failed
   def remote_transaction
-    @remote_transaction ||= Wirecard::ElasticApi.transaction(merchant_id, transaction_id).raise_response_issues
+    @remote_transaction ||= Wirecard::Elastic.transaction(merchant_id, transaction_id, payment_method).safe
   end
 
   # the elastic API can reply positively even if it's a simple `get-url` transaction
@@ -55,7 +56,7 @@ class WirecardPaymentChecker < BaseService
   end
 
   def refresh_order_payment_from_api!
-    order_payment.status = remote_transaction.response.transaction_state
+    order_payment.status         = remote_transaction.response.transaction_state
     order_payment.payment_method = remote_transaction.response.payment_method
     order_payment.save
   end

@@ -13,8 +13,12 @@ FactoryGirl.define do
     tel                   { Faker::PhoneNumber.phone_number }
     mail                  { Faker::Internet.email }
     hermes_pickup         true
+    wirecard_status :active
+    approved { Time.now }
+    bg_merchant_id { "#{Faker::Number.number(20)}" }
 
     before(:create) do |shop|
+      Faker::Config.locale = :de # to avoid weird chinese names
       create_list(:shopkeeper, 1, shop: shop) unless shop.shopkeeper_id
     end
 
@@ -23,6 +27,13 @@ FactoryGirl.define do
       create_list(:shop_address, 1, shop: shop)
     end
 
+  end
+
+  trait(:with_payment_gateways) do
+    after(:create) do |shop|
+      create(:payment_gateway, shop_id: shop.id) # creditcard one
+      create(:payment_gateway, :with_upop, shop_id: shop.id)
+    end
   end
 
   trait(:with_orders) do

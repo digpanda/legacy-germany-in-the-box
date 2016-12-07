@@ -1,19 +1,31 @@
 class Customer::CheckoutController < ApplicationController
 
-  before_action :authenticate_user!
+  ACCEPTABLE_PAYMENT_METHOD = [:upop, :creditcard]
+
+  authorize_resource :class => false
   before_action :set_shop, :only => [:create]
 
   protect_from_forgery :except => [:success, :fail, :cancel, :processing]
-  attr_reader :shop
+  attr_reader :shop, :order
 
   def create
 
-    order = current_order(shop.id.to_s)
-    cart = current_cart(shop.id.to_s)
+    @order = cart_manager.order(shop: shop)
 
-    return if wrong_email_update?
-    return if today_limit?(order)
-    return if invalid_cart?(cart)
+    # we check the address has been selected
+    unless params[:delivery_destination_id]
+      flash[:error] = "Please choose a delivery address."
+      redirect_to navigation.back(1)
+      return
+    end
+
+    # we update the delivery address before everything
+    # this will be used to check the limit reach
+    update_addresses!
+
+    # TODO : this should be in a before action or something (or at least something more logical and also grouped with the delivery destination id check)
+    return unless current_user.valid_for_checkout?
+    return if today_limit?
 
     all_products_available = true
     products_total_price = 0
@@ -35,9 +47,8 @@ class Customer::CheckoutController < ApplicationController
     end
 
     if !all_products_available
-      msg = I18n.t(:not_all_available, scope: :checkout, :product_name => product_name, :option_names => sku.decorate.get_options_txt)
-      flash[:error] = msg
-      redirect_to request.referrer
+      flash[:error] = I18n.t(:not_all_available, scope: :checkout, :product_name => product_name, :option_names => sku.option_names.join(', '))
+      redirect_to navigation.back(1)
       return
     end
 
@@ -49,9 +60,54 @@ class Customer::CheckoutController < ApplicationController
       return
     end
 
-    status = update_for_checkout(current_user, order, params[:delivery_destination_id], cart.border_guru_quote_id, cart.shipping_cost, cart.tax_and_duty_cost)
-    prepare_checkout(status, order)
+    status = update_for_checkout(order, order.border_guru_quote_id, order.shipping_cost, order.tax_and_duty_cost)
 
+    unless status
+      flash[:error] = order.errors.full_messages.join(', ')
+      redirect_to navigation.back(1)
+      return
+    end
+
+    session[:current_checkout_order] = order.id
+    redirect_to payment_method_customer_checkout_path
+
+  end
+
+  def payment_method
+
+    if session[:current_checkout_order].nil?
+      redirect_to navigation.back(1)
+      return
+    end
+
+    @order = Order.find(session[:current_checkout_order])
+    @shop = order.shop
+
+    if order.bought?
+      flash[:success] = I18n.t(:notice_order_already_paid, scope: :checkout)
+      redirect_to customer_orders_path
+      return
+    end
+
+  end
+
+  def gateway
+
+    payment_method = params[:payment_method].to_sym
+    order = Order.find(params[:order_id])
+
+    unless acceptable_payment_method?(payment_method)
+      flash[:error] = "Invalid payment method."
+      redirect_to navigation.back(1)
+      return
+    end
+
+    prepare_checkout(order, payment_method)
+
+  end
+
+  def acceptable_payment_method?(payment_method)
+    ACCEPTABLE_PAYMENT_METHOD.include? payment_method
   end
 
   def success
@@ -70,11 +126,13 @@ class Customer::CheckoutController < ApplicationController
 
     reset_shop_id_from_session(shop.id.to_s)
 
-    if BorderGuruApiHandler.new(order).get_shipping!.success?
-      flash[:success] = I18n.t(:checkout_ok, scope: :checkout)
-    else
-      flash[:error] = I18n.t(:borderguru_shipping_failed, scope: :checkout)
+    unless BorderGuruApiHandler.new(order).get_shipping!.success?
+      SlackDispatcher.new.borderguru_get_shipping_error(order)
     end
+
+    # whatever happens with BorderGuru, if the payment is a success we consider
+    # the transaction / order as successful, we will deal with BorderGuru through Slack / Emails
+    flash[:success] = I18n.t(:checkout_ok, scope: :checkout)
 
     EmitNotificationAndDispatchToUser.new.perform({
       :user => shop.shopkeeper,
@@ -106,12 +164,17 @@ class Customer::CheckoutController < ApplicationController
   # the card processing failed
   def fail
     flash[:error] = "The payment failed. Please try again."
-    ExceptionNotifier.notify_exception(Wirecard::Base::Error.new, :env => request.env, :data => {:message => "Something went wrong during the payment."})
+    warn_developers(Wirecard::Base::Error.new, "Something went wrong during the payment.")
     return unless callback!(:failed)
     redirect_to navigation.back(2)
   end
 
   private
+
+  # TODO: could be moved inside CurrentOrderHandler
+  def reset_shop_id_from_session(shop_id)
+    session[:order_shop_ids]&.delete(shop_id)
+  end
 
   def callback!(forced_status=nil)
 
@@ -148,64 +211,38 @@ class Customer::CheckoutController < ApplicationController
       return true
   end
 
-  def prepare_checkout(status, order)
-    if status
-      begin
-        @checkout = WirecardCheckout.new(current_user, order).checkout!
-      rescue Wirecard::Base::Error => exception
-        # we should catch the error in the lib or something like this
-        # and raise one if the merchant wirecard status isn't active yet
-        flash[:error] = "This shop is not ready to accept payments yet (#{exception})"
-        redirect_to navigation.back(1)
-        return
-      end
-    else
-      flash[:error] = order.errors.full_messages.join(', ')
-      redirect_to navigation.back(1)
-      return
-    end
+  def prepare_checkout(order, payment_method)
+    @checkout = WirecardCheckout.new(current_user, order, payment_method).checkout!
+  rescue Wirecard::Base::Error => exception
+    # we should catch the error in the lib or something like this
+    # and raise one if the merchant wirecard status isn't active yet
+    flash[:error] = "This shop is not ready to accept payments yet (#{exception})"
+    redirect_to navigation.back(1)
   end
 
-  def update_for_checkout(user, order, delivery_destination_id, border_guru_quote_id, shipping_cost, tax_and_duty_cost)
-    user.addresses.find(delivery_destination_id).tap do |address|
+  def update_for_checkout(order, border_guru_quote_id, shipping_cost, tax_and_duty_cost)
+    order.update({
+      :status               => :paying,
+      :user                 => current_user,
+      :border_guru_quote_id => border_guru_quote_id,
+      :shipping_cost        => shipping_cost,
+      :tax_and_duty_cost    => tax_and_duty_cost
+      })
+  end
+
+  def update_addresses!
+    current_user.addresses.find(params[:delivery_destination_id]).tap do |address|
       order.update({
-        :status               => :paying,
-        :user                 => user,
         :shipping_address     => address,
         :billing_address      => address,
-        :border_guru_quote_id => border_guru_quote_id,
-        :shipping_cost        => shipping_cost,
-        :tax_and_duty_cost    => tax_and_duty_cost
-        })
+      })
     end
   end
 
-  def wrong_email_update?
-    if params[:valid_email]
-      if User.where(email: params[:valid_email]).first
-        flash[:error] = "This email is currently used by someone else."
-        redirect_to navigation.back(1)
-        return true
-      end
-      current_user.email = params[:valid_email]
-      current_user.save
-
-      return false
-    end
-  end
-
-  def today_limit?(order)
-    if reach_todays_limit?(order, 0, 0)
+  def today_limit?
+    if BuyingBreaker.new(order).with_address?(order.shipping_address)
       flash[:error] = I18n.t(:override_maximal_total, scope: :edit_order, total: Settings.instance.max_total_per_day, currency: Settings.instance.platform_currency.symbol)
       redirect_to navigation.back(1)
-      return true
-    end
-  end
-
-  def invalid_cart?(cart)
-    if cart.nil?
-      flash[:error] = I18n.t(:borderguru_unreachable_at_quoting, scope: :checkout)
-      redirect_to root_path
       return true
     end
   end

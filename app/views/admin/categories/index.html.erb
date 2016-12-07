@@ -1,0 +1,14 @@
+<div class="row">
+  <div class="col-md-10">
+    <h2>Categories</h2>
+    <hr>
+  </div>
+  <div class="col-md-2 details__action">
+  </div>
+</div>
+
+<div class="+overflow">
+  <%= render partial: "admin/categories/table", :locals => { :categories => @categories } %>
+</div>
+
+<%= will_paginate @categories, renderer: BootstrapPagination::Rails %>

@@ -1,6 +1,10 @@
-<div class="js-loader +green">
+<div class="js-loader +green +centered <%= options[:hidden] ? '+hidden' : '' %>">
   <% if options[:spacer] %>
     <div class="+big-spacer"></div>
   <% end %>
-  <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw margin-bottom"></i>
+  <% if options[:size] == 'small' %>
+    <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw margin-bottom"></i>
+  <% else %>
+    <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw margin-bottom"></i>
+  <% end %>
 </div>

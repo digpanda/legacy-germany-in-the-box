@@ -1,6 +1,6 @@
 class Customer::AccountController < ApplicationController
 
-  load_and_authorize_resource :class => false
+  authorize_resource :class => false
   before_action :set_user
 
   layout :custom_sublayout
@@ -10,8 +10,10 @@ class Customer::AccountController < ApplicationController
   def edit
   end
 
+  # NOTE : this update is used from many different points
+  # within the system (e.g checkout process) be careful with this.
   def update
-    if user.check_valid_password?(params) && user.update(user_params)
+    if valid_password? && ensure_password! && user.update(user_params)
       flash[:success] = "Your account was successfully updated."
       sign_in(user, :bypass => true)
     else
@@ -27,10 +29,28 @@ class Customer::AccountController < ApplicationController
   end
 
   def user_params
-    if params[:user][:password].empty?
+    params.require(:user).permit(:username, :email, :password, :password_confirmation, :fname, :lname, :birth, :gender, :about, :website, :pic, :tel, :mobile)
+  end
+
+  def password_needed?
+    !user.wechat? && params[:user][:password].present?
+  end
+
+  def valid_password?
+    return true unless password_needed?
+    if user.valid_password?(params[:user][:current_password])
+      true
+    else
+      user.errors.add(:password, "wrong")
+      false
+    end
+  end
+
+  def ensure_password!
+    unless password_needed?
       params[:user][:password] = params[:user][:password_confirmation] = params[:user][:current_password]
     end
-    params.require(:user).permit(:username, :email, :password, :password_confirmation, :fname, :lname, :birth, :gender, :about, :website, :pic, :tel, :mobile)
+    true
   end
 
 end

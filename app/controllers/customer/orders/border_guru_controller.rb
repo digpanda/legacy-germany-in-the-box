@@ -1,11 +1,10 @@
 # manage all the direct request from customer to border guru API and such
 class Customer::Orders::BorderGuruController < ApplicationController
 
-  attr_reader :order
-
-  before_action :authenticate_user!
+  authorize_resource :class => false
   before_action :set_order
-  before_filter :customer_order?
+
+  attr_reader :order
 
   # get the border guru tracking id from API call or the model itself
   def tracking_id
@@ -28,15 +27,7 @@ class Customer::Orders::BorderGuruController < ApplicationController
   end
 
   def set_order
-    @order = Order.find(params[:order_id])
-  end
-
-  # if it's not the customer order, we prevent him to go further
-  def customer_order?
-    if Order.where(id: order.id, user_id: current_user.id).first.nil?
-      redirect_to navigation.back(1)
-      return
-    end
+    @order = current_user.orders.find(params[:order_id])
   end
 
 end

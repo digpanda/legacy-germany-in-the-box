@@ -2,7 +2,7 @@ require 'will_paginate/array'
 
 class Admin::OrderPaymentsController < ApplicationController
 
-  load_and_authorize_resource
+  authorize_resource :class => false
   #authorize_resource :class => false
 
   layout :custom_sublayout, only: [:index, :show]

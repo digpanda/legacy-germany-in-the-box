@@ -4,20 +4,26 @@
 <li class="<%= menu_active? shared_notifications_path %>">
   <%= link_to I18n.t(:notifications, scope: :top_menu), shared_notifications_path %>
 </li>
+<li class="<%= menu_active? admin_categories_path %>">
+  <%= link_to "Categories", admin_categories_path %>
+</li>
 <li class="<%= menu_active? admin_users_path %>">
   <%= link_to I18n.t(:accounts, scope: :edit_accounts), admin_users_path %>
 </li>
-<li class="<%= menu_active? shop_applications_path %>">
-  <%= link_to I18n.t(:shop_applications, scope: :top_menu), shop_applications_path %>
+<li class="<%= menu_active? admin_shop_applications_path %>">
+  <%= link_to I18n.t(:shop_applications, scope: :top_menu), admin_shop_applications_path %>
 </li>
-<li class="<%= menu_active? shops_path %>">
-  <%= link_to I18n.t(:shops, scope: :top_menu), shops_path %>
+<li class="<%= menu_active? admin_shops_path %>">
+  <%= link_to I18n.t(:shops, scope: :top_menu), admin_shops_path %>
 </li>
 <li class="<%= menu_active? admin_orders_path %>">
   <%= link_to I18n.t(:my_order, scope: :top_menu), admin_orders_path %>
 </li>
 <li class="<%= menu_active? admin_order_payments_path %>">
   <%= link_to I18n.t(:payments, scope: :top_menu), admin_order_payments_path %>
+</li>
+<li class="<%= menu_active? admin_coupons_path %>">
+  <%= link_to "Coupons", admin_coupons_path %>
 </li>
 <li class="<%= menu_active? admin_settings_path %>">
   <%= link_to I18n.t(:settings, scope: :top_menu), admin_settings_path %>

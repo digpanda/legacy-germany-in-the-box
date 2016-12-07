@@ -133,7 +133,7 @@ zh-CN:
       addresses: 地址集
       products: 产品集
     shop_application:
-      code: 首次登陆密码
+      code: 首次登录密码
       desc: 描述
       email: 注册邮件
       fname: 名
@@ -171,6 +171,8 @@ zh-CN:
       weight: 重量
       product: 产品
     user:
+      password: 密码
+      password_confirmation: 重复密码
       about: 关于
       birth: 生日
       country: 国家
@@ -187,8 +189,6 @@ zh-CN:
       tel: 固定电话
       username: 用户名
       website: 主页
-      dCollection: 默认收藏
-      oCollections: 自建收藏集
       orders: 订单集
       addresses: 地址集
       shop: 商店
@@ -200,6 +200,8 @@ zh-CN:
 
   errors: &errors
     messages:
+      too_short: 太短
+      confirmation: 不一致
       blank: 不能为空
       invalid: 无效
       document_not_found:

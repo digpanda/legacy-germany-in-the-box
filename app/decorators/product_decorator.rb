@@ -28,12 +28,23 @@ class ProductDecorator < Draper::Decorator
     truncate(self.desc, :length => characters)
   end
 
+  # complete cleaning for CSV file
   def clean_desc(characters=240)
-    I18n.transliterate(truncate(self.desc.squish.downcase, :length => characters).gsub(',', ''))
+    clean_desc = self.desc
+    clean_desc = clean_desc.squish.downcase.strip
+    clean_desc = I18n.transliterate(clean_desc)
+    clean_desc = clean_desc.gsub(/[^\w-]/, ' ').gsub(/\s+/, ' ')
+    clean_desc = truncate(clean_desc, :length => characters)
   end
 
   def first_sku_image
     skus.first ? skus.first.decorate.first_nonempty_img_url(:thumb) : 'no_image_available.png' # to be refactored ?
+  end
+
+  def best_discount
+    if best_discount_sku
+      best_discount_sku.decorate.discount_with_percent
+    end
   end
 
   def preview_discount
@@ -44,7 +55,20 @@ class ProductDecorator < Draper::Decorator
     self.featured_sku.decorate.price_with_currency_yuan
   end
 
+  def preview_fees_yuan_html
+    self.featured_sku.decorate.fees_with_currency_yuan_html
+  end
+
+  def preview_price_yuan_html
+    self.featured_sku.decorate.price_with_currency_yuan_html
+  end
+
   def preview_price_euro
     self.featured_sku.decorate.price_with_currency_euro
   end
+
+  def preview_price_euro_html
+    self.featured_sku.decorate.price_with_currency_euro_html
+  end
+
 end

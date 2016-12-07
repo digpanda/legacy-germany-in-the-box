@@ -1,29 +1,33 @@
-# README #
+# DigPanda Technical Guideline
 
-This README would normally document whatever steps are necessary to get your application up and running.
+## Getting Started
 
-### What is this repository for? ###
+### Ecosystem
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+#### Front-end
+- Brunch 2.7
+- SASS / CSStyle / BEM conventions
+- Homemade MVC JavaScript framework
 
-### How do I get set up? ###
+#### Back-end
+- Ruby 2.3
+- Ruby on Rails 4.2
+- MongoID
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+#### Testing
+- RSpec 3.4
+- FactoryGirl
+- VCR
 
-### Contribution guidelines ###
+#### Deployment
+- Capistrano 3.5
 
-* Writing tests
-* Code review
-* Other guidelines
+### Setup your application
 
-### Who do I talk to? ###
+### Start your application
 
-* Repo owner or admin
-* Other community or team contact
+### Conventions
+
+### Migrations
+
+### Deploymnet

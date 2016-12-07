@@ -1,0 +1,13 @@
+<%= link_to '', admin_shop_path(shop), :class => 'tooltipster fa fa-eye buttons buttons__edit', :title => "Details and configuration" %>
+
+<%= link_to '', admin_shop_products_path(shop), :class => 'tooltipster fa fa-shopping-bag buttons buttons__edit', :title => "Products" %>
+
+<% if shop.approved %>
+  <%= link_to '', admin_shop_disapprove_path(shop), :method => :patch, :class => 'tooltipster fa fa-minus buttons buttons__cancel', :title => "Disapprove" %>
+<% else %>
+  <%= link_to '', admin_shop_approve_path(shop), :method => :patch, :class => 'tooltipster fa fa-check buttons buttons__add', :title => "Approve" %>
+<% end %>
+
+<% if shop.products.count == 0 %>
+  <%= link_to '', admin_shop_path(shop), :method => :delete, data: { confirm: "Are you sure you want to destroy this shop ?" }, :class => 'tooltipster fa fa-times buttons buttons__delete', :title => "Remove shop" %>
+<% end %>

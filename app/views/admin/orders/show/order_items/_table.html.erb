@@ -1,0 +1,48 @@
+<table class="white-table">
+  <thead>
+    <tr>
+      <th>
+        Image
+      </th>
+      <th>
+        Name
+      </th>
+      <th>
+        Brand
+      </th>
+      <th>
+        Quantity
+      </th>
+      <th>
+        Unit Price
+      </th>
+      <th>
+        Total Price
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% order_items.each do |order_item| %>
+      <tr>
+        <td>
+          <%= image_tag order_item.product.decorate.first_sku_image, :class => 'icon-img' %>
+        </td>
+        <td>
+          <%= order_item.product.name %>
+        </td>
+        <td>
+          <%= order_item.product.brand %>
+        </td>
+        <td>
+          <%= order_item.quantity %>
+        </td>
+        <td>
+          <%= order_item.price.in_euro.display %>
+        </td>
+        <td>
+          <%= order_item.total_price.in_euro.display %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

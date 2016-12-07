@@ -2,6 +2,8 @@
 # for everything linked with the BorderGuruApi
 class BorderGuruApiHandler < BaseService
 
+  include ErrorsHelper
+
   attr_reader :order, :shop
 
   def initialize(order)
@@ -9,17 +11,12 @@ class BorderGuruApiHandler < BaseService
     @shop = order.shop
   end
 
+  # will get the shipping and refresh the order itself
+  # too much things can happen inside our system
+  # so we catch the exception globally
   def get_shipping!
-    # will get the shipping and refresh the order itself
-    BorderGuru.get_shipping(
-        order: order,
-        shop: shop,
-        country_of_destination: ISO3166::Country.new('CN'),
-        currency: 'EUR'
-    )
+    BorderGuru.get_shipping(order: order)
     return_with(:success)
-    # too much things can happen inside our system
-    # so we catch the exception globally
   rescue StandardError => exception
     return_with(:error, exception)
   end

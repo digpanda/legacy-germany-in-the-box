@@ -1,3 +1,3 @@
 # BorderGuru business time
-BusinessTime::Config.beginning_of_workday = "10:00 am"
-BusinessTime::Config.end_of_workday = "12:00 pm"
+BusinessTime::Config.beginning_of_workday = "9:00 am" # 10:00am german time
+BusinessTime::Config.end_of_workday = "11:00 pm"

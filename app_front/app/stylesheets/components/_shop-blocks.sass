@@ -1,42 +1,19 @@
 +component(shop-blocks)
-  
-  +part(main)
 
-    +option(avatar)
+  color: $color-white
+  #{$a-tags}
+    color: $color-white
+
+  +part(avatar)
+    +avatar
+    margin-top: 2em !important
+    max-width: 100px
+    background: $color-white
+
+    +option(big)
       +avatar(110px)
 
-    +option(category)
-      padding: 1.5em
-
-      border: 2px $color-grey solid
-      background-color: $color-green
-      min-height: 230px
-      +border-radius(0.5em)
-
-      img
-        height: 95px
-        +white-image
-
-      color: $color-white
-      h2
-        margin-top: 0.3em
-        color: $color-white
-        text-transform: uppercase
-        font-family: inherit
-
-    +option(content)
-      color: $color-white
-
-      img
-        +avatar
-        margin-top: 2em !important
-        max-width: 100px
-        background: $color-white
-
-      h3
-        margin-top: 1.5em
-        color: $color-white
-
+  +part(main)
 
     +option(content-text)
       margin-bottom: 2em
@@ -46,15 +23,35 @@
       margin-top: -1em
       text-transform: uppercase
 
-    +option(shop)
-      +border-radius(0.5em)
-      border: 2px $color-grey solid
-      background-color: $color-grey
+  +part(main-category)
+    padding: 1.5em
+    border: 2px $color-grey solid
+    background-color: $color-green
+    color: $color-white
+    min-height: 250px
+    +border-radius(0.5em)
 
-      background-position: center center
-      background-size: cover
+    img
+      height: 95px
+      +white-image
+      color: $color-white
+    h2
+      margin-top: 0.3em
+      color: $color-white
+      text-transform: uppercase
+      font-family: inherit
 
-      min-height: 230px
+  +part(featured-shop)
+    +border-radius(0.5em)
+    img
+      width: 110px
+    border: 2px $color-grey solid
+    background-color: $color-grey
+
+    background-position: center center
+    background-size: cover
+
+    min-height: 250px
 
   +part(secondary)
 
@@ -84,4 +81,4 @@
       background-position: center center
       background-size: cover
 
-      min-height: 230px
+      min-height: 200px

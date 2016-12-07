@@ -12,7 +12,7 @@ FactoryGirl.define do
     tel                    { Faker::PhoneNumber.phone_number }
     mobile                 { Faker::PhoneNumber.cell_phone }
     birth                  { Helpers::Global.random_date }
-    
+
     factory :shopkeeper, :class => User do
       username               { "Shopkeeper#{Helpers::Global.next_number(:shopkeeper)}" }
       role                   :shopkeeper
@@ -33,7 +33,28 @@ FactoryGirl.define do
       create(:customer_address, user: user)
     end
 
-    trait :with_orders do 
+    trait :from_wechat do
+      before(:create) do |user|
+        user.provider = "wechat"
+        user.uid = "0123456789"
+        user.email = "0123456789@wechat.com"
+      end
+    end
+
+    trait :without_name do
+      before(:create) do |user|
+        user.fname = nil
+        user.lname = nil
+      end
+    end
+
+    trait :without_address do
+      after(:create) do |user|
+        user.addresses.delete_all # creation / destruction
+      end
+    end
+
+    trait :with_orders do
       after(:create) do |user|
         shop = create(:shop)
         create(:shop_address, shop: shop)

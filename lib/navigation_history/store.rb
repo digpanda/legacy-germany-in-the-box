@@ -34,12 +34,20 @@ class NavigationHistory
     private
 
     def location_path
-      @location_path ||= URI(location).path || request.fullpath
+      @location_path ||= begin
+        if location
+          URI(location).path
+        else
+          request.fullpath
+        end
+      end
     end
 
-    def excluded_path?(exceptions)
-      excluded_paths = exceptions || []
-      excluded_paths.include? location_path
+    def excluded_path?(excluded_paths=[])
+      excluded_paths.each do |path|
+        return true if location_path.index(path) == 0
+      end
+      false
     end
 
     def acceptable_request?

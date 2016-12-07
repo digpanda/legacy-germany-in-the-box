@@ -1,0 +1,36 @@
+<% if addresses.size > 0 %>
+  <table class="white-table">
+    <thead>
+      <th>
+        Id #
+      </th>
+      <th>
+        Type
+      </th>
+      <th>
+        City
+      </th>
+      <th>
+        Zip
+      </th>
+      <th>
+        Address
+      </th>
+      <th>
+        Country
+      </th>
+      <th>
+        Action
+      </th>
+    </thead>
+    <tbody>
+      <%= render partial: "admin/addresses/table/data", collection: addresses, :as => :address %>
+    </tbody>
+  </table>
+  <% else %>
+  <div class="+white-box +centered">
+    <h4>
+      No address found
+    </h4>
+  </div>
+  <% end %>

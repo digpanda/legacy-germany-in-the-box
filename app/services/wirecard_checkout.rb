@@ -3,15 +3,17 @@
 class WirecardCheckout < BaseService
 
   CONFIG_HPP = Rails.configuration.wirecard[:hpp]
+  CONFIG_DEMO = Rails.configuration.wirecard[:demo]
 
   # :merchant_id => cart.submerchant_id <- original
   # :secret_key  => order.shop.wirecard_ee_secret_cc <- original
 
-  attr_reader :user, :order
+  attr_reader :user, :order, :payment_method
 
-  def initialize(user, order)
+  def initialize(user, order, payment_method=:creditcard)
     @user  = user
     @order = order
+    @payment_method = payment_method
   end
 
   # we access the Wirecard::Hpp library and generate the needed datas
@@ -23,22 +25,29 @@ class WirecardCheckout < BaseService
 
   private
 
-  # /!\ WARNING
   # always access the credentials throughout this class via this method
   # it changes depending on the environment and
   # has consequences on the database itself
+  # on staging we will simply use the demo datas
   def merchant_credentials
-    if Rails.env.production?
+
+    # staging have real database datas
+    # but we need to match with the demo mode
+    # so it's a special case
+    if Rails.env.staging?
       {
-        :merchant_id  => order.shop.wirecard_ee_maid_cc,
-        :secret_key   => order.shop.wirecard_ee_secret_cc,
-        # :payment_method => :creditcard # we can force a payment method here
+        :merchant_id => CONFIG_DEMO[payment_method][:merchant_id],
+        :secret_key => CONFIG_DEMO[payment_method][:merchant_secret],
+        :payment_method => payment_method
       }
+    # everything else including test / development / production can follow the normal way
+    # seed of sample datas should result into demo credentials registered in development
     else
+      payment_gateway = order.shop.payment_gateways.where(payment_method: payment_method).first
       {
-        :merchant_id  => CONFIG_HPP[:demo][:ee_maid_cc],
-        :secret_key   => CONFIG_HPP[:demo][:ee_secret_cc],
-        # :payment_method => :upop # we can force a payment method here
+        :merchant_id  => payment_gateway.merchant_id,
+        :secret_key   => payment_gateway.merchant_secret,
+        :payment_method => payment_method
       }
     end
   end

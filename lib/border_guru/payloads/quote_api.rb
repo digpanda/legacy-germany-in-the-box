@@ -1,34 +1,34 @@
-require 'border_guru/payloads/concerns/having_vendibles'
+require_relative 'concerns/having_vendibles'
 
 module BorderGuru
   module Payloads
     class QuoteApi
       include HavingVendibles
 
-      def initialize(cart:, shop:, country_of_destination:, currency:)
+      def initialize(order:, shop:, country_of_destination:, currency:)
         I18n.locale = :'zh-CN'
-        @cart = cart
+        @order = order
         @shop = shop
         @country_of_destination = country_of_destination
         @currency = currency
       end
 
       def to_h
-        product_summaries(@cart).merge({
+        product_summaries(@order).merge({
           countryOfOrigin: @shop.country_of_dispatcher.alpha2,
           countryOfDestination: @country_of_destination.alpha2,
           currency: @currency,
           lineItems: line_items,
-          shippingCost: ShippingPrice.new(@cart).price
+          shippingCost: ShippingPrice.new(@order).price
         })
       end
 
       private
 
       def line_items
-        super(@cart.cart_skus) do |prod|
+        super(@order.order_items) do |order_item|
           {
-            quantity: prod.quantity_in_cart,
+            quantity: order_item.quantity,
           }
         end
       end

@@ -11,6 +11,8 @@ require 'capistrano/rails/migrations'
 require 'capistrano/rvm'
 require 'capistrano/nvm'
 
+require 'capistrano/linked_files'
+
 require "whenever/capistrano"
 
 # Include tasks from other gems included in your Gemfile

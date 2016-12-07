@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="col-md-10">
+    <h2><%= I18n.t(:variants, scope: :edit_product_variant) %></h2>
+    <%= I18n.t(:variant_usage, scope: :edit_product_variant).html_safe %>
+    <hr>
+  </div>
+  <div class="col-md-2 details__action">
+    <%= render partial: "shopkeeper/products/variants/form/action" %>
+  </div>
+</div>
+
+<div class="row">
+
+  <%= form_for [:admin, @product], :url => admin_shop_product_variants_path(@product.shop, @product), :method => :post, :html => {:data => {:toggle => 'validator'}} do |form| %>
+
+    <div class="row details__block">
+      <%= render partial: "admin/shops/products/variants/form", :locals => {:form => form} %>
+    </div>
+
+    <div class="row">
+      <%= form.submit :class => 'btn btn-primary', :value =>  I18n.t(:update_basic, scope: :edit_product) %>
+    </div>
+
+  <% end %>
+
+</div>

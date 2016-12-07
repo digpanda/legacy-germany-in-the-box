@@ -1,0 +1,42 @@
+<div class="col-md-12">
+  <div class="row">
+    <h3>Shop</h3>
+    <hr>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+
+      <!-- Shop URL -->
+      <div class="row form-group">
+        <div class="col-md-4">
+          <%= label_tag :shop_url, "Shop URL" %>
+        </div>
+        <div class="col-md-8">
+          <%= text_field_tag :shop_url, guest_shop_url(form.object), :class => 'form-control', :disabled => "disabled" %>
+        </div>
+      </div>
+
+      <!-- Shop Name -->
+      <div class="row form-group">
+        <div class="col-md-4">
+          <%= label_tag :shopname, "Shopname" %>
+        </div>
+        <div class="col-md-8">
+          <%= form.text_field :shopname, :class => 'form-control required' %>
+        </div>
+      </div>
+
+      <!-- Minimum Order -->
+      <div class="row form-group">
+        <div class="col-md-4">
+          <%= form.label :min_total, I18n.t(:min_total, scope: :edit_shop), :class => 'required' %> (EUR)
+        </div>
+        <div class="col-md-8">
+          <%= form.text_field :min_total, value: @shop.min_total, :class => 'form-control', :required => true, :pattern => I18n.t(:positive_float_equal_or_greater_than_0, scope: :validation) %>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>

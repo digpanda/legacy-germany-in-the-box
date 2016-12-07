@@ -1,0 +1,32 @@
+<ul>
+  <li>
+    <%= "#{I18n.t(:name, scope: :edit_address)} : #{ address.lname }#{ address.fname }" %>
+  </li>
+  <li>
+    <%= "#{I18n.t(:pid, scope: :edit_address)} : #{ address.pid }" %>
+  </li>
+  <li>
+    <%= "#{I18n.t(:mobile, scope: :edit_address)} : #{ address.mobile }" %>
+  </li>
+  <li>
+    <%= "#{I18n.t(:street, scope: :edit_address)} : #{ address.street } #{ address.number }" %>
+  </li>
+  <li>
+    <%= "#{I18n.t(:additional, scope: :edit_address)} : #{ address.additional }" %>
+  </li>
+  <li>
+    <%= "#{I18n.t(:district, scope: :edit_address)} : #{ address.district }" %>
+  </li>
+  <li>
+    <%= "#{I18n.t(:city, scope: :edit_address)} : #{ address.city }" %>
+  </li>
+  <li>
+    <%= "#{I18n.t(:province, scope: :edit_address)} : #{ address.province }" %>
+  </li>
+  <li>
+    <%= "#{I18n.t(:country, scope: :edit_address)} : #{ address.decorate.country_local_name }" %>
+  </li>
+  <li>
+    <%= "#{I18n.t(:zip, scope: :edit_address)} : #{ address.zip }" %>
+  </li>
+</ul>

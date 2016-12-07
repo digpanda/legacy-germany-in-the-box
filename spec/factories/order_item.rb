@@ -2,11 +2,10 @@ FactoryGirl.define do
 
   factory :order_item do
 
-    option_names  ['red']
-    quantity      3
+    quantity 3
 
     after(:build) do |order_item, context|
-      # contextual system to have the same shop between 
+      # contextual system to have the same shop between
       # the order and the different products we will create
       shop = context.product[:shop] if context.product && context.product[:shop]
       if shop
@@ -16,7 +15,6 @@ FactoryGirl.define do
       end
 
       sku = product.skus.first
-      order_item.product_name  = product.name
       update_with_sku!(order_item, product, sku)
 
     end
@@ -41,10 +39,8 @@ FactoryGirl.define do
 end
 
 def update_with_sku!(order_item, product, sku)
-  order_item.price = sku.price
-  order_item.weight = sku.weight
-  order_item.sku_id = sku.id.to_s
-  order_item.option_ids = sku.option_ids
-  order_item.product = product
+  order_item.product = sku.product
+  order_item.sku = sku.clone
+  order_item.sku_origin = sku
   order_item.save
 end

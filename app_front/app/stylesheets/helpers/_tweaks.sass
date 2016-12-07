@@ -1,3 +1,16 @@
++tweak(inline)
+  display: inline
+
++tweak(block)
+  display: block
+
++tweak(stick)
+  min-height: inherit
+  
++tweak(clear-button)
+  border: none
+  background: none
+
 +tweak(checkout-label)
   margin: auto
   margin-top: -3em
@@ -9,6 +22,25 @@
 
 +tweak(overflow)
   overflow-x: auto
+
+// WARNING : this is a copy of `mobile-category-menu --checkout`
+// It was done fast because of a bug. Please improve it.
++tweak(checkout-button)
+  position: relative
+  background-color: $color-blue
+  text-align: center
+  outline: 0
+  border: 1px
+  +special-button
+
++tweak(discount-button)
+  position: relative
+  background-color: $color-purple
+  text-align: center
+
+  outline: 0
+  border: 1px
+  +special-button
 
 +tweak(divider)
   display: table
@@ -31,12 +63,21 @@
     width: 45%
     content: " "
 
++tweak(right)
+  text-align: right
+
++tweak(left)
+  text-align: left
+
 +tweak(centered)
   text-align: center
   margin: 0 auto
 
 +tweak(green)
   color: $color-green
+
++tweak(dark-grey)
+  color: $color-dark-grey
 
 +tweak(blue)
   color: $color-blue
@@ -99,11 +140,15 @@
 +tweak(grey)
   color: $color-grey
 
++tweak(black)
+  color: $color-black
+
 +tweak(discount)
   background-color: $color-red
   color: $color-white
   font-weight: 600
   padding-left: 0.3em
+  font-size: 18px
   +border-left-radius(2em)
 
 +tweak(big)
@@ -113,12 +158,8 @@
   font-size: 1.3em
 
 +tweak(barred)
-  border-bottom: 2px solid $color-red
-  margin-bottom: 2px
-  width: 6em
-  display: block
-  margin-top: 10px
-  position: absolute
+  color: $color-red
+  text-decoration: line-through
 
 +tweak(unread)
   background-color: $color-light-yellow
@@ -139,7 +180,7 @@
   border-right: 1px solid $color-grey
 
 +tweak(overlay)
-  +overlay(black, 0.5)
+  +overlay(black, 0.4)
 
 +tweak(onoverlay)
   +onoverlay

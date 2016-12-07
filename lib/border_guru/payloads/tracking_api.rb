@@ -1,4 +1,4 @@
-require 'border_guru/payloads/concerns/having_vendibles'
+require_relative 'concerns/having_vendibles'
 
 module BorderGuru
   module Payloads
@@ -12,7 +12,7 @@ module BorderGuru
 
       def to_h
         {
-          merchantOrderId: @order.id.to_s,
+          merchantOrderId: @order.border_guru_order_id,
           trackingStatus: 'EN_ROUTE',
           trackingLocation: location,
           trackingMessage: 'Parcel left warehouse',

@@ -1,0 +1,16 @@
++component(coupon)
+
+    +part(field)
+      width: 100px
+
+    +part(apply)
+      text-transform: uppercase
+      display: inline-block
+      text-align: center
+      color: $color-white !important
+      background-color: $color-dark-grey
+      +transition(0.3s)
+      border: 0
+      //+border-radius(10%)
+      &:hover
+        background-color: $color-blue

@@ -1,0 +1,48 @@
+<% if shop_applications.size > 0 %>
+  <table class="white-table">
+    <thead>
+      <th>
+        <%= I18n.t(:email, scope: :edit_shop_application) %>
+      </th>
+      <th>
+        <%= I18n.t(:name, scope: :edit_shop) %>
+      </th>
+      <th>
+        <%= I18n.t(:password, scope: :edit_shop_application) %>
+      </th>
+      <th>
+        <%= I18n.t(:application_timestamp, scope: :edit_shop_application) %>
+      </th>
+      <th>
+        <%= I18n.t(:operations, scope: :edit_shop_applications) %>
+      </th>
+    </thead>
+    <tbody>
+      <% shop_applications.each do |shop_application| %>
+        <tr>
+          <td>
+            <%= shop_application.email %>
+          </td>
+          <td>
+            <%= shop_application.name %>
+          </td>
+          <td>
+            <%= shop_application.code[0,8] unless shop_application.code.nil? %>
+          </td>
+          <td>
+            <%= shop_application.c_at.strftime('%Y-%m-%d %H:%M:%S') %>
+          </td>
+          <td>
+            <%= link_to '', admin_shop_application_path(shop_application), :method => :delete, data: { confirm: I18n.t(:delete_application_message, scope: :edit_shop_applications) }, :class => 'tooltipster fa fa-times buttons buttons__delete', :title => I18n.t(:remove, scope: :edit_shop_applications) %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <div class="+white-box +centered">
+    <h4>
+    <%= I18n.t(:no_applications, scope: :edit_shop_application) %>
+   </h4>
+ </div>
+<% end %>

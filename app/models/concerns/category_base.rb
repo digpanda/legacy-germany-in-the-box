@@ -12,11 +12,14 @@ module CategoryBase
     field :name,    type: String,   localize: true
     field :status,  type: Boolean,  :default => true
 
+    # TODO : this should be removed
+    field :children_count, type: Fixnum, default: 0
+
     has_many :children, :class_name => self.name, :inverse_of => :parent,  :dependent => :restrict
 
     belongs_to :parent, :class_name => self.name, :inverse_of => :children
 
-    field :children_count, type: Fixnum, default: 0
+    # SHOULD BE ANALYZED AND CERTAINLY CHANGED
     counter_cache :parent, :field => "children_count"
 
     validates :name,    presence: true, length: {maximum: Rails.configuration.max_short_text_length}
@@ -27,8 +30,6 @@ module CategoryBase
     scope :has_children,    ->  { where(:children_count.gt => 0) }
 
     index({parent: 1},      {unique: false, name: :idx_category_parent, sparse: true})
-    index({"name.en": 1},  {unique: false, name: :idx_category_name_en, sparse: true})
-    
-    abstract_method :total_products
+
   end
 end

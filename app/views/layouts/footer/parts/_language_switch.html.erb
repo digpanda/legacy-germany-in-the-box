@@ -1,9 +1,13 @@
 <% if current_user.nil? %>
   <% if potential_customer? %>
-      <div class="row"><h3>Möchten unser Partner werden?</h3></div>
+      <div class="row"><h3>
+
+        <%= link_to "Möchten Sie unser Partner werden?", language_path("de"), method: :put %>
+
+        </h3></div>
       <div class="row"><%= link_to "Partner-Hersteller Werden", language_path("de"), method: :put %></div>
-      <div class="row"><%= link_to "Verkäufer Einloggen", language_path("de", location: new_user_session_path), method: :put %></div>
-  <% elsif %>
+      <div class="row"><%= link_to "Einloggen als Verkäufer", language_path("de", location: new_user_session_path), method: :put %></div>
+  <% else %>
       <div class="row"><h3><%= I18n.t(:want_buy_products, scope: :title) %></h3></div>
       <div class="row"><%= link_to "Käuferportal", language_path("zh-CN"), method: :put %></div>
   <% end %>

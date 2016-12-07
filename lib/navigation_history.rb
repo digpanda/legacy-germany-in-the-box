@@ -3,7 +3,11 @@
 class NavigationHistory
 
   DEFAULT_REDIRECT_URL = Rails.application.routes.url_helpers.root_url
-  BASE_EXCEPT = %w(/users/sign_in /users/sign_up /users/password/new /users/password/edit /users/confirmation /users/sign_out)
+
+  # will exclude those paths from the history store. the system is based on implicit wildcard
+  # the less precise you are in the paths, the more path and subpath it excludes
+  # /connect also means everything inside /connect/ such as /connect/sign_in, etc.
+  BASE_EXCEPT = %w(/connect /api/guest/navigation)
 
   attr_reader :request, :session
 
@@ -15,7 +19,8 @@ class NavigationHistory
   # store the location
   # can be :current for the current page
   def store(location, option=nil)
-    NavigationHistory::Store.new(request, session, understood(location)).add(BASE_EXCEPT, option)
+    # TODO : resolve(location) could actually be moved to the store itself
+    NavigationHistory::Store.new(request, session, resolve(location)).add(BASE_EXCEPT, option)
   end
 
   def back(raw_position=1, default_redirect=nil)
@@ -41,7 +46,7 @@ class NavigationHistory
 
   private
 
-  def understood(location)
+  def resolve(location)
     if location == :current
       request.url
     else

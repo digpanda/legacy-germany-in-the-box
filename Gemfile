@@ -1,5 +1,12 @@
 source "https://rubygems.org"
 
+# Loschcode gems
+# for casual installation, just use the version (e.g. "0.1.1")
+# the git repo is locally override, i need to detail the remote repo for it to work
+# for direct local change without repo, use :path => "../../wirecard-elastic"
+gem "wirecard-elastic", git: "https://github.com/Loschcode/wirecard-elastic.git", branch: "master", tag: "v0.2.2"
+
+gem "api_cache"
 gem "thin"
 gem "rails", "4.2.1"
 gem "mongoid", "~> 5.0.0"
@@ -9,6 +16,7 @@ gem "country_select"
 gem "slack-notifier"
 gem "delayed_job_mongoid"
 gem "daemons"
+gem "figaro"
 gem "turnout"
 gem "business_time"
 gem "mailgun_rails"
@@ -74,7 +82,11 @@ group :development do
   gem "capistrano-rails"
   gem "capistrano-rvm"
   gem "capistrano-nvm"
+  gem 'capistrano-linked-files'
 
+  # debug / metrics
+  gem "flay"
+  gem "flog"
   gem "rubocop", require: false
 
 end
@@ -95,12 +107,13 @@ group :development, :test, :staging, :local do
   #gem "cucumber-rails", :require => false
   gem "database_cleaner"
   gem "pry-rails"
-
 end
+
 
 group :development, :local do
   gem "spring" # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem "better_errors"
   gem "minitest", "5.8.3"
   gem "faker"
+
 end

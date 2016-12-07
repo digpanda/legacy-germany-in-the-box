@@ -1,0 +1,74 @@
+
+  <table class="total">
+
+    <tr>
+      <td>
+        <span>
+          <%= I18n.t(:subtotal, scope: :cart) %>
+        </span>
+      </td>
+      <td>
+        <span id="order-total-price-<%= order.shop.id %>">
+          <%= order.decorate.total_price.in_euro.to_yuan.display %>
+        </span>
+      </td>
+    </tr>
+
+    <% if order.discount? %>
+
+    <tr class="total__total-discount">
+      <td>
+        <span>
+          <%= I18n.t(:new_price, scope: :coupon) %>
+        </span>
+      </td>
+      <td>
+        <span id="order-total-price-with-discount-<%= order.shop.id %>">
+          <%= order.decorate.total_price_with_discount.in_euro.to_yuan.display %>
+        </span> (<span id="order-discount-display-<%= order.shop.id %>"><%= order.coupon.decorate.discount_display %></span>)
+
+        <% unless order.bought? %>
+        <%= link_to '', customer_order_coupons_path(order), :method => :delete, :class => 'tooltipster fa fa-times buttons buttons__delete --small', :title => I18n.t(:remove_coupon, scope: :coupon) %>
+        <% end %>
+
+      </td>
+    </tr>
+
+    <% end %>
+
+    <tr>
+      <td>
+        <span>
+          <%= I18n.t(:duty_and_shipping_cost, scope: :cart) %>
+        </span>
+      </td>
+      <td>
+        <span id="order-tax-and-shipping-cost-<%= order.shop.id %>">
+          <%= order.decorate.duty_and_shipping_cost_with_currency_yuan %>
+        </span>
+      </td>
+    </tr>
+
+    <tr class="total__end-price">
+      <td>
+        <span>
+          <%= I18n.t(:total_price_with_currency_yuan, scope: :cart) %>
+        </span>
+      </td>
+      <td>
+        <% if order.discount? %>
+        <span id="order-total-price-with-extra-costs-<%= order.shop.id %>" class="total__end-price --cross">
+          <%= order.decorate.total_price_with_extra_costs.in_euro.to_yuan.display %>
+        </span>
+        <span id="order-end-price-<%= order.shop.id %>" class="total__end-price --highlight">
+          <%= order.decorate.end_price.in_euro.to_yuan.display %>
+        </span>
+        <% else %>
+        <span id="order-end-price-<%= order.shop.id %>">
+          <%= order.decorate.end_price.in_euro.to_yuan.display %>
+        </span>
+        <% end %>
+      </td>
+    </tr>
+
+  </table>

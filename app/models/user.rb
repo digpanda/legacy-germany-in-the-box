@@ -54,16 +54,12 @@ class User
 
   has_and_belongs_to_many :favorites, :class_name => 'Product'
 
-  has_and_belongs_to_many :liked_collections, :class_name => 'Collection',  :inverse_of => :users
-
   scope :without_detail, -> { only(:_id, :pic, :country, :username) }
 
-  has_one  :dCollection,  class_name: 'Collection', :inverse_of => :user
-
-  has_many :oCollections, class_name: 'Collection', :inverse_of => :user
   has_many :orders,                                 :inverse_of => :user,   :dependent => :restrict
   has_many :addresses,                              :inverse_of => :user
   has_many :notifications
+  has_many :notes,                                  :inverse_of => :user,   :dependent => :restrict
 
   has_one  :shop,         :inverse_of => :shopkeeper,   :dependent => :restrict
 
@@ -71,20 +67,19 @@ class User
   mount_uploader :pic, LogoImageUploader
 
   validates :role,          presence: true, inclusion: {in: [:customer, :shopkeeper, :admin]}
-  validates :username,      presence: true, length: {maximum: Rails.configuration.max_tiny_text_length}
   validates :email,         presence: true, length: {maximum: Rails.configuration.max_tiny_text_length}
-  validates :birth,         presence: true, :if => lambda { :customer == self.role }
-  validates :gender,        presence: true, :if => lambda { :customer == self.role }
   validates :status,        presence: true
 
-  validates :fname,         presence: false, :if => lambda { :customer == self.role }, length: {maximum: Rails.configuration.max_tiny_text_length}
-  validates :lname,         presence: false, :if => lambda { :customer == self.role }, length: {maximum: Rails.configuration.max_tiny_text_length}
-  validates :birth,         presence: true, :if => lambda { :customer == self.role }, length: {maximum: 10}
+  # TODO : we deactivated this protection because wechat don't return it
+  # but we need to create the customer anyway.
+  # we should add a system to force people to add those important information before they buy if we don't have it.
+  # NOTE : we could actually refactor it with the short email forcing we did before, but in another controller to stay clean. (`ensure user information blbalbla`)
+
+  # validates :fname,         presence: true, :if => lambda { :customer == self.role }, length: {maximum: Rails.configuration.max_tiny_text_length}
+  # validates :lname,         presence: true, :if => lambda { :customer == self.role }, length: {maximum: Rails.configuration.max_tiny_text_length}
+  #
   validates :about,         length: {maximum: Rails.configuration.max_medium_text_length}
   validates :website,       length: {maximum: Rails.configuration.max_short_text_length}
-
-  validates :oCollections, :length => { :maximum => Rails.configuration.max_customer_collections },   :if => lambda { :customer   == self.role }
-  validates :oCollections, :length => { :maximum => Rails.configuration.max_shopkeeper_collections }, :if => lambda { :shopkeeper == self.role }
 
   validates :addresses,    :length => { :maximum => Rails.configuration.max_num_addresses }, :if => lambda { :customer == self.role }
 
@@ -95,10 +90,7 @@ class User
   field :authentication_token
 
   index({email: 1},               {unique: true,  name: :idx_user_email})
-  index({followers: 1},           {unique: false, name: :idx_user_followers,          sparse: true})
-  index({following: 1},           {unique: false, name: :idx_user_following,          sparse: true})
-  index({liked_collections: 1},   {unique: false, name: :idx_user_liked_collections,  sparse: true})
-
+  
   before_destroy :destroy_has_shop, :destroy_has_orders
   def destroy_has_shop
     if self.shop
@@ -118,6 +110,24 @@ class User
     end
   end
 
+  # this was made to get only the appropriate orders
+  # of the customer to get back to the cart
+  def cart_orders
+    orders.unpaid.order_by(:u_at => :desc)
+  end
+
+  def admin?
+    self.role == :admin
+  end
+
+  def shopkeeper?
+    self.role == :shopkeeper
+  end
+
+  def customer?
+    self.role == :customer
+  end
+
   def destroyable?
     !self.decorate.admin?
   end
@@ -126,37 +136,12 @@ class User
     self.provider == "wechat"
   end
 
-  def self.from_omniauth(auth)
-    if User.where(provider: auth.provider, uid: auth.uid).first
-      User.where(provider: auth.provider, uid: auth.uid).first
-    else
-      user = User.new
-      user.provider = auth.provider
-      user.uid = auth.uid
-      user.email = "#{auth.info.unionid}@wechat.com"
-      user.username = auth.info.nickname
-      user.role = :customer
-      user.gender = auth.info.sex == 1 ? 'm' : 'f'
-      user.birth = Date.today # what the fuck ? is that normal ? - Laurent 04/08/2016
-      user.password = auth.info.unionid[0,8]
-      user.password_confirmation = auth.info.unionid[0,8]
-      user.wechat_unionid = auth.info.unionid
-      user.save
-      user
-    end
-  end
-
-  def check_valid_password?(params)
-    if self.valid_password?(params[:user][:current_password])
-      true
-    else
-      self.errors.add(:password, "wrong")
-      false
-    end
+  def valid_for_checkout?
+    valid_email? && fname && lname
   end
 
   def valid_email?
-    !self.email.include?("@wechat.com")
+    !email.include?("@wechat.com")
   end
 
   def password_required?

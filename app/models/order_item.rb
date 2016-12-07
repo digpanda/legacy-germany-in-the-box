@@ -1,34 +1,54 @@
 class OrderItem
   include MongoidBase
 
-  field :quantity,        type: Integer,    default: 1
-  field :weight,          type: Float,      default: 0
-  field :price,           type: BigDecimal, default: 0
-  field :product_name,    type: String
-  field :option_names,    type: Array
+  SKU_DELEGATE_EXCEPTION = [:quantity]
 
+  # TODO : REMOVE THIS AFTER MIGRATION
   field :sku_id,      type: String
+  # field :weight,          type: Float,      default: 0
+  # field :price,           type: BigDecimal, default: 0
   field :option_ids,  type: Array,      default: []
+  # END OF TODO
 
-  belongs_to :product,  :inverse_of => :order_items
-  belongs_to :order,    :inverse_of => :order_items,  touch: true,  :counter_cache => true
+  field :quantity,        type: Integer,    default: 1
+
+  belongs_to :product
+  belongs_to :order, touch: true,  :counter_cache => true
+
+  # if we use the model somewhere else than the product
+  # like in `order_item` we need to trace the original sku
+  # this is essential to transmit informations and see clear
+  # we use this data to avoid getting lost with the ids
+  # NOTE : maybe make a small library to manage this kind of things in a DRY way
+  belongs_to :sku_origin, class_name: 'Sku', foreign_key: :sku_origin_id
+  def sku_origin
+    product.skus.find(sku_origin_id)
+  end
+
+  embeds_one :sku
 
   validates :quantity,      presence: true, :numericality => { :greater_than_or_equal_to => 1 }
-  validates :weight,        presence: true, :numericality => { :greater_than_or_equal_to => 0 }
-  validates :price,         presence: true, :numericality => { :greater_than_or_equal_to => 0 }
   validates :product,       presence: true
   validates :order,         presence: true
-  validates :sku_id,        presence: true
-  validates :option_ids,    presence: true
-  validates :product_name,  presence: true, length: {maximum: Rails.configuration.max_short_text_length}
-  validates :option_names,  presence: true
 
-  index({order: 1},  {unique: false,   name: :idx_order_item_order})
+  index({order: 1},  {unique: false, name: :idx_order_item_order})
+
+  scope :with_sku, -> (sku) { self.where(:sku_origin_id => sku.id) }
+
+  # right now we exclusively have delegated methods from the sku
+  # if the method is missing we get it from the sku
+  # directly when possible
+  def method_missing(method, *params, &block)
+    return if SKU_DELEGATE_EXCEPTION.include?(method)
+    if sku.respond_to?(method)
+      sku.send(method, *params, &block)
+    end
+  end
 
   def selected_options(locale=nil)
-    self.product.options.map do |option|
+    product.options.map do |option|
       option.suboptions.map do |suboption|
-        if self.option_ids.include? suboption.id.to_s
+        if option_ids.include? suboption.id.to_s
           if locale.nil?
           suboption.name
           else
@@ -39,19 +59,21 @@ class OrderItem
     end.flatten.compact
   end
 
+  # this method should be used in only a few cases
+  # we originally created it to call the BorderGuru API with the correct prices
+  # considering the coupon system.
+  # using it as end_price would make a double discount which would be false. please avoid this.
+  # NOTE : we want to get the `price` per unit not the `total_price` because of BorderGuru API
+  def price_with_coupon_applied
+    (price * order.total_discount_percent).round(2)
+  end
+
   def total_price
     quantity * price
   end
 
   def volume
-    sku.volume * quantity  # can be many items
+    sku.volume * quantity
   end
 
-  def sku
-    @sku ||= self.product.skus.find(self.sku_id)
-  end
-
-  def price_in_yuan
-    self.price ? self.price * Settings.instance.exchange_rate_to_yuan : 0
-  end
 end

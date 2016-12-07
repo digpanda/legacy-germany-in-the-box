@@ -1,0 +1,58 @@
+<% if @users.size > 0 %>
+  <table class="white-table">
+    <thead>
+      <th>
+        <%= I18n.t(:email, scope: :edit_account) %>
+      </th>
+      <th>
+        <%= I18n.t(:username, scope: :edit_account) %>
+      </th>
+      <th>
+        <%= I18n.t(:role, scope: :edit_account) %>
+      </th>
+      <th>
+        <%= I18n.t(:sign_in_count, scope: :edit_account) %>
+      </th>
+      <th>
+        <%= I18n.t(:last_sign_in_at, scope: :edit_account) %>
+      </th>
+      <th>
+        <%= I18n.t(:operations, scope: :edit_accounts) %>
+      </th>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td>
+            <%= user.email %>
+          </td>
+          <td>
+            <%= user.username %>
+          </td>
+          <td>
+            <%= user.role %>
+          </td>
+          <td>
+            <%= user.sign_in_count %>
+          </td>
+          <td>
+            <%= user.last_sign_in_at ? l(user.last_sign_in_at, :format => '%Y-%m-%d %H:%M:%S') : '' %>
+          </td>
+          <td>
+              <a href="<%= admin_user_path(user) %>"><i class="fa fa-eye tooltipster buttons buttons__edit tooltipstered"></i></a>
+
+            <% if user.destroyable? %>
+              <%= link_to '', admin_user_path(user), :method => :delete, data: { confirm: "Are you sure to remove this user account ?" }, :class => 'tooltipster fa fa-times buttons buttons__delete', :title => "Delete this user" %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <div class="+white-box +centered">
+    <h4>
+      No user
+    </h4>
+  </div>
+<% end %>

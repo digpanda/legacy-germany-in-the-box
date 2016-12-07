@@ -1,22 +1,14 @@
-# RSpec
-# spec/support/factory_girl.rb
-
 RSpec.configure do |config|
-
-  config.before do
-    config.include Helpers::Global
-    config.include Helpers::Request
-    config.include Helpers::Response
-  end
-
   config.include FactoryGirl::Syntax::Methods
 end
 
-# RSpec without Rails
-#RSpec.configure do |config|
-#  config.include FactoryGirl::Syntax::Methods
+# deactivate the ActiveRecord fixtures
+module ActiveRecord::TestFixtures
+  def before_setup
+    super
+  end
 
-#  config.before(:suite) do
-#    FactoryGirl.find_definitions
-#  end
-#end
+  def after_teardown
+    super
+  end
+end

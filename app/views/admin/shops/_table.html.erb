@@ -1,0 +1,54 @@
+<% if shops.size > 0 %>
+  <table class="white-table">
+    <thead>
+      <th>
+        Merchant ID
+      </th>
+      <th>
+        Shopname
+      </th>
+      <th>
+        AGB
+      </th>
+      <th>
+        Wirecard
+      </th>
+      <th>
+        Products
+      </th>
+      <th>
+        Action
+      </th>
+    </thead>
+    <tbody>
+      <% shops.each do |shop| %>
+        <tr>
+          <td>
+            <%= shop.merchant_id %>
+          </td>
+          <td>
+            <%= shop.shopname %>
+          </td>
+          <td>
+            <%= boolean_icon(shop.agb) %>
+          </td>
+          <td>
+            <%= shop.decorate.readable_wirecard_status %>
+          </td>
+          <td>
+            <%= shop.products.size %>
+          </td>
+          <td>
+            <%= render partial: 'admin/shops/table/action', :locals => { :shop => shop } %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <div class="+white-box +centered">
+    <h4>
+    <%= I18n.t(:no_applications, scope: :edit_shop_application) %>
+   </h4>
+ </div>
+<% end %>

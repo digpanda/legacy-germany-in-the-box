@@ -1,0 +1,28 @@
+<div class="col-md-12">
+  <div class="row">
+    <h3> <%= I18n.t(:product_data, scope: :edit_product_detail) %> (German to Chinese)</h3>
+    <hr>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+
+      <!-- Data (aka Description of the Sku) -->
+      <div class="row form-group">
+        <div class="col-md-2">
+          <%= I18n.t(:product_data, scope: :edit_product_detail) %>
+          <%= js_tips(:id => :product_data, :tip => I18n.t(:product_data_info, scope: :edit_product_detail)) %>
+        </div>
+
+        <%= translate_fields form, :data do |form_field| %>
+          <div class="col-md-5 form-group">
+            <%= form_field.text_area :class => 'form-control' %>
+            <div class="help-block with-errors"></div>
+          </div>
+        <% end %>
+
+      </div>
+
+    </div>
+  </div>
+
+</div>

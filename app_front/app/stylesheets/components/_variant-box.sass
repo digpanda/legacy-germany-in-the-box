@@ -1,0 +1,25 @@
++component(variant-box)
+
+  border: 2px solid $color-grey
+  border-top: 0
+  padding: 0
+
+  +part(variant-name)
+    font-weight: 600
+    border-bottom: 2px solid $color-grey
+    padding: 1em
+    background-color: $color-grey
+    input
+      max-width: 140px
+
+  +part(option-name)
+    padding: 1em
+    input
+      max-width: 110px
+
+  +part(add-option)
+    background-color: $color-black
+    text-align: center
+    font-size: 20px
+    #{$a-tags}
+      color: $color-white !important

@@ -1,0 +1,96 @@
+<%= form_for [:customer, address], :data => {:toggle => 'validator'} do |f| %>
+  <div class="form-group">
+    <h4>
+      <%= I18n.t(:change_address_title, scope: :edit_address) %>
+    </h4>
+  </div>
+  <div class="form-group">
+    <div class="row">
+      <div class="col-md-6">
+        <%= f.text_field :lname, :value => address.lname ? address.lname : current_user.lname, :class => 'form-control', :required => true, :placeholder => I18n.t(:lname, scope: :edit_address), :pattern => '[\u4e00-\u9fa5]+', :data => {:error => "Please use only Chinese characters"} %>
+
+      </div>
+      <div class="col-md-6">
+        <%= f.text_field :fname, :value => address.fname ? address.fname : current_user.fname, :class => 'form-control', :required => true, :placeholder => I18n.t(:fname, scope: :edit_address), :pattern => '[\u4e00-\u9fa5]+', :data => {:error => "Please use only Chinese characters"} %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="+left help-block with-errors"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="row">
+      <div class="col-md-12">
+        <%= f.text_field :mobile, :value => address.mobile ? address.mobile : current_user.mobile, :class => 'form-control', :required => true, :placeholder => I18n.t(:mobile, scope: :edit_address), :pattern => I18n.t(:mobile, scope: :validation, locale: :'zh-CN') %>
+        <div class="help-block with-errors +left"></div>
+       </div>
+     </div>
+  </div>
+
+  <div class="form-group">
+    <div class="row">
+      <div class="col-md-12">
+        <%= f.text_field :pid, :class => 'form-control', :required => true, :placeholder => I18n.t(:pid, scope: :edit_address), :pattern => '^(\\d{6})(19|20)(\\d{2})(1[0-2]|0[1-9])(0[1-9]|[1-2][0-9]|3[0-1])(\\d{3})(\\d|X|x)?$', :data => { :error => "Please enter your Chinese ID number" } %>
+        <div class="help-block with-errors +left"></div>
+      </div>
+    </div>
+  </div>
+
+<% if address.province.nil? %>
+
+  <div class="city-group">
+    <div class="form-group">
+      <%= f.select :province, options_for_select(china_city_ordered_list), {  include_blank: I18n.t(:province_blank, scope: :edit_address) }, { :autocomplete => :off, class: 'form-control city-select city-province', :required => true } %>
+    </div>
+    <div class="form-group">
+      <%= f.select :city    , [], { include_blank: I18n.t(:city_blank, scope: :edit_address) }, { :autocomplete => :off, class: 'form-control city-select city-city', :required => true } %>
+    </div>
+    <div class="form-group">
+      <%= f.select :district, [], { include_blank: I18n.t(:district_blank, scope: :edit_address) }, { :autocomplete => :off, class: 'form-control city-select city-district', :required => true } %>
+    </div>
+  </div>
+
+<% else %>
+
+  <div class="city-group">
+    <div class="form-group">
+      <%= f.select :province, options_for_select(get_provinces, get_code_for_province(address.province)), {  include_blank: I18n.t(:province_blank, scope: :edit_address) }, { :autocomplete => :off, class: 'form-control city-select city-province', :required => true } %>
+    </div>
+    <div class="form-group">
+      <%= f.select :city    , options_for_select(get_cities_for_province(address.province), get_code_for_city(address.province, address.city)), { include_blank: I18n.t(:city_blank, scope: :edit_address) }, { :autocomplete => :off, class: 'form-control city-select city-city', :required => true } %>
+    </div>
+    <div class="form-group">
+      <%= f.select :district, options_for_select(get_districts_for_city(address.province, address.city), get_code_for_district(address.province, address.city, address.district)), { include_blank: I18n.t(:district_blank, scope: :edit_address) }, { :autocomplete => :off, class: 'form-control city-select city-district', :required => true } %>
+    </div>
+  </div>
+
+<% end %>
+
+
+  <div class="form-group">
+    <div class="row">
+      <div class="col-md-12">
+        <%= f.text_field :street, :class => 'form-control', :required => true, :placeholder => "欧洲区德国路莱茵巷5弄6号7栋8楼9室" %>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="form-group">
+    <%= f.text_field :country, :value => ISO3166::Country[:CN].local_name, :readonly => true, :class => 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.text_field :zip, :value=> "#{address.zip}", :class => 'form-control', :placeholder => I18n.t(:zip, scope: :edit_address), :required => true, :pattern => '\d{6,6}' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :primary do %>
+      <%= f.check_box :primary, {}, true, false %> <%=I18n.t(:set_primary, scope: :edit_address)%>
+    <% end %>
+  </div>
+  <div class="form-group">
+    <input class="btn btn-primary" type="submit" value="<%= I18n.t(:save_address, scope: :edit_address) %>"></input>
+  </div>
+<% end %>

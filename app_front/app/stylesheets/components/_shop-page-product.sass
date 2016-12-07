@@ -1,11 +1,14 @@
 +component(shop-page-product)
 
-  padding: 0.5em
+  //padding: 0.5em
   border: 5px $color-grey solid
   +border-radius(0.5em)
 
+  +option(no-border)
+    border: 0px
+
   background-color: white
-  
+
   color: $color-black
   a
     color: $color-black
@@ -14,12 +17,34 @@
     margin: 0em
     margin-top: 0.5em
     font-size: 1.7em
-    +truncate(90%)
+    +truncate(95%)
+
+  +part(discount)
+    position: absolute
+    left: 70%
+    top: -10px
+    width: 60px
+    height: 60px
+    padding: 0.8em
+    color: $color-white
+    background-color: $color-red
+    z-index: 5
+    +border-radius(50%)
+    +rotate(20deg)
+    div
+      font-size: 18px
+      margin-top: 0.3em
+      font-weight: bold
+      text-align: center
 
   +part(image)
     background-color: $color-light-grey
     height: 17em
     width: 12em
+
+    +breakpoint('mobile')
+      width: 70%
+
     margin: 0 auto
     display: block
     -webkit-background-size: cover

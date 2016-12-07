@@ -1,0 +1,99 @@
+<div class="col-md-12">
+
+  <div class="row">
+    <div class="col-md-8 +nopadding">
+      <h3>About (German to Chinese)</h3>
+      <hr>
+    </div>
+    <div class="col-md-4 +right">
+      <span class="+red">*</span> <%= I18n.t(:required_field_info, scope: :edit_shop) %>
+      <hr>
+    </div>
+  </div>
+
+  <!-- Description -->
+  <div class="row">
+    <div class="col-md-2">
+      <label>
+        <%= I18n.t(:desc, scope: :edit_shop) %> <span class="+red">*</span>
+      </label>
+    </div>
+
+    <%= translate_fields form, :desc do |form_field| %>
+      <div class="col-md-5 form-group">
+        <%= form_field.text_area :class => 'form-control', :required => true %>
+        <div class="help-block with-errors"></div>
+      </div>
+    <% end %>
+
+  </div>
+
+  <!-- Philosophie -->
+  <div class="row">
+    <div class="col-md-2">
+      <label>
+        <%= I18n.t(:philosophy, scope: :edit_shop) %> <span class="+red">*</span>
+      </label>
+    </div>
+
+    <%= translate_fields form, :philosophy do |form_field| %>
+      <div class="col-md-5 form-group">
+        <%= form_field.text_area :class => 'form-control', :required => true %>
+        <div class="help-block with-errors"></div>
+      </div>
+    <% end %>
+
+  </div>
+
+  <!-- Stories -->
+  <div class="row">
+    <div class="col-md-2">
+      <label>
+        <%= I18n.t(:stories, scope: :edit_shop) %> <span class="+red">*</span>
+      </label>
+    </div>
+
+    <%= translate_fields form, :stories do |form_field| %>
+      <div class="col-md-5 form-group">
+        <%= form_field.text_area :class => 'form-control', :required => true %>
+        <div class="help-block with-errors"></div>
+      </div>
+    <% end %>
+
+  </div>
+
+  <!-- Uniqueness -->
+  <div class="row">
+    <div class="col-md-2">
+      <label>
+        <%= I18n.t(:uniqueness, scope: :edit_shop) %>
+      </label>
+    </div>
+
+    <%= translate_fields form, :uniqueness do |form_field| %>
+      <div class="col-md-5 form-group">
+        <%= form_field.text_area :class => 'form-control' %>
+        <div class="help-block with-errors"></div>
+      </div>
+    <% end %>
+
+  </div>
+
+  <!-- German Essence -->
+  <div class="row">
+    <div class="col-md-2">
+      <label>
+        <%= I18n.t(:german_essence, scope: :edit_shop) %>
+      </label>
+    </div>
+
+    <%= translate_fields form, :german_essence do |form_field| %>
+      <div class="col-md-5 form-group">
+        <%= form_field.text_area :class => 'form-control', :required => true %>
+        <div class="help-block with-errors"></div>
+      </div>
+    <% end %>
+
+  </div>
+
+</div>

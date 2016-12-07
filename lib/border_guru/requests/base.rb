@@ -2,7 +2,9 @@ module BorderGuru
   module Requests
     class Base
 
-      CONFIG = Rails.application.config.border_guru  unless const_defined? :CONFIG
+      include ErrorsHelper
+
+      CONFIG = Rails.application.config.border_guru unless const_defined? :CONFIG
 
       @@access_token =
         OAuth::AccessToken.new(OAuth::Consumer.new(
@@ -31,7 +33,9 @@ module BorderGuru
       end
 
       def quote_params
-        CGI.escape(payload_hash.delete_if{ |k, v| v.nil? }.to_json)
+        # temporary check of all transactions given to BorderGuru
+        # warn_developers(StandardError.new, "#{payload_hash}")
+        CGI.escape(payload_hash.to_json)
       end
 
     end

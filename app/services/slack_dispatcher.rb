@@ -26,13 +26,19 @@ class SlackDispatcher < BaseService
 
   def paid_transaction(order_payment)
     order = order_payment.order
-    push "*#{order.billing_address.decorate.chinese_full_name}* just paid *#{order.total_paid_in_euro} / #{order.decorate.total_sum_in_euro}*"
+    push "*#{order.billing_address.decorate.chinese_full_name}* just paid *#{order.total_paid_in_euro} / #{order.decorate.total_price_with_extra_costs_in_euro}*"
     push "Order ID : `#{order.id}` - URL : #{admin_order_url(order)}"
   end
 
   def failed_transaction(order_payment)
     order = order_payment.order
-    push "*#{order.billing_address.decorate.chinese_full_name}* just *FAILED* to pay *#{order.total_paid_in_euro} / #{order.decorate.total_sum_in_euro}*"
+    push "*#{order.billing_address.decorate.chinese_full_name}* just *FAILED* to pay *#{order.total_paid_in_euro} / #{order.decorate.total_price_with_extra_costs_in_euro}*"
+    push "Order ID : `#{order.id}` - URL : #{admin_order_url(order)}"
+  end
+
+  def borderguru_get_shipping_error(order)
+    push "*#{order.billing_address.decorate.chinese_full_name}* just *FAILED* to *GetShipping* from *BorderGuru*"
+    push "The label was not retrieved. Please have a look and solve the problem."
     push "Order ID : `#{order.id}` - URL : #{admin_order_url(order)}"
   end
 

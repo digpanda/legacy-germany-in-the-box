@@ -1,0 +1,25 @@
+<!-- Variant boxes -->
+<div class="row">
+  <div class="col-md-10 col-md-push-1 col-md-pull-1">
+    <div class="row form-group">
+      <%= form.fields_for :options do |field_option| %>
+
+      <!-- TODO : this should be turned into a method with blocks -->
+      <% if every(field_option, 2) %>
+        <div class="row">
+      <% end %>
+
+      <div class="col-md-6">
+        <%= render partial: "shopkeeper/products/variants/form/variant_box", :locals => {:form => field_option, :options => {:translation => true}} %>
+      </div>
+
+      <% if every(field_option, 2) %>
+        </div>
+        <div class="+small-spacer"></div>
+      <% end %>
+
+    <% end %>
+    </div>
+
+  </div>
+</div>

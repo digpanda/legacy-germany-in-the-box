@@ -3,6 +3,8 @@ require 'iso4217/currency_mongoid'
 class Shop
   include MongoidBase
 
+  Numeric.include CoreExtensions::Numeric::CurrencyLibrary
+
   strip_attributes
 
   field :approved,        type: Time
@@ -29,11 +31,6 @@ class Shop
   field :agb,             type: Boolean
   field :hermes_pickup,   type: Boolean,    default: false
   field :wirecard_status, type: Symbol,     default: :unactive
-
-  field :wirecard_ee_user_cc, type: String # this is the user digpanda engine, not the merchant (we don't need to save it.)
-  field :wirecard_ee_password_cc, type: String # this is the password digpanda engine, not the merchant (we don't need to save it.)
-  field :wirecard_ee_secret_cc, type: String
-  field :wirecard_ee_maid_cc, type: String
 
   field :seal0,           type: String
   field :seal1,           type: String
@@ -72,6 +69,7 @@ class Shop
 
   has_many  :products,        inverse_of: :shop,  dependent: :restrict
   has_many  :orders,          inverse_of: :shop,  dependent: :restrict
+  has_many  :payment_gateways,  inverse_of: :shop,  dependent: :restrict
 
   belongs_to :shopkeeper,   class_name: 'User',  inverse_of: :shop
 
@@ -125,7 +123,7 @@ class Shop
 
   def force_merchant_id
     if self.merchant_id.nil?
-      self.merchant_id = (self.c_at ? self.c_at.strftime('%y%m%d') : Date.today.strftime('%y%m%d')) + self.name[0,3].upcase
+      self.merchant_id = (self.c_at ? self.c_at.strftime('%y%m%d') : Date.today.strftime('%y%m%d')) + self.name.delete("\s")[0,3].upcase
     end
   end
 
@@ -149,6 +147,14 @@ class Shop
   def categories
     all_categories = Category.all.map { |c| [c.id, c]}.to_h
     products.inject(Set.new) {|cs, p| cs = cs + p.category_ids }.map { |c| all_categories[c]}
+  end
+
+  def accepted_payment_methods
+    self.payment_gateways.map { |payment_gateway| payment_gateway.payment_method.to_sym }
+  end
+
+  def discount?
+    self.products.discount_products
   end
 
   private

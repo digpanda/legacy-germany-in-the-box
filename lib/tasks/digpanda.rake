@@ -5,6 +5,11 @@ namespace :digpanda do
     Tasks::Digpanda::CheckDatabaseConsistency.new
   end
 
+  desc "refresh duty categories taxes"
+  task refresh_duty_categories_taxes: :environment do
+    Tasks::Digpanda::RefreshDutyCategoriesTaxes.new
+  end
+
   desc "remove and create duty categories"
   task remove_and_create_duty_categories: :environment do
     Tasks::Digpanda::RemoveAndCreateDutyCategories.new

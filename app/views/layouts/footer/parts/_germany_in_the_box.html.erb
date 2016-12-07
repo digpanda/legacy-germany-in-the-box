@@ -1,15 +1,30 @@
 <div class="row"><h3><%= I18n.t(:germany_in_the_box, scope: :footer) %></h3></div>
 
+<% if german? %>
+<div class="row"><%= link_to I18n.t(:business_model, scope: :footer), business_model_guest_pages_path %></div>
+<% end %>
+
+
 <% if current_user&.decorate&.shopkeeper? %>
 
-<div class="row"><%= link_to I18n.t(:terms_conditions, scope: :footer), agb_page_path %></div>
+<div class="row"><%= link_to I18n.t(:terms_conditions, scope: :footer), agb_guest_pages_path %></div>
 
 <% end %>
 
 <% if chinese? %>
+
 <div class="row"><%= link_to I18n.t(:feedback, scope: :footer), guest_feedback_path %></div>
 
 <% end %>
 
-<div class="row"><%= link_to I18n.t(:privacy_statement, scope: :footer), privacy_page_path %></div>
-<div class="row"><%= link_to I18n.t(:imprint, scope: :footer), imprint_page_path %></div>
+<div class="row"><%= link_to I18n.t(:privacy_statement, scope: :footer), privacy_guest_pages_path %></div>
+
+<% if chinese? %>
+
+<div class="row"><%= link_to I18n.t(:imprint, scope: :footer), customer_about_guest_pages_path %></div>
+
+<% else %>
+
+<div class="row"><%= link_to I18n.t(:imprint, scope: :footer), imprint_guest_pages_path %></div>
+
+<% end %>

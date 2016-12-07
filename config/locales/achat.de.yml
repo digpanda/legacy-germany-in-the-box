@@ -1,4 +1,41 @@
 de:
+  shop:
+    minimum_order: Mindestbestellwert
+  action:
+    removed_image: Bild erfolgreich gelöscht
+    no_removed_image: Das Bild wurde nicht gelöscht
+  sku:
+    clone_successful: Es wurde erfolgreich korpiert
+  landing_page:
+    highlight_of_the_day: Produkt der Tages
+    see_more: mehr Produkt mit Highlights
+  discount:
+    discount: Rabatt
+  product_box:
+    taxes_per_unit: Geschätzt Importsteuer
+    shipping_and_taxes_excluded: Versandkosten & Steuer zzgl.
+  coupon:
+    cannot_apply: Der Gutschein ist für diese Bestellung nicht gültig.
+    no_minimum_price: "Sie können nicht die Gutschein benutzen, weil die Mindestabnahmemenge (ausschließen Prozesskosten) geringer als die Verwendung von Gutscheinen ist : %{minimum} RMB."
+    error_occurred_applying: Fehler beim Einlösen des Gutscheins.
+    not_valid_anymore: Der Gutschein ist ungültig.
+    cannot_remove: Der eingelöste Gutschein lässt sich nicht löschen.
+    error_occurred_applying: Fehler beim Löschen des Gutscheins.
+    apply: Einlösen
+    remove_coupon: Gutschein löschen.
+    new_price: Aktueller Preis.
+    coupon: Gutschein
+    applied_successfully: Dieser Gutschein wurde erfolgreich eingelöst.
+    applied_fail: Dieser Gutschein ist nicht vorhanden.
+  product_left:
+    only: Noch
+    left: übrig
+    no_stock_left: Ausverkauft
+    not_ready_to_sell: Dieser Shop kommt bald
+  password_recovery:
+    email_not_found: Diese E-Mail ist uns nicht bekannt.
+    instruction_sent: Bitte checke Deine E-Mail und folge dem Hinweis.
+    password_updated: Dein Passort wurde aktualisiert!
   feedback:
     bug_report: Fehler Report
     payment_speed_report: Laufzeit der Zahlung
@@ -27,6 +64,7 @@ de:
   breadcrumb:
     home: Home
   title:
+    we_need_more_info: Wir wollen Ihre Kontakt wissen...
     title: Titel
     shop_photo: Shop Bilder
     date: Datum
@@ -39,11 +77,12 @@ de:
     description: Beschreibung
     more: Mehr
     partners: Partner
-    want_buy_products: Möchten was kaufen?
-    want_work_with_us: Möchten unser Partner werden?
+    want_buy_products: Möchten Sie etwas kaufen?
+    want_work_with_us: Möchten Sie unser Partner werden?
     change_your_password: Passwort ändern
     page_not_found: Seite nicht gefunden
     server_error: Serverproblem
+    page_not_authorized_login: Bitte einloggen oder registrieren um fortzufahren!
     page_not_authorized: Sie haben keine Berechtigung für diese Seite
   notice:
     payment_removed: Zahlung storniert
@@ -82,7 +121,7 @@ de:
     positive_integer: '^[0-9]*$'
     positive_integer_less_or_equal_than_100: '^[1-9][0-9]?$|^100$|^0$'
     positive_float: '^([0-9]*[1-9][0-9]*(,[0-9]{1,2})?|[0]+,[0-9]*[1-9][0-9]*)$'
-    positive_float_equal_or_greater_than_0: '^(0(,[0]{1,2})?|[0-9]*[1-9][0-9]*(,[0-9]{1,2})?|[0]+,[0-9]*[1-9][0-9]*)$'
+    positive_float_equal_or_greater_than_0: '^[0-9]*(\.)*[0-9]$'
     zip: '^(?!01000|99999)(0[1-9]\d{3}|[1-9]\d{4})$'
     mobile: ''
     tel: ''
@@ -135,6 +174,9 @@ de:
     settings: Konfiguraiton
     notifications: Nachrichten
   footer:
+    icp_registration: ICP Yue Nr. 16044763
+    business_model: Das 2-Säulen-Modell
+    shipping_price: Versandkosten
     payment_methods: Zahlungsarten
     germany_in_the_box: Germany In The Box
     feedback: Feedback
@@ -311,7 +353,7 @@ de:
     download: Herunterladen
     shipping_cost: Logistik Gebühren
     tax_and_duty_cost: Zoll Gebühren
-    total_sum: Insgesamt
+    total_price_with_extra_costs: Insgesamt
     new: Neu
     paying: in Zahlung
     paid: Bezahlt
@@ -396,7 +438,7 @@ de:
     desc: Beschreibung
     logo: Logo
     banner: Banner
-    banner_info: Die empfohlenen Größen des Banners sind 468x60 oder 728x90. (max. 1 MB pro Bild)
+    banner_info: Die empfohlenen Größen des Banners sind 468x60 oder 728x90. (max 1 MB pro Bild)
     philosophy: Philosophie
     stories: Geschichten
     ustid: Ust-ID
@@ -413,9 +455,9 @@ de:
     update_ok: Der Shop wurde erfolgreich aktualisiert.
     update_producer_ok: Herstellerdetails wurde erfolgreich aktualisiert.
     update_agb_ok: Vielen Dank für das Einverständnis unserer allgeimeinen Geschäftsbedingungen!
-    desc_info: Wer sind Sie? Was bieten Sie an?  (max. %{num} Buchstaben)
-    philosophy_info: Welche Grundidee und Grundüberzeugung unterliegen Ihren Produkten? (max. %{num} Buchstaben)
-    stories_info: Haben Ihre Produkte bemerkenswerte Geschichten, z.B dass Ihre Marke Sponsor für lokale Kinderevents, Elternverein, Sportverein ist, oder dass die Rezepte oder Herstellungen einer langen Familientradition folgen? Welche Zeitungen und Magazine haben von Ihren Produkten positiv berichtet? (max. %{num} Buchstaben)
+    desc_info: Wer sind Sie? Was bieten Sie an?
+    philosophy_info: Welche Grundidee und Grundüberzeugung unterliegen Ihren Produkten?
+    stories_info: Haben Ihre Produkte bemerkenswerte Geschichten, z.B dass Ihre Marke Sponsor für lokale Kinderevents, Elternverein, Sportverein ist, oder dass die Rezepte oder Herstellungen einer langen Familientradition folgen? Welche Zeitungen und Magazine haben von Ihren Produkten positiv berichtet?
     ust_id_info: Als Exportierender Hersteller führen Sie keine Ust-Vorsteuer ab. Falls Sie eine Ust-ID besitzen, benötigen wir sie für Ausfuhrbescheinigungen.
     eroi_number_info: Die EORI-Nummer ersetzt die alte Zollnummer und dient der Identifikation bei der Zollabwicklung. Für einen standardisierten Abwicklungsprozess müssen Sie die EORI-Nummer unserem Logistik-Partner vorlegen.
     min_total_info: Sie können einen Mindestbestellwert für jede Bestellung im Ihren Shop festlegen. Geben Sie 0 an, falls Sie keinen Mindestwert wünschen.
@@ -423,9 +465,9 @@ de:
     founding_year: Gründungsjahr
     founding_year_info: Wann wurde Ihre Marke gegründet? (Jahr)
     german_essence: German-Design
-    german_essence_info: Die deutsche Herstellung ist weltweit bekannt für seine Effizienz, Schlichheit und Qualität. Wie spiegeln Ihre Produkte die Essenz von "German-Design" hinsichtlich ihrer Herstellung und Gestaltung wider? (max. %{num} Buchstaben)
+    german_essence_info: Die deutsche Herstellung ist weltweit bekannt für seine Effizienz, Schlichheit und Qualität. Wie spiegeln Ihre Produkte die Essenz von "German-Design" hinsichtlich ihrer Herstellung und Gestaltung wider?
     uniqueness: Einzigartigkeit
-    uniqueness_info: Was hebt Ihre Produkte von anderen ähnlichen Produkten auf dem Markt ab? (max. %{num} Buchstaben)
+    uniqueness_info: Was hebt Ihre Produkte von anderen ähnlichen Produkten auf dem Markt ab?
     target_groups: Zielgruppen
     target_groups_info: Wer gehört zur Zielgruppe für Ihre Produkte in Deutschland? Sie können bis zu %{num} Zielgruppen eintragen.
     target_group: Zielgruppe
@@ -439,7 +481,7 @@ de:
     sales_channel: Link oder Name
     website: Website
     agb: Allgemeine Geschäftsbedingungen
-    agb_statement: Hiermit versichere ich, dass ich die <a href='/page/agb' target='blank'>AGB</a> der DigPanda GmbH komplett gelesen habe und ich mit den Inhalten dieser AGB einverstanden bin. 
+    agb_statement: Hiermit versichere ich, dass ich die <a href='/guest/pages/agb' target='blank' class='+green'>AGB</a> der DigPanda GmbH komplett gelesen habe und ich mit den Inhalten dieser AGB einverstanden bin. 
     required_field_info: 'Pflichtfeld'
     underline_field_info: '_ Übersetzungsfeld'
     company_name_placeholder: 'Beispiel GmbH'
@@ -458,6 +500,7 @@ de:
     merchant_id: Herstellernummer
     bg_merchant_id: Borderguru-Kundennummer
   edit_product:
+    skus: Artikelpositionen
     edit: Editieren
     remove: Entfernen
     basic_info: Allgmeine Information
@@ -488,11 +531,11 @@ de:
     variant: Variante
     categories_info: Die Zuordnung der Käufer-Kategorien hilft den Käufern, Ihr Produkt zu finden.
     keywords_info: Wir empfehlen Ihnen, mit %{num} Stichwörtern das Produkt zu charakterisieren. Diese Stickwörtern dienen sowohl dem internen als auch externem Search.
-    desc_info: Beschreiben Sie Ihr Produkt mit all den ansprechenden Eigenschaften, die für Käufer relevant sind. (max. %{num} Buchstaben)
+    desc_info: Beschreiben Sie Ihr Produkt mit all den ansprechenden Eigenschaften, die für Käufer relevant sind.
     cancel: Abbrechen
     product_seal: Produktsiegel
     product_seal_info: Besitzen Ihre Produkte Qualitäts- oder Handelssigel? (Z.B. Bio-Siegel, Fairtrade-Siegel)   (max. 1MB pro Bild)
-    quantity_info: '%{num1} Stk. von %{num2} Varianten'
+    quantity_info: '%{total_skus_quantities} Stk. von %{product_options_size} Varianten'
     quantity: Verfügbarkeit
     duty_category: Zoll-Kategorie
     duty_category_info: Die Zuordnung der Käufer-Kategorien ist von dem Zoll in China gefordert.
@@ -548,14 +591,17 @@ de:
     customizable_info: Dieses Produkt kann nach Kundenwunsch individuell angefertig werden.
     return: Zurück zur Produktliste
     cancel: Abbrechen
-    space_weight: Produktmaße (Länge x Breite x Höhe) und Gewicht
-    space_weight_info: Geben Sie bitte die Maße und das Gewicht des Produkts an. Es handelt sich hier um das Produkt mit Verpackung, aber ohne Karton. Bei Kleidungen bitte orientieren Sie sich an den kleinsten Quader, in den das Produkt rein passt.
+    space: Produktmaße
+    space_length: Länge
+    space_width: Breite
+    space_height: Höhe
+    space_info: Geben Sie bitte die Maße und das Gewicht des Produkts an. Es handelt sich hier um das Produkt mit Verpackung, aber ohne Karton. Bei Kleidungen bitte orientieren Sie sich an den kleinsten Quader, in den das Produkt rein passt.
     cm: cm
     clone: Klonen
     piece: Stk.
     no_detail: Bitte klicken Sie oben <strong>Neue Artikelposition</strong> an, um eine Artikelposition zu erstellen.
     product_data: Produktdaten
-    product_data_info: Hier können Sie Ihre Produktdaten angeben. (max. %{num} Buchstaben)
+    product_data_info: Hier können Sie Ihre Produktdaten angeben.
     attachment: Anhang
     attachment_info: Hier können Sie für Ihre Produktdaten eine PDF-Datei als Anhang hochladen.
     open: Ansehen
@@ -627,6 +673,10 @@ de:
     delete_sku_msg: Das Produkt vom dem Einkaufswagen entfernen
     greater_than_zero: Die Anzahl muss größer al Null sein.
   checkout:
+    have_your_payment_been_successful: Zahlung wurdet beenedet, klicken Sie um Zahlung Verfolgen und zurück in GBox.
+    refresh_page_button: Zahlung Verfolgen.
+    notice_order_already_paid: Ihre Zahlung ist erfolgreich.
+    choose_your_payment_method:  Bitte eine Zahlungsmethode wählen
     my_destination: Anlieferungsanschrift
     setup_delivery_destination: Bitte Anschrift auswählen
     checkout: Bestätigen

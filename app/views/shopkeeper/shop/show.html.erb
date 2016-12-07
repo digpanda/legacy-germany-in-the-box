@@ -1,0 +1,15 @@
+<%= translation_js(:max_exceeded_message, :image_upload) %>
+<%= translation_js(:ext_error_message, :image_upload) %>
+
+<div class="row">
+  <div class="col-md-10">
+    <h2><%= I18n.t(:my_shop, scope: :top_menu) %></h2>
+    <hr>
+  </div>
+  <div class="col-md-2 details__action">
+  </div>
+</div>
+
+<div>
+  <%= render partial: 'shopkeeper/shop/form', :locals => { :shop => @shop } %>
+</div>

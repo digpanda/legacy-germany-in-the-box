@@ -9,7 +9,7 @@
           <%= I18n.t(:status, scope: :edit_order) %>
         </th>
         <th>
-          <%= I18n.t(:total_sum, scope: :edit_order) %>
+          <%= I18n.t(:total_price_with_extra_costs, scope: :edit_order) %>
         </th>
         <th>
           <%= I18n.t(:link_tracking, scope: :edit_order) %>
@@ -26,8 +26,8 @@
       <% @orders.each do |order| %>
         <tr>
           <td>
-            <% if order.decorate.total_sum > 0 %>
-              <%= link_to order.id, order_path(order) %>
+            <% if order.decorate.total_price_with_extra_costs > 0 %>
+              <%= link_to order.id, customer_order_path(order) %>
             <% else %>
               <%= order.id %>
             <% end %>
@@ -36,24 +36,24 @@
             <%= I18n.t(order.status, scope: :edit_order) %>
           </td>
           <td>
-            <%= order.decorate.is_bought? ? order.decorate.total_sum_in_yuan : '' %>
+            <% if order.bought? %>
+            <%= order.end_price.in_euro.to_yuan.display %>
+            <% end %>
           </td>
           <td>
-            <% if order.is_bought? %>
+            <% if order.bought? %>
             <%= link_to I18n.t(:open, scope: :edit_order), tracking_id_customer_order_border_guru_path(order), :target => '_blank' %>
             <% end %>
           </td>
           <td>
             <%= order.u_at.localtime.strftime('%Y-%m-%d %H:%M:%S') %>
           </td>
+          <td>
           <% unless order.decorate.paid? %>
-            <td>
-              <%= link_to I18n.t(:continue, scope: :edit_order), continue_order_path(order) %> |
-              <%= link_to I18n.t(:delete, scope: :edit_order), order_path(order), method: :delete, data: { confirm: I18n.t(:confirm_want_delete, scope: :notice) } %>
-            </td>
-          <% else %>
-            <td></td>
+              <%= link_to I18n.t(:continue, scope: :edit_order), customer_order_continue_path(order), method: :patch %> |
+              <%= link_to I18n.t(:delete, scope: :edit_order), customer_order_path(order), method: :delete, data: { confirm: I18n.t(:confirm_want_delete, scope: :notice) } %>
           <% end %>
+          </td>
         </tr>
       <% end %>
     </tbody>

@@ -10,14 +10,30 @@ require 'factory_girl_rails'
 require 'mongoid'
 require 'devise'
 require 'faker'
-
-Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
-
+require 'vcr'
 
 RSpec.configure do |config|
+
+  # support loads
+  config.before do
+    config.include Helpers::Global
+    config.include Helpers::Context
+    config.include Helpers::Request
+    config.include Helpers::Response
+    config.include Helpers::Devise
+    config.include Helpers::Features::AddToCart
+    config.include Helpers::Features::Checkout
+    config.include Helpers::Features::OnPage
+    config.include Helpers::Features::ShowOnPage
+    config.include Helpers::Features::WaitForPage
+    config.include Helpers::Features::Login
+  end
 
   config.infer_spec_type_from_file_location!
   config.filter_rails_from_backtrace!
   config.include Devise::TestHelpers, :type => :controller
+  config.include Capybara::DSL
 
 end
+
+Dir[Rails.root.join('spec/support/**/*.rb')].each { |file| require file }

@@ -1,0 +1,15 @@
+<div class="row">
+  <div class="col-md-10">
+    <h2><%= I18n.t(:my_product, scope: :top_menu) %></h2>
+    <hr>
+  </div>
+  <div class="col-md-2 details__action">
+    <a href="<%= new_shopkeeper_product_path %>"><i class="fa fa-plus tooltipster" title="<%= I18n.t(:new, scope: :edit_product) %>"></i></a>
+  </div>
+</div>
+
+<div class="+overflow">
+  <%= render partial: "shopkeeper/products/table", :locals => { :products => @products } %>
+</div>
+
+<%= will_paginate @products, renderer: BootstrapPagination::Rails %>

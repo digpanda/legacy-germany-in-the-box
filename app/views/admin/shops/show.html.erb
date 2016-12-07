@@ -1,0 +1,18 @@
+<div class="details">
+
+  <div class="row">
+    <div class="col-md-10">
+      <h2><%= @shop.shopname %></h2>
+    </div>
+    <div class="col-md-2 details__action">
+      <a href="<%= admin_user_path(@shop.shopkeeper) %>"><i class="fa fa-user tooltipster" title="<%= @shop.shopkeeper.email %>"></i></a>
+    </div>
+  </div>
+
+  <div class="+small-spacer"></div>
+
+  <div>
+    <%= render partial: 'admin/shops/form', :locals => { :shop => @shop } %>
+  </div>
+
+</div>

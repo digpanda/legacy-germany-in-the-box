@@ -1,0 +1,67 @@
+<!-- TODO : THIS IS VERY MUCH DUPLICATED DESPITE THE FACT WE CHANGED CONTROLLER
+WE SHOULD DEFINITELY MAKE IT MORE DRY VIA customer/addresses/popup AND SUCH -->
+<div class="remodal" data-remodal-id="add-address-dialog">
+  <%= render partial: "customer/addresses/popup/address", :locals => {address: Address.new} %>
+</div>
+
+<div class="col-md-10 col-md-push-1 col-md-pull-1">
+
+<%= form_tag customer_checkout_path, :class => 'dialog-form', :method => :post, :data => {:toggle => 'validator'} %>
+
+  <div class="row">
+    <div class="h3 text-center">
+      <%= I18n.t(:setup_delivery_destination, scope: :checkout) %>
+    </div>
+  </div>
+  <div class="row row-wrap">
+    <% if @addresses.size > 0 %>
+      <% @addresses.each_with_index do |a, i| %>
+        <div class="col-md-4">
+          <div class="panel panel-primary">
+            <div class="panel-heading text-center">
+              <%= I18n.t(:show_address_title, scope: :edit_address) + (i+1).to_s %>
+            </div>
+            <div class="panel-body">
+              <div class="address-box">
+                <%= render partial: 'customer/addresses/table', locals: {address: a} %>
+                <label>
+                  <%= radio_button_tag 'delivery_destination_id', a.id, checked = a.primary %>
+                  <%= I18n.t(:my_destination, scope: :checkout) %>
+                </label>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      <% end %>
+    <% end %>
+
+    <% if @addresses.size < 3 %>
+
+      <div class="col-md-4">
+        <a class="address-box address-box-new" href="#add-address-dialog">
+          <div class="vert-center">
+            <i class="fa fa-plus address-box-new-icon"></i>
+            <p>
+              <%= I18n.t(:add_new_address, scope: :edit_address) %>
+            </p>
+          </div>
+        </a>
+      </div>
+
+    <% end %>
+  </div>
+
+  <%= hidden_field_tag :shop_id, "#{@order.shop.id}" %>
+
+  <div class="row">
+    <div class="col-md-4 col-md-push-4 col-md-pull-4">
+      <div class="row +centered">
+        <div class="+small-spacer"></div>
+        <button type="submit" class="btn-large +checkout-button +centered"> <%= I18n.t(:checkout, scope: :checkout) %> <i class="fa fa-check-circle"></i></button>
+        <div class="+small-spacer"></div>
+      </div>
+    </div>
+  </div>
+
+</div>

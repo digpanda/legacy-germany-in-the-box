@@ -14,7 +14,7 @@ FactoryGirl.define do
         order_payment.parent_transaction_id = nil
         order_payment.transaction_id = nil
         order_payment.transaction_type = "purchase"
-        order_payment.payment_method = nil
+        order_payment.payment_method = :upop
         order_payment.status = :scheduled
       end
     end
@@ -24,7 +24,7 @@ FactoryGirl.define do
         order_payment.parent_transaction_id = nil
         order_payment.transaction_id = "af3864e1-0b2b-11e6-9e82-00163e64ea9f"
         order_payment.transaction_type = "purchase"
-        order_payment.payment_method = nil
+        order_payment.payment_method = :upop
         order_payment.status = :unverified
       end
     end

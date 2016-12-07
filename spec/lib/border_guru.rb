@@ -14,7 +14,7 @@ class RecordedResponses
         @@shop = create(:shop)
         @@product = @@shop.products.first
         @@sku = @@product.skus.first
-        
+
         @@customer = create :customer
         @@shipping_address = @@customer.addresses.first
 
@@ -46,9 +46,6 @@ class RecordedResponses
           cart.decorate.add @@sku, 2
           BorderGuru.calculate_quote(
             cart: cart,
-            shop: @@shop,
-            country_of_destination: ISO3166::Country.new('CN'),
-            currency: 'EUR'
           )
         end
     end
@@ -56,12 +53,7 @@ class RecordedResponses
     def get_shipping
       @@get_shipping ||=
         begin
-          BorderGuru.get_shipping(
-            order: order,
-            shop: @@shop,
-            country_of_destination: ISO3166::Country.new('CN'),
-            currency: 'EUR'
-          )
+          BorderGuru.get_shipping(order: order)
         end
     end
 

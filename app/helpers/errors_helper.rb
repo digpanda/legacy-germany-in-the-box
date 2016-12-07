@@ -3,9 +3,15 @@ module ErrorsHelper
 
   ERRORS_CONFIG = Rails.application.config.errors
 
+  def warn_developers(exception, message='')
+    if $request
+      ExceptionNotifier.notify_exception(exception, :env => $request.env, :data => {:message => message})
+    end
+  end
+
   def throw_resource_not_found(exception=nil)
     dispatch_error_email(exception)
-    render "errors/page_not_found",
+    render "/errors/page_not_found",
            status: :not_found,
            layout: "errors/default"
   end
@@ -14,10 +20,11 @@ module ErrorsHelper
   # or redirect back if already logged-in
   def throw_unauthorized_page(exception=nil)
     dispatch_error_email(exception)
-    flash[:error] = "You are not authorized to access this page"
     if current_user
+      flash[:error] = I18n.t(:page_not_authorized, scope: :title)
       redirect_to NavigationHistory.new(request, session).back(1)
     else
+      flash[:error] = I18n.t(:page_not_authorized_login, scope: :title)
       NavigationHistory.new(request, session).store(:current, :force)
       redirect_to new_user_session_path
     end
@@ -25,7 +32,7 @@ module ErrorsHelper
 
   def throw_server_error_page(exception=nil)
     dispatch_error_email(exception)
-    render "errors/server_error",
+    render "/errors/server_error",
            status: :not_found,
            layout: "errors/default"
   end
@@ -36,7 +43,7 @@ module ErrorsHelper
   end
 
   def throw_app_error(sym, merged_attributes={}, status=:bad_request)
-    render "errors/customized_error",
+    render "/errors/customized_error",
            status: status,
            layout: "errors/default",
            locals: throw_error(sym).merge(merged_attributes)

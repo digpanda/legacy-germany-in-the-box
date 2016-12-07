@@ -41,10 +41,9 @@ class LanguagesController < ActionController::Base # No application because it's
     (ACCEPTED_LOCATIONS.include? language_params[:location]) || language_params[:location].nil? # valid location or nil
   end
 
-  # NOT CURRENTLY IN USE BUT COULD BE USEFUL
-=begin
+  # this is not currently in used in the system but could be re-used someday
   def extract_locale
     request.env['HTTP_ACCEPT_LANGUAGE'] ? request.env['HTTP_ACCEPT_LANGUAGE'].scan(/^[a-z]{2}/).first : 'de'
   end
-=end
+
 end

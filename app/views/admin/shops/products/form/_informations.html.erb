@@ -1,0 +1,68 @@
+<!-- This allow us to detect we are on the correct page -->
+<%= content_tag(:div, nil, :id => "js-product-form", :data => {:product_id => @product.id.to_s }) %>
+
+<div class="col-md-12">
+
+  <div class="row">
+    <div class="col-md-8 +nopadding">
+      <h3><%= I18n.t(:basic_info, scope: :edit_product) %> (German to Chinese)</h3>
+      <hr>
+    </div>
+    <div class="col-md-4 +right">
+      <span class="+red">*</span> <%= I18n.t(:required_field_info, scope: :edit_shop) %>
+      <hr>
+    </div>
+  </div>
+
+  <!-- Name -->
+  <div class="row">
+    <div class="col-md-2">
+      <label>
+        <%= I18n.t(:name, scope: :edit_product) %> <span class="+red">*</span>
+      </label>
+    </div>
+
+    <%= translate_fields form, :name do |form_field| %>
+      <div class="col-md-5 form-group">
+        <%= form_field.text_field :class => 'form-control', :required => true %>
+        <div class="help-block with-errors"></div>
+      </div>
+    <% end %>
+
+  </div>
+
+  <!-- Product Brand -->
+  <div class="row">
+    <div class="col-md-2">
+      <label>
+        <%= I18n.t(:brand, scope: :edit_product) %> <span class="+red">*</span>
+      </label>
+    </div>
+
+    <%= translate_fields form, :brand do |form_field| %>
+      <div class="col-md-5 form-group">
+        <%= form_field.text_field :class => 'form-control', :required => true %>
+        <div class="help-block with-errors"></div>
+      </div>
+    <% end %>
+
+  </div>
+
+  <!-- Product Description -->
+  <div class="row">
+    <div class="col-md-2">
+      <label>
+        <%= I18n.t(:desc, scope: :edit_product) %> <span class="+red">*</span>
+      </label>
+    </div>
+
+    <%= translate_fields form, :desc do |form_field| %>
+      <div class="col-md-5 form-group">
+        <%= form_field.text_area :class => 'form-control', :required => true %>
+        <div class="help-block with-errors"></div>
+      </div>
+    <% end %>
+
+  </div>
+
+</div>

@@ -1,3 +1,4 @@
+<div class="+overflow">
 <% if @orders.size > 0 %>
   <table class="white-table">
     <thead>
@@ -30,7 +31,7 @@
           <%= I18n.t(:updated_at, scope: :edit_order) %>
         </th>
         <th>
-        Action
+          Action
         </th>
       </tr>
     </thead>
@@ -38,8 +39,8 @@
       <% @orders.each do |order| %>
         <tr>
           <td>
-            <% if order.decorate.total_sum > 0 %>
-              <%= link_to order.id, order_path(order) %>
+            <% if order.decorate.total_price_with_extra_costs > 0 %>
+              <%= link_to order.id, shopkeeper_order_path(order) %>
             <% else %>
               <%= order.id %>
             <% end %>
@@ -59,7 +60,7 @@
             <%= order.total_paid_in_yuan %>
           </td>
           <td>
-            <%= order.decorate.total_sum_in_yuan %> (<%= order.decorate.total_sum_in_euro %>)
+            <%= order.decorate.end_price.in_euro.to_yuan.display %> (<%= order.decorate.end_price.in_euro.display %>)
           </td>
           <td>
             <%= render partial: "shared/orders/partials/files_buttons", locals: { :order => order } %>
@@ -91,7 +92,9 @@
             <% if order.border_guru_shipment_id.nil? %>
               You can't process this order. Our Shipping Partner has not yet returned the shipping details.
             <% else %>
+
             <%= link_to I18n.t(:start_process_shipment, scope: :button), shopkeeper_order_process_order_path(order), method: :patch, data: { confirm: I18n.t(:confirm_start_processing, scope: :notice) } %>
+
             <% end %>
             <% else %>
               <%= I18n.t(:order_not_processable, scope: :message) %>
@@ -103,7 +106,6 @@
           <% elsif order.decorate.shippable? %>
             <%= link_to I18n.t(:package_was_sent, scope: :notice), shopkeeper_order_shipped_path(order), method: :patch %>
           <% end %>
-
           <!-- Cancel order -->
           <!--<% if order.decorate.cancellable? %>
             <%= link_to "Cancel", shared_order_cancel_path(order), method: :patch, data: { confirm: "Are you sure you want to cancel this order ?" } %>
@@ -122,3 +124,4 @@
   </h4>
 </div>
 <% end %>
+</div>

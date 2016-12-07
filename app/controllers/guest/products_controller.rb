@@ -1,14 +1,24 @@
 class Guest::ProductsController < ApplicationController
 
-  before_action :set_product
+  before_action :set_product, :set_shop
 
-  attr_reader :product
-  # Nothing yet (go to /api/)
+  before_action :breadcrumb_home, only: [:show]
+  before_action :breadcrumb_category, :breadcrumb_shop, :breadcrumb_product, only: [:show]
+
+  attr_reader :product, :shop
+
+  def show
+    @featured_sku = product.decorate.featured_sku.decorate
+  end
 
   private
 
   def set_product
-    @product = OrderItem::find(params[:id]) unless params[:id].nil?
+    @product = Product.find(params[:id])
+  end
+
+  def set_shop
+    @shop = product.shop
   end
 
 end

@@ -1,0 +1,54 @@
+<div class="remodal" data-remodal-id="add-address-dialog">
+  <%= render partial: "shopkeeper/addresses/popup/address", :locals => {address: Address.new} %>
+</div>
+
+<% @addresses.each_with_index do |address, i| %>
+
+<div class="remodal" data-remodal-id="edit-address-dialog-<%= address.id %>">
+  <%= render partial: "shopkeeper/addresses/popup/address", :locals => {address: address} %>
+</div>
+
+<div class="col-md-4">
+  <div class="panel panel-primary">
+    <div class="panel-heading text-center">
+      <%= I18n.t(:show_address_title, scope: :edit_address) + ' ' + (i+1).to_s %>
+    </div>
+    <div class="panel-body">
+      <div class="address-box">
+
+        <%= link_to '', shopkeeper_address_path(address), method: :delete, data: { confirm: I18n.t(:delete_address_message, scope: :edit_address) }, "data-placement" => "right",  class: 'address-box-remove' %>
+
+        <a class="address-box-edit popup-text" data-effect="mfp-move-from-top" data-placement="right" data-toggle="tooltip" href="#edit-address-dialog-<%= address.id %>"></a>
+
+        <%= render partial: 'table', locals: {address: address} %>
+
+        <div class="form-group">
+          <%= label_tag :primary do %>
+            <% checked = address.primary %>
+            <%= "#{I18n.t(:type, scope: :edit_address)} : #{ I18n.t(address.type, scope: :edit_address) }" %>
+          <% end %>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<% end %>
+
+<% if @addresses.size < Rails.configuration.max_num_addresses %>
+
+<div class="col-md-4">
+  <a class="address-box address-box-new" href="#add-address-dialog">
+    <div class="vert-center">
+      <i class="fa fa-plus address-box-new-icon"></i>
+      <p>
+        <%= I18n.t(:add_new_address, scope: :edit_address) %>
+      </p>
+    </div>
+  </a>
+</div>
+
+<% end %>
+
+</div>

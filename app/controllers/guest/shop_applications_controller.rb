@@ -3,6 +3,7 @@ require "net/http"
 
 class Guest::ShopApplicationsController < ApplicationController
 
+  before_action :force_german
   attr_reader :shop_application
 
   def new
@@ -45,6 +46,10 @@ class Guest::ShopApplicationsController < ApplicationController
       :role => :shopkeeper
     })
 
+  end
+
+  def force_german
+    force_german!
   end
 
   def shop_params

@@ -1,0 +1,34 @@
+<%= translation_js(:non_selected_text, :multiselect) %>
+<%= translation_js(:n_selected_text, :multiselect) %>
+<%= translation_js(:max_exceeded_message, :image_upload) %>
+<%= translation_js(:ext_error_message, :image_upload) %>
+
+<!-- This allow us to detect we are on the correct page -->
+<%= content_tag(:div, nil, :id => "js-sku-form", :data => {}) %>
+
+<%= form_for [:admin, @shop, @product, @sku], :html => {:data => {:toggle => 'validator'}, :id => 'sku_form'} do |form| %>
+
+  <div class="row details__block">
+    <%= render partial: "admin/shops/products/skus/form/main_data", :locals => {:form => form} %>
+  </div>
+
+  <div class="row details__block">
+    <%= render partial: "shopkeeper/products/skus/form/options", :locals => {:form => form} %>
+  </div>
+
+  <div class="row details__block">
+    <%= render partial: "shopkeeper/products/skus/form/details", :locals => {:form => form} %>
+  </div>
+
+  <div class="row details__block">
+    <%= render partial: "shopkeeper/products/skus/form/images", :locals => {:form => form} %>
+  </div>
+
+  <div class="row details__block">
+    <%= render partial: "shopkeeper/products/skus/form/agreement", :locals => {:form => form} %>
+  </div>
+
+
+  <%= form.submit :class => 'btn btn-primary', :value => I18n.t(:update_sku, scope: :edit_product_detail), :id => 'edit_product_detail_form_btn' %>
+
+<% end %>

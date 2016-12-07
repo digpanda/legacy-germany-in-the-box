@@ -12,6 +12,10 @@ module BorderGuru
         !!response_data[:success]
       end
 
+      def slack_feedback
+        SlackDispatcher.new.message("#{@request.response.body}")
+      end
+      
       private
 
       # it's the same variable as response_body, maybe we should change this duplicate and also symbolize everything
@@ -37,6 +41,12 @@ module BorderGuru
         end
       end
 
+      def error_message
+        if response_body.dig(:error)
+          response_body[:error][:message]
+        end
+      end
+
       def reason_error
         if response_body.dig(:success) && response_body[:success] == false
           response_body[:reason][:message]
@@ -54,7 +64,6 @@ module BorderGuru
         @response_body ||= JSON.parse(@request.response.body).deep_symbolize_keys
       rescue JSON::ParserError => e
         Rails.logger.error("Tried to JSON.parse an incompatible body : #{e}")
-        #@response_body = {} # never fails
         raise BorderGuru::Error.new e
       ensure
         @response_body
@@ -63,4 +72,3 @@ module BorderGuru
     end
   end
 end
-

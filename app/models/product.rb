@@ -10,18 +10,17 @@ class Product
   field :brand, type: String, localize: true
   field :cover, type: String # deprecated ?
   field :desc, type: String, localize: true
-  field :tags, type: Array, default: Array.new(Rails.configuration.max_num_tags)
   field :status, type: Boolean, default: true
   field :approved, type: Time
   field :hs_code, type: String
+  field :highlight, type: Boolean, default: false
 
   embeds_many :options, inverse_of: :product, cascade_callbacks: true, class_name: 'VariantOption'
   embeds_many :skus, inverse_of: :product, cascade_callbacks: true
 
-  has_and_belongs_to_many :collections, inverse_of: :products
-  has_and_belongs_to_many :categories, inverse_of: :products
+  has_and_belongs_to_many :categories
 
-  has_many :order_items, inverse_of: :product
+  has_many :order_items
 
   belongs_to :shop, inverse_of: :products
   belongs_to :duty_category, inverse_of: :products, counter_cache: true
@@ -41,30 +40,112 @@ class Product
   validates :desc, length:                   { maximum: MAX_LONG_TEXT_LENGTH }
   #validates :tags, length:                   { maximum: Rails.configuration.max_num_tags                        }
 
-  scope :is_active,       ->         { self.and(:status  => true, :approved.ne => nil)   }
-  scope :has_sku,         ->         { where("skus.0"    => {"$exists" => true})         }
-  scope :has_hs_code,     ->         { where(:hs_code.ne => nil)                         }
-  scope :has_tag,         -> (value) { where(:tags       => value)                       }
-  scope :can_show,        ->         { self.is_active.has_sku                             }
-  scope :by_brand,        ->         { self.order(:brand => :asc)                                }
-  scope :can_buy,         ->         { self.is_active.has_hs_code.has_sku.can_buy_from_shop }
-  scope :can_buy_from_shop, ->       { self.in(shop: Shop.only(:id).can_buy.map(&:id))   }
+  scope :is_active,   -> { self.and(:status  => true, :approved.ne => nil) }
+  scope :has_sku,     -> { self.where(:'skus.0' => {:$exists => true }) }
+  scope :has_hs_code, -> { self.where(:hs_code.ne => nil) }
+
+  # we fetch all the `available_skus` and only select
+  # the product containing the correct skus
+  # NOTE : this method could be shortened
+  # and improved via metaprogramming
+  scope :has_available_sku, -> do
+    skus_ids = self.all.reduce([]) do |acc, product|
+        acc << product.available_skus.map(&:id)
+    end.flatten
+    self.where("skus._id" => {"$in" => skus_ids})
+  end
+
+  # scope :has_tag,     -> (value) { where(:tags       => value)                     }
+
+  # only available products which are active and got skus
+  scope :can_show,          -> { self.is_active.has_sku.has_available_sku }
+
+  # the main difference between can show and can buy is the fact the customer
+  # can effectively select the sku and buy the item because
+  # it has stocks and is available
+  scope :can_buy,           -> { self.can_show.has_hs_code.available_from_shop }
+
+  # we should investigate on the exact reason this line exists
+  scope :available_from_shop, -> { self.in(shop: Shop.only(:id).map(&:id)) }
+
+  scope :by_brand,          -> { self.order(:brand => :asc)                      }
 
   index( {name: 1          }, {unique: false, name: :idx_product_name                        })
   index( {brand: 1         }, {unique: false, name: :idx_product_brand                       })
   index( {shop: 1          }, {unique: false, name: :idx_product_shop                        })
   index( {tags: 1          }, {unique: false, name: :idx_product_tags, sparse: true          })
   index( {users: 1         }, {unique: false, name: :idx_product_users, sparse: true         })
-  index( {collections: 1   }, {unique: false, name: :idx_product_collections, sparse: true   })
   index( {categories: 1    }, {unique: false, name: :idx_product_categories, sparse: true    })
   index( {duty_category: 1 }, {unique: false, name: :idx_product_duty_category, sparse: true })
 
   class << self
 
-    def search(query)
-      Product.can_buy.where(name: /(#{query.split.join('|')})/i)
+    # def search(query)
+    #   Product.can_buy.where(name: /(#{query.split.join('|')})/i)
+    # end
+
+    # TODO : to improve
+    # right now it doesn't order by discount
+    # also the `each` could be replaced by something for sure.
+    def with_discount
+      with_discount ||= []
+      self.all.each do |product|
+        if product.skus.where(:discount.gt => 0).count > 0
+          with_discount << product
+        end
+      end
+      with_discount
     end
 
+    def with_highlight
+      self.where(highlight: true)
+    end
+
+    def discount_products
+      self.all.to_a.each do |product|
+        if product.discount?
+          return true
+        end
+      end
+      false
+    end
+
+    # fetch the product and place them sorted by category
+    # one product can have multiple categories
+    def categories_array
+      products_hash ||= {}
+      self.all.each do |product|
+        product.categories.each do |category|
+          products_hash["#{category.id}"] ||= []
+          products_hash["#{category.id}"] << product
+        end
+      end
+      products_hash
+    end
+
+  end
+
+  before_save :ensure_base_variant
+
+  # if the product is saved without variant option
+  # we will force to create at least one which's standard
+  # this is to make sure the product will be complete
+  # and not half-done the way (price etc.)
+  # we should make the global system better but for now it stays
+  # consistent.
+  def ensure_base_variant
+    if self.options.count == 0
+      option = self.options.build
+      option.name = "Standard"
+      suboption = option.suboptions.build
+      suboption.name = "Standard"
+    end
+  end
+
+  # total item available to sell
+  # NOTE : calculation for the display on shopkeeper area, might be a duplicate but no time to check
+  def total_skus_quantities
+    skus.map(&:quantity).reduce(:+)
   end
 
   def favorite_of?(user)
@@ -80,16 +161,40 @@ class Product
     status == true && approved != nil
   end
 
+  def removable?
+    order_items.count == 0
+  end
+
   def has_option?
     options&.select { |o| o.suboptions&.size > 0 }.size > 0
   end
 
   def grouped_variants_options
-    options.map { |v| [v.name, v.suboptions.sort { |a,b| a.name <=> b.name }.map { |o| [ o.name, o.id.to_s]}] }.to_a
+    options.map do |option|
+      [option.name, option.suboptions.names_array]
+    end
+  end
+
+  def grouped_variants_options_names
+    options.map do |option|
+      option.suboptions.names
+    end.join(', ')
   end
 
   def featured_sku
-    @featured_sku ||= skus.is_active.to_a.sort { |s1, s2| s1.unlimited ? 1 : s1.quantity <=> s2.quantity }.last
+    @featured_sku ||= available_skus.first
+  end
+
+  def best_discount_sku
+    @best_discount_sku ||= skus.where(:discount.gt => 0).order_by({:discount => :desc}).first
+  end
+
+  def discount?
+    skus.where(:discount.gt => 0).count > 0
+  end
+
+  def available_skus
+    skus.is_active.in_stock.order_by({:discount => :desc}, {:quantity => :desc})
   end
 
   def sku_from_option_ids(option_ids)

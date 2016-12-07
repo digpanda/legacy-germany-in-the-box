@@ -1,0 +1,12 @@
+<%= link_to '', admin_coupon_path(coupon), :method => :get, :class => 'tooltipster fa fa-eye buttons buttons__edit', :title => "Details and configuration" %>
+
+<% if coupon.cancelled? %>
+<%= link_to '', admin_coupon_approve_path(coupon), :method => :patch, :class => 'tooltipster fa fa-check buttons buttons__add', :title => "Approve" %>
+<% else %>
+<%= link_to '', admin_coupon_cancel_path(coupon), :method => :patch, :class => 'tooltipster fa fa-minus buttons buttons__cancel', :title => "Cancel" %>
+<% end %>
+
+<% if coupon.orders.count == 0 %>
+<%= link_to '', edit_admin_coupon_path(coupon), :method => :get, :class => 'tooltipster fa fa-pencil buttons buttons__add', :title => "Edit this coupon" %>
+<%= link_to '', admin_coupon_path(coupon), :method => :delete, data: { confirm: "Are you sure to remove this coupon ?" }, :class => 'tooltipster fa fa-times buttons buttons__delete', :title => "Delete this coupon" %>
+<% end %>

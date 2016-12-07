@@ -1,0 +1,13 @@
+THIS DOES NOT SEEM TO BE USED WITHIN OUR SYSTEM
+<%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: {method: :post}) do |f| %>
+  <%= devise_error_messages! %>
+  <div class="field">
+    <%= f.label :email %>
+    <br/>
+    <%= f.email_field :email, autofocus: true %>
+  </div>
+  <div class="actions">
+    <%= f.submit I18n.t(:resend_confirmation, scope: :button) %>
+  </div>
+<% end %>
+<%= render "connect/shared/links" %>

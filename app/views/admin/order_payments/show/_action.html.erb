@@ -1,5 +1,5 @@
 
-    <% if @order_payment.unverified? %>
+    <% if @order_payment.unverified? || @order_payment.scheduled? %>
       <%= link_to 'Check the transaction remotely', admin_order_payment_check_path(@order_payment), :method => :post, data: { confirm: "Are you sure you want to refresh this order from the Elastic API ?" }, class: "btn btn-info" %>
     <% end %>
     <% if @order_payment.refundable? %>

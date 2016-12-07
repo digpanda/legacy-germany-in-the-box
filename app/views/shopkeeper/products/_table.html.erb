@@ -1,0 +1,60 @@
+<% if products.size > 0 %>
+  <table class="white-table">
+    <thead>
+      <tr>
+        <th>
+          <label>
+            <%= I18n.t(:image, scope: :edit_product_detail) %>
+          </label>
+        </th>
+        <th>
+          <label>
+            <%= I18n.t(:name, scope: :edit_product) %>
+          </label>
+        </th>
+        <th>
+          <label>
+            <%= I18n.t(:brand, scope: :edit_product) %>
+          </label>
+        </th>
+        <th>
+          <label>
+            <%= I18n.t(:quantity, scope: :edit_product_detail) %>
+          </label>
+        </th>
+        <th>
+          <label>
+            <%= I18n.t(:operations, scope: :edit_product) %>
+          </label>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% products.each do |product| %>
+        <tr>
+          <td>
+            <%= image_tag product.decorate.first_sku_image, :class => 'icon-img' %>
+          </td>
+          <td>
+            <%= product.name %>
+          </td>
+          <td>
+            <%= product.brand %>
+          </td>
+          <td>
+            <%= I18n.t(:quantity_info, scope: :edit_product, total_skus_quantities: product.total_skus_quantities, product_options_size: product.options.size) %>
+          </td>
+          <td align="left">
+            <%= render partial: 'shopkeeper/products/table/action', :locals => { :product => product } %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+<div class="col-md-6 col-md-push-3 col-md-pull-3 +white-box +centered">
+  <h4>
+   <%= I18n.t(:no_products, scope: :cart) %>
+ </h4>
+</div>
+<% end %>

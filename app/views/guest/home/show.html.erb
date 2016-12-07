@@ -1,0 +1,32 @@
+<!-- Slider -->
+<!--
+<div class="row slider">
+
+  = render partial: "guest/home/show/slider"
+
+</div>
+-->
+<!-- Slider -->
+<!--
+<div class="row home-steps">
+
+  <div class="+centered">
+    <h1 style="color:white;">
+    HERE WE SHOW 3 COOL STEPS
+    </h1>
+  </div>
+
+</div>
+-->
+
+<% if potential_customer? %>
+
+  <%= render "guest/home/show/announcements" %>
+  <%= render "guest/home/show/categories" %>
+  <%= render "guest/home/show/home_steps" %>
+
+<% else %>
+
+  <%= render "guest/home/show/marketplace" %>
+
+<% end %>

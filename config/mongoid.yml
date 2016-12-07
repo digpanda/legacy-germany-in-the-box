@@ -3,7 +3,6 @@ production:
     default:
       database: a_chat_development
       hosts:
-        #- 207.226.141.12:27017
         - 192.168.100.100:27017
       options:
         user: gitb
@@ -18,7 +17,8 @@ staging:
     default:
       database: a_chat_development # We could login to the production database for real test
       hosts:
-        - dogen.mongohq.com:10020
+        #- dogen.mongohq.com:10020
+        - aws-eu-central-1-portal.1.dblayer.com:15202
       options:
         user: gitb
         password: lyh2cool

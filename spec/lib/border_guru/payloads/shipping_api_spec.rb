@@ -66,4 +66,3 @@ describe BorderGuru::Payloads::ShippingApi do
   end
 
 end
-

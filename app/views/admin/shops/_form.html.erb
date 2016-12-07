@@ -1,0 +1,42 @@
+<%= form_for [:admin, shop], :data => {:toggle => 'validator'} do |form| %>
+
+  <!-- Header (Images) -->
+  <div class="row details__block">
+    <%= render partial: "shopkeeper/shop/form/header", :locals => {:form => form} %>
+  </div>
+
+  <!-- About (Translatable version) -->
+  <div class="row details__block">
+    <%= render partial: "admin/shops/form/about", :locals => {:form => form} %>
+  </div>
+
+  <!-- Shop (Images) -->
+  <div class="row details__block">
+    <%= render partial: "shopkeeper/shop/form/shop_photos", :locals => {:form => form} %>
+  </div>
+
+  <!-- Certifications (Images) -->
+  <div class="row details__block">
+    <%= render partial: "shopkeeper/shop/form/certifications_photos", :locals => {:form => form} %>
+  </div>
+
+  <!-- Public Informations -->
+  <div class="row details__block">
+    <%= render partial: "shopkeeper/shop/form/public_informations", :locals => {:form => form} %>
+  </div>
+
+  <%= form.button I18n.t(:save, scope: :edit_shop), :class => 'btn btn-primary' %>
+<% end %>
+
+<!-- Everything below is not linked to the direct save of the shop -->
+<div class="+small-spacer"></div>
+
+<!-- Addresses -->
+<div class="row details__block">
+  <%= render partial: "admin/shops/form/addresses", :locals => { :addresses => shop.addresses } %>
+</div>
+
+<!-- Payment Gateways -->
+<div class="row details__block">
+  <%= render partial: "admin/shops/form/payment_gateways", :locals => { :payment_gateways => shop.payment_gateways } %>
+</div>

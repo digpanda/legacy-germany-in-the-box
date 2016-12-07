@@ -14,6 +14,7 @@ module Wirecard
                 :credentials,
                 :merchant_id,
                 :secret_key,
+                :payment_method,
                 :request_id,
                 :currency,
                 :hosted_payment_url,
@@ -31,29 +32,22 @@ module Wirecard
 
       @merchant_id          = credentials[:merchant_id]
       @secret_key           = credentials[:secret_key]
+      @payment_method       = credentials[:payment_method]
 
       @request_id           = SecureRandom.uuid
       @currency             = DEFAULT_PAYMENT_CURRENCY
 
-      @hosted_payment_url   = CONFIG[:hosted_payment_url]
+      @hosted_payment_url   = CONFIG[payment_method][:hosted_payment_url]
       @default_redirect_url = CONFIG[:default_redirect_url]
 
     end
 
     def amount
-      @amount ||= order.decorate.total_sum_in_yuan.to_f.round(2)
+      @amount ||= order.end_price.in_euro.to_yuan.amount.round(2)
     end
 
     def transaction_type
       CONFIG[:transaction_types][payment_method] || CONFIG[:transaction_types][:default]
-    end
-
-    def payment_method
-      if credentials[:payment_method]
-        credentials[:payment_method].to_sym
-      elsif CONFIG[:default_payment_method]
-        CONFIG[:default_payment_method].to_sym
-      end
     end
 
     def hosted_payment_datas
@@ -79,7 +73,7 @@ module Wirecard
         :transaction_type          => transaction_type,
         :requested_amount          => amount,
         :requested_amount_currency => DEFAULT_PAYMENT_CURRENCY,
-        :attempt_three_d           => true,
+        :attempt_three_d           => false,
         :ip_address                => customer_ip_address,
         :request_signature         => digital_signature,
       }
@@ -87,9 +81,9 @@ module Wirecard
 
     def transaction_details_datas
       {
-        :psp_name                  => CONFIG[:psp_name],
-        :notification_url_1        => CONFIG[:notification_url],
-        #:notification_transaction_state_1 => 'success',
+        :psp_name                  => CONFIG[payment_method][:psp_name],
+        :notification_url        => CONFIG[payment_method][:notification_url],
+        :notification_transaction_state => 'success',
         :locale                    => DEFAULT_PAYMENT_LANGUAGE,
         :order_number              => "#{order.id}",
         :order_detail              => order.desc,

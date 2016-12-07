@@ -30,7 +30,7 @@ module BorderGuruEmail
           :mean_of_transport => MEAN_OF_TRANSPORT,
           :number_of_mean_of_transport => orders.length, # alias of number of packages
           :total_volume => total_volume,
-          :pickup_address => shop.billing_address.decorate.full_address,
+          :pickup_address => shop.billing_address.decorate.german_full_address,
           :destination => DESTINATION,
           :orders_barcodes => barcodes_list,
           :orders_descriptions => clean_descriptions_list

@@ -1,4 +1,41 @@
 zh-CN:
+  shop:
+    minimum_order: 本店最少购物额
+  action:
+    removed_image: 图片被成功删除
+    no_removed_image: 删除图片未能成功
+  sku:
+    clone_successful: 复制成功
+  landing_page:
+    highlight_of_the_day: 本日精选
+    see_more: 更多精选商品
+  discount:
+    discount: 打折
+  product_box:
+    taxes_per_unit: 税额
+    shipping_and_taxes_excluded: 不含运费及关税
+  coupon:
+    no_minimum_price: "无法使用本代金券，因为未达到使用代金券的最低购物金额（不含物流及关税）： %{minimum} 人民币。"
+    cannot_apply:  此折扣码不适用于该订单。
+    error_occurred_applying: 使用折扣码时出现错误。
+    not_valid_anymore: 此折扣码已失效。
+    cannot_remove: 无法删除已用于该订单的折扣码。
+    error_occurred_removing: 删除折扣码时出现错误。
+    apply: 使用
+    remove_coupon: 删除折扣码。
+    new_price: 折后价格。
+    coupon: 折扣码
+    applied_successfully: 此优惠券已被成功使用。
+    applied_fail: 此优惠券不存在。
+  product_left:
+    only: 只剩
+    left: 件
+    no_stock_left: 已售罄
+    not_ready_to_sell: 该店铺正在装修，尚未营业
+  password_recovery:
+    email_not_found: 这个邮件地址没有找到哦
+    instruction_sent: 请检查你的收件箱，按提示操作重新设置密码！
+    password_updated: 恭喜！你已经成功设置了一个新的密码！
   feedback:
     bug_report:  纠错处
     payment_speed_report: 支付页面速度反馈
@@ -27,6 +64,7 @@ zh-CN:
   breadcrumb:
     home: 首页
   title:
+    we_need_more_info: 下单前，我们必须知道你的联系方式
     title: 名称
     shop_photo: 商家照片
     date: 日期
@@ -44,6 +82,7 @@ zh-CN:
     change_your_password: 更改密码
     page_not_found: 没有找到该页面
     server_error: 服务器出错
+    page_not_authorized_login: 请先登录或者注册进行下步操作！
     page_not_authorized: 没有访问该页面的权限
   notice:
     payment_removed: 支付成功取消
@@ -54,7 +93,7 @@ zh-CN:
     order_not_processable: 该订单目前还不能处理，请稍候再试！
     order_processing: 该订单正在处理，您很快就可以发货。
     shipping_partner_problem: 物流系统错误，请稍后再试。
-    wechat_login: 微信登陆成功！
+    wechat_login: 微信登录成功！
     wechat_login_fail: 不能取得你的微信身份，稍候再试一下吧！
     account_conflict: 浏览记录过期，请联系客服
     success_subscription: 祝贺你成功注册！
@@ -69,7 +108,7 @@ zh-CN:
     new_password: 新密码
     confirm_new_password: 确认新密码
     login_or: 或者
-  signin: 登陆
+  signin: 登录
   back: 返回
   locales:
     de: 德语
@@ -82,7 +121,7 @@ zh-CN:
     positive_integer: '^[0-9]*$'
     positive_integer_less_or_equal_than_100: '^[1-9][0-9]?$|^100$|^0$'
     positive_float: '^([0-9]*[1-9][0-9]*(\.[0-9]{1,2})?|[0]+\.[0-9]*[1-9][0-9]*)$'
-    positive_float_equal_or_greater_than_0: '^(0(\.[0]{1,2})?|[0-9]*[1-9][0-9]*(\.[0-9]{1,2})?|[0]+\.[0-9]*[1-9][0-9]*)$'
+    positive_float_equal_or_greater_than_0: '^[0-9]*(\.)*[0-9]$'
     zip: '\d{6,6}'
     mobile: '(^(13\d|15[^4,\D]|17[13678]|18\d)\d{8}|170[^346,\D]\d{7})$'
     tel: '^([0-9]*)$'
@@ -101,7 +140,7 @@ zh-CN:
     notifications: 平台通知
     support: Support
     top_menu: 菜单
-    sign_in: 登陆
+    sign_in: 登录
     sign_up: 注册
     sign_out: 登出
     my_cart: 购物车
@@ -128,13 +167,16 @@ zh-CN:
     german: 德语/DE
     user_profile: 用户概要
     wrong_captcha: 验证码不一致
-    email_confirmation_msg: 我们已经向您的注册邮箱发送了一封确认邮件，请您登陆前先确认。
+    email_confirmation_msg: 我们已经向您的注册邮箱发送了一封确认邮件，请您登录前先确认。
     shops: 店铺管理
     categories: 产品目录管理
     payments: 支付管理
     settings: 平台设置
     notifications: 平台通知
   footer:
+    icp_registration: 粤ICP备16044763号
+    business_model: 来因盒商业模式
+    shipping_price: 运费表
     payment_methods: 支付方式
     germany_in_the_box: 来因盒
     feedback: 反馈及建议
@@ -165,11 +207,11 @@ zh-CN:
     news_ihk_titel: 诚挚感谢！
     news_ihk: 我们诚挚感谢德国巴伐利亚州工商联（<strong>IHK Bayern</strong>）和手工业联（<strong>Handwerkskammer Bayern</strong>）对来因盒的赞助。感谢对我们模式的认可，支持我们把高品质德国产品从制造端直接带给中国消费者。
   sign_in_dialog:
-    email: 登陆邮箱
+    email: 登录邮箱
     password: 密码
-    header: 用户登陆
-    title: 亲，欢迎您回来！快点登陆吧!
-    remember_me: 保持登陆
+    header: 用户登录
+    title: 亲，欢迎您回来！快点登录吧!
+    remember_me: 保持登录
     not_member_yet: 我要注册
     forgot_password: 忘记密码
     captcha: 验证码
@@ -177,7 +219,7 @@ zh-CN:
     wechat_auth_failed: 请您授权我们的平台可以访问您的用户信息.
   sign_up_dialog:
     username: 用户昵称
-    email: 登陆邮箱
+    email: 登录邮箱
     password: 密码
     password_confirmation: 重复密码
     header: 新用户注册
@@ -189,7 +231,7 @@ zh-CN:
   password_recovery_dialog:
     header: 密码恢复
     title: 忘记密码？别担心，我们来帮！
-    email: 登陆邮箱
+    email: 登录邮箱
     ok: 获取新密码
   edit_accounts:
     operations: 操作
@@ -208,9 +250,9 @@ zh-CN:
     change_initial_password: 我们建议，修改系统给您设定初始密码，方便您记忆。
     password_info: 密码最小长度为8个字符
     password_match_error: 密码必须一致
-    last_sign_in_at: 最后登陆
+    last_sign_in_at: 最后登录
     role: 角色
-    sign_in_count: 登陆次数
+    sign_in_count: 登录次数
     shopkeeper_photo: 店主照片
     shopkeeper_photo_info: 您的照片会给您的店铺增色不少
   edit_following:
@@ -312,7 +354,7 @@ zh-CN:
     shipping_cost: 物流费用
     tax_and_duty_cost: 海关税费
     duty_and_shipping_cost: 关税物流费用
-    total_sum: 总计
+    total_price_with_extra_costs: 总计
     new: 尚未付款
     paying: 等待付款
     paid: 已付款
@@ -436,7 +478,7 @@ zh-CN:
     sales_channel: 链接或者名称
     website: 企业主页
     agb: 条款可法律声明
-    agb_statement: 在此保证，我已经清楚的阅读DigPanda有限公司的<a href='/page/agb' target='blank'>使用条款</a>，并且同意并接受此条款。
+    agb_statement: 在此保证，我已经清楚的阅读DigPanda有限公司的<a href='/guest/pages/agb' target='blank'>使用条款</a>，并且同意并接受此条款。
     required_field_info: '必填字段'
     underline_field_info: '_ 翻译字段'
     company_name_placeholder: '示例 有限公司'
@@ -454,6 +496,7 @@ zh-CN:
     merchant_id: 卖家ID
     bg_merchant_id: Borderguru商号
   edit_product:
+    skus: 库存管理
     edit: 修改
     remove: 删除产品
     basic_info: 产品概要
@@ -489,7 +532,7 @@ zh-CN:
     cancel: 取消
     product_seal: 产品认证
     product_seal_info: 这里您可以上传产品认证。
-    quantity_info: '%{num2}个型号，共%{num1}件'
+    quantity_info: '%{product_options_size}个型号，共%{total_skus_quantities}件'
     quantity: 数量
     duty_category: 报关产品分类
     duty_category_info: 明确的报关产品归类更好的对产品进行物流。
@@ -545,8 +588,8 @@ zh-CN:
     customizable_info: 此产品可定制
     return: 返回产品列表
     cancel: 取消
-    space_weight: 产品尺寸(长x宽x高)和重量
-    space_weight_info:  请您填写此产品的产品尺寸。
+    space_: 产品尺寸(长x宽x高)和重量
+    space_info:  请您填写此产品的产品尺寸。
     cm: 厘米
     clone: 克隆
     piece: 件
@@ -623,13 +666,17 @@ zh-CN:
     delete_sku_msg: 您确定要从购物车中删除此产品吗？
     greater_than_zero: 产品数量必须大于1, 删除请您点击右侧的叉键。
   checkout:
+    have_your_payment_been_successful: 若支付结束，可点击下方按钮以查看支付结果。
+    refresh_page_button: 查看支付结果
+    notice_order_already_paid: 支付成功
+    choose_your_payment_method: 请选择支付方式
     my_destination: 收货地址
     setup_delivery_destination: 请您指定收货地址
     checkout: 下单
     checkout_ok: 下单成功
     checkout_ko: 下单失败
     not_all_available: 产品： %{product_name}, 型号： (%{option_names}) 缺货中, 请您稍后再试或者减少这个产品订货数量
-    not_all_min_total_reached: 您在 %{shop_name} 的购物额为 %{total_price} %{currency} 没有达到最小交易值 %{min_total} %{currency}, 请您增加您这个店铺的交易额
+    not_all_min_total_reached: 您在 %{shop_name} 的购物额为 %{total_price} 没有达到最小交易值 %{min_total}, 请您增加您这个店铺的交易额
     redirect_to_payment: 亲爱的用户，因为我们支付商的服务器在德国，所以支付流程比普通的要稍慢，请谅解！
     borderguru_unreachable_at_quoting: 物流系统合作商的系统繁忙，请您稍后尝试！
     borderguru_unreachable_at_shipping: 物流系统合作商的系统繁忙，请您联系管理员！

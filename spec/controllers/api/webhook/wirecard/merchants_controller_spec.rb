@@ -1,5 +1,10 @@
 describe Api::Webhook::Wirecard::MerchantsController, :type => :controller do
 
+
+  # for further test with postman :
+  # {"merchant_id":"160927SHO","merchant_status":"ACTIVE","reseller_id":"nba81H29Gba","wirecard_credentials":{"ee_user_cc":"TEST-USER","ee_password_cc":"TEST-PASSWORD","ee_secret_cc":"TEST-SECRET-CREDITCARD","ee_maid_cc":"TEST-MAID-CREDITCARD"}}
+  # don't forget to replace the merchant_id by a valid one on database (User.where(role: :shopkeeper).first for instance)
+
   render_views # jbuilder requirement
 
   describe "#create" do
@@ -59,12 +64,12 @@ describe Api::Webhook::Wirecard::MerchantsController, :type => :controller do
 
       end
 
-      it "should change the merchant status as active, fill its wirecard credentials and return a success" do
+      it "should change the merchant status as active, return a success" do
 
         params = {"merchant_id" => "#{shopkeeper.shop.merchant_id}", "merchant_status": "ACTIVE", "reseller_id": Rails.application.config.wirecard[:merchants][:reseller_id],
                   "wirecard_credentials" => {"ee_user_cc"=>"TEST-USER",
-                                             "ee_password_cc"=>"TEST-PASSWORD", 
-                                             "ee_secret_cc"=>"TEST-SECRET", 
+                                             "ee_password_cc"=>"TEST-PASSWORD",
+                                             "ee_secret_cc"=>"TEST-SECRET",
                                              "ee_maid_cc"=>"TEST-MAID"}
                   }
         post :create, request_wirecard_post(params)
@@ -72,10 +77,80 @@ describe Api::Webhook::Wirecard::MerchantsController, :type => :controller do
         expect(response_json_body["success"]).to eq(true) # Check if the server replied properly
         shopkeeper.reload # database refreshed meanwhile
         expect(shopkeeper.shop.wirecard_status).to eq(:active)
-        expect(shopkeeper.shop.wirecard_ee_user_cc).to eq("TEST-USER")
-        expect(shopkeeper.shop.wirecard_ee_password_cc).to eq("TEST-PASSWORD")
-        expect(shopkeeper.shop.wirecard_ee_secret_cc).to eq("TEST-SECRET")
-        expect(shopkeeper.shop.wirecard_ee_maid_cc).to eq("TEST-MAID")
+        expect(shopkeeper.shop.payment_gateways.first.merchant_id).to eq("TEST-MAID")
+        expect(shopkeeper.shop.payment_gateways.first.merchant_secret).to eq("TEST-SECRET")
+        expect(shopkeeper.shop.payment_gateways.first.payment_method).to eq(:creditcard)
+
+      end
+
+      it "should throw an error with unrecognized payment method" do
+
+        params = {"merchant_id" => "#{shopkeeper.shop.merchant_id}", "merchant_status": "ACTIVE", "reseller_id": Rails.application.config.wirecard[:merchants][:reseller_id],
+                  "wirecard_credentials" => {"ee_user_wrong"=>"TEST-USER",
+                                             "ee_password_wrong"=>"TEST-PASSWORD",
+                                             "ee_secret_wrong"=>"TEST-SECRET-CREDITCARD",
+                                             "ee_maid_wrong"=>"TEST-MAID-CREDITCARD"}
+                  }
+
+
+        post :create, request_wirecard_post(params)
+        expect(response).to have_http_status(:bad_request)
+        expect(response_json_body["success"]).to eq(false) # Check if the server replied properly
+        expect(response_json_body["code"]).to eq(1) # Error code from errors.yml
+
+      end
+
+      it "should change the merchant status as active, fill its wirecard credentials for 3 different gateway, and update one of them" do
+
+        # CREDIT CARD
+        params = {"merchant_id" => "#{shopkeeper.shop.merchant_id}", "merchant_status": "ACTIVE", "reseller_id": Rails.application.config.wirecard[:merchants][:reseller_id],
+                  "wirecard_credentials" => {"ee_user_cc"=>"TEST-USER",
+                                             "ee_password_cc"=>"TEST-PASSWORD",
+                                             "ee_secret_cc"=>"TEST-SECRET-CREDITCARD",
+                                             "ee_maid_cc"=>"TEST-MAID-CREDITCARD"}
+                  }
+
+        post :create, request_wirecard_post(params)
+
+        expect(response).to have_http_status(:ok)
+
+        # UNION PAY
+        params = {"merchant_id" => "#{shopkeeper.shop.merchant_id}", "merchant_status": "ACTIVE", "reseller_id": Rails.application.config.wirecard[:merchants][:reseller_id],
+                  "wirecard_credentials" => {"ee_user_cup"=>"TEST-USER",
+                                             "ee_password_cup"=>"TEST-PASSWORD",
+                                             "ee_secret_cup"=>"TEST-SECRET-UPOP",
+                                             "ee_maid_cup"=>"TEST-MAID-UPOP"}
+                  }
+        post :create, request_wirecard_post(params)
+        expect(response).to have_http_status(:ok)
+
+        # PAYPAL
+        params = {"merchant_id" => "#{shopkeeper.shop.merchant_id}", "merchant_status": "ACTIVE", "reseller_id": Rails.application.config.wirecard[:merchants][:reseller_id],
+                  "wirecard_credentials" => {"ee_user_paypal"=>"TEST-USER",
+                                             "ee_password_paypal"=>"TEST-PASSWORD",
+                                             "ee_secret_paypal"=>"TEST-SECRET-PAYPAL",
+                                             "ee_maid_paypal"=>"TEST-MAID-PAYPAL"}
+                  }
+        post :create, request_wirecard_post(params)
+        expect(response).to have_http_status(:ok)
+
+        expect(response_json_body["success"]).to eq(true) # Check if the server replied properly
+        shopkeeper.reload # database refreshed meanwhile
+        expect(shopkeeper.shop.wirecard_status).to eq(:active)
+        expect(shopkeeper.shop.payment_gateways.count).to eq(3)
+        expect(shopkeeper.shop.payment_gateways.where(payment_method: :upop).first.merchant_secret).to eq("TEST-SECRET-UPOP")
+
+        # UPDATE UNION PAY
+        params = {"merchant_id" => "#{shopkeeper.shop.merchant_id}", "merchant_status": "ACTIVE", "reseller_id": Rails.application.config.wirecard[:merchants][:reseller_id],
+                  "wirecard_credentials" => {"ee_user_cup"=>"TEST-USER",
+                                             "ee_password_cup"=>"TEST-PASSWORD",
+                                             "ee_secret_cup"=>"TEST-SECRET-UPOP2",
+                                             "ee_maid_cup"=>"TEST-MAID-UPOP2"}
+                  }
+        post :create, request_wirecard_post(params)
+        expect(response).to have_http_status(:ok)
+        expect(shopkeeper.shop.payment_gateways.count).to eq(3)
+        expect(shopkeeper.shop.payment_gateways.where(payment_method: :upop).first.merchant_secret).to eq("TEST-SECRET-UPOP2")
 
       end
 
