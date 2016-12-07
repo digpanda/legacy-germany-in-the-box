@@ -1,7 +1,7 @@
 # destroy / apply coupon and update
 # different areas depending on it
 class CouponHandler < BaseService
-  
+
   Numeric.include CoreExtensions::Numeric::CurrencyLibrary
 
   attr_reader :coupon, :order
@@ -52,7 +52,7 @@ class CouponHandler < BaseService
   # we check for the minimum order price
   # and if the order doesn't have a coupon already
   def valid_order?
-    reached_minimum_order && order.coupon.nil? && coupon.cancelled_at.nil?
+    reached_minimum_order? && order.coupon.nil? && coupon.cancelled_at.nil?
   end
 
   def reached_minimum_order?
