@@ -37,7 +37,8 @@ class OrderMaker < BaseService
     order.order_items.build.tap do |order_item|
       order_item.quantity = quantity
       order_item.product = sku.product
-      order_item.sku = sku.clone
+      # we clone in a clean way the sku
+      SkuCloner.new(order_item, sku).process
       order_item.sku_origin = sku
     end.save!
   end

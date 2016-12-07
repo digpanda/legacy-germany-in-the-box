@@ -19,7 +19,7 @@ class ImageDisplayer
 
   def process(version)
     if Rails.env.development?
-      field_url
+      local_url
     else
       remote_url(version)
     end
@@ -30,13 +30,19 @@ class ImageDisplayer
   def field_url
     if model.send(image_field).present?
       model.send(image_field).url
-    else
-      fallback_url
     end
   end
 
   def fallback_url
     FALLBACK_IMAGE
+  end
+
+  def local_url
+    if valid_field_url?
+      field_url
+    elsif options[:fallback]
+      fallback_url
+    end
   end
 
   def remote_url(version)
