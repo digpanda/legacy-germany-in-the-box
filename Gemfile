@@ -71,7 +71,6 @@ gem "omniauth-wechat-oauth2", git: "https://github.com/yangsr/omniauth-wechat-oa
 
 gem "exception_notification"
 #gem "omniauth-open_wechat"
-
 #gem "newrelic_rpm"
 #gem "newrelic_moped"
 
