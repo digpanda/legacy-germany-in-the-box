@@ -1,5 +1,7 @@
 # DigPanda Technical Guideline
 
+![alt text](https://www.germanyinthebox.com/images/logo-half.png "Germany In The Box")
+
 ## Getting Started
 
 ### Ecosystem
