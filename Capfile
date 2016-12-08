@@ -15,6 +15,9 @@ require 'capistrano/linked_files'
 
 require "whenever/capistrano"
 
+# Add the secrets.yml management
+require 'capistrano/secrets_yml'
+
 # Include tasks from other gems included in your Gemfile
 #
 # For documentation on these, see for example:

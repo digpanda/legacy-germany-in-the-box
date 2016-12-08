@@ -82,6 +82,7 @@ group :development do
   gem "capistrano-rvm"
   gem "capistrano-nvm"
   gem 'capistrano-linked-files'
+  gem 'capistrano-secrets-yml', '~> 1.0.0'
 
   # debug / metrics
   gem "flay"
