@@ -39,7 +39,7 @@ pickle-email-*.html
 # Ignore pow environment settings
 .powenv
 
-config/deploy/staging.rb
+# config/deploy/staging.rb
 
 config/settings.local.yml
 config/settings/*.local.yml

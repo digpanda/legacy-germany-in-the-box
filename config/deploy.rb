@@ -2,7 +2,8 @@
 lock '3.5.0'
 
 set :application, 'germany_in_the_box'
-set :repo_url, 'https://digpanda:achat2cool@bitbucket.org/digpanda/achat-backend-main.git'
+set :repo_url, 'https://github.com/digpanda/germany-in-the-box'
+#set :repo_url, 'https://digpanda:achat2cool@bitbucket.org/digpanda/achat-backend-main.git'
 
 set :passenger_environment_variables, { :path => '/usr/bin:$PATH' }
 set :passenger_restart_command, '/usr/bin/passenger-config restart-app'

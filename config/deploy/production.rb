@@ -12,9 +12,9 @@ set :nvm_map_bins, %w{node npm}
 # set :nvm_custom_path, '/home/digpanda/.nvm'
 
 set :ssh_options, {
-  keys: %w(../private/production/digpanda-prod.pem),
+  keys: %w(../private/production/digpanda-production.pem),
   forward_agent: true,
   auth_methods: %w(publickey, password)
 }
 
-set :branch, ENV['BRANCH'] || :production
+set :branch, ENV['BRANCH'] || :master

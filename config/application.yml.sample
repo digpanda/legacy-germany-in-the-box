@@ -1,0 +1,34 @@
+new_relic_license_key: random
+
+border_guru_merchant_identifier: random
+border_guru_key: random
+border_guru_secret: random
+
+border_guru_ftp_username: random
+border_guru_ftp_password: random
+
+wechat_username: random
+wechat_password: random
+
+wirecard_elastic_api_creditcard_username: random
+wirecard_elastic_api_creditcard_password: random
+wirecard_elastic_api_creditcard_engine_url: random
+
+wirecard_elastic_api_upop_username: random
+wirecard_elastic_api_upop_password: random
+wirecard_elastic_api_upop_engine_url: random
+
+wirecard_merchants_reseller_id: random
+wirecard_merchants_package_id: random
+
+production:
+  wechat_username: random
+  wechat_password: random
+
+  wirecard_elastic_api_creditcard_username: random
+  wirecard_elastic_api_creditcard_password: random
+  wirecard_elastic_api_creditcard_engine_url: random
+
+  wirecard_elastic_api_upop_username: random
+  wirecard_elastic_api_upop_password: random
+  wirecard_elastic_api_upop_engine_url: random
