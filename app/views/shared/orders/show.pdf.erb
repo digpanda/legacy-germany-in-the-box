@@ -54,13 +54,13 @@ CustomerAddress <%= @order.decorate.billing_address.decorate.full_address %><br 
         <%= order_item.product.name %> (<%= order_item.selected_options.join(', ') %>)
       </td>
       <td>
-        <%= order_item.sku.decorate.price_with_currency_euro %>
+        <%= order_item.sku.price.in_euro.display %>
       </td>
       <td>
         <%= order_item.quantity %>
       </td>
       <td>
-        <%= order_item.decorate.total_price_with_currency_euro %>
+        <%= order_item.total_price.in_euro.display %>
       </td>
     </tr>
     <% end %>
@@ -75,7 +75,7 @@ CustomerAddress <%= @order.decorate.billing_address.decorate.full_address %><br 
       Gesamt
       </td>
       <td>
-      <%= @order.decorate.total_price_with_currency_euro %>
+      <%= @order.total_price.in_euro.display %>
       </td>
     </tr>
   </tbody>

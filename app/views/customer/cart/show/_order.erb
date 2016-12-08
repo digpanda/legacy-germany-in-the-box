@@ -62,7 +62,11 @@
 
         </td>
         <td>
-          <%= order_item.order.decorate.bought? ? order_item.decorate.price_with_currency_yuan : order_item.sku.decorate.price_with_currency_yuan %>
+          <% if order_item.order.decorate.bought? %>
+            <%= order_item.price.in_euro.to_yuan.display %>
+          <% else %>
+            <%= order_item.sku.price.in_euro.to_yuan.display %>
+          <% end %>
           <% if order_item.sku.discount > 0 %>
           <span class="+discount"><%= order_item.sku.decorate.discount_with_percent %></span>
           <% end %>

@@ -1,6 +1,7 @@
 class ProductDecorator < Draper::Decorator
 
   include ActionView::Helpers::TextHelper # load some important helpers
+  Numeric.include CoreExtensions::Numeric::CurrencyLibrary
 
   delegate_all
   decorates :product
@@ -52,23 +53,23 @@ class ProductDecorator < Draper::Decorator
   end
 
   def preview_price_yuan
-    self.featured_sku.decorate.price_with_currency_yuan
+    self.featured_sku.price.in_euro.to_yuan.display
   end
 
   def preview_fees_yuan_html
-    self.featured_sku.decorate.fees_with_currency_yuan_html
+    self.featured_sku.estimated_fees.in_euro.to_yuan.display_html
   end
 
   def preview_price_yuan_html
-    self.featured_sku.decorate.price_with_currency_yuan_html
+    self.featured_sku.price.in_euro.to_yuan.display_html
   end
 
   def preview_price_euro
-    self.featured_sku.decorate.price_with_currency_euro
+    self.featured_sku.price.in_euro.display
   end
 
   def preview_price_euro_html
-    self.featured_sku.decorate.price_with_currency_euro_html
+    self.featured_sku.price.in_euro.display_html
   end
 
 end
