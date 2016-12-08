@@ -26,8 +26,8 @@
 
 ### Setup your application
 
-- git clone git@github.com:digpanda/germany-in-the-box.git
-- bundle install
+- Use `git clone git@github.com:digpanda/germany-in-the-box.git`
+- Use `bundle install`
 - Install MongoDB on your machine and create a new user you will use for the project. Set it up in the configuration.
 - Add the `secrets.yml` and `application.yml` that was previously given to you.
 - Populate the sample data with `rake digpanda:remove_and_create_complete_sample_data`
