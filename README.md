@@ -43,7 +43,7 @@ As we don't use the assets pipeline, you must compile from somewhere else. Go to
 
 ### Code conventions
 
-We primarly respect [Ruby Style Guide](https://github.com/bbatsov/ruby-style-guide) mixed with DigPanda Ruby Guideline
+We primarly respect [Ruby Style Guide](https://github.com/bbatsov/ruby-style-guide) mixed with [DigPanda Rails Guideline](https://github.com/digpanda/germany-in-the-box/wiki/DigPanda-Rails-Guideline)
 
 ### More
 
