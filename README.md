@@ -1,4 +1,4 @@
-# DigPanda Technical Guideline
+# Germany In The Box
 
 ![alt text](https://www.germanyinthebox.com/images/logo-half.png "Germany In The Box")
 
