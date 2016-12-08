@@ -34,10 +34,10 @@
 
 ### Start your application
 
-### Back-end
+#### Back-end
 
 Go to the project directory and type `rails s`
-### Front-end
+#### Front-end
 
 As we don't use the assets pipeline, you must compile from somewhere else. Go to the `app_front/` directory and type `brunch watch` ; the pages will automatically reload when you change a file within this folder.
 
