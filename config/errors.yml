@@ -41,3 +41,11 @@ bad_language:
 resource_found:
   code: 10
   error: "Resource found."
+
+page_not_found:
+  code: 11
+  error: "Page not found."
+
+server_error:
+  code: 12
+  error: "Server error."

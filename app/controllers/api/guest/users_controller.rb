@@ -1,4 +1,4 @@
-class Api::Guest::UsersController < ApplicationController
+class Api::Guest::UsersController < Api::ApplicationController
 
   before_action :missing_email_param?, :only => [:find_by_email, :unknown_by_email]
 

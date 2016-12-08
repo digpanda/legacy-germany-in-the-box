@@ -3,7 +3,7 @@
 # WARNING : the prefered way it the HTML injection + catch from library right now
 # this AJAX system sadly make too many aysnchronous call and force callbacks everywhere which i want to avoid
 # - Laurent
-class Api::Guest::TranslationsController < ApplicationController
+class Api::Guest::TranslationsController < Api::ApplicationController
 
   def index
   end
