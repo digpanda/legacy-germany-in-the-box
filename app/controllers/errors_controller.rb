@@ -5,7 +5,7 @@ class ErrorsController < ActionController::Base
   # we manage the `deep` errors here, showing a JSON answer if we are within the API area
   # or showing the error page if we aren't.
   # this level is initialized directly from the router therefore those output
-  # will be generated before the `application_contrller`
+  # will be generated before the `application_controller`
   # error management (resource not found, etc.)
 
   include ErrorsHelper
