@@ -35,7 +35,7 @@ class ErrorsController < ActionController::Base
   private
 
   def api?
-    (env["REQUEST_PATH"] =~ /^\/api/) == 0
+    (env["REQUEST_URI"] =~ /^\/api/) == 0
   end
 
 end
