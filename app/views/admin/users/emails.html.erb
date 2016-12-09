@@ -1,0 +1,53 @@
+<div class="row">
+  <div class="col-md-10">
+    <h2>Users Emails list</h2>
+    Those emails are from all the users account and are guaranteed unique on the list.
+    <hr>
+  </div>
+  <div class="col-md-2 details__action">
+  </div>
+</div>
+
+<div class="+small-spacer"></div>
+
+<div class="row details__block">
+  <div class="col-md-12">
+    <div class="row">
+      <h3>Customers</h3>
+      <hr>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <%= @customers_emails_list.join(', ') %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row details__block">
+  <div class="col-md-12">
+    <div class="row">
+      <h3>Shopkeepers</h3>
+      <hr>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <%= @shopkeepers_emails_list.join(', ') %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row details__block">
+  <div class="col-md-12">
+    <div class="row">
+      <h3>Admins</h3>
+      <hr>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <%= @admins_emails_list.join(', ') %>
+      </div>
+    </div>
+  </div>
+</div>

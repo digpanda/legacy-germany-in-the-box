@@ -52,6 +52,7 @@ namespace :admin do
   end
 
   resources :users do
+    get :emails, on: :collection
   end
 
   resources :order_payments do

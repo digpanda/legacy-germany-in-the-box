@@ -90,7 +90,7 @@ class User
   field :authentication_token
 
   index({email: 1},               {unique: true,  name: :idx_user_email})
-  
+
   before_destroy :destroy_has_shop, :destroy_has_orders
   def destroy_has_shop
     if self.shop
@@ -108,6 +108,10 @@ class User
     else
       true
     end
+  end
+
+  def self.emails_list
+    self.all.reduce([]) { |acc, user| acc << user.email }
   end
 
   # this was made to get only the appropriate orders

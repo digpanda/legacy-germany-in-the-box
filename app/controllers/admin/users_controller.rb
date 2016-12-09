@@ -1,7 +1,7 @@
 class Admin::UsersController < ApplicationController
 
   authorize_resource :class => false
-  before_action :set_user, :except => [:index]
+  before_action :set_user, :except => [:index, :emails]
 
   layout :custom_sublayout
 
@@ -30,6 +30,13 @@ class Admin::UsersController < ApplicationController
       flash[:error] = "The user was not destroyed (#{user.errors.full_messages.join(', ')})"
     end
     redirect_to navigation.back(1)
+  end
+
+  def emails
+    users = User.all
+    @customers_emails_list = users.where(role: :customer).emails_list
+    @shopkeepers_emails_list = users.where(role: :shopkeeper).emails_list
+    @admins_emails_list = users.where(role: :admin).emails_list
   end
 
   private
