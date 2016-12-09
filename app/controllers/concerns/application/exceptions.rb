@@ -3,7 +3,7 @@ module Application
     extend ActiveSupport::Concern
 
     include ErrorsHelper
-    
+
     included do
       around_action :hard_exception_handler
       around_action :soft_exception_handler
