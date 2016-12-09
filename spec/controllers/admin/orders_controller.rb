@@ -17,4 +17,21 @@ describe Admin::OrdersController, :type => :controller do
 
   end
 
+  describe "#show" do
+
+    context "without customer attached" do
+
+      subject(:order) { FactoryGirl.create(:order, :without_customer) }
+
+      it "shows the page" do
+
+        get :show, id: order.id
+        expect{response}.not_to raise_error
+
+      end
+
+    end
+
+  end
+
 end

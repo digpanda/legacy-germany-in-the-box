@@ -9,6 +9,7 @@ FactoryGirl.define do
     shipping_address        { FactoryGirl.create(:customer_address) }
     billing_address         { FactoryGirl.create(:customer_address) }
     shop                    { FactoryGirl.create(:shop) }
+    user                    { FactoryGirl.create(:customer) }
 
     trait :with_custom_checkable do
       status :custom_checkable
@@ -22,6 +23,12 @@ FactoryGirl.define do
 
     after(:build) do |order|
       order.order_items = build_list(:order_item, 5, :product => {:shop => order.shop})
+    end
+
+    trait :without_customer do
+      after(:build) do |order|
+        order.user = nil
+      end
     end
 
     trait :without_item do
