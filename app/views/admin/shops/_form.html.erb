@@ -1,5 +1,10 @@
 <%= form_for [:admin, shop], :data => {:toggle => 'validator'} do |form| %>
 
+  <!-- Settings -->
+  <div class="row details__block">
+    <%= render partial: "admin/shops/form/settings", :locals => {:form => form} %>
+  </div>
+
   <!-- Header (Images) -->
   <div class="row details__block">
     <%= render partial: "shopkeeper/shop/form/header", :locals => {:form => form} %>
