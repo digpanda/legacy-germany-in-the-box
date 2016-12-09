@@ -19,7 +19,7 @@ class Admin::CouponsController < ApplicationController
   end
 
   def create
-    coupon = Coupon.create(coupon_params)
+    @coupon = Coupon.create(coupon_params)
     if coupon.errors.empty?
       flash[:success] = "The coupon was created."
       redirect_to admin_coupons_path
