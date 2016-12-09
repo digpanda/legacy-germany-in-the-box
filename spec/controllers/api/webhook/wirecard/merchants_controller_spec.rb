@@ -18,8 +18,7 @@ describe Api::Webhook::Wirecard::MerchantsController, :type => :controller do
         params = {"random" => true}
         post :create, request_wirecard_post(params)
         expect(response).to have_http_status(:bad_request)
-        expect(response_json_body["success"]).to eq(false) # Check if the server replied properly
-        expect(response_json_body["code"]).to eq(1) # Error code from errors.yml
+        expect_json(success: false, code: 1)
 
       end
 
@@ -28,8 +27,7 @@ describe Api::Webhook::Wirecard::MerchantsController, :type => :controller do
         params = {"merchant_id" => "#{shopkeeper.shop.merchant_id}", "merchant_status": "processing", "reseller_id": "bad-reseller-id"}
         post :create, request_wirecard_post(params)
         expect(response).to have_http_status(:unauthorized)
-        expect(response_json_body["success"]).to eq(false) # Check if the server replied properly
-        expect(response_json_body["code"]).to eq(2) # Error code from errors.yml
+        expect_json(success: false, code: 2)
 
       end
 
@@ -38,8 +36,8 @@ describe Api::Webhook::Wirecard::MerchantsController, :type => :controller do
         params = {"merchant_id" => "bad-merchant-id", "merchant_status": "processing", "reseller_id": Rails.application.config.wirecard[:merchants][:reseller_id]}
         post :create, request_wirecard_post(params)
         expect(response).to have_http_status(:unprocessable_entity)
-        expect(response_json_body["success"]).to eq(false) # Check if the server replied properly
-        expect(response_json_body["code"]).to eq(3) # Error code from errors.yml
+        expect_json(success: false, code: 3)
+
 
       end
 
@@ -48,8 +46,8 @@ describe Api::Webhook::Wirecard::MerchantsController, :type => :controller do
         params = {"merchant_id" => "#{shopkeeper.shop.merchant_id}", "merchant_status": "bad-merchant-status", "reseller_id": Rails.application.config.wirecard[:merchants][:reseller_id]}
         post :create, request_wirecard_post(params)
         expect(response).to have_http_status(:bad_request)
-        expect(response_json_body["success"]).to eq(false) # Check if the server replied properly
-        expect(response_json_body["code"]).to eq(4) # Error code from errors.yml
+        expect_json(success: false, code: 4)
+
 
       end
 
@@ -58,7 +56,7 @@ describe Api::Webhook::Wirecard::MerchantsController, :type => :controller do
         params = {"merchant_id" => "#{shopkeeper.shop.merchant_id}", "merchant_status": "processing", "reseller_id": Rails.application.config.wirecard[:merchants][:reseller_id]}
         post :create, request_wirecard_post(params)
         expect(response).to have_http_status(:ok)
-        expect(response_json_body["success"]).to eq(true) # Check if the server replied properly
+        expect_json(success: true)
         shopkeeper.reload # database refreshed meanwhile
         expect(shopkeeper.shop.wirecard_status).to eq(:processing)
 
@@ -74,7 +72,7 @@ describe Api::Webhook::Wirecard::MerchantsController, :type => :controller do
                   }
         post :create, request_wirecard_post(params)
         expect(response).to have_http_status(:ok)
-        expect(response_json_body["success"]).to eq(true) # Check if the server replied properly
+        expect_json(success: true)
         shopkeeper.reload # database refreshed meanwhile
         expect(shopkeeper.shop.wirecard_status).to eq(:active)
         expect(shopkeeper.shop.payment_gateways.first.merchant_id).to eq("TEST-MAID")
@@ -95,8 +93,7 @@ describe Api::Webhook::Wirecard::MerchantsController, :type => :controller do
 
         post :create, request_wirecard_post(params)
         expect(response).to have_http_status(:bad_request)
-        expect(response_json_body["success"]).to eq(false) # Check if the server replied properly
-        expect(response_json_body["code"]).to eq(1) # Error code from errors.yml
+        expect_json(success: false, code: 1)
 
       end
 
@@ -134,7 +131,7 @@ describe Api::Webhook::Wirecard::MerchantsController, :type => :controller do
         post :create, request_wirecard_post(params)
         expect(response).to have_http_status(:ok)
 
-        expect(response_json_body["success"]).to eq(true) # Check if the server replied properly
+        expect_json(success: true)
         shopkeeper.reload # database refreshed meanwhile
         expect(shopkeeper.shop.wirecard_status).to eq(:active)
         expect(shopkeeper.shop.payment_gateways.count).to eq(3)

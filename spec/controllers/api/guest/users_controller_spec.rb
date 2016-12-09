@@ -14,7 +14,7 @@ describe Api::Guest::UsersController, :type => :controller do
         get :unknown_by_email, params
 
         expect(response).to have_http_status(:unprocessable_entity)
-        expect(response_json_body["success"]).to eq(false)
+        expect_json(success: false)
 
       end
 
@@ -27,7 +27,7 @@ describe Api::Guest::UsersController, :type => :controller do
         params = {"shop_application" => {"email" => "random@email.com"}}
         get :unknown_by_email, params
 
-        expect(response_json_body["success"]).to eq(true)
+        expect_json(success: true)
 
       end
 
@@ -46,7 +46,7 @@ describe Api::Guest::UsersController, :type => :controller do
         params = {"shop_application" => {"email" => current_user.email}}
         get :find_by_email, params
 
-        expect(response_json_body["success"]).to eq(true)
+        expect_json(success: true)
 
       end
 
@@ -58,9 +58,9 @@ describe Api::Guest::UsersController, :type => :controller do
 
         params = {"shop_application" => {"email" => "random@email.com"}}
         get :find_by_email, params
-        
+
         expect(response).to have_http_status(:not_found)
-        expect(response_json_body["success"]).to eq(false)
+        expect_json(success: false)
 
       end
 

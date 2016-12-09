@@ -13,7 +13,7 @@ describe Api::Customer::FavoritesController, :type => :controller do
       it "adds a favorite" do
 
         put :update, :id => shop.products.first.id
-        expect(response_json_body["success"]).to eq(true)
+        expect_json(success: true)
         current_user.reload
         expect(current_user.favorites.count).to eq(1)
 
@@ -36,8 +36,7 @@ describe Api::Customer::FavoritesController, :type => :controller do
       it "tries to add a wrong favorite" do
 
         put :update, :id => "wrong-id"
-        expect(response_json_body["success"]).to eq(false)
-        expect(response_json_body["code"]).to eq(6)
+        expect_json(success: false, code: 6)
         current_user.reload
         expect(current_user.favorites.count).to eq(0)
 
@@ -50,14 +49,14 @@ describe Api::Customer::FavoritesController, :type => :controller do
       let(:current_user) { FactoryGirl.create(:customer, :with_favorites) }
       before(:each) { login_customer current_user }
       let(:shop) { FactoryGirl.create(:shop) }
+      let!(:favorites_original_count) { current_user.favorites.count }
 
       it "adds a favorite" do
 
-        num_favorites = current_user.favorites.count
         put :update, :id => shop.products.first.id
-        expect(response_json_body["success"]).to eq(true)
+        expect_json(success: true)
         current_user.reload
-        expect(current_user.favorites.count).to eq(num_favorites+1)
+        expect(current_user.favorites.count).to eq(favorites_original_count+1)
 
       end
 
@@ -68,9 +67,10 @@ describe Api::Customer::FavoritesController, :type => :controller do
       let(:shop) { FactoryGirl.create(:shop) }
 
       it "adds a favorite" do
+
         put :update, :id => shop.products.first.id
-        expect(response_json_body["success"]).to eq(false)
-        expect(response_json_body["code"]).to eq(7)
+        expect_json(success: false, code: 7)
+
       end
 
     end
@@ -89,7 +89,7 @@ describe Api::Customer::FavoritesController, :type => :controller do
 
         num_favorites = current_user.favorites.count
         put :destroy, :id => current_user.favorites.sample.id
-        expect(response_json_body["success"]).to eq(true)
+        expect_json(success: true)
         current_user.reload
         expect(current_user.favorites.count).to eq(num_favorites-1)
 
@@ -98,8 +98,7 @@ describe Api::Customer::FavoritesController, :type => :controller do
       it "tries to delete a wrong favorite" do
 
         put :update, :id => "wrong-id"
-        expect(response_json_body["success"]).to eq(false)
-        expect(response_json_body["code"]).to eq(6)
+        expect_json(success: false, code: 6)
 
       end
 
@@ -110,9 +109,10 @@ describe Api::Customer::FavoritesController, :type => :controller do
       let(:shop) { FactoryGirl.create(:shop) }
 
       it "delete a favorite" do
+
         put :destroy, :id => shop.products.first.id
-        expect(response_json_body["success"]).to eq(false)
-        expect(response_json_body["code"]).to eq(7)
+        expect_json(success: false, code: 7)
+        
       end
 
     end
