@@ -10,9 +10,11 @@ module Helpers
         fill_in 'address[mobile]', :with => '13802049742'
         fill_in 'address[pid]', :with => '11000019790225207X'
 
-        all('#address_province option')[1].select_option
-        all('#address_city option')[1].select_option
-        all('#address_district option')[1].select_option
+        page.all(:css, '#address_province option')[1].select_option
+        until page.all(:css, '#address_city option')[1]; end
+        page.all(:css, '#address_city option')[1].select_option
+        until page.all(:css, '#address_district option')[1]; end
+        page.all(:css, '#address_district option')[1].select_option
 
         fill_in 'address[street]', :with => '华江里'
         fill_in 'address[zip]', :with => '300222'
