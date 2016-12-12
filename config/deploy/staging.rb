@@ -20,4 +20,4 @@ set :ssh_options, {
   auth_methods: %w(publickey, password)
 }
 
-set :branch, ENV['BRANCH'] || :staging
+set :branch, :staging
