@@ -1,5 +1,5 @@
 # Serialize sku for API (we should rethink everything.)
-json.extract! @sku, :id, :weight, :status, :customizable, :discount
+json.extract! @sku, :id, :weight, :status, :discount
 
 json.quantity @sku.decorate.max_added_to_cart
 
