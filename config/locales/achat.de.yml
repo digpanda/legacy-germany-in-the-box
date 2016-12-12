@@ -63,6 +63,10 @@ de:
     my_account: Mein Konto
   breadcrumb:
     home: Home
+    skus: Skus
+    edit: Edit
+    variants: Varianten
+    shops: Shops
   title:
     we_need_more_info: Wir wollen Ihre Kontakt wissen...
     title: Titel
