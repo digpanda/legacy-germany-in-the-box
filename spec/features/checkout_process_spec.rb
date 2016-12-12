@@ -147,6 +147,7 @@ def pay_and_get_label
   within_window checkout_window do
     wait_for_page('#hpp-logo') # we are on wirecard hpp
     apply_wirecard_success_creditcard!
+    binding.pry
     expect(page).to have_content("下单成功") # means success in chinese
     @borderguru_label_window = window_opened_by do
       click_link "打开" # click on "download your label" in chinese

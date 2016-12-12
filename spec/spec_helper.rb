@@ -15,29 +15,29 @@ Capybara.server_host = "local.dev"
 Capybara.default_max_wait_time = 40
 
 # BEGINNING SELENIUM
-# require "selenium/webdriver"
-# Capybara.current_driver = :selenium
-# Capybara.register_driver :selenium do |app|
-#   Capybara::Selenium::Driver.new(app, :browser => :chrome)
-#
-#   args = []
-#   args << "--window-size=1400,1000" # window size
-#
-#   Capybara::Selenium::Driver.new(app, :browser => :chrome, :args => args)
-# end
+require "selenium/webdriver"
+Capybara.current_driver = :selenium
+Capybara.register_driver :selenium do |app|
+  Capybara::Selenium::Driver.new(app, :browser => :chrome)
+
+  args = []
+  args << "--window-size=1400,1000" # window size
+
+  Capybara::Selenium::Driver.new(app, :browser => :chrome, :args => args)
+end
 # END SELENIUM
 
 # BEGINNING POLTERGEIST
-require 'capybara/poltergeist'
-Capybara.default_driver = :poltergeist
-Capybara.current_driver = :poltergeist
-Capybara.javascript_driver = :poltergeist
-
-Capybara.register_driver :poltergeist do |app|
-  Capybara::Poltergeist::Driver.new(app, :js_errors => false)
-end
+# require 'capybara/poltergeist'
+# Capybara.default_driver = :poltergeist
+# Capybara.current_driver = :poltergeist
+# Capybara.javascript_driver = :poltergeist
 #
-Capybara.ignore_hidden_elements = true
+# Capybara.register_driver :poltergeist do |app|
+#   Capybara::Poltergeist::Driver.new(app, :js_errors => false)
+# end
+# #
+# Capybara.ignore_hidden_elements = true
 # END POLTERGEIST
 
 # Capybara.current_session.driver.resize(1200, 1000)
