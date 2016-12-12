@@ -3,6 +3,8 @@ class Admin::Shops::Products::SkusController < Shopkeeper::Products::SkusControl
   authorize_resource :class => false
 
   before_action :set_shop
+  before_action :breadcrumb_admin_shops, :breadcrumb_admin_shop, :breadcrumb_admin_edit_product, :breadcrumb_admin_product_skus
+  before_action :breadcrumb_admin_product_edit_sku, only: [:edit]
   attr_reader :shop
 
   # NOTE : we inherit from the Shopkeeper side

@@ -2,6 +2,7 @@ class Admin::ShopsController < ApplicationController
 
   authorize_resource :class => false
   before_action :set_shop, :except => [:index, :emails]
+  before_action :breadcrumb_admin_shops
 
   layout :custom_sublayout
 

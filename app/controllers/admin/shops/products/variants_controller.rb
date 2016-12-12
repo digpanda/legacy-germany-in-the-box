@@ -2,6 +2,8 @@ class Admin::Shops::Products::VariantsController < Shopkeeper::Products::Variant
 
   authorize_resource :class => false
 
+  before_action :breadcrumb_admin_shops, :breadcrumb_admin_shop, :breadcrumb_admin_edit_product, :breadcrumb_admin_product_variants
+
   # NOTE : we inherit from the Shopkeeper side
   # because the methods are all the same for now
   # this is a very rare case.
