@@ -31,11 +31,8 @@ module Helpers
         fill_in 'account_number', :with => '4012000300001003'
         fill_in 'card_security_code', :with => '003'
         apply_wirecard_month_and_year!
-        binding.pry
-        expect(page).to have_css('#hpp-form-submit')
-        page.first('#hpp-form-submit').click
-        expect(page).to have_content('正在处理付款') # processing
-        wait_for_page('#germany-in-the-box')
+        # expect(page).to have_css('#hpp-form-submit')
+        find('#hpp-form-submit').click
       end
 
       # failing credit card (demo)
@@ -46,7 +43,8 @@ module Helpers
         fill_in 'card_security_code', :with => '059'
         apply_wirecard_month_and_year!
         expect(page).to have_css('#hpp-form-submit')
-        page.first('#hpp-form-submit').click
+        # page.first('#hpp-form-submit').click
+        find('#hpp-form-submit').click
       end
 
       def apply_wirecard_month_and_year!
