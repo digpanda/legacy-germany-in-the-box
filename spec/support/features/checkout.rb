@@ -9,12 +9,12 @@ module Helpers
         fill_in 'address[lname]', :with => '李'
         fill_in 'address[mobile]', :with => '13802049742'
         fill_in 'address[pid]', :with => '11000019790225207X'
-        
-        until page.all(:css, '#address_province option')[1]; end
+
+        loop until page.all(:css, '#address_province option')[1]
         page.all(:css, '#address_province option')[1].select_option
-        until page.all(:css, '#address_city option')[1]; end
+        loop until page.all(:css, '#address_city option')[1]
         page.all(:css, '#address_city option')[1].select_option
-        until page.all(:css, '#address_district option')[1]; end
+        loop until page.all(:css, '#address_district option')[1]
         page.all(:css, '#address_district option')[1].select_option
 
         fill_in 'address[street]', :with => '华江里'
@@ -31,8 +31,11 @@ module Helpers
         fill_in 'account_number', :with => '4012000300001003'
         fill_in 'card_security_code', :with => '003'
         apply_wirecard_month_and_year!
+        binding.pry
         expect(page).to have_css('#hpp-form-submit')
         page.first('#hpp-form-submit').click
+        expect(page).to have_content('正在处理付款') # processing
+        wait_for_page('#germany-in-the-box')
       end
 
       # failing credit card (demo)

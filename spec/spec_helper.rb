@@ -12,7 +12,7 @@ Capybara.default_host = "http://local.dev:3333"
 Capybara.server_port = 3333
 Capybara.server_host = "local.dev"
 # Capybara.run_server = false
-Capybara.default_max_wait_time = 40
+Capybara.default_max_wait_time = 80
 
 # BEGINNING SELENIUM
 require "selenium/webdriver"
