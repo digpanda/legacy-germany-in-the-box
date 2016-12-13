@@ -4,22 +4,18 @@ class NavigationHistory
 
   DEFAULT_REDIRECT_URL = Rails.application.routes.url_helpers.root_url
 
-  # will exclude those paths from the history store. the system is based on implicit wildcard
-  # the less precise you are in the paths, the more path and subpath it excludes
-  # /connect also means everything inside /connect/ such as /connect/sign_in, etc.
-  BASE_EXCEPT = %w(/connect /api/guest/navigation)
+  attr_reader :request, :session, :repository
 
-  attr_reader :request, :session
-
-  def initialize(request, session)
+  def initialize(request, session, repository=:default)
     @request = request
     @session = session
+    @repository = repository
   end
 
   # store the location
   # can be :current for the current page
   def store(location, option=nil)
-    NavigationHistory::Store.new(request, session).add(BASE_EXCEPT, option)
+    NavigationHistory::Store.new(request, session, location).add(option)
   end
 
   def back(raw_position=1, default_redirect=nil)

@@ -4,17 +4,23 @@ class NavigationHistory
 
     MAX_HISTORY = 10
 
-    attr_reader :request, :session
+    # will exclude those paths from the history store. the system is based on implicit wildcard
+    # the less precise you are in the paths, the more path and subpath it excludes
+    # /connect also means everything inside /connect/ such as /connect/sign_in, etc.
+    EXCLUDED_PATHS = %w(/connect /api/guest/navigation)
 
-    def initialize(request, session)
+    attr_reader :request, :session, :location
+
+    def initialize(request, session, location)
       @request = request
       @session = session
+      @location = solve(location)
     end
 
-    def add(exceptions=nil, option=nil)
+    def add(option=nil)
 
       return false unless acceptable_request?
-      return false if excluded_path?(exceptions)
+      return false if excluded_path?
 
       # force add a session and force the last entered URL
       if option == :force
@@ -32,20 +38,18 @@ class NavigationHistory
 
     private
 
-    def location
-      @location ||= begin
-        if location == :current
-          request.url
-        else
-          location
-        end
+    def solve(location)
+      if location == :current
+        request.url
+      else
+        location
       end
     end
 
     def location_path
       @location_path ||= begin
         if location
-          uri_location.path + uri_location.query
+          "#{uri_location.path}#{uri_location.query}"
         else
           request.fullpath
         end
@@ -56,8 +60,8 @@ class NavigationHistory
       URI(location)
     end
 
-    def excluded_path?(excluded_paths=[])
-      excluded_paths.each do |path|
+    def excluded_path?
+      EXCLUDED_PATHS.each do |path|
         return true if location_path.index(path) == 0
       end
       false
