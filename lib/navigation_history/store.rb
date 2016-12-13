@@ -4,18 +4,24 @@ class NavigationHistory
 
     MAX_HISTORY = 10
 
-    attr_reader :request, :session, :location
+    # will exclude those paths from the history store. the system is based on implicit wildcard
+    # the less precise you are in the paths, the more path and subpath it excludes
+    # /connect also means everything inside /connect/ such as /connect/sign_in, etc.
+    EXCLUDED_PATHS = %w(/connect /api/guest/navigation)
 
-    def initialize(request, session, location)
+    attr_reader :request, :session, :location, :repository
+
+    def initialize(request, session, repository, location)
       @request = request
       @session = session
-      @location = location
+      @repository = repository
+      @location = solve(location)
     end
 
-    def add(exceptions=nil, option=nil)
+    def add(option=nil)
 
       return false unless acceptable_request?
-      return false if excluded_path?(exceptions)
+      return false if excluded_path?
 
       # force add a session and force the last entered URL
       if option == :force
@@ -27,49 +33,74 @@ class NavigationHistory
         trim_storage
       end
 
-      session[:previous_urls]
+      session[:previous_urls][repository]
 
     end
 
     private
 
+    # will solve keys such as `:current`
+    # this will be used in case of server error for instance
+    def solve(location)
+      if location == :current
+        request.url
+      else
+        location
+      end
+    end
+
     def location_path
       @location_path ||= begin
         if location
-          URI(location).path
+          "#{uri_location.path}#{uri_location.query}"
         else
           request.fullpath
         end
       end
     end
 
-    def excluded_path?(excluded_paths=[])
-      excluded_paths.each do |path|
+    def uri_location
+      URI(location)
+    end
+
+    def excluded_path?
+      EXCLUDED_PATHS.each do |path|
         return true if location_path.index(path) == 0
       end
       false
     end
 
+    # if location path returns nil it's not acceptable
     def acceptable_request?
       location_path
     end
 
     def already_last_stored?
-      session[:previous_urls].first == location_path
+      session[:previous_urls][repository].first == location_path
     end
 
     def prepare_storage
-      session[:previous_urls] ||= [] # we need it because we use session
+      legacy_conversion!
+      session[:previous_urls] ||= {}
+      session[:previous_urls][repository] ||= []
     end
 
     def add_storage
       unless already_last_stored?
-        session[:previous_urls].unshift(location_path)
+        session[:previous_urls][repository].unshift(location_path)
       end
     end
 
     def trim_storage
-      session[:previous_urls].pop if session[:previous_urls].size > MAX_HISTORY
+      session[:previous_urls][repository].pop if session[:previous_urls][repository].size > MAX_HISTORY
+    end
+
+    # TODO : this will be removed after a few days
+    # - Laurent, 13th December 2016
+    def legacy_conversion!
+      if session[:previous_urls].instance_of? Array
+        session[:previous_urls] = nil
+      end
     end
 
   end
