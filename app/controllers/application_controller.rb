@@ -24,7 +24,6 @@ class ApplicationController < ActionController::Base
     $request = request
   end
 
-
   def current_page
     if params[:page]
       params[:page].to_i
