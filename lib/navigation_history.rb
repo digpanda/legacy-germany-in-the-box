@@ -19,8 +19,7 @@ class NavigationHistory
   # store the location
   # can be :current for the current page
   def store(location, option=nil)
-    # TODO : resolve(location) could actually be moved to the store itself
-    NavigationHistory::Store.new(request, session, resolve(location)).add(BASE_EXCEPT, option)
+    NavigationHistory::Store.new(request, session).add(BASE_EXCEPT, option)
   end
 
   def back(raw_position=1, default_redirect=nil)
@@ -45,14 +44,6 @@ class NavigationHistory
   end
 
   private
-
-  def resolve(location)
-    if location == :current
-      request.url
-    else
-      location
-    end
-  end
 
   def history_found?(position)
     session[:previous_urls].is_a?(Array) && session[:previous_urls][position].present?

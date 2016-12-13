@@ -4,12 +4,11 @@ class NavigationHistory
 
     MAX_HISTORY = 10
 
-    attr_reader :request, :session, :location
+    attr_reader :request, :session
 
-    def initialize(request, session, location)
+    def initialize(request, session)
       @request = request
       @session = session
-      @location = location
     end
 
     def add(exceptions=nil, option=nil)
@@ -33,14 +32,28 @@ class NavigationHistory
 
     private
 
+    def location
+      @location ||= begin
+        if location == :current
+          request.url
+        else
+          location
+        end
+      end
+    end
+
     def location_path
       @location_path ||= begin
         if location
-          URI(location).path
+          uri_location.path + uri_location.query
         else
           request.fullpath
         end
       end
+    end
+
+    def uri_location
+      URI(location)
     end
 
     def excluded_path?(excluded_paths=[])
