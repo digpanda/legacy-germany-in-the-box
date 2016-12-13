@@ -15,13 +15,13 @@ class NavigationHistory
   # store the location
   # can be :current for the current page
   def store(location, option=nil)
-    NavigationHistory::Store.new(request, session, location).add(option)
+    NavigationHistory::Store.new(request, session, repository, location).add(option)
   end
 
   def back(raw_position=1, default_redirect=nil)
     position = raw_position-1
     if history_found?(position)
-      session[:previous_urls][position]
+      session[:previous_urls][repository][position]
     else
       default_redirect || DEFAULT_REDIRECT_URL
     end
@@ -42,7 +42,7 @@ class NavigationHistory
   private
 
   def history_found?(position)
-    session[:previous_urls].is_a?(Array) && session[:previous_urls][position].present?
+    session[:previous_urls][repository].is_a?(Array) && session[:previous_urls][repository][position].present?
   end
 
 end
