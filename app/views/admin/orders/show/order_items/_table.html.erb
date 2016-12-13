@@ -8,7 +8,7 @@
         Name
       </th>
       <th>
-        Brand
+        Sku
       </th>
       <th>
         Shop
@@ -34,7 +34,7 @@
           <%= order_item.product.name %>
         </td>
         <td>
-          <%= order_item.product.brand %>
+          <%= order_item.sku.option_names.join(', ') %>
         </td>
         <td>
           <%= order_item.product.shop.name %>

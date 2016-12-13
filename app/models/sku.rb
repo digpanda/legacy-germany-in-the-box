@@ -32,6 +32,18 @@ class Sku
   embedded_in :product
   embedded_in :order_item
 
+  # sku can be embedded in order_item and product
+  # therefore you access the product linked to it
+  # in different ways
+  def product
+    case self._parent.class
+    when Product
+      self._parent
+    when OrderItem
+      self._parent.product
+    end
+  end
+
   # TODO : this might be in a issue when using the sku from the order item
   # make sure to put the clonage of the images / documentation in the model
   # so it also duplicated when creating from order_item
