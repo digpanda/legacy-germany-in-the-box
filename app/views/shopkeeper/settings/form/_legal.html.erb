@@ -53,11 +53,11 @@
   <div class="row form-group">
     <div class="col-md-4">
       <label>
-        <%= I18n.t(:tax_number, scope: :edit_shop) %> <span class="+red">*</span>
+        <%= I18n.t(:tax_number, scope: :edit_shop) %>
       </label>
     </div>
     <div class="col-md-8">
-      <%= form.text_field :tax_number, :class => 'form-control', :placeholder => 'z.B. 9181081508155', :required => true, :maxLength => Rails.configuration.max_tiny_text_length %>
+      <%= form.text_field :tax_number, :class => 'form-control', :placeholder => 'z.B. 9181081508155', :maxLength => Rails.configuration.max_tiny_text_length %>
       <div class="help-block with-errors"></div>
     </div>
   </div>
@@ -79,8 +79,7 @@
   <div class="row form-group">
     <div class="col-md-4">
       <label>
-        <!-- NOTE : missing translation here -->
-        Ust ID
+        Ust ID <span class="+red">*</span>
         <%= js_tips(:id => :ust_id, :tip => I18n.t(:ust_id_info, scope: :edit_shop)) %>
       </label>
     </div>
