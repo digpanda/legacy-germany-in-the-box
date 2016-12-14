@@ -63,6 +63,10 @@ zh-CN:
     my_account: 我的账号
   breadcrumb:
     home: 首页
+    skus:
+    edit:
+    variants:
+    shops:
   title:
     we_need_more_info: 下单前，我们必须知道你的联系方式
     title: 名称

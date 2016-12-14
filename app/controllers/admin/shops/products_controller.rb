@@ -4,6 +4,8 @@ class Admin::Shops::ProductsController < ApplicationController
 
   before_action :set_shop
   before_action :set_product, except: [:index, :new, :create]
+  before_action :breadcrumb_admin_shops, :breadcrumb_admin_shop_products
+  before_action :breadcrumb_admin_edit_product, only: [:edit]
   before_action :recover_categories_from_ids, :recover_duty_category_from_code, only: [:create, :update]
 
   layout :custom_sublayout

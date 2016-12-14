@@ -4,6 +4,8 @@ class Shopkeeper::ProductsController < ApplicationController
 
   before_action :set_shop
   before_action :set_product, except: [:index, :new, :create]
+  before_action :breadcrumb_shopkeeper_products
+  before_action :breadcrumb_shopkeeper_edit_product, only: [:edit]
 
   layout :custom_sublayout
 
