@@ -17,7 +17,6 @@ var LazyLoader = {
      */
     startLazyLoader: function() {
 
-      console.log('lazy');
       $("div.lazy").lazyload({
           effect : "fadeIn"
       });

@@ -184,7 +184,7 @@ var Products = {
     var DutyCategory = require("javascripts/models/duty_category");
     var dutyCategoryId = $(selector).val();
 
-    if (dutyCategoryId === '') {
+    if (dutyCategoryId === '' || typeof dutyCategoryId == "undefined") {
       return;
     }
 
@@ -2226,7 +2226,6 @@ var LazyLoader = {
    */
   startLazyLoader: function startLazyLoader() {
 
-    console.log('lazy');
     $("div.lazy").lazyload({
       effect: "fadeIn"
     });

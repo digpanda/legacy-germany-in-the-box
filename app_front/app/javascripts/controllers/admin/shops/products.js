@@ -34,7 +34,7 @@ var Products = {
       var DutyCategory = require("javascripts/models/duty_category");
       let dutyCategoryId = $(selector).val();
 
-      if (dutyCategoryId === '') {
+      if ((dutyCategoryId === '') || (typeof dutyCategoryId == "undefined")) {
         return;
       }
 
