@@ -7,6 +7,10 @@ class Shopkeeper::PaymentsController < ApplicationController
   attr_reader :shop
 
   def index
+    unless shop.billing_address
+      flash[:error] = "Please add a billing address to access the payment section."
+      redirect_to shopkeeper_addresses_path
+    end
   end
 
   private
