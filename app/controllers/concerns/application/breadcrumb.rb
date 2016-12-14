@@ -31,39 +31,47 @@ module Application
     end
 
     def breadcrumb_shopkeeper_product_skus
-      add_breadcrumb 'Skus', shopkeeper_product_skus_path(@product) if @product
+      add_breadcrumb I18n.t(:skus, scope: :breadcrumb), shopkeeper_product_skus_path(@product) if @product
     end
 
     def breadcrumb_shopkeeper_product_edit_sku
-      add_breadcrumb 'Edit', edit_shopkeeper_product_sku_path(@sku.product, @sku) if @sku
+      add_breadcrumb I18n.t(:edit, scope: :breadcrumb), edit_shopkeeper_product_sku_path(@sku.product, @sku) if @sku
     end
 
     def breadcrumb_shopkeeper_product_variants
-      add_breadcrumb 'Variants', shopkeeper_product_variants_path(@product) if @product
+      add_breadcrumb I18n.t(:variants, scope: :breadcrumb), shopkeeper_product_variants_path(@product) if @product
     end
 
     def breadcrumb_admin_shops
-      add_breadcrumb 'Shops', admin_shops_path
+      add_breadcrumb I18n.t(:shops, scope: :breadcrumb), admin_shops_path
     end
 
     def breadcrumb_admin_shop
+      add_breadcrumb @shop.shopname, admin_shop_path(@shop) if @shop
+    end
+
+    def breadcrumb_admin_shop_products
       add_breadcrumb @shop.shopname, admin_shop_products_path(@shop) if @shop
     end
 
     def breadcrumb_admin_edit_product
-      add_breadcrumb @product.name, edit_admin_shop_product_path(@product.shop, @product) if @product.name
+      if @product.name
+        add_breadcrumb @product.name, edit_admin_shop_product_path(@product.shop, @product)
+      end
     end
 
     def breadcrumb_admin_product_skus
-      add_breadcrumb 'Skus', admin_shop_product_skus_path(@product.shop, @product) if @product
+      add_breadcrumb I18n.t(:skus, scope: :breadcrumb), admin_shop_product_skus_path(@product.shop, @product) if @product
     end
 
     def breadcrumb_admin_product_edit_sku
-      add_breadcrumb 'Edit', edit_admin_shop_product_sku_path(@sku.product.shop, @sku.product, @sku) if @sku
+      if @sku
+        add_breadcrumb I18n.t(:edit, scope: :breadcrumb), edit_admin_shop_product_sku_path(@sku.product.shop, @sku.product, @sku)
+      end
     end
 
     def breadcrumb_admin_product_variants
-      add_breadcrumb 'Variants', admin_shop_product_variants_path(@product.shop, @product) if @product
+      add_breadcrumb I18n.t(:variants, scope: :breadcrumb), admin_shop_product_variants_path(@product.shop, @product) if @product
     end
   end
 end

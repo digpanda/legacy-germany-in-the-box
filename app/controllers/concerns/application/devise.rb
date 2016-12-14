@@ -43,7 +43,7 @@ module Application
           return shopkeeper_orders_path
         end
         return navigation.force! if navigation.force?
-        return shopkeeper_shop_producer_path
+        return shopkeeper_settings_path
       end
 
       if current_user.admin?
