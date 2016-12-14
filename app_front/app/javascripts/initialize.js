@@ -5,7 +5,21 @@ $(document).ready(() => {
    * Damn simple class loader.
    */
   let routes = $("#js-routes").data();
+  let info = $("#js-info").data();
   let starters = require("javascripts/starters");
+
+  /**
+   * Disable console.log for production and tests (poltergeist)
+   */
+   if ((info.environment == "production") || (info.environment == "test")) {
+     if (typeof(window.console) != "undefined") {
+       window.console = {};
+       window.console.log = function () {};
+       window.console.info = function () {};
+       window.console.warn = function () {};
+       window.console.error = function () {};
+     }
+   }
 
   try {
 

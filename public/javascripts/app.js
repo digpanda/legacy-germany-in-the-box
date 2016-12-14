@@ -1023,7 +1023,21 @@ $(document).ready(function () {
    * Damn simple class loader.
    */
   var routes = $("#js-routes").data();
+  var info = $("#js-info").data();
   var starters = require("javascripts/starters");
+
+  /**
+   * Disable console.log for production and tests (poltergeist)
+   */
+  if (info.environment == "production" || info.environment == "test") {
+    if (typeof window.console != "undefined") {
+      window.console = {};
+      window.console.log = function () {};
+      window.console.info = function () {};
+      window.console.warn = function () {};
+      window.console.error = function () {};
+    }
+  }
 
   try {
 
