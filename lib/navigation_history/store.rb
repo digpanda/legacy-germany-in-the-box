@@ -23,12 +23,13 @@ class NavigationHistory
       return false unless acceptable_request?
       return false if excluded_path?
 
+      prepare_storage
+
       # force add a session and force the last entered URL
       if option == :force
         session[:force_url] = location_path
       else
         # normal process without force URL
-        prepare_storage
         add_storage
         trim_storage
       end
