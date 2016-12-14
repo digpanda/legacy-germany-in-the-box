@@ -1,5 +1,24 @@
 describe "force redirection", :type => :request  do
 
+  context "try to access customer area" do
+
+    context "as customer" do
+
+      let(:customer) { FactoryGirl.create(:customer) }
+
+      it "succeeds after log-in" do
+          
+        visit customer_orders_path
+        expect(current_path).to eq(new_user_session_path)
+        login!(customer)
+        expect(current_path).to eq(customer_orders_path)
+
+      end
+
+    end
+
+  end
+
   context "try to access admin area" do
 
     context "as admin" do
@@ -18,7 +37,7 @@ describe "force redirection", :type => :request  do
     end
 
     context "as shopkeeper" do
-      
+
       let(:shopkeeper) { FactoryGirl.create(:shopkeeper) }
 
       it "fails after log-in" do
