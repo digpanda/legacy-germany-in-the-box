@@ -6,7 +6,7 @@ class NavigationHistory
 
   attr_reader :request, :session, :repository
 
-  def initialize(request, session, repository=:default)
+  def initialize(request, session, repository="default")
     @request = request
     @session = session
     @repository = repository
@@ -42,7 +42,7 @@ class NavigationHistory
   private
 
   def history_found?(position)
-    session[:previous_urls][repository].is_a?(Array) && session[:previous_urls][repository][position].present?
+    session[:previous_urls].is_a?(Hash) && session[:previous_urls][repository].is_a?(Array) && session[:previous_urls][repository][position].present?
   end
 
 end

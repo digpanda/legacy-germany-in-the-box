@@ -28,7 +28,7 @@ module Application
         if current_user.cart_orders.first
           cart_manager.store(current_user.cart_orders.first)
         end
-
+        
         return navigation.force! if navigation.force?
         return navigation.back(1)
       end

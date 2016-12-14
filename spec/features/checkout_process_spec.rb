@@ -28,6 +28,7 @@ feature "checkout process", :js => true  do
         fill_in 'user[email]', :with => 'random-valid-email@email.com'
         fill_in 'user[lname]', :with => '前'
         fill_in 'user[fname]', :with => '单'
+        binding.pry
         page.first('.\\+checkout-button').click # go to address step
         on_order_address_page?
 
