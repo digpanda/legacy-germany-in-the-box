@@ -1244,13 +1244,13 @@ var Messages = { // NOTE : We should use a template system to handle the HTML he
 
   makeError: function makeError(error) {
 
-    $("#messages-container").html('<div id="message-error" class="col-md-6 col-md-push-3 col-md-pull-3 message__error +centered">' + error + '</div>');
+    $("#messages-container").html('<div id="message-error" class="col-md-4 col-md-push-4 col-md-pull-4 message message__error +centered">' + error + '</div>');
     Messages.activateHide('#message-error', 3000);
   },
 
   makeSuccess: function makeSuccess(success) {
 
-    $("#messages-container").html('<div id="message-success" class="col-md-6 col-md-push-3 col-md-pull-3 message__success +centered">' + success + '</div>');
+    $("#messages-container").html('<div id="message-success" class="col-md-4 col-md-push-4 col-md-pull-4 message message__success +centered">' + success + '</div>');
     Messages.activateHide('#message-success', 4000);
   },
 
@@ -2052,15 +2052,18 @@ var ImagesHandler = {
    */
   init: function init() {
 
-    this.imageLiveRefresh();
-    this.validateImageFile();
+    this.validateImageFile(function (result) {
+      if (result == true) {
+        ImagesHandler.imageLiveRefresh();
+      }
+    });
   },
 
   /**
    * Validate the image itself when it's changed
    * @return {void}
    */
-  validateImageFile: function validateImageFile() {
+  validateImageFile: function validateImageFile(callback) {
 
     $(ImagesHandler.elements.image).on('change', function () {
 
@@ -2072,7 +2075,7 @@ var ImagesHandler = {
       var extErrorMessage = Translation.find('ext_error_message', 'image_upload');
       var allowedExtension = ["jpg", "JPG", "jpeg", "JPEG", "png", "PNG"];
       var extName;
-      var maxFileSize = 1048576;
+      var maxFileSize = 1048576 * 3; // 3MB
       var sizeExceeded = false;
       var extError = false;
 
@@ -2089,12 +2092,16 @@ var ImagesHandler = {
       if (sizeExceeded) {
         Messages.makeError(maxExceededMessage);
         $(inputFile).val('');
+        callback(false);
       };
 
       if (extError) {
         Messages.makeError(extErrorMessage);
         $(inputFile).val('');
+        callback(false);
       };
+
+      callback(true);
     });
   },
 

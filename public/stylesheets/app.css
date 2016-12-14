@@ -8500,7 +8500,8 @@ img.mfp-img {
   margin: 0em;
   font-weight: 400;
   z-index: 10;
-  position: absolute; }
+  top: 1em;
+  position: fixed; }
   /* line 76, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
   .message__simple {
     padding: 1em;

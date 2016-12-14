@@ -12,8 +12,11 @@ var ImagesHandler = {
      */
     init: function() {
 
-      this.imageLiveRefresh();
-      this.validateImageFile();
+      this.validateImageFile(function(result) {
+        if (result == true) {
+          ImagesHandler.imageLiveRefresh();
+        }
+      });
 
     },
 
@@ -21,7 +24,7 @@ var ImagesHandler = {
      * Validate the image itself when it's changed
      * @return {void}
      */
-    validateImageFile: function() {
+    validateImageFile: function(callback) {
 
       $(ImagesHandler.elements.image).on('change', function() {
 
@@ -33,7 +36,7 @@ var ImagesHandler = {
         var extErrorMessage = Translation.find('ext_error_message', 'image_upload');
         var allowedExtension = ["jpg", "JPG", "jpeg", "JPEG", "png", "PNG"];
         var extName;
-        var maxFileSize = 1048576;
+        var maxFileSize = 1048576 * 3; // 3MB
         var sizeExceeded = false;
         var extError = false;
 
@@ -46,12 +49,16 @@ var ImagesHandler = {
         if (sizeExceeded) {
           Messages.makeError(maxExceededMessage);
           $(inputFile).val('');
+          callback(false);
         };
 
         if (extError) {
           Messages.makeError(extErrorMessage);
           $(inputFile).val('');
+          callback(false);
         };
+
+        callback(true);
 
       });
     },
