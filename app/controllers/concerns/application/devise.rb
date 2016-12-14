@@ -28,7 +28,7 @@ module Application
         if current_user.cart_orders.first
           cart_manager.store(current_user.cart_orders.first)
         end
-        
+
         return navigation.force! if navigation.force?
         return navigation.back(1)
       end
@@ -39,9 +39,7 @@ module Application
 
       if current_user.shopkeeper?
         force_german!
-        if current_user.shop.agb
-          return shopkeeper_orders_path
-        end
+        return shopkeeper_orders_path if current_user.shop&.agb
         return navigation.force! if navigation.force?
         return shopkeeper_settings_path
       end
