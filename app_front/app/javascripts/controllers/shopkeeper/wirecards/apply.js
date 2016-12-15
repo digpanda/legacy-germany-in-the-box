@@ -16,14 +16,14 @@ var ShopkeeperWirecardApply = {
    * Post shop details to the `form_url`
    */
    postShopDetails: function() {
-    
+
     var Casing = require("javascripts/lib/casing");
     var PostForm = require("javascripts/lib/post_form.js");
 
     let shopDetails = $("#shop-details").data();
     let parsedShopDetails = Casing.objectToUnderscoreCase(shopDetails);
-    
-    PostForm.send(parsedShopDetails, parsedShopDetails['form_url']);
+
+    // PostForm.send(parsedShopDetails, parsedShopDetails['form_url']);
 
   },
 
