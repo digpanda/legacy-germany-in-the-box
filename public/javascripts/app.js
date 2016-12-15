@@ -2039,8 +2039,8 @@ require.register("javascripts/starters/images_handler.js", function(exports, req
 "use strict";
 
 /**
- * ImagesHandler Class
- */
+* ImagesHandler Class
+*/
 var ImagesHandler = {
 
   elements: {
@@ -2048,22 +2048,19 @@ var ImagesHandler = {
   },
 
   /**
-   * Initializer
-   */
+  * Initializer
+  */
   init: function init() {
 
-    this.validateImageFile(function (result) {
-      if (result == true) {
-        ImagesHandler.imageLiveRefresh();
-      }
-    });
+    this.validateImageFile();
+    this.imageLiveRefresh();
   },
 
   /**
-   * Validate the image itself when it's changed
-   * @return {void}
-   */
-  validateImageFile: function validateImageFile(callback) {
+  * Validate the image itself when it's changed
+  * @return {void}
+  */
+  validateImageFile: function validateImageFile() {
 
     $(ImagesHandler.elements.image).on('change', function () {
 
@@ -2075,7 +2072,7 @@ var ImagesHandler = {
       var extErrorMessage = Translation.find('ext_error_message', 'image_upload');
       var allowedExtension = ["jpg", "JPG", "jpeg", "JPEG", "png", "PNG"];
       var extName;
-      var maxFileSize = 1048576 * 3; // 3MB
+      var maxFileSize = 1048576 * 1; // 3MB
       var sizeExceeded = false;
       var extError = false;
 
@@ -2092,24 +2089,20 @@ var ImagesHandler = {
       if (sizeExceeded) {
         Messages.makeError(maxExceededMessage);
         $(inputFile).val('');
-        callback(false);
       };
 
       if (extError) {
         Messages.makeError(extErrorMessage);
         $(inputFile).val('');
-        callback(false);
       };
-
-      callback(true);
     });
   },
 
   /**
-   * This system is basically live refreshing the images when you select one from your browser
-   * It's mainly used by the shopkeepers
-   * @return {void}
-   */
+  * This system is basically live refreshing the images when you select one from your browser
+  * It's mainly used by the shopkeepers
+  * @return {void}
+  */
   imageLiveRefresh: function imageLiveRefresh() {
 
     if ($(ImagesHandler.elements.image).length > 0) {
@@ -2139,31 +2132,6 @@ var ImagesHandler = {
   }
 
 };
-
-/* UNUSED IN THE CURRENT SYSTEM -> but we keep it just in case we want to control PDF someday
-  validatePdfFile: function(inputFile) {
-     var maxExceededMessage = ProductNewSku.data().image;
-    var extErrorMessage = ProductNewSku.data().translationExtErrorMessage;
-    var allowedExtension = ["pdf"];
-     var extName;
-    var maxFileSize = 2097152;
-    var sizeExceeded = false;
-    var extError = false;
-     $.each(inputFile.files, function() {
-      if (this.size && maxFileSize && this.size > maxFileSize) {sizeExceeded=true;};
-      extName = this.name.split('.').pop();
-      if ($.inArray(extName, allowedExtension) == -1) {extError=true;};
-    });
-    if (sizeExceeded) {
-      window.alert(maxExceededMessage);
-      $(inputFile).val('');
-    };
-     if (extError) {
-      window.alert(extErrorMessage);
-      $(inputFile).val('');
-    };
-  }
-**/
 
 module.exports = ImagesHandler;
 });
