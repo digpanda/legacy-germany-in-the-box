@@ -33,7 +33,7 @@ var ImagesHandler = {
       var extErrorMessage = Translation.find('ext_error_message', 'image_upload');
       var allowedExtension = ["jpg", "JPG", "jpeg", "JPEG", "png", "PNG"];
       var extName;
-      var maxFileSize = 1048576 * 1; // 3MB
+      var maxFileSize = 1048576 * 3; // 3MB
       var sizeExceeded = false;
       var extError = false;
 
