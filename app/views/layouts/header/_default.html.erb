@@ -90,7 +90,7 @@
 
     <!-- Server details -->
     <div class="col-md-6">
-      <% if current_user.decorate.admin? %>
+      <% if current_user.admin? %>
         <strong><%= Rails.env.capitalize %> Mode</strong> - Client <%= request.remote_ip %> - Server <%= server_ip %> - UTC <span id="utc-time"><%= Time.now.utc.strftime("%T") %></span>
       <% end %>
     </div>
@@ -107,11 +107,7 @@
 
 </div>
 
-<!--
-<div class="+big-spacer"></div>
--->
 <div class="+spacer"></div>
-<div class="+small-spacer"></div>
 
 <%= render partial: "layouts/header/parts/messages" %>
 <%= render partial: "layouts/header/parts/breadcrumb" %>
