@@ -8,7 +8,7 @@
   <%= link_to '', admin_shop_approve_path(shop), :method => :patch, :class => 'tooltipster fa fa-check buttons buttons__add', :title => "Approve" %>
 <% end %>
 
-<%= link_to '', admin_shop_force_login_path(shop), :method => :post, data: { confirm: "Are you sure you want to log-in to this shop ?" }, :class => 'tooltipster fa fa-sign-in buttons buttons__add', :title => "Log-in" %>
+<%= link_to '', admin_shop_force_login_path(shop), :method => :post, data: { confirm: "Are you sure you want to log-in to this shop ?" }, :class => 'tooltipster fa fa-sign-in buttons buttons__purple', :title => "Force Log-in" %>
 
 <% if shop.products.count == 0 %>
   <%= link_to '', admin_shop_path(shop), :method => :delete, data: { confirm: "Are you sure you want to destroy this shop ?" }, :class => 'tooltipster fa fa-times buttons buttons__delete', :title => "Remove shop" %>
