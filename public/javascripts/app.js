@@ -1005,7 +1005,7 @@ var ShopkeeperWirecardApply = {
     var shopDetails = $("#shop-details").data();
     var parsedShopDetails = Casing.objectToUnderscoreCase(shopDetails);
 
-    // PostForm.send(parsedShopDetails, parsedShopDetails['form_url']);
+    PostForm.send(parsedShopDetails, parsedShopDetails['form_url']);
   }
 
 };
@@ -1305,7 +1305,7 @@ var PostForm = {
     document.body.appendChild(form); // <- JS way
     // $('body').append(form); // <- jQuery way
     //console.log(form);
-    form.submit();
+    //form.submit();
   }
 
 };

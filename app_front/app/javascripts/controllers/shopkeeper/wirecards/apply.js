@@ -23,7 +23,7 @@ var ShopkeeperWirecardApply = {
     let shopDetails = $("#shop-details").data();
     let parsedShopDetails = Casing.objectToUnderscoreCase(shopDetails);
 
-    // PostForm.send(parsedShopDetails, parsedShopDetails['form_url']);
+    PostForm.send(parsedShopDetails, parsedShopDetails['form_url']);
 
   },
 
