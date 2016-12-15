@@ -3,7 +3,7 @@
   <!-- TODO : this breadcrumb system should be refactored and the logic of the header split depending the role of the user -->
   <% if current_user&.admin? || current_user&.shopkeeper? %>
   <div class="row">
-    <div class="col-md-4 col-md-push-3">
+    <div class="col-md-7 col-md-push-3">
       <ol class="breadcrumb">
         <%= render_breadcrumbs :tag => :li, :separator => "" %>
       </ol>
