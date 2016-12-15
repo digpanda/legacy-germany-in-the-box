@@ -1,5 +1,7 @@
 class Admin::Shops::Products::SkusController < Shopkeeper::Products::SkusController
 
+  attr_reader :shop
+
   authorize_resource :class => false
 
   skip_before_action :breadcrumb_shopkeeper_products, :breadcrumb_shopkeeper_edit_product,
@@ -7,7 +9,6 @@ class Admin::Shops::Products::SkusController < Shopkeeper::Products::SkusControl
   before_action :set_shop
   before_action :breadcrumb_admin_shops, :breadcrumb_admin_shop_products, :breadcrumb_admin_edit_product, :breadcrumb_admin_product_skus
   before_action :breadcrumb_admin_product_edit_sku, only: [:edit]
-  attr_reader :shop
 
   # NOTE : we inherit from the Shopkeeper side
   # because the methods are all the same for now

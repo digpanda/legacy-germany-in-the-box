@@ -1,12 +1,12 @@
 class Admin::CategoriesController < ApplicationController
 
+  attr_accessor :address
+
   authorize_resource :class => false
 
   before_action :set_address, only: [:show]
 
   layout :custom_sublayout
-
-  attr_accessor :address
 
   def index
   end

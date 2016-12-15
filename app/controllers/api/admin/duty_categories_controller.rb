@@ -2,9 +2,10 @@
 # through AJAX calls
 class Api::Admin::DutyCategoriesController < Api::ApplicationController
 
+  attr_reader :duty_category
+
   authorize_resource :class => false
   before_action :set_duty_category
-  attr_reader :duty_category
 
   def show
 

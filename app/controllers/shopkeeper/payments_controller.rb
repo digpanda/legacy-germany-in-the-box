@@ -1,10 +1,11 @@
 class Shopkeeper::PaymentsController < ApplicationController
 
+  attr_reader :shop
+
   authorize_resource :class => false
-  layout :custom_sublayout, only: [:index]
   before_action :set_shop
 
-  attr_reader :shop
+  layout :custom_sublayout, only: [:index]
 
   def index
     unless shop.billing_address

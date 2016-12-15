@@ -1,10 +1,11 @@
 require 'will_paginate/array'
 
+# this controller is linked with an API controller (Api::Customer::FavoritesController)
 class Shared::NotificationsController < ApplicationController
 
-  # This controller is linked with an API controller (Api::Customer::FavoritesController)
-  before_action :authenticate_user!
   attr_reader :notifications
+
+  before_action :authenticate_user!
 
   before_action :set_notifications
 

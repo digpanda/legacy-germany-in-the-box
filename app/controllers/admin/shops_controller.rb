@@ -1,13 +1,13 @@
 class Admin::ShopsController < ApplicationController
 
+  attr_accessor :shop, :shops
+
   authorize_resource :class => false
   before_action :set_shop, :except => [:index, :emails]
   before_action :breadcrumb_admin_shops
   before_action :breadcrumb_admin_shop, only: [:show]
 
   layout :custom_sublayout
-
-  attr_accessor :shop, :shops
 
   def index
     @shops = Shop.order_by(:c_at => :desc).paginate(:page => current_page, :per_page => 10)

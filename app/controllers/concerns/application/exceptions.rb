@@ -1,7 +1,6 @@
 module Application
   module Exceptions
     extend ActiveSupport::Concern
-
     include ErrorsHelper
 
     included do

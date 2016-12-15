@@ -1,10 +1,10 @@
 class Admin::CategoriesController < ApplicationController
 
+  attr_accessor :category, :categories
+
   authorize_resource :class => false
 
   layout :custom_sublayout
-
-  attr_accessor :category, :categories
 
   def index
     @categories = Category.order_by(:position => :asc).paginate(:page => current_page, :per_page => 10)

@@ -1,5 +1,7 @@
 class Admin::Shops::ProductsController < ApplicationController
 
+  attr_reader :shop, :products, :product
+
   authorize_resource :class => false
 
   before_action :set_shop
@@ -9,8 +11,6 @@ class Admin::Shops::ProductsController < ApplicationController
   before_action :recover_categories_from_ids, :recover_duty_category_from_code, only: [:create, :update]
 
   layout :custom_sublayout
-
-  attr_reader :shop, :products, :product
 
   def index
     @products = shop.products.order_by(:c_at => :desc).paginate(:page => current_page, :per_page => 10)

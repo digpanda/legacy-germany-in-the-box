@@ -1,11 +1,11 @@
 class Admin::CouponsController < ApplicationController
 
+  attr_accessor :coupon, :coupons
+
   authorize_resource :class => false
   before_action :set_coupon, :except => [:index, :create, :new]
 
   layout :custom_sublayout
-
-  attr_accessor :coupon, :coupons
 
   def index
     @coupons = Coupon.order_by(:c_at => :desc).paginate(:page => current_page, :per_page => 10)

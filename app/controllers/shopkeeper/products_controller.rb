@@ -1,5 +1,7 @@
 class Shopkeeper::ProductsController < ApplicationController
 
+  attr_reader :shop, :products, :product
+
   authorize_resource :class => false
 
   before_action :set_shop
@@ -8,8 +10,6 @@ class Shopkeeper::ProductsController < ApplicationController
   before_action :breadcrumb_shopkeeper_edit_product, only: [:edit]
 
   layout :custom_sublayout
-
-  attr_reader :shop, :products, :product
 
   def index
     @products = shop.products.order_by(:c_at => :desc).paginate(:page => current_page, :per_page => 10)

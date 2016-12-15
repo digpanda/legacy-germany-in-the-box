@@ -6,6 +6,8 @@ class Shopkeeper::Products::VariantsController < ApplicationController
   MAX_NEW_VARIANTS = 10.freeze
   MAX_NEW_OPTIONS = 10.freeze
 
+  attr_reader :shop, :product, :variants, :variant
+
   authorize_resource :class => false
 
   before_action :set_shop, :set_product
@@ -13,8 +15,6 @@ class Shopkeeper::Products::VariantsController < ApplicationController
   before_action :breadcrumb_shopkeeper_products, :breadcrumb_shopkeeper_edit_product, :breadcrumb_shopkeeper_product_variants
 
   layout :custom_sublayout
-
-  attr_reader :shop, :product, :variants, :variant
 
   def index
     MAX_NEW_VARIANTS.times { product.options.build }

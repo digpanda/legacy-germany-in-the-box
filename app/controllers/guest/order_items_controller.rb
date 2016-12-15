@@ -1,8 +1,8 @@
 class Guest::OrderItemsController < ApplicationController
 
-  before_action :set_order_item, :set_order
-
   attr_reader :order_item, :order
+
+  before_action :set_order_item, :set_order
 
   # TODO : this was moved here as `add_product` but needs to be hardly refactored
   # it's very shitty code.

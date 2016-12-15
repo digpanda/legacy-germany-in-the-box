@@ -1,11 +1,11 @@
 class Shopkeeper::AccountController < ApplicationController
 
+  attr_accessor :user
+
   authorize_resource :class => false
   before_action :set_user
 
   layout :custom_sublayout
-
-  attr_accessor :user
 
   def edit
   end

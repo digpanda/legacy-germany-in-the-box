@@ -1,12 +1,12 @@
 class Customer::Orders::CouponsController < ApplicationController
 
+  attr_reader :order, :coupon
+
   authorize_resource :class => false
   before_action :set_order
   before_action :set_coupon, :except => [:destroy]
 
   layout :custom_sublayout
-
-  attr_reader :order, :coupon
 
   # we apply the coupon to the order
   def create

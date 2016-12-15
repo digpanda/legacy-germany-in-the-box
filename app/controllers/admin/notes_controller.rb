@@ -1,11 +1,11 @@
 class Admin::NotesController < ApplicationController
 
+  attr_accessor :note, :notes
+
   authorize_resource :class => false
   before_action :set_note, :except => [:index, :create]
 
   layout :custom_sublayout
-
-  attr_accessor :note, :notes
 
   def index
   end

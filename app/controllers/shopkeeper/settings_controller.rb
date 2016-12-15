@@ -1,10 +1,12 @@
 class Shopkeeper::SettingsController < ApplicationController
 
+  attr_reader :shop
+
   authorize_resource :class => false
-  layout :custom_sublayout
+  
   before_action :set_shop
 
-  attr_reader :shop
+  layout :custom_sublayout
 
   def index
   end

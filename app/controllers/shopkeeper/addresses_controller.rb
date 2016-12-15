@@ -3,9 +3,10 @@ class Shopkeeper::AddressesController < ApplicationController
   attr_reader :address
 
   authorize_resource :class => false
-  layout :custom_sublayout, only: [:index]
   before_action :set_address, only: [:show, :update, :destroy]
 
+  layout :custom_sublayout, only: [:index]
+  
   def index
     @addresses = current_user.shop.addresses
   end

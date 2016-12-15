@@ -3,13 +3,13 @@ require 'net/ftp'
 
 class Shopkeeper::OrdersController < ApplicationController
 
+  attr_accessor :order
+
   authorize_resource :class => false
   before_action :set_order, :except => [:index]
   before_filter :is_shop_order, :except => [:index]
 
   layout :custom_sublayout, only: [:index]
-
-  attr_accessor :order
 
   def index
     @orders = current_user.shop.orders.bought_or_unverified.order_by(:c_at => :desc).paginate(:page => current_page, :per_page => 10)

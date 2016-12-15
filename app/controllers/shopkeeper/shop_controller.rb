@@ -1,11 +1,12 @@
 class Shopkeeper::ShopController < ApplicationController
 
-  authorize_resource :class => false
-  layout :custom_sublayout
-  before_action :set_shop
-
   attr_reader :shop
 
+  authorize_resource :class => false
+  before_action :set_shop
+
+  layout :custom_sublayout
+  
   def show
   end
 

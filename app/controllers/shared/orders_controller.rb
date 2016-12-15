@@ -5,11 +5,11 @@ class Shared::OrdersController < ApplicationController
 
   CSV_ENCODE = "UTF-8"
 
+  attr_accessor :order
+
   authorize_resource :class => false
   before_action :set_order
   before_filter :is_admin_or_shop_order, except: [:label]
-
-  attr_accessor :order
 
   def show
     I18n.locale = :de # TODO : make a helper for that

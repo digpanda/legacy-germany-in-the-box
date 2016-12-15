@@ -1,6 +1,7 @@
 class Api::Guest::OrderItemsController < Api::ApplicationController
 
   attr_reader :order_item
+  
   before_action :set_order_item
 
   def update

@@ -1,11 +1,11 @@
 class Admin::UsersController < ApplicationController
 
+  attr_accessor :user, :users
+
   authorize_resource :class => false
   before_action :set_user, :except => [:index, :emails]
 
   layout :custom_sublayout
-
-  attr_accessor :user, :users
 
   def index
     @users = User.order(last_sign_in_at: :desc).paginate(:page => current_page, :per_page => 10)

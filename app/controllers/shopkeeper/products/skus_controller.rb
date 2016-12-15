@@ -1,5 +1,7 @@
 class Shopkeeper::Products::SkusController < ApplicationController
 
+  attr_reader :product, :sku, :skus
+
   authorize_resource :class => false
 
   layout :custom_sublayout
@@ -7,8 +9,6 @@ class Shopkeeper::Products::SkusController < ApplicationController
   before_action :set_sku, except: [:index, :new, :create]
   before_action :breadcrumb_shopkeeper_products, :breadcrumb_shopkeeper_edit_product, :breadcrumb_shopkeeper_product_skus
   before_action :breadcrumb_shopkeeper_product_edit_sku, only: [:edit]
-
-  attr_reader :product, :sku, :skus
 
   def index
     @skus = product.skus.order_by(:c_at => :desc).paginate(:page => current_page, :per_page => 10)

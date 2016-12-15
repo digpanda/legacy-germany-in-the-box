@@ -1,9 +1,9 @@
 class Customer::CartController < ApplicationController
 
-  authorize_resource :class => false
-
   attr_accessor :user
   attr_reader :orders
+
+  authorize_resource :class => false
 
   def show
     @readonly = false

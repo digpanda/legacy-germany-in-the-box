@@ -2,13 +2,12 @@ require 'will_paginate/array'
 
 class Admin::OrderPaymentsController < ApplicationController
 
+  attr_reader :order_payment, :order_payments
+
   authorize_resource :class => false
-  #authorize_resource :class => false
 
   layout :custom_sublayout, only: [:index, :show]
   before_action :set_order_payment, except: [:index]
-
-  attr_reader :order_payment, :order_payments
 
   def index
     @order_payments = OrderPayment.order_by(c_at: :desc).paginate(:page => current_page, :per_page => 10);

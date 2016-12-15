@@ -2,12 +2,12 @@ class Admin::OrdersController < ApplicationController
 
   CSV_ENCODE = "UTF-8"
 
+  attr_accessor :order, :orders
+
   authorize_resource :class => false
   before_action :set_order, :except => [:index]
 
   layout :custom_sublayout
-
-  attr_accessor :order, :orders
 
   def index
     respond_to do |format|

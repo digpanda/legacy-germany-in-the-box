@@ -2,11 +2,12 @@ class Customer::CheckoutController < ApplicationController
 
   ACCEPTABLE_PAYMENT_METHOD = [:upop, :creditcard]
 
+  attr_reader :shop, :order
+
   authorize_resource :class => false
   before_action :set_shop, :only => [:create]
 
   protect_from_forgery :except => [:success, :fail, :cancel, :processing]
-  attr_reader :shop, :order
 
   def create
 
