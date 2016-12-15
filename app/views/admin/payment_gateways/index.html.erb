@@ -7,6 +7,8 @@
   </div>
 </div>
 
+Wirecard status <%= @payment_gateways.first.shop.wirecard_status %>
+
 <div class="+overflow">
   <%= render partial: "admin/payment_gateways/table", :locals => { :payment_gateways => @payment_gateways } %>
 </div>
