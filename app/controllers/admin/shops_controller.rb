@@ -66,6 +66,11 @@ class Admin::ShopsController < ApplicationController
     redirect_to navigation.back(1)
   end
 
+  def force_login
+    sign_in(shop.shopkeeper)
+    redirect_to root_path
+  end
+
   private
 
   def shop_params

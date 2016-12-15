@@ -18,6 +18,7 @@ namespace :admin do
   resources :shops do
     get :emails, on: :collection
     patch :approve
+    post :force_login
     patch :disapprove
     delete :destroy_image
 
