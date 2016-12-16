@@ -109,7 +109,7 @@
 
 <div class="+spacer"></div>
 
-<% if potential_customer? && request.fullpath != root_path %>
+<% if potential_customer? && guest_path? %>
   <%= render partial: "layouts/header/parts/stickers" %>
 <% end %>
 
