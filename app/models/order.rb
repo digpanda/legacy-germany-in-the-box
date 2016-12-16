@@ -6,7 +6,7 @@ class Order
 
   Numeric.include CoreExtensions::Numeric::CurrencyLibrary
 
-  UNPROCESSABLE_TIME = [9,10] # 9am to 10am -> German Hour
+  UNPROCESSABLE_TIME = [11,12] # 11am to 12am -> German Hour
 
   field :status,                    type: Symbol, default: :new
   field :desc,                      type: String
