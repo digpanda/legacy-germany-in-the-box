@@ -9032,17 +9032,17 @@ img.mfp-img {
     width: 12em;
     margin: 0 auto;
     display: block;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+    -webkit-background-size: 100% auto;
+    -moz-background-size: 100% auto;
+    -o-background-size: 100% auto;
+    background-size: 100% auto;
     background-repeat: no-repeat;
     background-position: center center; }
     @media (max-width: 991px) {
       /* line 76, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
       .shop-page-product__image {
         width: 70%; } }
-    /* line 58, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_shop-page-product.sass */
+    /* line 64, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/components/_shop-page-product.sass */
     .shop-page-product__image img {
       max-width: 100%;
       max-height: 22em; }
