@@ -109,6 +109,10 @@
 
 <div class="+spacer"></div>
 
+<% if potential_customer? %>
+  <%= render partial: "layouts/header/parts/stickers" %>
+<% end %>
+
 <%= render partial: "layouts/header/parts/messages" %>
 <%= render partial: "layouts/header/parts/breadcrumb" %>
 </br>

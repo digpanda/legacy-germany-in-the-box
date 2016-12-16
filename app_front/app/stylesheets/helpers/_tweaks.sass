@@ -1,12 +1,26 @@
 +tweak(inline)
   display: inline
 
++tweak(sticking)
+  position: absolute
+  float: right
+  text-align: right
+  margin-left: 85%
+  top: 150px
+  clear: both
+  opacity: 0.5
+  +breakpoint(mobile)
+    display: none
+
+  img
+    max-width: 150px
+
 +tweak(block)
   display: block
 
 +tweak(stick)
   min-height: inherit
-  
+
 +tweak(clear-button)
   border: none
   background: none
