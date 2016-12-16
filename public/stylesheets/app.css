@@ -9035,7 +9035,7 @@ img.mfp-img {
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
-    background-size: 80% auto;
+    background-size: cover;
     background-repeat: no-repeat;
     background-position: center center; }
     @media (max-width: 991px) {
