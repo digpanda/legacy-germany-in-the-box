@@ -4,8 +4,6 @@ class Admin::Shops::Products::VariantsController < Shopkeeper::Products::Variant
   skip_before_action :breadcrumb_shopkeeper_products, :breadcrumb_shopkeeper_edit_product, :breadcrumb_shopkeeper_product_variants
   before_action :breadcrumb_admin_shops, :breadcrumb_admin_shop_products, :breadcrumb_admin_edit_product, :breadcrumb_admin_product_variants
 
-  before_action :breadcrumb_admin_shops, :breadcrumb_admin_shop, :breadcrumb_admin_edit_product, :breadcrumb_admin_product_variants
-
   # NOTE : we inherit from the Shopkeeper side
   # because the methods are all the same for now
   # this is a very rare case.
