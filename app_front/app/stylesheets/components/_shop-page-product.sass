@@ -38,20 +38,22 @@
       text-align: center
 
   +part(image)
-    background-color: $color-light-grey
+    background-color: $color-white
     height: 17em
     width: 12em
-
-    +breakpoint('mobile')
-      width: 70%
 
     margin: 0 auto
     display: block
     -webkit-background-size: cover
     -moz-background-size: cover
     -o-background-size: cover
-    background-size: cover
+    //background-size: cover
+    background-size: 80% auto
+    background-repeat: no-repeat
     background-position: center center
+
+    +breakpoint('mobile')
+      width: 70%
 
     img
       max-width: 100%
