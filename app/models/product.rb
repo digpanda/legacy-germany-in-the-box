@@ -194,7 +194,9 @@ class Product
   end
 
   def available_skus
-    skus.is_active.in_stock.order_by({:discount => :desc}, {:quantity => :desc})
+    # in_stock was here
+    # - Laurent
+    skus.is_active.order_by({:discount => :desc}, {:quantity => :desc})
   end
 
   def sku_from_option_ids(option_ids)
