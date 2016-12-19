@@ -193,6 +193,10 @@ class Product
     skus.where(:discount.gt => 0).count > 0
   end
 
+  def clean_name
+    Cleaner.slug(name).upcase
+  end
+
   def available_skus
     # in_stock was here
     # - Laurent

@@ -31,11 +31,7 @@ class ProductDecorator < Draper::Decorator
 
   # complete cleaning for CSV file
   def clean_desc(characters=240)
-    clean_desc = self.desc
-    clean_desc = clean_desc.squish.downcase.strip
-    clean_desc = I18n.transliterate(clean_desc)
-    clean_desc = clean_desc.gsub(/[^\w-]/, ' ').gsub(/\s+/, ' ')
-    clean_desc = truncate(clean_desc, :length => characters)
+    Cleaner.slug(self.desc, characters)
   end
 
   def first_sku_image

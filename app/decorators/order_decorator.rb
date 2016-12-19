@@ -10,12 +10,13 @@ class OrderDecorator < Draper::Decorator
   decorates :order
 
   def clean_desc
-    return '' if self.desc.nil?
-    self.desc.squish.downcase.gsub(',', '')
+    if desc
+      Cleaner.slug(desc)
+    end
   end
 
   def clean_order_items_description
-    self.order_items.reduce([]) { |acc, order_item| acc << "#{order_item.product.name}: #{order_item.product.decorate.clean_desc(MAX_DESCRIPTION_CHARACTERS)}" }.join(', ')
+    self.order_items.reduce(&:clean_desc).join(', ')
   end
 
   def total_price_in_yuan

@@ -28,6 +28,7 @@ class OrdersFormatter < BaseService
     'End price (CNY)',
     'Coupon code',
     'Coupon discount',
+    'Coupon discount (EUR)',
     'Coupon description',
     'Total paid (EUR)',
     'Total paid (CNY)',
@@ -95,6 +96,7 @@ class OrdersFormatter < BaseService
 
       (order.coupon ? order.coupon.code : ''),
       (order.coupon ? order.coupon.decorate.discount_display : ''),
+      (order.coupon_discount ? order.coupon_discount : ''),
       (order.coupon ? order.coupon.desc : ''),
 
       order.total_paid(:eur),

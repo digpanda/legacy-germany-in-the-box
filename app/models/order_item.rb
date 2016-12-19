@@ -2,6 +2,7 @@ class OrderItem
   include MongoidBase
 
   SKU_DELEGATE_EXCEPTION = [:quantity]
+  MAX_DESCRIPTION_CHARACTERS = 200
 
   field :quantity,        type: Integer,    default: 1
 
@@ -50,6 +51,10 @@ class OrderItem
         end
       end
     end.flatten.compact
+  end
+
+  def clean_desc
+    "#{product.clean_name} #{product.decorate.clean_desc(MAX_DESCRIPTION_CHARACTERS)}"
   end
 
   # this method should be used in only a few cases
