@@ -28,8 +28,8 @@ every :day, :at => '10:15am' do
   rake "cron:compile_and_transfer_orders_csvs_to_borderguru"
 end
 
-# 10:15am Germany
-every :day, :at => '13:15am' do
+# 1:15pm Germany
+every :day, :at => '1:15pm' do
   command 'The system has launched the rake task `cron:transmit_pickup_orders_to_hermes`'
   rake "cron:transmit_pickup_orders_to_hermes"
 end

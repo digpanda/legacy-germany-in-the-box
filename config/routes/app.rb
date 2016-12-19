@@ -21,3 +21,6 @@ draw :app, :guest
 
 resources :languages, only: [:update] do
 end
+
+resources :adyen do
+end
