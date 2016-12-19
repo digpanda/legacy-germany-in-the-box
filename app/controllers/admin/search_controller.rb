@@ -8,6 +8,7 @@ class Admin::SearchController < ApplicationController
 
   # TODO : could be refactored and better
   def create
+
     if params[:product_id].present?
       product = Product.where(id: params[:product_id]).first
       if product
@@ -15,6 +16,7 @@ class Admin::SearchController < ApplicationController
         return
       end
     end
+
     if params[:sku_id].present?
       Product.all.each do |product|
         sku = product.skus.where(id: params[:sku_id]).first
@@ -24,6 +26,15 @@ class Admin::SearchController < ApplicationController
         end
       end
     end
+
+    if params[:order_id].present?
+      order = Order.where(id: params[:order_id]).first
+      if order
+        redirect_to admin_order_path(order)
+        return
+      end
+    end
+
     flash[:error] = "We could not find the resource."
     redirect_to navigation.back(1)
   end
