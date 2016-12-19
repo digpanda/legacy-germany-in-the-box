@@ -1,4 +1,4 @@
-class Admin::CategoriesController < ApplicationController
+class Admin::AddressController < ApplicationController
 
   attr_accessor :address
 

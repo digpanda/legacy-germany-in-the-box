@@ -49,6 +49,9 @@ namespace :admin do
     patch :reset_border_guru_order
   end
 
+  resource :search, :controller => 'search' do
+  end
+
   resource :account, :controller => 'account' do
   end
 

@@ -1,3 +1,6 @@
+<li class="<%= menu_active? admin_search_path  %>">
+  <%= link_to "Search", admin_search_path %>
+</li>
 <li class="<%= menu_active? edit_admin_account_path  %>">
   <%= link_to I18n.t(:my_account, scope: :top_menu), edit_admin_account_path %>
 </li>
