@@ -14,7 +14,7 @@ class OrderDecorator < Draper::Decorator
   end
 
   def clean_order_items_description
-    self.order_items.reduce(&:clean_desc).join(', ')
+    self.order_items.reduce(&:clean_desc).map(&:to_a).join(', ')
   end
 
   def total_price_in_yuan
