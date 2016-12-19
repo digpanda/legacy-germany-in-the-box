@@ -81,7 +81,8 @@ class OrdersFormatter < BaseService
       order.decorate.clean_desc,
       order_item_names(order),
 
-      order.decorate.clean_order_items_description,
+      # order.decorate.clean_order_items_description,
+      '',
       order.decorate.total_quantity,
       order.decorate.total_volume,
 

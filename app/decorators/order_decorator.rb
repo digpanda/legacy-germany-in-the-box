@@ -10,9 +10,7 @@ class OrderDecorator < Draper::Decorator
   decorates :order
 
   def clean_desc
-    if desc
-      Cleaner.slug(desc)
-    end
+    Cleaner.slug(desc)
   end
 
   def clean_order_items_description
