@@ -14,15 +14,7 @@ class Guest::ProductsController < ApplicationController
   private
 
   def set_product
-    @product = Product.where(id: params[:id]).first
-    product?
-  end
-
-  def product?
-    unless product
-      flash[:error] = "Product doesn't exist."
-      redirect_to navigation.back(1)
-    end
+    @product = Product.find(params[:id])
   end
 
   def set_shop
