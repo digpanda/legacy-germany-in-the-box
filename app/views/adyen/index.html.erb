@@ -2,11 +2,10 @@
   <%=
   Adyen::Form.hidden_fields(
   :currency_code => 'EUR',
-  :ship_before_date => Date.today,
-  :session_validity => Time.now,
-  :recurring => false,
-  :merchant_reference => 'Some description about the order',
-  :merchant_account => 'Digpanda',
+  :ship_before_date =>  "2016-12-20", # Date.today,
+  :session_validity => "2016-12-20T13:26:43Z", # Time.now,
+  :merchant_reference => 'SKINTEST-1482235768306',
+  :merchant_account => 'DigpandaCN',
   :skin_code => ENV['adyen_skin'],
   :shared_secret => ENV['adyen_hmac'],
   :payment_amount => 30 * 100 # cents
