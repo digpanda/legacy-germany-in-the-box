@@ -55,6 +55,7 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     addressable (2.4.0)
+    adyen (2.2.0)
     airbrussh (1.0.2)
       sshkit (>= 1.6.1, != 1.7.0)
     api_cache (0.3.0)
@@ -515,6 +516,7 @@ PLATFORMS
 
 DEPENDENCIES
   abstract_method
+  adyen
   api_cache
   better_errors
   bootstrap-datepicker-rails

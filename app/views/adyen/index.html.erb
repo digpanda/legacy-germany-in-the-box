@@ -1,18 +1,16 @@
-<form method="post" action="https://test.adyen.com/hpp/select.shtml" id="adyenForm" name="adyenForm" target="_parent">
-  <input type="hidden" name="orderData" value="H4sIAAAAAAAAALMpSUzKSVVIzkksLrZVyk9RsuPlsikpApMZdi6pxclFmQUlmfl5Cjb6QAEFkGhgaWJeSWZJJZKQY25+aV4JRACoVR9qAoRMsTNUcMlMzyxJzFFwTsxNLUpU0Hg5e/fTrtkvVux5NnvH06UTn29pebKn8dnStY8bV2sCtaeAjE2BOatIyc4Qq6CBgYK7U4ACWA7TWpjKJCW7kHyg5diMwBBLUoAYrIfdbH1weNkBACLpJjE3AQAA">
-  <input type="hidden" name="merchantSig" value="3iWDU/V5RMtdaiZC4YRIpoX9/v0=" />
-  <input type="hidden" name="sessionValidity" value="2014-10-11T10:30:00Z" />
-  <input type="hidden" name="shipBeforeDate" value="2014-10-20" />
-  <input type="hidden" name="shopperLocale" value="en_GB" />
-  <input type="hidden" name="merchantAccount" value="Digpanda" />
-  <input type="hidden" name="paymentAmount" value="1000" />
-  <input type="hidden" name="currencyCode" value="CNY" />
-  <input type="hidden" name="skinCode" value="Bsot7GRa" />
-  <input type="hidden" name="merchantReference" value="Internet order 12345" />
-  <input type="hidden" name="shopperReference" value="test102@gmail.com" />
-  <input type="hidden" name="recurringContract" value="ONECLICK" />
-  <input type="hidden" name="shopperEmail" value="test102@gmail.com" />
-  <input type="hidden" name="offset" value="0" />
-  <input type="submit" value="Send" />
-  <input type="reset" />
-</form>
+<%= form_tag(Adyen::Form.url) do %>
+  <%=
+  Adyen::Form.hidden_fields(
+  :currency_code => 'EUR',
+  :ship_before_date => Date.today,
+  :session_validity => Time.now,
+  :recurring => false,
+  :merchant_reference => 'Some description about the order',
+  :merchant_account => 'Digpanda',
+  :skin_code => ENV['adyen_skin'],
+  :shared_secret => ENV['adyen_hmac'],
+  :payment_amount => 30 * 100 # cents
+  )
+  %>
+  <%= submit_tag('pay') %>
+<% end %>
