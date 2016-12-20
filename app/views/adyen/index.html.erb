@@ -1,4 +1,4 @@
-<%= form_tag(Adyen::Form.url) do %>
+<!-- <%= form_tag(Adyen::Form.url) do %>
   <%=
   Adyen::Form.hidden_fields(
   :currency_code => 'EUR',
@@ -12,4 +12,20 @@
   )
   %>
   <%= submit_tag('pay') %>
-<% end %>
+<% end %> -->
+
+<%= Time.now %>
+
+<form action="https://test.adyen.com/hpp/select.shtml" accept-charset="UTF-8" method="post">
+
+<input type="hidden" name="currencyCode" value="EUR">
+<input type="hidden" name="shipBeforeDate" value="2016-12-20">
+<input type="hidden" name="sessionValidity" value="2016-12-22">
+<input type="hidden" name="merchantReference" value="SKINTEST-1482235768306">
+<input type="hidden" name="merchantAccount" value="DigpandaCN">
+<input type="hidden" name="skinCode" value="Bsot7GRa">
+<input type="hidden" name="paymentAmount" value="3000">
+<input type="hidden" name="merchantSig" value="lVB7CguXOqHvtZ+S46kCjXOYiXddnnbjlqkUGxWOfWo=">
+<input type="submit">
+
+</form>
