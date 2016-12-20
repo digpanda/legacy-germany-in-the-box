@@ -1,4 +1,4 @@
-<!-- <%= form_tag(Adyen::Form.url) do %>
+<form action="<%= Adyen::Form.url %>" method="post">
   <%=
   Adyen::Form.hidden_fields(
   :currency_code => 'EUR',
@@ -12,7 +12,7 @@
   )
   %>
   <%= submit_tag('pay') %>
-<% end %> -->
+</form>
 
 <%= Time.now %>
 
