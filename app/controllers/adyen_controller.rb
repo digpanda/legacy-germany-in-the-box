@@ -7,6 +7,7 @@ class AdyenController < ActionController::Base
   end
 
   def callback
+    render text: "Congratulations, you came back to Germany in the Box."
     payment_method = params[:paymentMethod]
     psp_reference = params[:pspReference]
     merchant_signature = params[:merchantSig]
