@@ -23,4 +23,5 @@ resources :languages, only: [:update] do
 end
 
 resources :adyen do
+  get :callback
 end

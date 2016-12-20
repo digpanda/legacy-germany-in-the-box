@@ -4,6 +4,10 @@ class AdyenController < ActionController::Base
     redirect_to adyen_url
   end
 
+  def callback
+    binding.pry
+  end
+
   private
 
   def adyen_url
@@ -18,7 +22,7 @@ class AdyenController < ActionController::Base
       :skin_code => ENV['adyen_skin'],
       :shared_secret => ENV['adyen_shared_secret'],
       :payment_amount => 30 * 100, # cents
-      :merchant_return_data => 'http://test.com'
+      :res_URL => adyen_callback_path
     )
   end
 
