@@ -1,8 +1,9 @@
 class AdyenController < ActionController::Base
 
+  AMOUNT = 30 * 100 # in cents
+  REFERENCE = 'Order Number 0'
+  
   def show
-    AMOUNT = 30 * 100 # in cents
-    REFERENCE = 'Order Number 0'
     redirect_to adyen_url
   end
 
