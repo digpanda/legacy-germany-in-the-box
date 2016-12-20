@@ -2,7 +2,7 @@ class AdyenController < ActionController::Base
 
   AMOUNT = 30 * 100 # in cents
   REFERENCE = 'Order Number 0'
-  
+
   def show
     redirect_to adyen_url
   end
@@ -40,7 +40,7 @@ class AdyenController < ActionController::Base
       :country_code => 'CN',
       :currency_code => 'CNY',
       :ship_before_date => Date.today,
-      :session_validity => Time.now,
+      :session_validity => (Time.now.utc + 1.hour),
       :merchant_reference => REFERENCE,
       :merchant_account => ENV['adyen_merchant'],
       :skin_code => ENV['adyen_skin'],
