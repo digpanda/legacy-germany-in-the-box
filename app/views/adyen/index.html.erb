@@ -1,13 +1,13 @@
 <form action="<%= Adyen::Form.url %>" method="post">
   <%=
-  Adyen::Form.hidden_fields(
+  Adyen::Form.redirect_url(
   :currency_code => 'EUR',
-  :ship_before_date =>  "2016-12-20", # Date.today,
-  :session_validity => "2016-12-20T13:26:43Z", # Time.now,
+  :ship_before_date => Date.today,
+  :session_validity => Time.now,
   :merchant_reference => 'SKINTEST-1482235768306',
   :merchant_account => 'DigpandaCN',
   :skin_code => ENV['adyen_skin'],
-  :shared_secret => ENV['adyen_shared_secret'],
+  :shared_secret => 'this-is-random', #ENV['adyen_shared_secret'],
   :payment_amount => 30 * 100 # cents
   )
   %>
