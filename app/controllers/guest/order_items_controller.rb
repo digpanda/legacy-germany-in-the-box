@@ -47,6 +47,7 @@ class Guest::OrderItemsController < ApplicationController
 
   def destroy_empty_order!
     if order.destroyable?
+      order.remove_coupon
       order.reload # because we just deleted the order item
       return order.delete
     end
