@@ -6,8 +6,8 @@ FactoryGirl.define do
     border_guru_shipment_id 'TEST'
 
     desc                    { Faker::Lorem.paragraph }
-    shipping_address        { FactoryGirl.create(:customer_address) }
-    billing_address         { FactoryGirl.create(:customer_address) }
+    shipping_address        { FactoryGirl.build(:customer_address) }
+    billing_address         { FactoryGirl.build(:customer_address) }
     shop                    { FactoryGirl.create(:shop) }
     user                    { FactoryGirl.create(:customer) }
 
