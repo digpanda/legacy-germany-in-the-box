@@ -31,7 +31,6 @@ class FromManyToEmbeddedAddress < Mongoid::Migration
     Address.all.each do |address|
       if address.shop_id
         shop = Shop.where(id: address.shop_id).first
-        binding.pry
         if shop
           shop.addresses << address.clone
           shop.save
