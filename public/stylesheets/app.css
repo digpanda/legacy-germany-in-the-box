@@ -8550,6 +8550,16 @@ img.mfp-img {
     -moz-border-radius: 1em;
     -ms-border-radius: 1em;
     border-radius: 1em; }
+  /* line 76, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
+  .message__green {
+    padding: 1em;
+    background-color: #659443;
+    font-size: 20px;
+    color: #fdfdfd;
+    -webkit-border-radius: 1em;
+    -moz-border-radius: 1em;
+    -ms-border-radius: 1em;
+    border-radius: 1em; }
 
 /* line 76, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/node_modules/csstyle/csstyle.scss */
 .mobile-category-menu__right {
