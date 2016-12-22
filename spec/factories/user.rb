@@ -12,6 +12,7 @@ FactoryGirl.define do
     tel                    { Faker::PhoneNumber.phone_number }
     mobile                 { Faker::PhoneNumber.cell_phone }
     birth                  { Helpers::Global.random_date }
+    addresses             { FactoryGirl.build_list(:customer_address, 2) }
 
     factory :shopkeeper, :class => User do
       username               { "Shopkeeper#{Helpers::Global.next_number(:shopkeeper)}" }
@@ -29,9 +30,9 @@ FactoryGirl.define do
       role                   :admin
     end
 
-    after(:create) do |user|
-      create(:customer_address, user: user)
-    end
+    # after(:create) do |user|
+    #   create(:customer_address, user: user)
+    # end
 
     trait :from_wechat do
       before(:create) do |user|
