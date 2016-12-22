@@ -53,7 +53,7 @@ class NavigationHistory
     def location_path
       @location_path ||= begin
         if location
-          "#{uri_location.path}#{uri_location.query}"
+          "#{uri_location.path}?#{uri_location.query}"
         else
           request.fullpath
         end
