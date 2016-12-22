@@ -65,7 +65,7 @@ class Shop
   mount_uploader :seal6,   ProductImageUploader
   mount_uploader :seal7,   ProductImageUploader
 
-  has_many :addresses,   inverse_of: :shop
+  embeds_many :addresses,   inverse_of: :shop
 
   has_many  :products,        inverse_of: :shop,  dependent: :restrict
   has_many  :orders,          inverse_of: :shop,  dependent: :restrict
@@ -109,7 +109,8 @@ class Shop
   validates :function,      length: {maximum: Rails.configuration.max_tiny_text_length}
 
   scope :is_active,       ->    { where( :status => true ).where( :approved.ne => nil ) }
-  scope :has_address,     ->    { self.in({:id => Address.is_shipping.all.map(&:shop_id)}) }
+  scope :has_address, -> { where({ :addresses => { :$not => { :$size => 0 } } }) }
+
   scope :is_bg_merchant,  ->    { where(:bg_merchant_id.ne => nil) }
   scope :can_buy,         ->    { is_active.is_bg_merchant.has_address }
 

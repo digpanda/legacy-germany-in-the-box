@@ -57,7 +57,7 @@ class User
   scope :without_detail, -> { only(:_id, :pic, :country, :username) }
 
   has_many :orders,                                 :inverse_of => :user,   :dependent => :restrict
-  has_many :addresses,                              :inverse_of => :user
+  embeds_many :addresses,                              :inverse_of => :user
   has_many :notifications
   has_many :notes,                                  :inverse_of => :user,   :dependent => :restrict
 

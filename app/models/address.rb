@@ -4,6 +4,11 @@ class Address
   CHINESE_CHARACTERS = /[\u4e00-\u9fa5]+/
   CHINESE_ID = /(\d{6})(19|20)(\d{2})(1[0-2]|0[1-9])(0[1-9]|[1-2][0-9]|3[0-1])(\d{3})(\d|X|x)/
 
+  # TO REMOVE LATER ON
+  field :shop_id, type: BSON::ObjectId
+  field :user_id, type: BSON::ObjectId
+  # END OF REMOVE
+  #
   strip_attributes
 
   field :additional,    type: String
@@ -24,8 +29,14 @@ class Address
   field :mobile,        type: String
   field :primary,       type: Boolean,    default: false
 
-  belongs_to :user,     :inverse_of => :addresses;
-  belongs_to :shop,     :inverse_of => :address;
+  # belongs_to :user,     :inverse_of => :addresses
+  # belongs_to :shop,     :inverse_of => :addresses
+
+  embedded_in :shop, :inverse_of => :addresses
+  embedded_in :user, :inverse_of => :addresses
+
+  embedded_in :order, :inverse_of => :billing_address
+  embedded_in :order, :inverse_of => :shipping_address
 
   scope :is_billing,          ->  { any_of({type: :billing}, {type: :both}) }
   scope :is_shipping,         ->  { any_of({type: :shipping},  {type: :both}) }
