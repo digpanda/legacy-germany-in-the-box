@@ -11,6 +11,7 @@ class Coupon
   field :unit, type: Symbol
   field :minimum_order, type: Float, default: 0
   field :unique, type: Boolean
+  field :last_applied_at, type: Time
   field :last_used_at, type: Time
   field :cancelled_at, type: Time, default: false
 

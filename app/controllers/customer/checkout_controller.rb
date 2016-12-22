@@ -126,6 +126,7 @@ class Customer::CheckoutController < ApplicationController
     end
 
     reset_shop_id_from_session(shop.id.to_s)
+    order.coupon&.update(last_used_at: Time.now)
 
     unless BorderGuruApiHandler.new(order).get_shipping!.success?
       SlackDispatcher.new.borderguru_get_shipping_error(order)
@@ -234,8 +235,8 @@ class Customer::CheckoutController < ApplicationController
   def update_addresses!
     current_user.addresses.find(params[:delivery_destination_id]).tap do |address|
       order.update({
-        :shipping_address     => address,
-        :billing_address      => address,
+        :shipping_address     => address.clone,
+        :billing_address      => address.clone,
       })
     end
   end

@@ -15,8 +15,9 @@ class Guest::CategoriesController < ApplicationController
   def set_category
     @category = Category.find(params[:id])
     @shops = @category.can_buy_shops
-    @featured_shop = @category.can_buy_shops.uniq.compact.first
-    @casual_shops = @category.can_buy_shops.uniq.compact # because it can fetch duplicate for no fucking reason.
+    # the logic should be put inside the model here
+    @featured_shop = @shops.first
+    @casual_shops = @shops # because it can fetch duplicate for no fucking reason.
     @casual_shops.shift
   end
 

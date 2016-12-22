@@ -8,6 +8,11 @@ class Order
 
   UNPROCESSABLE_TIME = [11,12] # 11am to 12am -> German Hour
 
+  # TO REMOVE LATER ON
+  field :shipping_address_id, type: BSON::ObjectId
+  field :billing_address_id, type: BSON::ObjectId
+  # END OF REMOVE
+
   field :status,                    type: Symbol, default: :new
   field :desc,                      type: String
   field :border_guru_quote_id,      type: String
@@ -32,8 +37,14 @@ class Order
 
   belongs_to :coupon, :inverse_of => :orders
 
-  belongs_to :shipping_address,        :class_name => 'Address'
-  belongs_to :billing_address,         :class_name => 'Address'
+  embeds_one :shipping_address, :class_name => 'Address'
+  embeds_one :billing_address, :class_name => 'Address'
+
+  # has_one :shipping_address, :class_name => 'Address', :inverse_of => :order, dependent: :restrict
+  # has_one :billing_address, :class_name => 'Address', :inverse_of => :order, dependent: :restrict
+
+  # belongs_to :shipping_address, :class_name => 'Address'
+  # belongs_to :billing_address, :class_name => 'Address'
 
   has_many :order_items,            :inverse_of => :order,    dependent: :restrict
   has_many :order_payments,         :inverse_of => :order,    dependent: :restrict
@@ -223,6 +234,11 @@ class Order
     else
       (total_price.in_euro.to_yuan.amount + new_price_increase) > Settings.instance.max_total_per_day
     end
+  end
+
+  def remove_coupon
+    CouponHandler.new(self.coupon, self).reset_status
+    self.update(coupon_id: nil)
   end
 
   private
