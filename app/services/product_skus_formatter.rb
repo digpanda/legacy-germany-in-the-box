@@ -11,7 +11,8 @@ class ProductSkusFormatter < BaseService
   MAX_DESCRIPTION_CHARACTERS = 200
   HEADERS = [
     'Product ID',
-    'Product Name',
+    'Product Name (zh-CN)',
+    'Product Name (de)',
     'Product Brand',
     'Product Status',
     'Product Approved',
@@ -60,7 +61,8 @@ class ProductSkusFormatter < BaseService
   def csv_line(product, sku)
     [
       product.id,
-      product.name,
+      product.name_translations[:'zh-CN'],
+      product.name_translations[:de],
       product.brand,
       product.status,
       product.approved,
