@@ -8,6 +8,7 @@ gem "wirecard-elastic", git: "https://github.com/Loschcode/wirecard-elastic.git"
 
 gem "adyen"
 
+gem "geocoder"
 gem "api_cache"
 gem "thin"
 gem "rails", "4.2.1"

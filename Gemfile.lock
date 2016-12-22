@@ -223,6 +223,7 @@ GEM
       railties (>= 3.2, < 5.1)
     genderize (0.0.6)
       rails (>= 3.2.13)
+    geocoder (1.4.1)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     haml (4.0.7)
@@ -559,6 +560,7 @@ DEPENDENCIES
   flog
   font-awesome-rails
   genderize
+  geocoder
   haml-rails
   http_accept_language
   jbuilder (~> 2.0)

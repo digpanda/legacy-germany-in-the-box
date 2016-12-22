@@ -1,3 +1,14 @@
+<% if !chinese_ip? %>
+
+  <!-- Warning about bad quality payment service -->
+  <div class="row">
+    <div class="col-md-8 col-md-push-2 col-md-pull-2">
+      亲，请谅解我们的支付系统在升级期间支付页面载入速度较慢，如出现无法载入情况请放心重试。 期待元旦后新支付系统给您带来最佳的支付体验！ 来因盒感谢您的支持！
+    </div>
+  </div>
+
+<% end %>
+
 <% if cart_manager.products_number > 0 %>
 <div>
   <% cart_manager.orders.each do |shop, order| %>

@@ -24,4 +24,8 @@ module UsersHelper
     I18n.locale == :'zh-CN'
   end
 
+  def chinese_ip?
+    Geocoder.search($request.remote_ip).first.country_code == 'CN'
+  end
+
 end
