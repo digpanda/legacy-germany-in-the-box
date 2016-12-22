@@ -249,8 +249,7 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
 
     puts "We create a shop address"
 
-    address = Address.create(
-
+    address = Address.new(
       :number   => rand(1..20),
       :street   => Faker::Address.street_name,
       :city     => Faker::Address.city,
@@ -261,12 +260,10 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
       :lname    => shop.shopkeeper.lname,
       :company  => shop.shopname,
       :country  => country,
-
-
     )
 
-    address.shop = shop
-    address.save!
+    shop.addresses << address
+    shop.save!
 
   end
 
