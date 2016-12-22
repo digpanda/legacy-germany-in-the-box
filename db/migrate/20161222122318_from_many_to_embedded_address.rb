@@ -30,15 +30,20 @@ class FromManyToEmbeddedAddress < Mongoid::Migration
     # check every left addresses
     Address.all.each do |address|
       if address.shop_id
-        shop = Shop.find(address.shop_id)
-        shop.addresses << address.clone
-        shop.save
+        shop = Shop.where(id: address.shop_id).first
+        binding.pry
+        if shop
+          shop.addresses << address.clone
+          shop.save
+        end
       end
 
       if address.user_id
-        user = User.find(address.user_id)
-        user.addresses << address.clone
-        user.save
+        user = User.where(id: address.user_id).first
+        if user
+          user.addresses << address.clone
+          user.save
+        end
       end
     end
 

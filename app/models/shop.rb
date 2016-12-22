@@ -142,6 +142,7 @@ class Shop
   end
 
   def country_of_dispatcher
+    binding.pry
     sender_address.country
   end
 
