@@ -6,6 +6,8 @@ class CouponHandler < BaseService
 
   attr_reader :coupon, :order
 
+  EXPIRE_APPLY_TIME = 24.hours
+
   def initialize(coupon, order)
     @coupon = coupon
     @order = order
@@ -36,6 +38,10 @@ class CouponHandler < BaseService
     apply
   end
 
+  def reset_status
+    reset_coupon!
+  end
+
   private
 
   # all the calculations will be based on the result of this method
@@ -61,7 +67,23 @@ class CouponHandler < BaseService
 
   # if the coupon is unique it shouldn't have been used already
   def valid_coupon?
-    coupon.unique == false || coupon.last_used_at.nil?
+    coupon.unique == false || available?
+  end
+
+  def available?
+    if coupon.last_used_at || (coupon.last_applied_at && coupon.last_applied_at.hour.hours < EXPIRE_APPLY_TIME)
+      false
+    else
+      remove_from_old_order if coupon.unique
+      true
+    end
+  end
+
+  # Removes the coupon from the last order that applied it
+  def remove_from_old_order
+    coupon.orders&.first&.update(coupon_discount: 0,
+                                 coupon_applied_at: nil,
+                                 coupon_id: nil)
   end
 
   # we unapply the coupon from the order
@@ -84,12 +106,12 @@ class CouponHandler < BaseService
 
   # we consider the coupon as unused
   def reset_coupon!
-    coupon.update({:last_used_at => nil})
+    coupon.update(last_applied_at: nil)
   end
 
   # we update the coupon
   def update_coupon!
-    coupon.update({:last_used_at => Time.now})
+    coupon.update(last_applied_at: Time.now)
   end
 
   # we calculate the discount depending on EUR or PERCENT

@@ -225,6 +225,11 @@ class Order
     end
   end
 
+  def remove_coupon
+    CouponHandler.new(self.coupon, self).reset_status
+    self.update(coupon_id: nil)
+  end
+
   private
 
   def update_paid_at

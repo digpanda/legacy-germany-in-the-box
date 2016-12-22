@@ -126,6 +126,7 @@ class Customer::CheckoutController < ApplicationController
     end
 
     reset_shop_id_from_session(shop.id.to_s)
+    order.coupon&.update(last_used_at: Time.now)
 
     unless BorderGuruApiHandler.new(order).get_shipping!.success?
       SlackDispatcher.new.borderguru_get_shipping_error(order)
