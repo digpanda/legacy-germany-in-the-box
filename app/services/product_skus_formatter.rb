@@ -66,7 +66,7 @@ class ProductSkusFormatter < BaseService
       product.brand,
       product.status,
       product.approved,
-      product.duty_category.code,
+      (product.duty_category ? product.duty_category.code : '' ),
       product.hs_code,
       product.highlight,
       sku.id,
