@@ -17,9 +17,10 @@ class AddressDecorator < Draper::Decorator
   end
 
   def street_and_number
-    if country_code == 'CN' # originally zh-CN
+    case country_code
+    when 'CN' # originally zh-CN
       "#{number} #{street}"
-    elsif country_code == 'DE'
+    else
       "#{street} #{number}"
     end
   end
