@@ -4,10 +4,16 @@ class FromManyToEmbeddedAddress < Mongoid::Migration
     # process the order multiple addresses
     Order.all.each do |order|
       if order.billing_address_id
-        order.billing_address = Address.find(order.billing_address_id).clone
+        address = Address.where(id: order.billing_address_id).first
+        if address
+          order.billing_address = address.clone
+        end
       end
       if order.shipping_address_id
-        order.shipping_address = Address.find(order.shipping_address_id).clone
+        address = Address.where(id: order.billing_address_id).first
+        if address
+          order.shipping_address = address.clone
+        end
       end
       order.save
 
