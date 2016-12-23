@@ -71,7 +71,7 @@ class Order
 
   def update_tax_and_duty_cost
     self.tax_and_duty_cost = begin
-      order.order_items.reduce(0) do |acc, order_item|
+      order_items.reduce(0) do |acc, order_item|
         acc + order_item.sku.estimated_taxes
       end
     end
