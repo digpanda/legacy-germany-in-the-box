@@ -4,7 +4,7 @@ class Order
   include MongoidBase
   include HasProductSummaries
 
-  
+
   Numeric.include CoreExtensions::Numeric::CurrencyLibrary
 
   UNPROCESSABLE_TIME = [11,12] # 11am to 12am -> German Hour
@@ -64,14 +64,14 @@ class Order
 
   after_save :make_bill_id, :update_paid_at, :update_cancelled_at
   before_save :create_border_guru_order_id
-  before_save :update_shipping_price, :update_tax_and_duty_cost
+  before_save :update_shipping_cost, :update_tax_and_duty_cost
 
-  def update_shipping_price
+  def update_shipping_cost
     self.shipping_cost = ShippingPrice.new(self).price
   end
 
   def update_tax_and_duty_cost
-    self.shipping_cost = current_shipping_price
+    self.shipping_cost = current_shipping_cost
   end
 
   def create_border_guru_order_id
@@ -106,7 +106,7 @@ class Order
     end
   end
 
-  def current_shipping_price
+  def current_shipping_cost
     ShippingPrice.new(self).price
   end
 

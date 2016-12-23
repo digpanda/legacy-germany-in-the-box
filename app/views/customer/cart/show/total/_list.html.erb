@@ -8,15 +8,9 @@
         </span>
       </td>
       <td>
-        <span id="order-total-price-<%= order.shop.id %>">
-          <%= order.decorate.total_price.in_euro.to_yuan.display %>
+        <span id="order-total-price-with-taxes-<%= order.shop.id %>">
+          <%= order.total_price_with_taxes.in_euro.to_yuan.display %>
         </span>
-
-        <br />
-        Taxes : <%= order.tax_and_duty_cost.in_euro.to_yuan.display %><br />
-        Price + Taxes : <%= order.total_price_with_taxes.in_euro.to_yuan.display %>
-        <br />
-        Logistic : <%= order.shipping_cost.in_euro.to_yuan.display %>
       </td>
     </tr>
 
@@ -30,11 +24,11 @@
       </td>
       <td>
         <span id="order-total-price-with-discount-<%= order.shop.id %>">
-          <%= order.decorate.total_price_with_discount.in_euro.to_yuan.display %>
+          <%= order.total_price_with_discount.in_euro.to_yuan.display %>
         </span> (<span id="order-discount-display-<%= order.shop.id %>"><%= order.coupon.decorate.discount_display %></span>)
 
         <% unless order.bought? %>
-        <%= link_to '', customer_order_coupons_path(order), :method => :delete, :class => 'tooltipster fa fa-times buttons buttons__delete --small', :title => I18n.t(:remove_coupon, scope: :coupon) %>
+          <%= link_to '', customer_order_coupons_path(order), :method => :delete, :class => 'tooltipster fa fa-times buttons buttons__delete --small', :title => I18n.t(:remove_coupon, scope: :coupon) %>
         <% end %>
 
       </td>
@@ -45,12 +39,12 @@
     <tr>
       <td>
         <span>
-          <%= I18n.t(:duty_and_shipping_cost, scope: :cart) %>
+          <%= I18n.t(:shipping_cost, scope: :cart) %>
         </span>
       </td>
       <td>
-        <span id="order-tax-and-shipping-cost-<%= order.shop.id %>">
-          <%= order.extra_costs.in_euro.to_yuan.display %>
+        <span id="order-shipping-cost-<%= order.shop.id %>">
+          <%= order.shipping_cost.in_euro.to_yuan.display %>
         </span>
       </td>
     </tr>

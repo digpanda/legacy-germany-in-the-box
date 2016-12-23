@@ -1,8 +1,8 @@
 json.data do
 
   # prices
-  json.total_price @order.decorate.total_price.in_euro.to_yuan.display
-  json.tax_and_shipping_cost @order.decorate.extra_costs.in_euro.to_yuan.display
+  json.total_price_with_taxes @order.decorate.total_price_with_taxes.in_euro.to_yuan.display
+  json.shipping_cost @order.decorate.shipping_cost.in_euro.to_yuan.display
   json.end_price @order.decorate.end_price.in_euro.to_yuan.display
 
   # discount side

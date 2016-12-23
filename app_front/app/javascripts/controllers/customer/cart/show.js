@@ -155,8 +155,8 @@ var CustomerCartShow = {
     $('#order-item-quantity-'+orderItemId).val(orderItemQuantity);
 
     // Total changes
-    $('#order-total-price-'+orderShopId).html(res.data.total_price);
-    $('#order-tax-and-shipping-cost-'+orderShopId).html(res.data.tax_and_shipping_cost);
+    $('#order-total-price-with-taxes-'+orderShopId).html(res.data.total_price_with_taxes);
+    $('#order-shipping-cost-'+orderShopId).html(res.data.shipping_cost);
     $('#order-end-price-'+orderShopId).html(res.data.end_price);
 
     // Discount management
