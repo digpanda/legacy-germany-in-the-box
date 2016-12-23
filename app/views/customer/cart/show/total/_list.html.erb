@@ -50,7 +50,7 @@
       </td>
       <td>
         <span id="order-tax-and-shipping-cost-<%= order.shop.id %>">
-          <%= order.decorate.duty_and_shipping_cost_with_currency_yuan %>
+          <%= order.extra_costs.in_euro.to_yuan.display %>
         </span>
       </td>
     </tr>
