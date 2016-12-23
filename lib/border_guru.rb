@@ -21,8 +21,8 @@ module BorderGuru
         currency: CURRENCY
       ) do |response|
         order.border_guru_quote_id = response.quote_identifier
-        order.shipping_cost = ShippingPrice.new(order).price # could be inside the model #response.shipping_cost <-- replace by our own system because borderguru is unable to give it to us
-        order.tax_and_duty_cost = response.tax_and_duty_cost
+        # NOTE : shipping_cost and tax_and_duty_cost 
+        # are calculated within the model
         order.save
       end
     end

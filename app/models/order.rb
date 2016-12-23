@@ -4,14 +4,10 @@ class Order
   include MongoidBase
   include HasProductSummaries
 
+  
   Numeric.include CoreExtensions::Numeric::CurrencyLibrary
 
   UNPROCESSABLE_TIME = [11,12] # 11am to 12am -> German Hour
-
-  # TO REMOVE LATER ON
-  field :shipping_address_id, type: BSON::ObjectId
-  field :billing_address_id, type: BSON::ObjectId
-  # END OF REMOVE
 
   field :status,                    type: Symbol, default: :new
   field :desc,                      type: String
@@ -39,12 +35,6 @@ class Order
 
   embeds_one :shipping_address, :class_name => 'Address'
   embeds_one :billing_address, :class_name => 'Address'
-
-  # has_one :shipping_address, :class_name => 'Address', :inverse_of => :order, dependent: :restrict
-  # has_one :billing_address, :class_name => 'Address', :inverse_of => :order, dependent: :restrict
-
-  # belongs_to :shipping_address, :class_name => 'Address'
-  # belongs_to :billing_address, :class_name => 'Address'
 
   has_many :order_items,            :inverse_of => :order,    dependent: :restrict
   has_many :order_payments,         :inverse_of => :order,    dependent: :restrict
@@ -77,11 +67,11 @@ class Order
   before_save :update_shipping_price, :update_tax_and_duty_cost
 
   def update_shipping_price
-    self.shipping_cost = current_shipping_price
+    self.shipping_cost = ShippingPrice.new(self).price
   end
 
   def update_tax_and_duty_cost
-    self.tax_and_duty_cost = current_taxes
+    self.shipping_cost = current_shipping_price
   end
 
   def create_border_guru_order_id
@@ -110,16 +100,8 @@ class Order
   # memoization for performance
   def total_price
     @total_price ||= begin
-      if self.bought?
-        order_items.inject(0) { |sum, order_item| sum += order_item.quantity * order_item.price }
-      else
-        order_items.inject(0) do |sum, order_item|
-          if order_item.product
-            sum += order_item.quantity * order_item.sku.price
-          else
-            sum += 0
-          end
-        end
+      order_items.inject(0) do |sum, order_item|
+        sum += order_item.quantity * order_item.price
       end
     end
   end

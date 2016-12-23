@@ -23,9 +23,9 @@ class Sku
   field :attach0,       type: String
   field :country_of_origin, type: String, default: 'DE'
 
-  # TODO : this will be changed after cleansing of the model
-  field :fees_estimation, type: Float, default: 0.0
-  field :fees_estimated_at, type: Date
+  # TODO : will be removed soon
+  # field :fees_estimation, type: Float, default: 0.0
+  # field :fees_estimated_at, type: Date
 
   field :option_ids,    type: Array,      default: []
 
@@ -82,29 +82,17 @@ class Sku
     space_length * space_width * space_height
   end
 
-  def price_with_fees
-    price + estimated_fees
+  def price_with_taxes
+    price + estimated_taxes
   end
 
-  # TODO : this will be completely changed when we stop to call borderguru
-  def update_estimated_fees!
-    sku_fees_estimation = SkuFeesEstimation.new(self).provide
-    if sku_fees_estimation.success?
-      self.fees_estimation = sku_fees_estimation.data[:taxAndDutyCost]
-      self.fees_estimated_at = Time.now
-      self.save
-    end
-  end
-
-  # this system was made in emergency situation and should be replaced
-  # by a CRON job and an automatic refresh without the whole logic at each call
-  # TODO : let's remove this all shit and do something better
-  def estimated_fees
-    @estimated_fees ||= begin
-      if self.fees_estimated_at.nil? || (self.fees_estimated_at < FEES_ESTIMATION_EXPIRATION)
-        update_estimated_fees!
+  def estimated_taxes
+    @estimated_taxes ||= begin
+      if product.duty_category
+        price * (product.duty_category.tax_rate / 100)
+      else
+        0
       end
-      self.fees_estimation
     end
   end
 
