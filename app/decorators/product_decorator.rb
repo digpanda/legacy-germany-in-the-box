@@ -49,7 +49,7 @@ class ProductDecorator < Draper::Decorator
   end
 
   def preview_price_yuan
-    self.featured_sku.price.in_euro.to_yuan.display
+    self.featured_sku.price_with_taxes.in_euro.to_yuan.display
   end
 
   def preview_fees_yuan_html
@@ -57,15 +57,15 @@ class ProductDecorator < Draper::Decorator
   end
 
   def preview_price_yuan_html
-    self.featured_sku.price.in_euro.to_yuan.display_html
+    self.featured_sku.price_with_taxes.in_euro.to_yuan.display_html
   end
 
   def preview_price_euro
-    self.featured_sku.price.in_euro.display
+    self.featured_sku.price_with_taxes.in_euro.display
   end
 
   def preview_price_euro_html
-    self.featured_sku.price.in_euro.display_html
+    self.featured_sku.price_with_taxes.in_euro.display_html
   end
 
 end

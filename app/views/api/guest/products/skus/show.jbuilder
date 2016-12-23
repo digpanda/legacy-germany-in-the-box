@@ -5,8 +5,8 @@ json.quantity @sku.decorate.max_added_to_cart
 
 # TODO : don't exist anymore, should be replaced
 #json.fees_with_currency_yuan @sku.estimated_taxes.in_euro.to_yuan.display_html
-json.price_with_currency_yuan @sku.price.in_euro.to_yuan.display_html
-json.price_with_currency_euro @sku.price.in_euro.display_html
+json.price_with_currency_yuan @sku.price_with_taxes.in_euro.to_yuan.display_html
+json.price_with_currency_euro @sku.price_with_taxes.in_euro.display_html
 
 json.price_before_discount_in_yuan @sku.decorate.price_before_discount_in_yuan_html
 json.price_before_discount_in_euro @sku.decorate.price_before_discount_in_euro_html
