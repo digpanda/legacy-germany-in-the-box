@@ -23,6 +23,7 @@
         </span>
       </td>
       <td>
+
         <span id="order-total-price-with-discount-<%= order.shop.id %>">
           <%= order.total_price_with_discount.in_euro.to_yuan.display %>
         </span> (<span id="order-discount-display-<%= order.shop.id %>"><%= order.coupon.decorate.discount_display %></span>)

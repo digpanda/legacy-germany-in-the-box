@@ -1,7 +1,7 @@
 class Api::Guest::OrderItemsController < Api::ApplicationController
 
   attr_reader :order_item
-  
+
   before_action :set_order_item
 
   def update
@@ -60,8 +60,9 @@ class Api::Guest::OrderItemsController < Api::ApplicationController
     end
 
     # we don't forget to refresh the discount (coupon system)
-    unless order.coupon.nil?
+    if order.coupon
       CouponHandler.new(order.coupon, order).reset
+      order.reload
     end
 
   end
