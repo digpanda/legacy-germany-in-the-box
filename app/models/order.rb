@@ -71,8 +71,8 @@ class Order
 
   def update_tax_and_duty_cost
     self.tax_and_duty_cost = begin
-      order_items.reduce(0) do |acc, order_item|
-        acc + order_item.sku.estimated_taxes
+      order_items.inject(0) do |sum, order_item|
+        sum += order_item.sku.estimated_taxes
       end
     end
   end
@@ -103,16 +103,8 @@ class Order
   # memoization for performance
   def total_price
     @total_price ||= begin
-      if self.bought?
-        order_items.inject(0) { |sum, order_item| sum += order_item.quantity * order_item.price }
-      else
-        order_items.inject(0) do |sum, order_item|
-          if order_item.product
-            sum += order_item.quantity * order_item.sku.price
-          else
-            sum += 0
-          end
-        end
+      order_items.inject(0) do |sum, order_item|
+        sum += order_item.quantity * order_item.price
       end
     end
   end
