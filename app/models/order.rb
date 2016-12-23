@@ -4,6 +4,7 @@ class Order
   include MongoidBase
   include HasProductSummaries
 
+  
   Numeric.include CoreExtensions::Numeric::CurrencyLibrary
 
   UNPROCESSABLE_TIME = [11,12] # 11am to 12am -> German Hour
