@@ -71,11 +71,7 @@ class Order
   end
 
   def update_tax_and_duty_cost
-    self.tax_and_duty_cost = begin
-      order_items.inject(0) do |sum, order_item|
-        sum += order_item.sku.estimated_taxes
-      end
-    end
+    self.shipping_cost = current_shipping_price
   end
 
   def create_border_guru_order_id
@@ -108,6 +104,22 @@ class Order
         sum += order_item.quantity * order_item.price
       end
     end
+  end
+
+  def current_shipping_price
+    ShippingPrice.new(self).price
+  end
+
+  def current_taxes
+    @current_taxes ||= begin
+      order_items.inject(0) do |sum, order_item|
+        sum += order_item.quantity * order_item.estimated_taxes
+      end
+    end
+  end
+
+  def total_price_with_taxes
+    total_price + tax_and_duty_cost
   end
 
   def total_discount

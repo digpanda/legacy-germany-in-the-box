@@ -11,6 +11,12 @@
         <span id="order-total-price-<%= order.shop.id %>">
           <%= order.decorate.total_price.in_euro.to_yuan.display %>
         </span>
+
+        <br />
+        Taxes : <%= order.tax_and_duty_cost.in_euro.to_yuan.display %><br />
+        Price + Taxes : <%= order.total_price_with_taxes.in_euro.to_yuan.display %>
+        <br />
+        Logistic : <%= order.shipping_cost.in_euro.to_yuan.display %>
       </td>
     </tr>
 
