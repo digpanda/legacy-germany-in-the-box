@@ -87,25 +87,31 @@ class Sku
   end
 
   # TODO : this will be completely changed when we stop to call borderguru
-  def update_estimated_fees!
-    sku_fees_estimation = SkuFeesEstimation.new(self).provide
-    if sku_fees_estimation.success?
-      self.fees_estimation = sku_fees_estimation.data[:taxAndDutyCost]
-      self.fees_estimated_at = Time.now
-      self.save
-    end
-  end
+  # def update_estimated_fees!
+  #   sku_fees_estimation = SkuFeesEstimation.new(self).provide
+  #   if sku_fees_estimation.success?
+  #     self.fees_estimation = sku_fees_estimation.data[:taxAndDutyCost]
+  #     self.fees_estimated_at = Time.now
+  #     self.save
+  #   end
+  # end
 
-  # this system was made in emergency situation and should be replaced
-  # by a CRON job and an automatic refresh without the whole logic at each call
-  # TODO : let's remove this all shit and do something better
+  # TODO : remove SkuFeesEstimation
   def estimated_fees
-    @estimated_fees ||= begin
-      if self.fees_estimated_at.nil? || (self.fees_estimated_at < FEES_ESTIMATION_EXPIRATION)
-        update_estimated_fees!
-      end
-      self.fees_estimation
+    if product.duty_category
+      binding.pry
+      price * product.duty_category.tax_rate
+    else
+      0
     end
+
+
+    # @estimated_fees ||= begin
+    #   if self.fees_estimated_at.nil? || (self.fees_estimated_at < FEES_ESTIMATION_EXPIRATION)
+    #     update_estimated_fees!
+    #   end
+    #   self.fees_estimation
+    # end
   end
 
   def get_options

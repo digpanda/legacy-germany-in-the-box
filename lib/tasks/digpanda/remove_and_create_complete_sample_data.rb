@@ -40,6 +40,11 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
     Tasks::Digpanda::RemoveAndCreateUiCategories.new
     puts "---"
 
+    puts "We refresh the duty category taxes"
+    puts "---"
+    Tasks::Digpanda::RefreshDutyCategoriesTaxes.new
+    puts "---"
+
     puts "We create the customers, shopkeepers, admins"
 
     25.times { setup_customer create_user(:customer) }
@@ -176,6 +181,9 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
 
     # Should be a one category system
     product.category_ids << Category.where(:slug => category_slug.to_s).first.id
+
+    # We had the duty category
+    product.duty_category = DutyCategory.all.sample
 
     num_variants.times do |time|
       create_variant_option(product)
