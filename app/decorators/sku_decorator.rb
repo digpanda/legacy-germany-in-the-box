@@ -51,15 +51,15 @@ class SkuDecorator < Draper::Decorator
   end
 
   def price_with_currency_yuan
-    price.in_euro.to_yuan.display
+    price_with_taxes.in_euro.to_yuan.display
   end
 
   def price_with_currency_yuan_html
-    price.in_euro.to_yuan.display_html
+    price_with_taxes.in_euro.to_yuan.display_html
   end
 
   def price_in_yuan
-    price.in_euro.to_yuan.amount
+    price_with_taxes.in_euro.to_yuan.amount
   end
 
   def price_with_currency_euro
@@ -87,7 +87,7 @@ class SkuDecorator < Draper::Decorator
   end
 
   def before_discount_price
-    price * 100 / (100 - discount)
+    price_with_taxes * 100 / (100 - discount)
   end
 
   def discount_with_percent
