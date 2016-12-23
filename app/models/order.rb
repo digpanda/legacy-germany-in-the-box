@@ -74,6 +74,15 @@ class Order
 
   after_save :make_bill_id, :update_paid_at, :update_cancelled_at
   before_save :create_border_guru_order_id
+  before_save :update_shipping_price, :update_tax_and_duty_cost
+
+  def update_shipping_price
+    self.shipping_cost = current_shipping_price
+  end
+
+  def update_tax_and_duty_cost
+    self.tax_and_duty_cost = current_taxes
+  end
 
   def create_border_guru_order_id
     unless self.border_guru_order_id
@@ -113,6 +122,22 @@ class Order
         end
       end
     end
+  end
+
+  def current_shipping_price
+    ShippingPrice.new(self).price
+  end
+
+  def current_taxes
+    @current_taxes ||= begin
+      order_items.inject(0) do |sum, order_item|
+        sum += order_item.quantity * order_item.estimated_taxes
+      end
+    end
+  end
+
+  def total_price_with_taxes
+    total_price + tax_and_duty_cost
   end
 
   def total_discount

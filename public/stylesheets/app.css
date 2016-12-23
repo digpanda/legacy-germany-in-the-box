@@ -9367,11 +9367,6 @@ img.mfp-img {
     display: none !important; } }
 
 @media (max-width: 991px) {
-  /* line 10, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/helpers/_responsive.sass */
-  .connect__alternative-login {
-    display: none !important; } }
-
-@media (max-width: 991px) {
   /* line 15, /Users/Loschcode/Google Drive/projects/panda-lo/website/app_front/app/stylesheets/helpers/_responsive.sass */
   .magnify-lens {
     display: none !important; } }
