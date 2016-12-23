@@ -47,7 +47,7 @@ class CouponHandler < BaseService
   # all the calculations will be based on the result of this method
   # for more flexibility
   def original_price
-    order.total_price
+    order.total_price_with_taxes
   end
 
   # order that already bought shouldn't remove any coupon (obviously)
