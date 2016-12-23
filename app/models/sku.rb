@@ -96,24 +96,6 @@ class Sku
     end
   end
 
-  # TODO : remove SkuFeesEstimation
-
-  # def update_estimated_taxes!
-  #   sku_fees_estimation = SkuFeesEstimation.new(self).provide
-  #   if sku_fees_estimation.success?
-  #     self.fees_estimation = sku_fees_estimation.data[:taxAndDutyCost]
-  #     self.fees_estimated_at = Time.now
-  #     self.save
-  #   end
-  # end
-
-  # estimated_taxes ||= begin
-  #   if self.fees_estimated_at.nil? || (self.fees_estimated_at < FEES_ESTIMATION_EXPIRATION)
-  #     update_estimated_taxes!
-  #   end
-  #   self.fees_estimation
-  # end
-
   def get_options
     variants = option_ids.map do |option_id|
       product.options.detect do |variant|
