@@ -21,8 +21,8 @@ class ProductSkusFormatter < BaseService
     'Product Highlight',
     'Sku ID',
     'Sku Price (EUR)',
-    'Sku price estimated fees (EUR)', # estimated_fees
-    'Sku price with fees (EUR)', # price_with_fees
+    'Sku price estimated fees (EUR)', # estimated_taxes
+    'Sku price with fees (EUR)', # price_with_taxes
     'Sku Quantity',
     'Sku Unlimited',
     'Sku Weight',
@@ -71,8 +71,8 @@ class ProductSkusFormatter < BaseService
       product.highlight,
       sku.id,
       sku.price,
-      sku.estimated_fees,
-      sku.price_with_fees,
+      sku.estimated_taxes,
+      sku.price_with_taxes,
       sku.quantity,
       sku.unlimited,
       sku.weight,

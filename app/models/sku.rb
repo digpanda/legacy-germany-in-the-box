@@ -82,12 +82,12 @@ class Sku
     space_length * space_width * space_height
   end
 
-  def price_with_fees
-    price + estimated_fees
+  def price_with_taxes
+    price + estimated_taxes
   end
 
-  def estimated_fees
-    @estimated_fees ||= begin
+  def estimated_taxes
+    @estimated_taxes ||= begin
       if product.duty_category
         price * (product.duty_category.tax_rate / 100)
       else
@@ -98,7 +98,7 @@ class Sku
 
   # TODO : remove SkuFeesEstimation
 
-  # def update_estimated_fees!
+  # def update_estimated_taxes!
   #   sku_fees_estimation = SkuFeesEstimation.new(self).provide
   #   if sku_fees_estimation.success?
   #     self.fees_estimation = sku_fees_estimation.data[:taxAndDutyCost]
@@ -107,9 +107,9 @@ class Sku
   #   end
   # end
 
-  # estimated_fees ||= begin
+  # estimated_taxes ||= begin
   #   if self.fees_estimated_at.nil? || (self.fees_estimated_at < FEES_ESTIMATION_EXPIRATION)
-  #     update_estimated_fees!
+  #     update_estimated_taxes!
   #   end
   #   self.fees_estimation
   # end
