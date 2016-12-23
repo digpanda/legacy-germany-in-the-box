@@ -71,7 +71,7 @@ class Order
   end
 
   def update_tax_and_duty_cost
-    self.shipping_cost = current_shipping_cost
+    self.tax_and_duty_cost = current_taxes
   end
 
   def create_border_guru_order_id
