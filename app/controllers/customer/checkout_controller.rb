@@ -119,11 +119,7 @@ class Customer::CheckoutController < ApplicationController
     order = order_payment.order
     shop = order.shop
 
-    order.order_items.each do |order_item|
-      sku = order_item.sku_origin
-      sku.quantity -= order_item.quantity unless sku.unlimited
-      sku.save!
-    end
+    StockManager.new(order).in_order!
 
     reset_shop_id_from_session(shop.id.to_s)
     order.coupon&.update(last_used_at: Time.now)
@@ -148,7 +144,7 @@ class Customer::CheckoutController < ApplicationController
       :desc => "你好，你的订单#{order.id}已成功付款，已通知商家准备发货。若有疑问，欢迎随时联系来因盒客服：customer@germanyinthebox.com。"
       })
 
-      redirect_to customer_orders_path
+    redirect_to customer_orders_path
 
   end
 
