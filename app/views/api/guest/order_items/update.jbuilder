@@ -1,5 +1,9 @@
 json.data do
 
+  # thanks you mongo for being awesome
+  # - Laurent, 27/12/2016
+  @order.reload
+
   # prices
   json.total_price_with_taxes @order.decorate.total_price_with_taxes.in_euro.to_yuan.display
   json.shipping_cost @order.decorate.shipping_cost.in_euro.to_yuan.display

@@ -67,7 +67,7 @@ class Order
   before_save :update_shipping_cost, :update_tax_and_duty_cost
 
   def update_shipping_cost
-    self.shipping_cost = ShippingPrice.new(self).price
+    self.shipping_cost = current_shipping_cost
   end
 
   def update_tax_and_duty_cost
@@ -99,10 +99,8 @@ class Order
   # total price of the products in the order (raw price before any alteration)
   # memoization for performance
   def total_price
-    @total_price ||= begin
-      order_items.inject(0) do |sum, order_item|
-        sum += order_item.quantity * order_item.price
-      end
+    order_items.inject(0) do |sum, order_item|
+      sum += order_item.quantity * order_item.price
     end
   end
 
@@ -111,17 +109,13 @@ class Order
   end
 
   def current_taxes
-    @current_taxes ||= begin
-      order_items.inject(0) do |sum, order_item|
-        sum += order_item.quantity * order_item.estimated_taxes
-      end
+    order_items.inject(0) do |sum, order_item|
+      sum += order_item.quantity * order_item.estimated_taxes
     end
   end
 
   def total_price_with_taxes
-    @total_price_with_taxes ||= begin
-      total_price + tax_and_duty_cost
-    end
+    total_price + tax_and_duty_cost
   end
 
   def total_discount
@@ -134,7 +128,6 @@ class Order
 
   # extra costs (shipping and taxes)
   def extra_costs
-    puts "TAX AND DUTY COST : #{tax_and_duty_cost}"
     shipping_cost + tax_and_duty_cost
   end
 
@@ -158,7 +151,7 @@ class Order
 
   # this the price with discount applied and adding up the extra costs afterwards
   def total_price_with_discount_and_extra_costs
-    total_price_with_discount + extra_costs - tax_and_duty_cost # already in total_price
+    total_price_with_discount + shipping_cost # taxes are included in the discount price
   end
 
   # this is the end price which the customer has to pay
