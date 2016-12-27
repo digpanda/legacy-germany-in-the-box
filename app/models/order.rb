@@ -119,7 +119,9 @@ class Order
   end
 
   def total_price_with_taxes
-    total_price + tax_and_duty_cost
+    @total_price_with_taxes ||= begin
+      total_price + tax_and_duty_cost
+    end
   end
 
   def total_discount
@@ -132,6 +134,7 @@ class Order
 
   # extra costs (shipping and taxes)
   def extra_costs
+    puts "TAX AND DUTY COST : #{tax_and_duty_cost}"
     shipping_cost + tax_and_duty_cost
   end
 
@@ -145,7 +148,7 @@ class Order
 
   # total price with the coupon discount if any
   def total_price_with_discount
-    (total_price_with_taxes - coupon_discount).round(2)
+    total_price_with_taxes - coupon_discount
   end
 
   # total price of the products with the shipping cost
@@ -155,7 +158,7 @@ class Order
 
   # this the price with discount applied and adding up the extra costs afterwards
   def total_price_with_discount_and_extra_costs
-    total_price_with_discount + extra_costs
+    total_price_with_discount + extra_costs - tax_and_duty_cost # already in total_price
   end
 
   # this is the end price which the customer has to pay

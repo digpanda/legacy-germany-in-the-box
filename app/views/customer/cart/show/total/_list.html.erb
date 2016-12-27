@@ -62,7 +62,7 @@
           <%= order.decorate.total_price_with_extra_costs.in_euro.to_yuan.display %>
         </span>
         <span id="order-end-price-<%= order.shop.id %>" class="total__end-price --highlight">
-          <%= order.decorate.end_price.in_euro.to_yuan.display %>
+          <%= order.end_price.in_euro.to_yuan.display %>
         </span>
         <% else %>
         <span id="order-end-price-<%= order.shop.id %>">

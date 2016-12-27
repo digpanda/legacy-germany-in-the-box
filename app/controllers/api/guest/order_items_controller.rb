@@ -1,6 +1,6 @@
 class Api::Guest::OrderItemsController < Api::ApplicationController
 
-  attr_reader :order_item
+  attr_reader :order_item, :order
 
   before_action :set_order_item
 
@@ -49,7 +49,7 @@ class Api::Guest::OrderItemsController < Api::ApplicationController
 
       @order = cart_manager.order(shop: product.shop)
 
-      unless @order
+      unless order
         flash[:error] = I18n.t(:borderguru_unreachable_at_quoting, scope: :checkout)
         redirect_to root_path
         return
@@ -59,10 +59,8 @@ class Api::Guest::OrderItemsController < Api::ApplicationController
       render :json => { :success => false, :original_quantity => @order_item.quantity, :error => order_item.errors.full_messages.join(", ") }
     end
 
-    # we don't forget to refresh the discount (coupon system)
     if order.coupon
       CouponHandler.new(order.coupon, order).reset
-      order.reload
     end
 
   end

@@ -119,7 +119,7 @@ class CouponHandler < BaseService
     if coupon.unit == :value
       coupon.discount
     elsif coupon.unit == :percent
-      original_price * coupon.discount / 100
+      original_price * (coupon.discount / 100)
     else
       0
     end
