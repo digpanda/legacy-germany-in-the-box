@@ -120,7 +120,7 @@ class Customer::CheckoutController < ApplicationController
     shop = order.shop
 
     order.order_items.each do |order_item|
-      sku = order_item.sku
+      sku = order_item.sku_origin
       sku.quantity -= order_item.quantity unless sku.unlimited
       sku.save!
     end
