@@ -4,12 +4,13 @@
     <hr>
   </div>
   <div class="col-md-2 details__action">
+    <a href="<%= admin_shop_package_sets_path(@shop) %>"><i class="tooltipster fa fa-folder" title="Package Sets"></i></a>
     <a href="<%= admin_shop_products_path(format: "csv") %>"><i class="fa fa-download tooltipster" title="Download CSV format"></i></a>
     <a href="<%= new_admin_shop_product_path(@shop) %>"><i class="fa fa-plus tooltipster" title="<%= I18n.t(:new, scope: :edit_product) %>"></i></a>
   </div>
 </div>
 
-<div class="+overflow">
+<div class="row +overflow">
   <%= render partial: "admin/shops/products/table", :locals => { :products => @products } %>
 </div>
 

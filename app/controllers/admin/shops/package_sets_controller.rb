@@ -23,10 +23,11 @@ class Admin::Shops::PackageSetsController < ApplicationController
     @package_set = shop.package_sets.build(package_set_params)
     if package_set.save
       flash[:success] = "Set was created"
+      redirect_to admin_shop_package_sets_path(shop)
     else
       flash[:error] = package_set.errors.full_messages.join(', ')
+      render :new
     end
-    redirect_to admin_shop_package_sets_path(shop)
   end
 
   def edit
