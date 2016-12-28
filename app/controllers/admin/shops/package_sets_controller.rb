@@ -51,7 +51,7 @@ class Admin::Shops::PackageSetsController < ApplicationController
   end
 
   def package_set_params
-    params.require(:package_set).permit!
+    params.require(:package_set).permit(:sku_id)
   end
 
 

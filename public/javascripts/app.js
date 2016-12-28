@@ -166,20 +166,26 @@ var PackageSets = {
 
   handleSelect: function handleSelect() {
 
-    $('.product_id[]').on('change', function (el) {
+    $('select[name^="package_set[product_id]"]').on('change', function (el) {
 
       var ProductSku = require("javascripts/models/product_sku");
-      var productId = $(this).val();
-      var productSelector = this;
+      var productSelector = $(this);
+      var productId = productSelector.val();
 
       ProductSku.all(productId, function (res) {
 
         if (res.success == true) {
+          (function () {
 
-          res.skus.forEach(function (el) {
+            var skuSelector = productSelector.next('select[name^="package_set[sku_id]"]');
 
-            $(productSelector).closest('.sku_id[]').html("YOYO");
-          });
+            skuSelector.html('<option value="">-</option>');
+
+            res.skus.forEach(function (sku) {
+
+              skuSelector.append("<option value=\"" + sku.id + "\">" + sku.option_names + "</option>");
+            });
+          })();
         }
       });
     });

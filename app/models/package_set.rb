@@ -2,16 +2,9 @@ class PackageSet
   include MongoidBase
 
   field :name
-  field :sku_ids
+  field :price
 
   belongs_to :shop, inverse_of: :package_sets
-
-  def skus
-    @skus ||= begin
-      sku_ids.reduce([]) do |acc, sku_id|
-        acc << Product.all.skus.find(sku_id)
-      end
-    end
-  end
+  embeds_many :package_skus, inverse_of: :package_set, cascade_callbacks: true
 
 end

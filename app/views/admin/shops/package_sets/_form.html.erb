@@ -4,8 +4,11 @@
 
     <% 10.times do %>
 
-      <%= select_tag 'product_id[]', options_from_collection_for_select(@shop.products, :id, :name), :prompt => '-' %>
-      <%= select_tag 'sku_id[]', nil, :prompt => '-' %>
+      <%= select_tag 'package_set[product_id][]', options_from_collection_for_select(@shop.products, :id, :name), :prompt => '-' %>
+      <%= select_tag 'package_set[sku_id][]', nil, :prompt => '-' %>
+
+      <%= select_tag 'package_set[sku_id][]', nil, :prompt => '-' %>
+      <%= f.select :credit, (0..500) %>
 
       <div class="+small-spacer"></div>
 

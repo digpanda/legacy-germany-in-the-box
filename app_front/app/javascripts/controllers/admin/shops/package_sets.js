@@ -14,19 +14,23 @@ var PackageSets = {
 
     handleSelect: function() {
 
-      $('.product_id[]').on('change', function(el) {
+      $('select[name^="package_set[product_id]"]').on('change', function(el) {
 
         let ProductSku = require("javascripts/models/product_sku");
-        let productId = $(this).val();
-        let productSelector = this;
+        let productSelector = $(this);
+        let productId = productSelector.val();
 
         ProductSku.all(productId, function(res) {
 
           if (res.success == true) {
 
-            res.skus.forEach(function(el) {
+            let skuSelector = productSelector.next('select[name^="package_set[sku_id]"]');
 
-              $(productSelector).closest('.sku_id[]').html("YOYO");
+            skuSelector.html('<option value="">-</option>');
+
+            res.skus.forEach(function(sku) {
+
+              skuSelector.append("<option value=\""+sku.id+"\">"+sku.option_names+"</option>")
 
             });
 
