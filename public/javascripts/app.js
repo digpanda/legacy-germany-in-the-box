@@ -166,7 +166,7 @@ var PackageSets = {
 
   handleSelect: function handleSelect() {
 
-    $('select[name^="package_set[product_id]"]').on('change', function (el) {
+    $('select[name*="[product_id]"]').on('change', function (el) {
 
       var ProductSku = require("javascripts/models/product_sku");
       var productSelector = $(this);
@@ -177,7 +177,7 @@ var PackageSets = {
         if (res.success == true) {
           (function () {
 
-            var skuSelector = productSelector.next('select[name^="package_set[sku_id]"]');
+            var skuSelector = productSelector.parent().find('select[name*="[sku_id]"]');
 
             skuSelector.html('<option value="">-</option>');
 

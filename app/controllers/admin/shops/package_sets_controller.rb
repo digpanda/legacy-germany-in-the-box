@@ -16,6 +16,7 @@ class Admin::Shops::PackageSetsController < ApplicationController
 
   def new
     @package_set = PackageSet.new
+    5.times { package_set.package_skus.build }
   end
 
   def create

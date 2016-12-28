@@ -14,17 +14,17 @@ var PackageSets = {
 
     handleSelect: function() {
 
-      $('select[name^="package_set[product_id]"]').on('change', function(el) {
+      $('select[name*="[product_id]"]').on('change', function(el) {
 
         let ProductSku = require("javascripts/models/product_sku");
-        let productSelector = $(this);
+        var productSelector = $(this);
         let productId = productSelector.val();
 
         ProductSku.all(productId, function(res) {
 
           if (res.success == true) {
 
-            let skuSelector = productSelector.next('select[name^="package_set[sku_id]"]');
+            let skuSelector = productSelector.parent().find('select[name*="[sku_id]"]');
 
             skuSelector.html('<option value="">-</option>');
 
