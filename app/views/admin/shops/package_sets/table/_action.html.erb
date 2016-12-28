@@ -1,0 +1,3 @@
+<%= link_to '', edit_admin_shop_package_set_path(package_set.shop, package_set), :class => 'tooltipster fa fa-pencil buttons buttons__edit', :title => I18n.t(:edit, scope: :edit_set) %>
+
+<%= link_to '', admin_shop_package_set_path(package_set.shop, package_set), :method => :delete, data: { confirm: I18n.t(:delete_set_message, scope: :edit_set) }, :class => 'tooltipster fa fa-times buttons buttons__delete', :title => "Remove this set" %>

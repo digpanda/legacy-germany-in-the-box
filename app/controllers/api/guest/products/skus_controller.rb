@@ -1,8 +1,18 @@
 class Api::Guest::Products::SkusController < Api::ApplicationController
 
   attr_reader :product
-  
+
   before_action :set_product
+
+  def index
+
+    @skus = product.skus
+    return if @skus
+
+    render status: :not_found,
+           json: throw_error(:unknown_id).merge(error: I18n.t(:sku_not_found, scope: :notice)).to_json
+
+  end
 
   def show
 

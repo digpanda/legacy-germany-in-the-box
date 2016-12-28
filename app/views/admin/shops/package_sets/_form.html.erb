@@ -1,0 +1,18 @@
+<%= form_for [:admin, @shop, @package_set], :html => {:data => {:toggle => 'validator'}} do |form| %>
+
+  <div class="row details__block">
+
+    <% 10.times do %>
+
+      <%= select_tag 'product_id[]', options_from_collection_for_select(@shop.products, :id, :name), :prompt => '-' %>
+      <%= select_tag 'sku_id[]', nil, :prompt => '-' %>
+
+      <div class="+small-spacer"></div>
+
+    <% end %>
+
+  </div>
+
+  <%= form.submit :class => 'btn btn-primary', :value =>  I18n.t(:update_basic, scope: :edit_product) %>
+
+<% end %>

@@ -22,6 +22,9 @@ namespace :admin do
     patch :disapprove
     delete :destroy_image
 
+    resources :package_sets, :controller => 'shops/package_sets' do
+    end
+
     resources :products, :controller => 'shops/products' do
       patch :regular
       patch :highlight

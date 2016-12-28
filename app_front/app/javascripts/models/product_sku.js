@@ -26,6 +26,29 @@ var ProductSku = {
 
   },
 
+  /**
+   * Get all the Skus from the Product
+   */
+  all: function(productId, callback) {
+
+      $.ajax({
+
+        method: "GET",
+        url: '/api/guest/products/' + productId + '/skus',
+        data: {}
+
+      }).done(function(res) {
+
+        callback(res);
+
+      }).error(function(err) {
+
+        callback({success: false, error: err.responseJSON.error});
+
+      });
+
+  },
+
 }
 
 module.exports = ProductSku;

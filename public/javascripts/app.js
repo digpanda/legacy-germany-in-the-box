@@ -148,6 +148,47 @@ var __makeRelativeRequire = function(require, mappings, pref) {
     return require(name);
   }
 };
+require.register("javascripts/controllers/admin/shops/package_sets.js", function(exports, require, module) {
+'use strict';
+
+/**
+ * PackageSets Class
+ */
+var PackageSets = {
+
+  /**
+   * Initializer
+   */
+  init: function init() {
+
+    this.handleSelect();
+  },
+
+  handleSelect: function handleSelect() {
+
+    $('.product_id[]').on('change', function (el) {
+
+      var ProductSku = require("javascripts/models/product_sku");
+      var productId = $(this).val();
+      var productSelector = this;
+
+      ProductSku.all(productId, function (res) {
+
+        if (res.success == true) {
+
+          res.skus.forEach(function (el) {
+
+            $(productSelector).closest('.sku_id[]').html("YOYO");
+          });
+        }
+      });
+    });
+  }
+};
+
+module.exports = PackageSets;
+});
+
 require.register("javascripts/controllers/admin/shops/products.js", function(exports, require, module) {
 'use strict';
 
@@ -1711,6 +1752,26 @@ var ProductSku = {
       method: "GET",
       url: '/api/guest/products/' + productId + '/skus/0', // 0 is to match with the norm ... hopefully when we go away from mongo there's no such things
       data: { option_ids: optionIds }
+
+    }).done(function (res) {
+
+      callback(res);
+    }).error(function (err) {
+
+      callback({ success: false, error: err.responseJSON.error });
+    });
+  },
+
+  /**
+   * Get all the Skus from the Product
+   */
+  all: function all(productId, callback) {
+
+    $.ajax({
+
+      method: "GET",
+      url: '/api/guest/products/' + productId + '/skus',
+      data: {}
 
     }).done(function (res) {
 
