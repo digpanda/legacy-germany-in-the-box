@@ -152,13 +152,13 @@ require.register("javascripts/controllers/admin/shops/package_sets.js", function
 'use strict';
 
 /**
- * PackageSets Class
- */
+* PackageSets Class
+*/
 var PackageSets = {
 
   /**
-   * Initializer
-   */
+  * Initializer
+  */
   init: function init() {
 
     this.handleSelect();
@@ -166,30 +166,50 @@ var PackageSets = {
 
   handleSelect: function handleSelect() {
 
-    $('select[name*="[product_id]"]').on('change', function (el) {
-
-      var ProductSku = require("javascripts/models/product_sku");
-      var productSelector = $(this);
-      var productId = productSelector.val();
-
-      ProductSku.all(productId, function (res) {
-
-        if (res.success == true) {
-          (function () {
-
-            var skuSelector = productSelector.parent().find('select[name*="[sku_id]"]');
-
-            skuSelector.html('<option value="">-</option>');
-
-            res.skus.forEach(function (sku) {
-
-              skuSelector.append("<option value=\"" + sku.id + "\">" + sku.option_names + "</option>");
-            });
-          })();
-        }
+    $(document).ready(function () {
+      $('select[name*="[product_id]"]').each(function (el) {
+        PackageSets.refreshSku(this);
       });
     });
+
+    $('select[name*="[product_id]"]').on('change', function (el) {
+      PackageSets.refreshSku(this);
+    });
+  },
+
+  refreshSku: function refreshSku(self) {
+
+    var productSelector = $(self);
+    var ProductSku = require("javascripts/models/product_sku");
+    var productId = productSelector.val();
+
+    if (_.isEmpty(productId)) {
+      return false;
+    }
+
+    ProductSku.all(productId, function (res) {
+
+      if (res.success == true) {
+        (function () {
+
+          var skuSelector = productSelector.parent().parent().find('select[name*="[sku_id]"]');
+          var possibleSkuId = productSelector.parent().parent().find('.js-sku-id');
+
+          skuSelector.html('<option value="">-</option>');
+
+          res.skus.forEach(function (sku) {
+
+            skuSelector.append("<option value=\"" + sku.id + "\">" + sku.option_names + "</option>");
+
+            // If we are editing we should setup the pre-selected sku id
+            var nearSkuId = possibleSkuId.data().skuId;
+            skuSelector.val(nearSkuId);
+          });
+        })();
+      }
+    });
   }
+
 };
 
 module.exports = PackageSets;

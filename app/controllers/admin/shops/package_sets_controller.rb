@@ -20,14 +20,13 @@ class Admin::Shops::PackageSetsController < ApplicationController
   end
 
   def create
-    binding.pry
     @package_set = shop.package_sets.build(package_set_params)
     if package_set.save
       flash[:success] = "Set was created"
     else
       flash[:error] = package_set.errors.full_messages.join(', ')
     end
-    redirect_to navigation.back(1)
+    redirect_to admin_shop_package_sets_path(shop)
   end
 
   def edit
@@ -52,7 +51,7 @@ class Admin::Shops::PackageSetsController < ApplicationController
   end
 
   def package_set_params
-    params.require(:package_set).permit(:sku_id)
+    params.require(:package_set).permit!
   end
 
 

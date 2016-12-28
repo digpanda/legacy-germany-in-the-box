@@ -9,7 +9,7 @@
         </th>
         <th>
           <label>
-            Skus
+            Package Skus
           </label>
         </th>
         <th>
@@ -26,7 +26,7 @@
             <%= package_set.name %>
           </td>
           <td>
-            <%= package_set.skus.count %>
+            <%= package_set.package_skus.count %>
           </td>
           <td align="left">
             <%= render partial: 'admin/shops/package_sets/table/action', :locals => { :package_set => package_set } %>

@@ -1,6 +1,11 @@
-<%= form_for [:admin, @shop, @package_set], :html => {:data => {:toggle => 'validator'}, :multipart => true} do |form| %>
+<%= form_for [:admin, @shop, @package_set], :html => {:data => {:toggle => 'validator'}} do |form| %>
 
   <div class="row details__block">
+
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+
+    <div class="+small-spacer"></div>
 
     <%= form.label :price %>
     <%= form.text_field :price %>
@@ -13,13 +18,32 @@
 
       <!-- Important for the selector -->
       <div>
-        <%= field.label :product_id %>
-        <%= field.select :product_id, options_from_collection_for_select(@shop.products, :id, :name), :prompt => '-' %>
 
-        <%= field.label :sku_id %>
-        <%= field.select :sku_id, [], :prompt => '-' %>
+        <div class="col-md-5">
+
+          <%= field.label :product_id %>
+          <%= field.select :product_id, options_from_collection_for_select(@shop.products, :id, :name), :prompt => '-' %>
+
+        </div>
+
+        <div class="col-md-5">
+
+          <!-- JS memoization of the AJAX fetched data -->
+          <div class="js-sku-id" data-sku-id="<%= field.object.sku_id %>"></div>
+          <%= field.label :sku_id %>
+          <%= field.select :sku_id, [], :prompt => '-' %>
+
+        </div>
+
+        <div class="col-md-2">
+
+          <%= field.label :quantity %>
+          <%= field.select :quantity, (1..10) %>
+
+        </div>
 
         <div class="+small-spacer"></div>
+
       </div>
     <% end %>
 
