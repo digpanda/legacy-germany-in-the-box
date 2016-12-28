@@ -51,6 +51,7 @@ var PackageSets = {
 
           // If we are editing we should setup the pre-selected sku id
           let nearSkuId = possibleSkuId.data().skuId
+          console.log(skuId);
           skuSelector.val(nearSkuId);
 
 

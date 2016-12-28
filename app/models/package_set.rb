@@ -6,6 +6,6 @@ class PackageSet
 
   belongs_to :shop, inverse_of: :package_sets
   embeds_many :package_skus, inverse_of: :package_set, cascade_callbacks: true
-  accepts_nested_attributes_for :package_skus
+  accepts_nested_attributes_for :package_skus, :reject_if => lambda { |s| s[:sku_id].blank? }
 
 end

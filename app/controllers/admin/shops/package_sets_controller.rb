@@ -30,6 +30,7 @@ class Admin::Shops::PackageSetsController < ApplicationController
   end
 
   def edit
+    5.times { package_set.package_skus.build }
   end
 
   def update

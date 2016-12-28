@@ -22,7 +22,7 @@
         <div class="col-md-5">
 
           <%= field.label :product_id %>
-          <%= field.select :product_id, options_from_collection_for_select(@shop.products, :id, :name), :prompt => '-' %>
+          <%= field.select :product_id, options_from_collection_for_select(@shop.products, :id, :name, field.object.product_id), :prompt => '-' %>
 
         </div>
 
