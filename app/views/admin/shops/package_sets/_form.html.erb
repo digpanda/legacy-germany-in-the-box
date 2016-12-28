@@ -2,15 +2,20 @@
 
   <div class="row details__block">
 
-    <% 10.times do %>
+    <%= form.label :price %>
+    <%= form.text_field :price %>
 
-      <%= select_tag 'package_set[product_id][]', options_from_collection_for_select(@shop.products, :id, :name), :prompt => '-' %>
-      <%= select_tag 'package_set[sku_id][]', nil, :prompt => '-' %>
+  </div>
 
-      <%= select_tag 'package_set[sku_id][]', nil, :prompt => '-' %>
-      <%= f.select :credit, (0..500) %>
+  <div class="row details__block">
 
-      <div class="+small-spacer"></div>
+    <%= fields_for :package_sku do |field| %>
+
+        <%= field.label :product %>
+        <%= field.select :product, options_from_collection_for_select(@shop.products, :id, :name), :prompt => '-' %>
+
+        <%= field.label :sku_id %>
+        <%= field.select :sku_id, [], :prompt => '-' %>
 
     <% end %>
 
