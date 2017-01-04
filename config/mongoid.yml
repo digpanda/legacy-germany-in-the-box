@@ -35,7 +35,7 @@ development:
         - localhost:27017
       options:
         user: loschcode
-        password: achat2cool
+        password: digpanda
 
   options:
     use_utc: false
