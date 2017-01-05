@@ -84,7 +84,6 @@ class Shop
   validates :founding_year, presence: true,   length: {maximum: 4}
   validates :desc,          presence: true,   length: {maximum: (Rails.configuration.max_medium_text_length * 1.25).round}
   validates :philosophy,    presence: true,   length: {maximum: (Rails.configuration.max_long_text_length * 1.25).round}
-  validates :tax_number,    presence: true,   length: {maximum: Rails.configuration.max_tiny_text_length },   :if => lambda { self.agb }
   validates :ustid,         presence: true,   length: {maximum: Rails.configuration.max_tiny_text_length },   :if => lambda { self.agb }
 
   validates :wirecard_status, inclusion: {:in => Rails.application.config.wirecard[:merchants][:status].map(&:to_sym)}
