@@ -230,7 +230,7 @@ class Customer::CheckoutController < ApplicationController
 
   def update_addresses!
 
-    slack("#{order}")
+    slack('will now display the current user')
     slack("#{current_user}")
 
     current_user.addresses.find(params[:delivery_destination_id]).tap do |address|
