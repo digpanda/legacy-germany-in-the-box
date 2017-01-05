@@ -112,7 +112,7 @@ describe Api::Customer::FavoritesController, :type => :controller do
 
         put :destroy, :id => shop.products.first.id
         expect_json(success: false, code: 7)
-        
+
       end
 
     end

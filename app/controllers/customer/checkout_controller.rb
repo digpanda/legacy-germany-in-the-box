@@ -22,7 +22,7 @@ class Customer::CheckoutController < ApplicationController
 
     # we update the delivery address before everything
     # this will be used to check the limit reach
-    update_addresses!(order)
+    update_addresses!
 
     # TODO : this should be in a before action or something (or at least something more logical and also grouped with the delivery destination id check)
     return unless current_user.valid_for_checkout?
@@ -228,8 +228,15 @@ class Customer::CheckoutController < ApplicationController
       })
   end
 
-  def update_addresses!(order)
+  def update_addresses!
+
+    slack("#{order}")
+    slack("#{current_user}")
+
     current_user.addresses.find(params[:delivery_destination_id]).tap do |address|
+
+      slack("#{address}")
+
       order.update({
         :shipping_address     => address.clone,
         :billing_address      => address.clone,
