@@ -30,6 +30,7 @@
 - Use `bundle install`
 - Install MongoDB on your machine and create a new user you will use for the project. Set it up in the configuration.
 - Add the `secrets.yml`, `mongoid.yml` and `application.yml` that was previously given to you.
+- To be able to launch RSpec, don't forget to add `.rspec` as well.
 - Populate the sample data with `rake digpanda:remove_and_create_complete_sample_data`
 
 ### Start your application
