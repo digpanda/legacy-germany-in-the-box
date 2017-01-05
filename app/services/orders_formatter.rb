@@ -37,6 +37,7 @@ class OrdersFormatter < BaseService
     'BorderGuru Merchant Id',
     'BorderGuru Quote ID',
     'BorderGuru Shipment ID',
+    'BorderGuru Order ID',
     'BorderGuru Link Tracking',
     'BorderGuru Link Payment',
     'Payments IDs',
@@ -108,6 +109,7 @@ class OrdersFormatter < BaseService
 
       order.border_guru_quote_id,
       order.border_guru_shipment_id,
+      order.border_guru_order_id,
       order.border_guru_link_tracking,
       order.border_guru_link_payment,
       payments_ids(order),
