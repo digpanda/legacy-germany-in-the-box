@@ -19,7 +19,7 @@ draw :app, :shared
 draw :app, :connect
 draw :app, :guest
 
-resources :languages, only: [:update] do
+resources :languages, only: [:update, :show] do
 end
 
 resource :adyen, :controller => 'adyen' do
