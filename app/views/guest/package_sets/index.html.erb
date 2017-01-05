@@ -1,0 +1,9 @@
+<h2>Package sets</h2>
+
+<% @package_sets.each do |package_set| %>
+
+  <%= package_set.name %>
+  <br />
+  <%= link_to "Buy it", guest_package_set_path(package_set), method: :patch %>
+
+<% end %>

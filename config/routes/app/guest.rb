@@ -35,6 +35,9 @@ namespace :guest do
   resources :order_items  do
   end
 
+  resources :package_sets do
+  end
+
   resources :categories do
   end
 
