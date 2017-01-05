@@ -14,6 +14,7 @@ zh-CN:
   product_box:
     taxes_per_unit: 税额
     shipping_and_taxes_excluded: 不含运费及关税
+    taxes_included: 已含税，运费另计
   coupon:
     no_minimum_price: "无法使用本代金券，因为未达到使用代金券的最低购物金额（不含物流及关税）： %{minimum} 人民币。"
     cannot_apply:  此折扣码不适用于该订单。
