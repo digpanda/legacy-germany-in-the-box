@@ -32,8 +32,8 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def slack(message)
-    SlackDispatcher.new.message(message)
+  def slack
+    @slack ||= SlackDispatcher.new
   end
 
   def navigation

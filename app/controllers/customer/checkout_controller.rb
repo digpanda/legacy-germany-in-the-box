@@ -232,7 +232,10 @@ class Customer::CheckoutController < ApplicationController
 
     current_user.addresses.find(params[:delivery_destination_id]).tap do |address|
 
-      slack("#{order}")
+      order.shipping_address = address.clone
+      order.save
+
+      slack.message('it passed')
 
       order.update({
         :shipping_address     => address.clone,
