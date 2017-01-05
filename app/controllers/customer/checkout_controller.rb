@@ -230,12 +230,9 @@ class Customer::CheckoutController < ApplicationController
 
   def update_addresses!
 
-    slack('will now display the current user')
-    slack("#{current_user}")
-
     current_user.addresses.find(params[:delivery_destination_id]).tap do |address|
 
-      slack("#{address}")
+      slack("#{order}")
 
       order.update({
         :shipping_address     => address.clone,
