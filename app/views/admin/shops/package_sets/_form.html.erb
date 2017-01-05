@@ -1,54 +1,67 @@
 <%= form_for [:admin, @shop, @package_set], :html => {:data => {:toggle => 'validator'}} do |form| %>
 
-  <div class="row details__block">
+<div class="row details__block">
 
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+  <%= form.label :name %>
+  <%= form.text_field :name %>
 
-    <div class="+small-spacer"></div>
+</div>
 
-    <%= form.label :price %>
-    <%= form.text_field :price %>
+<div class="row details__block">
 
-  </div>
+  <table class="white-table">
+    <thead>
+      <tr>
+        <th>
+          <label>
+            Product
+          </label>
+        </th>
+        <th>
+          <label>
+            Sku
+          </label>
+        </th>
+        <th>
+          <label>
+            Price (EUR)
+          </label>
+        </th>
+        <th>
+          <label>
+            Quantity
+          </label>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
 
-  <div class="row details__block">
+      <%= form.fields_for :package_skus do |field| %>
 
-    <%= form.fields_for :package_skus do |field| %>
-
-      <!-- Important for the selector -->
-      <div>
-
-        <div class="col-md-5">
-
-          <%= field.label :product_id %>
+      <tr>
+        <td>
           <%= field.select :product_id, options_from_collection_for_select(@shop.products, :id, :name, field.object.product_id), :prompt => '-' %>
-
-        </div>
-
-        <div class="col-md-5">
-
+        </td>
+        <td>
           <!-- JS memoization of the AJAX fetched data -->
           <div class="js-sku-id" data-sku-id="<%= field.object.sku_id %>"></div>
-          <%= field.label :sku_id %>
           <%= field.select :sku_id, [], :prompt => '-' %>
-
-        </div>
-
-        <div class="col-md-2">
-
-          <%= field.label :quantity %>
+        </td>
+        <td>
+          <%= field.text_field :price %>
+        </td>
+        <td>
           <%= field.select :quantity, (1..10) %>
+        </td>
+      </tr>
 
-        </div>
+      <% end %>
 
-        <div class="+small-spacer"></div>
-
-      </div>
-    <% end %>
+    </tbody>
+  </table>
 
   </div>
 
   <%= form.submit :class => 'btn btn-primary', :value =>  I18n.t(:update_basic, scope: :edit_product) %>
 
-<% end %>
+  <% end %>

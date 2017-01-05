@@ -6,6 +6,16 @@ class OrderItem
 
   field :quantity,        type: Integer,    default: 1
 
+  # if we want to setup the taxes by ourselves
+  # field :manual_taxes, type: Boolean, default: false
+  # def estimated_taxes
+  #   if manual_taxes
+  #     0
+  #   else
+  #     sku.estimated_taxes
+  #   end
+  # end
+
   belongs_to :product
   belongs_to :order, touch: true,  :counter_cache => true
 
