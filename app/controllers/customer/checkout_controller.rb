@@ -229,11 +229,11 @@ class Customer::CheckoutController < ApplicationController
   end
 
   def update_addresses!
+    slack.message(order.id)
     current_user.addresses.find(params[:delivery_destination_id]).tap do |address|
       order.shipping_address = address.clone
       order.billing_address = address.clone
-      slack.message(order.billing_address)
-      slack.message(order.save)
+      order.save
     end
   end
 
