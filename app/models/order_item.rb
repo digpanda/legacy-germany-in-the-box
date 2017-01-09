@@ -1,5 +1,6 @@
 class OrderItem
   include MongoidBase
+  include LockedParent
 
   SKU_DELEGATE_EXCEPTION = [:quantity]
   MAX_DESCRIPTION_CHARACTERS = 200
@@ -40,14 +41,6 @@ class OrderItem
   index({order: 1},  {unique: false, name: :idx_order_item_order})
 
   scope :with_sku, -> (sku) { self.where(:sku_origin_id => sku.id) }
-
-  # parent locked order cannot be modified
-  validates_with LockedValidator
-
-  before_destroy :not_locked?
-  def not_locked?
-    LockedValidator.new.validate(self).empty?
-  end
 
   # right now we exclusively have delegated methods from the sku
   # if the method is missing we get it from the sku

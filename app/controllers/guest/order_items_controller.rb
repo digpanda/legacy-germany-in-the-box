@@ -49,7 +49,7 @@ class Guest::OrderItemsController < ApplicationController
     if order.destroyable?
       order.remove_coupon if order.coupon
       order.reload # because we just deleted the order item
-      return order.delete
+      return order.destroy
     end
     true
   end
