@@ -45,24 +45,23 @@ class Api::Guest::OrderItemsController < Api::ApplicationController
 
     order_item.quantity = quantity
 
-    # we save it now
-    if order_item.save
-
-      @order = cart_manager.order(shop: product.shop)
-
-      unless order
-        flash[:error] = I18n.t(:borderguru_unreachable_at_quoting, scope: :checkout)
-        redirect_to root_path
-        return
-      end
-
-    else
+    # we finally save the order item
+    # it passed all the major "validations" (should be moved to models-validators i guess)
+    unless order_item.save
       render :json => {
         :success => false,
         :original_quantity => original_quantity,
         :error => order_item.errors.full_messages.join(", ")
-       }
-       return
+      }
+      return
+    end
+
+    @order = cart_manager.order(shop: product.shop)
+
+    unless order # because there's an API call (could be improved)
+      flash[:error] = I18n.t(:borderguru_unreachable_at_quoting, scope: :checkout)
+      redirect_to root_path
+      return
     end
 
     if order.coupon
