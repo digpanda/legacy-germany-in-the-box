@@ -44,6 +44,11 @@ class OrderItem
   # parent locked order cannot be modified
   validates_with LockedValidator
 
+  before_destroy :not_locked?
+  def not_locked?
+    LockedValidator.new.validate(self).empty?
+  end
+
   # right now we exclusively have delegated methods from the sku
   # if the method is missing we get it from the sku
   # directly when possible

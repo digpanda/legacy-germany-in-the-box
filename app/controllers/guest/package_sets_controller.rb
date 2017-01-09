@@ -18,6 +18,8 @@ class Guest::PackageSetsController < ApplicationController
     end
     # we lock it because it was virtually setup
     order.lock!
+    # we first empty the cart manager to make it fresh
+    cart_manager.empty!
     cart_manager.store(order)
     redirect_to customer_cart_path
   end

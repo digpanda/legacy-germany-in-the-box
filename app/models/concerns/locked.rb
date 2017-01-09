@@ -1,5 +1,3 @@
-require "abstract_method"
-
 module Locked
   extend ActiveSupport::Concern
 
@@ -9,6 +7,7 @@ module Locked
     # NOTE : if we extend the locking system
     # we should change the validaton as well
     validates_with LockedValidator
+
   end
 
   def lock!

@@ -31,7 +31,6 @@ class CartManager < BaseService
   end
 
   # empty all orders from the cart
-  # NOTE : currently not in use in our system
   def empty!
     session[:order_shop_ids] = {}
   end

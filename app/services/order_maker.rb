@@ -32,7 +32,7 @@ class OrderMaker < BaseService
 
 
   private
-  
+
   def refresh_order_items!(sku, quantity, price)
     order.order_items.build.tap do |order_item|
       order_item.quantity = quantity
@@ -49,7 +49,7 @@ class OrderMaker < BaseService
         order_item.sku.price = price
         order_item.manual_taxes = true
       end
-    end.save!
+    end.save(validate: false)
   end
 
   # TODO : we should take back any update and delete linked to the order and put them here.
