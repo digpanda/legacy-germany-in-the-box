@@ -14,8 +14,8 @@ module Locked
 
   def lock!
     self.locked = true
-    self.bypass_locked = true
     # we remove the validation to lock the order
+    self.bypass_locked!
     self.save
   end
 
@@ -25,4 +25,12 @@ module Locked
     self.locked = false
     self.save
   end
+
+  def bypass_locked!
+    self.bypass_locked = true
+    self.order_items.each do |order_item|
+      order_item.bypass_locked = true
+    end
+  end
+
 end

@@ -28,7 +28,7 @@ class Guest::PackageSetsController < ApplicationController
 
   # to be abstracted somewhere else
   def order_maker
-    @order_maker ||= OrderMaker.new(order)
+    @order_maker ||= OrderMaker.new(order, bypass_locked: true)
   end
 
   def order

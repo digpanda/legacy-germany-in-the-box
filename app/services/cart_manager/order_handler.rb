@@ -44,7 +44,8 @@ class CartManager
     def setup_user_order!
       unless order.user
         order.user = user
-        order.save(validate: false)
+        order.bypass_locked!
+        order.save
       end
     end
 
@@ -53,10 +54,13 @@ class CartManager
     def setup_shop_order!
       unless order.shop
         order.shop = shop
-        order.save(validate: false)
+        order.bypass_locked!
+        order.save
       end
     end
 
+    # NOTE : this should be moved on one specific location and not called every time
+    # it's the same for estimated_taxes etc.
     def refresh_with_quote_api!
       BorderGuru.calculate_quote(order: order)
     rescue BorderGuru::Error, Net::ReadTimeout => e

@@ -1,10 +1,11 @@
 # cancel and make orders on the database and through APIs
 class OrderMaker < BaseService
 
-  attr_reader :order
+  attr_reader :order, :bypass_locked
 
-  def initialize(order)
+  def initialize(order, bypass_locked: false)
     @order = order
+    @bypass_locked = bypass_locked
   end
 
   # NOTE : this could be way improved but it was directly
@@ -16,8 +17,9 @@ class OrderMaker < BaseService
 
     existing_order_item = order.order_items.with_sku(sku).first
     if existing_order_item.present?
-
       existing_order_item.quantity += quantity
+      # we bypass the locked if needed (for the package sets)
+      existing_order_item.bypass_locked = bypass_locked
       existing_order_item.save!
       return return_with(:success, order: order)
 
@@ -49,7 +51,9 @@ class OrderMaker < BaseService
         order_item.sku.price = price
         order_item.manual_taxes = true
       end
-    end.save(validate: false)
+      # we bypass the locked if needed (for the package sets)
+      order_item.bypass_locked = true
+    end.save!
   end
 
   # TODO : we should take back any update and delete linked to the order and put them here.
