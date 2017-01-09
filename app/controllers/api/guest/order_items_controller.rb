@@ -19,13 +19,14 @@ class Api::Guest::OrderItemsController < Api::ApplicationController
     end
 
     quantity_difference = quantity - order_item.quantity
+    original_quantity = order_item.quantity
 
     # reach daily limit
     if quantity_difference >= 0 && BuyingBreaker.new(order).with_sku?(sku, quantity_difference)
       # refactor error message (with throw error)
       render :json => {
         :success => false,
-        :original_quantity => @order_item.quantity,
+        :original_quantity => original_quantity,
         :error => I18n.t(:override_maximal_total, scope: :edit_order, total: Settings.instance.max_total_per_day, currency: Settings.instance.platform_currency.symbol)
        }
       return
@@ -36,7 +37,7 @@ class Api::Guest::OrderItemsController < Api::ApplicationController
       # refactor error message (with throw error)
       render :json => {
         :success => false,
-        :original_quantity => @order_item.quantity,
+        :original_quantity => original_quantity,
         :error => I18n.t(:not_all_available, scope: :checkout, :product_name => product.name, :option_names => sku.option_names.join(', '))
       }
       return
@@ -56,7 +57,12 @@ class Api::Guest::OrderItemsController < Api::ApplicationController
       end
 
     else
-      render :json => { :success => false, :original_quantity => @order_item.quantity, :error => order_item.errors.full_messages.join(", ") }
+      render :json => {
+        :success => false,
+        :original_quantity => original_quantity,
+        :error => order_item.errors.full_messages.join(", ")
+       }
+       return
     end
 
     if order.coupon
