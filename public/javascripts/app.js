@@ -468,9 +468,7 @@ var CustomerCartShow = {
     }
 
     // We rollback the quantity
-    $('#order-item-quantity-' + orderItemId).attr('value', originQuantity);
-    // $('#order-item-quantity-'+orderItemId).val(originQuantity);
-
+    $('#order-item-quantity-' + orderItemId).val(originQuantity);
   },
 
   resetDisplay: function resetDisplay(orderItemQuantity, orderItemId, orderShopId, res) {
@@ -1902,7 +1900,7 @@ var Bootstrap = {
   },
 
   /**
-   *
+   * 
    */
   startPopover: function startPopover() {
 
@@ -2629,9 +2627,9 @@ var ProductsList = { // CURRENTLY NOT IN USED IN THE SYSTEM
 
     /*
           if ($('#freewall-products').length > 0) {
-
+    
             var wall = new freewall("#freewall-products");
-
+    
             wall.reset({
               selector: '.js-brick',
               delay: 0,
@@ -2642,13 +2640,13 @@ var ProductsList = { // CURRENTLY NOT IN USED IN THE SYSTEM
                 return wall.fitWidth();
               }
             });
-
+    
             wall.container.find('.js-brick img').load(function() {
               $(window).trigger('resize');
             });
-
+    
             $(window).trigger('resize');
-
+    
          }
     */
 
@@ -2900,10 +2898,10 @@ var SweetAlert = {
 
     /* NOT COMPATIBLE WITH RAILS SYSTEM ...
           $('.js-alert').click(function(e) {
-
+    
             e.preventDefault();
             self = this;
-
+    
             swal({
               title: $(self).data('title') || "Are you sure ?",
               text: $(self).data('text') || "This action cannot be undone.",
@@ -2921,7 +2919,7 @@ var SweetAlert = {
               });
               window.location.href = $(self).attr('href');
             });
-
+    
           })
     */
   }
@@ -2960,7 +2958,7 @@ module.exports = Tooltipster;
 });
 
 require.register("___globals___", function(exports, require, module) {
-
+  
 });})();require('___globals___');
 
 

@@ -145,8 +145,7 @@ var CustomerCartShow = {
     }
 
     // We rollback the quantity
-    $('#order-item-quantity-'+orderItemId).attr('value', originQuantity);
-    // $('#order-item-quantity-'+orderItemId).val(originQuantity);
+    $('#order-item-quantity-'+orderItemId).val(originQuantity);
 
   },
 
