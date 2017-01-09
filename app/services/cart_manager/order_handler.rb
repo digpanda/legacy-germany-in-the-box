@@ -21,6 +21,7 @@ class CartManager
         refresh_with_quote_api! if call_api
       end
       setup_user_order!
+      setup_shop_order!
       self
     end
 
@@ -43,6 +44,15 @@ class CartManager
     def setup_user_order!
       unless order.user
         order.user = user
+        order.save
+      end
+    end
+
+    # sometimes order passing through this don't have any shop assigned
+    # we fix it immediately
+    def setup_shop_order!
+      unless order.shop
+        order.shop = shop
         order.save
       end
     end

@@ -15,7 +15,6 @@ class Guest::PackageSetsController < ApplicationController
     package_set.package_skus.each do |package_sku|
       order_maker.add(package_sku.sku, package_sku.quantity) # package_sku.price to make
     end
-    binding.pry
     cart_manager.store(order)
     redirect_to customer_cart_path
   end
