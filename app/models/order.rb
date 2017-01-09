@@ -3,7 +3,7 @@ require 'will_paginate/array'
 class Order
   include MongoidBase
   include HasProductSummaries
-
+  include Locked
 
   Numeric.include CoreExtensions::Numeric::CurrencyLibrary
 
@@ -62,9 +62,9 @@ class Order
 
   index({user: 1},  {unique: false,   name: :idx_order_user,   sparse: true})
 
-  after_save :make_bill_id, :update_paid_at, :update_cancelled_at
   before_save :create_border_guru_order_id
   before_save :update_shipping_cost, :update_tax_and_duty_cost
+  after_save :make_bill_id, :update_paid_at, :update_cancelled_at
 
   def update_shipping_cost
     self.shipping_cost = current_shipping_cost

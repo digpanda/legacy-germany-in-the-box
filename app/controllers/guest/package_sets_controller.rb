@@ -12,9 +12,12 @@ class Guest::PackageSetsController < ApplicationController
 
   # we use the package set and convert it into an order
   def update
+    # we first compose the whole order
     package_set.package_skus.each do |package_sku|
-      order_maker.add(package_sku.sku, package_sku.quantity) # package_sku.price to make
+      order_maker.add(package_sku.sku, package_sku.quantity, package_sku.price)
     end
+    # we lock it because it was virtually setup
+    order.lock!
     cart_manager.store(order)
     redirect_to customer_cart_path
   end

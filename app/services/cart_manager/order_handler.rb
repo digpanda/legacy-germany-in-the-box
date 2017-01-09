@@ -44,7 +44,7 @@ class CartManager
     def setup_user_order!
       unless order.user
         order.user = user
-        order.save
+        order.save(validate: false)
       end
     end
 
@@ -53,7 +53,7 @@ class CartManager
     def setup_shop_order!
       unless order.shop
         order.shop = shop
-        order.save
+        order.save(validate: false)
       end
     end
 

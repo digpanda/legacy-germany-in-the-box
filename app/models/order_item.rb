@@ -7,14 +7,16 @@ class OrderItem
   field :quantity,        type: Integer,    default: 1
 
   # if we want to setup the taxes by ourselves
-  # field :manual_taxes, type: Boolean, default: false
-  # def estimated_taxes
-  #   if manual_taxes
-  #     0
-  #   else
-  #     sku.estimated_taxes
-  #   end
-  # end
+  field :manual_taxes, type: Boolean, default: false
+  # this hook the sku `estimated_taxes` method by forcing a 0
+  # if the taxes are manually calculated beforehand
+  def estimated_taxes
+    if manual_taxes
+      0
+    else
+      sku.estimated_taxes
+    end
+  end
 
   belongs_to :product
   belongs_to :order, touch: true,  :counter_cache => true
@@ -38,6 +40,9 @@ class OrderItem
   index({order: 1},  {unique: false, name: :idx_order_item_order})
 
   scope :with_sku, -> (sku) { self.where(:sku_origin_id => sku.id) }
+
+  # parent locked order cannot be modified
+  validates_with LockedValidator
 
   # right now we exclusively have delegated methods from the sku
   # if the method is missing we get it from the sku
