@@ -22,6 +22,7 @@ namespace :guest do
     get :customer_about
     get :fees
     get :home
+    get :publicity
   end
 
   resource :feedback, :controller => 'feedback' do
