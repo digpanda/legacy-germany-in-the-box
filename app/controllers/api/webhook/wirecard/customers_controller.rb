@@ -34,9 +34,22 @@ class Api::Webhook::Wirecard::CustomersController < Api::ApplicationController
     # it doesn't matter if the API call failed, the order has to be systematically up to date with the order payment in case it's not already sent
     devlog.info "We synchronize the order status depending on the refreshed payment one ..."
     order_payment.order.refresh_status_from!(order_payment)
+    order = order_payment.order
+    shop = order.shop
 
     if checker.success?
       devlog.info "The order was refreshed and seem to be paid."
+      EmitNotificationAndDispatchToUser.new.perform({
+                                                        user: shop.shopkeeper,
+                                                        title: "Auftrag #{order.id} am #{order.paid_at}",
+                                                        desc: "Eine neue Bestellung ist da. Zeit für die Vorbereitung!"
+                                                    })
+
+      EmitNotificationAndDispatchToUser.new.perform({
+                                                        user: order.user,
+                                                        title: "来因盒通知：付款成功，已通知商家准备发货 （订单号：#{order.id})",
+                                                        desc: "你好，你的订单#{order.id}已成功付款，已通知商家准备发货。若有疑问，欢迎随时联系来因盒客服：customer@germanyinthebox.com。"
+                                                    })
     else
       devlog.info "The order was refreshed but don't seem to be paid. (#{checker.error})"
     end
