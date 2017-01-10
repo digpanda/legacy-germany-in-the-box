@@ -1,6 +1,9 @@
 <!-- TODO : This was taken and changed in _order_items.erb ; we might need to change the methodology with @readonly, etc. -->
 <div class="+small-spacer"></div>
 <div class="row +overflow">
+
+  <div class="col-md-12">
+
   <table class="white-table">
     <thead>
       <tr>
@@ -19,11 +22,9 @@
         <th>
           <%= I18n.t(:unit_price, scope: :cart) %>
         </th>
-        <% unless @readonly %>
         <th>
           <%= I18n.t(:operations, scope: :cart) %>
         </th>
-        <% end %>
       </tr>
     </thead>
     <tbody>
@@ -44,21 +45,32 @@
         </td>
         <td class="white-table__quantity">
 
-          <!-- Minus -->
-          <% unless @readonly %>
-          <a href="#" class="js-set-quantity-minus" data-order-item-id="<%= order_item.id.to_s %>" data-order-shop-id="<%= order.shop.id %>">
-            <i class="fa fa-minus buttons buttons__quantity"></i>
-          </a>
-          <% end %>
+          <div class="row">
+            <!-- Minus -->
+            <div class="col-md-3">
+              <% unless order_item.locked? %>
+              <a href="#" class="js-set-quantity-minus" data-order-item-id="<%= order_item.id.to_s %>" data-order-shop-id="<%= order.shop.id %>">
+                <i class="fa fa-minus buttons buttons__quantity"></i>
+              </a>
+              <% end %>
+            </div>
 
-          <%= text_field_tag "", order_item.quantity, :id => "order-item-quantity-#{order_item.id.to_s}", :type => 'text', :value => "#{order_item.quantity}", :disabled => "disabled", :data => { :order_item_id => order_item.id.to_s } %>
+            <div class="col-md-3">
+              <%= text_field_tag "", order_item.quantity, :id => "order-item-quantity-#{order_item.id.to_s}", :type => 'text', :value => "#{order_item.quantity}", :disabled => "disabled", :data => { :order_item_id => order_item.id.to_s } %>
+            </div>
 
-          <!-- Plus -->
-          <% unless @readonly %>
-          <a href="#" class="js-set-quantity-plus" data-order-item-id="<%= order_item.id.to_s %>" data-order-shop-id="<%= order.shop.id %>">
-            <i class="fa fa-plus buttons buttons__quantity"></i>
-          </a>
-          <% end %>
+            <!-- Plus -->
+            <div class="col-md-3">
+              <% unless order_item.locked? %>
+              <a href="#" class="js-set-quantity-plus" data-order-item-id="<%= order_item.id.to_s %>" data-order-shop-id="<%= order.shop.id %>">
+                <i class="fa fa-plus buttons buttons__quantity"></i>
+              </a>
+              <% end %>
+            </div>
+
+          </div>
+
+          </div>
 
         </td>
         <td>
@@ -67,17 +79,16 @@
           <span class="+discount"><%= order_item.sku.decorate.discount_with_percent %></span>
           <% end %>
         </td>
-        <% unless @readonly %>
-        <td>
-
-          <%= link_to '', guest_order_item_path(order_item), method: :delete, data: { confirm: I18n.t(:delete_sku_msg, :scope => :cart)  }, "data-placement" => "right",  class: 'fa fa-times buttons buttons__delete' %>
-
-        </td>
+        <% unless order_item.locked? %>
+          <td>
+            <%= link_to '', guest_order_item_path(order_item), method: :delete, data: { confirm: I18n.t(:delete_sku_msg, :scope => :cart)  }, "data-placement" => "right",  class: 'fa fa-times buttons buttons__delete' %>
+          </td>
         <% end %>
       </tr>
       <% end %>
     </tbody>
   </table>
+</div>
 </div>
 <% unless @readonly %>
 <div class="row">
