@@ -25,7 +25,7 @@ module UsersHelper
   end
 
   def chinese_ip?
-    Geocoder.search($request.remote_ip).first.country_code == 'CN'
+    Geocoder.search($request.remote_ip).first&.country_code == 'CN'
   end
 
 end
