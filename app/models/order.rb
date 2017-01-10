@@ -243,6 +243,12 @@ class Order
     self.update(coupon_id: nil)
   end
 
+  def bypass_locked!
+    self.order_items.each do |order_item|
+      order_item.bypass_locked = true
+    end
+  end
+
   private
 
   def update_paid_at

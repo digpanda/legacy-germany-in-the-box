@@ -37,7 +37,7 @@ class Customer::CheckoutController < ApplicationController
       product = order_item.product
       sku = order_item.sku
 
-      if sku.unlimited or sku.quantity >= order_item.quantity
+      if sku.unlimited || sku.quantity >= order_item.quantity
         all_products_available = true
         products_total_price += sku.price * order_item.quantity
       else
@@ -219,6 +219,10 @@ class Customer::CheckoutController < ApplicationController
   end
 
   def update_for_checkout(order, border_guru_quote_id, shipping_cost, tax_and_duty_cost)
+    # we bypass the validation of the locked for this one because there's no reason to make it fail here
+    # order.bypass_locked!
+    # now we update the order itself
+    # NOTE : for some reason it cannot update without bypassing the locked ; we should investigate
     order.update({
       :status               => :paying,
       :user                 => current_user,

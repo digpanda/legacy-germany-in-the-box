@@ -12,7 +12,7 @@ module Locked
   end
 
   def validate_not_locked
-    LockedValidator.new.validate(self).nil?
+    LockedValidator.new.validate(self, ignore_changes: true).nil?
   end
 
   def locked?
