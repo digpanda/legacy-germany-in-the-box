@@ -11,13 +11,16 @@ class Category
   scope :only_with_products,       ->    { where(:product_ids.ne => nil).and(:product_ids.ne => []) }
 
   def shops
-    all_shops = Shop.all.map { |s| [s.id, s] }.to_h
-    Product.only(:shop_id).where(:category_ids => self.id ).to_a.map { |p| all_shops[p.shop_id] }
+    Shop.where(:id.in => shop_ids)
   end
 
   def can_buy_shops
-    all_shops = Shop.can_buy.map { |s| [s.id, s] }.to_h
-    Product.only(:shop_id).where(:category_ids => self.id ).to_a.map { |p| all_shops[p.shop_id] }
+    Shop.can_buy.where(:id.in => shop_ids)
   end
 
+  private
+
+  def shop_ids
+    Product.where(category_ids: self.id).pluck(:shop_id).uniq
+  end
 end
