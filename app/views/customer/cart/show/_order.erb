@@ -90,7 +90,9 @@
   </table>
 </div>
 </div>
-<% unless @readonly %>
+
+<% unless order.bought? %>
+
 <div class="row">
   <div class="col-xs-3 col-md-3">
     <%= render partial: 'customer/cart/show/delete_button', :locals => { :order => order } %>
@@ -99,4 +101,5 @@
     <%= render partial: 'customer/cart/show/checkout_button', :locals => { :order => order } %>
   </div>
 </div>
+
 <% end %>

@@ -15,9 +15,8 @@ class Customer::OrdersController < ApplicationController
     @orders = current_user.orders.nonempty.order_by(:c_at => :desc).paginate(:page => current_page, :per_page => 10)
   end
 
-  # TODO : refactor this
   def show
-    @readonly = true
+
     @currency_code = order.shop.currency.code
 
     unless order.decorate.bought?

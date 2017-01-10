@@ -43,13 +43,16 @@ class WirecardCheckout < BaseService
     # everything else including test / development / production can follow the normal way
     # seed of sample datas should result into demo credentials registered in development
     else
-      payment_gateway = order.shop.payment_gateways.where(payment_method: payment_method).first
       {
         :merchant_id  => payment_gateway.merchant_id,
         :secret_key   => payment_gateway.merchant_secret,
         :payment_method => payment_method
       }
     end
+  end
+
+  def payment_gateway
+    @payment_gateway ||= order.shop.payment_gateways.where(payment_method: payment_method).first
   end
 
   def hpp

@@ -1,38 +1,39 @@
 <div class="+spacer"></div>
 <div class="row">
   <div class="col-md-8 col-md-push-1">
-    <!-- TODO: refacto this -->
-    <%= render 'customer/cart/show/order', order: @order, currency_code: @currency_code %>
+    <%= render 'customer/cart/show/order', order: @order %>
   </div>
 </div>
 
 <div cass="row">
-  <% if a = @order.shipping_address %>
+  <% if @order.shipping_address %>
   <div class="col-md-4 col-md-push-1 +white-box">
     <div class="address-box">
+      <% @order.shipping_address.tap do |shipping_address| %>
       <ul>
         <li>
-          <%= "#{I18n.t(:street, scope: :edit_address)} : #{ a.street } #{ a.number }" %>
+          <%= "#{I18n.t(:street, scope: :edit_address)} : #{ shipping_address.street } #{ shipping_address.number }" %>
         </li>
         <li>
-          <%= "#{I18n.t(:additional, scope: :edit_address)} : #{ a.additional }" %>
+          <%= "#{I18n.t(:additional, scope: :edit_address)} : #{ shipping_address.additional }" %>
         </li>
         <li>
-          <%= "#{I18n.t(:district, scope: :edit_address)} : #{ a.district }" %>
+          <%= "#{I18n.t(:district, scope: :edit_address)} : #{ shipping_address.district }" %>
         </li>
         <li>
-          <%= "#{I18n.t(:city, scope: :edit_address)} : #{ a.city }" %>
+          <%= "#{I18n.t(:city, scope: :edit_address)} : #{ shipping_address.city }" %>
         </li>
         <li>
-          <%= "#{I18n.t(:province, scope: :edit_address)} : #{ a.province }" %>
+          <%= "#{I18n.t(:province, scope: :edit_address)} : #{ shipping_address.province }" %>
         </li>
         <li>
-          <%= "#{I18n.t(:country, scope: :edit_address)} : #{ a.decorate.country_local_name }" %>
+          <%= "#{I18n.t(:country, scope: :edit_address)} : #{ shipping_address.decorate.country_local_name }" %>
         </li>
         <li>
-          <%= "#{I18n.t(:zip, scope: :edit_address)} : #{ a.zip }" %>
+          <%= "#{I18n.t(:zip, scope: :edit_address)} : #{ shipping_address.zip }" %>
         </li>
       </ul>
+      <% end %>
     </div>
   </div>
   <% else %>
