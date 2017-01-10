@@ -14,10 +14,12 @@ class Guest::PackageSetsController < ApplicationController
   def update
     # we first compose the whole order
     package_set.package_skus.each do |package_sku|
-      order_maker.add(package_sku.sku, package_sku.quantity, package_sku.price)
+      # we also lock each order item we generate
+      order_maker.add(package_sku.sku, package_sku.quantity,
+                      price: package_sku.price,
+                      locked: true,
+                      package_set: package_sku.package_set)
     end
-    # we lock it because it was virtually setup
-    order.lock!
     # we first empty the cart manager to make it fresh
     cart_manager.empty!
     cart_manager.store(order)
@@ -28,7 +30,7 @@ class Guest::PackageSetsController < ApplicationController
 
   # to be abstracted somewhere else
   def order_maker
-    @order_maker ||= OrderMaker.new(order, bypass_locked: true)
+    @order_maker ||= OrderMaker.new(order)
   end
 
   def order

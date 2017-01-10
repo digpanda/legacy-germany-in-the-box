@@ -39,6 +39,7 @@ class Customer::OrdersController < ApplicationController
   # sensitive datas occurs if the customer tries to pay the order itself
   def destroy
     if order.new?
+      # this won't trigger the before_destroy validation, don't forget
       order.order_items.delete_all
       order.delete
     else

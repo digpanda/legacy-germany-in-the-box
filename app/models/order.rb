@@ -3,7 +3,6 @@ require 'will_paginate/array'
 class Order
   include MongoidBase
   include HasProductSummaries
-  include Locked
 
   Numeric.include CoreExtensions::Numeric::CurrencyLibrary
 

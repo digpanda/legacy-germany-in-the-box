@@ -81,7 +81,10 @@
 </div>
 <% unless @readonly %>
 <div class="row">
-  <div class="col-xs-10 col-xs-push-1 col-xs-pull-1 col-md-12 col-md-push-0 col-md-pull-0">
+  <div class="col-xs-3 col-md-3">
+    <%= render partial: 'customer/cart/show/delete_button', :locals => { :order => order } %>
+  </div>
+  <div class="col-xs-9 col-md-9">
     <%= render partial: 'customer/cart/show/checkout_button', :locals => { :order => order } %>
   </div>
 </div>

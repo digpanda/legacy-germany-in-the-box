@@ -44,7 +44,6 @@ class CartManager
     def setup_user_order!
       unless order.user
         order.user = user
-        order.bypass_locked!
         order.save
       end
     end
@@ -54,7 +53,6 @@ class CartManager
     def setup_shop_order!
       unless order.shop
         order.shop = shop
-        order.bypass_locked!
         order.save
       end
     end
