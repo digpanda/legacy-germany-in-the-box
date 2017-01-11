@@ -38,6 +38,12 @@ class CartManager < BaseService
     session[:order_shop_ids] = {}
   end
 
+  # we refresh the cart manager by cleaning it out
+  # from successful or cancelled orders
+  def refresh!
+    safe_recovery!
+  end
+
   def products_number
     @products_number ||= begin
       orders(call_api: false).inject(0) do |acc, shop_order|
