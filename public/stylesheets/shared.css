@@ -304,55 +304,6 @@
   background-color: #FBFBFB;
   border: 3px white solid; }
 
-@media (max-width: 991px) {
-  .connect__separator {
-    display: none !important; } }
-
-@media (max-width: 991px) {
-  .magnify-lens {
-    display: none !important; } }
-
-@media (max-width: 991px) {
-  .main-header__logo img {
-    max-width: 170px; } }
-
-@media (max-width: 991px) {
-  .main-footer__logo {
-    display: none; } }
-
-@media (max-width: 991px) {
-  .main-footer div[class^=col-md-] {
-    margin-bottom: 2em; } }
-
-.slicknav_menu {
-  display: none; }
-
-@media (max-width: 991px) {
-  .category-menu {
-    display: none; } }
-
-@media (max-width: 991px) {
-  .main-header__right-side {
-    display: none; } }
-
-@media (max-width: 991px) {
-  .slicknav_menu {
-    display: block; } }
-
-#categories-menu {
-  display: none; }
-
-.slicknav_btn {
-  margin-right: 1em;
-  background-color: #659443; }
-
-.slicknav_menu {
-  background: #83be58; }
-
-.slicknav_nav a:hover {
-  color: #fdfdfd;
-  background: transparent; }
-
 @font-face {
   font-family: 'Montserrat';
   font-style: normal;
