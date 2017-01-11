@@ -41,4 +41,7 @@ class Guest::PagesController < ApplicationController
   def fees
   end
 
+  def publicity
+  end
+
 end
