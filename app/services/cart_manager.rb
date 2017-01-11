@@ -19,8 +19,9 @@ class CartManager < BaseService
 
   # get all the orders we have in the cart
   def orders(call_api: true)
-    # this could be improved (we have to find shop all the time, etc.)
-    @orders ||= session[:order_shop_ids].keys.compact.map { |shop_id| [shop_id, order(shop: Shop.find(shop_id), call_api: call_api)] }.to_h
+    @orders ||= session[:order_shop_ids].keys.compact.map do |shop_id|
+      order(shop: Shop.find(shop_id), call_api: call_api)
+    end
   end
 
   # store a new order in the cart
@@ -40,7 +41,7 @@ class CartManager < BaseService
   def products_number
     @products_number ||= begin
       orders(call_api: false).inject(0) do |acc, shop_order|
-        acc += shop_order.last.decorate.total_quantity
+        acc += shop_order.decorate.total_quantity
       end
     end
   end

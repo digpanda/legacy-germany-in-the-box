@@ -7,7 +7,6 @@ class Customer::CartController < ApplicationController
 
   def show
     @orders = cart_manager.orders
-    @shops = Shop.only(:name).where(:id.in => orders.keys).map { |shop| [shop.id.to_s, {:name => shop.name}]}.to_h
   rescue CartManager::Error => error
     flash[:error] = "#{error.message}"
     redirect_to navigation.back(1)
