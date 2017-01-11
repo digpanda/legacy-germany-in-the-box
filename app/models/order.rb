@@ -8,6 +8,7 @@ class Order
 
   UNPROCESSABLE_TIME = [11,12] # 11am to 12am -> German Hour
   BOUGHT_OR_CANCELLED = [:paid, :custom_checkable, :custom_checking, :shipped, :cancelled]
+  BOUGHT_OR_UNVERIFIED = [:payment_unverified, :paid, :custom_checkable, :custom_checking, :shipped]
 
   field :status,                    type: Symbol, default: :new
   field :desc,                      type: String
@@ -44,7 +45,7 @@ class Order
   scope :unpaid,      ->  { self.in(:status => [:new]) }
   scope :bought,      ->  { self.in(:status => [:paid, :custom_checkable, :custom_checking, :shipped]) }
   scope :bought_or_cancelled, -> { self.in( :status => BOUGHT_OR_CANCELLED ) }
-  scope :bought_or_unverified,      ->  { self.in( :status => [:payment_unverified, :paid, :custom_checkable, :custom_checking, :shipped] ) } # cancelled isn't included in this
+  scope :bought_or_unverified,      ->  { self.in( :status => BOUGHT_OR_UNVERIFIED ) } # cancelled isn't included in this
 
   def bought_or_cancelled?
     BOUGHT_OR_CANCELLED.include? status
