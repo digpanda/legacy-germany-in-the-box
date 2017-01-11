@@ -4,7 +4,7 @@ module AssetsHelper
 
   CSS_APP_PATH = "public/stylesheets/app.css"
 
-  def assets_css_section
+  def solve_section
     if potential_customer?
       :customer
     elsif potential_shopkeeper?
