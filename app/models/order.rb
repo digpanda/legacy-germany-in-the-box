@@ -212,11 +212,6 @@ class Order
     self.status == :custom_checking && Time.now.utc > minimum_sending_date
   end
 
-  # DON'T EXIST ANYMORE ? - Laurent on 29/06/2016
-  def is_success?
-    self.status == :success
-  end
-
   def paid?
     ([:new, :paying].include? self.status) == false
   end
