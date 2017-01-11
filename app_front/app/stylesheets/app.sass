@@ -8,30 +8,11 @@
 // Import Csstyle, awesome helpers to create components with SASS
 @import '../../node_modules/csstyle/csstyle'
 
-// Fonts
-//@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700)
-//@import url(https://fonts.googleapis.com/css?family=Lato)
-//@import url(https://fonts.googleapis.com/css?family=Raleway:400,700)
-
 // ===========================================================
-// Global assets
+// Core loader
 // ===========================================================
-//
-// Fonts
-@import 'app/fonts/montserrat'
-@import 'app/fonts/lato'
-@import 'app/fonts/raleway'
 
-// Old assets
-@import 'app/old_assets/achat'
-@import 'app/old_assets/couponia'
-@import 'app/old_assets/leftmenu'
-
-// Helpers
-@import 'app/helpers/variables'
-@import 'app/helpers/mixins'
-@import 'app/helpers/tweaks'
-@import 'app/helpers/functions'
+@import 'core'
 
 // ===========================================================
 // App specific components
@@ -80,23 +61,3 @@
 @import 'app/components/variant-box'
 @import 'app/components/home-steps'
 @import 'app/components/home-marketplace'
-
-// Responsive loaded after everything to overwrite things
-@import 'app/helpers/responsive'
-
-// ===========================================================
-// Hook and global system
-// ===========================================================
-
-// Hooks
-@import 'app/hooks/couponia'
-@import 'app/hooks/bootstrap'
-@import 'app/hooks/datepicker'
-@import 'app/hooks/magnify'
-@import 'app/hooks/slicknav'
-
-// Global styling
-@import 'global'
-
-// Styling test
-@import 'test'
