@@ -15,7 +15,7 @@ module.exports = {
 
     stylesheets: {
       joinTo: {
-        'stylesheets/app.css': /^app\/stylesheets\/main.sass/,
+        'stylesheets/app.css': /^app\/stylesheets\/app.sass/,
         'stylesheets/vendor.css': /^bower_components/
       }
     }

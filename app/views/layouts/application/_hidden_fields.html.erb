@@ -1,5 +1,7 @@
 <%= csrf_meta_tag %>
 
+<!-- NOTE : i'm not sure this is still in use in our system
+- Laurent, 11/01/2017 -->
 <% if session[:login_advice_counter].present? %>
 <%= hidden_field_tag :login_advice_counter, "#{session[:login_advice_counter]}" %>
 <% end %>
