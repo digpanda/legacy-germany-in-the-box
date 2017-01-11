@@ -1,0 +1,11 @@
+<div class="+small-spacer"></div>
+<div class="row +overflow">
+  <div class="col-md-12">
+    <%= render partial: 'customer/cart/show/list', :locals => { :order => order } %>
+  </div>
+</div>
+
+<% if cart_manager.in?(order) %>
+  <!-- Action to the order -->
+  <%= render partial: 'customer/cart/show/action', :locals => { :order => order } %>
+<% end %>

@@ -1,54 +1,24 @@
-<div class="+spacer"></div>
-<div class="row">
-  <div class="col-md-8 col-md-push-1">
-    <%= render 'customer/cart/show/order', order: @order %>
-  </div>
-</div>
+<div class="col-md-10 col-md-push-1 col-md-pull-1">
 
-<div cass="row">
-  <% if @order.shipping_address %>
-  <div class="col-md-4 col-md-push-1 +white-box">
-    <div class="address-box">
-      <% @order.shipping_address.tap do |shipping_address| %>
-      <ul>
-        <li>
-          <%= "#{I18n.t(:street, scope: :edit_address)} : #{ shipping_address.street } #{ shipping_address.number }" %>
-        </li>
-        <li>
-          <%= "#{I18n.t(:additional, scope: :edit_address)} : #{ shipping_address.additional }" %>
-        </li>
-        <li>
-          <%= "#{I18n.t(:district, scope: :edit_address)} : #{ shipping_address.district }" %>
-        </li>
-        <li>
-          <%= "#{I18n.t(:city, scope: :edit_address)} : #{ shipping_address.city }" %>
-        </li>
-        <li>
-          <%= "#{I18n.t(:province, scope: :edit_address)} : #{ shipping_address.province }" %>
-        </li>
-        <li>
-          <%= "#{I18n.t(:country, scope: :edit_address)} : #{ shipping_address.decorate.country_local_name }" %>
-        </li>
-        <li>
-          <%= "#{I18n.t(:zip, scope: :edit_address)} : #{ shipping_address.zip }" %>
-        </li>
-      </ul>
-      <% end %>
+  <div class="row">
+
+    <div class="col-md-8">
+      <%= render partial: 'customer/cart/show/order', locals: {order: @order} %>
+    </div>
+
+    <div class="+spacer"></div>
+
+    <div class="col-md-4">
+      <%= render partial: 'customer/cart/show/total/list', locals: {order: @order} %>
+    </div>
+
+  </div>
+
+  <div class="row">
+    <div class="+spacer"></div>
+    <div class="+white-box">
+      <%= render partial: "customer/orders/show/address", :locals => { :address => @order.shipping_address} %>
     </div>
   </div>
-  <% else %>
-    <div class="col-md-4 col-md-push-2 +white-box +centered">
-    <h4>
-      <%= "#{I18n.t(:destination_address_not_set, scope: :edit_order)}" %>
-    </h4>
-  </div>
-  <% end %>
-  <div class="col-md-3 col-md-push-2 +white-box">
-    <%= render partial: "customer/cart/show/total/list", :locals => { :order => @order } %>
-  </div>
-</div>
 
-<div class="row">
-  <div class="+spacer">
-  </div>
 </div>

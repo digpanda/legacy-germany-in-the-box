@@ -1,0 +1,31 @@
+<% if address %>
+<div class="address-box">
+  <ul>
+    <li>
+      <%= "#{I18n.t(:street, scope: :edit_address)} : #{ address.street } #{ address.number }" %>
+    </li>
+    <li>
+      <%= "#{I18n.t(:additional, scope: :edit_address)} : #{ address.additional }" %>
+    </li>
+    <li>
+      <%= "#{I18n.t(:district, scope: :edit_address)} : #{ address.district }" %>
+    </li>
+    <li>
+      <%= "#{I18n.t(:city, scope: :edit_address)} : #{ address.city }" %>
+    </li>
+    <li>
+      <%= "#{I18n.t(:province, scope: :edit_address)} : #{ address.province }" %>
+    </li>
+    <li>
+      <%= "#{I18n.t(:country, scope: :edit_address)} : #{ address.decorate.country_local_name }" %>
+    </li>
+    <li>
+      <%= "#{I18n.t(:zip, scope: :edit_address)} : #{ address.zip }" %>
+    </li>
+  </ul>
+</div>
+<% else %>
+<h4>
+  <%= "#{I18n.t(:destination_address_not_set, scope: :edit_order)}" %>
+</h4>
+<% end %>

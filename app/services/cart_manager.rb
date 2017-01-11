@@ -26,7 +26,9 @@ class CartManager < BaseService
   # store a new order in the cart
   # it will overwrite any order that was present within the session
   # for the same shop
+  # there's a minor validation so we cannot have a bought order in the cart
   def store(order)
+    return false if order.bought?
     session[:order_shop_ids]["#{order.shop.id}"] = "#{order.id}"
   end
 
@@ -41,6 +43,16 @@ class CartManager < BaseService
         acc += shop_order.last.decorate.total_quantity
       end
     end
+  end
+
+  # to check if the selected order is in the cart manager or not
+  def in?(order)
+    session[:order_shop_ids]["#{order.shop.id}"].present?
+  end
+
+  # inverse of `in?`
+  def out?(order)
+    session[:order_shop_ids]["#{order.shop.id}"].nil?
   end
 
   private

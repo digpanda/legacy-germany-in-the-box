@@ -16,19 +16,6 @@ class Customer::OrdersController < ApplicationController
   end
 
   def show
-    # unless order.decorate.bought?
-    #
-    #   # if order.order_items.count > 0
-    #   #
-    #   #   begin
-    #   #     BorderGuru.calculate_quote(order: order)
-    #   #   rescue Net::ReadTimeout => e
-    #   #     logger.fatal "Failed to connect to Borderguru: #{e}"
-    #   #     return nil
-    #   #   end
-    #   #
-    #   # end
-    # end
   end
 
   # destroy completely the order or cancel it if has sensitive datas
