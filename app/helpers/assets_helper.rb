@@ -4,6 +4,16 @@ module AssetsHelper
 
   CSS_APP_PATH = "public/stylesheets/app.css"
 
+  def assets_css_section
+    if potential_customer?
+      :customer
+    elsif potential_shopkeeper?
+      :shopkeeper
+    elsif potential_admin?
+      :admin
+    end
+  end
+
   def assets_version_hash
     Digest::MD5.hexdigest(assets_version.to_s)
   end
