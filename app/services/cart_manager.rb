@@ -27,9 +27,9 @@ class CartManager < BaseService
   # store a new order in the cart
   # it will overwrite any order that was present within the session
   # for the same shop
-  # there's a minor validation so we cannot have a bought order in the cart
+  # there's a minor validation so we cannot have a bought / cancelled order in the cart
   def store(order)
-    return false if order.bought?
+    return false if order.bought_or_cancelled?
     session[:order_shop_ids]["#{order.shop.id}"] = "#{order.id}"
   end
 
@@ -73,7 +73,7 @@ class CartManager < BaseService
       shop = Shop.where(id: shop_id).first
       order = Order.where(id: order_id).first
       unless shop.nil? || order.nil?
-        unless order.status == :success # we remove the successful orders from the cart
+        unless order.bought_or_cancelled?
           {"#{order.shop.id}" => "#{order.id}"}
         end
       end

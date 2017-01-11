@@ -26,6 +26,8 @@ class Customer::OrdersController < ApplicationController
       order.order_items.delete_all
       order.delete
     else
+      # if it's in the cart manager we remove it
+      
       order.status = :cancelled
       order.save
     end
