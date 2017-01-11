@@ -71,7 +71,7 @@ class CouponHandler < BaseService
   end
 
   def available?
-    if coupon.last_used_at || (coupon.last_applied_at && coupon.last_applied_at.hour.hours < EXPIRE_APPLY_TIME)
+    if coupon.last_used_at || (coupon.last_applied_at && ((Time.now - coupon.last_applied_at) / 1.hours).hours < EXPIRE_APPLY_TIME)
       false
     else
       remove_from_old_order if coupon.unique

@@ -6,9 +6,12 @@ class LockedValidator < ActiveModel::Validator
     @record = record
   end
 
-  def validate(record)
+  def validate(record, ignore_changes: false)
     setup(record)
-    if locked_order?
+    # if there were any change on the model itself
+    # NOTE : sometimes it pass to the validation without change
+    # it can make problem when modifiying the model embedding the one with the lock system
+    if (record.changes.present? || ignore_changes) && locked_entry?
       record.errors.add(:base, error)
     end
   end
@@ -16,21 +19,14 @@ class LockedValidator < ActiveModel::Validator
   private
 
   def error
-    "This order is locked."
+    "This entry is locked."
   end
 
-  # depending where we start the validation (order or order item)
+  # depending where we start the validation
   # we check differently the hierarchy
-  def locked_order?
-    case record.class
-    when OrderItem
-      if record.order.locked
+  def locked_entry?
+    if record.locked
         true
-      end
-    when Order
-      if record.locked
-        true
-      end
     else
       false
     end

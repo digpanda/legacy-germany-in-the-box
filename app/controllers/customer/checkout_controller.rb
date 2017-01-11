@@ -37,7 +37,7 @@ class Customer::CheckoutController < ApplicationController
       product = order_item.product
       sku = order_item.sku
 
-      if sku.unlimited or sku.quantity >= order_item.quantity
+      if sku.unlimited || sku.quantity >= order_item.quantity
         all_products_available = true
         products_total_price += sku.price * order_item.quantity
       else
@@ -132,18 +132,6 @@ class Customer::CheckoutController < ApplicationController
     # the transaction / order as successful, we will deal with BorderGuru through Slack / Emails
     flash[:success] = I18n.t(:checkout_ok, scope: :checkout)
 
-    EmitNotificationAndDispatchToUser.new.perform({
-      :user => shop.shopkeeper,
-      :title => "Auftrag #{order.id} am #{order.paid_at}",
-      :desc => "Eine neue Bestellung ist da. Zeit für die Vorbereitung!"
-      })
-
-    EmitNotificationAndDispatchToUser.new.perform({
-      :user => order.user,
-      :title => "来因盒通知：付款成功，已通知商家准备发货 （订单号：#{order.id})",
-      :desc => "你好，你的订单#{order.id}已成功付款，已通知商家准备发货。若有疑问，欢迎随时联系来因盒客服：customer@germanyinthebox.com。"
-      })
-
     redirect_to customer_orders_path
 
   end
@@ -219,6 +207,10 @@ class Customer::CheckoutController < ApplicationController
   end
 
   def update_for_checkout(order, border_guru_quote_id, shipping_cost, tax_and_duty_cost)
+    # we bypass the validation of the locked for this one because there's no reason to make it fail here
+    # order.bypass_locked!
+    # now we update the order itself
+    # NOTE : for some reason it cannot update without bypassing the locked ; we should investigate
     order.update({
       :status               => :paying,
       :user                 => current_user,

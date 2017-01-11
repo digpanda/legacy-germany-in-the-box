@@ -5,11 +5,18 @@ module Locked
 
   included do
     field :locked, type: Boolean, default: false
-    # locked `order` cannot be modified
-    # NOTE : if we extend the locking system
-    # we should change the validaton as well
+    # locked `order_item` cannot be modified
     validates_with LockedValidator, unless: :bypass_locked
+    # we also can't remove a locked `order_item`
+    before_destroy :validate_not_locked
+  end
 
+  def validate_not_locked
+    LockedValidator.new.validate(self, ignore_changes: true).nil?
+  end
+
+  def locked?
+    self.locked == true
   end
 
   def lock!
@@ -28,9 +35,6 @@ module Locked
 
   def bypass_locked!
     self.bypass_locked = true
-    self.order_items.each do |order_item|
-      order_item.bypass_locked = true
-    end
   end
 
 end

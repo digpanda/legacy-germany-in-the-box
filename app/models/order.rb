@@ -3,7 +3,6 @@ require 'will_paginate/array'
 class Order
   include MongoidBase
   include HasProductSummaries
-  include Locked
 
   Numeric.include CoreExtensions::Numeric::CurrencyLibrary
 
@@ -242,6 +241,12 @@ class Order
   def remove_coupon
     CouponHandler.new(self.coupon, self).reset_status
     self.update(coupon_id: nil)
+  end
+
+  def bypass_locked!
+    self.order_items.each do |order_item|
+      order_item.bypass_locked = true
+    end
   end
 
   private
