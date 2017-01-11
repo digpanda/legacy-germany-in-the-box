@@ -15,9 +15,9 @@
   <!-- Base container -->
   <div class="container-fluid">
 
-    <%= render "layouts/header/default" %>
+    <%= render "layouts/#{solve_section}/header/default" %>
     <%= yield %>
-    <%= render "layouts/footer/default" %>
+    <%= render "layouts/#{solve_section}/footer/default" %>
 
   </div>
 
