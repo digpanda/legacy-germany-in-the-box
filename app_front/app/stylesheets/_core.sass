@@ -1,0 +1,42 @@
+// ===========================================================
+// Core
+// This is used for load all the helpers, hooks
+// and such in app.sass
+// ===========================================================
+
+// Fonts
+//@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700)
+//@import url(https://fonts.googleapis.com/css?family=Lato)
+//@import url(https://fonts.googleapis.com/css?family=Raleway:400,700)
+
+// Fonts
+@import 'fonts/montserrat'
+@import 'fonts/lato'
+@import 'fonts/raleway'
+
+// Old assets
+@import 'old_assets/achat'
+@import 'old_assets/couponia'
+@import 'old_assets/leftmenu'
+
+// Helpers
+@import 'helpers/variables'
+@import 'helpers/mixins'
+@import 'helpers/tweaks'
+@import 'helpers/functions'
+
+// Global styling
+@import 'global'
+
+// Styling test
+@import 'test'
+
+// Responsive loaded after everything to overwrite things
+@import 'helpers/responsive'
+
+// Hooks
+@import 'hooks/couponia'
+@import 'hooks/bootstrap'
+@import 'hooks/datepicker'
+@import 'hooks/magnify'
+@import 'hooks/slicknav'
