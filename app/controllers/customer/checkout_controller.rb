@@ -225,7 +225,7 @@ class Customer::CheckoutController < ApplicationController
       order.shipping_address = address.clone
       order.billing_address = order.shipping_address.clone
       order.save
-    end.reload
+    end
   end
 
   def today_limit?
