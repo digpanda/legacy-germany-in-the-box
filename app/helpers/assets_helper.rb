@@ -1,5 +1,10 @@
 require 'digest/md5'
 
+# each asset will be refreshed from the user cache depending
+# on the time of last compilation
+# NOTE : one file can be re-compiled and not the others
+# this optimization make it faster to display the page after an update
+# of a specific section, chunk of the code.
 module AssetsHelper
 
   CSS_APP_PATH = "public/stylesheets/"
