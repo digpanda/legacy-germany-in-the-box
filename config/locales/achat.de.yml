@@ -532,7 +532,7 @@ de:
     categories: Käufer-Kategorie
     skus: Aritkelpositionen
     new_basic: Erstellen
-    update_basic: Akutalisieren
+    update_basic: Aktualisieren
     variant: Variante
     categories_info: Die Zuordnung der Käufer-Kategorien hilft den Käufern, Ihr Produkt zu finden.
     keywords_info: Wir empfehlen Ihnen, mit %{num} Stichwörtern das Produkt zu charakterisieren. Diese Stickwörtern dienen sowohl dem internen als auch externem Search.
@@ -604,7 +604,7 @@ de:
     cm: cm
     clone: Klonen
     piece: Stk.
-    no_detail: Bitte klicken Sie oben <strong>Neue Artikelposition</strong> an, um eine Artikelposition zu erstellen.
+    no_detail: Bitte klicken Sie das <strong>Plus-Zeichen "+"</strong> an, um eine Artikelposition zu erstellen.
     product_data: Produktdaten
     product_data_info: Hier können Sie Ihre Produktdaten angeben.
     attachment: Anhang
