@@ -10,15 +10,6 @@ class ShopkeeperMailer < ApplicationMailer
     mail(to: @user.email, subject: "Benachrichtigung von Germany In The Box: #{@title}") # @user.email
   end
 
-  def notify_later(user_id, title, desc, url)
-    @user = User.find(user_id)
-    @title = title
-    @url = url
-
-    Notification.create(user_id: @user.id, title: title, desc: desc)
-    mail(to: @user.email, subject: "Benachrichtigung von Germany In The Box: #{@title}", template_name: 'notify')
-  end
-
    def notify_order_not_sent(order_id, user_id, title, desc, url)
      @order = Order.find(order_id)
      @user = User.find(user_id)
