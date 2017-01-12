@@ -1,0 +1,17 @@
+<% if current_user.nil? %>
+
+  <%= render partial: "layouts/customer/header/parts/my_account/signin" %>
+
+<% else %>
+
+  <% if current_user.decorate.new_notifications? %>
+    <a href="<%= shared_notifications_path %>">
+  <% else %>
+    <a href="<%= Rails.application.routes.url_helpers.send("edit_#{current_user.role}_account_path") %>">
+  <% end %>
+
+  <%= render partial: "layouts/customer/header/parts/my_account/avatar" %>
+
+  </a>
+
+<% end %>
