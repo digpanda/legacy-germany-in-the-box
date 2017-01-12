@@ -3,3 +3,7 @@
 <%= link_to '', shopkeeper_product_variants_path(product), :class => 'tooltipster fa fa-cubes buttons buttons__purple', :title => "Manage variants" %>
 
 <%= link_to '', shopkeeper_product_skus_path(product), :class => 'tooltipster fa fa-tags buttons buttons__add', :title => I18n.t(:skus, scope: :edit_product) %>
+
+<% if product.removable? %>
+  <%= link_to '', shopkeeper_product_path(product), :method => :delete, data: { confirm: I18n.t(:delete_product_message, scope: :edit_product) }, :class => 'tooltipster fa fa-times buttons buttons__delete', :title => "Remove this product" %>
+<% end %>
