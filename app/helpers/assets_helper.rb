@@ -2,7 +2,7 @@ require 'digest/md5'
 
 module AssetsHelper
 
-  CSS_APP_PATH = "public/stylesheets/app.css"
+  CSS_APP_PATH = "public/stylesheets/shared.css"
 
   def solve_section
     if potential_customer?
