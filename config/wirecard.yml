@@ -3,8 +3,8 @@ defaults: &defaults
   demo:
     # CREDITCARD :
     creditcard: # needed in development and testing only (we use it for the samples as well)
-      merchant_id: 9105bb4f-ae68-4768-9c3b-3eda968f57ea
-      merchant_secret: d1efed51-4cb9-46a5-ba7b-0fdc87a66544
+      merchant_id: 1b3be510-a992-48aa-8af9-6ba4c368a0ac
+      merchant_secret: 33a67608-9822-43c2-acc1-faf2947b1be5
     # UNIONPAY :
     upop: # needed in development and testing only (we use it for the samples as well)
       merchant_id: dfc3a296-3faf-4a1d-a075-f72f1b67dd2a
