@@ -29,7 +29,7 @@ class Customer::OrdersController < ApplicationController
       order.status = :cancelled
       order.save
       # we refresh the cart manager (this should remove the entry)
-      cart_manager.reset!
+      cart_manager.refresh!
     end
     flash[:success] = I18n.t(:delete_ok, scope: :edit_order)
     redirect_to navigation.back(1)
