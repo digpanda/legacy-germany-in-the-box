@@ -5,7 +5,7 @@
 
   <!-- Left side -->
   <div class="col-md-2 col-md-push-1">
-    <%= render partial: "layouts/customer/header/parts/logo" %>
+    <%= render partial: "layouts/customer/header/logo" %>
   </div>
 
   <!-- Right side -->
@@ -15,19 +15,19 @@
 
     <!-- My Account -->
     <div class="col-md-1 pull-right +centered">
-      <%= render partial: "layouts/customer/header/parts/my_account" %>
+      <%= render partial: "layouts/customer/header/my_account" %>
     </div>
 
     <% if potential_customer? %>
 
       <!-- Products Cart -->
       <div class="col-md-1 pull-right +centered +menu-bordering">
-        <%= render partial: "layouts/customer/header/parts/products_cart" %>
+        <%= render partial: "layouts/customer/header/products_cart" %>
       </div>
 
       <!-- Customer Likes -->
       <div class="col-md-1 pull-right +centered +menu-bordering">
-        <%= render partial: "layouts/customer/header/parts/customer_likes" %>
+        <%= render partial: "layouts/customer/header/customer_likes" %>
       </div>
 
     <% end %>
@@ -43,7 +43,7 @@
 
   <!-- Mobile Category -->
   <div class="row mobile-category-menu">
-    <%= render partial: "layouts/customer/header/parts/menu/mobile_categories" %>
+    <%= render partial: "layouts/customer/header/menu/mobile_categories" %>
   </div>
 
   <!-- Category + Search Menu -->
@@ -51,7 +51,7 @@
 
     <!-- Categories Menu -->
     <div class="col-md-push-5 col-md-7">
-      <%= render partial: "layouts/customer/header/parts/menu/categories" %>
+      <%= render partial: "layouts/customer/header/menu/categories" %>
     </div>
 
   </div>
@@ -92,11 +92,11 @@
 <div class="+spacer"></div>
 
 <% if potential_customer? && guest_path? %>
-  <%= render partial: "layouts/customer/header/parts/stickers" %>
+  <%= render partial: "layouts/customer/header/stickers" %>
 <% end %>
 
-<%= render partial: "layouts/customer/header/parts/messages" %>
-<%= render partial: "layouts/customer/header/parts/breadcrumb" %>
+<%= render partial: "layouts/customer/header/messages" %>
+<%= render partial: "layouts/customer/header/breadcrumb" %>
 </br>
 
 <!-- End of Category Menu -->

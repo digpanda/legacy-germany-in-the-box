@@ -5,13 +5,7 @@ module AssetsHelper
   CSS_APP_PATH = "public/stylesheets/shared.css"
 
   def solve_section
-    if potential_customer?
-      :customer
-    elsif potential_shopkeeper?
-      :shopkeeper
-    elsif potential_admin?
-      :admin
-    end
+    identity_solver.section
   end
 
   def assets_version_hash

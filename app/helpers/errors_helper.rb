@@ -4,8 +4,8 @@ module ErrorsHelper
   ERRORS_CONFIG = Rails.application.config.errors
 
   def warn_developers(exception, message='')
-    if $request
-      ExceptionNotifier.notify_exception(exception, :env => $request.env, :data => {:message => message})
+    if Rails.env
+      ExceptionNotifier.notify_exception(exception, :env => Rails.env, :data => {:message => message})
     end
   end
 

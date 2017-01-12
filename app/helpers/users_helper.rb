@@ -3,29 +3,30 @@ module UsersHelper
   def user_roles
     [['Administrator', :admin],['Shopkeeper', :shopkeeper],['Customer', :customer]]
   end
+
   def potential_customer?
-    (current_user.nil? && chinese?) || !!(current_user&.decorate&.customer?)
+    identity_solver.potential_customer?
   end
 
   def potential_shopkeeper?
-    (current_user.nil? && german?) || !!(current_user&.decorate&.shopkeeper?)
+    identity_solver.potential_shopkeeper?
   end
 
   def potential_admin?
-    current_user&.decorate&.admin?
+    identity_solver.potential_admin?
   end
 
   # put this into language ?
   def german?
-    I18n.locale == :de
+    identity_solver.german?
   end
 
   def chinese?
-    I18n.locale == :'zh-CN'
+    identity_solver.chinese?
   end
 
   def chinese_ip?
-    Geocoder.search($request.remote_ip).first&.country_code == 'CN'
+    identity_solver.chinese_ip?
   end
 
 end

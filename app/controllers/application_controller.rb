@@ -14,15 +14,7 @@ class ApplicationController < ActionController::Base
 
   include Mobvious::Rails::Controller
 
-  before_action :setup_request
-  helper_method :cart_manager
-
-  # this variable setup is very sensitive
-  # we use it in exceptional context
-  # please be aware of how it works before to use it
-  def setup_request
-    $request = request
-  end
+  helper_method :navigation, :cart_manager, :identity_solver
 
   def current_page
     if params[:page]
@@ -44,8 +36,12 @@ class ApplicationController < ActionController::Base
     @cart_manager ||= CartManager.new(session, current_user)
   end
 
+  def identity_solver
+    @identity_solver ||= IdentitySolver.new(request, current_user)
+  end
+
   def custom_sublayout
-    "sublayout/_menu"
+    "layouts/#{identity_solver.section}/submenu"
   end
 
 end
