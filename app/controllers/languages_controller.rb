@@ -46,6 +46,12 @@ class LanguagesController < ActionController::Base # No application because it's
     (ACCEPTED_LOCATIONS.include? language_params[:location]) || language_params[:location].nil? # valid location or nil
   end
 
+  # NOTE : this was duplicated from `application_controller.rb` as this controller
+  # does not inherit from it but use this functionality
+  def identity_solver
+    @identity_solver ||= IdentitySolver.new(request, current_user)
+  end
+
   # this is not currently in used in the system but could be re-used someday
   def extract_locale
     request.env['HTTP_ACCEPT_LANGUAGE'] ? request.env['HTTP_ACCEPT_LANGUAGE'].scan(/^[a-z]{2}/).first : 'de'
