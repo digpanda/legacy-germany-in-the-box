@@ -222,9 +222,8 @@ class Customer::CheckoutController < ApplicationController
 
   def update_addresses!
     current_user.addresses.find(params[:delivery_destination_id]).tap do |address|
-      order.shipping_address = address.clone
-      order.billing_address = order.shipping_address.clone
-      order.save
+      order.update(shipping_address: nil, billing_address: nil)
+      order.update(shipping_address: address.clone, billing_address: address.clone)
     end.reload
   end
 
