@@ -24,6 +24,7 @@ class SkuCloner < BaseService
     if target.save
       return_with(:success)
     else
+      clone.destroy
       return_with(:error, :target => target)
     end
   end
