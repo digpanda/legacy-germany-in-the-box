@@ -184,6 +184,7 @@ class Customer::CheckoutController < ApplicationController
 
       if order_payment.status == :success
         SlackDispatcher.new.paid_transaction(order_payment)
+        prepare_notifications(order_payment)
       else
         SlackDispatcher.new.failed_transaction(order_payment)
       end
@@ -195,6 +196,22 @@ class Customer::CheckoutController < ApplicationController
       # END OF COPY
 
       return true
+  end
+
+  def prepare_notifications(order_payment)
+    order = order_payment.order
+    EmitNotificationAndDispatchToUser.new.perform_if_not_sent({
+                                                                  order: order,
+                                                                  user: order.shop.shopkeeper,
+                                                                  title: "Auftrag #{order.id} am #{order.paid_at}",
+                                                                  desc: "Haben Sie die Bestellung schon vorbereiten? Senden Sie die bitte!"
+                                                              })
+    EmitNotificationAndDispatchToUser.new.perform_if_not_selected_sent({
+                                                                           order: order,
+                                                                           user: order.shop.shopkeeper,
+                                                                           title: "Auftrag #{order.id} am #{order.paid_at}",
+                                                                           desc: "Haben Sie die Bestellung schon gesendet? Klicken Sie bitte 'Das Paket wurde versandt'"
+                                                                       })
   end
 
   def prepare_checkout(order, payment_method)
