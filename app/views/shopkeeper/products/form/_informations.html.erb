@@ -22,7 +22,7 @@
       </label>
     </div>
     <div class="col-md-8">
-      <%= form.text_field :name, :class => 'form-control', :required => true, :maxLength => Rails.configuration.max_short_text_length %>
+      <%= form.text_field :name, :class => 'form-control', :required => true, :maxLength => Rails.configuration.achat[:max_short_text_length] %>
       <div class="help-block with-errors"></div>
     </div>
   </div>
@@ -35,7 +35,7 @@
       </label>
     </div>
     <div class="col-md-8">
-      <%= form.text_field :brand, :class => 'form-control', :required => true, :maxLength => Rails.configuration.max_short_text_length %>
+      <%= form.text_field :brand, :class => 'form-control', :required => true, :maxLength => Rails.configuration.achat[:max_short_text_length] %>
       <div class="help-block with-errors"></div>
     </div>
   </div>
@@ -49,7 +49,7 @@
       </label>
     </div>
     <div class="col-md-8">
-        <%= form.text_area :desc, :class => 'form-control', rows: 2, :required => true, :maxLength => Rails.configuration.max_long_text_length %>
+        <%= form.text_area :desc, :class => 'form-control', rows: 2, :required => true, :maxLength => Rails.configuration.achat[:max_long_text_length] %>
       <div class="help-block with-errors"></div>
     </div>
   </div>

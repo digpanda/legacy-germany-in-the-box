@@ -40,6 +40,7 @@ module DigPanda
     #config.time_zone = 'Beijing'
 
     # A loop here will make everything heavier and will force method definitions, better to keep it simple, sadly.
+    config.achat = YAML.load(ERB.new(File.read(Rails.root.join("config/germany_in_the_box.yml"))).result)[Rails.env].deep_symbolize_keys!
     config.qiniu = YAML.load(ERB.new(File.read(Rails.root.join("config/qiniu.yml"))).result)[Rails.env].deep_symbolize_keys!
     config.digpanda = YAML.load(ERB.new(File.read(Rails.root.join("config/digpanda.yml"))).result)[Rails.env].deep_symbolize_keys!
     config.wirecard = YAML.load(ERB.new(File.read(Rails.root.join("config/wirecard.yml"))).result)[Rails.env].deep_symbolize_keys!

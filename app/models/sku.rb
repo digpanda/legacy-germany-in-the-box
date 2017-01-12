@@ -75,7 +75,7 @@ class Sku
   before_save :clean_quantity, :if => lambda { self.unlimited }
 
   def enough_stock?(quantity)
-    unlimited || (quantity >= quantity)
+    unlimited || (self.quantity >= quantity)
   end
 
   def volume

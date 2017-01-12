@@ -16,7 +16,7 @@ module Locked
   end
 
   def locked?
-    self.locked == true
+    self.locked
   end
 
   def lock!
