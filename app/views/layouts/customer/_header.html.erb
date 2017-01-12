@@ -63,7 +63,10 @@
 
 <div class="+spacer"></div>
 
-<%= render partial: "layouts/customer/header/stickers" %>
+<% if guest_path? %>
+  <%= render partial: "layouts/customer/header/stickers" %>
+<% end %>
+
 <%= render partial: "layouts/customer/header/messages" %>
 <%= render partial: "layouts/customer/header/breadcrumb" %>
 </br>
