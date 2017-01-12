@@ -27,12 +27,10 @@
 
     </li>
 
-    <% unless @categories.empty? %>
     <% @categories.each do |category| %>
-    <li>
-      <a href="<%= guest_category_path(category) %>"><%= category.name %></a>
-    </li>
-    <% end %>
+      <li>
+        <a href="<%= guest_category_path(category) %>"><%= category.name %></a>
+      </li>
     <% end %>
 
   </ul>

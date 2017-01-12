@@ -1,45 +1,39 @@
 <div class="navbar-top"> <!-- navbar-fixed-top -->
 
-<!-- Main Menu Area -->
-<div class="row main-header">
+  <!-- Main Menu Area -->
+  <div class="row main-header">
 
-  <!-- Left side -->
-  <div class="col-md-2 col-md-push-1">
-    <%= render partial: "layouts/customer/header/logo" %>
-  </div>
-
-  <!-- Right side -->
-  <div class="col-md-8 col-md-push-1 main-header__right-side">
-
-    <div class="row">
-
-    <!-- My Account -->
-    <div class="col-md-1 pull-right +centered">
-      <%= render partial: "layouts/customer/header/my_account" %>
+    <!-- Left side -->
+    <div class="col-md-2 col-md-push-1">
+      <%= render partial: "layouts/customer/header/logo" %>
     </div>
 
-    <% if potential_customer? %>
+    <!-- Right side -->
+    <div class="col-md-8 col-md-push-1 main-header__right-side">
 
-      <!-- Products Cart -->
-      <div class="col-md-1 pull-right +centered +menu-bordering">
-        <%= render partial: "layouts/customer/header/products_cart" %>
+      <div class="row">
+
+        <!-- My Account -->
+        <div class="col-md-1 pull-right +centered">
+          <%= render partial: "layouts/customer/header/my_account" %>
+        </div>
+
+        <!-- Products Cart -->
+        <div class="col-md-1 pull-right +centered +menu-bordering">
+          <%= render partial: "layouts/customer/header/products_cart" %>
+        </div>
+
+        <!-- Customer Likes -->
+        <div class="col-md-1 pull-right +centered +menu-bordering">
+          <%= render partial: "layouts/customer/header/customer_likes" %>
+        </div>
+
       </div>
-
-      <!-- Customer Likes -->
-      <div class="col-md-1 pull-right +centered +menu-bordering">
-        <%= render partial: "layouts/customer/header/customer_likes" %>
-      </div>
-
-    <% end %>
 
     </div>
 
   </div>
-
-</div>
-<!-- End of Main Menu Area -->
-
-<% if potential_customer? %>
+  <!-- End of Main Menu Area -->
 
   <!-- Mobile Category -->
   <div class="row mobile-category-menu">
@@ -59,42 +53,17 @@
   <!-- Announcement -->
   <div class="row announcement">
     <% if Settings.instance.alert.present? %>
-      <div class="col-md-12">
-        <%= Settings.instance.alert %>
-      </div>
+    <div class="col-md-12">
+      <%= Settings.instance.alert %>
+    </div>
     <% end %>
   </div>
-
-<% elsif current_user %>
-
-  <!-- Category + Search Menu -->
-  <div class="row server-menu">
-
-    <!-- Server details -->
-    <div class="col-md-6">
-      <% if current_user.admin? %>
-        <strong><%= Rails.env.capitalize %> Mode</strong> - Client <%= request.remote_ip %> - Server <%= server_ip %> - UTC <span id="utc-time"><%= Time.now.utc.strftime("%T") %></span>
-      <% end %>
-    </div>
-
-    <!-- Time zones -->
-    <div class="col-md-4 col-md-push-2">
-      China <span id="china-time"><%= Time.now.utc.in_time_zone("Beijing").strftime("%T") %></span> -
-      Germany <span id="germany-time"><%= Time.now.utc.in_time_zone("Berlin").strftime("%T") %></span>
-    </div>
-
-  </div>
-
-<% end %>
 
 </div>
 
 <div class="+spacer"></div>
 
-<% if potential_customer? && guest_path? %>
-  <%= render partial: "layouts/customer/header/stickers" %>
-<% end %>
-
+<%= render partial: "layouts/customer/header/stickers" %>
 <%= render partial: "layouts/customer/header/messages" %>
 <%= render partial: "layouts/customer/header/breadcrumb" %>
 </br>

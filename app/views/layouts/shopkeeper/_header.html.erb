@@ -5,7 +5,7 @@
 
   <!-- Left side -->
   <div class="col-md-2 col-md-push-1">
-    <%= render partial: "layouts/customer/header/logo" %>
+    <%= render partial: "layouts/shopkeeper/header/logo" %>
   </div>
 
   <!-- Right side -->
@@ -15,7 +15,7 @@
 
     <!-- My Account -->
     <div class="col-md-1 pull-right +centered">
-      <%= render partial: "layouts/customer/header/my_account" %>
+      <%= render partial: "layouts/shopkeeper/header/my_account" %>
     </div>
 
     </div>
@@ -27,7 +27,6 @@
 
 <% if current_user %>
 
-  <!-- Category + Search Menu -->
   <div class="row server-menu">
 
     <!-- Server details -->
@@ -51,8 +50,8 @@
 
 <div class="+spacer"></div>
 
-<%= render partial: "layouts/customer/header/messages" %>
-<%= render partial: "layouts/customer/header/breadcrumb" %>
+<%= render partial: "layouts/shopkeeper/header/messages" %>
+<%= render partial: "layouts/shopkeeper/header/breadcrumb" %>
 
 </br>
 
