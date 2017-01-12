@@ -2,18 +2,31 @@ require 'digest/md5'
 
 module AssetsHelper
 
-  CSS_APP_PATH = "public/stylesheets/shared.css"
+  CSS_APP_PATH = "public/stylesheets/"
+  JS_APP_PATH = "public/javascripts/"
 
   def solve_section
     identity_solver.section
   end
 
-  def assets_version_hash
-    Digest::MD5.hexdigest(assets_version.to_s)
+  def assets_css_version_hash(filename)
+    Digest::MD5.hexdigest("#{css_version(filename)}")
   end
 
-  def assets_version
-    File.mtime(Rails.root.join(CSS_APP_PATH)) # we don't need to check anything else because we use brunch and everything is recompiled systematically
+  def assets_js_version_hash(filename)
+    Digest::MD5.hexdigest("#{js_version(filename)}")
+  end
+
+  def assets_version(path)
+    File.mtime(Rails.root.join(path))
+  end
+
+  def css_version(filename)
+    assets_version("#{CSS_APP_PATH}/#{filename}.css")
+  end
+
+  def js_version(filename)
+    assets_version("#{JS_APP_PATH}/#{filename}.js")
   end
 
 end
