@@ -28,8 +28,8 @@ module Helpers
       def apply_wirecard_success_creditcard!
         fill_in 'first_name', :with => 'Sha'
         fill_in 'last_name', :with => 'He'
-        fill_in 'account_number', :with => '4012000300001003'
-        fill_in 'card_security_code', :with => '003'
+        fill_in 'account_number', :with => '4012000100000007'
+        fill_in 'card_security_code', :with => '007'
         apply_wirecard_month_and_year!
         # expect(page).to have_css('#hpp-form-submit')
         find('#hpp-form-submit').click
