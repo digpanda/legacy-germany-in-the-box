@@ -6,6 +6,13 @@
   min-height: 6em
   background-color: $color-white
 
+  +part(categories)
+    min-height: 6em
+
+    button
+      color: $color-dark-green
+      font-size: 2.3em
+
   +part(logo)
     padding-top: 0.7em
     min-height: 6em
@@ -14,24 +21,10 @@
     img
       max-width: 130px
 
-  +part(categories)
-    min-height: 6em
-    padding-top: 3em
-
-    a
-      color: $color-dark-grey
-      font-weight: bold
-
-    ul
-      padding: 0
-      margin: 0
-      list-style-type: none
-      -webkit-padding-start: 0px
-
   +part(menu)
     min-height: 6em
     padding-right: 2em
-    padding-top: 1.5em
+    padding-top: 1em
 
     ul
       list-style-type: none

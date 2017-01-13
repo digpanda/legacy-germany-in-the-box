@@ -1548,27 +1548,21 @@ body {
   box-shadow: 0px 10px 10px rgba(139, 139, 139, 0.32);
   min-height: 6em;
   background-color: #ffffff; }
+  .header-mobile__categories {
+    min-height: 6em; }
+    .header-mobile__categories button {
+      color: #33965e;
+      font-size: 2.3em; }
   .header-mobile__logo {
     padding-top: 0.7em;
     min-height: 6em;
     padding-left: 3em; }
     .header-mobile__logo img {
       max-width: 130px; }
-  .header-mobile__categories {
-    min-height: 6em;
-    padding-top: 3em; }
-    .header-mobile__categories a {
-      color: #5c5c5c;
-      font-weight: bold; }
-    .header-mobile__categories ul {
-      padding: 0;
-      margin: 0;
-      list-style-type: none;
-      -webkit-padding-start: 0px; }
   .header-mobile__menu {
     min-height: 6em;
     padding-right: 2em;
-    padding-top: 1.5em; }
+    padding-top: 1em; }
     .header-mobile__menu ul {
       list-style-type: none; }
     .header-mobile__menu a {

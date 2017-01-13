@@ -16,7 +16,6 @@ var MobileMenu = {
      *
      */
     startMobileMenu: function() {
-
     },
 
 }
