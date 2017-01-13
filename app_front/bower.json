@@ -13,10 +13,10 @@
     "tests"
   ],
   "dependencies": {
+    "jquery": "^2.2.4",
     "bootstrap": "^3.3.6",
     "bootstrap-validator": "^0.10.2",
     "font-awesome": "^4.6.3",
-    "jquery": "^2.2.4",
     "remodal": "^1.0.7",
     "bootstrap-multiselect": "^0.9.13",
     "jquery-ui": "^1.11.4",
@@ -32,14 +32,9 @@
     "hover": "Hover#^2.0.2",
     "textarea-autosize": "^0.4.2",
     "underscore": "^1.8.3",
-    "rsvp.js": "rsvp#^3.3.3"
+    "rsvp.js": "rsvp#^3.3.3",
   },
   "overrides": {
-    "rsvp": {
-      "main": [
-        "rsvp.min.js"
-      ]
-    },
     "underscore": {
       "main": [
         "underscore-min.js"
@@ -95,5 +90,8 @@
         "dist/css/bootstrap-multiselect.css"
       ]
     }
+  },
+  "resolutions": {
+    "jquery": "^2.2.4"
   }
 }

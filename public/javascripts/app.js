@@ -1852,7 +1852,7 @@ require.register("javascripts/starters.js", function(exports, require, module) {
 /**
  * Starters Class
  */
-var Starters = ['auto_resize', 'bootstrap', 'china_city', 'datepicker', 'editable_fields', 'footer', 'input_validation', 'images_handler', 'lazy_loader', 'left_menu', 'links_behaviour', 'messages', 'navigation', 'product_favorite', 'product_form', 'products_list', 'refresh_time', 'responsive', 'search', 'sku_form', 'sweet_alert', 'tooltipster'];
+var Starters = ['auto_resize', 'bootstrap', 'china_city', 'datepicker', 'editable_fields', 'footer', 'input_validation', 'images_handler', 'lazy_loader', 'left_menu', 'links_behaviour', 'messages', 'mobile_menu', 'navigation', 'product_favorite', 'product_form', 'products_list', 'refresh_time', 'responsive', 'search', 'sku_form', 'sweet_alert', 'tooltipster'];
 
 module.exports = Starters;
 });
@@ -2404,6 +2404,32 @@ var Messages = {
 };
 
 module.exports = Messages;
+});
+
+require.register("javascripts/starters/mobile_menu.js", function(exports, require, module) {
+"use strict";
+
+/**
+ * MobileMenu Class
+ */
+var MobileMenu = {
+
+  /**
+   * Initializer
+   */
+  init: function init() {
+
+    this.startMobileMenu();
+  },
+
+  /**
+   *
+   */
+  startMobileMenu: function startMobileMenu() {}
+
+};
+
+module.exports = MobileMenu;
 });
 
 require.register("javascripts/starters/navigation.js", function(exports, require, module) {

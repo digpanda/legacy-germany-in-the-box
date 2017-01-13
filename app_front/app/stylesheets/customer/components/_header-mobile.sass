@@ -1,0 +1,46 @@
++component(header-mobile)
+
+  +row-without-margin
+  +shadow
+
+  min-height: 6em
+  background-color: $color-white
+
+  +part(logo)
+    padding-top: 0.7em
+    min-height: 6em
+    padding-left: 3em
+
+    img
+      max-width: 130px
+
+  +part(categories)
+    min-height: 6em
+    padding-top: 3em
+
+    a
+      color: $color-dark-grey
+      font-weight: bold
+
+    ul
+      padding: 0
+      margin: 0
+      list-style-type: none
+      -webkit-padding-start: 0px
+
+  +part(menu)
+    min-height: 6em
+    padding-right: 2em
+    padding-top: 1.5em
+
+    ul
+      list-style-type: none
+
+    a
+      font-size: 2.3em
+
+      +option(pink)
+        color: $color-pink
+
+      +option(green)
+        color: $color-dark-green

@@ -1,0 +1,43 @@
++component(header-desktop)
+
+  +row-without-margin
+  +shadow
+
+  min-height: 6.5em
+  background-color: $color-white
+
+  +part(logo)
+    padding-top: 0.7em
+    min-height: 6.5em
+    padding-left: 3em
+
+    img
+      max-width: 160px
+
+  +part(categories)
+    +no-horizontal-padding
+    min-height: 6.5em
+    padding-top: 3em
+
+    a
+      color: $color-dark-grey
+      font-weight: bold
+
+    ul
+      list-style-type: none
+
+  +part(menu)
+    min-height: 6.5em
+    padding-top: 2.5em
+
+    ul
+      list-style-type: none
+
+    a
+      font-size: 1.6em
+
+      +option(pink)
+        color: $color-pink
+
+      +option(green)
+        color: $color-dark-green

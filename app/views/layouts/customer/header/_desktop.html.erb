@@ -1,0 +1,48 @@
+<div class="container-fluid header-desktop">
+  <div class="row">
+
+    <!-- Logo -->
+    <div class="col-md-2 header-desktop__logo">
+      <%= render partial: "layouts/customer/header/logo" %>
+    </div>
+
+    <!-- Categories -->
+    <div class="col-md-6 header-desktop__categories">
+      <div class="row">
+        <nav>
+          <ul>
+            <% @categories.each do |category| %>
+            <li class="col-md-2">
+              <a href="<%= guest_category_path(category) %>"><%= category.name %></a>
+            </li>
+            <% end %>
+          </ul>
+        </nav>
+      </div>
+    </div>
+
+    <!-- Menu -->
+    <div class="col-md-3 col-md-push-1 header-desktop__menu">
+      <div class="row">
+
+        <nav>
+          <ul>
+            <li class="col-md-2 col-md-push-3">
+                <a href="#" class="header-desktop__menu --green"><i class="fa fa-search"></i></a>
+            </li>
+            <li class="col-md-2 col-md-push-3">
+                <a href="#" class="header-desktop__menu --green"><i class="fa fa-user"></i></a>
+            </li>
+            <li class="col-md-2 col-md-push-3">
+                <a href="#" class="header-desktop__menu --pink"><i class="fa fa-heart"></i></a>
+            </li>
+            <li class="col-md-2 col-md-push-3">
+                <a href="#" class="header-desktop__menu --green"><i class="fa fa-shopping-cart"></i></a>
+            </li>
+          </ul>
+        </nav>
+
+      </div>
+    </div>
+  </div>
+</div>

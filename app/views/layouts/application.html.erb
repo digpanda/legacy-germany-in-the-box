@@ -16,8 +16,11 @@
   <div class="container-fluid">
 
     <%= render "layouts/#{solve_section}/header" %>
+    <%= render "layouts/#{solve_section}/subheader" %>
     <%= yield %>
     <%= render "layouts/#{solve_section}/footer" %>
+
+    <div class="+spacer"></div>
 
   </div>
 

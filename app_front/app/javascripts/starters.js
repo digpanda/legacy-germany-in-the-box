@@ -15,6 +15,7 @@ var Starters = [
   'left_menu',
   'links_behaviour',
   'messages',
+  'mobile_menu',
   'navigation',
   'product_favorite',
   'product_form',
