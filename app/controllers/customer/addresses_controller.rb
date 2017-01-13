@@ -17,7 +17,7 @@ class Customer::AddressesController < ApplicationController
 
     num_addresses = current_user.addresses.count
 
-    if num_addresses >= Rails.configuration.max_num_addresses
+    if num_addresses >= Rails.configuration.achat[:max_num_addresses]
       flash[:error] = I18n.t(:create_ko, scope: :edit_address)
       redirect_to redirect_to navigation.back(1)
       return

@@ -1,8 +1,8 @@
 class Product
   include MongoidBase
 
-  MAX_SHORT_TEXT_LENGTH = (Rails.configuration.max_short_text_length * 1.25).round
-  MAX_LONG_TEXT_LENGTH = (Rails.configuration.max_long_text_length * 1.25).round
+  MAX_SHORT_TEXT_LENGTH = (Rails.configuration.achat[:max_short_text_length] * 1.25).round
+  MAX_LONG_TEXT_LENGTH = (Rails.configuration.achat[:max_long_text_length] * 1.25).round
 
   strip_attributes
 
@@ -38,7 +38,7 @@ class Product
   validates :status, presence: true
   validates :hs_code, presence: true
   validates :desc, length:                   { maximum: MAX_LONG_TEXT_LENGTH }
-  #validates :tags, length:                   { maximum: Rails.configuration.max_num_tags                        }
+  #validates :tags, length:                   { maximum: Rails.configuration.achat[:max_num_tags]                        }
 
   scope :is_active,   -> { self.and(:status  => true, :approved.ne => nil) }
   scope :has_sku,     -> { self.where(:'skus.0' => {:$exists => true }) }

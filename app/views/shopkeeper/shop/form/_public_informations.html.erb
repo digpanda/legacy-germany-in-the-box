@@ -16,12 +16,12 @@
   <div class="row">
     <div class="col-md-6 form-group">
       <%= form.label :shopname, I18n.t(:shopname, scope: :edit_shop), :class => 'required' %>
-      <%= form.text_field :shopname, :class => 'form-control', :required => true, :maxLength => Rails.configuration.max_short_text_length %>
+      <%= form.text_field :shopname, :class => 'form-control', :required => true, :maxLength => Rails.configuration.achat[:max_short_text_length] %>
       <div class="help-block with-errors"></div>
     </div>
     <div class="col-md-6 form-group">
       <%= I18n.t(:website, scope: :edit_shop) %>
-      <%= form.text_field :website, :class => 'form-control', :maxLength => Rails.configuration.max_short_text_length, :placeholder => 'www.mydomain.com' %>
+      <%= form.text_field :website, :class => 'form-control', :maxLength => Rails.configuration.achat[:max_short_text_length], :placeholder => 'www.mydomain.com' %>
       <div class="help-block with-errors"></div>
     </div>
   </div>
@@ -30,12 +30,12 @@
   <div class="row">
     <div class="col-md-6 form-group">
       <%= form.label :fname, I18n.t(:contact_fname, scope: :edit_shop_application), :class => 'required' %>
-      <%= form.text_field :fname, :class => 'form-control', :maxLength => Rails.configuration.max_tiny_text_length, :required => true %>
+      <%= form.text_field :fname, :class => 'form-control', :maxLength => Rails.configuration.achat[:max_tiny_text_length], :required => true %>
       <div class="help-block with-errors"></div>
     </div>
     <div class="col-md-6 form-group">
       <%= form.label :lname, I18n.t(:contact_lname, scope: :edit_shop_application), :class => 'required' %>
-      <%= form.text_field :lname, :class => 'form-control', :maxLength => Rails.configuration.max_tiny_text_length, :required => true %>
+      <%= form.text_field :lname, :class => 'form-control', :maxLength => Rails.configuration.achat[:max_tiny_text_length], :required => true %>
       <div class="help-block with-errors"></div>
     </div>
   </div>
@@ -44,12 +44,12 @@
   <div class="row">
     <div class="col-md-6 form-group">
       <%= form.label :function, I18n.t(:contact_function, scope: :edit_shop_application) %>
-      <%= form.text_field :function, :class => 'form-control', :maxLength => Rails.configuration.max_short_text_length %>
+      <%= form.text_field :function, :class => 'form-control', :maxLength => Rails.configuration.achat[:max_short_text_length] %>
       <div class="help-block with-errors"></div>
     </div>
     <div class="col-md-6 form-group">
       <%= form.label :mail, I18n.t(:contact_email, scope: :edit_shop_application), :class => 'required' %>
-      <%= form.email_field :mail, :class => 'form-control', :maxLength => Rails.configuration.max_short_text_length, :placeholder => 'example@google.com', :required => true %>
+      <%= form.email_field :mail, :class => 'form-control', :maxLength => Rails.configuration.achat[:max_short_text_length], :placeholder => 'example@google.com', :required => true %>
       <div class="help-block with-errors"></div>
     </div>
   </div>
@@ -58,13 +58,13 @@
   <div class="row">
     <div class="col-md-6 form-group">
       <%= form.label :tel, I18n.t(:contact_tel, scope: :edit_shop_application), :class => 'required' %>
-      <%= form.text_field :tel, :class => 'form-control', :maxLength => Rails.configuration.max_tiny_text_length, :required => true, :placeholder => '+49(89)123456' %>
+      <%= form.text_field :tel, :class => 'form-control', :maxLength => Rails.configuration.achat[:max_tiny_text_length], :required => true, :placeholder => '+49(89)123456' %>
       <div class="help-block with-errors"></div>
     </div>
     <div class="col-md-6 form-group">
       <div class="form-group">
         <%= form.label :mobile, I18n.t(:contact_mobile, scope: :edit_shop_application) %>
-        <%= form.text_field :mobile, :class => 'form-control', :maxLength => Rails.configuration.max_tiny_text_length, :placeholder => '+49(151)12345678' %>
+        <%= form.text_field :mobile, :class => 'form-control', :maxLength => Rails.configuration.achat[:max_tiny_text_length], :placeholder => '+49(151)12345678' %>
         <div class="help-block with-errors"></div>
       </div>
     </div>
