@@ -55,7 +55,8 @@ class Shopkeeper::Products::SkusController < ApplicationController
     else
       flash[:error] = "Could not clone the sku."
     end
-    redirect_to navigation.back(1)
+
+    redirection_after_update
   end
 
   def destroy
