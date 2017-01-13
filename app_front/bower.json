@@ -32,7 +32,7 @@
     "hover": "Hover#^2.0.2",
     "textarea-autosize": "^0.4.2",
     "underscore": "^1.8.3",
-    "rsvp.js": "rsvp#^3.3.3",
+    "rsvp.js": "rsvp#^3.3.3"
   },
   "overrides": {
     "underscore": {
