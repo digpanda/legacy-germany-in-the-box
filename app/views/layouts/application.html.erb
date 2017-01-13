@@ -13,14 +13,19 @@
   <div id="germany-in-the-box"></div>
 
   <!-- Base container -->
-  <div class="container-fluid">
+  <div class="canvas"> <!-- Mobile menu related -->
+    <div class="overlay"></div> <!-- Mobile menu related -->
 
-    <%= render "layouts/#{solve_section}/header" %>
-    <%= render "layouts/#{solve_section}/subheader" %>
-    <%= yield %>
-    <%= render "layouts/#{solve_section}/footer" %>
+    <div class="container-fluid">
 
-    <div class="+spacer"></div>
+      <%= render "layouts/#{solve_section}/header" %>
+      <%= render "layouts/#{solve_section}/subheader" %>
+      <%= yield %>
+      <%= render "layouts/#{solve_section}/footer" %>
+
+      <div class="+spacer"></div>
+
+    </div>
 
   </div>
 
@@ -31,6 +36,5 @@
 
   <!-- We don't use this service for now because it slows down users from China -->
   <!-- <%= render "layouts/application/hotjar" %> -->
-
 </body>
 </html>

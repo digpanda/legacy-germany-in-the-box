@@ -1553,6 +1553,15 @@ body {
     .header-mobile__categories button {
       color: #33965e;
       font-size: 2.3em; }
+    .header-mobile__categories nav {
+      background-color: #ffffff; }
+    .header-mobile__categories ul {
+      list-style-type: none; }
+    .header-mobile__categories li {
+      margin: 1.7em; }
+    .header-mobile__categories a {
+      font-size: 1em;
+      color: #5c5c5c; }
   .header-mobile__logo {
     padding-top: 0.7em;
     min-height: 6em;
@@ -1571,6 +1580,26 @@ body {
         color: #f29cae; }
       .header-mobile__menu a.\--green {
         color: #33965e; }
+
+.overlay {
+  display: none;
+  position: absolute;
+  z-index: 20;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  opacity: 0;
+  background: rgba(0, 0, 0, 0.8);
+  overflow: hidden; }
+
+.canvas.sliding .overlay {
+  display: block;
+  opacity: 1;
+  -webkit-transition: opacity 0.5s;
+  -moz-transition: opacity 0.5s;
+  -o-transition: opacity 0.5s;
+  transition: opacity 0.5s; }
 
 @media (max-width: 991px) {
   .connect__separator {

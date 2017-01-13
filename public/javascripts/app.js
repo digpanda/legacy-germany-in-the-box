@@ -2407,25 +2407,38 @@ module.exports = Messages;
 });
 
 require.register("javascripts/starters/mobile_menu.js", function(exports, require, module) {
-"use strict";
+'use strict';
 
 /**
  * MobileMenu Class
  */
 var MobileMenu = {
 
-  /**
-   * Initializer
-   */
-  init: function init() {
+    /**
+     * Initializer
+     */
+    init: function init() {
 
-    this.startMobileMenu();
-  },
+        this.startMobileMenu();
+    },
 
-  /**
-   *
-   */
-  startMobileMenu: function startMobileMenu() {}
+    /**
+     *
+     */
+    startMobileMenu: function startMobileMenu() {
+
+        $('.navmenu').on('show.bs.offcanvas', function () {
+            console.log('show');
+            $('.canvas').addClass('sliding');
+        }).on('shown.bs.offcanvas', function () {
+            console.log('shown');
+        }).on('hide.bs.offcanvas', function () {
+            $('.canvas').removeClass('sliding');
+            console.log('hide');
+        }).on('hidden.bs.offcanvas', function () {
+            console.log('hidden');
+        });
+    }
 
 };
 
