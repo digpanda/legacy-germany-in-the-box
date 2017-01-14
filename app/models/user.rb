@@ -152,4 +152,7 @@ class User
     super && provider.blank?
   end
 
+  def new_notifications?
+    notifications.unreads.count > 0
+  end
 end

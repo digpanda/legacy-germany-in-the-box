@@ -7,7 +7,7 @@
 
 <div id="gallery">
 
-  <%  files = product.decorate.featured_sku.decorate.all_nonempty_img_fields %>
+  <%  files = product.featured_sku.all_nonempty_img_fields %>
 
   <% [*0..6].in_groups_of(3, false).each do |num_groups| %>
 

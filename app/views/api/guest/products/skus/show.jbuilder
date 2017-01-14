@@ -1,7 +1,7 @@
 # Serialize sku for API (we should rethink everything.)
 json.extract! @sku, :id, :weight, :status, :discount
 
-json.quantity @sku.decorate.max_added_to_cart
+json.quantity @sku.max_added_to_cart
 
 # TODO : don't exist anymore, should be replaced
 #json.fees_with_currency_yuan @sku.estimated_taxes.in_euro.to_yuan.display_html

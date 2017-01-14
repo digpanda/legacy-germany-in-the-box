@@ -2,7 +2,7 @@
 <%= I18n.t(:quantity, scope: :cart) %>
 </span>
 
-  <% if product.decorate.can_buy? %>
+  <% if product.can_buy? %>
 
       <div class="product-quantity">
 
@@ -13,7 +13,7 @@
             <a id="quantity-minus" class="product-quantity__minus" href="#"><i class="fa fa-minus"></i></a>
 
             <!-- Current quantity -->
-            <input id="quantity" name="sku[quantity]" data-max="<%= product.decorate.featured_sku.decorate.max_added_to_cart %>" class="product-quantity__quantity" type="text" value="1">
+            <input id="quantity" name="sku[quantity]" data-max="<%= product.featured_sku.max_added_to_cart %>" class="product-quantity__quantity" type="text" value="1">
 
             <!-- Plus -->
             <a id="quantity-plus" class="product-quantity__plus" href="#"><i class="fa fa-plus"></i></a>

@@ -1,4 +1,4 @@
-require "abstract_method"
+require 'abstract_method'
 
 class OrderDecorator < Draper::Decorator
 
