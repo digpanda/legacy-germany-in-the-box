@@ -16,7 +16,7 @@ class ShopkeeperMailer < ApplicationMailer
      @title = title
      @url = url
 
-    if @order.status == :custom_checkable
+    if @order.status == :paid
       Notification.create(user_id: @user.id, title: title, desc: desc)
       EmitNotificationAndDispatchToUser.new.perform_if_not_sent_to_admin({
                                                                     order: @order,

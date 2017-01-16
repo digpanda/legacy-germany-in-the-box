@@ -20,11 +20,6 @@ class Shopkeeper::OrdersController < ApplicationController
     if order.decorate.shippable?
       order.status = :shipped
       order.save
-      EmitNotificationAndDispatchToUser.new.perform({
-                                                        :user => order.user,
-                                                        :title => "来因盒通知：付款成功，已通知商家准备发货 （订单号：#{order.id})",
-                                                        :desc => "你好，你的订单#{order.id}已成功付款，已通知商家准备发货。若有疑问，欢迎随时联系来因盒客服：customer@germanyinthebox.com。"
-                                                    })
     end
 
     flash[:success] = I18n.t(:order_sent, scope: :notice)
@@ -46,10 +41,13 @@ class Shopkeeper::OrdersController < ApplicationController
     order.save
 
     # we go back now
+    EmitNotificationAndDispatchToUser.new.perform({
+                                                      user: order.user,
+                                                      title: 'Change me',
+                                                      desc: 'Change me too'
+                                                  })
     flash[:success] = I18n.t(:order_processing, scope: :notice)
     redirect_to(:back)
-    return
-
   end
 
   private

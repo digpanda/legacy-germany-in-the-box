@@ -9,9 +9,9 @@ class AdminMailer < ApplicationMailer
     @title = title
     @url = url
 
-    if @order.status == :custom_checkable
+    if @order.status == :paid
       Notification.create(user_id: @user.id, title: title, desc: desc)
-      mail(to: @user.email, subject: "Benachrichtigung von Germany In The Box: #{@title}", template_name: 'shopkeeper_mailer/notify')
+      mail(to: @user.email, subject: "Benachrichtigung von Germany In The Box: #{@title}", template_name: 'notify')
     end
   end
 
@@ -23,7 +23,7 @@ class AdminMailer < ApplicationMailer
 
     if @order.status != :shipped
       Notification.create(user_id: @user.id, title: title, desc: desc)
-      mail(to: @user.email, subject: "Benachrichtigung von Germany In The Box: #{@title}", template_name: 'shopkeeper_mailer/notify')
+      mail(to: @user.email, subject: "Benachrichtigung von Germany In The Box: #{@title}", template_name: 'notify')
     end
   end
 end

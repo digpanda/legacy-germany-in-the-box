@@ -182,6 +182,12 @@ class Customer::CheckoutController < ApplicationController
       order_payment.status = forced_status unless forced_status.nil? # TODO : improve this
       order_payment.save
 
+      # if it's a success, it paid
+      # we freeze the status to unverified for security reason
+      # and the payment status freeze on unverified
+      order_payment.order.refresh_status_from!(order_payment)
+      # END OF COPY
+
       if order_payment.status == :success
         SlackDispatcher.new.paid_transaction(order_payment)
         prepare_notifications(order_payment)
@@ -189,13 +195,7 @@ class Customer::CheckoutController < ApplicationController
         SlackDispatcher.new.failed_transaction(order_payment)
       end
 
-      # if it's a success, it paid
-      # we freeze the status to unverified for security reason
-      # and the payment status freeze on unverified
-      order_payment.order.refresh_status_from!(order_payment)
-      # END OF COPY
-
-      return true
+      true
   end
 
   def prepare_notifications(order_payment)
@@ -204,7 +204,7 @@ class Customer::CheckoutController < ApplicationController
                                                                   order: order,
                                                                   user: order.shop.shopkeeper,
                                                                   title: "Auftrag #{order.id} am #{order.paid_at}",
-                                                                  desc: "Haben Sie die Bestellung schon vorbereiten? Senden Sie die bitte!"
+                                                                  desc: 'Haben Sie die Bestellung schon vorbereiten? Senden Sie die bitte!'
                                                               })
     EmitNotificationAndDispatchToUser.new.perform_if_not_selected_sent({
                                                                            order: order,
