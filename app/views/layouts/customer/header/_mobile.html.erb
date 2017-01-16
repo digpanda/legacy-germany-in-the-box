@@ -12,10 +12,16 @@
         <nav id="mobile-menu" class="navmenu navmenu-default navmenu-fixed-left offcanvas" role="navigation">
 
           <ul>
-            <li><a href="#">Yo</a></li>
-            <li><a href="#">Yeah</a></li>
+            <li><a href="<%= resolve_profile_path %>" class="header-desktop__menu --green">My Profile</a></li>
+            <li><a href="<%= customer_favorites_path %>" class="header-desktop__menu --pink">My Favorites</a></li>
+            <hr />
+            <% @categories.each do |category| %>
+            <li>
+              <a href="<%= guest_category_path(category) %>"><%= category.name %></a>
+            </li>
+            <% end %>
           </ul>
-          
+
         </nav>
 
       </div>
@@ -35,7 +41,7 @@
                 <a href="#" class="header-mobile__menu --green"><i class="fa fa-search"></i></a>
             </div>
             <div class="col-xs-6">
-                <a href="#" class="header-mobile__menu --green"><i class="fa fa-shopping-cart"></i></a>
+                <a href="<%= customer_cart_path %>" class="header-mobile__menu --green"><i class="fa fa-shopping-cart"></i></a>
             </div>
         </nav>
 

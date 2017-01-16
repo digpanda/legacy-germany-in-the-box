@@ -1556,7 +1556,8 @@ body {
     .header-mobile__categories nav {
       background-color: #ffffff; }
     .header-mobile__categories ul {
-      list-style-type: none; }
+      list-style-type: none;
+      padding: 0; }
     .header-mobile__categories li {
       margin: 1.7em; }
     .header-mobile__categories a {
