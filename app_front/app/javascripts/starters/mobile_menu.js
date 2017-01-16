@@ -25,7 +25,6 @@ var MobileMenu = {
 
       $('.navmenu')
           .on('show.bs.offcanvas', function () {
-          console.log('show');
           $('.canvas').addClass('sliding');
       })
           .on('shown.bs.offcanvas', function () {
@@ -34,9 +33,8 @@ var MobileMenu = {
           $('.canvas').removeClass('sliding');
       })
           .on('hidden.bs.offcanvas', function () {
-          console.log('hidden');
       });
-      
+
     }
 
 }

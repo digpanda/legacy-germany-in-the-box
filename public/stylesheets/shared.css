@@ -9,7 +9,7 @@
   top: 30%;
   clear: both;
   opacity: 0.5; }
-  @media (max-width: 991px) {
+  @media (max-width: 994px) {
     #csstyle .\+sticking {
       display: none; } }
   #csstyle .\+sticking img {

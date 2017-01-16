@@ -1,5 +1,11 @@
 +component(header-mobile)
 
+  +breakpoint('computer')
+    display: none
+
+  +breakpoint('mobile')
+    display: block
+
   +row-without-margin
   +shadow
 
@@ -50,6 +56,14 @@
 
       +option(green)
         color: $color-dark-green
+
+
+/**
+ * Everything below is a hook and
+ * should be moved elsewhere
+ */
+.navbar-toggle
+  display: block !important
 
 // Change name into header-mobile names
 .overlay
