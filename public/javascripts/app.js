@@ -1852,7 +1852,7 @@ require.register("javascripts/starters.js", function(exports, require, module) {
 /**
  * Starters Class
  */
-var Starters = ['auto_resize', 'bootstrap', 'china_city', 'datepicker', 'editable_fields', 'footer', 'input_validation', 'images_handler', 'lazy_loader', 'left_menu', 'links_behaviour', 'messages', 'mobile_menu', 'navigation', 'product_favorite', 'product_form', 'products_list', 'qrcode', 'refresh_time', 'responsive', 'search', 'sku_form', 'sweet_alert', 'tooltipster'];
+var Starters = ['auto_resize', 'back_to_top', 'bootstrap', 'china_city', 'datepicker', 'editable_fields', 'footer', 'input_validation', 'images_handler', 'lazy_loader', 'left_menu', 'links_behaviour', 'messages', 'mobile_menu', 'navigation', 'product_favorite', 'product_form', 'products_list', 'qrcode', 'refresh_time', 'responsive', 'search', 'sku_form', 'sweet_alert', 'tooltipster'];
 
 module.exports = Starters;
 });
@@ -1880,6 +1880,54 @@ var AutoResize = {
 };
 
 module.exports = AutoResize;
+});
+
+require.register("javascripts/starters/back_to_top.js", function(exports, require, module) {
+'use strict';
+
+/**
+ * BackToTop Class
+ */
+var BackToTop = {
+
+  /**
+  * Initializer
+  */
+  init: function init() {
+
+    this.setupBackToTop();
+  },
+
+  /**
+   * Back to top button system
+   * NOTE : This was taken from the Internet
+   * Don't hesitate to refactor if needed
+   */
+  setupBackToTop: function setupBackToTop() {
+
+    $(function () {
+      $.scrollUp({
+        scrollName: 'scrollUp', // Element ID
+        scrollDistance: 300, // Distance from top/bottom before showing element (px)
+        scrollFrom: 'top', // 'top' or 'bottom'
+        scrollSpeed: 300, // Speed back to top (ms)
+        easingType: 'linear', // Scroll to top easing (see http://easings.net/)
+        animation: 'fade', // Fade, slide, none
+        animationSpeed: 200, // Animation speed (ms)
+        scrollTrigger: false, // Set a custom triggering element. Can be an HTML string or jQuery object
+        scrollTarget: false, // Set a custom target element for scrolling to. Can be element or number
+        scrollText: '<i class="fa fa-caret-up"></i>', // Text for element, can contain HTML
+        scrollTitle: false, // Set a custom <a> title if required.
+        scrollImg: false, // Set true to use image
+        activeOverlay: false, // Set CSS color to display scrollUp active point, e.g '#00FFFF'
+        zIndex: 2147483647 // Z-Index for the overlay
+      });
+    });
+  }
+
+};
+
+module.exports = BackToTop;
 });
 
 require.register("javascripts/starters/bootstrap.js", function(exports, require, module) {

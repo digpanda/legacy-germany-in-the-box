@@ -814,7 +814,7 @@ body {
     padding: 1em;
     font-size: 18px;
     color: #666;
-    background-color: #e6fbd7; }
+    background-color: #b6d98d; }
   .message__error {
     padding: 1em;
     background-color: #e74c3c;
@@ -930,7 +930,7 @@ body {
     color: #ffffff !important; }
   .main-footer h3 {
     font-size: 18px;
-    color: #e6fbd7; }
+    color: #b6d98d; }
   .main-footer__logo img {
     max-width: 70px; }
 
@@ -1505,6 +1505,19 @@ body {
     .home-marketplace__third h2 {
       color: #659443; }
 
+#scrollUp {
+  bottom: 20px;
+  right: 20px;
+  padding: 7px 15px;
+  background-color: #b6d98d;
+  color: #f5f9ee;
+  -webkit-border-radius: 10%;
+  -moz-border-radius: 10%;
+  -ms-border-radius: 10%;
+  border-radius: 10%; }
+  #scrollUp i {
+    font-size: 35px; }
+
 .footer {
   padding-top: 2em;
   padding-bottom: 2em;
@@ -1734,7 +1747,7 @@ html {
   box-sizing: inherit; }
 
 h1 {
-  background-color: #e6fbd7;
+  background-color: #b6d98d;
   padding: 0.5em;
   margin: 0em;
   font-family: 'Raleway', sans-serif !important;
