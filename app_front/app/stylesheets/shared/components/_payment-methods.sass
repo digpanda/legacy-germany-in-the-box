@@ -1,10 +1,10 @@
 +component(payment-methods)
 
   img
-    max-width: 70%
+    +breakpoint('mobile')
+      max-width: 70%
 
   +part(block)
-    padding: 0
 
     +option(visa)
     +option(mastercard)

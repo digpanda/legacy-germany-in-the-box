@@ -436,11 +436,9 @@ body {
   .page-error a:hover {
     color: #ffffff; }
 
-.payment-methods img {
-  max-width: 70%; }
-
-.payment-methods__block {
-  padding: 0; }
+@media (max-width: 994px) {
+  .payment-methods img {
+    max-width: 70%; } }
 
 .shop-blocks {
   color: #ffffff; }
@@ -1508,13 +1506,22 @@ body {
       color: #659443; }
 
 .footer {
-  padding-top: 1.3em;
-  padding-bottom: 1.3em;
+  padding-top: 2em;
+  padding-bottom: 2em;
   background-color: #5c5c5c;
-  font-size: 12px;
-  min-height: 150px; }
+  font-size: 12px; }
+  .footer ul {
+    list-style-type: none;
+    padding: 0; }
+  @media (min-width: 995px) {
+    .footer hr {
+      display: none; } }
   .footer a {
     color: #ffffff !important; }
+  @media (max-width: 994px) {
+    .footer {
+      padding-left: 1em;
+      padding-right: 1em; } }
   .footer h3 {
     font-size: 14px;
     color: #ffffff; }
@@ -1634,11 +1641,9 @@ body {
   -o-transition: opacity 0.5s;
   transition: opacity 0.5s; }
 
-.social-medias img {
-  max-width: 55%; }
-
-.social-medias__block {
-  padding: 0; }
+@media (max-width: 994px) {
+  .social-medias img {
+    max-width: 70%; } }
 
 .social-medias__qr-code {
   z-index: 2000;

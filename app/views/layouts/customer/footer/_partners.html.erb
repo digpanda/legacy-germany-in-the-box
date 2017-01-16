@@ -1,5 +1,9 @@
-<div class="row"><h3><%= I18n.t(:partners, scope: :title) %></h3></div>
-
-<div class="row"><%= link_to I18n.t(:ihk_munchen, scope: :footer), "https://www.ihk-muenchen.de/de/", target: "_blank" %></div>
-
-<div class="row"><%= link_to I18n.t(:icp_registration, scope: :footer) %></div>
+<h3><%= I18n.t(:partners, scope: :title) %></h3>
+<ul>
+  <li>
+    <%= link_to I18n.t(:ihk_munchen, scope: :footer), "https://www.ihk-muenchen.de/de/", target: "_blank" %>
+  </li>
+  <li>
+    <%= link_to I18n.t(:icp_registration, scope: :footer) %>
+  </li>
+</ul>

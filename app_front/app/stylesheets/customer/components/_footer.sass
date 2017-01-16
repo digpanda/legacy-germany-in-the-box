@@ -1,13 +1,26 @@
 +component(footer)
 
-  +padding-vertical(1.3em)
+  ul
+    list-style-type: none
+    padding: 0
+
+  hr
+    +breakpoint('computer')
+      display: none
+
+  +padding-vertical(2em)
   background-color: $color-dark-grey
   font-size: 12px
 
   a
     color: $color-white !important
 
-  min-height: 150px
+  // min-height: 150px
+
+  +breakpoint('mobile')
+    // min-height: 800px
+    padding-left: 1em
+    padding-right: 1em
 
   h3
     font-size: 14px

@@ -431,11 +431,9 @@
   .page-error a:hover {
     color: #fdfdfd; }
 
-.payment-methods img {
-  max-width: 70%; }
-
-.payment-methods__block {
-  padding: 0; }
+@media (max-width: 994px) {
+  .payment-methods img {
+    max-width: 70%; } }
 
 .shop-blocks {
   color: #fdfdfd; }

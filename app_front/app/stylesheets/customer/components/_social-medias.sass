@@ -1,10 +1,11 @@
 +component(social-medias)
 
   img
-    max-width: 55%
+    +breakpoint('mobile')
+      max-width: 70%
 
   +part(block)
-    padding: 0
+    // padding: 0
 
   +part(qr-code)
     z-index: 2000
