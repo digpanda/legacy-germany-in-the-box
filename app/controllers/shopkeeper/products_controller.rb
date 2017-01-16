@@ -39,6 +39,13 @@ class Shopkeeper::ProductsController < ApplicationController
 
   def update
     if product.update(product_params)
+=begin
+      EmitNotificationAndDispatchToUser.new.perform({
+                                                        :user => order.user,
+                                                        :title => "来因盒通知：付款成功，已通知商家准备发货 （订单号：#{order.id})",
+                                                        :desc => "你好，你的订单#{order.id}已成功付款，已通知商家准备发货。若有疑问，欢迎随时联系来因盒客服：customer@germanyinthebox.com。"
+                                                    })
+=end
       flash[:success] = I18n.t(:update_ok, scope: :edit_product)
       redirect_to edit_shopkeeper_product_path(product)
       return

@@ -182,19 +182,36 @@ class Customer::CheckoutController < ApplicationController
       order_payment.status = forced_status unless forced_status.nil? # TODO : improve this
       order_payment.save
 
-      if order_payment.status == :success
-        SlackDispatcher.new.paid_transaction(order_payment)
-      else
-        SlackDispatcher.new.failed_transaction(order_payment)
-      end
-
       # if it's a success, it paid
       # we freeze the status to unverified for security reason
       # and the payment status freeze on unverified
       order_payment.order.refresh_status_from!(order_payment)
       # END OF COPY
 
-      return true
+      if order_payment.status == :success
+        SlackDispatcher.new.paid_transaction(order_payment)
+        prepare_notifications(order_payment)
+      else
+        SlackDispatcher.new.failed_transaction(order_payment)
+      end
+
+      true
+  end
+
+  def prepare_notifications(order_payment)
+    order = order_payment.order
+    EmitNotificationAndDispatchToUser.new.perform_if_not_sent({
+                                                                  order: order,
+                                                                  user: order.shop.shopkeeper,
+                                                                  title: "Auftrag #{order.id} am #{order.paid_at}",
+                                                                  desc: 'Haben Sie die Bestellung schon vorbereiten? Senden Sie die bitte!'
+                                                              })
+    EmitNotificationAndDispatchToUser.new.perform_if_not_selected_sent({
+                                                                           order: order,
+                                                                           user: order.shop.shopkeeper,
+                                                                           title: "Auftrag #{order.id} am #{order.paid_at}",
+                                                                           desc: "Haben Sie die Bestellung schon gesendet? Klicken Sie bitte 'Das Paket wurde versandt'"
+                                                                       })
   end
 
   def prepare_checkout(order, payment_method)

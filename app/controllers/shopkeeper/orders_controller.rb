@@ -41,10 +41,13 @@ class Shopkeeper::OrdersController < ApplicationController
     order.save
 
     # we go back now
+    EmitNotificationAndDispatchToUser.new.perform({
+                                                      user: order.user,
+                                                      title: 'Change me',
+                                                      desc: 'Change me too'
+                                                  })
     flash[:success] = I18n.t(:order_processing, scope: :notice)
     redirect_to(:back)
-    return
-
   end
 
   private
