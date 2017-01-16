@@ -4,7 +4,7 @@
 
 <% else %>
 
-  <% if current_user.decorate.new_notifications? %>
+  <% if current_user.new_notifications? %>
     <a href="<%= shared_notifications_path %>">
   <% else %>
     <a href="<%= edit_customer_account_path %>">
