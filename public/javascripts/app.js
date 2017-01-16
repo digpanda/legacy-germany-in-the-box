@@ -1852,7 +1852,7 @@ require.register("javascripts/starters.js", function(exports, require, module) {
 /**
  * Starters Class
  */
-var Starters = ['auto_resize', 'bootstrap', 'china_city', 'datepicker', 'editable_fields', 'footer', 'input_validation', 'images_handler', 'lazy_loader', 'left_menu', 'links_behaviour', 'messages', 'mobile_menu', 'navigation', 'product_favorite', 'product_form', 'products_list', 'refresh_time', 'responsive', 'search', 'sku_form', 'sweet_alert', 'tooltipster'];
+var Starters = ['auto_resize', 'bootstrap', 'china_city', 'datepicker', 'editable_fields', 'footer', 'input_validation', 'images_handler', 'lazy_loader', 'left_menu', 'links_behaviour', 'messages', 'mobile_menu', 'navigation', 'product_favorite', 'product_form', 'products_list', 'qrcode', 'refresh_time', 'responsive', 'search', 'sku_form', 'sweet_alert', 'tooltipster'];
 
 module.exports = Starters;
 });
@@ -2661,38 +2661,55 @@ var ProductsList = { // CURRENTLY NOT IN USED IN THE SYSTEM
     this.manageProductsWall();
   },
 
-  manageProductsWall: function manageProductsWall() {
-
-    /*
-          if ($('#freewall-products').length > 0) {
-    
-            var wall = new freewall("#freewall-products");
-    
-            wall.reset({
-              selector: '.js-brick',
-              delay: 0,
-              animate: false,
-              cellW: 260,
-              cellH: 'auto',
-              onResize: function() {
-                return wall.fitWidth();
-              }
-            });
-    
-            wall.container.find('.js-brick img').load(function() {
-              $(window).trigger('resize');
-            });
-    
-            $(window).trigger('resize');
-    
-         }
-    */
-
-  }
+  manageProductsWall: function manageProductsWall() {}
 
 };
 
 module.exports = ProductsList;
+});
+
+require.register("javascripts/starters/qrcode.js", function(exports, require, module) {
+'use strict';
+
+/**
+ * QrCode Class
+ */
+var QrCode = { // CURRENTLY NOT IN USED IN THE SYSTEM
+
+  /**
+   * Initializer
+   */
+  init: function init() {
+
+    this.manageWechatQrCode();
+    this.manageWeiboQrCode();
+  },
+
+  manageWechatQrCode: function manageWechatQrCode() {
+
+    $('#wechat-qr-code-trigger').on('mouseover', function (e) {
+      $('#wechat-qr-code').removeClass('hidden');
+    });
+
+    $('#wechat-qr-code-trigger').on('mouseout', function (e) {
+      $('#wechat-qr-code').addClass('hidden');
+    });
+  },
+
+  manageWeiboQrCode: function manageWeiboQrCode() {
+
+    $('#weibo-qr-code-trigger').on('mouseover', function (e) {
+      $('#weibo-qr-code').removeClass('hidden');
+    });
+
+    $('#weibo-qr-code-trigger').on('mouseout', function (e) {
+      $('#weibo-qr-code').addClass('hidden');
+    });
+  }
+
+};
+
+module.exports = QrCode;
 });
 
 require.register("javascripts/starters/refresh_time.js", function(exports, require, module) {

@@ -20,6 +20,7 @@ var Starters = [
   'product_favorite',
   'product_form',
   'products_list',
+  'qrcode',
   'refresh_time',
   'responsive',
   'search',
