@@ -437,11 +437,10 @@ body {
     color: #ffffff; }
 
 .payment-methods img {
-  max-width: 95%;
-  opacity: 0.9; }
-  @media (max-width: 994px) {
-    .payment-methods img {
-      max-width: 30%; } }
+  max-width: 70%; }
+
+.payment-methods__block {
+  padding: 0; }
 
 .shop-blocks {
   color: #ffffff; }
@@ -1508,6 +1507,20 @@ body {
     .home-marketplace__third h2 {
       color: #659443; }
 
+.footer {
+  padding-top: 1.3em;
+  padding-bottom: 1.3em;
+  background-color: #5c5c5c;
+  font-size: 12px;
+  min-height: 150px; }
+  .footer a {
+    color: #ffffff !important; }
+  .footer h3 {
+    font-size: 14px;
+    color: #ffffff; }
+  .footer__logo img {
+    max-width: 70px; }
+
 .header-desktop {
   margin-right: -15px;
   margin-left: -15px;
@@ -1620,6 +1633,12 @@ body {
   -moz-transition: opacity 0.5s;
   -o-transition: opacity 0.5s;
   transition: opacity 0.5s; }
+
+.social-medias img {
+  max-width: 55%; }
+
+.social-medias__block {
+  padding: 0; }
 
 @media (max-width: 994px) {
   .connect__separator {
