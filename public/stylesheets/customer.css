@@ -170,7 +170,7 @@
   padding: 1em; }
 
 #csstyle .\+big-spacer {
-  padding: 5em; }
+  padding: 4.3em; }
 
 #csstyle .\+bold {
   font-weight: 600; }
@@ -305,9 +305,11 @@
   border: 3px white solid; }
 
 body {
-  line-height: 1.6;
-  letter-spacing: 1px;
-  font-size: 14px; }
+  line-height: 1.6 !important;
+  letter-spacing: 1px !important;
+  font-size: 14px !important;
+  background-color: #ffffff !important;
+  font-family: 'Roboto', arial, Pingfang, "Microsoft Yahei", sans-serif; }
 
 .buttons {
   display: inline-block;
@@ -405,6 +407,81 @@ body {
   color: #ffffff;
   background-color: #e74c3c;
   text-align: center; }
+
+.category-blocks {
+  padding: 0; }
+  .category-blocks__block {
+    min-height: 13em;
+    padding: 0;
+    border: 2px #eeeeee solid;
+    color: #ffffff;
+    -webkit-border-radius: 0.5em;
+    -moz-border-radius: 0.5em;
+    -ms-border-radius: 0.5em;
+    border-radius: 0.5em;
+    -webkit-transition: background-color 200ms linear;
+    -moz-transition: background-color 200ms linear;
+    -o-transition: background-color 200ms linear;
+    -ms-transition: background-color 200ms linear;
+    transition: background-color 200ms linear; }
+    .category-blocks__block img {
+      margin-top: 1em;
+      height: 100px; }
+    .category-blocks__block h2 {
+      margin-top: 0.3em;
+      color: #666;
+      text-transform: uppercase;
+      font-family: inherit; }
+    .category-blocks__block.\--food {
+      padding: 1em;
+      background-color: #ffffff; }
+      .category-blocks__block.\--food:hover {
+        background-color: #659443; }
+        .category-blocks__block.\--food:hover h2 {
+          color: #ffffff; }
+        .category-blocks__block.\--food:hover img {
+          -webkit-filter: brightness(0) invert(1);
+          filter: brightness(0) invert(1); }
+    .category-blocks__block.\--medicine {
+      padding: 1em;
+      background-color: #ffffff; }
+      .category-blocks__block.\--medicine:hover {
+        background-color: #659443; }
+        .category-blocks__block.\--medicine:hover h2 {
+          color: #ffffff; }
+        .category-blocks__block.\--medicine:hover img {
+          -webkit-filter: brightness(0) invert(1);
+          filter: brightness(0) invert(1); }
+    .category-blocks__block.\--cosmetics {
+      padding: 1em;
+      background-color: #ffffff; }
+      .category-blocks__block.\--cosmetics:hover {
+        background-color: #659443; }
+        .category-blocks__block.\--cosmetics:hover h2 {
+          color: #ffffff; }
+        .category-blocks__block.\--cosmetics:hover img {
+          -webkit-filter: brightness(0) invert(1);
+          filter: brightness(0) invert(1); }
+    .category-blocks__block.\--fashion {
+      padding: 1em;
+      background-color: #ffffff; }
+      .category-blocks__block.\--fashion:hover {
+        background-color: #659443; }
+        .category-blocks__block.\--fashion:hover h2 {
+          color: #ffffff; }
+        .category-blocks__block.\--fashion:hover img {
+          -webkit-filter: brightness(0) invert(1);
+          filter: brightness(0) invert(1); }
+    .category-blocks__block.\--household {
+      padding: 1em;
+      background-color: #ffffff; }
+      .category-blocks__block.\--household:hover {
+        background-color: #659443; }
+        .category-blocks__block.\--household:hover h2 {
+          color: #ffffff; }
+        .category-blocks__block.\--household:hover img {
+          -webkit-filter: brightness(0) invert(1);
+          filter: brightness(0) invert(1); }
 
 .page-static__text {
   word-wrap: normal;
@@ -548,81 +625,6 @@ body {
     background-position: center center;
     background-size: cover;
     min-height: 200px; }
-
-.category-blocks {
-  padding: 0; }
-  .category-blocks__block {
-    min-height: 13em;
-    padding: 0;
-    border: 2px #eeeeee solid;
-    color: #ffffff;
-    -webkit-border-radius: 0.5em;
-    -moz-border-radius: 0.5em;
-    -ms-border-radius: 0.5em;
-    border-radius: 0.5em;
-    -webkit-transition: background-color 200ms linear;
-    -moz-transition: background-color 200ms linear;
-    -o-transition: background-color 200ms linear;
-    -ms-transition: background-color 200ms linear;
-    transition: background-color 200ms linear; }
-    .category-blocks__block img {
-      margin-top: 1em;
-      height: 100px; }
-    .category-blocks__block h2 {
-      margin-top: 0.3em;
-      color: #666;
-      text-transform: uppercase;
-      font-family: inherit; }
-    .category-blocks__block.\--food {
-      padding: 1em;
-      background-color: #ffffff; }
-      .category-blocks__block.\--food:hover {
-        background-color: #659443; }
-        .category-blocks__block.\--food:hover h2 {
-          color: #ffffff; }
-        .category-blocks__block.\--food:hover img {
-          -webkit-filter: brightness(0) invert(1);
-          filter: brightness(0) invert(1); }
-    .category-blocks__block.\--medicine {
-      padding: 1em;
-      background-color: #ffffff; }
-      .category-blocks__block.\--medicine:hover {
-        background-color: #659443; }
-        .category-blocks__block.\--medicine:hover h2 {
-          color: #ffffff; }
-        .category-blocks__block.\--medicine:hover img {
-          -webkit-filter: brightness(0) invert(1);
-          filter: brightness(0) invert(1); }
-    .category-blocks__block.\--cosmetics {
-      padding: 1em;
-      background-color: #ffffff; }
-      .category-blocks__block.\--cosmetics:hover {
-        background-color: #659443; }
-        .category-blocks__block.\--cosmetics:hover h2 {
-          color: #ffffff; }
-        .category-blocks__block.\--cosmetics:hover img {
-          -webkit-filter: brightness(0) invert(1);
-          filter: brightness(0) invert(1); }
-    .category-blocks__block.\--fashion {
-      padding: 1em;
-      background-color: #ffffff; }
-      .category-blocks__block.\--fashion:hover {
-        background-color: #659443; }
-        .category-blocks__block.\--fashion:hover h2 {
-          color: #ffffff; }
-        .category-blocks__block.\--fashion:hover img {
-          -webkit-filter: brightness(0) invert(1);
-          filter: brightness(0) invert(1); }
-    .category-blocks__block.\--household {
-      padding: 1em;
-      background-color: #ffffff; }
-      .category-blocks__block.\--household:hover {
-        background-color: #659443; }
-        .category-blocks__block.\--household:hover h2 {
-          color: #ffffff; }
-        .category-blocks__block.\--household:hover img {
-          -webkit-filter: brightness(0) invert(1);
-          filter: brightness(0) invert(1); }
 
 .category-menu {
   line-height: 2;
@@ -1518,6 +1520,27 @@ body {
   #scrollUp i {
     font-size: 35px; }
 
+.landing-banner {
+  background-color: #eeeeee;
+  background-size: cover;
+  background-position: center center;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  border-radius: 5px;
+  box-shadow: 0px 6px 15px 4px rgba(139, 139, 139, 0.32);
+  min-height: 400px; }
+  .landing-banner__content {
+    color: #ffffff;
+    text-align: center;
+    margin: 0 auto;
+    padding-top: 8em; }
+    .landing-banner__content h2 {
+      font-size: 3em; }
+    .landing-banner__content p {
+      font-size: 1.7em;
+      padding-bottom: 0.5em; }
+
 .footer {
   padding-top: 2em;
   padding-bottom: 2em;
@@ -1653,6 +1676,18 @@ body {
   -moz-transition: opacity 0.5s;
   -o-transition: opacity 0.5s;
   transition: opacity 0.5s; }
+
+.main-button__hollow {
+  background-color: #ffffff;
+  padding: 0.7em 2em 0.7em 2em;
+  border: 4px;
+  border: 2px solid #85bf41;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  border-radius: 5px; }
+  .main-button__hollow:link, .main-button__hollow:hover, .main-button__hollow:active, .main-button__hollow:visited {
+    color: #85bf41; }
 
 @media (max-width: 994px) {
   .social-medias img {

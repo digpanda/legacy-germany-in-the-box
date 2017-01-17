@@ -1,30 +1,9 @@
-<!-- Slider -->
-<!--
-<div class="row slider">
-
-  = render partial: "guest/home/show/slider"
-
-</div>
--->
-<!-- Slider -->
-<!--
-<div class="row home-steps">
-
-  <div class="+centered">
-    <h1 style="color:white;">
-    HERE WE SHOW 3 COOL STEPS
-    </h1>
-  </div>
-
-</div>
--->
-
+<!-- NOTE : this should be refactored and split in a clean way -->
 <% if potential_customer? %>
 
-  <%= render "guest/home/show/announcements" %>
+  <!-- <% render "guest/home/show/announcements" %> -->
+  <%= render "guest/home/show/landing_banner" %>
   <%= render "guest/home/show/categories" %>
-
-  <%= render "guest/home/show/home_steps" %>
 
 <% elsif potential_shopkeeper? %>
 

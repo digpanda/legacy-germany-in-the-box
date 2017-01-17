@@ -170,7 +170,7 @@
   padding: 1em; }
 
 #csstyle .\+big-spacer {
-  padding: 5em; }
+  padding: 4.3em; }
 
 #csstyle .\+bold {
   font-weight: 600; }
@@ -535,12 +535,6 @@ textarea {
 img {
   max-width: 100%; }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Roboto', arial, helvetica, sans-serif;
-  margin-top: 0;
-  font-weight: 300;
-  color: #4d4d4d; }
-
 h1 small,
 h2 small,
 h3 small,
@@ -556,14 +550,6 @@ body {
   color: #666;
   font-family: 'Open Sans', Arial, helvetica, sans-serif;
   font-size: 14px; }
-
-a {
-  text-decoration: none;
-  color: #49D2BE; }
-
-a:hover {
-  color: #31B3A0;
-  text-decoration: none; }
 
 p.small,
 small {
