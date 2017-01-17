@@ -37,8 +37,8 @@ module Wirecard
           :representative_address    => shopkeeper_address.street_and_number,
           :representative_zip        => shopkeeper_address.zip,
           :representative_city       => shopkeeper_address.city,
-          :representative_mobile     => shop.mobile,
-          :representative_phone      => shop.tel,
+          :representative_mobile     => shop.mobile&.gsub('-', ''),
+          :representative_phone      => shop.tel&.gsub('-', ''),
           :representative_fax        => '',
 
           :email               => shop.mail,
