@@ -1,0 +1,48 @@
+<% @categories.each do |category| %>
+<% end %>
+
+<div class="+spacer"></div>
+
+
+<% shop = Shop.first %>
+
+<!-- Shop block -->
+<div class="shop-block__container">
+
+  <div class="row">
+    <div class="col-md-6">
+      <h3 class="shop-block__title"><%= shop.shopname %></h3>
+      <h4 class="shop-block__subtitle"><%= shop.decorate.short_desc(45) %></h4>
+    </div>
+    <div class="col-md-6 +right">
+      <a href="<%= guest_shop_path(shop) %>" class="main-button__hollow">GO TO SHOP</a>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4">
+      <div class="shop-block__thumbnail lazy" data-original="<%= shop.decorate.image_url(:banner, :detail) %>" style="background-image:url('/images/grey.gif');">
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div class="shop-block__items">
+
+        <% shop.products.in_groups_of(4, false).each do |products| %>
+
+          <% products.each do |product| %>
+
+            <div class="col-md-3">
+              <div class="shop-block__item lazy" data-original="<%= product.decorate.product_cover_url %>" style="background-image:url('/images/grey.gif');">
+              </div>
+            </div>
+
+          <% end %>
+
+          <div class="clearfix"></div>
+
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+</div>

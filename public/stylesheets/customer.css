@@ -1685,9 +1685,43 @@ body {
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
-  border-radius: 5px; }
+  border-radius: 5px;
+  color: #85bf41; }
   .main-button__hollow:link, .main-button__hollow:hover, .main-button__hollow:active, .main-button__hollow:visited {
     color: #85bf41; }
+  .main-button__hollow:active {
+    background-color: #c7ef9a; }
+
+.shop-block__container {
+  padding: 2em 1em 1em 1em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  border-radius: 5px;
+  box-shadow: 0px 6px 15px 4px rgba(139, 139, 139, 0.32); }
+
+.shop-block__thumbnail {
+  min-height: 280px;
+  background-size: cover;
+  background-position: center center; }
+
+.shop-block__title {
+  margin: 0;
+  font-weight: 800;
+  font-size: 18px; }
+
+.shop-block__subtitle {
+  margin-top: 0;
+  font-weight: 400;
+  font-size: 13px; }
+
+.shop-block__item {
+  margin: 0.5em;
+  min-height: 120px;
+  background-size: cover;
+  background-position: center center; }
 
 @media (max-width: 994px) {
   .social-medias img {
