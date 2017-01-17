@@ -8,9 +8,13 @@ class Settings
   field :platform_currency,     type: ISO4217::Currency, default: ISO4217::Currency.from_code('CNY')
   field :supplier_currency,     type: ISO4217::Currency, default: ISO4217::Currency.from_code('EUR')
   field :max_total_per_day,     type: BigDecimal, default: 1000
-  field :highlight_title,       type: String
   field :alert, type: String
 
+  # TODO: this should be refactored and abstracted into a new model
+  field :highlight_title,       type: String
+  field :highlight_description, type: String
+  field :highlight_button, type: String
+  
   validates :platform_currency,       presence: true
   validates :supplier_currency,       presence: true
   validates :exchange_rate_to_yuan,   presence: true,   :numericality => { :greater_than => 0 }

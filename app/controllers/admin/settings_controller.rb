@@ -17,7 +17,7 @@ class Admin::SettingsController < ApplicationController
 
   def settings_params
     delocalize_config = { :exchange_rate_to_yuan => :number, :max_total_per_day => :number }
-    params.require('/admin/settings').permit(:exchange_rate_to_yuan, :max_total_per_day, :highlight_title, :alert).delocalize(delocalize_config)
+    params.require('/admin/settings').permit!.delocalize(delocalize_config)
   end
 
 end
