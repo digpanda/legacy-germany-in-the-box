@@ -29,6 +29,8 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
     OrderItem.delete_all
     puts "We remove all addresses"
     Address.delete_all
+    puts "We remove all package sets"
+    PackageSet.delete_all
 
     puts "We set the locale to Germany"
     I18n.locale = :de

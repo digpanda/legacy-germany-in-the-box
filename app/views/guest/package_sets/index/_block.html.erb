@@ -13,11 +13,7 @@ it looks like it's the same, but it's not -->
         </div>
 
         <div class="col-md-4 package-set-block__no-padding-left">
-          <div class="package-set-block__content">
-            <h2><%= package_set.name %></h2>
-            <p><%= package_set.desc %></p>
-            <%= link_to "BUY IT", guest_package_set_path(package_set), method: :patch, class: "main-button__hollow" %>
-          </div>
+          <%= render partial: "guest/package_sets/index/block/content", :locals => {:package_set => package_set} %>
         </div>
       </div>
     </div>
@@ -38,11 +34,7 @@ it looks like it's the same, but it's not -->
         </div>
 
         <div class="col-md-4 col-md-pull-8 package-set-block__no-padding-right">
-          <div class="package-set-block__content">
-            <h2><%= package_set.name %></h2>
-            <p><%= package_set.desc %></p>
-            <%= link_to "BUY IT", guest_package_set_path(package_set), method: :patch, class: "main-button__hollow" %>
-          </div>
+          <%= render partial: "guest/package_sets/index/block/content", :locals => {:package_set => package_set} %>
         </div>
       </div>
     </div>

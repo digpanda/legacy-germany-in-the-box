@@ -1,0 +1,51 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="banner lazy" data-original="<%= '/images/categories/category-banner-sample.jpg' %>" style="background-image:url('/images/grey.gif');">
+    </div>
+  </div>
+</div>
+
+<%= render "guest/package_sets/show/navigation" %>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="package-set-infos">
+
+      <!-- Introduction -->
+      <div class="row">
+        <div class="col-md-12">
+          <div class="package-set-infos__introduction">
+            <h1>Package Name</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Products -->
+      <div class="row">
+        <div class="col-md-12">
+          <div class="package-set-infos__products">
+            <div class="row">
+
+              <% @package_set.package_skus.each do |package_sku| %>
+                <div class="col-md-2">
+                  <%= render partial: "guest/package_sets/show/product", :locals => { :package_sku => package_sku } %>
+                </div>
+              <% end %>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Price + Purchase -->
+      <div class="row">
+        <div class="col-md-12">
+          <div class="package-set-infos__actions">
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

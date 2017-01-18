@@ -6,6 +6,10 @@ class SkuDecorator < Draper::Decorator
   delegate_all
   decorates :sku
 
+  def readable_weight
+    "#{(self.weight*100).to_i}g"
+  end
+
   def max_added_to_cart
     [Rails.configuration.achat[:max_add_to_cart_each_time], (self.unlimited ? Rails.configuration.achat[:max_add_to_cart_each_time] : self.quantity)].min
   end

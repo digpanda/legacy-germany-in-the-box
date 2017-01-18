@@ -1578,13 +1578,6 @@ html {
 *, *:before, *:after {
   box-sizing: inherit; }
 
-h1 {
-  background-color: #e6fbd7;
-  padding: 0.5em;
-  margin: 0em;
-  font-family: 'Raleway', sans-serif !important;
-  font-weight: 400; }
-
 h4 {
   margin-top: 0.8em;
   margin-bottom: 0.8em;
