@@ -1834,14 +1834,17 @@ body {
   -moz-border-radius: 3px;
   -ms-border-radius: 3px;
   border-radius: 3px;
-  box-shadow: 0px 6px 15px 4px rgba(139, 139, 139, 0.32); }
-  .page-navigation__content {
+  box-shadow: 0px 6px 15px 4px rgba(139, 139, 139, 0.32);
+  color: #8b8b8b; }
+  .page-navigation i {
+    color: #e1e1e1; }
+  .page-navigation__middle {
     text-align: center;
     margin: 0 auto; }
     @media (max-width: 994px) {
-      .page-navigation__content {
+      .page-navigation__middle {
         display: none; } }
-  .page-navigation__filtering {
+  .page-navigation__right {
     float: right; }
 
 .product-miniblock a {
@@ -1853,8 +1856,11 @@ body {
 
 .product-miniblock__image {
   height: 200px;
+  max-width: 300px;
   background-size: cover;
-  background-position: center center; }
+  background-position: center center;
+  text-align: center;
+  margin: 0 auto; }
 
 .product-miniblock__content h3 {
   margin-top: 0.2em;

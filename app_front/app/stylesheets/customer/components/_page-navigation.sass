@@ -7,13 +7,17 @@
 
   +shadow-box
 
-  +part(breadcrumb)
+  color: $color-light-grey
+  i
+    color: $color-super-light-grey
+    
+  +part(left)
 
-  +part(content)
+  +part(middle)
     +breakpoint('mobile')
       display: none
-      
+
     +centered
 
-  +part(filtering)
+  +part(right)
     float: right
