@@ -2,8 +2,9 @@
 
   +part(hollow)
 
+    font-weight: bold
     background-color: $color-white
-    padding: 0.7em 2em 0.7em 2em
+    padding: 0.7em 2.5em 0.7em 2.5em
     border: 4px
     border: 2px solid $color-flash-green
     +border-radius(5px)
@@ -15,3 +16,21 @@
 
     &:active
       background-color: #c7ef9a
+
+  +part(solid)
+
+    font-weight: bold
+    background-color: $color-flash-green
+    padding: 0.7em 2.5em 0.7em 2.5em
+    +border-radius(5px)
+
+    color: $color-white
+
+    &:link, &:hover, &:active, &:visited
+      color: $color-white
+
+    &:active
+      background-color: $color-green
+
+    +option(large)
+      padding: 0.7em 5.3em 0.7em 5.3em

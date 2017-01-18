@@ -42,6 +42,27 @@
       <div class="row">
         <div class="col-md-12">
           <div class="package-set-infos__actions">
+
+            <hr />
+
+            <!-- Prices -->
+            <div class="row">
+              <div class="+centered">
+                <div class="package-set-infos__original-price">£ 3289.50</div>
+                <div class="package-set-infos__new-price">£ 2890.50</div>
+                <div class="package-set-infos__euro-price">€ 390.00 ( CHINESE )</div>
+                <div class="+spacer"></div>
+              </div>
+            </div>
+
+            <!-- Buttons -->
+            <div class="row">
+              <div class="+centered">
+                <%= link_to "BUY IT", guest_package_set_path(@package_set), method: :patch, class: "main-button__solid --large" %>
+              </div>
+            </div>
+
+
           </div>
         </div>
       </div>

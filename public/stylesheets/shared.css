@@ -72,7 +72,7 @@
 
 #csstyle .\+delete-checkout-button {
   position: relative;
-  background-color: #e74c3c;
+  background-color: #d6506c;
   text-align: center;
   outline: 0;
   border: 1px;
@@ -156,15 +156,6 @@
   text-align: center;
   margin: 0 auto; }
 
-#csstyle .\+green {
-  color: #659443; }
-
-#csstyle .\+dark-grey {
-  color: #ABABA8; }
-
-#csstyle .\+blue {
-  color: #3498db; }
-
 #csstyle .\+vertical-centered {
   padding-top: 2.5em; }
 
@@ -210,8 +201,20 @@
 #csstyle .\+nopadding-left {
   padding-left: 0; }
 
+#csstyle .\+green {
+  color: #659443; }
+
+#csstyle .\+dark-grey {
+  color: #ABABA8; }
+
+#csstyle .\+light-grey {
+  color: #8b8b8b; }
+
+#csstyle .\+blue {
+  color: #3498db; }
+
 #csstyle .\+red {
-  color: #e74c3c; }
+  color: #d6506c; }
 
 #csstyle .\+green {
   color: #659443; }
@@ -238,7 +241,7 @@
   color: #666; }
 
 #csstyle .\+discount {
-  background-color: #e74c3c;
+  background-color: #d6506c;
   color: #fdfdfd;
   font-weight: 600;
   padding-left: 0.3em;
@@ -253,7 +256,10 @@
   font-size: 1.3em; }
 
 #csstyle .\+barred {
-  color: #e74c3c;
+  color: #d6506c;
+  text-decoration: line-through; }
+
+#csstyle .\+crossed {
   text-decoration: line-through; }
 
 #csstyle .\+unread {
@@ -315,7 +321,7 @@
   background: #fdfdfd;
   background-position: center center;
   background-size: cover;
-  background-color: #FBFBFB;
+  background-color: #8b8b8b;
   border: 3px white solid; }
 
 @font-face {

@@ -3,7 +3,7 @@
 
 +tweak(border-radius-right)
   +border-radius-right(4px)
-    
+
 +tweak(inline)
   display: inline
 
@@ -101,15 +101,6 @@
 +tweak(centered)
   +centered
 
-+tweak(green)
-  color: $color-green
-
-+tweak(dark-grey)
-  color: $color-dark-grey
-
-+tweak(blue)
-  color: $color-blue
-
 +tweak(vertical-centered)
   padding-top: 2.5em
 
@@ -129,11 +120,11 @@
   font-weight: 600
 
 +tweak(small-gap)
-    display: block
-    position: relative
-    margin: 0.2em 0 0.2em 0
-    clear: both
-    overflow: hidden
+  display: block
+  position: relative
+  margin: 0.2em 0 0.2em 0
+  clear: both
+  overflow: hidden
 
 +tweak(white-box) // everything with this style should have their own component
   +white-box
@@ -149,6 +140,18 @@
 
 +tweak(nopadding-left)
   padding-left: 0
+
++tweak(green)
+  color: $color-green
+
++tweak(dark-grey)
+  color: $color-dark-grey
+
++tweak(light-grey)
+  color: $color-light-grey
+
++tweak(blue)
+  color: $color-blue
 
 +tweak(red)
   color: $color-red
@@ -194,6 +197,9 @@
 +tweak(barred)
   color: $color-red
   text-decoration: line-through
+
++tweak(crossed)
+  +crossed
 
 +tweak(unread)
   background-color: $color-light-yellow
