@@ -370,9 +370,8 @@ body {
 
 .address-popup {
   text-align: left; }
-
-.remodal {
-  max-width: 40em !important; }
+  .address-popup__remodal {
+    max-width: 40em; }
 
 .announcement-landing__products {
   background-color: #ffffff;
@@ -1845,6 +1844,13 @@ body {
   .page-navigation__filtering {
     float: right; }
 
+.product-miniblock a {
+  color: #5c5c5c; }
+
+.product-miniblock__remodal {
+  max-width: 300px;
+  text-align: left; }
+
 .product-miniblock__image {
   height: 200px;
   background-size: cover;
@@ -1852,10 +1858,19 @@ body {
 
 .product-miniblock__content h3 {
   margin-top: 0.2em;
-  font-weight: bold; }
+  font-weight: bold;
+  font-size: 25px; }
 
 .product-miniblock__content p {
   margin-top: -0.8em; }
+
+.product-miniblock__name {
+  font-size: 16px;
+  margin-top: -0.7em; }
+
+.product-miniblock__desc {
+  color: #8b8b8b;
+  font-size: 13px; }
 
 .product-miniblock__extra {
   margin-top: -0.8em;

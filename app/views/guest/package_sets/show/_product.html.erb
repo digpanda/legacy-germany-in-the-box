@@ -1,4 +1,28 @@
+<div class="remodal product-miniblock__remodal" data-remodal-id="package-sku-<%= package_sku.id %>">
+
+  <div class="product-miniblock">
+    
+      <!-- Image -->
+      <div class="product-miniblock__image lazy" data-original="<%= package_sku.sku.decorate.image_url(:img0, :fullsize) %>" style="background-image:url('/images/grey.gif');">
+      </div>
+
+      <div class="clearfix"></div>
+
+      <!-- Title + Description -->
+      <div class="product-miniblock__content">
+        <h3><%= package_sku.product.brand %></h3>
+        <div class="product-miniblock__name"><%= package_sku.product.name %> - <%= package_sku.quantity %> units</div>
+        <div class="product-miniblock__desc"><%= package_sku.product.desc %></div>
+      </div>
+
+    </div>
+
+  </div>
+
+
 <div class="product-miniblock">
+
+  <a href="#package-sku-<%= package_sku.id %>">
 
   <!-- Image -->
   <div class="product-miniblock__image lazy" data-original="<%= package_sku.sku.decorate.image_url(:img0, :fullsize) %>" style="background-image:url('/images/grey.gif');">
@@ -8,11 +32,13 @@
 
   <!-- Title + Description -->
   <div class="product-miniblock__content">
-    <h3><%= package_sku.product.name %></h3>
-    <p><%= package_sku.product.decorate.short_desc(30) %></p>
+    <h3><%= package_sku.product.brand %></h3>
+    <p><%= package_sku.product.name %></p>
     <div class="product-miniblock__extra">
       <%= package_sku.quantity %> x <%= package_sku.sku.decorate.readable_weight %>
     </div>
   </div>
+
+</a>
 
 </div>
