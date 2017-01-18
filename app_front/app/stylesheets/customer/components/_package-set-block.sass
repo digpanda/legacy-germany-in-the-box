@@ -1,11 +1,27 @@
 +component(package-set-block)
 
   +shadow-box
+  +border-radius-left(4px)
+  +border-radius-right(4px)
+
+  +part(no-padding-left)
+    +breakpoint('computer')
+      padding-left: 0
+      & > div
+        +border-radius-right(4px)
+  +part(no-padding-right)
+    +breakpoint('computer')
+      padding-right: 0
+      & > div
+        +border-radius-left(4px)
 
   +part(content)
+
     padding: 4em
     +centered
     height: 400px
+    +breakpoint('mobile')
+      height: 300px
     background-color: $color-white
 
     h2
@@ -17,5 +33,6 @@
 
   +part(image)
     height: 400px
+
     background-position: center center
     background-size: cover

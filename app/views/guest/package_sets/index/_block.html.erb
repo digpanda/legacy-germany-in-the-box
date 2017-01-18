@@ -1,0 +1,54 @@
+<!-- NOTE : multiple minor changes to reverse in mobile
+it looks like it's the same, but it's not -->
+<% if options[:reversed] %>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="package-set-block">
+      <div class="row">
+
+        <div class="col-md-8 package-set-block__no-padding-right">
+          <div class="package-set-block__image lazy" data-original="/samples/images/banner/850x400.png" style="background-image:url('/images/grey.gif');">
+          </div>
+        </div>
+
+        <div class="col-md-4 package-set-block__no-padding-left">
+          <div class="package-set-block__content">
+            <h2>TITLE</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam dignissim velit quis velit tempor, vel rutrum metus cursus. Vestibulum lacinia justo eget sem varius imperdiet.</p>
+            <a href="#" class="main-button__hollow">GO TO SHOP</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<% else %>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="package-set-block">
+      <div class="row">
+
+        <div class="col-md-8 col-md-push-4 package-set-block__no-padding-left">
+          <div class="package-set-block__image lazy" data-original="/samples/images/banner/850x400.png" style="background-image:url('/images/grey.gif');">
+          </div>
+        </div>
+
+        <div class="col-md-4 col-md-pull-8 package-set-block__no-padding-right">
+          <div class="package-set-block__content">
+            <h2>TITLE</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam dignissim velit quis velit tempor, vel rutrum metus cursus. Vestibulum lacinia justo eget sem varius imperdiet.</p>
+            <a href="#" class="main-button__hollow">GO TO SHOP</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% end %>
+
+<div class="+spacer"></div>
