@@ -1,4 +1,51 @@
-<h2>Package sets</h2>
+<%= render "guest/home/show/landing_banner" %>
+
+<%= render "guest/package_sets/index/navigation" %>
+
+
+<!-- Div from left -->
+<div class="row">
+  <div class="col-md-12">
+    <div class="package-set-block">
+      <div class="row">
+        <div class="col-md-4 +nopadding-right">
+          <div class="package-set-block__content +border-radius-left">
+            <h2>TITLE</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam dignissim velit quis velit tempor, vel rutrum metus cursus. Vestibulum lacinia justo eget sem varius imperdiet.</p>
+            <a href="#" class="main-button__hollow">GO TO SHOP</a>
+          </div>
+        </div>
+        <div class="col-md-8 +nopadding-left">
+          <div class="package-set-block__image +border-radius-right lazy" data-original="/images/categories/category-banner-sample.jpg" style="background-image:url('/images/grey.gif');">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="+spacer"></div>
+
+<!-- Div from right -->
+<div class="row">
+  <div class="col-md-12">
+    <div class="package-set-block">
+      <div class="row">
+        <div class="col-md-8 +nopadding-right">
+          <div class="package-set-block__image +border-radius-left lazy" data-original="/images/categories/category-banner-sample.jpg" style="background-image:url('/images/grey.gif');">
+        </div>
+      </div>
+      <div class="col-md-4 +nopadding-left">
+        <div class="package-set-block__content +border-radius-right">
+          <h2>TITLE</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam dignissim velit quis velit tempor, vel rutrum metus cursus. Vestibulum lacinia justo eget sem varius imperdiet.</p>
+          <a href="#" class="main-button__hollow">GO TO SHOP</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
 
 <% @package_sets.each do |package_set| %>
 

@@ -1,3 +1,9 @@
++tweak(border-radius-left)
+  +border-radius-left(4px)
+
++tweak(border-radius-right)
+  +border-radius-right(4px)
+    
 +tweak(inline)
   display: inline
 
@@ -93,8 +99,7 @@
   text-align: left
 
 +tweak(centered)
-  text-align: center
-  margin: 0 auto
+  +centered
 
 +tweak(green)
   color: $color-green
@@ -139,6 +144,12 @@
 +tweak(nopadding)
   padding: 0
 
++tweak(nopadding-right)
+  padding-right: 0
+
++tweak(nopadding-left)
+  padding-left: 0
+
 +tweak(red)
   color: $color-red
 
@@ -172,7 +183,7 @@
   font-weight: 600
   padding-left: 0.3em
   font-size: 18px
-  +border-left-radius(2em)
+  +border-radius-left(2em)
 
 +tweak(big)
   font-size: 20px
