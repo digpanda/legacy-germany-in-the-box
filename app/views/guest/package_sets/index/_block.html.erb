@@ -14,9 +14,9 @@ it looks like it's the same, but it's not -->
 
         <div class="col-md-4 package-set-block__no-padding-left">
           <div class="package-set-block__content">
-            <h2>TITLE</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam dignissim velit quis velit tempor, vel rutrum metus cursus. Vestibulum lacinia justo eget sem varius imperdiet.</p>
-            <a href="#" class="main-button__hollow">GO TO SHOP</a>
+            <h2><%= package_set.name %></h2>
+            <p><%= package_set.desc %></p>
+            <%= link_to "BUY IT", guest_package_set_path(package_set), method: :patch, class: "main-button__hollow" %>
           </div>
         </div>
       </div>
@@ -39,9 +39,9 @@ it looks like it's the same, but it's not -->
 
         <div class="col-md-4 col-md-pull-8 package-set-block__no-padding-right">
           <div class="package-set-block__content">
-            <h2>TITLE</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam dignissim velit quis velit tempor, vel rutrum metus cursus. Vestibulum lacinia justo eget sem varius imperdiet.</p>
-            <a href="#" class="main-button__hollow">GO TO SHOP</a>
+            <h2><%= package_set.name %></h2>
+            <p><%= package_set.desc %></p>
+            <%= link_to "BUY IT", guest_package_set_path(package_set), method: :patch, class: "main-button__hollow" %>
           </div>
         </div>
       </div>
@@ -50,5 +50,10 @@ it looks like it's the same, but it's not -->
 </div>
 
 <% end %>
+
+<!-- <%= package_set.name %>
+<br />
+<%= link_to "Buy it", guest_package_set_path(package_set), method: :patch %> -->
+
 
 <div class="+spacer"></div>

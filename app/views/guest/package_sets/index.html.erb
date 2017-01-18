@@ -2,14 +2,8 @@
 
 <%= render "guest/package_sets/index/navigation" %>
 
+<% @package_sets.each_with_index do |package_set, index| %>
 
-<%= render "guest/package_sets/index/block", :options => { :reversed => false }, :package_set => @package_sets.first %>
-<%= render "guest/package_sets/index/block", :options => { :reversed => true }, :package_set => @package_sets.first %>
+  <%= render "guest/package_sets/index/block", :options => { :reversed => (index % 2 != 0) }, :package_set => @package_sets.first %>
 
-<!-- <% @package_sets.each do |package_set| %>
-
-  <%= package_set.name %>
-  <br />
-  <%= link_to "Buy it", guest_package_set_path(package_set), method: :patch %>
-
-<% end %> -->
+<% end %>
