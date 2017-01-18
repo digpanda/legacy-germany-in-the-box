@@ -43,8 +43,8 @@ class Shopkeeper::OrdersController < ApplicationController
     # we go back now
     EmitNotificationAndDispatchToUser.new.perform({
                                                       user: order.user,
-                                                      title: 'Change me',
-                                                      desc: 'Change me too'
+                                                      title: '你的订单已出货',
+                                                      desc: "你的订单已被商家寄出，你可透过物流跟踪连接追踪包裹：#{order.border_guru_link_tracking}"
                                                   })
     flash[:success] = I18n.t(:order_processing, scope: :notice)
     redirect_to(:back)
