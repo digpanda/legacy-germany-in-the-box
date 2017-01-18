@@ -167,15 +167,15 @@ class Shop
   end
 
   def can_change_to_billing?
-    self.addresses.size == 1 || self.addresses.is_only_billing.size < Rails.configuration.max_num_shop_billing_addresses
+    self.addresses.size == 1 || self.addresses.is_only_billing.size < Rails.configuration.achat[:max_num_shop_billing_addresses]
   end
 
   def can_change_to_sender?
-    self.addresses.size == 1 || self.addresses.is_only_shipping.size < Rails.configuration.max_num_shop_sender_addresses
+    self.addresses.size == 1 || self.addresses.is_only_shipping.size < Rails.configuration.achat[:max_num_shop_sender_addresses]
   end
 
   def can_change_to_both?
-    self.addresses.size == 1 || self.addresses.is_only_both.size < [Rails.configuration.max_num_shop_billing_addresses, Rails.configuration.max_num_shop_sender_addresses].min && (self.shop.addresses.is_only_billing.size < Rails.configuration.max_num_shop_billing_addresses || self.shop.addresses.is_only_shipping.size < Rails.configuration.max_num_shop_sender_addresses)
+    self.addresses.size == 1 || self.addresses.is_only_both.size < [Rails.configuration.achat[:max_num_shop_billing_addresses], Rails.configuration.achat[:max_num_shop_sender_addresses]].min && (self.shop.addresses.is_only_billing.size < Rails.configuration.achat[:max_num_shop_billing_addresses] || self.shop.addresses.is_only_shipping.size < Rails.configuration.achat[:max_num_shop_sender_addresses])
   end
 
   private
