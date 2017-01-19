@@ -1,23 +1,35 @@
 +component(shop-page-product)
 
-  //padding: 0.5em
-  border: 5px $color-grey solid
-  +border-radius(0.5em)
-
-  +option(no-border)
-    border: 0px
-
-  background-color: white
+  +border-radius(4px)
+  +shadow-box
+  padding-bottom: 1em
+  height: 38em
 
   color: $color-black
+
   a
     color: $color-black
 
-  h2
-    margin: 0em
-    margin-top: 0.5em
-    font-size: 1.7em
-    +truncate(95%)
+  +part(description)
+    +centered
+    width: 80%
+
+    *
+      text-align: left
+
+    h2
+      margin-top: 0.5em
+      font-size: 1.7em
+    h3
+      margin-top: -0.5em
+      font-size: 1.2em
+      color: $color-dark-grey
+      +truncate(100%)
+
+    p
+      margin-top: -0.5em
+      color: $color-light-grey
+
 
   +part(discount)
     position: absolute
@@ -31,6 +43,7 @@
     z-index: 5
     +border-radius(50%)
     +rotate(20deg)
+
     div
       font-size: 18px
       margin-top: 0.3em
@@ -38,17 +51,11 @@
       text-align: center
 
   +part(image)
-    background-color: $color-white
-    height: 17em
-    width: 12em
+    height: 20em
+    width: 80%
 
     margin: 0 auto
     display: block
-
-    // -webkit-background-size: cover
-    // -moz-background-size: cover
-    // -o-background-size: cover
-    // background-size: cover
 
     -webkit-background-size: 100% auto
     -moz-background-size: 100% auto
@@ -65,33 +72,11 @@
       max-width: 100%
       max-height: 22em
 
-  +part(description)
-
-    width: 95%
-    margin: 0 auto
-    margin-top: 0.3em
-    margin-bottom: 1em
-
-    +option(text)
-      width: 100%
-      font-size: 13px
-
-    +option(prices)
-      width: 100%
-
   +part(purchase)
 
     +option(like)
       z-index: 3
       color: $color-red
-      min-height: 30px
-      line-height: 1.5em
-      text-align: center
-      font-size: 20px
-
-    +option(buy)
-      z-index: 3
-      color: $color-blue
       min-height: 30px
       line-height: 1.5em
       text-align: center

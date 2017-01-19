@@ -2595,7 +2595,9 @@ var ProductFavorite = {
 
   doLikeDisplay: function doLikeDisplay(el) {
 
-    $(el).addClass('+red');
+    $(el).addClass('+pink');
+    $(el).find('i').removeClass('fa-heart-o');
+    $(el).find('i').addClass('fa-heart');
     $(el).removeClass('+grey');
     $(el).attr('data-favorite', '1');
   },
@@ -2619,8 +2621,10 @@ var ProductFavorite = {
 
   doUnlikeDisplay: function doUnlikeDisplay(el) {
 
-    $(el).removeClass('+red');
+    $(el).removeClass('+pink');
     $(el).addClass('+grey');
+    $(el).find('i').addClass('fa-heart-o');
+    $(el).find('i').removeClass('fa-heart');
     $(el).attr('data-favorite', '0');
   }
 };

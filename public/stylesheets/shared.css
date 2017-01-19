@@ -224,6 +224,9 @@
 #csstyle .\+red {
   color: #d6506c; }
 
+#csstyle .\+pink {
+  color: #f29cae; }
+
 #csstyle .\+green {
   color: #659443; }
 
@@ -267,6 +270,12 @@
   color: #d6506c;
   text-decoration: line-through; }
 
+#csstyle .\+barred-price {
+  text-decoration: line-through;
+  color: #8b8b8b;
+  font-weight: bold;
+  font-size: 1.2em; }
+
 #csstyle .\+crossed {
   text-decoration: line-through; }
 
@@ -275,11 +284,12 @@
 
 #csstyle .\+price-yuan {
   font-size: 1.6em;
-  color: #659443; }
+  color: #d6506c;
+  font-weight: bold; }
 
 #csstyle .\+price-euro {
   font-size: 1em;
-  color: #ABABA8; }
+  color: #d6506c; }
 
 #csstyle .\+quoted {
   font-family: 'Raleway', sans-serif;
@@ -297,10 +307,10 @@
   bottom: 0;
   background-color: black;
   opacity: 0.4;
-  -webkit-border-radius: 0.5em;
-  -moz-border-radius: 0.5em;
-  -ms-border-radius: 0.5em;
-  border-radius: 0.5em; }
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  border-radius: 4px; }
 
 #csstyle .\+onoverlay {
   position: relative;

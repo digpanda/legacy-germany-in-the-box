@@ -1,9 +1,9 @@
     <% unless current_user.nil? %>
 
     <% if product.decorate.favorite_of?(current_user) %>
-    <a href="#" class="js-heart-click +red hvr-pulse-shrink" data-product-id="<%= product.id %>" data-favorite="1"><i class="fa fa-heart"></i></a>
+    <a href="#" class="js-heart-click +pink" data-product-id="<%= product.id %>" data-favorite="1"><i class="fa fa-heart"></i></a>
     <% else %>
-    <a href="#" class="js-heart-click +grey hvr-pulse-grow" data-product-id="<%= product.id %>" data-favorite="0"><i class="fa fa-heart"></i></a>
+    <a href="#" class="js-heart-click +grey" data-product-id="<%= product.id %>" data-favorite="0"><i class="fa fa-heart-o"></i></a>
     <% end %>
 
     <% end %>

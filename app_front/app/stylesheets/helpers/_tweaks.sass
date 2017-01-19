@@ -164,6 +164,9 @@
 +tweak(red)
   color: $color-red
 
++tweak(pink)
+  color: $color-pink
+
 +tweak(green)
   color: $color-green
 
@@ -206,6 +209,12 @@
   color: $color-red
   text-decoration: line-through
 
++tweak(barred-price)
+  +crossed
+  color: $color-light-grey
+  font-weight: bold
+  font-size: 1.2em
+
 +tweak(crossed)
   +crossed
 
@@ -214,11 +223,12 @@
 
 +tweak(price-yuan)
   font-size: 1.6em
-  color: $color-green
+  color: $color-red
+  font-weight: bold
 
 +tweak(price-euro)
   font-size: 1em
-  color: $color-dark-grey
+  color: $color-red
 
 +tweak(quoted)
   font-family: 'Raleway', sans-serif

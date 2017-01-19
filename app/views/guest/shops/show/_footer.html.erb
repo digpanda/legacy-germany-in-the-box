@@ -1,4 +1,4 @@
-<div class="col-md-12 shop-page-footer"> <!-- style="background-image:url(<%= shop.decorate.image_url(:banner, :detail) %>);" -->
+<div class="col-md-12 shop-page-footer">
 
   <!-- Content -->
   <div class="container-fluid">
@@ -8,7 +8,7 @@
         <hr>
 
         <!-- Images of the shop -->
-        <%= render partial: "guest/shops/show/footer_images", :locals => {shop: shop} %>
+        <%= render partial: "guest/shops/show/footer/images", :locals => {shop: shop} %>
 
         <div class="+small-spacer"></div>
 
@@ -43,6 +43,4 @@
     </div>
     <!-- End of Content -->
   </div>
-</div>
-<div class="row +spacer">
 </div>
