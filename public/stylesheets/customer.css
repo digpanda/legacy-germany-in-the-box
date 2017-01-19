@@ -1771,19 +1771,11 @@ body {
   background-position: center center; }
 
 .shop-page-footer {
-  background: no-repeat center center;
-  background-size: cover;
-  color: #ffffff;
-  border: 2px #eeeeee solid;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  -ms-border-radius: 4px;
-  border-radius: 4px;
-  min-height: 200px;
+  box-shadow: 0px 6px 15px 4px rgba(139, 139, 139, 0.32);
   color: #666;
-  padding: 0;
-  background-color: white; }
+  padding: 2.5em; }
   .shop-page-footer h3 {
+    font-weight: bold;
     margin-top: 1em;
     color: #666;
     text-transform: uppercase; }

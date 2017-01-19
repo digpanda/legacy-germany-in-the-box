@@ -1,0 +1,13 @@
+<% %w(philosophy stories uniqueness german_essence).each do |detail_attribute| %>
+
+  <% if shop.public_send("#{detail_attribute}?") %>
+
+    <div>
+      <h3><%= I18n.t(detail_attribute.to_sym, scope: :title) %></h3>
+      <%= simple_format(shop.public_send(detail_attribute)) %>
+      <hr>
+    </div>
+
+  <% end %>
+
+<% end %>
