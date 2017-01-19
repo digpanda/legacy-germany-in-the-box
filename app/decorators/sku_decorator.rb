@@ -51,7 +51,7 @@ class SkuDecorator < Draper::Decorator
   end
 
   def data?
-    !self.data.nil? || (self.data.is_a?(String) && !self.data.trim.empty?)
+    !self.data.nil? && (self.data.is_a?(String) && !self.data.empty?)
   end
 
   def price_with_currency_yuan

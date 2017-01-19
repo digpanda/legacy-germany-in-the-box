@@ -1,0 +1,36 @@
+<div class="product-page__description">
+
+  <% unless sku.product.decorate.format_desc.empty? %>
+
+  <h3><%= I18n.t(:description, scope: :title) %></h3>
+
+  <%= sku.product.decorate.format_desc %>
+
+
+  <hr />
+
+  <% end %>
+
+  <div id="product-file-attachment-and-data">
+
+    <% if sku.more_description? %>
+
+    <h3><%= I18n.t(:more, scope: :title) %></h3>
+
+    <% if sku.data? %>
+    <%= sku.decorate.format_data %>
+    <hr />
+
+    <% end %>
+
+    <br />
+
+    <% if sku.attach0.file %>
+    <a class="btn btn-default" target="_blank" href="<%= sku.attach0.url %>">PDF Documentation</a>
+    <% end %>
+
+    <% end %>
+
+  </div>
+
+</div>

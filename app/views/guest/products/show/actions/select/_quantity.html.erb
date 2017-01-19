@@ -1,0 +1,34 @@
+<!-- Quantity for product select -->
+<div class="product-select">
+
+<span>
+  <%= I18n.t(:quantity, scope: :cart) %>
+</span>
+
+<% if product.decorate.can_buy? %>
+
+  <div class="input-group product-select__quantity">
+
+    <!-- Minus -->
+    <span class="input-group-btn">
+      <button type="button" id="quantity-minus" class="btn btn-default btn-number product-select__minus">
+        <span class="glyphicon glyphicon-minus"></span>
+      </button>
+    </span>
+
+    <!-- Current quantity -->
+    <input id="quantity" name="sku[quantity]" data-max="<%= product.decorate.featured_sku.decorate.max_added_to_cart %>" class="form-control input-number product-select__quantity" type="text" min="1" max="100" value="1">
+
+    <!-- Plus -->
+    <span class="input-group-btn">
+      <button type="button" id="quantity-plus" class="btn btn-default btn-number product-select__plus" data-type="plus" data-field="quant[1]">
+        <span class="glyphicon glyphicon-plus"></span>
+      </button>
+    </span>
+
+  </div>
+
+
+<% end %>
+
+</div>

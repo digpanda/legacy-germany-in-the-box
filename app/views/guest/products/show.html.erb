@@ -1,34 +1,33 @@
 <%= translation_js(:more, :title) %>
 
-<div class="+spacer"></div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="product-page">
 
-  <div class="row col-md-8 col-md-push-2 col-md-pull-2 product-page">
+      <!-- TODO : put breadcrumb here -->
 
-    <!-- Preview -->
-    <div class="col-md-6">
+      <div class="row">
 
-      <%= render partial: "guest/products/show/images", :locals => {product: @product} %>
+        <!-- Detailled description -->
+        <div class="col-md-3">
+          <%= render partial: "guest/products/show/description", :locals => {sku: @featured_sku} %>
+        </div>
+
+        <!-- Preview -->
+        <div class="col-md-6">
+          <%= render partial: "guest/products/show/images", :locals => {product: @product} %>
+        </div>
+
+        <!-- Title, Brand and some Actions -->
+        <div class="col-md-3">
+          <%= render partial: "guest/products/show/actions", :locals => {product: @product} %>
+        </div>
+
+      </div>
 
     </div>
-
-    <!-- Shop + Product description -->
-    <div class="col-md-6 col-xs-12">
-
-      <%= render partial: "guest/products/show/details", :locals => {product: @product} %>
-
-    </div>
-
-    </div>
-
-    <!-- Shop Footer -->
-    <div class="row col-md-8 col-md-push-2 col-md-pull-2">
-
-      <div class="+spacer"></div>
-      <%= render partial: "guest/shops/show/footer", :locals => { :shop => @product.shop.decorate } %>
-
-    </div>
-
-
-  <div class="row">
-    <div class="+spacer"></div>
   </div>
+</div>
+
+<!-- Shop Footer -->
+<%= render partial: "guest/shops/show/footer", :locals => { :shop => @product.shop.decorate } %>
