@@ -16,9 +16,6 @@
     <% if sku %>
 
         <%= render partial: "guest/products/show/actions/select/sku", :locals => {product: sku.product} %>
-
-        <div class="+small-spacer"></div>
-
         <%= render partial: "guest/products/show/actions/select/quantity", :locals => {product: sku.product} %>
 
         <button type="submit" class="main-button__solid --full" <%= !enough_inventory(sku.product.decorate.featured_sku, 1) ? "disabled" : "" %> >

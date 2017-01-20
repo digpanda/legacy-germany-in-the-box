@@ -651,6 +651,7 @@ var ProductsShow = {
 
     old_quantity = parseInt(old_quantity);
     var old_price = $(selector).html();
+    console.log(selector);
     var unit_price = parseFloat(old_price) / parseInt(old_quantity);
 
     if (option == 'grow') {

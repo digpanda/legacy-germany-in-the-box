@@ -1,18 +1,33 @@
 +component(product-select)
 
-  font-size: 1.5em
+  font-size: 1.2em
 
   & > span
     display: inline-block
     margin-right: 0.3em
     float: left
+    font-size: 1em
 
   +part(quantity)
     margin-bottom: 1em
     width: 40%
     float: left
+    height: 2em
+    vertical-align: top
 
   +part(dropdown)
     margin-bottom: 1em
     width: 40%
     float: left
+    height: 2em
+    font-size: 0.8em
+
+  +part(minus)
+    height: 2em
+    margin-bottom: 0.5em
+    color: $color-light-grey
+
+  +part(plus)
+    height: 2em
+    margin-bottom: 0.5em
+    color: $color-light-grey
