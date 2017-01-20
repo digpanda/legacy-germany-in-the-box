@@ -1431,6 +1431,9 @@
 html {
   box-sizing: border-box; }
 
+input, textarea, select, a, button {
+  outline: none !important; }
+
 *, *:before, *:after {
   box-sizing: inherit; }
 
