@@ -18,12 +18,8 @@ module DigPanda
   class Application < Rails::Application
 
     config.exceptions_app = self.routes # customized error handling
+    config.autoload_paths += %W(#{config.root}/lib #{config.root}/app/uploaders/concerns)
 
-    config.autoload_paths += %W(#{config.root}/lib)
-    #config.eager_load_paths += %W(#{config.root}/lib)
-
-    # config.autoload_paths << Rails.root.join("lib")
-    # config.eager_load_paths << Rails.root.join("lib")
     #
     # if Rails.env.development?
     #   # this will reload the libraries we are working on

@@ -10,11 +10,12 @@ class Settings
   field :max_total_per_day,     type: BigDecimal, default: 1000
   field :alert, type: String
 
-  # TODO: this should be refactored and abstracted into a new model
-  field :highlight_title,       type: String
-  field :highlight_description, type: String
-  field :highlight_button, type: String
-  
+  field :package_sets_title,       type: String
+  field :package_sets_description, type: String
+  field :package_sets_cover,       type: String
+
+  mount_uploader :package_sets_cover, CoverUploader
+
   validates :platform_currency,       presence: true
   validates :supplier_currency,       presence: true
   validates :exchange_rate_to_yuan,   presence: true,   :numericality => { :greater_than => 0 }

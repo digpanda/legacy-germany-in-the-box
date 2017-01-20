@@ -31,21 +31,16 @@
 <div class="col-md-6 +white-box">
   <%= form_for admin_settings_path, html: {method: 'patch', :data => {:toggle => 'validator'}} do |f| %>
     <div class="form-group">
-      <%= f.label :highlight_title, "Highlight title" %>
-      <%= f.text_field :highlight_title, value: Settings.instance.highlight_title, :autocomplete => :off %>
+      <%= f.label :package_sets_title, "Package sets title" %>
+      <%= f.text_field :package_sets_title, value: Settings.instance.package_sets_title, :autocomplete => :off %>
     </div>
 
     <div class="form-group">
-      <%= f.label :highlight_description, "Highlight description" %>
-      <%= f.text_field :highlight_description, value: Settings.instance.highlight_description, :autocomplete => :off %>
+      <%= f.label :package_sets_description, "Package sets description" %>
+      <%= f.text_field :package_sets_description, value: Settings.instance.package_sets_description, :autocomplete => :off %>
     </div>
 
-    <div class="form-group">
-      <%= f.label :highlight_button, "Highlight button" %>
-      <%= f.text_field :highlight_button, value: Settings.instance.highlight_button, :autocomplete => :off %>
-    </div>
-
-    <%= f.button "Update highlight", :type => 'submit', :class => 'btn btn-primary', name: :user_info_edit_part, value: :edit_settings %>
+    <%= f.button "Update package set", :type => 'submit', :class => 'btn btn-primary', name: :user_info_edit_part, value: :edit_settings %>
   </div>
   <% end %>
 </div>
