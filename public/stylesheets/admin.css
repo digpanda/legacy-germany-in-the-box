@@ -833,11 +833,15 @@
 
 .message {
   padding: 0.5em;
-  margin: 0em;
+  margin: 2em;
   font-weight: 400;
   z-index: 10;
-  top: 1em;
-  position: fixed; }
+  position: fixed;
+  top: 0.5em;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  border-radius: 4px; }
   .message__simple {
     padding: 1em;
     font-size: 18px;
@@ -851,29 +855,17 @@
     padding: 1em;
     background-color: #d6506c;
     font-size: 20px;
-    color: #fdfdfd;
-    -webkit-border-radius: 1em;
-    -moz-border-radius: 1em;
-    -ms-border-radius: 1em;
-    border-radius: 1em; }
+    color: #fdfdfd; }
   .message__success {
     padding: 1em;
     background-color: #3498db;
     font-size: 20px;
-    color: #fdfdfd;
-    -webkit-border-radius: 1em;
-    -moz-border-radius: 1em;
-    -ms-border-radius: 1em;
-    border-radius: 1em; }
+    color: #fdfdfd; }
   .message__green {
     padding: 1em;
     background-color: #659443;
     font-size: 20px;
-    color: #fdfdfd;
-    -webkit-border-radius: 1em;
-    -moz-border-radius: 1em;
-    -ms-border-radius: 1em;
-    border-radius: 1em; }
+    color: #fdfdfd; }
 
 .mobile-category-menu__right {
   float: right;
