@@ -68,7 +68,7 @@ namespace :admin do
     patch :transaction_id
   end
 
-  resource :settings, only: [:show, :update] do
+  resources :settings do
   end
 
 end

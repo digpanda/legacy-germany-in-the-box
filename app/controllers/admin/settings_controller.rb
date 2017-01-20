@@ -1,10 +1,17 @@
 class Admin::SettingsController < ApplicationController
 
+  attr_reader :setting, :settings
+
   authorize_resource :class => false
+  before_action :set_setting
+
   layout :custom_sublayout
 
+  def index
+    redirect_to admin_setting_path(setting)
+  end
+
   def show
-    @settings = Settings.instance
   end
 
   def update
@@ -15,9 +22,14 @@ class Admin::SettingsController < ApplicationController
 
   private
 
+  # setting is a special case
+  # we have only one instance (for now)
+  def set_setting
+    @setting ||= Settings.instance
+  end
+
   def settings_params
-    delocalize_config = { :exchange_rate_to_yuan => :number, :max_total_per_day => :number }
-    params.require('/admin/settings').permit!.delocalize(delocalize_config)
+    params.require(:settings).permit!
   end
 
 end
