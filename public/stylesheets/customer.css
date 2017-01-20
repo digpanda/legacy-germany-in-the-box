@@ -1391,32 +1391,55 @@ body {
   background-color: #eeeeee;
   background-size: cover;
   background-position: center center;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -ms-border-radius: 5px;
-  border-radius: 5px;
-  box-shadow: 0px 6px 15px 4px rgba(139, 139, 139, 0.32);
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  border-radius: 4px;
   min-height: 400px; }
 
-.landing-banner {
+.landing-banner-desktop {
   background-color: #eeeeee;
   background-size: cover;
   background-position: center center;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -ms-border-radius: 5px;
-  border-radius: 5px;
-  box-shadow: 0px 6px 15px 4px rgba(139, 139, 139, 0.32);
-  min-height: 400px; }
-  .landing-banner__content {
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  border-radius: 4px;
+  min-height: 400px;
+  box-shadow: 0px 6px 15px 4px rgba(139, 139, 139, 0.32); }
+  .landing-banner-desktop__content {
     color: #ffffff;
     text-align: center;
     margin: 0 auto;
     padding-top: 8em;
     padding-bottom: 5em; }
-    .landing-banner__content h2 {
+    .landing-banner-desktop__content h2 {
       font-size: 3em; }
-    .landing-banner__content p {
+    .landing-banner-desktop__content p {
+      font-size: 1.7em;
+      padding-bottom: 0.5em; }
+
+.landing-banner-mobile {
+  background-color: #eeeeee;
+  background-size: cover;
+  background-position: center center;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  border-radius: 4px;
+  min-height: 400px;
+  border-radius: 0;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px; }
+  .landing-banner-mobile__content {
+    box-shadow: 0px 6px 15px 4px rgba(139, 139, 139, 0.32);
+    text-align: center;
+    padding: 1em;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px; }
+    .landing-banner-mobile__content h2 {
+      font-size: 3em; }
+    .landing-banner-mobile__content p {
       font-size: 1.7em;
       padding-bottom: 0.5em; }
 

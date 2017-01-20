@@ -1,14 +1,27 @@
 <!-- Big banner container -->
 <% if Settings.instance.highlight_title&.present? %>
-<div class="row">
+<div class="row +desktop">
   <div class="col-md-12">
-    <div class="landing-banner lazy" data-original="<%= '/images/categories/category-banner-sample.jpg' %>" style="background-image:url('/images/grey.gif');">
-      <div class="landing-banner__content">
+    <div class="landing-banner-desktop lazy" data-original="<%= '/images/categories/category-banner-sample.jpg' %>" style="background-image:url('/images/grey.gif');">
+      <div class="landing-banner-desktop__content">
         <h2><%= Settings.instance.highlight_title %></h2>
         <p><%= Settings.instance.highlight_description %></p>
         <a href="<%= guest_products_highlight_path %>" class="main-button__hollow"><%= Settings.instance.highlight_button %></a>
       </div>
     </div>
   </div>
+</div>
+<div class="row +mobile">
+  <div class="col-xs-12">
+    <div class="landing-banner-mobile lazy" data-original="<%= '/images/categories/category-banner-sample.jpg' %>" style="background-image:url('/images/grey.gif');">
+    </div>
+  </div>
+  <div class="col-xs-12">
+    <div class="landing-banner-mobile__content">
+    <h2><%= Settings.instance.highlight_title %></h2>
+    <p><%= Settings.instance.highlight_description %></p>
+    <a href="<%= guest_products_highlight_path %>" class="main-button__hollow"><%= Settings.instance.highlight_button %></a>
+  </div>
+</div>
 </div>
 <% end %>

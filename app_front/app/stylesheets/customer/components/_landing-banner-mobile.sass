@@ -1,15 +1,17 @@
-+component(landing-banner)
++component(landing-banner-mobile)
 
   +header-banner
 
+  border-radius: 0
+  +border-radius-top(4px)
+
   +part(content)
 
-    color: $color-white
+    +shadow-box
 
     text-align: center
-    margin: 0 auto
-    padding-top: 8em
-    padding-bottom: 5em
+    padding: 1em
+    +border-radius-bottom(4px)
 
     h2
       font-size: 3em
