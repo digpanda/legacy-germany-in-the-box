@@ -1165,13 +1165,14 @@ body {
   padding: 2em;
   margin-bottom: 2em; }
   .product-page__fullsize-image {
-    min-height: 30em;
+    min-height: 25em;
     margin-bottom: 1em; }
   .product-page__thumbnail-image {
     background-position: center center;
     background-size: cover;
     height: 7em;
-    min-width: 5em; }
+    min-width: 5em;
+    margin-bottom: 1em; }
   .product-page__description h3 {
     font-weight: bold; }
   .product-page__actions * {
