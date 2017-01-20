@@ -30,7 +30,7 @@ class Product
   accepts_nested_attributes_for :skus
   accepts_nested_attributes_for :options
 
-  mount_uploader :cover, ProductImageUploader # deprecated ?
+  mount_uploader :cover, ProductUploader # deprecated ?
 
   validates :name, presence: true, length:   {maximum: MAX_SHORT_TEXT_LENGTH }
   validates :brand , presence: true, length: {maximum: MAX_SHORT_TEXT_LENGTH }

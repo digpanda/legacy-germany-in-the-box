@@ -53,17 +53,17 @@ class Shop
   field :merchant_id,     type: String
   field :bg_merchant_id,  type: String
 
-  mount_uploader :logo,   LogoImageUploader
-  mount_uploader :banner, BannerImageUploader
+  mount_uploader :logo,   LogoUploader
+  mount_uploader :banner, CoverUploader
 
-  mount_uploader :seal0,   ProductImageUploader
-  mount_uploader :seal1,   ProductImageUploader
-  mount_uploader :seal2,   ProductImageUploader
-  mount_uploader :seal3,   ProductImageUploader
-  mount_uploader :seal4,   ProductImageUploader
-  mount_uploader :seal5,   ProductImageUploader
-  mount_uploader :seal6,   ProductImageUploader
-  mount_uploader :seal7,   ProductImageUploader
+  mount_uploader :seal0,   ProductUploader
+  mount_uploader :seal1,   ProductUploader
+  mount_uploader :seal2,   ProductUploader
+  mount_uploader :seal3,   ProductUploader
+  mount_uploader :seal4,   ProductUploader
+  mount_uploader :seal5,   ProductUploader
+  mount_uploader :seal6,   ProductUploader
+  mount_uploader :seal7,   ProductUploader
 
   embeds_many :addresses,   inverse_of: :shop
 

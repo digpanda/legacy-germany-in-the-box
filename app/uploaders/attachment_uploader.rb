@@ -1,8 +1,6 @@
 class AttachmentUploader < CarrierWave::Uploader::Base
 
   include Uploadable
+  include Pdfable
 
-  def extension_white_list
-    %w(pdf)
-  end
 end
