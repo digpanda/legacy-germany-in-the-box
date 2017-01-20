@@ -1,4 +1,7 @@
 zh-CN:
+  favorites:
+    add: Add to favorites
+    remove: Remove from favorites
   shop:
     minimum_order: 本店最少购物额
   action:

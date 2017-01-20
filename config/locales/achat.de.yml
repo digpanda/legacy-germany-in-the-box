@@ -1,4 +1,7 @@
 de:
+  favorites:
+    add: Add to favorites
+    remove: Remove from favorites
   shop:
     minimum_order: Mindestbestellwert
   action:

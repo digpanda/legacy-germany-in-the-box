@@ -2,7 +2,14 @@
 
   +part(hollow)
 
+    display: block
     border: none // remove default button, input styling
+
+    i
+      position: absolute
+      left: 1.6em
+      font-size: 1.3em
+      bottom: 0.8em
 
     font-weight: bold
     background-color: $color-white
@@ -23,6 +30,9 @@
     +option(large)
       padding: 0.7em 5.3em 0.7em 5.3em
 
+    +option(full)
+      width: 100%
+
   +part(solid)
 
     border: none // remove default button, input styling
@@ -32,7 +42,7 @@
     padding: 0.7em 2.5em 0.7em 2.5em
     +border-radius(5px)
     +centered
-      
+
     color: $color-white
 
     &:link, &:hover, &:active, &:visited

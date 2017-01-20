@@ -2528,6 +2528,8 @@ module.exports = Navigation;
 require.register("javascripts/starters/product_favorite.js", function(exports, require, module) {
 "use strict";
 
+var Translation = require('javascripts/lib/translation');
+
 /**
  * ProductFavorite Class
  */
@@ -2596,11 +2598,10 @@ var ProductFavorite = {
 
   doLikeDisplay: function doLikeDisplay(el) {
 
-    $(el).addClass('+pink');
-    $(el).find('i').removeClass('fa-heart-o');
-    $(el).find('i').addClass('fa-heart');
-    $(el).removeClass('+grey');
+    $(el).find('i').addClass('+pink');
+    $(el).find('i').removeClass('+grey');
     $(el).attr('data-favorite', '1');
+    $(el).find('span').html(Translation.find('remove', 'favorites'));
   },
 
   doUnlike: function doUnlike(productId, callback) {
@@ -2622,11 +2623,10 @@ var ProductFavorite = {
 
   doUnlikeDisplay: function doUnlikeDisplay(el) {
 
-    $(el).removeClass('+pink');
-    $(el).addClass('+grey');
-    $(el).find('i').addClass('fa-heart-o');
-    $(el).find('i').removeClass('fa-heart');
+    $(el).find('i').addClass('+grey');
+    $(el).find('i').removeClass('+pink');
     $(el).attr('data-favorite', '0');
+    $(el).find('span').html(Translation.find('add', 'favorites'));
   }
 };
 
