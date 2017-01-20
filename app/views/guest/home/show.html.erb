@@ -2,7 +2,12 @@
 <% if potential_customer? %>
 
   <%= render "guest/home/show/landing_banner" %>
-  <%= render "guest/home/show/shop_block" %>
+
+  <% @shops.each do |shop| %>
+
+    <%= render partial: "guest/shops/block", :locals => { :shop => shop } %>
+
+  <% end %>
 
 <% elsif potential_shopkeeper? %>
 
