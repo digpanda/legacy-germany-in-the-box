@@ -47,10 +47,10 @@ class Sku
   # TODO : this might be in a issue when using the sku from the order item
   # make sure to put the clonage of the images / documentation in the model
   # so it also duplicated when creating from order_item
-  mount_uploader :img0,     ProductImageUploader
-  mount_uploader :img1,     ProductImageUploader
-  mount_uploader :img2,     ProductImageUploader
-  mount_uploader :img3,     ProductImageUploader
+  mount_uploader :img0,     ProductUploader
+  mount_uploader :img1,     ProductUploader
+  mount_uploader :img2,     ProductUploader
+  mount_uploader :img3,     ProductUploader
   mount_uploader :attach0,  AttachmentUploader
 
   validates :price,         presence: true, :numericality => { :greater_than => 0 }

@@ -1,6 +1,6 @@
 class AttachmentUploader < CarrierWave::Uploader::Base
 
-  include Uploadable
-  include Pdfable
+  include Concerns::Uploadable
+  include Concerns::Pdfable
 
 end

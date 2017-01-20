@@ -1,6 +1,6 @@
 class LogoUploader < CarrierWave::Uploader::Base
 
-  include Uploadable
-  include Imageable
+  include Concerns::Uploadable
+  include Concerns::Imageable
 
 end

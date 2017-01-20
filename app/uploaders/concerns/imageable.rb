@@ -1,12 +1,14 @@
-module Imageable
-  extend ActiveSupport::Concern
+module Concerns
+  module Imageable
+    extend ActiveSupport::Concern
 
-  included do
+    included do
 
-    def extension_white_list
-      %w(jpg jpeg png)
+      def extension_white_list
+        %w(jpg jpeg png)
+      end
+
     end
 
   end
-
 end

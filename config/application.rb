@@ -18,7 +18,7 @@ module DigPanda
   class Application < Rails::Application
 
     config.exceptions_app = self.routes # customized error handling
-    config.autoload_paths += %W(#{config.root}/lib #{config.root}/app/uploaders/concerns)
+    config.autoload_paths += %W(#{config.root}/lib #{config.root}/app/decorators/concerns #{config.root}/app/uploaders/concerns)
 
     #
     # if Rails.env.development?

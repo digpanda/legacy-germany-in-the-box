@@ -1,6 +1,6 @@
 class SkuDecorator < Draper::Decorator
 
-  include Imageable
+  include Concerns::Imageable
   include ActionView::Helpers::TextHelper # load some important helpers
 
   delegate_all

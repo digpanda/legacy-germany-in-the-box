@@ -1,12 +1,14 @@
-module Pdfable
-  extend ActiveSupport::Concern
+module Concerns
+  module Pdfable
+    extend ActiveSupport::Concern
 
-  included do
+    included do
 
-    def extension_white_list
-      %w(pdf)
+      def extension_white_list
+        %w(pdf)
+      end
+
     end
-    
-  end
 
+  end
 end
