@@ -1,3 +1,7 @@
+#csstyle .\+block-right {
+  float: right;
+  clear: right; }
+
 @media (max-width: 994px) {
   #csstyle .\+desktop {
     display: none; } }

@@ -1,3 +1,7 @@
+#csstyle .\+block-right {
+  float: right;
+  clear: right; }
+
 @media (max-width: 994px) {
   #csstyle .\+desktop {
     display: none; } }
@@ -1553,6 +1557,7 @@ body {
 
 .main-button__hollow {
   display: block;
+  width: 20em;
   border: none;
   font-weight: bold;
   background-color: #ffffff;
