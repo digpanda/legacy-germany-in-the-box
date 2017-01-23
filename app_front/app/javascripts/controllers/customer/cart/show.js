@@ -123,12 +123,17 @@ var CustomerCartShow = {
 
   resetHeaderCartQuantity: function() {
 
-    var total = 0;
-
-    $('[id^="order-item-quantity-"]').each(function(e) {
-      total += parseInt($(this).val());
-      $('#total-products').html(total);
-    })
+    /**
+     * NOTE : This system was cancelled because we don't show
+     * the number of product within the cart
+     * - Laurent, 23/01/2017
+     */
+    // var total = 0;
+    //
+    // $('[id^="order-item-quantity-"]').each(function(e) {
+    //   total += parseInt($(this).val());
+    //   $('#total-products').html(total);
+    // })
 
   },
 

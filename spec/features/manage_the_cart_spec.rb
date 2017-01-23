@@ -14,7 +14,7 @@ feature "manage the cart", :js => true  do
       on_product_page?
       page.first('.product-quantity button').click
       on_shop_page?
-      page.first('#total-products').click
+      page.first('#cart').click
       on_chinese_login_page?
 
     end

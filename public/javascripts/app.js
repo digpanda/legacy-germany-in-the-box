@@ -447,12 +447,18 @@ var CustomerCartShow = {
 
   resetHeaderCartQuantity: function resetHeaderCartQuantity() {
 
-    var total = 0;
+    /**
+     * NOTE : This system was cancelled because we don't show
+     * the number of product within the cart
+     * - Laurent, 23/01/2017
+     */
+    // var total = 0;
+    //
+    // $('[id^="order-item-quantity-"]').each(function(e) {
+    //   total += parseInt($(this).val());
+    //   $('#total-products').html(total);
+    // })
 
-    $('[id^="order-item-quantity-"]').each(function (e) {
-      total += parseInt($(this).val());
-      $('#total-products').html(total);
-    });
   },
 
   rollbackQuantity: function rollbackQuantity(originQuantity, orderItemId, res) {

@@ -17,7 +17,7 @@ class Guest::ShopsController < ApplicationController
   end
 
   def set_products
-    if from_category
+    if from_category.present?
       @products = shop.products.where(category_ids: from_category).can_buy.by_brand
     else
       @products = shop.products.can_buy.by_brand

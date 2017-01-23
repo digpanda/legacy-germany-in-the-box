@@ -14,7 +14,7 @@ feature "checkout process", :js => true  do
 
     before(:each) do
       add_to_cart!(product)
-      page.first('#total-products').click # go to checkout
+      page.first('#cart').click # go to checkout
       page.first('.\\+checkout-button').click # go to address step
     end
 
@@ -118,7 +118,7 @@ feature "checkout process", :js => true  do
         scenario "pay successfully and generate shipping label correctly" do
 
           # we go back to the cart
-          page.first('#total-products').click
+          page.first('#cart').click
           expect(page).to have_content("-20%")
           # we check the 20% off is shown on the cart before all
           page.first('.\\+checkout-button').click # go to address step
