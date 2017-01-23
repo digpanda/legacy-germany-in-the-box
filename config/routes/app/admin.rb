@@ -23,6 +23,7 @@ namespace :admin do
     delete :destroy_image
 
     resources :package_sets, :controller => 'shops/package_sets' do
+      delete :destroy_image
     end
 
     resources :products, :controller => 'shops/products' do
@@ -69,6 +70,7 @@ namespace :admin do
   end
 
   resources :settings do
+    delete :destroy_image
   end
 
 end

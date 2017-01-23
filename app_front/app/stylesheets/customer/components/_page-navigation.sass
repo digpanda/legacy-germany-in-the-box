@@ -2,19 +2,30 @@
 
   margin-top: 1em
   margin-bottom: 1em
+  min-height: 3em
   padding: 0.5em
-  +border-radius(3px)
 
+  +border-radius(3px)
   +shadow-box
 
   color: $color-light-grey
+
+  a
+    color: $color-light-grey
   i
     color: $color-super-light-grey
 
   +part(left)
+    margin-top: 0.2em
+    ol
+      margin-top: 0.4em
 
   +part(middle)
     +centered
+    ol
+      text-align: center
+    margin-top: 0.5em
 
   +part(right)
     float: right
+    margin-top: 0.2em

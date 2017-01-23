@@ -346,6 +346,11 @@
   background-color: #8b8b8b;
   border: 3px white solid; }
 
+.nice {
+  font-size: 0.8em;
+  height: 2.5em;
+  line-height: 2.5em; }
+
 body {
   line-height: 1.6 !important;
   letter-spacing: 1px !important;
@@ -953,7 +958,7 @@ body {
     content: '\f105';
     font-family: 'FontAwesome';
     padding: 0 7px;
-    color: #83be58; }
+    color: #8b8b8b; }
 
 .main-footer {
   padding-top: 1.3em;
@@ -1725,6 +1730,7 @@ body {
 .page-navigation {
   margin-top: 1em;
   margin-bottom: 1em;
+  min-height: 3em;
   padding: 0.5em;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
@@ -1732,13 +1738,23 @@ body {
   border-radius: 3px;
   box-shadow: 0px 6px 15px 4px rgba(139, 139, 139, 0.32);
   color: #8b8b8b; }
+  .page-navigation a {
+    color: #8b8b8b; }
   .page-navigation i {
     color: #e1e1e1; }
+  .page-navigation__left {
+    margin-top: 0.2em; }
+    .page-navigation__left ol {
+      margin-top: 0.4em; }
   .page-navigation__middle {
     text-align: center;
-    margin: 0 auto; }
+    margin: 0 auto;
+    margin-top: 0.5em; }
+    .page-navigation__middle ol {
+      text-align: center; }
   .page-navigation__right {
-    float: right; }
+    float: right;
+    margin-top: 0.2em; }
 
 .product-miniblock a {
   color: #5c5c5c; }

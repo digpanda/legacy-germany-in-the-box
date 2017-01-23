@@ -2494,7 +2494,7 @@ module.exports = MobileMenu;
 });
 
 require.register("javascripts/starters/navigation.js", function(exports, require, module) {
-"use strict";
+'use strict';
 
 /**
  * Navigation Class
@@ -2518,6 +2518,9 @@ var Navigation = {
     NavigationModel.setLocation(window.location.href, function (res) {
       // Nothing yet
     });
+
+    console.log('select to be moved elsewhere');
+    $('select.nice').niceSelect();
   }
 
 };

@@ -1,6 +1,6 @@
 <%= render "guest/home/show/landing_banner" %>
 
-<%= render "guest/package_sets/index/navigation" %>
+<%= render partial: "guest/package_sets/index/navigation", :locals => { :package_sets => @package_sets } %>
 
 <% @package_sets.each_with_index do |package_set, index| %>
 

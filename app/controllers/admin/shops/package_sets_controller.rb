@@ -51,6 +51,15 @@ class Admin::Shops::PackageSetsController < ApplicationController
     end
     redirect_to navigation.back(1)
   end
+  
+  def destroy_image
+    if ImageDestroyer.new(setting).perform(params[:image_field])
+      flash[:success] = I18n.t(:removed_image, scope: :action)
+    else
+      flash[:error] = I18n.t(:no_removed_image, scope: :action)
+    end
+    redirect_to navigation.back(1)
+  end
 
   def package_set_params
     params.require(:package_set).permit!
