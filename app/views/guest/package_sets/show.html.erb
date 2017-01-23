@@ -50,7 +50,7 @@
               <div class="+centered">
                 <div class="package-set-infos__original-price"><%= @package_set.casual_price.in_euro.to_yuan.display %></div>
                 <div class="package-set-infos__new-price"><%= @package_set.price.in_euro.to_yuan.display %></div>
-                <div class="package-set-infos__euro-price"><%= @package_set.price.in_euro.display %> ( CHINESE )</div>
+                <div class="package-set-infos__euro-price"><%= @package_set.price.in_euro.display %> ( <%= I18n.t(:subtotal, scope: :cart) %> )</div>
                 <div class="+spacer"></div>
               </div>
             </div>
