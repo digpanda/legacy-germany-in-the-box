@@ -18,6 +18,20 @@ class PackageSet
   end
 
   validates_presence_of :name
+  validates_presence_of :desc
+  validates_presence_of :cover
   validates_with UniquePackageSkuValidator
+
+  def casual_price
+    self.package_skus.reduce(0) do |acc, package_sku|
+      acc + package_sku.sku.price_with_taxes
+    end
+  end
+
+  def price
+    self.package_skus.reduce(0) do |acc, package_sku|
+      acc + package_sku.price
+    end
+  end
 
 end
