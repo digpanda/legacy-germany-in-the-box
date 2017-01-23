@@ -1554,6 +1554,8 @@ body {
   @media (max-width: 994px) {
     .header-mobile {
       display: block; } }
+  .header-mobile li li {
+    font-size: 1em; }
   .header-mobile__categories {
     min-height: 6em; }
     .header-mobile__categories button {
