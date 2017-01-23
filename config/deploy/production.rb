@@ -17,4 +17,4 @@ set :ssh_options, {
   auth_methods: %w(publickey, password)
 }
 
-set :branch, :master
+set :branch, :'pre-release'
