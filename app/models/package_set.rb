@@ -3,6 +3,9 @@ class PackageSet
 
   field :name
   field :desc
+  field :cover,       type: String
+
+  mount_uploader :cover, CoverUploader
 
   belongs_to :shop, inverse_of: :package_sets
   embeds_many :package_skus, inverse_of: :package_set, cascade_callbacks: true
