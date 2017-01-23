@@ -1173,6 +1173,11 @@ body {
   box-shadow: 0px 6px 15px 4px rgba(139, 139, 139, 0.32);
   padding: 2em;
   margin-bottom: 2em; }
+  @media (max-width: 994px) {
+    .product-page ol {
+      text-align: center;
+      margin: 0 auto;
+      margin-bottom: 1em; } }
   .product-page__fullsize-image {
     min-height: 25em;
     margin-bottom: 1em; }
@@ -1408,6 +1413,26 @@ body {
     text-align: center;
     margin: 0 auto;
     padding-top: 3em; }
+
+.breadcrumb {
+  background: none;
+  color: #8b8b8b;
+  padding: 0em;
+  margin: 0em;
+  font-size: 13px;
+  -webkit-border-radius: 0;
+  border-radius: 0;
+  text-align: left;
+  list-style: none; }
+  .breadcrumb li {
+    display: inline-block; }
+  .breadcrumb a {
+    color: #8b8b8b; }
+  .breadcrumb li + li:before {
+    content: '\f105';
+    font-family: 'FontAwesome';
+    padding: 0 7px;
+    color: #e1e1e1; }
 
 .landing-banner-desktop {
   background-color: #eeeeee;

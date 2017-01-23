@@ -1522,6 +1522,43 @@ var Translation = {
 module.exports = Translation;
 });
 
+require.register("javascripts/lib/url_process.js", function(exports, require, module) {
+'use strict';
+
+/**
+ * UrlProcess Class
+ */
+var UrlProcess = {
+
+    insertParam: function insertParam(key, value) {
+
+        key = encodeURI(key);value = encodeURI(value);
+
+        var kvp = document.location.search.substr(1).split('&');
+
+        var i = kvp.length;var x;while (i--) {
+            x = kvp[i].split('=');
+
+            if (x[0] == key) {
+                x[1] = value;
+                kvp[i] = x.join('=');
+                break;
+            }
+        }
+
+        if (i < 0) {
+            kvp[kvp.length] = [key, value].join('=');
+        }
+
+        //this will reload the page, it's likely better to store this until finished
+        document.location.search = kvp.join('&');
+    }
+
+};
+
+module.exports = UrlProcess;
+});
+
 require.register("javascripts/lib/variants.js", function(exports, require, module) {
 'use strict';
 
@@ -2456,37 +2493,44 @@ module.exports = Messages;
 });
 
 require.register("javascripts/starters/mobile_menu.js", function(exports, require, module) {
-'use strict';
+"use strict";
 
 /**
  * MobileMenu Class
  */
 var MobileMenu = {
 
-    /**
-     * Initializer
-     */
-    init: function init() {
+  /**
+   * Initializer
+   */
+  init: function init() {
 
-        this.startMobileMenu();
-    },
+    this.startMobileMenu();
+  },
 
-    /**
-     *
-     */
-    startMobileMenu: function startMobileMenu() {
+  /**
+   *
+   */
+  startMobileMenu: function startMobileMenu() {
 
-        this.manageFade();
-    },
+    this.manageFade();
+  },
 
-    manageFade: function manageFade() {
+  manageFade: function manageFade() {
 
-        $('.navmenu').on('show.bs.offcanvas', function () {
-            $('.canvas').addClass('sliding');
-        }).on('shown.bs.offcanvas', function () {}).on('hide.bs.offcanvas', function () {
-            $('.canvas').removeClass('sliding');
-        }).on('hidden.bs.offcanvas', function () {});
-    }
+    // $('.navmenu')
+    //     .on('show.bs.offcanvas', function () {
+    //     $('.canvas').addClass('sliding');
+    // })
+    //     .on('shown.bs.offcanvas', function () {
+    // })
+    //     .on('hide.bs.offcanvas', function () {
+    //     $('.canvas').removeClass('sliding');
+    // })
+    //     .on('hidden.bs.offcanvas', function () {
+    // });
+
+  }
 
 };
 
@@ -2907,26 +2951,20 @@ var Search = {
    */
   init: function init() {
 
-    this.searchableInput();
+    this.categoryFilter();
   },
 
   /**
    * We make the input searchable on click
    */
-  searchableInput: function searchableInput() {
+  categoryFilter: function categoryFilter() {
 
-    $(document).on('submit', '#search-form', function (e) {
+    $('.js-category-filter').on('change', function (e) {
 
-      var search = $('#search').val();
+      var category_id = $(this).val();
 
-      /**
-       * If the research is empty it doesn't trigger the submit
-       */
-      if (!search.trim()) {
-        return false;
-      } else {
-        return true;
-      }
+      var UrlProcess = require('javascripts/lib/url_process');
+      UrlProcess.insertParam('category_id', category_id);
     });
   }
 

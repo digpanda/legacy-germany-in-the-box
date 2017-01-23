@@ -19,6 +19,9 @@
     <th>
       Updated At
     </th>
+    <th>
+      Action
+    </th>
   </thead>
   <tbody>
     <% categories.each do |category| %>
@@ -40,6 +43,9 @@
       </td>
       <td>
         <%= category.u_at %>
+      </td>
+      <td>
+        <%= link_to '', edit_admin_category_path(category), :class => 'tooltipster fa fa-pencil buttons buttons__edit', :title => "Edit Category" %>
       </td>
     </tr>
   <% end %>

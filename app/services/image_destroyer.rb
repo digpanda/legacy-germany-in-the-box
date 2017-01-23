@@ -10,6 +10,7 @@ class ImageDestroyer < BaseService
   SKU_IMAGE_FIELDS = [:img0, :img1, :img2, :img3]
   SETTING_IMAGE_FIELDS = [:package_sets_cover]
   PACKAGE_SET_IMAGE_FIELDS = [:cover]
+  CATEGORY_IMAGE_FIELDS = [:cover]
 
   attr_reader :model
 
@@ -42,6 +43,8 @@ class ImageDestroyer < BaseService
         SETTING_IMAGE_FIELDS
       when PackageSet
         PACKAGE_SET_IMAGE_FIELDS
+      when Category
+        CATEGORY_IMAGE_FIELDS
       else
         []
       end

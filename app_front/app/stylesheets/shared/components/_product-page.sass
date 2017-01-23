@@ -4,6 +4,12 @@
   padding: 2em
   margin-bottom: 2em
 
+  // for breadcrumb in mobile
+  ol
+    +breakpoint('mobile')
+      +centered
+      margin-bottom: 1em
+
   +part(fullsize-image)
     min-height: 25em
     margin-bottom: 1em

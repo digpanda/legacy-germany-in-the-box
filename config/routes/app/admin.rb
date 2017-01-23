@@ -2,6 +2,7 @@
 namespace :admin do
 
   resources :categories do
+    delete :destroy_image
   end
 
   resources :coupons do

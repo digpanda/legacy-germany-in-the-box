@@ -1,5 +1,7 @@
 class Admin::SettingsController < ApplicationController
 
+  include DestroyImage
+
   attr_reader :setting, :settings
 
   authorize_resource :class => false
@@ -19,15 +21,6 @@ class Admin::SettingsController < ApplicationController
     # this line is here for a reason, please keep it or fix it.
     # NOTE : upload image not persisting if no previous image before
     Settings.instance.save!
-    redirect_to navigation.back(1)
-  end
-
-  def destroy_image
-    if ImageDestroyer.new(setting).perform(params[:image_field])
-      flash[:success] = I18n.t(:removed_image, scope: :action)
-    else
-      flash[:error] = I18n.t(:no_removed_image, scope: :action)
-    end
     redirect_to navigation.back(1)
   end
 

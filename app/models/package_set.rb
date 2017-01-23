@@ -1,6 +1,7 @@
 class PackageSet
   include MongoidBase
-
+  include EntryPosition
+  
   field :name
   field :desc
   field :cover,       type: String
@@ -32,14 +33,6 @@ class PackageSet
     self.package_skus.reduce(0) do |acc, package_sku|
       acc + package_sku.total_price
     end
-  end
-
-  def previous
-    self.class.where(:_id.lt => self._id).order_by([[:_id, :desc]]).limit(1).first
-  end
-
-  def next
-    self.class.where(:_id.gt => self._id).order_by([[:_id, :asc]]).limit(1).first
   end
 
 end
