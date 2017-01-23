@@ -30,7 +30,7 @@ class PackageSet
 
   def price
     self.package_skus.reduce(0) do |acc, package_sku|
-      acc + package_sku.price
+      acc + package_sku.total_price
     end
   end
 

@@ -16,4 +16,8 @@ class PackageSku
     @sku ||= product.skus.find(sku_id)
   end
 
+  def total_price
+    price * quantity
+  end
+
 end
