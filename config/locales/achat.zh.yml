@@ -1,4 +1,6 @@
 zh-CN:
+  package_set:
+    more_info:
   favorites:
     add: Add to favorites
     remove: Remove from favorites

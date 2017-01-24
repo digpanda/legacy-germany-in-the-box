@@ -20,14 +20,16 @@ feature "language#update process", :js => true  do
 
   context "as guest" do
 
-    scenario "switch from customer to shopkeeper site and change language automatically" do
-
-      visit root_path
-      expect(page).to have_content('来因盒') # Germany in the Box (in Chinese)
-      click_link 'Partner-Hersteller Werden'
-      expect(page).to have_content('Möchten Sie etwas kaufen?') # We are on the shopkeeper site
-
-    end
+    # NOTE : doesn't exist anymore
+    # - Laurent, 24/01/2017
+    # scenario "switch from customer to shopkeeper site and change language automatically" do
+    #
+    #   visit root_path
+    #   expect(page).to have_content('来因盒') # Germany in the Box (in Chinese)
+    #   click_link 'Partner-Hersteller Werden'
+    #   expect(page).to have_content('Möchten Sie etwas kaufen?') # We are on the shopkeeper site
+    #
+    # end
 
   end
 

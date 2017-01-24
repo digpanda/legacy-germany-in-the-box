@@ -23,7 +23,7 @@ feature "visits the shops", :js => true  do
     on_shop_page?
     page.first('.shop-page-product__image').click
     on_product_page?
-    page.first('.product-quantity button').click
+    page.first('button[type=submit]').click
     on_shop_page?
     #show_total_products(1)
 
@@ -36,7 +36,7 @@ feature "visits the shops", :js => true  do
     page.first('.shop-page-product__image').click
     on_product_page?
     2.times { page.first('#quantity-plus').click } # click 2 times to make 3
-    page.first('.product-quantity button').click
+    page.first('button[type=submit]').click
     on_shop_page?
     #show_total_products(3)
 
