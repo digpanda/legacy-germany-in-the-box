@@ -42,8 +42,6 @@ class SkuDecorator < Draper::Decorator
     !self.data.nil? && (self.data.is_a?(String) && !self.data.empty?)
   end
 
-=======
->>>>>>> staging
   def price_with_currency_yuan
     price_with_taxes.in_euro.to_yuan.display
   end
