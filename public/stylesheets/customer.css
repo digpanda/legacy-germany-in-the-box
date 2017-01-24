@@ -773,12 +773,7 @@ body {
   margin-bottom: 1em; }
 
 .white-table {
-  background-color: #ffffff;
-  padding: 1em;
-  -webkit-border-radius: 1em;
-  -moz-border-radius: 1em;
-  -ms-border-radius: 1em;
-  border-radius: 1em;
+  box-shadow: 0px 0px 20px 2px rgba(139, 139, 139, 0.32);
   width: 100%;
   padding: 2em;
   margin-bottom: 1em;
