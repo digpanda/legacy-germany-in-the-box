@@ -650,8 +650,6 @@
 }
 /*# sourceMappingURL=jasny-bootstrap.css.map */
 
-<<<<<<< HEAD
-=======
 .nice-select {
   -webkit-tap-highlight-color: transparent;
   background-color: #fff;
@@ -791,7 +789,6 @@
 .no-csspointerevents .nice-select.open .list {
   display: block; }
 
->>>>>>> 8ba38c7e5ebe27c1667ef2b981344c0daf14b95e
 html.magnifying > body {
   overflow-x: hidden !important;
 }

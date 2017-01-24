@@ -1846,7 +1846,8 @@ body {
 
 .shop-block__thumbnail {
   min-height: 280px;
-  background-size: cover;
+  background-size: contain;
+  background-repeat: no-repeat;
   background-position: center center; }
 
 .shop-block__button {
@@ -1866,7 +1867,8 @@ body {
 .shop-block__item {
   margin: 0.5em;
   min-height: 120px;
-  background-size: cover;
+  background-size: contain;
+  background-repeat: no-repeat;
   background-position: center center; }
 
 .shop-page-footer {
@@ -1986,10 +1988,7 @@ body {
     width: 80%;
     margin: 0 auto;
     display: block;
-    -webkit-background-size: 100% auto;
-    -moz-background-size: 100% auto;
-    -o-background-size: 100% auto;
-    background-size: 100% auto;
+    background-size: contain;
     background-repeat: no-repeat;
     background-position: center center; }
     .shop-page-product__image img {
