@@ -1781,7 +1781,8 @@ body {
 .product-miniblock__image {
   height: 200px;
   max-width: 300px;
-  background-size: cover;
+  background-size: contain;
+  background-repeat: no-repeat;
   background-position: center center;
   text-align: center;
   margin: 0 auto; }
