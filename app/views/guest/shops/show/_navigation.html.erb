@@ -26,14 +26,14 @@
         <!-- Number of products (split between mobile and desktop) -->
         <div class="col-md-4">
           <div class="page-navigation__middle +desktop">
-           <%= shop.products.count %> products
+            <%= I18n.t(:products, scope: :navigation, num: shop.products.count) %>
           </div>
         </div>
 
         <!-- Number of package sets -->
         <div class="col-md-4 col-xs-6">
           <div class="page-navigation__left +mobile">
-           <%= shop.products.count %> products
+            <%= I18n.t(:products, scope: :navigation, num: shop.products.count) %>
           </div>
         </div>
 

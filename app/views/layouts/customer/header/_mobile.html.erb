@@ -12,8 +12,8 @@
         <nav id="mobile-menu" class="navmenu navmenu-default navmenu-fixed-left offcanvas" role="navigation">
 
           <ul>
-            <li><a href="<%= resolve_profile_path %>" class="header-desktop__menu --green">My Profile</a></li>
-            <li><a href="<%= customer_favorites_path %>" class="header-desktop__menu --pink">My Favorites</a></li>
+            <li><a href="<%= resolve_profile_path %>" class="header-desktop__menu --green"><%= I18n.t(:my_profile, scope: :menu) %></a></li>
+            <li><a href="<%= customer_favorites_path %>" class="header-desktop__menu --pink"><%= I18n.t(:my_favorites, scope: :menu) %></a></li>
             <hr />
             <% @categories.each do |category| %>
             <li>

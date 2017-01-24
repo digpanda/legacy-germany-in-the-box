@@ -1,6 +1,16 @@
 zh-CN:
+  navigation:
+    packages: "%{num} 两个礼包"
+    products: "%{num} 两件产品"
   package_set:
-    more_info:
+    more_info: 查看更多信息
+    buy_it: 购买
+    see_our_campaigns: 查看特惠精品套装
+  menu:
+    my_favorites: 我的收藏
+    my_profile: 我的来因盒
+  shop:
+    go_to_shop: 进入店铺
   favorites:
     add: Add to favorites
     remove: Remove from favorites

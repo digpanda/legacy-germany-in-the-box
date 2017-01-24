@@ -12,7 +12,7 @@
         <!-- Number of package sets -->
         <div class="col-md-4">
           <div class="page-navigation__middle +desktop">
-            <%= package_sets.count %> packages
+            <%= I18n.t(:packages, scope: :navigation, num: package_sets.count) %>
           </div>
         </div>
 
