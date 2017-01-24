@@ -1,18 +1,45 @@
 +component(product-page)
 
-  background-color: $color-white
-  border: 1px $color-grey solid
+  +shadow-box
   padding: 2em
+  margin-bottom: 2em
+
+  // for breadcrumb in mobile
+  ol
+    +breakpoint('mobile')
+      +centered
+      margin-bottom: 1em
 
   +part(fullsize-image)
-    background-color: $color-light-grey
-    min-height: 300px
+    min-height: 25em
     margin-bottom: 1em
-    
+
   +part(thumbnail-image)
-    background-color: $color-light-grey
     background-position: center center
     background-size: cover
-    min-height: 150px
+    height: 7em
+    min-width: 5em
+    margin-bottom: 1em
 
   +part(description)
+    h3
+      font-weight: bold
+
+  +part(actions)
+
+    *
+      text-align: left
+
+    h2
+      margin-top: 0.5em
+      font-size: 1.7em
+      font-weight: bold
+    h3
+      margin-top: -0.5em
+      font-size: 1.2em
+      color: $color-dark-grey
+      +truncate(100%)
+
+    p
+      margin-top: -0.5em
+      color: $color-light-grey

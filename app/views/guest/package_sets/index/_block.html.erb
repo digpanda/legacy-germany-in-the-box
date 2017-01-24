@@ -1,0 +1,51 @@
+<!-- NOTE : multiple minor changes to reverse in mobile
+it looks like it's the same, but it's not -->
+<% if options[:reversed] %>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="package-set-block">
+      <div class="row">
+
+        <div class="col-md-8 package-set-block__no-padding-right">
+          <div class="package-set-block__image lazy" data-original="<%= package_set.cover %>" style="background-image:url('/images/grey.gif');">
+          </div>
+        </div>
+
+        <div class="col-md-4 package-set-block__no-padding-left">
+          <%= render partial: "guest/package_sets/index/block/content", :locals => {:package_set => package_set} %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<% else %>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="package-set-block">
+      <div class="row">
+
+        <div class="col-md-8 col-md-push-4 package-set-block__no-padding-left">
+          <div class="package-set-block__image lazy" data-original="<%= package_set.cover %>" style="background-image:url('/images/grey.gif');">
+          </div>
+        </div>
+
+        <div class="col-md-4 col-md-pull-8 package-set-block__no-padding-right">
+          <%= render partial: "guest/package_sets/index/block/content", :locals => {:package_set => package_set} %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% end %>
+
+<!-- <%= package_set.name %>
+<br />
+<%= link_to "Buy it", guest_package_set_path(package_set), method: :patch %> -->
+
+
+<div class="+spacer"></div>

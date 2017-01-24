@@ -1,0 +1,32 @@
++component(package-set-infos)
+
+  +shadow-box
+  +border-radius(4px)
+  padding: 2em
+  margin-bottom: 2em
+
+  +part(introduction)
+    +centered
+
+  +part(products)
+    +padding-vertical(2em)
+
+  +part(actions)
+    hr
+      width: 50%
+
+  +part(original-price)
+    color: $color-light-grey
+    font-weight: bold
+    font-size: 18px
+    +crossed
+
+  +part(new-price)
+    color: $color-red
+    font-weight: bold
+    font-size: 26px
+    margin-top: -0.3em
+
+  +part(euro-price)
+    color: $color-red
+    margin-top: -0.5em

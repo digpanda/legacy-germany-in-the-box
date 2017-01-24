@@ -1,0 +1,11 @@
+<h3><%= I18n.t(:shop_photo, scope: :title) %></h3>
+
+<div class="row shop-page-footer__images">
+
+  <% 8.times.each do |number| %>
+  <% unless shop.public_send("seal#{number}").url.empty? %>
+  <div class="col-md-2 col-xs-4 shop-page-footer__images --image lazy" data-original="<%= shop.decorate.image_url("seal#{number}", :thumb) %>" style="background-image:url('/images/grey.gif');">
+  </div>
+  <% end %>
+  <% end %>
+</div>

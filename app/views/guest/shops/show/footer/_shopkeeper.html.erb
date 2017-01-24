@@ -1,0 +1,10 @@
+<div>
+  <h3><%= I18n.t(:impressum, scope: :title) %></h3>
+  <%= shop.name %> <br />
+  <%= shop.decorate.manager_full_name %> <br />
+  <%= shop.mail %> <br /> <br />
+  <% unless shop.billing_address.nil? %>
+  <%= shop.billing_address.decorate.imprint_address.html_safe %> <br />
+  <% end %>
+  <hr />
+</div>

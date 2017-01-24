@@ -229,12 +229,6 @@ textarea {
 img {
   max-width: 100%; }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Roboto', arial, helvetica, sans-serif;
-  margin-top: 0;
-  font-weight: 300;
-  color: #4d4d4d; }
-
 h1 small,
 h2 small,
 h3 small,

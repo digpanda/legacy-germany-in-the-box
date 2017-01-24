@@ -1,0 +1,5 @@
+<div class="package-set-block__content">
+  <h2><%= package_set.name %></h2>
+  <p><%= package_set.desc %></p>
+  <%= link_to I18n.t(:more_info, scope: :package_set), guest_package_set_path(package_set), class: "main-button__hollow" %>
+</div>

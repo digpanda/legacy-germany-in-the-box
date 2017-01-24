@@ -1,3 +1,5 @@
+var Translation = require('javascripts/lib/translation');
+
 /**
  * ProductFavorite Class
  */
@@ -77,9 +79,10 @@ var ProductFavorite = {
 
     doLikeDisplay: function(el) {
 
-      $(el).addClass('+red');
-      $(el).removeClass('+grey');
+      $(el).find('i').addClass('+pink');
+      $(el).find('i').removeClass('+grey');
       $(el).attr('data-favorite', '1');
+      $(el).find('span').html(Translation.find('remove', 'favorites'))
 
     },
 
@@ -106,9 +109,10 @@ var ProductFavorite = {
 
     doUnlikeDisplay: function(el) {
 
-      $(el).removeClass('+red');
-      $(el).addClass('+grey');
+      $(el).find('i').addClass('+grey');
+      $(el).find('i').removeClass('+pink');
       $(el).attr('data-favorite', '0');
+      $(el).find('span').html(Translation.find('add', 'favorites'))
 
     },
 }

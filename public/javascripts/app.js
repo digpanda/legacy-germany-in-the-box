@@ -447,12 +447,18 @@ var CustomerCartShow = {
 
   resetHeaderCartQuantity: function resetHeaderCartQuantity() {
 
-    var total = 0;
+    /**
+     * NOTE : This system was cancelled because we don't show
+     * the number of product within the cart
+     * - Laurent, 23/01/2017
+     */
+    // var total = 0;
+    //
+    // $('[id^="order-item-quantity-"]').each(function(e) {
+    //   total += parseInt($(this).val());
+    //   $('#total-products').html(total);
+    // })
 
-    $('[id^="order-item-quantity-"]').each(function (e) {
-      total += parseInt($(this).val());
-      $('#total-products').html(total);
-    });
   },
 
   rollbackQuantity: function rollbackQuantity(originQuantity, orderItemId, res) {
@@ -651,6 +657,7 @@ var ProductsShow = {
 
     old_quantity = parseInt(old_quantity);
     var old_price = $(selector).html();
+    console.log(selector);
     var unit_price = parseFloat(old_price) / parseInt(old_quantity);
 
     if (option == 'grow') {
@@ -1521,6 +1528,43 @@ var Translation = {
 module.exports = Translation;
 });
 
+require.register("javascripts/lib/url_process.js", function(exports, require, module) {
+'use strict';
+
+/**
+ * UrlProcess Class
+ */
+var UrlProcess = {
+
+    insertParam: function insertParam(key, value) {
+
+        key = encodeURI(key);value = encodeURI(value);
+
+        var kvp = document.location.search.substr(1).split('&');
+
+        var i = kvp.length;var x;while (i--) {
+            x = kvp[i].split('=');
+
+            if (x[0] == key) {
+                x[1] = value;
+                kvp[i] = x.join('=');
+                break;
+            }
+        }
+
+        if (i < 0) {
+            kvp[kvp.length] = [key, value].join('=');
+        }
+
+        //this will reload the page, it's likely better to store this until finished
+        document.location.search = kvp.join('&');
+    }
+
+};
+
+module.exports = UrlProcess;
+});
+
 require.register("javascripts/lib/variants.js", function(exports, require, module) {
 'use strict';
 
@@ -1852,7 +1896,7 @@ require.register("javascripts/starters.js", function(exports, require, module) {
 /**
  * Starters Class
  */
-var Starters = ['auto_resize', 'bootstrap', 'china_city', 'datepicker', 'editable_fields', 'footer', 'input_validation', 'images_handler', 'lazy_loader', 'left_menu', 'links_behaviour', 'messages', 'mobile_menu', 'navigation', 'product_favorite', 'product_form', 'products_list', 'refresh_time', 'responsive', 'search', 'sku_form', 'sweet_alert', 'tooltipster'];
+var Starters = ['auto_resize', 'back_to_top', 'bootstrap', 'china_city', 'datepicker', 'editable_fields', 'footer', 'input_validation', 'images_handler', 'lazy_loader', 'left_menu', 'links_behaviour', 'messages', 'mobile_menu', 'navigation', 'product_favorite', 'product_form', 'products_list', 'qrcode', 'refresh_time', 'responsive', 'search', 'sku_form', 'sweet_alert', 'tooltipster'];
 
 module.exports = Starters;
 });
@@ -1880,6 +1924,54 @@ var AutoResize = {
 };
 
 module.exports = AutoResize;
+});
+
+require.register("javascripts/starters/back_to_top.js", function(exports, require, module) {
+'use strict';
+
+/**
+ * BackToTop Class
+ */
+var BackToTop = {
+
+  /**
+  * Initializer
+  */
+  init: function init() {
+
+    this.setupBackToTop();
+  },
+
+  /**
+   * Back to top button system
+   * NOTE : This was taken from the Internet
+   * Don't hesitate to refactor if needed
+   */
+  setupBackToTop: function setupBackToTop() {
+
+    $(function () {
+      $.scrollUp({
+        scrollName: 'scrollUp', // Element ID
+        scrollDistance: 300, // Distance from top/bottom before showing element (px)
+        scrollFrom: 'top', // 'top' or 'bottom'
+        scrollSpeed: 300, // Speed back to top (ms)
+        easingType: 'linear', // Scroll to top easing (see http://easings.net/)
+        animation: 'fade', // Fade, slide, none
+        animationSpeed: 200, // Animation speed (ms)
+        scrollTrigger: false, // Set a custom triggering element. Can be an HTML string or jQuery object
+        scrollTarget: false, // Set a custom target element for scrolling to. Can be element or number
+        scrollText: '<i class="fa fa-caret-up"></i>', // Text for element, can contain HTML
+        scrollTitle: false, // Set a custom <a> title if required.
+        scrollImg: false, // Set true to use image
+        activeOverlay: false, // Set CSS color to display scrollUp active point, e.g '#00FFFF'
+        zIndex: 2147483647 // Z-Index for the overlay
+      });
+    });
+  }
+
+};
+
+module.exports = BackToTop;
 });
 
 require.register("javascripts/starters/bootstrap.js", function(exports, require, module) {
@@ -2425,7 +2517,26 @@ var MobileMenu = {
   /**
    *
    */
-  startMobileMenu: function startMobileMenu() {}
+  startMobileMenu: function startMobileMenu() {
+
+    this.manageFade();
+  },
+
+  manageFade: function manageFade() {
+
+    // $('.navmenu')
+    //     .on('show.bs.offcanvas', function () {
+    //     $('.canvas').addClass('sliding');
+    // })
+    //     .on('shown.bs.offcanvas', function () {
+    // })
+    //     .on('hide.bs.offcanvas', function () {
+    //     $('.canvas').removeClass('sliding');
+    // })
+    //     .on('hidden.bs.offcanvas', function () {
+    // });
+
+  }
 
 };
 
@@ -2433,7 +2544,7 @@ module.exports = MobileMenu;
 });
 
 require.register("javascripts/starters/navigation.js", function(exports, require, module) {
-"use strict";
+'use strict';
 
 /**
  * Navigation Class
@@ -2457,6 +2568,9 @@ var Navigation = {
     NavigationModel.setLocation(window.location.href, function (res) {
       // Nothing yet
     });
+
+    console.log('select to be moved elsewhere');
+    $('select.nice').niceSelect();
   }
 
 };
@@ -2466,6 +2580,8 @@ module.exports = Navigation;
 
 require.register("javascripts/starters/product_favorite.js", function(exports, require, module) {
 "use strict";
+
+var Translation = require('javascripts/lib/translation');
 
 /**
  * ProductFavorite Class
@@ -2535,9 +2651,10 @@ var ProductFavorite = {
 
   doLikeDisplay: function doLikeDisplay(el) {
 
-    $(el).addClass('+red');
-    $(el).removeClass('+grey');
+    $(el).find('i').addClass('+pink');
+    $(el).find('i').removeClass('+grey');
     $(el).attr('data-favorite', '1');
+    $(el).find('span').html(Translation.find('remove', 'favorites'));
   },
 
   doUnlike: function doUnlike(productId, callback) {
@@ -2559,9 +2676,10 @@ var ProductFavorite = {
 
   doUnlikeDisplay: function doUnlikeDisplay(el) {
 
-    $(el).removeClass('+red');
-    $(el).addClass('+grey');
+    $(el).find('i').addClass('+grey');
+    $(el).find('i').removeClass('+pink');
     $(el).attr('data-favorite', '0');
+    $(el).find('span').html(Translation.find('add', 'favorites'));
   }
 };
 
@@ -2649,38 +2767,91 @@ var ProductsList = { // CURRENTLY NOT IN USED IN THE SYSTEM
     this.manageProductsWall();
   },
 
-  manageProductsWall: function manageProductsWall() {
-
-    /*
-          if ($('#freewall-products').length > 0) {
-    
-            var wall = new freewall("#freewall-products");
-    
-            wall.reset({
-              selector: '.js-brick',
-              delay: 0,
-              animate: false,
-              cellW: 260,
-              cellH: 'auto',
-              onResize: function() {
-                return wall.fitWidth();
-              }
-            });
-    
-            wall.container.find('.js-brick img').load(function() {
-              $(window).trigger('resize');
-            });
-    
-            $(window).trigger('resize');
-    
-         }
-    */
-
-  }
+  manageProductsWall: function manageProductsWall() {}
 
 };
 
 module.exports = ProductsList;
+});
+
+require.register("javascripts/starters/qrcode.js", function(exports, require, module) {
+'use strict';
+
+/**
+ * QrCode Class
+ */
+var QrCode = {
+
+  initialized: false,
+
+  /**
+   * Initializer
+   */
+  init: function init() {
+
+    $(window).on('resize', _.debounce($.proxy(this.onResize, this), 300)).trigger('resize');
+  },
+
+  onResize: function onResize(e) {
+
+    if (this.isMobile() && this.initialized) {
+      this.destroy();
+      return;
+    }
+
+    if (this.isMobile()) {
+      return;
+    }
+
+    if (!this.initialized) {
+      this.setupWechat();
+      this.setupWeibo();
+      this.initialized = true;
+      return;
+    }
+  },
+
+  isMobile: function isMobile() {
+    /**
+     * NOTE : this 994 matches with the breakpoint of `=breakpoint` in SASS
+     * Please be careful and change the one in the SASS as well
+     */
+    return $(window).width() <= 994;
+  },
+
+  destroy: function destroy() {
+    $('#weibo-qr-code-trigger').off('mouseover').off('mouseout');
+    $('#wechat-qr-code-trigger').off('mouseover').off('mouseout');
+    $('#wechat-qr-code').addClass('hidden');
+    $('#weibo-qr-code').addClass('hidden');
+    QrCode.initialized = false;
+  },
+
+  setupWechat: function setupWechat() {
+
+    $('#wechat-qr-code-trigger').on('mouseover', function (e) {
+      $('#wechat-qr-code').removeClass('hidden');
+    });
+
+    $('#wechat-qr-code-trigger').on('mouseout', function (e) {
+      $('#wechat-qr-code').addClass('hidden');
+    });
+  },
+
+  setupWeibo: function setupWeibo() {
+
+    $('#weibo-qr-code-trigger').on('mouseover', function (e) {
+      $('#weibo-qr-code').removeClass('hidden');
+    });
+
+    $('#weibo-qr-code-trigger').on('mouseout', function (e) {
+      $('#weibo-qr-code').addClass('hidden');
+    });
+  }
+
+};
+
+module.exports = QrCode;
 });
 
 require.register("javascripts/starters/refresh_time.js", function(exports, require, module) {
@@ -2786,26 +2957,20 @@ var Search = {
    */
   init: function init() {
 
-    this.searchableInput();
+    this.categoryFilter();
   },
 
   /**
    * We make the input searchable on click
    */
-  searchableInput: function searchableInput() {
+  categoryFilter: function categoryFilter() {
 
-    $(document).on('submit', '#search-form', function (e) {
+    $('.js-category-filter').on('change', function (e) {
 
-      var search = $('#search').val();
+      var category_id = $(this).val();
 
-      /**
-       * If the research is empty it doesn't trigger the submit
-       */
-      if (!search.trim()) {
-        return false;
-      } else {
-        return true;
-      }
+      var UrlProcess = require('javascripts/lib/url_process');
+      UrlProcess.insertParam('category_id', category_id);
     });
   }
 

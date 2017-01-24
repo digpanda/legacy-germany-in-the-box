@@ -3,7 +3,35 @@
 
     <!-- Categories -->
     <div class="col-xs-2 header-mobile__categories">
+      <div class="row">
 
+        <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target="#mobile-menu" data-canvas="body">
+          <i class="fa fa-bars"></i>
+        </button>
+
+        <nav id="mobile-menu" class="navmenu navmenu-default navmenu-fixed-left offcanvas" role="navigation">
+
+          <ul>
+            <li><a href="<%= resolve_profile_path %>" class="header-desktop__menu --green"><%= I18n.t(:my_profile, scope: :menu) %></a></li>
+            <li><a href="<%= customer_favorites_path %>" class="header-desktop__menu --pink"><%= I18n.t(:my_favorites, scope: :menu) %></a></li>
+            <hr />
+            <% @categories.each do |category| %>
+            <li>
+              <a href="<%= guest_category_path(category) %>" id="<%= category.slug %>"><%= category.name %></a>
+              <ul>
+                <% category.can_buy_shops.each do |shop| %>
+                  <li>
+                    <a href="<%= guest_shop_path(shop) %>"><%= shop.name %></a>
+                  </li>
+                <% end %>
+              </ul>
+            </li>
+            <% end %>
+          </ul>
+
+        </nav>
+
+      </div>
     </div>
 
     <!-- Logo -->
@@ -20,7 +48,7 @@
                 <a href="#" class="header-mobile__menu --green"><i class="fa fa-search"></i></a>
             </div>
             <div class="col-xs-6">
-                <a href="#" class="header-mobile__menu --green"><i class="fa fa-shopping-cart"></i></a>
+                <a id="cart" href="<%= customer_cart_path %>" class="header-mobile__menu --green"><i class="fa fa-shopping-cart"></i></a>
             </div>
         </nav>
 

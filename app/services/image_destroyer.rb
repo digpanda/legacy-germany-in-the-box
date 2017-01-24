@@ -8,6 +8,9 @@ class ImageDestroyer < BaseService
   # - Laurent
   SHOP_IMAGE_FIELDS = [:logo, :banner, :seal0, :seal1, :seal2, :seal3, :seal4, :seal5, :seal6, :seal7]
   SKU_IMAGE_FIELDS = [:img0, :img1, :img2, :img3]
+  SETTING_IMAGE_FIELDS = [:package_sets_cover]
+  PACKAGE_SET_IMAGE_FIELDS = [:cover]
+  CATEGORY_IMAGE_FIELDS = [:cover]
 
   attr_reader :model
 
@@ -36,6 +39,12 @@ class ImageDestroyer < BaseService
         SHOP_IMAGE_FIELDS
       when Sku
         SKU_IMAGE_FIELDS
+      when Settings
+        SETTING_IMAGE_FIELDS
+      when PackageSet
+        PACKAGE_SET_IMAGE_FIELDS
+      when Category
+        CATEGORY_IMAGE_FIELDS
       else
         []
       end

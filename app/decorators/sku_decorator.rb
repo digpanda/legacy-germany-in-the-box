@@ -1,10 +1,14 @@
 class SkuDecorator < Draper::Decorator
 
-  include Imageable
+  include Concerns::Imageable
   include ActionView::Helpers::TextHelper # load some important helpers
 
   delegate_all
   decorates :sku
+
+  def readable_weight
+    "#{(self.weight*100).to_i}g"
+  end
 
   def first_nonempty_img_url(version)
     f = self.attributes.keys.grep(/^img\d/).map(&:to_sym).detect { |f| f if sku.read_attribute(f) }
@@ -19,6 +23,23 @@ class SkuDecorator < Draper::Decorator
 
   def format_data
     simple_format(self.data)
+  end
+
+  def quantity_warning?
+     return false if self.unlimited || nothing_left? # no warning if unlimited or nothing left
+     self.quantity <= ::Rails.application.config.digpanda[:products_warning]
+  end
+
+  def nothing_left?
+     self.quantity == 0 && !self.unlimited
+  end
+
+  def more_description?
+    self.attach0.file || self.data?
+  end
+
+  def data?
+    !self.data.nil? && (self.data.is_a?(String) && !self.data.empty?)
   end
 
   def price_with_currency_yuan

@@ -1,0 +1,69 @@
+<%= form_for [:admin, @category], :html => {:data => {:toggle => 'validator'}} do |form| %>
+
+  <div class="row details__block">
+
+    <div class="col-md-12">
+
+      <div class="row">
+        <div class="col-md-8 +nopadding">
+          <h3>General (German to Chinese)</h3>
+          <hr>
+        </div>
+        <div class="col-md-4 +right">
+          <hr>
+        </div>
+      </div>
+
+      <!-- Description -->
+      <div class="row">
+        <div class="col-md-2">
+          <label>
+            Description
+          </label>
+        </div>
+
+        <%= translate_fields form, :desc do |form_field| %>
+          <div class="col-md-5 form-group">
+            <%= form_field.text_area :class => 'form-control', :required => false %>
+            <div class="help-block with-errors"></div>
+          </div>
+        <% end %>
+
+      </div>
+
+    </div>
+
+    <div class="col-md-12">
+
+      <div class="row">
+        <div class="col-md-8 +nopadding">
+          <h3>Images</h3>
+          <hr>
+        </div>
+        <div class="col-md-4 +right">
+          <hr>
+        </div>
+      </div>
+
+      <!-- Cover -->
+      <div class="row">
+        <div class="col-md-2">
+          <label>
+            Cover
+          </label>
+        </div>
+
+        <div class="col-md-3">
+          <%= js_file_upload(form: form, field: :cover) %>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <%= form.submit :class => 'btn btn-primary', :value =>  "Update category" %>
+  <!-- :id => 'edit_category_submit_btn' -->
+
+<% end %>

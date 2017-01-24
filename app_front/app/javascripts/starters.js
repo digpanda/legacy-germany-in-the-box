@@ -4,6 +4,7 @@
 var Starters = [
 
   'auto_resize',
+  'back_to_top',
   'bootstrap',
   'china_city',
   'datepicker',
@@ -20,6 +21,7 @@ var Starters = [
   'product_favorite',
   'product_form',
   'products_list',
+  'qrcode',
   'refresh_time',
   'responsive',
   'search',

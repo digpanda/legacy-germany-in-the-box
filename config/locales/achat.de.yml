@@ -1,5 +1,19 @@
 de:
+  navigation:
+    packages: "%{num} klassischen Sets"
+    products: "%{num} Produkte"
+  package_set:
+    more_info: Mehr Informationen
+    buy_it: Einkaufen
+    see_our_campaigns: Mehr Informationen über Klassischen Sets
+  menu:
+    my_favorites: Meine Favoriten
+    my_profile: Mein Box
+  favorites:
+    add: Meinen Favoriten hinzufügen
+    remove: Aus Favoriten entfernen
   shop:
+    go_to_shop: Zum Shop
     minimum_order: Mindestbestellwert
   action:
     removed_image: Bild erfolgreich gelöscht

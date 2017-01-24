@@ -64,7 +64,7 @@ class User
   has_one  :shop,         :inverse_of => :shopkeeper,   :dependent => :restrict
 
   genderize (:gender)
-  mount_uploader :pic, LogoImageUploader
+  mount_uploader :pic, AvatarUploader
 
   validates :role,          presence: true, inclusion: {in: [:customer, :shopkeeper, :admin]}
   validates :email,         presence: true, length: {maximum: Rails.configuration.achat[:max_tiny_text_length]}

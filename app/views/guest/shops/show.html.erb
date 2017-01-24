@@ -1,32 +1,43 @@
-<div class="+spacer"></div>
+<div class="row">
+  <div class="col-md-12">
 
-<div class="col-md-8 col-md-push-2 col-md-pull-2">
+    <!-- Shop Blocks -->
+    <div class="shop-page">
 
-  <!-- Shop Blocks -->
-  <div class="shop-page">
+      <div class="row">
+        <div class="col-md-12">
+          <!-- Shop Header -->
+          <%= render partial: "guest/shops/show/header", :locals => { :shop => @shop } %>
+        </div>
+      </div>
 
-    <div class="row">
-      <!-- Shop Header -->
-      <%= render partial: "guest/shops/show/header", :locals => { :shop => @shop } %>
+      <div class="row">
+        <div class="col-md-12">
+          <!-- Shop Navigation -->
+          <%= render partial: "guest/shops/show/navigation", :locals => { :shop => @shop } %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <!-- Shop Products list -->
+          <%= render partial: "guest/shops/show/products_list", :locals => { :products => @products } %>
+        </div>
+      </div>
+
+      <div class="+spacer"></div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <!-- Shop Footer -->
+          <%= render partial: "guest/shops/show/footer", :locals => { :shop => @shop } %>
+        </div>
+      </div>
+
+      <div class="+spacer"></div>
+
     </div>
-
-    <div class="+spacer"></div>
-
-    <div class="row +nomargin">
-      <!-- Products list -->
-      <%= render partial: "guest/shops/show/products_list", :locals => { :products => @shop.products.can_buy.by_brand } %>
-    </div>
-
-    <div class="+spacer"></div>
-
-    <div class="row">
-      <!-- Shop Footer -->
-      <%= render partial: "guest/shops/show/footer", :locals => { :shop => @shop } %>
-    </div>
-
-    <div class="+spacer"></div>
+    <!-- End of Shop Blocks -->
 
   </div>
-  <!-- End of Shop Blocks -->
-
 </div>

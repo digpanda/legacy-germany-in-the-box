@@ -1,0 +1,20 @@
+<%= translation_js(:add, :favorites) %>
+<%= translation_js(:remove, :favorites) %>
+
+<% if current_user %>
+ <% if product.decorate.favorite_of?(current_user) %>
+
+    <a href="#" class="main-button__hollow --full js-heart-click" data-product-id="<%= product.id %>" data-favorite="1">
+      <i class="fa fa-heart +pink"></i>
+      <span><%= I18n.t('favorites.remove') %></span>
+    </a>
+
+  <% else %>
+
+    <a href="#" class="main-button__hollow --full js-heart-click" data-product-id="<%= product.id %>" data-favorite="0">
+      <i class="fa fa-heart +grey"></i>
+      <span><%= I18n.t('favorites.add') %></span>
+    </a>
+
+  <% end %>
+<% end %>

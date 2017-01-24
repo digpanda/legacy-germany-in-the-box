@@ -1,0 +1,50 @@
++component(package-set-block)
+
+  +shadow-box
+
+  +breakpoint('desktop')
+    +border-radius-left(4px)
+    +border-radius-right(4px)
+  +breakpoint('mobile')
+    +border-radius-top(4px)
+    +border-radius-bottom(4px)
+
+  +part(no-padding-left)
+    +breakpoint('desktop')
+      padding-left: 0
+    & > div
+      +breakpoint('desktop')
+        +border-radius-right(4px)
+      +breakpoint('mobile')
+        +border-radius-top(4px)
+
+  +part(no-padding-right)
+    +breakpoint('desktop')
+      padding-right: 0
+    & > div
+      +breakpoint('desktop')
+        +border-radius-left(4px)
+      +breakpoint('mobile')
+        +border-radius-top(4px)
+
+  +part(content)
+
+    padding: 4em
+    +centered
+    height: 30em
+    +breakpoint('mobile')
+      +border-radius-bottom(4px)
+    background-color: $color-white
+
+    h2
+      font-size: 35px
+
+    p
+      font-size: 13px
+      padding-bottom: 1em
+
+  +part(image)
+    height: 30em
+
+    background-position: center center
+    background-size: cover
