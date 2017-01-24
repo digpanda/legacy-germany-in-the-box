@@ -1604,6 +1604,7 @@ body {
 
 .main-button__hollow {
   display: block;
+  width: 20em;
   border: none;
   font-weight: bold;
   background-color: #ffffff;
