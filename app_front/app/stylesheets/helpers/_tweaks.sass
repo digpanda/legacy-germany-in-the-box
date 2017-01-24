@@ -1,3 +1,20 @@
++tweak(block-right)
+  +block-right
+
++tweak(desktop)
+  +breakpoint('mobile')
+    display: none
+
++tweak(mobile)
+  +breakpoint('desktop')
+    display: none
+
++tweak(border-radius-left)
+  +border-radius-left(4px)
+
++tweak(border-radius-right)
+  +border-radius-right(4px)
+
 +tweak(inline)
   display: inline
 
@@ -93,17 +110,7 @@
   text-align: left
 
 +tweak(centered)
-  text-align: center
-  margin: 0 auto
-
-+tweak(green)
-  color: $color-green
-
-+tweak(dark-grey)
-  color: $color-dark-grey
-
-+tweak(blue)
-  color: $color-blue
+  +centered
 
 +tweak(vertical-centered)
   padding-top: 2.5em
@@ -118,17 +125,17 @@
   padding: 1em
 
 +tweak(big-spacer)
-  padding: 5em
+  padding: 4.3em
 
 +tweak(bold)
   font-weight: 600
 
 +tweak(small-gap)
-    display: block
-    position: relative
-    margin: 0.2em 0 0.2em 0
-    clear: both
-    overflow: hidden
+  display: block
+  position: relative
+  margin: 0.2em 0 0.2em 0
+  clear: both
+  overflow: hidden
 
 +tweak(white-box) // everything with this style should have their own component
   +white-box
@@ -139,8 +146,29 @@
 +tweak(nopadding)
   padding: 0
 
++tweak(nopadding-right)
+  padding-right: 0
+
++tweak(nopadding-left)
+  padding-left: 0
+
++tweak(green)
+  color: $color-green
+
++tweak(dark-grey)
+  color: $color-dark-grey
+
++tweak(light-grey)
+  color: $color-light-grey
+
++tweak(blue)
+  color: $color-blue
+
 +tweak(red)
   color: $color-red
+
++tweak(pink)
+  color: $color-pink
 
 +tweak(green)
   color: $color-green
@@ -172,7 +200,7 @@
   font-weight: 600
   padding-left: 0.3em
   font-size: 18px
-  +border-left-radius(2em)
+  +border-radius-left(2em)
 
 +tweak(big)
   font-size: 20px
@@ -184,16 +212,26 @@
   color: $color-red
   text-decoration: line-through
 
++tweak(barred-price)
+  +crossed
+  color: $color-light-grey
+  font-weight: bold
+  font-size: 1.2em
+
++tweak(crossed)
+  +crossed
+
 +tweak(unread)
   background-color: $color-light-yellow
 
 +tweak(price-yuan)
   font-size: 1.6em
-  color: $color-green
+  color: $color-red
+  font-weight: bold
 
 +tweak(price-euro)
   font-size: 1em
-  color: $color-dark-grey
+  color: $color-red
 
 +tweak(quoted)
   font-family: 'Raleway', sans-serif

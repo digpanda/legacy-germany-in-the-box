@@ -1,10 +1,10 @@
-<div class="remodal" data-remodal-id="add-address-dialog">
+<div class="remodal address-popup__remodal" data-remodal-id="add-address-dialog">
   <%= render partial: "customer/addresses/popup/address", :locals => {address: Address.new} %>
 </div>
 
 <% @addresses.each_with_index do |address, i| %>
 
-<div class="remodal" data-remodal-id="edit-address-dialog-<%= address.id %>">
+<div class="remodal address-popup__remodal" data-remodal-id="edit-address-dialog-<%= address.id %>">
   <%= render partial: "customer/addresses/popup/address", :locals => {address: address} %>
 </div>
 

@@ -2,6 +2,7 @@
 namespace :admin do
 
   resources :categories do
+    delete :destroy_image
   end
 
   resources :coupons do
@@ -23,6 +24,7 @@ namespace :admin do
     delete :destroy_image
 
     resources :package_sets, :controller => 'shops/package_sets' do
+      delete :destroy_image
     end
 
     resources :products, :controller => 'shops/products' do
@@ -68,7 +70,8 @@ namespace :admin do
     patch :transaction_id
   end
 
-  resource :settings, only: [:show, :update] do
+  resources :settings do
+    delete :destroy_image
   end
 
 end

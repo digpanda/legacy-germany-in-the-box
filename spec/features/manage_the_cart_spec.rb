@@ -12,9 +12,9 @@ feature "manage the cart", :js => true  do
 
       visit guest_product_path(product)
       on_product_page?
-      page.first('.product-quantity button').click
+      page.first('button[type=submit]').click
       on_shop_page?
-      page.first('#total-products').click
+      page.first('#cart').click
       on_chinese_login_page?
 
     end

@@ -1,8 +1,12 @@
 class Admin::CategoriesController < ApplicationController
 
+  include DestroyImage
+
   attr_accessor :category, :categories
 
   authorize_resource :class => false
+
+  before_action :set_category, :except => [:index]
 
   layout :custom_sublayout
 
@@ -10,7 +14,7 @@ class Admin::CategoriesController < ApplicationController
     @categories = Category.order_by(:position => :asc).paginate(:page => current_page, :per_page => 10)
   end
 
-  def show
+  def edit
   end
 
   def update
@@ -24,6 +28,10 @@ class Admin::CategoriesController < ApplicationController
   end
 
   private
+
+  def set_category
+    @category = Category.find(params[:category_id] || params[:id])
+  end
 
   def category_params
     params.require(:category).permit!

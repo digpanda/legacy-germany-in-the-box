@@ -2,7 +2,7 @@ class UserDecorator < Draper::Decorator
 
   PICTURE_URL = '/images/icons/default_user_pic.png'
 
-  include Imageable
+  include Concerns::Imageable
 
   delegate_all
   decorates :user

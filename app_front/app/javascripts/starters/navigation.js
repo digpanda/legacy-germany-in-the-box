@@ -22,6 +22,9 @@ var Navigation = {
         // Nothing yet
       });
 
+      console.log('select to be moved elsewhere');
+      $('select.nice').niceSelect();
+
 
     },
 

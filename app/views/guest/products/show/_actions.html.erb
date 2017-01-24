@@ -1,0 +1,17 @@
+<div class="product-page__actions">
+
+  <h2>
+    <%= product.brand %>
+  </h2>
+  <h3>
+    <%= product.name %>
+  </h3>
+
+  <% if @featured_sku %>
+
+  <%= render partial: "guest/products/show/actions/sku_price", :locals => { :sku => @featured_sku} %>
+
+  <%= render partial: "guest/products/show/actions/select", :locals => { :sku => @featured_sku} %>
+
+  <% end %>
+</div>

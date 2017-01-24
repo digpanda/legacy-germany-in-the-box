@@ -53,17 +53,17 @@ class Shop
   field :merchant_id,     type: String
   field :bg_merchant_id,  type: String
 
-  mount_uploader :logo,   LogoImageUploader
-  mount_uploader :banner, BannerImageUploader
+  mount_uploader :logo,   LogoUploader
+  mount_uploader :banner, CoverUploader
 
-  mount_uploader :seal0,   ProductImageUploader
-  mount_uploader :seal1,   ProductImageUploader
-  mount_uploader :seal2,   ProductImageUploader
-  mount_uploader :seal3,   ProductImageUploader
-  mount_uploader :seal4,   ProductImageUploader
-  mount_uploader :seal5,   ProductImageUploader
-  mount_uploader :seal6,   ProductImageUploader
-  mount_uploader :seal7,   ProductImageUploader
+  mount_uploader :seal0,   ProductUploader
+  mount_uploader :seal1,   ProductUploader
+  mount_uploader :seal2,   ProductUploader
+  mount_uploader :seal3,   ProductUploader
+  mount_uploader :seal4,   ProductUploader
+  mount_uploader :seal5,   ProductUploader
+  mount_uploader :seal6,   ProductUploader
+  mount_uploader :seal7,   ProductUploader
 
   embeds_many :addresses,   inverse_of: :shop
 
@@ -146,7 +146,7 @@ class Shop
   end
 
   def categories
-    all_categories = Category.all.map { |c| [c.id, c]}.to_h
+    all_categories = Category.order_by(position: :asc).all.map { |c| [c.id, c]}.to_h
     products.inject(Set.new) {|cs, p| cs = cs + p.category_ids }.map { |c| all_categories[c]}
   end
 

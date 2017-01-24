@@ -1,4 +1,4 @@
-<div class="remodal" data-remodal-id="add-address-dialog">
+<div class="remodal address-popup__remodal" data-remodal-id="add-address-dialog">
   <%= render partial: "customer/addresses/popup/address", :locals => {address: @address} %>
 </div>
 

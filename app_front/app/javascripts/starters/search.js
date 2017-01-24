@@ -7,29 +7,23 @@ var Search = {
      * Initializer
      */
     init: function() {
-      
-      this.searchableInput();
+
+      this.categoryFilter();
 
     },
 
     /**
      * We make the input searchable on click
      */
-    searchableInput: function() {
+    categoryFilter: function() {
 
-      $(document).on('submit', '#search-form' ,function(e){
+      $('.js-category-filter').on('change', function(e) {
 
-        let search = $('#search').val();
+        let category_id = $(this).val();
 
-        /**
-         * If the research is empty it doesn't trigger the submit
-         */
-        if (!search.trim()) {
-          return false;
-        } else {
-          return true;
-        }
-
+        var UrlProcess = require('javascripts/lib/url_process');
+        UrlProcess.insertParam('category_id', category_id);
+        
       });
 
     },

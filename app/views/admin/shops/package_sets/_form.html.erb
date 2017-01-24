@@ -5,6 +5,16 @@
   <%= form.label :name %>
   <%= form.text_field :name %>
 
+  <div class="clearfix"></div>
+
+  <%= form.label :desc %>
+  <%= form.text_field :desc %>
+
+  <div class="clearfix"></div>
+
+  <%= form.label :cover, "Cover" %>
+  <%= js_file_upload(form: form, field: :cover) %>
+
 </div>
 
 <div class="row details__block">

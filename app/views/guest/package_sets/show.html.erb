@@ -1,0 +1,72 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="banner lazy" data-original="<%= @package_set.cover %>" style="background-image:url('/images/grey.gif');">
+    </div>
+  </div>
+</div>
+
+<%= render partial: "guest/package_sets/show/navigation", :locals => { :package_set => @package_set } %>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="package-set-infos">
+
+      <!-- Introduction -->
+      <div class="row">
+        <div class="col-md-12">
+          <div class="package-set-infos__introduction">
+            <h1><%= @package_set.name %></h1>
+            <p><%= @package_set.desc %></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Products -->
+      <div class="row">
+        <div class="col-md-12">
+          <div class="package-set-infos__products">
+            <div class="row">
+
+              <% @package_set.package_skus.each do |package_sku| %>
+                <div class="col-md-2 col-xs-6">
+                  <%= render partial: "guest/package_sets/show/product", :locals => { :package_sku => package_sku } %>
+                </div>
+              <% end %>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Price + Purchase -->
+      <div class="row">
+        <div class="col-md-12">
+          <div class="package-set-infos__actions">
+
+            <hr />
+
+            <!-- Prices -->
+            <div class="row">
+              <div class="+centered">
+                <div class="package-set-infos__original-price"><%= @package_set.casual_price.in_euro.to_yuan.display %></div>
+                <div class="package-set-infos__new-price"><%= @package_set.price.in_euro.to_yuan.display %></div>
+                <div class="package-set-infos__euro-price"><%= @package_set.price.in_euro.display %> ( <%= I18n.t(:subtotal, scope: :cart) %> )</div>
+                <div class="+spacer"></div>
+              </div>
+            </div>
+
+            <!-- Buttons -->
+            <div class="row">
+              <div class="+centered">
+                <%= link_to I18n.t(:buy_it, scope: :package_set), guest_package_set_path(@package_set), method: :patch, class: "main-button__solid --large" %>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

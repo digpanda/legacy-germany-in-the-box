@@ -1,6 +1,6 @@
 <!-- TODO : THIS IS VERY MUCH DUPLICATED DESPITE THE FACT WE CHANGED CONTROLLER
 WE SHOULD DEFINITELY MAKE IT MORE DRY VIA customer/addresses/popup AND SUCH -->
-<div class="remodal" data-remodal-id="add-address-dialog">
+<div class="remodal address-popup__remodal" data-remodal-id="add-address-dialog">
   <%= render partial: "customer/addresses/popup/address", :locals => {address: Address.new} %>
 </div>
 

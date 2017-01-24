@@ -1,0 +1,33 @@
++component(footer)
+
+  ul
+    list-style-type: none
+    padding: 0
+
+  hr
+    +breakpoint('desktop')
+      display: none
+
+  padding-top: 0.5em
+  padding-bottom: 2em
+  
+  background-color: $color-dark-grey
+  font-size: 12px
+
+  a
+    color: $color-white !important
+
+  // min-height: 150px
+
+  +breakpoint('mobile')
+    // min-height: 800px
+    padding-left: 1em
+    padding-right: 1em
+
+  h3
+    font-size: 14px
+    color: $color-white
+
+  +part(logo)
+    img
+      max-width: 70px

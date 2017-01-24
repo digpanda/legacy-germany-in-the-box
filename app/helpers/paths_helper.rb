@@ -1,4 +1,17 @@
 module PathsHelper
+
+  def resolve_profile_path
+    if current_user
+      if current_user.decorate.new_notifications?
+        shared_notifications_path
+      else
+        edit_customer_account_path
+      end
+    else
+      new_user_session_path
+    end
+  end
+
   def checkout_path?
     # those are the paths linked to the checkout process (from manager cart to the actual payment)
     # set_address to completely refactor (it's disgusting) # -> replaced '/orders/set_address/'

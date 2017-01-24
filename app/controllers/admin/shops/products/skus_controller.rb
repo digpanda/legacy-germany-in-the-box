@@ -1,5 +1,7 @@
 class Admin::Shops::Products::SkusController < ApplicationController
 
+  include DestroyImage
+
   attr_reader :shop, :product, :sku, :skus
 
   authorize_resource :class => false
@@ -65,15 +67,6 @@ class Admin::Shops::Products::SkusController < ApplicationController
       flash[:success] = I18n.t(:delete_ok, scope: :edit_sku)
     else
       flash[:error] = sku.errors.full_messages.join(', ')
-    end
-    redirect_to navigation.back(1)
-  end
-
-  def destroy_image
-    if ImageDestroyer.new(sku).perform(params[:image_field])
-      flash[:success] = I18n.t(:removed_image, scope: :action)
-    else
-      flash[:error] = I18n.t(:no_removed_image, scope: :action)
     end
     redirect_to navigation.back(1)
   end

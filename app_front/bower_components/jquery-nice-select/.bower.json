@@ -1,0 +1,34 @@
+{
+  "name": "jquery-nice-select",
+  "version": "1.1.0",
+  "authors": [
+    "Hernán Sartorio <hello@hernansartorio.com>"
+  ],
+  "description": "A lightweight jQuery plugin that replaces native select elements with customizable dropdowns.",
+  "main": [
+    "./css/nice-select.css",
+    "./js/jquery.nice-select.min.js"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~1.11.3"
+  },
+  "homepage": "https://github.com/hernansartorio/jquery-nice-select",
+  "_release": "1.1.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "v1.1.0",
+    "commit": "bdbb74f72ca10153f7788a8d9ff8786c23db3f3c"
+  },
+  "_source": "https://github.com/hernansartorio/jquery-nice-select.git",
+  "_target": "^1.1.0",
+  "_originalSource": "jquery-nice-select",
+  "_direct": true
+}

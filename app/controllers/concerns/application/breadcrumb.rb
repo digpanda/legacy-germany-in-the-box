@@ -10,6 +10,14 @@ module Application
       add_breadcrumb @category.name, guest_category_path(@category) unless @category.nil?
     end
 
+    def breadcrumb_package_sets
+      add_breadcrumb "Package sets", guest_package_sets_path
+    end
+
+    def breadcrumb_package_set
+      add_breadcrumb @package_set.name, guest_package_set_path(@package_set) unless @package_set.nil?
+    end
+
     def breadcrumb_shop
       add_breadcrumb @shop.shopname, guest_shop_path(@shop) unless @shop.nil?
     end

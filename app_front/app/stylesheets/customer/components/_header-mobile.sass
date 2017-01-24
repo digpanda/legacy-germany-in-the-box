@@ -1,10 +1,40 @@
 +component(header-mobile)
 
+  +breakpoint('desktop')
+    display: none
+
+  +breakpoint('mobile')
+    display: block
+
   +row-without-margin
   +shadow
 
   min-height: 6em
   background-color: $color-white
+
+  li li
+    font-size: 1em
+
+  +part(categories)
+    min-height: 6em
+
+    button
+      color: $color-dark-green
+      font-size: 2.3em
+
+    nav
+      background-color: $color-white
+
+    ul
+      list-style-type: none
+      padding: 0
+
+    li
+      margin: 1.7em
+
+    a
+      font-size: 1em
+      color: $color-dark-grey
 
   +part(logo)
     padding-top: 0.7em
@@ -13,20 +43,6 @@
 
     img
       max-width: 130px
-
-  +part(categories)
-    min-height: 6em
-    padding-top: 3em
-
-    a
-      color: $color-dark-grey
-      font-weight: bold
-
-    ul
-      padding: 0
-      margin: 0
-      list-style-type: none
-      -webkit-padding-start: 0px
 
   +part(menu)
     min-height: 6em
@@ -44,3 +60,34 @@
 
       +option(green)
         color: $color-dark-green
+
+
+// /**
+//  * Everything below is a hook and
+//  * should be moved elsewhere
+//  */
+#mobile-menu
+  +shadow-box
+// .navbar-toggle
+//   display: block !important
+//
+// // Change name into header-mobile names
+// .overlay
+//     display: none
+//     position: absolute
+//     z-index: 20
+//     top: 0
+//     bottom: 0
+//     left: 0
+//     right: 0
+//     opacity: 0
+//     background: rgba(0, 0, 0, 0.8)
+//     overflow: hidden
+//
+// .canvas.sliding .overlay
+//     display: block
+//     opacity: 1
+//     -webkit-transition: opacity 0.5s
+//     -moz-transition: opacity 0.5s
+//     -o-transition: opacity 0.5s
+//     transition: opacity 0.5s

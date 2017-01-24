@@ -40,6 +40,10 @@ class ApplicationController < ActionController::Base
     @identity_solver ||= IdentitySolver.new(request, current_user)
   end
 
+  def settings
+    @setting ||= Settings.instance
+  end
+
   def custom_sublayout
     "layouts/#{identity_solver.section}/submenu"
   end

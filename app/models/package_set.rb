@@ -1,7 +1,12 @@
 class PackageSet
   include MongoidBase
-
+  include EntryPosition
+  
   field :name
+  field :desc
+  field :cover,       type: String
+
+  mount_uploader :cover, CoverUploader
 
   belongs_to :shop, inverse_of: :package_sets
   embeds_many :package_skus, inverse_of: :package_set, cascade_callbacks: true
@@ -14,6 +19,20 @@ class PackageSet
   end
 
   validates_presence_of :name
+  validates_presence_of :desc
+  validates_presence_of :cover
   validates_with UniquePackageSkuValidator
+
+  def casual_price
+    self.package_skus.reduce(0) do |acc, package_sku|
+      acc + package_sku.sku.price_with_taxes
+    end
+  end
+
+  def price
+    self.package_skus.reduce(0) do |acc, package_sku|
+      acc + package_sku.total_price
+    end
+  end
 
 end

@@ -1,0 +1,83 @@
++component(shop-page-product)
+
+  +border-radius(4px)
+  +shadow-box
+  margin-bottom: 1em
+  padding-top: 1em
+  height: 38em
+
+  color: $color-black
+
+  a
+    color: $color-black
+
+  +part(description)
+    +centered
+    width: 80%
+
+    *
+      text-align: left
+
+    h2
+      margin-top: 0.5em
+      font-size: 1.7em
+    h3
+      margin-top: -0.5em
+      font-size: 1.2em
+      color: $color-dark-grey
+      +truncate(100%)
+
+    p
+      margin-top: -0.5em
+      color: $color-light-grey
+
+
+  +part(discount)
+    position: absolute
+    left: 70%
+    top: -10px
+    width: 60px
+    height: 60px
+    padding: 0.8em
+    color: $color-white
+    background-color: $color-red
+    z-index: 5
+    +border-radius(50%)
+    +rotate(20deg)
+
+    div
+      font-size: 18px
+      margin-top: 0.3em
+      font-weight: bold
+      text-align: center
+
+  +part(image)
+    height: 20em
+    width: 80%
+
+    margin: 0 auto
+    display: block
+
+    -webkit-background-size: 100% auto
+    -moz-background-size: 100% auto
+    -o-background-size: 100% auto
+    background-size: 100% auto
+
+    background-repeat: no-repeat
+    background-position: center center
+
+    +breakpoint('mobile')
+
+    img
+      max-width: 100%
+      max-height: 22em
+
+  +part(purchase)
+
+    +option(like)
+      z-index: 3
+      color: $color-red
+      min-height: 30px
+      line-height: 1.5em
+      text-align: center
+      font-size: 20px

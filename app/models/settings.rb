@@ -8,8 +8,13 @@ class Settings
   field :platform_currency,     type: ISO4217::Currency, default: ISO4217::Currency.from_code('CNY')
   field :supplier_currency,     type: ISO4217::Currency, default: ISO4217::Currency.from_code('EUR')
   field :max_total_per_day,     type: BigDecimal, default: 1000
-  field :highlight_title,       type: String
   field :alert, type: String
+
+  field :package_sets_title,       type: String
+  field :package_sets_description, type: String
+  field :package_sets_cover,       type: String
+
+  mount_uploader :package_sets_cover, CoverUploader
 
   validates :platform_currency,       presence: true
   validates :supplier_currency,       presence: true

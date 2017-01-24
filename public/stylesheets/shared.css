@@ -1,3 +1,23 @@
+#csstyle .\+block-right {
+  float: right;
+  clear: right; }
+
+@media (max-width: 994px) {
+  #csstyle .\+desktop {
+    display: none; } }
+
+@media (min-width: 995px) {
+  #csstyle .\+mobile {
+    display: none; } }
+
+#csstyle .\+border-radius-left {
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px; }
+
+#csstyle .\+border-radius-right {
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px; }
+
 #csstyle .\+inline {
   display: inline; }
 
@@ -9,7 +29,7 @@
   top: 30%;
   clear: both;
   opacity: 0.5; }
-  @media (max-width: 991px) {
+  @media (max-width: 994px) {
     #csstyle .\+sticking {
       display: none; } }
   #csstyle .\+sticking img {
@@ -64,7 +84,7 @@
 
 #csstyle .\+delete-checkout-button {
   position: relative;
-  background-color: #e74c3c;
+  background-color: #d6506c;
   text-align: center;
   outline: 0;
   border: 1px;
@@ -148,15 +168,6 @@
   text-align: center;
   margin: 0 auto; }
 
-#csstyle .\+green {
-  color: #659443; }
-
-#csstyle .\+dark-grey {
-  color: #ABABA8; }
-
-#csstyle .\+blue {
-  color: #3498db; }
-
 #csstyle .\+vertical-centered {
   padding-top: 2.5em; }
 
@@ -170,7 +181,7 @@
   padding: 1em; }
 
 #csstyle .\+big-spacer {
-  padding: 5em; }
+  padding: 4.3em; }
 
 #csstyle .\+bold {
   font-weight: 600; }
@@ -196,8 +207,29 @@
 #csstyle .\+nopadding {
   padding: 0; }
 
+#csstyle .\+nopadding-right {
+  padding-right: 0; }
+
+#csstyle .\+nopadding-left {
+  padding-left: 0; }
+
+#csstyle .\+green {
+  color: #659443; }
+
+#csstyle .\+dark-grey {
+  color: #ABABA8; }
+
+#csstyle .\+light-grey {
+  color: #8b8b8b; }
+
+#csstyle .\+blue {
+  color: #3498db; }
+
 #csstyle .\+red {
-  color: #e74c3c; }
+  color: #d6506c; }
+
+#csstyle .\+pink {
+  color: #f29cae; }
 
 #csstyle .\+green {
   color: #659443; }
@@ -224,7 +256,7 @@
   color: #666; }
 
 #csstyle .\+discount {
-  background-color: #e74c3c;
+  background-color: #d6506c;
   color: #fdfdfd;
   font-weight: 600;
   padding-left: 0.3em;
@@ -239,7 +271,16 @@
   font-size: 1.3em; }
 
 #csstyle .\+barred {
-  color: #e74c3c;
+  color: #d6506c;
+  text-decoration: line-through; }
+
+#csstyle .\+barred-price {
+  text-decoration: line-through;
+  color: #8b8b8b;
+  font-weight: bold;
+  font-size: 1.2em; }
+
+#csstyle .\+crossed {
   text-decoration: line-through; }
 
 #csstyle .\+unread {
@@ -247,11 +288,12 @@
 
 #csstyle .\+price-yuan {
   font-size: 1.6em;
-  color: #659443; }
+  color: #d6506c;
+  font-weight: bold; }
 
 #csstyle .\+price-euro {
   font-size: 1em;
-  color: #ABABA8; }
+  color: #d6506c; }
 
 #csstyle .\+quoted {
   font-family: 'Raleway', sans-serif;
@@ -269,10 +311,10 @@
   bottom: 0;
   background-color: black;
   opacity: 0.4;
-  -webkit-border-radius: 0.5em;
-  -moz-border-radius: 0.5em;
-  -ms-border-radius: 0.5em;
-  border-radius: 0.5em; }
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  border-radius: 4px; }
 
 #csstyle .\+onoverlay {
   position: relative;
@@ -301,7 +343,7 @@
   background: #fdfdfd;
   background-position: center center;
   background-size: cover;
-  background-color: #FBFBFB;
+  background-color: #8b8b8b;
   border: 3px white solid; }
 
 @font-face {
@@ -535,12 +577,6 @@ textarea {
 img {
   max-width: 100%; }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Roboto', arial, helvetica, sans-serif;
-  margin-top: 0;
-  font-weight: 300;
-  color: #4d4d4d; }
-
 h1 small,
 h2 small,
 h3 small,
@@ -556,14 +592,6 @@ body {
   color: #666;
   font-family: 'Open Sans', Arial, helvetica, sans-serif;
   font-size: 14px; }
-
-a {
-  text-decoration: none;
-  color: #49D2BE; }
-
-a:hover {
-  color: #31B3A0;
-  text-decoration: none; }
 
 p.small,
 small {

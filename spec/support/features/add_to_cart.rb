@@ -6,7 +6,7 @@ module Helpers
 
       def add_to_cart!(product)
         visit guest_product_path(product)
-        page.first('.product-quantity button').click
+        page.first('button[type=submit]').click
       end
 
     end

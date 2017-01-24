@@ -1,0 +1,64 @@
++component(main-button)
+
+  +part(hollow)
+
+    display: block
+    width: 20em
+    border: none // remove default button, input styling
+
+    i
+      position: absolute
+      left: 1.6em
+      font-size: 1.3em
+      bottom: 0.8em
+
+    font-weight: bold
+    background-color: $color-white
+    padding: 0.7em 2.5em 0.7em 2.5em
+    border: 4px
+    border: 2px solid $color-flash-green
+    +border-radius(5px)
+    +centered
+
+    color: $color-flash-green
+
+    &:link, &:hover, &:active, &:visited
+      color: $color-flash-green
+
+    &:active
+      background-color: #c7ef9a
+
+    +option(large)
+      padding: 0.7em 5.3em 0.7em 5.3em
+
+    +option(small)
+      font-size: 0.85em
+      width: 22em
+
+    +option(full)
+      width: 100%
+
+  +part(solid)
+
+    border: none // remove default button, input styling
+
+    font-weight: bold
+    background-color: $color-flash-green
+    padding: 0.7em 2.5em 0.7em 2.5em
+    +border-radius(5px)
+    +centered
+
+    color: $color-white
+
+    &:link, &:hover, &:active, &:visited
+      color: $color-white
+
+    &:active
+      background-color: $color-green
+
+
+    +option(large)
+      padding: 0.7em 5.3em 0.7em 5.3em
+
+    +option(full)
+      width: 100%

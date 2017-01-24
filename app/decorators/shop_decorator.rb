@@ -1,6 +1,6 @@
 class ShopDecorator < Draper::Decorator
 
-  include Imageable
+  include Concerns::Imageable
   include ActionView::Helpers::TextHelper # load truncate
 
   delegate_all

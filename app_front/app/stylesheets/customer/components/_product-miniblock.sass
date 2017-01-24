@@ -1,0 +1,38 @@
++component(product-miniblock)
+
+  a
+    color: $color-dark-grey
+
+  +part(remodal)
+    max-width: 300px
+    text-align: left
+
+  +part(image)
+    height: 200px
+    max-width: 300px
+    //max-width: 200px
+    background-size: cover
+    background-position: center center
+    +centered
+
+  +part(content)
+
+    h3
+      margin-top: 0.2em
+      font-weight: bold
+      font-size: 25px
+    p
+      margin-top: -0.8em
+
+  +part(name)
+
+    font-size: 16px
+    margin-top: -0.7em
+
+  +part(desc)
+    color: $color-light-grey
+    font-size: 13px
+
+  +part(extra)
+    margin-top: -0.8em
+    color: $color-light-grey

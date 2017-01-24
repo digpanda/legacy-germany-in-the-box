@@ -1,5 +1,7 @@
 class Admin::Shops::PackageSetsController < ApplicationController
 
+  include DestroyImage
+
   attr_reader :shop, :package_set, :package_sets
 
   authorize_resource :class => false

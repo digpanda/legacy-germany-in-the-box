@@ -4,6 +4,10 @@ class Guest::PackageSetsController < ApplicationController
 
   before_action :set_package_set
 
+  before_action :breadcrumb_home
+  before_action :breadcrumb_package_set, only: [:show]
+  before_action :breadcrumb_package_sets, only: [:index]
+
   # we show the list of packages
   # we already created from the admin
   def index
