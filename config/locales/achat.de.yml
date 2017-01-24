@@ -9,12 +9,11 @@ de:
   menu:
     my_favorites: Meine Favoriten
     my_profile: Mein Box
+  favorites:
+    add: Meinen Favoriten hinzufügen
+    remove: Aus Favoriten entfernen
   shop:
     go_to_shop: Zum Shop
-  favorites:
-    add: Add to favorites
-    remove: Remove from favorites
-  shop:
     minimum_order: Mindestbestellwert
   action:
     removed_image: Bild erfolgreich gelöscht

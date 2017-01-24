@@ -351,6 +351,11 @@
   height: 2.5em;
   line-height: 2.5em; }
 
+.nice ul.list {
+  position: absolute;
+  left: -3em;
+  box-shadow: 0px 5px 20px 3px rgba(139, 139, 139, 0.32); }
+
 @media (min-width: 768px) {
   .navbar-toggle {
     display: block; } }

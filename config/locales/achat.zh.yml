@@ -1,7 +1,7 @@
 zh-CN:
   navigation:
-    packages: "%{num} 两个礼包"
-    products: "%{num} 两件产品"
+    packages: "%{num}个礼包"
+    products: "%{num}件产品"
   package_set:
     more_info: 查看更多信息
     buy_it: 购买
@@ -9,12 +9,11 @@ zh-CN:
   menu:
     my_favorites: 我的收藏
     my_profile: 我的来因盒
+  favorites:
+    add: 点击收藏
+    remove: 从收藏单移除
   shop:
     go_to_shop: 进入店铺
-  favorites:
-    add: Add to favorites
-    remove: Remove from favorites
-  shop:
     minimum_order: 本店最少购物额
   action:
     removed_image: 图片被成功删除
