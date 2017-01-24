@@ -17,7 +17,7 @@
             <hr />
             <% @categories.each do |category| %>
             <li>
-              <a href="<%= guest_category_path(category) %>"><%= category.name %></a>
+              <a href="<%= guest_category_path(category) %>" id="<%= category.slug %>"><%= category.name %></a>
               <ul>
                 <% category.can_buy_shops.each do |shop| %>
                   <li>

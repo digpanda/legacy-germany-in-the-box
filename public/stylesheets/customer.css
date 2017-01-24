@@ -2021,7 +2021,7 @@ body {
   background-color: #ffffff;
   position: absolute;
   top: -115px;
-  left: -30px;
+  left: 0px;
   width: 100px;
   height: 100px; }
   .social-medias__qr-code img {
@@ -2032,7 +2032,7 @@ body {
 .social-medias__triangle {
   position: absolute;
   top: -20px;
-  left: 15px;
+  left: 43px;
   width: 0;
   height: 0;
   border-style: solid;

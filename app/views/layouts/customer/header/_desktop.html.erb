@@ -13,7 +13,7 @@
           <ul>
             <% @categories.each do |category| %>
             <li class="col-md-2">
-              <a href="<%= guest_category_path(category) %>"><%= category.name %></a>
+              <a href="<%= guest_category_path(category) %>" id="<%= category.slug %>"><%= category.name %></a>
             </li>
             <% end %>
           </ul>
