@@ -11,6 +11,15 @@ class Notification
 
   validates :title,       presence: true
 
-  scope :unreads, -> { where({:read_at => nil}) }
+  scope :unreads, -> { where(read_at: nil) }
+
+  def read?
+    self.read_at
+  end
+
+  def read!
+    self.read_at = Time.now.utc
+    self.save
+  end
 
 end

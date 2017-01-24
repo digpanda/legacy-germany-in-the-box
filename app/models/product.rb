@@ -154,7 +154,7 @@ class Product
   end
 
   def can_buy?
-    active? && hs_code != nil && skus.count > 0 && shop.decorate.can_buy?
+    active? && hs_code != nil && skus.count > 0 && shop.can_buy?
   end
 
   def active?

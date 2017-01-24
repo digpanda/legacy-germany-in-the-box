@@ -5,23 +5,23 @@ class AddressDecorator < Draper::Decorator
 
   def readable_type
     case type
-    when :both
-      "Shipping & Billing"
-    when :billing
-      "Billing"
-    when :shipping
-      "Shipping"
-    else
-      "Unknown"
+      when :both
+        'Shipping & Billing'
+      when :billing
+        'Billing'
+      when :shipping
+        'Shipping'
+      else
+        'Unknown'
     end
   end
 
   def street_and_number
     case country_code
-    when 'CN' # originally zh-CN
-      "#{number} #{street}"
-    else
-      "#{street} #{number}"
+      when 'CN' # originally zh-CN
+        "#{number} #{street}"
+      else
+        "#{street} #{number}"
     end
   end
 
@@ -45,17 +45,4 @@ class AddressDecorator < Draper::Decorator
   def german_full_address
     "#{street} #{number}, #{zip} #{city}, #{country}"
   end
-
-  def country_code
-    country.alpha2 unless country.nil?
-  end
-
-  def country_name
-    country.name unless country.nil?
-  end
-
-  def country_local_name
-    country.local_name unless country.nil?
-  end
-
 end

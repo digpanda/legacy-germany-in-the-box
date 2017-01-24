@@ -91,6 +91,8 @@ class User
 
   index({email: 1},               {unique: true,  name: :idx_user_email})
 
+  scope :admins, -> { where(role: :admin) }
+
   before_destroy :destroy_has_shop, :destroy_has_orders
   def destroy_has_shop
     if self.shop
@@ -152,4 +154,7 @@ class User
     super && provider.blank?
   end
 
+  def new_notifications?
+    notifications.unreads.count > 0
+  end
 end

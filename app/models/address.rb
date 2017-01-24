@@ -63,4 +63,15 @@ class Address
   index({type: 1},      {unique: false, name: :idx_address_type, sparse: true})
   index({user: 1},      {unique: false, name: :idx_address_user, sparse: true})
 
+  def country_code
+    country&.alpha2
+  end
+
+  def country_name
+    country&.name
+  end
+
+  def country_local_name
+    country&.local_name
+  end
 end

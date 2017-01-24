@@ -18,9 +18,4 @@ class UserDecorator < Draper::Decorator
       image_url(:pic, :thumb)
     end
   end
-
-  def new_notifications?
-    notifications.unreads.count > 0
-  end
-
 end
