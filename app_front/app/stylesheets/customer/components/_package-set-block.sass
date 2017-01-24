@@ -2,7 +2,7 @@
 
   +shadow-box
 
-  +breakpoint('computer')
+  +breakpoint('desktop')
     +border-radius-left(4px)
     +border-radius-right(4px)
   +breakpoint('mobile')
@@ -10,19 +10,19 @@
     +border-radius-bottom(4px)
 
   +part(no-padding-left)
-    +breakpoint('computer')
+    +breakpoint('desktop')
       padding-left: 0
     & > div
-      +breakpoint('computer')
+      +breakpoint('desktop')
         +border-radius-right(4px)
       +breakpoint('mobile')
         +border-radius-top(4px)
 
   +part(no-padding-right)
-    +breakpoint('computer')
+    +breakpoint('desktop')
       padding-right: 0
     & > div
-      +breakpoint('computer')
+      +breakpoint('desktop')
         +border-radius-left(4px)
       +breakpoint('mobile')
         +border-radius-top(4px)

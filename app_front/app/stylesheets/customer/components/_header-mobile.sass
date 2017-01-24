@@ -1,6 +1,6 @@
 +component(header-mobile)
 
-  +breakpoint('computer')
+  +breakpoint('desktop')
     display: none
 
   +breakpoint('mobile')
@@ -24,6 +24,7 @@
 
     nav
       background-color: $color-white
+
     ul
       list-style-type: none
       padding: 0
@@ -46,7 +47,7 @@
   +part(menu)
     min-height: 6em
     padding-right: 2em
-    padding-top: 1em
+    padding-top: 1.5em
 
     ul
       list-style-type: none
@@ -61,30 +62,32 @@
         color: $color-dark-green
 
 
-/**
- * Everything below is a hook and
- * should be moved elsewhere
- */
-.navbar-toggle
-  display: block !important
-
-// Change name into header-mobile names
-.overlay
-    display: none
-    position: absolute
-    z-index: 20
-    top: 0
-    bottom: 0
-    left: 0
-    right: 0
-    opacity: 0
-    background: rgba(0, 0, 0, 0.8)
-    overflow: hidden
-
-.canvas.sliding .overlay
-    display: block
-    opacity: 1
-    -webkit-transition: opacity 0.5s
-    -moz-transition: opacity 0.5s
-    -o-transition: opacity 0.5s
-    transition: opacity 0.5s
+// /**
+//  * Everything below is a hook and
+//  * should be moved elsewhere
+//  */
+#mobile-menu
+  +shadow-box
+// .navbar-toggle
+//   display: block !important
+//
+// // Change name into header-mobile names
+// .overlay
+//     display: none
+//     position: absolute
+//     z-index: 20
+//     top: 0
+//     bottom: 0
+//     left: 0
+//     right: 0
+//     opacity: 0
+//     background: rgba(0, 0, 0, 0.8)
+//     overflow: hidden
+//
+// .canvas.sliding .overlay
+//     display: block
+//     opacity: 1
+//     -webkit-transition: opacity 0.5s
+//     -moz-transition: opacity 0.5s
+//     -o-transition: opacity 0.5s
+//     transition: opacity 0.5s

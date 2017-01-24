@@ -339,9 +339,9 @@
     @media (max-width: 994px)
       @content
 
-  @else if $class == computer
+  @else if $class == desktop
     @media (min-width: 995px)
       @content
 
   @else
-    @warn "Breakpoint mixin supports: mobile, computer"
+    @warn "Breakpoint mixin supports: mobile, desktop"

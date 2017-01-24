@@ -351,6 +351,10 @@
   height: 2.5em;
   line-height: 2.5em; }
 
+@media (min-width: 768px) {
+  .navbar-toggle {
+    display: block; } }
+
 body {
   line-height: 1.6 !important;
   letter-spacing: 1px !important;
@@ -1580,7 +1584,7 @@ body {
   .header-mobile__menu {
     min-height: 6em;
     padding-right: 2em;
-    padding-top: 1em; }
+    padding-top: 1.5em; }
     .header-mobile__menu ul {
       list-style-type: none; }
     .header-mobile__menu a {
@@ -1590,32 +1594,8 @@ body {
       .header-mobile__menu a.\--green {
         color: #33965e; }
 
-/**
- * Everything below is a hook and
- * should be moved elsewhere
- */
-.navbar-toggle {
-  display: block !important; }
-
-.overlay {
-  display: none;
-  position: absolute;
-  z-index: 20;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  opacity: 0;
-  background: rgba(0, 0, 0, 0.8);
-  overflow: hidden; }
-
-.canvas.sliding .overlay {
-  display: block;
-  opacity: 1;
-  -webkit-transition: opacity 0.5s;
-  -moz-transition: opacity 0.5s;
-  -o-transition: opacity 0.5s;
-  transition: opacity 0.5s; }
+#mobile-menu {
+  box-shadow: 0px 6px 15px 4px rgba(139, 139, 139, 0.32); }
 
 .main-button__hollow {
   display: block;
