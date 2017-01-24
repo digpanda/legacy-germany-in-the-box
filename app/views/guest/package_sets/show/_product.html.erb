@@ -1,9 +1,9 @@
 <div class="remodal product-miniblock__remodal" data-remodal-id="package-sku-<%= package_sku.id %>">
 
   <div class="product-miniblock">
-    
+
       <!-- Image -->
-      <div class="product-miniblock__image lazy" data-original="<%= package_sku.sku.decorate.image_url(:img0, :fullsize) %>" style="background-image:url('/images/grey.gif');">
+      <div class="product-miniblock__image" style="background-image:url('<%= package_sku.sku.decorate.image_url(:img0, :fullsize) %>');">
       </div>
 
       <div class="clearfix"></div>
