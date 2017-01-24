@@ -7,7 +7,9 @@
       <h4 class="shop-block__subtitle"><%= shop.decorate.short_desc(45) %></h4>
     </div>
     <div class="col-md-6 +desktop">
-      <a href="<%= guest_shop_path(shop) %>" class="main-button__hollow +block-right">GO TO SHOP</a>
+      <div class="shop-block__button +block-right">
+        <a href="<%= guest_shop_path(shop) %>" class="main-button__hollow --small">GO TO SHOP</a>
+      </div>
     </div>
   </div>
 
@@ -54,9 +56,8 @@
 
       </div>
 
-      <div class="+mobile +centered">
+      <div class="shop-block__button +mobile +centered">
         <a href="<%= guest_shop_path(shop) %>" class="main-button__hollow --large">GO TO SHOP</a>
-        <div class="+small-spacer"></div>
       </div>
 
     </div>

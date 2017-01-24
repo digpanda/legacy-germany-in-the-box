@@ -1624,6 +1624,9 @@ body {
     background-color: #c7ef9a; }
   .main-button__hollow.\--large {
     padding: 0.7em 5.3em 0.7em 5.3em; }
+  .main-button__hollow.\--small {
+    font-size: 0.85em;
+    width: 22em; }
   .main-button__hollow.\--full {
     width: 100%; }
 
@@ -1840,6 +1843,10 @@ body {
   min-height: 280px;
   background-size: cover;
   background-position: center center; }
+
+.shop-block__button {
+  margin-bottom: 1.2em;
+  margin-right: 1.5em; }
 
 .shop-block__title {
   margin: 0;
