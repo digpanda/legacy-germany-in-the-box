@@ -1610,10 +1610,13 @@ body {
       list-style-type: none;
       padding: 0; }
     .header-mobile__categories li {
-      margin: 1.7em; }
+      margin: 1.5em; }
     .header-mobile__categories a {
-      font-size: 1em;
       color: #5c5c5c; }
+    .header-mobile__categories h3 {
+      font-size: 1.3em; }
+    .header-mobile__categories h4 {
+      font-size: 1.1em; }
   .header-mobile__logo {
     padding-top: 0.7em;
     min-height: 6em;
