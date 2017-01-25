@@ -4,9 +4,9 @@
         <a href="#" class="header-desktop__menu --green"><i class="fa fa-search"></i></a>
     </li>
     <li class="col-md-2 col-md-push-3">
-        <% if !notifications? %>
+        <% if notifications? %>
           <a href="<%= shared_notifications_path %>">
-            <div class="+notif-bubble">2</div>
+            <div class="+notif-bubble"><%= current_user.notifications.unreads.count %></div>
             <span class="header-desktop__menu --green"><i class="fa fa-user"></i></span>
           </a>
         <% else %>
