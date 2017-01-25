@@ -4,7 +4,7 @@
 # - the user select an address matching with an ID which has already spent too much today
 class BuyingBreaker < BaseService
 
-  BUYING_LIMIT_CNY = Settings.instance.max_total_per_day # 1000
+  BUYING_LIMIT_CNY = Setting.instance.max_total_per_day # 1000
 
   attr_reader :order
 

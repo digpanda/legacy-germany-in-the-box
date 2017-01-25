@@ -1,6 +1,6 @@
 require 'singleton'
 
-class Settings
+class Setting
   include Singleton
   include MongoidBase
 
@@ -23,7 +23,7 @@ class Settings
   validates :max_total_per_day,       presence: true,   :numericality => { :greater_than => 0 }
 
   def self.instance
-    @rate ||= Settings.first_or_create()
+    @rate ||= Setting.first_or_create
   end
 
   private_class_method :create

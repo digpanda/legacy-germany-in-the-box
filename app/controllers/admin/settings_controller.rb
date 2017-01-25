@@ -17,10 +17,10 @@ class Admin::SettingsController < ApplicationController
   end
 
   def update
-    Settings.instance.update(settings_params)
+    Setting.instance.update(settings_params)
     # this line is here for a reason, please keep it or fix it.
     # NOTE : upload image not persisting if no previous image before
-    Settings.instance.save!
+    Setting.instance.save!
     redirect_to navigation.back(1)
   end
 
@@ -29,11 +29,11 @@ class Admin::SettingsController < ApplicationController
   # setting is a special case
   # we have only one instance (for now)
   def set_setting
-    @setting ||= Settings.instance
+    @setting ||= Setting.instance
   end
 
   def settings_params
-    params.require(:settings).permit!
+    params.require(:setting).permit!
   end
 
 end

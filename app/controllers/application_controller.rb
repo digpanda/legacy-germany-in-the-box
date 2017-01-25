@@ -41,7 +41,7 @@ class ApplicationController < ActionController::Base
   end
 
   def settings
-    @setting ||= Settings.instance
+    @setting ||= Setting.instance
   end
 
   def custom_sublayout

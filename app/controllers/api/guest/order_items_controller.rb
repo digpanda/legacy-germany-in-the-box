@@ -27,7 +27,7 @@ class Api::Guest::OrderItemsController < Api::ApplicationController
       render :json => {
         :success => false,
         :original_quantity => original_quantity,
-        :error => I18n.t(:override_maximal_total, scope: :edit_order, total: Settings.instance.max_total_per_day, currency: Settings.instance.platform_currency.symbol)
+        :error => I18n.t(:override_maximal_total, scope: :edit_order, total: Setting.instance.max_total_per_day, currency: Setting.instance.platform_currency.symbol)
        }
       return
     end

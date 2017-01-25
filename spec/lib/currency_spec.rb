@@ -1,6 +1,6 @@
 describe Currency do
 
-  let(:rate) { Settings.instance.exchange_rate_to_yuan.to_f }
+  let(:rate) { Setting.instance.exchange_rate_to_yuan.to_f }
 
   context "#to_yuan" do
 

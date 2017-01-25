@@ -14,11 +14,11 @@ class Currency
   end
 
   def to_yuan
-    update_currency!('CNY', amount * Settings.instance.exchange_rate_to_yuan)
+    update_currency!('CNY', amount * Setting.instance.exchange_rate_to_yuan)
   end
 
   def to_euro
-    update_currency!('EUR', amount / Settings.instance.exchange_rate_to_yuan)
+    update_currency!('EUR', amount / Setting.instance.exchange_rate_to_yuan)
   end
 
   def display
@@ -33,9 +33,9 @@ class Currency
 
   def current_symbol
     if currency == 'EUR'
-      symbol = Settings.instance.supplier_currency.symbol
+      symbol = Setting.instance.supplier_currency.symbol
     elsif currency == 'CNY'
-      symbol = Settings.instance.platform_currency.symbol
+      symbol = Setting.instance.platform_currency.symbol
     end
   end
 

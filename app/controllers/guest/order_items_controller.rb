@@ -18,7 +18,7 @@ class Guest::OrderItemsController < ApplicationController
     order.shop = product.shop
 
     if BuyingBreaker.new(order).with_sku?(sku, quantity)
-      flash[:error] = I18n.t(:override_maximal_total, scope: :edit_order, total: Settings.instance.max_total_per_day, currency: Settings.instance.platform_currency.symbol)
+      flash[:error] = I18n.t(:override_maximal_total, scope: :edit_order, total: Setting.instance.max_total_per_day, currency: Setting.instance.platform_currency.symbol)
       redirect_to navigation.back(1)
       return
     end

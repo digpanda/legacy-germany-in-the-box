@@ -56,7 +56,7 @@ class Customer::CheckoutController < ApplicationController
     if products_total_price < shop.min_total
       total_price = Currency.new(products_total_price).to_yuan.display
       min_total = Currency.new(shop.min_total).to_yuan.display
-      flash[:error] = I18n.t(:not_all_min_total_reached, scope: :checkout, :shop_name => shop.name, :total_price => total_price, :currency => Settings.instance.platform_currency.symbol, :min_total => min_total)
+      flash[:error] = I18n.t(:not_all_min_total_reached, scope: :checkout, :shop_name => shop.name, :total_price => total_price, :currency => Setting.instance.platform_currency.symbol, :min_total => min_total)
       redirect_to navigation.back(1)
       return
     end
@@ -246,7 +246,7 @@ class Customer::CheckoutController < ApplicationController
 
   def today_limit?
     if BuyingBreaker.new(order).with_address?(order.shipping_address)
-      flash[:error] = I18n.t(:override_maximal_total, scope: :edit_order, total: Settings.instance.max_total_per_day, currency: Settings.instance.platform_currency.symbol)
+      flash[:error] = I18n.t(:override_maximal_total, scope: :edit_order, total: Setting.instance.max_total_per_day, currency: Setting.instance.platform_currency.symbol)
       redirect_to navigation.back(1)
       return true
     end
