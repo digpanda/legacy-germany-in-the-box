@@ -1585,6 +1585,15 @@ body {
       .header-desktop__menu.\--green i {
         color: #33965e; }
 
+#search-button {
+  margin-right: 0.8em; }
+
+#search-input {
+  position: absolute;
+  right: 1em;
+  top: 0.3em;
+  width: 15em; }
+
 .header-mobile {
   margin-right: -15px;
   margin-left: -15px;

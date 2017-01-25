@@ -2958,10 +2958,36 @@ var Search = {
   init: function init() {
 
     this.categoryFilter();
+    this.searchInput();
   },
 
   /**
-   * We make the input searchable on click
+   * We make the search behavior
+   */
+  searchInput: function searchInput() {
+
+    $('#search-button').on('click', function (e) {
+      Search.showSearchForm();
+      $('#search-input').focus();
+    });
+
+    $('#search-input').on('focusout', function (e) {
+      Search.hideSearchForm();
+    });
+  },
+
+  showSearchForm: function showSearchForm() {
+    $('#search-button').addClass('+hidden');
+    $('#search-form').removeClass('+hidden');
+  },
+
+  hideSearchForm: function hideSearchForm() {
+    $('#search-button').removeClass('+hidden');
+    $('#search-form').addClass('+hidden');
+  },
+
+  /**
+   * We make the category filter auto-trigger
    */
   categoryFilter: function categoryFilter() {
 

@@ -1,9 +1,16 @@
 <nav>
   <ul>
-    <li class="col-md-2 col-md-push-3">
-        <a href="#" class="header-desktop__menu --green"><i class="fa fa-search"></i></a>
+    <li class="col-md-5 +right">
+
+    <form id="search-form" action="#search_path" class="+hidden">
+       <input type="query" id="search-input" name="query" autocomplete="off" placeholder="Search suggestions" />
+       <button type="submit" class="+hidden"></button>
+     </form>
+
+    <a id="search-button" href="#" class="header-desktop__menu --green"><i class="fa fa-search"></i></a>
+
     </li>
-    <li class="col-md-2 col-md-push-3">
+    <li class="col-md-2">
         <% if notifications? %>
           <a href="<%= shared_notifications_path %>">
             <div class="+notif-bubble"><%= current_user.notifications.unreads.count %></div>
@@ -13,10 +20,10 @@
           <a href="<%= resolve_profile_path %>" class="header-desktop__menu --green"><i class="fa fa-user"></i></a>
         <% end %>
     </li>
-    <li class="col-md-2 col-md-push-3">
+    <li class="col-md-2">
         <a href="<%= customer_favorites_path %>" class="header-desktop__menu --pink"><i class="fa fa-heart"></i></a>
     </li>
-    <li class="col-md-2 col-md-push-3">
+    <li class="col-md-2">
         <a id="cart" href="<%= customer_cart_path %>" class="header-desktop__menu --green"><i class="fa fa-shopping-cart"></i></a>
     </li>
   </ul>
