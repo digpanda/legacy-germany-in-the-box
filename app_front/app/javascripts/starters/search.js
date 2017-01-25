@@ -18,25 +18,26 @@ var Search = {
      */
     searchInput: function() {
 
-      $('#search-button').on('click', function(e) {
+      $('.js-search-button i').on('click', function(e) {
+        e.preventDefault(); // prevent go back to the header
         Search.showSearchForm();
-        $('#search-input').focus();
+        $('.js-search-input').focus();
       });
 
-      $('#search-input').on('focusout', function(e) {
+      $('.js-search-input').on('focusout', function(e) {
           Search.hideSearchForm();
       });
 
     },
 
     showSearchForm: function() {
-      $('#search-button').addClass('+hidden');
-      $('#search-form').removeClass('+hidden');
+      $('.js-search-button').addClass('+hidden');
+      $('.js-search-form').removeClass('+hidden');
     },
 
     hideSearchForm: function() {
-      $('#search-button').removeClass('+hidden');
-      $('#search-form').addClass('+hidden');
+      $('.js-search-button').removeClass('+hidden');
+      $('.js-search-form').addClass('+hidden');
     },
 
     /**

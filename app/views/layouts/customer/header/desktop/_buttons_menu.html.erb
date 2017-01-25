@@ -2,17 +2,10 @@
   <ul>
     <li class="col-md-5 +right">
 
-      <div class="search-bar">
-        <form id="search-form" action="<%= guest_search_path %>" class="+hidden">
+      <!-- Desktop searchbar -->
+      <%= render partial: "layouts/customer/header/search_bar" %>
 
-          <i class="fa fa-search"></i>
-          <input type="query" id="search-input" class="search-bar__input" name="query" autocomplete="off" placeholder="<%= I18n.t(:input_suggestions, scope: :search) %>" />
-
-          <button type="submit" class="+hidden"></button>
-        </form>
-      </div>
-
-    <a id="search-button" href="#" class="search-bar__button header-desktop__menu --green"><i class="fa fa-search"></i></a>
+      <a href="#" class="js-search-button search-bar__button header-desktop__menu --green"><i class="fa fa-search"></i></a>
 
     </li>
     <li class="col-md-2">

@@ -1,0 +1,9 @@
+<div class="search-bar">
+  <form action="<%= guest_search_path %>" class="js-search-form +hidden">
+
+    <i class="fa fa-search"></i>
+    <input type="query" class="js-search-input search-bar__input" name="query" autocomplete="off" placeholder="<%= I18n.t(:input_suggestions, scope: :search) %>" />
+
+    <button type="submit" class="+hidden"></button>
+  </form>
+</div>
