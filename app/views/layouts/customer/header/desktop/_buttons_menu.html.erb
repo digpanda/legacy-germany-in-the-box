@@ -4,11 +4,11 @@
         <a href="#" class="header-desktop__menu --green"><i class="fa fa-search"></i></a>
     </li>
     <li class="col-md-2 col-md-push-3">
-        <% if notifications? %>
-        <a href="<%= shared_notifications_path %>">
-          <div class="+notif-bubble"><%= current_user.notifications.unreads.count %></div>
-          <a href="<%= resolve_profile_path %>" class="header-desktop__menu --green"><i class="fa fa-user"></i></a>
-        </a>
+        <% if !notifications? %>
+          <a href="<%= shared_notifications_path %>">
+            <div class="+notif-bubble">2</div>
+            <span class="header-desktop__menu --green"><i class="fa fa-user"></i></span>
+          </a>
         <% else %>
           <a href="<%= resolve_profile_path %>" class="header-desktop__menu --green"><i class="fa fa-user"></i></a>
         <% end %>

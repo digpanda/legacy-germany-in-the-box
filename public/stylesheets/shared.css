@@ -14,6 +14,20 @@
   text-align: center;
   font-weight: bold; }
 
+#csstyle .\+notif-bubble-inline {
+  display: inline-block;
+  background-color: #d6506c;
+  color: #fdfdfd;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  font-size: 14px;
+  text-align: center;
+  font-weight: bold; }
+
 #csstyle .\+block-right {
   float: right;
   clear: right; }
