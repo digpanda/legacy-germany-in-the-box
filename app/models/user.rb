@@ -138,6 +138,10 @@ class User
     !self.decorate.admin?
   end
 
+  def notifications?
+    self.notifications.unreads.count > 0
+  end
+
   def wechat?
     self.provider == "wechat"
   end

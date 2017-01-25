@@ -4,7 +4,14 @@
         <a href="#" class="header-desktop__menu --green"><i class="fa fa-search"></i></a>
     </li>
     <li class="col-md-2 col-md-push-3">
-        <a href="<%= resolve_profile_path %>" class="header-desktop__menu --green"><i class="fa fa-user"></i></a>
+        <% if notifications? %>
+        <a href="<%= shared_notifications_path %>">
+          <div class="+notif-bubble"><%= current_user.notifications.unreads.count %></div>
+          <a href="<%= resolve_profile_path %>" class="header-desktop__menu --green"><i class="fa fa-user"></i></a>
+        </a>
+        <% else %>
+          <a href="<%= resolve_profile_path %>" class="header-desktop__menu --green"><i class="fa fa-user"></i></a>
+        <% end %>
     </li>
     <li class="col-md-2 col-md-push-3">
         <a href="<%= customer_favorites_path %>" class="header-desktop__menu --pink"><i class="fa fa-heart"></i></a>

@@ -1,3 +1,19 @@
+#csstyle .\+notif-bubble {
+  position: absolute;
+  background-color: #d6506c;
+  color: #fdfdfd;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  left: 14px;
+  top: -15px;
+  font-size: 14px;
+  text-align: center;
+  font-weight: bold; }
+
 #csstyle .\+block-right {
   float: right;
   clear: right; }
