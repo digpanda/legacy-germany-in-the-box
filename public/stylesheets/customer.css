@@ -1677,6 +1677,9 @@ body {
     box-shadow: 0px 5px 20px 3px rgba(139, 139, 139, 0.32);
     padding: 12px 16px;
     z-index: 1; }
+    .menu-dropdown__content hr {
+      margin-top: 0.5em;
+      margin-bottom: 0.5em; }
     .menu-dropdown__content li {
       text-align: left;
       font-weight: bold; }
