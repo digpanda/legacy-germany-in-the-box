@@ -1665,7 +1665,8 @@ body {
   position: relative;
   display: inline-block; }
   .menu-dropdown a {
-    padding-bottom: 2em; }
+    padding-bottom: 2em;
+    display: block; }
   .menu-dropdown:hover .menu-dropdown__content {
     display: block; }
   .menu-dropdown__content {
