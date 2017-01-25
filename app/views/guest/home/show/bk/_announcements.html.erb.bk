@@ -1,11 +1,11 @@
-<% if Settings.instance.highlight_title&.present? %>
+<% if Setting.instance.highlight_title&.present? %>
 <div class="row">
   <div class="announcement-landing col-md-10 col-md-push-1 col-md-pull-1">
     <div class="row">
 
         <div class="col-md-3 announcement-landing__girl">
           <div class="announcement-landing__bubble">
-            <%= Settings.instance.highlight_title %>
+            <%= Setting.instance.highlight_title %>
           </div>
           <div class="announcement-landing__bubble-arrow">
           </div>
