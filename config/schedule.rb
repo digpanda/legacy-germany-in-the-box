@@ -39,6 +39,13 @@ every :hour do
   rake "cron:get_missing_shippings_from_border_guru"
 end
 
+# other cron jobs
+# - reindexing entries for index
+every :day do
+  command 'The system has launched the rake task `rake mongoid_search:index`'
+  rake "mongoid_search:index"
+end
+
 =begin
 every 1.day, :at => '4:30 am' do
   runner "MyModel.task_to_run_at_four_thirty_in_the_morning"
