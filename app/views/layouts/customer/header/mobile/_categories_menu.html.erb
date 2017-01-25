@@ -8,7 +8,7 @@
     <li>
       <a href="<%= guest_category_path(category) %>" id="<%= category.slug %>"><%= category.name %></a>
       <ul>
-        <% category.can_buy_shops.each do |shop| %>
+        <% category.can_buy_shops(5).each do |shop| %>
           <li>
             <a href="<%= guest_shop_path(shop) %>"><%= shop.name %></a>
           </li>

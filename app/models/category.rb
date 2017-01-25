@@ -9,7 +9,7 @@ class Category
   field :desc, type: String, localize: true
   field :position, type: Integer
   field :cover,       type: String
-  
+
   mount_uploader :cover, CoverUploader
 
   scope :only_with_products,       ->    { where(:product_ids.ne => nil).and(:product_ids.ne => []) }
@@ -18,8 +18,8 @@ class Category
     Shop.where(:id.in => shop_ids)
   end
 
-  def can_buy_shops
-    Shop.can_buy.where(:id.in => shop_ids)
+  def can_buy_shops(limit=0)
+    Shop.can_buy.where(:id.in => shop_ids).limit(limit)
   end
 
   private
