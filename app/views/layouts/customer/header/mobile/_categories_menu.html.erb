@@ -4,13 +4,13 @@
     <li>
       <% if notifications? %>
         <a href="<%= shared_notifications_path %>">
-          <span class="header-desktop__menu --green"><%= I18n.t(:my_profile, scope: :menu) %></span> <div class="+notif-bubble-inline"><%= current_user.notifications.unreads.count %></div>
+          <span><%= I18n.t(:my_profile, scope: :menu) %></span> <div class="+notif-bubble-inline"><%= current_user.notifications.unreads.count %></div>
         </a>
       <% else %>
-        <a href="<%= resolve_profile_path %>" class="header-desktop__menu --green"><%= I18n.t(:my_profile, scope: :menu) %></a>
+        <a href="<%= resolve_profile_path %>"><%= I18n.t(:my_profile, scope: :menu) %></a>
       <% end %>
     </li>
-    <li><a href="<%= customer_favorites_path %>" class="header-desktop__menu --pink"><%= I18n.t(:my_favorites, scope: :menu) %></a></li>
+    <li><a href="<%= customer_favorites_path %>"><%= I18n.t(:my_favorites, scope: :menu) %></a></li>
     <hr />
     <% categories.each do |category| %>
     <li>
