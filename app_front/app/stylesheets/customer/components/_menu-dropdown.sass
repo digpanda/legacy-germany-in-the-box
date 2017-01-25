@@ -1,15 +1,20 @@
-.dropdown
++component(menu-dropdown)
+
     position: relative
     display: inline-block
 
-.dropdown-content
-    display: none
-    position: absolute
-    background-color: #f9f9f9
-    min-width: 160px
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2)
-    padding: 12px 16px
-    z-index: 1
+    a
+      padding: 2em
 
-.dropdown:hover .dropdown-content
-  display: block
+    &:hover .menu-dropdown__content
+      display: block
+
+    +part(content)
+      display: none
+      position: absolute
+      top: 38px
+      background-color: $color-white
+      min-width: 10em
+      +shadow-box
+      padding: 12px 16px
+      z-index: 1
