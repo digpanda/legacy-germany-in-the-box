@@ -43,6 +43,7 @@ class Product
   scope :is_active,   -> { self.and(:status  => true, :approved.ne => nil) }
   scope :has_sku,     -> { self.where(:'skus.0' => {:$exists => true }) }
   scope :has_hs_code, -> { self.where(:hs_code.ne => nil) }
+  scope :highlight_first, -> { self.order_by(highlight: :desc) }
 
   # we fetch all the `available_skus` and only select
   # the product containing the correct skus
