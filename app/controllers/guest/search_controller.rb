@@ -1,13 +1,13 @@
 class Guest::SearchController < ApplicationController
 
   def show
-    @products = Product.all
+    @products = Product.full_text_search(query)
   end
 
   private
 
   def query
-    params.require(:query)
+    params.require(:query) if params[:query].present?
   end
 
 end

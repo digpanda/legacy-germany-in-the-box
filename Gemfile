@@ -15,6 +15,8 @@ gem "rails", "4.2.1"
 gem "mongoid", "~> 5.0.0"
 gem "mongoid_includes"
 gem "mongoid_rails_migrations"
+gem "mongoid_search", github: "Loschcode/mongoid_search", branch: "master"
+
 gem "country_select"
 gem "slack-notifier"
 gem "delayed_job_mongoid"
@@ -84,8 +86,8 @@ group :development do
   gem "capistrano-rails"
   gem "capistrano-rvm"
   gem "capistrano-nvm"
-  gem 'capistrano-linked-files'
-  gem 'capistrano-secrets-yml', '~> 1.0.0'
+  gem "capistrano-linked-files"
+  gem "capistrano-secrets-yml", "~> 1.0.0"
 
   # debug / metrics
   gem "flay"

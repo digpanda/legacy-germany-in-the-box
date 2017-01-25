@@ -1,13 +1,14 @@
 class Product
   include MongoidBase
+  include Mongoid::Search
 
   MAX_SHORT_TEXT_LENGTH = (Rails.configuration.achat[:max_short_text_length] * 1.25).round
   MAX_LONG_TEXT_LENGTH = (Rails.configuration.achat[:max_long_text_length] * 1.25).round
 
   strip_attributes
 
-  field :name, type: String, localize: true
   field :brand, type: String, localize: true
+  field :name, type: String, localize: true
   field :cover, type: String # deprecated ?
   field :desc, type: String, localize: true
   field :status, type: Boolean, default: true
@@ -26,6 +27,9 @@ class Product
   belongs_to :duty_category, inverse_of: :products, counter_cache: true
 
   has_and_belongs_to_many :users, inverse_of: :favorites
+
+  # research system
+  search_in :brand, :name, :desc, :shop => :shopname
 
   accepts_nested_attributes_for :skus
   accepts_nested_attributes_for :options

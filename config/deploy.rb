@@ -51,6 +51,7 @@ namespace :deploy do
 
   task :restart do
     invoke 'delayed_job:restart'
+    invoke 'rake mongoid_search:index'
   end
 
   after :restart, :clear_cache do
