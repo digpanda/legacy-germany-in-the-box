@@ -48,6 +48,9 @@ namespace :guest do
   resources :products  do
   end
 
+  resource :search, :controller => 'search' do
+  end
+
   # maybe it will become shops/applications at some point
   resources :shop_applications, :only => [:new, :create] do
   end

@@ -1,0 +1,23 @@
+<div class="row">
+
+  <div class="col-md-12">
+
+  <% if @products.count > 0 %>
+
+    <%= render partial: "guest/shops/show/products_list", :locals => { :products => @products } %>
+
+  <% else %>
+
+    <div class="+white-box +centered">
+      <h4>
+       <%= I18n.t(:no_products, scope: :cart) %>
+     </h4>
+   </div>
+
+ <% end %>
+
+ </div>
+
+</div>
+
+<div class="+spacer"></div>
