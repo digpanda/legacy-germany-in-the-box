@@ -13,6 +13,7 @@ class Settings
   field :package_sets_title,       type: String
   field :package_sets_description, type: String
   field :package_sets_cover,       type: String
+  field :package_sets_highlight,     type: Boolean
 
   mount_uploader :package_sets_cover, CoverUploader
 

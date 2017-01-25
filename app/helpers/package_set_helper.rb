@@ -1,7 +1,7 @@
 module PackageSetHelper
 
-  def any_package_set?
-    PackageSet.count > 0
+  def package_set_highlight?
+    Settings.instance.package_sets_highlight
   end
 
 end

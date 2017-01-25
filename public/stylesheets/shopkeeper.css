@@ -164,6 +164,9 @@
 #csstyle .\+left {
   text-align: left; }
 
+#csstyle .\+down {
+  vertical-align: bottom; }
+
 #csstyle .\+centered {
   text-align: center;
   margin: 0 auto; }

@@ -30,6 +30,26 @@
 <div class="row">
 <div class="col-md-6 +white-box">
   <%= form_for [:admin, @setting], :data => {:toggle => 'validator'} do |form| %>
+
+  <div class="form-group">
+    <%= form.label :package_sets_highlight, "Package sets highlight" %>
+
+    <div class="+down">
+      <!-- the `form.object` represents the `shop` model -->
+      <% if @setting.package_sets_highlight %>
+        <%= form.label :package_sets_highlight, :class => 'switch' do %>
+          <%= form.check_box :package_sets_highlight %>
+          <div class="switch__slider"></div>
+        <% end %>
+      <% else %>
+        <%= form.label :package_sets_highlight, :class => 'switch' do %>
+          <%= form.check_box :package_sets_highlight %>
+          <div class="switch__slider"></div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+
     <div class="form-group">
       <%= form.label :package_sets_title, "Package sets title" %>
       <%= form.text_field :package_sets_title, :autocomplete => :off %>
