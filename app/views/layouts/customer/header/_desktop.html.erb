@@ -9,39 +9,14 @@
     <!-- Categories -->
     <div class="col-md-7 header-desktop__categories">
       <div class="row">
-        <nav>
-          <ul>
-            <% @categories.each do |category| %>
-            <li class="col-md-2">
-              <a href="<%= guest_category_path(category) %>" id="<%= category.slug %>"><%= category.name %></a>
-            </li>
-            <% end %>
-          </ul>
-        </nav>
+        <%= render partial: "layouts/customer/header/desktop/categories_menu", :locals => { :categories => @categories } %>
       </div>
     </div>
 
     <!-- Menu -->
     <div class="col-md-3 header-desktop__menu">
       <div class="row">
-
-        <nav>
-          <ul>
-            <li class="col-md-2 col-md-push-3">
-                <a href="#" class="header-desktop__menu --green"><i class="fa fa-search"></i></a>
-            </li>
-            <li class="col-md-2 col-md-push-3">
-                <a href="<%= resolve_profile_path %>" class="header-desktop__menu --green"><i class="fa fa-user"></i></a>
-            </li>
-            <li class="col-md-2 col-md-push-3">
-                <a href="<%= customer_favorites_path %>" class="header-desktop__menu --pink"><i class="fa fa-heart"></i></a>
-            </li>
-            <li class="col-md-2 col-md-push-3">
-                <a id="cart" href="<%= customer_cart_path %>" class="header-desktop__menu --green"><i class="fa fa-shopping-cart"></i></a>
-            </li>
-          </ul>
-        </nav>
-
+        <%= render partial: "layouts/customer/header/desktop/buttons_menu", :locals => { :categories => @categories } %>
       </div>
     </div>
   </div>

@@ -6,9 +6,6 @@ de:
     more_info: Mehr Informationen
     buy_it: Einkaufen
     see_our_campaigns: Mehr Informationen über Klassischen Sets
-  menu:
-    my_favorites: Meine Favoriten
-    my_profile: Mein Box
   favorites:
     add: Meinen Favoriten hinzufügen
     remove: Aus Favoriten entfernen
@@ -73,6 +70,8 @@ de:
     go_back_home_page: Zurück zur Hauptseite
     start_process_shipment: Starten das Versenden
   menu:
+    my_favorites: Meine Favoriten
+    my_profile: Mein Box
     my_cart: Einkaufskorb
     my_account: Mein Konto
   breadcrumb:

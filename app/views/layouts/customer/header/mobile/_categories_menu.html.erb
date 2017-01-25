@@ -1,0 +1,21 @@
+<nav id="mobile-menu" class="navmenu navmenu-default navmenu-fixed-left offcanvas" role="navigation">
+
+  <ul>
+    <li><a href="<%= resolve_profile_path %>" class="header-desktop__menu --green"><%= I18n.t(:my_profile, scope: :menu) %></a></li>
+    <li><a href="<%= customer_favorites_path %>" class="header-desktop__menu --pink"><%= I18n.t(:my_favorites, scope: :menu) %></a></li>
+    <hr />
+    <% categories.each do |category| %>
+    <li>
+      <a href="<%= guest_category_path(category) %>" id="<%= category.slug %>"><%= category.name %></a>
+      <ul>
+        <% category.can_buy_shops.each do |shop| %>
+          <li>
+            <a href="<%= guest_shop_path(shop) %>"><%= shop.name %></a>
+          </li>
+        <% end %>
+      </ul>
+    </li>
+    <% end %>
+  </ul>
+
+</nav>

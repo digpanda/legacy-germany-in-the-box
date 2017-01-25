@@ -1,0 +1,18 @@
+<nav>
+  <ul>
+    <% categories.each do |category| %>
+    <li class="col-md-2 dropdown">
+      <a href="<%= guest_category_path(category) %>" id="<%= category.slug %>"><%= category.name %></a>
+      <!-- Shops in category -->
+      <ul class="dropdown-content">
+      <% category.can_buy_shops.each do |shop| %>
+      <li>
+        <a href="<%= guest_shop_path(shop) %>"><%= shop.name %></a>
+      </li>
+      <% end %>
+    </ul>
+      <!-- End of shop in category -->
+    </li>
+    <% end %>
+  </ul>
+</nav>

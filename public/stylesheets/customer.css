@@ -1603,6 +1603,9 @@ body {
 
 #mobile-menu {
   box-shadow: 0px 5px 20px 3px rgba(139, 139, 139, 0.32); }
+  @media (min-width: 995px) {
+    #mobile-menu {
+      display: none; } }
 
 .main-button__hollow {
   display: block;
@@ -1657,6 +1660,22 @@ body {
     padding: 0.7em 5.3em 0.7em 5.3em; }
   .main-button__solid.\--full {
     width: 100%; }
+
+.dropdown {
+  position: relative;
+  display: inline-block; }
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  padding: 12px 16px;
+  z-index: 1; }
+
+.dropdown:hover .dropdown-content {
+  display: block; }
 
 .package-set-block {
   box-shadow: 0px 5px 20px 3px rgba(139, 139, 139, 0.32); }
