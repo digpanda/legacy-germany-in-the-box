@@ -2,12 +2,17 @@
   <ul>
     <li class="col-md-5 +right">
 
-    <form id="search-form" action="#search_path" class="+hidden">
-       <input type="query" id="search-input" name="query" autocomplete="off" placeholder="Search suggestions" />
-       <button type="submit" class="+hidden"></button>
-     </form>
+      <div class="search-bar">
+        <form id="search-form" action="#search_path" class="+hidden">
 
-    <a id="search-button" href="#" class="header-desktop__menu --green"><i class="fa fa-search"></i></a>
+          <i class="fa fa-search"></i>
+          <input type="query" id="search-input" class="search-bar__input" name="query" autocomplete="off" placeholder="<%= I18n.t(:input_suggestions, scope: :search) %>" />
+
+          <button type="submit" class="+hidden"></button>
+        </form>
+      </div>
+
+    <a id="search-button" href="#" class="search-bar__button header-desktop__menu --green"><i class="fa fa-search"></i></a>
 
     </li>
     <li class="col-md-2">

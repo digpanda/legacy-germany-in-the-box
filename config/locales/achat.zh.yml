@@ -724,4 +724,5 @@ zh-CN:
     save: 保存
     max_total_per_day: 每天最大购物额度
   search:
+    input_suggestions: 搜索，例如：有机...
     no_product: 没有找到符合条件的产品

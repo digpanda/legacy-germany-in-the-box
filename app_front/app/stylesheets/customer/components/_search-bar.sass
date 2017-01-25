@@ -1,0 +1,25 @@
++component(search-bar)
+
+  i
+    position: absolute
+    z-index: 99
+    color: $color-light-grey
+    font-size: 1.1em
+    top: 0.6em
+    right: 1.3em
+
+  +part(button)
+    margin-right: 0.8em
+
+  +part(input)
+    position: absolute
+    right: 1em
+    top: 0.3em
+    width: 15em
+    height: 2em
+    padding: 0.5em
+    font-weight: bold
+    background-color: $color-ultra-light-grey
+    +border-radius(4px)
+    border: 0
+    box-shadow: inset 0px 0px 7px 0px rgba(0, 0, 0, 0.15)

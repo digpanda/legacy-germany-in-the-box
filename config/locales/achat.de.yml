@@ -730,4 +730,5 @@ de:
     max_total_per_day: Maximale Summe pro Tag
     save: Speichern
   search:
+    input_suggestions: Search
     no_product: keine entsprechende Produkte vorhanden
