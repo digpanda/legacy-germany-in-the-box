@@ -85,10 +85,6 @@ class Product
 
   class << self
 
-    # def search(query)
-    #   Product.can_buy.where(name: /(#{query.split.join('|')})/i)
-    # end
-
     # TODO : to improve
     # right now it doesn't order by discount
     # also the `each` could be replaced by something for sure.
@@ -187,7 +183,7 @@ class Product
   end
 
   def featured_sku
-    @featured_sku ||= (available_skus.first || skus.first)
+    @featured_sku ||= available_skus.first
   end
 
   def best_discount_sku
