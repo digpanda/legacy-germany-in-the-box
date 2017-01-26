@@ -63,12 +63,12 @@ class Product
   # scope :has_tag,     -> (value) { where(:tags       => value)                     }
 
   # only available products which are active and got skus
-  scope :can_show,          -> { self.is_active.has_sku.has_available_sku }
+  scope :can_show,          -> { self.is_active.has_sku }
 
   # the main difference between can show and can buy is the fact the customer
   # can effectively select the sku and buy the item because
   # it has stocks and is available
-  scope :can_buy,           -> { self.can_show.has_hs_code.available_from_shop }
+  scope :can_buy,           -> { self.can_show.has_hs_code.has_available_sku.available_from_shop }
 
   # we should investigate on the exact reason this line exists
   scope :available_from_shop, -> { self.in(shop: Shop.only(:id).map(&:id)) }
