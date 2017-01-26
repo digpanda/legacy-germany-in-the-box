@@ -8,7 +8,6 @@
     <div class="row">
       <div class="col-md-6">
         <%= f.text_field :lname, :value => address.lname ? address.lname : current_user.lname, :class => 'form-control', :required => true, :placeholder => I18n.t(:lname, scope: :edit_address), :pattern => '[\u4e00-\u9fa5]+', :data => {:error => "Please use only Chinese characters"} %>
-
       </div>
       <div class="col-md-6">
         <%= f.text_field :fname, :value => address.fname ? address.fname : current_user.fname, :class => 'form-control', :required => true, :placeholder => I18n.t(:fname, scope: :edit_address), :pattern => '[\u4e00-\u9fa5]+', :data => {:error => "Please use only Chinese characters"} %>

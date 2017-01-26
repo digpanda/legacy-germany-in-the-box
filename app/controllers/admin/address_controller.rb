@@ -1,3 +1,6 @@
+# NOTE : this controller is actually used to get the address of the customer
+# from the admin side.
+# NOTE 2 : the controller itself isn't currently used but only the view.
 class Admin::AddressController < ApplicationController
 
   attr_accessor :address

@@ -13,13 +13,17 @@ class Customer::AddressesController < ApplicationController
   def show
   end
 
+  def new
+    @address = Address.new
+  end
+
   def create
 
     num_addresses = current_user.addresses.count
 
     if num_addresses >= Rails.configuration.achat[:max_num_addresses]
       flash[:error] = I18n.t(:create_ko, scope: :edit_address)
-      redirect_to redirect_to navigation.back(1)
+      render :new
       return
     end
 
@@ -38,12 +42,12 @@ class Customer::AddressesController < ApplicationController
         reset_primary_address!(address)
       end
       flash[:success] = I18n.t(:create_ok, scope: :edit_address)
-      redirect_to navigation.back(1)
+      redirect_to navigation.back(2)
       return
     end
 
     flash[:error] = I18n.t(:create_ko, scope: :edit_address)
-    redirect_to navigation.back(1)
+    render :new
 
   end
 
