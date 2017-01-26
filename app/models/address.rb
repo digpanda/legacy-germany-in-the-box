@@ -29,9 +29,6 @@ class Address
   field :mobile,        type: String
   field :primary,       type: Boolean,    default: false
 
-  # belongs_to :user,     :inverse_of => :addresses
-  # belongs_to :shop,     :inverse_of => :addresses
-
   embedded_in :shop, :inverse_of => :addresses
   embedded_in :user, :inverse_of => :addresses
 
@@ -54,7 +51,6 @@ class Address
   validates :city, presence: true
   validates :zip, presence: true
   validates :country, presence: true
-  validates :primary, presence: true
   validates :company, presence: true, :if => -> { shop.present? }
   validates :province, presence: true
   validates :type, presence: true , inclusion: {in: [:billing, :shipping, :both]}

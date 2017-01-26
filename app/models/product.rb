@@ -187,7 +187,7 @@ class Product
   end
 
   def featured_sku
-    @featured_sku ||= available_skus.first
+    @featured_sku ||= available_skus.first || skus.first
   end
 
   def best_discount_sku

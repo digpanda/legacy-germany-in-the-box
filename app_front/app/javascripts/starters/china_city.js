@@ -26,6 +26,7 @@ var ChinaCity = {
               var selects;
               selects = $(this).find('.city-select');
               return selects.change(function () {
+                console.log('what');
                   var $this, next_selects;
                   $this = $(this);
                   next_selects = selects.slice(selects.index(this) + 1);

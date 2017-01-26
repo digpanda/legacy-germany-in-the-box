@@ -33,6 +33,8 @@ class Customer::AddressesController < ApplicationController
     address = Address.new(address_params)
     address.user = current_user
 
+    binding.pry
+
     if address.save
       if address.primary && (num_addresses > 0)
         reset_primary_address!(address)

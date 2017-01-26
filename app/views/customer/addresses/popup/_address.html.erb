@@ -49,7 +49,7 @@
       <%= f.select :city    , [], { include_blank: I18n.t(:city_blank, scope: :edit_address) }, { :autocomplete => :off, class: 'form-control city-select city-city', :required => true } %>
     </div>
     <div class="form-group">
-      <%= f.select :district, [], { include_blank: I18n.t(:district_blank, scope: :edit_address) }, { :autocomplete => :off, class: 'form-control city-select city-district', :required => true } %>
+      <%= f.select :district, [], { include_blank: I18n.t(:district_blank, scope: :edit_address) }, { :autocomplete => :off, class: 'form-control city-select city-district' } %>
     </div>
   </div>
 
@@ -63,7 +63,7 @@
       <%= f.select :city    , options_for_select(get_cities_for_province(address.province), get_code_for_city(address.province, address.city)), { include_blank: I18n.t(:city_blank, scope: :edit_address) }, { :autocomplete => :off, class: 'form-control city-select city-city', :required => true } %>
     </div>
     <div class="form-group">
-      <%= f.select :district, options_for_select(get_districts_for_city(address.province, address.city), get_code_for_district(address.province, address.city, address.district)), { include_blank: I18n.t(:district_blank, scope: :edit_address) }, { :autocomplete => :off, class: 'form-control city-select city-district', :required => true } %>
+      <%= f.select :district, options_for_select(get_districts_for_city(address.province, address.city), get_code_for_district(address.province, address.city, address.district)), { include_blank: I18n.t(:district_blank, scope: :edit_address) }, { :autocomplete => :off, class: 'form-control city-select city-district' } %>
     </div>
   </div>
 
