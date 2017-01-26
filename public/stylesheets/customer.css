@@ -1642,6 +1642,55 @@ body {
     #mobile-menu {
       display: none; } }
 
+.overlay {
+  display: none;
+  position: absolute;
+  z-index: 20;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  opacity: 0;
+  background: rgba(0, 0, 0, 0.8);
+  overflow: hidden; }
+
+.canvas.sliding .overlay {
+  display: block;
+  opacity: 1;
+  -webkit-transition: opacity 0.5s;
+  -moz-transition: opacity 0.5s;
+  -o-transition: opacity 0.5s;
+  transition: opacity 0.5s; }
+
+.navbar-toggle {
+  float: left;
+  margin-left: 15px; }
+
+.navmenu {
+  z-index: 1; }
+
+.canvas {
+  position: relative;
+  left: 0;
+  z-index: 2;
+  min-height: 100%;
+  padding: 50px 0 0 0;
+  background: #fff; }
+
+@media (min-width: 0) {
+  .navbar-toggle {
+    display: block; } }
+
+@media (min-width: 992px) {
+  body {
+    padding: 0; }
+  .navbar {
+    right: auto;
+    background: none;
+    border: none; }
+  .canvas {
+    padding: 0; } }
+
 .main-button__hollow {
   display: block;
   width: 20em;

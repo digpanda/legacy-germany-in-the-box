@@ -1318,13 +1318,13 @@ var Messages = { // NOTE : We should use a template system to handle the HTML he
 
   makeError: function makeError(error) {
 
-    $("#messages-container").html('<div id="message-error" class="col-xs-6 col-xs-push-3 col-md-4 col-md-push-4 col-md-pull-4 message message__error +centered">' + error + '</div>');
+    $("#messages-container").html('<div id="message-error" class="col-xs-10 col-xs-push-1 col-md-4 col-md-push-4 col-md-pull-4 message message__error +centered">' + error + '</div>');
     Messages.activateHide('#message-error', 3000);
   },
 
   makeSuccess: function makeSuccess(success) {
 
-    $("#messages-container").html('<div id="message-success" class="col-xs-6 col-xs-push-3 col-md-4 col-md-push-4 col-md-pull-4 message message__success +centered">' + success + '</div>');
+    $("#messages-container").html('<div id="message-success" class="col-xs-10 col-xs-push-1 col-md-4 col-md-push-4 col-md-pull-4 message message__success +centered">' + success + '</div>');
     Messages.activateHide('#message-success', 4000);
   },
 
@@ -2384,45 +2384,48 @@ module.exports = LazyLoader;
 });
 
 require.register("javascripts/starters/left_menu.js", function(exports, require, module) {
-'use strict';
+"use strict";
 
 /**
  * LeftMenu Class
  */
 var LeftMenu = {
 
-    /**
-     * Initializer
-     */
-    init: function init() {
+  /**
+   * Initializer
+   */
+  init: function init() {
 
-        this.startLeftMenu();
-    },
+    this.startLeftMenu();
+  },
 
-    /**
-     *
-     */
-    startLeftMenu: function startLeftMenu() {
+  /**
+   *
+   */
+  startLeftMenu: function startLeftMenu() {
 
-        $('#left_menu > ul > li > a').click(function () {
-            $('#left_menu li').removeClass('active');
-            $(this).closest('li').addClass('active');
-            var checkElement = $(this).next();
-            if (checkElement.is('ul') && checkElement.is(':visible')) {
-                $(this).closest('li').removeClass('active');
-                checkElement.slideUp('normal');
-            }
-            if (checkElement.is('ul') && !checkElement.is(':visible')) {
-                $('#left_menu ul ul:visible').slideUp('normal');
-                checkElement.slideDown('normal');
-            }
-            if ($(this).closest('li').find('ul').children().length == 0) {
-                return true;
-            } else {
-                return false;
-            }
-        });
-    }
+    // NOTE : no idea what this is, i think it doesn't exist anymore
+    // - Laurent 26/01/2017
+    // $('#left_menu > ul > li > a').click(function() {
+    //     $('#left_menu li').removeClass('active');
+    //     $(this).closest('li').addClass('active');
+    //     var checkElement = $(this).next();
+    //     if((checkElement.is('ul')) && (checkElement.is(':visible'))) {
+    //         $(this).closest('li').removeClass('active');
+    //         checkElement.slideUp('normal');
+    //     }
+    //     if((checkElement.is('ul')) && (!checkElement.is(':visible'))) {
+    //         $('#left_menu ul ul:visible').slideUp('normal');
+    //         checkElement.slideDown('normal');
+    //     }
+    //     if($(this).closest('li').find('ul').children().length == 0) {
+    //         return true;
+    //     } else {
+    //         return false;
+    //     }
+    // });
+
+  }
 
 };
 
@@ -2499,44 +2502,37 @@ module.exports = Messages;
 });
 
 require.register("javascripts/starters/mobile_menu.js", function(exports, require, module) {
-"use strict";
+'use strict';
 
 /**
  * MobileMenu Class
  */
 var MobileMenu = {
 
-  /**
-   * Initializer
-   */
-  init: function init() {
+    /**
+     * Initializer
+     */
+    init: function init() {
 
-    this.startMobileMenu();
-  },
+        this.startMobileMenu();
+    },
 
-  /**
-   *
-   */
-  startMobileMenu: function startMobileMenu() {
+    /**
+     *
+     */
+    startMobileMenu: function startMobileMenu() {
 
-    this.manageFade();
-  },
+        this.manageFade();
+    },
 
-  manageFade: function manageFade() {
+    manageFade: function manageFade() {
 
-    // $('.navmenu')
-    //     .on('show.bs.offcanvas', function () {
-    //     $('.canvas').addClass('sliding');
-    // })
-    //     .on('shown.bs.offcanvas', function () {
-    // })
-    //     .on('hide.bs.offcanvas', function () {
-    //     $('.canvas').removeClass('sliding');
-    // })
-    //     .on('hidden.bs.offcanvas', function () {
-    // });
-
-  }
+        $('.navmenu').on('show.bs.offcanvas', function () {
+            $('.canvas').addClass('sliding');
+        }).on('shown.bs.offcanvas', function () {}).on('hide.bs.offcanvas', function () {
+            $('.canvas').removeClass('sliding');
+        }).on('hidden.bs.offcanvas', function () {});
+    }
 
 };
 

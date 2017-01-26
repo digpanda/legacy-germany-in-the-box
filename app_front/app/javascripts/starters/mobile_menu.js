@@ -23,17 +23,17 @@ var MobileMenu = {
 
     manageFade: function() {
 
-      // $('.navmenu')
-      //     .on('show.bs.offcanvas', function () {
-      //     $('.canvas').addClass('sliding');
-      // })
-      //     .on('shown.bs.offcanvas', function () {
-      // })
-      //     .on('hide.bs.offcanvas', function () {
-      //     $('.canvas').removeClass('sliding');
-      // })
-      //     .on('hidden.bs.offcanvas', function () {
-      // });
+      $('.navmenu')
+          .on('show.bs.offcanvas', function () {
+          $('.canvas').addClass('sliding');
+      })
+          .on('shown.bs.offcanvas', function () {
+      })
+          .on('hide.bs.offcanvas', function () {
+          $('.canvas').removeClass('sliding');
+      })
+          .on('hidden.bs.offcanvas', function () {
+      });
 
     }
 
