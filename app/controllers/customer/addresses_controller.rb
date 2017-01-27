@@ -28,7 +28,7 @@ class Customer::AddressesController < ApplicationController
     if address.save
       reset_primary_address! if address.primary
       flash[:success] = I18n.t(:create_ok, scope: :edit_address)
-      redirect_to navigation.back(2)
+      redirect_to navigation.back(1)
       return
     end
 
@@ -45,7 +45,7 @@ class Customer::AddressesController < ApplicationController
     if address.update(address_params)
       reset_primary_address! if address.primary
       flash[:success] = I18n.t(:update_ok, scope: :edit_address)
-      redirect_to navigation.back(2)
+      redirect_to navigation.back(1)
       return
     end
 
@@ -56,7 +56,7 @@ class Customer::AddressesController < ApplicationController
 
   def destroy
     address.delete
-    solve_primary_address if address.primary
+    solve_primary_address! if address.primary
     redirect_to navigation.back(1)
   end
 
