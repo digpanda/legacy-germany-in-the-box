@@ -39,6 +39,8 @@ var Footer = {
 
       var docHeight, footerHeight, footerTop;
 
+      $('.js-footer-stick').css('margin-top', 0);
+      
       docHeight = $(window).height();
       footerHeight = $('.js-footer-stick').height();
       footerTop = $('.js-footer-stick').position().top + footerHeight;

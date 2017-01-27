@@ -1,9 +1,3 @@
-<!-- TODO : THIS IS VERY MUCH DUPLICATED DESPITE THE FACT WE CHANGED CONTROLLER
-WE SHOULD DEFINITELY MAKE IT MORE DRY VIA customer/addresses/popup AND SUCH -->
-<div class="remodal address-popup__remodal" data-remodal-id="add-address-dialog">
-  <%= render partial: "customer/addresses/popup/address", :locals => {address: Address.new} %>
-</div>
-
 <div class="col-md-10 col-md-push-1 col-md-pull-1">
 
 <%= form_tag customer_checkout_path, :class => 'dialog-form', :method => :post, :data => {:toggle => 'validator'} %>

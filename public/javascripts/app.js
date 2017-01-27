@@ -568,6 +568,43 @@ var CustomerCheckoutPaymentMethod = {
 module.exports = CustomerCheckoutPaymentMethod;
 });
 
+require.register("javascripts/controllers/customer/orders/addresses.js", function(exports, require, module) {
+'use strict';
+
+/**
+ * OrdersAddresses class
+ */
+var OrdersAddresses = {
+
+  /**
+   * Initializer
+   */
+  init: function init() {
+
+    this.newAddressForm();
+  },
+
+  /**
+   * When someone clicks on "enter new address" a form will show up
+   */
+  newAddressForm: function newAddressForm() {
+
+    $('#button-new-address').on('click', function (e) {
+
+      $('#button-new-address').addClass('+hidden');
+      $('#new-address').removeClass('+hidden');
+
+      // we reset the sticky footer because it makes useless spaces
+      var Footer = require('javascripts/starters/footer');
+      Footer.processStickyFooter();
+    });
+  }
+
+};
+
+module.exports = OrdersAddresses;
+});
+
 require.register("javascripts/controllers/customer/orders/show.js", function(exports, require, module) {
 'use strict';
 
@@ -2200,6 +2237,8 @@ var Footer = {
   processStickyFooter: function processStickyFooter() {
 
     var docHeight, footerHeight, footerTop;
+
+    $('.js-footer-stick').css('margin-top', 0);
 
     docHeight = $(window).height();
     footerHeight = $('.js-footer-stick').height();

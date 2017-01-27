@@ -1,0 +1,91 @@
+<% if @addresses.size > 0 %>
+  <table class="white-table">
+    <thead>
+      <tr>
+        <th>
+          Primary
+        </th>
+        <th>
+          <%= I18n.t(:name, scope: :edit_address) %>
+        </th>
+        <th>
+          <%= I18n.t(:pid, scope: :edit_address) %>
+        </th>
+        <th>
+          <%= I18n.t(:mobile, scope: :edit_address) %>
+        </th>
+        <th>
+          <%= I18n.t(:country, scope: :edit_address) %>
+        </th>
+        <th>
+          <%= I18n.t(:province, scope: :edit_address) %>
+        </th>
+        <th>
+          <%= I18n.t(:city, scope: :edit_address) %>
+        </th>
+        <th>
+          <%= I18n.t(:district, scope: :edit_address) %>
+        </th>
+        <th>
+          <%= I18n.t(:zip, scope: :edit_address) %>
+        </th>
+        <th>
+          <%= I18n.t(:street, scope: :edit_address) %>
+        </th>
+        <th>
+          <%= I18n.t(:operations, scope: :edit_order) %>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @addresses.each do |address| %>
+        <tr>
+          <td>
+            <%= boolean_icon(address.primary) %>
+          </td>
+          <td>
+            <%= address.decorate.chinese_full_name %>
+          </td>
+          <td>
+            <%= address.pid %>
+          </td>
+          <td>
+            <%= address.mobile %>
+          </td>
+          <td>
+            <%= address.country %>
+          </td>
+          <td>
+            <%= address.province %>
+          </td>
+          <td>
+            <%= address.city %>
+          </td>
+          <td>
+            <%= address.district %>
+          </td>
+          <td>
+            <%= address.zip %>
+          </td>
+          <td>
+            <%= address.street %>
+          </td>
+          <td>
+            <%= link_to '', edit_customer_address_path(address), :class => 'tooltipster fa fa-pencil buttons buttons__edit', :title => "Edit" %>
+            <%= link_to '', customer_address_path(address), :method => :delete, data: { confirm: "Are you sure you want to destroy this address ?" }, :class => 'tooltipster fa fa-times buttons buttons__delete', :title => "Remove" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+<div class="+white-box +centered">
+  <h4>
+    No address
+  </h4>
+</div>
+<% end %>
+<div class="+centered">
+  <div class="+small-spacer"></div>
+  <a href="<%= new_customer_address_path %>" class="btn btn-primary btn-lg">Add a new address</a>
+</div>

@@ -1,4 +1,7 @@
 de:
+  address:
+    identity: Identität
+    location: Lage
   navigation:
     packages: "%{num} klassischen Sets"
     products: "%{num} Produkte"
