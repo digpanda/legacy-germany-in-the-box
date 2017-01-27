@@ -4,11 +4,6 @@ class Address
   CHINESE_CHARACTERS = /[\u4e00-\u9fa5]+/
   CHINESE_ID = /(\d{6})(19|20)(\d{2})(1[0-2]|0[1-9])(0[1-9]|[1-2][0-9]|3[0-1])(\d{3})(\d|X|x)/
 
-  # TO REMOVE LATER ON
-  field :shop_id, type: BSON::ObjectId
-  field :user_id, type: BSON::ObjectId
-  # END OF REMOVE
-  #
   strip_attributes
 
   field :additional,    type: String
@@ -27,7 +22,7 @@ class Address
   field :pid,           type: String
   field :email,         type: String
   field :mobile,        type: String
-  field :primary,       type: Boolean,    default: false
+  field :primary,       type: Boolean, default: false
 
   embedded_in :shop, :inverse_of => :addresses
   embedded_in :user, :inverse_of => :addresses

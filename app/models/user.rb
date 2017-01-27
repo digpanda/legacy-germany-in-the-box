@@ -80,9 +80,6 @@ class User
   #
   validates :about,         length: {maximum: Rails.configuration.achat[:max_medium_text_length]}
   validates :website,       length: {maximum: Rails.configuration.achat[:max_short_text_length]}
-
-  validates :addresses,    :length => { :maximum => Rails.configuration.achat[:max_num_addresses] }, :if => lambda { :customer == self.role }
-
   validates_confirmation_of :password
 
   acts_as_token_authenticatable

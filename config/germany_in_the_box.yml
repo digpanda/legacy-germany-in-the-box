@@ -1,8 +1,5 @@
 defaults: &defaults
   app_cache_expire_limit: 10.minutes
-  max_num_addresses: 3
-  max_num_shop_billing_addresses: 1
-  max_num_shop_sender_addresses: 1
   max_num_tags: 3
   max_num_sales_channels: 12
   max_add_to_cart_each_time: 15

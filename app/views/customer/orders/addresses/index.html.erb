@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="col-md-4 col-md-push-4 col-md-pull-4">
+
+    <% if @addresses.size >= 2 %>
+      <h3>Choose from existing address</h3>
+
+      <%= form_tag customer_checkout_path, :class => 'dialog-form', :method => :post, :data => {:toggle => 'validator'} do %>
+
+        <%= hidden_field_tag :shop_id, "#{@order.shop.id}" %>
+
+        <% @addresses.each do |address| %>
+          <%= radio_button_tag 'delivery_destination_id', address.id, :checked => address.primary %>
+          <%= label_tag "delivery_destination_id_#{address.id}", address.decorate.full_address %>
+          <div class="clearfix"></div>
+        <% end %>
+
+        <div class="+right">
+          <div class="+small-spacer"></div>
+          <%= submit_tag "Validate", :class => 'btn btn-primary' %>
+        </div>
+
+      <% end %>
+
+      <a href="#" id="button-new-address">... Or enter new address</a>
+
+    <% end %>
+
+    <div id="new-address" class="+hidden">
+      <%= render partial: "customer/addresses/form", :locals => { :address => @address } %>
+    </div>
+
+  </div>
+</div>

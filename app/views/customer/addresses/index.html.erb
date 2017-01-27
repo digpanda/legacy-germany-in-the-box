@@ -3,6 +3,9 @@
     <thead>
       <tr>
         <th>
+          Primary
+        </th>
+        <th>
           <%= I18n.t(:name, scope: :edit_address) %>
         </th>
         <th>
@@ -37,6 +40,9 @@
     <tbody>
       <% @addresses.each do |address| %>
         <tr>
+          <td>
+            <%= boolean_icon(address.primary) %>
+          </td>
           <td>
             <%= address.decorate.chinese_full_name %>
           </td>

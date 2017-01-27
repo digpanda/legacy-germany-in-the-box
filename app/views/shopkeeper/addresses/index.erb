@@ -36,8 +36,6 @@
 
 <% end %>
 
-<% if @addresses.size < Rails.configuration.achat[:max_num_addresses] %>
-
 <div class="col-md-4">
   <a class="address-box address-box-new" href="#add-address-dialog">
     <div class="vert-center">
@@ -48,7 +46,5 @@
     </div>
   </a>
 </div>
-
-<% end %>
 
 </div>

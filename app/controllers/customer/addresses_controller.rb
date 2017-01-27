@@ -3,8 +3,8 @@ class Customer::AddressesController < ApplicationController
   attr_reader :address
 
   authorize_resource :class => false
-  layout :custom_sublayout, only: [:index]
-  before_action :set_address, only: [:show, :update, :destroy]
+  layout :custom_sublayout
+  before_action :set_address, only: [:show, :edit, :update, :destroy]
 
   def index
     @addresses = current_user.addresses
@@ -19,53 +19,33 @@ class Customer::AddressesController < ApplicationController
 
   def create
 
-    num_addresses = current_user.addresses.count
-
-    if num_addresses >= Rails.configuration.achat[:max_num_addresses]
-      flash[:error] = I18n.t(:create_ko, scope: :edit_address)
-      render :new
-      return
-    end
-
-    # this should be turned into a create
-    address_params[:primary] = true if num_addresses == 0
-    address_params[:district] = ChinaCity.get(address_params[:district])
-    address_params[:city] = ChinaCity.get(address_params[:city])
-    address_params[:province] = ChinaCity.get(address_params[:province])
     address_params[:country] = 'CN'
+    resolve_china_city!
 
-    address = Address.new(address_params)
+    @address = Address.new(address_params)
     address.user = current_user
 
     if address.save
-      if address.primary && (num_addresses > 0)
-        reset_primary_address!(address)
-      end
+      reset_primary_address! if address.primary
       flash[:success] = I18n.t(:create_ok, scope: :edit_address)
       redirect_to navigation.back(2)
       return
     end
 
-    flash[:error] = I18n.t(:create_ko, scope: :edit_address)
+    flash[:error] = "#{I18n.t(:create_ko, scope: :edit_address)} (#{address.errors.full_messages.join(', ')})"
     render :new
 
   end
 
   def update
 
-    # TODO : this should be changed and the update
-    # should occur in a row without changing the params like this
-    address_params[:district] = ChinaCity.get(address_params[:district])
-    address_params[:city] = ChinaCity.get(address_params[:city])
-    address_params[:province] = ChinaCity.get(address_params[:province])
+    resolve_china_city!
     address_params[:country] = 'CN'
 
     if address.update(address_params)
-      if address.primary
-        reset_primary_address!(address)
-      end
+      reset_primary_address! if address.primary
       flash[:success] = I18n.t(:update_ok, scope: :edit_address)
-      redirect_to navigation.back(1)
+      redirect_to navigation.back(2)
       return
     end
 
@@ -76,30 +56,30 @@ class Customer::AddressesController < ApplicationController
 
   def destroy
     address.delete
-    if address.primary
-      set_alternative_primary_address(address)
-    end
+    solve_primary_address if address.primary
     redirect_to navigation.back(1)
   end
 
   private
 
-  def set_alternative_primary_address(address)
-    candidate = current_user.addresses.not.where(:id => address.id).first
-    if candidate
-      candidate.primary = true
-      candidate.save
+  def resolve_china_city!
+    address_params[:district] = ChinaCity.get(address_params[:district])
+    address_params[:city] = ChinaCity.get(address_params[:city])
+    address_params[:province] = ChinaCity.get(address_params[:province])
+  end
+
+  def solve_primary_address!
+    other_address = current_user.addresses.first
+    if other_address
+      other_address.primary = true
+      other_address.save
     end
   end
 
-  def reset_primary_address!(address)
-    # TODO : we refresh the primary address
-    # This should be put into model
-    current_user.addresses.select do |current_address|
-      if (current_address.primary && (current_address != address))
-        current_address.primary = false
-        current_address.save
-      end
+  def reset_primary_address!
+    current_user.addresses.not.where(:id => address.id).each do |other_address|
+      other_address.primary = false
+      other_address.save
     end
   end
 
