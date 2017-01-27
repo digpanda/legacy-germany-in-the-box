@@ -2,6 +2,8 @@ zh-CN:
   address:
     identity: 个人信息
     location: 地址
+    choose_existing: 请从以下地址中选择
+    create_new: 请输入新的邮寄地址
   navigation:
     packages: "%{num}个礼包"
     products: "%{num}件产品"

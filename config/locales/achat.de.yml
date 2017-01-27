@@ -2,6 +2,8 @@ de:
   address:
     identity: Identität
     location: Lage
+    choose_existing: Bitte verwenden Sie eine der folgenden Adressen
+    create_new: Geben Sie bitte eine neue Adresse ein
   navigation:
     packages: "%{num} klassischen Sets"
     products: "%{num} Produkte"

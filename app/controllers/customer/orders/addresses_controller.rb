@@ -12,10 +12,6 @@ class Customer::Orders::AddressesController < Customer::AddressesController
     @address = Address.new
   end
 
-  def create
-    super
-  end
-
   private
 
   def set_addresses

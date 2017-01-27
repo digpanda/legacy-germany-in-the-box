@@ -1,8 +1,8 @@
 <div class="row">
   <div class="col-md-4 col-md-push-4 col-md-pull-4">
-    
+
     <% if @addresses.size > 0 %>
-      <h3>Choose from existing address</h3>
+      <h3><%= I18n.t(:choose_existing, scope: :address) %></h3>
 
       <%= form_tag customer_checkout_path, :class => 'dialog-form', :method => :post, :data => {:toggle => 'validator'} do %>
 
@@ -16,12 +16,12 @@
 
         <div class="+right">
           <div class="+small-spacer"></div>
-          <%= submit_tag "Validate", :class => 'btn btn-primary' %>
+          <%= submit_tag I18n.t(:save, scope: :edit_account), :class => 'btn btn-primary' %>
         </div>
 
       <% end %>
 
-      <a href="#" id="button-new-address">... Or enter new address</a>
+      <a href="#" id="button-new-address">... <%= I18n.t(:create_new, scope: :address) %></a>
 
       <div id="new-address" class="+hidden">
         <%= form_for [:customer, @order, @address], :data => {:toggle => 'validator'} do |form| %>
