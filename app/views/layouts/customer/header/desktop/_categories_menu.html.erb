@@ -1,7 +1,7 @@
 <nav>
   <ul>
     <% categories.each do |category| %>
-    <li class="col-md-2 menu-dropdown">
+    <li class="col-md-2 menu-dropdown +centered">
       <a href="<%= guest_category_path(category) %>" id="<%= category.slug %>"><%= category.name %></a>
       <!-- Shops in category -->
       <ul class="menu-dropdown__content">
