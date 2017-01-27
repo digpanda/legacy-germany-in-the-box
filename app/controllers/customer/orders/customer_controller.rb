@@ -17,8 +17,9 @@ class Customer::Orders::CustomerController < ApplicationController
       redirect_to customer_order_addresses_path(order)
       return
     end
-
   end
+
+  private
 
   def set_order
     @order = current_user.orders.find(params[:order_id])

@@ -48,4 +48,8 @@ class ApplicationController < ActionController::Base
     "layouts/#{identity_solver.section}/submenu"
   end
 
+  def default_layout
+    "application"
+  end
+
 end

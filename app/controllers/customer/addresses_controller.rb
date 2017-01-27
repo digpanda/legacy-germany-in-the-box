@@ -1,3 +1,4 @@
+# NOTE : while on checkout process the customer will pass by customer/orders/addresses
 class Customer::AddressesController < ApplicationController
 
   attr_reader :address
@@ -18,7 +19,6 @@ class Customer::AddressesController < ApplicationController
   end
 
   def create
-
     address_params[:country] = 'CN'
     resolve_china_city!
 
@@ -32,9 +32,14 @@ class Customer::AddressesController < ApplicationController
       return
     end
 
+    current_user.reload
+    @addresses = current_user.addresses
+
     flash[:error] = "#{I18n.t(:create_ko, scope: :edit_address)} (#{address.errors.full_messages.join(', ')})"
     render :new
+  end
 
+  def edit
   end
 
   def update
@@ -50,7 +55,7 @@ class Customer::AddressesController < ApplicationController
     end
 
     flash[:error] = I18n.t(:update_ko, scope: :edit_address)
-    redirect_to navigation.back(1)
+    redirect_to :edit
 
   end
 

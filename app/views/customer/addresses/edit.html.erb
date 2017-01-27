@@ -1,5 +1,7 @@
 <div class="row">
   <div class="col-md-8">
-    <%= render partial: "customer/addresses/form", :locals => { :address => @address } %>
+    <%= form_for [:customer, @address], :data => {:toggle => 'validator'} do |form| %>
+    <%= render partial: "customer/addresses/form", :locals => { :address => @address, :form => form } %>
+    <% end %>
   </div>
 </div>

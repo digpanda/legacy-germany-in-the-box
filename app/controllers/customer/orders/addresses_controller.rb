@@ -1,13 +1,25 @@
-class Customer::Orders::AddressesController < ApplicationController
+# NOTE : with inherit the addresses system
+class Customer::Orders::AddressesController < Customer::AddressesController
 
   attr_reader :order, :address, :addresses
 
   authorize_resource :class => false
   before_action :set_order
+  before_action :set_addresses
+  layout :default_layout # overwrite the sublayout inherit
 
   def index
-    @addresses = current_user.addresses
     @address = Address.new
+  end
+
+  def create
+    super
+  end
+
+  private
+
+  def set_addresses
+    @addresses = current_user.addresses
   end
 
   def set_order

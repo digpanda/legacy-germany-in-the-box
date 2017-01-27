@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-md-4 col-md-push-4 col-md-pull-4">
-
+    
     <% if @addresses.size > 0 %>
       <h3>Choose from existing address</h3>
 
@@ -24,12 +24,16 @@
       <a href="#" id="button-new-address">... Or enter new address</a>
 
       <div id="new-address" class="+hidden">
-        <%= render partial: "customer/addresses/form", :locals => { :address => @address } %>
+        <%= form_for [:customer, @order, @address], :data => {:toggle => 'validator'} do |form| %>
+        <%= render partial: "customer/addresses/form", :locals => { :address => @address, :form => form } %>
+        <% end %>
       </div>
 
     <% else %>
 
-      <%= render partial: "customer/addresses/form", :locals => { :address => @address } %>
+      <%= form_for [:customer, @order, @address], :data => {:toggle => 'validator'} do |form| %>
+      <%= render partial: "customer/addresses/form", :locals => { :address => @address, :form => form } %>
+      <% end %>
 
     <% end %>
 
