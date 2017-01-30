@@ -35,8 +35,7 @@
     "rsvp.js": "rsvp#^3.3.3",
     "jasny-bootstrap": "^3.1.3",
     "scrollup": "^2.4.1",
-    "jquery-nice-select": "^1.1.0",
-    "jQuery.mmenu": "mmenu#^5.7.8"
+    "jquery-nice-select": "^1.1.0"
   },
   "overrides": {
     "underscore": {
