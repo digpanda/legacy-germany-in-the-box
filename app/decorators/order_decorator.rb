@@ -20,19 +20,19 @@ class OrderDecorator < Draper::Decorator
   end
 
   def total_price_in_yuan
-    Currency.new(total_price).to_yuan.amount
+    total_price.in_euro.to_yuan.amount
   end
 
   def total_price_with_currency_euro
-    Currency.new(total_price).display
+  total_price.in_euro.display
   end
 
   def total_price_with_extra_costs_in_yuan
-    Currency.new(total_price_with_extra_costs).to_yuan.display
+    total_price_with_extra_costs.in_euro.to_yuan.display
   end
 
   def total_price_with_extra_costs_in_euro
-    Currency.new(total_price_with_extra_costs).display
+    total_price_with_extra_costs.in_euro.display
   end
 
   def total_price_with_currency_yuan

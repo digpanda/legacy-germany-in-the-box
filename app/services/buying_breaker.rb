@@ -17,7 +17,7 @@ class BuyingBreaker < BaseService
   # if there were not item before, it passes the limit (because it's one pricey item)
   def with_sku?(sku, quantity)
     return false if order.order_items.size == 0 && quantity == 1
-    (sku.decorate.price_in_yuan * quantity + order.decorate.total_price_in_yuan) > BUYING_LIMIT_CNY
+    (sku.decorate.price_in_yuan * quantity + order_price) > BUYING_LIMIT_CNY
   end
 
   # we check if he reached the limit
@@ -27,17 +27,21 @@ class BuyingBreaker < BaseService
   # the comparison is made on the recipient of the package
   def with_address?(address)
     if address_today_paid(address) > 0
-      (order.decorate.total_price_in_yuan + address_today_paid(address)) > BUYING_LIMIT_CNY
+      (order_price + address_today_paid(address)) > BUYING_LIMIT_CNY
     end
   end
 
   private
 
+  def order_price
+    order.total_price_with_taxes.in_euro.to_yuan
+  end
+
   # TODO : we should refactor this and put it inside the model because it belongs to it
   # and its decorator
   def address_today_paid(address)
     address_today_orders(address).inject(0) do |sum, current_order|
-      sum += current_order.decorate.total_price_in_yuan
+      sum += current_order.total_price_with_taxes.in_euro.to_yuan
     end
   end
 
