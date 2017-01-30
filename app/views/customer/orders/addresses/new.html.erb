@@ -14,9 +14,10 @@
           <div class="clearfix"></div>
         <% end %>
 
-        <div class="+right">
+        <div class="row">
           <div class="+small-spacer"></div>
-          <%= submit_tag I18n.t(:save, scope: :edit_account), :class => 'btn btn-primary' %>
+          <button type="submit" class="btn-large +checkout-button"> <%= I18n.t(:checkout, scope: :checkout) %> <i class="fa fa-check-circle"></i></button>
+          <div class="+small-spacer"></div>
         </div>
 
       <% end %>

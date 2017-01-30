@@ -48,17 +48,9 @@ feature "checkout process", :js => true  do
 
       let(:customer) { FactoryGirl.create(:customer, :without_address) }
 
-      # scenario "can not go further without address created" do
-      #
-      #   binding.pry
-      #   page.first('保存').click # go to payment step
-      #   expect(page).to have_css("#message-error") # error output
-      #
-      # end
-
       scenario "pay successfully and generate shipping label correctly" do
 
-        add_address_from_lightbox!
+        fill_in_address!
         pay_and_get_label
 
       end

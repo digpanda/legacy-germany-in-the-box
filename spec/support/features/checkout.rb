@@ -2,7 +2,7 @@ module Helpers
   module Features
     module Checkout
 
-      def add_address_from_lightbox!
+      def fill_in_address!
 
         # page.first('.address-box').click # <--- OLD SYSTEM // open address box
         fill_in 'address[fname]', :with => '薇'
