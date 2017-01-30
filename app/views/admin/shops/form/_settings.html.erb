@@ -33,4 +33,112 @@
     </div>
   </div>
 
+  <!-- AGB -->
+  <div class="row form-group">
+    <div class="col-md-4">
+      <label>
+        AGB
+      </label>
+    </div>
+    <div class="col-md-8">
+      <%= boolean_icon(form.object.agb) %>
+    </div>
+  </div>
+
+  <!-- Hermes PickUp -->
+  <div class="row form-group">
+    <div class="col-md-4">
+      <label>
+        Hermes Pickup Service
+      </label>
+    </div>
+    <div class="col-md-8">
+      <%= boolean_icon(form.object.hermes_pickup) %>
+    </div>
+  </div>
+
+  <!-- Merchant ID -->
+  <div class="row form-group">
+    <div class="col-md-4">
+      <label>
+        <%= I18n.t(:merchant_id, scope: :edit_shop) %>
+      </label>
+    </div>
+    <div class="col-md-8">
+      <%= form.object.merchant_id %>
+    </div>
+  </div>
+
+  <!-- Legal Company Name -->
+  <div class="row form-group">
+    <div class="col-md-4">
+      <label>
+        <%= I18n.t(:name, scope: :edit_shop) %>
+      </label>
+    </div>
+    <div class="col-md-8">
+      <%= form.object.name %>
+    </div>
+  </div>
+
+  <!-- Founding Year -->
+  <div class="row form-group">
+    <div class="col-md-4">
+      <label>
+        <%= I18n.t(:founding_year_info, scope: :edit_shop) %>
+      </label>
+    </div>
+    <div class="col-md-8">
+      <%= form.object.founding_year %>
+    </div>
+  </div>
+
+  <!-- Tax Number -->
+  <div class="row form-group">
+    <div class="col-md-4">
+      <label>
+        <%= I18n.t(:tax_number, scope: :edit_shop) %>
+      </label>
+    </div>
+    <div class="col-md-8">
+      <%= form.object.tax_number %>
+    </div>
+  </div>
+
+  <!-- Registration -->
+  <div class="row form-group">
+    <div class="col-md-4">
+      <label>
+        <%= I18n.t(:register, scope: :edit_shop) %>
+      </label>
+    </div>
+    <div class="col-md-8">
+      <%= form.object.register %>
+    </div>
+  </div>
+
+  <!-- Ust ID -->
+  <div class="row form-group">
+    <div class="col-md-4">
+      <label>
+        Ust ID
+      </label>
+    </div>
+    <div class="col-md-8">
+      <%= form.object.ustid %>
+    </div>
+  </div>
+
+  <!-- EROI Number -->
+  <div class="row form-group">
+    <div class="col-md-4">
+      <label>
+        <%= I18n.t(:eroi, scope: :edit_shop) %>
+      </label>
+    </div>
+    <div class="col-md-8">
+      <%= form.object.eroi %>
+    </div>
+  </div>
+
 </div>
