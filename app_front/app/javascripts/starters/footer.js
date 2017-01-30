@@ -40,13 +40,16 @@ var Footer = {
       var docHeight, footerHeight, footerTop;
 
       $('.js-footer-stick').css('margin-top', 0);
-      
-      docHeight = $(window).height();
-      footerHeight = $('.js-footer-stick').height();
-      footerTop = $('.js-footer-stick').position().top + footerHeight;
+
+      var docHeight = $(window).height();
+      var footerHeight = $('.js-footer-stick').height();
+      var headerHeight = $('.navbar-fixed-top').first().height();
+      var footerTop = $('.js-footer-stick').position().top + footerHeight;
 
       if (footerTop < docHeight) {
-        $('.js-footer-stick').css('margin-top', 10 + (docHeight - footerTop) + 'px');
+        console.log('processing');
+        console.log(headerHeight);
+        $('.js-footer-stick').css('margin-top', (docHeight + (headerHeight * 1.30) - footerTop) + 'px');
       }
 
     },
