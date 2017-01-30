@@ -10,7 +10,7 @@ class HermesMailer < ApplicationMailer
     attachments['orders.csv'] = csv
     mail(
          to: "operations.ecommerce@hermesworld.com",
-         cc: ["merchant@borderguru.com", shopkeeper.email, "shop@germanyinthebox.com"],
+         cc: ["shipping@borderguru.com", shopkeeper.email, "shop@germanyinthebox.com"],
          subject: "Pickup Avisierung: #{shop.bg_merchant_id}, #{shop.lname}, #{Time.now.utc.strftime("%Y-%m-%d")}"
          )
   end

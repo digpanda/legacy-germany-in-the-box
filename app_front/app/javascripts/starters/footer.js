@@ -47,8 +47,6 @@ var Footer = {
       var footerTop = $('.js-footer-stick').position().top + footerHeight;
 
       if (footerTop < docHeight) {
-        console.log('processing');
-        console.log(headerHeight);
         $('.js-footer-stick').css('margin-top', (docHeight + (headerHeight * 1.30) - footerTop) + 'px');
       }
 

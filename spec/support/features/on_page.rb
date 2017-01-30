@@ -23,7 +23,7 @@ module Helpers
       end
 
       def on_order_address_page?
-        expect(page).to have_css('.address-box')
+        expect(page).to have_css('form#new_address')
       end
 
       def on_missing_info_page?
