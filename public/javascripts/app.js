@@ -2424,7 +2424,7 @@ module.exports = LazyLoader;
 });
 
 require.register("javascripts/starters/left_menu.js", function(exports, require, module) {
-"use strict";
+'use strict';
 
 /**
  * LeftMenu Class
@@ -2443,6 +2443,11 @@ var LeftMenu = {
    *
    */
   startLeftMenu: function startLeftMenu() {
+
+    $('select.nice').niceSelect();
+    $('.overlay').on('click', function (e) {
+      $('#mobile-menu-button').trigger('click');
+    });
 
     // NOTE : no idea what this is, i think it doesn't exist anymore
     // - Laurent 26/01/2017
@@ -2464,7 +2469,6 @@ var LeftMenu = {
     //         return false;
     //     }
     // });
-
   }
 
 };
@@ -2580,7 +2584,7 @@ module.exports = MobileMenu;
 });
 
 require.register("javascripts/starters/navigation.js", function(exports, require, module) {
-'use strict';
+"use strict";
 
 /**
  * Navigation Class
@@ -2603,12 +2607,6 @@ var Navigation = {
     var NavigationModel = require("javascripts/models/navigation_model");
     NavigationModel.setLocation(window.location.href, function (res) {
       // Nothing yet
-    });
-
-    console.log('select to be moved elsewhere');
-    $('select.nice').niceSelect();
-    $('.overlay').on('click', function (e) {
-      $('#mobile-menu-button').trigger('click');
     });
   }
 

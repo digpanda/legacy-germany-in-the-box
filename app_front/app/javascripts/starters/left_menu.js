@@ -17,6 +17,11 @@ var LeftMenu = {
      */
     startLeftMenu: function() {
 
+      $('select.nice').niceSelect();
+      $('.overlay').on('click', function(e) {
+        $('#mobile-menu-button').trigger('click');
+      });
+      
       // NOTE : no idea what this is, i think it doesn't exist anymore
       // - Laurent 26/01/2017
         // $('#left_menu > ul > li > a').click(function() {
