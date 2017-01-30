@@ -24,8 +24,9 @@ var Navigation = {
 
       console.log('select to be moved elsewhere');
       $('select.nice').niceSelect();
-
-
+      $('.overlay').on('click', function(e) {
+        $('#mobile-menu-button').trigger('click');
+      });
     },
 
 }
