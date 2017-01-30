@@ -1,16 +1,19 @@
 module ApplicationHelper
   include Mobvious::Rails::Helper
 
+  # NOTE : I tried to refactor this part of the system
+  # it's still extremely dirty and should be completely redone into a library.
   def get_provinces
     ChinaCity.list
   end
 
   def get_cities_for_province(province)
-    ChinaCity.list(get_provinces().select { |p| p[0] == province }[0][1])
+    ChinaCity.list get_code_for_province(province)
   end
 
   def get_districts_for_city(province, city)
-    ChinaCity.list(get_cities_for_province(province).select { |p| p[0] == city }[0][1])
+    codes = get_cities_for_province(province)
+    ChinaCity.list code_reducer(codes, city)
   end
 
   def get_code_for_province(province)
@@ -18,12 +21,12 @@ module ApplicationHelper
   end
 
   def get_code_for_city(province, city)
-    codes = ChinaCity.list(get_code_for_province(province))
+    codes = ChinaCity.list get_code_for_province(province)
     code_reducer(codes, city)
   end
 
   def get_code_for_district(province, city, district)
-    codes = ChinaCity.list(get_code_for_city(province, city))
+    codes = ChinaCity.list get_code_for_city(province, city)
     code_reducer(codes, district)
   end
 
