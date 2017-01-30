@@ -97,7 +97,6 @@ class Shop
   validates :uniqueness,      length: {maximum: (Rails.configuration.achat[:max_medium_text_length] * 1.25).round}
   validates :german_essence,  length: {maximum: (Rails.configuration.achat[:max_medium_text_length] * 1.25).round}
   validates :shopname,        length: {maximum: Rails.configuration.achat[:max_short_text_length]}
-  #validates :sales_channels,  length: {minimum: 2, maximum: Rails.configuration.achat[:max_num_sales_channels] * 2}
 
   # This seems to be systematically empty, should we keep the fields ? - Laurent on 02/06/2016 (i changed to presence: false)
   validates :fname,         presence: false,   length: {maximum: Rails.configuration.achat[:max_tiny_text_length]}
