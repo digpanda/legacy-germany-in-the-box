@@ -14,15 +14,25 @@ module ApplicationHelper
   end
 
   def get_code_for_province(province)
-    ChinaCity.list.select { |p| p[0] == province }[0][1]
+    code_reducer(get_provinces, province)
   end
 
   def get_code_for_city(province, city)
-    ChinaCity.list(get_code_for_province(province)).select { |p| p[0] == city }[0][1]
+    codes = ChinaCity.list(get_code_for_province(province))
+    code_reducer(codes, city)
   end
 
   def get_code_for_district(province, city, district)
-    ChinaCity.list(get_code_for_city(province,city)).select { |p| p[0] == district }[0][1]
+    codes = ChinaCity.list(get_code_for_city(province, city))
+    code_reducer(codes, district)
+  end
+
+  def code_reducer(codes, comparison)
+    codes.reduce([]) do |acc, code|
+      if code.first == comparison
+        return code.last
+      end
+    end
   end
 
   def inside_layout(parent_layout='application')
