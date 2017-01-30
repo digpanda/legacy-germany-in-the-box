@@ -8,7 +8,7 @@ class Customer::Orders::AddressesController < Customer::AddressesController
   before_action :set_addresses
   layout :default_layout # overwrite the sublayout inherit
 
-  def index
+  def new
     @address = Address.new
   end
 
