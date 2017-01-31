@@ -573,7 +573,7 @@ var ProductsShow = {
    * @return {void}
    */
   changePrice: function changePrice() {
-    var option = arguments.length <= 0 || arguments[0] === undefined ? 'grow' : arguments[0];
+    var option = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'grow';
     var old_quantity = arguments[1];
     var selector = arguments[2];
 
