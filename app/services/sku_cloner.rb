@@ -22,7 +22,7 @@ class SkuCloner < BaseService
     attach!
     # we save after all alterations
     if target.save
-      return_with(:success)
+      return_with(:success, :clone => clone)
     else
       clone.destroy
       return_with(:error, :target => target)

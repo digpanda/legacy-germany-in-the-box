@@ -1,5 +1,8 @@
 FactoryGirl.define do
 
+  # NOTE : please create a product
+  # and then a sku, not the opposite
+  # it won't work.
   factory :sku do
 
     price { BigDecimal.new(rand(1..10)) }
@@ -10,6 +13,11 @@ FactoryGirl.define do
     space_length { rand(1..4) }
     space_width { rand(1..4) }
     space_height { rand(1..4) }
+
+    img0 { Rack::Test::UploadedFile.new(File.join(Rails.root, 'public', 'samples', 'images', 'product', '400x400.png')) }
+    img1 { Rack::Test::UploadedFile.new(File.join(Rails.root, 'public', 'samples', 'images', 'product', '400x400.png')) }
+    img2 { Rack::Test::UploadedFile.new(File.join(Rails.root, 'public', 'samples', 'images', 'product', '400x400.png')) }
+    img3 { Rack::Test::UploadedFile.new(File.join(Rails.root, 'public', 'samples', 'images', 'product', '400x400.png')) }
 
     trait :with_small_volume do
       space_length 5

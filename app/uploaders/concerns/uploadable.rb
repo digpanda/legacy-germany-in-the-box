@@ -6,7 +6,7 @@ module Concerns
 
     included do
 
-      storage Rails.env.development? ? :file : :qiniu
+      storage Rails.env.development? || Rails.env.test? ? :file : :qiniu
 
       self.qiniu_can_overwrite = true
       self.qiniu_protocal = 'https'
