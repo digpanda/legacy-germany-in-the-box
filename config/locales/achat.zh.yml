@@ -77,10 +77,10 @@ zh-CN:
     my_account: 我的账号
   breadcrumb:
     home: 首页
-    skus:
-    edit:
-    variants:
-    shops:
+    skus: 商品
+    edit: 编辑
+    variants: 不同的包装尺寸
+    shops: 商铺
   title:
     we_need_more_info: 下单前，我们必须知道你的联系方式
     title: 名称
@@ -191,6 +191,9 @@ zh-CN:
     payments: 支付管理
     settings: 平台设置
     notifications: 平台通知
+    legal_and_settings: 法律条款及设置
+  forms:
+    delivery_options: 送货方式
   footer:
     icp_registration: 粤ICP备16044763号
     business_model: 来因盒商业模式

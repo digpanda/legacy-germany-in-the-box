@@ -26,7 +26,7 @@ module BorderGuru
           if error_message
             raise BorderGuru::Error, error_message
           else
-            raise BorderGuru::Error, "Logistic partner busy. Please try again in a few minutes."
+            raise BorderGuru::Error, I18n.t(:borderguru_unreachable_at_quoting, scope: :checkout)
           end
         end
         response_data[:result]

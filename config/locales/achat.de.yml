@@ -190,6 +190,9 @@ de:
     payments: Zahlungsmanagment
     settings: Konfiguraiton
     notifications: Nachrichten
+    legal_and_settings: Legal & Settings
+  forms:
+    delivery_options: Delivery Options
   footer:
     icp_registration: ICP Yue Nr. 16044763
     business_model: Das 2-Säulen-Modell
