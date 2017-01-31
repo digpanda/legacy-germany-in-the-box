@@ -30,9 +30,15 @@
         </a>
       </td>
       <td>
+        <% if order_item.package_set %>
+        <a href="<%= guest_package_set_path(order_item.package_set) %>">
+          <%= order_item.product.name %> (<%= order_item.package_set.name %>)
+       </a>
+        <% else %>
         <a href="<%= guest_product_path(order_item.product) %>">
           <%= order_item.product.name %>
         </a>
+        <% end %>
       </td>
       <td>
         <%= select_tag :option_ids, grouped_options_for_select(order_item.product.decorate.grouped_variants_options, order_item.option_ids), {:multiple => 'multiple', :class => 'sku-variants-options'} %>
