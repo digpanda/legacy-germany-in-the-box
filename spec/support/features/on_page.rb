@@ -14,6 +14,11 @@ module Helpers
         expect(page).to have_css '.product-page__description'
       end
 
+      def on_cart_page?
+        expect(page).to have_css '.\\+checkout-button'
+        expect(page).to have_css '.total__end-price'
+      end
+
       def on_chinese_login_page?
         expect(page).to have_css "h3", text: "用户登录"
       end

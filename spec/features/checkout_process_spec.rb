@@ -1,6 +1,5 @@
 feature "checkout process", :js => true  do
 
-  BORDERGURU_BASE_URL = "borderguru.com".freeze unless defined? BORDERGURU_BASE_URL
   let(:customer) { FactoryGirl.create(:customer) }
 
   before(:each) do
@@ -51,7 +50,7 @@ feature "checkout process", :js => true  do
       scenario "pay successfully and generate shipping label correctly" do
 
         fill_in_address!
-        pay_and_get_label
+        pay_and_get_label!
 
       end
 
@@ -116,9 +115,21 @@ feature "checkout process", :js => true  do
           # we check the 20% off is shown on the cart before all
           page.first('.\\+checkout-button').click # go to address step
           page.first('input[id^=delivery_destination_id').click # click on the first address
-          pay_and_get_label
+          pay_and_get_label!
 
         end
+
+      end
+
+      context "apply a coupon" do
+
+        # we go back to the cart
+        page.first('#cart').click
+        # we check the 20% off is shown on the cart before all
+        aaa_coupon!
+        page.first('.\\+checkout-button').click # go to address step
+        page.first('input[id^=delivery_destination_id').click # click on the first address
+        pay_and_get_label!
 
       end
 
@@ -127,29 +138,4 @@ feature "checkout process", :js => true  do
 
   end
 
-end
-
-def pay_and_get_label
-
-  page.first('.\\+checkout-button').click # go to payment step
-  on_payment_method_page?
-  checkout_window = window_opened_by do
-    page.first('button[value=creditcard]').click # pay with wirecard
-  end
-
-  within_window checkout_window do
-    wait_for_page('#hpp-logo') # we are on wirecard hpp
-    apply_wirecard_success_creditcard!
-    expect(page).to have_content("下单成功") # means success in chinese
-    @borderguru_label_window = window_opened_by do
-      click_link "打开" # click on "download your label" in chinese
-      # expect(page).to have_no_css('#message-error')
-    end
-  end
-
-  within_window @borderguru_label_window do
-    expect(page.current_url).to have_content(BORDERGURU_BASE_URL) # we check we accessed borderguru
-  end
-
-  @borderguru_label_window = nil
 end

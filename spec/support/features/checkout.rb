@@ -2,6 +2,40 @@ module Helpers
   module Features
     module Checkout
 
+      BORDERGURU_BASE_URL = "borderguru.com".freeze unless defined? BORDERGURU_BASE_URL
+
+      def aaa_coupon!
+        FactoryGirl.create(:coupon, code: "AAA")
+        fill_in 'coupon[code]', :with => "AAA"
+        click_on '使用'
+        expect(page).to have_content "此优惠券已被成功使用。"
+      end
+      
+      def pay_and_get_label!
+
+        page.first('.\\+checkout-button').click # go to payment step
+        on_payment_method_page?
+        checkout_window = window_opened_by do
+          page.first('button[value=creditcard]').click # pay with wirecard
+        end
+
+        within_window checkout_window do
+          wait_for_page('#hpp-logo') # we are on wirecard hpp
+          apply_wirecard_success_creditcard!
+          expect(page).to have_content("下单成功") # means success in chinese
+          @borderguru_label_window = window_opened_by do
+            click_link "打开" # click on "download your label" in chinese
+            # expect(page).to have_no_css('#message-error')
+          end
+        end
+
+        within_window @borderguru_label_window do
+          expect(page.current_url).to have_content(BORDERGURU_BASE_URL) # we check we accessed borderguru
+        end
+
+        @borderguru_label_window = nil
+      end
+
       def fill_in_address!
 
         # page.first('.address-box').click # <--- OLD SYSTEM // open address box
