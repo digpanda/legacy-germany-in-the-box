@@ -123,13 +123,15 @@ feature "checkout process", :js => true  do
 
       context "apply a coupon" do
 
-        # we go back to the cart
-        page.first('#cart').click
-        # we check the 20% off is shown on the cart before all
-        aaa_coupon!
-        page.first('.\\+checkout-button').click # go to address step
-        page.first('input[id^=delivery_destination_id').click # click on the first address
-        pay_and_get_label!
+        scenario "pay successfully and generate shipping label correctly with coupon" do
+
+          page.first('#cart').click
+          aaa_coupon!
+          page.first('.\\+checkout-button').click
+          page.first('input[id^=delivery_destination_id').click
+          pay_and_get_label!
+
+        end
 
       end
 

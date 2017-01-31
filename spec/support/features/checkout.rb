@@ -10,7 +10,7 @@ module Helpers
         click_on '使用'
         expect(page).to have_content "此优惠券已被成功使用。"
       end
-      
+
       def pay_and_get_label!
 
         page.first('.\\+checkout-button').click # go to payment step
