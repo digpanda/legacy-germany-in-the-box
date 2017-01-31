@@ -64,6 +64,7 @@ class SkuCloner < BaseService
   def copy_file(field)
     if sku.send(field).present?
       CopyCarrierwaveFile::CopyFileService.new(sku, clone, field).set_file
+      clone.save!
     end
   end
 
