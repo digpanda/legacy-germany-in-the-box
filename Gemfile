@@ -39,7 +39,6 @@ gem "devise", "3.5.3"
 gem "draper", "~> 1.3" # decorators
 gem "draper-cancancan"
 gem "carrierwave-mongoid", :require => "carrierwave/mongoid"
-gem "carrierwave_backgrounder"
 
 gem "mini_magick"
 gem "haml-rails"
