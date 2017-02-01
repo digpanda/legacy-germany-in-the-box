@@ -39,7 +39,7 @@ class ImageDestroyer < BaseService
         SHOP_IMAGE_FIELDS
       when Sku
         SKU_IMAGE_FIELDS
-      when Settings
+      when Setting
         SETTING_IMAGE_FIELDS
       when PackageSet
         PACKAGE_SET_IMAGE_FIELDS

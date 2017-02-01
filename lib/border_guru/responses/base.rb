@@ -15,7 +15,7 @@ module BorderGuru
       def slack_feedback
         SlackDispatcher.new.message("#{@request.response.body}")
       end
-      
+
       private
 
       # it's the same variable as response_body, maybe we should change this duplicate and also symbolize everything
