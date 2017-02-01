@@ -122,6 +122,7 @@ var ProductsShow = {
       $('#js-add-to-cart').on('click', function (e) {
 
           e.preventDefault();
+
           var OrderItem = require("javascripts/models/order_item");
           let quantity = $('#quantity').val();
           let option_ids = $('#option_ids').val();
@@ -141,6 +142,11 @@ var ProductsShow = {
 
               }
           });
+
+          // We redirect the user even tho it's AJAX call (not waiting for answer)
+          window.location.href = $(this).data('redirection');
+          // window.location.href = $("#js-info").data("navigationBack");
+
       })
 
   },
