@@ -153,6 +153,13 @@ class Sku
     !self.data.nil? || (self.data.is_a?(String) && !self.data.trim.empty?)
   end
 
+  def stock_available_in_order?(quantity_to_add, user_order)
+    quantity = user_order&.order_items.with_sku(self)&.first&.quantity
+    quantity ||= 0
+
+    !self.unlimited && (self.quantity >= quantity + quantity_to_add)
+  end
+
   private
 
   def clean_quantity

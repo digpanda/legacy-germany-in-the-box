@@ -12,6 +12,7 @@ var ProductsShow = {
     this.handleProductGalery();
     this.handleSkuChange();
     this.handleQuantityChange();
+    this.manageAddProduct();
 
   },
 
@@ -108,6 +109,39 @@ var ProductsShow = {
       }
       $('#quantity').val(quantity);
     })
+
+  },
+
+  /**
+   * Adds the product to the cart when clicking on 'Add Product'
+   * @return {void}
+   */
+
+  manageAddProduct: function () {
+
+      $('#js-add-to-cart').on('click', function (e) {
+
+          e.preventDefault();
+          var OrderItem = require("javascripts/models/order_item");
+          let quantity = $('#quantity').val();
+          let option_ids = $('#option_ids').val();
+          let sku_product_id = $('#sku_product_id').val();
+
+          OrderItem.addProduct(sku_product_id, quantity, option_ids, function(res) {
+
+              var Messages = require("javascripts/lib/messages");
+
+              if (res.success === true) {
+
+                  Messages.makeSuccess(res.msg);
+
+              } else {
+
+                  Messages.makeError(res.error)
+
+              }
+          });
+      })
 
   },
 
