@@ -9,6 +9,7 @@ class Guest::ProductsController < ApplicationController
 
   def show
     @featured_sku = product.decorate.featured_sku.decorate
+    @other_products = shop.products.not_in(:_id => [product.id]).highlight_first.can_buy.by_brand.limit(6)
   end
 
   private

@@ -1,6 +1,6 @@
 de:
   payment:
-    failed: The payment failed. Please try again.
+    failed: Der Bezahlvorgang ist fehlgeschlagen. Bitte versuchen Sie es erneut.
   address:
     identity: Identität
     location: Lage
