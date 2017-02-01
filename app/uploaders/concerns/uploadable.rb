@@ -3,6 +3,7 @@ module Concerns
     extend ActiveSupport::Concern
 
     include CarrierWave::MiniMagick
+    include CarrierWave::Backgrounder::Delay
 
     included do
 

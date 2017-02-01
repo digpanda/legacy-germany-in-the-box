@@ -138,6 +138,8 @@ GEM
     carrierwave-qiniu (0.2.3)
       carrierwave
       qiniu (~> 6.5.1)
+    carrierwave_backgrounder (0.4.2)
+      carrierwave (~> 0.5)
     childprocess (0.5.9)
       ffi (~> 1.0, >= 1.0.11)
     china_city (0.0.6)
@@ -548,6 +550,7 @@ DEPENDENCIES
   carrierwave-ftp
   carrierwave-mongoid
   carrierwave-qiniu
+  carrierwave_backgrounder
   china_city
   chromedriver-helper
   copy_carrierwave_file
