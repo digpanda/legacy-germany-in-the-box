@@ -53,6 +53,12 @@ class Sku
   mount_uploader :img3,     ProductUploader
   mount_uploader :attach0,  AttachmentUploader
 
+  field :img0_tmp,          type: String
+  field :img1_tmp,          type: String
+  field :img2_tmp,          type: String
+  field :img3_tmp,          type: String
+  field :attach0_tmp,       type: String
+  
   store_in_background :img0
   store_in_background :img1
   store_in_background :img2
