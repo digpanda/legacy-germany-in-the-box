@@ -9,29 +9,6 @@ class Api::Guest::OrderItemsController < Api::ApplicationController
     store_in_cart
   end
 
-  def store_in_cart
-    if BuyingBreaker.new(@order).with_sku?(@sku, @quantity)
-      render json: throw_error(:unable_to_process)
-                       .merge(error: I18n.t(:override_maximal_total,
-                                            scope: :edit_order, total: Setting.instance.max_total_per_day,
-                                            currency: Setting.instance.platform_currency.symbol)).to_json
-      return
-    end
-
-    unless @sku.stock_available_in_order?(@quantity, @order)
-      render json: throw_error(:unable_to_process).merge(error: I18n.t(:not_all_available, scope: :checkout, product_name: @product.name, option_names: @sku.option_names.join(', '))).to_json
-      return
-    end
-
-    if OrderMaker.new(@order).add(@sku, @quantity).success?
-      cart_manager.store(@order)
-      render json: {success: true, msg: I18n.t(:add_product_ok, scope: :edit_order)}
-      return
-    end
-
-    render json: throw_error(:unable_to_process).merge(error: I18n.t(:add_product_ko, scope: :edit_order)).to_json
-  end
-
   def update
 
     order = order_item.order
@@ -113,6 +90,29 @@ class Api::Guest::OrderItemsController < Api::ApplicationController
     @quantity = params[:quantity].to_i
     @sku = @product.sku_from_option_ids(params[:option_ids].split(','))
     @order = cart_manager.order(shop: @product.shop, call_api: false)
+  end
+
+  def store_in_cart
+    if BuyingBreaker.new(@order).with_sku?(@sku, @quantity)
+      render json: throw_error(:unable_to_process)
+                       .merge(error: I18n.t(:override_maximal_total,
+                                            scope: :edit_order, total: Setting.instance.max_total_per_day,
+                                            currency: Setting.instance.platform_currency.symbol)).to_json
+      return
+    end
+
+    unless @sku.stock_available_in_order?(@quantity, @order)
+      render json: throw_error(:unable_to_process).merge(error: I18n.t(:not_all_available, scope: :checkout, product_name: @product.name, option_names: @sku.option_names.join(', '))).to_json
+      return
+    end
+
+    if OrderMaker.new(@order).add(@sku, @quantity).success?
+      cart_manager.store(@order)
+      render json: {success: true, msg: I18n.t(:add_product_ok, scope: :edit_order)}
+      return
+    end
+
+    render json: throw_error(:unable_to_process).merge(error: I18n.t(:add_product_ko, scope: :edit_order)).to_json
   end
 
 end
