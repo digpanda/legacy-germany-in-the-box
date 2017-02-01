@@ -8,8 +8,10 @@ class Guest::OrderItemsController < ApplicationController
   # it's very shitty code.
   # it actually adds an order item to the cart itself.
   # maybe we should move it somewhere else
-  def create
 
+  # TODO: This was moved under api/controllers to make it an AJAX call, this remains here
+  # until we know the other call is working properly.
+  def create
     product = Product.find(params[:sku][:product_id]).decorate
     sku = product.sku_from_option_ids(params[:sku][:option_ids].split(','))
     quantity = params[:sku][:quantity].to_i

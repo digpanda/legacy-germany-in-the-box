@@ -49,3 +49,7 @@ page_not_found:
 server_error:
   code: 12
   error: "Server error."
+
+unable_to_process:
+  code: 13
+  error: "Unable to process."
