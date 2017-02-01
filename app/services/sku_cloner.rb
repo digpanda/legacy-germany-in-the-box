@@ -51,21 +51,21 @@ class SkuCloner < BaseService
 
   def images!
     IMAGES_MAP.each do |image_field|
-      copy_file(image_field)
+      delay.copy_file(image_field)
     end
   end
 
   def attach!
     ATTACH_MAP.each do |attach_field|
-      copy_file(attach_field)
+      delay.copy_file(attach_field)
     end
   end
 
   def copy_file(field)
     if sku.send(field).present?
       # TODO : place this again - Laurent
-      # CopyCarrierwaveFile::CopyFileService.new(sku, clone, field).set_file
-      #clone.save!
+      CopyCarrierwaveFile::CopyFileService.new(sku, clone, field).set_file
+      clone.save!
     end
   end
 
