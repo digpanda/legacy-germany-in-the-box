@@ -138,7 +138,7 @@ var ProductsShow = {
                   Messages.makeSuccess(res.msg);
 
                   // We redirect the user even tho it's AJAX call (not waiting for answer)
-                  if (typeof redirection == "undefined") {
+                  if (typeof redirection != "undefined") {
                     window.location.href = redirection;
                     // window.location.href = $("#js-info").data("navigationBack");
                   }
