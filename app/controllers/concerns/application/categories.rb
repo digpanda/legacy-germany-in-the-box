@@ -8,7 +8,7 @@ module Application
     end
 
     def set_categories
-      if potential_customer?
+      if identity_solver.section == :customer
         @categories = Category.order(position: :asc).all
       end
     end

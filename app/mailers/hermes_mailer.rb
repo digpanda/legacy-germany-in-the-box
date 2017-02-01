@@ -1,6 +1,6 @@
 class HermesMailer < ApplicationMailer
 
-   default from: 'hermes@germanyinthebox.com'
+   default from: 'no-reply@germanyinthebox.com'
    layout 'mailers/hermes'
 
   def notify(shopkeeper_id, data, csv)

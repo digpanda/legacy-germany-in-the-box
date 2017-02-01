@@ -10,7 +10,7 @@ class IdentitySolver
   end
 
   def section
-    if potential_customer?
+    if potential_customer? || guest_section?
       :customer
     elsif potential_shopkeeper?
       :shopkeeper
@@ -20,15 +20,19 @@ class IdentitySolver
   end
 
   def potential_customer?
-    (user.nil? && chinese?) || !!(user&.decorate&.customer?)
+    (user.nil? && chinese?) || !!(user&.customer?)
   end
 
   def potential_shopkeeper?
-    (user.nil? && german?) || !!(user&.decorate&.shopkeeper?)
+    (user.nil? && german?) || !!(user&.shopkeeper?)
   end
 
   def potential_admin?
     user&.decorate&.admin?
+  end
+
+  def guest_section?
+    request.url.include? "/guest/"
   end
 
   def german?
