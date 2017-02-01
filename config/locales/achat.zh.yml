@@ -1,4 +1,6 @@
 zh-CN:
+  payment:
+    failed: 交易订单处理失败，请稍后再试。
   address:
     identity: 个人信息
     location: 地址

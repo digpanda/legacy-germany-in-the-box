@@ -1,4 +1,6 @@
 de:
+  payment:
+    failed: The payment failed. Please try again.
   address:
     identity: Identität
     location: Lage

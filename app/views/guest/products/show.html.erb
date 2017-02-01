@@ -17,15 +17,14 @@
           <%= render partial: "guest/products/show/images", :locals => {product: @product} %>
         </div>
 
-        <!-- Detailled description -->
-        <div class="col-md-3 col-md-pull-6 col-xs-12">
-          <%= render partial: "guest/products/show/description", :locals => {sku: @featured_sku} %>
+        <!-- Title, Brand and some Actions -->
+        <div class="col-md-3 col-md-push-3 col-xs-12">
+          <%= render partial: "guest/products/show/actions", :locals => {product: @product} %>
         </div>
 
-
-        <!-- Title, Brand and some Actions -->
-        <div class="col-md-3 col-xs-12">
-          <%= render partial: "guest/products/show/actions", :locals => {product: @product} %>
+        <!-- Detailled description -->
+        <div class="col-md-3 col-md-pull-9 col-xs-12">
+          <%= render partial: "guest/products/show/description", :locals => {sku: @featured_sku} %>
         </div>
 
       </div>

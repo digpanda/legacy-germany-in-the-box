@@ -149,7 +149,7 @@ class Customer::CheckoutController < ApplicationController
 
   # the card processing failed
   def fail
-    flash[:error] = "The payment failed. Please try again."
+    flash[:error] = I18n.t(:failed, scope: :payment)
     warn_developers(Wirecard::Base::Error.new, "Something went wrong during the payment.")
     return unless callback!(:failed)
     redirect_to navigation.back(2)
