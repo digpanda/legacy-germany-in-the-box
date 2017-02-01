@@ -127,6 +127,7 @@ var ProductsShow = {
           let quantity = $('#quantity').val();
           let option_ids = $('#option_ids').val();
           let sku_product_id = $('#sku_product_id').val();
+          var redirection = $(this).data('redirection');
 
           OrderItem.addProduct(sku_product_id, quantity, option_ids, function(res) {
 
@@ -136,10 +137,11 @@ var ProductsShow = {
 
                   Messages.makeSuccess(res.msg);
 
-                  console.log($(this).data('redirection'));
                   // We redirect the user even tho it's AJAX call (not waiting for answer)
-                  window.location.href = $(this).data('redirection');
-                  // window.location.href = $("#js-info").data("navigationBack");
+                  if (typeof redirection == "undefined") {
+                    window.location.href = redirection;
+                    // window.location.href = $("#js-info").data("navigationBack");
+                  }
 
               } else {
 
