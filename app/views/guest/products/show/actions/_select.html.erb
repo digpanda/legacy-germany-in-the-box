@@ -1,11 +1,5 @@
 <!-- Warnings -->
-<% if sku.quantity_warning? %>
-  <span class="+red +up +bold"> <%= I18n.t(:only, scope: :product_left) %> <span id="quantity-left"><%= sku.quantity %></span> <%= I18n.t(:left, scope: :product_left) %></span>
-<% elsif sku.nothing_left? %>
-  <span class="+red +up +bold"> <%= I18n.t(:no_stock_left, scope: :product_left) %></span>
-<% elsif !sku.product.decorate.can_buy? %>
-  <span class="+red +up +bold"> <%= I18n.t(:not_ready_to_sell, scope: :product_left) %></span>
-<% end %>
+<%= render partial: "guest/products/sku_warnings", :locals => { :sku => sku } %>
 
 <div class="+small-spacer"></div>
 
