@@ -6,7 +6,8 @@ module Helpers
 
       def add_to_cart!(product)
         visit guest_product_path(product)
-        page.first('button[type=submit]').click
+        on_product_page?
+        page.first('#js-add-to-cart').click
       end
 
     end

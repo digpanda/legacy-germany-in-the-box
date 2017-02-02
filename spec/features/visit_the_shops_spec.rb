@@ -23,7 +23,7 @@ feature "visits the shops", :js => true  do
     on_shop_page?
     page.first('.shop-page-product__image').click
     on_product_page?
-    page.first('button[type=submit]').click
+    page.first('#js-add-to-cart').click
     on_shop_page?
     #show_total_products(1)
 

@@ -10,9 +10,7 @@ feature "manage the cart", :js => true  do
 
     scenario "get redirected to the log-in module" do
 
-      visit guest_product_path(product)
-      on_product_page?
-      page.first('button[type=submit]').click
+      add_to_cart!(product)
       on_shop_page?
       page.first('#cart').click
       on_chinese_login_page?
