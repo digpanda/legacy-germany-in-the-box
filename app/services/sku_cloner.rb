@@ -51,22 +51,40 @@ class SkuCloner < BaseService
 
   def images!
     IMAGES_MAP.each do |image_field|
-      delay.copy_file(image_field)
+      copy_file(image_field)
     end
   end
 
   def attach!
     ATTACH_MAP.each do |attach_field|
-      delay.copy_file(attach_field)
+      copy_file(attach_field)
     end
   end
 
   def copy_file(field)
     if sku.send(field).present?
-      # TODO : place this again - Laurent
-      CopyCarrierwaveFile::CopyFileService.new(sku, clone, field).set_file
-      clone.save!
+      Delayed::Worker.logger.debug("Task in queue")
+      CopyFileJob.delay.process
     end
+  end
+
+end
+
+class CopyFileJob
+
+  class << self
+
+    def process # (sku, clone, field)
+      gjhghj kgkj gjkgh
+      ghkhj
+      
+      Delayed::Worker.logger = Logger.new(File.join(Rails.root, 'log', 'delayed_job.log'))
+      Delayed::Worker.logger.debug("Processing ...")
+      #CopyCarrierwaveFile::CopyFileService.new(sku, clone, field).set_file
+      #clone.save!
+      Delayed::Worker.logger.debug("Processed")
+    end
+
   end
 
 end
