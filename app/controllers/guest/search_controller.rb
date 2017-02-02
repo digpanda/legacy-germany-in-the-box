@@ -1,7 +1,8 @@
 class Guest::SearchController < ApplicationController
 
   def show
-    @products = Product.can_show.full_text_search(query, match: :all, allow_empty_search: true)
+    #@products = Product.can_show.full_text_search(query, match: :all, allow_empty_search: true)
+    @products = Product.can_show.full_text_search(query, match: :any, allow_empty_search: true)
   end
 
   private
