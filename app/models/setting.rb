@@ -10,6 +10,8 @@ class Setting
   field :max_total_per_day,     type: BigDecimal, default: 1000
   field :alert, type: String
 
+  field :search_suggestion, type: String
+
   field :package_sets_title,       type: String
   field :package_sets_description, type: String
   field :package_sets_cover,       type: String

@@ -77,11 +77,18 @@
 <div class="row">
 <div class="col-md-6 +white-box">
   <%= form_for [:admin, @setting], :data => {:toggle => 'validator'} do |form| %>
+
     <div class="form-group">
       <%= form.label :alert, "Alert" %>
       <%= form.text_field :alert, :autocomplete => :off %>
     </div>
-    <%= form.button "Update alert", :type => 'submit', :class => 'btn btn-primary', name: :user_info_edit_part, value: :edit_settings %>
+
+    <div class="form-group">
+      <%= form.label :search_suggestion, "Search suggestion" %>
+      <%= form.text_field :search_suggestion, :autocomplete => :off %>
+    </div>
+
+    <%= form.button "Update", :type => 'submit', :class => 'btn btn-primary', name: :user_info_edit_part, value: :edit_settings %>
   </div>
   <% end %>
 </div>
