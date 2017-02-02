@@ -6,7 +6,7 @@
 
   if Rails.env.production?
     config.qiniu_bucket         = 'carrierwave-laiyinn-prod'
-    config.qiniu_bucket_domain  = 'img.germanyinbox.com'
+    config.qiniu_bucket_domain  = 'o9fhtjfm2.qnssl.com'
   else
     config.qiniu_bucket         = 'carrierwave-laiyinn-staging'
     config.qiniu_bucket_domain  = 'o9fh2muer.qnssl.com'
@@ -14,7 +14,7 @@
 
   config.qiniu_bucket_private = true
   config.qiniu_block_size     = 4*1024*1024
-  config.qiniu_protocol       = 'http'
+  config.qiniu_protocol       = 'https'
   config.qiniu_up_host        = 'http://up.qiniug.com'
 
 end
