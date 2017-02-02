@@ -16,6 +16,7 @@ gem "mongoid", "~> 5.0.0"
 gem "mongoid_includes"
 gem "mongoid_rails_migrations"
 gem "mongoid_search", github: "Loschcode/mongoid_search", branch: "master"
+gem "delayed_job_shallow_mongoid"
 
 gem "country_select"
 gem "slack-notifier"

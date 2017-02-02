@@ -61,30 +61,27 @@ class SkuCloner < BaseService
     end
   end
 
+
   def copy_file(field)
     if sku.send(field).present?
-      Delayed::Worker.logger.debug("Task in queue")
-      CopyFileJob.delay.process
+      CopyCarrierwaveFile::CopyFileService.new(sku, clone, field).set_file
+      clone.save!
+      #Delayed::Worker.logger.debug "Task in queue"
+      #Delayed::Job.enqueue CopyFileJob.new(sku, clone, field), :queue => 'clone_images'
     end
   end
 
-end
-
-class CopyFileJob
-
-  class << self
-
-    def process # (sku, clone, field)
-      gjhghj kgkj gjkgh
-      ghkhj
-      
-      Delayed::Worker.logger = Logger.new(File.join(Rails.root, 'log', 'delayed_job.log'))
-      Delayed::Worker.logger.debug("Processing ...")
-      #CopyCarrierwaveFile::CopyFileService.new(sku, clone, field).set_file
-      #clone.save!
-      Delayed::Worker.logger.debug("Processed")
-    end
-
-  end
+  # TODO : if anyone wants to give it a try, he's welcome
+  # - Laurent, 02/02/2017
+  # CopyFileJob = Struct.new(:sku, :clone, :field) do
+  #   def perform
+  #     Delayed::Worker.logger.debug "Processing ..."
+  #     # we now copy the file
+  #     Delayed::Worker.logger.debug "Copying ..."
+  #     CopyCarrierwaveFile::CopyFileService.new(sku, clone, field).set_file
+  #     clone.save!
+  #     Delayed::Worker.logger.debug "Processed"
+  #   end
+  # end
 
 end

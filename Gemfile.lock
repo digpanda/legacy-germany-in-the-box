@@ -177,6 +177,11 @@ GEM
       delayed_job (>= 3.0, < 5)
       mongoid (>= 3.0, < 6)
       mongoid-compatibility
+    delayed_job_shallow_mongoid (1.1.0)
+      activesupport (>= 3.2)
+      delayed_job (>= 3.0)
+      delayed_job_mongoid (>= 2.0)
+      mongoid (>= 3.0)
     delocalize (1.0.0)
       rails (>= 2)
     devise (3.5.3)
@@ -556,6 +561,7 @@ DEPENDENCIES
   daemons
   database_cleaner
   delayed_job_mongoid
+  delayed_job_shallow_mongoid
   delocalize
   devise (= 3.5.3)
   diff-lcs (= 1.2.5)
