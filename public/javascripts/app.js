@@ -2034,16 +2034,16 @@ var RefreshTotalProducts = {
     console.log('jkljlk');
     var Cart = require('javascripts/models/cart');
     Cart.total(function (res) {
-      $("#total-products").html(res.datas);
+      $(".js-total-products").html(res.datas);
       RefreshTotalProducts.resolveHiding(res);
     });
   },
 
   resolveHiding: function resolveHiding(res) {
     if (res.datas > 0) {
-      $('#total-products').removeClass('+hidden');
+      $('.js-total-products').removeClass('+hidden');
     } else {
-      $('#total-products').addClass('+hidden');
+      $('.js-total-products').addClass('+hidden');
     }
   }
 
