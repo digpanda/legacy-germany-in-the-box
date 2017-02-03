@@ -441,6 +441,9 @@ var CustomerCartShow = {
         CustomerCartShow.resetHeaderCartQuantity();
         CustomerCartShow.resetDisplay(orderItemQuantity, orderItemId, orderShopId, res);
         CustomerCartShow.loaded();
+
+        var refreshTotalProducts = require('javascripts/services/refresh_total_products');
+        refreshTotalProducts.perform();
       }
     });
   },
@@ -695,7 +698,6 @@ var ProductsShow = {
 
     old_quantity = parseInt(old_quantity);
     var old_price = $(selector).html();
-    console.log(selector);
     var unit_price = parseFloat(old_price) / parseInt(old_quantity);
 
     if (option == 'grow') {
@@ -796,11 +798,14 @@ var ProductsShow = {
 
           Messages.makeSuccess(res.msg);
 
+          var refreshTotalProducts = require('javascripts/services/refresh_total_products');
+          refreshTotalProducts.perform();
+
           // We redirect the user even tho it's AJAX call (not waiting for answer)
-          if (typeof redirection != "undefined") {
-            window.location.href = redirection;
-            // window.location.href = $("#js-info").data("navigationBack");
-          }
+          // if (typeof redirection != "undefined") {
+          //   window.location.href = redirection;
+          //   // window.location.href = $("#js-info").data("navigationBack");
+          // }
         } else {
 
           Messages.makeError(res.error);
@@ -1733,6 +1738,38 @@ var Models = [
 module.exports = Models;
 });
 
+require.register("javascripts/models/cart.js", function(exports, require, module) {
+"use strict";
+
+/**
+ * Cart Class
+ */
+var Cart = {
+
+  /**
+   * Get the total number of products within the cart
+   */
+  total: function total(callback) {
+
+    $.ajax({
+      method: "GET",
+      url: "/api/guest/cart/total",
+      data: {}
+
+    }).done(function (res) {
+
+      callback(res);
+    }).error(function (err) {
+
+      callback({ success: false, error: err.responseJSON.error });
+    });
+  }
+
+};
+
+module.exports = Cart;
+});
+
 require.register("javascripts/models/duty_category.js", function(exports, require, module) {
 "use strict";
 
@@ -1981,13 +2018,47 @@ var Translations = {
 module.exports = Translations;
 });
 
+require.register("javascripts/services/refresh_total_products.js", function(exports, require, module) {
+'use strict';
+
+/**
+ * RefreshTotalProducts Class
+ */
+var RefreshTotalProducts = {
+
+  /**
+   * Refresh it
+   */
+  perform: function perform() {
+
+    console.log('jkljlk');
+    var Cart = require('javascripts/models/cart');
+    Cart.total(function (res) {
+      $("#total-products").html(res.datas);
+      RefreshTotalProducts.resolveHiding(res);
+    });
+  },
+
+  resolveHiding: function resolveHiding(res) {
+    if (res.datas > 0) {
+      $('#total-products').removeClass('+hidden');
+    } else {
+      $('#total-products').addClass('+hidden');
+    }
+  }
+
+};
+
+module.exports = RefreshTotalProducts;
+});
+
 require.register("javascripts/starters.js", function(exports, require, module) {
 'use strict';
 
 /**
  * Starters Class
  */
-var Starters = ['auto_resize', 'back_to_top', 'bootstrap', 'china_city', 'datepicker', 'editable_fields', 'footer', 'input_validation', 'images_handler', 'lazy_loader', 'left_menu', 'links_behaviour', 'messages', 'mobile_menu', 'navigation', 'product_favorite', 'product_form', 'products_list', 'qrcode', 'refresh_time', 'responsive', 'search', 'sku_form', 'sweet_alert', 'tooltipster'];
+var Starters = ['auto_resize', 'back_to_top', 'bootstrap', 'china_city', 'datepicker', 'editable_fields', 'footer', 'input_validation', 'images_handler', 'lazy_loader', 'left_menu', 'links_behaviour', 'messages', 'mobile_menu', 'navigation', 'product_favorite', 'product_form', 'products_list', 'qrcode', 'refresh_time', 'responsive', 'search', 'sku_form', 'sweet_alert', 'tooltipster', 'total_products'];
 
 module.exports = Starters;
 });
@@ -3265,6 +3336,32 @@ var Tooltipster = {
 };
 
 module.exports = Tooltipster;
+});
+
+require.register("javascripts/starters/total_products.js", function(exports, require, module) {
+'use strict';
+
+/**
+ * TotalProducts Class
+ */
+var TotalProducts = {
+
+  /**
+   * Initializer
+   */
+  init: function init() {
+
+    this.refreshTotalProducts();
+  },
+
+  refreshTotalProducts: function refreshTotalProducts() {
+
+    var refreshTotalProducts = require('../services/refresh_total_products');
+    refreshTotalProducts.perform();
+  }
+};
+
+module.exports = TotalProducts;
 });
 
 require.register("___globals___", function(exports, require, module) {

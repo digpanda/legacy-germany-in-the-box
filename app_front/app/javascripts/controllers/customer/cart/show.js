@@ -115,6 +115,9 @@ var CustomerCartShow = {
         CustomerCartShow.resetDisplay(orderItemQuantity, orderItemId, orderShopId, res);
         CustomerCartShow.loaded();
 
+        var refreshTotalProducts = require('javascripts/services/refresh_total_products');
+        refreshTotalProducts.perform();
+        
       }
 
     });

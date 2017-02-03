@@ -28,6 +28,7 @@ var Starters = [
   'sku_form',
   'sweet_alert',
   'tooltipster',
+  'total_products',
 
 ]
 

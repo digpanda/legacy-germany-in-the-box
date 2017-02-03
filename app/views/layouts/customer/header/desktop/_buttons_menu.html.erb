@@ -22,7 +22,12 @@
         <a href="<%= customer_favorites_path %>" class="header-desktop__menu --pink"><i class="fa fa-heart"></i></a>
     </li>
     <li class="col-md-2">
-        <a id="cart" href="<%= customer_cart_path %>" class="header-desktop__menu --green"><i class="fa fa-shopping-cart"></i></a>
+        <a id="cart" href="<%= customer_cart_path %>" class="header-desktop__menu --green">
+          <i class="fa fa-shopping-cart"></i>
+          <span id="total-products" class="header-desktop__total-products +hidden">
+            <%= cart_manager.products_number %>
+          </span>
+        </a>
     </li>
   </ul>
 </nav>

@@ -31,7 +31,6 @@ var ProductsShow = {
 
     old_quantity = parseInt(old_quantity);
     let old_price = $(selector).html();
-    console.log(selector);
     let unit_price = parseFloat(old_price) / parseInt(old_quantity);
 
     if (option == 'grow') {
@@ -42,6 +41,7 @@ var ProductsShow = {
 
     let new_price = unit_price * new_quantity;
     $(selector).html(new_price.toFixed(2));
+
   },
 
   /**
@@ -137,11 +137,14 @@ var ProductsShow = {
 
                   Messages.makeSuccess(res.msg);
 
+                  var refreshTotalProducts = require('javascripts/services/refresh_total_products');
+                  refreshTotalProducts.perform();
+
                   // We redirect the user even tho it's AJAX call (not waiting for answer)
-                  if (typeof redirection != "undefined") {
-                    window.location.href = redirection;
-                    // window.location.href = $("#js-info").data("navigationBack");
-                  }
+                  // if (typeof redirection != "undefined") {
+                  //   window.location.href = redirection;
+                  //   // window.location.href = $("#js-info").data("navigationBack");
+                  // }
 
               } else {
 

@@ -14,6 +14,10 @@ namespace :guest do
     patch :set_quantity
   end
 
+  resource :cart, :controller => 'cart' do
+    get :total
+  end
+
   resources :products  do
     resources :skus, :controller => 'products/skus' do
     end
