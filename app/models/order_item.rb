@@ -8,12 +8,12 @@ class OrderItem
   field :quantity,        type: Integer,    default: 1
 
   # if we want to setup the taxes by ourselves
-  field :manual_taxes, type: Boolean, default: false
+  field :manual_taxes, type: Float
   # this hook the sku `estimated_taxes` method by forcing a 0
   # if the taxes are manually calculated beforehand
   def estimated_taxes
     if manual_taxes
-      0
+      manual_taxes
     else
       sku.estimated_taxes
     end

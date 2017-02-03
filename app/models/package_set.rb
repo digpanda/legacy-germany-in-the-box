@@ -1,7 +1,7 @@
 class PackageSet
   include MongoidBase
   include EntryPosition
-  
+
   field :name
   field :desc
   field :cover,       type: String
@@ -31,7 +31,7 @@ class PackageSet
 
   def price
     self.package_skus.reduce(0) do |acc, package_sku|
-      acc + package_sku.total_price
+      acc + package_sku.total_price_with_taxes
     end
   end
 

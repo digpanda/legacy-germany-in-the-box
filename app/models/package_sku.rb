@@ -3,8 +3,8 @@ class PackageSku
 
   field :sku_id
   field :quantity, type: Integer
-  field :price, type: Float
-  field :taxes, type: Float
+  field :price, type: Float, default: 0
+  field :taxes, type: Float, default: 0
 
   belongs_to :product
   embedded_in :package_set
@@ -20,6 +20,10 @@ class PackageSku
 
   def total_price
     price * quantity
+  end
+
+  def total_price_with_taxes
+    (price + taxes) * quantity
   end
 
 end
