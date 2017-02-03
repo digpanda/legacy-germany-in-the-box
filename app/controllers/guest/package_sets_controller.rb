@@ -19,7 +19,7 @@ class Guest::PackageSetsController < ApplicationController
     # we first compose the whole order
     package_set.package_skus.each do |package_sku|
       # we also lock each order item we generate
-      order_maker.add(package_sku.sku, package_sku.quantity,
+      order_maker.add(package_sku.sku, package_sku.product, package_sku.quantity,
                       price: package_sku.price,
                       locked: true,
                       package_set: package_sku.package_set)
