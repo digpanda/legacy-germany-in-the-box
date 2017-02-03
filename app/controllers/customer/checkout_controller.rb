@@ -36,8 +36,9 @@ class Customer::CheckoutController < ApplicationController
     order.order_items.each do |order_item|
       product = order_item.product
       sku = order_item.sku
+      sku_origin = order_item.sku_origin
 
-      if sku.unlimited || sku.quantity >= order_item.quantity
+      if sku_origin.enough_stock?(order_item.quantity)
         all_products_available = true
         products_total_price += sku.price * order_item.quantity
       else

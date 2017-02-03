@@ -38,13 +38,12 @@ class Api::Guest::OrderItemsController < Api::ApplicationController
     end
 
     # if we have enough quantity in stock
-    if !sku.unlimited && (sku.quantity < quantity)
-      # refactor error message (with throw error)
-      render :json => {
-        :success => false,
-        :original_quantity => original_quantity,
-        :error => I18n.t(:not_all_available, scope: :checkout, :product_name => product.name, :option_names => sku.option_names.join(', '))
-      }
+    sku_origin = product.sku_from_option_ids(sku.option_ids)
+
+    unless sku_origin&.stock_available_in_order?(quantity_difference, order_item.order)
+      render json: throw_error(:unable_to_process)
+                       .merge(original_quantity: original_quantity,
+                              error: I18n.t(:not_all_available, scope: :checkout, product_name: product.name, option_names: sku.option_names.join(', ')))
       return
     end
 
@@ -97,22 +96,18 @@ class Api::Guest::OrderItemsController < Api::ApplicationController
       render json: throw_error(:unable_to_process)
                        .merge(error: I18n.t(:override_maximal_total,
                                             scope: :edit_order, total: Setting.instance.max_total_per_day,
-                                            currency: Setting.instance.platform_currency.symbol)).to_json
+                                            currency: Setting.instance.platform_currency.symbol))
       return
     end
 
-    unless @sku.stock_available_in_order?(@quantity, @order)
-      render json: throw_error(:unable_to_process).merge(error: I18n.t(:not_all_available, scope: :checkout, product_name: @product.name, option_names: @sku.option_names.join(', '))).to_json
-      return
-    end
+    order = OrderMaker.new(@order).add(@sku, @product, @quantity)
 
-    if OrderMaker.new(@order).add(@sku, @quantity).success?
+    if order.success?
       cart_manager.store(@order)
-      render json: {success: true, msg: I18n.t(:add_product_ok, scope: :edit_order)}
-      return
+      render json: {success: true, msg: order.data[:msg]}
+    else
+      render json: throw_error(:unable_to_process).merge(error: order.error[:error])
     end
-
-    render json: throw_error(:unable_to_process).merge(error: I18n.t(:add_product_ko, scope: :edit_order)).to_json
   end
 
 end

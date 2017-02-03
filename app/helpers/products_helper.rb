@@ -1,7 +1,7 @@
 module ProductsHelper
 
-  def enough_inventory(sku, quantity)
-    return sku && (sku.unlimited or sku.quantity >= quantity )
+  def enough_inventory?(sku, quantity)
+    sku&.enough_stock?(quantity)
   end
 
   def get_options_names(product)
