@@ -4,6 +4,15 @@ module ProductsHelper
     return sku && (sku.unlimited or sku.quantity >= quantity )
   end
 
+  def get_options_names(product)
+    product.skus.map do |s|
+      s.option_ids.compact.map do |oid|
+        o = product.options.detect { |v| v.suboptions.where(id: oid).first }.suboptions.find(oid)
+        o.name
+      end.join(', ')
+    end.join(' - ')
+  end
+
   def get_options_for_select(product)
     skus = product.available_skus
     values = skus.map { |s| s.option_ids.compact.join(',') }
