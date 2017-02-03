@@ -1952,25 +1952,25 @@ body {
     display: inline-block;
     margin-right: 0.3em;
     float: left;
-    font-size: 1em; }
+    font-size: 1.3em; }
   .product-select__quantity {
     margin-bottom: 1em;
     width: 40%;
     float: left;
-    height: 2em;
+    height: 2.5em;
     vertical-align: top; }
   .product-select__dropdown {
     margin-bottom: 1em;
     width: 40%;
     float: left;
-    height: 2em;
+    height: 2.5em;
     font-size: 0.8em; }
   .product-select__minus {
-    height: 2em;
+    height: 2.5em;
     margin-bottom: 0.5em;
     color: #8b8b8b; }
   .product-select__plus {
-    height: 2em;
+    height: 2.5em;
     margin-bottom: 0.5em;
     color: #8b8b8b; }
 

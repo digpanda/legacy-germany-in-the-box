@@ -1,4 +1,6 @@
 de:
+  result:
+    not_found: Kein Ergebnis
   payment:
     failed: Der Bezahlvorgang ist fehlgeschlagen. Bitte versuchen Sie es erneut.
   address:

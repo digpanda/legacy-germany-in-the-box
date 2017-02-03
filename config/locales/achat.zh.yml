@@ -1,4 +1,6 @@
 zh-CN:
+  result:
+    not_found: 未找到符合的结果；
   payment:
     failed: 交易订单处理失败，请稍后再试。
   address:
