@@ -12,6 +12,7 @@ feature "checkout process", :js => true  do
 
   scenario "get a package set and go to checkout" do
     add_package!
+    page.driver.browser.navigate.refresh # the AJAX call could make problem otherwise
     page.first('.\\+checkout-button').click
     fill_in_with_multiple_addresses!
     pay_and_get_label!
@@ -20,6 +21,7 @@ feature "checkout process", :js => true  do
   scenario "get a package set, apply a coupon and go to checkout" do
     add_package!
     aaa_coupon!
+    page.driver.browser.navigate.refresh # the AJAX call could make problem otherwise
     page.first('.\\+checkout-button').click
     fill_in_with_multiple_addresses!
     pay_and_get_label!
