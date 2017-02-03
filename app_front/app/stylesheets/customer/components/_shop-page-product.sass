@@ -11,6 +11,10 @@
   a
     color: $color-black
 
+  +part(options)
+    color: $color-super-light-grey
+    +truncate(100%)
+
   +part(description)
     +centered
     width: 80%
@@ -29,6 +33,7 @@
 
     p
       margin-top: -0.5em
+      margin-bottom: 0
       color: $color-light-grey
 
 

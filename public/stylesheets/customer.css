@@ -2129,6 +2129,14 @@ body {
   color: #666; }
   .shop-page-product a {
     color: #666; }
+  .shop-page-product__options {
+    color: #e1e1e1;
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    width: 100%; }
   .shop-page-product__description {
     text-align: center;
     margin: 0 auto;
@@ -2150,6 +2158,7 @@ body {
       width: 100%; }
     .shop-page-product__description p {
       margin-top: -0.5em;
+      margin-bottom: 0;
       color: #8b8b8b; }
   .shop-page-product__discount {
     position: absolute;

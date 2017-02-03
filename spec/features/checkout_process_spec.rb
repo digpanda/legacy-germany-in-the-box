@@ -13,6 +13,7 @@ feature "checkout process", :js => true  do
 
     before(:each) do
       add_to_cart!(product)
+      page.driver.browser.navigate.refresh # the AJAX call could make problem otherwise
       page.first('#cart').click # go to checkout
       page.first('.\\+checkout-button').click # go to address step
     end

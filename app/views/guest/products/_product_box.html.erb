@@ -21,19 +21,23 @@
       <div class="shop-page-product__description">
 
         <h2>
-          <%= product.brand %>
+          <%= product.name %>
         </h2>
 
         <h3>
-          <%= product.name %>
+          <%= product.brand %>
         </h3>
 
         <p>
           <%= product.decorate.short_desc %>
         </p>
 
+        <div class="shop-page-product__options">
+        <%= product.grouped_variants_options_names %>
+      </div>
 
-          <div>
+        <div class="row">
+          <div class="col-md-12">
           <% if product.discount? %>
 
             <span class="+barred-price">
@@ -48,8 +52,13 @@
             <%= render partial: "guest/products/sku_warnings", :locals => { :sku => product.featured_sku } %>
 
           </div>
+        </div>
 
-          <div class="+price-euro"><%= product.decorate.preview_price_euro %></div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="+price-euro"><%= product.decorate.preview_price_euro %></div>
+          </div>
+        </div>
 
 
       </div>

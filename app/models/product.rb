@@ -177,7 +177,7 @@ class Product
 
   def grouped_variants_options_names
     options.map do |option|
-      option.suboptions.names
+      option.suboptions.name
     end.join(', ')
   end
 
