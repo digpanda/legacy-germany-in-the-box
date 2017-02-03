@@ -33,8 +33,8 @@
         </p>
 
         <div class="shop-page-product__options">
-        <%= product.grouped_variants_options_names %>
-      </div>
+          <%= get_options_for_select(product).flatten.join(', ') %>
+        </div>
 
         <div class="row">
           <div class="col-md-12">
