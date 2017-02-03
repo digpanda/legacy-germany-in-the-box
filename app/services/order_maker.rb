@@ -10,28 +10,54 @@ class OrderMaker < BaseService
   # NOTE : this could be way improved but it was directly
   # taken from the controller and slightly changed
   # maybe, split it up into subclasses for each main method.
-  def add(sku, quantity, price:nil, locked: false, package_set:nil)
+  # TODO: This method has been replaced
+  # def add(sku, quantity, price:nil, locked: false, package_set:nil)
+  #   existing_order_item = order.order_items.with_sku(sku).first
+  #
+  #   # if the order item already exists and isn't locked, we add the quantity
+  #   # NOTE : the loop making the package set should setup the quantity straight
+  #   # so it will never pass twice here for the same product, we are safe
+  #   # if there's any bug concerning this area, making double for no reason, check this out.
+  #   if existing_order_item.present? && !existing_order_item.locked?
+  #     existing_order_item.quantity += quantity
+  #     existing_order_item.save!
+  #     return return_with(:success, order_item: existing_order_item)
+  #   end
+  #
+  #   order_item = build_order_item!(sku, quantity, price, locked, package_set)
+  #   if order_item.persisted?
+  #     return return_with(:success, order_item: order_item)
+  #   end
+  #
+  # return_with(:error, error: I18n.t(:add_product_ko, scope: :edit_order))
+  # end
 
-    return return_with(:error) unless sku.enough_stock?(quantity)
-
+  def add(sku, product, quantity, price:nil, locked: false, package_set:nil)
     existing_order_item = order.order_items.with_sku(sku).first
 
     # if the order item already exists and isn't locked, we add the quantity
-    # NOTE : the loop making the package set should setup the quantity straight
-    # so it will never pass twice here for the same product, we are safe
-    # if there's any bug concerning this area, making double for no reason, check this out.
     if existing_order_item.present? && !existing_order_item.locked?
-      existing_order_item.quantity += quantity
-      existing_order_item.save!
-      return return_with(:success, order_item: existing_order_item)
+      sku_origin = existing_order_item.sku_origin
+        unless sku_origin&.stock_available_in_order?(quantity, existing_order_item.order)
+          return return_with(:error, error: not_available_msg(product, sku))
+        end
+
+        existing_order_item.quantity += quantity
+        existing_order_item.save!
+        return return_with(:success, order_item: existing_order_item, msg: I18n.t(:add_product_ok, scope: :edit_order))
     end
+
+    unless sku.enough_stock?(quantity)
+      return return_with(:error, error: not_available_msg(product, sku))
+    end
+
 
     order_item = build_order_item!(sku, quantity, price, locked, package_set)
     if order_item.persisted?
-      return return_with(:success, order_item: order_item)
+      return return_with(:success, order_item: order_item, msg: I18n.t(:add_product_ok, scope: :edit_order))
     end
 
-  return_with(:error)
+    return_with(:error, error: I18n.t(:add_product_ko, scope: :edit_order))
   end
 
 
@@ -72,6 +98,12 @@ class OrderMaker < BaseService
     if locked
       order_item.lock!
     end
+  end
+
+  def not_available_msg(product, sku)
+    I18n.t(:not_all_available, scope: :checkout,
+           product_name: product.name,
+           option_names: sku.option_names.join(', '))
   end
 
   # TODO : we should take back any update and delete linked to the order and put them here.
