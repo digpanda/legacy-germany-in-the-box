@@ -39,6 +39,11 @@
         </th>
         <th>
           <label>
+            Tax (EUR)
+          </label>
+        </th>
+        <th>
+          <label>
             Quantity
           </label>
         </th>
@@ -59,6 +64,9 @@
         </td>
         <td>
           <%= field.text_field :price %>
+        </td>
+        <td>
+          <%= field.text_field :tax %>
         </td>
         <td>
           <%= field.select :quantity, (1..10) %>

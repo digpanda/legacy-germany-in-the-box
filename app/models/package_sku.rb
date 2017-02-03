@@ -3,7 +3,8 @@ class PackageSku
 
   field :sku_id
   field :quantity, type: Integer
-  field :price, type: Integer
+  field :price, type: Float
+  field :tax, type: Float
 
   belongs_to :product
   embedded_in :package_set
@@ -11,6 +12,7 @@ class PackageSku
   validates_presence_of :sku_id
   validates_presence_of :quantity
   validates_presence_of :price
+  validates_presence_of :tax
 
   def sku
     @sku ||= product.skus.find(sku_id)
