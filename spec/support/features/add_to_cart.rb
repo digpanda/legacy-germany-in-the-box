@@ -8,6 +8,7 @@ module Helpers
         visit guest_product_path(product)
         on_product_page?
         page.first('#js-add-to-cart').click
+        expect(page).to have_content("产品添加成功") # success
       end
 
     end
