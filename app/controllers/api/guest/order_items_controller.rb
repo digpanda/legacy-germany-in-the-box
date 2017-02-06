@@ -60,7 +60,7 @@ class Api::Guest::OrderItemsController < Api::ApplicationController
       return
     end
 
-    @order = cart_manager.order(shop: product.shop)
+    @order = cart_manager.order(shop: product.shop, call_api: false)
 
     unless order # because there's an API call (could be improved)
       flash[:error] = I18n.t(:borderguru_unreachable_at_quoting, scope: :checkout)
