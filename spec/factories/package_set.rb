@@ -13,7 +13,7 @@
      trait :with_500_euro_total do
        after(:create) do |package_set|
          package_set.package_skus.delete_all
-         FactoryGirl.create_list(:package_sku, 5, package_set: package_set, quantity: 1, price: 100)
+         FactoryGirl.create_list(:package_sku, 5, package_set: package_set, quantity: 1, price: 70, taxes_per_unit: 20, shipping_per_unit: 10)
        end
      end
 

@@ -97,7 +97,9 @@ class NavigationHistory
     end
 
     def trim_storage
-      session[:previous_urls][repository].pop if session[:previous_urls][repository].size > MAX_HISTORY
+      if session[:previous_urls][repository].size > MAX_HISTORY
+        session[:previous_urls][repository].pop
+      end
     end
 
     # TODO : this will be removed after a few days

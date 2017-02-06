@@ -1823,6 +1823,7 @@ var NavigationModel = {
     }).done(function (res) {
 
       callback(res);
+      console.log(res);
     }).error(function (err) {
 
       callback({ success: false, error: err.responseJSON.error });
