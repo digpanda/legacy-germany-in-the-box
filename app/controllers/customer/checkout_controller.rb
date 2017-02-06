@@ -11,7 +11,7 @@ class Customer::CheckoutController < ApplicationController
 
   def create
 
-    @order = cart_manager.order(shop: shop)
+    @order = cart_manager.order(shop: shop, call_api: false)
 
     # we check the address has been selected
     unless params[:delivery_destination_id]
@@ -125,9 +125,7 @@ class Customer::CheckoutController < ApplicationController
     reset_shop_id_from_session(shop.id.to_s)
     order.coupon&.update(last_used_at: Time.now)
 
-    unless BorderGuruApiHandler.new(order).get_shipping!.success?
-      SlackDispatcher.new.borderguru_get_shipping_error(order)
-    end
+    BorderGuruApiHandler.new(order).calculate_and_get_shipping
 
     # whatever happens with BorderGuru, if the payment is a success we consider
     # the transaction / order as successful, we will deal with BorderGuru through Slack / Emails
