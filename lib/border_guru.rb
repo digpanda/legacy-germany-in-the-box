@@ -21,7 +21,7 @@ module BorderGuru
         currency: CURRENCY
       ) do |response|
         order.border_guru_quote_id = response.quote_identifier
-        # NOTE : shipping_cost and tax_and_duty_cost 
+        # NOTE : shipping_cost and tax_and_duty_cost
         # are calculated within the model
         order.save
       end

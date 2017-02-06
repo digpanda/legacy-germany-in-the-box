@@ -7,7 +7,7 @@ class NavigationHistory
     # will exclude those paths from the history store. the system is based on implicit wildcard
     # the less precise you are in the paths, the more path and subpath it excludes
     # /connect also means everything inside /connect/ such as /connect/sign_in, etc.
-    EXCLUDED_PATHS = %w(/connect /api/guest/navigation)
+    EXCLUDED_PATHS = %w(/connect, /api)
 
     attr_reader :request, :session, :location, :repository
 
