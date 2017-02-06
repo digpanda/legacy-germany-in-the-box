@@ -1,6 +1,6 @@
 <% if cart_manager.products_number > 0 %>
 <div>
-  <% cart_manager.orders.each do |order| %>
+  <% @orders.each do |order| %>
     <% if order.decorate.total_quantity > 0 %>
 
     <div class="row">
