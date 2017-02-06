@@ -15,6 +15,7 @@
   <%= form.label :cover, "Cover" %>
   <%= js_file_upload(form: form, field: :cover) %>
 
+  <div class="clearfix"></div>
 </div>
 
 <div class="row details__block">
@@ -34,12 +35,17 @@
         </th>
         <th>
           <label>
-            Price (EUR)
+            Price per Unit (EUR)
           </label>
         </th>
         <th>
           <label>
-            Taxes (EUR)
+            Taxes per Unit (EUR)
+          </label>
+        </th>
+        <th>
+          <label>
+            Shipping per Unit (EUR)
           </label>
         </th>
         <th>
@@ -66,7 +72,10 @@
           <%= field.text_field :price %>
         </td>
         <td>
-          <%= field.text_field :taxes %>
+          <%= field.text_field :taxes_per_unit %>
+        </td>
+        <td>
+          <%= field.text_field :shipping_per_unit %>
         </td>
         <td>
           <%= field.select :quantity, (1..10) %>

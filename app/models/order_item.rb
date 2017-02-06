@@ -19,6 +19,8 @@ class OrderItem
     end
   end
 
+  field :manual_shipping_cost, type: Float
+
   belongs_to :product
   belongs_to :order, touch: true,  :counter_cache => true
   belongs_to :package_set

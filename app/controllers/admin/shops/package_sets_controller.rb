@@ -42,7 +42,7 @@ class Admin::Shops::PackageSetsController < ApplicationController
     else
       flash[:error] = package_set.errors.full_messages.join(', ')
     end
-    redirect_to navigation.back(1)
+    render :edit
   end
 
   def destroy

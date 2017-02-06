@@ -2,8 +2,8 @@ class PackageSet
   include MongoidBase
   include EntryPosition
 
-  field :name
-  field :desc
+  field :name, type: String
+  field :desc, type: String
   field :cover,       type: String
 
   mount_uploader :cover, CoverUploader
@@ -32,6 +32,12 @@ class PackageSet
   def price
     self.package_skus.reduce(0) do |acc, package_sku|
       acc + package_sku.total_price_with_taxes
+    end
+  end
+
+  def end_price
+    self.package_skus.reduce(0) do |acc, package_sku|
+      acc + package_sku.total_price_with_taxes_and_shipping
     end
   end
 

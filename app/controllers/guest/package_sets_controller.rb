@@ -21,7 +21,8 @@ class Guest::PackageSetsController < ApplicationController
       # we also lock each order item we generate
       order_maker.add(package_sku.sku, package_sku.product, package_sku.quantity,
                       price: package_sku.price,
-                      taxes: package_sku.taxes,
+                      taxes: package_sku.total_taxes,
+                      shipping: package_sku.total_shipping,
                       locked: true,
                       package_set: package_sku.package_set)
     end
