@@ -8,7 +8,6 @@ var RefreshTotalProducts = {
    */
   perform: function() {
 
-    console.log('jkljlk');
     var Cart = require('javascripts/models/cart');
     Cart.total(function(res) {
       $(".js-total-products").html(res.datas)
