@@ -24,7 +24,7 @@ feature "visits the shops", :js => true  do
     page.first('.shop-page-product__image').click
     on_product_page?
     page.first('#js-add-to-cart').click
-    show_total_products(1)
+    #show_total_products(1)
 
   end
 
