@@ -1,6 +1,8 @@
 # Connection related
 namespace :connect do
-
+  devise_scope :user do
+    get '/auth/silent_wechat', to: 'omniauth_callbacks#silent_wechat', as: :silent_wechat
+  end
 end
 
 # the devise routing system must be kept outisde the namespace
