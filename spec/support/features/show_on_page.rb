@@ -5,7 +5,6 @@ module Helpers
       module_function
 
       def show_total_products(num)
-        binding.pry
         # show on the top of the page a specific number of products
         expect(page).to have_css ".js-total-products", text: "#{num}"
       end

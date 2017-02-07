@@ -6,7 +6,7 @@ module Helpers
 
       def on_shop_page?
         # contains a shop-page header content
-        expect(page).to have_css '.shop-page-header'
+        expect(page).to have_css '.shop-page-header__content'
       end
 
       def on_product_page?
