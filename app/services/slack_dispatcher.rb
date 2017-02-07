@@ -13,7 +13,7 @@ class SlackDispatcher < BaseService
 
   def initialize
     @counter = 0
-    slack.ping "--- *#{Rails.env.capitalize} Mode* #{Time.now.utc}"
+    slack.delay.ping "--- *#{Rails.env.capitalize} Mode* #{Time.now.utc}"
   end
 
   def message(message)
@@ -51,7 +51,7 @@ class SlackDispatcher < BaseService
   private
 
   def push(message)
-    slack.ping "[#{counter}] #{message}"
+    slack.delay.ping "[#{counter}] #{message}"
     @counter += 1
   end
 

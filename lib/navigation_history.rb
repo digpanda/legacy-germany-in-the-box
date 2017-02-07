@@ -10,13 +10,11 @@ class NavigationHistory
     @request = request
     @session = session
     @repository = repository
-    SlackDispatcher.new.message("INSIDE NAVIGATION SESSION STATE `#{session.id}` : #{session["previous_urls"]}")
   end
 
   # store the location
   # can be :current for the current page
   def store(location, option=nil)
-    SlackDispatcher.new.message("STORING #{location} FROM #{request.url}")
     NavigationHistory::Store.new(request, session, repository, location).add(option)
   end
 
