@@ -1751,18 +1751,25 @@ var Cart = {
    */
   total: function total(callback) {
 
-    $.ajax({
-      method: "GET",
-      url: "/api/guest/cart/total",
-      data: {}
+    // NOTE : condition race made it impossible to build
+    // I passed 2 full days on this problem
+    // Good luck.
+    // - Laurent
+    // $.ajax({
+    //   method: "GET",
+    //   url: "/api/guest/cart/total",
+    //   data: {}
+    //
+    // }).done(function(res) {
+    //
+    //   callback(res);
+    //
+    // }).error(function(err) {
+    //
+    //   callback({success: false, error: err.responseJSON.error});
+    //
+    // });
 
-    }).done(function (res) {
-
-      callback(res);
-    }).error(function (err) {
-
-      callback({ success: false, error: err.responseJSON.error });
-    });
   }
 
 };
@@ -2034,12 +2041,12 @@ var RefreshTotalProducts = {
     var Cart = require('javascripts/models/cart');
     Cart.total(function (res) {
       $(".js-total-products").html(res.datas);
-      RefreshTotalProducts.resolveHiding(res);
+      RefreshTotalProducts.resolveHiding(res.datas);
     });
   },
 
-  resolveHiding: function resolveHiding(res) {
-    if (res.datas > 0) {
+  resolveHiding: function resolveHiding(total) {
+    if (total > 0) {
       $('.js-total-products').removeClass('+hidden');
     } else {
       $('.js-total-products').addClass('+hidden');
@@ -3356,7 +3363,10 @@ var TotalProducts = {
   refreshTotalProducts: function refreshTotalProducts() {
 
     var refreshTotalProducts = require('../services/refresh_total_products');
-    refreshTotalProducts.perform();
+    refreshTotalProducts.resolveHiding($('.js-total-products').html());
+    //refreshTotalProducts.perform();
+    // <-- NOTE : this will make a condition race
+    // we found no solution but to just show manually and render from server side to avoid it.
   }
 };
 

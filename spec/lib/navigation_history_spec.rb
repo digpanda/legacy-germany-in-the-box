@@ -18,7 +18,7 @@ describe NavigationHistory do
     it "should go back to the previous URL" do
 
       request = double(:get? => true, :xhr? => false)
-      session = {:previous_urls => {"default" => ['1', '2', '3', '4', '5']}}
+      session = {"previous_urls" => {"default" => ['1', '2', '3', '4', '5']}}
 
       nav = NavigationHistory.new(request, session)
       expect(nav.back(1)).to eql('1')
@@ -28,7 +28,7 @@ describe NavigationHistory do
     it "should go back to several URLs before it" do
 
       request = double(:get? => true, :xhr? => false)
-      session = {:previous_urls => {"default" => ['1', '2', '3', '4', '5']}}
+      session = {"previous_urls" => {"default" => ['1', '2', '3', '4', '5']}}
 
       nav = NavigationHistory.new(request, session)
       expect(nav.back(3)).to eql('3')
@@ -38,7 +38,7 @@ describe NavigationHistory do
     it "should not find the URL back so redirect to root_url" do
 
       request = double(:get? => true, :xhr? => false)
-      session = {:previous_urls => {"default" => ['1', '2', '3', '4', '5']}}
+      session = {"previous_urls" => {"default" => ['1', '2', '3', '4', '5']}}
 
       nav = NavigationHistory.new(request, session)
       expect(nav.back(10)).to eql(root_url)

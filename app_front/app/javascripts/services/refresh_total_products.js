@@ -11,13 +11,13 @@ var RefreshTotalProducts = {
     var Cart = require('javascripts/models/cart');
     Cart.total(function(res) {
       $(".js-total-products").html(res.datas)
-      RefreshTotalProducts.resolveHiding(res);
+      RefreshTotalProducts.resolveHiding(res.datas);
     });
 
   },
 
-  resolveHiding: function(res) {
-    if (res.datas > 0) {
+  resolveHiding: function(total) {
+    if (total > 0) {
       $('.js-total-products').removeClass('+hidden');
     } else {
       $('.js-total-products').addClass('+hidden');

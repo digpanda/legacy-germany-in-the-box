@@ -7,7 +7,7 @@ class NavigationHistory
     # will exclude those paths from the history store. the system is based on implicit wildcard
     # the less precise you are in the paths, the more path and subpath it excludes
     # /connect also means everything inside /connect/ such as /connect/sign_in, etc.
-    EXCLUDED_PATHS = %w(/connect, /api)
+    EXCLUDED_PATHS = %w(/connect)
 
     attr_reader :request, :session, :location, :repository
 
@@ -34,7 +34,7 @@ class NavigationHistory
         trim_storage
       end
 
-      session[:previous_urls][repository]
+      session["previous_urls"][repository]
 
     end
 
@@ -81,32 +81,32 @@ class NavigationHistory
     end
 
     def already_last_stored?
-      session[:previous_urls][repository].first == location_path
+      session["previous_urls"][repository].first == location_path
     end
 
     def prepare_storage
       legacy_conversion!
-      session[:previous_urls] ||= {}
-      session[:previous_urls][repository] ||= []
+      session["previous_urls"] ||= {}
+      session["previous_urls"][repository] ||= []
     end
 
     def add_storage
       unless already_last_stored?
-        session[:previous_urls][repository].unshift(location_path)
+        session["previous_urls"][repository].unshift(location_path)
       end
     end
 
     def trim_storage
-      if session[:previous_urls][repository].size > MAX_HISTORY
-        session[:previous_urls][repository].pop
+      if session["previous_urls"][repository].size > MAX_HISTORY
+        session["previous_urls"][repository].pop
       end
     end
 
     # TODO : this will be removed after a few days
     # - Laurent, 13th December 2016
     def legacy_conversion!
-      if session[:previous_urls].instance_of? Array
-        session[:previous_urls] = nil
+      if session["previous_urls"].instance_of? Array
+        session["previous_urls"] = nil
       end
     end
 

@@ -10,18 +10,20 @@ class NavigationHistory
     @request = request
     @session = session
     @repository = repository
+    SlackDispatcher.new.message("INSIDE NAVIGATION SESSION STATE `#{session.id}` : #{session["previous_urls"]}")
   end
 
   # store the location
   # can be :current for the current page
   def store(location, option=nil)
+    SlackDispatcher.new.message("STORING #{location} FROM #{request.url}")
     NavigationHistory::Store.new(request, session, repository, location).add(option)
   end
 
   def back(raw_position=1, default_redirect=nil)
     position = raw_position-1
     if history_found?(position)
-      session[:previous_urls][repository][position]
+      session["previous_urls"][repository][position]
     else
       default_redirect || DEFAULT_REDIRECT_URL
     end
@@ -42,7 +44,7 @@ class NavigationHistory
   private
 
   def history_found?(position)
-    session[:previous_urls].is_a?(Hash) && session[:previous_urls][repository].is_a?(Array) && session[:previous_urls][repository][position].present?
+    session["previous_urls"].is_a?(Hash) && session["previous_urls"][repository].is_a?(Array) && session["previous_urls"][repository][position].present?
   end
 
 end
