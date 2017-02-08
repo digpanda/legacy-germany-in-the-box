@@ -52,4 +52,8 @@ class ApplicationController < ActionController::Base
     "application"
   end
 
+  def freeze_header
+    @freeze_header = true
+  end
+
 end

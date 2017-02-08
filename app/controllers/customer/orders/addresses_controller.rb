@@ -8,6 +8,8 @@ class Customer::Orders::AddressesController < Customer::AddressesController
   before_action :set_addresses
   layout :default_layout # overwrite the sublayout inherit
 
+  before_action :freeze_header
+  
   def index
     redirect_to new_customer_order_address_path(order)
   end

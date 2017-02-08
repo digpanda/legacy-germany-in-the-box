@@ -6,12 +6,14 @@
       <%= render partial: "layouts/customer/header/logo" %>
     </div>
 
-    <!-- Categories -->
-    <div class="col-md-7 header-desktop__categories">
-      <div class="row">
-        <%= render partial: "layouts/customer/header/desktop/categories_menu", :locals => { :categories => @categories } %>
+      <!-- Categories -->
+      <div class="col-md-7 header-desktop__categories">
+        <div class="row">
+          <% unless @freeze_header %>
+            <%= render partial: "layouts/customer/header/desktop/categories_menu", :locals => { :categories => @categories } %>
+          <% end %>
+        </div>
       </div>
-    </div>
 
     <!-- Menu -->
     <div class="col-md-3 header-desktop__menu">
