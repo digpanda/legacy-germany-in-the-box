@@ -1,6 +1,10 @@
 <!-- Logo -->
 <div class="+centered">
-  <a href="<%= root_path %>">
+  <% if @freeze_header %>
     <img src="/images/logo-half.png">
-  </a>
+  <% else %>
+    <a href="<%= root_path %>">
+      <img src="/images/logo-half.png">
+    </a>
+  <% end %>
 </div>
