@@ -1,4 +1,6 @@
 zh-CN:
+  account:
+    profile_picture: 头像照片
   result:
     not_found: 未找到符合的结果；
   payment:
