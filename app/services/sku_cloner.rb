@@ -64,7 +64,7 @@ class SkuCloner < BaseService
 
   def copy_file(field)
     if sku.send(field).present?
-      clone.send("#{field}=", sku.send(field))
+      # clone.send("#{field}=", sku.send(field))
       # CopyCarrierwaveFile::CopyFileService.new(sku, clone, field).set_file
       clone.save!
       #Delayed::Worker.logger.debug "Task in queue"
