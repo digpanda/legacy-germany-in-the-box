@@ -6,10 +6,10 @@
 
   if Rails.env.production?
     config.qiniu_bucket         = 'carrierwave-laiyinn-prod'
-    config.qiniu_bucket_domain  = 'o9fhtjfm2.qnssl.com'
+    config.qiniu_bucket_domain  = 'img.germanyinbox.com' # 'o9fhtjfm2.qnssl.com'
   else
     config.qiniu_bucket         = 'carrierwave-laiyinn-staging'
-    config.qiniu_bucket_domain  = 'o9fh2muer.qnssl.com'
+    config.qiniu_bucket_domain  = 'img.germanyinbox.com' # 'o9fh2muer.qnssl.com'
   end
 
   config.qiniu_bucket_private = true
