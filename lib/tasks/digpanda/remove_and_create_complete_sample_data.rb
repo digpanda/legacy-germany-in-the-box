@@ -13,7 +13,7 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
     # We first remove absolutely everything
     #
     puts "We remove the setting"
-    Settings.delete_all
+    Setting.delete_all
     puts "We remove all users"
     User.delete_all
     puts "We remove all shops"
