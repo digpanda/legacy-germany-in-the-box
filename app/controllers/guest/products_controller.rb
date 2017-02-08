@@ -1,5 +1,9 @@
 class Guest::ProductsController < ApplicationController
 
+  before_filter do
+    restrict_to :customer
+  end
+  
   attr_reader :product, :shop
 
   before_action :set_product, :set_shop

@@ -56,4 +56,11 @@ class ApplicationController < ActionController::Base
     @freeze_header = true
   end
 
+  def restrict_to(section)
+    unless identity_solver.section == section # :customer, :shopkeeper, :admin
+      navigation.reset! # we reset to avoid infinite loop
+      throw_unauthorized_page
+    end
+  end
+
 end

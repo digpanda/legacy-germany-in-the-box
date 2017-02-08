@@ -2,13 +2,17 @@ class Guest::PackageSetsController < ApplicationController
 
   attr_reader :package_set
 
+  before_filter do
+    restrict_to :customer
+  end
+
   before_action :set_package_set
 
   before_action :breadcrumb_home
   before_action :breadcrumb_package_set, only: [:show]
   before_action :breadcrumb_package_sets, only: [:index]
   before_action :freeze_header
-  
+
   # we show the list of packages
   # we already created from the admin
   def index

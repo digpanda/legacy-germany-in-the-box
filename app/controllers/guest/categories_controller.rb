@@ -1,5 +1,9 @@
 class Guest::CategoriesController < ApplicationController
 
+  before_filter do
+    restrict_to :customer
+  end
+  
   attr_reader :category
 
   before_action :set_category
