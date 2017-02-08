@@ -90,6 +90,7 @@ group :development do
   gem "capistrano-nvm"
   gem "capistrano-linked-files"
   gem "capistrano-secrets-yml", "~> 1.0.0"
+  gem "capistrano-sidekiq"
 
   # debug / metrics
   gem "flay"
