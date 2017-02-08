@@ -27,7 +27,7 @@
       <%= f.email_field :email, :class => 'form-control', :placeholder => I18n.t(:email, scope: :sign_up_dialog), :required => true %>
     </div>
     <div class="form-group">
-      <%= f.password_field :password, :class => 'form-control', :placeholder => I18n.t(:password, scope: :sign_up_dialog), :required => true, :minLength => Rails.configuration.achat[:min_password_length] %>
+      <%= f.password_field :password, :class => 'form-control', :placeholder => I18n.t(:password, scope: :sign_up_dialog), :required => true %>
       <div class="help-block with-errors"></div>
     </div>
     <div class="form-group">
