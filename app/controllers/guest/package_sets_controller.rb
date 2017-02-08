@@ -27,7 +27,7 @@ class Guest::PackageSetsController < ApplicationController
                       package_set: package_sku.package_set)
     end
     # we first empty the cart manager to make it fresh
-    cart_manager.empty!
+    # cart_manager.empty! <-- to avoid multiple package order
     cart_manager.store(order)
     redirect_to customer_cart_path
   end
