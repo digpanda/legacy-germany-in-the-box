@@ -4,10 +4,15 @@ class ActionDispatch::Routing::Mapper
   end
 end
 
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
 
   draw :concerns
   draw :app
   draw :api
 
+  authenticate :user, lambda { |u| u.admin? } do
+    mount Sidekiq::Web => '/sidekiq'
+  end
 end
