@@ -207,4 +207,8 @@ class Product
     skus.detect {|s| s.option_ids.to_set == option_ids.to_set}
   end
 
+  def sku_with_id(sku_id)
+    skus.detect { |s| s.id.to_s == sku_id }
+  end
+
 end

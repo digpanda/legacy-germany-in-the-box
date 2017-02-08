@@ -18,10 +18,9 @@ class SkuCloner < BaseService
 
   def process
     entry!
-    images!
-    attach!
     # we save after all alterations
     if target.save
+      FileWorker.perform_async(sku.product.id, target.id, sku.id, clone.id, relationship)
       return_with(:success, :clone => clone)
     else
       clone.destroy
