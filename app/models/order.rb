@@ -144,7 +144,7 @@ class Order
 
   # extra costs (shipping and taxes)
   def extra_costs
-    shipping_cost + tax_and_duty_cost
+    shipping_cost.to_f + tax_and_duty_cost.to_f
   end
 
   # NOTE : THIS HAS TO BE REMOVED WHEN STAGING CHANGES WILL BE DONE.
