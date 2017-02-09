@@ -116,7 +116,7 @@ class Order
     if order_items.first&.manual_shipping_cost
       order_items.each.reduce(0) do |acc, order_item|
         if order_item.manual_shipping_cost
-          acc + order_item.manual_shipping_cost
+          acc + (order_item.manual_shipping_cost * order_item.quantity)
         end
       end
     else

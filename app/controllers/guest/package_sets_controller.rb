@@ -26,14 +26,15 @@ class Guest::PackageSetsController < ApplicationController
       # we also lock each order item we generate
       order_maker.add(package_sku.sku, package_sku.product, package_sku.quantity,
                       price: package_sku.price,
-                      taxes: package_sku.total_taxes,
-                      shipping: package_sku.total_shipping,
+                      taxes: package_sku.taxes_per_unit,
+                      shipping: package_sku.shipping_per_unit,
                       locked: true,
                       package_set: package_sku.package_set)
     end
     # we first empty the cart manager to make it fresh
     # cart_manager.empty! <-- to avoid multiple package order
     cart_manager.store(order)
+    binding.pry
     redirect_to customer_cart_path
   end
 

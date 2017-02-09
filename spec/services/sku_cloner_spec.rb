@@ -36,7 +36,7 @@ describe SkuCloner do
       clone = sku_cloner.data[:clone]
       clone.reload
       @sku.attributes.except("_id", "u_at", "c_at").each do |name, value|
-        #expect(clone.attributes[name]).to eql(value)
+        #@expect(clone.attributes[name]).to eql(value)
       end
     end
 
