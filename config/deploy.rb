@@ -51,12 +51,12 @@ namespace :deploy do
 
   task :restart do
     invoke 'delayed_job:restart'
-    execute :sudo, "service redis-server restart"
   end
 
   after :restart, :clear_cache do
     on roles(:web), in: :groups, limit: 3, wait: 10 do
 
+      execute "sudo service redis-server restart"
       # brunch
       # execute "alias node=/home/ubuntu/.nvm/v5.0.0/bin/node | node -v" # we artifically set the node version
       #execute "cd /var/www/germany_in_the_box/current/app_front && npm install && brunch build --production"
