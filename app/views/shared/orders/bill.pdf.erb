@@ -111,22 +111,6 @@
       <%= @order.total_price.in_euro.display %>
       </td>
     </tr>
-    <% if @order.discount? %>
-    <tr>
-      <td>
-      </td>
-      <td>
-      </td>
-      <td>
-      </td>
-      <td>
-      Discount <%= @order.coupon.code %> <%= @order.coupon.decorate.discount_display %> (<%= @order.coupon_discount.in_euro.display %>)
-      </td>
-      <td style="text-align:right;">
-      <%= (@order.total_price - @order.coupon_discount).in_euro.display %>
-      </td>
-    </tr>
-    <% end %>
   </tbody>
 </table>
 
@@ -169,7 +153,7 @@
         Persönliche Importsteuern
       </td>
       <td style="text-align:right;">
-        <%= @order.decorate.tax_and_duty_cost.in_euro.display %>
+        <%= @order.tax_and_duty_cost.in_euro.display %>
       </td>
     </tr>
 
@@ -186,6 +170,52 @@
 
   </tbody>
 </table>
+
+
+<table style="text-align:left;width:100%;border-color:black;border-width:1px;border-style:solid;">
+  <thead>
+    <tr>
+      <th>
+      </th>
+      <th>
+        Sonst
+      </th>
+      <th style="text-align:right;">
+        Betrag (EUR)
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <%= @order.order_items.count+3 %>
+      </td>
+      <td>
+        Rabatt <%= @order.coupon.code %> <%= @order.coupon.decorate.discount_display %>
+      </td>
+      <td style="text-align:right;">
+        - <%= @order.coupon_discount.in_euro.display %>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- <% if @order.discount? %>
+<tr>
+  <td>
+  </td>
+  <td>
+  </td>
+  <td>
+  </td>
+  <td>
+  Discount <%= @order.coupon.code %> <%= @order.coupon.decorate.discount_display %> (<%= @order.coupon_discount.in_euro.display %>)
+  </td>
+  <td style="text-align:right;">
+  <%= (@order.total_price - @order.coupon_discount).in_euro.display %>
+  </td>
+</tr>
+<% end %> -->
 
 <br /><br /><br />
 
