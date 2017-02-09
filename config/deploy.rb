@@ -51,6 +51,7 @@ namespace :deploy do
 
   task :restart do
     invoke 'delayed_job:restart'
+    execute :sudo, "service redis-server restart"
   end
 
   after :restart, :clear_cache do
