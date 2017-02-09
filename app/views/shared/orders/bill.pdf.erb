@@ -23,7 +23,7 @@
   <strong>Lieferadresse</strong><br />
 </div>
 
-<div style="width:300px;float:left">
+<div style="width:400px;float:left">
   <% if @order.decorate.billing_address %>
     <%= @order.decorate.billing_address.decorate.chinese_full_name %><br />
     <%= @order.decorate.billing_address.decorate.full_address %><br /><br /><br />
@@ -115,7 +115,6 @@
 </table>
 
 <br />
-<br />
 
 <table style="text-align:left;width:100%;border-color:black;border-width:1px;border-style:solid;">
   <thead>
@@ -171,6 +170,7 @@
   </tbody>
 </table>
 
+<br />
 
 <table style="text-align:left;width:100%;border-color:black;border-width:1px;border-style:solid;">
   <thead>
@@ -178,7 +178,7 @@
       <th>
       </th>
       <th>
-        Sonst
+        Sonstig
       </th>
       <th style="text-align:right;">
         Betrag (EUR)
