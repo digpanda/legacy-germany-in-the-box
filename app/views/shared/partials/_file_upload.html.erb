@@ -26,7 +26,9 @@
   <div class="row">
     <div class="file-upload__action">
 
-      <%= link_to '', '#', :class => 'tooltipster fa fa-check buttons buttons__add hidden', :id => "#{field}_#{form.object.id}_add", :title => "Update changes", :data => {:form => 'submit'} %>
+      <% if form.object.persisted? %>
+        <%= link_to '', '#', :class => 'tooltipster fa fa-check buttons buttons__add hidden', :id => "#{field}_#{form.object.id}_add", :title => "Update changes", :data => {:form => 'submit'} %>
+      <% end %>
 
       <% if form.object.send(field).present? %>
         <%= link_to '', guess_destroy_image_path(form, field), :method => :delete, :class => 'tooltipster fa fa-times buttons buttons__delete', :title => "Delete this image" %>

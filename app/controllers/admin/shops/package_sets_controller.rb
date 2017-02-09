@@ -19,7 +19,7 @@ class Admin::Shops::PackageSetsController < ApplicationController
   def show
     redirect_to edit_admin_shop_package_set_path(shop, package_set)
   end
-  
+
   def new
     @package_set = PackageSet.new
     build_package_skus!
@@ -32,7 +32,6 @@ class Admin::Shops::PackageSetsController < ApplicationController
       redirect_to admin_shop_package_sets_path(shop)
     else
       flash[:error] = package_set.errors.full_messages.join(', ')
-
 
       build_package_skus!
       render :new
