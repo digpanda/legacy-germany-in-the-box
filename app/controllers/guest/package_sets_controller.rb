@@ -34,7 +34,6 @@ class Guest::PackageSetsController < ApplicationController
     # we first empty the cart manager to make it fresh
     # cart_manager.empty! <-- to avoid multiple package order
     cart_manager.store(order)
-    binding.pry
     redirect_to customer_cart_path
   end
 

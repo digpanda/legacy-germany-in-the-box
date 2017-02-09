@@ -86,6 +86,14 @@ class OrderItem
     quantity * price
   end
 
+  def total_taxes
+    estimated_taxes * quantity
+  end
+
+  def total_price_with_taxes
+    total_price + total_taxes
+  end
+
   def volume
     sku.volume * quantity
   end
