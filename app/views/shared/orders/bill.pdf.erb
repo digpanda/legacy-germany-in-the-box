@@ -123,7 +123,7 @@
       Discount <%= @order.coupon.code %> <%= @order.coupon.decorate.discount_display %> (<%= @order.coupon_discount.in_euro.display %>)
       </td>
       <td style="text-align:right;">
-      <%= @order.total_price_with_discount.in_euro.display %>
+      <%= (@order.total_price.in_euro.display - @order.coupon_discount).in_euro.display %>
       </td>
     </tr>
     <% end %>
@@ -157,7 +157,7 @@
         FRA-Endkunden(China)
       </td>
       <td style="text-align:right;">
-        <%= @order.decorate.shipping_cost_with_currency_euro %>
+        <%= @order.decorate.shipping_cost.in_euro.display %>
       </td>
     </tr>
 
@@ -169,7 +169,7 @@
         Persönliche Importsteuern
       </td>
       <td style="text-align:right;">
-        <%= @order.decorate.tax_and_duty_cost_with_currency_euro %>
+        <%= @order.decorate.tax_and_duty_cost.in_euro.display %>
       </td>
     </tr>
 
@@ -180,7 +180,7 @@
         Gesamt Prozesskosten
       </td>
       <td style="text-align:right;">
-        <%= @order.decorate.duty_and_shipping_cost_with_currency_euro %>
+        <%= (@order.decorate.shipping_cost + @order.decorate.tax_and_duty_cost).in_euro.display %>
       </td>
     </tr>
 
