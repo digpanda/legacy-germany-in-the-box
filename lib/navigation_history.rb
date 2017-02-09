@@ -27,6 +27,10 @@ class NavigationHistory
     end
   end
 
+  def reset!
+    session["previous_urls"] = {}
+  end
+
   # is there any force URL stored ?
   def force?
     session[:force_url] != nil

@@ -1,7 +1,9 @@
 <nav>
     <div class="col-xs-6">
 
-      <a href="#" class="js-search-button search-bar__button header-mobile__menu --green"><i class="fa fa-search"></i></a>
+      <% unless @freeze_header %>
+        <a href="#" class="js-search-button search-bar__button header-mobile__menu --green"><i class="fa fa-search"></i></a>
+      <% end %>
 
     </div>
     <div class="col-xs-6">

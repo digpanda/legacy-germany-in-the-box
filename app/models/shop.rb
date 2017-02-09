@@ -32,6 +32,8 @@ class Shop
   field :hermes_pickup,   type: Boolean,    default: false
   field :wirecard_status, type: Symbol,     default: :unactive
 
+  field :position, type: Integer, default: 0
+
   field :seal0,           type: String
   field :seal1,           type: String
   field :seal2,           type: String

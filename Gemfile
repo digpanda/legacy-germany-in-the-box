@@ -71,6 +71,8 @@ gem "bootstrap-validator-rails"
 gem "abstract_method"
 gem "mongoid_magic_counter_cache"
 gem "carrierwave-ftp", :require => "carrierwave/storage/ftp" # FTP only
+gem "sidekiq"
+gem "redis-rails"
 
 gem "omniauth"
 gem "omniauth-wechat-oauth2", git: "https://github.com/yangsr/omniauth-wechat-oauth2.git"
@@ -89,6 +91,7 @@ group :development do
   gem "capistrano-nvm"
   gem "capistrano-linked-files"
   gem "capistrano-secrets-yml", "~> 1.0.0"
+  gem "capistrano-sidekiq"
 
   # debug / metrics
   gem "flay"

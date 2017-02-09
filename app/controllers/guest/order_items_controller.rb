@@ -1,5 +1,9 @@
 class Guest::OrderItemsController < ApplicationController
 
+  before_filter do
+    restrict_to :customer
+  end
+  
   attr_reader :order_item, :order
 
   before_action :set_order_item, :set_order

@@ -7,8 +7,8 @@
   <div class="col-md-11 +centered +white-box">
     <div class="form-group">
       <div class="row">
-        <%= f.label :pic, "Profile picture", :class => 'control-label' %>
-        <i class="fa fa-info-circle" title="Profile picture"></i>
+        <%= f.label :pic, I18n.t(:profile_picture, scope: :account), :class => 'control-label' %>
+        <i class="fa fa-info-circle" title="<%= I18n.t(:profile_picture, scope: :account) %>"></i>
       </div>
 
       <div class="row">

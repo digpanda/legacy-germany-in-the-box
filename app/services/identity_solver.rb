@@ -10,12 +10,12 @@ class IdentitySolver
   end
 
   def section
-    if potential_customer? || guest_section?
-      :customer
+    if potential_admin?
+      :admin
     elsif potential_shopkeeper?
       :shopkeeper
-    elsif potential_admin?
-      :admin
+    elsif potential_customer? || guest_section?
+      :customer
     end
   end
 

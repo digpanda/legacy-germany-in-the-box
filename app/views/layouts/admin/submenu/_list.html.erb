@@ -2,35 +2,35 @@
   <%= link_to "Search", admin_search_path %>
 </li>
 <li class="<%= menu_active? edit_admin_account_path  %>">
-  <%= link_to I18n.t(:my_account, scope: :top_menu), edit_admin_account_path %>
+  <%= link_to "My Account", edit_admin_account_path %>
 </li>
 <li class="<%= menu_active? shared_notifications_path %>">
-  <%= link_to I18n.t(:notifications, scope: :top_menu), shared_notifications_path %>
+  <%= link_to "Notifications", shared_notifications_path %>
 </li>
 <li class="<%= menu_active? admin_categories_path %>">
   <%= link_to "Categories", admin_categories_path %>
 </li>
 <li class="<%= menu_active? admin_users_path %>">
-  <%= link_to I18n.t(:accounts, scope: :edit_accounts), admin_users_path %>
+  <%= link_to "Users", admin_users_path %>
 </li>
 <li class="<%= menu_active? admin_shop_applications_path %>">
-  <%= link_to I18n.t(:shop_applications, scope: :top_menu), admin_shop_applications_path %>
+  <%= link_to "Shop Applications", admin_shop_applications_path %>
 </li>
 <li class="<%= menu_active? admin_shops_path %>">
-  <%= link_to I18n.t(:shops, scope: :top_menu), admin_shops_path %>
+  <%= link_to "Shops", admin_shops_path %>
 </li>
 <li class="<%= menu_active? admin_orders_path %>">
-  <%= link_to I18n.t(:my_order, scope: :top_menu), admin_orders_path %>
+  <%= link_to "Orders", admin_orders_path %>
 </li>
 <li class="<%= menu_active? admin_order_payments_path %>">
-  <%= link_to I18n.t(:payments, scope: :top_menu), admin_order_payments_path %>
+  <%= link_to "Payments", admin_order_payments_path %>
 </li>
 <li class="<%= menu_active? admin_coupons_path %>">
   <%= link_to "Coupons", admin_coupons_path %>
 </li>
 <li class="<%= menu_active? admin_settings_path %>">
-  <%= link_to I18n.t(:settings, scope: :top_menu), admin_settings_path %>
+  <%= link_to "Settings", admin_settings_path %>
 </li>
 <li>
-  <%= link_to I18n.t(:sign_out, scope: :top_menu), destroy_user_session_path, :method => :delete %>
+  <%= link_to "Sign-out", destroy_user_session_path, :method => :delete %>
 </li>

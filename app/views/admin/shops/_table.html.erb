@@ -2,6 +2,9 @@
   <table class="white-table">
     <thead>
       <th>
+        Position
+      </th>
+      <th>
         Merchant ID
       </th>
       <th>
@@ -23,6 +26,9 @@
     <tbody>
       <% shops.each do |shop| %>
         <tr>
+          <td>
+            <%= editable_field(shop, admin_shop_path(shop), :position, :text_field) %>
+          </td>
           <td>
             <%= shop.merchant_id %>
           </td>

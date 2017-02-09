@@ -81,8 +81,6 @@ class ApplicationController < ActionController::Base
     "application"
   end
 
-  private
-
   def wechat_silent_solver
     @wechat_solver ||= WechatSilentConnectSolver.new(@parsed_response).resolve!
   end
@@ -112,4 +110,16 @@ class ApplicationController < ActionController::Base
     sign_out
     sign_in(:user, user)
   end
+
+  def freeze_header
+    @freeze_header = true
+  end
+
+  def restrict_to(section)
+    unless identity_solver.section == section # :customer, :shopkeeper, :admin
+      navigation.reset! # we reset to avoid infinite loop
+      throw_unauthorized_page
+    end
+  end
+
 end

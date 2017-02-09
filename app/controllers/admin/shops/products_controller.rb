@@ -103,7 +103,7 @@ class Admin::Shops::ProductsController < ApplicationController
 
   def recover_duty_category_from_code
     product_params.require(:duty_category).tap do |duty_category_code|
-      product_params[:duty_category] = DutyCategory.where(code: duty_category_code).first
+      product_params[:duty_category] = DutyCategory.where(code: duty_category_code).where(tax_rate: {'$gt': 0.0}).first
     end
   end
 

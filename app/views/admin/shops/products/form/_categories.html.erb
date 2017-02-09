@@ -40,7 +40,7 @@
 
       <%= form.text_field :duty_category, :value => form.object.duty_category&.code, :id => 'duty-category', :class => 'form-control', :required => true, :placeholder => '27289' %>
       <div class="help-block with-errors"></div>
-      <div class="js-duty-category"></div>
+      <div class="js-duty-category"><strong>Note : if the duty category has no tax rate or is not in our database, this data won't persist.</strong></div>
 
     </div>
 

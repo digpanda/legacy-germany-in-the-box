@@ -1,5 +1,9 @@
 class Guest::CampaignsController < ApplicationController
 
+  before_filter do
+    restrict_to :customer
+  end
+  
   before_filter :production_only
 
   def index

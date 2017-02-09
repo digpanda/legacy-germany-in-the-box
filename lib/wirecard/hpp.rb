@@ -133,6 +133,7 @@ module Wirecard
     end
 
     def customer_ip_address
+      return "127.0.0.1" if Rails.env.development? # ::1 isn't accepted by UnionPay as IP
       user.last_sign_in_ip || "127.0.0.1"
     end
 

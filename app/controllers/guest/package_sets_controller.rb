@@ -2,11 +2,16 @@ class Guest::PackageSetsController < ApplicationController
 
   attr_reader :package_set
 
+  before_filter do
+    restrict_to :customer
+  end
+
   before_action :set_package_set
 
   before_action :breadcrumb_home
   before_action :breadcrumb_package_set, only: [:show]
   before_action :breadcrumb_package_sets, only: [:index]
+  before_action :freeze_header
 
   # we show the list of packages
   # we already created from the admin
@@ -27,7 +32,7 @@ class Guest::PackageSetsController < ApplicationController
                       package_set: package_sku.package_set)
     end
     # we first empty the cart manager to make it fresh
-    cart_manager.empty!
+    # cart_manager.empty! <-- to avoid multiple package order
     cart_manager.store(order)
     redirect_to customer_cart_path
   end

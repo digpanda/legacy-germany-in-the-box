@@ -3,7 +3,7 @@ class Guest::HomeController < ApplicationController
   before_action :admin_redirection
 
   def show
-    @shops = Shop.can_buy.all
+    @shops = Shop.can_buy.order_by(:position => :asc).all
   end
 
   private
