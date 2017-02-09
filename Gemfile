@@ -72,6 +72,7 @@ gem "abstract_method"
 gem "mongoid_magic_counter_cache"
 gem "carrierwave-ftp", :require => "carrierwave/storage/ftp" # FTP only
 gem "sidekiq"
+gem "redis-rails"
 
 gem "omniauth"
 gem "omniauth-wechat-oauth2", git: "https://github.com/yangsr/omniauth-wechat-oauth2.git"
