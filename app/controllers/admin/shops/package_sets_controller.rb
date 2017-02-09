@@ -18,7 +18,7 @@ class Admin::Shops::PackageSetsController < ApplicationController
 
   def new
     @package_set = PackageSet.new
-    5.times { package_set.package_skus.build }
+    build_package_skus!
   end
 
   def create
@@ -28,6 +28,8 @@ class Admin::Shops::PackageSetsController < ApplicationController
       redirect_to admin_shop_package_sets_path(shop)
     else
       flash[:error] = package_set.errors.full_messages.join(', ')
+
+      build_package_skus!
       render :new
     end
   end
@@ -58,6 +60,9 @@ class Admin::Shops::PackageSetsController < ApplicationController
     params.require(:package_set).permit!
   end
 
+  def build_package_skus!
+    5.times { package_set.package_skus.build }
+  end
 
   def set_shop
     @shop = Shop.find(params[:shop_id] || params[:id])
