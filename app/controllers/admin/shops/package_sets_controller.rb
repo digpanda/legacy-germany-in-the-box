@@ -16,6 +16,10 @@ class Admin::Shops::PackageSetsController < ApplicationController
     @package_sets = shop.package_sets.order_by(:c_at => :desc).paginate(:page => current_page, :per_page => 10)
   end
 
+  def show
+    redirect_to edit_admin_shop_package_set_path(shop, package_set)
+  end
+  
   def new
     @package_set = PackageSet.new
     build_package_skus!
@@ -28,6 +32,7 @@ class Admin::Shops::PackageSetsController < ApplicationController
       redirect_to admin_shop_package_sets_path(shop)
     else
       flash[:error] = package_set.errors.full_messages.join(', ')
+
 
       build_package_skus!
       render :new
