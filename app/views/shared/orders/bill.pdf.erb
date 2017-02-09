@@ -123,7 +123,7 @@
       Discount <%= @order.coupon.code %> <%= @order.coupon.decorate.discount_display %> (<%= @order.coupon_discount.in_euro.display %>)
       </td>
       <td style="text-align:right;">
-      <%= (@order.total_price.in_euro.display - @order.coupon_discount).in_euro.display %>
+      <%= (@order.total_price.in_euro - @order.coupon_discount).in_euro.display %>
       </td>
     </tr>
     <% end %>
