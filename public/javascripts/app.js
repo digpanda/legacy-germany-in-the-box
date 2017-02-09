@@ -1755,21 +1755,18 @@ var Cart = {
     // I passed 2 full days on this problem
     // Good luck.
     // - Laurent
-    // $.ajax({
-    //   method: "GET",
-    //   url: "/api/guest/cart/total",
-    //   data: {}
-    //
-    // }).done(function(res) {
-    //
-    //   callback(res);
-    //
-    // }).error(function(err) {
-    //
-    //   callback({success: false, error: err.responseJSON.error});
-    //
-    // });
+    $.ajax({
+      method: "GET",
+      url: "/api/guest/cart/total",
+      data: {}
 
+    }).done(function (res) {
+
+      callback(res);
+    }).error(function (err) {
+
+      callback({ success: false, error: err.responseJSON.error });
+    });
   }
 
 };
