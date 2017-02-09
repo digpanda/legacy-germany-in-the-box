@@ -35,7 +35,7 @@
     <h3><%= package_sku.product.name %></h3>
     <p><%= package_sku.product.brand %></p>
     <div class="product-miniblock__extra">
-      <%= package_sku.quantity %> x <%= package_sku.sku.decorate.readable_weight %>
+      <%= package_sku.quantity %> x <%= package_sku.sku.option_names.join(', ') %>
     </div>
   </div>
 

@@ -6,10 +6,6 @@ class SkuDecorator < Draper::Decorator
   delegate_all
   decorates :sku
 
-  def readable_weight
-    "#{(self.weight*100).to_i}g"
-  end
-
   def first_nonempty_img_url(version)
     f = self.attributes.keys.grep(/^img\d/).map(&:to_sym).detect { |f| f if sku.read_attribute(f) }
     unless f.nil?
