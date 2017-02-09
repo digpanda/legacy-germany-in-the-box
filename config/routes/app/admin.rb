@@ -1,4 +1,6 @@
 # Admin related
+require 'sidekiq/web'
+
 namespace :admin do
 
   resources :categories do
@@ -72,6 +74,10 @@ namespace :admin do
 
   resources :settings do
     delete :destroy_image
+  end
+
+  authenticate :user, lambda { |u| u.admin? } do
+    mount Sidekiq::Web => '/sidekiq'
   end
 
 end
