@@ -16,6 +16,35 @@ class ApplicationController < ActionController::Base
 
   helper_method :navigation, :cart_manager, :identity_solver
 
+  before_action :silent_login
+
+  def silent_login
+    if params[:code]
+      code = params[:code]
+
+      # get access token
+      parsed_response = get_access_token(code)
+      openid = parsed_response['openid']
+      unionid = parsed_response['unionid']
+
+      return if parsed_response['errcode']
+
+      user = User.where(provider: 'wechat', uid: openid, wechat_unionid: unionid).first
+
+      if user
+        sign_in_user(user)
+      else
+        # get userinfo and create new user
+        access_token = parsed_response['access_token']
+        @parsed_response = get_user_info(access_token, openid)
+
+        return if parsed_response['errcode']
+
+        auth_user
+      end
+    end
+  end
+
   def current_page
     if params[:page]
       params[:page].to_i
@@ -50,6 +79,36 @@ class ApplicationController < ActionController::Base
 
   def default_layout
     "application"
+  end
+
+  def wechat_silent_solver
+    @wechat_solver ||= WechatSilentConnectSolver.new(@parsed_response).resolve!
+  end
+
+  def get_access_token(code)
+    url = "https://api.wechat.com/sns/oauth2/access_token?appid=#{Rails.application.config.wechat[:username_mobile]}&secret=#{Rails.application.config.wechat[:password_mobile]}&code=#{code}&grant_type=authorization_code"
+    get_url(url)
+  end
+
+  def get_user_info(access_token, openid)
+    url = "https://api.wechat.com/sns/userinfo?access_token=#{access_token}&openid=#{openid}"
+    get_url(url)
+  end
+
+  def get_url(url)
+    response = Net::HTTP.get(URI.parse(url))
+    JSON.parse(response)
+  end
+
+  def auth_user
+    if wechat_silent_solver.success?
+      sign_in_user(wechat_silent_solver.data[:customer])
+    end
+  end
+
+  def sign_in_user(user)
+    sign_out
+    sign_in(:user, user)
   end
 
   def freeze_header

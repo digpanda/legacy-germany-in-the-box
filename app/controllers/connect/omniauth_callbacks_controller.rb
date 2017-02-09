@@ -59,7 +59,6 @@ class Connect::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   def get_access_token(code)
-    # TODO: CHECK WHERE WE GET THIS APPID wxfde44fe60674ba13 AND THE SECRET ALSO
     url = "https://api.wechat.com/sns/oauth2/access_token?appid=#{Rails.application.config.wechat[:username_mobile]}&secret=#{Rails.application.config.wechat[:password_mobile]}&code=#{code}&grant_type=authorization_code"
     get_url(url)
   end
