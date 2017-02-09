@@ -35,7 +35,7 @@ class Admin::Shops::PackageSetsController < ApplicationController
   end
 
   def edit
-    5.times { package_set.package_skus.build }
+    build_package_skus!
   end
 
   def update
@@ -44,6 +44,8 @@ class Admin::Shops::PackageSetsController < ApplicationController
     else
       flash[:error] = package_set.errors.full_messages.join(', ')
     end
+
+    build_package_skus!
     render :edit
   end
 
