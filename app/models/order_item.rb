@@ -87,11 +87,15 @@ class OrderItem
   end
 
   def total_taxes
-    estimated_taxes * quantity
+    quantity * estimated_taxes
   end
 
   def total_price_with_taxes
     total_price + total_taxes
+  end
+
+  def price_with_taxes
+    price + estimated_taxes
   end
 
   def volume
