@@ -29,7 +29,7 @@ class Product
   has_and_belongs_to_many :users, inverse_of: :favorites
 
   # research system
-  search_in :brand, :name, :desc, :shop => :shopname
+  search_in :brand, :name, :desc, :shop => :shopname, :categories => :name
 
   accepts_nested_attributes_for :skus
   accepts_nested_attributes_for :options
