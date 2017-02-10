@@ -81,11 +81,11 @@
 <% else %>
 <div class="+white-box +centered">
   <h4>
-    No address
+    <%= t 'address.no_address' %>
   </h4>
 </div>
 <% end %>
 <div class="+centered">
   <div class="+small-spacer"></div>
-  <a href="<%= new_customer_address_path %>" class="btn btn-primary btn-lg">Add a new address</a>
+  <a href="<%= new_customer_address_path %>" class="btn btn-primary btn-lg"><%= t 'address.new_adress' %></a>
 </div>
