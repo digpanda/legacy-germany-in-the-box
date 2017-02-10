@@ -7,11 +7,12 @@ it looks like it's the same, but it's not -->
     <div class="package-set-block">
       <div class="row">
 
-
+      <a href="<%= guest_package_set_path(package_set) %>">
         <div class="col-md-8 package-set-block__no-padding-right">
           <div class="package-set-block__image lazy" data-original="<%= package_set.cover %>" style="background-image:url('/images/grey.png');">
           </div>
         </div>
+      </a>
 
         <div class="col-md-4 package-set-block__no-padding-left">
           <%= render partial: "guest/package_sets/index/block/content", :locals => {:package_set => package_set} %>
