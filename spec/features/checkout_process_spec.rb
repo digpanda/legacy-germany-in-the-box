@@ -74,7 +74,8 @@ feature "checkout process", :js => true  do
         page.first('.\\+checkout-button').click # go to payment step
         on_payment_method_page?
         checkout_window = window_opened_by do
-          page.first('button[value=creditcard]').click # pay with wirecard
+          page.first('input[value=creditcard]').click # pay with wirecard
+          page.first('.\\+checkout-button').click
         end
 
         within_window checkout_window do
@@ -92,7 +93,8 @@ feature "checkout process", :js => true  do
         page.first('.\\+checkout-button').click # go to payment step
         on_payment_method_page?
         checkout_window = window_opened_by do
-          page.first('button[value=creditcard]').click # pay with wirecard
+          page.first('input[value=creditcard]').click # pay with wirecard
+          page.first('.\\+checkout-button').click
         end
 
         within_window checkout_window do

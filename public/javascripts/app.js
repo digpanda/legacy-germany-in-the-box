@@ -559,7 +559,7 @@ var CustomerCheckoutPaymentMethod = {
    */
   handleMethodSelection: function handleMethodSelection() {
 
-    $('button[name=payment_method]').click(function (e) {
+    $('button[type=submit]').click(function (e) {
 
       $('#payment_method_area').hide();
       $('#after_payment_method_area').removeClass('hidden');
