@@ -12,7 +12,7 @@
       <div class="product-miniblock__content">
         <h3><%= package_sku.product.name %></h3>
         <div class="product-miniblock__name"><%= package_sku.product.brand %> - <%= package_sku.quantity %> units</div>
-        <div class="product-miniblock__desc"><%= package_sku.product.desc %></div>
+        <div class="product-miniblock__desc"><%= package_sku.product.decorate.short_desc(100) %></div>
       </div>
 
     </div>
