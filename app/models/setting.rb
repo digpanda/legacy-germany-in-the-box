@@ -14,10 +14,21 @@ class Setting
 
   field :package_sets_title,       type: String
   field :package_sets_description, type: String
+  field :package_sets_link, type: String
+  field :package_sets_button, type: String
   field :package_sets_cover,       type: String
+  mount_uploader :package_sets_cover, CoverUploader
+
   field :package_sets_highlight,     type: Boolean
 
-  mount_uploader :package_sets_cover, CoverUploader
+  field :landing_page_title,       type: String
+  field :landing_page_description, type: String
+  field :landing_page_link, type: String
+  field :landing_page_button, type: String
+  field :landing_page_cover,       type: String
+  mount_uploader :landing_page_cover, CoverUploader
+
+  field :landing_page_highlight,     type: Boolean
 
   validates :platform_currency,       presence: true
   validates :supplier_currency,       presence: true

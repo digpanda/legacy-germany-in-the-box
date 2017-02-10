@@ -1,0 +1,23 @@
+<!-- Big banner container -->
+<% if landing_page_highlight? %>
+  <div class="row +desktop">
+    <div class="col-md-12">
+      <div class="landing-banner-desktop lazy" data-original="<%= Setting.instance.package_sets_cover %>" style="background-image:url('/images/grey.png');">
+        <div class="landing-banner-desktop__content">
+          <%= render partial: "guest/home/show/landing_page_banner/content" %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row +mobile">
+    <div class="col-xs-12">
+      <div class="landing-banner-mobile lazy" data-original="<%= Setting.instance.package_sets_cover %>" style="background-image:url('/images/grey.png');">
+      </div>
+    </div>
+    <div class="col-xs-12">
+      <div class="landing-banner-mobile__content">
+        <%= render partial: "guest/home/show/landing_page_banner/content" %>
+      </div>
+  </div>
+  </div>
+<% end %>

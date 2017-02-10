@@ -4,4 +4,8 @@ module PackageSetHelper
     Setting.instance.package_sets_highlight
   end
 
+  def landing_page_highlight?
+    Setting.instance.landing_page_highlight
+  end
+
 end
