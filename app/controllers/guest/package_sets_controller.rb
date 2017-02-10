@@ -8,7 +8,6 @@ class Guest::PackageSetsController < ApplicationController
 
   before_action :set_package_set
 
-  before_action :breadcrumb_home
   before_action :breadcrumb_package_set, only: [:show]
   before_action :breadcrumb_package_sets, only: [:index]
   before_action :freeze_header

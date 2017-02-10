@@ -11,7 +11,7 @@ module Application
     end
 
     def breadcrumb_package_sets
-      add_breadcrumb "Package sets", guest_package_sets_path
+      add_breadcrumb I18n.t(:package_sets, scope: :package_set), guest_package_sets_path
     end
 
     def breadcrumb_package_set
