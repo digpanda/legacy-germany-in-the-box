@@ -45,7 +45,7 @@ class Connect::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   def failure
     flash[:error] = I18n.t(:wechat_login_fail, scope: :notice)
-    redirect_to(:back)
+    redirect_to navigation.back(1)
   end
 
   private

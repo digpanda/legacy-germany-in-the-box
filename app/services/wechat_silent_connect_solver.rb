@@ -35,7 +35,7 @@ class WechatSilentConnectSolver < BaseService
   end
 
   def existing_customer
-    User.where(provider: 'wechat', uid: auth_data['openid'], wechat_unionid: auth_data['unionid']).first
+    User.where(provider: 'wechat', wechat_unionid: auth_data['unionid']).first
   end
 
   def new_customer
