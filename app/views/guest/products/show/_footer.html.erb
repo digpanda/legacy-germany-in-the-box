@@ -1,28 +1,30 @@
-<div class="row">
-  <div class="col-md-12">
-    <div class="product-page-footer">
+<% unless products.empty? %>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="product-page-footer">
 
-      <div class="product-page-footer__content">
+          <div class="product-page-footer__content">
 
-        <h3><%= products.first.shop.shopname %></h3>
+            <h3><%= product.shop.shopname %></h3>
 
-        <div class="row product-page-footer__images">
+            <div class="row product-page-footer__images">
 
-          <% products.each_with_index do |product, index| %>
+              <% products.each_with_index do |product, index| %>
 
-          <div class="<%= (index >= 2) ? "+desktop" : "" %>">
-            <a href="<%= guest_product_path(product) %>">
-              <div class="col-md-2 col-xs-6 product-page-footer__images --image lazy" data-original="<%= product.decorate.product_cover_url %>" style="background-image:url('/images/grey.png');">
-              </div>
-            </a>
+                  <div class="<%= (index >= 2) ? "+desktop" : "" %>">
+                    <a href="<%= guest_product_path(product) %>">
+                      <div class="col-md-2 col-xs-6 product-page-footer__images --image lazy" data-original="<%= product.decorate.product_cover_url %>" style="background-image:url('/images/grey.png');">
+                      </div>
+                    </a>
+                  </div>
+
+              <% end %>
+
+            </div>
+
           </div>
-
-          <% end %>
-
+          <!-- End of Content -->
         </div>
-
       </div>
-      <!-- End of Content -->
     </div>
-  </div>
-</div>
+<% end %>
