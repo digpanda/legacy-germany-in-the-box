@@ -7216,7 +7216,8 @@ html.magnifying > body {
         text-transform: none; }
 
 .magnify-full-image {
-  max-width: 100%; }
+  max-width: 100%;
+  max-height: 35em; }
 
 .slicknav_btn {
   float: left;
