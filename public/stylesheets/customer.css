@@ -1441,6 +1441,7 @@ body {
 .banner {
   background-color: #eeeeee;
   background-size: cover;
+  background-position: center;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   -ms-border-radius: 4px;
@@ -1477,6 +1478,7 @@ body {
 .landing-banner-desktop {
   background-color: #eeeeee;
   background-size: cover;
+  background-position: center;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   -ms-border-radius: 4px;
@@ -1498,6 +1500,7 @@ body {
 .landing-banner-mobile {
   background-color: #eeeeee;
   background-size: cover;
+  background-position: center;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   -ms-border-radius: 4px;
