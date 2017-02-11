@@ -18,7 +18,9 @@
     </div>
     <div class="col-xs-12">
       <div class="landing-banner-mobile__content">
+        <% if Setting.instance.landing_page_title.present? %>
         <%= render partial: "guest/home/show/landing_page_banner/content" %>
+        <% end %>
       </div>
   </div>
   </div>
