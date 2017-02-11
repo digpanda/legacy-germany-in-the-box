@@ -2,7 +2,7 @@
 <% if landing_page_highlight? %>
   <div class="row +desktop">
     <div class="col-md-12">
-      <div class="landing-banner-desktop lazy" data-original="<%= Setting.instance.package_sets_cover %>" style="background-image:url('/images/grey.png');">
+      <div class="landing-banner-desktop lazy" style="background-image:url('<%= Setting.instance.package_sets_cover %>')">
         <div class="landing-banner-desktop__content">
           <% if Setting.instance.landing_page_title.present? %>
           <%= render partial: "guest/home/show/landing_page_banner/content" %>
