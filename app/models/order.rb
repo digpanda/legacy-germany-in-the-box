@@ -111,8 +111,6 @@ class Order
   end
 
   def current_shipping_cost
-    # TODO : this has to be improved greatly but atomizing the whole system
-    # basing the calculation on the order item not the order itself
     if order_items.first&.manual_shipping_cost
       order_items.each.reduce(0) do |acc, order_item|
         if order_item.manual_shipping_cost
