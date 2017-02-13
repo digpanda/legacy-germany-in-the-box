@@ -16,5 +16,4 @@ class TaxesPrice
    end
  end
 
-
 end
