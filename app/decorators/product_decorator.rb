@@ -53,7 +53,7 @@ class ProductDecorator < Draper::Decorator
   end
 
   def preview_fees_yuan_html
-    self.featured_sku.estimated_taxes.in_euro.to_yuan.display_html
+    self.featured_sku.taxes_per_unit.in_euro.to_yuan.display_html
   end
 
   def preview_price_yuan_html

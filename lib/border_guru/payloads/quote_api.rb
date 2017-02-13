@@ -19,7 +19,7 @@ module BorderGuru
           countryOfDestination: @country_of_destination.alpha2,
           currency: @currency,
           lineItems: line_items,
-          shippingCost: @order.current_shipping_cost # ShippingPrice.new(@order).price
+          shippingCost: @order.shipping_cost
         })
       end
 

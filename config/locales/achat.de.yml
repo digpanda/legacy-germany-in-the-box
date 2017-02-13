@@ -387,7 +387,7 @@ de:
     label: Label
     download: Herunterladen
     shipping_cost: Logistik Gebühren
-    tax_and_duty_cost: Zoll Gebühren
+    taxes_cost: Zoll Gebühren
     total_price_with_extra_costs: Insgesamt
     new: Neu
     paying: in Zahlung

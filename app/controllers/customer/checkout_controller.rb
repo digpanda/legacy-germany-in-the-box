@@ -64,7 +64,7 @@ class Customer::CheckoutController < ApplicationController
       return
     end
 
-    status = update_for_checkout(order, order.border_guru_quote_id, order.shipping_cost, order.tax_and_duty_cost)
+    status = update_for_checkout(order, order.border_guru_quote_id, order.shipping_cost, order.taxes_cost)
 
     unless status
       flash[:error] = order.errors.full_messages.join(', ')
@@ -224,7 +224,7 @@ class Customer::CheckoutController < ApplicationController
     redirect_to navigation.back(1)
   end
 
-  def update_for_checkout(order, border_guru_quote_id, shipping_cost, tax_and_duty_cost)
+  def update_for_checkout(order, border_guru_quote_id, shipping_cost, taxes_cost)
     # we bypass the validation of the locked for this one because there's no reason to make it fail here
     # order.bypass_locked!
     # now we update the order itself
@@ -234,7 +234,7 @@ class Customer::CheckoutController < ApplicationController
       :user                 => current_user,
       :border_guru_quote_id => border_guru_quote_id,
       :shipping_cost        => shipping_cost,
-      :tax_and_duty_cost    => tax_and_duty_cost
+      :taxes_cost    => taxes_cost
       })
   end
 

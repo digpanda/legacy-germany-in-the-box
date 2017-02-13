@@ -3,8 +3,6 @@ json.extract! @sku, :id, :weight, :status, :discount
 
 json.quantity @sku.max_added_to_cart
 
-# TODO : don't exist anymore, should be replaced
-#json.fees_with_currency_yuan @sku.estimated_taxes.in_euro.to_yuan.display_html
 json.price_with_currency_yuan @sku.price_with_taxes.in_euro.to_yuan.display_html
 json.price_with_currency_euro @sku.price_with_taxes.in_euro.display_html
 

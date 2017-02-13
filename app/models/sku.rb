@@ -23,10 +23,6 @@ class Sku
   field :attach0,       type: String
   field :country_of_origin, type: String, default: 'DE'
 
-  # TODO : will be removed soon
-  # field :fees_estimation, type: Float, default: 0.0
-  # field :fees_estimated_at, type: Date
-
   field :option_ids,    type: Array,      default: []
 
   embedded_in :product
@@ -83,17 +79,15 @@ class Sku
   end
 
   def price_with_taxes
-    price + estimated_taxes
+    price + taxes_per_unit
   end
 
-  def estimated_taxes
-    @estimated_taxes ||= begin
-      if product.duty_category
-        price * (product.duty_category.tax_rate / 100)
-      else
-        0
-      end
-    end
+  def taxes_per_unit
+    @taxes_per_unit ||= TaxesPrice.new(self).price
+  end
+
+  def shipping_per_unit
+    @shipping_per_unit ||= ShippingPrice.new(self).price
   end
 
   def get_options

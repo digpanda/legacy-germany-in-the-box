@@ -90,8 +90,8 @@ class OrdersFormatter < BaseService
       order.decorate.total_price.in_euro.to_yuan.amount,
       order.decorate.shipping_cost.in_euro.amount,
       order.decorate.shipping_cost.in_euro.to_yuan.amount,
-      order.decorate.tax_and_duty_cost.in_euro.amount,
-      order.decorate.tax_and_duty_cost.in_euro.to_yuan.amount,
+      order.decorate.taxes_cost.in_euro.amount,
+      order.decorate.taxes_cost.in_euro.to_yuan.amount,
       order.decorate.end_price.in_euro.amount,
       order.decorate.end_price.in_euro.to_yuan.amount,
 

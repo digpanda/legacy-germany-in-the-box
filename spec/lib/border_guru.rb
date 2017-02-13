@@ -159,7 +159,7 @@ describe 'BorderGuruTest' do
 
   it 'calculate_quote summarises line items tax and duty costs' do
     TestScheduler.on_ready do |response|
-      assert_kind_of ::Numeric, response.calculate_quote.tax_and_duty_cost
+      assert_kind_of ::Numeric, response.calculate_quote.taxes_cost
     end
   end
 
@@ -191,8 +191,8 @@ describe 'BorderGuruTest' do
 
   it "calculate_quote saves BorderGuru's tax and duty cost with cart" do
     TestScheduler.on_ready do |response|
-      assert_kind_of ::Numeric, response.calculate_quote.tax_and_duty_cost
-      assert_equal response.calculate_quote.tax_and_duty_cost, response.cart.tax_and_duty_cost
+      assert_kind_of ::Numeric, response.calculate_quote.taxes_cost
+      assert_equal response.calculate_quote.taxes_cost, response.cart.taxes_cost
     end
   end
 
