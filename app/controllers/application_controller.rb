@@ -21,24 +21,28 @@ class ApplicationController < ActionController::Base
   def silent_login
     if params[:code]
       code = params[:code]
-
+      SlackDispatcher.new.silent_login_attempt('We got a `code` in the parameters')
       # get access token
       parsed_response = get_access_token(code)
       openid = parsed_response['openid']
       unionid = parsed_response['unionid']
+      SlackDispatcher.new.silent_login_attempt("errcode: #{parsed_response['errcode']}")
 
       return if parsed_response['errcode']
 
       user = User.where(provider: 'wechat', uid: openid, wechat_unionid: unionid).first
 
       if user
+        SlackDispatcher.new.silent_login_attempt('User exists, auto login incomming')
         sign_in_user(user)
       else
+        SlackDispatcher.new.silent_login_attempt('New user....')
         # get userinfo and create new user
         access_token = parsed_response['access_token']
         @parsed_response = get_user_info(access_token, openid)
 
         return if parsed_response['errcode']
+        SlackDispatcher.new.silent_login_attempt('Attempting to login new user...')
 
         auth_user
       end

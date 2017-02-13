@@ -48,6 +48,10 @@ class SlackDispatcher < BaseService
     push "Order ID : `#{order.id}` - URL : #{admin_order_url(order)}"
   end
 
+  def silent_login_attempt(message)
+    push message
+  end
+
   private
 
   def push(message)
