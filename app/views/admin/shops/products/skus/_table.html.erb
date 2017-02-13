@@ -39,7 +39,7 @@
       <% skus.each do |sku| %>
         <tr>
           <td>
-            <%= image_tag(sku.decorate.first_nonempty_img_url(:thumb), :class => 'icon-img') %>
+            <%= image_tag(sku.decorate.highlighted_image(:thumb), :class => 'icon-img') %>
           </td>
           <td>
             <%= sku.option_names.join(', ') %>

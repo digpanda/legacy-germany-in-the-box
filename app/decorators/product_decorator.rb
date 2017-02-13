@@ -35,7 +35,7 @@ class ProductDecorator < Draper::Decorator
   end
 
   def first_sku_image
-    skus.first ? skus.first.decorate.first_nonempty_img_url(:thumb) : 'no_image_available.png' # to be refactored ?
+    skus.first ? skus.first.decorate.highlighted_image(:thumb) : 'no_image_available.png' # to be refactored ?
   end
 
   def best_discount
