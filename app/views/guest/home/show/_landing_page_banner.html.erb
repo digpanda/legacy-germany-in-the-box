@@ -17,11 +17,11 @@
       </div>
     </div>
     <div class="col-xs-12">
+      <% if Setting.instance.landing_page_title.present? %>
       <div class="landing-banner-mobile__content">
-        <% if Setting.instance.landing_page_title.present? %>
         <%= render partial: "guest/home/show/landing_page_banner/content" %>
-        <% end %>
       </div>
+      <% end %>
   </div>
   </div>
 <% end %>

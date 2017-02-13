@@ -4,7 +4,9 @@
     <div class="col-md-12">
       <div class="landing-banner-desktop lazy" data-original="<%= Setting.instance.package_sets_cover %>" style="background-image:url('/images/grey.png');">
         <div class="landing-banner-desktop__content">
-          <%= render partial: "guest/package_sets/package_set_banner/content" %>
+          <% if Setting.instance.package_sets_title.present? %>
+            <%= render partial: "guest/package_sets/package_set_banner/content" %>
+          <% end %>
         </div>
       </div>
     </div>
@@ -15,9 +17,11 @@
       </div>
     </div>
     <div class="col-xs-12">
-      <div class="landing-banner-mobile__content">
-        <%= render partial: "guest/package_sets/package_set_banner/content" %>
-      </div>
+      <% if Setting.instance.package_sets_title.present? %>
+        <div class="landing-banner-mobile__content">
+          <%= render partial: "guest/package_sets/package_set_banner/content" %>
+        </div>
+      <% end %>
   </div>
   </div>
 <% end %>
