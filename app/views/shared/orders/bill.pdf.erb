@@ -172,52 +172,42 @@
 
 <br />
 
-<table style="text-align:left;width:100%;border-color:black;border-width:1px;border-style:solid;">
-  <thead>
-    <tr>
-      <th>
-      </th>
-      <th>
-        Sonstig
-      </th>
-      <th style="text-align:right;">
-        Betrag (EUR)
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>
-        <%= @order.order_items.count+3 %>
-      </td>
-      <td>
-        Rabatt <%= @order.coupon.code %> <%= @order.coupon.decorate.discount_display %>
-      </td>
-      <td style="text-align:right;">
-        - <%= @order.coupon_discount.in_euro.display %>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<% if @order.discount? %>
 
-<!-- <% if @order.discount? %>
-<tr>
-  <td>
-  </td>
-  <td>
-  </td>
-  <td>
-  </td>
-  <td>
-  Discount <%= @order.coupon.code %> <%= @order.coupon.decorate.discount_display %> (<%= @order.coupon_discount.in_euro.display %>)
-  </td>
-  <td style="text-align:right;">
-  <%= (@order.total_price - @order.coupon_discount).in_euro.display %>
-  </td>
-</tr>
-<% end %> -->
+  <table style="text-align:left;width:100%;border-color:black;border-width:1px;border-style:solid;">
+    <thead>
+      <tr>
+        <th>
+        </th>
+        <th>
+          Sonstig
+        </th>
+        <th style="text-align:right;">
+          Betrag (EUR)
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <%= @order.order_items.count+3 %>
+        </td>
+        <td>
+          Rabatt <%= @order.coupon.code %> <%= @order.coupon.decorate.discount_display %>
+        </td>
+        <td style="text-align:right;">
+          - <%= @order.coupon_discount.in_euro.display %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 
-<br /><br /><br />
+  <br />
+
+<% end %>
+
+
+<br /><br />
 
 <div style="width:300px;float:left">
 <strong>Gesamt Preis (EUR)</strong><br />
