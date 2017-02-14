@@ -152,7 +152,7 @@
         Persönliche Importsteuern
       </td>
       <td style="text-align:right;">
-        <%= @order.tax_and_duty_cost.in_euro.display %>
+        <%= @order.taxes_cost.in_euro.display %>
       </td>
     </tr>
 
@@ -163,7 +163,7 @@
         Gesamt Prozesskosten
       </td>
       <td style="text-align:right;">
-        <%= (@order.decorate.shipping_cost + @order.decorate.tax_and_duty_cost).in_euro.display %>
+        <%= (@order.decorate.shipping_cost + @order.decorate.taxes_cost).in_euro.display %>
       </td>
     </tr>
 

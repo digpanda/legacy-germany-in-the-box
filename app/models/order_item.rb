@@ -2,24 +2,32 @@ class OrderItem
   include MongoidBase
   include Locked
 
+  # TO REMOVE
+  field :manual_taxes, type: Float
+  field :manual_shipping_cost, type: Float
+  # END OF REMOVE
+
   SKU_DELEGATE_EXCEPTION = [:quantity]
   MAX_DESCRIPTION_CHARACTERS = 200
 
   field :quantity,        type: Integer,    default: 1
 
-  # if we want to setup the taxes by ourselves
-  field :manual_taxes, type: Float
-  # this hook the sku `estimated_taxes` method by forcing a 0
-  # if the taxes are manually calculated beforehand
-  def estimated_taxes
-    if manual_taxes
-      manual_taxes
-    else
-      sku.estimated_taxes
+  field :taxes_per_unit, type: Float
+  field :shipping_per_unit, type: Float
+
+  before_save :ensure_taxes_per_unit, :ensure_shipping_per_unit
+
+  def ensure_taxes_per_unit
+    unless taxes_per_unit
+      self.taxes_per_unit = sku.taxes_per_unit
     end
   end
 
-  field :manual_shipping_cost, type: Float
+  def ensure_shipping_per_unit
+    unless shipping_per_unit
+      self.shipping_per_unit = sku.shipping_per_unit
+    end
+  end
 
   belongs_to :product
   belongs_to :order, touch: true,  :counter_cache => true
@@ -87,7 +95,7 @@ class OrderItem
   end
 
   def total_taxes
-    quantity * estimated_taxes
+    quantity * taxes_per_unit
   end
 
   def total_price_with_taxes
@@ -95,7 +103,7 @@ class OrderItem
   end
 
   def price_with_taxes
-    price + estimated_taxes
+    price + taxes_per_unit
   end
 
   def volume

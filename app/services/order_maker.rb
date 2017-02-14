@@ -86,14 +86,14 @@ class OrderMaker < BaseService
   def update_taxes!(order_item, taxes)
     # we disable the taxe calculations by adding it manually
     if taxes
-      order_item.manual_taxes = taxes
+      order_item.taxes_per_unit = taxes
     end
   end
 
   def update_shipping!(order_item, shipping)
     # we disable the taxe calculations by adding it manually
     if shipping
-      order_item.manual_shipping_cost = shipping
+      order_item.shipping_per_unit = shipping
     end
   end
 
