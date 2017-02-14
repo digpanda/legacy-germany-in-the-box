@@ -23,7 +23,7 @@ class ProductSkusFormatter < BaseService
     'Sku Price (EUR)',
     'Sku price estimated taxes (EUR)',
     'Sku price with taxes (EUR)',
-    'Sku price shipping (EUR)'
+    'Sku price shipping (EUR)',
     'Sku Quantity',
     'Sku Unlimited',
     'Sku Weight',
