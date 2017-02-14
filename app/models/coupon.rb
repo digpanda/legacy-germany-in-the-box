@@ -14,6 +14,7 @@ class Coupon
   field :last_applied_at, type: Time
   field :last_used_at, type: Time
   field :cancelled_at, type: Time, default: false
+  field :exclude_china, type: Boolean, default: false
 
   has_many :orders
 

@@ -18,3 +18,7 @@ Description <%= form.text_field :desc %>
 Reference User <%= form.select :reference_user, options_from_collection_for_select(User.with_reference, :id, :reference_id, form.object.reference_user&.id), :include_blank => true %>
 <br />
 <br />
+
+Exclude China <%= form.select(:exclude_china, {'Yes' => true, 'No' => false}) %>
+<br />
+<br />
