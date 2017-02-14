@@ -68,7 +68,6 @@ class Order
     end
   end
 
->>>>>>> Stashed changes
   belongs_to :shop, :inverse_of => :orders
   belongs_to :user, :inverse_of => :orders
 
