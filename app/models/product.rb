@@ -136,9 +136,9 @@ class Product
   def ensure_base_variant
     if self.options.count == 0
       option = self.options.build
-      option.name = "Volume"
+      option.name = "Größe"
       suboption = option.suboptions.build
-      suboption.name = "500ml"
+      suboption.name = "XS"
     end
   end
 
