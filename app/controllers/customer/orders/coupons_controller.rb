@@ -36,11 +36,11 @@ class Customer::Orders::CouponsController < ApplicationController
   private
 
   def unapply_coupon
-    @unapply_coupon ||= CouponHandler.new(order.coupon, order).unapply
+    @unapply_coupon ||= CouponHandler.new(identity_solver, order.coupon, order).unapply
   end
 
   def apply_coupon
-    @apply_coupon ||= CouponHandler.new(coupon, order).apply
+    @apply_coupon ||= CouponHandler.new(identity_solver, coupon, order).apply
   end
 
   def set_order

@@ -4,11 +4,12 @@ class CouponHandler < BaseService
 
   Numeric.include CoreExtensions::Numeric::CurrencyLibrary
 
-  attr_reader :coupon, :order
+  attr_reader :identity_solver, :coupon, :order
 
   EXPIRE_APPLY_TIME = 24.hours
 
-  def initialize(coupon, order)
+  def initialize(identity_solver, coupon, order)
+    @identity_solver = identity_solver
     @coupon = coupon
     @order = order
   end
@@ -18,6 +19,7 @@ class CouponHandler < BaseService
     unless reached_minimum_order?
       return return_with(:error, I18n.t(:no_minimum_price, scope: :coupon, minimum: coupon.minimum_order.in_euro.to_yuan.display))
     end
+    return return_with(:error, "You can't apply this coupon from China.") unless valid_ip?
     return return_with(:error, I18n.t(:cannot_apply, scope: :coupon)) unless valid_order?
     return return_with(:error, I18n.t(:not_valid_anymore, scope: :coupon)) unless valid_coupon?
     return return_with(:error, I18n.t(:error_occurred_applying, scope: :coupon)) unless update_order! && update_coupon!
@@ -59,6 +61,11 @@ class CouponHandler < BaseService
   # and if the order doesn't have a coupon already
   def valid_order?
     reached_minimum_order? && order.coupon.nil? && coupon.cancelled_at.nil?
+  end
+
+  # if we want to exclude chinese IPs
+  def valid_ip?
+    (coupon.exclude_china && !identity_solver.chinese_ip?) || !coupon.exclude_china
   end
 
   def reached_minimum_order?
