@@ -634,7 +634,7 @@ de:
     return: Zurück zur Produktliste
     cancel: Abbrechen
     variants: Varianten
-    variant_usage: Jede Aritkelposition muss einer Variante zugeordnet werden. Falls das Produkt nur eine Variante hat, tragen Sie bitte das in die Felder Variante und V-Ausprägung <strong>Volume/500ml</strong> oder <strong>Größe/XL</strong> ein.
+    variant_usage: Jede Aritkelposition muss einer Variante zugeordnet werden. Falls das Produkt nur eine Variante hat, tragen Sie bitte das in die Felder Variante und V-Ausprägung <strong>Größe/XL</strong> oder <strong>Volume/500ml</strong> ein.
   popular_products:
     search_prompt: Ich suche
     search_placeholder: ein Produkt
