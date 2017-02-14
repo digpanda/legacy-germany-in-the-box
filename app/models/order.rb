@@ -13,8 +13,6 @@ class Order
   field :status,                    type: Symbol, default: :new
   field :desc,                      type: String
   field :border_guru_quote_id,      type: String
-  field :shipping_cost,             type: Float, default: 0
-  field :tax_and_duty_cost,         type: Float, default: 0
 
   field :border_guru_order_id,      type: String
   field :border_guru_shipment_id,   type: String
@@ -30,6 +28,25 @@ class Order
   field :coupon_applied_at, type: Time
   field :coupon_discount, type: Float, default: 0.0
 
+  def shipping_cost
+    @shipping_cost ||= begin
+      order_items.reduce(0) do |acc, order_item|
+        if order_item.shipping_per_unit
+          acc + (order_item.shipping_per_unit * order_item.quantity)
+        end
+      end
+    end
+  end
+
+  def taxes_cost
+    @taxes_cost ||= begin
+      order_items.reduce(0) do |acc, order_item|
+        acc + (order_item.taxes_per_unit * order_item.quantity)
+      end
+    end
+  end
+
+>>>>>>> Stashed changes
   belongs_to :shop, :inverse_of => :orders
   belongs_to :user, :inverse_of => :orders
 
