@@ -17,8 +17,6 @@ class Order
   field :status,                    type: Symbol, default: :new
   field :desc,                      type: String
   field :border_guru_quote_id,      type: String
-<<<<<<< HEAD
-=======
 
   def shipping_cost
     @shipping_cost ||= begin
@@ -37,7 +35,6 @@ class Order
       end
     end
   end
->>>>>>> d011958c416dd6490fc97e5b9b568c3b61e2fdb7
 
   field :border_guru_order_id,      type: String
   field :border_guru_shipment_id,   type: String
