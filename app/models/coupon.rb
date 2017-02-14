@@ -17,6 +17,8 @@ class Coupon
 
   has_many :orders
 
+  has_one :reference_user, :class_name => "User", :foreign_key => "reference_user_id"
+
   validates :code, presence: true
   validates :discount, presence: true
   validates :unit, presence: true, inclusion: {in: [:percent, :value]}

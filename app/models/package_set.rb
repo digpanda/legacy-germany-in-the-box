@@ -25,7 +25,7 @@ class PackageSet
 
   def casual_price
     self.package_skus.reduce(0) do |acc, package_sku|
-      acc + (package_sku.sku.price_with_taxes * package_sku.quantity)
+      acc + (package_sku.sku.price_with_taxes_and_shipping * package_sku.quantity)
     end
   end
 

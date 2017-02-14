@@ -82,6 +82,10 @@ class Sku
     price + taxes_per_unit
   end
 
+  def price_with_taxes_and_shipping
+    price + taxes_per_unit + shipping_per_unit
+  end
+
   def taxes_per_unit
     @taxes_per_unit ||= TaxesPrice.new(self).price
   end

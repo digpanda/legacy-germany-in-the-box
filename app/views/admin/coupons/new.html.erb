@@ -3,26 +3,12 @@
     <h3>New coupon</h3>
     <hr>
 
-    <%= form_for @coupon, url: admin_coupons_path, method: :post do |f| %>
+    <%= form_for [:admin, @coupon] do |form| %>
 
-      Code <%= f.text_field :code %>
-      <br />
+      <%= render partial: "admin/coupons/form", :locals => { :form => form } %>
 
-      Discount <%= f.text_field :discount %><%= f.select(:unit, {'%' => :percent, 'EUR' => :value}) %>
-      <br />
-      <br />
-      Minimum order <%= f.text_field :minimum_order %> EUR
-      <br />
+      <%= form.submit "Create coupon", {:class => "btn btn-primary"} %>
 
-      Unique <%= f.select(:unique, {'Yes' => true, 'No' => false}) %>
-      <br />
-      <br />
-
-      Description <%= f.text_field :desc %>
-      <br />
-      <br />
-
-      <%= f.submit "Create coupon", {:class => "btn btn-primary"} %>
     <% end %>
 
   </div>

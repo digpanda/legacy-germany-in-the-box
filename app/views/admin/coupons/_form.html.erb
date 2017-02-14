@@ -1,0 +1,20 @@
+Code <%= form.text_field :code %>
+<br />
+
+Discount <%= form.text_field :discount %><%= form.select(:unit, {'%' => :percent, 'EUR' => :value}) %>
+<br />
+<br />
+Minimum order <%= form.text_field :minimum_order %> EUR
+<br />
+
+Unique <%= form.select(:unique, {'Yes' => true, 'No' => false}) %>
+<br />
+<br />
+
+Description <%= form.text_field :desc %>
+<br />
+<br />
+
+Reference User <%= form.select :reference_user, options_from_collection_for_select(User.where(:reference_id.ne => nil), :id, :reference_id), :prompt => '-' %>
+<br />
+<br />

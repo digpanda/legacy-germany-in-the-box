@@ -13,6 +13,7 @@ class Admin::CouponsController < ApplicationController
 
   def new
     @coupon = Coupon.new
+    @reference_users = User.all
   end
 
   def show

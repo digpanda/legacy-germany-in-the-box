@@ -46,6 +46,8 @@ class User
   field :status,    type: Boolean, default: true
   field :provider,  type: String
   field :uid,       type: String
+  
+  field :reference_id, type: String
 
   field :wechat_unionid, type: String
   field :wechat_openid,  type: String
