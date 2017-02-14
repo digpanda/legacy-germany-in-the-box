@@ -17,6 +17,9 @@
       Orders
     </th>
     <th>
+      Reference
+    </th>
+    <th>
       Created At
     </th>
     <th>
@@ -45,6 +48,9 @@
       </td>
       <td>
         <%= coupon.orders.count %>
+      </td>
+      <td>
+        <%= coupon.reference_user&.reference_id %>
       </td>
       <td>
         <%= coupon.c_at %>

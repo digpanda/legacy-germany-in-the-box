@@ -17,7 +17,7 @@ class Coupon
 
   has_many :orders
 
-  has_one :reference_user, :class_name => "User", :foreign_key => "reference_user_id"
+  belongs_to :reference_user, :class_name => "User", :inverse_of => :coupon
 
   validates :code, presence: true
   validates :discount, presence: true

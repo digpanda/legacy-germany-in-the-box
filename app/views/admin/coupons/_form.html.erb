@@ -15,6 +15,6 @@ Description <%= form.text_field :desc %>
 <br />
 <br />
 
-Reference User <%= form.select :reference_user, options_from_collection_for_select(User.where(:reference_id.ne => nil), :id, :reference_id), :prompt => '-' %>
+Reference User <%= form.select :reference_user, options_from_collection_for_select(User.with_reference, :id, :reference_id, form.object.reference_user&.id), :include_blank => true %>
 <br />
 <br />

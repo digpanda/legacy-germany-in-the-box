@@ -46,7 +46,7 @@ class User
   field :status,    type: Boolean, default: true
   field :provider,  type: String
   field :uid,       type: String
-  
+
   field :reference_id, type: String
 
   field :wechat_unionid, type: String
@@ -57,6 +57,7 @@ class User
   has_and_belongs_to_many :favorites, :class_name => 'Product'
 
   scope :without_detail, -> { only(:_id, :pic, :country, :username) }
+  scope :with_reference, -> { where(:reference_id.ne => nil) }
 
   has_many :orders,                                 :inverse_of => :user,   :dependent => :restrict
   embeds_many :addresses,                              :inverse_of => :user
@@ -64,6 +65,8 @@ class User
   has_many :notes,                                  :inverse_of => :user,   :dependent => :restrict
 
   has_one  :shop,         :inverse_of => :shopkeeper,   :dependent => :restrict
+
+  has_many :coupon, :inverse_of => :reference_user
 
   genderize (:gender)
   mount_uploader :pic, AvatarUploader
