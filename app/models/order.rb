@@ -6,6 +6,10 @@ class Order
 
   Numeric.include CoreExtensions::Numeric::CurrencyLibrary
 
+  # OLD TO REMOVE
+  field :tax_and_duty_cost,         type: Float, default: 0
+  #
+
   UNPROCESSABLE_TIME = [11,12] # 11am to 12am -> German Hour
   BOUGHT_OR_CANCELLED = [:paid, :custom_checkable, :custom_checking, :shipped, :cancelled]
   BOUGHT_OR_UNVERIFIED = [:payment_unverified, :paid, :custom_checkable, :custom_checking, :shipped]
@@ -13,6 +17,27 @@ class Order
   field :status,                    type: Symbol, default: :new
   field :desc,                      type: String
   field :border_guru_quote_id,      type: String
+<<<<<<< HEAD
+=======
+
+  def shipping_cost
+    @shipping_cost ||= begin
+      order_items.reduce(0) do |acc, order_item|
+        if order_item.shipping_per_unit
+          acc + (order_item.shipping_per_unit * order_item.quantity)
+        end
+      end
+    end
+  end
+
+  def taxes_cost
+    @taxes_cost ||= begin
+      order_items.reduce(0) do |acc, order_item|
+        acc + (order_item.taxes_per_unit * order_item.quantity)
+      end
+    end
+  end
+>>>>>>> d011958c416dd6490fc97e5b9b568c3b61e2fdb7
 
   field :border_guru_order_id,      type: String
   field :border_guru_shipment_id,   type: String
@@ -86,16 +111,7 @@ class Order
   index({user: 1},  {unique: false,   name: :idx_order_user,   sparse: true})
 
   before_save :create_border_guru_order_id
-  before_save :update_shipping_cost, :update_tax_and_duty_cost
   after_save :make_bill_id, :update_paid_at, :update_cancelled_at
-
-  def update_shipping_cost
-    self.shipping_cost = current_shipping_cost
-  end
-
-  def update_tax_and_duty_cost
-    self.tax_and_duty_cost = current_taxes
-  end
 
   def create_border_guru_order_id
     unless self.border_guru_order_id
@@ -127,26 +143,8 @@ class Order
     end
   end
 
-  def current_shipping_cost
-    if order_items.first&.manual_shipping_cost
-      order_items.each.reduce(0) do |acc, order_item|
-        if order_item.manual_shipping_cost
-          acc + (order_item.manual_shipping_cost * order_item.quantity)
-        end
-      end
-    else
-       ShippingPrice.new(self).price
-    end
-  end
-
-  def current_taxes
-    order_items.inject(0) do |sum, order_item|
-      sum += order_item.quantity * order_item.estimated_taxes
-    end
-  end
-
   def total_price_with_taxes
-    total_price + tax_and_duty_cost
+    total_price + taxes_cost
   end
 
   def total_discount
@@ -159,7 +157,7 @@ class Order
 
   # extra costs (shipping and taxes)
   def extra_costs
-    shipping_cost.to_f + tax_and_duty_cost.to_f
+    shipping_cost + taxes_cost
   end
 
   # NOTE : THIS HAS TO BE REMOVED WHEN STAGING CHANGES WILL BE DONE.

@@ -16,10 +16,10 @@ class ShippingPrice
   Float.include CoreExtensions::Float::CeilTo
   Fixnum.include CoreExtensions::Fixnum::BigDecimalConverter
 
-  attr_reader :order
+  attr_reader :sku
 
-  def initialize(order)
-    @order = order.decorate
+  def initialize(sku)
+    @sku = sku.decorate
   end
 
   def price
@@ -49,12 +49,16 @@ class ShippingPrice
     end
   end
 
-  def products_volumetric_weight
-    @volumetric_weight ||= order.total_volume.to_b / VOLUMETRIC_DIVIDOR.to_b
+  def sku_volumetric_weight
+    if sku.volume
+      @volumetric_weight ||= sku.volume.to_b / VOLUMETRIC_DIVIDOR.to_b
+    else
+      0
+    end
   end
 
   def rounded_volumetric_weight
-    @rounded_volumetric_weight ||= (products_volumetric_weight * approximation).to_f.ceil_to(1)
+    @rounded_volumetric_weight ||= (sku_volumetric_weight * approximation).to_f.ceil_to(1)
   end
 
   def vat
