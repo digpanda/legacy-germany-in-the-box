@@ -2,6 +2,7 @@ class PackageSet
   include MongoidBase
   include EntryPosition
 
+  field :position, type: Integer, default: 0
   field :name, type: String
   field :desc, type: String
   field :cover,       type: String

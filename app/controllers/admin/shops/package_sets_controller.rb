@@ -13,7 +13,7 @@ class Admin::Shops::PackageSetsController < ApplicationController
   before_action :breadcrumb_admin_shops, :breadcrumb_admin_shop_products
 
   def index
-    @package_sets = shop.package_sets.order_by(:c_at => :desc).paginate(:page => current_page, :per_page => 10)
+    @package_sets = shop.package_sets.order_by(position: :asc).paginate(:page => current_page, :per_page => 10)
   end
 
   def show
@@ -45,12 +45,12 @@ class Admin::Shops::PackageSetsController < ApplicationController
   def update
     if package_set.update(package_set_params)
       flash[:success] = "Set was updated"
+      redirect_to navigation.back(1)
     else
       flash[:error] = package_set.errors.full_messages.join(', ')
+      build_package_skus!
+      render :edit
     end
-
-    build_package_skus!
-    render :edit
   end
 
   def destroy
