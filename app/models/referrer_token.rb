@@ -10,4 +10,14 @@ class ReferrerToken
     self.token = SecureRandom.hex(8).upcase
   end
 
+  def self.valid_token?(token)
+    token = ReferrerToken.where(token: token, used_at: nil).first
+
+    if token
+      token.update(used_at: Time.now)
+      return true
+    else
+      return false
+    end
+  end
 end
