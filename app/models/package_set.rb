@@ -5,6 +5,7 @@ class PackageSet
   field :name, type: String
   field :desc, type: String
   field :cover,       type: String
+  field :referrer_rate, type: Float, default: 0.0
 
   mount_uploader :cover, CoverUploader
 
