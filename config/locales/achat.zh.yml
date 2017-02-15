@@ -1,4 +1,6 @@
 zh-CN:
+  general:
+    not_allowed_section: 对不起，您无权登入此页面
   account:
     profile_picture: 头像照片
   result:

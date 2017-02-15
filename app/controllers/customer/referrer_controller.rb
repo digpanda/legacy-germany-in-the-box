@@ -11,7 +11,7 @@ class Customer::ReferrerController < ApplicationController
 
   def valid_referrer?
     unless current_user.referrer?
-      flash[:error] = "You are not allowed to access this section."
+      flash[:error] = I18n.t(:not_allowed_section, scope: :general)
       redirect_to navigation.back(1)
       false
     end

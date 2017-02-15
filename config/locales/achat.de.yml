@@ -1,4 +1,6 @@
 de:
+  general:
+    not_allowed_section: Du hast nicht die erforderlichen Rechte, um auf diese Seite zuzugreifen.
   account:
     profile_picture: Porträt
   result:
