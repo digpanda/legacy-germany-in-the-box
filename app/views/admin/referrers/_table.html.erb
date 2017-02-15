@@ -2,21 +2,24 @@
   <table class="white-table">
     <thead>
       <th>
-        <%= I18n.t(:email, scope: :edit_account) %>
+        ID
       </th>
       <th>
-        <%= I18n.t(:referrer_username, scope: :edit_account) %>
+         Email
       </th>
       <th>
-        <%= I18n.t(:referred_id, scope: :edit_account) %>
+        Nickname
       </th>
       <th>
-        <%= I18n.t(:operations, scope: :edit_accounts) %>
+        Operations
       </th>
     </thead>
     <tbody>
       <% @referrers.each do |referrer| %>
         <tr>
+          <td>
+            <%= referrer.referrer_id %>
+          </td>
           <td>
             <%= referrer.email %>
           </td>
@@ -24,10 +27,7 @@
             <%= referrer.referrer_nickname %>
           </td>
           <td>
-            <%= referrer.referrer_id %>
-          </td>
-          <td>
-            <a href="<%= admin_referrer_coupon_path(referrer) %>" data-method="post"><i class="fa fa-magic tooltipster buttons buttons_purple" title="Generate Coupon"></i></a>
+            <a href="<%= admin_referrer_coupon_path(referrer) %>" data-method="post"><i class="fa fa-magic tooltipster buttons buttons__purple" title="Generate Coupon"></i></a>
 
             <a href="<%= admin_user_path(referrer) %>"><i class="fa fa-eye tooltipster buttons buttons__edit"></i></a>
             <% if referrer.destroyable? %>

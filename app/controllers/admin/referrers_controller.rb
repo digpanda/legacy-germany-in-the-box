@@ -19,7 +19,7 @@ class Admin::ReferrersController < ApplicationController
     coupon = Coupon.create({
       :code => SecureRandom.hex(5),
       :unit => :percent,
-      :discount => setting.referrers_rate,
+      :discount => Setting.instance.referrers_rate,
       :minimum_order => 0,
       :unique => false,
       :desc => 'Referrer Coupon',
@@ -35,7 +35,7 @@ class Admin::ReferrersController < ApplicationController
   end
 
   def set_referrer
-    @referrer = User.find(params[:id] || params[:user_id])
+    @referrer = User.find(params[:id] || params[:referrer_id])
   end
 
 end
