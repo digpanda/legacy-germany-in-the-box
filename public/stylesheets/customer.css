@@ -1823,6 +1823,11 @@ body {
     .package-set-block__no-padding-right > div {
       border-top-left-radius: 4px;
       border-top-right-radius: 4px; } }
+  .package-set-block__price {
+    color: #d6506c;
+    font-weight: bold;
+    font-size: 23px;
+    margin: 0.5em; }
   .package-set-block__content {
     padding: 4em;
     text-align: center;
@@ -1837,8 +1842,7 @@ body {
     .package-set-block__content h2 {
       font-size: 35px; }
     .package-set-block__content p {
-      font-size: 13px;
-      padding-bottom: 1em; }
+      font-size: 13px; }
   .package-set-block__image {
     height: 30vw;
     background-position: center center;
