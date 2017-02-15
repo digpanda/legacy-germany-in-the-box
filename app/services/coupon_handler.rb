@@ -6,7 +6,7 @@ class CouponHandler < BaseService
 
   attr_reader :identity_solver, :coupon, :order
 
-  EXPIRE_APPLY_TIME = 24.hours
+  EXPIRE_APPLY_TIME = 10.hours
 
   def initialize(identity_solver, coupon, order)
     @identity_solver = identity_solver
@@ -78,12 +78,33 @@ class CouponHandler < BaseService
   end
 
   def available?
-    if coupon.last_used_at || (coupon.last_applied_at && ((Time.now - coupon.last_applied_at) / 1.hours).hours < EXPIRE_APPLY_TIME)
+    if coupon.last_used_at || expired_or_not_used_by_same_user?
       false
     else
       remove_from_old_order if coupon.unique
       true
     end
+  end
+
+  def expired_or_not_used_by_same_user?
+    if expired?
+      if same_user?
+        remove_from_old_order
+        return false
+      else
+        return true
+      end
+    end
+
+    false
+  end
+
+  def expired?
+    coupon.last_applied_at && ((Time.now - coupon.last_applied_at) / 1.hours).hours < EXPIRE_APPLY_TIME
+  end
+
+  def same_user?
+    identity_solver.user.id == coupon.orders.first.user.id
   end
 
   # Removes the coupon from the last order that applied it
