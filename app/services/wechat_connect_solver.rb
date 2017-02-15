@@ -42,6 +42,7 @@ class WechatConnectSolver < BaseService
     User.create({
       :provider => auth_data.provider,
       :uid => auth_data.uid,
+      :referrer_nickname => auth_data.info.nickname,
       :remote_pic_url => avatar,
       :email => "#{auth_data.info.unionid}@wechat.com",
       :role => :customer,

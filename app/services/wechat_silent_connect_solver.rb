@@ -42,6 +42,7 @@ class WechatSilentConnectSolver < BaseService
     User.create({
                     provider: 'wechat',
                     uid: auth_data['openid'],
+                    referrer_nickname: auth_data['nickname'],
                     remote_pic_url: auth_data['headimgurl'],
                     email: "#{auth_data['unionid']}@wechat.com",
                     role: :customer,

@@ -168,4 +168,8 @@ class User
   def new_notifications?
     notifications.unreads.count > 0
   end
+
+  def assign_referrer_id
+    self.update(referrer_id: "#{self.referrer_nickname[0,3]}#{Time.now.day}#{Time.now.month}#{Time.now.year}") unless self.referrer_id
+  end
 end
