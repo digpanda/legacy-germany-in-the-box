@@ -31,9 +31,11 @@
 
     padding: 4em
     +centered
-    height: 30em
+    height: 30vw
     +breakpoint('mobile')
       +border-radius-bottom(4px)
+      height: 70vw
+
     background-color: $color-white
 
     h2
@@ -44,7 +46,10 @@
       padding-bottom: 1em
 
   +part(image)
-    height: 30em
+
+    height: 30vw
+    +breakpoint('mobile')
+      height: 70vw
 
     background-position: center center
     background-size: cover
