@@ -4,6 +4,11 @@
       <tr>
         <th>
           <label>
+           Position
+          </label>
+        </th>
+        <th>
+          <label>
            Name
           </label>
         </th>
@@ -22,6 +27,9 @@
     <tbody>
       <% package_sets.each do |package_set| %>
         <tr>
+          <td>
+            <%= editable_field(package_set, admin_shop_package_set_path(package_set.shop, package_set), :position, :text_field) %>
+          </td>
           <td>
             <%= package_set.name %>
           </td>
