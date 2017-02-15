@@ -63,6 +63,7 @@ namespace :admin do
   end
 
   resources :referrers do
+    post :coupon
   end
 
   resources :users do

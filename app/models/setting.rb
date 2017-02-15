@@ -30,6 +30,8 @@ class Setting
 
   field :landing_page_highlight,     type: Boolean
 
+  field :referrers_rate, type: Float, default: 0
+  
   validates :platform_currency,       presence: true
   validates :supplier_currency,       presence: true
   validates :exchange_rate_to_yuan,   presence: true,   :numericality => { :greater_than => 0 }

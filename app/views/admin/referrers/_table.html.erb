@@ -21,15 +21,17 @@
             <%= referrer.email %>
           </td>
           <td>
-            <%= referrer.referrer_username %>
+            <%= referrer.referrer_nickname %>
           </td>
           <td>
             <%= referrer.referrer_id %>
           </td>
           <td>
-            <a href="<%= admin_user_path(user) %>"><i class="fa fa-eye tooltipster buttons buttons__edit tooltipstered"></i></a>
+            <a href="<%= admin_referrer_coupon_path(referrer) %>" data-method="post"><i class="fa fa-magic tooltipster buttons buttons_purple" title="Generate Coupon"></i></a>
+
+            <a href="<%= admin_user_path(referrer) %>"><i class="fa fa-eye tooltipster buttons buttons__edit"></i></a>
             <% if referrer.destroyable? %>
-              <%= link_to '', admin_user_path(user), :method => :delete, data: { confirm: "Are you sure to remove this user account ?" }, :class => 'tooltipster fa fa-times buttons buttons__delete', :title => "Delete this user" %>
+              <%= link_to '', admin_user_path(referrer), :method => :delete, data: { confirm: "Are you sure to remove this user account ?" }, :class => 'tooltipster fa fa-times buttons buttons__delete', :title => "Delete this user" %>
             <% end %>
           </td>
         </tr>

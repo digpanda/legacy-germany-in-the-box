@@ -19,6 +19,12 @@
     <th>
       Reference
     </th>
+    <td>
+      Last Applied At
+    </th>
+    <th>
+      Last Used At
+    </th>
     <th>
       Created At
     </th>
@@ -51,6 +57,12 @@
       </td>
       <td>
         <%= coupon.referrer&.referrer_id %>
+      </td>
+      <td>
+        <%= coupon.last_applied_at %>
+      </td>
+      <td>
+        <%= coupon.last_used_at %>
       </td>
       <td>
         <%= coupon.c_at %>
