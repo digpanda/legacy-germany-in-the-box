@@ -297,7 +297,7 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
       :password              => '12345678',
       :password_confirmation => '12345678',
       :role                  => symbol,
-      :reference_id          => tourist_guide,
+      :referrer_id          => tourist_guide,
       :tel                   => Faker::PhoneNumber.phone_number,
       :mobile                => Faker::PhoneNumber.cell_phone,
       :birth                 => random_date,

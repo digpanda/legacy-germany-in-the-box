@@ -13,7 +13,6 @@ class Admin::CouponsController < ApplicationController
 
   def new
     @coupon = Coupon.new
-    @reference_users = User.all
   end
 
   def show
@@ -34,7 +33,7 @@ class Admin::CouponsController < ApplicationController
   end
 
   def update
-    clean_reference_user!
+    clean_referrer!
     if coupon.update(coupon_params)
       flash[:success] = "The coupon was updated."
       redirect_to admin_coupons_path
@@ -79,8 +78,8 @@ class Admin::CouponsController < ApplicationController
     @coupon = Coupon.find(params[:id] || params[:coupon_id])
   end
 
-  def clean_reference_user!
-    coupon_params[:reference_user] = nil if coupon_params[:reference_user].empty?
+  def clean_referrer!
+    coupon_params[:referrer] = nil if coupon_params[:referrer].empty?
   end
 
   def coupon_params

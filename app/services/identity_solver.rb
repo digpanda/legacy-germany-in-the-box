@@ -1,6 +1,6 @@
 # anything related to the section (customer, shopkeeper, admin)
 # and used within the controller or model, etc. are defined here
-class IdentitySolver
+class IdentitySolver < BaseService
 
   attr_reader :request, :user
 
