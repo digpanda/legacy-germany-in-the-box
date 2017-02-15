@@ -1,0 +1,20 @@
+class Customer::ReferrerController < ApplicationController
+
+  before_action :freeze_header
+  before_filter :valid_referrer?
+  authorize_resource :class => false
+
+  def show
+  end
+
+  private
+
+  def valid_referrer?
+    unless current_user.referrer?
+      flash[:error] = "You are not allowed to access this section."
+      redirect_to navigation.back(1)
+      false
+    end
+  end
+
+end

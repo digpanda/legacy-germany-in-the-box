@@ -1,6 +1,9 @@
 # Customer related
 namespace :customer do
 
+  resource :referrer, :controller => 'referrer' do
+  end
+  
   resource :cart, :controller => 'cart' do
   end
 
@@ -25,7 +28,7 @@ namespace :customer do
 
     resource :customer, :controller => 'orders/customer' do
     end
-    
+
     resources :addresses, :controller => 'orders/addresses' do
     end
 

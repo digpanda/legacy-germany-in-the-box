@@ -157,6 +157,10 @@ class User
     !email.include?("@wechat.com")
   end
 
+  def referrer?
+    self.referrer_id.present?
+  end
+
   def password_required?
     super && provider.blank?
   end
