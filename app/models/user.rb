@@ -58,7 +58,7 @@ class User
   has_and_belongs_to_many :favorites, :class_name => 'Product'
 
   scope :without_detail, -> { only(:_id, :pic, :country, :username) }
-  scope :with_reference, -> { where(:referrer_id.ne => nil) }
+  scope :with_referrer, -> { where(:referrer_id.ne => nil) }
 
   has_many :orders,                                 :inverse_of => :user,   :dependent => :restrict
   embeds_many :addresses,                              :inverse_of => :user

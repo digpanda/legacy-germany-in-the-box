@@ -1,0 +1,45 @@
+<% if @referrers.size > 0 %>
+  <table class="white-table">
+    <thead>
+      <th>
+        <%= I18n.t(:email, scope: :edit_account) %>
+      </th>
+      <th>
+        <%= I18n.t(:referrer_username, scope: :edit_account) %>
+      </th>
+      <th>
+        <%= I18n.t(:referred_id, scope: :edit_account) %>
+      </th>
+      <th>
+        <%= I18n.t(:operations, scope: :edit_accounts) %>
+      </th>
+    </thead>
+    <tbody>
+      <% @referrers.each do |referrer| %>
+        <tr>
+          <td>
+            <%= referrer.email %>
+          </td>
+          <td>
+            <%= referrer.referrer_username %>
+          </td>
+          <td>
+            <%= referrer.referrer_id %>
+          </td>
+          <td>
+            <a href="<%= admin_user_path(user) %>"><i class="fa fa-eye tooltipster buttons buttons__edit tooltipstered"></i></a>
+            <% if referrer.destroyable? %>
+              <%= link_to '', admin_user_path(user), :method => :delete, data: { confirm: "Are you sure to remove this user account ?" }, :class => 'tooltipster fa fa-times buttons buttons__delete', :title => "Delete this user" %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <div class="+white-box +centered">
+    <h4>
+      No referrer yet.
+    </h4>
+  </div>
+<% end %>

@@ -62,6 +62,9 @@ namespace :admin do
   resource :account, :controller => 'account' do
   end
 
+  resources :referrers do
+  end
+
   resources :users do
     get :emails, on: :collection
   end
