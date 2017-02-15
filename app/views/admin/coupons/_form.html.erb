@@ -15,7 +15,7 @@ Description <%= form.text_field :desc %>
 <br />
 <br />
 
-Reference User <%= form.select :referrer, options_from_collection_for_select(User.with_reference, :id, :referrer_id, form.object.referrer&.id), :include_blank => true %>
+Reference User <%= form.select :referrer, options_from_collection_for_select(User.with_reference, :id, :referrer_nickname, form.object.referrer&.id), :include_blank => true %>
 <br />
 <br />
 

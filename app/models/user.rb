@@ -48,6 +48,7 @@ class User
   field :uid,       type: String
 
   field :referrer_id, type: String
+  field :referrer_nickname, type: String
 
   field :wechat_unionid, type: String
   field :wechat_openid,  type: String
