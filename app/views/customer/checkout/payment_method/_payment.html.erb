@@ -1,0 +1,52 @@
+<h2>Payment</h2>
+
+<div class="white-table">
+
+  <%= form_tag gateway_customer_checkout_path, :class => 'dialog-form', :method => :post, :data => {:toggle => 'validator'} do %>
+
+  <%= hidden_field_tag :order_id, @order.id %>
+
+  <div class="row" id="payment_method_area">
+    <div class="col-md-12">
+      <div class="+centered">
+
+      <% if shop.accepted_payment_methods.include? :creditcard %>
+      <input id="visa" type="radio" name="payment_method" value="creditcard" checked>
+      <label for="visa"><img src="/images/logos/raw-visa-logo.png" width="100px"></label>
+
+      <input id="master" type="radio" name="payment_method" value="creditcard">
+      <label for="master"><img src="/images/logos/raw-mastercard-logo.png" width="100px"></label>
+
+      <% end %>
+
+      <% if shop.accepted_payment_methods.include? :upop %>
+      <input id="union" type="radio" name="payment_method" value="upop" checked>
+      <label for="union"><img src="/images/logos/raw-chinaunionpay-logo.png" width="100px"></label>
+
+      <% end %>
+
+      <div class="+small-spacer"></div>
+      <button type="submit" class="btn-large +checkout-button +centered" formtarget="_blank">
+        <%= I18n.t(:checkout, scope: :checkout) %>
+        <i class="fa fa-check-circle"></i>
+      </button>
+      <div class="+small-spacer"></div>
+
+    </div>
+  </div>
+  </div>
+  <% end %>
+
+  <div class="row hidden" id="after_payment_method_area">
+
+    <div class="col-md-12">
+      <h2>
+        <%= I18n.t(:have_your_payment_been_successful, scope: :checkout) %>
+      </h2>
+      <div class="+spacer"></div>
+      <a href="<%= payment_method_customer_checkout_path %>" class="btn-lg btn-success"><%= I18n.t(:refresh_page_button, scope: :checkout) %></a>
+      <div class="+spacer"></div>
+    </div>
+
+  </div>
+</div>

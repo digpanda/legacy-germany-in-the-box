@@ -1,57 +1,26 @@
-<div class="row">
-  <div class="col-md-8 col-md-push-2 col-md-pull-2 +centered +white-box">
-
-    <!-- <h2><%= I18n.t(:choose_your_payment_method, scope: :checkout) %></h2> -->
-
-    <div class="+small-spacer"></div>
-
-    <%= form_tag gateway_customer_checkout_path, :class => 'dialog-form', :method => :post, :data => {:toggle => 'validator'} do %>
-
-    <%= hidden_field_tag :order_id, @order.id %>
-
-    <div class="row" id="payment_method_area">
-
-      <% if @shop.accepted_payment_methods.include? :creditcard %>
-          <input id="visa" type="radio" name="payment_method" value="creditcard" checked>
-          <label for="visa"><img src="/images/logos/raw-visa-logo.png" width="100px"></label>
-          <br><br>
-
-          <input id="master" type="radio" name="payment_method" value="creditcard">
-          <label for="master"><img src="/images/logos/raw-mastercard-logo.png" width="100px"></label>
-          <br><br>
-      <% end %>
-
-      <% if @shop.accepted_payment_methods.include? :upop %>
-          <input id="union" type="radio" name="payment_method" value="upop" checked>
-          <label for="union"><img src="/images/logos/raw-chinaunionpay-logo.png" width="100px"></label>
-          <br><br>
-      <% end %>
-
-        <div class="+small-spacer"></div>
-        <button type="submit" class="btn-large +checkout-button +centered" formtarget="_blank">
-          <%= I18n.t(:checkout, scope: :checkout) %>
-          <i class="fa fa-check-circle"></i>
-        </button>
-        <div class="+small-spacer"></div>
-
-    </div>
-    <% end %>
-
-    <div class="row hidden" id="after_payment_method_area">
-
-      <div class="col-md-8 col-md-push-2 col-md-pull-2">
-        <h2>
-          <%= I18n.t(:have_your_payment_been_successful, scope: :checkout) %>
-        </h2>
-        <div class="+spacer"></div>
-        <a href="<%= payment_method_customer_checkout_path %>" class="btn-lg btn-success"><%= I18n.t(:refresh_page_button, scope: :checkout) %></a>
-        <div class="+spacer"></div>
+<div class="order-report">
+  <div class="row">
+    <div class="col-md-8 col-md-push-2">
+      <div class="order-report__order">
+        <%= render partial: "customer/checkout/payment_method/order", :locals => { :order => @order } %>
       </div>
-
     </div>
   </div>
-</div>
 
-<div class="row">
-  <div class="+spacer"></div>
+  <div class="row">
+    <div class="col-md-8 col-md-push-2">
+      <div class="order-report__order">
+        <%= render partial: "customer/checkout/payment_method/address", :locals => { :address => @order.billing_address } %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8 col-md-push-2">
+      <div class="order-report__order">
+        <%= render partial: "customer/checkout/payment_method/payment", :locals => { :shop => @shop } %>
+      </div>
+    </div>
+  </div>
+
 </div>
