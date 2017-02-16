@@ -41,7 +41,7 @@ module Wirecard
 
       @hosted_payment_url   = CONFIG[payment_method][:hosted_payment_url]
       @default_redirect_url = "#{base_url}#{CONFIG[:default_redirect_url]}"
-      SlackDispatcher.new.push(@default_redirect_url)
+      SlackDispatcher.new.push("URL : #{@default_redirect_url}")
 
     end
 
