@@ -69,7 +69,7 @@ class Api::Guest::OrderItemsController < Api::ApplicationController
     end
 
     if order.coupon
-      CouponHandler.new(order.coupon, order).reset
+      CouponHandler.new(identity_solver, order.coupon, order).reset
     end
 
   end
