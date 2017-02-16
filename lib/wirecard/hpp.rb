@@ -40,8 +40,6 @@ module Wirecard
       @currency             = DEFAULT_PAYMENT_CURRENCY
 
       @hosted_payment_url   = CONFIG[payment_method][:hosted_payment_url]
-      @default_redirect_url = "#{base_url}#{CONFIG[:default_redirect_url]}"
-
     end
 
     def amount
@@ -137,6 +135,10 @@ module Wirecard
     def customer_ip_address
       return "127.0.0.1" if Rails.env.development? # ::1 isn't accepted by UnionPay as IP
       user.last_sign_in_ip || "127.0.0.1"
+    end
+
+    def default_redirect_url
+      "#{base_url}#{CONFIG[:default_redirect_url]}"
     end
 
     def cancel_redirect_url
