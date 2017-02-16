@@ -1723,7 +1723,7 @@ body {
       max-width: 13em; } }
   .main-button__hollow i {
     position: absolute;
-    left: 1.6em;
+    left: 4.2em;
     font-size: 1.3em;
     bottom: 0.8em; }
   .main-button__hollow:link, .main-button__hollow:hover, .main-button__hollow:active, .main-button__hollow:visited {
