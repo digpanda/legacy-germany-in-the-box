@@ -1830,7 +1830,7 @@ body {
     margin: 0.5em; }
   .package-set-block__content {
     padding: 4em;
-    height: 35vw;
+    height: 40vw;
     text-align: center;
     margin: 0 auto;
     background-color: #ffffff; }
@@ -1844,7 +1844,7 @@ body {
     .package-set-block__content p {
       font-size: 13px; }
   .package-set-block__image {
-    height: 35vw;
+    height: 40vw;
     background-position: center center;
     background-size: cover; }
     @media (max-width: 994px) {
