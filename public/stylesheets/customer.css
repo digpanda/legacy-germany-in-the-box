@@ -1913,6 +1913,9 @@ body {
 .product-miniblock {
   margin-left: 1em;
   margin-right: 1em; }
+  @media (max-width: 994px) {
+    .product-miniblock {
+      min-height: 27em; } }
   .product-miniblock a {
     color: #5c5c5c; }
   .product-miniblock__remodal {
