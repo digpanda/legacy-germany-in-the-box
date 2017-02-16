@@ -1,3 +1,12 @@
 <div class="+white-box +centered">
-  <h1>Welcome new referrer !</h1>
+  <h1>Welcome <%= current_user.referrer_nickname %>!</h1>
+  <div class="row">
+    <div class="col-md-3 col-md-offset-3">
+      <img src="/images/stickers/qrcode_for_gh.jpg">
+    </div>
+    <div class="col-md-3">
+      <h3>Please copy your referral ID and send it to our customer service in wechat using the QR code.</h3>
+      <h4>Referral ID: <strong><%= current_user.referrer_id %></strong></h4>
+    </div>
+  </div>
 </div>

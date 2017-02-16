@@ -2,6 +2,7 @@
 namespace :connect do
   devise_scope :user do
     get '/auth/silent_wechat', to: 'omniauth_callbacks#silent_wechat', as: :silent_wechat
+    get '/auth/referrer', to: 'omniauth_callbacks#referrer', as: :referrer_registration
   end
 end
 
