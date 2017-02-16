@@ -2,8 +2,8 @@ require 'rails_helper'
 
 describe CouponHandler, :type => :request do
   before :each do
-    @order = Order.create(status: :new)
-    @order_2 = Order.create(status: :new)
+    @order = FactoryGirl.create(:order, status: :new)
+    @order_2 = FactoryGirl.create(:order, status: :new)
     @coupon = Coupon.create(code: 'code', discount: 10.0, unit: :percent, unique: true)
     @reusable_coupon = Coupon.create(code: 'code2', discount: 10.0, unit: :percent, unique: false)
   end
