@@ -216,7 +216,7 @@ class Customer::CheckoutController < ApplicationController
   end
 
   def prepare_checkout(order, payment_method)
-    @checkout = WirecardCheckout.new(current_user, order, payment_method).checkout!
+    @checkout = WirecardCheckout.new(root_url, current_user, order, payment_method).checkout!
   rescue Wirecard::Base::Error => exception
     # we should catch the error in the lib or something like this
     # and raise one if the merchant wirecard status isn't active yet

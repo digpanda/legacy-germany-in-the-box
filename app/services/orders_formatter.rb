@@ -119,7 +119,7 @@ class OrdersFormatter < BaseService
       transaction_types(order),
 
       wirecard_transactions_ids(order),
-      wirecard_request_ids(order),
+      wirecard_requests_ids(order),
 
       order.minimum_sending_date,
       order.hermes_pickup_email_sent_at,

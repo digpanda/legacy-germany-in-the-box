@@ -9,7 +9,8 @@ module Wirecard
     DEFAULT_PAYMENT_CURRENCY = 'CNY'
     ACCEPTED_PAYMENT_METHODS = [nil, :upop, :creditcard]
 
-    attr_reader :user,
+    attr_reader :base_url,
+                :user,
                 :order,
                 :credentials,
                 :merchant_id,
@@ -21,8 +22,9 @@ module Wirecard
                 :default_redirect_url
 
 
-    def initialize(user, order, credentials={})
+    def initialize(base_url, user, order, credentials={})
 
+      @base_url = base_url
       @user                 = user
       @order                = order
       @credentials          = credentials
@@ -38,7 +40,7 @@ module Wirecard
       @currency             = DEFAULT_PAYMENT_CURRENCY
 
       @hosted_payment_url   = CONFIG[payment_method][:hosted_payment_url]
-      @default_redirect_url = CONFIG[:default_redirect_url]
+      @default_redirect_url = "#{base_url}#{CONFIG[:default_redirect_url]}"
 
     end
 
@@ -138,19 +140,19 @@ module Wirecard
     end
 
     def cancel_redirect_url
-      CONFIG[:cancel_redirect_url]
+      "#{base_url}#{CONFIG[:cancel_redirect_url]}"
     end
 
     def processing_redirect_url
-      CONFIG[:processing_redirect_url]
+      "#{base_url}#{CONFIG[:processing_redirect_url]}"
     end
 
     def success_redirect_url
-      CONFIG[:success_redirect_url]
+      "#{base_url}#{CONFIG[:success_redirect_url]}"
     end
 
     def fail_redirect_url
-      CONFIG[:fail_redirect_url]
+      "#{base_url}#{CONFIG[:fail_redirect_url]}"
     end
 
     def digital_signature

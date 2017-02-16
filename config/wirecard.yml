@@ -30,11 +30,11 @@ defaults: &defaults
       creditcard: purchase
       default: purchase
 
-    default_redirect_url: http://local.dev:3000/customer/checkout/success
-    cancel_redirect_url: http://local.dev:3000/customer/checkout/cancel
-    processing_redirect_url: http://local.dev:3000/customer/checkout/processing
-    success_redirect_url : http://local.dev:3000/customer/checkout/success
-    fail_redirect_url: http://local.dev:3000/customer/checkout/fail
+    default_redirect_url: customer/checkout/success
+    cancel_redirect_url: customer/checkout/cancel
+    processing_redirect_url: customer/checkout/processing
+    success_redirect_url : customer/checkout/success
+    fail_redirect_url: customer/checkout/fail
 
   merchants:
     reseller_id: <%= ENV["wirecard_merchants_reseller_id"] %>
@@ -75,11 +75,11 @@ test:
       creditcard: purchase
       default: purchase
 
-    default_redirect_url: http://local.dev:3333/customer/checkout/success
-    cancel_redirect_url: http://local.dev:3333/customer/checkout/cancel
-    processing_redirect_url: http://local.dev:3333/customer/checkout/processing
-    success_redirect_url : http://local.dev:3333/customer/checkout/success
-    fail_redirect_url: http://local.dev:3333/customer/checkout/fail
+    # default_redirect_url: http://local.dev:3333/customer/checkout/success
+    # cancel_redirect_url: http://local.dev:3333/customer/checkout/cancel
+    # processing_redirect_url: http://local.dev:3333/customer/checkout/processing
+    # success_redirect_url : http://local.dev:3333/customer/checkout/success
+    # fail_redirect_url: http://local.dev:3333/customer/checkout/fail
 
 staging:
   <<: *defaults
@@ -99,11 +99,11 @@ staging:
       upop: debit
       creditcard: purchase
 
-    default_redirect_url: https://www.germanyintheboxdev.com/customer/checkout/success
-    cancel_redirect_url: https://www.germanyintheboxdev.com/customer/checkout/cancel
-    processing_redirect_url: https://www.germanyintheboxdev.com/customer/checkout/processing
-    success_redirect_url : https://www.germanyintheboxdev.com/customer/checkout/success
-    fail_redirect_url: https://www.germanyintheboxdev.com/customer/checkout/fail
+    # default_redirect_url: https://www.germanyintheboxdev.com/customer/checkout/success
+    # cancel_redirect_url: https://www.germanyintheboxdev.com/customer/checkout/cancel
+    # processing_redirect_url: https://www.germanyintheboxdev.com/customer/checkout/processing
+    # success_redirect_url : https://www.germanyintheboxdev.com/customer/checkout/success
+    # fail_redirect_url: https://www.germanyintheboxdev.com/customer/checkout/fail
 
 production:
   <<: *defaults
@@ -128,8 +128,8 @@ production:
       creditcard: purchase
       default: purchase
 
-    default_redirect_url: https://www.germanyinthebox.com/customer/checkout/success
-    cancel_redirect_url: https://www.germanyinthebox.com/customer/checkout/cancel
-    processing_redirect_url: https://www.germanyinthebox.com/customer/checkout/processing
-    success_redirect_url : https://www.germanyinthebox.com/customer/checkout/success
-    fail_redirect_url: https://www.germanyinthebox.com/customer/checkout/fail
+    # default_redirect_url: https://www.germanyinthebox.com/customer/checkout/success
+    # cancel_redirect_url: https://www.germanyinthebox.com/customer/checkout/cancel
+    # processing_redirect_url: https://www.germanyinthebox.com/customer/checkout/processing
+    # success_redirect_url : https://www.germanyinthebox.com/customer/checkout/success
+    # fail_redirect_url: https://www.germanyinthebox.com/customer/checkout/fail
