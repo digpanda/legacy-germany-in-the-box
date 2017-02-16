@@ -20,7 +20,12 @@ class ApplicationController < ActionController::Base
 
   def silent_login
     if params[:code]
-      wechat_auth
+      if wechat_auth.success?
+        if wechat_auth.data[:tourist_guide]
+          redirect_to customer_referrer_path
+          return
+        end
+      end
     end
   end
 

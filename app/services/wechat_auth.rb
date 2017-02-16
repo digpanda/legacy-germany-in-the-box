@@ -9,7 +9,7 @@ class WechatAuth < BaseService
 
   def resolve!
     if valid_user?
-      return_with(:success, customer: @user)
+      return_with(:success, customer: @user, tourist_guide: @tourist_guide)
     else
       return_with(:error)
     end
@@ -62,7 +62,11 @@ class WechatAuth < BaseService
   def auth_user
     if wechat_silent_solver.success?
       @user = wechat_silent_solver.data[:customer]
-      @user.assign_referrer_id if ReferrerToken.valid_token?(token)
+      if ReferrerToken.valid_token?(token)
+        @user.assign_referrer_id if ReferrerToken.valid_token?(token)
+        @tourist_guide = true
+      end
+
       sign_in_user(@user)
     end
   end
