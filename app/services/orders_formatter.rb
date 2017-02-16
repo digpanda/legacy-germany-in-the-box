@@ -44,6 +44,7 @@ class OrdersFormatter < BaseService
     'Payments Methods',
     'Transactions Types',
     'Wirecard Transactions IDs',
+    'Wirecard Request IDs',
     'Minimum Sending Date',
     'Hermes Pickup Email Sent At',
     'Bill ID',
@@ -114,9 +115,11 @@ class OrdersFormatter < BaseService
       order.border_guru_link_payment,
       payments_ids(order),
 
-      wirecard_transactions_ids(order),
       payment_methods(order),
       transaction_types(order),
+
+      wirecard_transactions_ids(order),
+      wirecard_request_ids(order),
 
       order.minimum_sending_date,
       order.hermes_pickup_email_sent_at,
@@ -141,6 +144,10 @@ class OrdersFormatter < BaseService
 
   def payments_ids(order)
     order.order_payments.reduce([]) { |acc, order_payment| acc << order_payment.id }.join(', ')
+  end
+
+  def wirecard_requests_ids(order)
+    order.order_payments.reduce([]) { |acc, order_payment| acc << order_payment.request_id }.join(', ')
   end
 
   def wirecard_transactions_ids(order)
