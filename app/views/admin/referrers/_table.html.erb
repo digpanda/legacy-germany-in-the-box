@@ -11,6 +11,9 @@
         Nickname
       </th>
       <th>
+        Coupons
+      </th>
+      <th>
         Operations
       </th>
     </thead>
@@ -25,6 +28,9 @@
           </td>
           <td>
             <%= referrer.referrer_nickname %>
+          </td>
+          <td>
+            <%= referrer.referrer_coupons.map(&:code).join(', ') %>
           </td>
           <td>
             <a href="<%= admin_referrer_coupon_path(referrer) %>" data-method="post"><i class="fa fa-magic tooltipster buttons buttons__purple" title="Generate Coupon"></i></a>
