@@ -10,9 +10,9 @@ class TaxesPrice
 
  def price
    if product.duty_category
-     sku.price * (product.duty_category.tax_rate / 100)
+     (sku.price * (product.duty_category.tax_rate / 100)).to_f
    else
-     0
+     0.0
    end
  end
 

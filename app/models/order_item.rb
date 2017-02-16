@@ -12,8 +12,8 @@ class OrderItem
 
   field :quantity,        type: Integer,    default: 1
 
-  field :taxes_per_unit, type: Float
-  field :shipping_per_unit, type: Float
+  field :taxes_per_unit, type: Float, default: 0
+  field :shipping_per_unit, type: Float, default: 0
 
   before_save :ensure_taxes_per_unit, :ensure_shipping_per_unit
 
