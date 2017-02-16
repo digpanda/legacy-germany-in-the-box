@@ -12,7 +12,7 @@ class Shopkeeper::OrdersController < ApplicationController
   layout :custom_sublayout, only: [:index]
 
   def index
-    @orders = current_user.shop.orders.bought_or_unverified.order_by(:c_at => :desc).paginate(:page => current_page, :per_page => 10)
+    @orders = current_user.shop.orders.bought_or_unverified.order_by(paid_at: :desc, c_at: :desc).paginate(:page => current_page, :per_page => 10)
   end
 
   def shipped

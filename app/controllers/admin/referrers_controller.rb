@@ -13,7 +13,12 @@ class Admin::ReferrersController < ApplicationController
 
   def new
     @referrer_token = ReferrerToken.create
-  end
+    @url = "https://open.weixin.qq.com/connect/oauth2/authorize?" +
+        "appid=#{Rails.application.config.wechat[:username_mobile]}&" +
+        "redirect_uri=http%3A%2F%2Fgermanyinbox.com/guest/package_sets?" +
+        "token=#{@referrer_token.token}" +
+        "&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect"
+end
 
   def coupon
     coupon = Coupon.create({
