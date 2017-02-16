@@ -2,6 +2,7 @@ class Connect::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   # skip CSRF on create.
   skip_before_filter :verify_authenticity_token
+  skip_before_action :silent_login
 
   def wechat
     if wechat_solver.success?
@@ -41,6 +42,19 @@ class Connect::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
       auth_user
     end
+  end
+
+  def referrer
+    if params[:code]
+      if wechat_auth.success?
+        if wechat_auth.data[:tourist_guide]
+          redirect_to customer_referrer_path
+          return
+        end
+      end
+    end
+
+    redirect_to root_path
   end
 
   def failure

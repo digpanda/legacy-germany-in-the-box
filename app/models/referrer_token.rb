@@ -11,6 +11,7 @@ class ReferrerToken
   end
 
   def self.valid_token?(token)
+    return true if Setting.instance.force_referrer_tokens
     token = ReferrerToken.where(token: token, used_at: nil).first
 
     if token
