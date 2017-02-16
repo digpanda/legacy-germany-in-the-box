@@ -8,9 +8,10 @@ class WirecardCheckout < BaseService
   # :merchant_id => cart.submerchant_id <- original
   # :secret_key  => order.shop.wirecard_ee_secret_cc <- original
 
-  attr_reader :user, :order, :payment_method
+  attr_reader :user, :order, :payment_method, :base_url
 
-  def initialize(user, order, payment_method=:creditcard)
+  def initialize(base_url, user, order, payment_method=:creditcard)
+    @base_url = base_url
     @user  = user
     @order = order
     @payment_method = payment_method
@@ -56,7 +57,7 @@ class WirecardCheckout < BaseService
   end
 
   def hpp
-    @hpp ||= Wirecard::Hpp.new(user, order, merchant_credentials)
+    @hpp ||= Wirecard::Hpp.new(base_url, user, order, merchant_credentials)
   end
 
   # we either match an exact equivalent order payment which means
