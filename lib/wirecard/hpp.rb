@@ -24,7 +24,7 @@ module Wirecard
 
     def initialize(base_url, user, order, credentials={})
 
-      @base_url = base_url
+      @base_url             = base_url
       @user                 = user
       @order                = order
       @credentials          = credentials
@@ -41,6 +41,7 @@ module Wirecard
 
       @hosted_payment_url   = CONFIG[payment_method][:hosted_payment_url]
       @default_redirect_url = "#{base_url}#{CONFIG[:default_redirect_url]}"
+      SlackDispatcher.new.push(@default_redirect_url)
 
     end
 
