@@ -26,6 +26,7 @@
         <% shop.products.highlight_first.limit(8).in_groups_of(4, false).each do |products| %>
 
           <% products.each do |product| %>
+          <% if showable?(product) %>
 
             <% index += 1 %>
 
@@ -51,6 +52,7 @@
 
             <% end %>
 
+          <% end %>
           <% end %>
 
           <div class="clearfix"></div>

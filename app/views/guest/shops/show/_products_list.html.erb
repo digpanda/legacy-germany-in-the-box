@@ -3,6 +3,7 @@
 <div class="products-list">
 <div class="row">
   <% products.each do |product| %>
+  <% if showable?(product) %>
 
     <div class="col-md-3">
       <div class="shop-page-product">
@@ -10,6 +11,7 @@
       </div>
     </div>
 
+  <% end %>
   <% end %>
 </div>
 </div>
