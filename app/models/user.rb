@@ -170,6 +170,14 @@ class User
   end
 
   def assign_referrer_id
-    self.update(referrer_id: "#{self.referrer_nickname[0,3]}#{Time.now.day}#{Time.now.month}#{Time.now.year}") unless self.referrer_id
+    self.update(referrer_id: "#{self.short_nickname}#{Time.now.day}#{Time.now.month}#{Time.now.year}") unless self.referrer_id
+  end
+
+  def short_nickname
+    if self.referrer_nickname
+      self.referrer_nickname[0,3]
+    else
+      self&.wechat_unionid[0,3]
+    end
   end
 end
