@@ -44,7 +44,7 @@ class IdentitySolver < BaseService
   end
 
   def chinese_ip?
-    @chinse_ip ||= Geocoder.search(request.remote_ip).first&.country_code == 'CN'
+    @chinese_ip ||= Geocoder.search(request.remote_ip).first&.country_code == 'CN'
   end
 
   def german_ip?
