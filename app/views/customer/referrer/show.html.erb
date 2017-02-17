@@ -1,12 +1,17 @@
 <div class="+white-box +centered">
-  <h1>Welcome <%= current_user.referrer_nickname %>!</h1>
+  <h1>欢迎<%= current_user.referrer_nickname %>!</h1>
   <div class="row">
+    <h3>您已经成功注册!请到来因盒微信服务号给客服留言您的身份ID，我们将回复定制推广折扣码给您。</h3>
+
     <div class="col-md-3 col-md-offset-3">
-      <img src="/images/stickers/qrcode_for_gh.jpg">
+      <h3><strong>1.</strong> 请复制您的身份ID</h3>
+      <h4>Referral ID: <br/><strong><%= current_user.referrer_id %></strong></h4>
     </div>
+
     <div class="col-md-3">
-      <h3>Please copy your referral ID and send it to our customer service in wechat using the QR code.</h3>
-      <h4>Referral ID: <strong><%= current_user.referrer_id %></strong></h4>
+      <h3><strong>2.</strong> 识别来因盒微信服务号二维码，"我的->在线客服"里留言粘贴发送身份ID</h3>
+      <img src="/images/stickers/qrcode_for_gh.jpg" width="50%">
     </div>
+
   </div>
 </div>
