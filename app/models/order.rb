@@ -259,8 +259,8 @@ class Order
     end
   end
 
-  def remove_coupon
-    CouponHandler.new(self.coupon, self).reset_status
+  def remove_coupon(identity_solver)
+    CouponHandler.new(identity_solver, self.coupon, self).reset_status
     self.update(coupon_id: nil)
   end
 

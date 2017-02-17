@@ -23,7 +23,7 @@
   </thead>
   <tbody>
     <% order.order_items.each do |order_item| %>
-    <tr>
+    <tr id="<%= "order-item-#{order_item.id}" %>">
       <td class="cart-item-image">
         <a href="<%= guest_product_path(order_item.product) %>">
           <img src="<%= order_item.sku.decorate.highlighted_image(:thumb) %>" class="icon-img"/>
@@ -81,7 +81,8 @@
       </td>
       <% unless order_item.locked? || cart_manager.out?(order) %>
         <td>
-          <%= link_to '', guest_order_item_path(order_item), method: :delete, data: { confirm: I18n.t(:delete_sku_msg, :scope => :cart)  }, "data-placement" => "right",  class: 'fa fa-times buttons buttons__delete' %>
+          <%= link_to '', '#', class: 'fa fa-times buttons buttons__delete delete-order-item',
+                      data: { id: order_item.id.to_s, order_id: order_item.order.id.to_s, order_shop_id: order_item.order.shop.id.to_s, mesage: I18n.t(:delete_sku_msg, scope: :cart) } %>
         </td>
       <% end %>
     </tr>
