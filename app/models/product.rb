@@ -16,6 +16,8 @@ class Product
   field :hs_code, type: String
   field :highlight, type: Boolean, default: false
 
+  field :exclude_germany, type: Boolean, default: false
+
   embeds_many :options, inverse_of: :product, cascade_callbacks: true, class_name: 'VariantOption'
   embeds_many :skus, inverse_of: :product, cascade_callbacks: true
 

@@ -26,4 +26,18 @@
     </div>
   </div>
 
+  <div class="row form-group">
+    <div class="col-md-4">
+      <%= form.label :exclude_germany, "Exclude Germany" %>
+    </div>
+    <div class="col-md-8">
+      <div class="+down">
+        <%= form.label :exclude_germany, :class => 'switch' do %>
+        <%= form.check_box :exclude_germany %>
+        <div class="switch__slider"></div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
 </div>
