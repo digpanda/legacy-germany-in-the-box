@@ -24,15 +24,17 @@ class WechatAuth < BaseService
 
     @user = User.where(provider: 'wechat', wechat_unionid: unionid).first
 
-    if @user
-      sign_in_user(@user)
-    else
+    unless @user
       access_token = parsed_response['access_token']
       @parsed_response = get_user_info(access_token, openid)
 
       return false if parsed_response['errcode']
 
-      auth_user
+      if wechat_silent_solver.success?
+        @user = wechat_silent_solver.data[:customer]
+      else
+        return false
+      end
     end
 
     true
@@ -63,7 +65,7 @@ class WechatAuth < BaseService
     if wechat_silent_solver.success?
       @user = wechat_silent_solver.data[:customer]
       if ReferrerToken.valid_token?(token)
-        @user.assign_referrer_id if ReferrerToken.valid_token?(token)
+        @user.assign_referrer_id
         @tourist_guide = true
       end
 
