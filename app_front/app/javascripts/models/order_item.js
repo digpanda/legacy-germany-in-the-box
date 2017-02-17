@@ -40,7 +40,39 @@ var OrderItem = {
         callback({success: false, error: err.responseJSON.error});
 
     });
-  }
+  },
+
+    removeProduct: function (orderItemId, callback) {
+        $.ajax({
+            method: "DELETE",
+            url: "/api/guest/order_items/" + orderItemId
+
+        }).done(function (res) {
+
+            callback(res);
+
+        }).error(function (err) {
+
+            callback({success: false, error: err.responseJSON.error});
+
+        });
+    },
+
+    removeOrder: function (orderId, callback) {
+        $.ajax({
+            method: "DELETE",
+            url: "/api/customer/orders/" + orderId
+
+        }).done(function (res) {
+
+            callback(res);
+
+        }).error(function (err) {
+
+            callback({success: false, error: err.responseJSON.error});
+
+        });
+    }
 
 };
 

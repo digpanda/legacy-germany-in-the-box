@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-xs-6 col-md-3">
-    <a href="<%= customer_order_path(order) %>" data-method="delete" class="btn-large +delete-checkout-button"> <%= I18n.t(:delete, scope: :edit_order) %> <i class="fa fa-times"></i></a>
+    <%= link_to "#{I18n.t(:delete, scope: :edit_order)} <i class='fa fa-times'></i>".html_safe, '#', class: 'btn-large +delete-checkout-button delete-order', data: { id: order.id.to_s } %>
   </div>
   <div class="col-xs-8 col-md-9">
     <a href="<%= customer_order_customer_path(order) %>" class="btn-large +checkout-button"> <%= I18n.t(:set_delivery_destination, scope: :cart) %> <i class="fa fa-check-circle"></i></a>

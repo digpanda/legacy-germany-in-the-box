@@ -13,6 +13,8 @@ var CustomerCartShow = {
 
     this.multiSelectSystem();
     this.orderItemHandleQuantity();
+    this.removeOrderItem();
+    this.removeOrder();
 
   },
 
@@ -94,6 +96,81 @@ var CustomerCartShow = {
     }, CustomerCartShow.chain_timing);
 
   },
+
+    removeOrderItem: function () {
+
+        $('.delete-order-item').on('click', function (e) {
+
+            e.preventDefault();
+
+            var OrderItem = require("javascripts/models/order_item");
+            var orderItemId = $(this).data('id');
+            var orderId = $(this).data('order-id');
+            var orderShopId = $(this).data('order-shop-id');
+
+            OrderItem.removeProduct(orderItemId, function(res) {
+
+                var Messages = require("javascripts/lib/messages");
+
+                if (res.success === true) {
+
+                    $('#order-item-' + orderItemId).remove();
+
+                    if (res.order_empty == true){
+                        $('#order-' + orderId).remove();
+                    } else {
+                        // Total changes
+                        $('#order-total-price-with-taxes-'+orderShopId).html(res.data.total_price_with_taxes);
+                        $('#order-shipping-cost-'+orderShopId).html(res.data.shipping_cost);
+                        $('#order-end-price-'+orderShopId).html(res.data.end_price);
+
+                        // Discount management
+                        if (typeof res.data.total_price_with_discount != "undefined") {
+                            $('#order-total-price-with-extra-costs-'+orderShopId).html(res.data.total_price_with_extra_costs);
+                            $('#order-total-price-with-discount-'+orderShopId).html(res.data.total_price_with_discount);
+                            $('#order-discount-display-'+orderShopId).html(res.data.discount_display);
+                        }
+                    }
+
+                } else {
+
+                    Messages.makeError(res.error)
+
+                }
+            });
+
+        })
+
+    },
+
+    removeOrder: function () {
+
+        $('.delete-order').on('click', function (e) {
+
+            e.preventDefault();
+
+            var OrderItem = require("javascripts/models/order_item");
+            var orderId = $(this).data('id');
+
+            OrderItem.removeOrder(orderId, function(res) {
+
+                var Messages = require("javascripts/lib/messages");
+
+                if (res.success === true) {
+
+                    Messages.makeSuccess(res.msg);
+                    $('#order-' + orderId).remove();
+
+                } else {
+
+                    Messages.makeError(res.error)
+
+                }
+            });
+
+        })
+
+    },
 
   processQuantity: function(orderShopId, orderItemId, originQuantity, orderItemQuantity) {
 

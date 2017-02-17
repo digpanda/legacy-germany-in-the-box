@@ -74,6 +74,32 @@ class Api::Guest::OrderItemsController < Api::ApplicationController
 
   end
 
+  def destroy
+    if order_item.destroy && destroy_empty_order!
+      @order = order_item.order
+
+      if @order.persisted?
+        render 'api/guest/order_items/update'
+      else
+        render json: {success: true, order_empty: !@order.persisted?}
+      end
+    else
+      render json: throw_error(:unable_to_process).merge(error: order_item.errors.full_messages.join(', '))
+    end
+  end
+
+  def destroy_empty_order!
+    order = order_item.order
+
+    if order.destroyable?
+      order.remove_coupon(identity_solver) if order.coupon
+      order.reload
+      return order.destroy
+    end
+
+    true
+  end
+
   private
 
   def order_item_params
