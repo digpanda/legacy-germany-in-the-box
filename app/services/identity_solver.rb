@@ -44,11 +44,11 @@ class IdentitySolver < BaseService
   end
 
   def chinese_ip?
-    Geocoder.search(request.remote_ip).first&.country_code == 'CN'
+    @chinse_ip ||= Geocoder.search(request.remote_ip).first&.country_code == 'CN'
   end
 
   def german_ip?
-    Geocoder.search(request.remote_ip).first&.country_code == 'DE'
+    @german_ip ||= Geocoder.search(request.remote_ip).first&.country_code == 'DE'
   end
 
 end
