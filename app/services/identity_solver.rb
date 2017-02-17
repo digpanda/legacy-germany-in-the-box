@@ -48,7 +48,12 @@ class IdentitySolver < BaseService
   end
 
   def german_ip?
-    @german_ip ||= Geocoder.search(request.remote_ip).first&.country_code == 'DE'
+    @german_ip ||= begin
+      SlackDispatcher.new.message("GEOCODER STARTED FOR IP RECOGNITION")
+      country_code = Geocoder.search(request.remote_ip).first&.country_code
+      SlackDispatcher.new.message("IP IS #{request.remote_ip} AND WAS SOLVED")
+      country_code == 'DE'
+    end
   end
 
 end

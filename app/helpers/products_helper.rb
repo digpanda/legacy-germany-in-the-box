@@ -1,8 +1,7 @@
 module ProductsHelper
 
   def showable?(product)
-    true
-    # identity_solver.german_ip? || !product.exclude_germany
+    identity_solver.german_ip? || !product.exclude_germany
   end
 
   def enough_inventory?(sku, quantity)
