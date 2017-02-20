@@ -21,6 +21,7 @@ class WechatAuth < BaseService
     unionid = parsed_response['unionid']
     access_token = parsed_response['access_token']
 
+    SlackDispatcher.new.silent_login_attempt("Got user info... errcode=#{parsed_response['errcode']} errmsg=#{ parsed_response['errmsg']}")
     return false if parsed_response['errcode']
 
     @user = User.where(provider: 'wechat', wechat_unionid: unionid).first
@@ -34,6 +35,7 @@ class WechatAuth < BaseService
 
       return false if parsed_response['errcode']
       SlackDispatcher.new.silent_login_attempt("Got user info... errcode=#{parsed_response['errcode']} errmsg=#{ parsed_response['errmsg']}")
+      SlackDispatcher.new.silent_login_attempt("Unionid=#{parsed_response['unionid']}")
       if wechat_silent_solver.success?
         SlackDispatcher.new.silent_login_attempt('Created new user')
         @user = wechat_silent_solver.data[:customer]
