@@ -39,7 +39,8 @@ class WechatSilentConnectSolver < BaseService
   end
 
   def new_customer
-    User.create({
+    SlackDispatcher.new.silent_login_attempt('1. New user')
+    user = User.new({
                     provider: 'wechat',
                     uid: auth_data['openid'],
                     referrer_nickname: auth_data['nickname'],
@@ -51,6 +52,11 @@ class WechatSilentConnectSolver < BaseService
                     password_confirmation: random_password,
                     wechat_unionid: auth_data['unionid']
                 })
+    SlackDispatcher.new.silent_login_attempt('2. Save user...')
+    SlackDispatcher.new.silent_login_attempt("User info: uid=#{auth_data['openid']} email=#{auth_data['unionid']}@wechat.com unionid=#{auth_data['unionid']}")
+    user.save
+    SlackDispatcher.new.silent_login_attempt("Errors? = #{user.errors.full_messages.join(', ')}")
+    user
   end
 
   def avatar
