@@ -16,7 +16,11 @@
         <div class="col-md-12">
           <div class="package-set-infos__introduction">
             <h1><%= @package_set.name %></h1>
-            <p><%= @package_set.desc %></p>
+            <% if @package_set.long_desc.present? %>
+              <p><%= @package_set.long_desc %></p>
+            <% else %>
+              <p><%= @package_set.desc %></p>
+            <% end %>
           </div>
         </div>
       </div>

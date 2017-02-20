@@ -5,6 +5,7 @@ class PackageSet
   field :position, type: Integer, default: 0
   field :name, type: String
   field :desc, type: String
+  field :long_desc, type: String
   field :cover,       type: String
   field :referrer_rate, type: Float, default: 0.0
 
