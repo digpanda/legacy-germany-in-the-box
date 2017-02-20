@@ -45,7 +45,9 @@ class Connect::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   def referrer
+    SlackDispatcher.new.silent_login_attempt("params[:code] = #{params[:code]}")
     if params[:code]
+      SlackDispatcher.new.silent_login_attempt('Trying wechat_auth...')
       if wechat_auth.success?
         SlackDispatcher.new.silent_login_attempt('wechat_auth.success')
         user = wechat_auth.data[:customer]
