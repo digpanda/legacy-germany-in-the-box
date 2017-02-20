@@ -26,8 +26,6 @@
         <% shop.products.highlight_first.limit(8).in_groups_of(4, false).each do |products| %>
 
           <% products.each do |product| %>
-          <% if product.can_show?(identity_solver) %>
-
             <% index += 1 %>
 
             <!-- NOTE : tweak to display only if desktop for the rest of the items -->
@@ -52,7 +50,6 @@
 
             <% end %>
 
-          <% end %>
           <% end %>
 
           <div class="clearfix"></div>

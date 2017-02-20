@@ -3,15 +3,11 @@
 <div class="products-list">
 <div class="row">
   <% products.each do |product| %>
-  <% if product.can_show?(identity_solver) %>
-
     <div class="col-md-3">
       <div class="shop-page-product">
         <%= render partial: 'guest/products/product_box', :locals => {:product => product} %>
       </div>
     </div>
-
-  <% end %>
   <% end %>
 </div>
 </div>
