@@ -47,9 +47,11 @@ class Connect::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def referrer
     if params[:code]
       if wechat_auth.success?
+        SlackDispatcher.new.silent_login_attempt('wechat_auth.success')
         user = wechat_auth.data[:customer]
 
         if ReferrerToken.valid_token?(params[:token])
+          SlackDispatcher.new.silent_login_attempt('Valid token submitted. User wll be assigned as tourist guide')
           user.assign_referrer_id
           @tourist_guide = true
         end
@@ -57,13 +59,15 @@ class Connect::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         sign_out
         sign_in(:user, user)
 
+        SlackDispatcher.new.silent_login_attempt("Redirecting user to welcome page. @tourist_guide = #{@tourist_guide}")
         if @tourist_guide
+          SlackDispatcher.new.silent_login_attempt('Redirecting to WELCOME PAGE')
           redirect_to customer_referrer_path
           return
         end
       end
     end
-
+    SlackDispatcher.new.silent_login_attempt('Redirecting to ROOT')
     redirect_to root_path
   end
 
