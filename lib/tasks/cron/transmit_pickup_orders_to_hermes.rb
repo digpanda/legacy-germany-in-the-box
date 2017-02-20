@@ -13,7 +13,7 @@ class Tasks::Cron::TransmitPickupOrdersToHermes
 
     unless orders.length.zero?
       begin
-        devlog "We wil trasnmit #{orders.length}` orders now."
+        devlog "We will trasnmit #{orders.length}` orders now."
         BorderGuruEmail.transmit_orders(orders)
       rescue BorderGuruEmail::Error => exception
         devlog "A problem occured while transmitting the orders (#{exception.message})."
