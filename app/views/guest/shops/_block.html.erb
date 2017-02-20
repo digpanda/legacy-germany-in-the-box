@@ -26,7 +26,7 @@
         <% shop.products.highlight_first.limit(8).in_groups_of(4, false).each do |products| %>
 
           <% products.each do |product| %>
-          <% if showable?(product) %>
+          <% if product.can_show?(identity_solver) %>
 
             <% index += 1 %>
 

@@ -159,6 +159,10 @@ class Product
     active? && hs_code != nil && skus.count > 0 && shop.can_buy?
   end
 
+  def can_show?(identity_solver)
+    identity_solver.german_ip? || !self.exclude_germany
+  end
+
   def active?
     status == true && approved != nil
   end
