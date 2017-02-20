@@ -19,13 +19,15 @@ class WechatAuth < BaseService
     parsed_response = get_access_token(code)
     openid = parsed_response['openid']
     unionid = parsed_response['unionid']
+    access_token = parsed_response['access_token']
 
     return false if parsed_response['errcode']
 
     @user = User.where(provider: 'wechat', wechat_unionid: unionid).first
 
-    unless @user
-      access_token = parsed_response['access_token']
+    if @user
+      update_user_info(access_token, openid) unless @user.referrer_nickname
+    else
       @parsed_response = get_user_info(access_token, openid)
 
       return false if parsed_response['errcode']
@@ -71,6 +73,12 @@ class WechatAuth < BaseService
 
       sign_in_user(@user)
     end
+  end
+
+  def update_user_info(access_token, openid)
+    parsed_response = get_user_info(access_token, openid)
+
+    @user.update(referrer_nickname: parsed_response['nickname'])
   end
 
   def sign_in_user(user)
