@@ -1,9 +1,5 @@
 module ProductsHelper
 
-  def showable?(product)
-    identity_solver.german_ip? || !product.exclude_germany
-  end
-
   def enough_inventory?(sku, quantity)
     sku&.enough_stock?(quantity)
   end
