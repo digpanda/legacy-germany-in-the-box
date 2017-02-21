@@ -26,6 +26,18 @@ module Application
       add_breadcrumb @product.name, guest_product_path(@product) unless @product.name.nil?
     end
 
+    def breadcrumb_cart
+      add_breadcrumb I18n.t(:my_cart, scope: :top_menu), customer_cart_path
+    end
+
+    def breadcrumb_checkout_address
+      add_breadcrumb I18n.t(:my_address, scope: :top_menu), new_customer_order_address_path(order_id: @order.id)
+    end
+
+    def breadcrumb_payment_method
+      add_breadcrumb I18n.t(:my_payment, scope: :top_menu), payment_method_customer_checkout_path
+    end
+
     def breadcrumb_home
       add_breadcrumb I18n.t(:home, scope: :breadcrumb), :root_path
     end
