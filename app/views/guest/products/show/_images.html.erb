@@ -7,7 +7,7 @@
 
 <div id="gallery" class="row">
 
-  <%  files = product.featured_sku.all_nonempty_img_fields %>
+  <%  files = product.featured_sku.valid_images %>
 
   <% [*0..6].each do |num| %>
 

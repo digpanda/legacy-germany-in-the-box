@@ -8,7 +8,7 @@ class ProductDecorator < Draper::Decorator
 
   def product_cover_url
     if sku = skus.first
-      first_nonempty = sku.all_nonempty_img_fields.first
+      first_nonempty = sku.valid_images.first
       sku.decorate.image_url(first_nonempty, :thumb) if first_nonempty
     end
   end
@@ -16,7 +16,7 @@ class ProductDecorator < Draper::Decorator
   def featured_sku_img_url(img_field, version)
     return nil unless mas = featured_sku
 
-    if mas.all_nonempty_img_fields.include?(img_field)
+    if mas.valid_images.include?(img_field)
       mas.decorate.image_url(img_field, version)
     end
   end

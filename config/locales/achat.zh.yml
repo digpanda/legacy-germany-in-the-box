@@ -1,4 +1,6 @@
 zh-CN:
+  featured_sku:
+    not_ready_yet: 此产品不存在
   general:
     not_allowed_section: 对不起，您无权登入此页面
   account:
