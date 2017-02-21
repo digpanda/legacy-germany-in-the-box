@@ -14,9 +14,9 @@ class Flyer < BaseService
     @image = Magick::ImageList.new("#{Rails.root}/public/images/flyers/steps.jpg")
     text = Magick::Draw.new
 
-    image.annotate(text, 0,0,70,345, coupon.code) {
+    image.annotate(text, 0,0,70,337, coupon.code) {
       text.gravity = Magick::SouthGravity
-      text.pointsize = 25
+      text.pointsize = 40
       text.stroke = "#d23b1c"
       text.fill = "#d23b1c"
       text.font_weight = Magick::BoldWeight
