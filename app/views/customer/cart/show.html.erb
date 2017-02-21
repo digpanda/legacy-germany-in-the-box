@@ -1,5 +1,5 @@
 <% if cart_manager.products_number > 0 %>
-<div>
+  <%= render 'layouts/customer/subheader/checkout_breadcrumb' %>
   <% @orders.each do |order| %>
     <% if order.decorate.total_quantity > 0 %>
 

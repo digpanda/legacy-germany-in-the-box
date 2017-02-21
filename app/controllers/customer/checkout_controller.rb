@@ -6,6 +6,7 @@ class Customer::CheckoutController < ApplicationController
 
   authorize_resource :class => false
   before_action :set_shop, :only => [:create]
+  before_action :set_order, :breadcrumb_cart, :breadcrumb_checkout_address, :breadcrumb_payment_method, only: :payment_method
 
   protect_from_forgery :except => [:success, :fail, :cancel, :processing]
 
@@ -253,6 +254,11 @@ class Customer::CheckoutController < ApplicationController
 
   def set_shop
     @shop = Shop.find(params[:shop_id])
+  end
+
+  def set_order
+    @order = Order.find(session[:current_checkout_order])
+    @order = cart_manager.order(shop: @order.shop, call_api: false)
   end
 
 end
