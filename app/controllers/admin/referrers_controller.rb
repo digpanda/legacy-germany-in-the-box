@@ -18,11 +18,11 @@ class Admin::ReferrersController < ApplicationController
         "redirect_uri=http%3A%2F%2Fgermanyinbox.com/connect/auth/referrer?" +
         "token=#{@referrer_token.token}" +
         "&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect"
-end
+  end
 
   def coupon
     coupon = Coupon.create({
-      :code => SecureRandom.hex(5),
+      :code => SecureRandom.hex(4)[0,4],
       :unit => :percent,
       :discount => Setting.instance.referrers_rate,
       :minimum_order => 0,
