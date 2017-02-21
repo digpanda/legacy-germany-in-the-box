@@ -19,6 +19,10 @@ class IdentitySolver < BaseService
     end
   end
 
+  def secondary_domain?
+    request.url.include? "germanyinbox.com"
+  end
+
   def potential_customer?
     (user.nil? && chinese?) || !!(user&.customer?)
   end

@@ -1,4 +1,6 @@
 de:
+  featured_sku:
+    not_ready_yet: Kein Produkt getoffen wurde.
   general:
     not_allowed_section: Du hast nicht die erforderlichen Rechte, um auf diese Seite zuzugreifen.
   account:

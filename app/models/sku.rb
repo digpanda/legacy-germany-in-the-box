@@ -126,7 +126,7 @@ class Sku
     [Rails.configuration.achat[:max_add_to_cart_each_time], (self.unlimited ? Rails.configuration.achat[:max_add_to_cart_each_time] : self.quantity)].min
   end
 
-  def all_nonempty_img_fields
+  def valid_images
     @img_fields ||= self.attributes.keys.grep(/^img\d/).map(&:to_sym).select { |f| f if self.read_attribute(f) }
   end
 

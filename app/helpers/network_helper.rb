@@ -2,6 +2,10 @@ require 'socket'
 
 module NetworkHelper
 
+  def from_secondary_domain?
+    identity_solver.secondary_domain?
+  end
+
   def server_ip
     orig, Socket.do_not_reverse_lookup = Socket.do_not_reverse_lookup, true
     UDPSocket.open do |server|
