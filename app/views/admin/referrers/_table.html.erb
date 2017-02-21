@@ -30,7 +30,11 @@
             <%= referrer.referrer_nickname %>
           </td>
           <td>
-            <%= referrer.referrer_coupons.map(&:code).join(', ') %>
+            <% referrer.referrer_coupons.each do |coupon| %>
+              <a href="<%= admin_coupon_flyer_path(coupon) %>">
+                <%= coupon.code %>
+              </a>
+            <% end %>
           </td>
           <td>
             <a href="<%= admin_referrer_coupon_path(referrer) %>" data-method="post"><i class="fa fa-magic tooltipster buttons buttons__purple" title="Generate Coupon"></i></a>
