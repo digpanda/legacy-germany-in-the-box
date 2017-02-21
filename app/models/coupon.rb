@@ -20,7 +20,7 @@ class Coupon
 
   belongs_to :referrer, :class_name => "User", :inverse_of => :referrer_coupons
 
-  validates :code, presence: true
+  validates :code, presence: true, uniqueness: true
   validates :discount, presence: true
   validates :unit, presence: true, inclusion: {in: [:percent, :value]}
   validates :unique, presence: true
