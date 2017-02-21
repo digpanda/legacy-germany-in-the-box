@@ -1732,6 +1732,9 @@ body {
     background-color: #c7ef9a; }
   .main-button__hollow.\--large {
     padding: 0.7em 5.3em 0.7em 5.3em; }
+    @media (max-width: 994px) {
+      .main-button__hollow.\--large {
+        padding: 0; } }
   .main-button__hollow.\--small {
     font-size: 0.85em;
     width: 22em; }
