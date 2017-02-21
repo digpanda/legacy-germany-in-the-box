@@ -50,6 +50,16 @@
         </div>
       </div>
 
+      <!-- EAN -->
+      <div class="row form-group">
+        <div class="col-md-4">
+          <%= I18n.t(:ean, scope: :edit_product_detail) %>
+        </div>
+        <div class="col-md-8">
+          <%= form.text_field :ean, :class => 'form-control' %>
+        </div>
+      </div>
+
       <!-- Price -->
       <div class="row form-group">
         <div class="col-md-4">
