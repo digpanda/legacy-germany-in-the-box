@@ -21,16 +21,7 @@ class Admin::ReferrersController < ApplicationController
   end
 
   def coupon
-    coupon = Coupon.create({
-      :code => SecureRandom.hex(4)[0,4],
-      :unit => :percent,
-      :discount => Setting.instance.referrers_rate,
-      :minimum_order => 0,
-      :unique => false,
-      :desc => 'Referrer Coupon',
-      :referrer => referrer,
-      :exclude_china => true
-    })
+    coupon = Coupon.create_referrer_coupon(referrer)
     if coupon
       flash[:success] = "The coupon was created."
     else

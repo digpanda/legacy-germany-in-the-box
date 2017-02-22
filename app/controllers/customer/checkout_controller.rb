@@ -28,7 +28,10 @@ class Customer::CheckoutController < ApplicationController
     update_addresses!
 
     # TODO : this should be in a before action or something (or at least something more logical and also grouped with the delivery destination id check)
-    return unless current_user.valid_for_checkout?
+     unless current_user.valid_for_checkout?
+       redirect_to navigation.back(1)
+       return
+     end
     return if today_limit?
 
     all_products_available = true

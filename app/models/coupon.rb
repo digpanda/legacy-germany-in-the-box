@@ -33,4 +33,17 @@ class Coupon
     cancelled_at.present?
   end
 
+  def self.create_referrer_coupon(referrer)
+    Coupon.create({
+                      :code => SecureRandom.hex(4)[0,4],
+                      :unit => :percent,
+                      :discount => Setting.instance.referrers_rate,
+                      :minimum_order => 0,
+                      :unique => false,
+                      :desc => 'Referrer Coupon',
+                      :referrer => referrer,
+                      :exclude_china => true
+                  })
+  end
+
 end
