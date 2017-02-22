@@ -15,10 +15,10 @@ class PackageSet
   embeds_many :package_skus, inverse_of: :package_set, cascade_callbacks: true
   has_many :order_items
 
-  accepts_nested_attributes_for :package_skus, :reject_if => :reject_package_skus
+  accepts_nested_attributes_for :package_skus, :reject_if => :reject_package_skus, :allow_destroy => true
 
   def reject_package_skus(attributed)
-    attributed['product'].blank? && attributed['sku_id'].blank?
+    attributed['product_id'].blank? || attributed['sku_id'].blank?
   end
 
   validates_presence_of :name
