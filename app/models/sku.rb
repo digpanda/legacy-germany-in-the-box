@@ -24,7 +24,7 @@ class Sku
   field :country_of_origin, type: String, default: 'DE'
 
   field :option_ids,    type: Array,      default: []
-
+  field :ean,          type: String
   embedded_in :product
   embedded_in :order_item
 
@@ -59,6 +59,7 @@ class Sku
   validates :space_length,  presence: true, :numericality => { :greater_than => 0 }
   validates :space_width,   presence: true, :numericality => { :greater_than => 0 }
   validates :space_height,  presence: true, :numericality => { :greater_than => 0 }
+  validates :ean, length: {maximum: 13}
 
   # currently not working properly, please do not use this scope
   # NOTE : http://stackoverflow.com/questions/40464883/mongoid-chaining-and-scopes

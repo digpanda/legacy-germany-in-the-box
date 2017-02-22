@@ -586,6 +586,7 @@ de:
     create_ko: Ein Fehler ist beim
     create_with_existing_name: Ein gleichnämiges Produkt ist bereits vorhanden.
   edit_product_detail:
+    ean: EAN
     sku_manage: Artikelpositionen
     variant_manage: Varianten
     edit: Editieren
