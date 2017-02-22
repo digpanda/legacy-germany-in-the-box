@@ -10,7 +10,6 @@ namespace :admin do
   resources :coupons do
     patch :cancel
     patch :approve
-    get :flyer
   end
 
   resources :payment_gateways do

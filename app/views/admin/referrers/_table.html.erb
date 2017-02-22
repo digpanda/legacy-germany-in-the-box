@@ -31,7 +31,7 @@
           </td>
           <td>
             <% referrer.referrer_coupons.each do |coupon| %>
-              <a href="<%= admin_coupon_flyer_path(coupon) %>">
+              <a href="<%= guest_coupon_flyer_path(coupon) %>">
                 <%= coupon.code %>
               </a>
             <% end %>
