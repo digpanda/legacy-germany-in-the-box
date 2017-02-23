@@ -9,7 +9,6 @@ class Admin::Shops::PackageSetsController < ApplicationController
 
   before_action :set_shop
   before_action :set_package_set, :except => [:index, :new, :create]
-
   before_action :breadcrumb_admin_shops, :breadcrumb_admin_shop_products
 
   def index
