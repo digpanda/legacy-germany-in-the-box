@@ -1844,7 +1844,7 @@ body {
       .package-set-block__content {
         border-bottom-left-radius: 4px;
         border-bottom-right-radius: 4px;
-        min-height: 38em; } }
+        min-height: 28em; } }
     .package-set-block__content h2 {
       font-size: 25px; }
     .package-set-block__content p {

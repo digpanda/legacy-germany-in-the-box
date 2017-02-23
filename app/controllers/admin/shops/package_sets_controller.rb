@@ -43,7 +43,6 @@ class Admin::Shops::PackageSetsController < ApplicationController
   end
 
   def update
-    #package_set.package_skus.delete_all
     if package_set.update(package_set_params)
       flash[:success] = "Set was updated"
       redirect_to navigation.back(1)
