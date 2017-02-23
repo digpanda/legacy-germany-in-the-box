@@ -31,7 +31,7 @@ module Application
     end
 
     def breadcrumb_checkout_address
-      add_breadcrumb I18n.t(:my_address, scope: :top_menu), new_customer_order_address_path(order_id: @order.id)
+      add_breadcrumb I18n.t(:my_address, scope: :top_menu), new_customer_order_address_path(order_id: @order.id) unless @order.nil?
     end
 
     def breadcrumb_payment_method
