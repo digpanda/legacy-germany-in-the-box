@@ -71,7 +71,7 @@
 
       <tr>
         <td>
-          <%= field.select :product_id, options_from_collection_for_select(@shop.products, :id, :name, field.object.product_id), :prompt => '-' %>
+          <%= field.select :product_id, options_from_collection_for_select(@shop.products, :id, :name, field.object.product_id), :include_blank => "-" %>
         </td>
         <td>
           <!-- JS memoization of the AJAX fetched data -->

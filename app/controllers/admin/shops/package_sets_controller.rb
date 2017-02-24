@@ -9,7 +9,6 @@ class Admin::Shops::PackageSetsController < ApplicationController
 
   before_action :set_shop
   before_action :set_package_set, :except => [:index, :new, :create]
-
   before_action :breadcrumb_admin_shops, :breadcrumb_admin_shop_products
 
   def index
@@ -44,6 +43,7 @@ class Admin::Shops::PackageSetsController < ApplicationController
 
   def update
     if package_set.update(package_set_params)
+      clean_up_package_skus!
       flash[:success] = "Set was updated"
       redirect_to navigation.back(1)
     else
@@ -60,6 +60,22 @@ class Admin::Shops::PackageSetsController < ApplicationController
       flash[:error] = package_set.errors.full_messages.join(', ')
     end
     redirect_to navigation.back(1)
+  end
+
+  private
+
+  def params_valid_product_ids
+    package_set_params["package_skus_attributes"].map do |key, value|
+      value["product_id"] unless value["product_id"].empty?
+    end.compact
+  end
+
+  def clean_up_package_skus!
+    package_set.package_skus.map(&:product_id).map(&:to_s).each do |product_id|
+      unless params_valid_product_ids.include? product_id
+        package_set.package_skus.where(product_id: product_id).delete
+      end
+    end
   end
 
   def package_set_params

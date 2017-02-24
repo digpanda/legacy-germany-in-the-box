@@ -6,7 +6,10 @@ class Customer::CheckoutController < ApplicationController
 
   authorize_resource :class => false
   before_action :set_shop, :only => [:create]
-  before_action :set_order, :breadcrumb_cart, :breadcrumb_checkout_address, :breadcrumb_payment_method, only: :payment_method
+  # before_action :set_order, :except => [:payment_method]
+  before_filter :ensure_session_order, :only => [:payment_method]
+
+  before_action :breadcrumb_cart, :breadcrumb_checkout_address, :breadcrumb_payment_method
 
   protect_from_forgery :except => [:success, :fail, :cancel, :processing]
 
@@ -28,7 +31,10 @@ class Customer::CheckoutController < ApplicationController
     update_addresses!
 
     # TODO : this should be in a before action or something (or at least something more logical and also grouped with the delivery destination id check)
-    return unless current_user.valid_for_checkout?
+     unless current_user.valid_for_checkout?
+       redirect_to navigation.back(1)
+       return
+     end
     return if today_limit?
 
     all_products_available = true
@@ -79,11 +85,6 @@ class Customer::CheckoutController < ApplicationController
   end
 
   def payment_method
-
-    if session[:current_checkout_order].nil?
-      redirect_to navigation.back(1)
-      return
-    end
 
     @order = Order.find(session[:current_checkout_order])
     @shop = order.shop
@@ -259,6 +260,14 @@ class Customer::CheckoutController < ApplicationController
   def set_order
     @order = Order.find(session[:current_checkout_order])
     @order = cart_manager.order(shop: @order.shop, call_api: false)
+  end
+
+  def ensure_session_order
+    if session[:current_checkout_order].nil?
+      redirect_to navigation.back(1)
+      return false
+    end
+    true
   end
 
 end

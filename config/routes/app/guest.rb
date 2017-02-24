@@ -25,6 +25,10 @@ namespace :guest do
     get :publicity
   end
 
+  resources :coupons do
+    get :flyer
+  end
+
   resource :feedback, :controller => 'feedback' do
     get :product_suggestions
     get :payment_speed_report

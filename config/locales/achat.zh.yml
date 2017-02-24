@@ -585,6 +585,7 @@ zh-CN:
     create_ko: 产品创建失败
     create_with_existing_name: 已经存在同名的商品
   edit_product_detail:
+    ean: EAN
     sku_manage: 库存管理
     variant_manage: 型号设置
     edit: 修改

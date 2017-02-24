@@ -72,10 +72,6 @@ class Admin::CouponsController < ApplicationController
     redirect_to navigation.back(1)
   end
 
-  def flyer
-    send_data Flyer.new.process_steps(coupon).image.to_blob, :stream => "false", :filename => "test.jpg", :type => "image/jpeg", :disposition => "inline"
-  end
-
   private
 
   def set_coupon
