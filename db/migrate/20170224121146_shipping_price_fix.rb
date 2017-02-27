@@ -23,10 +23,18 @@ class ShippingPriceFix < Mongoid::Migration
 
         if order.coupon
           puts 'updating price because of coupon'
-          price_without_discount = order.total_paid(:eur) * 100 / (100 - order.coupon.discount)
-          price_diff = price_without_discount - order.total_paid(:eur)
-          price_to_add = price_diff / order_item.quantity
-          order_item.update(shipping_per_unit: (order_item.shipping_per_unit + price_to_add))
+          if order.coupon.unit == :value
+            price_without_discount = order.total_paid(:eur) + order.coupon.discount
+            price_diff = price_without_discount - order.total_paid(:eur)
+            price_to_add = price_diff / order_item.quantity
+            order_item.update(shipping_per_unit: (order_item.shipping_per_unit + price_to_add))
+          elsif order.coupon.unit == :percent
+            price_without_discount = order.total_paid(:eur) * 100 / (100 - order.coupon.discount)
+            order.update(coupon_discount: price_without_discount * order.coupon.discount / 100)
+            price_diff = price_without_discount - order.total_paid(:eur)
+            price_to_add = price_diff / order_item.quantity
+            order_item.update(shipping_per_unit: (order_item.shipping_per_unit + price_to_add))
+          end
         end
       end
     end
