@@ -53,8 +53,8 @@ class Order
   def shipping_cost
     @shipping_cost ||= begin
       order_items.reduce(0) do |acc, order_item|
-        if order_item.sku.shipping_per_unit
-          acc + (order_item.sku.shipping_per_unit * order_item.quantity)
+        if order_item.shipping_per_unit
+          acc + (order_item.shipping_per_unit * order_item.quantity)
         end
       end
     end
@@ -63,7 +63,7 @@ class Order
   def taxes_cost
     @taxes_cost ||= begin
       order_items.reduce(0) do |acc, order_item|
-        acc + (order_item.sku.taxes_per_unit * order_item.quantity)
+        acc + (order_item.taxes_per_unit * order_item.quantity)
       end
     end
   end
