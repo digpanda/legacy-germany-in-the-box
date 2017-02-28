@@ -129,7 +129,10 @@ class Customer::CheckoutController < ApplicationController
     reset_shop_id_from_session(shop.id.to_s)
     order.coupon&.update(last_used_at: Time.now)
 
-    BorderGuruApiHandler.new(order).calculate_and_get_shipping
+    # we manage the shipping details
+    if order.logistic_partner == :borderguru
+      BorderGuruApiHandler.new(order).calculate_and_get_shipping
+    end
 
     # whatever happens with BorderGuru, if the payment is a success we consider
     # the transaction / order as successful, we will deal with BorderGuru through Slack / Emails

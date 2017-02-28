@@ -33,7 +33,7 @@ class CartManager
           Order.find(session[:order_shop_ids]["#{shop.id}"])
         else
           # we systematically bind an order to a shop
-          Order.new(shop: shop)
+          Order.new(shop: shop, logistic_partner: Setting.instance.logistic_partner)
         end
       end
     end
