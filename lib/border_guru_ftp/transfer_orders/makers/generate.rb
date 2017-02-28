@@ -8,7 +8,7 @@ module BorderGuruFtp
       class Generate < Base
 
         CSV_LINE_CURRENCY = 'EUR'
-        HEADERS = ['Barcode ID', 'Merchant ID',  'Item ID',  'HS Code', 'Country of Manufacture', 'Article Description', 'Net Weight in g', 'Price in EUR', 'Currency']
+        HEADERS = ['Barcode ID', 'Merchant ID',  'Item ID',  'HS Code', 'Country of Manufacture', 'Product Variable', 'Article Description', 'Net Weight in g', 'Price in EUR', 'Currency']
 
         # convert a list of orders (model) into a normalized CSV file
         # for BorderGuru to process them afterwards
@@ -32,6 +32,7 @@ module BorderGuruFtp
             order_item.sku_origin.id, # Origin SKU ID
             order_item.product.hs_code, # HS Code
             order_item.sku.country_of_origin,
+            order_item.sku.option_names.join(', '), # Description
             order_item.clean_desc, # Description
             (order_item.weight * 1000), # Weight : current_order_item.weight
             order_item.sku.decorate.price_after_discount_in_euro, # Price
