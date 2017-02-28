@@ -10,6 +10,8 @@ class Setting
   field :max_total_per_day,     type: BigDecimal, default: 1000
   field :alert, type: String
 
+  field :logistic_partner, type: Symbol, default: :borderguru
+
   field :search_suggestion, type: String
 
   field :package_sets_title,       type: String
