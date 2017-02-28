@@ -33,9 +33,9 @@ class Currency
 
   def current_symbol
     if currency == 'EUR'
-      symbol = Setting.instance.supplier_currency.symbol
+      Setting.instance.supplier_currency.symbol
     elsif currency == 'CNY'
-      symbol = Setting.instance.platform_currency.symbol
+      Setting.instance.platform_currency.symbol
     end
   end
 
