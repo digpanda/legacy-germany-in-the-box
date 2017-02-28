@@ -291,9 +291,9 @@ class Order
   # every year the system got reset
   def make_bill_id
     if bill_id.nil? && self.bought?
-      start_day = c_at.beginning_of_day
+      start_day = paid_at.beginning_of_day
       digits = start_day.strftime("%Y%m%d")
-      num = Order.where({:bill_id.ne => nil}).where({:c_at.gte => start_day}).count + 1
+      num = Order.where({:bill_id.ne => nil}).where({:paid_at.gte => start_day}).count + 1
       self.bill_id = "P#{digits}-#{num}"
       self.save
     end
