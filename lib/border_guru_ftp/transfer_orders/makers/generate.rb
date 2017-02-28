@@ -34,7 +34,7 @@ module BorderGuruFtp
             order_item.sku.country_of_origin,
             order_item.clean_desc, # Description
             (order_item.weight * 1000), # Weight : current_order_item.weight
-            order_item.price, # Price
+            order_item.sku.decorate.price_after_discount_in_euro, # Price
             CSV_LINE_CURRENCY # Currency
           ]
         end

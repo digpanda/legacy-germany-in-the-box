@@ -41,12 +41,12 @@
           <% if product.discount? %>
 
             <span class="+barred-price">
-              <%= product.featured_sku.decorate.price_before_discount_in_yuan_html.html_safe %>
+              <%= product.decorate.preview_price_yuan_html.html_safe %>
             </span>
 
           <% end %>
 
-            <span class="+price-yuan"><%= product.decorate.preview_price_yuan%></span>
+            <span class="+price-yuan"><%= product.featured_sku.decorate.price_after_discount_in_yuan %></span>
 
             <!-- Warnings -->
             <%= render partial: "guest/products/sku_warnings", :locals => { :sku => product.featured_sku } %>
@@ -56,7 +56,7 @@
 
         <div class="row">
           <div class="col-md-12">
-            <div class="+price-euro"><%= product.decorate.preview_price_euro %></div>
+            <div class="+price-euro"><%= product.featured_sku.decorate.price_after_discount_in_euro %></div>
           </div>
         </div>
 
