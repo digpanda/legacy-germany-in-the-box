@@ -41,7 +41,7 @@ class Shopkeeper::OrdersController < ApplicationController
     order.save
 
     # we go back now
-    EmitNotificationAndDispatchToUser.new.perform({
+    DispatchNotification.new.perform({
                                                       user: order.user,
                                                       title: '你的订单已出货',
                                                       desc: "你的订单已被商家寄出，你可透过物流跟踪连接追踪包裹：#{order.border_guru_link_tracking}"

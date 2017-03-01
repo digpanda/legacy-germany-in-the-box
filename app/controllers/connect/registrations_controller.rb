@@ -39,7 +39,7 @@ class Connect::RegistrationsController < Devise::RegistrationsController
 
           if resource.decorate.customer?
 
-            EmitNotificationAndDispatchToUser.new.perform({
+            DispatchNotification.new.perform({
               :user => resource,
               :title => '注册成功，欢迎光临来因盒！',
               :desc => "亲，欢迎你到来因盒购物。"
@@ -47,7 +47,7 @@ class Connect::RegistrationsController < Devise::RegistrationsController
 
           elsif resource.decorate.shopkeeper?
 
-             EmitNotificationAndDispatchToUser.new.perform({
+             DispatchNotification.new.perform({
               :user => resource,
               :title => 'Wilkommen bei Germany In The Box !',
               :desc => "Vielen Dank für Ihren Antrag. Wir werden uns bald mit Ihnen in Verbindung setzten."
