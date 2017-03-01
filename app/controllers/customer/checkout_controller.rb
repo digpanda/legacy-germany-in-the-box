@@ -1,6 +1,6 @@
 class Customer::CheckoutController < ApplicationController
 
-  ACCEPTABLE_PAYMENT_METHOD = [:upop, :creditcard]
+  ACCEPTABLE_PAYMENT_METHOD = [:upop, :creditcard, :alipay, :wechatpay]
 
   attr_reader :shop, :order
 
@@ -29,7 +29,6 @@ class Customer::CheckoutController < ApplicationController
   end
 
   def payment_method
-
     @order = Order.find(session[:current_checkout_order])
     @shop = order.shop
 
@@ -38,22 +37,57 @@ class Customer::CheckoutController < ApplicationController
       redirect_to customer_orders_path
       return
     end
-
   end
 
   def gateway
-
-    payment_method = params[:payment_method].to_sym
     order = Order.find(params[:order_id])
+    payment_gateway = order.shop.payment_gateways.where(payment_method: params[:payment_method].to_sym).first
 
-    unless acceptable_payment_method?(payment_method)
+    unless payment_gateway
+      flash[:error] = "Invalid payment gateway."
+      redirect_to navigation.back(1)
+      return
+    end
+
+    unless acceptable_payment_method?(payment_gateway.payment_method)
       flash[:error] = "Invalid payment method."
       redirect_to navigation.back(1)
       return
     end
 
-    prepare_checkout(order, payment_method)
+    process_gateway(order, payment_gateway)
+  end
 
+  def process_gateway(order, payment_gateway)
+    gateway = CheckoutGateway.new(root_url, current_user, order, payment_gateway)
+
+    # we process differently depending the provider we use
+    if payment_gateway.provider == :wirecard
+
+      wirecard = gateway.wirecard
+
+      # we will set a checkout variable for wirecard
+      # because it goes through the front-end
+      # NOTE : this could be adapted to any provider
+      if wirecard.success?
+        @checkout = wirecard[:checkout]
+      else
+        flash[:error] = wirecard.error
+        redirect_to navigation.back(1)
+      end
+
+    elsif payment_gateway.provider == :alipay
+
+      alipay = gateway.wirecard
+
+      if alipay.success?
+        redirect_to alipay[:url]
+      else
+        flash[:error] = alipay.error
+        redirect_to navigation.back(1)
+      end
+
+    end
   end
 
   def acceptable_payment_method?(payment_method)
@@ -162,15 +196,6 @@ class Customer::CheckoutController < ApplicationController
                                                                            title: "Auftrag #{order.id} am #{order.paid_at}",
                                                                            desc: "Haben Sie die Bestellung schon gesendet? Klicken Sie bitte 'Das Paket wurde versandt'"
                                                                        })
-  end
-
-  def prepare_checkout(order, payment_method)
-    @checkout = WirecardCheckout.new(root_url, current_user, order, payment_method).checkout!
-  rescue Wirecard::Base::Error => exception
-    # we should catch the error in the lib or something like this
-    # and raise one if the merchant wirecard status isn't active yet
-    flash[:error] = "This shop is not ready to accept payments yet (#{exception})"
-    redirect_to navigation.back(1)
   end
 
   def set_shop
