@@ -12,8 +12,7 @@ class PaymentGateway
 
   belongs_to :shop, inverse_of: :payment_gateways
 
-  validates :provider, inclusion: {:in => [:wirecard]}
-  validates :payment_method, inclusion: {:in => [:creditcard, :upop, :paypal]}
-
+  validates :provider, inclusion: {:in => [:wirecard, :alipay, :wechatpay]}
+  validates :payment_method, inclusion: {:in => [:creditcard, :upop, :paypal, :alipay, :wechatpay]}
 
 end
