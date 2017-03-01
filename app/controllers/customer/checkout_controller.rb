@@ -5,83 +5,27 @@ class Customer::CheckoutController < ApplicationController
   attr_reader :shop, :order
 
   authorize_resource :class => false
+  protect_from_forgery :except => [:success, :fail, :cancel, :processing]
+
   before_action :set_shop, :only => [:create]
-  # before_action :set_order, :except => [:payment_method]
   before_filter :ensure_session_order, :only => [:payment_method]
+  before_filter :force_address_param, :only => [:create]
 
   before_action :breadcrumb_cart, :breadcrumb_checkout_address, :breadcrumb_payment_method
-
-  protect_from_forgery :except => [:success, :fail, :cancel, :processing]
 
   before_action :freeze_header
 
   def create
-
     @order = cart_manager.order(shop: shop, call_api: false)
+    current_address = current_user.addresses.find(params[:delivery_destination_id])
+    checkout_ready = CheckoutReady.new(session, current_user, order, current_address).perform!
 
-    # we check the address has been selected
-    unless params[:delivery_destination_id]
-      flash[:error] = "Please choose a delivery address."
+    if checkout_ready.success?
+      redirect_to payment_method_customer_checkout_path
+    else
+      flash[:error] = checkout_ready.error
       redirect_to navigation.back(1)
-      return
     end
-
-    # we update the delivery address before everything
-    # this will be used to check the limit reach
-    update_addresses!
-
-    # TODO : this should be in a before action or something (or at least something more logical and also grouped with the delivery destination id check)
-     unless current_user.valid_for_checkout?
-       redirect_to navigation.back(1)
-       return
-     end
-    return if today_limit?
-
-    all_products_available = true
-    products_total_price = 0
-    product_name = nil
-    sku = nil
-
-    order.order_items.each do |order_item|
-      product = order_item.product
-      sku = order_item.sku
-      sku_origin = order_item.sku_origin
-
-      if sku_origin.enough_stock?(order_item.quantity)
-        all_products_available = true
-        products_total_price += sku.price * order_item.quantity
-      else
-        all_products_available = false
-        product_name = product.name
-        break
-      end
-    end
-
-    if !all_products_available
-      flash[:error] = I18n.t(:not_all_available, scope: :checkout, :product_name => product_name, :option_names => sku.option_names.join(', '))
-      redirect_to navigation.back(1)
-      return
-    end
-
-    if products_total_price < shop.min_total
-      total_price = Currency.new(products_total_price).to_yuan.display
-      min_total = Currency.new(shop.min_total).to_yuan.display
-      flash[:error] = I18n.t(:not_all_min_total_reached, scope: :checkout, :shop_name => shop.name, :total_price => total_price, :currency => Setting.instance.platform_currency.symbol, :min_total => min_total)
-      redirect_to navigation.back(1)
-      return
-    end
-
-    status = update_for_checkout(order, order.border_guru_quote_id)
-
-    unless status
-      flash[:error] = order.errors.full_messages.join(', ')
-      redirect_to navigation.back(1)
-      return
-    end
-
-    session[:current_checkout_order] = order.id
-    redirect_to payment_method_customer_checkout_path
-
   end
 
   def payment_method
@@ -229,33 +173,6 @@ class Customer::CheckoutController < ApplicationController
     redirect_to navigation.back(1)
   end
 
-  def update_for_checkout(order, border_guru_quote_id)
-    # we bypass the validation of the locked for this one because there's no reason to make it fail here
-    # order.bypass_locked!
-    # now we update the order itself
-    # NOTE : for some reason it cannot update without bypassing the locked ; we should investigate
-    order.update({
-      :status               => :paying,
-      :user                 => current_user,
-      :border_guru_quote_id => border_guru_quote_id,
-      })
-  end
-
-  def update_addresses!
-    current_user.addresses.find(params[:delivery_destination_id]).tap do |address|
-      order.update(shipping_address: nil, billing_address: nil)
-      order.update(shipping_address: address.clone, billing_address: address.clone)
-    end
-  end
-
-  def today_limit?
-    if BuyingBreaker.new(order).with_address?(order.shipping_address)
-      flash[:error] = I18n.t(:override_maximal_total, scope: :edit_order, total: Setting.instance.max_total_per_day, currency: Setting.instance.platform_currency.symbol)
-      redirect_to navigation.back(1)
-      return true
-    end
-  end
-
   def set_shop
     @shop = Shop.find(params[:shop_id])
   end
@@ -263,6 +180,15 @@ class Customer::CheckoutController < ApplicationController
   def set_order
     @order = Order.find(session[:current_checkout_order])
     @order = cart_manager.order(shop: @order.shop, call_api: false)
+  end
+
+  def force_address_param
+    unless params[:delivery_destination_id]
+      flash[:error] = "Please choose a delivery address."
+      redirect_to navigation.back(1)
+      return false
+    end
+    true
   end
 
   def ensure_session_order
