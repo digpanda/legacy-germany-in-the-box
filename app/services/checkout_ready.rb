@@ -99,6 +99,7 @@ class CheckoutReady < BaseService
           break
         end
       end
+      
       {
         :all => all_products_available,
         :unavailable_sku => sku,

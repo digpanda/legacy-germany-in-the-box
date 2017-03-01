@@ -150,13 +150,13 @@ class Customer::CheckoutController < ApplicationController
 
   def prepare_notifications(order_payment)
     order = order_payment.order
-    EmitNotificationAndDispatchToUser.new.perform_if_not_sent({
+    DispatchNotification.new.perform_if_not_sent({
                                                                   order: order,
                                                                   user: order.shop.shopkeeper,
                                                                   title: "Auftrag #{order.id} am #{order.paid_at}",
                                                                   desc: 'Haben Sie die Bestellung schon vorbereiten? Senden Sie die bitte!'
                                                               })
-    EmitNotificationAndDispatchToUser.new.perform_if_not_selected_sent({
+    DispatchNotification.new.perform_if_not_selected_sent({
                                                                            order: order,
                                                                            user: order.shop.shopkeeper,
                                                                            title: "Auftrag #{order.id} am #{order.paid_at}",
