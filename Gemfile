@@ -73,6 +73,7 @@ gem "mongoid_magic_counter_cache"
 gem "carrierwave-ftp", :require => "carrierwave/storage/ftp" # FTP only
 gem "sidekiq"
 gem "redis-rails"
+gem "alipay"
 
 gem "omniauth"
 gem "omniauth-wechat-oauth2", git: "https://github.com/yangsr/omniauth-wechat-oauth2.git"
