@@ -70,7 +70,7 @@ class Customer::CheckoutController < ApplicationController
       # because it goes through the front-end
       # NOTE : this could be adapted to any provider
       if wirecard.success?
-        @checkout = wirecard[:checkout]
+        @checkout = wirecard.data[:checkout]
       else
         flash[:error] = wirecard.error
         redirect_to navigation.back(1)
@@ -78,10 +78,10 @@ class Customer::CheckoutController < ApplicationController
 
     elsif payment_gateway.provider == :alipay
 
-      alipay = gateway.wirecard
+      alipay = gateway.alipay
 
       if alipay.success?
-        redirect_to alipay[:url]
+        redirect_to alipay.data[:url]
       else
         flash[:error] = alipay.error
         redirect_to navigation.back(1)

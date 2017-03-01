@@ -16,6 +16,7 @@ class CheckoutGateway < BaseService
   end
 
   def alipay
+    binding.pry
     return_with(:success, :url => "http://fuckit.com")
   # rescue Wirecard::Base::Error => exception
   #   return_with(:error, "An error occurred while processing the gateway (#{exception})")
