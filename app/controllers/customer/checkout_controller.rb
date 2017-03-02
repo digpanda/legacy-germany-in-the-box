@@ -72,23 +72,17 @@ class Customer::CheckoutController < ApplicationController
     redirect_to navigation.back(1)
   end
 
-  def acceptable_payment_method?(payment_method)
-    ACCEPTABLE_PAYMENT_METHOD.include? payment_method
-  end
-
   def success
 
     binding.pry
 
-    return unless callback!
+    return unless CheckoutCallback.new(params).perform.success?
 
     order_payment = OrderPayment.where(:request_id => params[:request_id]).first
     order = order_payment.order
-    shop = order.shop
 
     StockManager.new(order).in_order!
-
-    reset_shop_id_from_session(shop.id.to_s)
+    cart_manager.empty!
     order.coupon&.update(last_used_at: Time.now)
 
     # we manage the shipping details
@@ -101,13 +95,11 @@ class Customer::CheckoutController < ApplicationController
     flash[:success] = I18n.t(:checkout_ok, scope: :checkout)
 
     redirect_to customer_orders_path
-
   end
 
   # make the user return to the previous page
   def cancel
     redirect_to navigation.back(2)
-    return
   end
 
   # alias of success
@@ -119,67 +111,14 @@ class Customer::CheckoutController < ApplicationController
   def fail
     flash[:error] = I18n.t(:failed, scope: :payment)
     warn_developers(Wirecard::Base::Error.new, "Something went wrong during the payment.")
-    return unless callback!(:failed)
+    return unless CheckoutCallback.new(params, :failed).perform.success?
     redirect_to navigation.back(2)
   end
 
   private
 
-  # TODO: could be moved inside CurrentOrderHandler
-  def reset_shop_id_from_session(shop_id)
-    session[:order_shop_ids]&.delete(shop_id)
-  end
-
-  def callback!(forced_status=nil)
-
-      customer_email = params["email"]
-
-      if current_user.email != customer_email
-        flash[:error] = I18n.t(:account_conflict, scope: :notice)
-        redirect_to root_url
-        return false
-      end
-
-      merchant_id = params["merchant_account_id"]
-      request_id = params["request_id"]
-
-      # COPIES FROM HERE
-      order_payment = OrderPayment.where({merchant_id: merchant_id, request_id: request_id}).first
-      WirecardPaymentChecker.new(params.symbolize_keys.merge({:order_payment => order_payment})).update_order_payment!
-
-      order_payment.status = forced_status unless forced_status.nil? # TODO : improve this
-      order_payment.save
-
-      # if it's a success, it paid
-      # we freeze the status to unverified for security reason
-      # and the payment status freeze on unverified
-      order_payment.order.refresh_status_from!(order_payment)
-      # END OF COPY
-
-      if order_payment.status == :success
-        SlackDispatcher.new.paid_transaction(order_payment)
-        prepare_notifications(order_payment)
-      else
-        SlackDispatcher.new.failed_transaction(order_payment)
-      end
-
-      true
-  end
-
-  def prepare_notifications(order_payment)
-    order = order_payment.order
-    DispatchNotification.new.perform_if_not_sent({
-                                                                  order: order,
-                                                                  user: order.shop.shopkeeper,
-                                                                  title: "Auftrag #{order.id} am #{order.paid_at}",
-                                                                  desc: 'Haben Sie die Bestellung schon vorbereiten? Senden Sie die bitte!'
-                                                              })
-    DispatchNotification.new.perform_if_not_selected_sent({
-                                                                           order: order,
-                                                                           user: order.shop.shopkeeper,
-                                                                           title: "Auftrag #{order.id} am #{order.paid_at}",
-                                                                           desc: "Haben Sie die Bestellung schon gesendet? Klicken Sie bitte 'Das Paket wurde versandt'"
-                                                                       })
+  def acceptable_payment_method?(payment_method)
+    ACCEPTABLE_PAYMENT_METHOD.include? payment_method
   end
 
   def set_shop
