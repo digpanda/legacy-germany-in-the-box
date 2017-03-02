@@ -1,16 +1,23 @@
 class CheckoutGateway < BaseService
 
-  attr_reader :base_url, :user, :order, :payment_gateway
+  ACCEPTABLE_PROVIDERS = [:wirecard, :alipay, :wechatpay]
 
-  def initialize(base_url, user, order, payment_gateway)
-    @base_url = base_url
+  include Rails.application.routes.url_helpers
+  attr_reader :user, :order, :payment_gateway
+
+  def initialize(user, order, payment_gateway)
     @user = user
     @order = order
     @payment_gateway = payment_gateway
   end
 
+  def perform
+    return return_with(:error, "Provider not accepted.") unless acceptable_provider?
+    return self.send(payment_gateway.provider)
+  end
+
   def wirecard
-    return_with(:success, :checkout => wirecard_checkout)
+    return_with(:success, :page => wirecard_checkout)
   rescue Wirecard::Base::Error => exception
     return_with(:error, "An error occurred while processing the gateway (#{exception})")
   end
@@ -20,6 +27,10 @@ class CheckoutGateway < BaseService
   end
 
   private
+
+  def acceptable_provider?
+    ACCEPTABLE_PROVIDERS.include? payment_gateway.provider
+  end
 
   def alipay_checkout_url
     @alipay_checkout_url ||= AlipayCheckout.new(user, order, payment_gateway).checkout_url!
