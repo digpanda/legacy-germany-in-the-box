@@ -3,17 +3,23 @@ namespace :customer do
 
   resource :referrer, :controller => 'referrer' do
   end
-  
+
   resource :cart, :controller => 'cart' do
   end
 
   resource :checkout, :controller => 'checkout' do
     get :payment_method
     post :gateway
+
+    post :cancel
     post :processing
     post :success
     post :fail
+    
     get :cancel
+    get :processing
+    get :success
+    get :fail
   end
 
   resource :account, :controller => 'account' do

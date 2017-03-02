@@ -25,6 +25,10 @@ class Currency
     "#{current_symbol} %.2f" % amount
   end
 
+  def display_raw
+    "%.2f" % amount
+  end
+
   def display_html
     "<span class=\"current_symbol\">#{current_symbol}</span> <span class=\"amount\">%.2f</span>" % amount
   end
