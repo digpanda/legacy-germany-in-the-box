@@ -21,9 +21,9 @@ class AlipayCheckout < BaseService
   private
 
   def raw_url
-    @url ||= begin
+    @raw_url ||= begin
       Alipay::Service.create_direct_pay_by_user_url(
-        out_trade_no: "#{order.id}",
+        out_trade_no: "#{order.id}", # TODO : maybe replace by random number ?
         subject: "Order #{order.id}",
         total_fee: "#{order.end_price.in_euro.to_yuan.display_raw}",
         return_url: processing_customer_checkout_url,
@@ -36,7 +36,7 @@ class AlipayCheckout < BaseService
     if Rails.env.production?
       raw_url
     else
-      url.gsub("https://mapi.alipay.com/gateway.do?", "https://openapi.alipaydev.com/gateway.do?")
+      raw_url.gsub("https://mapi.alipay.com/gateway.do?", "https://openapi.alipaydev.com/gateway.do?")
     end
   end
 
@@ -58,9 +58,6 @@ class AlipayCheckout < BaseService
 
   def prepare_order_payment!
     matching_order_payment.tap do |order_payment|
-      order_payment.merchant_id      = merchant_credentials[:merchant_id]
-      # TODO TO CHANGE
-      #order_payment.request_id       = hpp.request_id
       order_payment.user_id          = user.id
       order_payment.order_id         = order.id
       order_payment.status           = :scheduled

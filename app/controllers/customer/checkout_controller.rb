@@ -55,39 +55,21 @@ class Customer::CheckoutController < ApplicationController
       return
     end
 
-    process_gateway(order, payment_gateway)
-  end
-
-  def process_gateway(order, payment_gateway)
-    gateway = CheckoutGateway.new(root_url, current_user, order, payment_gateway)
-
+    checkout_gateway = CheckoutGateway.new(current_user, order, payment_gateway).perform
     # we process differently depending the provider we use
-    if payment_gateway.provider == :wirecard
-
-      wirecard = gateway.wirecard
-
-      # we will set a checkout variable for wirecard
-      # because it goes through the front-end
-      # NOTE : this could be adapted to any provider
-      if wirecard.success?
-        @checkout = wirecard.data[:checkout]
-      else
-        flash[:error] = wirecard.error
-        redirect_to navigation.back(1)
+    # if it contains `page` we render the page
+    # otherwise you redirect to the `url`
+    if checkout_gateway.success?
+      if checkout_gateway.data[:page]
+        @checkout = checkout_gateway.data[:page]
+      elsif checkout_gateway.data[:url]
+        redirect_to checkout_gateway.data[:url]
       end
-
-    elsif payment_gateway.provider == :alipay
-
-      alipay = gateway.alipay
-
-      if alipay.success?
-        redirect_to alipay.data[:url]
-      else
-        flash[:error] = alipay.error
-        redirect_to navigation.back(1)
-      end
-
+      return
     end
+
+    flash[:error] = checkout_gateway.error
+    redirect_to navigation.back(1)
   end
 
   def acceptable_payment_method?(payment_method)
