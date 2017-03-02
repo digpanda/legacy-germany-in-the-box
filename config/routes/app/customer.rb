@@ -11,15 +11,22 @@ namespace :customer do
     get :payment_method
     post :gateway
 
-    post :cancel
-    post :processing
-    post :success
-    post :fail
-    
-    get :cancel
-    get :processing
-    get :success
-    get :fail
+    namespace :callback do
+
+      resource :wirecard, :controller => 'checkout/callback/wirecard' do
+        post :cancel
+        post :processing
+        post :success
+        post :fail
+
+        get :cancel
+        get :processing
+        get :success
+        get :fail
+      end
+
+    end
+
   end
 
   resource :account, :controller => 'account' do
