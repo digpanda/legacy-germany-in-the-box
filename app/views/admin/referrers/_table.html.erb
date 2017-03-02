@@ -37,8 +37,9 @@
             <% end %>
           </td>
           <td>
-            <a href="<%= admin_referrer_coupon_path(referrer) %>" data-method="post"><i class="fa fa-magic tooltipster buttons buttons__purple" title="Generate Coupon"></i></a>
-
+            <% unless referrer.has_referrer_coupon? %>
+              <a href="<%= admin_referrer_coupon_path(referrer) %>" data-method="post"><i class="fa fa-magic tooltipster buttons buttons__purple" title="Generate Coupon"></i></a>
+            <% end %>
             <a href="<%= admin_user_path(referrer) %>"><i class="fa fa-eye tooltipster buttons buttons__edit"></i></a>
             <% if referrer.destroyable? %>
               <%= link_to '', admin_user_path(referrer), :method => :delete, data: { confirm: "Are you sure to remove this user account ?" }, :class => 'tooltipster fa fa-times buttons buttons__delete', :title => "Delete this user" %>

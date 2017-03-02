@@ -34,16 +34,18 @@ class Coupon
   end
 
   def self.create_referrer_coupon(referrer)
-    Coupon.create({
-                      :code => SecureRandom.hex(4)[0,4],
-                      :unit => :percent,
-                      :discount => Setting.instance.referrers_rate,
-                      :minimum_order => 0,
-                      :unique => false,
-                      :desc => 'Referrer Coupon',
-                      :referrer => referrer,
-                      :exclude_china => true
-                  })
+    unless referrer.has_referrer_coupon?
+      Coupon.create({
+                        :code => SecureRandom.hex(4)[0,4],
+                        :unit => :percent,
+                        :discount => Setting.instance.referrers_rate,
+                        :minimum_order => 0,
+                        :unique => false,
+                        :desc => 'Referrer Coupon',
+                        :referrer => referrer,
+                        :exclude_china => true
+                    })
+    end
   end
 
 end

@@ -25,7 +25,7 @@ class Admin::ReferrersController < ApplicationController
     if coupon
       flash[:success] = "The coupon was created."
     else
-      flash[:error] = "The coupon was not created (#{coupon.errors.full_messages.join(', ')})"
+      flash[:error] = "The coupon was not created (#{coupon&.errors&.full_messages&.join(', ')})"
     end
     redirect_to navigation.back(1)
   end

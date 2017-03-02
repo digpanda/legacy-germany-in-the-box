@@ -169,6 +169,10 @@ class User
     notifications.unreads.count > 0
   end
 
+  def has_referrer_coupon?
+    self.referrer_coupons.count > 0
+  end
+
   def assign_referrer_id
     self.update(referrer_id: "#{self.short_nickname}#{self.short_union_id}#{Time.now.day}#{Time.now.month}#{Time.now.year}".downcase) unless self.referrer_id
   end
