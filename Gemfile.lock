@@ -555,16 +555,7 @@ PLATFORMS
 
 DEPENDENCIES
   abstract_method
-<<<<<<< HEAD
-<<<<<<< HEAD
-  adyen
-  alipay
-=======
   alipay (~> 0.14.0)
->>>>>>> big progress refactoring payment system
-=======
-  alipay (~> 0.14.0)
->>>>>>> f2637aff86565d1eeebc8b09ac4871af2343e591
   api_cache
   better_errors
   bootstrap-datepicker-rails
