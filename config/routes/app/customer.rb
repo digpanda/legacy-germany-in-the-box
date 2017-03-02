@@ -7,13 +7,10 @@ namespace :customer do
   resource :cart, :controller => 'cart' do
   end
 
-  resource :checkout, :controller => 'checkout' do
-    get :payment_method
-    post :gateway
-
+  namespace :checkout do
     namespace :callback do
 
-      resource :wirecard, :controller => 'checkout/callback/wirecard' do
+      resource :wirecard, :controller => 'wirecard' do
         post :cancel
         post :processing
         post :success
@@ -25,8 +22,15 @@ namespace :customer do
         get :fail
       end
 
-    end
+      resource :alipay, :controller => 'alipay' do
+      end
 
+    end
+  end
+
+  resource :checkout, :controller => 'checkout' do
+    get :payment_method
+    post :gateway
   end
 
   resource :account, :controller => 'account' do

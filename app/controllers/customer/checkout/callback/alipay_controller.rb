@@ -1,4 +1,4 @@
-class Customer::Checkout::Callback::AlipayController < Customer::AddressesController
+class Customer::Checkout::Callback::AlipayController < ApplicationController
 
   authorize_resource :class => false
   layout :default_layout

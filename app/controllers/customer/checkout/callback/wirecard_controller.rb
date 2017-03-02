@@ -1,7 +1,8 @@
-class Customer::Checkout::Callback::WirecardController < Customer::AddressesController
+class Customer::Checkout::Callback::WirecardController < ApplicationController
 
   authorize_resource :class => false
   layout :default_layout
+  protect_from_forgery :except => [:success, :fail, :cancel, :processing]
 
   def success
 
