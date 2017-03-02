@@ -67,12 +67,12 @@ class Admin::Shops::PackageSetsController < ApplicationController
   def params_valid_product_ids
     package_set_params["package_skus_attributes"]&.map do |key, value|
       value["product_id"] unless value["product_id"].empty?
-    end.compact
+    end&.compact
   end
 
   def clean_up_package_skus!
     package_set.package_skus.map(&:product_id).map(&:to_s).each do |product_id|
-      unless params_valid_product_ids.include? product_id
+      unless params_valid_product_ids&.include? product_id
         package_set.package_skus.where(product_id: product_id).delete
       end
     end
