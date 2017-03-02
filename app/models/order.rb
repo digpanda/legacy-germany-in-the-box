@@ -6,10 +6,6 @@ class Order
 
   Numeric.include CoreExtensions::Numeric::CurrencyLibrary
 
-  # OLD TO REMOVE
-  field :tax_and_duty_cost,         type: Float, default: 0
-  #
-
   UNPROCESSABLE_TIME = [11,12] # 11am to 12am -> German Hour
   BOUGHT_OR_CANCELLED = [:paid, :custom_checkable, :custom_checking, :shipped, :cancelled]
   BOUGHT_OR_UNVERIFIED = [:payment_unverified, :paid, :custom_checkable, :custom_checking, :shipped]
@@ -36,6 +32,7 @@ class Order
     end
   end
 
+  field :logistic_partner, type: Symbol, default: :borderguru
   field :border_guru_order_id,      type: String
   field :border_guru_shipment_id,   type: String
   field :border_guru_link_tracking, type: String
