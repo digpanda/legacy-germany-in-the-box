@@ -108,6 +108,5 @@ class Api::Webhook::Alipay::CustomersController < Api::ApplicationController
   # def merchant_id
   #   @merchant_id ||= datas[:merchant_account_id].first
   # end
-  #
 
 end
