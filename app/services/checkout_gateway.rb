@@ -16,14 +16,16 @@ class CheckoutGateway < BaseService
   end
 
   def alipay
-    binding.pry
-    return_with(:success, :url => "http://fuckit.com")
-  # rescue Wirecard::Base::Error => exception
-  #   return_with(:error, "An error occurred while processing the gateway (#{exception})")
+    return_with(:success, :url => alipay_checkout_url)
   end
 
   private
 
+  def alipay_checkout_url
+    @alipay_checkout_url ||= AlipayCheckout.new(user, order, payment_gateway).checkout_url!
+  end
+
+  # NOTE : this will create a new payment entry and prepare it
   def wirecard_checkout
     @wirecard_checkout ||= WirecardCheckout.new(root_url, user, order, payment_gateway.payment_method).checkout!
   end
