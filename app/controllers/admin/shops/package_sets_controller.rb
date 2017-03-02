@@ -65,7 +65,7 @@ class Admin::Shops::PackageSetsController < ApplicationController
   private
 
   def params_valid_product_ids
-    package_set_params["package_skus_attributes"].map do |key, value|
+    package_set_params["package_skus_attributes"]&.map do |key, value|
       value["product_id"] unless value["product_id"].empty?
     end.compact
   end
