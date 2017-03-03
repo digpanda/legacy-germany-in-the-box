@@ -6,6 +6,7 @@ class Customer::Checkout::Callback::WirecardController < ApplicationController
 
   def success
 
+    SlackDispatcher.new.message("PARAMS IN CONTROLLER : #{params}")
     checkout_callback = CheckoutCallback.new(current_user, params).wirecard!
     unless checkout_callback.success?
       SlackDispatcher.new.message("Error checkout callback #{checkout_callback.error}")
