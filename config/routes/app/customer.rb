@@ -26,6 +26,14 @@ namespace :customer do
   resource :checkout, :controller => 'checkout' do
     get :payment_method
     post :gateway
+
+    # TODO : to remove
+    post :processing
+    post :success
+    post :fail
+    get :cancel
+    # END REMOVE
+
   end
 
   resource :account, :controller => 'account' do

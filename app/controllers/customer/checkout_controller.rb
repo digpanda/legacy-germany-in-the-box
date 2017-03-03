@@ -14,6 +14,10 @@ class Customer::CheckoutController < ApplicationController
 
   before_action :freeze_header
 
+  def success
+    SlackDispatcher.new.message("THE POST FOR SUCCESS JUST WORKED")
+  end
+
   def create
     @order = cart_manager.order(shop: shop, call_api: false)
     current_address = current_user.addresses.find(params[:delivery_destination_id])
