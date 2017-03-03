@@ -11,10 +11,14 @@ namespace :customer do
     namespace :callback do
 
       resource :wirecard, :controller => 'wirecard' do
+        post :cancel
         post :processing
         post :success
         post :fail
         get :cancel
+        get :processing
+        get :success
+        get :fail
       end
 
       resource :alipay, :controller => 'alipay' do
