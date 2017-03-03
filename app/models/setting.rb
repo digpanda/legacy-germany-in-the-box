@@ -42,7 +42,13 @@ class Setting
   validates :max_total_per_day,       presence: true,   :numericality => { :greater_than => 0 }
 
   def self.instance
-    @rate ||= Setting.first_or_create
+    @instance ||= Setting.first_or_create
+  end
+
+  # we overwrite the `create!` method so it forces to actually
+  # recreate a new instance and reset the memoization
+  def self.create!(*args)
+    @instance = Setting.first_or_create(*args)
   end
 
   private_class_method :create

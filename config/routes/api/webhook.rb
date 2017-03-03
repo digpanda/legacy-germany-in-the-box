@@ -8,4 +8,9 @@ namespace :webhook do
     end
   end
 
+  namespace :alipay do
+    resource :customer do
+    end
+  end
+
 end

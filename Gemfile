@@ -6,7 +6,7 @@ source "https://rubygems.org"
 # for direct local change without repo, use :path => "../../wirecard-elastic"
 gem "wirecard-elastic", git: "https://github.com/Loschcode/wirecard-elastic.git", branch: "master", tag: "v0.2.2"
 
-gem "adyen"
+gem "alipay", "~> 0.14.0"
 
 gem "geocoder"
 gem "api_cache"
@@ -73,7 +73,6 @@ gem "mongoid_magic_counter_cache"
 gem "carrierwave-ftp", :require => "carrierwave/storage/ftp" # FTP only
 gem "sidekiq"
 gem "redis-rails"
-gem "alipay"
 
 gem "omniauth"
 gem "omniauth-wechat-oauth2", git: "https://github.com/yangsr/omniauth-wechat-oauth2.git"

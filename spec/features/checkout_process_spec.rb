@@ -6,12 +6,37 @@ feature "checkout process", :js => true  do
     login!(customer)
   end
 
-  context "checkout one normal product" do
+  context "with manual logistic partner" do
 
     let(:shop) { FactoryGirl.create(:shop, :with_payment_gateways) }
     let(:product) { FactoryGirl.create(:product, shop_id: shop.id) }
 
     before(:each) do
+      Setting.delete_all
+      Setting.create!(:logistic_partner => :manual)
+      add_to_cart!(product)
+      page.driver.browser.navigate.refresh # the AJAX call could make problem otherwise
+      page.first('#cart').click # go to checkout
+      page.first('.\\+checkout-button').click # go to address step
+    end
+
+    scenario "can pay successfully" do
+
+      page.first('input[id^=delivery_destination_id').click # click on the first address
+      pay_and_check_manual_partner!
+
+    end
+
+  end
+
+  context "with borderguru" do
+
+    let(:shop) { FactoryGirl.create(:shop, :with_payment_gateways) }
+    let(:product) { FactoryGirl.create(:product, shop_id: shop.id) }
+
+    before(:each) do
+      Setting.delete_all
+      Setting.create!(:logistic_partner => :borderguru)
       add_to_cart!(product)
       page.driver.browser.navigate.refresh # the AJAX call could make problem otherwise
       page.first('#cart').click # go to checkout
@@ -60,7 +85,6 @@ feature "checkout process", :js => true  do
     context "address already setup" do
 
       # we use the default `customer` which includes a valid address
-
       scenario "can not go further without address selected" do
 
         page.first('.\\+checkout-button').click # go to payment step
@@ -139,7 +163,6 @@ feature "checkout process", :js => true  do
       end
 
     end
-
 
   end
 

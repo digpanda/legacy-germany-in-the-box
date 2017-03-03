@@ -1,13 +1,13 @@
 (function() {
   'use strict';
 
-  var globals = typeof global === 'undefined' ? self : global;
+  var globals = typeof window === 'undefined' ? global : window;
   if (typeof globals.require === 'function') return;
 
   var modules = {};
   var cache = {};
   var aliases = {};
-  var has = {}.hasOwnProperty;
+  var has = ({}).hasOwnProperty;
 
   var expRe = /^\.\.?(\/|$)/;
   var expand = function(root, name) {
@@ -36,7 +36,8 @@
   };
 
   var initModule = function(name, definition) {
-    var hot = hmr && hmr.createHot(name);
+    var hot = null;
+    hot = hmr && hmr.createHot(name);
     var module = {id: name, exports: {}, hot: hot};
     cache[name] = module;
     definition(module.exports, localRequire(name), module);
@@ -84,7 +85,7 @@
   };
 
   require.register = require.define = function(bundle, fn) {
-    if (bundle && typeof bundle === 'object') {
+    if (typeof bundle === 'object') {
       for (var key in bundle) {
         if (has.call(bundle, key)) {
           require.register(key, bundle[key]);
@@ -115,7 +116,7 @@
 })();
 
 (function() {
-var global = typeof window === 'undefined' ? this : window;
+var global = window;
 var __makeRelativeRequire = function(require, mappings, pref) {
   var none = {};
   var tryReq = function(name, pref) {
@@ -212,7 +213,6 @@ var PackageSets = {
 };
 
 module.exports = PackageSets;
-
 });
 
 require.register("javascripts/controllers/admin/shops/products.js", function(exports, require, module) {
@@ -278,7 +278,6 @@ var Products = {
 };
 
 module.exports = Products;
-
 });
 
 require.register("javascripts/controllers/admin/shops/products/skus.js", function(exports, require, module) {
@@ -305,7 +304,6 @@ var ProductsSkus = {
 };
 
 module.exports = ProductsSkus;
-
 });
 
 require.register("javascripts/controllers/admin/shops/products/variants.js", function(exports, require, module) {
@@ -332,7 +330,6 @@ var ProductsVariants = {
 };
 
 module.exports = ProductsVariants;
-
 });
 
 require.register("javascripts/controllers/customer/cart/show.js", function(exports, require, module) {
@@ -573,7 +570,6 @@ var CustomerCartShow = {
 };
 
 module.exports = CustomerCartShow;
-
 });
 
 require.register("javascripts/controllers/customer/checkout/gateway.js", function(exports, require, module) {
@@ -609,7 +605,6 @@ var CustomerGatewayCreate = {
 };
 
 module.exports = CustomerGatewayCreate;
-
 });
 
 require.register("javascripts/controllers/customer/checkout/payment_method.js", function(exports, require, module) {
@@ -643,7 +638,6 @@ var CustomerCheckoutPaymentMethod = {
 };
 
 module.exports = CustomerCheckoutPaymentMethod;
-
 });
 
 require.register("javascripts/controllers/customer/orders/addresses.js", function(exports, require, module) {
@@ -681,7 +675,6 @@ var OrdersAddresses = {
 };
 
 module.exports = OrdersAddresses;
-
 });
 
 require.register("javascripts/controllers/customer/orders/show.js", function(exports, require, module) {
@@ -711,7 +704,6 @@ var OrdersShow = {
 };
 
 module.exports = OrdersShow;
-
 });
 
 require.register("javascripts/controllers/guest/feedback.js", function(exports, require, module) {
@@ -734,7 +726,6 @@ var GuestFeedback = {
 };
 
 module.exports = GuestFeedback;
-
 });
 
 require.register("javascripts/controllers/guest/products/show.js", function(exports, require, module) {
@@ -1090,7 +1081,6 @@ var ProductsShow = {
 };
 
 module.exports = ProductsShow;
-
 });
 
 require.register("javascripts/controllers/shopkeeper/products/skus.js", function(exports, require, module) {
@@ -1153,7 +1143,6 @@ var ProductNewSku = {
 };
 
 module.exports = ProductNewSku;
-
 });
 
 require.register("javascripts/controllers/shopkeeper/products/skus/index.js", function(exports, require, module) {
@@ -1185,7 +1174,6 @@ var ProductsShowSkus = {
 };
 
 module.exports = ProductsShowSkus;
-
 });
 
 require.register("javascripts/controllers/shopkeeper/products/variants.js", function(exports, require, module) {
@@ -1212,7 +1200,6 @@ var ProductsVariants = {
 };
 
 module.exports = ProductsVariants;
-
 });
 
 require.register("javascripts/controllers/shopkeeper/wirecards/apply.js", function(exports, require, module) {
@@ -1248,7 +1235,6 @@ var ShopkeeperWirecardApply = {
 };
 
 module.exports = ShopkeeperWirecardApply;
-
 });
 
 require.register("javascripts/initialize.js", function(exports, require, module) {
@@ -1316,7 +1302,6 @@ $(document).ready(function () {
    */
   obj.init();
 });
-
 });
 
 require.register("javascripts/lib/casing.js", function(exports, require, module) {
@@ -1363,7 +1348,6 @@ var Casing = {
 };
 
 module.exports = Casing;
-
 });
 
 require.register("javascripts/lib/content_preloader.js", function(exports, require, module) {
@@ -1394,7 +1378,6 @@ var ContentPreloader = {
 };
 
 module.exports = ContentPreloader;
-
 });
 
 require.register("javascripts/lib/foreign/datepicker-de.js", function(exports, require, module) {
@@ -1434,7 +1417,6 @@ require.register("javascripts/lib/foreign/datepicker-de.js", function(exports, r
 
   return datepicker.regional.de;
 });
-
 });
 
 require.register("javascripts/lib/foreign/datepicker-zh-CN.js", function(exports, require, module) {
@@ -1474,7 +1456,6 @@ require.register("javascripts/lib/foreign/datepicker-zh-CN.js", function(exports
 
   return datepicker.regional["zh-CN"];
 });
-
 });
 
 require.register("javascripts/lib/messages.js", function(exports, require, module) {
@@ -1509,7 +1490,6 @@ var Messages = { // NOTE : We should use a template system to handle the HTML he
 };
 
 module.exports = Messages;
-
 });
 
 require.register("javascripts/lib/post_form.js", function(exports, require, module) {
@@ -1555,7 +1535,6 @@ var PostForm = {
 };
 
 module.exports = PostForm;
-
 });
 
 require.register("javascripts/lib/preloader.js", function(exports, require, module) {
@@ -1584,7 +1563,6 @@ var Preloader = {
 };
 
 module.exports = Preloader;
-
 });
 
 require.register("javascripts/lib/skus.js", function(exports, require, module) {
@@ -1657,7 +1635,6 @@ var Skus = {
 };
 
 module.exports = Skus;
-
 });
 
 require.register("javascripts/lib/translation.js", function(exports, require, module) {
@@ -1699,7 +1676,6 @@ var Translation = {
 };
 
 module.exports = Translation;
-
 });
 
 require.register("javascripts/lib/url_process.js", function(exports, require, module) {
@@ -1737,7 +1713,6 @@ var UrlProcess = {
 };
 
 module.exports = UrlProcess;
-
 });
 
 require.register("javascripts/lib/variants.js", function(exports, require, module) {
@@ -1815,7 +1790,6 @@ var Variants = {
 };
 
 module.exports = Variants;
-
 });
 
 require.register("javascripts/models.js", function(exports, require, module) {
@@ -1831,7 +1805,6 @@ var Models = [
 ];
 
 module.exports = Models;
-
 });
 
 require.register("javascripts/models/cart.js", function(exports, require, module) {
@@ -1868,7 +1841,6 @@ var Cart = {
 };
 
 module.exports = Cart;
-
 });
 
 require.register("javascripts/models/duty_category.js", function(exports, require, module) {
@@ -1901,7 +1873,6 @@ var DutyCategory = {
 };
 
 module.exports = DutyCategory;
-
 });
 
 require.register("javascripts/models/navigation_model.js", function(exports, require, module) {
@@ -1934,7 +1905,6 @@ var NavigationModel = {
 };
 
 module.exports = NavigationModel;
-
 });
 
 require.register("javascripts/models/order_item.js", function(exports, require, module) {
@@ -2010,7 +1980,6 @@ var OrderItem = {
 };
 
 module.exports = OrderItem;
-
 });
 
 require.register("javascripts/models/product.js", function(exports, require, module) {
@@ -2062,7 +2031,6 @@ var Product = {
 };
 
 module.exports = Product;
-
 });
 
 require.register("javascripts/models/product_sku.js", function(exports, require, module) {
@@ -2116,7 +2084,6 @@ var ProductSku = {
 };
 
 module.exports = ProductSku;
-
 });
 
 require.register("javascripts/models/translation.js", function(exports, require, module) {
@@ -2150,7 +2117,6 @@ var Translations = {
 };
 
 module.exports = Translations;
-
 });
 
 require.register("javascripts/services/refresh_total_products.js", function(exports, require, module) {
@@ -2184,7 +2150,6 @@ var RefreshTotalProducts = {
 };
 
 module.exports = RefreshTotalProducts;
-
 });
 
 require.register("javascripts/starters.js", function(exports, require, module) {
@@ -2196,7 +2161,6 @@ require.register("javascripts/starters.js", function(exports, require, module) {
 var Starters = ['auto_resize', 'back_to_top', 'bootstrap', 'china_city', 'datepicker', 'editable_fields', 'footer', 'input_validation', 'images_handler', 'lazy_loader', 'left_menu', 'links_behaviour', 'messages', 'mobile_menu', 'navigation', 'product_favorite', 'product_form', 'products_list', 'qrcode', 'refresh_time', 'responsive', 'search', 'sku_form', 'sweet_alert', 'tooltipster', 'total_products'];
 
 module.exports = Starters;
-
 });
 
 require.register("javascripts/starters/auto_resize.js", function(exports, require, module) {
@@ -2222,7 +2186,6 @@ var AutoResize = {
 };
 
 module.exports = AutoResize;
-
 });
 
 require.register("javascripts/starters/back_to_top.js", function(exports, require, module) {
@@ -2271,7 +2234,6 @@ var BackToTop = {
 };
 
 module.exports = BackToTop;
-
 });
 
 require.register("javascripts/starters/bootstrap.js", function(exports, require, module) {
@@ -2307,7 +2269,6 @@ var Bootstrap = {
 };
 
 module.exports = Bootstrap;
-
 });
 
 require.register("javascripts/starters/china_city.js", function(exports, require, module) {
@@ -2370,7 +2331,6 @@ var ChinaCity = {
 };
 
 module.exports = ChinaCity;
-
 });
 
 require.register("javascripts/starters/datepicker.js", function(exports, require, module) {
@@ -2409,7 +2369,6 @@ var Datepicker = {
 };
 
 module.exports = Datepicker;
-
 });
 
 require.register("javascripts/starters/editable_fields.js", function(exports, require, module) {
@@ -2461,7 +2420,6 @@ var EditableFields = {
 };
 
 module.exports = EditableFields;
-
 });
 
 require.register("javascripts/starters/footer.js", function(exports, require, module) {
@@ -2520,7 +2478,6 @@ var Footer = {
 };
 
 module.exports = Footer;
-
 });
 
 require.register("javascripts/starters/images_handler.js", function(exports, require, module) {
@@ -2622,7 +2579,6 @@ var ImagesHandler = {
 };
 
 module.exports = ImagesHandler;
-
 });
 
 require.register("javascripts/starters/input_validation.js", function(exports, require, module) {
@@ -2660,7 +2616,6 @@ var InputValidation = {
 };
 
 module.exports = InputValidation;
-
 });
 
 require.register("javascripts/starters/lazy_loader.js", function(exports, require, module) {
@@ -2692,7 +2647,6 @@ var LazyLoader = {
 };
 
 module.exports = LazyLoader;
-
 });
 
 require.register("javascripts/starters/left_menu.js", function(exports, require, module) {
@@ -2746,7 +2700,6 @@ var LeftMenu = {
 };
 
 module.exports = LeftMenu;
-
 });
 
 require.register("javascripts/starters/links_behaviour.js", function(exports, require, module) {
@@ -2779,7 +2732,6 @@ var LinkBehaviour = {
 };
 
 module.exports = LinkBehaviour;
-
 });
 
 require.register("javascripts/starters/messages.js", function(exports, require, module) {
@@ -2817,7 +2769,6 @@ var Messages = {
 };
 
 module.exports = Messages;
-
 });
 
 require.register("javascripts/starters/mobile_menu.js", function(exports, require, module) {
@@ -2856,7 +2807,6 @@ var MobileMenu = {
 };
 
 module.exports = MobileMenu;
-
 });
 
 require.register("javascripts/starters/navigation.js", function(exports, require, module) {
@@ -2889,7 +2839,6 @@ var Navigation = {
 };
 
 module.exports = Navigation;
-
 });
 
 require.register("javascripts/starters/product_favorite.js", function(exports, require, module) {
@@ -2998,7 +2947,6 @@ var ProductFavorite = {
 };
 
 module.exports = ProductFavorite;
-
 });
 
 require.register("javascripts/starters/product_form.js", function(exports, require, module) {
@@ -3064,7 +3012,6 @@ var ProductForm = {
 };
 
 module.exports = ProductForm;
-
 });
 
 require.register("javascripts/starters/products_list.js", function(exports, require, module) {
@@ -3088,7 +3035,6 @@ var ProductsList = { // CURRENTLY NOT IN USED IN THE SYSTEM
 };
 
 module.exports = ProductsList;
-
 });
 
 require.register("javascripts/starters/qrcode.js", function(exports, require, module) {
@@ -3185,7 +3131,6 @@ var QrCode = {
 };
 
 module.exports = QrCode;
-
 });
 
 require.register("javascripts/starters/refresh_time.js", function(exports, require, module) {
@@ -3233,7 +3178,6 @@ var RefreshTime = {
 };
 
 module.exports = RefreshTime;
-
 });
 
 require.register("javascripts/starters/responsive.js", function(exports, require, module) {
@@ -3277,7 +3221,6 @@ var Responsive = {
 };
 
 module.exports = Responsive;
-
 });
 
 require.register("javascripts/starters/search.js", function(exports, require, module) {
@@ -3340,7 +3283,6 @@ var Search = {
 };
 
 module.exports = Search;
-
 });
 
 require.register("javascripts/starters/sku_form.js", function(exports, require, module) {
@@ -3418,7 +3360,6 @@ var SkuForm = {
 };
 
 module.exports = SkuForm;
-
 });
 
 require.register("javascripts/starters/sweet_alert.js", function(exports, require, module) {
@@ -3483,7 +3424,6 @@ var SweetAlert = {
 };
 
 module.exports = SweetAlert;
-
 });
 
 require.register("javascripts/starters/tooltipster.js", function(exports, require, module) {
@@ -3512,7 +3452,6 @@ var Tooltipster = {
 };
 
 module.exports = Tooltipster;
-
 });
 
 require.register("javascripts/starters/total_products.js", function(exports, require, module) {
@@ -3542,7 +3481,6 @@ var TotalProducts = {
 };
 
 module.exports = TotalProducts;
-
 });
 
 require.register("___globals___", function(exports, require, module) {

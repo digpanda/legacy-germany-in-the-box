@@ -151,8 +151,8 @@ class Shop
     products.inject(Set.new) {|cs, p| cs = cs + p.category_ids }.map { |c| all_categories[c]}
   end
 
-  def accepted_payment_methods
-    self.payment_gateways.map { |payment_gateway| payment_gateway.payment_method.to_sym }
+  def payment_method?(payment_method)
+    self.payment_gateways.map(&:payment_method).include? payment_method
   end
 
   def discount?

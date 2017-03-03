@@ -3,17 +3,34 @@ namespace :customer do
 
   resource :referrer, :controller => 'referrer' do
   end
-  
+
   resource :cart, :controller => 'cart' do
+  end
+
+  namespace :checkout do
+    namespace :callback do
+
+      resource :wirecard, :controller => 'wirecard' do
+        post :cancel
+        post :processing
+        post :success
+        post :fail
+
+        get :cancel
+        get :processing
+        get :success
+        get :fail
+      end
+
+      resource :alipay, :controller => 'alipay' do
+      end
+
+    end
   end
 
   resource :checkout, :controller => 'checkout' do
     get :payment_method
     post :gateway
-    post :processing
-    post :success
-    post :fail
-    get :cancel
   end
 
   resource :account, :controller => 'account' do

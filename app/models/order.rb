@@ -235,7 +235,7 @@ class Order
 
   # we considered as bought any status after paid
   def bought?
-    [:paid, :custom_checkable, :custom_checking, :shipped].include?(status)
+    [:paid, :custom_checkable, :custom_checking, :shipped].include?(status) && paid_at
   end
 
   def new?

@@ -11,6 +11,24 @@ module Helpers
         expect(page).to have_content "此优惠券已被成功使用。"
       end
 
+      def pay_and_check_manual_partner!
+
+        page.first('.\\+checkout-button').click # go to payment step
+        on_payment_method_page?
+        checkout_window = window_opened_by do
+          page.first('input[value=creditcard]').click # pay with wirecard
+          page.first('.\\+checkout-button').click
+        end
+
+        within_window checkout_window do
+          wait_for_page('#hpp-logo') # we are on wirecard hpp
+          apply_wirecard_success_creditcard!
+          expect(page).to have_content("下单成功") # means success in chinese
+          expect(page).to have_content("Tracking unavailable")
+        end
+
+      end
+
       def pay_and_get_label!
 
         page.first('.\\+checkout-button').click # go to payment step
