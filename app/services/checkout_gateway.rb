@@ -43,7 +43,7 @@ class CheckoutGateway < BaseService
   end
 
   def base_url
-    "#{request.protocol}#{request.host_with_port}"
+    "#{request.protocol}#{request.host_with_port}/"
   end
 
 end
