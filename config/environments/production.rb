@@ -20,7 +20,7 @@ Rails.application.configure do
   }
 
   # used for root_url and equivalent
-  Rails.application.routes.default_url_options = {protocol: :https, host: 'germanyinthebox.com', port: 443}
+  Rails.application.routes.default_url_options = {protocol: :https, host: 'www.germanyinthebox.com', port: 443}
 
   config.action_mailer.default_url_options = {host: 'germanyinthebox.com', port: 80}
 
