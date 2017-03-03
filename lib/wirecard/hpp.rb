@@ -25,6 +25,7 @@ module Wirecard
     def initialize(base_url, user, order, credentials={})
 
       @base_url             = base_url
+      SlackDispatcher.new.message("HTTP : #{base_url}")
       @user                 = user
       @order                = order
       @credentials          = credentials
