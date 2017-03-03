@@ -6,7 +6,6 @@ class Customer::Checkout::Callback::WirecardController < ApplicationController
 
   def success
 
-    binding.pry
     return unless callback!
 
     order_payment = OrderPayment.where(:request_id => params[:request_id]).first
