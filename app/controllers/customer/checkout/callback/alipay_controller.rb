@@ -36,12 +36,10 @@ class Customer::Checkout::Callback::AlipayController < ApplicationController
     # we refresh the bare minimum and wait the notification to verify the transaction itself
     # TODO : we should also check with the price and all
     order_payment = order.order_payments.where(status: :scheduled).first
+    # TODO : maybe it's already verified so we go directly to the correct area depending the result ?
     order_payment.transaction_id = transaction_id
 
-    if success?
-      order_payment.status = :unverified
-      order_payment.save
-    else
+    unless success?
       order_payment.status = :failed
       order_payment.save
 
@@ -49,7 +47,19 @@ class Customer::Checkout::Callback::AlipayController < ApplicationController
       # NOTE : we should replace wirecard error here
       warn_developers(Wirecard::Base::Error.new, "Something went wrong during the payment.")
       redirect_to navigation.back(2)
+      return
     end
+
+    order.status = :payment_unverified
+    order.save
+    order_payment.status = :unverified
+    order_payment.save
+
+    # whatever happens with BorderGuru, if the payment is a success we consider
+    # the transaction / order as successful, we will deal with BorderGuru through Slack / Emails
+    flash[:success] = I18n.t(:checkout_ok, scope: :checkout)
+
+    redirect_to customer_orders_path
 
   end
 
