@@ -1,4 +1,5 @@
 # prepare an order to be transmitted to the Alipay server
+
 class AlipayCheckout < BaseService
 
   include Rails.application.routes.url_helpers
@@ -26,7 +27,7 @@ class AlipayCheckout < BaseService
         out_trade_no: "#{order.id}", # TODO : maybe replace by random number ?
         subject: "Order #{order.id}",
         total_fee: "#{order.end_price.in_euro.to_yuan.display_raw}",
-        return_url: processing_customer_checkout_url,
+        return_url: customer_checkout_callback_alipay_url,
         notify_url: api_webhook_alipay_customer_url,
       )
     end
