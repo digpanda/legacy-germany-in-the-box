@@ -4,9 +4,10 @@ class AlipayCheckout < BaseService
 
   include Rails.application.routes.url_helpers
 
-  attr_reader :user, :order, :payment_gateway
+  attr_reader :base_url, :user, :order, :payment_gateway
 
-  def initialize(user, order, payment_gateway)
+  def initialize(base_url, user, order, payment_gateway)
+    @base_url = base_url
     @user  = user
     @order = order
     @payment_gateway = payment_gateway
@@ -27,8 +28,8 @@ class AlipayCheckout < BaseService
         out_trade_no: "#{order.id}", # TODO : maybe replace by random number ?
         subject: "Order #{order.id}",
         total_fee: "#{order.end_price.in_euro.to_yuan.display_raw}",
-        return_url: customer_checkout_callback_alipay_url,
-        notify_url: api_webhook_alipay_customer_url,
+        return_url: "#{base_url}#{customer_checkout_callback_alipay_path}",
+        notify_url: "#{base_url}#{api_webhook_alipay_customer_path}",
       )
     end
   end
