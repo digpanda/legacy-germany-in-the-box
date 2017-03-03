@@ -19,10 +19,17 @@ class CheckoutCallback < BaseService
     return_with(:success)
   end
 
+  # def alipay!
+  #   binding.pry
+  # end
+
   private
 
   def solve_wirecard_order_payment_and_refresh!
     OrderPayment.where({merchant_id: params["merchant_account_id"], request_id: params["request_id"]}).first.tap do |order_payment|
+      # we check WireCard API which makes it safe
+      # so we can change the status itself
+      # NOTE : we shouldn't do it for anything else
       WirecardPaymentChecker.new(params.symbolize_keys.merge({:order_payment => order_payment})).update_order_payment!
       order_payment.status = forced_status if forced_status
       order_payment.save

@@ -11,6 +11,7 @@ class Api::Webhook::Alipay::CustomersController < Api::ApplicationController
   def create
 
     devlog.info "Alipay started to communicate with us ..."
+    binding.pry
     SlackDispatcher.new.message(datas)
     devlog.info("Raw datas : #{datas}")
 
