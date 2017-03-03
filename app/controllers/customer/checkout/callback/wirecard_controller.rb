@@ -6,7 +6,12 @@ class Customer::Checkout::Callback::WirecardController < ApplicationController
 
   def success
 
-    return unless CheckoutCallback.new(current_user, params).wirecard!.success?
+    checkout_callback = CheckoutCallback.new(current_user, params).wirecard!
+    unless checkout_callback.success?
+      flash[:error] = "An error occurred with the callback (#{checkout_callback.error})"
+      redirect_to navigation.back(2)
+      return
+    end
 
     order_payment = OrderPayment.where(:request_id => params[:request_id]).first
     order = order_payment.order
@@ -41,7 +46,13 @@ class Customer::Checkout::Callback::WirecardController < ApplicationController
   def fail
     flash[:error] = I18n.t(:failed, scope: :payment)
     warn_developers(Wirecard::Base::Error.new, "Something went wrong during the payment.")
-    return unless CheckoutCallback.new(current_user, params, :failed).wirecard!.success?
+
+    checkout_callback = CheckoutCallback.new(current_user, params, :failed).wirecard!
+    unless checkout_callback.success?
+      flash[:error] = "An error occurred with the callback (#{checkout_callback.error})"
+      redirect_to navigation.back(2)
+      return
+    end
     redirect_to navigation.back(2)
   end
 
