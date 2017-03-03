@@ -4,9 +4,7 @@ class Customer::Checkout::Callback::AlipayController < ApplicationController
   layout :default_layout
 
   def show
-
     binding.pry
-
   end
 
 end

@@ -104,7 +104,7 @@ class Order
   index({user: 1},  {unique: false,   name: :idx_order_user,   sparse: true})
 
   before_save :create_border_guru_order_id
-  after_save :update_paid_at, :update_cancelled_at, :make_bill_id
+  after_save :make_bill_id, :update_paid_at, :update_cancelled_at
 
   def create_border_guru_order_id
     unless self.border_guru_order_id
@@ -235,7 +235,7 @@ class Order
 
   # we considered as bought any status after paid
   def bought?
-    [:paid, :custom_checkable, :custom_checking, :shipped].include?(status)
+    [:paid, :custom_checkable, :custom_checking, :shipped].include?(status) && paid_at
   end
 
   def new?
