@@ -9,6 +9,7 @@ class CheckoutCallback < BaseService
   end
 
   def wirecard!
+    SlackDispatcher.new.message("#{params}")
     SlackDispatcher.new.message("`#{user.email}` == `#{params['email']}` ?")
     if user.email != params["email"]
       return return_with(:error, I18n.t(:account_conflict, scope: :notice))
