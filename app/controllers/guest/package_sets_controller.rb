@@ -30,6 +30,7 @@ class Guest::PackageSetsController < ApplicationController
                       locked: true,
                       package_set: package_sku.package_set)
     end
+    order.update(referrer_rate: package_set.referrer_rate)
     # we first empty the cart manager to make it fresh
     # cart_manager.empty! <-- to avoid multiple package order
     cart_manager.store(order)
