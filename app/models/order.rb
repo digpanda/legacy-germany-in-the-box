@@ -202,6 +202,20 @@ class Order
     end
   end
 
+  def displayable_total_quantity
+    package_set_quantity = {}
+    order_items.inject(0) do |sum, order_item|
+      if order_item.package_set
+        if package_set_quantity["#{order_item.package_set.id}"].nil?
+          package_set_quantity["#{order_item.package_set.id}"] = true
+          sum += 1
+        end
+      else
+        sum += order_item.quantity
+      end
+    end
+  end
+
   def total_quantity
     order_items.inject(0) { |sum, order_item| sum += order_item.quantity }
   end

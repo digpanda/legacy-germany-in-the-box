@@ -47,7 +47,7 @@ class CartManager < BaseService
   def products_number
     @products_number ||= begin
       orders(call_api: false).inject(0) do |acc, shop_order|
-        acc += shop_order.decorate.total_quantity
+        acc += shop_order.decorate.displayable_total_quantity
       end
     end
   end

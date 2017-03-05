@@ -1,7 +1,9 @@
 <!-- Logo -->
 <div class="+centered">
   <% if @freeze_header %>
-    <img src="/images/logo-half.png">
+    <a href="<%= identity_solver.secondary_domain? ? guest_package_sets_path : root_path %>">
+      <img src="/images/logo-half.png">
+    </a>
   <% else %>
     <a href="<%= root_path %>">
       <img src="/images/logo-half.png">
