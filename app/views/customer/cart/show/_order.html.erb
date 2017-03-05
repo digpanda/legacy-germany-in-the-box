@@ -1,4 +1,14 @@
-<div class="+small-spacer"></div>
+
+<!-- Shop name for the order -->
+<div class="row">
+  <div class="col-md-12">
+    <h4>
+      <%= I18n.t(:shop, scope: :cart) %> :
+      <%= link_to order.shop.name, guest_shop_path(order.shop) %>
+    </h4>
+  </div>
+</div>
+
 <div class="row +overflow">
   <div class="col-md-12">
     <%= render partial: 'customer/cart/show/list', :locals => { :order => order } %>
