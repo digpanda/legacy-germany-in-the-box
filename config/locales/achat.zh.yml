@@ -694,11 +694,13 @@ zh-CN:
     unit_price: 单价
     operations: 操作
     subtotal: 产品总价
+    all_included: 包邮包税
     shipping: 运费
     taxes: 税
     total_price_in_euro: 总计(欧元)
     update_cart: 更新购物车
     set_delivery_destination: 确定收货地址
+    checkout: 购买
     variant_option: 系列型号
     shop: 店铺名称
     shipping_cost: 物流费用

@@ -701,11 +701,13 @@ de:
     unit_price: Preis
     operations: Aktionen
     subtotal: Preis
+    all_included: All prices included
     shipping: Tranport
     taxes: Steuer
     total_price_in_euro: Gesamter(EUR)
     update_cart: Einkaufswagen ändern
     set_delivery_destination: Anschrift auswählen
+    checkout: Auschecken
     variant_option: Variante
     shop: Shop
     shipping_cost: Versendungskosten
