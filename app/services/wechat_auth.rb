@@ -20,7 +20,7 @@ class WechatAuth < BaseService
     openid = parsed_response['openid']
     unionid = parsed_response['unionid']
     access_token = parsed_response['access_token']
-
+    SlackDispatcher.new.silent_login_attempt("errcode: #{parsed_response}")
     return false if parsed_response['errcode']
 
     @user = User.where(provider: 'wechat', wechat_unionid: unionid).first
@@ -29,7 +29,7 @@ class WechatAuth < BaseService
       update_user_info(access_token, openid) unless @user.referrer_nickname
     else
       @parsed_response = get_user_info(access_token, openid)
-
+      SlackDispatcher.new.silent_login_attempt("errcode: #{parsed_response}")
       return false if @parsed_response['errcode']
       if wechat_silent_solver.success?
         @user = wechat_silent_solver.data[:customer]
