@@ -23,6 +23,8 @@ class ApplicationController < ActionController::Base
       SlackDispatcher.new.silent_login_attempt("Attempting to authorize...")
       if wechat_auth.success?
         SlackDispatcher.new.silent_login_attempt("Success!!")
+        sign_out
+        sign_in(:user, wechat_auth.data[:customer])
         if wechat_auth.data[:tourist_guide]
           redirect_to customer_referrer_path
           return
