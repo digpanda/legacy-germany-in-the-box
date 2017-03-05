@@ -1,5 +1,5 @@
-
 <!-- Shop name for the order -->
+<% unless order.only_package_set? %>
 <div class="row">
   <div class="col-md-12">
     <h4>
@@ -8,12 +8,23 @@
     </h4>
   </div>
 </div>
+<% end %>
 
-<div class="row +overflow">
+<!-- Package set display -->
+<div class="row">
   <div class="col-md-12">
-    <%= render partial: 'customer/cart/show/list', :locals => { :order => order } %>
+      <%= render partial: 'customer/cart/show/package_set_products', :locals => { :order_items => order.order_items.where(:package_set.ne => nil) } %>
   </div>
 </div>
+
+<!-- None package set display -->
+<% unless order.only_package_set? %>
+  <div class="row +overflow">
+    <div class="col-md-12">
+      <%= render partial: 'customer/cart/show/casual_products', :locals => { :order_items => order.order_items.where(package_set: nil) } %>
+    </div>
+  </div>
+<% end %>
 
 <% if cart_manager.in?(order) %>
   <!-- Action to the order -->

@@ -93,13 +93,13 @@ class CheckoutReady < BaseService
 
         if sku_origin.enough_stock?(order_item.quantity)
           all_products_available = true
-          products_total_price += sku.price * order_item.quantity
+          products_total_price += order_item.total_price
         else
           all_products_available = false
           break
         end
       end
-      
+
       {
         :all => all_products_available,
         :unavailable_sku => sku,

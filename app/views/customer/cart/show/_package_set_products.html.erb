@@ -1,0 +1,53 @@
+<% if order_items.count > 0 %>
+<% package_set = order_items.first.package_set %>
+
+<div class="row">
+  <div class="col-md-12">
+    <h4>
+      <%= package_set.name %>
+    </h4>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+
+
+    <table class="white-table">
+      <thead>
+        <tr>
+          <th>
+            <!-- PACKAGE COVER -->
+          </th>
+          <th>
+            <!-- IMAGES WITH QUANTITY -->
+          </th>
+          <th>
+            <!-- PRICE PER UNIT -->
+          </th>
+          <th>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <img src="<%= package_set.cover %>" class="icon-img">
+          </td>
+          <td>
+            <% order_items.each do |order_item| %>
+              <img src="<%= order_item.sku.decorate.highlighted_image(:thumb) %>" class="icon-img"/>
+            <% end %>
+          </td>
+          <td>
+            <%= package_set.end_price.in_euro.to_yuan.display %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+
+
+  </div>
+</div>
+<% end %>

@@ -202,6 +202,10 @@ class Order
     end
   end
 
+  def only_package_set?
+    order_items.where(package_set: nil).count == 0
+  end
+
   def displayable_total_quantity
     package_set_quantity = {}
     order_items.inject(0) do |sum, order_item|

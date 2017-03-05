@@ -13,8 +13,10 @@ class SkuDecorator < Draper::Decorator
     end
   end
 
+  def
+
   def raw_images_urls
-    valid_images.map { |f| self.send(f).url }
+    valid_images.map { |field| self.send(field).url }
   end
 
   def format_data
