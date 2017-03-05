@@ -37,7 +37,7 @@ class WechatAuth < BaseService
         return false
       end
     end
-    auth_user
+    sign_in_user(@user)
     true
   end
 
