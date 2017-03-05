@@ -46,6 +46,7 @@ class Order
 
   field :coupon_applied_at, type: Time
   field :coupon_discount, type: Float, default: 0.0
+  field :referrer_rate, type: Float, default: 0.0
 
   def shipping_cost
     @shipping_cost ||= begin
