@@ -72,6 +72,22 @@ var OrderItem = {
             callback({success: false, error: err.responseJSON.error});
 
         });
+    },
+
+    addPackageSet: function (url, callback) {
+        $.ajax({
+            method: "PATCH",
+            url: url
+
+        }).done(function (res) {
+
+            callback(res);
+
+        }).error(function (err) {
+
+            callback({success: false, error: err.responseJSON.error});
+
+        });
     }
 
 };

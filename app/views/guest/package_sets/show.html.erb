@@ -62,7 +62,8 @@
             <!-- Buttons -->
             <div class="row">
               <div class="+centered">
-                <%= link_to I18n.t(:buy_it, scope: :package_set), guest_package_set_path(@package_set), method: :patch, class: "main-button__solid --large" %>
+                <%= link_to I18n.t(:buy_it, scope: :package_set), 'javascript:;', id: 'add-package-set',
+                            class: 'main-button__solid --large', data: { url: api_guest_package_set_path(@package_set)} %>
               </div>
             </div>
 

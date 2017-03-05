@@ -28,4 +28,7 @@ namespace :guest do
     get :unknown_by_email
   end
 
+  resources :package_sets do
+  end
+
 end

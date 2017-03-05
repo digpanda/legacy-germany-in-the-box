@@ -709,6 +709,7 @@ zh-CN:
     total_price_with_currency_yuan: 总计
     delete_sku_msg: 您确定要从购物车中删除此产品吗？
     greater_than_zero: 产品数量必须大于1, 删除请您点击右侧的叉键。
+    package_set_added: 礼包已放入购物车
   checkout:
     have_your_payment_been_successful: 若支付结束，可点击下方按钮以查看支付结果。
     refresh_page_button: 查看支付结果
