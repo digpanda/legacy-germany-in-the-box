@@ -209,6 +209,8 @@ class Order
         if package_set_quantity["#{order_item.package_set.id}"].nil?
           package_set_quantity["#{order_item.package_set.id}"] = true
           sum += 1
+        else
+          sum
         end
       else
         sum += order_item.quantity
