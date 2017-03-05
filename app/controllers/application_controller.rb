@@ -19,7 +19,6 @@ class ApplicationController < ActionController::Base
   before_action :silent_login
 
   def silent_login
-    SlackDispatcher.new.silent_login_attempt("1. params code: #{params[:code]}")
     if params[:code]
       SlackDispatcher.new.silent_login_attempt("Attempting to authorize...")
       if wechat_auth.success?
