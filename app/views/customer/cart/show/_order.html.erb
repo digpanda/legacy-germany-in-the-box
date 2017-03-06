@@ -13,7 +13,8 @@
 <!-- Package set display -->
 <div class="row">
   <div class="col-md-12">
-      <%= render partial: 'customer/cart/show/package_set_products', :locals => { :order_items => order.order_items.where(:package_set.ne => nil) } %>
+      <%= render partial: 'customer/cart/show/package_set_products', :locals => { :order_items => order.order_items.where(:package_set.ne => nil),
+                                                                                  :package_set_ids => order.order_items.where(:package_set.ne => nil).pluck(:package_set) } %>
   </div>
 </div>
 
