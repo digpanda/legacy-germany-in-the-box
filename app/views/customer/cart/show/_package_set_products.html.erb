@@ -35,7 +35,7 @@
                 <img src="<%= package_set.cover %>" class="icon-img">
               </td>
               <td>
-                <% order_items.where(package_set_id: package_set_id).each.limit(6) do |order_item| %>
+                <% order_items.where(package_set_id: package_set_id).limit(6).each do |order_item| %>
                   <img src="<%= order_item.sku.decorate.highlighted_image %>" class="icon-img"/>
                 <% end %>
               </td>
