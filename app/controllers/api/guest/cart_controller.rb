@@ -12,8 +12,28 @@ class Api::Guest::CartController < Api::ApplicationController
     @package_set = PackageSet.find(params[:package_set_id])
     order.order_items.where(package_set: package_set).delete_all
 
-    render status: :ok,
-           json: {success: true}.to_json
+    if destroy_empty_order!
+      if @order.persisted?
+        render 'api/guest/order_items/update'
+      else
+        render json: {success: true, order_empty: !@order.persisted?}
+      end
+    else
+      render json: throw_error(:unable_to_process).merge(error: order_item.errors.full_messages.join(', '))
+
+    end
+  end
+
+  private
+
+  def destroy_empty_order!
+    if @order.destroyable?
+      @order.remove_coupon(identity_solver) if order.coupon
+      @order.reload
+      return @order.destroy
+    end
+
+    true
   end
 
 end
