@@ -30,11 +30,11 @@ defaults: &defaults
       creditcard: purchase
       default: purchase
 
-    default_redirect_url: customer/checkout/success
-    cancel_redirect_url: customer/checkout/cancel
-    processing_redirect_url: customer/checkout/processing
-    success_redirect_url : customer/checkout/success
-    fail_redirect_url: customer/checkout/fail
+    default_redirect_url: customer/checkout/callback/wirecard/success
+    cancel_redirect_url: customer/checkout/callback/wirecard/cancel
+    processing_redirect_url: customer/checkout/callback/wirecard/processing
+    success_redirect_url : customer/checkout/callback/wirecard/success
+    fail_redirect_url: customer/checkout/callback/wirecard/fail
 
   merchants:
     reseller_id: <%= ENV["wirecard_merchants_reseller_id"] %>
@@ -75,11 +75,11 @@ test:
       creditcard: purchase
       default: purchase
 
-    default_redirect_url: customer/checkout/success
-    cancel_redirect_url: customer/checkout/cancel
-    processing_redirect_url: customer/checkout/processing
-    success_redirect_url : customer/checkout/success
-    fail_redirect_url: customer/checkout/fail
+    default_redirect_url: customer/checkout/callback/wirecard/success
+    cancel_redirect_url: customer/checkout/callback/wirecard/cancel
+    processing_redirect_url: customer/checkout/callback/wirecard/processing
+    success_redirect_url : customer/checkout/callback/wirecard/success
+    fail_redirect_url: customer/checkout/callback/wirecard/fail
 
 staging:
   <<: *defaults
@@ -99,11 +99,11 @@ staging:
       upop: debit
       creditcard: purchase
 
-    default_redirect_url: customer/checkout/success
-    cancel_redirect_url: customer/checkout/cancel
-    processing_redirect_url: customer/checkout/processing
-    success_redirect_url : customer/checkout/success
-    fail_redirect_url: customer/checkout/fail
+    default_redirect_url: customer/checkout/callback/wirecard/success
+    cancel_redirect_url: customer/checkout/callback/wirecard/cancel
+    processing_redirect_url: customer/checkout/callback/wirecard/processing
+    success_redirect_url : customer/checkout/callback/wirecard/success
+    fail_redirect_url: customer/checkout/callback/wirecard/fail
 
 production:
   <<: *defaults
@@ -133,3 +133,9 @@ production:
     processing_redirect_url: customer/checkout/processing
     success_redirect_url : customer/checkout/success
     fail_redirect_url: customer/checkout/fail
+
+    # default_redirect_url: customer/checkout/callback/wirecard/success
+    # cancel_redirect_url: customer/checkout/callback/wirecard/cancel
+    # processing_redirect_url: customer/checkout/callback/wirecard/processing
+    # success_redirect_url : customer/checkout/callback/wirecard/success
+    # fail_redirect_url: customer/checkout/callback/wirecard/fail

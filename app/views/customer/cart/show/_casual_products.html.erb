@@ -22,11 +22,11 @@
     </tr>
   </thead>
   <tbody>
-    <% order.order_items.each do |order_item| %>
+    <% order_items.each do |order_item| %>
     <tr id="<%= "order-item-#{order_item.id}" %>">
       <td class="cart-item-image">
         <a href="<%= guest_product_path(order_item.product) %>">
-          <img src="<%= order_item.sku.decorate.highlighted_image(:thumb) %>" class="icon-img"/>
+          <img src="<%= order_item.sku.decorate.highlighted_image %>" class="icon-img"/>
         </a>
       </td>
       <td>
@@ -46,10 +46,11 @@
       <td class="white-table__quantity">
 
         <div class="row">
+          
           <!-- Minus -->
           <div class="col-md-3">
-            <% unless order_item.locked? || cart_manager.out?(order) %>
-            <a href="#" class="js-set-quantity-minus" data-order-item-id="<%= order_item.id.to_s %>" data-order-shop-id="<%= order.shop.id %>">
+            <% unless order_item.locked? || cart_manager.out?(order_item.order) %>
+            <a href="#" class="js-set-quantity-minus" data-order-item-id="<%= order_item.id.to_s %>" data-order-shop-id="<%= order_item.order.shop.id %>">
               <i class="fa fa-minus buttons buttons__quantity"></i>
             </a>
             <% end %>
@@ -61,8 +62,8 @@
 
           <!-- Plus -->
           <div class="col-md-3">
-            <% unless order_item.locked? || cart_manager.out?(order) %>
-            <a href="#" class="js-set-quantity-plus" data-order-item-id="<%= order_item.id.to_s %>" data-order-shop-id="<%= order.shop.id %>">
+            <% unless order_item.locked? || cart_manager.out?(order_item.order) %>
+            <a href="#" class="js-set-quantity-plus" data-order-item-id="<%= order_item.id.to_s %>" data-order-shop-id="<%= order_item.order.shop.id %>">
               <i class="fa fa-plus buttons buttons__quantity"></i>
             </a>
             <% end %>
@@ -74,12 +75,12 @@
 
       </td>
       <td>
-        <%= order_item.price_with_taxes.in_euro.to_yuan.display %>
+        <%= order_item.sku.decorate.price_after_discount_in_yuan %>
         <% if order_item.sku.discount > 0 %>
         <span class="+discount"><%= order_item.sku.decorate.discount_with_percent %></span>
         <% end %>
       </td>
-      <% unless order_item.locked? || cart_manager.out?(order) %>
+      <% unless order_item.locked? || cart_manager.out?(order_item.order) %>
         <td>
           <%= link_to '', '#', class: 'fa fa-times buttons buttons__delete delete-order-item',
                       data: { id: order_item.id.to_s, order_id: order_item.order.id.to_s, order_shop_id: order_item.order.shop.id.to_s, mesage: I18n.t(:delete_sku_msg, scope: :cart) } %>

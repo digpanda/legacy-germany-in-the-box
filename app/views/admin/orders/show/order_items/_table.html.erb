@@ -28,7 +28,7 @@
     <% order_items.each do |order_item| %>
       <tr>
         <td>
-          <%= image_tag order_item.sku.decorate.highlighted_image(:thumb), :class => 'icon-img' %>
+          <%= image_tag order_item.sku.decorate.highlighted_image, :class => 'icon-img' %>
         </td>
         <td>
           <%= order_item.product.name %>
@@ -43,10 +43,10 @@
           <%= order_item.quantity %>
         </td>
         <td>
-          <%= order_item.price.in_euro.display %>
+          <%= order_item.sku.decorate.price_after_discount_in_euro %>
         </td>
         <td>
-          <%= order_item.total_price.in_euro.display %>
+          <%= order_item.sku.decorate.total_price_after_discount_in_euro(order_item.quantity) %>
         </td>
       </tr>
     <% end %>

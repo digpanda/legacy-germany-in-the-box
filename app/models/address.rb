@@ -38,7 +38,8 @@ class Address
   scope :is_only_shipping,    ->  { any_of({type: :shipping}) }
   scope :is_only_both,        ->  { any_of({type: :both}) }
 
-  validates :pid, presence: true, :format => { :with => CHINESE_ID }, :if => -> { user&.customer? }
+  # NOTE : The PID system was temporarily made not mandatory
+  # validates :pid, presence: false, :format => { :with => CHINESE_ID }, :if => -> { user&.customer? }
   validates :fname, presence: true, :format => { :with => CHINESE_CHARACTERS }, :if => -> { user&.customer? }
   validates :lname, presence: true, :format => { :with => CHINESE_CHARACTERS }, :if => -> { user&.customer? }
 

@@ -2,13 +2,14 @@
 # Emit a notification and set the correct model
 # Then dispatch the notification to the user email
 #
-class EmitNotificationAndDispatchToUser < BaseService
+class DispatchNotification < BaseService
 
   include Rails.application.routes.url_helpers
 
   def initialize
   end
 
+  # TODO : should use keyword arguments instead
   def perform(args={})
     # Should be dynamic @yl
     user = args[:user]

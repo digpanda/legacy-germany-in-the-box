@@ -29,6 +29,25 @@ var Cart = {
 
   },
 
-}
+  removePackageSet: function(packageSetId, orderId, callback) {
+
+      $.ajax({
+          method: "POST",
+          url: "/api/guest/cart/destroy_package_set",
+          data: {"package_set_id" : packageSetId, "order_id" : orderId}
+
+      }).done(function(res) {
+
+          callback(res);
+
+      }).error(function(err) {
+
+          callback({success: false, error: err.responseJSON.error});
+
+      });
+
+  }
+
+};
 
 module.exports = Cart;

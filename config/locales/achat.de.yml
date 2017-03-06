@@ -81,6 +81,7 @@ de:
     to_activate_this_section: um weiter zu verfahren
   results_for: Ergebnisse von
   button:
+    read_more: Siehe Details
     checkout: Kasse
     menu: Menu
     resend_confirmation: Bestätigungsmail erneut senden
@@ -153,6 +154,8 @@ de:
       separator: ','
       delimiter: '.'
   validation:
+    chinese_id_number: Personalausweisenummer eingeben
+    chinese_characters_only: Bitte auf Chinesisch eingeben
     positive_integer: '^[0-9]*$'
     positive_integer_less_or_equal_than_100: '^[1-9][0-9]?$|^100$|^0$'
     positive_float: '^([0-9]*[1-9][0-9]*(,[0-9]{1,2})?|[0]+,[0-9]*[1-9][0-9]*)$'
@@ -701,11 +704,13 @@ de:
     unit_price: Preis
     operations: Aktionen
     subtotal: Preis
+    all_included: All prices included
     shipping: Tranport
     taxes: Steuer
     total_price_in_euro: Gesamter(EUR)
     update_cart: Einkaufswagen ändern
     set_delivery_destination: Anschrift auswählen
+    checkout: Auschecken
     variant_option: Variante
     shop: Shop
     shipping_cost: Versendungskosten
@@ -713,6 +718,7 @@ de:
     total_price_with_currency_yuan: Gesamter
     delete_sku_msg: Das Produkt vom dem Einkaufswagen entfernen
     greater_than_zero: Die Anzahl muss größer al Null sein.
+    package_set_added: Paket-Set in den Warenkorb legen
   checkout:
     have_your_payment_been_successful: Zahlung wurdet beenedet, klicken Sie um Zahlung Verfolgen und zurück in GBox.
     refresh_page_button: Zahlung Verfolgen.

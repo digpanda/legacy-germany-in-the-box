@@ -60,17 +60,33 @@ var QrCode = {
         $('#wechat-qr-code').addClass('hidden');
       });
 
+      $('#wechat-qr-code-trigger').on('click', function(e) {
+        if ($('#wechat-qr-code').hasClass('hidden')) {
+            $('#wechat-qr-code').removeClass('hidden');
+        } else {
+            $('#wechat-qr-code').addClass('hidden');
+        }
+      });
+
     },
 
     setupWeibo: function() {
 
       $('#weibo-qr-code-trigger').on('mouseover', function(e) {
         $('#weibo-qr-code').removeClass('hidden');
-      })
+      });
 
       $('#weibo-qr-code-trigger').on('mouseout', function(e) {
         $('#weibo-qr-code').addClass('hidden');
-      })
+      });
+
+      $('#weibo-qr-code-trigger').on('click', function(e) {
+        if ($('#weibo-qr-code').hasClass('hidden')) {
+            $('#weibo-qr-code').removeClass('hidden');
+        } else {
+            $('#weibo-qr-code').addClass('hidden');
+        }
+      });
 
     },
 

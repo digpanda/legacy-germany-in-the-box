@@ -3,10 +3,10 @@
   <div class="form-group">
     <div class="row">
       <div class="col-md-6">
-        <%= form.text_field :lname, :value => address.lname ? address.lname : current_user.lname, :class => 'form-control', :required => false, :placeholder => I18n.t(:lname, scope: :edit_address), :pattern => '[\u4e00-\u9fa5]+', :data => {:error => "Please use only Chinese characters"} %>
+        <%= form.text_field :lname, :value => address.lname ? address.lname : current_user.lname, :class => 'form-control', :required => false, :placeholder => I18n.t(:lname, scope: :edit_address), :pattern => '[\u4e00-\u9fa5]+', :data => {:error => I18n.t(:chinese_characters_only, scope: :validation)} %>
       </div>
       <div class="col-md-6">
-        <%= form.text_field :fname, :value => address.fname ? address.fname : current_user.fname, :class => 'form-control', :required => true, :placeholder => I18n.t(:fname, scope: :edit_address), :pattern => '[\u4e00-\u9fa5]+', :data => {:error => "Please use only Chinese characters"} %>
+        <%= form.text_field :fname, :value => address.fname ? address.fname : current_user.fname, :class => 'form-control', :required => true, :placeholder => I18n.t(:fname, scope: :edit_address), :pattern => '[\u4e00-\u9fa5]+', :data => {:error => I18n.t(:chinese_characters_only, scope: :validation)} %>
       </div>
     </div>
     <div class="row">
@@ -25,14 +25,15 @@
      </div>
   </div>
 
-  <div class="form-group">
+  <!-- NOTE : temporarily removed -->
+  <!-- <div class="form-group">
     <div class="row">
       <div class="col-md-12">
-        <%= form.text_field :pid, :class => 'form-control', :required => true, :placeholder => I18n.t(:pid, scope: :edit_address), :pattern => '^(\\d{6})(19|20)(\\d{2})(1[0-2]|0[1-9])(0[1-9]|[1-2][0-9]|3[0-1])(\\d{3})(\\d|X|x)?$', :data => { :error => "Please enter your Chinese ID number" } %>
+        <%= form.text_field :pid, :class => 'form-control', :required => true, :placeholder => I18n.t(:pid, scope: :edit_address), :pattern => '^(\\d{6})(19|20)(\\d{2})(1[0-2]|0[1-9])(0[1-9]|[1-2][0-9]|3[0-1])(\\d{3})(\\d|X|x)?$', :data => { :error => I18n.t(:chinese_id_number, scope: :validation) } %>
         <div class="help-block with-errors +left"></div>
       </div>
     </div>
-  </div>
+  </div> -->
 
   <h3><%= I18n.t(:location, scope: :address) %></h3>
 

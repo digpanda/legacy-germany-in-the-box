@@ -23,7 +23,7 @@ Rails.application.configure do
   }
 
   # used for root_url and equivalent
-  Rails.application.routes.default_url_options = {host: 'germanyintheboxdev.com', port: 80}
+  Rails.application.routes.default_url_options = {protocol: :https, host: 'www.germanyintheboxdev.com', port: 443}
 
   config.action_mailer.default_url_options = {host: 'germanyintheboxdev.com', port: 80}
   config.action_mailer.delivery_method = :smtp
@@ -38,8 +38,8 @@ Rails.application.configure do
       password: 'f4eede72e026e4'
   }
 
-  config.adyen.environment = 'test'
-  config.adyen.api_username = 'ws@Company.Digpanda'
-  config.adyen.api_password = 'EfAwI[iH=%sVKX^Hb3X!4^z4>'
+  # config.adyen.environment = 'test'
+  # config.adyen.api_username = 'ws@Company.Digpanda'
+  # config.adyen.api_password = 'EfAwI[iH=%sVKX^Hb3X!4^z4>'
 
 end

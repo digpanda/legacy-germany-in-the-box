@@ -18,7 +18,7 @@ class ShopkeeperMailer < ApplicationMailer
 
     if @order.status == :paid
       Notification.create(user_id: @user.id, title: title, desc: desc)
-      EmitNotificationAndDispatchToUser.new.perform_if_not_sent_to_admin({
+      DispatchNotification.new.perform_if_not_sent_to_admin({
                                                                     order: @order,
                                                                     title: "Auftrag #{@order.id} am #{@order.paid_at}",
                                                                     desc: "Der Shop-Besitzer #{@order.shop.shopkeeper.id} hat die Bestellung #{@order.id} noch nicht gesendet."
@@ -35,7 +35,7 @@ class ShopkeeperMailer < ApplicationMailer
 
      if @order.status != :shipped
        Notification.create(user_id: @user.id, title: title, desc: desc)
-       EmitNotificationAndDispatchToUser.new.perform_if_not_selected_sent_to_admin({
+       DispatchNotification.new.perform_if_not_selected_sent_to_admin({
                                                                               order: @order,
                                                                               title: "Auftrag #{@order.id} am #{@order.paid_at}",
                                                                               desc: "Der Shop-Besitzer #{@order.shop.shopkeeper.id} hat 'Das Paket wurde versandt' noch nicht fur die Bestellung #{@order.id} geklickt."

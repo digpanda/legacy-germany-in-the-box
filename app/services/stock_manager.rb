@@ -14,7 +14,7 @@ class StockManager
       sku.save!
 
       if sku.quantity < 10
-        EmitNotificationAndDispatchToUser.new.perform({
+        DispatchNotification.new.perform({
                                                        user: order_item&.product&.shop&.shopkeeper,
                                                        title: "Die Verfügbarkeit eines Produkts ist fast Null",
                                                        desc: "Das Produkt '#{order_item.product&.name}' verfügt über #{sku.quantity} Verfügbarkeit."

@@ -10,17 +10,27 @@
     <div class="col-md-12">
       <div class="+centered">
 
-        <% if shop.accepted_payment_methods.include? :creditcard %>
-          <input id="visa" type="radio" name="payment_method" value="creditcard" checked>
-          <label for="visa"><img src="/images/logos/raw-visa-logo.png" width="100px"></label>
-
-          <input id="master" type="radio" name="payment_method" value="creditcard">
-          <label for="master"><img src="/images/logos/raw-mastercard-logo.png" width="100px"></label>
+        <% if shop.payment_method? :alipay %>
+          <input id="alipay" type="radio" name="payment_method" value="alipay" checked>
+          <label for="alipay"><img src="/images/logos/raw-alipay-logo.png" width="150px"></label>
         <% end %>
 
-        <% if shop.accepted_payment_methods.include? :upop %>
-          <input id="union" type="radio" name="payment_method" value="upop" checked>
-          <label for="union"><img src="/images/logos/raw-chinaunionpay-logo.png" width="100px"></label>
+        <!-- <% if shop.payment_method? :wechatpay %>
+          <input id="wechatpay" type="radio" name="payment_method" value="wechatpay">
+          <label for="wechatpay"><img src="/images/logos/raw-wechatpay-logo.png" width="150px"></label>
+        <% end %> -->
+
+        <% if shop.payment_method? :creditcard %>
+          <input id="visa" type="radio" name="payment_method" value="creditcard">
+          <label for="visa"><img src="/images/logos/raw-visa-logo.png" width="130px"></label>
+
+          <input id="master" type="radio" name="payment_method" value="creditcard">
+          <label for="master"><img src="/images/logos/raw-mastercard-logo.png" width="130px"></label>
+        <% end %>
+
+        <% if shop.payment_method? :upop %>
+          <input id="union" type="radio" name="payment_method" value="upop">
+          <label for="union"><img src="/images/logos/raw-chinaunionpay-logo.png" width="130px"></label>
         <% end %>
 
         <div class="+small-spacer"></div>

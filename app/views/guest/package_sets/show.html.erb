@@ -11,18 +11,27 @@
   <div class="col-md-12">
     <div class="package-set-infos">
 
+      <!-- Modal introduction -->
+      <div class="remodal" data-remodal-options="hashTracking: false" data-remodal-id="package-set-introduction">
+        <!-- Close Action -->
+        <button data-remodal-action="close" class="remodal-close"></button>
+        <h1><%= @package_set.name %></h1>
+        <p><%= @package_set.long_desc %></p>
+      </div>
+
       <!-- Introduction -->
       <div class="row">
         <div class="col-md-12">
           <div class="package-set-infos__introduction">
             <h1><%= @package_set.name %></h1>
-            <% if @package_set.long_desc.present? %>
-              <p><%= @package_set.long_desc %></p>
-            <% else %>
-              <p><%= @package_set.desc %></p>
-            <% end %>
+            <p><%= @package_set.desc %></p>
           </div>
         </div>
+        <% if @package_set.long_desc.present? %>
+          <div class="+centered">
+            <a data-remodal-target="package-set-introduction" href="#"><%= I18n.t(:read_more, scope: :button) %></a>
+          </div>
+        <% end %>
       </div>
 
       <!-- Products -->
@@ -54,7 +63,7 @@
               <div class="+centered">
                 <div class="package-set-infos__original-price"><%= @package_set.casual_price.in_euro.to_yuan.display %></div>
                 <div class="package-set-infos__new-price"><%= @package_set.end_price.in_euro.to_yuan.display %></div>
-                <div class="package-set-infos__euro-price"><%= @package_set.end_price.in_euro.display %> ( <%= I18n.t(:subtotal, scope: :cart) %> )</div>
+                <div class="package-set-infos__euro-price"><%= @package_set.end_price.in_euro.display %> ( <%= I18n.t(:all_included, scope: :cart) %> )</div>
                 <div class="+spacer"></div>
               </div>
             </div>
@@ -62,7 +71,8 @@
             <!-- Buttons -->
             <div class="row">
               <div class="+centered">
-                <%= link_to I18n.t(:buy_it, scope: :package_set), guest_package_set_path(@package_set), method: :patch, class: "main-button__solid --large" %>
+                <%= link_to I18n.t(:buy_it, scope: :package_set), 'javascript:;', id: 'add-package-set',
+                            class: 'main-button__solid --large', data: { url: api_guest_package_set_path(@package_set)} %>
               </div>
             </div>
 

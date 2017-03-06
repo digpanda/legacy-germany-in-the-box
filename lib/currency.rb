@@ -25,6 +25,10 @@ class Currency
     "#{current_symbol} %.2f" % amount
   end
 
+  def display_raw
+    "%.2f" % amount
+  end
+
   def display_html
     "<span class=\"current_symbol\">#{current_symbol}</span> <span class=\"amount\">%.2f</span>" % amount
   end
@@ -33,9 +37,9 @@ class Currency
 
   def current_symbol
     if currency == 'EUR'
-      symbol = Setting.instance.supplier_currency.symbol
+      Setting.instance.supplier_currency.symbol
     elsif currency == 'CNY'
-      symbol = Setting.instance.platform_currency.symbol
+      Setting.instance.platform_currency.symbol
     end
   end
 

@@ -10,6 +10,8 @@ class Setting
   field :max_total_per_day,     type: BigDecimal, default: 1000
   field :alert, type: String
 
+  field :logistic_partner, type: Symbol, default: :borderguru
+
   field :search_suggestion, type: String
 
   field :package_sets_title,       type: String
@@ -40,7 +42,13 @@ class Setting
   validates :max_total_per_day,       presence: true,   :numericality => { :greater_than => 0 }
 
   def self.instance
-    @rate ||= Setting.first_or_create
+    @instance ||= Setting.first_or_create
+  end
+
+  # we overwrite the `create!` method so it forces to actually
+  # recreate a new instance and reset the memoization
+  def self.create!(*args)
+    @instance = Setting.first_or_create(*args)
   end
 
   private_class_method :create

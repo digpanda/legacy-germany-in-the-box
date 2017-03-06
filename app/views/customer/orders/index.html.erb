@@ -42,7 +42,11 @@
           </td>
           <td>
             <% if order.bought? %>
-            <%= link_to I18n.t(:open, scope: :edit_order), tracking_id_customer_order_border_guru_path(order), :target => '_blank' %>
+            <% if order.logistic_partner == :borderguru %>
+              <%= link_to I18n.t(:open, scope: :edit_order), tracking_id_customer_order_border_guru_path(order), :target => '_blank' %>
+            <% else %>
+              Tracking unavailable.
+            <% end %>
             <% end %>
           </td>
           <td>

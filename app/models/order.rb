@@ -6,10 +6,6 @@ class Order
 
   Numeric.include CoreExtensions::Numeric::CurrencyLibrary
 
-  # OLD TO REMOVE
-  field :tax_and_duty_cost,         type: Float, default: 0
-  #
-
   UNPROCESSABLE_TIME = [11,12] # 11am to 12am -> German Hour
   BOUGHT_OR_CANCELLED = [:paid, :custom_checkable, :custom_checking, :shipped, :cancelled]
   BOUGHT_OR_UNVERIFIED = [:payment_unverified, :paid, :custom_checkable, :custom_checking, :shipped]
@@ -36,6 +32,7 @@ class Order
     end
   end
 
+  field :logistic_partner, type: Symbol, default: :borderguru
   field :border_guru_order_id,      type: String
   field :border_guru_shipment_id,   type: String
   field :border_guru_link_tracking, type: String
@@ -49,6 +46,7 @@ class Order
 
   field :coupon_applied_at, type: Time
   field :coupon_discount, type: Float, default: 0.0
+  field :referrer_rate, type: Float, default: 0.0
 
   def shipping_cost
     @shipping_cost ||= begin
@@ -135,7 +133,8 @@ class Order
   # memoization for performance
   def total_price
     order_items.inject(0) do |sum, order_item|
-      sum += order_item.quantity * order_item.price
+      # sum += order_item.quantity * order_item.price # after_discount_price
+      sum += order_item.total_price # after_discount_price
     end
   end
 
@@ -204,6 +203,26 @@ class Order
     end
   end
 
+  def only_package_set?
+    order_items.where(package_set: nil).count == 0
+  end
+
+  def displayable_total_quantity
+    package_set_quantity = {}
+    order_items.inject(0) do |sum, order_item|
+      if order_item.package_set
+        if package_set_quantity["#{order_item.package_set.id}"].nil?
+          package_set_quantity["#{order_item.package_set.id}"] = true
+          sum += 1
+        else
+          sum
+        end
+      else
+        sum += order_item.quantity
+      end
+    end
+  end
+
   def total_quantity
     order_items.inject(0) { |sum, order_item| sum += order_item.quantity }
   end
@@ -238,7 +257,7 @@ class Order
 
   # we considered as bought any status after paid
   def bought?
-    [:paid, :custom_checkable, :custom_checking, :shipped].include?(status)
+    [:paid, :custom_checkable, :custom_checking, :shipped].include?(status) && paid_at
   end
 
   def new?
@@ -291,9 +310,9 @@ class Order
   # every year the system got reset
   def make_bill_id
     if bill_id.nil? && self.bought?
-      start_day = c_at.beginning_of_day
+      start_day = paid_at.beginning_of_day
       digits = start_day.strftime("%Y%m%d")
-      num = Order.where({:bill_id.ne => nil}).where({:c_at.gte => start_day}).count + 1
+      num = Order.where({:bill_id.ne => nil}).where({:paid_at.gte => start_day}).count + 1
       self.bill_id = "P#{digits}-#{num}"
       self.save
     end

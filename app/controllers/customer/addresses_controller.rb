@@ -6,6 +6,7 @@ class Customer::AddressesController < ApplicationController
   authorize_resource :class => false
   layout :custom_sublayout
   before_action :set_address, only: [:show, :edit, :update, :destroy]
+  before_action :set_address_params, only: [:create, :update]
 
   def index
     @addresses = current_user.addresses
@@ -19,9 +20,6 @@ class Customer::AddressesController < ApplicationController
   end
 
   def create
-    address_params[:country] = 'CN'
-    resolve_china_city!
-
     @address = Address.new(address_params)
     address.user = current_user
 
@@ -43,10 +41,6 @@ class Customer::AddressesController < ApplicationController
   end
 
   def update
-
-    resolve_china_city!
-    address_params[:country] = 'CN'
-
     if address.update(address_params)
       reset_primary_address! if address.primary
       flash[:success] = I18n.t(:update_ok, scope: :edit_address)
@@ -94,6 +88,11 @@ class Customer::AddressesController < ApplicationController
 
   def address_params
     params.require(:address).permit!
+  end
+
+  def set_address_params
+    address_params[:country] = 'CN'
+    resolve_china_city!
   end
 
 end

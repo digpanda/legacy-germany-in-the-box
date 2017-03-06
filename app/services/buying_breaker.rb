@@ -48,7 +48,7 @@ class BuyingBreaker < BaseService
   def address_today_orders(address)
     @address_today_orders ||= begin
       today_paid_orders.each.inject([]) do |memo, current_order|
-        if address == current_order.shipping_address
+        if address.attributes.except('_id', 'c_at', 'u_at') == current_order.shipping_address.attributes.except('_id', 'c_at', 'u_at')
           memo << current_order
         end
       end || []

@@ -4,6 +4,7 @@ class Shopkeeper::AddressesController < ApplicationController
 
   authorize_resource :class => false
   before_action :set_address, only: [:show, :update, :destroy]
+  before_action :set_address_country, only: [:create, :update]
 
   layout :custom_sublayout, only: [:index]
 
@@ -15,9 +16,6 @@ class Shopkeeper::AddressesController < ApplicationController
   end
 
   def create
-
-    address_params[:country] = 'DE'
-
     @address = Address.new(address_params)
     address.shop = current_user.shop
 
@@ -33,9 +31,6 @@ class Shopkeeper::AddressesController < ApplicationController
   end
 
   def update
-
-    address_params[:country] = 'DE'
-
     if address.update(address_params)
       flash[:success] = I18n.t(:update_ok, scope: :edit_address)
       redirect_to navigation.back(1)
@@ -58,6 +53,10 @@ class Shopkeeper::AddressesController < ApplicationController
 
   def address_params
     params.require(:address).permit!
+  end
+
+  def set_address_country
+    address_params[:country] = 'DE'
   end
 
 end

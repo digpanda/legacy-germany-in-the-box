@@ -82,6 +82,7 @@ zh-CN:
     to_activate_this_section: 才能继续
   results_for: 的结果
   button:
+    read_more: 查看详情
     checkout: 下单
     menu: 选单
     resend_confirmation: 重发确认邮件
@@ -154,6 +155,8 @@ zh-CN:
       separator: '.'
       delimiter: ','
   validation:
+    chinese_id_number: 请输入身份证号码
+    chinese_characters_only: 请输入中文
     positive_integer: '^[0-9]*$'
     positive_integer_less_or_equal_than_100: '^[1-9][0-9]?$|^100$|^0$'
     positive_float: '^([0-9]*[1-9][0-9]*(\.[0-9]{1,2})?|[0]+\.[0-9]*[1-9][0-9]*)$'
@@ -694,11 +697,13 @@ zh-CN:
     unit_price: 单价
     operations: 操作
     subtotal: 产品总价
+    all_included: 包邮包税
     shipping: 运费
     taxes: 税
     total_price_in_euro: 总计(欧元)
     update_cart: 更新购物车
     set_delivery_destination: 确定收货地址
+    checkout: 购买
     variant_option: 系列型号
     shop: 店铺名称
     shipping_cost: 物流费用
@@ -707,6 +712,7 @@ zh-CN:
     total_price_with_currency_yuan: 总计
     delete_sku_msg: 您确定要从购物车中删除此产品吗？
     greater_than_zero: 产品数量必须大于1, 删除请您点击右侧的叉键。
+    package_set_added: 礼包已放入购物车
   checkout:
     have_your_payment_been_successful: 若支付结束，可点击下方按钮以查看支付结果。
     refresh_page_button: 查看支付结果

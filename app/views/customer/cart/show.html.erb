@@ -8,18 +8,6 @@
 
         <div class="row">
 
-          <!-- Shop name for the order -->
-          <div class="col-md-12">
-            <h4>
-              <%= I18n.t(:shop, scope: :cart) %> :
-              <%= link_to order.shop.name, guest_shop_path(order.shop) %>
-            </h4>
-          </div>
-
-        </div>
-
-        <div class="row">
-
           <!-- Total for this order -->
           <div class="col-md-4 col-md-push-8">
             <%= render partial: 'customer/cart/show/total', locals: {order: order} %>

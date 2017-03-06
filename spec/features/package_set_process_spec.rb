@@ -12,6 +12,7 @@ feature "checkout process", :js => true  do
 
   scenario "get a package set and go to checkout" do
     add_package!
+    page.first('#cart').click
     page.driver.browser.navigate.refresh # the AJAX call could make problem otherwise
     page.first('.\\+checkout-button').click
     fill_in_with_multiple_addresses!
@@ -20,6 +21,7 @@ feature "checkout process", :js => true  do
 
   scenario "get a package set, apply a coupon and go to checkout" do
     add_package!
+    page.first('#cart').click
     aaa_coupon!
     page.driver.browser.navigate.refresh # the AJAX call could make problem otherwise
     page.first('.\\+checkout-button').click
@@ -34,7 +36,6 @@ def add_package!
   click_on "查看更多信息"
   expect(page).to have_content("€ 500.00")
   click_on "购买"
-  on_cart_page?
 end
 
 def fill_in_with_multiple_addresses!

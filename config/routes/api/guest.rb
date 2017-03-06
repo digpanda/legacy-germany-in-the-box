@@ -16,7 +16,9 @@ namespace :guest do
 
   resource :cart, :controller => 'cart' do
     get :total
+    post :destroy_package_set
   end
+
 
   resources :products  do
     resources :skus, :controller => 'products/skus' do
@@ -26,6 +28,9 @@ namespace :guest do
   namespace :users do
     get :find_by_email
     get :unknown_by_email
+  end
+
+  resources :package_sets do
   end
 
 end
