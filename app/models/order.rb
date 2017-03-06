@@ -133,7 +133,8 @@ class Order
   # memoization for performance
   def total_price
     order_items.inject(0) do |sum, order_item|
-      sum += order_item.quantity * order_item.price # after_discount_price
+      # sum += order_item.quantity * order_item.price # after_discount_price
+      sum += order_item.total_price # after_discount_price
     end
   end
 
