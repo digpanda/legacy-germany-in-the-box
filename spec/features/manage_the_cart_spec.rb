@@ -40,7 +40,7 @@ feature "manage the cart", :js => true  do
         page.driver.browser.navigate.refresh # the AJAX call could make problem otherwise
         visit customer_cart_path
         expect(page).to have_current_path(customer_cart_path)
-        expect(page).to have_css ".\\+checkout-button", text: "确定收货地址" # go checkout
+        expect(page).to have_css ".\\+checkout-button", text: "购买" # go checkout
 
       end
 
