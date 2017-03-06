@@ -16,7 +16,9 @@ namespace :guest do
 
   resource :cart, :controller => 'cart' do
     get :total
+    post :destroy_package_set
   end
+
 
   resources :products  do
     resources :skus, :controller => 'products/skus' do
