@@ -352,6 +352,7 @@ var CustomerCartShow = {
     this.orderItemHandleQuantity();
     this.removeOrderItem();
     this.removeOrder();
+    this.removePackageSet();
   },
 
   multiSelectSystem: function multiSelectSystem() {
@@ -443,6 +444,48 @@ var CustomerCartShow = {
         if (res.success === true) {
 
           $('#order-item-' + orderItemId).remove();
+
+          if (res.order_empty == true) {
+            $('#order-' + orderId).remove();
+          } else {
+            // Total changes
+            $('#order-total-price-with-taxes-' + orderShopId).html(res.data.total_price_with_taxes);
+            $('#order-shipping-cost-' + orderShopId).html(res.data.shipping_cost);
+            $('#order-end-price-' + orderShopId).html(res.data.end_price);
+
+            // Discount management
+            if (typeof res.data.total_price_with_discount != "undefined") {
+              $('#order-total-price-with-extra-costs-' + orderShopId).html(res.data.total_price_with_extra_costs);
+              $('#order-total-price-with-discount-' + orderShopId).html(res.data.total_price_with_discount);
+              $('#order-discount-display-' + orderShopId).html(res.data.discount_display);
+            }
+          }
+        } else {
+
+          Messages.makeError(res.error);
+        }
+      });
+    });
+  },
+
+  removePackageSet: function removePackageSet() {
+
+    $('.delete-package-set').on('click', function (e) {
+
+      e.preventDefault();
+
+      var Cart = require("javascripts/models/cart");
+      var orderId = $(this).data('order-id');
+      var packageSetId = $(this).data('package-set-id');
+      var orderShopId = $(this).data('order-shop-id');
+
+      Cart.removePackageSet(packageSetId, orderId, function (res) {
+
+        var Messages = require("javascripts/lib/messages");
+
+        if (res.success === true) {
+
+          $('#package-set-' + packageSetId).remove();
 
           if (res.order_empty == true) {
             $('#order-' + orderId).remove();
@@ -1877,6 +1920,22 @@ var Cart = {
       method: "GET",
       url: "/api/guest/cart/total",
       data: {}
+
+    }).done(function (res) {
+
+      callback(res);
+    }).error(function (err) {
+
+      callback({ success: false, error: err.responseJSON.error });
+    });
+  },
+
+  removePackageSet: function removePackageSet(packageSetId, orderId, callback) {
+
+    $.ajax({
+      method: "POST",
+      url: "/api/guest/cart/destroy_package_set",
+      data: { "package_set_id": packageSetId, "order_id": orderId }
 
     }).done(function (res) {
 
