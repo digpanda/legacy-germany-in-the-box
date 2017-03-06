@@ -36,7 +36,7 @@
           </td>
           <td>
             <% order_items.each do |order_item| %>
-              <img src="<%= order_item.sku.decorate.highlighted_image(:thumb) %>" class="icon-img"/>
+              <img src="<%= order_item.sku.decorate.highlighted_image %>" class="icon-img"/>
             <% end %>
           </td>
           <td>

@@ -6,14 +6,9 @@ class SkuDecorator < Draper::Decorator
   delegate_all
   decorates :sku
 
-  def highlighted_image(version)
-    f = self.attributes.keys.grep(/^img\d/).map(&:to_sym).detect { |f| f if sku.read_attribute(f) }
-    unless f.nil?
-      image_url(f, version)
-    end
+  def highlighted_image
+    raw_images_urls.first
   end
-
-  def
 
   def raw_images_urls
     valid_images.map { |field| self.send(field).url }

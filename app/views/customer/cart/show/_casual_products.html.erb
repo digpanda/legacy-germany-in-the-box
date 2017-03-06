@@ -26,7 +26,7 @@
     <tr id="<%= "order-item-#{order_item.id}" %>">
       <td class="cart-item-image">
         <a href="<%= guest_product_path(order_item.product) %>">
-          <img src="<%= order_item.sku.decorate.highlighted_image(:thumb) %>" class="icon-img"/>
+          <img src="<%= order_item.sku.decorate.highlighted_image %>" class="icon-img"/>
         </a>
       </td>
       <td>
@@ -46,6 +46,7 @@
       <td class="white-table__quantity">
 
         <div class="row">
+          
           <!-- Minus -->
           <div class="col-md-3">
             <% unless order_item.locked? || cart_manager.out?(order_item.order) %>
