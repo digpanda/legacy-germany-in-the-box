@@ -10,10 +10,8 @@ class Api::Guest::CartController < Api::ApplicationController
   def destroy_package_set
     @order = Order.find(params[:order_id])
     @package_set = PackageSet.find(params[:package_set_id])
-    order.order_items.where(package_set: package_set).each do |order_item|
-      order_item.destroy
-    end
-    
+    order.order_items.where(package_set: package_set).delete_all
+
     render status: :ok,
            json: {success: true}.to_json
   end
