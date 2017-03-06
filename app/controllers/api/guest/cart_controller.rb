@@ -5,4 +5,7 @@ class Api::Guest::CartController < Api::ApplicationController
            json: {success: true, datas: cart_manager.products_number}.to_json
   end
 
+  def destroy_package_set
+  end 
+
 end
