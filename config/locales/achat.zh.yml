@@ -82,6 +82,7 @@ zh-CN:
     to_activate_this_section: 才能继续
   results_for: 的结果
   button:
+    read_more: 查看详情
     checkout: 下单
     menu: 选单
     resend_confirmation: 重发确认邮件

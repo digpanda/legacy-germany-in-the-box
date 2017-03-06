@@ -11,18 +11,27 @@
   <div class="col-md-12">
     <div class="package-set-infos">
 
+      <!-- Modal introduction -->
+      <div class="remodal" data-remodal-options="hashTracking: false" data-remodal-id="package-set-introduction">
+        <!-- Close Action -->
+        <button data-remodal-action="close" class="remodal-close"></button>
+        <h1><%= @package_set.name %></h1>
+        <p><%= @package_set.long_desc %></p>
+      </div>
+
       <!-- Introduction -->
       <div class="row">
         <div class="col-md-12">
           <div class="package-set-infos__introduction">
             <h1><%= @package_set.name %></h1>
-            <% if @package_set.long_desc.present? %>
-              <p><%= @package_set.long_desc %></p>
-            <% else %>
-              <p><%= @package_set.desc %></p>
-            <% end %>
+            <p><%= @package_set.desc %></p>
           </div>
         </div>
+        <% if @package_set.long_desc.present? %>
+          <div class="+centered">
+            <a data-remodal-target="package-set-introduction" href="#"><%= I18n.t(:read_more, scope: :button) %></a>
+          </div>
+        <% end %>
       </div>
 
       <!-- Products -->

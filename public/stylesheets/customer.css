@@ -1921,14 +1921,14 @@ body {
   margin-right: 1em; }
   @media (max-width: 994px) {
     .product-miniblock {
-      min-height: 35em; } }
+      min-height: 10em; } }
   .product-miniblock a {
     color: #5c5c5c; }
   .product-miniblock__remodal {
     max-width: 300px;
     text-align: left; }
   .product-miniblock__image {
-    height: 200px;
+    height: 130px;
     max-width: 300px;
     background-size: contain;
     background-repeat: no-repeat;
@@ -2365,7 +2365,6 @@ a, a:active, a:hover, a:visited {
 .logo-img-large {
   width: auto;
   max-height: 256px; }
-
 
 
 /*# sourceMappingURL=customer.css.map*/
