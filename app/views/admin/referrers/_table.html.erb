@@ -11,7 +11,10 @@
         Nickname
       </th>
       <th>
-        Coupons
+        Coupon
+      </th>
+      <th>
+        Provision
       </th>
       <th>
         Operations
@@ -35,6 +38,9 @@
                 <%= coupon.code %>
               </a>
             <% end %>
+          </td>
+          <td>
+            <%= get_referrer_provision(referrer).in_euro.display %>
           </td>
           <td>
             <% unless referrer.has_referrer_coupon? %>
