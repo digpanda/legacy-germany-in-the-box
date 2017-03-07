@@ -10,7 +10,7 @@
   <span id="product_price_with_currency_yuan" class="+price-yuan"><%= sku.decorate.price_after_discount_in_yuan_html.html_safe %></span>
 </div>
 
-<span id="product_price_with_currency_euro" class="+price-euro"><%= sku.decorate.price_after_discount_in_euro_html.html_safe %></span>
+<span id="product_price_with_currency_euro" class="+price-euro"><%#= sku.decorate.price_after_discount_in_euro_html.html_safe %></span>
 <span class="+red">(<%= I18n.t(:taxes_included, scope: :product_box) %>)</span>
 
 <br />
