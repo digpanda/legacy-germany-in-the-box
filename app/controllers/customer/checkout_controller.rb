@@ -39,8 +39,14 @@ class Customer::CheckoutController < ApplicationController
   end
 
   def gateway
-    order = Order.find(params[:order_id])
+    order = Order.where(params[:order_id]).first
     payment_gateway = order.shop.payment_gateways.where(payment_method: params[:payment_method].to_sym).first
+
+    unless order
+      flash[:error] = "Invalid order."
+      redirect_to navigation.back(1)
+      return
+    end
 
     unless payment_gateway
       flash[:error] = "Invalid payment gateway."
