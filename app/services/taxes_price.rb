@@ -10,10 +10,14 @@ class TaxesPrice
 
  def price
    if product.duty_category
-     (sku.price * (product.duty_category.tax_rate / 100)).to_f
+     (base_price * (product.duty_category.tax_rate / 100)).to_f
    else
      0.0
    end
+ end
+
+ def base_price
+   sku.purchase_price # sku.price <-- in border guru calculation
  end
 
 end

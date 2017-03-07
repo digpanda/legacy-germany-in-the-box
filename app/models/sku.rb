@@ -11,6 +11,7 @@ class Sku
   field :img2,          type: String
   field :img3,          type: String
   field :price,         type: BigDecimal
+  field :purchase_price, type: BigDecimal, default: 0 # the price we bought it
   field :quantity,      type: Integer
   field :unlimited,     type: Boolean,    default: false
   field :weight,        type: Float

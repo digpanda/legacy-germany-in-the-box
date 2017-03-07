@@ -1,8 +1,7 @@
  # small library to guess the shipping prices via calculations
- # it takes the first prices into consideration and couple them with the < weight to match
- # if it goes more than the last `special kilo price` segment
- # it simply use the casual price per kilo
 class ShippingPrice
+
+  DISCOUNT_PERCENT = 30
 
   attr_reader :sku, :product
 
@@ -12,7 +11,11 @@ class ShippingPrice
   end
 
   def price
-    shipping_rate.price
+    (shipping_rate.price) * approximation_change
+  end
+
+  def approximation_change
+    ((100 - DISCOUNT_PERCENT).to_f / 100)
   end
 
   def shipping_rate

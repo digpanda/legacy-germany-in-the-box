@@ -60,6 +60,17 @@
         </div>
       </div>
 
+      <!-- Purchase Price -->
+      <div class="row form-group">
+        <div class="col-md-4">
+          Purchase Price (EUR)
+          <%= js_tips(:id => :product_data, :tip => "The price you paid before to sell it (export taxes are based on it)") %>
+        </div>
+        <div class="col-md-8">
+          <%= form.text_field :purchase_price, value: @sku.purchase_price, :class => 'form-control', :required => true %>
+        </div>
+      </div>
+
       <!-- Price -->
       <div class="row form-group">
         <div class="col-md-4">
