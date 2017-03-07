@@ -1468,6 +1468,10 @@ html {
 input, textarea, select, a, button {
   outline: none !important; }
 
+.content {
+  max-width: 1230px;
+  margin: 0 auto; }
+
 *, *:before, *:after {
   box-sizing: inherit; }
 
