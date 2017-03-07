@@ -38,7 +38,7 @@ class Coupon
       Coupon.create({
                         :code => SecureRandom.hex(4)[0,4],
                         :unit => :percent,
-                        :discount => Setting.instance.referrers_rate,
+                        :discount => Setting.instance.default_coupon_discount,
                         :minimum_order => 0,
                         :unique => false,
                         :desc => 'Referrer Coupon',

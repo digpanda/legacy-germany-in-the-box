@@ -32,7 +32,7 @@ class Setting
 
   field :landing_page_highlight,     type: Boolean
 
-  field :referrers_rate, type: Float, default: 0
+  field :default_coupon_discount, type: Float, default: 0
 
   field :force_referrer_tokens, type: Boolean, default: false
 
