@@ -43,19 +43,19 @@ class Customer::CheckoutController < ApplicationController
     payment_gateway = order.shop.payment_gateways.where(payment_method: params[:payment_method].to_sym).first
 
     unless order
-      flash[:error] = "Invalid order."
+      flash[:error] = I18n.t(:invalid_order, scope: :edit_order)
       redirect_to navigation.back(1)
       return
     end
 
     unless payment_gateway
-      flash[:error] = "Invalid payment gateway."
+      flash[:error] = I18n.t(:invalid_gateway, scope: :edit_order)
       redirect_to navigation.back(1)
       return
     end
 
     unless acceptable_payment_method?(payment_gateway.payment_method)
-      flash[:error] = "Invalid payment method."
+      flash[:error] = I18n.t(:invalid_payment_method, scope: :edit_order)
       redirect_to navigation.back(1)
       return
     end
