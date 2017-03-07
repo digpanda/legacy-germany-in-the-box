@@ -10,6 +10,11 @@ namespace :digpanda do
     Tasks::Digpanda::RefreshDutyCategoriesTaxes.new
   end
 
+  desc "refresh shipping rates"
+  task refresh_shipping_rates: :environment do
+    Tasks::Digpanda::RefreshShippingRates.new
+  end
+
   desc "remove and create duty categories"
   task remove_and_create_duty_categories: :environment do
     Tasks::Digpanda::RemoveAndCreateDutyCategories.new
