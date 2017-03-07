@@ -2,10 +2,11 @@
 # and used within the controller or model, etc. are defined here
 class IdentitySolver < BaseService
 
-  attr_reader :request, :user
+  attr_reader :request, :session, :user
 
-  def initialize(request, user)
+  def initialize(request, session, user)
     @request = request
+    @session = session
     @user = user
   end
 
