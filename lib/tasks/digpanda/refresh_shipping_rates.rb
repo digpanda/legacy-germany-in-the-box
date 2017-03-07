@@ -24,7 +24,7 @@ class Tasks::Digpanda::RefreshShippingRates
         return
       end
 
-      weight = weight.gsub(/[^0-9]/, '').to_f
+      weight = weight.gsub(/[^0-9]/, '').to_f / 100
 
       price = column[1]
       if price.empty?
@@ -32,7 +32,7 @@ class Tasks::Digpanda::RefreshShippingRates
         return
       end
 
-      price = price.gsub(/[^0-9]/, '').to_f
+      price = price.gsub(/[^0-9]/, '').to_f / 100
 
       shipping_rate = ShippingRate.create({
         :weight => weight,

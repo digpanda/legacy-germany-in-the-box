@@ -17,6 +17,7 @@ class Product
   field :highlight, type: Boolean, default: false
 
   field :exclude_germany, type: Boolean, default: false
+  field :shipping_rate_type, type: Symbol, default: :general
 
   embeds_many :options, inverse_of: :product, cascade_callbacks: true, class_name: 'VariantOption'
   embeds_many :skus, inverse_of: :product, cascade_callbacks: true
