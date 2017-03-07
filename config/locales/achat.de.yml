@@ -367,6 +367,9 @@ de:
     shipped: Waren werden abgeschickt
     payment_unverified: Nicht geprüft
     payment_failed: Zahlung fehlgeschlagen
+    invalid_order: Bestellung ungültig
+    invalid_gateway: Payment Gateway ungültig
+    invalid_payment_method: Zahlungsmethode ungültig
     no_order: keine Aufträge vorhanden
     id: Auftragsnummer
     status: Status

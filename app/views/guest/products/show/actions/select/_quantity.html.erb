@@ -17,7 +17,8 @@
     </span>
 
     <!-- Current quantity -->
-    <input id="quantity" name="sku[quantity]" data-max="<%= product.decorate.featured_sku.decorate.max_added_to_cart %>" class="form-control input-number product-select__quantity" type="text" min="1" max="100" value="1">
+    <input id="quantity" name="sku[quantity]" data-max="<%= product.decorate.featured_sku.decorate.max_added_to_cart %>"
+           class="form-control input-number product-select__quantity" type="text" min="1" max="100" value="1" readonly="true">
 
     <!-- Plus -->
     <span class="input-group-btn">
