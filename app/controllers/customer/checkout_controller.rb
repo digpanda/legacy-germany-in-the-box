@@ -39,7 +39,7 @@ class Customer::CheckoutController < ApplicationController
   end
 
   def gateway
-    order = Order.where(params[:order_id]).first
+    order = Order.where(id: params[:order_id]).first
     payment_gateway = order.shop.payment_gateways.where(payment_method: params[:payment_method].to_sym).first
 
     unless order
