@@ -19,8 +19,12 @@ class IdentitySolver < BaseService
     end
   end
 
-  def secondary_domain?
-    request.url.include? "germanyinbox.com"
+  def package_set_customer?
+    session[:origin] == :wechat
+  end
+
+  def origin_url
+    package_set_customer? ? guest_package_sets_url : root_url
   end
 
   def potential_customer?

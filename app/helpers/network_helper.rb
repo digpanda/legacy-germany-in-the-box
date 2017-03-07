@@ -2,8 +2,8 @@ require 'socket'
 
 module NetworkHelper
 
-  def from_secondary_domain?
-    identity_solver.secondary_domain?
+  def origin_url
+    identity_solver.origin_url
   end
 
   def server_ip

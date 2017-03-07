@@ -16,12 +16,13 @@ class ApplicationController < ActionController::Base
 
   helper_method :navigation, :cart_manager, :identity_solver
 
-  before_action :silent_login
+  before_action :silent_login, :origin_solver
 
   def silent_login
     if params[:code]
       SlackDispatcher.new.silent_login_attempt("Attempting to authorize...")
       if wechat_auth.success?
+        session[:origin] = :wechat
         SlackDispatcher.new.silent_login_attempt("Success!!")
         sign_out
         sign_in(:user, wechat_auth.data[:customer])
@@ -54,7 +55,7 @@ class ApplicationController < ActionController::Base
   end
 
   def identity_solver
-    @identity_solver ||= IdentitySolver.new(request, current_user)
+    @identity_solver ||= IdentitySolver.new(request, session, current_user)
   end
 
   def settings
@@ -75,6 +76,15 @@ class ApplicationController < ActionController::Base
 
   def freeze_header
     @freeze_header = true
+  end
+
+  def origin_solver
+    return session[:origin] if session[:origin]
+    if request.url.include? "germanyinbox.com"
+      session[:origin] = :wechat
+    else
+      session[:origin] = :browser
+    end
   end
 
   def restrict_to(section)
