@@ -40,13 +40,14 @@ class Customer::CheckoutController < ApplicationController
 
   def gateway
     order = Order.where(id: params[:order_id]).first
-    payment_gateway = order.shop.payment_gateways.where(payment_method: params[:payment_method].to_sym).first
 
     unless order
       flash[:error] = I18n.t(:invalid_order, scope: :edit_order)
       redirect_to navigation.back(1)
       return
     end
+
+    payment_gateway = order.shop.payment_gateways.where(payment_method: params[:payment_method].to_sym).first
 
     unless payment_gateway
       flash[:error] = I18n.t(:invalid_gateway, scope: :edit_order)
