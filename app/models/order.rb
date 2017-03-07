@@ -213,7 +213,8 @@ class Order
       if order_item.package_set
         if package_set_quantity["#{order_item.package_set.id}"].nil?
           package_set_quantity["#{order_item.package_set.id}"] = true
-          sum += 1
+          package_set_number = order_items.where(package_set_id: order_item.package_set.id).count / order_item.package_set.package_skus.count
+          sum += package_set_number
         else
           sum
         end
