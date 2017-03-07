@@ -7,9 +7,11 @@ class PackageSet
   field :desc, type: String
   field :long_desc, type: String
   field :cover,       type: String
+  field :details_cover,       type: String
   field :referrer_rate, type: Float, default: 0.0
 
   mount_uploader :cover, CoverUploader
+  mount_uploader :details_cover, CoverUploader
 
   belongs_to :shop, inverse_of: :package_sets
   embeds_many :package_skus, inverse_of: :package_set, cascade_callbacks: true
