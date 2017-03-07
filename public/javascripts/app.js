@@ -335,6 +335,8 @@ module.exports = ProductsVariants;
 require.register("javascripts/controllers/customer/cart/show.js", function(exports, require, module) {
 'use strict';
 
+var RefreshTotalProducts = require('javascripts/services/refresh_total_products');
+
 /**
  * CustomerCartShow class
  */
@@ -460,6 +462,8 @@ var CustomerCartShow = {
               $('#order-discount-display-' + orderShopId).html(res.data.discount_display);
             }
           }
+
+          RefreshTotalProducts.perform();
         } else {
 
           Messages.makeError(res.error);
@@ -502,6 +506,8 @@ var CustomerCartShow = {
               $('#order-discount-display-' + orderShopId).html(res.data.discount_display);
             }
           }
+
+          RefreshTotalProducts.perform();
         } else {
 
           Messages.makeError(res.error);
@@ -527,6 +533,7 @@ var CustomerCartShow = {
 
           Messages.makeSuccess(res.msg);
           $('#order-' + orderId).remove();
+          RefreshTotalProducts.perform();
         } else {
 
           Messages.makeError(res.error);

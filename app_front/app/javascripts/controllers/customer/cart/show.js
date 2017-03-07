@@ -1,3 +1,5 @@
+var RefreshTotalProducts = require('javascripts/services/refresh_total_products')
+
 /**
  * CustomerCartShow class
  */
@@ -133,6 +135,8 @@ var CustomerCartShow = {
                         }
                     }
 
+                    RefreshTotalProducts.perform();
+
                 } else {
 
                     Messages.makeError(res.error)
@@ -179,6 +183,8 @@ var CustomerCartShow = {
                         }
                     }
 
+                    RefreshTotalProducts.perform();
+
                 } else {
 
                     Messages.makeError(res.error)
@@ -207,7 +213,8 @@ var CustomerCartShow = {
 
                     Messages.makeSuccess(res.msg);
                     $('#order-' + orderId).remove();
-
+                    RefreshTotalProducts.perform();
+                    
                 } else {
 
                     Messages.makeError(res.error)
@@ -241,7 +248,7 @@ var CustomerCartShow = {
 
         var refreshTotalProducts = require('javascripts/services/refresh_total_products');
         refreshTotalProducts.perform();
-        
+
       }
 
     });
