@@ -10,6 +10,7 @@ describe Api::Guest::OrderItemsController, :type => :controller do
       let(:product) { FactoryGirl.create(:product) }
       subject(:sku) { product.skus.first }
       let!(:setting) { Setting.create! } # important for the controller
+      
 
       it "adds a product to an order" do
         order_item = shop_with_orders.orders.first.order_items.first
@@ -43,6 +44,7 @@ describe Api::Guest::OrderItemsController, :type => :controller do
 
       let(:shop_with_orders) { FactoryGirl.create(:shop, :with_orders) }
       let!(:setting) { Setting.create! } # important for the controller
+      
 
       it "set quantity to 0" do
 

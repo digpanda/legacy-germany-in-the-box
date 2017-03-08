@@ -2,6 +2,7 @@ describe Customer::OrdersController, :type => :controller do
 
   render_views
 
+  
   let(:current_user) { FactoryGirl.create(:customer) }
 
   before(:each) do

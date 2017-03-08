@@ -8,6 +8,8 @@ class LanguagesController < ActionController::Base # No application because it's
   ACCEPTED_LANGUAGES = %w(zh-CN de)
   ACCEPTED_LOCATIONS = [Rails.application.routes.url_helpers.new_user_session_path]
 
+  before_action :identity_solver
+  
   # for get redirections
   def show
     update

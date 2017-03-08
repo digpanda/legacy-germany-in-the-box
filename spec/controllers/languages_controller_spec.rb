@@ -1,6 +1,7 @@
 describe LanguagesController, :type => :controller  do
 
   render_views # jbuilder requirement
+  
 
   context "guest to the website" do
 

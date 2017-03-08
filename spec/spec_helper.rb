@@ -3,6 +3,7 @@ RSpec.configure do |config|
   config.mock_with :rspec
   config.before(:each) do
     Mongoid.purge!
+    FactoryGirl.create(:shipping_rate)
   end
 end
 

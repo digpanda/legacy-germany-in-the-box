@@ -2,6 +2,7 @@ describe Connect::SessionsController, :type => :controller do
 
   describe "#create" do
 
+    
     subject(:user) { FactoryGirl.create(:customer, :with_orders) }
     before(:each) { @request.env["devise.mapping"] = Devise.mappings[:user] }
 
