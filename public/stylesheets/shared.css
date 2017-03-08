@@ -14,6 +14,9 @@
   text-align: center;
   font-weight: bold; }
 
+#csstyle .\+small-margin {
+  margin: 1em; }
+
 #csstyle .\+notif-bubble-inline {
   display: inline-block;
   background-color: #d6506c;

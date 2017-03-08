@@ -14,6 +14,9 @@
   text-align: center;
   font-weight: bold; }
 
+#csstyle .\+small-margin {
+  margin: 1em; }
+
 #csstyle .\+notif-bubble-inline {
   display: inline-block;
   background-color: #d6506c;
@@ -2310,6 +2313,10 @@ body {
 
 .js-editable a {
   color: #666 !important; }
+
+.col-centered {
+  float: none;
+  margin: 0 auto; }
 
 .tips-template {
   display: none; }
