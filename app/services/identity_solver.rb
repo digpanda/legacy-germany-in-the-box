@@ -2,6 +2,8 @@
 # and used within the controller or model, etc. are defined here
 class IdentitySolver < BaseService
 
+  include Rails.application.routes.url_helpers
+  
   attr_reader :request, :session, :user
 
   def initialize(request, session, user)

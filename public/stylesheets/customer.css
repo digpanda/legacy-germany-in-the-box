@@ -1837,6 +1837,7 @@ body {
   .package-set-block__content {
     padding: 4em;
     height: 50vw;
+    max-height: 560px;
     text-align: center;
     margin: 0 auto;
     background-color: #ffffff; }
@@ -1851,6 +1852,7 @@ body {
       font-size: 13px; }
   .package-set-block__image {
     height: 50vw;
+    max-height: 560px;
     background-position: center center;
     background-size: cover; }
     @media (max-width: 994px) {
