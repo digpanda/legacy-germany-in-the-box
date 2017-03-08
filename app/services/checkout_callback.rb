@@ -94,13 +94,14 @@ class CheckoutCallback < BaseService
   private
 
   def alipay_success?(mode)
-    if mode == :unsafe
-      params[:trade_status] == "TRADE_FINISHED" ? true : false
-    elsif mode == :safe
-      params[:trade_status] == "TRADE_SUCCESS" ? true : false
-    else
-      false
-    end
+    params[:trade_status] == "TRADE_FINISHED" ? true : false
+    # if mode == :unsafe
+    #   params[:trade_status] == "TRADE_FINISHED" ? true : false
+    # elsif mode == :safe
+    #   params[:trade_status] == "TRADE_SUCCESS" ? true : false
+    # else
+    #   false
+    # end
   end
 
   def solve_wirecard_order_payment_and_refresh!

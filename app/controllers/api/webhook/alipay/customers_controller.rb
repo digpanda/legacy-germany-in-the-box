@@ -36,17 +36,17 @@ class Api::Webhook::Alipay::CustomersController < Api::ApplicationController
     devlog.info "Alipay started to communicate with us ..."
     devlog.info("Raw params : #{params}")
 
-    if wrong_datas?
-      # THROW ERROR HERE
+    if wrong_params?
+      throw_api_error(:bad_format, {error: "Wrong datas transmitted"}, :bad_request)
       return
     end
 
     if checkout_callback.success?
       devlog.info "Transaction successfully processed."
-      SlackDispatcher.new.message("Yo it worked #{data}")
+      SlackDispatcher.new.message("Yo it worked #{params}")
     else
       devlog.info "Processing of the transaction failed."
-      SlackDispatcher.new.message("Yo it DID NOT WORK #{data}")
+      SlackDispatcher.new.message("Yo it DID NOT WORK #{params}")
     end
 
     devlog.info "End of process."
@@ -65,7 +65,7 @@ class Api::Webhook::Alipay::CustomersController < Api::ApplicationController
     @checkout_callback ||= CheckoutCallback.new(nil, params).alipay!(mode: :safe)
   end
 
-  def wrong_datas?
+  def wrong_params?
     params[:trade_no].nil? || params[:out_trade_no].nil? || params[:trade_status].nil?
   end
 
