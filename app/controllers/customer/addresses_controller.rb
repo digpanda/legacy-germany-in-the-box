@@ -21,6 +21,7 @@ class Customer::AddressesController < ApplicationController
 
   def create
     @address = Address.new(address_params)
+    address.primary = true if current_user.addresses.empty?
     address.user = current_user
 
     if address.save
