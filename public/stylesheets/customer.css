@@ -1922,8 +1922,7 @@ body {
     margin-top: 0.2em; }
 
 .product-miniblock {
-  margin-left: 1em;
-  margin-right: 1em; }
+  padding-bottom: 5em; }
   @media (max-width: 994px) {
     .product-miniblock {
       min-height: 10em; } }
