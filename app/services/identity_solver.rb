@@ -22,12 +22,12 @@ class IdentitySolver < BaseService
     end
   end
 
-  def package_set_customer?
+  def wechat_customer?
     session[:origin] == :wechat
   end
 
   def origin_url
-    package_set_customer? ? guest_package_sets_url : root_url
+    wechat_customer? ? guest_package_sets_url : root_url
   end
 
   def potential_customer?

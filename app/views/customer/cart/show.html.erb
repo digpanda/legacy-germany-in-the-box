@@ -1,9 +1,12 @@
 <% if cart_manager.products_number > 0 %>
   <%= render 'layouts/customer/subheader/checkout_breadcrumb' %>
+  <div class="col-md-offset-1">
+    <a href="<%= @identity_solver.origin_url %>"><i class="fa fa-arrow-circle-left"></i> 继续购物</a>
+  </div>
   <% @orders.each do |order| %>
     <% if order.decorate.total_quantity > 0 %>
 
-    <div id="<%= "order-#{order.id}" %>" class="row">
+      <div id="<%= "order-#{order.id}" %>" class="row">
       <div class="col-md-10 col-md-push-1 col-md-pull-1">
 
         <div class="row">
