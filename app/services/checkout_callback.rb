@@ -1,5 +1,17 @@
 class CheckoutCallback < BaseService
 
+  # {"sign"=>"0ba0871c3777191fda758b07189a59c3",
+  #  "trade_no"=>"2017030821001003840200345741",
+  #  "total_fee"=>"1262.41",
+  #  "sign_type"=>"MD5",
+  #  "out_trade_no"=>"58bfc16af54bcc0a0b908c44",
+  #  "trade_status"=>"TRADE_FINISHED",
+  #  "currency"=>"HKD",
+  #  "controller"=>"customer/checkout/callback/alipay",
+  #  "action"=>"show"}
+
+  include ErrorsHelper
+
   attr_reader :user, :params, :forced_status
 
   # NOTE : the forced status isn't currently working with alipay
@@ -83,7 +95,7 @@ class CheckoutCallback < BaseService
 
   def alipay_success?(mode)
     if mode == :unsafe
-      params[:is_success] == "T" ? true : false
+      params[:trade_status] == "TRADE_FINISHED" ? true : false
     elsif mode == :safe
       params[:trade_status] == "TRADE_SUCCESS" ? true : false
     else

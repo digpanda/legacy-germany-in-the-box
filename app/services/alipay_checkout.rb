@@ -23,14 +23,32 @@ class AlipayCheckout < BaseService
   private
 
   def raw_url
+    # create_forex_trade_wap_url
     @raw_url ||= begin
-      Alipay::Service.create_direct_pay_by_user_url(
-        out_trade_no: "#{order.id}", # TODO : maybe replace by random number ?
+
+      Alipay::Service.create_forex_trade_url(
+        out_trade_no: "#{order.id}",
         subject: "Order #{order.id}",
-        total_fee: "#{order.end_price.in_euro.to_yuan.display_raw}",
+        currency: "EUR",
+        rmb_fee: "#{order.end_price.in_euro.to_yuan.display_raw}",
         return_url: "#{base_url}#{customer_checkout_callback_alipay_path}",
         notify_url: "#{base_url}#{api_webhook_alipay_customer_path}",
       )
+      # Alipay::Service.create_forex_trade_wap_url(
+      #   out_trade_no: "#{order.id}",
+      #   subject: "Order #{order.id}",
+      #   rmb_fee: "#{order.end_price.in_euro.to_yuan.display_raw}",
+      #   return_url: "#{base_url}#{customer_checkout_callback_alipay_path}",
+      #   notify_url: "#{base_url}#{api_webhook_alipay_customer_path}",
+      # )
+      #
+      # Alipay::Service.create_direct_pay_by_user_url(
+      #   out_trade_no: "#{order.id}",
+      #   subject: "Order #{order.id}",
+      #   total_fee: "#{order.end_price.in_euro.to_yuan.display_raw}",
+      #   return_url: "#{base_url}#{customer_checkout_callback_alipay_path}",
+      #   notify_url: "#{base_url}#{api_webhook_alipay_customer_path}",
+      # )
     end
   end
 
