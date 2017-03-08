@@ -34,8 +34,8 @@ end
 def add_package!
   visit guest_package_sets_path
   click_on "查看更多信息"
-  expect(page).to have_content("€ 3800.00")
-  click_on "购买"
+  expect(page).to have_content("¥ 3800.00")
+  click_on "加入购物车"
 end
 
 def fill_in_with_multiple_addresses!
