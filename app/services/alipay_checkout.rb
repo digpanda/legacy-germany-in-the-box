@@ -25,6 +25,7 @@ class AlipayCheckout < BaseService
   def raw_url
     @raw_url ||= begin
       SlackDispatcher.new.message("WECHAT CUSTOMER ? #{identity_solver.wechat_customer?}")
+      
       if identity_solver.wechat_customer?
         Alipay::Service.create_forex_trade_wap_url(
           out_trade_no: "#{order.id}",
