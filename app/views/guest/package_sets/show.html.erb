@@ -18,7 +18,7 @@
         <!-- Close Action -->
         <button data-remodal-action="close" class="remodal-close"></button>
         <h1><%= @package_set.name %></h1>
-        <p><%= @package_set.long_desc %></p>
+        <p><%= simple_format @package_set.long_desc %></p>
       </div>
 
       <!-- Introduction -->
@@ -26,7 +26,7 @@
         <div class="col-md-12">
           <div class="package-set-infos__introduction">
             <h1><%= @package_set.name %></h1>
-            <p><%= @package_set.desc %></p>
+            <p><%= simple_format @package_set.desc %></p>
           </div>
         </div>
         <% if @package_set.long_desc.present? %>
