@@ -13,7 +13,7 @@ class PackageSku
   validates_presence_of :sku_id
   validates_presence_of :quantity
 
-  validates :price, :taxes_per_unit, :shipping_per_unit, presence: true, numericality: { greater_than: 0 }
+  validates :price, presence: true, numericality: { greater_than: 0 }
 
   def sku
     @sku ||= product.skus.find(sku_id)
