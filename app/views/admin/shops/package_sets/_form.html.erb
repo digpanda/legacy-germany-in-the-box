@@ -13,12 +13,12 @@
   <div class="clearfix"></div>
 
   <%= form.label :long_desc %>
-  <%= form.text_field :long_desc %>
+  <%= form.text_area :long_desc %>
 
   <div class="clearfix"></div>
 
   <%= form.label :referrer_rate %>
-  <%= form.text_field :referrer_rate %>
+  <%= form.text_area :referrer_rate %>
 
   <div class="clearfix"></div>
 
@@ -27,6 +27,18 @@
 
   <%= form.label :details_cover, "Details Cover" %>
   <%= js_file_upload(form: form, field: :details_cover) %>
+
+  <div class="row">
+
+  <%= form.fields_for :images do |field| %>
+
+  <div class="col-md-3">
+    <%= field.label :file, "Optional Image ##{solve_index}" %>
+    <%= js_file_upload(form: field, field: :file) %>
+  </div>
+  <% end %>
+
+  </div>
 
   <div class="clearfix"></div>
 </div>

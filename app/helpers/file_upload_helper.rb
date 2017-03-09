@@ -28,6 +28,8 @@ module FileUploadHelper
       admin_setting_destroy_image_path(form.object, image_field: field)
     when PackageSet
       admin_shop_package_set_destroy_image_path(shop_id: form.object.shop.id, package_set_id: form.object.id, image_field: field)
+    when Image
+      admin_shop_package_set_destroy_image_path(shop_id: form.object.package_set.shop.id, package_set_id: form.object.package_set.id, image_field: field)
     when Category
       admin_category_destroy_image_path(form.object, image_field: field)
     end
