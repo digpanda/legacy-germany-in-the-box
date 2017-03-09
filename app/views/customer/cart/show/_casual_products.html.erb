@@ -46,10 +46,10 @@
       <td class="white-table__quantity">
 
         <div class="row">
-          
+
           <!-- Minus -->
           <div class="col-md-3">
-            <% unless order_item.locked? || cart_manager.out?(order_item.order) %>
+            <% unless order_item.locked? || cart_manager.out?(order_item.order) || !action %>
             <a href="#" class="js-set-quantity-minus" data-order-item-id="<%= order_item.id.to_s %>" data-order-shop-id="<%= order_item.order.shop.id %>">
               <i class="fa fa-minus buttons buttons__quantity"></i>
             </a>
@@ -62,7 +62,7 @@
 
           <!-- Plus -->
           <div class="col-md-3">
-            <% unless order_item.locked? || cart_manager.out?(order_item.order) %>
+            <% unless order_item.locked? || cart_manager.out?(order_item.order) || !action %>
             <a href="#" class="js-set-quantity-plus" data-order-item-id="<%= order_item.id.to_s %>" data-order-shop-id="<%= order_item.order.shop.id %>">
               <i class="fa fa-plus buttons buttons__quantity"></i>
             </a>
@@ -80,7 +80,7 @@
         <span class="+discount"><%= order_item.sku.decorate.discount_with_percent %></span>
         <% end %>
       </td>
-      <% unless order_item.locked? || cart_manager.out?(order_item.order) %>
+      <% unless order_item.locked? || cart_manager.out?(order_item.order) || !action %>
         <td>
           <%= link_to '', '#', class: 'fa fa-times buttons buttons__delete delete-order-item',
                       data: { id: order_item.id.to_s, order_id: order_item.order.id.to_s, order_shop_id: order_item.order.shop.id.to_s, mesage: I18n.t(:delete_sku_msg, scope: :cart) } %>

@@ -44,10 +44,12 @@
                 <%= package_set.end_price.in_euro.to_yuan.display %>
               </td>
               <td style="text-align:center">
-                <%= link_to '', '#', class: 'fa fa-times buttons buttons__delete delete-package-set',
+                <% if action %>
+                  <%= link_to '', '#', class: 'fa fa-times buttons buttons__delete delete-package-set',
                             data: { package_set_id: package_set.id.to_s,
                                     order_id: order_items.first.order.id.to_s,
                                     order_shop_id: order_items.first.order.shop.id.to_s} %>
+                <% end %>
               </td>
             </tr>
             </tbody>

@@ -14,7 +14,8 @@
 <div class="row">
   <div class="col-md-12">
       <%= render partial: 'customer/cart/show/package_set_products', :locals => { :order_items => order.order_items.where(:package_set.ne => nil),
-                                                                                  :package_set_ids => order.order_items.where(:package_set.ne => nil).pluck(:package_set) } %>
+                                                                                  :package_set_ids => order.order_items.where(:package_set.ne => nil).pluck(:package_set),
+                                                                                  :action => action } %>
   </div>
 </div>
 
@@ -22,12 +23,14 @@
 <% unless order.only_package_set? %>
   <div class="row +overflow">
     <div class="col-md-12">
-      <%= render partial: 'customer/cart/show/casual_products', :locals => { :order_items => order.order_items.where(package_set: nil) } %>
+      <%= render partial: 'customer/cart/show/casual_products', :locals => { :order_items => order.order_items.where(package_set: nil), :action => action } %>
     </div>
   </div>
 <% end %>
 
 <% if cart_manager.in?(order) %>
   <!-- Action to the order -->
-  <%= render partial: 'customer/cart/show/action', :locals => { :order => order } %>
+  <% if action %>
+    <%= render partial: 'customer/cart/show/action', :locals => { :order => order } %>
+  <% end %>
 <% end %>

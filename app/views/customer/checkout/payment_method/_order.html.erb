@@ -1,69 +1,12 @@
+
 <h2><%= I18n.t(:my_order, scope: :top_menu) %></h2>
 
-<table class="white-table">
-  <thead>
-    <tr>
-      <th>
-        <%= I18n.t(:item, scope: :cart) %>
-      </th>
-      <th>
-        <%= I18n.t(:name, scope: :cart) %>
-      </th>
-      <th>
-        <%= I18n.t(:variant_option, scope: :cart) %>
-      </th>
-      <th>
-        <%= I18n.t(:quantity, scope: :cart) %>
-      </th>
-      <th>
-        <%= I18n.t(:unit_price, scope: :cart) %>
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-    <% order.order_items.each do |order_item| %>
-    <tr>
-      <td class="cart-item-image">
-        <a href="<%= guest_product_path(order_item.product) %>">
-          <img src="<%= order_item.sku.decorate.highlighted_image %>" class="icon-img"/>
-        </a>
-      </td>
-      <td>
-        <% if order_item.package_set %>
-          <%= order_item.product.name %> (<%= order_item.package_set.name %>)
-        <% else %>
-          <%= order_item.product.name %>
-        <% end %>
-      </td>
-      <td>
-        <%= order_item.option_names.join(', ') %>
-      </td>
-      <td>
-        <%= order_item.quantity %>
-      </td>
-      <td>
-        <%= order_item.price_with_taxes.in_euro.to_yuan.display %>
-        <% if order_item.sku.discount > 0 %>
-        <span class="+discount"><%= order_item.sku.decorate.discount_with_percent %></span>
-        <% end %>
-      </td>
-    </tr>
-    <% end %>
+<!-- Total for this order -->
+<div class="col-md-4 col-md-push-8">
+  <%= render partial: 'customer/cart/show/total', locals: {order: order} %>
+</div>
 
-    <tr>
-      <td>
-      </td>
-      <td>
-      </td>
-      <td>
-      </td>
-      <td>
-        <strong>Total</strong>
-      </td>
-      <td>
-        <strong><%= order.end_price.in_euro.to_yuan.display %></strong>
-      </td>
-    </tr>
-
-  </tbody>
-</table>
+<!-- Order listing -->
+<div class="col-md-8 col-md-pull-4">
+  <%= render partial: 'customer/cart/show/order', locals: {order: order, action: false} %>
+</div>
