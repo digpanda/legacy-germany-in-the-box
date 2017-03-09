@@ -3,13 +3,14 @@ class CheckoutGateway < BaseService
   ACCEPTABLE_PROVIDERS = [:wirecard, :alipay, :wechatpay]
 
   include Rails.application.routes.url_helpers
-  attr_reader :request, :user, :order, :payment_gateway
+  attr_reader :request, :user, :order, :payment_gateway, :identity_solver
 
-  def initialize(request, user, order, payment_gateway)
+  def initialize(request, user, order, payment_gateway, identity_solver)
     @request = request
     @user = user
     @order = order
     @payment_gateway = payment_gateway
+    @identity_solver = identity_solver
   end
 
   def perform
@@ -34,7 +35,7 @@ class CheckoutGateway < BaseService
   end
 
   def alipay_checkout_url
-    @alipay_checkout_url ||= AlipayCheckout.new(base_url, user, order, payment_gateway).checkout_url!
+    @alipay_checkout_url ||= AlipayCheckout.new(base_url, user, order, payment_gateway, identity_solver).checkout_url!
   end
 
   # NOTE : this will create a new payment entry and prepare it

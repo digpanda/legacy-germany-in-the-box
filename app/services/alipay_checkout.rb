@@ -1,16 +1,16 @@
 # prepare an order to be transmitted to the Alipay server
-
 class AlipayCheckout < BaseService
 
   include Rails.application.routes.url_helpers
 
-  attr_reader :base_url, :user, :order, :payment_gateway
+  attr_reader :base_url, :user, :order, :payment_gateway, :identity_solver
 
-  def initialize(base_url, user, order, payment_gateway)
+  def initialize(base_url, user, order, payment_gateway, identity_solver)
     @base_url = base_url
     @user  = user
     @order = order
     @payment_gateway = payment_gateway
+    @identity_solver = identity_solver
   end
 
   # we access the Wirecard::Hpp library and generate the needed datas
@@ -24,7 +24,8 @@ class AlipayCheckout < BaseService
 
   def raw_url
     @raw_url ||= begin
-      if session[:origin] == :wechat
+      SlackDispatcher.new.message("WECHAT CUSTOMER ? #{identity_solver.wechat_customer?}")
+      if identity_solver.wechat_customer?
         Alipay::Service.create_forex_trade_wap_url(
           out_trade_no: "#{order.id}",
           subject: "Order #{order.id}",
