@@ -1933,8 +1933,8 @@ body {
     text-align: left; }
   .product-miniblock__zoom {
     float: right;
-    margin-right: 2em;
-    margin-top: 0.5em;
+    margin-right: 10px;
+    margin-top: 7em;
     opacity: 0.5; }
   .product-miniblock__image {
     height: 130px;
