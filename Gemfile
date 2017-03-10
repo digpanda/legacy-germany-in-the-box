@@ -7,6 +7,7 @@ source "https://rubygems.org"
 gem "wirecard-elastic", git: "https://github.com/Loschcode/wirecard-elastic.git", branch: "master", tag: "v0.2.2"
 
 gem "alipay", "~> 0.14.0"
+gem "wx_pay"
 
 gem "geocoder"
 gem "api_cache"
