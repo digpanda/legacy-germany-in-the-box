@@ -1922,6 +1922,7 @@ body {
     margin-top: 0.2em; }
 
 .product-miniblock {
+  max-width: 95%;
   padding-bottom: 5em; }
   @media (max-width: 994px) {
     .product-miniblock {
