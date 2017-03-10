@@ -26,6 +26,9 @@ class ApplicationController < ActionController::Base
         SlackDispatcher.new.silent_login_attempt("Success!!")
         sign_out
         sign_in(:user, wechat_auth.data[:customer])
+        if current_user.cart_orders.first
+          cart_manager.store(current_user.cart_orders.first)
+        end
         if wechat_auth.data[:tourist_guide]
           redirect_to customer_referrer_path
           return

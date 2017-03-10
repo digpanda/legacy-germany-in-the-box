@@ -30,7 +30,9 @@ class CartManager < BaseService
   # there's a minor validation so we cannot have a bought / cancelled order in the cart
   def store(order)
     return false if order.bought_or_cancelled?
-    session[:order_shop_ids]["#{order.shop.id}"] = "#{order.id}"
+    unless session[:order_shop_ids].has_key?(order.shop.id.to_s)
+      session[:order_shop_ids]["#{order.shop.id}"] = "#{order.id}"
+    end
   end
 
   # empty all orders from the cart

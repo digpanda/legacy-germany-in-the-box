@@ -16,6 +16,8 @@ module DestroyImage
   # we guess the model by selecting
   # the last instance variable
   def guess_model_entry
+    # TODO : change the way it is
+    # params[:model], :id
     self.instance_variable_names.last.sub('@','')
   end
 

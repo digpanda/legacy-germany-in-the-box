@@ -15,9 +15,11 @@ class PackageSet
 
   belongs_to :shop, inverse_of: :package_sets
   embeds_many :package_skus, inverse_of: :package_set, cascade_callbacks: true
+  embeds_many :images, inverse_of: :package_set, cascade_callbacks: true
   has_many :order_items
 
   accepts_nested_attributes_for :package_skus, :reject_if => :reject_package_skus, :allow_destroy => true
+  accepts_nested_attributes_for :images, :allow_destroy => true
 
   def reject_package_skus(attributed)
     attributed['product_id'].blank? || attributed['sku_id'].blank?

@@ -95,7 +95,7 @@ class Customer::CheckoutController < ApplicationController
 
   def force_address_param
     unless params[:delivery_destination_id]
-      flash[:error] = "Please choose a delivery address."
+      flash[:error] = "请选择邮寄地址"
       redirect_to navigation.back(1)
       return false
     end

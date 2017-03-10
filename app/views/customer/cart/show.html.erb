@@ -1,8 +1,11 @@
 <% if cart_manager.products_number > 0 %>
   <%= render 'layouts/customer/subheader/checkout_breadcrumb' %>
+
   <div class="col-md-offset-1">
-    <a href="<%= identity_solver.origin_url %>"><i class="fa fa-arrow-circle-left"></i> 继续购物</a>
+    <div class="+small-spacer"></div>
+    <a class="btn btn-default" href="<%= identity_solver.origin_url %>"><i class="fa fa-arrow-circle-left"></i> 继续购物</a>
   </div>
+
   <% @orders.each do |order| %>
     <% if order.decorate.total_quantity > 0 %>
 
@@ -18,7 +21,7 @@
 
           <!-- Order listing -->
           <div class="col-md-8 col-md-pull-4">
-            <%= render partial: 'customer/cart/show/order', locals: {order: order} %>
+            <%= render partial: 'customer/cart/show/order', locals: {order: order, action: true} %>
           </div>
 
         </div>

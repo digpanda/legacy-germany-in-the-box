@@ -21,6 +21,7 @@ class Admin::Shops::PackageSetsController < ApplicationController
 
   def new
     @package_set = PackageSet.new
+    build_package_images!
     build_package_skus!
   end
 
@@ -38,6 +39,7 @@ class Admin::Shops::PackageSetsController < ApplicationController
   end
 
   def edit
+    build_package_images!
     build_package_skus!
   end
 
@@ -80,6 +82,10 @@ class Admin::Shops::PackageSetsController < ApplicationController
 
   def package_set_params
     params.require(:package_set).permit!
+  end
+
+  def build_package_images!
+    4.times { package_set.images.build }
   end
 
   def build_package_skus!
