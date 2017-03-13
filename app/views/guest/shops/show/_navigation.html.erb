@@ -45,7 +45,7 @@
         <!--</div>-->
       </div>
       <div align="center">
-        <%= link_to shop.name, guest_shop_path(shop) %>
+        <%= link_to shop.shopname, guest_shop_path(shop) %>
         <% shop.categories.each_with_index do |category, index| %>
             -
           <%= link_to category.name, guest_shop_path(shop, category_id: category) %>
