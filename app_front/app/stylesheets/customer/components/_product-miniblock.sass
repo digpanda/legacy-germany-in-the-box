@@ -14,9 +14,12 @@
 
   +part(zoom)
     float: right
-    margin-right: 10px
-    margin-top: 7em
+    margin-right: 2em
+    margin-top: .5em
     opacity: 0.5
+    +breakpoint('mobile')
+      margin-right: 1em
+      margin-top: 1.5em
 
   +part(image)
     height: 130px
