@@ -1,0 +1,43 @@
+<% if shipping_rates.size > 0 %>
+<table class="white-table">
+  <thead>
+    <tr>
+      <th>
+        ID
+      </th>
+      <th>
+        Weight (KG)
+      </th>
+      <th>
+        Price (EUR)
+      </th>
+      <th>
+        Action
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% shipping_rates.each do |shipping_rate| %>
+    <tr>
+      <td>
+        <%= shipping_rate.id %>
+      </td>
+      <td>
+        <%= editable_field(shipping_rate, admin_shipping_rate_path(shipping_rate), :price, :text_field) %>
+      </td>
+      <td>
+        <%= editable_field(shipping_rate, admin_shipping_rate_path(shipping_rate), :weight, :text_field) %>
+      </td>
+      <td>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<% else %>
+<div class="+white-box +centered">
+  <h4>
+    <%= I18n.t(:no_shipping_rate, scope: :edit_shipping_rate) %>
+  </h4>
+</div>
+<% end %>
