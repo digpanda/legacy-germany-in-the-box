@@ -1873,6 +1873,8 @@ body {
   .package-set-infos__introduction {
     text-align: center;
     margin: 0 auto; }
+    .package-set-infos__introduction h1 {
+      font-size: 27px; }
   .package-set-infos__products {
     padding-top: 2em;
     padding-bottom: 2em; }
