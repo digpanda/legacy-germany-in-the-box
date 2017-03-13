@@ -9,6 +9,7 @@ class PackageSet
   field :cover,       type: String
   field :details_cover,       type: String
   field :referrer_rate, type: Float, default: 0.0
+  field :active, type: Boolean, default: true
 
   mount_uploader :cover, CoverUploader
   mount_uploader :details_cover, CoverUploader
@@ -30,6 +31,8 @@ class PackageSet
   validates_presence_of :cover
   validates_with UniquePackageSkuValidator
 
+  scope :active, -> { where(active: true) }
+
   def casual_price
     self.package_skus.reduce(0) do |acc, package_sku|
       acc + (package_sku.sku.price_with_taxes_and_shipping * package_sku.quantity)
@@ -45,6 +48,21 @@ class PackageSet
   def end_price
     self.package_skus.reduce(0) do |acc, package_sku|
       acc + package_sku.total_price_with_taxes_and_shipping
+    end
+  end
+
+  def delete_with_assoc
+    delete_oder_items
+    if self.order_items.empty?
+      self.destroy
+    else
+      self.update(active: false)
+    end
+  end
+
+  def delete_oder_items
+    self.order_items.each do |order_item|
+      order_item.delete unless order_item.order.bought?
     end
   end
 

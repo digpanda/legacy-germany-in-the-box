@@ -15,7 +15,7 @@ class Guest::PackageSetsController < ApplicationController
   # we show the list of packages
   # we already created from the admin
   def index
-    @package_sets = PackageSet.order_by(position: :asc).all
+    @package_sets = PackageSet.active.order_by(position: :asc).all
   end
 
   # we use the package set and convert it into an order
