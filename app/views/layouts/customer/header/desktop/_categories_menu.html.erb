@@ -19,7 +19,7 @@
     <% if Rails.env.production? %>
       <% shop = Shop.find('577b80dd7302fc738898070a') %>
       <li>
-        <%= link_to shop&.name, guest_shop_path(shop) %>
+        <%= link_to shop&.shopname, guest_shop_path(shop) %>
       </li>
     <% end %>
   </ul>
