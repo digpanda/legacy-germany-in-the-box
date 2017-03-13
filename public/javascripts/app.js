@@ -671,6 +671,8 @@ var CustomerCheckoutPaymentMethod = {
   init: function init() {
 
     this.handleMethodSelection();
+    var CustomerCartShow = require("javascripts/controllers/customer/cart/show");
+    CustomerCartShow.multiSelectSystem();
   },
 
   /**

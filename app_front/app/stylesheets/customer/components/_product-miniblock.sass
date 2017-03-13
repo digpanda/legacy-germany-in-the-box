@@ -1,5 +1,6 @@
 +component(product-miniblock)
 
+  max-width: 95%
   padding-bottom: 5em
   +breakpoint('mobile')
     min-height: 10em // 35em
@@ -14,8 +15,11 @@
   +part(zoom)
     float: right
     margin-right: 2em
-    margin-top: 0.5em
+    margin-top: .5em
     opacity: 0.5
+    +breakpoint('mobile')
+      margin-right: 1em
+      margin-top: 1.5em
 
   +part(image)
     height: 130px

@@ -1,6 +1,9 @@
 # Guest related
 namespace :guest do
 
+  resource :wechatpay, :controller => 'wechatpay' do
+  end
+
   resource :home, :controller => 'home' do
   end
 

@@ -3,6 +3,9 @@ require 'sidekiq/web'
 
 namespace :admin do
 
+  resources :shipping_rates do
+  end
+
   resources :categories do
     delete :destroy_image
   end
