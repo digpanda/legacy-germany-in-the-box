@@ -12,7 +12,7 @@ class Admin::Shops::PackageSetsController < ApplicationController
   before_action :breadcrumb_admin_shops, :breadcrumb_admin_shop_products
 
   def index
-    @package_sets = shop.package_sets.order_by(position: :asc).paginate(:page => current_page, :per_page => 10)
+    @package_sets = shop.package_sets.active.order_by(position: :asc).paginate(:page => current_page, :per_page => 10)
   end
 
   def show
@@ -56,7 +56,7 @@ class Admin::Shops::PackageSetsController < ApplicationController
   end
 
   def destroy
-    if package_set.destroy
+    if package_set.delete_with_assoc
       flash[:success] = "Set was destroyed"
     else
       flash[:error] = package_set.errors.full_messages.join(', ')

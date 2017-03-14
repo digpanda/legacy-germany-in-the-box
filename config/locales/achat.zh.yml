@@ -217,6 +217,7 @@ zh-CN:
   forms:
     delivery_options: 送货方式
   footer:
+    social: 社区
     icp_registration: 粤ICP备16044763号
     business_model: 来因盒商业模式
     shipping_price: 运费表
@@ -700,7 +701,7 @@ zh-CN:
     unit_price: 单价
     operations: 操作
     subtotal: 产品总价
-    all_included: 包邮包税
+    all_included: 含税包邮价格
     shipping: 运费
     taxes: 税
     total_price_in_euro: 总计(欧元)
