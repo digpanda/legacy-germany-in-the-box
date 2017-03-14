@@ -22,6 +22,11 @@
 
   <div class="clearfix"></div>
 
+  <%= form.label :casual_price %>
+  <%= form.text_field :casual_price %>
+
+  <div class="clearfix"></div>
+
   <%= form.label :cover, "Cover" %>
   <%= js_file_upload(form: form, field: :cover) %>
 
