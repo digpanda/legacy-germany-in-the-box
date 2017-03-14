@@ -2771,8 +2771,8 @@ var LazyLoader = {
   startLazyLoader: function startLazyLoader() {
 
     $("div.lazy").lazyload({
-      effect: "fadeIn",
-      threshold: 400
+      effect: "fadeIn"
+      //threshold : 400
     });
   }
 
