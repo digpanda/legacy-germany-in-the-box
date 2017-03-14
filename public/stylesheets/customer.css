@@ -1924,11 +1924,10 @@ body {
     margin-top: 0.2em; }
 
 .product-miniblock {
-  max-width: 95%;
-  padding-top: 6em; }
+  max-width: 95%; }
   @media (max-width: 994px) {
     .product-miniblock {
-      min-height: 10em; } }
+      min-height: 18em; } }
   .product-miniblock a {
     color: #5c5c5c; }
   .product-miniblock__remodal {
