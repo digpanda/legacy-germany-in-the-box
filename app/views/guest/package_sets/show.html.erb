@@ -15,11 +15,14 @@
 
       <!-- Modal introduction -->
       <div class="remodal" data-remodal-options="hashTracking: false" data-remodal-id="package-set-introduction">
-        <!-- Close Action -->
-        <button data-remodal-action="close" class="remodal-close"></button>
-        <h1><%= @package_set.name %></h1>
-        <div style="text-align: justify;">
-          <p><%= simple_format @package_set.long_desc %></p>
+
+        <div class="package-set-introduction">
+          <!-- Close Action -->
+          <button data-remodal-action="close" class="remodal-close"></button>
+          <h1><%= @package_set.name %></h1>
+          <div style="text-align: justify;">
+            <p><%= simple_format @package_set.long_desc %></p>
+          </div>
         </div>
       </div>
 

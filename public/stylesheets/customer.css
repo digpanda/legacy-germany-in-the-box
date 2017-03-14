@@ -1894,6 +1894,9 @@ body {
     color: #d6506c;
     margin-top: -0.5em; }
 
+.package-set-introduction h1 {
+  font-size: 27px; }
+
 .page-navigation {
   margin-top: 1em;
   margin-bottom: 1em;
