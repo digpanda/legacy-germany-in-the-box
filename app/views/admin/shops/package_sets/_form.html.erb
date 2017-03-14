@@ -3,17 +3,17 @@
 <div class="row details__block">
 
   <%= form.label :name %>
-  <%= form.text_field :name %>
+  <%= form.text_field :name, style: 'width: 500px;' %>
 
   <div class="clearfix"></div>
 
   <%= form.label :desc %>
-  <%= form.text_field :desc %>
+  <%= form.text_area :desc, rows: 10, cols: 80  %>
 
   <div class="clearfix"></div>
 
   <%= form.label :long_desc %>
-  <%= form.text_area :long_desc %>
+  <%= form.text_area :long_desc, rows: 10, cols: 80 %>
 
   <div class="clearfix"></div>
 
