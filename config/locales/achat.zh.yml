@@ -700,7 +700,7 @@ zh-CN:
     unit_price: 单价
     operations: 操作
     subtotal: 产品总价
-    all_included: 包邮包税
+    all_included: 含税包邮价格
     shipping: 运费
     taxes: 税
     total_price_in_euro: 总计(欧元)
