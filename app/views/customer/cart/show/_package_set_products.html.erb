@@ -42,6 +42,8 @@
               </td>
               <td style="text-align:right">
                 <%= package_set.end_price.in_euro.to_yuan.display %>
+                <p style="font-size: 8px;">( <%= I18n.t(:all_included, scope: :cart) %> )</p>
+
               </td>
               <td style="text-align:center">
                 <% if action %>
