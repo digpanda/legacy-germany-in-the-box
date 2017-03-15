@@ -49,7 +49,9 @@
   <% end %>
   <br />
   <%= @order.border_guru_shipment_id %><br />
-  <%= @order.paid_at.utc.strftime("%Y-%m-%d") %><br />
+  <% if @order.paid_at %>
+    <%= @order.paid_at.utc.strftime("%Y-%m-%d") %><br />
+  <% end %>
 </div>
 
 <div style="clear:both;"></div>
