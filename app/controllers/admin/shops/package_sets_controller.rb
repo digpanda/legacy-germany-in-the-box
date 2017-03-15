@@ -12,7 +12,7 @@ class Admin::Shops::PackageSetsController < ApplicationController
   before_action :breadcrumb_admin_shops, :breadcrumb_admin_shop_products
 
   def index
-    @package_sets = shop.package_sets.order_by(position: :asc).paginate(:page => current_page, :per_page => 10)
+    @package_sets = shop.package_sets.active.order_by(position: :asc).paginate(:page => current_page, :per_page => 10)
   end
 
   def show
