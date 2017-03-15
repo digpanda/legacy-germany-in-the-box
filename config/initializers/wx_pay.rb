@@ -1,6 +1,6 @@
 # required
 WxPay.appid = 'wxfde44fe60674ba13'
-WxPay.key = 'ba4909d26bb13a3dcb80e3942b804631'
+WxPay.key = 'abcdvW82Kfrdahqt2rwtzoEi543fh8m1'
 WxPay.mch_id = '1354063202'
 WxPay.debug_mode = true # default is `true`
 
