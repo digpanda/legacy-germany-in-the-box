@@ -4,6 +4,9 @@
 # - the user select an address matching with an ID which has already spent too much today
 class BuyingBreaker < BaseService
 
+  # NOTE : the system was cancelled temporarily
+  # please remove the `return false` to put it back to normal
+  
   attr_reader :order
 
   def initialize(order)
@@ -14,6 +17,7 @@ class BuyingBreaker < BaseService
   # on adding up one item (sku) in this specific order
   # if there were not item before, it passes the limit (because it's one pricey item)
   def with_sku?(sku, quantity)
+    return false
     return false if order.order_items.size == 0 && quantity == 1
     (sku.decorate.price_in_yuan * quantity + order_price) > Setting.instance.max_total_per_day
   end
@@ -24,6 +28,7 @@ class BuyingBreaker < BaseService
   # NOTE : the address must be a shipping_address
   # the comparison is made on the recipient of the package
   def with_address?(address)
+    return false
     if address_today_paid(address) > 0
       (order_price + address_today_paid(address)) > Setting.instance.max_total_per_day
     end
