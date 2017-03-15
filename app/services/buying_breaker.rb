@@ -4,8 +4,6 @@
 # - the user select an address matching with an ID which has already spent too much today
 class BuyingBreaker < BaseService
 
-  BUYING_LIMIT_CNY = Setting.instance.max_total_per_day # 1000
-
   attr_reader :order
 
   def initialize(order)
@@ -17,7 +15,7 @@ class BuyingBreaker < BaseService
   # if there were not item before, it passes the limit (because it's one pricey item)
   def with_sku?(sku, quantity)
     return false if order.order_items.size == 0 && quantity == 1
-    (sku.decorate.price_in_yuan * quantity + order_price) > BUYING_LIMIT_CNY
+    (sku.decorate.price_in_yuan * quantity + order_price) > Setting.instance.max_total_per_day
   end
 
   # we check if he reached the limit
@@ -27,7 +25,7 @@ class BuyingBreaker < BaseService
   # the comparison is made on the recipient of the package
   def with_address?(address)
     if address_today_paid(address) > 0
-      (order_price + address_today_paid(address)) > BUYING_LIMIT_CNY
+      (order_price + address_today_paid(address)) > Setting.instance.max_total_per_day
     end
   end
 
