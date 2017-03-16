@@ -19,7 +19,7 @@
   <div class="form-group">
     <div class="row">
       <div class="col-md-12">
-        <%= form.text_field :mobile, :value => address.mobile ? address.mobile : current_user.mobile, :class => 'form-control', :required => true, :placeholder => I18n.t(:mobile, scope: :edit_address), :pattern => I18n.t(:mobile, scope: :validation, locale: :'zh-CN') %>
+        <%= form.text_field :mobile, :value => address.mobile ? address.mobile : current_user.mobile, :class => 'form-control', :required => true, :placeholder => I18n.t(:mobile, scope: :edit_address), :pattern => I18n.t(:mobile, scope: :validation, locale: :'zh-CN'), :data => { :error => '请输入正确手机号' } %>
         <div class="help-block with-errors +left"></div>
        </div>
      </div>
