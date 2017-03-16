@@ -33,8 +33,6 @@ class Guest::WechatpayController < ApplicationController
 
     result = WxPay::Service.generate_js_pay_req params
 
-    binding.pry
-
   end
 
   private
