@@ -28,10 +28,22 @@ class CheckoutGateway < BaseService
     return_with(:success, :url => alipay_checkout_url)
   end
 
+  def wechatpay
+    # Temporary solution to see if it pays
+    return_with(:success, :url => wechatpay_checkout)
+  end
+
   private
 
   def acceptable_provider?
     ACCEPTABLE_PROVIDERS.include? payment_gateway.provider
+  end
+
+  def wechatpay_checkout
+    @wechatpay_checkout_url ||= begin
+      WechatpayCheckout.new(base_url, user, order, payment_gateway, identity_solver).checkout!
+      root_url
+    end
   end
 
   def alipay_checkout_url

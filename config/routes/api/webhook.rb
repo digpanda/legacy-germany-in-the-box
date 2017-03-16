@@ -13,4 +13,9 @@ namespace :webhook do
     end
   end
 
+  namespace :wechatpay do
+    resource :customer do
+    end
+  end
+
 end
