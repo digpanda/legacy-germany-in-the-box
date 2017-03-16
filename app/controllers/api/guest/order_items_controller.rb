@@ -79,7 +79,7 @@ class Api::Guest::OrderItemsController < Api::ApplicationController
       @order = order_item.order
 
       if @order.persisted?
-        CouponHandler.new(identity_solver, order.coupon, order).reset
+        CouponHandler.new(identity_solver, order.coupon, order).reset if order.coupon
         render 'api/guest/order_items/update'
       else
         render json: {success: true, order_empty: !@order.persisted?}
