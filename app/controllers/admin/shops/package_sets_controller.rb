@@ -74,8 +74,10 @@ class Admin::Shops::PackageSetsController < ApplicationController
 
   def clean_up_package_skus!
     package_set.package_skus.map(&:product_id).map(&:to_s).each do |product_id|
-      unless params_valid_product_ids&.include? product_id
-        package_set.package_skus.where(product_id: product_id).delete
+      if params_valid_product_ids
+        unless params_valid_product_ids&.include? product_id
+          package_set.package_skus.where(product_id: product_id).delete
+        end
       end
     end
   end
@@ -89,7 +91,7 @@ class Admin::Shops::PackageSetsController < ApplicationController
   end
 
   def build_package_skus!
-    5.times { package_set.package_skus.build }
+    15.times { package_set.package_skus.build }
   end
 
   def set_shop
