@@ -9,10 +9,10 @@ class Api::Webhook::Alipay::CustomersController < Api::ApplicationController
     result = Hash.from_xml(request.body.read)["xml"]
 
     if WxPay::Sign.verify?(result)
-      binding.pry
+      SlachDispatcher.new.message("WECHATPAY WEBHOOK SUCCESS #{result}")
       render :xml => {return_code: "SUCCESS"}.to_xml(root: 'xml', dasherize: false)
     else
-      binding.pry
+      SlachDispatcher.new.message("WECHATPAY WEBHOOK FAILURE #{result}")
       render :xml => {return_code: "FAIL", return_msg: "签名失败"}.to_xml(root: 'xml', dasherize: false)
     end
   end
