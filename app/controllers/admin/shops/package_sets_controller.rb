@@ -91,7 +91,7 @@ class Admin::Shops::PackageSetsController < ApplicationController
   end
 
   def build_package_skus!
-    5.times { package_set.package_skus.build }
+    15.times { package_set.package_skus.build }
   end
 
   def set_shop
