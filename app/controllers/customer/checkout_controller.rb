@@ -40,7 +40,7 @@ class Customer::CheckoutController < ApplicationController
 
   def gateway
     SlackDispatcher.new.silent_login_attempt("params: #{params}")
-    order = Order.where(id: params[:order_id]).first
+    order = Order.where(id: params[:order_id]).first || Order.find(session[:current_checkout_order])
 
     unless order
       flash[:error] = I18n.t(:invalid_order, scope: :edit_order)
