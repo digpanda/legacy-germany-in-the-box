@@ -64,8 +64,8 @@ class WechatpayCheckout < BaseService
     end
 
     js_pay_req = WxPay::Service.generate_js_pay_req({
-      prepayid: result["prepay_id"],
-      noncestr: result["nonce_str"]
+      prepayid: unifiedorder["prepay_id"],
+      noncestr: unifiedorder["nonce_str"]
     })
 
     SlackDispatcher.new.message("WECHATPAY JS PAY REQUEST : #{js_pay_req}")
