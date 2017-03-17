@@ -287,7 +287,7 @@ zh-CN:
     accounts: 账户管理
   edit_account:
     username: 用户ID
-    email: 注册信箱
+    email: 联系邮箱
     current_password: 当前密码
     password: 新的密码
     password_confirmation: 重复密码
@@ -446,7 +446,7 @@ zh-CN:
     shop_application_ok: 谢谢你的申请，我们会在第一时间与您联系。
     shopkeeper_info: 厂家信息
     title: 申请表
-    email: 注册信箱
+    email: 联系邮箱
     email_info: 初始密码将会发到这个注册信箱。
     contact_person_info: 联系人
     contact_fname: 名
