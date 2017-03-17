@@ -30,7 +30,7 @@ class CheckoutGateway < BaseService
 
   def wechatpay
     # Temporary solution to see if it pays
-    return_with(:success, :url => wechatpay_checkout)
+    return_with(:success, :page => wechatpay_checkout)
   end
 
   private
@@ -40,10 +40,7 @@ class CheckoutGateway < BaseService
   end
 
   def wechatpay_checkout
-    @wechatpay_checkout_url ||= begin
-      WechatpayCheckout.new(base_url, user, order, payment_gateway, identity_solver).checkout!
-      root_url
-    end
+    @wechatpay_checkout_url ||= WechatpayCheckout.new(base_url, user, order, payment_gateway, identity_solver).checkout!
   end
 
   def alipay_checkout_url

@@ -16,7 +16,7 @@ class WechatpayCheckout < BaseService
   # we access the Wirecard::Hpp library and generate the needed datas
   # make a new OrderPayment linked to the request which we will manipulate later on
   def checkout!
-    #prepare_order_payment!
+    prepare_order_payment!
     process!
   end
 
@@ -31,7 +31,7 @@ class WechatpayCheckout < BaseService
       spbill_create_ip: '127.0.0.1',
       notify_url: "#{base_url}#{new_api_webhook_wechatpay_customer_path}",
       trade_type: 'JSAPI', # 'JSAPI', # could be "JSAPI", "NATIVE" or "APP",
-      openid: 'oKhjVvuA9bhRwpsvDqAHRsCAgxUU'
+      openid: 'oKhjVvoKBlhnV5lBTQQdSI7sd0Tg' # Laurent's openid
     })
 
     # {"xml"=>
@@ -63,12 +63,14 @@ class WechatpayCheckout < BaseService
       SlackDispatcher.new.message("It didn't work.")
     end
 
-    result = WxPay::Service.generate_js_pay_req({
+    js_pay_req = WxPay::Service.generate_js_pay_req({
       prepayid: result["prepay_id"],
       noncestr: result["nonce_str"]
     })
 
     SlackDispatcher.new.message("WECHATPAY JS PAY REQUEST : #{result}")
+
+    result.merge(js_pay_req)
 
     # {:appId=>"wxfde44fe60674ba13", :package=>"prepay_id=wx201703161727381d0112c4620476236953", :nonceStr=>"cvTr8zN4EU4RTvFt", :timeStamp=>"1489656458", :signType=>"MD5", :paySign=>"9268392B59318E960E8E88A0C82E9681"}
 

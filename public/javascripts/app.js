@@ -646,10 +646,14 @@ var CustomerGatewayCreate = {
     var Casing = require("javascripts/lib/casing");
     var PostForm = require("javascripts/lib/post_form.js");
 
-    var bankDetails = $("#bank-details")[0].dataset;
-    var parsedBankDetails = Casing.objectToUnderscoreCase(bankDetails);
+    // If it's Wirecard
+    if ($("#bank-details").length > 0) {
 
-    PostForm.send(parsedBankDetails, parsedBankDetails['form_url']);
+      var bankDetails = $("#bank-details")[0].dataset;
+      var parsedBankDetails = Casing.objectToUnderscoreCase(bankDetails);
+
+      PostForm.send(parsedBankDetails, parsedBankDetails['form_url']);
+    }
   }
 
 };
