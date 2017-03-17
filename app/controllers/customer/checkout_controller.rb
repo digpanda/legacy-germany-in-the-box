@@ -68,10 +68,14 @@ class Customer::CheckoutController < ApplicationController
     if checkout_gateway.success?
       if checkout_gateway.data[:page]
         @checkout = checkout_gateway.data[:page]
-      elsif checkout_gateway.data[:url]
-        redirect_to checkout_gateway.data[:url]
+        render "customer/checkout/gateway/#{payment_gateway.provider}"
+        return
       end
-      return
+
+      if checkout_gateway.data[:url]
+        redirect_to checkout_gateway.data[:url]
+        return
+      end
     end
 
     flash[:error] = checkout_gateway.error
