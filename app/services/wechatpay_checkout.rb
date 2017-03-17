@@ -56,7 +56,7 @@ class WechatpayCheckout < BaseService
 
     SlackDispatcher.new.message("WECHATPAY RESULT : #{unifiedorder}")
 
-    if result["result_code"] != "SUCCESS"
+    if unifiedorder["result_code"] != "SUCCESS"
       # There were a problem
       SlackDispatcher.new.message("It didn't work.")
     end
