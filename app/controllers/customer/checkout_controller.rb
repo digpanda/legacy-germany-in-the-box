@@ -41,7 +41,7 @@ class Customer::CheckoutController < ApplicationController
 
   def gateway
     SlackDispatcher.new.silent_login_attempt("params: #{params}")
-    order = Order.find(session[:current_checkout_order]
+    order = Order.find(session[:current_checkout_order])
 
     unless params[:payment_method]
       flash[:error] = "Invalid payment method."
