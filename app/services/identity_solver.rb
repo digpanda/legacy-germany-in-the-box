@@ -27,7 +27,7 @@ class IdentitySolver < BaseService
   end
 
   def origin_url
-    wechat_customer? ? guest_package_sets_url : root_url
+    wechat_customer? ? guest_package_sets_path : root_path
   end
 
   def potential_customer?
