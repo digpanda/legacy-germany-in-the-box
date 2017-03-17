@@ -34,6 +34,8 @@ class WechatpayCheckout < BaseService
       openid: 'oKhjVvoKBlhnV5lBTQQdSI7sd0Tg' # Laurent's openid
     })
 
+    unifiedorder["timestamp"] = Time.now.to_i.to_s
+
     # {"xml"=>
     #     {"return_code"=>"SUCCESS",
     #      "return_msg"=>"OK",
@@ -54,11 +56,9 @@ class WechatpayCheckout < BaseService
     #  "prepay_id"=>"wx201703161727381d0112c4620476236953",
     #  "trade_type"=>"JSAPI"}
 
-    result = unifiedorder[:raw]["xml"]
+    SlackDispatcher.new.message("WECHATPAY RESULT : #{unifiedorder}")
 
-    SlackDispatcher.new.message("WECHATPAY RESULT : #{result}")
-
-    if result["result_code"] != "SUCCESS"
+    if unifiedorder["result_code"] != "SUCCESS"
       # There were a problem
       SlackDispatcher.new.message("It didn't work.")
     end
@@ -68,9 +68,9 @@ class WechatpayCheckout < BaseService
       noncestr: result["nonce_str"]
     })
 
-    SlackDispatcher.new.message("WECHATPAY JS PAY REQUEST : #{result}")
+    SlackDispatcher.new.message("WECHATPAY JS PAY REQUEST : #{js_pay_req}")
 
-    result.merge(js_pay_req)
+    unifiedorder.merge(js_pay_req)
 
     # {:appId=>"wxfde44fe60674ba13", :package=>"prepay_id=wx201703161727381d0112c4620476236953", :nonceStr=>"cvTr8zN4EU4RTvFt", :timeStamp=>"1489656458", :signType=>"MD5", :paySign=>"9268392B59318E960E8E88A0C82E9681"}
 

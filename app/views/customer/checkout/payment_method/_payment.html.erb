@@ -21,7 +21,6 @@
           </div>
           </div>
 
-          <% unless Rails.env.production? %>
           <div class="col-md-3 col-xs-12">
             <div class="+small-margin">
             <% if shop.payment_method? :wechatpay %>
@@ -30,7 +29,6 @@
             <% end %>
             </div>
           </div>
-        <% end %>
 
         <% if shop.payment_method? :creditcard %>
         <div class="col-md-3 col-xs-12">

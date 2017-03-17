@@ -1857,7 +1857,8 @@ body {
     height: 50vw;
     max-height: 672px;
     background-position: center center;
-    background-size: cover; }
+    background-size: contain;
+    background-repeat: no-repeat; }
     @media (max-width: 994px) {
       .package-set-block__image {
         height: 70vw; } }
