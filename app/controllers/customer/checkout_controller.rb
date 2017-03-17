@@ -7,7 +7,7 @@ class Customer::CheckoutController < ApplicationController
   authorize_resource :class => false
 
   before_action :set_shop, :only => [:create]
-  before_filter :ensure_session_order, :only => [:payment_method]
+  before_filter :ensure_session_order, :only => [:payment_method, :gateway]
   before_filter :force_address_param, :only => [:create]
 
   before_action :breadcrumb_cart, :breadcrumb_checkout_address, :breadcrumb_payment_method
@@ -40,7 +40,7 @@ class Customer::CheckoutController < ApplicationController
 
   def gateway
     SlackDispatcher.new.silent_login_attempt("params: #{params}")
-    order = Order.where(id: params[:order_id]).first || Order.find(session[:current_checkout_order])
+    order = Order.find(session[:current_checkout_order]
 
     unless order
       flash[:error] = I18n.t(:invalid_order, scope: :edit_order)

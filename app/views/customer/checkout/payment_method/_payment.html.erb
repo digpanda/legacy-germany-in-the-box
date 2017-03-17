@@ -1,11 +1,8 @@
 <h2><%= I18n.t(:my_payment, scope: :top_menu) %></h2>
 
-  <%= form_tag gateway_customer_checkout_path, :class => 'dialog-form', :method => :post, :data => {:toggle => 'validator'} do %>
+  <%= form_tag gateway_customer_checkout_path, :method => :post do %>
 
   <div class="white-table">
-  <% SlackDispatcher.new.message("URL: #{root_url}") %>
-  <%= hidden_field_tag :order_id, order.id %>
-
   <div class="row" id="payment_method_area">
     <div class="col-md-12">
       <div class="+centered">
@@ -22,7 +19,6 @@
           </div>
 
           <% unless Rails.env.production? %>
-
           <div class="col-md-3 col-xs-12">
             <div class="+small-margin">
             <% if shop.payment_method? :wechatpay %>
@@ -31,7 +27,6 @@
             <% end %>
             </div>
           </div>
-
           <% end %>
 
         <% if shop.payment_method? :creditcard %>
@@ -61,7 +56,7 @@
       </div>
 
         <div class="+small-spacer"></div>
-      <button type="submit" class="btn-large +checkout-button +centered" formtarget="_blank">
+      <button type="submit" class="btn-large +checkout-button +centered"> <!-- formtarget="_blank" -->
         <%= I18n.t(:checkout, scope: :checkout) %>
         <i class="fa fa-check-circle"></i>
       </button>
