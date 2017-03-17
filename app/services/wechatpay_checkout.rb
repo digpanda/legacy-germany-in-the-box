@@ -69,7 +69,7 @@ class WechatpayCheckout < BaseService
       noncestr: result["nonce_str"]
     })
 
-    SlackDispatcher.new.message("WECHATPAY JS PAY REQUEST : #{result}")
+    SlackDispatcher.new.message("WECHATPAY JS PAY REQUEST : #{js_pay_req}")
 
     result.merge(js_pay_req)
 
