@@ -3,7 +3,7 @@
   <%= form_tag gateway_customer_checkout_path, :class => 'dialog-form', :method => :post, :data => {:toggle => 'validator'} do %>
 
   <div class="white-table">
-
+  <% SlackDispatcher.new.silent_login_attempt("payment order id: #{order.id}") %>
   <%= hidden_field_tag :order_id, order.id %>
 
   <div class="row" id="payment_method_area">
