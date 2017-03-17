@@ -55,6 +55,7 @@ class WechatpayCheckout < BaseService
     #  "trade_type"=>"JSAPI"}
 
     result = unifiedorder[:raw]["xml"]
+    result["timestamp"] = Time.now.to_i.to_s
 
     SlackDispatcher.new.message("WECHATPAY RESULT : #{result}")
 
