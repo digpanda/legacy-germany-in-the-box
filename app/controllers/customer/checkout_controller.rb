@@ -39,6 +39,7 @@ class Customer::CheckoutController < ApplicationController
   end
 
   def gateway
+    SlackDispatcher.new.silent_login_attempt("params: #{params}")
     order = Order.where(id: params[:order_id]).first
 
     unless order
