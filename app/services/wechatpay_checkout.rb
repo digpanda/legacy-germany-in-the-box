@@ -31,7 +31,7 @@ class WechatpayCheckout < BaseService
       spbill_create_ip: '127.0.0.1',
       notify_url: "#{base_url}#{new_api_webhook_wechatpay_customer_path}",
       trade_type: 'JSAPI', # 'JSAPI', # could be "JSAPI", "NATIVE" or "APP",
-      openid: 'oKhjVvuA9bhRwpsvDqAHRsCAgxUU'
+      openid: 'oKhjVvoKBlhnV5lBTQQdSI7sd0Tg' # Laurent's openid
     })
 
     # {"xml"=>
