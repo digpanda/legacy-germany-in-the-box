@@ -684,11 +684,12 @@ var CustomerCheckoutPaymentMethod = {
    */
   handleMethodSelection: function handleMethodSelection() {
 
-    $('button[type=submit]').click(function (e) {
+    //$('button[type=submit]').click(function(e) {
 
-      $('#payment_method_area').hide();
-      $('#after_payment_method_area').removeClass('hidden');
-    });
+    $('#payment_method_area').hide();
+    $('#after_payment_method_area').removeClass('hidden');
+
+    //});
   }
 
 };
