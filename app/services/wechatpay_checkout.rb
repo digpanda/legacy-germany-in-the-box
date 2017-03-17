@@ -34,6 +34,8 @@ class WechatpayCheckout < BaseService
       openid: 'oKhjVvoKBlhnV5lBTQQdSI7sd0Tg' # Laurent's openid
     })
 
+    unifiedorder["timestamp"] = Time.now.to_i.to_s
+
     # {"xml"=>
     #     {"return_code"=>"SUCCESS",
     #      "return_msg"=>"OK",
