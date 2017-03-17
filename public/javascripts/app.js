@@ -662,7 +662,7 @@ module.exports = CustomerGatewayCreate;
 });
 
 require.register("javascripts/controllers/customer/checkout/payment_method.js", function(exports, require, module) {
-"use strict";
+'use strict';
 
 /**
  * CustomerCheckoutPaymentMethod class
@@ -684,12 +684,11 @@ var CustomerCheckoutPaymentMethod = {
    */
   handleMethodSelection: function handleMethodSelection() {
 
-    //  $('button[type=submit]').click(function(e) {
-    //
-    //    $('#payment_method_area').hide();
-    //    $('#after_payment_method_area').removeClass('hidden');
-    //
-    //  });
+    $('button[type=submit]').click(function (e) {
+
+      $('#payment_method_area').hide();
+      $('#after_payment_method_area').removeClass('hidden');
+    });
   }
 
 };

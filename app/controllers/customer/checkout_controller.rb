@@ -4,6 +4,7 @@ class Customer::CheckoutController < ApplicationController
 
   attr_reader :shop, :order
 
+  skip_before_filter :verify_authenticity_token
   authorize_resource :class => false
 
   before_action :set_shop, :only => [:create]
@@ -42,8 +43,8 @@ class Customer::CheckoutController < ApplicationController
     SlackDispatcher.new.silent_login_attempt("params: #{params}")
     order = Order.find(session[:current_checkout_order]
 
-    unless order
-      flash[:error] = I18n.t(:invalid_order, scope: :edit_order)
+    unless params[:payment_method]
+      flash[:error] = "Invalid payment method."
       redirect_to navigation.back(1)
       return
     end
