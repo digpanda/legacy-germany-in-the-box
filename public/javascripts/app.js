@@ -342,280 +342,375 @@ var RefreshTotalProducts = require('javascripts/services/refresh_total_products'
  */
 var CustomerCartShow = {
 
-  click_chain: 0, // init click chain system
-  chain_timing: 500, // in ms
-
-  /**
-   * Initializer
-   */
-  init: function init() {
-
-    this.multiSelectSystem();
-    this.orderItemHandleQuantity();
-    this.removeOrderItem();
-    this.removeOrder();
-    this.removePackageSet();
-  },
-
-  multiSelectSystem: function multiSelectSystem() {
-
-    $('select.sku-variants-options').multiselect({
-      enableCaseInsensitiveFiltering: true,
-      maxHeight: 400
-    }).multiselect('disable');
-  },
-
-  orderItemHandleQuantity: function orderItemHandleQuantity() {
-
-    $('.js-set-quantity-minus').click(function (e) {
-
-      e.preventDefault();
-      CustomerCartShow.click_chain++;
-
-      var orderItemId = $(this).data('orderItemId');
-      var orderShopId = $(this).data('orderShopId');
-      var currentQuantity = $('#order-item-quantity-' + orderItemId).val();
-      var originQuantity = currentQuantity;
-
-      if (currentQuantity > 1) {
-        currentQuantity--;
-        CustomerCartShow.orderItemSetQuantity(orderShopId, orderItemId, originQuantity, currentQuantity);
-      }
-    });
-
-    $('.js-set-quantity-plus').click(function (e) {
-
-      e.preventDefault();
-      CustomerCartShow.click_chain++;
-
-      var orderItemId = $(this).data('orderItemId');
-      var orderShopId = $(this).data('orderShopId');
-      var currentQuantity = $('#order-item-quantity-' + orderItemId).val();
-      var originQuantity = currentQuantity;
-
-      currentQuantity++;
-      CustomerCartShow.orderItemSetQuantity(orderShopId, orderItemId, originQuantity, currentQuantity);
-    });
-  },
-
-  loaded: function loaded() {
-
-    $('.js-loader').hide();
-    $('#cart-total').show();
-  },
-
-  loading: function loading() {
-
-    $('.js-loader').show();
-    $('#cart-total').hide();
-  },
-
-  orderItemSetQuantity: function orderItemSetQuantity(orderShopId, orderItemId, originQuantity, orderItemQuantity) {
-
-    // We first setup a temporary number before the AJAX callback
-    $('#order-item-quantity-' + orderItemId).val(orderItemQuantity);
-    CustomerCartShow.loading();
-
-    var current_click_chain = CustomerCartShow.click_chain;
-
-    setTimeout(function () {
-
-      // We basically prevent multiple click by considering only the last click as effective
-      // It won't call the API if we clicked more than once on the + / - within the second
-      if (current_click_chain == CustomerCartShow.click_chain) {
-        CustomerCartShow.processQuantity(orderShopId, orderItemId, originQuantity, orderItemQuantity);
-      }
-    }, CustomerCartShow.chain_timing);
-  },
-
-  removeOrderItem: function removeOrderItem() {
-
-    $('.delete-order-item').on('click', function (e) {
-
-      e.preventDefault();
-
-      var OrderItem = require("javascripts/models/order_item");
-      var orderItemId = $(this).data('id');
-      var orderId = $(this).data('order-id');
-      var orderShopId = $(this).data('order-shop-id');
-
-      OrderItem.removeProduct(orderItemId, function (res) {
-
-        var Messages = require("javascripts/lib/messages");
-
-        if (res.success === true) {
-
-          $('#order-item-' + orderItemId).remove();
-
-          if (res.order_empty == true) {
-            $('#order-' + orderId).remove();
-          } else {
-            // Total changes
-            $('#order-total-price-with-taxes-' + orderShopId).html(res.data.total_price_with_taxes);
-            $('#order-shipping-cost-' + orderShopId).html(res.data.shipping_cost);
-            $('#order-end-price-' + orderShopId).html(res.data.end_price);
-
-            // Discount management
-            if (typeof res.data.total_price_with_discount != "undefined") {
-              $('#order-total-price-with-extra-costs-' + orderShopId).html(res.data.total_price_with_extra_costs);
-              $('#order-total-price-with-discount-' + orderShopId).html(res.data.total_price_with_discount);
-              $('#order-discount-display-' + orderShopId).html(res.data.discount_display);
-            }
-          }
-
-          RefreshTotalProducts.perform();
-        } else {
-
-          Messages.makeError(res.error);
-        }
-      });
-    });
-  },
-
-  removePackageSet: function removePackageSet() {
-
-    $('.delete-package-set').on('click', function (e) {
-
-      e.preventDefault();
-
-      var Cart = require("javascripts/models/cart");
-      var orderId = $(this).data('order-id');
-      var packageSetId = $(this).data('package-set-id');
-      var orderShopId = $(this).data('order-shop-id');
-
-      Cart.removePackageSet(packageSetId, orderId, function (res) {
-
-        var Messages = require("javascripts/lib/messages");
-
-        if (res.success === true) {
-
-          $('#package-set-' + packageSetId).remove();
-
-          if (res.order_empty == true) {
-            $('#order-' + orderId).remove();
-          } else {
-            // Total changes
-            $('#order-total-price-with-taxes-' + orderShopId).html(res.data.total_price_with_taxes);
-            $('#order-shipping-cost-' + orderShopId).html(res.data.shipping_cost);
-            $('#order-end-price-' + orderShopId).html(res.data.end_price);
-
-            // Discount management
-            if (typeof res.data.total_price_with_discount != "undefined") {
-              $('#order-total-price-with-extra-costs-' + orderShopId).html(res.data.total_price_with_extra_costs);
-              $('#order-total-price-with-discount-' + orderShopId).html(res.data.total_price_with_discount);
-              $('#order-discount-display-' + orderShopId).html(res.data.discount_display);
-            }
-          }
-
-          RefreshTotalProducts.perform();
-        } else {
-
-          Messages.makeError(res.error);
-        }
-      });
-    });
-  },
-
-  removeOrder: function removeOrder() {
-
-    $('.delete-order').on('click', function (e) {
-
-      e.preventDefault();
-
-      var OrderItem = require("javascripts/models/order_item");
-      var orderId = $(this).data('id');
-
-      OrderItem.removeOrder(orderId, function (res) {
-
-        var Messages = require("javascripts/lib/messages");
-
-        if (res.success === true) {
-
-          Messages.makeSuccess(res.msg);
-          $('#order-' + orderId).remove();
-          RefreshTotalProducts.perform();
-        } else {
-
-          Messages.makeError(res.error);
-        }
-      });
-    });
-  },
-
-  processQuantity: function processQuantity(orderShopId, orderItemId, originQuantity, orderItemQuantity) {
-
-    var OrderItem = require("javascripts/models/order_item");
-    OrderItem.setQuantity(orderItemId, orderItemQuantity, function (res) {
-
-      var Messages = require("javascripts/lib/messages");
-
-      if (res.success === false) {
-
-        CustomerCartShow.rollbackQuantity(originQuantity, orderItemId, res);
-        CustomerCartShow.loaded();
-        Messages.makeError(res.error);
-      } else {
-
-        // We first refresh the value in the HTML
-        CustomerCartShow.resetHeaderCartQuantity();
-        CustomerCartShow.resetDisplay(orderItemQuantity, orderItemId, orderShopId, res);
-        CustomerCartShow.loaded();
-
-        var refreshTotalProducts = require('javascripts/services/refresh_total_products');
-        refreshTotalProducts.perform();
-      }
-    });
-  },
-
-  resetHeaderCartQuantity: function resetHeaderCartQuantity() {
+    click_chain: 0, // init click chain system
+    chain_timing: 500, // in ms
 
     /**
-     * NOTE : This system was cancelled because we don't show
-     * the number of product within the cart
-     * - Laurent, 23/01/2017
+     * Initializer
      */
-    // var total = 0;
-    //
-    // $('[id^="order-item-quantity-"]').each(function(e) {
-    //   total += parseInt($(this).val());
-    //   $('#total-products').html(total);
-    // })
+    init: function init() {
 
-  },
+        this.multiSelectSystem();
+        this.orderItemHandleQuantity();
+        this.removeOrderItem();
+        this.removeOrder();
+        this.removePackageSet();
+    },
 
-  rollbackQuantity: function rollbackQuantity(originQuantity, orderItemId, res) {
+    multiSelectSystem: function multiSelectSystem() {
 
-    // TODO : possible improvement
-    // instead of rolling back completely we could make a system
-    // to try again with different quantity
+        $('select.sku-variants-options').multiselect({
+            enableCaseInsensitiveFiltering: true,
+            maxHeight: 400
+        }).multiselect('disable');
+    },
 
-    // We try to get back the correct value from AJAX if we can
-    // To avoid the system to show a wrong quantity on the display
-    if (typeof res.original_quantity != "undefined") {
-      originQuantity = res.original_quantity;
+    orderItemHandleQuantity: function orderItemHandleQuantity() {
+
+        $('.js-set-quantity-minus').click(function (e) {
+
+            e.preventDefault();
+            CustomerCartShow.click_chain++;
+
+            var orderItemId = $(this).data('orderItemId');
+            var orderShopId = $(this).data('orderShopId');
+            var currentQuantity = $('#order-item-quantity-' + orderItemId).val();
+            var originQuantity = currentQuantity;
+
+            if (currentQuantity > 1) {
+                currentQuantity--;
+                CustomerCartShow.orderItemSetQuantity(orderShopId, orderItemId, originQuantity, currentQuantity);
+            }
+        });
+
+        $('.js-set-quantity-plus').click(function (e) {
+
+            e.preventDefault();
+            CustomerCartShow.click_chain++;
+
+            var orderItemId = $(this).data('orderItemId');
+            var orderShopId = $(this).data('orderShopId');
+            var currentQuantity = $('#order-item-quantity-' + orderItemId).val();
+            var originQuantity = currentQuantity;
+
+            currentQuantity++;
+            CustomerCartShow.orderItemSetQuantity(orderShopId, orderItemId, originQuantity, currentQuantity);
+        });
+
+        $('.js-set-package-quantity-minus').click(function (e) {
+
+            e.preventDefault();
+            CustomerCartShow.click_chain++;
+
+            var packageSetId = $(this).data('package-set-id');
+            var currentQuantity = $('#package-quantity-' + packageSetId).val();
+            var orderShopId = $(this).data('order-shop-id');
+            var originQuantity = currentQuantity;
+
+            if (currentQuantity > 1) {
+                currentQuantity--;
+                CustomerCartShow.packageSetSetQuantity(packageSetId, originQuantity, currentQuantity, orderShopId);
+            }
+        });
+
+        $('.js-set-package-quantity-plus').click(function (e) {
+
+            e.preventDefault();
+            CustomerCartShow.click_chain++;
+
+            var packageSetId = $(this).data('package-set-id');
+            var currentQuantity = $('#package-quantity-' + packageSetId).val();
+            var orderShopId = $(this).data('order-shop-id');
+            var originQuantity = currentQuantity;
+
+            currentQuantity++;
+            CustomerCartShow.packageSetSetQuantity(packageSetId, originQuantity, currentQuantity, orderShopId);
+        });
+    },
+
+    loaded: function loaded() {
+
+        $('.js-loader').hide();
+        $('#cart-total').show();
+    },
+
+    loading: function loading() {
+
+        $('.js-loader').show();
+        $('#cart-total').hide();
+    },
+
+    orderItemSetQuantity: function orderItemSetQuantity(orderShopId, orderItemId, originQuantity, orderItemQuantity) {
+
+        // We first setup a temporary number before the AJAX callback
+        $('#order-item-quantity-' + orderItemId).val(orderItemQuantity);
+        CustomerCartShow.loading();
+
+        var current_click_chain = CustomerCartShow.click_chain;
+
+        setTimeout(function () {
+
+            // We basically prevent multiple click by considering only the last click as effective
+            // It won't call the API if we clicked more than once on the + / - within the second
+            if (current_click_chain == CustomerCartShow.click_chain) {
+                CustomerCartShow.processQuantity(orderShopId, orderItemId, originQuantity, orderItemQuantity);
+            }
+        }, CustomerCartShow.chain_timing);
+    },
+
+    packageSetSetQuantity: function packageSetSetQuantity(packageSetId, originQuantity, packageSetQuantity, orderShopId) {
+
+        // We first setup a temporary number before the AJAX callback
+        $('#order-item-quantity-' + packageSetId).val(packageSetQuantity);
+        CustomerCartShow.loading();
+
+        var current_click_chain = CustomerCartShow.click_chain;
+
+        setTimeout(function () {
+
+            // We basically prevent multiple click by considering only the last click as effective
+            // It won't call the API if we clicked more than once on the + / - within the second
+            if (current_click_chain == CustomerCartShow.click_chain) {
+                CustomerCartShow.processPackageSetQuantity(packageSetId, originQuantity, packageSetQuantity, orderShopId);
+            }
+        }, CustomerCartShow.chain_timing);
+    },
+
+    removeOrderItem: function removeOrderItem() {
+
+        $('.delete-order-item').on('click', function (e) {
+
+            e.preventDefault();
+
+            var OrderItem = require("javascripts/models/order_item");
+            var orderItemId = $(this).data('id');
+            var orderId = $(this).data('order-id');
+            var orderShopId = $(this).data('order-shop-id');
+
+            OrderItem.removeProduct(orderItemId, function (res) {
+
+                var Messages = require("javascripts/lib/messages");
+
+                if (res.success === true) {
+
+                    $('#order-item-' + orderItemId).remove();
+
+                    if (res.order_empty == true) {
+                        $('#order-' + orderId).remove();
+                    } else {
+                        // Total changes
+                        $('#order-total-price-with-taxes-' + orderShopId).html(res.data.total_price_with_taxes);
+                        $('#order-shipping-cost-' + orderShopId).html(res.data.shipping_cost);
+                        $('#order-end-price-' + orderShopId).html(res.data.end_price);
+
+                        // Discount management
+                        if (typeof res.data.total_price_with_discount != "undefined") {
+                            $('#order-total-price-with-extra-costs-' + orderShopId).html(res.data.total_price_with_extra_costs);
+                            $('#order-total-price-with-discount-' + orderShopId).html(res.data.total_price_with_discount);
+                            $('#order-discount-display-' + orderShopId).html(res.data.discount_display);
+                        }
+                    }
+
+                    RefreshTotalProducts.perform();
+                } else {
+
+                    Messages.makeError(res.error);
+                }
+            });
+        });
+    },
+
+    removePackageSet: function removePackageSet() {
+
+        $('.delete-package-set').on('click', function (e) {
+
+            e.preventDefault();
+
+            var Cart = require("javascripts/models/cart");
+            var orderId = $(this).data('order-id');
+            var packageSetId = $(this).data('package-set-id');
+            var orderShopId = $(this).data('order-shop-id');
+
+            Cart.removePackageSet(packageSetId, orderId, function (res) {
+
+                var Messages = require("javascripts/lib/messages");
+
+                if (res.success === true) {
+
+                    $('#package-set-' + packageSetId).remove();
+
+                    if (res.order_empty == true) {
+                        $('#order-' + orderId).remove();
+                    } else {
+                        // Total changes
+                        $('#order-total-price-with-taxes-' + orderShopId).html(res.data.total_price_with_taxes);
+                        $('#order-shipping-cost-' + orderShopId).html(res.data.shipping_cost);
+                        $('#order-end-price-' + orderShopId).html(res.data.end_price);
+
+                        // Discount management
+                        if (typeof res.data.total_price_with_discount != "undefined") {
+                            $('#order-total-price-with-extra-costs-' + orderShopId).html(res.data.total_price_with_extra_costs);
+                            $('#order-total-price-with-discount-' + orderShopId).html(res.data.total_price_with_discount);
+                            $('#order-discount-display-' + orderShopId).html(res.data.discount_display);
+                        }
+                    }
+
+                    RefreshTotalProducts.perform();
+                } else {
+
+                    Messages.makeError(res.error);
+                }
+            });
+        });
+    },
+
+    removeOrder: function removeOrder() {
+
+        $('.delete-order').on('click', function (e) {
+
+            e.preventDefault();
+
+            var OrderItem = require("javascripts/models/order_item");
+            var orderId = $(this).data('id');
+
+            OrderItem.removeOrder(orderId, function (res) {
+
+                var Messages = require("javascripts/lib/messages");
+
+                if (res.success === true) {
+
+                    Messages.makeSuccess(res.msg);
+                    $('#order-' + orderId).remove();
+                    RefreshTotalProducts.perform();
+                } else {
+
+                    Messages.makeError(res.error);
+                }
+            });
+        });
+    },
+
+    processQuantity: function processQuantity(orderShopId, orderItemId, originQuantity, orderItemQuantity) {
+
+        var OrderItem = require("javascripts/models/order_item");
+        OrderItem.setQuantity(orderItemId, orderItemQuantity, function (res) {
+
+            var Messages = require("javascripts/lib/messages");
+
+            if (res.success === false) {
+
+                CustomerCartShow.rollbackQuantity(originQuantity, orderItemId, res);
+                CustomerCartShow.loaded();
+                Messages.makeError(res.error);
+            } else {
+
+                // We first refresh the value in the HTML
+                CustomerCartShow.resetHeaderCartQuantity();
+                CustomerCartShow.resetDisplay(orderItemQuantity, orderItemId, orderShopId, res);
+                CustomerCartShow.loaded();
+
+                var refreshTotalProducts = require('javascripts/services/refresh_total_products');
+                refreshTotalProducts.perform();
+            }
+        });
+    },
+
+    processPackageSetQuantity: function processPackageSetQuantity(packageSetId, originQuantity, packageSetQuantity, orderShopId) {
+
+        var OrderItem = require("javascripts/models/order_item");
+        OrderItem.setPackageSetQuantity(packageSetId, packageSetQuantity, function (res) {
+
+            var Messages = require("javascripts/lib/messages");
+
+            if (res.success === false) {
+
+                CustomerCartShow.rollbackPackageSetQuantity(originQuantity, packageSetId, res);
+                CustomerCartShow.loaded();
+                Messages.makeError(res.error);
+            } else {
+
+                // We first refresh the value in the HTML
+                CustomerCartShow.resetPackageDisplay(packageSetQuantity, packageSetId, orderShopId, res);
+                CustomerCartShow.loaded();
+
+                var refreshTotalProducts = require('javascripts/services/refresh_total_products');
+                refreshTotalProducts.perform();
+            }
+        });
+    },
+
+    resetHeaderCartQuantity: function resetHeaderCartQuantity() {
+
+        /**
+         * NOTE : This system was cancelled because we don't show
+         * the number of product within the cart
+         * - Laurent, 23/01/2017
+         */
+        // var total = 0;
+        //
+        // $('[id^="order-item-quantity-"]').each(function(e) {
+        //   total += parseInt($(this).val());
+        //   $('#total-products').html(total);
+        // })
+
+    },
+
+    rollbackQuantity: function rollbackQuantity(originQuantity, orderItemId, res) {
+
+        // TODO : possible improvement
+        // instead of rolling back completely we could make a system
+        // to try again with different quantity
+
+        // We try to get back the correct value from AJAX if we can
+        // To avoid the system to show a wrong quantity on the display
+        if (typeof res.original_quantity != "undefined") {
+            originQuantity = res.original_quantity;
+        }
+
+        // We rollback the quantity
+        $('#order-item-quantity-' + orderItemId).val(originQuantity);
+    },
+
+    rollbackPackageSetQuantity: function rollbackPackageSetQuantity(originQuantity, packageSetId, res) {
+
+        if (typeof res.original_quantity != "undefined") {
+            originQuantity = res.original_quantity;
+        }
+
+        // We rollback the quantity
+        $('#package-quantity-' + packageSetId).val(originQuantity);
+    },
+
+    resetDisplay: function resetDisplay(orderItemQuantity, orderItemId, orderShopId, res) {
+
+        // Quantity changes
+        $('#order-item-quantity-' + orderItemId).val(orderItemQuantity);
+
+        CustomerCartShow.resetTotalDisplay(orderShopId, res);
+    },
+
+    resetPackageDisplay: function resetPackageDisplay(packageSetQuantity, packageSetId, orderShopId, res) {
+
+        // Quantity changes
+        $('#package-quantity-' + packageSetId).val(packageSetQuantity);
+
+        CustomerCartShow.resetTotalDisplay(orderShopId, res);
+    },
+
+    resetTotalDisplay: function resetTotalDisplay(orderShopId, res) {
+
+        // Total changes
+        $('#order-total-price-with-taxes-' + orderShopId).html(res.data.total_price_with_taxes);
+        $('#order-shipping-cost-' + orderShopId).html(res.data.shipping_cost);
+        $('#order-end-price-' + orderShopId).html(res.data.end_price);
+
+        // Discount management
+        if (typeof res.data.total_price_with_discount != "undefined") {
+            $('#order-total-price-with-extra-costs-' + orderShopId).html(res.data.total_price_with_extra_costs);
+            $('#order-total-price-with-discount-' + orderShopId).html(res.data.total_price_with_discount);
+            $('#order-discount-display-' + orderShopId).html(res.data.discount_display);
+        }
     }
-
-    // We rollback the quantity
-    $('#order-item-quantity-' + orderItemId).val(originQuantity);
-  },
-
-  resetDisplay: function resetDisplay(orderItemQuantity, orderItemId, orderShopId, res) {
-
-    // Quantity changes
-    $('#order-item-quantity-' + orderItemId).val(orderItemQuantity);
-
-    // Total changes
-    $('#order-total-price-with-taxes-' + orderShopId).html(res.data.total_price_with_taxes);
-    $('#order-shipping-cost-' + orderShopId).html(res.data.shipping_cost);
-    $('#order-end-price-' + orderShopId).html(res.data.end_price);
-
-    // Discount management
-    if (typeof res.data.total_price_with_discount != "undefined") {
-      $('#order-total-price-with-extra-costs-' + orderShopId).html(res.data.total_price_with_extra_costs);
-      $('#order-total-price-with-discount-' + orderShopId).html(res.data.total_price_with_discount);
-      $('#order-discount-display-' + orderShopId).html(res.data.discount_display);
-    }
-  }
 
 };
 
@@ -2044,6 +2139,22 @@ var OrderItem = {
         $.ajax({
             method: "PATCH",
             url: "/api/guest/order_items/" + orderItemId,
+            data: { "quantity": quantity }
+
+        }).done(function (res) {
+
+            callback(res);
+        }).error(function (err) {
+
+            callback({ success: false, error: err.responseJSON.error });
+        });
+    },
+
+    setPackageSetQuantity: function setPackageSetQuantity(packageSetId, quantity, callback) {
+
+        $.ajax({
+            method: "PATCH",
+            url: "/api/guest/package_sets/" + packageSetId + "/set_quantity",
             data: { "quantity": quantity }
 
         }).done(function (res) {

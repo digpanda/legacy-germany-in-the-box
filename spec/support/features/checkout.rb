@@ -15,17 +15,17 @@ module Helpers
 
         page.first('.\\+checkout-button').click # go to payment step
         on_payment_method_page?
-        checkout_window = window_opened_by do
-          page.first('input[value=creditcard]').click # pay with wirecard
-          page.first('.\\+checkout-button').click
-        end
+        #checkout_window = window_opened_by do
+          page.first('a[id=visa]').click # pay with wirecard
+          # page.first('.\\+checkout-button').click
+        #end
 
-        within_window checkout_window do
+        #within_window checkout_window do
           wait_for_page('#hpp-logo') # we are on wirecard hpp
           apply_wirecard_success_creditcard!
           expect(page).to have_content("下单成功") # means success in chinese
           expect(page).to have_content("Tracking unavailable")
-        end
+        #end
 
       end
 
@@ -33,12 +33,12 @@ module Helpers
 
         page.first('.\\+checkout-button').click # go to payment step
         on_payment_method_page?
-        checkout_window = window_opened_by do
-          page.first('input[value=creditcard]').click # pay with wirecard
-          page.first('.\\+checkout-button').click
-        end
+        #checkout_window = window_opened_by do
+          page.first('a[id=visa]').click # pay with wirecard
+          # page.first('.\\+checkout-button').click
+        #end
 
-        within_window checkout_window do
+        #within_window checkout_window do
           wait_for_page('#hpp-logo') # we are on wirecard hpp
           apply_wirecard_success_creditcard!
           expect(page).to have_content("下单成功") # means success in chinese
@@ -46,7 +46,7 @@ module Helpers
             click_link "打开" # click on "download your label" in chinese
             # expect(page).to have_no_css('#message-error')
           end
-        end
+        #end
 
         within_window @borderguru_label_window do
           expect(page.current_url).to have_content(BORDERGURU_BASE_URL) # we check we accessed borderguru
