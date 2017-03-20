@@ -6,7 +6,7 @@
       <div class="row">
         <div class="col-md-12">
           <h4>
-            <%= package_set.name %> <strong><%= "x #{package_sets_number}" if package_sets_number > 1 %></strong>
+            <%= package_set.name %>
           </h4>
         </div>
       </div>
@@ -34,11 +34,35 @@
               <td>
                 <img src="<%= package_set.cover %>" class="icon-img">
               </td>
-              <td>
-                <!-- NOTE : this was removed temporarily -->
-                <!-- <% order_items.where(package_set_id: package_set_id).limit(6).each do |order_item| %>
-                  <img src="<%= order_item.sku.decorate.highlighted_image %>" class="icon-img"/>
-                <% end %> -->
+              <td class="white-table__quantity">
+                <div class="row">
+                  <!-- Minus -->
+                  <div class="col-md-3">
+                    <a href="#" class="js-set-package-quantity-minus" data-package-set-id="<%= package_set.id.to_s %>"
+                       data-order-shop-id="<%= package_set.shop.id %>">
+                      <i class="fa fa-minus buttons buttons__quantity"></i>
+                    </a>
+                  </div>
+
+                  <div class="col-md-3">
+                    <%= text_field_tag "", package_sets_number, :id => "package-quantity-#{package_set.id.to_s}",
+                                       :type => 'text', :value => "#{package_sets_number}", :disabled => "disabled",
+                                       :data => {:order_item_id => package_set.id.to_s} %>
+                  </div>
+
+                  <!-- Plus -->
+                  <div class="col-md-3">
+                    <a href="#" class="js-set-package-quantity-plus" data-package-set-id="<%= package_set.id.to_s %>"
+                       data-order-shop-id="<%= package_set.shop.id %>">
+                      <i class="fa fa-plus buttons buttons__quantity"></i>
+                    </a>
+                  </div>
+                </div>
+
+        <!-- NOTE : this was removed temporarily -->
+        <!-- <%# order_items.where(package_set_id: package_set_id).limit(6).each do |order_item| %>
+                  <img src="<%#= order_item.sku.decorate.highlighted_image %>" class="icon-img"/>
+                <%# end %> -->
               </td>
               <td style="text-align:right">
                 <%= package_set.end_price.in_euro.to_yuan.display %>

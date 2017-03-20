@@ -25,6 +25,25 @@ var OrderItem = {
 
   },
 
+  setPackageSetQuantity: function(packageSetId, quantity, callback) {
+
+    $.ajax({
+        method: "PATCH",
+        url: "/api/guest/package_sets/"+packageSetId+"/set_quantity",
+        data: {"quantity" : quantity}
+
+    }).done(function(res) {
+
+        callback(res);
+
+    }).error(function(err) {
+
+        callback({success: false, error: err.responseJSON.error});
+
+    });
+
+  },
+
   addProduct: function(productId, quantity, optionIds, callback) {
     $.ajax({
         method: "POST",
