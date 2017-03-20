@@ -9,6 +9,7 @@ class Customer::CheckoutController < ApplicationController
 
   before_action :set_shop, :only => [:create]
   before_filter :ensure_session_order, :only => [:payment_method, :gateway]
+  before_action :set_order, :only => [:payment_method]
   before_filter :force_address_param, :only => [:create]
 
   before_action :breadcrumb_cart, :breadcrumb_checkout_address, :breadcrumb_payment_method
@@ -29,7 +30,6 @@ class Customer::CheckoutController < ApplicationController
   end
 
   def payment_method
-    @order = Order.find(session[:current_checkout_order])
     @shop = order.shop
 
     if order.bought?
@@ -41,7 +41,7 @@ class Customer::CheckoutController < ApplicationController
 
   def gateway
     SlackDispatcher.new.silent_login_attempt("params: #{params}")
-    order = Order.find(session[:current_checkout_order])
+    @order = Order.find(session[:current_checkout_order])
 
     unless params[:payment_method]
       flash[:error] = "Invalid payment method."
@@ -96,7 +96,6 @@ class Customer::CheckoutController < ApplicationController
 
   def set_order
     @order = Order.find(session[:current_checkout_order])
-    @order = cart_manager.order(shop: @order.shop, call_api: false)
   end
 
   def force_address_param
