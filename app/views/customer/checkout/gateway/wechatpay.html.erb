@@ -1,10 +1,11 @@
-<!-- <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script> -->
+<script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 
 <script>
 
 
 function callpay()
 {
+  console.log('calling up');
     if (typeof WeixinJSBridge == "undefined"){
         if( document.addEventListener ){
             document.addEventListener('WeixinJSBridgeReady', jsApiCall, false);
@@ -25,7 +26,7 @@ function jsApiCall()
         nonceStr: "<%= @checkout[:nonceStr] %>", // pay the signature random string, not longer than 32 bits
         package: "<%= @checkout[:package] %>", // The prepay_id parameter value returned by the payment interface, such as prepay_id = ***)
         signType: "<%= @checkout[:signType] %>", // signature, default to 'SHA1', use the new payment to be passed 'MD5'
-        paySign: "<%= @checkout[:paySign] %>";
+        paySign: "<%= @checkout[:paySign] %>"
       };
 
        WeixinJSBridge.invoke(
@@ -47,6 +48,8 @@ function jsApiCall()
      });
 }
 
+
+callpay();
 
  // wx.config({
  //      debug: true, // Enables debugging mode. Return values of all APIs called will be shown on the client. To view the sent parameters, open the log view of developer tools on a computer browser. The parameter information can only be printed when viewed from a computer.
