@@ -97,17 +97,17 @@ feature "checkout process", :js => true  do
         page.first('input[id^=delivery_destination_id').click # click on the first address
         page.first('.\\+checkout-button').click # go to payment step
         on_payment_method_page?
-        checkout_window = window_opened_by do
-          page.first('input[value=creditcard]').click # pay with wirecard
-          page.first('.\\+checkout-button').click
-        end
+        # checkout_window = window_opened_by do
+          page.first('a[id=visa]').click # pay with wirecard
+          # page.first('.\\+checkout-button').click
+        # end
 
-        within_window checkout_window do
+        # within_window checkout_window do
           wait_for_page('#hpp-logo') # we are on wirecard hpp
           find('#hpp-form-cancel').click
           find('#hpp-confirm-button-yes').click
           on_payment_method_page?
-        end
+        # end
 
       end
 
@@ -116,17 +116,17 @@ feature "checkout process", :js => true  do
         page.first('input[id^=delivery_destination_id').click # click on the first address
         page.first('.\\+checkout-button').click # go to payment step
         on_payment_method_page?
-        checkout_window = window_opened_by do
-          page.first('input[value=creditcard]').click # pay with wirecard
-          page.first('.\\+checkout-button').click
-        end
+        # checkout_window = window_opened_by do
+          page.first('a[id=visa]').click # pay with wirecard
+          # page.first('.\\+checkout-button').click
+        # end
 
-        within_window checkout_window do
+        # within_window checkout_window do
           wait_for_page('#hpp-logo') # we are on wirecard hpp
           apply_wirecard_failed_creditcard!
           on_payment_method_page?
           expect(page).to have_css("#message-error")
-        end
+        # end
 
       end
 
