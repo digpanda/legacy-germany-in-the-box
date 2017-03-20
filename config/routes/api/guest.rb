@@ -31,6 +31,7 @@ namespace :guest do
   end
 
   resources :package_sets do
+    patch :set_quantity
   end
 
 end

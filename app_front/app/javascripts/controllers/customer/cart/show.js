@@ -64,6 +64,38 @@ var CustomerCartShow = {
 
     });
 
+    $('.js-set-package-quantity-minus').click(function(e) {
+
+      e.preventDefault();
+      CustomerCartShow.click_chain++;
+
+      let packageSetId = $(this).data('package-set-id');
+      let currentQuantity = $('#package-quantity-'+packageSetId).val();
+      let orderShopId = $(this).data('order-shop-id');
+      let originQuantity = currentQuantity;
+
+      if (currentQuantity > 1) {
+          currentQuantity--;
+          CustomerCartShow.packageSetSetQuantity(packageSetId, originQuantity, currentQuantity, orderShopId);
+      }
+
+    });
+
+    $('.js-set-package-quantity-plus').click(function(e) {
+
+      e.preventDefault();
+      CustomerCartShow.click_chain++;
+
+      let packageSetId = $(this).data('package-set-id');
+      let currentQuantity = $('#package-quantity-'+packageSetId).val();
+      let orderShopId = $(this).data('order-shop-id');
+      let originQuantity = currentQuantity;
+
+      currentQuantity++;
+      CustomerCartShow.packageSetSetQuantity(packageSetId, originQuantity, currentQuantity, orderShopId);
+
+    });
+
   },
 
   loaded: function() {
@@ -99,6 +131,26 @@ var CustomerCartShow = {
     }, CustomerCartShow.chain_timing);
 
   },
+
+    packageSetSetQuantity: function(packageSetId, originQuantity, packageSetQuantity, orderShopId) {
+
+        // We first setup a temporary number before the AJAX callback
+        $('#order-item-quantity-'+packageSetId).val(packageSetQuantity);
+        CustomerCartShow.loading();
+
+        var current_click_chain = CustomerCartShow.click_chain;
+
+        setTimeout(function() {
+
+            // We basically prevent multiple click by considering only the last click as effective
+            // It won't call the API if we clicked more than once on the + / - within the second
+            if (current_click_chain == CustomerCartShow.click_chain) {
+                CustomerCartShow.processPackageSetQuantity(packageSetId, originQuantity, packageSetQuantity, orderShopId);
+            }
+
+        }, CustomerCartShow.chain_timing);
+
+    },
 
     removeOrderItem: function () {
 
@@ -255,6 +307,34 @@ var CustomerCartShow = {
 
   },
 
+  processPackageSetQuantity: function(packageSetId, originQuantity, packageSetQuantity, orderShopId) {
+
+    var OrderItem = require("javascripts/models/order_item");
+    OrderItem.setPackageSetQuantity(packageSetId, packageSetQuantity, function(res) {
+
+        var Messages = require("javascripts/lib/messages");
+
+        if (res.success === false) {
+
+            CustomerCartShow.rollbackPackageSetQuantity(originQuantity, packageSetId, res);
+            CustomerCartShow.loaded();
+            Messages.makeError(res.error);
+
+        } else {
+
+            // We first refresh the value in the HTML
+            CustomerCartShow.resetPackageDisplay(packageSetQuantity, packageSetId, orderShopId, res);
+            CustomerCartShow.loaded();
+
+            var refreshTotalProducts = require('javascripts/services/refresh_total_products');
+            refreshTotalProducts.perform();
+
+        }
+
+    });
+
+  },
+
   resetHeaderCartQuantity: function() {
 
     /**
@@ -288,24 +368,50 @@ var CustomerCartShow = {
 
   },
 
+  rollbackPackageSetQuantity: function(originQuantity, packageSetId, res) {
+
+    if (typeof res.original_quantity != "undefined") {
+        originQuantity = res.original_quantity;
+    }
+
+    // We rollback the quantity
+    $('#package-quantity-'+packageSetId).val(originQuantity);
+
+  },
+
   resetDisplay: function(orderItemQuantity, orderItemId, orderShopId, res) {
 
     // Quantity changes
     $('#order-item-quantity-'+orderItemId).val(orderItemQuantity);
 
-    // Total changes
-    $('#order-total-price-with-taxes-'+orderShopId).html(res.data.total_price_with_taxes);
-    $('#order-shipping-cost-'+orderShopId).html(res.data.shipping_cost);
-    $('#order-end-price-'+orderShopId).html(res.data.end_price);
-
-    // Discount management
-    if (typeof res.data.total_price_with_discount != "undefined") {
-      $('#order-total-price-with-extra-costs-'+orderShopId).html(res.data.total_price_with_extra_costs);
-      $('#order-total-price-with-discount-'+orderShopId).html(res.data.total_price_with_discount);
-      $('#order-discount-display-'+orderShopId).html(res.data.discount_display);
-    }
+    CustomerCartShow.resetTotalDisplay(orderShopId, res);
 
   },
+
+  resetPackageDisplay: function(packageSetQuantity, packageSetId, orderShopId, res) {
+
+      // Quantity changes
+      $('#package-quantity-'+packageSetId).val(packageSetQuantity);
+
+      CustomerCartShow.resetTotalDisplay(orderShopId, res);
+
+  },
+
+  resetTotalDisplay: function(orderShopId, res) {
+
+      // Total changes
+      $('#order-total-price-with-taxes-'+orderShopId).html(res.data.total_price_with_taxes);
+      $('#order-shipping-cost-'+orderShopId).html(res.data.shipping_cost);
+      $('#order-end-price-'+orderShopId).html(res.data.end_price);
+
+      // Discount management
+      if (typeof res.data.total_price_with_discount != "undefined") {
+          $('#order-total-price-with-extra-costs-'+orderShopId).html(res.data.total_price_with_extra_costs);
+          $('#order-total-price-with-discount-'+orderShopId).html(res.data.total_price_with_discount);
+          $('#order-discount-display-'+orderShopId).html(res.data.discount_display);
+      }
+
+  }
 
 }
 
