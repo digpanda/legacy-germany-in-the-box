@@ -10,7 +10,7 @@
           <div class="col-md-3 col-xs-12">
             <div class="+small-margin">
               <% if shop.payment_method? :alipay %>
-              <a href="<%= gateway_customer_checkout_path(payment_method: :alipay) %>">
+              <a id="alipay" href="<%= gateway_customer_checkout_path(payment_method: :alipay) %>">
                 <img src="/images/logos/raw-alipay-logo.png" width="150px">
               </a>
               <% end %>
@@ -22,7 +22,7 @@
           <div class="col-md-3 col-xs-12">
             <div class="+small-margin">
             <% if shop.payment_method? :wechatpay %>
-              <a href="<%= gateway_customer_checkout_path(payment_method: :wechatpay) %>">
+              <a id="wechatpay" href="<%= gateway_customer_checkout_path(payment_method: :wechatpay) %>">
                 <img src="/images/logos/raw-wechatpay-logo.png" width="150px">
               </a>
             <% end %>
@@ -34,14 +34,14 @@
         <% if shop.payment_method? :creditcard %>
         <div class="col-md-3 col-xs-12">
           <div class="+small-margin">
-            <a href="<%= gateway_customer_checkout_path(payment_method: :creditcard) %>">
+            <a id="visa" href="<%= gateway_customer_checkout_path(payment_method: :creditcard) %>">
               <img src="/images/logos/raw-visa-logo.png" width="150px">
             </a>
           </div>
         </div>
         <div class="col-md-3 col-xs-12">
           <div class="+small-margin">
-            <a href="<%= gateway_customer_checkout_path(payment_method: :creditcard) %>">
+            <a id="mastercard" href="<%= gateway_customer_checkout_path(payment_method: :creditcard) %>">
               <img src="/images/logos/raw-mastercard-logo.png" width="150px">
             </a>
       </div>
@@ -51,7 +51,7 @@
         <div class="col-md-3 col-xs-12">
           <div class="+small-margin">
           <% if shop.payment_method? :upop %>
-          <a href="<%= gateway_customer_checkout_path(payment_method: :upop) %>">
+          <a id="upop" href="<%= gateway_customer_checkout_path(payment_method: :upop) %>">
             <img src="/images/logos/raw-chinaunionpay-logo.png" width="150px">
           </a>
           <% end %>
