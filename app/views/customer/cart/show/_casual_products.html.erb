@@ -7,7 +7,7 @@
       <th>
         <%= I18n.t(:name, scope: :cart) %>
       </th>
-      <th>
+      <th class="+desktop">
         <%= I18n.t(:variant_option, scope: :cart) %>
       </th>
       <th>
@@ -40,7 +40,7 @@
         </a>
         <% end %>
       </td>
-      <td>
+      <td class="+desktop">
         <%= select_tag :option_ids, grouped_options_for_select(order_item.product.decorate.grouped_variants_options, order_item.option_ids), {:multiple => 'multiple', :class => 'sku-variants-options'} %>
       </td>
       <td class="white-table__quantity">
