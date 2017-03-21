@@ -53,7 +53,8 @@ de:
     apply: Einlösen
     remove_coupon: Gutschein löschen.
     new_price: Aktueller Preis.
-    coupon: Gutschein
+    coupon_desktop: Coupon
+    coupon_mobile: Coupon
     applied_successfully: Dieser Gutschein wurde erfolgreich eingelöst.
     applied_fail: Dieser Gutschein ist nicht vorhanden.
   product_left:
