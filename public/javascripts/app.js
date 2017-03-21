@@ -3092,6 +3092,8 @@ require.register("javascripts/starters/product_favorite.js", function(exports, r
 "use strict";
 
 var Translation = require('javascripts/lib/translation');
+var Product = require("javascripts/models/product");
+var Messages = require("javascripts/lib/messages");
 
 /**
  * ProductFavorite Class
@@ -3103,94 +3105,139 @@ var ProductFavorite = {
    */
   init: function init() {
 
-    this.manageHeartClick();
+    this.setupHeartClick();
+  },
+
+  /**
+   * manage the heart click events
+   * @return {void}
+   */
+  setupHeartClick: function setupHeartClick() {
+    this.heartElement().on('click', $.proxy(this.onHeartClick, this));
+  },
+
+  /**
+   * Main button for the favorite system
+   * @return {element}
+   */
+  heartElement: function heartElement() {
+    return $('.js-heart-click');
+  },
+
+  /**
+   * returns the productId of the product on the page@
+   * @return {element}
+   */
+  productId: function productId() {
+    return this.heartElement().attr('data-product-id');
+  },
+
+  /**
+   * Is the product in favorite or not ?
+   * @return {boolean}
+   */
+  isFavorite: function isFavorite() {
+    return this.heartElement().attr('data-favorite') == '1';
   },
 
   /**
    * When the heart is clicked
    */
-  manageHeartClick: function manageHeartClick() {
+  onHeartClick: function onHeartClick(e) {
 
-    var self = this;
+    e.preventDefault();
 
-    $(".js-heart-click").on("click", function (e) {
-
-      e.preventDefault();
-
-      var productId = $(this).attr('data-product-id');
-      var favorite = $(this).attr('data-favorite'); // Should be converted
-
-      if (favorite == '1') {
-
-        // We remove the favorite front data
-        ProductFavorite.doUnlikeDisplay(this);
-        ProductFavorite.doUnlike(productId, function (res) {
-
-          var favoritesCount = res.favorites.length;
-          $('#total-likes').html(favoritesCount);
-        });
-      } else {
-
-        // We change the style before the callback for speed reason
-        ProductFavorite.doLikeDisplay(this);
-        ProductFavorite.doLike(productId, function (res) {
-
-          var favoritesCount = res.favorites.length;
-          $('#total-likes').html(favoritesCount);
-        });
-      }
-    });
+    if (this.isFavorite()) {
+      this.removeFavorite();
+    } else {
+      this.addFavorite();
+    }
   },
 
-  doLike: function doLike(productId, callback) {
+  /**
+   * We unlike from the model and display the unlike
+   * @return {void}
+   */
+  removeFavorite: function removeFavorite() {
 
-    var Product = require("javascripts/models/product");
-    var Messages = require("javascripts/lib/messages");
+    this.displayUnlike();
+    this.modelUnlike($.proxy(this.updateTotalFavorites, this));
+  },
 
-    Product.like(productId, function (res) {
+  /**
+   * We like from the model and display the like (heart)
+   * @return {void}
+   */
+  addFavorite: function addFavorite() {
+
+    this.displayLike();
+    this.modelLike($.proxy(this.updateTotalFavorites, this));
+  },
+
+  /**
+   * Update the favorites count on the display
+   * @param  {Function} res
+   * @return {void}
+   */
+  updateTotalFavorites: function updateTotalFavorites(res) {
+    var favoritesCount = res.favorites.length;
+    $('#total-likes').html(favoritesCount);
+  },
+
+  /**
+   * Like the model and manage errors on the display
+   * @param  {Function} callback
+   * @return {Function}
+   */
+  modelLike: function modelLike(callback) {
+    Product.like(this.productId(), this.handleModelResponse(callback));
+  },
+
+  /**
+   * Unlike the model and manage errors on the display
+   * @param  {Function} callback
+   * @return {Function}
+   */
+  modelUnlike: function modelUnlike(callback) {
+    Product.unlike(this.productId(), this.handleModelResponse(callback));
+  },
+
+  /**
+   * Handle the model response if he likes or unlike
+   * @param  {Function} callback
+   * @return {Function}
+   */
+  handleModelResponse: function handleModelResponse(callback) {
+    return function (response) {
 
       if (res.success === false) {
-
         Messages.makeError(res.error);
       } else {
-
-        callback(res);
+        callback(response);
       }
-    });
+    };
   },
 
-  doLikeDisplay: function doLikeDisplay(el) {
-
-    $(el).find('i').addClass('+pink');
-    $(el).find('i').removeClass('+grey');
-    $(el).attr('data-favorite', '1');
-    $(el).find('span').html(Translation.find('remove', 'favorites'));
+  /**
+   * Change the elements so they look unliked
+   * @return {void}
+   */
+  displayUnlike: function displayUnlike() {
+    this.heartElement().find('i').addClass('+grey').removeClass('+pink');
+    this.heartElement().attr('data-favorite', '0');
+    this.heartElement().find('span').html(Translation.find('add', 'favorites'));
   },
 
-  doUnlike: function doUnlike(productId, callback) {
-
-    var Product = require("javascripts/models/product");
-    var Messages = require("javascripts/lib/messages");
-
-    Product.unlike(productId, function (res) {
-
-      if (res.success === false) {
-
-        Messages.makeError(res.error);
-      } else {
-
-        callback(res);
-      }
-    });
-  },
-
-  doUnlikeDisplay: function doUnlikeDisplay(el) {
-
-    $(el).find('i').addClass('+grey');
-    $(el).find('i').removeClass('+pink');
-    $(el).attr('data-favorite', '0');
-    $(el).find('span').html(Translation.find('add', 'favorites'));
+  /**
+   * Change the elements so they look liked
+   * @return {void}
+   */
+  displayLike: function displayLike(el) {
+    this.heartElement().find('i').addClass('+pink').removeClass('+grey');
+    this.heartElement().attr('data-favorite', '1');
+    this.heartElement().find('span').html(Translation.find('remove', 'favorites'));
   }
+
 };
 
 module.exports = ProductFavorite;
