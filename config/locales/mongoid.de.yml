@@ -16,6 +16,7 @@ de:
     variant_option: Variante und Option
   attributes: &attributes
     address:
+      pid: PID
       additional: zusätzliche Informationen
       city: Stadt
       country: Land

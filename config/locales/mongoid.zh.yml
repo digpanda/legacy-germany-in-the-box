@@ -16,6 +16,7 @@ zh-CN:
 
   attributes: &attributes
     address:
+      pid: 身份证号
       additional: 附加信息
       city: 城市
       country: 国家
