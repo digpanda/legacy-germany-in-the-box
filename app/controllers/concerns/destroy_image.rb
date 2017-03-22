@@ -9,6 +9,8 @@ module DestroyImage
     redirect_to navigation.back(1)
   end
 
+  # Overwrite this method in the controller you are using it, declare the variable @resource (This would be the model that embeds Images, Ex. PakcageSet instance)
+  # and then call super
   def destroy_image_file
     image_destroyer = ImageDestroyer.new(@resource).perform_image_file_destroyer(params[:image_id])
     get_process_message(image_destroyer)
