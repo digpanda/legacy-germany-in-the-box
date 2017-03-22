@@ -5,7 +5,7 @@ module FileUploadHelper
   end
 
   def js_image_file_upload(form:, assoc:, field:)
-    render partial: "shared/partials/file_upload", :locals => {form: form, assoc: assoc, field: field}
+    render partial: "shared/partials/image_file_upload", :locals => {form: form, assoc: assoc, field: field}
   end
 
   # this helper is solely used in the file_upload partial
