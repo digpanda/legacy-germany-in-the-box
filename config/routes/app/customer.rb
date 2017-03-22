@@ -40,6 +40,8 @@ namespace :customer do
   resource :account, :controller => 'account' do
   end
 
+  resource :identity, :controller => 'identity' do
+  end
 
   resources :addresses do
   end
