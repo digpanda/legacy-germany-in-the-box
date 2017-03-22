@@ -6,6 +6,9 @@ class Api::Webhook::Alipay::CustomersController < Api::ApplicationController
   skip_before_filter :verify_authenticity_token
 
   def new
+
+    SlackDispatcher.new.message("WE RECEIVED SOMETHING ON WECHATPAY WEBHOOK")
+    
     result = Hash.from_xml(request.body.read)["xml"]
 
     if WxPay::Sign.verify?(result)
