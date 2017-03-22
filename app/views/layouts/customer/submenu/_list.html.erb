@@ -7,6 +7,9 @@
 <li class="<%= menu_active? edit_customer_account_path %>">
   <%= link_to I18n.t(:my_account, scope: :top_menu), edit_customer_account_path %>
 </li>
+<li class="<%= menu_active? edit_customer_identity_path %>">
+  <%= link_to I18n.t(:my_identity, scope: :top_menu), edit_customer_identity_path %>
+</li>
 <li class="<%= menu_active? shared_notifications_path %>">
   <%= link_to I18n.t(:notifications, scope: :top_menu), shared_notifications_path %>
 </li>
