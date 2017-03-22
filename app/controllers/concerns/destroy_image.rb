@@ -4,11 +4,14 @@ module DestroyImage
   # TODO : this should be completely refactored and
   # abstracted into a specific image model to stay DRY and RESTful
   def destroy_image
-    if ImageDestroyer.new(call_model_entry).perform(params[:image_field])
-      flash[:success] = I18n.t(:removed_image, scope: :action)
-    else
-      flash[:error] = I18n.t(:no_removed_image, scope: :action)
-    end
+    image_destroyer = ImageDestroyer.new(call_model_entry).perform(params[:image_field])
+    get_process_message(image_destroyer)
+    redirect_to navigation.back(1)
+  end
+
+  def destroy_image_file
+    image_destroyer = ImageDestroyer.new(@resource).perform_image_file_destroyer(params[:image_id])
+    get_process_message(image_destroyer)
     redirect_to navigation.back(1)
   end
 
@@ -25,6 +28,16 @@ module DestroyImage
   # should return a model
   def call_model_entry
     self.send(guess_model_entry)
+  end
+
+  private
+
+  def get_process_message(image_destroyer)
+    if image_destroyer
+      flash[:success] = I18n.t(:removed_image, scope: :action)
+    else
+      flash[:error] = I18n.t(:no_removed_image, scope: :action)
+    end
   end
 
 end

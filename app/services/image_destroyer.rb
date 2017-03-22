@@ -28,6 +28,11 @@ class ImageDestroyer < BaseService
     end
   end
 
+  def perform_image_file_destroyer(image_id)
+    image = model.images.where(id: image_id).first
+    image&.delete
+  end
+
   private
 
   # get the authorized fields
