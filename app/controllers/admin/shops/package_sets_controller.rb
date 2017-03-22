@@ -9,7 +9,7 @@ class Admin::Shops::PackageSetsController < ApplicationController
 
   before_action :set_shop
   before_action :set_package_set, :except => [:index, :new, :create]
-  before_action :breadcrumb_admin_shops, :breadcrumb_admin_shop_products
+  before_action :breadcrumb_admin_shops, :breadcrumb_admin_shop_products, :except => [:destroy_image, :destroy_image_file]
 
   def index
     @package_sets = shop.package_sets.active.order_by(position: :asc).paginate(:page => current_page, :per_page => 10)
@@ -62,6 +62,11 @@ class Admin::Shops::PackageSetsController < ApplicationController
       flash[:error] = package_set.errors.full_messages.join(', ')
     end
     redirect_to navigation.back(1)
+  end
+
+  def destroy_image_file
+    @resource = package_set
+    super
   end
 
   private

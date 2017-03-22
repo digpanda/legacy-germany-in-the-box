@@ -30,6 +30,7 @@ namespace :admin do
 
     resources :package_sets, :controller => 'shops/package_sets' do
       delete :destroy_image
+      delete :destroy_image_file
     end
 
     resources :products, :controller => 'shops/products' do

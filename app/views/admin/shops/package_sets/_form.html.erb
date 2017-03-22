@@ -35,13 +35,12 @@
 
   <div class="row">
 
-  <!-- < form.fields_for :images do |field| >
-
+  <%= form.fields_for :images do |field| %>
   <div class="col-md-3">
-    < field.label :file, "Optional Image ##{solve_index}" >
-    < js_file_upload(form: field, field: :file) >
+    <%= field.label :file, "Optional Image ##{solve_index}" %>
+    <%= js_image_file_upload(form: field, assoc: form.object, field: :file) %>
   </div>
-  < end > -->
+  <% end %>
 
   </div>
 
