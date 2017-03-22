@@ -34,6 +34,10 @@ module Application
       add_breadcrumb I18n.t(:my_address, scope: :top_menu), new_customer_order_address_path(order_id: @order.id) unless @order.nil?
     end
 
+    def breadcrumb_checkout_identity
+      add_breadcrumb I18n.t(:my_identity, scope: :top_menu), new_customer_order_identity_path(order_id: @order.id) unless @order.nil?
+    end
+
     def breadcrumb_payment_method
       add_breadcrumb I18n.t(:my_payment, scope: :top_menu), payment_method_customer_checkout_path
     end
