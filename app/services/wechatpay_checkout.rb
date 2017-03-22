@@ -70,12 +70,11 @@ class WechatpayCheckout < BaseService
 
     SlackDispatcher.new.message("WECHATPAY JS PAY REQUEST : #{js_pay_req}")
 
-    unifiedorder.merge(js_pay_req)
-
+    {
+      unifiedorder: unifiedorder,
+      js_pay_req: js_pay_req
+    }
     # {:appId=>"wxfde44fe60674ba13", :package=>"prepay_id=wx201703161727381d0112c4620476236953", :nonceStr=>"cvTr8zN4EU4RTvFt", :timeStamp=>"1489656458", :signType=>"MD5", :paySign=>"9268392B59318E960E8E88A0C82E9681"}
-
-    #binding.pry
-
   end
 
   # NOTE : this is a copy of alipay checkout (below) ; we should refactor it
