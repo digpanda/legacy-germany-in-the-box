@@ -2621,28 +2621,29 @@ require.register("javascripts/starters/editable_fields.js", function(exports, re
 'use strict';
 
 /**
- * EditableFields Class
- * Will make the edit fields appear and the text disappear
- * It's used in the order edit for admin (for example)
- * This is a very small system, not ambitious at all
- * Keep it this way or use a real plugin.
- */
+* EditableFields Class
+* Will make the edit fields appear and the text disappear
+* It's used in the order edit for admin (for example)
+* This is a very small system, not ambitious at all
+* Keep it this way or use a real plugin.
+*/
 var EditableFields = {
 
   /**
-   * Initializer
-   */
+  * Initializer
+  */
   init: function init() {
 
-    EditableFields.hideAllEditable();
-
-    $('.js-editable-click').on('click', function (e) {
-      e.preventDefault();
-      EditableFields.showEditable(this);
-    });
+    this.hideAllEditable();
+    $('.js-editable-click').on('click', $.proxy(this.manageShowEditable, this));
   },
 
-  hideAllEditable: function hideAllEditable(element) {
+  manageShowEditable: function manageShowEditable(e) {
+    e.preventDefault();
+    this.showEditable(e.currentTarget);
+  },
+
+  hideAllEditable: function hideAllEditable() {
     $('.js-editable-text').show();
     $('.js-editable-field').hide();
     $('.js-editable-click').show();
