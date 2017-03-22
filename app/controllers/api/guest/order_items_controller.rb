@@ -120,7 +120,7 @@ class Api::Guest::OrderItemsController < Api::ApplicationController
 
   def store_in_cart
     if @quantity <= 0
-      render json: throw_error(:unable_to_process)
+      render json: throw_error(:unable_to_process).merge(error: I18n.t(:not_available, scope: :popular_products))
       return
     end
 
