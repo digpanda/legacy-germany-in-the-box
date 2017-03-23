@@ -46,7 +46,7 @@ class WechatpayCheckout < BaseService
     @unified_order ||= WxPay::Service.invoke_unifiedorder({
       body: "Order #{order.id}",
       out_trade_no: "#{order.id}",
-      total_fee: total_fee,
+      total_fee: 1, # total_fee,
       spbill_create_ip: '127.0.0.1',
       notify_url: "#{base_url}#{new_api_webhook_wechatpay_customer_path}",
       trade_type: 'JSAPI', # 'JSAPI', # could be "JSAPI", "NATIVE" or "APP",
