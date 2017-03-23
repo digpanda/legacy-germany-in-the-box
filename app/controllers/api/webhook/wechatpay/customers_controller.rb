@@ -11,6 +11,8 @@ class Api::Webhook::Alipay::CustomersController < Api::ApplicationController
 
     result = Hash.from_xml(request.body.read)["xml"]
 
+    SlackDispatcher.new.message(result)
+
     if WxPay::Sign.verify?(result)
       SlachDispatcher.new.message("WECHATPAY WEBHOOK SUCCESS #{result}")
       render :xml => {return_code: "SUCCESS"}.to_xml(root: 'xml', dasherize: false)

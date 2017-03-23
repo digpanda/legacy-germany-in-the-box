@@ -4,12 +4,12 @@
 function onBridgeReady(){
   WeixinJSBridge.invoke(
     'getBrandWCPayRequest', {
-      "appId": "<%= @checkout[:js_pay_req][:appId] %>",
-      "timeStamp": "<%= @checkout[:js_pay_req][:timeStamp] %>",
-      "nonceStr": "<%= @checkout[:js_pay_req][:nonceStr] %>",
-      "package": "<%= @checkout[:js_pay_req][:package] %>",
-      "signType": "<%= @checkout[:js_pay_req][:signType] %>",
-      "paySign": "<%= @checkout[:js_pay_req][:paySign] %>"
+      "appId": "<%= @checkout[:javascript_pay_request][:appId] %>",
+      "timeStamp": "<%= @checkout[:javascript_pay_request][:timeStamp] %>",
+      "nonceStr": "<%= @checkout[:javascript_pay_request][:nonceStr] %>",
+      "package": "<%= @checkout[:javascript_pay_request][:package] %>",
+      "signType": "<%= @checkout[:javascript_pay_request][:signType] %>",
+      "paySign": "<%= @checkout[:javascript_pay_request][:paySign] %>"
     },
     function(res){
       if(res.err_msg == "get_brand_wcpay_request：ok" ) {}

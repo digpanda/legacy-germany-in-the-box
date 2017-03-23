@@ -22,9 +22,28 @@ class WechatpayCheckout < BaseService
 
   private
 
-  def process!
+  # {"xml"=>
+  #     {"return_code"=>"SUCCESS",
+  #      "return_msg"=>"OK",
+  #      "appid"=>"wxfde44fe60674ba13",
+  #      "mch_id"=>"1354063202",
+  #      "nonce_str"=>"cvTr8zN4EU4RTvFt",
+  #      "sign"=>"5F7FB422CC25A8B8287EA8AF99E8D192",
+  #      "result_code"=>"SUCCESS",
+  #      "prepay_id"=>"wx201703161727381d0112c4620476236953",
+  #      "trade_type"=>"JSAPI"}},
+  #  "return_code"=>"SUCCESS",
+  #  "return_msg"=>"OK",
+  #  "appid"=>"wxfde44fe60674ba13",
+  #  "mch_id"=>"1354063202",
+  #  "nonce_str"=>"cvTr8zN4EU4RTvFt",
+  #  "sign"=>"5F7FB422CC25A8B8287EA8AF99E8D192",
+  #  "result_code"=>"SUCCESS",
+  #  "prepay_id"=>"wx201703161727381d0112c4620476236953",
+  #  "trade_type"=>"JSAPI"}
 
-    unifiedorder = WxPay::Service.invoke_unifiedorder({
+  def unified_order
+    @unified_order ||= WxPay::Service.invoke_unifiedorder({
       body: "Order #{order.id}",
       out_trade_no: "#{order.id}",
       total_fee: total_fee,
@@ -33,48 +52,20 @@ class WechatpayCheckout < BaseService
       trade_type: 'JSAPI', # 'JSAPI', # could be "JSAPI", "NATIVE" or "APP",
       openid: openid # Laurent's openid
     })
+  end
 
-    # unifiedorder["timestamp"] = Time.now.to_i.to_s
-
-    # {"xml"=>
-    #     {"return_code"=>"SUCCESS",
-    #      "return_msg"=>"OK",
-    #      "appid"=>"wxfde44fe60674ba13",
-    #      "mch_id"=>"1354063202",
-    #      "nonce_str"=>"cvTr8zN4EU4RTvFt",
-    #      "sign"=>"5F7FB422CC25A8B8287EA8AF99E8D192",
-    #      "result_code"=>"SUCCESS",
-    #      "prepay_id"=>"wx201703161727381d0112c4620476236953",
-    #      "trade_type"=>"JSAPI"}},
-    #  "return_code"=>"SUCCESS",
-    #  "return_msg"=>"OK",
-    #  "appid"=>"wxfde44fe60674ba13",
-    #  "mch_id"=>"1354063202",
-    #  "nonce_str"=>"cvTr8zN4EU4RTvFt",
-    #  "sign"=>"5F7FB422CC25A8B8287EA8AF99E8D192",
-    #  "result_code"=>"SUCCESS",
-    #  "prepay_id"=>"wx201703161727381d0112c4620476236953",
-    #  "trade_type"=>"JSAPI"}
-
-    SlackDispatcher.new.message("WECHATPAY RESULT : #{unifiedorder}")
-
-    if unifiedorder["result_code"] != "SUCCESS"
-      # There were a problem
-      SlackDispatcher.new.message("It didn't work.")
-    end
-
-    js_pay_req = WxPay::Service.generate_js_pay_req({
-      prepayid: unifiedorder["prepay_id"],
-      noncestr: unifiedorder["nonce_str"]
+  def javascript_pay_request
+    @javascript_pay_request ||= WxPay::Service.generate_js_pay_req({
+      prepayid: unified_order["prepay_id"],
+      noncestr: unified_order["nonce_str"]
     })
+  end
 
-    SlackDispatcher.new.message("WECHATPAY JS PAY REQUEST : #{js_pay_req}")
-
+  def process!
     {
-      unifiedorder: unifiedorder,
-      js_pay_req: js_pay_req
+      unified_order: unified_order,
+      javascript_pay_request: javascript_pay_request
     }
-    # {:appId=>"wxfde44fe60674ba13", :package=>"prepay_id=wx201703161727381d0112c4620476236953", :nonceStr=>"cvTr8zN4EU4RTvFt", :timeStamp=>"1489656458", :signType=>"MD5", :paySign=>"9268392B59318E960E8E88A0C82E9681"}
   end
 
   def total_fee
