@@ -82,7 +82,8 @@ class WechatpayCheckout < BaseService
     if Rails.env.production?
       wechat_openid
     else
-      'oKhjVvoKBlhnV5lBTQQdSI7sd0Tg' # Laurent's openid which was authorized in Wechatpay Dashboard
+      # 'oKhjVvoKBlhnV5lBTQQdSI7sd0Tg' # Laurent's openid which was authorized in Wechatpay Dashboard
+      'oKhjVvrPwElKx3EG4QmeGDl2-KFo' # Sha's openid
     end
   end
 
