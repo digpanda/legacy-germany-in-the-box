@@ -7,7 +7,7 @@ class Customer::Checkout::Callback::WechatpayController < ApplicationController
 
     checkout = checkout_callback.wechatpay!(mode: :unsafe)
     unless checkout.success?
-      SlackDispatcher.new.message("Error checkout callback #{checkout_callback.error}")
+      SlackDispatcher.new.message("Error checkout callback #{checkout.error}")
       flash[:error] = checkout.error
       redirect_to navigation.back(2)
       return
