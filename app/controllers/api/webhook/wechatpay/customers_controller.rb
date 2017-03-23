@@ -40,7 +40,7 @@ class Api::Webhook::Wechatpay::CustomersController < Api::ApplicationController
   private
 
   def checkout_callback
-    @checkout_callback ||= CheckoutCallback.new(nil, data).wechatpay!
+    @checkout_callback ||= CheckoutCallback.new(nil, cart_manager, data).wechatpay!
   end
 
   def wrong_data?

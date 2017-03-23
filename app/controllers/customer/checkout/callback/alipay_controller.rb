@@ -13,17 +13,13 @@ class Customer::Checkout::Callback::AlipayController < ApplicationController
       return
     end
 
-    order = Order.where(id: params[:out_trade_no]).first
-    checkout_callback.manage_stocks!(order, cart_manager)
-    checkout_callback.manage_logistic!(order)
     flash[:success] = I18n.t(:checkout_ok, scope: :checkout)
-
     redirect_to customer_orders_path
 
   end
 
   def checkout_callback
-    @checkout_callback ||= CheckoutCallback.new(current_user, params)
+    @checkout_callback ||= CheckoutCallback.new(current_user, cart_manager, params)
   end
 
 end

@@ -62,7 +62,7 @@ class Api::Webhook::Alipay::CustomersController < Api::ApplicationController
   private
 
   def checkout_callback
-    @checkout_callback ||= CheckoutCallback.new(nil, params).alipay!(mode: :safe)
+    @checkout_callback ||= CheckoutCallback.new(nil, cart_manager, params).alipay!(mode: :safe)
   end
 
   def wrong_params?

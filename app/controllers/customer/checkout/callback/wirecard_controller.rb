@@ -14,10 +14,6 @@ class Customer::Checkout::Callback::WirecardController < ApplicationController
       return
     end
 
-    order = OrderPayment.where(:request_id => params[:request_id]).first.order
-    checkout_callback.manage_stocks!(order, cart_manager)
-    checkout_callback.manage_logistic!(order)
-
     # whatever happens with BorderGuru, if the payment is a success we consider
     # the transaction / order as successful, we will deal with BorderGuru through Slack / Emails
     flash[:success] = I18n.t(:checkout_ok, scope: :checkout)
@@ -39,7 +35,7 @@ class Customer::Checkout::Callback::WirecardController < ApplicationController
     flash[:error] = I18n.t(:failed, scope: :payment)
     warn_developers(Wirecard::Base::Error.new, "Something went wrong during the payment.")
 
-    callback = CheckoutCallback.new(current_user, params, :failed).wirecard!
+    callback = CheckoutCallback.new(current_user, cart_manager, params, :failed).wirecard!
     unless callback.success?
       SlackDispatcher.new.message("Error checkout callback #{checkout_callback.error}")
       flash[:error] = callback.error
@@ -51,7 +47,7 @@ class Customer::Checkout::Callback::WirecardController < ApplicationController
   private
 
   def checkout_callback(forced_status: nil)
-    @checkout_callback ||= CheckoutCallback.new(current_user, params)
+    @checkout_callback ||= CheckoutCallback.new(current_user, cart_manager, params)
   end
 
 end

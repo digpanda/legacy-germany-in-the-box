@@ -12,11 +12,12 @@ class CheckoutCallback < BaseService
 
   include ErrorsHelper
 
-  attr_reader :user, :params, :forced_status
+  attr_reader :user, :params, :forced_status, :cart_manager
 
   # NOTE : the forced status isn't currently working with alipay
-  def initialize(user, params, forced_status=nil)
+  def initialize(user, cart_manager, params, forced_status=nil)
     @user = user
+    @cart_manager = cart_manager
     @params = params
     @forced_status = forced_status
   end
@@ -27,6 +28,9 @@ class CheckoutCallback < BaseService
     end
 
     order_payment = solve_wirecard_order_payment_and_refresh!
+
+    manage_stocks!(order_payment.order)
+    manage_logistic!(order_payment.order)
     dispatch_notifications!(order_payment)
 
     return_with(:success)
@@ -53,6 +57,10 @@ class CheckoutCallback < BaseService
     order_payment.status = :success
     order_payment.save
     order_payment.order.refresh_status_from!(order_payment)
+
+    manage_stocks!(order_payment.order)
+    manage_logistic!(order_payment.order)
+    dispatch_notifications!(order_payment)
 
     return return_with(:success)
   end
@@ -97,6 +105,10 @@ class CheckoutCallback < BaseService
       order_payment.save
       order_payment.order.refresh_status_from!(order_payment)
 
+      manage_stocks!(order_payment.order)
+      manage_logistic!(order_payment.order)
+      dispatch_notifications!(order_payment)
+      
     else
       return return_with(:error, "Mode for Alipay callback unknown")
     end
@@ -104,7 +116,7 @@ class CheckoutCallback < BaseService
     return return_with(:success)
   end
 
-  def manage_stocks!(order, cart_manager)
+  def manage_stocks!(order)
     StockManager.new(order).in_order!
     cart_manager.empty!
     order.coupon&.update(last_used_at: Time.now)
