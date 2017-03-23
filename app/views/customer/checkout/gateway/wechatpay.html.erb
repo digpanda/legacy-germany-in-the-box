@@ -12,6 +12,7 @@ function onBridgeReady(){
       "paySign": "<%= @checkout[:javascript_pay_request][:paySign] %>"
     },
     function(res){
+      alert(res.err_msg);
       if(res.err_msg == "get_brand_wcpay_request：ok" ) {}
     }
   );

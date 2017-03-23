@@ -1,11 +1,11 @@
 require 'cgi'
 
-# Get notifications from Alipay when a transaction has been done
-class Api::Webhook::Alipay::CustomersController < Api::ApplicationController
+# Get notifications from Wechatpay when a transaction has been done
+class Api::Webhook::Wechatpay::CustomersController < Api::ApplicationController
 
   skip_before_filter :verify_authenticity_token
 
-  def new
+  def create
 
     SlackDispatcher.new.message("WE RECEIVED SOMETHING ON WECHATPAY WEBHOOK")
 
