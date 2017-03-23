@@ -7,19 +7,44 @@ class Api::Webhook::Wechatpay::CustomersController < Api::ApplicationController
 
   def create
 
-    SlackDispatcher.new.message("WE RECEIVED SOMETHING ON WECHATPAY WEBHOOK")
+    devlog.info "Wechatpay started to communicate with us ..."
+    devlog.info("Raw params : #{data}")
 
-    result = Hash.from_xml(request.body.read)["xml"]
-
-    SlackDispatcher.new.message(result)
-
-    if WxPay::Sign.verify?(result)
-      SlachDispatcher.new.message("WECHATPAY WEBHOOK SUCCESS #{result}")
-      render :xml => {return_code: "SUCCESS"}.to_xml(root: 'xml', dasherize: false)
-    else
-      SlachDispatcher.new.message("WECHATPAY WEBHOOK FAILURE #{result}")
-      render :xml => {return_code: "FAIL", return_msg: "签名失败"}.to_xml(root: 'xml', dasherize: false)
+    if wrong_data?
+      throw_api_error(:bad_format, {error: "Wrong datas transmitted"}, :bad_request)
+      return
     end
+
+    if checkout_callback.success?
+      devlog.info "Transaction successfully processed."
+      SlackDispatcher.new.message("It worked #{params}")
+    else
+      devlog.info "Processing of the transaction failed."
+      SlackDispatcher.new.message("It DID NOT WORK #{params}")
+    end
+
+    devlog.info "End of process."
+    render status: :ok,
+            json: {success: true}.to_json
+  end
+
+  def data
+    @data ||= Hash.from_xml(request.body.read)["xml"]
+  end
+
+  # WARNING : Must stay public for throw_error to work well for now.
+  def devlog
+    @@devlog ||= Logger.new(Rails.root.join("log/wechatpay-customers-webhook-#{Time.now.strftime('%Y-%m-%d')}.log"))
+  end
+
+  private
+
+  def checkout_callback
+    @checkout_callback ||= CheckoutCallback.new(nil, data).wechatpay!(mode: :safe)
+  end
+
+  def wrong_data?
+    data["out_trade_no"].nil? || data["transaction_id"].nil? || data["return_code"].nil?
   end
 
 end

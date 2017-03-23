@@ -20,6 +20,9 @@ namespace :customer do
       resource :alipay, :controller => 'alipay' do
       end
 
+      resource :wechatpay, :controller => 'wechatpay' do
+      end
+
     end
   end
 

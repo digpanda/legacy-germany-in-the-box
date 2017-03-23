@@ -12,8 +12,11 @@ function onBridgeReady(){
       "paySign": "<%= @checkout[:javascript_pay_request][:paySign] %>"
     },
     function(res){
-      alert(res.err_msg);
-      if(res.err_msg == "get_brand_wcpay_request：ok" ) {}
+      if(res.err_msg == "get_brand_wcpay_request:ok" ) {
+        // Confirmation will be made from server to server
+        // This will just take care of the after redirection
+        window.location.href = <%= customer_checkout_callback_wechatpay_path %>
+      }
     }
   );
 }

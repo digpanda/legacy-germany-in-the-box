@@ -41,6 +41,8 @@ class WechatpayCheckout < BaseService
   #  "result_code"=>"SUCCESS",
   #  "prepay_id"=>"wx201703161727381d0112c4620476236953",
   #  "trade_type"=>"JSAPI"}
+  #
+  #  result_code"=>"FAIL"
 
   def unified_order
     @unified_order ||= WxPay::Service.invoke_unifiedorder({
