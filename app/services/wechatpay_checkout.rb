@@ -46,7 +46,7 @@ class WechatpayCheckout < BaseService
     @unified_order ||= WxPay::Service.invoke_unifiedorder({
       body: "Order #{order.id}",
       out_trade_no: "#{order.id}",
-      total_fee: 1, # total_fee,
+      total_fee: total_fee,
       spbill_create_ip: '127.0.0.1',
       notify_url: "#{base_url}#{new_api_webhook_wechatpay_customer_path}",
       trade_type: 'JSAPI', # 'JSAPI', # could be "JSAPI", "NATIVE" or "APP",
@@ -62,10 +62,7 @@ class WechatpayCheckout < BaseService
   end
 
   def process!
-    SlackDispatcher.new.message(    {
-          unified_order: unified_order,
-          javascript_pay_request: javascript_pay_request
-        })
+    # TODO : deal with the possible errors during the process (throw error, etc.)
     {
       unified_order: unified_order,
       javascript_pay_request: javascript_pay_request
@@ -73,7 +70,8 @@ class WechatpayCheckout < BaseService
   end
 
   def total_fee
-    (order.end_price.in_euro.to_yuan.amount * 100).to_i
+    1
+    # (order.end_price.in_euro.to_yuan.amount * 100).to_i
   end
 
   def openid
