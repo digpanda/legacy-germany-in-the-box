@@ -63,6 +63,10 @@ class WechatpayCheckout < BaseService
 
   def process!
     # TODO : deal with the possible errors during the process (throw error, etc.)
+    SlackDispatcher.new.message(    {
+          unified_order: unified_order,
+          javascript_pay_request: javascript_pay_request
+        })
     {
       unified_order: unified_order,
       javascript_pay_request: javascript_pay_request
