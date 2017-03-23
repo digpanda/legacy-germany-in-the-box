@@ -64,11 +64,6 @@ class WechatpayCheckout < BaseService
   end
 
   def process!
-    # TODO : deal with the possible errors during the process (throw error, etc.)
-    SlackDispatcher.new.message(    {
-          unified_order: unified_order,
-          javascript_pay_request: javascript_pay_request
-        })
     {
       unified_order: unified_order,
       javascript_pay_request: javascript_pay_request
@@ -76,7 +71,6 @@ class WechatpayCheckout < BaseService
   end
 
   def total_fee
-    return 1
     (order.end_price.in_euro.to_yuan.amount * 100).to_i
   end
 
