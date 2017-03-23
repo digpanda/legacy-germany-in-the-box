@@ -73,7 +73,7 @@ class WechatpayCheckout < BaseService
   end
 
   def total_fee
-    "#{order.end_price.in_euro.to_yuan.amount * 100}"
+    (order.end_price.in_euro.to_yuan.amount * 100).to_i
   end
 
   def openid
