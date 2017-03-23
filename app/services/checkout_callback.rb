@@ -32,43 +32,27 @@ class CheckoutCallback < BaseService
     return_with(:success)
   end
 
-  def wechatpay!(mode: :unsafe)
-
+  def wechatpay!
     order_payment = OrderPayment.where(id: params["out_trade_no"]).first
     unless order_payment
       return return_with(:error, "Order not found from the AliPay callback")
     end
 
-    if mode == :unsafe
+    # first we make sure we got the transaction id for traceability
+    order_payment.transaction_id = params["transaction_id"]
+    order_payment.save
 
-      # we come from a normal callback so we are not sure
-      # about the validity of those data
-      order_payment.status = :unverified
+    unless wechatpay_success?
+      order_payment.status = :failed
       order_payment.save
       order_payment.order.refresh_status_from!(order_payment)
-      # we dispatch the notification anyway
-      dispatch_notifications!(order_payment)
-
-    elsif mode == :safe
-
-      # first we make sure we got the transaction id for traceability
-      order_payment.transaction_id = params["transaction_id"]
-
-      unless wechatpay_success?
-        order_payment.status = :failed
-        order_payment.save
-        order_payment.order.refresh_status_from!(order_payment)
-        warn_developers(Wirecard::Base::Error.new, "Something went wrong during the payment.")
-        return return_with(:error, I18n.t(:failed, scope: :payment))
-      end
-
-      order_payment.status = :success
-      order_payment.save
-      order_payment.order.refresh_status_from!(order_payment)
-
-    else
-      return return_with(:error, "Mode for Wechatpay callback unknown")
+      warn_developers(Wirecard::Base::Error.new, "Something went wrong during the payment.")
+      return return_with(:error, I18n.t(:failed, scope: :payment))
     end
+
+    order_payment.status = :success
+    order_payment.save
+    order_payment.order.refresh_status_from!(order_payment)
 
     return return_with(:success)
   end
