@@ -83,11 +83,19 @@ class ApplicationController < ActionController::Base
 
   def origin_solver
     return session[:origin] if session[:origin]
-    if request.url.include? "germanyinbox.com"
+    if chinese_domain? || wechat_browser?
       session[:origin] = :wechat
     else
       session[:origin] = :browser
     end
+  end
+
+  def wechat_browser?
+    request.user_agent.include? "MicroMessenger"
+  end
+
+  def chinese_domain?
+    request.url.include? "germanyinbox.com"
   end
 
   def restrict_to(section)
