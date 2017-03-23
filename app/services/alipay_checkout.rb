@@ -65,8 +65,8 @@ class AlipayCheckout < BaseService
   # we either match an exact equivalent order payment which means
   # we already tried to pay but failed at any point of the process
   # before the `:scheduled` status changed
-  def matching_order_payment
-    @matching_order_payment ||= (recovered_order_payment || OrderPayment.new)
+  def order_payment
+    @order_payment ||= (recovered_order_payment || OrderPayment.new)
   end
 
   # may return nil
@@ -79,7 +79,7 @@ class AlipayCheckout < BaseService
   end
 
   def prepare_order_payment!
-    matching_order_payment.tap do |order_payment|
+    order_payment.tap do |order_payment|
       order_payment.user_id          = user.id
       order_payment.order_id         = order.id
       order_payment.status           = :scheduled

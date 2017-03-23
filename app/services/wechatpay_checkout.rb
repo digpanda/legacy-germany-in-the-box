@@ -27,11 +27,11 @@ class WechatpayCheckout < BaseService
     unifiedorder = WxPay::Service.invoke_unifiedorder({
       body: "Order #{order.id}",
       out_trade_no: "#{order.id}",
-      total_fee: 1, # "#{order.end_price.in_euro.to_yuan.display_raw}",
+      total_fee: total_fee,
       spbill_create_ip: '127.0.0.1',
       notify_url: "#{base_url}#{new_api_webhook_wechatpay_customer_path}",
       trade_type: 'JSAPI', # 'JSAPI', # could be "JSAPI", "NATIVE" or "APP",
-      openid: 'oKhjVvoKBlhnV5lBTQQdSI7sd0Tg' # Laurent's openid
+      openid: openid # Laurent's openid
     })
 
     # unifiedorder["timestamp"] = Time.now.to_i.to_s
@@ -77,13 +77,25 @@ class WechatpayCheckout < BaseService
     # {:appId=>"wxfde44fe60674ba13", :package=>"prepay_id=wx201703161727381d0112c4620476236953", :nonceStr=>"cvTr8zN4EU4RTvFt", :timeStamp=>"1489656458", :signType=>"MD5", :paySign=>"9268392B59318E960E8E88A0C82E9681"}
   end
 
+  def total_fee
+    order.end_price.in_euro.to_yuan.display_raw.amount * 100
+  end
+
+  def openid
+    if Rails.env.production?
+      wechat_openid
+    else
+      'oKhjVvoKBlhnV5lBTQQdSI7sd0Tg' # Laurent's openid
+    end
+  end
+
   # NOTE : this is a copy of alipay checkout (below) ; we should refactor it
 
   # we either match an exact equivalent order payment which means
   # we already tried to pay but failed at any point of the process
   # before the `:scheduled` status changed
-  def matching_order_payment
-    @matching_order_payment ||= (recovered_order_payment || OrderPayment.new)
+  def order_payment
+    @order_payment ||= (recovered_order_payment || OrderPayment.new)
   end
 
   # may return nil
@@ -96,7 +108,7 @@ class WechatpayCheckout < BaseService
   end
 
   def prepare_order_payment!
-    matching_order_payment.tap do |order_payment|
+    order_payment.tap do |order_payment|
       order_payment.user_id          = user.id
       order_payment.order_id         = order.id
       order_payment.status           = :scheduled

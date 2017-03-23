@@ -17,7 +17,7 @@
             </div>
           </div>
 
-          <% unless Rails.env.production? %>
+          <% if session[:origin] == :wechat %>
 
           <div class="col-md-3 col-xs-12">
             <div class="+small-margin">
