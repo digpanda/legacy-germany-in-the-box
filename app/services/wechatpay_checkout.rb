@@ -44,8 +44,8 @@ class WechatpayCheckout < BaseService
 
   def unified_order
     @unified_order ||= WxPay::Service.invoke_unifiedorder({
-      body: "Order #{order.id}",
-      out_trade_no: "#{order.id}",
+      body: "Order #{order.id}-#{order_payment.id}",
+      out_trade_no: "#{order_payment.id}",
       total_fee: total_fee,
       spbill_create_ip: '127.0.0.1',
       notify_url: "#{base_url}#{new_api_webhook_wechatpay_customer_path}",
@@ -74,6 +74,7 @@ class WechatpayCheckout < BaseService
   end
 
   def total_fee
+    return 1
     (order.end_price.in_euro.to_yuan.amount * 100).to_i
   end
 
