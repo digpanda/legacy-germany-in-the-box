@@ -2001,7 +2001,8 @@ body {
     width: 45%;
     float: left;
     height: 2.5em;
-    vertical-align: top; }
+    vertical-align: top;
+    text-align: center; }
   .product-select__dropdown {
     margin-bottom: 1em;
     width: 40%;
