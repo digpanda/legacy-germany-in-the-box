@@ -68,7 +68,7 @@ class Order
 
   belongs_to :shop, :inverse_of => :orders
   belongs_to :user, :inverse_of => :orders
-
+  belongs_to :cart, :inverse_of => :orders
   belongs_to :coupon, :inverse_of => :orders
 
   embeds_one :shipping_address, :class_name => 'Address'

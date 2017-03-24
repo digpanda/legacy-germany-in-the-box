@@ -12,6 +12,8 @@
         <% @addresses.each do |address| %>
           <%= radio_button_tag 'delivery_destination_id', address.id, checked = address.primary %>
           <%= label_tag "delivery_destination_id_#{address.id}", address.decorate.full_address %>
+          <%= link_to '', customer_address_path(address), :method => :delete, data: { confirm: "Are you sure you want to destroy this address ?" },
+                      :class => 'tooltipster fa fa-times buttons buttons__delete', :title => "Remove", :style => 'font-size:9px;'%>
           <div class="clearfix"></div>
         <% end %>
 
