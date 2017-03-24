@@ -64,10 +64,6 @@ class WechatpayCheckout < BaseService
   end
 
   def process!
-    SlackDispatcher.new.message(    {
-          unified_order: unified_order,
-          javascript_pay_request: javascript_pay_request
-        })
     {
       unified_order: unified_order,
       javascript_pay_request: javascript_pay_request
@@ -80,7 +76,7 @@ class WechatpayCheckout < BaseService
 
   def openid
     if Rails.env.production?
-      user.wechat_openid
+      SlackDispatcher.new.message("OPENID IS : #{user.wechat_openid}")
     else
       'oKhjVvoKBlhnV5lBTQQdSI7sd0Tg' # Laurent's openid which was authorized in Wechatpay Dashboard
       # 'oKhjVvrPwElKx3EG4QmeGDl2-KFo' # Sha's openid
