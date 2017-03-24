@@ -42,7 +42,6 @@ class WechatSilentConnectSolver < BaseService
     SlackDispatcher.new.silent_login_attempt('1. New user')
     user = User.new({
                     provider: 'wechat',
-                    uid: auth_data['openid'],
                     referrer_nickname: auth_data['nickname'],
                     remote_pic_url: auth_data['headimgurl'],
                     email: "#{auth_data['unionid']}@wechat.com",
@@ -50,6 +49,7 @@ class WechatSilentConnectSolver < BaseService
                     gender: gender,
                     password: random_password,
                     password_confirmation: random_password,
+                    wechat_openid: auth_data['openid'],
                     wechat_unionid: auth_data['unionid']
                 })
     SlackDispatcher.new.silent_login_attempt('2. Save user...')
@@ -65,7 +65,6 @@ class WechatSilentConnectSolver < BaseService
 
   def gender
    auth_data['sex'] == 1 ? 'm' : 'f'
-
   end
 
   def random_password
