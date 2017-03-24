@@ -91,11 +91,11 @@ class ApplicationController < ActionController::Base
   end
 
   def wechat_browser?
-    request.user_agent.include? "MicroMessenger"
+    request.user_agent&.include? "MicroMessenger"
   end
 
   def chinese_domain?
-    request.url.include? "germanyinbox.com"
+    request.url&.include? "germanyinbox.com"
   end
 
   def restrict_to(section)
