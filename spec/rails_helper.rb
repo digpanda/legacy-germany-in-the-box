@@ -21,12 +21,14 @@ RSpec.configure do |config|
     config.include Helpers::Request
     config.include Helpers::Response
     config.include Helpers::Devise
-    config.include Helpers::Features::AddToCart
+    
+    config.include Helpers::Features::Cart
     config.include Helpers::Features::Checkout
+    config.include Helpers::Features::Login
     config.include Helpers::Features::OnPage
+    config.include Helpers::Features::Setting
     config.include Helpers::Features::ShowOnPage
     config.include Helpers::Features::WaitForPage
-    config.include Helpers::Features::Login
   end
 
   config.infer_spec_type_from_file_location!

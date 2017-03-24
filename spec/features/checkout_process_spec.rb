@@ -12,19 +12,17 @@ feature "checkout process", :js => true  do
     let(:product) { FactoryGirl.create(:product, shop_id: shop.id) }
 
     before(:each) do
-      Setting.delete_all
-      Setting.create!(:logistic_partner => :manual)
-      add_to_cart!(product)
+      logistic!(partner: :manual)
+      product_to_cart!(product)
       page.driver.browser.navigate.refresh # the AJAX call could make problem otherwise
       page.first('#cart').click # go to checkout
       page.first('.\\+checkout-button').click # go to address step
     end
 
-    scenario "can pay successfully" do
-
+    scenario "pays successfully" do
       page.first('input[id^=delivery_destination_id').click # click on the first address
-      pay_and_check_manual_partner!
-
+      pay_with_wirecard_visa!
+      manual_partner_confirmed?
     end
 
   end
@@ -35,9 +33,8 @@ feature "checkout process", :js => true  do
     let(:product) { FactoryGirl.create(:product, shop_id: shop.id) }
 
     before(:each) do
-      Setting.delete_all
-      Setting.create!(:logistic_partner => :borderguru)
-      add_to_cart!(product)
+      logistic!(partner: :borderguru)
+      product_to_cart!(product)
       page.driver.browser.navigate.refresh # the AJAX call could make problem otherwise
       page.first('#cart').click # go to checkout
       page.first('.\\+checkout-button').click # go to address step
@@ -75,8 +72,9 @@ feature "checkout process", :js => true  do
 
       scenario "pay successfully and generate shipping label correctly" do
 
-        fill_in_address!
-        pay_and_get_label!
+        fill_in_checkout_address!
+        pay_with_wirecard_visa!
+        borderguru_confirmed?
 
       end
 
@@ -123,7 +121,7 @@ feature "checkout process", :js => true  do
 
         # within_window checkout_window do
           wait_for_page('#hpp-logo') # we are on wirecard hpp
-          apply_wirecard_failed_creditcard!
+          apply_wirecard_creditcard!(mode: :fail)
           on_payment_method_page?
           expect(page).to have_css("#message-error")
         # end
@@ -142,7 +140,8 @@ feature "checkout process", :js => true  do
           # we check the 20% off is shown on the cart before all
           page.first('.\\+checkout-button').click # go to address step
           page.first('input[id^=delivery_destination_id').click # click on the first address
-          pay_and_get_label!
+          pay_with_wirecard_visa!
+          borderguru_confirmed?
 
         end
 
@@ -153,10 +152,11 @@ feature "checkout process", :js => true  do
         scenario "pay successfully and generate shipping label correctly with coupon" do
 
           page.first('#cart').click
-          aaa_coupon!
+          make_and_apply_coupon!
           page.first('.\\+checkout-button').click
           page.first('input[id^=delivery_destination_id').click
-          pay_and_get_label!
+          pay_with_wirecard_visa!
+          borderguru_confirmed?
 
         end
 

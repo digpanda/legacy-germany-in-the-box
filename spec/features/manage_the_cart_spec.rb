@@ -10,7 +10,7 @@ feature "manage the cart", :js => true  do
 
     scenario "get redirected to the log-in module" do
 
-      add_to_cart!(product)
+      product_to_cart!(product)
       on_shop_page?
       page.first('#cart').click
       on_chinese_login_page?
@@ -33,7 +33,7 @@ feature "manage the cart", :js => true  do
 
     context "with filled cart" do
 
-      before(:each) { add_to_cart!(product) }
+      before(:each) { product_to_cart!(product) }
 
       scenario "cart manager shows checkout button" do
 
