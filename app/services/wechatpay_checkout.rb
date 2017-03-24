@@ -52,7 +52,7 @@ class WechatpayCheckout < BaseService
       spbill_create_ip: '127.0.0.1',
       notify_url: "#{base_url}#{api_webhook_wechatpay_customer_path}",
       trade_type: 'JSAPI', # 'JSAPI', # could be "JSAPI", "NATIVE" or "APP",
-      openid: openid # Laurent's openid
+      openid: openid
     })
   end
 
@@ -64,6 +64,10 @@ class WechatpayCheckout < BaseService
   end
 
   def process!
+    SlackDispatcher.new.message(    {
+          unified_order: unified_order,
+          javascript_pay_request: javascript_pay_request
+        })
     {
       unified_order: unified_order,
       javascript_pay_request: javascript_pay_request
