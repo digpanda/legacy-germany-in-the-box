@@ -42,15 +42,30 @@ module Helpers
         page.first('input[id^=delivery_destination_id').click
       end
 
+      def cancel_wirecard_visa_payment!
+        page.first('a[id=visa]').click # pay with wirecard
+        wait_for_page('#hpp-logo') # we are on wirecard hpp
+        find('#hpp-form-cancel').click
+        wait_for_page('#hpp-confirm-button-yes') # we are on wirecard hpp
+        find('#hpp-confirm-button-yes').click
+      end
+
       # enter all the payment information and pay
-      def pay_with_wirecard_visa!
+      def pay_with_wirecard_visa!(mode: :success)
         page.first('.\\+checkout-button').click # go to payment step
         on_payment_method_page?
         page.first('a[id=visa]').click # pay with wirecard
         wait_for_page('#hpp-logo') # we are on wirecard hpp
-        apply_wirecard_creditcard!(mode: :success)
-        expect(page).to have_content("下单成功") # means success in chinese
+        apply_wirecard_creditcard!(mode: mode)
+
+        if mode == :success
+          expect(page).to have_content("下单成功") # means success in chinese
+        else
+          on_payment_method_page?
+          expect(page).to have_css("#message-error")
+        end
       end
+
 
       # access the manual logistic tracking
       def manual_partner_confirmed?
