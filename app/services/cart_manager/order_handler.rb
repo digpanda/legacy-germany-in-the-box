@@ -43,7 +43,11 @@ class CartManager
     # we consider the current user as the order user
     # if it wasn't attributed already
     def setup_user_order!
-      unless order.user
+      unless order.cart
+        if user and !user.cart
+          Cart.create(user_id: user.id)
+        end
+        order.cart = user&.cart
         order.user = user
         order.save
       end

@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :navigation, :cart_manager, :identity_solver
 
-  before_action :silent_login, :origin_solver
+  before_action :silent_login, :origin_solver, :get_cart_orders
 
   def silent_login
     if params[:code]
@@ -94,6 +94,12 @@ class ApplicationController < ActionController::Base
     unless identity_solver.section == section # :customer, :shopkeeper, :admin
       navigation.reset! # we reset to avoid infinite loop
       throw_unauthorized_page
+    end
+  end
+
+  def get_cart_orders
+    current_user&.cart&.orders&.each do |order|
+      cart_manager.store(order)
     end
   end
 

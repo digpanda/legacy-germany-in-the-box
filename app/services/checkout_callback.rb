@@ -81,7 +81,9 @@ class CheckoutCallback < BaseService
 
   def manage_stocks!(order, cart_manager)
     StockManager.new(order).in_order!
-    cart_manager.empty!
+    order.cart = nil
+    order.save
+    # cart_manager.empty!
     order.coupon&.update(last_used_at: Time.now)
   end
 
