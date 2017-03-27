@@ -79,7 +79,8 @@ class WechatpayCheckout < BaseService
       SlackDispatcher.new.message("OPENID IS : #{user.wechat_openid}")
       user.wechat_openid
     else
-      'oKhjVvoKBlhnV5lBTQQdSI7sd0Tg' # Laurent's openid which was authorized in Wechatpay Dashboard
+      user.wechat_openid
+      # 'oKhjVvoKBlhnV5lBTQQdSI7sd0Tg' # Laurent's openid which was authorized in Wechatpay Dashboard
       # 'oKhjVvrPwElKx3EG4QmeGDl2-KFo' # Sha's openid
     end
   end
