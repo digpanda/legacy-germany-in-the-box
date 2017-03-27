@@ -604,9 +604,11 @@ body {
   .page-error a:hover {
     color: #ffffff; }
 
-@media (max-width: 994px) {
-  .payment-methods img {
-    max-width: 70%; } }
+.payment-methods__block {
+  margin-bottom: 1em; }
+  @media (max-width: 994px) {
+    .payment-methods__block {
+      margin-bottom: 0; } }
 
 .shop-blocks {
   color: #ffffff; }

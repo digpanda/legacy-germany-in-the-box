@@ -1,11 +1,17 @@
 +component(payment-methods)
 
   img
-    +breakpoint('mobile')
-      max-width: 70%
+    // +breakpoint('mobile')
+    //   max-width: 100%
 
   +part(block)
+
+    margin-bottom: 1em
+    +breakpoint('mobile')
+      margin-bottom: 0
 
     +option(visa)
     +option(mastercard)
     +option(chinaunionpay)
+    +option(alipay)
+    +option(wechatpay)
