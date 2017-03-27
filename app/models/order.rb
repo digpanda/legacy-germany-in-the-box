@@ -293,6 +293,10 @@ class Order
     end
   end
 
+  def is_empty?
+    self.order_items.count == 0
+  end
+
   private
 
   def update_paid_at
