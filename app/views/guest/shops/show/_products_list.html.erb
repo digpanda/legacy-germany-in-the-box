@@ -1,23 +1,39 @@
 <% if products.count > 0 %>
 
-<div class="products-list">
-<div class="row">
-  <% products.each do |product| %>
-    <div class="col-md-3">
-      <div class="shop-page-product">
-        <%= render partial: 'guest/products/product_box', :locals => {:product => product} %>
+  <div class="products-list">
+
+  <!-- Sorted by category -->
+  <% products.categories_array.each do |category_id, fetched_products| %>
+    <% category = Category.find(category_id) %>
+
+      <% if products.categories_array.size > 1 %>
+        <a name="<%= category.slug %>"></a>
+        <h3><%= category.name %></h3>
+        <div class="+small-spacer"></div>
+      <% end %>
+
+      <div class="row">
+        <% fetched_products.each do |product| %>
+          <div class="col-md-3">
+            <div class="shop-page-product">
+              <%= render partial: 'guest/products/product_box', :locals => {:product => product} %>
+            </div>
+          </div>
+        <% end %>
       </div>
-    </div>
+
+      <div class="+spacer"></div>
+
   <% end %>
-</div>
-</div>
+
+  </div>
 
 <% else %>
 
-<div class="+white-box +centered">
-  <h4>
-    <%= I18n.t(:not_found, scope: :result) %>
-  </h4>
-</div>
+  <div class="+white-box +centered">
+    <h4>
+      <%= I18n.t(:not_found, scope: :result) %>
+    </h4>
+  </div>
 
 <% end %>
