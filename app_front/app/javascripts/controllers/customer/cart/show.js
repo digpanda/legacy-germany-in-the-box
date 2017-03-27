@@ -168,13 +168,12 @@ var CustomerCartShow = {
                 var Messages = require("javascripts/lib/messages");
 
                 if (res.success === true) {
-                    console.log("asdadas");
-                    console.log(res);
 
                     $('#order-item-' + orderItemId).remove();
 
                     if (res.order_empty == true){
                         $('#order-' + orderId).remove();
+                        location.reload();
                     } else {
                         // Total changes
                         $('#order-total-price-with-taxes-'+orderShopId).html(res.data.total_price_with_taxes);
@@ -223,6 +222,7 @@ var CustomerCartShow = {
 
                     if (res.order_empty == true){
                         $('#order-' + orderId).remove();
+                        location.reload();
                     } else {
                         // Total changes
                         $('#order-total-price-with-taxes-'+orderShopId).html(res.data.total_price_with_taxes);
