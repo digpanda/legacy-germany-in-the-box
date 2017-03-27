@@ -492,10 +492,12 @@ var CustomerCartShow = {
                 var Messages = require("javascripts/lib/messages");
 
                 if (res.success === true) {
+                    console.log("asdadas");
+                    console.log(res);
 
                     $('#order-item-' + orderItemId).remove();
 
-                    if (res.order_empty == true) {
+                    if (res.data.order_empty == true) {
                         $('#order-' + orderId).remove();
                     } else {
                         // Total changes
@@ -539,7 +541,7 @@ var CustomerCartShow = {
 
                     $('#package-set-' + packageSetId).remove();
 
-                    if (res.order_empty == true) {
+                    if (res.data.order_empty == true) {
                         $('#order-' + orderId).remove();
                     } else {
                         // Total changes
