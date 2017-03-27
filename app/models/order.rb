@@ -32,7 +32,7 @@ class Order
     end
   end
 
-  field :logistic_partner, type: Symbol, default: :borderguru
+  field :logistic_partner, type: Symbol, default: :manual
   field :border_guru_order_id,      type: String
   field :border_guru_shipment_id,   type: String
   field :border_guru_link_tracking, type: String
