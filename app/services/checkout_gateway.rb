@@ -29,7 +29,6 @@ class CheckoutGateway < BaseService
   end
 
   def wechatpay
-    # Temporary solution to see if it pays
     return_with(:success, :page => wechatpay_checkout)
   end
 
@@ -40,16 +39,16 @@ class CheckoutGateway < BaseService
   end
 
   def wechatpay_checkout
-    @wechatpay_checkout_url ||= WechatpayCheckout.new(base_url, user, order, payment_gateway, identity_solver).checkout!
+    @wechatpay_checkout_url ||= WechatpayGate.new(base_url, user, order, payment_gateway, identity_solver).checkout!
   end
 
   def alipay_checkout_url
-    @alipay_checkout_url ||= AlipayCheckout.new(base_url, user, order, payment_gateway, identity_solver).checkout_url!
+    @alipay_checkout_url ||= AlipayGate.new(base_url, user, order, payment_gateway, identity_solver).checkout_url!
   end
 
   # NOTE : this will create a new payment entry and prepare it
   def wirecard_checkout
-    @wirecard_checkout ||= WirecardCheckout.new(base_url, user, order, payment_gateway.payment_method).checkout!
+    @wirecard_checkout ||= WirecardGate.new(base_url, user, order, payment_gateway).checkout!
   end
 
   def base_url
