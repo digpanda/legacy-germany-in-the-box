@@ -173,8 +173,10 @@ var CustomerCartShow = {
 
                     if (res.order_empty == true){
                         $('#order-' + orderId).remove();
-                        location.reload();
                     } else {
+                        if (res.data.order_empty == true){
+                            $('#order-' + orderId).remove();
+                        }
                         // Total changes
                         $('#order-total-price-with-taxes-'+orderShopId).html(res.data.total_price_with_taxes);
                         $('#order-shipping-cost-'+orderShopId).html(res.data.shipping_cost);
@@ -222,8 +224,10 @@ var CustomerCartShow = {
 
                     if (res.order_empty == true){
                         $('#order-' + orderId).remove();
-                        location.reload();
                     } else {
+                        if (res.data.order_empty == true){
+                            $('#order-' + orderId).remove();
+                        }
                         // Total changes
                         $('#order-total-price-with-taxes-'+orderShopId).html(res.data.total_price_with_taxes);
                         $('#order-shipping-cost-'+orderShopId).html(res.data.shipping_cost);
