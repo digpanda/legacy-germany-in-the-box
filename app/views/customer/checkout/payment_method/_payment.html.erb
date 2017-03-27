@@ -27,7 +27,7 @@
             </div>
           </div>
 
-          <% if Rails.env.development? %>
+          <% unless Rails.env.staging? || Rails.env.production? %>
 
             <% if shop.payment_method? :creditcard %>
             <div class="col-md-3 col-xs-12">
