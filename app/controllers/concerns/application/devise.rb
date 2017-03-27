@@ -24,6 +24,13 @@ module Application
         # and made people blow up on sign-in
         remove_all_empty_orders!
 
+        current_user&.cart&.orders&.each do |order|
+          if order.new? and order.timeout?
+            order.status = :cancelled
+            order.save
+          end
+        end
+
         return navigation.force! if navigation.force?
         return navigation.back(1)
       end
