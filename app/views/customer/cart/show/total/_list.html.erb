@@ -8,7 +8,7 @@
         </span>
       </td>
       <td>
-        <span id="order-total-price-with-taxes-<%#= order.shop.id %>">
+        <span id="order-total-price-with-taxes-<%= order.shop.id %>">
           <%= order.total_price_with_taxes.in_euro.to_yuan.display %>
         </span>
       </td>

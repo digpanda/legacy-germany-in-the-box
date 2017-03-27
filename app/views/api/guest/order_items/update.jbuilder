@@ -8,6 +8,7 @@ json.data do
   json.total_price_with_taxes @order.decorate.total_price_with_taxes.in_euro.to_yuan.display
   json.shipping_cost @order.decorate.shipping_cost.in_euro.to_yuan.display
   json.end_price @order.decorate.end_price.in_euro.to_yuan.display
+  json.order_empty @order.is_empty?
 
   # discount side
   if @order.coupon

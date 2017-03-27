@@ -48,7 +48,7 @@
         <div class="row">
 
           <!-- Minus -->
-          <div class="col-md-3">
+          <div class="col-md-3" align="center">
             <% unless order_item.locked? || cart_manager.out?(order_item.order) || !action %>
             <a href="#" class="js-set-quantity-minus" data-order-item-id="<%= order_item.id.to_s %>" data-order-shop-id="<%= order_item.order.shop.id %>">
               <i class="fa fa-minus buttons buttons__quantity"></i>
@@ -56,12 +56,12 @@
             <% end %>
           </div>
 
-          <div class="col-md-3">
+          <div class="col-md-3" align="center">
             <%= text_field_tag "", order_item.quantity, :id => "order-item-quantity-#{order_item.id.to_s}", :type => 'text', :value => "#{order_item.quantity}", :disabled => "disabled", :data => { :order_item_id => order_item.id.to_s } %>
           </div>
 
           <!-- Plus -->
-          <div class="col-md-3">
+          <div class="col-md-3" align="center">
             <% unless order_item.locked? || cart_manager.out?(order_item.order) || !action %>
             <a href="#" class="js-set-quantity-plus" data-order-item-id="<%= order_item.id.to_s %>" data-order-shop-id="<%= order_item.order.shop.id %>">
               <i class="fa fa-plus buttons buttons__quantity"></i>
@@ -74,7 +74,7 @@
         </div>
 
       </td>
-      <td>
+      <td style="text-align:right; white-space: nowrap; overflow: hidden;">
         <%= order_item.sku.decorate.price_after_discount_in_yuan %>
         <% if order_item.sku.discount > 0 %>
         <span class="+discount"><%= order_item.sku.decorate.discount_with_percent %></span>
