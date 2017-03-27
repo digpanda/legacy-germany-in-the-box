@@ -44,8 +44,10 @@
             <% if order.bought? %>
               <% if order.logistic_partner == :borderguru %>
                 <%= link_to I18n.t(:open, scope: :edit_order), tracking_id_customer_order_border_guru_path(order), :target => '_blank' %>
-              <% else %>
+              <% elsif order.logistic_partner == :xipost %>
                 <%= link_to I18n.t(:open, scope: :edit_order), Xipost.tracking_url(order), :target => '_blank' %>
+              <% else %>
+                Tracking unavailable.
               <% end %>
             <% end %>
           </td>

@@ -6,7 +6,11 @@ class Customer::IdentityController < ApplicationController
   layout :custom_sublayout, only: [:edit]
 
   def edit
-    @identity_form = Xipost.identity_form
+    if Setting.instance.logistic_partner == :xipost
+      @identity_form = Xipost.identity_form
+    else
+      @identity_form = "Partner does not require identity."
+    end
   end
 
 end

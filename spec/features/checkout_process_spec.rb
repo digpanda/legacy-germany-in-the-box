@@ -12,7 +12,7 @@ feature "checkout process", :js => true  do
     let(:product) { FactoryGirl.create(:product, shop_id: shop.id) }
 
     before(:each) do
-      logistic!(partner: :manual)
+      logistic!(partner: :xipost)
       product_to_cart!(product)
       page.driver.browser.navigate.refresh # the AJAX call could make problem otherwise
       page.first('#cart').click # go to checkout
