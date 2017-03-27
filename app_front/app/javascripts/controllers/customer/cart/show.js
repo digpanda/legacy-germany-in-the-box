@@ -173,7 +173,7 @@ var CustomerCartShow = {
 
                     $('#order-item-' + orderItemId).remove();
 
-                    if (res.data.order_empty == true){
+                    if (res.order_empty == true){
                         $('#order-' + orderId).remove();
                     } else {
                         // Total changes
@@ -221,7 +221,7 @@ var CustomerCartShow = {
 
                     $('#package-set-' + packageSetId).remove();
 
-                    if (res.data.order_empty == true){
+                    if (res.order_empty == true){
                         $('#order-' + orderId).remove();
                     } else {
                         // Total changes
