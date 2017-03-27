@@ -69,7 +69,7 @@ module Helpers
 
       # access the manual logistic tracking
       def manual_partner_confirmed?
-        expect(page).to have_content("Tracking unavailable")
+        expect(page).to have_content("打开")
       end
 
       # enter all the payment information and pay
