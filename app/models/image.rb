@@ -4,6 +4,6 @@ class Image
   field :file, type: String
   mount_uploader :file, ImageUploader
 
-  embedded_in :package_set
+  belongs_to :image, polymorphic: true
 
 end
