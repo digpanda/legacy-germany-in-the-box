@@ -3,7 +3,7 @@
 <div class="row details__block">
 
   <%= form.label :name %>
-  <%= form.text_field :name, style: 'width: 500px;' %>
+  <%= form.text_field :name, class: 'field__text' %>
 
   <div class="clearfix"></div>
 
@@ -18,7 +18,7 @@
   <div class="clearfix"></div>
 
   <%= form.label :category, "Category" %>
-  <%= form.select :category, options_from_collection_for_select(Category.all, :id, :name, form.object.category.id), { :include_blank => I18n.t(:non_selected_text, scope: :multiselect) }, :class => 'form-control' %>
+  <%= form.select :category, options_from_collection_for_select(Category.all, :id, :name, form.object.category&.id), { :include_blank => I18n.t(:non_selected_text, scope: :multiselect) }, :class => 'form-control' %>
 
   <div class="clearfix"></div>
 
