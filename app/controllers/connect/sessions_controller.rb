@@ -7,7 +7,8 @@ class Connect::SessionsController < Devise::SessionsController
   # prepend_before_action only: [:create, :destroy] { request.env["devise.skip_timeout"] = true }
 
   before_action :freeze_header
-  
+  skip_before_action :get_cart_orders
+
   def new
   end
 
