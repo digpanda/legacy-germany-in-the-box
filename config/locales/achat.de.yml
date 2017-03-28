@@ -8,6 +8,7 @@ de:
   result:
     not_found: Kein Ergebnis
   payment:
+    processing: Ihre Bestellung wird gerade bearbeitet.
     failed: Der Bezahlvorgang ist fehlgeschlagen. Bitte versuchen Sie es erneut.
   address:
     identity: Identität

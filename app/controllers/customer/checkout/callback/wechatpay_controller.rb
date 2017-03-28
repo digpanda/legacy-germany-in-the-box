@@ -5,7 +5,7 @@ class Customer::Checkout::Callback::WechatpayController < ApplicationController
 
   def show
     # wechat doesn't transmit any data at this point
-    flash[:success] = "Your order is being processed"
+    flash[:success] = I18n.t(:processing, scope: :payment)
     redirect_to customer_orders_path
   end
 
