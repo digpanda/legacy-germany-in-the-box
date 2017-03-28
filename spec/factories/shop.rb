@@ -34,6 +34,8 @@ FactoryGirl.define do
     after(:create) do |shop|
       create(:payment_gateway, shop_id: shop.id) # creditcard one
       create(:payment_gateway, :with_upop, shop_id: shop.id)
+      create(:payment_gateway, :with_alipay, shop_id: shop.id)
+      create(:payment_gateway, :with_wechatpay, shop_id: shop.id)
     end
   end
 

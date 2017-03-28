@@ -1,12 +1,12 @@
 class Guest::PackageSetsController < ApplicationController
 
-  attr_reader :package_set
+  attr_reader :package_set, :category
 
   before_filter do
     restrict_to :customer
   end
 
-  before_action :set_package_set
+  before_action :set_package_set, :set_category
 
   before_action :breadcrumb_package_set, only: [:show]
   before_action :breadcrumb_package_sets, only: [:index]
@@ -15,7 +15,11 @@ class Guest::PackageSetsController < ApplicationController
   # we show the list of packages
   # we already created from the admin
   def index
-    @package_sets = PackageSet.active.order_by(position: :asc).all
+    if category
+      @package_sets = PackageSet.active.order_by(position: :asc).where(category: category).all
+    else
+      @package_sets = PackageSet.active.order_by(position: :asc).all
+    end
   end
 
   # we use the package set and convert it into an order
@@ -51,6 +55,11 @@ class Guest::PackageSetsController < ApplicationController
 
   def set_package_set
     @package_set = PackageSet.find(params[:id]) unless params[:id].nil?
+  end
+
+  # for filtering (optional)
+  def set_category
+    @category = Category.where(slug: params[:category_slug]).first unless params[:category_slug].nil?
   end
 
 end

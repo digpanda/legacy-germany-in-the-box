@@ -14,13 +14,24 @@ feature "checkout process", :js => true  do
     before(:each) do
       logistic!(partner: :xipost)
       product_to_cart!(product)
-      page.driver.browser.navigate.refresh # the AJAX call could make problem otherwise
+      reload_page # the AJAX call could make problem otherwise
       page.first('#cart').click # go to checkout
       page.first('.\\+checkout-button').click # go to address step
     end
 
     scenario "pays successfully" do
-      page.first('input[id^=delivery_destination_id').click # click on the first address
+      # page.first('input[id^=delivery_destination_id').click # click on the first address
+      # pay_with_alipay!
+      #
+      # order = Order.order_by(c_at: :desc).first
+      #
+      # require 'rack/test'
+      # include Rack::Test::Methods
+      #
+      # def app
+      #   Rails.application
+      # end
+      # post api_webhook_alipay_customer_path, alipay_webhook_callback_params(order, mode: :success)
       pay_with_wirecard_visa!
       manual_partner_confirmed?
     end
@@ -77,10 +88,11 @@ feature "checkout process", :js => true  do
     context "address already setup" do
 
       # we use the default `customer` which includes a valid address
-      scenario "can not go further without address selected" do
-        page.first('.\\+checkout-button').click # go to payment step
-        expect(page).to have_css("#message-error") # error output
-      end
+      # ITS AUTOMATICALLY SELECTED AS PRIMARY
+      # scenario "can not go further without address selected" do
+      #   page.first('.\\+checkout-button').click # go to payment step
+      #   expect(page).to have_css("#message-error") # error output
+      # end
 
       scenario "cancel payment" do
         page.first('input[id^=delivery_destination_id').click # click on the first address

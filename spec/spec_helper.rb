@@ -1,10 +1,13 @@
 RSpec.configure do |config|
 
+  #config.include Rack::Test::Methods
   config.mock_with :rspec
   config.before(:each) do
     Mongoid.purge!
     FactoryGirl.create(:shipping_rate)
+    page.driver.reset!
   end
+
 end
 
 Capybara.app_host = "http://local.dev:3333"
@@ -13,7 +16,7 @@ Capybara.default_host = "http://local.dev:3333"
 Capybara.server_port = 3333
 Capybara.server_host = "local.dev"
 # Capybara.run_server = false
-Capybara.default_max_wait_time = 80
+Capybara.default_max_wait_time = 30
 
 # BEGINNING SELENIUM
 require "selenium/webdriver"
@@ -35,7 +38,7 @@ end
 # Capybara.javascript_driver = :poltergeist
 #
 # Capybara.register_driver :poltergeist do |app|
-#   Capybara::Poltergeist::Driver.new(app, :js_errors => false)
+#   Capybara::Poltergeist::Driver.new(app, :js_errors => false, :debug => true)
 # end
 # #
 # Capybara.ignore_hidden_elements = true

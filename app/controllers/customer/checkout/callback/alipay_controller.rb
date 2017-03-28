@@ -4,7 +4,7 @@ class Customer::Checkout::Callback::AlipayController < ApplicationController
   layout :default_layout
 
   def show
-
+    
     checkout = checkout_callback.alipay!(mode: :unsafe)
     unless checkout.success?
       SlackDispatcher.new.message("Error checkout callback #{checkout.error}")

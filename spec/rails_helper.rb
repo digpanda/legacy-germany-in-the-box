@@ -21,7 +21,8 @@ RSpec.configure do |config|
     config.include Helpers::Request
     config.include Helpers::Response
     config.include Helpers::Devise
-    
+    config.include Helpers::Poltergeist
+
     config.include Helpers::Features::Cart
     config.include Helpers::Features::Checkout
     config.include Helpers::Features::Login

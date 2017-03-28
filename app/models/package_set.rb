@@ -16,6 +16,8 @@ class PackageSet
   mount_uploader :details_cover, CoverUploader
 
   belongs_to :shop, inverse_of: :package_sets
+  belongs_to :category, inverse_of: :package_sets
+  
   embeds_many :package_skus, inverse_of: :package_set, cascade_callbacks: true
   embeds_many :images, inverse_of: :package_set, cascade_callbacks: true
   has_many :order_items

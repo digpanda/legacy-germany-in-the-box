@@ -2036,6 +2036,10 @@ var Cart = {
       callback(res);
     }).error(function (err) {
 
+      if (typeof err == "undefined") {
+        return;
+      }
+
       callback({ success: false, error: err.responseJSON.error });
     });
   },
@@ -2051,6 +2055,10 @@ var Cart = {
 
       callback(res);
     }).error(function (err) {
+
+      if (typeof err == "undefined") {
+        return;
+      }
 
       callback({ success: false, error: err.responseJSON.error });
     });
@@ -2084,6 +2092,10 @@ var DutyCategory = {
       callback(res);
     }).error(function (err) {
 
+      if (typeof err == "undefined") {
+        return;
+      }
+
       callback({ success: false, error: err.responseJSON.error });
     });
   }
@@ -2116,6 +2128,10 @@ var NavigationModel = {
       callback(res);
     }).error(function (err) {
 
+      if (typeof err == "undefined") {
+        return;
+      }
+
       callback({ success: false, error: err.responseJSON.error });
     });
   }
@@ -2133,97 +2149,121 @@ require.register("javascripts/models/order_item.js", function(exports, require, 
  */
 var OrderItem = {
 
-    /**
-     * Check if user is auth or not via API call
-     */
-    setQuantity: function setQuantity(orderItemId, quantity, callback) {
+  /**
+   * Check if user is auth or not via API call
+   */
+  setQuantity: function setQuantity(orderItemId, quantity, callback) {
 
-        $.ajax({
-            method: "PATCH",
-            url: "/api/guest/order_items/" + orderItemId,
-            data: { "quantity": quantity }
+    $.ajax({
+      method: "PATCH",
+      url: "/api/guest/order_items/" + orderItemId,
+      data: { "quantity": quantity }
 
-        }).done(function (res) {
+    }).done(function (res) {
 
-            callback(res);
-        }).error(function (err) {
+      callback(res);
+    }).error(function (err) {
 
-            callback({ success: false, error: err.responseJSON.error });
-        });
-    },
+      if (typeof err == "undefined") {
+        return;
+      }
 
-    setPackageSetQuantity: function setPackageSetQuantity(packageSetId, quantity, callback) {
+      callback({ success: false, error: err.responseJSON.error });
+    });
+  },
 
-        $.ajax({
-            method: "PATCH",
-            url: "/api/guest/package_sets/" + packageSetId + "/set_quantity",
-            data: { "quantity": quantity }
+  setPackageSetQuantity: function setPackageSetQuantity(packageSetId, quantity, callback) {
 
-        }).done(function (res) {
+    $.ajax({
+      method: "PATCH",
+      url: "/api/guest/package_sets/" + packageSetId + "/set_quantity",
+      data: { "quantity": quantity }
 
-            callback(res);
-        }).error(function (err) {
+    }).done(function (res) {
 
-            callback({ success: false, error: err.responseJSON.error });
-        });
-    },
+      callback(res);
+    }).error(function (err) {
 
-    addProduct: function addProduct(productId, quantity, optionIds, callback) {
-        $.ajax({
-            method: "POST",
-            url: "/api/guest/order_items",
-            data: { product_id: productId, quantity: quantity, option_ids: optionIds }
+      if (typeof err == "undefined") {
+        return;
+      }
 
-        }).done(function (res) {
+      callback({ success: false, error: err.responseJSON.error });
+    });
+  },
 
-            callback(res);
-        }).error(function (err) {
+  addProduct: function addProduct(productId, quantity, optionIds, callback) {
+    $.ajax({
+      method: "POST",
+      url: "/api/guest/order_items",
+      data: { product_id: productId, quantity: quantity, option_ids: optionIds }
 
-            callback({ success: false, error: err.responseJSON.error });
-        });
-    },
+    }).done(function (res) {
 
-    removeProduct: function removeProduct(orderItemId, callback) {
-        $.ajax({
-            method: "DELETE",
-            url: "/api/guest/order_items/" + orderItemId
+      callback(res);
+    }).error(function (err) {
 
-        }).done(function (res) {
+      if (typeof err == "undefined") {
+        return;
+      }
 
-            callback(res);
-        }).error(function (err) {
+      callback({ success: false, error: err.responseJSON.error });
+    });
+  },
 
-            callback({ success: false, error: err.responseJSON.error });
-        });
-    },
+  removeProduct: function removeProduct(orderItemId, callback) {
+    $.ajax({
+      method: "DELETE",
+      url: "/api/guest/order_items/" + orderItemId
 
-    removeOrder: function removeOrder(orderId, callback) {
-        $.ajax({
-            method: "DELETE",
-            url: "/api/customer/orders/" + orderId
+    }).done(function (res) {
 
-        }).done(function (res) {
+      callback(res);
+    }).error(function (err) {
 
-            callback(res);
-        }).error(function (err) {
+      if (typeof err == "undefined") {
+        return;
+      }
 
-            callback({ success: false, error: err.responseJSON.error });
-        });
-    },
+      callback({ success: false, error: err.responseJSON.error });
+    });
+  },
 
-    addPackageSet: function addPackageSet(url, callback) {
-        $.ajax({
-            method: "PATCH",
-            url: url
+  removeOrder: function removeOrder(orderId, callback) {
+    $.ajax({
+      method: "DELETE",
+      url: "/api/customer/orders/" + orderId
 
-        }).done(function (res) {
+    }).done(function (res) {
 
-            callback(res);
-        }).error(function (err) {
+      callback(res);
+    }).error(function (err) {
 
-            callback({ success: false, error: err.responseJSON.error });
-        });
-    }
+      if (typeof err == "undefined") {
+        return;
+      }
+
+      callback({ success: false, error: err.responseJSON.error });
+    });
+  },
+
+  addPackageSet: function addPackageSet(url, callback) {
+    $.ajax({
+      method: "PATCH",
+      url: url
+
+    }).done(function (res) {
+
+      callback(res);
+    }).error(function (err) {
+
+      if (typeof err == "undefined") {
+        return;
+      }
+
+      callback({ success: false, error: err.responseJSON.error });
+    });
+  }
 
 };
 
@@ -2253,6 +2293,10 @@ var Product = {
       callback(res);
     }).error(function (err) {
 
+      if (typeof err == "undefined") {
+        return;
+      }
+
       callback({ success: false, error: err.responseJSON.error });
     });
   },
@@ -2271,6 +2315,10 @@ var Product = {
 
       callback(res);
     }).error(function (err) {
+
+      if (typeof err == "undefined") {
+        return;
+      }
 
       callback({ success: false, error: err.responseJSON.error });
     });
@@ -2305,6 +2353,10 @@ var ProductSku = {
       callback(res);
     }).error(function (err) {
 
+      if (typeof err == "undefined") {
+        return;
+      }
+
       callback({ success: false, error: err.responseJSON.error });
     });
   },
@@ -2324,6 +2376,10 @@ var ProductSku = {
 
       callback(res);
     }).error(function (err) {
+
+      if (typeof err == "undefined") {
+        return;
+      }
 
       callback({ success: false, error: err.responseJSON.error });
     });
@@ -2357,6 +2413,10 @@ var Translations = {
 
       callback(res);
     }).error(function (err) {
+
+      if (typeof err == "undefined") {
+        return;
+      }
 
       callback({ success: false, error: err.responseJSON.error });
     });

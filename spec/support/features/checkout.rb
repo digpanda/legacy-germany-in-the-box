@@ -50,6 +50,41 @@ module Helpers
         find('#hpp-confirm-button-yes').click
       end
 
+      def pay_with_alipay!(mode: :success)
+        page.first('.\\+checkout-button').click
+        on_payment_method_page?
+        page.first('a[id=alipay]').click
+        wait_for_page('.alipay-logo')
+        # NOW WE SIMULATE THE CALLBACK
+      end
+
+      def alipay_webhook_callback_params(order, mode: :success)
+        {"discount"=>"0.00",
+         "payment_type"=>"1",
+         "subject"=>"Order #{order.id}",
+         "trade_no"=>"2017030521001004840200342628",
+         "buyer_email"=>"douyufua@alitest.com",
+         "gmt_create"=>"2017-03-05 18:06:49",
+         "notify_type"=>"trade_status_sync",
+         "quantity"=>"1",
+         "out_trade_no"=>"58bbe2e6f54bcc042b42e9ea",
+         "seller_id"=>"2088101122136241",
+         "notify_time"=>"2017-03-05 18:21:11",
+         "trade_status"=>"TRADE_SUCCESS",
+         "is_total_fee_adjust"=>"N",
+         "total_fee"=>"#{order.end_price.in_euro.to_yuan}",
+         "gmt_payment"=>"2017-03-05 18:17:17",
+         "seller_email"=>"overseas_kgtest@163.com",
+         "price"=>"#{order.end_price.in_euro.to_yuan}",
+         "buyer_id"=>"2088102140176848",
+         "notify_id"=>"39863b44e9bf2e9877a57ef5451a717mhe",
+         "use_coupon"=>"N",
+         "sign_type"=>"MD5",
+         "sign"=>"c8215a718439aec25cf8051730bf459a"
+        }
+      end
+
+      # NOTE : this is not working properly anymore
       # enter all the payment information and pay
       def pay_with_wirecard_visa!(mode: :success)
         page.first('.\\+checkout-button').click # go to payment step
@@ -57,7 +92,6 @@ module Helpers
         page.first('a[id=visa]').click # pay with wirecard
         wait_for_page('#hpp-logo') # we are on wirecard hpp
         apply_wirecard_creditcard!(mode: mode)
-
         if mode == :success
           expect(page).to have_content("下单成功") # means success in chinese
         else

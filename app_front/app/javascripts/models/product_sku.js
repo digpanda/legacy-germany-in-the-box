@@ -20,6 +20,10 @@ var ProductSku = {
 
       }).error(function(err) {
 
+        if (typeof err == "undefined") {
+          return;
+        }
+
         callback({success: false, error: err.responseJSON.error});
 
       });
@@ -43,6 +47,10 @@ var ProductSku = {
 
       }).error(function(err) {
 
+        if (typeof err == "undefined") {
+          return;
+        }
+        
         callback({success: false, error: err.responseJSON.error});
 
       });
