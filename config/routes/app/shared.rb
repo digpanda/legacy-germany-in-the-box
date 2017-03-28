@@ -9,4 +9,7 @@ namespace :shared do
   resources :notifications do
   end
 
+  resources :images do
+  end
+
 end
