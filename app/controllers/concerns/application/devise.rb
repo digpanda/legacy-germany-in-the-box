@@ -25,7 +25,10 @@ module Application
         remove_all_empty_orders!
 
         current_user&.cart&.orders&.each do |order|
-          if order.new? and order.timeout?
+          if !order.bought? and order.timeout?
+            order.cart_id = nil
+            order.save
+            order.reload
             order.status = :cancelled
             order.save
           end

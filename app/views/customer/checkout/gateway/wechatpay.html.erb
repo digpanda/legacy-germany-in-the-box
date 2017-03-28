@@ -17,9 +17,9 @@ function onBridgeReady(){
         // This will just take care of the after redirection
         window.location.href = "<%= customer_checkout_callback_wechatpay_url %>";
       } else if (res.err_msg == "get_brand_wcpay_request:fail") {
-        window.location.href = "<%= navigation.back(1) %>";
+        window.location.href = "<%= fail_customer_checkout_callback_wechatpay_path %>";
       } else if (res.err_msg == "get_brand_wcpay_request:cancel") {
-        window.location.href = "<%= navigation.back(1) %>";
+        window.location.href = "<%= cancel_customer_checkout_callback_wechatpay_path %>";
       }
     }
   );
