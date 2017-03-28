@@ -9,4 +9,17 @@ class Customer::Checkout::Callback::WechatpayController < ApplicationController
     redirect_to customer_orders_path
   end
 
+  # make the user return to the previous page
+  def cancel
+    redirect_to navigation.back(2)
+  end
+
+  # the card processing failed
+  # NOTE : it can happen when someone didn't setup his wechatpay account
+  # he has to choose another way.
+  def fail
+    flash[:error] = I18n.t(:failed, scope: :payment)
+    redirect_to navigation.back(2)
+  end
+
 end

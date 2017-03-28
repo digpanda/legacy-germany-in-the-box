@@ -21,6 +21,8 @@ namespace :customer do
       end
 
       resource :wechatpay, :controller => 'wechatpay' do
+        get :fail
+        get :cancel
       end
 
     end
