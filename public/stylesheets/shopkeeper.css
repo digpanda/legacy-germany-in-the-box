@@ -508,9 +508,11 @@
   .page-error a:hover {
     color: #fdfdfd; }
 
-@media (max-width: 994px) {
-  .payment-methods img {
-    max-width: 70%; } }
+.payment-methods__block {
+  margin-bottom: 1em; }
+  @media (max-width: 994px) {
+    .payment-methods__block {
+      margin-bottom: 0; } }
 
 .category-blocks {
   padding: 0; }
@@ -1526,6 +1528,7 @@ a, a:active, a:hover, a:visited {
 .logo-img-large {
   width: auto;
   max-height: 256px; }
+
 
 
 /*# sourceMappingURL=shopkeeper.css.map*/

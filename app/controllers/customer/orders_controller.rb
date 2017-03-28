@@ -36,6 +36,8 @@ class Customer::OrdersController < ApplicationController
   end
 
   def continue
+    order.status = :new
+    order.save
     cart_manager.store(order)
     redirect_to customer_cart_path
   end

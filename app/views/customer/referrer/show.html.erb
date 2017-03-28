@@ -1,17 +1,17 @@
 <div class="+white-box +centered">
-  <h2>来因盒 - 精致 专注 德国</h2>
-  <h2><%= current_user.referrer_nickname %>，您已经成功注册， 欢迎加入推广计划！</h2>
+  <h4>专注德国精品</h4>
+  <h4><%= current_user.referrer_nickname %>，您已经成功注册， 欢迎加入推广计划！</h4>
   <% if current_user.referrer_coupons.empty? %>
       <div class="row">
-        <h3>您已经成功注册!请到来因盒微信服务号给客服留言您的身份ID，我们将回复定制推广折扣码给您。</h3>
+        <h5>您已经成功注册!请到来因盒微信服务号给客服留言您的身份ID，我们将回复定制推广折扣码给您。</h5>
 
         <div class="col-md-3 col-md-offset-3">
-          <h3><strong>1.</strong> 请复制您的身份ID</h3>
-          <h4>Referral ID: <br/><strong><%= current_user.referrer_id %></strong></h4>
+          <h5><strong>1.</strong> 请复制您的身份ID</h5>
+          <h6>Referral ID: <br/><strong><%= current_user.referrer_id %></strong></h6>
         </div>
 
         <div class="col-md-3">
-          <h3><strong>2.</strong> 识别来因盒微信服务号二维码，"我的->在线客服"里留言粘贴发送身份ID</h3>
+          <h5><strong>2.</strong> 识别来因盒微信服务号二维码，"我的->在线客服"里留言粘贴发送身份ID</h5>
           <img src="/images/stickers/qrcode_for_gh.jpg" width="50%">
         </div>
       </div>

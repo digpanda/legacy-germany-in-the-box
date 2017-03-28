@@ -18,12 +18,15 @@
             <tr>
               <th>
                 <!-- PACKAGE COVER -->
+                <%= I18n.t(:item, scope: :cart) %>
               </th>
               <th>
                 <!-- IMAGES WITH QUANTITY -->
+                <%= I18n.t(:quantity, scope: :cart) %>
               </th>
               <th>
                 <!-- PRICE PER UNIT -->
+                <%= I18n.t(:unit_price, scope: :cart) %>
               </th>
               <th>
               </th>
@@ -37,7 +40,7 @@
               <td class="white-table__quantity">
                 <div class="row">
                   <!-- Minus -->
-                  <div class="col-md-3">
+                  <div class="col-md-3" align="center">
                     <% if action %>
                     <a href="#" class="js-set-package-quantity-minus" data-package-set-id="<%= package_set.id.to_s %>"
                        data-order-shop-id="<%= package_set.shop.id %>">
@@ -46,14 +49,14 @@
                     <% end %>
                   </div>
 
-                  <div class="col-md-3">
+                  <div class="col-md-3" align="center">
                     <%= text_field_tag "", package_sets_number, :id => "package-quantity-#{package_set.id.to_s}",
                                        :type => 'text', :value => "#{package_sets_number}", :disabled => "disabled",
                                        :data => {:order_item_id => package_set.id.to_s} %>
                   </div>
 
                   <!-- Plus -->
-                  <div class="col-md-3">
+                  <div class="col-md-3" align="center">
                     <% if action %>
                     <a href="#" class="js-set-package-quantity-plus" data-package-set-id="<%= package_set.id.to_s %>"
                        data-order-shop-id="<%= package_set.shop.id %>">
@@ -68,7 +71,7 @@
                   <img src="<%#= order_item.sku.decorate.highlighted_image %>" class="icon-img"/>
                 <%# end %> -->
               </td>
-              <td style="text-align:right">
+              <td style="text-align:right; white-space: nowrap; overflow: hidden;">
                 <%= package_set.end_price.in_euro.to_yuan.display %>
                 <p style="font-size: 8px;">( <%= I18n.t(:all_included, scope: :cart) %> )</p>
 

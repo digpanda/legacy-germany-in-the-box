@@ -25,7 +25,7 @@
     <tbody>
       <% @orders.each do |order| %>
         <tr>
-          <td>
+          <td class="+desktop">
             <% if order.decorate.total_price_with_extra_costs > 0 %>
               <%= link_to order.id, customer_order_path(order) %>
             <% else %>
