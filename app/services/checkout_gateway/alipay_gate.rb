@@ -27,7 +27,7 @@ class CheckoutGateway
       @raw_url ||= begin
         SlackDispatcher.new.message("WECHAT CUSTOMER ? #{identity_solver.wechat_customer?}")
         if identity_solver.wechat_customer?
-          Alipay::Service.create_forex_trade_wap_url(
+          ::Alipay::Service.create_forex_trade_wap_url(
             out_trade_no: "#{order.id}",
             subject: "Order #{order.id}",
             rmb_fee: "#{order.end_price.in_euro.to_yuan.display_raw}",
@@ -35,7 +35,7 @@ class CheckoutGateway
             notify_url: "#{base_url}#{api_webhook_alipay_customer_path}", # "http://alipay.digpanda.ultrahook.com"
           )
         else
-          Alipay::Service.create_forex_trade_url(
+          ::Alipay::Service.create_forex_trade_url(
             out_trade_no: "#{order.id}",
             subject: "Order #{order.id}",
             currency: "EUR",

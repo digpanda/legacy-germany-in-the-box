@@ -3,6 +3,7 @@ class Connect::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   # skip CSRF on create.
   skip_before_filter :verify_authenticity_token
   skip_before_action :silent_login
+  skip_before_action :get_cart_orders
 
   def wechat
     if wechat_solver.success?
