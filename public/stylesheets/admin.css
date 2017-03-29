@@ -382,6 +382,9 @@
   background-color: #8b8b8b;
   border: 3px white solid; }
 
+.field__text {
+  width: 500px; }
+
 .buttons {
   display: inline-block;
   text-align: center;

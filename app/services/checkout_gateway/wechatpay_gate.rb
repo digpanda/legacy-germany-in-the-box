@@ -18,6 +18,7 @@ class CheckoutGateway
     # make a new OrderPayment linked to the request which we will manipulate later on
     def checkout!
       prepare_order_payment!
+      SlackDispatcher.new.message(process!) # TO UNDERSTAND THE PROBLEM
       process!
     end
 
