@@ -11,10 +11,10 @@
 
         <% @addresses.each do |address| %>
           <%= radio_button_tag 'delivery_destination_id', address.id, :checked => address.primary %>
-          <%= label_tag "delivery_destination_id_#{address.id}", address.decorate.full_address %>
+          <%= label_tag "delivery_destination_id_#{address.id}", address.decorate.full_address, class: '+inline' %>
           <%= link_to '', customer_address_path(address), :method => :delete, data: { confirm: "确定删除邮寄地址？" },
                       :class => 'tooltipster fa fa-times buttons buttons__delete', :title => "Remove", :style => 'font-size:9px;'%>
-          <div class="clearfix"></div>
+          <div class="+small-spacer"></div>
         <% end %>
 
         <div class="row">
