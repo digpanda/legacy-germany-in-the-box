@@ -16,8 +16,7 @@
       <!-- End of shop in category -->
     </li>
     <% end %>
-    <% if Rails.env.production? %>
-      <% shop = Shop.find('577b80dd7302fc738898070a') %>
+    <% Shop.highlighted.each do |shop| %>
       <li>
         <%= link_to shop&.shopname, guest_shop_path(shop) %>
       </li>

@@ -54,6 +54,7 @@ class Shop
 
   field :merchant_id,     type: String
   field :bg_merchant_id,  type: String
+  field :highlight,       type: Boolean, default: false
 
   mount_uploader :logo,   LogoUploader
   mount_uploader :banner, CoverUploader
@@ -114,6 +115,7 @@ class Shop
 
   scope :is_bg_merchant,  ->    { where(:bg_merchant_id.ne => nil) }
   scope :can_buy,         ->    { is_active.is_bg_merchant.has_address }
+  scope :highlighted,     ->    { where(highlight: true) }
 
   before_save :ensure_shopkeeper
   before_save :clean_sms_mobile,  :unless => lambda { self.sms }
