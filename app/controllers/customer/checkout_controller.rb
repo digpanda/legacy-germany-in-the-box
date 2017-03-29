@@ -8,8 +8,10 @@ class Customer::CheckoutController < ApplicationController
   authorize_resource :class => false
 
   before_action :set_shop, :only => [:create]
+
   before_filter :ensure_session_order, :only => [:payment_method, :gateway]
   before_action :set_order, :only => [:payment_method]
+
   before_filter :force_address_param, :only => [:create]
 
   before_action :breadcrumb_cart, :breadcrumb_checkout_address, :breadcrumb_payment_method

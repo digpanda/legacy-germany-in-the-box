@@ -108,7 +108,7 @@ class CheckoutCallback < BaseService
       manage_stocks!(order_payment.order)
       manage_logistic!(order_payment.order)
       dispatch_notifications!(order_payment)
-      
+
     else
       return return_with(:error, "Mode for Alipay callback unknown")
     end
@@ -137,14 +137,7 @@ class CheckoutCallback < BaseService
   end
 
   def alipay_success?(mode)
-    params[:trade_status] == "TRADE_FINISHED" ? true : false
-    # if mode == :unsafe
-    #   params[:trade_status] == "TRADE_FINISHED" ? true : false
-    # elsif mode == :safe
-    #   params[:trade_status] == "TRADE_SUCCESS" ? true : false
-    # else
-    #   false
-    # end
+    ["TRADE_FINISHED", "TRADE_SUCCESS"].include?(params[:trade_status]) ? true : false
   end
 
   def solve_wirecard_order_payment_and_refresh!

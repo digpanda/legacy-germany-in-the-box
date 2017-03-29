@@ -6,7 +6,7 @@ feature "checkout process", :js => true  do
     login!(customer)
   end
 
-  context "with manual logistic partner" do
+  context "with xipost logistic partner" do
 
     let(:shop) { FactoryGirl.create(:shop, :with_payment_gateways) }
     let(:product) { FactoryGirl.create(:product, shop_id: shop.id) }
@@ -19,22 +19,20 @@ feature "checkout process", :js => true  do
       page.first('.\\+checkout-button').click # go to address step
     end
 
-    scenario "pays successfully" do
-      # page.first('input[id^=delivery_destination_id').click # click on the first address
-      # pay_with_alipay!
-      #
-      # order = Order.order_by(c_at: :desc).first
-      #
-      # require 'rack/test'
-      # include Rack::Test::Methods
-      #
-      # def app
-      #   Rails.application
-      # end
-      # post api_webhook_alipay_customer_path, alipay_webhook_callback_params(order, mode: :success)
+    scenario "pays successfully with wirecard visa" do
       pay_with_wirecard_visa!
       manual_partner_confirmed?
     end
+
+    scenario "pays successfully with alipay" do
+      pay_with_alipay!
+    end
+
+    # NOTE : we can't test it outside wechat
+    #
+    # scenario "pays successfully with wechatpay" do
+    #   pay_with_wechatpay!
+    # end
 
   end
 

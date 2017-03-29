@@ -8,6 +8,12 @@ class Api::Webhook::Wechatpay::CustomersController < Api::ApplicationController
   def create
 
     devlog.info "Wechatpay started to communicate with us ..."
+
+    unless valid_xml?
+      throw_api_error(:bad_format, {error: "Wrong format transmitted"}, :bad_request)
+      return
+    end
+
     devlog.info("Raw params : #{data}")
 
     if wrong_data?
@@ -17,10 +23,10 @@ class Api::Webhook::Wechatpay::CustomersController < Api::ApplicationController
 
     if checkout_callback.success?
       devlog.info "Transaction successfully processed."
-      SlackDispatcher.new.message("It worked #{params}")
+      SlackDispatcher.new.message("Webhook data transmit for SUCCESSFUL Wechatpay : #{data}")
     else
       devlog.info "Processing of the transaction failed."
-      SlackDispatcher.new.message("It DID NOT WORK #{params}")
+      SlackDispatcher.new.message("Webhook data transmit for FAILED Wechatpay : #{data}")
     end
 
     devlog.info "End of process."
@@ -45,6 +51,13 @@ class Api::Webhook::Wechatpay::CustomersController < Api::ApplicationController
 
   def wrong_data?
     data["out_trade_no"].nil? || data["transaction_id"].nil? || data["return_code"].nil?
+  end
+
+  def valid_xml?
+    Hash.from_xml(request.body.read)
+    true
+  rescue REXML::ParseException
+    false
   end
 
 end
