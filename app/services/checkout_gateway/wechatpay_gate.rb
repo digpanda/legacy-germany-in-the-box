@@ -65,6 +65,12 @@ class CheckoutGateway
       })
     end
 
+    # this is supposedly inherited
+    # but we don't want to risk wechatpay to fail anytime
+    def order_payment
+      @order_payment ||= OrderPayment.new
+    end
+
     def process!
       {
         unified_order: unified_order,
