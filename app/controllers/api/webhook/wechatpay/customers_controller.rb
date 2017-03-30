@@ -37,6 +37,9 @@ class Api::Webhook::Wechatpay::CustomersController < Api::ApplicationController
 
   def data
     @data ||= begin
+      SlackDispatcher.new.message("PARSING DATA : #{request.body.read}")
+      SlackDispatcher.new.message("AFTER PARSING FROM XML TO HASH : #{Hash.from_xml(request.body.read)}")
+      SlackDispatcher.new.message("TAKING XML OUT OF THE NODE : #{Hash.from_xml(request.body.read)&.[]('xml')}")
       Hash.from_xml(request.body.read)&.[]("xml")
     end
   end
