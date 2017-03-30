@@ -13,6 +13,7 @@ class Api::Webhook::Wechatpay::CustomersController < Api::ApplicationController
     body = Hash.from_xml(request.body.read)
     SlackDispatcher.new.message("PROCESSED BODY : #{body}")
     @transmit_data = body&.[]("xml")
+    SlackDispatcher.new.message("TRANSMIT DATA : #{@transmit_data}")
 
     unless valid_xml?
       throw_api_error(:bad_format, {error: "Wrong format transmitted"}, :bad_request)
