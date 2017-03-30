@@ -8,8 +8,7 @@ class Api::Webhook::Wechatpay::CustomersController < Api::ApplicationController
   def create
 
     devlog.info "Wechatpay started to communicate with us ..."
-    SlackDispatcher.new.message("REQUEST BODY READ : #{request.body.read}")
-    SlackDispatcher.new.message("PARAM : #{params}")
+    SlackDispatcher.new.message("PROCESSED BODY : #{Hash.from_xml(request.body.read)}")
 
     unless valid_xml?
       throw_api_error(:bad_format, {error: "Wrong format transmitted"}, :bad_request)
