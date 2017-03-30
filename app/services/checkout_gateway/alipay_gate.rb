@@ -23,7 +23,6 @@ class CheckoutGateway
 
     private
 
-    #
     # Alipay::Service.create_direct_pay_by_user_url(
     #   out_trade_no: "#{order.id}",
     #   subject: "Order #{order.id}",
@@ -31,7 +30,7 @@ class CheckoutGateway
     #   return_url: "#{base_url}#{customer_checkout_callback_alipay_path}",
     #   notify_url: "#{base_url}#{api_webhook_alipay_customer_path}",
     # )
-    
+
     def raw_url
       @raw_url ||= begin
         if identity_solver.wechat_customer?
