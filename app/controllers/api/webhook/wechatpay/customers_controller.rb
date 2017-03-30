@@ -37,7 +37,9 @@ class Api::Webhook::Wechatpay::CustomersController < Api::ApplicationController
   end
 
   def data
-    @data ||= Hash.from_xml(request.body.read)["xml"]
+    @data ||= begin
+      Hash.from_xml(request.body.read)["xml"]
+    end
   end
 
   # WARNING : Must stay public for throw_error to work well for now.
