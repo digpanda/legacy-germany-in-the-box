@@ -23,35 +23,46 @@ class CheckoutGateway
 
     private
 
+    #
+    # Alipay::Service.create_direct_pay_by_user_url(
+    #   out_trade_no: "#{order.id}",
+    #   subject: "Order #{order.id}",
+    #   total_fee: "#{order.end_price.in_euro.to_yuan.display_raw}",
+    #   return_url: "#{base_url}#{customer_checkout_callback_alipay_path}",
+    #   notify_url: "#{base_url}#{api_webhook_alipay_customer_path}",
+    # )
+    
     def raw_url
       @raw_url ||= begin
         if identity_solver.wechat_customer?
-          ::Alipay::Service.create_forex_trade_wap_url(
-            out_trade_no: "#{order.id}",
-            subject: "Order #{order.id}",
-            rmb_fee: "#{order.end_price.in_euro.to_yuan.display_raw}",
-            return_url: "#{base_url}#{customer_checkout_callback_alipay_path}",
-            notify_url: "#{base_url}#{api_webhook_alipay_customer_path}", # "http://alipay.digpanda.ultrahook.com"
-          )
+          SlackDispatcher.new.message("Alipay TRADE WAP params : #{forex_trade_wap_params}")
+          ::Alipay::Service.create_forex_trade_wap_url(forex_trade_wap_params)
         else
-          ::Alipay::Service.create_forex_trade_url(
-            out_trade_no: "#{order.id}",
-            subject: "Order #{order.id}",
-            currency: "EUR",
-            rmb_fee: "#{order.end_price.in_euro.to_yuan.display_raw}",
-            return_url: "#{base_url}#{customer_checkout_callback_alipay_path}",
-            notify_url: "#{base_url}#{api_webhook_alipay_customer_path}", # "http://alipay.digpanda.ultrahook.com"
-          )
+          SlackDispatcher.new.message("Alipay TRADE params : #{forex_trade_params}")
+          ::Alipay::Service.create_forex_trade_url(forex_trade_params)
         end
-        #
-        # Alipay::Service.create_direct_pay_by_user_url(
-        #   out_trade_no: "#{order.id}",
-        #   subject: "Order #{order.id}",
-        #   total_fee: "#{order.end_price.in_euro.to_yuan.display_raw}",
-        #   return_url: "#{base_url}#{customer_checkout_callback_alipay_path}",
-        #   notify_url: "#{base_url}#{api_webhook_alipay_customer_path}",
-        # )
       end
+    end
+
+    def forex_trade_wap_params
+      {
+        out_trade_no: "#{order.id}",
+        subject: "Order #{order.id}",
+        rmb_fee: "#{order.end_price.in_euro.to_yuan.display_raw}",
+        return_url: "#{base_url}#{customer_checkout_callback_alipay_path}",
+        notify_url: "#{base_url}#{api_webhook_alipay_customer_path}", # "http://alipay.digpanda.ultrahook.com"
+      }
+    end
+
+    def forex_trade_params
+      {
+        out_trade_no: "#{order.id}",
+        subject: "Order #{order.id}",
+        currency: "EUR",
+        rmb_fee: "#{order.end_price.in_euro.to_yuan.display_raw}",
+        return_url: "#{base_url}#{customer_checkout_callback_alipay_path}",
+        notify_url: "#{base_url}#{api_webhook_alipay_customer_path}", # "http://alipay.digpanda.ultrahook.com"
+      }
     end
 
     def url
