@@ -10,7 +10,10 @@ class StockManager
     order.order_items.each do |order_item|
       # we take the original sku not the one from the order item
       sku = order_item.sku_origin
-      sku.quantity -= order_item.quantity unless sku.unlimited
+      unless sku.unlimited
+        sku.quantity -= order_item.quantity
+        sku.quantity = 0 if sku.quantity < 0
+      end
       sku.save!
 
       if sku.quantity < 10
