@@ -37,7 +37,7 @@ class Api::Webhook::Wechatpay::CustomersController < Api::ApplicationController
 
   def data
     @data ||= begin
-      Hash.from_xml(request.body.read)["xml"]
+      Hash.from_xml(request.body.read)&.[]("xml")
     end
   end
 
