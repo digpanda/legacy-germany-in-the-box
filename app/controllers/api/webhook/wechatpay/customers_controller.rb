@@ -5,10 +5,13 @@ class Api::Webhook::Wechatpay::CustomersController < Api::ApplicationController
 
   skip_before_filter :verify_authenticity_token
 
+  attr_reader :data
+
   def create
 
     devlog.info "Wechatpay started to communicate with us ..."
     SlackDispatcher.new.message("PROCESSED BODY : #{Hash.from_xml(request.body.read)}")
+    @data = Hash.from_xml(request.body.read)&.[]("xml")
 
     unless valid_xml?
       throw_api_error(:bad_format, {error: "Wrong format transmitted"}, :bad_request)
@@ -33,15 +36,6 @@ class Api::Webhook::Wechatpay::CustomersController < Api::ApplicationController
     devlog.info "End of process."
     render status: :ok,
             json: {success: true}.to_json
-  end
-
-  def data
-    @data ||= begin
-      SlackDispatcher.new.message("PARSING DATA : #{request.body.read}")
-      SlackDispatcher.new.message("AFTER PARSING FROM XML TO HASH : #{Hash.from_xml(request.body.read)}")
-      SlackDispatcher.new.message("TAKING XML OUT OF THE NODE : #{Hash.from_xml(request.body.read)&.[]('xml')}")
-      Hash.from_xml(request.body.read)&.[]("xml")
-    end
   end
 
   # WARNING : Must stay public for throw_error to work well for now.
