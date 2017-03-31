@@ -56,6 +56,7 @@ feature "checkout process", :js => true  do
       # short hook to check if we cannot access
       # the checkout without fulfilling those informations
       scenario "try checking out directly and is redirected to fulfil informations" do
+        binding.pry
         visit payment_method_customer_checkout_path
         on_missing_info_page?
       end
