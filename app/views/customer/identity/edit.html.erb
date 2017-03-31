@@ -1,8 +1,11 @@
 <%= render 'layouts/customer/subheader/checkout_breadcrumb' %>
 <div class="row">
-  <div class="col-md-6 col-md-push-3 col-md-pull-3">
+  <div class="col-md-12">
 
-    <%= @identity_form.html_safe %>
+    <object data="<%= @identity_remote_url %>" width="800" height="1300" type="text/html">
+    <!-- Alternative Content -->
+    Partner does not require identity.
+    </object>
 
   </div>
 </div>
