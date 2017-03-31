@@ -2,6 +2,7 @@
 namespace :customer do
 
   resource :referrer, :controller => 'referrer' do
+    get :provision
   end
 
   resource :cart, :controller => 'cart' do
