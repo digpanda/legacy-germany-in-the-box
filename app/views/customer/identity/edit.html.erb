@@ -2,10 +2,12 @@
 <div class="row">
   <div class="col-md-12">
 
-    <object data="<%= @identity_remote_url %>" width="800" height="1300" type="text/html">
-    <!-- Alternative Content -->
+    <%= @identity_form.html_safe %>
+
+    <!-- NOTE : this is not working because no HTTPS is provided by Xipost -->
+    <!-- <object data="<%= @identity_remote_url %>" width="800" height="1300" type="text/html">
     <embed src="<%= @identity_remote_url %>" width="800" height="1300" type="text/html" />
-    </object>
+    </object> -->
 
   </div>
 </div>
