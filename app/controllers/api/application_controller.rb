@@ -14,4 +14,9 @@ class Api::ApplicationController < ApplicationController
            json: throw_error(:unauthorized_page).to_json
   end
 
+  def throw_server_error_page
+    render status: :internal_server_error,
+           json: throw_error(:server_error).to_json
+  end
+
 end

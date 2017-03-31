@@ -47,6 +47,7 @@ class CheckoutGateway
       {
         out_trade_no: "#{order.id}",
         subject: "Order #{order.id}",
+        currency: "EUR",
         rmb_fee: "#{order.end_price.in_euro.to_yuan.display_raw}",
         return_url: "#{base_url}#{customer_checkout_callback_alipay_path}",
         notify_url: "#{base_url}#{api_webhook_alipay_customer_path}", # "http://alipay.digpanda.ultrahook.com"
