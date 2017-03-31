@@ -86,14 +86,14 @@ module Helpers
 
       # access the manual logistic tracking
       def manual_partner_confirmed?
-        expect(page).to have_content("打开")
+        expect(page).to have_content("追单")
       end
 
       # enter all the payment information and pay
       # access the borderguru tracking
       def borderguru_confirmed?
         borderguru_label_window = window_opened_by do
-          click_link "打开" # click on "download your label" in chinese
+          click_link "追单" # click on "download your label" in chinese
         end
 
         within_window borderguru_label_window do
