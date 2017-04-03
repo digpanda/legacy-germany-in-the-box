@@ -11,6 +11,10 @@ class UserDecorator < Draper::Decorator
     "#{fname} #{lname}"
   end
 
+  def chinese_full_name
+    "#{lname}#{fname}"
+  end
+
   def avatar
     if pic.url.nil?
      PICTURE_URL

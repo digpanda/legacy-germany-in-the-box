@@ -7,12 +7,16 @@ class Customer::IdentityController < ApplicationController
 
   def edit
     if Setting.instance.logistic_partner == :xipost
-      @identity_remote_url = Xipost.identity_remote_url
-      @identity_form = Xipost.identity_form
+      @identity_remote_url = xipost.identity_remote_url
+      # @identity_form = xipost.identity_form
     else
       @identity_remote_url = ""
-      @identity_form = "Partner does not require identity."
+      # @identity_form = "Partner does not require identity."
     end
+  end
+
+  def xipost
+    @xipost ||= Xipost.new(current_user)
   end
 
 end
