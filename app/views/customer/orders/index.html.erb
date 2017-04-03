@@ -1,5 +1,5 @@
 <% if @orders.size > 0 %>
-  <table class="white-table">
+  <table class="white-table +desktop">
     <thead>
       <tr>
         <th>
@@ -64,6 +64,65 @@
       <% end %>
     </tbody>
   </table>
+
+  <table class="white-table +mobile">
+    <thead>
+    <tr>
+      <th>
+        <%= I18n.t(:id, scope: :edit_order) %>
+      </th>
+
+      <th>
+        <%= I18n.t(:operations, scope: :edit_order) %>
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @orders.each do |order| %>
+      <tr>
+        <td>
+          <% if order.decorate.total_price_with_extra_costs > 0 %>
+            <%= link_to order.id, customer_order_path(order) %>
+          <% else %>
+            <%= order.id %>
+          <% end %>
+          <div class="clearfix"></div>
+          <strong><%= I18n.t(:status, scope: :edit_order) %>:</strong> <%= I18n.t(order.status, scope: :edit_order) %>
+          <% if order.bought? %>
+            <div class="clearfix"></div>
+            <strong><%= I18n.t(:total_price_with_extra_costs, scope: :edit_order) %>:</strong> <%= order.end_price.in_euro.to_yuan.display %>
+          <% end %>
+
+          <% if order.bought? %>
+            <div class="clearfix"></div>
+            <strong><%= I18n.t(:link_tracking, scope: :edit_order) %>:</strong>
+            <% if order.logistic_partner == :borderguru %>
+              <%= link_to I18n.t(:open, scope: :edit_order), tracking_id_customer_order_border_guru_path(order), :target => '_blank' %>
+            <% elsif order.logistic_partner == :xipost %>
+              <%= link_to I18n.t(:open, scope: :edit_order), Xipost.tracking_url(order), :target => '_blank' %>
+            <% else %>
+              Tracking unavailable.
+            <% end %>
+          <% end %>
+          <div class="clearfix"></div>
+          <strong><%= I18n.t(:updated_at, scope: :edit_order) %>:</strong> <%= order.u_at.localtime.strftime('%Y-%m-%d %H:%M:%S') %>
+
+        </td>
+
+
+        <td>
+          <% unless order.paid? %>
+            <%= link_to '', customer_order_continue_path(order), method: :patch, class: 'tooltipster fa fa-arrow-right buttons buttons__delete' %>
+            <div class="+small-spacer"></div>
+            <%= link_to '', customer_order_path(order), method: :delete, data: { confirm: I18n.t(:confirm_want_delete, scope: :notice) },
+                        class: 'tooltipster fa fa-times buttons buttons__delete' %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+
   <%= will_paginate @orders, renderer: BootstrapPagination::Rails %>
 <% else %>
 <div class="+white-box +centered">
