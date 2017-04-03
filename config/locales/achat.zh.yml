@@ -188,7 +188,7 @@ zh-CN:
     my_payment: 我的支付方式
     my_cart: 购物车
     my_account: 我的账户
-    flyer: 传单
+    flyer: 推广
     my_personal: 个人信息
     my_bank: 支付方式
     my_address: 地址管理
@@ -399,7 +399,7 @@ zh-CN:
     adjust_product_ok: 产品数量修改成功
     adjust_product_ko: 产品缺货中
     link_tracking: 包裹追踪
-    open: 打开
+    open: 追单
     override_maximal_total: 亲，因海关限制进口总额，每日购买多件产品金额不能超过%{total}%{currency}。建议您先放到收藏里，明天欢迎再次光临！.
     label: 运单
     download: 下载
@@ -407,7 +407,7 @@ zh-CN:
     taxes_cost: 海关税费
     duty_and_shipping_cost: 关税物流费用
     total_price_with_extra_costs: 总计
-    new: 尚未付款
+    new: 去付款
     paying: 等待付款
     paid: 已付款
     custom_checking: 审核中
