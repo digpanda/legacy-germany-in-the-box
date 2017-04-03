@@ -120,6 +120,10 @@ class User
     self.all.reduce([]) { |acc, user| acc << user.email }
   end
 
+  def primary_address
+    addresses.where(primary: true).first || addresses.first
+  end
+
   # this was made to get only the appropriate orders
   # of the customer to get back to the cart
   def cart_orders
