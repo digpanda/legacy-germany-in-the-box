@@ -28,8 +28,9 @@
       No shipping data
       <% else %>
       Name : <%= @order.shipping_address.decorate.chinese_full_name %><br />
-      Address : <%= @order.shipping_address.decorate.full_address %>
-      <% end %>
+      Address : <%= @order.shipping_address.decorate.full_address %><br />
+      Mobile : <%= @order.billing_address.mobile %>
+    <% end %>
     </div>
 
     <div class="col-md-6">
@@ -38,7 +39,8 @@
       No billing data
       <% else %>
       Name : <%= @order.billing_address.decorate.chinese_full_name %><br />
-      Address : <%= @order.billing_address.decorate.full_address %>
+      Address : <%= @order.billing_address.decorate.full_address %><br />
+      Mobile : <%= @order.billing_address.mobile %>
       <% end %>
     </div>
 
