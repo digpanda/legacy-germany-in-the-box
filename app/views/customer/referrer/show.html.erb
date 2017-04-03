@@ -16,12 +16,10 @@
         </div>
       </div>
   <% else %>
+    <%= link_to '账户查询', provision_customer_referrer_path %>
       <p>请保存您的专属折扣码图片</p>
       <% current_user.referrer_coupons.each do |coupon| %>
           <img src="<%= guest_coupon_flyer_path(coupon) %>" style="max-height: 500px;">
       <% end %>
   <% end %>
-
-  <div class="+small-spacer"></div>
-  <%= link_to '规定', provision_customer_referrer_path %>
 </div>
