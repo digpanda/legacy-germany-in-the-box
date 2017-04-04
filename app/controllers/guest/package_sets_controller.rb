@@ -59,7 +59,7 @@ class Guest::PackageSetsController < ApplicationController
 
   # for filtering (optional)
   def set_category
-    @category = Category.where(slug: params[:category_slug]).first unless params[:category_slug].nil?
+    @category = Category.where(id: params[:category_id]).first unless params[:category_id].nil?
   end
 
 end

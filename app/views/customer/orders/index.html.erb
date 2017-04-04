@@ -112,7 +112,7 @@
 
         <td>
           <% unless order.paid? %>
-            <%= link_to '', customer_order_continue_path(order), method: :patch, class: 'tooltipster fa fa-arrow-right buttons buttons__delete' %>
+            <%= link_to '', customer_order_path(order), method: :patch, class: 'tooltipster fa fa-arrow-right buttons buttons__delete' %>
             <div class="+small-spacer"></div>
             <%= link_to '', customer_order_path(order), method: :delete, data: { confirm: I18n.t(:confirm_want_delete, scope: :notice) },
                         class: 'tooltipster fa fa-times buttons buttons__delete' %>
