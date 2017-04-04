@@ -1,40 +1,52 @@
-<!-- TODO : move this into the javascript area -->
-<script>
+<% if @checkout[:qrcode] %>
 
-function onBridgeReady(){
-  WeixinJSBridge.invoke(
-    'getBrandWCPayRequest', {
-      "appId": "<%= @checkout[:javascript_pay_request][:appId] %>",
-      "timeStamp": "<%= @checkout[:javascript_pay_request][:timeStamp] %>",
-      "nonceStr": "<%= @checkout[:javascript_pay_request][:nonceStr] %>",
-      "package": "<%= @checkout[:javascript_pay_request][:package] %>",
-      "signType": "<%= @checkout[:javascript_pay_request][:signType] %>",
-      "paySign": "<%= @checkout[:javascript_pay_request][:paySign] %>"
-    },
-    function(res){
-      if (res.err_msg == "get_brand_wcpay_request:ok" ) {
-        // Confirmation will be made from server to server
-        // This will just take care of the after redirection
-        window.location.href = "<%= customer_checkout_callback_wechatpay_url %>";
-      } else if (res.err_msg == "get_brand_wcpay_request:fail") {
-        window.location.href = "<%= fail_customer_checkout_callback_wechatpay_path %>";
-      } else if (res.err_msg == "get_brand_wcpay_request:cancel") {
-        window.location.href = "<%= cancel_customer_checkout_callback_wechatpay_path %>";
+  <div class="+centered">
+    <img src="<%= @checkout[:qrcode] %>" width="300">
+  </div>
+
+  <div id="order-payment-live-refresh" data-order-payment-id="<%= @checkout[:order_payment].id %>">
+
+<% else %>
+
+  <!-- NOTE : this system works exclusively within WeChat browser -->
+  <script>
+
+  function onBridgeReady(){
+    WeixinJSBridge.invoke(
+      'getBrandWCPayRequest', {
+        "appId": "<%= @checkout[:javascript_pay_request][:appId] %>",
+        "timeStamp": "<%= @checkout[:javascript_pay_request][:timeStamp] %>",
+        "nonceStr": "<%= @checkout[:javascript_pay_request][:nonceStr] %>",
+        "package": "<%= @checkout[:javascript_pay_request][:package] %>",
+        "signType": "<%= @checkout[:javascript_pay_request][:signType] %>",
+        "paySign": "<%= @checkout[:javascript_pay_request][:paySign] %>"
+      },
+      function(res){
+        if (res.err_msg == "get_brand_wcpay_request:ok" ) {
+          // Confirmation will be made from server to server
+          // This will just take care of the after redirection
+          window.location.href = "<%= customer_checkout_callback_wechatpay_url %>";
+        } else if (res.err_msg == "get_brand_wcpay_request:fail") {
+          window.location.href = "<%= fail_customer_checkout_callback_wechatpay_path %>";
+        } else if (res.err_msg == "get_brand_wcpay_request:cancel") {
+          window.location.href = "<%= cancel_customer_checkout_callback_wechatpay_path %>";
+        }
       }
-    }
-  );
-}
-if (typeof WeixinJSBridge == "undefined"){
+    );
+  }
+  if (typeof WeixinJSBridge == "undefined"){
 
-  if( document.addEventListener ){
-    document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
-  } else if (document.attachEvent){
-    document.attachEvent('WeixinJSBridgeReady', onBridgeReady);
-    document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+    if( document.addEventListener ){
+      document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+    } else if (document.attachEvent){
+      document.attachEvent('WeixinJSBridgeReady', onBridgeReady);
+      document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+    }
+
+  } else{
+    onBridgeReady();
   }
 
-} else{
-  onBridgeReady();
-}
+  </script>
 
-</script>
+<% end %>

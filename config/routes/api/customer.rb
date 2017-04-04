@@ -7,4 +7,7 @@ namespace :customer do
   resources :orders do
   end
 
+  resources :order_payments do
+  end
+
 end

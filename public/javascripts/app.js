@@ -737,6 +737,32 @@ var CustomerGatewayCreate = {
   init: function init() {
 
     this.postBankDetails();
+    this.orderPaymentLiveRefresh();
+  },
+
+  /**
+   * We refresh the page according to the order payment status
+   */
+  orderPaymentLiveRefresh: function orderPaymentLiveRefresh() {
+
+    // If it's Wechatpay from Desktop and it needs auto refresh
+    if ($("#order-payment-live-refresh").length > 0) {
+
+      var OrderPayment = require("javascripts/models/order_payment");
+      var orderPaymentId = $('#order-payment-live-refresh').data('order-payment-id');
+
+      OrderPayment.show(orderPaymentId, function (res) {
+
+        if (res.success === true) {
+
+          // We can check the order payment status
+          console.log(res);
+        } else {
+
+          Messages.makeError(res.error);
+        }
+      });
+    }
   },
 
   /**
@@ -744,11 +770,11 @@ var CustomerGatewayCreate = {
    */
   postBankDetails: function postBankDetails() {
 
-    var Casing = require("javascripts/lib/casing");
-    var PostForm = require("javascripts/lib/post_form.js");
-
     // If it's Wirecard
     if ($("#bank-details").length > 0) {
+
+      var Casing = require("javascripts/lib/casing");
+      var PostForm = require("javascripts/lib/post_form.js");
 
       var bankDetails = $("#bank-details")[0].dataset;
       var parsedBankDetails = Casing.objectToUnderscoreCase(bankDetails);
@@ -2272,6 +2298,43 @@ var OrderItem = {
 };
 
 module.exports = OrderItem;
+});
+
+require.register("javascripts/models/order_payment.js", function(exports, require, module) {
+"use strict";
+
+/**
+ * OrderPayment Class
+ */
+var OrderPayment = {
+
+  /**
+   * Get the ProductSku details
+   */
+  show: function show(orderPaymentId, callback) {
+
+    $.ajax({
+
+      method: "GET",
+      url: '/api/customer/order_payments/' + orderPaymentId,
+      data: {}
+
+    }).done(function (res) {
+
+      callback(res);
+    }).error(function (err) {
+
+      if (typeof err == "undefined") {
+        return;
+      }
+
+      callback({ success: false, error: err.responseJSON.error });
+    });
+  }
+
+};
+
+module.exports = OrderPayment;
 });
 
 require.register("javascripts/models/product.js", function(exports, require, module) {

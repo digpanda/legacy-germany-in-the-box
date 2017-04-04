@@ -8,6 +8,7 @@ gem "wirecard-elastic", git: "https://github.com/Loschcode/wirecard-elastic.git"
 
 gem "alipay", "~> 0.14.0"
 gem "wx_pay"
+gem "rqrcode"
 
 gem "geocoder"
 gem "api_cache"

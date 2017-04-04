@@ -1,3 +1,5 @@
+require 'rqrcode'
+
 # prepare an order to be transmitted to the Alipay server
 class CheckoutGateway
   class WechatpayGate < Base
@@ -53,7 +55,7 @@ class CheckoutGateway
         total_fee: total_fee,
         spbill_create_ip: '127.0.0.1',
         notify_url: "#{base_url}#{api_webhook_wechatpay_customer_path}",
-        trade_type: 'JSAPI', # 'JSAPI', # could be "JSAPI", "NATIVE" or "APP",
+        trade_type: trade_type, # 'JSAPI', # could be "JSAPI", "NATIVE" or "APP",
         openid: openid
       })
     end
@@ -71,11 +73,48 @@ class CheckoutGateway
       @order_payment ||= OrderPayment.new
     end
 
+    def trade_type
+      @trade_type ||= begin
+        if identity_solver.wechat_customer?
+          'JSAPI'
+        else
+          'NATIVE'
+        end
+      end
+    end
+
     def process!
-      {
-        unified_order: unified_order,
-        javascript_pay_request: javascript_pay_request
-      }
+      if trade_type == 'JSAPI'
+        {
+          unified_order: unified_order,
+          javascript_pay_request: javascript_pay_request
+        }
+      elsif trade_type == 'NATIVE'
+        {
+          unified_order: unified_order,
+          qrcode: qrcode,
+          order_payment: order_payment
+        }
+      else
+        # TODO : we should throw a clean error here
+        {}
+      end
+    end
+
+    def qrcode
+      @qrcode ||= begin
+        qrcode_gen = ::RQRCode::QRCode.new(unified_order["code_url"])
+        svg = qrcode_gen.as_svg(offset: 0, color: '000',
+                    shape_rendering: 'crispEdges',
+                    module_size: 11)
+        FileUtils.mkdir_p("public/uploads/qrcode/")
+        IO.write("public#{qrcode_path}", svg)
+        qrcode_path
+      end
+    end
+
+    def qrcode_path
+      "/uploads/qrcode/wechatpay_#{@order.id.to_s}_#{Time.now.to_i.to_s}.svg"
     end
 
     def total_fee

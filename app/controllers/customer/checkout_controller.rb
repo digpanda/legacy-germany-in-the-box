@@ -52,7 +52,7 @@ class Customer::CheckoutController < ApplicationController
     end
 
     payment_gateway = order.shop.payment_gateways.where(payment_method: params[:payment_method].to_sym).first
-
+    
     unless payment_gateway
       flash[:error] = I18n.t(:invalid_gateway, scope: :edit_order)
       redirect_to navigation.back(1)
