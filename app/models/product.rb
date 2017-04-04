@@ -2,8 +2,8 @@ class Product
   include MongoidBase
   include Mongoid::Search
 
-  MAX_SHORT_TEXT_LENGTH = (Rails.configuration.achat[:max_short_text_length] * 1.25).round
-  MAX_LONG_TEXT_LENGTH = (Rails.configuration.achat[:max_long_text_length] * 1.25).round
+  MAX_SHORT_TEXT_LENGTH = (Rails.configuration.gitb[:max_short_text_length] * 1.25).round
+  MAX_LONG_TEXT_LENGTH = (Rails.configuration.gitb[:max_long_text_length] * 1.25).round
 
   strip_attributes
 

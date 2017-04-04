@@ -77,38 +77,38 @@ class Shop
 
   belongs_to :shopkeeper,   class_name: 'User',  inverse_of: :shop
 
-  validates :name,          presence: true,   length: {maximum: (Rails.configuration.achat[:max_tiny_text_length] * 1.25).round}
+  validates :name,          presence: true,   length: {maximum: (Rails.configuration.gitb[:max_tiny_text_length] * 1.25).round}
   validates :sms,           presence: true
-  validates :sms_mobile,    presence: true,   :if => lambda { self.sms }, length: {maximum: Rails.configuration.achat[:max_tiny_text_length]}
+  validates :sms_mobile,    presence: true,   :if => lambda { self.sms }, length: {maximum: Rails.configuration.gitb[:max_tiny_text_length]}
   validates :status,        presence: true
   validates :min_total,     presence: true,   numericality: { :greater_than_or_equal_to => 0 }
   validates :shopkeeper,    presence: true
   validates :currency,      presence: true
   validates :founding_year, presence: true,   length: {maximum: 4}
-  validates :desc,          presence: true,   length: {maximum: (Rails.configuration.achat[:max_medium_text_length] * 1.25).round}
-  validates :philosophy,    presence: true,   length: {maximum: (Rails.configuration.achat[:max_long_text_length] * 1.25).round}
-  validates :ustid,         presence: true,   length: {maximum: Rails.configuration.achat[:max_tiny_text_length]},   :if => lambda { self.agb }
+  validates :desc,          presence: true,   length: {maximum: (Rails.configuration.gitb[:max_medium_text_length] * 1.25).round}
+  validates :philosophy,    presence: true,   length: {maximum: (Rails.configuration.gitb[:max_long_text_length] * 1.25).round}
+  validates :ustid,         presence: true,   length: {maximum: Rails.configuration.gitb[:max_tiny_text_length]},   :if => lambda { self.agb }
 
   validates :wirecard_status, inclusion: {:in => Rails.application.config.wirecard[:merchants][:status].map(&:to_sym)}
 
   validates :agb,           inclusion: {in: [true]},    :if => lambda { self.agb.present? }
 
-  validates :register,        length: {maximum: Rails.configuration.achat[:max_tiny_text_length]}
-  validates :stories,         length: {maximum: (Rails.configuration.achat[:max_long_text_length] * 1.25).round}
-  validates :website,         length: {maximum: (Rails.configuration.achat[:max_short_text_length] * 1.25).round}
-  validates :eroi,            length: {maximum: Rails.configuration.achat[:max_tiny_text_length]}
-  validates :uniqueness,      length: {maximum: (Rails.configuration.achat[:max_medium_text_length] * 1.25).round}
-  validates :german_essence,  length: {maximum: (Rails.configuration.achat[:max_medium_text_length] * 1.25).round}
-  validates :shopname,        length: {maximum: Rails.configuration.achat[:max_short_text_length]}
+  validates :register,        length: {maximum: Rails.configuration.gitb[:max_tiny_text_length]}
+  validates :stories,         length: {maximum: (Rails.configuration.gitb[:max_long_text_length] * 1.25).round}
+  validates :website,         length: {maximum: (Rails.configuration.gitb[:max_short_text_length] * 1.25).round}
+  validates :eroi,            length: {maximum: Rails.configuration.gitb[:max_tiny_text_length]}
+  validates :uniqueness,      length: {maximum: (Rails.configuration.gitb[:max_medium_text_length] * 1.25).round}
+  validates :german_essence,  length: {maximum: (Rails.configuration.gitb[:max_medium_text_length] * 1.25).round}
+  validates :shopname,        length: {maximum: Rails.configuration.gitb[:max_short_text_length]}
 
   # This seems to be systematically empty, should we keep the fields ? - Laurent on 02/06/2016 (i changed to presence: false)
-  validates :fname,         presence: false,   length: {maximum: Rails.configuration.achat[:max_tiny_text_length]}
-  validates :lname,         presence: false,   length: {maximum: Rails.configuration.achat[:max_tiny_text_length]}
-  validates :tel,           presence: false,   length: {maximum: Rails.configuration.achat[:max_tiny_text_length]}
-  validates :mail,          presence: false,   length: {maximum: Rails.configuration.achat[:max_short_text_length]}
+  validates :fname,         presence: false,   length: {maximum: Rails.configuration.gitb[:max_tiny_text_length]}
+  validates :lname,         presence: false,   length: {maximum: Rails.configuration.gitb[:max_tiny_text_length]}
+  validates :tel,           presence: false,   length: {maximum: Rails.configuration.gitb[:max_tiny_text_length]}
+  validates :mail,          presence: false,   length: {maximum: Rails.configuration.gitb[:max_short_text_length]}
 
-  validates :mobile,        length: {maximum: Rails.configuration.achat[:max_tiny_text_length]}
-  validates :function,      length: {maximum: Rails.configuration.achat[:max_tiny_text_length]}
+  validates :mobile,        length: {maximum: Rails.configuration.gitb[:max_tiny_text_length]}
+  validates :function,      length: {maximum: Rails.configuration.gitb[:max_tiny_text_length]}
 
   scope :is_active,       ->    { where( :status => true ).where( :approved.ne => nil ) }
   scope :has_address, -> { where({ :addresses => { :$not => { :$size => 0 } } }) }

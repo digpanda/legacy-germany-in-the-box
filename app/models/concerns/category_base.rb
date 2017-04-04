@@ -22,7 +22,7 @@ module CategoryBase
     # SHOULD BE ANALYZED AND CERTAINLY CHANGED
     counter_cache :parent, :field => "children_count"
 
-    validates :name,    presence: true, length: {maximum: Rails.configuration.achat[:max_short_text_length]}
+    validates :name,    presence: true, length: {maximum: Rails.configuration.gitb[:max_short_text_length]}
     validates :status,  presence: true
 
     scope :roots,           ->  { where(:parent => nil) }

@@ -74,7 +74,7 @@ class User
   mount_uploader :pic, AvatarUploader
 
   validates :role,          presence: true, inclusion: {in: [:customer, :shopkeeper, :admin]}
-  validates :email,         presence: true, length: {maximum: Rails.configuration.achat[:max_tiny_text_length]}
+  validates :email,         presence: true, length: {maximum: Rails.configuration.gitb[:max_tiny_text_length]}
   validates :status,        presence: true
 
   # TODO : we deactivated this protection because wechat don't return it
@@ -82,11 +82,11 @@ class User
   # we should add a system to force people to add those important information before they buy if we don't have it.
   # NOTE : we could actually refactor it with the short email forcing we did before, but in another controller to stay clean. (`ensure user information blbalbla`)
 
-  # validates :fname,         presence: true, :if => lambda { :customer == self.role }, length: {maximum: Rails.configuration.achat[:max_tiny_text_length]}
-  # validates :lname,         presence: true, :if => lambda { :customer == self.role }, length: {maximum: Rails.configuration.achat[:max_tiny_text_length]}
+  # validates :fname,         presence: true, :if => lambda { :customer == self.role }, length: {maximum: Rails.configuration.gitb[:max_tiny_text_length]}
+  # validates :lname,         presence: true, :if => lambda { :customer == self.role }, length: {maximum: Rails.configuration.gitb[:max_tiny_text_length]}
   #
-  validates :about,         length: {maximum: Rails.configuration.achat[:max_medium_text_length]}
-  validates :website,       length: {maximum: Rails.configuration.achat[:max_short_text_length]}
+  validates :about,         length: {maximum: Rails.configuration.gitb[:max_medium_text_length]}
+  validates :website,       length: {maximum: Rails.configuration.gitb[:max_short_text_length]}
   validates_confirmation_of :password
 
   acts_as_token_authenticatable

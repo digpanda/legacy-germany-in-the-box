@@ -125,7 +125,7 @@ class Sku
   end
 
   def max_added_to_cart
-    [Rails.configuration.achat[:max_add_to_cart_each_time], (self.unlimited ? Rails.configuration.achat[:max_add_to_cart_each_time] : self.quantity)].min
+    [Rails.configuration.gitb[:max_add_to_cart_each_time], (self.unlimited ? Rails.configuration.gitb[:max_add_to_cart_each_time] : self.quantity)].min
   end
 
   def valid_images
