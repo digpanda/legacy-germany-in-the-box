@@ -101,7 +101,7 @@
             <% elsif order.logistic_partner == :xipost %>
               <%= link_to I18n.t(:open, scope: :edit_order), Xipost.new(current_user).tracking_url(order), :target => '_blank' %>
             <% else %>
-              Tracking unavailable.
+              请根据包裹追踪手机sms进行包裹发运状态查询
             <% end %>
           <% end %>
           <div class="clearfix"></div>
