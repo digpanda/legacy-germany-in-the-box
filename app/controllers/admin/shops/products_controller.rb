@@ -17,7 +17,7 @@ class Admin::Shops::ProductsController < ApplicationController
   def index
     respond_to do |format|
       format.html do
-        @products = shop.products.order_by(:c_at => :desc).paginate(:page => current_page, :per_page => 10)
+        @products = shop.products.can_show.full_text_search(query, match: :any, allow_empty_search: true).paginate(:page => current_page, :per_page => 10)
       end
       format.csv do
         @products = shop.products.order_by(:c_at => :desc)
@@ -26,6 +26,10 @@ class Admin::Shops::ProductsController < ApplicationController
                disposition: 'attachment'
       end
     end
+  end
+
+  def query
+    params.require(:query) if params[:query].present?
   end
 
   def new

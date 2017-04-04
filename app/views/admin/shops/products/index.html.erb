@@ -10,6 +10,15 @@
   </div>
 </div>
 
+<div class="details__action +left">
+  <form action="<%= admin_shop_products_path %>" class="js-search-form +hidden">
+    <input type="query" class="js-search-input search-bar__input" name="query" autocomplete="off" placeholder="<%= Setting.instance.search_suggestion %>" />
+    <button type="submit" class="+hidden"></button>
+  </form>
+  <a href="#" class="js-search-button search-bar__button header-desktop__menu --green"><i class="fa fa-search"></i></a>
+</div>
+
+<div class="+spacer"></div>
 <div class="row +overflow">
   <%= render partial: "admin/shops/products/table", :locals => { :products => @products } %>
 </div>

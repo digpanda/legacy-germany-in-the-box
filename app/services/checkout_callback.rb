@@ -156,18 +156,18 @@ class CheckoutCallback < BaseService
     if order_payment.status == :success
       SlackDispatcher.new.paid_transaction(order_payment)
 
-      DispatchNotification.new.perform_if_not_sent({
-        order: order_payment.order,
-        user: order_payment.order.shop.shopkeeper,
-        title: "Auftrag #{order_payment.order.id} am #{order_payment.order.paid_at}",
-        desc: 'Haben Sie die Bestellung schon vorbereiten? Senden Sie die bitte!'
-        })
-      DispatchNotification.new.perform_if_not_selected_sent({
-        order: order_payment.order,
-        user: order_payment.order.shop.shopkeeper,
-        title: "Auftrag #{order_payment.order.id} am #{order_payment.order.paid_at}",
-        desc: "Haben Sie die Bestellung schon gesendet? Klicken Sie bitte 'Das Paket wurde versandt'"
-        })
+      # DispatchNotification.new.perform_if_not_sent({
+      #   order: order_payment.order,
+      #   user: order_payment.order.shop.shopkeeper,
+      #   title: "Auftrag #{order_payment.order.id} am #{order_payment.order.paid_at}",
+      #   desc: 'Haben Sie die Bestellung schon vorbereiten? Senden Sie die bitte!'
+      #   })
+      # DispatchNotification.new.perform_if_not_selected_sent({
+      #   order: order_payment.order,
+      #   user: order_payment.order.shop.shopkeeper,
+      #   title: "Auftrag #{order_payment.order.id} am #{order_payment.order.paid_at}",
+      #   desc: "Haben Sie die Bestellung schon gesendet? Klicken Sie bitte 'Das Paket wurde versandt'"
+      #   })
 
     else
       SlackDispatcher.new.failed_transaction(order_payment)
