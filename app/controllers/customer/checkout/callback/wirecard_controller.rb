@@ -5,10 +5,9 @@ class Customer::Checkout::Callback::WirecardController < ApplicationController
   protect_from_forgery :except => [:success, :fail, :cancel, :processing]
 
   def success
-
     callback = checkout_callback.wirecard!
     unless callback.success?
-      SlackDispatcher.new.message("Error checkout callback #{checkout_callback.error}")
+      SlackDispatcher.new.message("Error checkout callback #{callback.error}")
       flash[:error] = callback.error
       redirect_to navigation.back(2)
       return
