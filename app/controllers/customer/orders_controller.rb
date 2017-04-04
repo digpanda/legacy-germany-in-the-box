@@ -24,6 +24,7 @@ class Customer::OrdersController < ApplicationController
     if order.new?
       # this won't trigger the before_destroy validation, don't forget
       order.order_items.delete_all
+      order.order_payments.delete_all
       order.delete
     else
       order.status = :cancelled
