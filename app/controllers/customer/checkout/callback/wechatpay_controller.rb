@@ -6,7 +6,7 @@ class Customer::Checkout::Callback::WechatpayController < ApplicationController
   def show
     # wechat doesn't transmit any data at this point
     flash[:success] = I18n.t(:processing, scope: :payment)
-    redirect_to customer_orders_path
+    redirect_to edit_customer_identity_path
   end
 
   # make the user return to the previous page

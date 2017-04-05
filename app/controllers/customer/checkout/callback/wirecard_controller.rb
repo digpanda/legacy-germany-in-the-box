@@ -16,7 +16,7 @@ class Customer::Checkout::Callback::WirecardController < ApplicationController
     # whatever happens with BorderGuru, if the payment is a success we consider
     # the transaction / order as successful, we will deal with BorderGuru through Slack / Emails
     flash[:success] = I18n.t(:checkout_ok, scope: :checkout)
-    redirect_to customer_orders_path
+    redirect_to edit_customer_identity_path
   end
 
   # make the user return to the previous page
