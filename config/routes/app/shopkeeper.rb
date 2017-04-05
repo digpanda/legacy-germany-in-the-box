@@ -15,7 +15,6 @@ namespace :shopkeeper do
 
   resources :orders do
     patch :process_order
-    parch :shipped_order
     patch :shipped
   end
 
