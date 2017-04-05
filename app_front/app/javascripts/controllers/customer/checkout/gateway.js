@@ -9,7 +9,9 @@ var CustomerGatewayCreate = {
    init: function() {
 
     this.postBankDetails();
-    this.orderPaymentLiveRefresh();
+
+    // We will check the order payment every once in a while
+    setInterval(this.orderPaymentLiveRefresh, 3000);
 
   },
 
@@ -29,7 +31,22 @@ var CustomerGatewayCreate = {
          if (res.success === true) {
 
            // We can check the order payment status
-           console.log(res);
+           switch (res.order_payment.status) {
+             case "scheduled":
+              break;
+             case "unverified":
+              // Unverified means an action has been done but is awaiting approval; it's like a success.
+              window.location.href = $("#order-payment-callback-url").data("success");
+              break;
+            case "success":
+              window.location.href = $("#order-payment-callback-url").data("success");
+              break;
+            case "failed":
+              window.location.href = $("#order-payment-callback-url").data("fail")
+              break;
+            default:
+              break;
+           }
 
          } else {
 
