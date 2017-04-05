@@ -11,14 +11,20 @@ class Tasks::Cron::TransmitPickupOrdersToHermes
 
   def perform
 
-    unless orders.length.zero?
-      begin
-        devlog "We will transmit #{orders.length}` orders now."
-        BorderGuruEmail.transmit_orders(orders)
-      rescue BorderGuruEmail::Error => exception
-        devlog "A problem occured while transmitting the orders (#{exception.message})."
-        return
+    if Setting.instance.logistic_partner == :borderguru
+
+      unless orders.length.zero?
+        begin
+          devlog "We will transmit #{orders.length}` orders now."
+          BorderGuruEmail.transmit_orders(orders)
+        rescue BorderGuruEmail::Error => exception
+          devlog "A problem occured while transmitting the orders (#{exception.message})."
+          return
+        end
       end
+
+    else
+      devlog "Logistic partner is not BorderGuru, we skip the processing."
     end
 
     devlog "Process finished."

@@ -10,20 +10,26 @@ class Tasks::Cron::GetMissingShippingsFromBorderGuru
   # it will try to get the shipping id and all other information to the orders that don't have it
   def perform
 
-    unless orders.length.zero?
-      begin
-        orders.each do |order|
-          response = BorderGuruApiHandler.new(order).get_shipping!
-          if response.success?
-            devlog "Order processed correctly."
-          else
-            devlog "A problem occurred while communicating with BorderGuru Api (#{response.error.message}) for Order `#{order.id}`"
+    if Setting.instance.logistic_partner == :borderguru
+
+      unless orders.length.zero?
+        begin
+          orders.each do |order|
+            response = BorderGuruApiHandler.new(order).get_shipping!
+            if response.success?
+              devlog "Order processed correctly."
+            else
+              devlog "A problem occurred while communicating with BorderGuru Api (#{response.error.message}) for Order `#{order.id}`"
+            end
           end
+        rescue StandardError => exception
+          devlog "A problem occured while transmitting the orders (#{exception.message})."
+          return
         end
-      rescue StandardError => exception
-        devlog "A problem occured while transmitting the orders (#{exception.message})."
-        return
       end
+
+    else
+      devlog "Logistic partner is not BorderGuru, we skip the processing."
     end
 
     devlog "Process finished."

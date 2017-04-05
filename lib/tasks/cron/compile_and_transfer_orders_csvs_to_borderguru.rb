@@ -11,13 +11,19 @@ class Tasks::Cron::CompileAndTransferOrdersCsvsToBorderguru
 
   def perform
 
-    unless orders.length.zero?
-      begin
-        BorderGuruFtp.transfer_orders(orders)
-      rescue BorderGuruFtp::Error => exception
-        devlog "A problem occured while preparing the orders (#{exception.message})."
-        return
+    if Setting.instance.logistic_partner == :borderguru
+
+      unless orders.length.zero?
+        begin
+          BorderGuruFtp.transfer_orders(orders)
+        rescue BorderGuruFtp::Error => exception
+          devlog "A problem occured while preparing the orders (#{exception.message})."
+          return
+        end
       end
+
+    else
+      devlog "Logistic partner is not BorderGuru, we skip the processing."
     end
 
     devlog "Process finished."
