@@ -13,12 +13,22 @@ class Xipost < BaseService
     "http://xipost.de/dhlstatus.php?dhl=#{order.id}&uid=#{UID}"
   end
 
-  def identity_form
-    @identity_form ||= Net::HTTP.get_response(URI.parse(identity_remote_url)).body.force_encoding('UTF-8')
-  end
-
   def identity_remote_url
     "https://www.xipost.de/api15.php?uid=#{UID}f&key=#{KEY}&i=uiNewIdCard&type=ui&#{extra_data}"
+  end
+
+  def identity_form
+    @identity_form ||= remote_content.body.force_encoding('UTF-8')
+  end
+
+  private
+
+  def remote_content
+    Net::HTTP.get_response(uri_remote_url)
+  end
+
+  def uri_remote_url
+    URI.parse(identity_remote_url)
   end
 
   private

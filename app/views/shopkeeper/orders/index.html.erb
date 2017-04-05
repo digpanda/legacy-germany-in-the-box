@@ -89,12 +89,10 @@
           <!-- The order has been paid and shopkeeper can start the process -->
           <% if order.status == :paid  %>
             <% if order.decorate.processable? %>
-            <% if order.border_guru_shipment_id.nil? %>
+            <% if order.border_guru_shipment_id.nil? && Setting.instance.logistic_partner == :borderguru %>
               You can't process this order. Our Shipping Partner has not yet returned the shipping details.
             <% else %>
-
-            <%= link_to I18n.t(:start_process_shipment, scope: :button), shopkeeper_order_process_order_path(order), method: :patch, data: { confirm: I18n.t(:confirm_start_processing, scope: :notice) } %>
-
+              <%= link_to I18n.t(:start_process_shipment, scope: :button), shopkeeper_order_process_order_path(order), method: :patch, data: { confirm: I18n.t(:confirm_start_processing, scope: :notice) } %>
             <% end %>
             <% else %>
               <%= I18n.t(:order_not_processable, scope: :message) %>
