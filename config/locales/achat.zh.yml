@@ -585,6 +585,7 @@ zh-CN:
     product_seal: 产品认证
     product_seal_info: 这里您可以上传产品认证。
     quantity_info: '%{product_options_size}个型号，共%{total_skus_quantities}件'
+    unlimited_info: '其中 %{unlimited_skus} 款产品库存未设上限'
     quantity: 数量
     duty_category: 报关产品分类
     duty_category_info: 明确的报关产品归类更好的对产品进行物流。
@@ -723,7 +724,7 @@ zh-CN:
     package_set_added: 礼包已放入购物车
   checkout:
     have_your_payment_been_successful: 若支付结束，可点击下方按钮以查看支付结果。
-    refresh_page_button: 查看支付结果
+    refresh_page_button: 按这里刷新
     notice_order_already_paid: 支付成功
     choose_your_payment_method: 请选择支付方式
     my_destination: 收货地址

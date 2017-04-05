@@ -151,6 +151,14 @@ class Product
     skus.map(&:quantity).reduce(:+)
   end
 
+  def limited_skus
+    skus.map(&:unlimited).count(false)
+  end
+
+  def unlimited_skus
+    skus.map(&:unlimited).count(true)
+  end
+
   def favorite_of?(user)
     return unless user
     user.favorites.where(id: self.id).first != nil

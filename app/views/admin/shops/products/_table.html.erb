@@ -43,6 +43,8 @@
           </td>
           <td>
             <%= I18n.t(:quantity_info, scope: :edit_product, total_skus_quantities: product.total_skus_quantities, product_options_size: product.options.size) %>
+            <div class="clearfix"></div>
+            <%= I18n.t(:unlimited_info, scope: :edit_product, unlimited_skus: product.unlimited_skus) if product.unlimited_skus > 0 %>
           </td>
           <td align="left">
             <%= render partial: 'admin/shops/products/table/action', :locals => { :product => product } %>

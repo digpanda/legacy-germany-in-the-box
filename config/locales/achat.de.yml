@@ -587,6 +587,7 @@ de:
     product_seal: Produktsiegel
     product_seal_info: Besitzen Ihre Produkte Qualitäts- oder Handelssigel? (Z.B. Bio-Siegel, Fairtrade-Siegel)   (max. 1MB pro Bild)
     quantity_info: '%{total_skus_quantities} Stk. von %{product_options_size} Varianten'
+    unlimited_info: '%{unlimited_skus} Stk. sind unbegrenzt'
     quantity: Verfügbarkeit
     duty_category: Zoll-Kategorie
     duty_category_info: Die Zuordnung der Käufer-Kategorien ist von dem Zoll in China gefordert.
