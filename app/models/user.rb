@@ -121,7 +121,7 @@ class User
   end
 
   def primary_address
-    addresses.where(primary: true).first || addresses.first
+    addresses.where(primary: true).first || addresses.first
   end
 
   # this was made to get only the appropriate orders

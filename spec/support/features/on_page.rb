@@ -4,6 +4,10 @@ module Helpers
 
       module_function
 
+      def on_identity_page?
+        expect(page).to have_content "如果表单未能显示，请按这里重载"
+      end
+
       def on_shop_page?
         # contains a shop-page header content
         expect(page).to have_css '.shop-page-header__content'

@@ -12,7 +12,7 @@ FactoryGirl.define do
     tel                    { Faker::PhoneNumber.phone_number }
     mobile                 { Faker::PhoneNumber.cell_phone }
     birth                  { Helpers::Global.random_date }
-    addresses             { FactoryGirl.build_list(:customer_address, 2) }
+    addresses             { FactoryGirl.build_list(:customer_address, 2, :primary => true) }
 
     factory :shopkeeper, :class => User do
       username               { "Shopkeeper#{Helpers::Global.next_number(:shopkeeper)}" }

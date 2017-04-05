@@ -21,6 +21,7 @@ feature "checkout process", :js => true  do
 
     scenario "pays successfully with wirecard visa" do
       pay_with_wirecard_visa!
+      on_identity_page?
       manual_partner_confirmed?
     end
 
@@ -78,6 +79,7 @@ feature "checkout process", :js => true  do
       scenario "pay successfully and generate shipping label correctly" do
         fill_in_checkout_address!
         pay_with_wirecard_visa!
+        on_identity_page?
         borderguru_confirmed?
       end
 

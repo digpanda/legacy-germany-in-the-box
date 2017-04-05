@@ -76,7 +76,8 @@ module Helpers
         wait_for_page('#hpp-logo') # we are on wirecard hpp
         apply_wirecard_creditcard!(mode: mode)
         if mode == :success
-          expect(page).to have_content("下单成功") # means success in chinese
+          on_identity_page?
+          expect(page).to have_css("#message-success") # means success in chinese
         else
           on_payment_method_page?
           expect(page).to have_css("#message-error")
@@ -86,6 +87,7 @@ module Helpers
 
       # access the manual logistic tracking
       def manual_partner_confirmed?
+        visit customer_orders_path
         expect(page).to have_content("追单")
       end
 
@@ -93,6 +95,7 @@ module Helpers
       # access the borderguru tracking
       def borderguru_confirmed?
         borderguru_label_window = window_opened_by do
+          visit customer_orders_path
           click_link "追单" # click on "download your label" in chinese
         end
 
