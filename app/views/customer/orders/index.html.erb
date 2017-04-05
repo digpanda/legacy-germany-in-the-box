@@ -82,7 +82,9 @@
       <tr>
         <td>
           <% if order.decorate.total_price_with_extra_costs > 0 %>
-            <%= link_to order.id, customer_order_path(order) %>
+            <%= order.id %>
+            <div class="clearfix"></div>
+            <%= link_to '订单详情', customer_order_path(order) %>
           <% else %>
             <%= order.id %>
           <% end %>
@@ -111,12 +113,14 @@
 
 
         <td>
-          <% unless order.paid? %>
-            <%= link_to '', customer_order_path(order), method: :patch, class: 'tooltipster fa fa-arrow-right buttons buttons__delete' %>
+          <% if !order.paid? %>
+            <%#= link_to '', customer_order_path(order), method: :patch, class: 'tooltipster fa fa-arrow-right buttons buttons__delete' %>
             <div class="+small-spacer"></div>
-            <%= link_to '', customer_order_path(order), method: :delete, data: { confirm: I18n.t(:confirm_want_delete, scope: :notice) },
-                        class: 'tooltipster fa fa-times buttons buttons__delete' %>
-          <% end %>
+            <%= link_to '取消', customer_order_path(order), method: :delete, data: { confirm: I18n.t(:confirm_want_delete, scope: :notice) },
+                        class: 'tooltipster' %>
+          <% else %>
+            <%= link_to ' 再次购买', identity_solver.origin_url, class: 'tooltipster' %>
+        <% end %>
         </td>
       </tr>
     <% end %>
