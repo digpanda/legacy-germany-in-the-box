@@ -2,7 +2,7 @@
 namespace :shopkeeper do
 
   resources :products do
-    
+
     resources :variants, :controller => 'products/variants' do
       delete '/option/:option_id', action: :destroy_option, as: :destroy_option
     end
@@ -15,6 +15,7 @@ namespace :shopkeeper do
 
   resources :orders do
     patch :process_order
+    parch :shipped_order
     patch :shipped
   end
 

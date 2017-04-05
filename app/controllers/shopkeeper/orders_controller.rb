@@ -47,7 +47,7 @@ class Shopkeeper::OrdersController < ApplicationController
                                                       desc: "你的订单已被商家寄出，你可透过物流跟踪连接追踪包裹：#{order.border_guru_link_tracking}"
                                                   })
     flash[:success] = I18n.t(:order_processing, scope: :notice)
-    redirect_to(:back)
+    redirect_to navigation.back(1)
   end
 
   private
