@@ -14,6 +14,18 @@
     </div>
 
   </div>
+  <div class="+spacer"></div>
+  <div class="row">
+  <% if !@order.decorate.paid? %>
+      <div align="center">
+      <%= link_to '', customer_order_path(@order), method: :patch, class: 'tooltipster fa fa-arrow-right buttons buttons__delete' %>
+      <%= link_to '', customer_order_path(@order), method: :delete, data: { confirm: I18n.t(:confirm_want_delete, scope: :notice) },
+                  class: 'tooltipster fa fa-times buttons buttons__delete' %>
+      </div>
+  <% else %>
+    <%= link_to ' 再次购买', identity_solver.origin_url, class: 'btn-large +checkout-button col-md-2' %>
+  <% end %>
+  </div>
 
   <div class="row">
     <div class="+spacer"></div>
@@ -21,11 +33,6 @@
       <%= render partial: "customer/orders/show/address", :locals => { :address => @order.shipping_address} %>
     </div>
   </div>
-
-  <% unless @order.decorate.paid? %>
-    <%= link_to I18n.t(:continue, scope: :edit_order), customer_order_continue_path(@order), method: :patch %> |
-    <%= link_to I18n.t(:delete, scope: :edit_order), customer_order_path(@order), method: :delete, data: { confirm: I18n.t(:confirm_want_delete, scope: :notice) } %>
-  <% end %>
 
 </div>
 </div>

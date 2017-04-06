@@ -47,7 +47,7 @@
               <% elsif order.logistic_partner == :xipost %>
                 <%= link_to I18n.t(:open, scope: :edit_order), Xipost.new(current_user).tracking_url(order), :target => '_blank' %>
               <% else %>
-                Tracking unavailable.
+                短信通知
               <% end %>
             <% end %>
           </td>
@@ -103,7 +103,7 @@
             <% elsif order.logistic_partner == :xipost %>
               <%= link_to I18n.t(:open, scope: :edit_order), Xipost.new(current_user).tracking_url(order), :target => '_blank' %>
             <% else %>
-              请根据包裹追踪手机sms进行包裹发运状态查询
+              短信通知
             <% end %>
           <% end %>
           <div class="clearfix"></div>
@@ -113,13 +113,11 @@
 
 
         <td>
-          <% if !order.paid? %>
+          <% unless order.paid? %>
             <%#= link_to '', customer_order_path(order), method: :patch, class: 'tooltipster fa fa-arrow-right buttons buttons__delete' %>
             <div class="+small-spacer"></div>
             <%= link_to '取消', customer_order_path(order), method: :delete, data: { confirm: I18n.t(:confirm_want_delete, scope: :notice) },
                         class: 'tooltipster' %>
-          <% else %>
-            <%= link_to ' 再次购买', identity_solver.origin_url, class: 'tooltipster' %>
         <% end %>
         </td>
       </tr>
