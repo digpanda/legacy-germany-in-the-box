@@ -88,15 +88,20 @@
           <td>
           <!-- The order has been paid and shopkeeper can start the process -->
           <% if order.status == :paid  %>
-            <% if order.decorate.processable? %>
-            <% if order.border_guru_shipment_id.nil? && Setting.instance.logistic_partner == :borderguru %>
-              You can't process this order. Our Shipping Partner has not yet returned the shipping details.
-            <% else %>
-              <%= link_to I18n.t(:start_process_shipment, scope: :button), shopkeeper_order_process_order_path(order), method: :patch, data: { confirm: I18n.t(:confirm_start_processing, scope: :notice) } %> | <%= link_to I18n.t(:package_was_sent, scope: :notice), shopkeeper_order_shipped_path(order), method: :patch %>
-            <% end %>
+
+            <% if order.processable? %>
+
+              <% if order.border_guru_shipment_id.nil? && Setting.instance.logistic_partner == :borderguru %>
+                You can't process this order. Our Shipping Partner has not yet returned the shipping details.
+              <% else %>
+                <%= link_to I18n.t(:start_process_shipment, scope: :button), shopkeeper_order_process_order_path(order), method: :patch, data: { confirm: I18n.t(:confirm_start_processing, scope: :notice) } %> |
+                <%= link_to I18n.t(:package_was_sent, scope: :notice), shopkeeper_order_shipped_path(order), method: :patch %>
+              <% end %>
+
             <% else %>
               <%= I18n.t(:order_not_processable, scope: :message) %>
             <% end %>
+
           <!-- The order is custom checkable and will be sent through FTP soon -->
           <% elsif order.decorate.status == :custom_checkable %>
             Die Ausfuhranmeldung wird übermittelt. Bitte kommen Sie zurück nach 10Uhr und machen Sie weiter.

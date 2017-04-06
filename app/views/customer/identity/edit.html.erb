@@ -2,14 +2,30 @@
 <div class="row">
   <div class="col-md-12">
 
-    <a href="<%= @identity_remote_url %>" target="_blank">如果表单未能显示，请按这里重载</a>
+    <!-- <a href="<%= @identity_remote_url %>" target="_blank">如果表单未能显示，请按这里重载</a> -->
+
+    <% if Setting.instance.logistic_partner == :xipost %>
+
+      <h1>去上传身份证</h1>
+      <!-- Front redirection -->
+      <script>
+        setTimeout(function(){
+          window.location.href = "<%= @identity_remote_url.html_safe %>";
+        }, 2000);
+      </script>
+
+    <% elsif Setting.instance.logistic_partner == :manual %>
+
+      <h1>请留意查收身份证上传短信通知</h1>
+
+    <% end %>
 
     <div class="+spacer"></div>
-    
+
     <!-- NOTE : this is not working because no HTTPS is provided by Xipost -->
-    <object data="<%= @identity_remote_url %>" width="700" height="620" type="text/html">
+    <!-- <object data="<%= @identity_remote_url %>" width="700" height="620" type="text/html">
       <embed src="<%= @identity_remote_url %>" width="700" height="620" type="text/html" />
-    </object>
+    </object> -->
 
   </div>
 </div>
