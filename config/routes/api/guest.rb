@@ -3,7 +3,7 @@ namespace :guest do
 
   # china city related (for the address system)
   mount ChinaCity::Engine => '/china_city'
-
+  
   resources :translations  do
   end
 

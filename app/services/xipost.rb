@@ -5,6 +5,13 @@ class Xipost < BaseService
 
   attr_reader :user
 
+  class << self
+    # the static method doesn't include anything related to the user
+    def identity_remote_url
+      "https://www.xipost.de/api15.php?uid=#{UID}f&key=#{KEY}&i=uiNewIdCard&type=ui"
+    end
+  end
+
   def initialize(user)
     @user = user
   end
@@ -14,7 +21,7 @@ class Xipost < BaseService
   end
 
   def identity_remote_url
-    "https://www.xipost.de/api15.php?uid=#{UID}f&key=#{KEY}&i=uiNewIdCard&type=ui&#{extra_data}"
+    "#{Xipost.identity_remote_url}&#{extra_data}"
   end
 
   def identity_form
@@ -34,7 +41,9 @@ class Xipost < BaseService
   private
 
   def extra_data
-    "data%5Bidname%5D=#{user.decorate.chinese_full_name}&data%5Bidno%5D=#{user.primary_address&.pid}"
+    if user
+      "data%5Bidname%5D=#{user.decorate.chinese_full_name}&data%5Bidno%5D=#{user.primary_address&.pid}"
+    end
   end
 
 end

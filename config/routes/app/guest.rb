@@ -4,6 +4,10 @@ namespace :guest do
   resource :home, :controller => 'home' do
   end
 
+  resource :static, :controller => 'static' do
+    get :xipost
+  end
+
   resources :campaigns, :only => [:index] do
   end
 

@@ -47,6 +47,7 @@ namespace :customer do
   end
 
   resource :identity, :controller => 'identity' do
+    get :xipost_remote
   end
 
   resources :addresses do
