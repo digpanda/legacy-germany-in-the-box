@@ -2,10 +2,14 @@ module Helpers
   module Features
     module OnPage
 
+      XIPOST_BASE_URL = "xipost.de".freeze unless defined? XIPOST_BASE_URL
+
       module_function
 
       def on_identity_page?
-        expect(page).to have_content "如果表单未能显示，请按这里重载"
+        expect(page.current_url).to have_content(edit_customer_identity_path)
+        # expect(page.current_url).to have_content(XIPOST_BASE_URL) # we check the access to Xipost
+        # expect(page).to have_content "去上传身份证"
       end
 
       def on_shop_page?

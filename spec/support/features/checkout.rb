@@ -76,8 +76,8 @@ module Helpers
         wait_for_page('#hpp-logo') # we are on wirecard hpp
         apply_wirecard_creditcard!(mode: mode)
         if mode == :success
-          on_identity_page?
           expect(page).to have_css("#message-success") # means success in chinese
+          on_identity_page?
         else
           on_payment_method_page?
           expect(page).to have_css("#message-error")
