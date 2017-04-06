@@ -359,8 +359,8 @@ zh-CN:
     sender: 发货地址
     both: 账单和发货
     type: 地址类型
-    fname: 名
-    lname: 姓
+    fname: 中文名
+    lname: 中文姓
     company: 公司名称
     tel: 固定电话
     mobile: 移动电话
