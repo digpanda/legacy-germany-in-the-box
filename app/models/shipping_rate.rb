@@ -4,5 +4,6 @@ class ShippingRate
   field :weight, type: Float
   field :price, type: Float
   field :type, type: Symbol, default: :general # special case for milk powder, etc.
+  field :partner, type: Symbol, default: :xipost
 
 end

@@ -1771,6 +1771,7 @@ body {
   position: relative;
   display: inline-block; }
   .menu-dropdown a {
+    font-size: 18px;
     padding-bottom: 2em;
     display: block; }
   .menu-dropdown:hover .menu-dropdown__content {
@@ -1792,7 +1793,7 @@ body {
       font-weight: bold;
       padding: 0.5em; }
     .menu-dropdown__content h4 {
-      font-size: 18px;
+      font-size: 15px;
       padding: 0;
       margin: 0; }
     .menu-dropdown__content a {
@@ -2207,6 +2208,8 @@ body {
       margin-top: -0.5em;
       margin-bottom: 0;
       color: #8b8b8b; }
+  .shop-page-product__title {
+    font-size: 1.4em !important; }
   .shop-page-product__discount {
     position: absolute;
     left: 70%;
