@@ -2,7 +2,8 @@ require 'csv'
 
 class Tasks::Digpanda::RefreshShippingRates
 
-  GENERAL_SHIPPING_PRICE_FILE = 'shipping-prices-general.csv'
+  XIPOST_SHIPPING_PRICE_FILE = 'shipping-prices-xipost.csv'
+  BEIHAI_SHIPPING_PRICE_FILE = 'shipping-prices-beihai.csv'
   IGNORED_LINES = ["列1", "西邮寄筋斗云精品快线钻石VIP价格表 （500-799单）", "Weight (KG)", ""]
 
   def initialize
@@ -14,7 +15,15 @@ class Tasks::Digpanda::RefreshShippingRates
     puts "We remove all old shipping rates"
     ShippingRate.delete_all
 
-    csv_fetch do |column|
+    process!(:xipost)
+    process!(:beihai)
+
+    puts "End of process."
+
+  end
+
+  def process!(partner)
+    csv_fetch(partner) do |column|
 
       next if IGNORED_LINES.include? column[0]
 
@@ -36,25 +45,29 @@ class Tasks::Digpanda::RefreshShippingRates
 
       shipping_rate = ShippingRate.create({
         :weight => weight,
-        :price => price
+        :price => price,
+        :partner => partner
         })
 
-      puts "ShippingRate #{shipping_rate.weight} refresh with price `#{shipping_rate.price}`"
+      puts "[#{partner}] ShippingRate #{shipping_rate.weight} refresh with price `#{shipping_rate.price}`"
 
     end
-
-    puts "End of process."
-
   end
 
-  def csv_fetch
-    CSV.foreach(csv_file, quote_char: '"', col_sep: ';', row_sep: :auto, headers: false) do |column|
+  def csv_fetch(partner)
+    CSV.foreach(csv_file(partner), quote_char: '"', col_sep: ';', row_sep: :auto, headers: false) do |column|
       yield(column.map(&:to_s).map(&:strip))
     end
   end
 
-  def csv_file
-    @csv_file ||= File.join(Rails.root, 'vendor', GENERAL_SHIPPING_PRICE_FILE)
+  def csv_file(partner)
+    if partner == :xipost
+      File.join(Rails.root, 'vendor', XIPOST_SHIPPING_PRICE_FILE)
+    elsif partner == :beihai
+      File.join(Rails.root, 'vendor', BEIHAI_SHIPPING_PRICE_FILE)
+    else
+      raise Exception, "Logistic partner not recognized for Shipping Rates"
+    end
   end
 
 end
