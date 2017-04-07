@@ -40,8 +40,8 @@ class Address
 
   validates :mobile, presence: true, :if => -> { user&.customer? }
   validates :pid, presence: true, :format => { :with => CHINESE_ID }, :if => -> { user&.customer? }
-  validates :fname, presence: true, :format => { :with => CHINESE_CHARACTERS }, :if => -> { user&.customer? }
-  validates :lname, presence: true, :format => { :with => CHINESE_CHARACTERS }, :if => -> { user&.customer? }
+  validates :fname, presence: true#, :format => { :with => CHINESE_CHARACTERS }, :if => -> { user&.customer? }
+  validates :lname, presence: true#, :format => { :with => CHINESE_CHARACTERS }, :if => -> { user&.customer? }
 
   validates :street, presence: true
   validates :city, presence: true
