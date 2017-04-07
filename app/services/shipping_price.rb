@@ -23,7 +23,7 @@ class ShippingPrice
   end
 
   def logistic_partner
-    if Setting.instance.logistic_partner == :manual
+    if [:manual, :borderguru].include? Setting.instance.logistic_partner
       :beihai
     else
       Setting.instance.logistic_partner
