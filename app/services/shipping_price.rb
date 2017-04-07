@@ -19,7 +19,15 @@ class ShippingPrice
   end
 
   def shipping_rate
-    @shipping_rate ||= ShippingRate.where(:weight.gte => sku.weight).where(:type => product.shipping_rate_type).order_by(weight: :asc).first
+    @shipping_rate ||= ShippingRate.where(:weight.gte => sku.weight).where(:type => product.shipping_rate_type).where(partner: logistic_partner).order_by(weight: :asc).first
+  end
+
+  def logistic_partner
+    if Setting.instance.logistic_partner == :manual
+      :beihai
+    else
+      Setting.instance.logistic_partner
+    end
   end
 
 end
