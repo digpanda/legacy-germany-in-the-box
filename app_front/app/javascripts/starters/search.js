@@ -54,6 +54,15 @@ var Search = {
 
       });
 
+      $('.js-package-set-category-filter').on('change', function(e) {
+
+        let category_id = $(this).val();
+
+        var UrlProcess = require('javascripts/lib/url_process');
+        UrlProcess.insertParam('category_slug', category_id);
+
+      });
+
     },
 
 }
