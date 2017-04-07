@@ -5,7 +5,7 @@ class CouponDecorator < Draper::Decorator
 
   def discount_display
     if unit == :percent
-      "-#{discount}%"
+      "-#{discount.to_i}%"
     else
       "-#{discount.in_euro.to_yuan.display}"
     end

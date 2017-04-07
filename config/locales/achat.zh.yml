@@ -14,7 +14,7 @@ zh-CN:
     identity: 个人信息
     location: 地址
     choose_existing: 请从以下地址中选择
-    create_new: 请输入新的邮寄地址
+    create_new: 添加新收件地址
     no_address: 尚未填写收件地址
     new_adress: 添加新收件地址
   navigation:
@@ -54,7 +54,7 @@ zh-CN:
     error_occurred_removing: 删除折扣码时出现错误。
     apply: 使用
     remove_coupon: 删除折扣码。
-    new_price: 折后价格。
+    new_price: 折后价格
     coupon_desktop: 折扣码
     coupon_mobile: 九折打折码
     applied_successfully: 此优惠券已被成功使用。
@@ -705,7 +705,7 @@ zh-CN:
     quantity: 数量
     unit_price: 单价
     operations: 操作
-    subtotal: 产品总价
+    subtotal: 产品原价
     all_included: 含税包邮价格
     shipping: 运费
     taxes: 税

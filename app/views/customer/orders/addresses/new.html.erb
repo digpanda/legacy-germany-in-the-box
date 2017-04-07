@@ -26,11 +26,15 @@
             <button type="submit" class="btn-large +checkout-button"> <%= I18n.t(:checkout, scope: :checkout) %> <i class="fa fa-check-circle"></i></button>
           </div>
           <div class="+small-spacer"></div>
+          <div style="float:left; margin: 0 10px 0 5px;">
+            <a href="#" id="button-new-address" class="btn btn-primary"><%= I18n.t(:create_new, scope: :address) %></a>
+          </div>
+
         </div>
 
       <% end %>
 
-      <a href="#" id="button-new-address">... <%= I18n.t(:create_new, scope: :address) %></a>
+
 
       <div id="new-address" class="+hidden">
         <%= form_for [:customer, @order, @address], :data => {:toggle => 'validator'} do |form| %>
@@ -45,6 +49,6 @@
       <% end %>
 
     <% end %>
-
+    <div class="+small-spacer"></div>
   </div>
 </div>

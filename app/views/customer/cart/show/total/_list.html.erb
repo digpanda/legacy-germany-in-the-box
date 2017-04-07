@@ -8,9 +8,15 @@
         </span>
       </td>
       <td>
+        <% if order.discount? %>
+        <span id="order-total-price-with-taxes-<%= order.shop.id %>" class="total__end-price --cross">
+          <%= order.total_price_with_taxes.in_euro.to_yuan.display %>
+        </span>
+        <% else %>
         <span id="order-total-price-with-taxes-<%= order.shop.id %>">
           <%= order.total_price_with_taxes.in_euro.to_yuan.display %>
         </span>
+          <% end %>
       </td>
     </tr>
 
@@ -59,7 +65,8 @@
         </span>
       </td>
       <td>
-        <% if order.discount? %>
+        <% if false %>
+        <%# if order.discount? %>
         <span id="order-total-price-with-extra-costs-<%= order.shop.id %>" class="total__end-price --cross">
           <%= order.decorate.total_price_with_extra_costs.in_euro.to_yuan.display %>
         </span>
