@@ -6,6 +6,9 @@
         ID
       </th>
       <th>
+        Logistic Partner
+      </th>
+      <th>
         Weight (KG)
       </th>
       <th>
@@ -21,6 +24,9 @@
     <tr>
       <td>
         <%= shipping_rate.id %>
+      </td>
+      <td>
+        <%= shipping_rate.partner %>
       </td>
       <td>
         <%= editable_field(shipping_rate, admin_shipping_rate_path(shipping_rate), :weight, :text_field) %>
