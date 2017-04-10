@@ -1853,9 +1853,9 @@ body {
         border-bottom-right-radius: 4px;
         min-height: 35em; } }
     .package-set-block__content h2 {
-      font-size: 25px; }
+      font-size: 2em; }
     .package-set-block__content p {
-      font-size: 13px; }
+      font-size: 1em; }
   .package-set-block__image {
     height: 50vw;
     max-height: 672px;
