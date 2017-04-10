@@ -1853,7 +1853,7 @@ body {
         border-bottom-right-radius: 4px;
         min-height: 35em; } }
     .package-set-block__content h2 {
-      font-size: 2em; }
+      font-size: 1.5em; }
     .package-set-block__content p {
       font-size: 1em; }
   .package-set-block__image {
@@ -1872,7 +1872,7 @@ body {
   -moz-border-radius: 4px;
   -ms-border-radius: 4px;
   border-radius: 4px;
-  padding: 2em;
+  padding: 1.1em;
   margin-bottom: 2em; }
   .package-set-infos__introduction {
     text-align: center;
