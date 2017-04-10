@@ -66,6 +66,10 @@ class Order
     end
   end
 
+  def referrer
+    coupon&.referrer
+  end
+
   belongs_to :shop, :inverse_of => :orders
   belongs_to :user, :inverse_of => :orders
   belongs_to :cart, :inverse_of => :orders
@@ -76,7 +80,8 @@ class Order
 
   has_many :order_items,            :inverse_of => :order,    dependent: :restrict
   has_many :order_payments,         :inverse_of => :order,    dependent: :restrict
-  has_many :notes,                  :inverse_of => :order,    dependent: :restrict
+  has_one :referrer_provision,    :inverse_of => :order,    dependent: :restrict
+
 
   scope :nonempty,    ->  {  where( :order_items_count.gt => 0 ) }
   scope :unpaid,      ->  { self.in(:status => [:new]) }
@@ -86,6 +91,10 @@ class Order
 
   def bought_or_cancelled?
     BOUGHT_OR_CANCELLED.include? status
+  end
+
+  def cancelled?
+    status == :cancelled
   end
 
   # :new -> didn't try to pay
@@ -105,7 +114,7 @@ class Order
   index({user: 1},  {unique: false,   name: :idx_order_user,   sparse: true})
 
   before_save :create_border_guru_order_id
-  after_save :make_bill_id, :update_paid_at, :update_cancelled_at
+  after_save :make_bill_id, :update_paid_at, :update_cancelled_at, :refresh_referrer_provision!
 
   def create_border_guru_order_id
     unless self.border_guru_order_id
@@ -126,6 +135,28 @@ class Order
         self.status = :payment_failed
       end
       self.save!
+    end
+  end
+
+  # live referrer provision before it's saved in the database
+  def current_referrer_provision
+    if referrer_rate > 0.0
+      end_price * referrer_rate / 100
+    else
+      0
+    end
+  end
+
+  def refresh_referrer_provision!
+    if referrer
+      referrer_provision = ReferrerProvision.where(order: self, referrer: referrer).first
+      if bought?
+        referrer_provision ||= ReferrerProvision.create(order: self, referrer: referrer)
+        referrer_provision.provision = current_referrer_provision
+      elsif cancelled?
+        referrer_provision&.delete
+      end
+      referrer_provision&.save
     end
   end
 

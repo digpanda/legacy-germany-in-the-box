@@ -69,6 +69,7 @@ class User
   has_one  :cart
 
   has_many :referrer_coupons, :class_name => "Coupon", :inverse_of => :referrer
+  has_many :referrer_provisions, :class_name => "ReferrerProvision", :inverse_of => :referrer
 
   genderize (:gender)
   mount_uploader :pic, AvatarUploader

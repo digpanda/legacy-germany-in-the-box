@@ -3719,6 +3719,14 @@ var Search = {
       var UrlProcess = require('javascripts/lib/url_process');
       UrlProcess.insertParam('category_id', category_id);
     });
+
+    $('.js-package-set-category-filter').on('change', function (e) {
+
+      var category_id = $(this).val();
+
+      var UrlProcess = require('javascripts/lib/url_process');
+      UrlProcess.insertParam('category_slug', category_id);
+    });
   }
 
 };
