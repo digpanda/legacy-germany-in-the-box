@@ -2,6 +2,6 @@
   <h4><%= current_user.referrer_nickname %></h4>
   <h4>账户余额</h4>
     <div class="row">
-      <h5><%= get_referrer_provision(current_user).in_euro.display %></h5>
+      <h5><%= current_user.referrer_provisions.sum(:provision).in_euro.display %></h5>
     </div>
 </div>

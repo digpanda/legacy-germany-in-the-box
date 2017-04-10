@@ -40,7 +40,7 @@
             <% end %>
           </td>
           <td>
-            <%= get_referrer_provision(referrer).in_euro.display %>
+            <%= referrer.referrer_provisions.sum(:provision).in_euro.display %>
           </td>
           <td>
             <% unless referrer.has_referrer_coupon? %>

@@ -8,7 +8,6 @@ class Customer::ReferrerController < ApplicationController
   end
 
   def provision
-
   end
 
   private
