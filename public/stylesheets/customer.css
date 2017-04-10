@@ -1879,6 +1879,8 @@ body {
     margin: 0 auto; }
     .package-set-infos__introduction h1 {
       font-size: 27px; }
+    .package-set-infos__introduction p {
+      text-align: justify; }
   .package-set-infos__products {
     padding-top: 2em;
     padding-bottom: 2em; }
@@ -1900,6 +1902,9 @@ body {
 
 .package-set-introduction h1 {
   font-size: 27px; }
+
+.package-set-introduction p {
+  text-align: justify; }
 
 .page-navigation {
   margin-top: 1em;
