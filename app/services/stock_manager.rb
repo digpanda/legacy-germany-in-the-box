@@ -11,8 +11,11 @@ class StockManager
       # we take the original sku not the one from the order item
       sku = order_item.sku_origin
       unless sku.unlimited
-        sku.quantity -= order_item.quantity
-        sku.quantity = 0 if sku.quantity < 0
+        unless already_reduced?(order_item)
+          StockHistory.create(order_item: order_item)
+          sku.quantity -= order_item.quantity
+          sku.quantity = 0 if sku.quantity < 0
+        end
       end
       sku.save!
 
@@ -24,6 +27,12 @@ class StockManager
         })
       end
     end
+  end
+
+  private
+
+  def already_reduced?(order_item)
+    StockHistory.where(order_item: order_item).count > 0
   end
 
 end
