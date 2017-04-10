@@ -39,6 +39,14 @@ class Admin::UsersController < ApplicationController
     @admins_emails_list = users.where(role: :admin).emails_list
   end
 
+  def set_as_referrer
+    user.assign_referrer_id
+    Coupon.create_referrer_coupon(user) if user.referrer_coupons.empty?
+    flash[:success] = "The user account was successfully set as a tourist guide."
+
+    redirect_to navigation.back(1)
+  end
+
   private
 
   def set_user

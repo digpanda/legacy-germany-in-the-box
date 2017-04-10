@@ -40,7 +40,7 @@
           </td>
           <td>
               <a href="<%= admin_user_path(user) %>"><i class="fa fa-eye tooltipster buttons buttons__edit tooltipstered"></i></a>
-
+            <%= link_to '<i class="fa fa-user-plus tooltipster buttons buttons__edit tooltipstered"></i>'.html_safe, admin_user_set_as_referrer_path(user), method: :patch, title: 'Set as tourist guide' unless user.referrer_id %>
             <% if user.destroyable? %>
               <%= link_to '', admin_user_path(user), :method => :delete, data: { confirm: "Are you sure to remove this user account ?" }, :class => 'tooltipster fa fa-times buttons buttons__delete', :title => "Delete this user" %>
             <% end %>
