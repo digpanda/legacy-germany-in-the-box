@@ -66,7 +66,7 @@ class User
   has_many :notes,                                  :inverse_of => :user,   :dependent => :restrict
 
   has_one  :shop,         :inverse_of => :shopkeeper,   :dependent => :restrict
-  has_one  :cart,   :dependent => :restrict
+  has_one  :cart
 
   has_many :referrer_coupons, :class_name => "Coupon", :inverse_of => :referrer
 

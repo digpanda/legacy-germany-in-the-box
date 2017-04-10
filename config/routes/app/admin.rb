@@ -72,6 +72,7 @@ namespace :admin do
 
   resources :users do
     get :emails, on: :collection
+    patch :set_as_referrer
   end
 
   resources :order_payments do
