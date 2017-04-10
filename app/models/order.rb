@@ -62,6 +62,7 @@ class Order
 
   has_many :order_items,            :inverse_of => :order,    dependent: :restrict
   has_many :order_payments,         :inverse_of => :order,    dependent: :restrict
+  has_many :notes,                  :inverse_of => :order,    dependent: :restrict
   has_one :referrer_provision,    :inverse_of => :order,    dependent: :restrict
 
 
