@@ -14,24 +14,6 @@ class Order
   field :desc,                      type: String
   field :border_guru_quote_id,      type: String
 
-  def shipping_cost
-    @shipping_cost ||= begin
-      order_items.reduce(0) do |acc, order_item|
-        if order_item.shipping_per_unit
-          acc + (order_item.shipping_per_unit * order_item.quantity)
-        end
-      end
-    end
-  end
-
-  def taxes_cost
-    @taxes_cost ||= begin
-      order_items.reduce(0) do |acc, order_item|
-        acc + (order_item.taxes_per_unit * order_item.quantity)
-      end
-    end
-  end
-
   field :logistic_partner, type: Symbol, default: :manual
   field :border_guru_order_id,      type: String
   field :border_guru_shipment_id,   type: String
@@ -141,7 +123,7 @@ class Order
   # live referrer provision before it's saved in the database
   def current_referrer_provision
     if referrer_rate > 0.0
-      end_price * referrer_rate / 100
+      total_price * referrer_rate / 100 # goods price
     else
       0
     end
