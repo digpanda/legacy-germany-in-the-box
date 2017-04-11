@@ -1840,7 +1840,14 @@ body {
     font-weight: bold;
     font-size: 23px;
     margin: 0.5em; }
+  .package-set-block__wrapper {
+    position: absolute;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); }
   .package-set-block__content {
+    position: relative;
     padding: 2em;
     height: 60vw;
     max-height: 672px;
