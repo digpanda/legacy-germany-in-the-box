@@ -43,7 +43,7 @@ class Coupon
                         :unique => false,
                         :desc => 'Referrer Coupon',
                         :referrer => referrer,
-                        :exclude_china => true
+                        :exclude_china => false
                     })
     end
   end
