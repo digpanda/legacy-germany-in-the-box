@@ -1,7 +1,7 @@
 <% if package_set.active %>
-  <%= link_to '', admin_shop_package_set_unactive_path(package_set.shop, package_set), :method => :patch, :class => 'tooltipster fa fa-check buttons buttons__cancel', :title => "Deactivate" %>
+  <%= link_to '', admin_shop_package_set_unactive_path(package_set.shop, package_set), :method => :patch, :class => 'tooltipster fa fa-minus buttons buttons__cancel', :title => "Deactivate" %>
 <% else %>
-  <%= link_to '', admin_shop_package_set_active_path(package_set.shop, package_set), :method => :patch, :class => 'tooltipster fa fa-minus buttons buttons__add', :title => "Activate" %>
+  <%= link_to '', admin_shop_package_set_active_path(package_set.shop, package_set), :method => :patch, :class => 'tooltipster fa fa-check buttons buttons__add', :title => "Activate" %>
 <% end %>
 
 <%= link_to '', edit_admin_shop_package_set_path(package_set.shop, package_set), :class => 'tooltipster fa fa-pencil buttons buttons__edit', :title => I18n.t(:edit, scope: :edit_set) %>
