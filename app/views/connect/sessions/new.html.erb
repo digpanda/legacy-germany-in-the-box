@@ -28,10 +28,10 @@
       </label>
     </div>
     <div class="col-md-12">
-      <div class="col-md-5">
+      <div class="col-md-5 col-xs-5">
         <%= submit_tag I18n.t(:sign_in, scope: :sign_in_dialog), :id => 'sign_in', :class => 'btn btn-primary' %>
       </div>
-      <div class="col-md-7">
+      <div class="col-md-7 col-xs-7">
         <a class="btn btn-primary" href="<%= new_user_registration_path %>">
           <%= I18n.t(:not_member_yet, scope: :sign_in_dialog) %>
         </a>
