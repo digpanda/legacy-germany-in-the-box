@@ -1842,6 +1842,7 @@ body {
     margin: 0.5em; }
   .package-set-block__wrapper {
     position: absolute;
+    width: 95%;
     position: absolute;
     top: 50%;
     left: 50%;
