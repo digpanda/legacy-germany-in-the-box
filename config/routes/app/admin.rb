@@ -29,6 +29,8 @@ namespace :admin do
     delete :destroy_image
 
     resources :package_sets, :controller => 'shops/package_sets' do
+      patch :active
+      patch :unactive
       delete :destroy_image
       delete :destroy_image_file
     end
