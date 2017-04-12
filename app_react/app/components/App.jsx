@@ -1,16 +1,21 @@
 import React from 'react';
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import CounterComponent from 'components/Counter';
 =======
 >>>>>>> initialization of react
 =======
 import CounterComponent from 'components/Counter';
 >>>>>>> react
+=======
+import CounterComponent from 'components/Counter';
+>>>>>>> counter system test on react
 
 export default class App extends React.Component {
   render() {
     return (
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
       <div>
@@ -25,6 +30,11 @@ export default class App extends React.Component {
         <div className="+spacer"></div>
         <CounterComponent count={0} />
 >>>>>>> react
+=======
+      <div>
+        <div className="+spacer"></div>
+        <CounterComponent count={0} />
+>>>>>>> counter system test on react
       </div>
     );
   }

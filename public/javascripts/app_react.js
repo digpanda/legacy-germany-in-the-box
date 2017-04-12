@@ -151,6 +151,7 @@ var __makeRelativeRequire = function(require, mappings, pref) {
 require.register("components/App.jsx", function(exports, require, module) {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 'use strict';
 =======
 "use strict";
@@ -158,6 +159,9 @@ require.register("components/App.jsx", function(exports, require, module) {
 =======
 'use strict';
 >>>>>>> react
+=======
+'use strict';
+>>>>>>> counter system test on react
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -165,6 +169,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -186,6 +191,16 @@ var _react2 = _interopRequireDefault(_react);
 >>>>>>> initialization of react
 =======
 >>>>>>> react
+=======
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _Counter = require('components/Counter');
+
+var _Counter2 = _interopRequireDefault(_Counter);
+
+>>>>>>> counter system test on react
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -206,8 +221,11 @@ var App = function (_React$Component) {
   _createClass(App, [{
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> react
+=======
+>>>>>>> counter system test on react
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
@@ -277,18 +295,24 @@ var CounterComponent = function (_React$Component) {
     }
   }, {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> initialization of react
 =======
 >>>>>>> react
+=======
+>>>>>>> counter system test on react
     key: "render",
     value: function render() {
       return _react2.default.createElement(
         "div",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> react
+=======
+>>>>>>> counter system test on react
         null,
         _react2.default.createElement(
           "a",
@@ -296,6 +320,7 @@ var CounterComponent = function (_React$Component) {
           "Decrement"
         ),
         " |\xA0",
+<<<<<<< HEAD
         _react2.default.createElement(
           "a",
           { href: "#", onClick: this.incrementClick.bind(this), className: "+blue" },
@@ -309,9 +334,17 @@ var CounterComponent = function (_React$Component) {
 <<<<<<< HEAD
 =======
         { id: "content" },
+=======
+>>>>>>> counter system test on react
         _react2.default.createElement(
-          "h5",
+          "a",
+          { href: "#", onClick: this.incrementClick.bind(this), className: "+blue" },
+          "Increment"
+        ),
+        _react2.default.createElement(
+          "div",
           null,
+<<<<<<< HEAD
           "jTime to ",
           _react2.default.createElement(
             "a",
@@ -322,11 +355,16 @@ var CounterComponent = function (_React$Component) {
 >>>>>>> initialization of react
 =======
 >>>>>>> react
+=======
+          "Current counter : ",
+          this.state.count
+>>>>>>> counter system test on react
         )
       );
     }
   }]);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -344,6 +382,12 @@ exports.default = App;
 >>>>>>> initialization of react
 =======
 >>>>>>> react
+=======
+  return CounterComponent;
+}(_react2.default.Component);
+
+exports.default = CounterComponent;
+>>>>>>> counter system test on react
 
 });
 
