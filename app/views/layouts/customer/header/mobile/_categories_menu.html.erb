@@ -7,7 +7,7 @@
           <span><%= I18n.t(:my_profile, scope: :menu) %></span> <div class="+notif-bubble-inline"><%= current_user.notifications.unreads.count %></div>
         </a>
       <% else %>
-        <a href="<%= resolve_profile_path %>"><%= I18n.t(:my_profile, scope: :menu) %></a>
+        <a href="<%= menu_customer_account_path %>"><%= I18n.t(:my_profile, scope: :menu) %></a>
       <% end %>
     </li>
     <li><a href="<%= customer_favorites_path %>"><%= I18n.t(:my_favorites, scope: :menu) %></a></li>
