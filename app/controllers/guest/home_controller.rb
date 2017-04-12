@@ -6,6 +6,9 @@ class Guest::HomeController < ApplicationController
     @shops = Shop.can_buy.order_by(:position => :asc).all
   end
 
+  def react
+  end
+
   private
 
   def admin_redirection
