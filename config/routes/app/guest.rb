@@ -2,6 +2,7 @@
 namespace :guest do
 
   resource :home, :controller => 'home' do
+    get :react
   end
 
   resource :static, :controller => 'static' do
