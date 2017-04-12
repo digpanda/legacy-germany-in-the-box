@@ -44,6 +44,7 @@ namespace :customer do
   end
 
   resource :account, :controller => 'account' do
+    get :menu
   end
 
   resource :identity, :controller => 'identity' do
