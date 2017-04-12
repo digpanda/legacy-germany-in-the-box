@@ -1,10 +1,12 @@
 import React from 'react';
+import CounterComponent from 'components/Counter';
 
 export default class App extends React.Component {
   render() {
     return (
-      <div id="content">
-        <h5>jTime to <a href="https://facebook.github.io/react/">React</a>.</h5>
+      <div>
+        <div className="+spacer"></div>
+        <CounterComponent count={0} />
       </div>
     );
   }
