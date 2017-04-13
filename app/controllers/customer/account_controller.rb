@@ -22,6 +22,9 @@ class Customer::AccountController < ApplicationController
     redirect_to navigation.back(1)
   end
 
+  def menu
+  end
+
   private
 
   def set_user
