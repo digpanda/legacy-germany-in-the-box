@@ -1,9 +1,9 @@
 <% if @addresses.size > 0 %>
-  <table class="white-table">
+  <table class="white-table +desktop">
     <thead>
       <tr>
         <th>
-          Primary
+          <%= I18n.t(:primary, scope: :edit_address) %>
         </th>
         <th>
           <%= I18n.t(:name, scope: :edit_address) %>
@@ -72,6 +72,43 @@
           </td>
           <td>
             <%= link_to '', edit_customer_address_path(address), :class => 'tooltipster fa fa-pencil buttons buttons__edit', :title => "Edit" %>
+            <%= link_to '', customer_address_path(address), :method => :delete, data: { confirm: "Are you sure you want to destroy this address ?" }, :class => 'tooltipster fa fa-times buttons buttons__delete', :title => "Remove" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <table class="white-table +mobile">
+    <thead>
+      <tr>
+        <th>
+          <%= I18n.t(:primary, scope: :edit_address) %>
+        </th>
+        <th>
+          <%#= I18n.t(:pid, scope: :edit_address) %>
+          Full Address
+        </th>
+        <th>
+          <%= I18n.t(:operations, scope: :edit_order) %>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @addresses.each do |address| %>
+        <tr>
+          <td>
+            <%= boolean_icon(address.primary) %>
+          </td>
+          <td>
+            <%= address.decorate.chinese_full_name %><br/>
+            <%= address.pid %><br/>
+            <%= address.decorate.full_address %><br/>
+            <%= address.mobile %>
+          </td>
+          <td>
+            <%= link_to '', edit_customer_address_path(address), :class => 'tooltipster fa fa-pencil buttons buttons__edit', :title => "Edit" %>
+            <div class="+small-spacer"></div>
             <%= link_to '', customer_address_path(address), :method => :delete, data: { confirm: "Are you sure you want to destroy this address ?" }, :class => 'tooltipster fa fa-times buttons buttons__delete', :title => "Remove" %>
           </td>
         </tr>

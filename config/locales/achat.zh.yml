@@ -178,7 +178,7 @@ zh-CN:
     ext_error_message: 只能上传.pdf
     upload: 选择...
   top_menu:
-    my_identity: 身份
+    my_identity: 身份证
     notifications: 平台通知
     support: Support
     top_menu: 菜单
@@ -339,7 +339,9 @@ zh-CN:
     district_blank: --地区--
     country: 国家
     zip: 邮编
+    primary: 默认
     set_primary: 默认地址
+    full_address: 收货地址
     add_address: 添加
     change_address_title: 修改地址
     save_address: 保存
