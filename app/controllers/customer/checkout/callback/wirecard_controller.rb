@@ -7,7 +7,7 @@ class Customer::Checkout::Callback::WirecardController < ApplicationController
   def success
     callback = checkout_callback.wirecard!
     unless callback.success?
-      SlackDispatcher.new.message("Error checkout callback #{callback.error}")
+      SlackDispatcher.new.message("[Exception] Error checkout callback #{callback.error}")
       flash[:error] = callback.error
       redirect_to navigation.back(2)
       return
@@ -36,7 +36,7 @@ class Customer::Checkout::Callback::WirecardController < ApplicationController
 
     callback = CheckoutCallback.new(current_user, cart_manager, params, :failed).wirecard!
     unless callback.success?
-      SlackDispatcher.new.message("Error checkout callback #{callback.error}")
+      SlackDispatcher.new.message("[Exception] Error checkout callback #{callback.error}")
       flash[:error] = callback.error
     end
 

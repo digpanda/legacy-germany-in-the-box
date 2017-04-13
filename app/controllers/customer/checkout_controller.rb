@@ -42,7 +42,6 @@ class Customer::CheckoutController < ApplicationController
   end
 
   def gateway
-    SlackDispatcher.new.silent_login_attempt("params: #{params}")
     @order = Order.find(session[:current_checkout_order])
 
     unless params[:payment_method]
@@ -52,7 +51,7 @@ class Customer::CheckoutController < ApplicationController
     end
 
     payment_gateway = order.shop.payment_gateways.where(payment_method: params[:payment_method].to_sym).first
-    
+
     unless payment_gateway
       flash[:error] = I18n.t(:invalid_gateway, scope: :edit_order)
       redirect_to navigation.back(1)

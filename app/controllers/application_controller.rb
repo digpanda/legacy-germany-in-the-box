@@ -20,12 +20,11 @@ class ApplicationController < ActionController::Base
 
   def silent_login
     if params[:code]
-      SlackDispatcher.new.silent_login_attempt("Attempting to authorize...")
       if wechat_auth.success?
         session[:origin] = :wechat
-        SlackDispatcher.new.silent_login_attempt("Success!!")
         sign_out
         sign_in(:user, wechat_auth.data[:customer])
+        SlackDispatcher.new.silent_login_attempt("[Wechat] Customer automatically logged-in (`#{current_user&.id}`)")
         if current_user.cart_orders.first
           cart_manager.store(current_user.cart_orders.first)
         end
