@@ -19,7 +19,7 @@
     </div>
 
     <div class="col-md-8">
-      <%= form.object.duty_category&.tax_rate %> %
+      <%= form.select :taxes_base, options_for_select({'Constant (11.9%) based on goods price' => :constant, "Duty Category (#{form.object.duty_category&.tax_rate}%) based on purchase price" => :duty_category}, form.object.taxes_base), :class => 'form-control' %>
     </div>
 
   </div>
