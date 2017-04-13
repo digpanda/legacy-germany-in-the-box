@@ -8,9 +8,9 @@ module.exports = {
 
     javascripts: {
       joinTo: {
-        'javascripts/app.js': /^app/,
-        'javascripts/vendor.js': /^bower_components/
-      }
+        'javascripts/vendor.js': /^bower_components/,
+        'javascripts/app.js': /^app/
+      },
     },
 
     stylesheets: {
@@ -26,7 +26,7 @@ module.exports = {
   },
 
   plugins: {
-    babel: {presets: ['es2015']},
+    babel: { presets: ['es2015'] },
     sass: { mode: 'native' }
   }
 

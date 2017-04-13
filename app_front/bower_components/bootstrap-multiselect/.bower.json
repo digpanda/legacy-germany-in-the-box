@@ -37,6 +37,5 @@
   },
   "_source": "https://github.com/davidstutz/bootstrap-multiselect.git",
   "_target": "^0.9.13",
-  "_originalSource": "bootstrap-multiselect",
-  "_direct": true
+  "_originalSource": "bootstrap-multiselect"
 }
