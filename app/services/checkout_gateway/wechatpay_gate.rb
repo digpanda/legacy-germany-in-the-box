@@ -20,7 +20,6 @@ class CheckoutGateway
     # make a new OrderPayment linked to the request which we will manipulate later on
     def checkout!
       prepare_order_payment!
-      SlackDispatcher.new.message(process!) # TO UNDERSTAND THE PROBLEM
       process!
     end
 
@@ -123,7 +122,6 @@ class CheckoutGateway
 
     def openid
       if Rails.env.production?
-        SlackDispatcher.new.message("OPENID IS : #{user.wechat_openid}")
         user.wechat_openid
       else
         user.wechat_openid
