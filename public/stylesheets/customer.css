@@ -824,7 +824,8 @@ body {
     color: #68a423; }
   .white-table > thead > tr > th {
     vertical-align: middle;
-    padding: 1em; }
+    padding: 1em;
+    white-space: nowrap; }
   .white-table > tbody > tr > td {
     vertical-align: middle;
     padding: 1em;
