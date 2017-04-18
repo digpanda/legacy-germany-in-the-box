@@ -50,7 +50,7 @@ class CheckoutCallback < BaseService
       order_payment.status = :failed
       order_payment.save
       order_payment.order.refresh_status_from!(order_payment)
-      warn_developers(Wirecard::Base::Error.new, "Something went wrong during the payment.")
+      SlackDispatcher.new.message("[Exception] Error checkout callback #{I18n.t(:failed, scope: :payment)}")
       return return_with(:error, I18n.t(:failed, scope: :payment))
     end
 
@@ -84,7 +84,7 @@ class CheckoutCallback < BaseService
       order_payment.status = :failed
       order_payment.save
       order_payment.order.refresh_status_from!(order_payment)
-      warn_developers(Wirecard::Base::Error.new, "Something went wrong during the payment.")
+      SlackDispatcher.new.message("[Exception] Error checkout callback #{I18n.t(:failed, scope: :payment)}")
       return return_with(:error, I18n.t(:failed, scope: :payment))
     end
 
