@@ -5,13 +5,13 @@
     <div class="col-xs-2 header-mobile__categories">
       <div class="row">
 
-        <% unless @freeze_header %>
-          <% unless identity_solver&.wechat_customer? %>
+        <%# unless @freeze_header %>
+          <%# unless identity_solver&.wechat_customer? %>
             <button id="mobile-menu-button" type="button" class="navbar-toggle" data-toggle="offcanvas" data-target="#mobile-menu" data-canvas=".navbar-fixed-top">
               <i class="fa fa-bars"></i>
             </button>
-          <% end %>
-        <% end %>
+          <%# end %>
+        <%# end %>
 
         <%= render partial: "layouts/customer/header/mobile/categories_menu", :locals => { :categories => @categories } %>
 
