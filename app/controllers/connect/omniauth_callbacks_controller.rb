@@ -50,6 +50,7 @@ class Connect::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       if wechat_auth.success?
         user = wechat_auth.data[:customer]
         @tourist_guide = true
+        user.set_referrer_group(params[:rsrc])
 
         if ReferrerToken.valid_token?(params[:token])
           user.assign_referrer_id

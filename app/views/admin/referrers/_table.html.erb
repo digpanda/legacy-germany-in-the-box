@@ -17,6 +17,9 @@
         Provision
       </th>
       <th>
+        Group
+      </th>
+      <th>
         Operations
       </th>
     </thead>
@@ -41,6 +44,9 @@
           </td>
           <td>
             <%= referrer.referrer_provisions.sum(:provision).in_euro.display %>
+          </td>
+          <td>
+            <%= referrer.referrer_group %>
           </td>
           <td>
             <% unless referrer.has_referrer_coupon? %>
