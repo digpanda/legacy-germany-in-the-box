@@ -32,7 +32,6 @@ class Customer::Checkout::Callback::WirecardController < ApplicationController
   # the card processing failed
   def fail
     flash[:error] = I18n.t(:failed, scope: :payment)
-    warn_developers(Wirecard::Base::Error.new, "Something went wrong during the payment.")
 
     callback = CheckoutCallback.new(current_user, cart_manager, params, :failed).wirecard!
     unless callback.success?
