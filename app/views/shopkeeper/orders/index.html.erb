@@ -91,7 +91,7 @@
 
             <% if order.processable? %>
 
-              <% if order.border_guru_shipment_id.nil? && Setting.instance.logistic_partner == :borderguru %>
+              <% if order.border_guru_shipment_id.nil? && order.logistic_partner == :borderguru %>
                 You can't process this order. Our Shipping Partner has not yet returned the shipping details.
               <% else %>
                 <%= link_to I18n.t(:start_process_shipment, scope: :button), shopkeeper_order_process_order_path(order), method: :patch, data: { confirm: I18n.t(:confirm_start_processing, scope: :notice) } %> |
@@ -102,7 +102,7 @@
               <%= I18n.t(:order_not_processable, scope: :message) %>
             <% end %>
 
-          <% elsif Setting.instance.logistic_partner == :borderguru %>
+          <% elsif order.logistic_partner == :borderguru %>
 
             <!-- The order is custom checkable and will be sent through FTP soon -->
             <% if order.decorate.status == :custom_checkable %>
