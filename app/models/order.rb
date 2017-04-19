@@ -125,10 +125,9 @@ class Order
 
   # live referrer provision before it's saved in the database
   def current_referrer_provision
-    binding.pry # to test if it systematically returns a number
-    order_items.reduce(0) do |order_item|
+    order_items.reduce(0) do |acc, order_item|
       if order_item.referrer_rate > 0.0
-        order_item.total_price * order_item.referrer_rate / 100 # goods price
+        acc += order_item.total_price * order_item.referrer_rate / 100 # goods price
       else
         0
       end
