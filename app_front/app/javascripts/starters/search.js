@@ -10,6 +10,7 @@ var Search = {
 
       this.categoryFilter();
       this.searchInput();
+      this.statusFilter();
 
     },
 
@@ -63,6 +64,17 @@ var Search = {
 
       });
 
+    },
+
+    statusFilter: function() {
+        $('.js-order-status-filter').on('change', function(e) {
+
+            let status = $(this).val();
+
+            var UrlProcess = require('javascripts/lib/url_process');
+            UrlProcess.insertParam('status', status);
+
+        });
     },
 
 }

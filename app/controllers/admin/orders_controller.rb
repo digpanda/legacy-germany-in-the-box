@@ -12,7 +12,12 @@ class Admin::OrdersController < ApplicationController
   def index
     respond_to do |format|
       format.html do
-        @orders = Order.nonempty.order_by(paid_at: :desc, c_at: :desc).paginate(:page => current_page, :per_page => 10)
+
+        if params[:status].empty?
+          @orders = Order.nonempty.order_by(paid_at: :desc, c_at: :desc).paginate(:page => current_page, :per_page => 10)
+        else
+          @orders = Order.nonempty.order_by(paid_at: :desc, c_at: :desc).where(status: params[:status]).paginate(:page => current_page, :per_page => 10)
+        end
       end
       format.csv do
         @orders = Order.nonempty.order_by(paid_at: :desc, c_at: :desc)
