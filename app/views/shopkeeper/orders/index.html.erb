@@ -102,13 +102,23 @@
               <%= I18n.t(:order_not_processable, scope: :message) %>
             <% end %>
 
-          <!-- The order is custom checkable and will be sent through FTP soon -->
-          <% elsif order.decorate.status == :custom_checkable %>
-            Die Ausfuhranmeldung wird übermittelt. Bitte kommen Sie zurück nach 10Uhr und machen Sie weiter.
-          <!-- The order passed the custom and can be send -->
-          <% elsif order.decorate.shippable? %>
+          <% elsif Setting.instance.logistic_partner == :borderguru %>
+
+            <!-- The order is custom checkable and will be sent through FTP soon -->
+            <% if order.decorate.status == :custom_checkable %>
+              Die Ausfuhranmeldung wird übermittelt. Bitte kommen Sie zurück nach 10Uhr und machen Sie weiter.
+            <!-- The order passed the custom and can be send -->
+            <% elsif order.decorate.shippable? %>
+              <%= link_to I18n.t(:package_was_sent, scope: :notice), shopkeeper_order_shipped_path(order), method: :patch %>
+            <% end %>
+
+          <!-- For any other logistic partner than borderguru we can sent it out when we want -->
+          <% elsif order.status == :custom_checking %>
+
             <%= link_to I18n.t(:package_was_sent, scope: :notice), shopkeeper_order_shipped_path(order), method: :patch %>
+
           <% end %>
+
           <!-- Cancel order -->
           <!--<% if order.decorate.cancellable? %>
             <%= link_to "Cancel", shared_order_cancel_path(order), method: :patch, data: { confirm: "Are you sure you want to cancel this order ?" } %>

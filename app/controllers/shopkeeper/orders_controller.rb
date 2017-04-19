@@ -35,9 +35,16 @@ class Shopkeeper::OrdersController < ApplicationController
       return
     end
 
-    # we don't forget to change status of orders and such
-    # only if everything was a success
-    order.status = :custom_checkable
+    # if our partner is borderguru the status will go from custom checkable
+    # to custom checking automatically
+    if Setting.instance.logistic_partner == :borderguru
+      # we don't forget to change status of orders and such
+      # only if everything was a success
+      order.status = :custom_checkable
+    else
+      order.status = :custom_checking
+    end
+
     order.save
 
     # we go back now
