@@ -2,11 +2,6 @@ class OrderItem
   include MongoidBase
   include Locked
 
-  # TO REMOVE
-  field :manual_taxes, type: Float
-  field :manual_shipping_cost, type: Float
-  # END OF REMOVE
-
   SKU_DELEGATE_EXCEPTION = [:quantity]
   MAX_DESCRIPTION_CHARACTERS = 200
 
@@ -14,6 +9,8 @@ class OrderItem
 
   field :taxes_per_unit, type: Float
   field :shipping_per_unit, type: Float
+
+  field :referrer_rate, type: Float, default: 0.0
 
   before_save :ensure_taxes_per_unit, :ensure_shipping_per_unit
 

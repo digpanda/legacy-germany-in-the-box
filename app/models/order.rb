@@ -28,7 +28,9 @@ class Order
 
   field :coupon_applied_at, type: Time
   field :coupon_discount, type: Float, default: 0.0
-  field :referrer_rate, type: Float, default: 0.0
+
+  # TODO : to remove after migration
+  #field :referrer_rate, type: Float, default: 0.0
 
   def shipping_cost
     @shipping_cost ||= begin
@@ -123,10 +125,13 @@ class Order
 
   # live referrer provision before it's saved in the database
   def current_referrer_provision
-    if referrer_rate > 0.0
-      total_price * referrer_rate / 100 # goods price
-    else
-      0
+    binding.pry # to test if it systematically returns a number
+    order_items.reduce(0) do |order_item|
+      if order_item.referrer_rate > 0.0
+        order_item.total_price * order_item.referrer_rate / 100 # goods price
+      else
+        0
+      end
     end
   end
 

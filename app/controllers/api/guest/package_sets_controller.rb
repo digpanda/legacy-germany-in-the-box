@@ -25,7 +25,6 @@ class Api::Guest::PackageSetsController < Api::ApplicationController
           return
         end
       end
-      order.update(referrer_rate: package_set.referrer_rate)
       # we first empty the cart manager to make it fresh
       # cart_manager.empty! <-- to avoid multiple package order
       cart_manager.store(order)
@@ -72,7 +71,6 @@ class Api::Guest::PackageSetsController < Api::ApplicationController
                         locked: true,
                         package_set: package_sku.package_set)
       end
-      order.update(referrer_rate: package_set.referrer_rate)
       # we first empty the cart manager to make it fresh
       # cart_manager.empty! <-- to avoid multiple package order
       cart_manager.store(order)
