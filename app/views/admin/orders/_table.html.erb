@@ -2,14 +2,15 @@
 <table class="white-table">
   <thead>
     <tr>
+      <!--<th>-->
+        <!--ID-->
+      <!--</th>-->
+      <!--<th>-->
+        <!--BorderGuru Shipment ID-->
+      <!--</th>-->
       <th>
-        ID
-      </th>
-      <th>
-        BorderGuru Shipment ID
-      </th>
-      <th>
-        Delivery Address Names
+        Delivery</br>
+        Address Name
       </th>
       <td>
         Total Paid
@@ -37,12 +38,12 @@
   <tbody>
     <% orders.each do |order| %>
     <tr>
-      <td>
-        <%= order.id %>
-      </td>
-      <td>
-        <%= order.border_guru_shipment_id %>
-      </td>
+      <!--<td>-->
+        <!--<%#= order.id %>-->
+      <!--</td>-->
+      <!--<td>-->
+        <!--<%#= order.border_guru_shipment_id %>-->
+      <!--</td>-->
       <td>
         <% unless order.shipping_address.nil? %>
         <%= order.shipping_address.decorate.chinese_full_name %>

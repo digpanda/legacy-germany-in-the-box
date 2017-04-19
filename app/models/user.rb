@@ -49,6 +49,7 @@ class User
 
   field :referrer_id, type: String
   field :referrer_nickname, type: String
+  field :referrer_group, type: String
 
   field :wechat_unionid, type: String
   field :wechat_openid,  type: String
@@ -189,5 +190,10 @@ class User
 
   def short_union_id
     self&.wechat_unionid&.split(//)&.last(3)&.join.to_s
+  end
+
+  def set_referrer_group(group)
+    self.referrer_group = group unless self.referrer_group
+    self.save
   end
 end

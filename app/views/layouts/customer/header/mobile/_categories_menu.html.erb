@@ -12,22 +12,27 @@
     </li>
     <li><a href="<%= customer_favorites_path %>"><%= I18n.t(:my_favorites, scope: :menu) %></a></li>
     <hr />
-    <% categories.each do |category| %>
-    <li>
-      <h3><a href="<%= guest_category_path(category) %>" id="<%= category.slug %>"><%= category.name %></a></h3>
-      <ul>
-        <% category.can_buy_shops(5).each do |shop| %>
+    <% unless @freeze_header %>
+      <% unless identity_solver&.wechat_customer? %>
+        <% categories.each do |category| %>
           <li>
-            <a href="<%= guest_shop_path(shop) %>">
-              <h4><%= shop.shopname %></h4>
-              <%= shop.decorate.short_desc(16) %>
-            </a>
+            <h3><a href="<%= guest_category_path(category) %>" id="<%= category.slug %>"><%= category.name %></a></h3>
+            <ul>
+              <% category.can_buy_shops(5).each do |shop| %>
+                <li>
+                  <a href="<%= guest_shop_path(shop) %>">
+                    <h4><%= shop.shopname %></h4>
+                    <%= shop.decorate.short_desc(16) %>
+                  </a>
+                </li>
+              <% end %>
+            </ul>
           </li>
+          <hr/>
         <% end %>
-      </ul>
-    </li>
-    <hr />
+      <% end %>
     <% end %>
+
   </ul>
 
 </nav>
