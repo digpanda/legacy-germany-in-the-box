@@ -124,7 +124,9 @@ class Order
   end
 
   def coupon_discount_in_percent
-    coupon_discount / total_price * 100
+    # we use the total_price_with_taxes because
+    # the coupon_discount is calculated with taxes
+    coupon_discount / total_price_with_taxes * 100
   end
 
   # live referrer provision before it's saved in the database
