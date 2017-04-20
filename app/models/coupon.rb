@@ -18,7 +18,7 @@ class Coupon
 
   has_many :orders
 
-  belongs_to :referrer, :class_name => "User", :inverse_of => :referrer_coupons
+  belongs_to :referrer, :class_name => "Referrer", :inverse_of => :coupons
 
   validates :code, presence: true, uniqueness: true
   validates :discount, presence: true
@@ -34,7 +34,7 @@ class Coupon
   end
 
   def self.create_referrer_coupon(referrer)
-    unless referrer.has_referrer_coupon?
+    unless referrer.has_coupon?
       Coupon.create({
                         :code => SecureRandom.hex(4)[0,4],
                         :unit => :percent,

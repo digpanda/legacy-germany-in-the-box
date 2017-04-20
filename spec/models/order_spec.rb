@@ -11,8 +11,8 @@ describe Order, :type => :model  do
       subject.status = :paid
       subject.save # this will generate a referrer provision since it's paid
 
-      expect(subject.referrer.referrer_provisions.count).to eql(1)
-      expect(subject.referrer.referrer_provisions.sum(:provision)).to be > 0
+      expect(subject.referrer.provisions.count).to eql(1)
+      expect(subject.referrer.provisions.sum(:provision)).to be > 0
 
     end
 
@@ -23,17 +23,17 @@ describe Order, :type => :model  do
       subject.status = :paid
       subject.save # this will generate a referrer provision since it's paid
 
-      expect(subject.referrer.referrer_provisions.count).to eql(1)
+      expect(subject.referrer.provisions.count).to eql(1)
 
       subject.status = :cancelled
       subject.save # this will generate a referrer provision since it's paid
 
-      expect(subject.referrer.referrer_provisions.count).to eql(0)
+      expect(subject.referrer.provisions.count).to eql(0)
 
       subject.status = :paid
       subject.save # this will generate a referrer provision since it's paid
 
-      expect(subject.referrer.referrer_provisions.count).to eql(1)
+      expect(subject.referrer.provisions.count).to eql(1)
 
     end
 
