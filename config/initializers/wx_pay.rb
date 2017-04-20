@@ -1,7 +1,7 @@
 # required
-WxPay.appid = 'wxfde44fe60674ba13'
-WxPay.key = 'abcdvW82Kfrdahqt2rwtzoEi543fh8m1'
-WxPay.mch_id = '1354063202'
+WxPay.appid = ENV["wechat_username_mobile"]
+WxPay.key = ENV["wechat_pay_key"]
+WxPay.mch_id = ENV["wechat_mch_id"]
 WxPay.debug_mode = true # default is `true`
 
 # wechat_username: wx84debd17520da2a3
