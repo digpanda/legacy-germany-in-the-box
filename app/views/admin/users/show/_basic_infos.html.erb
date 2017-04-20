@@ -9,7 +9,7 @@
 
       Email : <%= editable_field(@user, admin_user_path(@user), :email, :text_field) %>
       <br />
-      Username : <%= @user.nickname %>
+      Nickname : <%= @user.nickname %>
       <br />
       Role :<%= editable_field(@user, admin_user_path(@user), :role, :select, [user_roles, {:selected => @user.role}]) %>
       <br />
