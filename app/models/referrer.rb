@@ -4,8 +4,7 @@ class Referrer
   field :reference_id, type: String # was referrer_id in User
   field :nickname, type: String
   field :group, type: String
-
-  # TODO : change the different models to match this
+  
   belongs_to :user, :class_name => "User", :inverse_of => :referrer
   has_many :coupons, :class_name => "Coupon", :inverse_of => :referrer
   has_many :provisions, :class_name => "ReferrerProvision", :inverse_of => :referrer
