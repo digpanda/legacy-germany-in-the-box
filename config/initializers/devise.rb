@@ -153,5 +153,5 @@ Devise.setup do |config|
   # config.omniauth_path_prefix = '/my_engine/users/auth'
   config.omniauth :wechat, Rails.application.config.wechat[:username], Rails.application.config.wechat[:password],  :authorize_params => { :scope => Rails.application.config.wechat[:scope] }
 
-  config.secret_key = 'aae30f20a2753ea89c3b366e62ff792d0d22a6a986403fd5719120203bb898df4629ce6cc3e0d473d67766519d26950192d07b6bb11e8c66c5f2adc77209c764'
+  config.secret_key = ENV["devise_secret_key"]
 end
