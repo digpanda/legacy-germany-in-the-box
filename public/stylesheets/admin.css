@@ -385,6 +385,10 @@
 .field__text {
   width: 500px; }
 
+@media (min-width: 995px) {
+  .admin-layout {
+    margin: auto -200px !important; } }
+
 .buttons {
   display: inline-block;
   text-align: center;

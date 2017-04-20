@@ -30,6 +30,13 @@ FactoryGirl.define do
       role                   :admin
     end
 
+    factory :referrer, :class => User do
+      role :customer
+      referrer_id  { SecureRandom.uuid }
+      referrer_nickname  { "Admin#{Helpers::Global.next_number(:referrer)}" }
+      referrer_group ""
+    end
+
     # after(:create) do |user|
     #   create(:customer_address, user: user)
     # end

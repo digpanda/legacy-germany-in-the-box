@@ -44,6 +44,34 @@ class CouponHandler < BaseService
     reset_coupon!
   end
 
+  # we unapply the coupon from the order
+  def reset_order!
+    order.update({
+      :coupon_discount => 0,
+      :coupon_applied_at => nil,
+      :coupon_id => nil
+      })
+  end
+
+  # we update the order with the correct datas
+  def update_order!
+    order.update({
+      :coupon_discount => coupon_discount,
+      :coupon_applied_at => Time.now,
+      :coupon_id => coupon.id
+      })
+  end
+
+  # we update the coupon
+  def update_coupon!
+    coupon.update(last_applied_at: Time.now)
+  end
+
+  # we consider the coupon as unused
+  def reset_coupon!
+    coupon.update(last_applied_at: nil)
+  end
+  
   private
 
   # all the calculations will be based on the result of this method
@@ -112,34 +140,6 @@ class CouponHandler < BaseService
     coupon.orders&.first&.update(coupon_discount: 0,
                                  coupon_applied_at: nil,
                                  coupon_id: nil)
-  end
-
-  # we unapply the coupon from the order
-  def reset_order!
-    order.update({
-      :coupon_discount => 0,
-      :coupon_applied_at => nil,
-      :coupon_id => nil
-      })
-  end
-
-  # we update the order with the correct datas
-  def update_order!
-    order.update({
-      :coupon_discount => coupon_discount,
-      :coupon_applied_at => Time.now,
-      :coupon_id => coupon.id
-      })
-  end
-
-  # we consider the coupon as unused
-  def reset_coupon!
-    coupon.update(last_applied_at: nil)
-  end
-
-  # we update the coupon
-  def update_coupon!
-    coupon.update(last_applied_at: Time.now)
   end
 
   # we calculate the discount depending on EUR or PERCENT
