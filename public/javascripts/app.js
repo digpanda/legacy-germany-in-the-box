@@ -3679,6 +3679,7 @@ var Search = {
 
     this.categoryFilter();
     this.searchInput();
+    this.statusFilter();
   },
 
   /**
@@ -3726,6 +3727,16 @@ var Search = {
 
       var UrlProcess = require('javascripts/lib/url_process');
       UrlProcess.insertParam('category_slug', category_id);
+    });
+  },
+
+  statusFilter: function statusFilter() {
+    $('.js-order-status-filter').on('change', function (e) {
+
+      var status = $(this).val();
+
+      var UrlProcess = require('javascripts/lib/url_process');
+      UrlProcess.insertParam('status', status);
     });
   }
 

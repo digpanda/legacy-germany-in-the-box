@@ -25,7 +25,7 @@ Rails.application.configure do
   # used for root_url and equivalent
   Rails.application.routes.default_url_options = {protocol: :https, host: 'www.germanyintheboxdev.com', port: 443}
 
-  config.action_mailer.default_url_options = {host: 'germanyintheboxdev.com', port: 80}
+  config.action_mailer.default_url_options = {host: 'www.germanyintheboxdev.com', port: 443}
   config.action_mailer.delivery_method = :smtp
 
   config.action_mailer.smtp_settings = {
