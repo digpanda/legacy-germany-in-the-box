@@ -1,7 +1,7 @@
 <div class="+white-box +centered">
-  <h4><%= current_user.referrer_nickname %></h4>
+  <h4><%= current_user.referrer.nickname %></h4>
   <h4>账户余额</h4>
     <div class="row">
-      <h5><%= current_user.provisions.sum(:provision).in_euro.display %></h5>
+      <h5><%= current_user.referrer.provisions.sum(:provision).in_euro.display %></h5>
     </div>
 </div>
