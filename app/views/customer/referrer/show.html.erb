@@ -1,7 +1,7 @@
 <div class="+white-box +centered">
   <h4>专注德国精品</h4>
   <h4><%= current_user.nickname %>，您已经成功注册， 欢迎加入推广计划！</h4>
-  <% if current_user.coupons.empty? %>
+  <% if current_user.referrer.coupons.empty? %>
       <div class="row">
         <h5>您已经成功注册!请到来因盒微信服务号给客服留言您的身份ID，我们将回复定制推广折扣码给您。</h5>
 
