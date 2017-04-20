@@ -9,6 +9,10 @@ FactoryGirl.define do
     minimum_order 1
     unique false
 
+    trait :with_referrer do
+      referrer { FactoryGirl.create(:referrer, :from_wechat) }
+    end
+
   end
 
 end

@@ -16,6 +16,18 @@ FactoryGirl.define do
       minimum_sending_date { 48.hours.from_now }
     end
 
+    trait :with_referrer do
+      # it will resolve into `referrer` within this model
+      coupon { FactoryGirl.create(:coupon, :with_referrer) }
+      after(:create) do |order|
+        # we remove to better rebuild the items
+        # with referrer rates
+        order.order_items = []
+        order.order_items = build_list(:order_item, 2, {:referrer_rate => 10.00})
+        order.save
+      end
+    end
+
     trait :with_shippable do
       status :custom_checking
       minimum_sending_date { 24.hours.ago }
