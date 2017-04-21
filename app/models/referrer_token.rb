@@ -23,6 +23,7 @@ class ReferrerToken
 
   def generate_token
     self.token = SecureRandom.hex(8).upcase
+    self.save
   end
 
   def self.valid_token?(token)
