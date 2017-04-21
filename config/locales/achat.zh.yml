@@ -93,9 +93,9 @@ zh-CN:
     start_process_shipment: 准备发货
   menu:
     my_favorites: 我的收藏
-    my_profile: 我的来因盒
+    my_profile: 个人中心
     my_cart: 购物筐
-    my_account: 我的账号
+    my_account: 我的设置
   breadcrumb:
     home: 首页
     skus: 商品
