@@ -75,7 +75,7 @@ class WechatAuth < BaseService
   def update_user_info(access_token, openid)
     parsed_response = get_user_info(access_token, openid)
 
-    @user.update(referrer_nickname: parsed_response['nickname'], wechat_openid: parsed_response['openid'])
+    @user.&referrer.update(nickname: parsed_response['nickname'], wechat_openid: parsed_response['openid'])
   end
 
   def sign_in_user(user)

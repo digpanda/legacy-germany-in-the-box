@@ -25,6 +25,7 @@ class Admin::UsersController < ApplicationController
 
   def destroy
     if user.destroy
+      user&.referrer&.destroy # if it's also a referrer
       flash[:success] = "The user account was successfully destroyed."
     else
       flash[:error] = "The user was not destroyed (#{user.errors.full_messages.join(', ')})"
@@ -40,8 +41,8 @@ class Admin::UsersController < ApplicationController
   end
 
   def set_as_referrer
-    user.assign_referrer_id
-    Coupon.create_referrer_coupon(user) if user.referrer_coupons.empty?
+    referrer = Referrer.create(user: user)
+    Coupon.create_referrer_coupon(referrer) if referrer.coupons.empty?
     flash[:success] = "The user account was successfully set as a tourist guide."
 
     redirect_to navigation.back(1)

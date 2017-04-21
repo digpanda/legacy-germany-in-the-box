@@ -8,7 +8,7 @@ class Admin::ReferrersController < ApplicationController
   layout :custom_sublayout
 
   def index
-    @referrers = User.with_referrer
+    @referrers = Referrer.all
   end
 
   def new
@@ -31,7 +31,7 @@ class Admin::ReferrersController < ApplicationController
   end
 
   def set_referrer
-    @referrer = User.find(params[:id] || params[:referrer_id])
+    @referrer = Referrer.find(params[:id] || params[:referrer_id])
   end
 
 end

@@ -5,7 +5,7 @@ FactoryGirl.define do
     fname                  { Faker::Name.first_name }
     lname                  { Faker::Name.last_name }
     gender                 { Helpers::Global.random_gender }
-    username               { "Customer#{Helpers::Global.next_number(:customer)}" }
+    nickname               { "Customer#{Helpers::Global.next_number(:customer)}" }
     email                  { Faker::Internet.email }
     password               '12345678'
     password_confirmation  '12345678'
@@ -15,7 +15,7 @@ FactoryGirl.define do
     addresses             { FactoryGirl.build_list(:customer_address, 2, :primary => true) }
 
     factory :shopkeeper, :class => User do
-      username               { "Shopkeeper#{Helpers::Global.next_number(:shopkeeper)}" }
+      nickname               { "Shopkeeper#{Helpers::Global.next_number(:shopkeeper)}" }
       role                   :shopkeeper
 
       after(:create) do |shopkeeper|
@@ -26,15 +26,15 @@ FactoryGirl.define do
     end
 
     factory :admin, :class => User do
-      username               { "Admin#{Helpers::Global.next_number(:admin)}" }
+      nickname               { "Admin#{Helpers::Global.next_number(:admin)}" }
       role                   :admin
     end
 
     factory :referrer, :class => User do
       role :customer
-      referrer_id  { SecureRandom.uuid }
-      referrer_nickname  { "Admin#{Helpers::Global.next_number(:referrer)}" }
-      referrer_group ""
+      before(:create) do |user|
+        Referrer.create(user: user, reference_id: SecureRandom.uuid, nickname: "Referrer#{Helpers::Global.next_number(:referrer)}", group: "")
+      end
     end
 
     # after(:create) do |user|
