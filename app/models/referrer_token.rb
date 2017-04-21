@@ -14,6 +14,8 @@ class ReferrerToken
   field :note, type: String
   field :used_at, type: Time
 
+  has_many :referrers, :class_name => "Referrer", :inverse_of => :referrer_token
+
   validates_presence_of :name, :group
   validates_uniqueness_of :name, :group
 
@@ -24,8 +26,8 @@ class ReferrerToken
   end
 
   def self.valid_token?(token)
-    return true if Setting.instance.force_referrer_tokens
-    token = ReferrerToken.where(token: token, used_at: nil).first
+    #return true if Setting.instance.force_referrer_tokens
+    token = ReferrerToken.where(token: token).first
 
     if token
       token.update(used_at: Time.now)

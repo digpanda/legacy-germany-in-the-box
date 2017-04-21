@@ -46,7 +46,7 @@
             <%= referrer.provisions.sum(:provision).in_euro.display %>
           </td>
           <td>
-            <%= referrer.group %>
+            <%= referrer&.referrer_token&.group %>
           </td>
           <td>
             <% unless referrer.has_coupon? %>
