@@ -6,7 +6,7 @@
   <%= render "layouts/application/head" %>
   <%= render "layouts/application/stylesheets" %>
   <%= render "layouts/application/javascripts" %>
-  
+
 </head>
 
 <body id="csstyle">
@@ -21,7 +21,7 @@
     <div class="container-fluid">
       <%= render "layouts/#{solve_section}/header" %>
       <%= render "layouts/#{solve_section}/subheader" %>
-      <div class="content">
+      <div class="content-<%= solve_section %>">
         <%= yield %>
       </div>
       <%= render "layouts/#{solve_section}/footer" %>

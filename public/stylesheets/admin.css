@@ -385,10 +385,6 @@
 .field__text {
   width: 500px; }
 
-@media (min-width: 995px) {
-  .admin-layout {
-    margin: auto -200px !important; } }
-
 .buttons {
   display: inline-block;
   text-align: center;
@@ -1485,8 +1481,16 @@ html {
 input, textarea, select, a, button {
   outline: none !important; }
 
-.content {
+.content-customer {
   max-width: 1230px;
+  margin: 0 auto; }
+
+.content-shopkeeper {
+  max-width: 1500px;
+  margin: 0 auto; }
+
+.content-admin {
+  max-width: 1700px;
   margin: 0 auto; }
 
 *, *:before, *:after {
