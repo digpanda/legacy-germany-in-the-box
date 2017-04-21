@@ -31,6 +31,7 @@ class WechatAuth < BaseService
       return false if @parsed_response['errcode']
       if wechat_silent_solver.success?
         @user = wechat_silent_solver.data[:customer]
+        set_nickname(@parsed_response['nickname'])
       else
         return false
       end
@@ -75,12 +76,16 @@ class WechatAuth < BaseService
   def update_user_info(access_token, openid)
     parsed_response = get_user_info(access_token, openid)
 
+    set_nickname(parsed_response['nickname'])
+    @user.update(wechat_openid: parsed_response['openid'])
+  end
+
+  def set_nickname(nickname)
     unless @user.referrer
       Referrer.create(user: @user)
     end
 
-    @user&.referrer.update(nickname: parsed_response['nickname'])
-    @user.update(wechat_openid: parsed_response['openid'])
+    @user&.referrer.update(nickname: nickname)
   end
 
   def sign_in_user(user)
