@@ -52,6 +52,12 @@ class Connect::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         @tourist_guide = true
 
         if ReferrerToken.valid_token?(params[:token])
+          unless user.referrer
+            Referrer.create(user: user)
+          end
+
+          user.reload
+
           user.referrer.update(referrer_token_id: ReferrerToken.where(token: params[:token]).first.id)
           Coupon.create_referrer_coupon(user.referrer) if user.referrer.coupons.empty?
         end
