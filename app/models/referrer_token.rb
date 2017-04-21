@@ -19,7 +19,7 @@ class ReferrerToken
   validates_presence_of :name, :group
   validates_uniqueness_of :name, :group
 
-  before_save :generate_token
+  after_create :generate_token
 
   def generate_token
     self.token = SecureRandom.hex(8).upcase
@@ -41,7 +41,7 @@ class ReferrerToken
     "https://open.weixin.qq.com/connect/oauth2/authorize?" +
         "appid=#{Rails.application.config.wechat[:username_mobile]}&" +
         "redirect_uri=http%3A%2F%2Fgermanyinbox.com/connect/auth/referrer?" +
-        "token%3D#{self.token}" +
+        "token=#{self.token}" +
         "&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect"
   end
 end
