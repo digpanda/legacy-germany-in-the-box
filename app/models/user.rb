@@ -47,7 +47,7 @@ class User
   field :provider,  type: String
   field :uid,       type: String
 
-  has_one :referrer, :inverse_of => :user
+  has_one :referrer, :inverse_of => :user, dependent: :destroy
 
   # TO BE REMOVED AFTER A WHILE
   field :referrer_id, type: String
