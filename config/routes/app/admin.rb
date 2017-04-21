@@ -72,6 +72,9 @@ namespace :admin do
     post :coupon
   end
 
+  resources :referrer_tokens do
+  end
+
   resources :users do
     get :emails, on: :collection
     patch :set_as_referrer
