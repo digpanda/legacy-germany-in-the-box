@@ -656,6 +656,7 @@ de:
     piece: Stk.
     no_detail: Bitte klicken Sie das <strong>Plus-Zeichen "+"</strong> an, um eine Artikelposition zu erstellen.
     product_data: Produktdaten
+    product_below_description: More Produktdaten
     product_data_info: Hier können Sie Ihre Produktdaten angeben.
     attachment: Anhang
     attachment_info: Hier können Sie für Ihre Produktdaten eine PDF-Datei als Anhang hochladen.

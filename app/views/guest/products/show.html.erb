@@ -29,6 +29,14 @@
 
       </div>
 
+      <div class="row">
+        <div class="col-md-12">
+          <% unless @product&.desc_below&.empty? %>
+            <%= @product.desc_below %>
+          <% end %>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>

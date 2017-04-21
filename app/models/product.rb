@@ -11,6 +11,7 @@ class Product
   field :name, type: String, localize: true
   field :cover, type: String # deprecated ?
   field :desc, type: String, localize: true
+  field :desc_below, type: String, localize: true
   field :status, type: Boolean, default: true
   field :approved, type: Time
   field :hs_code, type: String
