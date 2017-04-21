@@ -2361,17 +2361,17 @@ html {
 input, textarea, select, a, button {
   outline: none !important; }
 
-.content-customer {
-  max-width: 1230px;
+.content {
   margin: 0 auto; }
+
+.content-customer {
+  max-width: 1230px; }
 
 .content-shopkeeper {
-  max-width: 1500px;
-  margin: 0 auto; }
+  max-width: 1500px; }
 
 .content-admin {
-  max-width: 1700px;
-  margin: 0 auto; }
+  max-width: 1700px; }
 
 *, *:before, *:after {
   box-sizing: inherit; }

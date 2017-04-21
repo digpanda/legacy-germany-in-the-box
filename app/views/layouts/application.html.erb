@@ -21,7 +21,7 @@
     <div class="container-fluid">
       <%= render "layouts/#{solve_section}/header" %>
       <%= render "layouts/#{solve_section}/subheader" %>
-      <div class="content-<%= solve_section %>">
+      <div class="content content-<%= solve_section %>">
         <%= yield %>
       </div>
       <%= render "layouts/#{solve_section}/footer" %>
