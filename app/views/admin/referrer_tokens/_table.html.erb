@@ -1,0 +1,42 @@
+<% if referrer_tokens.size > 0 %>
+  <table class="white-table">
+    <thead>
+    <th>
+      Name
+    </th>
+    <th>
+      Type
+    </th>
+    <th>
+      Group
+    </th>
+    <th>
+      Action
+    </th>
+    </thead>
+    <tbody>
+    <% referrer_tokens.each do |referrer_token| %>
+      <tr>
+        <td>
+          <%= referrer_token.name %>
+        </td>
+        <td>
+          <%= referrer_token.type %>
+        </td>
+        <td>
+          <%= referrer_token.group %>
+        </td>
+        <td>
+          <%= render partial: 'admin/referrer_tokens/table/action', :locals => { :referrer_token => referrer_token } %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <div class="+white-box +centered">
+    <h4>
+      No referrer tokens found
+    </h4>
+  </div>
+<% end %>
