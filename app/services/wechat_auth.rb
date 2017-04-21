@@ -75,6 +75,10 @@ class WechatAuth < BaseService
   def update_user_info(access_token, openid)
     parsed_response = get_user_info(access_token, openid)
 
+    unless @user.referrer
+      Referrer.create(user: @user)
+    end
+
     @user&.referrer.update(nickname: parsed_response['nickname'])
     @user.update(wechat_openid: parsed_response['openid'])
   end
