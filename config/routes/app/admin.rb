@@ -70,6 +70,11 @@ namespace :admin do
 
   resources :referrers do
     post :coupon
+    get :provisions
+
+    resources :provision_operations, :controller => 'referrers/provision_operations' do
+    end
+    
   end
 
   resources :referrer_tokens do

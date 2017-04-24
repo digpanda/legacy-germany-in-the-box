@@ -11,6 +11,9 @@ class Admin::ReferrersController < ApplicationController
     @referrers = Referrer.all
   end
 
+  def provisions
+  end
+
   def new
     @referrer_token = ReferrerToken.create
     @url = "https://open.weixin.qq.com/connect/oauth2/authorize?" +
