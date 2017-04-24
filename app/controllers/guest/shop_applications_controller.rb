@@ -51,7 +51,7 @@ class Guest::ShopApplicationsController < ApplicationController
 
   def shopkeeper_from_shop_application!(shop_application)
     User.create({
-      :username => shop_application.email,
+      :nickname => shop_application.email,
       :email => shop_application.email,
       :password => shop_application.code[0, 8],
       :password_confirmation => shop_application.code[0, 8],

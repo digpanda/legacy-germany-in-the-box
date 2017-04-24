@@ -4,7 +4,7 @@ class Referrer
   field :reference_id, type: String # was referrer_id in User
   field :nickname, type: String
   field :group, type: String
-  
+
   belongs_to :user, :class_name => "User", :inverse_of => :referrer
   belongs_to :referrer_token, :class_name => "ReferrerToken", :inverse_of => :referrer
   has_many :coupons, :class_name => "Coupon", :inverse_of => :referrer
@@ -31,6 +31,10 @@ class Referrer
 
   def short_nickname
     nickname&.split(//)&.first(3)&.join.to_s
+  end
+
+  def total_provisions
+    provisions.sum(:provision)
   end
 
 end
