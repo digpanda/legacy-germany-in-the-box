@@ -17,7 +17,10 @@
         Quantity
       </th>
       <th>
-        Unit Price
+        Unit Price (Raw)
+      </th>
+      <th>
+        Unit Price (After Discount)
       </th>
       <th>
         Total Price
@@ -41,6 +44,10 @@
         </td>
         <td>
           <%= order_item.quantity %>
+        </td>
+        <td>
+          <%= editable_field(order_item, admin_order_item_path(order_item), :price_per_unit, :text_field) %>
+          <!-- <%= order_item.price_per_unit %> -->
         </td>
         <td>
           <%= order_item.sku.decorate.price_after_discount_in_euro %>

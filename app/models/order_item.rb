@@ -9,10 +9,17 @@ class OrderItem
 
   field :taxes_per_unit, type: Float
   field :shipping_per_unit, type: Float
+  field :price_per_unit, type: Float
 
   field :referrer_rate, type: Float, default: 0.0
 
-  before_save :ensure_taxes_per_unit, :ensure_shipping_per_unit
+  before_save :ensure_taxes_per_unit, :ensure_shipping_per_unit, :ensure_price_per_unit
+
+  def ensure_price_per_unit
+    unless price_per_unit
+      self.price_per_unit = sku.price_per_unit
+    end
+  end
 
   def ensure_taxes_per_unit
     unless taxes_per_unit
@@ -84,11 +91,11 @@ class OrderItem
   # using it as end_price would make a double discount which would be false. please avoid this.
   # NOTE : we want to get the `price` per unit not the `total_price` because of BorderGuru API
   def price_with_coupon_applied
-    (price * order.total_discount_percent).round(2)
+    (price_per_unit * order.total_discount_percent).round(2)
   end
 
   def total_price
-    quantity * price
+    quantity * price_per_unit
   end
 
   def total_taxes
@@ -100,7 +107,7 @@ class OrderItem
   end
 
   def price_with_taxes
-    price + taxes_per_unit
+    price_per_unit + taxes_per_unit
   end
 
   def volume

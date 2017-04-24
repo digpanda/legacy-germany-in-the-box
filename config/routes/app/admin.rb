@@ -62,6 +62,9 @@ namespace :admin do
     patch :reset_border_guru_order
   end
 
+  resources :order_items do
+  end
+
   resource :search, :controller => 'search' do
   end
 
@@ -74,7 +77,7 @@ namespace :admin do
 
     resources :provision_operations, :controller => 'referrers/provision_operations' do
     end
-    
+
   end
 
   resources :referrer_tokens do

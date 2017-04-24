@@ -29,6 +29,12 @@ class Sku
   embedded_in :product
   embedded_in :order_item
 
+  # TODO : this is an alias which should be turned
+  # into a real database field at some point
+  def price_per_unit
+    price
+  end
+
   # sku can be embedded in order_item and product
   # therefore you access the product linked to it
   # in different ways
