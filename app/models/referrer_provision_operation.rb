@@ -6,6 +6,6 @@ class ReferrerProvisionOperation
   field :amount, type: Float, default: 0
   field :desc, type: String
 
-  belongs_to :referrer_provision
+  belongs_to :referrer
 
 end
