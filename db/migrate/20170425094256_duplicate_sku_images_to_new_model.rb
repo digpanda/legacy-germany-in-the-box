@@ -7,7 +7,7 @@ class DuplicateSkuImagesToNewModel < Mongoid::Migration
         [:img0, :img1, :img2, :img3].each do |field|
           if sku.send(field) && !sku.send(field).url.empty?
             image = sku.images.new
-            image.file = sku.send(field)
+            image.remote_file_url = sku.send("remote_#{field}_url")
             image.save
           end
         end
@@ -21,7 +21,7 @@ class DuplicateSkuImagesToNewModel < Mongoid::Migration
       [:img0, :img1, :img2, :img3].each do |field|
         if sku.send(field) && !sku.send(field).url.empty?
           image = sku.images.new
-          image.file = sku.send(field)
+          image.remote_file_url = sku.send("remote_#{field}_url")
           image.save
         end
       end
