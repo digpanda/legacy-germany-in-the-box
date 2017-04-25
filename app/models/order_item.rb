@@ -16,6 +16,7 @@ class OrderItem
   before_save :ensure_price_per_unit, :ensure_taxes_per_unit, :ensure_shipping_per_unit
 
   def ensure_price_per_unit
+    puts "ENSURE PRICE PER UNIT"
     unless price_per_unit
       self.price_per_unit = sku.price_per_unit
     end
@@ -95,7 +96,6 @@ class OrderItem
   end
 
   def total_price
-    self.reload
     quantity * price_per_unit
   end
 
