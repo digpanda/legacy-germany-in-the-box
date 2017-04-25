@@ -95,6 +95,7 @@ class OrderItem
   end
 
   def total_price
+    self.reload
     quantity * price_per_unit
   end
 
