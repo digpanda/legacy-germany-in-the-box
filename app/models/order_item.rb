@@ -95,7 +95,6 @@ class OrderItem
   end
 
   def total_price
-    puts "Order Item #{self.id}"
     quantity * price_per_unit
   end
 
