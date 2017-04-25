@@ -7,7 +7,8 @@ class SkuDecorator < Draper::Decorator
   decorates :sku
 
   def highlighted_image
-    raw_images_urls.first
+    images.first&.file&.url
+    # raw_images_urls.first
   end
 
   def raw_images_urls

@@ -10,7 +10,7 @@ class Admin::Shops::Products::SkusController < ApplicationController
   before_action :set_product, :set_shop
   before_action :set_sku, except: [:index, :new, :create]
   before_action :breadcrumb_admin_shops, :breadcrumb_admin_shop_products,
-                :breadcrumb_admin_edit_product, :breadcrumb_admin_product_skus
+                :breadcrumb_admin_edit_product, :breadcrumb_admin_product_skus, :except => [:destroy_image, :destroy_image_file]
   before_action :breadcrumb_admin_product_edit_sku, only: [:edit]
 
   def index
@@ -20,6 +20,7 @@ class Admin::Shops::Products::SkusController < ApplicationController
   def new
     @sku = Sku.new
     sku.product = product
+    build_sku_images!
   end
 
   # the sku create is actually an update of the product itself
@@ -39,6 +40,7 @@ class Admin::Shops::Products::SkusController < ApplicationController
   end
 
   def edit
+    build_sku_images!
   end
 
   def update
@@ -94,5 +96,9 @@ class Admin::Shops::Products::SkusController < ApplicationController
       # we throw away the useless option ids
       sku_params[:option_ids].reject!(&:empty?)
     end
+  end
+
+  def build_sku_images!
+    4.times { sku.images.build }
   end
 end

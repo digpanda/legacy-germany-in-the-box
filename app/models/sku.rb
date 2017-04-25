@@ -29,6 +29,9 @@ class Sku
   embedded_in :product
   embedded_in :order_item
 
+  has_many :images, as: :image
+  accepts_nested_attributes_for :images, :allow_destroy => true
+
   # TODO : this is an alias which should be turned
   # into a real database field at some point
   def price_per_unit

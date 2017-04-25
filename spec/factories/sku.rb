@@ -19,6 +19,10 @@ FactoryGirl.define do
     img2 { Rack::Test::UploadedFile.new(File.join(Rails.root, 'public', 'samples', 'images', 'product', '400x400.png')) }
     img3 { Rack::Test::UploadedFile.new(File.join(Rails.root, 'public', 'samples', 'images', 'product', '400x400.png')) }
 
+    after(:build) do |sku|
+      sku.images = build_list(:image, 3)
+    end
+
     trait :with_small_volume do
       space_length 5
       space_width 5

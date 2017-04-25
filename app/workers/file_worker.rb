@@ -24,6 +24,15 @@ class FileWorker
   def copy_images_and_attachment
     images!
     attach!
+    copy_images!
+  end
+
+  def copy_images!
+    @product_sku.images.each do |image|
+      new_image = @target_sku.images.new
+      CopyCarrierwaveFile::CopyFileService.new(image, new_image, :file).set_file
+      new_image.save
+    end
   end
 
   def images!

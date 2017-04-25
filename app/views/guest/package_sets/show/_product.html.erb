@@ -6,7 +6,7 @@
     <button data-remodal-action="close" class="remodal-close"></button>
 
     <!-- Image -->
-    <div class="product-miniblock__image" style="background-image:url('<%= package_sku.sku.decorate.image_url(:img0, :fullsize) %>');">
+    <div class="product-miniblock__image" style="background-image:url('<%= package_sku.sku.images&.first&.file&.url %>');">
     </div>
 
     <div class="clearfix"></div>
@@ -29,7 +29,7 @@
   <a data-remodal-target="package-sku-<%= package_sku.id %>" href="#" >
 
   <!-- Image -->
-  <div class="product-miniblock__image lazy" data-original="<%= package_sku.sku.decorate.image_url(:img0, :fullsize) %>" style="background-image:url('/images/grey.png');">
+  <div class="product-miniblock__image lazy" data-original="<%= package_sku.sku.images&.first&.file&.url %>" style="background-image:url('/images/grey.png');">
     <div class="product-miniblock__zoom">
       <i class="fa fa-search"></i>
     </div>

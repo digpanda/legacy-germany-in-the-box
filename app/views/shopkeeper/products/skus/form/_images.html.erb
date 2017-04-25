@@ -7,11 +7,11 @@
   </div>
 
   <div class="row">
-    <% [:img0, :img1, :img2, :img3].each do |field| %>
-    <div class="col-md-3">
-      <%= js_file_upload(form: form, field: field) %>
-    </div>
+    <%= form.fields_for :images do |field| %>
+      <div class="col-md-3">
+        <%= field.label :file, "Optional Image ##{solve_index}" %>
+        <%= js_image_file_upload(form: field, assoc: form.object, field: :file) %>
+      </div>
     <% end %>
   </div>
-
 </div>

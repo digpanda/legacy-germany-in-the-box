@@ -7,18 +7,18 @@ class ProductDecorator < Draper::Decorator
   decorates :product
 
   def product_cover_url
-    if sku = skus.first
-      first_nonempty = sku.valid_images.first
-      sku.decorate.image_url(first_nonempty, :thumb) if first_nonempty
+    skus.each do |sku|
+      image = sku.images&.first&.file&.url
+      return image if image
     end
+
+    nil
   end
 
   def featured_sku_img_url(img_field, version)
-    return nil unless mas = featured_sku
+    return nil unless sku = featured_sku
 
-    if mas.valid_images.include?(img_field)
-      mas.decorate.image_url(img_field, version)
-    end
+    first_sku_image
   end
 
   def format_desc
@@ -35,7 +35,7 @@ class ProductDecorator < Draper::Decorator
   end
 
   def first_sku_image
-    skus.first ? skus.first.decorate.highlighted_image : 'no_image_available.png' # to be refactored ?
+    product_cover_url || 'no_image_available.png'
   end
 
   def best_discount

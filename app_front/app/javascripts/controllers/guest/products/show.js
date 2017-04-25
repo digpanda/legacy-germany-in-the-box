@@ -324,6 +324,7 @@ var ProductsShow = {
    */
   refreshSkuThumbnailImages: function(images) {
 
+      $('#gallery').empty();
     for (let i = 0; i < images.length; i++) {
 
       let image = images[i];
@@ -332,9 +333,11 @@ var ProductsShow = {
       // in case of transfer bug to the front-end
       if (image.fullsize != null) {
 
-        if ($('#thumbnail-'+i).length > 0) {
-          $('#thumbnail-'+i).html('<a href="#" data-image="'+image.fullsize+'" data-zoom-image="'+image.zoomin+'"><div class="product-page__thumbnail-image" style="background-image:url('+image.thumb+');"></div></a>');
-        }
+          $('#gallery').append(
+              '<div id="thumbnail-' + i + '" class="col-md-2 col-xs-4 +centered">' +
+              '<a href="#" data-image="'+image.fullsize+'" data-zoom-image="'+image.zoomin+'"><div class="product-page__thumbnail-image" style="background-image:url('+image.thumb+');"></div></a>' +
+              '</div>'
+          );
 
       }
 

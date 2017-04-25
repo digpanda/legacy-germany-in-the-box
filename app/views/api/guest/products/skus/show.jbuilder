@@ -18,13 +18,12 @@ json.discount @sku.discount
 
 json.images do
 
-  [*0..3].each do |n|
-    label = "img#{n}"
+  @sku.images.each do |image|
     json.array! [{
-      :thumb => @sku.decorate.image_url(label, :thumb),
-      :fullsize => @sku.decorate.image_url(label, :fullsize),
-      :zoomin => @sku.decorate.image_url(label, :zoomin)
-      }]
+                     :thumb => image.file.url,
+                     :fullsize => image.file.url,
+                     :zoomin => image.file.url
+                 }]
   end
 
 end
