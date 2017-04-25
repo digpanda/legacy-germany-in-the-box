@@ -72,6 +72,7 @@ class Shop
 
   has_many  :products,        inverse_of: :shop,  dependent: :restrict
   has_many  :orders,          inverse_of: :shop,  dependent: :restrict
+  has_many  :coupons,         inverse_of: :shop,  dependent: :restrict
   has_many  :payment_gateways,  inverse_of: :shop,  dependent: :restrict
   has_many  :package_sets, inverse_of: :shop, dependent: :restrict
 

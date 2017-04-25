@@ -15,7 +15,13 @@ Description <%= form.text_field :desc %>
 <br />
 <br />
 
-Reference User <%= form.select :referrer, options_from_collection_for_select(Referrer.all, :id, :nickname, form.object.referrer&.id), :include_blank => true %>
+Shop <%= form.select :shop, options_from_collection_for_select(Shop.all, :id, :shopname, form.object.shop&.id), :include_blank => true %>
+<br />
+<br />
+
+Reference User <%= form.select :referrer, options_from_collection_for_select(Referrer.all, :id, :reference_id, form.object.referrer&.id), :include_blank => true %>
+<br />
+<em>Note : this is binded to the provision system. It does not restrict the coupon to any customer.</em>
 <br />
 <br />
 

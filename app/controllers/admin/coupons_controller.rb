@@ -34,6 +34,7 @@ class Admin::CouponsController < ApplicationController
 
   def update
     clean_referrer!
+    clean_shop!
     if coupon.update(coupon_params)
       flash[:success] = "The coupon was updated."
       redirect_to admin_coupons_path
@@ -80,6 +81,10 @@ class Admin::CouponsController < ApplicationController
 
   def clean_referrer!
     coupon_params[:referrer] = nil if coupon_params[:referrer].empty?
+  end
+
+  def clean_shop!
+    coupon_params[:shop] = nil if coupon_params[:shop].empty?
   end
 
   def coupon_params
