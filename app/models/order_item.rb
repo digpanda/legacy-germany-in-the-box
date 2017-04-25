@@ -35,7 +35,7 @@ class OrderItem
   end
 
   belongs_to :product
-  belongs_to :order, touch: true,  :counter_cache => true
+  belongs_to :order,  :counter_cache => true
   belongs_to :package_set
 
   # if we use the model somewhere else than the product
