@@ -144,7 +144,6 @@ class Order
 
   def refresh_referrer_provision!
     if referrer
-      puts "REFRESH REFERRER PROVISION"
       referrer_provision = ReferrerProvision.where(order: self, referrer: referrer).first
       if bought?
         referrer_provision ||= ReferrerProvision.create(order: self, referrer: referrer)
