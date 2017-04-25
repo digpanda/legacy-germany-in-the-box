@@ -5,7 +5,7 @@ class OrderItem
   SKU_DELEGATE_EXCEPTION = [:quantity]
   MAX_DESCRIPTION_CHARACTERS = 200
 
-  field :quantity,        type: Integer,    default: 1
+  field :quantity, type: Integer,    default: 1
 
   field :taxes_per_unit, type: Float
   field :shipping_per_unit, type: Float
@@ -17,6 +17,7 @@ class OrderItem
 
   def ensure_price_per_unit
     unless price_per_unit
+      puts "ENSURE PRICE PER UNIT TRIGGERED FOR NO REASON"
       self.price_per_unit = sku.price_per_unit
     end
   end
