@@ -1840,7 +1840,12 @@ body {
     color: #d6506c;
     font-weight: bold;
     font-size: 23px;
-    margin: 0.5em; }
+    margin: 0 0.5em 0.5em 0.5em; }
+  .package-set-block__original-price {
+    color: #8b8b8b;
+    font-weight: bold;
+    font-size: 18px;
+    text-decoration: line-through; }
   .package-set-block__wrapper {
     position: absolute;
     width: 95%;
