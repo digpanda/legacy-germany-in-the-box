@@ -115,7 +115,7 @@ class Shop
   scope :has_address, -> { where({ :addresses => { :$not => { :$size => 0 } } }) }
 
   scope :is_bg_merchant,  ->    { where(:bg_merchant_id.ne => nil) }
-  scope :can_buy,         ->    { is_active.is_bg_merchant.has_address }
+  scope :can_buy,         ->    { is_active.has_address }
   scope :highlighted,     ->    { where(highlight: true) }
 
   before_save :ensure_shopkeeper
