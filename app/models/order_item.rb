@@ -13,11 +13,10 @@ class OrderItem
 
   field :referrer_rate, type: Float, default: 0.0
 
-  before_save :ensure_taxes_per_unit, :ensure_shipping_per_unit, :ensure_price_per_unit
+  before_save :ensure_price_per_unit, :ensure_taxes_per_unit, :ensure_shipping_per_unit
 
   def ensure_price_per_unit
     unless price_per_unit
-      puts "ENSURE PRICE PER UNIT TRIGGERED FOR NO REASON"
       self.price_per_unit = sku.price_per_unit
     end
   end
