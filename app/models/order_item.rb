@@ -97,7 +97,6 @@ class OrderItem
   def total_price
     # NOTE : this has to be removed at some point
     ensure_price_per_unit
-    SlackDispatcher.new.message("PRICE PER UNIT : #{price_per_unit}")
     quantity * price_per_unit
   end
 
