@@ -1,3 +1,7 @@
+# NOTE : this is super disgusting library which was originally fine
+# instance variables are going freestyle everywhere and it's absolutely not stable.
+# it must be changed as soon as possible.
+# - Laurent
 class WechatAuth < BaseService
 
   attr_reader :code, :force_referrer
