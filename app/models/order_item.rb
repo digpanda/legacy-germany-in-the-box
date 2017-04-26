@@ -95,6 +95,7 @@ class OrderItem
   end
 
   def total_price
+    ensure_price_per_unit # TODO : to remove at some point
     quantity * price_per_unit
   end
 
