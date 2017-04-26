@@ -33,6 +33,7 @@ class OrderMaker < BaseService
   # end
 
   def add(sku, product, quantity, price:nil, taxes:nil, shipping:nil, locked: false, package_set:nil)
+
     existing_order_item = order.order_items.with_sku(sku).first
 
     # if the order item already exists and isn't locked, we add the quantity
@@ -51,7 +52,6 @@ class OrderMaker < BaseService
     unless sku.enough_stock?(quantity)
       return return_with(:error, error: not_available_msg(product, sku))
     end
-
 
     order_item = build_order_item!(sku, quantity, price, taxes, shipping, locked, package_set)
     if order_item.persisted?
@@ -109,7 +109,7 @@ class OrderMaker < BaseService
     # in those cases we will slightly change the sku price for this case
     # NOTE : we change the sku price of the freshly cloned sku
     if price
-      order_item.sku.price = price
+      order_item.price_per_unit = price
     end
   end
 
