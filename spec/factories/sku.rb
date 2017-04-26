@@ -20,7 +20,7 @@ FactoryGirl.define do
     # img1 { Rack::Test::UploadedFile.new(File.join(Rails.root, 'public', 'samples', 'images', 'product', '400x400.png')) }
     # img2 { Rack::Test::UploadedFile.new(File.join(Rails.root, 'public', 'samples', 'images', 'product', '400x400.png')) }
     # img3 { Rack::Test::UploadedFile.new(File.join(Rails.root, 'public', 'samples', 'images', 'product', '400x400.png')) }
-    #
+
 
     trait :with_small_volume do
       space_length 5
