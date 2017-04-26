@@ -1,10 +1,11 @@
 class WechatAuth < BaseService
 
-  attr_reader :code
+  attr_reader :code, :force_referrer
 
-  def initialize(code, token)
+  def initialize(code, token, force_referrer: false)
     @code = code
     @token = token
+    @force_referrer = force_referrer
   end
 
   def resolve!
@@ -64,7 +65,7 @@ class WechatAuth < BaseService
   def auth_user
     if wechat_silent_solver.success?
       @user = wechat_silent_solver.data[:customer]
-      if ReferrerToken.valid_token?(token)
+      if ReferrerToken.valid_token?(token) && force_referrer
         @user.assign_referrer_id
         @tourist_guide = true
       end
