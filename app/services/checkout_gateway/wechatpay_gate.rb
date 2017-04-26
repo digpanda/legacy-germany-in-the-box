@@ -48,7 +48,6 @@ class CheckoutGateway
     #  result_code"=>"FAIL"
 
     def unified_order
-      SlackDispatcher.new.message("TOTAL FEE : #{total_fee}")
       @unified_order ||= WxPay::Service.invoke_unifiedorder({
         body: "Order #{order.id}-#{order_payment.id}",
         out_trade_no: "#{order_payment.id}",
