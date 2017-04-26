@@ -25,6 +25,7 @@ FactoryGirl.define do
 
     before(:create) do |product|
       if product.shop_id.nil?
+        binding.pry
         product.shop_id = create_list(:shop, 1).first.id
         product.save
         product.reload
@@ -40,15 +41,6 @@ FactoryGirl.define do
 
   trait(:with_20_percent_discount) do
     skus { [FactoryGirl.build(:sku, :option_ids => [self.options.first.suboptions.first.id.to_s], :discount => 20)] }
-    # after(:create) do |product|
-    #   # we apply the discount to each sku of the product
-    #   product.skus.each do |sku|
-    #     sku.discount = 20
-    #     sku.save
-    #   end
-    #   product.save
-    #   product.reload
-    # end
   end
 
   trait(:with_small_volume) do
