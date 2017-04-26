@@ -46,6 +46,12 @@ class Api::Guest::PackageSetsController < Api::ApplicationController
       add_package_set
     end
 
+    # TODO : WARNING - this should be refactored, we duplicate this coupon handler reset everywhere
+    # it was done as a quickfix before emergency release.
+    if order.coupon
+      CouponHandler.new(identity_solver, order.coupon, order).reset
+    end
+
     render 'api/guest/order_items/update'
   end
 
