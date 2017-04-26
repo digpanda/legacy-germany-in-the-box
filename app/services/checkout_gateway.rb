@@ -29,6 +29,7 @@ class CheckoutGateway < BaseService
   end
 
   def wechatpay
+    SlackDispatcher.new.message("WECHATPAY TEST : #{wechatpay_checkout}")
     return_with(:success, :page => wechatpay_checkout)
   end
 
