@@ -81,12 +81,15 @@ class WechatAuth < BaseService
     @user.update(wechat_openid: parsed_response['openid'])
   end
 
+  # TODO : this part is fucking disgusting and should be completely refactored.
+  # - Laurent.
   def set_nickname(nickname)
-    unless @user.referrer
+    if !@user.referrer && force_referrer
       Referrer.create(user: @user)
     end
-
-    @user&.referrer.update(nickname: nickname)
+    if @user.referrer
+      @user&.referrer.update(nickname: nickname)
+    end
   end
 
   def sign_in_user(user)
