@@ -75,7 +75,7 @@ class OrderMaker < BaseService
       order_item.sku_origin = sku
       # `package_set` may be nil most of the time
       order_item.package_set = package_set
-      
+
       if package_set
         order_item.referrer_rate = package_set&.referrer_rate || 0.0
       else

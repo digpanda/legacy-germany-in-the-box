@@ -1,5 +1,7 @@
 require 'rails_helper'
 
+# NOTE : this should be totally redone, it's not clean.
+# - Laurent, 26-04-2017
 describe CouponHandler, :type => :request do
   before :each do
     self.stub(:session)

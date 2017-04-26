@@ -26,6 +26,7 @@ class Sku
 
   field :option_ids,    type: Array,      default: []
   field :ean,          type: String
+  
   embedded_in :product
   embedded_in :order_item
 
