@@ -12,6 +12,7 @@ FactoryGirl.define do
 
     options   { [FactoryGirl.build(:variant)] }
     skus      { [FactoryGirl.build(:sku, :option_ids => [self.options.first.suboptions.first.id.to_s])] }
+    shop      { FactoryGirl.build(:shop) }
 
     association :duty_category, factory: :duty_medicine_category, strategy: :build
 
@@ -24,12 +25,6 @@ FactoryGirl.define do
     end
 
     before(:create) do |product|
-      if product.shop_id.nil?
-        binding.pry
-        product.shop_id = create_list(:shop, 1).first.id
-        product.save
-        product.reload
-      end
       if product.duty_category_id.nil?
         product.duty_category_id = create_list(:duty_health_category, 1).first.id
         product.save
