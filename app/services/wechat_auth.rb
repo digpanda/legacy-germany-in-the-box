@@ -2,7 +2,7 @@ class WechatAuth < BaseService
 
   attr_reader :code, :force_referrer
 
-  def initialize(code, token, force_referrer)
+  def initialize(code, token, force_referrer=false)
     @code = code
     @token = token
     @force_referrer = force_referrer

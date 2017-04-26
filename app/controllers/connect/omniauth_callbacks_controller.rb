@@ -51,7 +51,7 @@ class Connect::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         user = wechat_auth.data[:customer]
         @tourist_guide = true
 
-        if ReferrerToken.valid_token?(params[:token])
+        if ReferrerToken.valid_token?(params[:token]) && params[:force_referrer]
           unless user.referrer
             Referrer.create(user: user)
           end
