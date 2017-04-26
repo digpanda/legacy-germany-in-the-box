@@ -117,6 +117,7 @@ class CheckoutGateway
     end
 
     def total_fee
+      SlackDispatcher.new.message("TOTAL FEE : #{total_fee}")
       (order.end_price.in_euro.to_yuan.amount * 100).to_i
     end
 
