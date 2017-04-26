@@ -24,6 +24,11 @@ class Api::Guest::PackageSetsController < Api::ApplicationController
           render json: {success: false, error: added_item.error[:error]}
           return
         end
+
+        if order.coupon
+          CouponHandler.new(identity_solver, order.coupon, order).reset
+        end
+
       end
       # we first empty the cart manager to make it fresh
       # cart_manager.empty! <-- to avoid multiple package order
