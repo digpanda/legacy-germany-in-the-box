@@ -20,6 +20,7 @@ feature "checkout process", :js => true  do
     end
 
     scenario "pays successfully with wirecard visa" do
+      page.driver.render("/tmp/file_#{Time.now.to_i}.jpg", :full => true)
       pay_with_wirecard_visa!
       on_identity_page?
       manual_partner_confirmed?
