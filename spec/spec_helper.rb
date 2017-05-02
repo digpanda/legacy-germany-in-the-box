@@ -46,11 +46,12 @@ Capybara.register_driver :poltergeist do |app|
   Capybara::Poltergeist::Driver.new(app,
                                     :js_errors => false,
                                     :debug => false,
-                                    # :phantomjs_options => ["--debug=yes"]
+                                    :phantomjs_options => ["--debug=yes"],
+                                    :window_size => [1800,1000],
                                     )
 end
 #
-Capybara.ignore_hidden_elements = true
+Capybara.ignore_hidden_elements = false
 # END POLTERGEIST
 #
 # we turn VCR off by default because we don't want to use it systematically
@@ -58,4 +59,4 @@ VCR.turn_off!
 WebMock.allow_net_connect!
 # WebMock.disable_net_connect!
 
-Capybara.current_session.driver.resize(1200, 1000)
+#Capybara.current_session.driver.resize(3000, 1300)

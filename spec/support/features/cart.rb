@@ -4,13 +4,18 @@ module Helpers
 
       module_function
 
+      def go_to_cart!
+        page.first('#cart').trigger('click')
+        expect(page).to have_content("总计")
+      end
+
       # go to the package set area
       # add the first one to the cart
       def package_to_cart!
         visit guest_package_sets_path
-        click_on "查看更多信息"
-        expect(page).to have_content("¥ 3800.00") # should be better detection than this
-        click_on "加入购物车"
+        page.first(".package-select").trigger('click')
+        expect(page).to have_content("加入购物车")
+        page.first("#add-package-set").trigger('click')
       end
 
       # go to the product page and add it to our cart

@@ -2338,6 +2338,9 @@ body {
   color: #ffffff;
   background: transparent; }
 
+#cart {
+  z-index: 11; }
+
 .js-editable button {
   color: #3498db !important; }
 

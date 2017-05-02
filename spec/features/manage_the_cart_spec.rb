@@ -12,7 +12,7 @@ feature "manage the cart", :js => true  do
 
       product_to_cart!(product)
       on_shop_page?
-      page.first('#cart').click
+      page.first('#cart').trigger('click')
       on_chinese_login_page?
 
     end
@@ -48,9 +48,9 @@ feature "manage the cart", :js => true  do
 
         page.driver.browser.navigate.refresh # the AJAX call could make problem otherwise
         visit customer_cart_path
-        2.times { page.first('.js-set-quantity-plus').click } # raise quantity
+        2.times { page.first('.js-set-quantity-plus').trigger('click') } # raise quantity
         expect(page.first('input[id^=order-item-quantity]').value).to eql("3")
-        1.times { page.first('.js-set-quantity-minus').click }
+        1.times { page.first('.js-set-quantity-minus').trigger('click') }
         expect(page.first('input[id^=order-item-quantity]').value).to eql("2")
 
       end

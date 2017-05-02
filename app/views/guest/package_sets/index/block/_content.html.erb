@@ -5,6 +5,6 @@
       <div class="package-set-block__original-price"><%= package_set.casual_price.in_euro.to_yuan.display %></div>
       <div class="package-set-block__price"><%= package_set.end_price.in_euro.to_yuan.display %></div>
       <p style="margin-top: -1em;">( <%= I18n.t(:all_included, scope: :cart) %> )</p>
-      <%= link_to I18n.t(:more_info, scope: :package_set), guest_package_set_path(package_set), class: "main-button__hollow" %>
+      <%= link_to I18n.t(:more_info, scope: :package_set), guest_package_set_path(package_set), class: "main-button__hollow package-select" %>
   </div>
 </div>

@@ -40,7 +40,7 @@
             <%= order.end_price.in_euro.to_yuan.display %>
             <% end %>
           </td>
-          <td>
+          <td class="tracking">
             <% if order.bought? %>
               <% if order.logistic_partner == :borderguru %>
                 <%= link_to I18n.t(:open, scope: :edit_order), tracking_id_customer_order_border_guru_path(order), :target => '_blank' %>

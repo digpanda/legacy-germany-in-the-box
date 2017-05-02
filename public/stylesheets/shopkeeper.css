@@ -1450,6 +1450,9 @@
   color: #fdfdfd;
   background: transparent; }
 
+#cart {
+  z-index: 11; }
+
 .js-editable button {
   color: #3498db !important; }
 
