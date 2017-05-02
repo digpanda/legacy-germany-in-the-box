@@ -54,7 +54,7 @@ module Helpers
         page.first('.\\+checkout-button').click
         on_payment_method_page?
         page.first('a[id=alipay]').click
-        wait_for_page('.alipay-logo')
+        expect(page.current_url).to have_content("alipaydev.com")
       end
 
       def pay_with_wechatpay!(mode: :success)
