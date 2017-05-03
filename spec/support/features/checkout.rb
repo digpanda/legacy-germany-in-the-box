@@ -16,6 +16,8 @@ module Helpers
 
       # fill the complete chinese address
       def fill_in_checkout_address!
+        expect(page).to have_content("个人信息")
+
         fill_in 'address[fname]', :with => '薇'
         fill_in 'address[lname]', :with => '李'
         fill_in 'address[mobile]', :with => '13802049742'
@@ -31,36 +33,41 @@ module Helpers
         fill_in 'address[street]', :with => '华江里'
         fill_in 'address[zip]', :with => '300222'
 
-        page.first('#address_primary').click
-        page.first('input[type=submit]').click
+        page.first('#address_primary').trigger('click')
+        page.first('input[type=submit]').trigger('click')
+
+        expect(page).to have_content("请从以下地址中选择")
       end
 
       # fill in new checkout addresses even if one exists
       def fill_in_with_multiple_addresses!
-        page.first('#button-new-address').click
+        expect(page).to have_content("请从以下地址中选择")
+
+        page.first('#button-new-address').trigger('click')
         fill_in_checkout_address!
-        page.first('input[id^=delivery_destination_id').click
+        page.first('input[id^=delivery_destination_id]').trigger('click')
       end
 
       def cancel_wirecard_visa_payment!
-        page.first('a[id=visa]').click # pay with wirecard
+        page.first('a[id=visa]').trigger('click') # pay with wirecard
         wait_for_page('#hpp-logo') # we are on wirecard hpp
-        find('#hpp-form-cancel').click
+        find('#hpp-form-cancel').trigger('click')
         wait_for_page('#hpp-confirm-button-yes') # we are on wirecard hpp
-        find('#hpp-confirm-button-yes').click
+        find('#hpp-confirm-button-yes').trigger('click')
       end
 
       def pay_with_alipay!(mode: :success)
-        page.first('.\\+checkout-button').click
+        page.first('.\\+checkout-button').trigger('click')
         on_payment_method_page?
-        page.first('a[id=alipay]').click
-        wait_for_page('.alipay-logo')
+        page.first('a[id=alipay]').trigger('click')
+        expect(page).to have_content("我的收银台") # wait for the page to show up
+        expect(page.current_url).to have_content("alipaydev.com")
       end
 
       def pay_with_wechatpay!(mode: :success)
-        page.first('.\\+checkout-button').click
+        page.first('.\\+checkout-button').trigger('click')
         on_payment_method_page?
-        page.first('a[id=wechatpay]').click
+        page.first('a[id=wechatpay]').trigger('click')
         # we are just redirected without crashing
         # this is a pretty weak test
         # we compensate by testing the callbacks elsewhere
@@ -70,11 +77,12 @@ module Helpers
       # NOTE : this is not working properly anymore
       # enter all the payment information and pay
       def pay_with_wirecard_visa!(mode: :success)
-        page.first('.\\+checkout-button').click # go to payment step
+        page.first('.\\+checkout-button').trigger('click') # go to payment step
         on_payment_method_page?
-        page.first('a[id=visa]').click # pay with wirecard
+        page.first('a[id=visa]').trigger('click') # pay with wirecard
         wait_for_page('#hpp-logo') # we are on wirecard hpp
         apply_wirecard_creditcard!(mode: mode)
+
         if mode == :success
           expect(page).to have_css("#message-success") # means success in chinese
           on_identity_page?
@@ -83,7 +91,6 @@ module Helpers
           expect(page).to have_css("#message-error")
         end
       end
-
 
       # access the manual logistic tracking
       def manual_partner_confirmed?
@@ -96,7 +103,7 @@ module Helpers
       def borderguru_confirmed?
         borderguru_label_window = window_opened_by do
           visit customer_orders_path
-          click_link "追单" # click on "download your label" in chinese
+          page.first('.tracking > a').trigger('click') # click on "download your label" in chinese
         end
 
         within_window borderguru_label_window do
@@ -117,7 +124,12 @@ module Helpers
         expect(page).to have_css("#expiration_year_list option[value='2019']")
         find("#expiration_year_list option[value='2019']").select_option
 
-        find('#hpp-form-submit').click
+        # NOTE : poltergeist struggles to deal with wirecard system
+        # we must put on sleep for this call.
+        sleep(0.5)
+        expect(page).to have_css("#hpp-form-submit")
+        find('#hpp-form-submit').trigger('click')
+        sleep(5)
       end
 
     end

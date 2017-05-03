@@ -12,6 +12,7 @@ FactoryGirl.define do
 
     options   { [FactoryGirl.build(:variant)] }
     skus      { [FactoryGirl.build(:sku, :option_ids => [self.options.first.suboptions.first.id.to_s])] }
+    shop      { FactoryGirl.create(:shop) }
 
     association :duty_category, factory: :duty_medicine_category, strategy: :build
 
@@ -24,11 +25,6 @@ FactoryGirl.define do
     end
 
     before(:create) do |product|
-      if product.shop_id.nil?
-        product.shop_id = create_list(:shop, 1).first.id
-        product.save
-        product.reload
-      end
       if product.duty_category_id.nil?
         product.duty_category_id = create_list(:duty_health_category, 1).first.id
         product.save
@@ -39,33 +35,15 @@ FactoryGirl.define do
   end
 
   trait(:with_20_percent_discount) do
-    after(:create) do |product|
-      # we apply the discount to each sku of the product
-      product.skus.each do |sku|
-        sku.discount = 20
-        sku.save
-      end
-      product.save
-      product.reload
-    end
+    skus { [FactoryGirl.build(:sku, :option_ids => [self.options.first.suboptions.first.id.to_s], :discount => 20)] }
   end
 
   trait(:with_small_volume) do
-    before(:create) do |product|
-      # remove and make new skus
-      product.skus = [FactoryGirl.build(:sku, :with_small_volume, :option_ids => [product.options.first.suboptions.first.id.to_s])]
-      product.save
-      product.reload
-    end
+    skus { [FactoryGirl.build(:sku, :with_small_volume, :option_ids => [self.options.first.suboptions.first.id.to_s])] }
   end
 
   trait(:with_big_volume) do
-    before(:create) do |product|
-      # remove and make new skus
-      product.skus = [FactoryGirl.build(:sku, :with_big_volume, :option_ids => [product.options.first.suboptions.first.id.to_s])]
-      product.save
-      product.reload
-    end
+    skus { [FactoryGirl.build(:sku, :with_big_volume, :option_ids => [self.options.first.suboptions.first.id.to_s])] }
   end
 
   factory :variant,  :class => VariantOption do

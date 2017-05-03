@@ -73,7 +73,7 @@ class ApplicationController < ActionController::Base
   end
 
   def wechat_auth
-    @wechat_auth ||= WechatAuth.new(params[:code], params[:token]).resolve!
+    @wechat_auth ||= WechatAuth.new(params[:code], params[:token], params[:force_referrer]).resolve!
   end
 
   def freeze_header

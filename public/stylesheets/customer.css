@@ -595,6 +595,18 @@ body {
   .page-static a:hover {
     color: #68a423; }
 
+.page-error h1 {
+  color: #ffffff; }
+
+.page-error img {
+  width: 450px; }
+
+.page-error a {
+  font-size: 20px;
+  color: #ffffff; }
+  .page-error a:hover {
+    color: #ffffff; }
+
 .payment-methods__block {
   margin-bottom: 1em; }
   @media (max-width: 994px) {
@@ -2337,6 +2349,9 @@ body {
 .slicknav_nav a:hover {
   color: #ffffff;
   background: transparent; }
+
+#cart {
+  z-index: 11; }
 
 .js-editable button {
   color: #3498db !important; }

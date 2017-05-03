@@ -382,6 +382,18 @@
   background-color: #8b8b8b;
   border: 3px white solid; }
 
+.page-error h1 {
+  color: #fdfdfd; }
+
+.page-error img {
+  width: 450px; }
+
+.page-error a {
+  font-size: 20px;
+  color: #fdfdfd; }
+  .page-error a:hover {
+    color: #fdfdfd; }
+
 @font-face {
   font-family: 'Montserrat';
   font-style: normal;

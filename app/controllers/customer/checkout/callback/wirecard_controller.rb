@@ -21,7 +21,7 @@ class Customer::Checkout::Callback::WirecardController < ApplicationController
 
   # make the user return to the previous page
   def cancel
-    redirect_to navigation.back(2)
+    redirect_to navigation.back(1)
   end
 
   # alias of success
@@ -39,7 +39,7 @@ class Customer::Checkout::Callback::WirecardController < ApplicationController
       flash[:error] = callback.error
     end
 
-    redirect_to navigation.back(2)
+    redirect_to navigation.back(1)
   end
 
   private

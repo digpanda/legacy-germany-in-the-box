@@ -25,7 +25,7 @@
           <%= f.text_field :lname, :class => 'form-control', :required => true, :placeholder => '请输入中文' %>
         </div>
       <% end %>
-      
+
       <% unless @customer.fname %>
         <div class="form-group">
           <%= f.label :fname, I18n.t(:fname, scope: :edit_address) %>

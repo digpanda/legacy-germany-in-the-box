@@ -7,11 +7,11 @@ describe "force redirection", :type => :request  do
       let(:customer) { FactoryGirl.create(:customer) }
 
       it "succeeds after log-in" do
-          
+
         visit customer_orders_path
         expect(current_path).to eq(new_user_session_path)
         login!(customer)
-        expect(current_path).to eq(customer_orders_path)
+        expect(page).to have_current_path(customer_orders_path)
 
       end
 
@@ -30,7 +30,7 @@ describe "force redirection", :type => :request  do
         visit admin_categories_path
         expect(current_path).to eq(new_user_session_path)
         login!(admin)
-        expect(current_path).to eq(admin_categories_path)
+        expect(page).to have_current_path(admin_categories_path)
 
       end
 
@@ -43,9 +43,9 @@ describe "force redirection", :type => :request  do
       it "fails after log-in" do
 
         visit admin_categories_path
-        expect(current_path).to eq(new_user_session_path)
+        expect(page).to have_current_path(new_user_session_path)
         login!(shopkeeper)
-        expect(current_path).not_to eq(admin_categories_path)
+        expect(page).not_to have_current_path(admin_categories_path)
 
       end
 

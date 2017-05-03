@@ -8,14 +8,16 @@ module Helpers
         visit new_user_session_path
         fill_in 'user[email]', :with => account.email
         fill_in 'user[password]', :with => '12345678'
-        click_button 'sign_in'
+        sleep(0.5)
+        page.first("#sign_in").trigger('click')
+        screenshot!
       end
 
       def logout!
-        visit new_user_session_path
-        fill_in 'user[email]', :with => account.email
-        fill_in 'user[password]', :with => '12345678'
-        click_button 'sign_in'
+        # visit new_user_session_path
+        # fill_in 'user[email]', :with => account.email
+        # fill_in 'user[password]', :with => '12345678'
+        # page.first("#sign_in").trigger('click')
       end
 
     end

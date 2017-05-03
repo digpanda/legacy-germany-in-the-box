@@ -14,7 +14,7 @@ var NavigationModel = {
       data: {"location" : location}
 
     }).done(function(res) {
-
+      
       callback(res);
 
     }).error(function(err) {

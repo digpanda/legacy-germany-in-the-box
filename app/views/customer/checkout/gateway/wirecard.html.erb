@@ -1,4 +1,8 @@
 <div class="row">
+
+  <!-- Not keeping memory of this page -->
+  <div id="js-navigation-disabled"></div>
+
   <!-- Data needed for the payment checkout -->
   <%= content_tag(:div, nil, :id => "bank-details", :data => @checkout.hosted_payment_datas.compact) %>
   <div class="+spacer"></div>

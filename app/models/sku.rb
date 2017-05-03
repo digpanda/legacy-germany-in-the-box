@@ -10,6 +10,7 @@ class Sku
   field :img1,          type: String
   field :img2,          type: String
   field :img3,          type: String
+  
   field :price,         type: BigDecimal
   field :purchase_price, type: BigDecimal, default: 0 # the price we bought it
   field :quantity,      type: Integer
@@ -26,6 +27,7 @@ class Sku
 
   field :option_ids,    type: Array,      default: []
   field :ean,          type: String
+
   embedded_in :product
   embedded_in :order_item
 

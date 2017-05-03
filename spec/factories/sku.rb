@@ -13,15 +13,14 @@ FactoryGirl.define do
     space_length { rand(1..4) }
     space_width { rand(1..4) }
     space_height { rand(1..4) }
+    images { FactoryGirl.build_list(:image, 4) }
 
-    img0 { Rack::Test::UploadedFile.new(File.join(Rails.root, 'public', 'samples', 'images', 'product', '400x400.png')) }
-    img1 { Rack::Test::UploadedFile.new(File.join(Rails.root, 'public', 'samples', 'images', 'product', '400x400.png')) }
-    img2 { Rack::Test::UploadedFile.new(File.join(Rails.root, 'public', 'samples', 'images', 'product', '400x400.png')) }
-    img3 { Rack::Test::UploadedFile.new(File.join(Rails.root, 'public', 'samples', 'images', 'product', '400x400.png')) }
+    # TODO : this should be removed after a while
+    # img0 { Rack::Test::UploadedFile.new(File.join(Rails.root, 'public', 'samples', 'images', 'product', '400x400.png')) }
+    # img1 { Rack::Test::UploadedFile.new(File.join(Rails.root, 'public', 'samples', 'images', 'product', '400x400.png')) }
+    # img2 { Rack::Test::UploadedFile.new(File.join(Rails.root, 'public', 'samples', 'images', 'product', '400x400.png')) }
+    # img3 { Rack::Test::UploadedFile.new(File.join(Rails.root, 'public', 'samples', 'images', 'product', '400x400.png')) }
 
-    after(:build) do |sku|
-      sku.images = build_list(:image, 3)
-    end
 
     trait :with_small_volume do
       space_length 5

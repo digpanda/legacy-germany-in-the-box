@@ -111,7 +111,7 @@ group :development, :test, :staging, :local do
   gem "factory_girl_rails"
   gem "rspec-rails", "~> 3.0"
   gem "capybara"
-  gem "poltergeist"
+  gem "poltergeist", "1.15.0"
   gem "selenium-webdriver"
   gem "chromedriver-helper"
   #gem "mongoid-rspec", "3.0.0"
