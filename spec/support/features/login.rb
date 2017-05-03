@@ -10,6 +10,7 @@ module Helpers
         fill_in 'user[password]', :with => '12345678'
         sleep(0.5)
         page.first("#sign_in").trigger('click')
+        expect(page).not_to have_current_path(new_user_session_path)
       end
 
       def logout!

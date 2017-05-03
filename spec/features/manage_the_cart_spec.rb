@@ -27,7 +27,7 @@ feature "manage the cart", :js => true  do
     scenario "go to the empty cart manager" do
 
       visit customer_cart_path
-      expect(page).to have_current_path(customer_cart_path) # empty cart manager page
+      on_cart_page? # empty cart manager page
 
     end
 
@@ -40,7 +40,7 @@ feature "manage the cart", :js => true  do
         # page.driver.browser.navigate.refresh # the AJAX call could make problem otherwise
         reload_page
         visit customer_cart_path
-        expect(page).to have_current_path(customer_cart_path)
+        on_cart_page?
         expect(page).to have_css ".\\+checkout-button", text: "购买" # go checkout
 
       end

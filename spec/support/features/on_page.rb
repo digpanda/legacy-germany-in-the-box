@@ -25,9 +25,13 @@ module Helpers
         expect(page).to have_css '.product-page__description'
       end
 
+      # def on_cart_page?
+      #   expect(page).to have_css '.\\+checkout-button'
+      #   expect(page).to have_css '.total__end-price'
+      # end
+
       def on_cart_page?
-        expect(page).to have_css '.\\+checkout-button'
-        expect(page).to have_css '.total__end-price'
+        expect(page).to have_current_path(customer_cart_path)
       end
 
       def on_chinese_login_page?
