@@ -16,7 +16,7 @@ module Helpers
 
       # fill the complete chinese address
       def fill_in_checkout_address!
-        expect(page).to have_content("请从以下地址中选择")
+        expect(page).to have_content("个人信息")
 
         fill_in 'address[fname]', :with => '薇'
         fill_in 'address[lname]', :with => '李'
@@ -60,6 +60,7 @@ module Helpers
         page.first('.\\+checkout-button').trigger('click')
         on_payment_method_page?
         page.first('a[id=alipay]').trigger('click')
+        expect(page).to have_content("我的收银台") # wait for the page to show up
         expect(page.current_url).to have_content("alipaydev.com")
       end
 

@@ -1502,6 +1502,7 @@ $(document).ready(function () {
    * Disable console.log for production and tests (poltergeist)
    */
   if (info.environment == "production" || info.environment == "test") {
+    // || (info.environment == "test")
     if (typeof window.console != "undefined") {
       window.console = {};
       window.console.log = function () {};
@@ -1517,7 +1518,9 @@ $(document).ready(function () {
 
     for (var idx in starters) {
 
-      console.info('Loading starter : ' + starters[idx]);
+      if (info.environment != "test") {
+        console.info('Loading starter : ' + starters[idx]);
+      }
 
       var formatted_starter = Casing.underscoreCase(starters[idx]).replace('-', '_');
       var _obj = require("javascripts/starters/" + formatted_starter);
@@ -2663,7 +2666,7 @@ module.exports = Bootstrap;
 });
 
 require.register("javascripts/starters/china_city.js", function(exports, require, module) {
-'use strict';
+"use strict";
 
 /**
  * ChinaCity Class
@@ -2692,7 +2695,6 @@ var ChinaCity = {
                 var selects;
                 selects = $(this).find('.city-select');
                 return selects.change(function () {
-                    console.log('what');
                     var $this, next_selects;
                     $this = $(this);
                     next_selects = selects.slice(selects.index(this) + 1);
@@ -3215,7 +3217,10 @@ var Navigation = {
    */
   init: function init() {
 
-    this.storeNavigation();
+    if ($('#js-navigation-disabled').length == 0) {
+
+      this.storeNavigation();
+    }
   },
 
   /**

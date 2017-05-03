@@ -8,7 +8,10 @@ var Navigation = {
      */
     init: function() {
 
-      this.storeNavigation();
+      if ($('#js-navigation-disabled').length == 0) {
+
+        this.storeNavigation();
+      }
 
     },
 

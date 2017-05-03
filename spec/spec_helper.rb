@@ -1,3 +1,22 @@
+# figure out where we are being loaded from
+if $LOADED_FEATURES.grep(/spec\/spec_helper\.rb/).any?
+  begin
+    raise "foo"
+  rescue => e
+    puts <<-MSG
+  ===================================================
+  It looks like spec_helper.rb has been loaded
+  multiple times. Normalize the require to:
+    require "spec/spec_helper"
+  Things like File.join and File.expand_path will
+  cause it to be loaded multiple times.
+  Loaded this time from:
+    #{e.backtrace.join("\n    ")}
+  ===================================================
+    MSG
+  end
+end
+
 RSpec.configure do |config|
 
   #config.include Rack::Test::Methods
@@ -46,7 +65,7 @@ Capybara.register_driver :poltergeist do |app|
   Capybara::Poltergeist::Driver.new(app,
                                     :js_errors => false,
                                     :debug => false,
-                                    :phantomjs_options => ["--debug=yes"],
+                                    # :phantomjs_options => ["--debug=yes"],
                                     :window_size => [1800,1000],
                                     )
 end

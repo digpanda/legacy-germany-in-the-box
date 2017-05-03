@@ -37,7 +37,8 @@ feature "manage the cart", :js => true  do
 
       scenario "cart manager shows checkout button" do
 
-        page.driver.browser.navigate.refresh # the AJAX call could make problem otherwise
+        # page.driver.browser.navigate.refresh # the AJAX call could make problem otherwise
+        reload_page
         visit customer_cart_path
         expect(page).to have_current_path(customer_cart_path)
         expect(page).to have_css ".\\+checkout-button", text: "购买" # go checkout
@@ -46,7 +47,8 @@ feature "manage the cart", :js => true  do
 
       scenario "change the quantity of one product in the cart manager" do
 
-        page.driver.browser.navigate.refresh # the AJAX call could make problem otherwise
+        # page.driver.browser.navigate.refresh # the AJAX call could make problem otherwise
+        reload_page
         visit customer_cart_path
         2.times { page.first('.js-set-quantity-plus').trigger('click') } # raise quantity
         expect(page.first('input[id^=order-item-quantity]').value).to eql("3")

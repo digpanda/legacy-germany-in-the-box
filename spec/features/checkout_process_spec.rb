@@ -45,7 +45,8 @@ feature "checkout process", :js => true  do
     before(:each) do
       logistic!(partner: :borderguru)
       product_to_cart!(product)
-      page.driver.browser.navigate.refresh # the AJAX call could make problem otherwise
+      # page.driver.browser.navigate.refresh # the AJAX call could make problem otherwise
+      reload_page
       page.first('#cart').click # go to checkout
       page.first('.\\+checkout-button').click # go to address step
     end
@@ -94,7 +95,7 @@ feature "checkout process", :js => true  do
       # end
 
       scenario "cancel payment" do
-        page.first('input[id^=delivery_destination_id').click # click on the first address
+        page.first('input[id^=delivery_destination_id]').click # click on the first address
         page.first('.\\+checkout-button').click # go to payment step
         on_payment_method_page?
         cancel_wirecard_visa_payment!
@@ -102,7 +103,7 @@ feature "checkout process", :js => true  do
       end
 
       scenario "fail to pay" do
-        page.first('input[id^=delivery_destination_id').click # click on the first address
+        page.first('input[id^=delivery_destination_id]').click # click on the first address
         pay_with_wirecard_visa!(mode: :fail)
       end
 
@@ -116,7 +117,7 @@ feature "checkout process", :js => true  do
           # we check the 20% off is shown on the cart before all
           expect(page).to have_content("-20%")
           page.first('.\\+checkout-button').click # go to address step
-          page.first('input[id^=delivery_destination_id').click # click on the first address
+          page.first('input[id^=delivery_destination_id]').click # click on the first address
           pay_with_wirecard_visa!
           borderguru_confirmed?
         end
@@ -129,7 +130,7 @@ feature "checkout process", :js => true  do
           page.first('#cart').click
           make_and_apply_coupon!
           page.first('.\\+checkout-button').click
-          page.first('input[id^=delivery_destination_id').click
+          page.first('input[id^=delivery_destination_id]').click
           pay_with_wirecard_visa!
           borderguru_confirmed?
         end
