@@ -10,7 +10,6 @@ module Helpers
         fill_in 'user[password]', :with => '12345678'
         sleep(0.5)
         page.first("#sign_in").trigger('click')
-        screenshot!
       end
 
       def logout!

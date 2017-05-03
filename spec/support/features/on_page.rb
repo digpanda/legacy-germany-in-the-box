@@ -3,14 +3,16 @@ module Helpers
     module OnPage
 
       XIPOST_BASE_URL = "xipost.de".freeze unless defined? XIPOST_BASE_URL
+      BORDERGURU_BASE_URL = "borderguru.com".freeze unless defined? BORDERGURU_BASE_URL
 
       module_function
 
+      def on_borderguru_page?
+        expect(page).to have_current_path(/#{BORDERGURU_BASE_URL}/, url: true)
+      end
+
       def on_identity_page?
-        expect(page).to have_content("身份证") # waiting for the page
-        expect(page.current_url).to have_content(edit_customer_identity_path) # being sure it's the right one
-        # expect(page.current_url).to have_content(XIPOST_BASE_URL) # we check the access to Xipost
-        # expect(page).to have_content "去上传身份证"
+        expect(page).to have_current_path(edit_customer_identity_path)
       end
 
       def on_shop_page?

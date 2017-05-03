@@ -2,7 +2,6 @@ module Helpers
   module Features
     module Checkout
 
-      BORDERGURU_BASE_URL = "borderguru.com".freeze unless defined? BORDERGURU_BASE_URL
       WIRECARD_CREDIT_CARD = {
                                 success: {
                                   account_number: '4012000100000007',
@@ -107,7 +106,7 @@ module Helpers
         end
 
         within_window borderguru_label_window do
-          expect(page.current_url).to have_content(BORDERGURU_BASE_URL) # we check we accessed borderguru
+          on_borderguru_page?
         end
       end
 
