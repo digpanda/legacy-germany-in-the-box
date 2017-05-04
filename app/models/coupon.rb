@@ -34,6 +34,8 @@ class Coupon
     cancelled_at.present?
   end
 
+  # TODO : should be abstracted somewhere else
+  # this kind of method within the model is evil.
   def self.create_referrer_coupon(referrer)
     unless referrer.has_coupon?
       Coupon.create({

@@ -1722,7 +1722,10 @@ body {
     position: absolute;
     left: 4.2em;
     font-size: 1.3em;
-    bottom: 0.8em; }
+    bottom: 0.7em; }
+    @media (max-width: 994px) {
+      .main-button__hollow i {
+        left: 6em; } }
   .main-button__hollow:link, .main-button__hollow:hover, .main-button__hollow:active, .main-button__hollow:visited {
     color: #85bf41; }
   .main-button__hollow:active {
