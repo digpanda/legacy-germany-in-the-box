@@ -23,6 +23,10 @@ module Concerns
         %w(jpg jpeg png)
       end
 
+      version :thumb do
+        process :resize_to_limit => [300, 300]
+      end
+
     end
 
   end

@@ -51,7 +51,7 @@ module Helpers
         page.first('.\\+checkout-button').trigger('click')
         on_payment_method_page?
         page.first('a[id=alipay]').trigger('click')
-        expect(page).to have_content("我的收银台") # wait for the page to show up
+        expect(page).to have_content("支付宝 - 网上支付 安全快速！") # wait for the page to show up
         expect(page.current_url).to have_content("alipaydev.com")
         mock_payment!(mode, OrderPayment.first)
       end
