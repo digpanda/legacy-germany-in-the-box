@@ -37,7 +37,7 @@ class Coupon
   def self.create_referrer_coupon(referrer)
     unless referrer.has_coupon?
       Coupon.create({
-                        :code => SecureRandom.hex(4)[0,4],
+                        :code => available_code,
                         :unit => :percent,
                         :discount => Setting.instance.default_coupon_discount,
                         :minimum_order => 0,
@@ -46,6 +46,15 @@ class Coupon
                         :referrer => referrer,
                         :exclude_china => false
                     })
+    end
+  end
+
+  def self.available_code
+    code = SecureRandom.hex(4)[0,4]
+    if Coupon.where(code: code).first
+      available_code
+    else
+      code
     end
   end
 

@@ -21,19 +21,18 @@ feature "checkout process", :js => true  do
 
     scenario "pays successfully with wirecard visa" do
       pay_with_wirecard_visa!
-      on_identity_page?
       manual_partner_confirmed?
     end
 
     scenario "pays successfully with alipay" do
       pay_with_alipay!
+      manual_partner_confirmed?
     end
 
-    # NOTE : we can't test it outside wechat
-    #
-    # scenario "pays successfully with wechatpay" do
-    #   pay_with_wechatpay!
-    # end
+    scenario "pays successfully with wechatpay" do
+      pay_with_wechatpay!
+      manual_partner_confirmed?
+    end
 
   end
 
@@ -45,7 +44,6 @@ feature "checkout process", :js => true  do
     before(:each) do
       logistic!(partner: :borderguru)
       product_to_cart!(product)
-      # page.driver.browser.navigate.refresh # the AJAX call could make problem otherwise
       reload_page
       page.first('#cart').click # go to checkout
       page.first('.\\+checkout-button').click # go to address step
@@ -54,13 +52,6 @@ feature "checkout process", :js => true  do
     context "without essential informations (wechat like)" do
 
       let(:customer) { FactoryGirl.create(:customer, :from_wechat, :without_name, :without_address) }
-
-      # short hook to check if we cannot access
-      # the checkout without fulfilling those informations
-      # scenario "try checking out directly and is redirected to fulfil informations" do
-      #   visit payment_method_customer_checkout_path
-      #   on_missing_info_page?
-      # end
 
       scenario "fill essential information and pay successfully" do
         on_missing_info_page?
@@ -86,21 +77,6 @@ feature "checkout process", :js => true  do
     end
 
     context "address already setup" do
-
-      # we use the default `customer` which includes a valid address
-      # ITS AUTOMATICALLY SELECTED AS PRIMARY
-      # scenario "can not go further without address selected" do
-      #   page.first('.\\+checkout-button').click # go to payment step
-      #   expect(page).to have_css("#message-error") # error output
-      # end
-
-      scenario "cancel payment" do
-        page.first('input[id^=delivery_destination_id]').click # click on the first address
-        page.first('.\\+checkout-button').click # go to payment step
-        on_payment_method_page?
-        cancel_wirecard_visa_payment!
-        on_payment_method_page?
-      end
 
       scenario "fail to pay" do
         page.first('input[id^=delivery_destination_id]').click # click on the first address

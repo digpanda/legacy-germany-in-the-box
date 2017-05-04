@@ -47,48 +47,57 @@ module Helpers
         page.first('input[id^=delivery_destination_id]').trigger('click')
       end
 
-      def cancel_wirecard_visa_payment!
-        page.first('a[id=visa]').trigger('click') # pay with wirecard
-        wait_for_page('#hpp-logo') # we are on wirecard hpp
-        find('#hpp-form-cancel').trigger('click')
-        wait_for_page('#hpp-confirm-button-yes') # we are on wirecard hpp
-        find('#hpp-confirm-button-yes').trigger('click')
-      end
-
       def pay_with_alipay!(mode: :success)
         page.first('.\\+checkout-button').trigger('click')
         on_payment_method_page?
         page.first('a[id=alipay]').trigger('click')
         expect(page).to have_content("我的收银台") # wait for the page to show up
         expect(page.current_url).to have_content("alipaydev.com")
+        mock_payment!(mode, OrderPayment.first)
       end
 
       def pay_with_wechatpay!(mode: :success)
         page.first('.\\+checkout-button').trigger('click')
         on_payment_method_page?
         page.first('a[id=wechatpay]').trigger('click')
-        # we are just redirected without crashing
-        # this is a pretty weak test
-        # we compensate by testing the callbacks elsewhere
-        wait_for_page('.germany-in-the-box')
+        expect(page).to have_css("#order-payment-live-refresh") # wechat qrcode
+        mock_payment!(mode, OrderPayment.first)
       end
 
-      # NOTE : this is not working properly anymore
-      # enter all the payment information and pay
       def pay_with_wirecard_visa!(mode: :success)
         page.first('.\\+checkout-button').trigger('click') # go to payment step
         on_payment_method_page?
         page.first('a[id=visa]').trigger('click') # pay with wirecard
         wait_for_page('#hpp-logo') # we are on wirecard hpp
-        apply_wirecard_creditcard!(mode: mode)
 
+        # apply_wirecard_creditcard!(mode: mode) # TODO : to remove
+
+        # NOTE : we used to test out the whole checkout process, entering in external websites
+        # which was very slow. we are progressively replacing those parts of the system by more
+        # atomized tests with the callbacks. At some point, this whole thing will be removed.
+        mock_payment!(mode, OrderPayment.first)
+      end
+
+      def mock_payment!(mode, order_payment)
         if mode == :success
-          expect(page).to have_css("#message-success") # means success in chinese
-          on_identity_page?
+          mock_payment_success!(order_payment)
         else
-          on_payment_method_page?
-          expect(page).to have_css("#message-error")
+          mock_payment_failure!(order_payment)
         end
+      end
+
+      def mock_payment_success!(order_payment)
+        order_payment.status = :success
+        order_payment.transaction_type = :purchase
+        order_payment.order.refresh_status_from!(order_payment)
+        order_payment.save
+      end
+
+      def mock_payment_failure!(order_payment)
+        order_payment.status = :failed
+        order_payment.transaction_type = :purchase
+        order_payment.order.refresh_status_from!(order_payment)
+        order_payment.save
       end
 
       # access the manual logistic tracking
@@ -112,6 +121,9 @@ module Helpers
 
       # process to fill in wirecard creditcard outside of our site
       # can be :success, :fail to force different results
+      #
+      # NOTE : this functionality is not in use anymore to speed up the tests.
+      #
       def apply_wirecard_creditcard!(mode: :success)
         fill_in 'first_name', :with => 'Sha'
         fill_in 'last_name', :with => 'He'
@@ -129,6 +141,15 @@ module Helpers
         expect(page).to have_css("#hpp-form-submit")
         find('#hpp-form-submit').trigger('click')
         sleep(5)
+      end
+
+      # NOTE : we should not use this code anymore as it is too slow.
+      def cancel_wirecard_visa_payment!
+        page.first('a[id=visa]').trigger('click') # pay with wirecard
+        wait_for_page('#hpp-logo') # we are on wirecard hpp
+        find('#hpp-form-cancel').trigger('click')
+        wait_for_page('#hpp-confirm-button-yes') # we are on wirecard hpp
+        find('#hpp-confirm-button-yes').trigger('click')
       end
 
     end

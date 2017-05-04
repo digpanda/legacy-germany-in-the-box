@@ -499,18 +499,6 @@
   .page-static a:hover {
     color: #659443; }
 
-.page-error h1 {
-  color: #fdfdfd; }
-
-.page-error img {
-  width: 450px; }
-
-.page-error a {
-  font-size: 20px;
-  color: #fdfdfd; }
-  .page-error a:hover {
-    color: #fdfdfd; }
-
 .payment-methods__block {
   margin-bottom: 1em; }
   @media (max-width: 994px) {
