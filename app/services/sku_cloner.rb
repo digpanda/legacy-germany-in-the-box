@@ -71,17 +71,4 @@ class SkuCloner < BaseService
     end
   end
 
-  # TODO : if anyone wants to give it a try, he's welcome
-  # - Laurent, 02/02/2017
-  # CopyFileJob = Struct.new(:sku, :clone, :field) do
-  #   def perform
-  #     Delayed::Worker.logger.debug "Processing ..."
-  #     # we now copy the file
-  #     Delayed::Worker.logger.debug "Copying ..."
-  #     CopyCarrierwaveFile::CopyFileService.new(sku, clone, field).set_file
-  #     clone.save!
-  #     Delayed::Worker.logger.debug "Processed"
-  #   end
-  # end
-
 end

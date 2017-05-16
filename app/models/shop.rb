@@ -83,7 +83,7 @@ class Shop
 
   validates :wirecard_status, inclusion: {:in => Rails.application.config.wirecard[:merchants][:status].map(&:to_sym)}
 
-  validates :agb,           inclusion: {in: [true]},    :if => lambda { self.agb.present? }
+  validates :agb, inclusion: {in: [true]},    :if => lambda { self.agb.present? }
 
   validates :register,        length: {maximum: Rails.configuration.gitb[:max_tiny_text_length]}
   validates :stories,         length: {maximum: (Rails.configuration.gitb[:max_long_text_length] * 1.25).round}

@@ -2,7 +2,6 @@ FactoryGirl.define do
 
   factory :shop, :class => Shop do
 
-    currency              'EUR'
     name                  { "#{Faker::Company.name} #{Faker::Company.suffix}"  }
     shopname              { Faker::Company.name }
     founding_year         { Helpers::Global.random_year }
@@ -10,7 +9,6 @@ FactoryGirl.define do
     philosophy            { Faker::Company.bs }
     fname                 { Faker::Name.first_name }
     lname                 { Faker::Name.last_name }
-    tel                   { Faker::PhoneNumber.phone_number }
     mail                  { Faker::Internet.email }
     hermes_pickup         true
     wirecard_status :active

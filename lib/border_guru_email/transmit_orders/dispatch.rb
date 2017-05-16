@@ -24,7 +24,7 @@ module BorderGuruEmail
         {
           :company_name => shop.name,
           :contact_name => shop.decorate.manager_full_name,
-          :contact_phone => shop.tel,
+          :contact_phone => '',
           :number_of_packages => orders.length,
           :total_weight_in_kg => total_weight,
           :mean_of_transport => MEAN_OF_TRANSPORT,
