@@ -48,27 +48,4 @@ class SkuCloner < BaseService
     clone
   end
 
-  def images!
-    IMAGES_MAP.each do |image_field|
-      copy_file(image_field)
-    end
-  end
-
-  def attach!
-    ATTACH_MAP.each do |attach_field|
-      copy_file(attach_field)
-    end
-  end
-
-
-  def copy_file(field)
-    if sku.send(field).present?
-      # clone.send("#{field}=", sku.send(field))
-      # CopyCarrierwaveFile::CopyFileService.new(sku, clone, field).set_file
-      clone.save!
-      #Delayed::Worker.logger.debug "Task in queue"
-      #Delayed::Job.enqueue CopyFileJob.new(sku, clone, field), :queue => 'clone_images'
-    end
-  end
-
 end
