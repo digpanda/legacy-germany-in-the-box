@@ -163,7 +163,7 @@ class Shop
   end
 
   def can_buy?
-    active? && bg_merchant_id != nil && addresses.is_shipping.count > 0
+    active? && addresses.is_shipping.count > 0
   end
 
   def active?
