@@ -13,19 +13,18 @@ class Shop
   field :desc,            type: String,     localize: true
   field :logo,            type: String
   field :banner,          type: String
-  
+
   field :philosophy,      type: String,     localize: true
   field :stories,         type: String,     localize: true
   field :uniqueness,      type: String,     localize: true
   field :german_essence,  type: String,     localize: true
+  field :founding_year,   type: String
 
   field :tax_number,      type: String
   field :ustid,           type: String
   field :eroi,            type: String
   field :min_total,       type: BigDecimal, default: 0
   field :status,          type: Boolean,    default: true
-  field :founding_year,   type: String
-  field :sales_channels,  type: Array,      default: []
   field :register,        type: String
   field :website,         type: String
   field :agb,             type: Boolean
@@ -43,14 +42,9 @@ class Shop
   field :seal6,           type: String
   field :seal7,           type: String
 
-  field :currency,        type: ISO4217::Currency,  default: 'EUR'
-
-  field :fname,           type: String
-  field :lname,           type: String
-  field :mobile,          type: String
-  field :tel,             type: String
+  field :fname, type: String
+  field :lname, type: String
   field :mail,            type: String
-  field :function,        type: String
 
   field :merchant_id,     type: String
   field :bg_merchant_id,  type: String
@@ -82,7 +76,6 @@ class Shop
   validates :status,        presence: true
   validates :min_total,     presence: true,   numericality: { :greater_than_or_equal_to => 0 }
   validates :shopkeeper,    presence: true
-  validates :currency,      presence: true
   validates :founding_year, presence: true,   length: {maximum: 4}
   validates :desc,          presence: true,   length: {maximum: (Rails.configuration.gitb[:max_medium_text_length] * 1.25).round}
   validates :philosophy,    presence: true,   length: {maximum: (Rails.configuration.gitb[:max_long_text_length] * 1.25).round}
@@ -100,14 +93,7 @@ class Shop
   validates :german_essence,  length: {maximum: (Rails.configuration.gitb[:max_medium_text_length] * 1.25).round}
   validates :shopname,        length: {maximum: Rails.configuration.gitb[:max_short_text_length]}
 
-  # This seems to be systematically empty, should we keep the fields ? - Laurent on 02/06/2016 (i changed to presence: false)
-  validates :fname,         presence: false,   length: {maximum: Rails.configuration.gitb[:max_tiny_text_length]}
-  validates :lname,         presence: false,   length: {maximum: Rails.configuration.gitb[:max_tiny_text_length]}
-  validates :tel,           presence: false,   length: {maximum: Rails.configuration.gitb[:max_tiny_text_length]}
   validates :mail,          presence: false,   length: {maximum: Rails.configuration.gitb[:max_short_text_length]}
-
-  validates :mobile,        length: {maximum: Rails.configuration.gitb[:max_tiny_text_length]}
-  validates :function,      length: {maximum: Rails.configuration.gitb[:max_tiny_text_length]}
 
   scope :is_active,       ->    { where( :status => true ).where( :approved.ne => nil ) }
   scope :has_address, -> { where({ :addresses => { :$not => { :$size => 0 } } }) }

@@ -32,13 +32,13 @@ module Wirecard
 
       def optional_datas
         {
-          :representative_first_name => shop.fname,
-          :representative_last_name  => shop.lname,
+          :representative_first_name => '',
+          :representative_last_name  => '',
           :representative_address    => shopkeeper_address.street_and_number,
           :representative_zip        => shopkeeper_address.zip,
           :representative_city       => shopkeeper_address.city,
-          :representative_mobile     => shop.mobile&.gsub('-', ''),
-          :representative_phone      => shop.tel&.gsub('-', ''),
+          :representative_mobile     => '',
+          :representative_phone      => '',
           :representative_fax        => '',
 
           :email               => shop.mail,

@@ -122,12 +122,9 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
     end
     sku.option_ids.uniq
 
-    # This is terrible and we should never have to do this kind of shit.
-    # Should be changed very soon.
-    sku.img0 = setup_image(:product)
-    sku.img1 = setup_image(:product)
-    sku.img2 = setup_image(:product)
-    sku.img3 = setup_image(:product)
+    5.times do
+      sku.images << Image.create(file: setup_image(:product))
+    end
 
     sku.save!
 
@@ -238,9 +235,6 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
         :tax_number     => '12345678',
         :ustid          => 'DE123456789',
         :shopname       => name,
-        :fname          => shopkeeper.fname,
-        :lname          => shopkeeper.lname,
-        :tel            => shopkeeper.mobile,
         :mail           => shopkeeper.email,
         :approved       => approved,
         :agb            => agb,
@@ -292,7 +286,6 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
       :fname                 => name,
       :lname                 => "N#{num}",
       :gender                => ['f', 'm'].sample,
-      :username              => "#{name}#{num}",
       :email                 => "#{symbol}#{num}@#{symbol}.com",
       :password              => '12345678',
       :password_confirmation => '12345678',
