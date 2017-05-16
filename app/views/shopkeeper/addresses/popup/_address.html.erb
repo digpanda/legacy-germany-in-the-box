@@ -44,20 +44,14 @@
   </div>
 </div>
 <div class="form-group">
-  <% if current_user.shop.can_change_to_billing? %>
-    <%= f.label :type do %>
-      <%= f.radio_button :type, 'billing', :required => true %> <%= I18n.t('billing', scope: :edit_address) %>
-    <% end %>
+  <%= f.label :type do %>
+    <%= f.radio_button :type, 'billing', :required => true %> <%= I18n.t('billing', scope: :edit_address) %>
   <% end %>
-  <% if current_user.shop.can_change_to_sender? %>
-    <%= f.label :type do %>
-      <%= f.radio_button :type, 'sender', :required => true %> <%= I18n.t('sender', scope: :edit_address) %>
-    <% end %>
+  <%= f.label :type do %>
+    <%= f.radio_button :type, 'sender', :required => true %> <%= I18n.t('sender', scope: :edit_address) %>
   <% end %>
-  <% if current_user.shop.can_change_to_both? %>
-    <%= f.label :type do %>
-      <%= f.radio_button :type, 'both', :required => true %> <%= I18n.t('both', scope: :edit_address) %>
-    <% end %>
+  <%= f.label :type do %>
+    <%= f.radio_button :type, 'both', :required => true %> <%= I18n.t('both', scope: :edit_address) %>
   <% end %>
 </div>
 

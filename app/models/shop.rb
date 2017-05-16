@@ -13,18 +13,18 @@ class Shop
   field :desc,            type: String,     localize: true
   field :logo,            type: String
   field :banner,          type: String
+  
   field :philosophy,      type: String,     localize: true
   field :stories,         type: String,     localize: true
+  field :uniqueness,      type: String,     localize: true
+  field :german_essence,  type: String,     localize: true
+
   field :tax_number,      type: String
   field :ustid,           type: String
   field :eroi,            type: String
-  field :sms,             type: Boolean,    default: false
-  field :sms_mobile,      type: String
   field :min_total,       type: BigDecimal, default: 0
   field :status,          type: Boolean,    default: true
   field :founding_year,   type: String
-  field :uniqueness,      type: String,     localize: true
-  field :german_essence,  type: String,     localize: true
   field :sales_channels,  type: Array,      default: []
   field :register,        type: String
   field :website,         type: String
@@ -79,8 +79,6 @@ class Shop
   belongs_to :shopkeeper,   class_name: 'User',  inverse_of: :shop
 
   validates :name,          presence: true,   length: {maximum: (Rails.configuration.gitb[:max_tiny_text_length] * 1.25).round}
-  validates :sms,           presence: true
-  validates :sms_mobile,    presence: true,   :if => lambda { self.sms }, length: {maximum: Rails.configuration.gitb[:max_tiny_text_length]}
   validates :status,        presence: true
   validates :min_total,     presence: true,   numericality: { :greater_than_or_equal_to => 0 }
   validates :shopkeeper,    presence: true
@@ -119,7 +117,6 @@ class Shop
   scope :highlighted,     ->    { where(highlight: true) }
 
   before_save :ensure_shopkeeper
-  before_save :clean_sms_mobile,  :unless => lambda { self.sms }
   before_save :force_wirecard_status
   before_save :force_merchant_id
 
@@ -170,18 +167,6 @@ class Shop
     status == true && approved != nil
   end
 
-  def can_change_to_billing?
-    true
-  end
-
-  def can_change_to_sender?
-    true
-  end
-
-  def can_change_to_both?
-    true
-  end
-
   private
 
   def force_wirecard_status
@@ -190,10 +175,6 @@ class Shop
 
   def ensure_shopkeeper
     shopkeeper.role == :shopkeeper
-  end
-
-  def clean_sms_mobile
-    self.sms_mobile = nil
   end
 
   def self.with_can_buy_products
