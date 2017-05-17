@@ -1841,9 +1841,7 @@ body {
     font-size: 18px;
     text-decoration: line-through; }
   .package-set-block__wrapper {
-    position: absolute;
-    width: 95%;
-    position: absolute; }
+    width: 95%; }
   .package-set-block__content {
     position: relative;
     padding: 2em;
