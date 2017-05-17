@@ -20,7 +20,7 @@ module Helpers
         fill_in 'address[fname]', :with => '薇'
         fill_in 'address[lname]', :with => '李'
         fill_in 'address[mobile]', :with => '13802049742'
-        fill_in 'address[pid]', :with => '11000019790225207X'
+        # fill_in 'address[pid]', :with => '11000019790225207X'
 
         loop until page.all(:css, '#address_province option')[1]
         page.all(:css, '#address_province option')[1].select_option

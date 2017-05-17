@@ -1843,10 +1843,7 @@ body {
   .package-set-block__wrapper {
     position: absolute;
     width: 95%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%); }
+    position: absolute; }
   .package-set-block__content {
     position: relative;
     padding: 2em;
