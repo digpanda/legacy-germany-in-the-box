@@ -8,10 +8,9 @@ class ProductDecorator < Draper::Decorator
 
   def product_cover_url
     skus.each do |sku|
-      image = sku.images&.first&.file&.url
+      image = sku.images&.first&.thumb
       return image if image
     end
-
     nil
   end
 
