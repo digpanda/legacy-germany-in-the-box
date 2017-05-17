@@ -1,6 +1,6 @@
 defaults: &defaults
   size:
-    thumb: 400
+    thumb: 250
     detail: 1000
     fullsize: 800
     zoomin: 1000

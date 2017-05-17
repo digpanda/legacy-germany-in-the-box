@@ -24,7 +24,7 @@ module Concerns
       end
 
       version :thumb do
-        process :resize_to_limit => [300, 300]
+        process :resize_to_limit => [250, 250]
       end
 
     end
