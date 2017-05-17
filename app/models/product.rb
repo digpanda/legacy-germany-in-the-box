@@ -16,7 +16,7 @@ class Product
   field :approved, type: Time
   field :hs_code, type: String
   field :highlight, type: Boolean, default: false
-  field :taxes_base, type: Symbol, default: :constant # [:constant, :duty_category]
+  field :taxes_base, type: Symbol, default: :constant # [:constant, :special_constant, :duty_category]
 
   field :exclude_germany, type: Boolean, default: false
   field :shipping_rate_type, type: Symbol, default: :general

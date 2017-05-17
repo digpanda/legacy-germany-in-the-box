@@ -2,6 +2,7 @@
 class TaxesPrice
 
   CONSTANT_RATE = 11.9.freeze
+  SPECIAL_CONSTANT_RATE = 26.63.freeze
 
   attr_reader :sku, :product
 
@@ -13,11 +14,17 @@ class TaxesPrice
   def price
     if product.taxes_base == :constant
       from_constant
+    elsif product.taxes_base == :special_constant
+      from_special_constant
     elsif product.taxes_base == :duty_category
       from_duty_category
     else
       0.0
     end
+  end
+
+  def from_special_constant
+    (sku.price * (SPECIAL_CONSTANT_RATE / 100)).to_f
   end
 
   def from_constant
