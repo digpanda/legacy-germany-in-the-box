@@ -53,6 +53,8 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
     3.times { create_user(:admin) }
 
     10.times { setup_shopkeeper create_user(:shopkeeper) }
+    8.times { setup_packageset }
+
     convert_product_without_first_sku_left(random_product)
     convert_product_with_documentation_attached(random_product)
 
@@ -360,6 +362,41 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
 
     num_products.times do |time|
       create_product(shop)
+    end
+
+  end
+
+  def setup_packageset
+
+    num = PackageSet.count
+    shop = Shop.all.shuffle.first
+
+    puts "Let's create PackageSet N#{num} ..."
+
+    package_set = PackageSet.create({
+      :shop => shop,
+      :name => "Package Set #{num}",
+      :desc => Faker::Lorem.paragraph,
+      :long_desc => Faker::Lorem.paragraph(3),
+      :cover => setup_image(:banner),
+      :details_cover => setup_image(:banner),
+      :casual_price => Faker::Number.decimal(2)
+    })
+
+    5.times do
+      sku = shop.products.has_available_sku.all.shuffle.first&.skus.first
+      package_set.package_skus.create({
+        :sku_id => sku.id,
+        :product => sku.product,
+        :quantity => Faker::Number.between(1, 3),
+        :price => Faker::Number.decimal(2),
+        :taxes_per_unit => Faker::Number.decimal(1),
+        :shipping_per_unit => Faker::Number.decimal(1)
+      })
+    end
+
+    4.times do
+      package_set.images.create(file: setup_image(:product))
     end
 
   end
