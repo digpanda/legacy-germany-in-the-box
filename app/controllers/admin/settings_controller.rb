@@ -17,10 +17,10 @@ class Admin::SettingsController < ApplicationController
   end
 
   def update
-    Setting.instance.update(settings_params)
+    Setting.instance.update!(settings_params)
     # this line is here for a reason, please keep it or fix it.
     # NOTE : upload image not persisting if no previous image before
-    Setting.instance.save!
+    Setting.instance.save(validation: false)
     redirect_to navigation.back(1)
   end
 
