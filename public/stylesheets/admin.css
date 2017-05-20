@@ -751,7 +751,8 @@
   color: #659443; }
 
 .coupon__field {
-  width: 100px; }
+  width: 100px;
+  border: 2px solid grey; }
 
 .coupon__apply {
   text-transform: uppercase;
