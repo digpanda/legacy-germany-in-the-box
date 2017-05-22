@@ -13,6 +13,9 @@ class Api::Guest::CartController < Api::ApplicationController
     order.order_items.where(package_set: package_set).delete_all
 
     if destroy_empty_order!
+      if order.coupon
+        CouponHandler.new(identity_solver, order.coupon, order).reset
+      end
       if @order.persisted?
         render 'api/guest/order_items/update'
       else
@@ -20,7 +23,6 @@ class Api::Guest::CartController < Api::ApplicationController
       end
     else
       render json: throw_error(:unable_to_process).merge(error: order_item.errors.full_messages.join(', '))
-
     end
   end
 
