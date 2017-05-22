@@ -1,9 +1,13 @@
 <!-- The logic is in show.html.bk.erb, this one is made for mobile version only -->
 
-<!-- HERE GOES THE BREADCRUMB -->
+<!-- BACK -->
 <div class="row">
   <div class="col-xs-12">
-    BACK
+    <div class="cart__back">
+      <a href="#">
+        <i class="digpanda-back"></i>继续购物
+      </a>
+    </div>
   </div>
 </div>
 
@@ -21,51 +25,90 @@
 
       <!-- Order Item -->
       <div class="cart__order-item">
-        <div class="col-xs-3">
-          <!-- Image -->
-          <div class="cart__order-item-image">
-            <img src="/samples/images/product/400x400.png">
+        <div class="row">
+
+          <div class="col-xs-3">
+
+            <!-- Image -->
+            <div class="cart__order-item-image">
+              <img src="/samples/images/product/400x400.png">
+            </div>
+
+          </div>
+          <div class="col-xs-8">
+            <div class="row">
+
+              <div class="col-xs-11">
+
+                <!-- Title -->
+                <div class="cart__order-item-title">
+                  Product 1
+                </div>
+
+                <!-- Description -->
+                <div class="cart__order-item-description">
+                  Category - Category
+                </div>
+
+              </div>
+
+              <div class="col-xs-1 +nopadding">
+                <!-- Remove Item -->
+                <div class="cart__order-item-remove">
+                  <a href="#">
+                    <i class="digpanda-remove"></i>
+                  </a>
+                </div>
+              </div>
+
+            </div>
+            <div class="row">
+              <div class="col-xs-12">
+                <hr />
+              </div>
+            </div>
+            <div class="row">
+
+              <div class="col-xs-5">
+                <!-- Quantity -->
+                <div class="cart__order-item-quantity">
+                  Quantity
+                  <div class="cart__order-item-quantity-select">
+                    <span class="cart__order-item-quantity-select-minus">-</span> <span class="cart__order-item-quantity-select-value">1</span> <span class="cart__order-item-quantity-select-plus">+</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-xs-1">
+                <!-- Separator -->
+                <div class="cart__order-item-separator">
+                </div>
+              </div>
+
+              <div class="col-xs-5">
+                <!-- Total -->
+                <div class="cart__order-item-total">
+                  Total
+                  <div class="cart__order-item-total-digits">
+                    $ 100.00
+                  </div>
+                </div>
+              </div>
+
+            </div>
           </div>
         </div>
-        <div class="col-xs-8">
-          <div class="row">
 
-            <div class="col-xs-11">
-              <!-- Title -->
-              <div class="cart__order-item-title">
-                Product 1
-              </div>
-              <!-- Description -->
-              <div class="cart__order-item-description">
-                Category - Category
-              </div>
-            </div>
+      </div>
 
-            <div class="col-xs-1 +nopadding">
-              <!-- Remove Item -->
-              <div class="cart__order-item-remove">
-                X
-              </div>
-            </div>
-
-          </div>
-          <div class="row">
-            <div class="col-xs-6">
-              <!-- Quantity -->
-              <div class="cart__order-item-quantity">
-                QUANTITY
-              </div>
-            </div>
-            <div class="col-xs-6">
-              <!-- Total -->
-              <div class="cart__order-item-total">
-                TOTAL
-              </div>
-            </div>
-          </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <hr />
         </div>
       </div>
 
+      HERE IS THE TOTAL
     </div>
+
   </div>
 </div>
