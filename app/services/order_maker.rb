@@ -61,6 +61,9 @@ class OrderMaker < BaseService
     return_with(:error, error: I18n.t(:add_product_ko, scope: :edit_order))
   end
 
+  def remove_package_set!(package_set)
+    order.order_items.where(package_set: package_set).delete_all
+  end
 
   private
 

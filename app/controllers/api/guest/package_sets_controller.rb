@@ -21,6 +21,8 @@ class Api::Guest::PackageSetsController < Api::ApplicationController
                         locked: true,
                         package_set: package_sku.package_set)
         unless added_item.success?
+          # we need to rollback the order
+          order_maker.remove_package_set!(package_set)
           render json: {success: false, error: added_item.error[:error]}
           return
         end
