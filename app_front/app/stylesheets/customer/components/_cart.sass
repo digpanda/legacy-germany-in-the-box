@@ -4,7 +4,7 @@
     margin-top: 0.5em
     margin-bottom: 1em
     margin-left: -15px // we compensate margin from bootstrap for full width
-    margin-right: -15px // we compensate margin from bootstrap for full width
+    //margin-right: -15px // we compensate margin from bootstrap for full width
 
   // back icon with text to go back to previous page
   +part(back)
@@ -22,25 +22,38 @@
     font-weight: bold
 
   +part(order-item)
+
+    margin-left: -15px
+    margin-right: -15px
+
+    padding-top: 1em
+    padding-bottom: 1em
+    border-top: 1px solid $color-grey
+    // border-bottom: 1px solid $color-grey
+
   +part(order-item-image)
+    margin-left: 15px
 
   +part(order-item-title)
     color: $color-very-black
-    font-size: 20px
+    font-size: 24px
     font-weight: bold
 
   +part(order-item-description)
     color: $color-medium-dark-grey
+    font-size: 13px
+    margin-top: -0.5em
 
   +part(order-item-remove)
     a
       color: $color-very-black
       font-size: 24px
-      margin-left: 0.8em
+      margin-right: 15px
 
   +part(order-item-quantity)
     text-align: center
     font-size: 15px
+    border-right: 1px solid $color-grey
 
   +part(order-item-quantity-select)
     font-weight: bold
@@ -48,25 +61,68 @@
   +part(order-item-quantity-select-minus)
     font-size: 18px
     margin-right: 0.4em
+    font-weight: lighter
+    a
+      color: $color-very-black
 
   +part(order-item-quantity-select-plus)
     font-size: 18px
     margin-left: 0.4em
+    font-weight: lighter
+    a
+      color: $color-very-black
 
   +part(order-item-quantity-select-value)
-    font-size: 18px
-
-  +part(order-item-separator)
-    display: block
-    min-height: 80px
-    border-right: 1px solid $color-grey // add the grey line
-
+    font-size: 20px
 
   +part(order-item-total)
     text-align: center
     font-size: 15px
 
   +part(order-item-total-digits)
-    font-size: 18px
+    font-size: 22px
     color: $color-dark-green
     font-weight: bold
+
+  +part(total)
+
+    .row
+      margin-bottom: 0.5em // minor hook for more space
+
+    font-size: 20px
+
+    // margin-right: -15px
+    padding-top: 1em
+    padding-bottom: 0
+
+    border-top: 1px solid $color-grey
+    border-bottom: 1px solid $color-grey
+
+  +part(total-goods)
+  +part(total-goods-price)
+    text-align: center
+
+  +part(total-shipping)
+  +part(total-shipping-price)
+    text-align: center
+
+  +part(total-end)
+    font-weight: bold
+  +part(total-end-price)
+    text-align: center
+    font-weight: bold
+
+  +part(total-coupon)
+    input
+      border: none
+      +placeholder($color-grey-placeholder)
+
+  +part(total-coupon-button)
+    text-align: center
+    input
+      border: none
+      background: transparent
+      color: $color-blue
+      font-weight: bold
+      text-align: center
+      margin: auto 0

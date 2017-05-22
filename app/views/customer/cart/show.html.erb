@@ -21,11 +21,10 @@
         Shop 1
       </div>
 
-      <hr />
-
       <!-- Order Item -->
-      <div class="cart__order-item">
-        <div class="row">
+      <!-- We keep it with the row for sticking to the full width -->
+
+        <div class="row cart__order-item">
 
           <div class="col-xs-3">
 
@@ -69,28 +68,22 @@
             </div>
             <div class="row">
 
-              <div class="col-xs-5">
+              <div class="col-xs-6 +nopadding-right">
                 <!-- Quantity -->
                 <div class="cart__order-item-quantity">
                   Quantity
                   <div class="cart__order-item-quantity-select">
-                    <span class="cart__order-item-quantity-select-minus">-</span> <span class="cart__order-item-quantity-select-value">1</span> <span class="cart__order-item-quantity-select-plus">+</span>
+                    <span class="cart__order-item-quantity-select-minus"><a href="#">-</a></span> <span class="cart__order-item-quantity-select-value">1</span> <span class="cart__order-item-quantity-select-plus"><a href="#">+</a></span>
                   </div>
                 </div>
               </div>
 
-              <div class="col-xs-1">
-                <!-- Separator -->
-                <div class="cart__order-item-separator">
-                </div>
-              </div>
-
-              <div class="col-xs-5">
+              <div class="col-xs-6">
                 <!-- Total -->
                 <div class="cart__order-item-total">
                   Total
                   <div class="cart__order-item-total-digits">
-                    $ 100.00
+                    107.26 ¥
                   </div>
                 </div>
               </div>
@@ -99,15 +92,77 @@
           </div>
         </div>
 
+
+      <div class="row cart__total">
+        <div class="col-xs-12">
+
+        <!-- Goods Price -->
+        <div class="row">
+          <div class="cart__total-goods">
+            <div class="col-xs-6">
+              产品原价
+            </div>
+            <div class="col-xs-6">
+              <div class="cart__total-goods-price">
+                1097.26 ¥
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Shipping Price -->
+        <div class="row">
+          <div class="cart__total-shipping">
+            <div class="col-xs-6">
+              物流费用
+            </div>
+            <div class="col-xs-6">
+              <div class="cart__total-shipping-price">
+                80.26 ¥
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- End Price -->
+        <div class="row">
+          <div class="cart__total-end">
+            <div class="col-xs-6">
+              总计
+            </div>
+            <div class="col-xs-6">
+              <div class="cart__total-end-price">
+                2892.28 ¥
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Coupon Form -->
+        <div class="row">
+          <div class="cart__total-coupon">
+            <div class="col-xs-6">
+              <input type="text" placeholder="折扣码">
+            </div>
+            <div class="col-xs-6">
+              <div class="cart__total-coupon-button">
+                <input type="submit" value="使用">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        </div>
       </div>
 
       <div class="row">
         <div class="col-xs-12">
-          <hr />
+          <div class="+small-spacer"></div>
+          <a href="#" class="btn-large +checkout-button"><%= I18n.t(:checkout, scope: :cart) %></a>
+          <div class="+small-spacer"></div>
         </div>
       </div>
 
-      HERE IS THE TOTAL
     </div>
 
   </div>
