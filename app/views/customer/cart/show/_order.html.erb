@@ -1,36 +1,86 @@
-<!-- Shop name for the order -->
-<% unless order.only_package_set? %>
-<div class="row">
-  <div class="col-md-12">
-    <h4>
-      <%= I18n.t(:shop, scope: :cart) %> :
-      <%= link_to order.shop.shopname, guest_shop_path(order.shop) %>
-    </h4>
-  </div>
-</div>
-<% end %>
+  <div id="order-<%= order.id %>" class="row">
+    <div class="col-xs-12">
+      <div class="cart">
 
-<!-- Package set display -->
-<div class="row">
-  <div class="col-md-12">
-      <%= render partial: 'customer/cart/show/package_set_products', :locals => { :order_items => order.order_items.where(:package_set.ne => nil),
-                                                                                  :package_set_ids => order.order_items.where(:package_set.ne => nil).pluck(:package_set),
-                                                                                  :action => action } %>
-  </div>
-</div>
+        <!-- Shop Name -->
+        <div class="cart__order-title">
+          <%= link_to order.shop.shopname, guest_shop_path(order.shop) %>
+        </div>
 
-<!-- None package set display -->
-<% unless order.only_package_set? %>
-  <div class="row +overflow">
-    <div class="col-md-12">
-      <%= render partial: 'customer/cart/show/casual_products', :locals => { :order_items => order.order_items.where(package_set: nil), :action => action } %>
+        <!-- Order Item -->
+        <%= render partial: 'customer/cart/show/order_items', :locals => { :order => order } %>
+
+        <div class="row cart__total">
+          <div class="col-xs-12">
+
+          <!-- Goods Price -->
+          <div class="row">
+            <div class="cart__total-goods">
+              <div class="col-xs-6">
+                产品原价
+              </div>
+              <div class="col-xs-6">
+                <div class="cart__total-goods-price">
+                  1097.26 ¥
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Shipping Price -->
+          <div class="row">
+            <div class="cart__total-shipping">
+              <div class="col-xs-6">
+                物流费用
+              </div>
+              <div class="col-xs-6">
+                <div class="cart__total-shipping-price">
+                  80.26 ¥
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- End Price -->
+          <div class="row">
+            <div class="cart__total-end">
+              <div class="col-xs-6">
+                总计
+              </div>
+              <div class="col-xs-6">
+                <div class="cart__total-end-price">
+                  2892.28 ¥
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Coupon Form -->
+          <div class="row">
+            <div class="cart__total-coupon">
+              <div class="col-xs-6">
+                <input type="text" placeholder="折扣码">
+              </div>
+              <div class="col-xs-6">
+                <div class="cart__total-coupon-button">
+                  <input type="submit" value="使用">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="+small-spacer"></div>
+            <a href="#" class="btn-large +checkout-button"><%= I18n.t(:checkout, scope: :cart) %></a>
+            <div class="+small-spacer"></div>
+          </div>
+        </div>
+
+      </div>
+
     </div>
   </div>
-<% end %>
-
-<% if cart_manager.in?(order) %>
-  <!-- Action to the order -->
-  <% if action %>
-    <%= render partial: 'customer/cart/show/action', :locals => { :order => order } %>
-  <% end %>
-<% end %>
