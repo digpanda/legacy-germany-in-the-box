@@ -103,10 +103,24 @@
   +part(total-goods)
   +part(total-goods-price)
     text-align: center
+    +option(crossed)
+        text-decoration: line-through
+        color: $color-red
+        font-weight: bold
+
 
   +part(total-discount)
+    color: $color-blue
+    // discount link
+    a
+      font-size: 20px
+      color: $color-blue
+      vertical-align: middle
+
   +part(total-discount-price)
     text-align: center
+    color: $color-blue
+    font-weight: bold
 
   +part(total-shipping)
   +part(total-shipping-cost)

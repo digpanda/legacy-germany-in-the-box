@@ -1559,9 +1559,22 @@ body {
 
 .cart__total-goods-price {
   text-align: center; }
+  .cart__total-goods-price.\--crossed {
+    text-decoration: line-through;
+    color: #d6506c;
+    font-weight: bold; }
+
+.cart__total-discount {
+  color: #3498db; }
+  .cart__total-discount a {
+    font-size: 20px;
+    color: #3498db;
+    vertical-align: middle; }
 
 .cart__total-discount-price {
-  text-align: center; }
+  text-align: center;
+  color: #3498db;
+  font-weight: bold; }
 
 .cart__total-shipping-cost {
   text-align: center; }

@@ -21,15 +21,14 @@
               </div>
               <div class="col-xs-6">
                 <div class="cart__total-goods-price">
-                  <!-- TODO : stylize the discount -->
                   <% if order.discount? %>
-                  <span id="order-total-price-with-taxes-<%= order.shop.id %>" class="total__end-price --cross">
-                    <%= order.total_price_with_taxes.in_euro.to_yuan.display %>
-                  </span>
+                    <span id="order-total-price-with-taxes-<%= order.shop.id %>" class="cart__total-goods-price --crossed">
+                      <%= order.total_price_with_taxes.in_euro.to_yuan.display %>
+                    </span>
                   <% else %>
-                  <span id="order-total-price-with-taxes-<%= order.shop.id %>">
-                    <%= order.total_price_with_taxes.in_euro.to_yuan.display %>
-                  </span>
+                    <span id="order-total-price-with-taxes-<%= order.shop.id %>">
+                      <%= order.total_price_with_taxes.in_euro.to_yuan.display %>
+                    </span>
                     <% end %>
                 </div>
               </div>
@@ -37,12 +36,13 @@
           </div>
 
           <!-- With Coupon Price -->
-          <!-- TODO : this is not stylized yet, please use the same than the old one -->
           <% if order.discount? %>
             <div class="row">
               <div class="cart__total-discount">
                 <div class="col-xs-6">
                   <%= I18n.t(:new_price, scope: :coupon) %>
+                  <%= link_to '<i class="digpanda-remove"></i>'.html_safe, customer_order_coupons_path(order), :method => :delete, :class => 'tooltipster', :title => I18n.t(:remove_coupon, scope: :coupon) %>
+
                 </div>
                 <div class="col-xs-6">
                   <div class="cart__total-discount-price">
@@ -87,19 +87,25 @@
             </div>
           </div>
 
-          <!-- Coupon Form -->
-          <div class="row">
-            <div class="cart__total-coupon">
-              <div class="col-xs-6">
-                <input type="text" placeholder="折扣码">
-              </div>
-              <div class="col-xs-6">
-                <div class="cart__total-coupon-button">
-                  <input type="submit" value="使用">
+          <% unless order.discount? %>
+            <%= form_for :coupon, url: customer_order_coupons_path(order), method: :post do |f| %>
+
+            <!-- Coupon Form -->
+            <div class="row">
+              <div class="cart__total-coupon">
+                <div class="col-xs-6">
+                  <%= f.text_field :code, :class => 'coupon__field', :placeholder => guess_coupon_label, :autocomplete => 'off' %>
+                </div>
+                <div class="col-xs-6">
+                  <div class="cart__total-coupon-button">
+                    <input type="submit" value="<%= I18n.t(:apply, scope: :coupon) %>">
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+
+            <% end %>
+          <% end %>
 
           </div>
         </div>
