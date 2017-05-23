@@ -9,6 +9,7 @@ class Api::Guest::OrderItemsController < Api::ApplicationController
     store_in_cart
   end
 
+  # NOTE : this should be totally refactored. it's fucking shit.
   def update
 
     order = order_item.order
@@ -25,7 +26,7 @@ class Api::Guest::OrderItemsController < Api::ApplicationController
 
     quantity_difference = quantity - order_item.quantity
     original_quantity = order_item.quantity
-    original_total = order_item.total_price_with_taxes
+    original_total = order_item.total_price_with_taxes.in_euro.to_yuan.display
 
     # reach daily limit
     if quantity_difference >= 0 && BuyingBreaker.new(order).with_sku?(sku, quantity_difference)
@@ -44,7 +45,7 @@ class Api::Guest::OrderItemsController < Api::ApplicationController
 
     unless sku_origin&.stock_available_in_order?(quantity_difference, order_item.order)
       render json: throw_error(:unable_to_process)
-                       .merge(original_quantity: original_quantity,
+                       .merge(original_quantity: original_quantity, original_total: original_total,
                               error: I18n.t(:not_all_available, scope: :checkout, product_name: product.name, option_names: sku.option_names.join(', ')))
       return
     end

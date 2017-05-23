@@ -370,16 +370,17 @@ var CustomerCartShow = {
         $('.js-set-quantity-minus').click(function (e) {
 
             e.preventDefault();
+            CustomerCartShow.click_chain++;
 
             var orderItemId = $(this).data('orderItemId');
             var orderShopId = $(this).data('orderShopId');
             var currentQuantity = $('#order-item-quantity-' + orderItemId).html();
-            var currentTotal = $('#order-item-total-' + orderItemId).html();
+            var currentTotal = $('#order-item-total-' + orderItemId).attr('data-origin');
+
             var originQuantity = currentQuantity;
             var originTotal = currentTotal;
 
             if (currentQuantity > 1) {
-                CustomerCartShow.click_chain++;
                 currentQuantity--;
                 CustomerCartShow.orderItemSetQuantity(orderShopId, orderItemId, originQuantity, originTotal, currentQuantity);
             }
@@ -393,7 +394,7 @@ var CustomerCartShow = {
             var orderItemId = $(this).data('orderItemId');
             var orderShopId = $(this).data('orderShopId');
             var currentQuantity = $('#order-item-quantity-' + orderItemId).html();
-            var currentTotal = $('#order-item-total-' + orderItemId).html();
+            var currentTotal = $('#order-item-total-' + orderItemId).attr('data-origin');
             var originQuantity = currentQuantity;
             var originTotal = currentTotal;
 
@@ -404,6 +405,7 @@ var CustomerCartShow = {
         $('.js-set-package-quantity-minus').click(function (e) {
 
             e.preventDefault();
+            CustomerCartShow.click_chain++;
 
             var packageSetId = $(this).data('package-set-id');
             var currentQuantity = $('#package-quantity-' + packageSetId).val();
@@ -411,7 +413,6 @@ var CustomerCartShow = {
             var originQuantity = currentQuantity;
 
             if (currentQuantity > 1) {
-                CustomerCartShow.click_chain++;
                 currentQuantity--;
                 CustomerCartShow.packageSetSetQuantity(packageSetId, originQuantity, currentQuantity, orderShopId);
             }
@@ -701,6 +702,7 @@ var CustomerCartShow = {
         // Quantity changes
         $('#order-item-quantity-' + orderItemId).html(orderItemQuantity);
         $('#order-item-total-' + orderItemId).html(res.data.order_item.total_price_with_taxes);
+        $('#order-item-total-' + orderItemId).attr('data-origin', res.data.order_item.total_price_with_taxes);
 
         CustomerCartShow.resetTotalDisplay(orderShopId, res);
     },

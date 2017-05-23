@@ -17,25 +17,55 @@
           <div class="row">
             <div class="cart__total-goods">
               <div class="col-xs-6">
-                产品原价
+                <%= I18n.t(:subtotal, scope: :cart) %>
               </div>
               <div class="col-xs-6">
                 <div class="cart__total-goods-price">
-                  1097.26 ¥
+                  <!-- TODO : stylize the discount -->
+                  <% if order.discount? %>
+                  <span id="order-total-price-with-taxes-<%= order.shop.id %>" class="total__end-price --cross">
+                    <%= order.total_price_with_taxes.in_euro.to_yuan.display %>
+                  </span>
+                  <% else %>
+                  <span id="order-total-price-with-taxes-<%= order.shop.id %>">
+                    <%= order.total_price_with_taxes.in_euro.to_yuan.display %>
+                  </span>
+                    <% end %>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- Shipping Price -->
+          <!-- With Coupon Price -->
+          <!-- TODO : this is not stylized yet, please use the same than the old one -->
+          <% if order.discount? %>
+            <div class="row">
+              <div class="cart__total-discount">
+                <div class="col-xs-6">
+                  <%= I18n.t(:new_price, scope: :coupon) %>
+                </div>
+                <div class="col-xs-6">
+                  <div class="cart__total-discount-price">
+                    <span id="order-total-price-with-discount-<%= order.shop.id %>">
+                      <%= order.total_price_with_discount.in_euro.to_yuan.display %>
+                    </span> (<span id="order-discount-display-<%= order.shop.id %>"><%= order.coupon.decorate.discount_display %></span>)
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+
+          <!-- Shipping Cost -->
           <div class="row">
             <div class="cart__total-shipping">
               <div class="col-xs-6">
-                物流费用
+                <%= I18n.t(:shipping_cost, scope: :cart) %>
               </div>
               <div class="col-xs-6">
-                <div class="cart__total-shipping-price">
-                  80.26 ¥
+                <div class="cart__total-shipping-cost">
+                  <span id="order-shipping-cost-<%= order.shop.id %>">
+                    <%= order.shipping_cost.in_euro.to_yuan.display %>
+                  </span>
                 </div>
               </div>
             </div>
@@ -45,11 +75,13 @@
           <div class="row">
             <div class="cart__total-end">
               <div class="col-xs-6">
-                总计
+                <%= I18n.t(:total_price_with_currency_yuan, scope: :cart) %>
               </div>
               <div class="col-xs-6">
                 <div class="cart__total-end-price">
-                  2892.28 ¥
+                  <span id="order-end-price-<%= order.shop.id %>">
+                    <%= order.decorate.end_price.in_euro.to_yuan.display %>
+                  </span>
                 </div>
               </div>
             </div>

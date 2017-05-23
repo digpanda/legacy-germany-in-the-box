@@ -35,16 +35,17 @@ var CustomerCartShow = {
     $('.js-set-quantity-minus').click(function(e) {
 
       e.preventDefault();
+      CustomerCartShow.click_chain++;
 
       let orderItemId = $(this).data('orderItemId');
       let orderShopId = $(this).data('orderShopId');
       let currentQuantity = $('#order-item-quantity-'+orderItemId).html();
-      let currentTotal = $('#order-item-total-'+orderItemId).html();
+      let currentTotal = $('#order-item-total-'+orderItemId).attr('data-origin');
+
       let originQuantity = currentQuantity;
       let originTotal = currentTotal;
 
       if (currentQuantity > 1) {
-        CustomerCartShow.click_chain++;
         currentQuantity--;
         CustomerCartShow.orderItemSetQuantity(orderShopId, orderItemId, originQuantity, originTotal, currentQuantity);
       }
@@ -59,7 +60,7 @@ var CustomerCartShow = {
       let orderItemId = $(this).data('orderItemId');
       let orderShopId = $(this).data('orderShopId');
       let currentQuantity = $('#order-item-quantity-'+orderItemId).html();
-      let currentTotal = $('#order-item-total-'+orderItemId).html();
+      let currentTotal = $('#order-item-total-'+orderItemId).attr('data-origin');
       let originQuantity = currentQuantity;
       let originTotal = currentTotal
 
@@ -71,6 +72,7 @@ var CustomerCartShow = {
     $('.js-set-package-quantity-minus').click(function(e) {
 
       e.preventDefault();
+      CustomerCartShow.click_chain++;
 
       let packageSetId = $(this).data('package-set-id');
       let currentQuantity = $('#package-quantity-'+packageSetId).val();
@@ -78,7 +80,6 @@ var CustomerCartShow = {
       let originQuantity = currentQuantity;
 
       if (currentQuantity > 1) {
-          CustomerCartShow.click_chain++;
           currentQuantity--;
           CustomerCartShow.packageSetSetQuantity(packageSetId, originQuantity, currentQuantity, orderShopId);
       }
@@ -399,6 +400,7 @@ var CustomerCartShow = {
     // Quantity changes
     $('#order-item-quantity-'+orderItemId).html(orderItemQuantity);
     $('#order-item-total-'+orderItemId).html(res.data.order_item.total_price_with_taxes);
+    $('#order-item-total-'+orderItemId).attr('data-origin', res.data.order_item.total_price_with_taxes);
 
     CustomerCartShow.resetTotalDisplay(orderShopId, res);
 

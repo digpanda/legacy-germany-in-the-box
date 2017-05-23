@@ -1560,7 +1560,10 @@ body {
 .cart__total-goods-price {
   text-align: center; }
 
-.cart__total-shipping-price {
+.cart__total-discount-price {
+  text-align: center; }
+
+.cart__total-shipping-cost {
   text-align: center; }
 
 .cart__total-end {
