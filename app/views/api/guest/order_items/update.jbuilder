@@ -10,11 +10,24 @@ json.data do
   json.end_price @order.decorate.end_price.in_euro.to_yuan.display
   json.order_empty @order.is_empty?
 
-  # discount side
+  # coupon side
   if @order.coupon
     json.total_price_with_extra_costs @order.decorate.total_price_with_extra_costs.in_euro.to_yuan.display
     json.total_price_with_discount @order.total_price_with_discount.in_euro.to_yuan.display
     json.discount_display @order.coupon.decorate.discount_display
+  end
+
+  # order item
+  if @order_item
+    json.order_item do
+      json.total_price_with_taxes @order_item.total_price_with_taxes.in_euro.to_yuan.display
+    end
+  end
+
+  if @package_set
+    json.package_set do
+      json.total_price @order.package_set_total(@package_set).in_euro.to_yuan.display
+    end
   end
 
 end

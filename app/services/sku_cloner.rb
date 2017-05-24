@@ -5,9 +5,6 @@
 # the `relationship` is the way we should integrate the sku to the `target` (many or one sku relationship)
 class SkuCloner < BaseService
 
-  IMAGES_MAP = [:img0, :img1, :img2, :img3]
-  ATTACH_MAP = [:attach0]
-
   attr_reader :target, :sku, :relationship
 
   def initialize(target, sku, relationship=:plural)
@@ -17,10 +14,10 @@ class SkuCloner < BaseService
   end
 
   def process
-    entry!
+    clone_entry!
     # we save after all alterations
     if target.save
-      FileWorker.perform_async(sku.product.id, target.id, sku.id, clone.id, relationship)
+      copy_sku_files!
       return_with(:success, :clone => clone)
     else
       clone.destroy
@@ -44,8 +41,12 @@ class SkuCloner < BaseService
 
   # we simply call the memoized method
   # this will process it once
-  def entry!
+  def clone_entry!
     clone
+  end
+
+  def copy_sku_files!
+    CopySkuFilesWorker.perform_async(sku.product.id, target.id, sku.id, clone.id, relationship)
   end
 
 end

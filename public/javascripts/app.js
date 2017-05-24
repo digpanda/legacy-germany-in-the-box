@@ -350,19 +350,9 @@ var CustomerCartShow = {
      */
     init: function init() {
 
-        this.multiSelectSystem();
         this.orderItemHandleQuantity();
         this.removeOrderItem();
-        this.removeOrder();
         this.removePackageSet();
-    },
-
-    multiSelectSystem: function multiSelectSystem() {
-
-        $('select.sku-variants-options').multiselect({
-            enableCaseInsensitiveFiltering: true,
-            maxHeight: 400
-        }).multiselect('disable');
     },
 
     orderItemHandleQuantity: function orderItemHandleQuantity() {
@@ -374,13 +364,17 @@ var CustomerCartShow = {
 
             var orderItemId = $(this).data('orderItemId');
             var orderShopId = $(this).data('orderShopId');
-            var currentQuantity = $('#order-item-quantity-' + orderItemId).val();
+            var currentQuantity = $('#order-item-quantity-' + orderItemId).html();
+            var currentTotal = $('#order-item-total-' + orderItemId).attr('data-origin');
+
             var originQuantity = currentQuantity;
+            var originTotal = currentTotal;
 
             if (currentQuantity > 1) {
                 currentQuantity--;
-                CustomerCartShow.orderItemSetQuantity(orderShopId, orderItemId, originQuantity, currentQuantity);
             }
+
+            CustomerCartShow.orderItemSetQuantity(orderShopId, orderItemId, originQuantity, originTotal, currentQuantity);
         });
 
         $('.js-set-quantity-plus').click(function (e) {
@@ -390,11 +384,13 @@ var CustomerCartShow = {
 
             var orderItemId = $(this).data('orderItemId');
             var orderShopId = $(this).data('orderShopId');
-            var currentQuantity = $('#order-item-quantity-' + orderItemId).val();
+            var currentQuantity = $('#order-item-quantity-' + orderItemId).html();
+            var currentTotal = $('#order-item-total-' + orderItemId).attr('data-origin');
             var originQuantity = currentQuantity;
+            var originTotal = currentTotal;
 
             currentQuantity++;
-            CustomerCartShow.orderItemSetQuantity(orderShopId, orderItemId, originQuantity, currentQuantity);
+            CustomerCartShow.orderItemSetQuantity(orderShopId, orderItemId, originQuantity, originTotal, currentQuantity);
         });
 
         $('.js-set-package-quantity-minus').click(function (e) {
@@ -403,14 +399,17 @@ var CustomerCartShow = {
             CustomerCartShow.click_chain++;
 
             var packageSetId = $(this).data('package-set-id');
-            var currentQuantity = $('#package-quantity-' + packageSetId).val();
+            var currentQuantity = $('#package-quantity-' + packageSetId).html();
+            var currentTotal = $('#package-total-' + packageSetId).attr('data-origin');
             var orderShopId = $(this).data('order-shop-id');
             var originQuantity = currentQuantity;
+            var originTotal = currentTotal;
 
             if (currentQuantity > 1) {
                 currentQuantity--;
-                CustomerCartShow.packageSetSetQuantity(packageSetId, originQuantity, currentQuantity, orderShopId);
             }
+
+            CustomerCartShow.packageSetSetQuantity(packageSetId, originQuantity, originTotal, currentQuantity, orderShopId);
         });
 
         $('.js-set-package-quantity-plus').click(function (e) {
@@ -419,12 +418,14 @@ var CustomerCartShow = {
             CustomerCartShow.click_chain++;
 
             var packageSetId = $(this).data('package-set-id');
-            var currentQuantity = $('#package-quantity-' + packageSetId).val();
+            var currentQuantity = $('#package-quantity-' + packageSetId).html();
+            var currentTotal = $('#package-total-' + packageSetId).attr('data-origin');
             var orderShopId = $(this).data('order-shop-id');
             var originQuantity = currentQuantity;
+            var originTotal = currentTotal;
 
             currentQuantity++;
-            CustomerCartShow.packageSetSetQuantity(packageSetId, originQuantity, currentQuantity, orderShopId);
+            CustomerCartShow.packageSetSetQuantity(packageSetId, originQuantity, originTotal, currentQuantity, orderShopId);
         });
     },
 
@@ -440,10 +441,11 @@ var CustomerCartShow = {
         $('#cart-total').hide();
     },
 
-    orderItemSetQuantity: function orderItemSetQuantity(orderShopId, orderItemId, originQuantity, orderItemQuantity) {
+    orderItemSetQuantity: function orderItemSetQuantity(orderShopId, orderItemId, originQuantity, originTotal, orderItemQuantity) {
 
         // We first setup a temporary number before the AJAX callback
-        $('#order-item-quantity-' + orderItemId).val(orderItemQuantity);
+        $('#order-item-quantity-' + orderItemId).html(orderItemQuantity);
+        $('#order-item-total-' + orderItemId).html('-');
         CustomerCartShow.loading();
 
         var current_click_chain = CustomerCartShow.click_chain;
@@ -453,15 +455,17 @@ var CustomerCartShow = {
             // We basically prevent multiple click by considering only the last click as effective
             // It won't call the API if we clicked more than once on the + / - within the second
             if (current_click_chain == CustomerCartShow.click_chain) {
-                CustomerCartShow.processQuantity(orderShopId, orderItemId, originQuantity, orderItemQuantity);
+                CustomerCartShow.processQuantity(orderShopId, orderItemId, originQuantity, originTotal, orderItemQuantity);
             }
         }, CustomerCartShow.chain_timing);
     },
 
-    packageSetSetQuantity: function packageSetSetQuantity(packageSetId, originQuantity, packageSetQuantity, orderShopId) {
+    packageSetSetQuantity: function packageSetSetQuantity(packageSetId, originQuantity, originTotal, packageSetQuantity, orderShopId) {
 
         // We first setup a temporary number before the AJAX callback
-        $('#order-item-quantity-' + packageSetId).val(packageSetQuantity);
+        $('#package-quantity-' + packageSetId).html(packageSetQuantity);
+        $('#package-total-' + packageSetId).html('-');
+
         CustomerCartShow.loading();
 
         var current_click_chain = CustomerCartShow.click_chain;
@@ -471,7 +475,7 @@ var CustomerCartShow = {
             // We basically prevent multiple click by considering only the last click as effective
             // It won't call the API if we clicked more than once on the + / - within the second
             if (current_click_chain == CustomerCartShow.click_chain) {
-                CustomerCartShow.processPackageSetQuantity(packageSetId, originQuantity, packageSetQuantity, orderShopId);
+                CustomerCartShow.processPackageSetQuantity(packageSetId, originQuantity, originTotal, packageSetQuantity, orderShopId);
             }
         }, CustomerCartShow.chain_timing);
     },
@@ -570,33 +574,7 @@ var CustomerCartShow = {
         });
     },
 
-    removeOrder: function removeOrder() {
-
-        $('.delete-order').on('click', function (e) {
-
-            e.preventDefault();
-
-            var OrderItem = require("javascripts/models/order_item");
-            var orderId = $(this).data('id');
-
-            OrderItem.removeOrder(orderId, function (res) {
-
-                var Messages = require("javascripts/lib/messages");
-
-                if (res.success === true) {
-
-                    Messages.makeSuccess(res.msg);
-                    $('#order-' + orderId).remove();
-                    RefreshTotalProducts.perform();
-                } else {
-
-                    Messages.makeError(res.error);
-                }
-            });
-        });
-    },
-
-    processQuantity: function processQuantity(orderShopId, orderItemId, originQuantity, orderItemQuantity) {
+    processQuantity: function processQuantity(orderShopId, orderItemId, originQuantity, originTotal, orderItemQuantity) {
 
         var OrderItem = require("javascripts/models/order_item");
         OrderItem.setQuantity(orderItemId, orderItemQuantity, function (res) {
@@ -605,7 +583,7 @@ var CustomerCartShow = {
 
             if (res.success === false) {
 
-                CustomerCartShow.rollbackQuantity(originQuantity, orderItemId, res);
+                CustomerCartShow.rollbackQuantity(originQuantity, originTotal, orderItemId, res);
                 CustomerCartShow.loaded();
                 Messages.makeError(res.error);
             } else {
@@ -621,7 +599,7 @@ var CustomerCartShow = {
         });
     },
 
-    processPackageSetQuantity: function processPackageSetQuantity(packageSetId, originQuantity, packageSetQuantity, orderShopId) {
+    processPackageSetQuantity: function processPackageSetQuantity(packageSetId, originQuantity, originTotal, packageSetQuantity, orderShopId) {
 
         var OrderItem = require("javascripts/models/order_item");
         OrderItem.setPackageSetQuantity(packageSetId, packageSetQuantity, function (res) {
@@ -630,7 +608,7 @@ var CustomerCartShow = {
 
             if (res.success === false) {
 
-                CustomerCartShow.rollbackPackageSetQuantity(originQuantity, packageSetId, res);
+                CustomerCartShow.rollbackPackageSetQuantity(originQuantity, originTotal, packageSetId, res);
                 CustomerCartShow.loaded();
                 Messages.makeError(res.error);
             } else {
@@ -661,7 +639,7 @@ var CustomerCartShow = {
 
     },
 
-    rollbackQuantity: function rollbackQuantity(originQuantity, orderItemId, res) {
+    rollbackQuantity: function rollbackQuantity(originQuantity, originTotal, orderItemId, res) {
 
         // TODO : possible improvement
         // instead of rolling back completely we could make a system
@@ -669,28 +647,34 @@ var CustomerCartShow = {
 
         // We try to get back the correct value from AJAX if we can
         // To avoid the system to show a wrong quantity on the display
-        if (typeof res.original_quantity != "undefined") {
+        if (typeof res.original_quantity != "undefined" && typeof res.original_total != "undefined") {
             originQuantity = res.original_quantity;
+            originTotal = res.original_total;
         }
 
         // We rollback the quantity
-        $('#order-item-quantity-' + orderItemId).val(originQuantity);
+        $('#order-item-quantity-' + orderItemId).html(originQuantity);
+        $('#order-item-total-' + orderItemId).html(originTotal);
     },
 
-    rollbackPackageSetQuantity: function rollbackPackageSetQuantity(originQuantity, packageSetId, res) {
+    rollbackPackageSetQuantity: function rollbackPackageSetQuantity(originQuantity, originTotal, packageSetId, res) {
 
-        if (typeof res.original_quantity != "undefined") {
+        if (typeof res.original_quantity != "undefined" && typeof res.original_total != "undefined") {
             originQuantity = res.original_quantity;
+            originTotal = res.original_total;
         }
 
         // We rollback the quantity
         $('#package-quantity-' + packageSetId).val(originQuantity);
+        $('#package-total-' + packageSetId).val(originTotal);
     },
 
     resetDisplay: function resetDisplay(orderItemQuantity, orderItemId, orderShopId, res) {
 
         // Quantity changes
-        $('#order-item-quantity-' + orderItemId).val(orderItemQuantity);
+        $('#order-item-quantity-' + orderItemId).html(orderItemQuantity);
+        $('#order-item-total-' + orderItemId).html(res.data.order_item.total_price_with_taxes);
+        $('#order-item-total-' + orderItemId).attr('data-origin', res.data.order_item.total_price_with_taxes);
 
         CustomerCartShow.resetTotalDisplay(orderShopId, res);
     },
@@ -699,6 +683,8 @@ var CustomerCartShow = {
 
         // Quantity changes
         $('#package-quantity-' + packageSetId).val(packageSetQuantity);
+        $('#package-total-' + packageSetId).html(res.data.package_set.total_price);
+        $('#package-total-' + packageSetId).attr('data-origin', res.data.package_set.total_price);
 
         CustomerCartShow.resetTotalDisplay(orderShopId, res);
     },

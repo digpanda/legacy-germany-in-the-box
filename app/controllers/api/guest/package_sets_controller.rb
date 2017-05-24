@@ -42,7 +42,7 @@ class Api::Guest::PackageSetsController < Api::ApplicationController
   def set_quantity
     quantity = params[:quantity]
 
-    order.order_items.where(package_set_id: params[:id]).delete
+    order.order_items.where(package_set: package_set).delete
 
     (quantity.to_i).times do
       add_package_set

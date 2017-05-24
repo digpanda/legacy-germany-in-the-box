@@ -1,11 +1,3 @@
 <h2><%= I18n.t(:my_order, scope: :top_menu) %></h2>
 
-<!-- Total for this order -->
-<div class="col-md-4 col-md-push-8">
-  <%= render partial: 'customer/cart/show/total', locals: {order: order} %>
-</div>
-
-<!-- Order listing -->
-<div class="col-md-8 col-md-pull-4">
-  <%= render partial: 'customer/cart/show/order', locals: {order: order, action: false} %>
-</div>
+<%= render partial: 'customer/cart/show/order', :locals => { :order => order, :action => false } %>

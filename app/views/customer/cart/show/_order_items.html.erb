@@ -1,0 +1,11 @@
+<!-- Package Sets related items -->
+<% order.package_sets.each do |package_set| %>
+  <%= render partial: 'customer/cart/show/order_items/package_set', :locals => { :order => order, :package_set => package_set, :action => action } %>
+<% end %>
+
+<!-- Products related items -->
+<% unless order.only_package_set? %>
+  <% order.order_items.where(:package_set => nil).each do |order_item| %>
+    <%= render partial: 'customer/cart/show/order_items/order_item', :locals => { :order_item => order_item, :action => action } %>
+  <% end %>
+<% end %>

@@ -1,0 +1,91 @@
+<!-- We keep it with the row for sticking to the full width -->
+<div id="package-set-<%= package_set.id %>" class="row cart__order-item">
+
+  <div class="col-xs-3">
+    <!-- Image -->
+    <div class="cart__order-item-image">
+      <img src="<%= package_set.cover %>">
+    </div>
+  </div>
+
+  <div class="col-xs-8">
+    <div class="row">
+
+      <div class="col-xs-11">
+
+        <!-- Title -->
+        <div class="cart__order-item-title">
+          <a href="<%= guest_package_set_path(package_set) %>">
+            <%= package_set.name %>
+          </a>
+        </div>
+
+        <!-- Description -->
+        <!-- <div class="cart__order-item-description">
+        </div> -->
+
+      </div>
+
+      <div class="col-xs-1 +nopadding">
+        <!-- Remove Item -->
+        <% if action %>
+          <div class="cart__order-item-remove">
+            <a href="#" class="delete-package-set" data-package-set-id="<%= package_set.id %>" data-order-id="<%= order.id %>" data-order-shop-id="<%= order.shop.id %>">
+              <i class="digpanda-remove"></i>
+            </a>
+          </div>
+        <% end %>
+      </div>
+
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <hr />
+      </div>
+    </div>
+    <div class="row">
+
+      <div class="col-xs-6 +nopadding-right">
+        <!-- Quantity -->
+        <div class="cart__order-item-quantity">
+          Quantity
+          <div class="cart__order-item-quantity-select">
+
+            <!-- Minus -->
+            <% if action %>
+              <span class="cart__order-item-quantity-select-minus">
+                <a href="#" class="js-set-package-quantity-minus" data-package-set-id="<%= package_set.id %>" data-order-shop-id="<%= order.shop.id %>">-</a>
+              </span>
+            <% end %>
+
+            <!-- Value -->
+            <span class="cart__order-item-quantity-select-value" id="package-quantity-<%= package_set.id %>" data-package-id="<%= package_set.id %>">
+              <%= order.package_set_quantity(package_set) %>
+            </span>
+
+            <!-- Plus -->
+            <% if action %>
+              <span class="cart__order-item-quantity-select-plus">
+                <a href="#" class="js-set-package-quantity-plus" data-package-set-id="<%= package_set.id %>" data-order-shop-id="<%= order.shop.id %>">+</a>
+              </span>
+            <% end %>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xs-6">
+        <!-- Total -->
+        <div class="cart__order-item-total">
+          Total
+          <div class="cart__order-item-total-digits">
+            <span id="package-total-<%= package_set.id %>" data-origin="<%= package_set.end_price.in_euro.to_yuan.display %>">
+              <%= order.package_set_total(package_set).in_euro.to_yuan.display %>
+            </span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

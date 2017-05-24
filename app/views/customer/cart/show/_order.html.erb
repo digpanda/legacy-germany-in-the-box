@@ -1,36 +1,128 @@
-<!-- Shop name for the order -->
-<% unless order.only_package_set? %>
-<div class="row">
-  <div class="col-md-12">
-    <h4>
-      <%= I18n.t(:shop, scope: :cart) %> :
-      <%= link_to order.shop.shopname, guest_shop_path(order.shop) %>
-    </h4>
-  </div>
-</div>
-<% end %>
+  <div id="order-<%= order.id %>" class="row">
+    <div class="col-xs-12">
+      <div class="cart">
 
-<!-- Package set display -->
-<div class="row">
-  <div class="col-md-12">
-      <%= render partial: 'customer/cart/show/package_set_products', :locals => { :order_items => order.order_items.where(:package_set.ne => nil),
-                                                                                  :package_set_ids => order.order_items.where(:package_set.ne => nil).pluck(:package_set),
-                                                                                  :action => action } %>
-  </div>
-</div>
+        <!-- Shop Name -->
+        <div class="cart__order-title">
+          <%= link_to order.shop.shopname, guest_shop_path(order.shop) %>
+        </div>
 
-<!-- None package set display -->
-<% unless order.only_package_set? %>
-  <div class="row +overflow">
-    <div class="col-md-12">
-      <%= render partial: 'customer/cart/show/casual_products', :locals => { :order_items => order.order_items.where(package_set: nil), :action => action } %>
+        <!-- Order Item -->
+        <%= render partial: 'customer/cart/show/order_items', :locals => { :order => order, :action => action } %>
+
+        <div class="row cart__total">
+          <div class="col-xs-12">
+
+          <!-- Goods Price -->
+          <div class="row">
+            <div class="cart__total-goods">
+              <div class="col-xs-6">
+                <%= I18n.t(:subtotal, scope: :cart) %>
+              </div>
+              <div class="col-xs-6">
+                <div class="cart__total-goods-price">
+                  <% if order.discount? %>
+                    <span id="order-total-price-with-taxes-<%= order.shop.id %>" class="cart__total-goods-price --crossed">
+                      <%= order.total_price_with_taxes.in_euro.to_yuan.display %>
+                    </span>
+                  <% else %>
+                    <span id="order-total-price-with-taxes-<%= order.shop.id %>">
+                      <%= order.total_price_with_taxes.in_euro.to_yuan.display %>
+                    </span>
+                    <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- With Coupon Price -->
+          <% if order.discount? %>
+            <div class="row">
+              <div class="cart__total-discount">
+                <div class="col-xs-6">
+                  <%= I18n.t(:new_price, scope: :coupon) %>
+                  <%= link_to '<i class="digpanda-remove"></i>'.html_safe, customer_order_coupons_path(order), :method => :delete, :class => 'tooltipster', :title => I18n.t(:remove_coupon, scope: :coupon) %>
+
+                </div>
+                <div class="col-xs-6">
+                  <div class="cart__total-discount-price">
+                    <span id="order-total-price-with-discount-<%= order.shop.id %>">
+                      <%= order.total_price_with_discount.in_euro.to_yuan.display %>
+                    </span> (<span id="order-discount-display-<%= order.shop.id %>"><%= order.coupon.decorate.discount_display %></span>)
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+
+          <!-- Shipping Cost -->
+          <div class="row">
+            <div class="cart__total-shipping">
+              <div class="col-xs-6">
+                <%= I18n.t(:shipping_cost, scope: :cart) %>
+              </div>
+              <div class="col-xs-6">
+                <div class="cart__total-shipping-cost">
+                  <span id="order-shipping-cost-<%= order.shop.id %>">
+                    <%= order.shipping_cost.in_euro.to_yuan.display %>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- End Price -->
+          <div class="row">
+            <div class="cart__total-end">
+              <div class="col-xs-6">
+                <%= I18n.t(:total_price_with_currency_yuan, scope: :cart) %>
+              </div>
+              <div class="col-xs-6">
+                <div class="cart__total-end-price">
+                  <span id="order-end-price-<%= order.shop.id %>">
+                    <%= order.decorate.end_price.in_euro.to_yuan.display %>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <% unless order.discount? %>
+            <% if action %>
+              <%= form_for :coupon, url: customer_order_coupons_path(order), method: :post do |f| %>
+
+              <!-- Coupon Form -->
+              <div class="row">
+                <div class="cart__total-coupon">
+                  <div class="col-xs-6">
+                    <%= f.text_field :code, :class => 'coupon__field', :placeholder => guess_coupon_label, :autocomplete => 'off' %>
+                  </div>
+                  <div class="col-xs-6">
+                    <div class="cart__total-coupon-button">
+                      <input type="submit" value="<%= I18n.t(:apply, scope: :coupon) %>">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <% end %>
+            <% end %>
+          <% end %>
+
+          </div>
+        </div>
+
+        <% if action %>
+          <div class="row">
+            <div class="col-xs-12">
+              <div class="+small-spacer"></div>
+              <a href="<%= customer_order_customer_path(order) %>" class="btn-large +checkout-button"><%= I18n.t(:checkout, scope: :cart) %></a>
+              <div class="+small-spacer"></div>
+            </div>
+          </div>
+        <% end %>
+
+      </div>
+
     </div>
   </div>
-<% end %>
-
-<% if cart_manager.in?(order) %>
-  <!-- Action to the order -->
-  <% if action %>
-    <%= render partial: 'customer/cart/show/action', :locals => { :order => order } %>
-  <% end %>
-<% end %>

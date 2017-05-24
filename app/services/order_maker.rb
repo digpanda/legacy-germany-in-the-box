@@ -73,7 +73,6 @@ class OrderMaker < BaseService
       order_item.quantity = quantity
       order_item.product = sku.product
       # we clone in a clean way the sku
-      # TODO : could be put into the model directly
       SkuCloner.new(order_item, sku, :singular).process
       order_item.sku_origin = sku
       # `package_set` may be nil most of the time

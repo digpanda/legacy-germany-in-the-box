@@ -229,6 +229,12 @@ class Order
     end
   end
 
+  def package_sets
+    order_items.where(:package_set.ne => nil).reduce([]) do |acc, order_item|
+      acc << order_item.package_set
+    end.uniq
+  end
+
   def only_package_set?
     order_items.where(package_set: nil).count == 0
   end
@@ -325,6 +331,14 @@ class Order
 
   def timeout?
     (Date.today - self.created_at.to_date).to_i > 3
+  end
+
+  def package_set_quantity(package_set)
+    order_items.where(package_set: package_set).count / package_set.package_skus.count
+  end
+
+  def package_set_total(package_set)
+    package_set.end_price * package_set_quantity(package_set)
   end
 
   private

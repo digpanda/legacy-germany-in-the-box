@@ -1,7 +1,6 @@
-class FileWorker
+class CopySkuFilesWorker
   include Sidekiq::Worker
 
-  IMAGES_MAP = [:img0, :img1, :img2, :img3]
   ATTACH_MAP = [:attach0]
 
   def perform(sku_product_id, target_id, sku_id, sku_clone_id, relationship)
@@ -22,7 +21,6 @@ class FileWorker
   private
 
   def copy_images_and_attachment
-    images!
     attach!
     copy_images!
   end
@@ -32,14 +30,6 @@ class FileWorker
       new_image = @target_sku.images.new
       CopyCarrierwaveFile::CopyFileService.new(image, new_image, :file).set_file
       new_image.save
-    end
-  end
-
-  def images!
-    IMAGES_MAP.each do |image_field|
-      if @product_sku.send(image_field).present?
-        copy_file(image_field)
-      end
     end
   end
 
