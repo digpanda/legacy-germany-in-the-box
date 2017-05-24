@@ -28,11 +28,13 @@
 
       <div class="col-xs-1 +nopadding">
         <!-- Remove Item -->
-        <div class="cart__order-item-remove">
-          <a href="#" class="delete-package-set" data-package-set-id="<%= package_set.id %>" data-order-id="<%= order.id %>" data-order-shop-id="<%= order.shop.id %>">
-            <i class="digpanda-remove"></i>
-          </a>
-        </div>
+        <% if action %>
+          <div class="cart__order-item-remove">
+            <a href="#" class="delete-package-set" data-package-set-id="<%= package_set.id %>" data-order-id="<%= order.id %>" data-order-shop-id="<%= order.shop.id %>">
+              <i class="digpanda-remove"></i>
+            </a>
+          </div>
+        <% end %>
       </div>
 
     </div>
@@ -50,9 +52,11 @@
           <div class="cart__order-item-quantity-select">
 
             <!-- Minus -->
-            <span class="cart__order-item-quantity-select-minus">
-              <a href="#" class="js-set-package-quantity-minus" data-package-set-id="<%= package_set.id %>" data-order-shop-id="<%= order.shop.id %>">-</a>
-            </span>
+            <% if action %>
+              <span class="cart__order-item-quantity-select-minus">
+                <a href="#" class="js-set-package-quantity-minus" data-package-set-id="<%= package_set.id %>" data-order-shop-id="<%= order.shop.id %>">-</a>
+              </span>
+            <% end %>
 
             <!-- Value -->
             <span class="cart__order-item-quantity-select-value" id="package-quantity-<%= package_set.id %>" data-package-id="<%= package_set.id %>">
@@ -60,9 +64,11 @@
             </span>
 
             <!-- Plus -->
-            <span class="cart__order-item-quantity-select-plus">
-              <a href="#" class="js-set-package-quantity-plus" data-package-set-id="<%= package_set.id %>" data-order-shop-id="<%= order.shop.id %>">+</a>
-            </span>
+            <% if action %>
+              <span class="cart__order-item-quantity-select-plus">
+                <a href="#" class="js-set-package-quantity-plus" data-package-set-id="<%= package_set.id %>" data-order-shop-id="<%= order.shop.id %>">+</a>
+              </span>
+            <% end %>
 
           </div>
         </div>

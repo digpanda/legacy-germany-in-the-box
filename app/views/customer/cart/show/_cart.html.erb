@@ -1,7 +1,12 @@
-<!-- BACK -->
-<%= render partial: 'customer/cart/show/back' %>
+<div class="row">
+  <div class="col-md-8 col-md-push-2">
+    <!-- BACK -->
+    <%= render partial: 'customer/cart/show/back' %>
 
-<!-- ORDERS LIST (CART) -->
-<% orders.each do |order| %>
-  <%= render partial: 'customer/cart/show/order', :locals => { :order => order } %>
-<% end %>
+    <!-- ORDERS LIST (CART) -->
+    <% orders.each do |order| %>
+    <%= render partial: 'customer/cart/show/order', :locals => { :order => order, :action => true } %>
+    <% end %>
+
+  </div>
+</div>

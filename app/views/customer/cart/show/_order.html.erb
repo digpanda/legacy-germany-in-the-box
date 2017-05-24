@@ -8,7 +8,7 @@
         </div>
 
         <!-- Order Item -->
-        <%= render partial: 'customer/cart/show/order_items', :locals => { :order => order } %>
+        <%= render partial: 'customer/cart/show/order_items', :locals => { :order => order, :action => action } %>
 
         <div class="row cart__total">
           <div class="col-xs-12">
@@ -88,35 +88,39 @@
           </div>
 
           <% unless order.discount? %>
-            <%= form_for :coupon, url: customer_order_coupons_path(order), method: :post do |f| %>
+            <% if action %>
+              <%= form_for :coupon, url: customer_order_coupons_path(order), method: :post do |f| %>
 
-            <!-- Coupon Form -->
-            <div class="row">
-              <div class="cart__total-coupon">
-                <div class="col-xs-6">
-                  <%= f.text_field :code, :class => 'coupon__field', :placeholder => guess_coupon_label, :autocomplete => 'off' %>
-                </div>
-                <div class="col-xs-6">
-                  <div class="cart__total-coupon-button">
-                    <input type="submit" value="<%= I18n.t(:apply, scope: :coupon) %>">
+              <!-- Coupon Form -->
+              <div class="row">
+                <div class="cart__total-coupon">
+                  <div class="col-xs-6">
+                    <%= f.text_field :code, :class => 'coupon__field', :placeholder => guess_coupon_label, :autocomplete => 'off' %>
+                  </div>
+                  <div class="col-xs-6">
+                    <div class="cart__total-coupon-button">
+                      <input type="submit" value="<%= I18n.t(:apply, scope: :coupon) %>">
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
 
+              <% end %>
             <% end %>
           <% end %>
 
           </div>
         </div>
 
-        <div class="row">
-          <div class="col-xs-12">
-            <div class="+small-spacer"></div>
-            <a href="<%= customer_order_customer_path(order) %>" class="btn-large +checkout-button"><%= I18n.t(:checkout, scope: :cart) %></a>
-            <div class="+small-spacer"></div>
+        <% if action %>
+          <div class="row">
+            <div class="col-xs-12">
+              <div class="+small-spacer"></div>
+              <a href="<%= customer_order_customer_path(order) %>" class="btn-large +checkout-button"><%= I18n.t(:checkout, scope: :cart) %></a>
+              <div class="+small-spacer"></div>
+            </div>
           </div>
-        </div>
+        <% end %>
 
       </div>
 
