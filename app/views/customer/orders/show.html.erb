@@ -1,38 +1,26 @@
 <div class="row">
-<div class="col-md-10 col-md-push-1 col-md-pull-1">
-
-  <div class="row">
-
-    <div class="col-md-8">
-      <%= render partial: 'customer/cart/show/order', locals: {order: @order, action: false} %>
-    </div>
-
-    <div class="+spacer"></div>
-
-    <div class="col-md-4">
-      <%= render partial: 'customer/cart/show/total/list', locals: {order: @order} %>
-    </div>
-
+  <div class="col-md-8 col-md-push-2">
+    <%= render partial: 'customer/cart/show/order', locals: {order: @order, action: false} %>
   </div>
-  <div class="+spacer"></div>
-  <div class="row" align="center">
-  <% if !@order.decorate.paid? %>
-      <div align="center">
+</div>
+
+<div class="row">
+  <div class="col-md-8 col-md-push-2">
+    <% if !@order.decorate.paid? %>
+    <div align="center">
       <%= link_to '继续购买', customer_order_continue_path(@order), method: :patch, class: 'btn-large +checkout-button col-md-2 col-xs-12' %>
       <%#= link_to '', customer_order_path(@order), method: :delete, data: { confirm: I18n.t(:confirm_want_delete, scope: :notice) },
-                  class: 'tooltipster fa fa-times buttons buttons__delete' %>
-      </div>
-  <% else %>
-    <%#= link_to '继续购买', identity_solver.origin_url, class: 'btn-large +checkout-button col-md-2 col-xs-5' %>
-  <% end %>
+      class: 'tooltipster fa fa-times buttons buttons__delete' %>
+    </div>
+    <% end %>
   </div>
+</div>
 
-  <div class="row">
-    <div class="+spacer"></div>
+<!-- TODO : this must be refactored, it's fugly -->
+<div class="row">
+  <div class="col-md-8 col-md-push-2">
     <div class="+white-box">
       <%= render partial: "customer/orders/show/address", :locals => { :address => @order.shipping_address} %>
     </div>
   </div>
-
-</div>
 </div>
