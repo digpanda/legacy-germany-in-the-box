@@ -337,6 +337,10 @@ class Order
     order_items.where(package_set: package_set).count / package_set.package_skus.count
   end
 
+  def package_set_total(package_set)
+    package_set.end_price * package_set_quantity(package_set)
+  end
+
   private
 
   def update_paid_at

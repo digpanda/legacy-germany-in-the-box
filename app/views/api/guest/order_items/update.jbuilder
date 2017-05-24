@@ -18,8 +18,16 @@ json.data do
   end
 
   # order item
-  json.order_item do
-    json.total_price_with_taxes @order_item.total_price_with_taxes.in_euro.to_yuan.display
+  if @order_item
+    json.order_item do
+      json.total_price_with_taxes @order_item.total_price_with_taxes.in_euro.to_yuan.display
+    end
+  end
+
+  if @package_set
+    json.package_set do
+      json.total_price @order.package_set_total(@package_set).in_euro.to_yuan.display
+    end
   end
 
 end

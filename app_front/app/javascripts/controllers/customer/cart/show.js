@@ -77,13 +77,16 @@ var CustomerCartShow = {
 
       let packageSetId = $(this).data('package-set-id');
       let currentQuantity = $('#package-quantity-'+packageSetId).html();
+      let currentTotal = $('#package-total-'+packageSetId).attr('data-origin');
       let orderShopId = $(this).data('order-shop-id');
       let originQuantity = currentQuantity;
+      let originTotal = currentTotal;
 
       if (currentQuantity > 1) {
           currentQuantity--;
-          CustomerCartShow.packageSetSetQuantity(packageSetId, originQuantity, currentQuantity, orderShopId);
       }
+
+      CustomerCartShow.packageSetSetQuantity(packageSetId, originQuantity, originTotal, currentQuantity, orderShopId);
 
     });
 
@@ -94,11 +97,13 @@ var CustomerCartShow = {
 
       let packageSetId = $(this).data('package-set-id');
       let currentQuantity = $('#package-quantity-'+packageSetId).html();
+      let currentTotal = $('#package-total-'+packageSetId).attr('data-origin');
       let orderShopId = $(this).data('order-shop-id');
       let originQuantity = currentQuantity;
+      let originTotal = currentTotal;
 
       currentQuantity++;
-      CustomerCartShow.packageSetSetQuantity(packageSetId, originQuantity, currentQuantity, orderShopId);
+      CustomerCartShow.packageSetSetQuantity(packageSetId, originQuantity, originTotal, currentQuantity, orderShopId);
 
     });
 
@@ -139,10 +144,12 @@ var CustomerCartShow = {
 
   },
 
-    packageSetSetQuantity: function(packageSetId, originQuantity, packageSetQuantity, orderShopId) {
+    packageSetSetQuantity: function(packageSetId, originQuantity, originTotal, packageSetQuantity, orderShopId) {
 
         // We first setup a temporary number before the AJAX callback
-        $('#order-item-quantity-'+packageSetId).html(packageSetQuantity);
+        $('#package-quantity-'+packageSetId).html(packageSetQuantity);
+        $('#package-total-'+packageSetId).html('-');
+
         CustomerCartShow.loading();
 
         var current_click_chain = CustomerCartShow.click_chain;
@@ -152,7 +159,7 @@ var CustomerCartShow = {
             // We basically prevent multiple click by considering only the last click as effective
             // It won't call the API if we clicked more than once on the + / - within the second
             if (current_click_chain == CustomerCartShow.click_chain) {
-                CustomerCartShow.processPackageSetQuantity(packageSetId, originQuantity, packageSetQuantity, orderShopId);
+                CustomerCartShow.processPackageSetQuantity(packageSetId, originQuantity, originTotal, packageSetQuantity, orderShopId);
             }
 
         }, CustomerCartShow.chain_timing);
@@ -320,7 +327,7 @@ var CustomerCartShow = {
 
   },
 
-  processPackageSetQuantity: function(packageSetId, originQuantity, packageSetQuantity, orderShopId) {
+  processPackageSetQuantity: function(packageSetId, originQuantity, originTotal, packageSetQuantity, orderShopId) {
 
     var OrderItem = require("javascripts/models/order_item");
     OrderItem.setPackageSetQuantity(packageSetId, packageSetQuantity, function(res) {
@@ -329,7 +336,7 @@ var CustomerCartShow = {
 
         if (res.success === false) {
 
-            CustomerCartShow.rollbackPackageSetQuantity(originQuantity, packageSetId, res);
+            CustomerCartShow.rollbackPackageSetQuantity(originQuantity, originTotal, packageSetId, res);
             CustomerCartShow.loaded();
             Messages.makeError(res.error);
 
@@ -383,7 +390,7 @@ var CustomerCartShow = {
 
   },
 
-  rollbackPackageSetQuantity: function(originQuantity, packageSetId, res) {
+  rollbackPackageSetQuantity: function(originQuantity, originTotal, packageSetId, res) {
 
     if ((typeof res.original_quantity != "undefined") && (typeof res.original_total != "undefined")) {
         originQuantity = res.original_quantity;
@@ -411,6 +418,8 @@ var CustomerCartShow = {
 
       // Quantity changes
       $('#package-quantity-'+packageSetId).val(packageSetQuantity);
+      $('#package-total-'+packageSetId).html(res.data.package_set.total_price);
+      $('#package-total-'+packageSetId).attr('data-origin', res.data.package_set.total_price);
 
       CustomerCartShow.resetTotalDisplay(orderShopId, res);
 
