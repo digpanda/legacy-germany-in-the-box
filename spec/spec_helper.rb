@@ -25,6 +25,7 @@ RSpec.configure do |config|
   config.before(:each) do
     Mongoid.purge!
     FactoryGirl.create(:shipping_rate, partner: :beihai)
+    FactoryGirl.create(:shipping_rate, partner: :mkpost)
     FactoryGirl.create(:shipping_rate, partner: :xipost)
     page.driver.reset!
   end

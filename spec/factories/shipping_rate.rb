@@ -4,7 +4,7 @@ FactoryGirl.define do
     price        50
     weight       10
     type         :general
-    partner      :beihai
+    partner      :mkpost
 
   end
 end
