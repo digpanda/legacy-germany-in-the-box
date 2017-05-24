@@ -76,7 +76,7 @@ var CustomerCartShow = {
       CustomerCartShow.click_chain++;
 
       let packageSetId = $(this).data('package-set-id');
-      let currentQuantity = $('#package-quantity-'+packageSetId).val();
+      let currentQuantity = $('#package-quantity-'+packageSetId).html();
       let orderShopId = $(this).data('order-shop-id');
       let originQuantity = currentQuantity;
 
@@ -93,7 +93,7 @@ var CustomerCartShow = {
       CustomerCartShow.click_chain++;
 
       let packageSetId = $(this).data('package-set-id');
-      let currentQuantity = $('#package-quantity-'+packageSetId).val();
+      let currentQuantity = $('#package-quantity-'+packageSetId).html();
       let orderShopId = $(this).data('order-shop-id');
       let originQuantity = currentQuantity;
 

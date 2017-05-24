@@ -409,7 +409,7 @@ var CustomerCartShow = {
             CustomerCartShow.click_chain++;
 
             var packageSetId = $(this).data('package-set-id');
-            var currentQuantity = $('#package-quantity-' + packageSetId).val();
+            var currentQuantity = $('#package-quantity-' + packageSetId).html();
             var orderShopId = $(this).data('order-shop-id');
             var originQuantity = currentQuantity;
 
@@ -425,7 +425,7 @@ var CustomerCartShow = {
             CustomerCartShow.click_chain++;
 
             var packageSetId = $(this).data('package-set-id');
-            var currentQuantity = $('#package-quantity-' + packageSetId).val();
+            var currentQuantity = $('#package-quantity-' + packageSetId).html();
             var orderShopId = $(this).data('order-shop-id');
             var originQuantity = currentQuantity;
 
