@@ -41,6 +41,10 @@ class PackageSet
   #   end
   # end
 
+  def casual_price?
+    casual_price && casual_price > 0
+  end
+
   def price
     self.package_skus.reduce(0) do |acc, package_sku|
       acc + package_sku.total_price_with_taxes
