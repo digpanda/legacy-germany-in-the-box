@@ -1486,7 +1486,7 @@ body {
 
 .cart__order-title a {
   color: #464646;
-  font-size: 24px;
+  font-size: 22px;
   font-weight: bold; }
 
 .cart__order-item {
@@ -1544,7 +1544,7 @@ body {
   font-size: 15px; }
 
 .cart__order-item-total-digits {
-  font-size: 22px;
+  font-size: 20px;
   color: #33965e;
   font-weight: bold; }
 
