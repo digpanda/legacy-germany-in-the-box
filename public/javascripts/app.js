@@ -350,19 +350,9 @@ var CustomerCartShow = {
      */
     init: function init() {
 
-        this.multiSelectSystem();
         this.orderItemHandleQuantity();
         this.removeOrderItem();
-        this.removeOrder();
         this.removePackageSet();
-    },
-
-    multiSelectSystem: function multiSelectSystem() {
-
-        $('select.sku-variants-options').multiselect({
-            enableCaseInsensitiveFiltering: true,
-            maxHeight: 400
-        }).multiselect('disable');
     },
 
     orderItemHandleQuantity: function orderItemHandleQuantity() {
@@ -575,32 +565,6 @@ var CustomerCartShow = {
                         }
                     }
 
-                    RefreshTotalProducts.perform();
-                } else {
-
-                    Messages.makeError(res.error);
-                }
-            });
-        });
-    },
-
-    removeOrder: function removeOrder() {
-
-        $('.delete-order').on('click', function (e) {
-
-            e.preventDefault();
-
-            var OrderItem = require("javascripts/models/order_item");
-            var orderId = $(this).data('id');
-
-            OrderItem.removeOrder(orderId, function (res) {
-
-                var Messages = require("javascripts/lib/messages");
-
-                if (res.success === true) {
-
-                    Messages.makeSuccess(res.msg);
-                    $('#order-' + orderId).remove();
                     RefreshTotalProducts.perform();
                 } else {
 

@@ -6,6 +6,6 @@
 <!-- Products related items -->
 <% unless order.only_package_set? %>
   <% order.order_items.where(:package_set => nil).each do |order_item| %>
-    <%= render partial: 'customer/cart/show/order_items/casual_product', :locals => { :order_item => order_item, :action => action } %>
+    <%= render partial: 'customer/cart/show/order_items/order_item', :locals => { :order_item => order_item, :action => action } %>
   <% end %>
 <% end %>
