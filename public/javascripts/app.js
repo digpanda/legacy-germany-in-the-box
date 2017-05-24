@@ -382,8 +382,9 @@ var CustomerCartShow = {
 
             if (currentQuantity > 1) {
                 currentQuantity--;
-                CustomerCartShow.orderItemSetQuantity(orderShopId, orderItemId, originQuantity, originTotal, currentQuantity);
             }
+
+            CustomerCartShow.orderItemSetQuantity(orderShopId, orderItemId, originQuantity, originTotal, currentQuantity);
         });
 
         $('.js-set-quantity-plus').click(function (e) {
