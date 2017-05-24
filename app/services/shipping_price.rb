@@ -2,6 +2,7 @@
 class ShippingPrice
 
   DISCOUNT_PERCENT = 30
+  FALLBACK_PARTNER = :mkpost
 
   attr_reader :sku, :product
 
@@ -24,7 +25,7 @@ class ShippingPrice
 
   def logistic_partner
     if [:manual, :borderguru].include? Setting.instance.logistic_partner
-      :beihai
+      FALLBACK_PARTNER # this will set a default rate for the partners without ShippingRate defined
     else
       Setting.instance.logistic_partner
     end
