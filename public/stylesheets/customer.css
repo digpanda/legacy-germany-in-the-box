@@ -1725,7 +1725,7 @@ body {
   margin-right: -15px;
   margin-left: -15px;
   box-shadow: 0px 10px 10px rgba(139, 139, 139, 0.32);
-  min-height: 4em;
+  height: 70px;
   background-color: #ffffff; }
   @media (min-width: 995px) {
     .header-mobile {
@@ -1741,32 +1741,29 @@ body {
     left: 1em; }
   .header-mobile li li {
     font-size: 1em; }
-  .header-mobile__categories {
-    min-height: 4em; }
-    .header-mobile__categories button {
-      color: #33965e;
-      font-size: 2.3em; }
-    .header-mobile__categories nav {
-      background-color: #ffffff; }
-    .header-mobile__categories ul {
-      list-style-type: none;
-      padding: 0; }
-    .header-mobile__categories li {
-      margin: 1.5em; }
-    .header-mobile__categories a {
-      color: #5c5c5c; }
-    .header-mobile__categories h3 {
-      font-size: 1.3em; }
-    .header-mobile__categories h4 {
-      font-size: 1.1em; }
+  .header-mobile__categories button {
+    color: #33965e;
+    font-size: 2.3em;
+    margin-top: 0.1em; }
+  .header-mobile__categories nav {
+    background-color: #ffffff; }
+  .header-mobile__categories ul {
+    list-style-type: none;
+    padding: 0; }
+  .header-mobile__categories li {
+    margin: 1.5em; }
+  .header-mobile__categories a {
+    color: #5c5c5c; }
+  .header-mobile__categories h3 {
+    font-size: 1.3em; }
+  .header-mobile__categories h4 {
+    font-size: 1.1em; }
   .header-mobile__logo {
     padding-top: 0.2em;
-    min-height: 4em;
     padding-left: 3em; }
     .header-mobile__logo img {
       max-width: 130px; }
   .header-mobile__menu {
-    min-height: 4em;
     padding-right: 3.5em;
     padding-top: 1.0em; }
     .header-mobile__menu ul {

@@ -2,7 +2,7 @@
   <div class="col-xs-10 col-xs-push-1 col-md-4 col-md-push-4 col-md-pull-4">
     <div id="message-container-<%= message %>" class="message message__<%= message %> <% unless flash[message] %>+hidden<% end %>">
       <div class="row">
-        <div class="col-md-11 col-xs-11">
+        <div class="col-md-11 col-xs-10">
           <div id="message-content-<%= message %>" class="+centered">
             <%= flash[message] %>
           </div>

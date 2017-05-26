@@ -19,12 +19,14 @@ var Messages = {
 
       let Messages = require("javascripts/lib/messages");
 
-      if ($("#message-error").length > 0) {
-        Messages.activateHide('#message-error', 5000);
+      if ($("#message-container-error").length > 0) {
+        Messages.activateHide('#message-container-error', 4000);
+        Messages.forceHide('#message-container-error');
       }
 
-      if ($("#message-success").length > 0) {
-        Messages.activateHide('#message-success', 6000);
+      if ($("#message-container-success").length > 0) {
+        Messages.activateHide('#message-container-success', 5000);
+        Messages.forceHide('#message-container-success')
       }
 
     },

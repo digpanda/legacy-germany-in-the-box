@@ -1,9 +1,0 @@
-<div class="main-header__avatar" style="background-image:url(<%= current_user.decorate.avatar %>)">
-
-  <% if current_user.new_notifications? %>
-  <div class="main-header__avatar --notification">
-    <%= current_user.notifications.unreads.count %>
-  </div>
-  <% end %>
-
-</div>

@@ -8,7 +8,6 @@ var Messages = { // NOTE : We should use a template system to handle the HTML he
       $('#message-container-error').show();
       $("#message-content-error").html(error);
       Messages.activateHide('#message-container-error', 3000);
-      Messages.forceHide('#message-container-error')
 
     },
 
@@ -17,10 +16,13 @@ var Messages = { // NOTE : We should use a template system to handle the HTML he
       $('#message-container-success').show();
       $("#message-content-success").html(success);
       Messages.activateHide('#message-container-success', 4000);
-      Messages.forceHide('#message-container-success')
 
     },
 
+    /**
+     * Everything below is called from the starter messages.js
+     */
+    
     activateHide: function(el, time) {
 
       setTimeout(function(){

@@ -1708,7 +1708,6 @@ var Messages = { // NOTE : We should use a template system to handle the HTML he
     $('#message-container-error').show();
     $("#message-content-error").html(error);
     Messages.activateHide('#message-container-error', 3000);
-    Messages.forceHide('#message-container-error');
   },
 
   makeSuccess: function makeSuccess(success) {
@@ -1716,8 +1715,11 @@ var Messages = { // NOTE : We should use a template system to handle the HTML he
     $('#message-container-success').show();
     $("#message-content-success").html(success);
     Messages.activateHide('#message-container-success', 4000);
-    Messages.forceHide('#message-container-success');
   },
+
+  /**
+   * Everything below is called from the starter messages.js
+   */
 
   activateHide: function activateHide(el, time) {
 
@@ -3148,12 +3150,14 @@ var Messages = {
 
     var Messages = require("javascripts/lib/messages");
 
-    if ($("#message-error").length > 0) {
-      Messages.activateHide('#message-error', 5000);
+    if ($("#message-container-error").length > 0) {
+      Messages.activateHide('#message-container-error', 4000);
+      Messages.forceHide('#message-container-error');
     }
 
-    if ($("#message-success").length > 0) {
-      Messages.activateHide('#message-success', 6000);
+    if ($("#message-container-success").length > 0) {
+      Messages.activateHide('#message-container-success', 5000);
+      Messages.forceHide('#message-container-success');
     }
   }
 
