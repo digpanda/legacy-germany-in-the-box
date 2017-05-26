@@ -43,11 +43,6 @@
   <!-- Position + Email -->
   <div class="row">
     <div class="col-md-6 form-group">
-      <%= form.label :function, I18n.t(:contact_function, scope: :edit_shop_application) %>
-      <%= form.text_field :function, :class => 'form-control', :maxLength => Rails.configuration.gitb[:max_short_text_length] %>
-      <div class="help-block with-errors"></div>
-    </div>
-    <div class="col-md-6 form-group">
       <%= form.label :mail, I18n.t(:contact_email, scope: :edit_shop_application), :class => 'required' %>
       <%= form.email_field :mail, :class => 'form-control', :maxLength => Rails.configuration.gitb[:max_short_text_length], :placeholder => 'example@google.com', :required => true %>
       <div class="help-block with-errors"></div>
