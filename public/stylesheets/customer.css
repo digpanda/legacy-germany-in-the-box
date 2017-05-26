@@ -885,15 +885,10 @@ body {
 
 .message {
   padding: 0.5em;
-  margin: 2em;
+  margin-top: 0.5em;
   font-weight: 400;
   z-index: 10;
-  position: fixed;
-  top: 0.5em;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  -ms-border-radius: 4px;
-  border-radius: 4px; }
+  top: 0.5em; }
   .message__simple {
     padding: 1em;
     font-size: 18px;

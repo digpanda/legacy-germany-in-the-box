@@ -5,15 +5,19 @@ var Messages = { // NOTE : We should use a template system to handle the HTML he
 
     makeError: function(error) {
 
-      $("#messages-container").html('<div id="message-error" class="col-xs-10 col-xs-push-1 col-md-4 col-md-push-4 col-md-pull-4 message message__error +centered">'+error+'</div>');
-      Messages.activateHide('#message-error', 3000);
+      $('#message-container-error').show();
+      $("#message-content-error").html(error);
+      Messages.activateHide('#message-container-error', 3000);
+      Messages.forceHide('#message-container-error')
 
     },
 
     makeSuccess: function(success) {
 
-      $("#messages-container").html('<div id="message-success" class="col-xs-10 col-xs-push-1 col-md-4 col-md-push-4 col-md-pull-4 message message__success +centered">'+success+'</div>');
-      Messages.activateHide('#message-success', 4000);
+      $('#message-container-success').show();
+      $("#message-content-success").html(success);
+      Messages.activateHide('#message-container-success', 4000);
+      Messages.forceHide('#message-container-success')
 
     },
 
@@ -21,10 +25,16 @@ var Messages = { // NOTE : We should use a template system to handle the HTML he
 
       setTimeout(function(){
           $(el).fadeOut(function() {
-            $(document).trigger('message:hidden'); // To replace footer
+            $(document).trigger('message:hidden');
           });
       }, time);
 
+    },
+
+    forceHide: function(el) {
+      $(el).on('click', function() {
+        Messages.activateHide(el, 0);
+      })
     },
 
 }
