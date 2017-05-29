@@ -113,10 +113,11 @@ var OrderItem = {
         });
     },
 
-    addPackageSet: function (url, callback) {
+    addPackageSet: function (packageSetId, callback) {
         $.ajax({
-            method: "PATCH",
-            url: url
+            method: "POST",
+            url: "/api/guest/package_sets",
+            data: { "package_set_id": packageSetId }
 
         }).done(function (res) {
 

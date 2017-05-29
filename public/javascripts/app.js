@@ -938,10 +938,10 @@ var PackageSetsShow = {
             e.preventDefault();
 
             var OrderItem = require("javascripts/models/order_item");
-            var url = $(this).data('url');
-            console.log(url);
+            var packageSetId = $(this).data('package-set-id');
+            console.log(packageSetId);
 
-            OrderItem.addPackageSet(url, function (res) {
+            OrderItem.addPackageSet(packageSetId, function (res) {
 
                 var Messages = require("javascripts/lib/messages");
 
@@ -2294,10 +2294,11 @@ var OrderItem = {
     });
   },
 
-  addPackageSet: function addPackageSet(url, callback) {
+  addPackageSet: function addPackageSet(packageSetId, callback) {
     $.ajax({
-      method: "PATCH",
-      url: url
+      method: "POST",
+      url: "/api/guest/package_sets",
+      data: { "package_set_id": packageSetId }
 
     }).done(function (res) {
 

@@ -9,8 +9,8 @@ class Api::Guest::PackageSetsController < Api::ApplicationController
   before_action :set_package_set
 
   # we use the package set and convert it into an order
-  def update
-    if package_set.active
+  def create
+      if package_set.active
       # we first compose the whole order
       package_set.package_skus.each do |package_sku|
         # we also lock each order item we generate

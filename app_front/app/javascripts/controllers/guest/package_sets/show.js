@@ -20,10 +20,10 @@ var PackageSetsShow = {
             e.preventDefault();
 
             var OrderItem = require("javascripts/models/order_item");
-            let url = $(this).data('url');
-            console.log(url);
+            let packageSetId = $(this).data('package-set-id');
+            console.log(packageSetId);
 
-            OrderItem.addPackageSet(url, function(res) {
+            OrderItem.addPackageSet(packageSetId, function(res) {
 
                 var Messages = require("javascripts/lib/messages");
 
