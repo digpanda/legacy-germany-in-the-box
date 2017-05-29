@@ -10,15 +10,15 @@ class Api::Guest::PackageSetsController < Api::ApplicationController
 
   # we use the package set and convert it into an order
   def create
-      if package_set.active
+    if package_set.active
       # we first compose the whole order
       package_set.package_skus.each do |package_sku|
         # we also lock each order item we generate
         added_item = order_maker.add(package_sku.sku, package_sku.product, package_sku.quantity,
-                        price: package_sku.price,
-                        taxes: package_sku.taxes_per_unit,
-                        locked: true,
-                        package_set: package_sku.package_set)
+        price: package_sku.price,
+        taxes: package_sku.taxes_per_unit,
+        locked: true,
+        package_set: package_sku.package_set)
         unless added_item.success?
           # we need to rollback the order
           order_maker.remove_package_set!(package_set)
@@ -106,11 +106,11 @@ class Api::Guest::PackageSetsController < Api::ApplicationController
       package_set.package_skus.each do |package_sku|
         # we also lock each order item we generate
         order_maker.add(package_sku.sku, package_sku.product, package_sku.quantity,
-                        price: package_sku.price,
-                        taxes: package_sku.taxes_per_unit,
-                        shipping: package_sku.shipping_per_unit,
-                        locked: true,
-                        package_set: package_sku.package_set)
+        price: package_sku.price,
+        taxes: package_sku.taxes_per_unit,
+        shipping: package_sku.shipping_per_unit,
+        locked: true,
+        package_set: package_sku.package_set)
       end
       # we first empty the cart manager to make it fresh
       # cart_manager.empty! <-- to avoid multiple package order

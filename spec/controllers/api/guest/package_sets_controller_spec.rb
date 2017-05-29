@@ -16,7 +16,7 @@ describe Api::Guest::PackageSetsController, :type => :controller do
         expect_json(success: true)
         # small check to know if we actually made
         # a real order successfully
-        expect(Order.count).to eql?(1)
+        expect(Order.count).to eq(1)
       end
 
     end
