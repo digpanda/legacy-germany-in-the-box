@@ -7,6 +7,7 @@ class Api::Guest::CartController < Api::ApplicationController
            json: {success: true, datas: cart_manager.products_number}.to_json
   end
 
+  # TODO : move that into api/guest/package_sets_controller
   def destroy_package_set
     @order = Order.find(params[:order_id])
     @package_set = PackageSet.find(params[:package_set_id])
