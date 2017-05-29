@@ -32,7 +32,8 @@ class OrderMaker < BaseService
   # return_with(:error, error: I18n.t(:add_product_ko, scope: :edit_order))
   # end
 
-  def add(sku, product, quantity, price:nil, taxes:nil, shipping:nil, locked: false, package_set:nil)
+  # NOTE : shipping could be taken directly from package set
+  def add(sku, product, quantity, price:nil, taxes:nil, locked: false, package_set:nil)
 
     existing_order_item = order.order_items.with_sku(sku).first
 
@@ -53,7 +54,7 @@ class OrderMaker < BaseService
       return return_with(:error, error: not_available_msg(product, sku))
     end
 
-    order_item = build_order_item!(sku, quantity, price, taxes, shipping, locked, package_set)
+    order_item = build_order_item!(sku, quantity, price, taxes, locked, package_set)
     if order_item.persisted?
       return return_with(:success, order_item: order_item, msg: I18n.t(:add_product_ok, scope: :edit_order))
     end
@@ -67,7 +68,7 @@ class OrderMaker < BaseService
 
   private
 
-  def build_order_item!(sku, quantity, price, taxes, shipping, locked, package_set)
+  def build_order_item!(sku, quantity, price, taxes, locked, package_set)
 
     order.order_items.build.tap do |order_item|
       order_item.quantity = quantity
@@ -86,9 +87,9 @@ class OrderMaker < BaseService
 
       update_price!(order_item, price)
       update_taxes!(order_item, taxes)
-      update_shipping!(order_item, shipping)
       update_locked!(order_item, locked)
       order_item.save!
+      update_shipping!
     end
   end
 
@@ -99,11 +100,9 @@ class OrderMaker < BaseService
     end
   end
 
-  def update_shipping!(order_item, shipping)
-    # we disable the taxe calculations by adding it manually
-    if shipping
-      order_item.shipping_per_unit = shipping
-    end
+  # we either add the shipping manually or calculate it
+  def update_shipping!
+    order.refresh_shipping_cost
   end
 
   def update_price!(order_item, price)

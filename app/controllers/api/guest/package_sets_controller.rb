@@ -17,7 +17,6 @@ class Api::Guest::PackageSetsController < Api::ApplicationController
         added_item = order_maker.add(package_sku.sku, package_sku.product, package_sku.quantity,
                         price: package_sku.price,
                         taxes: package_sku.taxes_per_unit,
-                        shipping: package_sku.shipping_per_unit,
                         locked: true,
                         package_set: package_sku.package_set)
         unless added_item.success?

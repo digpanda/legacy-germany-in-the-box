@@ -30,7 +30,7 @@ class Guest::PackageSetsController < ApplicationController
       order_maker.add(package_sku.sku, package_sku.product, package_sku.quantity,
                       price: package_sku.price,
                       taxes: package_sku.taxes_per_unit,
-                      shipping: package_sku.shipping_per_unit,
+                      shipping: package_set.shipping_cost, # total shipping cost of the order
                       locked: true,
                       package_set: package_sku.package_set)
     end

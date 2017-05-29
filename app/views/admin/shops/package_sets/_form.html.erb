@@ -32,6 +32,11 @@
 
   <div class="clearfix"></div>
 
+  <%= form.label :shipping_cost %>
+  <%= form.text_field :shipping_cost %>
+
+  <div class="clearfix"></div>
+
   <%= form.label :cover, "Cover" %>
   <%= js_file_upload(form: form, field: :cover) %>
 
@@ -79,11 +84,6 @@
         </th>
         <th>
           <label>
-            Shipping per Unit (EUR)
-          </label>
-        </th>
-        <th>
-          <label>
             Quantity
           </label>
         </th>
@@ -107,9 +107,6 @@
         </td>
         <td>
           <%= field.text_field :taxes_per_unit %>
-        </td>
-        <td>
-          <%= field.text_field :shipping_per_unit %>
         </td>
         <td>
           <%= field.select :quantity, (1..10) %>
