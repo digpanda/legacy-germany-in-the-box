@@ -19,7 +19,7 @@ class ShippingPrice
   # we sum the weight of all the order items
   def weight
     order.order_items.reduce(0) do |acc, order_item|
-      acc + order_item.weight
+      acc + order_item.weight * order_item.quantity
     end
   end
 
@@ -36,7 +36,6 @@ class ShippingPrice
   end
 
   def shipping_rate
-    binding.pry
     @shipping_rate ||= ShippingRate.where(:weight.gte => weight).where(:type => type).where(partner: logistic_partner).order_by(weight: :asc).first || FALLBACK_SHIPPING_RATE
   end
 

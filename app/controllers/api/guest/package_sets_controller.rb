@@ -26,9 +26,7 @@ class Api::Guest::PackageSetsController < Api::ApplicationController
           return
         end
 
-        if order.coupon
-          CouponHandler.new(identity_solver, order.coupon, order).reset
-        end
+        handle_coupon!
 
       end
       # we first empty the cart manager to make it fresh
@@ -47,16 +45,47 @@ class Api::Guest::PackageSetsController < Api::ApplicationController
       add_package_set
     end
 
-    # TODO : WARNING - this should be refactored, we duplicate this coupon handler reset everywhere
-    # it was done as a quickfix before emergency release.
-    if order.coupon
-      CouponHandler.new(identity_solver, order.coupon, order).reset
-    end
+    handle_coupon!
 
     render 'api/guest/order_items/update'
   end
 
+  def destroy
+
+    order.order_items.where(package_set: package_set).delete_all
+
+    if destroy_empty_order!
+      handle_coupon!
+      if order.persisted?
+        render 'api/guest/order_items/update'
+      else
+        render json: {success: true, order_empty: !@order.persisted?}
+      end
+    else
+      render json: throw_error(:unable_to_process).merge(error: order_item.errors.full_messages.join(', '))
+    end
+  end
+
   private
+
+  def handle_coupon!
+    coupon_handler.reset if order.coupon
+  end
+
+  def destroy_empty_order!
+    if order.destroyable?
+      order.remove_coupon(identity_solver) if order.coupon
+      order.reload
+      return order.destroy
+    end
+    true
+  end
+
+  private
+
+  def coupon_handler
+    @coupon_handler ||= CouponHandler.new(identity_solver, order.coupon, order)
+  end
 
   def order_maker
     @order_maker ||= OrderMaker.new(order)

@@ -3,7 +3,7 @@ namespace :guest do
 
   # china city related (for the address system)
   mount ChinaCity::Engine => '/china_city'
-  
+
   resources :translations  do
   end
 
@@ -16,7 +16,6 @@ namespace :guest do
 
   resource :cart, :controller => 'cart' do
     get :total
-    post :destroy_package_set
   end
 
 

@@ -72,6 +72,10 @@ class Api::Guest::OrderItemsController < Api::ApplicationController
       return
     end
 
+    order.refresh_shipping_cost
+    order.save
+    order.reload
+
     if order.coupon
       CouponHandler.new(identity_solver, order.coupon, order).reset
     end
