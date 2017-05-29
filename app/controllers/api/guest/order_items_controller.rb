@@ -3,7 +3,6 @@ class Api::Guest::OrderItemsController < Api::ApplicationController
   attr_reader :order_item, :order
 
   before_action :set_order_item, except: :create
-  before_action :set_order, only: :create
 
   def create
     store_in_cart
@@ -119,14 +118,14 @@ class Api::Guest::OrderItemsController < Api::ApplicationController
     @order_item = OrderItem.find(params[:id])
   end
 
-  def set_order
+  # TODO : this must be totally refactored
+  def store_in_cart
+
     @product = Product.find(params[:product_id])
     @quantity = params[:quantity].to_i
     @sku = @product.sku_from_option_ids(params[:option_ids].split(','))
     @order = cart_manager.order(shop: @product.shop, call_api: false)
-  end
 
-  def store_in_cart
     if @quantity <= 0
       render json: throw_error(:unable_to_process).merge(error: I18n.t(:not_available, scope: :popular_products))
       return

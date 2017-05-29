@@ -1,7 +1,7 @@
  # small library to guess the shipping prices via calculations
 class ShippingPrice
 
-  DISCOUNT_PERCENT = 30.freeze
+  DISCOUNT_PERCENT = 20.freeze
   FALLBACK_PARTNER = :mkpost.freeze
   FALLBACK_SHIPPING_RATE_TYPE = :general.freeze
   FALLBACK_SHIPPING_RATE = 0.freeze
@@ -36,7 +36,7 @@ class ShippingPrice
   end
 
   def shipping_rate
-    @shipping_rate ||= ShippingRate.where(:weight.gte => weight).where(:type => type).where(partner: logistic_partner).order_by(weight: :asc).first || FALLBACK_SHIPPING_RATE
+    @shipping_rate ||= (ShippingRate.where(:weight.lte => weight).where(:type => type).where(partner: logistic_partner).order_by(weight: :desc).first || ShippingRate.new(price: FALLBACK_SHIPPING_RATE))
   end
 
   def logistic_partner

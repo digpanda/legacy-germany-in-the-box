@@ -24,6 +24,7 @@ RSpec.configure do |config|
   config.mock_with :rspec
   config.before(:each) do
     Mongoid.purge!
+    Setting.create!
     FactoryGirl.create(:shipping_rate, partner: :beihai)
     FactoryGirl.create(:shipping_rate, partner: :mkpost)
     FactoryGirl.create(:shipping_rate, partner: :xipost)
