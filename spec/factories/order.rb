@@ -11,6 +11,20 @@ FactoryGirl.define do
     shop                    { FactoryGirl.create(:shop) }
     user                    { FactoryGirl.create(:customer) }
 
+    after(:build) do |order|
+      order.order_items = build_list(:order_item, 5, :product => {:shop => order.shop})
+    end
+
+    trait :with_package_set do
+      after(:create) do |order|
+        order.order_items.delete_all
+        package_set = FactoryGirl.create(:package_set)
+        package_set.package_skus.each do |package_sku|
+          FactoryGirl.create(:order_item, order: order, sku: package_sku.sku, package_set: package_set)
+        end
+      end
+    end
+
     trait :with_custom_checkable do
       status :custom_checkable
       minimum_sending_date { 48.hours.from_now }
@@ -31,10 +45,6 @@ FactoryGirl.define do
     trait :with_shippable do
       status :custom_checking
       minimum_sending_date { 24.hours.ago }
-    end
-
-    after(:build) do |order|
-      order.order_items = build_list(:order_item, 5, :product => {:shop => order.shop})
     end
 
     trait :without_customer do
