@@ -11,11 +11,10 @@ describe Api::Guest::PackageSetsController, :type => :controller do
         let(:package_set) { FactoryGirl.create(:package_set) }
 
         it "adds a package set to an order" do
-          post :create, {'package_set_id': package_set.id}
-          expect_json(success: true)
-          # small check to know if we actually made
-          # a real order successfully
-          expect(Order.count).to eq(1)
+          # style inspired from stackoverflow
+          expect do
+            post :create, {'package_set_id': package_set.id}
+          end.to change(Order, :count).by(1)
         end
 
       end
