@@ -1,6 +1,6 @@
 # cancel and make orders on the database and through APIs
 class OrderMaker
-  class PackageSet
+  class PackageSetHandler < BaseService
 
     attr_reader :order, :package_set
 

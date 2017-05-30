@@ -6,7 +6,11 @@ class BuyingBreaker < BaseService
 
   # NOTE : the system was cancelled temporarily
   # please remove the `return false` to put it back to normal
-  
+  #
+  # BIG NOTE :
+  # this library has been removed from the core.
+  # - Laurent, 30/05/2017
+
   attr_reader :order
 
   def initialize(order)

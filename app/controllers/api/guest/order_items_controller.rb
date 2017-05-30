@@ -5,7 +5,19 @@ class Api::Guest::OrderItemsController < Api::ApplicationController
   before_action :set_order_item, except: :create
 
   def create
-    store_in_cart
+    @product = Product.find(params[:product_id])
+    @sku = @product.sku_from_option_ids(params[:option_ids].split(','))
+    @quantity = params[:quantity].to_i
+    @order = cart_manager.order(shop: @product.shop, call_api: false)
+
+    make_order = OrderMaker.new(@order).sku(@sku, @quantity).add
+
+    if make_order.success?
+      cart_manager.store(@order)
+      render json: {success: true, msg: make_order.data[:message]}
+    else
+      render json: throw_error(:unable_to_process).merge(error: make_order.error[:error])
+    end
   end
 
   # NOTE : this should be totally refactored. it's fucking shit.
@@ -116,37 +128,6 @@ class Api::Guest::OrderItemsController < Api::ApplicationController
 
   def set_order_item
     @order_item = OrderItem.find(params[:id])
-  end
-
-  # TODO : this must be totally refactored
-  def store_in_cart
-
-    @product = Product.find(params[:product_id])
-    @quantity = params[:quantity].to_i
-    @sku = @product.sku_from_option_ids(params[:option_ids].split(','))
-    @order = cart_manager.order(shop: @product.shop, call_api: false)
-
-    if @quantity <= 0
-      render json: throw_error(:unable_to_process).merge(error: I18n.t(:not_available, scope: :popular_products))
-      return
-    end
-
-    if BuyingBreaker.new(@order).with_sku?(@sku, @quantity)
-      render json: throw_error(:unable_to_process)
-                       .merge(error: I18n.t(:override_maximal_total,
-                                            scope: :edit_order, total: Setting.instance.max_total_per_day,
-                                            currency: Setting.instance.platform_currency.symbol))
-      return
-    end
-
-    order = OrderMaker.new(@order).add(@sku, @product, @quantity)
-
-    if order.success?
-      cart_manager.store(@order)
-      render json: {success: true, msg: order.data[:msg]}
-    else
-      render json: throw_error(:unable_to_process).merge(error: order.error[:error])
-    end
   end
 
 end
