@@ -55,32 +55,26 @@ describe Api::Guest::OrderItemsController, :type => :controller do
       end
 
       it "cannot set quantity to 0" do
-
         params = {"quantity" => "0"}
         patch :update, {"id" => order_item.id, "product_id" => product.id}.merge(params)
 
         expect(response).to have_http_status(:bad_request)
         expect_json(success: false, code: 8)
-
       end
 
       it "set quantity to 5" do
-
         params = {"quantity" => "5"}
         patch :update, {"id" => order_item.id, "product_id" => product.id}.merge(params)
 
         expect(response).to have_http_status(:success)
         expect_json(success: true)
-
       end
 
       it "cannot set quantity to 500" do
-
         params = {"quantity" => "500"}
-        patch :update, {"id" => order_item.id, "product_id" => product.id}.merge(params)
-        
-        expect_json(success: false, code: 13)
 
+        patch :update, {"id" => order_item.id, "product_id" => product.id}.merge(params)
+        expect_json(success: false, code: 13)
       end
 
     end

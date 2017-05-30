@@ -66,7 +66,7 @@ describe Api::Guest::PackageSetsController, :type => :controller do
 
       it "sets the quantity to 5" do
         # the cart manager session system can't be emulated easily
-        # because we can't assign orders to guest so we have to stub it
+        # because we can't assign orders to guest simply so we have to stub it
         controller.instance_variable_set(:@order, order)
         patch :update, {'id': package_set.id, 'quantity': 5}
         expect_json(success: true)
