@@ -11,7 +11,6 @@ namespace :guest do
   end
 
   resources :order_items  do
-    patch :set_quantity
   end
 
   resource :cart, :controller => 'cart' do
@@ -30,7 +29,6 @@ namespace :guest do
   end
 
   resources :package_sets do
-    patch :set_quantity
   end
 
 end

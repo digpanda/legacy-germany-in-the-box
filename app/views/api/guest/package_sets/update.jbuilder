@@ -17,9 +17,9 @@ json.data do
     json.discount_display @order.coupon.decorate.discount_display
   end
 
-  # order item
-  json.order_item do
-    json.total_price_with_taxes @order_item.total_price_with_taxes.in_euro.to_yuan.display
+  # package set
+  json.package_set do
+    json.total_price @order.package_set_total(@package_set).in_euro.to_yuan.display
   end
 
 end

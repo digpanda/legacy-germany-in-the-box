@@ -33,7 +33,7 @@ var OrderItem = {
 
     $.ajax({
         method: "PATCH",
-        url: "/api/guest/package_sets/"+packageSetId+"/set_quantity",
+        url: "/api/guest/package_sets/"+packageSetId,
         data: {"quantity" : quantity}
 
     }).done(function(res) {

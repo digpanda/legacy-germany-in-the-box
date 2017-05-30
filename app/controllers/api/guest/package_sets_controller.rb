@@ -36,7 +36,7 @@ class Api::Guest::PackageSetsController < Api::ApplicationController
     end
   end
 
-  def set_quantity
+  def update
     quantity = params[:quantity]
 
     order.order_items.where(package_set: package_set).delete
@@ -46,8 +46,6 @@ class Api::Guest::PackageSetsController < Api::ApplicationController
     end
 
     handle_coupon!
-
-    render 'api/guest/order_items/update'
   end
 
   def destroy
@@ -108,7 +106,6 @@ class Api::Guest::PackageSetsController < Api::ApplicationController
         order_maker.add(package_sku.sku, package_sku.product, package_sku.quantity,
         price: package_sku.price,
         taxes: package_sku.taxes_per_unit,
-        shipping: package_sku.shipping_per_unit,
         locked: true,
         package_set: package_sku.package_set)
       end
