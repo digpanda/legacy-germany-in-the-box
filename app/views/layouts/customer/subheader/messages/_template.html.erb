@@ -1,10 +1,8 @@
 <div id="message-container-<%= message %>" class="message message__<%= message %> <% unless flash[message] %>+hidden<% end %>">
-  <div>
-    <div id="message-content-<%= message %>" class="message__content">
-      <%= flash[message] %>
-    </div>
-    <div class="message__remove">
-      <i class="digpanda-remove"></i>
-    </div>
+  <div id="message-content-<%= message %>" class="message__content">
+    <%= flash[message] %>
+  </div>
+  <div class="message__remove">
+    <i class="digpanda-remove"></i>
   </div>
 </div>

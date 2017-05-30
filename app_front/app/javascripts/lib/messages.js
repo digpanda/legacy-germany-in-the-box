@@ -32,6 +32,7 @@ var Messages = {
       setTimeout(function(){
           $(el).fadeOut(function() {
             $(document).trigger('message:hidden');
+            Messages.shown = false;
           });
       }, time);
 
@@ -39,10 +40,8 @@ var Messages = {
 
     forceHide: function(el) {
       $('body').on('click', function() {
-        console.log(Messages.shown);
         if (Messages.shown) {
           Messages.activateHide(el, 0);
-          Messages.shown = false;
         }
       })
     },
