@@ -1701,13 +1701,16 @@ require.register("javascripts/lib/messages.js", function(exports, require, modul
 /**
  * Messages Class
  */
-var Messages = { // NOTE : We should use a template system to handle the HTML here
+var Messages = {
+
+  shown: false,
 
   makeError: function makeError(error) {
 
     $('#message-container-error').show();
     $("#message-content-error").html(error);
     Messages.activateHide('#message-container-error', 3000);
+    Messages.shown = true;
   },
 
   makeSuccess: function makeSuccess(success) {
@@ -1715,6 +1718,7 @@ var Messages = { // NOTE : We should use a template system to handle the HTML he
     $('#message-container-success').show();
     $("#message-content-success").html(success);
     Messages.activateHide('#message-container-success', 4000);
+    Messages.shown = true;
   },
 
   /**
@@ -1731,8 +1735,12 @@ var Messages = { // NOTE : We should use a template system to handle the HTML he
   },
 
   forceHide: function forceHide(el) {
-    $(el).on('click', function () {
-      Messages.activateHide(el, 0);
+    $('body').on('click', function () {
+      console.log(Messages.shown);
+      if (Messages.shown) {
+        Messages.activateHide(el, 0);
+        Messages.shown = false;
+      }
     });
   }
 
