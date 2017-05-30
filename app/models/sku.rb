@@ -128,7 +128,7 @@ class Sku
   end
 
   def display_option_names
-    sku.option_names.join(', ')
+    self.option_names.join(', ')
   end
 
   def max_added_to_cart
