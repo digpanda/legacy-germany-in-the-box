@@ -127,6 +127,10 @@ class Sku
     end.flatten
   end
 
+  def display_option_names
+    sku.option_names.join(', ')
+  end
+
   def max_added_to_cart
     [Rails.configuration.gitb[:max_add_to_cart_each_time], (self.unlimited ? Rails.configuration.gitb[:max_add_to_cart_each_time] : self.quantity)].min
   end

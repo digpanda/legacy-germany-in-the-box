@@ -45,7 +45,7 @@ class Api::Guest::OrderItemsController < Api::ApplicationController
     unless sku_origin&.stock_available_in_order?(quantity_difference, order_item.order)
       render json: throw_error(:unable_to_process)
                        .merge(original_quantity: original_quantity, original_total: original_total,
-                              error: I18n.t(:not_all_available, scope: :checkout, product_name: product.name, option_names: sku.option_names.join(', ')))
+                              error: I18n.t(:not_all_available, scope: :checkout, product_name: product.name, option_names: sku.display_option_names))
       return
     end
 
