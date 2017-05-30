@@ -8,9 +8,7 @@ describe Api::Guest::PackageSetsController, :type => :controller do
 
       # chain creation depending on the test
       let(:package_set) { FactoryGirl.create(:package_set) }
-      let(:sku) { package_set.package_skus.first.sku }
-      let(:product) { sku.product }
-
+      
       it "adds a package set to an order" do
         post :create, {'package_set_id': package_set.id}
         expect_json(success: true)
