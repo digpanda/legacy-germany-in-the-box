@@ -50,10 +50,8 @@ class Api::Guest::OrderItemsController < Api::ApplicationController
 
     remove = order_maker.sku(order_item.sku_origin).remove!
 
-    if remove.success?
-      render json: {success: true, order_empty: !order.persisted?}
-    else
-      render json: throw_error(:unable_to_process).merge(error: order_item.errors.full_messages.join(', '))
+    unless remove.success?
+      render json: throw_error(:unable_to_process).merge(error: remove.error[:error])
     end
   end
 

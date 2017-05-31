@@ -177,20 +177,7 @@ var CustomerCartShow = {
                     if (res.order_empty == true){
                         $('#order-' + orderId).remove();
                     } else {
-                        if (res.data.order_empty == true){
-                            $('#order-' + orderId).remove();
-                        }
-                        // Total changes
-                        $('#order-total-price-with-taxes-'+orderShopId).html(res.data.total_price_with_taxes);
-                        $('#order-shipping-cost-'+orderShopId).html(res.data.shipping_cost);
-                        $('#order-end-price-'+orderShopId).html(res.data.end_price);
-
-                        // Discount management
-                        if (typeof res.data.total_price_with_discount != "undefined") {
-                            $('#order-total-price-with-extra-costs-'+orderShopId).html(res.data.total_price_with_extra_costs);
-                            $('#order-total-price-with-discount-'+orderShopId).html(res.data.total_price_with_discount);
-                            $('#order-discount-display-'+orderShopId).html(res.data.discount_display);
-                        }
+                      CustomerCartShow.resetTotalDisplay(orderShopId, res);
                     }
 
                     RefreshTotalProducts.perform();
@@ -228,20 +215,7 @@ var CustomerCartShow = {
                     if (res.order_empty == true){
                         $('#order-' + orderId).remove();
                     } else {
-                        if (res.data.order_empty == true){
-                            $('#order-' + orderId).remove();
-                        }
-                        // Total changes
-                        $('#order-total-price-with-taxes-'+orderShopId).html(res.data.total_price_with_taxes);
-                        $('#order-shipping-cost-'+orderShopId).html(res.data.shipping_cost);
-                        $('#order-end-price-'+orderShopId).html(res.data.end_price);
-
-                        // Discount management
-                        if (typeof res.data.total_price_with_discount != "undefined") {
-                            $('#order-total-price-with-extra-costs-'+orderShopId).html(res.data.total_price_with_extra_costs);
-                            $('#order-total-price-with-discount-'+orderShopId).html(res.data.total_price_with_discount);
-                            $('#order-discount-display-'+orderShopId).html(res.data.discount_display);
-                        }
+                      CustomerCartShow.resetTotalDisplay(orderShopId, res);
                     }
 
                     RefreshTotalProducts.perform();
@@ -387,17 +361,17 @@ var CustomerCartShow = {
 
   resetTotalDisplay: function(orderShopId, res) {
 
-      // Total changes
-      $('#order-total-price-with-taxes-'+orderShopId).html(res.data.total_price_with_taxes);
-      $('#order-shipping-cost-'+orderShopId).html(res.data.shipping_cost);
-      $('#order-end-price-'+orderShopId).html(res.data.end_price);
+    // Total changes
+    $('#order-total-price-with-taxes-'+orderShopId).html(res.data.total_price_with_taxes);
+    $('#order-shipping-cost-'+orderShopId).html(res.data.shipping_cost);
+    $('#order-end-price-'+orderShopId).html(res.data.end_price);
 
-      // Discount management
-      if (typeof res.data.total_price_with_discount != "undefined") {
-          $('#order-total-price-with-extra-costs-'+orderShopId).html(res.data.total_price_with_extra_costs);
-          $('#order-total-price-with-discount-'+orderShopId).html(res.data.total_price_with_discount);
-          $('#order-discount-display-'+orderShopId).html(res.data.discount_display);
-      }
+    // Discount management
+    if (typeof res.data.total_price_with_discount != "undefined") {
+      $('#order-total-price-with-extra-costs-'+orderShopId).html(res.data.total_price_with_extra_costs);
+      $('#order-total-price-with-discount-'+orderShopId).html(res.data.total_price_with_discount);
+      $('#order-discount-display-'+orderShopId).html(res.data.discount_display);
+    }
 
   }
 

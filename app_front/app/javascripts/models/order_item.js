@@ -73,7 +73,7 @@ var OrderItem = {
     });
   },
 
-    removeProduct: function (orderItemId, callback) {
+  removeProduct: function (orderItemId, callback) {
         $.ajax({
             method: "DELETE",
             url: "/api/guest/order_items/" + orderItemId
