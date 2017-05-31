@@ -9,7 +9,7 @@ class Api::Guest::OrderItemsController < Api::ApplicationController
   # we add the sku through the order maker and check success
   # if it's a success, we store the order into the cart
   def create
-    add_sku = order_maker.sku(sku, quantity).refresh!
+    add_sku = order_maker.sku(sku).refresh!(quantity)
     if add_sku.success?
       cart_manager.store(order)
       render json: {success: true, message: I18n.t(:add_product_ok, scope: :edit_order)}
@@ -30,7 +30,7 @@ class Api::Guest::OrderItemsController < Api::ApplicationController
 
     # NOTE : we base our order maker mechanism on the sku origin
     # and not the order item sku, be aware of that.
-    refresh = order_maker.sku(order_item.sku_origin, quantity_difference).refresh!
+    refresh = order_maker.sku(order_item.sku_origin).refresh!(quantity_difference)
     unless refresh.success?
       render json: throw_error(:unable_to_process)
                    .merge(error: refresh.error[:error],
@@ -45,30 +45,17 @@ class Api::Guest::OrderItemsController < Api::ApplicationController
   end
 
   def destroy
-    if order_item.destroy && destroy_empty_order!
-      @order = order_item.order
+    @order = order_item.order
+    @sku = order_item.sku
 
-      if @order.persisted?
-        CouponHandler.new(identity_solver, order.coupon, order).reset if order.coupon
-        render 'api/guest/order_items/update'
-      else
-        render json: {success: true, order_empty: !@order.persisted?}
-      end
+    binding.pry
+    remove = order_maker.sku(order_item.sku_origin).remove!
+
+    if remove.success?
+      render json: {success: true, order_empty: !order.persisted?}
     else
       render json: throw_error(:unable_to_process).merge(error: order_item.errors.full_messages.join(', '))
     end
-  end
-
-  def destroy_empty_order!
-    order = order_item.order
-
-    if order.destroyable?
-      order.remove_coupon(identity_solver) if order.coupon
-      order.reload
-      return order.destroy
-    end
-
-    true
   end
 
   private

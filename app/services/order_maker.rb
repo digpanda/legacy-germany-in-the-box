@@ -14,8 +14,8 @@ class OrderMaker
   end
 
   # add a simple sku into an order
-  def sku(sku, quantity)
-    OrderMaker::SkuHandler.new(identity_solver, order, sku, quantity)
+  def sku(sku)
+    OrderMaker::SkuHandler.new(identity_solver, order, sku)
   end
 
   #### OLD SYSTEM

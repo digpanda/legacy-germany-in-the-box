@@ -2,21 +2,20 @@
 class OrderMaker
   class SkuHandler < BaseService
 
-    attr_reader :identity_solver, :order, :sku, :product, :quantity
+    attr_reader :identity_solver, :order, :sku, :product
 
-    def initialize(identity_solver, order, sku, quantity)
+    def initialize(identity_solver, order, sku)
       @identity_solver = identity_solver
       @order = order
       @sku = sku
       @product = sku.product
-      @quantity = quantity
     end
 
     # refresh an order by substracting or adding quantity
     # to a present or freshly created order item
-    def refresh!
-      raise_error?
-      update_quantity!
+    def refresh!(quantity)
+      raise_error?(quantity)
+      update_quantity!(quantity)
       save_order!
       handle_coupon!
       recalibrate_order!
@@ -27,13 +26,22 @@ class OrderMaker
 
     # remove an order item from the order
     # clean up the order if needed
-    def remove
+    def remove!
+      order_item.destroy && destroy_empty_order!
     end
 
     private
 
     def order_item
       @order_item ||= order.order_items.with_sku(sku).first || fresh_order_item!
+    end
+
+    def destroy_empty_order!
+      if order.destroyable?
+        order.remove_coupon(identity_solver) if order.coupon
+        order.reload
+        return order.destroy
+      end
     end
 
     def fresh_order_item!
@@ -55,7 +63,7 @@ class OrderMaker
       order_item.reload # thanks mongo
     end
 
-    def update_quantity!
+    def update_quantity!(quantity)
       order_item.quantity += quantity
       order_item.save
     end
@@ -77,12 +85,12 @@ class OrderMaker
       @coupon_handler ||= CouponHandler.new(identity_solver, order.coupon, order)
     end
 
-    def raise_error?
-      if !valid_quantity?
+    def raise_error?(quantity)
+      if quantity == 0
         raise OrderMaker::Error, error_quantity
       elsif !updatable_order_item?
         raise OrderMaker::Error, error_updatable
-      elsif !available_sku?
+      elsif !available_sku?(quantity)
         raise OrderMaker::Error, error_not_available
       end
     end
@@ -91,12 +99,8 @@ class OrderMaker
       order_item.present? && !order_item.locked?
     end
 
-    def available_sku?
+    def available_sku?(quantity)
       sku.stock_available_in_order?(quantity, order) && sku.enough_stock?(quantity)
-    end
-
-    def valid_quantity?
-      quantity != 0
     end
 
     def error_updatable
