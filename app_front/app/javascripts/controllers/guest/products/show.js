@@ -129,16 +129,13 @@ var ProductsShow = {
           let skuId = $('#sku_id').val();
           let productId = $('#sku_id').data('productId');
 
-          console.log(productId);
-          console.log(skuId);
-
           OrderItem.addSku(productId, skuId, quantity, function(res) {
 
               var Messages = require("javascripts/lib/messages");
 
               if (res.success === true) {
 
-                  Messages.makeSuccess(res.msg);
+                  Messages.makeSuccess(res.message);
 
                   var refreshTotalProducts = require('javascripts/services/refresh_total_products');
                   refreshTotalProducts.perform();

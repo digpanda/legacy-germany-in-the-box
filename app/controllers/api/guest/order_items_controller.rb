@@ -5,18 +5,18 @@ class Api::Guest::OrderItemsController < Api::ApplicationController
   before_action :set_product_and_sku, :set_order, :set_quantity, only: :create
   before_action :set_order_item, except: :create
 
+  # we add the sku through the order maker and check success
+  # if it's a success, we store the order into the cart
   def create
-    # we add the sku through the order maker and check success
-    if order_maker.sku(sku, quantity).add.success?
-      # if it's a success, we store the order into the cart
+    add_sku = order_maker.sku(sku, quantity).add
+    if add_sku.success?
       cart_manager.store(order)
-      render json: {success: true, msg: I18n.t(:add_product_ok, scope: :edit_order)}
+      render json: {success: true, message: I18n.t(:add_product_ok, scope: :edit_order)}
     else
-      render json: throw_error(:unable_to_process).merge(error: make_order.error[:error])
+      render json: throw_error(:unable_to_process).merge(error: add_sku.error[:error])
     end
   end
 
-  # NOTE : this should be totally refactored. it's fucking shit.
   def update
 
     order = order_item.order

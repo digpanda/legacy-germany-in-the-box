@@ -22,12 +22,12 @@ describe Api::Guest::OrderItemsController, :type => :controller do
       end
 
       it "adds a product to an order" do
-        post :create, {'product_id': product.id, 'quantity': 1, 'option_ids': option_ids}
+        post :create, {'product_id': product.id, 'sku_id': sku.id, 'quantity': 1}
         expect_json(success: true)
       end
 
       it "does not add a product if not enough stock" do
-        post :create, {'product_id': product.id, 'quantity': 10, 'option_ids': option_ids}
+        post :create, {'product_id': product.id, 'sku_id': sku.id, 'quantity': 10}
         expect_json(success: false)
       end
     end
