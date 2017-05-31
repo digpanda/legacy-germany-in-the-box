@@ -57,7 +57,7 @@ describe Api::Guest::OrderItemsController, :type => :controller do
       it "cannot set quantity to 0" do
         params = {"quantity" => "0"}
         patch :update, {"id" => order_item.id, "product_id" => product.id}.merge(params)
-        
+
         expect_json(success: false, code: 13)
       end
 
@@ -78,6 +78,37 @@ describe Api::Guest::OrderItemsController, :type => :controller do
 
     end
 
+    describe "#destroy" do
+
+      context "from guest customer" do
+
+        context "order with order items" do
+
+          let(:order) { FactoryGirl.create(:order) }
+
+          it "destroys one order item" do
+            delete :destroy, {"id" => order.order_items.first.id}
+            expect_json(success: true, order_empty: false)
+          end
+
+        end
+
+        context "order with one order item" do
+
+          let(:order) { FactoryGirl.create(:order, :with_one_small_item) }
+
+          it "destroys the only order item of the order" do
+            delete :destroy, {"id" => order.order_items.first.id}
+            expect_json(success: true, order_empty: true)
+          end
+
+        end
+
+      end
+
+    end
+
   end
+
 
 end

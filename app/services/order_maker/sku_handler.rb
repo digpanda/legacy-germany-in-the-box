@@ -27,7 +27,8 @@ class OrderMaker
     # remove an order item from the order
     # clean up the order if needed
     def remove!
-      if order_item.destroy && destroy_empty_order!
+      if order_item.destroy
+        destroy_empty_order!
         return_with(:success)
       else
         return_with(:error, error: order_errors)
