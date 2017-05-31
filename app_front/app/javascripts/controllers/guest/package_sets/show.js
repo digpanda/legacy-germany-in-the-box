@@ -29,7 +29,7 @@ var PackageSetsShow = {
 
                 if (res.success === true) {
 
-                    Messages.makeSuccess(res.msg);
+                    Messages.makeSuccess(res.message);
 
                     var refreshTotalProducts = require('javascripts/services/refresh_total_products');
                     refreshTotalProducts.perform();

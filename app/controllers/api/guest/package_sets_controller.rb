@@ -8,33 +8,19 @@ class Api::Guest::PackageSetsController < Api::ApplicationController
 
   before_action :set_package_set
 
-  # we use the package set and convert it into an order
+  # we add the sku through the order maker and check success
+  # if it's a success, we store the order into the cart
   def create
-    if package_set.active
-      # we first compose the whole order
-      package_set.package_skus.each do |package_sku|
-        # we also lock each order item we generate
-        added_item = order_maker.add(package_sku.sku, package_sku.product, package_sku.quantity,
-        price: package_sku.price,
-        taxes: package_sku.taxes_per_unit,
-        locked: true,
-        package_set: package_sku.package_set)
-        unless added_item.success?
-          # we need to rollback the order
-          order_maker.remove_package_set!(package_set)
-          render json: {success: false, error: added_item.error[:error]}
-          return
-        end
-
-        handle_coupon!
-
-      end
-      # we first empty the cart manager to make it fresh
-      # cart_manager.empty! <-- to avoid multiple package order
+    add_package_set = order_maker.package_set(package_set).add!
+    if add_package_set.success?
       cart_manager.store(order)
-      render json: {success: true, msg: I18n.t(:package_set_added, scope: :cart)}
+      render json: {success: true, message: I18n.t(:add_product_ok, scope: :edit_order)}
+    else
+      render json: throw_error(:unable_to_process).merge(error: add_package_set.error[:error])
     end
   end
+
+  # OLD CODE BELOW
 
   def update
     quantity = params[:quantity]
@@ -82,12 +68,8 @@ class Api::Guest::PackageSetsController < Api::ApplicationController
 
   private
 
-  def coupon_handler
-    @coupon_handler ||= CouponHandler.new(identity_solver, order.coupon, order)
-  end
-
   def order_maker
-    @order_maker ||= OrderMaker.new(order)
+    @order_maker ||= OrderMaker.new(identity_solver, order)
   end
 
   def order
@@ -95,25 +77,26 @@ class Api::Guest::PackageSetsController < Api::ApplicationController
   end
 
   def set_package_set
-    params[:id] ||= params[:package_set_id]
-    @package_set = PackageSet.find(params[:id]) unless params[:id].nil?
+    @package_set = PackageSet.find(params[:package_set_id] || params[:id])
   end
 
-  def add_package_set
-    if package_set.active
-      # we first compose the whole order
-      package_set.package_skus.each do |package_sku|
-        # we also lock each order item we generate
-        order_maker.add(package_sku.sku, package_sku.product, package_sku.quantity,
-        price: package_sku.price,
-        taxes: package_sku.taxes_per_unit,
-        locked: true,
-        package_set: package_sku.package_set)
-      end
-      # we first empty the cart manager to make it fresh
-      # cart_manager.empty! <-- to avoid multiple package order
-      cart_manager.store(order)
-    end
-  end
+  # THIS IS FOR UPDATE AND SHOULD BE CHANGED AND REMOVED
+
+  # def add_package_set
+  #   if package_set.active
+  #     # we first compose the whole order
+  #     package_set.package_skus.each do |package_sku|
+  #       # we also lock each order item we generate
+  #       order_maker.add(package_sku.sku, package_sku.product, package_sku.quantity,
+  #       price: package_sku.price,
+  #       taxes: package_sku.taxes_per_unit,
+  #       locked: true,
+  #       package_set: package_sku.package_set)
+  #     end
+  #     # we first empty the cart manager to make it fresh
+  #     # cart_manager.empty! <-- to avoid multiple package order
+  #     cart_manager.store(order)
+  #   end
+  # end
 
 end

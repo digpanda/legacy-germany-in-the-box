@@ -2,11 +2,11 @@
 class OrderMaker
   class SkuHandler < BaseService
 
-    attr_reader :identity_solver, :order, :sku, :product
+    attr_reader :identity_solver, :order, :sku, :product, :package_sku
 
-    def initialize(identity_solver, order, sku)
-      @identity_solver = identity_solver
-      @order = order
+    def initialize(order_maker, sku)
+      @identity_solver = order_maker.identity_solver
+      @order = order_maker.order
       @sku = sku
       @product = sku.product
     end
@@ -19,6 +19,7 @@ class OrderMaker
       save_order!
       handle_coupon!
       recalibrate_order!
+      lock_order!
       return_with(:success, order_item: order_item)
     rescue OrderMaker::Error => exception
       return_with(:error, error: exception.message)
@@ -35,10 +36,24 @@ class OrderMaker
       end
     end
 
+    # we exceptionnally instantiate a variable after initializer
+    # to make it possible to setup order items faster for package sets
+    # this is a little interdependency which we should keep in mind
+    def with_package_sku(package_sku)
+      @package_sku = package_sku
+      self
+    end
+
     private
 
     def order_item
-      @order_item ||= order.order_items.with_sku(sku).first || fresh_order_item!
+      @order_item ||= begin
+        if package_sku
+          fresh_order_item!
+        else
+          order.order_items.with_sku(sku).first || fresh_order_item!
+        end
+      end
     end
 
     def destroy_empty_order!
@@ -57,7 +72,16 @@ class OrderMaker
         order_item.sku_origin = sku # we don't forget to define the origin
         clone_sku!(order_item) # we clone in a clean way the sku
         order_item.save
+
+        if package_sku
+          order_item.price_per_unit = package_sku.price
+          order_item.taxes_per_unit = package_sku.taxes_per_unit
+          order_item.package_set = package_sku.package_set
+          order_item.save # very important
+        end
+
         order_item.quantity = 0 # we will increment this afterwards
+
       end
     end
 
@@ -86,6 +110,13 @@ class OrderMaker
       order.reload
       order.refresh_shipping_cost
       order.save
+    end
+
+    def lock_order!
+      if package_sku
+        order_item.locked = true
+        order_item.save
+      end
     end
 
     def handle_coupon!

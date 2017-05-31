@@ -74,23 +74,23 @@ var OrderItem = {
   },
 
   removeProduct: function (orderItemId, callback) {
-        $.ajax({
-            method: "DELETE",
-            url: "/api/guest/order_items/" + orderItemId
+    $.ajax({
+      method: "DELETE",
+      url: "/api/guest/order_items/" + orderItemId
 
-        }).done(function (res) {
+      }).done(function (res) {
 
-            callback(res);
+        callback(res);
 
-        }).error(function (err) {
+      }).error(function (err) {
 
-          if (typeof err == "undefined") {
-            return;
-          }
+        if (typeof err == "undefined") {
+          return;
+        }
 
-          callback({success: false, error: err.responseJSON.error});
+        callback({success: false, error: err.responseJSON.error});
 
-        });
+      });
     },
 
     removeOrder: function (orderId, callback) {

@@ -10,12 +10,12 @@ class OrderMaker
 
   # add a whole package set into an order
   def package_set(package_set)
-    OrderMaker::PackageSetHandler.new(order, package_set)
+    OrderMaker::PackageSetHandler.new(self, package_set)
   end
 
   # add a simple sku into an order
   def sku(sku)
-    OrderMaker::SkuHandler.new(identity_solver, order, sku)
+    OrderMaker::SkuHandler.new(self, sku)
   end
 
   #### OLD SYSTEM
