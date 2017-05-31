@@ -1,7 +1,6 @@
  # small library to guess the shipping prices via calculations
 class ShippingPrice
 
-  DISCOUNT_PERCENT = 20.freeze
   FALLBACK_PARTNER = :mkpost.freeze
   FALLBACK_SHIPPING_RATE_TYPE = :general.freeze
   FALLBACK_SHIPPING_RATE = 0.freeze
@@ -13,7 +12,7 @@ class ShippingPrice
   end
 
   def price
-    (shipping_rate.price) * approximation_change
+    shipping_rate.price * approximation_change
   end
 
   # we sum the weight of all the order items
@@ -31,12 +30,14 @@ class ShippingPrice
     order.order_items.first&.products&.first&.shipping_rate_type || FALLBACK_SHIPPING_RATE_TYPE
   end
 
+  # this is used to raise or reduce the end shipping cost
+  # NOTE : it was set to 0 for now until we test and calibrate
   def approximation_change
-    ((100 - DISCOUNT_PERCENT).to_f / 100)
+    1
   end
 
   def shipping_rate
-    @shipping_rate ||= (ShippingRate.where(:weight.lte => weight).where(:type => type).where(partner: logistic_partner).order_by(weight: :desc).first || ShippingRate.new(price: FALLBACK_SHIPPING_RATE))
+    @shipping_rate ||= (ShippingRate.where(:weight.gte => weight).where(:type => type).where(partner: logistic_partner).order_by(weight: :asc).first || ShippingRate.new(price: FALLBACK_SHIPPING_RATE))
   end
 
   def logistic_partner

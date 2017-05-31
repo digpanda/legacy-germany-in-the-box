@@ -80,7 +80,9 @@ class OrderMaker
       order.errors.full_messages.join(', ')
     end
 
+    # this will refresh the shipping costs
     def recalibrate_order!
+      order.reload
       order.refresh_shipping_cost
       order.save
     end
