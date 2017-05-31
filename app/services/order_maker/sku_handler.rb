@@ -2,24 +2,26 @@
 class OrderMaker
   class SkuHandler < BaseService
 
-    attr_reader :order, :sku, :product, :quantity
+    attr_reader :identity_solver, :order, :sku, :product, :quantity
 
-    def initialize(order, sku, quantity)
+    def initialize(identity_solver, order, sku, quantity)
+      @identity_solver = identity_solver
       @order = order
       @sku = sku
       @product = sku.product
       @quantity = quantity
     end
 
-    # add a sku into the order
-    # NOTE : it will also update a current order item
-    # if already present
+    # refresh an order by substracting or adding quantity
+    # to a present or freshly created order item
     def add
       raise_error?
       order_item.quantity += quantity
       order_item.save
       save_order!
       handle_coupon!
+      order.refresh_shipping_cost
+      order.save
       return_with(:success, order_item: order_item)
     rescue OrderMaker::Error => exception
       return_with(:error, error: exception.message)
@@ -86,7 +88,7 @@ class OrderMaker
     end
 
     def valid_quantity?
-      quantity > 0
+      quantity != 0
     end
 
     def error_updatable

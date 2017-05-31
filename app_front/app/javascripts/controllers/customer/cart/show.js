@@ -259,13 +259,16 @@ var CustomerCartShow = {
 
   processQuantity: function(orderShopId, orderItemId, originQuantity, originTotal, orderItemQuantity) {
 
+    console.log('the fuck man')
     var OrderItem = require("javascripts/models/order_item");
     OrderItem.setQuantity(orderItemId, orderItemQuantity, function(res) {
 
+      console.log(res);
       var Messages = require("javascripts/lib/messages");
 
       if (res.success === false) {
 
+        console.log('problem in the processing');
         CustomerCartShow.rollbackQuantity(originQuantity, originTotal, orderItemId, res);
         CustomerCartShow.loaded();
         Messages.makeError(res.error);
