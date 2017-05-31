@@ -81,7 +81,7 @@
           <%= I18n.t(:subtotal, scope: :cart) %>
           <div class="cart__order-item-total-digits">
             <span id="order-item-total-<%= order_item.id %>" data-origin="<%= order_item.total_price.in_euro.to_yuan.display %>">
-              <%= order_item.total_price.in_euro.to_yuan.display %>
+              <%= order_item.total_price_with_taxes.in_euro.to_yuan.display %>
             </span>
           </div>
         </div>
