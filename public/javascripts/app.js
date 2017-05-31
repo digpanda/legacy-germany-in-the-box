@@ -576,11 +576,9 @@ var CustomerCartShow = {
 
     processQuantity: function processQuantity(orderShopId, orderItemId, originQuantity, originTotal, orderItemQuantity) {
 
-        console.log('the fuck man');
         var OrderItem = require("javascripts/models/order_item");
         OrderItem.setQuantity(orderItemId, orderItemQuantity, function (res) {
 
-            console.log(res);
             var Messages = require("javascripts/lib/messages");
 
             if (res.success === false) {

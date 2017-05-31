@@ -48,7 +48,6 @@ class Api::Guest::OrderItemsController < Api::ApplicationController
     @order = order_item.order
     @sku = order_item.sku
 
-    binding.pry
     remove = order_maker.sku(order_item.sku_origin).remove!
 
     if remove.success?

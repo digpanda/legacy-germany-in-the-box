@@ -27,7 +27,11 @@ class OrderMaker
     # remove an order item from the order
     # clean up the order if needed
     def remove!
-      order_item.destroy && destroy_empty_order!
+      if order_item.destroy && destroy_empty_order!
+        return_with(:success)
+      else
+        return_with(:error, error: order_errors)
+      end
     end
 
     private
@@ -69,7 +73,11 @@ class OrderMaker
     end
 
     def save_order!
-      raise OrderMaker::Error, order.errors.full_messages.join(', ') unless order.save
+      raise OrderMaker::Error, order_errors unless order.save
+    end
+
+    def order_errors
+      order.errors.full_messages.join(', ')
     end
 
     def recalibrate_order!
