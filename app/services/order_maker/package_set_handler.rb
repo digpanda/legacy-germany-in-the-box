@@ -16,7 +16,7 @@ class OrderMaker
         # to complete
       end
     end
-
+    
     private
 
     def buyable?

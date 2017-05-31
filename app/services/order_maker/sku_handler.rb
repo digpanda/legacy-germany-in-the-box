@@ -11,14 +11,23 @@ class OrderMaker
       @quantity = quantity
     end
 
+    # add a sku into the order
+    # NOTE : it will also update a current order item
+    # if already present
     def add
       raise_error?
       order_item.quantity += quantity
       order_item.save
       save_order!
-      return_with(:success, order_item: order_item, message: success_ok)
+      handle_coupon!
+      return_with(:success, order_item: order_item)
     rescue OrderMaker::Error => exception
       return_with(:error, error: exception.message)
+    end
+
+    # remove an order item from the order
+    # clean up the order if needed
+    def remove
     end
 
     private
@@ -48,6 +57,14 @@ class OrderMaker
 
     def save_order!
       raise OrderMaker::Error, order.errors.full_messages.join(', ') unless order.save
+    end
+
+    def handle_coupon!
+      coupon_handler.reset if order.coupon
+    end
+
+    def coupon_handler
+      @coupon_handler ||= CouponHandler.new(identity_solver, order.coupon, order)
     end
 
     def raise_error?
@@ -82,10 +99,6 @@ class OrderMaker
 
     def error_quantity
       I18n.t(:not_available, scope: :popular_products)
-    end
-
-    def success_ok
-      I18n.t(:add_product_ok, scope: :edit_order)
     end
 
   end

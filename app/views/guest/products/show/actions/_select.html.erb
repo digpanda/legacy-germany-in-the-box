@@ -11,7 +11,7 @@
 
         <%= render partial: "guest/products/show/actions/select/sku", :locals => {product: sku.product} %>
         <%= render partial: "guest/products/show/actions/select/quantity", :locals => {product: sku.product} %>
-        <button type="button" id="js-add-to-cart" data-redirection="<%= guest_shop_path(sku.product.shop) %>" class="main-button__solid --full" <%= enough_inventory?(sku.product.decorate.featured_sku, 1) ? '' : 'disabled' %> >
+        <button type="button" id="js-add-to-cart" class="main-button__solid --full" <%= enough_inventory?(sku.product.decorate.featured_sku, 1) ? '' : 'disabled' %> >
           <%= I18n.t(:add_to_cart, scope: :popular_products) %>
         </button>
 

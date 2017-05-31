@@ -52,11 +52,11 @@ var OrderItem = {
 
   },
 
-  addProduct: function(productId, quantity, optionIds, callback) {
+  addSku: function(productId, skuId, quantity, callback) {
     $.ajax({
         method: "POST",
         url: "/api/guest/order_items",
-        data: {product_id: productId, quantity: quantity, option_ids: optionIds}
+        data: {product_id: productId, sku_id: skuId, quantity: quantity}
 
     }).done(function(res) {
 

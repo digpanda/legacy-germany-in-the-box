@@ -66,6 +66,7 @@ class Api::Guest::PackageSetsController < Api::ApplicationController
 
   private
 
+  # NOTE : this has been moved into the order maker logic
   def handle_coupon!
     coupon_handler.reset if order.coupon
   end

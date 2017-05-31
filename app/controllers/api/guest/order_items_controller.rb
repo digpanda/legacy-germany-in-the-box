@@ -1,20 +1,16 @@
 class Api::Guest::OrderItemsController < Api::ApplicationController
 
-  attr_reader :order_item, :order
+  attr_reader :order, :order_item, :product, :sku, :quantity
 
+  before_action :set_product_and_sku, :set_order, :set_quantity, only: :create
   before_action :set_order_item, except: :create
 
   def create
-    @product = Product.find(params[:product_id])
-    @sku = @product.sku_from_option_ids(params[:option_ids].split(','))
-    @quantity = params[:quantity].to_i
-    @order = cart_manager.order(shop: @product.shop, call_api: false)
-
-    make_order = OrderMaker.new(@order).sku(@sku, @quantity).add
-
-    if make_order.success?
-      cart_manager.store(@order)
-      render json: {success: true, msg: make_order.data[:message]}
+    # we add the sku through the order maker and check success
+    if order_maker.sku(sku, quantity).add.success?
+      # if it's a success, we store the order into the cart
+      cart_manager.store(order)
+      render json: {success: true, msg: I18n.t(:add_product_ok, scope: :edit_order)}
     else
       render json: throw_error(:unable_to_process).merge(error: make_order.error[:error])
     end
@@ -122,12 +118,29 @@ class Api::Guest::OrderItemsController < Api::ApplicationController
 
   private
 
+  def order_maker
+    @order_maker ||= OrderMaker.new(identity_solver, order)
+  end
+
   def order_item_params
     params.permit(:quantity)
   end
 
+  def set_product_and_sku
+    @product = Product.find(params[:product_id])
+    @sku = product.skus.where(id: params[:sku_id]).first
+  end
+
+  def set_order
+    @order = cart_manager.order(shop: product.shop, call_api: false)
+  end
+
   def set_order_item
     @order_item = OrderItem.find(params[:id])
+  end
+
+  def set_quantity
+    @quantity = params[:quantity].to_i
   end
 
 end

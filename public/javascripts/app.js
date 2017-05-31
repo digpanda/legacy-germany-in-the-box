@@ -980,7 +980,7 @@ var ProductsShow = {
     this.handleProductGalery();
     this.handleSkuChange();
     this.handleQuantityChange();
-    this.manageAddProduct();
+    this.handleAddSku();
   },
 
   /**
@@ -1082,19 +1082,22 @@ var ProductsShow = {
    * @return {void}
    */
 
-  manageAddProduct: function manageAddProduct() {
+  handleAddSku: function handleAddSku() {
 
     $('#js-add-to-cart').on('click', function (e) {
 
       e.preventDefault();
 
       var OrderItem = require("javascripts/models/order_item");
-      var quantity = $('#quantity').val();
-      var option_ids = $('#option_ids').val();
-      var sku_product_id = $('#sku_product_id').val();
-      var redirection = $(this).data('redirection');
 
-      OrderItem.addProduct(sku_product_id, quantity, option_ids, function (res) {
+      var quantity = $('#quantity').val();
+      var skuId = $('#sku_id').val();
+      var productId = $('#sku_id').data('productId');
+
+      console.log(productId);
+      console.log(skuId);
+
+      OrderItem.addSku(productId, skuId, quantity, function (res) {
 
         var Messages = require("javascripts/lib/messages");
 
@@ -1104,12 +1107,6 @@ var ProductsShow = {
 
           var refreshTotalProducts = require('javascripts/services/refresh_total_products');
           refreshTotalProducts.perform();
-
-          // We redirect the user even tho it's AJAX call (not waiting for answer)
-          // if (typeof redirection != "undefined") {
-          //   window.location.href = redirection;
-          //   // window.location.href = $("#js-info").data("navigationBack");
-          // }
         } else {
 
           Messages.makeError(res.error);
@@ -2246,11 +2243,11 @@ var OrderItem = {
     });
   },
 
-  addProduct: function addProduct(productId, quantity, optionIds, callback) {
+  addSku: function addSku(productId, skuId, quantity, callback) {
     $.ajax({
       method: "POST",
       url: "/api/guest/order_items",
-      data: { product_id: productId, quantity: quantity, option_ids: optionIds }
+      data: { product_id: productId, sku_id: skuId, quantity: quantity }
 
     }).done(function (res) {
 

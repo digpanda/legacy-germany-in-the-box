@@ -12,7 +12,7 @@ var ProductsShow = {
     this.handleProductGalery();
     this.handleSkuChange();
     this.handleQuantityChange();
-    this.manageAddProduct();
+    this.handleAddSku();
 
   },
 
@@ -117,19 +117,22 @@ var ProductsShow = {
    * @return {void}
    */
 
-  manageAddProduct: function () {
+  handleAddSku: function () {
 
       $('#js-add-to-cart').on('click', function (e) {
 
           e.preventDefault();
 
           var OrderItem = require("javascripts/models/order_item");
-          let quantity = $('#quantity').val();
-          let option_ids = $('#option_ids').val();
-          let sku_product_id = $('#sku_product_id').val();
-          var redirection = $(this).data('redirection');
 
-          OrderItem.addProduct(sku_product_id, quantity, option_ids, function(res) {
+          let quantity = $('#quantity').val();
+          let skuId = $('#sku_id').val();
+          let productId = $('#sku_id').data('productId');
+
+          console.log(productId);
+          console.log(skuId);
+
+          OrderItem.addSku(productId, skuId, quantity, function(res) {
 
               var Messages = require("javascripts/lib/messages");
 
@@ -139,12 +142,6 @@ var ProductsShow = {
 
                   var refreshTotalProducts = require('javascripts/services/refresh_total_products');
                   refreshTotalProducts.perform();
-
-                  // We redirect the user even tho it's AJAX call (not waiting for answer)
-                  // if (typeof redirection != "undefined") {
-                  //   window.location.href = redirection;
-                  //   // window.location.href = $("#js-info").data("navigationBack");
-                  // }
 
               } else {
 

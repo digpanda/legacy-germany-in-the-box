@@ -1,9 +1,10 @@
 # cancel and make orders on the database and through APIs
 class OrderMaker
 
-  attr_reader :order
+  attr_reader :identity_solver, :order
 
-  def initialize(order)
+  def initialize(identity_solver, order)
+    @identity_solver = identity_solver
     @order = order
   end
 
