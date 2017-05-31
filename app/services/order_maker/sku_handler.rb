@@ -14,14 +14,12 @@ class OrderMaker
 
     # refresh an order by substracting or adding quantity
     # to a present or freshly created order item
-    def add
+    def refresh!
       raise_error?
-      order_item.quantity += quantity
-      order_item.save
+      update_quantity!
       save_order!
       handle_coupon!
-      order.refresh_shipping_cost
-      order.save
+      recalibrate_order!
       return_with(:success, order_item: order_item)
     rescue OrderMaker::Error => exception
       return_with(:error, error: exception.message)
@@ -57,8 +55,18 @@ class OrderMaker
       order_item.reload # thanks mongo
     end
 
+    def update_quantity!
+      order_item.quantity += quantity
+      order_item.save
+    end
+
     def save_order!
       raise OrderMaker::Error, order.errors.full_messages.join(', ') unless order.save
+    end
+
+    def recalibrate_order!
+      order.refresh_shipping_cost
+      order.save
     end
 
     def handle_coupon!

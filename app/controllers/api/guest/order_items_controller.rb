@@ -9,7 +9,7 @@ class Api::Guest::OrderItemsController < Api::ApplicationController
   # we add the sku through the order maker and check success
   # if it's a success, we store the order into the cart
   def create
-    add_sku = order_maker.sku(sku, quantity).add
+    add_sku = order_maker.sku(sku, quantity).refresh!
     if add_sku.success?
       cart_manager.store(order)
       render json: {success: true, message: I18n.t(:add_product_ok, scope: :edit_order)}
@@ -23,12 +23,14 @@ class Api::Guest::OrderItemsController < Api::ApplicationController
     @sku = order_item.sku
 
     quantity_difference = quantity - order_item.quantity
+    quantity_difference = 0 if quantity == 0 # this will be stopped later on within the process
+
     original_quantity = order_item.quantity
     original_total = order_item.total_price_with_taxes.in_euro.to_yuan.display
 
     # NOTE : we base our order maker mechanism on the sku origin
     # and not the order item sku, be aware of that.
-    refresh = order_maker.sku(order_item.sku_origin, quantity_difference).add
+    refresh = order_maker.sku(order_item.sku_origin, quantity_difference).refresh!
     unless refresh.success?
       render json: throw_error(:unable_to_process)
                    .merge(error: refresh.error[:error],
