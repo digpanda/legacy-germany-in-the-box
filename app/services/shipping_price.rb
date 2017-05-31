@@ -31,7 +31,8 @@ class ShippingPrice
   end
 
   # this is used to raise or reduce the end shipping cost
-  # NOTE : it was set to 0 for now until we test and calibrate
+  # NOTE : it was set to 1 for now until we test and calibrate
+  # WARNING : if you set it below 0, it can generate weird price numbers (think BigDecimal bullshit)
   def approximation_change
     1
   end
