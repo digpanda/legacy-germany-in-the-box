@@ -54,6 +54,7 @@ class OrderItem
   index({order: 1},  {unique: false, name: :idx_order_item_order})
 
   scope :with_sku, -> (sku) { self.where(:sku_origin_id => sku.id) }
+  scope :without_package_set, -> { self.where(package_set: nil) }
 
   # right now we exclusively have delegated methods from the sku
   # if the method is missing we get it from the sku

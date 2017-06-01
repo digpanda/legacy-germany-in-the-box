@@ -7,7 +7,7 @@ class Api::Guest::PackageSetsController < Api::ApplicationController
   end
 
   before_action :set_package_set
-  before_action :quantity, only: [:update]
+  before_action :set_quantity, only: [:update]
 
   # we add the package set with quantity 1 into the order
   # if it's a success, we store the order into the cart

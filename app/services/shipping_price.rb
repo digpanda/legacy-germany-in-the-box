@@ -31,14 +31,17 @@ class ShippingPrice
     end
   end
 
+  # we calculate the shipping cost by adding up all the package sets
+  # shipping cost together and artificially calculating the quantity of each ones
+  # NOTE : this operation costs a lot, we should find a smart way to reduce it
   def package_set_shipping_cost
     order.package_sets.reduce(0) do |acc, package_set|
-      acc + package_set.shipping_cost
+      acc + (package_set.shipping_cost * order.package_set_quantity(package_set))
     end
   end
 
   def sku_order_items
-    order.order_items.where(package_set: nil)
+    order.order_items.without_package_set
   end
 
   # we sum the weight of all the order items

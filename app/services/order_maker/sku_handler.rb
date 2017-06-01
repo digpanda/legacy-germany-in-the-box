@@ -33,7 +33,7 @@ class OrderMaker
         order_maker.destroy_empty_order!
         return_with(:success)
       else
-        return_with(:error, error: order_errors)
+        return_with(:error, error: order_maker.order_errors)
       end
     end
 
@@ -52,7 +52,7 @@ class OrderMaker
         if package_sku
           fresh_order_item!
         else
-          order.order_items.with_sku(sku).first || fresh_order_item!
+          order.order_items.without_package_set.with_sku(sku).first || fresh_order_item!
         end
       end
     end

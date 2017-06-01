@@ -247,7 +247,7 @@ class Order
   end
 
   def only_package_set?
-    order_items.where(package_set: nil).count == 0
+    order_items.without_package_set.count == 0
   end
 
   def displayable_total_quantity
@@ -346,6 +346,10 @@ class Order
 
   def package_set_quantity(package_set)
     order_items.where(package_set: package_set).count / package_set.package_skus.count
+  end
+
+  def package_set_price_with_taxes(package_set)
+    package_set.total_price_with_taxes * package_set_quantity(package_set)
   end
 
   def package_set_end_price(package_set)

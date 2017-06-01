@@ -19,7 +19,7 @@ json.data do
 
   # package set
   json.package_set do
-    json.total_price @package_set.total_price_with_taxes.in_euro.to_yuan.display # @order.package_set_end_price(@package_set).in_euro.to_yuan.display
+    json.total_price @order.package_set_price_with_taxes(@package_set).in_euro.to_yuan.display
   end
 
 end
