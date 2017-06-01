@@ -380,10 +380,11 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
       :long_desc => Faker::Lorem.paragraph(3),
       :cover => setup_image(:banner),
       :details_cover => setup_image(:banner),
-      :casual_price => Faker::Number.decimal(2)
+      :casual_price => Faker::Number.decimal(2),
+      :shipping_cost => Faker::Number.decimal(1)
     })
 
-    5.times do
+    3.times do
       sku = shop.products.has_available_sku.all.shuffle.first&.skus.first
       package_set.package_skus.create({
         :sku_id => sku.id,
@@ -391,7 +392,6 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
         :quantity => Faker::Number.between(1, 3),
         :price => Faker::Number.decimal(2),
         :taxes_per_unit => Faker::Number.decimal(1),
-        :shipping_per_unit => Faker::Number.decimal(1)
       })
     end
 

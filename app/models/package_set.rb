@@ -47,9 +47,17 @@ class PackageSet
   end
 
   def end_price
+    total_price_with_taxes + total_shipping
+  end
+
+  def total_price_with_taxes
     self.package_skus.reduce(0) do |acc, package_sku|
-      acc + package_sku.total_price_with_taxes_and_shipping
+      acc + package_sku.total_price_with_taxes
     end
+  end
+
+  def total_shipping
+    shipping_cost
   end
 
   def delete_with_assoc

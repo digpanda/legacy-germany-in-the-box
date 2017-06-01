@@ -11,13 +11,39 @@ class ShippingPrice
     @order = order
   end
 
+  # the price included the sku shipping cost which are
+  # the casual order items cost and add the package sets
+  # shipping cost if any
   def price
-    shipping_rate.price * approximation_change
+    sku_shipping_cost + package_set_shipping_cost
+  end
+
+  private
+
+  # if there's any item we get a cost
+  # otherwise it's logically set to 0.0
+  # NOTE : this happens in case of package set only
+  def sku_shipping_cost
+    if sku_order_items.count > 0
+      shipping_rate.price * calibration
+    else
+      0.0
+    end
+  end
+
+  def package_set_shipping_cost
+    order.package_sets.reduce(0) do |acc, package_set|
+      acc + package_set.shipping_cost
+    end
+  end
+
+  def sku_order_items
+    order.order_items.where(package_set: nil)
   end
 
   # we sum the weight of all the order items
   def weight
-    order.order_items.reduce(0) do |acc, order_item|
+    sku_order_items.reduce(0) do |acc, order_item|
       acc + order_item.weight * order_item.quantity
     end
   end
@@ -27,13 +53,13 @@ class ShippingPrice
   # NOTE : i didn't code it yet because of the high risk there's no shipping rate found
   # depending the result
   def type
-    order.order_items.first&.products&.first&.shipping_rate_type || FALLBACK_SHIPPING_RATE_TYPE
+    sku_order_items.first&.products&.first&.shipping_rate_type || FALLBACK_SHIPPING_RATE_TYPE
   end
 
   # this is used to raise or reduce the end shipping cost
   # NOTE : it was set to 1 for now until we test and calibrate
   # WARNING : if you set it below 0, it can generate weird price numbers (think BigDecimal bullshit)
-  def approximation_change
+  def calibration
     1
   end
 

@@ -2,9 +2,10 @@
 class OrderMaker
   class SkuHandler < BaseService
 
-    attr_reader :identity_solver, :order, :sku, :product, :package_sku
+    attr_reader :order_maker, :identity_solver, :order, :sku, :product, :package_sku
 
     def initialize(order_maker, sku)
+      @order_maker = order_maker
       @identity_solver = order_maker.identity_solver
       @order = order_maker.order
       @sku = sku
@@ -19,7 +20,7 @@ class OrderMaker
       save_order!
       handle_coupon!
       recalibrate_order!
-      lock_order!
+      lock!
       return_with(:success, order_item: order_item)
     rescue OrderMaker::Error => exception
       return_with(:error, error: exception.message)
@@ -29,7 +30,7 @@ class OrderMaker
     # clean up the order if needed
     def remove!
       if order_item.destroy
-        destroy_empty_order!
+        order_maker.destroy_empty_order!
         return_with(:success)
       else
         return_with(:error, error: order_errors)
@@ -56,14 +57,6 @@ class OrderMaker
       end
     end
 
-    def destroy_empty_order!
-      if order.destroyable?
-        order.remove_coupon(identity_solver) if order.coupon
-        order.reload
-        return order.destroy
-      end
-    end
-
     def fresh_order_item!
       order.order_items.build.tap do |order_item|
         order_item.product = product
@@ -77,11 +70,10 @@ class OrderMaker
           order_item.price_per_unit = package_sku.price
           order_item.taxes_per_unit = package_sku.taxes_per_unit
           order_item.package_set = package_sku.package_set
-          order_item.save # very important
+          order_item.save # very important for rollbacks
         end
 
         order_item.quantity = 0 # we will increment this afterwards
-
       end
     end
 
@@ -98,11 +90,7 @@ class OrderMaker
     end
 
     def save_order!
-      raise OrderMaker::Error, order_errors unless order.save
-    end
-
-    def order_errors
-      order.errors.full_messages.join(', ')
+      raise OrderMaker::Error, order_maker.order_errors unless order.save
     end
 
     # this will refresh the shipping costs
@@ -112,7 +100,7 @@ class OrderMaker
       order.save
     end
 
-    def lock_order!
+    def lock!
       if package_sku
         order_item.locked = true
         order_item.save

@@ -18,6 +18,21 @@ class OrderMaker
     OrderMaker::SkuHandler.new(self, sku)
   end
 
+  # NOTE : this is in the public api because it's
+  # also used by the PackageSetHandler and SkuHandler
+  # in rollback case and removal
+  def destroy_empty_order!
+    if order.destroyable?
+      order.remove_coupon(identity_solver) if order.coupon
+      order.reload
+      order.destroy
+    end
+  end
+
+  def order_errors
+    order.errors.full_messages.join(', ')
+  end
+  
   #### OLD SYSTEM
   #
   # def old_add(sku, product, quantity, price:nil, taxes:nil, locked: false, package_set:nil)

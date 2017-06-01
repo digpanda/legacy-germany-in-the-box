@@ -1,69 +1,42 @@
 class Api::Guest::PackageSetsController < Api::ApplicationController
 
-  attr_reader :package_set
+  attr_reader :package_set, :quantity
 
   before_filter do
     restrict_to :customer
   end
 
   before_action :set_package_set
+  before_action :quantity, only: [:update]
 
-  # we add the sku through the order maker and check success
+  # we add the package set with quantity 1 into the order
   # if it's a success, we store the order into the cart
   def create
-    add_package_set = order_maker.package_set(package_set).add!
-    if add_package_set.success?
+    add = order_maker.package_set(package_set).refresh!(1)
+    if add.success?
       cart_manager.store(order)
       render json: {success: true, message: I18n.t(:add_product_ok, scope: :edit_order)}
     else
-      render json: throw_error(:unable_to_process).merge(error: add_package_set.error[:error])
+      render json: throw_error(:unable_to_process).merge(error: add.error[:error])
     end
   end
 
-  # OLD CODE BELOW
-
   def update
-    quantity = params[:quantity]
-
-    order.order_items.where(package_set: package_set).delete
-
-    (quantity.to_i).times do
-      add_package_set
+    refresh = order_maker.package_set(package_set).refresh!(quantity)
+    if refresh.success?
+      cart_manager.store(order)
+      # the corect rendering is in the views
+    else
+      render json: throw_error(:unable_to_process).merge(error: add.error[:error])
     end
-
-    handle_coupon!
   end
 
   def destroy
+    remove = order_maker.package_set(package_set).remove!
 
-    order.order_items.where(package_set: package_set).delete_all
-
-    if destroy_empty_order!
-      handle_coupon!
-      if order.persisted?
-        render 'api/guest/order_items/update'
-      else
-        render json: {success: true, order_empty: !@order.persisted?}
-      end
-    else
-      render json: throw_error(:unable_to_process).merge(error: order_item.errors.full_messages.join(', '))
+    unless remove.success?
+      render json: throw_error(:unable_to_process).merge(error: remove.error[:error])
     end
-  end
-
-  private
-
-  # NOTE : this has been moved into the order maker logic
-  def handle_coupon!
-    coupon_handler.reset if order.coupon
-  end
-
-  def destroy_empty_order!
-    if order.destroyable?
-      order.remove_coupon(identity_solver) if order.coupon
-      order.reload
-      return order.destroy
-    end
-    true
   end
 
   private
@@ -80,23 +53,8 @@ class Api::Guest::PackageSetsController < Api::ApplicationController
     @package_set = PackageSet.find(params[:package_set_id] || params[:id])
   end
 
-  # THIS IS FOR UPDATE AND SHOULD BE CHANGED AND REMOVED
-
-  # def add_package_set
-  #   if package_set.active
-  #     # we first compose the whole order
-  #     package_set.package_skus.each do |package_sku|
-  #       # we also lock each order item we generate
-  #       order_maker.add(package_sku.sku, package_sku.product, package_sku.quantity,
-  #       price: package_sku.price,
-  #       taxes: package_sku.taxes_per_unit,
-  #       locked: true,
-  #       package_set: package_sku.package_set)
-  #     end
-  #     # we first empty the cart manager to make it fresh
-  #     # cart_manager.empty! <-- to avoid multiple package order
-  #     cart_manager.store(order)
-  #   end
-  # end
+  def set_quantity
+    @quantity = params[:quantity].to_i
+  end
 
 end

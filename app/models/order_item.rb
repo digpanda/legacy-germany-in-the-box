@@ -105,7 +105,6 @@ class OrderItem
     total_price + total_taxes
   end
 
-
   def price_with_taxes
     price_per_unit + taxes_per_unit
   end

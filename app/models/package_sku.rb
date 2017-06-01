@@ -26,20 +26,12 @@ class PackageSku
     price * quantity
   end
 
-  def total_shipping
-    shipping_per_unit * quantity
-  end
-
   def total_taxes
     taxes_per_unit * quantity
   end
 
   def total_price_with_taxes
     total_price + total_taxes
-  end
-
-  def total_price_with_taxes_and_shipping
-    total_price + total_taxes + total_shipping
   end
 
 end
