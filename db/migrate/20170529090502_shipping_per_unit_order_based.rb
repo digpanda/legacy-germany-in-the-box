@@ -11,7 +11,7 @@ class ShippingPerUnitOrderBased < Mongoid::Migration
         end
       end
       puts "New shipping cost is `#{order.shipping_cost}`"
-      order.save!
+      order.save(validation: false)
     end
   end
 

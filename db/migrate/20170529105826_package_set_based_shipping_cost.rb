@@ -8,7 +8,7 @@ class PackageSetBasedShippingCost < Mongoid::Migration
         end
       end
       puts "New shipping cost is `#{package_set.shipping_cost}`"
-      package_set.save!
+      package_set.save(validation: false)
     end
   end
 
