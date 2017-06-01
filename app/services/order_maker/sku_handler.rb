@@ -143,7 +143,7 @@ class OrderMaker
     end
 
     def error_quantity
-      I18n.t(:not_available, scope: :popular_products)
+      "You can't go any lower"
     end
 
   end

@@ -24,7 +24,6 @@ var CustomerCartShow = {
     $('.js-set-quantity-minus').click(function(e) {
 
       e.preventDefault();
-      CustomerCartShow.click_chain++;
 
       let orderItemId = $(this).data('orderItemId');
       let orderShopId = $(this).data('orderShopId');
@@ -38,7 +37,10 @@ var CustomerCartShow = {
         currentQuantity--;
       }
 
-      CustomerCartShow.orderItemSetQuantity(orderShopId, orderItemId, originQuantity, originTotal, currentQuantity);
+      if (originQuantity != currentQuantity) {
+        CustomerCartShow.click_chain++;
+        CustomerCartShow.orderItemSetQuantity(orderShopId, orderItemId, originQuantity, originTotal, currentQuantity);
+      }
 
     });
 
@@ -75,8 +77,11 @@ var CustomerCartShow = {
           currentQuantity--;
       }
 
-      CustomerCartShow.packageSetSetQuantity(packageSetId, originQuantity, originTotal, currentQuantity, orderShopId);
-
+      if (originQuantity != currentQuantity) {
+        CustomerCartShow.click_chain++;
+        CustomerCartShow.orderItemSetQuantity(orderShopId, orderItemId, originQuantity, originTotal, currentQuantity);
+      }
+      
     });
 
     $('.js-set-package-quantity-plus').click(function(e) {
@@ -105,19 +110,12 @@ var CustomerCartShow = {
 
   },
 
-  loading: function() {
-
-    $('.js-loader').show();
-    $('#cart-total').hide();
-
-  },
 
   orderItemSetQuantity: function(orderShopId, orderItemId, originQuantity, originTotal, orderItemQuantity) {
 
     // We first setup a temporary number before the AJAX callback
     $('#order-item-quantity-'+orderItemId).html(orderItemQuantity);
-    $('#order-item-total-'+orderItemId).html('-')
-    CustomerCartShow.loading();
+    $('#order-item-total-'+orderItemId).html('-');
 
     var current_click_chain = CustomerCartShow.click_chain;
 
@@ -139,7 +137,7 @@ var CustomerCartShow = {
         $('#package-quantity-'+packageSetId).html(packageSetQuantity);
         $('#package-total-'+packageSetId).html('-');
 
-        CustomerCartShow.loading();
+
 
         var current_click_chain = CustomerCartShow.click_chain;
 

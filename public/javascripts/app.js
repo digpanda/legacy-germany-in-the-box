@@ -360,7 +360,6 @@ var CustomerCartShow = {
     $('.js-set-quantity-minus').click(function (e) {
 
       e.preventDefault();
-      CustomerCartShow.click_chain++;
 
       var orderItemId = $(this).data('orderItemId');
       var orderShopId = $(this).data('orderShopId');
@@ -374,7 +373,10 @@ var CustomerCartShow = {
         currentQuantity--;
       }
 
-      CustomerCartShow.orderItemSetQuantity(orderShopId, orderItemId, originQuantity, originTotal, currentQuantity);
+      if (originQuantity != currentQuantity) {
+        CustomerCartShow.click_chain++;
+        CustomerCartShow.orderItemSetQuantity(orderShopId, orderItemId, originQuantity, originTotal, currentQuantity);
+      }
     });
 
     $('.js-set-quantity-plus').click(function (e) {
@@ -409,7 +411,10 @@ var CustomerCartShow = {
         currentQuantity--;
       }
 
-      CustomerCartShow.packageSetSetQuantity(packageSetId, originQuantity, originTotal, currentQuantity, orderShopId);
+      if (originQuantity != currentQuantity) {
+        CustomerCartShow.click_chain++;
+        CustomerCartShow.orderItemSetQuantity(orderShopId, orderItemId, originQuantity, originTotal, currentQuantity);
+      }
     });
 
     $('.js-set-package-quantity-plus').click(function (e) {
@@ -435,18 +440,11 @@ var CustomerCartShow = {
     $('#cart-total').show();
   },
 
-  loading: function loading() {
-
-    $('.js-loader').show();
-    $('#cart-total').hide();
-  },
-
   orderItemSetQuantity: function orderItemSetQuantity(orderShopId, orderItemId, originQuantity, originTotal, orderItemQuantity) {
 
     // We first setup a temporary number before the AJAX callback
     $('#order-item-quantity-' + orderItemId).html(orderItemQuantity);
     $('#order-item-total-' + orderItemId).html('-');
-    CustomerCartShow.loading();
 
     var current_click_chain = CustomerCartShow.click_chain;
 
@@ -465,8 +463,6 @@ var CustomerCartShow = {
     // We first setup a temporary number before the AJAX callback
     $('#package-quantity-' + packageSetId).html(packageSetQuantity);
     $('#package-total-' + packageSetId).html('-');
-
-    CustomerCartShow.loading();
 
     var current_click_chain = CustomerCartShow.click_chain;
 
@@ -1696,13 +1692,12 @@ var Messages = {
 
   activateHide: function activateHide(el, time) {
 
-    // setTimeout(function(){
-    //     $(el).fadeOut(function() {
-    //       $(document).trigger('message:hidden');
-    //       Messages.shown = false;
-    //     });
-    // }, time);
-
+    setTimeout(function () {
+      $(el).fadeOut(function () {
+        $(document).trigger('message:hidden');
+        Messages.shown = false;
+      });
+    }, time);
   },
 
   forceHide: function forceHide(el) {

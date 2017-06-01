@@ -29,12 +29,12 @@ var Messages = {
 
     activateHide: function(el, time) {
 
-      // setTimeout(function(){
-      //     $(el).fadeOut(function() {
-      //       $(document).trigger('message:hidden');
-      //       Messages.shown = false;
-      //     });
-      // }, time);
+      setTimeout(function(){
+          $(el).fadeOut(function() {
+            $(document).trigger('message:hidden');
+            Messages.shown = false;
+          });
+      }, time);
 
     },
 
