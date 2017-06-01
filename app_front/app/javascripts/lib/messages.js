@@ -29,20 +29,18 @@ var Messages = {
 
     activateHide: function(el, time) {
 
-      setTimeout(function(){
-          $(el).fadeOut(function() {
-            $(document).trigger('message:hidden');
-            Messages.shown = false;
-          });
-      }, time);
+      // setTimeout(function(){
+      //     $(el).fadeOut(function() {
+      //       $(document).trigger('message:hidden');
+      //       Messages.shown = false;
+      //     });
+      // }, time);
 
     },
 
     forceHide: function(el) {
-      $('body').on('click', function() {
-        if (Messages.shown) {
-          Messages.activateHide(el, 0);
-        }
+      $('#message-area').on('click', function() {
+        $(el).hide();
       })
     },
 

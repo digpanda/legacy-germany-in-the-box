@@ -1696,19 +1696,18 @@ var Messages = {
 
   activateHide: function activateHide(el, time) {
 
-    setTimeout(function () {
-      $(el).fadeOut(function () {
-        $(document).trigger('message:hidden');
-        Messages.shown = false;
-      });
-    }, time);
+    // setTimeout(function(){
+    //     $(el).fadeOut(function() {
+    //       $(document).trigger('message:hidden');
+    //       Messages.shown = false;
+    //     });
+    // }, time);
+
   },
 
   forceHide: function forceHide(el) {
-    $('body').on('click', function () {
-      if (Messages.shown) {
-        Messages.activateHide(el, 0);
-      }
+    $('#message-area').on('click', function () {
+      $(el).hide();
     });
   }
 

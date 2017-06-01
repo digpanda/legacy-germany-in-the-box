@@ -862,6 +862,10 @@
   .file-upload__browser input {
     display: none; }
 
+#message-area {
+  max-width: 65%;
+  margin: auto; }
+
 .message {
   margin: auto auto;
   width: 30em;

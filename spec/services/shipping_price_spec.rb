@@ -15,8 +15,6 @@ describe ShippingPrice do
       expect(ShippingPrice.new(order).price).to eql(40.0)
     end
 
-    # NOTE : test the shipping price calculation with package set
-
   end
 
 end
