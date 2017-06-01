@@ -18,9 +18,21 @@ FactoryGirl.define do
     trait :with_package_set do
       after(:create) do |order|
         order.order_items.delete_all
-        package_set = FactoryGirl.create(:package_set)
+        package_set = FactoryGirl.create(:package_set, shop: order.shop)
         package_set.package_skus.each do |package_sku|
           FactoryGirl.create(:order_item, order: order, sku: package_sku.sku, package_set: package_set)
+        end
+      end
+    end
+
+    trait :with_package_sets do
+      after(:create) do |order|
+        order.order_items.delete_all
+        package_sets = FactoryGirl.create_list(:package_set, 3, shop: order.shop)
+        package_sets.each do |package_set|
+            package_set.package_skus.each do |package_sku|
+            FactoryGirl.create(:order_item, order: order, sku: package_sku.sku, package_set: package_set)
+          end
         end
       end
     end

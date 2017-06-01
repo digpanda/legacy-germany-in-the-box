@@ -78,4 +78,36 @@ describe Api::Guest::PackageSetsController, :type => :controller do
     end
   end
 
+  describe "#destroy" do
+
+    context "from guest customer" do
+
+      context "order with one package set" do
+
+        let(:order) { FactoryGirl.create(:order, :with_package_set) }
+        let(:package_set) { order.package_sets.first }
+
+        it "destroys the only package set of the order" do
+          controller.instance_variable_set(:@order, order)
+          delete :destroy, {"id" => package_set.id}
+          expect_json(success: true, order_empty: true)
+        end
+
+      end
+
+      context "order with multiple package sets" do
+
+        let(:order) { FactoryGirl.create(:order, :with_package_sets) }
+
+        it "destroys one package set of the order" do
+          controller.instance_variable_set(:@order, order)
+          delete :destroy, {"id" => order.package_sets.first.id}
+          expect_json(success: true, order_empty: false)
+        end
+
+      end
+
+    end
+  end
+
 end
