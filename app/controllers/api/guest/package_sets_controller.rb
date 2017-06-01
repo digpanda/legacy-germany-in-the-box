@@ -27,7 +27,7 @@ class Api::Guest::PackageSetsController < Api::ApplicationController
       cart_manager.store(order)
       # the corect rendering is in the views
     else
-      render json: throw_error(:unable_to_process).merge(error: add.error[:error])
+      render json: throw_error(:unable_to_process).merge(error: refresh.error[:error])
     end
   end
 

@@ -87,6 +87,7 @@ class OrderMaker
     def update_quantity!(quantity)
       order_item.quantity += quantity
       order_item.save
+      order.reload # thanks mongo. again.
     end
 
     def save_order!
