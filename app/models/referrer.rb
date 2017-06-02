@@ -20,7 +20,9 @@ class Referrer
   end
 
   def ensure_reference_id
-    self.reference_id = "#{self.short_nickname}#{self.user.short_union_id}#{Time.now.day}#{Time.now.month}#{Time.now.year}".downcase unless self.reference_id
+    unless self.reference_id
+      self.reference_id = "#{self.short_nickname}#{self.user.short_union_id}#{Time.now.day}#{Time.now.month}#{Time.now.year}".downcase
+    end
   end
 
   def ensure_nickname
