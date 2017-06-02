@@ -19,7 +19,7 @@ class OrderMaker
     # and iterate it as many times as we need
     def refresh!(quantity)
       remove_package_set!
-      raise_error? # comes right after for the active system
+      buyable?
       package_set.package_skus.each do |package_sku|
         quantity.times do
           insert_package_sku!(package_sku)
@@ -42,12 +42,6 @@ class OrderMaker
     end
 
     private
-
-    def raise_error?
-      if !buyable?
-        raise OrderMaker::Error, "This package set is not available."
-      end
-    end
 
     # TODO : limit the interdependency by making the action linked to the package sku here
     # and not inside sku_handler, like the locking system.
@@ -72,7 +66,9 @@ class OrderMaker
     end
 
     def buyable?
-      package_set.active
+      unless package_set.active
+        raise OrderMaker::Error, "This package set is not available."
+      end
     end
 
   end
