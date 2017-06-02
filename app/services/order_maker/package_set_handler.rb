@@ -18,8 +18,8 @@ class OrderMaker
     # we first clean up the package set from the order
     # and iterate it as many times as we need
     def refresh!(quantity)
-      raise_error?
       remove_package_set!
+      raise_error? # comes right after for the active system
       package_set.package_skus.each do |package_sku|
         quantity.times do
           insert_package_sku!(package_sku)
