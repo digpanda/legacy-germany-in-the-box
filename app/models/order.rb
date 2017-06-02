@@ -37,8 +37,6 @@ class Order
   # the shipping cost will be automatically refreshed
   def refresh_shipping_cost
     unless self.bought?
-      SlackDispatcher.new.message("CURRENT SHIPPING COST `#{self.shipping_cost}`")
-      SlackDispatcher.new.message("NEW CALCULATION : #{ShippingPrice.new(self).price}")
       self.shipping_cost = ShippingPrice.new(self).price
     end
   end
