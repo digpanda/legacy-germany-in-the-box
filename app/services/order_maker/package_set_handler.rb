@@ -18,15 +18,13 @@ class OrderMaker
     # we first clean up the package set from the order
     # and iterate it as many times as we need
     def refresh!(quantity)
+      raise_error?
       remove_package_set!
       package_set.package_skus.each do |package_sku|
         quantity.times do
           insert_package_sku!(package_sku)
         end
       end
-      # TODO : don't forget to manage the `buyable?` condition at the beginning
-      # TODO : find a smart way to handle `the coupon refreshing and recalibration of the system
-      # NOTE : maybe it will be naturally done via the interdependency of the other class
       return_with(:success)
     rescue OrderMaker::Error => exception
       return_with(:error, error: exception.message)
@@ -44,6 +42,12 @@ class OrderMaker
     end
 
     private
+
+    def raise_error?
+      if !buyable?
+        raise OrderMaker::Error, "This package set is not available."
+      end
+    end
 
     # TODO : limit the interdependency by making the action linked to the package sku here
     # and not inside sku_handler, like the locking system.
