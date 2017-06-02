@@ -1,7 +1,7 @@
 class CleanUpEmptyDestroyableOrders < Mongoid::Migration
   def self.up
     Order.all.each do |order|
-      if order.order_items.count == 0
+      if !order.bought? && order.order_items.count == 0
         puts "Processing Order `#{order.id}` ..."
         order.order_payments.where(status: :scheduled).delete_all
         puts "We removed the potential scheduled OrderPayments."
