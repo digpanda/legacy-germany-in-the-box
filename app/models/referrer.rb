@@ -39,7 +39,7 @@ class Referrer
   end
 
   def total_provisions
-    provisions.sum(:provision) - provision_operations.sum(:amount)
+    provisions.sum(:provision) + provision_operations.sum(:amount)
   end
 
 end
