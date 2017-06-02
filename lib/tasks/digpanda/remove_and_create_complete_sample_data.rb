@@ -50,6 +50,7 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
     puts "We create the customers, shopkeepers, admins"
 
     25.times { setup_customer create_user(:customer) }
+    1.times { setup_guide create_user(:customer) }
     3.times { create_user(:admin) }
 
     10.times { setup_shopkeeper create_user(:shopkeeper) }
@@ -317,8 +318,42 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
   end
 
   def setup_customer(customer)
+  end
 
+  def setup_guide(user)
+    user.update(email: "guide@guide.com")
+    referrer = Referrer.create(user: user)
+    coupon = Coupon.create_referrer_coupon(referrer)
+    setup_order(coupon: coupon)
+  end
 
+  def setup_orders(coupon: nil)
+    # - generate random sku
+    # - create an order with the sku shop
+    # - insert the sku into the order as order item
+    # - make a fake payment
+    # - refresh payment status
+    sku = random_product.skus.first
+    order = Order.create(shop: sku.shop, logistic_partner: Setting.instance.logistic_partner, coupon: coupon)
+    OrderMaker.new(order).sku(sku).refresh!(quantity)
+    setup_successful_order_payment(order: order)
+    refresh_status_from!(order_payment)
+    order.refresh_status_from!(order_payment)
+  end
+
+  def setup_successful_order_payment(order: nil)
+    OrderPayment.create(
+      request_id: "RAND",
+      merchant_id: "RAND",
+      amount_eur: order.end_price,
+      status: :success,
+      amount_cny: order.end_price.in_euro.to_yuan,
+      transaction_type: :purchase,
+      payment_method: :wechatpay,
+      origin_currency: "CNY",
+      order_id: order,
+      user_id: order.customer
+    )
   end
 
   def active_wirecard(shop, num)
