@@ -31,6 +31,10 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
     Address.delete_all
     puts "We remove all package sets"
     PackageSet.delete_all
+    puts "We remove all coupons"
+    Coupon.delete_all
+    puts "We remove all referrers"
+    Referrer.delete_all
 
     puts "We set the locale to Germany"
     I18n.locale = :de
@@ -47,17 +51,20 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
     Tasks::Digpanda::RefreshDutyCategoriesTaxes.new
     puts "---"
 
-    puts "We create the customers, shopkeepers, admins"
+    puts "We create the customers, guides, shopkeepers, admins"
 
     25.times { setup_customer create_user(:customer) }
-    1.times { setup_guide create_user(:customer) }
     3.times { create_user(:admin) }
 
     10.times { setup_shopkeeper create_user(:shopkeeper) }
-    8.times { setup_packageset }
+    8.times { setup_package_set }
 
     convert_product_without_first_sku_left(random_product)
     convert_product_with_documentation_attached(random_product)
+
+    # at the end we create tourist guides
+    # they will take random skus to compose fake orders
+    1.times { setup_guide create_user(:customer) }
 
     Rails.cache.clear
 
@@ -327,21 +334,21 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
     setup_order(coupon: coupon)
   end
 
-  def setup_orders(coupon: nil)
-    # - generate random sku
-    # - create an order with the sku shop
-    # - insert the sku into the order as order item
-    # - make a fake payment
-    # - refresh payment status
+  # - generate random sku
+  # - create an order with the sku shop
+  # - insert the sku into the order as order item
+  # - make a fake payment
+  # - refresh payment status
+  def setup_order(coupon: nil)
     sku = random_product.skus.first
-    order = Order.create(shop: sku.shop, logistic_partner: Setting.instance.logistic_partner, coupon: coupon)
-    OrderMaker.new(order).sku(sku).refresh!(quantity)
-    setup_successful_order_payment(order: order)
+    order = Order.create(user: create_user(:customer), shop: sku.product.shop, logistic_partner: Setting.instance.logistic_partner, coupon: coupon)
+    OrderMaker.new(nil, order).sku(sku).refresh!(1)
+    fake_successful_order_payment(order: order)
     refresh_status_from!(order_payment)
     order.refresh_status_from!(order_payment)
   end
 
-  def setup_successful_order_payment(order: nil)
+  def fake_successful_order_payment(order: nil)
     OrderPayment.create(
       request_id: "RAND",
       merchant_id: "RAND",
@@ -351,8 +358,8 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
       transaction_type: :purchase,
       payment_method: :wechatpay,
       origin_currency: "CNY",
-      order_id: order,
-      user_id: order.customer
+      order: order,
+      user: order.user
     )
   end
 
@@ -401,7 +408,7 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
 
   end
 
-  def setup_packageset
+  def setup_package_set
 
     num = PackageSet.count
     shop = Shop.all.shuffle.first
