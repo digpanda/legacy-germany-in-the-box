@@ -26,7 +26,7 @@ class Order
   field :paid_at, type: Time
   field :cancelled_at, type: Time
 
-  field :shipping_cost
+  field :shipping_cost, type: Float, default: 0.0
 
   field :coupon_applied_at, type: Time
   field :coupon_discount, type: Float, default: 0.0
@@ -37,6 +37,8 @@ class Order
   # the shipping cost will be automatically refreshed
   def refresh_shipping_cost
     unless self.bought?
+      SlackDispatcher.new.message("CURRENT SHIPPING COST `#{self.shipping_cost}`")
+      SlackDispatcher.new.message("NEW CALCULATION : #{ShippignPrice.new(self).price}")
       self.shipping_cost = ShippingPrice.new(self).price
     end
   end

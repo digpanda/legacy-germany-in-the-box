@@ -16,7 +16,6 @@ var Cart = {
     this.orderItemHandleQuantity();
     this.removeOrderItem();
     this.removePackageSet();
-
   },
 
   getItemData: function(el) {
