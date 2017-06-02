@@ -9,7 +9,7 @@ class Referrer
   belongs_to :referrer_token, :class_name => "ReferrerToken", :inverse_of => :referrer
 
   has_many :coupons, :class_name => "Coupon", :inverse_of => :referrer
-  
+
   has_many :provisions, :class_name => "ReferrerProvision", :inverse_of => :referrer
   has_many :provision_operations, :class_name => "ReferrerProvisionOperation", :inverse_of => :referrer
 
@@ -37,7 +37,7 @@ class Referrer
   end
 
   def total_provisions
-    provisions.sum(:provision) + provision_operations.sum(:amount)
+    provisions.sum(:provision) - provision_operations.sum(:amount)
   end
 
 end
