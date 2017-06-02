@@ -20,7 +20,16 @@ class OrderMaker
 
   # in case of rollback or destroy
   # throughout the subclasses
+  # if there are payments involved we try to manage them
+  # if the order is not destroyable we will simply cancel it if empty with payments
+  # this can occur if someone tries to pay and fail, then delete his items
   def destroy_empty_order!
+    if order.order_items.count == 0
+      order.order_payments.where(status: :scheduled).delete_all
+      if order.order_payments.count > 0
+        OrderCanceller.new(order).cancel_all!
+      end
+    end
     if order.destroyable?
       order.remove_coupon(identity_solver) if order.coupon
       order.reload

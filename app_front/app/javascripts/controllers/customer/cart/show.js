@@ -16,10 +16,12 @@ var Cart = {
     this.orderItemHandleQuantity();
     this.removeOrderItem();
     this.removePackageSet();
+
   },
 
   getItemData: function(el) {
     return {
+      orderId: $(el).data('orderId'),
       orderItemId: $(el).data('orderItemId'),
       orderShopId: $(el).data('orderShopId'),
       originQuantity: parseInt($('#order-item-quantity-'+$(el).data('orderItemId')).html()),
@@ -27,7 +29,40 @@ var Cart = {
     }
   },
 
+  removeItem: function(e) {
+    e.preventDefault();
+
+    var OrderItem = require("javascripts/models/order_item");
+    var itemData = Cart.getItemData(this);
+
+    OrderItem.removeProduct(itemData.orderItemId, function(res) {
+
+      var Messages = require("javascripts/lib/messages");
+
+      if (res.success === true) {
+
+        $('#order-item-' + itemData.orderItemId).remove();
+        console.log(res);
+        if (res.order_empty == true){
+          console.log('remove order empty');
+          console.log(itemData.orderId);
+          $('#order-' + itemData.orderId).remove();
+        } else {
+          Cart.resetTotalDisplay(itemData.orderShopId, res);
+        }
+
+        RefreshTotalProducts.perform();
+
+      } else {
+
+        Messages.makeError(res.error)
+
+      }
+    });
+  },
+
   increaseQuantity: function(e) {
+    e.preventDefault();
     let itemData = Cart.getItemData(this);
     let currentQuantity = itemData.originQuantity + 1;
     Cart.clickChain++;
@@ -35,6 +70,7 @@ var Cart = {
   },
 
   decreaseQuantity: function(e) {
+    e.preventDefault();
     let itemData = Cart.getItemData(this);
     let currentQuantity = itemData.originQuantity;
     if (itemData.originQuantity > 1) {
@@ -138,39 +174,7 @@ var Cart = {
 
     removeOrderItem: function () {
 
-        $('.delete-order-item').on('click', function (e) {
-
-            e.preventDefault();
-
-            var OrderItem = require("javascripts/models/order_item");
-            var orderItemId = $(this).data('id');
-            var orderId = $(this).data('order-id');
-            var orderShopId = $(this).data('order-shop-id');
-
-            OrderItem.removeProduct(orderItemId, function(res) {
-
-                var Messages = require("javascripts/lib/messages");
-
-                if (res.success === true) {
-
-                    $('#order-item-' + orderItemId).remove();
-
-                    if (res.order_empty == true){
-                        $('#order-' + orderId).remove();
-                    } else {
-                      Cart.resetTotalDisplay(orderShopId, res);
-                    }
-
-                    RefreshTotalProducts.perform();
-
-                } else {
-
-                    Messages.makeError(res.error)
-
-                }
-            });
-
-        })
+        $('.delete-order-item').on('click', Cart.removeItem);
 
     },
 

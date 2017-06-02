@@ -23,6 +23,7 @@ class OrderMaker
       lock!
       return_with(:success, order_item: order_item)
     rescue OrderMaker::Error => exception
+      remove!
       return_with(:error, error: exception.message)
     end
 

@@ -31,7 +31,7 @@
         <!-- Remove Item -->
         <% if action %>
           <div class="cart__order-item-remove">
-            <a href="#" class="delete-order-item" data-id="<%= order_item.id %>" data-order-id="<%= order_item.order.id %>" data-order-shop-id="<%= order_item.order.shop.id %>">
+            <a href="#" class="delete-order-item" data-order-item-id="<%= order_item.id %>" data-order-id="<%= order_item.order.id %>" data-order-shop-id="<%= order_item.order.shop.id %>">
               <i class="digpanda-remove"></i>
             </a>
           </div>
