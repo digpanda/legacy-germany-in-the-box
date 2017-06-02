@@ -153,6 +153,7 @@ class Order
     end
   end
 
+  # NOTE : this should be abstracted somewhere else
   def refresh_referrer_provision!
     if referrer
       referrer_provision = ReferrerProvision.where(order: self, referrer: referrer).first

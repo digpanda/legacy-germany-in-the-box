@@ -64,6 +64,7 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
 
     # at the end we create tourist guides
     # they will take random skus to compose fake orders
+    Setting.instance.update(default_coupon_discount: 10.00)
     1.times { setup_guide create_user(:customer) }
 
     Rails.cache.clear
@@ -183,6 +184,7 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
         :desc     => "#{Faker::Lorem.paragraph(1)}\n\n#{Faker::Lorem.paragraph(2)}",
         :cover    => setup_image(:banner),
         :brand    => brand,
+        :referrer_rate => 10.00,
         :shop     => shop,
         :hs_code  => hs_code,
         :approved => approved,
@@ -343,8 +345,7 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
     sku = random_product.skus.first
     order = Order.create(user: create_user(:customer), shop: sku.product.shop, logistic_partner: Setting.instance.logistic_partner, coupon: coupon)
     OrderMaker.new(nil, order).sku(sku).refresh!(1)
-    fake_successful_order_payment(order: order)
-    refresh_status_from!(order_payment)
+    order_payment = fake_successful_order_payment(order: order)
     order.refresh_status_from!(order_payment)
   end
 
@@ -427,14 +428,16 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
     })
 
     3.times do
-      sku = shop.products.has_available_sku.all.shuffle.first&.skus.first
-      package_set.package_skus.create({
-        :sku_id => sku.id,
-        :product => sku.product,
-        :quantity => Faker::Number.between(1, 3),
-        :price => Faker::Number.decimal(2),
-        :taxes_per_unit => Faker::Number.decimal(1),
-      })
+      sku = shop.products.has_available_sku.all.shuffle.first&.skus&.first
+      if sku
+        package_set.package_skus.create({
+          :sku_id => sku.id,
+          :product => sku.product,
+          :quantity => Faker::Number.between(1, 3),
+          :price => Faker::Number.decimal(2),
+          :taxes_per_unit => Faker::Number.decimal(1),
+        })
+      end
     end
 
     4.times do
