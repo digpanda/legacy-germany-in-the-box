@@ -24,7 +24,8 @@ class OrderMaker
   # if the order is not destroyable we will simply cancel it if empty with payments
   # this can occur if someone tries to pay and fail, then delete his items
   def destroy_empty_order!
-    if order.order_items.count == 0
+    # NOTE : we should abstract this whole logic into OrderCanceller and let it find out by itself
+    if empty_order?
       order.order_payments.where(status: :scheduled).delete_all
       if order.order_payments.count > 0
         OrderCanceller.new(order).cancel_all!
@@ -35,6 +36,10 @@ class OrderMaker
       order.reload
       order.destroy
     end
+  end
+
+  def empty_order?
+    order.order_items.count == 0
   end
 
   # displayable errors linked to the order

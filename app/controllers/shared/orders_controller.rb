@@ -46,7 +46,6 @@ class Shared::OrdersController < ApplicationController
     throw_app_error(:resource_not_found, {error: "Your label is not ready yet. Please try again in a few hours."})
   end
 
-
   def cancel
     canceller = OrderCanceller.new(order).cancel_all!
     if canceller.success?

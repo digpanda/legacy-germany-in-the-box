@@ -1,4 +1,5 @@
 var RefreshTotalProducts = require('javascripts/services/refresh_total_products')
+var Messages = require("javascripts/lib/messages");
 
 /**
  * Cart class
@@ -29,6 +30,13 @@ var Cart = {
     }
   },
 
+  getSelectors: function(itemData) {
+    return {
+      item: $('#order-item-' + itemData.orderItemId),
+      order: $('#order-' + itemData.orderId)
+    }
+  },
+
   removeItem: function(e) {
     e.preventDefault();
 
@@ -37,21 +45,20 @@ var Cart = {
 
     OrderItem.removeProduct(itemData.orderItemId, function(res) {
 
-      var Messages = require("javascripts/lib/messages");
+      let selectors = Cart.getSelectors(itemData);
 
       if (res.success === true) {
 
-        $('#order-item-' + itemData.orderItemId).remove();
-        console.log(res);
+        selectors.item.remove();
+
+        // If the order itself is empty
+        // We remove it as well
         if (res.order_empty == true){
-          console.log('remove order empty');
-          console.log(itemData.orderId);
-          $('#order-' + itemData.orderId).remove();
-        } else {
-          Cart.resetTotalDisplay(itemData.orderShopId, res);
+          selectors.order.remove();
         }
 
         RefreshTotalProducts.perform();
+        Cart.resetTotalDisplay(itemData.orderShopId, res);
 
       } else {
 
@@ -191,7 +198,7 @@ var Cart = {
 
             Cart.removePackageSet(packageSetId, orderId, function(res) {
 
-                var Messages = require("javascripts/lib/messages");
+
 
                 if (res.success === true) {
 
@@ -221,7 +228,7 @@ var Cart = {
     var OrderItem = require("javascripts/models/order_item");
     OrderItem.setQuantity(itemData.orderItemId, currentQuantity, function(res) {
 
-      var Messages = require("javascripts/lib/messages");
+
 
       if (res.success === false) {
 
@@ -248,7 +255,7 @@ var Cart = {
     var OrderItem = require("javascripts/models/order_item");
     OrderItem.setPackageSetQuantity(packageSetId, packageSetQuantity, function(res) {
 
-        var Messages = require("javascripts/lib/messages");
+
 
         if (res.success === false) {
 
