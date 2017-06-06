@@ -66,7 +66,7 @@ class ShippingPrice
   end
 
   def shipping_rate
-    @shipping_rate ||= current_shipping_rate || ShippingRate.new(price: fallback_price)
+    @shipping_rate ||= current_shipping_rate || highest_shipping_rate # ShippingRate.new(price: fallback_price)
   end
 
   # this is the fallback price
