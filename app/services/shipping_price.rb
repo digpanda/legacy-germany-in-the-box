@@ -66,7 +66,7 @@ class ShippingPrice
   end
 
   def shipping_rate
-    @shipping_rate ||= current_shipping_rate || highest_shipping_rate # ShippingRate.new(price: fallback_price)
+    @shipping_rate ||= current_shipping_rate || ShippingRate.new(price: fallback_price)
   end
 
   # this is the fallback price
@@ -74,8 +74,7 @@ class ShippingPrice
   # and use it together with the left weight
   # so it calculate the correct added price without limit
   def fallback_price
-    binding.pry
-    weight * fallback_ratio
+    (weight * fallback_ratio).round(2) # we round it to two decimals
   end
 
   # this is the ratio price on weight used to calculate the fallback price
