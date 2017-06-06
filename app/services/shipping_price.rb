@@ -3,7 +3,6 @@ class ShippingPrice
 
   FALLBACK_PARTNER = :mkpost.freeze
   FALLBACK_SHIPPING_RATE_TYPE = :general.freeze
-  FALLBACK_SHIPPING_RATE = 0.freeze
 
   attr_reader :order
 
@@ -67,7 +66,15 @@ class ShippingPrice
   end
 
   def shipping_rate
-    @shipping_rate ||= (ShippingRate.where(:weight.gte => weight).where(:type => type).where(partner: logistic_partner).order_by(weight: :asc).first || ShippingRate.new(price: FALLBACK_SHIPPING_RATE))
+    @shipping_rate ||= current_shipping_rate || fallback_shipping_rate
+  end
+
+  def fallback_shipping_rate
+    ShippingRate.where(partner: logistic_partner).where(type: type).order_by(weight: :desc).first
+  end
+
+  def current_shipping_rate
+    ShippingRate.where(:weight.gte => weight).where(type: type).where(partner: logistic_partner).order_by(weight: :asc).first
   end
 
   def logistic_partner
