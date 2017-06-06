@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :navigation, :cart_manager, :identity_solver
 
-  before_action :silent_login, :origin_solver, :get_cart_orders
+  before_action :silent_login, :origin_solver, :landing_solver, :get_cart_orders
 
   def silent_login
     if params[:code]
@@ -87,6 +87,17 @@ class ApplicationController < ActionController::Base
     else
       session[:origin] = :browser
     end
+  end
+
+  def landing_solver
+    # return session[:landing] if session[:landing]
+    # if request.url == guest_package_sets_path
+    #   binding.pry
+    #   session[:landing] = :package_sets
+    # else
+    #   binding.pry
+    #   session[:landing] = :skus
+    # end
   end
 
   def wechat_browser?
