@@ -66,10 +66,31 @@ class ShippingPrice
   end
 
   def shipping_rate
-    @shipping_rate ||= current_shipping_rate || fallback_shipping_rate
+    @shipping_rate ||= current_shipping_rate || ShippingRate.new(price: fallback_price)
   end
 
-  def fallback_shipping_rate
+  # this is the fallback price
+  # we take the highest shipping rate ratio
+  # and use it together with the left weight
+  # so it calculate the correct added price without limit
+  def fallback_price
+    binding.pry
+    weight * fallback_ratio
+  end
+
+  # this is the ratio price on weight used to calculate the fallback price
+  # it will help calculate prices if the weight isn't included in the shipping table
+  def fallback_ratio
+    highest_shipping_rate.price / highest_shipping_rate.weight
+  end
+
+  # the weight which is not taken into consideration from a normal table
+  # we will try to guess it
+  # def left_weight
+  #   weight - highest_shipping_rate.weight
+  # end
+
+  def highest_shipping_rate
     ShippingRate.where(partner: logistic_partner).where(type: type).order_by(weight: :desc).first
   end
 

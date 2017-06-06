@@ -200,7 +200,6 @@ var Cart = {
 
             CartModel.removePackageSet(packageSetId, orderId, function(res) {
 
-
                 if (res.success === true) {
 
                     $('#package-set-' + packageSetId).remove();
@@ -212,8 +211,6 @@ var Cart = {
                     }
 
                 } else {
-
-                  console.log('error yo');
 
                     Messages.makeError(res.error)
 

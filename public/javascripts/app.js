@@ -536,8 +536,6 @@ var Cart = {
           }
         } else {
 
-          console.log('error yo');
-
           Messages.makeError(res.error);
         }
       });
