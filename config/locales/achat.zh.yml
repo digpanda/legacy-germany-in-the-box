@@ -708,7 +708,8 @@ zh-CN:
     quantity: 数量
     unit_price: 单价
     operations: 操作
-    subtotal: 产品原价
+    subtotal: 单品总价
+    goodsprice: 订单总价
     all_included: 含税包邮价格
     shipping: 运费
     taxes: 税

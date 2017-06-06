@@ -24,9 +24,10 @@ RSpec.configure do |config|
   config.mock_with :rspec
   config.before(:each) do
     Mongoid.purge!
-    FactoryGirl.create(:shipping_rate, partner: :beihai)
-    FactoryGirl.create(:shipping_rate, partner: :mkpost)
-    FactoryGirl.create(:shipping_rate, partner: :xipost)
+    Setting.create!
+    FactoryGirl.create(:shipping_rate, partner: :beihai, weight: 100, price: 40.00)
+    FactoryGirl.create(:shipping_rate, partner: :mkpost, weight: 100, price: 40.00)
+    FactoryGirl.create(:shipping_rate, partner: :xipost, weight: 100, price: 40.00)
     page.driver.reset!
   end
 

@@ -1,19 +1,8 @@
-<div class="row">
-  <div class="col-xs-10 col-xs-push-1 col-md-4 col-md-push-4 col-md-pull-4">
-    <div id="message-container-<%= message %>" class="message message__<%= message %> <% unless flash[message] %>+hidden<% end %>">
-      <div class="row">
-        <div class="col-md-11 col-xs-10">
-          <div id="message-content-<%= message %>" class="+centered">
-            <%= flash[message] %>
-          </div>
-        </div>
-        <div class="col-md-1 col-xs-1">
-          <div class="message__remove +right">
-            <i class="digpanda-remove"></i>
-          </div>
-        </div>
-      </div>
-
-    </div>
+<div id="message-container-<%= message %>" class="message message__<%= message %> <% unless flash[message] %>+hidden<% end %>">
+  <div id="message-content-<%= message %>" class="message__content">
+    <%= flash[message] %>
+  </div>
+  <div class="message__remove">
+    <i class="digpanda-remove"></i>
   </div>
 </div>

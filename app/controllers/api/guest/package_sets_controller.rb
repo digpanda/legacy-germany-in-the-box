@@ -1,66 +1,48 @@
 class Api::Guest::PackageSetsController < Api::ApplicationController
 
-  attr_reader :package_set
+  attr_reader :package_set, :quantity
 
   before_filter do
     restrict_to :customer
   end
 
   before_action :set_package_set
+  before_action :set_quantity, only: [:update]
 
-  # we use the package set and convert it into an order
-  def update
-    if package_set.active
-      # we first compose the whole order
-      package_set.package_skus.each do |package_sku|
-        # we also lock each order item we generate
-        added_item = order_maker.add(package_sku.sku, package_sku.product, package_sku.quantity,
-                        price: package_sku.price,
-                        taxes: package_sku.taxes_per_unit,
-                        shipping: package_sku.shipping_per_unit,
-                        locked: true,
-                        package_set: package_sku.package_set)
-        unless added_item.success?
-          # we need to rollback the order
-          order_maker.remove_package_set!(package_set)
-          render json: {success: false, error: added_item.error[:error]}
-          return
-        end
-
-        if order.coupon
-          CouponHandler.new(identity_solver, order.coupon, order).reset
-        end
-
-      end
-      # we first empty the cart manager to make it fresh
-      # cart_manager.empty! <-- to avoid multiple package order
+  # we add the package set with quantity 1 into the order
+  # if it's a success, we store the order into the cart
+  def create
+    add = order_maker.package_set(package_set).refresh!(1)
+    if add.success?
       cart_manager.store(order)
-      render json: {success: true, msg: I18n.t(:package_set_added, scope: :cart)}
+      render json: {success: true, message: I18n.t(:add_product_ok, scope: :edit_order)}
+    else
+      render json: throw_error(:unable_to_process).merge(error: add.error[:error])
     end
   end
 
-  def set_quantity
-    quantity = params[:quantity]
-
-    order.order_items.where(package_set: package_set).delete
-
-    (quantity.to_i).times do
-      add_package_set
+  def update
+    refresh = order_maker.package_set(package_set).refresh!(quantity)
+    if refresh.success?
+      cart_manager.store(order)
+      # the corect rendering is in the views
+    else
+      render json: throw_error(:unable_to_process).merge(error: refresh.error[:error])
     end
+  end
 
-    # TODO : WARNING - this should be refactored, we duplicate this coupon handler reset everywhere
-    # it was done as a quickfix before emergency release.
-    if order.coupon
-      CouponHandler.new(identity_solver, order.coupon, order).reset
+  def destroy
+    remove = order_maker.package_set(package_set).remove!
+
+    unless remove.success?
+      render json: throw_error(:unable_to_process).merge(error: remove.error[:error])
     end
-
-    render 'api/guest/order_items/update'
   end
 
   private
 
   def order_maker
-    @order_maker ||= OrderMaker.new(order)
+    @order_maker ||= OrderMaker.new(identity_solver, order)
   end
 
   def order
@@ -68,26 +50,11 @@ class Api::Guest::PackageSetsController < Api::ApplicationController
   end
 
   def set_package_set
-    params[:id] ||= params[:package_set_id]
-    @package_set = PackageSet.find(params[:id]) unless params[:id].nil?
+    @package_set = PackageSet.find(params[:package_set_id] || params[:id])
   end
 
-  def add_package_set
-    if package_set.active
-      # we first compose the whole order
-      package_set.package_skus.each do |package_sku|
-        # we also lock each order item we generate
-        order_maker.add(package_sku.sku, package_sku.product, package_sku.quantity,
-                        price: package_sku.price,
-                        taxes: package_sku.taxes_per_unit,
-                        shipping: package_sku.shipping_per_unit,
-                        locked: true,
-                        package_set: package_sku.package_set)
-      end
-      # we first empty the cart manager to make it fresh
-      # cart_manager.empty! <-- to avoid multiple package order
-      cart_manager.store(order)
-    end
+  def set_quantity
+    @quantity = params[:quantity].to_i
   end
 
 end

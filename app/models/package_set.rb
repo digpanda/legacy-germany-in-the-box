@@ -11,6 +11,7 @@ class PackageSet
   field :referrer_rate, type: Float, default: 0.0
   field :active, type: Boolean, default: true
   field :casual_price, type: Float, default: 0
+  field :shipping_cost, type: Float, default: 0
 
   mount_uploader :cover, CoverUploader
   mount_uploader :details_cover, CoverUploader
@@ -35,12 +36,6 @@ class PackageSet
 
   scope :active, -> { where(active: true) }
 
-  # def casual_price
-  #   self.package_skus.reduce(0) do |acc, package_sku|
-  #     acc + (package_sku.sku.price_with_taxes_and_shipping * package_sku.quantity)
-  #   end
-  # end
-
   def casual_price?
     casual_price && casual_price > 0
   end
@@ -52,9 +47,17 @@ class PackageSet
   end
 
   def end_price
+    total_price_with_taxes + total_shipping
+  end
+
+  def total_price_with_taxes
     self.package_skus.reduce(0) do |acc, package_sku|
-      acc + package_sku.total_price_with_taxes_and_shipping
+      acc + package_sku.total_price_with_taxes
     end
+  end
+
+  def total_shipping
+    shipping_cost
   end
 
   def delete_with_assoc

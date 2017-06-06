@@ -9,7 +9,7 @@ class Referrer
   belongs_to :referrer_token, :class_name => "ReferrerToken", :inverse_of => :referrer
 
   has_many :coupons, :class_name => "Coupon", :inverse_of => :referrer
-  
+
   has_many :provisions, :class_name => "ReferrerProvision", :inverse_of => :referrer
   has_many :provision_operations, :class_name => "ReferrerProvisionOperation", :inverse_of => :referrer
 
@@ -20,7 +20,9 @@ class Referrer
   end
 
   def ensure_reference_id
-    self.reference_id = "#{self.short_nickname}#{self.user.short_union_id}#{Time.now.day}#{Time.now.month}#{Time.now.year}".downcase unless self.reference_id
+    unless self.reference_id
+      self.reference_id = "#{self.short_nickname}#{self.user.short_union_id}#{Time.now.day}#{Time.now.month}#{Time.now.year}".downcase
+    end
   end
 
   def ensure_nickname

@@ -33,7 +33,7 @@ var OrderItem = {
 
     $.ajax({
         method: "PATCH",
-        url: "/api/guest/package_sets/"+packageSetId+"/set_quantity",
+        url: "/api/guest/package_sets/"+packageSetId,
         data: {"quantity" : quantity}
 
     }).done(function(res) {
@@ -52,11 +52,11 @@ var OrderItem = {
 
   },
 
-  addProduct: function(productId, quantity, optionIds, callback) {
+  addSku: function(productId, skuId, quantity, callback) {
     $.ajax({
         method: "POST",
         url: "/api/guest/order_items",
-        data: {product_id: productId, quantity: quantity, option_ids: optionIds}
+        data: {product_id: productId, sku_id: skuId, quantity: quantity}
 
     }).done(function(res) {
 
@@ -73,24 +73,24 @@ var OrderItem = {
     });
   },
 
-    removeProduct: function (orderItemId, callback) {
-        $.ajax({
-            method: "DELETE",
-            url: "/api/guest/order_items/" + orderItemId
+  removeProduct: function (orderItemId, callback) {
+    $.ajax({
+      method: "DELETE",
+      url: "/api/guest/order_items/" + orderItemId
 
-        }).done(function (res) {
+      }).done(function (res) {
 
-            callback(res);
+        callback(res);
 
-        }).error(function (err) {
+      }).error(function (err) {
 
-          if (typeof err == "undefined") {
-            return;
-          }
+        if (typeof err == "undefined") {
+          return;
+        }
 
-          callback({success: false, error: err.responseJSON.error});
+        callback({success: false, error: err.responseJSON.error});
 
-        });
+      });
     },
 
     removeOrder: function (orderId, callback) {
@@ -113,10 +113,11 @@ var OrderItem = {
         });
     },
 
-    addPackageSet: function (url, callback) {
+    addPackageSet: function (packageSetId, callback) {
         $.ajax({
-            method: "PATCH",
-            url: url
+            method: "POST",
+            url: "/api/guest/package_sets",
+            data: { "package_set_id": packageSetId }
 
         }).done(function (res) {
 

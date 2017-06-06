@@ -26,22 +26,33 @@ class Order
   field :paid_at, type: Time
   field :cancelled_at, type: Time
 
+  field :shipping_cost, type: Float, default: 0.0
+
   field :coupon_applied_at, type: Time
   field :coupon_discount, type: Float, default: 0.0
 
-  # TODO : to remove after migration
-  #field :referrer_rate, type: Float, default: 0.0
+  before_save :refresh_shipping_cost
 
-  def shipping_cost
-    @shipping_cost ||= begin
-      order_items.reduce(0) do |acc, order_item|
-        if order_item.shipping_per_unit
-          acc + (order_item.shipping_per_unit * order_item.quantity)
-        end
-      end
+  # if the order isn't bought yet and we add order_items or change anything
+  # the shipping cost will be automatically refreshed
+  def refresh_shipping_cost
+    unless self.bought?
+      self.shipping_cost = ShippingPrice.new(self).price
     end
   end
 
+  # def shipping_cost
+  #   @shipping_cost ||= begin
+  #     order_items.reduce(0) do |acc, order_item|
+  #       if order_item.shipping_per_unit
+  #         acc + (order_item.shipping_per_unit * order_item.quantity)
+  #       end
+  #     end
+  #   end
+  # end
+
+  # the taxes cost appears systematically `recalculated`
+  # but it's actually taken from hard written `order_item` taxes cost
   def taxes_cost
     @taxes_cost ||= begin
       order_items.reduce(0) do |acc, order_item|
@@ -142,6 +153,7 @@ class Order
     end
   end
 
+  # NOTE : this should be abstracted somewhere else
   def refresh_referrer_provision!
     if referrer
       referrer_provision = ReferrerProvision.where(order: self, referrer: referrer).first
@@ -236,7 +248,7 @@ class Order
   end
 
   def only_package_set?
-    order_items.where(package_set: nil).count == 0
+    order_items.without_package_set.count == 0
   end
 
   def displayable_total_quantity
@@ -337,7 +349,11 @@ class Order
     order_items.where(package_set: package_set).count / package_set.package_skus.count
   end
 
-  def package_set_total(package_set)
+  def package_set_price_with_taxes(package_set)
+    package_set.total_price_with_taxes * package_set_quantity(package_set)
+  end
+
+  def package_set_end_price(package_set)
     package_set.end_price * package_set_quantity(package_set)
   end
 

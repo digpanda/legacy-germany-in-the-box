@@ -32,7 +32,7 @@ module BorderGuruFtp
             order_item.sku_origin.id, # Origin SKU ID
             order_item.product.hs_code, # HS Code
             order_item.sku.country_of_origin,
-            order_item.sku.option_names.join(', '), # Description
+            order_item.sku.display_option_names, # Description
             order_item.clean_desc, # Description
             (order_item.weight * 1000), # Weight : current_order_item.weight
             order_item.sku.decorate.price_after_discount_in_euro, # Price

@@ -95,16 +95,8 @@ class Sku
     price + taxes_per_unit
   end
 
-  def price_with_taxes_and_shipping
-    price + taxes_per_unit + shipping_per_unit
-  end
-
   def taxes_per_unit
     @taxes_per_unit ||= TaxesPrice.new(self).price
-  end
-
-  def shipping_per_unit
-    @shipping_per_unit ||= ShippingPrice.new(self).price
   end
 
   def get_options
@@ -133,6 +125,10 @@ class Sku
         end
       end
     end.flatten
+  end
+
+  def display_option_names
+    self.option_names.join(', ')
   end
 
   def max_added_to_cart

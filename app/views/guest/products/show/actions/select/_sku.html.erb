@@ -5,7 +5,7 @@
     <%= I18n.t(:variant_option, scope: :cart) %>
   </span>
 
-  <%= select_tag 'sku[option_ids]', options_for_select( get_options_for_select(product), product.decorate.featured_sku.option_ids.join(',') ), :class => 'form-control product-select__dropdown', :id => 'option_ids', :product_id => product.id %>
+  <%= select_tag 'sku[id]', options_from_collection_for_select(product.skus, :id, :display_option_names, product.featured_sku.id), :class => 'form-control product-select__dropdown', :data => { :product_id => "#{product.id}" } %>
 
 </div>
 

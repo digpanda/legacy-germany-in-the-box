@@ -8,12 +8,16 @@ class OrderItem
   field :quantity, type: Integer,    default: 1
 
   field :taxes_per_unit, type: Float
+
+  # TO REMOVE AFTER PROD MIGRATION
   field :shipping_per_unit, type: Float
+  # END OF REMOVE
+
   field :price_per_unit, type: Float
 
   field :referrer_rate, type: Float, default: 0.0
 
-  before_save :ensure_price_per_unit, :ensure_taxes_per_unit, :ensure_shipping_per_unit
+  before_save :ensure_price_per_unit, :ensure_taxes_per_unit
 
   def ensure_price_per_unit
     unless price_per_unit
@@ -24,12 +28,6 @@ class OrderItem
   def ensure_taxes_per_unit
     unless taxes_per_unit
       self.taxes_per_unit = sku.taxes_per_unit
-    end
-  end
-
-  def ensure_shipping_per_unit
-    unless shipping_per_unit
-      self.shipping_per_unit = sku.shipping_per_unit
     end
   end
 
@@ -56,6 +54,7 @@ class OrderItem
   index({order: 1},  {unique: false, name: :idx_order_item_order})
 
   scope :with_sku, -> (sku) { self.where(:sku_origin_id => sku.id) }
+  scope :without_package_set, -> { self.where(package_set: nil) }
 
   # right now we exclusively have delegated methods from the sku
   # if the method is missing we get it from the sku
@@ -106,7 +105,6 @@ class OrderItem
   def total_price_with_taxes
     total_price + total_taxes
   end
-
 
   def price_with_taxes
     price_per_unit + taxes_per_unit

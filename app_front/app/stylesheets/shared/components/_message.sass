@@ -1,28 +1,43 @@
+#message-area
+  max-width: 65%
+  margin: auto
+
 +component(message)
 
-  padding: 0.5em
-  margin-top: 0.5em
+  margin: auto auto
+  width: 30em
+  max-width: 90%
+  display: block
+  text-align: center
+  padding: 1em
+  margin-top: 1em
+
   font-weight: 400
   z-index: 10
-  top: 0.5em
+
+  +part(content)
+    max-width: 90%
+    display: inline-block
 
   +part(remove)
+    max-width: 10%
+    float: right
 
   +part(simple)
     padding: 1em
-    font-size: 18px
+    font-size: 15px
     color: $color-black
 
   +part(neutral)
     padding: 1em
-    font-size: 18px
+    font-size: 15px
     color: $color-black
     background-color: $color-light-green
 
   +part(error)
     padding: 1em
     background-color: $color-red
-    font-size: 20px
+    font-size: 16px
     color: $color-white
 
   +part(success)

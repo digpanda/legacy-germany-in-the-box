@@ -42,7 +42,7 @@
             <%= image_tag(sku.images&.first&.file&.url, :class => 'icon-img') %>
           </td>
           <td>
-            <%= sku.option_names.join(', ') %>
+            <%= sku.display_option_names %>
           </td>
           <td>
             <% if sku.price %>

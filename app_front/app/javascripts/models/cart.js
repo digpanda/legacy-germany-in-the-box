@@ -36,9 +36,9 @@ var Cart = {
   removePackageSet: function(packageSetId, orderId, callback) {
 
       $.ajax({
-          method: "POST",
-          url: "/api/guest/cart/destroy_package_set",
-          data: {"package_set_id" : packageSetId, "order_id" : orderId}
+          method: "DELETE",
+          url: "/api/guest/package_sets/" + packageSetId,
+          data: {}
 
       }).done(function(res) {
 

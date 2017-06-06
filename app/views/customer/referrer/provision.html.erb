@@ -1,7 +1,19 @@
-<div class="+white-box +centered">
-  <h4><%= current_user.referrer.nickname %></h4>
-  <h4>账户余额</h4>
-    <div class="row">
-      <h5><%= current_user.referrer.total_provisions.in_euro.display %></h5>
-    </div>
+<div class="row">
+  <div class="col-md-10">
+    <h2><%= current_user.referrer.nickname %></h2>
+    <h5>Total provisions : <%= current_user.referrer.total_provisions.in_euro.display %></h5>
+    <hr>
+  </div>
+</div>
+
+<div class="row details__block">
+  <div class="+overflow">
+    <%= render partial: "customer/referrer/provisions/provisions", :locals => { :provisions => current_user.referrer.provisions } %>
+  </div>
+</div>
+
+<div class="row details__block">
+  <div class="+overflow">
+    <%= render partial: "customer/referrer/provisions/operations", :locals => { :operations => current_user.referrer.provision_operations } %>
+  </div>
 </div>

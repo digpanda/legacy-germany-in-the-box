@@ -31,6 +31,10 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
     Address.delete_all
     puts "We remove all package sets"
     PackageSet.delete_all
+    puts "We remove all coupons"
+    Coupon.delete_all
+    puts "We remove all referrers"
+    Referrer.delete_all
 
     puts "We set the locale to Germany"
     I18n.locale = :de
@@ -47,16 +51,21 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
     Tasks::Digpanda::RefreshDutyCategoriesTaxes.new
     puts "---"
 
-    puts "We create the customers, shopkeepers, admins"
+    puts "We create the customers, guides, shopkeepers, admins"
 
     25.times { setup_customer create_user(:customer) }
     3.times { create_user(:admin) }
 
     10.times { setup_shopkeeper create_user(:shopkeeper) }
-    8.times { setup_packageset }
+    8.times { setup_package_set }
 
     convert_product_without_first_sku_left(random_product)
     convert_product_with_documentation_attached(random_product)
+
+    # at the end we create tourist guides
+    # they will take random skus to compose fake orders
+    Setting.instance.update(default_coupon_discount: 10.00)
+    1.times { setup_guide create_user(:customer) }
 
     Rails.cache.clear
 
@@ -175,6 +184,7 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
         :desc     => "#{Faker::Lorem.paragraph(1)}\n\n#{Faker::Lorem.paragraph(2)}",
         :cover    => setup_image(:banner),
         :brand    => brand,
+        :referrer_rate => 10.00,
         :shop     => shop,
         :hs_code  => hs_code,
         :approved => approved,
@@ -317,8 +327,41 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
   end
 
   def setup_customer(customer)
+  end
 
+  def setup_guide(user)
+    user.update(email: "guide@guide.com")
+    referrer = Referrer.create(user: user)
+    coupon = Coupon.create_referrer_coupon(referrer)
+    setup_order(coupon: coupon)
+  end
 
+  # - generate random sku
+  # - create an order with the sku shop
+  # - insert the sku into the order as order item
+  # - make a fake payment
+  # - refresh payment status
+  def setup_order(coupon: nil)
+    sku = random_product.skus.first
+    order = Order.create(user: create_user(:customer), shop: sku.product.shop, logistic_partner: Setting.instance.logistic_partner, coupon: coupon)
+    OrderMaker.new(nil, order).sku(sku).refresh!(1)
+    order_payment = fake_successful_order_payment(order: order)
+    order.refresh_status_from!(order_payment)
+  end
+
+  def fake_successful_order_payment(order: nil)
+    OrderPayment.create(
+      request_id: "RAND",
+      merchant_id: "RAND",
+      amount_eur: order.end_price,
+      status: :success,
+      amount_cny: order.end_price.in_euro.to_yuan,
+      transaction_type: :purchase,
+      payment_method: :wechatpay,
+      origin_currency: "CNY",
+      order: order,
+      user: order.user
+    )
   end
 
   def active_wirecard(shop, num)
@@ -366,7 +409,7 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
 
   end
 
-  def setup_packageset
+  def setup_package_set
 
     num = PackageSet.count
     shop = Shop.all.shuffle.first
@@ -380,19 +423,21 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
       :long_desc => Faker::Lorem.paragraph(3),
       :cover => setup_image(:banner),
       :details_cover => setup_image(:banner),
-      :casual_price => Faker::Number.decimal(2)
+      :casual_price => Faker::Number.decimal(2),
+      :shipping_cost => Faker::Number.decimal(1)
     })
 
-    5.times do
-      sku = shop.products.has_available_sku.all.shuffle.first&.skus.first
-      package_set.package_skus.create({
-        :sku_id => sku.id,
-        :product => sku.product,
-        :quantity => Faker::Number.between(1, 3),
-        :price => Faker::Number.decimal(2),
-        :taxes_per_unit => Faker::Number.decimal(1),
-        :shipping_per_unit => Faker::Number.decimal(1)
-      })
+    3.times do
+      sku = shop.products.has_available_sku.all.shuffle.first&.skus&.first
+      if sku
+        package_set.package_skus.create({
+          :sku_id => sku.id,
+          :product => sku.product,
+          :quantity => Faker::Number.between(1, 3),
+          :price => Faker::Number.decimal(2),
+          :taxes_per_unit => Faker::Number.decimal(1),
+        })
+      end
     end
 
     4.times do

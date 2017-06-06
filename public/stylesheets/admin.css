@@ -865,25 +865,39 @@
   .file-upload__browser input {
     display: none; }
 
+#message-area {
+  max-width: 65%;
+  margin: auto; }
+
 .message {
-  padding: 0.5em;
-  margin-top: 0.5em;
+  margin: auto auto;
+  width: 30em;
+  max-width: 90%;
+  display: block;
+  text-align: center;
+  padding: 1em;
+  margin-top: 1em;
   font-weight: 400;
-  z-index: 10;
-  top: 0.5em; }
+  z-index: 10; }
+  .message__content {
+    max-width: 90%;
+    display: inline-block; }
+  .message__remove {
+    max-width: 10%;
+    float: right; }
   .message__simple {
     padding: 1em;
-    font-size: 18px;
+    font-size: 15px;
     color: #666; }
   .message__neutral {
     padding: 1em;
-    font-size: 18px;
+    font-size: 15px;
     color: #666;
     background-color: #e6fbd7; }
   .message__error {
     padding: 1em;
     background-color: #d6506c;
-    font-size: 20px;
+    font-size: 16px;
     color: #fdfdfd; }
   .message__success {
     padding: 1em;
