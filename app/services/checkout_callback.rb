@@ -95,7 +95,7 @@ class CheckoutCallback < BaseService
       order_payment.status = :unverified
       order_payment.save
       order_payment.order.refresh_status_from!(order_payment)
-      
+
     elsif mode == :safe
 
       # The status is success and the communication is safe
