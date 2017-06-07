@@ -39,7 +39,6 @@ class ShopApplication
   validates :tel,           presence: true,   length: {maximum: Rails.configuration.gitb[:max_tiny_text_length]}
   validates :mail,          presence: true,   length: {maximum: Rails.configuration.gitb[:max_short_text_length]}
 
-  validates :mobile,        length: {maximum: Rails.configuration.gitb[:max_tiny_text_length]}
   validates :function,      length: {maximum: Rails.configuration.gitb[:max_tiny_text_length]}
 
   before_save :gen_code

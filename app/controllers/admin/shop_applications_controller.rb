@@ -22,7 +22,7 @@ class Admin::ShopApplicationsController < ApplicationController
   private
 
   def shop_application_params
-    params.require(:shop_application).permit(:email, :name, :shopname, :desc, :philosophy, :stories, :german_essence, :uniqueness, :founding_year, :register, :website, :fname, :lname, :tel, :mobile, :mail, :function)
+    params.require(:shop_application).permit!
   end
 
   def set_shop_application

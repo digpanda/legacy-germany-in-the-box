@@ -22,6 +22,8 @@ class CheckoutCallback < BaseService
     @forced_status = forced_status
   end
 
+  # NOTE : this is deprecated and will be removed soon.
+  # - Laurent
   def wirecard!
     if user.email != params["email"]
       return return_with(:error, I18n.t(:account_conflict, scope: :notice))
@@ -164,7 +166,6 @@ class CheckoutCallback < BaseService
       dispatch_guide_message!(order_payment)
       SlackDispatcher.new.paid_transaction(order_payment)
     else
-
       SlackDispatcher.new.failed_transaction(order_payment)
     end
   end

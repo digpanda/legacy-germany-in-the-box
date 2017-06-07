@@ -28,7 +28,7 @@ class Admin::AccountController < ApplicationController
 
   def user_params
     bypass_password!
-    params.require(:user).permit(:username, :email, :password, :password_confirmation, :fname, :lname, :birth, :gender, :about, :website, :pic, :tel, :mobile)
+    params.require(:user).permit!
   end
 
   def check_valid_password?(params)
