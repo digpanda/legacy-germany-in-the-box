@@ -191,14 +191,14 @@ var Cart = {
 
             e.preventDefault();
 
-            var Cart = require("javascripts/models/cart");
+            // CartModel named this way because of collision because not well abstracted
+            // we should keep refactor this shit.
+            var CartModel = require("javascripts/models/cart");
             var orderId = $(this).data('order-id');
             var packageSetId = $(this).data('package-set-id');
             var orderShopId = $(this).data('order-shop-id');
 
-            Cart.removePackageSet(packageSetId, orderId, function(res) {
-
-
+            CartModel.removePackageSet(packageSetId, orderId, function(res) {
 
                 if (res.success === true) {
 
@@ -209,8 +209,6 @@ var Cart = {
                     } else {
                       Cart.resetTotalDisplay(orderShopId, res);
                     }
-
-                    RefreshTotalProducts.perform();
 
                 } else {
 
