@@ -65,8 +65,6 @@ class Product
     self.where("skus._id" => {"$in" => skus_ids})
   end
 
-  # scope :has_tag,     -> (value) { where(:tags       => value)                     }
-
   # only available products which are active and got skus
   scope :can_show,          -> { self.is_active.has_sku }
 

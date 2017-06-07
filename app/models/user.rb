@@ -49,17 +49,6 @@ class User
 
   has_one :referrer, :inverse_of => :user, dependent: :destroy
 
-  # TO BE REMOVED AFTER A WHILE
-  field :referrer_id, type: String
-  field :referrer_nickname, type: String
-  field :referrer_group, type: String
-
-  has_many :referrer_coupons, :class_name => "Coupon", :inverse_of => :referrer
-  has_many :referrer_provisions, :class_name => "ReferrerProvision", :inverse_of => :referrer
-
-  scope :with_referrer, -> { where(:referrer_id.ne => nil) }
-  # END OF REMOVE AFTER A WHILE
-
   field :wechat_unionid, type: String
   field :wechat_openid,  type: String
 
@@ -181,25 +170,8 @@ class User
     notifications.unreads.count > 0
   end
 
-  # def has_referrer_coupon?
-  #   self.referrer_coupons.count > 0
-  # end
-  #
-  # def assign_referrer_id
-  #   self.update(referrer_id: "#{self.short_nickname}#{self.short_union_id}#{Time.now.day}#{Time.now.month}#{Time.now.year}".downcase) unless self.referrer_id
-  # end
-
-  # def short_nickname
-  #   self&.referrer_nickname&.split(//)&.first(3)&.join.to_s
-  # end
-
   def short_union_id
     self&.wechat_unionid&.split(//)&.last(3)&.join.to_s
   end
-
-  # def set_referrer_group(group)
-  #   self.referrer_group = group unless self.referrer_group
-  #   self.save
-  # end
 
 end

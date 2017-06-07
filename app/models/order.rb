@@ -41,16 +41,6 @@ class Order
     end
   end
 
-  # def shipping_cost
-  #   @shipping_cost ||= begin
-  #     order_items.reduce(0) do |acc, order_item|
-  #       if order_item.shipping_per_unit
-  #         acc + (order_item.shipping_per_unit * order_item.quantity)
-  #       end
-  #     end
-  #   end
-  # end
-
   # the taxes cost appears systematically `recalculated`
   # but it's actually taken from hard written `order_item` taxes cost
   def taxes_cost

@@ -6,15 +6,8 @@ class OrderItem
   MAX_DESCRIPTION_CHARACTERS = 200
 
   field :quantity, type: Integer,    default: 1
-
   field :taxes_per_unit, type: Float
-
-  # TO REMOVE AFTER PROD MIGRATION
-  field :shipping_per_unit, type: Float
-  # END OF REMOVE
-
   field :price_per_unit, type: Float
-
   field :referrer_rate, type: Float, default: 0.0
 
   before_save :ensure_price_per_unit, :ensure_taxes_per_unit

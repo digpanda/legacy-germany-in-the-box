@@ -6,11 +6,6 @@ class Sku
 
   strip_attributes
 
-  # field :img0,          type: String
-  # field :img1,          type: String
-  # field :img2,          type: String
-  # field :img3,          type: String
-  #
   field :price,         type: BigDecimal
   field :purchase_price, type: BigDecimal, default: 0 # the price we bought it
   field :quantity,      type: Integer
