@@ -33,7 +33,7 @@ class CheckoutCallback < BaseService
     manage_logistic!(order_payment.order)
     dispatch_notifications!(order_payment)
 
-    return_with(:success)
+    return_with(:success, order_payment: order_payment)
   end
 
   def wechatpay!
@@ -62,7 +62,7 @@ class CheckoutCallback < BaseService
     manage_logistic!(order_payment.order)
     dispatch_notifications!(order_payment)
 
-    return return_with(:success)
+    return_with(:success, order_payment: order_payment)
   end
 
   def alipay!(mode: :unsafe)
@@ -113,7 +113,14 @@ class CheckoutCallback < BaseService
       return return_with(:error, "Mode for Alipay callback unknown")
     end
 
-    return return_with(:success)
+    return return_with(:success, order_payment: order_payment)
+  end
+
+  def dispatch_guide_message!(order_payment)
+    referrer = order_payment.order.referrer
+    if referrer
+      PhoneMessenger.new.send(referrer.user.mobile, "Someone bought a product on Germany in the Box. Your provision increased by #{order_payemnt.amount_eur.in_euro.display}. Your total provision is #{referrer.total_provisions.in_euro.display}")
+    end
   end
 
   def manage_stocks!(order)
@@ -154,21 +161,8 @@ class CheckoutCallback < BaseService
 
   def dispatch_notifications!(order_payment)
     if order_payment.status == :success
+      dispatch_guide_message!(order_payment)
       SlackDispatcher.new.paid_transaction(order_payment)
-
-      # DispatchNotification.new.perform_if_not_sent({
-      #   order: order_payment.order,
-      #   user: order_payment.order.shop.shopkeeper,
-      #   title: "Auftrag #{order_payment.order.id} am #{order_payment.order.paid_at}",
-      #   desc: 'Haben Sie die Bestellung schon vorbereiten? Senden Sie die bitte!'
-      #   })
-      # DispatchNotification.new.perform_if_not_selected_sent({
-      #   order: order_payment.order,
-      #   user: order_payment.order.shop.shopkeeper,
-      #   title: "Auftrag #{order_payment.order.id} am #{order_payment.order.paid_at}",
-      #   desc: "Haben Sie die Bestellung schon gesendet? Klicken Sie bitte 'Das Paket wurde versandt'"
-      #   })
-
     else
       SlackDispatcher.new.failed_transaction(order_payment)
     end
