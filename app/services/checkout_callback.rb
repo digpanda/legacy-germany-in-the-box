@@ -117,10 +117,12 @@ class CheckoutCallback < BaseService
   end
 
   def dispatch_guide_message!(order_payment)
+    SlackDispatcher.new.message("ORDER PAYMENT WILL PHONE MESSENGER NOW WITH MOBILE `#{referrer&.user&.mobile}`")
     referrer = order_payment.order.referrer
     if referrer&.user&.mobile
       PhoneMessenger.new.send(referrer.user.mobile, "Someone bought a product on Germany in the Box for a total of #{order_payment.amount_eur.in_euro.display}. Your total provision is now #{referrer.total_provisions.in_euro.display}")
     end
+    SlackDispatcher.new.message("IT IS ALL DONE")
   end
 
   def manage_stocks!(order)
