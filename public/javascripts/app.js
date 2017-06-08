@@ -2510,7 +2510,7 @@ require.register("javascripts/starters.js", function(exports, require, module) {
 /**
  * Starters Class
  */
-var Starters = ['auto_resize', 'back_to_top', 'bootstrap', 'china_city', 'datepicker', 'editable_fields', 'footer', 'input_validation', 'images_handler', 'lazy_loader', 'left_menu', 'links_behaviour', 'messages', 'mobile_menu', 'navigation', 'product_favorite', 'product_form', 'products_list', 'qrcode', 'refresh_time', 'responsive', 'search', 'sku_form', 'sweet_alert', 'tooltipster', 'total_products'];
+var Starters = ['auto_resize', 'back_to_top', 'bootstrap', 'china_city', 'datepicker', 'editable_fields', 'footer', 'input_validation', 'images_handler', 'lazy_loader', 'left_menu', 'links_behaviour', 'messages', 'mobile_menu', 'navigation', 'product_favorite', 'product_form', 'products_list', 'qrcode', 'refresh_time', 'responsive', 'search', 'sku_form', 'sweet_alert', 'table_clicker', 'tooltipster', 'total_products'];
 
 module.exports = Starters;
 });
@@ -3848,6 +3848,38 @@ var SweetAlert = {
 };
 
 module.exports = SweetAlert;
+});
+
+require.register("javascripts/starters/table_clicker.js", function(exports, require, module) {
+'use strict';
+
+/**
+ * TableClicker Class
+ */
+var TableClicker = {
+
+  /**
+   * Initializer
+   */
+  init: function init() {
+
+    this.handleTableClicker();
+  },
+
+  handleTableClicker: function handleTableClicker() {
+    $('tr').on('click', TableClicker.onClickTr);
+  },
+
+  onClickTr: function onClickTr(e) {
+    var link = $(e.currentTarget).data('href');
+    if (typeof link !== "undefined") {
+      window.location = link;
+    }
+  }
+
+};
+
+module.exports = TableClicker;
 });
 
 require.register("javascripts/starters/tooltipster.js", function(exports, require, module) {

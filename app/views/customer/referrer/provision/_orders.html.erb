@@ -1,0 +1,49 @@
+<div class="provision__orders">
+
+  <!-- ORDERS LIST -->
+  <div class="provision__title">
+    Orders
+  </div>
+
+  <div class="provision__list">
+    <table>
+      <thead>
+        <th>
+          Customer
+        </th>
+        <th>
+          Order
+        </th>
+        <th>
+          Provision
+        </th>
+        <th>
+          Creation
+        </th>
+      </thead>
+      <tbody>
+
+        <% provisions.each do |provision| %>
+          <tr data-href="#">
+            <td>
+              <%= provision.order.user.decorate.full_name %>
+            </td>
+            <td>
+              <%= provision.order.products_name_array.join(', ') %>
+            </td>
+            <td>
+              <span class="provision__list --green --link"><%= provision.provision.in_euro.display %></span>
+            </td>
+            <td>
+              <%= time_ago_in_words(provision.c_at) %>
+            </td>
+          </tr>
+        <% end %>
+
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<div class="+spacer"></div>

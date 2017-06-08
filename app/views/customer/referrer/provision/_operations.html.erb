@@ -1,52 +1,43 @@
-<div class="col-md-12">
-  <div class="row">
-    <h3>Operations</h3>
-    <hr>
-  </div>
-  <div class="row">
+<div class="provision__operations">
 
-    <% if operations.size > 0 %>
-    <table class="white-table">
+  <!-- OPERATIONS LIST -->
+  <div class="provision__title">
+    Operations
+  </div>
+
+  <div class="provision__list">
+    <table>
       <thead>
         <th>
-          ID
-        </th>
-        <th>
-          Amount
+          Transfer
         </th>
         <th>
           Description
         </th>
         <th>
-          Creation
+          Date
         </th>
       </thead>
       <tbody>
+
         <% operations.each do |operation| %>
-        <tr>
-          <td>
-            <%= operation.id %>
-          </td>
-          <td>
-            <%= operation.amount.in_euro.display %>
-          </td>
-          <td>
-            <%= operation.desc %>
-          </td>
-          <td>
-            <%= operation.c_at %>
-          </td>
-        </tr>
+          <tr data-href="#">
+            <td>
+              <span class="provision__list --blue --link"><%= operation.amount.in_euro.display %></span>
+            </td>
+            <td>
+              <%= operation.desc %>
+            </td>
+            <td>
+              <%= time_ago_in_words(operation.c_at) %>
+            </td>
+          </tr>
         <% end %>
+
       </tbody>
     </table>
-    <% else %>
-    <div class="+white-box +centered">
-      <h4>
-        No operation yet.
-      </h4>
-    </div>
-    <% end %>
-
   </div>
+
 </div>
+
+<div class="+spacer"></div>

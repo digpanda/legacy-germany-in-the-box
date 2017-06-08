@@ -38,8 +38,12 @@ class Referrer
     nickname&.split(//)&.first(3)&.join.to_s
   end
 
-  def total_provisions
-    provisions.sum(:provision) + provision_operations.sum(:amount)
+  def current_balance
+    total_earned + provision_operations.sum(:amount)
+  end
+
+  def total_earned
+    provisions.sum(:provision)
   end
 
 end

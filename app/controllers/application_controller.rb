@@ -60,7 +60,7 @@ class ApplicationController < ActionController::Base
     @identity_solver ||= IdentitySolver.new(request, session, current_user)
   end
 
-  def settings
+  def setting
     @setting ||= Setting.instance
   end
 

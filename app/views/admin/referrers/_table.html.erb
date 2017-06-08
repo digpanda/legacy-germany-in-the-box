@@ -14,7 +14,7 @@
         Coupon
       </th>
       <th>
-        Provision
+        Total Earned
       </th>
       <th>
         Group
@@ -43,7 +43,7 @@
             <% end %>
           </td>
           <td>
-            <%= referrer.total_provisions.in_euro.display %>
+            <%= referrer.total_earned.in_euro.display %>
           </td>
           <td>
             <%= referrer&.referrer_token&.group %>

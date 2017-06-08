@@ -1,3 +1,14 @@
+=wave-underline($color)
+  -moz-text-decoration-line: underline
+  -moz-text-decoration-style: wavy
+  -moz-text-decoration-color: $color
+  -webkit-text-decoration-line: underline
+  -webkit-text-decoration-style: wavy
+  -webkit-text-decoration-color: $color
+  text-decoration-line: underline
+  text-decoration-style: wavy
+  text-decoration-color: $color
+
 =link-color($color)
   color: $color
   &:hover
@@ -6,7 +17,7 @@
     color: $color
   &:visited
     color: $color
-    
+
 =anti-margin
   margin-left: -15px
   margin-right: -15px

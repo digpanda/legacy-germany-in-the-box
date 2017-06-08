@@ -35,7 +35,8 @@ class Setting
   field :default_coupon_discount, type: Float, default: 0
 
   field :force_referrer_tokens, type: Boolean, default: false
-
+  field :referrer_money_claim, type: Float, default: 10.0
+  
   validates :platform_currency,       presence: true
   validates :supplier_currency,       presence: true
   validates :exchange_rate_to_yuan,   presence: true,   :numericality => { :greater_than => 0 }

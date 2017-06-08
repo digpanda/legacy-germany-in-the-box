@@ -1,6 +1,10 @@
 module ApplicationHelper
   include Mobvious::Rails::Helper
 
+  def setting
+    @setting ||= Setting.instance
+  end
+
   # NOTE : I tried to refactor this part of the system
   # it's still extremely dirty and should be completely redone into a library.
   def get_provinces

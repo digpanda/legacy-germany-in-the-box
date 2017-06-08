@@ -2,11 +2,59 @@
 
   font-size: 20px
 
+  +part(title)
+    +strong-title
+
+  +part(orders)
+
+  +part(list)
+
+    +option(green)
+      color: $color-dark-green
+      font-weight: bold
+
+    +option(blue)
+      color: $color-blue
+      font-weight: bold
+
+    +option(link)
+      border-bottom: 1px dashed $color-dark-green
+      padding-bottom: 3px
+      font-size: 17px
+
+    +anti-margin
+
+    font-size: 15px
+    a
+      display: block
+    th
+      +centered
+      padding: 1em
+      font-weight: bold
+      font-size: 16px
+
+    tr
+      border-top: 1px solid $color-grey
+
+    tbody
+      tr
+        &:hover
+          background-color: $color-ultra-light-grey
+          cursor: pointer
+
+    td
+      +centered
+      padding: 1em
+
+    table
+      width: 100%
+      table-layout: fixed
+
+    thead
+      border-top: 1px solid $color-grey
+
   +part(insight)
     font-size: 20px
-
-  +part(insight-title)
-    +strong-title
 
   +part(insight-details)
     +anti-margin

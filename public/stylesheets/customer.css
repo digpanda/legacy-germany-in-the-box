@@ -1404,10 +1404,6 @@ body {
 
 .big-button {
   color: #ffffff;
-  position: relative;
-  text-align: center;
-  outline: 0;
-  border: 1px;
   -webkit-border-radius: 2px;
   -khtml-border-radius: 2px;
   -moz-border-radius: 2px;
@@ -1427,7 +1423,11 @@ body {
   font-family: 'Open Sans', Arial, helvetica, sans-serif;
   color: #fff;
   font-weight: bold;
-  text-transform: uppercase; }
+  text-transform: uppercase;
+  position: relative;
+  text-align: center;
+  outline: 0;
+  border: 1px; }
   .big-button:hover {
     color: #ffffff; }
   .big-button:active {
@@ -2146,12 +2146,48 @@ body {
 
 .provision {
   font-size: 20px; }
-  .provision__insight {
-    font-size: 20px; }
-  .provision__insight-title {
+  .provision__title {
     color: #464646;
     font-size: 24px;
     font-weight: bold; }
+  .provision__list {
+    margin-left: -15px;
+    margin-right: -15px;
+    font-size: 15px; }
+    .provision__list.\--green {
+      color: #33965e;
+      font-weight: bold; }
+    .provision__list.\--blue {
+      color: #3498db;
+      font-weight: bold; }
+    .provision__list.\--link {
+      border-bottom: 1px dashed #33965e;
+      padding-bottom: 3px;
+      font-size: 17px; }
+    .provision__list a {
+      display: block; }
+    .provision__list th {
+      text-align: center;
+      margin: 0 auto;
+      padding: 1em;
+      font-weight: bold;
+      font-size: 16px; }
+    .provision__list tr {
+      border-top: 1px solid #eeeeee; }
+    .provision__list tbody tr:hover {
+      background-color: #f5f5f5;
+      cursor: pointer; }
+    .provision__list td {
+      text-align: center;
+      margin: 0 auto;
+      padding: 1em; }
+    .provision__list table {
+      width: 100%;
+      table-layout: fixed; }
+    .provision__list thead {
+      border-top: 1px solid #eeeeee; }
+  .provision__insight {
+    font-size: 20px; }
   .provision__insight-details {
     margin-left: -15px;
     margin-right: -15px;

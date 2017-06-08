@@ -120,7 +120,7 @@ class CheckoutCallback < BaseService
     referrer = order_payment.order.referrer
     SlackDispatcher.new.message("ORDER PAYMENT WILL PHONE MESSENGER NOW WITH MOBILE `#{referrer&.user&.mobile}`")
     if referrer&.user&.mobile
-      PhoneMessenger.new.send(referrer.user.mobile, "一位客户在您的推荐下在来因盒平台下了一个#{order_payment.amount_eur.in_euro.display}的订单。您现在的总佣金为#{referrer.total_provisions.in_euro.display}")
+      PhoneMessenger.new.send(referrer.user.mobile, "一位客户在您的推荐下在来因盒平台下了一个#{order_payment.amount_eur.in_euro.display}的订单。您现在的总佣金为#{referrer.total_earned.in_euro.display}")
     end
     SlackDispatcher.new.message("IT IS ALL DONE")
   end

@@ -347,6 +347,12 @@ class Order
     package_set.end_price * package_set_quantity(package_set)
   end
 
+  def products_name_array
+    order_items.reduce([]) do |acc, order_item|
+      acc << order_item.product.name
+    end
+  end
+
   private
 
   def update_paid_at

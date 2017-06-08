@@ -27,6 +27,7 @@ var Starters = [
   'search',
   'sku_form',
   'sweet_alert',
+  'table_clicker',
   'tooltipster',
   'total_products',
 

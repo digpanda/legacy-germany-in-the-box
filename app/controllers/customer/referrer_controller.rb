@@ -2,6 +2,7 @@ class Customer::ReferrerController < ApplicationController
 
   before_action :freeze_header
   before_filter :valid_referrer?
+  before_action :set_referrer
   authorize_resource :class => false
 
   def show
@@ -14,6 +15,10 @@ class Customer::ReferrerController < ApplicationController
   end
 
   private
+
+  def set_referrer
+    @referrer = current_user.referrer
+  end
 
   def valid_referrer?
     unless current_user&.referrer?
