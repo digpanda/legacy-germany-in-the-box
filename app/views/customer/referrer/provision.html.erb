@@ -8,12 +8,12 @@
 
 <div class="row details__block">
   <div class="+overflow">
-    <%= render partial: "customer/referrer/provisions/provisions", :locals => { :provisions => current_user.referrer.provisions } %>
+    <%= render partial: "customer/referrer/provision/provisions", :locals => { :provisions => current_user.referrer.provisions } %>
   </div>
 </div>
 
 <div class="row details__block">
   <div class="+overflow">
-    <%= render partial: "customer/referrer/provisions/operations", :locals => { :operations => current_user.referrer.provision_operations } %>
+    <%= render partial: "customer/referrer/provision/operations", :locals => { :operations => current_user.referrer.provision_operations } %>
   </div>
 </div>

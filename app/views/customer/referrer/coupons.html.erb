@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="col-md-8 col-md-push-2">
+
+    <!-- SUBHEADER (BACK BUTTON + REFERRER ID) -->
+    <%= render partial: 'customer/referrer/subheader', :locals => { back: customer_referrer_path } %>
+
+    <div class="+centered">
+      <% current_user.referrer.coupons.each do |coupon| %>
+        <img src="<%= guest_coupon_flyer_path(coupon) %>" style="max-height: 500px;">
+      <% end %>
+    </div>
+
+    <div class="+spacer"></div>
+
+  </div>
+</div>

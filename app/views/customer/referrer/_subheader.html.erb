@@ -4,7 +4,7 @@
     <!-- BACK -->
     <div class="col-xs-6">
       <div class="subheader__left">
-        <a href="<%= edit_customer_account_path %>">
+        <a href="<%= back %>">
           <i class="digpanda-back"></i><%= I18n.t(:back) %>
         </a>
       </div>
@@ -13,9 +13,11 @@
     <!-- REFERRER -->
     <div class="col-xs-6">
       <div class="subheader__right">
-        Referrer <span class="subheader --highlight">23789</span>
+        Referrer <span class="subheader --highlight"><%= current_user.referrer.reference_id %></span>
       </div>
     </div>
+
+    <div class="+spacer"></div>
 
   </div>
 </div>

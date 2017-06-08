@@ -10,6 +10,9 @@ class Customer::ReferrerController < ApplicationController
   def provision
   end
 
+  def coupons
+  end
+
   private
 
   def valid_referrer?

@@ -2,14 +2,12 @@
   <div class="col-md-8 col-md-push-2">
 
     <!-- SUBHEADER (BACK BUTTON + REFERRER ID) -->
-    <%= render partial: 'customer/referrer/show/subheader' %>
-
-    <div class="+spacer"></div>
+    <%= render partial: 'customer/referrer/subheader', :locals => { back: edit_customer_account_path } %>
 
     <!-- MENU -->
-    <a href="#" class="big-button --blue">Provision Insight</a>
+    <a href="<%= provision_customer_referrer_path %>" class="big-button --blue">Provision Insight</a>
     <div class="+small-spacer"></div>
-    <a href="#" class="big-button --green">Your Coupon</a>
+    <a href="<%= coupons_customer_referrer_path %>" class="big-button --green">Your Coupons</a>
 
   </div>
 </div>
