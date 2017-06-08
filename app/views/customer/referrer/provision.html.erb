@@ -1,19 +1,42 @@
 <div class="row">
-  <div class="col-md-10">
-    <h2><%= current_user.referrer.nickname %></h2>
-    <h5>Total provisions : <%= current_user.referrer.total_provisions.in_euro.display %></h5>
-    <hr>
-  </div>
-</div>
+  <div class="col-md-8 col-md-push-2">
 
-<div class="row details__block">
-  <div class="+overflow">
-    <%= render partial: "customer/referrer/provision/provisions", :locals => { :provisions => current_user.referrer.provisions } %>
-  </div>
-</div>
+    <!-- SUBHEADER (BACK BUTTON + REFERRER ID) -->
+    <%= render partial: 'customer/referrer/subheader', :locals => { back: customer_referrer_path } %>
 
-<div class="row details__block">
-  <div class="+overflow">
-    <%= render partial: "customer/referrer/provision/operations", :locals => { :operations => current_user.referrer.provision_operations } %>
+    <div class="provision__insight">
+
+      <!-- PROVISION INSIGHT -->
+      <div class="provision__insight-title">
+        Provision Insight
+      </div>
+
+      <!-- PROVISION DETAILS -->
+      <div class="provision__insight-details">
+
+        <div class="row">
+          <div class="col-xs-6">
+            <div class="provision__insight-details-total-earned">
+              Total earned
+              <div class="provision__insight-details-total-earned --digits">187.10 €</div>
+            </div>
+          </div>
+          <div class="col-xs-6 +nopadding-left">
+            <div class="provision__insight-details-current-balance">
+              Current balance
+              <div class="provision__insight-details-current-balance --digits">187.10 €</div>
+              <div class="provision__insight-details-note">you can claim this money from 50.00 €</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- CLAIM THE MONEY -->
+      <div class="+small-spacer"></div>
+      <a href="#" class="big-button --blue">Claim your money</a>
+
+    </div>
+
   </div>
 </div>

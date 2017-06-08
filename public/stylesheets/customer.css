@@ -1430,6 +1430,10 @@ body {
   text-transform: uppercase; }
   .big-button:hover {
     color: #ffffff; }
+  .big-button:active {
+    color: #ffffff; }
+  .big-button:visited {
+    color: #ffffff; }
   .big-button.\--blue {
     background-color: #3498db; }
   .big-button.\--green {
@@ -1461,7 +1465,7 @@ body {
 
 .cart__order-title a {
   color: #464646;
-  font-size: 22px;
+  font-size: 24px;
   font-weight: bold; }
 
 .cart__order-item {
@@ -2139,6 +2143,41 @@ body {
     height: 2.5em;
     margin-bottom: 0.5em;
     color: #8b8b8b; }
+
+.provision {
+  font-size: 20px; }
+  .provision__insight {
+    font-size: 20px; }
+  .provision__insight-title {
+    color: #464646;
+    font-size: 24px;
+    font-weight: bold; }
+  .provision__insight-details {
+    margin-left: -15px;
+    margin-right: -15px;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    border-top: 1px solid #eeeeee;
+    border-bottom: 1px solid #eeeeee; }
+  .provision__insight-details-note {
+    color: #C3C3C3;
+    font-size: 14px;
+    max-width: 150px;
+    text-align: center;
+    margin: 0 auto; }
+  .provision__insight-details-total-earned {
+    text-align: center; }
+    .provision__insight-details-total-earned.\--digits {
+      color: #33965e;
+      font-weight: bold;
+      font-size: 24px; }
+  .provision__insight-details-current-balance {
+    text-align: center;
+    border-left: 1px solid #eeeeee; }
+    .provision__insight-details-current-balance.\--digits {
+      color: #3498db;
+      font-weight: bold;
+      font-size: 24px; }
 
 @media (max-width: 994px) {
   .search-bar {

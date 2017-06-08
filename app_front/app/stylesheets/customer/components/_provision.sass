@@ -1,0 +1,40 @@
++component(provision)
+
+  font-size: 20px
+
+  +part(insight)
+    font-size: 20px
+
+  +part(insight-title)
+    +strong-title
+
+  +part(insight-details)
+    +anti-margin
+
+    padding-top: 1em
+    padding-bottom: 1em
+    border-top: 1px solid $color-grey
+    border-bottom: 1px solid $color-grey
+
+  +part(insight-details-note)
+    color: $color-very-light-grey
+    font-size: 14px
+    max-width: 150px
+    +centered
+
+  +part(insight-details-total-earned)
+    text-align: center
+
+    +option(digits)
+      color: $color-dark-green
+      font-weight: bold
+      font-size: 24px
+
+  +part(insight-details-current-balance)
+    text-align: center
+    border-left: 1px solid $color-grey
+
+    +option(digits)
+      color: $color-blue
+      font-weight: bold
+      font-size: 24px

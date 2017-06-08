@@ -6,19 +6,15 @@
 
   +part(order-title)
     a
-      color: $color-very-black
-      font-size: 22px
-      font-weight: bold
+      +strong-title
 
   +part(order-item)
 
-    margin-left: -15px
-    margin-right: -15px
+    +anti-margin
 
     padding-top: 1em
     padding-bottom: 1em
     border-top: 1px solid $color-grey
-    // border-bottom: 1px solid $color-grey
 
   +part(order-item-image)
     margin-left: 15px
