@@ -1432,6 +1432,8 @@ body {
     color: #ffffff; }
   .big-button.\--blue {
     background-color: #3498db; }
+  .big-button.\--green {
+    background-color: #33965e; }
 
 .breadcrumb {
   background: none;
@@ -2396,14 +2398,20 @@ body {
   border-width: 15px 7.5px 0 7.5px;
   border-color: #ffffff transparent transparent transparent; }
 
-.subheader__back {
-  margin-left: -0.3em; }
-  .subheader__back a {
-    color: #C3C3C3;
-    font-size: 20px; }
-    .subheader__back a i {
-      font-size: 23px;
-      vertical-align: middle; }
+.subheader {
+  font-size: 20px;
+  color: #C3C3C3; }
+  .subheader a {
+    color: #C3C3C3; }
+  .subheader i {
+    font-size: 23px;
+    vertical-align: middle; }
+  .subheader__left {
+    margin-left: -0.3em; }
+  .subheader__right {
+    float: right; }
+  .subheader.\--highlight {
+    color: #3498db; }
 
 @media (max-width: 994px) {
   .connect__separator {

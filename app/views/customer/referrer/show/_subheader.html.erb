@@ -1,9 +1,21 @@
 <div class="row">
-  <div class="col-xs-12">
-    <div class="subheader__back">
-      <a href="<%= edit_customer_account_path %>">
-        <i class="digpanda-back"></i><%= I18n.t(:back) %>
-      </a>
+  <div class="subheader">
+
+    <!-- BACK -->
+    <div class="col-xs-6">
+      <div class="subheader__left">
+        <a href="<%= edit_customer_account_path %>">
+          <i class="digpanda-back"></i><%= I18n.t(:back) %>
+        </a>
+      </div>
     </div>
+
+    <!-- REFERRER -->
+    <div class="col-xs-6">
+      <div class="subheader__right">
+        Referrer <span class="subheader --highlight">23789</span>
+      </div>
+    </div>
+
   </div>
 </div>
