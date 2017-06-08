@@ -41,7 +41,7 @@ feature "manage the cart", :js => true  do
         reload_page
         visit customer_cart_path
         on_cart_page?
-        expect(page).to have_css ".\\+checkout-button", text: "购买" # go checkout
+        expect(page).to have_css "#checkout-button", text: "购买" # go checkout
 
       end
 
