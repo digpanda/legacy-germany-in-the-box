@@ -1428,6 +1428,8 @@ body {
   text-align: center;
   outline: 0;
   border: 1px; }
+  .big-button:link {
+    color: #ffffff; }
   .big-button:hover {
     color: #ffffff; }
   .big-button:active {

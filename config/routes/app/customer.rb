@@ -4,6 +4,7 @@ namespace :customer do
   resource :referrer, :controller => 'referrer' do
     get :provision
     get :coupons
+    post :claim
   end
 
   resource :cart, :controller => 'cart' do
@@ -34,14 +35,6 @@ namespace :customer do
     get :payment_method
     get '/gateways/:payment_method', to: "checkout#gateway", as: "gateway"
     # get :gateway
-
-    # TODO : to remove
-    post :processing
-    post :success
-    post :fail
-    get :cancel
-    # END REMOVE
-
   end
 
   resource :account, :controller => 'account' do
