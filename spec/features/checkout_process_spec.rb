@@ -16,7 +16,7 @@ feature "checkout process", :js => true  do
       product_to_cart!(product)
       reload_page # the AJAX call could make problem otherwise
       page.first('#cart').click # go to checkout
-      page.first('.\\+checkout-button').click # go to address step
+      page.first('#checkout-button').click # go to address step
     end
 
     scenario "pays successfully with wirecard visa" do
@@ -46,7 +46,7 @@ feature "checkout process", :js => true  do
       product_to_cart!(product)
       reload_page
       page.first('#cart').click # go to checkout
-      page.first('.\\+checkout-button').click # go to address step
+      page.first('#checkout-button').click # go to address step
     end
 
     context "without essential informations (wechat like)" do
@@ -58,7 +58,7 @@ feature "checkout process", :js => true  do
         fill_in 'user[email]', :with => 'random-valid-email@email.com'
         fill_in 'user[lname]', :with => '前'
         fill_in 'user[fname]', :with => '单'
-        page.first('.\\+checkout-button').click # go to address step
+        page.first('#checkout-button').click # go to address step
         on_order_address_page?
       end
 
@@ -92,7 +92,7 @@ feature "checkout process", :js => true  do
       #     page.first('#cart').click
       #     # we check the 20% off is shown on the cart before all
       #     expect(page).to have_content("-20%")
-      #     page.first('.\\+checkout-button').click # go to address step
+      #     page.first('#checkout-button').click # go to address step
       #     page.first('input[id^=delivery_destination_id]').click # click on the first address
       #     pay_with_wirecard_visa!
       #     borderguru_confirmed?
@@ -105,7 +105,7 @@ feature "checkout process", :js => true  do
         scenario "pay successfully and generate shipping label correctly with coupon" do
           page.first('#cart').click
           make_and_apply_coupon!
-          page.first('.\\+checkout-button').click
+          page.first('#checkout-button').click
           page.first('input[id^=delivery_destination_id]').click
           pay_with_wirecard_visa!
           borderguru_confirmed?

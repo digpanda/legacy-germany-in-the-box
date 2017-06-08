@@ -8,9 +8,7 @@
   <div class="col-md-8 col-md-push-2">
     <% if !@order.decorate.paid? %>
     <div align="center">
-      <%= link_to '继续购买', customer_order_continue_path(@order), method: :patch, class: 'btn-large +checkout-button col-md-2 col-xs-12' %>
-      <%#= link_to '', customer_order_path(@order), method: :delete, data: { confirm: I18n.t(:confirm_want_delete, scope: :notice) },
-      class: 'tooltipster fa fa-times buttons buttons__delete' %>
+      <%= link_to '继续购买', customer_order_continue_path(@order), method: :patch, class: 'big-button --blue' %>
     </div>
     <% end %>
   </div>

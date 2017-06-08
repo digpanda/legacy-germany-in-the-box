@@ -26,7 +26,7 @@ module Helpers
       end
 
       # def on_cart_page?
-      #   expect(page).to have_css '.\\+checkout-button'
+      #   expect(page).to have_css '#checkout-button'
       #   expect(page).to have_css '.total__end-price'
       # end
 

@@ -48,7 +48,7 @@ module Helpers
       end
 
       def pay_with_alipay!(mode: :success)
-        page.first('.\\+checkout-button').trigger('click')
+        page.first('#checkout-button').trigger('click')
         on_payment_method_page?
         page.first('a[id=alipay]').trigger('click')
         expect(page).to have_content("支付宝 - 网上支付 安全快速！") # wait for the page to show up
@@ -57,7 +57,7 @@ module Helpers
       end
 
       def pay_with_wechatpay!(mode: :success)
-        page.first('.\\+checkout-button').trigger('click')
+        page.first('#checkout-button').trigger('click')
         on_payment_method_page?
         page.first('a[id=wechatpay]').trigger('click')
         expect(page).to have_css("#order-payment-live-refresh") # wechat qrcode
@@ -65,7 +65,7 @@ module Helpers
       end
 
       def pay_with_wirecard_visa!(mode: :success)
-        page.first('.\\+checkout-button').trigger('click') # go to payment step
+        page.first('#checkout-button').trigger('click') # go to payment step
         on_payment_method_page?
         page.first('a[id=visa]').trigger('click') # pay with wirecard
         wait_for_page('#hpp-logo') # we are on wirecard hpp
