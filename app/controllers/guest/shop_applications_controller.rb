@@ -68,7 +68,7 @@ class Guest::ShopApplicationsController < ApplicationController
   end
 
   def shop_application_params
-    params.require(:shop_application).permit(:email, :name, :shopname, :desc, :philosophy, :stories, :german_essence, :uniqueness, :founding_year, :register, :website, :fname, :lname, :tel, :mobile, :mail, :function)
+    params.require(:shop_application).permit(:email, :name, :shopname, :desc, :philosophy, :stories, :german_essence, :uniqueness, :founding_year, :register, :website, :fname, :lname, :mobile, :mail, :function)
   end
 
 end

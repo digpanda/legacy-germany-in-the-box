@@ -303,7 +303,6 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
       :password_confirmation => '12345678',
       :role                  => symbol,
       :referrer_id          => tourist_guide,
-      :tel                   => Faker::PhoneNumber.phone_number,
       :mobile                => Faker::PhoneNumber.cell_phone,
       :birth                 => random_date,
     )
