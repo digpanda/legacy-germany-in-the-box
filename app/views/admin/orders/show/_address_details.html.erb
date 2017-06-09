@@ -12,7 +12,6 @@
         <% if @order.shipping_address %>
           PID : <%= @order.shipping_address.pid %><br />
         <% end %>
-        Phone : <%= @order.user.tel %><br />
         Mobile : <%= @order.user.mobile %>
       <% else %>
         No customer attached
