@@ -2,7 +2,7 @@
 
   <!-- PROVISION INSIGHT -->
   <div class="provision__title">
-    Provision Insight
+    <%= I18n.t('referrer.provision_insight') %>
   </div>
 
   <!-- PROVISION DETAILS -->
@@ -11,15 +11,15 @@
     <div class="row +nomargin">
       <div class="col-xs-6">
         <div class="provision__insight-details-total-earned">
-          Total earned
+          <%= I18n.t('referrer.total_earned') %>
           <div class="provision__insight-details-total-earned --digits"><%= referrer.total_earned.in_euro.display %></div>
         </div>
       </div>
       <div class="col-xs-6 +nopadding-left">
         <div class="provision__insight-details-current-balance">
-          Current balance
+          <%= I18n.t('referrer.current_balance') %>
           <div class="provision__insight-details-current-balance --digits"><%= referrer.current_balance.in_euro.display %></div>
-          <div class="provision__insight-details-note">you can claim this money from <%= setting.referrer_money_claim.in_euro.display %></div>
+          <div class="provision__insight-details-note"><%= I18n.t('referrer.your_can_claim_this_money_from', amount: setting.referrer_money_claim.in_euro.display) %></div>
         </div>
       </div>
     </div>
@@ -28,7 +28,7 @@
 
   <!-- CLAIM THE MONEY -->
   <div class="+small-spacer"></div>
-  <a href="<%= claim_customer_referrer_path %>" data-method="post" class="big-button --blue">Claim your money</a>
+  <a href="<%= claim_customer_referrer_path %>" data-method="post" class="big-button --blue"><%= I18n.t('referrer.claim_your_money') %></a>
   <div class="+spacer"></div>
 
 </div>

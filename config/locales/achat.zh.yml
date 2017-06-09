@@ -1,4 +1,23 @@
 zh-CN:
+  referrer:
+    referrer: 推广账号
+    provision_insight: 佣金总览
+    total_earned: 总佣金
+    your_coupons: 您的专属折扣码
+    current_balance: 未提取佣金
+    your_can_claim_this_money_from: "佣金满%{amount}即可结算"
+    claim_your_money: 结算
+    orders: 订单总览
+    operations: 结算记录
+    customer: 顾客
+    order: 订单
+    provision: 佣金
+    creation: 下单时间
+    transfer: 转账
+    description: 详情
+    date: 日期
+    you_cant_claim_your_money: "佣金满%{amount}时才可结算"
+    your_request_was_sent_to_our_operation_team: 您已成功提交结算申请，运营团队将尽快处理
   featured_sku:
     not_ready_yet: 此产品不存在
   general:

@@ -1,4 +1,23 @@
 de:
+  referrer:
+    referrer: Referrer
+    provision_insight: Übersicht meiner Provision
+    total_earned: Gesamtprovision
+    your_coupons: Dein Coupon
+    current_balance: Dein Kontostand
+    your_can_claim_this_money_from: "Sobald du %{amount} erreicht hast, kannst du eine Auszahlungsanfrage machen"
+    claim_your_money: Auszahlung veranlassen
+    orders: Übersicht der Bestellungen
+    operations: Meine Auszahlungen
+    customer: Kunden
+    order: Bestellungen
+    provision: Provision
+    creation: Bestelldatum
+    transfer: Auszahlung
+    description: Übersicht
+    date: Datum
+    you_cant_claim_your_money: "Sobald du %{amount} erreicht hast, kannst du eine Auszahlungsanfrage machen"
+    your_request_was_sent_to_our_operation_team: Deine Auszahlungsanforderung wird von unserem Mitarbeiter bearbeitet
   featured_sku:
     not_ready_yet: Kein Produkt getoffen wurde.
   general:

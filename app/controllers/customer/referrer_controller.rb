@@ -18,13 +18,13 @@ class Customer::ReferrerController < ApplicationController
 
   def claim
     if referrer.current_balance < setting.referrer_money_claim
-      flash[:error] = "You can't claim your money until you reach #{setting.referrer_money_claim.in_euro.display}"
+      flash[:error] = I18n.t('referrer.you_cant_claim_your_money', amount: setting.referrer_money_claim)
       redirect_to navigation.back(1)
       return
     end
 
     AdminMailer.notify_claim_money("hr@digpanda.com", referrer.id.to_s).deliver
-    flash[:success] = "Your request was sent to our operation team."
+    flash[:success] = I18n.t('referrer.your_request_was_sent_to_our_operation_team')
     redirect_to navigation.back(1)
   end
 
