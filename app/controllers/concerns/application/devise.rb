@@ -17,25 +17,10 @@ module Application
 
       if current_user.customer?
         force_chinese!
-
-        # we must remove the empty orders in case they exist
-        # NOTE : normally it shouldn't happen in the normal behaviour
-        # but it appeared sometimes for some unknown reason
-        # and made people blow up on sign-in
-        remove_all_empty_orders!
-
-        current_user&.cart&.orders&.each do |order|
-          if !order.bought? and order.timeout?
-            order.cart_id = nil
-            order.save
-            order.reload
-            order.status = :cancelled
-            order.save
-          end
-        end
+        handle_past_orders!
 
         return navigation.force! if navigation.force?
-        return navigation.back(1)
+        return customer_referrer_path
       end
 
       # if the person is not a customer
@@ -57,6 +42,24 @@ module Application
     end
 
     private
+
+    # we must remove the empty orders in case they exist
+    # NOTE : normally it shouldn't happen in the normal behaviour
+    # but it appeared sometimes for some unknown reason
+    # and made people blow up on sign-in
+    def handle_past_orders!
+      remove_all_empty_orders!
+
+      current_user&.cart&.orders&.each do |order|
+        if !order.bought? and order.timeout?
+          order.cart_id = nil
+          order.save
+          order.reload
+          order.status = :cancelled
+          order.save
+        end
+      end
+    end
 
     def remove_all_orders!
       current_user.orders.each do |order|
