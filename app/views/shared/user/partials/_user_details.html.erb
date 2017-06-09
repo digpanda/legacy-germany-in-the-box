@@ -19,8 +19,5 @@
   </label>
 </div>
 <div class="form-group">
-  <%= f.text_field :tel, :class => 'form-control', :pattern => I18n.t(:mobile, scope: :validation, locale: :'zh-CN'), placeholder: I18n.t(:placeholder_mobile, scope: :edit_personal) %>
-</div>
-<div class="form-group">
   <%= f.text_field :mobile, :class => 'form-control', :pattern => I18n.t(:tel, scope: :validation, locale: :'zh-CN'), placeholder: I18n.t(:placeholder_tel, scope: :edit_personal) %>
 </div>
