@@ -1,0 +1,55 @@
+<div class="+spacer"></div>
+
+<%= form_for current_user, :data => {:toggle => 'validator'}, :url => customer_account_path, :method => :patch do |f| %>
+
+<div class="row">
+
+  <div class="col-md-6 col-md-push-3 col-md-pull-3">
+
+    <div class="row">
+    <h2 class="+centered"><%= I18n.t(:we_need_more_info, scope: :title) %></h2>
+    <div class="+spacer"></div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-8 col-md-push-2 col-md-pull-2">
+
+      <% unless current_user.mobile %>
+        <div class="form-group">
+          <%= f.label :mobile, I18n.t(:mobile, scope: :edit_personal) %>
+          <%= f.text_field :mobile, :class => 'form-control', :value => '', :type => 'mobile', :required => true %>
+        </div>
+      <% end %>
+
+      <% unless current_user.lname %>
+        <div class="form-group">
+          <%= f.label :lname, I18n.t(:lname, scope: :edit_address) %>
+          <%= f.text_field :lname, :class => 'form-control', :required => true, :placeholder => '请输入中文' %>
+        </div>
+      <% end %>
+
+      <% unless current_user.fname %>
+        <div class="form-group">
+          <%= f.label :fname, I18n.t(:fname, scope: :edit_address) %>
+          <%= f.text_field :fname, :class => 'form-control', :required => true, :placeholder => '请输入中文' %>
+        </div>
+      <% end %>
+
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-8 col-md-push-2 col-md-pull-2">
+        <div class="row +centered">
+          <div class="+small-spacer"></div>
+          <button type="submit" class="big-button --green +centered">Update account</button>
+          <div class="+small-spacer"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<% end %>

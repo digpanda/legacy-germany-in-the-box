@@ -39,6 +39,7 @@ namespace :customer do
 
   resource :account, :controller => 'account' do
     get :menu
+    get :missing_info
   end
 
   resource :identity, :controller => 'identity' do

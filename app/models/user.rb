@@ -161,6 +161,17 @@ class User
     self.referrer.present?
   end
 
+  # if there's any missing info the user
+  # will be redirected on log-in
+  def missing_info?
+    if self.referrer?
+      if self.mobile.blank?
+        return true
+      end
+    end
+    false
+  end
+
   def password_required?
     super && provider.blank?
   end

@@ -5,7 +5,7 @@ class Customer::AccountController < ApplicationController
   authorize_resource :class => false
   before_action :set_user
 
-  layout :custom_sublayout
+  layout :custom_sublayout, except: [:missing_info]
 
   def edit
   end
@@ -23,6 +23,13 @@ class Customer::AccountController < ApplicationController
   end
 
   def menu
+  end
+
+  # missing details / informations the user needs to fill in
+  def missing_info
+    unless current_user.missing_info?
+      redirect_to after_sign_in_path_for(current_user)
+    end
   end
 
   private

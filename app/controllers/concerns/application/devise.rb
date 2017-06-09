@@ -18,9 +18,10 @@ module Application
       if current_user.customer?
         force_chinese!
         handle_past_orders!
-
+        return missing_info_customer_account_path if current_user.missing_info?
         return navigation.force! if navigation.force?
-        return customer_referrer_path
+        return customer_referrer_path if current_user.referrer?
+        return navigation.back(1)
       end
 
       # if the person is not a customer
