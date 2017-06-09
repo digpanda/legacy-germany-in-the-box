@@ -106,7 +106,7 @@ module Wirecard
         #:first_name                => user.fname,
         #:last_name                 => user.lname,
         :email                     => user.email,
-        :phone                     => user.tel,
+        :tel                     => user.mobile,
         :street1                   => order.billing_address.decorate.street_and_number,
         :street2                   => "",
         :city                      => order.billing_address.city,
