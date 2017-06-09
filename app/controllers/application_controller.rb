@@ -90,14 +90,12 @@ class ApplicationController < ActionController::Base
   end
 
   def landing_solver
-    # return session[:landing] if session[:landing]
-    # if request.url == guest_package_sets_path
-    #   binding.pry
-    #   session[:landing] = :package_sets
-    # else
-    #   binding.pry
-    #   session[:landing] = :skus
-    # end
+    return session[:landing] if session[:landing]
+    if request.url == guest_package_sets_url
+      session[:landing] = :package_sets
+    else
+      session[:landing] = :products
+    end
   end
 
   def wechat_browser?

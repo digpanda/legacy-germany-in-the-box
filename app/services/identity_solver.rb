@@ -27,7 +27,19 @@ class IdentitySolver < BaseService
   end
 
   def origin_url
-    wechat_customer? ? guest_package_sets_path : root_path
+    landing_url
+    #wechat_customer? ? guest_package_sets_path : root_path
+  end
+
+  def landing_url
+    if session[:landing] == :package_sets
+      guest_package_sets_path
+    elsif session[:landing] == :products
+      root_path
+    else
+      # double logic for now in case it's a wrong variable
+      root_path
+    end
   end
 
   def potential_customer?
