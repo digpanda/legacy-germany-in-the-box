@@ -9,7 +9,6 @@ FactoryGirl.define do
     email                  { Faker::Internet.email }
     password               '12345678'
     password_confirmation  '12345678'
-    tel                    { Faker::PhoneNumber.phone_number }
     mobile                 { Faker::PhoneNumber.cell_phone }
     birth                  { Helpers::Global.random_date }
     addresses             { FactoryGirl.build_list(:customer_address, 2, :primary => true) }

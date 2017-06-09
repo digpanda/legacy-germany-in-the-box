@@ -41,7 +41,6 @@ class User
   field :country,   type: String
   field :about,     type: String
   field :website,   type: String
-  field :tel,       type: String
   field :mobile,    type: String
   field :status,    type: Boolean, default: true
   field :provider,  type: String
