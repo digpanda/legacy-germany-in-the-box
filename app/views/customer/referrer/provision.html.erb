@@ -11,7 +11,7 @@
     <%= render partial: 'customer/referrer/provision/histories', :locals => { histories: @referrer.decorate.histories } %>
 
     <!-- + -->
-    <a href="#" id="click-detail-tables" class="big-button --green">More details</a>
+    <a href="#" id="click-detail-tables" class="big-button --green"><%= I18n.t('referrer.more_details') %></a>
     <div class="+spacer"></div>
 
     <div id="detail-tables" class="+hidden">

@@ -1,5 +1,12 @@
 de:
   referrer:
+    balance_history: Aktivitäten
+    type: Typ
+    description: Übersicht
+    more_details: Mehr Details
+    provision_rates: Provisionsrate
+    package_set_product: Set Paket / Produkt
+    rate: Rate
     referrer: Referrer
     provision_insight: Übersicht meiner Provision
     total_earned: Gesamtprovision

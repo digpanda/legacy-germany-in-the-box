@@ -1,5 +1,12 @@
 zh-CN:
   referrer:
+    balance_history: 收支明细
+    type: 类目
+    description: 详情
+    more_details: 更多详情
+    provision_rates: 佣金率
+    package_set_product: 套餐 / 产品
+    rate: 提成比率
     referrer: 推广账号
     provision_insight: 佣金账户
     total_earned: 总佣金
