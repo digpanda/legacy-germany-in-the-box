@@ -15,7 +15,6 @@ class Customer::ReferrerController < ApplicationController
 
   def provision_rates
     @package_sets = PackageSet.active.all
-    @products = Product.is_active.all
   end
 
   def coupons
