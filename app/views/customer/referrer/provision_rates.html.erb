@@ -1,0 +1,11 @@
+<div class="row">
+  <div class="col-md-8 col-md-push-2">
+
+    <!-- SUBHEADER (BACK BUTTON + REFERRER ID) -->
+    <%= render partial: 'customer/referrer/subheader', :locals => { back:  provision_customer_referrer_path } %>
+
+    <!-- ORDERS -->
+    <%= render partial: 'customer/referrer/provision/rates', :locals => { package_sets: @package_sets, products: @products } %>
+
+  </div>
+</div>

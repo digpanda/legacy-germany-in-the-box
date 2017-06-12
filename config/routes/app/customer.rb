@@ -3,6 +3,7 @@ namespace :customer do
 
   resource :referrer, :controller => 'referrer' do
     get :provision
+    get :provision_rates
     get :coupons
     post :claim
   end

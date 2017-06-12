@@ -30,7 +30,7 @@
               <%= operation.desc %>
             </td>
             <td>
-              <%= time_ago_in_words(operation.c_at) %>
+              <%= operation.c_at.strftime("%Y-%m-%d") %>
             </td>
           </tr>
         <% end %>

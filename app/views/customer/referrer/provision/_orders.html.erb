@@ -36,7 +36,7 @@
               <span class="provision__list --green --link"><%= provision.provision.in_euro.display %></span>
             </td>
             <td>
-              <%= time_ago_in_words(provision.c_at) %>
+              <%= provision.c_at.strftime("%Y-%m-%d") %>
             </td>
           </tr>
         <% end %>

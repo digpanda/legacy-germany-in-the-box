@@ -1,0 +1,50 @@
+<% unless package_sets.count == 0 || products.count == 0 %>
+<div class="provision__orders">
+
+  <!-- ORDERS LIST -->
+  <div class="provision__title">
+    Provision rates
+  </div>
+
+  <div class="provision__list">
+    <table>
+      <thead>
+        <th>
+          Package Set / Product
+        </th>
+        <th>
+          Rate
+        </th>
+      </thead>
+      <tbody>
+
+        <% package_sets.each do |package_set| %>
+          <tr data-href="#">
+            <td>
+              <%= package_set.name %>
+            </td>
+            <td>
+              <%= package_set.referrer_rate %>
+            </td>
+          </tr>
+        <% end %>
+
+        <% products.each do |product| %>
+          <tr data-href="#">
+            <td>
+              <%= product.name %>
+            </td>
+            <td>
+              <%= product.referrer_rate %>
+            </td>
+          </tr>
+        <% end %>
+
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<div class="+spacer"></div>
+<% end %>

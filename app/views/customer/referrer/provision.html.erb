@@ -7,12 +7,22 @@
     <!-- PROVISION INSIGHT -->
     <%= render partial: 'customer/referrer/provision/insight', :locals => { referrer: @referrer } %>
 
-    <!-- ORDERS -->
-    <%= render partial: 'customer/referrer/provision/orders', :locals => { provisions: @referrer.provisions } %>
+    <!-- BALANCE HISTORY -->
+    <%= render partial: 'customer/referrer/provision/histories', :locals => { histories: @referrer.decorate.histories } %>
 
-    <!-- OPERATIONS -->
-    <%= render partial: 'customer/referrer/provision/operations', :locals => { operations: @referrer.provision_operations } %>
+    <!-- + -->
+    <a href="#" id="click-detail-tables" class="big-button --green">More details</a>
+    <div class="+spacer"></div>
 
+    <div id="detail-tables" class="+hidden">
+
+      <!-- ORDERS -->
+      <%= render partial: 'customer/referrer/provision/orders', :locals => { provisions: @referrer.provisions } %>
+
+      <!-- OPERATIONS -->
+      <%= render partial: 'customer/referrer/provision/operations', :locals => { operations: @referrer.provision_operations } %>
+
+    </div>
 
   </div>
 </div>

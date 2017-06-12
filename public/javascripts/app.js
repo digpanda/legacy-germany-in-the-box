@@ -852,6 +852,37 @@ var OrdersShow = {
 module.exports = OrdersShow;
 });
 
+require.register("javascripts/controllers/customer/referrer/provision.js", function(exports, require, module) {
+'use strict';
+
+/**
+ * Provision class
+ */
+var Provision = {
+
+  /**
+   * Initializer
+   */
+  init: function init() {
+
+    this.handleDetailTables();
+  },
+
+  handleDetailTables: function handleDetailTables() {
+    $('#click-detail-tables').on('click', this.clickDetailTables);
+  },
+
+  clickDetailTables: function clickDetailTables(e) {
+    e.preventDefault();
+    $('#detail-tables').show();
+    $('#click-detail-tables').hide();
+  }
+
+};
+
+module.exports = Provision;
+});
+
 require.register("javascripts/controllers/guest/feedback.js", function(exports, require, module) {
 'use strict';
 
