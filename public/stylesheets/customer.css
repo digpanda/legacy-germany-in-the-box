@@ -1442,7 +1442,7 @@ body {
   margin-top: 4em; }
   .addresses__address-use a {
     background-color: #33965e;
-    padding: 0.5em;
+    padding: 0.6em 1em 0.6em 1em;
     color: #ffffff; }
 
 .banner {
