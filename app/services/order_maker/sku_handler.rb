@@ -23,7 +23,7 @@ class OrderMaker
       lock!
       return_with(:success, order_item: order_item)
     rescue OrderMaker::Error => exception
-      remove! if package_sku # risky logic should be put somewhere else
+      # remove! if package_sku # risky logic should be put somewhere else
       return_with(:error, error: exception.message)
     end
 

@@ -446,7 +446,7 @@ var Cart = {
 
       if (originQuantity != currentQuantity) {
         Cart.clickChain++;
-        Cart.orderItemSetQuantity(orderShopId, orderItemId, originQuantity, originTotal, currentQuantity);
+        Cart.packageSetSetQuantity(packageSetId, originQuantity, originTotal, currentQuantity, orderShopId);
       }
     });
 
@@ -625,8 +625,8 @@ var Cart = {
     }
 
     // We rollback the quantity
-    $('#package-quantity-' + packageSetId).val(originQuantity);
-    $('#package-total-' + packageSetId).val(originTotal);
+    $('#package-quantity-' + packageSetId).html(originQuantity);
+    $('#package-total-' + packageSetId).html(originTotal);
   },
 
   resetDisplay: function resetDisplay(orderItemQuantity, orderItemId, orderShopId, res) {
@@ -642,7 +642,7 @@ var Cart = {
   resetPackageDisplay: function resetPackageDisplay(packageSetQuantity, packageSetId, orderShopId, res) {
 
     // Quantity changes
-    $('#package-quantity-' + packageSetId).val(packageSetQuantity);
+    $('#package-quantity-' + packageSetId).html(packageSetQuantity);
     $('#package-total-' + packageSetId).html(res.data.package_set.total_price);
     $('#package-total-' + packageSetId).attr('data-origin', res.data.package_set.total_price);
 

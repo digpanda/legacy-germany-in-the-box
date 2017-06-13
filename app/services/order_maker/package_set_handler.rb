@@ -18,6 +18,7 @@ class OrderMaker
     # we first clean up the package set from the order
     # and iterate it as many times as we need
     def refresh!(quantity)
+      capture!
       remove_package_set!
       buyable?
       package_set.package_skus.each do |package_sku|
@@ -27,6 +28,7 @@ class OrderMaker
       end
       return_with(:success)
     rescue OrderMaker::Error => exception
+      restore!
       return_with(:error, error: exception.message)
     end
 
@@ -47,22 +49,26 @@ class OrderMaker
     # and not inside sku_handler, like the locking system.
     def insert_package_sku!(package_sku)
       added_item = order_maker.sku(package_sku.sku).with_package_sku(package_sku).refresh!(package_sku.quantity)
-      unless added_item.success?
-        # we need to rollback the order
-        rollback_package_set!
-        raise OrderMaker::Error, added_item.error[:error]
+      unless false # added_item.success?
+        remove_package_set!
+        raise OrderMaker::Error, "yo" #added_item.error[:error]
       end
-    end
-
-    # if something bad happens we should systematically rollback
-    # the whole package set insertion
-    def rollback_package_set!
-      remove_package_set!
-      order_maker.destroy_empty_order!
     end
 
     def remove_package_set!
       order.order_items.where(package_set: package_set).delete_all
+    end
+
+    def capture!
+      @capture = order.order_items.where(package_set: package_set).reduce([]) do |acc, order_item|
+        acc << order_item.as_json
+      end
+    end
+
+    def restore!
+      @capture.each do |order_item|
+        order.order_items.create!(order_item)
+      end
     end
 
     def buyable?
