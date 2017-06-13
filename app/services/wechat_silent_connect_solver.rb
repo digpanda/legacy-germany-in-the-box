@@ -41,7 +41,6 @@ class WechatSilentConnectSolver < BaseService
   def new_customer
     user = User.new({
                     provider: 'wechat',
-                    referrer_nickname: auth_data['nickname'],
                     remote_pic_url: auth_data['headimgurl'],
                     email: "#{auth_data['unionid']}@wechat.com",
                     role: :customer,

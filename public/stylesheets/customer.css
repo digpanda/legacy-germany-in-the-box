@@ -1402,23 +1402,6 @@ body {
     .home-marketplace__third h2 {
       color: #68a423; }
 
-.banner {
-  background-color: #eeeeee;
-  background-size: cover;
-  background-position: center;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  -ms-border-radius: 4px;
-  border-radius: 4px;
-  min-height: 35vw; }
-  .banner h1 {
-    color: #ffffff;
-    font-size: 4em;
-    font-weight: bold;
-    text-align: center;
-    margin: 0 auto;
-    padding-top: 3em; }
-
 .big-button {
   color: #ffffff;
   -webkit-border-radius: 2px;
