@@ -1402,6 +1402,14 @@ body {
     .home-marketplace__third h2 {
       color: #68a423; }
 
+.addresses__title {
+  color: #464646;
+  font-size: 24px;
+  font-weight: bold; }
+
+.addresses__list {
+  border-top: 1px solid #eeeeee; }
+
 .banner {
   background-color: #eeeeee;
   background-size: cover;
