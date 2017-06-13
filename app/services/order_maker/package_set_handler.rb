@@ -60,9 +60,7 @@ class OrderMaker
     end
 
     def capture!
-      @capture = order.order_items.where(package_set: package_set).reduce([]) do |acc, order_item|
-        acc << order_item.as_json
-      end
+      @capture = order.order_items.where(package_set: package_set).map(&:as_json)
     end
 
     def restore!
