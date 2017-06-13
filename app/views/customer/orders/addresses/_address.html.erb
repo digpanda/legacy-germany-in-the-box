@@ -1,0 +1,34 @@
+<div class="col-xs-12 col-md-6">
+  <div class="addresses__address">
+    <div class="addresses__address-infos">
+
+      <div class="row">
+        <div class="col-xs-8">
+          <div class="addresses__address-name"><%= address.user.decorate.full_name %></div>
+        </div>
+        <div class="col-xs-4">
+          <div class="addresses__address-remove">
+            <a href="<%= customer_address_path(address) %>" data-method="delete"><i class="digpanda-remove"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-8">
+          <div class="addresses__address-details">
+            <div class="addresses__address-street"><%= address.number %><%= address.street %></div>
+            <div class="addresses__address-city"><%= address.zip %> <%= address.city %> <%= address.district %></div>
+            <div class="addresses__address-country"><% address.province %> <%= address.country %></div>
+            <div class="addresses__address-phone"><%= address.mobile %></div>
+          </div>
+        </div>
+        <div class="col-xs-4">
+          <div class="addresses__address-use">
+            <a href="<%= customer_checkout_path(delivery_destination_id: address.id) %>" data-method="post"><%= I18n.t('address.apply') %></a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

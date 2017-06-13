@@ -1402,10 +1402,21 @@ body {
     .home-marketplace__third h2 {
       color: #68a423; }
 
+.addresses hr {
+  border-top: 1px solid #eeeeee;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  margin-left: -15px;
+  margin-right: -15px; }
+
 .addresses__title {
   color: #464646;
   font-size: 24px;
   font-weight: bold; }
+
+.addresses__new {
+  margin-top: 1em;
+  margin-bottom: 1em; }
 
 .addresses__list {
   border-top: 1px solid #eeeeee; }
@@ -1441,8 +1452,9 @@ body {
   float: right;
   margin-top: 4em; }
   .addresses__address-use a {
+    border: none;
     background-color: #33965e;
-    padding: 0.6em 1em 0.6em 1em;
+    padding: 0.6em 1.3em 0.6em 1.3em;
     color: #ffffff; }
 
 .banner {
@@ -1487,7 +1499,8 @@ body {
   position: relative;
   text-align: center;
   outline: 0;
-  border: 1px; }
+  border: 1px;
+  width: 100%; }
   .big-button:link {
     color: #ffffff; }
   .big-button:hover {
@@ -2606,6 +2619,17 @@ body {
 .slicknav_nav a:hover {
   color: #ffffff;
   background: transparent; }
+
+h3 {
+  font-weight: bold;
+  color: #464646; }
+
+.form-control {
+  border: 1px solid #eeeeee;
+  border-width: 0px 0px 1px 0px; }
+  .form-control:focus {
+    border: 1px solid #33965e;
+    border-width: 0px 0px 1px 0px; }
 
 #scrollUp {
   bottom: 20px;

@@ -93,6 +93,7 @@
       <%= form.check_box :primary, {}, true, false %> <%=I18n.t(:set_primary, scope: :edit_address)%>
     <% end %>
   </div>
-  <div class="form-group +right">
-    <input class="btn btn-primary" type="submit" value="<%= I18n.t(:save_address, scope: :edit_address) %>"></input>
+
+  <div class="form-group">
+    <input class="big-button --green" type="submit" value="<%= I18n.t(:save_address, scope: :edit_address) %>"></input>
   </div>

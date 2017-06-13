@@ -1,4 +1,6 @@
 de:
+  address:
+    apply: Einlösen
   referrer:
     balance_history: Aktivitäten
     type: Typ

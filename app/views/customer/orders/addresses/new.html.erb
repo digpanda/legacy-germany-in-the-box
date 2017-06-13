@@ -1,61 +1,48 @@
 <div class="row">
-  <div class="col-xs-12">
+  <div class="col-md-8 col-md-push-2">
 
     <!-- SUBHEADER (BACK BUTTON) -->
     <%= render partial: 'customer/orders/addresses/subheader' %>
 
-      <div class="row addresses">
-        <div class="col-xs-12">
+    <div class="row addresses">
+      <div class="col-xs-12">
 
+        <% if @addresses.count > 0 %>
         <!-- Title -->
         <div class="addresses__title">
-            请从以下地址中选择
+          请从以下地址中选择
         </div>
 
         <div class="row addresses__list">
 
           <!-- Address block -->
+          <% @addresses.each do |address| %>
+          <%= render partial: 'customer/orders/addresses/address', :locals => { :address => address } %>
+          <% end %>
+
+        </div>
+        <% end %>
+
+        <div class="row addresses__new">
+
           <div class="col-xs-12">
-            <div class="addresses__address">
-              <div class="addresses__address-infos">
 
-                <div class="row">
-                  <div class="col-xs-8">
-                    <div class="addresses__address-name">Laurent Schaffner</div>
-                  </div>
-                  <div class="col-xs-4">
-                    <div class="addresses__address-remove">
-                      <a href="#"><i class="digpanda-remove"></i></a>
-                    </div>
-                  </div>
-                </div>
+            <hr />
+            
+            <a href="#" id="button-new-address" class="big-button --green"><%= I18n.t(:create_new, scope: :address) %></a>
 
-                <div class="row">
-                  <div class="col-xs-8">
-                    <div class="addresses__address-details">
-                      <div class="addresses__address-street">18 allée pierre corneille</div>
-                      <div class="addresses__address-city">33470, Gujan-Mestras</div>
-                      <div class="addresses__address-country">Gironde, France</div>
-                      <div class="addresses__address-phone">+33640380562</div>
-                    </div>
-                  </div>
-                  <div class="col-xs-4">
-                    <div class="addresses__address-use"><a href="#">Use</a></div>
-                  </div>
-                </div>
-
-              </div>
+            <div id="new-address" class="+hidden">
+              <%= form_for [:customer, @order, @address], :data => {:toggle => 'validator'} do |form| %>
+              <%= render partial: "customer/addresses/form", :locals => { :address => @address, :form => form } %>
+              <% end %>
             </div>
+
           </div>
 
         </div>
       </div>
-    </div>
 
-    <!-- ADDRESSES LIST -->
-    <!-- < @addresses.each do |address| %>
-      <= render partial: 'customer/orders/addresses/address', :locals => { :address => address } %>
-    < end %> -->
+    </div>
 
   </div>
 </div>

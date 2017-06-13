@@ -7,8 +7,6 @@ class Customer::CheckoutController < ApplicationController
   skip_before_filter :verify_authenticity_token
   authorize_resource :class => false
 
-  before_action :set_shop, :only => [:create]
-
   before_filter :ensure_session_order, :only => [:payment_method, :gateway]
   before_action :set_order, :only => [:payment_method]
 
@@ -19,7 +17,7 @@ class Customer::CheckoutController < ApplicationController
   before_action :freeze_header
 
   def create
-    @order = cart_manager.order(shop: shop, call_api: false)
+    @order = Order.find(session[:current_checkout_order])
     current_address = current_user.addresses.find(params[:delivery_destination_id])
     checkout_ready = CheckoutReady.new(session, current_user, order, current_address).perform!
 
@@ -89,10 +87,6 @@ class Customer::CheckoutController < ApplicationController
 
   def acceptable_payment_method?(payment_method)
     ACCEPTABLE_PAYMENT_METHOD.include? payment_method
-  end
-
-  def set_shop
-    @shop = Shop.find(params[:shop_id])
   end
 
   def set_order

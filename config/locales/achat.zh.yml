@@ -38,6 +38,7 @@ zh-CN:
     processing: 您的订单正在处理中
     failed: 交易订单处理失败，请稍后再试。
   address:
+    apply: 使用
     identity: 个人信息
     location: 地址
     choose_existing: 请从以下地址中选择
