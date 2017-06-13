@@ -49,9 +49,9 @@ class OrderMaker
     # and not inside sku_handler, like the locking system.
     def insert_package_sku!(package_sku)
       added_item = order_maker.sku(package_sku.sku).with_package_sku(package_sku).refresh!(package_sku.quantity)
-      unless false # added_item.success?
+      unless added_item.success?
         remove_package_set!
-        raise OrderMaker::Error, "yo" #added_item.error[:error]
+        raise OrderMaker::Error, added_item.error[:error]
       end
     end
 
