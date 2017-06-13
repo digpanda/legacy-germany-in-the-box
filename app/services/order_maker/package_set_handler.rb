@@ -59,10 +59,14 @@ class OrderMaker
       order.order_items.where(package_set: package_set).delete_all
     end
 
+    # capture the current order_items matching with this package set and convert it into json
+    # when it's completely deleted from the database we can then rollback by re-creating everything
+    # it's a homemade transaction system because monogid sucks.
     def capture!
       @capture = order.order_items.where(package_set: package_set).map(&:as_json)
     end
 
+    # restore the previously captured order_items in this package_set
     def restore!
       @capture.each do |order_item|
         order.order_items.create!(order_item)
