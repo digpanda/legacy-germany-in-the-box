@@ -1410,6 +1410,26 @@ body {
 .addresses__list {
   border-top: 1px solid #eeeeee; }
 
+.addresses__address {
+  margin-top: 1em;
+  background-color: #F8F8F8; }
+
+.addresses__address-infos {
+  padding: 1em;
+  text-align: left; }
+
+.addresses__address-name {
+  font-weight: bold;
+  font-size: 18px; }
+
+.addresses__address-details {
+  color: #919191;
+  font-size: 13px; }
+
+.addresses__address-phone {
+  color: #5c5c5c;
+  font-weight: bold; }
+
 .banner {
   background-color: #eeeeee;
   background-size: cover;
