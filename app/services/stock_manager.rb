@@ -18,7 +18,6 @@ class StockManager
           StockHistory.create(order_item: order_item)
           sku.quantity -= order_item.quantity
           sku.quantity = 0 if sku.quantity < 0
-          SlackDispatcher.new.message("FOR ORDER `#{order.id}`.`#{order_item.id}` SKU `#{sku.id}` WAS REDUCED TO `#{sku.quantity}`")
         end
       end
       sku.save!
@@ -43,7 +42,6 @@ class StockManager
         if already_reduced?(order_item)
           StockHistory.where(order_item: order_item).first.delete
           sku.quantity += order_item.quantity
-            SlackDispatcher.new.message("FOR ORDER `#{order.id}`.`#{order_item.id}` SKU `#{sku.id}` WAS RAISED TO `#{sku.quantity}`")
         end
       end
       sku.save!
