@@ -15,6 +15,7 @@ class StockManager
           StockHistory.create(order_item: order_item)
           sku.quantity -= order_item.quantity
           sku.quantity = 0 if sku.quantity < 0
+          SlackDispatcher.new.message("FOR ORDER `#{order.id}`.`#{order_item.id}` SKU `#{sku.id}` WAS REDUCED TO `#{sku.quantity}`")
         end
       end
       sku.save!
