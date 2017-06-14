@@ -41,7 +41,7 @@ class StockManager
       sku = order_item.sku_origin
       unless sku.unlimited
         if already_reduced?(order_item)
-          StockHistory.delete(order_item: order_item)
+          StockHistory.where(order_item: order_item).first.delete
           sku.quantity += order_item.quantity
             SlackDispatcher.new.message("FOR ORDER `#{order.id}`.`#{order_item.id}` SKU `#{sku.id}` WAS RAISED TO `#{sku.quantity}`")
         end
