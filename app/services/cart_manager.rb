@@ -14,7 +14,7 @@ class CartManager < BaseService
   # try to get an order
   # if it doesn't work it'll make a new one which's empty
   def order(shop:)
-    CartManager::OrderHandler.new(session, user, shop).recover(call_api).order
+    CartManager::OrderHandler.new(session, user, shop).recover.order
   end
 
   # get all the orders we have in the cart
