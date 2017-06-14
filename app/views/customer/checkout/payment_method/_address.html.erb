@@ -1,11 +1,12 @@
-<h2><%= I18n.t(:my_address, scope: :top_menu) %></h2>
+<div class="row">
 
-<div class="white-table">
+  <div class="col-xs-12 col-md-12">
 
-  <%= I18n.t(:identity, scope: :address) %> : <%= address.decorate.chinese_full_name %> <%= "(#{address.pid})" if address.pid %>
-  <br />
-  <%= I18n.t(:mobile, scope: :edit_address) %> : <%= address.mobile %>
-  <br />
-  <%= I18n.t(:location, scope: :address) %> : <%= address.decorate.full_address %>
+    <h2><%= I18n.t(:my_address, scope: :top_menu) %></h2>
+    <hr class="+anti-margin" />
+
+    <%= render partial: "customer/orders/addresses/address", locals: { address: address, action: false } %>
+    
+  </div>
 
 </div>

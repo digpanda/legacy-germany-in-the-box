@@ -17,7 +17,9 @@
 
           <!-- Address block -->
           <% @addresses.each do |address| %>
-          <%= render partial: 'customer/orders/addresses/address', :locals => { :address => address } %>
+          <div class="col-xs-12 col-md-6">
+            <%= render partial: 'customer/orders/addresses/address', :locals => { :address => address, action: true } %>
+          </div>
           <% end %>
 
         </div>
@@ -28,7 +30,7 @@
           <div class="col-xs-12">
 
             <hr />
-            
+
             <a href="#" id="button-new-address" class="big-button --green"><%= I18n.t(:create_new, scope: :address) %></a>
 
             <div id="new-address" class="+hidden">

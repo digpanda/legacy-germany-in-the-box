@@ -1,85 +1,12 @@
-<h2><%= I18n.t(:my_payment, scope: :top_menu) %></h2>
+<div class="row">
 
-  <div class="white-table">
-  <div class="row" id="payment_method_area">
-    <div class="col-md-12">
-      <div class="+centered">
+  <div class="col-xs-12 col-md-12">
 
-        <div class="row +centered">
-          
-          <div class="col-md-3 col-xs-12">
-            <div class="+small-margin">
-              <% if shop.payment_method? :wechatpay %>
-              <a id="wechatpay" href="<%= gateway_customer_checkout_path(payment_method: :wechatpay) %>">
-                <img src="/images/logos/raw-wechatpay-logo.png" width="150px">
-              </a>
-              <% end %>
-            </div>
-          </div>
+    <h2><%= I18n.t(:my_payment, scope: :top_menu) %></h2>
+    <hr class="+anti-margin" />
 
-          <div class="col-md-3 col-xs-12">
-            <div class="+small-margin">
-              <% if shop.payment_method? :alipay %>
-              <a id="alipay" href="<%= gateway_customer_checkout_path(payment_method: :alipay) %>">
-                <img src="/images/logos/raw-alipay-logo.png" width="150px">
-              </a>
-              <% end %>
-            </div>
-          </div>
-
-          <% unless Rails.env.staging? || Rails.env.production? %>
-
-            <!-- NOTE : those methods were removed in production -->
-
-            <% if shop.payment_method? :creditcard %>
-            <div class="col-md-3 col-xs-12">
-              <div class="+small-margin">
-                <a id="visa" href="<%= gateway_customer_checkout_path(payment_method: :creditcard) %>">
-                  <img src="/images/logos/raw-visa-logo.png" width="150px">
-                </a>
-              </div>
-            </div>
-
-            <div class="col-md-3 col-xs-12">
-              <div class="+small-margin">
-                <a id="mastercard" href="<%= gateway_customer_checkout_path(payment_method: :creditcard) %>">
-                  <img src="/images/logos/raw-mastercard-logo.png" width="150px">
-                </a>
-              </div>
-            </div>
-            <% end %>
-
-            <div class="col-md-3 col-xs-12">
-              <div class="+small-margin">
-              <% if shop.payment_method? :upop %>
-              <a id="upop" href="<%= gateway_customer_checkout_path(payment_method: :upop) %>">
-                <img src="/images/logos/raw-chinaunionpay-logo.png" width="150px">
-              </a>
-              <% end %>
-            </div>
-            </div>
-
-          <% end %>
-
-      </div>
-
-    </div>
-  </div>
-  </div>
-
-  <div class="row hidden" id="after_payment_method_area">
-
-    <div class="col-md-12">
-      <h2>
-        页面正在跳转，请您耐心等待...
-        <!-- <%= I18n.t(:have_your_payment_been_successful, scope: :checkout) %> -->
-      </h2>
-
-      <div class="+spacer"></div>
-      <a href="<%= payment_method_customer_checkout_path %>" class="btn-lg btn-success"><%= I18n.t(:refresh_page_button, scope: :checkout) %></a>
-      <div class="+spacer"></div>
-
-    </div>
+    <%= render partial: "customer/checkout/payment_method/payment/choose", locals: { shop: shop } %>
 
   </div>
+
 </div>

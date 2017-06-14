@@ -766,7 +766,6 @@ var CustomerCheckoutPaymentMethod = {
 
     this.handleMethodSelection();
     var CustomerCartShow = require("javascripts/controllers/customer/cart/show");
-    CustomerCartShow.multiSelectSystem();
   },
 
   /**
@@ -777,7 +776,7 @@ var CustomerCheckoutPaymentMethod = {
     $('#payment_method_area').find('a').click(function (e) {
 
       $('#payment_method_area').hide();
-      $('#after_payment_method_area').removeClass('hidden');
+      $('#after_payment_method_area').removeClass('+hidden');
     });
   }
 

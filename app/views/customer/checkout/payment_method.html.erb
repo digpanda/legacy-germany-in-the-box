@@ -1,27 +1,30 @@
-<%= render 'layouts/customer/subheader/checkout_breadcrumb' %>
-<div class="order-report">
-  <div class="row">
-    <div class="col-md-8 col-md-push-2">
-      <div class="order-report__order">
-        <%= render partial: "customer/checkout/payment_method/order", :locals => { :order => @order } %>
-      </div>
+<!-- SUBHEADER (BACK BUTTON) -->
+<div class="row">
+  <div class="col-md-8 col-md-push-2">
+    <%= render partial: 'customer/checkout/subheader' %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-8 col-md-push-2">
+    <div class="order-report__order">
+      <%= render partial: "customer/checkout/payment_method/order", :locals => { :order => @order } %>
     </div>
   </div>
+</div>
 
-  <div class="row">
-    <div class="col-md-8 col-md-push-2">
-      <div class="order-report__order">
-        <%= render partial: "customer/checkout/payment_method/address", :locals => { :address => @order.billing_address } %>
-      </div>
+<div class="row">
+  <div class="col-md-8 col-md-push-2">
+    <div class="order-report__order">
+      <%= render partial: "customer/checkout/payment_method/address", :locals => { :address => @order.billing_address } %>
     </div>
   </div>
+</div>
 
-  <div class="row">
-    <div class="col-md-8 col-md-push-2">
-      <div class="order-report__order">
-        <%= render partial: "customer/checkout/payment_method/payment", :locals => { :shop => @shop, :order => @order } %>
-      </div>
+<div class="row">
+  <div class="col-md-8 col-md-push-2">
+    <div class="order-report__order">
+      <%= render partial: "customer/checkout/payment_method/payment", :locals => { :shop => @shop, :order => @order } %>
     </div>
   </div>
-
 </div>

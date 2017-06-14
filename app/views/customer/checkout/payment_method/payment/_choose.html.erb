@@ -1,0 +1,73 @@
+<div class="row +centered" id="payment_method_area">
+
+  <div class="col-md-3 col-xs-12">
+    <div class="+small-margin">
+      <% if shop.payment_method? :wechatpay %>
+      <a id="wechatpay" href="<%= gateway_customer_checkout_path(payment_method: :wechatpay) %>">
+        <img src="/images/logos/raw-wechatpay-logo.png" width="150px">
+      </a>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="col-md-3 col-xs-12">
+    <div class="+small-margin">
+      <% if shop.payment_method? :alipay %>
+      <a id="alipay" href="<%= gateway_customer_checkout_path(payment_method: :alipay) %>">
+        <img src="/images/logos/raw-alipay-logo.png" width="150px">
+      </a>
+      <% end %>
+    </div>
+  </div>
+
+  <% unless Rails.env.staging? || Rails.env.production? %>
+
+    <!-- NOTE : those methods were removed in production and will be totally removed soon -->
+
+    <% if shop.payment_method? :creditcard %>
+    <div class="col-md-3 col-xs-12">
+      <div class="+small-margin">
+        <a id="visa" href="<%= gateway_customer_checkout_path(payment_method: :creditcard) %>">
+          <img src="/images/logos/raw-visa-logo.png" width="150px">
+        </a>
+      </div>
+    </div>
+
+    <div class="col-md-3 col-xs-12">
+      <div class="+small-margin">
+        <a id="mastercard" href="<%= gateway_customer_checkout_path(payment_method: :creditcard) %>">
+          <img src="/images/logos/raw-mastercard-logo.png" width="150px">
+        </a>
+      </div>
+    </div>
+
+    <% end %>
+
+    <div class="col-md-3 col-xs-12">
+      <div class="+small-margin">
+      <% if shop.payment_method? :upop %>
+      <a id="upop" href="<%= gateway_customer_checkout_path(payment_method: :upop) %>">
+        <img src="/images/logos/raw-chinaunionpay-logo.png" width="150px">
+      </a>
+      <% end %>
+    </div>
+    </div>
+
+  <% end %>
+
+</div>
+
+<div class="row +hidden" id="after_payment_method_area">
+
+  <div class="col-md-12">
+    <h2>
+      页面正在跳转，请您耐心等待...
+    </h2>
+
+    <div class="+spacer"></div>
+    <a href="<%= payment_method_customer_checkout_path %>" class="btn-lg btn-success"><%= I18n.t(:refresh_page_button, scope: :checkout) %></a>
+    <div class="+spacer"></div>
+
+  </div>
+
+</div>

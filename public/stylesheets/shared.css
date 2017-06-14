@@ -14,6 +14,10 @@
   text-align: center;
   font-weight: bold; }
 
+#csstyle .\+anti-margin {
+  margin-left: -15px;
+  margin-right: -15px; }
+
 #csstyle .\+small-margin {
   margin: 1em; }
 
