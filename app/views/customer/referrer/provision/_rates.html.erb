@@ -19,14 +19,16 @@
       <tbody>
 
         <% package_sets.each do |package_set| %>
-          <tr data-href="#">
-            <td>
-              <%= package_set.name %>
-            </td>
-            <td>
-              <%= package_set.referrer_rate %>%
-            </td>
-          </tr>
+          <% if packaget_set.referrer_rate > 0.0 %>
+            <tr data-href="#">
+              <td>
+                <%= package_set.name %>
+              </td>
+              <td>
+                <%= package_set.referrer_rate %>%
+              </td>
+            </tr>
+          <% end %>
         <% end %>
 
       </tbody>

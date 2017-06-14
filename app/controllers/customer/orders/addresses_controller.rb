@@ -10,13 +10,14 @@ class Customer::Orders::AddressesController < Customer::AddressesController
   layout :default_layout # overwrite the sublayout inherit
 
   before_action :freeze_header
-  
+
   def index
     redirect_to new_customer_order_address_path(order)
   end
 
   def new
     @address = Address.new
+    session[:current_checkout_order] = order.id # TODO : should be slightly refactored
   end
 
   private
