@@ -161,8 +161,10 @@ class CheckoutCallback < BaseService
 
   def dispatch_notifications!(order_payment)
     if order_payment.status == :success
-      dispatch_guide_message!(order_payment)
-      SlackDispatcher.new.paid_transaction(order_payment)
+      if order_payment.order.bought?
+        dispatch_guide_message!(order_payment)
+        SlackDispatcher.new.paid_transaction(order_payment)
+      end
     else
       SlackDispatcher.new.failed_transaction(order_payment)
     end
