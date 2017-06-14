@@ -11,18 +11,22 @@
     <%= render partial: 'customer/referrer/provision/histories', :locals => { histories: @referrer.decorate.histories } %>
 
     <!-- + -->
-    <a href="#" id="click-detail-tables" class="big-button --green"><%= I18n.t('referrer.more_details') %></a>
-    <div class="+spacer"></div>
+    <% if @referrer.total_earned > 0.0 %>
 
-    <div id="detail-tables" class="+hidden">
+      <a href="#" id="click-detail-tables" class="big-button --green"><%= I18n.t('referrer.more_details') %></a>
+      <div class="+spacer"></div>
 
-      <!-- ORDERS -->
-      <%= render partial: 'customer/referrer/provision/orders', :locals => { provisions: @referrer.provisions } %>
+      <div id="detail-tables" class="+hidden">
 
-      <!-- OPERATIONS -->
-      <%= render partial: 'customer/referrer/provision/operations', :locals => { operations: @referrer.provision_operations } %>
+        <!-- ORDERS -->
+        <%= render partial: 'customer/referrer/provision/orders', :locals => { provisions: @referrer.provisions } %>
 
-    </div>
+        <!-- OPERATIONS -->
+        <%= render partial: 'customer/referrer/provision/operations', :locals => { operations: @referrer.provision_operations } %>
+
+      </div>
+
+    <% end %>
 
   </div>
 </div>
