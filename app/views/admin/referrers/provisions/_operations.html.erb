@@ -50,9 +50,10 @@
 
     <div>
     <%= form_for :referrer_provision_operation, :data => {:toggle => 'validator'}, :url => admin_referrer_provision_operations_path(@referrer.id), :method => :post do |f| %>
-      Amount <%= f.text_field :amount %> EUR <em>(Note : for withdrawal, set a negative number)</em><br />
+      Amount <%= f.text_field :amount %> EUR<br />
       Description <%= f.text_area :desc %><br />
-      <%= f.submit "Create new operation", :class => "btn btn-info" %>
+      <%= f.button "Decrease amount from referrer account", :class => "btn btn-info", name: "amount_direction", value: "decrease" %>
+      <%= f.button "Increase amount to referrer account", :class => "btn btn-info", name: "amount_direction", value: "increase" %>
     <% end %>
     </div>
 
