@@ -7,9 +7,6 @@
           <%= I18n.t(:id, scope: :edit_order) %>
         </th>
         <th>
-          BorderGuru Shipment Id
-        </th>
-        <th>
           Delivery Address Name
         </th>
         <th>
@@ -44,9 +41,6 @@
             <% else %>
               <%= order.id %>
             <% end %>
-          </td>
-          <td>
-            <%= order.border_guru_shipment_id %>
           </td>
           <td>
             <% unless order.shipping_address.nil? %>
@@ -86,44 +80,24 @@
             <%= order.u_at.localtime.strftime('%Y-%m-%d %H:%M:%S').in_time_zone %>
           </td>
           <td>
-            
+
           <!-- The order has been paid and shopkeeper can start the process -->
           <% if order.status == :paid  %>
 
             <% if order.processable? %>
 
-              <% if order.border_guru_shipment_id.nil? && order.logistic_partner == :borderguru %>
-                You can't process this order. Our Shipping Partner has not yet returned the shipping details.
-              <% else %>
-                <%= link_to I18n.t(:start_process_shipment, scope: :button), shopkeeper_order_process_order_path(order), method: :patch, data: { confirm: I18n.t(:confirm_start_processing, scope: :notice) } %> |
-                <%= link_to I18n.t(:package_was_sent, scope: :notice), shopkeeper_order_shipped_path(order), method: :patch %>
-              <% end %>
+              <%= link_to I18n.t(:start_process_shipment, scope: :button), shopkeeper_order_process_order_path(order), method: :patch, data: { confirm: I18n.t(:confirm_start_processing, scope: :notice) } %> |
+              <%= link_to I18n.t(:package_was_sent, scope: :notice), shopkeeper_order_shipped_path(order), method: :patch %>
 
             <% else %>
               <%= I18n.t(:order_not_processable, scope: :message) %>
             <% end %>
 
-          <% elsif order.logistic_partner == :borderguru %>
-
-            <!-- The order is custom checkable and will be sent through FTP soon -->
-            <% if order.decorate.status == :custom_checkable %>
-              Die Ausfuhranmeldung wird übermittelt. Bitte kommen Sie zurück nach 10Uhr und machen Sie weiter.
-            <!-- The order passed the custom and can be send -->
-            <% elsif order.decorate.shippable? %>
-              <%= link_to I18n.t(:package_was_sent, scope: :notice), shopkeeper_order_shipped_path(order), method: :patch %>
-            <% end %>
-
-          <!-- For any other logistic partner than borderguru we can sent it out when we want -->
           <% elsif order.status == :custom_checking %>
 
             <%= link_to I18n.t(:package_was_sent, scope: :notice), shopkeeper_order_shipped_path(order), method: :patch %>
 
           <% end %>
-
-          <!-- Cancel order -->
-          <!--<% if order.decorate.cancellable? %>
-            <%= link_to "Cancel", shared_order_cancel_path(order), method: :patch, data: { confirm: "Are you sure you want to cancel this order ?" } %>
-          <% end %>-->
 
           </td>
         </tr>

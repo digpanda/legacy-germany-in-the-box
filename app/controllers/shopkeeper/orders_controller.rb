@@ -35,24 +35,15 @@ class Shopkeeper::OrdersController < ApplicationController
       return
     end
 
-    # if our partner is borderguru the status will go from custom checkable
-    # to custom checking automatically
-    if Setting.instance.logistic_partner == :borderguru
-      # we don't forget to change status of orders and such
-      # only if everything was a success
-      order.status = :custom_checkable
-    else
-      order.status = :custom_checking
-    end
-
+    order.status = :custom_checking
     order.save
 
     # we go back now
     DispatchNotification.new.perform({
-                                                      user: order.user,
-                                                      title: '你的订单已出货',
-                                                      desc: "你的订单已被商家寄出，你可透过物流跟踪连接追踪包裹：#{order.border_guru_link_tracking}"
-                                                  })
+                                    user: order.user,
+                                    title: '你的订单已出货',
+                                    desc: "你的订单已被商家寄出"
+                                    })
     flash[:success] = I18n.t(:order_processing, scope: :notice)
     redirect_to navigation.back(1)
   end

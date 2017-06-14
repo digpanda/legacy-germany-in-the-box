@@ -34,11 +34,7 @@
   </div>
 
   <div class="row details__block">
-    <% if @order.logistic_partner == :borderguru %>
-    <%= render partial: "admin/orders/show/border_guru" %>
-    <% else %>
     <%= render partial: "admin/orders/show/manual_shipping" %>
-    <% end %>
   </div>
 
   <div class="row details__block">

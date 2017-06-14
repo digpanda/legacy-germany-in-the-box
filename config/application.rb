@@ -28,14 +28,6 @@ module DigPanda
       namespace: "cache"
     }
 
-    #
-    # if Rails.env.development?
-    #   # this will reload the libraries we are working on
-    #   # keep it within the development environment
-    #   # to do not over-load production
-    #   ActiveSupport::Dependencies.explicitly_unloadable_constants << "BorderGuru"
-    # end
-
     config.middleware.use Mongoid::QueryCache::Middleware
     config.middleware.use Mobvious::Manager
     config.middleware.use HttpAcceptLanguage::Middleware
@@ -48,7 +40,6 @@ module DigPanda
     config.qiniu = YAML.load(ERB.new(File.read(Rails.root.join("config/qiniu.yml"))).result)[Rails.env].deep_symbolize_keys!
     config.digpanda = YAML.load(ERB.new(File.read(Rails.root.join("config/digpanda.yml"))).result)[Rails.env].deep_symbolize_keys!
     config.wirecard = YAML.load(ERB.new(File.read(Rails.root.join("config/wirecard.yml"))).result)[Rails.env].deep_symbolize_keys!
-    config.border_guru = YAML.load(ERB.new(File.read(Rails.root.join("config/border_guru.yml"))).result)[Rails.env].deep_symbolize_keys!
     config.wechat = YAML.load(ERB.new(File.read(Rails.root.join("config/wechat.yml"))).result)[Rails.env].deep_symbolize_keys!
 
     # No environment constraint

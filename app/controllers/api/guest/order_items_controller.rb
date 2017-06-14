@@ -67,7 +67,7 @@ class Api::Guest::OrderItemsController < Api::ApplicationController
   end
 
   def set_order
-    @order = cart_manager.order(shop: product.shop, call_api: false)
+    @order = cart_manager.order(shop: product.shop)
   end
 
   def set_order_item

@@ -35,7 +35,6 @@
 <div style="width:200px;float:left">
   <strong>
     Proformarechnungsnr.<br />
-    BorderGuru Shipment ID<br />
     Datum<br />
   </strong>
 </div>
@@ -48,7 +47,6 @@
   N/A
   <% end %>
   <br />
-  <%= @order.border_guru_shipment_id %><br />
   <% if @order.paid_at %>
     <%= @order.paid_at.utc.strftime("%Y-%m-%d") %><br />
   <% end %>

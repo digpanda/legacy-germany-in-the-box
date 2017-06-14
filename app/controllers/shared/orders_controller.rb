@@ -9,15 +9,13 @@ class Shared::OrdersController < ApplicationController
 
   authorize_resource :class => false
   before_action :set_order
-  before_filter :is_admin_or_shop_order, except: [:label]
+  before_filter :is_admin_or_shop_order
 
   def show
     I18n.locale = :de # TODO : make a helper for that
     respond_to do |format|
       format.csv do
-        render text: BorderGuruFtp::TransferOrders::Makers::Generate.new([order]).to_csv.encode(CSV_ENCODE),
-               type: "text/csv; charset=#{CSV_ENCODE}; header=present",
-               disposition: 'attachment'
+        render text: "This functionality has been deactivated temporarily."
       end
     end
   end
@@ -28,22 +26,6 @@ class Shared::OrdersController < ApplicationController
         render pdf: "#{bill_file_name}", disposition: 'attachment'
       end
     end
-  end
-
-  # TODO: this is to refactor
-  # it was just taken away from
-  # a dirty controller for logic purpose
-  def label
-    response = BorderGuru.get_label(
-        border_guru_shipment_id: @order.border_guru_shipment_id
-    )
-
-    send_data response.bindata, filename: "#{@order.border_guru_shipment_id}.pdf", type: :pdf
-
-  # to refactor (obviously)
-  rescue BorderGuru::Error, SocketError => exception
-    Rails.logger.info "Error Download Label Order \##{@order.id} : #{exception.message}"
-    throw_app_error(:resource_not_found, {error: "Your label is not ready yet. Please try again in a few hours."})
   end
 
   def cancel

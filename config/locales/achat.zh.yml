@@ -768,9 +768,6 @@ zh-CN:
     not_all_available: 产品： %{product_name}, 型号： (%{option_names}) 缺货中, 请您稍后再试或者减少这个产品订货数量
     not_all_min_total_reached: 您在 %{shop_name} 的购物额为 %{total_price} 没有达到最小交易值 %{min_total}, 请您增加您这个店铺的交易额
     redirect_to_payment: 亲爱的用户，因为我们支付商的服务器在德国，所以支付流程比普通的要稍慢，请谅解！
-    borderguru_unreachable_at_quoting: 物流系统合作商的系统繁忙，请您稍后尝试！
-    borderguru_unreachable_at_shipping: 物流系统合作商的系统繁忙，请您联系管理员！
-    borderguru_shipping_failed: 物流系统合作商的系统繁忙，不能启动物流。请您稍后尝试！
   edit_categories:
     operations: 操作
     remove: 删除

@@ -1,10 +1,7 @@
 FactoryGirl.define do
   factory :order do
 
-    border_guru_quote_id    'BG-DE-CN-01234567898'
     status                  :new
-    border_guru_shipment_id 'TEST'
-
     desc                    { Faker::Lorem.paragraph }
     shipping_address        { FactoryGirl.build(:customer_address) }
     billing_address         { FactoryGirl.build(:customer_address) }

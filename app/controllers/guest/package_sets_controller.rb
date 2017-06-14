@@ -48,7 +48,7 @@ class Guest::PackageSetsController < ApplicationController
   end
 
   def order
-    @order ||= cart_manager.order(shop: package_set.shop, call_api: false)
+    @order ||= cart_manager.order(shop: package_set.shop)
   end
   # end of abstraction
 

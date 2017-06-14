@@ -1,12 +1,5 @@
 new_relic_license_key: random
 
-border_guru_merchant_identifier: random
-border_guru_key: random
-border_guru_secret: random
-
-border_guru_ftp_username: random
-border_guru_ftp_password: random
-
 wechat_username: random
 wechat_password: random
 

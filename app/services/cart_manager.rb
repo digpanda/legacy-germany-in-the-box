@@ -13,14 +13,14 @@ class CartManager < BaseService
 
   # try to get an order
   # if it doesn't work it'll make a new one which's empty
-  def order(shop:, call_api: true)
+  def order(shop:)
     CartManager::OrderHandler.new(session, user, shop).recover(call_api).order
   end
 
   # get all the orders we have in the cart
-  def orders(call_api: true)
+  def orders
     @orders ||= session[:order_shop_ids].keys.compact.map do |shop_id|
-      order(shop: Shop.find(shop_id), call_api: call_api)
+      order(shop: Shop.find(shop_id))
     end
   end
 
@@ -52,7 +52,7 @@ class CartManager < BaseService
 
   def products_number
     @products_number ||= begin
-      orders(call_api: false).inject(0) do |acc, shop_order|
+      orders.inject(0) do |acc, shop_order|
         acc += shop_order.decorate.displayable_total_quantity
       end
     end

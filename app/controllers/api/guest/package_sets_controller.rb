@@ -46,7 +46,7 @@ class Api::Guest::PackageSetsController < Api::ApplicationController
   end
 
   def order
-    @order ||= cart_manager.order(shop: package_set.shop, call_api: false)
+    @order ||= cart_manager.order(shop: package_set.shop)
   end
 
   def set_package_set

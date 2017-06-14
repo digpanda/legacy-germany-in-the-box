@@ -98,7 +98,7 @@ class ShippingPrice
   end
 
   def logistic_partner
-    if [:manual, :borderguru].include? Setting.instance.logistic_partner
+    if Setting.instance.logistic_partner == :manual
       FALLBACK_PARTNER # this will set a default rate for the partners without ShippingRate defined
     else
       Setting.instance.logistic_partner

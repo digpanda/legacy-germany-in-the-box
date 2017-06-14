@@ -1,5 +1,4 @@
 require 'base64_to_upload'
-require 'border_guru'
 
 class ApplicationController < ActionController::Base
 

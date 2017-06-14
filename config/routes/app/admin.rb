@@ -59,7 +59,6 @@ namespace :admin do
   end
 
   resources :orders do
-    patch :reset_border_guru_order
   end
 
   resources :order_items do

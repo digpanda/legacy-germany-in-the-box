@@ -15,10 +15,8 @@ class CartManager
 
     # when we first call order it either retrieve a current existing order
     # or create a new one
-    # we will avoid calling BorderGuru for empty orders (like new ones)
-    def recover(call_api=true)
+    def recover
       if order.order_items.count > 0
-        refresh_with_quote_api! if call_api
       end
       setup_user_order!
       setup_shop_order!
@@ -60,14 +58,6 @@ class CartManager
         order.shop = shop
         order.save
       end
-    end
-
-    # NOTE : this should be moved on one specific location and not called every time
-    # it's the same for estimated_taxes etc.
-    def refresh_with_quote_api!
-      BorderGuru.calculate_quote(order: order)
-    rescue BorderGuru::Error, Net::ReadTimeout => e
-      raise CartManager::Error, e.message
     end
 
   end

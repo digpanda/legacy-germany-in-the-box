@@ -2,12 +2,6 @@
 <table class="white-table">
   <thead>
     <tr>
-      <!--<th>-->
-        <!--ID-->
-      <!--</th>-->
-      <!--<th>-->
-        <!--BorderGuru Shipment ID-->
-      <!--</th>-->
       <th>
         Delivery</br>
         Address Name
@@ -20,9 +14,6 @@
       </th>
       <th>
         Total Price
-      </th>
-      <th>
-        Link Tracking
       </th>
       <th>
         Label
@@ -38,12 +29,6 @@
   <tbody>
     <% orders.each do |order| %>
     <tr>
-      <!--<td>-->
-        <!--<%#= order.id %>-->
-      <!--</td>-->
-      <!--<td>-->
-        <!--<%#= order.border_guru_shipment_id %>-->
-      <!--</td>-->
       <td>
         <% unless order.shipping_address.nil? %>
         <%= order.shipping_address.decorate.chinese_full_name %>
@@ -57,9 +42,6 @@
       </td>
       <td>
         <%= order.decorate.total_price_with_extra_costs_in_yuan %> (<%= order.decorate.total_price_with_extra_costs_in_euro %>)
-      </td>
-      <td>
-        <%= order.border_guru_link_tracking ? (link_to I18n.t(:open, scope: :edit_order), order.border_guru_link_tracking, :target => '_blank') : '' %>
       </td>
       <td>
         <%= render partial: "shared/orders/partials/files_buttons", locals: { :order => order } %>

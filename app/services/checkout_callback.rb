@@ -32,7 +32,6 @@ class CheckoutCallback < BaseService
     order_payment = solve_wirecard_order_payment_and_refresh!
 
     manage_stocks!(order_payment.order)
-    manage_logistic!(order_payment.order)
     dispatch_notifications!(order_payment)
 
     return_with(:success, order_payment: order_payment)
@@ -129,12 +128,6 @@ class CheckoutCallback < BaseService
     order.save
     # cart_manager.empty!
     order.coupon&.update(last_used_at: Time.now)
-  end
-
-  def manage_logistic!(order)
-    if order.logistic_partner == :borderguru
-      BorderGuruApiHandler.new(order).calculate_and_get_shipping
-    end
   end
 
   private

@@ -9,7 +9,7 @@ module FormHelper
   end
 
   def logistic_partners
-    [['Border Guru', :borderguru],['Xipost', :xipost], ['Beihai', :beihai], ['MKPost', :mkpost], ['Manual', :manual]]
+    [['Xipost', :xipost], ['Beihai', :beihai], ['MKPost', :mkpost], ['Manual', :manual]]
   end
 
   def every(form, limit)

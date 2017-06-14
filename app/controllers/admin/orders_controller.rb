@@ -49,29 +49,7 @@ class Admin::OrdersController < ApplicationController
     redirect_to navigation.back(1)
   end
 
-  def reset_border_guru_order
-    response = get_shipping_refresh!
-    if response.success?
-      flash[:success] = "Shipping was attributed."
-    else
-      flash[:error] = "A problem occurred while communicating with BorderGuru Api (#{response.error.message})"
-    end
-    redirect_to navigation.back(1)
-
-  end
-
   private
-
-  def get_shipping_refresh!
-    # we cancel the order from BorderGuru ONLY
-    # not the order itself
-    OrderCanceller.new(order).border_guru_cancel_order!
-    # we recreate a new order ID
-    order.border_guru_order_id = nil
-    order.save
-    # now we get the fresh shipping
-    BorderGuruApiHandler.new(order).get_shipping!
-  end
 
   def set_order
     @order = Order.find(params[:id] || params[:order_id])

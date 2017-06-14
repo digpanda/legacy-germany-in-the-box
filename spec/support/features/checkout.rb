@@ -103,20 +103,6 @@ module Helpers
         expect(page).to have_content("追单")
       end
 
-      # enter all the payment information and pay
-      # access the borderguru tracking
-      def borderguru_confirmed?
-        borderguru_label_window = window_opened_by do
-          visit customer_orders_path
-          page.first('.tracking > a').trigger('click') # click on "download your label" in chinese
-          expect{page}.not_to raise_error
-        end
-
-        # within_window borderguru_label_window do
-        #   on_borderguru_page?
-        # end
-      end
-
       # process to fill in wirecard creditcard outside of our site
       # can be :success, :fail to force different results
       #

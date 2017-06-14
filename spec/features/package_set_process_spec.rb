@@ -16,7 +16,6 @@ feature "checkout process", :js => true  do
     page.first('#checkout-button').trigger('click')
     fill_in_with_multiple_addresses!
     pay_with_wirecard_visa!
-    borderguru_confirmed?
   end
 
   scenario "get a package set, apply a coupon and go to checkout" do
@@ -26,7 +25,6 @@ feature "checkout process", :js => true  do
     page.first('#checkout-button').trigger('click')
     fill_in_with_multiple_addresses!
     pay_with_wirecard_visa!
-    borderguru_confirmed?
   end
 
 end

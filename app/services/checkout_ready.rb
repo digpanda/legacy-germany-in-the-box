@@ -70,7 +70,6 @@ class CheckoutReady < BaseService
     order.update({
         :status               => :paying,
         :user                 => user,
-        :border_guru_quote_id => order.border_guru_quote_id,
       })
   end
 

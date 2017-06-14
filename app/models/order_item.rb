@@ -77,15 +77,6 @@ class OrderItem
     "#{product.clean_name} #{product.decorate.clean_desc(MAX_DESCRIPTION_CHARACTERS)}"
   end
 
-  # this method should be used in only a few cases
-  # we originally created it to call the BorderGuru API with the correct prices
-  # considering the coupon system.
-  # using it as end_price would make a double discount which would be false. please avoid this.
-  # NOTE : we want to get the `price` per unit not the `total_price` because of BorderGuru API
-  def price_with_coupon_applied
-    (price_per_unit * order.total_discount_percent).round(2)
-  end
-
   def total_price
     ensure_price_per_unit # TODO : to remove at some point
     quantity * price_per_unit

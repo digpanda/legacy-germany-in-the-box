@@ -9,7 +9,7 @@ class Customer::CartController < ApplicationController
   authorize_resource :class => false
 
   def show
-    @orders = cart_manager.orders(call_api: false)
+    @orders = cart_manager.orders
   rescue CartManager::Error => error
     flash[:error] = "#{error.message}"
     redirect_to navigation.back(1)

@@ -774,9 +774,6 @@ de:
     not_all_available: Der Vorrat des Products %{product_name} reicht momentan nicht. Bitte versuchen Sie später order reduzieren die Stückanzahl.
     not_all_min_total_reached: Ihr Einkauf bei %{shop_name} beträgt insgesamt %{total_price} %{currency} und es ist weniger als das Mindestbestellwert %{min_total} %{currency} des Online-Shops. Bitte erhöhen Sie die Einkaufsumme bei dem Shop.
     redirect_to_payment: Liebe Kunde, unser Zahlungsserver liegt in Deutschland. Bitte entschuldigen Sie den etwas langsamen Zahlungsvorgang. Danke schön!
-    borderguru_unreachable_at_quoting: Das Logistik-Partner-System ist beschäftigt. Bitte versuchen Sie später!
-    borderguru_unreachable_at_shipping: Das Logistik-Partner-System ist beschäftigt. Bitte wenden Sie sich an unseren Admin!
-    borderguru_shipping_failed: Der Versand kann nicht gestartet werden.
   edit_categories:
     operations: Aktionen
     remove: Entfernen

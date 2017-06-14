@@ -36,13 +36,13 @@ feature "checkout process", :js => true  do
 
   end
 
-  context "with borderguru" do
+  context "with manual logistic" do
 
     let(:shop) { FactoryGirl.create(:shop, :with_payment_gateways) }
     let(:product) { FactoryGirl.create(:product, shop_id: shop.id) }
 
     before(:each) do
-      logistic!(partner: :borderguru)
+      logistic!(partner: :manual)
       product_to_cart!(product)
       reload_page
       page.first('#cart').click # go to checkout
@@ -71,7 +71,6 @@ feature "checkout process", :js => true  do
       scenario "pay successfully and generate shipping label correctly" do
         fill_in_checkout_address!
         pay_with_wirecard_visa!
-        borderguru_confirmed?
       end
 
     end
@@ -82,23 +81,6 @@ feature "checkout process", :js => true  do
         pay_with_wirecard_visa!(mode: :fail)
       end
 
-      # context "product got a discount" do
-      #
-      #   let(:product) { FactoryGirl.create(:product, :with_20_percent_discount, shop_id: shop.id) }
-      #
-      #   scenario "pay successfully and generate shipping label correctly" do
-      #     # we go back to the cart
-      #     page.first('#cart').click
-      #     # we check the 20% off is shown on the cart before all
-      #     expect(page).to have_content("-20%")
-      #     page.first('#checkout-button').click # go to address step
-      #     page.first('.addresses__address-use a').click # click on the first address
-      #     pay_with_wirecard_visa!
-      #     borderguru_confirmed?
-      #   end
-      #
-      # end
-
       context "apply a coupon" do
 
         scenario "pay successfully and generate shipping label correctly with coupon" do
@@ -106,7 +88,6 @@ feature "checkout process", :js => true  do
           make_and_apply_coupon!
           page.first('#checkout-button').click
           pay_with_wirecard_visa!
-          borderguru_confirmed?
         end
 
       end

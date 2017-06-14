@@ -3,13 +3,8 @@ module Helpers
     module OnPage
 
       XIPOST_BASE_URL = "xipost.de".freeze unless defined? XIPOST_BASE_URL
-      BORDERGURU_BASE_URL = "borderguru.com".freeze unless defined? BORDERGURU_BASE_URL
 
       module_function
-
-      def on_borderguru_page?
-        expect(page).to have_current_path(/#{BORDERGURU_BASE_URL}/, url: true)
-      end
 
       def on_identity_page?
         expect(page).to have_current_path(edit_customer_identity_path)
