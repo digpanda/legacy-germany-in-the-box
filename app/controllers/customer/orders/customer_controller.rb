@@ -14,8 +14,9 @@ class Customer::Orders::CustomerController < ApplicationController
     @customer = current_user
 
     if customer.valid_for_checkout?
+      # we store the current order already
+      CheckoutReady.current_order!(session, order)
       redirect_to new_customer_order_address_path(order)
-      return
     end
   end
 

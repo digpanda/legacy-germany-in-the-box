@@ -17,7 +17,6 @@ class Customer::Orders::AddressesController < Customer::AddressesController
 
   def new
     @address = Address.new
-    session[:current_checkout_order] = order.id # TODO : should be slightly refactored
   end
 
   private

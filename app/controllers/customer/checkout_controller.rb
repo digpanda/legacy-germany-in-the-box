@@ -8,7 +8,7 @@ class Customer::CheckoutController < ApplicationController
   authorize_resource :class => false
 
   before_filter :ensure_session_order, :only => [:payment_method, :gateway]
-  before_action :set_order, :only => [:payment_method]
+  before_action :set_order, :only => [:create, :gateway, :payment_method]
 
   before_filter :force_address_param, :only => [:create]
 
@@ -17,7 +17,6 @@ class Customer::CheckoutController < ApplicationController
   before_action :freeze_header
 
   def create
-    @order = Order.find(session[:current_checkout_order])
     current_address = current_user.addresses.find(params[:delivery_destination_id])
     checkout_ready = CheckoutReady.new(session, current_user, order, current_address).perform!
 
@@ -40,8 +39,6 @@ class Customer::CheckoutController < ApplicationController
   end
 
   def gateway
-    @order = Order.find(session[:current_checkout_order])
-
     unless params[:payment_method]
       flash[:error] = "Invalid payment method."
       redirect_to navigation.back(1)

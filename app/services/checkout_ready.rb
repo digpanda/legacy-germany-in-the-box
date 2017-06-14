@@ -4,6 +4,12 @@ class CheckoutReady < BaseService
 
   attr_reader :session, :user, :order, :address
 
+  class << self
+    def current_order!(session, order)
+      session[:current_checkout_order] = order.id
+    end
+  end
+
   def initialize(session, user, order, address)
     @session = session
     @user = user
@@ -44,15 +50,15 @@ class CheckoutReady < BaseService
 
     # we don't forget to set the current order as the one
     # we will use in the next steps automatically
-    refresh_current_session!
+    refresh_current_order!
     return_with(:success)
 
   end
 
   private
 
-  def refresh_current_session!
-    session[:current_checkout_order] = order.id
+  def refresh_current_order!
+    CheckoutReady.current_order!(session, order)
   end
 
   def update_addresses!
