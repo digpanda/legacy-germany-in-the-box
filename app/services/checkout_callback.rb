@@ -60,7 +60,6 @@ class CheckoutCallback < BaseService
     order_payment.order.refresh_status_from!(order_payment)
 
     manage_stocks!(order_payment.order)
-    manage_logistic!(order_payment.order)
     dispatch_notifications!(order_payment)
 
     return_with(:success, order_payment: order_payment)
@@ -105,7 +104,6 @@ class CheckoutCallback < BaseService
       order_payment.order.refresh_status_from!(order_payment)
 
       manage_stocks!(order_payment.order)
-      manage_logistic!(order_payment.order)
       dispatch_notifications!(order_payment)
 
     else
