@@ -19,7 +19,6 @@
       <tbody>
 
         <% package_sets.each do |package_set| %>
-          <% if package_set.referrer_rate > 0.0 %>
             <tr data-href="#">
               <td>
                 <%= package_set.name %>
@@ -28,7 +27,6 @@
                 <%= package_set.referrer_rate %>%
               </td>
             </tr>
-          <% end %>
         <% end %>
 
       </tbody>

@@ -13,8 +13,9 @@ class Customer::ReferrerController < ApplicationController
   def provision
   end
 
+  # we get the provision rates of all the package sets that are not 0.0
   def provision_rates
-    @package_sets = PackageSet.active.all
+    @package_sets = PackageSet.active.where(:referrer_rate.gt => 0.0).all
   end
 
   def coupons
