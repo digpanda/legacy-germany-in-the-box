@@ -91,7 +91,7 @@ class ApplicationController < ActionController::Base
 
   def landing_solver
     return session[:landing] if session[:landing]
-    if request.url.include? == guest_package_sets_path
+    if request.url == guest_package_sets_url
       session[:landing] = :package_sets
     else
       session[:landing] = :products
