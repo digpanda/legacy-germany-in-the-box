@@ -1,7 +1,7 @@
 <!-- SUBHEADER (BACK BUTTON) -->
 <div class="row">
   <div class="col-md-8 col-md-push-2">
-    <%= render partial: 'customer/checkout/subheader' %>
+    <%= render partial: 'customer/checkout/subheader', locals: { back: new_customer_order_address_path(@order) } %>
   </div>
 </div>
 
