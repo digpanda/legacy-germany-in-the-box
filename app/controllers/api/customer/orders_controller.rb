@@ -10,8 +10,7 @@ class Api::Customer::OrdersController < Api::ApplicationController
       order.order_items.delete_all
       order.delete
     else
-      order.status = :cancelled
-      order.save
+      OrderCanceller.new(order).all!
       cart_manager.refresh!
     end
 

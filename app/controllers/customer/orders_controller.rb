@@ -27,8 +27,7 @@ class Customer::OrdersController < ApplicationController
       order.order_payments.delete_all
       order.delete
     else
-      order.status = :cancelled
-      order.save
+      OrderCanceller.new(order).all!
       # we refresh the cart manager (this should remove the entry)
       cart_manager.refresh!
     end

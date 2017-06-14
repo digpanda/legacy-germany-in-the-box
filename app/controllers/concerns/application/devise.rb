@@ -56,8 +56,7 @@ module Application
           order.cart_id = nil
           order.save
           order.reload
-          order.status = :cancelled
-          order.save
+          OrderCanceller.new(order).all!
         end
       end
     end

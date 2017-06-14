@@ -28,7 +28,7 @@ class OrderMaker
     if empty_order?
       order.order_payments.where(status: :scheduled).delete_all
       if order.order_payments.count > 0
-        OrderCanceller.new(order).cancel_all!
+        OrderCanceller.new(order).all!
       end
     end
     if order.destroyable?

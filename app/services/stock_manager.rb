@@ -6,6 +6,9 @@ class StockManager
     @order = order
   end
 
+  # reduce the sku quantity from the order
+  # there's a protection so you can call
+  # this exact action only once within the system
   def in_order!
     order.order_items.each do |order_item|
       # we take the original sku not the one from the order item
@@ -27,6 +30,22 @@ class StockManager
           desc: "Das Produkt '#{order_item.product&.name}' verfügt über #{sku.quantity} Verfügbarkeit."
         })
       end
+    end
+  end
+
+  # exact opposite of in_order!
+  # will manage to grow the sku quantity once
+  # if it already happened, it won't do it again
+  def out_order!
+    order.order_items.each do |order_item|
+      sku = order_item.sku_origin
+      unless sku.unlimited
+        if already_reduced?(order_item)
+          StockHistory.delete(order_item: order_item)
+          sku.quantity += order_item.quantity
+        end
+      end
+      sku.save!
     end
   end
 
