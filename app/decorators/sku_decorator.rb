@@ -8,8 +8,8 @@ class SkuDecorator < Draper::Decorator
 
   def highlighted_image
     # binding.pry
-    # images.first&.image_url(:file, :cart)
-    images.first&.file&.url
+    images.first&.image_url(:file, :cart)
+    #images.first&.file&.url
     # raw_images_urls.first
   end
 
