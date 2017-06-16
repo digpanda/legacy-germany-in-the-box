@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
         sign_out
         sign_in(:user, wechat_auth.data[:customer])
         SlackDispatcher.new.silent_login_attempt("[Wechat] Customer automatically logged-in (`#{current_user&.id}`)")
-        redirect_to SigninHandler.new(request, navigation, current_user, cart_manager).solve!
+        redirect_to SigninHandler.new(request, navigation, current_user, cart_manager, refresh: true).solve!
       end
     end
   end
