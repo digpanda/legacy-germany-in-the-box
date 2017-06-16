@@ -4,13 +4,13 @@ class SigninHandler
 
   attr_reader :request, :navigation, :session, :user, :cart_manager
 
-  def initialize(request, navigation, user, cart_manager, refresh:false)
+  def initialize(request, navigation, user, cart_manager)
     @request = request
     @navigation = navigation
     @session = request.session
     @user = user
     @cart_manager = cart_manager
-    @refresh = refresh
+    @back = back
   end
 
   def solve!
@@ -21,12 +21,9 @@ class SigninHandler
       recover_last_order!
       return missing_info_customer_account_path if user.missing_info?
       return navigation.force! if navigation.force?
-      #return customer_referrer_path if user.referrer?
-      if refresh
-        return request.url
-      else
-        return navigation.back(1)
-      end
+      return customer_referrer_path if user.referrer?
+      return navigation.back(1)
+
     end
 
     # if the person is not a customer
