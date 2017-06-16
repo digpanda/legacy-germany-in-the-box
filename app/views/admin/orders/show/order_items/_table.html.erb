@@ -28,7 +28,7 @@
     <% order_items.each do |order_item| %>
       <tr>
         <td>
-          <%= image_tag order_item.sku.decorate.highlighted_image&.url %>
+          <%= image_tag order_item.sku.decorate.highlighted_image %>
         </td>
         <td>
           <%= order_item.product.name %>
