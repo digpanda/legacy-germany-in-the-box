@@ -28,7 +28,7 @@ class Customer::ReferrerController < ApplicationController
       return
     end
 
-    AdminMailer.notify_claim_money("hr@digpanda.com", referrer.id.to_s).deliver
+    AdminMailer.notify_claim_money("info@digpanda.com", referrer.id.to_s).deliver
     flash[:success] = I18n.t('referrer.your_request_was_sent_to_our_operation_team')
     redirect_to navigation.back(1)
   end
