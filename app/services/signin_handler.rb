@@ -21,7 +21,7 @@ class SigninHandler
       recover_last_order!
       return missing_info_customer_account_path if user.missing_info?
       return navigation.force! if navigation.force?
-      return customer_referrer_path if user.referrer?
+      #return customer_referrer_path if user.referrer?
       if refresh
         return request.url
       else
