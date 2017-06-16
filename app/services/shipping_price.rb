@@ -35,7 +35,6 @@ class ShippingPrice
   # NOTE : this operation costs a lot, we should find a smart way to reduce it
   def package_set_shipping_cost
     order.package_sets.reduce(0) do |acc, package_set|
-      SlackDispatcher.new.message("PACKAGE SET SHIPPING COST ON #{package_set.id}")
       acc + (package_set.shipping_cost * order.package_set_quantity(package_set))
     end
   end

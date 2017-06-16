@@ -316,7 +316,6 @@ class Order
 
   def package_set_quantity(package_set)
     package_set.reload # thanks mongo i guess
-    SlackDispatcher.new.message("PACKAGE SKUS FOR THIS ONE : #{package_set.package_skus.count}")
     order_items.where(package_set: package_set).count / package_set.package_skus.count
   end
 
