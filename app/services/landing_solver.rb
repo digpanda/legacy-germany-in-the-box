@@ -20,13 +20,14 @@ class LandingSolver
     self
   end
 
+  # double logic for now in case it's a wrong variable
   def recover
-    if session[:landing] == :package_sets
+    case session[:landing]
+    when :package_sets
       guest_package_sets_path
-    elsif session[:landing] == :products
+    when :products
       root_path
     else
-      # double logic for now in case it's a wrong variable
       root_path
     end
   end
