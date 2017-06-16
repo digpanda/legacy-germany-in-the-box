@@ -36,6 +36,7 @@ class LandingSolver
 
   def just_landed?
     return false if session[:landing]
+    true
   end
 
   def solve_landing!
