@@ -10,7 +10,6 @@ class SigninHandler
     @session = request.session
     @user = user
     @cart_manager = cart_manager
-    @back = back
   end
 
   def solve!
