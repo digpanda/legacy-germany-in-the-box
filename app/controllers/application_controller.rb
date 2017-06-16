@@ -26,6 +26,7 @@ class ApplicationController < ActionController::Base
         SlackDispatcher.new.silent_login_attempt("[Wechat] Customer automatically logged-in (`#{current_user&.id}`)")
         # we don't redirect the customer because he's already on the right page
         # so we ignore the output of this method
+        # TODO : we should redirect AND cut off the last part of the URL to make it clean. or something like that
         SigninHandler.new(request, navigation, current_user, cart_manager).solve!
       end
     end
