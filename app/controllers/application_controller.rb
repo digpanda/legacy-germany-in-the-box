@@ -89,18 +89,7 @@ class ApplicationController < ActionController::Base
   end
 
   def landing_solver
-    if params[:landing]
-      if ["package_sets", "products"].include? params[:landing]
-        session[:landing] = params[:landing].to_sym
-        return session[:landing]
-      end
-    end
-    return session[:landing] if session[:landing]
-    if request.url.include? guest_package_sets_path
-      session[:landing] = :package_sets
-    else
-      session[:landing] = :products
-    end
+    @landing_solver ||= LandingSolver.new(request).setup!
   end
 
   def wechat_browser?

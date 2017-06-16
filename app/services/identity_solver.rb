@@ -32,14 +32,7 @@ class IdentitySolver < BaseService
   end
 
   def landing_url
-    if session[:landing] == :package_sets
-      guest_package_sets_path
-    elsif session[:landing] == :products
-      root_path
-    else
-      # double logic for now in case it's a wrong variable
-      root_path
-    end
+    @landing_url ||= LandingSolver.new(request).recover
   end
 
   def potential_customer?
