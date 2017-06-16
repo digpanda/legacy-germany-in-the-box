@@ -20,6 +20,7 @@ class ApplicationController < ActionController::Base
   def silent_login
     if params[:code]
       if wechat_auth.success?
+        session[:origin] = :wechat if params[:controller].include? 'package_set'
         sign_out
         sign_in(:user, wechat_auth.data[:customer])
         SlackDispatcher.new.silent_login_attempt("[Wechat] Customer automatically logged-in (`#{current_user&.id}`)")
