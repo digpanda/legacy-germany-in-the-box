@@ -49,6 +49,7 @@ class LandingSolver
 
   def force_landing!
     if params[:landing]
+      SlackDispatcher.new.message("LANDING PARAM IS `#{params[:landing]}`")
       if ALLOWED_FORCE_LANDING.include? params[:landing]
         session[:landing] = params[:landing].to_sym
       end
