@@ -1,5 +1,6 @@
 # anything related to the section (customer, shopkeeper, admin)
 # and used within the controller or model, etc. are defined here
+# NOTE : maybe we should include LandingSolver in the IdentitySolver for constitency
 class IdentitySolver < BaseService
 
   include Rails.application.routes.url_helpers
