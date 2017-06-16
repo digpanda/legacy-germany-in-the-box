@@ -3,7 +3,7 @@ class ImageDisplayer
   class Qiniu
 
     CONFIG = Rails.configuration.qiniu
-    ACCEPTED_SIZES = [:thumb, :detail, :fullsize, :zoomin]
+    ACCEPTED_SIZES = [:thumb, :detail, :fullsize, :zoomin, :cart]
 
     attr_reader :base_url, :version, :size
 
