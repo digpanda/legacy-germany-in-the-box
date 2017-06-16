@@ -24,7 +24,7 @@ class ImageDisplayer
     end
 
     def size_url
-      "imageView2/0/w/#{size}/h/#{size}"
+      "&imageView2/0/w/#{size}/h/#{size}"
     end
 
     def accepted_size?
