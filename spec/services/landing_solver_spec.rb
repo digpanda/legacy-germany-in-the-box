@@ -5,10 +5,6 @@ describe LandingSolver do
 
   context "#setup!" do
 
-    # let(:request) { ActionController::TestRequest.new(session: ) )}
-    let(:empty_request) { ActionController::TestRequest.new }
-
-
     it "should setup package sets from URL recognition" do
       request = double('request', url: guest_package_sets_url, session: {}, params: {})
       solver = LandingSolver.new(request).setup!
