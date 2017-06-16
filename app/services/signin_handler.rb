@@ -14,6 +14,7 @@ class SigninHandler
 
   def solve!
     if user.customer?
+      SlackDispatcher.new.message("REQUEST #{request.url}")
       force_chinese!
       handle_past_orders!
       recover_last_order!
