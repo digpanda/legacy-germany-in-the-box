@@ -13,16 +13,16 @@
     <!-- + -->
     <% if @referrer.total_earned > 0.0 %>
 
-      <a href="#" id="click-detail-tables" class="big-button --green"><%= I18n.t('referrer.more_details') %></a>
+      <!-- <a href="#" id="click-detail-tables" class="big-button --green"><%= I18n.t('referrer.more_details') %></a>
       <div class="+spacer"></div>
 
-      <div id="detail-tables" class="+hidden">
+      <div id="detail-tables" class="+hidden"> -->
 
         <!-- ORDERS -->
-        <%= render partial: 'customer/referrer/provision/orders', :locals => { provisions: @referrer.provisions } %>
+        <!-- < render partial: 'customer/referrer/provision/orders', :locals => { provisions: @referrer.provisions } %> -->
 
         <!-- OPERATIONS -->
-        <%= render partial: 'customer/referrer/provision/operations', :locals => { operations: @referrer.provision_operations } %>
+        <!-- < render partial: 'customer/referrer/provision/operations', :locals => { operations: @referrer.provision_operations } %> -->
 
       </div>
 
