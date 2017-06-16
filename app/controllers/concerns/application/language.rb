@@ -17,15 +17,5 @@ module Application
       end
     end
 
-    def force_chinese!
-      session[:locale] = :'zh-CN'
-      I18n.locale = session[:locale]
-    end
-
-    def force_german!
-      session[:locale] = :de
-      I18n.locale = session[:locale]
-    end
-
   end
 end
