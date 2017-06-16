@@ -1,5 +1,7 @@
 defaults: &defaults
   size:
+    cart: 165
+    
     thumb: 250
     detail: 1000
     fullsize: 800

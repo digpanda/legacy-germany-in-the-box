@@ -28,7 +28,7 @@
     <% order_items.each do |order_item| %>
       <tr>
         <td>
-          <%= image_tag order_item.sku.decorate.highlighted_image, :class => 'icon-img' %>
+          <%= image_tag order_item.sku.decorate.highlighted_image&.url %>
         </td>
         <td>
           <%= order_item.product.name %>

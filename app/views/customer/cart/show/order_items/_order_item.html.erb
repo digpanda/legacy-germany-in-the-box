@@ -4,7 +4,7 @@
   <div class="col-xs-3">
     <!-- Image -->
     <div class="cart__order-item-image">
-      <img src="<%= order_item.sku.decorate.highlighted_image %>">
+      <img src="<%= order_item.sku.decorate.highlighted_image&.image_url(:file, :cart) %>">
     </div>
   </div>
 
