@@ -14,7 +14,7 @@ class SigninHandler
     @cart_manager = cart_manager
   end
 
-  def solve!
+  def solve!(refresh:false)
     SlackDispatcher.new.message("SIGNIN HANDLER WAS CALLED")
     if user.customer?
       force_chinese!
@@ -25,7 +25,12 @@ class SigninHandler
       return customer_referrer_path if user.referrer?
       # NOTE : we remove the code param from the redirect URL
       # because if the user comes from WeChat that would make an infinite loop
-      return without_code navigation.back(1)
+      # we can either refresh the current page or go back
+      if refresh
+        return without_code request.url
+      else
+        return without_code navigation.back(1)
+      end
     end
 
     # if the person is not a customer
