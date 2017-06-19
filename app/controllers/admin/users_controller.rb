@@ -50,7 +50,7 @@ class Admin::UsersController < ApplicationController
 
   def force_login
     sign_in(user)
-    redirect_to SigninHandler.new(request, navigation, user, cart_manager).solve!(redirect: root_url)
+    redirect_to SigninHandler.new(request, navigation, user, cart_manager).solve!
   end
 
   private

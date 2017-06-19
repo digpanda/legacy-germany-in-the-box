@@ -1,3 +1,5 @@
+require 'addressable/uri'
+
 class SigninHandler
 
   include Rails.application.routes.url_helpers
@@ -12,7 +14,7 @@ class SigninHandler
     @cart_manager = cart_manager
   end
 
-  def solve!(redirect:nil)
+  def solve!
     if user.customer?
       force_chinese!
       handle_past_orders!
@@ -20,10 +22,9 @@ class SigninHandler
       return missing_info_customer_account_path if user.missing_info?
       return navigation.force! if navigation.force?
       return customer_referrer_path if user.referrer?
-      return redirect if redirect
-      # NOTE : this will break if the user is inside WeChat with a code param
-      # make sure it always has the `redirect` set in this case so it doesn't go here
-      return navigation.back(1)
+      # NOTE : we remove the code param from the redirect URL
+      # because if the user comes from WeChat that would make an infinite loop
+      without_code navigation.back(1)
     end
 
     # if the person is not a customer
@@ -44,6 +45,13 @@ class SigninHandler
   end
 
   private
+
+  def without_code(url)
+    uri = Addressable::URI.parse(url)
+    params = uri.query_values
+    uri.query_values = params.except('code') if params
+    uri.to_s
+  end
 
   def recover_last_order!
     if user.cart_orders.first
