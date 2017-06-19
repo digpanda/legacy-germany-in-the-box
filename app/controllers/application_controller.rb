@@ -19,6 +19,7 @@ class ApplicationController < ActionController::Base
 
   def silent_login
     if params[:code]
+      SlackDispatcher.new("SILENT LOGIN UNDER PROGRESS")
       if wechat_auth.success?
         sign_out
         user = wechat_auth.data[:customer]
@@ -75,6 +76,7 @@ class ApplicationController < ActionController::Base
 
   def origin_solver
     return session[:origin] if session[:origin]
+    SlackDispatcher.new.message("ORIGIN SOLVER SOLVED.")
     if chinese_domain? || wechat_browser?
       session[:origin] = :wechat
     else
@@ -83,6 +85,7 @@ class ApplicationController < ActionController::Base
   end
 
   def landing_solver
+    SlackDispatcher.new.message("LANDING SOLVER SOLVED.")
     @landing_solver ||= LandingSolver.new(request).setup!
   end
 
