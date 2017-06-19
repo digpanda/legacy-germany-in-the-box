@@ -25,7 +25,7 @@ class SigninHandler
       return customer_referrer_path if user.referrer?
       # NOTE : we remove the code param from the redirect URL
       # because if the user comes from WeChat that would make an infinite loop
-      without_code navigation.back(1)
+      return without_code navigation.back(1)
     end
 
     # if the person is not a customer
