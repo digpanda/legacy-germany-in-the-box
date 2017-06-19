@@ -28,7 +28,6 @@ class IdentitySolver < BaseService
   end
 
   def origin_url
-    SlackDispatcher.new.message("LANDING URL WAS USED `#{landing_url}`")
     landing_url
     #wechat_customer? ? guest_package_sets_path : root_path
   end
