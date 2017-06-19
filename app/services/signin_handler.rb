@@ -15,6 +15,7 @@ class SigninHandler
   end
 
   def solve!
+    SlackDispatcher.new.message("SIGNIN HANDLER WAS CALLED")
     if user.customer?
       force_chinese!
       handle_past_orders!
