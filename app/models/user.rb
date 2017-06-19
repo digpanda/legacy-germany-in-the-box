@@ -92,6 +92,14 @@ class User
 
   scope :admins, -> { where(role: :admin) }
 
+  before_save :ensure_valid_mobile
+
+  def ensure_valid_mobile
+    if mobile
+      mobile.gsub!(/[[:space:]]/, '')
+    end
+  end
+
   before_destroy :destroy_has_shop, :destroy_has_orders
   def destroy_has_shop
     if self.shop
