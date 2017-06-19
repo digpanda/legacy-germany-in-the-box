@@ -60,7 +60,7 @@ class Admin::ShopsController < ApplicationController
 
   def force_login
     sign_in(shop.shopkeeper)
-    redirect_to edit_shopkeeper_account_path
+    redirect_to SigninHandler.new(request, navigation, user, cart_manager).solve!
   end
 
   private
