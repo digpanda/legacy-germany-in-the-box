@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :navigation, :cart_manager, :identity_solver
 
-  before_action :origin_solver, :landing_solver, :silent_login, :get_cart_orders
+  before_action :silent_login, :origin_solver, :landing_solver, :get_cart_orders
 
   def silent_login
     if params[:code]
