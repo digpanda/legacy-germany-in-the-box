@@ -165,8 +165,6 @@ class User
   # will be redirected on log-in
   def missing_info?
     if self.referrer?
-      SlackDispatcher.new.message("MISSING INFO CHECK")
-      SlackDispatcher.new.message("MOBILE BLANK ? `#{self.mobile.blank?}`")
       if self.mobile.blank?
         return true
       end

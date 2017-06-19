@@ -12,39 +12,7 @@ class Connect::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       failure
     end
   end
-
-  # def silent_wechat
-  #   # get code
-  #   code = params[:code]
-  #
-  #   # get access token
-  #   parsed_response = get_access_token(code)
-  #   openid = parsed_response['openid']
-  #   unionid = parsed_response['unionid']
-  #
-  #   if parsed_response['errcode']
-  #     redirect_to root_path
-  #     return
-  #   end
-  #
-  #   user = User.where(provider: 'wechat', uid: openid, wechat_unionid: unionid).first
-  #
-  #   if user
-  #     sign_in_user(user)
-  #   else
-  #     # get userinfo and create new user
-  #     access_token = parsed_response['access_token']
-  #     @parsed_response = get_user_info(access_token, openid)
-  #
-  #     if parsed_response['errcode']
-  #       redirect_to root_path
-  #       return
-  #     end
-  #
-  #     auth_user
-  #   end
-  # end
-
+  
   def referrer
     if params[:code]
       if wechat_auth.success?
