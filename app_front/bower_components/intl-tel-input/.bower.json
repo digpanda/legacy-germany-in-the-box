@@ -1,0 +1,22 @@
+{
+  "name": "intl-tel-input",
+  "main": [
+    "./build/js/intlTelInput.js",
+    "./build/css/intlTelInput.css"
+  ],
+  "dependencies": {
+    "jquery": ">=1.7"
+  },
+  "homepage": "https://github.com/Bluefieldscom/intl-tel-input",
+  "version": "11.0.14",
+  "_release": "11.0.14",
+  "_resolution": {
+    "type": "version",
+    "tag": "v11.0.14",
+    "commit": "afc76d7d5f638d747e8c68bfd6af02ac3482132f"
+  },
+  "_source": "https://github.com/Bluefieldscom/intl-tel-input.git",
+  "_target": "^11.0.14",
+  "_originalSource": "intl-tel-input",
+  "_direct": true
+}

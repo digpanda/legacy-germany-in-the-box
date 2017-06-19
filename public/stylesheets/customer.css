@@ -2624,6 +2624,15 @@ body {
   color: #ffffff;
   background: transparent; }
 
+.intl-tel-input .country-list .country.highlight {
+  color: #666; }
+
+.intl-tel-input {
+  width: 85%; }
+
+.iti-flag {
+  background-image: url("/images/flags/flags.png"); }
+
 h3 {
   font-weight: bold;
   color: #464646; }

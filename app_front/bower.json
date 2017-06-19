@@ -32,9 +32,17 @@
     "slicknav": "^1.0.7",
     "textarea-autosize": "^0.4.2",
     "tooltipster": "^4.1.4",
-    "underscore": "^1.8.3"
+    "underscore": "^1.8.3",
+    "intl-tel-input": "^11.0.14"
   },
   "overrides": {
+    "intl-tel-input": {
+      "main": [
+        "./build/js/intlTelInput.js",
+        "./build/js/utils.js",
+        "./build/css/intlTelInput.css"
+      ]
+    },
     "jquery": {
       "main": [
         "dist/jquery.min.js"
