@@ -21,7 +21,7 @@ zh-CN:
     order: 订单
     provision: 佣金
     creation: 下单时间
-    transfer: 转账
+    transfer: 流水
     description: 详情
     date: 日期
     you_cant_claim_your_money: "佣金满%{amount}时才可结算"
