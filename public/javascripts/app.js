@@ -3175,7 +3175,9 @@ var AutoResize = {
   setupInternational: function setupInternational() {
 
     $("#user_mobile").intlTelInput({
-      nationalMode: false
+      nationalMode: false,
+      preferredCountries: ["DE", "CN"],
+      initialCountry: "DE"
     });
   }
 };

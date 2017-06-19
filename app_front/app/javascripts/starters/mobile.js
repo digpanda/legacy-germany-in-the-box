@@ -15,7 +15,9 @@ var AutoResize = {
     setupInternational: function() {
 
       $("#user_mobile").intlTelInput({
-        nationalMode: false
+        nationalMode: false,
+        preferredCountries: ["DE", "CN"],
+        initialCountry: "DE"
       });
 
     },
