@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
 
   def silent_login
     if params[:code]
-      SlackDispatcher.new("SILENT LOGIN UNDER PROGRESS")
+      SlackDispatcher.new.message("SILENT LOGIN UNDER PROGRESS")
       if wechat_auth.success?
         sign_out
         user = wechat_auth.data[:customer]
