@@ -12,7 +12,7 @@ class SigninHandler
     @cart_manager = cart_manager
   end
 
-  def solve!(redirect:)
+  def solve!(redirect:nil)
     if user.customer?
       force_chinese!
       handle_past_orders!
