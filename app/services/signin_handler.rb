@@ -12,7 +12,7 @@ class SigninHandler
     @cart_manager = cart_manager
   end
 
-  def solve!
+  def solve!(redirect:)
     if user.customer?
       force_chinese!
       handle_past_orders!
@@ -20,6 +20,9 @@ class SigninHandler
       return missing_info_customer_account_path if user.missing_info?
       return navigation.force! if navigation.force?
       return customer_referrer_path if user.referrer?
+      return redirect if redirect
+      # NOTE : this will break if the user is inside WeChat with a code param
+      # make sure it always has the `redirect` set in this case so it doesn't go here
       return navigation.back(1)
     end
 

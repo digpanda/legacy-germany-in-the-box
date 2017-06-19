@@ -24,11 +24,18 @@ class ApplicationController < ActionController::Base
         sign_out
         sign_in(:user, wechat_auth.data[:customer])
         SlackDispatcher.new.silent_login_attempt("[Wechat] Customer automatically logged-in (`#{current_user&.id}`)")
-        # we don't redirect the customer because he's already on the right page
-        # so we ignore the output of this method
-        # TODO : we should redirect AND cut off the last part of the URL to make it clean. or something like that
-        SigninHandler.new(request, navigation, current_user, cart_manager).solve!
+        redirect_to SigninHandler.new(request, navigation, current_user, cart_manager).solve!(redirect: without_code(request.url))
       end
+    end
+  end
+
+  def without_code(url)
+    require 'addressable/uri'
+    uri = Addressable::URI.parse(url)
+    params = uri.query_values
+    if params
+      uri.query_values = params.except('code')
+      uri.to_s
     end
   end
 

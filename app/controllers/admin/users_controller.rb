@@ -50,7 +50,7 @@ class Admin::UsersController < ApplicationController
 
   def force_login
     sign_in(user)
-    SlackDispatcher.new.message("URL : #{SigninHandler.new(request, navigation, current_user, cart_manager).solve!}")
+    redirect_to SigninHandler.new(request, navigation, user, cart_manager).solve!(redirect: root_url)
   end
 
   private
