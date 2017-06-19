@@ -76,16 +76,15 @@ class ApplicationController < ActionController::Base
 
   def origin_solver
     return session[:origin] if session[:origin]
-    SlackDispatcher.new.message("ORIGIN SOLVER SOLVED.")
     if chinese_domain? || wechat_browser?
       session[:origin] = :wechat
     else
       session[:origin] = :browser
     end
+    SlackDispatcher.new.message("ORIGIN SOLVER SETUP `#{session[:origin]}`.")
   end
 
   def landing_solver
-    SlackDispatcher.new.message("LANDING SOLVER SOLVED.")
     @landing_solver ||= LandingSolver.new(request).setup!
   end
 
