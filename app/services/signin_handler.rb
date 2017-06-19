@@ -51,9 +51,11 @@ class SigninHandler
   end
 
   def kept_params
-    request.params.permit(:landing)
+    {
+      landing: request.params[:landing]
+    }
   end
-  
+
   private
 
   def without_code(url)
