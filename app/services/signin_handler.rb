@@ -27,6 +27,7 @@ class SigninHandler
       # because if the user comes from WeChat that would make an infinite loop
       # we can either refresh the current page or go back
       if refresh
+        SlackDispatcher.new.message("REFRESHING TO #{without_code(request.url)}")
         return without_code request.url
       else
         return without_code navigation.back(1)
