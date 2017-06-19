@@ -20,9 +20,8 @@ class SigninHandler
       force_chinese!
       handle_past_orders!
       # recover_last_order! TODO : fix that
-      return missing_info_customer_account_path(kept_params) if user.missing_info?
+      return without_code missing_info_customer_account_path(kept_params) if user.missing_info?
       return navigation.force! if navigation.force?
-      # return customer_referrer_path(kept_params) if user.referrer?
 
       # NOTE : we remove the code param from the redirect URL
       # because if the user comes from WeChat that would make an infinite loop
@@ -51,11 +50,11 @@ class SigninHandler
     end
   end
 
+  # NOTE : don't forget to use `without_code`
+  # to avoid infinite loop linked to the `code` param
+  # being present here
   def kept_params
-    {
-      landing: request.params[:landing],
-      category_slug: request.params[:category_slug]
-    }
+    request.query_parameters
   end
 
   private
