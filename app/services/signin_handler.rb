@@ -53,7 +53,8 @@ class SigninHandler
 
   def kept_params
     {
-      landing: request.params[:landing]
+      landing: request.params[:landing],
+      category_slug: request.params[:category_slug]
     }
   end
 
