@@ -565,6 +565,7 @@ PLATFORMS
 
 DEPENDENCIES
   abstract_method
+  addressable
   alipay (~> 0.14.0)
   api_cache
   better_errors

@@ -11,6 +11,7 @@ gem "wx_pay"
 gem "rqrcode"
 gem "twilio-ruby"
 
+gem "addressable"
 gem "geocoder"
 gem "api_cache"
 gem "thin"
