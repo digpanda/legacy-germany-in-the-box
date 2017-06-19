@@ -22,7 +22,7 @@ class SigninHandler
       # recover_last_order! TODO : fix that
       return missing_info_customer_account_path(kept_params) if user.missing_info?
       return navigation.force! if navigation.force?
-      return customer_referrer_path(kept_params) if user.referrer?
+      # return customer_referrer_path(kept_params) if user.referrer?
 
       # NOTE : we remove the code param from the redirect URL
       # because if the user comes from WeChat that would make an infinite loop
