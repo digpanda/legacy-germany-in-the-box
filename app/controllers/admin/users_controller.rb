@@ -48,6 +48,11 @@ class Admin::UsersController < ApplicationController
     redirect_to navigation.back(1)
   end
 
+  def force_login
+    sign_in(user)
+    redirect_to root_path
+  end
+
   private
 
   def set_user
