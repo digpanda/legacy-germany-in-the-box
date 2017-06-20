@@ -28,7 +28,9 @@ class Customer::AccountController < ApplicationController
   # missing details / informations the user needs to fill in
   def missing_info
     unless current_user.missing_info?
-      redirect_to after_sign_in_path_for(current_user)
+      # NOTE : the missing info can be triggered from multiple points
+      # therefore it's just better to get back to the origin url.
+      redirect_to identity_solver.origin_url
     end
   end
 

@@ -3156,6 +3156,35 @@ var Messages = {
 module.exports = Messages;
 });
 
+require.register("javascripts/starters/mobile.js", function(exports, require, module) {
+"use strict";
+
+/**
+ * AutoResize Class
+ */
+var AutoResize = {
+
+  /**
+   * Initializer
+   */
+  init: function init() {
+
+    this.setupInternational();
+  },
+
+  setupInternational: function setupInternational() {
+
+    $("#user_mobile").intlTelInput({
+      nationalMode: false,
+      preferredCountries: ["DE", "CN"],
+      initialCountry: "DE"
+    });
+  }
+};
+
+module.exports = AutoResize;
+});
+
 require.register("javascripts/starters/mobile_menu.js", function(exports, require, module) {
 'use strict';
 

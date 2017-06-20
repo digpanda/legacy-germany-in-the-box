@@ -14,18 +14,26 @@ class SigninHandler
     @cart_manager = cart_manager
   end
 
-  def solve!
-    SlackDispatcher.new.message("SIGNIN HANDLER WAS CALLED")
+  # this method is called from different points on the site
+  # one of the point is WeChat silent login which should keep
+  # all param on redirection but the `code` one, it's the only case using `refresh: true`
+  # we basically refresh the page or redirect to missing info page while keeping all the rest
+  def solve!(refresh:false)
     if user.customer?
       force_chinese!
       handle_past_orders!
       # recover_last_order! TODO : fix that
-      return missing_info_customer_account_path if user.missing_info?
+      return without_code missing_info_customer_account_path(kept_params) if user.missing_info?
       return navigation.force! if navigation.force?
-      return customer_referrer_path if user.referrer?
+
       # NOTE : we remove the code param from the redirect URL
       # because if the user comes from WeChat that would make an infinite loop
-      return without_code navigation.back(1)
+      # we can either refresh the current page or go back
+      if refresh
+        return without_code request.url
+      else
+        return without_code navigation.back(1)
+      end
     end
 
     # if the person is not a customer
@@ -43,6 +51,13 @@ class SigninHandler
       return navigation.force! if navigation.force?
       return admin_shops_path
     end
+  end
+
+  # NOTE : don't forget to use `without_code`
+  # to avoid infinite loop linked to the `code` param
+  # STILL being present here
+  def kept_params
+    request.query_parameters
   end
 
   private
