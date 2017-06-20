@@ -1,14 +1,20 @@
 class Notifier
-  class Admin
+  class Admin < Notifier
 
+    attr_reader :user
+
+    # no specific admin
+    # we are using a more classical
+    # emailing system
     def initialize
+      @user = nil
     end
 
     def referrer_claimed_money(referrer)
-      DispatchNotification.new(
-      email: "info@digpanda.com",
-      title: "Referrer #{referrer.reference_id}",
-      desc: "This referrer claimed money. Please check his account and process operations if needed."
+      dispatch(
+        email: "info@digpanda.com",
+        title: "Referrer #{referrer.reference_id}",
+        desc: "This referrer claimed money. Please check his account and process operations if needed."
       ).perform
     end
 
