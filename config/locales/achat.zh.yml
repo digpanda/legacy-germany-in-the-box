@@ -1,5 +1,8 @@
 zh-CN:
+  message:
+    account_updated: 账户信息已更新
   referrer:
+    provision_rates: 佣金率
     balance_history: 收支明细
     type: 类目
     description: 详情

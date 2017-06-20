@@ -1,7 +1,10 @@
 de:
+  message:
+    account_updated: Ihr Konto wurde erfolgreich aktualisiert. 
   address:
     apply: Einlösen
   referrer:
+    provision_rates: Provision
     balance_history: Aktivitäten
     type: Typ
     description: Übersicht

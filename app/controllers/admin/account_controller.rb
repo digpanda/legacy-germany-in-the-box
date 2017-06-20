@@ -12,7 +12,7 @@ class Admin::AccountController < ApplicationController
 
   def update
     if check_valid_password?(params) && user.update(user_params)
-      flash[:success] = "Your account was successfully updated."
+      flash[:success] = I18n.t("message.account_updated")
       sign_in(user, :bypass => true)
     else
       flash[:error] = user.errors.full_messages.join(',')
