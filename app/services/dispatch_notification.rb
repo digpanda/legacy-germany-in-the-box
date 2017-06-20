@@ -13,20 +13,26 @@ class DispatchNotification < BaseService
     @desc = desc
   end
 
-  def perform
+  def perform(mail:true,sms:false)
     insert! if user
-    dispatch!
+    mail! if mail
+    sms! if sms
+    return_with(:success)
   rescue Error => exception
     return_with(:error, exception.error)
   end
 
-  def dispatch!
+  def mail!
     mailer.notify(
       email: recipient_email,
       user: user,
       title: title,
       url: shared_notifications_path
     ).deliver_later(wait: 1.minutes)
+  end
+
+  def sms!
+    # TODO
   end
 
   private
@@ -46,11 +52,16 @@ class DispatchNotification < BaseService
   end
 
   def insert!
+    raise Error, "This notification was already sent." if already_notified?
     Notification.create({user: user, title: title, desc: desc}).tap do |notification|
       if notification.errors.any?
         raise Error, notification.errors.full_message.join(', ')
       end
     end
+  end
+
+  def already_notified?
+    Notification.where(user: user, title: title, desc: desc).count > 0
   end
 
 end
