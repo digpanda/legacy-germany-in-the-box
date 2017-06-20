@@ -23,11 +23,8 @@ class StockManager
       sku.save!
 
       if sku.quantity < Rails.configuration.gitb[:warning_sku_quantity]
-        DispatchNotification.new.perform({
-          user: order_item&.product&.shop&.shopkeeper,
-          title: "Die Verfügbarkeit eines Produkts ist fast Null",
-          desc: "Das Produkt '#{order_item.product&.name}' verfügt über #{sku.quantity} Verfügbarkeit."
-        })
+        shopkeeper = order_item&.product&.shop&.shopkeeper
+        Notifier::Shopkeeper.new(shopkeeper).sku_quantity_is_low(order_item, sku)
       end
     end
   end

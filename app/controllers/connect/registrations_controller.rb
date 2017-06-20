@@ -7,7 +7,7 @@ class Connect::RegistrationsController < Devise::RegistrationsController
   before_action(:only =>  [:create, :update]) {
     base64_to_uploadedfile :user, :pic
   }
-  
+
   before_action :freeze_header
 
   respond_to :html, :json
@@ -37,22 +37,10 @@ class Connect::RegistrationsController < Devise::RegistrationsController
 
           sign_in(:user, User.find(resource.id)) # auto sign in
 
-          if resource.decorate.customer?
-
-            DispatchNotification.new.perform({
-              :user => resource,
-              :title => '注册成功，欢迎光临来因盒！',
-              :desc => "亲，欢迎你到来因盒购物。"
-            })
-
-          elsif resource.decorate.shopkeeper?
-
-             DispatchNotification.new.perform({
-              :user => resource,
-              :title => 'Wilkommen bei Germany In The Box !',
-              :desc => "Vielen Dank für Ihren Antrag. Wir werden uns bald mit Ihnen in Verbindung setzten."
-            })
-
+          if resource.customer?
+            Notifier::Customer.new(resource).welcome
+          elsif resource.shopkeeper?
+            Notifier::Shopkeeper.new(resource).welcome
           end
 
           respond_with resource, location: after_sign_up_path_for(resource)

@@ -39,11 +39,7 @@ class Shopkeeper::OrdersController < ApplicationController
     order.save
 
     # we go back now
-    DispatchNotification.new.perform({
-                                    user: order.user,
-                                    title: '你的订单已出货',
-                                    desc: "你的订单已被商家寄出"
-                                    })
+    Notifier::Customer.new(order.user).order_is_being_processed(order)
     flash[:success] = I18n.t(:order_processing, scope: :notice)
     redirect_to navigation.back(1)
   end
