@@ -24,8 +24,8 @@ class DispatchNotification < BaseService
 
   def mail!
     mailer.notify(
-      email: recipient_email,
-      user: user,
+      recipient_email: recipient_email,
+      user_id: user.id.to_s,
       title: title,
       url: shared_notifications_path
     ).deliver_later(wait: 1.minutes)
