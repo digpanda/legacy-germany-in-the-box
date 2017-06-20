@@ -4,6 +4,8 @@
 #
 class DispatchNotification < BaseService
 
+  attr_reader :email, :user, :title, :desc
+
   include Rails.application.routes.url_helpers
 
   def initialize(email:nil,user:nil,title:nil,desc:nil)
