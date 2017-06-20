@@ -12,6 +12,12 @@ module FormHelper
     [['Xipost', :xipost], ['Beihai', :beihai], ['MKPost', :mkpost], ['Manual', :manual]]
   end
 
+  def orders_status
+    [["New", :new], ["Paying", :paying], ["Payment Unverified", :unverified], ["Payment failed", :failed],
+    ["Cancelled", :cancelled], ["Paid", :paid], ["Custom Checkable", :custom_checkable],
+    ["Custom Checking", :custom_checking], ["Shipped", :shipped]]
+  end
+
   def every(form, limit)
     (form.index + 1) % limit == 0
   end

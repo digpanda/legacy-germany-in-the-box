@@ -22,6 +22,8 @@
   </div>
   <hr>
   <div class="row">
-    <%= @order.status.capitalize %>
+    <%= form_for [:admin, @order], :data => {:toggle => 'validator'} do |form| %>
+      <%= editable_field(@order, [:admin, @order], :status, :select, [orders_status, {:selected => @order.status}]) %>
+    <% end %>
   </div>
 </div>
