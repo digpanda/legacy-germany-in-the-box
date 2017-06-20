@@ -61,7 +61,8 @@ class OrderMaker
     def fresh_order_item!
       order.order_items.build.tap do |order_item|
         order_item.product = product
-        order_item.referrer_rate = product.referrer_rate || 0.0
+
+        order_item.referrer_rate = package_sku&.package_set&.referrer_rate || product.referrer_rate || 0.0
         order_item.quantity = 1 # we will increment this afterwards
         order_item.sku_origin = sku # we don't forget to define the origin
         clone_sku!(order_item) # we clone in a clean way the sku
