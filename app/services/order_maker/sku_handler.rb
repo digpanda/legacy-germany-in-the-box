@@ -62,7 +62,7 @@ class OrderMaker
       order.order_items.build.tap do |order_item|
         order_item.product = product
 
-        order_item.referrer_rate = package_sku&.package_set&.referrer_rate || product.referrer_rate || 0.0
+        order_item.referrer_rate = 0.0 # for now we set the referrer rate to 0.0
         order_item.quantity = 1 # we will increment this afterwards
         order_item.sku_origin = sku # we don't forget to define the origin
         clone_sku!(order_item) # we clone in a clean way the sku
@@ -74,6 +74,11 @@ class OrderMaker
           order_item.package_set = package_sku.package_set
           order_item.save # very important for rollbacks
         end
+
+        # we get the referrer rate for this item and replace the previous 0.0
+        # it'll guess if it's a package set or a simple product referrer rate
+        order_item.refresh_referrer_rate!
+        order_item.save
 
         order_item.quantity = 0 # we will increment this afterwards
       end

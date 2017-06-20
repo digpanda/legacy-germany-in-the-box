@@ -62,6 +62,7 @@ namespace :admin do
   end
 
   resources :order_items do
+    patch :refresh_referrer_rate
   end
 
   resource :search, :controller => 'search' do

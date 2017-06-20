@@ -25,6 +25,9 @@
       <th>
         Total Price
       </th>
+      <th>
+        Action
+      </th>
     </tr>
   </thead>
   <tbody>
@@ -53,6 +56,9 @@
         </td>
         <td>
           <%= order_item.total_price.in_euro.display %>
+        </td>
+        <td>
+          <a data-method="patch" href="<%= admin_order_item_refresh_referrer_rate_path(order_item) %>">Refresh referrer rate</a>
         </td>
       </tr>
     <% end %>
