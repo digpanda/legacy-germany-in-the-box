@@ -116,7 +116,7 @@ class CheckoutCallback < BaseService
   def dispatch_guide_message!(order_payment)
     referrer = order_payment.order.referrer
     if referrer&.user&.mobile
-      PhoneMessenger.new.send(referrer.user.mobile, "一位客户在您的推荐下在来因盒平台下了一个#{order_payment.amount_eur.in_euro.display}的订单。您现在的总佣金为#{referrer.total_earned.in_euro.display}")
+      Notifier::Customer.new(referrer.user).referrer_provision_was_raised(order_payment, referrer)
     end
   end
 
