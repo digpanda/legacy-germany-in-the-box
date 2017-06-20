@@ -13,16 +13,16 @@ class DispatchNotification < BaseService
     @desc = desc
   end
 
-  def perform(mail:true,sms:false)
+  def perform(dispatch:[:email])
     insert! if user
-    mail! if mail
-    sms! if sms
+    email! if dispatch.include? :email
+    sms! if dispatch.include? :sms
     return_with(:success)
   rescue Error => exception
     return_with(:error, exception.error)
   end
 
-  def mail!
+  def email!
     mailer.notify(
       recipient_email: recipient_email,
       user_id: user.id.to_s,
