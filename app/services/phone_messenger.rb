@@ -9,7 +9,9 @@ class PhoneMessenger
   end
 
   def send(to, body)
-    client.account.messages.create(:body => body, :to => to, :from => from)
+    if Rails.env.production?
+      client.account.messages.create(:body => body, :to => to, :from => from)
+    end
   end
 
   def client
