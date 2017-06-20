@@ -60,7 +60,8 @@ class Guest::ShopApplicationsController < ApplicationController
   end
 
   def force_german
-    force_german!
+    session[:locale] = :de
+    I18n.locale = session[:locale]
   end
 
   def shop_params
