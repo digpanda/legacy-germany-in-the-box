@@ -63,7 +63,7 @@ class Admin::OrderPaymentsController < ApplicationController
   private
 
   def order_payment_params
-    params.require(:order_payment).permit(:transaction_id)
+    params.require(:order_payment).permit!
   end
 
   def payment_refunder
