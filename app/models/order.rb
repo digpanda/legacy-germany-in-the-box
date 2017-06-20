@@ -136,7 +136,6 @@ class Order
       referrer_provision = ReferrerProvision.where(order: self, referrer: referrer).first
       if bought?
         referrer_provision ||= ReferrerProvision.create(order: self, referrer: referrer)
-        SlackDispatcher.new.message("CURRENT REFERRER PROVISION : #{current_referrer_provision}")
         referrer_provision.provision = current_referrer_provision
         referrer_provision.save
       else #if cancelled? -> we should actually apply deletion in any case if it's not bought
