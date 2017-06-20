@@ -125,7 +125,7 @@ class Order
         calculation_price = order_item.total_price * ((100 - coupon_discount_in_percent) / 100)
         acc += calculation_price * order_item.referrer_rate / 100 # goods price
       else
-        0
+        acc += 0.0
       end
     end
   end
