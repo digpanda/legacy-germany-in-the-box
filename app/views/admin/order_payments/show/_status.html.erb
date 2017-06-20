@@ -18,6 +18,8 @@
   </div>
   <hr>
   <div class="row">
-    <%= @order_payment.status.capitalize %>
+    <%= form_for [:admin, @order_payment], :data => {:toggle => 'validator'} do |form| %>
+      <%= editable_field(@order_payment, [:admin, @order_payment], :status, :select, [order_payments_status, {:selected => @order_payment.status}]) %>
+    <% end %>
   </div>
 </div>

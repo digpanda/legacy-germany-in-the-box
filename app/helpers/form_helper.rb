@@ -18,6 +18,10 @@ module FormHelper
     ["Custom Checking", :custom_checking], ["Shipped", :shipped]]
   end
 
+  def order_payments_status
+    [["Scheduled", :scheduled], ["Unverified", :unverified], ["Success", :success], ["Failed", :failed]]
+  end
+
   def every(form, limit)
     (form.index + 1) % limit == 0
   end
