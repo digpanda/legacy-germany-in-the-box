@@ -37,7 +37,9 @@
           </td>
           <td>
             <% if order.bought? %>
-            <%= order.end_price.in_euro.to_yuan.display %>
+              <%= order.total_paid_in_yuan.display %>
+            <% else %>
+              <%= order.end_price.in_euro.to_yuan.display %>
             <% end %>
           </td>
           <td class="tracking">
