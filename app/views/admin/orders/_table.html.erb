@@ -41,7 +41,7 @@
         <%= order.status %>
       </td>
       <td>
-        <%= order.decorate.total_price_with_extra_costs_in_yuan %> (<%= order.decorate.total_price_with_extra_costs_in_euro %>)
+        <%= order.total_price_with_extra_costs.in_euro.to_yuan.display %> (<%= order.total_price_with_extra_costs.in_euro.display %>)
       </td>
       <td>
         <%= render partial: "shared/orders/partials/files_buttons", locals: { :order => order } %>

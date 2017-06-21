@@ -25,10 +25,6 @@ class AddressDecorator < Draper::Decorator
     end
   end
 
-  def chinese_street_number
-    "#{number}" # 号
-  end
-
   def chinese_full_name
     "#{lname}#{fname}"
   end
@@ -42,7 +38,4 @@ class AddressDecorator < Draper::Decorator
     "#{province}#{city}#{district}#{street}#{number}#{additional}, #{zip}, #{country}"
   end
 
-  def german_full_address
-    "#{street} #{number}, #{zip} #{city}, #{country}"
-  end
 end

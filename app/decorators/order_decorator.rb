@@ -4,8 +4,6 @@ class OrderDecorator < Draper::Decorator
 
   MAX_DESCRIPTION_CHARACTERS = 200
 
-  abstract_method :taxes_cost_with_currency_yuan, :shipping_cost_with_currency_yuan, :total_price_with_extra_costs_in_yuan
-
   delegate_all
   decorates :order
 
@@ -17,50 +15,6 @@ class OrderDecorator < Draper::Decorator
     self.order_items.reduce([]) do |acc, order_item|
       acc << order_item.clean_desc
     end.join(', ')
-  end
-
-  def total_price_in_yuan
-    total_price.in_euro.to_yuan.amount
-  end
-
-  def total_price_with_currency_euro
-  total_price.in_euro.display
-  end
-
-  def total_price_with_extra_costs_in_yuan
-    total_price_with_extra_costs.in_euro.to_yuan.display
-  end
-
-  def total_price_with_extra_costs_in_euro
-    total_price_with_extra_costs.in_euro.display
-  end
-
-  def total_price_with_currency_yuan
-    total_price.in_euro.to_yuan.display
-  end
-
-  def duty_and_shipping_cost_with_currency_euro
-    (taxes_cost + shipping_cost).in_euro.display
-  end
-
-  def duty_and_shipping_cost_with_currency_yuan
-    (taxes_cost + shipping_cost).in_euro.to_yuan.display
-  end
-
-  def shipping_cost_with_currency_yuan
-    shipping_cost.in_euro.to_yuan.display
-  end
-
-  def shipping_cost_with_currency_euro
-    shipping_cost.in_euro.display
-  end
-
-  def taxes_cost_with_currency_yuan
-    taxes_cost.in_euro.to_yuan.display
-  end
-
-  def taxes_cost_with_currency_euro
-    taxes_cost.in_euro.display
   end
 
 end

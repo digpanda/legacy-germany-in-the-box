@@ -10,7 +10,7 @@ FactoryGirl.define do
     unique false
 
     trait :with_referrer do
-      referrer { FactoryGirl.create(:referrer, :from_wechat).referrer }
+      referrer { FactoryGirl.create(:customer, :with_referrer, :from_wechat).referrer }
     end
 
   end
