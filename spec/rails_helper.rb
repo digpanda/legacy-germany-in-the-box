@@ -30,6 +30,7 @@ RSpec.configure do |config|
     config.include Helpers::Features::Setting
     config.include Helpers::Features::ShowOnPage
     config.include Helpers::Features::WaitForPage
+
   end
 
   config.infer_spec_type_from_file_location!

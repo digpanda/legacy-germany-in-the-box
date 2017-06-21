@@ -13,6 +13,7 @@ class Notifier
     def referrer_claimed_money(referrer)
       dispatch(
         email: "info@digpanda.com",
+        mailer: AdminMailer,
         title: "Referrer #{referrer.reference_id}",
         desc: "This referrer claimed money. Please check his account and process operations if needed."
       ).perform

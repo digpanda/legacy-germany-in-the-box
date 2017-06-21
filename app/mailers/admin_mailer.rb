@@ -5,7 +5,6 @@ class AdminMailer < ApplicationMailer
 
   def notify(recipient_email:, user_id:, title:, url:)
     @recipient_email = recipient_email
-    @user = User.where(id: user_id).first
     @title = title
     @url = url
     mail(to: @recipient_email, subject: "Notification : #{@title}")

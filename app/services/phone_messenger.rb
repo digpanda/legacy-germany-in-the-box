@@ -5,13 +5,11 @@ class PhoneMessenger
   def initialize
     @account_sid = ENV['twilio_account_sid']
     @auth_token = ENV['twilio_auth_token']
-    @from = "+4915735989956"
+    @from = ENV['twilio_from_number']
   end
 
   def send(to, body)
-    if Rails.env.production?
-      client.account.messages.create(:body => body, :to => to, :from => from)
-    end
+    client.account.messages.create(:body => body, :to => to, :from => from)
   end
 
   def client

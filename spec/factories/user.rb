@@ -29,16 +29,11 @@ FactoryGirl.define do
       role                   :admin
     end
 
-    factory :referrer, :class => User do
-      role :customer
+    trait :with_referrer do
       before(:create) do |user|
         Referrer.create(user: user, reference_id: SecureRandom.uuid, nickname: "Referrer#{Helpers::Global.next_number(:referrer)}", group: "")
       end
     end
-
-    # after(:create) do |user|
-    #   create(:customer_address, user: user)
-    # end
 
     trait :from_wechat do
       before(:create) do |user|

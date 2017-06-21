@@ -10,8 +10,9 @@ class Notifier
       end
 
       def perform
-        binding.pry
         messenger.send(recipient_mobile, dispatcher.desc)
+      rescue Twilio::REST::RequestError => exception
+        raise Notifier::Error, exception.message
       end
 
       private

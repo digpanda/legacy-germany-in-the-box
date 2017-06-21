@@ -24,16 +24,16 @@ Rails.application.configure do
 
   OmniAuth.config.test_mode = true
 
-=begin
-  config.action_mailer.smtp_settings = {
-      address: "mailtrap.io",
-      port: 25,
-      domain: 'mailtrap.io',
-      authentication: "plain",
-      enable_starttls_auto: true,
-      user_name: 'f396f41db34e22',
-      password: 'f4eede72e026e4'
-  }
-=end
+  #
+  # config.action_mailer.smtp_settings = {
+  #     address: "mailtrap.io",
+  #     port: 25,
+  #     domain: 'mailtrap.io',
+  #     authentication: "plain",
+  #     enable_starttls_auto: true,
+  #     user_name: 'f396f41db34e22',
+  #     password: 'f4eede72e026e4'
+  # }
+
 
 end

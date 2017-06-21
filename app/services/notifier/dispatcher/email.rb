@@ -14,7 +14,7 @@ class Notifier
       def perform
         mailer.notify(
           recipient_email: recipient_email,
-          user_id: dispatcher.user.id.to_s,
+          user_id: user_id,
           title: dispatcher.title,
           url: link_url,
         ).deliver_later(wait: 1.minutes)
@@ -23,6 +23,8 @@ class Notifier
       private
 
       def mailer
+        return dispatcher.mailer if dispatcher.mailer
+        
         if dispatcher.user.customer?
           CustomerMailer
         elsif dispatcher.user.shopkeeper?
@@ -30,6 +32,10 @@ class Notifier
         elsif dispatcher.user.admin?
           AdminMailer
         end
+      end
+
+      def user_id
+        dispatcher.user&.id&.to_s
       end
 
       def link_url
