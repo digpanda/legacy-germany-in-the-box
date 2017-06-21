@@ -5,6 +5,7 @@ describe Notifier::Customer, :type => :mailer do
   context "#welcome" do
 
     let(:customer) { FactoryGirl.create(:customer) }
+    before(:each) { CustomerMailer.deliveries = [] }
 
     it "should send an email" do
       Notifier::Customer.new(customer).welcome
