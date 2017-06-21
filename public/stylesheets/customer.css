@@ -743,8 +743,9 @@ body {
   color: #68a423; }
 
 .coupon__field {
-  width: 200px;
-  border: 2px solid grey; }
+  border: 1px dashed #33965e;
+  background-color: #f9f9f9;
+  width: 100%; }
 
 .coupon__apply {
   text-transform: uppercase;
@@ -1626,7 +1627,7 @@ body {
   color: #3498db; }
   .cart__total-discount a {
     font-size: 20px;
-    color: #3498db;
+    color: #d6506c;
     vertical-align: middle; }
 
 .cart__total-discount-price {
@@ -1644,30 +1645,33 @@ body {
   text-align: center;
   font-weight: bold; }
 
-.cart__total-coupon input {
-  border: none; }
-  .cart__total-coupon input::-webkit-input-placeholder {
-    color: #B8B8B8; }
-  .cart__total-coupon input:-moz-placeholder {
-    color: #B8B8B8;
-    opacity: 1; }
-  .cart__total-coupon input:-moz-placeholder {
-    color: #B8B8B8;
-    opacity: 1; }
-  .cart__total-coupon input:-ms-input-placeholder {
-    color: #B8B8B8; }
-  .cart__total-coupon input:-ms-input-placeholder {
-    color: #B8B8B8; }
+.cart__total-coupon input::-webkit-input-placeholder {
+  color: #B8B8B8; }
+
+.cart__total-coupon input:-moz-placeholder {
+  color: #B8B8B8;
+  opacity: 1; }
+
+.cart__total-coupon input:-moz-placeholder {
+  color: #B8B8B8;
+  opacity: 1; }
+
+.cart__total-coupon input:-ms-input-placeholder {
+  color: #B8B8B8; }
+
+.cart__total-coupon input:-ms-input-placeholder {
+  color: #B8B8B8; }
 
 .cart__total-coupon-button {
   text-align: center; }
   .cart__total-coupon-button input {
     border: none;
-    background: transparent;
-    color: #3498db;
+    background: #33965e;
+    color: #ffffff;
     font-weight: bold;
     text-align: center;
-    margin: auto 0; }
+    margin: auto 0;
+    width: 90%; }
 
 .landing-banner-desktop {
   background-color: #eeeeee;

@@ -98,7 +98,7 @@
     // discount link
     a
       font-size: 20px
-      color: $color-blue
+      color: $color-red
       vertical-align: middle
 
   +part(total-discount-price)
@@ -118,15 +118,16 @@
 
   +part(total-coupon)
     input
-      border: none
+      //border: none
       +placeholder($color-grey-placeholder)
 
   +part(total-coupon-button)
     text-align: center
     input
       border: none
-      background: transparent
-      color: $color-blue
+      background: $color-dark-green //transparent
+      color: $color-white
       font-weight: bold
       text-align: center
       margin: auto 0
+      width: 90%
