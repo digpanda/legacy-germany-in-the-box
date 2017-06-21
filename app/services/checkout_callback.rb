@@ -115,8 +115,9 @@ class CheckoutCallback < BaseService
 
   def dispatch_guide_message!(order_payment)
     referrer = order_payment.order.referrer
+    referrer_provision = order_payment.order.referrer_provision
     if referrer&.user&.mobile
-      Notifier::Customer.new(referrer.user).referrer_provision_was_raised(order_payment, referrer)
+      Notifier::Customer.new(referrer.user).referrer_provision_was_raised(order_payment, referrer, referrer_provision)
     end
   end
 
