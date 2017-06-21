@@ -1,5 +1,3 @@
-require 'abstract_method'
-
 class OrderDecorator < Draper::Decorator
 
   MAX_DESCRIPTION_CHARACTERS = 200
