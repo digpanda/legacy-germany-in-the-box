@@ -12,7 +12,7 @@ class Connect::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       failure
     end
   end
-  
+
   def referrer
     if params[:code]
       if wechat_auth.success?
@@ -32,6 +32,7 @@ class Connect::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
         sign_out
         sign_in(:user, user)
+        session[:landing] = :package_sets
         SlackDispatcher.new.silent_login_attempt("[Wechat] Tourist guide automatically logged-in (`#{user&.id}`)")
 
         if @tourist_guide

@@ -29,7 +29,6 @@ class Notifier
     end
 
     def referrer_provision_was_raised(order_payment, referrer, referrer_provision)
-      SlackDispatcher.new.message("DISPATCH SMS NOW WITH REFERRER #{referrer.id}")
       dispatch(
         title: "一位客户",
         desc: "一位客户在您的推荐下在来因盒平台下了一个#{order_payment.amount_eur.in_euro.display}的订单。您现在的总佣金为#{referrer.total_earned.in_euro.display} (订单佣金 +#{referrer_provision.provision.in_euro.display})"
