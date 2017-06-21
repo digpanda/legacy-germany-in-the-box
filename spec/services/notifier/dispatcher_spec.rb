@@ -56,17 +56,28 @@ describe Notifier::Dispatcher, :type => :mailer do
       expect(dispatch_sms.success?).to eq(false) # not sent
     end
 
+    it "should send a SMS and an email" do
+      dispatch_sms = Notifier::Dispatcher.new(
+        user: customer,
+        title: "Fake title",
+        desc: "Fake description", # this will be used
+        url: "http://test.com"
+      ).perform(dispatch: [:sms, :email])
+
+      expect(dispatch_sms.success?).to eq(true) # sent successfully
+      expect(Notification.count).to eq(1)
+      expect(CustomerMailer.deliveries.count).to eq(1) # no email
+    end
+
     it "should not save the same notification twice" do
 
       2.times do
-
         Notifier::Dispatcher.new(
           user: customer,
           title: "Fake title",
           desc: "Fake description",
           url: "http://test.com"
         ).perform
-
       end
 
       expect(Notification.count).to eq(1)

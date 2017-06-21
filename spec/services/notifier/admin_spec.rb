@@ -4,6 +4,7 @@ describe Notifier::Admin, :type => :mailer do
 
     let(:admin) { FactoryGirl.create(:admin) }
     let(:referrer) { FactoryGirl.create(:customer, :with_referrer).referrer }
+    before(:each) { AdminMailer.deliveries = [] }
 
     it "should send an email" do
       Notifier::Admin.new.referrer_claimed_money(referrer)

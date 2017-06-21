@@ -1,3 +1,5 @@
+require Rails.root.join('app/services/notifier/customer').to_s
+
 describe Notifier::Customer, :type => :mailer do
 
   context "#welcome" do
