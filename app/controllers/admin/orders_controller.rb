@@ -40,6 +40,20 @@ class Admin::OrdersController < ApplicationController
     redirect_to navigation.back(1)
   end
 
+  def shipped
+    unless order.shippable?
+      flash[:error] = "Order is not shippable."
+      redirect_to navigation.back(1)
+      return
+    end
+
+    order.status = :shipped
+    order.save
+    Notifier::Customer.new(order.user).order_has_been_shipped(order)
+    flash[:success] = "Order is considered shipped and SMS was triggered."
+    redirect_to navigation.back(1)
+  end
+
   def destroy
     if order.delete
       flash[:success] = "The order was deleted."

@@ -35,5 +35,12 @@ class Notifier
       ).perform(dispatch: [:sms])
     end
 
+    def order_has_been_shipped(order)
+      dispatch(
+        title: "Tracking ID",
+        desc: "You order has been delivered or something"
+      ).perform(dispatch: [:sms])
+    end
+
   end
 end

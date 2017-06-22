@@ -10,7 +10,6 @@ FactoryGirl.define do
     fname                 { Faker::Name.first_name }
     lname                 { Faker::Name.last_name }
     mail                  { Faker::Internet.email }
-    hermes_pickup         true
     wirecard_status :active
     approved { Time.now }
     bg_merchant_id { "#{Faker::Number.number(20)}" }

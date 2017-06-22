@@ -59,6 +59,7 @@ namespace :admin do
   end
 
   resources :orders do
+    patch :shipped
   end
 
   resources :order_items do

@@ -28,7 +28,6 @@ class Shop
   field :register,        type: String
   field :website,         type: String
   field :agb,             type: Boolean
-  field :hermes_pickup,   type: Boolean,    default: false
   field :wirecard_status, type: Symbol,     default: :unactive
 
   field :position, type: Integer, default: 0

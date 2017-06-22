@@ -39,8 +39,6 @@ class OrdersFormatter < BaseService
     'Transactions Types',
     'Wirecard Transactions IDs',
     'Wirecard Request IDs',
-    'Minimum Sending Date',
-    'Hermes Pickup Email Sent At',
     'Bill ID',
     'Paid At',
     'Created At',
@@ -110,8 +108,6 @@ class OrdersFormatter < BaseService
       wirecard_transactions_ids(order),
       wirecard_requests_ids(order),
 
-      order.minimum_sending_date,
-      order.hermes_pickup_email_sent_at,
       order.bill_id,
       order.paid_at,
       order.c_at,

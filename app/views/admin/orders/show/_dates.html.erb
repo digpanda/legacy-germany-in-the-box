@@ -9,10 +9,6 @@
   Cancelled at <strong><%= @order.cancelled_at.utc %><br /></strong>
 <% end %>
 
-<% if @order.minimum_sending_date %>
-  Sendable since <strong><%= @order.minimum_sending_date.utc %></strong><br />
-<% end %>
-
 <br />
 
 Updated at <strong><%= @order.u_at.utc %></strong>

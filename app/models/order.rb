@@ -14,11 +14,10 @@ class Order
   field :desc,                      type: String
   field :logistic_partner, type: Symbol, default: :manual
   field :order_items_count,         type: Fixnum, default: 0
-  field :minimum_sending_date,      type: Time
-  field :hermes_pickup_email_sent_at, type: Time
   field :bill_id, type: String
   field :paid_at, type: Time
   field :cancelled_at, type: Time
+  field :tracking_id, type: String
 
   field :shipping_cost, type: Float, default: 0.0
 
@@ -265,7 +264,7 @@ class Order
   end
 
   def shippable?
-    self.status == :custom_checking && Time.now.utc > minimum_sending_date
+    self.bought? && self.status != :shipped
   end
 
   def paid?

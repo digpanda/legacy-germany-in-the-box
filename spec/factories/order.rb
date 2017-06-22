@@ -36,7 +36,6 @@ FactoryGirl.define do
 
     trait :with_custom_checkable do
       status :custom_checkable
-      minimum_sending_date { 48.hours.from_now }
     end
 
     trait :with_referrer do
@@ -53,7 +52,6 @@ FactoryGirl.define do
 
     trait :with_shippable do
       status :custom_checking
-      minimum_sending_date { 24.hours.ago }
     end
 
     trait :without_customer do

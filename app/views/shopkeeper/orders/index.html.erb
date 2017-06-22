@@ -22,9 +22,6 @@
           Files
         </th>
         <th>
-          Sending date
-        </th>
-        <th>
           <%= I18n.t(:updated_at, scope: :edit_order) %>
         </th>
         <th>
@@ -59,23 +56,6 @@
           <td>
             <%= render partial: "shared/orders/partials/files_buttons", locals: { :order => order } %>
           </td>
-          <th>
-          <% unless order.minimum_sending_date.nil? %>
-            <% if Time.now.utc > order.minimum_sending_date %>
-
-              <span class="+blue">
-              <%= order.minimum_sending_date.strftime('%Y-%m-%d %H:%M:%S').in_time_zone("Berlin") %>
-              </span>
-
-            <% else %>
-
-              <span class="+red">
-              <%= order.minimum_sending_date.strftime('%Y-%m-%d %H:%M:%S').in_time_zone("Berlin") %>
-              </span>
-
-            <% end %>
-          <% end %>
-          </th>
           <td>
             <%= order.u_at.localtime.strftime('%Y-%m-%d %H:%M:%S').in_time_zone %>
           </td>
