@@ -55,6 +55,14 @@ class Address
   index({type: 1},      {unique: false, name: :idx_address_type, sparse: true})
   index({user: 1},      {unique: false, name: :idx_address_user, sparse: true})
 
+  before_save :ensure_valid_mobile
+
+  def ensure_valid_mobile
+    if mobile
+      mobile.gsub!(/[[:space:]]/, '')
+    end
+  end
+  
   def country_code
     country&.alpha2
   end
@@ -66,4 +74,6 @@ class Address
   def country_local_name
     country&.local_name
   end
+
+
 end

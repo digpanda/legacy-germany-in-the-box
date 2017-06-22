@@ -3179,6 +3179,12 @@ var AutoResize = {
       preferredCountries: ["DE", "CN"],
       initialCountry: "DE"
     });
+
+    $("#address_mobile").intlTelInput({
+      nationalMode: false,
+      preferredCountries: ["DE", "CN"],
+      initialCountry: "CN"
+    });
   }
 };
 
