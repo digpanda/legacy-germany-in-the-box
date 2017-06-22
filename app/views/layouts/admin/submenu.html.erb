@@ -1,14 +1,14 @@
 <%= inside_layout do %>
   <div class="row">
     <div class="+small-spacer"></div>
-    <div class="col-md-3">
+    <div class="col-md-2">
       <aside class="sidebar-left">
         <ul class="nav nav-pills nav-stacked nav-arrow">
           <%= render partial: "layouts/#{solve_section}/submenu/list" %>
         </ul>
       </aside>
     </div>
-    <div class="col-md-8">
+    <div class="col-md-10">
       <%= yield %>
     </div>
   </div>
