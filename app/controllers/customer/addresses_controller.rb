@@ -62,12 +62,6 @@ class Customer::AddressesController < ApplicationController
 
   private
 
-  def resolve_china_city!
-    address_params[:district] = ChinaCity.get(address_params[:district])
-    address_params[:city] = ChinaCity.get(address_params[:city])
-    address_params[:province] = ChinaCity.get(address_params[:province])
-  end
-
   def solve_primary_address!
     other_address = current_user.addresses.first
     if other_address
@@ -93,7 +87,6 @@ class Customer::AddressesController < ApplicationController
 
   def set_address_params
     address_params[:country] = 'CN'
-    resolve_china_city!
   end
 
 end

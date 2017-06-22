@@ -2540,7 +2540,7 @@ require.register("javascripts/starters.js", function(exports, require, module) {
 /**
  * Starters Class
  */
-var Starters = ['auto_resize', 'back_to_top', 'bootstrap', 'china_city', 'datepicker', 'editable_fields', 'footer', 'input_validation', 'images_handler', 'lazy_loader', 'left_menu', 'links_behaviour', 'messages', 'mobile_menu', 'mobile', 'navigation', 'product_favorite', 'product_form', 'products_list', 'qrcode', 'refresh_time', 'responsive', 'search', 'sku_form', 'sweet_alert', 'table_clicker', 'tooltipster', 'total_products'];
+var Starters = ['auto_resize', 'back_to_top', 'bootstrap', 'datepicker', 'distpicker', 'editable_fields', 'footer', 'input_validation', 'images_handler', 'lazy_loader', 'left_menu', 'links_behaviour', 'messages', 'mobile_menu', 'mobile', 'navigation', 'product_favorite', 'product_form', 'products_list', 'qrcode', 'refresh_time', 'responsive', 'search', 'sku_form', 'sweet_alert', 'table_clicker', 'tooltipster', 'total_products'];
 
 module.exports = Starters;
 });
@@ -2653,67 +2653,6 @@ var Bootstrap = {
 module.exports = Bootstrap;
 });
 
-require.register("javascripts/starters/china_city.js", function(exports, require, module) {
-"use strict";
-
-/**
- * ChinaCity Class
- */
-var ChinaCity = {
-
-    ajax_url: "/api/guest/china_city/",
-
-    /**
-     * Initializer
-     */
-    init: function init() {
-
-        this.startChinaCity();
-    },
-
-    /**
-     * Get the china cities
-     * NOTE : this was taken from the old system and is very very disgusting.
-     * Don't hesitate to refactor all this shit when you get the time.
-     */
-    startChinaCity: function startChinaCity() {
-
-        $.fn.china_city = function () {
-            return this.each(function () {
-                var selects;
-                selects = $(this).find('.city-select');
-                return selects.change(function () {
-                    var $this, next_selects;
-                    $this = $(this);
-                    next_selects = selects.slice(selects.index(this) + 1);
-                    $("option:gt(0)", next_selects).remove();
-                    if (next_selects.first()[0] && $this.val() && !$this.val().match(/--.*--/)) {
-                        return $.get(ChinaCity.ajax_url + $(this).val(), function (data) {
-                            var i, len, option;
-                            if (data.data != null) {
-                                data = data.data;
-                            }
-                            for (i = 0, len = data.length; i < len; i++) {
-                                option = data[i];
-                                next_selects.first()[0].options.add(new Option(option[0], option[1]));
-                            }
-                            return next_selects.trigger('china_city:load_data_completed');
-                        });
-                    }
-                });
-            });
-        };
-
-        $(document).ready(function () {
-            $('.city-group').china_city();
-        });
-    }
-
-};
-
-module.exports = ChinaCity;
-});
-
 require.register("javascripts/starters/datepicker.js", function(exports, require, module) {
 'use strict';
 
@@ -2750,6 +2689,27 @@ var Datepicker = {
 };
 
 module.exports = Datepicker;
+});
+
+require.register("javascripts/starters/distpicker.js", function(exports, require, module) {
+"use strict";
+
+/**
+ * Distpicker Class
+ */
+var Distpicker = {
+
+  /**
+   * Initializer
+   */
+  init: function init() {
+
+    $("#distpicker").distpicker();
+  }
+
+};
+
+module.exports = Distpicker;
 });
 
 require.register("javascripts/starters/editable_fields.js", function(exports, require, module) {

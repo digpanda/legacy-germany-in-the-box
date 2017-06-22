@@ -1,0 +1,63 @@
+{
+  "name": "distpicker",
+  "description": "A simple jQuery plugin for picking provinces, cities and districts of China.",
+  "main": [
+    "dist/distpicker.js"
+  ],
+  "keywords": [
+    "中国",
+    "省份",
+    "城市",
+    "行政区",
+    "省市区",
+    "三级联动",
+    "地址选择器",
+    "China",
+    "Chinese",
+    "province",
+    "provinces",
+    "city",
+    "cities",
+    "district",
+    "districts",
+    "pick",
+    "picker",
+    "picking",
+    "jquery",
+    "plugin",
+    "html",
+    "css",
+    "javascript",
+    "front-end",
+    "web",
+    "development"
+  ],
+  "authors": [
+    "Fengyuan Chen"
+  ],
+  "homepage": "https://github.com/fengyuanchen/distpicker",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "tests",
+    "test",
+    "docs",
+    "rollup.config.js"
+  ],
+  "dependencies": {
+    "jquery": ">= 1.9.1"
+  },
+  "version": "2.0.0",
+  "_release": "2.0.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "v2.0.0",
+    "commit": "14dfa4a5e2368606efd14d55085e7601d8b53fd6"
+  },
+  "_source": "https://github.com/fengyuanchen/distpicker.git",
+  "_target": "^2.0.0",
+  "_originalSource": "distpicker",
+  "_direct": true
+}

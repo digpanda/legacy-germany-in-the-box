@@ -42,36 +42,29 @@
 
   <h3><%= I18n.t(:location, scope: :address) %></h3>
 
-<% if address.province.nil? %>
-
-  <div class="city-group">
+  <div id="distpicker">
     <div class="form-group">
-      <%= form.select :province, options_for_select(china_city_ordered_list), {  include_blank: I18n.t(:province_blank, scope: :edit_address) }, { :autocomplete => :off, class: 'form-control city-select city-province', :required => true } %>
+      <div class="row">
+        <div class="col-md-12">
+          <select data-province="<%= form.object.province %>" name="address[province]" id="address_province" required="required" class="form-control"></select>
+        </div>
+      </div>
     </div>
     <div class="form-group">
-      <%= form.select :city, [], { include_blank: I18n.t(:city_blank, scope: :edit_address) }, { :autocomplete => :off, class: 'form-control city-select city-city', :required => true } %>
+      <div class="row">
+        <div class="col-md-12">
+          <select data-city="<%= form.object.city %>" name="address[city]" id="address_city" required="required" class="form-control"></select>
+        </div>
+      </div>
     </div>
     <div class="form-group">
-      <%= form.select :district, [], { include_blank: I18n.t(:district_blank, scope: :edit_address) }, { :autocomplete => :off, class: 'form-control city-select city-district' } %>
-    </div>
-  </div>
-
-<% else %>
-
-  <div class="city-group">
-    <div class="form-group">
-      <%= form.select :province, options_for_select(get_provinces, get_code_for_province(address.province)), {  include_blank: I18n.t(:province_blank, scope: :edit_address) }, { :autocomplete => :off, class: 'form-control city-select city-province', :required => true } %>
-    </div>
-    <div class="form-group">
-      <%= form.select :city, options_for_select(get_cities_for_province(address.province), get_code_for_city(address.province, address.city)), { include_blank: I18n.t(:city_blank, scope: :edit_address) }, { :autocomplete => :off, class: 'form-control city-select city-city', :required => true } %>
-    </div>
-    <div class="form-group">
-      <%= form.select :district, options_for_select(get_districts_for_city(address.province, address.city), get_code_for_district(address.province, address.city, address.district)), { include_blank: I18n.t(:district_blank, scope: :edit_address) }, { :autocomplete => :off, class: 'form-control city-select city-district' } %>
+      <div class="row">
+        <div class="col-md-12">
+          <select data-district="<%= form.object.district %>" name="address[district]" id="address_district" required="required" class="form-control"></select>
+        </div>
+      </div>
     </div>
   </div>
-
-<% end %>
-
 
   <div class="form-group">
     <div class="row">

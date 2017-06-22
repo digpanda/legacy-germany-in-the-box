@@ -143,9 +143,6 @@ GEM
       qiniu (~> 6.5.1)
     childprocess (0.5.9)
       ffi (~> 1.0, >= 1.0.11)
-    china_city (0.0.6)
-      jquery-rails (~> 3)
-      rails (~> 4.0)
     chromedriver-helper (1.0.0)
       archive-zip (~> 0.7.0)
       nokogiri (~> 1.6)
@@ -588,7 +585,6 @@ DEPENDENCIES
   carrierwave-ftp
   carrierwave-mongoid
   carrierwave-qiniu
-  china_city
   chromedriver-helper
   copy_carrierwave_file
   countries
