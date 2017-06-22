@@ -1516,9 +1516,6 @@ input, textarea, select, a, button {
 .content-shopkeeper {
   max-width: 1500px; }
 
-.content-admin {
-  max-width: 1700px; }
-
 *, *:before, *:after {
   box-sizing: inherit; }
 
