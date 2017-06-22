@@ -38,7 +38,7 @@ class Notifier
     def order_has_been_shipped(order)
       dispatch(
         title: "发货通知",
-        desc: "亲爱的顾客，您的订单#{order.id}已安排发货。快递单号为：#{order.tracking_id}，您可登陆快递100http://www.kuaidi100.xn--com-003fxds46c3ns469by4h。"
+        desc: "亲爱的顾客，您的订单#{order.id}已安排发货。快递单号为：#{order.tracking_id}，您可登陆快递100http://www.kuaidi100.com 查询快递状态。"
       ).perform(dispatch: [:sms])
     end
 
