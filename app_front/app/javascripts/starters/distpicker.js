@@ -8,7 +8,9 @@ var Distpicker = {
      */
     init: function() {
 
-      $("#distpicker").distpicker();
+      if ($('#distpicker').length > 0) {
+        $("#distpicker").distpicker();
+      }
 
     },
 

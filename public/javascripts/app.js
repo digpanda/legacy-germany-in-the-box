@@ -2715,7 +2715,9 @@ var Distpicker = {
    */
   init: function init() {
 
-    $("#distpicker").distpicker();
+    if ($('#distpicker').length > 0) {
+      $("#distpicker").distpicker();
+    }
   }
 
 };
