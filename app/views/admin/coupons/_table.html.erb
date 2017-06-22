@@ -56,7 +56,7 @@
         <%= coupon.orders.count %>
       </td>
       <td>
-        <%= coupon.referrer&.reference_id %>
+        <%= coupon.referrer&.reference_id %> (<%= coupon.referrer&.user&.decorate&.full_name %>)
       </td>
       <td>
         <%= coupon.last_applied_at %>
