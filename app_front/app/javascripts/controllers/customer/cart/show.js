@@ -17,7 +17,18 @@ var Cart = {
     this.orderItemHandleQuantity();
     this.removeOrderItem();
     this.removePackageSet();
+    this.handleCouponAutoApply();
 
+  },
+
+  handleCouponAutoApply: function() {
+    var original_href = $('#checkout-button').attr('href');
+    $('#coupon_code').on('keyup', function(e) {
+      let target = e.currentTarget;
+      let coupon = target.value;
+      let new_href = original_href + "?coupon=" + coupon;
+      $('#checkout-button').attr('href', new_href);
+    });
   },
 
   getItemData: function(el) {

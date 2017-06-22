@@ -354,6 +354,17 @@ var Cart = {
     this.orderItemHandleQuantity();
     this.removeOrderItem();
     this.removePackageSet();
+    this.handleCouponAutoApply();
+  },
+
+  handleCouponAutoApply: function handleCouponAutoApply() {
+    var original_href = $('#checkout-button').attr('href');
+    $('#coupon_code').on('keyup', function (e) {
+      var target = e.currentTarget;
+      var coupon = target.value;
+      var new_href = original_href + "?coupon=" + coupon;
+      $('#checkout-button').attr('href', new_href);
+    });
   },
 
   getItemData: function getItemData(el) {
