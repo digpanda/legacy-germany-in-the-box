@@ -1,9 +1,6 @@
 <li class="<%= menu_active? admin_search_path  %>">
   <%= link_to "Search", admin_search_path %>
 </li>
-<li class="<%= menu_active? edit_admin_account_path  %>">
-  <%= link_to "My Account", edit_admin_account_path %>
-</li>
 <li class="<%= menu_active? shared_notifications_path %>">
   <%= link_to "Notifications", shared_notifications_path %>
 </li>
@@ -39,6 +36,10 @@
 </li>
 <li class="<%= menu_active? admin_settings_path %>">
   <%= link_to "Settings", admin_settings_path %>
+</li>
+<li></li>
+<li class="<%= menu_active? edit_admin_account_path  %>">
+  <%= link_to "My Account", edit_admin_account_path %>
 </li>
 <li>
   <%= link_to "Sign-out", destroy_user_session_path, :method => :delete %>

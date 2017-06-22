@@ -15,9 +15,6 @@
         Total Price
       </th>
       <th>
-        Label
-      </th>
-      <th>
         Updated At
       </th>
       <th>
@@ -43,13 +40,11 @@
         <%= order.total_price_with_extra_costs.in_euro.to_yuan.display %> (<%= order.total_price_with_extra_costs.in_euro.display %>)
       </td>
       <td>
-        <%= render partial: "shared/orders/partials/files_buttons", locals: { :order => order } %>
-      </td>
-      <td>
         <%= order.u_at.localtime.strftime('%Y-%m-%d %H:%M:%S').in_time_zone %>
       </td>
       <td>
         <a href="<%= admin_order_path(order) %>"><i class="fa fa-eye tooltipster buttons buttons__edit" title="Details and configuration"></i></a>
+        <%= render partial: "shared/orders/partials/files_buttons", locals: { :order => order } %>
       </td>
     </tr>
     <% end %>

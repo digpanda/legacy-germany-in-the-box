@@ -1,20 +1,17 @@
-<!-- Footer -->
-<div class="row">
-</div>
-
 <div class="row js-footer-stick">
+  <div class="col-md-12 +static-footer">
+    <div class="row">
+      <div class="col-md-6">
+        <strong><%= Rails.env.capitalize %> Mode</strong> - Client <%= request.remote_ip %> - Server <%= server_ip %>
+      </div>
 
-  <div class="col-md-12 main-footer">
-
-    <div class="main-footer__logo col-md-1">
-      <img src="/images/logo-min-white.png">
+      <!-- Time zones -->
+      <div class="col-md-3 col-md-push-3">
+        UTC <span id="utc-time"><%= Time.now.utc.strftime("%T") %></span> - 
+        China <span id="china-time"><%= Time.now.utc.in_time_zone("Beijing").strftime("%T") %></span> -
+        Germany <span id="germany-time"><%= Time.now.utc.in_time_zone("Berlin").strftime("%T") %></span>
+      </div>
     </div>
-
-    <div class="col-md-2">
-      <%= render "layouts/admin/footer/language_switch" %>
-    </div>
-
   </div>
-
 </div>
 <!-- End of footer -->

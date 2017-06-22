@@ -1,3 +1,30 @@
++tweak(static-menu)
+  position: fixed
+  top: 0
+  left: 0
+  width: 15%
+  height: 100%
+  background-color: $color-black
+
+  .active
+    font-weight: bold
+
+  #{$a-tags}
+    color: $color-white
+    display: block
+  ul
+    padding-top: 1em
+    padding-left: 1em
+  li
+    padding: 0.5em
+
++tweak(static-footer)
+    padding-top: 1.3em
+    padding-bottom: 1.3em
+    background-color: $color-light-grey
+    color: $color-white
+    min-height: 60px
+
 +tweak(notif-bubble)
   position: absolute
   background-color: $color-red
@@ -13,7 +40,7 @@
 
 +tweak(anti-margin)
   +anti-margin
-    
+
 +tweak(small-margin)
   margin: 1em
 
