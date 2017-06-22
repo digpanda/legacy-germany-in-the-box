@@ -1,11 +1,11 @@
 <% if order_payments.size > 0 %>
-  <table class="white-table">
+  <table class="main-table">
     <thead>
       <th>
-        <%= I18n.t(:request_number, scope: :edit_payments) %>
+        Request #
       </th>
       <th>
-        <%= I18n.t(:transaction_number, scope: :edit_payments) %>
+        Transaction #
       </th>
       <th>
         Shop
@@ -13,11 +13,11 @@
       <th>
         Order #
       </th>
-      <td>
-        Delivery Address Name
-      </td>
       <th>
-        <%= I18n.t(:status, scope: :edit_payments) %>
+        Delivery Address Name
+      </th>
+      <th>
+        Status
       </th>
       <th>
         Amount (CNY)
@@ -29,13 +29,10 @@
         Payment Method
       </th>
       <th>
-        Transaction Type
-      </th>
-      <th>
         Date
       </th>
       <th>
-        <%= I18n.t(:action, scope: :edit_payments) %>
+        Action
       </th>
     </thead>
     <tbody>

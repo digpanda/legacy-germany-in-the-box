@@ -773,34 +773,37 @@
   border-radius: 1em;
   margin-bottom: 1em; }
 
-.white-table {
-  box-shadow: 0px 0px 20px 2px rgba(139, 139, 139, 0.32);
+.main-table {
+  background-color: #ffffff;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   -ms-border-radius: 4px;
   border-radius: 4px;
+  word-wrap: break-word;
   width: 100%;
   padding: 2em;
   margin-bottom: 1em;
   vertical-align: middle; }
-  .white-table a, .white-table a:active, .white-table a:hover, .white-table a:visited {
+  .main-table a, .main-table a:active, .main-table a:hover, .main-table a:visited {
     color: #68a423; }
-  .white-table > thead > tr > th {
+  .main-table tr:nth-child(even) {
+    background-color: #f9f9f9; }
+  .main-table > thead > tr > th {
     vertical-align: middle;
-    padding: 1em;
+    padding: 0.3em;
     white-space: nowrap; }
-  .white-table > tbody > tr > td {
+  .main-table > tbody > tr > td {
     vertical-align: middle;
-    padding: 1em;
+    padding: 0.5em;
     border-bottom: #eeeeee solid 1px; }
-  .white-table > thead {
+  .main-table > thead {
     border-bottom: #eeeeee solid 2px; }
-  .white-table img {
+  .main-table img {
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     -ms-border-radius: 5px;
     border-radius: 5px; }
-  .white-table__quantity input {
+  .main-table__quantity input {
     width: 25px;
     text-align: center;
     outline: none;

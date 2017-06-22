@@ -1,9 +1,6 @@
-<table class="white-table">
+<table class="main-table">
   <thead>
     <tr>
-      <th>
-        Image
-      </th>
       <th>
         Name
       </th>
@@ -33,9 +30,6 @@
   <tbody>
     <% order_items.each do |order_item| %>
       <tr>
-        <td>
-          <%= image_tag order_item.sku.decorate.highlighted_image %>
-        </td>
         <td>
           <%= order_item.product.name %>
         </td>

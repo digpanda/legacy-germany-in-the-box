@@ -1,7 +1,10 @@
-+component(white-table)
++component(main-table)
 
-  +shadow-lightbox
+  //+shadow-lightbox
+  background-color: $color-white
   +border-radius(4px)
+  word-wrap: break-word
+
   #{$a-tags}
     color: $color-green
 
@@ -10,14 +13,18 @@
   margin-bottom: 1em
   vertical-align: middle
 
+  tr:nth-child(even)
+    background-color: $color-nearly-white
+
+
   >thead >tr >th
     vertical-align: middle
-    padding: 1em
-    white-space: nowrap;
+    padding: 0.3em
+    white-space: nowrap
 
   >tbody >tr >td
     vertical-align: middle
-    padding: 1em
+    padding: 0.5em
     border-bottom: $color-grey solid 1px
 
   >thead
