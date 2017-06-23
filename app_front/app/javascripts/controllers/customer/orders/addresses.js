@@ -22,12 +22,20 @@ var OrdersAddresses = {
       $('#button-new-address').addClass('+hidden');
       $('#new-address').removeClass('+hidden');
 
+      OrdersAddresses.scrollToForm();
+
       // we reset the sticky footer because it makes useless spaces
       var Footer = require('javascripts/starters/footer');
       Footer.processStickyFooter();
 
     });
 
+  },
+
+  scrollToForm: function() {
+    $('html, body').animate({
+        scrollTop: $("#new-address").offset().top
+    }, 500);
   },
 
 }
