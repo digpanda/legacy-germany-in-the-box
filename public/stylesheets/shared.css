@@ -7097,9 +7097,9 @@ a.simple-text {
     border-color: #659443; }
 
 ul.pagination li a {
-  color: #659443 !important; }
+  color: #659443; }
   ul.pagination li a:hover {
-    color: #659443 !important; }
+    color: #659443; }
 
 .label-blue {
   background-color: #3498db; }

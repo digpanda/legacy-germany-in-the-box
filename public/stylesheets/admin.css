@@ -1454,8 +1454,7 @@
     background-color: #ffffff;
     border: 1px dashed #3498db; }
   .main-table a, .main-table a:active, .main-table a:hover, .main-table a:visited {
-    color: #3498db;
-    border-bottom: 1px dashed #3498db; }
+    color: #3498db; }
   .main-table tr:nth-child(even) {
     background-color: #f9f9f9; }
   .main-table > thead > tr > th {
@@ -1473,6 +1472,21 @@
     -moz-border-radius: 5px;
     -ms-border-radius: 5px;
     border-radius: 5px; }
+
+.pagination a, .pagination a:active, .pagination a:hover, .pagination a:visited {
+  color: #666; }
+
+.pagination .active a, .pagination .active a:active, .pagination .active a:hover, .pagination .active a:visited {
+  color: #ffffff;
+  cursor: default;
+  background-color: #666;
+  border-color: #666; }
+
+.pagination .active span {
+  color: #ffffff;
+  cursor: default;
+  background-color: #666;
+  border-color: #666; }
 
 .search input {
   height: 35px; }
