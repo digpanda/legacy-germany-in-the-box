@@ -3,7 +3,7 @@
   <div class="form-group">
     <div class="row">
       <div class="col-md-6">
-        <%= form.text_field :lname, :value => address.lname ? address.lname : current_user.lname, :class => 'form-control', :required => false, :placeholder => I18n.t(:lname, scope: :edit_address), :data => {:error => I18n.t(:chinese_characters_only, scope: :validation)} %>
+        <%= form.text_field :lname, :class => 'form-control', :required => false, :placeholder => I18n.t(:lname, scope: :edit_address), :data => {:error => I18n.t(:chinese_characters_only, scope: :validation)} %>
       </div>
       <%#= validation: #, :pattern => '[\u4e00-\u9fa5]+'  %>
       <div class="+mobile">
@@ -11,7 +11,7 @@
       </div>
 
       <div class="col-md-6">
-        <%= form.text_field :fname, :value => address.fname ? address.fname : current_user.fname, :class => 'form-control', :required => true, :placeholder => I18n.t(:fname, scope: :edit_address), :data => {:error => I18n.t(:chinese_characters_only, scope: :validation)} %>
+        <%= form.text_field :fname, :class => 'form-control', :required => true, :placeholder => I18n.t(:fname, scope: :edit_address), :data => {:error => I18n.t(:chinese_characters_only, scope: :validation)} %>
       </div>
     </div>
     <div class="row">
