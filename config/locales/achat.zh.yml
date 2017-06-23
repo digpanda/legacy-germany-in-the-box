@@ -42,7 +42,7 @@ zh-CN:
     failed: 交易订单处理失败，请稍后再试。
   address:
     apply: 使用
-    identity: 个人信息
+    identity: 收件人信息
     location: 地址
     choose_existing: 请从以下地址中选择
     create_new: 添加新收件地址
