@@ -22,7 +22,7 @@ class Notifier
       end
 
       def recipient_mobile
-        dispatcher.user.mobile
+        dispatcher.mobile || dispatcher.user.mobile
       end
 
     end

@@ -4,10 +4,11 @@
 class Notifier
   class Dispatcher < BaseService
 
-    attr_reader :email, :mailer, :user, :title, :desc, :url
+    attr_reader :email, :mobile, :mailer, :user, :title, :desc, :url
 
-    def initialize(email:nil,mailer:nil,user:nil,title:nil,desc:nil,url:nil)
+    def initialize(email:nil,mobile:nil,mailer:nil,user:nil,title:nil,desc:nil,url:nil)
       @email = email
+      @mobile = mobile
       @mailer = mailer
       @user = user
       @title = title
