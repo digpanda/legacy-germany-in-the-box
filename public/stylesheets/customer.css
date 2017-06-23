@@ -815,7 +815,9 @@ body {
   margin-bottom: 1em;
   vertical-align: middle; }
   .main-table a, .main-table a:active, .main-table a:hover, .main-table a:visited {
-    color: #68a423; }
+    color: #3498db;
+    font-weight: bold;
+    border-bottom: 1px dashed #3498db; }
   .main-table tr:nth-child(even) {
     background-color: #f9f9f9; }
   .main-table > thead > tr > th {
