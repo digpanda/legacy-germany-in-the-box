@@ -19,7 +19,7 @@ module EditableHelper
   def editable_text_field(form, field)
     """
     <span class=\"js-editable-field\">
-    #{form.text_field field}
+    #{form.text_field field, :autocomplete => "off"}
     </span>
     """
   end

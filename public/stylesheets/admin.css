@@ -1450,6 +1450,9 @@
   width: 100%;
   margin-bottom: 1em;
   vertical-align: middle; }
+  .main-table input {
+    background-color: #ffffff;
+    border: 1px dashed #3498db; }
   .main-table a, .main-table a:active, .main-table a:hover, .main-table a:visited {
     color: #3498db;
     border-bottom: 1px dashed #3498db; }
