@@ -26,7 +26,7 @@
       <div class="col-md-12">
         <%= form.text_field :mobile, :value => address.mobile ? address.mobile : current_user.mobile, :class => 'form-control', :required => true, :placeholder => I18n.t(:mobile, scope: :edit_address), :pattern => I18n.t(:mobile, scope: :validation, locale: :'zh-CN'), :data => { :error => '请输入正确手机号' } %>
         <div class="help-block with-errors +left"></div>
-        <p>请确认正确填写手机号码，该号码将作为短信通知发货和通关状态的备用方式。</p>
+        <p>请确认手机号码填写正确，该号码用于您的包裹发货，通关状态短信通知和送货联络。</p>
        </div>
      </div>
   </div>
