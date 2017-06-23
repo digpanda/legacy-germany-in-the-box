@@ -1674,8 +1674,10 @@ body {
 
 .cart__total-coupon input {
   border-radius: 0;
-    border-radius--webkit-appearance: none;
-    border-radius-height: 140px; }
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+    appearance-height: 140px; }
   .cart__total-coupon input::-webkit-input-placeholder {
     color: #B8B8B8; }
   .cart__total-coupon input:-moz-placeholder {
