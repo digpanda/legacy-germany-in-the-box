@@ -1,6 +1,6 @@
 de:
   message:
-    account_updated: Ihr Konto wurde erfolgreich aktualisiert. 
+    account_updated: Ihr Konto wurde erfolgreich aktualisiert.
   address:
     apply: Einlösen
   referrer:
@@ -433,6 +433,7 @@ de:
     adjust_product_ok: Die Anzahl der Produkte wurde erfolgreich geändert.
     adjust_product_ko: Der Vorrat reicht momentan leider nicht.
     link_tracking: Sendung verfolgen
+    tracking_id: Verfolgung
     open: Öffnen
     override_maximal_total: Pro Tag können Sie bei usnerer Plattform mehrere Produkte nur in der Höhe unter  %{total} %{currency} kaufen.
     label: Label

@@ -109,6 +109,10 @@
             <% else %>
               短信通知
             <% end %>
+            <div class="clearfix"></div>
+            <strong><%= I18n.t(:tracking_id, scope: :edit_order) %>:</strong>
+            <%= order.tracking_id %>
+
           <% end %>
           <div class="clearfix"></div>
           <strong><%= I18n.t(:updated_at, scope: :edit_order) %>:</strong> <%= order.u_at.localtime.strftime('%Y-%m-%d %H:%M:%S') %>
