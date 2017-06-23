@@ -32,7 +32,7 @@ class Customer::OrdersController < ApplicationController
       cart_manager.refresh!
     end
     flash[:success] = I18n.t(:delete_ok, scope: :edit_order)
-    redirect_to navigation.back(1)
+    redirect_to customer_orders_path
   end
 
   def continue
