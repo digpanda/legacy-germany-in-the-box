@@ -7,6 +7,15 @@
   </div>
 </div>
 
+<div class="row">
+  <div class="col-md-12">
+    <div class="+white-box">
+      <%= render partial: "shared/partials/search" %>
+    </div>
+    <div class="+small-spacer"></div>
+  </div>
+</div>
+
 <div class="+overflow">
   <%= render partial: "admin/order_payments/table", :locals => { :order_payments => @order_payments } %>
 </div>

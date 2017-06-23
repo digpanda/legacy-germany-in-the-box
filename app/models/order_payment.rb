@@ -1,5 +1,9 @@
 class OrderPayment
   include MongoidBase
+  include Mongoid::Search
+
+  # research system
+  search_in :id, :request_id, :transaction_id, :amount_cny, :status, :amount_eur, :payment_method, :c_at, :shop => :shopname, :order => :id
 
   field :request_id     , type: String
   field :parent_transaction_id, type: String

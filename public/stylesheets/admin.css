@@ -1452,6 +1452,15 @@
     padding: 0 7px;
     color: #8b8b8b; }
 
+.search input {
+  height: 35px; }
+  .search input[type="submit"] {
+    color: #ffffff;
+    background-color: #666; }
+  .search input[type="text"] {
+    width: 300px;
+    border: 1px dashed #8b8b8b; }
+
 @media (max-width: 994px) {
   .connect__separator {
     display: none !important; } }

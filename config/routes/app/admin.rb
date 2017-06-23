@@ -66,9 +66,6 @@ namespace :admin do
     patch :refresh_referrer_rate
   end
 
-  resource :search, :controller => 'search' do
-  end
-
   resource :account, :controller => 'account' do
   end
 

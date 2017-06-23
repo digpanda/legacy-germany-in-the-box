@@ -13,7 +13,7 @@ class Admin::ReferrersController < ApplicationController
   layout :custom_sublayout
 
   def index
-    @referrers = Referrer.all
+    @referrers = Referrer.full_text_search(params[:query], match: :all, allow_empty_search: true).all
   end
 
   def provisions

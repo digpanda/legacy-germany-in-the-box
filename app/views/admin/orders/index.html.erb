@@ -7,14 +7,17 @@
     <a href="<%= admin_orders_path(format: "csv") %>"><i class="fa fa-download tooltipster" title="Download CSV format"></i></a>
   </div>
 
-  <div class="col-md-4 col-xs-6">
-    <div class="page-navigation__right">
-      <%= select 'order', 'status', Order.validators_on(:status)[1].options[:in], {:selected => params[:status], :include_blank => "Status"}, {:class => "nice js-order-status-filter"} %>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="+white-box">
+      <%= render partial: "shared/partials/search" %>
     </div>
+    <div class="+small-spacer"></div>
   </div>
 </div>
 
-<div class="+small-spacer"></div>
 <div class="+overflow">
   <%= render partial: "admin/orders/table", :locals => { :orders => @orders } %>
 </div>

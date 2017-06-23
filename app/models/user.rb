@@ -2,10 +2,13 @@ require 'will_paginate/array'
 
 class User
   include MongoidBase
-
+  include Mongoid::Search
   include Genderize
 
   strip_attributes
+
+  # research system
+  search_in :id, :email, :role, :last_sign_in_at
 
   ## Database authenticatable
   field :email,               type: String, default: ''

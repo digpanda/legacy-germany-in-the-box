@@ -12,6 +12,9 @@
         Status
       </th>
       <th>
+        Tracking #
+      </th>
+      <th>
         Total Price
       </th>
       <th>
@@ -35,6 +38,9 @@
       </td>
       <td>
         <%= order.status %>
+      </td>
+      <td>
+        <%= order.tracking_id %>
       </td>
       <td>
         <%= order.total_price_with_extra_costs.in_euro.to_yuan.display %> (<%= order.total_price_with_extra_costs.in_euro.display %>)

@@ -1,0 +1,6 @@
+<div class="search">
+  <%= form_tag nil, :method => :get do |form| %>
+    <%= text_field_tag :query, params[:query], :placeholder => "Search", :autocomplete => "off" %>
+    <%= submit_tag "Filter", :class => "btn" %>
+  <% end %>
+</div>

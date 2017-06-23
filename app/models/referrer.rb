@@ -1,5 +1,9 @@
 class Referrer
   include MongoidBase
+  include Mongoid::Search
+
+  # research system
+  search_in :id, :reference_id, :nickname, :group, :coupons => :code, :user => :email
 
   field :reference_id, type: String # was referrer_id in User
   field :nickname, type: String

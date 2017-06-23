@@ -28,7 +28,7 @@ set :output, "/var/www/germany_in_the_box/current/log/cron.log"
 
 # other cron jobs
 # - reindexing entries for index
-every :day do
+every :hour do
   command 'The system has launched the rake task `rake mongoid_search:index`'
   rake "mongoid_search:index"
 end

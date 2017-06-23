@@ -3,7 +3,10 @@ require 'will_paginate/array'
 class Coupon
   include MongoidBase
   include ActiveModel::Validations
-  Numeric.include CoreExtensions::Numeric::CurrencyLibrary
+  include Mongoid::Search
+
+  # research system
+  search_in :id, :code, :desc, :discount, :last_applied_at, :c_at, :u_at, :referrer => :reference_id
 
   field :code, type: String
   field :discount, type: Float

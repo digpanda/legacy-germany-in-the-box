@@ -3,8 +3,12 @@ require 'will_paginate/array'
 class Order
   include MongoidBase
   include HasProductSummaries
+  include Mongoid::Search
 
   Numeric.include CoreExtensions::Numeric::CurrencyLibrary
+
+  # research system
+  search_in :status, :tracking_id, :nickname, :u_at, :end_price, :total_paid, :user => :id
 
   UNPROCESSABLE_TIME = [11,12] # 11am to 12am -> German Hour
   BOUGHT_OR_CANCELLED = [:paid, :custom_checkable, :custom_checking, :shipped, :cancelled]
