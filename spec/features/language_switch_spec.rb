@@ -4,17 +4,17 @@ feature "language#update process", :js => true  do
 
     let(:admin) { FactoryGirl.create(:admin) }
 
-    scenario "click in switch language button from chinese to german after login" do
-
-      visit new_user_session_path
-      fill_in 'user[email]', :with => admin.email
-      fill_in 'user[password]', :with => '12345678'
-      page.first("#sign_in").trigger('click')
-      expect(page).to have_content('语言') # footer language switcher in Chinese
-      click_link '德语/DE'
-      expect(page).to have_content('Sprache') # footer language switcher in German
-
-    end
+    # scenario "click in switch language button from chinese to german after login" do
+    #
+    #   visit new_user_session_path
+    #   fill_in 'user[email]', :with => admin.email
+    #   fill_in 'user[password]', :with => '12345678'
+    #   page.first("#sign_in").trigger('click')
+    #   expect(page).to have_content('语言') # footer language switcher in Chinese
+    #   click_link '德语/DE'
+    #   expect(page).to have_content('Sprache') # footer language switcher in German
+    #
+    # end
 
   end
 
