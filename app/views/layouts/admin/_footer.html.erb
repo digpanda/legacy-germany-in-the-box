@@ -1,15 +1,15 @@
 <div class="row js-footer-stick">
   <div class="col-md-12 +static-footer">
     <div class="row">
-      <div class="col-md-6">
-        <strong><%= Rails.env.capitalize %> Mode</strong> - Client <%= request.remote_ip %> - Server <%= server_ip %>
+      <div class="col-md-6 +left">
+        <strong>Germany in the Box - <%= Rails.env.capitalize %> Mode</strong> - Client <%= request.remote_ip %> - Server <%= server_ip %>
       </div>
 
       <!-- Time zones -->
-      <div class="col-md-3 col-md-push-3">
-        UTC <span id="utc-time"><%= Time.now.utc.strftime("%T") %></span> - 
-        China <span id="china-time"><%= Time.now.utc.in_time_zone("Beijing").strftime("%T") %></span> -
-        Germany <span id="germany-time"><%= Time.now.utc.in_time_zone("Berlin").strftime("%T") %></span>
+      <div class="col-md-6 +right +desktop">
+        UTC <span id="utc-time"><%= Time.now.utc.strftime("%T") %></span> -
+        Germany <span id="germany-time"><%= Time.now.utc.in_time_zone("Berlin").strftime("%T") %></span> -
+        China <span id="china-time"><%= Time.now.utc.in_time_zone("Beijing").strftime("%T") %></span>
       </div>
     </div>
   </div>
