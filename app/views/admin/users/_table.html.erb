@@ -2,22 +2,22 @@
   <table class="main-table">
     <thead>
       <th>
-        <%= I18n.t(:email, scope: :edit_account) %>
+        Email
       </th>
       <th>
-        <%= I18n.t(:username, scope: :edit_account) %>
+        Role
       </th>
       <th>
-        <%= I18n.t(:role, scope: :edit_account) %>
+        Referrer
       </th>
       <th>
-        <%= I18n.t(:sign_in_count, scope: :edit_account) %>
+        Sign In #
       </th>
       <th>
-        <%= I18n.t(:last_sign_in_at, scope: :edit_account) %>
+        Last Sign In
       </th>
       <th>
-        <%= I18n.t(:operations, scope: :edit_accounts) %>
+        Action
       </th>
     </thead>
     <tbody>
@@ -27,10 +27,10 @@
             <%= user.email %>
           </td>
           <td>
-            <%= user.nickname %>
+            <%= user.role %>
           </td>
           <td>
-            <%= user.role %>
+            <%= boolean_icon(user.referrer?) %>
           </td>
           <td>
             <%= user.sign_in_count %>
