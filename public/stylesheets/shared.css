@@ -230,10 +230,10 @@
 #csstyle .\+white-box {
   background-color: #fdfdfd;
   padding: 1em;
-  -webkit-border-radius: 1em;
-  -moz-border-radius: 1em;
-  -ms-border-radius: 1em;
-  border-radius: 1em; }
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  border-radius: 5px; }
 
 #csstyle .\+nomargin {
   margin: 0; }

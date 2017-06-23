@@ -7,6 +7,9 @@ class Admin::UsersController < ApplicationController
 
   layout :custom_sublayout
 
+  before_action :breadcrumb_admin_users, :except => [:index]
+  before_action :breadcrumb_admin_user, only: [:show]
+
   def index
     @users = User.order(last_sign_in_at: :desc).paginate(:page => current_page, :per_page => 10)
   end

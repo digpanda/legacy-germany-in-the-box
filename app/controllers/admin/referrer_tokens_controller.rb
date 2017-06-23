@@ -8,6 +8,11 @@ class Admin::ReferrerTokensController < ApplicationController
 
   before_action :set_referrer_token, :except => [:index, :new, :create]
 
+  before_action :breadcrumb_admin_referrer_tokens, :except => [:index]
+  before_action :breadcrumb_admin_referrer_token, :except => [:index]
+  before_action :breadcrumb_admin_referrer_token_edit, only: [:edit]
+  before_action :breadcrumb_admin_referrer_token_new, only: [:new]
+
   layout :custom_sublayout
 
   def index

@@ -9,6 +9,9 @@ class Admin::OrdersController < ApplicationController
 
   layout :custom_sublayout
 
+  before_action :breadcrumb_admin_orders, :except => [:index]
+  before_action :breadcrumb_admin_order, only: [:show]
+
   def index
     respond_to do |format|
       format.html do

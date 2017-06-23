@@ -4,6 +4,11 @@ class Admin::ReferrersController < ApplicationController
 
   before_action :set_referrer, :except => [:index, :new]
 
+  before_action :breadcrumb_admin_referrers, :except => [:index]
+  before_action :breadcrumb_admin_referrer, :except => [:index]
+  before_action :breadcrumb_admin_referrer_provisions, only: [:provisions]
+  before_action :breadcrumb_admin_referrer_coupon, only: [:coupon]
+
   authorize_resource :class => false
   layout :custom_sublayout
 

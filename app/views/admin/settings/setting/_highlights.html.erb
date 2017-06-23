@@ -1,0 +1,100 @@
+<%= form_for [:admin, @setting], :data => {:toggle => 'validator'} do |form| %>
+
+<!-- PACKAGE SET BANNER -->
+
+<div class="form-group">
+  <%= form.label :package_sets_highlight, "Package sets highlight" %>
+
+  <div class="+down">
+    <!-- the `form.object` represents the `shop` model -->
+    <% if @setting.package_sets_highlight %>
+      <%= form.label :package_sets_highlight, :class => 'switch' do %>
+        <%= form.check_box :package_sets_highlight %>
+        <div class="switch__slider"></div>
+      <% end %>
+    <% else %>
+      <%= form.label :package_sets_highlight, :class => 'switch' do %>
+        <%= form.check_box :package_sets_highlight %>
+        <div class="switch__slider"></div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+  <div class="form-group">
+    <%= form.label :package_sets_title, "Package sets title" %>
+    <%= form.text_field :package_sets_title, :autocomplete => :off %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :package_sets_description, "Package sets description" %>
+    <%= form.text_field :package_sets_description, :autocomplete => :off %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :package_sets_link, "Package sets link" %>
+    <%= form.text_field :package_sets_link, :autocomplete => :off %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :package_sets_button, "Package sets button" %>
+    <%= form.text_field :package_sets_button, :autocomplete => :off %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :package_sets_cover, "Package sets cover" %>
+    <%= js_file_upload(form: form, field: :package_sets_cover) %>
+  </div>
+
+  <div class="clearfix"></div>
+
+  <!-- LANDING PAGE BANNER -->
+
+  <div class="form-group">
+    <%= form.label :landing_page_highlight, "Landing page highlight" %>
+
+    <div class="+down">
+      <!-- the `form.object` represents the `shop` model -->
+      <% if @setting.landing_page_highlight %>
+        <%= form.label :landing_page_highlight, :class => 'switch' do %>
+          <%= form.check_box :landing_page_highlight %>
+          <div class="switch__slider"></div>
+        <% end %>
+      <% else %>
+        <%= form.label :landing_page_highlight, :class => 'switch' do %>
+          <%= form.check_box :landing_page_highlight %>
+          <div class="switch__slider"></div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :landing_page_title, "Landing page title" %>
+    <%= form.text_field :landing_page_title, :autocomplete => :off %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :landing_page_description, "Landing page description" %>
+    <%= form.text_field :landing_page_description, :autocomplete => :off %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :landing_page_link, "Landing page link" %>
+    <%= form.text_field :landing_page_link, :autocomplete => :off %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :landing_page_button, "Landing page button" %>
+    <%= form.text_field :landing_page_button, :autocomplete => :off %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :landing_page_cover, "Landing page cover" %>
+    <%= js_file_upload(form: form, field: :landing_page_cover) %>
+  </div>
+
+  <div class="clearfix"></div>
+
+  <%= form.button "Update package set", :type => 'submit', :class => 'btn btn-primary', name: :user_info_edit_part, value: :edit_settings %>
+<% end %>

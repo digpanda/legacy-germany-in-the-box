@@ -5,15 +5,15 @@
       <%= form.fields_for :options do |field_option| %>
 
       <!-- TODO : this should be turned into a method with blocks -->
-      <% if every(field_option, 2) %>
+      <% if every(field_option, 3) %>
         <div class="row">
       <% end %>
 
-      <div class="col-md-6">
+      <div class="col-md-4">
         <%= render partial: "shopkeeper/products/variants/form/variant_box", :locals => {:form => field_option, :options => {:translation => true}} %>
       </div>
 
-      <% if every(field_option, 2) %>
+      <% if every(field_option, 3) %>
         </div>
         <div class="+small-spacer"></div>
       <% end %>

@@ -9,6 +9,9 @@ class Admin::OrderPaymentsController < ApplicationController
   layout :custom_sublayout, only: [:index, :show]
   before_action :set_order_payment, except: [:index]
 
+  before_action :breadcrumb_admin_order_payments, :except => [:index]
+  before_action :breadcrumb_admin_order_payment, only: [:show]
+
   def index
     @order_payments = OrderPayment.order_by(c_at: :desc).paginate(:page => current_page, :per_page => 10);
   end

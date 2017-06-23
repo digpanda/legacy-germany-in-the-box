@@ -8,6 +8,9 @@ class Admin::CategoriesController < ApplicationController
 
   before_action :set_category, :except => [:index]
 
+  before_action :breadcrumb_admin_categories, :except => [:index]
+  before_action :breadcrumb_admin_category, only: [:edit]
+
   layout :custom_sublayout
 
   def index

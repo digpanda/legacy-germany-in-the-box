@@ -7,188 +7,26 @@
   </div>
 </div>
 
-  <%= form_for [:admin, @setting], :data => {:toggle => 'validator'} do |form| %>
 <div class="row">
-<div class="col-md-6 +white-box">
 
-    <div class="form-group">
-      <%= form.label :logistic_partner, "Logistic Partner", :class => 'control-label' %>
-      <br />
-      <%= form.select :logistic_partner, logistic_partners %>
+  <div class="col-md-12">
+    <div class="+white-box">
+      <%= render partial: "admin/settings/setting/texts" %>
     </div>
+    <div class="+small-spacer"></div>
+  </div>
 
-    <div class="form-group">
-      <%= form.label :exchange_rate_to_yuan, I18n.t(:exchange_rate_to_yuan, scope: :edit_settings), :class => 'control-label' %>
-      <%= form.text_field :exchange_rate_to_yuan, :class => 'form-control', :required => true, :autocomplete => :off, :id => 'exchange_rate' %>
-    </div>
-
-    <div class="form-group">
-      <%= form.label :max_total_per_day, "Maximum per day (CNY)", :class => 'control-label' %>
-      <%= form.text_field :max_total_per_day, :class => 'form-control', :required => true, :autocomplete => :off %>
-    </div>
-
-    <div class="form-group">
-      <%= form.label :default_coupon_discount, "Default Coupon Discount (%)", :class => 'control-label' %>
-      <%= form.text_field :default_coupon_discount, :class => 'form-control', :autocomplete => :off %>
-    </div>
-
-    <div class="form-group">
-      <%= form.label :referrer_money_claim, "Referrer Money Claim", :class => 'control-label' %>
-      <%= form.text_field :referrer_money_claim, :class => 'form-control', :autocomplete => :off %>
-    </div>
-
-    <div class="form-group">
-      <%= form.label :force_referrer_tokens, "Force referrer tokens" %>
-
-      <div class="+down">
-        <!-- the `form.object` represents the `shop` model -->
-        <% if @setting.force_referrer_tokens %>
-          <%= form.label :force_referrer_tokens, :class => 'switch' do %>
-            <%= form.check_box :force_referrer_tokens %>
-            <div class="switch__slider"></div>
-          <% end %>
-        <% else %>
-          <%= form.label :force_referrer_tokens, :class => 'switch' do %>
-            <%= form.check_box :force_referrer_tokens %>
-            <div class="switch__slider"></div>
-          <% end %>
-        <% end %>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <%= form.button I18n.t(:save, scope: :edit_settings), :type => 'submit', :class => 'btn btn-primary', name: :user_info_edit_part, value: :edit_settings %>
-    </div>
-  <% end %>
-</div>
-</div>
-
-<div class="+small-spacer"></div>
-
-<div class="row">
-<div class="col-md-6 +white-box">
-  <%= form_for [:admin, @setting], :data => {:toggle => 'validator'} do |form| %>
-
-  <!-- PACKAGE SET BANNER -->
-
-  <div class="form-group">
-    <%= form.label :package_sets_highlight, "Package sets highlight" %>
-
-    <div class="+down">
-      <!-- the `form.object` represents the `shop` model -->
-      <% if @setting.package_sets_highlight %>
-        <%= form.label :package_sets_highlight, :class => 'switch' do %>
-          <%= form.check_box :package_sets_highlight %>
-          <div class="switch__slider"></div>
-        <% end %>
-      <% else %>
-        <%= form.label :package_sets_highlight, :class => 'switch' do %>
-          <%= form.check_box :package_sets_highlight %>
-          <div class="switch__slider"></div>
-        <% end %>
-      <% end %>
+  <div class="col-md-6">
+    <div class="+white-box">
+      <%= render partial: "admin/settings/setting/limits_and_options" %>
     </div>
   </div>
 
-    <div class="form-group">
-      <%= form.label :package_sets_title, "Package sets title" %>
-      <%= form.text_field :package_sets_title, :autocomplete => :off %>
+  <div class="col-md-6">
+    <div class="+white-box">
+      <%= render partial: "admin/settings/setting/highlights" %>
     </div>
-
-    <div class="form-group">
-      <%= form.label :package_sets_description, "Package sets description" %>
-      <%= form.text_field :package_sets_description, :autocomplete => :off %>
-    </div>
-
-    <div class="form-group">
-      <%= form.label :package_sets_link, "Package sets link" %>
-      <%= form.text_field :package_sets_link, :autocomplete => :off %>
-    </div>
-
-    <div class="form-group">
-      <%= form.label :package_sets_button, "Package sets button" %>
-      <%= form.text_field :package_sets_button, :autocomplete => :off %>
-    </div>
-
-    <div class="form-group">
-      <%= form.label :package_sets_cover, "Package sets cover" %>
-      <%= js_file_upload(form: form, field: :package_sets_cover) %>
-    </div>
-
-    <div class="clearfix"></div>
-
-    <!-- LANDING PAGE BANNER -->
-
-    <div class="form-group">
-      <%= form.label :landing_page_highlight, "Landing page highlight" %>
-
-      <div class="+down">
-        <!-- the `form.object` represents the `shop` model -->
-        <% if @setting.landing_page_highlight %>
-          <%= form.label :landing_page_highlight, :class => 'switch' do %>
-            <%= form.check_box :landing_page_highlight %>
-            <div class="switch__slider"></div>
-          <% end %>
-        <% else %>
-          <%= form.label :landing_page_highlight, :class => 'switch' do %>
-            <%= form.check_box :landing_page_highlight %>
-            <div class="switch__slider"></div>
-          <% end %>
-        <% end %>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <%= form.label :landing_page_title, "Landing page title" %>
-      <%= form.text_field :landing_page_title, :autocomplete => :off %>
-    </div>
-
-    <div class="form-group">
-      <%= form.label :landing_page_description, "Landing page description" %>
-      <%= form.text_field :landing_page_description, :autocomplete => :off %>
-    </div>
-
-    <div class="form-group">
-      <%= form.label :landing_page_link, "Landing page link" %>
-      <%= form.text_field :landing_page_link, :autocomplete => :off %>
-    </div>
-
-    <div class="form-group">
-      <%= form.label :landing_page_button, "Landing page button" %>
-      <%= form.text_field :landing_page_button, :autocomplete => :off %>
-    </div>
-
-    <div class="form-group">
-      <%= form.label :landing_page_cover, "Landing page cover" %>
-      <%= js_file_upload(form: form, field: :landing_page_cover) %>
-    </div>
-
-    <div class="clearfix"></div>
-
-    <%= form.button "Update package set", :type => 'submit', :class => 'btn btn-primary', name: :user_info_edit_part, value: :edit_settings %>
   </div>
-  <% end %>
-</div>
 
-<div class="+small-spacer"></div>
-
-<div class="row">
-<div class="col-md-6 +white-box">
-  <%= form_for [:admin, @setting], :data => {:toggle => 'validator'} do |form| %>
-
-    <div class="form-group">
-      <%= form.label :alert, "Alert" %>
-      <%= form.text_field :alert, :autocomplete => :off %>
-    </div>
-
-    <div class="form-group">
-      <%= form.label :search_suggestion, "Search suggestion" %>
-      <%= form.text_field :search_suggestion, :autocomplete => :off %>
-    </div>
-
-    <%= form.button "Update", :type => 'submit', :class => 'btn btn-primary', name: :user_info_edit_part, value: :edit_settings %>
-  </div>
-  <% end %>
-</div>
 
 </div>

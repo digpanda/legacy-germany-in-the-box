@@ -5,6 +5,11 @@ class Admin::CouponsController < ApplicationController
   authorize_resource :class => false
   before_action :set_coupon, :except => [:index, :create, :new]
 
+  before_action :breadcrumb_admin_coupons, :except => [:index]
+  before_action :breadcrumb_admin_coupon, only: [:show, :edit]
+  before_action :breadcrumb_admin_coupon_new, only: [:new]
+  before_action :breadcrumb_admin_coupon_edit, only: [:edit]
+
   layout :custom_sublayout
 
   def index

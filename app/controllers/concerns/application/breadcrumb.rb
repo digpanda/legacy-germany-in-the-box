@@ -74,6 +74,87 @@ module Application
     # ADMIN
     # =====
 
+    def breadcrumb_admin_coupons
+      add_breadcrumb "Coupons", admin_coupons_path
+    end
+
+    def breadcrumb_admin_coupon
+      add_breadcrumb @coupon.code, admin_coupon_path(@coupon) if @coupon
+    end
+
+    def breadcrumb_admin_coupon_edit
+      add_breadcrumb "Edit", edit_admin_coupon_path(@coupon) if @coupon
+    end
+
+    def breadcrumb_admin_coupon_new
+      add_breadcrumb "New", new_admin_coupon_path
+    end
+
+
+    def breadcrumb_admin_order_payments
+      add_breadcrumb "Order Payments", admin_order_payments_path
+    end
+
+    def breadcrumb_admin_order_payment
+      add_breadcrumb @order_payment.id, admin_order_payment_path(@order_payment) if @order_payment
+    end
+
+    def breadcrumb_admin_orders
+      add_breadcrumb "Orders", admin_orders_path
+    end
+
+    def breadcrumb_admin_order
+      add_breadcrumb @order.id, admin_order_path(@order) if @order
+    end
+
+    def breadcrumb_admin_referrer_tokens
+      add_breadcrumb "Referrer Tokens", admin_referrer_tokens_path
+    end
+
+    def breadcrumb_admin_referrer_token
+      add_breadcrumb @referrer_token.token, admin_referrer_token_path(@referrer_token) if @referrer_token
+    end
+
+    def breadcrumb_admin_referrer_token_edit
+      add_breadcrumb "Edit", edit_admin_referrer_token_path(@referrer_token) if @referrer_token
+    end
+
+    def breadcrumb_admin_referrer_token_new
+      add_breadcrumb "New", new_admin_referrer_token_path
+    end
+
+    def breadcrumb_admin_referrers
+      add_breadcrumb "Referrers", admin_referrers_path
+    end
+
+    def breadcrumb_admin_referrer
+      add_breadcrumb @referrer.reference_id, "#" if @referrer
+    end
+
+    def breadcrumb_admin_referrer_provisions
+      add_breadcrumb "Provisions", admin_referrer_provisions_path(@referrer) if @referrer
+    end
+
+    def breadcrumb_admin_referrer_coupon
+      add_breadcrumb "Coupon", coupon_admin_referrer_coupon_path(@referrer) if @referrer
+    end
+
+    def breadcrumb_admin_users
+      add_breadcrumb "Users", admin_users_path
+    end
+
+    def breadcrumb_admin_user
+      add_breadcrumb @user.decorate.full_name, admin_user_path(@user) if @user
+    end
+
+    def breadcrumb_admin_categories
+      add_breadcrumb "Categories", admin_categories_path
+    end
+
+    def breadcrumb_admin_category
+      add_breadcrumb @category.name, admin_category_path(@category) if @category
+    end
+
     def breadcrumb_admin_shops
       add_breadcrumb "Shops", admin_shops_path
     end
