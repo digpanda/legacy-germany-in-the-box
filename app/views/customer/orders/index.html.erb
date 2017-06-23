@@ -12,6 +12,9 @@
           <%= I18n.t(:total_price_with_extra_costs, scope: :edit_order) %>
         </th>
         <th>
+          <%= I18n.t(:tracking_id, scope: :edit_order) %>
+        </th>
+        <th>
           <%= I18n.t(:link_tracking, scope: :edit_order) %>
         </th>
         <th>
@@ -41,6 +44,9 @@
             <% else %>
               <%= order.end_price.in_euro.to_yuan.display %>
             <% end %>
+          </td>
+          <td>
+            <%= order.tracking_id %>
           </td>
           <td class="tracking">
             <% if order.bought? %>
