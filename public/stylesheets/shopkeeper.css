@@ -17,11 +17,10 @@
     padding: 0.5em; }
 
 #csstyle .\+static-footer {
-  padding-top: 1.3em;
-  padding-bottom: 1.3em;
-  background-color: #8b8b8b;
-  color: #fdfdfd;
-  min-height: 50px; }
+  background: #fdfdfd;
+  color: #666;
+  border-top: 2px solid #666;
+  padding: 1em; }
 
 #csstyle .\+notif-bubble {
   position: absolute;

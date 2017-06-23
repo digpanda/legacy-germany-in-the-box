@@ -17,11 +17,10 @@
     padding: 0.5em; }
 
 #csstyle .\+static-footer {
-  padding-top: 1.3em;
-  padding-bottom: 1.3em;
-  background-color: #8b8b8b;
-  color: #fdfdfd;
-  min-height: 50px; }
+  background: #fdfdfd;
+  color: #666;
+  border-top: 2px solid #666;
+  padding: 1em; }
 
 #csstyle .\+notif-bubble {
   position: absolute;
@@ -1429,6 +1428,26 @@
     background-color: #eeeeee; }
     .home-marketplace__third h2 {
       color: #68a423; }
+
+.breadcrumb {
+  background: #ffffff;
+  color: #666;
+  border-bottom: 2px solid #666;
+  padding: 1em;
+  font-size: 15px;
+  -webkit-border-radius: 0;
+  border-radius: 0;
+  text-align: left;
+  list-style: none; }
+  .breadcrumb li {
+    display: inline-block; }
+  .breadcrumb a {
+    color: #5c5c5c; }
+  .breadcrumb li + li:before {
+    content: '\f105';
+    font-family: 'FontAwesome';
+    padding: 0 7px;
+    color: #8b8b8b; }
 
 @media (max-width: 994px) {
   .connect__separator {
