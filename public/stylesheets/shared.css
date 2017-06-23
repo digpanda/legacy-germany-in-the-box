@@ -7101,6 +7101,10 @@ ul.pagination li a {
   ul.pagination li a:hover {
     color: #659443; }
 
+.btn {
+  transition: none;
+  border: none; }
+
 .label-blue {
   background-color: #3498db; }
 
