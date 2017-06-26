@@ -30,7 +30,7 @@
               <%= provision.order.user.decorate.full_name %>
             </td>
             <td>
-              <%= provision.order.products_name_array.join(', ') %>
+              <%= truncate provision.order.products_name_array.join(', '), length: 25 %>
             </td>
             <td>
               <span class="provision__list --green --link"><%= provision.provision.in_euro.display %></span>

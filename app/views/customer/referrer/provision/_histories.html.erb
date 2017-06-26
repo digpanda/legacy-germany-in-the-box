@@ -32,7 +32,7 @@
               </strong>
             </td>
             <td>
-              <%= history[:description] %>
+              <%= truncate history[:description], length: 25 %>
             </td>
             <td>
               <% if history[:type] == :order %>
