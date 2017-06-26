@@ -18,6 +18,9 @@ class OrderMaker
     # we first clean up the package set from the order
     # and iterate it as many times as we need
     def refresh!(quantity)
+      # if the customer has already this package set
+      # we artificially increment it
+      quantity = current_quantity + quantity
       capture!
       remove_package_set!
       buyable?
@@ -44,6 +47,10 @@ class OrderMaker
     end
 
     private
+
+    def current_quantity
+      order.package_set_quantity(package_set)
+    end
 
     # TODO : limit the interdependency by making the action linked to the package sku here
     # and not inside sku_handler, like the locking system.
