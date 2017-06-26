@@ -1,35 +1,38 @@
 +component(main-table)
 
-  background-color: $color-white
-  +border-radius(4px)
-  word-wrap: break-word
-
-  input
-    background-color: $color-white
-    border: 1px dashed $color-blue
-  #{$a-tags}
-    color: $color-blue
-    // border-bottom: 1px dashed $color-blue
-
-  width: 100%
+  +classy-shadow
+  +overflow
   margin-bottom: 1em
-  vertical-align: middle
 
-  tr:nth-child(even)
-    background-color: $color-nearly-white
-
-  >thead >tr >th
+  table
+    background-color: $color-white
+    +border-radius(4px)
+    word-wrap: break-word
+    width: 100%
     vertical-align: middle
-    padding: 0.3em
-    white-space: nowrap
 
-  >tbody >tr >td
-    vertical-align: middle
-    padding: 0.5em
-    border-bottom: $color-grey solid 1px
+    input
+      background-color: $color-white
+      border: 1px dashed $color-blue
+    #{$a-tags}
+      color: $color-blue
+      // border-bottom: 1px dashed $color-blue
 
-  >thead
-    border-bottom: $color-grey solid 2px
+    tr:nth-child(even)
+      background-color: $color-nearly-white
 
-  img
-    +border-radius(5px)
+    >thead >tr >th
+      vertical-align: middle
+      padding: 0.3em
+      white-space: nowrap
+
+    >tbody >tr >td
+      vertical-align: middle
+      padding: 0.5em
+      border-bottom: $color-grey solid 1px
+
+    >thead
+      border-bottom: $color-grey solid 2px
+
+    img
+      +border-radius(5px)

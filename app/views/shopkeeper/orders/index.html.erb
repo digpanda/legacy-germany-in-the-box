@@ -1,6 +1,6 @@
-<div class="+overflow">
 <% if @orders.size > 0 %>
-  <table class="main-table">
+<div class="main-table">
+  <table>
     <thead>
       <tr>
         <th>
@@ -84,6 +84,7 @@
       <% end %>
     </tbody>
   </table>
+</div>
   <%= will_paginate @orders, renderer: BootstrapPagination::Rails %>
 <% else %>
 <div class="+white-box +centered">
@@ -92,4 +93,3 @@
   </h4>
 </div>
 <% end %>
-</div>

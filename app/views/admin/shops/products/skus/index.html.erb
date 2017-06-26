@@ -8,8 +8,6 @@
   </div>
 </div>
 
-<div class="+overflow">
-  <%= render partial: "admin/shops/products/skus/table", :locals => { :skus => @skus } %>
-</div>
+<%= render partial: "admin/shops/products/skus/table", :locals => { :skus => @skus } %>
 
 <%= will_paginate @skus, renderer: BootstrapPagination::Rails %>

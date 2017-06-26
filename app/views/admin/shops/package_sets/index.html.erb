@@ -8,8 +8,6 @@
   </div>
 </div>
 
-<div class="+overflow">
-  <%= render partial: "admin/shops/package_sets/table", :locals => { :package_sets => @package_sets } %>
-</div>
+<%= render partial: "admin/shops/package_sets/table", :locals => { :package_sets => @package_sets } %>
 
 <%= will_paginate @sets, renderer: BootstrapPagination::Rails %>

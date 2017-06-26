@@ -1,12 +1,19 @@
 +component(search)
 
-  input
-    &[type="submit"]
-      color: $color-white
-      background-color: $color-black
+  margin-bottom: 1em
+  height: 30px
 
+  button
+    color: $color-white
+    background-color: $color-black
+    text-decoration: none
+    border: 0
+    +border-radius(2px)
+
+  input
+    height: 30px
+    +border-radius(2px)
     &[type="text"]
       padding-left: 0.5em
       width: 300px
-      border: 1px dashed $color-light-grey
-    height: 35px
+      border: 1px solid $color-grey

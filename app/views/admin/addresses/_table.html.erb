@@ -1,5 +1,6 @@
 <% if addresses.size > 0 %>
-  <table class="main-table">
+<div class="main-table">
+  <table>
     <thead>
       <th>
         Id #
@@ -27,6 +28,7 @@
       <%= render partial: "admin/addresses/table/data", collection: addresses, :as => :address %>
     </tbody>
   </table>
+</div>
   <% else %>
   <div class="+white-box +centered">
     <h4>

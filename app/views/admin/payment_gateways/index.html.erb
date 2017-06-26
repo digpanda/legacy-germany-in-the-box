@@ -7,8 +7,6 @@
   </div>
 </div>
 
-<div class="+overflow">
-  <%= render partial: "admin/payment_gateways/table", :locals => { :payment_gateways => @payment_gateways } %>
-</div>
+<%= render partial: "admin/payment_gateways/table", :locals => { :payment_gateways => @payment_gateways } %>
 
 <%= will_paginate @payment_gateways, renderer: BootstrapPagination::Rails %>

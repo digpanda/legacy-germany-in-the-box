@@ -1,5 +1,6 @@
 <% if @notifications.size > 0 %>
-  <table class="main-table">
+<div class="main-table">
+  <table>
     <thead>
       <tr>
         <th>
@@ -29,6 +30,7 @@
       <% end %>
     </tbody>
   </table>
+</div>
   <%= will_paginate @notifications, renderer: BootstrapPagination::Rails %>
 <% else %>
 <div class="+white-box +centered">

@@ -1,31 +1,32 @@
 +component(main-table)
 
-  background-color: $color-white
-  +border-radius(4px)
-  word-wrap: break-word
+  table
 
-  #{$a-tags}
-    color: $color-green
+    background-color: $color-white
+    +border-radius(4px)
+    word-wrap: break-word
 
-  width: 100%
-  margin-bottom: 1em
-  vertical-align: middle
+    #{$a-tags}
+      color: $color-green
 
-  tr:nth-child(even)
-    background-color: $color-nearly-white
-
-  >thead >tr >th
+    width: 100%
     vertical-align: middle
-    padding: 0.3em
-    white-space: nowrap
 
-  >tbody >tr >td
-    vertical-align: middle
-    padding: 0.5em
-    border-bottom: $color-grey solid 1px
+    tr:nth-child(even)
+      background-color: $color-nearly-white
 
-  >thead
-    border-bottom: $color-grey solid 2px
+    >thead >tr >th
+      vertical-align: middle
+      padding: 0.3em
+      white-space: nowrap
 
-  img
-    +border-radius(5px)
+    >tbody >tr >td
+      vertical-align: middle
+      padding: 0.5em
+      border-bottom: $color-grey solid 1px
+
+    >thead
+      border-bottom: $color-grey solid 2px
+
+    img
+      +border-radius(5px)

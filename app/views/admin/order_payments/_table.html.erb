@@ -1,5 +1,6 @@
 <% if order_payments.size > 0 %>
-  <table class="main-table">
+<div class="main-table">
+  <table>
     <thead>
       <th>
         Request #
@@ -39,6 +40,7 @@
       <%= render partial: "admin/order_payments/order_payments", collection: order_payments, :as => :order_payment %>
     </tbody>
   </table>
+</div>
   <% if order_payments.respond_to?(:total_page) %>
   <%= will_paginate order_payments, renderer: BootstrapPagination::Rails %>
   <% end %>

@@ -57,9 +57,10 @@
   <div class="clearfix"></div>
 </div>
 
-<div class="row details__block +overflow">
+<div class="row details__block">
 
-  <table class="main-table">
+  <div class="main-table">
+  <table>
     <thead>
       <tr>
         <th>
@@ -117,7 +118,7 @@
 
     </tbody>
   </table>
-
+</div>
   </div>
 
   <%= form.submit :class => 'btn btn-primary', :value =>  I18n.t(:update_basic, scope: :edit_product) %>

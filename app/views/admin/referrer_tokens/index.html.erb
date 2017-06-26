@@ -8,8 +8,6 @@
   </div>
 </div>
 
-<div class="+overflow">
-  <%= render partial: "admin/referrer_tokens/table", :locals => { :referrer_tokens => @referrer_tokens } %>
-</div>
+<%= render partial: "admin/referrer_tokens/table", :locals => { :referrer_tokens => @referrer_tokens } %>
 
 <%= will_paginate @referrer_tokens, renderer: BootstrapPagination::Rails %>
