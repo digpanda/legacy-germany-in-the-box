@@ -2293,6 +2293,10 @@ body {
       padding: 1em;
       font-weight: bold;
       font-size: 16px; }
+      .provision__list th:nth-child(1) {
+        width: 10%; }
+      .provision__list th:nth-child(2) {
+        min-width: 20%; }
     .provision__list tr {
       border-top: 1px solid #eeeeee; }
     .provision__list tbody tr:hover {
