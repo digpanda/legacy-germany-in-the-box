@@ -3,6 +3,9 @@ require 'sidekiq/web'
 
 namespace :admin do
 
+  resources :notifications do
+  end
+
   resources :shipping_rates do
   end
 

@@ -1,0 +1,64 @@
+<% if notifications.size > 0 %>
+<div class="main-table">
+<table>
+  <thead>
+    <th>
+      #
+    </th>
+    <th>
+      User
+    </th>
+    <th>
+      Title
+    </th>
+    <th>
+      Description
+    </th>
+    <th>
+      Read At
+    </th>
+    <th>
+      Created At
+    </th>
+    <th>
+      Action
+    </th>
+  </thead>
+  <tbody>
+    <% notifications.each do |notification| %>
+    <tr>
+      <td>
+        <%= notification.id %>
+      </td>
+      <td>
+        <a href="<%= admin_user_path(notification.user) %>">
+          <%= notification.user.decorate.full_name %>
+        </a>
+      </td>
+      <td>
+        <%= notification.title %>
+      </td>
+      <td>
+        <%= notification.desc %>
+      </td>
+      <td>
+        <%= notification.read_at %>
+      </td>
+      <td>
+        <%= notification.c_at %>
+      </td>
+      <td>
+        <%= link_to '', admin_notification_path(notification), :method => :delete, data: { confirm: "Are you sure to remove this notification ?" }, :class => 'tooltipster fa fa-times buttons buttons__delete', :title => "Delete this notification" %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+</div>
+<% else %>
+<div class="+white-box +centered">
+  <h4>
+    No notification found
+  </h4>
+</div>
+<% end %>
