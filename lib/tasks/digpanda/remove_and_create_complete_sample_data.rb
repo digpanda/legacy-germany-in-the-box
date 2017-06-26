@@ -216,7 +216,6 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
     approved       = Time.now.utc
     agb            = true
     status         = true
-    bg_merchant_id = "1024-TEST"
     seals = {
       :seal0 => setup_image(:seal),
       :seal1 => setup_image(:seal),
@@ -249,7 +248,6 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
         :approved       => approved,
         :agb            => agb,
         :status         => status,
-        :bg_merchant_id => bg_merchant_id,
     }.merge(seals))
 
 

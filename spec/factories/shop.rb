@@ -11,7 +11,6 @@ FactoryGirl.define do
     lname                 { Faker::Name.last_name }
     mail                  { Faker::Internet.email }
     approved { Time.now }
-    bg_merchant_id { "#{Faker::Number.number(20)}" }
     addresses             { FactoryGirl.build_list(:shop_address, 2) }
 
     before(:create) do |shop|
