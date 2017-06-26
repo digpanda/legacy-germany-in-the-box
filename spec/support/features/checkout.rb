@@ -15,7 +15,7 @@ module Helpers
 
       # fill the complete chinese address
       def fill_in_checkout_address!
-        expect(page).to have_content("个人信息")
+        expect(page).to have_content("收件人信息")
 
         fill_in 'address[fname]', :with => '薇'
         fill_in 'address[lname]', :with => '李'
