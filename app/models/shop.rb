@@ -45,7 +45,6 @@ class Shop
   field :mail,            type: String
 
   field :merchant_id,     type: String
-  field :bg_merchant_id,  type: String
   field :highlight,       type: Boolean, default: false
 
   mount_uploader :logo,   LogoUploader
@@ -94,7 +93,6 @@ class Shop
   scope :is_active,       ->    { where( :status => true ).where( :approved.ne => nil ) }
   scope :has_address, -> { where({ :addresses => { :$not => { :$size => 0 } } }) }
 
-  scope :is_bg_merchant,  ->    { where(:bg_merchant_id.ne => nil) }
   scope :can_buy,         ->    { is_active.has_address }
   scope :highlighted,     ->    { where(highlight: true) }
 

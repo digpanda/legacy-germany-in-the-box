@@ -98,7 +98,6 @@ class OrdersFormatter < BaseService
       order.order_items.count,
 
       (order.shop ? order.shop.merchant_id : ''),
-      (order.shop ? order.shop.bg_merchant_id : ''),
 
       payments_ids(order),
 
