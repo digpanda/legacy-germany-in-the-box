@@ -17,7 +17,7 @@ class Notifier
     def order_was_paid(order)
       dispatch(
         title: "来因盒通知：付款成功，已通知商家准备发货 （订单号：#{order.id})",
-        desc: "你好，你的订单#{order.id}已成功付款，已通知商家准备发货。若有疑问，欢迎随时联系来因盒客服：user@germanyinthebox.com。"
+        desc: "你好，你的订单#{order.id}已成功付款，已通知商家准备发货。若有疑问，欢迎随时联系来因盒客服：user@germanyinthebox.com"
       ).perform
     end
 
@@ -39,7 +39,7 @@ class Notifier
       dispatch(
         mobile: "#{order.shipping_address.mobile}",
         title: "发货通知",
-        desc: "亲爱的顾客，您的订单#{order.id}已安排发货。快递单号为：#{order.tracking_id}，您可登陆快递100http://www.kuaidi100.com 查询快递状态。"
+        desc: "亲爱的顾客，您的订单#{order.id}已安排发货。快递单号为：#{order.tracking_id}，您可以访问快递100网站查询快递状态 http://www.kuaidi100.com"
       ).perform(dispatch: [:sms])
     end
 
