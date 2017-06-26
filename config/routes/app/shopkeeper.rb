@@ -37,8 +37,4 @@ namespace :shopkeeper do
   resources :supports do
   end
 
-  resource :wirecard do
-    get :apply, :on => :member
-  end
-
 end

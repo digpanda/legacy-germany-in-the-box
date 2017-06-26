@@ -19,11 +19,6 @@ feature "checkout process", :js => true  do
       page.first('#checkout-button').click # go to address step
     end
 
-    scenario "pays successfully with wirecard visa" do
-      pay_with_wirecard_visa!
-      manual_partner_confirmed?
-    end
-
     scenario "pays successfully with alipay" do
       pay_with_alipay!
       manual_partner_confirmed?
@@ -70,7 +65,7 @@ feature "checkout process", :js => true  do
 
       scenario "pay successfully and generate shipping label correctly" do
         fill_in_checkout_address!
-        pay_with_wirecard_visa!
+        pay_with_alipay!
       end
 
     end
@@ -78,7 +73,7 @@ feature "checkout process", :js => true  do
     context "address already setup" do
 
       scenario "fail to pay" do
-        pay_with_wirecard_visa!(mode: :fail)
+        pay_with_alipay!(mode: :fail)
       end
 
       context "apply a coupon" do
@@ -87,7 +82,7 @@ feature "checkout process", :js => true  do
           page.first('#cart').click
           make_and_apply_coupon!
           page.first('#checkout-button').click
-          pay_with_wirecard_visa!
+          pay_with_alipay!
         end
 
       end

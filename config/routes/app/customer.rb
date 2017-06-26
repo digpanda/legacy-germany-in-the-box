@@ -14,13 +14,6 @@ namespace :customer do
   namespace :checkout do
     namespace :callback do
 
-      resource :wirecard, :controller => 'wirecard' do
-        post :processing
-        post :success
-        post :fail
-        get :cancel
-      end
-
       resource :alipay, :controller => 'alipay' do
       end
 

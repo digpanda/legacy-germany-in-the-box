@@ -1,6 +1,6 @@
 class Customer::CheckoutController < ApplicationController
 
-  ACCEPTABLE_PAYMENT_METHOD = [:upop, :creditcard, :alipay, :wechatpay]
+  ACCEPTABLE_PAYMENT_METHOD = [:alipay, :wechatpay]
 
   attr_reader :shop, :order
 
