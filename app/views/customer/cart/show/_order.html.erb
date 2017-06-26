@@ -41,7 +41,9 @@
               <div class="cart__total-discount">
                 <div class="col-xs-6">
                   <%= I18n.t(:new_price, scope: :coupon) %>
+                  <% if action %>
                   <%= link_to '<i class="digpanda-remove"></i>'.html_safe, customer_order_coupons_path(order), :method => :delete, :class => 'tooltipster', :title => I18n.t(:remove_coupon, scope: :coupon) %>
+                  <% end %>
 
                 </div>
                 <div class="col-xs-6">
