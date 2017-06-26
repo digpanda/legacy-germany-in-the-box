@@ -1588,8 +1588,8 @@ body {
 
 .cart__order-item-title a {
   color: #464646;
-  font-size: 24px;
-  font-weight: bold; }
+  font-size: 20px;
+  font-weight: normal; }
 
 .cart__order-item-description {
   color: #919191;
