@@ -12,7 +12,7 @@ class Api::Guest::PackageSetsController < Api::ApplicationController
   # we add the package set with quantity 1 into the order
   # if it's a success, we store the order into the cart
   def create
-    add = order_maker.package_set(package_set).refresh!(1, increment: increment)
+    add = order_maker.package_set(package_set).refresh!(1, increment: true)
     if add.success?
       cart_manager.store(order)
       render json: {success: true, message: I18n.t(:add_product_ok, scope: :edit_order)}
@@ -40,10 +40,6 @@ class Api::Guest::PackageSetsController < Api::ApplicationController
   end
 
   private
-
-  def increment
-    params[:increment].present?
-  end
 
   def order_maker
     @order_maker ||= OrderMaker.new(identity_solver, order)

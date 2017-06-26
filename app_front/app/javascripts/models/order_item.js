@@ -117,7 +117,7 @@ var OrderItem = {
         $.ajax({
             method: "POST",
             url: "/api/guest/package_sets?",
-            data: { "package_set_id": packageSetId, "increment": true }
+            data: { "package_set_id": packageSetId }
 
         }).done(function (res) {
 
