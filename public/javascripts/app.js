@@ -2305,8 +2305,8 @@ var OrderItem = {
   addPackageSet: function addPackageSet(packageSetId, callback) {
     $.ajax({
       method: "POST",
-      url: "/api/guest/package_sets",
-      data: { "package_set_id": packageSetId }
+      url: "/api/guest/package_sets?",
+      data: { "package_set_id": packageSetId, "increment": true }
 
     }).done(function (res) {
 

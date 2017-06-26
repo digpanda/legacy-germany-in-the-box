@@ -17,10 +17,13 @@ class OrderMaker
     # add a whole package set into an order
     # we first clean up the package set from the order
     # and iterate it as many times as we need
-    def refresh!(quantity)
+    def refresh!(quantity, increment: false)
       # if the customer has already this package set
-      # we artificially increment it
-      quantity = current_quantity + quantity
+      if increment
+        # we artificially increment it if the increment mode is on
+        # this will be used specifically on single buttons to add to cart
+        quantity = current_quantity + quantity
+      end
       capture!
       remove_package_set!
       buyable?
