@@ -39,7 +39,6 @@ module DigPanda
     config.gitb = YAML.load(ERB.new(File.read(Rails.root.join("config/germany_in_the_box.yml"))).result)[Rails.env].deep_symbolize_keys!
     config.qiniu = YAML.load(ERB.new(File.read(Rails.root.join("config/qiniu.yml"))).result)[Rails.env].deep_symbolize_keys!
     config.digpanda = YAML.load(ERB.new(File.read(Rails.root.join("config/digpanda.yml"))).result)[Rails.env].deep_symbolize_keys!
-    config.wirecard = YAML.load(ERB.new(File.read(Rails.root.join("config/wirecard.yml"))).result)[Rails.env].deep_symbolize_keys!
     config.wechat = YAML.load(ERB.new(File.read(Rails.root.join("config/wechat.yml"))).result)[Rails.env].deep_symbolize_keys!
 
     # No environment constraint

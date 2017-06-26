@@ -20,41 +20,6 @@
     </div>
   </div>
 
-  <% unless Rails.env.staging? || Rails.env.production? %>
-
-    <!-- NOTE : those methods were removed in production and will be totally removed soon -->
-
-    <% if shop.payment_method? :creditcard %>
-    <div class="col-md-3 col-xs-12">
-      <div class="+small-margin">
-        <a id="visa" href="<%= gateway_customer_checkout_path(payment_method: :creditcard) %>">
-          <img src="/images/logos/raw-visa-logo.png" width="150px">
-        </a>
-      </div>
-    </div>
-
-    <div class="col-md-3 col-xs-12">
-      <div class="+small-margin">
-        <a id="mastercard" href="<%= gateway_customer_checkout_path(payment_method: :creditcard) %>">
-          <img src="/images/logos/raw-mastercard-logo.png" width="150px">
-        </a>
-      </div>
-    </div>
-
-    <% end %>
-
-    <div class="col-md-3 col-xs-12">
-      <div class="+small-margin">
-      <% if shop.payment_method? :upop %>
-      <a id="upop" href="<%= gateway_customer_checkout_path(payment_method: :upop) %>">
-        <img src="/images/logos/raw-chinaunionpay-logo.png" width="150px">
-      </a>
-      <% end %>
-    </div>
-    </div>
-
-  <% end %>
-
 </div>
 
 <div class="row +hidden" id="after_payment_method_area">

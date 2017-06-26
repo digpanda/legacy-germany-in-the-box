@@ -15,7 +15,7 @@ feature "checkout process", :js => true  do
     go_to_cart!
     page.first('#checkout-button').trigger('click')
     fill_in_with_multiple_addresses!
-    pay_with_wirecard_visa!
+    pay_with_alipay!
   end
 
   scenario "get a package set, apply a coupon and go to checkout" do
@@ -24,7 +24,7 @@ feature "checkout process", :js => true  do
     make_and_apply_coupon!
     page.first('#checkout-button').trigger('click')
     fill_in_with_multiple_addresses!
-    pay_with_wirecard_visa!
+    pay_with_alipay!
   end
 
 end
