@@ -1,11 +1,5 @@
 source "https://rubygems.org"
 
-# Loschcode gems
-# for casual installation, just use the version (e.g. "0.1.1")
-# the git repo is locally override, i need to detail the remote repo for it to work
-# for direct local change without repo, use :path => "../../wirecard-elastic"
-gem "wirecard-elastic", git: "https://github.com/Loschcode/wirecard-elastic.git", branch: "master", tag: "v0.2.2"
-
 gem "alipay", "~> 0.14.0"
 gem "wx_pay"
 gem "rqrcode"

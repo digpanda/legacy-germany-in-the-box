@@ -2,17 +2,6 @@ module Helpers
   module Features
     module Checkout
 
-      WIRECARD_CREDIT_CARD = {
-                                success: {
-                                  account_number: '4012000100000007',
-                                  card_security_code: '007'
-                                },
-                                fail: {
-                                  account_number: '4200000000000059',
-                                  card_security_code: '059'
-                                }
-                              }.freeze unless defined? WIRECARD_CREDIT_CARD
-
       # fill the complete chinese address
       def fill_in_checkout_address!
         expect(page).to have_content("收件人信息")
@@ -63,18 +52,6 @@ module Helpers
         mock_payment!(mode, OrderPayment.first)
       end
 
-      def pay_with_wirecard_visa!(mode: :success)
-        page.first('.addresses__address-use a').trigger('click')
-        on_payment_method_page?
-        page.first('a[id=visa]').trigger('click') # pay with wirecard
-        wait_for_page('#hpp-logo') # we are on wirecard hpp
-
-        # NOTE : we used to test out the whole checkout process, entering in external websites
-        # which was very slow. we are progressively replacing those parts of the system by more
-        # atomized tests with the callbacks. At some point, this whole thing will be removed.
-        mock_payment!(mode, OrderPayment.first)
-      end
-
       def mock_payment!(mode, order_payment)
         if mode == :success
           mock_payment_success!(order_payment)
@@ -101,38 +78,6 @@ module Helpers
       def manual_partner_confirmed?
         visit customer_orders_path
         expect(page).to have_content("追单")
-      end
-
-      # process to fill in wirecard creditcard outside of our site
-      # can be :success, :fail to force different results
-      #
-      # NOTE : this functionality is not in use anymore to speed up the tests.
-      def apply_wirecard_creditcard!(mode: :success)
-        fill_in 'first_name', :with => 'Sha'
-        fill_in 'last_name', :with => 'He'
-        fill_in 'account_number', :with => WIRECARD_CREDIT_CARD[mode][:account_number]
-        fill_in 'card_security_code', :with => WIRECARD_CREDIT_CARD[mode][:card_security_code]
-
-        expect(page).to have_css("#expiration_month_list option[value='01']")
-        find("#expiration_month_list option[value='01']").select_option
-        expect(page).to have_css("#expiration_year_list option[value='2019']")
-        find("#expiration_year_list option[value='2019']").select_option
-
-        # NOTE : poltergeist struggles to deal with wirecard system
-        # we must put on sleep for this call.
-        sleep(0.5)
-        expect(page).to have_css("#hpp-form-submit")
-        find('#hpp-form-submit').trigger('click')
-        sleep(5)
-      end
-
-      # NOTE : we should not use this code anymore as it is too slow.
-      def cancel_wirecard_visa_payment!
-        page.first('a[id=visa]').trigger('click') # pay with wirecard
-        wait_for_page('#hpp-logo') # we are on wirecard hpp
-        find('#hpp-form-cancel').trigger('click')
-        wait_for_page('#hpp-confirm-button-yes') # we are on wirecard hpp
-        find('#hpp-confirm-button-yes').trigger('click')
       end
 
     end
