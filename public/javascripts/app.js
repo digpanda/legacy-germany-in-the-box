@@ -1439,41 +1439,6 @@ var ProductsVariants = {
 module.exports = ProductsVariants;
 });
 
-require.register("javascripts/controllers/shopkeeper/wirecards/apply.js", function(exports, require, module) {
-"use strict";
-
-/**
- * Apply Wirecard Class
- */
-var ShopkeeperWirecardApply = {
-
-  /**
-   * Initializer
-   */
-  init: function init() {
-
-    this.postShopDetails();
-  },
-
-  /**
-   * Post shop details to the `form_url`
-   */
-  postShopDetails: function postShopDetails() {
-
-    var Casing = require("javascripts/lib/casing");
-    var PostForm = require("javascripts/lib/post_form.js");
-
-    var shopDetails = $("#shop-details").data();
-    var parsedShopDetails = Casing.objectToUnderscoreCase(shopDetails);
-
-    PostForm.send(parsedShopDetails, parsedShopDetails['form_url']);
-  }
-
-};
-
-module.exports = ShopkeeperWirecardApply;
-});
-
 require.register("javascripts/initialize.js", function(exports, require, module) {
 "use strict";
 

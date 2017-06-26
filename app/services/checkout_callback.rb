@@ -22,21 +22,6 @@ class CheckoutCallback < BaseService
     @forced_status = forced_status
   end
 
-  # NOTE : this is deprecated and will be removed soon.
-  # - Laurent
-  def wirecard!
-    if user.email != params["email"]
-      return return_with(:error, I18n.t(:account_conflict, scope: :notice))
-    end
-
-    order_payment = solve_wirecard_order_payment_and_refresh!
-
-    manage_stocks!(order_payment.order)
-    dispatch_notifications!(order_payment)
-
-    return_with(:success, order_payment: order_payment)
-  end
-
   def wechatpay!
     order_payment = OrderPayment.where(id: params["out_trade_no"]).first
     unless order_payment
@@ -137,18 +122,6 @@ class CheckoutCallback < BaseService
 
   def alipay_success?(mode)
     ["TRADE_FINISHED", "TRADE_SUCCESS"].include?(params[:trade_status]) ? true : false
-  end
-
-  def solve_wirecard_order_payment_and_refresh!
-    OrderPayment.where({merchant_id: params[:merchant_account_id], request_id: params[:request_id]}).first.tap do |order_payment|
-      # we check WireCard API which makes it safe
-      # so we can change the status itself
-      # NOTE : we shouldn't do it for anything else
-      WirecardPaymentChecker.new(params.symbolize_keys.merge({:order_payment => order_payment})).update_order_payment!
-      order_payment.status = forced_status if forced_status
-      order_payment.save
-      order_payment.order.refresh_status_from!(order_payment)
-    end
   end
 
   def dispatch_notifications!(order_payment)

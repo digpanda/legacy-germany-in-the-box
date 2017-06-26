@@ -3,12 +3,7 @@ class ChangeShopWirecardStatusFromNilToUnactive < Mongoid::Migration
 
     Shop.all.each do |shop|
 
-      if shop.wirecard_status.nil?
-        shop.wirecard_status = :unactive
-        shop.wirecard_status
-        shop.save!
-        "Puts Shop #{shop.id} updated to `:unactive`"
-      end
+      # WIRECARD RELATED : was removed for consistency
 
     end
 

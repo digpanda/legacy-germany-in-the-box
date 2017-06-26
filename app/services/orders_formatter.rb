@@ -37,8 +37,8 @@ class OrdersFormatter < BaseService
     'Payments IDs',
     'Payments Methods',
     'Transactions Types',
-    'Wirecard Transactions IDs',
-    'Wirecard Request IDs',
+    'Transactions IDs',
+    'Request IDs',
     'Bill ID',
     'Paid At',
     'Created At',
@@ -105,8 +105,8 @@ class OrdersFormatter < BaseService
       payment_methods(order),
       transaction_types(order),
 
-      wirecard_transactions_ids(order),
-      wirecard_requests_ids(order),
+      transactions_ids(order),
+      requests_ids(order),
 
       order.bill_id,
       order.paid_at,
@@ -131,11 +131,11 @@ class OrdersFormatter < BaseService
     order.order_payments.reduce([]) { |acc, order_payment| acc << order_payment.id }.join(', ')
   end
 
-  def wirecard_requests_ids(order)
+  def requests_ids(order)
     order.order_payments.reduce([]) { |acc, order_payment| acc << order_payment.request_id }.join(', ')
   end
 
-  def wirecard_transactions_ids(order)
+  def transactions_ids(order)
     order.order_payments.reduce([]) { |acc, order_payment| acc << order_payment.transaction_id }.join(', ')
   end
 
