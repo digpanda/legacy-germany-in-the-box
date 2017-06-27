@@ -1,8 +1,0 @@
-<div class="row"><h3><%= I18n.t(:selling, scope: :footer) %></h3></div>
-<div class="row"><%=link_to I18n.t(:sell_on_gbox, scope: :footer), saleguide_guest_pages_path %></div>
-
-<% if current_user.nil? %>
-<div class="row"><%=link_to I18n.t(:shop_application, scope: :edit_shop_application), new_guest_shop_application_path %></div>
-<% end %>
-
-<!-- <div class="row"><%= link_to I18n.t(:fees_invoices, scope: :footer), fees_guest_pages_path %></div> -->

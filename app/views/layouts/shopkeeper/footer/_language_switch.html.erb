@@ -1,8 +1,0 @@
-<% if current_user.nil? %>
-    <div class="row"><h3><%= I18n.t(:want_buy_products, scope: :title) %></h3></div>
-    <div class="row"><%= link_to "Käuferportal", language_path("zh-CN"), method: :put %></div>
-<% elsif current_user.admin? %>
-  <div class="row"><h3><%= I18n.t(:language, scope: :top_menu) %></h3></div>
-  <div class="row"><%= link_to I18n.t(:chinese, scope: :top_menu), language_path("zh-CN"), method: :put %></div>
-  <div class="row"><%= link_to I18n.t(:german, scope: :top_menu), language_path("de"), method: :put %></div>
-<% end %>

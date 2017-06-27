@@ -9,12 +9,6 @@
       Payment Method
     </th>
     <th>
-      Merchant ID
-    </th>
-    <th>
-      Merchant Secret
-    </th>
-    <th>
       Created At
     </th>
     <th>
@@ -33,12 +27,6 @@
         </td>
         <td>
           <%= payment_gateway.payment_method %>
-        </td>
-        <td>
-          <%= editable_field(payment_gateway, admin_payment_gateway_path(payment_gateway), :merchant_id, :text_field) %>
-        </td>
-        <td>
-          <%= editable_field(payment_gateway, admin_payment_gateway_path(payment_gateway), :merchant_secret, :text_field) %>
         </td>
         <td>
           <%= payment_gateway.c_at %>
