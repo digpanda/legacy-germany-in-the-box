@@ -3,13 +3,13 @@
   <div class="col-md-8 col-md-offset-2">
     <%= form_for @shop_application, url: guest_shop_applications_path, html: {:data => {:toggle => 'validator'}}, method: :post do |f| %>
     <div class="panel-group">
-      <div class="panel panel-info">
-        <div class="panel-heading text-center">
-          <h4>
-            <%= I18n.t(:shopkeeper_info, scope: :edit_shop_application) %>
-          </h4>
-        </div>
+      <div class="+white-box panel panel-info">
         <div class="panel-body">
+
+          <h3>
+            <%= I18n.t(:shopkeeper_info, scope: :edit_shop_application) %>
+          </h3>
+
           <div class="form-group">
             <div class="pull-right required-info">
               <strong>
@@ -154,13 +154,14 @@
           </div>
         </div>
       </div>
-        <div class="panel panel-info">
-          <div class="panel-heading text-center">
-            <h4>
-              <%= I18n.t(:contact_person_info, scope: :edit_shop_application) %>
-            </h4>
-          </div>
+
+      <div class="+spacer"></div>
+
+        <div class="+white-box panel panel-info">
           <div class="panel-body">
+            <h3>
+              <%= I18n.t(:contact_person_info, scope: :edit_shop_application) %>
+            </h3>
             <div class="form-group">
               <div class="pull-right required-info">
                 <strong>
@@ -217,7 +218,8 @@
           </div>
         </div>
       </div>
-      <%= f.button "Senden", :id => 'edit_app_submit_btn', :class => 'btn btn-primary' %>
+      <%= f.button "Senden", :id => 'edit_app_submit_btn', :class => 'big-button --blue' %>
+      <div class="+small-spacer"></div>
       <% end %>
     </div>
   </div>
