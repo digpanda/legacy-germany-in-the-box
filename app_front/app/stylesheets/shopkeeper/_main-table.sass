@@ -1,0 +1,38 @@
++component(main-table)
+
+  +classy-shadow
+  +overflow
+  margin-bottom: 1em
+
+  table
+    background-color: $color-white
+    +border-radius(4px)
+    word-wrap: break-word
+    width: 100%
+    vertical-align: middle
+
+    input
+      background-color: $color-white
+      border: 1px dashed $color-blue
+    #{$a-tags}
+      color: $color-blue
+      // border-bottom: 1px dashed $color-blue
+
+    tr:nth-child(even)
+      background-color: $color-nearly-white
+
+    >thead >tr >th
+      vertical-align: middle
+      padding: 0.3em
+      white-space: nowrap
+
+    >tbody >tr >td
+      vertical-align: middle
+      padding: 0.5em
+      border-bottom: $color-grey solid 1px
+
+    >thead
+      border-bottom: $color-grey solid 2px
+
+    img
+      +border-radius(5px)

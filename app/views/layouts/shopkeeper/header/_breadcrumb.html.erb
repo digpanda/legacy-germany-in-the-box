@@ -1,9 +1,13 @@
 <% unless render_breadcrumbs.empty? %>
-  <div class="row">
-    <div class="col-md-7 col-md-push-3">
-      <ol class="breadcrumb">
-        <%= render_breadcrumbs :tag => :li, :separator => "" %>
-      </ol>
-    </div>
+<div class="row">
+  <div class="col-md-12 +nopadding">
+    <ol class="breadcrumb">
+      <div class="row">
+        <div class="col-md-10 col-md-push-2">
+          <%= render_breadcrumbs :tag => :li, :separator => "" %>
+        </div>
+      </div>
+    </ol>
   </div>
+</div>
 <% end %>
