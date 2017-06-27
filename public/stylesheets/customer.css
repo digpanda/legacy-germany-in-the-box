@@ -2271,6 +2271,10 @@ body {
     font-weight: normal; }
     .provision__title-button a {
       color: #33965e; }
+  .provision__small {
+    width: 10%; }
+  .provision__large {
+    min-width: 20%; }
   .provision__list {
     margin-left: -15px;
     margin-right: -15px;

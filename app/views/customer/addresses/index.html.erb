@@ -1,5 +1,6 @@
 <% if @addresses.size > 0 %>
-  <table class="main-table +desktop">
+<div class="main-table +desktop">
+  <table>
     <thead>
       <tr>
         <th>
@@ -78,8 +79,10 @@
       <% end %>
     </tbody>
   </table>
+</div>
 
-  <table class="main-table +mobile">
+<div class="main-table +mobile">
+  <table>
     <thead>
       <tr>
         <th>
@@ -114,6 +117,8 @@
       <% end %>
     </tbody>
   </table>
+</div>
+
 <% else %>
 <div class="+white-box +centered">
   <h4>
