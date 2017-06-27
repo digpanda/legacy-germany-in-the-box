@@ -150,7 +150,8 @@ class OrderMaker
     end
 
     def error_quantity
-      "You can't go any lower"
+      # it's more about product not totally available but i don't have translation for it
+      I18n.t(:not_all_available, scope: :checkout, product_name: product.name, option_names: sku.display_option_names)
     end
 
   end
