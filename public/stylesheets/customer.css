@@ -1588,8 +1588,8 @@ body {
 
 .cart__order-item-title a {
   color: #464646;
-  font-size: 24px;
-  font-weight: bold; }
+  font-size: 20px;
+  font-weight: normal; }
 
 .cart__order-item-description {
   color: #919191;
@@ -2271,6 +2271,10 @@ body {
     font-weight: normal; }
     .provision__title-button a {
       color: #33965e; }
+  .provision__small {
+    width: 10%; }
+  .provision__large {
+    min-width: 20%; }
   .provision__list {
     margin-left: -15px;
     margin-right: -15px;
@@ -2293,6 +2297,10 @@ body {
       padding: 1em;
       font-weight: bold;
       font-size: 16px; }
+      .provision__list th:nth-child(1) {
+        width: 10%; }
+      .provision__list th:nth-child(2) {
+        min-width: 20%; }
     .provision__list tr {
       border-top: 1px solid #eeeeee; }
     .provision__list tbody tr:hover {

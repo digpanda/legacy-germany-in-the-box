@@ -1,5 +1,6 @@
 <% if @orders.size > 0 %>
-  <table class="main-table +desktop">
+<div class="main-table +desktop">
+  <table>
     <thead>
       <tr>
         <th>
@@ -70,8 +71,10 @@
       <% end %>
     </tbody>
   </table>
+</div>
 
-  <table class="main-table +mobile">
+  <div class="main-table +mobile">
+  <table>
     <thead>
     <tr>
       <th>
@@ -131,6 +134,7 @@
     <% end %>
     </tbody>
   </table>
+</div>
 
   <%= will_paginate @orders, renderer: BootstrapPagination::Rails %>
 <% else %>
