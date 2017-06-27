@@ -548,26 +548,38 @@
   .big-button.\--green {
     background-color: #33965e; }
 
-.page-static__text {
-  word-wrap: normal;
-  white-space: -moz-pre-wrap;
-  white-space: pre-wrap;
-  border: 1px solid #eeeeee;
+.page-static {
   background-color: #ffffff;
-  padding: 0.5em;
-  margin-bottom: 1em; }
-
-.page-static__tag {
-  padding-top: 9em; }
-
-.page-static h1 {
-  color: #68a423;
-  font-size: 28px; }
-
-.page-static a {
-  color: #68a423; }
-  .page-static a:hover {
+  padding: 1em;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  border-radius: 5px;
+  box-shadow: 0 15px 35px rgba(50, 50, 93, 0.1), 0 5px 15px rgba(0, 0, 0, 0.07);
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  border-radius: 4px;
+  margin: 2em; }
+  .page-static__text {
+    word-wrap: normal;
+    white-space: -moz-pre-wrap;
+    white-space: pre-wrap;
+    padding: 1em;
+    padding-top: 0em;
+    margin-bottom: 1em; }
+  .page-static__tag {
+    padding-top: 9em; }
+  .page-static h1 {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 1em;
+    color: #666;
+    margin-bottom: 0em; }
+  .page-static a {
     color: #68a423; }
+    .page-static a:hover {
+      color: #68a423; }
 
 .payment-methods__block {
   margin-bottom: 1em; }
