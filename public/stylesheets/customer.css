@@ -2293,6 +2293,10 @@ body {
       padding: 1em;
       font-weight: bold;
       font-size: 16px; }
+    .provision__list__small {
+      width: 10%; }
+    .provision__list__large {
+      min-width: 20%; }
     .provision__list tr {
       border-top: 1px solid #eeeeee; }
     .provision__list tbody tr:hover {
