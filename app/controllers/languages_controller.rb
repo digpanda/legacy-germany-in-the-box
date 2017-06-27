@@ -9,7 +9,7 @@ class LanguagesController < ActionController::Base # No application because it's
   ACCEPTED_LOCATIONS = [Rails.application.routes.url_helpers.new_user_session_path]
 
   before_action :identity_solver
-  
+
   # for get redirections
   def show
     update
@@ -20,6 +20,10 @@ class LanguagesController < ActionController::Base # No application because it's
     unless valid_language? && valid_location?
       throw_app_error(:bad_language)
       return
+    end
+
+    if language_params[:sign_out]
+      sign_out
     end
 
     session[:locale] = language_params[:id]
@@ -37,7 +41,7 @@ class LanguagesController < ActionController::Base # No application because it's
   private
 
   def language_params
-    params.permit(:id, :location)
+    params.permit(:id, :location, :sign_out)
   end
 
   def valid_language?

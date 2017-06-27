@@ -34,8 +34,5 @@
   <%= link_to I18n.t(:my_address, scope: :top_menu),  shopkeeper_addresses_path %>
 </li>
 <li>
-  <%= link_to "Käuferportal", language_path("zh-CN"), method: :put %>
-</li>
-<li>
   <%= link_to I18n.t(:sign_out, scope: :top_menu), destroy_user_session_path, :method => :delete %>
 </li>

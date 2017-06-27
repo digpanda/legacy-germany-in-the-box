@@ -8,6 +8,7 @@ class Guest::ShopApplicationsController < ApplicationController
   attr_reader :shop_application
 
   before_action :force_german
+  layout :default_layout
 
   def new
     @shop_application = ShopApplication.new

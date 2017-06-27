@@ -1,15 +1,13 @@
 <div class="row js-footer-stick">
   <div class="col-md-12 dashboard-layout__footer">
     <div class="row">
-      <div class="col-md-2 +left">
-        <strong>Germany in the Box</strong>
-      </div>
-
-      <div class="col-md-4 col-md-push-2 +left">
+      <div class="col-md-6 +left">
+        <strong>Germany in the Box</strong> -
         <%= link_to I18n.t(:icp_registration, scope: :footer) %> /
         <%= link_to I18n.t(:terms_conditions, scope: :footer), agb_guest_pages_path %> /
         <%= link_to I18n.t(:privacy_statement, scope: :footer), privacy_guest_pages_path %> /
-        <%= link_to I18n.t(:sell_on_gbox, scope: :footer), saleguide_guest_pages_path %>
+        <%= link_to I18n.t(:sell_on_gbox, scope: :footer), saleguide_guest_pages_path %> /
+        <%= link_to "Käuferportal", language_path(id: "zh-CN", sign_out: true), method: :put %>
       </div>
 
       <!-- Time zones -->
