@@ -377,6 +377,23 @@
   .navbar-toggle {
     display: block; } }
 
+#scrollUp {
+  bottom: 20px;
+  right: 20px;
+  padding: 7px 15px;
+  background-color: #3498db;
+  color: #ffffff;
+  -webkit-border-radius: 10%;
+  -moz-border-radius: 10%;
+  -ms-border-radius: 10%;
+  border-radius: 10%; }
+  #scrollUp i {
+    font-size: 35px; }
+
+.btn-primary {
+  background: #3498db !important;
+  border-color: #3498db !important; }
+
 .buttons {
   display: inline-block;
   text-align: center;
@@ -1512,22 +1529,6 @@ h3 {
   .form-control:focus {
     border: 1px solid #33965e;
     border-width: 0px 0px 1px 0px; }
-
-#scrollUp {
-  bottom: 20px;
-  right: 20px;
-  padding: 7px 15px;
-  background-color: #b6d98d;
-  color: #f5f9ee;
-  -webkit-border-radius: 10%;
-  -moz-border-radius: 10%;
-  -ms-border-radius: 10%;
-  border-radius: 10%; }
-  #scrollUp i {
-    font-size: 35px; }
-
-#cart {
-  z-index: 11; }
 
 .js-editable button {
   color: #3498db !important; }
