@@ -7,6 +7,8 @@ development:
     - default
 staging:
   :concurrency: 5
+preproduction:
+  :concurrency: 5
 production:
   :concurrency: 5
 :queues:

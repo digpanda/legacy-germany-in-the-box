@@ -34,6 +34,10 @@ staging:
   app_name: Germany in the Box (Staging)
   developer_mode: true
 
+preproduction:
+  <<: *default_settings
+  app_name: Germany in the Box (Production)
+
 production:
   <<: *default_settings
   app_name: Germany in the Box (Production)

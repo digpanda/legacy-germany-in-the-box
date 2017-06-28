@@ -20,6 +20,10 @@ test:
 staging:
   <<: *defaults
 
+preproduction:
+  <<: *defaults
+  app_cache_expire_limit: 1.hours
+
 production:
   <<: *defaults
   app_cache_expire_limit: 1.hours

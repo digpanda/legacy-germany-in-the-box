@@ -17,6 +17,13 @@ test:
 staging:
   <<: *defaults
 
+preproduction:
+  username: <%= ENV["wechat_username"] %>
+  password: <%= ENV["wechat_password"] %>
+  username_mobile: <%= ENV["wechat_username_mobile"] %>
+  password_mobile: <%= ENV["wechat_password_mobile"] %>
+  scope: snsapi_login
+
 production:
   username: <%= ENV["wechat_username"] %>
   password: <%= ENV["wechat_password"] %>
