@@ -34,6 +34,8 @@ module DigPanda
     config.i18n.available_locales = %w(de zh-CN en)
     config.i18n.default_locale = :de
     #config.time_zone = 'Beijing'
+    
+    puts "ENV : #{Rails.env}"
 
     # A loop here will make everything heavier and will force method definitions, better to keep it simple, sadly.
     config.gitb = YAML.load(ERB.new(File.read(Rails.root.join("config/germany_in_the_box.yml"))).result)[Rails.env].deep_symbolize_keys!
