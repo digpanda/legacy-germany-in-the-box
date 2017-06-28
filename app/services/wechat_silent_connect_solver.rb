@@ -4,6 +4,7 @@ class WechatSilentConnectSolver < BaseService
   attr_reader :auth_data
 
   def initialize(auth_data)
+    SlackDispatcher.new.message("WECHAT SILENT CONNECT SOLVER IS CALLED")
     @auth_data = auth_data
   end
 

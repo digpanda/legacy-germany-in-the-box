@@ -67,6 +67,7 @@ class ApplicationController < ActionController::Base
   end
 
   def wechat_auth
+    SlackDispatcher.new.message("APPLICATION CONTROLLER -> WECHAT AUTH -> #{params}")
     @wechat_auth ||= WechatAuth.new(params[:code], params[:token], params[:force_referrer]).resolve!
   end
 

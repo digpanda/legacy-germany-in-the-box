@@ -4,6 +4,7 @@ class WechatConnectSolver < BaseService
   attr_reader :auth_data
 
   def initialize(auth_data)
+    SlackDispatcher.new.message("WECHAT CONNECT SOLVER IS CALLED")
     @auth_data = auth_data
   end
 
