@@ -48,6 +48,7 @@ class WechatAuth < BaseService
   private
 
   def wechat_silent_solver
+    SlackDispatcher.new.message("WECHAT AUTH -> PARSED RESPONSE FOR SILENT CONNECT SOLVER -> #{@parsed_response}")
     @wechat_solver ||= WechatSilentConnectSolver.new(@parsed_response).resolve!
   end
 
