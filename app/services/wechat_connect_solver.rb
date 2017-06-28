@@ -1,14 +1,19 @@
 # connect the customer from wechat omniauth system
 class WechatConnectSolver < BaseService
 
-  attr_reader :auth_data
+  attr_reader :unionid, :openid, :provider, :nickname, :avatar, :sex
 
-  def initialize(auth_data)
-    @auth_data = auth_data
+  def initialize(provider:nil, unionid:nil, openid:nil, nickname:nil, avatar:nil, sex:nil)
+    @provider = provider
+    @unionid = unionid
+    @openid = openid
+    @nickname = nickname
+    @avatar = avatar
+    @sex = sex
   end
 
   # we will resolve the wechat connection
-  # we try to recover the customer matching the `auth_data`
+  # we try to recover the customer matching the data
   # or create a new one with the wechat informations
   def resolve!
     if customer.persisted?
@@ -22,7 +27,7 @@ class WechatConnectSolver < BaseService
   private
 
   # make sure the customer has an avatar
-  # else we use one from the auth_data
+  # else we use one from the data
   def ensure_avatar!
     unless customer.pic.present?
       customer.remote_pic_url = avatar
@@ -35,29 +40,25 @@ class WechatConnectSolver < BaseService
   end
 
   def existing_customer
-    User.where(provider: auth_data.provider, wechat_unionid: auth_data.info.unionid).first
+    User.where(provider: provider, wechat_unionid: unionid).first
   end
 
   def new_customer
     User.create({
-      :provider => auth_data.provider,
-      :nickname => auth_data.info.nickname,
+      :provider => provider,
+      :nickname => nickname,
       :remote_pic_url => avatar,
-      :email => "#{auth_data.info.unionid}@wechat.com",
+      :email => "#{unionid}@wechat.com",
       :role => :customer,
       :gender => gender,
       :password => random_password,
       :password_confirmation => random_password,
-      :wechat_unionid => auth_data.info.unionid # what is it for ?
+      :wechat_unionid => unionid
     })
   end
 
-  def avatar
-    auth_data.info.headimgurl
-  end
-
   def gender
-     if auth_data.info.sex == 1
+     if sex == 1
        'm'
      else
        'f'

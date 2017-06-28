@@ -48,7 +48,18 @@ class WechatAuth < BaseService
   private
 
   def wechat_silent_solver
-    @wechat_solver ||= WechatSilentConnectSolver.new(@parsed_response).resolve!
+    @wechat_silent_solver ||= WechatConnectSolver.new(wechay_silent_data).resolve!
+  end
+
+  def wechat_silent_data
+    {
+      provider: :wechat,
+      unionid: @parsed_response['unionid'],
+      openid: @parsed_response['openid'],
+      nickname: nil,
+      avatar: @parsed_response['headimgurl'],
+      sex: @parsed_response['sex'],
+    }
   end
 
   def get_access_token(code)

@@ -12,7 +12,6 @@ class ReferrerToken
   field :sales_provision_extra, type: Float, default: 0
   field :redeem_discount, type: Float, default: 0
   field :note, type: String
-  field :used_at, type: Time
 
   has_many :referrers, :class_name => "Referrer", :inverse_of => :referrer_token
 
@@ -27,12 +26,10 @@ class ReferrerToken
   end
 
   def self.valid_token?(token)
-    token = ReferrerToken.where(token: token).first
-    if token
-      token.update(used_at: Time.now)
-      return true
+    if ReferrerToken.where(token: token).first
+      true
     else
-      return false
+      false
     end
   end
 

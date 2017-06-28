@@ -5,6 +5,7 @@ class Connect::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   skip_before_action :silent_login
   skip_before_action :get_cart_orders
 
+  # QRCode Wechat classic login system
   def wechat
     if wechat_solver.success?
       sign_in_user(wechat_solver.data[:customer])
@@ -13,20 +14,19 @@ class Connect::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     end
   end
 
+  # QRCode Wecaht tour guide registration
   def referrer
-    if params[:code]
+    if params[:code] && params[:token]
+      # wechat auth is taken from application controller
       if wechat_auth.success?
         user = wechat_auth.data[:customer]
-        @tourist_guide = true
 
         if ReferrerToken.valid_token?(params[:token])
-          unless user.referrer
-            Referrer.create(user: user)
-          end
 
+          Referrer.create(user: user) unless user.referrer
           user.reload
-
           user.referrer.update(referrer_token_id: ReferrerToken.where(token: params[:token]).first.id)
+
           Coupon.create_referrer_coupon(user.referrer) if user.referrer.coupons.empty?
         end
 
@@ -34,11 +34,9 @@ class Connect::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         sign_in(:user, user)
         session[:landing] = :package_sets
         SlackDispatcher.new.silent_login_attempt("[Wechat] Tourist guide automatically logged-in (`#{user&.id}`)")
+        redirect_to customer_referrer_path
+        return
 
-        if @tourist_guide
-          redirect_to customer_referrer_path
-          return
-        end
       end
     end
     redirect_to root_path
@@ -52,36 +50,18 @@ class Connect::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   private
 
   def wechat_solver
-    @wechat_solver ||= WechatConnectSolver.new(request.env["omniauth.auth"]).resolve!
+    @wechat_solver ||= WechatConnectSolver.new(wechat_data).resolve!
   end
 
-  def wechat_silent_solver
-    @wechat_solver ||= WechatSilentConnectSolver.new(@parsed_response).resolve!
-    @wechat_solver ||= WechatConnectSolver.new(@parsed_response).resolve!
-  end
-
-  def get_access_token(code)
-    url = "https://api.wechat.com/sns/oauth2/access_token?appid=#{Rails.application.config.wechat[:username_mobile]}&secret=#{Rails.application.config.wechat[:password_mobile]}&code=#{code}&grant_type=authorization_code"
-    get_url(url)
-  end
-
-  def get_user_info(access_token, openid)
-    url = "https://api.wechat.com/sns/userinfo?access_token=#{access_token}&openid=#{openid}"
-    get_url(url)
-  end
-
-  def get_url(url)
-    response = Net::HTTP.get(URI.parse(url))
-    JSON.parse(response)
-  end
-
-  def auth_user
-    if wechat_silent_solver.success?
-      sign_in_user(wechat_silent_solver.data[:customer])
-    else
-      flash[:error] = I18n.t(:wechat_login_fail, scope: :notice)
-      redirect_to root_path
-    end
+  def wechat_data
+    {
+      provider: request.env["omniauth.auth"].provider,
+      unionid: request.env["omniauth.auth"].info.unionid,
+      openid: request.env["omniauth.auth"].info.openid,
+      nickname: request.env["omniauth.auth"].info.nickname,
+      avatar: request.env["omniauth.auth"].info.headimgurl,
+      sex: request.env["omniauth.auth"].info.sex,
+    }
   end
 
   def sign_in_user(user)
