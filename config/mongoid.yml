@@ -12,6 +12,21 @@ production:
     use_activesupport_time_zone: true
     raise_not_found_error: true
 
+preproduction:
+  clients:
+    default:
+      database: a_chat_development # We could login to the production database for real test
+      hosts:
+        #- dogen.mongohq.com:10020
+        - aws-eu-central-1-portal.1.dblayer.com:15202
+      options:
+        user: gitb
+        password: lyh2cool
+  options:
+    use_utc: false
+    use_activesupport_time_zone: true
+    raise_not_found_error: true
+
 staging:
   clients:
     default:
