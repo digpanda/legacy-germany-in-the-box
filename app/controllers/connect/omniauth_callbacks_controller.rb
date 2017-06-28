@@ -56,6 +56,7 @@ class Connect::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   def wechat_silent_solver
+    @wechat_solver ||= WechatSilentConnectSolver.new(@parsed_response).resolve!
     @wechat_solver ||= WechatConnectSolver.new(@parsed_response).resolve!
   end
 
