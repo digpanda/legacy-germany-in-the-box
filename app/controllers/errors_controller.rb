@@ -9,7 +9,7 @@ class ErrorsController < ActionController::Base
   # error management (resource not found, etc.)
 
   before_action :identity_solver
-  
+
   include ErrorsHelper
   layout "errors/default"
 
@@ -37,7 +37,7 @@ class ErrorsController < ActionController::Base
   private
 
   def identity_solver
-    @identity_solver ||= IdentitySolver.new(request, session, current_user)
+    @identity_solver ||= IdentitySolver.new(request, current_user)
   end
 
   def api?

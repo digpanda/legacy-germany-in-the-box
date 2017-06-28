@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :navigation, :cart_manager, :identity_solver
 
-  before_action :silent_login, :origin_solver, :landing_solver, :get_cart_orders
+  before_action :silent_login, :solve_origin, :solve_landing
 
   def silent_login
     if params[:code]
@@ -51,7 +51,7 @@ class ApplicationController < ActionController::Base
   end
 
   def identity_solver
-    @identity_solver ||= IdentitySolver.new(request, session, current_user)
+    @identity_solver ||= IdentitySolver.new(request, current_user)
   end
 
   def setting
@@ -74,37 +74,18 @@ class ApplicationController < ActionController::Base
     @freeze_header = true
   end
 
-  def origin_solver
-    return session[:origin] if session[:origin]
-    if chinese_domain? || wechat_browser?
-      session[:origin] = :wechat
-    else
-      session[:origin] = :browser
-    end
+  def solve_origin
+    identity_solver.origin_setup!
   end
 
-  def landing_solver
-    @landing_solver ||= LandingSolver.new(request).setup!
-  end
-
-  def wechat_browser?
-    request.user_agent&.include? "MicroMessenger"
-  end
-
-  def chinese_domain?
-    request.url&.include? "germanyinbox.com"
+  def solve_landing
+    identity_solver.landing_solver.setup!
   end
 
   def restrict_to(section)
     unless identity_solver.section == section # :customer, :shopkeeper, :admin
       navigation.reset! # we reset to avoid infinite loop
       throw_unauthorized_page
-    end
-  end
-
-  def get_cart_orders
-    current_user&.cart&.orders&.each do |order|
-      cart_manager.store(order)
     end
   end
 

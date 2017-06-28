@@ -55,7 +55,7 @@ class LanguagesController < ActionController::Base # No application because it's
   # NOTE : this was duplicated from `application_controller.rb` as this controller
   # does not inherit from it but use this functionality
   def identity_solver
-    @identity_solver ||= IdentitySolver.new(request, session, current_user)
+    @identity_solver ||= IdentitySolver.new(request, current_user)
   end
 
   # this is not currently in used in the system but could be re-used someday

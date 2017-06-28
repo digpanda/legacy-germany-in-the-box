@@ -1,15 +1,14 @@
 # anything related to the section (customer, shopkeeper, admin)
 # and used within the controller or model, etc. are defined here
-# NOTE : maybe we should include LandingSolver in the IdentitySolver for constitency
 class IdentitySolver < BaseService
 
   include Rails.application.routes.url_helpers
 
   attr_reader :request, :session, :user
 
-  def initialize(request, session, user)
+  def initialize(request, user)
     @request = request
-    @session = session
+    @session = request.session
     @user = user
   end
 
@@ -29,11 +28,23 @@ class IdentitySolver < BaseService
 
   def origin_url
     landing_url
-    #wechat_customer? ? guest_package_sets_path : root_path
+  end
+
+  def origin_setup!
+    return session[:origin] if session[:origin]
+    if chinese_domain? || wechat_browser?
+      session[:origin] = :wechat
+    else
+      session[:origin] = :browser
+    end
   end
 
   def landing_url
-    @landing_url ||= LandingSolver.new(request).recover
+    @landing_url ||= landing_solver.recover
+  end
+
+  def landing_solver
+    @landing_solver ||= LandingSolver.new(request)
   end
 
   def potential_customer?
@@ -46,6 +57,14 @@ class IdentitySolver < BaseService
 
   def potential_admin?
     user&.decorate&.admin?
+  end
+
+  def wechat_browser?
+    request.user_agent&.include? "MicroMessenger"
+  end
+
+  def chinese_domain?
+    request.url&.include? "germanyinbox.com"
   end
 
   def guest_section?
