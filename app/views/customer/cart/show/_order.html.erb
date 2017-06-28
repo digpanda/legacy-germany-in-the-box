@@ -96,8 +96,11 @@
               <!-- Coupon Form -->
               <div class="row">
                 <div class="cart__total-coupon">
-                  <div class="col-xs-6">
+                  <div class="col-xs-5">
                     <%= f.text_field :code, :class => 'coupon__field', :placeholder => guess_coupon_label, :autocomplete => 'off' %>
+                  </div>
+                  <div class="col-xs-1 +centered">
+                    <i class="fa fa-caret-right"></i>
                   </div>
                   <div class="col-xs-6">
                     <div class="cart__total-coupon-button">

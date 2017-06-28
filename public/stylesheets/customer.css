@@ -1673,6 +1673,11 @@ body {
   text-align: center;
   font-weight: bold; }
 
+.cart__total-coupon i {
+  font-size: 40px;
+  vertial-align: middle;
+  color: #33965e; }
+
 .cart__total-coupon input {
   border-radius: 0;
   -webkit-appearance: none;
@@ -2297,10 +2302,6 @@ body {
       padding: 1em;
       font-weight: bold;
       font-size: 16px; }
-      .provision__list th:nth-child(1) {
-        width: 10%; }
-      .provision__list th:nth-child(2) {
-        min-width: 20%; }
     .provision__list tr {
       border-top: 1px solid #eeeeee; }
     .provision__list tbody tr:hover {
