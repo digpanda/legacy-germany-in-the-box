@@ -19,18 +19,20 @@ class ApplicationController < ActionController::Base
 
   def solve_silent_login
     if params[:code]
-      if wechat_auth.success?
+      if wechat_api_connect_solver.success?
         sign_out
-        user = wechat_auth.data[:customer]
+        user = wechat_api_connect_solver.data[:customer]
         sign_in(:user, user)
         SlackDispatcher.new.silent_login_attempt("[Wechat] Customer automatically logged-in (`#{current_user&.id}`)")
-        redirect_to SigninHandler.new(request, navigation, current_user, cart_manager).solve!(refresh: true)
+        redirect_to AfterSigninHandler.new(request, navigation, current_user, cart_manager).solve!(refresh: true)
+      else
+        SlackDispatcher.new.message("WECHAT AUTH FAILED : #{wechat_api_connect_solver.error}")
       end
     end
   end
 
-  def wechat_auth
-    @wechat_auth ||= WechatAuth.new(params[:code], params[:token], params[:force_referrer]).resolve!
+  def wechat_api_connect_solver
+    @wechat_api_connect_solver ||= WechatApiConnectSolver.new(params[:code]).resolve!
   end
 
   def current_page

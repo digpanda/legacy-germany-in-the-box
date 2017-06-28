@@ -7,28 +7,31 @@ class Connect::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   # QRCode Wechat classic login system
   def wechat
-    if wechat_solver.success?
-      sign_in_user(wechat_solver.data[:customer])
+    if wechat_connect_solver.success?
+      sign_in_user wechat_connect_solver.data[:customer]
     else
       failure
     end
   end
 
-  # QRCode Wecaht tour guide registration
+  # QRCode Wechat tour guide registration
+  # NOTE : token here means referrer token which was changed inside the system. (yeah disgusting)
+  # it's only a way to group people.
   def referrer
-    if params[:code] && params[:token]
-      # wechat auth is taken from application controller
-      if wechat_auth.success?
-        user = wechat_auth.data[:customer]
+    if params[:code]
+      # this is taken from application controller
+      if wechat_api_connect_solver.success?
+        user = wechat_api_connect_solver.data[:customer]
 
-        if ReferrerToken.valid_token?(params[:token])
+        referrer_token = ReferrerToken.where(token: params[:token]).first
 
+        if referrer_token
           Referrer.create(user: user) unless user.referrer
           user.reload
-          user.referrer.update(referrer_token_id: ReferrerToken.where(token: params[:token]).first.id)
-
-          Coupon.create_referrer_coupon(user.referrer) if user.referrer.coupons.empty?
+          user.referrer.update(referrer_token: referrer_token)
         end
+
+        Coupon.create_referrer_coupon(user.referrer) if user.referrer.coupons.empty?
 
         sign_out
         sign_in(:user, user)
@@ -49,8 +52,8 @@ class Connect::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   private
 
-  def wechat_solver
-    @wechat_solver ||= WechatConnectSolver.new(wechat_data).resolve!
+  def wechat_connect_solver
+    @wechat_connect_solver ||= WechatConnectSolver.new(wechat_data).resolve!
   end
 
   def wechat_data

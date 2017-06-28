@@ -61,7 +61,7 @@ class Admin::ShopsController < ApplicationController
 
   def force_login
     sign_in(shop.shopkeeper)
-    redirect_to SigninHandler.new(request, navigation, shop.shopkeeper, cart_manager).solve!
+    redirect_to AfterSigninHandler.new(request, navigation, shop.shopkeeper, cart_manager).solve!
   end
 
   private

@@ -1,6 +1,6 @@
 require 'addressable/uri'
 
-class SigninHandler
+class AfterSigninHandler
 
   include Rails.application.routes.url_helpers
 
