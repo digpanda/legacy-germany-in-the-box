@@ -22,7 +22,6 @@ class SigninHandler
     if user.customer?
       force_chinese!
       handle_past_orders!
-      # recover_last_order! TODO : fix that
       return without_code missing_info_customer_account_path(kept_params) if user.missing_info?
       return navigation.force! if navigation.force?
 

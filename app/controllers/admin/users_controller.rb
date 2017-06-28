@@ -53,6 +53,7 @@ class Admin::UsersController < ApplicationController
 
   def force_login
     sign_in(user)
+    session[:force_url] = root_path
     redirect_to SigninHandler.new(request, navigation, user, cart_manager).solve!
   end
 
