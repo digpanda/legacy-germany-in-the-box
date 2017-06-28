@@ -23,19 +23,26 @@ class Connect::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       if wechat_api_connect_solver.success?
         user = wechat_api_connect_solver.data[:customer]
 
-        referrer_token = ReferrerToken.where(token: params[:token]).first
+        # we make sure the user is turned into a referrer
+        Referrer.create(user: user) unless user.referrer
 
+        # we assign the referrer token if needed
+        referrer_token = ReferrerToken.where(token: params[:token]).first
         if referrer_token
-          Referrer.create(user: user) unless user.referrer
           user.reload
           user.referrer.update(referrer_token: referrer_token)
         end
 
+        # we create the first coupon if needed (after the token because it can change data)
         Coupon.create_referrer_coupon(user.referrer) if user.referrer.coupons.empty?
 
+        # we finally sign him in
         sign_out
         sign_in(:user, user)
+
+        # we force him to have a landing on package sets
         session[:landing] = :package_sets
+
         SlackDispatcher.new.silent_login_attempt("[Wechat] Tourist guide automatically logged-in (`#{user&.id}`)")
         redirect_to customer_referrer_path
         return
