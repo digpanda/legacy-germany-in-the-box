@@ -15,19 +15,22 @@ class ApplicationController < ActionController::Base
 
   helper_method :navigation, :cart_manager, :identity_solver
 
-  before_action :silent_login, :solve_origin, :solve_landing
+  before_action :solve_silent_login, :solve_origin, :solve_landing
 
-  def silent_login
+  def solve_silent_login
     if params[:code]
       if wechat_auth.success?
         sign_out
         user = wechat_auth.data[:customer]
         sign_in(:user, user)
         SlackDispatcher.new.silent_login_attempt("[Wechat] Customer automatically logged-in (`#{current_user&.id}`)")
-        SlackDispatcher.new.message("REQUEST FOR WECHAT #{request.url}")
         redirect_to SigninHandler.new(request, navigation, current_user, cart_manager).solve!(refresh: true)
       end
     end
+  end
+
+  def wechat_auth
+    @wechat_auth ||= WechatAuth.new(params[:code], params[:token], params[:force_referrer]).resolve!
   end
 
   def current_page
@@ -64,10 +67,6 @@ class ApplicationController < ActionController::Base
 
   def default_layout
     "application"
-  end
-
-  def wechat_auth
-    @wechat_auth ||= WechatAuth.new(params[:code], params[:token], params[:force_referrer]).resolve!
   end
 
   def freeze_header

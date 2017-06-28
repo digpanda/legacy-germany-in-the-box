@@ -22,6 +22,7 @@ class SigninHandler
     if user.customer?
       force_chinese!
       handle_past_orders!
+      recover_last_orders!
       return without_code missing_info_customer_account_path(kept_params) if user.missing_info?
       return navigation.force! if navigation.force?
 
@@ -68,9 +69,11 @@ class SigninHandler
     uri.to_s
   end
 
-  def recover_last_order!
-    if user.cart_orders.first
-      cart_manager.store(user.cart_orders.first)
+  # TODO : improve the cart handling so a use always
+  # has a cart.
+  def recover_last_orders!
+    user.cart&.orders&.each do |order|
+      cart_manager.store(order)
     end
   end
 
@@ -80,9 +83,12 @@ class SigninHandler
   # and made people blow up on sign-in
   def handle_past_orders!
     remove_all_empty_orders!
+    remove_timeout_orders!
+  end
 
-    user&.cart&.orders&.each do |order|
-      if !order.bought? and order.timeout?
+  def remove_timeout_orders!
+    user.cart&.orders&.each do |order|
+      if !order.bought? && order.timeout?
         order.cart_id = nil
         order.save
         order.reload
