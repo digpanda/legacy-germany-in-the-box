@@ -1,5 +1,7 @@
-# connect the customer from wechat omniauth system
-class WechatConnectSolver < BaseService
+# solve database user from wechat data
+# those data can be provided from different origin
+# such as Omniauth or API calls
+class WechatUserSolver < BaseService
 
   attr_reader :unionid, :openid, :provider, :nickname, :avatar, :sex
 

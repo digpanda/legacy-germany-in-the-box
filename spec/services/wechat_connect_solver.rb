@@ -1,4 +1,4 @@
-describe WechatConnectSolver  do
+describe WechatUserSolver  do
 
   VALID_OMNIAUTH_CALLBACK = OmniAuth::AuthHash.new({
     "provider"=>"wechat",
@@ -32,7 +32,7 @@ describe WechatConnectSolver  do
 
   context "#resolve!" do
 
-    subject(:wechat_connect) { WechatConnectSolver.new(VALID_OMNIAUTH_CALLBACK) }
+    subject(:wechat_connect) { WechatUserSolver.new(VALID_OMNIAUTH_CALLBACK) }
 
     it "creates and return a new customer" do
 

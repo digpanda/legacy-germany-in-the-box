@@ -7,8 +7,8 @@ class Connect::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   # QRCode Wechat classic login system
   def wechat
-    if wechat_connect_solver.success?
-      sign_in_user wechat_connect_solver.data[:customer]
+    if wechat_user_solver.success?
+      sign_in_user wechat_user_solver.data[:customer]
     else
       failure
     end
@@ -52,8 +52,8 @@ class Connect::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   private
 
-  def wechat_connect_solver
-    @wechat_connect_solver ||= WechatConnectSolver.new(wechat_data).resolve!
+  def wechat_user_solver
+    @wechat_user_solver ||= WechatUserSolver.new(wechat_data).resolve!
   end
 
   def wechat_data

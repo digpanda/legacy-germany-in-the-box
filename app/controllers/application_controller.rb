@@ -20,8 +20,8 @@ class ApplicationController < ActionController::Base
   def solve_silent_login
     if params[:code]
       if wechat_api_connect_solver.success?
-        sign_out
         user = wechat_api_connect_solver.data[:customer]
+        sign_out
         sign_in(:user, user)
         SlackDispatcher.new.silent_login_attempt("[Wechat] Customer automatically logged-in (`#{current_user&.id}`)")
         redirect_to AfterSigninHandler.new(request, navigation, current_user, cart_manager).solve!(refresh: true)

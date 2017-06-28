@@ -17,7 +17,7 @@ class WechatApiConnectSolver < BaseService
   # we will try to log-in the customer from the 2 APIs
   # if the first one succeed and we can already find the user from the given data
   # we stop there and return the customer
-  # if the first one is not enough, we use a 2nd API call and use it on wechat_connect_solver
+  # if the first one is not enough, we use a 2nd API call and use it on wechat_user_solver
   # which will return a customer freshly created or an old one
   def connect_user
     @connect_user ||= begin
@@ -31,11 +31,11 @@ class WechatApiConnectSolver < BaseService
 
       return return_with(:error, "User info is wrong") if user_info_gateway['errcode']
 
-      unless wechat_connect_solver.success?
-        return return_with(:error, wechat_connect_solver.error)
+      unless wechat_user_solver.success?
+        return return_with(:error, wechat_user_solver.error)
       end
 
-      return_with(:success, customer: wechat_connect_solver.data[:customer])
+      return_with(:success, customer: wechat_user_solver.data[:customer])
     end
   end
 
@@ -57,8 +57,8 @@ class WechatApiConnectSolver < BaseService
 
   private
 
-  def wechat_connect_solver
-    @wechat_connect_solver ||= WechatConnectSolver.new(wechat_data).resolve!
+  def wechat_user_solver
+    @wechat_user_solver ||= WechatUserSolver.new(wechat_data).resolve!
   end
 
   def wechat_data
