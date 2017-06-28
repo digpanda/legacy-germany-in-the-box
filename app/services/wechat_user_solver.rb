@@ -7,11 +7,11 @@ class WechatUserSolver < BaseService
 
   def initialize(provider:nil, unionid:nil, openid:nil, nickname:nil, avatar:nil, sex:nil)
     @provider = provider
-    @unionid = unionid
-    @openid = openid
+    @unionid  = unionid
+    @openid   = openid
     @nickname = nickname
-    @avatar = avatar
-    @sex = sex
+    @avatar   = avatar
+    @sex      = sex
   end
 
   # we will resolve the wechat connection
@@ -47,15 +47,15 @@ class WechatUserSolver < BaseService
 
   def new_customer
     User.create({
-      :provider => provider,
-      :nickname => nickname,
-      :remote_pic_url => avatar,
-      :email => "#{unionid}@wechat.com",
-      :role => :customer,
-      :gender => gender,
-      :password => random_password,
+      :provider              => provider,
+      :nickname              => nickname,
+      :remote_pic_url        => avatar,
+      :email                 => "#{unionid}@wechat.com",
+      :role                  => :customer,
+      :gender                => gender,
+      :password              => random_password,
       :password_confirmation => random_password,
-      :wechat_unionid => unionid
+      :wechat_unionid        => unionid
     })
   end
 
