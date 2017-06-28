@@ -7,7 +7,6 @@ class WechatAuth < BaseService
   attr_reader :code, :force_referrer
 
   def initialize(code, token, force_referrer=false)
-    SlackDispatcher.new.message("WECHATAUTH IS CALLED")
     @code = code
     @token = token
     @force_referrer = force_referrer
@@ -49,7 +48,6 @@ class WechatAuth < BaseService
   private
 
   def wechat_silent_solver
-    SlackDispatcher.new.message("WECHAT AUTH -> PARSED RESPONSE FOR SILENT CONNECT SOLVER -> #{@parsed_response}")
     @wechat_solver ||= WechatSilentConnectSolver.new(@parsed_response).resolve!
   end
 

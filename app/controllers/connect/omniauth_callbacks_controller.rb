@@ -52,12 +52,10 @@ class Connect::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   private
 
   def wechat_solver
-    SlackDispatcher.new.message("OMNIAUTH CALLBACK -> WECHAT SOLVER -> #{request.env["omniauth.auth"]}")
     @wechat_solver ||= WechatConnectSolver.new(request.env["omniauth.auth"]).resolve!
   end
 
   def wechat_silent_solver
-    SlackDispatcher.new.message("OMNIAUTH CALLBACK -> WECHAT SILENT SOLVER -> #{@parsed_response}")
     @wechat_solver ||= WechatSilentConnectSolver.new(@parsed_response).resolve!
   end
 
