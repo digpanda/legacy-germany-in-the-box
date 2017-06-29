@@ -22,13 +22,6 @@ class WechatApiConnectSolver < BaseService
   def connect_user
     @connect_user ||= begin
       return return_with(:error, "Access token is wrong") if access_token_gateway['errcode']
-
-      if found_user
-        found_user.update(wechat_openid: openid)
-        found_user.reload
-        return return_with(:success, customer: found_user)
-      end
-
       return return_with(:error, "User info is wrong") if user_info_gateway['errcode']
 
       unless wechat_user_solver.success?
@@ -49,10 +42,6 @@ class WechatApiConnectSolver < BaseService
 
   def access_token
     access_token_gateway['access_token']
-  end
-
-  def found_user
-    @found_user ||= User.where(wechat_unionid: unionid).first
   end
 
   private

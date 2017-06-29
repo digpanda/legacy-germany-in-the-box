@@ -20,6 +20,7 @@ class WechatUserSolver < BaseService
   def resolve!
     if customer.persisted?
       ensure_avatar!
+      refresh_openid!
       return_with(:success, :customer => customer)
     else
       return_with(:error, "Could not create customer.")
@@ -35,6 +36,10 @@ class WechatUserSolver < BaseService
       customer.remote_pic_url = avatar
       customer.save
     end
+  end
+
+  def refresh_openid!
+    customer.update(wechat_openid: openid)
   end
 
   def customer
