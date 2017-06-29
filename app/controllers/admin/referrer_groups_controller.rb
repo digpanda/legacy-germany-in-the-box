@@ -29,7 +29,7 @@ class Admin::ReferrerGroupsController < ApplicationController
   def create
     @referrer_group = ReferrerGroup.create(referrer_group_params)
     if @referrer_group.errors.empty?
-      flash[:success] = "The referrer token was created."
+      flash[:success] = "The referrer group was created."
       redirect_to admin_referrer_groups_path
     else
       flash[:error] = "The referrer token was not created (#{@referrer_group.errors.full_messages.join(', ')})"
@@ -45,16 +45,16 @@ class Admin::ReferrerGroupsController < ApplicationController
       flash[:success] = "The referrer_group was updated."
       redirect_to admin_referrer_groups_path
     else
-      flash[:error] = "The referrer_group was not updated (#{referrer_group.errors.full_messages.join(', ')})"
+      flash[:error] = "The referrer group was not updated (#{referrer_group.errors.full_messages.join(', ')})"
       render :new
     end
   end
 
   def destroy
     if referrer_group.destroy
-      flash[:success] = "The referrer token account was successfully destroyed."
+      flash[:success] = "The referrer group account was successfully destroyed."
     else
-      flash[:error] = "The referrer token was not destroyed (#{referrer_group.errors.full_messages.join(', ')})"
+      flash[:error] = "The referrer group was not destroyed (#{referrer_group.errors.full_messages.join(', ')})"
     end
     redirect_to navigation.back(1)
   end
