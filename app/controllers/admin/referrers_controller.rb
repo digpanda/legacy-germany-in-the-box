@@ -20,11 +20,11 @@ class Admin::ReferrersController < ApplicationController
   end
 
   def new
-    @referrer_token = ReferrerToken.create
+    @referrer_group = ReferrerGroup.create
     @url = "https://open.weixin.qq.com/connect/oauth2/authorize?" +
         "appid=#{Rails.application.config.wechat[:username_mobile]}&" +
         "redirect_uri=http%3A%2F%2Fgermanyinbox.com/connect/auth/referrer?" +
-        "token=#{@referrer_token.token}" +
+        "token=#{@referrer_group.token}" +
         "&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect"
   end
 

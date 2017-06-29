@@ -1,24 +1,21 @@
-# THIS MUST BE REMOVED COMPLETELY WITHIN A FEW DAYS
-# - Laurent, 29/06/2017
-class ReferrerToken
+class ReferrerGroup
   include MongoidBase
 
   field :token, type: String
   field :name, type: String
   field :desc, type: String
   field :type, type: Symbol, default: :publisher
-  field :group, type: String
+
   field :coupon_discount, type: Boolean, default: true
   field :coupon_discount_extra, type: Float, default: 0
   field :sales_provision, type: Boolean, default: true
   field :sales_provision_extra, type: Float, default: 0
   field :redeem_discount, type: Float, default: 0
-  field :note, type: String
 
   has_many :referrers, :class_name => "Referrer", :inverse_of => :referrer_group
 
-  validates_presence_of :name, :group
-  validates_uniqueness_of :name, :group
+  validates_presence_of :name
+  validates_uniqueness_of :name
 
   after_create :generate_token
 
