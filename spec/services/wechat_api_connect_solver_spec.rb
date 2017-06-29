@@ -73,6 +73,17 @@ describe WechatApiConnectSolver  do
 
     end
 
+    it "throws an error from the API" do
+
+      wechat_api_connect_solver.stub(:access_token_gateway).and_return({
+        "errcode" => "289"
+      })
+
+      resolved = wechat_api_connect_solver.resolve!
+      expect(resolved.success?).to eq(false)
+      
+    end
+
   end
 
 end
