@@ -16,12 +16,14 @@ FactoryGirl.define do
     images { FactoryGirl.build_list(:image, 4) }
 
     trait :with_small_volume do
+      weight 1
       space_length 5
       space_width 5
       space_height 8
     end
 
     trait :with_big_volume do
+      weight 4
       space_length 15
       space_width 20
       space_height 15

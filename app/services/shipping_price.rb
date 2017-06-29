@@ -83,12 +83,6 @@ class ShippingPrice
     highest_shipping_rate.price / highest_shipping_rate.weight
   end
 
-  # the weight which is not taken into consideration from a normal table
-  # we will try to guess it
-  # def left_weight
-  #   weight - highest_shipping_rate.weight
-  # end
-
   def highest_shipping_rate
     ShippingRate.where(partner: logistic_partner).where(type: type).order_by(weight: :desc).first
   end
