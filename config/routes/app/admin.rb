@@ -81,7 +81,7 @@ namespace :admin do
 
   end
 
-  resources :referrer_tokens do
+  resources :referrer_groups do
   end
 
   resources :users do

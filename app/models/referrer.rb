@@ -10,7 +10,7 @@ class Referrer
   field :group, type: String
 
   belongs_to :user, :class_name => "User", :inverse_of => :referrer
-  belongs_to :referrer_token, :class_name => "ReferrerToken", :inverse_of => :referrer
+  belongs_to :referrer_group, :class_name => "ReferrerGroup", :inverse_of => :referrer
 
   has_many :coupons, :class_name => "Coupon", :inverse_of => :referrer
 

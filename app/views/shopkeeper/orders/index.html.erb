@@ -51,7 +51,7 @@
             <%= order.total_paid_in_yuan %>
           </td>
           <td>
-            <%= order.decorate.end_price.in_euro.to_yuan.display %> (<%= order.decorate.end_price.in_euro.display %>)
+            <%= order.decorate.end_price.in_euro.to_yuan(exchange_rate: order.exchange_rate).display %> (<%= order.decorate.end_price.in_euro.display %>)
           </td>
           <td>
             <%= render partial: "shared/orders/partials/files_buttons", locals: { :order => order } %>

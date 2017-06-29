@@ -13,12 +13,12 @@ class Currency
     @currency = currency
   end
 
-  def to_yuan
-    update_currency!('CNY', amount * Setting.instance.exchange_rate_to_yuan)
+  def to_yuan(exchange_rate: nil)
+    update_currency!('CNY', amount * (exchange_rate || Setting.instance.exchange_rate_to_yuan))
   end
 
-  def to_euro
-    update_currency!('EUR', amount / Setting.instance.exchange_rate_to_yuan)
+  def to_euro(exchange_rate: nil)
+    update_currency!('EUR', amount / (exchange_rate || Setting.instance.exchange_rate_to_yuan))
   end
 
   def display

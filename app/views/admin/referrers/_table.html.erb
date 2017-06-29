@@ -47,7 +47,7 @@
             <%= referrer.total_earned.in_euro.display %>
           </td>
           <td>
-            <%= referrer&.referrer_token&.group %>
+            <%= referrer&.referrer_group&.group %>
           </td>
           <td>
             <% unless referrer.has_coupon? %>

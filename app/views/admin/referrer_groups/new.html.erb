@@ -2,8 +2,8 @@
   <div class="row details__block">
     <h3>New referrer token</h3>
     <hr>
-    <%= form_for [:admin, @referrer_token] do |form| %>
-      <%= render partial: "admin/referrer_tokens/form", :locals => { :form => form } %>
+    <%= form_for [:admin, @referrer_group] do |form| %>
+      <%= render partial: "admin/referrer_groups/form", :locals => { :form => form } %>
       <%= form.submit "Create referrer token", {:class => "btn btn-primary"} %>
     <% end %>
   </div>

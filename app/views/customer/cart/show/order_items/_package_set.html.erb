@@ -79,8 +79,8 @@
         <div class="cart__order-item-total">
           <%= I18n.t(:subtotal, scope: :cart) %>
           <div class="cart__order-item-total-digits">
-            <span id="package-total-<%= package_set.id %>" data-origin="<%= order.package_set_price_with_taxes(package_set).in_euro.to_yuan.display %>">
-              <%= order.package_set_price_with_taxes(package_set).in_euro.to_yuan.display %>
+            <span id="package-total-<%= package_set.id %>" data-origin="<%= order.package_set_price_with_taxes(package_set).in_euro.to_yuan(exchange_rate: order.exchange_rate).display %>">
+              <%= order.package_set_price_with_taxes(package_set).in_euro.to_yuan(exchange_rate: order.exchange_rate).display %>
             </span>
           </div>
         </div>

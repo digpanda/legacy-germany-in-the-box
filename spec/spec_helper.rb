@@ -25,9 +25,11 @@ RSpec.configure do |config|
   config.before(:each) do
     Mongoid.purge!
     Setting.create!
-    FactoryGirl.create(:shipping_rate, partner: :beihai, weight: 100, price: 40.00)
-    FactoryGirl.create(:shipping_rate, partner: :mkpost, weight: 100, price: 40.00)
-    FactoryGirl.create(:shipping_rate, partner: :xipost, weight: 100, price: 40.00)
+    5.times do |time|
+      FactoryGirl.create(:shipping_rate, partner: :beihai, weight: (10 * time), price: (4 * time))
+      FactoryGirl.create(:shipping_rate, partner: :mkpost, weight: (10 * time), price: (4 * time))
+      FactoryGirl.create(:shipping_rate, partner: :xipost, weight: (10 * time), price: (4 * time))
+    end
     page.driver.reset!
   end
 

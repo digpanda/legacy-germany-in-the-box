@@ -27,10 +27,10 @@ class Connect::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         Referrer.create(user: user) unless user.referrer
 
         # we assign the referrer token if needed
-        referrer_token = ReferrerToken.where(token: params[:token]).first
-        if referrer_token
+        referrer_group = ReferrerGroup.where(token: params[:token]).first
+        if referrer_group
           user.reload
-          user.referrer.update(referrer_token: referrer_token)
+          user.referrer.update(referrer_group: referrer_group)
         end
 
         # we create the first coupon if needed (after the token because it can change data)
