@@ -30,23 +30,33 @@ describe WechatUserSolver  do
          "unionid"=>"whatever-unionid"}}
     })
 
+    let(:wechat_data) do {
+        provider: VALID_OMNIAUTH_CALLBACK.provider,
+        unionid: VALID_OMNIAUTH_CALLBACK.info.unionid,
+        openid: VALID_OMNIAUTH_CALLBACK.info.openid,
+        nickname: VALID_OMNIAUTH_CALLBACK.info.nickname,
+        avatar: VALID_OMNIAUTH_CALLBACK.info.headimgurl,
+        sex: VALID_OMNIAUTH_CALLBACK.info.sex,
+      }
+    end
+
   context "#resolve!" do
 
-    subject(:wechat_connect) { WechatUserSolver.new(VALID_OMNIAUTH_CALLBACK) }
+    subject(:wechat_user_solver) { WechatUserSolver.new(wechat_data) }
 
     it "creates and return a new customer" do
 
-      resolved = wechat_connect.resolve!
+      resolved = wechat_user_solver.resolve!
       expect(resolved.success?).to eq(true)
       expect(resolved.data[:customer]).to be_a(User)
 
     end
 
-    let!(:current_user) { FactoryGirl.create(:customer, provider: "wechat", uid: "fake-uid") }
+    let!(:current_user) { FactoryGirl.create(:customer, provider: "wechat", wechat_unionid: "whatever-unionid") }
 
     it "use an existing customer and return it" do
 
-      resolved = wechat_connect.resolve!
+      resolved = wechat_user_solver.resolve!
       expect(resolved.success?).to eq(true)
       expect(resolved.data[:customer]).to be_a(User)
 
