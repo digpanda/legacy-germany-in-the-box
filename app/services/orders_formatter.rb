@@ -80,13 +80,13 @@ class OrdersFormatter < BaseService
       order.decorate.total_volume,
 
       order.decorate.total_price.in_euro.amount,
-      order.decorate.total_price.in_euro.to_yuan.amount,
+      order.decorate.total_price.in_euro.to_yuan(exchange_rate: order.exchange_rate).amount,
       order.decorate.shipping_cost.in_euro.amount,
-      order.decorate.shipping_cost.in_euro.to_yuan.amount,
+      order.decorate.shipping_cost.in_euro.to_yuan(exchange_rate: order.exchange_rate).amount,
       order.decorate.taxes_cost.in_euro.amount,
-      order.decorate.taxes_cost.in_euro.to_yuan.amount,
+      order.decorate.taxes_cost.in_euro.to_yuan(exchange_rate: order.exchange_rate).amount,
       order.decorate.end_price.in_euro.amount,
-      order.decorate.end_price.in_euro.to_yuan.amount,
+      order.decorate.end_price.in_euro.to_yuan(exchange_rate: order.exchange_rate).amount,
 
       (order.coupon ? order.coupon.code : ''),
       (order.coupon ? order.coupon.decorate.discount_display : ''),

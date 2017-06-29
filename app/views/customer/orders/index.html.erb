@@ -43,7 +43,7 @@
             <% if order.bought? %>
               <%= order.total_paid_in_yuan.display %>
             <% else %>
-              <%= order.end_price.in_euro.to_yuan.display %>
+              <%= order.end_price.in_euro.to_yuan(exchange_rate: order.exchange_rate).display %>
             <% end %>
           </td>
           <td>
@@ -101,7 +101,7 @@
           <strong><%= I18n.t(:status, scope: :edit_order) %>:</strong> <%= I18n.t(order.status, scope: :edit_order) %>
           <% if order.bought? %>
             <div class="clearfix"></div>
-            <strong><%= I18n.t(:total_price_with_extra_costs, scope: :edit_order) %>:</strong> <%= order.end_price.in_euro.to_yuan.display %>
+            <strong><%= I18n.t(:total_price_with_extra_costs, scope: :edit_order) %>:</strong> <%= order.end_price.in_euro.to_yuan(exchange_rate: order.exchange_rate).display %>
           <% end %>
 
           <% if order.bought? %>

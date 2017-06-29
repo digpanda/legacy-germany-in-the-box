@@ -40,7 +40,7 @@ class CheckoutReady < BaseService
 
     # did he reach the minimum shop requirement in term of order amount ?
     unless minimum_shop?
-      return return_with(:error, I18n.t(:not_all_min_total_reached, scope: :checkout, :shop_name => order.shop.name, :total_price => products_available[:total_price].in_euro.to_yuan.display, :currency => Setting.instance.platform_currency.symbol, :min_total => order.shop.min_total.in_euro.to_yuan.display))
+      return return_with(:error, I18n.t(:not_all_min_total_reached, scope: :checkout, :shop_name => order.shop.name, :total_price => products_available[:total_price].in_euro.to_yuan.display, :currency => Setting.instance.platform_currency.symbol, :min_total => order.shop.min_total.in_euro.to_yuan(exchange_rate: order.exchange_rate).display))
     end
 
     # let's update for checkout

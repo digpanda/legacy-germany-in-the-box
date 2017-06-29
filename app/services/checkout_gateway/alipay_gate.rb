@@ -23,14 +23,6 @@ class CheckoutGateway
 
     private
 
-    # Alipay::Service.create_direct_pay_by_user_url(
-    #   out_trade_no: "#{order.id}",
-    #   subject: "Order #{order.id}",
-    #   total_fee: "#{order.end_price.in_euro.to_yuan.display_raw}",
-    #   return_url: "#{base_url}#{customer_checkout_callback_alipay_path}",
-    #   notify_url: "#{base_url}#{api_webhook_alipay_customer_path}",
-    # )
-
     def raw_url
       @raw_url ||= begin
         if identity_solver.wechat_customer?
@@ -48,7 +40,7 @@ class CheckoutGateway
         out_trade_no: "#{order.id}",
         subject: "Order #{order.id}",
         currency: "EUR",
-        rmb_fee: "#{order.end_price.in_euro.to_yuan.display_raw}",
+        rmb_fee: "#{order.end_price.in_euro.to_yuan(exchange_rate: order.exchange_rate).display_raw}",
         return_url: "#{base_url}#{customer_checkout_callback_alipay_path}",
         notify_url: "#{base_url}#{api_webhook_alipay_customer_path}", # "http://alipay.digpanda.ultrahook.com"
       }
@@ -59,7 +51,7 @@ class CheckoutGateway
         out_trade_no: "#{order.id}",
         subject: "Order #{order.id}",
         currency: "EUR",
-        rmb_fee: "#{order.end_price.in_euro.to_yuan.display_raw}",
+        rmb_fee: "#{order.end_price.in_euro.to_yuan(exchange_rate: order.exchange_rate).display_raw}",
         return_url: "#{base_url}#{customer_checkout_callback_alipay_path}",
         notify_url: "#{base_url}#{api_webhook_alipay_customer_path}", # "http://alipay.digpanda.ultrahook.com"
       }

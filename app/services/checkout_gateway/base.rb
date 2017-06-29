@@ -25,7 +25,7 @@ class CheckoutGateway
         order_payment.payment_method   = payment_gateway.payment_method
         order_payment.transaction_type = :debit # TODO : make it dynamic ?
         order_payment.save
-        order_payment.save_origin_amount!(order.end_price.in_euro.to_yuan.amount, "CNY")
+        order_payment.save_origin_amount!(order.end_price.in_euro.to_yuan(exchange_rate: order.exchange_rate).amount, "CNY")
         order_payment.refresh_currency_amounts!
       end
     end

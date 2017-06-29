@@ -296,7 +296,7 @@ class Order
     elsif order_items.size == 1 && new_quantity_increase == 0
       false
     else
-      (total_price.in_euro.to_yuan.amount + new_price_increase) > Setting.instance.max_total_per_day
+      (total_price.in_euro.to_yuan(exchange_rate: self.exchange_rate).amount + new_price_increase) > Setting.instance.max_total_per_day
     end
   end
 

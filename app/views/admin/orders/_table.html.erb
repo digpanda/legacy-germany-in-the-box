@@ -44,7 +44,7 @@
           <%= order.tracking_id %>
         </td>
         <td>
-          <%= order.total_price_with_extra_costs.in_euro.to_yuan.display %> (<%= order.total_price_with_extra_costs.in_euro.display %>)
+          <%= order.total_price_with_extra_costs.in_euro.to_yuan(exchange_rate: order.exchange_rate).display %> (<%= order.total_price_with_extra_costs.in_euro.display %>)
         </td>
         <td>
           <%= order.u_at.localtime.strftime('%Y-%m-%d %H:%M:%S').in_time_zone %>
