@@ -25,6 +25,7 @@ class Order
   field :tracking_id, type: String
 
   field :shipping_cost, type: Float, default: 0.0
+  field :exchange_rate, type: Float, default: 0.0
 
   field :coupon_applied_at, type: Time
   field :coupon_discount, type: Float, default: 0.0
