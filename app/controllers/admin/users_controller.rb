@@ -44,8 +44,12 @@ class Admin::UsersController < ApplicationController
   end
 
   def set_as_referrer
-    ReferrerMaker.new(user).convert!
-    flash[:success] = "The user account was successfully set as a tourist guide."
+    conversion = ReferrerMaker.new(user).convert!(time_limit: false)
+    if conversion.success?
+      flash[:success] = "The user account was successfully set as a tourist guide."
+    else
+      flash[:error] = "#{conversion.error}"
+    end
     redirect_to navigation.back(1)
   end
 

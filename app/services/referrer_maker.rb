@@ -6,18 +6,26 @@ class ReferrerMaker < BaseService
     @customer = customer
   end
 
-  def convert!(group_token:nil)
-    turn_to_referrer!
+  def convert!(group_token:nil, time_limit:true)
+    turn_to_referrer!(time_limit)
     assign_to_group!(group_token)
     generate_coupon!
     return_with(:success)
+  rescue ReferrerMaker::Error => exception
+    return_with(:error, exception.message)
   end
 
   private
 
-  def turn_to_referrer!
-    # we make sure the user is turned into a referrer
-    Referrer.create(user: customer) unless customer.referrer
+  def turn_to_referrer!(time_limit)
+    unless customer.referrer
+      raise ReferrerMaker::Error, "Customer can't be turned into referrer after 24 hours creation" if !recent_customer? && time_limit
+      Referrer.create(user: customer)
+    end
+  end
+
+  def recent_customer?
+    customer.c_at >= 24.hours.ago
   end
 
   def assign_to_group!(token)
