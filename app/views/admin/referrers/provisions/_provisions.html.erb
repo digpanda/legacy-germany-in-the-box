@@ -10,7 +10,10 @@
     <table>
       <thead>
         <th>
-          ID
+          #
+        </th>
+        <th>
+          Order
         </th>
         <th>
           Provision
@@ -24,6 +27,9 @@
         <tr>
           <td>
             <%= provision.id %>
+          </td>
+          <td>
+            <a href="<%= admin_order_path(provision.order) %>"><%= provision.order.id %></a>
           </td>
           <td>
             <%= provision.provision.in_euro.display %>
