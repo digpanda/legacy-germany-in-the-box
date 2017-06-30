@@ -23,7 +23,7 @@ class Admin::Referrers::ProvisionsController < ApplicationController
   end
 
   def set_provision
-    @provision = referrer.provision.find(params[:id])
+    @provision = referrer.provisions.find(params[:id])
   end
 
   def set_referrer
