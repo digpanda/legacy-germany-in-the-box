@@ -137,13 +137,19 @@ class Order
 
   # NOTE : this should be abstracted somewhere else
   def refresh_referrer_provision!
+    SlackDispatcher.new.message("REFRESH PROVISION STARTED")
     if referrer
+      SlackDispatcher.new.message("VALID REFERRER")
       referrer_provision = ReferrerProvision.where(order: self, referrer: referrer).first
+      SlackDispatcher.new.message("REFERRER PROVISION ALREADY PRESENT ? #{referrer_provision.id}")
       if bought?
+        SlackDispatcher.new.message("ORDER WAS BOUGHT")
         referrer_provision ||= ReferrerProvision.create(order: self, referrer: referrer)
+        SlackDispatcher.new.message("WE SET CURRENT PROVISION : #{current_referrer_provision}")
         referrer_provision.provision = current_referrer_provision
         referrer_provision.save
       else #if cancelled? -> we should actually apply deletion in any case if it's not bought
+        SlackDispatcher.new.message("ORDER WE NOT BOUGHT")
         referrer_provision&.delete
       end
     end
