@@ -22,7 +22,7 @@ class Admin::OrderItemsController < ApplicationController
     order_item.save!(validation: false) # allow locked entry to be saved
     SlackDispatcher.new.message("ORDER ITEM ERROR ON REFRESH : #{order_item.errors.full_messages.join(', ')}")
     order.refresh_referrer_provision!
-    order.save
+    order.save!(validation: false)
     flash[:success] = "The referrer rate for this order item was refreshed."
     redirect_to navigation.back(1)
   end
