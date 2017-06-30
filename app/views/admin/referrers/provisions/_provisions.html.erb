@@ -21,9 +21,6 @@
         <th>
           Creation
         </th>
-        <th>
-          Action
-        </th>
       </thead>
       <tbody>
         <% provisions.each do |provision| %>
@@ -39,9 +36,6 @@
           </td>
           <td>
             <%= provision.c_at %>
-          </td>
-          <td>
-              <a href="<%= admin_referr_path(order) %>"><i class="fa fa-eye tooltipster buttons buttons__edit" title="Details and configuration"></i></a>
           </td>
         </tr>
         <% end %>
