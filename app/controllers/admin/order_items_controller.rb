@@ -20,6 +20,7 @@ class Admin::OrderItemsController < ApplicationController
   def refresh_referrer_rate
     order_item.refresh_referrer_rate!
     order_item.save
+    SlackDispatcher.new.message("ORDER ITEM ERROR ON REFRESH : #{order_item.errors.full_messages.join(', ')}")
     order.refresh_referrer_provision!
     order.save
     flash[:success] = "The referrer rate for this order item was refreshed."
