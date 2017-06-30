@@ -19,8 +19,10 @@ class Admin::OrderItemsController < ApplicationController
   # we refresh the referrer rate and the provision linked to it
   def refresh_referrer_rate
     order_item.refresh_referrer_rate!
+    order_item.bypass_locked!
     order_item.save
     order.refresh_referrer_provision!
+    order.bypass_locked!
     order.save
     flash[:success] = "The referrer rate for this order item was refreshed."
     redirect_to navigation.back(1)

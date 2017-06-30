@@ -16,9 +16,6 @@ class Admin::ReferrersController < ApplicationController
     @referrers = Referrer.full_text_search(params[:query], match: :all, allow_empty_search: true).all
   end
 
-  def provisions
-  end
-
   def new
     @referrer_group = ReferrerGroup.create
     @url = "https://open.weixin.qq.com/connect/oauth2/authorize?" +
