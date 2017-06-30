@@ -3,7 +3,7 @@ class Admin::Referrers::ProvisionsController < ApplicationController
   attr_accessor :referrer, :referrers, :provision, :provisions
 
   before_action :set_referrer
-  before_action :set_refresh, only: [:refresh]
+  before_action :set_provision, only: [:refresh]
 
   before_action :breadcrumb_admin_referrers
   before_action :breadcrumb_admin_referrer
