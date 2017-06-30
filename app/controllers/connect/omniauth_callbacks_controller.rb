@@ -49,7 +49,7 @@ class Connect::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         # we force him to have a landing on package sets
         session[:landing] = :package_sets
 
-        SlackDispatcher.new.silent_login_attempt("[Wechat] Tourist guide automatically logged-in (`#{user&.id}`)")
+        SlackDispatcher.new.message("[Wechat] Tourist guide automatically logged-in (`#{user&.id}`)")
         redirect_to customer_referrer_path
         return
 

@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
         user = wechat_api_connect_solver.data[:customer]
         sign_out
         sign_in(:user, user)
-        SlackDispatcher.new.silent_login_attempt("[Wechat] Customer automatically logged-in (`#{current_user&.id}`)")
+        SlackDispatcher.new.message("[Wechat] Customer automatically logged-in (`#{current_user&.id}`)")
         redirect_to AfterSigninHandler.new(request, navigation, current_user, cart_manager).solve!(refresh: true)
       else
         SlackDispatcher.new.message("WECHAT AUTH FAILED : #{wechat_api_connect_solver.error}")
