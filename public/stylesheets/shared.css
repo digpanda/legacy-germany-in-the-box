@@ -1,3 +1,8 @@
+#csstyle .\+danger-zone {
+  border: 2px dashed #d6506c; }
+  #csstyle .\+danger-zone hr {
+    border-top: 1px dashed #f29cae; }
+
 #csstyle .\+classy-shadow {
   box-shadow: 0 15px 35px rgba(50, 50, 93, 0.1), 0 5px 15px rgba(0, 0, 0, 0.07);
   -webkit-border-radius: 4px;

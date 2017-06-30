@@ -1,0 +1,32 @@
++component(text-button)
+
+  padding: 0.7em
+  text-align: center
+
+  color: $color-white !important
+  &:hover
+    color: $color-white !important
+  &:active
+    color: $color-white !important
+  &:visited
+    color: $color-white !important
+
+  background-color: $color-black
+  +transition(0.2s)
+  +border-radius(3px)
+  +button-size(2em)
+
+  +option(delete)
+    background-color: $color-red
+    border-bottom: 2px solid #ac4157
+
+  +option(blue)
+    background-color: $color-blue
+    border-bottom: 2px solid $color-dark-blue
+
+  +option(purple)
+    background-color: $color-purple
+
+  +option(green)
+    background-color: $color-dark-green
+    border-bottom: 2px solid $color-very-dark-green

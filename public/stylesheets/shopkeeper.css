@@ -1,3 +1,8 @@
+#csstyle .\+danger-zone {
+  border: 2px dashed #d6506c; }
+  #csstyle .\+danger-zone hr {
+    border-top: 1px dashed #f29cae; }
+
 #csstyle .\+classy-shadow {
   box-shadow: 0 15px 35px rgba(50, 50, 93, 0.1), 0 5px 15px rgba(0, 0, 0, 0.07);
   -webkit-border-radius: 4px;
@@ -1390,6 +1395,41 @@
     .total__end-price.\--cross {
       color: #d6506c;
       text-decoration: line-through; }
+
+.text-button {
+  padding: 0.7em;
+  text-align: center;
+  color: white !important;
+  background-color: #464646;
+  -webkit-transition: 0.2s;
+  -moz-transition: 0.2s;
+  -o-transition: 0.2s;
+  -ms-transition: 0.2s;
+  transition: 0.2s;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  border-radius: 3px;
+  width: 2em;
+  height: 2em;
+  line-height: 2em; }
+  .text-button:hover {
+    color: white !important; }
+  .text-button:active {
+    color: white !important; }
+  .text-button:visited {
+    color: white !important; }
+  .text-button.\--delete {
+    background-color: #d6506c;
+    border-bottom: 2px solid #ac4157; }
+  .text-button.\--blue {
+    background-color: #3498db;
+    border-bottom: 2px solid #0b62a4; }
+  .text-button.\--purple {
+    background-color: #732c51; }
+  .text-button.\--green {
+    background-color: #33965e;
+    border-bottom: 2px solid #29754a; }
 
 .variant-box {
   border: 2px solid #bdc3c7;

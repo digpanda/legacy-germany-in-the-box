@@ -23,7 +23,11 @@
   </div>
 
   <div class="row details__block">
-    <%= render partial: "admin/users/show/action" %>
+    <%= render partial: "admin/users/show/action", :locals => { user: @user } %>
+  </div>
+
+  <div class="row details__block +danger-zone">
+    <%= render partial: "admin/users/show/danger_zone", :locals => { user: @user } %>
   </div>
 
 </div>
