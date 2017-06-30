@@ -41,7 +41,7 @@
             <%= provision.c_at %>
           </td>
           <td>
-              <a href="<%= admin_referrer_provision_refresh_path(referrer, provision) %>"><i class="fa fa-magic tooltipster buttons buttons__purple" title="Refresh provision"></i></a>
+              <a href="<%= admin_referrer_provision_refresh_path(provision.referrer, provision) %>"><i class="fa fa-magic tooltipster buttons buttons__purple" title="Refresh provision"></i></a>
           </td>
         </tr>
         <% end %>
