@@ -2,6 +2,4 @@
 <hr>
 
 <!-- Destroy user -->
-<% if user.destroyable? %>
-  <%= link_to "Safely delete this user", admin_user_path(user), method: :delete, data: { confirm: "Are you sure you want to delete this user ? It cannot be undone." } , class: "text-button --delete" %>
-<% end %>
+<%= link_to "Safely delete this user", admin_user_path(user), method: :delete, data: { confirm: "Are you sure you want to delete this user ? It cannot be undone." } , class: "text-button --delete" %>
