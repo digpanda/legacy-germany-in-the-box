@@ -17,13 +17,9 @@ class Connect::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   # NOTE : token here means referrer token which was changed inside the system. (yeah disgusting)
   # it's only a way to group people.
   def referrer
-    SlackDispatcher.new.message("THIS USER MIGHT TURN INTO A REFERRER")
     if params[:code]
       # this is taken from application controller
-      SlackDispatcher.new.message("IT HAS A CODE, LETS DO IT")
-      SlackDispatcher.new.message("#{wechat_api_connect_solver.error}")
       if wechat_api_connect_solver.success?
-        SlackDispatcher.new.message("WECHAT API PASSED")
         user = wechat_api_connect_solver.data[:customer]
 
         # we turn him into a real referrer
