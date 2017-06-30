@@ -2,7 +2,7 @@
   <div class="col-md-12 dashboard-layout__footer">
     <div class="row">
       <div class="col-md-6 +left">
-        <strong>Germany in the Box - <%= Rails.env.capitalize %> Mode</strong> - Client <%= request.remote_ip %> - Server <%= server_ip %>
+        <strong>Germany in the Box - <span class="+red"><%= Rails.env.capitalize %> Mode</span></strong> - Client <%= request.remote_ip %> - Server <%= server_ip %> - <strong><%= current_user.decorate.full_name %></strong>
       </div>
 
       <!-- Time zones -->
