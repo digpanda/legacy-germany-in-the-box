@@ -2,8 +2,7 @@ class Connect::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   # skip CSRF on create.
   skip_before_filter :verify_authenticity_token
-  skip_before_action :silent_login
-  skip_before_action :get_cart_orders
+  skip_before_action :solve_silent_login # this is useful for #referrer
 
   # QRCode Wechat classic login system
   def wechat
