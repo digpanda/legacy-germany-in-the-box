@@ -71,14 +71,6 @@ class ApplicationController < ActionController::Base
     "application"
   end
 
-<<<<<<< HEAD
-=======
-  def wechat_auth
-    SlackDispatcher.new.message("APPLICATION CONTROLLER -> WECHAT AUTH -> #{params}")
-    @wechat_auth ||= WechatAuth.new(params[:code], params[:token], params[:force_referrer]).resolve!
-  end
-
->>>>>>> master
   def freeze_header
     @freeze_header = true
   end

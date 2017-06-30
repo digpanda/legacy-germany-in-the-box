@@ -74,9 +74,12 @@ namespace :admin do
 
   resources :referrers do
     post :coupon
-    get :provisions
 
     resources :provision_operations, :controller => 'referrers/provision_operations' do
+    end
+
+    resources :provisions, :controller => 'referrers/provisions' do
+      patch :refresh
     end
 
   end
