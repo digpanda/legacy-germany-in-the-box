@@ -20,8 +20,7 @@ class Admin::OrderItemsController < ApplicationController
   def refresh_referrer_rate
     order_item.refresh_referrer_rate!
     order_item.bypass_locked!
-    order_item.save(validation: false) # allow locked entry to be saved
-    SlackDispatcher.new.message("ORDER ITEM ERROR ON REFRESH : #{order_item.errors.full_messages.join(', ')}")
+    order_item.save
     order.refresh_referrer_provision!
     order.bypass_locked!
     order.save
