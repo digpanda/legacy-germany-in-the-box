@@ -32,7 +32,6 @@ class Connect::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         # we finally sign him in
         sign_out
         sign_in(:user, user)
-
         # we force him to have a landing on package sets
         session[:landing] = :package_sets
 

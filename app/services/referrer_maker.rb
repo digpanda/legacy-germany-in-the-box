@@ -1,5 +1,7 @@
 class ReferrerMaker < BaseService
 
+  TIME_LIMIT = -> { 24.hours.ago }
+
   attr_reader :customer
 
   def initialize(customer)
@@ -25,7 +27,7 @@ class ReferrerMaker < BaseService
   end
 
   def recent_customer?
-    customer.c_at >= 24.hours.ago
+    customer.c_at >= TIME_LIMIT.call
   end
 
   def assign_to_group!(token)
