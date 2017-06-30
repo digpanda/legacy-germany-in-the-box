@@ -10,13 +10,19 @@
     <table>
       <thead>
         <th>
-          ID
+          #
+        </th>
+        <th>
+          Order
         </th>
         <th>
           Provision
         </th>
         <th>
           Creation
+        </th>
+        <th>
+          Action
         </th>
       </thead>
       <tbody>
@@ -26,10 +32,16 @@
             <%= provision.id %>
           </td>
           <td>
+            <a href="<%= admin_order_path(provision.order) %>"><%= provision.order.id %></a>
+          </td>
+          <td>
             <%= provision.provision.in_euro.display %>
           </td>
           <td>
             <%= provision.c_at %>
+          </td>
+          <td>
+              <a href="<%= admin_referr_path(order) %>"><i class="fa fa-eye tooltipster buttons buttons__edit" title="Details and configuration"></i></a>
           </td>
         </tr>
         <% end %>

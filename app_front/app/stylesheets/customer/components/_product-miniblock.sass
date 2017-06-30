@@ -8,7 +8,8 @@
     color: $color-light-grey
 
   +part(remodal)
-    max-width: 300px
+    width: 100%
+    //height: 100% <-- buggy footer
     text-align: left
 
   +part(zoom)
@@ -21,9 +22,8 @@
       margin-top: 1.5em
 
   +part(image)
-    height: 130px
-    max-width: 300px
-    //max-width: 200px
+    min-height: 300px
+    min-width: 100%
     +background-cover
     +centered
 
