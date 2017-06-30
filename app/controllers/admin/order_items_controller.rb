@@ -19,10 +19,12 @@ class Admin::OrderItemsController < ApplicationController
   # we refresh the referrer rate and the provision linked to it
   def refresh_referrer_rate
     order_item.refresh_referrer_rate!
+    order_item.bypass_locked!
     order_item.save(validation: false) # allow locked entry to be saved
     SlackDispatcher.new.message("ORDER ITEM ERROR ON REFRESH : #{order_item.errors.full_messages.join(', ')}")
     order.refresh_referrer_provision!
-    order.save(validation: false)
+    order.bypass_locked!
+    order.save
     flash[:success] = "The referrer rate for this order item was refreshed."
     redirect_to navigation.back(1)
   end
