@@ -26,20 +26,8 @@ class Connect::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         SlackDispatcher.new.message("WECHAT API PASSED")
         user = wechat_api_connect_solver.data[:customer]
 
-        # we make sure the user is turned into a referrer
-        Referrer.create(user: user) unless user.referrer
-
-        SlackDispatcher.new.message("WE CONVERTED HIM ALREADY")
-
-        # we assign the referrer token if needed
-        referrer_group = ReferrerGroup.where(token: params[:token]).first
-        if referrer_group
-          user.reload
-          user.referrer.update(referrer_group: referrer_group)
-        end
-
-        # we create the first coupon if needed (after the token because it can change data)
-        Coupon.create_referrer_coupon(user.referrer) if user.referrer.coupons.empty?
+        # we turn him into a real referrer
+        ReferrerMaker.new(user).convert!(group_token: params[:token])
 
         # we finally sign him in
         sign_out

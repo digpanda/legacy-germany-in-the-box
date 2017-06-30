@@ -2,6 +2,12 @@
 <div class="main-table">
   <table>
     <thead>
+      <th>
+        #
+      </th>
+      <th>
+        Token
+      </th>
     <th>
       Name
     </th>
@@ -15,6 +21,12 @@
     <tbody>
     <% referrer_groups.each do |referrer_group| %>
       <tr>
+        <td>
+          <%= referrer_group.id %>
+        </td>
+        <td>
+          <%= referrer_group.token %>
+        </td>
         <td>
           <%= referrer_group.name %>
         </td>

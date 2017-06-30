@@ -44,10 +44,8 @@ class Admin::UsersController < ApplicationController
   end
 
   def set_as_referrer
-    referrer = Referrer.create(user: user)
-    Coupon.create_referrer_coupon(referrer) if referrer.coupons.empty?
+    ReferrerMaker.new(user).convert!
     flash[:success] = "The user account was successfully set as a tourist guide."
-
     redirect_to navigation.back(1)
   end
 
