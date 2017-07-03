@@ -20,7 +20,8 @@ class Notifier
         Notification.create({
           user: dispatcher.user,
           title: dispatcher.title,
-          desc: dispatcher.desc
+          desc: dispatcher.desc,
+          unique_id: dispatcher.unique_id
         }).tap do |notification|
           if notification.errors.any?
             raise Notifier::Error, notification.errors.full_messages.join(', ')
@@ -33,7 +34,17 @@ class Notifier
       end
 
       def already_notified?
+        notified_by_content? || notified_by_unique_id?
+      end
+
+      def notified_by_content?
         Notification.where(user: dispatcher.user, title: dispatcher.title, desc: dispatcher.desc).count > 0
+      end
+
+      def notified_by_unique_id?
+        if dispatcher.unique_id
+          Notification.where(user: dispatcher.user, unique_id: dispatcher.unique_id).count > 0
+        end
       end
 
     end

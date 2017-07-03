@@ -1,10 +1,11 @@
 class Notifier
   class Shopkeeper < Notifier
 
-    attr_reader :user
+    attr_reader :user, :unique_id
 
-    def initialize(user)
+    def initialize(user, unique_id:nil)
       @user = user
+      @unique_id = unique_id
     end
 
     def welcome

@@ -1,7 +1,7 @@
 class Notifier
   class Admin < Notifier
 
-    attr_reader :user
+    attr_reader :user, :unique_id
 
     # no specific admin
     # we are using a more classical

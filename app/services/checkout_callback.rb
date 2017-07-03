@@ -102,7 +102,7 @@ class CheckoutCallback < BaseService
     referrer = order_payment.order.referrer
     referrer_provision = order_payment.order.referrer_provision
     if referrer&.user&.mobile
-      Notifier::Customer.new(referrer.user).referrer_provision_was_raised(order_payment, referrer, referrer_provision)
+      Notifier::Customer.new(referrer.user, unique_id: "WECHAT-OUT-TRADE-NO-#{params[:out_trade_no]}").referrer_provision_was_raised(order_payment, referrer, referrer_provision)
     end
   end
 
