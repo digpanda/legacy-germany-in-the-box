@@ -35,6 +35,17 @@
         </div>
       <% end %>
 
+      <% unless current_user.referrer.agb %>
+
+        <%= f.fields_for :referrer do |fields| %>
+
+          <%= fields.check_box :agb, :required => true %>
+          <%= fields.label :agb, "I accept the referrer <a href='#{agb_customer_referrer_path}'>AGB</a>".html_safe %>
+
+        <% end %>
+
+      <% end %>
+
       </div>
     </div>
 

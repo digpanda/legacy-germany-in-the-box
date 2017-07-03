@@ -50,6 +50,7 @@ class User
   field :uid,       type: String
 
   has_one :referrer, :inverse_of => :user, dependent: :destroy
+  accepts_nested_attributes_for :referrer
 
   field :wechat_unionid, type: String
   field :wechat_openid,  type: String
@@ -176,9 +177,8 @@ class User
   # will be redirected on log-in
   def missing_info?
     if self.referrer?
-      if self.mobile.blank?
-        return true
-      end
+        return true if self.mobile.blank?
+        return true if self.referrer.agb == false
     end
     false
   end

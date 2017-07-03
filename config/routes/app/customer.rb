@@ -6,6 +6,7 @@ namespace :customer do
     get :provision_rates
     get :coupons
     post :claim
+    get :agb
   end
 
   resource :cart, :controller => 'cart' do

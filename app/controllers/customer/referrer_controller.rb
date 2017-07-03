@@ -18,6 +18,9 @@ class Customer::ReferrerController < ApplicationController
     @package_sets = PackageSet.active.where(:referrer_rate.gt => 0.0).order_by(name: :asc).all
   end
 
+  def agb
+  end
+
   def coupons
   end
 

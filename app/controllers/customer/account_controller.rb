@@ -41,7 +41,7 @@ class Customer::AccountController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:username, :email, :password, :password_confirmation, :fname, :lname, :birth, :gender, :about, :website, :pic, :mobile)
+    params.require(:user).permit(:username, :email, :password, :password_confirmation, :fname, :lname, :birth, :gender, :about, :website, :pic, :mobile, :referrer => [:agb])
   end
 
   def password_needed?
