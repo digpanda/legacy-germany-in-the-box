@@ -9,7 +9,7 @@ class ProvisionHandler
   def refresh!
     if order.referrer && order.bought?
       ensure!
-    else
+    else # cancel case, we will change that later on
       delete!
     end
   end
