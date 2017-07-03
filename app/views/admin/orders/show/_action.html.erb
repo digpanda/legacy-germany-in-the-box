@@ -1,11 +1,7 @@
-
 <h3>Actions</h3>
 <hr>
 
 <!-- Cancel @order -->
 <% if @order.decorate.cancellable? %>
-  <%= link_to "Cancel this order", shared_order_cancel_path(@order), method: :patch, data: { confirm: "Are you sure you want to cancel this order ?" }, class: "btn btn-info" %>
+  <%= link_to "Cancel this order", shared_order_cancel_path(@order), method: :patch, data: { confirm: "Are you sure you want to cancel this order ?" }, class: "text-button --blue" %>
 <% end %>
-
-<!-- Destroy @order -->
-<%= link_to "Destroy this order", admin_order_path(@order), method: :delete, data: { confirm: "Are you sure you want to destroy this order ? It cannot be undone." } , class: "btn btn-danger" %>
