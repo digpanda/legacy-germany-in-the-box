@@ -16,6 +16,7 @@ class Customer::OrdersController < ApplicationController
   end
 
   def show
+    binding.pry
   end
 
   # destroy completely the order or cancel it if has sensitive datas
