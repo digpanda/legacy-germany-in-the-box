@@ -44,6 +44,7 @@ class Admin::AccountController < ApplicationController
     if params[:user][:password].empty?
       params[:user][:password] = params[:user][:password_confirmation] = params[:user][:current_password]
     end
+    params[:user].delete(:current_password)
   end
 
 end
