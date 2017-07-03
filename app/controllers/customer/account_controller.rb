@@ -14,7 +14,7 @@ class Customer::AccountController < ApplicationController
   # within the system (e.g checkout process) be careful with this.
   def update
     if valid_password? && ensure_password! && user.update(user_params)
-      flash[:success] = I18n.t("message.account_updated")
+      flash[:success] = I18n.t("notice.account_updated")
       sign_in(user, :bypass => true)
     else
       flash[:error] = user.errors.full_messages.join(',')

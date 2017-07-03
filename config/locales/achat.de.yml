@@ -1,6 +1,5 @@
 de:
-  message:
-    account_updated: Ihr Konto wurde erfolgreich aktualisiert.
+  nothing:
   address:
     apply: Einlösen
   referrer:
@@ -154,6 +153,7 @@ de:
     page_not_authorized_login: Bitte einloggen oder registrieren um fortzufahren!
     page_not_authorized: Sie haben keine Berechtigung für diese Seite
   notice:
+    account_updated: Ihr Konto wurde erfolgreich aktualisiert.
     payment_removed: Zahlung storniert
     cannot_remove_from_favorite: Das Produkt kann nicht von Lieblingsprodukten entfernt werden.
     sku_not_found: Artikelposition nicht gefunden

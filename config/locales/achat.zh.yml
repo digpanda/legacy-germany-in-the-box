@@ -1,6 +1,5 @@
 zh-CN:
-  message:
-    account_updated: 账户信息已更新
+  nohthing:
   referrer:
     provision_rates: 佣金率
     balance_history: 收支明细
@@ -154,6 +153,7 @@ zh-CN:
     page_not_authorized_login: 请先登录或者注册进行下步操作！
     page_not_authorized: 没有访问该页面的权限
   notice:
+    account_updated: 账户信息已更新
     payment_removed: 支付成功取消
     cannot_remove_from_favorite: 该产品未能从收藏列表中删除
     sku_not_found: 该单品没有找到
