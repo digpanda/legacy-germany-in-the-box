@@ -513,6 +513,46 @@ body {
   background-color: #d6506c;
   text-align: center; }
 
+.big-button {
+  color: white;
+  -webkit-border-radius: 2px;
+  -khtml-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
+  color: #fff;
+  display: block;
+  padding: 5px 20px;
+  font-size: 22px;
+  -moz-transition: border .1s;
+  -o-transition: border .1s;
+  -webkit-transition: border .1s;
+  transition: border .1s;
+  font-weight: 900;
+  cursor: pointer;
+  font-family: 'Open Sans', Arial, helvetica, sans-serif;
+  color: #fff;
+  font-weight: bold;
+  text-transform: uppercase;
+  position: relative;
+  text-align: center;
+  outline: 0;
+  border: 1px;
+  width: 100%; }
+  .big-button:link {
+    color: white; }
+  .big-button:hover {
+    color: white; }
+  .big-button:active {
+    color: white; }
+  .big-button:visited {
+    color: white; }
+  .big-button.\--blue {
+    background-color: #3498db; }
+  .big-button.\--green {
+    background-color: #33965e; }
+
 .category-blocks {
   padding: 0; }
   .category-blocks__block {
@@ -1380,6 +1420,41 @@ body {
       color: #d6506c;
       text-decoration: line-through; }
 
+.text-button {
+  padding: 0.7em;
+  text-align: center;
+  color: white !important;
+  background-color: #464646;
+  -webkit-transition: 0.2s;
+  -moz-transition: 0.2s;
+  -o-transition: 0.2s;
+  -ms-transition: 0.2s;
+  transition: 0.2s;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  border-radius: 3px;
+  width: 2em;
+  height: 2em;
+  line-height: 2em; }
+  .text-button:hover {
+    color: white !important; }
+  .text-button:active {
+    color: white !important; }
+  .text-button:visited {
+    color: white !important; }
+  .text-button.\--delete {
+    background-color: #d6506c;
+    border-bottom: 2px solid #ac4157; }
+  .text-button.\--blue {
+    background-color: #3498db;
+    border-bottom: 2px solid #0b62a4; }
+  .text-button.\--purple {
+    background-color: #732c51; }
+  .text-button.\--green {
+    background-color: #33965e;
+    border-bottom: 2px solid #29754a; }
+
 .variant-box {
   border: 2px solid #bdc3c7;
   border-top: 0;
@@ -1532,46 +1607,6 @@ body {
     text-align: center;
     margin: 0 auto;
     padding-top: 3em; }
-
-.big-button {
-  color: white;
-  -webkit-border-radius: 2px;
-  -khtml-border-radius: 2px;
-  -moz-border-radius: 2px;
-  -ms-border-radius: 2px;
-  -o-border-radius: 2px;
-  border-radius: 2px;
-  color: #fff;
-  display: block;
-  padding: 5px 20px;
-  font-size: 22px;
-  -moz-transition: border .1s;
-  -o-transition: border .1s;
-  -webkit-transition: border .1s;
-  transition: border .1s;
-  font-weight: 900;
-  cursor: pointer;
-  font-family: 'Open Sans', Arial, helvetica, sans-serif;
-  color: #fff;
-  font-weight: bold;
-  text-transform: uppercase;
-  position: relative;
-  text-align: center;
-  outline: 0;
-  border: 1px;
-  width: 100%; }
-  .big-button:link {
-    color: white; }
-  .big-button:hover {
-    color: white; }
-  .big-button:active {
-    color: white; }
-  .big-button:visited {
-    color: white; }
-  .big-button.\--blue {
-    background-color: #3498db; }
-  .big-button.\--green {
-    background-color: #33965e; }
 
 .breadcrumb {
   background: none;
