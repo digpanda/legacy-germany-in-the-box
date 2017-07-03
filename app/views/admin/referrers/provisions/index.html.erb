@@ -1,0 +1,15 @@
+<div class="row">
+  <div class="col-md-10">
+    <h2>Referrer Provisions</h2>
+    List of all provisions and operations related to the referrer
+    <hr>
+  </div>
+</div>
+
+<div class="row details__block">
+  <%= render partial: "admin/referrers/provisions/table", :locals => { :provisions => @referrer.provisions } %>
+</div>
+
+<div class="row details__block">
+  <%= render partial: "admin/referrers/provisions/operations", :locals => { :operations => @referrer.provision_operations } %>
+</div>

@@ -28,7 +28,6 @@ class Shop
   field :register,        type: String
   field :website,         type: String
   field :agb,             type: Boolean
-  field :wirecard_status, type: Symbol,     default: :unactive
 
   field :position, type: Integer, default: 0
 
@@ -46,7 +45,6 @@ class Shop
   field :mail,            type: String
 
   field :merchant_id,     type: String
-  field :bg_merchant_id,  type: String
   field :highlight,       type: Boolean, default: false
 
   mount_uploader :logo,   LogoUploader
@@ -80,8 +78,6 @@ class Shop
   validates :philosophy,    presence: true,   length: {maximum: (Rails.configuration.gitb[:max_long_text_length] * 1.25).round}
   validates :ustid,         presence: true,   length: {maximum: Rails.configuration.gitb[:max_tiny_text_length]},   :if => lambda { self.agb }
 
-  validates :wirecard_status, inclusion: {:in => Rails.application.config.wirecard[:merchants][:status].map(&:to_sym)}
-
   validates :agb, inclusion: {in: [true]},    :if => lambda { self.agb.present? }
 
   validates :register,        length: {maximum: Rails.configuration.gitb[:max_tiny_text_length]}
@@ -97,12 +93,10 @@ class Shop
   scope :is_active,       ->    { where( :status => true ).where( :approved.ne => nil ) }
   scope :has_address, -> { where({ :addresses => { :$not => { :$size => 0 } } }) }
 
-  scope :is_bg_merchant,  ->    { where(:bg_merchant_id.ne => nil) }
   scope :can_buy,         ->    { is_active.has_address }
   scope :highlighted,     ->    { where(highlight: true) }
 
   before_save :ensure_shopkeeper
-  before_save :force_wirecard_status
   before_save :force_merchant_id
 
   index({shopkeeper: 1},    {unique: true,   name: :idx_shop_shopkeeper})
@@ -153,10 +147,6 @@ class Shop
   end
 
   private
-
-  def force_wirecard_status
-    self.wirecard_status = :unactive if self.wirecard_status.nil?
-  end
 
   def ensure_shopkeeper
     shopkeeper.role == :shopkeeper

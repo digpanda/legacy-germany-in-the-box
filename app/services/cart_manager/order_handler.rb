@@ -16,8 +16,6 @@ class CartManager
     # when we first call order it either retrieve a current existing order
     # or create a new one
     def recover
-      if order.order_items.count > 0
-      end
       setup_user_order!
       setup_shop_order!
       self
@@ -31,7 +29,7 @@ class CartManager
           Order.find(session[:order_shop_ids]["#{shop.id}"])
         else
           # we systematically bind an order to a shop
-          Order.new(shop: shop, logistic_partner: Setting.instance.logistic_partner)
+          Order.new(shop: shop, logistic_partner: Setting.instance.logistic_partner, exchange_rate: Setting.instance.exchange_rate_to_yuan)
         end
       end
     end
@@ -42,7 +40,7 @@ class CartManager
     # if it wasn't attributed already
     def setup_user_order!
       unless order.cart
-        if user and !user.cart
+        if user && !user.cart
           Cart.create(user_id: user.id)
         end
         order.cart = user&.cart

@@ -47,7 +47,7 @@
             <%= referrer.total_earned.in_euro.display %>
           </td>
           <td>
-            <%= referrer&.referrer_token&.group %>
+            <%= referrer&.referrer_group&.group %>
           </td>
           <td>
             <% unless referrer.has_coupon? %>
@@ -55,9 +55,6 @@
             <% end %>
             <a href="<%= admin_user_path(referrer.user) %>"><i class="fa fa-eye tooltipster buttons buttons__edit"></i></a>
             <a href="<%= admin_referrer_provisions_path(referrer) %>"><i class="fa fa-euro tooltipster buttons buttons__purple" title="Provisions Summary"></i></a>
-            <% if referrer.user.destroyable? %>
-              <%= link_to '', admin_user_path(referrer.user), :method => :delete, data: { confirm: "Are you sure to remove this user account ?" }, :class => 'tooltipster fa fa-times buttons buttons__delete', :title => "Delete this user" %>
-            <% end %>
           </td>
         </tr>
       <% end %>

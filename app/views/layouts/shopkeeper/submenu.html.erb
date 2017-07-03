@@ -1,14 +1,19 @@
 <%= inside_layout do %>
   <div class="row">
     <div class="+small-spacer"></div>
-    <div class="col-md-3">
-      <aside class="sidebar-left">
-        <ul class="nav nav-pills nav-stacked nav-arrow">
+    <div class="col-md-2">
+      <div class="dashboard-layout__menu +desktop">
+
+        <div>
+          <img src="/images/logo-min-white.png">
+        </div>
+
+        <ul>
           <%= render partial: "layouts/#{solve_section}/submenu/list" %>
         </ul>
-      </aside>
+      </div>
     </div>
-    <div class="col-md-8">
+    <div class="col-md-10">
       <%= yield %>
     </div>
   </div>

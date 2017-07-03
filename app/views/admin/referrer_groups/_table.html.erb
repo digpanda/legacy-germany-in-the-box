@@ -1,0 +1,50 @@
+<% if referrer_groups.size > 0 %>
+<div class="main-table">
+  <table>
+    <thead>
+      <th>
+        #
+      </th>
+      <th>
+        Token
+      </th>
+    <th>
+      Name
+    </th>
+    <th>
+      Type
+    </th>
+    <th>
+      Action
+    </th>
+    </thead>
+    <tbody>
+    <% referrer_groups.each do |referrer_group| %>
+      <tr>
+        <td>
+          <%= referrer_group.id %>
+        </td>
+        <td>
+          <%= referrer_group.token %>
+        </td>
+        <td>
+          <%= referrer_group.name %>
+        </td>
+        <td>
+          <%= referrer_group.type %>
+        </td>
+        <td>
+          <%= render partial: 'admin/referrer_groups/table/action', :locals => { :referrer_group => referrer_group } %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+<% else %>
+  <div class="+white-box +centered">
+    <h4>
+      No referrer groups found
+    </h4>
+  </div>
+<% end %>

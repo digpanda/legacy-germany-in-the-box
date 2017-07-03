@@ -143,7 +143,6 @@ zh-CN:
     stories: 成长历程
     impressum: 版权说明
     german_essence: 德国制造
-    wirecard_payment_partnership: 支付合作商
     description: 产品描述
     more: 温馨提示
     partners: 合作伙伴
@@ -581,7 +580,6 @@ zh-CN:
     shopname_unknown: 未命名
     shop_seal: 商家照片
     merchant_id: 卖家ID
-    bg_merchant_id: Borderguru商号
   edit_product:
     skus: 库存管理
     edit: 修改

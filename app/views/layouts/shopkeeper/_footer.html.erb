@@ -1,36 +1,22 @@
-<!-- Footer -->
-<div class="row">
-</div>
-
 <div class="row js-footer-stick">
+  <div class="col-md-12 dashboard-layout__footer">
+    <div class="row">
+      <div class="col-md-6 +left">
+        <strong>Germany in the Box</strong> -
+        <%= link_to I18n.t(:icp_registration, scope: :footer) %> /
+        <%= link_to I18n.t(:terms_conditions, scope: :footer), agb_guest_pages_path %> /
+        <%= link_to I18n.t(:privacy_statement, scope: :footer), privacy_guest_pages_path %> /
+        <%= link_to I18n.t(:sell_on_gbox, scope: :footer), saleguide_guest_pages_path %> /
+        <%= link_to "Käuferportal", language_path(id: "zh-CN", sign_out: true), method: :put %>
+      </div>
 
-  <div class="col-md-12 main-footer">
-
-    <div class="main-footer__logo col-md-1">
-      <img src="/images/logo-min-white.png">
+      <!-- Time zones -->
+      <div class="col-md-6 +right +desktop">
+        UTC <span id="utc-time"><%= Time.now.utc.strftime("%T") %></span> -
+        Germany <span id="germany-time"><%= Time.now.utc.in_time_zone("Berlin").strftime("%T") %></span> -
+        China <span id="china-time"><%= Time.now.utc.in_time_zone("Beijing").strftime("%T") %></span>
+      </div>
     </div>
-
-    <div class="col-md-2">
-      <%= render "layouts/shopkeeper/footer/partners" %>
-    </div>
-
-    <div class="col-md-2">
-      <%= render "layouts/shopkeeper/footer/payment_methods" %>
-    </div>
-
-    <div class="col-md-2">
-      <%= render "layouts/shopkeeper/footer/germany_in_the_box" %>
-    </div>
-
-    <div class="col-md-2">
-      <%= render "layouts/shopkeeper/footer/selling_info" %>
-    </div>
-
-    <div class="col-md-2">
-      <%= render "layouts/shopkeeper/footer/language_switch" %>
-    </div>
-
   </div>
-
 </div>
 <!-- End of footer -->

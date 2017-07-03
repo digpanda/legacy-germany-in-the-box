@@ -1,26 +1,5 @@
-<div class="panel-group">
-  <div class="panel panel-info">
-    <div class="panel-heading text-center">
-      <%= I18n.t(:wirecard_payment_partnership, scope: :title) %>
-    </div>
-    <div class="panel-body">
-      <div class="form-group">
-        <div class="row-fluid">
-          <% if @shop.wirecard_status == :unactive %>
-          <%= link_to 'Registrieren für WireCard Checkoutportal', apply_shopkeeper_wirecard_path, {class: 'btn btn-danger', target: '_blank' } %>
-          <% elsif @shop.wirecard_status == :active %>
-          <%= link_to "#{I18n.t(:signin)} WireCard Checkoutportal", 'https://dashboard.checkoutportal.com/de_DE/login', {class: 'btn btn-success', target: '_blank'} %>
-          <% elsif @shop.wirecard_status == :processing %>
-          Your status is processing
-          <% elsif @shop.wirecard_status == :documents_complete %>
-          Your documents are complete
-          <% elsif @shop.wirecard_status == :declined %>
-          You were disapproved by WireCard
-          <% elsif @shop.wirecard_status == :terminated %>
-          You were terminated by WireCard
-          <% end %>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="+white-box +centered">
+  <h4>
+    Nothing yet
+  </h4>
 </div>

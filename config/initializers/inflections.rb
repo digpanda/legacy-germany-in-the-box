@@ -17,5 +17,5 @@
 
 # anti pluralization of controllers (in some peculiar cases)
 #ActiveSupport::Inflector.inflections do |inflect|
-#  inflect.uncountable %w( wirecard )
+#  inflect.uncountable %w( )
 #end

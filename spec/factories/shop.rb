@@ -10,9 +10,7 @@ FactoryGirl.define do
     fname                 { Faker::Name.first_name }
     lname                 { Faker::Name.last_name }
     mail                  { Faker::Internet.email }
-    wirecard_status :active
     approved { Time.now }
-    bg_merchant_id { "#{Faker::Number.number(20)}" }
     addresses             { FactoryGirl.build_list(:shop_address, 2) }
 
     before(:create) do |shop|
@@ -29,8 +27,6 @@ FactoryGirl.define do
 
   trait(:with_payment_gateways) do
     after(:create) do |shop|
-      create(:payment_gateway, shop_id: shop.id) # creditcard one
-      create(:payment_gateway, :with_upop, shop_id: shop.id)
       create(:payment_gateway, :with_alipay, shop_id: shop.id)
       create(:payment_gateway, :with_wechatpay, shop_id: shop.id)
     end

@@ -15,19 +15,24 @@ class ApplicationController < ActionController::Base
 
   helper_method :navigation, :cart_manager, :identity_solver
 
-  before_action :silent_login, :origin_solver, :landing_solver, :get_cart_orders
+  before_action :solve_silent_login, :solve_origin, :solve_landing
 
-  def silent_login
+  def solve_silent_login
     if params[:code]
-      if wechat_auth.success?
+      if wechat_api_connect_solver.success?
+        user = wechat_api_connect_solver.data[:customer]
         sign_out
-        user = wechat_auth.data[:customer]
         sign_in(:user, user)
-        SlackDispatcher.new.silent_login_attempt("[Wechat] Customer automatically logged-in (`#{current_user&.id}`)")
-        SlackDispatcher.new.message("REQUEST FOR WECHAT #{request.url}")
-        redirect_to SigninHandler.new(request, navigation, current_user, cart_manager).solve!(refresh: true)
+        SlackDispatcher.new.message("[Wechat] Customer automatically logged-in (`#{current_user&.id}`)")
+        redirect_to AfterSigninHandler.new(request, navigation, current_user, cart_manager).solve!(refresh: true)
+      else
+        SlackDispatcher.new.message("WECHAT AUTH FAILED : #{wechat_api_connect_solver.error}")
       end
     end
+  end
+
+  def wechat_api_connect_solver
+    @wechat_api_connect_solver ||= WechatApiConnectSolver.new(params[:code]).resolve!
   end
 
   def current_page
@@ -51,7 +56,7 @@ class ApplicationController < ActionController::Base
   end
 
   def identity_solver
-    @identity_solver ||= IdentitySolver.new(request, session, current_user)
+    @identity_solver ||= IdentitySolver.new(request, current_user)
   end
 
   def setting
@@ -66,46 +71,22 @@ class ApplicationController < ActionController::Base
     "application"
   end
 
-  def wechat_auth
-    SlackDispatcher.new.message("APPLICATION CONTROLLER -> WECHAT AUTH -> #{params}")
-    @wechat_auth ||= WechatAuth.new(params[:code], params[:token], params[:force_referrer]).resolve!
-  end
-
   def freeze_header
     @freeze_header = true
   end
 
-  def origin_solver
-    return session[:origin] if session[:origin]
-    if chinese_domain? || wechat_browser?
-      session[:origin] = :wechat
-    else
-      session[:origin] = :browser
-    end
+  def solve_origin
+    identity_solver.origin_setup!
   end
 
-  def landing_solver
-    @landing_solver ||= LandingSolver.new(request).setup!
-  end
-
-  def wechat_browser?
-    request.user_agent&.include? "MicroMessenger"
-  end
-
-  def chinese_domain?
-    request.url&.include? "germanyinbox.com"
+  def solve_landing
+    identity_solver.landing_solver.setup!
   end
 
   def restrict_to(section)
     unless identity_solver.section == section # :customer, :shopkeeper, :admin
       navigation.reset! # we reset to avoid infinite loop
       throw_unauthorized_page
-    end
-  end
-
-  def get_cart_orders
-    current_user&.cart&.orders&.each do |order|
-      cart_manager.store(order)
     end
   end
 

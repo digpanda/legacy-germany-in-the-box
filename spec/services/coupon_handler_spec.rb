@@ -5,15 +5,13 @@ describe CouponHandler, :type => :request do
   let(:order) { FactoryGirl.create(:order, status: :new) }
   let(:second_order) { FactoryGirl.create(:order, status: :new) }
 
-  let(:identity) { IdentitySolver.new(request, session, order.user) }
-  let(:second_identity) { IdentitySolver.new(request, session, second_order.user) }
+  let(:request) { double('request', url: nil, session: {}, params: {}) }
+
+  let(:identity) { IdentitySolver.new(request, order.user) }
+  let(:second_identity) { IdentitySolver.new(request, second_order.user) }
 
   let(:unique_coupon) { Coupon.create(code: 'code', discount: 10.0, unit: :percent, unique: true) }
   let(:reusable_coupon) { Coupon.create(code: 'code2', discount: 10.0, unit: :percent, unique: false) }
-
-  before :each do
-    allow(self).to receive(:session)
-  end
 
   it "should apply and remove the coupon from an order" do
     CouponHandler.new(identity, unique_coupon, order).apply

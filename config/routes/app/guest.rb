@@ -9,9 +9,6 @@ namespace :guest do
     get :xipost
   end
 
-  resources :campaigns, :only => [:index] do
-  end
-
   resource :pages do
     get :business_model
     get :shipping_cost

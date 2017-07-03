@@ -32,7 +32,7 @@
   margin-right: -15px
 
 =strong-title
-  color: $color-very-black
+  color: $color-black
   font-size: 24px
   font-weight: bold
 
@@ -192,6 +192,7 @@
   background-color: $color-white
   padding: 1em
   +border-radius(5px)
+  +classy-shadow
 
 =load-font($family, $src, $style: normal, $weight: normal)
   @font-face
@@ -213,7 +214,7 @@
   transition: background-color $time linear;
 
 =green-on-hover()
-  background-color: $color-green
+  background-color: $color-dark-green
 
   h2
     color: $color-white
@@ -241,7 +242,7 @@
   background-position: center center
   background-size: cover
 
-  background-color: $color-light-grey
+  background-color: $color-dark-grey
 
   border: $border white solid
 
@@ -342,7 +343,7 @@
             float: none
             width: 100%
           //a
-            //color: $color-black
+            //color: $color-almost-black
             //line-height: 120%
             //padding: 15px 20px
           ul
@@ -386,7 +387,7 @@
             float: none
             width: 100%
           //a
-            //color: $color-black
+            //color: $color-almost-black
             //line-height: 120%
             //padding: 15px 20px
           ul

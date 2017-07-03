@@ -143,7 +143,6 @@ de:
     stories: Geschichte
     impressum: Impressum
     german_essence: German Design
-    wirecard_payment_partnership: WireCard Zahlungspartnerschaft
     description: Beschreibung
     more: Mehr
     partners: Partner
@@ -585,7 +584,6 @@ de:
     shop_seal: Shopfotos
     shop_seal_info: Ein Bild sagt mehr als thausende Worte. Ergänzen Sie Ihre Herstellerbeschreibung mit Bildern, die die Qualität und Ihre Persöhnlichkeit unterstreichen. (Z.B. Bilder von Geschäft, Produktionsstätte, Team, Auszeichnungen, Magazinausschnitten, etc.) (max. 1MB pro Bild)
     merchant_id: Herstellernummer
-    bg_merchant_id: Borderguru-Kundennummer
   edit_product:
     skus: Artikelpositionen
     edit: Editieren

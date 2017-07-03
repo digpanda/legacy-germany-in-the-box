@@ -44,16 +44,19 @@ class Admin::UsersController < ApplicationController
   end
 
   def set_as_referrer
-    referrer = Referrer.create(user: user)
-    Coupon.create_referrer_coupon(referrer) if referrer.coupons.empty?
-    flash[:success] = "The user account was successfully set as a tourist guide."
-
+    conversion = ReferrerMaker.new(user).convert!(time_limit: false)
+    if conversion.success?
+      flash[:success] = "The user account was successfully set as a tourist guide."
+    else
+      flash[:error] = "#{conversion.error}"
+    end
     redirect_to navigation.back(1)
   end
 
   def force_login
     sign_in(user)
-    redirect_to SigninHandler.new(request, navigation, user, cart_manager).solve!
+    session[:force_url] = root_path
+    redirect_to AfterSigninHandler.new(request, navigation, user, cart_manager).solve!
   end
 
   private

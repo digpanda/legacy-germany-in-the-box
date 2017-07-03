@@ -107,20 +107,20 @@ module Application
       add_breadcrumb @order.id, admin_order_path(@order) if @order
     end
 
-    def breadcrumb_admin_referrer_tokens
-      add_breadcrumb "Referrer Tokens", admin_referrer_tokens_path
+    def breadcrumb_admin_referrer_groups
+      add_breadcrumb "Referrer Groups", admin_referrer_groups_path
     end
 
-    def breadcrumb_admin_referrer_token
-      add_breadcrumb @referrer_token.token, admin_referrer_token_path(@referrer_token) if @referrer_token
+    def breadcrumb_admin_referrer_group
+      add_breadcrumb @referrer_group.token, admin_referrer_group_path(@referrer_group) if @referrer_group
     end
 
-    def breadcrumb_admin_referrer_token_edit
-      add_breadcrumb "Edit", edit_admin_referrer_token_path(@referrer_token) if @referrer_token
+    def breadcrumb_admin_referrer_group_edit
+      add_breadcrumb "Edit", edit_admin_referrer_group_path(@referrer_group) if @referrer_group
     end
 
-    def breadcrumb_admin_referrer_token_new
-      add_breadcrumb "New", new_admin_referrer_token_path
+    def breadcrumb_admin_referrer_group_new
+      add_breadcrumb "New", new_admin_referrer_group_path
     end
 
     def breadcrumb_admin_referrers

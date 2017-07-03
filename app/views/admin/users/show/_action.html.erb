@@ -1,5 +1,10 @@
 <h3>Actions</h3>
 <hr>
 
-<!-- Destroy user -->
-<%= link_to "Destroy this user", admin_user_path(@user), method: :delete, data: { confirm: "Are you sure you want to destroy this user ? It cannot be undone." } , class: "btn btn-danger" %>
+<!-- Add things here i guess -->
+
+<% unless user.referrer? %>
+  <%= link_to 'Set as referrer', admin_user_set_as_referrer_path(user), method: :patch, title: 'Set as tourist guide', class: "text-button --blue" %>
+<% end %>
+
+<%= link_to 'Force log-in as user ', admin_user_force_login_path(user), :method => :post, data: { confirm: "Are you sure you want to log-in to this user ?" }, class: "text-button --green" %>

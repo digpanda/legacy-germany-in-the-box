@@ -37,8 +37,8 @@ class OrdersFormatter < BaseService
     'Payments IDs',
     'Payments Methods',
     'Transactions Types',
-    'Wirecard Transactions IDs',
-    'Wirecard Request IDs',
+    'Transactions IDs',
+    'Request IDs',
     'Bill ID',
     'Paid At',
     'Created At',
@@ -80,13 +80,13 @@ class OrdersFormatter < BaseService
       order.decorate.total_volume,
 
       order.decorate.total_price.in_euro.amount,
-      order.decorate.total_price.in_euro.to_yuan.amount,
+      order.decorate.total_price.in_euro.to_yuan(exchange_rate: order.exchange_rate).amount,
       order.decorate.shipping_cost.in_euro.amount,
-      order.decorate.shipping_cost.in_euro.to_yuan.amount,
+      order.decorate.shipping_cost.in_euro.to_yuan(exchange_rate: order.exchange_rate).amount,
       order.decorate.taxes_cost.in_euro.amount,
-      order.decorate.taxes_cost.in_euro.to_yuan.amount,
+      order.decorate.taxes_cost.in_euro.to_yuan(exchange_rate: order.exchange_rate).amount,
       order.decorate.end_price.in_euro.amount,
-      order.decorate.end_price.in_euro.to_yuan.amount,
+      order.decorate.end_price.in_euro.to_yuan(exchange_rate: order.exchange_rate).amount,
 
       (order.coupon ? order.coupon.code : ''),
       (order.coupon ? order.coupon.decorate.discount_display : ''),
@@ -98,15 +98,14 @@ class OrdersFormatter < BaseService
       order.order_items.count,
 
       (order.shop ? order.shop.merchant_id : ''),
-      (order.shop ? order.shop.bg_merchant_id : ''),
 
       payments_ids(order),
 
       payment_methods(order),
       transaction_types(order),
 
-      wirecard_transactions_ids(order),
-      wirecard_requests_ids(order),
+      transactions_ids(order),
+      requests_ids(order),
 
       order.bill_id,
       order.paid_at,
@@ -131,11 +130,11 @@ class OrdersFormatter < BaseService
     order.order_payments.reduce([]) { |acc, order_payment| acc << order_payment.id }.join(', ')
   end
 
-  def wirecard_requests_ids(order)
+  def requests_ids(order)
     order.order_payments.reduce([]) { |acc, order_payment| acc << order_payment.request_id }.join(', ')
   end
 
-  def wirecard_transactions_ids(order)
+  def transactions_ids(order)
     order.order_payments.reduce([]) { |acc, order_payment| acc << order_payment.transaction_id }.join(', ')
   end
 

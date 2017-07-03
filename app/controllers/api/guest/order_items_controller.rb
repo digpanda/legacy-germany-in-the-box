@@ -26,7 +26,7 @@ class Api::Guest::OrderItemsController < Api::ApplicationController
     quantity_difference = 0 if quantity == 0 # this will be stopped later on within the process
 
     original_quantity = order_item.quantity
-    original_total = order_item.total_price_with_taxes.in_euro.to_yuan.display
+    original_total = order_item.total_price_with_taxes.in_euro.to_yuan(exchange_rate: order_item.order.exchange_rate).display
 
     # NOTE : we base our order maker mechanism on the sku origin
     # and not the order item sku, be aware of that.

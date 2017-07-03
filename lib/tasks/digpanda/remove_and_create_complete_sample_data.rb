@@ -2,8 +2,6 @@ require 'faker'
 
 class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
 
-  WIRECARD_DEMO = Rails.configuration.wirecard[:demo]
-
   def initialize
   end
 
@@ -218,7 +216,6 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
     approved       = Time.now.utc
     agb            = true
     status         = true
-    bg_merchant_id = "1024-TEST"
     seals = {
       :seal0 => setup_image(:seal),
       :seal1 => setup_image(:seal),
@@ -251,7 +248,6 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
         :approved       => approved,
         :agb            => agb,
         :status         => status,
-        :bg_merchant_id => bg_merchant_id,
     }.merge(seals))
 
 
@@ -363,23 +359,7 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
     )
   end
 
-  def active_wirecard(shop, num)
-    shop.wirecard_status = :active
-    shop.save
-    if num == 2
-      payment_methods = [:creditcard, :upop]
-    else
-      payment_methods = [:creditcard]
-    end
-    payment_methods.each do |payment_method|
-    PaymentGateway.create({
-        :shop_id => shop.id,
-        :payment_method => payment_method,
-        :provider => :wirecard,
-        :merchant_id => WIRECARD_DEMO[payment_method][:merchant_id],
-        :merchant_secret => WIRECARD_DEMO[payment_method][:merchant_secret]
-      })
-    end
+  def active_payment_gateways(shop)
     # ensure default payment methods
     [:alipay, :wechatpay].each do |payment_method|
       payment_gateway = PaymentGateway.where(shop_id: shop.id, payment_method: payment_method).first || PaymentGateway.new
@@ -399,8 +379,7 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
     shop = create_shop(shopkeeper)
     create_shop_address(shop)
 
-    # wirecard
-    active_wirecard(shop, rand(1..2))
+    active_payment_gateways(shop)
 
     num_products.times do |time|
       create_product(shop)

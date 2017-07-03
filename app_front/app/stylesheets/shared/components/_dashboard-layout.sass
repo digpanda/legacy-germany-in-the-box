@@ -1,0 +1,31 @@
++component(dashboard-layout)
+
+  +part(menu)
+    position: fixed
+    top: 0
+    left: 0
+    width: 15%
+    height: 100%
+    background-color: $color-almost-black
+    img
+      max-width: 60px
+      margin-top: 1em
+      margin-left: 2.5em
+
+    .active
+      font-weight: bold
+
+    #{$a-tags}
+      color: $color-white
+      display: block
+    ul
+      padding-top: 1em
+      padding-left: 2em
+    li
+      padding: 0.5em
+
+  +part(footer)
+    background: $color-white
+    color: $color-almost-black
+    border-top: 2px solid $color-almost-black
+    padding: 1em
