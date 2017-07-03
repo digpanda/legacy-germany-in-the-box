@@ -12,6 +12,9 @@
         Nickname
       </th>
       <th>
+        AGB
+      </th>
+      <th>
         Coupon
       </th>
       <th>
@@ -35,6 +38,9 @@
           </td>
           <td>
             <%= referrer.nickname %>
+          </td>
+          <td>
+            <%= boolean_icon(referrer.agb) %>
           </td>
           <td>
             <% referrer.coupons.each do |coupon| %>
