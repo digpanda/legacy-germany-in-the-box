@@ -32,7 +32,7 @@ class Connect::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         session[:landing] = :package_sets
 
         SlackDispatcher.new.message("[Wechat] Tourist guide automatically logged-in (`#{user&.id}`)")
-        redirect_to customer_referrer_path
+        redirect_to AfterSigninHandler.new(request, navigation, user, cart_manager).solve!
         return
 
       end
