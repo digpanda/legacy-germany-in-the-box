@@ -22,7 +22,6 @@ class AfterSigninHandler
     if user.customer?
       force_chinese!
       handle_past_orders!
-      recover_last_orders!
       return without_code missing_info_customer_account_path(kept_params) if user.missing_info?
       return navigation.force! if navigation.force?
 
@@ -67,14 +66,6 @@ class AfterSigninHandler
     params = uri.query_values
     uri.query_values = params.except('code') if params
     uri.to_s
-  end
-
-  # TODO : improve the cart handling so a use always
-  # has a cart.
-  def recover_last_orders!
-    user.cart&.orders&.each do |order|
-      cart_manager.store(order)
-    end
   end
 
   # we must remove the empty orders in case they exist

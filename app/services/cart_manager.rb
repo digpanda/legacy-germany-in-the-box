@@ -18,7 +18,8 @@ class CartManager < BaseService
   def current_cart
     @current_cart ||= begin
       if user
-        user.cart || (session_cart.update(user: user) && user.cart)
+        return filled_user_cart! if user.cart
+        session_to_user_cart!
       else
         session_cart
       end
@@ -65,6 +66,19 @@ class CartManager < BaseService
   end
 
   private
+
+  def session_to_user_cart!
+    session_cart.update(user: user)
+    user.cart
+  end
+
+  def filled_user_cart!
+    if user.cart.orders.count == 0
+      user.cart.orders = session_cart.orders
+      user.cart.save
+    end
+    user.cart
+  end
 
   def session_cart
     @session_cart ||= begin
