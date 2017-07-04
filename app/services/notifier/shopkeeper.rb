@@ -1,6 +1,8 @@
 class Notifier
   class Shopkeeper < Notifier
 
+    include Rails.application.routes.url_helpers
+    
     attr_reader :user, :unique_id
 
     def initialize(user, unique_id:nil)
