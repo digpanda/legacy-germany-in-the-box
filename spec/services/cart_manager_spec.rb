@@ -1,11 +1,34 @@
 describe CartManager do
 
-  let(:current_user) { FactoryGirl.create(:customer) }
   let(:request) { double('request', url: nil, session: {}, params: {}) }
   let(:identity_solver) { IdentitySolver.new(request, current_user) }
+
+  let(:current_user) { FactoryGirl.create(:customer) }
   let(:cart_manager) { CartManager.new(request, current_user) }
 
   context "#order" do
+
+    context "without user registration" do
+
+      let(:current_user) { nil }
+
+      it "creates a new order in the cart according to a shop, convert to user on log-in" do
+        shop = FactoryGirl.create(:shop)
+        order = cart_manager.order(shop: shop)
+
+        expect(order).to be_an_instance_of(Order)
+        expect(order.shop).to eq(shop)
+        expect(order.user).to eq(nil)
+
+        # NOTE : straight after we see if it was converted by reloading (like a new page after a log-in)
+        current_user = FactoryGirl.create(:customer)
+        cart_manager = CartManager.new(request, current_user)
+        order = cart_manager.order(shop: shop)
+        expect(order.user).not_to eq(nil)
+
+      end
+
+    end
 
     it "creates a new order in the cart according to a shop" do
       shop = FactoryGirl.create(:shop)
