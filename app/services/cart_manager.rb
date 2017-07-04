@@ -2,84 +2,83 @@
 # this is linked to the cart system itself (with session + database)
 class CartManager < BaseService
 
-  attr_reader :shop, :session, :user
+  attr_reader :request, :session, :user
 
-  def initialize(session, user)
-    @session = session
+  def initialize(request, user)
+    @request = request
+    @session = request.session
     @user = user
-    safe_recovery!
-    setup_session!
   end
 
-  # try to get an order
-  # if it doesn't work it'll make a new one which's empty
+  # the current cart can be taken from session
+  # or from the database
+  # if at any point the `user` is defined
+  # the session_cart will be converted
+  # into a registered user cart
+  def current_cart
+    @current_cart ||= begin
+      if user
+        user.cart || (session_cart.update(user: user) && user.cart)
+      else
+        session_cart
+      end
+    end
+  end
+
   def order(shop:)
-    CartManager::OrderHandler.new(session, user, shop).recover.order
+    current_cart.orders.where(shop: shop).first || fresh_order(shop, user)
   end
 
-  # get all the orders we have in the cart
   def orders
-    @orders ||= session[:order_shop_ids].keys.compact.map do |shop_id|
-      order(shop: Shop.find(shop_id))
-    end
+    current_cart.orders
   end
 
-  # store a new order in the cart
-  # it will overwrite any order that was present within the session
-  # for the same shop
-  # there's a minor validation so we cannot have a bought / cancelled order in the cart
   def store(order)
-    if order.bought_or_cancelled?
-      order.cart = nil
-      order.save
-      return false
-    end
-    unless session[:order_shop_ids].has_key?(order.shop.id.to_s)
-      session[:order_shop_ids]["#{order.shop.id}"] = "#{order.id}"
-    end
+    current_cart.orders << order
+    current_cart.save
   end
 
-  # empty all orders from the cart
+  # we unlink all the orders from the cart
+  # NOTE : it doesn't mean we remove the orders themselves
   def empty!
-    session[:order_shop_ids] = {}
+    current_cart.orders = []
+    current_cart.save
   end
 
-  # we refresh the cart manager by cleaning it out
-  # from successful or cancelled orders
+  # we unlink the bought or cancelled orders from the cart
   def refresh!
-    safe_recovery!
+    current_cart.orders.each do |order|
+      if order.bought_or_cancelled?
+        order.cart = nil
+        order.save
+      end
+    end
   end
 
+  # we get the total product numbers from the cart orders
   def products_number
     @products_number ||= begin
-      orders.inject(0) do |acc, shop_order|
-        acc += shop_order.decorate.displayable_total_quantity
+      orders.inject(0) do |acc, order|
+        acc += order.decorate.displayable_total_quantity
       end
     end
   end
-  
+
   private
 
-  # create the session variable
-  # to avoid nil return so we can iterate it even if empty
-  def setup_session!
-    session[:order_shop_ids] ||= {}
+  def session_cart
+    @session_cart ||= begin
+      ensure_session_cart!
+      Cart.find(session[:current_cart])
+    end
   end
 
-  # make sure all the datas are current and valid within the session
-  # it will remove all the orders / shops that aren't valid anymore
-  # which would occur when someone remove them for some reason
-  def safe_recovery!
-    return if session[:order_shop_ids].nil?
-    session[:order_shop_ids] = session[:order_shop_ids].map do |shop_id, order_id|
-      shop = Shop.where(id: shop_id).first
-      order = Order.where(id: order_id).first
-      unless shop.nil? || order.nil?
-        unless order.bought_or_cancelled?
-          {"#{order.shop.id}" => "#{order.id}"}
-        end
-      end
-    end.compact.inject(&:update)
+  def ensure_session_cart!
+    session[:current_cart] = Cart.create.id unless session[:current_cart]
+  end
+
+  def fresh_order(shop, user)
+    Order.new(cart: current_cart, shop: shop, user: user, logistic_partner: Setting.instance.logistic_partner, exchange_rate: Setting.instance.exchange_rate_to_yuan)
   end
 
 end
