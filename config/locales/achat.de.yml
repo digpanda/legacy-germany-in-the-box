@@ -1,8 +1,9 @@
 de:
-  nothing:
   address:
     apply: Einlösen
   referrer:
+    update_account: Account aktualisieren
+    agb_agreement: Ich habe die <a href="%{url}">AGBs</a> gelesen und bin einverstanden.
     provision_rates: Provision
     balance_history: Aktivitäten
     type: Typ
