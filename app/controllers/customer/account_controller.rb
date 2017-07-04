@@ -13,6 +13,7 @@ class Customer::AccountController < ApplicationController
   # NOTE : this update is used from many different points
   # within the system (e.g checkout process) be careful with this.
   def update
+    SlackDispatcher.new.message("PARAMS : #{params}")
     if valid_password? && ensure_password! && user.update(user_params)
       flash[:success] = I18n.t("notice.account_updated")
       sign_in(user, :bypass => true)
