@@ -26,6 +26,10 @@ describe CartManager do
         order = cart_manager.order(shop: shop)
         expect(order.user).not_to eq(nil)
 
+        # we save and see if it's in the cart now that the order has been persisted
+        order.save
+        expect(current_user.cart.orders.count).to eq(1)
+
       end
 
     end
