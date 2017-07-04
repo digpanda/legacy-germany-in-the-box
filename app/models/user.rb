@@ -178,7 +178,7 @@ class User
   def missing_info?
     if self.referrer?
         return true if self.mobile.blank?
-        # return true if self.referrer.agb == false
+        return true if self.referrer.agb == false
     end
     false
   end
