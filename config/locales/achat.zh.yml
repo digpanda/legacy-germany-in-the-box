@@ -89,16 +89,16 @@ zh-CN:
     coupon_desktop: 折扣码
     coupon_mobile: 折扣码
     applied_successfully: 此优惠券已被成功使用。
-    applied_fail: 此优惠券不存在。
+    applied_fail: 此优惠券无效。
   product_left:
     only: 只剩
     left: 件
-    no_stock_left: 已售罄
+    no_stock_left: 补货中
     not_ready_to_sell: 该店铺正在装修，尚未营业
   password_recovery:
     email_not_found: 这个邮件地址没有找到哦
-    instruction_sent: 请检查你的收件箱，按提示操作重新设置密码！
-    password_updated: 恭喜！你已经成功设置了一个新的密码！
+    instruction_sent: 请检查您的收件箱，按提示操作重新设置密码！
+    password_updated: 恭喜！您已经成功设置了一个新的密码！
   feedback:
     bug_report:  纠错处
     payment_speed_report: 支付页面速度反馈
@@ -110,7 +110,7 @@ zh-CN:
   country_of_origin: 制造国
   remove: 删除
   composed_text:
-    you_must_add: 你需要一个
+    you_must_add: 您需要一个
     billing_address: 账单地址
     to_activate_this_section: 才能继续
   results_for: 的结果
@@ -134,7 +134,7 @@ zh-CN:
     variants: 不同的包装尺寸
     shops: 商铺
   title:
-    we_need_more_info: 我们必须知道你的联系方式
+    we_need_more_info: 请确认您的信息
     title: 名称
     shop_photo: 商家照片
     date: 日期
@@ -150,8 +150,8 @@ zh-CN:
     want_work_with_us: 希望成为我们的伙伴？
     change_your_password: 更改密码
     page_not_found: 没有找到该页面
-    server_error: 服务器出错
-    page_not_authorized_login: 请先登录或者注册进行下步操作！
+    server_error: 服务器维护请稍后访问
+    page_not_authorized_login: 请先登录或者注册进行下一步操作！
     page_not_authorized: 没有访问该页面的权限
   notice:
     account_updated: 账户信息已更新
@@ -162,11 +162,11 @@ zh-CN:
     order_sent: 海关申报成功
     order_not_processable: 该订单目前还不能处理，请稍候再试！
     order_processing: 该订单正在处理，您很快就可以发货。
-    shipping_partner_problem: 物流系统错误，请稍后再试。
+    shipping_partner_problem: 物流系统维护中，请稍后再试。
     wechat_login: 微信登录成功！
-    wechat_login_fail: 不能取得你的微信身份，稍候再试一下吧！
+    wechat_login_fail: 暂时无法绑定您的微信号，请稍后再试一下吧！
     account_conflict: 浏览记录过期，请联系客服
-    success_subscription: 祝贺你成功注册！
+    success_subscription: 祝贺您成功注册！
     no_shop_available: 目前还没有店铺
     confirm_want_delete: 确实要删除这个产品吗？
     confirm_start_processing: 准备订单前请再次确认该订单产品的正确性。如有问题请联系商家客服。
@@ -481,7 +481,7 @@ zh-CN:
     remove: 删除店铺
   edit_shop_application:
     shop_application: 申请开店
-    shop_application_ok: 谢谢你的申请，我们会在第一时间与您联系。
+    shop_application_ok: 谢谢您的申请，我们会在第一时间与您联系。
     shopkeeper_info: 厂家信息
     title: 申请表
     email: 联系邮箱
@@ -553,10 +553,10 @@ zh-CN:
     uniqueness: 标志性的特点
     uniqueness_info: 您的产品与市场上同类产品有什么不同和标志性的特点
     target_groups: 客户群
-    target_groups_info: 谁是您在德国的客户群？你可以最多填写%{num}个客户群。
+    target_groups_info: 谁是您在德国的客户群？您可以最多填写%{num}个客户群。
     target_group: 客户群
     sales_channels: 销售渠道
-    sales_channels_info: 您的销售渠道是什么？ 你可以最多填写%{num}个销售渠道。
+    sales_channels_info: 您的销售渠道是什么？ 您可以最多填写%{num}个销售渠道。
     register: 商业登记号
     add_target_group: 添加
     remove_target_group: 删除
