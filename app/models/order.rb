@@ -9,7 +9,7 @@ class Order
 
   # research system
   # end_price makes issues on the tests
-  search_in :status, :tracking_id, :nickname, :u_at, :total_paid, :user => :id
+  search_in :id, :status, :tracking_id, :nickname, :u_at, :total_paid, :user => :id
 
   UNPROCESSABLE_TIME = [11,12] # 11am to 12am -> German Hour
   BOUGHT_OR_CANCELLED = [:paid, :custom_checkable, :custom_checking, :shipped, :cancelled]
