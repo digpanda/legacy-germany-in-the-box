@@ -57,17 +57,7 @@ class CartManager < BaseService
       end
     end
   end
-
-  # to check if the selected order is in the cart manager or not
-  def in?(order)
-    session[:order_shop_ids]["#{order.shop.id}"].present?
-  end
-
-  # inverse of `in?`
-  def out?(order)
-    session[:order_shop_ids]["#{order.shop.id}"].nil?
-  end
-
+  
   private
 
   # create the session variable
