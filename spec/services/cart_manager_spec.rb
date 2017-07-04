@@ -4,16 +4,26 @@ describe CartManager do
   let(:request) { double('request', url: nil, session: {}, params: {}) }
   let(:identity_solver) { IdentitySolver.new(request, current_user) }
 
-  context "#.." do
+  context "#order" do
 
-    let(:order) { FactoryGirl.create(:order, status: :new) }
+  end
 
-    let(:product) { FactoryGirl.create(:product) }
-    let(:sku) { product.skus.first }
+  context "#store" do
+  end
 
-    it "should add an order item to the order" do
-    end
+  context "#empty!" do
+  end
 
+  context "#refresh!" do
+  end
+
+  context "#products_number" do
+  end
+
+  context "#in?" do
+  end
+
+  context "#out?" do
   end
 
 end
