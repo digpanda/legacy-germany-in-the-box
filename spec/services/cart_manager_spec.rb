@@ -3,7 +3,7 @@ describe CartManager do
   let(:current_user) { FactoryGirl.create(:customer) }
   let(:request) { double('request', url: nil, session: {}, params: {}) }
   let(:identity_solver) { IdentitySolver.new(request, current_user) }
-  let(:cart_manager) { CartManager.new(request.session, current_user) }
+  let(:cart_manager) { CartManager.new(request, current_user) }
 
   context "#order" do
 
@@ -78,7 +78,7 @@ describe CartManager do
       expect(cart_manager.products_number).to eq(45)
     end
 
-    it "returns the products number with casual products and package sets" do
+    it "returns the products number with package sets" do
       orders = FactoryGirl.create_list(:order, 3, :with_package_set)
       orders.each do |order|
         cart_manager.store(order)
