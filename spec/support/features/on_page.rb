@@ -43,7 +43,7 @@ module Helpers
       end
 
       def on_missing_info_page?
-        expect(page).to have_css "h2", text: "我们必须知道你的联系方式" # "we need more info"
+        expect(page).to have_css "h2", text: "请确认您的信息" # "we need more info"
       end
 
     end
