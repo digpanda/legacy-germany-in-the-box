@@ -12,7 +12,7 @@ class Admin::AccountController < ApplicationController
 
   def update
     if check_valid_password?(params) && user.update(user_params)
-      flash[:success] = I18n.t("message.account_updated")
+      flash[:success] = I18n.t("notice.account_updated")
       sign_in(user, :bypass => true)
     else
       flash[:error] = user.errors.full_messages.join(',')
@@ -44,6 +44,7 @@ class Admin::AccountController < ApplicationController
     if params[:user][:password].empty?
       params[:user][:password] = params[:user][:password_confirmation] = params[:user][:current_password]
     end
+    params[:user].delete(:current_password)
   end
 
 end

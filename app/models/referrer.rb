@@ -7,7 +7,8 @@ class Referrer
 
   field :reference_id, type: String # was referrer_id in User
   field :nickname, type: String
-  field :group, type: String
+  field :group, type: String # not sure it's still in use in our system since we use referrer group
+  field :agb, type: Boolean, default: false
 
   belongs_to :user, :class_name => "User", :inverse_of => :referrer
   belongs_to :referrer_group, :class_name => "ReferrerGroup", :inverse_of => :referrer
@@ -31,11 +32,6 @@ class Referrer
 
   def ensure_nickname
     self.nickname = self.user.nickname unless self.nickname
-  end
-
-  def set_group(group)
-    self.group = group unless self.group
-    self.save
   end
 
   def short_nickname

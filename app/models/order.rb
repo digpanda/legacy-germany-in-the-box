@@ -122,31 +122,8 @@ class Order
     coupon_discount / total_price_with_taxes * 100
   end
 
-  # live referrer provision before it's saved in the database
-  def current_referrer_provision
-    order_items.reduce(0) do |acc, order_item|
-      if order_item.referrer_rate > 0.0
-        # it's the total price minus the normalized coupon discount
-        calculation_price = order_item.total_price * ((100 - coupon_discount_in_percent) / 100)
-        acc += calculation_price * order_item.referrer_rate / 100 # goods price
-      else
-        acc += 0.0
-      end
-    end
-  end
-
-  # NOTE : this should be abstracted somewhere else
   def refresh_referrer_provision!
-    if referrer
-      referrer_provision = ReferrerProvision.where(order: self, referrer: referrer).first
-      if bought?
-        referrer_provision ||= ReferrerProvision.create(order: self, referrer: referrer)
-        referrer_provision.provision = current_referrer_provision
-        referrer_provision.save
-      else #if cancelled? -> we should actually apply deletion in any case if it's not bought
-        referrer_provision&.delete
-      end
-    end
+    ProvisionHandler.new(self).refresh!
   end
 
   # total price of the products in the order (raw price before any alteration)

@@ -29,6 +29,24 @@ describe Notifier::Dispatcher, :type => :mailer do
       expect(CustomerMailer.deliveries.count).to eq(1)
     end
 
+    it "should send only one notification and one email with unique id" do
+
+      2.times do |time|
+
+        Notifier::Dispatcher.new(
+          user: customer,
+          unique_id: "test",
+          title: "Fake title #{time}",
+          desc: "Fake description #{time}",
+          url: "http://test.com/#{time}"
+        ).perform
+
+      end
+
+      expect(Notification.count).to eq(1)
+      expect(CustomerMailer.deliveries.count).to eq(1)
+    end
+
     it "should send a SMS" do
       dispatch_sms = Notifier::Dispatcher.new(
         user: customer,

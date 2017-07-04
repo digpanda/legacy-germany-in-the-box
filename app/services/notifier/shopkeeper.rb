@@ -1,10 +1,13 @@
 class Notifier
   class Shopkeeper < Notifier
 
-    attr_reader :user
+    include Rails.application.routes.url_helpers
+    
+    attr_reader :user, :unique_id
 
-    def initialize(user)
+    def initialize(user, unique_id:nil)
       @user = user
+      @unique_id = unique_id
     end
 
     def welcome
@@ -17,7 +20,8 @@ class Notifier
     def sku_quantity_is_low(order_item, sku)
       dispatch(
         title: "Die Verfügbarkeit eines Produkts ist fast Null",
-        desc: "Das Produkt '#{order_item.product&.name}' verfügt über #{sku.quantity} Verfügbarkeit."
+        desc: "Das Produkt '#{order_item.product&.name}' verfügt über #{sku.quantity} Verfügbarkeit.",
+        url: shopkeeper_product_skus_path(product_id: sku.product.id)
       ).perform
     end
 

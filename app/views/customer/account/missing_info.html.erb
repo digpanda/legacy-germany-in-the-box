@@ -35,6 +35,17 @@
         </div>
       <% end %>
 
+      <% unless current_user.referrer.agb %>
+
+        <%= f.fields_for :referrer do |fields| %>
+
+          <%= fields.check_box :agb, :required => true %>
+          <%= fields.label :agb, I18n.t('referrer.agb_agreement', url: agb_customer_referrer_path).html_safe %>
+
+        <% end %>
+
+      <% end %>
+
       </div>
     </div>
 
@@ -42,7 +53,7 @@
       <div class="col-md-8 col-md-push-2 col-md-pull-2">
         <div class="row +centered">
           <div class="+small-spacer"></div>
-          <button type="submit" class="big-button --green +centered">Update account</button>
+          <button type="submit" class="big-button --green +centered"><%= I18n.t('referrer.update_account') %></button>
           <div class="+small-spacer"></div>
         </div>
       </div>

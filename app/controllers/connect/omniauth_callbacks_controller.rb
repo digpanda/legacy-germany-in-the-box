@@ -18,6 +18,7 @@ class Connect::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   # it's only a way to group people.
   def referrer
     if params[:code]
+
       # this is taken from application controller
       if wechat_api_connect_solver.success?
         user = wechat_api_connect_solver.data[:customer]
@@ -32,7 +33,8 @@ class Connect::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         session[:landing] = :package_sets
 
         SlackDispatcher.new.message("[Wechat] Tourist guide automatically logged-in (`#{user&.id}`)")
-        redirect_to customer_referrer_path
+
+        redirect_to AfterSigninHandler.new(request, navigation, user, cart_manager).solve!
         return
 
       end
