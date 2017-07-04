@@ -18,10 +18,11 @@ RSpec.configure do |config|
   config.before do
     config.include Helpers::Global
     config.include Helpers::Context
-    config.include Helpers::Request
-    config.include Helpers::Response
     config.include Helpers::Devise
     config.include Helpers::Poltergeist
+    config.include Helpers::Request
+    config.include Helpers::Response
+    config.include Helpers::Service
 
     config.include Helpers::Features::Cart
     config.include Helpers::Features::Checkout
