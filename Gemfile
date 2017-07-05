@@ -106,6 +106,7 @@ end
 group :development, :test, :staging, :local do
   gem "factory_girl_rails"
   gem "rspec-rails", "~> 3.0"
+  gem "capybara-slow_finder_errors"
   gem "capybara"
   gem "poltergeist", "1.15.0"
   gem "selenium-webdriver"
