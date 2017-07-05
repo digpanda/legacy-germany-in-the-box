@@ -93,7 +93,7 @@ class Shop
   scope :is_active,       ->    { where( :status => true ).where( :approved.ne => nil ) }
   scope :has_address, -> { where({ :addresses => { :$not => { :$size => 0 } } }) }
 
-  scope :can_buy,         ->    { is_active.has_address }
+  scope :can_buy,         ->    { is_active }
   scope :highlighted,     ->    { where(highlight: true) }
 
   before_save :ensure_shopkeeper
