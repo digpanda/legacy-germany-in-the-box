@@ -5,22 +5,25 @@ class Customer::CartController < ApplicationController
 
   before_action :freeze_header
   before_action :breadcrumb_cart
+  before_action :set_cart
 
   authorize_resource :class => false
 
   def show
-    @orders = cart_manager.orders
-  rescue CartManager::Error => error
-    flash[:error] = "#{error.message}"
-    redirect_to navigation.back(1)
   end
 
   def edit
+    binding.pry
   end
 
   def update
+    binding.pry
   end
 
   private
+
+  def set_cart
+    @cart = cart_manager.current_cart
+  end
 
 end
