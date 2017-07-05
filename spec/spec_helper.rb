@@ -37,12 +37,13 @@ end
 
 
 port = 3333 + ENV['TEST_ENV_NUMBER'].to_i # for `parallel_tests`
+host = "local.dev"
 
-Capybara.app_host = "http://local.dev:#{port}"
+Capybara.app_host = "http://#{host}:#{port}"
 Capybara.always_include_port = true
-Capybara.default_host = "http://local.dev:#{port}"
+Capybara.default_host = "http://#{host}:#{port}"
 Capybara.server_port = port
-Capybara.server_host = "local.dev"
+Capybara.server_host = host
 # Capybara.run_server = false
 Capybara.default_max_wait_time = 50
 
@@ -69,11 +70,13 @@ Capybara.javascript_driver = :poltergeist
 # page.driver.render("/tmp/file_#{Time.now.to_i}.jpg", :full => true)
 
 Capybara.register_driver :poltergeist do |app|
+  puts "register"
   Capybara::Poltergeist::Driver.new(app,
                                     :js_errors => false,
                                     :debug => false,
                                     # :phantomjs_options => ["--debug=yes"],
                                     :window_size => [1800,1000],
+                                    :port => 51674 + ENV['TEST_ENV_NUMBER'].to_i # `parallel_tests`
                                     )
 end
 #
