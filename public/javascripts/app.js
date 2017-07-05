@@ -3131,6 +3131,18 @@ var AutoResize = {
       preferredCountries: ["DE", "CN"],
       initialCountry: "CN"
     });
+
+    $("#shop_application_mobile").intlTelInput({
+      nationalMode: false,
+      preferredCountries: ["DE", "CN"],
+      initialCountry: "DE"
+    });
+
+    $("#shop_application_tel").intlTelInput({
+      nationalMode: false,
+      preferredCountries: ["DE", "CN"],
+      initialCountry: "DE"
+    });
   }
 };
 

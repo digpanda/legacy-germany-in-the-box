@@ -209,8 +209,8 @@
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <%= f.label :mobile, I18n.t(:contact_mobile, scope: :edit_shop_application) %>
-                  <%= f.text_field :mobile, :class => 'form-control', :maxLength => Rails.configuration.gitb[:max_tiny_text_length], :placeholder => '+49(151)12345678' %>
+                  <%= f.label :mobile, I18n.t(:contact_mobile, scope: :edit_shop_application), :class => 'required' %>
+                  <%= f.text_field :mobile, :class => 'form-control', :maxLength => Rails.configuration.gitb[:max_tiny_text_length], :placeholder => '+49(151)12345678', :required => true %>
                   <div class="help-block with-errors"></div>
                 </div>
               </div>

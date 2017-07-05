@@ -44,8 +44,6 @@ class Guest::ShopApplicationsController < ApplicationController
       payment_gateway.shop_id = shop.id
       payment_gateway.provider = payment_method
       payment_gateway.payment_method = payment_method
-      payment_gateway.merchant_id = nil
-      payment_gateway.merchant_secret = nil
       payment_gateway.save
     end
   end
@@ -54,6 +52,7 @@ class Guest::ShopApplicationsController < ApplicationController
     User.create({
       :nickname => shop_application.email,
       :email => shop_application.email,
+      :mobile => shop_application.mobile,
       :password => shop_application.code[0, 8],
       :password_confirmation => shop_application.code[0, 8],
       :role => :shopkeeper
@@ -66,11 +65,11 @@ class Guest::ShopApplicationsController < ApplicationController
   end
 
   def shop_params
-    shop_application_params.except(:email)
+    shop_application_params.except(:email, :mobile, :tel, :function)
   end
 
   def shop_application_params
-    params.require(:shop_application).permit(:email, :name, :shopname, :desc, :philosophy, :stories, :german_essence, :uniqueness, :founding_year, :register, :website, :fname, :lname, :mobile, :mail, :function)
+    params.require(:shop_application).permit(:email, :name, :shopname, :desc, :philosophy, :stories, :german_essence, :uniqueness, :founding_year, :register, :website, :fname, :lname, :mobile, :tel, :mail, :function)
   end
 
 end
