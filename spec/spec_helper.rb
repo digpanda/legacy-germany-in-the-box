@@ -70,7 +70,6 @@ Capybara.javascript_driver = :poltergeist
 # page.driver.render("/tmp/file_#{Time.now.to_i}.jpg", :full => true)
 
 Capybara.register_driver :poltergeist do |app|
-  puts "register"
   Capybara::Poltergeist::Driver.new(app,
                                     :js_errors => false,
                                     :debug => false,
