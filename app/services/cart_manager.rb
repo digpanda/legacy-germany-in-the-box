@@ -69,6 +69,7 @@ class CartManager < BaseService
 
   def session_to_user_cart!
     session_cart.update(user: user)
+    ensure_orders_ownership!
     user.cart
   end
 
@@ -76,6 +77,7 @@ class CartManager < BaseService
     if user.cart.orders.count == 0
       user.cart.orders = session_cart.orders
       user.cart.save
+      ensure_orders_ownership!
     end
     user.cart
   end
@@ -84,6 +86,13 @@ class CartManager < BaseService
     @session_cart ||= begin
       ensure_session_cart!
       Cart.find(session[:current_cart])
+    end
+  end
+
+  def ensure_orders_ownership!
+    user.cart.orders.where(user: nil).each do |order|
+      order.user = user
+      order.save
     end
   end
 
