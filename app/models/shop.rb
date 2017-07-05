@@ -125,6 +125,8 @@ class Shop
     sender_address.country
   end
 
+  # TODO : check if it's still in use within the system
+  # - Laurent, 05/07/2017
   def categories
     all_categories = Category.order_by(position: :asc).all.map { |c| [c.id, c]}.to_h
     products.inject(Set.new) {|cs, p| cs = cs + p.category_ids }.map { |c| all_categories[c]}
