@@ -12,14 +12,6 @@ class Customer::CartController < ApplicationController
   def show
   end
 
-  def edit
-    binding.pry
-  end
-
-  def update
-    binding.pry
-  end
-
   private
 
   def set_cart
