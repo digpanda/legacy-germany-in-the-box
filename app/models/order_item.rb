@@ -44,8 +44,6 @@ class OrderItem
   validates :product,       presence: true
   validates :order,         presence: true
 
-  index({order: 1},  {unique: false, name: :idx_order_item_order})
-
   scope :with_sku, -> (sku) { self.where(:sku_origin_id => sku.id) }
   scope :without_package_set, -> { self.where(package_set: nil) }
 

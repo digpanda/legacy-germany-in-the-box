@@ -96,8 +96,6 @@ class Order
 
   summarizes sku_list: :order_items, by: :quantity
 
-  index({user: 1},  {unique: false,   name: :idx_order_user,   sparse: true})
-
   after_save :make_bill_id, :update_paid_at, :update_cancelled_at, :refresh_referrer_provision!
 
   # refresh order status from payment

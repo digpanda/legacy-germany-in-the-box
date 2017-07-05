@@ -99,9 +99,6 @@ class Shop
   before_save :ensure_shopkeeper
   before_save :force_merchant_id
 
-  index({shopkeeper: 1},    {unique: true,   name: :idx_shop_shopkeeper})
-  index({merchant_id: 1},   {unique: false,  name: :idx_shop_merchant_id})
-
   def force_merchant_id
     if self.merchant_id.nil?
       self.merchant_id = (self.c_at ? self.c_at.strftime('%y%m%d') : Date.today.strftime('%y%m%d')) + self.name.delete("\s")[0,3].upcase

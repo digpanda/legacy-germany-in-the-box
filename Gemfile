@@ -100,6 +100,7 @@ end
 group :development, :test do
   gem "vcr"
   gem "webmock" # http service loader
+  gem "parallel_tests"
 end
 
 group :development, :test, :staging, :local do

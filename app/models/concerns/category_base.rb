@@ -29,7 +29,5 @@ module CategoryBase
     scope :is_active,       ->  { where(:status => true) }
     scope :has_children,    ->  { where(:children_count.gt => 0) }
 
-    index({parent: 1},      {unique: false, name: :idx_category_parent, sparse: true})
-
   end
 end

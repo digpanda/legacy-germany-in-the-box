@@ -35,10 +35,13 @@ RSpec.configure do |config|
 
 end
 
-Capybara.app_host = "http://local.dev:3333"
+
+port = 3333 + ENV['TEST_ENV_NUMBER'].to_i # for `parallel_tests`
+
+Capybara.app_host = "http://local.dev:#{port}"
 Capybara.always_include_port = true
-Capybara.default_host = "http://local.dev:3333"
-Capybara.server_port = 3333
+Capybara.default_host = "http://local.dev:#{port}"
+Capybara.server_port = port
 Capybara.server_host = "local.dev"
 # Capybara.run_server = false
 Capybara.default_max_wait_time = 50

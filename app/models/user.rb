@@ -92,8 +92,6 @@ class User
 
   field :authentication_token
 
-  index({email: 1},               {unique: true,  name: :idx_user_email})
-
   scope :admins, -> { where(role: :admin) }
 
   before_save :ensure_valid_mobile
