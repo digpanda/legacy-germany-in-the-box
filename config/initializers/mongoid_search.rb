@@ -9,7 +9,7 @@ Mongoid::Search.setup do |config|
   config.relevant_search = false
 
   ## Stem keywords
-  config.stem_keywords = true
+  config.stem_keywords = false
 
   ## Add a custom proc returning strings to replace the default stemmer
   # For example using ruby-stemmer:
