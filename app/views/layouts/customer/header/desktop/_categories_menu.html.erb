@@ -5,7 +5,7 @@
       <a href="<%= guest_category_path(category) %>" id="<%= category.slug %>"><%= category.name %></a>
       <!-- Shops in category -->
       <ul class="menu-dropdown__content">
-      <% category.can_buy_shops(5).each do |shop| %>
+      <% category.can_buy_shops(10).each do |shop| %>
       <li>
           <a href="<%= guest_shop_path(shop, category_id: category.id) %>">
           <h4><%= shop.shopname %></h4>
