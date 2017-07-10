@@ -1,9 +1,9 @@
-class WechatReferrerQrCode < BaseService
+class WechatReferrerQrcode < BaseService
 
-  attr_reader :code
+  attr_reader :referrer
 
-  def initialize(code)
-    @code = code
+  def initialize(referrer)
+    @referrer = referrer
   end
 
   def resolve!
@@ -17,14 +17,38 @@ class WechatReferrerQrCode < BaseService
   # we try to the referrer qrcode in 3 steps
   def qrcode
     @qrcode ||= begin
-      binding.pry
+      return return_with(:error, "Access token is wrong") if access_token_gateway['errcode']
+
     end
   end
 
   private
 
+  def access_token
+    access_token_gateway['access_token']
+  end
+
+  def access_ticket
+    @access_ticket ||= begin
+      # POST ticket_url with body
+      # {
+      #     "expire_seconds": 604800,
+      #     "action_name": "QR_STR_SCENE",
+      #     "action_info": {
+      #         "scene": {
+      #             "scene_str": "test"
+      #         }
+      #     }
+      # }
+    end
+  end
+
   def access_token_gateway
     @access_token_gateway ||= get_url weixin_access_token_url
+  end
+
+  def ticket_url
+    "https://api.weixin.qq.com/cgi-bin/qrcode/create?access_token=#{access_token}"
   end
 
   def weixin_access_token_url
