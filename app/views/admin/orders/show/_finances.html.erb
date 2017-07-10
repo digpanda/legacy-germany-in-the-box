@@ -4,14 +4,23 @@
       <hr>
     </div>
     <div class="row">
+      <div class="col-md-4">
+        <h4>Bill ID</h4>
+        <%= editable_field(@order, admin_order_path(@order), :bill_id, :text_field) %>
+      </div>
 
-      Bill ID : <%= editable_field(@order, admin_order_path(@order), :bill_id, :text_field) %>
-      <br />
+      <div class="col-md-4">
+        <h4>Total Paid</h4>
+        <%= @order.total_paid_in_yuan %> (<%= @order.total_paid_in_euro %>)
+      </div>
 
-      Total Paid : <%= @order.total_paid_in_yuan %> (<%= @order.total_paid_in_euro %>)<br />
-      Total Price : <%= @order.total_price_with_extra_costs.in_euro.to_yuan(exchange_rate: @order.exchange_rate).display %> (<%= @order.total_price_with_extra_costs.in_euro.display %>)<br />
-
+      <div class="col-md-4">
+        <h4>Total Price</h4>
+        <%= @order.total_price_with_extra_costs.in_euro.to_yuan(exchange_rate: @order.exchange_rate).display %> (<%= @order.total_price_with_extra_costs.in_euro.display %>)
+      </div>
+    </div>
+    <div class="row">
+      <div class="+spacer"></div>
       <%= render partial: "admin/order_payments/table", :locals => { :order_payments => @order.order_payments.order(c_at: :desc) } %>
-
     </div>
   </div>

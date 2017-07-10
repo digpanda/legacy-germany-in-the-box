@@ -909,6 +909,8 @@
   margin-top: 1em;
   margin-right: 1em;
   margin-bottom: 1em; }
+  .details__block h4 {
+    font-weight: bold; }
 
 .feedback-blocks {
   padding: 0; }
@@ -1553,9 +1555,6 @@
     word-wrap: break-word;
     width: 100%;
     vertical-align: middle; }
-    .main-table table input {
-      background-color: white;
-      border: 1px dashed #3498db; }
     .main-table table a, .main-table table a:active, .main-table table a:hover, .main-table table a:visited {
       color: #3498db; }
     .main-table table tr:nth-child(even) {
@@ -1662,6 +1661,10 @@
 .slicknav_nav a:hover {
   color: white;
   background: transparent; }
+
+.js-editable-field input {
+  background-color: white;
+  border: 1px dashed #3498db; }
 
 .intl-tel-input .country-list .country.highlight {
   color: #666666; }

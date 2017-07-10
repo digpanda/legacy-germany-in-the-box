@@ -2,14 +2,27 @@
 <hr>
 
 <% if @order.paid_at %>
-  Paid at <strong><%= @order.paid_at.utc %></strong><br />
+  <div class="col-md-6">
+    <h4>Paid at</h4>
+    <strong><%= @order.paid_at.utc %></strong>
+  </div>
 <% end %>
 
 <% if @order.cancelled_at %>
-  Cancelled at <strong><%= @order.cancelled_at.utc %><br /></strong>
+  <div class="col-md-6">
+    <h4>Cancelled at</h4>
+    <strong><%= @order.cancelled_at.utc %></strong>
+  </div>
 <% end %>
 
 <br />
 
-Updated at <strong><%= @order.u_at.utc %></strong>
-Created at <strong><%= @order.c_at.utc %><br /></strong>
+<div class="col-md-6">
+  <h4>Updated at</h4>
+  <strong><%= @order.u_at.utc %></strong>
+</div>
+
+<div class="col-md-6">
+  <h4>Created at</h4>
+  <strong><%= @order.c_at.utc %></strong>
+</div>

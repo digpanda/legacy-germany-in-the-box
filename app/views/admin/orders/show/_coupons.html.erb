@@ -4,10 +4,21 @@
     <hr>
   </div>
   <div class="row">
-    Applied at <strong><%= @order.coupon_applied_at %></strong><br />
-    Real discount <strong><%= @order.coupon_discount.in_euro.display %></strong><br />
+    <div class="col-md-6">
+    <h4>Applied at</h4>
+    <% if @order.coupon_applied_at %>
+      <%= @order.coupon_applied_at %>
+    <% else %>
+      -
+    <% end %>
+  </div>
+  <div class="col-md-6">
+    <h4>Real discount</h4>
+    <span class="+red"><%= @order.coupon_discount.in_euro.display %></span>
+  </div>
   </div>
   <div class="row">
+    <div class="+spacer"></div>
     <%= render partial: 'admin/coupons/table', :locals => { :coupons => [@order.coupon].compact } %>
   </div>
 
