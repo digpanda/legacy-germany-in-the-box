@@ -4,9 +4,6 @@ gem "alipay", "~> 0.14.0"
 gem "wx_pay"
 gem "rqrcode"
 gem "twilio-ruby"
-
-gem "zeus"
-
 gem "addressable"
 gem "geocoder"
 gem "api_cache"
@@ -77,9 +74,6 @@ gem "omniauth"
 gem "omniauth-wechat-oauth2", git: "https://github.com/yangsr/omniauth-wechat-oauth2.git"
 
 gem "exception_notification"
-#gem "omniauth-open_wechat"
-#gem "newrelic_rpm"
-#gem "newrelic_moped"
 
 group :development do
   gem "capistrano"
@@ -100,12 +94,15 @@ group :development do
 end
 
 group :development, :test do
+  gem "spring" # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  gem "spring-commands-rspec" # RSpec runs with spring
+  gem "zeus"
   gem "vcr"
   gem "webmock" # http service loader
   gem "parallel_tests"
 end
 
-group :development, :test, :staging, :local do
+group :development, :test, :staging do
   gem "factory_girl_rails"
   gem "rspec-rails", "~> 3.0"
   gem "capybara-slow_finder_errors"
@@ -120,9 +117,7 @@ group :development, :test, :staging, :local do
 end
 
 group :development, :local do
-  gem "spring" # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem "better_errors"
   gem "minitest", "5.8.3"
   gem "faker"
-
 end
