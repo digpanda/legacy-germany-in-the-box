@@ -31,7 +31,7 @@
         </td>
         <td>
           <% if cart.user %>
-            <%= cart.user.decorate.full_name %>
+            <a href="<%= admin_user_path(cart.user) %>"><%= cart.user.decorate.full_name %></a>
           <% else %>
             -
           <% end %>

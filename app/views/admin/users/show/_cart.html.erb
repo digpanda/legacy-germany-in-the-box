@@ -1,0 +1,16 @@
+<div class="col-md-12">
+  <div class="row">
+    <h3>Current Cart</h3>
+    <hr>
+  </div>
+  <div class="row">
+
+    <% if @user.cart %>
+      <%= render partial: "admin/carts/show/orders", :locals => { cart: @user.cart } %>
+    <% else %>
+      Nothing in cart
+    <% end %>
+
+  </div>
+
+</div>
