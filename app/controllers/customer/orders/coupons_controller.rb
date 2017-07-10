@@ -48,7 +48,7 @@ class Customer::Orders::CouponsController < ApplicationController
   end
 
   def set_coupon
-    @coupon = Coupon.where(code: coupon_params[:code]).first
+    @coupon = Coupon.where(code: coupon_params[:code].strip).first
   end
 
   def coupon_params
