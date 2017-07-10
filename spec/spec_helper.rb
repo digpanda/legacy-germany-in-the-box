@@ -19,7 +19,6 @@ end
 
 RSpec.configure do |config|
 
-  #config.include Rack::Test::Methods
   config.use_transactional_fixtures = false
   config.mock_with :rspec
   config.before(:each) do
