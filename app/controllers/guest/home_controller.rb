@@ -3,8 +3,6 @@ class Guest::HomeController < ApplicationController
   before_action :admin_redirection, :shopkeeper_redirection
 
   def show
-    w = WechatReferrerQrcode.new(Referrer.first)
-    w.access_ticket
     @shops = Shop.can_buy.order_by(:position => :asc).all
   end
 

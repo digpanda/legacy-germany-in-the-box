@@ -7,11 +7,7 @@ class WechatReferrerQrcode < BaseService
   end
 
   def resolve!
-    if qrcode.success?
-      return_with(:success, customer: qrcode.data[:qrcode])
-    else
-      return_with(:error, error: connect_user.error)
-    end
+    qrcode
   end
 
   # we try to the referrer qrcode in 3 steps
@@ -19,12 +15,16 @@ class WechatReferrerQrcode < BaseService
     @qrcode ||= begin
       return return_with(:error, "Access token is wrong") if access_token_gateway['errcode']
       return return_with(:error, "Access ticket is wrong") if access_ticket_gateway['errcode']
-      binding.pry
       return return_with(:error, "Access qrcode is wrong") if access_qrcode_gateway['errcode']
+      return_with(:success, qrcode: access_qrcode)
     end
   end
 
-  # private
+  private
+
+  def access_qrcode
+    access_qrcode_gateway
+  end
 
   def access_token
     access_token_gateway['access_token']
@@ -35,7 +35,7 @@ class WechatReferrerQrcode < BaseService
   end
 
   def access_qrcode_gateway
-    @access_qrcode_gateway ||= get_url qrcode_url
+    @access_qrcode_gateway ||= image_url qrcode_url
   end
 
   def access_ticket_gateway
@@ -82,6 +82,10 @@ class WechatReferrerQrcode < BaseService
   def get_url(url)
     response = Net::HTTP.get(URI.parse(url))
     JSON.parse(response)
+  end
+
+  def image_url(url)
+    Net::HTTP.get(URI.parse(url))
   end
 
 end
