@@ -8,19 +8,12 @@ class Guest::ReferrersController < ApplicationController
   before_action :set_referrer
 
   def qrcode
-    binding.pry
-    send_data Flyer.new.process_qrcode(qrcode_image).image.to_blob, :stream => "false", :filename => "test.jpg", :type => "image/jpeg", :disposition => "inline"
-  end
-
-  # this is a rendered image to show on the referrer area
-  # but it can be seen by anyone so they can communicate it more easily
-  def raw_qrcode
-    send_data qrcode_image, :stream => "false", :filename => "test.jpg", :type => "image/jpeg", :disposition => "inline"
+    send_data Flyer.new.process_qrcode(qrcode_path).image.to_blob, :stream => "false", :filename => "test.jpg", :type => "image/jpeg", :disposition => "inline"
   end
 
   private
 
-  def qrcode_image
+  def qrcode_path
     if wechat_referrer_qrcode.success?
       wechat_referrer_qrcode.data[:local_file]
     end

@@ -32,7 +32,10 @@ class WechatReferrerQrcode < BaseService
 
   # we call the API and store it within our local directory
   def remote_to_local!
-    IO.write(local_file, access_qrcode)
+    FileUtils::mkdir_p "#{Rails.root}/public/uploads/referrer/qrcode"
+    File.open(local_file, 'wb') do |file|
+      file.write(access_qrcode)
+    end
   end
 
   # does it already exist ?
@@ -42,7 +45,6 @@ class WechatReferrerQrcode < BaseService
 
   def local_file
     @local_file ||= begin
-      FileUtils::mkdir_p "#{Rails.root}/public/uploads/referrer/qrcode"
       "#{Rails.root}/public/uploads/referrer/qrcode/#{referrer.reference_id}.jpg"
     end
   end
