@@ -8,7 +8,7 @@ class Guest::ReferrersController < ApplicationController
   # this is a rendered image to show on the referrer area
   # but it can be seen by anyone so they can communicate it more easily
   def qrcode
-    send_data qrcode_image.to_blob, :stream => "false", :filename => "test.jpg", :type => "image/jpeg", :disposition => "inline"
+    send_data qrcode_image, :stream => "false", :filename => "test.jpg", :type => "image/jpeg", :disposition => "inline"
   end
 
   private
@@ -24,7 +24,7 @@ class Guest::ReferrersController < ApplicationController
   end
 
   def set_referrer
-    @referrer = Coupon.find(params[:id] || params[:referrer_id])
+    @referrer = Referrer.find(params[:id] || params[:referrer_id])
   end
 
 end

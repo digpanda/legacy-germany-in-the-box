@@ -1,1 +1,14 @@
-YO
+<div class="row">
+  <div class="col-md-8 col-md-push-2">
+
+    <!-- SUBHEADER (BACK BUTTON + REFERRER ID) -->
+    <%= render partial: 'customer/referrer/subheader', :locals => { back: customer_referrer_path } %>
+
+    <div class="+centered">
+      <img src="<%= guest_referrer_qrcode_path(@referrer) %>" style="max-height: 500px;">
+    </div>
+
+    <div class="+spacer"></div>
+
+  </div>
+</div>
