@@ -8,25 +8,16 @@ class Api::Webhook::Wechat::QrcodesController < Api::ApplicationController
   attr_reader :transmit_data
 
   def index
-    SlackDispatcher.new.message("QRCODE : #{request.body.read}")
-
-        devlog.info "End of process."
-        render status: :ok,
-                json: {success: true}.to_json
+    manage
   end
 
   def show
-    SlackDispatcher.new.message("QRCODE : #{request.body.read}")
-
-        devlog.info "End of process."
-        render status: :ok,
-                json: {success: true}.to_json
+    manage
   end
 
   def create
 
-    SlackDispatcher.new.message("QRCODE : #{request.body.read}")
-
+    manage
     # devlog.info "Wechatpay started to communicate with us ..."
     # body = Hash.from_xml(request.body.read)
     #
@@ -54,9 +45,6 @@ class Api::Webhook::Wechat::QrcodesController < Api::ApplicationController
     #   SlackDispatcher.new.message("[Webhook] Wechatpay transaction FAIL processed : #{transmit_data}")
     # end
 
-    devlog.info "End of process."
-    render status: :ok,
-            json: {success: true}.to_json
   end
 
   # WARNING : Must stay public for throw_error to work well for now.
@@ -65,6 +53,16 @@ class Api::Webhook::Wechat::QrcodesController < Api::ApplicationController
   end
 
   private
+
+  def manage
+    SlackDispatcher.new.message("PARAMS: #{params}")
+    SlackDispatcher.new.message("QRCODE : #{request.body.read}")
+
+        devlog.info "End of process."
+        render status: :ok,
+                json: {success: true}.to_json
+  end
+
   #
   # def checkout_callback
   #   @checkout_callback ||= CheckoutCallback.new(nil, cart_manager, transmit_data).wechatpay!
