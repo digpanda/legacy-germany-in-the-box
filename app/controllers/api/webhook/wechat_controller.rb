@@ -1,15 +1,11 @@
 require 'cgi'
 
 # Get notifications from Wechat when the referrer Qrcode has been scanned
-class Api::Webhook::Wechat::QrcodesController < Api::ApplicationController
+class Api::Webhook::WechatsController < Api::ApplicationController
 
   skip_before_filter :verify_authenticity_token
 
   attr_reader :transmit_data
-
-  def index
-    manage
-  end
 
   def show
     if params[:echostr]
@@ -20,7 +16,6 @@ class Api::Webhook::Wechat::QrcodesController < Api::ApplicationController
     end
 
     manage
-
   end
 
   def create

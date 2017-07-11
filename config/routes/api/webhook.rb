@@ -11,9 +11,7 @@ namespace :webhook do
     end
   end
 
-  namespace :wechat do
-    resource :qrcode do
-    end
+  resource :wechat do
   end
 
 end
