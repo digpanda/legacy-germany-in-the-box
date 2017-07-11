@@ -49,6 +49,9 @@ class User
   field :provider,  type: String
   field :uid,       type: String
 
+  # referrer as someone lead is binded with him
+  has_one :parent_referrer, :inverse_of => :child_user, :class_name => 'Referrer'
+  # referrer as a model considering the user is a referrer
   has_one :referrer, :inverse_of => :user, dependent: :destroy
   accepts_nested_attributes_for :referrer
 

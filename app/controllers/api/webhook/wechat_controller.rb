@@ -63,7 +63,7 @@ class Api::Webhook::WechatController < Api::ApplicationController
     SlackDispatcher.new.message("Referrer is `#{referrer.id}`")
 
     if wechat_user_solver.success? && referrer
-      customer = wechat_user_solver.data[:customer]
+      user = wechat_user_solver.data[:customer]
       SlackDispatcher.new.message("Customer is #{customer.id}")
     else
       throw_api_error(:bad_format, {error: "Wrong referrer or/and customer"}, :bad_request)
@@ -71,7 +71,14 @@ class Api::Webhook::WechatController < Api::ApplicationController
     end
 
     # now we can safely bind them together
+    referrer.children_users << user
+    referrer.save
 
+    SlackDispatcher.new.message("Referrer user children `#{referrer.children_users.count}`")
+
+    devlog.info "End of process."
+    render status: :ok,
+            json: {success: true}.to_json
   end
 
   def wechat_user_solver
