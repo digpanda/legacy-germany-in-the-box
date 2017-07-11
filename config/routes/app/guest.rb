@@ -33,6 +33,7 @@ namespace :guest do
 
   resources :referrers do
     get :qrcode
+    get :raw_qrcode
   end
 
   resource :feedback, :controller => 'feedback' do

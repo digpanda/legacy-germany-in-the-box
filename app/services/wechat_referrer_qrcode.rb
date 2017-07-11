@@ -1,3 +1,5 @@
+require 'fileutils'
+
 class WechatReferrerQrcode < BaseService
 
   attr_reader :referrer
@@ -7,21 +9,45 @@ class WechatReferrerQrcode < BaseService
   end
 
   def resolve!
-    qrcode
+    if already_stored?
+      return_with(:success, local_file: local_file, remote_call: false)
+    else
+      remote_qrcode
+    end
   end
 
   # we try to the referrer qrcode in 3 steps
-  def qrcode
-    @qrcode ||= begin
+  def remote_qrcode
+    @remote_qrcode ||= begin
       return return_with(:error, "Access token is wrong") if access_token_gateway['errcode']
       return return_with(:error, "Access ticket is wrong") if access_ticket_gateway['errcode']
       return return_with(:error, "Access qrcode is wrong") if access_qrcode_gateway['errcode']
-      return_with(:success, qrcode: access_qrcode)
+
+      remote_to_local!
+      return_with(:success, local_file: local_file, remote_call: true)
     end
   end
 
   private
 
+  # we call the API and store it within our local directory
+  def remote_to_local!
+    IO.write(local_file, access_qrcode)
+  end
+
+  # does it already exist ?
+  def already_stored?
+    File.exist?(local_file)
+  end
+
+  def local_file
+    @local_file ||= begin
+      FileUtils::mkdir_p "#{Rails.root}/public/uploads/referrer/qrcode"
+      "#{Rails.root}/public/uploads/referrer/qrcode/#{referrer.reference_id}.jpg"
+    end
+  end
+
+  # this will return a raw image you can stream freely
   def access_qrcode
     access_qrcode_gateway
   end

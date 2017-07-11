@@ -10,7 +10,6 @@ class Flyer < BaseService
   end
 
   def process_steps(coupon)
-
     @image = Magick::ImageList.new("#{Rails.root}/public/images/flyers/steps.jpg")
     text = Magick::Draw.new
 
@@ -23,6 +22,14 @@ class Flyer < BaseService
     }
 
     image.format = "jpeg"
+    self
+  end
+
+  def process_qrcode(qrcode_image)
+    @image = Magick::Image.read("#{Rails.root}/public/images/flyers/steps.jpg").first
+    append_image =  Magick::Image.read(qrcode_image).first
+    image.composite!(append_image, 0, 0, Magick::OverCompositeOp)
+
     self
   end
 
