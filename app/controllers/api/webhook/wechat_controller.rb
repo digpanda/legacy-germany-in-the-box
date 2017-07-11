@@ -1,24 +1,22 @@
 require 'cgi'
 
 # Get notifications from Wechat when the referrer Qrcode has been scanned
-class Api::Webhook::WechatsController < Api::ApplicationController
+class Api::Webhook::WechatController < Api::ApplicationController
 
   skip_before_filter :verify_authenticity_token
 
   attr_reader :transmit_data
 
-  def show
-    if params[:echostr]
-      SlackDispatcher.new.message("[Wechat] Our Webhook is now verified (echostr `#{params[:echostr]}`).")
-      devlog.info "End of process."
-      render text: params[:echostr]
-      return
-    end
+  def index
+    handle
+  end
 
-    manage
+  def show
+    handle
   end
 
   def create
+    handle
 
     # devlog.info "Wechatpay started to communicate with us ..."
     # body = Hash.from_xml(request.body.read)
@@ -56,7 +54,14 @@ class Api::Webhook::WechatsController < Api::ApplicationController
 
   private
 
-  def manage
+  def handle
+
+    if params[:echostr]
+      SlackDispatcher.new.message("[Wechat] Our Webhook is now verified (echostr `#{params[:echostr]}`).")
+      devlog.info "End of process."
+      render text: params[:echostr]
+      return
+    end
 
     # {"signature"=>"cae5295df1dcbda69d56fe45a3559386172db163", "echostr"=>"17559559235148053755", "timestamp"=>"1499775155", "nonce"=>"988885973", "format"=>:json, "controller"=>"api/webhook/wechat/qrcodes", "action"=>"show"}
     SlackDispatcher.new.message("PARAMS: #{params}")
