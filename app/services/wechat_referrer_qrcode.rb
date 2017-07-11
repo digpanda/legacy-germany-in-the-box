@@ -83,7 +83,9 @@ class WechatReferrerQrcode < BaseService
 
   def extra_data
     {
-      referrer: referrer.reference_id
+      referrer: {
+        reference_id: referrer.reference_id
+      }
     }
   end
 

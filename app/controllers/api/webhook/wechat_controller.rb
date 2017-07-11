@@ -3,6 +3,16 @@ require 'cgi'
 # Get notifications from Wechat when the referrer Qrcode has been scanned
 class Api::Webhook::WechatController < Api::ApplicationController
 
+
+  # <xml><ToUserName><![CDATA[gh_c6ddf30d6707]]></ToUserName>
+  # <FromUserName><![CDATA[oHb0TxCVMzCxEjCV2I-8wu9Z74Yk]]></FromUserName>
+  # <CreateTime>1499777930</CreateTime>
+  # <MsgType><![CDATA[event]]></MsgType>
+  # <Event><![CDATA[SCAN]]></Event>
+  # <EventKey><![CDATA[1172017]]></EventKey>
+  # <Ticket><![CDATA[gQFN8DwAAAAAAAAAAS5odHRwOi8vd2VpeGluLnFxLmNvbS9xLzAyVS1EQ3d2dFpjajQxdGtKSk5wY0sAAgTVsmRZAwSAOgkA]]></Ticket>
+  # </xml>
+
   skip_before_filter :verify_authenticity_token
 
   attr_reader :transmit_data
@@ -39,18 +49,41 @@ class Api::Webhook::WechatController < Api::ApplicationController
     end
 
     devlog.info("Raw params : #{transmit_data}")
-    SlackDispatcher.new.message("PARAMS TRANSMIT : #{transmit_data}")
+    SlackDispatcher.new.message("Raw params : #{transmit_data}")
 
-    extra_data = transmit_data["EventKey"]
-
-    SlackDispatcher.new.message("EXTRA DATA #{extra_data}")
-
-    if valid_json?(extra_data)
-      extra_data = JSON.parse(extra_data)
+    if valid_json?(raw_extra_data)
+      extra_data = JSON.parse(raw_extra_data)
+    else
+      throw_api_error(:bad_format, {error: "Wrong extra_data transmitted"}, :bad_request)
+      return
     end
 
-    SlackDispatcher.new.message("JSON AGAIN PARSED : #{extra_data}")
+    # we are in front of a referrer request
+    referrer = Referrer.where(reference_id: extra_data["referrer"]["reference_id"]).first
+    SlackDispatcher.new.message("Referrer is `#{referrer.id}`")
 
+    if wechat_user_solver.success? && referrer
+      customer = wechat_user_solver.data[:customer]
+      SlackDispatcher.new.message("Customer is #{customer.id}")
+    else
+      throw_api_error(:bad_format, {error: "Wrong referrer or/and customer"}, :bad_request)
+      return
+    end
+
+    # now we can safely bind them together
+
+  end
+
+  def wechat_user_solver
+    @wechat_user_solver ||= WechatUserSolver.new({provider: "wechat", unionid: raw_unionid}).resolve!
+  end
+
+  def raw_extra_data
+    transmit_data["EventKey"]
+  end
+
+  def raw_unionid
+    transmit_data["FromUserName"]
   end
 
   def valid_json?(json)
