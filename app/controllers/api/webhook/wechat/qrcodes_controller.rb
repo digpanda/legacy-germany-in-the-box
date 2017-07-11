@@ -9,10 +9,18 @@ class Api::Webhook::Wechat::QrcodesController < Api::ApplicationController
 
   def index
     SlackDispatcher.new.message("QRCODE : #{request.body.read}")
+
+        devlog.info "End of process."
+        render status: :ok,
+                json: {success: true}.to_json
   end
 
   def show
     SlackDispatcher.new.message("QRCODE : #{request.body.read}")
+
+        devlog.info "End of process."
+        render status: :ok,
+                json: {success: true}.to_json
   end
 
   def create
