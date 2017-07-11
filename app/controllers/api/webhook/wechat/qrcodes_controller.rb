@@ -12,12 +12,19 @@ class Api::Webhook::Wechat::QrcodesController < Api::ApplicationController
   end
 
   def show
+    if params[:echostr]
+      SlackDispatcher.new.message("[Wechat] Our Webhook is now verified.")
+      devlog.info "End of process."
+      render text: params[:echostr]
+      return
+    end
+
     manage
+
   end
 
   def create
 
-    manage
     # devlog.info "Wechatpay started to communicate with us ..."
     # body = Hash.from_xml(request.body.read)
     #
@@ -59,11 +66,6 @@ class Api::Webhook::Wechat::QrcodesController < Api::ApplicationController
     # {"signature"=>"cae5295df1dcbda69d56fe45a3559386172db163", "echostr"=>"17559559235148053755", "timestamp"=>"1499775155", "nonce"=>"988885973", "format"=>:json, "controller"=>"api/webhook/wechat/qrcodes", "action"=>"show"}
     SlackDispatcher.new.message("PARAMS: #{params}")
     SlackDispatcher.new.message("QRCODE : #{request.body.read}")
-
-    # {"signature"=>"cae5295df1dcbda69d56fe45a3559386172db163", "echostr"=>"17559559235148053755", "timestamp"=>"1499775155", "nonce"=>"988885973", "format"=>:json, "controller"=>"api/webhook/wechat/qrcodes", "action"=>"show"}
-
-    devlog.info "End of process."
-    render text: params[:echostr]
   end
 
   #
