@@ -39,9 +39,25 @@ class Api::Webhook::WechatController < Api::ApplicationController
     end
 
     devlog.info("Raw params : #{transmit_data}")
-
     SlackDispatcher.new.message("PARAMS TRANSMIT : #{transmit_data}")
 
+    extra_data = transmit_data["EventKey"]
+
+    SlackDispatcher.new.message("EXTRA DATA #{extra_data}")
+
+    if valid_json?(extra_data)
+      extra_data = JSON.parse(extra_data)
+    end
+
+    SlackDispatcher.new.message("JSON AGAIN PARSED : #{extra_data}")
+
+  end
+
+  def valid_json?(json)
+    JSON.parse(json)
+    true
+  rescue Exception
+    false
   end
 
   def valid_xml?

@@ -26,12 +26,13 @@ class Flyer < BaseService
   end
 
   def process_qrcode(qrcode_path)
-    @image = Magick::Image.read("#{Rails.root}/public/images/flyers/steps.jpg").first
+    @image = Magick::Image.read("#{Rails.root}/public/images/flyers/qrcode.jpg").first
     append_image =  Magick::Image.read(qrcode_path).first
-    append_image = append_image.resize_to_fit(200, 200)
+    append_image = append_image.resize_to_fit(170, 170)
 
-    image.composite!(append_image, 50, 350, Magick::OverCompositeOp)
+    image.composite!(append_image, 100, 118, Magick::OverCompositeOp)
 
+    image.format = "jpeg"
     self
   end
 

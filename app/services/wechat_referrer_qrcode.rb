@@ -73,11 +73,17 @@ class WechatReferrerQrcode < BaseService
                 "action_name": "QR_STR_SCENE",
                 "action_info": {
                     "scene": {
-                        "scene_str": "#{referrer.reference_id}"
+                        "scene_str": "#{extra_data}"
                     }
                 }
             }
     end
+  end
+
+  def extra_data
+    {
+      referrer: referrer.reference_id
+    }
   end
 
   def access_token_gateway
