@@ -13,7 +13,7 @@ class Api::Webhook::Wechat::QrcodesController < Api::ApplicationController
 
   def show
     if params[:echostr]
-      SlackDispatcher.new.message("[Wechat] Our Webhook is now verified.")
+      SlackDispatcher.new.message("[Wechat] Our Webhook is now verified (echostr `#{params[:echostr]}`).")
       devlog.info "End of process."
       render text: params[:echostr]
       return
