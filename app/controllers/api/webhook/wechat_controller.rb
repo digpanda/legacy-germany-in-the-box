@@ -75,14 +75,14 @@ class Api::Webhook::WechatController < Api::ApplicationController
   end
 
   def wechat_user_solver
-    @wechat_user_solver ||= WechatUserSolver.new({provider: "wechat", unionid: raw_unionid}).resolve!
+    @wechat_user_solver ||= WechatUserSolver.new({provider: "wechat", openid: raw_openid}).resolve!
   end
 
   def raw_extra_data
     transmit_data["EventKey"]
   end
 
-  def raw_unionid
+  def raw_openid
     transmit_data["FromUserName"]
   end
 

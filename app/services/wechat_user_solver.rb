@@ -47,7 +47,19 @@ class WechatUserSolver < BaseService
   end
 
   def existing_customer
-    User.where(provider: provider, wechat_unionid: unionid).first
+    @existing_customer ||= existing_by_openid || existing_by_unionid
+  end
+
+  def existing_by_openid
+    if openid
+      User.where(provider: provider, wechat_openid: openid).first
+    end
+  end
+
+  def existing_by_unionid
+    if unionid
+      User.where(provider: provider, wechat_unionid: unionid).first
+    end
   end
 
   def new_customer
