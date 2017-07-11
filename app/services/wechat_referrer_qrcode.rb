@@ -1,4 +1,5 @@
 require 'fileutils'
+require 'json'
 
 class WechatReferrerQrcode < BaseService
 
@@ -73,7 +74,7 @@ class WechatReferrerQrcode < BaseService
                 "action_name": "QR_STR_SCENE",
                 "action_info": {
                     "scene": {
-                        "scene_str": "#{extra_data}"
+                        "scene_str": "#{extra_data.to_json}"
                     }
                 }
             }
