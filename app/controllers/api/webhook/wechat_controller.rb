@@ -51,9 +51,7 @@ class Api::Webhook::WechatController < Api::ApplicationController
     devlog.info("Raw params : #{transmit_data}")
     SlackDispatcher.new.message("Raw params : #{transmit_data}")
 
-    if valid_json?(raw_extra_data)
-      extra_data = JSON.parse(raw_extra_data)
-    else
+    unless valid_json?(raw_extra_data)
       throw_api_error(:bad_format, {error: "Wrong extra_data transmitted"}, :bad_request)
       return
     end
@@ -83,6 +81,10 @@ class Api::Webhook::WechatController < Api::ApplicationController
 
   def wechat_user_solver
     @wechat_user_solver ||= WechatUserSolver.new({provider: "wechat", openid: raw_openid}).resolve!
+  end
+
+  def extra_data
+    @extra_data ||= JSON.parse(raw_extra_data)
   end
 
   def raw_extra_data
