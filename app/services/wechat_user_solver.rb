@@ -62,12 +62,16 @@ class WechatUserSolver < BaseService
     end
   end
 
+  def fresh_email
+    "#{openid}#{unionid}@wechat.com"
+  end
+
   def new_customer
     User.create({
       :provider              => provider,
       :nickname              => nickname,
       :remote_pic_url        => avatar,
-      :email                 => "#{unionid}@wechat.com",
+      :email                 => fresh_email,
       :role                  => :customer,
       :gender                => gender,
       :password              => random_password,
