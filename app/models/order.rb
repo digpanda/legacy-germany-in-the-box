@@ -51,7 +51,8 @@ class Order
   end
 
   def referrer
-    coupon&.referrer
+    user&.parent_referrer
+    # coupon&.referrer
   end
 
   belongs_to :shop, :inverse_of => :orders
