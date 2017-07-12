@@ -22,12 +22,6 @@ class Referrer
 
   before_create :ensure_reference_id, :ensure_nickname
 
-  def orders
-    self.coupons.reduce([]) do |acc, coupon|
-      acc << coupon.order
-    end
-  end
-
   def has_coupon?
     self.coupons.count > 0
   end
