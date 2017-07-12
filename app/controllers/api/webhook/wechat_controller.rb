@@ -60,7 +60,10 @@ class Api::Webhook::WechatController < Api::ApplicationController
     referrer = Referrer.where(reference_id: extra_data["referrer"]["reference_id"]).first
     SlackDispatcher.new.message("Referrer is `#{referrer.id}`")
 
+    SlackDispatcher.new.message("REFERRER PASSED")
+
     if wechat_user_solver.success? && referrer
+      SlackDispatcher.new.message("WECHAT SUCCESSFUL")
       user = wechat_user_solver.data[:customer]
       SlackDispatcher.new.message("Customer is #{customer.id}")
     else
