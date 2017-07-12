@@ -15,7 +15,6 @@ class ProvisionHandler
   end
 
   def ensure!
-    SlackDispatcher.new.message("CURRENT PROVISION : #{current_provision}")
     referrer_provision.provision = current_provision
     referrer_provision.save
   end

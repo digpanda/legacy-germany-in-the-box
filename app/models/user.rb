@@ -51,6 +51,7 @@ class User
 
   # referrer as someone lead is binded with him
   belongs_to :parent_referrer, :inverse_of => :child_user, :class_name => 'Referrer'
+  field :parent_referred_at, type: Time
   # referrer as a model considering the user is a referrer
   has_one :referrer, :inverse_of => :user, dependent: :destroy
   accepts_nested_attributes_for :referrer
