@@ -7,7 +7,9 @@ class ProvisionHandler
   end
 
   def refresh!
+    SlackDispatcher.new.message("HANDLING PROVISION HANDLER")
     if order.referrer && order.bought?
+      SlackDispatcher.new.message("WE WILL ENSURE THE PROVISION NOW")
       ensure!
     else # cancel case, we will change that later on
       delete!
@@ -15,6 +17,7 @@ class ProvisionHandler
   end
 
   def ensure!
+    SlackDispatcher.new.message("CURRENT PROVISION : #{current_provision}")
     referrer_provision.provision = current_provision
     referrer_provision.save
   end

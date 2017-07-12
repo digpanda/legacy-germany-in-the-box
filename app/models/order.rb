@@ -50,6 +50,8 @@ class Order
     end
   end
 
+  # NOTE : the referrer logic isn't binded to the coupon anymore
+  # but to the user itself
   def referrer
     user&.parent_referrer
     # coupon&.referrer
