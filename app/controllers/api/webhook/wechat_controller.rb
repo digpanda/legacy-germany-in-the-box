@@ -31,7 +31,7 @@ class Api::Webhook::WechatController < Api::ApplicationController
 
   # WARNING : Must stay public for throw_error to work well for now.
   def devlog
-    @@devlog ||= Logger.new(Rails.root.join("log/wechatpay-customers-webhook-#{Time.now.strftime('%Y-%m-%d')}.log"))
+    @@devlog ||= Logger.new(Rails.root.join("log/wechat-webhook-#{Time.now.strftime('%Y-%m-%d')}.log"))
   end
 
   private
@@ -60,12 +60,9 @@ class Api::Webhook::WechatController < Api::ApplicationController
     referrer = Referrer.where(reference_id: extra_data["referrer"]["reference_id"]).first
     SlackDispatcher.new.message("Referrer is `#{referrer.id}`")
 
-    SlackDispatcher.new.message("USER SOLVER : #{wechat_user_solver}")
-
     if wechat_user_solver.success? && referrer
-      SlackDispatcher.new.message("WECHAT SUCCESSFUL")
       user = wechat_user_solver.data[:customer]
-      SlackDispatcher.new.message("Customer is #{customer.id}")
+      SlackDispatcher.new.message("Customer is #{user.id}")
     else
       throw_api_error(:bad_format, {error: "Wrong referrer or/and customer"}, :bad_request)
       return
