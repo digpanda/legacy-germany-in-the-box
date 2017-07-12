@@ -68,9 +68,12 @@ class Api::Webhook::WechatController < Api::ApplicationController
       return
     end
 
-    # now we can safely bind them together
-    referrer.children_users << user
-    referrer.save
+    # protection if user has not already a parent_referrer
+    unless user.parent_referrer
+      # now we can safely bind them together
+      referrer.children_users << user
+      referrer.save
+    end
 
     SlackDispatcher.new.message("Referrer user children `#{referrer.children_users.count}`")
 
