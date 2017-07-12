@@ -23,7 +23,7 @@ class WechatUserSolver < BaseService
       refresh_openid!
       return_with(:success, :customer => customer)
     else
-      return_with(:error, "Could not create customer.")
+      return_with(:error, "Could not create customer (#{customer.errors.full_messages.join(',')}).")
     end
   end
 
