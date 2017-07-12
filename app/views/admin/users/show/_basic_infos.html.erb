@@ -18,6 +18,8 @@
       Last name : <%= @user.lname %>
       <br />
       Status : <%= boolean_icon(@user.status) %>
+      <br />
+      Parent Referrer : <%= @user.parent_referrer&.referrer_id %>
 
     </div>
 
