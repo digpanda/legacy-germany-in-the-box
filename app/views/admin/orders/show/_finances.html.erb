@@ -4,20 +4,30 @@
       <hr>
     </div>
     <div class="row">
-      <div class="col-md-4">
+      <div class="col-md-3">
         <h4>Bill ID</h4>
         <%= editable_field(@order, admin_order_path(@order), :bill_id, :text_field) %>
       </div>
 
-      <div class="col-md-4">
+      <div class="col-md-3">
         <h4>Total Paid</h4>
         <%= @order.total_paid_in_yuan %> (<%= @order.total_paid_in_euro %>)
       </div>
 
-      <div class="col-md-4">
+      <div class="col-md-3">
         <h4>Total Price</h4>
         <%= @order.total_price_with_extra_costs.in_euro.to_yuan(exchange_rate: @order.exchange_rate).display %> (<%= @order.total_price_with_extra_costs.in_euro.display %>)
       </div>
+
+      <div class="col-md-3">
+        <h4>Referrer</h4>
+        <% if @order.referrer %>
+          <a href="<%= admin_user_path(@order.referrer.user) %>"><%= @order.referrer.reference_id %></a>
+        <% else %>
+          -
+        <% end %>
+      </div>
+
     </div>
     <div class="row">
       <div class="+spacer"></div>
