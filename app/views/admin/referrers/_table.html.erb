@@ -15,6 +15,12 @@
         AGB
       </th>
       <th>
+        Linked Users
+      </th>
+      <th>
+        Linked Orders
+      </th>
+      <th>
         Coupon
       </th>
       <th>
@@ -41,6 +47,12 @@
           </td>
           <td>
             <%= boolean_icon(referrer.agb) %>
+          </td>
+          <td>
+            <%= referrer.children_users.count %>
+          </td>
+          <td>
+            <%= referrer.orders.count %>
           </td>
           <td>
             <% referrer.coupons.each do |coupon| %>

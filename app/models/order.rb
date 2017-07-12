@@ -50,11 +50,10 @@ class Order
     end
   end
 
-  # NOTE : the referrer logic isn't binded to the coupon anymore
-  # but to the user itself
+  # the referrer logic is first binded to the user
+  # the coupon referrer is still present but secondary
   def referrer
-    user&.parent_referrer
-    # coupon&.referrer
+    user&.parent_referrer || coupon&.referrer
   end
 
   belongs_to :shop, :inverse_of => :orders
