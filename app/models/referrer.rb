@@ -11,7 +11,7 @@ class Referrer
   field :agb, type: Boolean, default: false
 
   belongs_to :user, :class_name => "User", :inverse_of => :referrer
-  belongs_to :children_users, :class_name => "User", :inverse_of => :parent_referrer
+  has_many :children_users, :class_name => "User", :inverse_of => :parent_referrer
 
   belongs_to :referrer_group, :class_name => "ReferrerGroup", :inverse_of => :referrer
 
