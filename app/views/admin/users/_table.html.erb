@@ -9,7 +9,10 @@
         Role
       </th>
       <th>
-        Referrer
+        Is Referrer
+      </th>
+      <th>
+        Parent Referrer
       </th>
       <th>
         Sign In #
@@ -32,6 +35,9 @@
           </td>
           <td>
             <%= boolean_icon(user.referrer?) %>
+          </td>
+          <td>
+            <%= user.parent_referrer.user.decorate.full_name %> (<%= user.parent_referrer.reference_id %>)
           </td>
           <td>
             <%= user.sign_in_count %>

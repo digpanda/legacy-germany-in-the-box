@@ -19,7 +19,7 @@
       <br />
       Status : <%= boolean_icon(@user.status) %>
       <br />
-      Parent Referrer : <%= @user.parent_referrer&.referrer_id %>
+      Parent Referrer : <%= @user.parent_referrer&.user&.decorate&.full_name %> (<%= @user.parent_referrer&.referrer_id %>)
 
     </div>
 
