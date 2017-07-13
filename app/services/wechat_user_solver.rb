@@ -20,6 +20,7 @@ class WechatUserSolver < BaseService
   def resolve!
     if customer.persisted?
       ensure_avatar!
+      ensure_unionid!
       refresh_openid!
       return_with(:success, :customer => customer)
     else
@@ -38,6 +39,18 @@ class WechatUserSolver < BaseService
     end
   end
 
+  def ensure_unionid!
+    SlackDispatcher.new.message("ENSURE UNIONID (IF EMPTY : #{unionid})")
+    if openid && !unionid
+      SlackDispatcher.new.message("OPENID IS PRESENRT `#{openid}`")
+      user_info = WechatApiUserInfo.new(openid).resolve!
+      SlackDispatcher.new.message("USER INFO : #{user_info}")
+      if user_info.success?
+        @unionid = user_info.data[:user_info]['unionid']
+      end
+    end
+  end
+
   def refresh_openid!
     customer.update(wechat_openid: openid)
   end
@@ -47,13 +60,7 @@ class WechatUserSolver < BaseService
   end
 
   def existing_customer
-    @existing_customer ||= existing_by_openid || existing_by_unionid
-  end
-
-  def existing_by_openid
-    if openid
-      User.where(provider: provider, wechat_openid: openid).first
-    end
+    @existing_customer ||= existing_by_unionid
   end
 
   def existing_by_unionid
