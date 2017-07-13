@@ -8,6 +8,7 @@ class WechatApiUserInfo < BaseService
 
   def resolve!
     return return_with(:error, "Access token is wrong") if access_token_gateway['errcode']
+    SlackDispatcher.new.message("USER INFO GATEWAY : #{user_info_gateway}")
     return return_with(:error, "User info is wrong") if user_info_gateway['errcode']
     return_with(:success, user_info: user_info_gateway)
   end
@@ -31,6 +32,8 @@ class WechatApiUserInfo < BaseService
   end
 
   def user_info_url
+    SlackDispatcher.new.message("ACCESS TOKEN : #{access_token}")
+    SlackDispatcher.new.message("OPEN ID : #{openid}")
     "https://api.weixin.qq.com/cgi-bin/user/info?ccess_token=#{access_token}&openid=#{openid}"
   end
 
