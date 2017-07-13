@@ -61,6 +61,7 @@ class WechatUserSolver < BaseService
   end
 
   def existing_by_unionid
+    SlackDispatcher.new.message("UNIONID USED : #{unionid}")
     if unionid
       User.where(provider: provider, wechat_unionid: unionid).first
     end
