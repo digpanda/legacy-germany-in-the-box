@@ -40,11 +40,8 @@ class WechatUserSolver < BaseService
   end
 
   def ensure_unionid!
-    SlackDispatcher.new.message("ENSURE UNIONID (IF EMPTY : #{unionid})")
     if openid && !unionid
-      SlackDispatcher.new.message("OPENID IS PRESENRT `#{openid}`")
       user_info = WechatApiUserInfo.new(openid).resolve!
-      SlackDispatcher.new.message("USER INFO : #{user_info}")
       if user_info.success?
         @unionid = user_info.data[:user_info]['unionid']
       end
