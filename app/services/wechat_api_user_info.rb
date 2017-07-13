@@ -27,7 +27,7 @@ class WechatApiUserInfo < BaseService
   end
 
   def access_token_url
-    "https://api.weixin.qq.com/cgi-bin/user/access_token?appid=#{Rails.application.config.wechat[:username_mobile]}&secret=#{Rails.application.config.wechat[:password_mobile]}&grant_type=authorization_code"
+    "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=#{Rails.application.config.wechat[:username_mobile]}&secret=#{Rails.application.config.wechat[:password_mobile]}"
   end
 
   def user_info_url
