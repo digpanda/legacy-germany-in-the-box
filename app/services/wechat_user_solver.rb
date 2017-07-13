@@ -42,10 +42,9 @@ class WechatUserSolver < BaseService
   def ensure_unionid!
     if openid && !unionid
       user_info = WechatApiUserInfo.new(openid).resolve!
-      SlackDispatcher.new.message("USER INFO #{user_info}")
       if user_info.success?
-        SlackDispatcher.new.message("UNION ID RECOVERED : #{user_info.data[:user_info]['unionid']}")
         @unionid = user_info.data[:user_info]['unionid']
+        SlackDispatcher.new.message("WechatUserSolver `unionid` recovered by API `#{unionid}`")
       end
     end
   end
@@ -63,7 +62,6 @@ class WechatUserSolver < BaseService
   end
 
   def existing_by_unionid
-    SlackDispatcher.new.message("UNIONID USED : #{unionid}")
     if unionid
       User.where(provider: provider, wechat_unionid: unionid).first
     end
