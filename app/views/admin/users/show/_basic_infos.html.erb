@@ -19,8 +19,8 @@
       <br />
       Status : <%= boolean_icon(@user.status) %>
       <br />
-      Parent Referrer : <%= editable_field(@user, admin_user_path(@user), :parent_referrer_id, :select, [parent_referrers, {:selected => @user.parent_referrer_id}]) %>
-      
+      Parent Referrer : <%= referrer.user.decorate.full_name %> (<%= referrer.reference_id %>) <%= editable_field(@user, admin_user_path(@user), :parent_referrer_id, :select, [parent_referrers, {:selected => @user.parent_referrer_id}]) %>
+
     </div>
 
     <div class="col-md-6">
