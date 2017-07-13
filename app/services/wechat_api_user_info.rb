@@ -23,6 +23,7 @@ class WechatApiUserInfo < BaseService
   # maybe we should move the logic in another library which we connect
   # on the webhook itself
   def ensure_menu!
+    SlackDispatcher.new.message("MENU : #{menu_gateway}")
     menu_gateway
   end
 
