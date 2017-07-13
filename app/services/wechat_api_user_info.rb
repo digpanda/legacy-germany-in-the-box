@@ -44,7 +44,7 @@ class WechatApiUserInfo < BaseService
   end
 
   def menu_url
-    "https://api.weixin.qq.com/cgi-bin/menu/addconditional?access_token=#{access_token}"
+    "https://api.weixin.qq.com/cgi-bin/menu/get?access_token=#{access_token}"
   end
 
   def get_url(url)
