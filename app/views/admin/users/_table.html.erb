@@ -37,7 +37,7 @@
             <%= boolean_icon(user.referrer?) %>
           </td>
           <td>
-            <%= user.parent_referrer.user.decorate.full_name %> (<%= user.parent_referrer.reference_id %>)
+            <%= user.parent_referrer&.user&.decorate&.full_name %> (<%= user.parent_referrer&.reference_id %>)
           </td>
           <td>
             <%= user.sign_in_count %>

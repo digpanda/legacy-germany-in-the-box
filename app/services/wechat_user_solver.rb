@@ -18,9 +18,9 @@ class WechatUserSolver < BaseService
   # we try to recover the customer matching the data
   # or create a new one with the wechat informations
   def resolve!
+    ensure_unionid!
     if customer.persisted?
       ensure_avatar!
-      ensure_unionid!
       refresh_openid!
       return_with(:success, :customer => customer)
     else
