@@ -44,6 +44,7 @@ class WechatUserSolver < BaseService
       user_info = WechatApiUserInfo.new(openid).resolve!
       SlackDispatcher.new.message("USER INFO #{user_info}")
       if user_info.success?
+        SlackDispatcher.new.message("UNION ID RECEOVERED : #{user_info.data[:user_info]['unionid']}")
         @unionid = user_info.data[:user_info]['unionid']
       end
     end
