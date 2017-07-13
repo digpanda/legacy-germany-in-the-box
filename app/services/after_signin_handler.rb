@@ -32,7 +32,8 @@ class AfterSigninHandler
       if refresh
         return without_code request.url
       else
-        return without_code navigation.back(1)
+        SlackDispatcher.new.message("NAVIGATION BACK WITHOUT CODE #{navigation.back(1)}")
+        return without_code navigation.back(1, identity_solver.landing_solver.recover)
       end
     end
 
@@ -61,6 +62,12 @@ class AfterSigninHandler
   end
 
   private
+
+  # NOTE : mayber we should just integrate it via params at initialization ?
+  # - Laurent, 13/07/2017
+  def identity_solver
+    @identity_solver ||= IdentitySolver.new(request, current_user)
+  end
 
   def without_code(url)
     uri = Addressable::URI.parse(url)
