@@ -21,6 +21,7 @@ class AfterSigninHandler
   def solve!(refresh:false)
     if user.customer?
       force_chinese!
+      handle_precreated!
       handle_past_orders!
       return without_code missing_info_customer_account_path(kept_params) if user.missing_info?
       return navigation.force! if navigation.force?
@@ -66,6 +67,13 @@ class AfterSigninHandler
     params = uri.query_values
     uri.query_values = params.except('code') if params
     uri.to_s
+  end
+
+  def handle_precreated!
+    if user.precreated
+      user.precreated = false
+      user.save
+    end
   end
 
   # we must remove the empty orders in case they exist

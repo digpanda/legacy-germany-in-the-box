@@ -81,7 +81,8 @@ class WechatUserSolver < BaseService
       :gender                => gender,
       :password              => random_password,
       :password_confirmation => random_password,
-      :wechat_unionid        => unionid
+      :wechat_unionid        => unionid,
+      :precreated            => true
     })
   end
 
