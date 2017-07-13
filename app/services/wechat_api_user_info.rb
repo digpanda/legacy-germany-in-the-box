@@ -9,7 +9,7 @@ class WechatApiUserInfo < BaseService
   def resolve!
     return return_with(:error, "Access token is wrong") if access_token_gateway['errcode']
     return return_with(:error, "User info is wrong") if user_info_gateway['errcode']
-    ensure_menu!
+    # ensure_menu!
     return_with(:success, user_info: user_info_gateway)
   end
 
