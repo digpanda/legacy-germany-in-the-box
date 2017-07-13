@@ -64,6 +64,7 @@ class Api::Webhook::WechatController < Api::ApplicationController
       user = wechat_user_solver.data[:customer]
       SlackDispatcher.new.message("Customer is `#{user.id}`")
     else
+      SlackDispatcher.new.message("Customer was not resolved (#{wechat_user_solver.error})")
       throw_api_error(:bad_format, {error: "Wrong referrer or/and customer"}, :bad_request)
       return
     end
