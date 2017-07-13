@@ -69,16 +69,35 @@ class WechatReferrerQrcode < BaseService
 
   def access_ticket_gateway
     @access_ticket ||= begin
-      post_url ticket_url, {
-                "expire_seconds": 604800,
-                "action_name": "QR_STR_SCENE",
-                "action_info": {
-                    "scene": {
-                        "scene_str": "#{extra_data.to_json}"
-                    }
-                }
-            }
+      if Rails.env.production?
+        permanent_qrcode
+      else
+        temporary_qrcode
+      end
     end
+  end
+
+  def permnanent_qrcode
+    post_url ticket_url, {
+      "action_name": "QR_LIMIT_STR_SCENE",
+      "action_info": {
+        "scene": {
+          "scene_str": "#{extra_data.to_json}"
+        }
+      }
+    }
+  end
+
+  def temporary_qrcode
+    post_url ticket_url, {
+      "expire_seconds": 604800,
+      "action_name": "QR_STR_SCENE",
+      "action_info": {
+        "scene": {
+          "scene_str": "#{extra_data.to_json}"
+        }
+      }
+    }
   end
 
   def extra_data
