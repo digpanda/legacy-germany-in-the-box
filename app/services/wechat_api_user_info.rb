@@ -19,12 +19,15 @@ class WechatApiUserInfo < BaseService
 
   private
 
+  # NOTE : this is used for the wechat webhook to precreate user accounts
+  # maybe we should move the logic in another library which we connect
+  # on the webhook itself
   def ensure_menu!
     menu_gateway
   end
 
   def menu_gateway
-    @menu_gateway ||= get_url access_token_url
+    @menu_gateway ||= get_url menu_url
   end
 
   def access_token_gateway
