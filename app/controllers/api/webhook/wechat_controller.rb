@@ -38,6 +38,7 @@ class Api::Webhook::WechatController < Api::ApplicationController
 
   def handle
     return if hook_activation?
+    SlackDispatcher.new.message("[Webhook] Wechat Webhook was called.")
 
     devlog.info "Wechat started to communicate with us ..."
     body = Hash.from_xml(request.body.read)
