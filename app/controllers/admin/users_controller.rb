@@ -33,7 +33,7 @@ class Admin::UsersController < ApplicationController
     else
       flash[:error] = "The user was not destroyed (#{user.errors.full_messages.join(', ')})"
     end
-    redirect_to navigation.back(1)
+    redirect_to admin_users_path
   end
 
   def emails
