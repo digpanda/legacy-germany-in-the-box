@@ -34,7 +34,7 @@ class WechatApiUserInfo < BaseService
   def user_info_url
     SlackDispatcher.new.message("ACCESS TOKEN : #{access_token}")
     SlackDispatcher.new.message("OPEN ID : #{openid}")
-    "https://api.weixin.qq.com/cgi-bin/user/info?ccess_token=#{access_token}&openid=#{openid}"
+    "https://api.weixin.qq.com/cgi-bin/user/info?access_token=#{access_token}&openid=#{openid}"
   end
 
   def get_url(url)
