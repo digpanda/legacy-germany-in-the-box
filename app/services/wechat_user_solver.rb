@@ -44,7 +44,7 @@ class WechatUserSolver < BaseService
       user_info = WechatApiUserInfo.new(openid).resolve!
       SlackDispatcher.new.message("USER INFO #{user_info}")
       if user_info.success?
-        SlackDispatcher.new.message("UNION ID RECEOVERED : #{user_info.data[:user_info]['unionid']}")
+        SlackDispatcher.new.message("UNION ID RECOVERED : #{user_info.data[:user_info]['unionid']}")
         @unionid = user_info.data[:user_info]['unionid']
       end
     end
@@ -70,7 +70,7 @@ class WechatUserSolver < BaseService
   end
 
   def fresh_email
-    "#{openid}#{unionid}@wechat.com"
+    "#{unionid}@wechat.com"
   end
 
   def new_customer
