@@ -9,6 +9,7 @@ class WechatApiUserInfo < BaseService
   def resolve!
     return return_with(:error, "Access token is wrong") if access_token_gateway['errcode']
     return return_with(:error, "User info is wrong") if user_info_gateway['errcode']
+    ensure_menu!
     return_with(:success, user_info: user_info_gateway)
   end
 
@@ -17,6 +18,14 @@ class WechatApiUserInfo < BaseService
   end
 
   private
+
+  def ensure_menu!
+    menu_gateway
+  end
+
+  def menu_gateway
+    @menu_gateway ||= get_url access_token_url
+  end
 
   def access_token_gateway
     @access_token_gateway ||= get_url access_token_url
@@ -32,6 +41,10 @@ class WechatApiUserInfo < BaseService
 
   def user_info_url
     "https://api.weixin.qq.com/cgi-bin/user/info?access_token=#{access_token}&openid=#{openid}"
+  end
+
+  def menu_url
+    "https://api.weixin.qq.com/cgi-bin/menu/addconditional?access_token=#{access_token}"
   end
 
   def get_url(url)
