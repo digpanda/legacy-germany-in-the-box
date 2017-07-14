@@ -66,6 +66,8 @@ class Api::Webhook::WechatController < Api::ApplicationController
       elsif raw_extra_data == "buyerguide"
         SlackDispatcher.new.message("Buyer guide event key.")
         render text: "---购买下单注意事项---\n1. 将产品添加到购物车后点击手机屏幕右上方进入购物车下单\n2.\t请填写收件人的收件地址，手机号，身份证号码(中国海关通关要求)\n3.\t确定支付前，如果您有活动的打折码请输入打折码，并点击使用\n4.\t点击下单，在我的支付方式里选择付款方式并支付\n\n---付款方式---\n来因盒支持在线支付宝和微信支付，购物费用均以人民币在线支付结算。\n通过微信访问来因盒，支付体验首选微信支付。 支付宝需要拷贝粘贴支付宝链接到手机浏览器里完成支付。\n\n---来因盒产品价格---\n目前来因盒德国礼包的价格均为产品包邮，包税寄到您中国家里的价格\n\n---海关关税---\n来因盒里的所有商品都从德国直接发货至国内，经阳光清关完税， 安全可靠。当前推广期内来因盒来替您缴付所有产品的关税。"
+      else
+        render text: ""
       end
       return
     end
