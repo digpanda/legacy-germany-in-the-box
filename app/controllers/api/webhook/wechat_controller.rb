@@ -54,7 +54,7 @@ class Api::Webhook::WechatController < Api::ApplicationController
 
     if event == "SCAN"
       handle_qrcode_callback!
-    elsif even == "CLICK"
+    elsif event == "CLICK"
       if raw_extra_data == "coupon"
         render text: "2017a"
       elsif raw_extra_data == "support"
