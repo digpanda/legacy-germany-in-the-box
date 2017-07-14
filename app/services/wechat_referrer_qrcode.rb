@@ -77,7 +77,7 @@ class WechatReferrerQrcode < BaseService
     end
   end
 
-  def permnanent_qrcode
+  def permanent_qrcode
     post_url ticket_url, {
       "action_name": "QR_LIMIT_STR_SCENE",
       "action_info": {
