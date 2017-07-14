@@ -5,8 +5,8 @@
     <%= render partial: 'customer/cart/show/subheader' %>
 
     <!-- ORDERS LIST (CART) -->
-    <% orders.each do |order| %>
-    <%= render partial: 'customer/cart/show/order', :locals => { :order => order, :action => true } %>
+    <% cart.orders.each do |order| %>
+      <%= render partial: 'customer/cart/show/order', :locals => { :order => order, :action => true } %>
     <% end %>
 
   </div>

@@ -50,8 +50,10 @@ class Order
     end
   end
 
+  # the referrer logic is first binded to the user
+  # the coupon referrer is still present but secondary
   def referrer
-    coupon&.referrer
+    user&.parent_referrer || coupon&.referrer
   end
 
   belongs_to :shop, :inverse_of => :orders
@@ -95,8 +97,6 @@ class Order
   validates :status, presence: true , inclusion: {in: [:new, :paying, :payment_unverified, :payment_failed, :cancelled, :paid, :custom_checkable, :custom_checking, :shipped]}
 
   summarizes sku_list: :order_items, by: :quantity
-
-  index({user: 1},  {unique: false,   name: :idx_order_user,   sparse: true})
 
   after_save :make_bill_id, :update_paid_at, :update_cancelled_at, :refresh_referrer_provision!
 
@@ -203,25 +203,10 @@ class Order
   end
 
   def displayable_total_quantity
-    package_set_quantity = {}
-    order_items.inject(0) do |sum, order_item|
-      if order_item.package_set
-        if package_set_quantity["#{order_item.package_set.id}"].nil?
-          package_set_quantity["#{order_item.package_set.id}"] = true
-          if order_item.package_set.package_skus.count > 0
-            sum += order_items.where(package_set_id: order_item.package_set.id).count / order_item.package_set.package_skus.count
-          else
-            sum += 0
-          end
-        else
-          sum
-        end
-      else
-        sum += order_item.quantity
-      end
-    end
+    package_sets_quantity + casual_products_quantity
   end
 
+  # NOTE : should we cancel this way of calculating and use `displayable_total_quantity` as a whole ?
   def total_quantity
     order_items.inject(0) { |sum, order_item| sum += order_item.quantity }
   end
@@ -299,6 +284,25 @@ class Order
   def package_set_quantity(package_set)
     package_set.reload # thanks mongo i guess
     order_items.where(package_set: package_set).count / package_set.package_skus.count
+  end
+
+  def package_sets_quantity
+    package = {}
+    order_items.where(:package_set.ne => nil).reduce(0) do |acc, order_item|
+      package_set = order_item.package_set
+      if package["#{package_set.id}"]
+        acc
+      else
+        package["#{package_set.id}"] = true
+        acc += package_set_quantity(package_set)
+      end
+    end
+  end
+
+  def casual_products_quantity
+    order_items.where(package_set: nil).reduce(0) do |acc, order_item|
+      acc += order_item.quantity
+    end
   end
 
   def package_set_price_with_taxes(package_set)

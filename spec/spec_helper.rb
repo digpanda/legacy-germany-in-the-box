@@ -19,7 +19,6 @@ end
 
 RSpec.configure do |config|
 
-  #config.include Rack::Test::Methods
   config.use_transactional_fixtures = false
   config.mock_with :rspec
   config.before(:each) do
@@ -35,11 +34,15 @@ RSpec.configure do |config|
 
 end
 
-Capybara.app_host = "http://local.dev:3333"
+
+port = 3333 + ENV['TEST_ENV_NUMBER'].to_i # for `parallel_tests`
+host = "local.dev"
+
+Capybara.app_host = "http://#{host}:#{port}"
 Capybara.always_include_port = true
-Capybara.default_host = "http://local.dev:3333"
-Capybara.server_port = 3333
-Capybara.server_host = "local.dev"
+Capybara.default_host = "http://#{host}:#{port}"
+Capybara.server_port = port
+Capybara.server_host = host
 # Capybara.run_server = false
 Capybara.default_max_wait_time = 50
 
@@ -71,6 +74,7 @@ Capybara.register_driver :poltergeist do |app|
                                     :debug => false,
                                     # :phantomjs_options => ["--debug=yes"],
                                     :window_size => [1800,1000],
+                                    :port => 51674 + ENV['TEST_ENV_NUMBER'].to_i # `parallel_tests`
                                     )
 end
 #

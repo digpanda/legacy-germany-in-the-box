@@ -1,11 +1,19 @@
 module EditableHelper
 
   def editable_text(form, model, field)
-    """
-    <span class=\"js-editable-text\">
-      #{model.send(field)}
-    </span>
-    """
+    if model.send(field)
+      """
+      <span class=\"js-editable-text\">
+        #{model.send(field)}
+      </span>
+      """
+    else
+      """
+      <span class=\"js-editable-text\">
+        ---
+      </span>
+      """
+    end
   end
 
   def editable_chosen_field(form, field, type, options)

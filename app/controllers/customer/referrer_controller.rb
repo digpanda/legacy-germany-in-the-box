@@ -24,6 +24,9 @@ class Customer::ReferrerController < ApplicationController
   def coupons
   end
 
+  def qrcode
+  end
+
   def claim
     if referrer.current_balance < setting.referrer_money_claim
       flash[:error] = I18n.t('referrer.you_cant_claim_your_money', amount: setting.referrer_money_claim)

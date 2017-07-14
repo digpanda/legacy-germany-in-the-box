@@ -99,6 +99,14 @@ module Application
       add_breadcrumb @order_payment.id, admin_order_payment_path(@order_payment) if @order_payment
     end
 
+    def breadcrumb_admin_carts
+      add_breadcrumb "Carts", admin_carts_path
+    end
+
+    def breadcrumb_admin_cart
+      add_breadcrumb @cart.id, admin_cart_path(@cart) if @cart
+    end
+
     def breadcrumb_admin_orders
       add_breadcrumb "Orders", admin_orders_path
     end

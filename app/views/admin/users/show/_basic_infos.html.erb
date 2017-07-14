@@ -11,13 +11,17 @@
       <br />
       Nickname : <%= @user.nickname %>
       <br />
-      Role :<%= editable_field(@user, admin_user_path(@user), :role, :select, [user_roles, {:selected => @user.role}]) %>
+      Role : <%= editable_field(@user, admin_user_path(@user), :role, :select, [user_roles, {:selected => @user.role}]) %>
+      <br />
+      Precreated : <%= boolean_icon(@user.precreated) %>
       <br />
       First name : <%= @user.fname %>
       <br />
       Last name : <%= @user.lname %>
       <br />
       Status : <%= boolean_icon(@user.status) %>
+      <br />
+      Parent Referrer : <%= @user.parent_referrer&.user&.decorate&.full_name %> (<%= @user.parent_referrer&.reference_id %>) <%= editable_field(@user, admin_user_path(@user), :parent_referrer_id, :select, [parent_referrers, {:selected => @user.parent_referrer_id}]) %>
 
     </div>
 
@@ -35,7 +39,7 @@
       <br />
       Website : <%= @user.website %>
       <br />
-      Mobile : `<%= @user.mobile %>`
+      Mobile : <%= @user.mobile %>
 
     </div>
 

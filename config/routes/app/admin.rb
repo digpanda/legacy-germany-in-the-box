@@ -65,6 +65,9 @@ namespace :admin do
     patch :shipped
   end
 
+  resources :carts do
+  end
+
   resources :order_items do
     patch :refresh_referrer_rate
   end

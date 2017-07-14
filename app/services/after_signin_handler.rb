@@ -21,8 +21,8 @@ class AfterSigninHandler
   def solve!(refresh:false)
     if user.customer?
       force_chinese!
+      handle_precreated!
       handle_past_orders!
-      recover_last_orders!
       return without_code missing_info_customer_account_path(kept_params) if user.missing_info?
       return navigation.force! if navigation.force?
 
@@ -75,11 +75,10 @@ class AfterSigninHandler
     uri.to_s
   end
 
-  # TODO : improve the cart handling so a use always
-  # has a cart.
-  def recover_last_orders!
-    user.cart&.orders&.each do |order|
-      cart_manager.store(order)
+  def handle_precreated!
+    if user.precreated
+      user.precreated = false
+      user.save
     end
   end
 

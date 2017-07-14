@@ -1,0 +1,13 @@
+<div class="row">
+  <div class="col-md-10">
+    <h2>Carts</h2>
+    <hr>
+  </div>
+  <div class="col-md-2 details__action">
+  </div>
+
+</div>
+
+<%= render partial: "admin/carts/table", :locals => { :carts => @carts } %>
+
+<%= will_paginate @carts, renderer: BootstrapPagination::Rails %>

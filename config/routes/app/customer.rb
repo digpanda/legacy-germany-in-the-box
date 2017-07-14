@@ -5,6 +5,7 @@ namespace :customer do
     get :provision
     get :provision_rates
     get :coupons
+    get :qrcode
     post :claim
     get :agb
   end

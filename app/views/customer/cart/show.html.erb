@@ -1,6 +1,6 @@
 <% if cart_manager.products_number > 0 %>
 
-  <%= render partial: 'customer/cart/show/cart', locals: {orders: @orders} %>
+  <%= render partial: 'customer/cart/show/cart', locals: { cart: @cart } %>
 
 <% else %>
 

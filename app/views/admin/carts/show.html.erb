@@ -1,0 +1,24 @@
+<div class="details">
+
+  <div class="row">
+    <div class="col-md-10">
+      <h2>Cart <%= @cart.id %></h2>
+    </div>
+    <div class="col-md-2 details__action">
+      <% if @cart.user %>
+        <a href="<%= admin_user_path(@cart.user) %>"><i class="fa fa-user tooltipster" title="<%= @cart.user.email %>"></i></a>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="+small-spacer"></div>
+
+  <div class="row details__block">
+    <%= render partial: "admin/carts/show/orders", :locals => { cart: @cart } %>
+  </div>
+
+  <div class="row details__block +danger-zone">
+    <%= render partial: "admin/carts/show/danger_zone", :locals => { cart: @cart } %>
+  </div>
+
+</div>

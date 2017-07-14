@@ -4,6 +4,12 @@ module UsersHelper
     [['Administrator', :admin],['Shopkeeper', :shopkeeper],['Customer', :customer]]
   end
 
+  def parent_referrers
+    Referrer.all.reduce([]) do |acc, referrer|
+      acc << ["#{referrer.user.decorate.full_name} (#{referrer.reference_id})", referrer.id]
+    end
+  end
+
   def potential_customer?
     identity_solver.potential_customer?
   end

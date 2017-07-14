@@ -18,12 +18,13 @@ class WechatUserSolver < BaseService
   # we try to recover the customer matching the data
   # or create a new one with the wechat informations
   def resolve!
+    ensure_unionid!
     if customer.persisted?
       ensure_avatar!
       refresh_openid!
       return_with(:success, :customer => customer)
     else
-      return_with(:error, "Could not create customer.")
+      return_with(:error, "Could not create customer (#{customer.errors.full_messages.join(',')}).")
     end
   end
 
@@ -38,6 +39,16 @@ class WechatUserSolver < BaseService
     end
   end
 
+  def ensure_unionid!
+    if openid && !unionid
+      user_info = WechatApiUserInfo.new(openid).resolve!
+      if user_info.success?
+        @unionid = user_info.data[:user_info]['unionid']
+        SlackDispatcher.new.message("WechatUserSolver `unionid` recovered by API `#{unionid}`")
+      end
+    end
+  end
+
   def refresh_openid!
     customer.update(wechat_openid: openid)
   end
@@ -47,7 +58,17 @@ class WechatUserSolver < BaseService
   end
 
   def existing_customer
-    User.where(provider: provider, wechat_unionid: unionid).first
+    @existing_customer ||= existing_by_unionid
+  end
+
+  def existing_by_unionid
+    if unionid
+      User.where(provider: provider, wechat_unionid: unionid).first
+    end
+  end
+
+  def fresh_email
+    "#{unionid}@wechat.com"
   end
 
   def new_customer
@@ -55,12 +76,13 @@ class WechatUserSolver < BaseService
       :provider              => provider,
       :nickname              => nickname,
       :remote_pic_url        => avatar,
-      :email                 => "#{unionid}@wechat.com",
+      :email                 => fresh_email,
       :role                  => :customer,
       :gender                => gender,
       :password              => random_password,
       :password_confirmation => random_password,
-      :wechat_unionid        => unionid
+      :wechat_unionid        => unionid,
+      :precreated            => true
     })
   end
 

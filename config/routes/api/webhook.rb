@@ -11,4 +11,7 @@ namespace :webhook do
     end
   end
 
+  resource :wechat, :controller => 'wechat' do
+  end
+
 end

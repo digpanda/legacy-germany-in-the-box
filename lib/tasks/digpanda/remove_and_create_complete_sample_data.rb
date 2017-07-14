@@ -298,7 +298,7 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
       :password              => '12345678',
       :password_confirmation => '12345678',
       :role                  => symbol,
-      :referrer_id          => tourist_guide,
+      :referrer              => tourist_guide,
       :mobile                => Faker::PhoneNumber.cell_phone,
       :birth                 => random_date,
     )
@@ -366,8 +366,6 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
       payment_gateway.shop_id = shop.id
       payment_gateway.provider = payment_method
       payment_gateway.payment_method = payment_method
-      payment_gateway.merchant_id = nil
-      payment_gateway.merchant_secret = nil
       payment_gateway.save
     end
   end

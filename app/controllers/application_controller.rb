@@ -52,7 +52,7 @@ class ApplicationController < ActionController::Base
   end
 
   def cart_manager
-    @cart_manager ||= CartManager.new(session, current_user)
+    @cart_manager ||= CartManager.new(request, current_user)
   end
 
   def identity_solver

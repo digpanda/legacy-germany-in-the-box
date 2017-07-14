@@ -48,6 +48,4 @@ class ShopApplication
     self.code = crypt.encrypt_and_sign(email)
   end
 
-  index({code: 1},          {unique: false, name: :idx_shop_application_code})
-  index({email: 1},         {unique: true,  name: :idx_shop_application_email})
 end

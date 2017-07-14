@@ -1,3 +1,5 @@
+require 'will_paginate/array'
+
 class Cart
   include MongoidBase
 

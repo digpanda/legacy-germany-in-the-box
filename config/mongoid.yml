@@ -60,7 +60,7 @@ development:
 test:
   clients:
     default:
-      database: digpanda_test
+      database: digpanda_test<%= ENV['TEST_ENV_NUMBER'] %> # environment variable from `parallel_tests`
       hosts:
         - localhost:27017
       options:

@@ -13,6 +13,7 @@ class User
   ## Database authenticatable
   field :email,               type: String, default: ''
   field :encrypted_password,  type: String, default: ''
+  field :precreated, type: Boolean, default: false
 
   ## Recoverable
   field :reset_password_token,   type: String
@@ -49,6 +50,10 @@ class User
   field :provider,  type: String
   field :uid,       type: String
 
+  # referrer as someone lead is binded with him
+  belongs_to :parent_referrer, :inverse_of => :child_user, :class_name => 'Referrer'
+  field :parent_referred_at, type: Time
+  # referrer as a model considering the user is a referrer
   has_one :referrer, :inverse_of => :user, dependent: :destroy
   accepts_nested_attributes_for :referrer
 
@@ -91,8 +96,6 @@ class User
   acts_as_token_authenticatable
 
   field :authentication_token
-
-  index({email: 1},               {unique: true,  name: :idx_user_email})
 
   scope :admins, -> { where(role: :admin) }
 

@@ -31,6 +31,10 @@ namespace :guest do
     get :flyer
   end
 
+  resources :referrers do
+    get :qrcode
+  end
+
   resource :feedback, :controller => 'feedback' do
     get :product_suggestions
     get :payment_speed_report
