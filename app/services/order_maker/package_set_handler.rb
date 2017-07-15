@@ -42,6 +42,7 @@ class OrderMaker
     # clean up the order if needed
     def remove!
       if remove_package_set!
+        order_maker.handle_coupon!
         order_maker.destroy_empty_order!
         return_with(:success)
       else

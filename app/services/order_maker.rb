@@ -18,6 +18,14 @@ class OrderMaker
     OrderMaker::SkuHandler.new(self, sku)
   end
 
+  def handle_coupon!
+    coupon_handler.reset if order.coupon
+  end
+
+  def coupon_handler
+    @coupon_handler ||= CouponHandler.new(identity_solver, order.coupon, order)
+  end
+  
   # in case of rollback or destroy
   # throughout the subclasses
   # if there are payments involved we try to manage them

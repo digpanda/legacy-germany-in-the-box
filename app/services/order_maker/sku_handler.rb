@@ -18,7 +18,7 @@ class OrderMaker
       raise_error?(quantity)
       update_quantity!(quantity)
       save_order!
-      handle_coupon!
+      order_maker.handle_coupon!
       recalibrate_order!
       lock!
       return_with(:success, order_item: order_item)
@@ -31,6 +31,7 @@ class OrderMaker
     # clean up the order if needed
     def remove!
       if order_item.destroy
+        order_maker.handle_coupon!
         order_maker.destroy_empty_order!
         return_with(:success)
       else
@@ -113,14 +114,6 @@ class OrderMaker
         order_item.locked = true
         order_item.save
       end
-    end
-
-    def handle_coupon!
-      coupon_handler.reset if order.coupon
-    end
-
-    def coupon_handler
-      @coupon_handler ||= CouponHandler.new(identity_solver, order.coupon, order)
     end
 
     def raise_error?(quantity)
