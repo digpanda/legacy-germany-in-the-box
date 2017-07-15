@@ -56,6 +56,7 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
 
     10.times { setup_shopkeeper create_user(:shopkeeper) }
     8.times { setup_package_set }
+    2.times { setup_package_set(shop:Shop.first) } # same shops for package set
 
     convert_product_without_first_sku_left(random_product)
     convert_product_with_documentation_attached(random_product)
@@ -108,7 +109,7 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
   def create_sku(product, args={})
 
     price        = args[:price] || (2 * Product.count) + (product.skus.count * 10)
-    quantity     = args[:quantity] || rand(1..10)
+    quantity     = args[:quantity] || rand(10..30)
     num_options  = args[:num_options] || rand(1..5)
     weight       = args[:weight] || 0.5
     space_length = args[:space_length] || 1.0
@@ -385,16 +386,16 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
 
   end
 
-  def setup_package_set
+  def setup_package_set(shop:nil)
 
     num = PackageSet.count
-    shop = Shop.all.shuffle.first
+    shop = Shop.all.shuffle.first unless shop
 
     puts "Let's create PackageSet N#{num} ..."
 
     package_set = PackageSet.create({
       :shop => shop,
-      :name => "Package Set #{num}",
+      :name => "Package Set #{num} (Shop #{shop.name})",
       :desc => Faker::Lorem.paragraph,
       :long_desc => Faker::Lorem.paragraph(3),
       :cover => setup_image(:banner),

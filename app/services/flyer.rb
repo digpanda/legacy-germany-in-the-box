@@ -9,7 +9,7 @@ class Flyer < BaseService
   def initialize
   end
 
-  def process_steps(coupon)
+  def process_steps(coupon, qrcode_path)
     @image = Magick::ImageList.new("#{Rails.root}/public/images/flyers/steps.jpg")
     text = Magick::Draw.new
 
@@ -21,6 +21,11 @@ class Flyer < BaseService
       text.font_weight = Magick::BoldWeight
     }
 
+    append_image =  Magick::Image.read(qrcode_path).first
+    append_image = append_image.resize_to_fit(140, 140)
+
+    image.composite!(append_image, 105, 540, Magick::OverCompositeOp)
+    
     image.format = "jpeg"
     self
   end
