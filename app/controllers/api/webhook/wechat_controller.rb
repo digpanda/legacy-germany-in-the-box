@@ -69,6 +69,12 @@ class Api::Webhook::WechatController < Api::ApplicationController
       else
         render text: ""
       end
+    elsif event == "subscribe"
+        SlackDispatcher.new.message("subscribe event.")
+        render text: "欢迎访问来因盒！"
+    else
+        SlackDispatcher.new.message("default catcher all the rest.")
+        render text: "欢迎访问来因盒！"
       return
     end
 
