@@ -109,7 +109,7 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
   def create_sku(product, args={})
 
     price        = args[:price] || (2 * Product.count) + (product.skus.count * 10)
-    quantity     = args[:quantity] || rand(1..10)
+    quantity     = args[:quantity] || rand(10..30)
     num_options  = args[:num_options] || rand(1..5)
     weight       = args[:weight] || 0.5
     space_length = args[:space_length] || 1.0
