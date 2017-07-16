@@ -30,7 +30,13 @@
 
     </div>
     <div class="row">
-      <div class="+spacer"></div>
-      <%= render partial: "admin/order_payments/table", :locals => { :order_payments => @order.order_payments.order(c_at: :desc) } %>
+      <div class="col-md-12">
+        <h4>Payments</h4>
+        <%= render partial: "admin/order_payments/table", :locals => { :order_payments => @order.order_payments.order(c_at: :desc) } %>
+      </div>
+      <div class="col-md-12">
+        <h4>Referrer Provisions</h4>
+        <%= render partial: "admin/referrers/provisions/table", :locals => { :provisions => [@order.provision] } %>
+      </div>
     </div>
   </div>
