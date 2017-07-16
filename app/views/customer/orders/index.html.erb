@@ -19,7 +19,7 @@
           <%= I18n.t(:link_tracking, scope: :edit_order) %>
         </th>
         <th>
-          <%= I18n.t(:updated_at, scope: :edit_order) %>
+          <%= I18n.t(:created_at, scope: :edit_order) %>
         </th>
         <th>
           <%= I18n.t(:operations, scope: :edit_order) %>
@@ -59,7 +59,7 @@
             <% end %>
           </td>
           <td>
-            <%= order.u_at.localtime.strftime('%Y-%m-%d %H:%M:%S') %>
+            <%= order.c_at.localtime.strftime('%Y-%m-%d %H:%M:%S') %>
           </td>
           <td>
           <% unless order.decorate.paid? %>
