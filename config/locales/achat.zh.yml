@@ -1,6 +1,6 @@
 zh-CN:
   referrer:
-    qrcode: 二维码
+    qrcode: 您的服务号二维码
     update_account: 更新账户
     agb_agreement: 我已阅读并同意接受<a href="%{url}">AGB</a>条款
     provision_rates: 佣金率
