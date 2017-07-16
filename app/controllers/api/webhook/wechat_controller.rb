@@ -117,6 +117,7 @@ class Api::Webhook::WechatController < Api::ApplicationController
     end
 
     SlackDispatcher.new.message("Referrer user children `#{referrer.children_users.count}`")
+    render text: "欢迎访问来因盒！"
   end
 
   def wechat_user_solver
