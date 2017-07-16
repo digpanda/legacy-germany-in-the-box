@@ -13,7 +13,7 @@
     <div class="+big-spacer"></div>
     <div class="+big-spacer"></div>
     <div class="+big-spacer"></div>
-    <a href="<%= coupons_customer_referrer_path %>" class="big-button --grey"><%= I18n.t('referrer.your_coupons') %></a>
+    <a href="<%= coupons_customer_referrer_path %>" class="big-button --grey">您的专属折扣码: <%= @referrer.coupons.first.code %></a>
 
     <div class="+big-spacer"></div>
   </div>
