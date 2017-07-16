@@ -11,7 +11,7 @@
       </div>
 
       <div class="col-md-6">
-        <%= form.text_field :fname, :class => 'form-control', :required => true, :placeholder => I18n.t(:fname, scope: :edit_address), :data => {:error => I18n.t(:chinese_characters_only, scope: :validation)} %>
+        <%= form.text_field :fname, :class => 'form-control', :required => false, :placeholder => I18n.t(:fname, scope: :edit_address), :data => {:error => I18n.t(:chinese_characters_only, scope: :validation)} %>
       </div>
     </div>
     <div class="row">
