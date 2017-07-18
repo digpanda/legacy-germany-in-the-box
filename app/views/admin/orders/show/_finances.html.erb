@@ -3,6 +3,7 @@
         <h3>Finances</h3>
       <hr>
     </div>
+
     <div class="row">
       <div class="col-md-3">
         <h4>Bill ID</h4>
@@ -29,8 +30,17 @@
       </div>
 
     </div>
+
     <div class="row">
-      <div class="+spacer"></div>
-      <%= render partial: "admin/order_payments/table", :locals => { :order_payments => @order.order_payments.order(c_at: :desc) } %>
+      <div class="col-md-12">
+        <h4>Payments</h4>
+        <%= render partial: "admin/order_payments/table", :locals => { :order_payments => @order.order_payments.order(c_at: :desc) } %>
+      </div>
+      <div class="col-md-12">
+        <h4>Referrer Provisions</h4>
+        <% if @order.referrer_provision %>
+          <%= render partial: "admin/referrers/provisions/table", :locals => { :provisions => [@order.referrer_provision] } %>
+        <% end %>
+      </div>
     </div>
   </div>
