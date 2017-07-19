@@ -55,7 +55,7 @@ class Api::Webhook::WechatController < Api::ApplicationController
     if event == "SCAN"
       SlackDispatcher.new.message("Event scan detected ...")
       handle_qrcode_callback!
-      render text: "欢迎访问来因盒！"
+      render text: "success"
       return
     elsif event == "CLICK"
       SlackDispatcher.new.message("Event click detected ...")
@@ -74,7 +74,7 @@ class Api::Webhook::WechatController < Api::ApplicationController
       return
     elsif event == "subscribe"
         SlackDispatcher.new.message("subscribe event.")
-        render text: "欢迎访问来因盒！"
+        render text: "success"
         return
     else
         SlackDispatcher.new.message("default catcher all the rest.")
