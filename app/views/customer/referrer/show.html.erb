@@ -11,15 +11,19 @@
     <div class="+small-spacer"></div>
     <a href="<%= qrcode_customer_referrer_path %>" class="big-button --green"><%= I18n.t('referrer.qrcode') %></a>
     <div class="+big-spacer"></div>
-    <div class="+big-spacer"></div>
     <!--a href="<%= coupons_customer_referrer_path %>" class="big-button --grey"><%= I18n.t('referrer.your_coupons') %></a-->
-    <span class="+green +bold">
-    <%= I18n.t('referrer.your_coupons') %>:
-    <% referrer.coupons.each do |coupon| %>
-                <%= coupon.code %>
-        <% end %> 
-    </span>
-    <span class="+red +bold">自用折扣码(请勿分享): 201707</span>
+    <div class="+white-box +centered">
+      <%= I18n.t('referrer.your_coupons') %>:
+      <span class="+green +bold">
+        <% if @referrer.coupons.count >0 %>
+          <%= @referrer.coupons.first.code %>
+        <% end %>
+       </span>
+    </div>
+
+    <div class="+small-spacer"></div>
+    <!--span class="+red +bold \+centered">自用折扣码(请勿分享): 201707</span-->
     <div class="+big-spacer"></div>
+
   </div>
 </div>
