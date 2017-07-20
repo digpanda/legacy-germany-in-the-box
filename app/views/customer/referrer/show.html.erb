@@ -13,19 +13,28 @@
     <div class="+big-spacer"></div>
     <!--a href="<%= coupons_customer_referrer_path %>" class="big-button --grey"><%= I18n.t('referrer.your_coupons') %></a-->
     <div class="+white-box +centered">
-      <%= I18n.t('referrer.your_coupons') %>:
-      <span class="+green +bold">
+      <span class="+bold"><%= I18n.t('referrer.your_coupons') %></span>
+      <br/>
         <% if @referrer.coupons.count >0 %>
+        <span class="+green +bold">
           <%= @referrer.coupons.first.code %>
+        </span>
         <% end %>
-       </span>
     </div>
     <div class="+small-spacer"></div>
     <div class="+white-box +centered">
-      您的补贴折扣码(导游自用):
-      <span class="+blue +bold">201707</span>
+      <span class="+bold">导游福利8折码(导游自用)</span>
+      <br/>
+      <span class="+red +bold">2017dy</span>
+      <br/>
+      <li class="col-md-5 +left">重要！请导游先长按识别自己的二维码实现自我绑定</li>
+      <li class="col-md-5 +left">自我绑定后，请导游使用自己的账号下单还可收到佣金</li>
+      <li class="col-md-5 +left">导游福利，仅限个人及家庭使用</li>
+      <br/>
+      <p class="+left">注:如需发货到德国地址请在"地址示例"栏填写完整德国地址，其他中国地址邮编选项随意填写即可</p>
+
     </div>
-    <div class="+big-spacer"></div>
+    <div class="+small-spacer"></div>
 
   </div>
 </div>
