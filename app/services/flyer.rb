@@ -35,7 +35,7 @@ class Flyer < BaseService
     append_image =  Magick::Image.read(qrcode_path).first
     append_image = append_image.resize_to_fit(400, 400)
 
-    image.composite!(append_image, 106, 673, Magick::OverCompositeOp)
+    image.composite!(append_image, 106, 592, Magick::OverCompositeOp)
 
     image.format = "jpeg"
     self
