@@ -25,6 +25,15 @@ class Admin::ReferrersController < ApplicationController
         "&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect"
   end
 
+  def update
+    if referrer.update(referrer_params)
+      flash[:success] = "The referrer was updated."
+    else
+      flash[:error] = "The referrer was not updated (#{referrer.errors.full_messages.join(', ')})"
+    end
+    redirect_to navigation.back(1)
+  end
+
   def coupon
     coupon = Coupon.create_referrer_coupon(referrer)
     if coupon
@@ -37,6 +46,10 @@ class Admin::ReferrersController < ApplicationController
 
   def set_referrer
     @referrer = Referrer.find(params[:id] || params[:referrer_id])
+  end
+
+  def referrer_params
+    params.require(:referrer).permit!
   end
 
 end

@@ -27,6 +27,9 @@
         Group
       </th>
       <th>
+        Label
+      </th>
+      <th>
         Operations
       </th>
     </thead>
@@ -56,6 +59,9 @@
           </td>
           <td>
             <%= referrer&.referrer_group&.name %>
+          </td>
+          <td>
+            <%= editable_field(referrer, admin_referrer_path(referrer), :label, :text_field) %>
           </td>
           <td>
             <% unless referrer.has_coupon? %>
