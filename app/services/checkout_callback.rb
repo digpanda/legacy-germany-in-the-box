@@ -107,6 +107,11 @@ class CheckoutCallback < BaseService
     end
   end
 
+  def dispatch_confirm_paid_order!(order)
+    Notifier::Customer.new(order.user, unique_id: "WECHAT-WEBHOOK-CUSTOMER-ORDER-WAS-PAID-OUT-TRADE-NO-#{params[:out_trade_no]}").order_was_paid(order)
+    Notifier::Shopkeeper.new(order.shop.shopkeeper, unique_id: "WECHAT-WEBHOOK-SHOPKEEPER-ORDER-WAS-PAID-OUT-TRADE-NO-#{params[:out_trade_no]}").order_was_paid(order)
+  end
+
   def manage_stocks!(order)
     StockManager.new(order).in_order!
     order.cart = nil
@@ -129,6 +134,7 @@ class CheckoutCallback < BaseService
     if order_payment.status == :success
       if order_payment.order.bought?
         dispatch_guide_message!(order_payment)
+        dispatch_confirm_paid_order!(order_payment.order)
         SlackDispatcher.new.paid_transaction(order_payment)
       end
     else
