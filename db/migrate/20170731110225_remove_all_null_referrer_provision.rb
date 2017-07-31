@@ -1,7 +1,7 @@
 class RemoveAllNullReferrerProvision < Mongoid::Migration
   def self.up
     ReferrerProvision.all.each do |referrer_provision|
-      puts "Checking ReferrerProvision `#{referrer_provision.id}`"
+      puts "Checking ReferrerProvision `#{referrer_provision.id}` (provision is `#{referrer_provision.provision}`)"
       if referrer_provision.provision == 0.0
         referrer_provision.delete
         puts "ReferrerProvision was removed."
