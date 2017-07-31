@@ -52,8 +52,8 @@
             <%= referrer.children_users.count %>
           </td>
           <td>
-            <% if referrer.coupons.count >0 %>
-                <span class="+green +bold"><% referrer.coupons.first.code %>, </span>
+            <% if referrer.has_coupon? %>
+                <span class="+green +bold"><%= referrer.coupons.first.code %> </span>
             <% end %>
             <a href="<%= guest_referrer_qrcode_path(referrer) %>">QR</a>
           </td>
