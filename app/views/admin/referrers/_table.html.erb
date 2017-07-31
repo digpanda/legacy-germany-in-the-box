@@ -52,7 +52,10 @@
             <%= referrer.children_users.count %>
           </td>
           <td>
-            <a href="<%= guest_referrer_qrcode_path(referrer) %>"><% referrer.coupons&.first&.code %></a>
+            <% if @referrer.coupons.count >0 %>
+                <span class="+green +bold"><% referrer.coupons.first.code %>, </span>
+            <% end %>
+            <a href="<%= guest_referrer_qrcode_path(referrer) %>">QR</a>
           </td>
           <td>
             <%= referrer.total_earned.in_euro.display %>
