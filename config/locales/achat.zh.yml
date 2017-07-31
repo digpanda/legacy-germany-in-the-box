@@ -1,6 +1,6 @@
 zh-CN:
   referrer:
-    qrcode: 您的服务号二维码
+    qrcode: 专属服务号二维码(游客分享)
     update_account: 更新账户
     agb_agreement: 我已阅读并同意接受<a href="%{url}">AGB</a>条款
     provision_rates: 佣金率
@@ -14,7 +14,7 @@ zh-CN:
     referrer: 推广账号
     provision_insight: 佣金账户
     total_earned: 总佣金
-    your_coupons: 您的专属折扣码
+    your_coupons: 专属9折码(游客分享)
     current_balance: 未提取佣金
     your_can_claim_this_money_from: "佣金满%{amount}即可结算"
     claim_your_money: 结算
