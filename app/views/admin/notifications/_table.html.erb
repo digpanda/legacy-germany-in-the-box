@@ -31,9 +31,13 @@
         <%= notification.id %>
       </td>
       <td>
+        <% if notification.user %>
         <a href="<%= admin_user_path(notification.user) %>">
           <%= notification.user.decorate.full_name %>
         </a>
+        <% else %>
+        -
+        <% end %>
       </td>
       <td>
         <%= notification.title %>
