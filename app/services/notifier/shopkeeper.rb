@@ -22,7 +22,7 @@ class Notifier
         title: "Die Verfügbarkeit eines Produkts ist fast Null: #{order_item.product&.name} verfügt über #{sku.quantity} ",
         desc: "Das Produkt '#{order_item.product&.name}' verfügt über #{sku.quantity} Verfügbarkeit.",
        # url: shopkeeper_product_skus_path(product_id: sku.product.id)
-        url: admin_product_skus_path(shop_id:product&.shop&.id, product_id: sku.product&.id)
+        url: admin_shop_product_skus_path(shop_id: order_item.product&.shop&.id, product_id: order_item.product&.id)
         #sample: https://www.germanyinthebox.com/admin/shops/577b80dd7302fc738898070a/products/5977439e7302fc70c9a8fa0e/skus
       ).perform
     end
