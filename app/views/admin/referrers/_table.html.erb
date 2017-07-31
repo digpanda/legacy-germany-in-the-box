@@ -53,10 +53,9 @@
           </td>
           <td>
             <% if referrer.has_coupon? %>
-            <a href="<%= guest_referrer_qrcode_path(referrer) %>"><% referrer.coupons.first.code %></a>
-            <% else %>
-            <a href="<%= guest_referrer_qrcode_path(referrer) %>">QRCode</a>
+                <span class="+green +bold"><% referrer.coupons.first.code %>, </span>
             <% end %>
+            <a href="<%= guest_referrer_qrcode_path(referrer) %>">QRCode</a>
           </td>
           <td>
             <%= referrer.total_earned.in_euro.display %>
