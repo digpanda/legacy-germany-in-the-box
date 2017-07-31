@@ -180,6 +180,8 @@ class User
   # will be redirected on log-in
   def missing_info?
     if self.referrer?
+        return true if self.fname.blank?
+        return true if self.lname.blank?
         return true if self.mobile.blank?
         return true if self.referrer.agb == false
     end
