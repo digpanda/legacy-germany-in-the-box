@@ -18,7 +18,7 @@
         Linked Users
       </th>
       <th>
-        Coupon
+        Flyers
       </th>
       <th>
         Total Earned
@@ -49,11 +49,7 @@
             <%= referrer.children_users.count %>
           </td>
           <td>
-            <% referrer.coupons.each do |coupon| %>
-              <a href="<%= guest_coupon_flyer_path(coupon) %>">
-                <%= coupon.code %>
-              </a>
-            <% end %>
+            <a href="<%= guest_referrer_qrcode_path(referrer) %>">QRCode</a>
           </td>
           <td>
             <%= referrer.total_earned.in_euro.display %>
