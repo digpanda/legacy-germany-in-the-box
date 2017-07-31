@@ -7,7 +7,7 @@ class ProvisionHandler
   end
 
   def refresh!
-    if order.referrer && order.bought?
+    if order.referrer && order.bought? && current_provision >= 0
       ensure!
     else # cancel case, we will change that later on
       delete!
@@ -15,10 +15,8 @@ class ProvisionHandler
   end
 
   def ensure!
-    unless current_provision <= 0.0
-      referrer_provision.provision = current_provision
-      referrer_provision.save
-    end
+    referrer_provision.provision = current_provision
+    referrer_provision.save
   end
 
   def delete!
