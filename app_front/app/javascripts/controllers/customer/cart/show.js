@@ -217,9 +217,11 @@ var Cart = {
 
                     if (res.order_empty == true){
                         $('#order-' + orderId).remove();
-                    } else {
-                      Cart.resetTotalDisplay(orderShopId, res);
                     }
+
+                    RefreshTotalProducts.perform();
+                    Cart.resetTotalDisplay(orderShopId, res);
+
 
                 } else {
 
