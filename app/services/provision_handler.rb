@@ -15,8 +15,10 @@ class ProvisionHandler
   end
 
   def ensure!
-    referrer_provision.provision = current_provision
-    referrer_provision.save
+    unless current_provision <= 0.0
+      referrer_provision.provision = current_provision
+      referrer_provision.save
+    end
   end
 
   def delete!
