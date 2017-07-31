@@ -50,14 +50,29 @@
     </div>
     <% end %>
 
+    <div class="+spacer"></div>
     <div>
     <%= form_for :referrer_provision_operation, :data => {:toggle => 'validator'}, :url => admin_referrer_provision_operations_path(@referrer.id), :method => :post do |f| %>
-      Amount <%= f.text_field :amount %> EUR<br />
-      Description <%= f.text_area :desc %><br />
-      <%= f.button "Decrease amount from referrer account", :class => "btn btn-info", name: "amount_direction", value: "decrease" %>
-      <%= f.button "Increase amount to referrer account", :class => "btn btn-info", name: "amount_direction", value: "increase" %>
+
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-6">
+      <h4>Amount</h4>
+      <%= f.text_field :amount %> EUR
+    </div>
+    <div class="col-md-6">
+      <h4>Description</h4>
+      <%= f.text_area :desc %>
+    </div>
+    </div>
+    </div>
+    <div class="col-md-6">
+      <%= f.button "Decrease amount from referrer account", :class => "text-button --delete", name: "amount_direction", value: "decrease" %>
+      <div class="+small-spacer"></div>
+      <%= f.button "Increase amount to referrer account", :class => "text-button --blue", name: "amount_direction", value: "increase" %>
     <% end %>
     </div>
+  </div>
 
   </div>
 </div>

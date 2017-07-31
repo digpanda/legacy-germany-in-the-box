@@ -1414,6 +1414,7 @@
 .text-button {
   padding: 0.7em;
   text-align: center;
+  border-width: 0;
   color: white !important;
   background-color: #464646;
   -webkit-transition: 0.2s;
@@ -1424,10 +1425,7 @@
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   -ms-border-radius: 3px;
-  border-radius: 3px;
-  width: 2em;
-  height: 2em;
-  line-height: 2em; }
+  border-radius: 3px; }
   .text-button:hover {
     color: white !important; }
   .text-button:active {
