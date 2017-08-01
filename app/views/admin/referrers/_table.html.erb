@@ -12,6 +12,9 @@
         Nickname
       </th>
       <th>
+        Fullname
+      </th>
+      <th>
         AGB
       </th>
       <th>
@@ -41,6 +44,9 @@
           </td>
           <td>
             <%= referrer.nickname %>
+          </td>
+          <td>
+            <%= referrer.user.decorate.full_name %>
           </td>
           <td>
             <%= boolean_icon(referrer.agb) %>
