@@ -39,9 +39,21 @@ FactoryGirl.define do
     end
 
     trait :with_referrer do
+      referrer { FactoryGirl.create(:customer, :with_referrer, :from_wechat).referrer }
+
+      after(:create) do |order|
+        # we remove to better rebuild the items
+        # with referrer rates
+        order.order_items = []
+        order.order_items = build_list(:order_item, 2, {:referrer_rate => 10.00})
+        order.save
+      end
+    end
+
+    trait :with_referrer_coupon do
       # it will resolve into `referrer` within this model
-      #coupon { FactoryGirl.create(:coupon, :with_referrer) } <-- old system
-      referrer { FactoryGirl.create(:user, :with_referrer, :from_wechat).referrer }
+      coupon { FactoryGirl.create(:coupon, :with_referrer) }
+      referrer { coupon.referrer }
 
       after(:create) do |order|
         # we remove to better rebuild the items
