@@ -23,7 +23,7 @@ class CouponHandler < BaseService
     return return_with(:error, "You can't apply this coupon on this shop.") unless valid_shop?
     return return_with(:error, I18n.t(:cannot_apply, scope: :coupon)) unless valid_order?
     return return_with(:error, I18n.t(:not_valid_anymore, scope: :coupon)) unless valid_coupon?
-    return return_with(:error, I18n.t(:error_occurred_applying, scope: :coupon)) unless update_order! && update_coupon!
+    return return_with(:error, I18n.t(:error_occurred_applying, scope: :coupon)) unless update_order! && update_referrer! && update_coupon!
     return_with(:success)
   end
 
@@ -61,6 +61,21 @@ class CouponHandler < BaseService
       :coupon_applied_at => Time.now,
       :coupon_id => coupon.id
       })
+  end
+
+  # if there's no user referrer linked to this ore
+  # we try to refresh with the coupon referrer if it exists
+  def update_referrer!
+    if order.referrer && order.referrer_origin == :user
+      true
+    elsif coupon.referrer
+      order.update({
+        :referrer => coupon.referrer,
+        :referrer_origin => :coupon
+      })
+    else
+      true
+    end
   end
 
   # we update the coupon

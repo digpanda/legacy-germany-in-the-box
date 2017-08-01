@@ -52,14 +52,17 @@ class Order
 
   # the referrer logic is first binded to the user
   # the coupon referrer is still present but secondary
-  def referrer
-    user&.parent_referrer || coupon&.referrer
-  end
+  # def current_referrer
+  #   user&.parent_referrer || coupon&.referrer
+  # end
 
   belongs_to :shop, :inverse_of => :orders
   belongs_to :user, :inverse_of => :orders
   belongs_to :cart, :inverse_of => :orders
   belongs_to :coupon, :inverse_of => :orders
+
+  belongs_to :referrer, :inverse_of => :orders
+  field :referrer_origin, type: Symbol # [:user, :coupon]
 
   embeds_one :shipping_address, :class_name => 'Address'
   embeds_one :billing_address, :class_name => 'Address'

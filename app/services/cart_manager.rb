@@ -101,7 +101,7 @@ class CartManager < BaseService
   end
 
   def fresh_order(shop, user)
-    Order.new(cart: current_cart, shop: shop, user: user, logistic_partner: Setting.instance.logistic_partner, exchange_rate: Setting.instance.exchange_rate_to_yuan)
+    Order.new(cart: current_cart, shop: shop, user: user, referrer: user.parent_referrer, referrer_origin: :user, logistic_partner: Setting.instance.logistic_partner, exchange_rate: Setting.instance.exchange_rate_to_yuan)
   end
 
 end
