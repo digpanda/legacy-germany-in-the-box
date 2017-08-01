@@ -9,7 +9,7 @@ class Admin::Referrers::ProvisionOperationsController < ApplicationController
 
   def create
     operation = ReferrerProvisionOperation.create(operation_params)
-    if operation
+    if operation.persisted?
       flash[:success] = "The operation was created."
     else
       flash[:error] = "The operation was not created (#{operation.errors.full_messages.join(', ')})"

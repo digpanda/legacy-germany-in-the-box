@@ -2,7 +2,7 @@ describe Order, :type => :model  do
 
   describe "with referrer" do
 
-    subject { FactoryGirl.create(:order, :with_referrer) }
+    subject { FactoryGirl.create(:order, :with_referrer_coupon) }
 
     it "gives a correct provision to referrer" do
 

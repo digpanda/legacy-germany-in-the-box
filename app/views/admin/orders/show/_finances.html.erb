@@ -23,7 +23,9 @@
       <div class="col-md-3">
         <h4>Referrer</h4>
         <% if @order.referrer %>
-          <a href="<%= admin_user_path(@order.referrer.user) %>"><%= @order.referrer.reference_id %></a>
+          <a href="<%= admin_user_path(@order.referrer.user) %>"><%= @order.referrer.user.decorate.full_name %> <%= @order.referrer.reference_id %></a>
+          <br />
+          <%= editable_field(@order, admin_order_path(@order), :referrer_id, :select, [parent_referrers, {:selected => @order.referrer_id}]) %>
         <% else %>
           -
         <% end %>

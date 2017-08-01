@@ -92,6 +92,10 @@ class CartManager < BaseService
   def ensure_orders_ownership!
     user.cart.orders.where(user: nil).each do |order|
       order.user = user
+      if user.parent_referrer
+        order.referrer = user.parent_referrer
+        order.referrer_origin = :user
+      end
       order.save
     end
   end
@@ -100,8 +104,10 @@ class CartManager < BaseService
     session[:current_cart] = Cart.create.id unless session[:current_cart]
   end
 
+  # NOTE : sometimes the parent referrer won't be defined
+  # because the order is started anonymously
   def fresh_order(shop, user)
-    Order.new(cart: current_cart, shop: shop, user: user, logistic_partner: Setting.instance.logistic_partner, exchange_rate: Setting.instance.exchange_rate_to_yuan)
+    Order.new(cart: current_cart, shop: shop, user: user, referrer: user&.parent_referrer, referrer_origin: :user, logistic_partner: Setting.instance.logistic_partner, exchange_rate: Setting.instance.exchange_rate_to_yuan)
   end
 
 end
