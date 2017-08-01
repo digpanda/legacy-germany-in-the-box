@@ -99,19 +99,28 @@ class CheckoutCallback < BaseService
   end
 
   def dispatch_guide_message!(order_payment)
+    SlackDispatcher.new.message("DISPATCH GUIDE MESSAGE")
     order = order_payment.order
     order.reload # thanks mongo !
     referrer = order.referrer
     referrer_provision = order.referrer_provision
+    SlackDispatcher.new.message("REFERRER IS `#{referrer&.id}`")
+    SlackDispatcher.new.message("REFERRER MOBILE : #{referrer&.user&.mobile}")
+    SlackDispatcher.new.message("REFERRER PROVISION IS #{order_payment.order.referrer_provision}")
+
     if referrer&.user&.mobile
+      SlackDispatcher.new.message("NOTIFY REFERRER ABOUT OUT TRADE NO #{params[:out_trade_no]}")
       # PROVISION-#{referrer_provision.id}
       Notifier::Customer.new(referrer.user, unique_id: "WECHAT-WEBHOOK-OUT-TRADE-NO-#{params[:out_trade_no]}").referrer_provision_was_raised(order_payment, referrer, referrer_provision)
+      SlackDispatcher.new.message("DONE !")
     end
   end
 
   def dispatch_confirm_paid_order!(order)
+    SlackDispatcher.new.message("DISPATCH TO CUSTOMER AND SHOPKEEPER CONFIRM PAID ORDER")
     Notifier::Customer.new(order.user, unique_id: "WECHAT-WEBHOOK-CUSTOMER-ORDER-WAS-PAID-OUT-TRADE-NO-#{params[:out_trade_no]}").order_was_paid(order)
     Notifier::Shopkeeper.new(order.shop.shopkeeper, unique_id: "WECHAT-WEBHOOK-SHOPKEEPER-ORDER-WAS-PAID-OUT-TRADE-NO-#{params[:out_trade_no]}").order_was_paid(order)
+    SlackDispatcher.new.message("DONE !")
   end
 
   def manage_stocks!(order)
