@@ -34,7 +34,13 @@ class AfterSigninHandler
       if refresh
         return without_code request.url
       else
-        return without_code navigation.back(1, identity_solver.landing_solver.recover)
+        # if the user is a referrer and connected via QRCode given to him
+        # we will force him into his QRCode area
+        if user.referrer?
+          return qrcode_customer_referrer_path
+        else
+          return without_code navigation.back(1, identity_solver.landing_solver.recover)
+        end
       end
     end
 
