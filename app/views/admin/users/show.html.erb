@@ -5,6 +5,9 @@
       <h2>User <%= @user.id %></h2>
     </div>
     <div class="col-md-2 details__action">
+      <% if @user.referrer %>
+        <a href="<%= admin_referrer_provisions_path(@user.referrer) %>"><i class="fa fa-euro tooltipster buttons buttons__purple" title="Provisions Summary"></i></a>
+      <% end %>
     </div>
   </div>
 
