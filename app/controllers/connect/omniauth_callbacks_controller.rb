@@ -14,7 +14,6 @@ class Connect::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   # QRCode Wechat tour guide registration
-  # NOTE : token here means referrer token which was changed inside the system. (yeah disgusting)
   # it's only a way to group people.
   def referrer
     if params[:code]
