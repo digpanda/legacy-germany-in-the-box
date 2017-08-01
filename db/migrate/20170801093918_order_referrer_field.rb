@@ -9,12 +9,12 @@ class OrderReferrerField < Mongoid::Migration
           order.referrer = order.user.parent_referrer
           order.referrer_origin = :user
           order.save(validation: false)
-          puts "Order Referrer was changed to a user one (Referrer `#{order.user.parent_referrer}`)."
+          puts "Order Referrer was changed to a user one (Referrer `#{order.user.parent_referrer.id}`)."
         elsif order.coupon&.referrer
           order.referrer = order.coupon.referrer
           order.referrer_origin = :coupon
           order.save(validation: false)
-          puts "Order Referrer was changed to a coupon one (Referrer `#{order.coupon.referrer}`)."
+          puts "Order Referrer was changed to a coupon one (Referrer `#{order.coupon.referrer.id}`)."
         end
       end
       puts "End of process for this order."
