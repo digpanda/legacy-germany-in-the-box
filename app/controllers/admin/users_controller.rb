@@ -36,6 +36,15 @@ class Admin::UsersController < ApplicationController
     redirect_to admin_users_path
   end
 
+  def banish
+    if user.update({:banished => true})
+      flash[:success] = "The user was banished."
+    else
+      flash[:error] = "The user was not banished (#{user.errors.full_messages.join(', ')})"
+    end
+    redirect_to navigation.back(1)
+  end
+
   def emails
     users = User.all
     @customers_emails_list = users.where(role: :customer).emails_list

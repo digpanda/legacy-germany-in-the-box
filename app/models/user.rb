@@ -46,9 +46,11 @@ class User
   field :about,     type: String
   field :website,   type: String
   field :mobile,    type: String
-  field :status,    type: Boolean, default: true
   field :provider,  type: String
+  field :status, type: Boolean, default: true
   field :uid,       type: String
+
+  field :banished, type: Boolean, default: false
 
   # referrer as someone lead is binded with him
   belongs_to :parent_referrer, :inverse_of => :child_user, :class_name => 'Referrer'

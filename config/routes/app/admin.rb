@@ -93,6 +93,7 @@ namespace :admin do
   resources :users do
     get :emails, on: :collection
     patch :set_as_referrer
+    patch :banish
     post :force_login
   end
 

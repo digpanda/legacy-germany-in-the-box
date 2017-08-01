@@ -99,8 +99,10 @@ class CheckoutCallback < BaseService
   end
 
   def dispatch_guide_message!(order_payment)
-    referrer = order_payment.order.referrer
-    referrer_provision = order_payment.order.referrer_provision
+    order = order_payment.order
+    order.reload # thanks mongo !
+    referrer = order.referrer
+    referrer_provision = order.referrer_provision
     if referrer&.user&.mobile
       # PROVISION-#{referrer_provision.id}
       Notifier::Customer.new(referrer.user, unique_id: "WECHAT-WEBHOOK-OUT-TRADE-NO-#{params[:out_trade_no]}").referrer_provision_was_raised(order_payment, referrer, referrer_provision)

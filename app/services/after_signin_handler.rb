@@ -19,6 +19,8 @@ class AfterSigninHandler
   # all param on redirection but the `code` one, it's the only case using `refresh: true`
   # we basically refresh the page or redirect to missing info page while keeping all the rest
   def solve!(refresh:false)
+    return root_url if handle_banished!
+
     if user.customer?
       force_chinese!
       handle_precreated!
@@ -66,6 +68,14 @@ class AfterSigninHandler
   # - Laurent, 13/07/2017
   def identity_solver
     @identity_solver ||= IdentitySolver.new(request, user)
+  end
+
+  def handle_banished!
+    if user.banished
+      session.clear
+      return true
+    end
+    false
   end
 
   def without_code(url)
