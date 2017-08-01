@@ -68,7 +68,7 @@
           </td>
           <td>
             <% unless referrer.has_coupon? %>
-              <a href="<%= admin_user_coupon_path(referrer.user) %>" data-method="post"><i class="fa fa-magic tooltipster buttons buttons__purple" title="Generate Coupon"></i></a>
+              <a href="<%= admin_referrer_coupon_path(referrer) %>" data-method="post"><i class="fa fa-magic tooltipster buttons buttons__purple" title="Generate Coupon"></i></a>
             <% end %>
             <a href="<%= admin_user_path(referrer.user) %>"><i class="fa fa-eye tooltipster buttons buttons__edit"></i></a>
             <a href="<%= admin_referrer_provisions_path(referrer) %>"><i class="fa fa-euro tooltipster buttons buttons__purple" title="Provisions Summary"></i></a>

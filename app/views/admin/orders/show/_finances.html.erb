@@ -23,7 +23,7 @@
       <div class="col-md-3">
         <h4>Referrer</h4>
         <% if @order.referrer %>
-          <a href="<%= admin_referrer_path(@order.referrer) %>"><%= @order.referrer.reference_id %></a>
+          <a href="<%= admin_user_path(@order.referrer.user) %>"><%= @order.referrer.reference_id %></a>
         <% else %>
           -
         <% end %>
