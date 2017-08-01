@@ -52,7 +52,7 @@ class CheckoutCallback < BaseService
 
   def alipay!(mode: :unsafe)
 
-    order = Order.where(id: params[:out_trade_no]).first
+    order = Order.where(id: params['out_trade_no']).first
     unless order
       return return_with(:error, "Order not found from the AliPay callback")
     end
@@ -109,17 +109,17 @@ class CheckoutCallback < BaseService
     SlackDispatcher.new.message("REFERRER PROVISION IS #{order_payment.order.referrer_provision}")
 
     if referrer&.user&.mobile
-      SlackDispatcher.new.message("NOTIFY REFERRER ABOUT OUT TRADE NO #{params[:out_trade_no]}")
+      SlackDispatcher.new.message("NOTIFY REFERRER ABOUT OUT TRADE NO #{params['out_trade_no']}")
       # PROVISION-#{referrer_provision.id}
-      Notifier::Customer.new(referrer.user, unique_id: "WECHAT-WEBHOOK-OUT-TRADE-NO-#{params[:out_trade_no]}").referrer_provision_was_raised(order_payment, referrer, referrer_provision)
+      Notifier::Customer.new(referrer.user, unique_id: "WECHAT-WEBHOOK-PROVISION-#{referrer_provision.id}-OUT-TRADE-NO-#{params['out_trade_no']}").referrer_provision_was_raised(order_payment, referrer, referrer_provision)
       SlackDispatcher.new.message("DONE !")
     end
   end
 
   def dispatch_confirm_paid_order!(order)
     SlackDispatcher.new.message("DISPATCH TO CUSTOMER AND SHOPKEEPER CONFIRM PAID ORDER")
-    Notifier::Customer.new(order.user, unique_id: "WECHAT-WEBHOOK-CUSTOMER-ORDER-WAS-PAID-OUT-TRADE-NO-#{params[:out_trade_no]}").order_was_paid(order)
-    Notifier::Shopkeeper.new(order.shop.shopkeeper, unique_id: "WECHAT-WEBHOOK-SHOPKEEPER-ORDER-WAS-PAID-OUT-TRADE-NO-#{params[:out_trade_no]}").order_was_paid(order)
+    Notifier::Customer.new(order.user).order_was_paid(order)
+    Notifier::Shopkeeper.new(order.shop.shopkeeper).order_was_paid(order)
     SlackDispatcher.new.message("DONE !")
   end
 
