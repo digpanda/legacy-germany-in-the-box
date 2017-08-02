@@ -16,6 +16,11 @@ class Admin::ReferrersController < ApplicationController
     @referrers = Referrer.full_text_search(params[:query], match: :all, allow_empty_search: true).all
   end
 
+  def show
+  end
+
+  # NOTE : i'm not sure it's still in use
+  # Laurent, 02/08/2017
   def new
     @referrer_group = ReferrerGroup.create
     @url = "https://open.weixin.qq.com/connect/oauth2/authorize?" +

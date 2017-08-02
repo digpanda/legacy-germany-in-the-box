@@ -12,9 +12,6 @@ class Admin::Referrers::ProvisionsController < ApplicationController
   authorize_resource :class => false
   layout :custom_sublayout
 
-  def index
-  end
-
   def refresh
     # NOTE : this should be put somewhere else, like in a library
     provision.order.refresh_referrer_provision!

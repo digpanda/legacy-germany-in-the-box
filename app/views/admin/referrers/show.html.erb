@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="col-md-10">
+    <h2>Referrer <%= @referrer.user.decorate.full_name %> (<%= @referrer.reference_id %>)</h2>
+    List of all everything related to the referrer
+    <hr>
+  </div>
+  <div class="col-md-2 details__action">
+    <a href="<%= admin_user_path(@referrer.user) %>"><i class="fa fa-user tooltipster" title="<%= @referrer.user.email %>"></i></a>
+  </div>
+</div>
+
+<div class="row details__block">
+  <h3>Coupons linked</h3>
+  <hr>
+  <%= render partial: "admin/coupons/table", :locals => { :coupons => @referrer.coupons } %>
+</div>
+
+
+<div class="row details__block">
+  <h3>Orders linked</h3>
+  <hr>
+  <%= render partial: "admin/orders/table", :locals => { :orders => @referrer.orders } %>
+</div>
+
+<div class="row details__block">
+  <h3>Provisions</h3>
+  <hr>
+  <%= render partial: "admin/referrers/provisions/table", :locals => { :provisions => @referrer.provisions } %>
+</div>
+
+<div class="row details__block">
+  <%= render partial: "admin/referrers/provisions/operations", :locals => { :operations => @referrer.provision_operations } %>
+</div>

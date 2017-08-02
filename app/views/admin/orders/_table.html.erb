@@ -4,6 +4,9 @@
     <thead>
       <tr>
         <th>
+          #
+        </th>
+        <th>
           Delivery Address Name
         </th>
         <th>
@@ -32,6 +35,9 @@
     <tbody>
       <% orders.each do |order| %>
       <tr>
+        <td>
+          <%= order.id %>
+        </td>
         <td>
           <% unless order.shipping_address.nil? %>
           <%= order.shipping_address.decorate.chinese_full_name %>
