@@ -24,7 +24,7 @@ class StockManager
 
       if sku.quantity < Rails.configuration.gitb[:warning_sku_quantity]
         shopkeeper = order_item&.product&.shop&.shopkeeper
-        Notifier::Shopkeeper.new(shopkeeper).sku_quantity_is_low(order_item, sku)
+        Notifier::Shopkeeper.new(shopkeeper, unique_id: "SKU-QUANTITY-IS-LOW-ORDER-#{order.id}").sku_quantity_is_low(order_item, sku)
       end
     end
   end

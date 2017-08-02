@@ -5,7 +5,7 @@ class Guest::ShopsController < ApplicationController
   before_filter do
     restrict_to :customer
   end
-  
+
   before_action :set_shop, :set_products
 
   before_action :breadcrumb_home, only: [:show]
@@ -17,7 +17,7 @@ class Guest::ShopsController < ApplicationController
   private
 
   def set_shop
-    @shop = Shop::find(params[:id])
+    @shop = Shop.find(params[:id])
   end
 
   def set_products
