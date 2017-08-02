@@ -11,6 +11,7 @@ class ReferrerMaker < BaseService
   def convert!(group_token:nil, time_limit:true)
     turn_to_referrer!(time_limit)
     assign_to_group!(group_token)
+    assign_itself_as_referrer!
     generate_coupon!
     return_with(:success)
   rescue ReferrerMaker::Error => exception
@@ -18,6 +19,10 @@ class ReferrerMaker < BaseService
   end
 
   private
+
+  def assign_itself_as_referrer!
+    customer.update(parent_referrer: customer.referrer)
+  end
 
   def turn_to_referrer!(time_limit)
     unless customer.referrer
