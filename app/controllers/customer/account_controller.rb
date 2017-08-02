@@ -30,7 +30,12 @@ class Customer::AccountController < ApplicationController
     unless current_user.missing_info?
       # NOTE : the missing info can be triggered from multiple points
       # therefore it's just better to get back to the origin url.
-      redirect_to identity_solver.origin_url
+      # unless it's a referrer which needs to see his dashboard first
+      if user.referrer?
+        redirect_to customer_referrer_path
+      else
+        redirect_to identity_solver.origin_url
+      end
     end
   end
 
