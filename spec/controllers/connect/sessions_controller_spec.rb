@@ -12,7 +12,7 @@ describe Connect::SessionsController, :type => :controller do
       # if it'll break when the cart recover it
       user.cart_orders.first.order_items.delete_all
       post :create, {"user" => {"email" => user.email, "password" => "12345678"}}
-      expect{response}.not_to raise_error
+      expect { response }.not_to raise_error
 
     end
 

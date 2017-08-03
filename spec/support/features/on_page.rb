@@ -1,8 +1,7 @@
 module Helpers
   module Features
     module OnPage
-
-      XIPOST_BASE_URL = "xipost.de".freeze unless defined? XIPOST_BASE_URL
+      XIPOST_BASE_URL = 'xipost.de'.freeze unless defined? XIPOST_BASE_URL
 
       module_function
 
@@ -30,11 +29,11 @@ module Helpers
       end
 
       def on_chinese_login_page?
-        expect(page).to have_css "h3", text: "用户登录"
+        expect(page).to have_css 'h3', text: '用户登录'
       end
 
       def on_payment_method_page?
-        expect(page).to have_content("我的支付方式")
+        expect(page).to have_content('我的支付方式')
         expect(page).to have_current_path(payment_method_customer_checkout_path)
       end
 
@@ -43,9 +42,8 @@ module Helpers
       end
 
       def on_missing_info_page?
-        expect(page).to have_css "h2", text: "请确认您的信息" # "we need more info"
+        expect(page).to have_css 'h2', text: '请确认您的信息' # "we need more info"
       end
-
     end
   end
 end

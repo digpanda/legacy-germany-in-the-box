@@ -1,15 +1,19 @@
 module Helpers
   module Features
     module Checkout
+      WAIT_FOR_THE_PAGE = '支付宝 - 网上支付 安全快速！'.freeze
+      STREET = '华江里'.freeze
+      IDENTITY = '收件人信息'.freeze
+      CHOOSE_EXISTING = '请从以下地址中选择'.freeze
 
       # fill the complete chinese address
       def fill_in_checkout_address!
-        expect(page).to have_content("收件人信息")
+        expect(page).to have_content(IDENTITY)
 
-        fill_in 'address[fname]', :with => '薇'
-        fill_in 'address[lname]', :with => '李'
-        fill_in 'address[mobile]', :with => '13802049742'
-        fill_in 'address[pid]', :with => '11000019790225207X'
+        fill_in 'address[fname]', with: '薇'
+        fill_in 'address[lname]', with: '李'
+        fill_in 'address[mobile]', with: '13802049742'
+        fill_in 'address[pid]', with: '11000019790225207X'
 
         loop until page.all(:css, '#address_province option')[1]
         page.all(:css, '#address_province option')[1].select_option
@@ -18,18 +22,18 @@ module Helpers
         loop until page.all(:css, '#address_district option')[1]
         page.all(:css, '#address_district option')[1].select_option
 
-        fill_in 'address[street]', :with => '华江里'
-        fill_in 'address[zip]', :with => '300222'
+        fill_in 'address[street]', with: STREET
+        fill_in 'address[zip]', with: '300222'
 
         page.first('#address_primary').trigger('click')
         page.first('input[type=submit]').trigger('click')
 
-        expect(page).to have_content("请从以下地址中选择")
+        expect(page).to have_content(CHOOSE_EXISTING)
       end
 
       # fill in new checkout addresses even if one exists
       def fill_in_with_multiple_addresses!
-        expect(page).to have_content("请从以下地址中选择")
+        expect(page).to have_content(CHOOSE_EXISTING)
         page.first('#button-new-address').trigger('click')
         fill_in_checkout_address!
         page.first('.addresses__address-use a').trigger('click')
@@ -39,8 +43,8 @@ module Helpers
         page.first('.addresses__address-use a').trigger('click')
         on_payment_method_page?
         page.first('a[id=alipay]').trigger('click')
-        expect(page).to have_content("支付宝 - 网上支付 安全快速！") # wait for the page to show up
-        expect(page.current_url).to have_content("alipaydev.com")
+        expect(page).to have_content(WAIT_FOR_THE_PAGE) # wait for the page to show up
+        expect(page.current_url).to have_content('alipaydev.com')
         mock_payment!(mode, OrderPayment.first)
       end
 
@@ -77,9 +81,8 @@ module Helpers
       # access the manual logistic tracking
       def manual_partner_confirmed?
         visit customer_orders_path
-        expect(page).to have_content("追单")
+        expect(page).to have_content('追单')
       end
-
     end
   end
 end

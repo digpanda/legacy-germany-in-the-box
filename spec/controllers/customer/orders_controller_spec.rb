@@ -16,7 +16,7 @@ describe Customer::OrdersController, :type => :controller do
     it "can see the orders list" do
 
       get :index
-      expect{response}.not_to raise_error
+      expect { response }.not_to raise_error
       expect(assigns(:orders).count).to eql(5)
 
     end
@@ -30,7 +30,7 @@ describe Customer::OrdersController, :type => :controller do
     it "shows the page" do
 
       get :show, id: order.id
-      expect{response}.not_to raise_error
+      expect { response }.not_to raise_error
 
     end
 
