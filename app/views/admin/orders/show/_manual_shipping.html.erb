@@ -11,7 +11,7 @@
   <div class="row">
     <%= form_for [:admin, @order], :data => {:toggle => 'validator'} do |form| %>
       <%= form.text_field :tracking_id, :placeholder => "Tracking ID" %>
-      <%= form.submit "Update", :class => "btn btn-primary" %>
+      <%= form.submit 'Update", :class => "btn btn-primary" %>
       <% if @order.shippable? %>
         <a href="<%= admin_order_shipped_path(@order) %>" data-method="patch" class="btn btn-info">Ship &amp; Send tracking SMS</a>
       <% end %>

@@ -1,10 +1,10 @@
-describe Order, :type => :model  do
+describe Order, type: :model  do
 
-  describe "with referrer" do
+  describe 'with referrer' do
 
     subject { FactoryGirl.create(:order, :with_referrer_coupon) }
 
-    it "gives a correct provision to referrer" do
+    it 'gives a correct provision to referrer' do
 
       apply_coupon!(subject, subject.coupon)
 
@@ -16,7 +16,7 @@ describe Order, :type => :model  do
 
     end
 
-    it "adjusts provision depending the order status" do
+    it 'adjusts provision depending the order status' do
 
       apply_coupon!(subject, subject.coupon)
 

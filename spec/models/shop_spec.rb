@@ -1,7 +1,7 @@
 # describe Shop, type: :model do
-#   context "validations" do
-#     context "presence" do
-#       context "true" do
+#   context 'validations' do
+#     context 'presence' do
+#       context 'true' do
 #         it { is_expected.to validate_presence_of(:name) }
 #         it { is_expected.to validate_presence_of(:sms) }
 #         #it { is_expected.to validate_presence_of(:sms_mobile) }
@@ -15,7 +15,7 @@
 #         #it { is_expected.to validate_presence_of(:ustid) }
 #       end
 #
-#       context "false" do
+#       context 'false' do
 #         it { is_expected.not_to validate_presence_of(:fname) }
 #         it { is_expected.not_to validate_presence_of(:lname) }
 #         it { is_expected.not_to validate_presence_of(:tel) }
@@ -23,7 +23,7 @@
 #       end
 #     end
 #
-#     context "length" do
+#     context 'length' do
 #       it { is_expected.to validate_length_of(:name) }
 #       it { is_expected.to validate_length_of(:founding_year) }
 #       it { is_expected.to validate_length_of(:desc) }
@@ -44,13 +44,13 @@
 #       it { is_expected.to validate_length_of(:function) }
 #     end
 #
-#     context "numericality" do
+#     context 'numericality' do
 #       it { is_expected.to validate_length_of(:min_total) }
 #     end
 #   end
 #
 #
-#   context "methods" do
+#   context 'methods' do
 #
 #   end
 # end

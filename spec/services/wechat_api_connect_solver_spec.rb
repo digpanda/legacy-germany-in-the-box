@@ -1,10 +1,10 @@
 describe WechatApiConnectSolver  do
 
-  context "#resolve!" do
+  context '#resolve!' do
 
     subject(:wechat_api_connect_solver) { WechatApiConnectSolver.new("fake-code") }
 
-    it "succeed and create a new user" do
+    it 'succeed and create a new user' do
 
       allow_any_instance_of(WechatApiConnectSolver).to receive(:access_token_gateway).and_return({
         "openid" => "test-open-id",
@@ -28,7 +28,7 @@ describe WechatApiConnectSolver  do
 
     let!(:current_user) { FactoryGirl.create(:customer, provider: "wechat", wechat_unionid: "whatever-unionid") }
 
-    it "succeeds and retrieve an old user" do
+    it 'succeeds and retrieve an old user' do
 
       allow_any_instance_of(WechatApiConnectSolver).to receive(:access_token_gateway).and_return({
         "openid" => "test-open-id",
@@ -52,7 +52,7 @@ describe WechatApiConnectSolver  do
       expect(resolved.data[:customer].id).to eq(current_user.id)
     end
 
-    it "fails creating the user with those infos" do
+    it 'fails creating the user with those infos' do
 
       allow_any_instance_of(WechatApiConnectSolver).to receive(:access_token_gateway).and_return({
         "openid" => nil,
@@ -73,7 +73,7 @@ describe WechatApiConnectSolver  do
 
     end
 
-    it "throws an error from the API" do
+    it 'throws an error from the API' do
 
       allow_any_instance_of(WechatApiConnectSolver).to receive(:access_token_gateway).and_return({
         "errcode" => "289"

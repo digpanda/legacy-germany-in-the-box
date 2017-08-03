@@ -1,19 +1,17 @@
-describe Customer::OrdersController, :type => :controller do
-
+describe Customer::OrdersController, type: :controller do
   render_views
 
-  
   let(:current_user) { FactoryGirl.create(:customer) }
 
   before(:each) do
     login_customer current_user
   end
 
-  context "#index" do
+  context '#index' do
 
     subject!(:orders) { FactoryGirl.create_list(:order, 5, user: current_user) }
 
-    it "can see the orders list" do
+    it 'can see the orders list' do
 
       get :index
       expect { response }.not_to raise_error
@@ -23,11 +21,11 @@ describe Customer::OrdersController, :type => :controller do
 
   end
 
-  context "#show" do
+  context '#show' do
 
     subject(:order) { FactoryGirl.create(:order, user: current_user) }
 
-    it "shows the page" do
+    it 'shows the page' do
 
       get :show, id: order.id
       expect { response }.not_to raise_error
@@ -35,5 +33,4 @@ describe Customer::OrdersController, :type => :controller do
     end
 
   end
-
 end

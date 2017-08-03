@@ -5,7 +5,7 @@ feature "visits the shops", :js => true  do
     FactoryGirl.create_list(:product, 20)
   }
 
-  scenario "from the homepage" do
+  scenario 'from the homepage' do
 
     visit root_path
     page.first('#food').trigger('click') # click on anything
@@ -17,7 +17,7 @@ feature "visits the shops", :js => true  do
 
   let(:shop) { FactoryGirl.create(:shop) }
 
-  scenario "add a product in the cart" do
+  scenario 'add a product in the cart' do
 
     visit guest_shop_path(shop)
     on_shop_page?
@@ -28,7 +28,7 @@ feature "visits the shops", :js => true  do
 
   end
 
-  scenario "add a few items of the same product in the cart" do
+  scenario 'add a few items of the same product in the cart' do
 
     visit guest_shop_path(shop)
     on_shop_page?

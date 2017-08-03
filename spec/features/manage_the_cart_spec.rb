@@ -6,9 +6,9 @@ feature "manage the cart", :js => true  do
 
   let(:product) { FactoryGirl.create(:product) }
 
-  context "as a guest" do
+  context 'as a guest' do
 
-    scenario "get redirected to the log-in module" do
+    scenario 'get redirected to the log-in module' do
 
       product_to_cart!(product)
       on_shop_page?
@@ -19,23 +19,23 @@ feature "manage the cart", :js => true  do
 
   end
 
-  context "as customer" do
+  context 'as customer' do
 
     let(:customer) { FactoryGirl.create(:customer) }
     before(:each) { login!(customer) }
 
-    scenario "go to the empty cart manager" do
+    scenario 'go to the empty cart manager' do
 
       visit customer_cart_path
       on_cart_page? # empty cart manager page
 
     end
 
-    context "with filled cart" do
+    context 'with filled cart' do
 
       before(:each) { product_to_cart!(product) }
 
-      scenario "cart manager shows checkout button" do
+      scenario 'cart manager shows checkout button' do
 
         # page.driver.browser.navigate.refresh # the AJAX call could make problem otherwise
         reload_page
@@ -45,7 +45,7 @@ feature "manage the cart", :js => true  do
 
       end
 
-      scenario "change the quantity of one product in the cart manager" do
+      scenario 'change the quantity of one product in the cart manager' do
 
         # page.driver.browser.navigate.refresh # the AJAX call could make problem otherwise
         reload_page

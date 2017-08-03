@@ -6,7 +6,7 @@ feature "checkout process", :js => true  do
     login!(customer)
   end
 
-  context "with xipost logistic partner" do
+  context 'with xipost logistic partner' do
 
     let(:shop) { FactoryGirl.create(:shop, :with_payment_gateways) }
     let(:product) { FactoryGirl.create(:product, shop_id: shop.id) }
@@ -19,21 +19,21 @@ feature "checkout process", :js => true  do
       page.first('#checkout-button').click # go to address step
     end
 
-    scenario "pays successfully with alipay" do
+    scenario 'pays successfully with alipay' do
       pay_with_alipay!
       manual_partner_confirmed?
     end
 
     # NOTE : for now we could not test this part successfully because the test environment does not work anymore
     # we have to find a work around to check it out.
-    scenario "pays successfully with wechatpay" do
+    scenario 'pays successfully with wechatpay' do
       #pay_with_wechatpay!
       #manual_partner_confirmed?
     end
 
   end
 
-  context "with manual logistic" do
+  context 'with manual logistic' do
 
     let(:shop) { FactoryGirl.create(:shop, :with_payment_gateways) }
     let(:product) { FactoryGirl.create(:product, shop_id: shop.id) }
@@ -46,11 +46,11 @@ feature "checkout process", :js => true  do
       page.first('#checkout-button').click # go to address step
     end
 
-    context "without essential informations (wechat like)" do
+    context 'without essential informations (wechat like)' do
 
       let(:customer) { FactoryGirl.create(:customer, :from_wechat, :without_name, :without_address) }
 
-      scenario "fill essential information and pay successfully" do
+      scenario 'fill essential information and pay successfully' do
         on_missing_info_page?
         fill_in 'user[email]', :with => 'random-valid-email@email.com'
         fill_in 'user[lname]', :with => '前'
@@ -61,26 +61,26 @@ feature "checkout process", :js => true  do
 
     end
 
-    context "address built from scratch" do
+    context 'address built from scratch' do
 
       let(:customer) { FactoryGirl.create(:customer, :without_address) }
 
-      scenario "pay successfully and generate shipping label correctly" do
+      scenario 'pay successfully and generate shipping label correctly' do
         fill_in_checkout_address!
         pay_with_alipay!
       end
 
     end
 
-    context "address already setup" do
+    context 'address already setup' do
 
-      scenario "fail to pay" do
+      scenario 'fail to pay' do
         pay_with_alipay!(mode: :fail)
       end
 
-      context "apply a coupon" do
+      context 'apply a coupon' do
 
-        scenario "pay successfully and generate shipping label correctly with coupon" do
+        scenario 'pay successfully and generate shipping label correctly with coupon' do
           page.first('#cart').click
           make_and_apply_coupon!
           page.first('#checkout-button').click

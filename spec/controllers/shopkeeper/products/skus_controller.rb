@@ -1,13 +1,13 @@
-describe Shopkeeper::Products::SkusController, :type => :controller do
+describe Shopkeeper::Products::SkusController, type: :controller do
 
-  describe "#clone" do
+  describe '#clone' do
 
     let(:current_user) { FactoryGirl.create(:shopkeeper) }
     before(:each) { login_shopkeeper current_user }
     let(:product) { FactoryGirl.create(:product) }
     subject(:sku) { product.skus.first }
 
-    it "clone successfully the sku" do
+    it 'clone successfully the sku' do
 
       patch :clone, sku_id: sku.id, product_id: sku.product.id
       product.reload # refresh the data after its been cloned

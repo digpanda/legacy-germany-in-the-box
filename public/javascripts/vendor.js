@@ -11281,7 +11281,7 @@ $(function () {
         _bindDropdownListeners: function() {
             var that = this;
             // when mouse over a list item, just highlight that one
-            // we add the class "highlight", so if they hit "enter" we know which one to select
+            // we add the class "highlight", so if they hit 'enter" we know which one to select
             this.countryList.on("mouseover" + this.ns, ".country", function(e) {
                 that._highlightListItem($(this));
             });
