@@ -1,7 +1,7 @@
 # figure out where we are being loaded from
 if $LOADED_FEATURES.grep(/spec\/spec_helper\.rb/).any?
   begin
-    raise "foo"
+    raise 'foo'
   rescue => e
     puts <<-MSG
   ===================================================
@@ -34,9 +34,8 @@ RSpec.configure do |config|
 
 end
 
-
 port = 3333 + ENV['TEST_ENV_NUMBER'].to_i # for `parallel_tests`
-host = "local.dev"
+host = 'local.dev'
 
 Capybara.app_host = "http://#{host}:#{port}"
 Capybara.always_include_port = true
@@ -70,11 +69,11 @@ Capybara.javascript_driver = :poltergeist
 
 Capybara.register_driver :poltergeist do |app|
   Capybara::Poltergeist::Driver.new(app,
-                                    :js_errors => false,
-                                    :debug => false,
-                                    # :phantomjs_options => ["--debug=yes"],
-                                    :window_size => [1800,1000],
-                                    :port => 51674 + ENV['TEST_ENV_NUMBER'].to_i # `parallel_tests`
+                                    js_errors: false,
+                                    debug: false,
+                                    # phantomjs_options: ["--debug=yes"],
+                                    window_size: [1800, 1000],
+                                    port: 51674 + ENV['TEST_ENV_NUMBER'].to_i # `parallel_tests`
                                     )
 end
 #

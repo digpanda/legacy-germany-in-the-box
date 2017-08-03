@@ -1,4 +1,4 @@
-feature "checkout process", :js => true  do
+feature 'package set process', js: true  do
 
   let(:customer) { FactoryGirl.create(:customer) }
 

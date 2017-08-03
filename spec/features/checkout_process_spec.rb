@@ -1,4 +1,4 @@
-feature "checkout process", :js => true  do
+feature 'checkout process', js: true  do
 
   let(:customer) { FactoryGirl.create(:customer) }
 
@@ -52,9 +52,9 @@ feature "checkout process", :js => true  do
 
       scenario 'fill essential information and pay successfully' do
         on_missing_info_page?
-        fill_in 'user[email]', :with => 'random-valid-email@email.com'
-        fill_in 'user[lname]', :with => '前'
-        fill_in 'user[fname]', :with => '单'
+        fill_in 'user[email]', with: 'random-valid-email@email.com'
+        fill_in 'user[lname]', with: '前'
+        fill_in 'user[fname]', with: '单'
         page.first('#checkout-button').click # go to address step
         on_order_address_page?
       end

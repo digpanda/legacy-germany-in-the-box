@@ -7,9 +7,9 @@ describe Notifier::Dispatcher, type: :mailer do
     it 'should send a notification and an Email' do
       Notifier::Dispatcher.new(
         user: customer,
-        title: "Fake title",
-        desc: "Fake description",
-        url: "http://test.com"
+        title: 'Fake title',
+        desc: 'Fake description',
+        url: 'http://test.com'
       ).perform
 
       expect(Notification.count).to eq(1)
@@ -18,11 +18,11 @@ describe Notifier::Dispatcher, type: :mailer do
 
     it 'should send an Email without user defined' do
       Notifier::Dispatcher.new(
-        email: "email@email.com",
+        email: 'email@email.com',
         mailer: CustomerMailer,
-        title: "Fake title",
-        desc: "Fake description",
-        url: "http://test.com"
+        title: 'Fake title',
+        desc: 'Fake description',
+        url: 'http://test.com'
       ).perform
 
       expect(Notification.count).to eq(0)
@@ -35,7 +35,7 @@ describe Notifier::Dispatcher, type: :mailer do
 
         Notifier::Dispatcher.new(
           user: customer,
-          unique_id: "test",
+          unique_id: 'test',
           title: "Fake title #{time}",
           desc: "Fake description #{time}",
           url: "http://test.com/#{time}"
@@ -50,9 +50,9 @@ describe Notifier::Dispatcher, type: :mailer do
     it 'should send a SMS' do
       dispatch_sms = Notifier::Dispatcher.new(
         user: customer,
-        title: "Fake title",
-        desc: "Fake description", # this will be used
-        url: "http://test.com"
+        title: 'Fake title',
+        desc: 'Fake description', # this will be used
+        url: 'http://test.com'
       ).perform(dispatch: [:sms])
 
       expect(dispatch_sms.success?).to eq(true) # sent successfully
@@ -61,14 +61,14 @@ describe Notifier::Dispatcher, type: :mailer do
     end
 
     it 'should not send a SMS' do
-      customer.mobile = "invalid"
+      customer.mobile = 'invalid'
       customer.save(validation: false)
 
       dispatch_sms = Notifier::Dispatcher.new(
         user: customer,
-        title: "Fake title",
-        desc: "Fake description", # this will be used
-        url: "http://test.com"
+        title: 'Fake title',
+        desc: 'Fake description', # this will be used
+        url: 'http://test.com'
       ).perform(dispatch: [:sms])
 
       expect(dispatch_sms.success?).to eq(false) # not sent
@@ -77,9 +77,9 @@ describe Notifier::Dispatcher, type: :mailer do
     it 'should send a SMS and an email' do
       dispatch_sms = Notifier::Dispatcher.new(
         user: customer,
-        title: "Fake title",
-        desc: "Fake description", # this will be used
-        url: "http://test.com"
+        title: 'Fake title',
+        desc: 'Fake description', # this will be used
+        url: 'http://test.com'
       ).perform(dispatch: [:sms, :email])
 
       expect(dispatch_sms.success?).to eq(true) # sent successfully
@@ -92,9 +92,9 @@ describe Notifier::Dispatcher, type: :mailer do
       2.times do
         Notifier::Dispatcher.new(
           user: customer,
-          title: "Fake title",
-          desc: "Fake description",
-          url: "http://test.com"
+          title: 'Fake title',
+          desc: 'Fake description',
+          url: 'http://test.com'
         ).perform
       end
 

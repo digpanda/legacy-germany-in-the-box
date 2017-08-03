@@ -18,13 +18,13 @@ describe LandingSolver do
     end
 
     it 'should setup package sets from forced param' do
-      request = double('request', url: root_url, session: {}, params: { landing: "package_sets" })
+      request = double('request', url: root_url, session: {}, params: { landing: 'package_sets' })
       solver = LandingSolver.new(request).setup!
       expect(solver.request.session[:landing]).to eq(:package_sets)
     end
 
     it 'should setup products from forced param' do
-      request = double('request', url: guest_package_sets_url, session: {}, params: { landing: "products" })
+      request = double('request', url: guest_package_sets_url, session: {}, params: { landing: 'products' })
       solver = LandingSolver.new(request).setup!
       expect(solver.request.session[:landing]).to eq(:products)
     end

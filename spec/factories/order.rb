@@ -9,7 +9,7 @@ FactoryGirl.define do
     user                    { FactoryGirl.create(:customer) }
 
     after(:build) do |order|
-      order.order_items = build_list(:order_item, 5, :product => {:shop => order.shop})
+      order.order_items = build_list(:order_item, 5, product: { shop: order.shop })
     end
 
     trait :with_package_set do
@@ -27,7 +27,7 @@ FactoryGirl.define do
         order.order_items.delete_all
         package_sets = FactoryGirl.create_list(:package_set, 3, shop: order.shop)
         package_sets.each do |package_set|
-            package_set.package_skus.each do |package_sku|
+          package_set.package_skus.each do |package_sku|
             FactoryGirl.create(:order_item, order: order, sku: package_sku.sku, package_set: package_set)
           end
         end
@@ -45,7 +45,7 @@ FactoryGirl.define do
         # we remove to better rebuild the items
         # with referrer rates
         order.order_items = []
-        order.order_items = build_list(:order_item, 2, {:referrer_rate => 10.00})
+        order.order_items = build_list(:order_item, 2, referrer_rate: 10.00)
         order.save
       end
     end
@@ -59,7 +59,7 @@ FactoryGirl.define do
         # we remove to better rebuild the items
         # with referrer rates
         order.order_items = []
-        order.order_items = build_list(:order_item, 2, {:referrer_rate => 10.00})
+        order.order_items = build_list(:order_item, 2, referrer_rate: 10.00)
         order.save
       end
     end
@@ -85,7 +85,7 @@ FactoryGirl.define do
       after(:create) do |order|
         # we remove to better rebuild the items
         order.order_items = []
-        order.order_items = build_list(:order_item, 1, :with_small_volume, :product => {:shop => order.shop})
+        order.order_items = build_list(:order_item, 1, :with_small_volume, product: { shop: order.shop })
         order.save
       end
     end
@@ -94,7 +94,7 @@ FactoryGirl.define do
       after(:create) do |order|
         # we remove to better rebuild the items
         order.order_items = []
-        order.order_items = build_list(:order_item, 5, :with_small_volume, :product => {:shop => order.shop})
+        order.order_items = build_list(:order_item, 5, :with_small_volume, product: { shop: order.shop })
         order.save
       end
     end
@@ -103,7 +103,7 @@ FactoryGirl.define do
       after(:create) do |order|
         # we remove to better rebuild the items
         order.order_items = []
-        order.order_items = build_list(:order_item, 2, :with_big_volume, :product => {:shop => order.shop})
+        order.order_items = build_list(:order_item, 2, :with_big_volume, product: { shop: order.shop })
         order.save
       end
     end
@@ -112,7 +112,7 @@ FactoryGirl.define do
       after(:create) do |order|
         # we remove to better rebuild the items
         order.order_items = []
-        order.order_items = build_list(:order_item, 5, :with_big_volume, :product => {:shop => order.shop})
+        order.order_items = build_list(:order_item, 5, :with_big_volume, product: { shop: order.shop })
         order.save
       end
     end

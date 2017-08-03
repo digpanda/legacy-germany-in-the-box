@@ -1,4 +1,4 @@
-describe 'api formatting", type: :request  do
+describe 'api formatting', type: :request  do
 
   context 'errors rendering' do
 

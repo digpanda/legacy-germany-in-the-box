@@ -20,7 +20,7 @@ describe CouponHandler, type: :request do
     expect(order.coupon).to be(nil)
   end
 
-  it 'shouldn't apply to more than one order when is unique' do
+  it 'should not apply to more than one order when is unique' do
     CouponHandler.new(identity, unique_coupon, order).apply
     expect(order.coupon).to eq(unique_coupon)
     CouponHandler.new(second_identity, unique_coupon, second_order).apply

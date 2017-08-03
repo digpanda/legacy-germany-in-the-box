@@ -9,7 +9,7 @@ FactoryGirl.define do
       # the order and the different products we will create
       shop = context.product[:shop] if context.product && context.product[:shop]
       if shop
-        product = create(:product, :shop_id => shop.id.to_s)
+        product = create(:product, shop_id: shop.id.to_s)
       else
         product = create(:product)
       end

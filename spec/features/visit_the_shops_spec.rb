@@ -1,4 +1,4 @@
-feature "visits the shops", :js => true  do
+feature 'visits the shops', js: true  do
 
   before(:each) {
     create_categories!
@@ -9,8 +9,8 @@ feature "visits the shops", :js => true  do
 
     visit root_path
     page.first('#food').trigger('click') # click on anything
-    expect(page).to have_css 'h1', text: "食品佳酿" # we are now on the food category page
-    first(".shop-block__container").first('.main-button__hollow').trigger('click')
+    expect(page).to have_css 'h1', text: '食品佳酿' # we are now on the food category page
+    first('.shop-block__container').first('.main-button__hollow').trigger('click')
     on_shop_page?
 
   end

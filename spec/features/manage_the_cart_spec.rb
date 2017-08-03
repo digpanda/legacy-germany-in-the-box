@@ -1,4 +1,4 @@
-feature "manage the cart", :js => true  do
+feature 'manage the cart', js: true  do
 
   before(:each) {
     create_categories!
@@ -41,7 +41,7 @@ feature "manage the cart", :js => true  do
         reload_page
         visit customer_cart_path
         on_cart_page?
-        expect(page).to have_css "#checkout-button", text: "购买" # go checkout
+        expect(page).to have_css '#checkout-button', text: '购买' # go checkout
 
       end
 
@@ -51,14 +51,13 @@ feature "manage the cart", :js => true  do
         reload_page
         visit customer_cart_path
         2.times { page.first('.js-set-quantity-plus').trigger('click') } # raise quantity
-        expect(page.first('span.cart__order-item-quantity-select-value')['innerHTML']).to eql("3")
+        expect(page.first('span.cart__order-item-quantity-select-value')['innerHTML']).to eql('3')
         1.times { page.first('.js-set-quantity-minus').trigger('click') }
-        expect(page.first('span.cart__order-item-quantity-select-value')['innerHTML']).to eql("2")
+        expect(page.first('span.cart__order-item-quantity-select-value')['innerHTML']).to eql('2')
 
       end
 
     end
-
 
   end
 

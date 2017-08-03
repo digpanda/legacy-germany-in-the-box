@@ -1,4 +1,4 @@
-describe 'force redirection", type: :request  do
+describe 'force redirection', type: :request  do
 
   context 'try to access customer area' do
 
