@@ -2,17 +2,16 @@ require 'csv'
 require 'net/ftp'
 
 class Shopkeeper::OrdersController < ApplicationController
-
   attr_accessor :order
 
-  authorize_resource :class => false
+  authorize_resource class: false
   before_action :set_order, :except => [:index]
   before_filter :is_shop_order, :except => [:index]
 
   layout :custom_sublayout, only: [:index]
 
   def index
-    @orders = current_user.shop.orders.bought_or_unverified.order_by(paid_at: :desc, c_at: :desc).paginate(:page => current_page, :per_page => 10)
+    @orders = current_user.shop.orders.bought_or_unverified.order_by(paid_at: :desc, c_at: :desc).paginate(page: current_page, per_page: 10)
   end
 
   def shipped
@@ -53,5 +52,4 @@ class Shopkeeper::OrdersController < ApplicationController
   def is_shop_order
     order.shop.id == current_user.shop.id
   end
-
 end

@@ -5,7 +5,7 @@ class Api::Customer::FavoritesController < Api::ApplicationController
 
   attr_reader :favorites, :product
 
-  authorize_resource :class => false
+  authorize_resource class: false
 
   before_action :set_favorites
   before_action :set_product, only: [:update, :destroy]

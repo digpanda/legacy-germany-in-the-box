@@ -1,8 +1,7 @@
 class Shopkeeper::PaymentsController < ApplicationController
-
   attr_reader :shop
 
-  authorize_resource :class => false
+  authorize_resource class: false
   before_action :set_shop
 
   layout :custom_sublayout, only: [:index]

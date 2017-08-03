@@ -2,7 +2,7 @@ class Customer::Orders::CouponsController < ApplicationController
 
   attr_reader :order, :coupon
 
-  authorize_resource :class => false
+  authorize_resource class: false
   before_action :set_order
   before_action :set_coupon, :except => [:destroy]
 

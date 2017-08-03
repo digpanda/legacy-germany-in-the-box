@@ -4,7 +4,7 @@ class Admin::OrdersController < ApplicationController
 
   attr_accessor :order, :orders
 
-  authorize_resource :class => false
+  authorize_resource class: false
   before_action :set_order, :except => [:index]
 
   layout :custom_sublayout
@@ -15,7 +15,7 @@ class Admin::OrdersController < ApplicationController
   def index
     respond_to do |format|
       format.html do
-        @orders = Order.nonempty.order_by(paid_at: :desc, c_at: :desc).full_text_search(params[:query], match: :all, allow_empty_search: true).paginate(:page => current_page, :per_page => 10)
+        @orders = Order.nonempty.order_by(paid_at: :desc, c_at: :desc).full_text_search(params[:query], match: :all, allow_empty_search: true).paginate(page: current_page, per_page: 10)
       end
       format.csv do
         @orders = Order.nonempty.order_by(paid_at: :desc, c_at: :desc)

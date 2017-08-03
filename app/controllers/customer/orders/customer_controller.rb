@@ -5,7 +5,7 @@ class Customer::Orders::CustomerController < ApplicationController
 
   attr_reader :order, :customer
 
-  authorize_resource :class => false
+  authorize_resource class: false
   before_action :set_order, :set_customer
 
   # we only check if the customer has all the required datas

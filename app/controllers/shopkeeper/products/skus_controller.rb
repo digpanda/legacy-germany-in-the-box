@@ -4,7 +4,7 @@ class Shopkeeper::Products::SkusController < ApplicationController
 
   attr_reader :product, :sku, :skus
 
-  authorize_resource :class => false
+  authorize_resource class: false
 
   layout :custom_sublayout
   before_action :set_product
@@ -13,7 +13,7 @@ class Shopkeeper::Products::SkusController < ApplicationController
   before_action :breadcrumb_shopkeeper_product_edit_sku, only: [:edit]
 
   def index
-    @skus = product.skus.order_by(:c_at => :desc).paginate(:page => current_page, :per_page => 10)
+    @skus = product.skus.order_by(c_at: :desc).paginate(page: current_page, per_page: 10)
   end
 
   def new
@@ -55,7 +55,7 @@ class Shopkeeper::Products::SkusController < ApplicationController
     if SkuCloner.new(product, sku).process.success?
       flash[:success] = I18n.t(:clone_successful, scope: :sku)
     else
-      flash[:error] = "Could not clone the sku."
+      flash[:error] = 'Could not clone the sku.'
     end
 
     redirection_after_update

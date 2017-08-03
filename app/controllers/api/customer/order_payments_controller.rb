@@ -2,7 +2,7 @@ class Api::Customer::OrderPaymentsController < Api::ApplicationController
 
   attr_reader :order_payment
 
-  authorize_resource :class => false
+  authorize_resource class: false
   before_action :set_order_payment
 
   def show

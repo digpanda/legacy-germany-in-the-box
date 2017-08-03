@@ -2,7 +2,7 @@ class Admin::CouponsController < ApplicationController
 
   attr_accessor :coupon, :coupons
 
-  authorize_resource :class => false
+  authorize_resource class: false
   before_action :set_coupon, :except => [:index, :create, :new]
 
   before_action :breadcrumb_admin_coupons, :except => [:index]
@@ -13,7 +13,7 @@ class Admin::CouponsController < ApplicationController
   layout :custom_sublayout
 
   def index
-    @coupons = Coupon.order_by(:c_at => :desc).full_text_search(params[:query], match: :all, allow_empty_search: true).paginate(:page => current_page, :per_page => 10)
+    @coupons = Coupon.order_by(c_at: :desc).full_text_search(params[:query], match: :all, allow_empty_search: true).paginate(page: current_page, per_page: 10)
   end
 
   def new

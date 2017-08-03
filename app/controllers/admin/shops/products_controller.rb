@@ -4,7 +4,7 @@ class Admin::Shops::ProductsController < ApplicationController
 
   attr_reader :shop, :products, :product
 
-  authorize_resource :class => false
+  authorize_resource class: false
 
   before_action :set_shop
   before_action :set_product, except: [:index, :new, :create]
@@ -17,10 +17,10 @@ class Admin::Shops::ProductsController < ApplicationController
   def index
     respond_to do |format|
       format.html do
-        @products = shop.products.order_by(:c_at => :desc).full_text_search(query, match: :any, allow_empty_search: true).paginate(:page => current_page, :per_page => 10)
+        @products = shop.products.order_by(c_at: :desc).full_text_search(query, match: :any, allow_empty_search: true).paginate(page: current_page, per_page: 10)
       end
       format.csv do
-        @products = shop.products.order_by(:c_at => :desc)
+        @products = shop.products.order_by(c_at: :desc)
         render text: ProductSkusFormatter.new(products).to_csv.encode(CSV_ENCODE),
                type: "text/csv; charset=#{CSV_ENCODE}; header=present",
                disposition: 'attachment'

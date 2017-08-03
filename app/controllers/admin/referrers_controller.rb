@@ -9,7 +9,7 @@ class Admin::ReferrersController < ApplicationController
   before_action :breadcrumb_admin_referrer_provisions, only: [:provisions]
   before_action :breadcrumb_admin_referrer_coupon, only: [:coupon]
 
-  authorize_resource :class => false
+  authorize_resource class: false
   layout :custom_sublayout
 
   def index

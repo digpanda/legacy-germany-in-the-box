@@ -5,7 +5,7 @@ class Admin::AddressController < ApplicationController
 
   attr_accessor :address
 
-  authorize_resource :class => false
+  authorize_resource class: false
 
   before_action :set_address, only: [:show]
 

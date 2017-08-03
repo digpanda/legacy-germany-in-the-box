@@ -7,7 +7,7 @@ class Customer::CartController < ApplicationController
   before_action :breadcrumb_cart
   before_action :set_cart
 
-  authorize_resource :class => false
+  authorize_resource class: false
 
   def show
   end

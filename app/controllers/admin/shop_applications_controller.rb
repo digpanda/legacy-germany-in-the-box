@@ -2,13 +2,13 @@ class Admin::ShopApplicationsController < ApplicationController
 
   attr_accessor :shop_application, :shop_applications
 
-  authorize_resource :class => false
+  authorize_resource class: false
   before_action :set_shop_application, :except => [:index]
 
   layout :custom_sublayout
 
   def index
-    @shop_applications = ShopApplication.order_by(:c_at => :desc).paginate(:page => current_page, :per_page => 10)
+    @shop_applications = ShopApplication.order_by(c_at: :desc).paginate(page: current_page, per_page: 10)
   end
 
   def destroy

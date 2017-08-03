@@ -1,10 +1,9 @@
 class Shopkeeper::ShopController < ApplicationController
-
   include DestroyImage
 
   attr_reader :shop
 
-  authorize_resource :class => false
+  authorize_resource class: false
   before_action :set_shop
 
   layout :custom_sublayout
@@ -30,5 +29,4 @@ class Shopkeeper::ShopController < ApplicationController
   def shop_params
     params.require(:shop).permit!.except(:agb)
   end
-
 end

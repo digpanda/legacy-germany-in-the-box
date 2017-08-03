@@ -4,7 +4,7 @@ class Admin::ReferrerGroupsController < ApplicationController
 
   attr_accessor :referrer_group, :referrer_groups
 
-  authorize_resource :class => false
+  authorize_resource class: false
 
   before_action :set_referrer_group, :except => [:index, :new, :create]
 
@@ -16,7 +16,7 @@ class Admin::ReferrerGroupsController < ApplicationController
   layout :custom_sublayout
 
   def index
-    @referrer_groups = ReferrerGroup.order_by(:position => :asc).paginate(:page => current_page, :per_page => 10)
+    @referrer_groups = ReferrerGroup.order_by(:position => :asc).paginate(page: current_page, per_page: 10)
   end
 
   def new

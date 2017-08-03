@@ -1,6 +1,6 @@
 class Customer::Checkout::Callback::AlipayController < ApplicationController
 
-  authorize_resource :class => false
+  authorize_resource class: false
   layout :default_layout
 
   def show

@@ -1,8 +1,7 @@
 class Shopkeeper::AddressesController < ApplicationController
-
   attr_reader :address
 
-  authorize_resource :class => false
+  authorize_resource class: false
   before_action :set_address, only: [:show, :update, :destroy]
   before_action :set_address_country, only: [:create, :update]
 
@@ -58,5 +57,4 @@ class Shopkeeper::AddressesController < ApplicationController
   def set_address_country
     address_params[:country] = 'DE'
   end
-
 end

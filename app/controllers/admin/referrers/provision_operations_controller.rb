@@ -4,7 +4,7 @@ class Admin::Referrers::ProvisionOperationsController < ApplicationController
 
   before_action :set_referrer, :except => [:index, :new]
 
-  authorize_resource :class => false
+  authorize_resource class: false
   layout :custom_sublayout
 
   def create

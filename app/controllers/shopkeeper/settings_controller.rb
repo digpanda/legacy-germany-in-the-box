@@ -1,9 +1,8 @@
 class Shopkeeper::SettingsController < ApplicationController
-
   attr_reader :shop
 
-  authorize_resource :class => false
-  
+  authorize_resource class: false
+
   before_action :set_shop
 
   layout :custom_sublayout
@@ -27,7 +26,6 @@ class Shopkeeper::SettingsController < ApplicationController
   end
 
   def shop_params
-    params.require(:shop).permit!.delocalize({:min_total => :number})
+    params.require(:shop).permit!.delocalize(min_total: :number)
   end
-
 end

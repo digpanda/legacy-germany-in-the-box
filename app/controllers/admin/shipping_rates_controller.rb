@@ -2,7 +2,7 @@ class Admin::ShippingRatesController < ApplicationController
 
   attr_reader :shipping_rate, :shipping_rates
 
-  authorize_resource :class => false
+  authorize_resource class: false
   before_action :set_shipping_rate, :only => [:update]
 
   layout :custom_sublayout

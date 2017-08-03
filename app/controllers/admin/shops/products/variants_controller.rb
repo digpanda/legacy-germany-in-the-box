@@ -5,7 +5,7 @@ class Admin::Shops::Products::VariantsController < ApplicationController
 
   attr_reader :shop, :product, :variants, :variant
 
-  authorize_resource :class => false
+  authorize_resource class: false
   before_action :set_shop, :set_product
   before_action :set_variant, except: [:index, :create]
   before_action :breadcrumb_admin_shops, :breadcrumb_admin_shop_products, :breadcrumb_admin_edit_product, :breadcrumb_admin_product_variants

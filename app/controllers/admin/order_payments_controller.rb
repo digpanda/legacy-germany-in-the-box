@@ -4,7 +4,7 @@ class Admin::OrderPaymentsController < ApplicationController
 
   attr_reader :order_payment, :order_payments
 
-  authorize_resource :class => false
+  authorize_resource class: false
 
   layout :custom_sublayout, only: [:index, :show]
   before_action :set_order_payment, except: [:index]
@@ -13,7 +13,7 @@ class Admin::OrderPaymentsController < ApplicationController
   before_action :breadcrumb_admin_order_payment, only: [:show]
 
   def index
-    @order_payments = OrderPayment.order_by(c_at: :desc).full_text_search(params[:query], match: :all, allow_empty_search: true).paginate(:page => current_page, :per_page => 10);
+    @order_payments = OrderPayment.order_by(c_at: :desc).full_text_search(params[:query], match: :all, allow_empty_search: true).paginate(page: current_page, per_page: 10);
   end
 
   def show

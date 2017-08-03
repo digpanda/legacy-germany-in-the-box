@@ -4,7 +4,7 @@ class Admin::Shops::Products::SkusController < ApplicationController
 
   attr_reader :shop, :product, :sku, :skus
 
-  authorize_resource :class => false
+  authorize_resource class: false
 
   layout :custom_sublayout
   before_action :set_product, :set_shop
@@ -14,7 +14,7 @@ class Admin::Shops::Products::SkusController < ApplicationController
   before_action :breadcrumb_admin_product_edit_sku, only: [:edit]
 
   def index
-    @skus = product.skus.order_by(:c_at => :desc).paginate(:page => current_page, :per_page => 10)
+    @skus = product.skus.order_by(c_at: :desc).paginate(page: current_page, per_page: 10)
   end
 
   def new

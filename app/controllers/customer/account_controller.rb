@@ -2,7 +2,7 @@ class Customer::AccountController < ApplicationController
 
   attr_accessor :user
 
-  authorize_resource :class => false
+  authorize_resource class: false
   before_action :set_user
 
   layout :custom_sublayout, except: [:missing_info]

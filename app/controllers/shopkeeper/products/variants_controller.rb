@@ -2,13 +2,12 @@
 # this is an embedded collection within the product model used on the skus
 # NOTE : be careful, this method is being inherited in the Admin side
 class Shopkeeper::Products::VariantsController < ApplicationController
-
   MAX_NEW_VARIANTS = 10.freeze
   MAX_NEW_OPTIONS = 10.freeze
 
   attr_reader :shop, :product, :variants, :variant
 
-  authorize_resource :class => false
+  authorize_resource class: false
 
   before_action :set_shop, :set_product
   before_action :set_variant, except: [:index, :create]
@@ -49,7 +48,6 @@ class Shopkeeper::Products::VariantsController < ApplicationController
   end
 
   def destroy
-
     ids = variant.suboptions.map { |o| o.id.to_s }
 
     if product.skus.detect { |s| s.option_ids.to_set.intersect?(ids.to_set) }
@@ -117,7 +115,7 @@ class Shopkeeper::Products::VariantsController < ApplicationController
   # NOTE : since it's converted to an hash, we cannot use symbols anymore
   def product_params_without_option
     product_params.to_h.tap do |product_param|
-      product_param.delete("options_attributes")
+      product_param.delete('options_attributes')
     end
   end
 
@@ -158,5 +156,4 @@ class Shopkeeper::Products::VariantsController < ApplicationController
   def set_variant
     @variant = product.options.find(params[:variant_id] || params[:id])
   end
-
 end

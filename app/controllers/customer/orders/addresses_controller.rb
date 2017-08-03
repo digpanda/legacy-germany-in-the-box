@@ -3,7 +3,7 @@ class Customer::Orders::AddressesController < Customer::AddressesController
 
   attr_reader :order, :address, :addresses
 
-  authorize_resource :class => false
+  authorize_resource class: false
   before_action :set_order
   before_action :set_addresses
   before_action :breadcrumb_cart, :breadcrumb_checkout_address

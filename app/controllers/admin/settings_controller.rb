@@ -4,7 +4,7 @@ class Admin::SettingsController < ApplicationController
 
   attr_reader :setting, :settings
 
-  authorize_resource :class => false
+  authorize_resource class: false
   before_action :set_setting
 
   layout :custom_sublayout

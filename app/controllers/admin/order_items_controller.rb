@@ -4,7 +4,7 @@ class Admin::OrderItemsController < ApplicationController
 
   attr_accessor :order_item, :order_items, :order
 
-  authorize_resource :class => false
+  authorize_resource class: false
   before_action :set_order_item, :set_order
 
   def update

@@ -3,7 +3,7 @@ class Customer::AddressesController < ApplicationController
 
   attr_reader :address
 
-  authorize_resource :class => false
+  authorize_resource class: false
   layout :custom_sublayout
   before_action :set_address, only: [:show, :edit, :update, :destroy]
   before_action :set_address_params, only: [:create, :update]

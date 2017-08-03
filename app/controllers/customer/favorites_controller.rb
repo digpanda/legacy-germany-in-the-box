@@ -4,7 +4,7 @@ class Customer::FavoritesController < ApplicationController
 
   attr_reader :favorites, :product
 
-  authorize_resource :class => false
+  authorize_resource class: false
 
   before_action :set_favorites
 

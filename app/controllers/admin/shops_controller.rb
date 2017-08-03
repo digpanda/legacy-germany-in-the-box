@@ -3,7 +3,7 @@ class Admin::ShopsController < ApplicationController
   include DestroyImage
   attr_accessor :shop, :shops
 
-  authorize_resource :class => false
+  authorize_resource class: false
   before_action :set_shop, :except => [:index, :emails]
 
   before_action :breadcrumb_admin_shops, :except => [:index]
@@ -12,7 +12,7 @@ class Admin::ShopsController < ApplicationController
   layout :custom_sublayout
 
   def index
-    @shops = Shop.order_by(:position => :asc).order_by(:c_at => :desc).paginate(:page => current_page, :per_page => 10)
+    @shops = Shop.order_by(:position => :asc).order_by(c_at: :desc).paginate(page: current_page, per_page: 10)
   end
 
   def show

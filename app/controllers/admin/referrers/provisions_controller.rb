@@ -9,7 +9,7 @@ class Admin::Referrers::ProvisionsController < ApplicationController
   before_action :breadcrumb_admin_referrer
   before_action :breadcrumb_admin_referrer_provisions
 
-  authorize_resource :class => false
+  authorize_resource class: false
   layout :custom_sublayout
 
   def refresh

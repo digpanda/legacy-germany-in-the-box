@@ -2,7 +2,7 @@ class Admin::CartsController < ApplicationController
 
   attr_accessor :cart, :carts
 
-  authorize_resource :class => false
+  authorize_resource class: false
   before_action :set_cart, :except => [:index]
 
   layout :custom_sublayout
@@ -11,7 +11,7 @@ class Admin::CartsController < ApplicationController
   before_action :breadcrumb_admin_cart, only: [:show]
 
   def index
-    @carts = Cart.order_by(u_at: :desc).all.paginate(:page => current_page, :per_page => 10)
+    @carts = Cart.order_by(u_at: :desc).all.paginate(page: current_page, per_page: 10)
   end
 
   def show

@@ -5,7 +5,7 @@ class Customer::CheckoutController < ApplicationController
   attr_reader :shop, :order
 
   skip_before_filter :verify_authenticity_token
-  authorize_resource :class => false
+  authorize_resource class: false
 
   before_filter :ensure_session_order, :only => [:payment_method, :gateway]
   before_action :set_order, :only => [:create, :gateway, :payment_method]
