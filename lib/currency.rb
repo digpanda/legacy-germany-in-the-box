@@ -1,7 +1,6 @@
 # small library to manage better the currencies by Laurent
 # it's not worth what's around but it matches perfectly our current system
 class Currency
-
   attr_reader :amount, :currency
 
   def initialize(amount, currency='EUR')
@@ -50,5 +49,4 @@ class Currency
     end
     self
   end
-
 end

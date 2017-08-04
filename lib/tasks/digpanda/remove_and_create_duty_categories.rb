@@ -10,17 +10,17 @@ class Tasks::Digpanda::RemoveAndCreateDutyCategories
   def initialize
 
     puts "We are running on `#{Rails.env}` environment"
-    puts "We clear the file cache"
+    puts 'We clear the file cache'
     Rails.cache.clear
 
-    puts "We first delete the duty categories"
+    puts 'We first delete the duty categories'
     DutyCategory.delete_all
 
     csv_fetch do |column|
 
       code = column[0]
       if code.empty?
-        puts "There we a problem trying to generate `code`"
+        puts 'There we a problem trying to generate `code`'
         return
       end
 
@@ -61,9 +61,9 @@ class Tasks::Digpanda::RemoveAndCreateDutyCategories
   end
 
   def duty_finder(name)
-    category = DutyCategory.where(slug: name.to_slug).order_by(:created_at => 'desc').order_by(:_id => 'desc').first
+    category = DutyCategory.where(slug: name.to_slug).order_by(c_at: 'desc').order_by(:_id => 'desc').first
     if category.nil?
-      puts "DutyCategory searched but not found, exiting."
+      puts 'DutyCategory searched but not found, exiting.'
       exit
     end
     category

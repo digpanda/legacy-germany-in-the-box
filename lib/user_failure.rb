@@ -1,7 +1,5 @@
 class UserFailure < Devise::FailureApp
-
   def respond
-
     if http_auth?
       session.delete(:login_advice_counter)
       http_auth
@@ -14,8 +12,6 @@ class UserFailure < Devise::FailureApp
 
       flash[:error] = I18n.t(:unauthenticated, scope: [:devise, :failure])
       redirect_to new_user_session_path
-      return
-
     end
   end
 end

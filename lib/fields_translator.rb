@@ -1,6 +1,24 @@
+# OLD WAY
+# <%= form.fields_for :desc_translations do |trans_field| %>
+#   <div class="col-md-5">
+#     <%= trans_field.text_area :de, :value => form.object.desc_translations[:de], :class => 'form-control', :required => true %>
+#     <div class="help-block with-errors"></div>
+#   </div>
+#   <div class="col-md-5">
+#     <%= trans_field.text_area :'zh-CN', :value => form.object.desc_translations[:'zh-CN'], :class => 'form-control', :required => true %>
+#     <div class="help-block with-errors"></div>
+#   </div>
+# <% end %>
+#
+# NEW WAY
+# <%= translate_fields form, :desc do |form_field| %>
+#   <div class="col-md-5">
+#     <%= form_field.text_area :class => 'form-control', :required => true %>
+#     <div class="help-block with-errors"></div>
+#   </div>
+# <% end %>
 class FieldsTranslator
-
-  LANGUAGES = [:de, :'zh-CN']
+  LANGUAGES = [:de, :'zh-CN'].freeze
 
   class << self
 
@@ -20,7 +38,6 @@ class FieldsTranslator
 end
 
 class FieldsMapper
-
   attr_reader :form, :form_field, :field, :language
 
   # we need those datas to compose the form_field call
@@ -45,26 +62,3 @@ class FieldsMapper
   end
 
 end
-
-# OLD WAY
-#
-# <%= form.fields_for :desc_translations do |trans_field| %>
-#   <div class="col-md-5">
-#     <%= trans_field.text_area :de, :value => form.object.desc_translations[:de], :class => 'form-control', :required => true %>
-#     <div class="help-block with-errors"></div>
-#   </div>
-#   <div class="col-md-5">
-#     <%= trans_field.text_area :'zh-CN', :value => form.object.desc_translations[:'zh-CN'], :class => 'form-control', :required => true %>
-#     <div class="help-block with-errors"></div>
-#   </div>
-# <% end %>
-#
-# NEW WAY
-# <%= translate_fields form, :desc do |form_field| %>
-#   <div class="col-md-5">
-#     <%= form_field.text_area :class => 'form-control', :required => true %>
-#     <div class="help-block with-errors"></div>
-#   </div>
-# <% end %>
-#
-#

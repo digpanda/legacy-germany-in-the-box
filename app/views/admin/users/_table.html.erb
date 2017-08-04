@@ -24,6 +24,9 @@
         Last Sign In
       </th>
       <th>
+        Created At
+      </th>
+      <th>
         Action
       </th>
     </thead>
@@ -50,6 +53,9 @@
           </td>
           <td>
             <%= user.last_sign_in_at ? l(user.last_sign_in_at, :format => '%Y-%m-%d %H:%M:%S') : '' %>
+          </td>
+          <td>
+            <%= user.c_at %>
           </td>
           <td>
             <a href="<%= admin_user_path(user) %>"><i class="fa fa-eye tooltipster buttons buttons__edit tooltipstered"></i></a>

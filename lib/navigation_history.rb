@@ -1,8 +1,7 @@
 # manage the navigation history
 # gets back to previous pages easily
 class NavigationHistory
-
-  DEFAULT_REDIRECT_URL = Rails.application.routes.url_helpers.root_url
+  DEFAULT_REDIRECT_URL = Rails.application.routes.url_helpers.root_url.freeze
 
   attr_reader :request, :session, :repository
 
@@ -48,5 +47,4 @@ class NavigationHistory
   def history_found?(position)
     session["previous_urls"].is_a?(Hash) && session["previous_urls"][repository].is_a?(Array) && session["previous_urls"][repository][position].present?
   end
-
 end

@@ -4,8 +4,7 @@ require 'image_displayer/qiniu'
 # get the model and the image field and make the upload local or remote
 # generate qiniu URLs and such
 class ImageDisplayer
-
-  FALLBACK_IMAGE = "/images/no_image_available.png"
+  FALLBACK_IMAGE = "/images/no_image_available.png".freeze
   attr_reader :model, :image_field, :options, :version
 
   # the options possible are :fallback => true which return an image URL
@@ -60,5 +59,4 @@ class ImageDisplayer
       fallback_url
     end
   end
-
 end
