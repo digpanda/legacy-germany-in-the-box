@@ -11,4 +11,8 @@ class Image
     image_url(:file, :thumb)
   end
 
+  def fullsize
+    image_url(:file, :fullsize)
+  end
+
 end
