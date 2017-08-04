@@ -1,5 +1,4 @@
 class Customer::Checkout::Callback::AlipayController < ApplicationController
-
   authorize_resource class: false
   layout :default_layout
 
@@ -18,8 +17,9 @@ class Customer::Checkout::Callback::AlipayController < ApplicationController
 
   end
 
-  def checkout_callback
-    @checkout_callback ||= CheckoutCallback.new(current_user, cart_manager, params)
-  end
+  private
 
+    def checkout_callback
+      @checkout_callback ||= CheckoutCallback.new(current_user, cart_manager, params)
+    end
 end

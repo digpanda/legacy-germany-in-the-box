@@ -46,15 +46,17 @@ class Shopkeeper::AddressesController < ApplicationController
     redirect_to navigation.back(1)
   end
 
-  def set_address
-    @address = current_user.shop.addresses.find(params[:id])
-  end
+  private
 
-  def address_params
-    params.require(:address).permit!
-  end
+    def set_address
+      @address = current_user.shop.addresses.find(params[:id])
+    end
 
-  def set_address_country
-    address_params[:country] = 'DE'
-  end
+    def address_params
+      params.require(:address).permit!
+    end
+
+    def set_address_country
+      address_params[:country] = 'DE'
+    end
 end

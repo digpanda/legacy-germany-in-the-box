@@ -1,5 +1,4 @@
 class Guest::CategoriesController < ApplicationController
-
   before_filter do
     restrict_to :customer
   end
@@ -17,8 +16,7 @@ class Guest::CategoriesController < ApplicationController
 
   private
 
-  def set_category
-    @category = Category.find(params[:id])
-  end
-
+    def set_category
+      @category = Category.find(params[:id])
+    end
 end

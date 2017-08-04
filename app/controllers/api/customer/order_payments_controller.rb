@@ -1,5 +1,4 @@
 class Api::Customer::OrderPaymentsController < Api::ApplicationController
-
   attr_reader :order_payment
 
   authorize_resource class: false
@@ -15,7 +14,7 @@ class Api::Customer::OrderPaymentsController < Api::ApplicationController
 
   private
 
-  def set_order_payment
-    @order_payment = OrderPayment.where(id: params[:id]).first
-  end
+    def set_order_payment
+      @order_payment = OrderPayment.where(id: params[:id]).first
+    end
 end

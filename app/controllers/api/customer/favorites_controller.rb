@@ -2,7 +2,6 @@
 # We mainly manipulate the favorites product list via AJAX calls here
 #
 class Api::Customer::FavoritesController < Api::ApplicationController
-
   attr_reader :favorites, :product
 
   authorize_resource class: false
@@ -22,12 +21,11 @@ class Api::Customer::FavoritesController < Api::ApplicationController
 
   private
 
-  def set_favorites
-    @favorites = current_user.favorites
-  end
+    def set_favorites
+      @favorites = current_user.favorites
+    end
 
-  def set_product
-    @product = Product.find(params[:id])
-  end
-
+    def set_product
+      @product = Product.find(params[:id])
+    end
 end

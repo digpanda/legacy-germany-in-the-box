@@ -1,7 +1,6 @@
 require 'net/http'
 
 class Customer::IdentityController < ApplicationController
-
   authorize_resource class: false
   layout :custom_sublayout, only: [:edit]
 
@@ -15,13 +14,12 @@ class Customer::IdentityController < ApplicationController
     end
   end
 
-  # redirect straight to xipost whatever the settings are
-  def xipost_remote
-    redirect_to xipost.identity_remote_url
-  end
+    # redirect straight to xipost whatever the settings are
+    def xipost_remote
+      redirect_to xipost.identity_remote_url
+    end
 
-  def xipost
-    @xipost ||= Xipost.new(current_user)
-  end
-
+    def xipost
+      @xipost ||= Xipost.new(current_user)
+    end
 end

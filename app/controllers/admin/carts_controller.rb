@@ -1,5 +1,4 @@
 class Admin::CartsController < ApplicationController
-
   attr_accessor :cart, :carts
 
   authorize_resource class: false
@@ -37,12 +36,11 @@ class Admin::CartsController < ApplicationController
 
   private
 
-  def set_cart
-    @cart = Cart.find(params[:id] || params[:cart_id])
-  end
+    def set_cart
+      @cart = Cart.find(params[:id] || params[:cart_id])
+    end
 
-  def cart_params
-    params.require(:cart).permit!
-  end
-
+    def cart_params
+      params.require(:cart).permit!
+    end
 end

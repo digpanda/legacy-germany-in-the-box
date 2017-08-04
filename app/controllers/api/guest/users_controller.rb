@@ -1,5 +1,4 @@
 class Api::Guest::UsersController < Api::ApplicationController
-
   before_action :missing_email_param?, :only => [:find_by_email, :unknown_by_email]
 
   # the structuration of #find_by_email and #unknown_by_email looks weird
@@ -29,20 +28,19 @@ class Api::Guest::UsersController < Api::ApplicationController
 
   private
 
-  def missing_email_param?
-    if email_param.nil?
-      render status: :unprocessable_entity,
-             json: throw_error(:bad_format).to_json
-      return
+    def missing_email_param?
+      if email_param.nil?
+        render status: :unprocessable_entity,
+               json: throw_error(:bad_format).to_json
+        return
+      end
     end
-  end
 
-  def registered_email?
-    User.where(email: email_param).first
-  end
+    def registered_email?
+      User.where(email: email_param).first
+    end
 
-  def email_param
-    params["shop_application"]["email"]
-  end
-
+    def email_param
+      params["shop_application"]["email"]
+    end
 end

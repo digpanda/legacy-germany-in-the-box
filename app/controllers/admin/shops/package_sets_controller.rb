@@ -1,5 +1,4 @@
 class Admin::Shops::PackageSetsController < ApplicationController
-
   include DestroyImage
 
   attr_reader :shop, :package_set, :package_sets
@@ -91,40 +90,39 @@ class Admin::Shops::PackageSetsController < ApplicationController
 
   private
 
-  def params_valid_product_ids
-    package_set_params["package_skus_attributes"]&.map do |key, value|
-      value["product_id"] unless value["product_id"].empty?
-    end&.compact
-  end
+    def params_valid_product_ids
+      package_set_params["package_skus_attributes"]&.map do |key, value|
+        value["product_id"] unless value["product_id"].empty?
+      end&.compact
+    end
 
-  def clean_up_package_skus!
-    package_set.package_skus.map(&:product_id).map(&:to_s).each do |product_id|
-      if params_valid_product_ids
-        unless params_valid_product_ids&.include? product_id
-          package_set.package_skus.where(product_id: product_id).delete
+    def clean_up_package_skus!
+      package_set.package_skus.map(&:product_id).map(&:to_s).each do |product_id|
+        if params_valid_product_ids
+          unless params_valid_product_ids&.include? product_id
+            package_set.package_skus.where(product_id: product_id).delete
+          end
         end
       end
     end
-  end
 
-  def package_set_params
-    params.require(:package_set).permit!
-  end
+    def package_set_params
+      params.require(:package_set).permit!
+    end
 
-  def build_package_images!
-    4.times { package_set.images.build }
-  end
+    def build_package_images!
+      4.times { package_set.images.build }
+    end
 
-  def build_package_skus!
-    15.times { package_set.package_skus.build }
-  end
+    def build_package_skus!
+      15.times { package_set.package_skus.build }
+    end
 
-  def set_shop
-    @shop = Shop.find(params[:shop_id] || params[:id])
-  end
+    def set_shop
+      @shop = Shop.find(params[:shop_id] || params[:id])
+    end
 
-  def set_package_set
-    @package_set = PackageSet.find(params[:package_set_id] || params[:id])
-  end
-
+    def set_package_set
+      @package_set = PackageSet.find(params[:package_set_id] || params[:id])
+    end
 end

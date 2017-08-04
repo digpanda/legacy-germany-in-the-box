@@ -1,5 +1,4 @@
 class Admin::ShippingRatesController < ApplicationController
-
   attr_reader :shipping_rate, :shipping_rates
 
   authorize_resource class: false
@@ -23,12 +22,11 @@ class Admin::ShippingRatesController < ApplicationController
 
   private
 
-  def set_shipping_rate
-    @shipping_rate ||= ShippingRate.find(params[:id])
-  end
+    def set_shipping_rate
+      @shipping_rate ||= ShippingRate.find(params[:id])
+    end
 
-  def shipping_rate_params
-    params.require(:shipping_rate).permit!
-  end
-
+    def shipping_rate_params
+      params.require(:shipping_rate).permit!
+    end
 end

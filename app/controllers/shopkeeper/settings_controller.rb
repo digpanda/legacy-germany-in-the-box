@@ -21,11 +21,11 @@ class Shopkeeper::SettingsController < ApplicationController
 
   private
 
-  def set_shop
-    @shop = current_user.shop
-  end
+    def set_shop
+      @shop = current_user.shop
+    end
 
-  def shop_params
-    params.require(:shop).permit!.delocalize(min_total: :number)
-  end
+    def shop_params
+      params.require(:shop).permit!.delocalize(min_total: :number)
+    end
 end

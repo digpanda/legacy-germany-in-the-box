@@ -1,7 +1,6 @@
 require 'open-uri'
 
 class Guest::ReferrersController < ApplicationController
-
   attr_accessor :referrer, :referrers
 
   authorize_resource class: false
@@ -13,18 +12,17 @@ class Guest::ReferrersController < ApplicationController
 
   private
 
-  def qrcode_path
-    if wechat_referrer_qrcode.success?
-      wechat_referrer_qrcode.data[:local_file]
+    def qrcode_path
+      if wechat_referrer_qrcode.success?
+        wechat_referrer_qrcode.data[:local_file]
+      end
     end
-  end
 
-  def wechat_referrer_qrcode
-    @wechat_referrer_qrcode ||= WechatReferrerQrcode.new(referrer).resolve!
-  end
+    def wechat_referrer_qrcode
+      @wechat_referrer_qrcode ||= WechatReferrerQrcode.new(referrer).resolve!
+    end
 
-  def set_referrer
-    @referrer = Referrer.find(params[:id] || params[:referrer_id])
-  end
-
+    def set_referrer
+      @referrer = Referrer.find(params[:id] || params[:referrer_id])
+    end
 end

@@ -2,7 +2,6 @@ require 'cgi'
 
 # Get notifications from Alipay when a transaction has been done
 class Api::Webhook::Alipay::CustomersController < Api::ApplicationController
-
   skip_before_filter :verify_authenticity_token
 
   # {"discount"=>"0.00",
@@ -61,12 +60,11 @@ class Api::Webhook::Alipay::CustomersController < Api::ApplicationController
 
   private
 
-  def checkout_callback
-    @checkout_callback ||= CheckoutCallback.new(nil, cart_manager, params).alipay!(mode: :safe)
-  end
+    def checkout_callback
+      @checkout_callback ||= CheckoutCallback.new(nil, cart_manager, params).alipay!(mode: :safe)
+    end
 
-  def wrong_params?
-    params[:trade_no].nil? || params[:out_trade_no].nil? || params[:trade_status].nil?
-  end
-
+    def wrong_params?
+      params[:trade_no].nil? || params[:out_trade_no].nil? || params[:trade_status].nil?
+    end
 end

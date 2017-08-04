@@ -1,5 +1,4 @@
 class Api::Guest::OrderItemsController < Api::ApplicationController
-
   attr_reader :order, :order_item, :product, :sku, :quantity
 
   before_action :set_product_and_sku, :set_order, only: :create
@@ -57,25 +56,24 @@ class Api::Guest::OrderItemsController < Api::ApplicationController
 
   private
 
-  def order_maker
-    @order_maker ||= OrderMaker.new(identity_solver, order)
-  end
+    def order_maker
+      @order_maker ||= OrderMaker.new(identity_solver, order)
+    end
 
-  def set_product_and_sku
-    @product = Product.find(params[:product_id])
-    @sku = product.skus.where(id: params[:sku_id]).first
-  end
+    def set_product_and_sku
+      @product = Product.find(params[:product_id])
+      @sku = product.skus.where(id: params[:sku_id]).first
+    end
 
-  def set_order
-    @order = cart_manager.order(shop: product.shop)
-  end
+    def set_order
+      @order = cart_manager.order(shop: product.shop)
+    end
 
-  def set_order_item
-    @order_item = OrderItem.find(params[:id])
-  end
+    def set_order_item
+      @order_item = OrderItem.find(params[:id])
+    end
 
-  def set_quantity
-    @quantity = params[:quantity].to_i
-  end
-
+    def set_quantity
+      @quantity = params[:quantity].to_i
+    end
 end

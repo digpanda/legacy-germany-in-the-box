@@ -1,5 +1,4 @@
 class Admin::NotificationsController < ApplicationController
-
   attr_accessor :notification, :notifications
 
   before_action :set_notification, :except => [:index]
@@ -23,8 +22,7 @@ class Admin::NotificationsController < ApplicationController
 
   private
 
-  def set_notification
-    @notification = Notification.find(params[:id] || params[:notification_id])
-  end
-
+    def set_notification
+      @notification = Notification.find(params[:id] || params[:notification_id])
+    end
 end

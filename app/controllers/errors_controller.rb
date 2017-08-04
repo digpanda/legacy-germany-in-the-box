@@ -1,5 +1,4 @@
 class ErrorsController < ActionController::Base
-
   # this is a very specific controller
   # it doesn't inherit from the ApplicationController because it's a standalone controller
   # we manage the `deep` errors here, showing a JSON answer if we are within the API area
@@ -7,7 +6,6 @@ class ErrorsController < ActionController::Base
   # this level is initialized directly from the router therefore those output
   # will be generated before the `application_controller`
   # error management (resource not found, etc.)
-
   before_action :identity_solver
 
   include ErrorsHelper
@@ -36,12 +34,11 @@ class ErrorsController < ActionController::Base
 
   private
 
-  def identity_solver
-    @identity_solver ||= IdentitySolver.new(request, current_user)
-  end
+    def identity_solver
+      @identity_solver ||= IdentitySolver.new(request, current_user)
+    end
 
-  def api?
-    (env["REQUEST_URI"] =~ /^\/api/) == 0
-  end
-
+    def api?
+      (env["REQUEST_URI"] =~ /^\/api/) == 0
+    end
 end

@@ -45,11 +45,11 @@ class Shopkeeper::OrdersController < ApplicationController
 
   private
 
-  def set_order
-    @order = Order.find(params[:id] || params[:order_id])
-  end
+    def set_order
+      @order = Order.find(params[:id] || params[:order_id])
+    end
 
-  def is_shop_order
-    order.shop.id == current_user.shop.id
-  end
+    def is_shop_order
+      order.shop.id == current_user.shop.id
+    end
 end

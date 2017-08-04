@@ -1,5 +1,4 @@
 class Guest::ShopsController < ApplicationController
-
   attr_reader :shop
 
   before_filter do
@@ -16,20 +15,19 @@ class Guest::ShopsController < ApplicationController
 
   private
 
-  def set_shop
-    @shop = Shop.find(params[:id])
-  end
-
-  def set_products
-    if from_category.present?
-      @products = shop.products.where(category_ids: from_category).highlight_first.can_buy.by_brand
-    else
-      @products = shop.products.highlight_first.can_buy.by_brand
+    def set_shop
+      @shop = Shop.find(params[:id])
     end
-  end
 
-  def from_category
-    params[:category_id]
-  end
+    def set_products
+      if from_category.present?
+        @products = shop.products.where(category_ids: from_category).highlight_first.can_buy.by_brand
+      else
+        @products = shop.products.highlight_first.can_buy.by_brand
+      end
+    end
 
+    def from_category
+      params[:category_id]
+    end
 end

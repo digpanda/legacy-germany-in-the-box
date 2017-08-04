@@ -1,5 +1,4 @@
 class Customer::AccountController < ApplicationController
-
   attr_accessor :user
 
   authorize_resource class: false
@@ -41,33 +40,32 @@ class Customer::AccountController < ApplicationController
 
   private
 
-  def set_user
-    @user = current_user
-  end
+    def set_user
+      @user = current_user
+    end
 
-  def user_params
-    params.require(:user).permit(:username, :email, :password, :password_confirmation, :fname, :lname, :birth, :gender, :about, :website, :pic, :mobile, :referrer_attributes => [:agb])
-  end
+    def user_params
+      params.require(:user).permit(:username, :email, :password, :password_confirmation, :fname, :lname, :birth, :gender, :about, :website, :pic, :mobile, :referrer_attributes => [:agb])
+    end
 
-  def password_needed?
-    !user.wechat? && params[:user][:password].present?
-  end
+    def password_needed?
+      !user.wechat? && params[:user][:password].present?
+    end
 
-  def valid_password?
-    return true unless password_needed?
-    if user.valid_password?(params[:user][:current_password])
+    def valid_password?
+      return true unless password_needed?
+      if user.valid_password?(params[:user][:current_password])
+        true
+      else
+        user.errors.add(:password, "wrong")
+        false
+      end
+    end
+
+    def ensure_password!
+      unless password_needed?
+        params[:user][:password] = params[:user][:password_confirmation] = params[:user][:current_password]
+      end
       true
-    else
-      user.errors.add(:password, "wrong")
-      false
     end
-  end
-
-  def ensure_password!
-    unless password_needed?
-      params[:user][:password] = params[:user][:password_confirmation] = params[:user][:current_password]
-    end
-    true
-  end
-
 end

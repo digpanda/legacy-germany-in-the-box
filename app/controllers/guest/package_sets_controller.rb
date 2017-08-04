@@ -1,5 +1,4 @@
 class Guest::PackageSetsController < ApplicationController
-
   attr_reader :package_set, :category
 
   before_filter do
@@ -42,23 +41,22 @@ class Guest::PackageSetsController < ApplicationController
 
   private
 
-  # to be abstracted somewhere else
-  def order_maker
-    @order_maker ||= OrderMaker.new(order)
-  end
+    # to be abstracted somewhere else
+    def order_maker
+      @order_maker ||= OrderMaker.new(order)
+    end
 
-  def order
-    @order ||= cart_manager.order(shop: package_set.shop)
-  end
-  # end of abstraction
+    def order
+      @order ||= cart_manager.order(shop: package_set.shop)
+    end
+    # end of abstraction
 
-  def set_package_set
-    @package_set = PackageSet.find(params[:id]) unless params[:id].nil?
-  end
+    def set_package_set
+      @package_set = PackageSet.find(params[:id]) unless params[:id].nil?
+    end
 
-  # for filtering (optional)
-  def set_category
-    @category = Category.where(slug: params[:category_slug]).first unless params[:category_slug].nil?
-  end
-
+    # for filtering (optional)
+    def set_category
+      @category = Category.where(slug: params[:category_slug]).first unless params[:category_slug].nil?
+    end
 end

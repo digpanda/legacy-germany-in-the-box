@@ -1,8 +1,7 @@
 class Connect::RegistrationsController < Devise::RegistrationsController
+  include Base64ToUpload
 
   before_action :configure_devise_permitted_parameters, if: :devise_controller?
-
-  include Base64ToUpload
 
   before_action(:only =>  [:create, :update]) {
     base64_to_uploadedfile :user, :pic
@@ -67,22 +66,22 @@ class Connect::RegistrationsController < Devise::RegistrationsController
 
   protected
 
-  def after_inactive_sign_up_path_for(resource)
-    flash[:info] = I18n.t(:email_confirmation_msg, scope: :top_menu)
-    popular_products_path
-  end
-
-  def configure_devise_permitted_parameters
-    registration_params = [:fname, :lname, :email, :password, :password_confirmation, :birth, :gender, :pic]
-
-    if params[:action] == 'update'
-      devise_parameter_sanitizer.for(:account_update) {
-          |u| u.permit(registration_params << :current_password)
-      }
-    elsif params[:action] == 'create'
-      devise_parameter_sanitizer.for(:sign_up) {
-          |u| u.permit(registration_params)
-      }
+    def after_inactive_sign_up_path_for(resource)
+      flash[:info] = I18n.t(:email_confirmation_msg, scope: :top_menu)
+      popular_products_path
     end
-  end
+
+    def configure_devise_permitted_parameters
+      registration_params = [:fname, :lname, :email, :password, :password_confirmation, :birth, :gender, :pic]
+
+      if params[:action] == 'update'
+        devise_parameter_sanitizer.for(:account_update) {
+            |u| u.permit(registration_params << :current_password)
+        }
+      elsif params[:action] == 'create'
+        devise_parameter_sanitizer.for(:sign_up) {
+            |u| u.permit(registration_params)
+        }
+      end
+    end
 end

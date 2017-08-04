@@ -58,15 +58,15 @@ class Shopkeeper::ProductsController < ApplicationController
 
   private
 
-  def product_params
-    params.require(:product).permit!
-  end
+    def product_params
+      params.require(:product).permit!
+    end
 
-  def set_shop
-    @shop = current_user.shop
-  end
+    def set_shop
+      @shop = current_user.shop
+    end
 
-  def set_product
-    @product = Product.find(params[:product_id] || params[:id])
-  end
+    def set_product
+      @product = Product.find(params[:product_id] || params[:id])
+    end
 end

@@ -75,30 +75,30 @@ class Admin::Shops::Products::SkusController < ApplicationController
 
   private
 
-  def redirection_after_update
-    redirect_to admin_shop_product_skus_path(shop, product)
-  end
-
-  def set_shop
-    @shop = Shop.find(params[:shop_id] || params[:id])
-  end
-
-  def set_product
-    @product = Product.find(params[:product_id])
-  end
-
-  def set_sku
-    @sku = product.skus.find(params[:sku_id] || params[:id])
-  end
-
-  def sku_params
-    params.require(:sku).permit!.tap do |sku_params|
-      # we throw away the useless option ids
-      sku_params[:option_ids].reject!(&:empty?)
+    def redirection_after_update
+      redirect_to admin_shop_product_skus_path(shop, product)
     end
-  end
 
-  def build_sku_images!
-    4.times { sku.images.build }
-  end
+    def set_shop
+      @shop = Shop.find(params[:shop_id] || params[:id])
+    end
+
+    def set_product
+      @product = Product.find(params[:product_id])
+    end
+
+    def set_sku
+      @sku = product.skus.find(params[:sku_id] || params[:id])
+    end
+
+    def sku_params
+      params.require(:sku).permit!.tap do |sku_params|
+        # we throw away the useless option ids
+        sku_params[:option_ids].reject!(&:empty?)
+      end
+    end
+
+    def build_sku_images!
+      4.times { sku.images.build }
+    end
 end

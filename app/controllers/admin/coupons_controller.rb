@@ -1,5 +1,4 @@
 class Admin::CouponsController < ApplicationController
-
   attr_accessor :coupon, :coupons
 
   authorize_resource class: false
@@ -80,20 +79,19 @@ class Admin::CouponsController < ApplicationController
 
   private
 
-  def set_coupon
-    @coupon = Coupon.find(params[:id] || params[:coupon_id])
-  end
+    def set_coupon
+      @coupon = Coupon.find(params[:id] || params[:coupon_id])
+    end
 
-  def clean_referrer!
-    coupon_params[:referrer] = nil if coupon_params[:referrer].empty?
-  end
+    def clean_referrer!
+      coupon_params[:referrer] = nil if coupon_params[:referrer].empty?
+    end
 
-  def clean_shop!
-    coupon_params[:shop] = nil if coupon_params[:shop].empty?
-  end
+    def clean_shop!
+      coupon_params[:shop] = nil if coupon_params[:shop].empty?
+    end
 
-  def coupon_params
-    params.require(:coupon).permit!
-  end
-
+    def coupon_params
+      params.require(:coupon).permit!
+    end
 end

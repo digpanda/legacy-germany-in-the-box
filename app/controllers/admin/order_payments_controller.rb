@@ -1,7 +1,6 @@
 require 'will_paginate/array'
 
 class Admin::OrderPaymentsController < ApplicationController
-
   attr_reader :order_payment, :order_payments
 
   authorize_resource class: false
@@ -65,21 +64,20 @@ class Admin::OrderPaymentsController < ApplicationController
 
   private
 
-  def order_payment_params
-    params.require(:order_payment).permit!
-  end
+    def order_payment_params
+      params.require(:order_payment).permit!
+    end
 
-  def payment_refunder
-    @payment_refunder ||= WirecardPaymentRefunder.new(order_payment)
-  end
+    def payment_refunder
+      @payment_refunder ||= WirecardPaymentRefunder.new(order_payment)
+    end
 
-  # make API call which refresh order payment
-  def payment_checker
-    @payment_checker ||= WirecardPaymentChecker.new({:order_payment => order_payment})
-  end
+    # make API call which refresh order payment
+    def payment_checker
+      @payment_checker ||= WirecardPaymentChecker.new({:order_payment => order_payment})
+    end
 
-  def set_order_payment
-    @order_payment = OrderPayment.find(params[:id] || params[:order_payment_id])
-  end
-
+    def set_order_payment
+      @order_payment = OrderPayment.find(params[:id] || params[:order_payment_id])
+    end
 end

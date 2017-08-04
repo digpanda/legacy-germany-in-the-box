@@ -1,5 +1,4 @@
 class Admin::OrdersController < ApplicationController
-
   CSV_ENCODE = "UTF-8"
 
   attr_accessor :order, :orders
@@ -63,12 +62,11 @@ class Admin::OrdersController < ApplicationController
 
   private
 
-  def set_order
-    @order = Order.find(params[:id] || params[:order_id])
-  end
+    def set_order
+      @order = Order.find(params[:id] || params[:order_id])
+    end
 
-  def order_params
-    params.require(:order).permit!
-  end
-
+    def order_params
+      params.require(:order).permit!
+    end
 end

@@ -15,7 +15,7 @@ class Shopkeeper::PaymentsController < ApplicationController
 
   private
 
-  def set_shop
-    @shop ||= current_user.shop
-  end
+    def set_shop
+      @shop ||= current_user.shop
+    end
 end

@@ -27,21 +27,21 @@ class Tasks::Digpanda::RemoveAndCreateDutyCategories
       if master?(column)
         name = column[1]
         puts "Parent : NONE / Self : #{name}"
-        DutyCategory.create!(:code => code, :name_translations => {:en => name})
+        DutyCategory.create!(:code => code, :name_translations => {en: name})
       end
 
       if submaster?(column)
         parent_name = column[1]
         name = column[2]
         puts "Parent : #{parent_name} / Self : #{name}"
-        DutyCategory.create!(:code => code, :name_translations => {:en => name}, :parent => duty_finder(parent_name))
+        DutyCategory.create!(:code => code, :name_translations => {en: name}, :parent => duty_finder(parent_name))
       end
 
       if slave?(column)
         parent_name = column[2]
         name = column[3]
         puts "Parent : #{parent_name} / Self : #{name}"
-        DutyCategory.create!(:code => code, :name_translations => {:en => name}, :parent => duty_finder(parent_name))
+        DutyCategory.create!(:code => code, :name_translations => {en: name}, :parent => duty_finder(parent_name))
       end
 
     end

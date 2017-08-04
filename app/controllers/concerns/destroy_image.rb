@@ -34,12 +34,11 @@ module DestroyImage
 
   private
 
-  def get_process_message(image_destroyer)
-    if image_destroyer
-      flash[:success] = I18n.t(:removed_image, scope: :action)
-    else
-      flash[:error] = I18n.t(:no_removed_image, scope: :action)
+    def get_process_message(image_destroyer)
+      if image_destroyer
+        flash[:success] = I18n.t(:removed_image, scope: :action)
+      else
+        flash[:error] = I18n.t(:no_removed_image, scope: :action)
+      end
     end
-  end
-
 end

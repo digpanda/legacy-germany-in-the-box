@@ -1,5 +1,4 @@
 class Admin::CategoriesController < ApplicationController
-
   include DestroyImage
 
   attr_accessor :category, :categories
@@ -32,12 +31,11 @@ class Admin::CategoriesController < ApplicationController
 
   private
 
-  def set_category
-    @category = Category.find(params[:category_id] || params[:id])
-  end
+    def set_category
+      @category = Category.find(params[:category_id] || params[:id])
+    end
 
-  def category_params
-    params.require(:category).permit!
-  end
-
+    def category_params
+      params.require(:category).permit!
+    end
 end

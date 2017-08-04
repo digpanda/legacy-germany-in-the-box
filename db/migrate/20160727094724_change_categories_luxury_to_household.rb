@@ -4,7 +4,7 @@ class ChangeCategoriesLuxuryToHousehold < Mongoid::Migration
     category = Category.where(slug: 'luxury').first
     if category
       category.slug = 'household'
-      category.name_translations = {:en => 'Household', :'zh-CN' => '家居', :de => 'Haushalt'}
+      category.name_translations = {en: 'Household', 'zh-CN': '家居', de: 'Haushalt'}
       category.save!
     end
   end

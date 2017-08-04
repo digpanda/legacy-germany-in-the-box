@@ -1,5 +1,4 @@
 class Admin::Referrers::ProvisionsController < ApplicationController
-
   attr_accessor :referrer, :referrers, :provision, :provisions
 
   before_action :set_referrer
@@ -19,12 +18,13 @@ class Admin::Referrers::ProvisionsController < ApplicationController
     redirect_to navigation.back(1)
   end
 
-  def set_provision
-    @provision = referrer.provisions.find(params[:provision_id] || params[:id])
-  end
+  private
 
-  def set_referrer
-    @referrer = Referrer.find(params[:referrer_id])
-  end
+    def set_provision
+      @provision = referrer.provisions.find(params[:provision_id] || params[:id])
+    end
 
+    def set_referrer
+      @referrer = Referrer.find(params[:referrer_id])
+    end
 end

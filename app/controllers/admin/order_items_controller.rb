@@ -1,7 +1,4 @@
 class Admin::OrderItemsController < ApplicationController
-
-  CSV_ENCODE = "UTF-8"
-
   attr_accessor :order_item, :order_items, :order
 
   authorize_resource class: false
@@ -30,16 +27,15 @@ class Admin::OrderItemsController < ApplicationController
 
   private
 
-  def order_item_params
-    params.require(:order_item).permit!
-  end
+    def order_item_params
+      params.require(:order_item).permit!
+    end
 
-  def set_order_item
-    @order_item = OrderItem.find(params[:id] || params[:order_item_id])
-  end
+    def set_order_item
+      @order_item = OrderItem.find(params[:id] || params[:order_item_id])
+    end
 
-  def set_order
-    @order = order_item.order
-  end
-
+    def set_order
+      @order = order_item.order
+    end
 end

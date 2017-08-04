@@ -1,5 +1,4 @@
 class Api::Customer::OrdersController < Api::ApplicationController
-
   attr_accessor :order
 
   authorize_resource class: false
@@ -19,7 +18,7 @@ class Api::Customer::OrdersController < Api::ApplicationController
 
   private
 
-  def set_order
-    @order = Order.find(params[:id] || params[:order_id])
-  end
+    def set_order
+      @order = Order.find(params[:id] || params[:order_id])
+    end
 end

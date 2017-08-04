@@ -1,6 +1,5 @@
 # NOTE : while on checkout process the customer will pass by customer/orders/addresses
 class Customer::AddressesController < ApplicationController
-
   attr_reader :address
 
   authorize_resource class: false
@@ -62,31 +61,30 @@ class Customer::AddressesController < ApplicationController
 
   private
 
-  def solve_primary_address!
-    other_address = current_user.addresses.first
-    if other_address
-      other_address.primary = true
-      other_address.save
+    def solve_primary_address!
+      other_address = current_user.addresses.first
+      if other_address
+        other_address.primary = true
+        other_address.save
+      end
     end
-  end
 
-  def reset_primary_address!
-    current_user.addresses.not.where(:id => address.id).each do |other_address|
-      other_address.primary = false
-      other_address.save
+    def reset_primary_address!
+      current_user.addresses.not.where(:id => address.id).each do |other_address|
+        other_address.primary = false
+        other_address.save
+      end
     end
-  end
 
-  def set_address
-    @address = current_user.addresses.find(params[:id])
-  end
+    def set_address
+      @address = current_user.addresses.find(params[:id])
+    end
 
-  def address_params
-    params.require(:address).permit!
-  end
+    def address_params
+      params.require(:address).permit!
+    end
 
-  def set_address_params
-    address_params[:country] = 'CN'
-  end
-
+    def set_address_params
+      address_params[:country] = 'CN'
+    end
 end

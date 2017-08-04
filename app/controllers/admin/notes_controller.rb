@@ -1,5 +1,4 @@
 class Admin::NotesController < ApplicationController
-
   attr_accessor :note, :notes
 
   authorize_resource class: false
@@ -34,12 +33,11 @@ class Admin::NotesController < ApplicationController
 
   private
 
-  def set_note
-    @note = Note.find(params[:note_id] || params[:id])
-  end
+    def set_note
+      @note = Note.find(params[:note_id] || params[:id])
+    end
 
-  def note_params
-    params.require(:note).permit(:order_id, :user_id, :message, :type).merge({:author_id => current_user.id})
-  end
-
+    def note_params
+      params.require(:note).permit(:order_id, :user_id, :message, :type).merge({:author_id => current_user.id})
+    end
 end

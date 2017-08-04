@@ -1,6 +1,5 @@
 class Admin::Shops::ProductsController < ApplicationController
-
-  CSV_ENCODE = "UTF-8"
+  CSV_ENCODE = "UTF-8".freeze
 
   attr_reader :shop, :products, :product
 
@@ -89,34 +88,33 @@ class Admin::Shops::ProductsController < ApplicationController
 
   private
 
-  def query
-    params.require(:query) if params[:query].present?
-  end
-
-  def product_params
-    params.require(:product).permit!
-  end
-
-  # we basically get an array of ids and replace it by the entire model
-  # this is to go well with the automatic update provided by rails
-  def recover_categories_from_ids
-    product_params.require(:categories).map! do |category_id|
-      Category.where(_id: category_id).first
-    end.compact
-  end
-
-  def recover_duty_category_from_code
-    product_params.require(:duty_category).tap do |duty_category_code|
-      product_params[:duty_category] = DutyCategory.where(code: duty_category_code).where(tax_rate: {'$gt': 0.0}).first
+    def query
+      params.require(:query) if params[:query].present?
     end
-  end
 
-  def set_shop
-    @shop = Shop.find(params[:shop_id] || params[:id])
-  end
+    def product_params
+      params.require(:product).permit!
+    end
 
-  def set_product
-    @product = Product.find(params[:product_id] || params[:id])
-  end
+    # we basically get an array of ids and replace it by the entire model
+    # this is to go well with the automatic update provided by rails
+    def recover_categories_from_ids
+      product_params.require(:categories).map! do |category_id|
+        Category.where(_id: category_id).first
+      end.compact
+    end
 
+    def recover_duty_category_from_code
+      product_params.require(:duty_category).tap do |duty_category_code|
+        product_params[:duty_category] = DutyCategory.where(code: duty_category_code).where(tax_rate: {'$gt': 0.0}).first
+      end
+    end
+
+    def set_shop
+      @shop = Shop.find(params[:shop_id] || params[:id])
+    end
+
+    def set_product
+      @product = Product.find(params[:product_id] || params[:id])
+    end
 end

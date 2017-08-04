@@ -2,10 +2,9 @@ require 'cgi'
 
 # Get notifications from Wechatpay when a transaction has been done
 class Api::Webhook::Wechatpay::CustomersController < Api::ApplicationController
-
-  skip_before_filter :verify_authenticity_token
-
   attr_reader :transmit_data
+  
+  skip_before_filter :verify_authenticity_token
 
   def create
 
@@ -45,19 +44,18 @@ class Api::Webhook::Wechatpay::CustomersController < Api::ApplicationController
 
   private
 
-  def checkout_callback
-    @checkout_callback ||= CheckoutCallback.new(nil, cart_manager, transmit_data).wechatpay!
-  end
+    def checkout_callback
+      @checkout_callback ||= CheckoutCallback.new(nil, cart_manager, transmit_data).wechatpay!
+    end
 
-  def wrong_transmit_data?
-    transmit_data["out_trade_no"].nil? || transmit_data["transaction_id"].nil? || transmit_data["return_code"].nil?
-  end
+    def wrong_transmit_data?
+      transmit_data["out_trade_no"].nil? || transmit_data["transaction_id"].nil? || transmit_data["return_code"].nil?
+    end
 
-  def valid_xml?
-    Hash.from_xml(request.body.read)
-    true
-  rescue REXML::ParseException
-    false
-  end
-
+    def valid_xml?
+      Hash.from_xml(request.body.read)
+      true
+    rescue REXML::ParseException
+      false
+    end
 end

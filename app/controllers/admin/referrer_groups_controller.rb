@@ -1,5 +1,4 @@
 class Admin::ReferrerGroupsController < ApplicationController
-
   include DestroyImage
 
   attr_accessor :referrer_group, :referrer_groups
@@ -61,12 +60,11 @@ class Admin::ReferrerGroupsController < ApplicationController
 
   private
 
-  def set_referrer_group
-    @referrer_group = ReferrerGroup.find(params[:referrer_group_id] || params[:id])
-  end
+    def set_referrer_group
+      @referrer_group = ReferrerGroup.find(params[:referrer_group_id] || params[:id])
+    end
 
-  def referrer_group_params
-    params.require(:referrer_group).permit!
-  end
-
+    def referrer_group_params
+      params.require(:referrer_group).permit!
+    end
 end

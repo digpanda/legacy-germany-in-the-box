@@ -1,5 +1,4 @@
 class Admin::ShopsController < ApplicationController
-
   include DestroyImage
   attr_accessor :shop, :shops
 
@@ -66,12 +65,11 @@ class Admin::ShopsController < ApplicationController
 
   private
 
-  def shop_params
-    params.require(:shop).permit!
-  end
+    def shop_params
+      params.require(:shop).permit!
+    end
 
-  def set_shop
-    @shop = Shop.find(params[:id] || params[:shop_id])
-  end
-
+    def set_shop
+      @shop = Shop.find(params[:id] || params[:shop_id])
+    end
 end

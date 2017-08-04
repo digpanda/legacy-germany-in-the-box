@@ -1,5 +1,4 @@
 class Admin::PaymentGatewaysController < ApplicationController
-
   attr_accessor :payment_gateway, :payment_gateways
 
   authorize_resource class: false
@@ -33,12 +32,11 @@ class Admin::PaymentGatewaysController < ApplicationController
 
   private
 
-  def set_payment_gateway
-    @payment_gateway = PaymentGateway.find(params[:id] || params[:payment_gateway_id])
-  end
+    def set_payment_gateway
+      @payment_gateway = PaymentGateway.find(params[:id] || params[:payment_gateway_id])
+    end
 
-  def payment_gateway_params
-    params.require(:payment_gateway).permit!
-  end
-
+    def payment_gateway_params
+      params.require(:payment_gateway).permit!
+    end
 end

@@ -1,5 +1,4 @@
 class Admin::ReferrersController < ApplicationController
-
   attr_accessor :referrer, :referrers
 
   before_action :set_referrer, :except => [:index, :new]
@@ -49,12 +48,13 @@ class Admin::ReferrersController < ApplicationController
     redirect_to navigation.back(1)
   end
 
-  def set_referrer
-    @referrer = Referrer.find(params[:id] || params[:referrer_id])
-  end
+  private
 
-  def referrer_params
-    params.require(:referrer).permit!
-  end
+    def set_referrer
+      @referrer = Referrer.find(params[:id] || params[:referrer_id])
+    end
 
+    def referrer_params
+      params.require(:referrer).permit!
+    end
 end

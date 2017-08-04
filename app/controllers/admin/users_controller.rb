@@ -1,5 +1,4 @@
 class Admin::UsersController < ApplicationController
-
   attr_accessor :user, :users
 
   authorize_resource class: false
@@ -70,12 +69,11 @@ class Admin::UsersController < ApplicationController
 
   private
 
-  def set_user
-    @user = User.find(params[:id] || params[:user_id])
-  end
+    def set_user
+      @user = User.find(params[:id] || params[:user_id])
+    end
 
-  def user_params
-    params.require(:user).permit!
-  end
-
+    def user_params
+      params.require(:user).permit!
+    end
 end

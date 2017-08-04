@@ -1,8 +1,5 @@
-# NOTE : this controller is actually used to get the address of the customer
-# from the admin side.
-# NOTE 2 : the controller itself isn't currently used but only the view.
+# NOTE : the controller itself isn't currently used but only the view.
 class Admin::AddressController < ApplicationController
-
   attr_accessor :address
 
   authorize_resource class: false
@@ -19,8 +16,7 @@ class Admin::AddressController < ApplicationController
 
   private
 
-  def set_address
-    @address = Address.find(params[:id])
-  end
-
+    def set_address
+      @address = Address.find(params[:id])
+    end
 end

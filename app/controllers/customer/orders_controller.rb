@@ -2,7 +2,6 @@ require 'csv'
 require 'net/ftp'
 
 class Customer::OrdersController < ApplicationController
-
   attr_accessor :order
 
   authorize_resource class: false
@@ -44,16 +43,15 @@ class Customer::OrdersController < ApplicationController
 
   private
 
-  def set_order
-    @order = Order.find(params[:id] || params[:order_id])
-  end
-
-  # if it's not the customer order, we prevent him to go further
-  def customer_order?
-    if Order.where(id: order.id, user_id: current_user.id).first.nil?
-      redirect_to navigation.back(1)
-      return
+    def set_order
+      @order = Order.find(params[:id] || params[:order_id])
     end
-  end
 
+    # if it's not the customer order, we prevent him to go further
+    def customer_order?
+      if Order.where(id: order.id, user_id: current_user.id).first.nil?
+        redirect_to navigation.back(1)
+        return
+      end
+    end
 end
