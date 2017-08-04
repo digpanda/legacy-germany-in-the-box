@@ -1,6 +1,9 @@
 // NOTE : this is a copy of package-set-block for the package set area category scope selection
 +component(categories-block)
 
+  +breakpoint('mobile')
+    padding-bottom: 2em // for the button
+
   +shadow-box
 
   +breakpoint('desktop')
@@ -11,6 +14,7 @@
     +border-radius-bottom(4px)
 
   +part(no-padding-left)
+
     +breakpoint('desktop')
       padding-left: 0
     & > div
@@ -40,11 +44,16 @@
     font-size: 18px
     +crossed
 
+  +part(button)
+
   +part(wrapper)
     width: 95%
-    //+center
+    +breakpoint('mobile')
+      display: inline-block
 
   +part(content)
+    +breakpoint('mobile')
+      display: inline-block
 
     position: relative
     padding: 2em
@@ -54,7 +63,8 @@
 
     +breakpoint('mobile')
       +border-radius-bottom(4px)
-      min-height: 33em
+      //min-height: 33em
+      //display: inline-block
 
     background-color: $color-white
 

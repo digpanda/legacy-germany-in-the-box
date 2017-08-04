@@ -1,5 +1,8 @@
 +component(package-set-block)
 
+  +breakpoint('mobile')
+    padding-bottom: 2em // for the button
+
   +shadow-box
 
   +breakpoint('desktop')
@@ -41,10 +44,13 @@
 
   +part(wrapper)
     width: 95%
-    //+center
+    +breakpoint('mobile')
+      display: inline-block
 
   +part(content)
-
+    +breakpoint('mobile')
+      display: inline-block
+      
     position: relative
     padding: 2em
     height: 60vw
