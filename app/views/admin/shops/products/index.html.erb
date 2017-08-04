@@ -15,12 +15,18 @@
     <input type="query" class="js-search-input search-bar__input" name="query" autocomplete="off" placeholder="<%= Setting.instance.search_suggestion %>" />
     <button type="submit" class="+hidden"></button>
   </form>
-  <a href="#" class="js-search-button search-bar__button header-desktop__menu --green"><i class="fa fa-search"></i></a>
 </div>
 
 <div class="+spacer"></div>
 <div class="row">
-  <%= render partial: "admin/shops/products/table", :locals => { :products => @products } %>
+  <div class="col-md-12">
+    <%= render partial: "shared/partials/search" %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <%= render partial: "admin/shops/products/table", :locals => { :products => @products } %>
+  </div>
 </div>
 
 <%= will_paginate @products, renderer: BootstrapPagination::Rails %>
