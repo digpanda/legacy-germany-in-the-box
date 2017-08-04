@@ -1,5 +1,5 @@
 class Admin::OrdersController < ApplicationController
-  CSV_ENCODE = "UTF-8"
+  CSV_ENCODE = 'UTF-8'
 
   attr_accessor :order, :orders
 

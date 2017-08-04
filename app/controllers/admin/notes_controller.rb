@@ -38,6 +38,6 @@ class Admin::NotesController < ApplicationController
     end
 
     def note_params
-      params.require(:note).permit(:order_id, :user_id, :message, :type).merge({:author_id => current_user.id})
+      params.require(:note).permit(:order_id, :user_id, :message, :type).merge(author_id: current_user.id)
     end
 end

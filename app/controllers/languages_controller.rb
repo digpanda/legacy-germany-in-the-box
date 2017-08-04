@@ -15,7 +15,6 @@ class LanguagesController < ActionController::Base # No application because it's
   end
 
   def update
-
     unless valid_language? && valid_location?
       throw_app_error(:bad_language)
       return
@@ -34,7 +33,6 @@ class LanguagesController < ActionController::Base # No application because it's
     else
       redirect_to root_url
     end
-
   end
 
   private

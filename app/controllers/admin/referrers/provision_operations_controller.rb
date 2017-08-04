@@ -24,11 +24,11 @@ class Admin::Referrers::ProvisionOperationsController < ApplicationController
 
     def operation_params
       handle_amount_direction!
-      params.require(:referrer_provision_operation).permit!.merge({:referrer_id => referrer.id})
+      params.require(:referrer_provision_operation).permit!.merge(referrer_id: referrer.id)
     end
 
     def handle_amount_direction!
-      if params[:amount_direction] == "decrease"
+      if params[:amount_direction] == 'decrease'
         params[:referrer_provision_operation][:amount] = "-#{params[:referrer_provision_operation][:amount]}"
       end
     end

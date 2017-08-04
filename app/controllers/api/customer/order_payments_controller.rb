@@ -6,10 +6,10 @@ class Api::Customer::OrderPaymentsController < Api::ApplicationController
 
   def show
     if order_payment
-      render json: {success: true, order_payment: order_payment}
+      render json: { success: true, order_payment: order_payment }
       return
     end
-    render json: {success: false, error: "Order payment not found."}
+    render json: { success: false, error: 'Order payment not found.' }
   end
 
   private

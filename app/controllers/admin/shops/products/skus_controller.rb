@@ -1,5 +1,4 @@
 class Admin::Shops::Products::SkusController < ApplicationController
-
   include DestroyImage
 
   attr_reader :shop, :product, :sku, :skus

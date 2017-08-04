@@ -41,6 +41,6 @@ class Api::Guest::UsersController < Api::ApplicationController
     end
 
     def email_param
-      params["shop_application"]["email"]
+      params['shop_application']['email']
     end
 end

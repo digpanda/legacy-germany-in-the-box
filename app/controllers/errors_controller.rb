@@ -9,7 +9,7 @@ class ErrorsController < ActionController::Base
   before_action :identity_solver
 
   include ErrorsHelper
-  layout "errors/default"
+  layout 'errors/default'
 
   def page_not_found
     if api?
@@ -39,6 +39,6 @@ class ErrorsController < ActionController::Base
     end
 
     def api?
-      (env["REQUEST_URI"] =~ /^\/api/) == 0
+      (env['REQUEST_URI'] =~ /^\/api/) == 0
     end
 end

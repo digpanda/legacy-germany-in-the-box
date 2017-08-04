@@ -35,21 +35,21 @@ class Api::Webhook::WechatController < Api::ApplicationController
     # </xml>
     def handle
       return if hook_activation?
-      SlackDispatcher.new.message("[Webhook] Wechat Webhook was called.")
+      SlackDispatcher.new.message('[Webhook] Wechat Webhook was called.')
 
       devlog.info 'Wechat started to communicate with us ...'
       body = Hash.from_xml(request.body.read)
       @transmit_data = body&.[]('xml')
 
       unless valid_xml?
-        throw_api_error(:bad_format, {error: 'Wrong format transmitted'}, :bad_request)
+        throw_api_error(:bad_format, { error: 'Wrong format transmitted' }, :bad_request)
         return
       end
 
       devlog.info("Raw params : #{transmit_data}")
       SlackDispatcher.new.message("Raw params : #{transmit_data}")
 
-      if event == "SCAN"
+      if event == 'SCAN'
         handle_qrcode_callback!
         render text: 'success'
         return
@@ -65,26 +65,26 @@ class Api::Webhook::WechatController < Api::ApplicationController
         end
         return
       elsif event == 'subscribe'
-          render text: 'success'
-          return
+        render text: 'success'
+        return
       else
-          render text: "success"
-          return
+        render text: 'success'
+        return
       end
 
       devlog.info 'End of process.'
       render status: :ok,
-              json: { success: true }.to_json
+      json: { success: true }.to_json
     end
 
     def handle_qrcode_callback!
       unless valid_json?(raw_extra_data)
-        throw_api_error(:bad_format, {error: 'Wrong extra_data transmitted'}, :bad_request)
+        throw_api_error(:bad_format, { error: 'Wrong extra_data transmitted' }, :bad_request)
         return
       end
 
       # we are in front of a referrer request
-      referrer = Referrer.where(reference_id: extra_data["referrer"]["reference_id"]).first
+      referrer = Referrer.where(reference_id: extra_data['referrer']['reference_id']).first
       SlackDispatcher.new.message("Referrer is `#{referrer.id}`")
 
       if wechat_user_solver.success? && referrer
@@ -92,7 +92,7 @@ class Api::Webhook::WechatController < Api::ApplicationController
         SlackDispatcher.new.message("Customer is `#{user.id}`")
       else
         SlackDispatcher.new.message("Customer was not resolved : #{wechat_user_solver.error}")
-        throw_api_error(:bad_format, {error: "Wrong referrer or/and customer"}, :bad_request)
+        throw_api_error(:bad_format, { error: 'Wrong referrer or/and customer' }, :bad_request)
         return
       end
 
@@ -114,7 +114,7 @@ class Api::Webhook::WechatController < Api::ApplicationController
     end
 
     def wechat_user_solver
-      @wechat_user_solver ||= WechatUserSolver.new({provider: "wechat", openid: raw_openid}).resolve!
+      @wechat_user_solver ||= WechatUserSolver.new(provider: 'wechat', openid: raw_openid).resolve!
     end
 
     def extra_data

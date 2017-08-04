@@ -13,7 +13,7 @@ module ErrorsHelper
     dispatch_error_email(exception)
     render "/errors/page_not_found",
            status: :not_found,
-           layout: "errors/default"
+           layout: 'errors/default'
   end
 
   # force log-in and redirect to the actual page later on
@@ -34,7 +34,7 @@ module ErrorsHelper
     dispatch_error_email(exception)
     render "/errors/server_error",
            status: :not_found,
-           layout: "errors/default"
+           layout: 'errors/default'
   end
 
   def dispatch_error_email(exception)
@@ -45,7 +45,7 @@ module ErrorsHelper
   def throw_app_error(sym, merged_attributes={}, status=:bad_request)
     render "/errors/customized_error",
            status: status,
-           layout: "errors/default",
+           layout: 'errors/default',
            locals: throw_error(sym).merge(merged_attributes)
   end
 

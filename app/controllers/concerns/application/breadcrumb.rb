@@ -90,7 +90,6 @@ module Application
       add_breadcrumb 'New', new_admin_coupon_path
     end
 
-
     def breadcrumb_admin_order_payments
       add_breadcrumb 'Order Payment', admin_order_payments_path
     end

@@ -28,29 +28,11 @@ class Admin::OrderPaymentsController < ApplicationController
   end
 
   def refund
-    refund = payment_refunder.perform
-    if refund.success?
-      flash[:success] = 'Refund was successful'
-    else
-      flash[:error] = "#{refund.error}"
-    end
-    redirect_to navigation.back(1)
+    # Refund has been destroyed because it belongs to Wirecard legacy system.
   end
 
-  # check the order payment through the API and refresh the order matching with it
-  # /!\ WARNING : right now the checker first set the payment status to `:unverified`
-  # before to call the API which means if we can't establish API communication it can
-  # put back the status of the transaction as `:unverified` while it's paid.
   def check
-    checker = payment_checker.update_order_payment!
-    # it doesn't matter if the API call failed, the order has to be systematically up to date with the order payment in case it's not already sent
-    order_payment.order.refresh_status_from!(order_payment)
-    if checker.success?
-      flash[:success] = 'The order was refreshed and seem to be paid.'
-    else
-      flash[:error] = "The order was refreshed but don't seem to be paid. (#{checker.error})"
-    end
-    redirect_to navigation.back(1)
+    # Check has been destroyed because it belongs to Wirecard legacy system.
   end
 
   def destroy
@@ -66,15 +48,6 @@ class Admin::OrderPaymentsController < ApplicationController
 
     def order_payment_params
       params.require(:order_payment).permit!
-    end
-
-    def payment_refunder
-      @payment_refunder ||= WirecardPaymentRefunder.new(order_payment)
-    end
-
-    # make API call which refresh order payment
-    def payment_checker
-      @payment_checker ||= WirecardPaymentChecker.new({:order_payment => order_payment})
     end
 
     def set_order_payment

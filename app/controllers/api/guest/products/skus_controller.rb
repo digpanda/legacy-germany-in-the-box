@@ -21,15 +21,15 @@ class Api::Guest::Products::SkusController < Api::ApplicationController
 
   private
 
-      def set_product
-        @product = Product.find(params[:product_id]).decorate
-      end
+    def set_product
+      @product = Product.find(params[:product_id]).decorate
+    end
 
-      def set_skus
-        @skus = product.skus
-      end
+    def set_skus
+      @skus = product.skus
+    end
 
-      def set_sku
-        @sku = product.sku_from_option_ids(params[:option_ids])
-      end
+    def set_sku
+      @sku = product.sku_from_option_ids(params[:option_ids])
+    end
 end

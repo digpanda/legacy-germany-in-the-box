@@ -1,5 +1,4 @@
 class Admin::Shops::Products::VariantsController < ApplicationController
-
   MAX_NEW_VARIANTS = 10.freeze
   MAX_NEW_OPTIONS = 10.freeze
 
@@ -105,7 +104,7 @@ class Admin::Shops::Products::VariantsController < ApplicationController
     # NOTE : since it's converted to an hash, we cannot use symbols anymore
     def product_params_without_option
       product_params.to_h.tap do |product_param|
-        product_param.delete("options_attributes")
+        product_param.delete('options_attributes')
       end
     end
 

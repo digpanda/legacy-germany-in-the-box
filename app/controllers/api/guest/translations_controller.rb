@@ -4,12 +4,11 @@
 # this AJAX system sadly make too many aysnchronous call and force callbacks everywhere which i want to avoid
 # - Laurent
 class Api::Guest::TranslationsController < Api::ApplicationController
-
   def index
   end
 
   def show
-    @translation = I18n.t(valid_params[:translation_slug], :scope => valid_params[:translation_scope])
+    @translation = I18n.t(valid_params[:translation_slug], scope: valid_params[:translation_scope])
   end
 
   private

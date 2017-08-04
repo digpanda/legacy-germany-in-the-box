@@ -7,6 +7,6 @@ class Api::Guest::NavigationController < Api::ApplicationController
   def update
     history = navigation.store(params[:location])
     render status: :ok,
-           json: {success: true, datas: history}.to_json
+           json: { success: true, datas: history }.to_json
   end
 end

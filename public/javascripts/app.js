@@ -721,10 +721,10 @@ var CustomerGatewayCreate = {
               break;
             case "unverified":
               // Unverified means an action has been done but is awaiting approval; it's like a success.
-              window.location.href = $("#order-payment-callback-url").data("success");
+              window.location.href = $("#order-payment-callback-url").data('success');
               break;
-            case "success":
-              window.location.href = $("#order-payment-callback-url").data("success");
+            case 'success':
+              window.location.href = $("#order-payment-callback-url").data('success');
               break;
             case "failed":
               window.location.href = $("#order-payment-callback-url").data("fail");
@@ -3859,7 +3859,7 @@ var SweetAlert = {
               swal({
                 title: "Processing!",
                 text: "Your request is being processed ...",
-                type: "success",
+                type: 'success',
                 showConfirmButton: false
               });
               window.location.href = $(self).attr('href');

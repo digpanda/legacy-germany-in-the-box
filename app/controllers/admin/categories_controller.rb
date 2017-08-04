@@ -13,7 +13,7 @@ class Admin::CategoriesController < ApplicationController
   layout :custom_sublayout
 
   def index
-    @categories = Category.order_by(:position => :asc).paginate(page: current_page, per_page: 10)
+    @categories = Category.order_by(position: :asc).paginate(page: current_page, per_page: 10)
   end
 
   def edit

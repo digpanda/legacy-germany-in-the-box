@@ -7,7 +7,6 @@ class Api::Admin::DutyCategoriesController < Api::ApplicationController
   before_action :set_duty_category
 
   def show
-
     unless duty_category
       render status: :not_found,
              json: throw_error(:resource_not_found).to_json
@@ -15,7 +14,7 @@ class Api::Admin::DutyCategoriesController < Api::ApplicationController
     end
 
     render status: :ok,
-          json: {success: true, datas: {:duty_category => duty_category}}.to_json
+          json: { success: true, datas: { duty_category: duty_category } }.to_json
   end
 
   private

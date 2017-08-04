@@ -1,7 +1,6 @@
 require 'base64_to_upload'
 
 class ApplicationController < ActionController::Base
-
   include HttpAcceptLanguage::AutoLocale
 
   include Application::Exceptions
@@ -68,7 +67,7 @@ class ApplicationController < ActionController::Base
   end
 
   def default_layout
-    "application"
+    'application'
   end
 
   def freeze_header
@@ -89,5 +88,4 @@ class ApplicationController < ActionController::Base
       throw_unauthorized_page
     end
   end
-
 end

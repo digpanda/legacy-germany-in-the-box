@@ -7,7 +7,6 @@ class Api::Webhook::Wechatpay::CustomersController < Api::ApplicationController
   skip_before_filter :verify_authenticity_token
 
   def create
-
     devlog.info 'Wechatpay started to communicate with us ...'
     body = Hash.from_xml(request.body.read)
     @transmit_data = body&.[]('xml')

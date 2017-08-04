@@ -31,20 +31,19 @@ class Api::Webhook::Alipay::CustomersController < Api::ApplicationController
   #  "action"=>"create"}
 
   def create
-
-    devlog.info "Alipay started to communicate with us ..."
+    devlog.info 'Alipay started to communicate with us ...'
     devlog.info("Raw params : #{params}")
 
     if wrong_params?
-      throw_api_error(:bad_format, {error: "Wrong datas transmitted"}, :bad_request)
+      throw_api_error(:bad_format, { error: 'Wrong datas transmitted' }, :bad_request)
       return
     end
 
     if checkout_callback.success?
-      devlog.info "Transaction successfully processed."
+      devlog.info 'Transaction successfully processed.'
       SlackDispatcher.new.message("[Webhook] Alipay transaction SUCCESS processed : #{params}")
     else
-      devlog.info "Processing of the transaction failed."
+      devlog.info 'Processing of the transaction failed.'
       SlackDispatcher.new.message("[Webhook] Alipay transaction FAIL processed : #{params}")
     end
 

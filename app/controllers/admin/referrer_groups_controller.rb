@@ -15,7 +15,7 @@ class Admin::ReferrerGroupsController < ApplicationController
   layout :custom_sublayout
 
   def index
-    @referrer_groups = ReferrerGroup.order_by(:position => :asc).paginate(page: current_page, per_page: 10)
+    @referrer_groups = ReferrerGroup.order_by(position: :asc).paginate(page: current_page, per_page: 10)
   end
 
   def new

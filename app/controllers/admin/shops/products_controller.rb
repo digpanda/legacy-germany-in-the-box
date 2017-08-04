@@ -1,5 +1,5 @@
 class Admin::Shops::ProductsController < ApplicationController
-  CSV_ENCODE = "UTF-8".freeze
+  CSV_ENCODE = 'UTF-8'.freeze
 
   attr_reader :shop, :products, :product
 
@@ -106,7 +106,7 @@ class Admin::Shops::ProductsController < ApplicationController
 
     def recover_duty_category_from_code
       product_params.require(:duty_category).tap do |duty_category_code|
-        product_params[:duty_category] = DutyCategory.where(code: duty_category_code).where(tax_rate: {'$gt': 0.0}).first
+        product_params[:duty_category] = DutyCategory.where(code: duty_category_code).where(tax_rate: { '$gt': 0.0 }).first
       end
     end
 

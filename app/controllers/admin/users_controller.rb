@@ -36,7 +36,7 @@ class Admin::UsersController < ApplicationController
   end
 
   def banish
-    if user.update({:banished => true})
+    if user.update(banished: true)
       flash[:success] = 'The user was banished.'
     else
       flash[:error] = "The user was not banished (#{user.errors.full_messages.join(', ')})"
