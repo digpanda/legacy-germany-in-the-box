@@ -5,8 +5,8 @@ class Customer::OrdersController < ApplicationController
   attr_accessor :order
 
   authorize_resource class: false
-  before_action :set_order, :except => [:index]
-  before_filter :customer_order?, :except => [:index]
+  before_action :set_order, except: [:index]
+  before_filter :customer_order?, except: [:index]
 
   layout :custom_sublayout, only: [:index]
 

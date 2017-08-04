@@ -2,11 +2,11 @@ class Admin::UsersController < ApplicationController
   attr_accessor :user, :users
 
   authorize_resource class: false
-  before_action :set_user, :except => [:index, :emails]
+  before_action :set_user, except: [:index, :emails]
 
   layout :custom_sublayout
 
-  before_action :breadcrumb_admin_users, :except => [:index]
+  before_action :breadcrumb_admin_users, except: [:index]
   before_action :breadcrumb_admin_user, only: [:show]
 
   def index
@@ -18,7 +18,7 @@ class Admin::UsersController < ApplicationController
 
   def update
     if user.update(user_params)
-      flash[:success] = "The user was updated."
+      flash[:success] = 'The user was updated.'
     else
       flash[:error] = "The user was not updated (#{user.errors.full_messages.join(', ')})"
     end
@@ -28,7 +28,7 @@ class Admin::UsersController < ApplicationController
   def destroy
     if user.destroy
       user&.referrer&.destroy # if it's also a referrer
-      flash[:success] = "The user account was successfully destroyed."
+      flash[:success] = 'The user account was successfully destroyed.'
     else
       flash[:error] = "The user was not destroyed (#{user.errors.full_messages.join(', ')})"
     end
@@ -37,7 +37,7 @@ class Admin::UsersController < ApplicationController
 
   def banish
     if user.update({:banished => true})
-      flash[:success] = "The user was banished."
+      flash[:success] = 'The user was banished.'
     else
       flash[:error] = "The user was not banished (#{user.errors.full_messages.join(', ')})"
     end
@@ -54,7 +54,7 @@ class Admin::UsersController < ApplicationController
   def set_as_referrer
     conversion = ReferrerMaker.new(user).convert!(time_limit: false)
     if conversion.success?
-      flash[:success] = "The user account was successfully set as a tourist guide."
+      flash[:success] = 'The user account was successfully set as a tourist guide.'
     else
       flash[:error] = "#{conversion.error}"
     end

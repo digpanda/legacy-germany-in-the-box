@@ -4,11 +4,11 @@ class Admin::OrdersController < ApplicationController
   attr_accessor :order, :orders
 
   authorize_resource class: false
-  before_action :set_order, :except => [:index]
+  before_action :set_order, except: [:index]
 
   layout :custom_sublayout
 
-  before_action :breadcrumb_admin_orders, :except => [:index]
+  before_action :breadcrumb_admin_orders, except: [:index]
   before_action :breadcrumb_admin_order, only: [:show]
 
   def index
@@ -30,7 +30,7 @@ class Admin::OrdersController < ApplicationController
 
   def update
     if order.update(order_params)
-      flash[:success] = "The order was updated."
+      flash[:success] = 'The order was updated.'
     else
       flash[:error] = "The order was not updated (#{order.errors.full_messages.join(', ')})"
     end
@@ -39,7 +39,7 @@ class Admin::OrdersController < ApplicationController
 
   def shipped
     unless order.shippable?
-      flash[:error] = "Order is not shippable."
+      flash[:error] = 'Order is not shippable.'
       redirect_to navigation.back(1)
       return
     end
@@ -47,13 +47,13 @@ class Admin::OrdersController < ApplicationController
     order.status = :shipped
     order.save
     Notifier::Customer.new(order.user).order_has_been_shipped(order)
-    flash[:success] = "Order is considered shipped and SMS was triggered."
+    flash[:success] = 'Order is considered shipped and SMS was triggered.'
     redirect_to navigation.back(1)
   end
 
   def destroy
     if order.delete
-      flash[:success] = "The order was deleted."
+      flash[:success] = 'The order was deleted.'
     else
       flash[:error] = "The order was not deleted (#{order.errors.full_messages.join(', ')})"
     end

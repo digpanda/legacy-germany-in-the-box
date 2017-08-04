@@ -4,7 +4,7 @@ class CheckoutCallback < BaseService
   #  "trade_no"=>"2017030821001003840200345741",
   #  "total_fee"=>"1262.41",
   #  "sign_type"=>"MD5",
-  #  "out_trade_no"=>"58bfc16af54bcc0a0b908c44",
+  #  'out_trade_no'=>"58bfc16af54bcc0a0b908c44",
   #  "trade_status"=>"TRADE_FINISHED",
   #  "currency"=>"HKD",
   #  "controller"=>"customer/checkout/callback/alipay",
@@ -23,13 +23,13 @@ class CheckoutCallback < BaseService
   end
 
   def wechatpay!
-    order_payment = OrderPayment.where(id: params["out_trade_no"]).first
+    order_payment = OrderPayment.where(id: params['out_trade_no']).first
     unless order_payment
       return return_with(:error, "Order not found from the AliPay callback")
     end
 
     # first we make sure we got the transaction id for traceability
-    order_payment.transaction_id = params["transaction_id"]
+    order_payment.transaction_id = params['transaction_id']
     order_payment.save
 
     unless wechatpay_success?
@@ -126,7 +126,7 @@ class CheckoutCallback < BaseService
   private
 
   def wechatpay_success?
-    params["return_code"] == "SUCCESS"
+    params['return_code'] == 'SUCCESS'
   end
 
   def alipay_success?(mode)

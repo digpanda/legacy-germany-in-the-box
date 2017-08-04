@@ -1,5 +1,5 @@
 class Api::Guest::UsersController < Api::ApplicationController
-  before_action :missing_email_param?, :only => [:find_by_email, :unknown_by_email]
+  before_action :missing_email_param?, only: [:find_by_email, :unknown_by_email]
 
   # the structuration of #find_by_email and #unknown_by_email looks weird
   # it's to be used with the AJAX non obstrusive system installed previously
@@ -12,7 +12,7 @@ class Api::Guest::UsersController < Api::ApplicationController
              json: throw_error(:resource_not_found).to_json
     else
       render status: :ok,
-             json: {success: true}.to_json
+             json: { success: true }.to_json
     end
   end
 
@@ -22,7 +22,7 @@ class Api::Guest::UsersController < Api::ApplicationController
              json: throw_error(:resource_found).to_json
     else
       render status: :ok,
-             json: {success: true}.to_json
+             json: { success: true }.to_json
     end
   end
 

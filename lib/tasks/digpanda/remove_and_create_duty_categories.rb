@@ -46,7 +46,7 @@ class Tasks::Digpanda::RemoveAndCreateDutyCategories
 
     end
 
-    puts "End of process."
+    puts 'End of process.'
 
   end
 

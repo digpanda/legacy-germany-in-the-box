@@ -38,7 +38,7 @@ class Tasks::Digpanda::RefreshDutyCategoriesTaxes
 
     end
 
-    puts "End of process."
+    puts 'End of process.'
 
   end
 

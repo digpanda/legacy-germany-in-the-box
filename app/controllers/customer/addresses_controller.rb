@@ -50,7 +50,6 @@ class Customer::AddressesController < ApplicationController
 
     flash[:error] = I18n.t(:update_ko, scope: :edit_address)
     redirect_to :edit
-
   end
 
   def destroy
@@ -70,7 +69,7 @@ class Customer::AddressesController < ApplicationController
     end
 
     def reset_primary_address!
-      current_user.addresses.not.where(:id => address.id).each do |other_address|
+      current_user.addresses.not.where(id: address.id).each do |other_address|
         other_address.primary = false
         other_address.save
       end

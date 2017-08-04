@@ -3,9 +3,9 @@ class Admin::ShopsController < ApplicationController
   attr_accessor :shop, :shops
 
   authorize_resource class: false
-  before_action :set_shop, :except => [:index, :emails]
+  before_action :set_shop, except: [:index, :emails]
 
-  before_action :breadcrumb_admin_shops, :except => [:index]
+  before_action :breadcrumb_admin_shops, except: [:index]
   before_action :breadcrumb_admin_shop, only: [:show]
 
   layout :custom_sublayout

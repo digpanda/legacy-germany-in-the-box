@@ -3,7 +3,7 @@ class Customer::Orders::CouponsController < ApplicationController
 
   authorize_resource class: false
   before_action :set_order
-  before_action :set_coupon, :except => [:destroy]
+  before_action :set_coupon, except: [:destroy]
 
   layout :custom_sublayout
 

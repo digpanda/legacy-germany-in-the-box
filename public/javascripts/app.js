@@ -1642,7 +1642,7 @@ require.register("javascripts/lib/foreign/datepicker-zh-CN.js", function(exports
   }
 })(function (datepicker) {
 
-  datepicker.regional["zh-CN"] = {
+  datepicker.regional['zh-CN'] = {
     closeText: "关闭",
     prevText: "&#x3C;上月",
     nextText: "下月&#x3E;",
@@ -1658,9 +1658,9 @@ require.register("javascripts/lib/foreign/datepicker-zh-CN.js", function(exports
     isRTL: false,
     showMonthAfterYear: true,
     yearSuffix: "年" };
-  datepicker.setDefaults(datepicker.regional["zh-CN"]);
+  datepicker.setDefaults(datepicker.regional['zh-CN']);
 
-  return datepicker.regional["zh-CN"];
+  return datepicker.regional['zh-CN'];
 });
 });
 

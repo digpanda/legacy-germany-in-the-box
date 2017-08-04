@@ -6,7 +6,7 @@ class Admin::OrderItemsController < ApplicationController
 
   def update
     if order_item.update(order_item_params)
-      flash[:success] = "The order item was updated."
+      flash[:success] = 'The order item was updated.'
     else
       flash[:error] = "The order item was not updated (#{order_item.errors.full_messages.join(', ')})"
     end
@@ -21,7 +21,7 @@ class Admin::OrderItemsController < ApplicationController
     order.refresh_referrer_provision!
     order.bypass_locked!
     order.save
-    flash[:success] = "The referrer rate for this order item was refreshed."
+    flash[:success] = 'The referrer rate for this order item was refreshed.'
     redirect_to navigation.back(1)
   end
 

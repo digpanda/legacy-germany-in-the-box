@@ -11,8 +11,8 @@ class Shopkeeper::AccountController < ApplicationController
 
   def update
     if check_valid_password?(params) && user.update(user_params)
-      flash[:success] = I18n.t("notice.account_updated")
-      sign_in(user, :bypass => true)
+      flash[:success] = I18n.t('notice.account_updated')
+      sign_in(user, bypass: true)
     else
       flash[:error] = user.errors.full_messages.join(',')
     end
@@ -34,7 +34,7 @@ class Shopkeeper::AccountController < ApplicationController
       if user.valid_password?(params[:user][:current_password])
         true
       else
-        user.errors.add(:password, "wrong")
+        user.errors.add(:password, 'wrong')
         false
       end
     end

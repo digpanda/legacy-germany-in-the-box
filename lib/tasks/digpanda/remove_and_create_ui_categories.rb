@@ -49,7 +49,7 @@ class Tasks::Digpanda::RemoveAndCreateUiCategories
 
     Rails.cache.clear
 
-    devlog "End of process."
+    devlog 'End of process.'
 
   end
 

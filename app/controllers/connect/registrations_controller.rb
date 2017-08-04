@@ -3,7 +3,7 @@ class Connect::RegistrationsController < Devise::RegistrationsController
 
   before_action :configure_devise_permitted_parameters, if: :devise_controller?
 
-  before_action(:only =>  [:create, :update]) {
+  before_action(only:  [:create, :update]) {
     base64_to_uploadedfile :user, :pic
   }
 
@@ -12,7 +12,6 @@ class Connect::RegistrationsController < Devise::RegistrationsController
   respond_to :html, :json
 
   def new
-
     session[:signup_advice_counter] = 1
     build_resource({})
     yield resource if block_given?
@@ -20,48 +19,46 @@ class Connect::RegistrationsController < Devise::RegistrationsController
   end
 
   def create
-
     build_resource(sign_up_params)
 
-      yield resource if block_given?
-      resource.save
+    yield resource if block_given?
+    resource.save
 
-      if resource.persisted?
+    if resource.persisted?
 
-        if resource.active_for_authentication?
+      if resource.active_for_authentication?
 
-          flash[:success] = I18n.t(:success_subscription, scope: :notice)
+        flash[:success] = I18n.t(:success_subscription, scope: :notice)
 
-          sign_up(resource_name, resource)
+        sign_up(resource_name, resource)
 
-          sign_in(:user, User.find(resource.id)) # auto sign in
+        sign_in(:user, User.find(resource.id)) # auto sign in
 
-          if resource.customer?
-            Notifier::Customer.new(resource).welcome
-          elsif resource.shopkeeper?
-            Notifier::Shopkeeper.new(resource).welcome
-          end
-
-          respond_with resource, location: after_sign_up_path_for(resource)
-          return
-
-        else
-          set_flash_message :notice, :"signed_up_but_#{resource.inactive_message}" if is_flashing_format?
-          expire_data_after_sign_in!
-          respond_with resource, location: after_inactive_sign_up_path_for(resource)
+        if resource.customer?
+          Notifier::Customer.new(resource).welcome
+        elsif resource.shopkeeper?
+          Notifier::Shopkeeper.new(resource).welcome
         end
 
-        session.delete(:signup_advice_counter)
+        respond_with resource, location: after_sign_up_path_for(resource)
+        return
+
       else
-        clean_up_passwords resource
-        set_minimum_password_length
-
-        session[:signup_advice_counter] = 1
-        flash[:error] = resource.errors.full_messages.join(', ')
-        render :new
-
+        set_flash_message :notice, :"signed_up_but_#{resource.inactive_message}" if is_flashing_format?
+        expire_data_after_sign_in!
+        respond_with resource, location: after_inactive_sign_up_path_for(resource)
       end
 
+      session.delete(:signup_advice_counter)
+    else
+      clean_up_passwords resource
+      set_minimum_password_length
+
+      session[:signup_advice_counter] = 1
+      flash[:error] = resource.errors.full_messages.join(', ')
+      render :new
+
+    end
   end
 
   protected

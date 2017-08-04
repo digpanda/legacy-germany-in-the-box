@@ -6,10 +6,10 @@ class Customer::CheckoutController < ApplicationController
   skip_before_filter :verify_authenticity_token
   authorize_resource class: false
 
-  before_filter :ensure_session_order, :only => [:payment_method, :gateway]
-  before_action :set_order, :only => [:create, :gateway, :payment_method]
+  before_filter :ensure_session_order, only: [:payment_method, :gateway]
+  before_action :set_order, only: [:create, :gateway, :payment_method]
 
-  before_filter :force_address_param, :only => [:create]
+  before_filter :force_address_param, only: [:create]
 
   before_action :breadcrumb_cart, :breadcrumb_checkout_address, :breadcrumb_payment_method
 
@@ -39,7 +39,7 @@ class Customer::CheckoutController < ApplicationController
 
   def gateway
     unless params[:payment_method]
-      flash[:error] = "Invalid payment method."
+      flash[:error] = 'Invalid payment method.'
       redirect_to navigation.back(1)
       return
     end
@@ -91,7 +91,7 @@ class Customer::CheckoutController < ApplicationController
 
     def force_address_param
       unless params[:delivery_destination_id]
-        flash[:error] = "请选择邮寄地址"
+        flash[:error] = '请选择邮寄地址'
         redirect_to navigation.back(1)
         return false
       end

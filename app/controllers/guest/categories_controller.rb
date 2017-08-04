@@ -11,7 +11,7 @@ class Guest::CategoriesController < ApplicationController
   before_action :breadcrumb_category, only: [:show]
 
   def show
-    @shops = @category.can_buy_shops.order_by(:position => :asc).compact
+    @shops = @category.can_buy_shops.order_by(position: :asc).compact
   end
 
   private

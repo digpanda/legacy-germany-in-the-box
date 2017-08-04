@@ -12,7 +12,7 @@ class Shared::OrdersController < ApplicationController
     I18n.locale = :de # TODO : make a helper for that
     respond_to do |format|
       format.csv do
-        render text: "This functionality has been deactivated temporarily."
+        render text: 'This functionality has been deactivated temporarily.'
       end
     end
   end
@@ -28,7 +28,7 @@ class Shared::OrdersController < ApplicationController
   def cancel
     canceller = OrderCanceller.new(order).all!
     if canceller.success?
-      flash[:success] = "Order was cancelled successfully."
+      flash[:success] = 'Order was cancelled successfully.'
       redirect_to(:back)
     else
       flash[:error] = "#{canceller.error}"

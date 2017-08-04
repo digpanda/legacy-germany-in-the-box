@@ -9,10 +9,12 @@ class Customer::IdentityController < ApplicationController
       @identity_remote_url = xipost.identity_remote_url
       # @identity_form = xipost.identity_form
     else
-      @identity_remote_url = ""
+      @identity_remote_url = ''
       # @identity_form = "Partner does not require identity."
     end
   end
+
+  private
 
     # redirect straight to xipost whatever the settings are
     def xipost_remote

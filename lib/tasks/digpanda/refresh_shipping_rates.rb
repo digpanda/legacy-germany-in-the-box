@@ -21,7 +21,7 @@ class Tasks::Digpanda::RefreshShippingRates
     process!(:beihai)
     process!(:mkpost)
 
-    puts "End of process."
+    puts 'End of process.'
 
   end
 

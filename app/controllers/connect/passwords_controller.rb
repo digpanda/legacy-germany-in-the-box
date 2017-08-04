@@ -10,7 +10,6 @@ class Connect::PasswordsController < Devise::PasswordsController
 
   # POST /resource/password
   def create
-
     user = User.where(email: params[:email]).first
     unless user
       flash[:error] = I18n.t(:email_not_found, scope: :password_recovery)
@@ -27,7 +26,6 @@ class Connect::PasswordsController < Devise::PasswordsController
     else
       respond_with(user)
     end
-
   end
 
   # GET /resource/password/edit?reset_password_token=abcdef

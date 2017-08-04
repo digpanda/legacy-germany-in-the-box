@@ -2,7 +2,7 @@ module Application
   module Language
     extend ActiveSupport::Concern
 
-    DEFAULT_LANGUAGE = "zh-CN"
+    DEFAULT_LANGUAGE = 'zh-CN'
 
     included do
       before_action :set_current_language

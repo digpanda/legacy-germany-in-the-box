@@ -1,5 +1,5 @@
-require "uri"
-require "net/http"
+require 'uri'
+require 'net/http'
 
 class Guest::ShopApplicationsController < ApplicationController
   DEFAULT_PAYMENT_GATEWAYS = [:alipay, :wechatpay].freeze
@@ -18,7 +18,11 @@ class Guest::ShopApplicationsController < ApplicationController
     return throw_model_error(shop_application, :new) unless shop_application.save
 
     user = shopkeeper_from_shop_application!(shop_application)
-    shop_application.delete and return throw_model_error(user, :new) if user.errors.any? # rollback
+
+    if user.errors.any? # rollback
+      shop_application.delete
+      return throw_model_error(user, :new)
+    end
 
     shop = Shop.new(shop_params)
     shop.shopname = shop.name # marketing name
@@ -48,14 +52,14 @@ class Guest::ShopApplicationsController < ApplicationController
     end
 
     def shopkeeper_from_shop_application!(shop_application)
-      User.create({
-        :nickname => shop_application.email,
-        :email => shop_application.email,
-        :mobile => shop_application.mobile,
-        :password => shop_application.code[0, 8],
-        :password_confirmation => shop_application.code[0, 8],
-        :role => :shopkeeper
-      })
+      User.create(
+        nickname: shop_application.email,
+        email: shop_application.email,
+        mobile: shop_application.mobile,
+        password: shop_application.code[0, 8],
+        password_confirmation: shop_application.code[0, 8],
+        role: :shopkeeper
+      )
     end
 
     def force_german

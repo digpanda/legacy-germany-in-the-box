@@ -68,7 +68,7 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
 
     Rails.cache.clear
 
-    puts "End of process."
+    puts 'End of process.'
 
   end
 
@@ -282,7 +282,7 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
 
   def create_user(symbol=:customer)
 
-    num = User.where(:role => symbol).count + 1
+    num = User.where(role: symbol).count + 1
     name = symbol.to_s.capitalize
 
     if [true, false].sample
@@ -297,7 +297,7 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
       :gender                => ['f', 'm'].sample,
       :email                 => "#{symbol}#{num}@#{symbol}.com",
       :password              => '12345678',
-      :password_confirmation => '12345678',
+      password_confirmation: '12345678',
       :role                  => symbol,
       :referrer              => tourist_guide,
       :mobile                => Faker::PhoneNumber.cell_phone,

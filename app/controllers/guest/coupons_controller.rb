@@ -5,7 +5,7 @@ class Guest::CouponsController < ApplicationController
   before_action :set_coupon
 
   def flyer
-    send_data Flyer.new.process_steps(coupon, qrcode_path).image.to_blob, :stream => "false", :filename => "test.jpg", :type => "image/jpeg", :disposition => "inline"
+    send_data Flyer.new.process_steps(coupon, qrcode_path).image.to_blob, stream: 'false', filename: 'test.jpg', type: 'image/jpeg', disposition: 'inline'
   end
 
   private

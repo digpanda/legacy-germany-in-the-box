@@ -1,10 +1,10 @@
 class Admin::ReferrersController < ApplicationController
   attr_accessor :referrer, :referrers
 
-  before_action :set_referrer, :except => [:index, :new]
+  before_action :set_referrer, except: [:index, :new]
 
-  before_action :breadcrumb_admin_referrers, :except => [:index]
-  before_action :breadcrumb_admin_referrer, :except => [:index]
+  before_action :breadcrumb_admin_referrers, except: [:index]
+  before_action :breadcrumb_admin_referrer, except: [:index]
   before_action :breadcrumb_admin_referrer_provisions, only: [:provisions]
   before_action :breadcrumb_admin_referrer_coupon, only: [:coupon]
 
@@ -31,7 +31,7 @@ class Admin::ReferrersController < ApplicationController
 
   def update
     if referrer.update(referrer_params)
-      flash[:success] = "The referrer was updated."
+      flash[:success] = 'The referrer was updated.'
     else
       flash[:error] = "The referrer was not updated (#{referrer.errors.full_messages.join(', ')})"
     end
@@ -41,7 +41,7 @@ class Admin::ReferrersController < ApplicationController
   def coupon
     coupon = Coupon.create_referrer_coupon(referrer)
     if coupon
-      flash[:success] = "The coupon was created."
+      flash[:success] = 'The coupon was created.'
     else
       flash[:error] = "The coupon was not created (#{coupon&.errors&.full_messages&.join(', ')})"
     end

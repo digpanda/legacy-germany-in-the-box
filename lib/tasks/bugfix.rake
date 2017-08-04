@@ -26,7 +26,7 @@ namespace :bugfix do
 
       s.currency = 'EUR'
 
-      sa = ShopApplication.find_by(:email => s.shopkeeper.email)
+      sa = ShopApplication.find_by(email: s.shopkeeper.email)
 
       if sa
         s.fname = sa.fname

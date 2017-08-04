@@ -3,7 +3,6 @@ class Customer::Checkout::Callback::AlipayController < ApplicationController
   layout :default_layout
 
   def show
-
     checkout = checkout_callback.alipay!(mode: :unsafe)
     unless checkout.success?
       SlackDispatcher.new.message("[Exception] Error checkout callback #{checkout.error}")
@@ -14,7 +13,6 @@ class Customer::Checkout::Callback::AlipayController < ApplicationController
 
     flash[:success] = I18n.t(:checkout_ok, scope: :checkout)
     redirect_to edit_customer_identity_path
-
   end
 
   private

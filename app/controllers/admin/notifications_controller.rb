@@ -1,7 +1,7 @@
 class Admin::NotificationsController < ApplicationController
   attr_accessor :notification, :notifications
 
-  before_action :set_notification, :except => [:index]
+  before_action :set_notification, except: [:index]
 
   authorize_resource class: false
 
@@ -13,7 +13,7 @@ class Admin::NotificationsController < ApplicationController
 
   def destroy
     if notification.destroy
-      flash[:success] = "The notification account was successfully destroyed."
+      flash[:success] = 'The notification account was successfully destroyed.'
     else
       flash[:error] = "The notification was not destroyed (#{notification.errors.full_messages.join(', ')})"
     end

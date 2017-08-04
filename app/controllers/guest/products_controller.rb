@@ -13,7 +13,7 @@ class Guest::ProductsController < ApplicationController
   before_action :breadcrumb_category, :breadcrumb_shop, :breadcrumb_product, only: [:show]
 
   def show
-    @other_products = shop.products.not_in(:_id => [product.id]).highlight_first.can_buy.by_brand.limit(6)
+    @other_products = shop.products.not_in(_id: [product.id]).highlight_first.can_buy.by_brand.limit(6)
   end
 
   private

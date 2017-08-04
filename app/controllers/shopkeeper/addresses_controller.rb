@@ -26,7 +26,6 @@ class Shopkeeper::AddressesController < ApplicationController
 
     flash[:error] = "#{I18n.t(:create_ko, scope: :edit_address)} (#{address.errors.full_messages.join(', ')})"
     redirect_to navigation.back(1)
-
   end
 
   def update
@@ -38,7 +37,6 @@ class Shopkeeper::AddressesController < ApplicationController
 
     flash[:error] = "#{I18n.t(:update_ko, scope: :edit_address)} (#{address.errors.full_messages.join(', ')})"
     redirect_to navigation.back(1)
-
   end
 
   def destroy

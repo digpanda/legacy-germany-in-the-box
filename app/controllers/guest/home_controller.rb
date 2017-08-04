@@ -2,7 +2,7 @@ class Guest::HomeController < ApplicationController
   before_action :admin_redirection, :shopkeeper_redirection
 
   def show
-    @shops = Shop.can_buy.order_by(:position => :asc).all
+    @shops = Shop.can_buy.order_by(position: :asc).all
   end
 
   def wechat_test

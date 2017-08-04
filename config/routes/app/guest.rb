@@ -62,7 +62,7 @@ namespace :guest do
   end
 
   # maybe it will become shops/applications at some point
-  resources :shop_applications, :only => [:new, :create] do
+  resources :shop_applications, only: [:new, :create] do
   end
 
 end

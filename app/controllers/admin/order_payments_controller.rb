@@ -8,7 +8,7 @@ class Admin::OrderPaymentsController < ApplicationController
   layout :custom_sublayout, only: [:index, :show]
   before_action :set_order_payment, except: [:index]
 
-  before_action :breadcrumb_admin_order_payments, :except => [:index]
+  before_action :breadcrumb_admin_order_payments, except: [:index]
   before_action :breadcrumb_admin_order_payment, only: [:show]
 
   def index
@@ -20,7 +20,7 @@ class Admin::OrderPaymentsController < ApplicationController
 
   def update
     if order_payment.update(order_payment_params)
-      flash[:success] = "The order payment was updated."
+      flash[:success] = 'The order payment was updated.'
     else
       flash[:error] = "The order payment was not updated (#{order.erros.full_messages.join(', ')})"
     end
@@ -30,7 +30,7 @@ class Admin::OrderPaymentsController < ApplicationController
   def refund
     refund = payment_refunder.perform
     if refund.success?
-      flash[:success] = "Refund was successful"
+      flash[:success] = 'Refund was successful'
     else
       flash[:error] = "#{refund.error}"
     end
@@ -46,7 +46,7 @@ class Admin::OrderPaymentsController < ApplicationController
     # it doesn't matter if the API call failed, the order has to be systematically up to date with the order payment in case it's not already sent
     order_payment.order.refresh_status_from!(order_payment)
     if checker.success?
-      flash[:success] = "The order was refreshed and seem to be paid."
+      flash[:success] = 'The order was refreshed and seem to be paid.'
     else
       flash[:error] = "The order was refreshed but don't seem to be paid. (#{checker.error})"
     end

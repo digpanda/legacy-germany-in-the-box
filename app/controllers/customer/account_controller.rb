@@ -13,8 +13,8 @@ class Customer::AccountController < ApplicationController
   # within the system (e.g checkout process) be careful with this.
   def update
     if valid_password? && ensure_password! && user.update(user_params)
-      flash[:success] = I18n.t("notice.account_updated")
-      sign_in(user, :bypass => true)
+      flash[:success] = I18n.t('notice.account_updated')
+      sign_in(user, bypass: true)
     else
       flash[:error] = user.errors.full_messages.join(',')
     end
@@ -45,7 +45,7 @@ class Customer::AccountController < ApplicationController
     end
 
     def user_params
-      params.require(:user).permit(:username, :email, :password, :password_confirmation, :fname, :lname, :birth, :gender, :about, :website, :pic, :mobile, :referrer_attributes => [:agb])
+      params.require(:user).permit(:username, :email, :password, :password_confirmation, :fname, :lname, :birth, :gender, :about, :website, :pic, :mobile, referrer_attributes: [:agb])
     end
 
     def password_needed?
@@ -57,7 +57,7 @@ class Customer::AccountController < ApplicationController
       if user.valid_password?(params[:user][:current_password])
         true
       else
-        user.errors.add(:password, "wrong")
+        user.errors.add(:password, 'wrong')
         false
       end
     end

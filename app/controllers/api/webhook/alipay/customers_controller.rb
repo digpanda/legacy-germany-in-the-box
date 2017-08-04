@@ -12,7 +12,7 @@ class Api::Webhook::Alipay::CustomersController < Api::ApplicationController
   #  "gmt_create"=>"2017-03-05 18:06:49",
   #  "notify_type"=>"trade_status_sync",
   #  "quantity"=>"1",
-  #  "out_trade_no"=>"58bbe2e6f54bcc042b42e9ea",
+  #  'out_trade_no'=>"58bbe2e6f54bcc042b42e9ea",
   #  "seller_id"=>"2088101122136241",
   #  "notify_time"=>"2017-03-05 18:21:11",
   #  "trade_status"=>"TRADE_SUCCESS",
@@ -48,9 +48,9 @@ class Api::Webhook::Alipay::CustomersController < Api::ApplicationController
       SlackDispatcher.new.message("[Webhook] Alipay transaction FAIL processed : #{params}")
     end
 
-    devlog.info "End of process."
+    devlog.info 'End of process.'
     render status: :ok,
-            json: {success: true}.to_json
+            json: { success: true }.to_json
   end
 
   # WARNING : Must stay public for throw_error to work well for now.

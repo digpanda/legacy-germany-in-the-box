@@ -6,7 +6,7 @@ class Shared::ImagesController < ApplicationController
 
   def destroy
     if image.destroy
-      flash[:success] = "The image was successfully destroyed."
+      flash[:success] = 'The image was successfully destroyed.'
     else
       flash[:error] = "The image was not destroyed (#{image.errors.full_messages.join(', ')})"
     end

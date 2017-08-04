@@ -53,12 +53,12 @@ class Connect::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
     def wechat_data
       {
-        provider: request.env["omniauth.auth"].provider,
-        unionid: request.env["omniauth.auth"].info.unionid,
-        openid: request.env["omniauth.auth"].info.openid,
-        nickname: request.env["omniauth.auth"].info.nickname,
-        avatar: request.env["omniauth.auth"].info.headimgurl,
-        sex: request.env["omniauth.auth"].info.sex,
+        provider: request.env['omniauth.auth'].provider,
+        unionid: request.env['omniauth.auth'].info.unionid,
+        openid: request.env['omniauth.auth'].info.openid,
+        nickname: request.env['omniauth.auth'].info.nickname,
+        avatar: request.env['omniauth.auth'].info.headimgurl,
+        sex: request.env['omniauth.auth'].info.sex,
       }
     end
 

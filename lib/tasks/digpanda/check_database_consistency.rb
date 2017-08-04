@@ -14,7 +14,7 @@ class Tasks::Digpanda::CheckDatabaseConsistency
       puts "We switch to test environment."
       system("bundle exec rake digpanda:check_database_consistency RAILS_ENV='test'")
     end
-    puts "End of process."
+    puts 'End of process.'
 
   end
 
