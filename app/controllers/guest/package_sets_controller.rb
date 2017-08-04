@@ -11,13 +11,17 @@ class Guest::PackageSetsController < ApplicationController
   before_action :breadcrumb_package_sets, only: [:index]
   before_action :freeze_header
 
-  # we show the list of packages
-  # we already created from the admin
+  def categories
+  end
+
+  # we show the list of package by category
+  # otherwise we redirect the user to the /categories area
   def index
     if category
       @package_sets = PackageSet.active.order_by(position: :asc).where(category: category).all
     else
-      @package_sets = PackageSet.active.order_by(position: :asc).all
+      redirect_to guest_package_sets_categories_path
+      # @package_sets = PackageSet.active.order_by(position: :asc).all
     end
   end
 

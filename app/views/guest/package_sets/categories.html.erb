@@ -1,0 +1,32 @@
+<% Category.each do |category| %> <!-- .with_package_sets -->
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="categories-block">
+      <div class="row">
+
+        <a href="<%= guest_package_sets_path(category_slug: category.slug) %>">
+          <div class="col-md-8 categories-block__no-padding-right">
+            <div class="categories-block__image lazy" data-original="<%= category.cover %>" style="background-image:url('/images/grey.gif');">
+            </div>
+          </div>
+        </a>
+
+        <div class="col-md-4 categories-block__no-padding-left">
+          <div class="categories-block__content">
+            <div class="categories-block__wrapper">
+              <h2><%= category.name %></h2>
+              <p></p><p><%= category.desc %></p><p></p>
+              <a class="main-button__hollow package-select" href="<%= guest_package_sets_path(category_slug: category.slug) %>">查看更多信息</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="+spacer"></div>
+
+<% end %>

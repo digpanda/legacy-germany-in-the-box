@@ -20,10 +20,10 @@
         <!-- Categories filtering -->
         <div class="col-md-4 col-xs-6">
           <div class="page-navigation__right">
-            <%= collection_select(:category, :id, Category.where(:id.in => PackageSet.all.pluck(:category_id)), :slug, :name, { :selected => params[:category_slug], :include_blank  => "全部类别" }, :class => "nice js-package-set-category-filter") %>
+            <%= collection_select(:category, :id, Category.with_package_sets, :slug, :name, { :selected => params[:category_slug], :include_blank  => "全部类别" }, :class => "nice js-package-set-category-filter") %>
           </div>
         </div>
-        
+
       </div>
     </div>
   </div>

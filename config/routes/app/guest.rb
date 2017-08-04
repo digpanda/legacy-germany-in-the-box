@@ -46,6 +46,7 @@ namespace :guest do
   resources :order_items  do
   end
 
+  match 'package_sets/categories' => 'package_sets#categories', :via => :get
   resources :package_sets do
   end
 

@@ -1,0 +1,76 @@
+// NOTE : this is a copy of package-set-block for the package set area category scope selection
++component(categories-block)
+
+  +shadow-box
+
+  +breakpoint('desktop')
+    +border-radius-left(4px)
+    +border-radius-right(4px)
+  +breakpoint('mobile')
+    +border-radius-top(4px)
+    +border-radius-bottom(4px)
+
+  +part(no-padding-left)
+    +breakpoint('desktop')
+      padding-left: 0
+    & > div
+      +breakpoint('desktop')
+        +border-radius-right(4px)
+      +breakpoint('mobile')
+        +border-radius-top(4px)
+
+  +part(no-padding-right)
+    +breakpoint('desktop')
+      padding-right: 0
+    & > div
+      +breakpoint('desktop')
+        +border-radius-left(4px)
+      +breakpoint('mobile')
+        +border-radius-top(4px)
+
+  +part(price)
+    color: $color-red
+    font-weight: bold
+    font-size: 23px
+    margin: 0 0.5em 0.5em 0.5em
+
+  +part(original-price)
+    color: $color-dark-grey
+    font-weight: bold
+    font-size: 18px
+    +crossed
+
+  +part(wrapper)
+    width: 95%
+    //+center
+
+  +part(content)
+
+    position: relative
+    padding: 2em
+    height: 60vw
+    max-height: 672px
+    +centered
+
+    +breakpoint('mobile')
+      +border-radius-bottom(4px)
+      min-height: 33em
+
+    background-color: $color-white
+
+    h2
+      font-size: 1.5em
+
+    p
+      font-size: 1em
+
+  +part(image)
+
+    height: 50vw
+    max-height: 672px
+    +breakpoint('mobile')
+      height: 70vw
+
+    background-position: center center
+    background-size: contain
+    background-repeat: no-repeat
