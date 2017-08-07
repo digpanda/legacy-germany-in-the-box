@@ -11,6 +11,7 @@ class CheckoutCallback < BaseService
   #  "action"=>"show"}
 
   include ErrorsHelper
+  include Rails.application.routes.url_helpers
 
   attr_reader :user, :params, :forced_status, :cart_manager
 
