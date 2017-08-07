@@ -14,8 +14,8 @@
 
   +part(zoom)
     float: right
-    margin-right: 2em
-    margin-top: .5em
+    //margin-right: 2em
+    //margin-top: .5em
     opacity: 0.5
     +breakpoint('mobile')
       margin-right: 1em
@@ -26,6 +26,10 @@
     min-width: 100%
     +background-cover
     +centered
+
+  +part(clickable)
+    border: 1px dashed $color-grey
+    padding: 1em
 
   +part(content)
 

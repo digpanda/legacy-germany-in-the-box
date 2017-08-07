@@ -26,26 +26,29 @@
 
 <div class="product-miniblock">
 
-  <a data-remodal-target="package-sku-<%= package_sku.id %>" href="#" >
+  <div class="product-miniblock__clickable">
+    <a data-remodal-target="package-sku-<%= package_sku.id %>" href="#" >
 
-  <!-- Image -->
-  <div class="product-miniblock__image lazy" data-original="<%= package_sku.sku.images&.first&.file&.url %>" style="background-image:url('/images/grey.gif');">
-    <div class="product-miniblock__zoom">
-      <i class="fa fa-search"></i>
-    </div>
+      <!-- Image -->
+      <div class="product-miniblock__image lazy" data-original="<%= package_sku.sku.images&.first&.file&.url %>" style="background-image:url('/images/grey.gif');">
+        <div class="product-miniblock__zoom">
+          <i class="fa fa-search"></i>
+        </div>
+      </div>
+
+      <div class="clearfix"></div>
+
+      <!-- Title + Description -->
+      <div class="product-miniblock__content">
+        <h3><%= package_sku.product.brand %></h3>
+        <p><%= package_sku.product.name %></p>
+        <div class="product-miniblock__extra">
+          <%= package_sku.quantity %> x <%= package_sku.sku.display_option_names %>
+        </div>
+        <a class="+blue" href="#"><%= I18n.t('button.show_product') %></a>
+      </div>
+
+    </a>
   </div>
-
-  <div class="clearfix"></div>
-
-  <!-- Title + Description -->
-  <div class="product-miniblock__content">
-    <h3><%= package_sku.product.brand %></h3>
-    <p><%= package_sku.product.name %></p>
-    <div class="product-miniblock__extra">
-      <%= package_sku.quantity %> x <%= package_sku.sku.display_option_names %>
-    </div>
-  </div>
-
-</a>
 
 </div>

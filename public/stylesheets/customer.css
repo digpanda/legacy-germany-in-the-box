@@ -2349,8 +2349,6 @@ body {
     text-align: left; }
   .product-miniblock__zoom {
     float: right;
-    margin-right: 2em;
-    margin-top: .5em;
     opacity: 0.5; }
     @media (max-width: 994px) {
       .product-miniblock__zoom {
@@ -2364,6 +2362,9 @@ body {
     background-position: center center;
     text-align: center;
     margin: 0 auto; }
+  .product-miniblock__clickable {
+    border: 1px dashed #bdc3c7;
+    padding: 1em; }
   .product-miniblock__content h3 {
     margin-top: 0.2em;
     font-weight: bold;
