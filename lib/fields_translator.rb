@@ -21,7 +21,6 @@ class FieldsTranslator
   LANGUAGES = [:de, :'zh-CN'].freeze
 
   class << self
-
     # we target the specific `field_for` specific to MongoID
     # this is the equivalent to something like `form.fields_for :desc_translations do |form_field|`
     # then we yield each translation result using the mapper
@@ -32,9 +31,7 @@ class FieldsTranslator
         end
       end
     end
-
   end
-
 end
 
 class FieldsMapper
@@ -53,12 +50,11 @@ class FieldsMapper
   # we then add up the language specifications
   # and the added options sent from the view
   def method_missing(method, *args)
-    arguments = {:value => object_field[language]}.merge(*args)
+    arguments = { value: object_field[language] }.merge(*args)
     form_field.send(method, language, arguments)
   end
 
   def object_field
     form.object.send("#{field}_translations")
   end
-
 end

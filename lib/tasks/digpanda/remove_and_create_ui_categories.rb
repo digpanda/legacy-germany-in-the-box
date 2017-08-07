@@ -1,6 +1,5 @@
 class Tasks::Digpanda::RemoveAndCreateUiCategories
   def initialize
-
     devlog 'We first delete the UI categories'
     Category.delete_all
 
@@ -49,7 +48,6 @@ class Tasks::Digpanda::RemoveAndCreateUiCategories
     Rails.cache.clear
 
     devlog 'End of process.'
-
   end
 
   def devlog(message)

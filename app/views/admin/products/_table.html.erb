@@ -48,7 +48,7 @@
             <%= I18n.t(:unlimited_info, scope: :edit_product, unlimited_skus: product.unlimited_skus) if product.unlimited_skus > 0 %>
           </td>
           <td align="left">
-            <%= render partial: 'admin/products/table/action', :locals => { :product => product } %>
+            <%= render partial: 'admin/products/table/action', :locals => { product: product } %>
           </td>
         </tr>
       <% end %>

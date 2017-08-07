@@ -4,7 +4,7 @@ class ReferrerTokenToReferrerGroup < Mongoid::Migration
       puts "Converting ReferrerToken `#{referrer_token.id}` into a ReferrerGroup ..."
       ReferrerGroup.create({
         :id => referrer_token.id,
-        :name => referrer_token.group,
+        name: referrer_token.group,
         :desc => referrer_token.desc,
         :type => referrer_token.type
         })

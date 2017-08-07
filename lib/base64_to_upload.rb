@@ -10,7 +10,7 @@ module Base64ToUpload
       tempfile.binmode
       tempfile.write(Base64.decode64(base64_code))
 
-      params[model][image] = ActionDispatch::Http::UploadedFile.new(:tempfile => tempfile, :filename => base64_original_filename, :original_filename => base64_original_filename);
+      params[model][image] = ActionDispatch::Http::UploadedFile.new(tempfile: tempfile, filename: base64_original_filename, original_filename: base64_original_filename);
     end
   end
 end

@@ -18,7 +18,7 @@ class VariantOption
   # it simply get the results by name and return an array with name and id
   # the naming was done fast. you can rename it.
   def self.names_array
-    order_by(:name => :asc).map do |suboption|
+    order_by(name: :asc).map do |suboption|
       [suboption.name, suboption.id.to_s]
     end
   end
