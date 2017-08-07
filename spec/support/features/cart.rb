@@ -16,7 +16,9 @@ module Helpers
       # add the first one to the cart
       def package_to_cart!
         visit guest_package_sets_path
+        # will be redirected to the categories area
         page.first('.category-select').trigger('click')
+        expect(page).to_not have_current_path(guest_package_sets_categories_path)
         page.first('.package-select').trigger('click')
         expect(page).to have_content(BUY)
         page.first('#add-package-set').trigger('click')
