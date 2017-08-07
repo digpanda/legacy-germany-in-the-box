@@ -14,6 +14,7 @@ class Category
   mount_uploader :cover, CoverUploader
 
   scope :only_with_products,       ->    { where(:product_ids.ne => nil).and(:product_ids.ne => []) }
+  scope :with_package_sets, -> { where(:id.in => PackageSet.all.pluck(:category_id)) }
 
   def shops
     Shop.where(:id.in => shop_ids)

@@ -1,6 +1,7 @@
 class PackageSet
   include MongoidBase
   include EntryPosition
+  include Mongoid::Search
 
   field :position, type: Integer, default: 0
   field :name, type: String
@@ -20,8 +21,13 @@ class PackageSet
   belongs_to :category, inverse_of: :package_sets
 
   embeds_many :package_skus, inverse_of: :package_set, cascade_callbacks: true
+
   has_many :order_items
   has_many :images, as: :image
+
+  # research system
+  search_in :name, :desc, :shop => :shopname, :category => :name
+
   accepts_nested_attributes_for :package_skus, :reject_if => :reject_package_skus, :allow_destroy => true
   accepts_nested_attributes_for :images, :allow_destroy => true
 

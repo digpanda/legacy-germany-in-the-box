@@ -1,9 +1,8 @@
 class Admin::ShopApplicationsController < ApplicationController
-
   attr_accessor :shop_application, :shop_applications
 
   authorize_resource class: false
-  before_action :set_shop_application, :except => [:index]
+  before_action :set_shop_application, except: [:index]
 
   layout :custom_sublayout
 
@@ -21,12 +20,11 @@ class Admin::ShopApplicationsController < ApplicationController
 
   private
 
-  def shop_application_params
-    params.require(:shop_application).permit!
-  end
+    def shop_application_params
+      params.require(:shop_application).permit!
+    end
 
-  def set_shop_application
-    @shop_application = ShopApplication.find(params[:id] || params[:shop_application_id])
-  end
-
+    def set_shop_application
+      @shop_application = ShopApplication.find(params[:id] || params[:shop_application_id])
+    end
 end

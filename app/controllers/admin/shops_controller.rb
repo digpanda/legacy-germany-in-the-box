@@ -1,18 +1,17 @@
 class Admin::ShopsController < ApplicationController
-
   include DestroyImage
   attr_accessor :shop, :shops
 
   authorize_resource class: false
-  before_action :set_shop, :except => [:index, :emails]
+  before_action :set_shop, except: [:index, :emails]
 
-  before_action :breadcrumb_admin_shops, :except => [:index]
+  before_action :breadcrumb_admin_shops, except: [:index]
   before_action :breadcrumb_admin_shop, only: [:show]
 
   layout :custom_sublayout
 
   def index
-    @shops = Shop.order_by(:position => :asc).order_by(c_at: :desc).paginate(page: current_page, per_page: 10)
+    @shops = Shop.order_by(position: :asc).order_by(c_at: :desc).paginate(page: current_page, per_page: 10)
   end
 
   def show
@@ -66,12 +65,11 @@ class Admin::ShopsController < ApplicationController
 
   private
 
-  def shop_params
-    params.require(:shop).permit!
-  end
+    def shop_params
+      params.require(:shop).permit!
+    end
 
-  def set_shop
-    @shop = Shop.find(params[:id] || params[:shop_id])
-  end
-
+    def set_shop
+      @shop = Shop.find(params[:id] || params[:shop_id])
+    end
 end

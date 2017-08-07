@@ -1,5 +1,4 @@
 class Admin::Shops::Products::VariantsController < ApplicationController
-
   MAX_NEW_VARIANTS = 10.freeze
   MAX_NEW_OPTIONS = 10.freeze
 
@@ -84,66 +83,66 @@ class Admin::Shops::Products::VariantsController < ApplicationController
 
   private
 
-  def redirection_after_update
-    redirect_to navigation.back(1)
-  end
-
-  # for some reason mongoid struggle to update / save the suboptions
-  # when it's updated in the attributes
-  # we make sure it occurs by saving each one manually
-  def ensure_suboption_saved!
-    product.options.each do |option|
-      option.suboptions.each do |suboption|
-        suboption.save
-      end
+    def redirection_after_update
+      redirect_to navigation.back(1)
     end
-  end
 
-  # we convert to a hash to avoid to keep the params class even we cloned
-  # then we remove the `suboptons_attributes` to have a clean `product_params`
-  # this doesn't affect the original object
-  # NOTE : since it's converted to an hash, we cannot use symbols anymore
-  def product_params_without_option
-    product_params.to_h.tap do |product_param|
-      product_param.delete("options_attributes")
-    end
-  end
-
-  # remove any empty option from the parameters
-  # there will be some which are systematically empty because of the hide / show in front-end
-  def remove_empty_options_from_params!
-    params.require(:product).require(:options_attributes).each do |key, option|
-      option.require(:suboptions_attributes).each do |suboption_key, suboption|
-        if suboption[:name]&.empty?
-          option.require(:suboptions_attributes).delete(suboption_key)
+    # for some reason mongoid struggle to update / save the suboptions
+    # when it's updated in the attributes
+    # we make sure it occurs by saving each one manually
+    def ensure_suboption_saved!
+      product.options.each do |option|
+        option.suboptions.each do |suboption|
+          suboption.save
         end
       end
     end
-  end
 
-  # remove any empty variant from the parameters
-  # there will be some which are systematically empty because of the hide / show in front-end
-  def remove_empty_variants_from_params!
-    params.require(:product).require(:options_attributes).each do |key, option|
-      if option[:name]&.empty?
-        params.require(:product).require(:options_attributes).delete(key)
+    # we convert to a hash to avoid to keep the params class even we cloned
+    # then we remove the `suboptons_attributes` to have a clean `product_params`
+    # this doesn't affect the original object
+    # NOTE : since it's converted to an hash, we cannot use symbols anymore
+    def product_params_without_option
+      product_params.to_h.tap do |product_param|
+        product_param.delete('options_attributes')
       end
     end
-  end
 
-  def product_params
-    params.require(:product).permit!
-  end
+    # remove any empty option from the parameters
+    # there will be some which are systematically empty because of the hide / show in front-end
+    def remove_empty_options_from_params!
+      params.require(:product).require(:options_attributes).each do |key, option|
+        option.require(:suboptions_attributes).each do |suboption_key, suboption|
+          if suboption[:name]&.empty?
+            option.require(:suboptions_attributes).delete(suboption_key)
+          end
+        end
+      end
+    end
 
-  def set_shop
-    @shop = Shop.find(params[:shop_id] || params[:id])
-  end
+    # remove any empty variant from the parameters
+    # there will be some which are systematically empty because of the hide / show in front-end
+    def remove_empty_variants_from_params!
+      params.require(:product).require(:options_attributes).each do |key, option|
+        if option[:name]&.empty?
+          params.require(:product).require(:options_attributes).delete(key)
+        end
+      end
+    end
 
-  def set_product
-    @product = Product.find(params[:product_id] || params[:id])
-  end
+    def product_params
+      params.require(:product).permit!
+    end
 
-  def set_variant
-    @variant = product.options.find(params[:variant_id] || params[:id])
-  end
+    def set_shop
+      @shop = Shop.find(params[:shop_id] || params[:id])
+    end
+
+    def set_product
+      @product = Product.find(params[:product_id] || params[:id])
+    end
+
+    def set_variant
+      @variant = product.options.find(params[:variant_id] || params[:id])
+    end
 end

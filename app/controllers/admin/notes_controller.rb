@@ -1,9 +1,8 @@
 class Admin::NotesController < ApplicationController
-
   attr_accessor :note, :notes
 
   authorize_resource class: false
-  before_action :set_note, :except => [:index, :create]
+  before_action :set_note, except: [:index, :create]
 
   layout :custom_sublayout
 
@@ -16,7 +15,7 @@ class Admin::NotesController < ApplicationController
   def create
     note = Note.create(note_params)
     if note
-      flash[:success] = "The note was created."
+      flash[:success] = 'The note was created.'
     else
       flash[:error] = "The note was not created (#{note.errors.full_messages.join(', ')})"
     end
@@ -25,7 +24,7 @@ class Admin::NotesController < ApplicationController
 
   def update
     if note.update(note_params)
-      flash[:success] = "The note was updated."
+      flash[:success] = 'The note was updated.'
     else
       flash[:error] = "The note was not updated (#{note.errors.full_messages.join(', ')})"
     end
@@ -34,12 +33,11 @@ class Admin::NotesController < ApplicationController
 
   private
 
-  def set_note
-    @note = Note.find(params[:note_id] || params[:id])
-  end
+    def set_note
+      @note = Note.find(params[:note_id] || params[:id])
+    end
 
-  def note_params
-    params.require(:note).permit(:order_id, :user_id, :message, :type).merge({:author_id => current_user.id})
-  end
-
+    def note_params
+      params.require(:note).permit(:order_id, :user_id, :message, :type).merge(author_id: current_user.id)
+    end
 end

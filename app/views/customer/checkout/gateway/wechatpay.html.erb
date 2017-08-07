@@ -27,7 +27,7 @@
         if (res.err_msg == "get_brand_wcpay_request:ok" ) {
           // Confirmation will be made from server to server
           // This will just take care of the after redirection
-          window.location.href = $("#order-payment-callback-url").data("success");
+          window.location.href = $("#order-payment-callback-url").data('success');
         } else if (res.err_msg == "get_brand_wcpay_request:fail") {
           window.location.href = $("#order-payment-callback-url").data("fail");
         } else if (res.err_msg == "get_brand_wcpay_request:cancel") {

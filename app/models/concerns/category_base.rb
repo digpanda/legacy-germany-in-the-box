@@ -25,7 +25,7 @@ module CategoryBase
     validates :name,    presence: true, length: {maximum: Rails.configuration.gitb[:max_short_text_length]}
     validates :status,  presence: true
 
-    scope :roots,           ->  { where(:parent => nil) }
+    scope :roots,           ->  { where(parent: nil) }
     scope :is_active,       ->  { where(:status => true) }
     scope :has_children,    ->  { where(:children_count.gt => 0) }
 

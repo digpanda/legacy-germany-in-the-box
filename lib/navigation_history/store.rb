@@ -1,13 +1,11 @@
 # storage system for navigation history
 class NavigationHistory
   class Store
-
-    MAX_HISTORY = 10
-
+    MAX_HISTORY = 10.freeze
     # will exclude those paths from the history store. the system is based on implicit wildcard
     # the less precise you are in the paths, the more path and subpath it excludes
     # /connect also means everything inside /connect/ such as /connect/sign_in, etc.
-    EXCLUDED_PATHS = %w(/connect)
+    EXCLUDED_PATHS = %w(/connect).freeze
 
     attr_reader :request, :session, :location, :repository
 
@@ -18,8 +16,7 @@ class NavigationHistory
       @location = solve(location)
     end
 
-    def add(option=nil)
-
+    def add(option = nil)
       return false unless acceptable_request?
       return false if excluded_path?
 
@@ -34,81 +31,79 @@ class NavigationHistory
         trim_storage
       end
 
-      session["previous_urls"][repository]
-
+      session['previous_urls'][repository]
     end
 
     private
 
-    # will solve keys such as `:current`
-    # this will be used in case of server error for instance
-    def solve(location)
-      if location == :current
-        request.url
-      else
-        location
-      end
-    end
-
-    def location_path
-      @location_path ||= begin
-        if location
-          if uri_location.query.present?
-            "#{uri_location.path}?#{uri_location.query}"
-          else
-            "#{uri_location.path}"
-          end
+      # will solve keys such as `:current`
+      # this will be used in case of server error for instance
+      def solve(location)
+        if location == :current
+          request.url
         else
-          request.fullpath
+          location
         end
       end
-    end
 
-    def uri_location
-      URI(location)
-    end
-
-    def excluded_path?
-      EXCLUDED_PATHS.each do |path|
-        return true if location_path.index(path) == 0
+      def location_path
+        @location_path ||= begin
+          if location
+            if uri_location.query.present?
+              "#{uri_location.path}?#{uri_location.query}"
+            else
+              "#{uri_location.path}"
+            end
+          else
+            request.fullpath
+          end
+        end
       end
-      false
-    end
 
-    # if location path returns nil it's not acceptable
-    def acceptable_request?
-      location_path
-    end
-
-    def already_last_stored?
-      session["previous_urls"][repository].first == location_path
-    end
-
-    def prepare_storage
-      legacy_conversion!
-      session["previous_urls"] ||= {}
-      session["previous_urls"][repository] ||= []
-    end
-
-    def add_storage
-      unless already_last_stored?
-        session["previous_urls"][repository].unshift(location_path)
+      def uri_location
+        URI(location)
       end
-    end
 
-    def trim_storage
-      if session["previous_urls"][repository].size > MAX_HISTORY
-        session["previous_urls"][repository].pop
+      def excluded_path?
+        EXCLUDED_PATHS.each do |path|
+          return true if location_path.index(path) == 0
+        end
+        false
       end
-    end
 
-    # TODO : this will be removed after a few days
-    # - Laurent, 13th December 2016
-    def legacy_conversion!
-      if session["previous_urls"].instance_of? Array
-        session["previous_urls"] = nil
+      # if location path returns nil it's not acceptable
+      def acceptable_request?
+        location_path
       end
-    end
 
+      def already_last_stored?
+        session['previous_urls'][repository].first == location_path
+      end
+
+      def prepare_storage
+        legacy_conversion!
+        session['previous_urls'] ||= {}
+        session['previous_urls'][repository] ||= []
+      end
+
+      def add_storage
+        unless already_last_stored?
+          session['previous_urls'][repository].unshift(location_path)
+        end
+      end
+
+      def trim_storage
+        if session['previous_urls'][repository].size > MAX_HISTORY
+          session['previous_urls'][repository].pop
+        end
+      end
+
+      # TODO : this will be removed after a few days
+      # - Laurent, 13th December 2016
+      def legacy_conversion!
+        if session['previous_urls'].instance_of? Array
+          session['previous_urls'] = nil
+        end
+      end
   end
 end

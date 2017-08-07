@@ -1,5 +1,4 @@
 class Customer::CartController < ApplicationController
-
   attr_accessor :user
   attr_reader :orders
 
@@ -14,8 +13,7 @@ class Customer::CartController < ApplicationController
 
   private
 
-  def set_cart
-    @cart = cart_manager.current_cart
-  end
-
+    def set_cart
+      @cart = cart_manager.current_cart
+    end
 end

@@ -4,13 +4,14 @@ class CheckoutCallback < BaseService
   #  "trade_no"=>"2017030821001003840200345741",
   #  "total_fee"=>"1262.41",
   #  "sign_type"=>"MD5",
-  #  "out_trade_no"=>"58bfc16af54bcc0a0b908c44",
+  #  'out_trade_no'=>"58bfc16af54bcc0a0b908c44",
   #  "trade_status"=>"TRADE_FINISHED",
   #  "currency"=>"HKD",
   #  "controller"=>"customer/checkout/callback/alipay",
   #  "action"=>"show"}
 
   include ErrorsHelper
+  include Rails.application.routes.url_helpers
 
   attr_reader :user, :params, :forced_status, :cart_manager
 
@@ -23,20 +24,20 @@ class CheckoutCallback < BaseService
   end
 
   def wechatpay!
-    order_payment = OrderPayment.where(id: params["out_trade_no"]).first
+    order_payment = OrderPayment.where(id: params['out_trade_no']).first
     unless order_payment
       return return_with(:error, "Order not found from the AliPay callback")
     end
 
     # first we make sure we got the transaction id for traceability
-    order_payment.transaction_id = params["transaction_id"]
+    order_payment.transaction_id = params['transaction_id']
     order_payment.save
 
     unless wechatpay_success?
       order_payment.status = :failed
       order_payment.save
       order_payment.order.refresh_status_from!(order_payment)
-      SlackDispatcher.new.message("[Exception] Error checkout callback #{I18n.t(:failed, scope: :payment)}")
+      slack.message "[Error] checkout callback `#{I18n.t(:failed, scope: :payment)}`"
       return return_with(:error, I18n.t(:failed, scope: :payment))
     end
 
@@ -69,7 +70,7 @@ class CheckoutCallback < BaseService
       order_payment.status = :failed
       order_payment.save
       order_payment.order.refresh_status_from!(order_payment)
-      SlackDispatcher.new.message("[Exception] Error checkout callback #{I18n.t(:failed, scope: :payment)}")
+      slack.message "[Error] checkout callback #{I18n.t(:failed, scope: :payment)}", url: admin_order_payment_path(order_payment)
       return return_with(:error, I18n.t(:failed, scope: :payment))
     end
 
@@ -126,7 +127,7 @@ class CheckoutCallback < BaseService
   private
 
   def wechatpay_success?
-    params["return_code"] == "SUCCESS"
+    params['return_code'] == 'SUCCESS'
   end
 
   def alipay_success?(mode)
@@ -138,13 +139,15 @@ class CheckoutCallback < BaseService
       if order_payment.order.bought?
         dispatch_guide_message!(order_payment)
         dispatch_confirm_paid_order!(order_payment.order)
-        SlackDispatcher.new.paid_transaction(order_payment)
+        slack.paid_transaction(order_payment)
       end
     else
-      SlackDispatcher.new.failed_transaction(order_payment)
+      slack.failed_transaction(order_payment)
     end
   end
 
-
+  def slack
+    @slack ||= SlackDispatcher.new
+  end
 
 end

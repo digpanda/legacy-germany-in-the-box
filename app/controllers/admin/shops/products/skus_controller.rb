@@ -1,5 +1,4 @@
 class Admin::Shops::Products::SkusController < ApplicationController
-
   include DestroyImage
 
   attr_reader :shop, :product, :sku, :skus
@@ -10,7 +9,7 @@ class Admin::Shops::Products::SkusController < ApplicationController
   before_action :set_product, :set_shop
   before_action :set_sku, except: [:index, :new, :create]
   before_action :breadcrumb_admin_shops, :breadcrumb_admin_shop_products,
-                :breadcrumb_admin_edit_product, :breadcrumb_admin_product_skus, :except => [:destroy_image, :destroy_image_file]
+                :breadcrumb_admin_edit_product, :breadcrumb_admin_product_skus, except: [:destroy_image, :destroy_image_file]
   before_action :breadcrumb_admin_product_edit_sku, only: [:edit]
 
   def index
@@ -58,7 +57,7 @@ class Admin::Shops::Products::SkusController < ApplicationController
     if SkuCloner.new(product, sku).process.success?
       flash[:success] = I18n.t(:clone_successful, scope: :sku)
     else
-      flash[:error] = "Could not clone the sku."
+      flash[:error] = 'Could not clone the sku.'
     end
 
     redirection_after_update
@@ -75,30 +74,30 @@ class Admin::Shops::Products::SkusController < ApplicationController
 
   private
 
-  def redirection_after_update
-    redirect_to admin_shop_product_skus_path(shop, product)
-  end
-
-  def set_shop
-    @shop = Shop.find(params[:shop_id] || params[:id])
-  end
-
-  def set_product
-    @product = Product.find(params[:product_id])
-  end
-
-  def set_sku
-    @sku = product.skus.find(params[:sku_id] || params[:id])
-  end
-
-  def sku_params
-    params.require(:sku).permit!.tap do |sku_params|
-      # we throw away the useless option ids
-      sku_params[:option_ids].reject!(&:empty?)
+    def redirection_after_update
+      redirect_to admin_shop_product_skus_path(shop, product)
     end
-  end
 
-  def build_sku_images!
-    4.times { sku.images.build }
-  end
+    def set_shop
+      @shop = Shop.find(params[:shop_id] || params[:id])
+    end
+
+    def set_product
+      @product = Product.find(params[:product_id])
+    end
+
+    def set_sku
+      @sku = product.skus.find(params[:sku_id] || params[:id])
+    end
+
+    def sku_params
+      params.require(:sku).permit!.tap do |sku_params|
+        # we throw away the useless option ids
+        sku_params[:option_ids].reject!(&:empty?)
+      end
+    end
+
+    def build_sku_images!
+      4.times { sku.images.build }
+    end
 end

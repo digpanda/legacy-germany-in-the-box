@@ -1,5 +1,4 @@
 class Api::Guest::PackageSetsController < Api::ApplicationController
-
   attr_reader :package_set, :quantity
 
   before_filter do
@@ -15,7 +14,7 @@ class Api::Guest::PackageSetsController < Api::ApplicationController
     add = order_maker.package_set(package_set).refresh!(1, increment: true)
     if add.success?
       cart_manager.store(order)
-      render json: {success: true, message: I18n.t(:add_product_ok, scope: :edit_order)}
+      render json: { success: true, message: I18n.t(:add_product_ok, scope: :edit_order) }
     else
       render json: throw_error(:unable_to_process).merge(error: add.error[:error])
     end
@@ -41,20 +40,19 @@ class Api::Guest::PackageSetsController < Api::ApplicationController
 
   private
 
-  def order_maker
-    @order_maker ||= OrderMaker.new(identity_solver, order)
-  end
+    def order_maker
+      @order_maker ||= OrderMaker.new(identity_solver, order)
+    end
 
-  def order
-    @order ||= cart_manager.order(shop: package_set.shop)
-  end
+    def order
+      @order ||= cart_manager.order(shop: package_set.shop)
+    end
 
-  def set_package_set
-    @package_set = PackageSet.find(params[:package_set_id] || params[:id])
-  end
+    def set_package_set
+      @package_set = PackageSet.find(params[:package_set_id] || params[:id])
+    end
 
-  def set_quantity
-    @quantity = params[:quantity].to_i
-  end
-
+    def set_quantity
+      @quantity = params[:quantity].to_i
+    end
 end

@@ -1,6 +1,4 @@
 class Api::ApplicationController < ApplicationController
-
-  #skip_before_filter :verify_authenticity_token
   skip_before_action :verify_authenticity_token
 
   # Should be slightly refactored and put into libraries ?
@@ -18,5 +16,4 @@ class Api::ApplicationController < ApplicationController
     render status: :internal_server_error,
            json: throw_error(:server_error).to_json
   end
-
 end

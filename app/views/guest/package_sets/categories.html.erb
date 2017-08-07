@@ -1,0 +1,9 @@
+<%= render "guest/package_sets/package_set_banner" %>
+
+<div class="+spacer"></div>
+
+<% Category.with_package_sets.each_with_index do |category, index| %>
+
+  <%= render "guest/package_sets/categories/block", :options => { :reversed => (index % 2 != 0) }, :category => category %>
+
+<% end %>

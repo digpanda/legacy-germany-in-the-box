@@ -1,5 +1,4 @@
 class Customer::Checkout::Callback::WechatpayController < ApplicationController
-
   authorize_resource class: false
   layout :default_layout
 
@@ -21,5 +20,4 @@ class Customer::Checkout::Callback::WechatpayController < ApplicationController
     flash[:error] = I18n.t(:failed, scope: :payment)
     redirect_to navigation.back(2)
   end
-
 end

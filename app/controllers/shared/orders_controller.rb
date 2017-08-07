@@ -2,9 +2,6 @@ require 'csv'
 require 'net/ftp'
 
 class Shared::OrdersController < ApplicationController
-
-  CSV_ENCODE = "UTF-8"
-
   attr_accessor :order
 
   authorize_resource class: false
@@ -15,7 +12,7 @@ class Shared::OrdersController < ApplicationController
     I18n.locale = :de # TODO : make a helper for that
     respond_to do |format|
       format.csv do
-        render text: "This functionality has been deactivated temporarily."
+        render text: 'This functionality has been deactivated temporarily.'
       end
     end
   end
@@ -31,7 +28,7 @@ class Shared::OrdersController < ApplicationController
   def cancel
     canceller = OrderCanceller.new(order).all!
     if canceller.success?
-      flash[:success] = "Order was cancelled successfully."
+      flash[:success] = 'Order was cancelled successfully.'
       redirect_to(:back)
     else
       flash[:error] = "#{canceller.error}"
@@ -41,16 +38,15 @@ class Shared::OrdersController < ApplicationController
 
   private
 
-  def bill_file_name
-    order.bill_id || order.id
-  end
+    def bill_file_name
+      order.bill_id || order.id
+    end
 
-  def set_order
-    @order = Order.find(params[:id] || params[:order_id])
-  end
+    def set_order
+      @order = Order.find(params[:id] || params[:order_id])
+    end
 
-  def is_admin_or_shop_order
-    current_user.decorate.admin? || order.shop.id == current_user.shop.id
-  end
-
+    def is_admin_or_shop_order
+      current_user.decorate.admin? || order.shop.id == current_user.shop.id
+    end
 end

@@ -1,10 +1,9 @@
 # small library to manage better the currencies by Laurent
 # it's not worth what's around but it matches perfectly our current system
 class Currency
-
   attr_reader :amount, :currency
 
-  def initialize(amount, currency='EUR')
+  def initialize(amount, currency = 'EUR')
     if amount.nil?
       @amount = 0
     else
@@ -26,7 +25,7 @@ class Currency
   end
 
   def display_raw
-    "%.2f" % amount
+    '%.2f' % amount
   end
 
   def display_html
@@ -35,20 +34,19 @@ class Currency
 
   private
 
-  def current_symbol
-    if currency == 'EUR'
-      Setting.instance.supplier_currency.symbol
-    elsif currency == 'CNY'
-      Setting.instance.platform_currency.symbol
+    def current_symbol
+      if currency == 'EUR'
+        Setting.instance.supplier_currency.symbol
+      elsif currency == 'CNY'
+        Setting.instance.platform_currency.symbol
+      end
     end
-  end
 
-  def update_currency!(new_currency, new_amount)
-    unless new_currency == currency
-      @currency = new_currency
-      @amount = new_amount
+    def update_currency!(new_currency, new_amount)
+      unless new_currency == currency
+        @currency = new_currency
+        @amount = new_amount
+      end
+      self
     end
-    self
-  end
-
 end

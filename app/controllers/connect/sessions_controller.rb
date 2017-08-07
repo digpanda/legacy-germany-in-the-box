@@ -1,7 +1,6 @@
 require 'open-uri'
 
 class Connect::SessionsController < Devise::SessionsController
-
   before_action :freeze_header
   skip_before_action :get_cart_orders
 
@@ -23,5 +22,4 @@ class Connect::SessionsController < Devise::SessionsController
     reset_session
     redirect_to root_url
   end
-
 end

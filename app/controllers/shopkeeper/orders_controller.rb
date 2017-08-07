@@ -5,8 +5,8 @@ class Shopkeeper::OrdersController < ApplicationController
   attr_accessor :order
 
   authorize_resource class: false
-  before_action :set_order, :except => [:index]
-  before_filter :is_shop_order, :except => [:index]
+  before_action :set_order, except: [:index]
+  before_filter :is_shop_order, except: [:index]
 
   layout :custom_sublayout, only: [:index]
 
@@ -15,7 +15,6 @@ class Shopkeeper::OrdersController < ApplicationController
   end
 
   def shipped
-
     if order.decorate.shippable?
       order.status = :shipped
       order.save
@@ -23,11 +22,9 @@ class Shopkeeper::OrdersController < ApplicationController
 
     flash[:success] = I18n.t(:order_sent, scope: :notice)
     redirect_to navigation.back(1)
-
   end
 
   def process_order # can't just put `process` it seems to be reserved term in Rails
-
     unless order.decorate.processable?
       flash[:error] = I18n.t(:order_not_processable, scope: :notice)
       redirect_to(:back)
@@ -45,11 +42,11 @@ class Shopkeeper::OrdersController < ApplicationController
 
   private
 
-  def set_order
-    @order = Order.find(params[:id] || params[:order_id])
-  end
+    def set_order
+      @order = Order.find(params[:id] || params[:order_id])
+    end
 
-  def is_shop_order
-    order.shop.id == current_user.shop.id
-  end
+    def is_shop_order
+      order.shop.id == current_user.shop.id
+    end
 end

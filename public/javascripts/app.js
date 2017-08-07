@@ -721,10 +721,10 @@ var CustomerGatewayCreate = {
               break;
             case "unverified":
               // Unverified means an action has been done but is awaiting approval; it's like a success.
-              window.location.href = $("#order-payment-callback-url").data("success");
+              window.location.href = $("#order-payment-callback-url").data('success');
               break;
-            case "success":
-              window.location.href = $("#order-payment-callback-url").data("success");
+            case 'success':
+              window.location.href = $("#order-payment-callback-url").data('success');
               break;
             case "failed":
               window.location.href = $("#order-payment-callback-url").data("fail");
@@ -1642,7 +1642,7 @@ require.register("javascripts/lib/foreign/datepicker-zh-CN.js", function(exports
   }
 })(function (datepicker) {
 
-  datepicker.regional["zh-CN"] = {
+  datepicker.regional['zh-CN'] = {
     closeText: "关闭",
     prevText: "&#x3C;上月",
     nextText: "下月&#x3E;",
@@ -1658,9 +1658,9 @@ require.register("javascripts/lib/foreign/datepicker-zh-CN.js", function(exports
     isRTL: false,
     showMonthAfterYear: true,
     yearSuffix: "年" };
-  datepicker.setDefaults(datepicker.regional["zh-CN"]);
+  datepicker.setDefaults(datepicker.regional['zh-CN']);
 
-  return datepicker.regional["zh-CN"];
+  return datepicker.regional['zh-CN'];
 });
 });
 
@@ -3859,7 +3859,7 @@ var SweetAlert = {
               swal({
                 title: "Processing!",
                 text: "Your request is being processed ...",
-                type: "success",
+                type: 'success',
                 showConfirmButton: false
               });
               window.location.href = $(self).attr('href');

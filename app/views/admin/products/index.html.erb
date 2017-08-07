@@ -1,0 +1,30 @@
+<div class="row">
+  <div class="col-md-10">
+    <h2>Products</h2>
+    <em>This list includes all the products from all the shops.</em>
+    <hr>
+  </div>
+  <div class="col-md-2 details__action">
+  </div>
+</div>
+
+<!-- <div class="details__action +left">
+  <form action="<%= admin_products_path %>" class="js-search-form +hidden">
+    <input type="query" class="js-search-input search-bar__input" name="query" autocomplete="off" placeholder="<%= Setting.instance.search_suggestion %>" />
+    <button type="submit" class="+hidden"></button>
+  </form>
+</div> -->
+
+<div class="+spacer"></div>
+<div class="row">
+  <div class="col-md-12">
+    <%= render partial: "shared/partials/search" %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <%= render partial: "admin/products/table", :locals => { :products => @products, :show_shop => true } %>
+  </div>
+</div>
+
+<%= will_paginate @products, renderer: BootstrapPagination::Rails %>

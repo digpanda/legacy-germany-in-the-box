@@ -1,5 +1,8 @@
 +component(package-set-block)
 
+  +breakpoint('mobile')
+    padding-bottom: 2em // for the button
+
   +shadow-box
 
   +breakpoint('desktop')
@@ -41,9 +44,12 @@
 
   +part(wrapper)
     width: 95%
-    //+center
+    +breakpoint('mobile')
+      display: inline-block
 
   +part(content)
+    +breakpoint('mobile')
+      display: inline-block
 
     position: relative
     padding: 2em
@@ -53,7 +59,7 @@
 
     +breakpoint('mobile')
       +border-radius-bottom(4px)
-      min-height: 33em
+      //min-height: 33em
 
     background-color: $color-white
 
@@ -68,7 +74,7 @@
     height: 50vw
     max-height: 672px
     +breakpoint('mobile')
-      height: 70vw
+      //height: 70vw
 
     background-position: center center
     background-size: contain

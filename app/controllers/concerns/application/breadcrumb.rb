@@ -75,7 +75,7 @@ module Application
     # =====
 
     def breadcrumb_admin_coupons
-      add_breadcrumb "Coupons", admin_coupons_path
+      add_breadcrumb 'Coupons', admin_coupons_path
     end
 
     def breadcrumb_admin_coupon
@@ -83,16 +83,15 @@ module Application
     end
 
     def breadcrumb_admin_coupon_edit
-      add_breadcrumb "Edit", edit_admin_coupon_path(@coupon) if @coupon
+      add_breadcrumb 'Edit', edit_admin_coupon_path(@coupon) if @coupon
     end
 
     def breadcrumb_admin_coupon_new
-      add_breadcrumb "New", new_admin_coupon_path
+      add_breadcrumb 'New', new_admin_coupon_path
     end
 
-
     def breadcrumb_admin_order_payments
-      add_breadcrumb "Order Payments", admin_order_payments_path
+      add_breadcrumb 'Order Payment', admin_order_payments_path
     end
 
     def breadcrumb_admin_order_payment
@@ -100,7 +99,7 @@ module Application
     end
 
     def breadcrumb_admin_carts
-      add_breadcrumb "Carts", admin_carts_path
+      add_breadcrumb'Cart', admin_carts_path
     end
 
     def breadcrumb_admin_cart
@@ -108,7 +107,7 @@ module Application
     end
 
     def breadcrumb_admin_orders
-      add_breadcrumb "Orders", admin_orders_path
+      add_breadcrumb 'Orders', admin_orders_path
     end
 
     def breadcrumb_admin_order
@@ -116,7 +115,7 @@ module Application
     end
 
     def breadcrumb_admin_referrer_groups
-      add_breadcrumb "Referrer Groups", admin_referrer_groups_path
+      add_breadcrumb 'Referrer Groups', admin_referrer_groups_path
     end
 
     def breadcrumb_admin_referrer_group
@@ -124,31 +123,31 @@ module Application
     end
 
     def breadcrumb_admin_referrer_group_edit
-      add_breadcrumb "Edit", edit_admin_referrer_group_path(@referrer_group) if @referrer_group
+      add_breadcrumb 'Edit', edit_admin_referrer_group_path(@referrer_group) if @referrer_group
     end
 
     def breadcrumb_admin_referrer_group_new
-      add_breadcrumb "New", new_admin_referrer_group_path
+      add_breadcrumb 'New', new_admin_referrer_group_path
     end
 
     def breadcrumb_admin_referrers
-      add_breadcrumb "Referrers", admin_referrers_path
+      add_breadcrumb 'Referrers', admin_referrers_path
     end
 
     def breadcrumb_admin_referrer
-      add_breadcrumb @referrer.reference_id, "#" if @referrer
+      add_breadcrumb @referrer.reference_id, '#' if @referrer
     end
 
     def breadcrumb_admin_referrer_provisions
-      add_breadcrumb "Provisions", admin_referrer_provisions_path(@referrer) if @referrer
+      add_breadcrumb 'Provisions', admin_referrer_provisions_path(@referrer) if @referrer
     end
 
     def breadcrumb_admin_referrer_coupon
-      add_breadcrumb "Coupon", coupon_admin_referrer_coupon_path(@referrer) if @referrer
+      add_breadcrumb 'Coupon', coupon_admin_referrer_coupon_path(@referrer) if @referrer
     end
 
     def breadcrumb_admin_users
-      add_breadcrumb "Users", admin_users_path
+      add_breadcrumb 'Users', admin_users_path
     end
 
     def breadcrumb_admin_user
@@ -156,7 +155,7 @@ module Application
     end
 
     def breadcrumb_admin_categories
-      add_breadcrumb "Categories", admin_categories_path
+      add_breadcrumb 'Categories', admin_categories_path
     end
 
     def breadcrumb_admin_category
@@ -164,7 +163,7 @@ module Application
     end
 
     def breadcrumb_admin_shops
-      add_breadcrumb "Shops", admin_shops_path
+      add_breadcrumb 'Shops', admin_shops_path
     end
 
     def breadcrumb_admin_shop
@@ -182,17 +181,17 @@ module Application
     end
 
     def breadcrumb_admin_product_skus
-      add_breadcrumb "Skus", admin_shop_product_skus_path(@product.shop, @product) if @product
+      add_breadcrumb 'Skus', admin_shop_product_skus_path(@product.shop, @product) if @product
     end
 
     def breadcrumb_admin_product_edit_sku
       if @sku
-        add_breadcrumb "Edit", edit_admin_shop_product_sku_path(@sku.product.shop, @sku.product, @sku)
+        add_breadcrumb 'Edit', edit_admin_shop_product_sku_path(@sku.product.shop, @sku.product, @sku)
       end
     end
 
     def breadcrumb_admin_product_variants
-      add_breadcrumb "Variants", admin_shop_product_variants_path(@product.shop, @product) if @product
+      add_breadcrumb 'Variants', admin_shop_product_variants_path(@product.shop, @product) if @product
     end
   end
 end

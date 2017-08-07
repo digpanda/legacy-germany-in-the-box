@@ -1,7 +1,6 @@
 require 'base64_to_upload'
 
 class ApplicationController < ActionController::Base
-
   include HttpAcceptLanguage::AutoLocale
 
   include Application::Exceptions
@@ -23,10 +22,10 @@ class ApplicationController < ActionController::Base
         user = wechat_api_connect_solver.data[:customer]
         sign_out
         sign_in(:user, user)
-        SlackDispatcher.new.message("[Wechat] Customer automatically logged-in (`#{current_user&.id}`)")
+        slack.message "[Wechat] Customer automatically logged-in (`#{current_user&.id}`)", url: admin_user_path(current_user)
         redirect_to AfterSigninHandler.new(request, navigation, current_user, cart_manager).solve!(refresh: true)
       else
-        SlackDispatcher.new.message("WECHAT AUTH FAILED : #{wechat_api_connect_solver.error}")
+        slack.message "[Wechat] Auth failed (`#{wechat_api_connect_solver.error}`)"
       end
     end
   end
@@ -68,7 +67,7 @@ class ApplicationController < ActionController::Base
   end
 
   def default_layout
-    "application"
+    'application'
   end
 
   def freeze_header
@@ -89,5 +88,4 @@ class ApplicationController < ActionController::Base
       throw_unauthorized_page
     end
   end
-
 end

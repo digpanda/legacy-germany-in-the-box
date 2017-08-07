@@ -25,23 +25,23 @@ class CheckoutGateway
 
     private
 
-    # {"xml"=>
-    #     {"return_code"=>"SUCCESS",
+    # {'xml'=>
+    #     {'return_code'=>'SUCCESS',
     #      "return_msg"=>"OK",
     #      "appid"=>"wxfde44fe60674ba13",
     #      "mch_id"=>"1354063202",
     #      "nonce_str"=>"cvTr8zN4EU4RTvFt",
     #      "sign"=>"5F7FB422CC25A8B8287EA8AF99E8D192",
-    #      "result_code"=>"SUCCESS",
+    #      "result_code"=>'SUCCESS',
     #      "prepay_id"=>"wx201703161727381d0112c4620476236953",
     #      "trade_type"=>"JSAPI"}},
-    #  "return_code"=>"SUCCESS",
+    #  'return_code'=>'SUCCESS',
     #  "return_msg"=>"OK",
     #  "appid"=>"wxfde44fe60674ba13",
     #  "mch_id"=>"1354063202",
     #  "nonce_str"=>"cvTr8zN4EU4RTvFt",
     #  "sign"=>"5F7FB422CC25A8B8287EA8AF99E8D192",
-    #  "result_code"=>"SUCCESS",
+    #  "result_code"=>'SUCCESS',
     #  "prepay_id"=>"wx201703161727381d0112c4620476236953",
     #  "trade_type"=>"JSAPI"}
     #

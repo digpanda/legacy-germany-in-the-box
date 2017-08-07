@@ -1,5 +1,4 @@
 class Guest::FeedbackController < ApplicationController
-
   def show
   end
 
@@ -17,5 +16,4 @@ class Guest::FeedbackController < ApplicationController
 
   def overall_rate
   end
-
 end

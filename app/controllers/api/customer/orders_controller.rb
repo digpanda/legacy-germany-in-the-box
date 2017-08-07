@@ -1,5 +1,4 @@
 class Api::Customer::OrdersController < Api::ApplicationController
-
   attr_accessor :order
 
   authorize_resource class: false
@@ -14,12 +13,12 @@ class Api::Customer::OrdersController < Api::ApplicationController
       cart_manager.refresh!
     end
 
-    render json: {success: true, msg: I18n.t(:delete_ok, scope: :edit_order)}
+    render json: { success: true, msg: I18n.t(:delete_ok, scope: :edit_order) }
   end
 
   private
 
-  def set_order
-    @order = Order.find(params[:id] || params[:order_id])
-  end
+    def set_order
+      @order = Order.find(params[:id] || params[:order_id])
+    end
 end

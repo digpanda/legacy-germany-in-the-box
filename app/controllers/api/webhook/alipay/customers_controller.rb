@@ -2,7 +2,6 @@ require 'cgi'
 
 # Get notifications from Alipay when a transaction has been done
 class Api::Webhook::Alipay::CustomersController < Api::ApplicationController
-
   skip_before_filter :verify_authenticity_token
 
   # {"discount"=>"0.00",
@@ -13,7 +12,7 @@ class Api::Webhook::Alipay::CustomersController < Api::ApplicationController
   #  "gmt_create"=>"2017-03-05 18:06:49",
   #  "notify_type"=>"trade_status_sync",
   #  "quantity"=>"1",
-  #  "out_trade_no"=>"58bbe2e6f54bcc042b42e9ea",
+  #  'out_trade_no'=>"58bbe2e6f54bcc042b42e9ea",
   #  "seller_id"=>"2088101122136241",
   #  "notify_time"=>"2017-03-05 18:21:11",
   #  "trade_status"=>"TRADE_SUCCESS",
@@ -32,26 +31,25 @@ class Api::Webhook::Alipay::CustomersController < Api::ApplicationController
   #  "action"=>"create"}
 
   def create
-
-    devlog.info "Alipay started to communicate with us ..."
+    devlog.info 'Alipay started to communicate with us ...'
     devlog.info("Raw params : #{params}")
 
     if wrong_params?
-      throw_api_error(:bad_format, {error: "Wrong datas transmitted"}, :bad_request)
+      throw_api_error(:bad_format, { error: 'Wrong datas transmitted' }, :bad_request)
       return
     end
 
     if checkout_callback.success?
-      devlog.info "Transaction successfully processed."
-      SlackDispatcher.new.message("[Webhook] Alipay transaction SUCCESS processed : #{params}")
+      devlog.info 'Transaction successfully processed.'
+      slack.message "[Webhook] Alipay transaction SUCCESS processed : #{params}"
     else
-      devlog.info "Processing of the transaction failed."
-      SlackDispatcher.new.message("[Webhook] Alipay transaction FAIL processed : #{params}")
+      devlog.info 'Processing of the transaction failed.'
+      slack.message "[Webhook] Alipay transaction FAIL processed : #{params}"
     end
 
-    devlog.info "End of process."
+    devlog.info 'End of process.'
     render status: :ok,
-            json: {success: true}.to_json
+            json: { success: true }.to_json
   end
 
   # WARNING : Must stay public for throw_error to work well for now.
@@ -61,12 +59,11 @@ class Api::Webhook::Alipay::CustomersController < Api::ApplicationController
 
   private
 
-  def checkout_callback
-    @checkout_callback ||= CheckoutCallback.new(nil, cart_manager, params).alipay!(mode: :safe)
-  end
+    def checkout_callback
+      @checkout_callback ||= CheckoutCallback.new(nil, cart_manager, params).alipay!(mode: :safe)
+    end
 
-  def wrong_params?
-    params[:trade_no].nil? || params[:out_trade_no].nil? || params[:trade_status].nil?
-  end
-
+    def wrong_params?
+      params[:trade_no].nil? || params[:out_trade_no].nil? || params[:trade_status].nil?
+    end
 end

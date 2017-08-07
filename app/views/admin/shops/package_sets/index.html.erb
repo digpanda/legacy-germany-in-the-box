@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-md-10">
-    <h2>Package Sets</h2>
+    <h2>Shop Package Sets</h2>
     <hr>
   </div>
   <div class="col-md-2 details__action">
@@ -8,6 +8,6 @@
   </div>
 </div>
 
-<%= render partial: "admin/shops/package_sets/table", :locals => { :package_sets => @package_sets } %>
+<%= render partial: "admin/package_sets/table", :locals => { :package_sets => @package_sets, :show_shop => false } %>
 
 <%= will_paginate @sets, renderer: BootstrapPagination::Rails %>

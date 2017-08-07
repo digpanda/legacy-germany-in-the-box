@@ -1,5 +1,4 @@
 class Guest::PagesController < ApplicationController
-
   # NOTE : the related sections should be placed into authenticated sections
   # but for convenience we keep it here for now. If the conditions get big, please switch
   # - Laurent
@@ -43,5 +42,4 @@ class Guest::PagesController < ApplicationController
 
   def publicity
   end
-
 end

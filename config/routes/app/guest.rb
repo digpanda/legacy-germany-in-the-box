@@ -2,7 +2,6 @@
 namespace :guest do
 
   resource :home, :controller => 'home' do
-    get :wechat_test
   end
 
   resource :static, :controller => 'static' do
@@ -46,6 +45,7 @@ namespace :guest do
   resources :order_items  do
   end
 
+  match 'package_sets/categories' => 'package_sets#categories', :via => :get
   resources :package_sets do
   end
 
@@ -62,7 +62,7 @@ namespace :guest do
   end
 
   # maybe it will become shops/applications at some point
-  resources :shop_applications, :only => [:new, :create] do
+  resources :shop_applications, only: [:new, :create] do
   end
 
 end

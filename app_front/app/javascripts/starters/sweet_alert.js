@@ -45,7 +45,7 @@ var SweetAlert = {
           swal({
             title: "Processing!",
             text: "Your request is being processed ...",
-            type: "success",
+            type: 'success',
             showConfirmButton: false
           });
           window.location.href = $(self).attr('href');

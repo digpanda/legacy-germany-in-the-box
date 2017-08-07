@@ -33,10 +33,10 @@ class ReferrerGroup
   end
 
   def referrer_url
-    "https://open.weixin.qq.com/connect/oauth2/authorize?" +
+    'https://open.weixin.qq.com/connect/oauth2/authorize?' +
         "appid=#{Rails.application.config.wechat[:username_mobile]}&" +
-        "redirect_uri=http%3A%2F%2Fgermanyinbox.com/connect/auth/referrer?" +
+        'redirect_uri=http%3A%2F%2Fgermanyinbox.com/connect/auth/referrer?' +
         "token=#{self.token}" +
-        "&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect"
+        '&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect'
   end
 end

@@ -3,6 +3,7 @@ module Helpers
     module Cart
       APPLIED_SUCCESSFULLY = '此优惠券已被成功使用。'.freeze
       BUY = '加入购物车'.freeze
+      SEE_CATEGORY = '查看更多信息'.freeze
 
       module_function
 
@@ -15,6 +16,9 @@ module Helpers
       # add the first one to the cart
       def package_to_cart!
         visit guest_package_sets_path
+        # will be redirected to the categories area
+        page.first('.category-select').trigger('click')
+        expect(page).to_not have_current_path(guest_package_sets_categories_path)
         page.first('.package-select').trigger('click')
         expect(page).to have_content(BUY)
         page.first('#add-package-set').trigger('click')

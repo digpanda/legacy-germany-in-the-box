@@ -1,26 +1,25 @@
 namespace :digpanda do
-
-  desc "check database consistency"
+  desc 'check database consistency'
   task check_database_consistency: :environment do
     Tasks::Digpanda::CheckDatabaseConsistency.new
   end
 
-  desc "refresh duty categories taxes"
+  desc 'refresh duty categories taxes'
   task refresh_duty_categories_taxes: :environment do
     Tasks::Digpanda::RefreshDutyCategoriesTaxes.new
   end
 
-  desc "refresh shipping rates"
+  desc 'refresh shipping rates'
   task refresh_shipping_rates: :environment do
     Tasks::Digpanda::RefreshShippingRates.new
   end
 
-  desc "remove and create duty categories"
+  desc 'remove and create duty categories'
   task remove_and_create_duty_categories: :environment do
     Tasks::Digpanda::RemoveAndCreateDutyCategories.new
   end
 
-  desc "remove and create ui categories data"
+  desc 'remove and create ui categories data'
   task remove_and_create_ui_categories: :environment do
     Tasks::Digpanda::RemoveAndCreateUiCategories.new
   end
@@ -34,5 +33,4 @@ namespace :digpanda do
   task reset_bill_ids: :environment do
     Tasks::Digpanda::ResetBillIds.new
   end
-
 end
