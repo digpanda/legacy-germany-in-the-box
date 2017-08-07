@@ -25,10 +25,10 @@ class Api::Webhook::Wechatpay::CustomersController < Api::ApplicationController
 
     if checkout_callback.success?
       devlog.info 'Transaction successfully processed.'
-      SlackDispatcher.new.message("[Webhook] Wechatpay transaction SUCCESS processed : #{transmit_data}")
+      slack.message("[Webhook] Wechatpay transaction SUCCESS processed : #{transmit_data}")
     else
       devlog.info 'Processing of the transaction failed.'
-      SlackDispatcher.new.message("[Webhook] Wechatpay transaction FAIL processed : #{transmit_data}")
+      slack.message("[Webhook] Wechatpay transaction FAIL processed : #{transmit_data}")
     end
 
     devlog.info 'End of process.'

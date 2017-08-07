@@ -2,7 +2,6 @@
 namespace :guest do
 
   resource :home, :controller => 'home' do
-    get :wechat_test
   end
 
   resource :static, :controller => 'static' do

@@ -4,11 +4,7 @@ class Guest::HomeController < ApplicationController
   def show
     @shops = Shop.can_buy.order_by(position: :asc).all
   end
-
-  def wechat_test
-    SlackDispatcher.new.message("NEW CODE : #{params[:code]}")
-  end
-
+  
   private
 
     def admin_redirection

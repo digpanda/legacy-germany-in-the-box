@@ -5,7 +5,7 @@ class Customer::Checkout::Callback::AlipayController < ApplicationController
   def show
     checkout = checkout_callback.alipay!(mode: :unsafe)
     unless checkout.success?
-      SlackDispatcher.new.message("[Exception] Error checkout callback #{checkout.error}")
+      slack.message("[Exception] Error checkout callback #{checkout.error}")
       flash[:error] = checkout.error
       redirect_to navigation.back(2)
       return

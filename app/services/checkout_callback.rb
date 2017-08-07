@@ -36,7 +36,7 @@ class CheckoutCallback < BaseService
       order_payment.status = :failed
       order_payment.save
       order_payment.order.refresh_status_from!(order_payment)
-      SlackDispatcher.new.message("[Exception] Error checkout callback #{I18n.t(:failed, scope: :payment)}")
+      slack.message("[Exception] Error checkout callback #{I18n.t(:failed, scope: :payment)}")
       return return_with(:error, I18n.t(:failed, scope: :payment))
     end
 
@@ -69,7 +69,7 @@ class CheckoutCallback < BaseService
       order_payment.status = :failed
       order_payment.save
       order_payment.order.refresh_status_from!(order_payment)
-      SlackDispatcher.new.message("[Exception] Error checkout callback #{I18n.t(:failed, scope: :payment)}")
+      slack.message("[Exception] Error checkout callback #{I18n.t(:failed, scope: :payment)}")
       return return_with(:error, I18n.t(:failed, scope: :payment))
     end
 
@@ -138,13 +138,15 @@ class CheckoutCallback < BaseService
       if order_payment.order.bought?
         dispatch_guide_message!(order_payment)
         dispatch_confirm_paid_order!(order_payment.order)
-        SlackDispatcher.new.paid_transaction(order_payment)
+        slack.paid_transaction(order_payment)
       end
     else
-      SlackDispatcher.new.failed_transaction(order_payment)
+      slack.failed_transaction(order_payment)
     end
   end
 
-
+  def slack
+    @slack ||= SlackDispatcher.new
+  end
 
 end

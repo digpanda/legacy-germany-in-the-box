@@ -30,7 +30,7 @@ class Connect::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         # we force him to have a landing on package sets
         session[:landing] = :package_sets
 
-        SlackDispatcher.new.message("[Wechat] Tourist guide automatically logged-in (`#{user&.id}`)")
+        slack.message("[Wechat] Tourist guide automatically logged-in (`#{user&.id}`)")
 
         redirect_to AfterSigninHandler.new(request, navigation, user, cart_manager).solve!
         return
@@ -46,6 +46,10 @@ class Connect::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   private
+
+    def slack
+      @slack ||= SlackDispatcher.new
+    end
 
     def wechat_user_solver
       @wechat_user_solver ||= WechatUserSolver.new(wechat_data).resolve!
