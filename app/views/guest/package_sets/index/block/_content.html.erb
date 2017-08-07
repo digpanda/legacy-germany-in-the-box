@@ -1,7 +1,10 @@
 <div class="package-set-block__content">
   <div class="package-set-block__wrapper">
       <h2><%= package_set.name %></h2>
-      <p><%= simple_format package_set.decorate.short_desc %></p>
+
+      <div class="+desktop">
+        <%= simple_format package_set.decorate.short_desc %>
+      </div>
 
       <% if package_set.casual_price? %>
         <div class="package-set-block__original-price"><%= package_set.casual_price.in_euro.to_yuan.display %></div>

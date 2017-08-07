@@ -4,6 +4,9 @@
     <thead>
       <tr>
         <th>
+          Cover Image
+        </th>
+        <th>
           <label>
            Position
           </label>
@@ -33,6 +36,9 @@
     <tbody>
       <% package_sets.each do |package_set| %>
         <tr>
+          <td>
+            <%= image_tag package_set.cover.url, :class => 'icon-img' %>
+          </td>
           <td>
             <%= editable_field(package_set, admin_shop_package_set_path(package_set.shop, package_set), :position, :text_field) %>
           </td>
