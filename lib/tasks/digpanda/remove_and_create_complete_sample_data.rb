@@ -322,6 +322,10 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
     Dir["#{folder_path}/*"].shuffle.first unless Dir["#{folder_path}/*"].empty?
   end
 
+  def random_category
+    Category.all.sample
+  end
+
   def setup_customer(customer)
   end
 
@@ -399,6 +403,7 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
       :desc => Faker::Lorem.paragraph,
       :long_desc => Faker::Lorem.paragraph(3),
       :cover => setup_image(:banner),
+      :category => random_category,
       :details_cover => setup_image(:banner),
       :casual_price => Faker::Number.decimal(2),
       :shipping_cost => Faker::Number.decimal(1)
@@ -408,7 +413,7 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
       sku = shop.products.has_available_sku.all.shuffle.first&.skus&.first
       if sku
         package_set.package_skus.create({
-          :sku_id => sku.id,
+          :sku => sku,
           :product => sku.product,
           :quantity => Faker::Number.between(1, 3),
           :price => Faker::Number.decimal(2),

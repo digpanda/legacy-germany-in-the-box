@@ -2,7 +2,7 @@
 
 <div class="+spacer"></div>
 
-<% Category.each_with_index do |category, index| %> <!-- .with_package_sets -->
+<% Category.with_package_sets.each_with_index do |category, index| %>
 
   <%= render "guest/package_sets/categories/block", :options => { :reversed => (index % 2 != 0) }, :category => category %>
 
