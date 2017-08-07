@@ -31,9 +31,9 @@
 
       <!-- Image -->
       <div class="product-miniblock__image lazy" data-original="<%= package_sku.sku.images&.first&.file&.url %>" style="background-image:url('/images/grey.gif');">
-        <div class="product-miniblock__zoom">
+        <!-- <div class="product-miniblock__zoom">
           <i class="fa fa-search"></i>
-        </div>
+        </div> -->
       </div>
 
       <div class="clearfix"></div>
@@ -45,7 +45,7 @@
         <div class="product-miniblock__extra">
           <%= package_sku.quantity %> x <%= package_sku.sku.display_option_names %>
         </div>
-        <a class="+blue" href="#"><%= I18n.t('button.show_product') %></a>
+        <div class="+blue"><%= I18n.t('button.show_product') %></div>
       </div>
 
     </a>

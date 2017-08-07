@@ -2355,7 +2355,7 @@ body {
         margin-right: 1em;
         margin-top: 1.5em; } }
   .product-miniblock__image {
-    min-height: 300px;
+    min-height: 200px;
     min-width: 100%;
     background-size: contain;
     background-repeat: no-repeat;
@@ -2363,7 +2363,7 @@ body {
     text-align: center;
     margin: 0 auto; }
   .product-miniblock__clickable {
-    border: 1px dashed #bdc3c7;
+    border: 1px dashed #f9f9f9;
     padding: 1em; }
   .product-miniblock__content h3 {
     margin-top: 0.2em;
