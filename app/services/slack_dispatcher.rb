@@ -16,8 +16,9 @@ class SlackDispatcher < BaseService
     slack.delay.ping "--- *#{Rails.env.capitalize} Mode* #{Time.now.utc}"
   end
 
-  def message(message)
+  def message(message, url: nil)
     push "#{message}"
+    push "More : #{url}" if url
   end
 
   def new_error(error)
@@ -26,14 +27,12 @@ class SlackDispatcher < BaseService
 
   def paid_transaction(order_payment)
     order = order_payment.order
-    push "*#{order.billing_address.decorate.chinese_full_name}* just paid *#{order.total_paid_in_euro} / #{order.total_price_with_extra_costs.in_euro.display}*"
-    push "Order ID : `#{order.id}` - URL : #{admin_order_url(order)}"
+    message "*#{order.billing_address.decorate.chinese_full_name}* just paid *#{order.total_paid_in_euro} / #{order.total_price_with_extra_costs.in_euro.display}*", url: admin_order_url(order)
   end
 
   def failed_transaction(order_payment)
     order = order_payment.order
-    push "*#{order.billing_address.decorate.chinese_full_name}* just *FAILED* to pay *#{order.total_paid_in_euro} / #{order.total_price_with_extra_costs.in_euro.display}*"
-    push "Order ID : `#{order.id}` - URL : #{admin_order_url(order)}"
+    message "*#{order.billing_address.decorate.chinese_full_name}* just *FAILED* to pay *#{order.total_paid_in_euro} / #{order.total_price_with_extra_costs.in_euro.display}*", url: admin_order_url(order)
   end
 
   private
