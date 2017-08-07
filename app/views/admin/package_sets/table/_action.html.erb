@@ -1,0 +1,9 @@
+<% if package_set.active %>
+  <%= link_to '', admin_shop_package_set_unactive_path(package_set.shop, package_set), :method => :patch, :class => 'tooltipster fa fa-minus buttons buttons__cancel', :title => "Deactivate" %>
+<% else %>
+  <%= link_to '', admin_shop_package_set_active_path(package_set.shop, package_set), :method => :patch, :class => 'tooltipster fa fa-check buttons buttons__add', :title => "Activate" %>
+<% end %>
+
+<%= link_to '', edit_admin_shop_package_set_path(package_set.shop, package_set), :class => 'tooltipster fa fa-pencil buttons buttons__edit', :title => "Edit" %>
+
+<%= link_to '', admin_shop_package_set_path(package_set.shop, package_set), :method => :delete, data: { confirm: "Are you sure you want to delete this package set ?" }, :class => 'tooltipster fa fa-times buttons buttons__delete', :title => "Remove this set" %>

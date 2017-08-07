@@ -24,6 +24,9 @@ namespace :admin do
   resources :notes do
   end
 
+  resources :package_sets do
+  end
+
   resources :products do
   end
 

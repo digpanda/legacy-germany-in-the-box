@@ -8,6 +8,11 @@
            Position
           </label>
         </th>
+        <% if show_shop %>
+          <th>
+            Shop
+          </th>
+        <% end %>
         <th>
           <label>
            Name
@@ -32,13 +37,18 @@
             <%= editable_field(package_set, admin_shop_package_set_path(package_set.shop, package_set), :position, :text_field) %>
           </td>
           <td>
+            <% if show_shop %>
+              <%= package_set.shop.shopname %>
+            <% end %>
+          </td>
+          <td>
             <%= package_set.name %>
           </td>
           <td>
             <%= package_set.package_skus.count %>
           </td>
           <td align="left">
-            <%= render partial: 'admin/shops/package_sets/table/action', :locals => { :package_set => package_set } %>
+            <%= render partial: 'admin/package_sets/table/action', :locals => { :package_set => package_set } %>
           </td>
         </tr>
       <% end %>
@@ -46,7 +56,7 @@
   </table>
 </div>
 <% else %>
-<div class="col-md-6 col-md-push-3 col-md-pull-3 +white-box +centered">
+<div class="col-md-12 +white-box +centered">
   <h4>
    No package set available
  </h4>

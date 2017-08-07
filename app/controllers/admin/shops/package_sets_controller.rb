@@ -11,7 +11,7 @@ class Admin::Shops::PackageSetsController < ApplicationController
   before_action :breadcrumb_admin_shops, :breadcrumb_admin_shop_products, except: [:destroy_image, :destroy_image_file]
 
   def index
-    @package_sets = shop.package_sets.order_by(position: :asc).paginate(page: current_page, per_page: 10)
+    @package_sets = shop.package_sets.order_by(position: :asc).full_text_search(query, match: :all, allow_empty_search: true).paginate(page: current_page, per_page: 10)
   end
 
   def show
@@ -89,6 +89,10 @@ class Admin::Shops::PackageSetsController < ApplicationController
   end
 
   private
+
+    def query
+      params.require(:query) if params[:query].present?
+    end
 
     def params_valid_product_ids
       package_set_params['package_skus_attributes']&.map do |key, value|
