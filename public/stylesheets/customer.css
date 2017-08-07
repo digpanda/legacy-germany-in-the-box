@@ -2239,6 +2239,7 @@ body {
       .package-set-block__wrapper {
         display: inline-block; } }
   .package-set-block__content {
+    width: 100%;
     position: relative;
     padding: 2em;
     height: 60vw;
