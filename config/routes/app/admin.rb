@@ -24,6 +24,9 @@ namespace :admin do
   resources :notes do
   end
 
+  resources :products do
+  end
+
   resources :shops do
     get :emails, on: :collection
     patch :approve

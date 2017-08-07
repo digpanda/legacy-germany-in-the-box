@@ -1,17 +1,15 @@
 <div class="row">
   <div class="col-md-10">
-    <h2>Shop Products</h2>
+    <h2>Products</h2>
+    <em>This list includes all the products from all the shops.</em>
     <hr>
   </div>
   <div class="col-md-2 details__action">
-    <a href="<%= admin_shop_package_sets_path(@shop) %>"><i class="tooltipster fa fa-folder" title="Package Sets"></i></a>
-    <a href="<%= admin_shop_products_path(format: "csv") %>"><i class="fa fa-download tooltipster" title="Download CSV format"></i></a>
-    <a href="<%= new_admin_shop_product_path(@shop) %>"><i class="fa fa-plus tooltipster" title="<%= I18n.t(:new, scope: :edit_product) %>"></i></a>
   </div>
 </div>
 
 <div class="details__action +left">
-  <form action="<%= admin_shop_products_path %>" class="js-search-form +hidden">
+  <form action="<%= admin_products_path %>" class="js-search-form +hidden">
     <input type="query" class="js-search-input search-bar__input" name="query" autocomplete="off" placeholder="<%= Setting.instance.search_suggestion %>" />
     <button type="submit" class="+hidden"></button>
   </form>
@@ -25,7 +23,7 @@
 </div>
 <div class="row">
   <div class="col-md-12">
-    <%= render partial: "admin/products/table", :locals => { :products => @products, :show_shop => false } %>
+    <%= render partial: "admin/products/table", :locals => { :products => @products, :show_shop => true } %>
   </div>
 </div>
 

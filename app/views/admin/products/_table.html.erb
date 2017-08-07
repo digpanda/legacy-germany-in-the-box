@@ -4,29 +4,24 @@
     <thead>
       <tr>
         <th>
-          <label>
-            <%= I18n.t(:image, scope: :edit_product_detail) %>
-          </label>
+          Image
+        </th>
+        <% if show_shop %>
+        <th>
+          Shop
+        </th>
+        <% end %>
+        <th>
+          Name
         </th>
         <th>
-          <label>
-            <%= I18n.t(:name, scope: :edit_product) %>
-          </label>
+          Brand
         </th>
         <th>
-          <label>
-            <%= I18n.t(:brand, scope: :edit_product) %>
-          </label>
+          Details
         </th>
         <th>
-          <label>
-            <%= I18n.t(:quantity, scope: :edit_product_detail) %>
-          </label>
-        </th>
-        <th>
-          <label>
-            <%= I18n.t(:operations, scope: :edit_product) %>
-          </label>
+          Action
         </th>
       </tr>
     </thead>
@@ -36,6 +31,11 @@
           <td>
             <%= image_tag product.decorate.first_sku_image, :class => 'icon-img' %>
           </td>
+          <% if show_shop %>
+          <td>
+            <%= product.shop.shopname %>
+          </td>
+          <% end %>
           <td>
             <%= product.name %>
           </td>
@@ -48,7 +48,7 @@
             <%= I18n.t(:unlimited_info, scope: :edit_product, unlimited_skus: product.unlimited_skus) if product.unlimited_skus > 0 %>
           </td>
           <td align="left">
-            <%= render partial: 'admin/shops/products/table/action', :locals => { :product => product } %>
+            <%= render partial: 'admin/products/table/action', :locals => { :product => product } %>
           </td>
         </tr>
       <% end %>
