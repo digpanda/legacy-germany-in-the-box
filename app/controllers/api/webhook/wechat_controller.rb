@@ -35,7 +35,7 @@ class Api::Webhook::WechatController < Api::ApplicationController
     # </xml>
     def handle
       return if hook_activation?
-      slack.message('[Webhook] Wechat Webhook was called.')
+      slack.message '[Webhook] Wechat Webhook was called.'
 
       devlog.info 'Wechat started to communicate with us ...'
       body = Hash.from_xml(request.body.read)
@@ -85,13 +85,13 @@ class Api::Webhook::WechatController < Api::ApplicationController
 
       # we are in front of a referrer request
       referrer = Referrer.where(reference_id: extra_data['referrer']['reference_id']).first
-      slack.message("Referrer is `#{referrer.id}`")
+      slack.message "Referrer is `#{referrer.id}`", url: admin_referrer_path(referrer)
 
       if wechat_user_solver.success? && referrer
         user = wechat_user_solver.data[:customer]
-        slack.message("Customer is `#{user.id}`")
+        slack.message "Customer is `#{user.id}`", url: admin_user_path(user)
       else
-        slack.message("Customer was not resolved : #{wechat_user_solver.error}")
+        slack.message "Customer was not resolved : #{wechat_user_solver.error}"
         throw_api_error(:bad_format, { error: 'Wrong referrer or/and customer' }, :bad_request)
         return
       end
@@ -103,14 +103,14 @@ class Api::Webhook::WechatController < Api::ApplicationController
 
       # protection if user has not already a parent_referrer
       if user.parent_referrer
-        slack.message("User already got a referrer `#{user.parent_referrer.id}`")
+        slack.message "User already got a referrer `#{user.parent_referrer.id}`"
       else
         # now we can safely bind them together
         referrer.children_users << user
         referrer.save
       end
 
-      slack.message("Referrer user children `#{referrer.children_users.count}`")
+      slack.message "Referrer user children `#{referrer.children_users.count}`"
     end
 
     def wechat_user_solver
@@ -149,7 +149,7 @@ class Api::Webhook::WechatController < Api::ApplicationController
 
     def hook_activation?
       if params[:echostr]
-        slack.message("[Webhook] Our Wechat Webhook is now verified / activated (echostr `#{params[:echostr]}`).")
+        slack.message "[Webhook] Our Wechat Webhook is now verified / activated (echostr `#{params[:echostr]}`)."
         devlog.info 'End of process.'
         render text: params[:echostr]
         true

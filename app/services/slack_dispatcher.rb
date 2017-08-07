@@ -21,10 +21,6 @@ class SlackDispatcher < BaseService
     push "More : #{url}" if url
   end
 
-  def new_error(error)
-    push "An error occurred (#{error})"
-  end
-
   def paid_transaction(order_payment)
     order = order_payment.order
     message "*#{order.billing_address.decorate.chinese_full_name}* just paid *#{order.total_paid_in_euro} / #{order.total_price_with_extra_costs.in_euro.display}*", url: admin_order_url(order)

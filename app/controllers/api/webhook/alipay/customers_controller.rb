@@ -41,10 +41,10 @@ class Api::Webhook::Alipay::CustomersController < Api::ApplicationController
 
     if checkout_callback.success?
       devlog.info 'Transaction successfully processed.'
-      slack.message("[Webhook] Alipay transaction SUCCESS processed : #{params}")
+      slack.message "[Webhook] Alipay transaction SUCCESS processed : #{params}"
     else
       devlog.info 'Processing of the transaction failed.'
-      slack.message("[Webhook] Alipay transaction FAIL processed : #{params}")
+      slack.message "[Webhook] Alipay transaction FAIL processed : #{params}"
     end
 
     devlog.info 'End of process.'
