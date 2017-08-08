@@ -7,3 +7,6 @@
   <%= render "guest/package_sets/categories/block", :options => { :reversed => (index % 2 != 0) }, :category => category %>
 
 <% end %>
+
+  <a class="big-button --green" href="<%= guest_package_sets_path(category_slug: 'all') %>"><%= I18n.t('button.see_all_products') %></a>
+  <div class="+spacer"></div>
