@@ -2238,6 +2238,17 @@ body {
     @media (max-width: 994px) {
       .package-set-block__wrapper {
         display: inline-block; } }
+  .package-set-block__content-header {
+    color: #bdc3c7; }
+    @media (min-width: 995px) {
+      .package-set-block__content-header {
+        margin-top: 0.5em; } }
+    .package-set-block__content-header.\--right {
+      text-align: right;
+      margin-right: 1em; }
+    .package-set-block__content-header.\--left {
+      text-align: left;
+      margin-left: 1em; }
   .package-set-block__content {
     width: 100%;
     position: relative;
@@ -2249,7 +2260,8 @@ body {
     background-color: white; }
     @media (max-width: 994px) {
       .package-set-block__content {
-        display: inline-block; } }
+        display: inline-block;
+        height: 75vw; } }
     @media (max-width: 994px) {
       .package-set-block__content {
         border-bottom-left-radius: 4px;

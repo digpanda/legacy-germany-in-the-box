@@ -15,6 +15,9 @@ it looks like it's the same, but it's not -->
       </a>
 
         <div class="col-md-4 package-set-block__no-padding-left">
+          <div class="package-set-block__content-header --right">
+            <%= package_set.category.name %>
+          </div>
           <%= render partial: "guest/package_sets/index/block/content", :locals => {:package_set => package_set} %>
         </div>
       </div>
@@ -38,6 +41,9 @@ it looks like it's the same, but it's not -->
         </a>
 
         <div class="col-md-4 col-md-pull-8 package-set-block__no-padding-right">
+          <div class="package-set-block__content-header --left">
+            <%= package_set.category.name %>
+          </div>
           <%= render partial: "guest/package_sets/index/block/content", :locals => {:package_set => package_set} %>
         </div>
       </div>

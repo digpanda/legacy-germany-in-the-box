@@ -48,20 +48,27 @@
       display: inline-block
 
   +part(content-header)
-    margin-right: 1em
     color: $color-grey
-    text-align: right
     +breakpoint('desktop')
       margin-top: 0.5em
+
+    +option(right)
+      text-align: right
+      margin-right: 1em
+    +option(left)
+      text-align: left
+      margin-left: 1em
 
   +part(content)
     width: 100%
     +breakpoint('mobile')
       display: inline-block
+      height: 75vw
 
     position: relative
     padding: 2em
-    height: 75vw
+    height: 60vw
+
     max-height: 672px
     +centered
 
