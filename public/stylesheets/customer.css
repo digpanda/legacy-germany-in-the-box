@@ -2276,6 +2276,9 @@ body {
     background-position: center center;
     background-size: contain;
     background-repeat: no-repeat; }
+    @media (max-width: 994px) {
+      .package-set-block__image {
+        height: 75vw; } }
 
 .package-set-infos {
   box-shadow: 0px 5px 20px 3px rgba(139, 139, 139, 0.32);
