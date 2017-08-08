@@ -2238,6 +2238,13 @@ body {
     @media (max-width: 994px) {
       .package-set-block__wrapper {
         display: inline-block; } }
+  .package-set-block__content-header {
+    margin-right: 1em;
+    color: #bdc3c7;
+    text-align: right; }
+    @media (min-width: 995px) {
+      .package-set-block__content-header {
+        margin-top: 0.5em; } }
   .package-set-block__content {
     position: relative;
     padding: 2em;
