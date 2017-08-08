@@ -2,8 +2,10 @@
 
 <%= render partial: "guest/package_sets/index/navigation", :locals => { :package_sets => @package_sets } %>
 
+<div class="row">
 <% @package_sets.each_with_index do |package_set, index| %>
 
   <%= render "guest/package_sets/index/block", :options => { :reversed => (index % 2 != 0) }, :package_set => package_set %>
 
 <% end %>
+</div>

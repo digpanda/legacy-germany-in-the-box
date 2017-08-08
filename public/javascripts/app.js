@@ -924,12 +924,12 @@ var GuestFeedback = {
 module.exports = GuestFeedback;
 });
 
-require.register("javascripts/controllers/guest/package_sets/show.js", function(exports, require, module) {
+require.register("javascripts/controllers/guest/package_sets.js", function(exports, require, module) {
 'use strict';
 
 var Translation = require("javascripts/lib/translation");
 /**
- * PackageSeyShow Class
+ * PackageSets Class
  */
 var PackageSetsShow = {
 
@@ -943,7 +943,7 @@ var PackageSetsShow = {
 
     manageAddPackageSet: function manageAddPackageSet() {
 
-        $('#add-package-set').on('click', function (e) {
+        $('.js-add-package-set').on('click', function (e) {
 
             e.preventDefault();
 

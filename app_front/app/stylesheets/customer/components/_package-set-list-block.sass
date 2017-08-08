@@ -1,0 +1,47 @@
++component(package-set-list-block)
+
+  +shadow
+  +border-radius(4px)
+  font-size: 18px
+
+  a
+    color: $color-almost-black
+
+  +part(header-content)
+    margin: 1em
+    margin-bottom: 0
+
+  +part(header-title)
+    +trim-word
+    font-weight: 400
+
+  +part(header-category)
+    color: $color-grey
+    font-weight: 300
+    text-align: right
+
+  +part(central-image)
+    +centered
+    height: 20vw
+    +breakpoint('mobile')
+      height: 45vw
+    max-height: 672px
+
+    background-position: center center
+    background-size: contain
+    background-repeat: no-repeat
+
+  +part(footer-content)
+    margin: 1em
+    margin-top: 0
+    margin-bottom: 0
+
+  +part(footer-price)
+    color: $color-red
+    font-weight: 300
+
+  +part(footer-cart)
+    text-align: right
+    a
+      color: $color-grey
+      font-size: 22px

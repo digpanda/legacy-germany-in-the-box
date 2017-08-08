@@ -1,6 +1,6 @@
 var Translation = require("javascripts/lib/translation");
 /**
- * PackageSeyShow Class
+ * PackageSets Class
  */
 var PackageSetsShow = {
 
@@ -15,7 +15,7 @@ var PackageSetsShow = {
 
     manageAddPackageSet: function () {
 
-        $('#add-package-set').on('click', function (e) {
+        $('.js-add-package-set').on('click', function (e) {
 
             e.preventDefault();
 
