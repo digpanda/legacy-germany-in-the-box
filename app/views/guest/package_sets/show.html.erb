@@ -25,6 +25,9 @@
       <!-- Introduction -->
       <div class="row">
         <div class="col-md-12">
+          <div class="package-set-infos__introduction-header">
+            <%= @package_set.category.name %>
+          </div>
           <div class="package-set-infos__introduction">
             <h1><%= @package_set.name %></h1>
             <p><%= simple_format @package_set.desc %></p>
