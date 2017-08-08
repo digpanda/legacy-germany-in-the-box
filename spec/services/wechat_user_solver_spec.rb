@@ -1,20 +1,20 @@
 describe WechatUserSolver  do
 
-    let(:wechat_data) do {
-        provider: valid_wechat_omniauth_callback.provider,
-        unionid: valid_wechat_omniauth_callback.info.unionid,
-        openid: valid_wechat_omniauth_callback.info.openid,
-        nickname: valid_wechat_omniauth_callback.info.nickname,
-        avatar: valid_wechat_omniauth_callback.info.headimgurl,
-        sex: valid_wechat_omniauth_callback.info.sex,
-      }
-    end
+  let(:wechat_data) do {
+    provider: valid_wechat_omniauth_callback.provider,
+    unionid: valid_wechat_omniauth_callback.info.unionid,
+    openid: valid_wechat_omniauth_callback.info.openid,
+    nickname: valid_wechat_omniauth_callback.info.nickname,
+    avatar: valid_wechat_omniauth_callback.info.headimgurl,
+    sex: valid_wechat_omniauth_callback.info.sex,
+  }
+  end
 
-  context "#resolve!" do
+  context '#resolve!' do
 
     subject(:wechat_user_solver) { WechatUserSolver.new(wechat_data) }
 
-    it "creates and return a new customer" do
+    it 'creates and return a new customer' do
 
       resolved = wechat_user_solver.resolve!
       expect(resolved.success?).to eq(true)
@@ -22,9 +22,9 @@ describe WechatUserSolver  do
 
     end
 
-    let!(:current_user) { FactoryGirl.create(:customer, provider: "wechat", wechat_unionid: "whatever-unionid") }
+    let!(:current_user) { FactoryGirl.create(:customer, provider: 'wechat', wechat_unionid: 'whatever-unionid') }
 
-    it "use an existing customer and return it" do
+    it 'use an existing customer and return it' do
 
       resolved = wechat_user_solver.resolve!
       expect(resolved.success?).to eq(true)

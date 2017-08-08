@@ -1,5 +1,4 @@
 class Guest::SearchController < ApplicationController
-
   before_filter do
     restrict_to :customer
   end
@@ -10,8 +9,7 @@ class Guest::SearchController < ApplicationController
 
   private
 
-  def query
-    params.require(:query) if params[:query].present?
-  end
-
+    def query
+      params.require(:query) if params[:query].present?
+    end
 end

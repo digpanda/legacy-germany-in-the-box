@@ -35,6 +35,5 @@ module Application
     rescue CanCan::AccessDenied
       throw_unauthorized_page
     end
-
   end
 end

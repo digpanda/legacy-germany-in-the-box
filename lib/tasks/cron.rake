@@ -4,5 +4,4 @@ namespace :cron do
   # task cron_name: :environment do
   #   Tasks::Cron::CronName.new.perform
   # end
-
 end

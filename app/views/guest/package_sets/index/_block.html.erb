@@ -1,55 +1,57 @@
-<!-- NOTE : multiple minor changes to reverse in mobile
-it looks like it's the same, but it's not -->
-<% if options[:reversed] %>
-
-<div class="row">
-  <div class="col-md-12">
-    <div class="package-set-block">
-      <div class="row">
-
+  <div class="col-xs-12 col-md-4">
+    <div class="package-set-list-block">
       <a href="<%= guest_package_set_path(package_set) %>">
-        <div class="col-md-8 package-set-block__no-padding-right">
-          <div class="package-set-block__image lazy" data-original="<%= package_set.cover %>" style="background-image:url('/images/grey.gif');">
-          </div>
-        </div>
-      </a>
 
-        <div class="col-md-4 package-set-block__no-padding-left">
-          <%= render partial: "guest/package_sets/index/block/content", :locals => {:package_set => package_set} %>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<% else %>
-
-<div class="row">
-  <div class="col-md-12">
-    <div class="package-set-block">
+      <!-- HEADER CONTENT -->
       <div class="row">
-
-        <a href="<%= guest_package_set_path(package_set) %>">
-          <div class="col-md-8 col-md-push-4 package-set-block__no-padding-left">
-            <div class="package-set-block__image lazy" data-original="<%= package_set.cover %>" style="background-image:url('/images/grey.gif');">
+        <div class="col-xs-12">
+          <div class="package-set-list-block__header-content">
+            <div class="row">
+              <div class="col-xs-8">
+                <div class="package-set-list-block__header-title">
+                  <%= package_set.name %>
+                </div>
+              </div>
+              <div class="col-xs-4">
+                <div class="package-set-list-block__header-category">
+                  <%= package_set.category.name %>
+                </div>
+              </div>
             </div>
           </div>
-        </a>
-
-        <div class="col-md-4 col-md-pull-8 package-set-block__no-padding-right">
-          <%= render partial: "guest/package_sets/index/block/content", :locals => {:package_set => package_set} %>
         </div>
       </div>
+
+      <!-- IMAGE -->
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="package-set-list-block__central-image lazy" data-original="<%= package_set.cover %>" style="background-image:url('/images/grey.gif');">
+          </div>
+        </div>
+      </div>
+
+      <!-- FOOTER CONTENT -->
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="package-set-list-block__footer-content">
+            <div class="row">
+              <div class="col-xs-8">
+                <div class="package-set-list-block__footer-price">
+                  <%= package_set.casual_price.in_euro.to_yuan.display %> <span class="+grey"><%= I18n.t(:all_included, scope: :cart) %></span>
+                </div>
+              </div>
+              <div class="col-xs-4">
+                <div class="package-set-list-block__footer-cart">
+                  <a class="js-add-package-set" data-package-set-id="<%= package_set.id %>" href="#">
+                    <i class="fa fa-shopping-cart"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </a>
     </div>
   </div>
-</div>
-
-<% end %>
-
-<!-- <%= package_set.name %>
-<br />
-<%= link_to "Buy it", guest_package_set_path(package_set), method: :patch %> -->
-
-
-<div class="+spacer"></div>

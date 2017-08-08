@@ -44,7 +44,7 @@ class WechatUserSolver < BaseService
       user_info = WechatApiUserInfo.new(openid).resolve!
       if user_info.success?
         @unionid = user_info.data[:user_info]['unionid']
-        SlackDispatcher.new.message("WechatUserSolver `unionid` recovered by API `#{unionid}`")
+        slack.message "WechatUserSolver `unionid` recovered by API `#{unionid}`"
       end
     end
   end
@@ -80,7 +80,7 @@ class WechatUserSolver < BaseService
       :role                  => :customer,
       :gender                => gender,
       :password              => random_password,
-      :password_confirmation => random_password,
+      password_confirmation: random_password,
       :wechat_unionid        => unionid,
       :precreated            => true
     })
@@ -96,6 +96,10 @@ class WechatUserSolver < BaseService
 
   def random_password
     @random_password ||= SecureRandom.uuid
+  end
+
+  def slack
+    @slack ||= SlackDispatcher.new
   end
 
 end

@@ -1,8 +1,7 @@
 class Shopkeeper::AddressesController < ApplicationController
-
   attr_reader :address
 
-  authorize_resource :class => false
+  authorize_resource class: false
   before_action :set_address, only: [:show, :update, :destroy]
   before_action :set_address_country, only: [:create, :update]
 
@@ -27,7 +26,6 @@ class Shopkeeper::AddressesController < ApplicationController
 
     flash[:error] = "#{I18n.t(:create_ko, scope: :edit_address)} (#{address.errors.full_messages.join(', ')})"
     redirect_to navigation.back(1)
-
   end
 
   def update
@@ -39,7 +37,6 @@ class Shopkeeper::AddressesController < ApplicationController
 
     flash[:error] = "#{I18n.t(:update_ko, scope: :edit_address)} (#{address.errors.full_messages.join(', ')})"
     redirect_to navigation.back(1)
-
   end
 
   def destroy
@@ -47,16 +44,17 @@ class Shopkeeper::AddressesController < ApplicationController
     redirect_to navigation.back(1)
   end
 
-  def set_address
-    @address = current_user.shop.addresses.find(params[:id])
-  end
+  private
 
-  def address_params
-    params.require(:address).permit!
-  end
+    def set_address
+      @address = current_user.shop.addresses.find(params[:id])
+    end
 
-  def set_address_country
-    address_params[:country] = 'DE'
-  end
+    def address_params
+      params.require(:address).permit!
+    end
 
+    def set_address_country
+      address_params[:country] = 'DE'
+    end
 end

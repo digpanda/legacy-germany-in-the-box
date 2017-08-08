@@ -6,13 +6,13 @@ describe CartManager do
   let(:current_user) { FactoryGirl.create(:customer) }
   let(:cart_manager) { CartManager.new(request, current_user) }
 
-  context "#order" do
+  context '#order' do
 
-    context "without user registration" do
+    context 'without user registration' do
 
       let(:current_user) { nil }
 
-      it "creates a new order in the cart according to a shop, convert to user on log-in" do
+      it 'creates a new order in the cart according to a shop, convert to user on log-in' do
         shop = FactoryGirl.create(:shop)
         order = cart_manager.order(shop: shop)
 
@@ -34,7 +34,7 @@ describe CartManager do
 
     end
 
-    it "creates a new order in the cart according to a shop" do
+    it 'creates a new order in the cart according to a shop' do
       shop = FactoryGirl.create(:shop)
       order = cart_manager.order(shop: shop)
 
@@ -42,7 +42,7 @@ describe CartManager do
       expect(order.shop).to eq(shop)
     end
 
-    it "recovers an order in the cart according to a shop" do
+    it 'recovers an order in the cart according to a shop' do
       # this will be changed later on
       shop = FactoryGirl.create(:shop)
       order = FactoryGirl.create(:order, shop: shop)
@@ -54,9 +54,9 @@ describe CartManager do
 
   end
 
-  context "#store" do
+  context '#store' do
 
-    it "stores a new order within the cart" do
+    it 'stores a new order within the cart' do
       order = FactoryGirl.create(:order)
       cart_manager.store(order)
       expect(cart_manager.orders.count).to eq(1)
@@ -64,18 +64,18 @@ describe CartManager do
 
   end
 
-  context "#orders" do
+  context '#orders' do
 
-    it "get all the orders of the cart" do
+    it 'get all the orders of the cart' do
       fill_cart_manager!
       expect(cart_manager.orders.count).to eq(3)
     end
 
   end
 
-  context "#empty!" do
+  context '#empty!' do
 
-    it "empties the cart completely" do
+    it 'empties the cart completely' do
       # this isn't really an empty, it's at session level and can be buggy as fuck
       fill_cart_manager!
       cart_manager.empty!
@@ -84,9 +84,9 @@ describe CartManager do
 
   end
 
-  context "#refresh!" do
+  context '#refresh!' do
 
-    it "refreshes the cart from cancelled and bought orders" do
+    it 'refreshes the cart from cancelled and bought orders' do
       orders = fill_cart_manager!
       orders.first.tap do |order|
         order.status = :paid
@@ -98,14 +98,14 @@ describe CartManager do
 
   end
 
-  context "#products_number" do
+  context '#products_number' do
 
-    it "returns the products number with only casual products" do
+    it 'returns the products number with only casual products' do
       fill_cart_manager!
       expect(cart_manager.products_number).to eq(45)
     end
 
-    it "returns the products number with package sets" do
+    it 'returns the products number with package sets' do
       orders = FactoryGirl.create_list(:order, 3, :with_package_set)
       orders.each do |order|
         cart_manager.store(order)

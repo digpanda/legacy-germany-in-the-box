@@ -1,6 +1,6 @@
 namespace :bugfix do
-  
-  desc "different bugfixes"
+
+  desc 'different bugfixes'
 
   task fix_country: :environment do
     Address.all.each do |a|
@@ -8,16 +8,16 @@ namespace :bugfix do
       puts "fixing address #{a.street} #{a.number}"
 
       if a.read_attribute(:country) == 'Deutschland'
-        a.write_attribute(:country,'DE')
+        a.write_attribute(:country, 'DE')
         a.write_attribute(:province, 'Bayern')
         a.write_attribute(:company, 'Unknown')
       elsif a.read_attribute(:country) == '中国'
-        a.write_attribute(:country,'CN')
+        a.write_attribute(:country, 'CN')
         a.write_attribute(:province, 'Unknown')
       end
 
       a.save!
-   end
+    end
   end
 
   task fix_shop_currency_contact_person: :environment do
@@ -26,7 +26,7 @@ namespace :bugfix do
 
       s.currency = 'EUR'
 
-      sa = ShopApplication.find_by(:email => s.shopkeeper.email)
+      sa = ShopApplication.find_by(email: s.shopkeeper.email)
 
       if sa
         s.fname = sa.fname

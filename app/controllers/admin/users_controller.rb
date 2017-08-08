@@ -1,17 +1,16 @@
 class Admin::UsersController < ApplicationController
-
   attr_accessor :user, :users
 
-  authorize_resource :class => false
-  before_action :set_user, :except => [:index, :emails]
+  authorize_resource class: false
+  before_action :set_user, except: [:index, :emails]
 
   layout :custom_sublayout
 
-  before_action :breadcrumb_admin_users, :except => [:index]
+  before_action :breadcrumb_admin_users, except: [:index]
   before_action :breadcrumb_admin_user, only: [:show]
 
   def index
-    @users = User.order(c_at: :desc).full_text_search(params[:query], match: :all, allow_empty_search: true).paginate(:page => current_page, :per_page => 10)
+    @users = User.order(c_at: :desc).full_text_search(params[:query], match: :all, allow_empty_search: true).paginate(page: current_page, per_page: 10)
   end
 
   def show
@@ -19,7 +18,7 @@ class Admin::UsersController < ApplicationController
 
   def update
     if user.update(user_params)
-      flash[:success] = "The user was updated."
+      flash[:success] = 'The user was updated.'
     else
       flash[:error] = "The user was not updated (#{user.errors.full_messages.join(', ')})"
     end
@@ -29,7 +28,7 @@ class Admin::UsersController < ApplicationController
   def destroy
     if user.destroy
       user&.referrer&.destroy # if it's also a referrer
-      flash[:success] = "The user account was successfully destroyed."
+      flash[:success] = 'The user account was successfully destroyed.'
     else
       flash[:error] = "The user was not destroyed (#{user.errors.full_messages.join(', ')})"
     end
@@ -37,8 +36,8 @@ class Admin::UsersController < ApplicationController
   end
 
   def banish
-    if user.update({:banished => true})
-      flash[:success] = "The user was banished."
+    if user.update(banished: true)
+      flash[:success] = 'The user was banished.'
     else
       flash[:error] = "The user was not banished (#{user.errors.full_messages.join(', ')})"
     end
@@ -55,7 +54,7 @@ class Admin::UsersController < ApplicationController
   def set_as_referrer
     conversion = ReferrerMaker.new(user).convert!(time_limit: false)
     if conversion.success?
-      flash[:success] = "The user account was successfully set as a tourist guide."
+      flash[:success] = 'The user account was successfully set as a tourist guide.'
     else
       flash[:error] = "#{conversion.error}"
     end
@@ -70,12 +69,11 @@ class Admin::UsersController < ApplicationController
 
   private
 
-  def set_user
-    @user = User.find(params[:id] || params[:user_id])
-  end
+    def set_user
+      @user = User.find(params[:id] || params[:user_id])
+    end
 
-  def user_params
-    params.require(:user).permit!
-  end
-
+    def user_params
+      params.require(:user).permit!
+    end
 end

@@ -26,10 +26,10 @@ class CheckoutGateway
     def raw_url
       @raw_url ||= begin
         if identity_solver.wechat_customer?
-          SlackDispatcher.new.message("[Alipay] TRADE WAP params : #{forex_trade_wap_params}")
+          slack.message("[Alipay] TRADE WAP params : #{forex_trade_wap_params}")
           ::Alipay::Service.create_forex_trade_wap_url(forex_trade_wap_params)
         else
-          SlackDispatcher.new.message("[Alipay] TRADE params : #{forex_trade_params}")
+          slack.message("[Alipay] TRADE params : #{forex_trade_params}")
           ::Alipay::Service.create_forex_trade_url(forex_trade_params)
         end
       end
@@ -63,6 +63,10 @@ class CheckoutGateway
       else
         raw_url.gsub("https://mapi.alipay.com/gateway.do?", "https://openapi.alipaydev.com/gateway.do?")
       end
+    end
+
+    def slack
+      @slack ||= SlackDispatcher.new
     end
 
   end

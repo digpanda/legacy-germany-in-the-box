@@ -1,28 +1,25 @@
 require 'csv'
 
 class Tasks::Digpanda::RefreshShippingRates
+  XIPOST_SHIPPING_PRICE_FILE = 'shipping-prices-xipost.csv'.freeze
+  BEIHAI_SHIPPING_PRICE_FILE = 'shipping-prices-beihai.csv'.freeze
+  MKPOST_SHIPPING_PRICE_FILE = 'shipping-prices-mkpost.csv'.freeze
 
-  XIPOST_SHIPPING_PRICE_FILE = 'shipping-prices-xipost.csv'
-  BEIHAI_SHIPPING_PRICE_FILE = 'shipping-prices-beihai.csv'
-  MKPOST_SHIPPING_PRICE_FILE = 'shipping-prices-mkpost.csv'
-
-  IGNORED_LINES = ["列1", "西邮寄筋斗云精品快线钻石VIP价格表 （500-799单）", "Weight (KG)", "", "MKPost"]
+  IGNORED_LINES = ['列1', '西邮寄筋斗云精品快线钻石VIP价格表 （500-799单）', 'Weight (KG)', '', 'MKPost'].freeze
 
   def initialize
-
     puts "We are running on `#{Rails.env}` environment"
-    puts "We clear the file cache"
+    puts 'We clear the file cache'
     Rails.cache.clear
 
-    puts "We remove all old shipping rates"
+    puts 'We remove all old shipping rates'
     ShippingRate.delete_all
 
     process!(:xipost)
     process!(:beihai)
     process!(:mkpost)
 
-    puts "End of process."
-
+    puts 'End of process.'
   end
 
   def process!(partner)
@@ -36,7 +33,7 @@ class Tasks::Digpanda::RefreshShippingRates
 
       weight = column[0]
       if weight.empty?
-        puts "There we a problem trying to recover `weight`"
+        puts 'There we a problem trying to recover `weight`'
         return
       end
 
@@ -44,17 +41,17 @@ class Tasks::Digpanda::RefreshShippingRates
 
       price = column[1]
       if price.empty?
-        puts "There we a problem trying to recover `price`"
+        puts 'There we a problem trying to recover `price`'
         return
       end
 
       price = price.gsub(',', '.').to_f
 
-      shipping_rate = ShippingRate.create({
-        :weight => weight,
-        :price => price,
-        :partner => partner
-        })
+      shipping_rate = ShippingRate.create(
+        weight: weight,
+        price: price,
+        partner: partner
+        )
 
       puts "[#{partner}] ShippingRate #{shipping_rate.weight} refresh with price `#{shipping_rate.price}`"
 
@@ -85,8 +82,7 @@ class Tasks::Digpanda::RefreshShippingRates
     elsif partner == :mkpost
       File.join(Rails.root, 'vendor', MKPOST_SHIPPING_PRICE_FILE)
     else
-      raise Exception, "Logistic partner not recognized for Shipping Rates"
+      raise Exception, 'Logistic partner not recognized for Shipping Rates'
     end
   end
-
 end

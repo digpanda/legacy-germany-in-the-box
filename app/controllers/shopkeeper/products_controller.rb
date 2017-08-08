@@ -1,8 +1,7 @@
 class Shopkeeper::ProductsController < ApplicationController
-
   attr_reader :shop, :products, :product
 
-  authorize_resource :class => false
+  authorize_resource class: false
 
   before_action :set_shop
   before_action :set_product, except: [:index, :new, :create]
@@ -12,7 +11,7 @@ class Shopkeeper::ProductsController < ApplicationController
   layout :custom_sublayout
 
   def index
-    @products = shop.products.order_by(:c_at => :desc).paginate(:page => current_page, :per_page => 10)
+    @products = shop.products.order_by(c_at: :desc).paginate(page: current_page, per_page: 10)
   end
 
   def new
@@ -59,16 +58,15 @@ class Shopkeeper::ProductsController < ApplicationController
 
   private
 
-  def product_params
-    params.require(:product).permit!
-  end
+    def product_params
+      params.require(:product).permit!
+    end
 
-  def set_shop
-    @shop = current_user.shop
-  end
+    def set_shop
+      @shop = current_user.shop
+    end
 
-  def set_product
-    @product = Product.find(params[:product_id] || params[:id])
-  end
-
+    def set_product
+      @product = Product.find(params[:product_id] || params[:id])
+    end
 end

@@ -1,10 +1,9 @@
-describe Api::Guest::OrderItemsController, :type => :controller do
-
+describe Api::Guest::OrderItemsController, type: :controller do
   render_views # jbuilder requirement
 
-  describe "#create" do
+  describe '#create' do
 
-    context "from guest customer" do
+    context 'from guest customer' do
 
       let(:shop) { FactoryGirl.create(:shop, :with_orders) }
 
@@ -15,27 +14,24 @@ describe Api::Guest::OrderItemsController, :type => :controller do
       let(:option_ids) { sku.option_ids.compact.join(',') }
 
       before :each do
-        sku.update!({
-          :quantity => 5,
-          :unlimited => false,
-          })
+        sku.update!(quantity: 5, unlimited: false)
       end
 
-      it "adds a product to an order" do
-        post :create, {'product_id': product.id, 'sku_id': sku.id, 'quantity': 1}
+      it 'adds a product to an order' do
+        post :create, product_id: product.id, sku_id: sku.id, quantity: 1
         expect_json(success: true)
       end
 
-      it "does not add a product if not enough stock" do
-        post :create, {'product_id': product.id, 'sku_id': sku.id, 'quantity': 10}
+      it 'does not add a product if not enough stock' do
+        post :create, product_id: product.id, sku_id: sku.id, quantity: 10
         expect_json(success: false)
       end
     end
   end
 
-  describe "#update" do
+  describe '#update' do
 
-    context "from guest customer" do
+    context 'from guest customer' do
 
       let(:shop) { FactoryGirl.create(:shop, :with_orders) }
 
@@ -48,57 +44,54 @@ describe Api::Guest::OrderItemsController, :type => :controller do
       let(:sku) { order_item.sku_origin }
 
       before :each do
-        sku.update!({
-          :quantity => 5,
-          :unlimited => false,
-          })
+        sku.update!(quantity: 5, unlimited: false)
       end
 
-      it "cannot set quantity to 0" do
-        params = {"quantity" => "0"}
-        patch :update, {"id" => order_item.id, "product_id" => product.id}.merge(params)
+      it 'cannot set quantity to 0' do
+        params = { quantity: '0' }
+        patch :update, { id: order_item.id, product_id: product.id }.merge(params)
 
         expect_json(success: false, code: 13)
       end
 
-      it "set quantity to 5" do
-        params = {"quantity" => "5"}
-        patch :update, {"id" => order_item.id, "product_id" => product.id}.merge(params)
+      it 'set quantity to 5' do
+        params = { quantity: '5' }
+        patch :update, { id: order_item.id, product_id: product.id }.merge(params)
 
         expect(response).to have_http_status(:success)
         expect_json(success: true)
       end
 
-      it "cannot set quantity to 500" do
-        params = {"quantity" => "500"}
-        patch :update, {"id" => order_item.id, "product_id" => product.id}.merge(params)
+      it 'cannot set quantity to 500' do
+        params = { quantity: '500' }
+        patch :update, { id: order_item.id, product_id: product.id }.merge(params)
 
         expect_json(success: false, code: 13)
       end
 
     end
 
-    describe "#destroy" do
+    describe '#destroy' do
 
-      context "from guest customer" do
+      context 'from guest customer' do
 
-        context "order with order items" do
+        context 'order with order items' do
 
           let(:order) { FactoryGirl.create(:order) }
 
-          it "destroys one order item" do
-            delete :destroy, {"id" => order.order_items.first.id}
+          it 'destroys one order item' do
+            delete :destroy, id: order.order_items.first.id
             expect_json(success: true, order_empty: false)
           end
 
         end
 
-        context "order with one order item" do
+        context 'order with one order item' do
 
           let(:order) { FactoryGirl.create(:order, :with_one_small_item) }
 
-          it "destroys the only order item of the order" do
-            delete :destroy, {"id" => order.order_items.first.id}
+          it 'destroys the only order item of the order' do
+            delete :destroy, id: order.order_items.first.id
             expect_json(success: true, order_empty: true)
           end
 
@@ -109,6 +102,4 @@ describe Api::Guest::OrderItemsController, :type => :controller do
     end
 
   end
-
-
 end

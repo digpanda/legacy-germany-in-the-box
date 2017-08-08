@@ -1,17 +1,16 @@
 class Admin::CartsController < ApplicationController
-
   attr_accessor :cart, :carts
 
-  authorize_resource :class => false
-  before_action :set_cart, :except => [:index]
+  authorize_resource class: false
+  before_action :set_cart, except: [:index]
 
   layout :custom_sublayout
 
-  before_action :breadcrumb_admin_carts, :except => [:index]
+  before_action :breadcrumb_admin_carts, except: [:index]
   before_action :breadcrumb_admin_cart, only: [:show]
 
   def index
-    @carts = Cart.order_by(u_at: :desc).all.paginate(:page => current_page, :per_page => 10)
+    @carts = Cart.order_by(u_at: :desc).all.paginate(page: current_page, per_page: 10)
   end
 
   def show
@@ -19,7 +18,7 @@ class Admin::CartsController < ApplicationController
 
   def update
     if cart.update(cart_params)
-      flash[:success] = "The cart was updated."
+      flash[:success] = 'The cart was updated. '
     else
       flash[:error] = "The cart was not updated (#{cart.errors.full_messages.join(', ')})"
     end
@@ -28,7 +27,7 @@ class Admin::CartsController < ApplicationController
 
   def destroy
     if cart.delete
-      flash[:success] = "The cart was deleted."
+      flash[:success] = 'The cart was deleted.'
     else
       flash[:error] = "The cart was not deleted (#{cart.errors.full_messages.join(', ')})"
     end
@@ -37,12 +36,11 @@ class Admin::CartsController < ApplicationController
 
   private
 
-  def set_cart
-    @cart = Cart.find(params[:id] || params[:cart_id])
-  end
+    def set_cart
+      @cart = Cart.find(params[:id] || params[:cart_id])
+    end
 
-  def cart_params
-    params.require(:cart).permit!
-  end
-
+    def cart_params
+      params.require(:cart).permit!
+    end
 end

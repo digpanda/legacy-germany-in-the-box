@@ -46,7 +46,7 @@
             <%= I18n.t(:quantity_info, scope: :edit_product, total_skus_quantities: product.total_skus_quantities, product_options_size: product.options.size) %>
           </td>
           <td align="left">
-            <%= render partial: 'shopkeeper/products/table/action', :locals => { :product => product } %>
+            <%= render partial: 'shopkeeper/products/table/action', :locals => { product: product } %>
           </td>
         </tr>
       <% end %>

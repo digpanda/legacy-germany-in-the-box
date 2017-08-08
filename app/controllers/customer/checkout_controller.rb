@@ -1,16 +1,15 @@
 class Customer::CheckoutController < ApplicationController
-
   ACCEPTABLE_PAYMENT_METHOD = [:alipay, :wechatpay]
 
   attr_reader :shop, :order
 
   skip_before_filter :verify_authenticity_token
-  authorize_resource :class => false
+  authorize_resource class: false
 
-  before_filter :ensure_session_order, :only => [:payment_method, :gateway]
-  before_action :set_order, :only => [:create, :gateway, :payment_method]
+  before_filter :ensure_session_order, only: [:payment_method, :gateway]
+  before_action :set_order, only: [:create, :gateway, :payment_method]
 
-  before_filter :force_address_param, :only => [:create]
+  before_filter :force_address_param, only: [:create]
 
   before_action :breadcrumb_cart, :breadcrumb_checkout_address, :breadcrumb_payment_method
 
@@ -40,7 +39,7 @@ class Customer::CheckoutController < ApplicationController
 
   def gateway
     unless params[:payment_method]
-      flash[:error] = "Invalid payment method."
+      flash[:error] = 'Invalid payment method.'
       redirect_to navigation.back(1)
       return
     end
@@ -82,29 +81,28 @@ class Customer::CheckoutController < ApplicationController
 
   private
 
-  def acceptable_payment_method?(payment_method)
-    ACCEPTABLE_PAYMENT_METHOD.include? payment_method
-  end
-
-  def set_order
-    @order = Order.find(session[:current_checkout_order])
-  end
-
-  def force_address_param
-    unless params[:delivery_destination_id]
-      flash[:error] = "请选择邮寄地址"
-      redirect_to navigation.back(1)
-      return false
+    def acceptable_payment_method?(payment_method)
+      ACCEPTABLE_PAYMENT_METHOD.include? payment_method
     end
-    true
-  end
 
-  def ensure_session_order
-    if session[:current_checkout_order].nil?
-      redirect_to navigation.back(1)
-      return false
+    def set_order
+      @order = Order.find(session[:current_checkout_order])
     end
-    true
-  end
 
+    def force_address_param
+      unless params[:delivery_destination_id]
+        flash[:error] = '请选择邮寄地址'
+        redirect_to navigation.back(1)
+        return false
+      end
+      true
+    end
+
+    def ensure_session_order
+      if session[:current_checkout_order].nil?
+        redirect_to navigation.back(1)
+        return false
+      end
+      true
+    end
 end

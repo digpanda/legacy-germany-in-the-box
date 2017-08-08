@@ -1,16 +1,16 @@
-describe Api::Guest::UsersController, :type => :controller do
+describe Api::Guest::UsersController, type: :controller do
 
   render_views # jbuilder requirement
 
-  describe "#unknown_by_email" do
+  describe '#unknown_by_email' do
 
-    context "existing email" do
+    context 'existing email' do
 
       let(:current_user) { FactoryGirl.create(:customer) }
 
-      it "finds the email" do
+      it 'finds the email' do
 
-        params = {"shop_application" => {"email" => current_user.email}}
+        params = { 'shop_application' => { 'email' => current_user.email } }
         get :unknown_by_email, params
 
         expect(response).to have_http_status(:unprocessable_entity)
@@ -20,11 +20,11 @@ describe Api::Guest::UsersController, :type => :controller do
 
     end
 
-    context "unexisting email" do
+    context 'unexisting email' do
 
-      it "does not find the email" do
+      it 'does not find the email' do
 
-        params = {"shop_application" => {"email" => "random@email.com"}}
+        params = { 'shop_application' => { 'email' => 'random@email.com' } }
         get :unknown_by_email, params
 
         expect_json(success: true)
@@ -35,15 +35,15 @@ describe Api::Guest::UsersController, :type => :controller do
 
   end
 
-  describe "#find_by_email" do
+  describe '#find_by_email' do
 
-    context "existing email" do
+    context 'existing email' do
 
       let(:current_user) { FactoryGirl.create(:customer) }
 
-      it "finds the email" do
+      it 'finds the email' do
 
-        params = {"shop_application" => {"email" => current_user.email}}
+        params = { 'shop_application' => { 'email' => current_user.email } }
         get :find_by_email, params
 
         expect_json(success: true)
@@ -52,11 +52,11 @@ describe Api::Guest::UsersController, :type => :controller do
 
     end
 
-    context "unexisting email" do
+    context 'unexisting email' do
 
-      it "does not find the email" do
+      it 'does not find the email' do
 
-        params = {"shop_application" => {"email" => "random@email.com"}}
+        params = { 'shop_application' => { 'email' => 'random@email.com' } }
         get :find_by_email, params
 
         expect(response).to have_http_status(:not_found)

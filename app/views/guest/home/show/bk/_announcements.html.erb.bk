@@ -23,7 +23,7 @@
                   </div>
                   <% Product.with_highlight.take(3).each do |product| %>
                   <div class="col-md-4 shop-page-product --no-border">
-                    <%= render partial: 'guest/products/product_box', :locals => {:product => product} %>
+                    <%= render partial: 'guest/products/product_box', :locals => {product: product} %>
                   </div>
                   <% end %>
               </div>

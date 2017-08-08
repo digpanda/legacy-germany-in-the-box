@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe CouponHandler, :type => :request do
+describe CouponHandler, type: :request do
 
   let(:order) { FactoryGirl.create(:order, status: :new) }
   let(:second_order) { FactoryGirl.create(:order, status: :new) }
@@ -13,21 +13,21 @@ describe CouponHandler, :type => :request do
   let(:unique_coupon) { Coupon.create(code: 'code', discount: 10.0, unit: :percent, unique: true) }
   let(:reusable_coupon) { Coupon.create(code: 'code2', discount: 10.0, unit: :percent, unique: false) }
 
-  it "should apply and remove the coupon from an order" do
+  it 'should apply and remove the coupon from an order' do
     CouponHandler.new(identity, unique_coupon, order).apply
     expect(order.coupon).to eq(unique_coupon)
     CouponHandler.new(identity, unique_coupon, order).unapply
     expect(order.coupon).to be(nil)
   end
 
-  it "shouldn't apply to more than one order when is unique" do
+  it 'should not apply to more than one order when is unique' do
     CouponHandler.new(identity, unique_coupon, order).apply
     expect(order.coupon).to eq(unique_coupon)
     CouponHandler.new(second_identity, unique_coupon, second_order).apply
     expect(second_order.coupon).to be(nil)
   end
 
-  it "should apply multiple times if it is not unique" do
+  it 'should apply multiple times if it is not unique' do
     CouponHandler.new(identity, reusable_coupon, order).apply
     expect(order.coupon).to eq(reusable_coupon)
     unique_coupon.update(last_used_at: Time.now)
@@ -35,7 +35,7 @@ describe CouponHandler, :type => :request do
     expect(second_order.coupon).to eq(reusable_coupon)
   end
 
-  it "should apply after one day of appliance without usage even if it is unique" do
+  it 'should apply after one day of appliance without usage even if it is unique' do
     CouponHandler.new(identity, unique_coupon, order).apply
     expect(order.coupon).to eq(unique_coupon)
     unique_coupon.update(last_applied_at: Time.now.yesterday)
@@ -43,7 +43,7 @@ describe CouponHandler, :type => :request do
     expect(second_order.coupon).to eq(unique_coupon)
   end
 
-  it "should not apply after being used and being unique" do
+  it 'should not apply after being used and being unique' do
     CouponHandler.new(identity, unique_coupon, order).apply
     expect(order.coupon).to eq(unique_coupon)
     unique_coupon.update(last_applied_at: Time.now.yesterday, last_used_at: Time.now)

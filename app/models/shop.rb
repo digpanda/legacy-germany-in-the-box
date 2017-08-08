@@ -9,6 +9,7 @@ class Shop
 
   field :approved,        type: Time
   field :name,            type: String
+
   field :shopname,        type: String,     localize: true
   field :desc,            type: String,     localize: true
   field :logo,            type: String

@@ -1,10 +1,9 @@
 class Customer::Orders::CouponsController < ApplicationController
-
   attr_reader :order, :coupon
 
-  authorize_resource :class => false
+  authorize_resource class: false
   before_action :set_order
-  before_action :set_coupon, :except => [:destroy]
+  before_action :set_coupon, except: [:destroy]
 
   layout :custom_sublayout
 
@@ -35,24 +34,23 @@ class Customer::Orders::CouponsController < ApplicationController
 
   private
 
-  def unapply_coupon
-    @unapply_coupon ||= CouponHandler.new(identity_solver, order.coupon, order).unapply
-  end
+    def unapply_coupon
+      @unapply_coupon ||= CouponHandler.new(identity_solver, order.coupon, order).unapply
+    end
 
-  def apply_coupon
-    @apply_coupon ||= CouponHandler.new(identity_solver, coupon, order).apply
-  end
+    def apply_coupon
+      @apply_coupon ||= CouponHandler.new(identity_solver, coupon, order).apply
+    end
 
-  def set_order
-    @order = current_user.orders.find(params[:order_id])
-  end
+    def set_order
+      @order = current_user.orders.find(params[:order_id])
+    end
 
-  def set_coupon
-    @coupon = Coupon.where(code: coupon_params[:code].strip).first
-  end
+    def set_coupon
+      @coupon = Coupon.where(code: coupon_params[:code].strip).first
+    end
 
-  def coupon_params
-    params.require(:coupon).permit(:code)
-  end
-
+    def coupon_params
+      params.require(:coupon).permit(:code)
+    end
 end

@@ -1,6 +1,5 @@
 module Helpers
   module Response
-
     module_function
 
     def response_json_body
@@ -12,6 +11,5 @@ module Helpers
         expect(response_json_body["#{key}"]).to eq(value)
       end
     end
-    
   end
 end

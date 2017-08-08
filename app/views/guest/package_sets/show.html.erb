@@ -25,6 +25,9 @@
       <!-- Introduction -->
       <div class="row">
         <div class="col-md-12">
+          <div class="package-set-infos__introduction-header">
+            <%= @package_set.category.name %>
+          </div>
           <div class="package-set-infos__introduction">
             <h1><%= @package_set.name %></h1>
             <p><%= simple_format @package_set.desc %></p>
@@ -32,7 +35,7 @@
         </div>
         <% if @package_set.long_desc.present? %>
           <div class="+centered">
-            <a data-remodal-target="package-set-introduction" href="#"><%= I18n.t(:read_more, scope: :button) %></a>
+            <a data-remodal-target="package-set-introduction" href="#"><%= I18n.t('button.read_more') %></a>
           </div>
         <% end %>
       </div>
@@ -76,8 +79,8 @@
             <!-- Buttons -->
             <div class="row">
               <div class="+centered">
-                <%= link_to I18n.t(:buy_it, scope: :package_set), nil, id: 'add-package-set',
-                            class: 'main-button__solid --large', :data => { :package_set_id => @package_set.id.to_s } %>
+                <%= link_to I18n.t(:buy_it, scope: :package_set), nil,
+                            class: 'js-add-package-set main-button__solid --large', :data => { :package_set_id => @package_set.id.to_s } %>
               </div>
             </div>
 

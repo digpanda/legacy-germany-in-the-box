@@ -8256,7 +8256,7 @@ function ajaxConvert( s, response, jqXHR, isSuccess ) {
 		}
 	}
 
-	return { state: "success", data: response };
+	return { state: 'success', data: response };
 }
 
 jQuery.extend( {

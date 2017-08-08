@@ -16,7 +16,7 @@ Rails.application.configure do
   #config.force_ssl = true
 
   config.middleware.use ExceptionNotification::Rack,
-  :email => {
+  email: {
     :email_prefix => "Report - ",
     :sender_address => %{"Bug DigPanda Staging" <notifier@digpanda.com>},
     :exception_recipients => %w{laurent.schaffner@digpanda.com, jiang@digpanda.com}

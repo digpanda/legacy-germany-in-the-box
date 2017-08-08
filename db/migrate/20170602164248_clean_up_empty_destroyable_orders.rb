@@ -12,7 +12,7 @@ class CleanUpEmptyDestroyableOrders < Mongoid::Migration
         end
       end
     end
-    puts "End of process."
+    puts 'End of process.'
   end
 
   def self.down

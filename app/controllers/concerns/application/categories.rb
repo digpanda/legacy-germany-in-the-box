@@ -12,6 +12,5 @@ module Application
         @categories = Category.order(position: :asc).all
       end
     end
-
   end
 end

@@ -1,6 +1,6 @@
 FactoryGirl.define do
 
-  factory :shop, :class => Shop do
+  factory :shop, class: Shop do
 
     name                  { "#{Faker::Company.name} #{Faker::Company.suffix}"  }
     shopname              { Faker::Company.name }

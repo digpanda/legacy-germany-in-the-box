@@ -151,7 +151,7 @@ Devise.setup do |config|
   # When using omniauth, Devise cannot automatically set Omniauth path,
   # so you need to do it manually. For the users scope, it would be:
   # config.omniauth_path_prefix = '/my_engine/users/auth'
-  config.omniauth :wechat, Rails.application.config.wechat[:username], Rails.application.config.wechat[:password],  :authorize_params => { :scope => Rails.application.config.wechat[:scope] }
+  config.omniauth :wechat, Rails.application.config.wechat[:username], Rails.application.config.wechat[:password],  :authorize_params => { scope: Rails.application.config.wechat[:scope] }
 
   config.secret_key = ENV["devise_secret_key"]
 end

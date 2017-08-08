@@ -1,6 +1,6 @@
 FactoryGirl.define do
 
-  factory :customer, :class => User do
+  factory :customer, class: User do
 
     fname                  { Faker::Name.first_name }
     lname                  { Faker::Name.last_name }
@@ -11,9 +11,9 @@ FactoryGirl.define do
     password_confirmation  '12345678'
     mobile                 { Faker::PhoneNumber.cell_phone }
     birth                  { Helpers::Global.random_date }
-    addresses             { FactoryGirl.build_list(:customer_address, 2, :primary => true) }
+    addresses             { FactoryGirl.build_list(:customer_address, 2, primary: true) }
 
-    factory :shopkeeper, :class => User do
+    factory :shopkeeper, class: User do
       nickname               { "Shopkeeper#{Helpers::Global.next_number(:shopkeeper)}" }
       role                   :shopkeeper
 
@@ -24,22 +24,22 @@ FactoryGirl.define do
       end
     end
 
-    factory :admin, :class => User do
+    factory :admin, class: User do
       nickname               { "Admin#{Helpers::Global.next_number(:admin)}" }
       role                   :admin
     end
 
     trait :with_referrer do
       before(:create) do |user|
-        Referrer.create(user: user, reference_id: SecureRandom.uuid, nickname: "Referrer#{Helpers::Global.next_number(:referrer)}", group: "")
+        Referrer.create(user: user, reference_id: SecureRandom.uuid, nickname: "Referrer#{Helpers::Global.next_number(:referrer)}", group: '')
       end
     end
 
     trait :from_wechat do
       before(:create) do |user|
-        user.provider = "wechat"
-        user.uid = "0123456789"
-        user.email = "0123456789@wechat.com"
+        user.provider = 'wechat'
+        user.uid = '0123456789'
+        user.email = '0123456789@wechat.com'
       end
     end
 

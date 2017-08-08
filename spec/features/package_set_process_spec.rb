@@ -1,4 +1,4 @@
-feature "checkout process", :js => true  do
+feature 'package set process', js: true  do
 
   let(:customer) { FactoryGirl.create(:customer) }
 
@@ -10,7 +10,7 @@ feature "checkout process", :js => true  do
   # for package sets
   subject!(:package_set) { FactoryGirl.create(:package_set, :with_500_euro_total) }
 
-  scenario "get a package set and go to checkout" do
+  scenario 'get a package set and go to checkout' do
     package_to_cart!
     go_to_cart!
     page.first('#checkout-button').trigger('click')
@@ -18,7 +18,7 @@ feature "checkout process", :js => true  do
     pay_with_alipay!
   end
 
-  scenario "get a package set, apply a coupon and go to checkout" do
+  scenario 'get a package set, apply a coupon and go to checkout' do
     package_to_cart!
     go_to_cart!
     make_and_apply_coupon!

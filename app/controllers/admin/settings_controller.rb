@@ -1,10 +1,9 @@
 class Admin::SettingsController < ApplicationController
-
   include DestroyImage
 
   attr_reader :setting, :settings
 
-  authorize_resource :class => false
+  authorize_resource class: false
   before_action :set_setting
 
   layout :custom_sublayout
@@ -26,14 +25,13 @@ class Admin::SettingsController < ApplicationController
 
   private
 
-  # setting is a special case
-  # we have only one instance (for now)
-  def set_setting
-    @setting ||= Setting.instance
-  end
+    # setting is a special case
+    # we have only one instance (for now)
+    def set_setting
+      @setting ||= Setting.instance
+    end
 
-  def settings_params
-    params.require(:setting).permit!
-  end
-
+    def settings_params
+      params.require(:setting).permit!
+    end
 end

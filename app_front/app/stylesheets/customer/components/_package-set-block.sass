@@ -1,4 +1,9 @@
+// NOTE : this is not in use anymore.
+// Laurent, 08/08/2017
 +component(package-set-block)
+
+  +breakpoint('mobile')
+    padding-bottom: 2em // for the button
 
   +shadow-box
 
@@ -41,19 +46,37 @@
 
   +part(wrapper)
     width: 95%
-    //+center
+    +breakpoint('mobile')
+      display: inline-block
+
+  +part(content-header)
+    color: $color-grey
+    +breakpoint('desktop')
+      margin-top: 0.5em
+
+    +option(right)
+      text-align: right
+      margin-right: 1em
+    +option(left)
+      text-align: left
+      margin-left: 1em
 
   +part(content)
+    width: 100%
+    +breakpoint('mobile')
+      display: inline-block
+      height: 75vw
 
     position: relative
     padding: 2em
     height: 60vw
+
     max-height: 672px
     +centered
 
     +breakpoint('mobile')
       +border-radius-bottom(4px)
-      min-height: 33em
+      //min-height: 33em
 
     background-color: $color-white
 
@@ -68,7 +91,7 @@
     height: 50vw
     max-height: 672px
     +breakpoint('mobile')
-      height: 70vw
+      height: 75vw
 
     background-position: center center
     background-size: contain

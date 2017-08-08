@@ -18,7 +18,6 @@ FactoryGirl.define do
 
   end
 
-
   factory :shop_address, class: Address do
     fname       { Faker::Name.first_name }
     lname       { Faker::Name.last_name }

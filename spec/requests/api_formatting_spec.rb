@@ -1,8 +1,8 @@
-describe "api formatting", :type => :request  do
+describe 'api formatting', type: :request  do
 
-  context "errors rendering" do
+  context 'errors rendering' do
 
-    it "page not found" do
+    it 'page not found' do
 
       get '/api/anything'
       expect(response).to have_http_status(:not_found)
@@ -10,7 +10,7 @@ describe "api formatting", :type => :request  do
 
     end
 
-    it "not authorized" do
+    it 'not authorized' do
 
       get api_admin_duty_category_path(0)
       expect(response).to have_http_status(:unauthorized)

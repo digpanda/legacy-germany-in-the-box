@@ -1,5 +1,4 @@
 class Shared::ImagesController < ApplicationController
-
   attr_reader :image
 
   before_action :authenticate_user!
@@ -7,7 +6,7 @@ class Shared::ImagesController < ApplicationController
 
   def destroy
     if image.destroy
-      flash[:success] = "The image was successfully destroyed."
+      flash[:success] = 'The image was successfully destroyed.'
     else
       flash[:error] = "The image was not destroyed (#{image.errors.full_messages.join(', ')})"
     end
@@ -17,8 +16,7 @@ class Shared::ImagesController < ApplicationController
 
   private
 
-  def set_image
-    @image = Image.find(params[:id])
-  end
-
+    def set_image
+      @image = Image.find(params[:id])
+    end
 end

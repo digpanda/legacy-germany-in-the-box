@@ -1,5 +1,4 @@
 class Guest::PackageSetsController < ApplicationController
-
   attr_reader :package_set, :category
 
   before_filter do
@@ -12,13 +11,20 @@ class Guest::PackageSetsController < ApplicationController
   before_action :breadcrumb_package_sets, only: [:index]
   before_action :freeze_header
 
-  # we show the list of packages
-  # we already created from the admin
+  def categories
+  end
+
+  # we show the list of package by category
+  # otherwise we redirect the user to the /categories area
   def index
     if category
       @package_sets = PackageSet.active.order_by(position: :asc).where(category: category).all
-    else
+    # category was not defined because
+    # it doesn't not match with any existing one
+    elsif params[:category_slug] == 'all'
       @package_sets = PackageSet.active.order_by(position: :asc).all
+    else
+      redirect_to guest_package_sets_categories_path
     end
   end
 
@@ -42,23 +48,22 @@ class Guest::PackageSetsController < ApplicationController
 
   private
 
-  # to be abstracted somewhere else
-  def order_maker
-    @order_maker ||= OrderMaker.new(order)
-  end
+    # to be abstracted somewhere else
+    def order_maker
+      @order_maker ||= OrderMaker.new(order)
+    end
 
-  def order
-    @order ||= cart_manager.order(shop: package_set.shop)
-  end
-  # end of abstraction
+    def order
+      @order ||= cart_manager.order(shop: package_set.shop)
+    end
+    # end of abstraction
 
-  def set_package_set
-    @package_set = PackageSet.find(params[:id]) unless params[:id].nil?
-  end
+    def set_package_set
+      @package_set = PackageSet.find(params[:id]) unless params[:id].nil?
+    end
 
-  # for filtering (optional)
-  def set_category
-    @category = Category.where(slug: params[:category_slug]).first unless params[:category_slug].nil?
-  end
-
+    # for filtering (optional)
+    def set_category
+      @category = Category.where(slug: params[:category_slug]).first unless params[:category_slug].nil?
+    end
 end

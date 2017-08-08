@@ -5,7 +5,7 @@
      shop        { FactoryGirl.create(:shop, :with_payment_gateways) }
      desc        { Faker::Lorem.paragraph }
      cover       { Rack::Test::UploadedFile.new(File.join(Rails.root, 'public', 'samples', 'images', 'banner', '850x400.png')) }
-
+     category    { Category.offset(rand(Category.count)).first || FactoryGirl.create(:category) }
      shipping_cost { BigDecimal.new(rand(1..10)) }
 
      after(:create) do |package_set|
