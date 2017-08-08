@@ -47,6 +47,13 @@
     +breakpoint('mobile')
       display: inline-block
 
+  +part(content-header)
+    margin-right: 1em
+    color: $color-grey
+    text-align: right
+    +breakpoint('desktop')
+      margin-top: 0.5em
+
   +part(content)
     width: 100%
     +breakpoint('mobile')
@@ -54,7 +61,7 @@
 
     position: relative
     padding: 2em
-    height: 60vw
+    height: 75vw
     max-height: 672px
     +centered
 

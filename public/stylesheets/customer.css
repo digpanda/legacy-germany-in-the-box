@@ -2274,6 +2274,9 @@ body {
   padding: 1.1em;
   margin-top: 1em;
   margin-bottom: 1em; }
+  .package-set-infos__introduction-header {
+    color: #bdc3c7;
+    text-align: right; }
   .package-set-infos__introduction {
     text-align: center;
     margin: 0 auto; }

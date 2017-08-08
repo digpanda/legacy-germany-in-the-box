@@ -19,9 +19,12 @@ class Guest::PackageSetsController < ApplicationController
   def index
     if category
       @package_sets = PackageSet.active.order_by(position: :asc).where(category: category).all
+    # category was not defined because
+    # it doesn't not match with any existing one
+    elsif params[:category_slug] == 'all'
+      @package_sets = PackageSet.active.order_by(position: :asc).all
     else
       redirect_to guest_package_sets_categories_path
-      # @package_sets = PackageSet.active.order_by(position: :asc).all
     end
   end
 
