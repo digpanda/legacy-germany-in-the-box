@@ -1,8 +1,8 @@
-<%= link_to '', edit_admin_shop_product_path(product.shop, product), :class => 'tooltipster fa fa-pencil buttons buttons__edit', :title => I18n.t(:edit, scope: :edit_product) %>
+<%= link_to '', edit_admin_shop_product_path(product.shop, product), :class => 'tooltipster fa fa-pencil buttons buttons__edit', :title => "Edit" %>
 
 <%= link_to '', admin_shop_product_variants_path(product.shop, product), :class => 'tooltipster fa fa-cubes buttons buttons__purple', :title => "Manage variants" %>
 
-<%= link_to '', admin_shop_product_skus_path(product.shop, product), :class => 'tooltipster fa fa-tags buttons buttons__add', :title => I18n.t(:skus, scope: :edit_product) %>
+<%= link_to '', admin_shop_product_skus_path(product.shop, product), :class => 'tooltipster fa fa-tags buttons buttons__add', :title => "Skus" %>
 
 <% if product.highlight %>
   <%= link_to '', admin_shop_product_regular_path(product.shop, product), :method => :patch, :class => 'tooltipster fa fa-low-vision buttons buttons__delete', :title => "No highlight for this product" %>

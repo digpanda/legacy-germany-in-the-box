@@ -13,7 +13,7 @@
 
     <!-- Title + Description -->
     <div class="product-miniblock__content">
-      <h3><%= package_sku.product.brand %></h3>
+      <h3><%= package_sku.product.brand.name %></h3>
       <div class="product-miniblock__name"><%= package_sku.product.name %> - <%= package_sku.quantity %> 件</div>
       <div class="+spacer"></div>
       <div class="product-miniblock__desc"><%= simple_format package_sku.product.desc %></div>
@@ -40,7 +40,7 @@
 
       <!-- Title + Description -->
       <div class="product-miniblock__content">
-        <h3><%= package_sku.product.brand %></h3>
+        <h3><%= package_sku.product.brand.name %></h3>
         <p><%= package_sku.product.name %></p>
         <div class="product-miniblock__extra">
           <%= package_sku.quantity %> x <%= package_sku.sku.display_option_names %>

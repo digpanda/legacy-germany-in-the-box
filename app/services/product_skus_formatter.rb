@@ -64,7 +64,7 @@ class ProductSkusFormatter < BaseService
       product.id,
       product.name_translations[:'zh-CN'],
       product.name_translations[:de],
-      product.brand,
+      product.brand.name,
       product.status,
       product.approved,
       (product.duty_category ? product.duty_category.code : '' ),

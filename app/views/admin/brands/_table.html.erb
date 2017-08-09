@@ -1,0 +1,47 @@
+<% if brands.size > 0 %>
+<div class="main-table">
+<table>
+  <thead>
+    <tr>
+      <th>
+        #
+      </th>
+      <th>
+        Name
+      </th>
+      <th>
+        Position
+      </th>
+      <th>
+        Action
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% brands.each do |brand| %>
+    <tr>
+      <td>
+        <%= brand.id %>
+      </td>
+      <td>
+        <%= brand.name %>
+      </td>
+      <td>
+        <%= editable_field(brand, admin_brand_path(brand), :position, :text_field) %>
+      </td>
+      <td>
+        <a href="<%= admin_brand_path(brand) %>"><i class="fa fa-eye tooltipster buttons buttons__edit" title="See more details"></i></a>
+        <%= link_to '', edit_admin_brand_path(brand), :class => 'tooltipster fa fa-pencil buttons buttons__edit', :title => "Edit Brand" %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+<% else %>
+<div class="+white-box +centered">
+  <h4>
+    <%= I18n.t(:no_brand, scope: :edit_brand) %>
+  </h4>
+</div>
+<% end %>

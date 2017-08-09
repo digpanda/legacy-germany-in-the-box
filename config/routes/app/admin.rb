@@ -27,6 +27,9 @@ namespace :admin do
   resources :package_sets do
   end
 
+  resources :brands do
+  end
+  
   resources :products do
   end
 

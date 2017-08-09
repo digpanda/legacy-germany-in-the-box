@@ -162,6 +162,18 @@ module Application
       add_breadcrumb @category.name, admin_category_path(@category) if @category
     end
 
+    def breadcrumb_admin_brands
+      add_breadcrumb 'Brands', admin_brands_path
+    end
+
+    def breadcrumb_admin_brand
+      add_breadcrumb @brand.name, admin_brand_path(@brand) if @brand
+    end
+
+    def breadcrumb_admin_brand_edit
+      add_breadcrumb 'Edit', edit_admin_brand_path(@brand) if @brand
+    end
+
     def breadcrumb_admin_shops
       add_breadcrumb 'Shops', admin_shops_path
     end

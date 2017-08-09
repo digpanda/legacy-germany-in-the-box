@@ -39,12 +39,9 @@
       </label>
     </div>
 
-    <%= translate_fields form, :brand do |form_field| %>
-      <div class="col-md-5 form-group">
-        <%= form_field.text_field :class => 'form-control', :required => true %>
-        <div class="help-block with-errors"></div>
-      </div>
-    <% end %>
+    <div class="col-md-10">
+      <%= form.collection_select :brand, Brand.all, :id, :name, prompt: true, selected: form.object.brand&.id %>
+    </div>
 
   </div>
 
