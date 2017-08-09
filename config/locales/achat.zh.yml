@@ -7,7 +7,7 @@ zh-CN:
     balance_history: 收支明细
     type: 类目
     description: 详情
-    more_details: 更多详情
+    more_details: 查看详情
     provision_rates: 佣金率
     package_set_product: 订单
     rate: 提成比率
@@ -53,7 +53,7 @@ zh-CN:
     packages: "%{num}个礼包"
     products: "%{num}件产品"
   package_set:
-    more_info: 查看更多信息
+    more_info: 浏览分类产品
     buy_it: 加入购物车
     see_our_campaigns: 查看特惠精品套装
     package_sets: 套装
@@ -117,8 +117,8 @@ zh-CN:
   results_for: 的结果
   button:
     see_all_products: 浏览所有产品
-    show_product: 查看详情
-    read_more: 查看详情
+    show_product: 产品详情
+    read_more: 点击查看
     checkout: 下单
     menu: 选单
     resend_confirmation: 重发确认邮件
