@@ -2335,7 +2335,7 @@ body {
     color: #666666; }
   .package-set-list-block__header-content {
     margin: 1em;
-    margin-bottom: 0; }
+    margin-bottom: 0.2em; }
   .package-set-list-block__header-title {
     white-space: nowrap;
     overflow: hidden !important;
@@ -2355,10 +2355,10 @@ body {
     background-repeat: no-repeat; }
     @media (max-width: 994px) {
       .package-set-list-block__central-image {
-        height: 45vw; } }
+        height: 70vw; } }
   .package-set-list-block__footer-content {
     margin: 1em;
-    margin-top: 0;
+    margin-top: 0.2em;
     margin-bottom: 0; }
   .package-set-list-block__footer-price {
     color: #d6506c;
