@@ -34,14 +34,6 @@ namespace :guest do
     get :qrcode
   end
 
-  resource :feedback, :controller => 'feedback' do
-    get :product_suggestions
-    get :payment_speed_report
-    get :bug_report
-    get :return_application
-    get :overall_rate
-  end
-
   resources :order_items  do
   end
 
