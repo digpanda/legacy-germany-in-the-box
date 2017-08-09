@@ -7,9 +7,6 @@ class Product
 
   strip_attributes
 
-  field :brand, type: String, localize: true
-  field :raw_brand, type: String, localize: true
-
   field :name, type: String, localize: true
   field :cover, type: String # deprecated ?
   field :desc, type: String, localize: true
@@ -38,7 +35,7 @@ class Product
   has_and_belongs_to_many :users, inverse_of: :favorites
 
   # research system
-  search_in :brand, :name, :desc, :shop => :shopname, :categories => :name
+  search_in :name, :desc, :shop => :shopname, :categories => :name, :brand => :name
 
   accepts_nested_attributes_for :skus
   accepts_nested_attributes_for :options
