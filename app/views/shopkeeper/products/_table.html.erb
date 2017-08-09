@@ -40,7 +40,7 @@
             <%= product.name %>
           </td>
           <td>
-            <%= product.brand.name %>
+            <%= product.brand&.name %>
           </td>
           <td>
             <%= I18n.t(:quantity_info, scope: :edit_product, total_skus_quantities: product.total_skus_quantities, product_options_size: product.options.size) %>
