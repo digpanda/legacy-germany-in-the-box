@@ -376,7 +376,10 @@
 .nice {
   font-size: 0.8em;
   height: 2.5em;
-  line-height: 2.5em; }
+  line-height: 2.5em;
+  border: 0; }
+  .nice:focus, .nice:hover {
+    border: 2px solid #3498db; }
 
 .nice ul.list {
   position: absolute;
