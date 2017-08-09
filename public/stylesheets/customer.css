@@ -2368,6 +2368,10 @@ body {
     .package-set-list-block__footer-cart a {
       color: #bdc3c7;
       font-size: 22px; }
+      .package-set-list-block__footer-cart a:hover {
+        color: #3498db; }
+      .package-set-list-block__footer-cart a:focus {
+        color: #3498db; }
 
 .page-navigation {
   margin-bottom: 1em;
