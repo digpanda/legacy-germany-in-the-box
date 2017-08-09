@@ -80,9 +80,10 @@ module Helpers
 
       # access the manual logistic tracking
       def manual_partner_confirmed?
-        # NOTE : here there's a put somewhere
+        puts "TEST"
         visit customer_orders_path
         expect(page).to have_content('追单')
+        puts "END OF TEST"
       end
     end
   end

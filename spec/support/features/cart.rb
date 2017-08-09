@@ -21,7 +21,7 @@ module Helpers
         expect(page).to_not have_current_path(guest_package_sets_categories_path)
         page.first('.package-select').trigger('click')
         expect(page).to have_content(BUY)
-        page.first('#add-package-set').trigger('click')
+        page.first('.js-add-package-set').trigger('click')
       end
 
       # go to the product page and add it to our cart
