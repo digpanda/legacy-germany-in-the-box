@@ -13,6 +13,9 @@
         Position
       </th>
       <th>
+        Products
+      </th>
+      <th>
         Action
       </th>
     </tr>
@@ -28,6 +31,9 @@
       </td>
       <td>
         <%= editable_field(brand, admin_brand_path(brand), :position, :text_field) %>
+      </td>
+      <td>
+        <%= brand.products.count %>
       </td>
       <td>
         <a href="<%= admin_brand_path(brand) %>"><i class="fa fa-eye tooltipster buttons buttons__edit" title="See more details"></i></a>
