@@ -46,7 +46,7 @@ class Product
   validates :brand , presence: true, length: {maximum: MAX_SHORT_TEXT_LENGTH }
   validates :shop, presence: true
   validates :status, presence: true
-  validates :hs_code, presence: true
+  # validates :hs_code, presence: true
   validates :desc, length:                   { maximum: MAX_LONG_TEXT_LENGTH }
 
   scope :is_active,   -> { self.and(:status  => true, :approved.ne => nil) }
