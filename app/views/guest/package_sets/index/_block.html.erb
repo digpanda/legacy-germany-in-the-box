@@ -35,12 +35,12 @@
         <div class="col-xs-12">
           <div class="package-set-list-block__footer-content">
             <div class="row">
-              <div class="col-xs-8">
+              <div class="col-xs-9">
                 <div class="package-set-list-block__footer-price">
                   <%= package_set.end_price.in_euro.to_yuan.display %> <span class="+grey"><%= I18n.t(:all_included, scope: :cart) %></span>
                 </div>
               </div>
-              <div class="col-xs-4">
+              <div class="col-xs-3">
                 <div class="package-set-list-block__footer-cart">
                   <a class="js-add-package-set" data-package-set-id="<%= package_set.id %>" href="#">
                     <i class="fa fa-shopping-cart"></i>
