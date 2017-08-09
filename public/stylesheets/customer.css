@@ -2377,24 +2377,23 @@ body {
   margin-bottom: 1em;
   min-height: 3em;
   padding: 0.5em;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  -ms-border-radius: 3px;
-  border-radius: 3px;
-  box-shadow: 0px 5px 20px 3px rgba(139, 139, 139, 0.32);
-  color: #919191; }
+  font-size: 20px;
+  color: #bdc3c7; }
+  .page-navigation a:hover, .page-navigation a:focus {
+    color: #3498db; }
+    .page-navigation a:hover i, .page-navigation a:focus i {
+      color: #3498db; }
   .page-navigation a {
-    color: #919191; }
+    color: #bdc3c7; }
   .page-navigation i {
-    color: #e1e1e1; }
+    color: #bdc3c7; }
   .page-navigation__left {
     margin-top: 0.2em; }
     .page-navigation__left ol {
       margin-top: 0.4em; }
   .page-navigation__middle {
     text-align: center;
-    margin: 0 auto;
-    margin-top: 0.5em; }
+    margin: 0 auto; }
     .page-navigation__middle ol {
       text-align: center; }
   .page-navigation__right {
