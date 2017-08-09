@@ -2348,14 +2348,14 @@ body {
   .package-set-list-block__central-image {
     text-align: center;
     margin: 0 auto;
-    height: 20vw;
+    height: 23vw;
     max-height: 672px;
     background-position: center center;
     background-size: contain;
     background-repeat: no-repeat; }
     @media (max-width: 994px) {
       .package-set-list-block__central-image {
-        height: 70vw; } }
+        height: 72vw; } }
   .package-set-list-block__footer-content {
     margin: 1em;
     margin-top: 0.2em;
