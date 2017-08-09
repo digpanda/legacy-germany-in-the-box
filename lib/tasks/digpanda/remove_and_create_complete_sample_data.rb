@@ -12,6 +12,8 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
     Setting.delete_all
     puts 'We remove all users'
     User.delete_all
+    puts 'We remove all brands'
+    Brand.delete_all
     puts 'We remove all shops'
     Shop.delete_all
     puts 'We remove all the payment gateways'
@@ -162,7 +164,6 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
       approved      = Time.now.utc
 
       name          = "Product #{num}"
-      brand         = "Brand #{num}"
       hs_code       = 12212121
 
       puts "We create #{name} (#{category_slug})"
@@ -171,8 +172,8 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
         name: name,
         desc: "#{Faker::Lorem.paragraph(1)}\n\n#{Faker::Lorem.paragraph(2)}",
         cover: setup_image(:banner),
-        brand: brand,
         referrer_rate: 10.00,
+        brand: Brand.create(name: "Brand #{num}"),
         shop: shop,
         hs_code: hs_code,
         approved: approved
