@@ -41,7 +41,7 @@
           </td>
           <td>
             <% if order.bought? %>
-              <%= order.total_paid_in_yuan.display %>
+              <%= order.total_paid_in_yuan %>
             <% else %>
               <%= order.end_price.in_euro.to_yuan(exchange_rate: order.exchange_rate).display %>
             <% end %>
