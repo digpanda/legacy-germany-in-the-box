@@ -8,6 +8,8 @@ class Product
   strip_attributes
 
   field :brand, type: String, localize: true
+  field :raw_brand, type: Strign, localize: true
+
   field :name, type: String, localize: true
   field :cover, type: String # deprecated ?
   field :desc, type: String, localize: true
@@ -31,6 +33,7 @@ class Product
 
   belongs_to :shop, inverse_of: :products
   belongs_to :duty_category, inverse_of: :products, counter_cache: true
+  belongs_to :brand, inverse_of: :products
 
   has_and_belongs_to_many :users, inverse_of: :favorites
 
