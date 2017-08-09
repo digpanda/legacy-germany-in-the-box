@@ -1939,7 +1939,7 @@ body {
 .header-desktop {
   margin-right: -15px;
   margin-left: -15px;
-  box-shadow: 0px 10px 10px rgba(139, 139, 139, 0.32);
+  box-shadow: 0px 4px 6px rgba(139, 139, 139, 0.32);
   min-height: 6.5em;
   background-color: white; }
   @media (max-width: 994px) {
@@ -1985,7 +1985,7 @@ body {
 .header-mobile {
   margin-right: -15px;
   margin-left: -15px;
-  box-shadow: 0px 10px 10px rgba(139, 139, 139, 0.32);
+  box-shadow: 0px 4px 6px rgba(139, 139, 139, 0.32);
   height: 70px;
   background-color: white; }
   @media (min-width: 995px) {
@@ -2327,7 +2327,7 @@ body {
   text-align: justify; }
 
 .package-set-list-block {
-  box-shadow: 0px 10px 10px rgba(139, 139, 139, 0.32);
+  box-shadow: 0px 4px 6px rgba(139, 139, 139, 0.32);
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   -ms-border-radius: 4px;
@@ -2698,7 +2698,7 @@ body {
   -moz-border-radius: 4px;
   -ms-border-radius: 4px;
   border-radius: 4px;
-  box-shadow: 0px 10px 10px rgba(139, 139, 139, 0.32);
+  box-shadow: 0px 4px 6px rgba(139, 139, 139, 0.32);
   padding: 2em;
   min-height: 20em; }
   .shop-page-header h2 {
