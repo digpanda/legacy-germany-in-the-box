@@ -9,14 +9,14 @@ class Api::Guest::Products::SkusController < Api::ApplicationController
     return if skus
 
     render status: :not_found,
-           json: throw_error(:unknown_id).merge(error: I18n.t(:sku_not_found, scope: :notice)).to_json
+           json: throw_error(:unknown_id).merge(error: I18n.t('notice.sku_not_found')).to_json
   end
 
   def show
     return if sku
 
     render status: :not_found,
-           json: throw_error(:unknown_id).merge(error: I18n.t(:sku_not_found, scope: :notice)).to_json
+           json: throw_error(:unknown_id).merge(error: I18n.t('notice.sku_not_found')).to_json
   end
 
   private

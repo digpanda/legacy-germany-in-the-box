@@ -29,7 +29,7 @@ class Admin::Shops::Products::SkusController < ApplicationController
     sku.product = product
 
     if sku.save && product.save
-      flash[:success] = I18n.t(:update_ok, scope: :edit_product)
+      flash[:success] = I18n.t('edit_product.update_ok')
       redirection_after_update
       return
     end
@@ -44,7 +44,7 @@ class Admin::Shops::Products::SkusController < ApplicationController
 
   def update
     if sku.update(sku_params)
-      flash[:success] = I18n.t(:update_ok, scope: :edit_product)
+      flash[:success] = I18n.t('edit_product.update_ok')
       redirection_after_update
       return
     end
@@ -55,7 +55,7 @@ class Admin::Shops::Products::SkusController < ApplicationController
 
   def clone
     if SkuCloner.new(product, sku).process.success?
-      flash[:success] = I18n.t(:clone_successful, scope: :sku)
+      flash[:success] = I18n.t('sku.clone_successful')
     else
       flash[:error] = 'Could not clone the sku.'
     end
@@ -65,7 +65,7 @@ class Admin::Shops::Products::SkusController < ApplicationController
 
   def destroy
     if sku.destroy
-      flash[:success] = I18n.t(:delete_ok, scope: :edit_sku)
+      flash[:success] = I18n.t('edit_sku.delete_ok')
     else
       flash[:error] = sku.errors.full_messages.join(', ')
     end

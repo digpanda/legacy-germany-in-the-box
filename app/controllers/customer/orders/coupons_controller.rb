@@ -10,12 +10,12 @@ class Customer::Orders::CouponsController < ApplicationController
   # we apply the coupon to the order
   def create
     if coupon.nil?
-      flash[:error] = I18n.t(:applied_fail, scope: :coupon)
+      flash[:error] = I18n.t('coupon.applied_fail')
       redirect_to navigation.back(1)
       return
     end
     if apply_coupon.success?
-      flash[:success] = I18n.t(:applied_successfully, scope: :coupon)
+      flash[:success] = I18n.t('coupon.applied_successfully')
     else
       flash[:error] = "#{apply_coupon.error}"
     end

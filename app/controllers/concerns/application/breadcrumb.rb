@@ -11,7 +11,7 @@ module Application
     end
 
     def breadcrumb_package_sets
-      add_breadcrumb I18n.t(:package_sets, scope: :package_set), guest_package_sets_path
+      add_breadcrumb I18n.t('package_set.package_sets'), guest_package_sets_path
     end
 
     def breadcrumb_package_set
@@ -27,23 +27,23 @@ module Application
     end
 
     def breadcrumb_cart
-      add_breadcrumb I18n.t(:my_cart, scope: :top_menu), customer_cart_path
+      add_breadcrumb I18n.t('top_menu.my_cart'), customer_cart_path
     end
 
     def breadcrumb_checkout_address
-      add_breadcrumb I18n.t(:my_address, scope: :top_menu), new_customer_order_address_path(order_id: @order.id) unless @order.nil?
+      add_breadcrumb I18n.t('top_menu.my_address'), new_customer_order_address_path(order_id: @order.id) unless @order.nil?
     end
 
     def breadcrumb_checkout_identity
-      add_breadcrumb I18n.t(:my_identity, scope: :top_menu), new_customer_order_identity_path(order_id: @order.id) unless @order.nil?
+      add_breadcrumb I18n.t('top_menu.my_identity'), new_customer_order_identity_path(order_id: @order.id) unless @order.nil?
     end
 
     def breadcrumb_payment_method
-      add_breadcrumb I18n.t(:my_payment, scope: :top_menu), payment_method_customer_checkout_path
+      add_breadcrumb I18n.t('top_menu.my_payment'), payment_method_customer_checkout_path
     end
 
     def breadcrumb_home
-      add_breadcrumb I18n.t(:home, scope: :breadcrumb), :root_path
+      add_breadcrumb I18n.t('breadcrumb.home'), :root_path
     end
 
     # =====
@@ -59,15 +59,15 @@ module Application
     end
 
     def breadcrumb_shopkeeper_product_skus
-      add_breadcrumb I18n.t(:skus, scope: :breadcrumb), shopkeeper_product_skus_path(@product) if @product
+      add_breadcrumb I18n.t('breadcrumb.skus'), shopkeeper_product_skus_path(@product) if @product
     end
 
     def breadcrumb_shopkeeper_product_edit_sku
-      add_breadcrumb I18n.t(:edit, scope: :breadcrumb), edit_shopkeeper_product_sku_path(@sku.product, @sku) if @sku
+      add_breadcrumb I18n.t('breadcrumb.edit'), edit_shopkeeper_product_sku_path(@sku.product, @sku) if @sku
     end
 
     def breadcrumb_shopkeeper_product_variants
-      add_breadcrumb I18n.t(:variants, scope: :breadcrumb), shopkeeper_product_variants_path(@product) if @product
+      add_breadcrumb I18n.t('breadcrumb.variants'), shopkeeper_product_variants_path(@product) if @product
     end
 
     # =====

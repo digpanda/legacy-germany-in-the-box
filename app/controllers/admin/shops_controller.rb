@@ -19,7 +19,7 @@ class Admin::ShopsController < ApplicationController
 
   def update
     if shop.update(shop_params)
-      flash[:success] = I18n.t(:update_ok, scope: :edit_shop)
+      flash[:success] = I18n.t('edit_shop.update_ok')
     else
       flash[:error] = shop.errors.full_messages.join(', ')
     end
@@ -28,7 +28,7 @@ class Admin::ShopsController < ApplicationController
 
   def destroy
     if shop.addresses.delete_all && shop.payment_gateways.delete_all && shop.destroy
-      flash[:success] = I18n.t(:delete_ok, scope: :edit_shops)
+      flash[:success] = I18n.t('edit_shops.delete_ok')
     else
       flash[:error] = shop.errors.full_messages.join(', ')
     end

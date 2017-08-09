@@ -30,7 +30,7 @@ class Customer::OrdersController < ApplicationController
       # we refresh the cart manager (this should remove the entry)
       cart_manager.refresh!
     end
-    flash[:success] = I18n.t(:delete_ok, scope: :edit_order)
+    flash[:success] = I18n.t('edit_order.delete_ok')
     redirect_to customer_orders_path
   end
 

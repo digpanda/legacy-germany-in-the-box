@@ -25,7 +25,7 @@ class Customer::AddressesController < ApplicationController
 
     if address.save
       reset_primary_address! if address.primary
-      flash[:success] = I18n.t(:create_ok, scope: :edit_address)
+      flash[:success] = I18n.t('edit_address.create_ok')
       redirect_to navigation.back(1)
       return
     end
@@ -33,7 +33,7 @@ class Customer::AddressesController < ApplicationController
     current_user.reload
     @addresses = current_user.addresses
 
-    flash[:error] = "#{I18n.t(:create_ko, scope: :edit_address)} (#{address.errors.full_messages.join(', ')})"
+    flash[:error] = "#{I18n.t('edit_address.create_ko')} (#{address.errors.full_messages.join(', ')})"
     render :new
   end
 
@@ -43,12 +43,12 @@ class Customer::AddressesController < ApplicationController
   def update
     if address.update(address_params)
       reset_primary_address! if address.primary
-      flash[:success] = I18n.t(:update_ok, scope: :edit_address)
+      flash[:success] = I18n.t('edit_address.update_ok')
       redirect_to navigation.back(1)
       return
     end
 
-    flash[:error] = I18n.t(:update_ko, scope: :edit_address)
+    flash[:error] = I18n.t('edit_address.update_ko')
     redirect_to :edit
   end
 

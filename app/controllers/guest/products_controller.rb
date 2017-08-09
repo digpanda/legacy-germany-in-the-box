@@ -20,7 +20,7 @@ class Guest::ProductsController < ApplicationController
 
     def valid_featured_sku?
       unless featured_sku
-        flash[:error] = I18n.t(:not_ready_yet, scope: :featured_sku)
+        flash[:error] = I18n.t('featured_sku.not_ready_yet')
         redirect_to navigation.back(1)
         return false
       end

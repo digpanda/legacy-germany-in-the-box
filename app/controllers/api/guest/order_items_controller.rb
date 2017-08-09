@@ -11,7 +11,7 @@ class Api::Guest::OrderItemsController < Api::ApplicationController
     add_sku = order_maker.sku(sku).refresh!(quantity)
     if add_sku.success?
       cart_manager.store(order)
-      render json: { success: true, message: I18n.t(:add_product_ok, scope: :edit_order) }
+      render json: { success: true, message: I18n.t('edit_order.add_product_ok') }
     else
       render json: throw_error(:unable_to_process).merge(error: add_sku.error[:error])
     end

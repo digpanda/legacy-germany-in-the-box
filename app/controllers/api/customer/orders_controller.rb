@@ -13,7 +13,7 @@ class Api::Customer::OrdersController < Api::ApplicationController
       cart_manager.refresh!
     end
 
-    render json: { success: true, msg: I18n.t(:delete_ok, scope: :edit_order) }
+    render json: { success: true, msg: I18n.t('edit_order.delete_ok') }
   end
 
   private

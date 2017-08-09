@@ -11,7 +11,7 @@ class Customer::Checkout::Callback::AlipayController < ApplicationController
       return
     end
 
-    flash[:success] = I18n.t(:checkout_ok, scope: :checkout)
+    flash[:success] = I18n.t('checkout.checkout_ok')
     redirect_to edit_customer_identity_path
   end
 

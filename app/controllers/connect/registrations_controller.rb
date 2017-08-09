@@ -28,7 +28,7 @@ class Connect::RegistrationsController < Devise::RegistrationsController
 
       if resource.active_for_authentication?
 
-        flash[:success] = I18n.t(:success_subscription, scope: :notice)
+        flash[:success] = I18n.t('notice.success_subscription')
 
         sign_up(resource_name, resource)
 
@@ -64,7 +64,7 @@ class Connect::RegistrationsController < Devise::RegistrationsController
   protected
 
     def after_inactive_sign_up_path_for(resource)
-      flash[:info] = I18n.t(:email_confirmation_msg, scope: :top_menu)
+      flash[:info] = I18n.t('top_menu.email_confirmation_msg')
       popular_products_path
     end
 

@@ -12,7 +12,7 @@ class Connect::PasswordsController < Devise::PasswordsController
   def create
     user = User.where(email: params[:email]).first
     unless user
-      flash[:error] = I18n.t(:email_not_found, scope: :password_recovery)
+      flash[:error] = I18n.t('password_recovery.email_not_found')
       redirect_to new_user_password_path
       return
     end
@@ -21,7 +21,7 @@ class Connect::PasswordsController < Devise::PasswordsController
     yield user if block_given?
 
     if successfully_sent?(user)
-      flash[:success] = I18n.t(:instruction_sent, scope: :password_recovery)
+      flash[:success] = I18n.t('password_recovery.instruction_sent')
       respond_with({}, location: after_sending_reset_password_instructions_path_for(:user))
     else
       respond_with(user)
@@ -43,7 +43,7 @@ class Connect::PasswordsController < Devise::PasswordsController
     if resource.errors.empty?
       resource.unlock_access! if unlockable?(resource)
       if Devise.sign_in_after_reset_password
-        flash[:success] = I18n.t(:password_updated, scope: :password_recovery)
+        flash[:success] = I18n.t('password_recovery.password_updated')
         sign_in(resource_name, resource)
         redirect_to root_url
         return

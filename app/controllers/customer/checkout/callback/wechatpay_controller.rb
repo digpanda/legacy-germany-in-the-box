@@ -4,7 +4,7 @@ class Customer::Checkout::Callback::WechatpayController < ApplicationController
 
   def show
     # wechat doesn't transmit any data at this point
-    flash[:success] = I18n.t(:processing, scope: :payment)
+    flash[:success] = I18n.t('payment.processing')
     redirect_to edit_customer_identity_path
   end
 
@@ -17,7 +17,7 @@ class Customer::Checkout::Callback::WechatpayController < ApplicationController
   # NOTE : it can happen when someone didn't setup his wechatpay account
   # he has to choose another way.
   def fail
-    flash[:error] = I18n.t(:failed, scope: :payment)
+    flash[:error] = I18n.t('payment.failed')
     redirect_to navigation.back(2)
   end
 end

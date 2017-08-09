@@ -31,7 +31,7 @@ class Customer::CheckoutController < ApplicationController
     @shop = order.shop
 
     if order.bought?
-      flash[:success] = I18n.t(:notice_order_already_paid, scope: :checkout)
+      flash[:success] = I18n.t('checkout.notice_order_already_paid')
       redirect_to customer_orders_path
       return
     end
@@ -47,13 +47,13 @@ class Customer::CheckoutController < ApplicationController
     payment_gateway = order.shop.payment_gateways.where(payment_method: params[:payment_method].to_sym).first
 
     unless payment_gateway
-      flash[:error] = I18n.t(:invalid_gateway, scope: :edit_order)
+      flash[:error] = I18n.t('edit_order.invalid_gateway')
       redirect_to navigation.back(1)
       return
     end
 
     unless acceptable_payment_method?(payment_gateway.payment_method)
-      flash[:error] = I18n.t(:invalid_payment_method, scope: :edit_order)
+      flash[:error] = I18n.t('edit_order.invalid_payment_method')
       redirect_to navigation.back(1)
       return
     end

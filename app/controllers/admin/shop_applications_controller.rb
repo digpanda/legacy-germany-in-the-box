@@ -14,7 +14,7 @@ class Admin::ShopApplicationsController < ApplicationController
     unless shop_application.destroy
       return throw_model_error(shop_application)
     end
-    flash[:success] = I18n.t(:delete_ok, scope: :edit_shop_application)
+    flash[:success] = I18n.t('edit_shop_application.delete_ok')
     redirect_to navigation.back(1)
   end
 

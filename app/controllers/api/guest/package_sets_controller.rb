@@ -14,7 +14,7 @@ class Api::Guest::PackageSetsController < Api::ApplicationController
     add = order_maker.package_set(package_set).refresh!(1, increment: true)
     if add.success?
       cart_manager.store(order)
-      render json: { success: true, message: I18n.t(:add_product_ok, scope: :edit_order) }
+      render json: { success: true, message: I18n.t('edit_order.add_product_ok') }
     else
       render json: throw_error(:unable_to_process).merge(error: add.error[:error])
     end

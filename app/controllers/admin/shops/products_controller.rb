@@ -34,7 +34,7 @@ class Admin::Shops::ProductsController < ApplicationController
   def create
     @product = shop.products.build(product_params)
     if product.save
-      flash[:success] = I18n.t(:update_ok, scope: :edit_product)
+      flash[:success] = I18n.t('edit_product.update_ok')
     else
       flash[:error] = product.errors.full_messages.join(', ')
     end
@@ -46,7 +46,7 @@ class Admin::Shops::ProductsController < ApplicationController
 
   def update
     if product.update(product_params)
-      flash[:success] = I18n.t(:update_ok, scope: :edit_product)
+      flash[:success] = I18n.t('edit_product.update_ok')
     else
       flash[:error] = product.errors.full_messages.join(', ')
     end
@@ -55,7 +55,7 @@ class Admin::Shops::ProductsController < ApplicationController
 
   def destroy
     if product.destroy
-      flash[:success] = I18n.t(:delete_ok, scope: :edit_product)
+      flash[:success] = I18n.t('edit_product.update_ok')
     else
       flash[:error] = product.errors.full_messages.join(', ')
     end

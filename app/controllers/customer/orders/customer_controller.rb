@@ -56,7 +56,7 @@ class Customer::Orders::CustomerController < ApplicationController
     end
 
     def coupon_error!
-      flash[:error] = I18n.t(:applied_fail, scope: :coupon)
+      flash[:error] = I18n.t('coupon.applied_fail')
       redirect_to navigation.back(1)
       return true
     end

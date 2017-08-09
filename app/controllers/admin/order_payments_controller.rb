@@ -37,7 +37,7 @@ class Admin::OrderPaymentsController < ApplicationController
 
   def destroy
     if order_payment.destroy
-      flash[:success] = I18n.t(:payment_removed, scope: :notice)
+      flash[:success] = I18n.t('notice.payment_removed')
     else
       flash[:error] = order_payment.errors.full_messages.first
     end

@@ -8,7 +8,7 @@ class Api::Guest::TranslationsController < Api::ApplicationController
   end
 
   def show
-    @translation = I18n.t(valid_params[:translation_slug], scope: valid_params[:translation_scope])
+    @translation = I18n.t("#{valid_params[:translation_scope]}.#{valid_params[:translation_slug]}")
   end
 
   private
