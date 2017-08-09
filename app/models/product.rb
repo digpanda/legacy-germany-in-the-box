@@ -8,7 +8,7 @@ class Product
   strip_attributes
 
   field :brand, type: String, localize: true
-  field :raw_brand, type: Strign, localize: true
+  field :raw_brand, type: String, localize: true
 
   field :name, type: String, localize: true
   field :cover, type: String # deprecated ?
