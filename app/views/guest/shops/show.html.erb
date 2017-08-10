@@ -6,6 +6,13 @@
 
       <div class="row">
         <div class="col-md-12">
+          <!-- Shop Navigation -->
+          <%= render partial: "guest/shops/show/navigation", :locals => { :shop => @shop, :back => root_path } %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
           <!-- Shop Header -->
           <%= render partial: "guest/shops/show/header", :locals => { :shop => @shop } %>
         </div>
@@ -13,8 +20,8 @@
 
       <div class="row">
         <div class="col-md-12">
-          <!-- Shop Navigation -->
-          <%= render partial: "guest/shops/show/navigation", :locals => { :shop => @shop } %>
+          <!-- Shop Filters -->
+          <%= render partial: "guest/shops/show/filters", :locals => { :shop => @shop } %>
         </div>
       </div>
 

@@ -4,21 +4,22 @@
     <!-- BACK -->
     <div class="col-xs-3 col-md-3">
       <div class="subheader__left">
-        <a href="<%= back %>">
-          <i class="digpanda-back"></i><%= I18n.t(:back) %>
         </a>
       </div>
     </div>
 
-    <!-- Number of products -->
+    <!-- Number of package sets -->
     <div class="col-xs-3 col-md-3">
       <div class="page-navigation__middle +desktop">
       </div>
     </div>
 
+    <!-- Categories filtering -->
     <div class="col-xs-6 col-md-6">
       <div class="page-navigation__right">
-        <%= I18n.t(:products, scope: :navigation, num: shop.products.count) %>
+        <% shop.categories.each_with_index do |category, index| %>
+          | <%= link_to category.name, guest_shop_path(shop, category_id: category) %>
+        <% end %>
       </div>
     </div>
 
