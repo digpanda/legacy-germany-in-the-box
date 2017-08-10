@@ -66,7 +66,7 @@ gem "font-awesome-rails"
 gem "twitter-bootstrap-rails"
 gem "bootstrap-datepicker-rails"
 gem "bootstrap-validator-rails"
-gem "abstract_method"
+gem 'abstract_method'
 gem "mongoid_magic_counter_cache"
 gem "carrierwave-ftp", :require => "carrierwave/storage/ftp" # FTP only
 gem "sidekiq"

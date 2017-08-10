@@ -76,22 +76,22 @@ class Shop
   validates :shopkeeper,    presence: true
   validates :founding_year, presence: true,   length: {maximum: 4}
   validates :desc,          presence: true,   length: {maximum: (Rails.configuration.gitb[:max_medium_text_length] * 1.25).round}
-  validates :philosophy,    presence: true,   length: {maximum: (Rails.configuration.gitb[:max_long_text_length] * 1.25).round}
-  validates :ustid,         presence: true,   length: {maximum: Rails.configuration.gitb[:max_tiny_text_length]},   :if => lambda { self.agb }
+  validates :philosophy,    presence: true,   length: { maximum: (Rails.configuration.gitb[:max_long_text_length] * 1.25).round }
+  validates :ustid,         presence: true,   length: { maximum: Rails.configuration.gitb[:max_tiny_text_length] },   if: lambda { self.agb }
 
-  validates :agb, inclusion: {in: [true]},    :if => lambda { self.agb.present? }
+  validates :agb, inclusion: {in: [true]},    if: lambda { self.agb.present? }
 
-  validates :register,        length: {maximum: Rails.configuration.gitb[:max_tiny_text_length]}
-  validates :stories,         length: {maximum: (Rails.configuration.gitb[:max_long_text_length] * 1.25).round}
+  validates :register,        length: { maximum: Rails.configuration.gitb[:max_tiny_text_length] }
+  validates :stories,         length: { maximum: (Rails.configuration.gitb[:max_long_text_length] * 1.25).round }
   validates :website,         length: {maximum: (Rails.configuration.gitb[:max_short_text_length] * 1.25).round}
-  validates :eroi,            length: {maximum: Rails.configuration.gitb[:max_tiny_text_length]}
+  validates :eroi,            length: { maximum: Rails.configuration.gitb[:max_tiny_text_length] }
   validates :uniqueness,      length: {maximum: (Rails.configuration.gitb[:max_medium_text_length] * 1.25).round}
   validates :german_essence,  length: {maximum: (Rails.configuration.gitb[:max_medium_text_length] * 1.25).round}
-  validates :shopname,        length: {maximum: Rails.configuration.gitb[:max_short_text_length]}
+  validates :shopname,        length: { maximum: Rails.configuration.gitb[:max_short_text_length] }
 
-  validates :mail,          presence: false,   length: {maximum: Rails.configuration.gitb[:max_short_text_length]}
+  validates :mail,          presence: false,   length: { maximum: Rails.configuration.gitb[:max_short_text_length] }
 
-  scope :is_active,       ->    { where( :status => true ).where( :approved.ne => nil ) }
+  scope :is_active,       ->    { where( status: true ).where( :approved.ne => nil ) }
   scope :has_address, -> { where({ :addresses => { :$not => { :$size => 0 } } }) }
 
   scope :can_buy,         ->    { is_active }
@@ -102,7 +102,7 @@ class Shop
 
   def force_merchant_id
     if self.merchant_id.nil?
-      self.merchant_id = (self.c_at ? self.c_at.strftime('%y%m%d') : Date.today.strftime('%y%m%d')) + self.name.delete("\s")[0,3].upcase
+      self.merchant_id = (self.c_at ? self.c_at.strftime('%y%m%d') : Date.today.strftime('%y%m%d')) + self.name.delete("\s")[0, 3].upcase
     end
   end
 
@@ -126,8 +126,8 @@ class Shop
   # TODO : check if it's still in use within the system
   # - Laurent, 05/07/2017
   def categories
-    all_categories = Category.order_by(position: :asc).all.map { |c| [c.id, c]}.to_h
-    products.inject(Set.new) {|cs, p| cs = cs + p.category_ids }.map { |c| all_categories[c]}
+    all_categories = Category.order_by(position: :asc).all.map { |c| [c.id, c] }.to_h
+    products.inject(Set.new) { |cs, p| cs = cs + p.category_ids }.map { |c| all_categories[c] }
   end
 
   def payment_method?(payment_method)
@@ -148,12 +148,12 @@ class Shop
 
   private
 
-  def ensure_shopkeeper
-    shopkeeper.role == :shopkeeper
-  end
+    def ensure_shopkeeper
+      shopkeeper.role == :shopkeeper
+    end
 
-  def self.with_can_buy_products
-    self.in(id: Product.can_buy.map {|p| p.shop_id } ).all
-  end
-
+    # TODO : should be refactored / cleaned
+    def self.with_can_buy_products
+      self.in(id: Product.can_buy.map { |p| p.shop_id }).all
+    end
 end

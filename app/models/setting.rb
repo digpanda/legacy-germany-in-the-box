@@ -39,8 +39,8 @@ class Setting
 
   validates :platform_currency,       presence: true
   validates :supplier_currency,       presence: true
-  validates :exchange_rate_to_yuan,   presence: true,   :numericality => { :greater_than => 0 }
-  validates :max_total_per_day,       presence: true,   :numericality => { :greater_than => 0 }
+  validates :exchange_rate_to_yuan,   presence: true,   numericality: { greater_than: 0 }
+  validates :max_total_per_day,       presence: true,   numericality: { greater_than: 0 }
 
   def self.instance
     @instance ||= Setting.first_or_create

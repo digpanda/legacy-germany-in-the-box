@@ -36,5 +36,4 @@ module Locked
   def bypass_locked!
     self.bypass_locked = true
   end
-
 end

@@ -5,7 +5,7 @@ class ReferrerProvision
 
   field :provision, type: Float
 
-  belongs_to :referrer, :class_name => "Referrer", :inverse_of => :provisions
+  belongs_to :referrer, class_name: "Referrer", inverse_of: :provisions
   belongs_to :order
 
 end

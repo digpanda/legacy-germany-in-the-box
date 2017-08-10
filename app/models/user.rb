@@ -53,10 +53,10 @@ class User
   field :banished, type: Boolean, default: false
 
   # referrer as someone lead is binded with him
-  belongs_to :parent_referrer, :inverse_of => :child_user, :class_name => 'Referrer'
+  belongs_to :parent_referrer, inverse_of: :child_user, class_name: 'Referrer'
   field :parent_referred_at, type: Time
   # referrer as a model considering the user is a referrer
-  has_one :referrer, :inverse_of => :user, dependent: :destroy
+  has_one :referrer, inverse_of: :user, dependent: :destroy
   accepts_nested_attributes_for :referrer
 
   field :wechat_unionid, type: String
@@ -64,23 +64,23 @@ class User
 
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :omniauthable
 
-  has_and_belongs_to_many :favorites, :class_name => 'Product'
+  has_and_belongs_to_many :favorites, class_name: 'Product'
 
   scope :without_detail, -> { only(:_id, :pic, :country, :username) }
 
-  has_many :orders,                                 :inverse_of => :user,   :dependent => :restrict
-  embeds_many :addresses,                              :inverse_of => :user
+  has_many :orders,                                 inverse_of: :user,   dependent: :restrict
+  embeds_many :addresses,                              inverse_of: :user
   has_many :notifications
-  has_many :notes,                                  :inverse_of => :user,   :dependent => :restrict
+  has_many :notes,                                  inverse_of: :user,   dependent: :restrict
 
-  has_one  :shop,         :inverse_of => :shopkeeper,   :dependent => :restrict
+  has_one  :shop,         inverse_of: :shopkeeper,   dependent: :restrict
   has_one  :cart
 
   genderize (:gender)
   mount_uploader :pic, AvatarUploader
 
-  validates :role,          presence: true, inclusion: {in: [:customer, :shopkeeper, :admin]}
-  validates :email,         presence: true, length: {maximum: Rails.configuration.gitb[:max_tiny_text_length]}
+  validates :role,          presence: true, inclusion: { in: [:customer, :shopkeeper, :admin] }
+  validates :email,         presence: true, length: { maximum: Rails.configuration.gitb[:max_tiny_text_length] }
   validates :status,        presence: true
 
   # TODO : we deactivated this protection because wechat don't return it
@@ -88,11 +88,11 @@ class User
   # we should add a system to force people to add those important information before they buy if we don't have it.
   # NOTE : we could actually refactor it with the short email forcing we did before, but in another controller to stay clean. (`ensure user information blbalbla`)
 
-  # validates :fname,         presence: true, :if => lambda { :customer == self.role }, length: {maximum: Rails.configuration.gitb[:max_tiny_text_length]}
-  # validates :lname,         presence: true, :if => lambda { :customer == self.role }, length: {maximum: Rails.configuration.gitb[:max_tiny_text_length]}
+  # validates :fname,         presence: true, if: lambda { :customer == self.role }, length: { maximum: Rails.configuration.gitb[:max_tiny_text_length] }
+  # validates :lname,         presence: true, if: lambda { :customer == self.role }, length: { maximum: Rails.configuration.gitb[:max_tiny_text_length] }
   #
-  validates :about,         length: {maximum: Rails.configuration.gitb[:max_medium_text_length]}
-  validates :website,       length: {maximum: Rails.configuration.gitb[:max_short_text_length]}
+  validates :about,         length: { maximum: Rails.configuration.gitb[:max_medium_text_length] }
+  validates :website,       length: { maximum: Rails.configuration.gitb[:max_short_text_length] }
   validates_confirmation_of :password
 
   acts_as_token_authenticatable
@@ -112,7 +112,7 @@ class User
   before_destroy :destroy_has_shop, :destroy_has_orders
   def destroy_has_shop
     if self.shop
-      errors.add :base, "Cannot delete user with a shop"
+      errors.add :base, 'Cannot delete user with a shop'
       false
     else
       true
@@ -121,7 +121,7 @@ class User
 
   def destroy_has_orders
     if self.orders.count > 0
-      errors.add :base, "Cannot delete user with orders"
+      errors.add :base, 'Cannot delete user with orders'
       false
     else
       true
@@ -139,7 +139,7 @@ class User
   # this was made to get only the appropriate orders
   # of the customer to get back to the cart
   def cart_orders
-    orders.unpaid.order_by(:u_at => :desc)
+    orders.unpaid.order_by(u_at: :desc)
   end
 
   def admin?
@@ -163,7 +163,7 @@ class User
   end
 
   def wechat?
-    self.provider == "wechat"
+    self.provider == 'wechat'
   end
 
   def valid_for_checkout?
@@ -171,7 +171,7 @@ class User
   end
 
   def valid_email?
-    !email.include?("@wechat.com")
+    !email.include?('@wechat.com')
   end
 
   def referrer?
@@ -182,10 +182,10 @@ class User
   # will be redirected on log-in
   def missing_info?
     if self.referrer?
-        return true if self.fname.blank?
-        return true if self.lname.blank?
-        return true if self.mobile.blank?
-        return true if self.referrer.agb == false
+      return true if self.fname.blank?
+      return true if self.lname.blank?
+      return true if self.mobile.blank?
+      return true if self.referrer.agb == false
     end
     false
   end
@@ -201,5 +201,4 @@ class User
   def short_union_id
     self&.wechat_unionid&.split(//)&.last(3)&.join.to_s
   end
-
 end

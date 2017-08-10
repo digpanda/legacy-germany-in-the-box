@@ -27,7 +27,7 @@ class Sku
   embedded_in :order_item
 
   has_many :images, as: :image
-  accepts_nested_attributes_for :images, :allow_destroy => true
+  accepts_nested_attributes_for :images, allow_destroy: true
 
   # TODO : this is an alias which should be turned
   # into a real database field at some point
@@ -56,27 +56,26 @@ class Sku
   # mount_uploader :img3,     ProductUploader
   mount_uploader :attach0,  AttachmentUploader
 
-  validates :price,         presence: true, :numericality => { :greater_than => 0 }
-  validates :quantity,      presence: true, :numericality => { :greater_than_or_equal_to => 0 }, :unless => lambda { self.unlimited }
+  validates :price,         presence: true, numericality: { greater_than: 0 }
+  validates :quantity,      presence: true, numericality: { greater_than_or_equal_to: 0 }, unless: lambda { self.unlimited }
   validates :unlimited,     presence: true
   validates :weight,        presence: true
   validates :status,        presence: true
-  validates :discount,      presence: true, :numericality => { :greater_than_or_equal_to => 0, :less_than_or_equal_to => 100 }
+  validates :discount,      presence: true, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 100 }
   validates :option_ids,    presence: true
-  validates :space_length,  presence: true, :numericality => { :greater_than => 0 }
-  validates :space_width,   presence: true, :numericality => { :greater_than => 0 }
-  validates :space_height,  presence: true, :numericality => { :greater_than => 0 }
-  validates :ean, length: {maximum: 13}
+  validates :space_length,  presence: true, numericality: { greater_than: 0 }
+  validates :space_width,   presence: true, numericality: { greater_than: 0 }
+  validates :space_height,  presence: true, numericality: { greater_than: 0 }
+  validates :ean, length: { maximum: 13 }
 
   # currently not working properly, please do not use this scope
   # NOTE : http://stackoverflow.com/questions/40464883/mongoid-chaining-and-scopes
   scope :can_buy,   -> { is_active.in_stock }
-  scope :is_active, -> { where(:status => true) }
-  scope :in_stock,  -> { any_of({:unlimited => true  }, {:quantity.gt => 0}) }
-
+  scope :is_active, -> { where(status: true) }
+  scope :in_stock,  -> { any_of({ unlimited: true }, { 'quantity.gt': 0 }) }
 
   before_save :ensure_valid_option_ids
-  before_save :clean_quantity, :if => lambda { self.unlimited }
+  before_save :clean_quantity, if: lambda { self.unlimited }
 
   def enough_stock?(quantity)
     unlimited || (self.quantity >= quantity)
@@ -163,12 +162,11 @@ class Sku
 
   private
 
-  def clean_quantity
-    self.quantity = 0
-  end
+    def clean_quantity
+      self.quantity = 0
+    end
 
-  def ensure_valid_option_ids
-    self.option_ids = self.option_ids.reject { |c| c.empty? }.to_set.to_a
-  end
-
+    def ensure_valid_option_ids
+      self.option_ids = self.option_ids.reject { |c| c.empty? }.to_set.to_a
+    end
 end

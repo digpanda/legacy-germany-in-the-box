@@ -1,11 +1,10 @@
 module HasProductSummaries
-
   Numeric.include CoreExtensions::Numeric::CurrencyLibrary
 
   def self.included(base)
     def base.summarizes(sku_list:, by:)
-      mattr_accessor(:sku_list_identifier){ sku_list }
-      mattr_accessor(:quantity_attr){ by }
+      mattr_accessor(:sku_list_identifier) { sku_list }
+      mattr_accessor(:quantity_attr) { by }
     end
   end
 
@@ -25,13 +24,12 @@ module HasProductSummaries
   # TODO : is it still in use ? if so, place it elsewhere
   def total_dimensional_weight
     # 100.00 <--- testing
-    sku_list.inject(0) { |sum, i| sum += (i.sku.space_length ) * (i.sku.space_width) * (i.sku.space_height) * i.quantity } / 5000
+    sku_list.inject(0) { |sum, i| sum += (i.sku.space_length) * (i.sku.space_width) * (i.sku.space_height) * i.quantity } / 5000
   end
 
   private
 
-  def sku_list
-    send(sku_list_identifier)
-  end
-
+    def sku_list
+      send(sku_list_identifier)
+    end
 end

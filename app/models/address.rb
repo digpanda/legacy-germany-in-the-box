@@ -24,11 +24,11 @@ class Address
   field :mobile,        type: String
   field :primary,       type: Boolean, default: false
 
-  embedded_in :shop, :inverse_of => :addresses
-  embedded_in :user, :inverse_of => :addresses
+  embedded_in :shop, inverse_of: :addresses
+  embedded_in :user, inverse_of: :addresses
 
-  embedded_in :order, :inverse_of => :billing_address
-  embedded_in :order, :inverse_of => :shipping_address
+  embedded_in :order, inverse_of: :billing_address
+  embedded_in :order, inverse_of: :shipping_address
 
   scope :is_billing,          ->  { any_of({type: :billing}, {type: :both}) }
   scope :is_shipping,         ->  { any_of({type: :shipping},  {type: :both}) }
@@ -38,16 +38,16 @@ class Address
   scope :is_only_shipping,    ->  { any_of({type: :shipping}) }
   scope :is_only_both,        ->  { any_of({type: :both}) }
 
-  validates :mobile, presence: true, :if => -> { user&.customer? }
-  # validates :pid, presence: true, :format => { :with => CHINESE_ID }, :if => -> { user&.customer? }
-  validates :fname, presence: true#, :format => { :with => CHINESE_CHARACTERS }, :if => -> { user&.customer? }
-  validates :lname, presence: true#, :format => { :with => CHINESE_CHARACTERS }, :if => -> { user&.customer? }
+  validates :mobile, presence: true, if: -> { user&.customer? }
+  # validates :pid, presence: true, :format => { :with => CHINESE_ID }, if: -> { user&.customer? }
+  validates :fname, presence: true#, :format => { :with => CHINESE_CHARACTERS }, if: -> { user&.customer? }
+  validates :lname, presence: true#, :format => { :with => CHINESE_CHARACTERS }, if: -> { user&.customer? }
 
   validates :street, presence: true
   validates :city, presence: true
   validates :zip, presence: true
   validates :country, presence: true
-  validates :company, presence: true, :if => -> { shop.present? }
+  validates :company, presence: true, if: -> { shop.present? }
   validates :province, presence: true
   validates :type, presence: true , inclusion: {in: [:billing, :shipping, :both]}
 

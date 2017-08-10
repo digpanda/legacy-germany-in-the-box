@@ -16,8 +16,8 @@ class OrderPayment
   field :amount_eur         , type: Float, default: 0.0
   field :origin_currency     , type: String
 
-  belongs_to :order     , :inverse_of => :order_payments, touch: true
-  belongs_to :user      , :inverse_of => :orders
+  belongs_to :order     , inverse_of: :order_payments, touch: true
+  belongs_to :user      , inverse_of: :orders
 
   def shop
     order.shop

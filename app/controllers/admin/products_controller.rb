@@ -1,5 +1,4 @@
 class Admin::ProductsController < ApplicationController
-
   attr_reader :shop, :products, :product
 
   authorize_resource class: false

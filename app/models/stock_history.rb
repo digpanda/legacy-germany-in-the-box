@@ -3,5 +3,4 @@ class StockHistory
 
   strip_attributes
   belongs_to :order_item
-
 end

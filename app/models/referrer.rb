@@ -11,16 +11,16 @@ class Referrer
   field :agb, type: Boolean, default: false
   field :label, type: String
 
-  belongs_to :user, :class_name => "User", :inverse_of => :referrer
-  has_many :children_users, :class_name => "User", :inverse_of => :parent_referrer
+  belongs_to :user, class_name: "User", inverse_of: :referrer
+  has_many :children_users, class_name: "User", inverse_of: :parent_referrer
 
-  belongs_to :referrer_group, :class_name => "ReferrerGroup", :inverse_of => :referrer
+  belongs_to :referrer_group, class_name: "ReferrerGroup", inverse_of: :referrer
 
-  has_many :coupons, :class_name => "Coupon", :inverse_of => :referrer
-  has_many :orders, :class_name => "Order", :inverse_of => :referrer
+  has_many :coupons, class_name: "Coupon", inverse_of: :referrer
+  has_many :orders, class_name: "Order", inverse_of: :referrer
 
-  has_many :provisions, :class_name => "ReferrerProvision", :inverse_of => :referrer
-  has_many :provision_operations, :class_name => "ReferrerProvisionOperation", :inverse_of => :referrer
+  has_many :provisions, class_name: "ReferrerProvision", inverse_of: :referrer
+  has_many :provision_operations, class_name: "ReferrerProvisionOperation", inverse_of: :referrer
 
   before_create :ensure_reference_id, :ensure_nickname
 

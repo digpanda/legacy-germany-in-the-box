@@ -40,7 +40,7 @@ class OrderItem
 
   embeds_one :sku
 
-  validates :quantity,      presence: true, :numericality => { :greater_than_or_equal_to => 1 }
+  validates :quantity,      presence: true, numericality: { :greater_than_or_equal_to => 1 }
   validates :product,       presence: true
   validates :order,         presence: true
 

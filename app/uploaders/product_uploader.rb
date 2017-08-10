@@ -3,7 +3,7 @@ class ProductUploader < CarrierWave::Uploader::Base
   include Concerns::Uploadable
   include Concerns::Imageable
 
-  version :thumb, :if => :image? do
+  version :thumb, if: :image? do
     process resize_to_limit: [500, 500]
   end
 

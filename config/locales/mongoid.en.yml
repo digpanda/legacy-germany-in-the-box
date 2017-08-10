@@ -231,7 +231,7 @@ en:
             database side. In this case Mongoid could not determine what the
             inverse foreign key was."
           resolution: "If an inverse is not required, like a belongs_to or
-            has_and_belongs_to_many, ensure that :inverse_of => nil is set
+            has_and_belongs_to_many, ensure that inverse_of: nil is set
             on the relation. If the inverse is needed, most likely the
             inverse cannot be figured out from the names of the relations and
             you will need to explicitly tell Mongoid on the relation what
@@ -484,7 +484,7 @@ en:
             the validations."
         delete_restriction:
           message: "Cannot delete %{document} because of dependent '%{relation}'."
-          summary: "When defining '%{relation}' with a :dependent => :restrict,
+          summary: "When defining '%{relation}' with a dependent: :restrict,
             Mongoid will raise an error when attempting to delete the
             %{document} when the child '%{relation}' still has documents in it."
           resolution: "Don't attempt to delete the parent %{document} when

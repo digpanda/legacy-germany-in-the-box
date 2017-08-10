@@ -12,7 +12,7 @@ class ReferrerGroup
   field :sales_provision_extra, type: Float, default: 0
   field :redeem_discount, type: Float, default: 0
 
-  has_many :referrers, :class_name => "Referrer", :inverse_of => :referrer_group
+  has_many :referrers, class_name: "Referrer", inverse_of: :referrer_group
 
   validates_presence_of :name
   validates_uniqueness_of :name

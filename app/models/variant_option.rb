@@ -12,7 +12,7 @@ class VariantOption
 
   accepts_nested_attributes_for :suboptions
 
-  validates :name,      presence: true, length: {maximum: Rails.configuration.gitb[:max_tiny_text_length]}
+  validates :name,      presence: true, length: { maximum: Rails.configuration.gitb[:max_tiny_text_length] }
 
   # this was made while refactoring
   # it simply get the results by name and return an array with name and id
@@ -22,5 +22,4 @@ class VariantOption
       [suboption.name, suboption.id.to_s]
     end
   end
-
 end

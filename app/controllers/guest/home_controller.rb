@@ -4,7 +4,7 @@ class Guest::HomeController < ApplicationController
   def show
     @shops = Shop.can_buy.order_by(position: :asc).all
   end
-  
+
   private
 
     def admin_redirection

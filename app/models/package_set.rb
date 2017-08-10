@@ -28,8 +28,8 @@ class PackageSet
   # research system
   search_in :name, :desc, :shop => :shopname, :category => :name
 
-  accepts_nested_attributes_for :package_skus, :reject_if => :reject_package_skus, :allow_destroy => true
-  accepts_nested_attributes_for :images, :allow_destroy => true
+  accepts_nested_attributes_for :package_skus, :reject_if => :reject_package_skus, allow_destroy: true
+  accepts_nested_attributes_for :images, allow_destroy: true
 
   def reject_package_skus(attributed)
     attributed['product_id'].blank? || attributed['sku_id'].blank?

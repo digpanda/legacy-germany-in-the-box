@@ -21,8 +21,8 @@ class Coupon
 
   has_many :orders
 
-  belongs_to :referrer, :class_name => "Referrer", :inverse_of => :coupons
-  belongs_to :shop, :inverse_of => :coupons
+  belongs_to :referrer, class_name: "Referrer", inverse_of: :coupons
+  belongs_to :shop, inverse_of: :coupons
 
   validates :code, presence: true, uniqueness: true
   validates :discount, presence: true

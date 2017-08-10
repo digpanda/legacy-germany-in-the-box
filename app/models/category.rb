@@ -3,8 +3,8 @@ class Category
   include CategoryBase
   include EntryPosition
 
-  has_and_belongs_to_many :products,  :inverse_of => :categories
-  has_many :package_sets,  :inverse_of => :category
+  has_and_belongs_to_many :products,  inverse_of: :categories
+  has_many :package_sets,  inverse_of: :category
 
   field :slug, type: String
   field :desc, type: String, localize: true

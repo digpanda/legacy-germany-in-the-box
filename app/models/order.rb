@@ -56,28 +56,28 @@ class Order
   #   user&.parent_referrer || coupon&.referrer
   # end
 
-  belongs_to :shop, :inverse_of => :orders
-  belongs_to :user, :inverse_of => :orders
-  belongs_to :cart, :inverse_of => :orders
-  belongs_to :coupon, :inverse_of => :orders
+  belongs_to :shop, inverse_of: :orders
+  belongs_to :user, inverse_of: :orders
+  belongs_to :cart, inverse_of: :orders
+  belongs_to :coupon, inverse_of: :orders
 
-  belongs_to :referrer, :inverse_of => :orders
+  belongs_to :referrer, inverse_of: :orders
   field :referrer_origin, type: Symbol # [:user, :coupon]
 
-  embeds_one :shipping_address, :class_name => 'Address'
-  embeds_one :billing_address, :class_name => 'Address'
+  embeds_one :shipping_address, class_name: 'Address'
+  embeds_one :billing_address, class_name: 'Address'
 
-  has_many :order_items,            :inverse_of => :order,    dependent: :restrict
-  has_many :order_payments,         :inverse_of => :order,    dependent: :restrict
-  has_many :notes,                  :inverse_of => :order,    dependent: :restrict
-  has_one :referrer_provision,    :inverse_of => :order,    dependent: :restrict
+  has_many :order_items,            inverse_of: :order,    dependent: :restrict
+  has_many :order_payments,         inverse_of: :order,    dependent: :restrict
+  has_many :notes,                  inverse_of: :order,    dependent: :restrict
+  has_one :referrer_provision,    inverse_of: :order,    dependent: :restrict
 
 
   scope :nonempty,    ->  {  where( :order_items_count.gt => 0 ) }
-  scope :unpaid,      ->  { self.in(:status => [:new]) }
-  scope :bought,      ->  { self.in(:status => [:paid, :custom_checkable, :custom_checking, :shipped]) }
-  scope :bought_or_cancelled, -> { self.in( :status => BOUGHT_OR_CANCELLED ) }
-  scope :bought_or_unverified,      ->  { self.in( :status => BOUGHT_OR_UNVERIFIED ) } # cancelled isn't included in this
+  scope :unpaid,      ->  { self.in(status: [:new]) }
+  scope :bought,      ->  { self.in(status: [:paid, :custom_checkable, :custom_checking, :shipped]) }
+  scope :bought_or_cancelled, -> { self.in( status: BOUGHT_OR_CANCELLED ) }
+  scope :bought_or_unverified,      ->  { self.in( status: BOUGHT_OR_UNVERIFIED ) } # cancelled isn't included in this
 
   def bought_or_cancelled?
     BOUGHT_OR_CANCELLED.include? status
