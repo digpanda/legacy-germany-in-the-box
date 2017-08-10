@@ -43,5 +43,13 @@ reloaddb
 
 ////////////////////////////////////////////////////////////////
 ################ Image bucket Tool ################
-https://github.com/qiniu/qshell
+fyi: https://github.com/qiniu/qshell
+
+how to run qiniu img bucket jobs:
+1. rename the qshell.linux64 to qshell i fyou are using linux (the default qshell file is for mac since we normally run this batch from local machine)
+2. set up qiniu account access for qshell
+./qshell account ak sk
+need enter as above accesskey and secret key from qiniu
+3. run the batch, follow and choose the steps as prompt
+./qiniu_jobs.sh
 #we partially automated the image clone from qiniu prod bucket -> qiniu stagging bucket, pls use the qiniu_job.sh (based on qshell)
