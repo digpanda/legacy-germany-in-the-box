@@ -53,6 +53,8 @@ de:
   navigation:
     packages: "%{num} klassischen Sets"
     products: "%{num} Produkte"
+  categories:
+    more_info: Mehr Informationen
   package_set:
     more_info: Mehr Informationen
     buy_it: Einkaufen
