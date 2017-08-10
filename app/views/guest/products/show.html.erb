@@ -2,13 +2,14 @@
 
 <div class="row">
   <div class="col-md-12">
-    <div class="product-page">
+    <!-- Product Subheader -->
+    <%= render partial: "guest/products/show/subheader", :locals => { :product => @product, :back => guest_shop_path(@product.shop) } %>
+  </div>
+</div>
 
-      <div class="row">
-        <div class="col-md-6">
-          <%= render partial: "layouts/customer/subheader/breadcrumb" %>
-        </div>
-      </div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="product-page">
 
       <div class="row">
 
