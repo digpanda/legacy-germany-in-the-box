@@ -14,7 +14,9 @@ class ConversionBrandFieldIntoNewTableBrand < Mongoid::Migration
       else
         puts "The brand was already registered (#{brand.id})."
       end
-
+      
+      # we don't forget to systematically assign
+      # the matching brand to the product
       product.brand = brand
       product.save!
     end
