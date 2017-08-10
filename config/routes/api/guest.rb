@@ -4,19 +4,19 @@ namespace :guest do
   resources :translations  do
   end
 
-  resource :navigation, :controller => 'navigation' do
+  resource :navigation, controller: 'navigation' do
   end
 
   resources :order_items  do
   end
 
-  resource :cart, :controller => 'cart' do
+  resource :cart, controller: 'cart' do
     get :total
   end
 
 
   resources :products  do
-    resources :skus, :controller => 'products/skus' do
+    resources :skus, controller: 'products/skus' do
     end
   end
 

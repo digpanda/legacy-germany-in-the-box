@@ -23,6 +23,7 @@ class AfterSigninHandler
 
     if user.customer?
       force_chinese!
+      handle_referrer_binding!
       handle_precreated!
       handle_past_orders!
       return without_code missing_info_customer_account_path(kept_params) if user.missing_info?
@@ -82,6 +83,13 @@ class AfterSigninHandler
       return true
     end
     false
+  end
+
+  def handle_referrer_binding!
+    if request.params[:reference_id]
+      referrer = Referrer.where(reference_id: request.params[:reference_id]).first
+      ReferrerBinding.new(referrer).bind(user) if referrer
+    end
   end
 
   def without_code(url)

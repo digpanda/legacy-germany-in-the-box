@@ -3,11 +3,11 @@ namespace :shopkeeper do
 
   resources :products do
 
-    resources :variants, :controller => 'products/variants' do
+    resources :variants, controller: 'products/variants' do
       delete '/option/:option_id', action: :destroy_option, as: :destroy_option
     end
 
-    resources :skus, :controller => 'products/skus' do
+    resources :skus, controller: 'products/skus' do
       delete :destroy_image
       patch :clone
     end
@@ -18,13 +18,13 @@ namespace :shopkeeper do
     patch :shipped
   end
 
-  resource :account, :controller => 'account' do
+  resource :account, controller: 'account' do
   end
 
   resources :settings do
   end
 
-  resource :shop, :controller => 'shop' do
+  resource :shop, controller: 'shop' do
     delete :destroy_image
   end
 

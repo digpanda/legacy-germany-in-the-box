@@ -22,6 +22,6 @@ draw :app, :guest
 resources :languages, only: [:update, :show] do
 end
 
-resource :adyen, :controller => 'adyen' do
+resource :adyen, controller: 'adyen' do
   get :callback
 end

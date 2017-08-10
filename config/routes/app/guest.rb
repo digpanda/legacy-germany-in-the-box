@@ -1,11 +1,11 @@
 # Guest related
 namespace :guest do
 
-  resource :home, :controller => 'home' do
+  resource :home, controller: 'home' do
     get :wechat_test
   end
 
-  resource :static, :controller => 'static' do
+  resource :static, controller: 'static' do
     get :xipost
   end
 
@@ -51,7 +51,7 @@ namespace :guest do
   resources :products  do
   end
 
-  resource :search, :controller => 'search' do
+  resource :search, controller: 'search' do
   end
 
   # maybe it will become shops/applications at some point

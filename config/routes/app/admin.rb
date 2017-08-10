@@ -40,24 +40,24 @@ namespace :admin do
     patch :disapprove
     delete :destroy_image
 
-    resources :package_sets, :controller => 'shops/package_sets' do
+    resources :package_sets, controller: 'shops/package_sets' do
       patch :active
       patch :unactive
       delete :destroy_image
       delete :destroy_image_file
     end
 
-    resources :products, :controller => 'shops/products' do
+    resources :products, controller: 'shops/products' do
       patch :regular
       patch :highlight
       patch :approve
       patch :disapprove
 
-      resources :variants, :controller => 'shops/products/variants' do
+      resources :variants, controller: 'shops/products/variants' do
         delete '/option/:option_id', action: :destroy_option, as: :destroy_option
       end
 
-      resources :skus, :controller => 'shops/products/skus' do
+      resources :skus, controller: 'shops/products/skus' do
         delete :destroy_image
         patch :clone
       end
@@ -81,16 +81,16 @@ namespace :admin do
     patch :refresh_referrer_rate
   end
 
-  resource :account, :controller => 'account' do
+  resource :account, controller: 'account' do
   end
 
   resources :referrers do
     post :coupon
 
-    resources :provision_operations, :controller => 'referrers/provision_operations' do
+    resources :provision_operations, controller: 'referrers/provision_operations' do
     end
 
-    resources :provisions, :controller => 'referrers/provisions' do
+    resources :provisions, controller: 'referrers/provisions' do
       patch :refresh
     end
 

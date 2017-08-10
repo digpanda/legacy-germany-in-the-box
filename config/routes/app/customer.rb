@@ -1,7 +1,7 @@
 # Customer related
 namespace :customer do
 
-  resource :referrer, :controller => 'referrer' do
+  resource :referrer, controller: 'referrer' do
     get :provision
     get :provision_rates
     get :coupons
@@ -10,16 +10,16 @@ namespace :customer do
     get :agb
   end
 
-  resource :cart, :controller => 'cart' do
+  resource :cart, controller: 'cart' do
   end
 
   namespace :checkout do
     namespace :callback do
 
-      resource :alipay, :controller => 'alipay' do
+      resource :alipay, controller: 'alipay' do
       end
 
-      resource :wechatpay, :controller => 'wechatpay' do
+      resource :wechatpay, controller: 'wechatpay' do
         get :fail
         get :cancel
       end
@@ -27,18 +27,18 @@ namespace :customer do
     end
   end
 
-  resource :checkout, :controller => 'checkout' do
+  resource :checkout, controller: 'checkout' do
     get :payment_method
     get '/gateways/:payment_method', to: "checkout#gateway", as: "gateway"
     # get :gateway
   end
 
-  resource :account, :controller => 'account' do
+  resource :account, controller: 'account' do
     get :menu
     get :missing_info
   end
 
-  resource :identity, :controller => 'identity' do
+  resource :identity, controller: 'identity' do
     get :xipost_remote
   end
 
@@ -48,13 +48,13 @@ namespace :customer do
   resources :orders  do
     patch :continue
 
-    resource :customer, :controller => 'orders/customer' do
+    resource :customer, controller: 'orders/customer' do
     end
 
-    resources :addresses, :controller => 'orders/addresses' do
+    resources :addresses, controller: 'orders/addresses' do
     end
 
-    resource :coupons, :controller => 'orders/coupons' do
+    resource :coupons, controller: 'orders/coupons' do
     end
   end
 
