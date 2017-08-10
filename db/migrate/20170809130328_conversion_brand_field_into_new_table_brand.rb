@@ -3,17 +3,20 @@ class ConversionBrandFieldIntoNewTableBrand < Mongoid::Migration
     Product.all.each do |product|
       old_brand = product.attributes["brand"]
       puts "Old brand field is `#{old_brand}`"
-      if Brand.where(name: old_brand["de"]).count == 0
+      brand = Brand.where(name: old_brand["de"]).first
+
+      unless brand
         puts 'New brand was not already saved, let\'s make a new one.'
-        new_brand = Brand.new
-        new_brand.name_translations = old_brand
-        new_brand.save!
-        product.brand = new_brand
-        product.save!
-        puts 'It was saved.'
+        brand = Brand.new
+        brand.name_translations = old_brand
+        brand.save!
+        puts "It was saved (#{brand.id})."
       else
-        puts 'The brand was already registered.'
+        puts "The brand was already registered (#{brand.id})."
       end
+
+      product.brand = brand
+      product.save!
     end
   end
 
