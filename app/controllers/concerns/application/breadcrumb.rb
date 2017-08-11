@@ -74,6 +74,23 @@ module Application
     # ADMIN
     # =====
 
+    def breadcrumb_admin_links
+      add_breadcrumb 'Links', admin_links_path
+    end
+
+    def breadcrumb_admin_link
+      add_breadcrumb @link.title, admin_link_path(@link) if @link
+    end
+
+    def breadcrumb_admin_link_edit
+      add_breadcrumb 'Edit', edit_admin_link_path(@link) if @link
+    end
+
+    def breadcrumb_admin_link_new
+      add_breadcrumb 'New', new_admin_link_path
+    end
+
+
     def breadcrumb_admin_coupons
       add_breadcrumb 'Coupons', admin_coupons_path
     end
