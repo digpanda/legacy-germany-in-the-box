@@ -16,5 +16,6 @@
 
 <%= render partial: "admin/links/table", :locals => { :links => @links } %>
 
+<%= render partial: "admin/links/wechat" %>
 
 <%= will_paginate @links, renderer: BootstrapPagination::Rails %>

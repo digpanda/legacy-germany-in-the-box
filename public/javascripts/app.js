@@ -148,6 +148,46 @@ var __makeRelativeRequire = function(require, mappings, pref) {
     return require(name);
   }
 };
+require.register("javascripts/controllers/admin/links/index.js", function(exports, require, module) {
+'use strict';
+
+/**
+* LinksIndex Class
+*/
+var LinksIndex = {
+
+  /**
+  * Initializer
+  */
+  init: function init() {
+
+    this.handleWechatUrl();
+  },
+
+  handleWechatUrl: function handleWechatUrl() {
+    $('#wechat-url-adjuster').on('keyup', function (e) {
+      var rawUrl = $(this).val();
+      LinksIndex.getWechatUrl(rawUrl);
+    });
+  },
+
+  getWechatUrl: function getWechatUrl(url) {
+
+    var Link = require("javascripts/models/link");
+    Link.wechat(url, function (res) {
+
+      if (res.success == true) {
+        var endUrl = res.data.adjusted_url;
+        $('#wechat-url-adjuster-result').html(endUrl);
+      }
+    });
+  }
+
+};
+
+module.exports = LinksIndex;
+});
+
 require.register("javascripts/controllers/admin/shops/package_sets.js", function(exports, require, module) {
 'use strict';
 
@@ -2124,6 +2164,46 @@ var DutyCategory = {
 };
 
 module.exports = DutyCategory;
+});
+
+require.register("javascripts/models/link.js", function(exports, require, module) {
+"use strict";
+
+/**
+ * Link Class
+ */
+var Link = {
+
+  /**
+   * Get the total number of products within the cart
+   */
+  wechat: function wechat(raw_url, callback) {
+
+    // NOTE : condition race made it impossible to build
+    // I passed 2 full days on this problem
+    // Good luck.
+    // - Laurent
+    $.ajax({
+      method: "GET",
+      url: "/api/admin/links/wechat",
+      data: { raw_url: raw_url }
+
+    }).done(function (res) {
+
+      callback(res);
+    }).error(function (err) {
+
+      if (typeof err == "undefined") {
+        return;
+      }
+
+      callback({ success: false, error: err.responseJSON.error });
+    });
+  }
+
+};
+
+module.exports = Link;
 });
 
 require.register("javascripts/models/navigation_model.js", function(exports, require, module) {
