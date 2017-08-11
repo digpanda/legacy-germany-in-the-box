@@ -1,3 +1,6 @@
+#csstyle .\+large {
+  width: 100%; }
+
 #csstyle .\+danger-zone {
   border: 2px dashed #d6506c; }
   #csstyle .\+danger-zone hr {

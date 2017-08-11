@@ -12,8 +12,9 @@
   <div class="+small-spacer"></div>
 
   <div class="row details__block">
-    <%= text_field_tag :raw_url, nil, id: "wechat-url-adjuster" %>
-    <div id="wechat-url-adjuster-result" class="+blue"></div>
+    Raw URL <%= text_field_tag :raw_url, nil, id: "wechat-url-adjuster", class: "+red +large" %>
+    <div class="+small-spacer"></div>
+    End URL <%= text_field_tag :end_url, nil, id: "wechat-url-adjuster-result", disabled: "disabled", class: "+blue +large" %>
   </div>
 
 

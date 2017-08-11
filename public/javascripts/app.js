@@ -178,7 +178,7 @@ var LinksIndex = {
 
       if (res.success == true) {
         var endUrl = res.data.adjusted_url;
-        $('#wechat-url-adjuster-result').html(endUrl);
+        $('#wechat-url-adjuster-result').val(endUrl);
       }
     });
   }
