@@ -15,6 +15,9 @@
       URL
     </th>
     <th>
+      Valid URL
+    </th>
+    <th>
       Created At
     </th>
     <th>
@@ -39,6 +42,9 @@
       <td>
         <a href="<%= link.url %>"><%= link.url %></a>
       </td>
+      <td>
+        <%= boolean_icon(link.valid_url) %>
+      </th>
       <td>
         <%= link.c_at %>
       </td>
