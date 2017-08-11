@@ -8,7 +8,7 @@ class WechatLinkCreator
   end
 
   def with_referrer(referrer)
-    raw_url = guest_link_path(link, reference_id: referrer.reference_id)
+    raw_url = url_for(:action => 'index', :controller => 'guest/links', :host => 'germanyinbox.com', :protocol => 'https', :reference_id => referrer.reference_id)
     WechatUrlAdjuster.new(raw_url).adjusted_url
   end
 
