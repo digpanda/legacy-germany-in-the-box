@@ -2494,85 +2494,85 @@ body {
     margin-bottom: 0.5em;
     color: #919191; }
 
-.provision {
+.referrer {
   font-size: 20px; }
-  .provision__title {
+  .referrer__title {
     color: #464646;
     font-size: 24px;
     font-weight: bold; }
-  .provision__title-button {
+  .referrer__title-button {
     border-bottom: 1px dashed #33965e;
     float: right;
     margin-top: 0.9em;
     font-size: 15px;
     font-weight: normal; }
-    .provision__title-button a {
+    .referrer__title-button a {
       color: #33965e; }
-  .provision__small {
+  .referrer__small {
     width: 10%; }
-  .provision__large {
+  .referrer__large {
     min-width: 20%; }
-  .provision__list {
+  .referrer__list {
     margin-left: -15px;
     margin-right: -15px;
     font-size: 15px; }
-    .provision__list.\--green {
+    .referrer__list.\--green {
       color: #33965e;
       font-weight: bold; }
-    .provision__list.\--blue {
+    .referrer__list.\--blue {
       color: #3498db;
       font-weight: bold; }
-    .provision__list.\--link {
+    .referrer__list.\--link {
       border-bottom: 1px dashed #33965e;
       padding-bottom: 3px;
       font-size: 17px; }
-    .provision__list a {
+    .referrer__list a {
       display: block; }
-    .provision__list th {
+    .referrer__list th {
       text-align: center;
       margin: 0 auto;
       padding: 1em;
       font-weight: bold;
       font-size: 16px; }
-    .provision__list tr {
+    .referrer__list tr {
       border-top: 1px solid #bdc3c7; }
-    .provision__list tbody tr:hover {
+    .referrer__list tbody tr:hover {
       background-color: #f9f9f9;
       cursor: pointer; }
-    .provision__list td {
+    .referrer__list td {
       text-align: center;
       margin: 0 auto;
       padding: 1em; }
-    .provision__list table {
+    .referrer__list table {
       width: 100%;
       table-layout: fixed; }
-    .provision__list thead {
+    .referrer__list thead {
       border-top: 1px solid #bdc3c7; }
-  .provision__insight {
+  .referrer__insight {
     font-size: 20px; }
-  .provision__insight-details {
+  .referrer__insight-details {
     margin-left: -15px;
     margin-right: -15px;
     padding-top: 1em;
     padding-bottom: 1em;
     border-top: 1px solid #bdc3c7;
     border-bottom: 1px solid #bdc3c7; }
-  .provision__insight-details-note {
+  .referrer__insight-details-note {
     color: #bdc3c7;
     font-size: 14px;
     max-width: 150px;
     text-align: center;
     margin: 0 auto; }
-  .provision__insight-details-total-earned {
+  .referrer__insight-details-total-earned {
     text-align: center; }
-    .provision__insight-details-total-earned.\--digits {
+    .referrer__insight-details-total-earned.\--digits {
       color: #ABABA8;
       font-weight: bold;
       font-size: 24px; }
-  .provision__insight-details-current-balance {
+  .referrer__insight-details-current-balance {
     text-align: center;
     border-left: 1px solid #bdc3c7; }
-    .provision__insight-details-current-balance.\--digits {
+    .referrer__insight-details-current-balance.\--digits {
       color: #3498db;
       font-weight: bold;
       font-size: 24px; }

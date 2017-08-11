@@ -1,5 +1,9 @@
 zh-CN:
   referrer:
+    link: 链接
+    links: 线上推广
+    title: 推文
+    share: 分享
     qrcode: 专属服务号二维码(游客分享)
     update_account: 更新账户
     agb_agreement: 我已阅读并同意接受<a href="%{url}">AGB</a>条款

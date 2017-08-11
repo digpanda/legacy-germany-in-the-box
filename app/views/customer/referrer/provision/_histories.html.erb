@@ -1,18 +1,18 @@
 <% unless histories.count == 0 %>
-<div class="provision__orders">
+<div class="referrer__orders">
 
   <!-- BALANCE HISTORY -->
-  <div class="provision__title">
+  <div class="referrer__title">
     <%= I18n.t('referrer.balance_history') %>
   </div>
 
-  <div class="provision__list">
+  <div class="referrer__list">
     <table>
       <thead>
-        <th class="provision__small">
+        <th class="referrer__small">
           <%= I18n.t('referrer.type') %>
         </th>
-        <th class="provision__large">
+        <th class="referrer__large">
           <%= I18n.t('referrer.description') %>
         </th>
         <th>
@@ -36,9 +36,9 @@
             </td>
             <td>
               <% if history[:type] == :order %>
-                <span class="provision__list --green --link"><%= history[:transfer] %></span>
+                <span class="referrer__list --green --link"><%= history[:transfer] %></span>
               <% elsif history[:type] == :operation %>
-                <span class="provision__list --blue --link"><%= history[:transfer] %></span>
+                <span class="referrer__list --blue --link"><%= history[:transfer] %></span>
               <% else %>
                 <%= history[:transfer] %>
               <% end %>

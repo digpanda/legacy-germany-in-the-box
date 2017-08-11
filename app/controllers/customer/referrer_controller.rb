@@ -12,6 +12,10 @@ class Customer::ReferrerController < ApplicationController
   def provision
   end
 
+  def links
+    @links = Link.all
+  end
+
   # we get the provision rates of all the package sets that are not 0.0
   def provision_rates
     @package_sets = PackageSet.active.where(:referrer_rate.gt => 0.0).order_by(name: :asc).all
