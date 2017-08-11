@@ -1,28 +1,28 @@
-<div class="provision__insight">
+<div class="referrer__insight">
 
   <!-- PROVISION INSIGHT -->
-  <div class="provision__title">
+  <div class="referrer__title">
     <%= I18n.t('referrer.provision_insight') %>
-    <div class="provision__title-button">
+    <div class="referrer__title-button">
       <a href="<%= provision_rates_customer_referrer_path %>"><i class="percent"></i> <%= I18n.t('referrer.provision_rates') %></a>
     </div>
   </div>
 
   <!-- PROVISION DETAILS -->
-  <div class="provision__insight-details">
+  <div class="referrer__insight-details">
 
     <div class="row +nomargin">
       <div class="col-xs-6">
-        <div class="provision__insight-details-total-earned">
+        <div class="referrer__insight-details-total-earned">
           <%= I18n.t('referrer.total_earned') %>
-          <div class="provision__insight-details-total-earned --digits"><%= referrer.total_earned.in_euro.display %></div>
+          <div class="referrer__insight-details-total-earned --digits"><%= referrer.total_earned.in_euro.display %></div>
         </div>
       </div>
       <div class="col-xs-6 +nopadding-left">
-        <div class="provision__insight-details-current-balance">
+        <div class="referrer__insight-details-current-balance">
           <%= I18n.t('referrer.current_balance') %>
-          <div class="provision__insight-details-current-balance --digits"><%= referrer.current_balance.in_euro.display %></div>
-          <div class="provision__insight-details-note"><%= I18n.t('referrer.your_can_claim_this_money_from', amount: setting.referrer_money_claim.in_euro.display) %></div>
+          <div class="referrer__insight-details-current-balance --digits"><%= referrer.current_balance.in_euro.display %></div>
+          <div class="referrer__insight-details-note"><%= I18n.t('referrer.your_can_claim_this_money_from', amount: setting.referrer_money_claim.in_euro.display) %></div>
         </div>
       </div>
     </div>

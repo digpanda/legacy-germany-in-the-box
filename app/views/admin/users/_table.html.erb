@@ -9,6 +9,9 @@
         Role
       </th>
       <th>
+        Tester
+      </th>
+      <th>
         Is Referrer
       </th>
       <th>
@@ -38,6 +41,9 @@
           </td>
           <td>
             <%= user.role %>
+          </td>
+          <td>
+            <%= boolean_icon(user.tester?) %>
           </td>
           <td>
             <%= boolean_icon(user.referrer?) %>

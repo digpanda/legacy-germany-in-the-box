@@ -1,0 +1,21 @@
+<div class="details">
+
+  <div class="row">
+    <div class="col-md-10">
+      <h2>Wechat URL Adjuster</h2>
+      <em>Small tool to generate Wechat ready URLs</em>
+    </div>
+    <div class="col-md-2 details__action">
+    </div>
+  </div>
+
+  <div class="+small-spacer"></div>
+
+  <div class="row details__block">
+    Raw URL <%= text_field_tag :raw_url, nil, id: "wechat-url-adjuster", class: "+red +large" %>
+    <div class="+small-spacer"></div>
+    End URL <%= text_field_tag :end_url, nil, id: "wechat-url-adjuster-result", disabled: "disabled", class: "+blue +large" %>
+  </div>
+
+
+</div>

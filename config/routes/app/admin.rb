@@ -18,6 +18,9 @@ namespace :admin do
     patch :approve
   end
 
+  resources :links do
+  end
+
   resources :payment_gateways do
   end
 
@@ -29,7 +32,7 @@ namespace :admin do
 
   resources :brands do
   end
-  
+
   resources :products do
   end
 

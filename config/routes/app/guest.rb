@@ -27,6 +27,9 @@ namespace :guest do
     get :publicity
   end
 
+  resources :links do
+  end
+
   resources :coupons do
     get :flyer
   end

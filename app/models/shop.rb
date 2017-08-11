@@ -2,6 +2,7 @@ require 'iso4217/currency_mongoid'
 
 class Shop
   include MongoidBase
+  # include Mongoid::Slug
 
   Numeric.include CoreExtensions::Numeric::CurrencyLibrary
 
@@ -9,6 +10,7 @@ class Shop
 
   field :approved,        type: Time
   field :name,            type: String
+  # slug :name
 
   field :shopname,        type: String,     localize: true
   field :desc,            type: String,     localize: true

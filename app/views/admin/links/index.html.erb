@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="col-md-10">
+    <h2>Links</h2>
+    <hr>
+  </div>
+  <div class="col-md-2 details__action">
+    <a href="<%= new_admin_link_path %>"><i class="fa fa-plus tooltipster" title="Create new link"></i></a>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <%= render partial: "shared/partials/search" %>
+  </div>
+</div>
+
+<%= render partial: "admin/links/table", :locals => { :links => @links } %>
+
+<%= render partial: "admin/links/wechat" %>
+
+<%= will_paginate @links, renderer: BootstrapPagination::Rails %>

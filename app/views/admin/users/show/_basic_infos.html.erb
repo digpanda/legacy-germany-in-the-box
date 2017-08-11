@@ -13,6 +13,8 @@
       <br />
       Role : <%= editable_field(@user, admin_user_path(@user), :role, :select, [user_roles, {:selected => @user.role}]) %>
       <br />
+      Tester : <%= editable_field(@user, admin_user_path(@user), :tester, :select, [boolean_select, {:selected => @user.tester}]) %>
+      <br />
       Precreated : <%= boolean_icon(@user.precreated) %>
       <br />
       First name : <%= @user.fname %>

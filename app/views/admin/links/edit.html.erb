@@ -1,0 +1,14 @@
+<div class="details">
+  <div class="row details__block">
+    <h3>Edit link <%= @link.title %></h3>
+    <hr>
+
+    <%= form_for [:admin, @link] do |form| %>
+
+      <%= render partial: "admin/links/form", :locals => { :form => form } %>
+
+      <%= form.submit "Edit link", {:class => "btn btn-primary"} %>
+    <% end %>
+
+  </div>
+</div>

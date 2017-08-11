@@ -1,22 +1,22 @@
-<% unless provisions.count == 0 %>
+<% unless links.count == 0 %>
 <div class="referrer__orders">
 
   <!-- ORDERS LIST -->
   <div class="referrer__title">
-    <%= I18n.t('referrer.orders') %>
+    <%= I18n.t('referrer.links') %>
   </div>
 
   <div class="referrer__list">
     <table>
       <thead>
         <th>
-          <%= I18n.t('referrer.customer') %>
-        </th>
-        <th class="referrer__large">
-          <%= I18n.t('referrer.order') %>
+          <%= I18n.t('referrer.title') %>
         </th>
         <th>
-          <%= I18n.t('referrer.provision') %>
+          <%= I18n.t('referrer.link') %>
+        </th>
+        <th>
+          <%= I18n.t('referrer.share') %>
         </th>
         <th>
           <%= I18n.t('referrer.creation') %>
@@ -24,19 +24,19 @@
       </thead>
       <tbody>
 
-        <% provisions.each do |provision| %>
+        <% links.each do |link| %>
           <tr data-href="#">
             <td>
-              <%= provision.order.user.decorate.full_name %>
+              <%= link.title %>
             </td>
             <td>
-              <%= truncate provision.order.products_name_array.join(', '), length: 25 %>
+              <a href="<%= link.wechat.with_referrer(@referrer) %>" target="_blank"><%= truncate link.wechat.with_referrer(@referrer), length: 30 %></a>
             </td>
             <td>
-              <span class="referrer__list --green --link"><%= provision.provision.in_euro.display %></span>
+              TO DO
             </td>
             <td>
-              <%= provision.c_at.strftime("%Y-%m-%d") %>
+              <%= link.c_at.strftime("%Y-%m-%d") %>
             </td>
           </tr>
         <% end %>

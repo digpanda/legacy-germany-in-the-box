@@ -1,5 +1,6 @@
 class ReferrerGroup
   include MongoidBase
+  include Rails.application.routes.url_helpers
 
   field :token, type: String
   field :name, type: String
@@ -33,10 +34,14 @@ class ReferrerGroup
   end
 
   def referrer_url
-    'https://open.weixin.qq.com/connect/oauth2/authorize?' +
-        "appid=#{Rails.application.config.wechat[:username_mobile]}&" +
-        'redirect_uri=http%3A%2F%2Fgermanyinbox.com/connect/auth/referrer?' +
-        "token=#{self.token}" +
-        '&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect'
+    @referrer_url ||= begin
+      url = connect_referrer_registration_path(token: self.token)
+      WechatUrlAdjuster.new(url).adjusted_url
+    end
+    # 'https://open.weixin.qq.com/connect/oauth2/authorize?' +
+    #     "appid=#{Rails.application.config.wechat[:username_mobile]}&" +
+    #     'redirect_uri=http%3A%2F%2Fgermanyinbox.com/connect/auth/referrer?' +
+    #     "token=#{self.token}" +
+    #     '&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect'
   end
 end
