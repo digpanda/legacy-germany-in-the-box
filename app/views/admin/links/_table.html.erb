@@ -12,7 +12,7 @@
       Position
     </th>
     <th>
-      URL
+      Raw URL
     </th>
     <th>
       Valid URL
@@ -40,7 +40,7 @@
         <%= editable_field(link, admin_link_path(link), :position, :text_field) %>
       </td>
       <td>
-        <a href="<%= link.url %>"><%= link.url %></a>
+        <a href="<%= link.raw_url %>" target="_blank"><%= link.raw_url %></a>
       </td>
       <td>
         <%= boolean_icon(link.valid_url) %>
