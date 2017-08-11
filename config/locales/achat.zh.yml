@@ -1,7 +1,7 @@
 zh-CN:
   referrer:
     link: 链接
-    links: 线上推广
+    links: 内容营销(日常分享)
     title: 推文
     share: 分享
     qrcode: 专属服务号二维码(游客分享)
@@ -28,7 +28,7 @@ zh-CN:
     customer: 顾客
     order: 订单
     provision: 佣金
-    creation: 下单时间
+    creation: 创建时间
     transfer: 流水
     description: 详情
     date: 日期
