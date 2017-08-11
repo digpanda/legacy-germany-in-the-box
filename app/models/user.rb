@@ -51,6 +51,7 @@ class User
   field :uid,       type: String
 
   field :banished, type: Boolean, default: false
+  field :tester, type: Boolean, default: false
 
   # referrer as someone lead is binded with him
   belongs_to :parent_referrer, :inverse_of => :child_user, :class_name => 'Referrer'
@@ -176,6 +177,10 @@ class User
 
   def referrer?
     self.referrer.present?
+  end
+
+  def tester?
+    self.tester
   end
 
   # if there's any missing info the user
