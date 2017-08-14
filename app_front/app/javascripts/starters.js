@@ -31,7 +31,7 @@ var Starters = [
   'table_clicker',
   'tooltipster',
   'total_products',
-
+  'weixin',
 ]
 
 module.exports = Starters;

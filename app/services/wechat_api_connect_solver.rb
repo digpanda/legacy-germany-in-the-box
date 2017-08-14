@@ -61,6 +61,8 @@ class WechatApiConnectSolver < BaseService
     }
   end
 
+  # NOTE : it seems we use a different wa to get the access token than weixin
+  # it's a different API.
   def access_token_gateway
     @access_token_gateway ||= get_url oauth2_access_token_url
   end

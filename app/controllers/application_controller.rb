@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :navigation, :cart_manager, :identity_solver
 
-  before_action :solve_silent_login, :solve_origin, :solve_landing
+  before_action :solve_silent_login, :solve_origin, :solve_landing, :solve_weixin
 
   def solve_silent_login
     if params[:code]
@@ -33,6 +33,25 @@ class ApplicationController < ActionController::Base
   def wechat_api_connect_solver
     @wechat_api_connect_solver ||= WechatApiConnectSolver.new(params[:code]).resolve!
   end
+
+
+  # TODO : this was made for temporary purpose and will be moved into clean libraries
+  # and also used only when needed
+  def solve_weixin
+    @timestamp = Time.now.to_i.to_s
+    @nonce_str = SecureRandom.uuid.tr('-', '')
+    @signature = WeixinApiSignature.new(request:request, ticket:ticket, nonce_str:@nonce_str, timestamp:@timestamp).resolve!.data[:signature]
+    @js_api_list = []
+  end
+
+  def ticket
+    @ticket ||= ticket_gateway.data[:ticket]
+  end
+
+  def ticket_gateway
+    @ticket_gateway ||= WeixinApiTicket.new.resolve!
+  end
+  # TODO : above is to move somewhere else
 
   def current_page
     if params[:page]
