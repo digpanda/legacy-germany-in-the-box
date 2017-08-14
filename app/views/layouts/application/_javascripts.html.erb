@@ -2,11 +2,12 @@
 
 <div id="weixin"
      data-debug="true"
-     data-app-id="<%= ENV["wechat_username_mobile"] %>"
-     data-timestamp="<%= @timestamp %>"
-     data-nonce-str="<%= @nonce_str %>"
-     data-signature=" <%= @signature %>"
-     data-js-api-list="<%= @js_api_list %>">
+     <% binding.pry %>
+     data-app-id="<%= @weixin_config.data[:app_id] %>"
+     data-timestamp="<%= @weixin_config.data[:timestamp] %>"
+     data-nonce-str="<%= @weixin_config.data[:nonce_str] %>"
+     data-signature=" <%= @weixin_config.data[:signature] %>"
+     data-js-api-list="<%= @weixin_config.data[:js_api_list] %>">
 </div>
 
 <script src="/javascripts/vendor.js?version=<%= assets_js_version_hash('vendor') %>"></script>
