@@ -1,14 +1,17 @@
-<script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+<% if current_user&.tester? %>
 
-<div id="weixin"
-     data-debug="true"
-     <% binding.pry %>
-     data-app-id="<%= @weixin_config.data[:app_id] %>"
-     data-timestamp="<%= @weixin_config.data[:timestamp] %>"
-     data-nonce-str="<%= @weixin_config.data[:nonce_str] %>"
-     data-signature=" <%= @weixin_config.data[:signature] %>"
-     data-js-api-list="<%= @weixin_config.data[:js_api_list] %>">
-</div>
+  <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+
+  <div id="weixin"
+       data-debug="true"
+       data-app-id="<%= @weixin_config.data[:app_id] %>"
+       data-timestamp="<%= @weixin_config.data[:timestamp] %>"
+       data-nonce-str="<%= @weixin_config.data[:nonce_str] %>"
+       data-signature=" <%= @weixin_config.data[:signature] %>"
+       data-js-api-list="<%= @weixin_config.data[:js_api_list] %>">
+  </div>
+
+<% end %>
 
 <script src="/javascripts/vendor.js?version=<%= assets_js_version_hash('vendor') %>"></script>
 <script src="/javascripts/app.js?version=<%= assets_js_version_hash('app') %>"></script>

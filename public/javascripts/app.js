@@ -4056,9 +4056,14 @@ var WeixinStarter = {
    */
   init: function init() {
 
-    this.configure();
-    this.onReady();
-    this.onError();
+    if (typeof this.data() !== "undefined") {
+
+      this.configure();
+      this.onReady();
+      this.onError();
+
+      this.onMenuShareTimeline();
+    }
   },
 
   data: function data() {
@@ -4066,7 +4071,6 @@ var WeixinStarter = {
   },
 
   configure: function configure() {
-
     wx.config({
       debug: this.data().debug,
       appId: this.data().appId,
@@ -4078,16 +4082,28 @@ var WeixinStarter = {
   },
 
   onReady: function onReady() {
-
     wx.ready(function () {
       console.log('ready');
     });
   },
 
   onError: function onError() {
-
     wx.error(function (res) {
-      console.log('error ' + res);
+      alert('WEIXIN ERROR : ' + res);
+    });
+  },
+
+  onMenuShareTimeline: function onMenuShareTimeline() {
+    wx.onMenuShareTimeline({
+      title: 'Example title',
+      link: 'https://germanyinbox.com/test',
+      imgUrl: 'https://germanyinbox.com/images/logos/germany-in-the-box.svg',
+      success: function success() {
+        alert('SUCCESS TIMELINE SHARE');
+      },
+      cancel: function cancel() {
+        alert('CANCEL TIMELINE SHARE');
+      }
     });
   }
 
