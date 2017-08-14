@@ -15,13 +15,13 @@
       <div class="col-xs-6">
         <div class="referrer__insight-details-total-earned">
           <%= I18n.t('referrer.total_earned') %>
-          <div class="referrer__insight-details-total-earned --digits"><%= referrer.total_earned.in_euro.display %></div>
+          <div class="referrer__insight-details-total-earned-digits"><%= referrer.total_earned.in_euro.display %></div>
         </div>
       </div>
       <div class="col-xs-6 +nopadding-left">
         <div class="referrer__insight-details-current-balance">
           <%= I18n.t('referrer.current_balance') %>
-          <div class="referrer__insight-details-current-balance --digits"><%= referrer.current_balance.in_euro.display %></div>
+          <div class="referrer__insight-details-current-balance-digits"><%= referrer.current_balance.in_euro.display %></div>
           <div class="referrer__insight-details-note"><%= I18n.t('referrer.your_can_claim_this_money_from', amount: setting.referrer_money_claim.in_euro.display) %></div>
         </div>
       </div>

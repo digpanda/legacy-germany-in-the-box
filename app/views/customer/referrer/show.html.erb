@@ -16,31 +16,12 @@
       <a href="<%= links_customer_referrer_path %>" class="big-button --green"><%= I18n.t('referrer.links') %></a>
     <% end %>
 
-    <div class="+big-spacer"></div>
+  </div>
+</div>
 
-    <!--a href="<%= coupons_customer_referrer_path %>" class="big-button --grey"><%= I18n.t('referrer.your_coupons') %></a-->
-    <div class="+white-box +centered">
-      <span class="+bold"><%= I18n.t('referrer.your_coupons') %></span>
-      <br/>
-        <% if @referrer.coupons.count >0 %>
-        <span class="+green +bold">
-          <%= @referrer.coupons.first.code %>
-        </span>
-        <% end %>
-    </div>
-    <div class="+small-spacer"></div>
-    <div class="+white-box +centered">
-      <span class="+bold">导游福利8折码(导游自用)</span>
-      <br/>
-      <span class="+red +bold">2017dy</span>
-      <br/>
-      <li class="+left">重要！导游使用自己的账号下单还可收到佣金</li>
-      <li class="+left">导游福利，仅限个人及家庭使用</li>
-      <br/>
-      <p class="+left">注:如需发货到德国地址请在"地址示例"栏填写完整德国地址，其他中国地址邮编选项随意填写即可</p>
 
-    </div>
-    <div class="+small-spacer"></div>
-
+<div class="row">
+  <div class="col-md-8 col-md-push-2">
+    <%= render partial: 'customer/referrer/show/coupons_details', :locals => {  :referrer => @referrer } %>
   </div>
 </div>

@@ -2566,19 +2566,22 @@ body {
     max-width: 150px;
     text-align: center;
     margin: 0 auto; }
+    @media (min-width: 995px) {
+      .referrer__insight-details-note.\--large {
+        max-width: 250px; } }
   .referrer__insight-details-total-earned {
     text-align: center; }
-    .referrer__insight-details-total-earned.\--digits {
-      color: #ABABA8;
-      font-weight: bold;
-      font-size: 24px; }
+  .referrer__insight-details-total-earned-digits {
+    color: #ABABA8;
+    font-weight: bold;
+    font-size: 24px; }
   .referrer__insight-details-current-balance {
     text-align: center;
     border-left: 1px solid #bdc3c7; }
-    .referrer__insight-details-current-balance.\--digits {
-      color: #3498db;
-      font-weight: bold;
-      font-size: 24px; }
+  .referrer__insight-details-current-balance-digits {
+    color: #3498db;
+    font-weight: bold;
+    font-size: 24px; }
 
 @media (max-width: 994px) {
   .search-bar {

@@ -84,19 +84,23 @@
     max-width: 150px
     +centered
 
+    +option(large)
+      +breakpoint('desktop')
+        max-width: 250px
+
   +part(insight-details-total-earned)
     text-align: center
 
-    +option(digits)
-      color: $color-light-grey // originally green
-      font-weight: bold
-      font-size: 24px
+  +part(insight-details-total-earned-digits)
+    color: $color-light-grey // originally green
+    font-weight: bold
+    font-size: 24px
 
   +part(insight-details-current-balance)
     text-align: center
     border-left: 1px solid $color-grey
 
-    +option(digits)
-      color: $color-blue
-      font-weight: bold
-      font-size: 24px
+  +part(insight-details-current-balance-digits)
+    color: $color-blue
+    font-weight: bold
+    font-size: 24px
