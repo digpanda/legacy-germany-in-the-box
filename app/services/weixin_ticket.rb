@@ -4,7 +4,7 @@ class WeixinTicket < BaseService
 
   def resolve!
     return return_with(:error, "Cannot resolve ticket.") unless cached_ticket
-    return_with(:success, ticket: cached_ticket)
+    return_with(:success, ticket: cached_ticket.ticket)
   end
 
   private

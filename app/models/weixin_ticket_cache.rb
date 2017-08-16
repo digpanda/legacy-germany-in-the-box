@@ -6,5 +6,5 @@ class WeixinTicketCache
   field :ticket, type: String
 
   scope :still_valid, -> { where(c_at: { '$gt': Time.now - EXPIRATION_TIME.call }) }
-
+  
 end
