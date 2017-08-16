@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :navigation, :cart_manager, :identity_solver
 
-  before_action :solve_silent_login, :solve_origin, :solve_landing
+  before_action :solve_silent_login, :solve_origin, :solve_landing, :weixin_config
 
   def solve_silent_login
     if params[:code]
@@ -32,6 +32,14 @@ class ApplicationController < ActionController::Base
 
   def wechat_api_connect_solver
     @wechat_api_connect_solver ||= WechatApiConnectSolver.new(params[:code]).resolve!
+  end
+
+  # TODO : this has to be moved elsewhere and not called each time
+  def weixin_config
+    @weixin_config ||= begin
+      ticket = WeixinApiTicket.new.resolve!.data[:ticket]
+      WeixinApiJsConfig.new(request: request, ticket: ticket).resolve!
+    end
   end
 
   def current_page

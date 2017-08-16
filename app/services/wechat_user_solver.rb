@@ -41,7 +41,7 @@ class WechatUserSolver < BaseService
 
   def ensure_unionid!
     if openid && !unionid
-      user_info = WechatApiUserInfo.new(openid).resolve!
+      user_info = WeixinApiUserInfo.new(openid).resolve!
       if user_info.success?
         @unionid = user_info.data[:user_info]['unionid']
         slack.message "WechatUserSolver `unionid` recovered by API `#{unionid}`"

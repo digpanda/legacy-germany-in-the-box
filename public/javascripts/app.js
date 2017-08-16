@@ -2605,7 +2605,7 @@ require.register("javascripts/starters.js", function(exports, require, module) {
 /**
  * Starters Class
  */
-var Starters = ['auto_resize', 'back_to_top', 'bootstrap', 'datepicker', 'distpicker', 'editable_fields', 'footer', 'input_validation', 'images_handler', 'lazy_loader', 'left_menu', 'links_behaviour', 'messages', 'mobile_menu', 'mobile', 'navigation', 'product_favorite', 'product_form', 'products_list', 'qrcode', 'refresh_time', 'responsive', 'search', 'sku_form', 'sweet_alert', 'table_clicker', 'tooltipster', 'total_products'];
+var Starters = ['auto_resize', 'back_to_top', 'bootstrap', 'datepicker', 'distpicker', 'editable_fields', 'footer', 'input_validation', 'images_handler', 'lazy_loader', 'left_menu', 'links_behaviour', 'messages', 'mobile_menu', 'mobile', 'navigation', 'product_favorite', 'product_form', 'products_list', 'qrcode', 'refresh_time', 'responsive', 'search', 'sku_form', 'sweet_alert', 'table_clicker', 'tooltipster', 'total_products', 'weixin'];
 
 module.exports = Starters;
 });
@@ -4041,6 +4041,75 @@ var TotalProducts = {
 };
 
 module.exports = TotalProducts;
+});
+
+require.register("javascripts/starters/weixin.js", function(exports, require, module) {
+'use strict';
+
+/**
+ * WeixinStarter Class
+ */
+var WeixinStarter = {
+
+  /**
+   * Initializer
+   */
+  init: function init() {
+
+    if (typeof this.data() !== "undefined") {
+
+      this.configure();
+      this.onReady();
+      this.onError();
+
+      this.onMenuShareTimeline();
+    }
+  },
+
+  data: function data() {
+    return $('#weixin').data();
+  },
+
+  configure: function configure() {
+    wx.config({
+      debug: this.data().debug,
+      appId: this.data().appId,
+      timestamp: this.data().timestamp,
+      nonceStr: this.data().nonceStr,
+      signature: this.data().signature,
+      jsApiList: this.data().jsApiList
+    });
+  },
+
+  onReady: function onReady() {
+    wx.ready(function () {
+      console.log('ready');
+    });
+  },
+
+  onError: function onError() {
+    wx.error(function (res) {
+      alert('WEIXIN ERROR : ' + res);
+    });
+  },
+
+  onMenuShareTimeline: function onMenuShareTimeline() {
+    wx.onMenuShareTimeline({
+      title: 'Example title',
+      link: 'https://germanyinbox.com/test',
+      imgUrl: 'https://germanyinbox.com/images/logos/germany-in-the-box.svg',
+      success: function success() {
+        alert('SUCCESS TIMELINE SHARE');
+      },
+      cancel: function cancel() {
+        alert('CANCEL TIMELINE SHARE');
+      }
+    });
+  }
+
+};
+
+module.exports = WeixinStarter;
 });
 
 require.register("___globals___", function(exports, require, module) {

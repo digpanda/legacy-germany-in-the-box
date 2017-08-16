@@ -1,7 +1,7 @@
 require 'fileutils'
 require 'json'
 
-class WechatReferrerQrcode < BaseService
+class WeixinReferrerQrcode < BaseService
 
   attr_reader :referrer
 
@@ -108,6 +108,7 @@ class WechatReferrerQrcode < BaseService
     }
   end
 
+  # NOTE : we could remove the access token because it was abstracted somewhere else already
   def access_token_gateway
     @access_token_gateway ||= get_url weixin_access_token_url
   end

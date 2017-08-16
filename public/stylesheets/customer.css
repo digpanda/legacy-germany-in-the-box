@@ -1,3 +1,6 @@
+#csstyle .\+small-text {
+  font-size: 14px; }
+
 #csstyle .\+large {
   width: 100%; }
 
@@ -2323,7 +2326,7 @@ body {
     margin-top: -0.5em; }
 
 .package-set-introduction h1 {
-  font-size: 27px; }
+  font-size: 22px; }
 
 .package-set-introduction p {
   text-align: justify; }
@@ -2345,7 +2348,8 @@ body {
     white-space: nowrap;
     overflow: hidden !important;
     text-overflow: ellipsis;
-    font-weight: 400; }
+    font-weight: 400;
+    letter-spacing: 0.2px; }
   .package-set-list-block__header-category {
     color: #bdc3c7;
     font-weight: 300;
