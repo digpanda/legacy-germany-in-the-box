@@ -15,6 +15,7 @@ var WeixinStarter = {
         this.onError();
 
         this.onMenuShareTimeline();
+        this.onMenuShareAppMessage();
 
       }
 
@@ -49,14 +50,33 @@ var WeixinStarter = {
 
     onMenuShareTimeline: function() {
       wx.onMenuShareTimeline({
-          title: 'Example title',
+          title: 'Example title TIMELINE',
           link: 'https://germanyinbox.com/test',
           imgUrl: 'https://germanyinbox.com/images/logos/germany-in-the-box.svg',
+
           success: function () {
             alert('SUCCESS TIMELINE SHARE')
           },
           cancel: function () {
             alert('CANCEL TIMELINE SHARE')
+          }
+      });
+    },
+
+    onMenuShareAppMessage: function() {
+      wx.onMenuShareAppMessage({
+          title: 'Example title APP MESSAGE',
+          desc: 'This is a description',
+          link: 'https://germanyinbox.com/test',
+          imgUrl: 'https://germanyinbox.com/images/logos/germany-in-the-box.svg',
+          type: 'link',
+          dataUrl: '',
+
+          success: function () {
+            alert('SUCCESS MESSAGE SHARE')
+          },
+          cancel: function () {
+            alert('CANCEL MESSAGE SHARE')
           }
       });
     },
