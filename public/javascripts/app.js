@@ -4089,7 +4089,7 @@ var WeixinStarter = {
 
   onError: function onError() {
     wx.error(function (res) {
-      alert('WEIXIN ERROR : ' + res);
+      alert('WEIXIN ERROR : ' + res.error);
     });
   },
 
