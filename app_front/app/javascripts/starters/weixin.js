@@ -37,7 +37,7 @@ var WeixinStarter = {
 
     onReady: function() {
       wx.ready(function(){
-        console.log('ready');
+        alert('WEIXIN READY');
       });
     },
 

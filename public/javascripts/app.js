@@ -4083,7 +4083,7 @@ var WeixinStarter = {
 
   onReady: function onReady() {
     wx.ready(function () {
-      console.log('ready');
+      alert('WEIXIN READY');
     });
   },
 
