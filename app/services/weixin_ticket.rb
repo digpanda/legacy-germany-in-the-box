@@ -1,5 +1,8 @@
 class WeixinTicket < BaseService
-  def initialize
+  attr_reader :scope
+
+  def initialize(scope: nil)
+    @scope = scope
   end
 
   def resolve!
@@ -15,16 +18,15 @@ class WeixinTicket < BaseService
 
   def fresh_weixin_ticket_cache!
     if weixin_api_ticket.success?
-      WeixinTicketCache.create(ticket: weixin_api_ticket.data[:ticket])
+      WeixinTicketCache.create(ticket: weixin_api_ticket.data[:ticket], scope: scope)
     end
   end
 
   def weixin_ticket_cache
-    WeixinTicketCache.still_valid.first
+    WeixinTicketCache.still_valid.with_scope(scope).first
   end
 
   def weixin_api_ticket
     WeixinApiTicket.new.resolve!
   end
-
 end

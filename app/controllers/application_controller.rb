@@ -38,7 +38,7 @@ class ApplicationController < ActionController::Base
   def weixin_js_config
     @weixin_js_config ||= begin
       if current_user&.tester?
-        ticket = WeixinTicket.new.resolve!
+        ticket = WeixinTicket.new(scope: request.host).resolve!
         return false unless ticket.success?
         js_config = WeixinApiJsConfig.new(request: request, ticket: ticket.data[:ticket]).resolve!
         return false unless js_config.success?
