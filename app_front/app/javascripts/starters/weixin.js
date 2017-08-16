@@ -38,13 +38,13 @@ var WeixinStarter = {
 
     onReady: function() {
       wx.ready(function(){
-        alert('WEIXIN READY');
+        console.log('WEIXIN READY');
       });
     },
 
     onError: function() {
       wx.error(function(res){
-        alert('WEIXIN ERROR : ' + res);
+        console.log('WEIXIN ERROR : ' + res);
       });
     },
 
@@ -55,10 +55,10 @@ var WeixinStarter = {
           imgUrl: 'https://germanyinbox.com/images/logos/germany-in-the-box.svg',
 
           success: function () {
-            alert('SUCCESS TIMELINE SHARE')
+            console.log('SUCCESS TIMELINE SHARE')
           },
           cancel: function () {
-            alert('CANCEL TIMELINE SHARE')
+            console.log('CANCEL TIMELINE SHARE')
           }
       });
     },
