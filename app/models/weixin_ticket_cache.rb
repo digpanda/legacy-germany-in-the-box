@@ -4,9 +4,9 @@ class WeixinTicketCache
 
   strip_attributes
   field :ticket, type: String
-  field :domain, type: String
+  field :cache_scope, type: String
 
   scope :still_valid, -> { where(c_at: { '$gt': Time.now - EXPIRATION_TIME.call }) }
-  scope :with_scope, -> (scope) { where(scope: scope) }
+  scope :with_cache_scope, -> (cache_scope) { where(cache_scope: cache_scope) }
 
 end

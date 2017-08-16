@@ -39,6 +39,7 @@ class ApplicationController < ActionController::Base
     @weixin_js_config ||= begin
       if current_user&.tester?
         ticket = WeixinTicket.new(scope: request.host).resolve!
+        SlackDispatcher.new.message("WEIXIN TICKET CACHE SCOPE : #{request.host}")
         return false unless ticket.success?
         js_config = WeixinApiJsConfig.new(request: request, ticket: ticket.data[:ticket]).resolve!
         return false unless js_config.success?
