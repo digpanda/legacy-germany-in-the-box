@@ -38,8 +38,9 @@ class ApplicationController < ActionController::Base
   def weixin_config
     @weixin_config ||= begin
       if current_user&.tester?
-        ticket = WeixinApiTicket.new.resolve!.data[:ticket]
-        WeixinApiJsConfig.new(request: request, ticket: ticket).resolve!
+        ticket = WeixinApiTicket.new.resolve!
+        return unless ticket.success?
+        WeixinApiJsConfig.new(request: request, ticket: ticket.data[:ticket]).resolve!
       end
     end
   end
