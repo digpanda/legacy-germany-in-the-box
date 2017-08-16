@@ -38,7 +38,7 @@ class ApplicationController < ActionController::Base
   def weixin_config
     @weixin_config ||= begin
       ticket = WeixinApiTicket.new.resolve!.data[:ticket]
-      WeixinApiConfig.new(request: request, ticket: ticket).resolve!
+      WeixinApiJsConfig.new(request: request, ticket: ticket).resolve!
     end
   end
 

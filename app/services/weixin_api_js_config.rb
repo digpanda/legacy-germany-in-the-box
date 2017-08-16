@@ -1,4 +1,4 @@
-class WeixinApiConfig < BaseService
+class WeixinApiJsConfig < BaseService
   attr_reader :request, :ticket
 
   def initialize(request: nil, ticket: nil)
@@ -7,6 +7,7 @@ class WeixinApiConfig < BaseService
   end
 
   def resolve!
+    return return_with(:error, signature_gateway.error) unless signature_gateway.success?
     return_with(:success, config)
   end
 

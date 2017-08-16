@@ -12,11 +12,11 @@ describe WechatUserSolver  do
 
   context '#resolve!' do
 
-    subject(:wechat_user_solver) { WechatUserSolver.new(wechat_data) }
+    subject(:subject) { described_class.new(wechat_data) }
 
     it 'creates and return a new customer' do
 
-      resolved = wechat_user_solver.resolve!
+      resolved = subject.resolve!
       expect(resolved.success?).to eq(true)
       expect(resolved.data[:customer]).to be_a(User)
 
@@ -26,7 +26,7 @@ describe WechatUserSolver  do
 
     it 'use an existing customer and return it' do
 
-      resolved = wechat_user_solver.resolve!
+      resolved = subject.resolve!
       expect(resolved.success?).to eq(true)
       expect(resolved.data[:customer]).to be_a(User)
 
