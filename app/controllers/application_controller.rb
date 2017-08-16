@@ -37,8 +37,10 @@ class ApplicationController < ActionController::Base
   # TODO : this has to be moved elsewhere and not called each time
   def weixin_config
     @weixin_config ||= begin
-      ticket = WeixinApiTicket.new.resolve!.data[:ticket]
-      WeixinApiJsConfig.new(request: request, ticket: ticket).resolve!
+      if current_user&.tester?
+        ticket = WeixinApiTicket.new.resolve!.data[:ticket]
+        WeixinApiJsConfig.new(request: request, ticket: ticket).resolve!
+      end
     end
   end
 
