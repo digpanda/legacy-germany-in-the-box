@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :navigation, :cart_manager, :identity_solver
 
-  before_action :solve_silent_login, :solve_origin, :solve_landing, :weixin_config
+  before_action :solve_silent_login, :solve_origin, :solve_landing, :weixin_js_config
 
   def solve_silent_login
     if params[:code]
@@ -35,13 +35,15 @@ class ApplicationController < ActionController::Base
   end
 
   # TODO : this has to be moved elsewhere and not called each time
-  def weixin_config
-    @weixin_config ||= begin
+  def weixin_js_config
+    @weixin_js_config ||= begin
       if current_user&.tester?
         ticket = WeixinTicket.new.resolve!
-        return unless ticket.success?
+        return false unless ticket.success?
         SlackDispatcher.new.message("TICKET : #{ticket.data}")
-        WeixinApiJsConfig.new(request: request, ticket: ticket.data[:ticket]).resolve!
+        js_config = WeixinApiJsConfig.new(request: request, ticket: ticket.data[:ticket]).resolve!
+        return false unless js_config.success?
+        js_config.data
       end
     end
   end
