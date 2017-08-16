@@ -44,7 +44,7 @@ var WeixinStarter = {
 
     onError: function() {
       wx.error(function(res){
-        console.log('WEIXIN ERROR : ' + res);
+        console.log('WEIXIN ERROR : ' + res.errMsg);
       });
     },
 
