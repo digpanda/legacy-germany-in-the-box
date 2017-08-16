@@ -1,6 +1,6 @@
 class WeixinTicketCache
   include MongoidBase
-  EXPIRATION_TIME = -> { 24.hours }
+  EXPIRATION_TIME = -> { 2.hours }
 
   strip_attributes
   field :ticket, type: String
