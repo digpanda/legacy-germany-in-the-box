@@ -38,7 +38,7 @@ class ApplicationController < ActionController::Base
   def weixin_config
     @weixin_config ||= begin
       if current_user&.tester?
-        ticket = WeixinApiTicket.new.resolve!
+        ticket = WeixinTicket.new.resolve!
         return unless ticket.success?
         SlackDispatcher.new.message("TICKET : #{ticket.data}")
         WeixinApiJsConfig.new(request: request, ticket: ticket.data[:ticket]).resolve!
