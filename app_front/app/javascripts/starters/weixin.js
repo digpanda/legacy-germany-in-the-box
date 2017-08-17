@@ -62,13 +62,13 @@ var WeixinStarter = {
     onMenuShareTimeline: function() {
       if (this.shareLinkAvailable()) {
         console.log('share timeline available');
-        wx.onMenuShareTimeline(WeixinStart.shareLinkParams());
+        wx.onMenuShareTimeline(WeixinStarter.shareLinkParams());
       }
     },
 
     onMenuShareAppMessage: function() {
       if (this.shareLinkAvailable()) {
-        wx.onMenuShareAppMessage(WeixinStart.shareLinkParams());
+        wx.onMenuShareAppMessage(WeixinStarter.shareLinkParams());
       }
     },
 
@@ -78,10 +78,10 @@ var WeixinStarter = {
 
     shareLinkParams: function() {
       return {
-        desc: WeixinStart.shareLinkData().desc,
-        imgUrl: WeixinStart.shareLinkData().imgUrl,
-        link: WeixinStart.shareLinkData().link,
-        title: WeixinStart.shareLinkData().title,
+        desc: WeixinStarter.shareLinkData().desc,
+        imgUrl: WeixinStarter.shareLinkData().imgUrl,
+        link: WeixinStarter.shareLinkData().link,
+        title: WeixinStarter.shareLinkData().title,
 
         success: function () {
         },
