@@ -58,9 +58,10 @@ var WeixinStarter = {
 
     onMenuShareTimeline: function() {
       wx.onMenuShareTimeline({
-          title: 'Example title TIMELINE',
-          link: 'https://germanyinbox.com/test',
+          desc: 'Description example TIMELINE',
           imgUrl: 'https://germanyinbox.com/images/logos/germany-in-the-box.svg',
+          link: 'https://germanyinbox.com/test',
+          title: 'Example title TIMELINE',
 
           success: function () {
             alert('SUCCESS TIMELINE SHARE')
@@ -73,12 +74,10 @@ var WeixinStarter = {
 
     onMenuShareAppMessage: function() {
       wx.onMenuShareAppMessage({
-          title: 'Example title APP MESSAGE',
           desc: 'This is a description',
-          link: 'https://germanyinbox.com/test',
           imgUrl: 'https://germanyinbox.com/images/logos/germany-in-the-box.svg',
-          type: 'link',
-          dataUrl: '',
+          link: 'https://germanyinbox.com/test',
+          title: 'Example title APP MESSAGE',
 
           success: function () {
             alert('SUCCESS MESSAGE SHARE')
