@@ -47,14 +47,12 @@ var WeixinStarter = {
     onReady: function() {
       wx.ready(function(){
         console.log('WEIXIN READY');
-        alert('WEIXIN READY');
       });
     },
 
     onError: function() {
       wx.error(function(res){
         console.log('WEIXIN ERROR : ' + res.errMsg);
-        alert('WEIXIN ERROR : ' + res.errMsg);
       });
     },
 
@@ -66,11 +64,9 @@ var WeixinStarter = {
 
           success: function () {
             console.log('SUCCESS TIMELINE SHARE')
-            alert('SUCCESS TIMELINE SHARE');
           },
           cancel: function () {
             console.log('CANCEL TIMELINE SHARE');
-            alert('CANCEL TIMELINE SHARE');
           }
       });
     },
@@ -85,10 +81,10 @@ var WeixinStarter = {
           dataUrl: '',
 
           success: function () {
-            alert('SUCCESS MESSAGE SHARE')
+            console.log('SUCCESS MESSAGE SHARE')
           },
           cancel: function () {
-            alert('CANCEL MESSAGE SHARE')
+            console.log('CANCEL MESSAGE SHARE')
           }
       });
     },
