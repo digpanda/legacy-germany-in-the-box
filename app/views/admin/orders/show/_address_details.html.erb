@@ -10,7 +10,7 @@
       <% if @order.user %>
         Email : <%= @order.user.email %><br />
         <% if @order.shipping_address %>
-          PID : <%= @order.shipping_address.pid %><br />
+          PID : <%= editable_field(@order.shipping_address, admin_order_address_path(@order, @order.shipping_address), :pid, :text_field) %><br />
         <% end %>
         Mobile : <%= @order.user.mobile %>
       <% else %>

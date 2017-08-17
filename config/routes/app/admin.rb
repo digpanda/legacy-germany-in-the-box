@@ -75,6 +75,8 @@ namespace :admin do
 
   resources :orders do
     patch :shipped
+    resources :addresses, controller: 'orders/addresses' do
+    end
   end
 
   resources :carts do
