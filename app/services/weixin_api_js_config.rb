@@ -41,7 +41,7 @@ class WeixinApiJsConfig < BaseService
   end
 
   def js_api_list
-    ['onMenuShareTimeline', 'onMenuShareAppMessage']
+    ['onMenuShareAppMessage']
   end
 
 end
