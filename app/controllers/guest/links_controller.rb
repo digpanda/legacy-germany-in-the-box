@@ -11,6 +11,7 @@ class Guest::LinksController < ApplicationController
   # will be logged-in and bind to a referrer
   # then will go down this controller to be redirected to the original link.
   def show
+    SlackDispatcher.new.message("GUEST LINK IS : #{link.raw_url}")
     redirect_to link.raw_url
   end
 
