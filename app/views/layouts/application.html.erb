@@ -21,12 +21,18 @@
 
     <div class="container-fluid">
 
-      <%= render "layouts/#{solve_section}/header" %>
-      <%= render "layouts/#{solve_section}/subheader" %>
+      <% unless @minimal_layout %>
+        <%= render "layouts/#{solve_section}/header" %>
+        <%= render "layouts/#{solve_section}/subheader" %>
+      <% end %>
+      
       <div class="content content-<%= solve_section %>">
         <%= yield %>
       </div>
-      <%= render "layouts/#{solve_section}/footer" %>
+
+      <% unless @minimal_layout %>
+        <%= render "layouts/#{solve_section}/footer" %>
+      <% end %>
 
     </div>
 

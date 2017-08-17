@@ -4107,7 +4107,6 @@ var WeixinStarter = {
 
   onMenuShareTimeline: function onMenuShareTimeline() {
     if (this.shareLinkAvailable()) {
-      console.log('share timeline available');
       wx.onMenuShareTimeline(WeixinStarter.shareLinkParams());
     }
   },

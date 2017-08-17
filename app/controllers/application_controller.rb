@@ -88,6 +88,10 @@ class ApplicationController < ActionController::Base
     @freeze_header = true
   end
 
+  def minimal_layout
+    @minimal_layout = true
+  end
+
   def solve_origin
     identity_solver.origin_setup!
   end

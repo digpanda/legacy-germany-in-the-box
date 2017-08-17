@@ -61,7 +61,6 @@ var WeixinStarter = {
 
     onMenuShareTimeline: function() {
       if (this.shareLinkAvailable()) {
-        console.log('share timeline available');
         wx.onMenuShareTimeline(WeixinStarter.shareLinkParams());
       }
     },

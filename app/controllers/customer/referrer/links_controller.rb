@@ -8,6 +8,7 @@ class Customer::Referrer::LinksController < ApplicationController
 
   # this will load the weixin handler on the front-end side
   before_action :activate_weixin_js_config, only: [:share]
+  before_action :minimal_layout, only: [:share]
 
   authorize_resource class: false
 

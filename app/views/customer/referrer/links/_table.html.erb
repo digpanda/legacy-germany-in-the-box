@@ -40,7 +40,7 @@
             </td> -->
             <td>
               <% if current_user.tester? %>
-              <a href="<%= customer_referrer_link_share_path(link) %>">Share</a>
+              <a href="<%= customer_referrer_link_share_path(link) %>"><%= I18n.t('referrer.share') %></a>
               <% else %>
               -
               <% end %>
