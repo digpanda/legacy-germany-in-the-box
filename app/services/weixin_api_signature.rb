@@ -21,7 +21,7 @@ class WeixinApiSignature < BaseService
   end
 
   def raw
-    "jsapi_ticket=#{ticket}&noncestr=#{nonce_str}timestamp=#{timestamp}&url=#{request.original_url}"
+    "jsapi_ticket=#{ticket}&noncestr=#{nonce_str}&timestamp=#{timestamp}&url=#{request.original_url}"
   end
 
 end
