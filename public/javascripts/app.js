@@ -4085,12 +4085,14 @@ var WeixinStarter = {
   onReady: function onReady() {
     wx.ready(function () {
       console.log('WEIXIN READY');
+      alert('WEIXIN READY');
     });
   },
 
   onError: function onError() {
     wx.error(function (res) {
       console.log('WEIXIN ERROR : ' + res.errMsg);
+      alert('WEIXIN ERROR : ' + res.errMsg);
     });
   },
 
@@ -4102,9 +4104,11 @@ var WeixinStarter = {
 
       success: function success() {
         console.log('SUCCESS TIMELINE SHARE');
+        alert('SUCCESS TIMELINE SHARE');
       },
       cancel: function cancel() {
         console.log('CANCEL TIMELINE SHARE');
+        alert('CANCEL TIMELINE SHARE');
       }
     });
   },
