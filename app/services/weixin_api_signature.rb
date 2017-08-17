@@ -9,8 +9,6 @@ class WeixinApiSignature < BaseService
   end
 
   def resolve!
-    SlackDispatcher.new.message("RAW SIGNATURE GENERATION : #{raw}")
-    SlackDispatcher.new.message("ENCRYPTED SIGNATURE : #{signature}")
     return_with(:success, signature: signature)
   end
 
