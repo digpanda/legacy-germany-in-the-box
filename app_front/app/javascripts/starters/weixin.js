@@ -9,14 +9,9 @@ var WeixinStarter = {
     init: function() {
 
       if (typeof this.data() !== "undefined") {
-
         this.configure();
         this.onReady();
         this.onError();
-
-        this.onMenuShareTimeline();
-        this.onMenuShareAppMessage();
-
       }
 
     },
@@ -47,6 +42,8 @@ var WeixinStarter = {
     onReady: function() {
       wx.ready(function(){
         console.log('WEIXIN READY');
+        this.onMenuShareTimeline();
+        this.onMenuShareAppMessage();
       });
     },
 

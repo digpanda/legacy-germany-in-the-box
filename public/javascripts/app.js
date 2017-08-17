@@ -4056,13 +4056,9 @@ var WeixinStarter = {
   init: function init() {
 
     if (typeof this.data() !== "undefined") {
-
       this.configure();
       this.onReady();
       this.onError();
-
-      this.onMenuShareTimeline();
-      this.onMenuShareAppMessage();
     }
   },
 
@@ -4092,6 +4088,8 @@ var WeixinStarter = {
   onReady: function onReady() {
     wx.ready(function () {
       console.log('WEIXIN READY');
+      this.onMenuShareTimeline();
+      this.onMenuShareAppMessage();
     });
   },
 
