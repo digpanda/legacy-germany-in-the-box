@@ -1,7 +1,7 @@
 class WeixinApiSignature < BaseService
   attr_reader :request, :ticket, :nonce_str, :timestamp
 
-  def initialize(request:nil, ticket:nil, nonce_str:nil, timestamp:nil)
+  def initialize(request: nil, ticket: nil, nonce_str: nil, timestamp: nil)
     @request = request
     @ticket = ticket
     @nonce_str = nonce_str
@@ -9,6 +9,8 @@ class WeixinApiSignature < BaseService
   end
 
   def resolve!
+    SlackDispatcher.new.message("RAW SIGNATURE GENERATION : #{raw}")
+    SlackDispatcher.new.message("ENCRYPTED SIGNATURE : #{signature}")
     return_with(:success, signature: signature)
   end
 
