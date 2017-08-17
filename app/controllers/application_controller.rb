@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :navigation, :cart_manager, :identity_solver
 
-  before_action :solve_silent_login, :solve_origin, :solve_landing, :weixin_js_config
+  before_action :solve_silent_login, :solve_origin, :solve_landing
 
   def solve_silent_login
     if params[:code]
@@ -34,12 +34,11 @@ class ApplicationController < ActionController::Base
     @wechat_api_connect_solver ||= WechatApiConnectSolver.new(params[:code]).resolve!
   end
 
-  # TODO : this has to be moved elsewhere and not called each time
-  def weixin_js_config
+  # TODO : remove tester criteria
+  def activate_weixin_js_config
     @weixin_js_config ||= begin
       if current_user&.tester?
         ticket = WeixinTicket.new(cache_scope: request.host).resolve!
-        SlackDispatcher.new.message("WEIXIN TICKET CACHE SCOPE : #{request.host}")
         return false unless ticket.success?
         js_config = WeixinApiJsConfig.new(request: request, ticket: ticket.data[:ticket]).resolve!
         return false unless js_config.success?

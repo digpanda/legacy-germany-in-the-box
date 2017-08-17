@@ -9,7 +9,7 @@ var WeixinStarter = {
     init: function() {
 
       if (typeof this.data() !== "undefined") {
-        this.configure();
+        this.config();
         this.onReady();
         this.onError();
       }
@@ -20,7 +20,11 @@ var WeixinStarter = {
       return $('#weixin').data();
     },
 
-    configure: function() {
+    shareLinkData: function() {
+      return $('#weixin-share-link').data();
+    },
+
+    config: function() {
       wx.config({
           debug: this.data().debug,
           appId: this.data().appId,
@@ -56,35 +60,34 @@ var WeixinStarter = {
     },
 
     onMenuShareTimeline: function() {
-      wx.onMenuShareTimeline({
-          desc: 'Description example TIMELINE',
-          imgUrl: 'https://germanyinbox.com/images/logos/germany-in-the-box.svg',
-          link: 'https://germanyinbox.com/guest/links/598de4607302fc46b5032df1/weixin?reference_id=00000',
-          title: 'Example title TIMELINE',
-
-          success: function () {
-            alert('SUCCESS TIMELINE SHARE')
-          },
-          cancel: function () {
-            alert('CANCEL TIMELINE SHARE');
-          }
-      });
+      if (this.shareLinkAvailable()) {
+        console.log('share timeline available');
+        wx.onMenuShareTimeline(WeixinStart.shareLinkParams());
+      }
     },
 
     onMenuShareAppMessage: function() {
-      wx.onMenuShareAppMessage({
-          desc: 'This is a description',
-          imgUrl: 'https://germanyinbox.com/images/logos/germany-in-the-box.svg',
-          link: 'https://germanyinbox.com/test',
-          title: 'Example title APP MESSAGE',
+      if (this.shareLinkAvailable()) {
+        wx.onMenuShareAppMessage(WeixinStart.shareLinkParams());
+      }
+    },
 
-          success: function () {
-            alert('SUCCESS MESSAGE SHARE')
-          },
-          cancel: function () {
-            alert('CANCEL MESSAGE SHARE')
-          }
-      });
+    shareLinkAvailable: function() {
+      return (typeof this.shareLinkData() !== "undefined");
+    },
+
+    shareLinkParams: function() {
+      return {
+        desc: WeixinStart.shareLinkData().desc,
+        imgUrl: WeixinStart.shareLinkData().imgUrl,
+        link: WeixinStart.shareLinkData().link,
+        title: WeixinStart.shareLinkData().title,
+
+        success: function () {
+        },
+        cancel: function () {
+        }
+      }
     },
 
 }

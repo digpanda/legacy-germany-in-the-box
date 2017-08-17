@@ -13,8 +13,11 @@
           <%= I18n.t('referrer.title') %>
         </th>
         <th>
-          <%= I18n.t('referrer.link') %>
+          <%= I18n.t('referrer.description') %>
         </th>
+        <!-- <th>
+          <%= I18n.t('referrer.link') %>
+        </th> -->
         <th>
           <%= I18n.t('referrer.share') %>
         </th>
@@ -30,10 +33,17 @@
               <%= link.title %>
             </td>
             <td>
-              <a href="<%= link.wechat.with_login_and_referrer(@referrer) %>" target="_blank"><%= truncate link.wechat.with_login_and_referrer(@referrer), length: 30 %></a>
+              <%= link.desc %>
             </td>
+            <!-- <td>
+              <a href="<%= link.wechat.with_login_and_referrer(@referrer) %>" target="_blank"><%= truncate link.wechat.with_login_and_referrer(@referrer), length: 30 %></a>
+            </td> -->
             <td>
+              <% if current_user.tester? %>
+              <a href="<%= customer_referrer_link_share_path(link) %>">Share</a>
+              <% else %>
               -
+              <% end %>
             </td>
             <td>
               <%= link.c_at.strftime("%Y-%m-%d") %>

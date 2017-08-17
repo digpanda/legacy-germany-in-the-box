@@ -1,0 +1,38 @@
+class Customer::Referrer::LinksController < ApplicationController
+  attr_reader :referrer
+
+  before_action :freeze_header
+  before_filter :valid_referrer?
+  before_action :set_referrer
+  before_action :set_link, only: [:share]
+
+  # this will load the weixin handler on the front-end side
+  before_action :activate_weixin_js_config, only: [:share]
+
+  authorize_resource class: false
+
+  def index
+    @links = Link.all
+  end
+
+  def share
+  end
+
+  private
+
+    def set_referrer
+      @referrer = current_user.referrer
+    end
+
+    def set_link
+      @link = Link.find(params[:link_id])
+    end
+
+    def valid_referrer?
+      unless current_user&.referrer?
+        flash[:error] = I18n.t('general.not_allowed_section')
+        redirect_to navigation.back(1)
+        false
+      end
+    end
+end
