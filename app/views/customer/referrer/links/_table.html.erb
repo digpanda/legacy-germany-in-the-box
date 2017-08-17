@@ -30,7 +30,7 @@
               <%= link.title %>
             </td>
             <td>
-              <a href="<%= link.wechat.with_referrer(@referrer) %>" target="_blank"><%= truncate link.wechat.with_referrer(@referrer), length: 30 %></a>
+              <a href="<%= link.wechat.with_login_and_referrer(@referrer) %>" target="_blank"><%= truncate link.wechat.with_login_and_referrer(@referrer), length: 30 %></a>
             </td>
             <td>
               -

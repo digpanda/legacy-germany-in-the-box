@@ -1,11 +1,8 @@
 class Guest::LinksController < ApplicationController
-  attr_reader :link
+  attr_reader :referrer, :link
 
-  before_action :set_link, only: [:show]
-
-  def index
-    redirect_to "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxfde44fe60674ba13&redirect_uri=https%3A%2F%2Fgermanyinbox.com%2Fguest%2Flinks%2F598de4607302fc46b5032df1%3Freference_id%3D2642017&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect"
-  end
+  before_action :set_link, only: [:show, :weixin]
+  before_action :set_referrer, only: [:weixin]
 
   # NOTE
   # the cycling of this system is very complex.
@@ -19,9 +16,20 @@ class Guest::LinksController < ApplicationController
     redirect_to link.raw_url
   end
 
+  # it's another layer which will automatically get people to go
+  # in the auto-login system (by weixin)
+  # and then comes back to the raw link right above (#show)
+  def weixin
+    redirect_to link.wechat.with_referrer(referrer)
+  end
+
   private
 
+    def set_referrer
+      @referrer = Referrer.where(reference_id: params[:reference_id]).first
+    end
+
     def set_link
-      @link = Link.find(params[:id])
+      @link = Link.find(params[:link_id] || params[:id])
     end
 end

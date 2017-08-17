@@ -28,6 +28,7 @@ namespace :guest do
   end
 
   resources :links do
+    get :weixin
   end
 
   resources :coupons do
