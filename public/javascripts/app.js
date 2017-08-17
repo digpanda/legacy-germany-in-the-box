@@ -4105,7 +4105,7 @@ var WeixinStarter = {
     wx.onMenuShareTimeline({
       desc: 'Description example TIMELINE',
       imgUrl: 'https://germanyinbox.com/images/logos/germany-in-the-box.svg',
-      link: 'https://germanyinbox.com/guest/links',
+      link: 'https://germanyinbox.com/guest/links/598de4607302fc46b5032df1/weixin?reference_id=00000',
       title: 'Example title TIMELINE',
 
       success: function success() {
