@@ -63,10 +63,10 @@ var WeixinStarter = {
           imgUrl: 'https://germanyinbox.com/images/logos/germany-in-the-box.svg',
 
           success: function () {
-            console.log('SUCCESS TIMELINE SHARE')
+            alert('SUCCESS TIMELINE SHARE')
           },
           cancel: function () {
-            console.log('CANCEL TIMELINE SHARE');
+            alert('CANCEL TIMELINE SHARE');
           }
       });
     },
@@ -81,10 +81,10 @@ var WeixinStarter = {
           dataUrl: '',
 
           success: function () {
-            console.log('SUCCESS MESSAGE SHARE')
+            alert('SUCCESS MESSAGE SHARE')
           },
           cancel: function () {
-            console.log('CANCEL MESSAGE SHARE')
+            alert('CANCEL MESSAGE SHARE')
           }
       });
     },
