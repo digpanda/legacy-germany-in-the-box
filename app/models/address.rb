@@ -39,7 +39,7 @@ class Address
   scope :is_only_both,        ->  { any_of({type: :both}) }
 
   validates :mobile, presence: true, if: -> { user&.customer? }
-  # validates :pid, presence: true, :format => { :with => CHINESE_ID }, if: -> { user&.customer? }
+  validates :pid, presence: true, if: -> { user&.customer? }
   validates :fname, presence: true#, :format => { :with => CHINESE_CHARACTERS }, if: -> { user&.customer? }
   validates :lname, presence: true#, :format => { :with => CHINESE_CHARACTERS }, if: -> { user&.customer? }
 
