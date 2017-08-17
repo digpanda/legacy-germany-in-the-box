@@ -1,7 +1,7 @@
 class Guest::LinksController < ApplicationController
   attr_reader :link
 
-  before_action :set_link
+  before_action :set_link, only: [:show]
 
   def index
     redirect_to "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxfde44fe60674ba13&redirect_uri=https%3A%2F%2Fgermanyinbox.com%2Fguest%2Flinks%2F598de4607302fc46b5032df1%3Freference_id%3D2642017&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect"
