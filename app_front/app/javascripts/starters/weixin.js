@@ -26,6 +26,14 @@ var WeixinStarter = {
     },
 
     configure: function() {
+      console.log({
+          debug: this.data().debug,
+          appId: this.data().appId,
+          timestamp: this.data().timestamp,
+          nonceStr: this.data().nonceStr,
+          signature: this.data().signature,
+          jsApiList: this.data().jsApiList
+      });
       wx.config({
           debug: this.data().debug,
           appId: this.data().appId,

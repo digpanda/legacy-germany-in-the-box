@@ -1496,16 +1496,15 @@ $(document).ready(function () {
   /**
    * Disable console.log for production and tests (poltergeist)
    */
-  if (info.environment == "production" || info.environment == "test") {
-    // || (info.environment == "test")
-    if (typeof window.console != "undefined") {
-      window.console = {};
-      window.console.log = function () {};
-      window.console.info = function () {};
-      window.console.warn = function () {};
-      window.console.error = function () {};
-    }
-  }
+  //  if ((info.environment == "production") || (info.environment == "test")) { // || (info.environment == "test")
+  //    if (typeof(window.console) != "undefined") {
+  //      window.console = {};
+  //      window.console.log = function () {};
+  //      window.console.info = function () {};
+  //      window.console.warn = function () {};
+  //      window.console.error = function () {};
+  //    }
+  //  }
 
   try {
 
@@ -4072,6 +4071,14 @@ var WeixinStarter = {
   },
 
   configure: function configure() {
+    console.log({
+      debug: this.data().debug,
+      appId: this.data().appId,
+      timestamp: this.data().timestamp,
+      nonceStr: this.data().nonceStr,
+      signature: this.data().signature,
+      jsApiList: this.data().jsApiList
+    });
     wx.config({
       debug: this.data().debug,
       appId: this.data().appId,
