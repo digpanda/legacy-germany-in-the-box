@@ -2393,10 +2393,8 @@ body {
       .package-set-list-block__footer-price {
         font-size: 15px; } }
   .package-set-list-block__footer-cart {
-    text-align: right; }
-    @media (max-width: 994px) {
-      .package-set-list-block__footer-cart {
-        padding-right: 0.3em; } }
+    text-align: right;
+    padding-right: 0.3em; }
     .package-set-list-block__footer-cart a {
       color: #bdc3c7;
       font-size: 22px; }
