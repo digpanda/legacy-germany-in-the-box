@@ -2863,6 +2863,10 @@ body {
   .subheader.\--highlight {
     color: #3498db; }
 
+.wechat-share {
+  margin-top: -3em;
+  margin-right: -0.8em; }
+
 @media (max-width: 994px) {
   .connect__separator {
     display: none !important; } }

@@ -1,8 +1,39 @@
-HERE ARE EXPLANATION HOW TO SHARE STUFF
-
+<!-- Weixin data -->
 <div id="weixin-share-link"
       data-title="<%= @link.title %>"
       data-desc="<%= @link.desc %>"
       data-img-url="<%= @link.thumbnail_url %>"
       data-link="<%= @link.wechat.with_login_and_referrer(@referrer) %>">
 </div>
+
+<% if identity_solver.wechat_customer? %>
+  <div class="wechat-share">
+    <div class="+right">
+      <img src="/images/elements/arrow-click.png" width="50px">
+    </div>
+
+    <!-- Explanation -->
+    <div class="row">
+      <div class="col-md-12">
+        <h1 class="+bold">Please click and share</h1>
+        <div class="+spacer"></div>
+        <div class="+dark-grey">
+        <h2>How does it work ?</h2>
+        <div class="+small-spacer"></div>
+        - Share this page on your timeline or via message<br />
+        - It will actually share a link to bind you to any potential customer reading the end article<br />
+        <div class="+spacer"></div>
+        </div>
+        <hr />
+        <em>
+        Title : <%= @link.title %><br />
+        Description : <%= @link.desc %><br />
+        End link : <%= truncate @link.raw_url, length: 25 %><br />
+        </em>
+      </div>
+    </div>
+  </div>
+<% else %>
+  <h1 class="+bold">Please share this link</h1>
+  <a href="<%= @link.wechat.with_login_and_referrer(@referrer) %>"><%= @link.wechat.with_login_and_referrer(@referrer) %></a>
+<% end %>
