@@ -2368,7 +2368,7 @@ body {
   .package-set-list-block__central-image {
     text-align: center;
     margin: 0 auto;
-    height: 22vw;
+    height: 17vw;
     max-height: 672px;
     background-position: center center;
     background-size: contain;
@@ -2397,7 +2397,7 @@ body {
     padding-right: 0.3em; }
     .package-set-list-block__footer-cart a {
       color: #bdc3c7;
-      font-size: 22px; }
+      font-size: 18px; }
       @media (max-width: 994px) {
         .package-set-list-block__footer-cart a {
           font-size: 16px; } }
