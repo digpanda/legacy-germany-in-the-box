@@ -2360,7 +2360,8 @@ body {
     overflow: hidden !important;
     text-overflow: ellipsis;
     font-weight: 400;
-    letter-spacing: 0.2px; }
+    letter-spacing: 0.2px;
+    font-size: 14px; }
   .package-set-list-block__header-category {
     color: #bdc3c7;
     font-weight: 300;
