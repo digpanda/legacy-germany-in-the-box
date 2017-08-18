@@ -2387,7 +2387,8 @@ body {
       .package-set-list-block__footer-price {
         font-size: 15px; } }
   .package-set-list-block__footer-cart {
-    text-align: right; }
+    text-align: right;
+    padding-right: 0.3em; }
     .package-set-list-block__footer-cart a {
       color: #bdc3c7;
       font-size: 22px; }
