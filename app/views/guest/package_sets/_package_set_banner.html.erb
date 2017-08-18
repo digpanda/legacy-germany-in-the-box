@@ -2,7 +2,7 @@
 <% if package_set_highlight? %>
   <div class="row +desktop">
     <div class="col-md-12">
-      <div class="landing-banner-desktop lazy" data-original="<%= Setting.instance.package_sets_cover %>" style="background-image:url('/images/grey.gif');">
+      <div class="landing-banner-desktop lazy" data-original="<%= Setting.instance.package_sets_cover %>" style="background-image:url('/images/grey.jpg');">
         <div class="landing-banner-desktop__content">
           <% if Setting.instance.package_sets_title.present? %>
             <%= render partial: "guest/package_sets/package_set_banner/content" %>
@@ -13,7 +13,7 @@
   </div>
   <div class="row +mobile">
     <div class="col-xs-12">
-      <div class="landing-banner-mobile lazy" data-original="<%= Setting.instance.package_sets_cover %>" style="background-image:url('/images/grey.gif');">
+      <div class="landing-banner-mobile lazy" data-original="<%= Setting.instance.package_sets_cover %>" style="background-image:url('/images/grey.jpg');">
       </div>
     </div>
     <div class="col-xs-12">
