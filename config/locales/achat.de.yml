@@ -2,6 +2,13 @@ de:
   address:
     apply: Einlösen
   referrer:
+    share_page:
+      please_click_and_share: Please click and share
+      how_does_it_work: How does it work ?
+      work_description_1: "- Description 1"
+      work_description_2: "- Description 2"
+      work_description_3: "- Description 3"
+      please_share_this_link: Please share this link
     link: Link
     links: Online Anzeige
     title: Posten

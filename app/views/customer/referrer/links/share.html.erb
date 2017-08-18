@@ -15,22 +15,25 @@
     <!-- Explanation -->
     <div class="row">
       <div class="col-md-12">
-        <h1 class="+bold">Please click and share</h1>
+        <h1 class="+bold"><%= I18n.t('referrer.share_page.please_click_and_share') %></h1>
         <div class="+spacer"></div>
         <div class="+dark-grey">
-        <h2>How does it work ?</h2>
+        <h2><%= I18n.t('referrer.share_page.how_does_it_work') %></h2>
         <div class="+small-spacer"></div>
-        - Share this page on your timeline or via message<br />
-        - It will actually share a link to bind you to any potential customer reading the end article<br />
+        <%= I18n.t('referrer.share_page.work_description_1') %><br />
+        <%= I18n.t('referrer.share_page.work_description_2') %><br />
+        <%= I18n.t('referrer.share_page.work_description_3') %><br />
         <div class="+spacer"></div>
         </div>
         <hr />
         <h3><%= @link.title %></h3>
+        <em><%= @link.desc %></em>
+        <br /><br />
         <%= @link.long_desc&.html_safe %><br />
       </div>
     </div>
   </div>
 <% else %>
-  <h1 class="+bold">Please share this link</h1>
+  <h1 class="+bold"><%= I18n.t('referrer.share_page.please_share_this_link') %></h1>
   <a href="<%= @link.wechat.with_login_and_referrer(@referrer) %>"><%= @link.wechat.with_login_and_referrer(@referrer) %></a>
 <% end %>
