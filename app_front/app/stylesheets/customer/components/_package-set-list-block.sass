@@ -2,8 +2,10 @@
 
   +shadow
   +border-radius(4px)
-  font-size: 18px
+  font-size: 16px
   margin-bottom: 1em
+  +breakpoint('mobile')
+    margin-bottom: 0
 
   a
     color: $color-almost-black
@@ -11,6 +13,8 @@
   +part(header-content)
     margin: 1em
     margin-bottom: 0.2em
+    +breakpoint('mobile')
+      margin-bottom: 0
 
   +part(header-title)
     +trim-word
@@ -24,9 +28,10 @@
 
   +part(central-image)
     +centered
-    height: 23vw
+    height: 22vw
     +breakpoint('mobile')
-      height: 72vw
+      height: 25vw
+
     max-height: 672px
 
     background-position: center center
@@ -38,14 +43,25 @@
     margin-top: 0.2em
     margin-bottom: 0
 
+  +part(footer-note)
+    color: $color-grey
+    font-size: 14px
+    +breakpoint('mobile')
+      font-size: 12px
+
   +part(footer-price)
     color: $color-red
     font-weight: 300
+
+    +breakpoint('mobile')
+      font-size: 15px
 
   +part(footer-cart)
     text-align: right
     a
       color: $color-grey
+      +breakpoint('mobile')
+        font-size: 15px
       font-size: 22px
       &:hover
         color: $color-blue

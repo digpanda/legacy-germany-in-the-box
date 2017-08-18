@@ -21,7 +21,7 @@ class Currency
   end
 
   def display
-    "#{current_symbol} %.2f" % amount
+    "#{current_symbol}%.2f" % amount
   end
 
   def display_raw

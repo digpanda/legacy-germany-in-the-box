@@ -751,7 +751,7 @@ zh-CN:
     operations: 操作
     subtotal: 单品总价
     goodsprice: 订单总价
-    all_included: 含税包邮价格
+    all_included: 含税包邮
     shipping: 运费
     taxes: 税
     total_price_in_euro: 总计(欧元)
