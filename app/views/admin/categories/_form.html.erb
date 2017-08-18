@@ -14,6 +14,34 @@
         </div>
       </div>
 
+      <!-- Name -->
+      <div class="row">
+        <div class="col-md-2">
+          <label>
+            Name
+          </label>
+        </div>
+
+          <div class="col-md-10 form-group">
+            <%= form.text_field :name, :class => 'form-control', :required => true %>
+            <div class="help-block with-errors"></div>
+          </div>
+      </div>
+
+      <!-- Slug -->
+      <div class="row">
+        <div class="col-md-2">
+          <label>
+            Slug
+          </label>
+        </div>
+
+          <div class="col-md-10 form-group">
+            <%= form.text_field :slug, :class => 'form-control', :required => true %>
+            <div class="help-block with-errors"></div>
+          </div>
+      </div>
+
       <!-- Description -->
       <div class="row">
         <div class="col-md-2">
@@ -63,7 +91,7 @@
 
   </div>
 
-  <%= form.submit :class => 'btn btn-primary', :value =>  "Update category" %>
+  <%= form.submit :class => 'btn btn-primary', :value =>  "Save category" %>
   <!-- :id => 'edit_category_submit_btn' -->
 
 <% end %>

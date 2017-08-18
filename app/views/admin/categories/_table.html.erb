@@ -47,6 +47,7 @@
       </td>
       <td>
         <%= link_to '', edit_admin_category_path(category), :class => 'tooltipster fa fa-pencil buttons buttons__edit', :title => "Edit Category" %>
+        <%= link_to '', admin_category_path(category), :method => :delete, data: { confirm: "Are you sure to remove this category ?" }, :class => 'tooltipster fa fa-times buttons buttons__delete', :title => "Delete this category" %>
       </td>
     </tr>
   <% end %>
