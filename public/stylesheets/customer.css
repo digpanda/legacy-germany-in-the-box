@@ -2369,7 +2369,7 @@ body {
     background-repeat: no-repeat; }
     @media (max-width: 994px) {
       .package-set-list-block__central-image {
-        height: 36vw; } }
+        height: 40vw; } }
   .package-set-list-block__footer-content {
     margin: 1em;
     margin-top: 0.2em;
