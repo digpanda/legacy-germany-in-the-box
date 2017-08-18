@@ -4046,8 +4046,6 @@ module.exports = TotalProducts;
 require.register("javascripts/starters/weixin.js", function(exports, require, module) {
 'use strict';
 
-// var vm = new Vue({ /* options */ })
-
 /**
  * WeixinStarter Class
  */
