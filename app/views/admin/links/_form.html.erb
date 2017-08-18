@@ -1,11 +1,79 @@
-Title <%= form.text_field :title %>
-<br />
-Description <%= form.text_field :desc %>
-<br />
-Long Description <%= form.text_field :long_desc %>
-<br />
-Thumbnail URL <%= form.text_field :thumbnail_url %>
-<br />
-Raw URL <%= form.text_field :raw_url %>
-<br />
-<br />
+<%= form_for [:admin, @link] do |form| %>
+
+<div class="row details__block">
+
+  <!-- Title -->
+  <div class="row">
+    <div class="col-md-2">
+      <label>
+        Title
+      </label>
+    </div>
+
+      <div class="col-md-10 form-group">
+        <%= form.text_field :title, :class => 'form-control', :required => true %>
+        <div class="help-block with-errors"></div>
+      </div>
+  </div>
+
+  <!-- Description -->
+  <div class="row">
+    <div class="col-md-2">
+      <label>
+        Description
+      </label>
+    </div>
+
+      <div class="col-md-10 form-group">
+        <%= form.text_field :desc, :class => 'form-control', :required => true %>
+        <div class="help-block with-errors"></div>
+      </div>
+  </div>
+
+  <!-- Long Description -->
+  <div class="row">
+    <div class="col-md-2">
+      <label>
+        Long Description
+      </label>
+    </div>
+
+      <div class="col-md-10 form-group">
+        <%= form.text_area :long_desc, :class => 'form-control', :required => true %>
+        <div class="help-block with-errors"></div>
+      </div>
+  </div>
+
+  <!-- Thumbnail URL -->
+  <div class="row">
+    <div class="col-md-2">
+      <label>
+        Thumbnail URL
+      </label>
+    </div>
+
+      <div class="col-md-10 form-group">
+        <%= form.text_field :thumbnail_url, :class => 'form-control', :required => true %>
+        <div class="help-block with-errors"></div>
+      </div>
+  </div>
+
+  <!-- Raw URL -->
+  <div class="row">
+    <div class="col-md-2">
+      <label>
+        Raw URL
+      </label>
+    </div>
+
+      <div class="col-md-10 form-group">
+        <%= form.text_field :raw_url, :class => 'form-control', :required => true %>
+        <div class="help-block with-errors"></div>
+      </div>
+  </div>
+
+</div>
+
+<%= form.submit :class => 'big-button --blue', :value =>  "Save" %>
+
+<% end %>
