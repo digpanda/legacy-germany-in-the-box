@@ -25,11 +25,8 @@
         <div class="+spacer"></div>
         </div>
         <hr />
-        <em>
-        Title : <%= @link.title %><br />
-        Description : <%= @link.desc %><br />
-        Long Description : <%= @link.long_desc %><br />
-        </em>
+        <h3><%= @link.title %></h3>
+        <%= @link.long_desc&.html_safe %><br />
       </div>
     </div>
   </div>
