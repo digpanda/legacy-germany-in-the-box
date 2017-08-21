@@ -1,4 +1,4 @@
-<%= render partial: "guest/package_sets/show/header_navigation", :locals => { package_set: @package_set, back: guest_package_sets_path(category_slug: @package_set.category.slug) } %>
+<%= render partial: "guest/package_sets/show/header_navigation", :locals => { package_set: @package_set, category: @category, back: guest_package_sets_path(category_slug: @package_set.category.slug) } %>
 
 <% if @package_set.details_cover.present? %>
   <div class="row">
@@ -94,4 +94,4 @@
   </div>
 </div>
 
-<%= render partial: "guest/package_sets/show/navigation", :locals => { :package_set => @package_set } %>
+<%= render partial: "guest/package_sets/show/navigation", :locals => { :package_set => @package_set, category: @category } %>

@@ -19,7 +19,7 @@
     <!-- Categories filtering -->
     <div class="col-xs-8 col-md-4">
       <div class="page-navigation__right">
-        <%= select_tag('category[id]', options_for_select(category_package_set_filter, params[:category_slug]), { :include_blank  => "全部类别", :class => "nice js-package-set-category-filter" }) %>
+        <%= render partial: "guest/package_sets/navigation_filters", locals: { category: category } %>
       </div>
     </div>
 
