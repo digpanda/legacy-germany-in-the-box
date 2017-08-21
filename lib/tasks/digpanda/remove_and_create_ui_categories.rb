@@ -27,6 +27,13 @@ class Tasks::Digpanda::RemoveAndCreateUiCategories
     )
 
     Category.create!(
+      name_translations: { en: 'Luxury', 'zh-CN': '轻奢饰品', de: 'Luxus' },
+      slug: 'luxury',
+      desc_translations: { en: '', de: '', 'zh-CN': '	德国有机护肤品，肌肤健康呵护。众多品牌兼顾女士男士、日常保养、夏季防晒和毛发护理。' }
+
+    )
+
+    Category.create!(
       name_translations: { en: 'Fashion', 'zh-CN': '时尚', de: 'Mode' },
       slug: 'fashion',
       desc_translations: { en: '', de: '', 'zh-CN': '想找些特别不跟别人撞衫的时装和配件？想为自己的孩子选件不会过敏的洋装？到来因盒里找找，包君满意。' }
