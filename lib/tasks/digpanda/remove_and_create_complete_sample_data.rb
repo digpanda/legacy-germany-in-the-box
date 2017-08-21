@@ -397,7 +397,7 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
         sku = shop.products.has_available_sku.all.shuffle.first&.skus&.first
         if sku
           package_set.package_skus.create(
-            sku: sku,
+            sku_id: sku.id,
             product: sku.product,
             quantity: Faker::Number.between(1, 3),
             price: Faker::Number.decimal(2),
