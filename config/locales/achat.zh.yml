@@ -1,12 +1,12 @@
 zh-CN:
   referrer:
     share_page:
-      please_click_and_share: Please click and share
-      how_does_it_work: How does it work ?
-      work_description_1: "- Description 1"
-      work_description_2: "- Description 2"
-      work_description_3: "- Description 3"
-      please_share_this_link: Please share this link
+      please_click_and_share: 请按右上角菜单分享您的专属文章推广链接
+      how_does_it_work: 分享到微信方式 
+      work_description_1: "- 发送给朋友"
+      work_description_2: "- 分享到朋友圈"
+      work_description_3: "- 请留意我们将不断为您定制新的推广文章和动图海报及视频秀"
+      please_share_this_link: 请分享您的专属文章推广链接
     link: 链接
     links: 内容营销(日常分享)
     title: 推文
