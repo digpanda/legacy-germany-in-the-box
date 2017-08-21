@@ -1,5 +1,11 @@
 module FormHelper
 
+  def category_package_set_filter
+    Category.with_package_sets.map do |category|
+      [category.name, category.id, {'data-href' => guest_package_sets_path(category_slug: category.slug)}]
+    end
+  end
+
   def guess_coupon_label
     if session[:origin] == :wechat
       I18n.t(:coupon_mobile, scope: :coupon)

@@ -3789,12 +3789,21 @@ var Search = {
       UrlProcess.insertParam('category_id', category_id);
     });
 
-    $('.js-package-set-category-filter').on('change', function (e) {
+    $('select.js-package-set-category-filter').on('change', function (e) {
 
-      var category_id = $(this).val();
+      var category_id = $(this).val(); // current selected value
+      var option = $(this).find("option:selected"); // let's get inside the option itself
+      var href = option.data("href"); // get the href if it exists
 
-      var UrlProcess = require('javascripts/lib/url_process');
-      UrlProcess.insertParam('category_slug', category_id);
+      if (typeof href !== "undefined") {
+
+        window.location.href = location.protocol + '//' + location.host + href;
+        // document.location = location.host + href;
+      } else {
+        // we will refresh the current page the category id
+        var UrlProcess = require('javascripts/lib/url_process');
+        UrlProcess.insertParam('category_slug', category_id);
+      }
     });
   },
 

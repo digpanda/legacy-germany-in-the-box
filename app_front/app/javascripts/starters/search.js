@@ -55,12 +55,21 @@ var Search = {
 
       });
 
-      $('.js-package-set-category-filter').on('change', function(e) {
+      $('select.js-package-set-category-filter').on('change', function(e) {
 
-        let category_id = $(this).val();
+        let category_id = $(this).val(); // current selected value
+        let option = $(this).find("option:selected"); // let's get inside the option itself
+        let href = option.data("href"); // get the href if it exists
 
-        var UrlProcess = require('javascripts/lib/url_process');
-        UrlProcess.insertParam('category_slug', category_id);
+        if (typeof href !== "undefined") {
+
+          window.location.href = location.protocol + '//' + location.host + href;
+          // document.location = location.host + href;
+        } else {
+          // we will refresh the current page the category id
+          var UrlProcess = require('javascripts/lib/url_process');
+          UrlProcess.insertParam('category_slug', category_id);
+        }
 
       });
 
