@@ -15,6 +15,9 @@
       Position
     </th>
     <th>
+      Show
+    </th>
+    <th>
       Created At
     </th>
     <th>
@@ -38,6 +41,9 @@
       </td>
       <td>
         <%= editable_field(category, admin_category_path(category), :position, :text_field) %>
+      </td>
+      <td>
+        <%= editable_field(category, admin_category_path(category), :show, :select, [boolean_select, {:selected => category.show}]) %>
       </td>
       <td>
         <%= category.c_at %>

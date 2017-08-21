@@ -7,9 +7,10 @@ module Application
       before_action :set_categories
     end
 
+    # this is mainly for the menu
     def set_categories
       if identity_solver.section == :customer
-        @categories = Category.order(position: :asc).all
+        @categories = Category.showable.order(position: :asc).all
       end
     end
   end

@@ -1,7 +1,8 @@
 module EditableHelper
 
   def editable_text(form, model, field)
-    if model.send(field)
+    # `false` is a special case because some boolean can show up
+    if model.send(field).present? || model.send(field) === false
       """
       <span class=\"js-editable-text\">
         #{model.send(field)}
