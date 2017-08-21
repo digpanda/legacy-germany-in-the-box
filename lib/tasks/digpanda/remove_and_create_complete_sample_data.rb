@@ -160,7 +160,7 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
       num           = Product.count + 1
       num_variants  = rand(1..4)
       num_skus      = rand(1..5)
-      category_slug = [:food, :cosmetics, :fashion, :medicine, :household].sample
+      category_slug = [:food, :cosmetics, :fashion, :medicine, :household, :luxury].sample
       approved      = Time.now.utc
 
       name          = "Product #{num}"
