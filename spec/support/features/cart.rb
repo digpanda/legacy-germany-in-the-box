@@ -1,7 +1,7 @@
 module Helpers
   module Features
     module Cart
-      APPLIED_SUCCESSFULLY = '此优惠券已被成功使用。'.freeze
+      APPLIED_SUCCESSFULLY = '折扣码使用成功。'.freeze
       BUY = '加入购物车'.freeze
       SEE_CATEGORY = '查看更多信息'.freeze
 
