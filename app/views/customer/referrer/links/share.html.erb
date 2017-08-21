@@ -6,6 +6,14 @@
       data-link="<%= @link.wechat.with_login_and_referrer(@referrer) %>">
 </div>
 
+
+<!-- <div id="weixin-vue">
+  <span v-bind:title="message">
+    Hover your mouse over me for a few seconds
+    to see my dynamically bound title!
+  </span>
+</div> -->
+
 <% if identity_solver.wechat_customer? %>
   <div class="wechat-share">
     <div class="+right">

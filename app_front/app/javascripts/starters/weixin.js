@@ -1,3 +1,4 @@
+
 /**
  * WeixinStarter Class
  */
@@ -7,6 +8,10 @@ var WeixinStarter = {
      * Initializer
      */
     init: function() {
+
+      // var weixinVue = new Vue({
+      //   el: '#weixin-vue',
+      // });
 
       if (typeof this.data() !== "undefined") {
         this.config();

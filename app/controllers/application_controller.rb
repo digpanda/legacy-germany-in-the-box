@@ -34,17 +34,14 @@ class ApplicationController < ActionController::Base
     @wechat_api_connect_solver ||= WechatApiConnectSolver.new(params[:code]).resolve!
   end
 
-  # TODO : remove tester criteria
   def activate_weixin_js_config
     @weixin_js_config ||= begin
-      if current_user&.tester?
-        ticket = WeixinTicket.new(cache_scope: request.host).resolve!
-        return false unless ticket.success?
-        js_config = WeixinApiJsConfig.new(request: request, ticket: ticket.data[:ticket]).resolve!
-        return false unless js_config.success?
-        SlackDispatcher.new.message("CURRENT JS CONFIG : #{js_config}")
-        js_config.data
-      end
+      ticket = WeixinTicket.new(cache_scope: request.host).resolve!
+      return false unless ticket.success?
+      js_config = WeixinApiJsConfig.new(request: request, ticket: ticket.data[:ticket]).resolve!
+      return false unless js_config.success?
+      SlackDispatcher.new.message("CURRENT JS CONFIG : #{js_config}")
+      js_config.data
     end
   end
 

@@ -4056,6 +4056,10 @@ var WeixinStarter = {
    */
   init: function init() {
 
+    // var weixinVue = new Vue({
+    //   el: '#weixin-vue',
+    // });
+
     if (typeof this.data() !== "undefined") {
       this.config();
       this.onReady();
