@@ -102,8 +102,8 @@ zh-CN:
     new_price: 折后价格
     coupon_desktop: 折扣码
     coupon_mobile: 折扣码
-    applied_successfully: 此优惠券已被成功使用。
-    applied_fail: 此优惠券无效。
+    applied_successfully: 折扣码使用成功。
+    applied_fail: 折扣码无法用于当前订单。
   product_left:
     only: 只剩
     left: 件
