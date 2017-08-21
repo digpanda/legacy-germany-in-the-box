@@ -4,6 +4,7 @@ class Brand
   strip_attributes
 
   field :name, type: String, localize: true
+  field :slug, type: String
   field :html_desc, type: String, localize: true
   field :position, type: Integer, default: 0
 

@@ -18,6 +18,18 @@ class Category
   scope :with_package_sets, -> { where(:id.in => PackageSet.active.all.pluck(:category_id)) }
   scope :showable, -> { where(:show.ne => false) }
 
+  def product_brands
+    products.map(&:brand).uniq
+  end
+
+  # NOTE : could not be done better, sadly.
+  def package_set_brands
+    package_sets.reduce([]) do |acc, package_set|
+      products = package_set.package_skus.map(&:product)
+      acc << products.map(&:brand).uniq
+    end.flatten
+  end
+
   def shops
     Shop.where(:id.in => shop_ids)
   end

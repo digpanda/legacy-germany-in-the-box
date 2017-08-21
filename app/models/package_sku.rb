@@ -5,7 +5,7 @@ class PackageSku
   field :quantity, type: Integer
   field :price, type: Float, default: 0
   field :taxes_per_unit, type: Float, default: 0
-  
+
   belongs_to :product
   embedded_in :package_set
 

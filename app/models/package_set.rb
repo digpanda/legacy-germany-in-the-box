@@ -41,6 +41,12 @@ class PackageSet
   validates_with UniquePackageSkuValidator
 
   scope :active, -> { where(active: true) }
+  scope :with_category, -> (category) { where(category: category) }
+
+  scope :with_brand, -> (brand) do
+    product_ids = Product.where(brand_id: brand.id).map(&:_id)
+    where(package_skus: {'$elemMatch': {:product_id.in => product_ids}} )
+  end
 
   def casual_price?
     casual_price && casual_price > 0

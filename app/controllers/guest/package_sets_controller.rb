@@ -1,11 +1,11 @@
 class Guest::PackageSetsController < ApplicationController
-  attr_reader :package_set, :category
+  attr_reader :package_set, :category, :brand
 
   before_filter do
     restrict_to :customer
   end
 
-  before_action :set_package_set, :set_category
+  before_action :set_package_set, :set_category, :set_brand
 
   before_action :breadcrumb_package_set, only: [:show]
   before_action :breadcrumb_package_sets, only: [:index]
@@ -17,15 +17,24 @@ class Guest::PackageSetsController < ApplicationController
   # we show the list of package by category
   # otherwise we redirect the user to the /categories area
   def index
+    @query = PackageSet.active.order_by(position: :asc)
+
     if category
-      @package_sets = PackageSet.active.order_by(position: :asc).where(category: category).all
+      @query = @query.with_category(category)
     # category was not defined because
     # it doesn't not match with any existing one
     elsif params[:category_slug] == 'all'
-      @package_sets = PackageSet.active.order_by(position: :asc).all
+      @query = @query
     else
       redirect_to guest_package_sets_categories_path
+      return
     end
+
+    if brand
+      @query = @query.with_brand(brand)
+    end
+
+    @package_sets = @query.all
   end
 
   # we use the package set and convert it into an order
@@ -64,6 +73,12 @@ class Guest::PackageSetsController < ApplicationController
 
     # for filtering (optional)
     def set_category
-      @category = Category.where(slug: params[:category_slug]).first unless params[:category_slug].nil?
+      @category = Category.where(slug: params[:category_slug]).first if params[:category_slug]
+    end
+
+    # for filtering (optional)
+    # NOTE : we avoid crashing it if not found
+    def set_brand
+      @brand = Brand.where(id: params[:brand_id]).first if params[:brand_id]
     end
 end

@@ -1847,6 +1847,10 @@ body {
     font-weight: bold;
     font-size: 18px;
     text-decoration: line-through; }
+  .categories-block__brands {
+    color: #bdc3c7; }
+    .categories-block__brands a {
+      color: #bdc3c7; }
   .categories-block__wrapper {
     width: 95%; }
     @media (max-width: 994px) {
