@@ -28,4 +28,21 @@
 
   </div>
 
+  <!-- Description -->
+  <div class="row">
+    <div class="col-md-2">
+      <label>
+        Description (HTML) <span class="+red">*</span>
+      </label>
+    </div>
+
+    <%= translate_fields form, :html_desc do |form_field| %>
+      <div class="col-md-5 form-group">
+        <%= form_field.text_area :class => 'form-control', :required => false %>
+        <div class="help-block with-errors"></div>
+      </div>
+    <% end %>
+
+  </div>
+
 </div>
