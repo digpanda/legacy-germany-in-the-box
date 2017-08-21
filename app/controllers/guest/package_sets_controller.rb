@@ -22,6 +22,7 @@ class Guest::PackageSetsController < ApplicationController
   def index
     @query = PackageSet.active.order_by(position: :asc)
 
+    # category querying
     if category
       @query = @query.with_category(category)
     # category was not defined because
@@ -33,6 +34,7 @@ class Guest::PackageSetsController < ApplicationController
       return
     end
 
+    # brand querying
     if brand
       @query = @query.with_brand(brand)
     end
