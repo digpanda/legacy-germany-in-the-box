@@ -1,6 +1,7 @@
 module FormHelper
 
   def brand_package_set_filter(category)
+    SlackDispatcher.new.message("BRAND : #{category.package_set_brands}")
     category.package_set_brands.map do |brand|
       [brand.name, brand.id, {'data-href' => guest_package_sets_path(category_slug: category.slug, brand_id: brand.id)}]
     end
