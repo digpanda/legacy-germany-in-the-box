@@ -26,8 +26,8 @@ class Category
   def package_set_brands
     package_sets.active.reduce([]) do |acc, package_set|
       products = package_set.package_skus.map(&:product)
-      acc << products.map(&:brand).uniq
-    end.uniq.flatten
+      acc << products.map(&:brand)
+    end.uniq
   end
 
   def shops
