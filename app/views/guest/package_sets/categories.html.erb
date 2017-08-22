@@ -1,12 +1,14 @@
 <%= render "guest/package_sets/package_set_banner" %>
 
+<div class="+small-spacer"></div>
+
 <p class="categories-block__brands">
   <% Brand.with_package_sets.all.each do |brand| %>
     <a href="<%= guest_package_sets_path(brand_id: brand.id) %>"><%= brand.name %></a> |
   <% end %>
 </p>
 
-<div class="+spacer"></div>
+<div class="+small-spacer"></div>
 
 <% Category.with_package_sets.each_with_index do |category, index| %>
   <%= render "guest/package_sets/categories/block", :options => { :reversed => (index % 2 != 0) }, :category => category %>
