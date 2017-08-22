@@ -393,7 +393,11 @@
   font-size: 20px;
   height: 1.5em;
   line-height: 1.5em;
-  border: 0; }
+  border: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%; }
 
 .nice ul.list {
   width: 100%;
