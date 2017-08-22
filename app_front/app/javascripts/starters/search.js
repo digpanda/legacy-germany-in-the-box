@@ -60,7 +60,7 @@ var Search = {
         } else {
           // we will refresh the current page the category id
           var UrlProcess = require('javascripts/lib/url_process');
-          UrlProcess.insertParam('brand_slug', brand_id);
+          UrlProcess.insertParam('brand_id', brand_id);
         }
 
       });
