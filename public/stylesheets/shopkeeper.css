@@ -1,3 +1,13 @@
+#csstyle .\+small-padding {
+  padding-left: 3px;
+  padding-right: 3px; }
+
+#csstyle .\+small-padding-left {
+  padding-left: 3px; }
+
+#csstyle .\+small-padding-right {
+  padding-right: 3px; }
+
 #csstyle .\+small-text {
   font-size: 14px; }
 
@@ -387,6 +397,7 @@
 
 .nice ul.list {
   position: absolute;
+  left: -8em;
   box-shadow: 0px 5px 20px 3px rgba(139, 139, 139, 0.32); }
 
 @media (min-width: 768px) {
