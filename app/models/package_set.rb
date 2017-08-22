@@ -48,6 +48,11 @@ class PackageSet
     where(package_skus: {'$elemMatch': {:product_id.in => product_ids}} )
   end
 
+  # array of brands for this package set
+  def brands
+    self.package_skus.map(&:product).map(&:brand)
+  end
+
   def casual_price?
     casual_price && casual_price > 0
   end

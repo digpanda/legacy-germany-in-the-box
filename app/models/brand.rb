@@ -10,4 +10,6 @@ class Brand
 
   has_many :products, inverse_of: :brand
 
+  scope :with_package_sets, -> { where(:id.in => PackageSet.active.map(&:brands).flatten.map(&:_id)) }
+
 end
