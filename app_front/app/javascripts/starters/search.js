@@ -47,15 +47,6 @@ var Search = {
      */
     brandFilter: function() {
 
-      $('.js-brand-filter').on('change', function(e) {
-
-        let brand_id = $(this).val();
-
-        var UrlProcess = require('javascripts/lib/url_process');
-        UrlProcess.insertParam('brand_id', brand_id);
-
-      });
-
       $('select.js-package-set-brand-filter').on('change', function(e) {
 
         let brand_id = $(this).val(); // current selected value
@@ -63,7 +54,13 @@ var Search = {
         let href = option.data("href"); // get the href if it exists
 
         if (typeof href !== "undefined") {
+
           window.location.href = location.protocol + '//' + location.host + href;
+          // document.location = location.host + href;
+        } else {
+          // we will refresh the current page the category id
+          var UrlProcess = require('javascripts/lib/url_process');
+          UrlProcess.insertParam('brand_slug', brand_id);
         }
 
       });
@@ -74,15 +71,6 @@ var Search = {
      * We make the category filter auto-trigger
      */
     categoryFilter: function() {
-
-      $('.js-category-filter').on('change', function(e) {
-
-        let category_id = $(this).val();
-
-        var UrlProcess = require('javascripts/lib/url_process');
-        UrlProcess.insertParam('category_id', category_id);
-
-      });
 
       $('select.js-package-set-category-filter').on('change', function(e) {
 
