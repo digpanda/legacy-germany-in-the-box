@@ -29,14 +29,18 @@ class Guest::PackageSetsController < ApplicationController
     # it doesn't not match with any existing one
     elsif params[:category_slug] == 'all'
       @query = @query
-    else
-      redirect_to guest_package_sets_categories_path
-      return
     end
 
     # brand querying
     if brand
       @query = @query.with_brand(brand)
+    end
+
+    # if there's no brand and category
+    # we redirect to the category landing page
+    if category.nil? && brand.nil?
+      redirect_to guest_package_sets_categories_path
+      return
     end
 
     @package_sets = @query.all
