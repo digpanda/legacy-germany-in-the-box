@@ -3778,16 +3778,16 @@ var Search = {
   },
 
   /**
-   * We make the category filter auto-trigger
+   * We make the brand filter auto-trigger
    */
-  categoryFilter: function categoryFilter() {
+  brandFilter: function brandFilter() {
 
-    $('.js-category-filter').on('change', function (e) {
+    $('.js-brand-filter').on('change', function (e) {
 
-      var category_id = $(this).val();
+      var brand_id = $(this).val();
 
       var UrlProcess = require('javascripts/lib/url_process');
-      UrlProcess.insertParam('category_id', category_id);
+      UrlProcess.insertParam('brand_id', brand_id);
     });
 
     $('select.js-package-set-brand-filter').on('change', function (e) {
@@ -3805,7 +3805,7 @@ var Search = {
   /**
    * We make the category filter auto-trigger
    */
-  brandFilter: function brandFilter() {
+  categoryFilter: function categoryFilter() {
 
     $('.js-category-filter').on('change', function (e) {
 

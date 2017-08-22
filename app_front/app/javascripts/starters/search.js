@@ -43,16 +43,16 @@ var Search = {
     },
 
     /**
-     * We make the category filter auto-trigger
+     * We make the brand filter auto-trigger
      */
-    categoryFilter: function() {
+    brandFilter: function() {
 
-      $('.js-category-filter').on('change', function(e) {
+      $('.js-brand-filter').on('change', function(e) {
 
-        let category_id = $(this).val();
+        let brand_id = $(this).val();
 
         var UrlProcess = require('javascripts/lib/url_process');
-        UrlProcess.insertParam('category_id', category_id);
+        UrlProcess.insertParam('brand_id', brand_id);
 
       });
 
@@ -73,7 +73,7 @@ var Search = {
     /**
      * We make the category filter auto-trigger
      */
-    brandFilter: function() {
+    categoryFilter: function() {
 
       $('.js-category-filter').on('change', function(e) {
 
