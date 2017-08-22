@@ -16,6 +16,9 @@
         Products
       </th>
       <th>
+        Used As Filter
+      </th>
+      <th>
         Action
       </th>
     </tr>
@@ -34,6 +37,9 @@
       </td>
       <td>
         <%= brand.products.count %>
+      </td>
+      <td>
+        <%= boolean_icon(brand.used_as_filter) %>
       </td>
       <td>
         <a href="<%= admin_brand_path(brand) %>"><i class="fa fa-eye tooltipster buttons buttons__edit" title="See more details"></i></a>

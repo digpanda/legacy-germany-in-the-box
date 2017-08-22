@@ -45,4 +45,21 @@
 
   </div>
 
+  <!-- Description -->
+  <div class="row">
+    <div class="col-md-2">
+      <label>
+        Used As Filter <span class="+red">*</span>
+      </label>
+      <br />
+      <em>Will it appear on the filters ?</em>
+    </div>
+
+    <div class="col-md-5 form-group">
+      <%= form.select(:used_as_filter, {'Yes' => true, 'No' => false}) %>
+      <div class="help-block with-errors"></div>
+    </div>
+
+  </div>
+
 </div>
