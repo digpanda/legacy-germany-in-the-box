@@ -2,7 +2,7 @@
 
 <div class="+small-spacer"></div>
 
-<p class="categories-block__brands">
+<p class="categories-block__brands +centered">
   <% Brand.with_package_sets.all.each do |brand| %>
     <a href="<%= guest_package_sets_path(brand_id: brand.id) %>"><%= brand.name %></a> |
   <% end %>
