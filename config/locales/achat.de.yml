@@ -3,6 +3,8 @@ de:
     apply: Einlösen
   referrer:
     share_page:
+      thank_you_for_sharing: Thank you for sharing
+      you_will_now_be_redirected: You will now be redirected ...
       please_click_and_share: Please click and share
       how_does_it_work: How does it work ?
       work_description_1: "- Description 1"

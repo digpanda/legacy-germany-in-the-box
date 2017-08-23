@@ -4076,14 +4076,31 @@ require.register("javascripts/starters/weixin.js", function(exports, require, mo
  */
 var WeixinStarter = {
 
+  weixinVue: null,
+  setupWeixinVue: function setupWeixinVue() {
+    this.weixinVue = new Vue({
+      el: '#weixin-vue',
+      data: {
+        shared: false
+      },
+      watch: {
+        shared: function shared(_shared) {
+          if (_shared === true) {
+            window.location.href = WeixinStarter.shareLinkData().back;
+          }
+        }
+      }
+    });
+  },
+
   /**
    * Initializer
    */
   init: function init() {
 
-    // var weixinVue = new Vue({
-    //   el: '#weixin-vue',
-    // });
+    if ($('#weixin-vue').length > 0) {
+      this.setupWeixinVue();
+    }
 
     if (typeof this.data() !== "undefined") {
       this.config();
@@ -4114,7 +4131,7 @@ var WeixinStarter = {
   onReady: function onReady() {
     wx.ready(function () {
       console.log('Weixin is ready.');
-      WeixinStarter.checkJsApi();
+      // WeixinStarter.checkJsApi();
       WeixinStarter.onMenuShareTimeline();
       WeixinStarter.onMenuShareAppMessage();
     });
@@ -4158,7 +4175,9 @@ var WeixinStarter = {
       link: WeixinStarter.shareLinkData().link,
       title: WeixinStarter.shareLinkData().title,
 
-      success: function success() {},
+      success: function success() {
+        WeixinStarter.weixinVue.shared = true;
+      },
       cancel: function cancel() {}
     };
   }
