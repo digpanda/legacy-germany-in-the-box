@@ -20,30 +20,26 @@ class Guest::PackageSetsController < ApplicationController
   # we show the list of package by category
   # otherwise we redirect the user to the /categories area
   def index
-    @query = PackageSet.active.order_by(position: :asc)
+    @package_sets = PackageSet.active.order_by(position: :asc)
 
     # category querying
     if category
-      @query = @query.with_category(category)
-    # category was not defined because
-    # it doesn't not match with any existing one
-    elsif params[:category_slug] == 'all'
-      @query = @query
+      @package_sets = @package_sets.with_category(category)
     end
 
     # brand querying
     if brand
-      @query = @query.with_brand(brand)
+      @package_sets = @package_sets.with_brand(brand)
     end
 
     # if there's no brand and category
     # we redirect to the category landing page
-    if category.nil? && brand.nil?
+    unless valid_filters?
       redirect_to guest_package_sets_categories_path
       return
     end
 
-    @package_sets = @query.all
+    @package_sets = @package_sets.all
   end
 
   # we use the package set and convert it into an order
@@ -65,6 +61,10 @@ class Guest::PackageSetsController < ApplicationController
   end
 
   private
+
+    def valid_filters?
+      category || brand || params[:category_slug] == 'all'
+    end
 
     # to be abstracted somewhere else
     def order_maker
