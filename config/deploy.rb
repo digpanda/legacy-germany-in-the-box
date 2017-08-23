@@ -58,7 +58,7 @@ namespace :deploy do
     on roles(:web), in: :groups, limit: 3, wait: 10 do
 
       # slugify old things
-      execute 'cd /var/www/germany_in_the_box/current && sudo gem install rake && sudo bundle exec rake mongoid_slug:set'
+      execute 'cd /var/www/germany_in_the_box/current && sudo gem install rake-11.1.2 && sudo bundle exec rake mongoid_slug:set'
 
       execute "sudo service redis-server restart"
       # brunch
