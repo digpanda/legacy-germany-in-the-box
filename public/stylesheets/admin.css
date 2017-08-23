@@ -1,3 +1,13 @@
+#csstyle .\+small-padding {
+  padding-left: 3px;
+  padding-right: 3px; }
+
+#csstyle .\+small-padding-left {
+  padding-left: 3px; }
+
+#csstyle .\+small-padding-right {
+  padding-right: 3px; }
+
 #csstyle .\+small-text {
   font-size: 14px; }
 
