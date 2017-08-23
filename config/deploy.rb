@@ -56,6 +56,9 @@ namespace :deploy do
   after :restart, :clear_cache do
     on roles(:web), in: :groups, limit: 3, wait: 10 do
 
+      # slugify old things
+      execute :rake, 'mongoid_slug:set'
+
       execute "sudo service redis-server restart"
       # brunch
       # execute "alias node=/home/ubuntu/.nvm/v5.0.0/bin/node | node -v" # we artifically set the node version
