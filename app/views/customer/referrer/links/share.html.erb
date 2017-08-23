@@ -8,7 +8,7 @@
 </div>
 
 
-<% if identity_solver.wechat_customer? %>
+<% if !identity_solver.wechat_customer? %>
 
 <div id="weixin-vue">
   <template v-if="shared">
@@ -23,7 +23,7 @@
     <!-- Default page before sharing -->
     <div class="wechat-share">
       <div class="+right">
-        <img src="/images/elements/arrow-click.png" width="50px">
+        <img src="/images/elements/arrow-click.png" class="blink-img" width="50px">
       </div>
 
       <!-- Explanation -->
