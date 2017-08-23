@@ -4,6 +4,7 @@ lock '3.5.0'
 set :application, 'germany_in_the_box'
 set :repo_url, "git@github.com:digpanda/germany-in-the-box.git"
 set :ssh_options, :forward_agent => true
+set :use_sudo, false
 
 set :passenger_environment_variables, { :path => '/usr/bin:$PATH' }
 set :passenger_restart_command, '/usr/bin/passenger-config restart-app'
@@ -57,7 +58,7 @@ namespace :deploy do
     on roles(:web), in: :groups, limit: 3, wait: 10 do
 
       # slugify old things
-      execute 'cd /var/www/germany_in_the_box/current && sudo bundle exec rake mongoid_slug:set'
+      execute 'cd /var/www/germany_in_the_box/current && bundle exec rake mongoid_slug:set'
 
       execute "sudo service redis-server restart"
       # brunch
