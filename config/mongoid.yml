@@ -12,6 +12,7 @@ production:
     use_utc: false
     use_activesupport_time_zone: true
     raise_not_found_error: true
+    server_selection_timeout: 90
 
 preproduction:
   clients:
