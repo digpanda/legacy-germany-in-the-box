@@ -14,9 +14,9 @@ class Customer::Referrer::LinksController < ApplicationController
 
   def index
     if current_user.tester?
-      @links = Link.active.order_by(position: :asc).order_by(c_at: :desc)
-    else
       @links = Link.order_by(position: :asc).order_by(c_at: :desc)
+    else
+      @links = Link.active.order_by(position: :asc).order_by(c_at: :desc)
     end
   end
 
