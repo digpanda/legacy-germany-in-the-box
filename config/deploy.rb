@@ -4,6 +4,7 @@ lock '3.5.0'
 set :application, 'germany_in_the_box'
 set :repo_url, "git@github.com:digpanda/germany-in-the-box.git"
 set :ssh_options, :forward_agent => true
+set :use_sudo, false
 
 set :passenger_environment_variables, { :path => '/usr/bin:$PATH' }
 set :passenger_restart_command, '/usr/bin/passenger-config restart-app'
@@ -49,12 +50,27 @@ namespace :deploy do
   # Uploading only linked_files
   before :finishing, 'linked_files:upload_files'
 
+  # task :invoke do
+  #   on roles(:web) do
+  #     within "#{current_path}" do
+  #       run "bin/rake #{ENV['task']}"
+  #     end
+  #   end
+  # end
+
   task :restart do
     invoke 'delayed_job:restart'
+    # invoke 'rake:mongoid_slug_set'
   end
 
   after :restart, :clear_cache do
     on roles(:web), in: :groups, limit: 3, wait: 10 do
+
+      # slugify old things
+      # execute 'cd /var/www/germany_in_the_box/current && sudo gem install rake-11.1.2 && sudo bundle exec rake mongoid_slug:set'
+      # execute 'cd /var/www/germany_in_the_box/current && bundle list'
+      # execute '/usr/share/rvm/bin/rvm 2.3.0 do bundle exec rake mongoid_slug:set'
+      # run "bin/rake mongoid_slug:set"
 
       execute "sudo service redis-server restart"
       # brunch

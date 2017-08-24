@@ -7,6 +7,7 @@ class Category
   has_many :package_sets,  inverse_of: :category
 
   field :slug, type: String
+
   field :desc, type: String, localize: true
   field :position, type: Integer
   field :show, type: Boolean, default: true
@@ -19,15 +20,11 @@ class Category
   scope :showable, -> { where(:show.ne => false) }
 
   def product_brands
-    products.map(&:brand).uniq
+    products.is_active.map(&:brand).uniq
   end
 
-  # NOTE : could not be done better, sadly.
   def package_set_brands
-    package_sets.reduce([]) do |acc, package_set|
-      products = package_set.package_skus.map(&:product)
-      acc << products.map(&:brand).uniq
-    end.flatten
+    package_sets.active.map(&:brands).flatten.uniq
   end
 
   def shops

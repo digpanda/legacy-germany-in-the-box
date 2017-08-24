@@ -3,44 +3,54 @@
       data-title="<%= @link.title %>"
       data-desc="<%= @link.desc %>"
       data-img-url="<%= @link.thumbnail_url %>"
-      data-link="<%= @link.wechat.with_login_and_referrer(@referrer) %>">
+      data-link="<%= @link.wechat.with_login_and_referrer(@referrer) %>"
+      data-back="<%= customer_referrer_links_url %>">
 </div>
 
 
-<!-- <div id="weixin-vue">
-  <span v-bind:title="message">
-    Hover your mouse over me for a few seconds
-    to see my dynamically bound title!
-  </span>
-</div> -->
-
 <% if identity_solver.wechat_customer? %>
-  <div class="wechat-share">
-    <div class="+right">
-      <img src="/images/elements/arrow-click.png" width="50px">
-    </div>
 
-    <!-- Explanation -->
-    <div class="row">
-      <div class="col-md-12">
-        <h1 class="+bold"><%= I18n.t('referrer.share_page.please_click_and_share') %></h1>
-        <div class="+spacer"></div>
-        <div class="+dark-grey">
-        <h2><%= I18n.t('referrer.share_page.how_does_it_work') %></h2>
-        <div class="+small-spacer"></div>
-        <%= I18n.t('referrer.share_page.work_description_1') %><br />
-        <%= I18n.t('referrer.share_page.work_description_2') %><br />
-        <%= I18n.t('referrer.share_page.work_description_3') %><br />
-        <div class="+spacer"></div>
+<div id="weixin-vue">
+  <template v-if="shared">
+
+    <!-- Message after successful share -->
+    <h1><%= I18n.t('referrer.share_page.thank_you_for_sharing') %></h1>
+    <em><%= I18n.t('referrer.share_page.you_will_now_be_redirected') %></em>
+
+  </template>
+  <template v-else>
+
+    <!-- Default page before sharing -->
+    <div class="wechat-share">
+      <div class="+right">
+        <img src="/images/elements/arrow-click.png" class="blink-img" width="50px">
+      </div>
+
+      <!-- Explanation -->
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="+bold"><%= I18n.t('referrer.share_page.please_click_and_share') %></h1>
+          <div class="+spacer"></div>
+          <div class="+dark-grey">
+            <h2><%= I18n.t('referrer.share_page.how_does_it_work') %></h2>
+            <div class="+small-spacer"></div>
+            <%= I18n.t('referrer.share_page.work_description_1') %><br />
+            <%= I18n.t('referrer.share_page.work_description_2') %><br />
+            <%= I18n.t('referrer.share_page.work_description_3') %><br />
+            <div class="+spacer"></div>
+          </div>
+          <hr />
+          <h3><%= @link.title %></h3>
+          <em><%= @link.desc %></em>
+          <br /><br />
+          <%= @link.long_desc&.html_safe %><br />
         </div>
-        <hr />
-        <h3><%= @link.title %></h3>
-        <em><%= @link.desc %></em>
-        <br /><br />
-        <%= @link.long_desc&.html_safe %><br />
       </div>
     </div>
-  </div>
+
+  </template>
+</div>
+
 <% else %>
   <h1 class="+bold"><%= I18n.t('referrer.share_page.please_share_this_link') %></h1>
   <a href="<%= @link.wechat.with_login_and_referrer(@referrer) %>"><%= @link.wechat.with_login_and_referrer(@referrer) %></a>

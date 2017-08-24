@@ -3778,17 +3778,9 @@ var Search = {
   },
 
   /**
-   * We make the category filter auto-trigger
+   * We make the brand filter auto-trigger
    */
-  categoryFilter: function categoryFilter() {
-
-    $('.js-category-filter').on('change', function (e) {
-
-      var category_id = $(this).val();
-
-      var UrlProcess = require('javascripts/lib/url_process');
-      UrlProcess.insertParam('category_id', category_id);
-    });
+  brandFilter: function brandFilter() {
 
     $('select.js-package-set-brand-filter').on('change', function (e) {
 
@@ -3797,7 +3789,13 @@ var Search = {
       var href = option.data("href"); // get the href if it exists
 
       if (typeof href !== "undefined") {
+
         window.location.href = location.protocol + '//' + location.host + href;
+        // document.location = location.host + href;
+      } else {
+        // we will refresh the current page the category id
+        var UrlProcess = require('javascripts/lib/url_process');
+        UrlProcess.insertParam('brand_id', brand_id);
       }
     });
   },
@@ -3805,15 +3803,7 @@ var Search = {
   /**
    * We make the category filter auto-trigger
    */
-  brandFilter: function brandFilter() {
-
-    $('.js-category-filter').on('change', function (e) {
-
-      var category_id = $(this).val();
-
-      var UrlProcess = require('javascripts/lib/url_process');
-      UrlProcess.insertParam('category_id', category_id);
-    });
+  categoryFilter: function categoryFilter() {
 
     $('select.js-package-set-category-filter').on('change', function (e) {
 
@@ -4086,14 +4076,31 @@ require.register("javascripts/starters/weixin.js", function(exports, require, mo
  */
 var WeixinStarter = {
 
+  weixinVue: null,
+  setupWeixinVue: function setupWeixinVue() {
+    this.weixinVue = new Vue({
+      el: '#weixin-vue',
+      data: {
+        shared: false
+      },
+      watch: {
+        shared: function shared(_shared) {
+          if (_shared === true) {
+            window.location.href = WeixinStarter.shareLinkData().back;
+          }
+        }
+      }
+    });
+  },
+
   /**
    * Initializer
    */
   init: function init() {
 
-    // var weixinVue = new Vue({
-    //   el: '#weixin-vue',
-    // });
+    if ($('#weixin-vue').length > 0) {
+      this.setupWeixinVue();
+    }
 
     if (typeof this.data() !== "undefined") {
       this.config();
@@ -4124,7 +4131,7 @@ var WeixinStarter = {
   onReady: function onReady() {
     wx.ready(function () {
       console.log('Weixin is ready.');
-      WeixinStarter.checkJsApi();
+      // WeixinStarter.checkJsApi();
       WeixinStarter.onMenuShareTimeline();
       WeixinStarter.onMenuShareAppMessage();
     });
@@ -4168,7 +4175,9 @@ var WeixinStarter = {
       link: WeixinStarter.shareLinkData().link,
       title: WeixinStarter.shareLinkData().title,
 
-      success: function success() {},
+      success: function success() {
+        WeixinStarter.weixinVue.shared = true;
+      },
       cancel: function cancel() {}
     };
   }

@@ -4,14 +4,31 @@
  */
 var WeixinStarter = {
 
+    weixinVue: null,
+    setupWeixinVue: function() {
+      this.weixinVue = new Vue({
+        el: '#weixin-vue',
+        data: {
+          shared: false
+        },
+        watch: {
+          shared: function(shared) {
+            if (shared === true) {
+              window.location.href = WeixinStarter.shareLinkData().back;
+            }
+          }
+        }
+      });
+    },
+
     /**
      * Initializer
      */
     init: function() {
 
-      // var weixinVue = new Vue({
-      //   el: '#weixin-vue',
-      // });
+      if ($('#weixin-vue').length > 0) {
+        this.setupWeixinVue();
+      }
 
       if (typeof this.data() !== "undefined") {
         this.config();
@@ -43,7 +60,7 @@ var WeixinStarter = {
     onReady: function() {
       wx.ready(function(){
         console.log('Weixin is ready.');
-        WeixinStarter.checkJsApi();
+        // WeixinStarter.checkJsApi();
         WeixinStarter.onMenuShareTimeline();
         WeixinStarter.onMenuShareAppMessage();
       });
@@ -88,6 +105,7 @@ var WeixinStarter = {
         title: WeixinStarter.shareLinkData().title,
 
         success: function () {
+          WeixinStarter.weixinVue.shared = true;
         },
         cancel: function () {
         }

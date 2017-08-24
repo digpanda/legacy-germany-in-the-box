@@ -3,9 +3,3 @@
 <div class="categories-block__button">
 <a class="main-button__hollow category-select" href="<%= guest_package_sets_path(category_slug: category.slug) %>"><%= I18n.t('categories.more_info') %></a>
 </div>
-<div class="+small-spacer"></div>
-<p class="categories-block__brands">
-  <% category.package_set_brands.each do |brand| %>
-    <a href="<%= guest_package_sets_path(category_slug: category.slug, brand_id: brand.id) %>"><%= brand.name %></a> |
-  <% end %>
-</p>

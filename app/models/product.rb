@@ -1,6 +1,7 @@
 class Product
   include MongoidBase
   include Mongoid::Search
+  include Mongoid::Slug
 
   MAX_SHORT_TEXT_LENGTH = (Rails.configuration.gitb[:max_short_text_length] * 1.25).round
   MAX_LONG_TEXT_LENGTH = (Rails.configuration.gitb[:max_long_text_length] * 1.25).round
@@ -8,6 +9,8 @@ class Product
   strip_attributes
 
   field :name, type: String, localize: true
+  slug :name
+  
   field :cover, type: String # deprecated ?
   field :desc, type: String, localize: true
   field :desc_below, type: String, localize: true

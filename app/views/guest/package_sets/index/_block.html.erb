@@ -8,21 +8,6 @@
   <div class="package-set-list-block">
     <a class="package-select" href="<%= guest_package_set_path(package_set) %>">
 
-      <!-- HEADER CONTENT -->
-      <div class="row">
-        <div class="col-xs-12">
-          <div class="package-set-list-block__header-content">
-            <div class="row">
-              <div class="col-xs-12 +nopadding">
-                <div class="package-set-list-block__header-title">
-                  <%= package_set.name %>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
       <!-- IMAGE -->
       <div class="row">
         <div class="col-xs-12">
@@ -31,10 +16,28 @@
         </div>
       </div>
 
+      <!-- HEADER CONTENT -->
+      <!-- <div class="row">
+        <div class="col-xs-12">
+          <div class="package-set-list-block__header-content">
+
+          </div>
+        </div>
+      </div> -->
+
       <!-- FOOTER CONTENT -->
       <div class="row">
         <div class="col-xs-12">
           <div class="package-set-list-block__footer-content">
+
+            <div class="row">
+              <div class="col-xs-12 +nopadding">
+                <div class="package-set-list-block__header-title">
+                  <%= package_set.name %>
+                </div>
+              </div>
+            </div>
+
             <div class="row">
               <div class="col-xs-10 +nopadding">
                 <div class="package-set-list-block__footer-price">

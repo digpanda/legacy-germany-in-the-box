@@ -1,13 +1,59 @@
+@-webkit-keyframes blink
+    0%
+        opacity: 1
+    50%
+        opacity: 0
+    100%
+        opacity: 1
+
+@-moz-keyframes blink
+    0%
+      opacity: 1
+    50%
+      opacity: 0
+    100%
+      opacity: 1
+
+@-o-keyframes blink
+    0%
+      opacity: 1
+    50%
+      opacity: 0
+    100%
+      opacity: 1
+
+.blink-img
+    -webkit-animation: blink 1s
+    -webkit-animation-iteration-count: infinite
+    -moz-animation: blink 1s
+    -moz-animation-iteration-count: infinite
+    -o-animation: blink 1s
+    -o-animation-iteration-count: infinite
+
 .nice
   font-size: 20px
   height: 1.5em
   line-height: 1.5em
   border: 0
 
+.nice-select
+  // white-space: nowrap
+  // overflow: hidden
+  // text-overflow: ellipsis
+  // width: 100%
+
 .nice ul.list
-  position: absolute
-  //left: -3em
+  width: 100%
   +shadow-box
+
+.nice-select .option
+  font-size: 15px
+  line-height: 25px
+  min-height: 25px
+  min-width: 150px
+  white-space: nowrap
+  overflow: hidden
+  text-overflow: ellipsis
 
 @media (min-width: 768px)
   .navbar-toggle
