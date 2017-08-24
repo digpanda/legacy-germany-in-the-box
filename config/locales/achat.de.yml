@@ -3,6 +3,7 @@ de:
     apply: Einlösen
   referrer:
     share_page:
+      preview: Preview
       thank_you_for_sharing: Thank you for sharing
       you_will_now_be_redirected: You will now be redirected ...
       please_click_and_share: Please click and share

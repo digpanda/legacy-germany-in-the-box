@@ -36,7 +36,7 @@ class Shopkeeper::OrdersController < ApplicationController
 
     # we go back now
     Notifier::Customer.new(order.user).order_is_being_processed(order)
-    flash[:success] = I18n.t(:order_processing, scope: :notice)
+    flash[:success] = I18n.t('notice.order_processing')
     redirect_to navigation.back(1)
   end
 
