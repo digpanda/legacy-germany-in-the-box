@@ -9,8 +9,11 @@ class Link
 
   field :raw_url, type: String
   field :valid_url, type: Boolean, default: true
+  field :active, type: Boolean, default: false
 
   field :position, type: Integer, default: 0
+
+  scope :active, -> { where(active: true) }
 
   # research system
   search_in :title, :url

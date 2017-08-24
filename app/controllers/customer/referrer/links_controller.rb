@@ -13,7 +13,7 @@ class Customer::Referrer::LinksController < ApplicationController
   authorize_resource class: false
 
   def index
-    @links = Link.order_by(c_at: :desc)
+    @links = Link.active.order_by(c_at: :desc)
   end
 
   def share

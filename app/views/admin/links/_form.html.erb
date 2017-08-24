@@ -72,6 +72,20 @@
       </div>
   </div>
 
+  <!-- Active -->
+  <div class="row">
+    <div class="col-md-2">
+      <label>
+        Active
+      </label>
+    </div>
+
+      <div class="col-md-10 form-group">
+        <%= form.select :active, boolean_select %>
+        <div class="help-block with-errors"></div>
+      </div>
+  </div>
+
 </div>
 
 <%= form.submit :class => 'big-button --blue', :value =>  "Save" %>

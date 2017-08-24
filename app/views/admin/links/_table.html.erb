@@ -27,6 +27,9 @@
       Valid URL
     </th>
     <th>
+      Active
+    </th>
+    <th>
       Created At
     </th>
     <th>
@@ -62,6 +65,9 @@
       </td>
       <td>
         <%= boolean_icon(link.valid_url) %>
+      </th>
+      <td>
+        <%= boolean_icon(link.active) %>
       </th>
       <td>
         <%= link.c_at %>
