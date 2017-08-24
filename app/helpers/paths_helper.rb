@@ -1,5 +1,9 @@
 module PathsHelper
 
+  def vuejs_path
+    "https://unpkg.com/vue"
+  end
+
   def resolve_profile_path
     if current_user
       if current_user.decorate.new_notifications?
