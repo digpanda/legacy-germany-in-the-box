@@ -40,7 +40,7 @@
   "overrides": {
     "vue": {
       "main": [
-        "dist/vue.min.js"
+        "dist/vue.js"
       ]
     },
     "distpicker": {
