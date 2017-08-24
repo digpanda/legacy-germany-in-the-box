@@ -7249,5 +7249,8 @@ html.magnifying > body {
   float: left;
   margin-left: 1em; }
 
+section {
+  width: 100% !important; }
+
 
 /*# sourceMappingURL=shared.css.map*/
