@@ -59,7 +59,7 @@ namespace :deploy do
 
       # slugify old things
       # execute 'cd /var/www/germany_in_the_box/current && sudo gem install rake-11.1.2 && sudo bundle exec rake mongoid_slug:set'
-      execute 'cd /var/www/germany_in_the_box/current && rake mongoid_slug:set'
+      execute 'cd /var/www/germany_in_the_box/current && bundle list'
 
       execute "sudo service redis-server restart"
       # brunch
