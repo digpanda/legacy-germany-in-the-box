@@ -50,6 +50,14 @@ namespace :deploy do
   # Uploading only linked_files
   before :finishing, 'linked_files:upload_files'
 
+  # task :invoke do
+  #   on roles(:web) do
+  #     within "#{current_path}" do
+  #       run "bin/rake #{ENV['task']}"
+  #     end
+  #   end
+  # end
+
   task :restart do
     invoke 'delayed_job:restart'
     # invoke 'rake:mongoid_slug_set'
@@ -62,6 +70,7 @@ namespace :deploy do
       # execute 'cd /var/www/germany_in_the_box/current && sudo gem install rake-11.1.2 && sudo bundle exec rake mongoid_slug:set'
       # execute 'cd /var/www/germany_in_the_box/current && bundle list'
       # execute '/usr/share/rvm/bin/rvm 2.3.0 do bundle exec rake mongoid_slug:set'
+      run "bin/rake mongoid_slug:set"
 
       execute "sudo service redis-server restart"
       # brunch
@@ -78,17 +87,4 @@ namespace :deploy do
     end
   end
 
-end
-
-namespace :rake do
-  desc "MongoID Slug Set"
-  task :mongoid_slug_set do
-    on roles(:app) do
-      within "#{current_path}" do
-        with rails_env: :production do
-          execute :rake, "mongoid_slug:set"
-        end
-      end
-    end
-  end
 end
