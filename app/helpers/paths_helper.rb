@@ -3,9 +3,9 @@ module PathsHelper
   def vuejs_path
     # REMOTE : "https://unpkg.com/vue"
     if Rails.env.production?
-      'javascripts/vue.min.js'
+      '/javascripts/vue.min.js'
     else
-      'javascripts/vue.js'
+      '/javascripts/vue.js'
     end
   end
 
