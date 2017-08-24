@@ -52,7 +52,7 @@ namespace :deploy do
 
   task :restart do
     invoke 'delayed_job:restart'
-    invoke 'bundle exec rake mongoid_slug:set'
+    invoke 'mongoid_slug:set'
   end
 
   after :restart, :clear_cache do
