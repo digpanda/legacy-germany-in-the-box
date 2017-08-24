@@ -52,8 +52,7 @@ namespace :deploy do
 
   task :restart do
     invoke 'delayed_job:restart'
-    invoke 'rake --tasks'
-    # invoke 'mongoid_slug:set'
+    invoke 'rake:mongoid_slug_set'
   end
 
   after :restart, :clear_cache do
@@ -79,4 +78,17 @@ namespace :deploy do
     end
   end
 
+end
+
+namespace :rake do
+  desc "MongoID Slug Set"
+  task :mongoid_slug_set do
+    on roles(:app) do
+      within "#{current_path}" do
+        with rails_env: :production do
+          execute :rake, "mongoid_slug:set"
+        end
+      end
+    end
+  end
 end
