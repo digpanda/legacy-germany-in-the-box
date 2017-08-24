@@ -3,7 +3,7 @@ module PathsHelper
   # NOTE : for remote / latest version
   # use 'https://unpkg.com/vue'
   def resolve_vuejs_path
-    if Rails.env.production?
+    if Rails.env.production? || Rails.env.test?
       '/javascripts/vue.min.js'
     else
       '/javascripts/vue.js'
