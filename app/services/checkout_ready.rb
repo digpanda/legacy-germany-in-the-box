@@ -30,17 +30,17 @@ class CheckoutReady < BaseService
 
     # did he reach today's limit ?
     if today_limit?
-      return return_with(:error, I18n.t(:override_maximal_total, scope: :edit_order, total: Setting.instance.max_total_per_day, currency: Setting.instance.platform_currency.symbol))
+      return return_with(:error, I18n.t('edit_order.override_maximal_total', total: Setting.instance.max_total_per_day, currency: Setting.instance.platform_currency.symbol))
     end
 
     # are all products available for real ? (inventory check)
     unless products_available?
-      return return_with(:error, I18n.t(:not_all_available, scope: :checkout, :product_name => products_available[:unavailable_sku].product.name, :option_names => products_available[:unavailable_sku].option_names.join(', ')))
+      return return_with(:error, I18n.t('checkout.not_all_available', :product_name => products_available[:unavailable_sku].product.name, :option_names => products_available[:unavailable_sku].option_names.join(', ')))
     end
 
     # did he reach the minimum shop requirement in term of order amount ?
     unless minimum_shop?
-      return return_with(:error, I18n.t(:not_all_min_total_reached, scope: :checkout, :shop_name => order.shop.name, :total_price => products_available[:total_price].in_euro.to_yuan.display, :currency => Setting.instance.platform_currency.symbol, :min_total => order.shop.min_total.in_euro.to_yuan(exchange_rate: order.exchange_rate).display))
+      return return_with(:error, I18n.t('checkout.not_all_min_total_reached', :shop_name => order.shop.name, :total_price => products_available[:total_price].in_euro.to_yuan.display, :currency => Setting.instance.platform_currency.symbol, :min_total => order.shop.min_total.in_euro.to_yuan(exchange_rate: order.exchange_rate).display))
     end
 
     # let's update for checkout

@@ -139,12 +139,12 @@ class OrderMaker
     end
 
     def error_not_available
-      I18n.t(:not_all_available, scope: :checkout, product_name: product.name, option_names: sku.display_option_names)
+      I18n.t('checkout.not_all_available', product_name: product.name, option_names: sku.display_option_names)
     end
 
     def error_quantity
       # it's more about product not totally available but i don't have translation for it
-      I18n.t(:not_all_available, scope: :checkout, product_name: product.name, option_names: sku.display_option_names)
+      I18n.t('checkout.not_all_available', product_name: product.name, option_names: sku.display_option_names)
     end
 
   end

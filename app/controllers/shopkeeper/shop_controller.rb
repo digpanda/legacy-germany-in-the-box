@@ -13,7 +13,7 @@ class Shopkeeper::ShopController < ApplicationController
 
   def update
     if shop.agb && shop.update(shop_params)
-      flash[:success] = I18n.t(:update_ok, scope: :edit_shop)
+      flash[:success] = I18n.t('edit_shop.update_ok')
     else
       flash[:error] = shop.errors.full_messages.join(', ')
     end

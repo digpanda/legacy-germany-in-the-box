@@ -7,7 +7,7 @@ Discount <%= form.text_field :discount %><%= form.select(:unit, {'%' => :percent
 Minimum order <%= form.text_field :minimum_order %> EUR
 <br />
 
-Unique <%= form.select(:unique, {'Yes' => true, 'No' => false}) %>
+Unique <%= form.select(:unique, boolean_select) %>
 <br />
 <br />
 
@@ -25,6 +25,6 @@ Reference User <%= form.select :referrer, options_from_collection_for_select(Ref
 <br />
 <br />
 
-Exclude China <%= form.select(:exclude_china, {'Yes' => true, 'No' => false}) %>
+Exclude China <%= form.select(:exclude_china, boolean_select) %>
 <br />
 <br />

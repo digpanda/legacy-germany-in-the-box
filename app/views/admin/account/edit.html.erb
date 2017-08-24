@@ -6,7 +6,7 @@
   <div class="col-md-5 +white-box">
 
     <div class="form-group">
-      <%= f.label :email, I18n.t(:email, scope: :edit_account) %>
+      <%= f.label :email, I18n.t('edit_account.email') %>
       <%= f.text_field :email, :class => 'form-control', :type => 'email' %>
     </div>
 
@@ -25,7 +25,7 @@
 <div class="row">
   <div class="col-md-11 +centered">
     <div class="+spacer"></div>
-      <%= f.button I18n.t(:save, scope: :edit_account), :type => 'submit', :class => 'big-button --blue' %>
+      <%= f.button I18n.t('edit_account.save'), :type => 'submit', :class => 'big-button --blue' %>
   </div>
 </div>
 

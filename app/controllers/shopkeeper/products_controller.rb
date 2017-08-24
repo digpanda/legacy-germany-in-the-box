@@ -22,7 +22,7 @@ class Shopkeeper::ProductsController < ApplicationController
     @product = shop.products.build(product_params)
 
     if product.save
-      flash[:success] = I18n.t(:update_ok, scope: :edit_product)
+      flash[:success] = I18n.t('edit_product.update_ok')
       # we redirect the user directly to the variants setup
       # because it's a new product.
       redirect_to shopkeeper_product_variants_path(product)
@@ -38,7 +38,7 @@ class Shopkeeper::ProductsController < ApplicationController
 
   def update
     if product.update(product_params)
-      flash[:success] = I18n.t(:update_ok, scope: :edit_product)
+      flash[:success] = I18n.t('edit_product.update_ok')
       redirect_to edit_shopkeeper_product_path(product)
       return
     end
@@ -49,7 +49,7 @@ class Shopkeeper::ProductsController < ApplicationController
 
   def destroy
     if product.destroy
-      flash[:success] = I18n.t(:delete_ok, scope: :edit_product)
+      flash[:success] = I18n.t('edit_product.delete_ok')
     else
       flash[:error] = product.errors.full_messages.join(', ')
     end

@@ -17,5 +17,5 @@
 <% end %>
 
 <% if product.removable? %>
-  <%= link_to '', admin_shop_product_path(product.shop, product), :method => :delete, data: { confirm: I18n.t(:delete_product_message, scope: :edit_product) }, :class => 'tooltipster fa fa-times buttons buttons__delete', :title => "Remove this product" %>
+  <%= link_to '', admin_shop_product_path(product.shop, product), :method => :delete, data: { confirm: I18n.t('edit_product.delete_product_message') }, :class => 'tooltipster fa fa-times buttons buttons__delete', :title => "Remove this product" %>
 <% end %>

@@ -43,9 +43,9 @@
             <%= product.brand&.name %>
           </td>
           <td>
-            <%= I18n.t(:quantity_info, scope: :edit_product, total_skus_quantities: product.total_skus_quantities, product_options_size: product.options.size) %>
+            <%= I18n.t('edit_product.quantity_info', total_skus_quantities: product.total_skus_quantities, product_options_size: product.options.size) %>
             <div class="clearfix"></div>
-            <%= I18n.t(:unlimited_info, scope: :edit_product, unlimited_skus: product.unlimited_skus) if product.unlimited_skus > 0 %>
+            <%= I18n.t('edit_product.unlimited_info', unlimited_skus: product.unlimited_skus) if product.unlimited_skus > 0 %>
           </td>
           <td align="left">
             <%= render partial: 'admin/products/table/action', :locals => { product: product } %>
@@ -58,7 +58,7 @@
 <% else %>
 <div class="+white-box +centered">
   <h4>
-   <%= I18n.t(:not_found, scope: :result) %>
+   <%= I18n.t('result.not_found') %>
  </h4>
 </div>
 <% end %>
