@@ -13,7 +13,11 @@ class Customer::Referrer::LinksController < ApplicationController
   authorize_resource class: false
 
   def index
-    @links = Link.active.order_by(c_at: :desc)
+    if current_user.tester?
+      @links = Link.active.order_by(position: :asc).order_by(c_at: :desc)
+    else
+      @links = Link.order_by(position: :asc).order_by(c_at: :desc)
+    end
   end
 
   def share
