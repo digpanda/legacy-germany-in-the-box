@@ -1,7 +1,12 @@
 module PathsHelper
 
   def vuejs_path
-    "https://unpkg.com/vue"
+    # REMOTE : "https://unpkg.com/vue"
+    if Rails.env.production?
+      'javascripts/vue.min.js'
+    else
+      'javascripts/vue.js'
+    end
   end
 
   def resolve_profile_path
