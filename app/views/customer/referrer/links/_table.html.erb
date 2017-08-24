@@ -10,16 +10,10 @@
     <table>
       <thead>
         <th>
-          <%= I18n.t('referrer.title') %>
+          <%= I18n.t('referrer.image') %>
         </th>
-        <!-- <th>
-          <%= I18n.t('referrer.description') %>
-        </th> -->
-        <!-- <th>
-          <%= I18n.t('referrer.link') %>
-        </th> -->
         <th>
-          <%= I18n.t('referrer.share') %>
+          <%= I18n.t('referrer.title') %>
         </th>
         <th>
           <%= I18n.t('referrer.creation') %>
@@ -28,19 +22,13 @@
       <tbody>
 
         <% links.each do |link| %>
-          <tr data-href="#">
+          <tr data-href="<%= customer_referrer_link_share_path(link) %>">
             <td>
-              <%= link.title %>
+              <img src="<%= link.thumbnail_url %>" class="icon-img">
             </td>
-            <!-- <td>
-              <%= link.desc %>
-            </td> -->
-            <!-- <td>
-              <a href="<%= link.wechat.with_login_and_referrer(@referrer) %>" target="_blank"><%= truncate link.wechat.with_login_and_referrer(@referrer), length: 30 %></a>
-            </td> -->
             <td>
               <% if current_user.tester? %>
-              <a href="<%= customer_referrer_link_share_path(link) %>"><%= I18n.t('referrer.share') %></a>
+              <a href="#"><%= link.title %></a>
               <% else %>
               -
               <% end %>
