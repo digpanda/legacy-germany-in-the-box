@@ -52,6 +52,7 @@ namespace :deploy do
 
   task :restart do
     invoke 'delayed_job:restart'
+    invoke 'bundle exec rake mongoid_slug:set'
   end
 
   after :restart, :clear_cache do
@@ -60,7 +61,7 @@ namespace :deploy do
       # slugify old things
       # execute 'cd /var/www/germany_in_the_box/current && sudo gem install rake-11.1.2 && sudo bundle exec rake mongoid_slug:set'
       # execute 'cd /var/www/germany_in_the_box/current && bundle list'
-      execute '/usr/share/rvm/bin/rvm 2.3.0 do bundle exec rake mongoid_slug:set'
+      # execute '/usr/share/rvm/bin/rvm 2.3.0 do bundle exec rake mongoid_slug:set'
 
       execute "sudo service redis-server restart"
       # brunch
