@@ -70,7 +70,7 @@ namespace :deploy do
       # execute 'cd /var/www/germany_in_the_box/current && sudo gem install rake-11.1.2 && sudo bundle exec rake mongoid_slug:set'
       # execute 'cd /var/www/germany_in_the_box/current && bundle list'
       # execute '/usr/share/rvm/bin/rvm 2.3.0 do bundle exec rake mongoid_slug:set'
-      # run "bin/rake mongoid_slug:set"
+      run "bin/rake mongoid_slug:set"
 
       execute "sudo service redis-server restart"
       # brunch
