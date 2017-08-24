@@ -71,6 +71,8 @@ namespace :deploy do
       # execute 'cd /var/www/germany_in_the_box/current && bundle list'
       # execute '/usr/share/rvm/bin/rvm 2.3.0 do bundle exec rake mongoid_slug:set'
       # run "bin/rake mongoid_slug:set"
+      #
+      # /home/digpanda/.rvm/bin/rvm 2.3.0 do bundle exec rake db:migrate
 
       execute "sudo service redis-server restart"
       # brunch
