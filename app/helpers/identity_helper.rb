@@ -1,18 +1,5 @@
-module UsersHelper
-
-  def boolean_select
-    [["Yes", true], ["No", false]]
-  end
-  def user_roles
-    [['Administrator', :admin],['Shopkeeper', :shopkeeper],['Customer', :customer]]
-  end
-
-  def parent_referrers
-    Referrer.all.reduce([]) do |acc, referrer|
-      acc << ["#{referrer.user.decorate.full_name} (#{referrer.reference_id})", referrer.id]
-    end
-  end
-
+module IdentityHelper
+  
   def potential_customer?
     identity_solver.potential_customer?
   end
