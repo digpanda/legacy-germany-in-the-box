@@ -1,21 +1,8 @@
 <div class="row">
   <div class="subheader">
 
-    <!-- BACK -->
-    <div class="col-xs-3 col-md-3">
-      <div class="subheader__left">
-        </a>
-      </div>
-    </div>
-
-    <!-- Number of package sets -->
-    <div class="col-xs-3 col-md-3">
-      <div class="page-navigation__middle +desktop">
-      </div>
-    </div>
-
     <!-- Categories filtering -->
-    <div class="col-xs-12 col-md-6">
+    <div class="col-xs-12 col-md-12">
       <div class="page-navigation__right">
         <% shop.categories.each_with_index do |category, index| %>
           | <%= link_to category.name, guest_shop_path(shop, category_id: category) %>
