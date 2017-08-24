@@ -36,7 +36,7 @@ class Shopkeeper::Products::VariantsController < ApplicationController
     # on updating the options and suboptions at the same time
     if product.update(product_params_without_option) && product.update(product_params)
       ensure_suboption_saved!
-      flash[:success] = I18n.t(:update_ok, scope: :edit_product)
+      flash[:success] = I18n.t('edit_product.update_ok')
       # if the user didn't add any sku yet, we redirect him automatically
       # to add some after creating those
       redirection_after_update
@@ -51,10 +51,10 @@ class Shopkeeper::Products::VariantsController < ApplicationController
     ids = variant.suboptions.map { |o| o.id.to_s }
 
     if product.skus.detect { |s| s.option_ids.to_set.intersect?(ids.to_set) }
-      flash[:error] = I18n.t(:sku_dependent, scope: :edit_product_variant)
+      flash[:error] = I18n.t('edit_product_variant.sku_dependent')
     else
       if variant.delete && product.save
-        flash[:success] = I18n.t(:delete_variant_ok, scope: :edit_product_variant)
+        flash[:success] = I18n.t('edit_product_variant.delete_variant_ok')
       else
         flash[:error] = variant.errors.full_messages.first
         flash[:error] ||= product.errors.full_messages.first
@@ -70,13 +70,13 @@ class Shopkeeper::Products::VariantsController < ApplicationController
   # is actually variant / option which's more logical.
   def destroy_option
     if product.skus.detect { |s| s.option_ids.to_set.include?(params[:option_id]) }
-      flash[:error] = I18n.t(:sku_dependent, scope: :edit_product_variant)
+      flash[:error] = I18n.t('edit_product_variant.sku_dependent')
     else
       variant = product.options.find(params[:variant_id])
       option = variant.suboptions.find(params[:option_id])
 
       if option.delete && variant.save && @product.save
-        flash[:success] = I18n.t(:delete_option_ok, scope: :edit_product_variant)
+        flash[:success] = I18n.t('edit_product_variant.delete_option_ok')
       else
         flash[:error] = option.errors.full_messages.join(', ')
         flash[:error] ||= product.errors.full_messages.join(', ')

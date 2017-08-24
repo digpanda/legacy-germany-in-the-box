@@ -7,14 +7,14 @@ Description <%= form.text_field :desc %>
 Type <%= form.select(:type, {'Publisher' => :publisher, 'Reseller' => :reseller}) %>
 <br />
 
-Coupon Discount <%= form.select(:coupon_discount, {'Yes' => true, 'No' => false}) %>
+Coupon Discount <%= form.select(:coupon_discount, boolean_select) %>
 <br />
 
 Coupon Discount Extra <%= form.text_field :coupon_discount_extra %>
 <br />
 <br />
 
-Sales Provision <%= form.select(:sales_provision, {'Yes' => true, 'No' => false}) %>
+Sales Provision <%= form.select(:sales_provision, boolean_select) %>
 <br />
 
 Sales Provision Extra <%= form.text_field :sales_provision_extra %>

@@ -7,7 +7,7 @@
 </div>
 
 <div class="form-group">
-  <%= form.label :exchange_rate_to_yuan, I18n.t(:exchange_rate_to_yuan, scope: :edit_settings), :class => 'control-label' %>
+  <%= form.label :exchange_rate_to_yuan, I18n.t('edit_settings.exchange_rate_to_yuan'), :class => 'control-label' %>
   <%= form.text_field :exchange_rate_to_yuan, :class => 'form-control', :required => true, :autocomplete => :off, :id => 'exchange_rate' %>
 </div>
 
@@ -46,6 +46,6 @@
 </div>
 
 <div class="form-group">
-  <%= form.button I18n.t(:save, scope: :edit_settings), :type => 'submit', :class => 'btn btn-primary', name: :user_info_edit_part, value: :edit_settings %>
+  <%= form.button I18n.t('edit_settings.save'), :type => 'submit', :class => 'btn btn-primary', name: :user_info_edit_part, value: :edit_settings %>
 </div>
 <% end %>

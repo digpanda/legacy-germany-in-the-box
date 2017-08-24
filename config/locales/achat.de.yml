@@ -2,6 +2,7 @@ de:
   address:
     apply: Einlösen
   referrer:
+    image: Image
     share_page:
       preview: Preview
       thank_you_for_sharing: Thank you for sharing

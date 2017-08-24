@@ -17,20 +17,20 @@ class CouponHandler < BaseService
   # try to apply the coupon to this specific order
   def apply
     unless reached_minimum_order?
-      return return_with(:error, I18n.t(:no_minimum_price, scope: :coupon, minimum: coupon.minimum_order.in_euro.to_yuan(exchange_rate: coupon.order.exchange_rate).display))
+      return return_with(:error, I18n.t('coupon.no_minimum_price', minimum: coupon.minimum_order.in_euro.to_yuan(exchange_rate: coupon.order.exchange_rate).display))
     end
     return return_with(:error, "You can't apply this coupon from China.") unless valid_ip?
     return return_with(:error, "You can't apply this coupon on this shop.") unless valid_shop?
-    return return_with(:error, I18n.t(:cannot_apply, scope: :coupon)) unless valid_order?
-    return return_with(:error, I18n.t(:not_valid_anymore, scope: :coupon)) unless valid_coupon?
-    return return_with(:error, I18n.t(:error_occurred_applying, scope: :coupon)) unless update_order! && update_referrer! && update_coupon!
+    return return_with(:error, I18n.t('coupon.cannot_apply')) unless valid_order?
+    return return_with(:error, I18n.t('coupon.not_valid_anymore')) unless valid_coupon?
+    return return_with(:error, I18n.t('coupon.error_occurred_applying')) unless update_order! && update_referrer! && update_coupon!
     return_with(:success)
   end
 
   # unapply the coupon to this specific order
   def unapply
-    return return_with(:error, I18n.t(:cannot_remove, scope: :coupon)) unless unappliable_order?
-    return return_with(:error, I18n.t(:error_occurred_applying, scope: :coupon)) unless reset_order! && reset_coupon!
+    return return_with(:error, I18n.t('coupon.cannot_remove')) unless unappliable_order?
+    return return_with(:error, I18n.t('coupon.error_occurred_applying')) unless reset_order! && reset_coupon!
     return_with(:success)
   end
 

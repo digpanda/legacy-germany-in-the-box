@@ -20,9 +20,9 @@ module FormHelper
 
   def guess_coupon_label
     if session[:origin] == :wechat
-      I18n.t(:coupon_mobile, scope: :coupon)
+      I18n.t('coupon.coupon_mobile')
     else
-      I18n.t(:coupon_desktop, scope: :coupon)
+      I18n.t('coupon.coupon_desktop')
     end
   end
 
