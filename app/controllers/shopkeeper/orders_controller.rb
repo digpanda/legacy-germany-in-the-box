@@ -20,13 +20,13 @@ class Shopkeeper::OrdersController < ApplicationController
       order.save
     end
 
-    flash[:success] = I18n.t(:order_sent, scope: :notice)
+    flash[:success] = I18n.t('notice.order_sent')
     redirect_to navigation.back(1)
   end
 
   def process_order # can't just put `process` it seems to be reserved term in Rails
     unless order.decorate.processable?
-      flash[:error] = I18n.t(:order_not_processable, scope: :notice)
+      flash[:error] = I18n.t('notice.order_not_processable')
       redirect_to(:back)
       return
     end

@@ -19,23 +19,23 @@ class Shopkeeper::AddressesController < ApplicationController
     address.shop = current_user.shop
 
     if address.save
-      flash[:success] = I18n.t(:create_ok, scope: :edit_address)
+      flash[:success] = I18n.t('edit_address.create_ok')
       redirect_to navigation.back(1)
       return
     end
 
-    flash[:error] = "#{I18n.t(:create_ko, scope: :edit_address)} (#{address.errors.full_messages.join(', ')})"
+    flash[:error] = "#{I18n.t('edit_address.create_ko')} (#{address.errors.full_messages.join(', ')})"
     redirect_to navigation.back(1)
   end
 
   def update
     if address.update(address_params)
-      flash[:success] = I18n.t(:update_ok, scope: :edit_address)
+      flash[:success] = I18n.t('edit_address.update_ok')
       redirect_to navigation.back(1)
       return
     end
 
-    flash[:error] = "#{I18n.t(:update_ko, scope: :edit_address)} (#{address.errors.full_messages.join(', ')})"
+    flash[:error] = "#{I18n.t('edit_address.update_ko')} (#{address.errors.full_messages.join(', ')})"
     redirect_to navigation.back(1)
   end
 

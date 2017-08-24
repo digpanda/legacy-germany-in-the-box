@@ -35,7 +35,7 @@ class Guest::ShopApplicationsController < ApplicationController
     end
 
     ensure_payment_gateways!(shop)
-    flash[:success] = I18n.t(:application_submitted, scope: :shop_application)
+    flash[:success] = I18n.t('shop_application.application_submitted')
     redirect_to navigation.back(1)
   end
 
