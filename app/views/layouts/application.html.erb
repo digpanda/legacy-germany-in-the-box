@@ -7,7 +7,6 @@
   <%= render "layouts/application/weixin" %>
   <%= render "layouts/application/stylesheets" %>
   <%= render "layouts/application/javascripts" %>
-
 </head>
 
 <body id="csstyle">
@@ -25,7 +24,7 @@
         <%= render "layouts/#{solve_section}/header" %>
         <%= render "layouts/#{solve_section}/subheader" %>
       <% end %>
-      
+
       <div class="content content-<%= solve_section %>">
         <%= yield %>
       </div>

@@ -34,15 +34,9 @@
     "tooltipster": "^4.1.4",
     "underscore": "^1.8.3",
     "intl-tel-input": "^11.0.14",
-    "distpicker": "^2.0.0",
-    "vue": "^2.4.2"
+    "distpicker": "^2.0.0"
   },
   "overrides": {
-    "vue": {
-      "main": [
-        "dist/vue.js"
-      ]
-    },
     "distpicker": {
       "main": [
         "dist/distpicker.js"
