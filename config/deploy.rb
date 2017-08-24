@@ -52,7 +52,8 @@ namespace :deploy do
 
   task :restart do
     invoke 'delayed_job:restart'
-    invoke 'mongoid_slug:set'
+    invoke '--tasks'
+    # invoke 'mongoid_slug:set'
   end
 
   after :restart, :clear_cache do
