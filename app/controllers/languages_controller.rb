@@ -1,5 +1,4 @@
 class LanguagesController < ActionController::Base # No application because it's a standalone service
-  include UsersHelper
   include ErrorsHelper
 
   include Rails.application.routes.url_helpers

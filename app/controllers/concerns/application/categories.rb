@@ -1,7 +1,6 @@
 module Application
   module Categories
     extend ActiveSupport::Concern
-    include UsersHelper
 
     included do
       before_action :set_categories
