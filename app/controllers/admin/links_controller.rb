@@ -52,7 +52,7 @@ class Admin::LinksController < ApplicationController
     else
       flash[:error] = "The link was not destroyed (#{link.errors.full_messages.join(', ')})"
     end
-    redirect_to navigation.back(1)
+    redirect_to admin_links_path
   end
 
   private
