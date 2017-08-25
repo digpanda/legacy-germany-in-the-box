@@ -1,21 +1,21 @@
 <div class="row col-md-4 col-md-push-4 col-md-pull-4 col-xs-10 col-xs-push-1 col-xs-pull-1 +white-box">
 
-<h2><%= I18n.t(:change_your_password, scope: :title) %></h2>
+<h2><%= I18n.t('title.change_your_password') %></h2>
 <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: {method: :put}) do |f| %>
 
   <%= f.hidden_field :reset_password_token %>
   <div class="field">
-    <%= f.label :password, I18n.t(:new_password, scope: :label) %>
+    <%= f.label :password, I18n.t('label.new_password') %>
     <br/>
     <%= f.password_field :password, autofocus: true, autocomplete: "off" %>
   </div>
   <div class="field">
-    <%= f.label :password_confirmation, I18n.t(:confirm_new_password, scope: :label) %>
+    <%= f.label :password_confirmation, I18n.t('label.confirm_new_password') %>
     <br/>
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
   <div class="actions">
-    <%= f.submit I18n.t(:change_my_password, scope: :button), :class => 'btn btn-primary' %>
+    <%= f.submit I18n.t('button.change_my_password'), :class => 'btn btn-primary' %>
   </div>
 <% end %>
 

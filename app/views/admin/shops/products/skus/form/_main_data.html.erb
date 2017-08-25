@@ -1,6 +1,6 @@
 <div class="col-md-12">
   <div class="row">
-    <h3> <%= I18n.t(:product_data, scope: :edit_product_detail) %> (German to Chinese)</h3>
+    <h3> <%= I18n.t('edit_product_detail.product_data') %> (German to Chinese)</h3>
     <hr>
   </div>
   <div class="row">
@@ -9,8 +9,8 @@
       <!-- Data (aka Description of the Sku) -->
       <div class="row form-group">
         <div class="col-md-2">
-          <%= I18n.t(:product_data, scope: :edit_product_detail) %>
-          <%= js_tips(:id => :product_data, :tip => I18n.t(:product_data_info, scope: :edit_product_detail)) %>
+          <%= I18n.t('edit_product_detail.product_data') %>
+          <%= js_tips(:id => :product_data, :tip => I18n.t('edit_product_detail.product_data_info')) %>
         </div>
 
         <%= translate_fields form, :data do |form_field| %>

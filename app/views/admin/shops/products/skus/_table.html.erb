@@ -5,33 +5,33 @@
       <tr>
         <th>
           <label>
-            <%= I18n.t(:image, scope: :edit_product_detail) %>
+            <%= I18n.t('edit_product_detail.image') %>
           </label>
         </th>
         <th>
           <label>
-            <i class="fa fa-info-circle" title="<%= I18n.t(:variants_info, scope: :edit_product_detail) %>"></i>
-            <%= I18n.t(:sku_variants_options, scope: :edit_product_detail) %>
+            <i class="fa fa-info-circle" title="<%= I18n.t('edit_product_detail.variants_info') %>"></i>
+            <%= I18n.t('edit_product_detail.sku_variants_options') %>
           </label>
         </th>
         <th>
           <label>
-            <%= I18n.t(:price, scope: :edit_product_detail) %>
+            <%= I18n.t('edit_product_detail.price') %>
           </label>
         </th>
         <th>
           <label>
-            <%= I18n.t(:discount, scope: :edit_product_detail) %>
+            <%= I18n.t('edit_product_detail.discount') %>
           </label>
         </th>
         <th>
           <label>
-            <%= I18n.t(:quantity, scope: :edit_product_detail) %>
+            <%= I18n.t('edit_product_detail.quantity') %>
           </label>
         </th>
         <th>
           <label>
-            <%= I18n.t(:operations, scope: :edit_product) %>
+            <%= I18n.t('edit_product.operations') %>
           </label>
         </th>
       </tr>
@@ -54,15 +54,15 @@
             <%= sku.discount.to_s + '%' if sku.discount != 0 %>
           </td>
           <td>
-            <%= sku.unlimited ? I18n.t(:info, scope: 'edit_product_detail.unlimited') : sku.quantity %>
+            <%= sku.unlimited ? I18n.t('unlimited.info') : sku.quantity %>
           </td>
           <td>
 
-            <%= link_to '', edit_admin_shop_product_sku_path(sku.product.shop, sku.product, sku), :class => 'tooltipster fa fa-pencil buttons buttons__add', :title => I18n.t(:edit, scope: :edit_product_detail) %>
+            <%= link_to '', edit_admin_shop_product_sku_path(sku.product.shop, sku.product, sku), :class => 'tooltipster fa fa-pencil buttons buttons__add', :title => I18n.t('edit_product_detail.edit') %>
 
-            <%= link_to '', admin_shop_product_sku_clone_path(sku.product.shop, sku.product, sku), :class => 'tooltipster fa fa-clone buttons buttons__cancel', method: :patch, :title => I18n.t(:clone, scope: :edit_product_detail) %>
+            <%= link_to '', admin_shop_product_sku_clone_path(sku.product.shop, sku.product, sku), :class => 'tooltipster fa fa-clone buttons buttons__cancel', method: :patch, :title => I18n.t('edit_product_detail.clone') %>
 
-            <%= link_to '', admin_shop_product_sku_path(sku.product.shop, sku.product, sku), method: :delete, data: { confirm: "#{I18n.t(:delete_sku_message, scope: :edit_product_detail)}" }, :class => 'tooltipster fa fa-times buttons buttons__delete', :title => I18n.t(:remove, scope: :edit_product_detail) %>
+            <%= link_to '', admin_shop_product_sku_path(sku.product.shop, sku.product, sku), method: :delete, data: { confirm: "#{I18n.t('edit_product_detail.delete_sku_message')}" }, :class => 'tooltipster fa fa-times buttons buttons__delete', :title => I18n.t('edit_product_detail.remove') %>
 
           </td>
         </tr>
@@ -73,7 +73,7 @@
 <% else %>
 <div class="+white-box +centered">
   <h4>
-  <%= I18n.t(:no_detail, scope: :edit_product_detail).html_safe %>
+  <%= I18n.t('edit_product_detail.no_detail').html_safe %>
   </h4>
 </div>
 <% end %>

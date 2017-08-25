@@ -1,19 +1,19 @@
 <div class="row col-md-4 col-md-push-4 col-md-pull-4 col-xs-10 col-xs-push-1 col-xs-pull-1 +white-box">
 
   <h3>
-    <%= I18n.t(:header, scope: :password_recovery_dialog) %>
+    <%= I18n.t('password_recovery_dialog.header') %>
   </h3>
   <h5>
-    <%= I18n.t(:title, scope: :password_recovery_dialog) %>
+    <%= I18n.t('password_recovery_dialog.title') %>
   </h5>
   <%= form_for resource, as: resource_name, url: password_path(resource_name), html: {method: :post}, :class => 'dialog-form', :data => {:toggle => 'validator'} do |f| %>
 
     <label class="control-label">
-      <%= I18n.t(:email, scope: :password_recovery_dialog) %>
+      <%= I18n.t('password_recovery_dialog.email') %>
     </label>
     <input name="email" class="form-control" placeholder="email@domain.com" required="true" type="email"></input>
 
-    <input class="btn btn-primary" type="submit" value="<%= I18n.t(:ok, scope: :password_recovery_dialog) %>"></input>
+    <input class="btn btn-primary" type="submit" value="<%= I18n.t('password_recovery_dialog.ok') %>"></input>
 
   <% end %>
 

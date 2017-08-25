@@ -5,43 +5,43 @@
   <div class="col-md-4 col-md-push-4 col-md-pull-4 col-xs-10 col-xs-push-1 col-xs-pull-1 +white-box">
 
     <h3>
-      <%= I18n.t(:header, scope: :sign_up_dialog) %>
+      <%= I18n.t('sign_up_dialog.header') %>
     </h3>
     <h5>
-      <%= I18n.t(:title, scope: :sign_up_dialog) %>
+      <%= I18n.t('sign_up_dialog.title') %>
     </h5>
 
     <%= form_for resource, url: user_registration_path(resource), :method => :post, :class => 'dialog-form', :data => {:toggle => 'validator'} do |f| %>
     <div class="form-inline">
       <div class="form-group">
-        <%= f.text_field :lname, :class => 'form-control', :placeholder => I18n.t(:lname, scope: :edit_address), :required => true %>
+        <%= f.text_field :lname, :class => 'form-control', :placeholder => I18n.t('edit_address.lname'), :required => true %>
       </div>
       <div class="form-group">
-        <%= f.text_field :fname, :class => 'form-control', :placeholder => I18n.t(:fname, scope: :edit_address), :required => true %>
+        <%= f.text_field :fname, :class => 'form-control', :placeholder => I18n.t('edit_address.fname'), :required => true %>
       </div>
 
       <div class="+small-spacer"></div>
 
     </div>
     <div class="form-group">
-      <%= f.email_field :email, :class => 'form-control', :placeholder => I18n.t(:email, scope: :sign_up_dialog), :required => true %>
+      <%= f.email_field :email, :class => 'form-control', :placeholder => I18n.t('sign_up_dialog.email'), :required => true %>
     </div>
     <div class="form-group">
-      <%= f.password_field :password, :class => 'form-control', :placeholder => I18n.t(:password, scope: :sign_up_dialog), :required => true %>
+      <%= f.password_field :password, :class => 'form-control', :placeholder => I18n.t('sign_up_dialog.password'), :required => true %>
       <div class="help-block with-errors"></div>
     </div>
     <div class="form-group">
-      <%= f.password_field :password_confirmation, :class => 'form-control', :placeholder => I18n.t(:password_confirmation, scope: :sign_up_dialog), 'data-match' => '#user_password' %>
+      <%= f.password_field :password_confirmation, :class => 'form-control', :placeholder => I18n.t('sign_up_dialog.password_confirmation'), 'data-match' => '#user_password' %>
       <div class="help-block with-errors"></div>
     </div>
 
-    <%= submit_tag I18n.t(:sign_up, scope: :sign_up_dialog), :class => 'btn btn-primary' %>
+    <%= submit_tag I18n.t('sign_up_dialog.sign_up'), :class => 'btn btn-primary' %>
 
     <% end %>
 
     <br />
     <a class="simple-text" href="<%= new_user_session_path %>">
-      <%= I18n.t(:already_member, scope: :sign_up_dialog) %>
+      <%= I18n.t('sign_up_dialog.already_member') %>
     </a>
 
   </div>

@@ -7,8 +7,8 @@
   <div class="col-md-11 +centered +white-box">
     <div class="form-group">
       <div class="row">
-        <%= f.label :pic, I18n.t(:profile_picture, scope: :account), :class => 'control-label' %>
-        <i class="fa fa-info-circle" title="<%= I18n.t(:profile_picture, scope: :account) %>"></i>
+        <%= f.label :pic, I18n.t('account.profile_picture'), :class => 'control-label' %>
+        <i class="fa fa-info-circle" title="<%= I18n.t('account.profile_picture') %>"></i>
       </div>
 
       <div class="row">
@@ -20,7 +20,7 @@
       <div class="fileUpload btn btn-default">
         <span>
           <i class="fa fa-cloud-upload"></i>
-          <%= I18n.t(:upload, scope: :image_upload) %>
+          <%= I18n.t('image_upload.upload') %>
         </span>
         <%= f.file_field :pic, :accept => "image/png, image/jpeg, image/jpg", :class => 'img-file-upload upload', :img_id => "#pic_#{current_user.id}" %>
       </div>
