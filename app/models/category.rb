@@ -19,11 +19,11 @@ class Category
   scope :with_package_sets, -> { where(:id.in => PackageSet.active.all.pluck(:category_id)) }
   scope :showable, -> { where(:show.ne => false) }
 
-  def product_brands
+  def products_brands
     products.is_active.map(&:brand).uniq
   end
 
-  def package_set_brands
+  def package_sets_brands
     Brand.where(:id.in => package_set_brand_ids)
   end
 

@@ -46,7 +46,7 @@ class Guest::PackageSetsController < ApplicationController
     # if we are in a specific category
     # we just get the category brands
     if category
-      @brand_filters = category.package_set_brands.order_by(position: :asc)
+      @brand_filters = category.package_sets_brands.order_by(position: :asc)
     else
       @brand_filters = Brand.with_package_sets.order_by(position: :asc).used_as_filters
     end
