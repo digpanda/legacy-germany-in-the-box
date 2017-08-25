@@ -17,7 +17,7 @@
           <div class="row">
             <div class="cart__total-goods">
               <div class="col-xs-6">
-                <%= I18n.t(:goodsprice, scope: :cart) %>
+                <%= I18n.t('cart.goodsprice') %>
               </div>
               <div class="col-xs-6">
                 <div class="cart__total-goods-price">
@@ -40,9 +40,9 @@
             <div class="row">
               <div class="cart__total-discount">
                 <div class="col-xs-6">
-                  <%= I18n.t(:new_price, scope: :coupon) %>
+                  <%= I18n.t('coupon.new_price') %>
                   <% if action %>
-                  <%= link_to '<i class="digpanda-remove"></i>'.html_safe, customer_order_coupons_path(order), :method => :delete, :class => 'tooltipster', :title => I18n.t(:remove_coupon, scope: :coupon) %>
+                  <%= link_to '<i class="digpanda-remove"></i>'.html_safe, customer_order_coupons_path(order), :method => :delete, :class => 'tooltipster', :title => I18n.t('coupon.remove_coupon') %>
                   <% end %>
 
                 </div>
@@ -61,7 +61,7 @@
           <div class="row">
             <div class="cart__total-shipping">
               <div class="col-xs-6">
-                <%= I18n.t(:shipping_cost, scope: :cart) %>
+                <%= I18n.t('cart.shipping_cost') %>
               </div>
               <div class="col-xs-6">
                 <div class="cart__total-shipping-cost">
@@ -77,7 +77,7 @@
           <div class="row">
             <div class="cart__total-end">
               <div class="col-xs-6">
-                <%= I18n.t(:total_price_with_currency_yuan, scope: :cart) %>
+                <%= I18n.t('cart.total_price_with_currency_yuan') %>
               </div>
               <div class="col-xs-6">
                 <div class="cart__total-end-price">
@@ -104,7 +104,7 @@
                   </div>
                   <div class="col-xs-6">
                     <div class="cart__total-coupon-button">
-                      <input type="submit" value="<%= I18n.t(:apply, scope: :coupon) %>">
+                      <input type="submit" value="<%= I18n.t('coupon.apply') %>">
                     </div>
                   </div>
                 </div>
@@ -121,7 +121,7 @@
           <div class="row">
             <div class="col-xs-12">
               <div class="+small-spacer"></div>
-              <a id="checkout-button" href="<%= customer_order_customer_path(order) %>" class="big-button --blue"><%= I18n.t(:checkout, scope: :cart) %></a>
+              <a id="checkout-button" href="<%= customer_order_customer_path(order) %>" class="big-button --blue"><%= I18n.t('cart.checkout') %></a>
               <div class="+small-spacer"></div>
             </div>
           </div>

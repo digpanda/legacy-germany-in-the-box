@@ -37,13 +37,13 @@
     <div class="form-group">
       <div class="pull-right required-info">
         <strong>
-          <%= I18n.t(:required_field_info, scope: :edit_shop).html_safe %>
+          <%= I18n.t('edit_shop.required_field_info').html_safe %>
         </strong>
       </div>
     </div>
 
     <div class="form-group">
-      <%= f.label :email, I18n.t(:email, scope: :edit_account) %>
+      <%= f.label :email, I18n.t('edit_account.email') %>
       <%= f.text_field :email, :class => 'form-control', :type => 'email' %>
     </div>
 
@@ -64,7 +64,7 @@
 <div class="+small-spacer"></div>
 <div class="row">
   <div class="col-md-11 +centered +white-box">
-      <%= f.button I18n.t(:save, scope: :edit_account), :type => 'submit', :class => 'btn btn-primary' %>
+      <%= f.button I18n.t('edit_account.save'), :type => 'submit', :class => 'btn btn-primary' %>
   </div>
 </div>
 

@@ -48,7 +48,7 @@
       <div class="col-xs-6 +nopadding-right">
         <!-- Quantity -->
         <div class="cart__order-item-quantity">
-          <%= I18n.t(:quantity, scope: :cart) %>
+          <%= I18n.t('cart.quantity') %>
           <div class="cart__order-item-quantity-select">
 
             <!-- Minus -->
@@ -77,7 +77,7 @@
       <div class="col-xs-6">
         <!-- Total -->
         <div class="cart__order-item-total">
-          <%= I18n.t(:subtotal, scope: :cart) %>
+          <%= I18n.t('cart.subtotal') %>
           <div class="cart__order-item-total-digits">
             <span id="package-total-<%= package_set.id %>" data-origin="<%= order.package_set_price_with_taxes(package_set).in_euro.to_yuan(exchange_rate: order.exchange_rate).display %>">
               <%= order.package_set_price_with_taxes(package_set).in_euro.to_yuan(exchange_rate: order.exchange_rate).display %>

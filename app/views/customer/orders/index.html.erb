@@ -4,25 +4,25 @@
     <thead>
       <tr>
         <th>
-          <%= I18n.t(:id, scope: :edit_order) %>
+          <%= I18n.t('edit_order.id') %>
         </th>
         <th>
-          <%= I18n.t(:status, scope: :edit_order) %>
+          <%= I18n.t('edit_order.status') %>
         </th>
         <th>
-          <%= I18n.t(:total_price_with_extra_costs, scope: :edit_order) %>
+          <%= I18n.t('edit_order.total_price_with_extra_costs') %>
         </th>
         <th>
-          <%= I18n.t(:tracking_id, scope: :edit_order) %>
+          <%= I18n.t('edit_order.tracking_id') %>
         </th>
         <th>
-          <%= I18n.t(:link_tracking, scope: :edit_order) %>
+          <%= I18n.t('edit_order.link_tracking') %>
         </th>
         <th>
-          <%= I18n.t(:created_at, scope: :edit_order) %>
+          <%= I18n.t('edit_order.created_at') %>
         </th>
         <th>
-          <%= I18n.t(:operations, scope: :edit_order) %>
+          <%= I18n.t('edit_order.operations') %>
         </th>
       </tr>
     </thead>
@@ -37,7 +37,7 @@
             <% end %>
           </td>
           <td>
-            <%= I18n.t(order.status, scope: :edit_order) %>
+            <%= I18n.t(order.status) %>
           </td>
           <td>
             <% if order.bought? %>
@@ -52,7 +52,7 @@
           <td class="tracking">
             <% if order.bought? %>
               <% if order.logistic_partner == :xipost %>
-                <%= link_to I18n.t(:open, scope: :edit_order), Xipost.new(current_user).tracking_url(order), :target => '_blank' %>
+                <%= link_to I18n.t('edit_order.open'), Xipost.new(current_user).tracking_url(order), :target => '_blank' %>
               <% else %>
                 短信通知
               <% end %>
@@ -63,8 +63,8 @@
           </td>
           <td>
           <% unless order.decorate.paid? %>
-              <%= link_to I18n.t(:continue, scope: :edit_order), customer_order_continue_path(order), method: :patch %> |
-              <%= link_to I18n.t(:delete, scope: :edit_order), customer_order_path(order), method: :delete, data: { confirm: I18n.t(:confirm_want_delete, scope: :notice) } %>
+              <%= link_to I18n.t('edit_order.continue'), customer_order_continue_path(order), method: :patch %> |
+              <%= link_to I18n.t('edit_order.delete'), customer_order_path(order), method: :delete, data: { confirm: I18n.t('notice.confirm_want_delete') } %>
           <% end %>
           </td>
         </tr>
@@ -78,11 +78,11 @@
     <thead>
     <tr>
       <th>
-        <%= I18n.t(:id, scope: :edit_order) %>
+        <%= I18n.t('edit_order.id') %>
       </th>
 
       <th>
-        <%= I18n.t(:operations, scope: :edit_order) %>
+        <%= I18n.t('edit_order.operations') %>
       </th>
     </tr>
     </thead>
@@ -98,26 +98,26 @@
             <%= order.id %>
           <% end %>
           <div class="clearfix"></div>
-          <strong><%= I18n.t(:status, scope: :edit_order) %>:</strong> <%= I18n.t(order.status, scope: :edit_order) %>
+          <strong><%= I18n.t('edit_order.status') %>:</strong> <%= I18n.t(order.status) %>
           <% if order.bought? %>
             <div class="clearfix"></div>
-            <strong><%= I18n.t(:total_price_with_extra_costs, scope: :edit_order) %>:</strong> <%= order.end_price.in_euro.to_yuan(exchange_rate: order.exchange_rate).display %>
+            <strong><%= I18n.t('edit_order.total_price_with_extra_costs') %>:</strong> <%= order.end_price.in_euro.to_yuan(exchange_rate: order.exchange_rate).display %>
           <% end %>
 
           <% if order.bought? %>
             <div class="clearfix"></div>
-            <strong><%= I18n.t(:link_tracking, scope: :edit_order) %>:</strong>
+            <strong><%= I18n.t('edit_order.link_tracking') %>:</strong>
             <% if order.logistic_partner == :xipost %>
-              <%= link_to I18n.t(:open, scope: :edit_order), Xipost.new(current_user).tracking_url(order), :target => '_blank' %>
+              <%= link_to I18n.t('edit_order.open'), Xipost.new(current_user).tracking_url(order), :target => '_blank' %>
             <% else %>
               短信通知
             <% end %>
             <div class="clearfix"></div>
-            <strong><%= I18n.t(:tracking_id, scope: :edit_order) %>:</strong>
+            <strong><%= I18n.t('edit_order.tracking_id') %>:</strong>
             <%= order.tracking_id %>
           <% end %>
           <div class="clearfix"></div>
-          <strong><%= I18n.t(:updated_at, scope: :edit_order) %>:</strong> <%= order.u_at.localtime.strftime('%Y-%m-%d %H:%M:%S') %>
+          <strong><%= I18n.t('edit_order.updated_at') %>:</strong> <%= order.u_at.localtime.strftime('%Y-%m-%d %H:%M:%S') %>
 
         </td>
 
@@ -126,7 +126,7 @@
           <% unless order.paid? %>
             <%#= link_to '', customer_order_path(order), method: :patch, class: 'tooltipster fa fa-arrow-right buttons buttons__delete' %>
             <div class="+small-spacer"></div>
-            <%= link_to '取消', customer_order_path(order), method: :delete, data: { confirm: I18n.t(:confirm_want_delete, scope: :notice) },
+            <%= link_to '取消', customer_order_path(order), method: :delete, data: { confirm: I18n.t('notice.confirm_want_delete') },
                         class: 'tooltipster' %>
         <% end %>
         </td>
@@ -140,7 +140,7 @@
 <% else %>
 <div class="+white-box +centered">
   <h4>
-    <%= I18n.t(:no_order, scope: :edit_order) %>
+    <%= I18n.t('edit_order.no_order') %>
   </h4>
 </div>
 <% end %>

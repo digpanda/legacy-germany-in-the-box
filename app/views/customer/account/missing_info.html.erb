@@ -7,7 +7,7 @@
   <div class="col-xs-10 col-xs-push-1 col-md-6 col-md-push-3 col-md-pull-3">
 
     <div class="row">
-    <h3 class="+centered"><%= I18n.t(:we_need_more_info, scope: :title) %></h3>
+    <h3 class="+centered"><%= I18n.t('title.we_need_more_info') %></h3>
     <div class="+spacer"></div>
     </div>
 
@@ -16,21 +16,21 @@
 
       <% unless current_user.mobile %>
         <div class="form-group">
-          <%= f.label :mobile, I18n.t(:mobile, scope: :edit_personal) %>
+          <%= f.label :mobile, I18n.t('edit_personal.mobile') %>
           <%= f.text_field :mobile, :class => 'form-control', :value => '', :type => 'mobile', :required => true %>
         </div>
       <% end %>
 
       <% unless current_user.lname %>
         <div class="form-group">
-          <%= f.label :lname, I18n.t(:lname, scope: :edit_address) %>
+          <%= f.label :lname, I18n.t('edit_address.lname') %>
           <%= f.text_field :lname, :class => 'form-control', :required => true, :placeholder => '请输入中文' %>
         </div>
       <% end %>
 
       <% unless current_user.fname %>
         <div class="form-group">
-          <%= f.label :fname, I18n.t(:fname, scope: :edit_address) %>
+          <%= f.label :fname, I18n.t('edit_address.fname') %>
           <%= f.text_field :fname, :class => 'form-control', :required => true, :placeholder => '请输入中文' %>
         </div>
       <% end %>

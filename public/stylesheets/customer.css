@@ -619,16 +619,16 @@ body {
     color: white; }
   .big-button.\--green-hollow {
     background-color: white;
-    border: 2px solid #bdc3c7;
-    color: #83be58; }
+    border: 2px solid #83be58;
+    color: #464646; }
     .big-button.\--green-hollow:link {
-      color: #83be58; }
+      color: #464646; }
     .big-button.\--green-hollow:hover {
-      color: #83be58; }
+      color: #464646; }
     .big-button.\--green-hollow:active {
-      color: #83be58; }
+      color: #464646; }
     .big-button.\--green-hollow:visited {
-      color: #83be58; }
+      color: #464646; }
   .big-button.\--blue {
     background-color: #3498db; }
   .big-button.\--green {

@@ -1,3 +1,3 @@
-<h2><%= I18n.t(:my_order, scope: :top_menu) %></h2>
+<h2><%= I18n.t('top_menu.my_order') %></h2>
 
 <%= render partial: 'customer/cart/show/order', :locals => { :order => order, :action => false } %>

@@ -2,30 +2,30 @@
 <div class="address-box">
   <ul>
     <li>
-      <%= "#{I18n.t(:street, scope: :edit_address)} : #{ address.street } #{ address.number }" %>
+      <%= "#{I18n.t('edit_address.street')} : #{ address.street } #{ address.number }" %>
     </li>
     <li>
-      <%= "#{I18n.t(:additional, scope: :edit_address)} : #{ address.additional }" %>
+      <%= "#{I18n.t('edit_address.additional')} : #{ address.additional }" %>
     </li>
     <li>
-      <%= "#{I18n.t(:district, scope: :edit_address)} : #{ address.district }" %>
+      <%= "#{I18n.t('edit_address.district')} : #{ address.district }" %>
     </li>
     <li>
-      <%= "#{I18n.t(:city, scope: :edit_address)} : #{ address.city }" %>
+      <%= "#{I18n.t('edit_address.city')} : #{ address.city }" %>
     </li>
     <li>
-      <%= "#{I18n.t(:province, scope: :edit_address)} : #{ address.province }" %>
+      <%= "#{I18n.t('edit_address.province')} : #{ address.province }" %>
     </li>
     <li>
-      <%= "#{I18n.t(:country, scope: :edit_address)} : #{ address.country_local_name }" %>
+      <%= "#{I18n.t('edit_address.country')} : #{ address.country_local_name }" %>
     </li>
     <li>
-      <%= "#{I18n.t(:zip, scope: :edit_address)} : #{ address.zip }" %>
+      <%= "#{I18n.t('edit_address.zip')} : #{ address.zip }" %>
     </li>
   </ul>
 </div>
 <% else %>
 <h4>
-  <%= "#{I18n.t(:destination_address_not_set, scope: :edit_order)}" %>
+  <%= "#{I18n.t('edit_order.destination_address_not_set')}" %>
 </h4>
 <% end %>
