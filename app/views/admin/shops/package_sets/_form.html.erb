@@ -18,7 +18,7 @@
   <div class="clearfix"></div>
 
   <%= form.label :category, "Category" %>
-  <%= form.select :category, options_from_collection_for_select(Category.all, :id, :name, form.object.category&.id), { :include_blank => I18n.t(:non_selected_text, scope: :multiselect) }, :class => 'form-control' %>
+  <%= form.select :category, options_from_collection_for_select(Category.all, :id, :name, form.object.category&.id), { :include_blank => I18n.t('multiselect.non_selected_text') }, :class => 'form-control' %>
 
   <div class="clearfix"></div>
 
@@ -121,6 +121,6 @@
 </div>
   </div>
 
-  <%= form.submit :class => 'btn btn-primary', :value =>  I18n.t(:update_basic, scope: :edit_product) %>
+  <%= form.submit :class => 'btn btn-primary', :value =>  I18n.t('edit_product.update_basic') %>
 
   <% end %>

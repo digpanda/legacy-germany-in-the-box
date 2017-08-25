@@ -3,7 +3,7 @@
 <div class="+small-spacer"></div>
 
 <p class="categories-block__brands +centered">
-  <% Brand.with_package_sets.used_as_filters.each do |brand| %>
+  <span class="+strong"><%= I18n.t('brands.hot_brands') %> :</span> <% Brand.with_package_sets.used_as_filters.each do |brand| %>
     <a href="<%= guest_package_sets_path(brand_id: brand.id) %>"><%= brand.name %></a> |
   <% end %>
 </p>

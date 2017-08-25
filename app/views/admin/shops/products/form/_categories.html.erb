@@ -31,14 +31,14 @@
   <div class="row form-group">
     <div class="col-md-4">
       <label>
-        <%= I18n.t(:categories, scope: :edit_product) %>
+        <%= I18n.t('edit_product.categories') %>
       </label>
     </div>
 
     <div class="col-md-8">
       <%= form.fields_for :categories do |form_field| %>
 
-        <%= form_field.select '', options_from_collection_for_select(Category.all, :id, :name, form.object.categories.first&.id), { :include_blank => I18n.t(:non_selected_text, scope: :multiselect) }, :class => 'form-control' %>
+        <%= form_field.select '', options_from_collection_for_select(Category.all, :id, :name, form.object.categories.first&.id), { :include_blank => I18n.t('multiselect.non_selected_text') }, :class => 'form-control' %>
 
       <% end %>
     </div>
@@ -49,7 +49,7 @@
   <div class="row form-group">
     <div class="col-md-4">
       <label>
-        <%= I18n.t(:duty_category, scope: :edit_product) %>
+        <%= I18n.t('edit_product.duty_category') %>
       </label>
     </div>
 

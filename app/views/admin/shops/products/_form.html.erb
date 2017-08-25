@@ -12,7 +12,7 @@
     <%= render partial: "admin/shops/products/form/categories", :locals => {:form => form} %>
   </div>
 
-  <%= form.submit :class => 'btn btn-primary', :value =>  I18n.t(:update_basic, scope: :edit_product) %>
+  <%= form.submit :class => 'btn btn-primary', :value =>  I18n.t('edit_product.update_basic') %>
   <!-- :id => 'edit_product_submit_btn' -->
 
 <% end %>
