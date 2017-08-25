@@ -180,7 +180,7 @@ class User
   end
 
   def tester?
-    self.tester
+    !Setting.instance.tester_restricted_areas || self.tester
   end
 
   # if there's any missing info the user

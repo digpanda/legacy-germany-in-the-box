@@ -22,6 +22,7 @@ class Setting
   mount_uploader :package_sets_cover, CoverUploader
 
   field :package_sets_highlight,     type: Boolean
+  field :tester_restricted_areas, type: Boolean, default: true
 
   field :landing_page_title,       type: String
   field :landing_page_description, type: String
