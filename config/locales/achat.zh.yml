@@ -70,7 +70,7 @@ zh-CN:
     packages: "%{num}个礼包"
     products: "%{num}件产品"
   categories:
-    more_info: 查看更多信息
+    more_info: 浏览分类产品
   package_set:
     more_info: 浏览分类产品
     buy_it: 加入购物车
