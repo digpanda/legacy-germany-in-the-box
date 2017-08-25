@@ -94,14 +94,14 @@
   </div>
 </div>
 
-<div class="row">
-  <div class="col-md-12">
-    <div class="package-set-infos">
-      <% if @package_set.package_skus.first&.product&.brand&.html_desc&.present? %>
-      <div><%= @package_set.package_skus.first.product.brand.html_desc.html_safe %></div>
-      <% end %>
+<% if @package_set.package_skus.first&.product&.brand&.html_desc&.present? %>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="package-set-infos">
+        <div><%= @package_set.package_skus.first.product.brand.html_desc.html_safe %></div>
+      </div>
     </div>
   </div>
-</div>
+<% end %>
 
 <!-- render partial: "guest/package_sets/show/navigation", :locals => { :package_set => @package_set, category: @category } -->
