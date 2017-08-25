@@ -51,7 +51,7 @@ class User
   field :uid,       type: String
 
   field :banished, type: Boolean, default: false
-  field :tester, type: Boolean, default: false
+  field :version_allowed, type: Symbol, default: :stable
 
   # referrer as someone lead is binded with him
   belongs_to :parent_referrer, inverse_of: :child_user, class_name: 'Referrer'
@@ -179,8 +179,12 @@ class User
     self.referrer.present?
   end
 
-  def tester?
-    !Setting.instance.tester_restricted_areas || self.tester
+  def betatester?
+    Setting.instance.current_version == :stable || self.version_allowed == :beta || self.version_allowed == :alpha
+  end
+
+  def alphatester?
+    Setting.instance.current_version == :stable || self.version_allowed == :alpha
   end
 
   # if there's any missing info the user

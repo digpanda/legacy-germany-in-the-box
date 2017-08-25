@@ -13,7 +13,7 @@
       <br />
       Role : <%= editable_field(@user, admin_user_path(@user), :role, :select, [user_roles, {:selected => @user.role}]) %>
       <br />
-      Tester : <%= editable_field(@user, admin_user_path(@user), :tester, :select, [boolean_select, {:selected => @user.tester}]) %>
+      Version Allowed : <%= editable_field(@user, admin_user_path(@user), :version_allowed, :select, [project_versions, {:selected => @user.version_allowed}]) %>
       <br />
       Precreated : <%= boolean_icon(@user.precreated) %>
       <br />

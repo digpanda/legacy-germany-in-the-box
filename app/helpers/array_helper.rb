@@ -1,8 +1,13 @@
 module ArrayHelper
 
+  def project_versions
+    [["Alpha", :alpha], ["Beta", :beta], ["Stable", :stable]]
+  end
+
   def boolean_select
     [["Yes", true], ["No", false]]
   end
+
   def user_roles
     [['Administrator', :admin],['Shopkeeper', :shopkeeper],['Customer', :customer]]
   end
