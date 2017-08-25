@@ -613,6 +613,18 @@ body {
     color: white; }
   .big-button:visited {
     color: white; }
+  .big-button.\--green-hollow {
+    background-color: white;
+    border: 2px solid #83be58;
+    color: #83be58; }
+    .big-button.\--green-hollow:link {
+      color: #83be58; }
+    .big-button.\--green-hollow:hover {
+      color: #83be58; }
+    .big-button.\--green-hollow:active {
+      color: #83be58; }
+    .big-button.\--green-hollow:visited {
+      color: #83be58; }
   .big-button.\--blue {
     background-color: #3498db; }
   .big-button.\--green {
