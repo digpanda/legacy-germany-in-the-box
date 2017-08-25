@@ -221,6 +221,14 @@
 #csstyle .\+big-spacer {
   padding: 4.3em; }
 
+@media (max-width: 994px) {
+  #csstyle .\+header-spacer {
+    padding: 0.6em; } }
+
+@media (min-width: 995px) {
+  #csstyle .\+header-spacer {
+    padding: 3.6em; } }
+
 #csstyle .\+bold {
   font-weight: 600; }
 
