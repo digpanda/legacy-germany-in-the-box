@@ -15,7 +15,7 @@ class Guest::PackageSetsController < ApplicationController
   end
 
   def categories
-    @brand_filters = Brand.with_package_sets.used_as_filters
+    @brand_filters = Brand.with_package_sets.order_by(position: :asc).used_as_filters
   end
 
   # we show the list of package by category
@@ -48,7 +48,7 @@ class Guest::PackageSetsController < ApplicationController
     if category
       @brand_filters = category.package_set_brands
     else
-      @brand_filters = Brand.with_package_sets.used_as_filters
+      @brand_filters = Brand.with_package_sets.order_by(position: :asc).used_as_filters
     end
   end
 

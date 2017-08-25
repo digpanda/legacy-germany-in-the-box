@@ -24,6 +24,7 @@ class Category
   end
 
   def package_set_brands
+    # TODO : order the array depending on its content
     package_sets.active.map(&:brands).flatten.uniq
   end
 
