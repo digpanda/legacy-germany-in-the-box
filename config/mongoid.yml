@@ -7,7 +7,7 @@ production:
       options:
         user: gitb
         password: lyh2good
-        # server_selection_timeout: 90
+        server_selection_timeout: 90
       logger: false
   options:
     use_utc: false
