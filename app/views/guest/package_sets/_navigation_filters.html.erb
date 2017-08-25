@@ -2,15 +2,4 @@
   <div class="col-md-6 col-xs-6 +nopadding">
     <%= select_tag('category[id]', options_for_select(category_package_set_filter, params[:category_slug]), { :include_blank  => "全部类别", :class => "nice js-package-set-category-filter" }) %>
   </div>
-
-  <!-- NOTE : temporarily disabled -->
-  <% if category %>
-    <!-- <div class="col-md-6 col-xs-6 +nopadding">
-      <%= select_tag('brand[id]', options_for_select(brand_package_set_filter_with_category(category), params[:brand_id]), { :include_blank  => "产品", :class => "nice js-package-set-brand-filter" }) %>
-    </div> -->
-  <% else %>
-    <!-- <div class="col-md-6 col-xs-6 +nopadding">
-      <%= select_tag('brand[id]', options_for_select(brand_package_set_filter, params[:brand_id]), { :include_blank  => "产品", :class => "nice js-package-set-brand-filter" }) %>
-    </div> -->
-  <% end %>
 </div>

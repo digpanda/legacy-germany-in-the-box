@@ -15,6 +15,7 @@ class Guest::PackageSetsController < ApplicationController
   end
 
   def categories
+    @brand_filters = Brand.with_package_sets.used_as_filters
   end
 
   # we show the list of package by category
@@ -40,6 +41,15 @@ class Guest::PackageSetsController < ApplicationController
     end
 
     @package_sets = @package_sets.all
+
+    # now we manage the brand filters
+    # if we are in a specific category
+    # we just get the category brands
+    if category
+      @brand_filters = category.package_set_brands
+    else
+      @brand_filters = Brand.with_package_sets.used_as_filters
+    end
   end
 
   # we use the package set and convert it into an order

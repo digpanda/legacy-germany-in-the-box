@@ -4,6 +4,16 @@
 
 <div class="+small-spacer"></div>
 
+<p class="categories-block__brands +centered">
+  <span class="+strong"><%= I18n.t('brands.hot_brands') %> :</span> <% @brand_filters.each do |brand| %>
+    <% if brand == @brand %>
+    <span class="+strong +green"><%= brand.name %></span> |
+    <% else %>
+      <a href="<%= guest_package_sets_path(brand_id: brand.id, category_slug: @category&.slug) %>"><%= brand.name %></a> |
+    <% end %>
+  <% end %>
+</p>
+
 <div class="row">
 <% @package_sets.each_with_index do |package_set, index| %>
 
