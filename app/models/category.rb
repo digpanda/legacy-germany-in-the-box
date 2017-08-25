@@ -24,8 +24,11 @@ class Category
   end
 
   def package_set_brands
-    # TODO : order the array depending on its content
-    package_sets.active.map(&:brands).flatten.uniq
+    Brand.where(:id.in => package_set_brand_ids)
+  end
+
+  def package_set_brand_ids
+    package_sets.active.map(&:brands).flatten.uniq.map(&:_id)
   end
 
   def shops
