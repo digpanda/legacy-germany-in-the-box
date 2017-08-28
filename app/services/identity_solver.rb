@@ -32,7 +32,7 @@ class IdentitySolver < BaseService
 
   def origin_setup!
     return session[:origin] if session[:origin]
-    if chinese_domain? || wechat_browser?
+    if wechat_domain? || wechat_browser?
       session[:origin] = :wechat
     else
       session[:origin] = :browser
@@ -63,8 +63,8 @@ class IdentitySolver < BaseService
     request.user_agent&.include? "MicroMessenger"
   end
 
-  def chinese_domain?
-    request.url&.include? "germanyinbox.com"
+  def wechat_domain?
+    request.url&.include? ENV["wechat_local_domain"] # typically germanyinbox.com
   end
 
   def guest_section?
