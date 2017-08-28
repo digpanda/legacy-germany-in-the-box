@@ -2,7 +2,7 @@
 
   <% unless sku.product.decorate.format_desc.empty? %>
 
-  <h3><%= I18n.t(:description, scope: :title) %></h3>
+  <h3><%= I18n.t('title.description') %></h3>
 
   <%= sku.product.decorate.format_desc %>
 
@@ -15,7 +15,7 @@
 
     <% if sku.more_description? %>
 
-    <h3><%= I18n.t(:more, scope: :title) %></h3>
+    <h3><%= I18n.t('title.more') %></h3>
 
     <% if sku.data? %>
     <%= sku.decorate.format_data %>

@@ -72,7 +72,7 @@
                   <div class="package-set-infos__original-price"><%= @package_set.casual_price.in_euro.to_yuan.display %></div>
                 <% end %>
                 <div class="package-set-infos__new-price"><%= @package_set.end_price.in_euro.to_yuan.display %></div>
-                <div class="package-set-infos__euro-price"><%#= @package_set.end_price.in_euro.display %> ( <%= I18n.t(:all_included, scope: :cart) %> )</div>
+                <div class="package-set-infos__euro-price"><%#= @package_set.end_price.in_euro.display %> ( <%= I18n.t('cart.all_included') %> )</div>
                 <div class="+spacer"></div>
               </div>
             </div>
@@ -80,7 +80,7 @@
             <!-- Buttons -->
             <div class="row">
               <div class="+centered">
-                <%= link_to I18n.t(:buy_it, scope: :package_set), nil,
+                <%= link_to I18n.t('package_set.buy_it'), nil,
                             class: 'js-add-package-set main-button__solid --large', :data => { :package_set_id => @package_set.id.to_s } %>
               </div>
             </div>
