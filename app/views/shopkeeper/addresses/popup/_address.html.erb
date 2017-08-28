@@ -2,61 +2,61 @@
 <%= form_for [:shopkeeper, address], :data => {:toggle => 'validator'} do |f| %>
 <div class="form-group">
   <h4>
-    <%= I18n.t(:change_address_title, scope: :edit_address) %>
+    <%= I18n.t('edit_address.change_address_title') %>
   </h4>
 </div>
 <div class="form-group">
-  <%= f.text_field :company, :class => 'form-control', :required => true, :placeholder => I18n.t(:company, scope: :edit_address) %>
+  <%= f.text_field :company, :class => 'form-control', :required => true, :placeholder => I18n.t('edit_address.company') %>
 </div>
 <div class="form-group">
   <div class="row">
     <div class="col-md-6">
-      <%= f.text_field :fname, :class => 'form-control', :required => true, :placeholder => I18n.t(:fname, scope: :edit_address) %>
+      <%= f.text_field :fname, :class => 'form-control', :required => true, :placeholder => I18n.t('edit_address.fname') %>
     </div>
     <div class="col-md-6">
-      <%= f.text_field :lname, :class => 'form-control', :required => true, :placeholder => I18n.t(:lname, scope: :edit_address) %>
+      <%= f.text_field :lname, :class => 'form-control', :required => true, :placeholder => I18n.t('edit_address.lname') %>
     </div>
   </div>
 </div>
 <div class="form-group">
   <div class="row">
     <div class="col-md-9">
-      <%= f.text_field :street, :class => 'form-control', :required => true, :placeholder => I18n.t(:street, scope: :edit_address) %>
+      <%= f.text_field :street, :class => 'form-control', :required => true, :placeholder => I18n.t('edit_address.street') %>
     </div>
     <div class="col-md-3">
-      <%= f.text_field :number, :class => 'form-control', :required => true, :placeholder => I18n.t(:house_number, scope: :edit_address), :pattern => '\d+' %>
+      <%= f.text_field :number, :class => 'form-control', :required => true, :placeholder => I18n.t('edit_address.house_number'), :pattern => '\d+' %>
     </div>
   </div>
-  <%= f.text_field :additional, :class => 'form-control', :placeholder => I18n.t(:additional, scope: :edit_address) %>
+  <%= f.text_field :additional, :class => 'form-control', :placeholder => I18n.t('edit_address.additional') %>
 </div>
 
 <div class="form-group">
   <div class="row-fluid">
     <div class="col-md-4 nopadding-lr">
-      <%= f.text_field :zip, :class => 'form-control', :placeholder => I18n.t(:zip, scope: :edit_address), :required => true, :pattern => '^(?!01000|99999)(0[1-9]\d{3}|[1-9]\d{4})$' %>
+      <%= f.text_field :zip, :class => 'form-control', :placeholder => I18n.t('edit_address.zip'), :required => true, :pattern => '^(?!01000|99999)(0[1-9]\d{3}|[1-9]\d{4})$' %>
     </div>
     <div class="col-md-4 nopadding-lr">
-      <%= f.text_field :city, class: 'form-control', :placeholder => I18n.t(:city, scope: :edit_address), :required => true %>
+      <%= f.text_field :city, class: 'form-control', :placeholder => I18n.t('edit_address.city'), :required => true %>
     </div>
     <div class="col-md-4 nopadding-lr">
-      <%= f.text_field :province, class: 'form-control', :placeholder => I18n.t(:province, scope: :edit_address), :required => true %>
+      <%= f.text_field :province, class: 'form-control', :placeholder => I18n.t('edit_address.province'), :required => true %>
     </div>
   </div>
 </div>
 <div class="form-group">
   <%= f.label :type do %>
-    <%= f.radio_button :type, 'billing', :required => true %> <%= I18n.t('billing', scope: :edit_address) %>
+    <%= f.radio_button :type, 'billing', :required => true %> <%= I18n.t('edit_adress.billing') %>
   <% end %>
   <%= f.label :type do %>
-    <%= f.radio_button :type, 'sender', :required => true %> <%= I18n.t('sender', scope: :edit_address) %>
+    <%= f.radio_button :type, 'sender', :required => true %> <%= I18n.t('edit_address.sender') %>
   <% end %>
   <%= f.label :type do %>
-    <%= f.radio_button :type, 'both', :required => true %> <%= I18n.t('both', scope: :edit_address) %>
+    <%= f.radio_button :type, 'both', :required => true %> <%= I18n.t('edit_address.both') %>
   <% end %>
 </div>
 
 <div class="form-group">
-  <input class="btn btn-primary" type="submit" value="<%= I18n.t(:save_address, scope: :edit_address) %>"></input>
+  <input class="btn btn-primary" type="submit" value="<%= I18n.t('edit_address.save_address') %>"></input>
 </div>
 <% end %>
 </div>

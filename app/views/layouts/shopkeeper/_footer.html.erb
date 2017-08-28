@@ -3,10 +3,10 @@
     <div class="row">
       <div class="col-md-6 +left">
         <strong>Germany in the Box</strong> -
-        <%= link_to I18n.t(:icp_registration, scope: :footer) %> /
-        <%= link_to I18n.t(:terms_conditions, scope: :footer), agb_guest_pages_path %> /
-        <%= link_to I18n.t(:privacy_statement, scope: :footer), privacy_guest_pages_path %> /
-        <%= link_to I18n.t(:sell_on_gbox, scope: :footer), saleguide_guest_pages_path %> /
+        <%= link_to I18n.t('footer.icp_registration') %> /
+        <%= link_to I18n.t('footer.terms_conditions'), agb_guest_pages_path %> /
+        <%= link_to I18n.t('footer.privacy_statement'), privacy_guest_pages_path %> /
+        <%= link_to I18n.t('footer.sell_on_gbox'), saleguide_guest_pages_path %> /
         <%= link_to "Käuferportal", language_path(id: 'zh-CN', sign_out: true), method: :put %>
       </div>
 

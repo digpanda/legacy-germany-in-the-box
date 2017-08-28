@@ -1,23 +1,23 @@
 <div class="form-group">
-  <%= f.text_field :lname, :class => 'form-control', placeholder: I18n.t(:lastname, scope: :edit_personal) %>
+  <%= f.text_field :lname, :class => 'form-control', placeholder: I18n.t('edit_personal.lastname') %>
 </div>
 <div class="form-group">
-  <%= f.text_field :fname, :class => 'form-control', placeholder: I18n.t(:firstname, scope: :edit_personal) %>
+  <%= f.text_field :fname, :class => 'form-control', placeholder: I18n.t('edit_personal.firstname') %>
 </div>
 <div class="form-group">
-  <%= f.text_field :birth, :id => 'datepicker', :class => 'form-control', placeholder: I18n.t(:birthday, scope: :edit_personal), :required => true %>
+  <%= f.text_field :birth, :id => 'datepicker', :class => 'form-control', placeholder: I18n.t('edit_personal.birthday'), :required => true %>
   <div class="help-block with-errors"></div>
 </div>
 <div class="form-group">
   <label class="radio-inline">
     <%= f.radio_button :gender, 'm', :checked => @user.gender.present? ? @user.gender.male? : true %>
-    <%= I18n.t(:'genderize.name.masculine') %>
+    <%= I18n.t('genderize.name.masculine') %>
   </label>
   <label class="radio-inline">
     <%= f.radio_button :gender, 'f', :checked => @user.gender.present? ? @user.gender.female? : true %>
-    <%= I18n.t(:'genderize.name.feminine') %>
+    <%= I18n.t('genderize.name.feminine') %>
   </label>
 </div>
 <div class="form-group">
-  <%= f.text_field :mobile, :class => 'form-control', :pattern => I18n.t(:tel, scope: :validation, locale: :'zh-CN'), placeholder: I18n.t(:placeholder_tel, scope: :edit_personal) %>
+  <%= f.text_field :mobile, :class => 'form-control', :pattern => I18n.t('validation.tel', locale: :'zh-CN'), placeholder: I18n.t('edit_personal.placeholder_tel') %>
 </div>

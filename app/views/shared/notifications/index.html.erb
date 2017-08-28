@@ -4,13 +4,13 @@
     <thead>
       <tr>
         <th>
-          <% I18n.t(:title, scope: :title) %>
+          <% I18n.t('title.title') %>
         </th>
         <th>
-          <% I18n.t(:description, scope: :title) %>
+          <% I18n.t('title.description') %>
         </th>
         <th>
-          <% I18n.t(:date, scope: :title) %>
+          <% I18n.t('title.date') %>
         </th>
       </tr>
     </thead>
@@ -35,7 +35,7 @@
 <% else %>
 <div class="+white-box +centered">
   <h4>
-    <%= I18n.t(:no_order, scope: :edit_order) %>
+    <%= I18n.t('edit_order.no_order') %>
   </h4>
 </div>
 <% end %>

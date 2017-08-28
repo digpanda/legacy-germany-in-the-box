@@ -4,25 +4,25 @@
     <thead>
       <tr>
         <th>
-          <%= I18n.t(:id, scope: :edit_order) %>
+          <%= I18n.t('edit_order.id') %>
         </th>
         <th>
           Delivery Address Name
         </th>
         <th>
-          <%= I18n.t(:status, scope: :edit_order) %>
+          <%= I18n.t('edit_order.status') %>
         </th>
         <td>
           Total Paid
         </th>
         <th>
-          <%= I18n.t(:total_price, scope: :edit_order) %>
+          <%= I18n.t('edit_order.total_price') %>
         </th>
         <th>
           Files
         </th>
         <th>
-          <%= I18n.t(:updated_at, scope: :edit_order) %>
+          <%= I18n.t('edit_order.updated_at') %>
         </th>
         <th>
           Action
@@ -45,7 +45,7 @@
             <% end %>
           </td>
           <td>
-            <%= I18n.t(order.status, scope: :edit_order) %>
+            <%= I18n.t("edit_order.#{order.status}") %>
           </td>
           <td>
             <%= order.total_paid_in_yuan %>
@@ -66,16 +66,16 @@
 
             <% if order.processable? %>
 
-              <%= link_to I18n.t(:start_process_shipment, scope: :button), shopkeeper_order_process_order_path(order), method: :patch, data: { confirm: I18n.t(:confirm_start_processing, scope: :notice) } %> |
-              <%= link_to I18n.t(:package_was_sent, scope: :notice), shopkeeper_order_shipped_path(order), method: :patch %>
+              <%= link_to I18n.t('button.start_process_shipment'), shopkeeper_order_process_order_path(order), method: :patch, data: { confirm: I18n.t('notice.confirm_start_processing') } %> |
+              <%= link_to I18n.t('notice.package_was_sent'), shopkeeper_order_shipped_path(order), method: :patch %>
 
             <% else %>
-              <%= I18n.t(:order_not_processable, scope: :message) %>
+              <%= I18n.t('message.order_not_processable') %>
             <% end %>
 
           <% elsif order.status == :custom_checking %>
 
-            <%= link_to I18n.t(:package_was_sent, scope: :notice), shopkeeper_order_shipped_path(order), method: :patch %>
+            <%= link_to I18n.t('notice.package_was_sent'), shopkeeper_order_shipped_path(order), method: :patch %>
 
           <% end %>
 
@@ -89,7 +89,7 @@
 <% else %>
 <div class="+white-box +centered">
   <h4>
-    <%= I18n.t(:no_order, scope: :edit_order) %>
+    <%= I18n.t('edit_order.no_order') %>
   </h4>
 </div>
 <% end %>

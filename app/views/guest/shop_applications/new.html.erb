@@ -160,12 +160,12 @@
         <div class="+white-box panel panel-info">
           <div class="panel-body">
             <h3>
-              <%= I18n.t(:contact_person_info, scope: :edit_shop_application) %>
+              <%= I18n.t('edit_shop_application.contact_person_info') %>
             </h3>
             <div class="form-group">
               <div class="pull-right required-info">
                 <strong>
-                  <%= I18n.t(:required_field_info, scope: :edit_shop).html_safe %>
+                  <%= I18n.t('edit_shop.required_field_info').html_safe %>
                 </strong>
               </div>
             </div>
@@ -173,13 +173,13 @@
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
-                  <%= f.label :fname, I18n.t(:contact_fname, scope: :edit_shop_application), :class => 'required' %>
+                  <%= f.label :fname, I18n.t('edit_shop_application.contact_fname'), :class => 'required' %>
                   <%= f.text_field :fname, :class => 'form-control', :maxLength => Rails.configuration.gitb[:max_tiny_text_length], :required => true %>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <%= f.label :lname, I18n.t(:contact_lname, scope: :edit_shop_application), :class => 'required' %>
+                  <%= f.label :lname, I18n.t('edit_shop_application.contact_lname'), :class => 'required' %>
                   <%= f.text_field :lname, :class => 'form-control', :maxLength => Rails.configuration.gitb[:max_tiny_text_length], :required => true %>
                 </div>
               </div>
@@ -187,13 +187,13 @@
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
-                  <%= f.label :function, I18n.t(:contact_function, scope: :edit_shop_application) %>
+                  <%= f.label :function, I18n.t('edit_shop_application.contact_function') %>
                   <%= f.text_field :function, :class => 'form-control', :maxLength => Rails.configuration.gitb[:max_short_text_length] %>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <%= f.label :mail, I18n.t(:contact_email, scope: :edit_shop_application), :class => 'required' %>
+                  <%= f.label :mail, I18n.t('edit_shop_application.contact_email'), :class => 'required' %>
                   <%= f.email_field :mail, :class => 'form-control', :maxLength => Rails.configuration.gitb[:max_short_text_length], :placeholder => 'example@google.com', :required => true %>
                   <div class="help-block with-errors"></div>
                 </div>
@@ -202,14 +202,14 @@
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
-                  <%= f.label :tel, I18n.t(:contact_tel, scope: :edit_shop_application), :class => 'required' %>
+                  <%= f.label :tel, I18n.t('edit_shop_application.contact_tel'), :class => 'required' %>
                   <%= f.text_field :tel, :class => 'form-control', :maxLength => Rails.configuration.gitb[:max_tiny_text_length], :required => true, :placeholder => '+49(89)123456' %>
                   <div class="help-block with-errors"></div>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <%= f.label :mobile, I18n.t(:contact_mobile, scope: :edit_shop_application), :class => 'required' %>
+                  <%= f.label :mobile, I18n.t('edit_shop_application.contact_mobile'), :class => 'required' %>
                   <%= f.text_field :mobile, :class => 'form-control', :maxLength => Rails.configuration.gitb[:max_tiny_text_length], :placeholder => '+49(151)12345678', :required => true %>
                   <div class="help-block with-errors"></div>
                 </div>

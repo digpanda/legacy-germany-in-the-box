@@ -13,7 +13,7 @@
         <!-- Minimum order -->
         <% unless shop.min_total.zero? %>
           <div class="shop-page-header__minimum-order">
-            <i class="fa fa-info-circle"></i> <%= I18n.t(:minimum_order, scope: :shop) %> <%= shop.min_total.in_euro.to_yuan.display %>
+            <i class="fa fa-info-circle"></i> <%= I18n.t('shop.minimum_order') %> <%= shop.min_total.in_euro.to_yuan.display %>
           </div>
         <% end %>
 

@@ -3,7 +3,7 @@
   <% if shop.public_send("#{detail_attribute}?") %>
 
     <div>
-      <h3><%= I18n.t(detail_attribute.to_sym, scope: :title) %></h3>
+      <h3><%= I18n.t("title.#{detail_attribute}") %></h3>
       <%= simple_format(shop.public_send(detail_attribute)) %>
       <hr>
     </div>

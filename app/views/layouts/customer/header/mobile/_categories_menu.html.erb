@@ -4,13 +4,13 @@
     <li>
       <% if notifications? %>
         <a href="<%= shared_notifications_path %>">
-          <span><%= I18n.t(:my_profile, scope: :menu) %></span> <div class="+notif-bubble-inline"><%= current_user.notifications.unreads.count %></div>
+          <span><%= I18n.t('menu.my_profile') %></span> <div class="+notif-bubble-inline"><%= current_user.notifications.unreads.count %></div>
         </a>
       <% else %>
-        <a href="<%= menu_customer_account_path %>"><%= I18n.t(:my_profile, scope: :menu) %></a>
+        <a href="<%= menu_customer_account_path %>"><%= I18n.t('menu.my_profile') %></a>
       <% end %>
     </li>
-    <li><a href="<%= customer_favorites_path %>"><%= I18n.t(:my_favorites, scope: :menu) %></a></li>
+    <li><a href="<%= customer_favorites_path %>"><%= I18n.t('menu.my_favorites') %></a></li>
     <hr />
     <% unless @freeze_header %>
       <% unless identity_solver&.wechat_customer? %>

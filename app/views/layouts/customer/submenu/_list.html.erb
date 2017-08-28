@@ -1,25 +1,25 @@
 <% if current_user&.referrer? %>
   <li class="<%= menu_active? customer_referrer_path %>">
-    <%= link_to I18n.t(:flyer, scope: :top_menu), customer_referrer_path %>
+    <%= link_to I18n.t('top_menu.flyer'), customer_referrer_path %>
   </li>
 <% end %>
 
 <li class="<%= menu_active? edit_customer_account_path %>">
-  <%= link_to I18n.t(:my_account, scope: :top_menu), edit_customer_account_path %>
+  <%= link_to I18n.t('top_menu.my_account'), edit_customer_account_path %>
 </li>
 
 <li class="<%= menu_active? edit_customer_identity_path %>">
-  <%= link_to I18n.t(:my_identity, scope: :top_menu), edit_customer_identity_path %>
+  <%= link_to I18n.t('top_menu.my_identity'), edit_customer_identity_path %>
 </li>
 <li class="<%= menu_active? shared_notifications_path %>">
-  <%= link_to I18n.t(:notifications, scope: :top_menu), shared_notifications_path %>
+  <%= link_to I18n.t('top_menu.notifications'), shared_notifications_path %>
 </li>
 <li class="<%= menu_active? customer_addresses_path %>">
-  <%= link_to I18n.t(:my_address, scope: :top_menu), customer_addresses_path %>
+  <%= link_to I18n.t('top_menu.my_address'), customer_addresses_path %>
 </li>
 <li class="<%= menu_active? customer_orders_path %>">
-  <%= link_to I18n.t(:my_order, scope: :top_menu), customer_orders_path %>
+  <%= link_to I18n.t('top_menu.my_order'), customer_orders_path %>
 </li>
 <li>
-  <%= link_to I18n.t(:sign_out, scope: :top_menu), destroy_user_session_path, :method => :delete %>
+  <%= link_to I18n.t('top_menu.sign_out'), destroy_user_session_path, :method => :delete %>
 </li>
