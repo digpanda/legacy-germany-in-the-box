@@ -7,27 +7,27 @@
         <div class="panel-body">
 
           <h3>
-            <%= I18n.t(:shopkeeper_info, scope: :edit_shop_application) %>
+            <%= I18n.t('edit_shop_application.shopkeeper_info') %>
           </h3>
 
           <div class="form-group">
             <div class="pull-right required-info">
               <strong>
-                <%= I18n.t(:required_field_info, scope: :edit_shop).html_safe %>
+                <%= I18n.t('edit_shop.required_field_info').html_safe %>
               </strong>
             </div>
             <br>
           </div>
           <div class="form-group">
             <div class="row">
-              <div class="col-md-3" title="<%= I18n.t(:email_info, scope: :edit_shop_application) %>">
-                <i class="fa fa-info-circle" title="<%= I18n.t(:email_info, scope: :edit_shop_application) %>"></i>
+              <div class="col-md-3" title="<%= I18n.t('edit_shop_application.email_info') %>">
+                <i class="fa fa-info-circle" title="<%= I18n.t('edit_shop_application.email_info') %>"></i>
                 <label class="required">
                   <%= I18n.t('edit_shop_application.email') %>
                 </label>
               </div>
               <div class="col-md-9">
-                <%= f.email_field :email, :class => 'form-control', :required => true, 'data-remote' => "#{api_guest_users_unknown_by_email_path}", 'data-remote-error': I18n.t(:duplicated_email, scope: :edit_shop_application), :maxLength => Rails.configuration.gitb[:max_tiny_text_length], :placeholder => 'example@google.com' %>
+                <%= f.email_field :email, :class => 'form-control', :required => true, 'data-remote' => "#{api_guest_users_unknown_by_email_path}", 'data-remote-error': I18n.t('edit_shop_application.duplicated_email'), :maxLength => Rails.configuration.gitb[:max_tiny_text_length], :placeholder => 'example@google.com' %>
                 <div class="help-block with-errors"></div>
               </div>
             </div>
@@ -40,15 +40,15 @@
                 </label>
               </div>
               <div class="col-md-9">
-                <%= f.text_field :name, :class => 'form-control', :required => true, :maxLength => Rails.configuration.gitb[:max_tiny_text_length], :placeholder => I18n.t(:company_name_placeholder, scope: :edit_shop) %>
+                <%= f.text_field :name, :class => 'form-control', :required => true, :maxLength => Rails.configuration.gitb[:max_tiny_text_length], :placeholder => I18n.t('edit_shop.company_name_placeholder') %>
                 <div class="help-block with-errors"></div>
               </div>
             </div>
           </div>
           <div class="form-group">
             <div class="row">
-              <div class="col-md-3" title="<%= I18n.t(:founding_year_info, scope: :edit_shop) %>">
-                <i class="fa fa-info-circle" title="<%= I18n.t(:founding_year_info, scope: :edit_shop) %>"></i>
+              <div class="col-md-3" title="<%= I18n.t('edit_shop.founding_year_info') %>">
+                <i class="fa fa-info-circle" title="<%= I18n.t('edit_shop.founding_year_info') %>"></i>
                 <label class="required">
                   <%= I18n.t(:founding_year, scope: :edit_shop) %>
                 </label>

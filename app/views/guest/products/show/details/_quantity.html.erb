@@ -1,10 +1,10 @@
 <!-- Warnings -->
 <% if sku.quantity_warning? %>
-  | <span class="+red +up +bold"> <%= I18n.t(:only, scope: :product_left) %> <span id="quantity-left"><%= sku.quantity %></span> <%= I18n.t(:left, scope: :product_left) %></span>
+  | <span class="+red +up +bold"> <%= I18n.t('product_left.only') %> <span id="quantity-left"><%= sku.quantity %></span> <%= I18n.t('product_left.left') %></span>
 <% elsif sku.nothing_left? %>
-  | <span class="+red +up +bold"> <%= I18n.t(:no_stock_left, scope: :product_left) %></span>
+  | <span class="+red +up +bold"> <%= I18n.t('product_left.no_stock_left') %></span>
 <% elsif !sku.product.can_buy? %>
-  | <span class="+red +up +bold"> <%= I18n.t(:not_ready_to_sell, scope: :product_left) %></span>
+  | <span class="+red +up +bold"> <%= I18n.t('product_left.not_ready_to_sell') %></span>
 <% end %>
 
 <div class="+small-spacer"></div>
@@ -21,7 +21,7 @@
 
     <% else %>
 
-        <%= submit_tag "#{I18n.t(:not_available, scope: :popular_products)}", :class => 'btn btn-primary btn-lg', :disabled => true %>
+        <%= submit_tag "#{I18n.t('popular_products.not_available')}", :class => 'btn btn-primary btn-lg', :disabled => true %>
 
     <% end %>
 <% end %>
