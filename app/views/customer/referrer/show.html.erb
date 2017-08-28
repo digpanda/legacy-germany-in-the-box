@@ -10,12 +10,9 @@
     <a href="<%= provision_customer_referrer_path %>" class="big-button --green"><%= I18n.t('referrer.provision_insight') %></a>
     <div class="+small-spacer"></div>
     <a href="<%= qrcode_customer_referrer_path %>" class="big-button --green-hollow"><%= I18n.t('referrer.qrcode') %></a>
-
-    <% if current_user.betatester? %>
     <div class="+small-spacer"></div>
     <a href="<%= customer_referrer_links_path %>" class="big-button --green-hollow"><%= I18n.t('referrer.links') %></a>
-    <% end %>
-    
+
   </div>
 </div>
 

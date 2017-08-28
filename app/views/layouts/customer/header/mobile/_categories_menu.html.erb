@@ -32,7 +32,7 @@
         <% end %>
       <% end %>
     <% end %>
-    <% if current_user&.betatester? && Setting.instance.current_version != :stable %>
+    <% if current_user&.tester? %>
       <li>
         <span class="+blue +bold">Mode : Tester</span>
       </li>

@@ -179,12 +179,16 @@ class User
     self.referrer.present?
   end
 
+  def tester?
+     self.version_allowed == :beta || self.version_allowed == :alpha
+  end
+
   def betatester?
-    Setting.instance.current_version == :stable || self.version_allowed == :beta || self.version_allowed == :alpha
+    self.version_allowed == :beta
   end
 
   def alphatester?
-    Setting.instance.current_version == :stable || self.version_allowed == :alpha
+    self.version_allowed == :alpha
   end
 
   # if there's any missing info the user
