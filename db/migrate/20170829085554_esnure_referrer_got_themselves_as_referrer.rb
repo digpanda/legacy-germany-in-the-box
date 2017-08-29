@@ -4,7 +4,7 @@ class EsnureReferrerGotThemselvesAsReferrer < Mongoid::Migration
     Referrer.all.each do |referrer|
       tour_guide_user = referrer.user
       unless tour_guide_user.parent_referrer
-        tour_guide_user.update(parent_referrer: customer.referrer)
+        tour_guide_user.update(parent_referrer: referrer)
         puts "Updating Customer #{customer.id} which is Referrer #{referrer.id}"
       end
     end
