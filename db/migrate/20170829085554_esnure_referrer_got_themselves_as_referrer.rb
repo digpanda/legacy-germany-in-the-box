@@ -2,9 +2,8 @@ class EsnureReferrerGotThemselvesAsReferrer < Mongoid::Migration
   def self.up
     puts "Looking through all the referrers ..."
     Referrer.all.each do |referrer|
-      tour_guide_user = referrer.user
-      tour_guide_user.update(parent_referrer: referrer)
-      puts "Updating Customer #{tour_guide_user.id} which is Referrer #{referrer.id}"
+      referrer.user.update(parent_referrer: referrer)
+      puts "Updating Customer #{referrer.user.id} which is Referrer #{referrer.id}"
     end
   end
 
