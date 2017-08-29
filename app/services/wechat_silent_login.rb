@@ -6,10 +6,11 @@ class WechatSilentLogin < BaseService
   include Rails.application.routes.url_helpers
   include Devise::Controllers::Helpers # sign_out, sign_in methods
 
-  attr_reader :request, :navigation, :cart_manager, :code
+  attr_reader :request, :navigation, :cart_manager, :code, :session
 
   def initialize(request, navigation, cart_manager, code)
     @request = request
+    @session = request.session # used by Devise Helpers
     @navigation = navigation
     @cart_manager = cart_manager
     @code = code
