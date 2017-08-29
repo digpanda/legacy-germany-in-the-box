@@ -14,25 +14,51 @@ class ApplicationController < ActionController::Base
 
   helper_method :navigation, :cart_manager, :identity_solver
 
+  # before_action :solve_wechat_user
   before_action :solve_silent_login, :solve_origin, :solve_landing
 
+  # TODO : first we test the new solve silent login, then this one.
+  # if a user comes from wechat browser and is not logged-in yet
+  # we force-login him to the correct domain
+  # def solve_wechat_user
+  #   return unless Rails.env.production? # this should work solely in production
+  #   return if current_user
+  #   return if params[:code]
+  #   return unless identity_solver.wechat_browser?
+  #   redirect_to WechatUrlAdjuster.new(identity_solver.wechat_url).adjusted_url
+  # end
+
+  # we try to silent login the users
+  # with the code in parameters (typically wechat related)
   def solve_silent_login
-    if params[:code]
-      if wechat_api_connect_solver.success?
-        user = wechat_api_connect_solver.data[:customer]
-        sign_out
-        sign_in(:user, user)
-        slack.message "[Wechat] Customer automatically logged-in (`#{current_user&.id}`)", url: admin_user_path(current_user)
-        redirect_to AfterSigninHandler.new(request, navigation, current_user, cart_manager).solve!(refresh: true)
-      else
-        slack.message "[Wechat] Auth failed (`#{wechat_api_connect_solver.error}`)"
-      end
-    end
+    return unless params[:code]
+    return unless wechat_silent_login.connect!
+    redirect_to wechat_silent_login.redirect(refresh: true)
   end
 
-  def wechat_api_connect_solver
-    @wechat_api_connect_solver ||= WechatApiConnectSolver.new(params[:code]).resolve!
+  def wechat_silent_login
+    @wechat_silent_login ||= WechatSilentLogin.new(request, navigation, cart_manager, params[:code])
   end
+
+  # # OLD SYSTEM HERE TO AUTO LOGIN
+  # def solve_silent_login
+  #   if params[:code]
+  #     if wechat_api_connect_solver.success?
+  #       user = wechat_api_connect_solver.data[:customer]
+  #       sign_out
+  #       sign_in(:user, user)
+  #       slack.message "[Wechat] Customer automatically logged-in (`#{current_user&.id}`)", url: admin_user_path(current_user)
+  #       redirect_to AfterSigninHandler.new(request, navigation, current_user, cart_manager).solve!(refresh: true)
+  #     else
+  #       slack.message "[Wechat] Auth failed (`#{wechat_api_connect_solver.error}`)"
+  #     end
+  #   end
+  # end
+  #
+  # def wechat_api_connect_solver
+  #   @wechat_api_connect_solver ||= WechatApiConnectSolver.new(params[:code]).resolve!
+  # end
+  # # END OF OLD SYSTEM
 
   def activate_weixin_js_config
     @weixin_js_config ||= begin

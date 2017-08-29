@@ -14,8 +14,11 @@ class Connect::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   # QRCode Wechat tour guide registration
   # it's only a way to group people.
+  # TODO : could be arranged using
+  # the same system than the global one
   def referrer
     if params[:code]
+      wechat_api_connect_solver = WechatApiConnectSolver.new(params[:code]).resolve!
 
       # this is taken from application controller
       if wechat_api_connect_solver.success?
