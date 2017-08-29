@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
   # if a user comes from wechat browser and is not logged-in yet
   # we force-login him to the correct domain
   def solve_wechat_user
-    return unless Rails.env.production? # this should work solely in production
+    return unless Rails.env.production? || Rails.env.staging? # this should work solely in production and staging
     return if current_user
     return if params[:code]
     return unless identity_solver.wechat_browser?
