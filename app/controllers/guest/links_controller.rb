@@ -12,6 +12,7 @@ class Guest::LinksController < ApplicationController
   # will be logged-in and bind to a referrer
   # then will go down this controller to be redirected to the original link.
   def show
+    SlackDispatcher.new.message("SHOW LINK IS HERE, IT SHOULD BE USED AFTER EVERYTHING ELSE TO SHOW THE REAL LINK.")
     redirect_to link.raw_url
   end
 
@@ -22,6 +23,7 @@ class Guest::LinksController < ApplicationController
   # this should be fully tested (slackdispatcher to check everything goes in order)
   # and become an alias of #show (legacy reason)
   def weixin
+    SlackDispatcher.new.message("WEIXIN WAS REACHED AND WILL REDIRECT TO THE AUTO LOGIN NOW")
     redirect_to link.wechat.with_referrer(referrer)
   end
 

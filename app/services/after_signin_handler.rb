@@ -86,7 +86,9 @@ class AfterSigninHandler
   end
 
   def handle_referrer_binding!
+    SlackDispatcher.new.message("HANDLE REFERRER BINDING WAS REACHED")
     if request.params[:reference_id]
+      SlackDispatcher.new.message("REFERENCE ID IS BEEN HANDLED RIGHT NOW")
       referrer = Referrer.where(reference_id: request.params[:reference_id]).first
       ReferrerBinding.new(referrer).bind(user) if referrer
     end
