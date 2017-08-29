@@ -16,6 +16,7 @@ class Connect::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   # it's only a way to group people.
   def referrer
     if params[:code]
+      wechat_api_connect_solver = WechatApiConnectSolver.new(params[:code]).resolve!
 
       # this is taken from application controller
       if wechat_api_connect_solver.success?
