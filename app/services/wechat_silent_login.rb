@@ -47,6 +47,10 @@ class WechatSilentLogin < BaseService
 
   private
 
+    def slack
+      @slack ||= SlackDispatcher.new
+    end
+
     def signin!(user)
       sign_out
       sign_in(:user, user)
