@@ -67,6 +67,10 @@ class IdentitySolver < BaseService
     request.url&.include? ENV["wechat_local_domain"] # typically germanyinbox.com
   end
 
+  def wechat_url
+    "#{request.protocol}#{ENV['wechat_local_domain']}#{request.fullpath}"
+  end
+
   def guest_section?
     request.url.include? "/guest/"
   end
