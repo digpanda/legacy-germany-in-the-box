@@ -6,7 +6,7 @@ class WechatSilentLogin < BaseService
   include Rails.application.routes.url_helpers
   include Devise::Controllers::Helpers # sign_out, sign_in methods
 
-  attr_reader :request, :navigation, :cart_manager, :code, :session
+  attr_reader :request, :session, :navigation, :cart_manager, :code
 
   def initialize(request, navigation, cart_manager, code)
     @request = request
@@ -47,10 +47,6 @@ class WechatSilentLogin < BaseService
 
   private
 
-    def slack
-      @slack ||= SlackDispatcher.new
-    end
-
     def signin!(user)
       sign_out
       sign_in(:user, user)
@@ -67,5 +63,9 @@ class WechatSilentLogin < BaseService
 
     def after_signin_handler
       @after_signin_handler ||= AfterSigninHandler.new(request, navigation, user, cart_manager)
+    end
+
+    def slack
+      @slack ||= SlackDispatcher.new
     end
 end

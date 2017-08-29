@@ -33,9 +33,7 @@ class ApplicationController < ActionController::Base
   def solve_silent_login
     return unless params[:code]
     return unless wechat_silent_login.connect!
-    SlackDispatcher.new.message("LOGIN SUCCESSFUL")
     redirect_to wechat_silent_login.redirect(refresh: true)
-    SlackDispatcher.new.message("REDIRECT NOW")
   end
 
   def wechat_silent_login
