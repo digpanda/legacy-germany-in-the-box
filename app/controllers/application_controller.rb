@@ -14,18 +14,20 @@ class ApplicationController < ActionController::Base
 
   helper_method :navigation, :cart_manager, :identity_solver
 
-  before_action :solve_wechat_user, :solve_silent_login, :solve_origin, :solve_landing
+  # before_action :solve_wechat_user
 
+  before_action :solve_silent_login, :solve_origin, :solve_landing
+
+  # TODO : first we test the new solve silent login, then this one.
   # if a user comes from wechat browser and is not logged-in yet
   # we force-login him to the correct domain
-  def solve_wechat_user
-    binding.pry
-    return unless Rails.env.production? # this should work solely in production
-    return if current_user
-    return if params[:code]
-    return unless identity_solver.wechat_browser?
-    redirect_to WechatUrlAdjuster.new(identity_solver.wechat_url).adjusted_url
-  end
+  # def solve_wechat_user
+  #   return unless Rails.env.production? # this should work solely in production
+  #   return if current_user
+  #   return if params[:code]
+  #   return unless identity_solver.wechat_browser?
+  #   redirect_to WechatUrlAdjuster.new(identity_solver.wechat_url).adjusted_url
+  # end
 
   # we try to silent login the users
   # with the code in parameters (typically wechat related)
