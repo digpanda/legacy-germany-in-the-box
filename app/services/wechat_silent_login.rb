@@ -4,6 +4,7 @@
 # to redirect properly users
 class WechatSilentLogin < BaseService
   include Rails.application.routes.url_helpers
+  include Devise::Controllers::Helpers # sign_out, sign_in methods
 
   attr_reader :request, :navigation, :cart_manager, :code
 
