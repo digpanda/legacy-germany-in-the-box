@@ -17,9 +17,10 @@ class Guest::LinksController < ApplicationController
 
   # it's another layer which will automatically get people to go
   # in the auto-login system (by weixin)
-  # and then comes back to the raw link right above (#show)
-  # # NOTE : we could extend the force login
-  # to the whole system at some point, everything is ready for it (url generator, etc.)
+  # TODO : this system is now obsolete since any wechat user
+  # will be automatically logged-in before to reach any page of the site
+  # this should be fully tested (slackdispatcher to check everything goes in order)
+  # and become an alias of #show (legacy reason)
   def weixin
     redirect_to link.wechat.with_referrer(referrer)
   end
