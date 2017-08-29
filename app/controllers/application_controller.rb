@@ -19,6 +19,7 @@ class ApplicationController < ActionController::Base
   # if a user comes from wechat browser and is not logged-in yet
   # we force-login him to the correct domain
   def solve_wechat_user
+    binding.pry
     return unless Rails.env.production? # this should work solely in production
     return if current_user
     return if params[:code]
@@ -30,12 +31,12 @@ class ApplicationController < ActionController::Base
   # with the code in parameters (typically wechat related)
   def solve_silent_login
     return unless params[:code]
-    return unless wechat_silent_login.connect!(params[:code])
-    redirect_to wechat_silent_login.redirect_url
+    return unless wechat_silent_login.connect!
+    redirect_to wechat_silent_login.redirect(refresh: true)
   end
 
   def wechat_silent_login
-    @wechat_silent_login ||= WechatSilentLogin.new(request, navigation, current_user, cart_manager)
+    @wechat_silent_login ||= WechatSilentLogin.new(request, navigation, cart_manager, params[:code])
   end
 
   def activate_weixin_js_config

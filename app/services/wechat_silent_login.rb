@@ -3,12 +3,15 @@
 # we can then use the `redirection` method
 # to redirect properly users
 class WechatSilentLogin < BaseService
+  include Rails.application.routes.url_helpers
+  
+  attr_reader :request, :navigation, :cart_manager, :code
 
-  def initialize(request, navigation, user, cart_manager)
+  def initialize(request, navigation, cart_manager, code)
     @request = request
     @navigation = navigation
-    @user = user
     @cart_manager = cart_manager
+    @code = code
   end
 
   # we try to connect the user
@@ -17,10 +20,9 @@ class WechatSilentLogin < BaseService
   # else we dispatch a notification to slack
   # NOTE : the redirect_url must be used for the final redirection
   # it won't be triggered with connect! which only return a boolean
-  def connect!(code)
-    wechat_api_connect_solver = WechatApiConnectSolver.new(code).resolve!
+  def connect!
     if wechat_api_connect_solver.success?
-      signin! wechat_api_connect_solver.data[:customer]
+      signin! user
       true
     else
       failed! wechat_api_connect_solver.error
@@ -31,8 +33,10 @@ class WechatSilentLogin < BaseService
   # the redirection will use contextual data
   # it will actually refresh the same page in this case (silent login)
   # but remove the code params
-  def redirect_url
-    after_signin_handler.solve!(refresh: true)
+  def redirect(*args)
+    if wechat_api_connect_solver.success?
+      after_signin_handler.solve!(*args)
+    end
   end
 
   private
@@ -45,6 +49,14 @@ class WechatSilentLogin < BaseService
 
     def failed!(error)
       slack.message "[Wechat] Auth failed (`#{error}`)"
+    end
+
+    def user
+      wechat_api_connect_solver.data[:customer]
+    end
+
+    def wechat_api_connect_solver
+      @wechat_api_connect_solver ||= WechatApiConnectSolver.new(code).resolve!
     end
 
     def after_signin_handler
