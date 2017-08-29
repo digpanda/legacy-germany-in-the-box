@@ -38,27 +38,7 @@ class ApplicationController < ActionController::Base
   def wechat_silent_login
     @wechat_silent_login ||= WechatSilentLogin.new(request, navigation, cart_manager, params[:code])
   end
-
-  # OLD SYSTEM HERE TO AUTO LOGIN
-  # def solve_silent_login
-  #   if params[:code]
-  #     if wechat_api_connect_solver.success?
-  #       user = wechat_api_connect_solver.data[:customer]
-  #       sign_out
-  #       sign_in(:user, user)
-  #       slack.message "[Wechat] Customer automatically logged-in (`#{current_user&.id}`)", url: admin_user_path(current_user)
-  #       redirect_to AfterSigninHandler.new(request, navigation, current_user, cart_manager).solve!(refresh: true)
-  #     else
-  #       slack.message "[Wechat] Auth failed (`#{wechat_api_connect_solver.error}`)"
-  #     end
-  #   end
-  # end
-  #
-  # def wechat_api_connect_solver
-  #   @wechat_api_connect_solver ||= WechatApiConnectSolver.new(params[:code]).resolve!
-  # end
-  # END OF OLD SYSTEM
-
+  
   def activate_weixin_js_config
     @weixin_js_config ||= begin
       ticket = WeixinTicket.new(cache_scope: request.host).resolve!
