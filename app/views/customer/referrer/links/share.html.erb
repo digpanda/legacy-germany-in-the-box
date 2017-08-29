@@ -3,7 +3,7 @@
       data-title="<%= @link.title %>"
       data-desc="<%= @link.desc %>"
       data-img-url="<%= @link.thumbnail_url %>"
-      data-link="<%= @link.wechat.with_login_and_referrer(@referrer) %>"
+      data-link="<%= @link.wechat.with_referrer(@referrer) %>"
       data-back="<%= customer_referrer_links_url %>">
 </div>
 
@@ -60,5 +60,5 @@
 
 <% else %>
   <h1 class="+bold"><%= I18n.t('referrer.share_page.please_share_this_link') %></h1>
-  <a href="<%= @link.wechat.with_login_and_referrer(@referrer) %>"><%= @link.wechat.with_login_and_referrer(@referrer) %></a>
+  <a href="<%= @link.wechat.with_referrer(@referrer) %>"><%= @link.wechat.with_referrer(@referrer) %></a>
 <% end %>
