@@ -7,6 +7,8 @@
       data-back="<%= customer_referrer_links_url %>">
 </div>
 
+<% SlackDispatcher.new.message("LINK : #{@link.wechat.with_login_and_referrer(@referrer)}") %>
+
 
 <% if identity_solver.wechat_customer? %>
 
