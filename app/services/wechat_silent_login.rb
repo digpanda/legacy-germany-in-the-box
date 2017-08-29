@@ -4,7 +4,7 @@
 # to redirect properly users
 class WechatSilentLogin < BaseService
   include Rails.application.routes.url_helpers
-  
+
   attr_reader :request, :navigation, :cart_manager, :code
 
   def initialize(request, navigation, cart_manager, code)
@@ -30,6 +30,10 @@ class WechatSilentLogin < BaseService
     end
   end
 
+  def user
+    wechat_api_connect_solver.data[:customer]
+  end
+
   # the redirection will use contextual data
   # it will actually refresh the same page in this case (silent login)
   # but remove the code params
@@ -49,10 +53,6 @@ class WechatSilentLogin < BaseService
 
     def failed!(error)
       slack.message "[Wechat] Auth failed (`#{error}`)"
-    end
-
-    def user
-      wechat_api_connect_solver.data[:customer]
     end
 
     def wechat_api_connect_solver

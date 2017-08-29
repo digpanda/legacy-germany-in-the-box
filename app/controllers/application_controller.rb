@@ -15,7 +15,6 @@ class ApplicationController < ActionController::Base
   helper_method :navigation, :cart_manager, :identity_solver
 
   # before_action :solve_wechat_user
-
   before_action :solve_silent_login, :solve_origin, :solve_landing
 
   # TODO : first we test the new solve silent login, then this one.
