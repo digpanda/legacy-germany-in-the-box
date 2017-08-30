@@ -1,5 +1,7 @@
 source "https://rubygems.org"
 
+gem "net-ping"
+
 gem "alipay", "~> 0.14.0"
 gem "wx_pay"
 gem "rqrcode"

@@ -1,3 +1,5 @@
+require 'net/ping'
+
 class Admin::LinksController < ApplicationController
   attr_accessor :link, :links
 
@@ -55,7 +57,22 @@ class Admin::LinksController < ApplicationController
     redirect_to admin_links_path
   end
 
+  def ping
+    if valid_link?
+      link.update(valid_url: true)
+      flash[:success] = "Link is valid."
+    else
+      link.update(valid_url: false)
+      flash[:error] = "Link is not valid."
+    end
+    redirect_to admin_links_path
+  end
+
   private
+
+    def valid_link?
+      Net::Ping::External.new(link.raw_url).ping
+    end
 
     def set_link
       @link = Link.find(params[:id] || params[:link_id])

@@ -19,6 +19,7 @@ namespace :admin do
   end
 
   resources :links do
+    get :ping
   end
 
   resources :payment_gateways do

@@ -76,6 +76,7 @@
         <%= link.u_at %>
       </td>
       <td>
+        <%= link_to '', admin_link_ping_path(link), :method => :get, :class => 'tooltipster fa fa-link buttons buttons__edit', :title => "Ping" %>
         <%= link_to '', admin_link_path(link), :method => :get, :class => 'tooltipster fa fa-eye buttons buttons__edit', :title => "Details and configuration" %>
       </td>
     </tr>

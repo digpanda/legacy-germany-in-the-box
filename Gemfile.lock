@@ -323,6 +323,7 @@ GEM
     multi_json (1.12.1)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
+    net-ping (2.0.1)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-sftp (2.1.2)
@@ -630,6 +631,7 @@ DEPENDENCIES
   mongoid_magic_counter_cache
   mongoid_rails_migrations
   mongoid_search!
+  net-ping
   oauth
   omniauth
   omniauth-wechat-oauth2!
