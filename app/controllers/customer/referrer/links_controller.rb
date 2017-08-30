@@ -13,7 +13,7 @@ class Customer::Referrer::LinksController < ApplicationController
   authorize_resource class: false
 
   def index
-    SlackDispatcher.new.message("CURRENT LINKS URL : #{request.original_url}"
+    SlackDispatcher.new.message("CURRENT LINKS URL : #{request.original_url}")
     if current_user.tester?
       @links = Link.order_by(position: :asc).order_by(c_at: :desc)
     else
