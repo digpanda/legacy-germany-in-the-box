@@ -24,7 +24,6 @@ class ApplicationController < ActionController::Base
     return if current_user
     return if params[:code]
     return unless identity_solver.wechat_browser?
-    SlackDispatcher.new.message("FORCE WECHAT LOGIN NOW")
     redirect_to WechatUrlAdjuster.new(identity_solver.wechat_url).adjusted_url
   end
 
