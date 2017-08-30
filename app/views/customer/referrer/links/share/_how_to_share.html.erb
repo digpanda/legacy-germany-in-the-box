@@ -1,8 +1,17 @@
 <!-- Default page before sharing -->
 <div class="wechat-share">
-  <div class="+right">
-    <div class="+wechat-pointer blink-img">
-      <i class="fa fa-hand-pointer-o"></i>
+
+  <div class="row">
+    <!-- BACK BUTTON -->
+    <div class="col-xs-4 col-md-4">
+      <%= render partial: 'customer/referrer/links/share/subheader', :locals => { back: customer_referrer_links_path } %>
+    </div>
+    <div class="col-md-4 col-xs-4 col-xs-push-4 col-md-push-4">
+      <div class="+right">
+        <div class="+wechat-pointer blink-img">
+          <i class="fa fa-hand-pointer-o"></i>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -11,6 +20,7 @@
       <h4 class="+bold +light-green +right"><%= I18n.t('referrer.share_page.please_click_and_share') %></h4>
     </div>
   </div>
+
   <!-- Explanation -->
   <div class="row">
     <div class="col-md-12">
