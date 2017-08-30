@@ -98,7 +98,7 @@
             <%= order.id %>
           <% end %>
           <div class="clearfix"></div>
-          <strong><%= I18n.t('edit_order.status') %>:</strong> <%= I18n.t(order.status) %>
+          <strong><%= I18n.t('edit_order.status') %>:</strong> <%= I18n.t("edit_order.#{order.status}") %>
           <% if order.bought? %>
             <div class="clearfix"></div>
             <strong><%= I18n.t('edit_order.total_price_with_extra_costs') %>:</strong> <%= order.end_price.in_euro.to_yuan(exchange_rate: order.exchange_rate).display %>

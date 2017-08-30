@@ -5,21 +5,18 @@ class Guest::LinksController < ApplicationController
   before_action :set_referrer, only: [:weixin]
 
   # NOTE
-  # the cycling of this system is very complex.
-  # the admin create a new Link
-  # the referrer then get a weixin link provided with a redirect_uri defined as this controller as target
-  # the guest using the link provided by the referrer will be redirect on our site
-  # will be logged-in and bind to a referrer
-  # then will go down this controller to be redirected to the original link.
+  # the cycling of this system has been simplified lately
+  # users from wechat are systematically logged-in
+  # during this process it keeps all the parameters
+  # if `reference_id` is present we attempt a binding
+  # after this binding we redirect the user to raw_url below
   def show
     redirect_to link.raw_url
   end
 
-  # it's another layer which will automatically get people to go
-  # in the auto-login system (by weixin)
-  # and then comes back to the raw link right above (#show)
-  # # NOTE : we could extend the force login
-  # to the whole system at some point, everything is ready for it (url generator, etc.)
+  # NOTE
+  # this enforce the login even if the user is already logged-in within wechat
+  # (it has been problematic for some reason when we tried to remove it.)
   def weixin
     redirect_to link.wechat.with_referrer(referrer)
   end

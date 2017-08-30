@@ -28,7 +28,7 @@ namespace :guest do
   end
 
   resources :links do
-    get :weixin
+    get :weixin # legacy code
   end
 
   resources :coupons do

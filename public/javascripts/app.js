@@ -4081,7 +4081,8 @@ var WeixinStarter = {
     this.weixinVue = new Vue({
       el: '#weixin-vue',
       data: {
-        shared: false
+        shared: false,
+        loaded: false
       },
       watch: {
         shared: function shared(_shared) {
@@ -4131,6 +4132,7 @@ var WeixinStarter = {
   onReady: function onReady() {
     wx.ready(function () {
       console.log('Weixin is ready.');
+      WeixinStarter.weixinVue.loaded = true;
       // WeixinStarter.checkJsApi();
       WeixinStarter.onMenuShareTimeline();
       WeixinStarter.onMenuShareAppMessage();

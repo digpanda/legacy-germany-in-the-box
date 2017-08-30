@@ -39,8 +39,10 @@ class LandingSolver
     true
   end
 
+  # NOTE : the :wechat condition force all wechat users to have
+  # the package set as default landing page
   def solve_landing!
-    if request.url.include? guest_package_sets_path
+    if (request.url.include? guest_package_sets_path) || session[:origin] == :wechat
       session[:landing] = :package_sets
     else
       session[:landing] = :products

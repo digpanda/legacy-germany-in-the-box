@@ -4,6 +4,8 @@ zh-CN:
   referrer:
     image: Image
     share_page:
+      please_wait: 请等待
+      the_page_is_loading: 网页正在载入...
       preview: 预览
       thank_you_for_sharing: 感谢分享
       you_will_now_be_redirected: 页面即将为您跳转

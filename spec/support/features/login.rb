@@ -9,7 +9,7 @@ module Helpers
         fill_in 'user[password]', with: '12345678'
         sleep(0.3)
         page.first('#sign_in').trigger('click')
-        sleep(0.3)
+        sleep(0.6)
         expect(page).not_to have_current_path(new_user_session_path)
       end
     end

@@ -6,6 +6,8 @@ de:
   referrer:
     image: Image
     share_page:
+      please_wait: Bitte warten
+      the_page_is_loading: Die Internetseite wird geladen ...
       preview: Preview
       thank_you_for_sharing: Thank you for sharing
       you_will_now_be_redirected: You will now be redirected ...
