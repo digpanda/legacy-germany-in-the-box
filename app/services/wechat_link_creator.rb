@@ -7,6 +7,10 @@ class WechatLinkCreator
     @link = link
   end
 
+  def with_login_and_referrer(referrer)
+    raw_url = url_for(:action => 'weixin', :link_id => link.id, :controller => 'guest/links', :host => ENV["wechat_local_domain"], :protocol => 'https', :reference_id => referrer&.reference_id)
+  end
+
   # NOTE : this system used to be more complex
   # we kept the library in case it gets complicated again
   # for now it's just a simple path

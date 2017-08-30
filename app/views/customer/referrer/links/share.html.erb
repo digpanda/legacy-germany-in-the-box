@@ -3,8 +3,9 @@
       data-title="<%= @link.title %>"
       data-desc="<%= @link.desc %>"
       data-img-url="<%= @link.thumbnail_url %>"
-      data-link="<%= @link.wechat.with_referrer(@referrer) %>"
+      data-link="<%= @link.wechat.with_login_and_referrer(@referrer) %>"
       data-back="<%= customer_referrer_links_url %>">
+
 </div>
 
 <% if identity_solver.wechat_customer? %>
