@@ -58,7 +58,7 @@
         <%= editable_field(link, admin_link_path(link), :position, :text_field) %>
       </td>
       <td>
-        <a href="<%= link.wechat.with_login_and_referrer(dummy_referrer) %>" target="_blank"><%= truncate link.wechat.with_referrer(dummy_referrer), length: 30 %></a>
+        <a href="<%= link.wechat.with_login_and_referrer(dummy_referrer) %>" target="_blank"><%= truncate link.wechat.with_login_and_referrer(dummy_referrer), length: 30 %></a>
       </td>
       <td>
         <a href="<%= link.raw_url %>" target="_blank"><%= link.raw_url %></a>
