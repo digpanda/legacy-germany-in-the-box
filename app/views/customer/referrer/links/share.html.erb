@@ -12,53 +12,18 @@
 <div id="weixin-vue">
   <template v-if="shared">
 
-    <!-- Message after successful share -->
-    <h1><%= I18n.t('referrer.share_page.thank_you_for_sharing') %></h1>
-    <em><%= I18n.t('referrer.share_page.you_will_now_be_redirected') %></em>
-
+    <%= render partial: "customer/referrer/links/share/thanks_for_sharing", locals: { :link => @link } %>
+    
   </template>
   <template v-else>
 
-    <!-- Default page before sharing -->
-    <div class="wechat-share">
-      <div class="+right">
-        <div class="+wechat-pointer blink-img">
-          <i class="fa fa-hand-pointer-o"></i>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-4 col-xs-4 col-xs-push-8 col-md-push-8">
-          <h4 class="+bold +light-green +right"><%= I18n.t('referrer.share_page.please_click_and_share') %></h4>
-        </div>
-      </div>
-      <!-- Explanation -->
-      <div class="row">
-        <div class="col-md-12">
-          <div class="+spacer"></div>
-          <div class="+dark-grey">
-            <h2><%= I18n.t('referrer.share_page.how_does_it_work') %></h2>
-            <div class="+small-spacer"></div>
-            <%= I18n.t('referrer.share_page.work_description_1') %><br />
-            <%= I18n.t('referrer.share_page.work_description_2') %>
-            <div class="+small-spacer"></div>
-            <%= I18n.t('referrer.share_page.work_conclusion') %>
-            <div class="+spacer"></div>
-          </div>
-          <h3><%= I18n.t('referrer.share_page.preview') %></h3>
-          <hr />
-          <h3><%= @link.title %></h3>
-          <em><%= @link.desc %></em>
-          <br /><br />
-          <%= @link.long_desc&.html_safe %><br />
-        </div>
-      </div>
-    </div>
+    <%= render partial: "customer/referrer/links/share/how_to_share", locals: { :link => @link } %>
 
   </template>
 </div>
 
 <% else %>
+
   <h1 class="+bold"><%= I18n.t('referrer.share_page.please_share_this_link') %></h1>
   <a href="<%= @link.wechat.with_login_and_referrer(@referrer) %>"><%= @link.wechat.with_login_and_referrer(@referrer) %></a>
 <% end %>
