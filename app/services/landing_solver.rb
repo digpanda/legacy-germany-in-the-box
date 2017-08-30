@@ -40,7 +40,7 @@ class LandingSolver
   end
 
   def solve_landing!
-    if request.url.include? guest_package_sets_path || session[:origin] == :wechat
+    if (request.url.include? guest_package_sets_path) || session[:origin] == :wechat
       session[:landing] = :package_sets
     else
       session[:landing] = :products
