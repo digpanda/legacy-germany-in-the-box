@@ -16,10 +16,6 @@ class WechatLinkCreator
   # for now it's just a simple path
   # Laurent, 29/08/2017
   def with_referrer(referrer)
-    if referrer&.user&.alphatester?
-      SlackDispatcher.new.message("PASS THROUGH ALPHA")
-      return url_for(:action => 'show', :id => link.id, :controller => 'guest/links', :host => ENV["wechat_local_domain"], :protocol => 'https', :reference_id => referrer&.reference_id)
-    end
     raw_url = url_for(:action => 'show', :id => link.id, :controller => 'guest/links', :host => ENV["wechat_local_domain"], :protocol => 'https', :reference_id => referrer&.reference_id)
     WechatUrlAdjuster.new(raw_url).adjusted_url
   end
