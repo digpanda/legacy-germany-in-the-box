@@ -16,6 +16,8 @@ class Tasks::Cron::CheckLinksValidity
       else
         link.update(valid_url: false)
         puts "[UNVALID] Link `#{link.id}` is not a valid URL `#{link.raw_url}`"
+        puts "A notification will be dispatch to the administrators."
+        Notifier::Admin.new.unvalid_link_detected(link)
       end
     end
     puts 'End of process.'

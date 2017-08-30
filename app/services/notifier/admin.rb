@@ -19,5 +19,14 @@ class Notifier
       ).perform
     end
 
+    def unvalid_link_detected(link)
+      dispatch(
+        email: "info@digpanda.com",
+        mailer: AdminMailer,
+        title: "Link #{link.id}",
+        desc: "The end link #{link.raw_url} is not valid, please fix / remove it from the database."
+      ).perform
+    end
+
   end
 end
