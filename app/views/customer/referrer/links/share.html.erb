@@ -13,11 +13,16 @@
   <template v-if="shared">
 
     <%= render partial: "customer/referrer/links/share/thanks_for_sharing", locals: { :link => @link } %>
-    
+
   </template>
   <template v-else>
 
-    <%= render partial: "customer/referrer/links/share/how_to_share", locals: { :link => @link } %>
+    <template v-if="loaded">
+      <%= render partial: "customer/referrer/links/share/how_to_share", locals: { :link => @link } %>
+    </template>
+    <template v-else>
+      <%= render partial: "customer/referrer/links/share/please_wait", locals: { :link => @link } %>
+    </template>
 
   </template>
 </div>
