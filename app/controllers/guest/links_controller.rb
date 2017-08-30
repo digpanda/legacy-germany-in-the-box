@@ -11,6 +11,7 @@ class Guest::LinksController < ApplicationController
   # if `reference_id` is present we attempt a binding
   # after this binding we redirect the user to raw_url below
   def show
+    SlackDispatcher.new.message("REDIRECT TO RAW URL NOW")
     redirect_to link.raw_url
   end
 
