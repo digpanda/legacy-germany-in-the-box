@@ -21,7 +21,8 @@ class Guest::LinksController < ApplicationController
   # it could be removed after a while.
   # Laurent, 29/08/2017
   def weixin
-    show
+    redirect_to link.wechat.with_referrer(referrer)
+    # show
   end
 
   private
