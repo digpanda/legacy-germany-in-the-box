@@ -11,19 +11,14 @@ class Guest::LinksController < ApplicationController
   # if `reference_id` is present we attempt a binding
   # after this binding we redirect the user to raw_url below
   def show
-    SlackDispatcher.new.message("REDIRECT TO RAW URL NOW")
     redirect_to link.raw_url
   end
 
-  # LEGACY NOTE
-  # this is a legacy / obsolete system which is used in some of our current links
-  # the goal of this method was to auto-login
-  # when the login wasn't forced everywhere to wechat users
-  # it could be removed after a while.
-  # Laurent, 29/08/2017
+  # NOTE
+  # this enforce the login even if the user is already logged-in within wechat
+  # (it has been problematic for some reason when we tried to remove it.)
   def weixin
     redirect_to link.wechat.with_referrer(referrer)
-    # show
   end
 
   private
