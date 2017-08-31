@@ -27,7 +27,7 @@
               <a href="#"><%= link.title %></a>
             </td>
             <td>
-              <%= link.c_at.strftime("%Y-%m-%d") %>
+              <%= link.published_at.strftime("%Y-%m-%d") %>
             </td>
           </tr>
           <% if newly_published?(@referrer, link) %>
