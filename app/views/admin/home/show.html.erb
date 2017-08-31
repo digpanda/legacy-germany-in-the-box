@@ -1,2 +1,21 @@
-<h1>Dashboard</h1>
-<hr />
+<div class="details">
+
+  <div class="row">
+    <div class="col-md-10">
+      <h2>Welcome to your dashboard</h2>
+    </div>
+    <div class="col-md-2 details__action">
+    </div>
+  </div>
+
+  <div class="+small-spacer"></div>
+
+  <div class="row details__block">
+    <%= render partial: "admin/home/show/users" %>
+  </div>
+
+  <div class="row details__block">
+    <%= render partial: "admin/home/show/orders" %>
+  </div>
+
+</div>

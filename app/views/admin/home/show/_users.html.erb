@@ -1,0 +1,38 @@
+<div class="col-md-12">
+  <div class="row">
+      <h3>Site Demography</h3>
+    <hr>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+      <h4>Accounts</h4>
+      <%= User.count %>
+    </div>
+
+    <div class="col-md-3">
+      <h4>Customers</h4>
+      <%= User.where(role: :customer).count %>
+    </div>
+
+    <div class="col-md-3">
+      <h4>Shopkeepers</h4>
+      <%= User.where(role: :shopkeeper).count %>
+    </div>
+
+    <div class="col-md-3">
+      <h4>Administrators</h4>
+      <%= User.where(role: :admin).count %>
+    </div>
+
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+    </div>
+    <div class="col-md-3">
+      <h4>Referrers</h4>
+      <%= Referrer.count %>
+    </div>
+  </div>
+</div>
