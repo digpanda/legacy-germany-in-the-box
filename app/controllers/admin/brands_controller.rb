@@ -11,7 +11,7 @@ class Admin::BrandsController < ApplicationController
   layout :custom_sublayout
 
   def index
-    @brands ||= Brand.order_by(name: :asc).all
+    @brands = Brand.order_by(position: :asc).order_by(name: :asc).all
   end
 
   def new
