@@ -45,7 +45,6 @@ class ApplicationController < ActionController::Base
       return false unless ticket.success?
       js_config = WeixinApiJsConfig.new(request: request, ticket: ticket.data[:ticket]).resolve!
       return false unless js_config.success?
-      SlackDispatcher.new.message("CURRENT JS CONFIG : #{js_config}")
       js_config.data
     end
   end
