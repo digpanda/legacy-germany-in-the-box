@@ -25,7 +25,7 @@ describe Notifier::Dispatcher, type: :mailer do
         url: 'http://test.com'
       ).perform
 
-      expect(Notification.count).to eq(0)
+      expect(Notification.count).to eq(1)
       expect(CustomerMailer.deliveries.count).to eq(1)
     end
 
