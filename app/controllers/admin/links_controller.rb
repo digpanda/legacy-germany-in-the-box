@@ -27,7 +27,12 @@ class Admin::LinksController < ApplicationController
   def create
     @link = Link.create(link_params)
     if link.errors.empty?
-      flash[:success] = 'The link was created.'
+      if link.newly_published?
+        flash[:success] = 'The link was created and published, all notifications were sent accordingly.'
+        notify_publication!
+      else
+        flash[:success] = 'The link was created and will not be visible for users yet.'
+      end
       redirect_to admin_links_path
     else
       flash[:error] = "The link was not created (#{link.errors.full_messages.join(', ')})"
@@ -40,7 +45,12 @@ class Admin::LinksController < ApplicationController
 
   def update
     if link.update(link_params)
-      flash[:success] = 'The link was updated.'
+      if link.newly_published?
+        flash[:success] = 'The link was updated and is currently published, notification were sent if needed.'
+        notify_publication!
+      else
+        flash[:success] = 'The link was updated and was already published.'
+      end
       redirect_to admin_links_path
     else
       flash[:error] = "The link was not updated (#{link.errors.full_messages.join(', ')})"
@@ -69,6 +79,12 @@ class Admin::LinksController < ApplicationController
   end
 
   private
+
+    def notify_publication!
+      # TODO : change current user here
+      binding.pry
+      # Notifier::Customer.new(current_user).published_link(link)
+    end
 
     def valid_link?
       Net::Ping::External.new(link.raw_url).ping

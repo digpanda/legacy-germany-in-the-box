@@ -12,7 +12,7 @@
     <li class="col-md-2">
         <% if notifications? %>
           <a href="<%= shared_notifications_path %>">
-            <div class="+notif-bubble"><%= current_user.notifications.unreads.count %></div>
+            <div class="+notif-bubble"><%= current_user.notifications.global.unreads.count %></div>
             <span class="header-desktop__menu --green"><i class="fa fa-user"></i></span>
           </a>
         <% else %>

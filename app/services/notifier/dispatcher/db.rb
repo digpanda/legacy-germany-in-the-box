@@ -21,7 +21,9 @@ class Notifier
           user: dispatcher.user,
           title: dispatcher.title,
           desc: dispatcher.desc,
-          unique_id: dispatcher.unique_id
+          scope: dispatcher.scope,
+          unique_id: dispatcher.unique_id,
+          metadata: dispatcher.metadata
         }).tap do |notification|
           if notification.errors.any?
             raise Notifier::Error, notification.errors.full_messages.join(', ')

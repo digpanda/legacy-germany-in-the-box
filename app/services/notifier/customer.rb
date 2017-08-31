@@ -44,5 +44,13 @@ class Notifier
       ).perform(dispatch: [:sms])
     end
 
+    def published_link(link)
+      dispatch(
+        title: "A new link was published",
+        scope: :referrer_links,
+        metadata: { link_id: link.id },
+        unique_id: "#{link.id}"
+      ).perform(dispatch: [])
+    end
   end
 end

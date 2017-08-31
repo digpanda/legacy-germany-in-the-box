@@ -9,14 +9,19 @@ class Notification
 
   field :title, type: String
   field :desc, type: String
+  field :scope, type: Symbol, default: :global
   field :read_at, type: Time
   field :unique_id, type: String
+
+  # to store interesting data depending on the notification
+  field :metadata, :type => Hash
 
   belongs_to :user
 
   validates :title, presence: true
 
   scope :unreads, -> { where(read_at: nil) }
+  scope :global, -> { where(scope: :global) }
 
   def read?
     self.read_at

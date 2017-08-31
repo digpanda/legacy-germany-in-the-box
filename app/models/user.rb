@@ -160,7 +160,7 @@ class User
   end
 
   def notifications?
-    self.notifications.unreads.count > 0
+    self.notifications.global.unreads.count > 0
   end
 
   def wechat?

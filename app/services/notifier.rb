@@ -1,3 +1,8 @@
+require "notifier/customer"
+require "notifier/shopkeeper"
+require "notifier/admin"
+require "notifier/dispatcher"
+
 class Notifier
 
   private

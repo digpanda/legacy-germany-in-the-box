@@ -4,7 +4,7 @@
     <li>
       <% if notifications? %>
         <a href="<%= shared_notifications_path %>">
-          <span><%= I18n.t('menu.my_profile') %></span> <div class="+notif-bubble-inline"><%= current_user.notifications.unreads.count %></div>
+          <span><%= I18n.t('menu.my_profile') %></span> <div class="+notif-bubble-inline"><%= current_user.notifications.global.unreads.count %></div>
         </a>
       <% else %>
         <a href="<%= menu_customer_account_path %>"><%= I18n.t('menu.my_profile') %></a>
