@@ -24,6 +24,25 @@ class Referrer
 
   before_create :ensure_reference_id, :ensure_nickname
 
+  # we actually get the metadata from the notifications
+  # and reduce the id
+  def newly_published_links
+    user.notifications.where(scope: :referrer_links).unreads.map(&:metadata).reduce([]) do |acc, metadata|
+      acc << metadata["link_id"]
+    end
+  end
+
+  # we loop to confirm the link was read
+  # the notification matching with this specific link on this scope
+  # will be considered read.
+  def link_was_read!(link)
+    user.notifications.where(scope: :referrer_links).unreads.each do |notification|
+      if notification.metadata["link_id"] == link.id
+        notification.read!
+      end
+    end
+  end
+
   def has_coupon?
     self.coupons.count > 0
   end

@@ -1,3 +1,6 @@
+#csstyle .\+table-new {
+  background-color: #fffff0; }
+
 #csstyle .\+wechat-pointer {
   color: #83be58;
   font-size: 40px; }
@@ -1152,6 +1155,17 @@ body {
   font-size: 13px;
   background-color: #3498db;
   color: white; }
+
+.notification__red {
+  background-color: #d6506c;
+  color: white;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  -ms-border-radius: 100%;
+  border-radius: 100%;
+  padding: 0.2em;
+  padding-right: 0.5em;
+  padding-left: 0.5em; }
 
 .breadcrumb {
   background: none;

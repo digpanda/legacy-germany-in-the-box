@@ -46,7 +46,7 @@ class Notifier
 
     def published_link(link)
       dispatch(
-        title: "A new link was published",
+        title: I18n.t('referrer.a_new_link_was_published'),
         scope: :referrer_links,
         metadata: { link_id: link.id },
         unique_id: "#{link.id}"

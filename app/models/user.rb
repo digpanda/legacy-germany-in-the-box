@@ -208,7 +208,7 @@ class User
   end
 
   def new_notifications?
-    notifications.unreads.count > 0
+    notifications.where(scope: :global).unreads.count > 0
   end
 
   def short_union_id

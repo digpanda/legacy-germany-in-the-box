@@ -81,9 +81,9 @@ class Admin::LinksController < ApplicationController
   private
 
     def notify_publication!
-      # TODO : change current user here
-      binding.pry
-      # Notifier::Customer.new(current_user).published_link(link)
+      Referrer.all.each do |referrer|
+        Notifier::Customer.new(referrer.user).published_link(link)
+      end
     end
 
     def valid_link?
