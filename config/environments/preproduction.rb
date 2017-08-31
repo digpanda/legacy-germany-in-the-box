@@ -44,9 +44,5 @@ Rails.application.configure do
 
   config.active_support.deprecation = :notify
   config.log_formatter = ::Logger::Formatter.new
-
-  # config.adyen.environment = 'test'
-  # config.adyen.api_username = 'ws@Company.Digpanda'
-  # config.adyen.api_password = 'EfAwI[iH=%sVKX^Hb3X!4^z4>'
-
+  
 end

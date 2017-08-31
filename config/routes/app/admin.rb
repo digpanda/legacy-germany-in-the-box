@@ -3,6 +3,9 @@ require 'sidekiq/web'
 
 namespace :admin do
 
+  resource :home, controller: 'home' do
+  end
+
   resources :notifications do
   end
 
