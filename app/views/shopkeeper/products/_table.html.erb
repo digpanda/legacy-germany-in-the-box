@@ -5,27 +5,27 @@
       <tr>
         <th>
           <label>
-            <%= I18n.t(:image, scope: :edit_product_detail) %>
+            <%= I18n.t('edit_product_detail.image') %>
           </label>
         </th>
         <th>
           <label>
-            <%= I18n.t(:name, scope: :edit_product) %>
+            <%= I18n.t('edit_product.name') %>
           </label>
         </th>
         <th>
           <label>
-            <%= I18n.t(:brand, scope: :edit_product) %>
+            <%= I18n.t('edit_product.brand') %>
           </label>
         </th>
         <th>
           <label>
-            <%= I18n.t(:quantity, scope: :edit_product_detail) %>
+            <%= I18n.t('edit_product_detail.quantity') %>
           </label>
         </th>
         <th>
           <label>
-            <%= I18n.t(:operations, scope: :edit_product) %>
+            <%= I18n.t('edit_product.operations') %>
           </label>
         </th>
       </tr>
@@ -43,7 +43,7 @@
             <%= product.brand&.name %>
           </td>
           <td>
-            <%= I18n.t(:quantity_info, scope: :edit_product, total_skus_quantities: product.total_skus_quantities, product_options_size: product.options.size) %>
+            <%= I18n.t('edit_product.quantity_info', total_skus_quantities: product.total_skus_quantities, product_options_size: product.options.size) %>
           </td>
           <td align="left">
             <%= render partial: 'shopkeeper/products/table/action', :locals => { product: product } %>

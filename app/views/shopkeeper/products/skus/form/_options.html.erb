@@ -9,13 +9,13 @@
       <!-- Attached Documentation -->
       <div class="row form-group">
         <div class="col-md-4">
-          <%= I18n.t(:attachment, scope: :edit_product_detail) %>
-          <%= js_tips(:id => :attachment, :tip => I18n.t(:attachment_info, scope: :edit_product_detail)) %>
+          <%= I18n.t('edit_product_detail.attachment') %>
+          <%= js_tips(:id => :attachment, :tip => I18n.t('edit_product_detail.attachment_info')) %>
         </div>
         <div class="col-md-8">
           <%= form.file_field :attach0, :accept => "application/pdf", :attach_id => "#attach_0_#{form.object.id}", :class => 'upload' %>
           <% if form.object.attach0.file %>
-            <%= link_to  I18n.t(:open, scope: :edit_product_detail), form.object.attach0.url, :target => "_blank" %>
+            <%= link_to  I18n.t('edit_product_detail.open'), form.object.attach0.url, :target => "_blank" %>
           <% end %>
         </div>
       </div>

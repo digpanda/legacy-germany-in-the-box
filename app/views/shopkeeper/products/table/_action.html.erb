@@ -1,9 +1,9 @@
-<%= link_to '', edit_shopkeeper_product_path(product), :class => 'tooltipster fa fa-pencil buttons buttons__edit', :title => I18n.t(:edit, scope: :edit_product) %>
+<%= link_to '', edit_shopkeeper_product_path(product), :class => 'tooltipster fa fa-pencil buttons buttons__edit', :title => I18n.t('edit_product.edit') %>
 
 <%= link_to '', shopkeeper_product_variants_path(product), :class => 'tooltipster fa fa-cubes buttons buttons__purple', :title => "Manage variants" %>
 
-<%= link_to '', shopkeeper_product_skus_path(product), :class => 'tooltipster fa fa-tags buttons buttons__add', :title => I18n.t(:skus, scope: :edit_product) %>
+<%= link_to '', shopkeeper_product_skus_path(product), :class => 'tooltipster fa fa-tags buttons buttons__add', :title => I18n.t('edit_product.skus') %>
 
 <% if product.removable? %>
-  <%= link_to '', shopkeeper_product_path(product), :method => :delete, data: { confirm: I18n.t(:delete_product_message, scope: :edit_product) }, :class => 'tooltipster fa fa-times buttons buttons__delete', :title => "Remove this product" %>
+  <%= link_to '', shopkeeper_product_path(product), :method => :delete, data: { confirm: I18n.t('edit_product.delete_product_message') }, :class => 'tooltipster fa fa-times buttons buttons__delete', :title => "Remove this product" %>
 <% end %>

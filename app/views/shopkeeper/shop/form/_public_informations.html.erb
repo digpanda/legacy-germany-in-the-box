@@ -7,7 +7,7 @@
       <hr>
     </div>
     <div class="col-md-4 +right">
-      <span class="+red">*</span> <%= I18n.t(:required_field_info, scope: :edit_shop) %>
+      <span class="+red">*</span> <%= I18n.t('edit_shop.required_field_info') %>
       <hr>
     </div>
   </div>
@@ -15,12 +15,12 @@
   <!-- Shopname + Website -->
   <div class="row">
     <div class="col-md-6 form-group">
-      <%= form.label :shopname, I18n.t(:shopname, scope: :edit_shop), :class => 'required' %>
+      <%= form.label :shopname, I18n.t('edit_shop.shopname'), :class => 'required' %>
       <%= form.text_field :shopname, :class => 'form-control', :required => true, :maxLength => Rails.configuration.gitb[:max_short_text_length] %>
       <div class="help-block with-errors"></div>
     </div>
     <div class="col-md-6 form-group">
-      <%= I18n.t(:website, scope: :edit_shop) %>
+      <%= I18n.t('edit_shop.website') %>
       <%= form.text_field :website, :class => 'form-control', :maxLength => Rails.configuration.gitb[:max_short_text_length], :placeholder => 'www.mydomain.com' %>
       <div class="help-block with-errors"></div>
     </div>
@@ -29,12 +29,12 @@
   <!-- Firstname + Lastname -->
   <div class="row">
     <div class="col-md-6 form-group">
-      <%= form.label :fname, I18n.t(:contact_fname, scope: :edit_shop_application), :class => 'required' %>
+      <%= form.label :fname, I18n.t('edit_shop_application.contact_fname'), :class => 'required' %>
       <%= form.text_field :fname, :class => 'form-control', :maxLength => Rails.configuration.gitb[:max_tiny_text_length], :required => true %>
       <div class="help-block with-errors"></div>
     </div>
     <div class="col-md-6 form-group">
-      <%= form.label :lname, I18n.t(:contact_lname, scope: :edit_shop_application), :class => 'required' %>
+      <%= form.label :lname, I18n.t('edit_shop_application.contact_lname'), :class => 'required' %>
       <%= form.text_field :lname, :class => 'form-control', :maxLength => Rails.configuration.gitb[:max_tiny_text_length], :required => true %>
       <div class="help-block with-errors"></div>
     </div>
@@ -43,7 +43,7 @@
   <!-- Position + Email -->
   <div class="row">
     <div class="col-md-6 form-group">
-      <%= form.label :mail, I18n.t(:contact_email, scope: :edit_shop_application), :class => 'required' %>
+      <%= form.label :mail, I18n.t('edit_shop_application.contact_email'), :class => 'required' %>
       <%= form.email_field :mail, :class => 'form-control', :maxLength => Rails.configuration.gitb[:max_short_text_length], :placeholder => 'example@google.com', :required => true %>
       <div class="help-block with-errors"></div>
     </div>

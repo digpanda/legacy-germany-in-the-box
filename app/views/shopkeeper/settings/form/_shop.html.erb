@@ -29,10 +29,10 @@
       <!-- Minimum Order -->
       <div class="row form-group">
         <div class="col-md-4">
-          <%= form.label :min_total, I18n.t(:min_total, scope: :edit_shop), :class => 'required' %> (EUR)
+          <%= form.label :min_total, I18n.t('edit_shop.min_total'), :class => 'required' %> (EUR)
         </div>
         <div class="col-md-8">
-          <%= form.text_field :min_total, value: @shop.min_total, :class => 'form-control', :required => true, :pattern => I18n.t(:positive_float_equal_or_greater_than_0, scope: :validation) %>
+          <%= form.text_field :min_total, value: @shop.min_total, :class => 'form-control', :required => true, :pattern => I18n.t('validation.positive_float_equal_or_greater_than_0') %>
         </div>
       </div>
 

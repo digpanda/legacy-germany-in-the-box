@@ -2,11 +2,11 @@
 
   <div class="row">
     <div class="col-md-8 +nopadding">
-      <h3><%= I18n.t(:shopkeeper_info, scope: :edit_shop_application) %></h3>
+      <h3><%= I18n.t('edit_shop_application.shopkeeper_info') %></h3>
       <hr>
     </div>
     <div class="col-md-4 +right">
-      <span class="+red">*</span> <%= I18n.t(:required_field_info, scope: :edit_shop) %>
+      <span class="+red">*</span> <%= I18n.t('edit_shop.required_field_info') %>
       <hr>
     </div>
   </div>
@@ -15,7 +15,7 @@
   <div class="row form-group">
     <div class="col-md-4">
       <label>
-        <%= I18n.t(:merchant_id, scope: :edit_shop) %>
+        <%= I18n.t('edit_shop.merchant_id') %>
       </label>
     </div>
     <div class="col-md-8">
@@ -31,7 +31,7 @@
       </label>
     </div>
     <div class="col-md-8">
-      <%= form.text_field :name, :class => 'form-control', :required => true, :maxLength => Rails.configuration.gitb[:max_short_text_length], :placeholder => I18n.t(:company_name_placeholder, scope: :edit_shop) %>
+      <%= form.text_field :name, :class => 'form-control', :required => true, :maxLength => Rails.configuration.gitb[:max_short_text_length], :placeholder => I18n.t('edit_shop.company_name_placeholder') %>
       <div class="help-block with-errors"></div>
     </div>
   </div>
@@ -40,7 +40,7 @@
   <div class="row form-group">
     <div class="col-md-4">
       <label>
-        <%= I18n.t(:founding_year_info, scope: :edit_shop) %> <span class="+red">*</span>
+        <%= I18n.t('edit_shop.founding_year_info') %> <span class="+red">*</span>
       </label>
     </div>
     <div class="col-md-8">
@@ -53,7 +53,7 @@
   <div class="row form-group">
     <div class="col-md-4">
       <label>
-        <%= I18n.t(:tax_number, scope: :edit_shop) %>
+        <%= I18n.t('edit_shop.tax_number') %>
       </label>
     </div>
     <div class="col-md-8">
@@ -66,7 +66,7 @@
   <div class="row form-group">
     <div class="col-md-4">
       <label>
-        <%= I18n.t(:register, scope: :edit_shop) %>
+        <%= I18n.t('edit_shop.register') %>
       </label>
     </div>
     <div class="col-md-8">
@@ -80,7 +80,7 @@
     <div class="col-md-4">
       <label>
         Ust ID <span class="+red">*</span>
-        <%= js_tips(:id => :ust_id, :tip => I18n.t(:ust_id_info, scope: :edit_shop)) %>
+        <%= js_tips(:id => :ust_id, :tip => I18n.t('edit_shop.ust_id_info')) %>
       </label>
     </div>
     <div class="col-md-8">
@@ -93,8 +93,8 @@
   <div class="row form-group">
     <div class="col-md-4">
       <label>
-        <%= I18n.t(:eroi, scope: :edit_shop) %>
-        <%= js_tips(:id => :eroi_number, :tip =>  I18n.t(:eroi_number_info, scope: :edit_shop)) %>
+        <%= I18n.t('edit_shop.eroi') %>
+        <%= js_tips(:id => :eroi_number, :tip =>  I18n.t('edit_shop.eroi_number_info')) %>
       </label>
     </div>
     <div class="col-md-8">

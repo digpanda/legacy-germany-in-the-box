@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-md-10">
-    <h2><%= I18n.t(:variants, scope: :edit_product_variant) %></h2>
-    <%= I18n.t(:variant_usage, scope: :edit_product_variant).html_safe %>
+    <h2><%= I18n.t('edit_product_variant.variants') %></h2>
+    <%= I18n.t('edit_product_variant.variant_usage').html_safe %>
     <hr>
   </div>
   <div class="col-md-2 details__action">
@@ -18,7 +18,7 @@
     </div>
 
     <div class="row">
-      <%= form.submit :class => 'btn btn-primary', :value =>  I18n.t(:update_basic, scope: :edit_product) %>
+      <%= form.submit :class => 'btn btn-primary', :value =>  I18n.t('edit_product.update_basic') %>
     </div>
 
   <% end %>

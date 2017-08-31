@@ -1,6 +1,6 @@
 <div class="col-md-12">
   <div class="row">
-    <h3><%= I18n.t(:sku_options, scope: :edit_product_detail) %></h3>
+    <h3><%= I18n.t('edit_product_detail.sku_options') %></h3>
     <hr>
   </div>
   <div class="row">
@@ -9,7 +9,7 @@
       <!-- Country of Origin -->
       <div class="row form-group">
         <div class="col-md-4">
-          <%= I18n.t(:country_of_origin) %>
+          <%= I18n.t('edit_product_detail.country_of_origin') %>
         </div>
         <div class="col-md-8">
           <%= country_select("product[skus_attributes][0]", "country_of_origin", priority_countries: ["DE"], format: :translated, selected: form.object.country_of_origin) %>
@@ -19,8 +19,8 @@
       <!-- Variant Selection -->
       <div class="row form-group">
         <div class="col-md-4">
-          <%= I18n.t(:sku_variants_options, scope: :edit_product_detail) %>
-          <%= js_tips(:id => :product_data, :tip => I18n.t(:variants_info, scope: :edit_product_detail)) %>
+          <%= I18n.t('edit_product_detail.sku_variants_options') %>
+          <%= js_tips(:id => :product_data, :tip => I18n.t('edit_product_detail.variants_info')) %>
         </div>
         <div class="col-md-8">
           <%= form.select :option_ids, grouped_options_for_select(form.object.product.decorate.grouped_variants_options, form.object.option_ids), {}, {:multiple => 'multiple', :class => 'sku-variants-options', :required => true} %>
@@ -30,7 +30,7 @@
       <!-- Quantity -->
       <div class="row form-group">
         <div class="col-md-4">
-          <%= I18n.t(:quantity, scope: :edit_product_detail) %>
+          <%= I18n.t('edit_product_detail.quantity') %>
         </div>
         <div class="col-md-8">
           <div class="row">
@@ -44,7 +44,7 @@
 
             </div>
             <div class="col-md-10">
-              <%= form.text_field :quantity, :class => 'form-control', :pattern => I18n.t(:positive_integer, scope: :validation), :required => true, :disabled => form.object.unlimited %>
+              <%= form.text_field :quantity, :class => 'form-control', :pattern => I18n.t('validation.positive_integer'), :required => true, :disabled => form.object.unlimited %>
             </div>
           </div>
         </div>
@@ -53,7 +53,7 @@
       <!-- EAN -->
       <div class="row form-group">
         <div class="col-md-4">
-          <%= I18n.t(:ean, scope: :edit_product_detail) %>
+          <%= I18n.t('edit_product_detail.ean') %>
         </div>
         <div class="col-md-8">
           <%= form.text_field :ean, :class => 'form-control' %>
@@ -74,7 +74,7 @@
       <!-- Price -->
       <div class="row form-group">
         <div class="col-md-4">
-          <%= I18n.t(:price, scope: :edit_product_detail) %> (EUR)
+          <%= I18n.t('edit_product_detail.price') %> (EUR)
         </div>
         <div class="col-md-8">
           <%= form.text_field :price, value: @sku.price, :class => 'form-control', :required => true %>
@@ -84,30 +84,30 @@
       <!-- Discount -->
       <div class="row form-group">
         <div class="col-md-4">
-          <%= I18n.t(:discount, scope: :edit_product_detail) %> (%)
+          <%= I18n.t('edit_product_detail.discount') %> (%)
         </div>
         <div class="col-md-8">
-          <%= form.text_field :discount, :class => 'form-control', :pattern => I18n.t(:positive_integer_less_or_equal_than_100, scope: :validation), :required => true %>
+          <%= form.text_field :discount, :class => 'form-control', :pattern => I18n.t('validation.positive_integer_less_or_equal_than_100'), :required => true %>
         </div>
       </div>
 
       <!-- Space -->
       <div class="row form-group">
         <div class="col-md-4">
-          <%= I18n.t(:space, scope: :edit_product_detail) %> (CM)
-          <%= js_tips(:id => :space, :tip => I18n.t(:space_info, scope: :edit_product_detail)) %>
+          <%= I18n.t('edit_product_detail.space') %> (CM)
+          <%= js_tips(:id => :space, :tip => I18n.t('edit_product_detail.space_info')) %>
         </div>
         <div class="col-md-8">
           <div class="row">
 
             <div class="col-md-4">
-              <%= form.text_field :space_length, value: @sku.space_length, :class => 'form-control', :required => true, :placeholder => I18n.t(:space_length, scope: :edit_product_detail) %>
+              <%= form.text_field :space_length, value: @sku.space_length, :class => 'form-control', :required => true, :placeholder => I18n.t('edit_product_detail.space_length') %>
             </div>
             <div class="col-md-4">
-              <%= form.text_field :space_width, value: @sku.space_width, :class => 'form-control', :required => true, :placeholder => I18n.t(:space_width, scope: :edit_product_detail) %>
+              <%= form.text_field :space_width, value: @sku.space_width, :class => 'form-control', :required => true, :placeholder => I18n.t('edit_product_detail.space_width') %>
             </div>
             <div class="col-md-4">
-              <%= form.text_field :space_height, value: @sku.space_height, :class => 'form-control', :required => true, :placeholder => I18n.t(:space_height, scope: :edit_product_detail) %>
+              <%= form.text_field :space_height, value: @sku.space_height, :class => 'form-control', :required => true, :placeholder => I18n.t('edit_product_detail.space_height') %>
             </div>
 
           </div>
@@ -118,7 +118,7 @@
       <!-- Weight -->
       <div class="row form-group">
         <div class="col-md-4">
-          <%= I18n.t(:weight, scope: :edit_product_detail) %> (KG)
+          <%= I18n.t('edit_product_detail.weight') %> (KG)
         </div>
         <div class="col-md-8">
           <%= form.text_field :weight, value: @sku.weight, :class => 'form-control', :required => true %>
