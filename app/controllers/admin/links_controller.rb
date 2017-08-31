@@ -12,7 +12,7 @@ class Admin::LinksController < ApplicationController
   layout :custom_sublayout
 
   def index
-    @links = Link.order_by(c_at: :desc).full_text_search(params[:query], match: :all, allow_empty_search: true).paginate(page: current_page, per_page: 10)
+    @links = Link.order_by(position: :asc).order_by(c_at: :desc).full_text_search(params[:query], match: :all, allow_empty_search: true).paginate(page: current_page, per_page: 10)
   end
 
   def new
