@@ -32,17 +32,7 @@ class SlackDispatcher < BaseService
   end
 
   def login(user)
-    if user.referrer
-      user_role = :referrer
-    else
-      user_role  = user.role
-    end
-
-    name = user.decorate&.chinese_full_name
-    name = user.nickname unless name.present?
-    name = user.email unless name.present?
-    name = user.id unless name.present?
-    message "[Wechat] Auth #{user_role.capitalize} `#{name}`", url: admin_user_url(user)
+    message "[Wechat] Auth #{user.decorate.readable_role} `#{user.decorate.who}`", url: admin_user_url(user)
   end
 
   private

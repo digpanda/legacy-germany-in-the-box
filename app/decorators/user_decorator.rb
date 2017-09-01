@@ -7,6 +7,26 @@ class UserDecorator < Draper::Decorator
   delegate_all
   decorates :user
 
+  def readable_role
+    if referrer
+      "Referrer"
+    else
+      "#{role.capitalize}"
+    end
+  end
+
+  def who
+    if chinese_full_name.present?
+      chinese_full_name
+    elsif nickname.present?
+      nickname
+    elsif email.present?
+      email
+    else
+      id
+    end
+  end
+
   def full_name
     "#{fname} #{lname}"
   end
