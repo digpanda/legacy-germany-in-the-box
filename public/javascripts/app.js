@@ -4133,10 +4133,21 @@ var WeixinStarter = {
     wx.ready(function () {
       console.log('Weixin is ready.');
       WeixinStarter.weixinVue.loaded = true;
+      WeixinStarter.resetWeixinCache();
       // WeixinStarter.checkJsApi();
       WeixinStarter.onMenuShareTimeline();
       WeixinStarter.onMenuShareAppMessage();
     });
+  },
+
+  resetWeixinCache: function resetWeixinCache() {
+    var needRefresh = sessionStorage.getItem("need-refresh");
+    if (needRefresh) {
+      sessionStorage.removeItem("need-refresh");
+      location.reload();
+    } else {
+      sessionStorage.setItem("need-refresh", true);
+    }
   },
 
   onError: function onError() {
