@@ -20,7 +20,7 @@ class Notifier
     end
 
     def perform(dispatch:[:email])
-      db! # if user <-- why limit to user ?
+      db! if user
       email! if dispatch.include? :email
       sms! if dispatch.include? :sms
       return_with(:success)
