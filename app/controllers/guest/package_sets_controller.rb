@@ -93,11 +93,12 @@ class Guest::PackageSetsController < ApplicationController
     # for filtering (optional)
     def set_category
       if params[:category_id]
-        # we search the category via slug_name (which also matches with `id` thanks to the slug gem)
-        # if it fails we search in real ids
-        # we use the param `category_id` because it matches with the gem structure even tho we have to
-        # find via `slug_name` in this specific case
-        @category = Category.where(slug_name: params[:category_id]).first || Category.where(id: params[:category_id]).first
+        begin
+        @category = Category.find(params[:category_id])
+        rescue Mongoid::Errors::DocumentNotFound
+          # we need to rescue to avoid crashing the application
+          # in case the id does not match anything real (like `all`)
+        end
       end
     end
 

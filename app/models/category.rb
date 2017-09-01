@@ -7,6 +7,11 @@ class Category
   has_and_belongs_to_many :products,  inverse_of: :categories
   has_many :package_sets,  inverse_of: :category
 
+  # slug_name is here to be used with the Mongoid::Slug system
+  # we can find('slug') as an ID and it'll match with slug_name
+  # please do not remove or change it without knowing
+  # the implication within the system
+  # such as the filters in the package sets area.
   field :slug_name, type: String
   slug :slug_name
 
