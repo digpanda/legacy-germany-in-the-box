@@ -2061,7 +2061,7 @@ body {
     padding-right: 0;
     padding-left: 0;
     min-height: 4em;
-    padding-top: 3em; }
+    padding-top: 2.9em; }
     .header-desktop__categories a {
       color: #919191; }
     .header-desktop__categories ul {
@@ -2257,7 +2257,7 @@ body {
   display: inline-block; }
   .menu-dropdown a {
     font-size: 18px;
-    padding-bottom: 2em;
+    padding-bottom: 1em;
     display: block; }
   .menu-dropdown:hover .menu-dropdown__content {
     display: block; }
