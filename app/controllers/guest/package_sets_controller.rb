@@ -92,6 +92,9 @@ class Guest::PackageSetsController < ApplicationController
 
     # for filtering (optional)
     def set_category
+      # TODO : this is legacy code, it should not stay for more than a day.
+      # Laurent, 01/09/2017
+      params[:category_id] = params[:category_slug] if params[:category_slug]
       if params[:category_id]
         begin
         @category = Category.find(params[:category_id])
