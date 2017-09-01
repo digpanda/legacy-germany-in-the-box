@@ -37,9 +37,10 @@ class SlackDispatcher < BaseService
     else
       user_role  = user.role
     end
-    name = user.id
-    name = user.nickname unless user.nickname&.empty?
-    name = user.decorate.chinese_full_name unless user.decorate.chinese_full_name&.empty?
+
+    name = user.decorate&.chinese_full_name
+    name = user.nickname unless name&.present?
+    name = user.id unless name&.present?
     message "[Wechat] Log-in `#{user_role}.#{name}`", url: admin_user_url(user)
   end
 
