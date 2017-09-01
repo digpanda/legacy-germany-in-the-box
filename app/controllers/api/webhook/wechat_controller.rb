@@ -85,11 +85,11 @@ class Api::Webhook::WechatController < Api::ApplicationController
 
       # we are in front of a referrer request
       referrer = Referrer.where(reference_id: extra_data['referrer']['reference_id']).first
-      slack.message "Referrer is `#{referrer.id}`", url: admin_referrer_path(referrer)
+      slack.message "Referrer is `#{referrer.id}`", url: admin_referrer_url(referrer)
 
       if wechat_user_solver.success? && referrer
         user = wechat_user_solver.data[:customer]
-        slack.message "Customer is `#{user.id}`", url: admin_user_path(user)
+        slack.message "Customer is `#{user.id}`", url: admin_user_url(user)
       else
         slack.message "Customer was not resolved : #{wechat_user_solver.error}"
         throw_api_error(:bad_format, { error: 'Wrong referrer or/and customer' }, :bad_request)

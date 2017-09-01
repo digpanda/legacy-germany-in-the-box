@@ -60,7 +60,7 @@ class WechatSilentLogin < BaseService
       name = user.decorate.chinese_full_name
       name = user.nickname if name.empty?
       name = user.id if name.empty?
-      slack.message "[Wechat] Silent Log-in from user `#{name}` as `#{user_role}`", url: admin_user_url(user)
+      slack.message "[Wechat] Silent Log-in from user `#{name}` as `#{user_role.capitalize}`", url: admin_user_url(user)
     end
 
     def failed!(error)

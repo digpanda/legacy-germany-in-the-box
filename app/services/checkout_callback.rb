@@ -70,7 +70,7 @@ class CheckoutCallback < BaseService
       order_payment.status = :failed
       order_payment.save
       order_payment.order.refresh_status_from!(order_payment)
-      slack.message "[Error] checkout callback #{I18n.t('payment.failed')}", url: admin_order_payment_path(order_payment)
+      slack.message "[Error] checkout callback #{I18n.t('payment.failed')}", url: admin_order_payment_url(order_payment)
       return return_with(:error, I18n.t('payment.failed'))
     end
 
