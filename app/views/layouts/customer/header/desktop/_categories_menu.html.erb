@@ -7,7 +7,7 @@
       <ul class="menu-dropdown__content">
       <% category.can_buy_shops(10).each do |shop| %>
       <li>
-          <a href="<%= guest_shop_path(shop, category_id: category.id) %>">
+          <a href="<%= guest_shop_path(shop, category_id: category.slug) %>">
           <h4><%= shop.shopname %></h4>
           </a>
       </li>
