@@ -95,6 +95,8 @@ class Guest::PackageSetsController < ApplicationController
       if params[:category_id]
         # we search the category via slug_name (which also matches with `id` thanks to the slug gem)
         # if it fails we search in real ids
+        # we use the param `category_id` because it matches with the gem structure even tho we have to
+        # find via `slug_name` in this specific case
         @category = Category.where(slug_name: params[:category_id]).first || Category.where(id: params[:category_id]).first
       end
     end
