@@ -21,6 +21,9 @@ class AfterSigninHandler
   def solve!(refresh:false)
     return root_url if handle_banished!
 
+    # simple dispatch to notify any log-in
+    SlackDispatcher.new.login(user)
+
     if user.customer?
       force_chinese!
       handle_referrer_binding!

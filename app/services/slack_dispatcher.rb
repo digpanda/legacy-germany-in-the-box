@@ -31,6 +31,18 @@ class SlackDispatcher < BaseService
     message "*#{order.billing_address.decorate.chinese_full_name}* just *FAILED* to pay *#{order.total_paid_in_euro} / #{order.total_price_with_extra_costs.in_euro.display}*", url: admin_order_url(order)
   end
 
+  def login(user)
+    if user.referrer
+      user_role = :referrer
+    else
+      user_role  = user.role
+    end
+    name = user.decorate.chinese_full_name
+    name = user.nickname if name.empty?
+    name = user.id if name.empty?
+    message "[Wechat] Silent log-in from `#{user_role}.#{name}`", url: admin_user_url(user)
+  end
+
   private
 
   def push(message)

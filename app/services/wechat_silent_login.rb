@@ -50,17 +50,6 @@ class WechatSilentLogin < BaseService
     def signin!(user)
       sign_out
       sign_in(:user, user)
-
-      # this area is only to dispatch slack message with great details
-      if user.referrer
-        user_role = :referrer
-      else
-        user_role  = user.role
-      end
-      name = user.decorate.chinese_full_name
-      name = user.nickname if name.empty?
-      name = user.id if name.empty?
-      slack.message "[Wechat] Silent log-in from `#{user_role}.#{name}`", url: admin_user_url(user)
     end
 
     def failed!(error)
