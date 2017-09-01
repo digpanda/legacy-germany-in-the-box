@@ -31,7 +31,7 @@
     <% categories.each do |category| %>
     <tr>
       <td>
-        <%= category.slug %>
+        <%= category.slug_name %>
       </td>
       <td>
         <%= editable_field(category, admin_category_path(category), :desc, :text_field) %>

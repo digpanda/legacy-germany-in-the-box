@@ -2,7 +2,7 @@ module FormHelper
 
   def category_package_set_filter
     Category.with_package_sets.map do |category|
-      [category.name, category.slug, {'data-href' => guest_package_sets_path(category_id: category.id)}]
+      [category.name, category.slug_name, {'data-href' => guest_package_sets_path(category_id: category.id)}]
     end
   end
 

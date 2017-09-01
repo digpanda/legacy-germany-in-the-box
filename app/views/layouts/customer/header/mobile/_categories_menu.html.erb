@@ -16,7 +16,7 @@
       <% unless identity_solver&.wechat_customer? %>
         <% categories.each do |category| %>
           <li>
-            <h3><a href="<%= guest_category_path(category) %>" id="<%= category.slug %>"><%= category.name %></a></h3>
+            <h3><a href="<%= guest_category_path(category) %>" id="<%= category.slug_name %>"><%= category.name %></a></h3>
             <ul>
               <% category.can_buy_shops(10).each do |shop| %>
                 <li>
