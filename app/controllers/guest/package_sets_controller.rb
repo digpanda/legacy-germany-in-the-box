@@ -103,8 +103,14 @@ class Guest::PackageSetsController < ApplicationController
     end
 
     # for filtering (optional)
-    # NOTE : we avoid crashing it if not found
     def set_brand
-      @brand = Brand.where(id: params[:brand_id]).first if params[:brand_id]
+      if params[:brand_id]
+        begin
+        @brand = Brand.find(params[:brand_id])
+        rescue Mongoid::Errors::DocumentNotFound
+          # we need to rescue to avoid crashing the application
+          # like for the category_id above
+        end
+      end
     end
 end
