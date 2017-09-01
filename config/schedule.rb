@@ -40,7 +40,8 @@ every :day do
 end
 
 # - reindexing models for slug ids
-every :week do
+# NOTE : originally week, to put back after
+every :hour do
   command 'The system has launched the rake task `rake mongoid_slug:set`'
   rake "mongoid_slug:set"
 end
