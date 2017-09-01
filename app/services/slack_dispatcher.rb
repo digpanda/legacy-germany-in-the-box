@@ -39,8 +39,9 @@ class SlackDispatcher < BaseService
     end
 
     name = user.decorate&.chinese_full_name
-    name = user.nickname unless name&.present?
-    name = user.id unless name&.present?
+    name = user.nickname unless name.present?
+    name = user.email unless name.present?
+    name = user.id unless name.present?
     message "[Wechat] Auth #{user_role.capitalize} `#{name}`", url: admin_user_url(user)
   end
 
