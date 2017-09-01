@@ -180,7 +180,7 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
       )
 
       # Should be a one category system
-      product.category_ids << Category.where(slug: category_slug.to_s).first.id
+      product.category_ids << Category.where(slug_name: category_slug.to_s).first.id
 
       # We had the duty category
       product.duty_category = DutyCategory.all.sample
