@@ -5,7 +5,7 @@
     <div class="categories-block">
       <div class="row">
 
-        <a href="<%= guest_package_sets_path(category_slug: category.slug) %>">
+        <a href="<%= guest_package_sets_path(category_id: category.id) %>">
           <div class="col-md-8">
             <div class="categories-block__image lazy" data-original="<%= category.cover %>" style="background-image:url('/images/grey.jpg');">
             </div>
@@ -33,7 +33,7 @@
     <div class="categories-block">
       <div class="row">
 
-        <a href="<%= guest_package_sets_path(category_slug: category.slug) %>">
+        <a href="<%= guest_package_sets_path(category_id: category.id) %>">
           <div class="col-md-8 col-md-push-4">
             <div class="categories-block__image lazy" data-original="<%= category.cover %>" style="background-image:url('/images/grey.jpg');">
             </div>

@@ -73,7 +73,7 @@ class Guest::PackageSetsController < ApplicationController
   private
 
     def valid_filters?
-      category || brand || params[:category_slug] == 'all'
+      category || brand || params[:category_id] == 'all'
     end
 
     # to be abstracted somewhere else
@@ -92,7 +92,7 @@ class Guest::PackageSetsController < ApplicationController
 
     # for filtering (optional)
     def set_category
-      @category = Category.where(slug: params[:category_slug]).first if params[:category_slug]
+      @category = Category.where(id: params[:category_id]).first if params[:category_id]
     end
 
     # for filtering (optional)

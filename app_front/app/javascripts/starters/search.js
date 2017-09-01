@@ -85,7 +85,7 @@ var Search = {
         } else {
           // we will refresh the current page the category id
           var UrlProcess = require('javascripts/lib/url_process');
-          UrlProcess.insertParam('category_slug', category_id);
+          UrlProcess.insertParam('category_id', category_id);
         }
 
       });
