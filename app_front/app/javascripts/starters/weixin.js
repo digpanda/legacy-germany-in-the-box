@@ -70,13 +70,14 @@ var WeixinStarter = {
     },
 
     resetWeixinCache: function() {
-      let needRefresh = sessionStorage.getItem("need-refresh");
-      if(needRefresh){
-        sessionStorage.removeItem("need-refresh");
-        location.reload();
-      } else {
-        sessionStorage.setItem("need-refresh", true);
-      }
+      // NOTE : not working system
+      // let needRefresh = sessionStorage.getItem("need-refresh");
+      // if(needRefresh){
+      //   sessionStorage.removeItem("need-refresh");
+      //   location.reload();
+      // } else {
+      //   sessionStorage.setItem("need-refresh", true);
+      // }
     },
 
     onError: function() {
