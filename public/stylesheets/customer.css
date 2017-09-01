@@ -2038,7 +2038,7 @@ body {
   margin-right: -15px;
   margin-left: -15px;
   box-shadow: 0px 4px 6px rgba(139, 139, 139, 0.32);
-  min-height: 6.5em;
+  min-height: 4em;
   background-color: white; }
   @media (max-width: 994px) {
     .header-desktop {
@@ -2053,21 +2053,21 @@ body {
     left: 0.9em; }
   .header-desktop__logo {
     padding-top: 0.7em;
-    min-height: 6.5em;
+    min-height: 4em;
     padding-left: 3em; }
     .header-desktop__logo img {
       max-width: 160px; }
   .header-desktop__categories {
     padding-right: 0;
     padding-left: 0;
-    min-height: 6.5em;
+    min-height: 4em;
     padding-top: 3em; }
     .header-desktop__categories a {
       color: #919191; }
     .header-desktop__categories ul {
       list-style-type: none; }
   .header-desktop__menu {
-    min-height: 6.5em;
+    min-height: 4em;
     padding-top: 2.5em; }
     .header-desktop__menu ul {
       list-style-type: none; }
