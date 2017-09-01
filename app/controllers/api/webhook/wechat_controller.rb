@@ -35,7 +35,7 @@ class Api::Webhook::WechatController < Api::ApplicationController
     # </xml>
     def handle
       return if hook_activation?
-      slack.message '[Webhook] Wechat Webhook was called.'
+      # slack.message '[Webhook] Wechat Webhook was called.'
 
       devlog.info 'Wechat started to communicate with us ...'
       body = Hash.from_xml(request.body.read)
@@ -47,7 +47,7 @@ class Api::Webhook::WechatController < Api::ApplicationController
       end
 
       devlog.info("Raw params : #{transmit_data}")
-      slack.message("Raw params : #{transmit_data}")
+      # slack.message("Raw params : #{transmit_data}")
 
       if event == 'SCAN'
         handle_qrcode_callback!
@@ -98,7 +98,7 @@ class Api::Webhook::WechatController < Api::ApplicationController
 
       # binding the potential user with the referrer
       ReferrerBinding.new(referrer).bind(user)
-      
+
       slack.message "Referrer user children `#{referrer.children_users.count}`"
     end
 
