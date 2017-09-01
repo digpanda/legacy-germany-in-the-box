@@ -4,7 +4,7 @@
 
 <p class="categories-block__brands +centered">
   <span class="+strong"><%= I18n.t('brands.hot_brands') %> :</span> <% @brand_filters.each do |brand| %>
-    <a href="<%= guest_package_sets_path(brand_id: brand.id) %>"><%= brand.name %></a> |
+    <a href="<%= guest_package_sets_path(brand_id: brand.slug) %>"><%= brand.name %></a> |
   <% end %>
 </p>
 

@@ -9,7 +9,7 @@
     <% if brand == @brand %>
     <span class="+strong +green"><%= brand.name %></span> |
     <% else %>
-      <a href="<%= guest_package_sets_path(brand_id: brand.id, category_id: @category&.slug) %>"><%= brand.name %></a> |
+      <a href="<%= guest_package_sets_path(brand_id: brand.slug, category_id: @category&.slug) %>"><%= brand.name %></a> |
     <% end %>
   <% end %>
 </p>

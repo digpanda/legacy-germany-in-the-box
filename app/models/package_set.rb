@@ -2,9 +2,13 @@ class PackageSet
   include MongoidBase
   include EntryPosition
   include Mongoid::Search
+  include Mongoid::Slug
 
   field :position, type: Integer, default: 0
+  
   field :name, type: String
+  slug :name
+
   field :desc, type: String
   field :long_desc, type: String
   field :cover,       type: String
