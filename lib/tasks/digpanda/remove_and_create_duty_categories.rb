@@ -58,7 +58,7 @@ class Tasks::Digpanda::RemoveAndCreateDutyCategories
   end
 
   def duty_finder(name)
-    category = DutyCategory.where(slug_name: name.to_slug).order_by(c_at: 'desc').order_by(_id: 'desc').first
+    category = DutyCategory.where(slug: name.to_slug).order_by(c_at: 'desc').order_by(_id: 'desc').first
     if category.nil?
       puts 'DutyCategory searched but not found, exiting.'
       exit

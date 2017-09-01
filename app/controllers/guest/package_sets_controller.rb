@@ -92,7 +92,11 @@ class Guest::PackageSetsController < ApplicationController
 
     # for filtering (optional)
     def set_category
-      @category = Category.where(id: params[:category_id]).first if params[:category_id]
+      if params[:category_id]
+        # we search the category via slug_name (which also matches with `id` thanks to the slug gem)
+        # if it fails we search in real ids
+        @category = Category.where(slug_name: params[:category_id]).first || Category.where(id: params[:category_id]).first
+      end
     end
 
     # for filtering (optional)
