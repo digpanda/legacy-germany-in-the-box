@@ -1,40 +1,49 @@
 describe WechatSilentLogin  do
 
+  subject(:subject) { described_class.new(request: request, navigation: navigation, cart_manager: cart_manager, code: code) }
+  let(:navigation) { NavigationHistory.new(request, request.session) }
+  let(:cart_manager) { CartManager.new(request, user) }
+  let(:user) { FactoryGirl.create(:customer, :from_wechat) }
+  let(:request) { double('request', original_url: 'http://test.com', session: {}, params: {}, env: {'warden': nil}) }
+  let(:code) { 'fake-code' }
+
+  before(:each) do
+    # we cant stub properly devise outside of a controller
+    allow_any_instance_of(described_class).to receive(:signin!).and_return(nil)
+  end
+
   context '#connect!' do
 
-    include Devise::TestHelpers
-
-    subject(:subject) { described_class.new(request: request, navigation: navigation, cart_manager: cart_manager, code: code) }
-
-    let(:navigation) { NavigationHistory.new(request, request.session) }
-    let(:cart_manager) { CartManager.new(request, user) }
-    let(:user) { FactoryGirl.create(:customer, :from_wechat) }
-    let(:request) { double('request', original_url: 'http://test.com', session: {}, params: {}, env: {'warden': nil}) }
-    let(:code) { 'fake-code' }
-
     it 'signin the user' do
-
-      allow(request.env['warden'])
-         .to receive(:authenticate!)
-         .and_throw(:warden, {:scope => :user})
-       # we emulate the user signin to make devise work clean with the library
-      @request = request
-      login_customer(user)
-
       allow_any_instance_of(described_class).to receive(:wechat_api_connect_solver).and_return(
         BaseService.new.return_with(:success, customer: user)
       )
-
       resolved = subject.connect!
+      expect(resolved).to eq(true)
+    end
 
-      binding.pry
-      expect(user).to eq(current_user)
-
+    it "fails to signin the user" do
+      allow_any_instance_of(described_class).to receive(:wechat_api_connect_solver).and_return(
+        BaseService.new.return_with(:error, "Fake error")
+      )
+      resolved = subject.connect!
+      expect(resolved).to eq(false)
     end
 
   end
 
-  context 'redirect' do
+  context '#redirect' do
+    it "signin and redirects" do
+
+    allow_any_instance_of(described_class).to receive(:wechat_api_connect_solver).and_return(
+      BaseService.new.return_with(:success, customer: user)
+    )
+    subject.connect!
+
+    # NOTE : this could be improved when we improve the navigation stub
+    expect(subject.redirect).to eq('/')
+
+    end
   end
 
 end
