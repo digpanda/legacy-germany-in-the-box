@@ -17,4 +17,24 @@
       <% end %>
     <% end %>
   </div>
+
+
+  <div class="row">
+    <div class="col-md-10 +nopadding">
+      <h3>Tracking</h3>
+      <em>Current tracking status and history of the package delivery.</em>
+    </div>
+    <div class="col-md-2 details__action">
+    </div>
+  </div>
+  <hr>
+
+  <% if @order.tracking_id&.present? %>
+    <div class="row">
+      <a data-method="patch" href="<%= admin_order_refresh_tracking_path(@order) %>" class="btn btn-primary">Refresh tracking</a>
+    </div>
+  <% else %>
+    No tracking yet.
+  <% end %>
+
 </div>

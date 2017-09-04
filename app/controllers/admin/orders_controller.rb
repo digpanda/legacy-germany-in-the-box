@@ -26,7 +26,6 @@ class Admin::OrdersController < ApplicationController
   end
 
   def show
-    Kuaidi.new(tracking_id: order.tracking_id).perform!
   end
 
   def update
@@ -36,6 +35,11 @@ class Admin::OrdersController < ApplicationController
       flash[:error] = "The order was not updated (#{order.errors.full_messages.join(', ')})"
     end
     redirect_to navigation.back(1)
+  end
+
+  def refresh_tracking
+    tracking = KuaidiApi.new(tracking_id: order.tracking_id).perform!
+    #binding.pry
   end
 
   def shipped

@@ -78,6 +78,7 @@ namespace :admin do
   end
 
   resources :orders do
+    patch :refresh_tracking
     patch :shipped
     resources :addresses, controller: 'orders/addresses' do
     end
