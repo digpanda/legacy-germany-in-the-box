@@ -39,7 +39,13 @@ class Admin::OrdersController < ApplicationController
 
   def refresh_tracking
     tracking = KuaidiApi.new(tracking_id: order.tracking_id).perform!
-    #binding.pry
+    if tracking.success?
+      # TODO : refresh stuff here in the database.
+      flash[:success] = "The tracking was updated successfully."
+    else
+      flash[:error] = tracking.error
+    end
+    redirect_to navigation.back(1)
   end
 
   def shipped
