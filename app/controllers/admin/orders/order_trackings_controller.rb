@@ -32,13 +32,14 @@ class Admin::Orders::OrderTrackingsController < ApplicationController
   # it calls the API and refresh the model accordingly.
   # TODO : could be put into a service TrackingHandler to be more clean
   def refresh
-    tracking = KuaidiApi.new(tracking_id: order.order_tracking&.unique_id).perform!
+    # BIG NOTE : LOGISTIC PARTNER IS HARDCODED AS MKPOST, WE NEED TO CHANGE THAT AFTER (it has to depend on the order)
+    tracking = KuaidiApi.new(tracking_id: order.order_tracking&.unique_id, logistic_partner: :mkpost).perform!
 
     if tracking.success?
       order_tracking.update(
         state: tracking.data[:current_state],
         histories: tracking.data[:current_history],
-        refresh_at: Time.now
+        refreshed_at: Time.now
       )
 
       if order_tracking.errors
@@ -63,6 +64,6 @@ class Admin::Orders::OrderTrackingsController < ApplicationController
     end
 
     def set_order_tracking
-      @order_tracking = OrderTracking.find(params[:id])
+      @order_tracking = OrderTracking.find(params[:order_tracking_id])
     end
 end

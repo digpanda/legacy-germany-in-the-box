@@ -1,8 +1,9 @@
 class KuaidiApi < BaseService
-  attr_reader :tracking_id
+  attr_reader :tracking_id, :logistic_partner
 
-  def initialize(tracking_id:nil)
+  def initialize(tracking_id:nil, logistic_partner:nil)
     @tracking_id = tracking_id
+    @logistic_partner = logistic_partner
   end
 
   def perform!
@@ -89,7 +90,7 @@ class KuaidiApi < BaseService
     # Others are `ems`
     # NOTE : we have to pay for anything else than PostElbe
     def company_code
-      case Setting.instance.logistic_partner
+      case logistic_partner
       when :mkpost
         "PostElbe"
       else

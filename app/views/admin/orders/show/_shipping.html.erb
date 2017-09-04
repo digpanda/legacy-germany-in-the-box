@@ -37,13 +37,13 @@
 
     <div class="col-md-4">
       <h4>State</h4>
-      <%= order_tracking.state %>
+      <%= colorful_tracking_state(order_tracking.state) %>
     </div>
 
     <div class="col-md-4">
       <h4>Refreshed At</h4>
       <% if order_tracking.refreshed_at %>
-        <%= order_tracking.refresh_at %>
+        <%= order_tracking.refreshed_at %>
       <% else %>
         -
       <% end %>
