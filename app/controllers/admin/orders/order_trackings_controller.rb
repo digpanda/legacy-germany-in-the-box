@@ -42,7 +42,7 @@ class Admin::Orders::OrderTrackingsController < ApplicationController
         refreshed_at: Time.now
       )
 
-      if order_tracking.errors
+      if order_tracking.errors.any?
         flash[:error] = "The tracking was not updated (#{order_tracking.errors.full_messages.join(', ')})"
       else
         flash[:success] = "The tracking was updated successfully."
