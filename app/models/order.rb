@@ -7,7 +7,7 @@ class Order
 
   # research system
   # end_price makes issues on the tests
-  search_in :id, :status, :tracking_id, :nickname, :u_at, :total_paid, :user => :id
+  search_in :id, :status, :nickname, :u_at, :total_paid, :user => :id, :order_tracking => :unique_id
 
   UNPROCESSABLE_TIME = [11,12] # 11am to 12am -> German Hour
   BOUGHT_OR_CANCELLED = [:paid, :custom_checkable, :custom_checking, :shipped, :cancelled]
@@ -20,7 +20,6 @@ class Order
   field :bill_id, type: String
   field :paid_at, type: Time
   field :cancelled_at, type: Time
-  field :tracking_id, type: String
 
   field :shipping_cost, type: Float, default: 0.0
   field :exchange_rate, type: Float, default: 0.0
@@ -69,6 +68,8 @@ class Order
   has_many :order_payments,         inverse_of: :order,    dependent: :restrict
   has_many :notes,                  inverse_of: :order,    dependent: :restrict
   has_one :referrer_provision,    inverse_of: :order,    dependent: :restrict
+
+  has_one :order_tracking, inverse_of: :order, dependent: :restrict
 
 
   scope :nonempty,    ->  {  where( :order_items_count.gt => 0 ) }

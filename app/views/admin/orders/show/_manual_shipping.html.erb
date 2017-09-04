@@ -9,8 +9,8 @@
   </div>
   <hr>
   <div class="row">
-    <%= form_for [:admin, @order], :data => {:toggle => 'validator'} do |form| %>
-      <%= form.text_field :tracking_id, :placeholder => "Tracking ID" %>
+    <%= form_for [:admin, @order, @order.order_tracking], :data => {:toggle => 'validator'} do |form| %>
+      <%= form.text_field :unique_id, :placeholder => "Tracking ID" %>
       <%= form.submit "Update", :class => "btn btn-primary" %>
       <% if @order.shippable? %>
         <a href="<%= admin_order_shipped_path(@order) %>" data-method="patch" class="btn btn-info">Ship &amp; Send tracking SMS</a>
@@ -29,9 +29,9 @@
   </div>
   <hr>
 
-  <% if @order.tracking_id&.present? %>
+  <% if @order.order_tracking %>
     <div class="row">
-      <a data-method="patch" href="<%= admin_order_refresh_tracking_path(@order) %>" class="btn btn-primary">Refresh tracking</a>
+      <a data-method="patch" href="<%= admin_order_order_tracking_refresh_path(@order, @order.order_tracking) %>" class="btn btn-primary">Refresh tracking</a>
     </div>
   <% else %>
     No tracking yet.

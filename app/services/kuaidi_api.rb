@@ -15,10 +15,10 @@ class KuaidiApi < BaseService
     end
   end
 
+  # 0：query not found
+  # 1：query success，
+  # 2：query error
   def current_status
-    # 0：query not found
-    # 1：query success，
-    # 2：query error
     case raw_status
     when 0
       {:not_found => raw_message}
@@ -31,14 +31,14 @@ class KuaidiApi < BaseService
     end
   end
 
+  # 0：shippmemnt on the way
+  # 1：accepted, the package is received by logistics partner
+  # 2：problem，the package got a problem during delivery
+  # 3：received signiture，the recipient signed and took the package
+  # 4: returned signiture，the recipient signed to return the package
+  # 5：local distribution, the package is in the target city distribution center；
+  # 6：returned， the package is on the way back to germany
   def current_state
-    # 0：shippmemnt on the way
-    # 1：accepted, the package is received by logistics partner
-    # 2：problem，the package got a problem during delivery
-    # 3：received signiture，the recipient signed and took the package
-    # 4: returned signiture，the recipient signed to return the package
-    # 5：local distribution, the package is in the target city distribution center；
-    # 6：returned， the package is on the way back to germany
     case raw_state
     when 0
       :processing

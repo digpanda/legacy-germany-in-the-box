@@ -50,7 +50,7 @@
           <%= order.status %>
         </td>
         <td>
-          <%= order.tracking_id %>
+          <%= order.order_tracking&.unique_id %>
         </td>
         <td>
           <%= order.total_price_with_extra_costs.in_euro.to_yuan(exchange_rate: order.exchange_rate).display %> (<%= order.total_price_with_extra_costs.in_euro.display %>)

@@ -37,17 +37,6 @@ class Admin::OrdersController < ApplicationController
     redirect_to navigation.back(1)
   end
 
-  def refresh_tracking
-    tracking = KuaidiApi.new(tracking_id: order.tracking_id).perform!
-    if tracking.success?
-      # TODO : refresh stuff here in the database.
-      flash[:success] = "The tracking was updated successfully."
-    else
-      flash[:error] = tracking.error
-    end
-    redirect_to navigation.back(1)
-  end
-
   def shipped
     unless order.shippable?
       flash[:error] = 'Order is not shippable.'

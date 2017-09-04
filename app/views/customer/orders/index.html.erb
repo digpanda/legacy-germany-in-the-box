@@ -47,7 +47,7 @@
             <% end %>
           </td>
           <td>
-            <%= order.tracking_id %>
+            <%= order.order_tracking&.unique_id %>
           </td>
           <td class="tracking">
             <% if order.bought? %>
@@ -114,7 +114,7 @@
             <% end %>
             <div class="clearfix"></div>
             <strong><%= I18n.t('edit_order.tracking_id') %>:</strong>
-            <%= order.tracking_id %>
+            <%= order.order_tracking&.unique_id %>
           <% end %>
           <div class="clearfix"></div>
           <strong><%= I18n.t('edit_order.updated_at') %>:</strong> <%= order.u_at.localtime.strftime('%Y-%m-%d %H:%M:%S') %>
