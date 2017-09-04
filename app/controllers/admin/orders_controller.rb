@@ -26,6 +26,7 @@ class Admin::OrdersController < ApplicationController
   end
 
   def show
+    Kuaidi.new(tracking_id: order.tracking_id).perform!
   end
 
   def update
