@@ -36,6 +36,8 @@ class Admin::Orders::OrderTrackingsController < ApplicationController
     tracking = KuaidiApi.new(tracking_id: order.order_tracking&.unique_id, logistic_partner: :mkpost).perform!
 
     if tracking.success?
+
+      @order_tracking = OrderTracking.create(order: order) unless order_tracking
       order_tracking.update(
         state: tracking.data[:current_state],
         histories: tracking.data[:current_history],
