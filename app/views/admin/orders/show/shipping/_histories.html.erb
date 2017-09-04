@@ -1,0 +1,40 @@
+<% if order_tracking.histories %>
+<div class="main-table">
+<table>
+  <thead>
+    <tr>
+      <th>
+        Time
+      </th>
+      <th>
+        Context
+      </th>
+      <th>
+        Location
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% order_tracking.histories.each do |history| %>
+      <tr>
+        <td>
+          <%= history['time'] %>
+        </td>
+        <td>
+          <%= history['context'] %>
+        </td>
+        <td>
+          <%= history['location'] %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+<% else %>
+<div class="+white-box +centered">
+  <h4>
+    No history found
+  </h4>
+</div>
+<% end %>

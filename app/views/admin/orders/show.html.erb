@@ -34,7 +34,7 @@
   </div>
 
   <div class="row details__block">
-    <%= render partial: "admin/orders/show/manual_shipping" %>
+    <%= render partial: "admin/orders/show/shipping", locals: { order: @order, order_tracking: @order.order_tracking } %>
   </div>
 
   <div class="row details__block">
