@@ -8,7 +8,7 @@ class WechatSilentLogin < BaseService
 
   attr_reader :request, :session, :navigation, :cart_manager, :code
 
-  def initialize(request, navigation, cart_manager, code)
+  def initialize(request:nil, navigation:nil, cart_manager:nil, code:nil)
     @request = request
     @session = request.session # used by Devise Helpers
     @navigation = navigation

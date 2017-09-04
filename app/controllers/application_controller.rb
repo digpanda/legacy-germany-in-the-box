@@ -36,7 +36,7 @@ class ApplicationController < ActionController::Base
   end
 
   def wechat_silent_login
-    @wechat_silent_login ||= WechatSilentLogin.new(request, navigation, cart_manager, params[:code])
+    @wechat_silent_login ||= WechatSilentLogin.new(request: request, navigation: navigation, cart_manager: cart_manager, code: params[:code])
   end
 
   def activate_weixin_js_config
