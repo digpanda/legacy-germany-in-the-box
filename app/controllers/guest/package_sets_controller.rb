@@ -92,8 +92,9 @@ class Guest::PackageSetsController < ApplicationController
 
     # for filtering (optional)
     def set_category
-      # TODO : this is legacy code, it should not stay for more than a day.
-      # Laurent, 01/09/2017
+      # NOTE : we cannot remove `category_slug` as it is used in old articles people still click on
+      # please keep the variable but avoid to use it anymore while sharing links.
+      # Laurent, 04/09/2017
       params[:category_id] = params[:category_slug] if params[:category_slug]
       if params[:category_id]
         begin
