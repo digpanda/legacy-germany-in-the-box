@@ -37,7 +37,6 @@ class Admin::Orders::OrderTrackingsController < ApplicationController
 
     if tracking.success?
 
-      @order_tracking = OrderTracking.create(order: order) unless order_tracking
       order_tracking.update(
         state: tracking.data[:current_state],
         histories: tracking.data[:current_history],
@@ -66,6 +65,6 @@ class Admin::Orders::OrderTrackingsController < ApplicationController
     end
 
     def set_order_tracking
-      @order_tracking = OrderTracking.find(params[:order_tracking_id])
+      @order_tracking = OrderTracking.find(params[:order_tracking_id] || params[:id])
     end
 end
