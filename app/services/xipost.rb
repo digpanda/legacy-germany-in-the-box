@@ -42,7 +42,7 @@ class Xipost < BaseService
 
   def extra_data
     if user
-      "data%5Bidname%5D=#{user.decorate.chinese_full_name}&data%5Bidno%5D=#{user.primary_address&.pid}"
+      "data%5Bidname%5D=#{user.decorate.full_name}&data%5Bidno%5D=#{user.primary_address&.pid}"
     end
   end
 

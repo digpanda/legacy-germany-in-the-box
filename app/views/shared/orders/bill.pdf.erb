@@ -25,7 +25,7 @@
 
 <div style="width:400px;float:left">
   <% if @order.decorate.billing_address %>
-    <%= @order.decorate.billing_address.decorate.chinese_full_name %><br />
+    <%= @order.decorate.billing_address.decorate.full_name %><br />
     <%= @order.decorate.billing_address.decorate.full_address %><br /><br /><br />
   <% end %>
 </div>

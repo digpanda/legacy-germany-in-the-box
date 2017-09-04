@@ -67,7 +67,7 @@ class OrdersFormatter < BaseService
   def csv_line(order)
     [
       order.id,
-      chinese_full_name(order),
+      full_name(order),
       full_address(order),
       order.status,
       order.desc,
@@ -118,8 +118,8 @@ class OrdersFormatter < BaseService
     order.order_items.reduce([]) { |acc, order_item| acc << order_item.product.name }.join(', ')
   end
 
-  def chinese_full_name(order)
-    order.billing_address.decorate.chinese_full_name if order.billing_address
+  def full_name(order)
+    order.billing_address.decorate.full_name if order.billing_address
   end
 
   def full_address(order)

@@ -26,7 +26,7 @@
       <% if @order.shipping_address.nil? %>
       No shipping data
       <% else %>
-      Name : <%= @order.shipping_address.decorate.chinese_full_name %><br />
+      Name : <%= @order.shipping_address.decorate.full_name %><br />
       Address : <%= @order.shipping_address.decorate.full_address %><br />
       Mobile : <%= @order.billing_address.mobile %>
     <% end %>
@@ -37,7 +37,7 @@
       <% if @order.billing_address.nil? %>
       No billing data
       <% else %>
-      Name : <%= @order.billing_address.decorate.chinese_full_name %><br />
+      Name : <%= @order.billing_address.decorate.full_name %><br />
       Address : <%= @order.billing_address.decorate.full_address %><br />
       Mobile : <%= @order.billing_address.mobile %>
       <% end %>

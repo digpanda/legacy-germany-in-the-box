@@ -1,5 +1,7 @@
 class AddressDecorator < Draper::Decorator
 
+  String.include CoreExtensions::String::ChineseDetection # chinese? on strings
+
   delegate_all
   decorates :address
 
@@ -25,8 +27,12 @@ class AddressDecorator < Draper::Decorator
     end
   end
 
-  def chinese_full_name
-    "#{lname}#{fname}"
+  def full_name
+    if "#{fname}#{lname}".chinese?
+      "#{lname}#{fname}"
+    else
+      "#{fname} #{lname}"
+    end
   end
 
   def imprint_address

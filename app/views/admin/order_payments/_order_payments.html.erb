@@ -13,7 +13,7 @@
   </td>
   <td>
     <% unless order_payment&.order&.shipping_address.nil? %>
-      <%= order_payment.order.shipping_address.decorate.chinese_full_name %>
+      <%= order_payment.order.shipping_address.decorate.full_name %>
     <% end %>
   </td>
   <td>

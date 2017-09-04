@@ -32,7 +32,7 @@ class Notifier
     def referrer_provision_was_raised(order_payment, referrer, referrer_provision)
       dispatch(
         title: "一位客户",
-        desc: "顾客#{order_payment.order.shipping_address.decorate.chinese_full_name}在您的推荐下在来因盒平台下了一个#{order_payment.order.total_price.in_euro.display}的订单。您现在的总佣金为#{referrer.total_earned.in_euro.display} (订单佣金 +#{referrer_provision.provision.in_euro.display})"
+        desc: "顾客#{order_payment.order.shipping_address.decorate.full_name}在您的推荐下在来因盒平台下了一个#{order_payment.order.total_price.in_euro.display}的订单。您现在的总佣金为#{referrer.total_earned.in_euro.display} (订单佣金 +#{referrer_provision.provision.in_euro.display})"
       ).perform(dispatch: [:sms])
     end
 

@@ -3,6 +3,7 @@ class UserDecorator < Draper::Decorator
   PICTURE_URL = '/images/icons/default_user_pic.png'
 
   include Concerns::Imageable
+  String.include CoreExtensions::String::ChineseDetection # chinese? on strings
 
   delegate_all
   decorates :user
@@ -16,8 +17,8 @@ class UserDecorator < Draper::Decorator
   end
 
   def who
-    if chinese_full_name.present?
-      chinese_full_name
+    if full_name.present?
+      full_name
     elsif nickname.present?
       nickname
     elsif email.present?
@@ -28,11 +29,11 @@ class UserDecorator < Draper::Decorator
   end
 
   def full_name
-    "#{fname} #{lname}"
-  end
-
-  def chinese_full_name
-    "#{lname}#{fname}"
+    if "#{fname}#{lname}".chinese?
+      "#{lname}#{fname}"
+    else
+      "#{fname} #{lname}"
+    end
   end
 
   def avatar
