@@ -13,7 +13,7 @@ module FormHelper
   end
 
   def brand_package_set_filter_with_category(category)
-    category.package_sets_brands.map do |brand|
+    category.package_sets_brands.used_as_filters.map do |brand|
       [brand.name, brand.slug, {'data-href' => guest_package_sets_path(category_id: category.slug, brand_id: brand.slug)}]
     end
   end
