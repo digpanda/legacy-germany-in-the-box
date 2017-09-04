@@ -1,7 +1,6 @@
 class Sku
   include MongoidBase
 
-  Numeric.include CoreExtensions::Numeric::CurrencyLibrary
   FEES_ESTIMATION_EXPIRATION = 1.week.ago
 
   strip_attributes

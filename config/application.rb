@@ -17,6 +17,12 @@ Bundler.require(*Rails.groups)
 module DigPanda
   class Application < Rails::Application
 
+    # loading monkey patch modules
+    require "#{config.root}/lib/core_extensions/numeric/currency_library"
+    require "#{config.root}/lib/core_extensions/string/chinese_detection"
+    Numeric.include CoreExtensions::Numeric::CurrencyLibrary # currency conversion
+    String.include CoreExtensions::String::ChineseDetection # chinese? on strings
+    
     config.exceptions_app = self.routes # customized error handling
     config.autoload_paths += %W(#{config.root}/lib #{config.root}/app/decorators/concerns #{config.root}/app/uploaders/concerns)
 

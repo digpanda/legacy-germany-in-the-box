@@ -3,7 +3,6 @@ class UserDecorator < Draper::Decorator
   PICTURE_URL = '/images/icons/default_user_pic.png'
 
   include Concerns::Imageable
-  String.include CoreExtensions::String::ChineseDetection # chinese? on strings
 
   delegate_all
   decorates :user

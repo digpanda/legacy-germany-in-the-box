@@ -2,8 +2,6 @@
 # different areas depending on it
 class CouponHandler < BaseService
 
-  Numeric.include CoreExtensions::Numeric::CurrencyLibrary
-
   attr_reader :identity_solver, :coupon, :order
 
   EXPIRE_APPLY_TIME = 10.hours

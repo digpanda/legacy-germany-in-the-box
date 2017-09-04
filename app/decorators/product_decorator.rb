@@ -1,7 +1,6 @@
 class ProductDecorator < Draper::Decorator
 
   include ActionView::Helpers::TextHelper # load some important helpers
-  Numeric.include CoreExtensions::Numeric::CurrencyLibrary
 
   delegate_all
   decorates :product
@@ -16,7 +15,7 @@ class ProductDecorator < Draper::Decorator
 
   def featured_sku_img_url(img_field, version)
     return nil unless sku = featured_sku
-    
+
     first_sku_image
   end
 

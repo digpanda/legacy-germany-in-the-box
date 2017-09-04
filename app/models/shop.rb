@@ -4,8 +4,6 @@ class Shop
   include MongoidBase
   include Mongoid::Slug
 
-  Numeric.include CoreExtensions::Numeric::CurrencyLibrary
-
   strip_attributes
 
   field :approved,        type: Time

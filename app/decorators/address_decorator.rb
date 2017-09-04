@@ -1,7 +1,5 @@
 class AddressDecorator < Draper::Decorator
 
-  String.include CoreExtensions::String::ChineseDetection # chinese? on strings
-
   delegate_all
   decorates :address
 

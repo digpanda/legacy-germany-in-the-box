@@ -5,8 +5,6 @@ class Order
   include HasProductSummaries
   include Mongoid::Search
 
-  Numeric.include CoreExtensions::Numeric::CurrencyLibrary
-
   # research system
   # end_price makes issues on the tests
   search_in :id, :status, :tracking_id, :nickname, :u_at, :total_paid, :user => :id

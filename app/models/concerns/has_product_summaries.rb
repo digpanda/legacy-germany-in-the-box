@@ -1,5 +1,4 @@
 module HasProductSummaries
-  Numeric.include CoreExtensions::Numeric::CurrencyLibrary
 
   def self.included(base)
     def base.summarizes(sku_list:, by:)
