@@ -1,22 +1,32 @@
 class TrackingHandler
   attr_reader :order
 
-  # TODO : make a cache ?
+  CACHE = -> { 1.hour.ago }
 
   def initialize(order)
     @order = order
   end
 
   def refresh!
-    if kuaidi_api.success?
-      if update_order_tracking!
-        return return_with(:success)
-      else
-        return return_with(:error, order_tracking.errors.full_messages.join(', '))
-      end
-    else
-      return_with(:error, kuaidi_api.error)
+    unless cache_timeout?
+      return return_with(:success)
     end
+
+    unless kuaidi_api.success?
+      return return_with(:error, kuaidi_api.error)
+    end
+
+    if update_order_tracking!
+      return return_with(:success)
+    else
+      return return_with(:error, order_tracking.errors.full_messages.join(', '))
+    end
+  end
+
+  private
+
+  def cache_timeout?
+    ordr_trackinged.refreshed_at < CACHE.call
   end
 
   def update_order_tracking!
