@@ -37,9 +37,13 @@ class TrackingHandler < BaseService
     )
   end
 
-  # BIG NOTE : LOGISTIC PARTNER IS HARDCODED AS MKPOST, WE NEED TO CHANGE THAT AFTER (it has to depend on the order)
   def kuaidi_api
-    @kuaidi_api ||= KuaidiApi.new(tracking_id: order_tracking.unique_id, logistic_partner: :mkpost).perform!
+    @kuaidi_api ||= KuaidiApi.new(tracking_id: order_tracking.unique_id, logistic_partner: logistic_partner).perform!
+  end
+
+  # BIG NOTE : LOGISTIC PARTNER IS HARDCODED AS MKPOST, WE NEED TO CHANGE THAT AFTER (it has to depend on the order)
+  def logistic_partner
+    :mkpost # order.logstic_partner
   end
 
   def order
