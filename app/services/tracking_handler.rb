@@ -1,5 +1,5 @@
-class TrackingHandler
-  attr_reader :order
+class TrackingHandler < BaseService
+  attr_reader :order_tracking
 
   CACHE = -> { 1.hour.ago }
 
@@ -26,7 +26,7 @@ class TrackingHandler
   private
 
   def cache_timeout?
-    ordr_trackinged.refreshed_at < CACHE.call
+    order_tracking.refreshed_at < CACHE.call
   end
 
   def update_order_tracking!
@@ -43,7 +43,7 @@ class TrackingHandler
   end
 
   def order_tracking
-    @order_tracking ||= order.order_tracking || OrderTracking.create(order: order)
+    @order_tracking ||= order.order_tracking
   end
 
 end
