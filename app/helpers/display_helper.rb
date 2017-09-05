@@ -6,19 +6,23 @@ module DisplayHelper
     render partial: "shared/partials/tips", :locals => locals
   end
 
-  # grey: :new
-  # green: :received_signature
-  # blue: :processing, :accepted, :local_distribution
-  # red: :problem, :returned_signature, :returned
+  # new: new
+  # signature_received: signature received
+  # processing: processing
+  # accepted: accepted
+  # local_distribution: local distribution
+  # problem: problem
+  # signature_returned: signature returned
+  # returned: returned
   def colorful_tracking_state(tracking_state)
     if [:new].include? tracking_state
-      "<span class=\"+dark-grey +bold\">#{tracking_state}</span>".html_safe
+      "<span class=\"+dark-grey +bold\">#{I18n.t("tracking_state.#{tracking_state}")}</span>".html_safe
     elsif [:signature_received].include? tracking_state
-      "<span class=\"+green +bold\">#{tracking_state}</span>".html_safe
+      "<span class=\"+green +bold\">#{I18n.t("tracking_state.#{tracking_state}")}</span>".html_safe
     elsif [:processing, :accepted, :local_distribution].include? tracking_state
-      "<span class=\"+blue +bold\">#{tracking_state}</span>".html_safe
+      "<span class=\"+blue +bold\">#{I18n.t("tracking_state.#{tracking_state}")}</span>".html_safe
     elsif [:problem, :signature_returned, :returned]
-      "<span class=\"+red +bold\">#{tracking_state}</span>".html_safe
+      "<span class=\"+red +bold\">#{I18n.t("tracking_state.#{tracking_state}")}</span>".html_safe
     else
       tracking_state
     end

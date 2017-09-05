@@ -1,4 +1,13 @@
 de:
+  tracking_state:
+    new: new
+    signature_received: signature received
+    processing: processing
+    accepted: accepted
+    local_distribution: local distribution
+    problem: problem
+    signature_returned: signature returned
+    returned: returned
   brands:
     hot_brands: Hot Brands
   address:
