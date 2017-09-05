@@ -3,8 +3,8 @@ class TrackingHandler < BaseService
 
   CACHE = -> { 1.hour.ago }
 
-  def initialize(order)
-    @order = order
+  def initialize(order_tracking)
+    @order_tracking = order_tracking
   end
 
   def refresh!
@@ -42,8 +42,8 @@ class TrackingHandler < BaseService
     @kuaidi_api ||= KuaidiApi.new(tracking_id: order_tracking.unique_id, logistic_partner: :mkpost).perform!
   end
 
-  def order_tracking
-    @order_tracking ||= order.order_tracking
+  def order
+    @order ||= order_tracking.order
   end
 
 end

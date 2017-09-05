@@ -30,8 +30,9 @@ class Admin::Orders::OrderTrackingsController < ApplicationController
 
   # NOTE : it is different from update
   # it calls the API and refresh the model accordingly.
+  # there's also a cache maintained
   def refresh
-    tracking_handler = TrackingHandler.new(order).refresh!
+    tracking_handler = TrackingHandler.new(order_tracking).refresh!
     if tracking_handler.success?
       flash[:success] = "Tracking was successfully refreshed"
     else
