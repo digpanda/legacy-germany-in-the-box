@@ -16,6 +16,8 @@ gem "mongoid_includes"
 gem "mongoid_rails_migrations"
 gem "mongoid_search", github: "Loschcode/mongoid_search", branch: "master"
 
+gem "keen"
+
 gem "mongoid-slug"
 
 gem "country_select"

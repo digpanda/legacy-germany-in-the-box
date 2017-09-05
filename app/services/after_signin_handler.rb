@@ -61,7 +61,7 @@ class AfterSigninHandler
 
     if user.admin?
       return navigation.force! if navigation.force?
-      return admin_shops_path
+      return admin_home_path
     end
   end
 
