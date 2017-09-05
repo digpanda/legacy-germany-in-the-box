@@ -1,6 +1,5 @@
 require 'keen'
 
-
 class KeenDispatcher
   attr_reader :stream, :params
 

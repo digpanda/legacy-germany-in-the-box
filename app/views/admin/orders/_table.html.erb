@@ -19,6 +19,9 @@
           Tracking #
         </th>
         <th>
+          Tracking State
+        </th>
+        <th>
           Total Price
         </th>
         <th>
@@ -50,7 +53,18 @@
           <%= order.status %>
         </td>
         <td>
-          <%= order.order_tracking&.unique_id %>
+          <% if order.order_tracking %>
+            <%= order.order_tracking.unique_id %>
+          <% else %>
+            -
+          <% end %>
+        </td>
+        <td>
+          <% if order.order_tracking %>
+            <%= colorful_tracking_state(order.order_tracking.state) %>
+          <% else %>
+            -
+          <% end %>
         </td>
         <td>
           <%= order.total_price_with_extra_costs.in_euro.to_yuan(exchange_rate: order.exchange_rate).display %> (<%= order.total_price_with_extra_costs.in_euro.display %>)
