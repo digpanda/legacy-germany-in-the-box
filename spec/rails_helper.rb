@@ -16,9 +16,10 @@ RSpec.configure do |config|
 
   # support loads
   config.before do
-    config.include Helpers::Global
     config.include Helpers::Context
     config.include Helpers::Devise
+    config.include Helpers::Global
+    config.include Helpers::Kuaidi
     config.include Helpers::Poltergeist
     config.include Helpers::Request
     config.include Helpers::Response
