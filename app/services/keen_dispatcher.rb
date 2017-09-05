@@ -17,8 +17,8 @@ class KeenDispatcher
 
   def user(user)
     @stream = :users
-    @params = user.as_json.slice('email', 'c_at', 'nickname', 'precreated', 'provider', 'role')
-    @params.merge! user_id: user._id, full_name: user.decorate.full_name
+    @params = user.as_json.slice('email', 'nickname', 'precreated', 'provider', 'role')
+    @params.merge! referrer: user.referrer?, registered_at: user.c_at, user_id: user._id, full_name: user.decorate.full_name
     self
   end
 
@@ -40,7 +40,11 @@ class KeenDispatcher
     end
 
     def publish!
-      Keen.publish(stream, params)
+      if Rails.env.development?
+        Keen.publish(stream, params)
+      else
+        Keen.delay.publish(stream, params)
+      end
     end
 
     def config!
