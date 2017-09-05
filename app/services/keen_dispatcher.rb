@@ -1,8 +1,11 @@
 require 'keen'
 
+
 class KeenDispatcher
   attr_reader :stream, :params
 
+  # NOTE HOW TO USE
+  # KeenDispatcher.new.user(User.first).with_geo(ip: '0.0.0.0').dispatch!
   def initialize
     config!
     @params = {}
@@ -14,9 +17,8 @@ class KeenDispatcher
 
   def user(user)
     @stream = :users
-    binding.pry
-    @params = user
-    @params.merge! full_name: user.decorate.full_name
+    @params = user.as_json.slice('email', 'c_at', 'nickname', 'precreated', 'provider', 'role')
+    @params.merge! user_id: user._id, full_name: user.decorate.full_name
     self
   end
 
@@ -31,7 +33,7 @@ class KeenDispatcher
       {
         "name": "keen:ip_to_geo",
         "input": {
-          "ip" : "#{ip}"
+          "ip": "#{ip}"
         },
         "output": "geo"
       }
@@ -42,8 +44,8 @@ class KeenDispatcher
     end
 
     def config!
-      Keen.project_id = "59ae91bbc9e77c0001f1863b"
-      Keen.write_key = "1B0FC1BF5C98F8B92942F174F11AD35162B7188812277F52271F092E0BB9584D91B81F54CA267EEF27B306C8ACD3C4D43B742CFCA40166FFD65BB5FBEA5B35C455458CF53ED7DD4537F4B0FE5262BA6707EAB0BBC34ACD6EFB4173B9EB19E70B"
+      Keen.project_id = ENV['keen_project_id']
+      Keen.write_key = ENV['keen_write_key']
     end
 
 end
