@@ -1,6 +1,8 @@
 class TrackingHandler
   attr_reader :order
 
+  # TODO : make a cache ?
+
   def initialize(order)
     @order = order
   end
