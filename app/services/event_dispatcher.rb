@@ -67,11 +67,12 @@ class EventDispatcher
     end
 
     def publish!
-      if Rails.env.development?
+      # NOTE : delay does not seem to work right now.
+      # if Rails.env.development?
         Keen.publish(stream, params)
-      else
-        Keen.delay.publish(stream, params)
-      end
+      # else
+      #   Keen.delay.publish(stream, params)
+      # end
     end
 
     def config!
