@@ -4,7 +4,7 @@ class AfterSignupHandler
 
   attr_reader :request, :user
 
-  def initialize(request user)
+  def initialize(request, user)
     @request = request
     @user = user
   end
