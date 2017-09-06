@@ -6,6 +6,8 @@ class Connect::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   # QRCode Wechat classic login system
   def wechat
     if wechat_user_solver.success?
+      # is it a new user ?
+      handle_after_sign_up! wechat_user_solver.data[:customer]
       sign_in_user wechat_user_solver.data[:customer]
     else
       failure
@@ -27,20 +29,13 @@ class Connect::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         # we turn him into a real referrer
         ReferrerMaker.new(user).convert!(group_token: params[:token])
 
-        # # is it a new user ?
-        # if user.freshly_created?
-        #   AfterSignupHandler.new(request, user).solve!
-        # end
+        # is it a new user ?
+        handle_after_sign_up! user
 
-        # we finally sign him in
-        sign_out
-        sign_in(:user, user)
         # we force him to have a landing on package sets
         session[:landing] = :package_sets
-
-        # slack.message "[Wechat] Tourist guide automatically logged-in (`#{user.id}`)", url: admin_user_url(user)
-
-        redirect_to AfterSigninHandler.new(request, navigation, user, cart_manager).solve!
+        # we finally sign him in
+        sign_in_user user
         return
 
       end
@@ -57,6 +52,12 @@ class Connect::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
     def slack
       @slack ||= SlackDispatcher.new
+    end
+
+    def handle_after_sign_up!(user)
+      if user.freshly_created?
+        AfterSignupHandler.new(request, user).solve!
+      end
     end
 
     def wechat_user_solver

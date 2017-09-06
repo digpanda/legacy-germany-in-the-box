@@ -180,7 +180,7 @@ class User
   end
 
   def freshly_created?
-    created_at == updated_at
+    sign_in_count == 0
   end
 
   def tester?

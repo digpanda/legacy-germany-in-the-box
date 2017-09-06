@@ -17,7 +17,6 @@ class EventDispatcher
     publish!
   end
 
-  # TODO : place it
   def customer_was_registered(user)
     @stream = :customer_registrations
     @params = user.as_json.slice('email', 'nickname', 'provider')

@@ -48,12 +48,18 @@ class WechatSilentLogin < BaseService
   private
 
     def signin!(user)
-      sign_out
+      handle_after_sign_up!(user)
       sign_in(:user, user)
     end
 
     def failed!(error)
       slack.message "[Wechat] Auth failed (`#{error}`)"
+    end
+
+    def handle_after_sign_up!(user)
+      if user.freshly_created?
+        AfterSignupHandler.new(request, user).solve!
+      end
     end
 
     def wechat_api_connect_solver

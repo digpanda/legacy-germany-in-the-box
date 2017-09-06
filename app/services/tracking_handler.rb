@@ -44,7 +44,7 @@ class TrackingHandler < BaseService
 
   # BIG NOTE : LOGISTIC PARTNER IS HARDCODED AS MKPOST, WE NEED TO CHANGE THAT AFTER (it has to depend on the order)
   def logistic_partner
-    :mkpost # order.logstic_partner
+    :mkpost # order.logistic_partner
   end
 
   def order
