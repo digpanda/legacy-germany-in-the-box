@@ -4,9 +4,6 @@ class KeenioUserWasRegisteredDispatchBis < Mongoid::Migration
     User.where(role: :customer).all.each do |user|
       callback = EventDispatcher.new.customer_was_registered(user).dispatch!
       puts "Dispatched User #{user.id} (callback: `#{callback}`)"
-      unless callback['created']
-        raise Exception, "Could not dispatch the user properly."
-      end
     end
   end
 
