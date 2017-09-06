@@ -5,6 +5,7 @@ class Admin::OrdersController < ApplicationController
 
   authorize_resource class: false
   before_action :set_order, except: [:index]
+  before_action :set_order_tracking, only: [:show]
 
   layout :custom_sublayout
 
@@ -64,6 +65,10 @@ class Admin::OrdersController < ApplicationController
 
     def set_order
       @order = Order.find(params[:id] || params[:order_id])
+    end
+
+    def set_order_tracking
+      @order_tracking = OrderTracking.where(order: order).first || OrderTracking.new(order: order)
     end
 
     def order_params
