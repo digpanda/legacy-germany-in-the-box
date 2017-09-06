@@ -9,7 +9,6 @@ class EventDispatcher
   # NOTE HOW TO USE
   # EventDispatcher.new.user(User.first).with_geo(ip: '0.0.0.0').dispatch!
   def initialize
-    config!
     @params = {}
   end
 
@@ -74,6 +73,7 @@ class EventDispatcher
       end
     end
 
+    # this will be thread-safe
     def keen
       @keen ||= Keen::Client.new(
         :project_id => ENV['keen_project_id'],
