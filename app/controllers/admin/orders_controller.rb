@@ -68,7 +68,7 @@ class Admin::OrdersController < ApplicationController
     end
 
     def set_order_tracking
-      @order_tracking = OrderTracking.where(order: order).first || OrderTracking.new(order: order)
+      @order_tracking = OrderTracking.where(order: order).first || OrderTracking.create(order: order)
     end
 
     def order_params
