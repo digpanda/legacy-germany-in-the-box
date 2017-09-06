@@ -17,13 +17,23 @@ class EventDispatcher
     publish!
   end
 
+  # TODO : place it
   def customer_was_registered(customer)
     @stream = :customer_registrations
-    @params = user.as_json.slice('email', 'nickname', 'provider', 'role')
+    @params = user.as_json.slice('email', 'nickname', 'provider')
     @params.merge! user_id: user._id, referrer: user.referrer?, visited_our_site: (!precreated), registered_at: user.c_at, full_name: user.decorate.full_name
     self
   end
 
+  # TODO : place it
+  def customer_signed_in(customer)
+    @stream = :customer_authentications
+    @params = user.as_json.slice('email', 'nickname', 'provider')
+    @params.merge! user_id: user._id, referrer: user.referrer?, full_name: user.decorate.full_name
+    self
+  end
+
+  # TODO : place it
   def order_was_paid(order)
     @stream = :order_payments
     # @params = order.as_json.slice('email', 'nickname', 'precreated', 'provider', 'role')
