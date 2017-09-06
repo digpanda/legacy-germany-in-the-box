@@ -37,6 +37,10 @@
       <h3><%= I18n.t('referrer.share_page.preview') %></h3>
       <hr />
       <h3><%= link.title %></h3>
+      <% if link.promotion_text %>
+        <strong><%= I18n.t('referrer.promotion_text') %> : <%= link.promotion_text %></strong>
+        <br />
+      <% end %>
       <em><%= link.desc %></em>
       <br /><br />
       <%= link.long_desc&.html_safe %><br />

@@ -13,6 +13,9 @@
           <%= I18n.t('referrer.title') %>
         </th>
         <th>
+          <%= I18n.t('referrer.promotion_text') %>
+        </th>
+        <th>
           <%= I18n.t('referrer.creation') %>
         </th>
       </thead>
@@ -25,6 +28,9 @@
             </td>
             <td>
               <a href="#"><%= link.title %></a>
+            </td>
+            <td>
+              <%= link.promotion_text %>
             </td>
             <td>
               <%= link.published_at.strftime("%Y-%m-%d") %>

@@ -15,6 +15,9 @@
       Description
     </th>
     <th>
+      Promotion Text
+    </th>
+    <th>
       Position
     </th>
     <th>
@@ -56,6 +59,9 @@
       </td>
       <td>
         <%= link.desc %>
+      </td>
+      <td>
+        <%= link.promotion_text %>
       </td>
       <td>
         <%= editable_field(link, admin_link_path(link), :position, :text_field) %>

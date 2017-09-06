@@ -13,6 +13,7 @@ de:
   address:
     apply: Einlösen
   referrer:
+    promotion_text: Promotion Text
     a_new_link_was_published: Ein neuer Link wurde angelegt.
     image: Image
     share_page:
