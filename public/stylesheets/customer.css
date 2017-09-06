@@ -1551,6 +1551,8 @@ body {
     color: white !important; }
   .text-button:visited {
     color: white !important; }
+  .text-button.\--small {
+    font-size: 14px; }
   .text-button.\--delete {
     background-color: #d6506c;
     border-bottom: 2px solid #ac4157; }
