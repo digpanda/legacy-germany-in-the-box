@@ -13,6 +13,15 @@ class EventDispatcher
     @params = {}
   end
 
+  # for every first use of one of the projects
+  # this is sample data to switch it on
+  def activate!
+    Keen.publish(:signups, {
+      :username => "lloyd",
+      :referred_by => "harry"
+    })
+  end
+
   def dispatch!
     publish!
   end
