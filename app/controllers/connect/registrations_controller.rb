@@ -32,6 +32,11 @@ class Connect::RegistrationsController < Devise::RegistrationsController
 
         sign_up(resource_name, resource)
 
+        if resource.freshly_created?
+          AfterSignupHandler.new(request, resource).solve!
+        end
+
+
         sign_in(:user, User.find(resource.id)) # auto sign in
 
         if resource.customer?
