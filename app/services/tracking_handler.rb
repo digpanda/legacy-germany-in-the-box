@@ -26,6 +26,7 @@ class TrackingHandler < BaseService
   private
 
   def cache_timeout?
+    return true unless order_tracking.refreshed_at
     order_tracking.refreshed_at < CACHE.call
   end
 

@@ -26,7 +26,7 @@ describe WechatApiConnectSolver  do
 
     end
 
-    let!(:current_user) { FactoryGirl.create(:customer, provider: 'wechat', wechat_unionid: 'whatever-unionid') }
+    let!(:current_user) { FactoryGirl.create(:customer, provider: :wechat, wechat_unionid: 'whatever-unionid') }
 
     it 'succeeds and retrieve an old user' do
 

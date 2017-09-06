@@ -103,7 +103,7 @@ class Api::Webhook::WechatController < Api::ApplicationController
     end
 
     def wechat_user_solver
-      @wechat_user_solver ||= WechatUserSolver.new(provider: 'wechat', openid: raw_openid).resolve!
+      @wechat_user_solver ||= WechatUserSolver.new(provider: :wechat, openid: raw_openid).resolve!
     end
 
     def extra_data

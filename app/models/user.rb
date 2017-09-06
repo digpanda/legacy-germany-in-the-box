@@ -46,7 +46,7 @@ class User
   field :about,     type: String
   field :website,   type: String
   field :mobile,    type: String
-  field :provider,  type: String
+  field :provider,  type: Symbol, default: :web
   field :status, type: Boolean, default: true
   field :uid,       type: String
 
@@ -164,7 +164,7 @@ class User
   end
 
   def wechat?
-    self.provider == 'wechat'
+    self.provider == :wechat
   end
 
   def valid_for_checkout?

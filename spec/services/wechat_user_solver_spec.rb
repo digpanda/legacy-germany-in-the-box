@@ -22,7 +22,7 @@ describe WechatUserSolver  do
 
     end
 
-    let!(:current_user) { FactoryGirl.create(:customer, provider: 'wechat', wechat_unionid: 'whatever-unionid') }
+    let!(:current_user) { FactoryGirl.create(:customer, provider: :wechat, wechat_unionid: 'whatever-unionid') }
 
     it 'use an existing customer and return it' do
 
