@@ -32,8 +32,7 @@ class EventDispatcher
     self
   end
 
-  # TODO : place it
-  def customer_signed_in(customer)
+  def customer_signed_in(user)
     @stream = :customer_authentications
     @params = user.as_json.slice('email', 'nickname', 'provider')
     @params.merge! user_id: user._id, referrer: user.referrer?, full_name: user.decorate.full_name

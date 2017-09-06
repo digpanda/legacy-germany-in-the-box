@@ -30,6 +30,9 @@ class AfterSigninHandler
       handle_precreated!
       handle_past_orders!
       return without_code missing_info_customer_account_path(kept_params) if user.missing_info?
+
+      EventDispatcher.new.customer_signed_in(user).with_geo(ip: request.remote_ip).dispatch!
+
       return navigation.force! if navigation.force?
 
       # NOTE : we remove the code param from the redirect URL
