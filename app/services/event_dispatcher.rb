@@ -20,8 +20,8 @@ class EventDispatcher
   # TODO : place it
   def customer_was_registered(customer)
     @stream = :customer_registrations
-    @params = user.as_json.slice('email', 'nickname', 'provider')
-    @params.merge! user_id: user._id, referrer: user.referrer?, visited_our_site: (!precreated), registered_at: user.c_at, full_name: user.decorate.full_name
+    @params = customer.as_json.slice('email', 'nickname', 'provider')
+    @params.merge! user_id: customer._id, referrer: user.referrer?, visited_our_site: (!precreated), registered_at: user.c_at, full_name: user.decorate.full_name
     self
   end
 
