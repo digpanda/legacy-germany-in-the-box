@@ -16,7 +16,7 @@ class EventDispatcher
   # for every first use of one of the projects
   # this is sample data to switch it on
   def activate!
-    Keen.publish(:signups, {
+    keen.publish(:signups, {
       :username => "lloyd",
       :referred_by => "harry"
     })
@@ -67,17 +67,19 @@ class EventDispatcher
     end
 
     def publish!
-      # NOTE : delay does not seem to work right now.
-      # if Rails.env.development?
-        Keen.publish(stream, params)
-      # else
-      #   Keen.delay.publish(stream, params)
-      # end
+      if Rails.env.development?
+        keen.publish(stream, params)
+      else
+        keen.delay.publish(stream, params)
+      end
     end
 
-    def config!
-      Keen.project_id = ENV['keen_project_id']
-      Keen.write_key = ENV['keen_write_key']
+    def keen
+      @keen ||= Keen::Client.new(
+        :project_id => ENV['keen_project_id'],
+        :write_key => ENV['keen_write_key'],
+        :read_key =>ENV['keen_read_key'],
+      )
     end
 
 end
