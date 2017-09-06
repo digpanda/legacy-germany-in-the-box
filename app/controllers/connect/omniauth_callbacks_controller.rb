@@ -27,6 +27,11 @@ class Connect::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         # we turn him into a real referrer
         ReferrerMaker.new(user).convert!(group_token: params[:token])
 
+        # is it a new user ?
+        # if user.freshly_created?
+        #   # TODO : after sign up handler
+        # end
+
         # we finally sign him in
         sign_out
         sign_in(:user, user)

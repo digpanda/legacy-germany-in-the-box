@@ -50,6 +50,10 @@ class User
   field :status, type: Boolean, default: true
   field :uid,       type: String
 
+  # as time systems don't scale very well, we use a database field
+  # to differentiate new users from old ones
+  # field :freshly_created, type: Boolean, default: true
+
   field :banished, type: Boolean, default: false
   field :version_allowed, type: Symbol, default: :stable
 
@@ -177,6 +181,10 @@ class User
 
   def referrer?
     self.referrer.present?
+  end
+
+  def user_freshly_created?
+
   end
 
   def tester?
