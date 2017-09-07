@@ -6,7 +6,6 @@ class WeixinTicket < BaseService
   end
 
   def resolve!
-    SlackDispatcher.new.message("WEIXIN API TICKET : #{weixin_api_ticket}")
     return return_with(:error, "Cannot resolve ticket.") unless cached_ticket
     return_with(:success, ticket: cached_ticket.ticket)
   end
