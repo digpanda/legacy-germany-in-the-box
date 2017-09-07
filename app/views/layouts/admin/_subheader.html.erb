@@ -1,2 +1,19 @@
-<%= render partial: "layouts/admin/subheader/messages" %>
-<%= render partial: "layouts/admin/subheader/breadcrumb" %>
+<!-- All the breadcrumb and subsection rendering comes from here -->
+<div class="row">
+  <div class="col-md-12 +nopadding">
+    <ol class="breadcrumb">
+      <div class="row">
+        <div class="col-md-5 col-md-offset-2">
+          <div class="+left">
+            <%= render partial: "layouts/admin/subheader/breadcrumb" %>
+          </div>
+        </div>
+        <div class="col-md-5">
+          <div class="+right">
+            <%= render partial: "layouts/admin/subsection" %>
+          </div>
+        </div>
+      </div>
+    </ol>
+  </div>
+</div>

@@ -22,17 +22,15 @@ class AfterSigninHandler
     return root_url if handle_banished!
 
     # simple dispatch to notify any log-in
-    SlackDispatcher.new.login(user)
+    handle_slack!
 
     if user.customer?
       force_chinese!
       handle_referrer_binding!
       handle_precreated!
       handle_past_orders!
+      handle_event!
       return without_code missing_info_customer_account_path(kept_params) if user.missing_info?
-
-      EventDispatcher.new.customer_signed_in(user).with_geo(ip: request.remote_ip).dispatch!
-
       return navigation.force! if navigation.force?
 
       # NOTE : we remove the code param from the redirect URL
@@ -81,6 +79,14 @@ class AfterSigninHandler
   # - Laurent, 13/07/2017
   def identity_solver
     @identity_solver ||= IdentitySolver.new(request, user)
+  end
+
+  def handle_slack!
+    SlackDispatcher.new.login(user)
+  end
+
+  def handle_event!
+    EventDispatcher.new.customer_signed_in(user).with_geo(ip: request.remote_ip).dispatch!
   end
 
   def handle_banished!

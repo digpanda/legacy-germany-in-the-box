@@ -1,0 +1,10 @@
+<% if section_active? admin_home_path %>
+  <a class="text-button --delete --small" href="<%= admin_sidekiq_web_path %>">Sidekiq</a>
+<% elsif section_active? admin_referrers_path %>
+  <a class="text-button --blue --small" href="<%= admin_referrer_groups_path %>">Groups</a>
+<% elsif section_active? admin_shops_path %>
+  <a class="text-button --blue --small" href="<%= admin_shop_applications_path %>">Applications</a>
+<% elsif section_active? admin_orders_path %>
+  <a class="text-button --blue --small" href="<%= admin_carts_path %>">Carts</a>
+  <a class="text-button --green --small" href="<%= admin_order_payments_path %>">Payments</a>
+<% end %>
