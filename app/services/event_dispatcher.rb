@@ -59,8 +59,10 @@ class EventDispatcher
   private
 
   def addons
-    "keen" : {
-      "addons": @addons
+    {
+      "keen": {
+        "addons": @addons
+      }
     }
   end
 
@@ -70,7 +72,7 @@ class EventDispatcher
         "input": {
           "ip": "#{ip}"
         },
-        "output": "geo"
+        "output": "ip_to_geo_info"
       }
     end
 
@@ -80,7 +82,7 @@ class EventDispatcher
         "input": {
           "date_time": "#{field}"
         },
-        "output": "timestamp_info"
+        "output": "#{field}_info"
       }
     end
 

@@ -4,6 +4,11 @@ namespace :digpanda do
     Tasks::Digpanda::CheckDatabaseConsistency.new
   end
 
+  desc 'reset user registrations from KeenIO'
+  task keen_reset_registrations: :environment do
+    Tasks::Digpanda::KeenResetRegistrations.new
+  end
+
   desc 'refresh duty categories taxes'
   task refresh_duty_categories_taxes: :environment do
     Tasks::Digpanda::RefreshDutyCategoriesTaxes.new
