@@ -6,7 +6,7 @@ class BaseService
   def return_with(state, details=nil)
     case state
     when :error
-      dispatch_error!
+      # TODO : make this work dispatch_error!
       Response.new(false, nil, details)
     when :success
       Response.new(true, details)
