@@ -4,17 +4,17 @@ class NavigationHistory
   include Rails.application.routes.url_helpers
   DEFAULT_REDIRECT_URL = Rails.application.routes.url_helpers.root_url.freeze
 
-  attr_reader :request, :session, :repository, :with_url
+  attr_reader :request, :session, :repository, :url_included
 
   def initialize(request, session, repository = 'default')
     @request = request
     @session = session
     @repository = repository
-    @with_url = false
+    @url_included = false
   end
 
   def with_url
-    @with_url = true
+    @url_included = true
     self
   end
 
@@ -36,7 +36,7 @@ class NavigationHistory
   def back(raw_position = 1, default_redirect = nil)
     position = raw_position - 1
     if history_found?(position)
-      if with_url
+      if url_included
         base_url + session['previous_urls'][repository][position]
       else
         session['previous_urls'][repository][position]

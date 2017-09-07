@@ -2,13 +2,12 @@ describe NavigationHistory do
 
   include Rails.application.routes.url_helpers
 
+  let(:request) { double(get?: true, xhr?: false, path: 'ONE_PATH', fullpath: 'ONE_FULL_PATH', host_with_port: 'local.dev:3333', protocol: 'http://') }
+
   context '#store' do
 
     it 'should store the successive paths and return the correct one' do
-
-      request = double(get?: true, xhr?: false, path: 'ONE_PATH', fullpath: 'ONE_FULL_PATH')
       expect(NavigationHistory.new(request, {}).store('A_PATH').count).to eql(1)
-
     end
 
   end
@@ -17,7 +16,6 @@ describe NavigationHistory do
 
     it 'should go back to the previous URL' do
 
-      request = double(get?: true, xhr?: false)
       session = { 'previous_urls' => { 'default' => ['1', '2', '3', '4', '5'] } }
 
       nav = NavigationHistory.new(request, session)
@@ -27,7 +25,6 @@ describe NavigationHistory do
 
     it 'should go back to several URLs before it' do
 
-      request = double(get?: true, xhr?: false)
       session = { 'previous_urls' => { 'default' => ['1', '2', '3', '4', '5'] } }
 
       nav = NavigationHistory.new(request, session)
@@ -37,7 +34,6 @@ describe NavigationHistory do
 
     it 'should not find the URL back so redirect to root_url' do
 
-      request = double(get?: true, xhr?: false)
       session = { 'previous_urls' => { 'default' => ['1', '2', '3', '4', '5'] } }
 
       nav = NavigationHistory.new(request, session)

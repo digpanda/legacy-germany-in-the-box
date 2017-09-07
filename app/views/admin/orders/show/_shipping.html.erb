@@ -11,9 +11,9 @@
   <div class="row">
     <%= form_for [:admin, order, order_tracking], :data => {:toggle => 'validator'} do |form| %>
       <%= form.text_field :unique_id, :placeholder => "Tracking ID" %>
-      <%= form.submit "Update", :class => "btn btn-primary" %>
+      <%= form.submit "Update", :class => "text-button --blue" %>
       <% if order.shippable? %>
-        <a href="<%= admin_order_shipped_path(order) %>" data-method="patch" class="btn btn-info">Ship &amp; Send tracking SMS</a>
+        <a href="<%= admin_order_shipped_path(order) %>" data-method="patch" class="text-button --blue">Ship &amp; Send tracking SMS</a>
       <% end %>
     <% end %>
   </div>
@@ -61,8 +61,8 @@
 
   <% if order.order_tracking %>
     <div class="row">
-      <a data-method="patch" href="<%= admin_order_order_tracking_refresh_path(order, order.order_tracking) %>" class="btn btn-primary">Refresh tracking</a>
-      <a target="_blank" href="<%= admin_order_order_tracking_public_tracking_path(order, order.order_tracking) %>" class="btn btn-primary">Public tracking page</a>
+      <a data-method="patch" href="<%= admin_order_order_tracking_refresh_path(order, order.order_tracking) %>" class="text-button --blue">Refresh tracking</a>
+      <a target="_blank" href="<%= admin_order_order_tracking_public_tracking_path(order, order.order_tracking) %>" class="text-button --green">Public tracking page <i class="fa fa-external-link"></i></a>
     </div>
   <% else %>
     No tracking yet.
