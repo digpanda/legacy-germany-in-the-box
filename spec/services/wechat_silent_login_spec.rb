@@ -4,7 +4,7 @@ describe WechatSilentLogin  do
   let(:navigation) { NavigationHistory.new(request, request.session) }
   let(:cart_manager) { CartManager.new(request, user) }
   let(:user) { FactoryGirl.create(:customer, :from_wechat) }
-  let(:request) { double('request', original_url: 'http://test.com', session: {}, params: {}, env: {'warden': nil}) }
+  let(:request) { fake_request }
   let(:code) { 'fake-code' }
 
   before(:each) do
