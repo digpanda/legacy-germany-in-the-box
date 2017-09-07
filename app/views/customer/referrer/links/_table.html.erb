@@ -33,7 +33,11 @@
               <%= link.promotion_text %>
             </td>
             <td>
-              <%= link.published_at.strftime("%Y-%m-%d") %>
+              <% if link.published_at %>
+                <%= link.published_at.strftime("%Y-%m-%d") %>
+              <% else %>
+                -
+              <% end %>
             </td>
           </tr>
           <% if newly_published?(@referrer, link) %>
