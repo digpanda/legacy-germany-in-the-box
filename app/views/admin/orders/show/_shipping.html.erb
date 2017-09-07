@@ -62,6 +62,7 @@
   <% if order.order_tracking %>
     <div class="row">
       <a data-method="patch" href="<%= admin_order_order_tracking_refresh_path(order, order.order_tracking) %>" class="btn btn-primary">Refresh tracking</a>
+      <a target="_blank" href="<%= admin_order_order_tracking_public_tracking_path(order, order.order_tracking) %>" class="btn btn-primary">Public tracking page</a>
     </div>
   <% else %>
     No tracking yet.

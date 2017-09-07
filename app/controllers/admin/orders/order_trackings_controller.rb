@@ -4,7 +4,7 @@ class Admin::Orders::OrderTrackingsController < ApplicationController
   authorize_resource class: false
 
   before_action :set_order
-  before_action :set_order_tracking, only: [:show, :update, :refresh]
+  before_action :set_order_tracking, only: [:show, :update, :refresh, :public_tracking]
 
   layout :custom_sublayout
 
@@ -32,16 +32,24 @@ class Admin::Orders::OrderTrackingsController < ApplicationController
   # it calls the API and refresh the model accordingly.
   # there's also a cache maintained
   def refresh
-    tracking_handler = TrackingHandler.new(order_tracking).refresh!
-    if tracking_handler.success?
+    tracking = tracking_handler.refresh!
+    if tracking.success?
       flash[:success] = "Tracking was successfully refreshed"
     else
-      flash[:error] = tracking_handler.error
+      flash[:error] = tracking.error
     end
     redirect_to navigation.back(1)
   end
 
+  def public_tracking
+    redirect_to tracking_handler.api_gateway.public_url(callback_url: navigation.with_url.back(1))
+  end
+
   private
+
+    def tracking_handler
+      @tracking_handler ||= TrackingHandler.new(order_tracking)
+    end
 
     def order_tracking_params
       params.require(:order_tracking).permit!

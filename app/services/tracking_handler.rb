@@ -12,8 +12,8 @@ class TrackingHandler < BaseService
       return return_with(:success)
     end
 
-    unless kuaidi_api.success?
-      return return_with(:error, kuaidi_api.error)
+    unless api_performed.success?
+      return return_with(:error, api_performed.error)
     end
 
     if update_order_tracking!
@@ -21,6 +21,10 @@ class TrackingHandler < BaseService
     else
       return return_with(:error, order_tracking.errors.full_messages.join(', '))
     end
+  end
+
+  def api_gateway
+    @api_gateway ||= KuaidiApi.new(tracking_id: order_tracking.unique_id, logistic_partner: logistic_partner)
   end
 
   private
@@ -32,15 +36,16 @@ class TrackingHandler < BaseService
 
   def update_order_tracking!
     order_tracking.update(
-      state: kuaidi_api.data[:current_state],
-      histories: kuaidi_api.data[:current_history],
+      state: api_performed.data[:current_state],
+      histories: api_performed.data[:current_history],
       refreshed_at: Time.now
     )
   end
 
-  def kuaidi_api
-    @kuaidi_api ||= KuaidiApi.new(tracking_id: order_tracking.unique_id, logistic_partner: logistic_partner).perform!
+  def api_performed
+    @api_performed ||= api_gateway.perform!
   end
+
 
   # BIG NOTE : LOGISTIC PARTNER IS HARDCODED AS MKPOST, WE NEED TO CHANGE THAT AFTER (it has to depend on the order)
   def logistic_partner

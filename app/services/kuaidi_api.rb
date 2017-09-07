@@ -64,6 +64,10 @@ class KuaidiApi < BaseService
     gateway['data']
   end
 
+  def public_url(callback_url:nil)
+    "https://m.kuaidi100.com/index_all.html?type=#{company_code}&postid=#{tracking_id}&callbackurl=#{callback_url}"
+  end
+
   private
 
     def raw_message

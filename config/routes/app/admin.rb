@@ -83,6 +83,7 @@ namespace :admin do
     end
     resources :order_trackings, controller: 'orders/order_trackings' do
       patch :refresh
+      get :public_tracking
     end
   end
 
