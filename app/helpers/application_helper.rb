@@ -6,11 +6,11 @@ module ApplicationHelper
   end
 
   def weixin_debug
-    if Rails.env.production?
-      false
-    else
+    # if Rails.env.production?
+    #   false
+    # else
       true
-    end
+    # end
   end
 
 end
