@@ -23,7 +23,7 @@ module DigPanda
     Numeric.include CoreExtensions::Numeric::CurrencyLibrary # currency conversion
     String.include CoreExtensions::String::ChineseDetection # chinese? on strings
 
-    config.debug_mode = true # homemade debug system will dispatch more information if `true`
+    config.debug_mode = false # homemade debug system will dispatch more information if `true`
     config.exceptions_app = self.routes # customized error handling
     config.autoload_paths += %W(#{config.root}/lib #{config.root}/app/decorators/concerns #{config.root}/app/uploaders/concerns)
 
