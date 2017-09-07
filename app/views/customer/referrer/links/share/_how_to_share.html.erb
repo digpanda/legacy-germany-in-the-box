@@ -31,8 +31,11 @@
         <%= I18n.t('referrer.share_page.work_description_1') %><br />
         <%= I18n.t('referrer.share_page.work_description_2') %>
         <% if link.promotion_text %>
-          <strong><%= I18n.t('referrer.promotion_text') %> : <%= link.promotion_text %></strong>
-          <br />
+          <strong>
+            <%= I18n.t('referrer.promotion_text') %>
+            <br />
+            <%= link.promotion_text %>
+          </strong>
         <% end %>
         <div class="+small-spacer"></div>
         <%= I18n.t('referrer.share_page.work_conclusion') %>
