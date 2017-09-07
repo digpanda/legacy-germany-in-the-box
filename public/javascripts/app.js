@@ -1496,15 +1496,16 @@ $(document).ready(function () {
   /**
    * Disable console.log for production and tests (poltergeist)
    */
-  //  if ((info.environment == "production") || (info.environment == "test")) { // || (info.environment == "test")
-  //    if (typeof(window.console) != "undefined") {
-  //      window.console = {};
-  //      window.console.log = function () {};
-  //      window.console.info = function () {};
-  //      window.console.warn = function () {};
-  //      window.console.error = function () {};
-  //    }
-  //  }
+  if (info.environment == "production" || info.environment == "test") {
+    // || (info.environment == "test")
+    if (typeof window.console != "undefined") {
+      window.console = {};
+      window.console.log = function () {};
+      window.console.info = function () {};
+      window.console.warn = function () {};
+      window.console.error = function () {};
+    }
+  }
 
   try {
 
@@ -4102,6 +4103,8 @@ var WeixinStarter = {
       this.setupWeixinVue();
     }
 
+    console.log(this.data());
+
     if (typeof this.data() !== "undefined") {
       this.config();
       this.onReady();
@@ -4118,8 +4121,6 @@ var WeixinStarter = {
   },
 
   config: function config() {
-    console.log('WEIXIN CONFIG');
-    console.log(wx);
     wx.config({
       debug: this.data().debug,
       appId: this.data().appId,

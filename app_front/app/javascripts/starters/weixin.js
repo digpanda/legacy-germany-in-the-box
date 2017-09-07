@@ -31,6 +31,8 @@ var WeixinStarter = {
         this.setupWeixinVue();
       }
 
+      console.log(this.data());
+
       if (typeof this.data() !== "undefined") {
         this.config();
         this.onReady();
@@ -48,8 +50,6 @@ var WeixinStarter = {
     },
 
     config: function() {
-      console.log('WEIXIN CONFIG');
-      console.log(wx);
       wx.config({
           debug: this.data().debug,
           appId: this.data().appId,

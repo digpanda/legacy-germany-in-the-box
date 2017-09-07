@@ -42,8 +42,10 @@ class ApplicationController < ActionController::Base
   def activate_weixin_js_config
     @weixin_js_config ||= begin
       ticket = WeixinTicket.new(cache_scope: request.host).resolve!
+      SlackDispatcher.new.message("TICKET : #{ticket}")
       return false unless ticket.success?
       js_config = WeixinApiJsConfig.new(request: request, ticket: ticket.data[:ticket]).resolve!
+      SlackDispatcher.new.message("JS CONFIG : #{js_config}")
       return false unless js_config.success?
       js_config.data
     end
