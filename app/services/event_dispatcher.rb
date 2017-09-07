@@ -52,7 +52,8 @@ class EventDispatcher
   end
 
   def with_geo(ip: '')
-    @addons << addon_ip_to_geo(ip)
+    # TODO : removed temporarily and need a fix.
+    # @addons << addon_ip_to_geo(ip)
     self
   end
 
