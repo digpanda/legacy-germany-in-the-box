@@ -27,7 +27,9 @@ var WeixinStarter = {
      */
     init: function() {
 
+      console.log('is weixin vue working');
       if ($('#weixin-vue').length > 0) {
+        console.log('setup will go')
         this.setupWeixinVue();
       }
 
@@ -59,6 +61,7 @@ var WeixinStarter = {
     },
 
     onReady: function() {
+      console.log('on ready');
       wx.ready(function(){
         console.log('Weixin is ready.');
         WeixinStarter.weixinVue.loaded = true;

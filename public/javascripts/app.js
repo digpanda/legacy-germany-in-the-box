@@ -4098,7 +4098,9 @@ var WeixinStarter = {
    */
   init: function init() {
 
+    console.log('is weixin vue working');
     if ($('#weixin-vue').length > 0) {
+      console.log('setup will go');
       this.setupWeixinVue();
     }
 
@@ -4129,6 +4131,7 @@ var WeixinStarter = {
   },
 
   onReady: function onReady() {
+    console.log('on ready');
     wx.ready(function () {
       console.log('Weixin is ready.');
       WeixinStarter.weixinVue.loaded = true;
