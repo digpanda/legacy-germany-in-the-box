@@ -26,6 +26,11 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
     Tasks::Digpanda::RefreshDutyCategoriesTaxes.new
     puts '---'
 
+    puts 'We refresh the shipping rates'
+    puts '---'
+    Tasks::Digpanda::RefreshShippingRates.new
+    puts '---'
+
     puts 'We create the customers, guides, shopkeepers, admins'
 
     25.times { setup_customer create_user(:customer) }
@@ -42,6 +47,13 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
     # they will take random skus to compose fake orders
     Setting.instance.update(default_coupon_discount: 10.00)
     1.times { setup_guide create_user(:customer) }
+
+    # User.where(role: :customer).each do |user|
+    #   # we assign orders to each customer
+    #   5.times do
+    #     setup_order(user: user)
+    #   end
+    # end
 
     Rails.cache.clear
 
@@ -263,10 +275,6 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
         birth: random_date,
       )
 
-      if user.role == :customer
-        FactoryGirl.create(:order, status: :paid, user: user)
-      end
-
     end
 
     def random_date
@@ -304,13 +312,13 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
     # - insert the sku into the order as order item
     # - make a fake payment
     # - refresh payment status
-    def setup_order(coupon: nil)
+    def setup_order(coupon: nil, user: nil)
       sku = random_product.skus.first
       order = Order.create(
-                    user: create_user(:customer),
+                    user: (user || create_user(:customer)),
                     shop: sku.product.shop,
                     logistic_partner: Setting.instance.logistic_partner,
-                    coupon: coupon
+                    coupon: coupon,
                     )
 
       OrderMaker.new(nil, order).sku(sku).refresh!(1)

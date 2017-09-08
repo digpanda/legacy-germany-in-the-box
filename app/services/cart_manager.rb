@@ -101,7 +101,11 @@ class CartManager < BaseService
   end
 
   def ensure_session_cart!
-    session[:current_cart] = Cart.create.id unless session[:current_cart]
+    session[:current_cart] = Cart.create.id unless valid_current_cart?
+  end
+
+  def valid_current_cart?
+    session[:current_cart] && Cart.where(id: session[:current_cart]).first
   end
 
   # NOTE : sometimes the parent referrer won't be defined
