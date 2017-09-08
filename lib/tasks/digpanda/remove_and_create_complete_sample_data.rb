@@ -5,11 +5,28 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
   end
 
   def perform
+
+    # NOTE Reset the correct migration
+    # This is a manual manipulation on the database.
+    # If something fails in the middle please get back the correct version from staging
+    versions = []
+    db = Mongoid::Clients.default
+    collection = db[:data_migrations]
+    collection.find.each do |data_migration|
+      versions << data_migration["version"]
+    end
+
     #
     # We first remove absolutely everything
     #
     puts "We purge the whole database ..."
     Mongoid.purge!
+
+    # NOTE Now we get back the previously purged
+    # version of the migration state
+    versions.each do |version|
+      collection.insert_one(version: version)
+    end
 
     puts 'We set the locale to Germany'
     I18n.locale = :de

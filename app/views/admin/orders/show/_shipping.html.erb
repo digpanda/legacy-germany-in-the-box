@@ -10,7 +10,7 @@
   <hr>
   <div class="row">
     <%= form_for [:admin, order, order_tracking], :data => {:toggle => 'validator'} do |form| %>
-      <%= form.text_field :unique_id, :placeholder => "Tracking ID" %>
+      <%= form.text_field :delivery_id, :placeholder => "Tracking Delivery ID" %>
       <%= form.submit "Update", :class => "text-button --blue" %>
       <% if order.shippable? %>
         <a href="<%= admin_order_shipped_path(order) %>" data-method="patch" class="text-button --blue">Ship &amp; Send tracking SMS</a>
@@ -31,8 +31,8 @@
 
   <div class="row">
     <div class="col-md-4">
-      <h4>Unique ID</h4>
-      <%= order_tracking.unique_id %>
+      <h4>Delivery ID</h4>
+      <%= order_tracking.delivery_id %>
     </div>
 
     <div class="col-md-4">

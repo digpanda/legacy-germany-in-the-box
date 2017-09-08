@@ -45,7 +45,7 @@
           </td>
           <td>
             <% if order.order_tracking %>
-              <a href="<%= guest_order_tracking_public_url_path(order.order_tracking) %>"><%= order.order_tracking.unique_id %></a>
+              <a href="<%= guest_order_tracking_public_url_path(order.order_tracking) %>"><%= order.order_tracking.delivery_id %></a>
             <% else %>
               -
             <% end %>
@@ -100,7 +100,7 @@
             <div class="clearfix"></div>
             <strong><%= I18n.t('edit_order.link_tracking') %>:</strong>
             <% if order.order_tracking %>
-              <a href="<%= guest_order_tracking_public_url_path(order.order_tracking) %>"><%= order.order_tracking.unique_id %></a>
+              <a href="<%= guest_order_tracking_public_url_path(order.order_tracking) %>"><%= order.order_tracking.delivery_id %></a>
             <% else %>
               -
             <% end %>

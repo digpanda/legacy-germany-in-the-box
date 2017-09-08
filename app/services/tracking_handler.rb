@@ -24,7 +24,7 @@ class TrackingHandler < BaseService
   end
 
   def api_gateway
-    @api_gateway ||= KuaidiApi.new(tracking_id: order_tracking.unique_id, logistic_partner: logistic_partner)
+    @api_gateway ||= KuaidiApi.new(tracking_id: order_tracking.delivery_id, logistic_partner: logistic_partner)
   end
 
   private
