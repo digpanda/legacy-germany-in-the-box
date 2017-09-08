@@ -30,15 +30,15 @@ class Ability
 
         # customer section
         when 'Customer'
-          can :manage, :all if user.decorate.customer?
+          can :manage, :all if user.customer?
 
         # shopkeeper section
         when 'Shopkeeper'
-          can :manage, :all if user.decorate.shopkeeper?
+          can :manage, :all if user.shopkeeper?
 
         # admin section
         when 'Admin'
-          can :manage, :all if user.decorate.admin?
+          can :manage, :all if user.admin?
 
         # if the user is logged-in in any type of account
         when 'Shared'
