@@ -1,4 +1,6 @@
-require 'net/ping'
+require 'rubygems'
+require 'nokogiri'
+require 'open-uri'
 
 class Admin::LinksController < ApplicationController
   attr_accessor :link, :links
@@ -87,7 +89,10 @@ class Admin::LinksController < ApplicationController
     end
 
     def valid_link?
-      Net::Ping::External.new(link.raw_url).ping
+      RestClient.get(link.raw_url)
+      true
+    rescue SocketError => exception
+      false
     end
 
     def set_link
