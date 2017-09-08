@@ -81,7 +81,7 @@ module Helpers
       # access the manual logistic tracking
       def manual_partner_confirmed?
         visit customer_orders_path
-        expect(page).to have_content('追单')
+        expect(page).to have_content('创建于')
       end
     end
   end

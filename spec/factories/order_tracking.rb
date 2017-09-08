@@ -1,7 +1,8 @@
 FactoryGirl.define do
   factory :order_tracking do
 
-    unique_id '000'
+    delivery_id '000'
+    delivery_provider 'ems'
     state :new
     order_id { FactoryGirl.create(:order).id }
 
