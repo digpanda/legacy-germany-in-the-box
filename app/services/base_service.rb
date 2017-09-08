@@ -17,7 +17,7 @@ class BaseService
   private
 
     def dispatch_error!
-      if Rails.config.debug_mode
+      if Rails.configuration.debug_mode
         SlackDispatcher.new.message("[DEBUG] Error returned by a service `#{details}`")
       end
     end
