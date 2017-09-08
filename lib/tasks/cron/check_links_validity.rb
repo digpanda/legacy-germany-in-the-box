@@ -1,4 +1,7 @@
-require 'net/ping'
+require 'rubygems'
+require 'nokogiri'
+require 'open-uri'
+
 
 class Tasks::Cron::CheckLinksValidity
   attr_reader :links
