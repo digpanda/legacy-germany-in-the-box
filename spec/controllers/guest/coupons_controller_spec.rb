@@ -8,4 +8,3 @@ describe Guest::CouponsController, type: :controller do
     it { is_expected.to render_template('flyer') }
   end
 end
-NOTE : cancelled temporarily
