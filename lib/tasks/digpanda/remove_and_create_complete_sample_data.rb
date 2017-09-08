@@ -48,12 +48,7 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
     Setting.instance.update(default_coupon_discount: 10.00)
     1.times { setup_guide create_user(:customer) }
 
-    # User.where(role: :customer).each do |user|
-    #   # we assign orders to each customer
-    #   5.times do
-    #     setup_order(user: user)
-    #   end
-    # end
+    add_orders_to_customers
 
     Rails.cache.clear
 
@@ -61,6 +56,15 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
   end
 
   private
+
+    def add_orders_to_customers
+      User.where(role: :customer).each do |user|
+        # we assign orders to each customer
+        5.times do
+          setup_order(user: user)
+        end
+      end
+    end
 
     def convert_product_with_documentation_attached(product)
       puts "We convert #{product.name} to a `with_documentation_attached`"
