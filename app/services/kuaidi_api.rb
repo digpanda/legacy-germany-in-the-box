@@ -65,7 +65,9 @@ class KuaidiApi < BaseService
   end
 
   def public_url(callback_url:nil)
-    "https://m.kuaidi100.com/index_all.html?type=#{company_code}&postid=#{tracking_id}&callbackurl=#{callback_url}"
+    if tracking_id
+      "https://m.kuaidi100.com/index_all.html?type=#{company_code}&postid=#{tracking_id}&callbackurl=#{callback_url}"
+    end
   end
 
   private

@@ -8,31 +8,8 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
     #
     # We first remove absolutely everything
     #
-    puts 'We remove the setting'
-    Setting.delete_all
-    puts 'We remove all users'
-    User.delete_all
-    puts 'We remove all brands'
-    Brand.delete_all
-    puts 'We remove all shops'
-    Shop.delete_all
-    puts 'We remove all the payment gateways'
-    PaymentGateway.delete_all
-    puts 'We remove all products'
-    Product.delete_all
-    puts 'We remove all the orders / order payments'
-    Order.delete_all
-    OrderPayment.delete_all
-    puts 'We remove all the orders items'
-    OrderItem.delete_all
-    puts 'We remove all addresses'
-    Address.delete_all
-    puts 'We remove all package sets'
-    PackageSet.delete_all
-    puts 'We remove all coupons'
-    Coupon.delete_all
-    puts 'We remove all referrers'
-    Referrer.delete_all
+    puts "We purge the whole database ..."
+    Mongoid.purge!
 
     puts 'We set the locale to Germany'
     I18n.locale = :de
@@ -273,7 +250,7 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
 
       puts "Let's create #{symbol} N#{num} ..."
 
-      User.create!(
+      user = User.create!(
         fname: name,
         lname: "N#{num}",
         gender: ['f', 'm'].sample,
@@ -285,6 +262,11 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
         mobile: Faker::PhoneNumber.cell_phone,
         birth: random_date,
       )
+
+      if user.role == :customer
+        FactoryGirl.create(:order, status: :paid, user: user)
+      end
+
     end
 
     def random_date
