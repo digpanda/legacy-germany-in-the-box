@@ -24,7 +24,10 @@ class Tasks::Cron::CheckLinksValidity
 
   private
 
-    def valid?(link)
-      Net::Ping::External.new(link.raw_url).ping
-    end
+  def valid?
+    RestClient.get(link.raw_url)
+    true
+  rescue SocketError => exception
+    false
+  end
 end
