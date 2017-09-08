@@ -2,6 +2,8 @@ class OrderTracking
   include MongoidBase
   include Mongoid::Search
 
+  strip_attributes
+  
   # research system
   search_in :id, :c_at
 
