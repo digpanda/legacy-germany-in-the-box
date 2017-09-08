@@ -42,7 +42,7 @@ class Admin::Orders::OrderTrackingsController < ApplicationController
   end
 
   def public_tracking
-    redirect_to tracking_handler.api_gateway.public_url(callback_url: navigation.with_url.back(1))
+    redirect_to guest_order_tracking_public_url_path(order_tracking)
   end
 
   private

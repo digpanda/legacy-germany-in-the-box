@@ -13,9 +13,6 @@
           <%= I18n.t('edit_order.total_price_with_extra_costs') %>
         </th>
         <th>
-          <%= I18n.t('edit_order.tracking_id') %>
-        </th>
-        <th>
           <%= I18n.t('edit_order.link_tracking') %>
         </th>
         <th>
@@ -47,15 +44,10 @@
             <% end %>
           </td>
           <td>
-            <%= order.order_tracking&.unique_id %>
-          </td>
-          <td class="tracking">
-            <% if order.bought? %>
-              <% if order.logistic_partner == :xipost %>
-                <%= link_to I18n.t('edit_order.open'), Xipost.new(current_user).tracking_url(order), :target => '_blank' %>
-              <% else %>
-                短信通知
-              <% end %>
+            <% if order.order_tracking %>
+              <a href="<%= guest_order_tracking_public_url_path(order.order_tracking) %>"><%= order.order_tracking.unique_id %></a>
+            <% else %>
+              -
             <% end %>
           </td>
           <td>
@@ -107,14 +99,11 @@
           <% if order.bought? %>
             <div class="clearfix"></div>
             <strong><%= I18n.t('edit_order.link_tracking') %>:</strong>
-            <% if order.logistic_partner == :xipost %>
-              <%= link_to I18n.t('edit_order.open'), Xipost.new(current_user).tracking_url(order), :target => '_blank' %>
+            <% if order.order_tracking %>
+              <a href="<%= guest_order_tracking_public_url_path(order.order_tracking) %>"><%= order.order_tracking.unique_id %></a>
             <% else %>
-              短信通知
+              -
             <% end %>
-            <div class="clearfix"></div>
-            <strong><%= I18n.t('edit_order.tracking_id') %>:</strong>
-            <%= order.order_tracking&.unique_id %>
           <% end %>
           <div class="clearfix"></div>
           <strong><%= I18n.t('edit_order.updated_at') %>:</strong> <%= order.u_at.localtime.strftime('%Y-%m-%d %H:%M:%S') %>

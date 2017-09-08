@@ -39,6 +39,10 @@ namespace :guest do
     get :qrcode
   end
 
+  resources :order_trackings do
+    get :public_url
+  end
+
   resources :order_items  do
   end
 
