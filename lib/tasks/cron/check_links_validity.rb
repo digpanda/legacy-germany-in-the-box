@@ -24,7 +24,7 @@ class Tasks::Cron::CheckLinksValidity
 
   private
 
-  def valid?
+  def valid?(link)
     RestClient.get(link.raw_url)
     true
   rescue SocketError => exception
