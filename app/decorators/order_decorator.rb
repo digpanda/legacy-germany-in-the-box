@@ -9,6 +9,12 @@ class OrderDecorator < Draper::Decorator
     Cleaner.slug(desc)
   end
 
+  def skus_names
+    self.order_items.reduce([]) do |acc, order_item|
+      acc << order_item.product.name
+    end.uniq.join(', ')
+  end
+
   def clean_order_items_description
     self.order_items.reduce([]) do |acc, order_item|
       acc << order_item.clean_desc
