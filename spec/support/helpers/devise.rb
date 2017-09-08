@@ -1,7 +1,6 @@
 module Helpers
   module Devise
     module_function
-
     def valid_wechat_omniauth_callback
       OmniAuth::AuthHash.new(
         'provider' => 'wechat',
@@ -52,13 +51,15 @@ module Helpers
     #   end
     # end
 
+    # include Devise::Test::ControllerHelpers
+
     def login_admin(admin)
-      @request.env['devise.mapping'] = ::Devise.mappings[:admin]
+      @request.env['devise.mapping'] = ::Devise.mappings[:user]
       sign_in admin # Using factory girl as an example
     end
 
     def login_shopkeeper(shopkeeper)
-      @request.env['devise.mapping'] = ::Devise.mappings[:shopkeeper]
+      @request.env['devise.mapping'] = ::Devise.mappings[:user]
       sign_in shopkeeper
     end
 

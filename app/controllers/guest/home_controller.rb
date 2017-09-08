@@ -5,10 +5,6 @@ class Guest::HomeController < ApplicationController
     @shops = Shop.can_buy.order_by(position: :asc).all
   end
 
-  def wechat_test
-    redirect_to "http://mp.weixin.qq.com/s/qWSItoa9TaxCzeQhAN3mMg"
-  end
-
   private
 
     def admin_redirection
