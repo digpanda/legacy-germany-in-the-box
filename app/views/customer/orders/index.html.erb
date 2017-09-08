@@ -37,7 +37,7 @@
             <% end %>
           </td>
           <td>
-            <%= I18n.t(order.status) %>
+            <%= I18n.t("edit_order.#{order.status}") %>
           </td>
           <td>
             <% if order.bought? %>
