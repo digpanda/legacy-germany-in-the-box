@@ -60,7 +60,7 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
     def add_orders_to_customers
       User.where(role: :customer).each do |user|
         # we assign orders to each customer
-        5.times do
+        3.times do
           setup_order(user: user)
         end
       end
@@ -233,6 +233,30 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
       }.merge(seals))
     end
 
+    def create_user_address(user)
+
+      puts 'We create a user address'
+
+      address = Address.new(
+      fname:       '薇',
+      lname:       '李',
+      additional:  '309室',
+      street:      '华江里',
+      number:      '21',
+      zip:         '300222',
+      city:        '天津',
+      country:     'CN',
+      mobile:      '13802049778',
+      province:    '天津',
+      district:    '和平区',
+      pid:         '11000019790225207X'
+      )
+
+
+      user.addresses << address
+      user.save!
+    end
+
     def create_shop_address(shop)
       type = 'both'
       country = 'DE'
@@ -302,6 +326,7 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
     end
 
     def setup_customer(customer)
+      create_user_address(customer)
     end
 
     def setup_guide(user)
@@ -318,14 +343,17 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
     # - refresh payment status
     def setup_order(coupon: nil, user: nil)
       sku = random_product.skus.first
+      user = user || create_user(:customer)
+
       order = Order.create(
-                    user: (user || create_user(:customer)),
+                    user: user,
                     shop: sku.product.shop,
                     logistic_partner: Setting.instance.logistic_partner,
                     coupon: coupon,
                     )
 
       OrderMaker.new(nil, order).sku(sku).refresh!(1)
+
       order_payment = fake_successful_order_payment(order: order)
       order.refresh_status_from!(order_payment)
     end
