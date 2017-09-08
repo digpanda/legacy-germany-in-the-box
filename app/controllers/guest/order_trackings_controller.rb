@@ -3,7 +3,7 @@ class Guest::OrderTrackingsController < ApplicationController
 
   authorize_resource class: false
 
-  before_action :set_order_tracking, only: [:public_tracking]
+  before_action :set_order_tracking, only: [:public_url]
 
   layout :custom_sublayout
 

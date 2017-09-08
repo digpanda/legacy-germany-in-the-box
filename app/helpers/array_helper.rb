@@ -18,6 +18,10 @@ module ArrayHelper
     end
   end
 
+  def delivery_providers
+    {'Postelbe' => 'Postelbe', 'DHLDE' => 'dhlde', 'EMS' => 'ems'}
+  end
+
   def logistic_partners
     [['Xipost', :xipost], ['Beihai', :beihai], ['MKPost', :mkpost], ['Manual', :manual]]
   end

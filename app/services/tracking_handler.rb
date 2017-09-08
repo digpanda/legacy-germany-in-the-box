@@ -24,7 +24,7 @@ class TrackingHandler < BaseService
   end
 
   def api_gateway
-    @api_gateway ||= KuaidiApi.new(tracking_id: order_tracking.delivery_id, logistic_partner: logistic_partner)
+    @api_gateway ||= KuaidiApi.new(delivery_id: delivery_id, delivery_provider: delivery_provider)
   end
 
   private
@@ -46,10 +46,12 @@ class TrackingHandler < BaseService
     @api_performed ||= api_gateway.perform!
   end
 
+  def delivery_id
+    order_tracking.delivery_id
+  end
 
-  # BIG NOTE : LOGISTIC PARTNER IS HARDCODED AS MKPOST, WE NEED TO CHANGE THAT AFTER (it has to depend on the order)
-  def logistic_partner
-    :mkpost # order.logistic_partner
+  def delivery_provider
+    order_tracking.delivery_provider
   end
 
   def order

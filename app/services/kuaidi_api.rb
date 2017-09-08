@@ -1,9 +1,9 @@
 class KuaidiApi < BaseService
-  attr_reader :tracking_id, :logistic_partner
+  attr_reader :delivery_id, :delivery_provider
 
-  def initialize(tracking_id:nil, logistic_partner:nil)
-    @tracking_id = tracking_id
-    @logistic_partner = logistic_partner
+  def initialize(delivery_id:nil, delivery_provider:nil)
+    @delivery_id = delivery_id
+    @delivery_provider = delivery_provider
   end
 
   def perform!
@@ -65,8 +65,8 @@ class KuaidiApi < BaseService
   end
 
   def public_url(callback_url:nil)
-    if tracking_id
-      "https://m.kuaidi100.com/index_all.html?type=#{company_code}&postid=#{tracking_id}&callbackurl=#{callback_url}"
+    if delivery_id
+      "https://m.kuaidi100.com/index_all.html?type=#{delivery_provider}&postid=#{delivery_id}&callbackurl=#{callback_url}"
     end
   end
 
@@ -89,19 +89,7 @@ class KuaidiApi < BaseService
     end
 
     def end_url
-      "http://api.kuaidi100.com/api?id=#{access_id}&com=#{company_code}&nu=#{tracking_id}"
-    end
-
-    # Mkpost got `PostElbe`
-    # Others are `ems`
-    # NOTE : we have to pay for anything else than PostElbe
-    def company_code
-      case logistic_partner
-      when :mkpost
-        "PostElbe"
-      else
-        "ems"
-      end
+      "http://api.kuaidi100.com/api?id=#{access_id}&com=#{delivery_provider}&nu=#{delivery_id}"
     end
 
     # given key for digpanda
