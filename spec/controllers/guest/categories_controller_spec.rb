@@ -4,7 +4,6 @@ describe Guest::CategoriesController, type: :controller do
   let(:category) { FactoryGirl.create(:category) }
 
   describe '#show' do
-
     subject { get :show, id: category }
 
     context "as guest" do
@@ -18,7 +17,5 @@ describe Guest::CategoriesController, type: :controller do
 
       it { is_expected.not_to have_http_status(200) }
     end
-
   end
-
 end

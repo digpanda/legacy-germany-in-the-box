@@ -3,7 +3,6 @@ require 'open-uri'
 class Guest::ReferrersController < ApplicationController
   attr_accessor :referrer, :referrers
 
-  authorize_resource class: false
   before_action :set_referrer
 
   def qrcode

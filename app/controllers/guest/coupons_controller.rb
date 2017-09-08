@@ -1,7 +1,6 @@
 class Guest::CouponsController < ApplicationController
   attr_accessor :coupon, :coupons
 
-  authorize_resource class: false
   before_action :set_coupon
 
   def flyer
