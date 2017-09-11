@@ -27,7 +27,7 @@ class Admin::OrdersController < ApplicationController
   end
 
   def ongoing
-    @orders = Order.not_in(:status => [:terminated, :cancelled]).full_text_search(params[:query], match: :all, allow_empty_search: true).paginate(page: current_page, per_page: 10)
+    @orders = Order.ongoing.full_text_search(params[:query], match: :all, allow_empty_search: true).paginate(page: current_page, per_page: 10)
   end
 
   def show

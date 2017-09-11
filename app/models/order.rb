@@ -78,6 +78,7 @@ class Order
   scope :bought,      ->  { self.in(status: [:paid, :shipped, :terminated]) }
   scope :bought_or_cancelled, -> { self.in( status: BOUGHT_OR_CANCELLED ) }
   scope :bought_or_unverified,      ->  { self.in( status: BOUGHT_OR_UNVERIFIED ) } # cancelled isn't included in this
+  scope :ongoing, -> { self.in(:status => [:paid, :shipped]) }
 
   def bought_or_cancelled?
     BOUGHT_OR_CANCELLED.include? status
