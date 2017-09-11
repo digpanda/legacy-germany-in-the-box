@@ -4,7 +4,7 @@ class Admin::OrdersController < ApplicationController
   attr_accessor :order, :orders
 
   authorize_resource class: false
-  before_action :set_order, except: [:index]
+  before_action :set_order, except: [:index, :ongoing]
   before_action :set_order_tracking, only: [:show]
 
   layout :custom_sublayout
@@ -24,6 +24,10 @@ class Admin::OrdersController < ApplicationController
                disposition: 'attachment'
       end
     end
+  end
+
+  def ongoing
+    @orders = Order.not_in(:status => [:terminated, :cancelled]).full_text_search(params[:query], match: :all, allow_empty_search: true).paginate(page: current_page, per_page: 10)
   end
 
   def show
