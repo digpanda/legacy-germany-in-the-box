@@ -250,6 +250,7 @@ GEM
     i18n (0.7.0)
     i18n_data (0.7.0)
     io-like (0.3.0)
+    ipaddress (0.8.3)
     jbuilder (2.4.1)
       activesupport (>= 3.0.0, < 5.1)
       multi_json (~> 1.2)
@@ -618,6 +619,7 @@ DEPENDENCIES
   geocoder
   haml-rails
   http_accept_language
+  ipaddress
   jbuilder (~> 2.0)
   jquery-fileupload-rails
   jquery-rails

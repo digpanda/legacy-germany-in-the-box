@@ -52,8 +52,9 @@ class EventDispatcher
   end
 
   def with_geo(ip: '')
-    # TODO : removed temporarily and need a fix.
-    # @addons << addon_ip_to_geo(ip)
+    if IPAddress.valid? ip
+      @addons << addon_ip_to_geo(ip)
+    end
     self
   end
 
@@ -97,6 +98,9 @@ class EventDispatcher
       else
         keen.delay.publish(stream, end_params)
       end
+    # geo may blow up because of some weird IP result
+    # we ensure it does not block the system
+    rescue Keen::HttpError => exception
     end
 
     # this will be thread-safe
