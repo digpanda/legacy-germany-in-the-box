@@ -17,6 +17,19 @@ var WeixinStarter = {
             if (shared === true) {
               window.location.href = WeixinStarter.shareLinkData().back;
             }
+          },
+          loaded: function(loaded)  {
+            if (loaded === true) {
+            }
+          }
+        },
+        methods: {
+          promo_b: function(event) {
+            console.log('copying');
+            $('#promotion-text-b').focus();
+            $('#promotion-text-b').select();
+            document.execCommand("copy");
+            console.log('copy done');
           }
         }
       });
@@ -61,9 +74,7 @@ var WeixinStarter = {
     },
 
     onReady: function() {
-      console.log('on ready');
       wx.ready(function(){
-        console.log('Weixin is ready.');
         WeixinStarter.weixinVue.loaded = true;
         WeixinStarter.resetWeixinCache();
         // WeixinStarter.checkJsApi();

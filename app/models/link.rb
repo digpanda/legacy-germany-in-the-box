@@ -5,7 +5,10 @@ class Link
   field :title, type: String
   field :desc, type: String
   field :long_desc, type: String
-  field :promotion_text, type: String
+
+  field :promotion_text_a, type: String
+  field :promotion_text_b, type: String
+  
   field :thumbnail_url, type: String
 
   field :raw_url, type: String

@@ -4089,6 +4089,18 @@ var WeixinStarter = {
           if (_shared === true) {
             window.location.href = WeixinStarter.shareLinkData().back;
           }
+        },
+        loaded: function loaded(_loaded) {
+          if (_loaded === true) {}
+        }
+      },
+      methods: {
+        promo_b: function promo_b(event) {
+          console.log('copying');
+          $('#promotion-text-b').focus();
+          $('#promotion-text-b').select();
+          document.execCommand("copy");
+          console.log('copy done');
         }
       }
     });
@@ -4132,9 +4144,7 @@ var WeixinStarter = {
   },
 
   onReady: function onReady() {
-    console.log('on ready');
     wx.ready(function () {
-      console.log('Weixin is ready.');
       WeixinStarter.weixinVue.loaded = true;
       WeixinStarter.resetWeixinCache();
       // WeixinStarter.checkJsApi();

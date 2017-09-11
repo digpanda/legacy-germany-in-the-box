@@ -30,14 +30,25 @@
         <div class="+small-spacer"></div>
         <%= I18n.t('referrer.share_page.work_description_1') %><br />
         <%= I18n.t('referrer.share_page.work_description_2') %>
-        <% if link.promotion_text %>
+
+        <% if link.promotion_text_a %>
           <br />
           <strong>
             <%= I18n.t('referrer.promotion_text') %>
             <br />
-            <%= link.promotion_text %>
+            <%= link.promotion_text_a %>
           </strong>
         <% end %>
+
+        <% if link.promotion_text_b %>
+          <br />
+          <strong>
+            <br />
+            <span id="promotion-text-b"><%= link.promotion_text_b %></span>
+            <a href="#" v-on:click="promo_b">Copy</a>
+          </strong>
+        <% end %>
+
         <div class="+small-spacer"></div>
         <%= I18n.t('referrer.share_page.work_conclusion') %>
         <div class="+spacer"></div>
