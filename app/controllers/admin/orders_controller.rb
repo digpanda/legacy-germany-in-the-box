@@ -38,6 +38,12 @@ class Admin::OrdersController < ApplicationController
     redirect_to navigation.back(1)
   end
 
+  def terminate
+    order.update(status: :terminated)
+    flash[:success] = 'Order has been terminated.'
+    redirect_to navigation.back(1)
+  end
+
   def shipped
     unless order.shippable?
       flash[:error] = 'Order is not shippable.'

@@ -225,8 +225,12 @@ class Order
     status == :paid && processable_time?
   end
 
+  def terminated?
+    status == :terminated
+  end
+
   def cancellable?
-    status != :cancelled && status != :unverified
+    status != :cancelled && status != :unverified && status != :terminated
   end
 
   def processable_time?

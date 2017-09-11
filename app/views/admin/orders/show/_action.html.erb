@@ -2,6 +2,10 @@
 <hr>
 
 <!-- Cancel @order -->
-<% if @order.decorate.cancellable? %>
+<% if @order.cancellable? %>
   <%= link_to "Cancel this order", shared_order_cancel_path(@order), method: :patch, data: { confirm: "Are you sure you want to cancel this order ?" }, class: "text-button --blue" %>
+<% end %>
+
+<% unless @order.terminated? %>
+  <%= link_to "Terminate this order", admin_order_terminate_path(@order), method: :patch, data: { confirm: "Are you sure you want to terminate this order ?" }, class: "text-button --purple" %>
 <% end %>
