@@ -93,7 +93,7 @@ class EventDispatcher
     end
 
     def publish!
-      if Rails.env.development?
+      if Rails.env.development? || Rails.env.test?
         keen.publish(stream, end_params)
       else
         keen.delay.publish(stream, end_params)
