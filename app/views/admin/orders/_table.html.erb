@@ -16,6 +16,9 @@
           Status
         </th>
         <th>
+          Marketing
+        </th>
+        <th>
           Tracking #
         </th>
         <th>
@@ -51,6 +54,9 @@
         </td>
         <td>
           <%= order.status %>
+        </td>
+        <td>
+          <%= boolean_icon(order.marketing) %>
         </td>
         <td>
           <% if order.order_tracking %>
