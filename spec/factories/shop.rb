@@ -38,12 +38,6 @@ FactoryGirl.define do
     end
   end
 
-  trait(:with_custom_checkable_orders) do
-    after(:create) do |shop|
-      create_list(:order, 5, :with_custom_checkable, shop_id: shop.id)
-    end
-  end
-
   trait(:with_shippable_orders) do
     after(:create) do |shop|
       create_list(:order, 5, :with_shippable, shop_id: shop.id)

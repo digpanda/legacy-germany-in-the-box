@@ -34,10 +34,6 @@ FactoryGirl.define do
       end
     end
 
-    trait :with_custom_checkable do
-      status :custom_checkable
-    end
-
     trait :with_referrer do
       referrer { FactoryGirl.create(:customer, :with_referrer, :from_wechat).referrer }
 

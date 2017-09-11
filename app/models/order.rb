@@ -10,8 +10,8 @@ class Order
   search_in :id, :status, :nickname, :u_at, :total_paid, :user => :id, :order_tracking => [:state, :delivery_id]
 
   UNPROCESSABLE_TIME = [11,12] # 11am to 12am -> German Hour
-  BOUGHT_OR_CANCELLED = [:paid, :custom_checkable, :custom_checking, :shipped, :cancelled]
-  BOUGHT_OR_UNVERIFIED = [:payment_unverified, :paid, :custom_checkable, :custom_checking, :shipped]
+  BOUGHT_OR_CANCELLED = [:paid, :shipped, :terminated, :cancelled]
+  BOUGHT_OR_UNVERIFIED = [:payment_unverified, :paid, :shipped, :terminated]
 
   field :status,                    type: Symbol, default: :new
   field :desc,                      type: String
@@ -20,6 +20,7 @@ class Order
   field :bill_id, type: String
   field :paid_at, type: Time
   field :cancelled_at, type: Time
+  field :marketing, type: Boolean, default: false
 
   field :shipping_cost, type: Float, default: 0.0
   field :exchange_rate, type: Float, default: 0.0
@@ -74,7 +75,7 @@ class Order
 
   scope :nonempty,    ->  {  where( :order_items_count.gt => 0 ) }
   scope :unpaid,      ->  { self.in(status: [:new]) }
-  scope :bought,      ->  { self.in(status: [:paid, :custom_checkable, :custom_checking, :shipped]) }
+  scope :bought,      ->  { self.in(status: [:paid, :shipped, :terminated]) }
   scope :bought_or_cancelled, -> { self.in( status: BOUGHT_OR_CANCELLED ) }
   scope :bought_or_unverified,      ->  { self.in( status: BOUGHT_OR_UNVERIFIED ) } # cancelled isn't included in this
 
@@ -92,11 +93,10 @@ class Order
   # :payment_failed -> the payment failed (make another try when we got the functionality)
   # :cancelled -> the order has been canceled
   # :paid -> it was paid
-  # :custom_checkable -> the order has been handled by the shopkeeper
-  # :custom_checking -> the order is being checked by the customs
   # :shipped -> the shopkepper has sent the package
+  # :terminated -> the shipment has been done totally
   # NOTE : don't forget to update the tooltips too
-  validates :status, presence: true , inclusion: {in: [:new, :paying, :payment_unverified, :payment_failed, :cancelled, :paid, :custom_checkable, :custom_checking, :shipped]}
+  validates :status, presence: true , inclusion: {in: [:new, :paying, :payment_unverified, :payment_failed, :cancelled, :paid, :shipped, :terminated]}
 
   summarizes sku_list: :order_items, by: :quantity
 
@@ -243,7 +243,7 @@ class Order
 
   # we considered as bought any status after paid
   def bought?
-    [:paid, :custom_checkable, :custom_checking, :shipped].include?(status) && paid_at
+    [:paid, :shipped, :terminated].include?(status) && paid_at
   end
 
   def new?

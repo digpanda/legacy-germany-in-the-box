@@ -438,8 +438,6 @@ zh-CN:
     pid: 身份证号
   edit_order:
     cancelled: 取消
-    custom_checkable: 商家备货中
-    custom_checking: 德国海关查验中
     shipped: 商家已发货
     payment_unverified: 付款尚未验证
     payment_failed: 付款失败

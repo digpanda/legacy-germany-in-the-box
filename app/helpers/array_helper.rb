@@ -28,8 +28,7 @@ module ArrayHelper
 
   def orders_status
     [["New", :new], ["Paying", :paying], ["Payment Unverified", :unverified], ["Payment failed", :failed],
-    ["Cancelled", :cancelled], ["Paid", :paid], ["Custom Checkable", :custom_checkable],
-    ["Custom Checking", :custom_checking], ["Shipped", :shipped]]
+    ["Cancelled", :cancelled], ["Paid", :paid], ["Shipped", :shipped], ["Terminated", :terminated]]
   end
 
   def order_payments_status
