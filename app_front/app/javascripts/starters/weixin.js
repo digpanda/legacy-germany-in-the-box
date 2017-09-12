@@ -1,16 +1,24 @@
+import VueClipboard from 'vue-clipboard2';
+
 /**
  * WeixinStarter Class
+ * BIG NOTE : this system is the first we use with VueJS
+ * it needs a lot of refactoring as it mixes up the Weixin system, with a clipboard system, with a Sharing system
+ * which should be split into differente files.
  */
 var WeixinStarter = {
 
     weixinVue: null,
     setupWeixinVue: function() {
 
+      Vue.use(VueClipboard);
+
       this.weixinVue = new Vue({
         el: '#weixin-vue',
         data: {
           shared: false,
           loaded: false,
+          copied: null
         },
         watch: {
           shared: (shared) => {
@@ -24,6 +32,10 @@ var WeixinStarter = {
           }
         },
         methods: {
+          handleCopyStatus(status) {
+            console.log(status);
+            this.copied = status
+          }
         }
       });
     },

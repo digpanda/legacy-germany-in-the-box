@@ -1,24 +1,14 @@
-import VueClipboard from 'vue-clipboard2';
-
 /**
- * WeixinStarter Class
+ * Share Class
  */
-var WeixinStarter = {
-
-    clipboardVue: null,
-    setupClipboardVue: function() {
-
-      Vue.use(VueClipboard);
-      
-    },
+var Share = {
 
     /**
      * Initializer
      */
     init: function() {
-      this.setupClipboardVue();
     },
 
 }
 
-module.exports = WeixinStarter;
+module.exports = Share;

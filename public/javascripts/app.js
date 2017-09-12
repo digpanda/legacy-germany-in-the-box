@@ -920,35 +920,21 @@ module.exports = OrdersShow;
 });
 
 require.register("javascripts/controllers/customer/referrer/links/share.js", function(exports, require, module) {
-'use strict';
-
-var _vueClipboard = require('vue-clipboard2');
-
-var _vueClipboard2 = _interopRequireDefault(_vueClipboard);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+"use strict";
 
 /**
- * WeixinStarter Class
+ * Share Class
  */
-var WeixinStarter = {
-
-  clipboardVue: null,
-  setupClipboardVue: function setupClipboardVue() {
-
-    Vue.use(_vueClipboard2.default);
-  },
+var Share = {
 
   /**
    * Initializer
    */
-  init: function init() {
-    this.setupClipboardVue();
-  }
+  init: function init() {}
 
 };
 
-module.exports = WeixinStarter;
+module.exports = Share;
 
 });
 
@@ -4171,19 +4157,31 @@ module.exports = TotalProducts;
 require.register("javascripts/starters/weixin.js", function(exports, require, module) {
 'use strict';
 
+var _vueClipboard = require('vue-clipboard2');
+
+var _vueClipboard2 = _interopRequireDefault(_vueClipboard);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 /**
  * WeixinStarter Class
+ * BIG NOTE : this system is the first we use with VueJS
+ * it needs a lot of refactoring as it mixes up the Weixin system, with a clipboard system, with a Sharing system
+ * which should be split into differente files.
  */
 var WeixinStarter = {
 
   weixinVue: null,
   setupWeixinVue: function setupWeixinVue() {
 
+    Vue.use(_vueClipboard2.default);
+
     this.weixinVue = new Vue({
       el: '#weixin-vue',
       data: {
         shared: false,
-        loaded: false
+        loaded: false,
+        copied: null
       },
       watch: {
         shared: function shared(_shared) {
@@ -4195,7 +4193,12 @@ var WeixinStarter = {
           if (_loaded === true) {}
         }
       },
-      methods: {}
+      methods: {
+        handleCopyStatus: function handleCopyStatus(status) {
+          console.log(status);
+          this.copied = status;
+        }
+      }
     });
   },
 
