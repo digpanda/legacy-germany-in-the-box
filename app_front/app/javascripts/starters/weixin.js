@@ -7,33 +7,28 @@ var WeixinStarter = {
 
     weixinVue: null,
     setupWeixinVue: function() {
+
       Vue.use(VueClipboard);
+
       this.weixinVue = new Vue({
         el: '#weixin-vue',
         data: {
           shared: false,
           loaded: false,
-          thingToCopy: "yoyoyo"
+          content: null
         },
         watch: {
-          shared: function(shared) {
+          shared: (shared) => {
             if (shared === true) {
               window.location.href = WeixinStarter.shareLinkData().back;
             }
           },
-          loaded: function(loaded)  {
+          loaded: (loaded) =>  {
             if (loaded === true) {
             }
           }
         },
         methods: {
-          promo_b: function(event) {
-            console.log('copying');
-            $('#promotion-text-b').focus();
-            $('#promotion-text-b').select();
-            document.execCommand("copy");
-            console.log('copy done');
-          }
         }
       });
     },
@@ -46,8 +41,6 @@ var WeixinStarter = {
       if ($('#weixin-vue').length > 0) {
         this.setupWeixinVue();
       }
-
-      console.log(this.data());
 
       if (typeof this.data() !== "undefined") {
         this.config();

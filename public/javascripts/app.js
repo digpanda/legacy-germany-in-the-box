@@ -4151,13 +4151,15 @@ var WeixinStarter = {
 
   weixinVue: null,
   setupWeixinVue: function setupWeixinVue() {
+
     Vue.use(_vueClipboard2.default);
+
     this.weixinVue = new Vue({
       el: '#weixin-vue',
       data: {
         shared: false,
         loaded: false,
-        thingToCopy: "yoyoyo"
+        content: null
       },
       watch: {
         shared: function shared(_shared) {
@@ -4169,15 +4171,7 @@ var WeixinStarter = {
           if (_loaded === true) {}
         }
       },
-      methods: {
-        promo_b: function promo_b(event) {
-          console.log('copying');
-          $('#promotion-text-b').focus();
-          $('#promotion-text-b').select();
-          document.execCommand("copy");
-          console.log('copy done');
-        }
-      }
+      methods: {}
     });
   },
 
@@ -4189,8 +4183,6 @@ var WeixinStarter = {
     if ($('#weixin-vue').length > 0) {
       this.setupWeixinVue();
     }
-
-    console.log(this.data());
 
     if (typeof this.data() !== "undefined") {
       this.config();
