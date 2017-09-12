@@ -35,7 +35,7 @@
         <% if link.promotion_text_a %>
           <strong>
             <span><%= link.promotion_text_a %></span>
-            <a href="#" v-clipboard:copy="`<%= link.promotion_text_a %>`" v-clipboard:success="handleCopyStatus(true)" v-clipboard:error="handleCopyStatus(false)">Copy</a>
+            <a href="#" v-clipboard:copy="`<%= link.promotion_text_a %>`" v-clipboard:success="handleCopyStatus(true)" v-clipboard:error="handleCopyStatus(false)"><%= I18n.t('referrer.share_page.copy') %></a>
           </strong>
           <br />
         <% end %>
@@ -43,12 +43,12 @@
         <% if link.promotion_text_b %>
           <strong>
             <span><%= link.promotion_text_b %></span>
-            <a href="#" v-clipboard:copy="`<%= link.promotion_text_b %>`" v-clipboard:success="handleCopyStatus(true)" v-clipboard:error="handleCopyStatus(false)">Copy</a>
+            <a href="#" v-clipboard:copy="`<%= link.promotion_text_b %>`" v-clipboard:success="handleCopyStatus(true)" v-clipboard:error="handleCopyStatus(false)"><%= I18n.t('referrer.share_page.copy') %></a>
           </strong>
           <br />
         <% end %>
 
-        <p v-if="copied === true"><span class="+red +bold">Copied !</span></p>
+        <p v-if="copied === true"><span class="+red +bold"><%= I18n.t('referrer.share_page.copied') %></span></p>
 
         <div class="+small-spacer"></div>
         <%= I18n.t('referrer.share_page.work_conclusion') %>
