@@ -13,7 +13,8 @@
   },
   "dependencies": {
     "csstyle": "^1.5.0",
-    "normalize.css": "^4.1.1"
+    "normalize.css": "^4.1.1",
+    "vue-clipboard2": "0.0.6"
   },
   "devDependencies": {
     "auto-reload-brunch": "^2.0.0",

@@ -45,7 +45,7 @@
           <strong>
             <br />
             <span id="promotion-text-b"><%= link.promotion_text_b %></span>
-            <a href="#" v-on:click="promo_b">Copy</a>
+            <a href="#" v-clipboard:copy="thingToCopy">Copy</a>
           </strong>
         <% end %>
 

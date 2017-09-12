@@ -1,3 +1,4 @@
+import VueClipboard from 'vue-clipboard2'
 
 /**
  * WeixinStarter Class
@@ -10,7 +11,8 @@ var WeixinStarter = {
         el: '#weixin-vue',
         data: {
           shared: false,
-          loaded: false
+          loaded: false,
+          thingToCopy: "yoyoyo"
         },
         watch: {
           shared: function(shared) {
