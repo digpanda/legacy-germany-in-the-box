@@ -919,6 +919,39 @@ module.exports = OrdersShow;
 
 });
 
+require.register("javascripts/controllers/customer/referrer/links/share.js", function(exports, require, module) {
+'use strict';
+
+var _vueClipboard = require('vue-clipboard2');
+
+var _vueClipboard2 = _interopRequireDefault(_vueClipboard);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * WeixinStarter Class
+ */
+var WeixinStarter = {
+
+  clipboardVue: null,
+  setupClipboardVue: function setupClipboardVue() {
+
+    Vue.use(_vueClipboard2.default);
+  },
+
+  /**
+   * Initializer
+   */
+  init: function init() {
+    this.setupClipboardVue();
+  }
+
+};
+
+module.exports = WeixinStarter;
+
+});
+
 require.register("javascripts/controllers/customer/referrer/provision.js", function(exports, require, module) {
 'use strict';
 
@@ -4138,12 +4171,6 @@ module.exports = TotalProducts;
 require.register("javascripts/starters/weixin.js", function(exports, require, module) {
 'use strict';
 
-var _vueClipboard = require('vue-clipboard2');
-
-var _vueClipboard2 = _interopRequireDefault(_vueClipboard);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
 /**
  * WeixinStarter Class
  */
@@ -4152,14 +4179,11 @@ var WeixinStarter = {
   weixinVue: null,
   setupWeixinVue: function setupWeixinVue() {
 
-    Vue.use(_vueClipboard2.default);
-
     this.weixinVue = new Vue({
       el: '#weixin-vue',
       data: {
         shared: false,
-        loaded: false,
-        content: null
+        loaded: false
       },
       watch: {
         shared: function shared(_shared) {
