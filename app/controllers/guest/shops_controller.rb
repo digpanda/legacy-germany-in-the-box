@@ -29,5 +29,7 @@ class Guest::ShopsController < ApplicationController
 
     def from_category
       Category.find(params[:category_id])
+    rescue Mongoid::Errors::DocumentNotFound => exception
+      nil
     end
 end
