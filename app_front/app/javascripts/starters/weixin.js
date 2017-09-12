@@ -1,4 +1,4 @@
-import VueClipboard from 'vue-clipboard2'
+import VueClipboard from 'vue-clipboard2';
 
 /**
  * WeixinStarter Class
@@ -7,6 +7,7 @@ var WeixinStarter = {
 
     weixinVue: null,
     setupWeixinVue: function() {
+      Vue.use(VueClipboard);
       this.weixinVue = new Vue({
         el: '#weixin-vue',
         data: {

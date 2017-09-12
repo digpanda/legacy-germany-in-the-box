@@ -116,6 +116,7 @@
 
 (function() {
 var global = typeof window === 'undefined' ? this : window;
+var process;
 var __makeRelativeRequire = function(require, mappings, pref) {
   var none = {};
   var tryReq = function(name, pref) {
@@ -4150,6 +4151,7 @@ var WeixinStarter = {
 
   weixinVue: null,
   setupWeixinVue: function setupWeixinVue() {
+    Vue.use(_vueClipboard2.default);
     this.weixinVue = new Vue({
       el: '#weixin-vue',
       data: {
@@ -4288,7 +4290,7 @@ module.exports = WeixinStarter;
 
 });
 
-require.register("___globals___", function(exports, require, module) {
+require.alias("process/browser.js", "process");process = require('process');require.register("___globals___", function(exports, require, module) {
   
 });})();require('___globals___');
 
