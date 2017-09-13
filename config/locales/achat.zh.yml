@@ -12,7 +12,7 @@ zh-CN:
     hot_brands: 热销产品
   referrer:
     desc: 副标题
-    promotion_text: 广告词
+    promotion_text: 广告词(参考)
     a_new_link_was_published: 新的智能软文刚刚发布
     image: Image
     share_page:
@@ -439,6 +439,7 @@ zh-CN:
     name: 姓名
     pid: 身份证号
   edit_order:
+    terminated: 买家已签收
     cancelled: 取消
     shipped: 商家已发货
     payment_unverified: 付款尚未验证
