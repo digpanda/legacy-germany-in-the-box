@@ -42,7 +42,7 @@
             </thead>
             <tbody>
 
-              <% if link.promotion_text_a %>
+              <% if link.promotion_text_a.present? %>
               <tr>
                 <td>
                   <%= link.promotion_text_a %>
@@ -55,7 +55,7 @@
               </tr>
               <% end %>
 
-              <% if link.promotion_text_b %>
+              <% if link.promotion_text_b.present? %>
               <tr>
                 <td>
                   <%= link.promotion_text_b %>
