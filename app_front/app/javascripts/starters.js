@@ -3,6 +3,7 @@
  */
 var Starters = [
 
+  'anti_cache',
   'auto_resize',
   'back_to_top',
   'bootstrap',

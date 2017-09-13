@@ -1992,6 +1992,21 @@ require.register("javascripts/lib/url_process.js", function(exports, require, mo
  */
 var UrlProcess = {
 
+    urlParam: function urlParam(param) {
+        var pageUrl = decodeURIComponent(window.location.search.substring(1)),
+            sURLVariables = pageUrl.split('&'),
+            parameterName,
+            i;
+
+        for (i = 0; i < sURLVariables.length; i++) {
+            parameterName = sURLVariables[i].split('=');
+
+            if (parameterName[0] === param) {
+                return parameterName[1] === undefined ? true : parameterName[1];
+            }
+        }
+    },
+
     insertParam: function insertParam(key, value) {
 
         key = encodeURI(key);value = encodeURI(value);
@@ -2661,9 +2676,63 @@ require.register("javascripts/starters.js", function(exports, require, module) {
 /**
  * Starters Class
  */
-var Starters = ['auto_resize', 'back_to_top', 'bootstrap', 'datepicker', 'distpicker', 'editable_fields', 'footer', 'input_validation', 'images_handler', 'lazy_loader', 'left_menu', 'links_behaviour', 'messages', 'mobile_menu', 'mobile', 'navigation', 'product_favorite', 'product_form', 'products_list', 'qrcode', 'refresh_time', 'responsive', 'search', 'sku_form', 'sweet_alert', 'table_clicker', 'tooltipster', 'total_products', 'weixin'];
+var Starters = ['anti_cache', 'auto_resize', 'back_to_top', 'bootstrap', 'datepicker', 'distpicker', 'editable_fields', 'footer', 'input_validation', 'images_handler', 'lazy_loader', 'left_menu', 'links_behaviour', 'messages', 'mobile_menu', 'mobile', 'navigation', 'product_favorite', 'product_form', 'products_list', 'qrcode', 'refresh_time', 'responsive', 'search', 'sku_form', 'sweet_alert', 'table_clicker', 'tooltipster', 'total_products', 'weixin'];
 
 module.exports = Starters;
+
+});
+
+require.register("javascripts/starters/anti_cache.js", function(exports, require, module) {
+'use strict';
+
+var UrlProcess = require('javascripts/lib/url_process');
+
+/**
+ * AntiCache Class
+ */
+var AntiCache = {
+
+  /**
+   * Initializer
+   */
+  init: function init() {
+
+    this.setupAntiCache();
+  },
+
+
+  /**
+   * When the param cache=false then we refresh the page with a timer
+   * It's a global system throughout all pages
+   */
+  setupAntiCache: function setupAntiCache() {
+
+    // If the cache is off ; `cache=false` in parameters
+    if (this.cacheOff()) {
+      // We manage the time if needed
+      if (!this.timePresent()) {
+        this.insertCurrentTime();
+      }
+    }
+  },
+
+
+  // This will refresh the page and add time=SOMETIME in the URL
+  insertCurrentTime: function insertCurrentTime() {
+    UrlProcess.insertParam('time', jQuery.now());
+  },
+  cacheOff: function cacheOff() {
+    return UrlProcess.urlParam('cache') == "false";
+  },
+
+
+  // Is the time parameter present ?
+  timePresent: function timePresent() {
+    return typeof UrlProcess.urlParam('time') != "undefined";
+  }
+};
+
+module.exports = AntiCache;
 
 });
 
@@ -4273,22 +4342,10 @@ var WeixinStarter = {
   onReady: function onReady() {
     wx.ready(function () {
       WeixinStarter.weixinVue.loaded = true;
-      WeixinStarter.resetWeixinCache();
       // WeixinStarter.checkJsApi();
       WeixinStarter.onMenuShareTimeline();
       WeixinStarter.onMenuShareAppMessage();
     });
-  },
-
-  resetWeixinCache: function resetWeixinCache() {
-    // NOTE : not working system
-    // let needRefresh = sessionStorage.getItem("need-refresh");
-    // if(needRefresh){
-    //   sessionStorage.removeItem("need-refresh");
-    //   location.reload();
-    // } else {
-    //   sessionStorage.setItem("need-refresh", true);
-    // }
   },
 
   onError: function onError() {

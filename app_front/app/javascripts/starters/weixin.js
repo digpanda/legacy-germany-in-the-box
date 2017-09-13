@@ -105,23 +105,11 @@ var WeixinStarter = {
     onReady: function() {
       wx.ready(function(){
         WeixinStarter.weixinVue.loaded = true;
-        WeixinStarter.resetWeixinCache();
         // WeixinStarter.checkJsApi();
         WeixinStarter.onMenuShareTimeline();
         WeixinStarter.onMenuShareAppMessage();
 
       });
-    },
-
-    resetWeixinCache: function() {
-      // NOTE : not working system
-      // let needRefresh = sessionStorage.getItem("need-refresh");
-      // if(needRefresh){
-      //   sessionStorage.removeItem("need-refresh");
-      //   location.reload();
-      // } else {
-      //   sessionStorage.setItem("need-refresh", true);
-      // }
     },
 
     onError: function() {
