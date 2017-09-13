@@ -4216,14 +4216,22 @@ var WeixinStarter = {
   vueTooltipDirective: function vueTooltipDirective() {
     Vue.directive('tooltip', {
       bind: function bind(el) {
-        $(el).tooltipster({
-          animation: 'fade',
-          delay: 200,
-          trigger: 'click',
-          maxWidth: 350,
-          timer: 1000
-        });
+        WeixinStarter.clickTooltip(el);
       }
+    });
+  },
+
+  clickTooltip: function clickTooltip(el) {
+    $(el).on('click', function (e) {
+      console.log('yo');
+      e.preventDefault();
+    });
+    $(el).tooltipster({
+      animation: 'fade',
+      delay: 200,
+      trigger: 'click',
+      maxWidth: 350,
+      timer: 1000
     });
   },
 
