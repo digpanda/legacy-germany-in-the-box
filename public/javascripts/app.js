@@ -4112,6 +4112,14 @@ var Tooltipster = {
 
   activateTooltipster: function activateTooltipster() {
 
+    $('.tooltipster-click').tooltipster({
+      animation: 'fade',
+      delay: 200,
+      trigger: 'click',
+      maxWidth: 350,
+      timer: 1000
+    });
+
     $('.tooltipster').tooltipster({
       'maxWidth': 350
     });
@@ -4173,6 +4181,8 @@ var WeixinStarter = {
   weixinVue: null,
   setupWeixinVue: function setupWeixinVue() {
 
+    this.vueTooltipDirective();
+
     Vue.use(_vueClipboard2.default);
 
     this.weixinVue = new Vue({
@@ -4193,10 +4203,26 @@ var WeixinStarter = {
         }
       },
       methods: {
-        handleCopyStatus: function handleCopyStatus(status) {
-          console.log(status);
-          this.copied = status;
+        copySuccess: function copySuccess() {
+          this.copied = true;
+        },
+        copyFail: function copyFail() {
+          this.copied = false;
         }
+      }
+    });
+  },
+
+  vueTooltipDirective: function vueTooltipDirective() {
+    Vue.directive('tooltip', {
+      bind: function bind(el) {
+        $(el).tooltipster({
+          animation: 'fade',
+          delay: 200,
+          trigger: 'click',
+          maxWidth: 350,
+          timer: 1000
+        });
       }
     });
   },

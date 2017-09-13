@@ -11,6 +11,8 @@ var WeixinStarter = {
     weixinVue: null,
     setupWeixinVue: function() {
 
+      this.vueTooltipDirective();
+
       Vue.use(VueClipboard);
 
       this.weixinVue = new Vue({
@@ -32,12 +34,28 @@ var WeixinStarter = {
           }
         },
         methods: {
-          handleCopyStatus(status) {
-            console.log(status);
-            this.copied = status
+          copySuccess() {
+            this.copied = true
+          },
+          copyFail() {
+            this.copied = false
           }
-        }
+        },
       });
+    },
+
+    vueTooltipDirective: () => {
+      Vue.directive('tooltip', {
+        bind: function(el) {
+          $(el).tooltipster({
+            animation: 'fade',
+            delay: 200,
+            trigger: 'click',
+            maxWidth: 350,
+            timer: 1000
+          })
+        }
+      })
     },
 
     /**
@@ -83,6 +101,7 @@ var WeixinStarter = {
         // WeixinStarter.checkJsApi();
         WeixinStarter.onMenuShareTimeline();
         WeixinStarter.onMenuShareAppMessage();
+
       });
     },
 
