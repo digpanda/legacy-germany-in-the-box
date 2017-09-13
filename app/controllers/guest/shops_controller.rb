@@ -20,7 +20,7 @@ class Guest::ShopsController < ApplicationController
     end
 
     def set_products
-      if from_category.present?
+      if from_category
         @products = shop.products.where(category_ids: from_category.id).highlight_first.can_buy.by_brand
       else
         @products = shop.products.highlight_first.can_buy.by_brand
@@ -28,7 +28,9 @@ class Guest::ShopsController < ApplicationController
     end
 
     def from_category
-      Category.find(params[:category_id])
+      if params[:category_id]
+        Category.find(params[:category_id])
+      end
     rescue Mongoid::Errors::DocumentNotFound => exception
       nil
     end
