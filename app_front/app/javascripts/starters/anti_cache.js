@@ -19,13 +19,10 @@ var AntiCache = {
      * It's a global system throughout all pages
      */
     setupAntiCache() {
-
       // If the cache is off ; `cache=false` in parameters
-      if (this.cacheOff()) {
-        // We manage the time if needed
-        if (!this.timePresent()) {
-          this.insertCurrentTime();
-        }
+      // And check if time is not written already as well
+      if (this.cacheOff() && !this.timePresent()) {
+        this.insertCurrentTime();
       }
     },
 
