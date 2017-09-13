@@ -439,6 +439,7 @@ de:
     name: Name
     pid: Personalnummer
   edit_order:
+    terminated: Waren werden erhalten
     cancelled: Abbrechen
     shipped: Waren werden abgeschickt
     payment_unverified: Nicht geprüft
