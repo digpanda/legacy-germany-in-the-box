@@ -47,7 +47,7 @@
                 <td>
                   <%= link.promotion_text_a %>
                 </td>
-                <td class="+right">
+                <td class="+right" width="20%">
                   <div class="+small-spacer"></div>
                   <a href="#" class="text-button --blue" v-tooltip="true" title="<%= I18n.t('referrer.share_page.copied') %>" v-clipboard:copy="`<%= link.promotion_text_a %>`" v-clipboard:success="copySuccess" v-clipboard:error="copyFail"><%= I18n.t('referrer.share_page.copy') %></a>
                   <div class="+small-spacer"></div>
@@ -60,7 +60,7 @@
                 <td>
                   <%= link.promotion_text_b %>
                 </td>
-                <td class="+right">
+                <td class="+right" width="20%">
                   <div class="+small-spacer"></div>
                   <a href="#" class="text-button --blue" v-tooltip="true" title="<%= I18n.t('referrer.share_page.copied') %>" v-clipboard:copy="`<%= link.promotion_text_b %>`" v-clipboard:success="copySuccess" v-clipboard:error="copyFail"><%= I18n.t('referrer.share_page.copy') %></a>
                   <div class="+small-spacer"></div>
