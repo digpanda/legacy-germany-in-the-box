@@ -4289,7 +4289,6 @@ var WeixinStarter = {
 
   clickTooltip: function clickTooltip(el) {
     $(el).on('click', function (e) {
-      console.log('yo');
       e.preventDefault();
     });
     $(el).tooltipster({
