@@ -3,6 +3,21 @@
  */
 var UrlProcess = {
 
+  urlParam: function(param) {
+      var pageUrl = decodeURIComponent(window.location.search.substring(1)),
+          sURLVariables = pageUrl.split('&'),
+          parameterName,
+          i;
+
+      for (i = 0; i < sURLVariables.length; i++) {
+          parameterName = sURLVariables[i].split('=');
+
+          if (parameterName[0] === param) {
+              return parameterName[1] === undefined ? true : parameterName[1];
+          }
+      }
+  },
+
   insertParam: function(key, value) {
 
       key = encodeURI(key); value = encodeURI(value);

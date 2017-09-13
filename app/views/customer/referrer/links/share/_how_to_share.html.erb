@@ -4,7 +4,7 @@
   <div class="row">
     <!-- BACK BUTTON -->
     <div class="col-xs-4 col-md-4">
-      <%= render partial: 'customer/referrer/links/share/subheader', :locals => { back: customer_referrer_links_path } %>
+      <%= render partial: 'customer/referrer/links/share/subheader', :locals => { back: customer_referrer_links_path(cache: false) } %>
     </div>
     <div class="col-md-4 col-xs-4 col-xs-push-4 col-md-push-4">
       <div class="+right">
@@ -24,31 +24,53 @@
   <!-- Explanation -->
   <div class="row">
     <div class="col-md-12">
-      <div class="+spacer"></div>
+      <div class="+small-spacer"></div>
       <div class="+dark-grey">
         <h2><%= I18n.t('referrer.share_page.how_does_it_work') %></h2>
         <div class="+small-spacer"></div>
         <%= I18n.t('referrer.share_page.work_description_1') %><br />
         <%= I18n.t('referrer.share_page.work_description_2') %><br />
-        <%= I18n.t('referrer.promotion_text') %><br />
 
-        <% if link.promotion_text_a %>
-          <strong>
-            <span><%= link.promotion_text_a %></span>
-            <a href="#" v-clipboard:copy="`<%= link.promotion_text_a %>`" v-clipboard:success="handleCopyStatus(true)" v-clipboard:error="handleCopyStatus(false)"><%= I18n.t('referrer.share_page.copy') %></a>
-          </strong>
-          <br />
-        <% end %>
+        <div class="+small-spacer"></div>
+        <div class="main-table">
+          <table>
+            <thead>
+              <th>
+                <%= I18n.t('referrer.promotion_text') %>
+              </th>
+              <th></th>
+            </thead>
+            <tbody>
 
-        <% if link.promotion_text_b %>
-          <strong>
-            <span><%= link.promotion_text_b %></span>
-            <a href="#" v-clipboard:copy="`<%= link.promotion_text_b %>`" v-clipboard:success="handleCopyStatus(true)" v-clipboard:error="handleCopyStatus(false)"><%= I18n.t('referrer.share_page.copy') %></a>
-          </strong>
-          <br />
-        <% end %>
+              <% if link.promotion_text_a %>
+              <tr>
+                <td>
+                  <%= link.promotion_text_a %>
+                </td>
+                <td class="+right">
+                  <div class="+small-spacer"></div>
+                  <a href="#" class="text-button --blue" v-tooltip="true" title="<%= I18n.t('referrer.share_page.copied') %>" v-clipboard:copy="`<%= link.promotion_text_a %>`" v-clipboard:success="copySuccess" v-clipboard:error="copyFail"><%= I18n.t('referrer.share_page.copy') %></a>
+                  <div class="+small-spacer"></div>
+                </td>
+              </tr>
+              <% end %>
 
-        <p v-if="copied === true"><span class="+red +bold"><%= I18n.t('referrer.share_page.copied') %></span></p>
+              <% if link.promotion_text_b %>
+              <tr>
+                <td>
+                  <%= link.promotion_text_b %>
+                </td>
+                <td class="+right">
+                  <div class="+small-spacer"></div>
+                  <a href="#" class="text-button --blue" v-tooltip="true" title="<%= I18n.t('referrer.share_page.copied') %>" v-clipboard:copy="`<%= link.promotion_text_b %>`" v-clipboard:success="copySuccess" v-clipboard:error="copyFail"><%= I18n.t('referrer.share_page.copy') %></a>
+                  <div class="+small-spacer"></div>
+                </td>
+              </tr>
+              <% end %>
+
+            </tbody>
+          </table>
+        </div>
 
         <div class="+small-spacer"></div>
         <%= I18n.t('referrer.share_page.work_conclusion') %>

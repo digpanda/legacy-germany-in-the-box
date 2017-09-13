@@ -13,9 +13,9 @@
     <div class="+small-spacer"></div>
 
     <% if @referrer.newly_published_links.count > 0 %>
-      <a href="<%= customer_referrer_links_path %>" class="big-button --green-hollow"><%= I18n.t('referrer.links') %> <i class="fa fa-share-alt" aria-hidden="true"></i> <span class="notification__red"><%= @referrer.newly_published_links.count %></span></a>
+      <a href="<%= customer_referrer_links_path(cache: false) %>" class="big-button --green-hollow"><%= I18n.t('referrer.links') %> <i class="fa fa-share-alt" aria-hidden="true"></i> <span class="notification__red"><%= @referrer.newly_published_links.count %></span></a>
     <% else %>
-      <a href="<%= customer_referrer_links_path %>" class="big-button --green-hollow"><%= I18n.t('referrer.links') %> <i class="fa fa-share-alt" aria-hidden="true"></i></a>
+      <a href="<%= customer_referrer_links_path(cache: false) %>" class="big-button --green-hollow"><%= I18n.t('referrer.links') %> <i class="fa fa-share-alt" aria-hidden="true"></i></a>
     <% end %>
 
   </div>

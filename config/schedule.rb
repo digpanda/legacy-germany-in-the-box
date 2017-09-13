@@ -39,6 +39,12 @@ every :day do
   rake "cron:check_links_validity"
 end
 
+# - remove all the empty carts from the database
+every :day do
+  command 'The system has launched the rake task `rake cron:remove_empty_carts`'
+  rake "cron:remove_empty_carts"
+end
+
 # - reindexing models for slug ids
 every :week do
   command 'The system has launched the rake task `rake mongoid_slug:set`'

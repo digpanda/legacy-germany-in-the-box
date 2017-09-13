@@ -11,6 +11,8 @@ var WeixinStarter = {
     weixinVue: null,
     setupWeixinVue: function() {
 
+      this.vueTooltipDirective();
+
       Vue.use(VueClipboard);
 
       this.weixinVue = new Vue({
@@ -32,12 +34,35 @@ var WeixinStarter = {
           }
         },
         methods: {
-          handleCopyStatus(status) {
-            console.log(status);
-            this.copied = status
+          copySuccess() {
+            this.copied = true
+          },
+          copyFail() {
+            this.copied = false
           }
-        }
+        },
       });
+    },
+
+    vueTooltipDirective: () => {
+      Vue.directive('tooltip', {
+        bind: (el) => {
+          WeixinStarter.clickTooltip(el)
+        }
+      })
+    },
+
+    clickTooltip: (el) => {
+      $(el).on('click', (e) => {
+        e.preventDefault();
+      })
+      $(el).tooltipster({
+        animation: 'fade',
+        delay: 200,
+        trigger: 'click',
+        maxWidth: 350,
+        timer: 1000
+      })
     },
 
     /**
@@ -79,22 +104,11 @@ var WeixinStarter = {
     onReady: function() {
       wx.ready(function(){
         WeixinStarter.weixinVue.loaded = true;
-        WeixinStarter.resetWeixinCache();
         // WeixinStarter.checkJsApi();
         WeixinStarter.onMenuShareTimeline();
         WeixinStarter.onMenuShareAppMessage();
-      });
-    },
 
-    resetWeixinCache: function() {
-      // NOTE : not working system
-      // let needRefresh = sessionStorage.getItem("need-refresh");
-      // if(needRefresh){
-      //   sessionStorage.removeItem("need-refresh");
-      //   location.reload();
-      // } else {
-      //   sessionStorage.setItem("need-refresh", true);
-      // }
+      });
     },
 
     onError: function() {
