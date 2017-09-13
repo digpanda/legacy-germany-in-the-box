@@ -2,7 +2,7 @@ class Guest::PagesController < ApplicationController
   # NOTE : the related sections should be placed into authenticated sections
   # but for convenience we keep it here for now. If the conditions get big, please switch
   # - Laurent
-  before_action :authenticate_user!, only: [:agb, :sending_guide]
+  before_action :authenticate_user!, only: [:agb]
 
   def business_model
   end
@@ -17,9 +17,6 @@ class Guest::PagesController < ApplicationController
   end
 
   def saleguide
-  end
-
-  def sending_guide
   end
 
   def customer_guide
