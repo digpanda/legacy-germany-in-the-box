@@ -22,7 +22,7 @@ class WeixinApiTicket < BaseService
   end
 
   def ticket_gateway
-    @ticket_gateway ||= get_url ticket_url
+    @ticket_gateway ||= Parser.get_json ticket_url
   end
 
   def ticket_url
@@ -37,8 +37,4 @@ class WeixinApiTicket < BaseService
     access_token_gateway.data[:access_token]
   end
 
-  def get_url(url)
-    response = Net::HTTP.get(URI.parse(url))
-    JSON.parse(response)
-  end
 end

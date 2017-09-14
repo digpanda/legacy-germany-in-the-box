@@ -22,15 +22,11 @@ class WeixinApiAccessToken < BaseService
   end
 
   def gateway
-    @gateway ||= get_url url
+    @gateway ||= Parser.get_json url
   end
 
   def url
     "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=#{appid}&secret=#{secret}"
   end
 
-  def get_url(url)
-    response = Net::HTTP.get(URI.parse(url))
-    JSON.parse(response)
-  end
 end

@@ -64,11 +64,11 @@ class WechatApiConnectSolver < BaseService
   # NOTE : it seems we use a different wa to get the access token than weixin
   # it's a different API.
   def access_token_gateway
-    @access_token_gateway ||= get_url oauth2_access_token_url
+    @access_token_gateway ||= Parser.get_json oauth2_access_token_url
   end
 
   def user_info_gateway
-    @user_info_gateway ||= get_url userinfo_access_token_url
+    @user_info_gateway ||= Parser.get_json userinfo_access_token_url
   end
 
   def oauth2_access_token_url
@@ -79,9 +79,7 @@ class WechatApiConnectSolver < BaseService
     "https://api.wechat.com/sns/userinfo?access_token=#{access_token}&openid=#{openid}"
   end
 
-  def get_url(url)
-    response = Net::HTTP.get(URI.parse(url))
-    JSON.parse(response)
-  end
+
+
 
 end

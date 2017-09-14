@@ -64,7 +64,7 @@ class WeixinReferrerQrcode < BaseService
   end
 
   def access_qrcode_gateway
-    @access_qrcode_gateway ||= image_url qrcode_url
+    @access_qrcode_gateway ||= Parser.get qrcode_url
   end
 
   def access_ticket_gateway
@@ -78,7 +78,7 @@ class WeixinReferrerQrcode < BaseService
   end
 
   def permanent_qrcode
-    post_url ticket_url, {
+    Parser.post_json ticket_url, {
       "action_name": "QR_LIMIT_STR_SCENE",
       "action_info": {
         "scene": {
@@ -89,7 +89,7 @@ class WeixinReferrerQrcode < BaseService
   end
 
   def temporary_qrcode
-    post_url ticket_url, {
+    Parser.post_json ticket_url, {
       "expire_seconds": 604800,
       "action_name": "QR_STR_SCENE",
       "action_info": {
@@ -110,7 +110,7 @@ class WeixinReferrerQrcode < BaseService
 
   # NOTE : we could remove the access token because it was abstracted somewhere else already
   def access_token_gateway
-    @access_token_gateway ||= get_url weixin_access_token_url
+    @access_token_gateway ||= Parser.get_json weixin_access_token_url
   end
 
   def qrcode_url
@@ -124,25 +124,4 @@ class WeixinReferrerQrcode < BaseService
   def weixin_access_token_url
     "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=#{Rails.application.config.wechat[:username_mobile]}&secret=#{Rails.application.config.wechat[:password_mobile]}"
   end
-
-  def post_url(url, body)
-    header = {'Content-Type': 'text/json'}
-    uri = URI.parse(url)
-    https = Net::HTTP.new(uri.host,uri.port)
-    https.use_ssl = true
-    req = Net::HTTP::Post.new(uri.request_uri, header)
-    req.body = body.to_json
-    res = https.request(req)
-    JSON.parse(res.body)
-  end
-
-  def get_url(url)
-    response = Net::HTTP.get(URI.parse(url))
-    JSON.parse(response)
-  end
-
-  def image_url(url)
-    Net::HTTP.get(URI.parse(url))
-  end
-
 end

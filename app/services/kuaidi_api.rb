@@ -85,7 +85,7 @@ class KuaidiApi < BaseService
     end
 
     def gateway
-      @gateway ||= get_url end_url
+      @gateway ||= Parser.get_json end_url
     end
 
     def end_url
@@ -95,12 +95,6 @@ class KuaidiApi < BaseService
     # given key for digpanda
     def access_id
       "23b4abf2e6d6d6c4"
-    end
-
-    # access the service
-    def get_url(url)
-      response = Net::HTTP.get(URI.parse(url))
-      JSON.parse(response)
     end
 
 end

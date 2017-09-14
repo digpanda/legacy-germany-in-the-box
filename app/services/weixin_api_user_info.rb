@@ -14,7 +14,7 @@ class WeixinApiUserInfo < BaseService
   private
 
   def user_info_gateway
-    @user_info_gateway ||= get_url user_info_url
+    @user_info_gateway ||= Parser.get_json user_info_url
   end
 
   def user_info_url
@@ -29,8 +29,4 @@ class WeixinApiUserInfo < BaseService
     access_token_gateway.data[:access_token]
   end
 
-  def get_url(url)
-    response = Net::HTTP.get(URI.parse(url))
-    JSON.parse(response)
-  end
 end
