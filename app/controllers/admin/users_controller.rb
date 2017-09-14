@@ -10,7 +10,7 @@ class Admin::UsersController < ApplicationController
   before_action :breadcrumb_admin_user, only: [:show]
 
   def index
-    @users = User.order(c_at: :desc).full_text_search(params[:query], match: :all, allow_empty_search: true).paginate(page: current_page, per_page: 10)
+    @users = User.order(c_at: :desc).full_text_search(params[:query], match: :all, allow_empty_search: true).paginate(page: current_page, per_page: 100)
   end
 
   def show

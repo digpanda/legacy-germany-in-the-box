@@ -6,10 +6,13 @@
         Email
       </th>
       <th>
+        Nickname
+      </th>
+      <th>
         Role
       </th>
       <th>
-        Version Allowed
+        Version
       </th>
       <th>
         Is Referrer
@@ -38,6 +41,9 @@
         <tr>
           <td>
             <%= user.email %>
+          </td>
+          <td>
+            <%= user.nickname || user.referrer&.nickname %>
           </td>
           <td>
             <%= user.role %>
