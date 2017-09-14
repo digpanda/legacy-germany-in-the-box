@@ -6,14 +6,13 @@ require 'keen'
 # NOTE : this was made in a fast way and is not perfect.
 # Feel free to split it up into subclasses
 class EventDispatcher
-  attr_reader :stream, :params
+  attr_reader :stream, :params, :cache_id
 
   # NOTE HOW TO USE
   # EventDispatcher.new.user(User.first).with_geo(ip: '0.0.0.0').dispatch!
   def initialize
     @params = {}
     @addons = []
-    @cache = nil
   end
 
   # for every first use of one of the projects
