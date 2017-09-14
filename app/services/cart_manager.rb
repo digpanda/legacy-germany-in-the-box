@@ -101,11 +101,6 @@ class CartManager < BaseService
   end
 
   def ensure_session_cart!
-    unless valid_current_cart?
-      if Rails.env.production?
-        SlackDispatcher.new.message("CART IS CREATED ON #{request.protocol}#{request.host_with_port}#{request.fullpath}")
-      end
-    end
     session[:current_cart] = Cart.create.id unless valid_current_cart?
   end
 
