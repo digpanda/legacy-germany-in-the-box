@@ -13,6 +13,7 @@ class EventDispatcher
   def initialize
     @params = {}
     @addons = []
+    @cache = nil
   end
 
   # for every first use of one of the projects
@@ -43,12 +44,24 @@ class EventDispatcher
     self
   end
 
-  # TODO : place it
   def order_was_paid(order)
     @stream = :order_payments
-    # @params = order.as_json.slice('email', 'nickname', 'precreated', 'provider', 'role')
-    # @params.merge! referrer: user.referrer?, registered_at: user.c_at, user_id: user._id, full_name: user.decorate.full_name
+    @cache_id = order.id
+    @params = order.as_json.slice('status', 'desc', 'logistic_partner', 'bill_id', 'paid_at', 'marketing', 'shipping_cost', 'exchange_rate', 'coupon_applied_at', 'coupon_discount')
+    @params.merge! order_id: order._id, order_items: order.order_items.count
     self
+  end
+
+  def already_cached?
+    if cache_id
+      EventCache.where(stream: stream, cache_id: cache_id).count > 0
+    end
+  end
+
+  def cache!
+    if cache_id
+      EventCache.create(stream: stream, cache_id: cache_id)
+    end
   end
 
   def with_geo(ip: '')
@@ -93,10 +106,13 @@ class EventDispatcher
     end
 
     def publish!
-      if Rails.env.development? || Rails.env.test?
-        keen.publish(stream, end_params)
-      else
-        keen.delay.publish(stream, end_params)
+      unless already_cached?
+        if Rails.env.development? || Rails.env.test?
+          keen.publish(stream, end_params)
+        else
+          keen.delay.publish(stream, end_params)
+        end
+        cache!
       end
     # geo may blow up because of some weird IP result
     # we ensure it does not block the system
