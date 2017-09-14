@@ -114,6 +114,7 @@ class CheckoutCallback < BaseService
   def dispatch_confirm_paid_order!(order)
     Notifier::Customer.new(order.user).order_was_paid(order)
     Notifier::Shopkeeper.new(order.shop.shopkeeper).order_was_paid(order)
+    EventDispatcher.new.order_was_paid(order).dispatch!
   end
 
   def manage_stocks!(order)
