@@ -5,6 +5,6 @@ describe Guest::OrderTrackingsController, type: :controller do
 
   describe '#public_url' do
     subject { get :public_url, order_tracking_id: order_tracking.id }
-    it { expect{response}.not_to raise_error }
+    it { expect { response }.not_to raise_error }
   end
 end

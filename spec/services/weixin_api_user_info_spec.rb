@@ -10,13 +10,11 @@ describe WeixinApiUserInfo do
         BaseService.new.return_with(:success, access_token: 'random token')
       )
 
-      allow_any_instance_of(described_class).to receive(:user_info_gateway).and_return({
-          'info' => 'some stuff'
-        })
+      allow_any_instance_of(described_class).to receive(:user_info_gateway).and_return('info': 'some stuff')
 
       resolved = subject.resolve!
       expect(resolved.success?).to eq(true)
-      expect(resolved.data[:user_info]).to eq({'info' => 'some stuff'})
+      expect(resolved.data[:user_info]).to eq('info': 'some stuff')
 
     end
 
@@ -25,10 +23,10 @@ describe WeixinApiUserInfo do
       allow_any_instance_of(described_class).to receive(:access_token_gateway).and_return(
         BaseService.new.return_with(:success, access_token: 'random token')
       )
-      
+
       allow_any_instance_of(described_class).to receive(:user_info_gateway).and_return(
-        'errcode' => '1',
-        'errmsg' => 'random error'
+        'errcode': '1',
+        'errmsg': 'random error'
       )
 
       resolved = subject.resolve!

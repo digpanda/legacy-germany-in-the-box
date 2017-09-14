@@ -6,12 +6,12 @@ describe Guest::CategoriesController, type: :controller do
   describe '#show' do
     subject { get :show, id: category }
 
-    context "as guest" do
+    context 'as guest' do
       it { is_expected.to render_template('show') }
     end
 
     # we test the restrict_to as well
-    context "as admin" do
+    context 'as admin' do
       let(:current_user) { FactoryGirl.create(:admin) }
       before(:each) { login_admin current_user }
 

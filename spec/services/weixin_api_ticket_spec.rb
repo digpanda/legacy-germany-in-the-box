@@ -10,9 +10,9 @@ describe WeixinApiTicket  do
         BaseService.new.return_with(:success, access_token: 'random token')
       )
 
-      allow_any_instance_of(described_class).to receive(:ticket_gateway).and_return({
-          'ticket' => 'random ticket'
-        })
+      allow_any_instance_of(described_class).to receive(:ticket_gateway).and_return(
+          'ticket': 'random ticket'
+        )
 
       resolved = subject.resolve!
       expect(resolved.success?).to eq(true)
@@ -21,14 +21,14 @@ describe WeixinApiTicket  do
     end
 
     it 'fails resolving the ticket' do
-      
+
       allow_any_instance_of(described_class).to receive(:access_token_gateway).and_return(
         BaseService.new.return_with(:success, access_token: 'random token')
       )
 
       allow_any_instance_of(described_class).to receive(:ticket_gateway).and_return(
-        'errcode' => '1',
-        'errmsg' => 'random error'
+        'errcode': '1',
+        'errmsg': 'random error'
       )
 
       resolved = subject.resolve!

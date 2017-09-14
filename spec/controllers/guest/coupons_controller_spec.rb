@@ -10,20 +10,20 @@ describe Guest::CouponsController, type: :controller do
   end
 
   describe '#flyer' do
-    context "coupon without referrer" do
+    context 'coupon without referrer' do
       let(:coupon) { FactoryGirl.create(:coupon) }
-      it "renders a not found image" do
+      it 'renders a not found image' do
         get :flyer, coupon_id: coupon
-        expect(response.content_type).to eq("image/jpeg")
+        expect(response.content_type).to eq('image/jpeg')
         expect(response.body).to eq(not_found_image)
       end
     end
 
-    context "coupon with referrer" do
+    context 'coupon with referrer' do
       let(:coupon) { FactoryGirl.create(:coupon, :with_referrer) }
-      it "renders a the qrcode flyer" do
+      it 'renders a the qrcode flyer' do
         get :flyer, coupon_id: coupon
-        expect(response.content_type).to eq("image/jpeg")
+        expect(response.content_type).to eq('image/jpeg')
         expect(response.body).not_to eq(not_found_image)
       end
     end
