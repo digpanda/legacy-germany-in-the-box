@@ -101,19 +101,15 @@ class CheckoutGateway
     end
 
     def qrcode
-      @qrcode ||= begin
-        qrcode_gen = ::RQRCode::QRCode.new(unified_order["code_url"])
-        svg = qrcode_gen.as_svg(offset: 0, color: '000',
-                    shape_rendering: 'crispEdges',
-                    module_size: 11)
-        FileUtils.mkdir_p("public/uploads/qrcode/")
-        IO.write("public#{qrcode_path}", svg)
-        qrcode_path
-      end
+      @qrcode ||= QrcodeHandler.new(unified_order["code_url"], qrcode_path, qrcode_filename).perform
     end
 
     def qrcode_path
-      "/uploads/qrcode/wechatpay_#{@order.id.to_s}_#{Time.now.to_i.to_s}.svg"
+      '/uploads/qrcode/'
+    end
+
+    def qrcode_filename
+      "wechatpay_#{@order.id.to_s}_#{Time.now.to_i.to_s}.svg"
     end
 
     def total_fee
