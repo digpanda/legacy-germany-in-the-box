@@ -8,13 +8,24 @@ class QrcodeHandler < BaseService
   end
 
   def perform
-    FileUtils.mkdir_p(local_storage)
-    # under public folder, systematically
-    IO.write("#{local_storage}#{file_name}", svg)
+    make_image! unless file_already_stored?
     full_path
   end
 
   private
+
+    def make_image!
+      FileUtils.mkdir_p(local_storage)
+      IO.write(full_storage, svg)
+    end
+
+    def file_already_stored?
+      File.exist?(full_storage)
+    end
+
+    def full_storage
+      "#{local_storage}#{file_name}"
+    end
 
     # full local path with the public directory to write the image
     def local_storage
