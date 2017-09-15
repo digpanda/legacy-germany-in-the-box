@@ -1,5 +1,6 @@
 <div id="order-payment-callback-url" data-success="<%= customer_checkout_callback_wechatpay_url %>" data-fail="<%= fail_customer_checkout_callback_wechatpay_path %>" data-cancel="<%= cancel_customer_checkout_callback_wechatpay_path %>"></div>
 
+<% binding.pry %>
 <% if @checkout[:qrcode] %>
 
   <div class="+centered">
