@@ -51,15 +51,6 @@
                   <%= render partial: "guest/package_sets/show/product", :locals => { :package_sku => package_sku } %>
                 </div>
               <% end %>
-<<<<<<< Updated upstream
-
-                <!-- QRCode to go through Wechat -->
-                <div class="col-md-2 col-xs-6 package-set-infos__product">
-                  <img src="<%= guest_package_set_qrcode_path(@package_set) %>" />
-                </div>
-
-=======
->>>>>>> Stashed changes
             </div>
           </div>
         </div>
@@ -95,7 +86,7 @@
             <div class="row">
               <div class="package-set-infos__qrcode">
                 <img src="<%= guest_package_set_qrcode_path(@package_set) %>" />
-                <p>Please scan QRCode for Wechat fast-buy</p>
+                <p><%= I18n.t('package_set.please_scan_qrcode') %></p>
               </div>
             </div>
 
