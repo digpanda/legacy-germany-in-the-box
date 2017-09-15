@@ -25,8 +25,8 @@ describe WeixinApiUserInfo do
       )
 
       allow_any_instance_of(described_class).to receive(:user_info_gateway).and_return(
-        'errcode': '1',
-        'errmsg': 'random error'
+        'errcode' => '1',
+        'errmsg' => 'random error'
       )
 
       resolved = subject.resolve!

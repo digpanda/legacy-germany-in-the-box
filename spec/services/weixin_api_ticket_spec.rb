@@ -11,7 +11,7 @@ describe WeixinApiTicket  do
       )
 
       allow_any_instance_of(described_class).to receive(:ticket_gateway).and_return(
-          'ticket': 'random ticket'
+          'ticket' => 'random ticket'
         )
 
       resolved = subject.resolve!
@@ -27,8 +27,8 @@ describe WeixinApiTicket  do
       )
 
       allow_any_instance_of(described_class).to receive(:ticket_gateway).and_return(
-        'errcode': '1',
-        'errmsg': 'random error'
+        'errcode' => '1',
+        'errmsg' => 'random error'
       )
 
       resolved = subject.resolve!
