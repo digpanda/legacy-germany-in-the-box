@@ -16,6 +16,7 @@ RSpec.configure do |config|
 
   # support loads
   config.before do
+    config.include Helpers::Cart
     config.include Helpers::Context
     config.include Helpers::Devise
     config.include Helpers::Global

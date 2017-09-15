@@ -11,6 +11,8 @@ class Customer::AddressesController < ApplicationController
     @addresses = current_user.addresses
   end
 
+  # NOTE : i'm not sure this is currently in use within our system.
+  # - Laurent, 15/09/2017
   def show
   end
 

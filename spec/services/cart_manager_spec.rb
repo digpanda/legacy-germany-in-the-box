@@ -67,7 +67,7 @@ describe CartManager do
   context '#orders' do
 
     it 'get all the orders of the cart' do
-      fill_cart_manager!
+      fill_cart_manager!(cart_manager)
       expect(cart_manager.orders.count).to eq(3)
     end
 
@@ -77,7 +77,7 @@ describe CartManager do
 
     it 'empties the cart completely' do
       # this isn't really an empty, it's at session level and can be buggy as fuck
-      fill_cart_manager!
+      fill_cart_manager!(cart_manager)
       cart_manager.empty!
       expect(cart_manager.orders.count).to eq(0)
     end
@@ -87,7 +87,7 @@ describe CartManager do
   context '#refresh!' do
 
     it 'refreshes the cart from cancelled and bought orders' do
-      orders = fill_cart_manager!
+      orders = fill_cart_manager!(cart_manager)
       orders.first.tap do |order|
         order.status = :paid
         order.save(validation: false)
@@ -101,7 +101,7 @@ describe CartManager do
   context '#products_number' do
 
     it 'returns the products number with only casual products' do
-      fill_cart_manager!
+      fill_cart_manager!(cart_manager)
       expect(cart_manager.products_number).to eq(45)
     end
 
@@ -115,12 +115,4 @@ describe CartManager do
 
   end
 
-end
-
-def fill_cart_manager!
-  orders = FactoryGirl.create_list(:order, 3)
-  orders.each do |order|
-    cart_manager.store(order)
-  end
-  orders
 end
