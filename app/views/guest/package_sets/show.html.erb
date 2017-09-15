@@ -53,10 +53,12 @@
                 </div>
               <% end %>
 
+              <% if current_user&.tester? %>
                 <!-- QRCode to go through Wechat -->
                 <div class="col-md-2 col-xs-6 package-set-infos__product">
                   <img src="<%= guest_package_set_qrcode_path(@package_set) %>" />
                 </div>
+                <% end %>
 
             </div>
           </div>
