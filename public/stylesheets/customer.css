@@ -2392,6 +2392,8 @@ body {
   padding: 1.1em;
   margin-top: 1em;
   margin-bottom: 1em; }
+  .package-set-infos__qrcode {
+    background-color: red; }
   .package-set-infos__introduction-header {
     color: #bdc3c7;
     text-align: right; }
@@ -3126,6 +3128,7 @@ a, a:active, a:hover, a:visited {
 .logo-img-large {
   width: auto;
   max-height: 256px; }
+
 
 
 /*# sourceMappingURL=customer.css.map*/

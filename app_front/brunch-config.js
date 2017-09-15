@@ -9,7 +9,7 @@ module.exports = {
     javascripts: {
       joinTo: {
         'javascripts/vendor.js': /^bower_components/,
-        // 'javascripts/vendor-node.js': /^node_modules/,
+        'javascripts/vendor-node.js': /^node_modules/,
         'javascripts/app.js': /^app/
       },
     },
