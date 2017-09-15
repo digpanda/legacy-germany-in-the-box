@@ -107,11 +107,12 @@ class EventDispatcher
     def publish!
       unless already_cached?
         if Rails.env.development? || Rails.env.test?
-          keen.publish(stream, end_params)
+          result = keen.publish(stream, end_params)
         else
-          keen.delay.publish(stream, end_params)
+          result = keen.delay.publish(stream, end_params)
         end
         cache!
+        result
       end
     # geo may blow up because of some weird IP result
     # we ensure it does not block the system

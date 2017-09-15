@@ -22,9 +22,9 @@ describe WechatSilentLogin  do
       expect(resolved).to eq(true)
     end
 
-    it "fails to signin the user" do
+    it 'fails to signin the user' do
       allow_any_instance_of(described_class).to receive(:wechat_api_connect_solver).and_return(
-        BaseService.new.return_with(:error, "Fake error")
+        BaseService.new.return_with(:error, 'Fake error')
       )
       resolved = subject.connect!
       expect(resolved).to eq(false)
@@ -33,15 +33,15 @@ describe WechatSilentLogin  do
   end
 
   context '#redirect' do
-    it "signin and redirects" do
+    it 'signin and redirects' do
 
-    allow_any_instance_of(described_class).to receive(:wechat_api_connect_solver).and_return(
-      BaseService.new.return_with(:success, customer: user)
-    )
-    subject.connect!
+      allow_any_instance_of(described_class).to receive(:wechat_api_connect_solver).and_return(
+        BaseService.new.return_with(:success, customer: user)
+      )
+      subject.connect!
 
-    # NOTE : this could be improved when we improve the navigation stub
-    expect(subject.redirect).to eq('/')
+      # NOTE : this could be improved when we improve the navigation stub
+      expect(subject.redirect).to eq('/')
 
     end
   end
