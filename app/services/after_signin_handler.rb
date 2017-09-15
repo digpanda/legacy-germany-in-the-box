@@ -30,25 +30,25 @@ class AfterSigninHandler
       handle_precreated!
       handle_past_orders!
       handle_event!
-      SlackDispatcher.new.message("USER IS CUSTOMER")
       return without_code missing_info_customer_account_path(kept_params) if user.missing_info?
-      SlackDispatcher.new.message("FORCING TO GO SOMEWHERE")
       return navigation.force! if navigation.force?
+
 
       # NOTE : we remove the code param from the redirect URL
       # because if the user comes from WeChat that would make an infinite loop
       # we can either refresh the current page or go back
       if refresh
-        SlackDispatcher.new.message("REFRESHING THE ACTUAL CURRENT PAGE RIGHT NOW")
-        # TODO : the logic for referrer on log-in might be here
-        # - LOGIC : if the path is going to the customer/account/menu right now
-        # - We redirect him to the referrer page directly
-        return without_code request.url
+        # if the user is a referrer which just logged-in and tries to go to the user menu
+        # we directly redirect him to the referrer area 
+        if user.referrer? && user_goes_to_menu?
+          return without_code customer_referrer_path
+        else
+          return without_code request.url
+        end
       else
         # if the user is a referrer and connected via QRCode given to him
         # we will force him into his QRCode area
         if user.referrer?
-          SlackDispatcher.new.message("GOES TO CUSTOMER REFERRER PATH")
           return without_code customer_referrer_path
         else
           return without_code navigation.back(1, identity_solver.landing_solver.recover)
@@ -81,6 +81,10 @@ class AfterSigninHandler
   end
 
   private
+
+  def user_goes_to_menu?
+    PathMatcher.new(request).match_location? menu_customer_account_path
+  end
 
   # NOTE : mayber we should just integrate it via params at initialization ?
   # - Laurent, 13/07/2017
