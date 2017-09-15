@@ -14,6 +14,10 @@ class Guest::PackageSetsController < ApplicationController
   def show
   end
 
+  def qrcode
+    redirect_to QrcodeHandler.new(guest_package_set_url(package_set), '/uploads/qrcode/package_sets/', "#{order.id}.svg").perform
+  end
+
   def categories
     @brand_filters = Brand.with_package_sets.order_by(position: :asc).used_as_filters
   end
@@ -87,7 +91,7 @@ class Guest::PackageSetsController < ApplicationController
     # end of abstraction
 
     def set_package_set
-      @package_set = PackageSet.find(params[:id]) unless params[:id].nil?
+      @package_set = PackageSet.find(params[:id] || params[:package_set_id]) if params[:id] || params[:package_set_id]
     end
 
     # for filtering (optional)

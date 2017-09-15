@@ -1,19 +1,25 @@
 class QrcodeHandler < BaseService
-  attr_reader :remote_url, :local_storage
+  attr_reader :remote_url, :local_path, :file_name
 
   def initialize(remote_url, local_path, file_name)
     @remote_url = remote_url
-    @local_storage = local_storage
+    @local_path = local_path
+    @file_name = file_name
   end
 
   def perform
-    FileUtils.mkdir_p(local_path)
+    FileUtils.mkdir_p(local_storage)
     # under public folder, systematically
-    IO.write("public#{full_path}", svg)
+    IO.write("#{local_storage}#{file_name}", svg)
     full_path
   end
 
   private
+
+    # full local path with the public directory to write the image
+    def local_storage
+       "#{Rails.root}/public#{local_path}"
+    end
 
     def full_path
       "#{local_path}#{file_name}"

@@ -109,7 +109,7 @@ class CheckoutGateway
     end
 
     def qrcode_filename
-      "wechatpay_#{@order.id.to_s}_#{Time.now.to_i.to_s}.svg"
+      "wechatpay_#{@order.id}_#{Time.now.to_i}.svg"
     end
 
     def total_fee
