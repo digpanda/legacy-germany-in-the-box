@@ -28,7 +28,7 @@ RSpec.configure do |config|
       FactoryGirl.create(:shipping_rate, partner: :beihai, weight: (10 * time), price: (4 * time))
       FactoryGirl.create(:shipping_rate, partner: :mkpost, weight: (10 * time), price: (4 * time))
     end
-    page.driver.reset!
+    # page.driver.reset!
   end
 
   # Add VCR to all tests
