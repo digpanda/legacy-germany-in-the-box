@@ -9,7 +9,7 @@ class Customer::Orders::CouponsController < ApplicationController
 
   # we apply the coupon to the order
   def create
-    if coupon.nil?
+    unless coupon
       flash[:error] = I18n.t('coupon.applied_fail')
       redirect_to navigation.back(1)
       return
@@ -24,10 +24,8 @@ class Customer::Orders::CouponsController < ApplicationController
 
   # unapply the coupon to the order
   def destroy
-    unless order.coupon.nil?
-      unless unapply_coupon.success?
-        flash[:error] = "#{unapply_coupon.error}"
-      end
+    if !order.coupon || !unapply_coupon.success?
+      flash[:error] = "#{unapply_coupon.error}"
     end
     redirect_to navigation.back(1)
   end
