@@ -31,6 +31,19 @@ RSpec.configure do |config|
     page.driver.reset!
   end
 
+  # Add VCR to all tests
+  config.around(:each) do |example|
+    VCR.turn_on!
+    options = example.metadata[:vcr] || {}
+    if options[:record] == :skip
+      VCR.turned_off(&example)
+    else
+      name = example.metadata[:full_description].split(/\s+/, 2).join('/').underscore.gsub(/\./,'/').gsub(/[^\w\/]+/, '_').gsub(/\/$/, '')
+      VCR.use_cassette(name, options, &example)
+    end
+    VCR.turn_off!
+  end
+
 end
 
 port = 3333 + ENV['TEST_ENV_NUMBER'].to_i # for `parallel_tests`

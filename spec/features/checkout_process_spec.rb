@@ -5,7 +5,7 @@ feature 'checkout process', js: true  do
   before(:each) do
     login!(customer)
   end
-
+  
   context 'with mkpost logistic partner' do
 
     let(:shop) { FactoryGirl.create(:shop, :with_payment_gateways) }
