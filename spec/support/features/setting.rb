@@ -3,7 +3,7 @@ module Helpers
     module Setting
       module_function
 
-      def logistic!(partner: :xipost)
+      def logistic!(partner: :mkpost)
         ::Setting.delete_all
         ::Setting.create!(logistic_partner: partner)
       end

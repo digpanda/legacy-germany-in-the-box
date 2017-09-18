@@ -7,6 +7,6 @@ class ShippingRate
   # NOTE : be careful while changing that
   # please also update ShippingPrice library accordingly
   field :type, type: Symbol, default: :general
-  field :partner, type: Symbol, default: :xipost
+  field :partner, type: Symbol
 
 end

@@ -27,7 +27,6 @@ RSpec.configure do |config|
     5.times do |time|
       FactoryGirl.create(:shipping_rate, partner: :beihai, weight: (10 * time), price: (4 * time))
       FactoryGirl.create(:shipping_rate, partner: :mkpost, weight: (10 * time), price: (4 * time))
-      FactoryGirl.create(:shipping_rate, partner: :xipost, weight: (10 * time), price: (4 * time))
     end
     page.driver.reset!
   end

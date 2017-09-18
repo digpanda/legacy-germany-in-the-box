@@ -6,13 +6,13 @@ feature 'checkout process', js: true  do
     login!(customer)
   end
 
-  context 'with xipost logistic partner' do
+  context 'with mkpost logistic partner' do
 
     let(:shop) { FactoryGirl.create(:shop, :with_payment_gateways) }
     let(:product) { FactoryGirl.create(:product, shop_id: shop.id) }
 
     before(:each) do
-      logistic!(partner: :xipost)
+      logistic!(partner: :mkpost)
       product_to_cart!(product)
       reload_page # the AJAX call could make problem otherwise
       page.first('#cart').click # go to checkout
