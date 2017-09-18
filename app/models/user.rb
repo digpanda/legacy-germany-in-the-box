@@ -8,7 +8,7 @@ class User
   strip_attributes
 
   # research system
-  search_in :id, :email, :role, :last_sign_in_at
+  search_in :id, :email, :role, :last_sign_in_at, :full_name
 
   ## Database authenticatable
   field :email,               type: String, default: ''
@@ -218,4 +218,11 @@ class User
   def short_union_id
     self&.wechat_unionid&.split(//)&.last(3)&.join.to_s
   end
+
+  # this is an alias of the decorator
+  # we use it solely to index the research
+  def full_name
+    decorate.full_name
+  end
+
 end
