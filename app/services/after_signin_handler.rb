@@ -19,9 +19,6 @@ class AfterSigninHandler
   # all param on redirection but the `code` one, it's the only case using `refresh: true`
   # we basically refresh the page or redirect to missing info page while keeping all the rest
   def solve!(refresh:false)
-
-    SlackDispatcher.new.message("AFTER SIGN IN TRIGGERED FOR USER `#{user.email}`")
-
     return root_url if handle_banished!
 
     # simple dispatch to notify any log-in

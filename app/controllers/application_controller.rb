@@ -24,7 +24,6 @@ class ApplicationController < ActionController::Base
     return if current_user
     return if params[:code]
     return unless identity_solver.wechat_browser?
-  SlackDispatcher.new.message("WE FORCE THE SILENT LOGIN FOR THIS CLIENT BECAUSE IT WAS DETECTED FROM WECHAT")
     redirect_to WechatUrlAdjuster.new(identity_solver.wechat_url).adjusted_url
   end
 
