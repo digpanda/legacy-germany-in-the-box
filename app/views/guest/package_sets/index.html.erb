@@ -16,6 +16,7 @@
 
 <div class="row">
 
+<% @package_sets.pluck(:position) %>
 <% @package_sets.order_by(position: :asc).each_with_index do |package_set, index| %>
   <%= render "guest/package_sets/index/block", :options => { :reversed => (index % 2 != 0) }, :package_set => package_set %>
 <% end %>
