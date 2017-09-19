@@ -1,9 +1,9 @@
-feature 'visits the shops', js: true  do
+feature 'visits the shops', js: true, vcr: { record: :skip }  do
 
-  before(:each) {
+  before(:each) do
     create_categories!
     FactoryGirl.create_list(:product, 20)
-  }
+  end
 
   scenario 'from the homepage' do
 

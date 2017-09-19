@@ -1,4 +1,4 @@
-feature 'language #update process', js: true  do
+feature 'language #update process', js: true, vcr: { record: :skip }  do
 
   context 'logged-in as admin' do
 
