@@ -17,6 +17,9 @@
 <div class="row">
 <% @package_sets.each_with_index do |package_set, index| %>
 
+  <% if current_user&.tester? %>
+  <div class="+red"><%= package_set.position %></div>
+  <% end %>
   <%= render "guest/package_sets/index/block", :options => { :reversed => (index % 2 != 0) }, :package_set => package_set %>
 
 <% end %>
