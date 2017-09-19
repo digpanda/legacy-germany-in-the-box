@@ -1,7 +1,6 @@
 require 'csv'
 
 class Tasks::Digpanda::RefreshShippingRates
-  XIPOST_SHIPPING_PRICE_FILE = 'shipping-prices-xipost.csv'.freeze
   BEIHAI_SHIPPING_PRICE_FILE = 'shipping-prices-beihai.csv'.freeze
   MKPOST_SHIPPING_PRICE_FILE = 'shipping-prices-mkpost.csv'.freeze
 
@@ -15,7 +14,6 @@ class Tasks::Digpanda::RefreshShippingRates
     puts 'We remove all old shipping rates'
     ShippingRate.delete_all
 
-    process!(:xipost)
     process!(:beihai)
     process!(:mkpost)
 
@@ -75,9 +73,7 @@ class Tasks::Digpanda::RefreshShippingRates
   end
 
   def csv_file(partner)
-    if partner == :xipost
-      File.join(Rails.root, 'vendor', XIPOST_SHIPPING_PRICE_FILE)
-    elsif partner == :beihai
+    if partner == :beihai
       File.join(Rails.root, 'vendor', BEIHAI_SHIPPING_PRICE_FILE)
     elsif partner == :mkpost
       File.join(Rails.root, 'vendor', MKPOST_SHIPPING_PRICE_FILE)

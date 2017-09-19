@@ -1,8 +1,6 @@
 module Helpers
   module Features
     module OnPage
-      XIPOST_BASE_URL = 'xipost.de'.freeze unless defined? XIPOST_BASE_URL
-
       module_function
 
       def on_identity_page?

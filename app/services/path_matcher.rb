@@ -12,19 +12,19 @@ class PathMatcher
 
   def include?(paths)
     paths.each do |path|
-      return true if match_location(path)
+      return true if match_location?(path)
     end
     false
   end
 
   def exclude?(paths)
     paths.each do |path|
-      return false if match_location(path)
+      return false if match_location?(path)
     end
     true
   end
 
-  def match_location(path)
+  def match_location?(path)
     location_path.index(path) == 0
   end
 

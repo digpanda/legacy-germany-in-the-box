@@ -23,7 +23,7 @@ module ArrayHelper
   end
 
   def logistic_partners
-    [['Xipost', :xipost], ['Beihai', :beihai], ['MKPost', :mkpost], ['Manual', :manual]]
+    [['Beihai', :beihai], ['MKPost', :mkpost], ['Manual', :manual]]
   end
 
   def orders_status

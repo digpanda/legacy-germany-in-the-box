@@ -57,7 +57,7 @@ class Customer::CheckoutController < ApplicationController
       redirect_to navigation.back(1)
       return
     end
-
+    
     checkout_gateway = CheckoutGateway.new(request, current_user, order, payment_gateway, identity_solver).perform
     # we process differently depending the provider we use
     # if it contains `page` we render the page

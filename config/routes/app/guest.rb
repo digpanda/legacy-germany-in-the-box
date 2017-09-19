@@ -4,10 +4,6 @@ namespace :guest do
   resource :home, controller: 'home' do
   end
 
-  resource :static, controller: 'static' do
-    get :xipost
-  end
-
   resource :pages do
     get :business_model
     get :shipping_cost

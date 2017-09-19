@@ -27,10 +27,42 @@ RSpec.configure do |config|
     5.times do |time|
       FactoryGirl.create(:shipping_rate, partner: :beihai, weight: (10 * time), price: (4 * time))
       FactoryGirl.create(:shipping_rate, partner: :mkpost, weight: (10 * time), price: (4 * time))
-      FactoryGirl.create(:shipping_rate, partner: :xipost, weight: (10 * time), price: (4 * time))
     end
     page.driver.reset!
+    VCR.turn_on!
   end
+
+  # Add VCR to all tests
+  config.around(:each) do |example|
+    options = example.metadata[:vcr] || {}
+    if options[:record] == :skip
+      # NOTE : don't touch this if you aren't 100% sure of what you do
+      # it was pretty hard to end up with something working.
+      # - Laurent
+      VCR.turn_off!(:ignore_cassettes => true)
+      example.run
+      VCR.turn_on!
+    else
+      name = example.metadata[:full_description].split(/\s+/, 2).join('/').underscore.gsub(/\./,'/').gsub(/[^\w\/]+/, '_').gsub(/\/$/, '')
+      VCR.use_cassette(name, options, &example)
+    end
+  end
+
+  # # Add VCR to all tests
+  # config.around(:each) do |example|
+  #   VCR.turn_on!
+  #   options = example.metadata || {}
+  #   if options[:vcr] == :skip
+  #     VCR.turn_off!
+  #     VCR.turned_off(&example)
+  #     page.driver.reset!
+  #     example.run
+  #   else
+  #     name = example.metadata[:full_description].split(/\s+/, 2).join('/').underscore.gsub(/\./,'/').gsub(/[^\w\/]+/, '_').gsub(/\/$/, '')
+  #     VCR.use_cassette(name, options, &example)
+  #   end
+  #   VCR.turn_off!
+  # end
 
 end
 
@@ -81,7 +113,7 @@ Capybara.ignore_hidden_elements = false
 # END POLTERGEIST
 #
 # we turn VCR off by default because we don't want to use it systematically
-VCR.turn_off!
+# VCR.turn_off!
 WebMock.allow_net_connect!
 # WebMock.disable_net_connect!
 

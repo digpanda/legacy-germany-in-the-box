@@ -46,20 +46,11 @@
         <div class="col-md-12">
           <div class="package-set-infos__products">
             <div class="row">
-
               <% @package_set.package_skus.each do |package_sku| %>
                 <div class="col-md-2 col-xs-6 package-set-infos__product">
                   <%= render partial: "guest/package_sets/show/product", :locals => { :package_sku => package_sku } %>
                 </div>
               <% end %>
-
-              <% if current_user&.tester? %>
-                <!-- QRCode to go through Wechat -->
-                <div class="col-md-2 col-xs-6 package-set-infos__product +desktop">
-                  <img src="<%= guest_package_set_qrcode_path(@package_set) %>" />
-                </div>
-                <% end %>
-
             </div>
           </div>
         </div>
@@ -92,6 +83,12 @@
               </div>
             </div>
 
+            <div class="row">
+              <div class="package-set-infos__qrcode">
+                <img src="<%= guest_package_set_qrcode_path(@package_set) %>" />
+                <p><%= I18n.t('package_set.please_scan_qrcode') %></p>
+              </div>
+            </div>
 
           </div>
         </div>

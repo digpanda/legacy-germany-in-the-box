@@ -12,6 +12,12 @@ FactoryGirl.define do
       order.order_items = build_list(:order_item, 5, product: { shop: order.shop })
     end
 
+    trait :was_bought do
+      before(:create) do |order|
+        order.status = :paid
+      end
+    end
+
     trait :with_package_set do
       after(:create) do |order|
         order.order_items.delete_all
