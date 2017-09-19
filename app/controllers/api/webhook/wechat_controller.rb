@@ -140,7 +140,7 @@ class Api::Webhook::WechatController < Api::ApplicationController
       if params[:echostr]
         slack.message "[Webhook] Our Wechat Webhook is now verified / activated (echostr `#{params[:echostr]}`)."
         devlog.info 'End of process.'
-        render text: params[:echostr]
+        render text: "#{params[:echostr]}"
         true
       else
         false

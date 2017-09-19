@@ -63,6 +63,10 @@ GEM
       io-like (~> 0.3.0)
     arel (6.0.3)
     ast (2.3.0)
+    axiom-types (0.1.1)
+      descendants_tracker (~> 0.0.4)
+      ice_nine (~> 0.11.0)
+      thread_safe (~> 0.3, >= 0.3.1)
     bcrypt (3.1.11)
     better_errors (2.1.1)
       coderay (>= 1.0.0)
@@ -75,9 +79,13 @@ GEM
     bootstrap-validator-rails (0.5.3)
       jquery-rails (>= 3.0)
       railties (>= 3.0)
+    brakeman (3.7.2)
     breadcrumbs_on_rails (2.3.1)
     bson (4.2.2)
     builder (3.2.2)
+    bullet (5.6.1)
+      activesupport (>= 3.0.0)
+      uniform_notifier (~> 1.10.0)
     business_time (0.7.6)
       activesupport (>= 3.1.0)
       tzinfo
@@ -142,7 +150,11 @@ GEM
     chronic (0.10.2)
     chunky_png (1.3.8)
     cliver (0.3.2)
+    codeclimate-engine-rb (0.4.0)
+      virtus (~> 1.0)
     coderay (1.1.1)
+    coercible (1.0.0)
+      descendants_tracker (~> 0.0.1)
     coffee-rails (4.1.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.1.x)
@@ -174,6 +186,8 @@ GEM
       mongoid-compatibility
     delocalize (1.0.0)
       rails (>= 2)
+    descendants_tracker (0.0.4)
+      thread_safe (~> 0.3, >= 0.3.1)
     devise (3.5.3)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -196,6 +210,7 @@ GEM
       rspec-rails (>= 2.8.1)
       simplecov (>= 0.3.8)
       yard (>= 0.7.0)
+    equalizer (0.0.11)
     erubis (2.7.0)
     eventmachine (1.2.0.1)
     exception_notification (4.1.4)
@@ -249,6 +264,7 @@ GEM
     http_accept_language (2.0.5)
     i18n (0.7.0)
     i18n_data (0.7.0)
+    ice_nine (0.11.2)
     io-like (0.3.0)
     ipaddress (0.8.3)
     jbuilder (2.4.1)
@@ -267,6 +283,8 @@ GEM
     jwt (1.5.1)
     keen (0.7.8)
       multi_json (~> 1.0)
+    launchy (2.4.3)
+      addressable (~> 2.3)
     less (2.6.0)
       commonjs (~> 0.2.7)
     less-rails (2.7.1)
@@ -424,6 +442,10 @@ GEM
       redis-store (~> 1.2.0)
     redis-store (1.2.0)
       redis (>= 2.2)
+    reek (4.6.1)
+      codeclimate-engine-rb (~> 0.4.0)
+      parser (>= 2.3.1.2, < 2.5)
+      rainbow (~> 2.0)
     request_store (1.3.1)
     responders (2.2.0)
       railties (>= 4.2.0, < 5.1)
@@ -460,6 +482,15 @@ GEM
     ruby-progressbar (1.8.1)
     ruby_parser (3.8.2)
       sexp_processor (~> 4.1)
+    rubycritic (3.0.0)
+      flay (~> 2.8)
+      flog (~> 4.4)
+      launchy (= 2.4.3)
+      parser (= 2.3.1.2)
+      rainbow
+      reek (~> 4.4)
+      ruby_parser (~> 3.8)
+      virtus (~> 1.0)
     rubyzip (1.2.0)
     safe_yaml (1.0.4)
     sass (3.4.22)
@@ -518,6 +549,8 @@ GEM
     thor (0.19.1)
     thread_safe (0.3.5)
     tilt (2.0.4)
+    traceroute (0.5.0)
+      rails (>= 3.0.0)
     turbolinks (2.5.3)
       coffee-rails
     turnout (2.3.1)
@@ -539,7 +572,13 @@ GEM
       execjs (>= 0.3.0, < 3)
     unicode-display_width (1.1.0)
     unicode_utils (1.4.0)
+    uniform_notifier (1.10.0)
     vcr (3.0.3)
+    virtus (1.0.5)
+      axiom-types (~> 0.1)
+      coercible (~> 1.0)
+      descendants_tracker (~> 0.0, >= 0.0.3)
+      equalizer (~> 0.0, >= 0.0.9)
     warden (1.2.6)
       rack (>= 1.0)
     webmock (2.1.0)
@@ -578,7 +617,9 @@ DEPENDENCIES
   bootstrap-datepicker-rails
   bootstrap-multiselect-rails
   bootstrap-validator-rails
+  brakeman
   breadcrumbs_on_rails
+  bullet
   business_time
   cancancan (= 1.13.1)
   capistrano
@@ -649,6 +690,7 @@ DEPENDENCIES
   rqrcode
   rspec-rails (~> 3.0)
   rubocop
+  rubycritic
   sass-rails (~> 5.0.3)
   sdoc (~> 0.4.0)
   selenium-webdriver
@@ -659,6 +701,7 @@ DEPENDENCIES
   spring-commands-rspec
   strip_attributes
   thin
+  traceroute
   turbolinks
   turnout
   twilio-ruby
