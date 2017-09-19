@@ -1,4 +1,4 @@
-feature 'package set process', js: true  do
+feature 'package set process', js: true, vcr: :skip do
 
   let(:customer) { FactoryGirl.create(:customer) }
 

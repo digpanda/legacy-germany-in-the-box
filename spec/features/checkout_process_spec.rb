@@ -1,11 +1,11 @@
-feature 'checkout process', js: true  do
+feature 'checkout process', js: true, vcr: { record: :skip }  do
 
   let(:customer) { FactoryGirl.create(:customer) }
 
   before(:each) do
     login!(customer)
   end
-  
+
   context 'with mkpost logistic partner' do
 
     let(:shop) { FactoryGirl.create(:shop, :with_payment_gateways) }
