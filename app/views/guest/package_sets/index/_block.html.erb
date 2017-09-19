@@ -8,6 +8,10 @@
   <div class="package-set-list-block">
     <a class="package-select" href="<%= guest_package_set_path(package_set) %>">
 
+      <% if current_user&.tester? %>
+      <div class="+red"><%= package_set.position %></div>
+      <% end %>
+      
       <!-- IMAGE -->
       <div class="row">
         <div class="col-xs-12">

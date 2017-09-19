@@ -46,10 +46,6 @@ class Guest::PackageSetsController < ApplicationController
 
     @package_sets = @package_sets.all
 
-    if current_user&.tester?
-      SlackDispatcher.new.message("ORDER : #{@package_sets.pluck(:position).join(', ')}")
-    end
-
     # now we manage the brand filters
     # if we are in a specific category
     # we just get the category brands
