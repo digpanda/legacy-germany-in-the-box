@@ -44,7 +44,7 @@ class Guest::PackageSetsController < ApplicationController
       return
     end
 
-    @package_sets = @package_sets.all
+    @package_sets = @package_sets.order_by(position: :asc).all
 
     # now we manage the brand filters
     # if we are in a specific category
