@@ -17,12 +17,19 @@
 <div class="row">
 
 <% if current_user&.tester? %>
-  <% SlackDispatcher.new.message(@package_sets.map(&:position)) %>
+
+  <% @package_sets.sort_by(&:position).each_with_index do |package_set, index| %>
+    <%= render "guest/package_sets/index/block", :options => { :reversed => (index % 2 != 0) }, :package_set => package_set %>
+  <% end %>
+
+<% else %>
+
+  <% @package_sets.each_with_index do |package_set, index| %>
+    <%= render "guest/package_sets/index/block", :options => { :reversed => (index % 2 != 0) }, :package_set => package_set %>
+  <% end %>
+
 <% end %>
 
-<% @package_sets.each_with_index do |package_set, index| %>
-  <%= render "guest/package_sets/index/block", :options => { :reversed => (index % 2 != 0) }, :package_set => package_set %>
-<% end %>
 </div>
 
 <div class="+small-spacer"></div>
