@@ -48,6 +48,7 @@ class WechatSilentLogin < BaseService
   private
 
     def signin!(user)
+      SlackDispatcher.new.message("SILENT SIGNIN OF USER `#{user.email}`")
       handle_after_sign_up!(user)
       sign_in(:user, user)
     end

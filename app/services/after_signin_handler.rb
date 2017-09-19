@@ -19,6 +19,9 @@ class AfterSigninHandler
   # all param on redirection but the `code` one, it's the only case using `refresh: true`
   # we basically refresh the page or redirect to missing info page while keeping all the rest
   def solve!(refresh:false)
+
+    SlackDispatcher.new.message("AFTER SIGN IN TRIGGERED FOR USER `#{user.email}`")
+
     return root_url if handle_banished!
 
     # simple dispatch to notify any log-in
@@ -39,7 +42,7 @@ class AfterSigninHandler
       # we can either refresh the current page or go back
       if refresh
         # if the user is a referrer which just logged-in and tries to go to the user menu
-        # we directly redirect him to the referrer area 
+        # we directly redirect him to the referrer area
         if user.referrer? && user_goes_to_menu?
           return without_code customer_referrer_path
         else
