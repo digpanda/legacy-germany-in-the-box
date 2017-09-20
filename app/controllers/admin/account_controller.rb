@@ -1,5 +1,6 @@
+# access to the account management from the admin dashboard
 class Admin::AccountController < ApplicationController
-  attr_accessor :user
+  attr_reader :user
 
   authorize_resource class: false
   before_action :set_user
@@ -10,39 +11,22 @@ class Admin::AccountController < ApplicationController
   end
 
   def update
-    if check_valid_password?(params) && user.update(user_params)
+    if account_manager.success?
       flash[:success] = I18n.t('notice.account_updated')
-      sign_in(user, bypass: true)
     else
-      flash[:error] = user.errors.full_messages.join(',')
+      flash[:error] = "#{account_manager.error}"
     end
+
     redirect_to navigation.back(1)
   end
 
   private
 
+    def account_manager
+      @account_manager ||= AccountManager.new(request, params, user).perform
+    end
+
     def set_user
       @user = current_user
-    end
-
-    def user_params
-      bypass_password!
-      params.require(:user).permit!
-    end
-
-    def check_valid_password?(params)
-      if user.valid_password?(params[:user][:current_password])
-        true
-      else
-        user.errors.add(:password, 'wrong')
-        false
-      end
-    end
-
-    def bypass_password!
-      if params[:user][:password].empty?
-        params[:user][:password] = params[:user][:password_confirmation] = params[:user][:current_password]
-      end
-      params[:user].delete(:current_password)
     end
 end

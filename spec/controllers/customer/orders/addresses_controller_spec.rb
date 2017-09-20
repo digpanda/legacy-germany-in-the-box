@@ -1,4 +1,4 @@
-describe Customer::Orders::AddressesController, type: :controller do
+describe Customer::Orders::AddressesController, type: :controller, vcr: { record: :skip } do
   render_views
 
   let(:current_user) { FactoryGirl.create(:customer) }
@@ -13,13 +13,9 @@ describe Customer::Orders::AddressesController, type: :controller do
     subject { get :index, order_id: order.id }
     it { is_expected.to redirect_to(new_customer_order_address_path(order)) }
 
-    context 'without selected order' do
-      # NOTE : currently not working properly
-      # this controller should be improved
-      # it do
-      #   get :index
-      #   expect(flash[:error]).not_to eq(nil)
-      # end
+    context 'without valid order' do
+      subject { get :index, order_id: 'fake-order' }
+      it { is_expected.to have_http_status(404) }
     end
 
   end
