@@ -11,5 +11,4 @@ class Tasks::Digpanda::KeenResetRegistrations
         puts "Dispatched User #{user.id} (callback: `#{callback}`)"
       end
     end
-
 end

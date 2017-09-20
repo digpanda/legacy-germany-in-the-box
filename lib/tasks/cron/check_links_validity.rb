@@ -2,7 +2,6 @@ require 'rubygems'
 require 'nokogiri'
 require 'open-uri'
 
-
 class Tasks::Cron::CheckLinksValidity
   attr_reader :links
 
@@ -27,10 +26,10 @@ class Tasks::Cron::CheckLinksValidity
 
   private
 
-  def valid?(link)
-    RestClient.get(link.raw_url)
-    true
-  rescue SocketError => exception
-    false
-  end
+    def valid?(link)
+      RestClient.get(link.raw_url)
+      true
+    rescue SocketError => exception
+      false
+    end
 end

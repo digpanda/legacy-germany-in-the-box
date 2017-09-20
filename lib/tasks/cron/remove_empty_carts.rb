@@ -18,5 +18,4 @@ class Tasks::Cron::RemoveEmptyCarts
     end
     puts 'End of process.'
   end
-
 end

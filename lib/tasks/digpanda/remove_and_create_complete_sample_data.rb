@@ -5,7 +5,6 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
   end
 
   def perform
-
     # NOTE Reset the correct migration
     # This is a manual manipulation on the database.
     # If something fails in the middle please get back the correct version from staging
@@ -13,13 +12,13 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
     db = Mongoid::Clients.default
     collection = db[:data_migrations]
     collection.find.each do |data_migration|
-      versions << data_migration["version"]
+      versions << data_migration['version']
     end
 
     #
     # We first remove absolutely everything
     #
-    puts "We purge the whole database ..."
+    puts 'We purge the whole database ...'
     Mongoid.purge!
 
     # NOTE Now we get back the previously purged
@@ -251,7 +250,6 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
     end
 
     def create_user_address(user)
-
       puts 'We create a user address'
 
       address = Address.new(
@@ -268,7 +266,6 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
       district:    '和平区',
       pid:         '11000019790225207X'
       )
-
 
       user.addresses << address
       user.save!
@@ -319,7 +316,6 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
         mobile: Faker::PhoneNumber.cell_phone,
         birth: random_date,
       )
-
     end
 
     def random_date
