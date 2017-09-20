@@ -79,7 +79,6 @@ namespace :admin do
 
   match 'orders/ongoing' => 'orders#ongoing', :via => :get
   resources :orders do
-
     patch :shipped
     patch :terminate
     resources :addresses, controller: 'orders/addresses' do

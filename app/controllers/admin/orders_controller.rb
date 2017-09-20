@@ -1,7 +1,8 @@
+# order management from the admin dashboard
 class Admin::OrdersController < ApplicationController
-  CSV_ENCODE = 'UTF-8'
+  CSV_ENCODE = 'UTF-8'.freeze
 
-  attr_accessor :order, :orders
+  attr_reader :order, :orders
 
   authorize_resource class: false
   before_action :set_order, except: [:index, :ongoing]
@@ -13,21 +14,21 @@ class Admin::OrdersController < ApplicationController
   before_action :breadcrumb_admin_order, only: [:show]
 
   def index
+    @orders = Order.nonempty.order_by(paid_at: :desc, c_at: :desc)
     respond_to do |format|
       format.html do
-        @orders = Order.nonempty.order_by(paid_at: :desc, c_at: :desc).full_text_search(params[:query], match: :all, allow_empty_search: true).paginate(page: current_page, per_page: 10)
+        @orders = orders.full_text_search(params[:query])
+                        .paginate(page: current_page, per_page: 10)
       end
       format.csv do
-        @orders = Order.nonempty.order_by(paid_at: :desc, c_at: :desc)
-        render text: OrdersFormatter.new(orders).to_csv.encode(CSV_ENCODE),
-               type: "text/csv; charset=#{CSV_ENCODE}; header=present",
-               disposition: 'attachment'
+        render_csv
       end
     end
   end
 
   def ongoing
-    @orders = Order.ongoing.full_text_search(params[:query], match: :all, allow_empty_search: true).paginate(page: current_page, per_page: 10)
+    @orders = Order.ongoing.full_text_search(params[:query])
+                           .paginate(page: current_page, per_page: 10)
   end
 
   def show
@@ -49,16 +50,12 @@ class Admin::OrdersController < ApplicationController
   end
 
   def shipped
-    unless order.shippable?
+    if order.shippable?
+      ship_order
+      flash[:success] = 'Order is considered shipped and SMS was triggered.'
+    else
       flash[:error] = 'Order is not shippable.'
-      redirect_to navigation.back(1)
-      return
     end
-
-    order.status = :shipped
-    order.save
-    Notifier::Customer.new(order.user).order_has_been_shipped(order)
-    flash[:success] = 'Order is considered shipped and SMS was triggered.'
     redirect_to navigation.back(1)
   end
 
@@ -73,12 +70,27 @@ class Admin::OrdersController < ApplicationController
 
   private
 
+    def ship_order
+      order.update(status: :shipped)
+      Notifier::Customer.new(order.user).order_has_been_shipped(order)
+    end
+
+    def render_csv
+      render text: orders_in_csv,
+             type: "text/csv; charset=#{CSV_ENCODE}; header=present",
+             disposition: 'attachment'
+    end
+
+    def orders_in_csv
+      @orders_in_csv ||= OrdersFormatter.new(orders).to_csv.encode(CSV_ENCODE)
+    end
+
     def set_order
       @order = Order.find(params[:id] || params[:order_id])
     end
 
     def set_order_tracking
-      @order_tracking = OrderTracking.where(order: order).first || OrderTracking.create(order: order)
+      @order_tracking = OrderTracking.first_or_create(order: order)
     end
 
     def order_params
