@@ -6,7 +6,7 @@ class WeixinApiJsConfig < BaseService
     @ticket = ticket
   end
 
-  def resolve!
+  def resolve
     return return_with(:error, signature_gateway.error) unless signature_gateway.success?
     return_with(:success, config)
   end
@@ -37,7 +37,7 @@ class WeixinApiJsConfig < BaseService
   end
 
   def signature_gateway
-     @signature_gateway ||= WeixinApiSignature.new(request: request, ticket: ticket, nonce_str: nonce_str, timestamp: timestamp).resolve!
+     @signature_gateway ||= WeixinApiSignature.new(request: request, ticket: ticket, nonce_str: nonce_str, timestamp: timestamp).resolve
   end
 
   def js_api_list

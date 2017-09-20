@@ -1,6 +1,6 @@
 describe WechatApiConnectSolver  do
 
-  context '#resolve!' do
+  context '#resolve' do
 
     subject(:wechat_api_connect_solver) { WechatApiConnectSolver.new('fake-code') }
 
@@ -20,7 +20,7 @@ describe WechatApiConnectSolver  do
         'sex'        => 'f'
       )
 
-      resolved = wechat_api_connect_solver.resolve!
+      resolved = wechat_api_connect_solver.resolve
       expect(resolved.success?).to eq(true)
       expect(resolved.data[:customer]).to be_a(User)
 
@@ -44,7 +44,7 @@ describe WechatApiConnectSolver  do
         'sex'        => 'f'
       )
 
-      resolved = wechat_api_connect_solver.resolve!
+      resolved = wechat_api_connect_solver.resolve
       expect(resolved.success?).to eq(true)
       expect(resolved.data[:customer]).to be_a(User)
 
@@ -68,7 +68,7 @@ describe WechatApiConnectSolver  do
         'sex'        => 'f'
       )
 
-      resolved = wechat_api_connect_solver.resolve!
+      resolved = wechat_api_connect_solver.resolve
       expect(resolved.success?).to eq(false)
 
     end
@@ -79,7 +79,7 @@ describe WechatApiConnectSolver  do
         'errcode' => '289'
       )
 
-      resolved = wechat_api_connect_solver.resolve!
+      resolved = wechat_api_connect_solver.resolve
       expect(resolved.success?).to eq(false)
 
     end

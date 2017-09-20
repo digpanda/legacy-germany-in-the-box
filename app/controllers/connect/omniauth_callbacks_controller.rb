@@ -20,7 +20,7 @@ class Connect::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   # the same system than the global one
   def referrer
     if params[:code]
-      wechat_api_connect_solver = WechatApiConnectSolver.new(params[:code]).resolve!
+      wechat_api_connect_solver = WechatApiConnectSolver.new(params[:code]).resolve
 
       # this is taken from application controller
       if wechat_api_connect_solver.success?
@@ -56,12 +56,12 @@ class Connect::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
     def handle_after_sign_up!(user)
       if user.freshly_created?
-        AfterSignupHandler.new(request, user).solve!
+        AfterSignupHandler.new(request, user).solve
       end
     end
 
     def wechat_user_solver
-      @wechat_user_solver ||= WechatUserSolver.new(wechat_data).resolve!
+      @wechat_user_solver ||= WechatUserSolver.new(wechat_data).resolve
     end
 
     def wechat_data

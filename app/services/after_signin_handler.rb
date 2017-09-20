@@ -4,12 +4,11 @@ class AfterSigninHandler
 
   include Rails.application.routes.url_helpers
 
-  attr_reader :request, :navigation, :session, :user, :cart_manager
+  attr_reader :request, :navigation, :user, :cart_manager
 
   def initialize(request, navigation, user, cart_manager)
     @request = request
     @navigation = navigation
-    @session = request.session
     @user = user
     @cart_manager = cart_manager
   end
@@ -18,58 +17,26 @@ class AfterSigninHandler
   # one of the point is WeChat silent login which should keep
   # all param on redirection but the `code` one, it's the only case using `refresh: true`
   # we basically refresh the page or redirect to missing info page while keeping all the rest
-  def solve!(refresh:false)
-    return root_url if handle_banished!
+  def solve(refresh: false)
+    return root_url if banished?
 
     # simple dispatch to notify any log-in
-    handle_slack!
+    handle_slack
 
     if user.customer?
-      force_chinese!
-      handle_referrer_binding!
-      handle_precreated!
-      handle_past_orders!
-      handle_event!
-      return without_code missing_info_customer_account_path(kept_params) if user.missing_info?
-      return navigation.force! if navigation.force?
-
-
-      # NOTE : we remove the code param from the redirect URL
-      # because if the user comes from WeChat that would make an infinite loop
-      # we can either refresh the current page or go back
-      if refresh
-        # if the user is a referrer which just logged-in and tries to go to the user menu
-        # we directly redirect him to the referrer area
-        if user.referrer? && user_goes_to_menu?
-          return without_code customer_referrer_path
-        else
-          return without_code request.url
-        end
-      else
-        # if the user is a referrer and connected via QRCode given to him
-        # we will force him into his QRCode area
-        if user.referrer?
-          return without_code customer_referrer_path
-        else
-          return without_code navigation.back(1, identity_solver.landing_solver.recover)
-        end
-      end
+      return as_customer
     end
 
     # if the person is not a customer
     # he doesn't need any order.
-    remove_all_orders!
+    remove_all_orders
 
     if user.shopkeeper?
-      force_german!
-      return shopkeeper_orders_path if user.shop&.agb
-      return navigation.force! if navigation.force?
-      return shopkeeper_settings_path
+      return as_shopkeeper
     end
 
     if user.admin?
-      return navigation.force! if navigation.force?
-      return admin_home_path
+      return as_admin
     end
   end
 
@@ -82,6 +49,50 @@ class AfterSigninHandler
 
   private
 
+  def as_admin
+    return navigation.force! if navigation.force?
+    admin_home_path
+  end
+
+  def as_shopkeeper
+    force_german
+    return shopkeeper_orders_path if user.shop&.agb
+    return navigation.force! if navigation.force?
+    shopkeeper_settings_path
+  end
+
+  def as_customer
+    force_chinese
+    handle_referrer_binding
+    handle_precreated
+    handle_past_orders
+    handle_event
+    return without_code missing_info_customer_account_path(kept_params) if user.missing_info?
+    return navigation.force! if navigation.force?
+
+
+    # NOTE : we remove the code param from the redirect URL
+    # because if the user comes from WeChat that would make an infinite loop
+    # we can either refresh the current page or go back
+    if refresh
+      # if the user is a referrer which just logged-in and tries to go to the user menu
+      # we directly redirect him to the referrer area
+      if user.referrer? && user_goes_to_menu?
+        return without_code customer_referrer_path
+      else
+        return without_code request.url
+      end
+    else
+      # if the user is a referrer and connected via QRCode given to him
+      # we will force him into his QRCode area
+      if user.referrer?
+        return without_code customer_referrer_path
+      else
+        return without_code navigation.back(1, identity_solver.landing_solver.recover)
+      end
+    end
+  end
+
   def user_goes_to_menu?
     PathMatcher.new(request).match_location? menu_customer_account_path
   end
@@ -92,15 +103,15 @@ class AfterSigninHandler
     @identity_solver ||= IdentitySolver.new(request, user)
   end
 
-  def handle_slack!
+  def handle_slack
     SlackDispatcher.new.login(user)
   end
 
-  def handle_event!
+  def handle_event
     EventDispatcher.new.customer_signed_in(user).with_geo(ip: request.remote_ip).dispatch!
   end
 
-  def handle_banished!
+  def banished?
     if user.banished
       session.clear
       return true
@@ -108,7 +119,7 @@ class AfterSigninHandler
     false
   end
 
-  def handle_referrer_binding!
+  def handle_referrer_binding
     if request.params[:reference_id]
       referrer = Referrer.where(reference_id: request.params[:reference_id]).first
       ReferrerBinding.new(referrer).bind(user) if referrer
@@ -122,7 +133,7 @@ class AfterSigninHandler
     uri.to_s
   end
 
-  def handle_precreated!
+  def handle_precreated
     if user.precreated
       user.precreated = false
       user.save
@@ -133,12 +144,12 @@ class AfterSigninHandler
   # NOTE : normally it shouldn't happen in the normal behaviour
   # but it appeared sometimes for some unknown reason
   # and made people blow up on sign-in
-  def handle_past_orders!
-    remove_all_empty_orders!
-    remove_timeout_orders!
+  def handle_past_orders
+    remove_all_empty_orders
+    remove_timeout_orders
   end
 
-  def remove_timeout_orders!
+  def remove_timeout_orders
     user.cart&.orders&.each do |order|
       if !order.bought? && order.timeout?
         order.cart_id = nil
@@ -149,14 +160,14 @@ class AfterSigninHandler
     end
   end
 
-  def remove_all_orders!
+  def remove_all_orders
     user.orders.each do |order|
       order.order_items.delete_all
       order.delete
     end
   end
 
-  def remove_all_empty_orders!
+  def remove_all_empty_orders
     user.orders.each do |order|
       # TODO : detection of paid orders should be way improved
       unless order.order_payments.first
@@ -167,14 +178,18 @@ class AfterSigninHandler
     end
   end
 
-  def force_chinese!
+  def force_chinese
     session[:locale] = :'zh-CN'
     I18n.locale = session[:locale]
   end
 
-  def force_german!
+  def force_german
     session[:locale] = :de
     I18n.locale = session[:locale]
+  end
+
+  def session
+    request.session
   end
 
 end

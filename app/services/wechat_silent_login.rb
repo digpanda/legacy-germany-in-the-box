@@ -41,7 +41,7 @@ class WechatSilentLogin < BaseService
   # but remove the code params
   def redirect(*args)
     if wechat_api_connect_solver.success?
-      after_signin_handler.solve!(*args)
+      after_signin_handler.solve(*args)
     end
   end
 
@@ -58,12 +58,12 @@ class WechatSilentLogin < BaseService
 
     def handle_after_sign_up!(user)
       if user.freshly_created?
-        AfterSignupHandler.new(request, user).solve!
+        AfterSignupHandler.new(request, user).solve
       end
     end
 
     def wechat_api_connect_solver
-      @wechat_api_connect_solver ||= WechatApiConnectSolver.new(code).resolve!
+      @wechat_api_connect_solver ||= WechatApiConnectSolver.new(code).resolve
     end
 
     def after_signin_handler

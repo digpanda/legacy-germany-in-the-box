@@ -5,7 +5,7 @@ class WeixinApiUserInfo < BaseService
     @openid = openid
   end
 
-  def resolve!
+  def resolve
     return return_with(:error, access_token_gateway.error) unless access_token_gateway.success?
     return return_with(:error, user_info_gateway['errmsg']) if user_info_gateway['errcode']
     return_with(:success, user_info: user_info_gateway)
@@ -22,7 +22,7 @@ class WeixinApiUserInfo < BaseService
   end
 
   def access_token_gateway
-    @access_token_gateway ||= WeixinApiAccessToken.new.resolve!
+    @access_token_gateway ||= WeixinApiAccessToken.new.resolve
   end
 
   def access_token

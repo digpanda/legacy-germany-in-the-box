@@ -6,7 +6,7 @@ class WechatApiConnectSolver < BaseService
     @code = code
   end
 
-  def resolve!
+  def resolve
     if connect_user.success?
       return_with(:success, customer: connect_user.data[:customer])
     else
@@ -47,7 +47,7 @@ class WechatApiConnectSolver < BaseService
   private
 
   def wechat_user_solver
-    @wechat_user_solver ||= WechatUserSolver.new(wechat_data).resolve!
+    @wechat_user_solver ||= WechatUserSolver.new(wechat_data).resolve
   end
 
   def wechat_data

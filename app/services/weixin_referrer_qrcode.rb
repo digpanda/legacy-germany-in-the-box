@@ -9,7 +9,7 @@ class WeixinReferrerQrcode < BaseService
     @referrer = referrer
   end
 
-  def resolve!
+  def resolve
     if already_stored?
       return_with(:success, local_file: local_file, remote_call: false)
     else

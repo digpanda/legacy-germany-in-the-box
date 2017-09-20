@@ -10,7 +10,7 @@ describe Api::Webhook::WechatController, type: :controller do
     scenario 'confirm a qrcode scan and bind the user with the referrer' do
 
       # we fake the whole WeChatUserSolver and API call
-      allow_any_instance_of(WechatUserSolver).to receive(:resolve!).and_return(service_success(customer: user))
+      allow_any_instance_of(WechatUserSolver).to receive(:resolve).and_return(service_success(customer: user))
 
       post :create, wechat_valid_qrcode_scan_params(referrer).to_xml(root: :xml, skip_types: true)
       expect(response.body).to eq('success') # for now the system answers with that

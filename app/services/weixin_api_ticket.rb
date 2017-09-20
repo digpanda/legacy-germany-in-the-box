@@ -5,7 +5,7 @@ class WeixinApiTicket < BaseService
     @type = type
   end
 
-  def resolve!
+  def resolve
     return return_with(:error, access_token_gateway.error) unless access_token_gateway.success?
     return return_with(:error, ticket_gateway['errmsg']) unless success?
     return_with(:success, ticket: ticket)
@@ -30,7 +30,7 @@ class WeixinApiTicket < BaseService
   end
 
   def access_token_gateway
-    @access_token_gateway ||= WeixinApiAccessToken.new.resolve!
+    @access_token_gateway ||= WeixinApiAccessToken.new.resolve
   end
 
   def access_token

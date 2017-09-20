@@ -1,6 +1,6 @@
 describe WeixinApiUserInfo do
 
-  context '#resolve!' do
+  context '#resolve' do
 
     subject(:subject) { described_class.new('random-openid') }
 
@@ -12,7 +12,7 @@ describe WeixinApiUserInfo do
 
       allow_any_instance_of(described_class).to receive(:user_info_gateway).and_return('info': 'some stuff')
 
-      resolved = subject.resolve!
+      resolved = subject.resolve
       expect(resolved.success?).to eq(true)
       expect(resolved.data[:user_info]).to eq('info': 'some stuff')
 
@@ -29,7 +29,7 @@ describe WeixinApiUserInfo do
         'errmsg' => 'random error'
       )
 
-      resolved = subject.resolve!
+      resolved = subject.resolve
       expect(resolved.success?).to eq(false)
       expect(resolved.error).to eq('random error')
 

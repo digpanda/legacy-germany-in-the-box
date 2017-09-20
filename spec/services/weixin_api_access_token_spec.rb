@@ -1,6 +1,6 @@
 describe WeixinApiAccessToken  do
 
-  context '#resolve!' do
+  context '#resolve' do
 
     subject(:subject) { described_class.new }
 
@@ -10,7 +10,7 @@ describe WeixinApiAccessToken  do
         'access_token' => 'test-access-token'
       )
 
-      resolved = subject.resolve!
+      resolved = subject.resolve
       expect(resolved.success?).to eq(true)
       expect(resolved.data[:access_token]).to eq('test-access-token')
 
@@ -24,7 +24,7 @@ describe WeixinApiAccessToken  do
         'errmsg' => 'random error'
       )
 
-      resolved = subject.resolve!
+      resolved = subject.resolve
       expect(resolved.success?).to eq(false)
       expect(resolved.error).to eq('random error')
 

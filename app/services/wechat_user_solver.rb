@@ -17,7 +17,7 @@ class WechatUserSolver < BaseService
   # we will resolve the wechat connection
   # we try to recover the customer matching the data
   # or create a new one with the wechat informations
-  def resolve!
+  def resolve
     ensure_unionid!
     if customer.persisted?
       ensure_avatar!
@@ -41,7 +41,7 @@ class WechatUserSolver < BaseService
 
   def ensure_unionid!
     if openid && !unionid
-      user_info = WeixinApiUserInfo.new(openid).resolve!
+      user_info = WeixinApiUserInfo.new(openid).resolve
       if user_info.success?
         @unionid = user_info.data[:user_info]['unionid']
         slack.message "WechatUserSolver `unionid` recovered by API `#{unionid}`"

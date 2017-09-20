@@ -8,7 +8,7 @@ class WeixinApiSignature < BaseService
     @timestamp = timestamp
   end
 
-  def resolve!
+  def resolve
     return_with(:success, signature: signature)
   end
 

@@ -6,7 +6,7 @@ class WeixinApiAccessToken < BaseService
     @secret = secret || Rails.application.config.wechat[:password_mobile]
   end
 
-  def resolve!
+  def resolve
     return return_with(:error, gateway['errmsg']) unless success?
     return_with(:success, access_token: access_token)
   end

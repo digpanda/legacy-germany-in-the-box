@@ -41,9 +41,9 @@ class ApplicationController < ActionController::Base
 
   def activate_weixin_js_config
     @weixin_js_config ||= begin
-      ticket = WeixinTicket.new(cache_scope: request.host).resolve!
+      ticket = WeixinTicket.new(cache_scope: request.host).resolve
       return false unless ticket.success?
-      js_config = WeixinApiJsConfig.new(request: request, ticket: ticket.data[:ticket]).resolve!
+      js_config = WeixinApiJsConfig.new(request: request, ticket: ticket.data[:ticket]).resolve
       return false unless js_config.success?
       js_config.data
     end

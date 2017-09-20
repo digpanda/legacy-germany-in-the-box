@@ -5,7 +5,7 @@ class WeixinTicket < BaseService
     @cache_scope = cache_scope
   end
 
-  def resolve!
+  def resolve
     return return_with(:error, "Cannot resolve ticket.") unless cached_ticket
     return_with(:success, ticket: cached_ticket.ticket)
   end
@@ -27,6 +27,6 @@ class WeixinTicket < BaseService
   end
 
   def weixin_api_ticket
-    @weixin_api_tickrt ||= WeixinApiTicket.new.resolve!
+    @weixin_api_tickrt ||= WeixinApiTicket.new.resolve
   end
 end

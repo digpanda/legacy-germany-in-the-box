@@ -1,6 +1,6 @@
 describe WeixinApiJsConfig  do
 
-  context '#resolve!' do
+  context '#resolve' do
 
     subject(:subject) { described_class.new(request: request, ticket: ticket) }
     let(:request) { double('request', original_url: 'http://test.com', session: {}, params: {}) }
@@ -12,7 +12,7 @@ describe WeixinApiJsConfig  do
         'random signature'
       )
 
-      resolved = subject.resolve!
+      resolved = subject.resolve
       expect(resolved.success?).to eq(true)
       expect(resolved.data).to include(:app_id, :timestamp, :nonce_str, :signature, :js_api_list)
 
@@ -24,7 +24,7 @@ describe WeixinApiJsConfig  do
         BaseService.new.return_with(:error, 'random error')
       )
 
-      resolved = subject.resolve!
+      resolved = subject.resolve
       expect(resolved.success?).to eq(false)
       expect(resolved.error).to eq('random error')
 
