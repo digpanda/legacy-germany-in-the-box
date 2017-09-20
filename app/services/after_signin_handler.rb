@@ -1,7 +1,8 @@
 require 'addressable/uri'
 
+# after someone successfully sign-in a set of process will be initialized
+# this class handles all of them.
 class AfterSigninHandler
-
   include Rails.application.routes.url_helpers
 
   attr_reader :request, :navigation, :user, :cart_manager
@@ -24,7 +25,7 @@ class AfterSigninHandler
     handle_slack
 
     if user.customer?
-      return as_customer
+      return as_customer(refresh)
     end
 
     # if the person is not a customer
@@ -61,7 +62,7 @@ class AfterSigninHandler
     shopkeeper_settings_path
   end
 
-  def as_customer
+  def as_customer(refresh)
     force_chinese
     handle_referrer_binding
     handle_precreated
