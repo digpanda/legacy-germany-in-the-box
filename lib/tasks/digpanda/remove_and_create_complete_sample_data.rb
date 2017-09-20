@@ -372,7 +372,7 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
       OrderMaker.new(nil, order).sku(sku).refresh!(1)
 
       order_payment = fake_successful_order_payment(order: order)
-      order.refresh_status_from!(order_payment)
+      order.refresh_status_from(order_payment)
     end
 
     def fake_successful_order_payment(order: nil)

@@ -9,7 +9,6 @@ class Order
   # end_price makes issues on the tests
   search_in :id, :status, :nickname, :u_at, :total_paid, :user => :id, :order_tracking => [:state, :delivery_id]
 
-  UNPROCESSABLE_TIME = [11,12] # 11am to 12am -> German Hour
   BOUGHT_OR_CANCELLED = [:paid, :shipped, :terminated, :cancelled]
   BOUGHT_OR_UNVERIFIED = [:payment_unverified, :paid, :shipped, :terminated]
 
@@ -101,12 +100,12 @@ class Order
 
   summarizes sku_list: :order_items, by: :quantity
 
-  after_save :make_bill_id, :update_paid_at, :update_cancelled_at, :refresh_referrer_provision!
+  after_save :make_bill_id, :update_paid_at, :update_cancelled_at, :refresh_referrer_provision
 
   # refresh order status from payment
   # if the order is still not send / paid, it checks
   # if there's any change from the payment model
-  def refresh_status_from!(order_payment)
+  def refresh_status_from(order_payment)
     unless bought_or_cancelled?
       if order_payment.status == :success
         self.status = :paid
@@ -125,7 +124,7 @@ class Order
     coupon_discount / total_price_with_taxes * 100
   end
 
-  def refresh_referrer_provision!
+  def refresh_referrer_provision
     ProvisionHandler.new(self).refresh!
   end
 
@@ -223,7 +222,7 @@ class Order
   end
 
   def processable?
-    status == :paid && processable_time?
+    status == :paid
   end
 
   def terminated?
@@ -232,10 +231,6 @@ class Order
 
   def cancellable?
     status != :cancelled && status != :unverified && status != :terminated
-  end
-
-  def processable_time?
-    Time.now.utc.in_time_zone("Berlin").strftime("%k").to_i < UNPROCESSABLE_TIME.first || Time.now.utc.in_time_zone("Berlin").strftime("%k").to_i >= UNPROCESSABLE_TIME.last
   end
 
   def shippable?
@@ -257,16 +252,6 @@ class Order
 
   def destroyable?
     order_items.count == 0 && order_payments.count == 0
-  end
-
-  def reach_todays_limit?(new_price_increase, new_quantity_increase)
-    if order_items.size == 0 && new_quantity_increase == 1
-      false
-    elsif order_items.size == 1 && new_quantity_increase == 0
-      false
-    else
-      (total_price.in_euro.to_yuan(exchange_rate: self.exchange_rate).amount + new_price_increase) > Setting.instance.max_total_per_day
-    end
   end
 
   def remove_coupon(identity_solver)

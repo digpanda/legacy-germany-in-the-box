@@ -36,14 +36,14 @@ class CheckoutCallback < BaseService
     unless wechatpay_success?
       order_payment.status = :failed
       order_payment.save
-      order_payment.order.refresh_status_from!(order_payment)
+      order_payment.order.refresh_status_from(order_payment)
       slack.message "[Error] checkout callback `#{I18n.t('payment.failed')}`"
       return return_with(:error, I18n.t('payment.failed'))
     end
 
     order_payment.status = :success
     order_payment.save
-    order_payment.order.refresh_status_from!(order_payment)
+    order_payment.order.refresh_status_from(order_payment)
 
     manage_stocks!(order_payment.order)
     dispatch_notifications!(order_payment)
@@ -69,7 +69,7 @@ class CheckoutCallback < BaseService
     unless alipay_success?(mode)
       order_payment.status = :failed
       order_payment.save
-      order_payment.order.refresh_status_from!(order_payment)
+      order_payment.order.refresh_status_from(order_payment)
       slack.message "[Error] checkout callback #{I18n.t('payment.failed')}", url: admin_order_payment_url(order_payment)
       return return_with(:error, I18n.t('payment.failed'))
     end
@@ -80,14 +80,14 @@ class CheckoutCallback < BaseService
       # about the validity of those data
       order_payment.status = :unverified
       order_payment.save
-      order_payment.order.refresh_status_from!(order_payment)
+      order_payment.order.refresh_status_from(order_payment)
 
     elsif mode == :safe
 
       # The status is success and the communication is safe
       order_payment.status = :success
       order_payment.save
-      order_payment.order.refresh_status_from!(order_payment)
+      order_payment.order.refresh_status_from(order_payment)
 
       manage_stocks!(order_payment.order)
       dispatch_notifications!(order_payment)

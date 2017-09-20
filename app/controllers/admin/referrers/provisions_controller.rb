@@ -13,7 +13,7 @@ class Admin::Referrers::ProvisionsController < ApplicationController
 
   def refresh
     # NOTE : this should be put somewhere else, like in a library
-    provision.order.refresh_referrer_provision!
+    provision.order.refresh_referrer_provision
     flash[:success] = 'The provision was manually refreshed.'
     redirect_to navigation.back(1)
   end

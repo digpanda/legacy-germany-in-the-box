@@ -67,14 +67,14 @@ module Helpers
       def mock_payment_success!(order_payment)
         order_payment.status = :success
         order_payment.transaction_type = :purchase
-        order_payment.order.refresh_status_from!(order_payment)
+        order_payment.order.refresh_status_from(order_payment)
         order_payment.save
       end
 
       def mock_payment_failure!(order_payment)
         order_payment.status = :failed
         order_payment.transaction_type = :purchase
-        order_payment.order.refresh_status_from!(order_payment)
+        order_payment.order.refresh_status_from(order_payment)
         order_payment.save
       end
 
