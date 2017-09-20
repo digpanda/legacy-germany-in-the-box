@@ -39,11 +39,11 @@ RSpec.configure do |config|
       # NOTE : don't touch this if you aren't 100% sure of what you do
       # it was pretty hard to end up with something working.
       # - Laurent
-      VCR.turn_off!(:ignore_cassettes => true)
+      VCR.turn_off!(ignore_cassettes: true)
       example.run
       VCR.turn_on!
     else
-      name = example.metadata[:full_description].split(/\s+/, 2).join('/').underscore.gsub(/\./,'/').gsub(/[^\w\/]+/, '_').gsub(/\/$/, '')
+      name = example.metadata[:full_description].split(/\s+/, 2).join('/').underscore.gsub(/\./, '/').gsub(/[^\w\/]+/, '_').gsub(/\/$/, '')
       VCR.use_cassette(name, options, &example)
     end
   end

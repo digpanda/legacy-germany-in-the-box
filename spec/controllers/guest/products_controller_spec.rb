@@ -6,12 +6,12 @@ describe Guest::ProductsController, type: :controller do
 
   describe '#show' do
 
-    context "as a guest" do
+    context 'as a guest' do
       subject { get :show, id: product.id }
       it { is_expected.to have_http_status(200) }
     end
 
-    context "as an admin" do
+    context 'as an admin' do
 
       before(:each) do
         login_admin current_user

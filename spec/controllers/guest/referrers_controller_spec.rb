@@ -1,6 +1,6 @@
 describe Guest::ReferrersController, type: :controller do
   render_views
-  
+
   let(:referrer) { FactoryGirl.create(:customer, :with_referrer).referrer }
 
   describe '#qrcode' do
