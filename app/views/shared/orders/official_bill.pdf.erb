@@ -167,8 +167,6 @@
   </tbody>
 </table> -->
 
-<br />
-
 <% if @order.discount? %>
 
   <table style="text-align:left;width:100%;border-color:black;border-width:1px;border-style:solid;">
@@ -199,11 +197,15 @@
     </tbody>
   </table>
 
-  <br />
+<br />
 
 <% end %>
 
+<div style="text-align:right;float:right;">
+  <strong>MwSt. ist befreit.</strong>
+</div>
 
+<br />
 <br /><br />
 
 <div style="width:450px;float:right;text-align:right;">
@@ -211,7 +213,7 @@
 <strong>Rechnungsbetrag (EUR)
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<%= @order.decorate.end_price.in_euro.display_formal %>
+<%= (@order.total_price - @order.coupon_discount).in_euro.display_formal %>
 </strong>
 </div>
 <div style="clear:both;"></div>
