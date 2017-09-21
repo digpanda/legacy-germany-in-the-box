@@ -204,8 +204,12 @@
 
 <br /><br />
 
-<div style="width:400px;float:right">
+<div style="width:400px;float:right;text-align:right;">
 <strong>====================================================</strong><br />
-<strong>Rechnungsbetrag (EUR)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= @order.decorate.end_price.in_euro.display %></strong>
+<strong>Rechnungsbetrag (EUR)
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<%= @order.decorate.end_price.in_euro.display %>
+</strong>
 </div>
 <div style="clear:both;"></div>
