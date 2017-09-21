@@ -83,13 +83,13 @@
         <%= order_item.product.name_translations[:de] %> (<%= order_item.selected_options(:de).join(', ') %>)
       </td>
       <td>
-        <%= order_item.price_per_unit.in_euro.display %>
+        <%= order_item.price_per_unit.in_euro.display_formal %>
       </td>
       <td align="center">
         <%= order_item.quantity %>
       </td>
       <td style="text-align:right;">
-        <%= (order_item.price_per_unit * order_item.quantity).in_euro.display %>
+        <%= (order_item.price_per_unit * order_item.quantity).in_euro.display_formal %>
       </td>
     </tr>
     <% end %>
@@ -104,7 +104,7 @@
       Gesamt Produktpreis
       </td>
       <td style="text-align:right;">
-      <%= @order.total_price.in_euro.display %>
+      <%= @order.total_price.in_euro.display_formal %>
       </td>
     </tr>
   </tbody>
@@ -193,7 +193,7 @@
           Rabatt <%= @order.coupon.code %> <%= @order.coupon.decorate.discount_display %>
         </td>
         <td style="text-align:right;">
-          - <%= @order.coupon_discount.in_euro.display %>
+          - <%= @order.coupon_discount.in_euro.display_formal %>
         </td>
       </tr>
     </tbody>
@@ -211,7 +211,7 @@
 <strong>Rechnungsbetrag (EUR)
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<%= @order.decorate.end_price.in_euro.display %>
+<%= @order.decorate.end_price.in_euro.display_formal %>
 </strong>
 </div>
 <div style="clear:both;"></div>

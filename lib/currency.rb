@@ -1,6 +1,7 @@
 # small library to manage better the currencies by Laurent
 # it's not worth what's around but it matches perfectly our current system
 class Currency
+  include ActionView::Helpers::NumberHelper
   attr_reader :amount, :currency
 
   def initialize(amount, currency = 'EUR')
@@ -22,6 +23,10 @@ class Currency
 
   def display
     "#{current_symbol}%.2f" % amount
+  end
+
+  def display_formal
+    number_to_currency(amount, {:unit => current_symbol, :separator => ',', :delimiter => '', :precision => 2})
   end
 
   def display_raw
