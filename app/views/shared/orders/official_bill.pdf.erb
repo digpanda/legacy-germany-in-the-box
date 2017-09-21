@@ -5,8 +5,9 @@
 <div style="float:left;width:65%">
   <% if @order.billing_address %>
 
-    <%= @order.billing_address.decorate.full_name %><br />
-
+    Customer: <%= @order.billing_address.decorate.full_name %><br />
+    <br />
+    Address:<br />
     <%= @order.billing_address.district %>
     <%= @order.billing_address.street %>
     <%= @order.billing_address.number %>
@@ -46,7 +47,7 @@
 <br />
 <br />
 
-<h3 style="margin-bottom:0em;">&nbsp;&nbsp;&nbsp;Rechnung</h3>
+<h3 style="padding-left:0em;margin-left:-0.8em;margin-bottom:0em;">&nbsp;&nbsp;&nbsp;Rechnung</h3>
 <strong>Rechnung Nr.: <%= @order.bill_id %></strong>
 
 <br />
@@ -111,7 +112,8 @@
 
 <br />
 
-<table style="text-align:left;width:100%;border-color:black;border-width:1px;border-style:solid;">
+<!-- NOTE : this was removed since they do not want it to appear on the official bill -->
+<!-- <table style="text-align:left;width:100%;border-color:black;border-width:1px;border-style:solid;">
   <thead>
     <tr>
       <th>
@@ -163,7 +165,7 @@
     </tr>
 
   </tbody>
-</table>
+</table> -->
 
 <br />
 
@@ -207,7 +209,7 @@
 <div style="width:400px;float:right;text-align:right;">
 <strong>====================================================</strong><br />
 <strong>Rechnungsbetrag (EUR)
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <%= @order.decorate.end_price.in_euro.display %>
 </strong>
