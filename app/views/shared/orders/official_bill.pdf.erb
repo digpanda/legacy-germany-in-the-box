@@ -1,0 +1,248 @@
+<br />
+<br />
+<br />
+
+<div style="float:left;width:60%">
+  <% if @order.billing_address %>
+
+    <%= @order.billing_address.decorate.full_name %><br />
+
+    <%= @order.billing_address.district %>
+    <%= @order.billing_address.street %>
+    <%= @order.billing_address.number %>
+    <%= @order.billing_address.additional %>
+    <br />
+    <%= @order.billing_address.zip %>
+    <%= @order.billing_address.city %>,
+    <%= @order.billing_address.province %>,
+    <%= @order.billing_address.country %>
+
+  <% end %>
+</div>
+
+<div style="float:right;width:40%">
+  DigPanda GmbH<br />
+  Deutsche Bank<br />
+  IBAN: DE50 7007 0024 5520 00<br />
+  BIC: DEUTDEDBMUC<br />
+  Ihre Ansprechpartnerin<br />
+  Frau Ye<br />
+  Tel: 089 2193 4711
+</div>
+
+<div style="clear:both;"></div>
+
+<div style="width:20%;float:right">
+  <% if @order.paid_at %>
+    Datum: <%= @order.paid_at.utc.strftime("%Y-%m-%d") %><br />
+  <% end %>
+</div>
+
+<div style="clear:both;"></div>
+
+<br />
+<br />
+
+<h3 style="margin-bottom:0em;">&nbsp;&nbsp;&nbsp;Rechnung</h3>
+<strong>Rechnung Nr.: <%= @order.bill_id %></strong>
+
+<br />
+<br />
+
+<table style="text-align:left;width:100%;border-color:black;border-width:1px;border-style:solid;">
+  <thead>
+    <tr>
+      <th>
+        Pos.
+      </th>
+      <th>
+        Produktname
+      </th>
+      <th>
+        Preis (EUR)
+      </th>
+      <th>
+        Menge
+      </th>
+      <th style="text-align:right;">
+        Netto-Umsatz (EUR)
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @order.order_items.each_with_index do |order_item, index| %>
+    <tr>
+      <td>
+      <%= (index+1) %>
+      </td>
+      <td>
+        <%= order_item.product.name_translations[:de] %> (<%= order_item.selected_options(:de).join(', ') %>)
+      </td>
+      <td>
+        <%= order_item.sku.price_per_unit.in_euro.display %>
+      </td>
+      <td align="center">
+        <%= order_item.quantity %>
+      </td>
+      <td style="text-align:right;">
+        <%= (order_item.sku.price_per_unit * order_item.quantity).in_euro.display %>
+      </td>
+    </tr>
+    <% end %>
+    <tr>
+      <td>
+      </td>
+      <td>
+      </td>
+      <td>
+      </td>
+      <td>
+      Gesamt Produktpreis
+      </td>
+      <td style="text-align:right;">
+      <%= @order.total_price.in_euro.display %>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<br />
+
+<table style="text-align:left;width:100%;border-color:black;border-width:1px;border-style:solid;">
+  <thead>
+    <tr>
+      <th>
+      </th>
+      <th>
+        Prozesskosten
+      </th>
+      <th style="text-align:right;">
+        Betrag (EUR)
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <tr>
+      <td>
+        <%= @order.order_items.count+1 %>
+      </td>
+      <td>
+        Internationale Versandkosten
+        FRA-Endkunden(China)
+      </td>
+      <td style="text-align:right;">
+        <%= @order.decorate.shipping_cost.in_euro.display %>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <%= @order.order_items.count+2 %>
+      </td>
+      <td>
+        Persönliche Importsteuern
+      </td>
+      <td style="text-align:right;">
+        <%= @order.taxes_cost.in_euro.display %>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+      </td>
+      <td style="text-align:right;width:460px;">
+        Gesamt Prozesskosten
+      </td>
+      <td style="text-align:right;">
+        <%= (@order.decorate.shipping_cost + @order.decorate.taxes_cost).in_euro.display %>
+      </td>
+    </tr>
+
+  </tbody>
+</table>
+
+<br />
+
+<% if @order.discount? %>
+
+  <table style="text-align:left;width:100%;border-color:black;border-width:1px;border-style:solid;">
+    <thead>
+      <tr>
+        <th>
+        </th>
+        <th>
+          Sonstig
+        </th>
+        <th style="text-align:right;">
+          Betrag (EUR)
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <%= @order.order_items.count+3 %>
+        </td>
+        <td>
+          Rabatt <%= @order.coupon.code %> <%= @order.coupon.decorate.discount_display %>
+        </td>
+        <td style="text-align:right;">
+          - <%= @order.coupon_discount.in_euro.display %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <br />
+
+<% end %>
+
+
+<br /><br />
+
+<div style="width:300px;float:right">
+<strong>====================================================</strong><br />
+<strong>Rechnungsbetrag (EUR)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= @order.decorate.end_price.in_euro.display %></strong>
+</div>
+<div style="clear:both;"></div>
+
+<br />
+<br /><br />
+<br /><br />
+<br /><br />
+<br /><br />
+<br /><br />
+<br /><br />
+<br />
+<br />
+<br /><br />
+<br /><br />
+<br /><br />
+<br /><br />
+<br /><br />
+<br /><br />
+<br />
+<br />
+<br /><br />
+<br /><br />
+
+
+<div style="color:grey">
+
+  <div style="width:30%;float:left;">
+  Landsberger Str. 183<br />
+  80687, München
+  </div>
+
+  <div style="width:40%;float:left;">
+  HRB 211133 | Ust.ID: DE294/808/567<br />
+  Geschäftsführer: Dr. Sha He
+  </div>
+
+  <div style="width:30%;float:left;">
+  customer@germanyinthebox.com<br />
+  www.germanyinthebox.com
+  </div>
+
+</div>

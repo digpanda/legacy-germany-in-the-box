@@ -25,6 +25,14 @@ class Shared::OrdersController < ApplicationController
     end
   end
 
+  def official_bill
+    respond_to do |format|
+      format.pdf do
+        render pdf: "#{bill_file_name}", disposition: 'attachment'
+      end
+    end
+  end
+
   def cancel
     canceller = OrderCanceller.new(order).all!
     if canceller.success?
