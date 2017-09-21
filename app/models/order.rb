@@ -335,7 +335,7 @@ class Order
       start_day = paid_at.beginning_of_day
       digits = start_day.strftime("%Y%m%d")
       num = Order.where({:bill_id.ne => nil}).where({:paid_at.gte => start_day}).count + 1
-      self.bill_id = "P#{digits}-#{num}"
+      self.bill_id = "R#{digits}-#{num}"
       self.save
     end
   end
