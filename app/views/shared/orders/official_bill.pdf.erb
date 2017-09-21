@@ -2,7 +2,7 @@
 <br />
 <br />
 
-<div style="float:left;width:60%">
+<div style="float:left;width:65%">
   <% if @order.billing_address %>
 
     <%= @order.billing_address.decorate.full_name %><br />
@@ -20,7 +20,7 @@
   <% end %>
 </div>
 
-<div style="float:right;width:40%">
+<div style="float:right;width:35%">
   DigPanda GmbH<br />
   Deutsche Bank<br />
   IBAN: DE50 7007 0024 5520 00<br />
@@ -35,7 +35,7 @@
 <br />
 <br />
 <br />
-<div style="width:50%;float:right">
+<div style="width:50%;float:right;text-align:right">
   <% if @order.paid_at %>
     Datum: <%= @order.paid_at.utc.strftime("%Y-%m-%d") %><br />
   <% end %>
@@ -204,7 +204,7 @@
 
 <br /><br />
 
-<div style="width:300px;float:right">
+<div style="width:400px;float:right">
 <strong>====================================================</strong><br />
 <strong>Rechnungsbetrag (EUR)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= @order.decorate.end_price.in_euro.display %></strong>
 </div>
