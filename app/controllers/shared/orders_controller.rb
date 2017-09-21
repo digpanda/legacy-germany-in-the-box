@@ -20,7 +20,9 @@ class Shared::OrdersController < ApplicationController
   def bill
     respond_to do |format|
       format.pdf do
-        render pdf: "#{bill_file_name}", disposition: 'attachment'
+        render pdf: "#{bill_file_name}", disposition: 'attachment',
+               margin:{ :bottom => 30 },
+               footer: { html: { template: 'layouts/pdf/footer.pdf.erb' } }
       end
     end
   end
@@ -28,7 +30,10 @@ class Shared::OrdersController < ApplicationController
   def official_bill
     respond_to do |format|
       format.pdf do
-        render pdf: "#{bill_file_name}", disposition: 'attachment'
+        render pdf: "#{bill_file_name}", disposition: 'attachment',
+               margin:{ bottom: 20, top: 30 },
+               footer: { html: { template: 'layouts/pdf/footer.pdf.erb' } },
+               header: { html: { template: 'layouts/pdf/header.pdf.erb' } }
       end
     end
   end
