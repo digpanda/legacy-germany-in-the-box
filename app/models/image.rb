@@ -14,5 +14,4 @@ class Image
   def fullsize
     image_url(:file, :fullsize)
   end
-
 end

@@ -6,7 +6,7 @@ class Coupon
   include Mongoid::Search
 
   # research system
-  search_in :id, :code, :desc, :discount, :last_applied_at, :c_at, :u_at, :referrer => :reference_id
+  search_in :id, :code, :desc, :discount, :last_applied_at, :c_at, :u_at, referrer: :reference_id
 
   field :code, type: String
   field :discount, type: Float
@@ -21,12 +21,12 @@ class Coupon
 
   has_many :orders
 
-  belongs_to :referrer, class_name: "Referrer", inverse_of: :coupons
+  belongs_to :referrer, class_name: 'Referrer', inverse_of: :coupons
   belongs_to :shop, inverse_of: :coupons
 
   validates :code, presence: true, uniqueness: true
   validates :discount, presence: true
-  validates :unit, presence: true, inclusion: {in: [:percent, :value]}
+  validates :unit, presence: true, inclusion: { in: [:percent, :value] }
   validates :unique, presence: true
 
   # i've over-done it with this quite simple validation
@@ -41,26 +41,25 @@ class Coupon
   # this kind of method within the model is evil.
   def self.create_referrer_coupon(referrer)
     unless referrer.has_coupon?
-      Coupon.create({
-                        :code => available_code,
-                        :unit => :percent,
-                        :discount => Setting.instance.default_coupon_discount,
-                        :minimum_order => 0,
-                        :unique => false,
-                        :desc => 'Referrer Coupon',
-                        :referrer => referrer,
-                        :exclude_china => false
-                    })
+      Coupon.create(
+                        code: available_code,
+                        unit: :percent,
+                        discount: Setting.instance.default_coupon_discount,
+                        minimum_order: 0,
+                        unique: false,
+                        desc: 'Referrer Coupon',
+                        referrer: referrer,
+                        exclude_china: false
+                    )
     end
   end
 
   def self.available_code
-    code = SecureRandom.hex(4)[0,4]
+    code = SecureRandom.hex(4)[0, 4]
     if Coupon.where(code: code).first
       available_code
     else
       code
     end
   end
-
 end

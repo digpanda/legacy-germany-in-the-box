@@ -9,5 +9,4 @@ class Note
   belongs_to :author, class_name: 'User'
   belongs_to :user
   belongs_to :order
-
 end

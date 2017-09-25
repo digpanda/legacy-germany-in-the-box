@@ -14,7 +14,7 @@ class Notification
   field :unique_id, type: String
 
   # to store interesting data depending on the notification
-  field :metadata, :type => Hash
+  field :metadata, type: Hash
 
   belongs_to :user
 
@@ -31,5 +31,4 @@ class Notification
     self.read_at = Time.now.utc
     self.save
   end
-
 end

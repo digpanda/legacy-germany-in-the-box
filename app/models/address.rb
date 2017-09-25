@@ -30,13 +30,13 @@ class Address
   embedded_in :order, inverse_of: :billing_address
   embedded_in :order, inverse_of: :shipping_address
 
-  scope :is_billing,          ->  { any_of({type: :billing}, {type: :both}) }
-  scope :is_shipping,         ->  { any_of({type: :shipping},  {type: :both}) }
-  scope :is_any,              ->  { any_of({type: :shipping},  {type: :billing}, {type: :both}) }
+  scope :is_billing,          ->  { any_of({ type: :billing }, { type: :both }) }
+  scope :is_shipping,         ->  { any_of({ type: :shipping },  { type: :both }) }
+  scope :is_any,              ->  { any_of({ type: :shipping },  { type: :billing }, { type: :both }) }
 
-  scope :is_only_billing,     ->  { any_of({type: :billing}) }
-  scope :is_only_shipping,    ->  { any_of({type: :shipping}) }
-  scope :is_only_both,        ->  { any_of({type: :both}) }
+  scope :is_only_billing,     ->  { any_of(type: :billing) }
+  scope :is_only_shipping,    ->  { any_of(type: :shipping) }
+  scope :is_only_both,        ->  { any_of(type: :both) }
 
   validates :mobile, presence: true, if: -> { user&.customer? }
   validates :pid, presence: true, if: -> { user&.customer? }
@@ -49,7 +49,7 @@ class Address
   validates :country, presence: true
   validates :company, presence: true, if: -> { shop.present? }
   validates :province, presence: true
-  validates :type, presence: true , inclusion: {in: [:billing, :shipping, :both]}
+  validates :type, presence: true , inclusion: { in: [:billing, :shipping, :both] }
 
   before_save :ensure_valid_mobile
 
@@ -70,6 +70,4 @@ class Address
   def country_local_name
     country&.local_name
   end
-
-
 end

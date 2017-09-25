@@ -42,13 +42,13 @@ class Category
     Shop.where(:id.in => shop_ids)
   end
 
-  def can_buy_shops(limit=0)
+  def can_buy_shops(limit = 0)
     Shop.can_buy.where(:id.in => shop_ids).limit(limit)
   end
 
   private
 
-  def shop_ids
-    Product.where(category_ids: self.id).pluck(:shop_id).uniq
-  end
+    def shop_ids
+      Product.where(category_ids: self.id).pluck(:shop_id).uniq
+    end
 end

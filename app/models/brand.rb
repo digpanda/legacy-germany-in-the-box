@@ -1,7 +1,7 @@
 class Brand
   include MongoidBase
   include Mongoid::Slug
-  
+
   strip_attributes
 
   field :name, type: String, localize: true
@@ -18,8 +18,7 @@ class Brand
 
   private
 
-  def self.package_set_brand_ids
-    PackageSet.active.map(&:brands).flatten.map(&:id)
-  end
-
+    def self.package_set_brand_ids
+      PackageSet.active.map(&:brands).flatten.map(&:id)
+    end
 end

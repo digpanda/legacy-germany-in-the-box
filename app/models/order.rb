@@ -7,7 +7,7 @@ class Order
 
   # research system
   # end_price makes issues on the tests
-  search_in :id, :status, :nickname, :u_at, :total_paid, :user => :id, :order_tracking => [:state, :delivery_id]
+  search_in :id, :status, :nickname, :u_at, :total_paid, user: :id, order_tracking: [:state, :delivery_id]
 
   BOUGHT_OR_CANCELLED = [:paid, :shipped, :terminated, :cancelled]
   BOUGHT_OR_UNVERIFIED = [:payment_unverified, :paid, :shipped, :terminated]
@@ -71,13 +71,12 @@ class Order
 
   has_one :order_tracking, inverse_of: :order, dependent: :restrict
 
-
-  scope :nonempty,    ->  {  where( :order_items_count.gt => 0 ) }
+  scope :nonempty,    ->  {  where('order_items_count.gt': 0) }
   scope :unpaid,      ->  { self.in(status: [:new]) }
   scope :bought,      ->  { self.in(status: [:paid, :shipped, :terminated]) }
-  scope :bought_or_cancelled, -> { self.in( status: BOUGHT_OR_CANCELLED ) }
-  scope :bought_or_unverified,      ->  { self.in( status: BOUGHT_OR_UNVERIFIED ) } # cancelled isn't included in this
-  scope :ongoing, -> { self.in(:status => [:paid, :shipped]) }
+  scope :bought_or_cancelled, -> { self.in(status: BOUGHT_OR_CANCELLED) }
+  scope :bought_or_unverified,      ->  { self.in(status: BOUGHT_OR_UNVERIFIED) } # cancelled isn't included in this
+  scope :ongoing, -> { self.in(status: [:paid, :shipped]) }
 
   def bought_or_cancelled?
     BOUGHT_OR_CANCELLED.include? status
@@ -195,7 +194,7 @@ class Order
   end
 
   def package_sets
-    order_items.where(:package_set.ne => nil).reduce([]) do |acc, order_item|
+    order_items.where('package_set.ne': nil).reduce([]) do |acc, order_item|
       acc << order_item.package_set
     end.uniq
   end
@@ -280,7 +279,7 @@ class Order
 
   def package_sets_quantity
     package = {}
-    order_items.where(:package_set.ne => nil).reduce(0) do |acc, order_item|
+    order_items.where('package_set.ne': nil).reduce(0) do |acc, order_item|
       package_set = order_item.package_set
       if package["#{package_set.id}"]
         acc
@@ -313,30 +312,30 @@ class Order
 
   private
 
-  def update_paid_at
-    if paid_at.nil? && status == :paid
-      self.paid_at = Time.now.utc
-      self.save
+    def update_paid_at
+      if paid_at.nil? && status == :paid
+        self.paid_at = Time.now.utc
+        self.save
+      end
     end
-  end
 
-  def update_cancelled_at
-    if cancelled_at.nil? && status == :cancelled
-      self.cancelled_at = Time.now.utc
-      self.save
+    def update_cancelled_at
+      if cancelled_at.nil? && status == :cancelled
+        self.cancelled_at = Time.now.utc
+        self.save
+      end
     end
-  end
 
-  # only the orders which were at some point will be assigned a bill id
-  # the unique number in it will be equal to the total of the previous bills + 1.
-  # every year the system got reset
-  def make_bill_id
-    if bill_id.nil? && self.bought?
-      start_day = paid_at.beginning_of_day
-      digits = start_day.strftime('%Y%m%d')
-      num = Order.where('bill_id.ne': nil).where('paid_at.gte': start_day).count + 1
-      self.bill_id = "R#{digits}-#{num}"
-      self.save
+    # only the orders which were at some point will be assigned a bill id
+    # the unique number in it will be equal to the total of the previous bills + 1.
+    # every year the system got reset
+    def make_bill_id
+      if bill_id.nil? && self.bought?
+        start_day = paid_at.beginning_of_day
+        digits = start_day.strftime('%Y%m%d')
+        num = Order.where('bill_id.ne': nil).where('paid_at.gte': start_day).count + 1
+        self.bill_id = "R#{digits}-#{num}"
+        self.save
+      end
     end
-  end
 end
