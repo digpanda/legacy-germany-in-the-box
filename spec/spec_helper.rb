@@ -48,7 +48,7 @@ RSpec.configure do |config|
     end
   end
 
-  # # Add VCR to all tests
+  # Add VCR to all tests
   # config.around(:each) do |example|
   #   VCR.turn_on!
   #   options = example.metadata || {}
