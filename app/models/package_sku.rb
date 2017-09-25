@@ -29,5 +29,4 @@ class PackageSku
   def total_price_with_taxes
     total_price + total_taxes
   end
-
 end

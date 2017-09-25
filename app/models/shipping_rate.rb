@@ -8,5 +8,4 @@ class ShippingRate
   # please also update ShippingPrice library accordingly
   field :type, type: Symbol, default: :general
   field :partner, type: Symbol
-
 end

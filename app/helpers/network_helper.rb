@@ -1,7 +1,6 @@
 require 'socket'
 
 module NetworkHelper
-
   def server_ip
     orig, Socket.do_not_reverse_lookup = Socket.do_not_reverse_lookup, true
     UDPSocket.open do |server|
@@ -11,5 +10,4 @@ module NetworkHelper
   ensure
     Socket.do_not_reverse_lookup = orig
   end
-
 end

@@ -96,7 +96,7 @@ class Order
   # :shipped -> the shopkepper has sent the package
   # :terminated -> the shipment has been done totally
   # NOTE : don't forget to update the tooltips too
-  validates :status, presence: true , inclusion: {in: [:new, :paying, :payment_unverified, :payment_failed, :cancelled, :paid, :shipped, :terminated]}
+  validates :status, presence: true , inclusion: { in: [:new, :paying, :payment_unverified, :payment_failed, :cancelled, :paid, :shipped, :terminated] }
 
   summarizes sku_list: :order_items, by: :quantity
 
@@ -183,7 +183,7 @@ class Order
     total_paid(:eur).in_euro.display
   end
 
-  def total_paid(currency=:cny)
+  def total_paid(currency = :cny)
     self.order_payments.where(status: :success).all.reduce(0) do |acc, order_payment|
       amount = order_payment.send("amount_#{currency}")
       if order_payment.refund?
@@ -333,11 +333,10 @@ class Order
   def make_bill_id
     if bill_id.nil? && self.bought?
       start_day = paid_at.beginning_of_day
-      digits = start_day.strftime("%Y%m%d")
-      num = Order.where({:bill_id.ne => nil}).where({:paid_at.gte => start_day}).count + 1
+      digits = start_day.strftime('%Y%m%d')
+      num = Order.where('bill_id.ne': nil).where('paid_at.gte': start_day).count + 1
       self.bill_id = "R#{digits}-#{num}"
       self.save
     end
   end
-
 end

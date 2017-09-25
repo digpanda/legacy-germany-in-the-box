@@ -70,29 +70,29 @@ class Shop
 
   belongs_to :shopkeeper,   class_name: 'User',  inverse_of: :shop
 
-  validates :name,          presence: true,   length: {maximum: (Rails.configuration.gitb[:max_tiny_text_length] * 1.25).round}
+  validates :name,          presence: true,   length: { maximum: (Rails.configuration.gitb[:max_tiny_text_length] * 1.25).round }
   validates :status,        presence: true
-  validates :min_total,     presence: true,   numericality: { :greater_than_or_equal_to => 0 }
+  validates :min_total,     presence: true,   numericality: { greater_than_or_equal_to: 0 }
   validates :shopkeeper,    presence: true
-  validates :founding_year, presence: true,   length: {maximum: 4}
-  validates :desc,          presence: true,   length: {maximum: (Rails.configuration.gitb[:max_medium_text_length] * 1.25).round}
+  validates :founding_year, presence: true,   length: { maximum: 4 }
+  validates :desc,          presence: true,   length: { maximum: (Rails.configuration.gitb[:max_medium_text_length] * 1.25).round }
   validates :philosophy,    presence: true,   length: { maximum: (Rails.configuration.gitb[:max_long_text_length] * 1.25).round }
-  validates :ustid,         presence: true,   length: { maximum: Rails.configuration.gitb[:max_tiny_text_length] },   if: lambda { self.agb }
+  validates :ustid,         presence: true,   length: { maximum: Rails.configuration.gitb[:max_tiny_text_length] }, if: lambda { self.agb }
 
-  validates :agb, inclusion: {in: [true]},    if: lambda { self.agb.present? }
+  validates :agb, inclusion: { in: [true] },    if: lambda { self.agb.present? }
 
   validates :register,        length: { maximum: Rails.configuration.gitb[:max_tiny_text_length] }
   validates :stories,         length: { maximum: (Rails.configuration.gitb[:max_long_text_length] * 1.25).round }
-  validates :website,         length: {maximum: (Rails.configuration.gitb[:max_short_text_length] * 1.25).round}
+  validates :website,         length: { maximum: (Rails.configuration.gitb[:max_short_text_length] * 1.25).round }
   validates :eroi,            length: { maximum: Rails.configuration.gitb[:max_tiny_text_length] }
-  validates :uniqueness,      length: {maximum: (Rails.configuration.gitb[:max_medium_text_length] * 1.25).round}
-  validates :german_essence,  length: {maximum: (Rails.configuration.gitb[:max_medium_text_length] * 1.25).round}
+  validates :uniqueness,      length: { maximum: (Rails.configuration.gitb[:max_medium_text_length] * 1.25).round }
+  validates :german_essence,  length: { maximum: (Rails.configuration.gitb[:max_medium_text_length] * 1.25).round }
   validates :shopname,        length: { maximum: Rails.configuration.gitb[:max_short_text_length] }
 
   validates :mail,          presence: false,   length: { maximum: Rails.configuration.gitb[:max_short_text_length] }
 
-  scope :is_active,       ->    { where( status: true ).where( :approved.ne => nil ) }
-  scope :has_address, -> { where({ :addresses => { :$not => { :$size => 0 } } }) }
+  scope :is_active,       ->    { where(status: true).where('approved.ne': nil) }
+  scope :has_address, -> { where(addresses: { '$not': { '$size': 0 } }) }
 
   scope :can_buy,         ->    { is_active }
   scope :highlighted,     ->    { where(highlight: true) }

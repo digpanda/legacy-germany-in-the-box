@@ -1,5 +1,4 @@
 class ShopkeeperMailer < ApplicationMailer
-
   default from: 'no-reply@germanyinthebox.com'
   layout 'mailers/shopkeeper'
 
@@ -8,7 +7,6 @@ class ShopkeeperMailer < ApplicationMailer
     @user = User.where(id: user_id).first
     @title = title
     @url = url
-    mail(to: @recipient_email, subject: "Benachrichtigung von Germany In The Box: #{@title}")
+    mail to: @recipient_email, subject: "Benachrichtigung von Germany In The Box: #{@title}"
   end
-
 end

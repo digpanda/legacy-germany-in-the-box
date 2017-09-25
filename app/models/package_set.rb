@@ -5,7 +5,7 @@ class PackageSet
   include Mongoid::Slug
 
   field :position, type: Integer, default: 0
-  
+
   field :name, type: String
   slug :name
 
@@ -30,9 +30,9 @@ class PackageSet
   has_many :images, as: :image
 
   # research system
-  search_in :name, :desc, :shop => :shopname, :category => :name
+  search_in :name, :desc, shop: :shopname, category: :name
 
-  accepts_nested_attributes_for :package_skus, :reject_if => :reject_package_skus, allow_destroy: true
+  accepts_nested_attributes_for :package_skus, reject_if: :reject_package_skus, allow_destroy: true
   accepts_nested_attributes_for :images, allow_destroy: true
 
   def reject_package_skus(attributed)
@@ -49,7 +49,7 @@ class PackageSet
 
   scope :with_brand, -> (brand) do
     product_ids = Product.where(brand_id: brand.id).map(&:_id)
-    where(package_skus: {'$elemMatch': {:product_id.in => product_ids}} )
+    where(package_skus: { '$elemMatch': { 'product_id.in': product_ids } })
   end
 
   # array of brands for this package set
@@ -95,5 +95,4 @@ class PackageSet
       order_item.delete unless order_item.order.bought?
     end
   end
-
 end

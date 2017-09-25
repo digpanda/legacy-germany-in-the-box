@@ -1,5 +1,4 @@
 module ProductsHelper
-
   def enough_inventory?(sku, quantity)
     sku&.enough_stock?(quantity)
   end
@@ -22,7 +21,7 @@ module ProductsHelper
         o.name
       end.join(', ')
     end
-    values.each_with_index.map { |v,i| [names[i], v] }
+    values.each_with_index.map { |v, i| [names[i], v] }
   end
 
   def get_options_json(sku)
@@ -37,5 +36,4 @@ module ProductsHelper
       { name: v.name, option: { id: o.id, name: o.name } }
     end
   end
-
 end

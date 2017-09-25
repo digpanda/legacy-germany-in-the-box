@@ -6,9 +6,8 @@ require 'digest/md5'
 # this optimization make it faster to display the page after an update
 # of a specific section, chunk of the code.
 module AssetsHelper
-
-  CSS_APP_PATH = "public/stylesheets/"
-  JS_APP_PATH = "public/javascripts/"
+  CSS_APP_PATH = 'public/stylesheets/'
+  JS_APP_PATH = 'public/javascripts/'
 
   def solve_section
     identity_solver.section
@@ -33,5 +32,4 @@ module AssetsHelper
   def js_version(filename)
     assets_version("#{JS_APP_PATH}/#{filename}.js")
   end
-
 end

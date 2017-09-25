@@ -8,7 +8,7 @@ class User
   strip_attributes
 
   # research system
-  search_in :id, :email, :role, :last_sign_in_at, :nickname, :full_name, :referrer => :nickname
+  search_in :id, :email, :role, :last_sign_in_at, :nickname, :full_name, referrer: :nickname
 
   ## Database authenticatable
   field :email,               type: String, default: ''
@@ -184,7 +184,7 @@ class User
   end
 
   def tester?
-     self.version_allowed == :beta || self.version_allowed == :alpha
+    self.version_allowed == :beta || self.version_allowed == :alpha
   end
 
   def betatester?
@@ -224,5 +224,4 @@ class User
   def full_name
     decorate.full_name
   end
-
 end

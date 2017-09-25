@@ -3,7 +3,7 @@ class Referrer
   include Mongoid::Search
 
   # research system
-  search_in :id, :reference_id, :nickname, :group, :coupons => :code, :user => :email, :group => :name
+  search_in :id, :reference_id, :nickname, :group, coupons: :code, user: :email, group: :name
 
   field :reference_id, type: String # was referrer_id in User
   field :nickname, type: String
@@ -11,16 +11,16 @@ class Referrer
   field :agb, type: Boolean, default: false
   field :label, type: String
 
-  belongs_to :user, class_name: "User", inverse_of: :referrer
-  has_many :children_users, class_name: "User", inverse_of: :parent_referrer
+  belongs_to :user, class_name: 'User', inverse_of: :referrer
+  has_many :children_users, class_name: 'User', inverse_of: :parent_referrer
 
-  belongs_to :referrer_group, class_name: "ReferrerGroup", inverse_of: :referrer
+  belongs_to :referrer_group, class_name: 'ReferrerGroup', inverse_of: :referrer
 
-  has_many :coupons, class_name: "Coupon", inverse_of: :referrer
-  has_many :orders, class_name: "Order", inverse_of: :referrer
+  has_many :coupons, class_name: 'Coupon', inverse_of: :referrer
+  has_many :orders, class_name: 'Order', inverse_of: :referrer
 
-  has_many :provisions, class_name: "ReferrerProvision", inverse_of: :referrer
-  has_many :provision_operations, class_name: "ReferrerProvisionOperation", inverse_of: :referrer
+  has_many :provisions, class_name: 'ReferrerProvision', inverse_of: :referrer
+  has_many :provision_operations, class_name: 'ReferrerProvisionOperation', inverse_of: :referrer
 
   before_create :ensure_reference_id, :ensure_nickname
 
@@ -28,7 +28,7 @@ class Referrer
   # and reduce the id
   def newly_published_links
     user.notifications.where(scope: :referrer_links).unreads.map(&:metadata).reduce([]) do |acc, metadata|
-      acc << metadata["link_id"]
+      acc << metadata['link_id']
     end
   end
 
@@ -37,7 +37,7 @@ class Referrer
   # will be considered read.
   def link_was_read!(link)
     user.notifications.where(scope: :referrer_links).unreads.each do |notification|
-      if notification.metadata["link_id"] == link.id
+      if notification.metadata['link_id'] == link.id
         notification.read!
       end
     end
@@ -68,5 +68,4 @@ class Referrer
   def total_earned
     provisions.sum(:provision)
   end
-
 end

@@ -1,27 +1,26 @@
 class AddressDecorator < Draper::Decorator
-
   delegate_all
   decorates :address
 
   def readable_type
     case type
-      when :both
-        'Shipping & Billing'
-      when :billing
-        'Billing'
-      when :shipping
-        'Shipping'
-      else
-        'Unknown'
+    when :both
+      'Shipping & Billing'
+    when :billing
+      'Billing'
+    when :shipping
+      'Shipping'
+    else
+      'Unknown'
     end
   end
 
   def street_and_number
     case country_code
-      when 'CN' # originally zh-CN
-        "#{number} #{street}"
-      else
-        "#{street} #{number}"
+    when 'CN' # originally zh-CN
+      "#{number} #{street}"
+    else
+      "#{street} #{number}"
     end
   end
 
@@ -41,5 +40,4 @@ class AddressDecorator < Draper::Decorator
   def full_address
     "#{province}#{city}#{district}#{street}#{number}#{additional}, #{zip}, #{country}"
   end
-
 end

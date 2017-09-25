@@ -8,5 +8,4 @@ class WeixinTicketCache
 
   scope :still_valid, -> { where(c_at: { '$gt': Time.now - EXPIRATION_TIME.call }) }
   scope :with_cache_scope, -> (cache_scope) { where(cache_scope: cache_scope) }
-
 end

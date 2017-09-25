@@ -1,5 +1,4 @@
 class CustomerMailer < ApplicationMailer
-
   default from: 'no-reply@germanyinthebox.com'
   layout 'mailers/customer'
 
@@ -8,7 +7,6 @@ class CustomerMailer < ApplicationMailer
     @user = User.where(id: user_id).first
     @title = title
     @url = url
-    mail(to: @recipient_email, subject: "来因盒通知: #{@title}")
+    mail to: @recipient_email, subject: "来因盒通知: #{@title}"
   end
-
 end

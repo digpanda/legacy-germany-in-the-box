@@ -3,7 +3,7 @@ class OrderTracking
   include Mongoid::Search
 
   strip_attributes
-  
+
   # research system
   search_in :id, :c_at
 
@@ -14,5 +14,4 @@ class OrderTracking
   field :refreshed_at, type: Time
 
   belongs_to :order, inverse_of: :order_tracking
-
 end

@@ -1,5 +1,4 @@
 module PathsHelper
-
   # NOTE : for remote / latest version
   # use 'https://unpkg.com/vue'
   def resolve_vuejs_path
@@ -37,5 +36,4 @@ module PathsHelper
   def guest_path?
     PathMatcher.new(request).include?(['/guest'])
   end
-
 end

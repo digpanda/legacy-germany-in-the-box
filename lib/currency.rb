@@ -26,7 +26,7 @@ class Currency
   end
 
   def display_formal
-    number_to_currency(amount, {:unit => current_symbol, :separator => ',', :delimiter => '', :precision => 2})
+    number_to_currency(amount, unit: current_symbol, separator: ',', delimiter: '', precision: 2)
   end
 
   def display_raw

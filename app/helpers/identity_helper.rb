@@ -1,5 +1,4 @@
 module IdentityHelper
-  
   def potential_customer?
     identity_solver.potential_customer?
   end
@@ -24,5 +23,4 @@ module IdentityHelper
   def chinese_ip?
     identity_solver.chinese_ip?
   end
-
 end

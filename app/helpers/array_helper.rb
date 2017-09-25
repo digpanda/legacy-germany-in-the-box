@@ -1,15 +1,14 @@
 module ArrayHelper
-
   def project_versions
-    [["Alpha", :alpha], ["Beta", :beta], ["Stable", :stable]]
+    [['Alpha', :alpha], ['Beta', :beta], ['Stable', :stable]]
   end
 
   def boolean_select
-    [["Yes", true], ["No", false]]
+    [['Yes', true], ['No', false]]
   end
 
   def user_roles
-    [['Administrator', :admin],['Shopkeeper', :shopkeeper],['Customer', :customer]]
+    [['Administrator', :admin], ['Shopkeeper', :shopkeeper], ['Customer', :customer]]
   end
 
   def parent_referrers
@@ -19,7 +18,7 @@ module ArrayHelper
   end
 
   def delivery_providers
-    {'Postelbe' => 'postelbe', 'DHLDE' => 'dhlde', 'EMS' => 'ems', 'EMS Guoji' => 'emsguoji'}
+    { 'Postelbe' => 'postelbe', 'DHLDE' => 'dhlde', 'EMS' => 'ems', 'EMS Guoji' => 'emsguoji' }
   end
 
   def logistic_partners
@@ -27,12 +26,11 @@ module ArrayHelper
   end
 
   def orders_status
-    [["New", :new], ["Paying", :paying], ["Payment Unverified", :unverified], ["Payment failed", :failed],
-    ["Cancelled", :cancelled], ["Paid", :paid], ["Shipped", :shipped], ["Terminated", :terminated]]
+    [['New', :new], ['Paying', :paying], ['Payment Unverified', :unverified], ['Payment failed', :failed],
+    ['Cancelled', :cancelled], ['Paid', :paid], ['Shipped', :shipped], ['Terminated', :terminated]]
   end
 
   def order_payments_status
-    [["Scheduled", :scheduled], ["Unverified", :unverified], ["Success", :success], ["Failed", :failed]]
+    [['Scheduled', :scheduled], ['Unverified', :unverified], ['Success', :success], ['Failed', :failed]]
   end
-
 end

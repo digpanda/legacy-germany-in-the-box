@@ -9,7 +9,4 @@ class ReferrerProvisionOperation
   belongs_to :referrer
 
   validates :amount, numericality: { other_than: 0 }
-
-
-
 end

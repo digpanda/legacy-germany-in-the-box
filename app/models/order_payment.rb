@@ -3,7 +3,7 @@ class OrderPayment
   include Mongoid::Search
 
   # research system
-  search_in :id, :request_id, :transaction_id, :amount_cny, :status, :amount_eur, :payment_method, :c_at, :shop => :shopname, :order => :id
+  search_in :id, :request_id, :transaction_id, :amount_cny, :status, :amount_eur, :payment_method, :c_at, shop: :shopname, order: :id
 
   field :request_id     , type: String
   field :parent_transaction_id, type: String
@@ -45,7 +45,7 @@ class OrderPayment
   end
 
   def refund?
-    transaction_type == "refund-purchase" || transaction_type == "refund-debit"
+    transaction_type == 'refund-purchase' || transaction_type == 'refund-debit'
   end
 
   def refundable?
@@ -60,6 +60,4 @@ class OrderPayment
   def unverified?
     status == :unverified
   end
-
-
 end

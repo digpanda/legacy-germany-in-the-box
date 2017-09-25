@@ -1,5 +1,4 @@
 class OrderPaymentDecorator < Draper::Decorator
-
   delegate_all
   decorates :address
 
@@ -10,5 +9,4 @@ class OrderPaymentDecorator < Draper::Decorator
   def amount_eur_with_currency
     Currency.new(amount_eur, 'EUR').display
   end
-
 end

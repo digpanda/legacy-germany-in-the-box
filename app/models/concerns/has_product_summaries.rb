@@ -1,5 +1,4 @@
 module HasProductSummaries
-
   def self.included(base)
     def base.summarizes(sku_list:, by:)
       mattr_accessor(:sku_list_identifier) { sku_list }

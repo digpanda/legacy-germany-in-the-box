@@ -16,7 +16,7 @@ Style/AndOr:
 Style/BracesAroundHashParameters:
   Enabled: true
   EnforcedStyle: context_dependent
-  
+
 # Align `when` with `case`.
 Style/CaseIndentation:
   Enabled: true

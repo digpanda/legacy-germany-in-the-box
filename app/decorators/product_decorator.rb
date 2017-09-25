@@ -1,5 +1,4 @@
 class ProductDecorator < Draper::Decorator
-
   include ActionView::Helpers::TextHelper # load some important helpers
 
   delegate_all
@@ -20,15 +19,15 @@ class ProductDecorator < Draper::Decorator
   end
 
   def format_desc
-     simple_format(self.desc)
+    simple_format(self.desc)
   end
 
-  def short_desc(characters=50)
-    truncate(self.desc, :length => characters)
+  def short_desc(characters = 50)
+    truncate(self.desc, length: characters)
   end
 
   # complete cleaning for CSV file
-  def clean_desc(characters=240)
+  def clean_desc(characters = 240)
     Cleaner.slug(self.desc, characters)
   end
 
@@ -65,5 +64,4 @@ class ProductDecorator < Draper::Decorator
   def preview_price_euro_html
     self.featured_sku.price_with_taxes.in_euro.display_html
   end
-
 end

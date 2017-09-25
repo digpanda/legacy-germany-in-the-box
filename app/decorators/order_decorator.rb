@@ -1,5 +1,4 @@
 class OrderDecorator < Draper::Decorator
-
   MAX_DESCRIPTION_CHARACTERS = 200
 
   delegate_all
@@ -20,5 +19,4 @@ class OrderDecorator < Draper::Decorator
       acc << order_item.clean_desc
     end.join(', ')
   end
-
 end

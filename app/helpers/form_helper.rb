@@ -1,20 +1,19 @@
 module FormHelper
-
   def category_package_set_filter
     Category.with_package_sets.map do |category|
-      [category.name, category.slug_name, {'data-href' => guest_package_sets_path(category_id: category.slug)}]
+      [category.name, category.slug_name, 'data-href': guest_package_sets_path(category_id: category.slug)]
     end
   end
 
   def brand_package_set_filter
     Brand.with_package_sets.used_as_filters.map do |brand|
-      [brand.name, brand.slug, {'data-href' => guest_package_sets_path(brand_id: brand.slug)}]
+      [brand.name, brand.slug, 'data-href': guest_package_sets_path(brand_id: brand.slug)]
     end
   end
 
   def brand_package_set_filter_with_category(category)
     category.package_sets_brands.used_as_filters.map do |brand|
-      [brand.name, brand.slug, {'data-href' => guest_package_sets_path(category_id: category.slug, brand_id: brand.slug)}]
+      [brand.name, brand.slug, 'data-href': guest_package_sets_path(category_id: category.slug, brand_id: brand.slug)]
     end
   end
 
@@ -34,5 +33,4 @@ module FormHelper
     @solve_index = 0 unless @solve_index
     @solve_index += 1
   end
-
 end

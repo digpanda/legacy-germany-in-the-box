@@ -25,7 +25,7 @@ class OrderItem
   end
 
   belongs_to :product
-  belongs_to :order, :counter_cache => true
+  belongs_to :order, counter_cache: true
   belongs_to :package_set
 
   # if we use the model somewhere else than the product
@@ -40,11 +40,11 @@ class OrderItem
 
   embeds_one :sku
 
-  validates :quantity,      presence: true, numericality: { :greater_than_or_equal_to => 1 }
+  validates :quantity,      presence: true, numericality: { greater_than_or_equal_to: 1 }
   validates :product,       presence: true
   validates :order,         presence: true
 
-  scope :with_sku, -> (sku) { self.where(:sku_origin_id => sku.id) }
+  scope :with_sku, -> (sku) { self.where(sku_origin_id: sku.id) }
   scope :without_package_set, -> { self.where(package_set: nil) }
 
   # right now we exclusively have delegated methods from the sku
@@ -57,14 +57,14 @@ class OrderItem
     end
   end
 
-  def selected_options(locale=nil)
+  def selected_options(locale = nil)
     product.options.map do |option|
       option.suboptions.map do |suboption|
         if option_ids.include? suboption.id.to_s
           if locale.nil?
-          suboption.name
+            suboption.name
           else
-          suboption.name_translations[locale]
+            suboption.name_translations[locale]
           end
         end
       end
@@ -103,5 +103,4 @@ class OrderItem
   def volume
     sku.volume * quantity
   end
-
 end

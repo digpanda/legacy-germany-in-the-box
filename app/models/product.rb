@@ -38,23 +38,23 @@ class Product
   has_and_belongs_to_many :users, inverse_of: :favorites
 
   # research system
-  search_in :name, :desc, :shop => :shopname, :categories => :name, :brand => :name
+  search_in :name, :desc, shop: :shopname, categories: :name, brand: :name
 
   accepts_nested_attributes_for :skus
   accepts_nested_attributes_for :options
 
   mount_uploader :cover, ProductUploader # deprecated ?
 
-  validates :name, presence: true, length:   {maximum: MAX_SHORT_TEXT_LENGTH }
-  validates :brand , presence: true, length: {maximum: MAX_SHORT_TEXT_LENGTH }
+  validates :name, presence: true, length:   { maximum: MAX_SHORT_TEXT_LENGTH }
+  validates :brand , presence: true, length: { maximum: MAX_SHORT_TEXT_LENGTH }
   validates :shop, presence: true
   validates :status, presence: true
   # validates :hs_code, presence: true <!-- this validation made global migration problems
   validates :desc, length:                   { maximum: MAX_LONG_TEXT_LENGTH }
 
-  scope :is_active,   -> { self.and(:status  => true, :approved.ne => nil) }
-  scope :has_sku,     -> { self.where(:'skus.0' => {:$exists => true }) }
-  scope :has_hs_code, -> { self.where(:hs_code.ne => nil) }
+  scope :is_active,   -> { self.and(status: true, 'approved.ne': nil) }
+  scope :has_sku,     -> { self.where('skus.0': { '$exists': true }) }
+  scope :has_hs_code, -> { self.where('hs_code.ne': nil) }
   scope :highlight_first, -> { self.order_by(highlight: :desc) }
 
   # we fetch all the `available_skus` and only select
@@ -63,9 +63,9 @@ class Product
   # and improved via metaprogramming
   scope :has_available_sku, -> do
     skus_ids = self.all.reduce([]) do |acc, product|
-        acc << product.available_skus.map(&:id)
+      acc << product.available_skus.map(&:id)
     end.flatten
-    self.where("skus._id" => {"$in" => skus_ids})
+    self.where('skus._id' => { '$in': skus_ids })
   end
 
   # only available products which are active and got skus
@@ -79,18 +79,17 @@ class Product
   # we should investigate on the exact reason this line exists
   scope :available_from_shop, -> { self.in(shop: Shop.only(:id).map(&:id)) }
 
-  scope :by_brand,          -> { self.order(:brand => :asc)                      }
+  scope :by_brand,          -> { self.order(brand: :asc)                      }
 
-  index( {name: 1          }, {unique: false, name: :idx_product_name                        })
-  index( {brand: 1         }, {unique: false, name: :idx_product_brand                       })
-  index( {shop: 1          }, {unique: false, name: :idx_product_shop                        })
-  index( {tags: 1          }, {unique: false, name: :idx_product_tags, sparse: true          })
-  index( {users: 1         }, {unique: false, name: :idx_product_users, sparse: true         })
-  index( {categories: 1    }, {unique: false, name: :idx_product_categories, sparse: true    })
-  index( {duty_category: 1 }, {unique: false, name: :idx_product_duty_category, sparse: true })
+  index({ name: 1          }, { unique: false, name: :idx_product_name                        })
+  index({ brand: 1         }, { unique: false, name: :idx_product_brand                       })
+  index({ shop: 1          }, { unique: false, name: :idx_product_shop                        })
+  index({ tags: 1          }, { unique: false, name: :idx_product_tags, sparse: true          })
+  index({ users: 1         }, { unique: false, name: :idx_product_users, sparse: true         })
+  index({ categories: 1    }, { unique: false, name: :idx_product_categories, sparse: true    })
+  index({ duty_category: 1 }, { unique: false, name: :idx_product_duty_category, sparse: true })
 
   class << self
-
     # TODO : to improve
     # right now it doesn't order by discount
     # also the `each` could be replaced by something for sure.
@@ -129,7 +128,6 @@ class Product
       end
       products_hash
     end
-
   end
 
   before_save :ensure_base_variant
@@ -143,9 +141,9 @@ class Product
   def ensure_base_variant
     if self.options.count == 0
       option = self.options.build
-      option.name = "Größe"
+      option.name = 'Größe'
       suboption = option.suboptions.build
-      suboption.name = "XS"
+      suboption.name = 'XS'
     end
   end
 
@@ -205,7 +203,7 @@ class Product
   end
 
   def best_discount_sku
-    @best_discount_sku ||= skus.where(:discount.gt => 0).order_by({:discount => :desc}).first
+    @best_discount_sku ||= skus.where('discount.gt': 0).order_by(discount: :desc).first
   end
 
   def discount?
@@ -219,15 +217,14 @@ class Product
   def available_skus
     # in_stock was here
     # - Laurent
-    skus.is_active.order_by({:discount => :desc}, {:quantity => :desc})
+    skus.is_active.order_by({ discount: :desc }, { quantity: :desc })
   end
 
   def sku_from_option_ids(option_ids)
-    skus.detect {|s| s.option_ids.to_set == option_ids.to_set}
+    skus.detect { |s| s.option_ids.to_set == option_ids.to_set }
   end
 
   def sku_with_id(sku_id)
     skus.detect { |s| s.id.to_s == sku_id }
   end
-
 end

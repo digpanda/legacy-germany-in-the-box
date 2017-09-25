@@ -1,5 +1,4 @@
 class UserDecorator < Draper::Decorator
-
   PICTURE_URL = '/images/icons/default_user_pic.png'
 
   include Concerns::Imageable
@@ -9,7 +8,7 @@ class UserDecorator < Draper::Decorator
 
   def readable_role
     if referrer
-      "Referrer"
+      'Referrer'
     else
       "#{role.capitalize}"
     end
@@ -37,7 +36,7 @@ class UserDecorator < Draper::Decorator
 
   def avatar
     if pic.url.nil?
-     PICTURE_URL
+      PICTURE_URL
     else
       image_url(:pic, :thumb)
     end

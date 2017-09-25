@@ -54,5 +54,4 @@ class Setting
   end
 
   private_class_method :create
-
 end

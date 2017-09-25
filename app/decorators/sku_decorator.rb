@@ -1,5 +1,4 @@
 class SkuDecorator < Draper::Decorator
-
   include Concerns::Imageable
   include ActionView::Helpers::TextHelper # load some important helpers
 
@@ -22,12 +21,12 @@ class SkuDecorator < Draper::Decorator
   end
 
   def quantity_warning?
-     return false if self.unlimited || nothing_left? # no warning if unlimited or nothing left
-     self.quantity <= ::Rails.application.config.digpanda[:products_warning]
+    return false if self.unlimited || nothing_left? # no warning if unlimited or nothing left
+    self.quantity <= ::Rails.application.config.digpanda[:products_warning]
   end
 
   def nothing_left?
-     self.quantity == 0 && !self.unlimited
+    self.quantity == 0 && !self.unlimited
   end
 
   def more_description?
@@ -103,7 +102,6 @@ class SkuDecorator < Draper::Decorator
   end
 
   def discount_with_percent
-    "-%.0f%" % discount
+    '-%.0f%' % discount
   end
-
 end

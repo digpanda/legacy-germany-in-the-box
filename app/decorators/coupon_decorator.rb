@@ -1,5 +1,4 @@
 class CouponDecorator < Draper::Decorator
-
   delegate_all
   decorates :coupon
 
@@ -12,5 +11,4 @@ class CouponDecorator < Draper::Decorator
       "-#{discount.in_euro.to_yuan.display}"
     end
   end
-
 end
