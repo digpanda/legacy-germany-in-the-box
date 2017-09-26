@@ -1,5 +1,4 @@
 class LockedValidator < ActiveModel::Validator
-
   attr_reader :record
 
   def setup(record)
@@ -18,18 +17,13 @@ class LockedValidator < ActiveModel::Validator
 
   private
 
-  def error
-    "This entry is locked."
-  end
-
-  # depending where we start the validation
-  # we check differently the hierarchy
-  def locked_entry?
-    if record.locked
-        true
-    else
-      false
+    def error
+      'This entry is locked.'
     end
-  end
 
+    # depending where we start the validation
+    # we check differently the hierarchy
+    def locked_entry?
+      record.locked === true
+    end
 end

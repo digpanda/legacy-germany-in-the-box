@@ -102,7 +102,7 @@ class Guest::PackageSetsController < ApplicationController
       params[:category_id] = params[:category_slug] if params[:category_slug]
       if params[:category_id]
         begin
-        @category = Category.find(params[:category_id])
+          @category = Category.find(params[:category_id])
         rescue Mongoid::Errors::DocumentNotFound
           # we need to rescue to avoid crashing the application
           # in case the id does not match anything real (like `all`)
@@ -114,7 +114,7 @@ class Guest::PackageSetsController < ApplicationController
     def set_brand
       if params[:brand_id]
         begin
-        @brand = Brand.find(params[:brand_id])
+          @brand = Brand.find(params[:brand_id])
         rescue Mongoid::Errors::DocumentNotFound
           # we need to rescue to avoid crashing the application
           # like for the category_id above

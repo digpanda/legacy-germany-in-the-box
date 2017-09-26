@@ -6,5 +6,4 @@ class Customer::IdentityController < ApplicationController
 
   def edit
   end
-
 end

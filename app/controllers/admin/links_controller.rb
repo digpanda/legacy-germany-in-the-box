@@ -72,10 +72,10 @@ class Admin::LinksController < ApplicationController
   def ping
     if valid_link?
       link.update(valid_url: true)
-      flash[:success] = "Link is valid."
+      flash[:success] = 'Link is valid.'
     else
       link.update(valid_url: false)
-      flash[:error] = "Link is not valid."
+      flash[:error] = 'Link is not valid.'
     end
     redirect_to admin_links_path
   end

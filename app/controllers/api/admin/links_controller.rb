@@ -7,5 +7,4 @@ class Api::Admin::LinksController < Api::ApplicationController
     render status: :ok,
           json: { success: true, data: { adjusted_url: adjusted_url } }.to_json
   end
-
 end

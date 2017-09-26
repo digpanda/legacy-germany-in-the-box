@@ -1,5 +1,4 @@
 class CouponReachedMinimumOrder < ActiveModel::Validator
-
   attr_reader :record
 
   def setup(record)
@@ -15,16 +14,15 @@ class CouponReachedMinimumOrder < ActiveModel::Validator
 
   private
 
-  def error
-    "Minimum order must be equal or higher than the discount."
-  end
+    def error
+      'Minimum order must be equal or higher than the discount.'
+    end
 
-  def value_unit?
-    record.unit == :value
-  end
+    def value_unit?
+      record.unit == :value
+    end
 
-  def wrong_minimum_order?
-    record.minimum_order < record.discount
-  end
-
+    def wrong_minimum_order?
+      record.minimum_order < record.discount
+    end
 end

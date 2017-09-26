@@ -36,7 +36,6 @@ class Connect::RegistrationsController < Devise::RegistrationsController
           AfterSignupHandler.new(request, resource).solve
         end
 
-
         sign_in(:user, User.find(resource.id)) # auto sign in
 
         if resource.customer?

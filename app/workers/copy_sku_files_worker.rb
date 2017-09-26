@@ -20,31 +20,31 @@ class CopySkuFilesWorker
 
   private
 
-  def copy_images_and_attachment
-    attach!
-    copy_images!
-  end
-
-  def copy_images!
-    @product_sku.images.each do |image|
-      new_image = @target_sku.images.new
-      CopyCarrierwaveFile::CopyFileService.new(image, new_image, :file).set_file
-      new_image.save
+    def copy_images_and_attachment
+      attach!
+      copy_images!
     end
-  end
 
-  def attach!
-    ATTACH_MAP.each do |attach_field|
-      if @product_sku.send(attach_field).present?
-        copy_file(attach_field)
+    def copy_images!
+      @product_sku.images.each do |image|
+        new_image = @target_sku.images.new
+        CopyCarrierwaveFile::CopyFileService.new(image, new_image, :file).set_file
+        new_image.save
       end
     end
-  end
 
-  def copy_file(field)
-    if @product_sku.send(field).present?
-      CopyCarrierwaveFile::CopyFileService.new(@product_sku, @target_sku, field).set_file
-      @target_sku.save!
+    def attach!
+      ATTACH_MAP.each do |attach_field|
+        if @product_sku.send(attach_field).present?
+          copy_file(attach_field)
+        end
+      end
     end
-  end
+
+    def copy_file(field)
+      if @product_sku.send(field).present?
+        CopyCarrierwaveFile::CopyFileService.new(@product_sku, @target_sku, field).set_file
+        @target_sku.save!
+      end
+    end
 end

@@ -34,7 +34,7 @@ class Admin::Orders::OrderTrackingsController < ApplicationController
   def refresh
     tracking = tracking_handler.refresh!
     if tracking.success?
-      flash[:success] = "Tracking was successfully refreshed"
+      flash[:success] = 'Tracking was successfully refreshed'
     else
       flash[:error] = tracking.error
     end

@@ -22,7 +22,7 @@ class Connect::PasswordsController < Devise::PasswordsController
 
     if successfully_sent?(user)
       flash[:success] = I18n.t('password_recovery.instruction_sent')
-      respond_with({}, location: after_sending_reset_password_instructions_path_for(:user))
+      respond_with({}, { location: after_sending_reset_password_instructions_path_for(:user) })
     else
       respond_with(user)
     end
