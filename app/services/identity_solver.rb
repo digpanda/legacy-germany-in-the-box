@@ -1,7 +1,6 @@
 # anything related to the section (customer, shopkeeper, admin)
 # and used within the controller or model, etc. are defined here
 class IdentitySolver < BaseService
-
   include Rails.application.routes.url_helpers
 
   attr_reader :request, :session, :user
@@ -60,11 +59,11 @@ class IdentitySolver < BaseService
   end
 
   def wechat_browser?
-    request.user_agent&.include? "MicroMessenger"
+    request.user_agent&.include? 'MicroMessenger'
   end
 
   def wechat_domain?
-    request.url&.include? ENV["wechat_local_domain"] # typically germanyinbox.com
+    request.url&.include? ENV['wechat_local_domain'] # typically germanyinbox.com
   end
 
   def wechat_url
@@ -72,7 +71,7 @@ class IdentitySolver < BaseService
   end
 
   def guest_section?
-    request.url.include? "/guest/"
+    request.url.include? '/guest/'
   end
 
   def german?
@@ -90,5 +89,4 @@ class IdentitySolver < BaseService
   def german_ip?
     @german_ip ||= Geocoder.search(request.remote_ip).first&.country_code == 'DE'
   end
-
 end

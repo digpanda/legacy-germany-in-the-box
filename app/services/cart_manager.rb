@@ -1,7 +1,6 @@
 # change and retrieve current orders from session / database
 # this is linked to the cart system itself (with session + database)
 class CartManager < BaseService
-
   attr_reader :request, :session, :user
 
   def initialize(request, user)
@@ -67,51 +66,50 @@ class CartManager < BaseService
 
   private
 
-  def session_to_user_cart!
-    session_cart.update(user: user)
-    ensure_orders_ownership!
-    user.cart
-  end
-
-  def filled_user_cart!
-    if user.cart.orders.count == 0
-      user.cart.orders = session_cart.orders
-      user.cart.save
+    def session_to_user_cart!
+      session_cart.update(user: user)
       ensure_orders_ownership!
+      user.cart
     end
-    user.cart
-  end
 
-  def session_cart
-    @session_cart ||= begin
-      ensure_session_cart!
-      Cart.find(session[:current_cart])
-    end
-  end
-
-  def ensure_orders_ownership!
-    user.cart.orders.where(user: nil).each do |order|
-      order.user = user
-      if user.parent_referrer
-        order.referrer = user.parent_referrer
-        order.referrer_origin = :user
+    def filled_user_cart!
+      if user.cart.orders.count == 0
+        user.cart.orders = session_cart.orders
+        user.cart.save
+        ensure_orders_ownership!
       end
-      order.save
+      user.cart
     end
-  end
 
-  def ensure_session_cart!
-    session[:current_cart] = Cart.create.id unless valid_current_cart?
-  end
+    def session_cart
+      @session_cart ||= begin
+        ensure_session_cart!
+        Cart.find(session[:current_cart])
+      end
+    end
 
-  def valid_current_cart?
-    session[:current_cart] && Cart.where(id: session[:current_cart]).first
-  end
+    def ensure_orders_ownership!
+      user.cart.orders.where(user: nil).each do |order|
+        order.user = user
+        if user.parent_referrer
+          order.referrer = user.parent_referrer
+          order.referrer_origin = :user
+        end
+        order.save
+      end
+    end
 
-  # NOTE : sometimes the parent referrer won't be defined
-  # because the order is started anonymously
-  def fresh_order(shop, user)
-    Order.new(cart: current_cart, shop: shop, user: user, referrer: user&.parent_referrer, referrer_origin: :user, logistic_partner: Setting.instance.logistic_partner, exchange_rate: Setting.instance.exchange_rate_to_yuan)
-  end
+    def ensure_session_cart!
+      session[:current_cart] = Cart.create.id unless valid_current_cart?
+    end
 
+    def valid_current_cart?
+      session[:current_cart] && Cart.where(id: session[:current_cart]).first
+    end
+
+    # NOTE : sometimes the parent referrer won't be defined
+    # because the order is started anonymously
+    def fresh_order(shop, user)
+      Order.new(cart: current_cart, shop: shop, user: user, referrer: user&.parent_referrer, referrer_origin: :user, logistic_partner: Setting.instance.logistic_partner, exchange_rate: Setting.instance.exchange_rate_to_yuan)
+    end
 end

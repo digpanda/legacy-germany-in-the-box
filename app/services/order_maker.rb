@@ -1,6 +1,5 @@
 # cancel and make orders on the database and through APIs
 class OrderMaker
-
   attr_reader :identity_solver, :order
 
   def initialize(identity_solver, order)
@@ -25,7 +24,7 @@ class OrderMaker
   def coupon_handler
     @coupon_handler ||= CouponHandler.new(identity_solver, order.coupon, order)
   end
-  
+
   # in case of rollback or destroy
   # throughout the subclasses
   # if there are payments involved we try to manage them
@@ -55,5 +54,4 @@ class OrderMaker
   def order_errors
     order.errors.full_messages.join(', ')
   end
-
 end

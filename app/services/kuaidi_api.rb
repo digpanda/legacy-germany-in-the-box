@@ -1,7 +1,7 @@
 class KuaidiApi < BaseService
   attr_reader :delivery_id, :delivery_provider
 
-  def initialize(delivery_id:nil, delivery_provider:nil)
+  def initialize(delivery_id: nil, delivery_provider: nil)
     @delivery_id = delivery_id
     @delivery_provider = delivery_provider
   end
@@ -22,13 +22,13 @@ class KuaidiApi < BaseService
   def current_status
     case raw_status
     when 0
-      {:not_found => raw_message}
+      { not_found: raw_message }
     when 1
-      {:success => raw_message}
+      { success: raw_message }
     when 2
-      {:error => raw_message}
+      { error: raw_message }
     else
-      {:wrong_status => "Unknown response status"}
+      { wrong_status: 'Unknown response status' }
     end
   end
 
@@ -64,7 +64,7 @@ class KuaidiApi < BaseService
     gateway['data']
   end
 
-  def public_url(callback_url:nil)
+  def public_url(callback_url: nil)
     if delivery_id
       "https://m.kuaidi100.com/index_all.html?type=#{delivery_provider}&postid=#{delivery_id}&callbackurl=#{callback_url}"
     end
@@ -94,7 +94,6 @@ class KuaidiApi < BaseService
 
     # given key for digpanda
     def access_id
-      "23b4abf2e6d6d6c4"
+      ENV['kuaidi_api_key']
     end
-
 end

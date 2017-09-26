@@ -1,6 +1,5 @@
 # remove images dynamically
 class ImageDestroyer < BaseService
-
   # TODO : this is not a good way to tackle the problem
   # the structure of the model itself should be changed
   # this is pathetic to have such fields in the database.
@@ -35,34 +34,33 @@ class ImageDestroyer < BaseService
 
   private
 
-  # get the authorized fields
-  # depending on the model itself
-  def authorized_fields
-    @authorized_fields ||= begin
-      case model
-      when Shop
-        SHOP_IMAGE_FIELDS
-      when Sku
-        SKU_IMAGE_FIELDS
-      when Setting
-        SETTING_IMAGE_FIELDS
-      when PackageSet
-        PACKAGE_SET_IMAGE_FIELDS
-      when Category
-        CATEGORY_IMAGE_FIELDS
-      else
-        []
+    # get the authorized fields
+    # depending on the model itself
+    def authorized_fields
+      @authorized_fields ||= begin
+        case model
+        when Shop
+          SHOP_IMAGE_FIELDS
+        when Sku
+          SKU_IMAGE_FIELDS
+        when Setting
+          SETTING_IMAGE_FIELDS
+        when PackageSet
+          PACKAGE_SET_IMAGE_FIELDS
+        when Category
+          CATEGORY_IMAGE_FIELDS
+        else
+          []
+        end
       end
     end
-  end
 
-  def remove!(image_field)
-    model.send("remove_#{image_field}=", true)
-    model.save
-  end
+    def remove!(image_field)
+      model.send("remove_#{image_field}=", true)
+      model.save
+    end
 
-  def valid_model_image?(image_field)
-    model.respond_to?(image_field) && authorized_fields.include?(image_field)
-  end
-
+    def valid_model_image?(image_field)
+      model.respond_to?(image_field) && authorized_fields.include?(image_field)
+    end
 end

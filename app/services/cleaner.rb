@@ -3,7 +3,7 @@ module Cleaner
 
   # TODO : this method was abstracted real fast to clean up the CSV generations
   # you could refactor it.
-  def slug(string, characters=nil)
+  def slug(string, characters = nil)
     unless string
       return ''
     end
@@ -15,5 +15,4 @@ module Cleaner
     end
     string
   end
-
 end

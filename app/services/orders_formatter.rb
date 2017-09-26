@@ -2,7 +2,6 @@ require 'csv'
 
 # generate format for orders model (CSV for admin, ...)
 class OrdersFormatter < BaseService
-
   include Rails.application.routes.url_helpers
 
   CSV_LINE_CURRENCY = 'EUR'
@@ -51,7 +50,6 @@ class OrdersFormatter < BaseService
     @orders = orders
   end
 
-
   # convert a list of orders (model) into a normalized CSV file
   def to_csv
     CSV.generate do |csv|
@@ -64,86 +62,85 @@ class OrdersFormatter < BaseService
 
   private
 
-  def csv_line(order)
-    [
-      order.id,
-      full_name(order),
-      full_address(order),
-      order.status,
-      order.desc,
+    def csv_line(order)
+      [
+        order.id,
+        full_name(order),
+        full_address(order),
+        order.status,
+        order.desc,
 
-      order.decorate.clean_desc,
-      order_item_names(order),
+        order.decorate.clean_desc,
+        order_item_names(order),
 
-      order.decorate.clean_order_items_description,
-      order.decorate.total_quantity,
-      order.decorate.total_volume,
+        order.decorate.clean_order_items_description,
+        order.decorate.total_quantity,
+        order.decorate.total_volume,
 
-      order.decorate.total_price.in_euro.amount,
-      order.decorate.total_price.in_euro.to_yuan(exchange_rate: order.exchange_rate).amount,
-      order.decorate.shipping_cost.in_euro.amount,
-      order.decorate.shipping_cost.in_euro.to_yuan(exchange_rate: order.exchange_rate).amount,
-      order.decorate.taxes_cost.in_euro.amount,
-      order.decorate.taxes_cost.in_euro.to_yuan(exchange_rate: order.exchange_rate).amount,
-      order.decorate.end_price.in_euro.amount,
-      order.decorate.end_price.in_euro.to_yuan(exchange_rate: order.exchange_rate).amount,
+        order.decorate.total_price.in_euro.amount,
+        order.decorate.total_price.in_euro.to_yuan(exchange_rate: order.exchange_rate).amount,
+        order.decorate.shipping_cost.in_euro.amount,
+        order.decorate.shipping_cost.in_euro.to_yuan(exchange_rate: order.exchange_rate).amount,
+        order.decorate.taxes_cost.in_euro.amount,
+        order.decorate.taxes_cost.in_euro.to_yuan(exchange_rate: order.exchange_rate).amount,
+        order.decorate.end_price.in_euro.amount,
+        order.decorate.end_price.in_euro.to_yuan(exchange_rate: order.exchange_rate).amount,
 
-      (order.coupon ? order.coupon.code : ''),
-      (order.coupon ? order.coupon.decorate.discount_display : ''),
-      (order.coupon_discount ? order.coupon_discount : ''),
-      (order.coupon ? order.coupon.desc : ''),
+        (order.coupon ? order.coupon.code : ''),
+        (order.coupon ? order.coupon.decorate.discount_display : ''),
+        (order.coupon_discount ? order.coupon_discount : ''),
+        (order.coupon ? order.coupon.desc : ''),
 
-      order.total_paid(:eur),
-      order.total_paid(:cny),
-      order.order_items.count,
+        order.total_paid(:eur),
+        order.total_paid(:cny),
+        order.order_items.count,
 
-      (order.shop ? order.shop.merchant_id : ''),
+        (order.shop ? order.shop.merchant_id : ''),
 
-      payments_ids(order),
+        payments_ids(order),
 
-      payment_methods(order),
-      transaction_types(order),
+        payment_methods(order),
+        transaction_types(order),
 
-      transactions_ids(order),
-      requests_ids(order),
+        transactions_ids(order),
+        requests_ids(order),
 
-      order.bill_id,
-      order.paid_at,
-      order.c_at,
-      order.u_at,
-    ]
-  end
+        order.bill_id,
+        order.paid_at,
+        order.c_at,
+        order.u_at,
+      ]
+    end
 
-  def order_item_names(order)
-    order.order_items.reduce([]) { |acc, order_item| acc << order_item.product.name }.join(', ')
-  end
+    def order_item_names(order)
+      order.order_items.reduce([]) { |acc, order_item| acc << order_item.product.name }.join(', ')
+    end
 
-  def full_name(order)
-    order.billing_address.decorate.full_name if order.billing_address
-  end
+    def full_name(order)
+      order.billing_address.decorate.full_name if order.billing_address
+    end
 
-  def full_address(order)
-    order.billing_address.decorate.full_address if order.billing_address
-  end
+    def full_address(order)
+      order.billing_address.decorate.full_address if order.billing_address
+    end
 
-  def payments_ids(order)
-    order.order_payments.reduce([]) { |acc, order_payment| acc << order_payment.id }.join(', ')
-  end
+    def payments_ids(order)
+      order.order_payments.reduce([]) { |acc, order_payment| acc << order_payment.id }.join(', ')
+    end
 
-  def requests_ids(order)
-    order.order_payments.reduce([]) { |acc, order_payment| acc << order_payment.request_id }.join(', ')
-  end
+    def requests_ids(order)
+      order.order_payments.reduce([]) { |acc, order_payment| acc << order_payment.request_id }.join(', ')
+    end
 
-  def transactions_ids(order)
-    order.order_payments.reduce([]) { |acc, order_payment| acc << order_payment.transaction_id }.join(', ')
-  end
+    def transactions_ids(order)
+      order.order_payments.reduce([]) { |acc, order_payment| acc << order_payment.transaction_id }.join(', ')
+    end
 
-  def payment_methods(order)
-    order.order_payments.reduce([]) { |acc, order_payment| acc << order_payment.payment_method }.join(', ')
-  end
+    def payment_methods(order)
+      order.order_payments.reduce([]) { |acc, order_payment| acc << order_payment.payment_method }.join(', ')
+    end
 
-  def transaction_types(order)
-    order.order_payments.reduce([]) { |acc, order_payment| acc << order_payment.transaction_type }.join(', ')
-  end
-
+    def transaction_types(order)
+      order.order_payments.reduce([]) { |acc, order_payment| acc << order_payment.transaction_type }.join(', ')
+    end
 end

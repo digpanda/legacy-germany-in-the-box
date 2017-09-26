@@ -1,11 +1,10 @@
-class LandingSolver
-
+class LandingSolver < BaseService
   include Rails.application.routes.url_helpers
 
   attr_reader :request, :session, :params
 
   # keep it in string since it's compared to stringified params
-  ALLOWED_FORCE_LANDING = ["package_sets", "products"]
+  ALLOWED_FORCE_LANDING = ['package_sets', 'products'].freeze
 
   def initialize(request)
     @request = request
@@ -34,27 +33,26 @@ class LandingSolver
 
   private
 
-  def just_landed?
-    return false if session[:landing]
-    true
-  end
-
-  # NOTE : the :wechat condition force all wechat users to have
-  # the package set as default landing page
-  def solve_landing!
-    if (request.url.include? guest_package_sets_path) || session[:origin] == :wechat
-      session[:landing] = :package_sets
-    else
-      session[:landing] = :products
+    def just_landed?
+      return false if session[:landing]
+      true
     end
-  end
 
-  def force_landing!
-    if params[:landing]
-      if ALLOWED_FORCE_LANDING.include? params[:landing]
-        session[:landing] = params[:landing].to_sym
+    # NOTE : the :wechat condition force all wechat users to have
+    # the package set as default landing page
+    def solve_landing!
+      if (request.url.include? guest_package_sets_path) || session[:origin] == :wechat
+        session[:landing] = :package_sets
+      else
+        session[:landing] = :products
       end
     end
-  end
 
+    def force_landing!
+      if params[:landing]
+        if ALLOWED_FORCE_LANDING.include? params[:landing]
+          session[:landing] = params[:landing].to_sym
+        end
+      end
+    end
 end

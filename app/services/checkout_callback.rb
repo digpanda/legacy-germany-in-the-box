@@ -1,5 +1,4 @@
 class CheckoutCallback < BaseService
-
   # {"sign"=>"0ba0871c3777191fda758b07189a59c3",
   #  "trade_no"=>"2017030821001003840200345741",
   #  "total_fee"=>"1262.41",
@@ -9,14 +8,13 @@ class CheckoutCallback < BaseService
   #  "currency"=>"HKD",
   #  "controller"=>"customer/checkout/callback/alipay",
   #  "action"=>"show"}
-
   include ErrorsHelper
   include Rails.application.routes.url_helpers
 
   attr_reader :user, :params, :forced_status, :cart_manager
 
   # NOTE : the forced status isn't currently working with alipay
-  def initialize(user, cart_manager, params, forced_status=nil)
+  def initialize(user, cart_manager, params, forced_status = nil)
     @user = user
     @cart_manager = cart_manager
     @params = params
@@ -26,7 +24,7 @@ class CheckoutCallback < BaseService
   def wechatpay!
     order_payment = OrderPayment.where(id: params['out_trade_no']).first
     unless order_payment
-      return return_with(:error, "Order not found from the AliPay callback")
+      return return_with(:error, 'Order not found from the AliPay callback')
     end
 
     # first we make sure we got the transaction id for traceability
@@ -52,10 +50,9 @@ class CheckoutCallback < BaseService
   end
 
   def alipay!(mode: :unsafe)
-
     order = Order.where(id: params['out_trade_no']).first
     unless order
-      return return_with(:error, "Order not found from the AliPay callback")
+      return return_with(:error, 'Order not found from the AliPay callback')
     end
 
     transaction_id = params[:trade_no]
@@ -93,7 +90,7 @@ class CheckoutCallback < BaseService
       dispatch_notifications!(order_payment)
 
     else
-      return return_with(:error, "Mode for Alipay callback unknown")
+      return return_with(:error, 'Mode for Alipay callback unknown')
     end
 
     return return_with(:success, order_payment: order_payment)
@@ -127,28 +124,27 @@ class CheckoutCallback < BaseService
 
   private
 
-  def wechatpay_success?
-    params['return_code'] == 'SUCCESS'
-  end
-
-  def alipay_success?(mode)
-    ["TRADE_FINISHED", "TRADE_SUCCESS"].include?(params[:trade_status]) ? true : false
-  end
-
-  def dispatch_notifications!(order_payment)
-    if order_payment.status == :success
-      if order_payment.order.bought?
-        dispatch_guide_message!(order_payment)
-        dispatch_confirm_paid_order!(order_payment.order)
-        slack.paid_transaction(order_payment)
-      end
-    else
-      slack.failed_transaction(order_payment)
+    def wechatpay_success?
+      params['return_code'] == 'SUCCESS'
     end
-  end
 
-  def slack
-    @slack ||= SlackDispatcher.new
-  end
+    def alipay_success?(mode)
+      ['TRADE_FINISHED', 'TRADE_SUCCESS'].include? params[:trade_status]
+    end
 
+    def dispatch_notifications!(order_payment)
+      if order_payment.status == :success
+        if order_payment.order.bought?
+          dispatch_guide_message!(order_payment)
+          dispatch_confirm_paid_order!(order_payment.order)
+          slack.paid_transaction(order_payment)
+        end
+      else
+        slack.failed_transaction(order_payment)
+      end
+    end
+
+    def slack
+      @slack ||= SlackDispatcher.new
+    end
 end

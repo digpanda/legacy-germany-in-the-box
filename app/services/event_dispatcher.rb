@@ -18,10 +18,10 @@ class EventDispatcher
   # for every first use of one of the projects
   # this is sample data to switch it on
   def activate!
-    keen.publish(:signups, {
-      :username => "lloyd",
-      :referred_by => "harry"
-    })
+    keen.publish(:signups,
+      username: 'lloyd',
+      referred_by: 'harry'
+    )
   end
 
   def dispatch!
@@ -72,27 +72,27 @@ class EventDispatcher
 
   private
 
-  def addons
-    {
-      "keen": {
-        "addons": @addons
+    def addons
+      {
+        "keen": {
+          "addons": @addons
+        }
       }
-    }
-  end
+    end
 
     def addon_ip_to_geo(ip)
       {
-        "name": "keen:ip_to_geo",
+        "name": 'keen:ip_to_geo',
         "input": {
           "ip": "#{ip}"
         },
-        "output": "ip_to_geo_info"
+        "output": 'ip_to_geo_info'
       }
     end
 
     def addon_datetime(field)
       {
-        "name": "keen:date_time_parser",
+        "name": 'keen:date_time_parser',
         "input": {
           "date_time": "#{field}"
         },
@@ -114,18 +114,17 @@ class EventDispatcher
         cache!
         result
       end
-    # geo may blow up because of some weird IP result
-    # we ensure it does not block the system
+      # geo may blow up because of some weird IP result
+      # we ensure it does not block the system
     rescue Keen::HttpError => exception
     end
 
     # this will be thread-safe
     def keen
       @keen ||= Keen::Client.new(
-        :project_id => ENV['keen_project_id'],
-        :write_key => ENV['keen_write_key'],
-        :read_key =>ENV['keen_read_key'],
+        project_id: ENV['keen_project_id'],
+        write_key: ENV['keen_write_key'],
+        read_key: ENV['keen_read_key'],
       )
     end
-
 end

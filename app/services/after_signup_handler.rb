@@ -1,5 +1,4 @@
 class AfterSignupHandler
-
   include Rails.application.routes.url_helpers
 
   attr_reader :request, :user
@@ -15,5 +14,4 @@ class AfterSignupHandler
       EventDispatcher.new.customer_was_registered(user).with_geo(ip: request.remote_ip).dispatch!
     end
   end
-
 end
