@@ -1,6 +1,5 @@
 class Parser
   class << self
-
     def get(url)
       Net::HTTP.get(URI.parse(url))
     end
@@ -12,9 +11,9 @@ class Parser
     end
 
     def post_json(url, body)
-      header = {'Content-Type': 'text/json'}
+      header = { 'Content-Type': 'text/json' }
       uri = URI.parse(url)
-      https = Net::HTTP.new(uri.host,uri.port)
+      https = Net::HTTP.new(uri.host, uri.port)
       https.use_ssl = true
       req = Net::HTTP::Post.new(uri.request_uri, header)
       req.body = body.to_json
@@ -23,6 +22,5 @@ class Parser
     rescue Exception => exception
       {}
     end
-
   end
 end

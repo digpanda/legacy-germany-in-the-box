@@ -1,7 +1,7 @@
 class WeixinApiAccessToken < BaseService
   attr_reader :appid, :secret
 
-  def initialize(appid:nil, secret:nil)
+  def initialize(appid: nil, secret: nil)
     @appid = appid || Rails.application.config.wechat[:username_mobile]
     @secret = secret || Rails.application.config.wechat[:password_mobile]
   end

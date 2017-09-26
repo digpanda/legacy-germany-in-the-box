@@ -14,7 +14,7 @@ class WechatUrlAdjuster < BaseService
     end_url
   end
 
-    private
+  private
 
     def end_url
       "#{service_url}?appid=#{appid}&redirect_uri=#{encoded_url}&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect"
@@ -26,7 +26,7 @@ class WechatUrlAdjuster < BaseService
     end
 
     def service_url
-      "https://open.weixin.qq.com/connect/oauth2/authorize"
+      'https://open.weixin.qq.com/connect/oauth2/authorize'
     end
 
     def appid

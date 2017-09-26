@@ -29,33 +29,32 @@ class TrackingHandler < BaseService
 
   private
 
-  def cache_timeout?
-    return true unless order_tracking.refreshed_at
-    order_tracking.refreshed_at < CACHE.call
-  end
+    def cache_timeout?
+      return true unless order_tracking.refreshed_at
+      order_tracking.refreshed_at < CACHE.call
+    end
 
-  def update_order_tracking!
-    order_tracking.update(
-      state: api_performed.data[:current_state],
-      histories: api_performed.data[:current_history],
-      refreshed_at: Time.now
-    )
-  end
+    def update_order_tracking!
+      order_tracking.update(
+        state: api_performed.data[:current_state],
+        histories: api_performed.data[:current_history],
+        refreshed_at: Time.now
+      )
+    end
 
-  def api_performed
-    @api_performed ||= api_gateway.perform!
-  end
+    def api_performed
+      @api_performed ||= api_gateway.perform!
+    end
 
-  def delivery_id
-    order_tracking.delivery_id
-  end
+    def delivery_id
+      order_tracking.delivery_id
+    end
 
-  def delivery_provider
-    order_tracking.delivery_provider
-  end
+    def delivery_provider
+      order_tracking.delivery_provider
+    end
 
-  def order
-    @order ||= order_tracking.order
-  end
-
+    def order
+      @order ||= order_tracking.order
+    end
 end

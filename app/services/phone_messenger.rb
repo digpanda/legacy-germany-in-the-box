@@ -1,5 +1,4 @@
 class PhoneMessenger
-
   attr_reader :account_sid, :auth_token, :client, :from
 
   def initialize
@@ -9,11 +8,10 @@ class PhoneMessenger
   end
 
   def send(to, body)
-    client.account.messages.create(:body => body, :to => to, :from => from)
+    client.account.messages.create(body: body, to: to, from: from)
   end
 
   def client
     @client ||= Twilio::REST::Client.new account_sid, auth_token
   end
-
 end

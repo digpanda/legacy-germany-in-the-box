@@ -1,6 +1,5 @@
 # very small library to calculate the taxes
-class TaxesPrice
-
+class TaxesPrice < BaseService
   CONSTANT_RATE = 11.9.freeze
   SPECIAL_CONSTANT_RATE = 26.63.freeze
 
@@ -38,5 +37,4 @@ class TaxesPrice
       0.0
     end
   end
-
 end

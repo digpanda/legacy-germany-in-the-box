@@ -29,7 +29,7 @@ class QrcodeHandler < BaseService
 
     # full local path with the public directory to write the image
     def local_storage
-       "#{Rails.root}/public#{local_path}"
+      "#{Rails.root}/public#{local_path}"
     end
 
     def full_path

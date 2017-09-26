@@ -1,5 +1,4 @@
-class StockManager
-
+class StockManager < BaseService
   attr_reader :order
 
   def initialize(order)
@@ -47,8 +46,7 @@ class StockManager
 
   private
 
-  def already_reduced?(order_item)
-    StockHistory.where(order_item: order_item).count > 0
-  end
-
+    def already_reduced?(order_item)
+      StockHistory.where(order_item: order_item).count > 0
+    end
 end

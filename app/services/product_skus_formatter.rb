@@ -4,7 +4,6 @@ require 'csv'
 # TODO : those CSV libraries are all very similar and
 # could be definitely refactored better
 class ProductSkusFormatter < BaseService
-
   include Rails.application.routes.url_helpers
 
   CSV_LINE_CURRENCY = 'EUR'
@@ -44,7 +43,6 @@ class ProductSkusFormatter < BaseService
     @products = products
   end
 
-
   # convert a list of products (model) into a normalized CSV file
   def to_csv
     CSV.generate do |csv|
@@ -59,36 +57,34 @@ class ProductSkusFormatter < BaseService
 
   private
 
-  def csv_line(product, sku)
-    [
-      product.id,
-      product.name_translations[:'zh-CN'],
-      product.name_translations[:de],
-      product.brand&.name,
-      product.status,
-      product.approved,
-      (product.duty_category ? product.duty_category.code : '' ),
-      product.hs_code,
-      product.highlight,
-      sku.id,
-      sku.price,
-      sku.taxes_per_unit,
-      sku.price_with_taxes,
-      sku.shipping_per_unit,
-      sku.quantity,
-      sku.unlimited,
-      sku.weight,
-      sku.status,
-      sku.discount,
-      sku.space_length,
-      sku.space_width,
-      sku.space_height,
-      sku.volume,
-      sku.country_of_origin,
-      sku.c_at,
-      sku.u_at
-    ]
-  end
-
-
+    def csv_line(product, sku)
+      [
+        product.id,
+        product.name_translations[:'zh-CN'],
+        product.name_translations[:de],
+        product.brand&.name,
+        product.status,
+        product.approved,
+        "#{product.duty_category&.code}",
+        product.hs_code,
+        product.highlight,
+        sku.id,
+        sku.price,
+        sku.taxes_per_unit,
+        sku.price_with_taxes,
+        sku.shipping_per_unit,
+        sku.quantity,
+        sku.unlimited,
+        sku.weight,
+        sku.status,
+        sku.discount,
+        sku.space_length,
+        sku.space_width,
+        sku.space_height,
+        sku.volume,
+        sku.country_of_origin,
+        sku.c_at,
+        sku.u_at
+      ]
+    end
 end

@@ -2,10 +2,9 @@ require 'slack-notifier'
 
 # manage the communication between slack and the project
 class SlackDispatcher < BaseService
-
-  WEBHOOK_URL = "https://hooks.slack.com/services/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"
-  CHANNEL = "#notifs"
-  USERNAME = "Lorenzo Schaffnero"
+  WEBHOOK_URL = 'https://hooks.slack.com/services/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'.freeze
+  CHANNEL = '#notifs'.freeze
+  USERNAME = 'Lorenzo Schaffnero'.freeze
 
   include Rails.application.routes.url_helpers
 
@@ -37,13 +36,12 @@ class SlackDispatcher < BaseService
 
   private
 
-  def push(message)
-    slack.delay.ping "[#{counter}] #{message}"
-    @counter += 1
-  end
+    def push(message)
+      slack.delay.ping "[#{counter}] #{message}"
+      @counter += 1
+    end
 
-  def slack
-    @slack ||= Slack::Notifier.new WEBHOOK_URL, channel: CHANNEL, username: USERNAME
-  end
-
+    def slack
+      @slack ||= Slack::Notifier.new WEBHOOK_URL, channel: CHANNEL, username: USERNAME
+    end
 end

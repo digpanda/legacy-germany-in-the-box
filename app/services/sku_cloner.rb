@@ -4,10 +4,9 @@
 # sku can be present in other part of the system such as `order_item`
 # the `relationship` is the way we should integrate the sku to the `target` (many or one sku relationship)
 class SkuCloner < BaseService
-
   attr_reader :target, :sku, :relationship
 
-  def initialize(target, sku, relationship=:plural)
+  def initialize(target, sku, relationship = :plural)
     @target = target
     @sku = sku
     @relationship = relationship
@@ -18,10 +17,10 @@ class SkuCloner < BaseService
     # we save after all alterations
     if target.save
       copy_sku_files!
-      return_with(:success, :clone => clone)
+      return_with(:success, clone: clone)
     else
       clone.destroy
-      return_with(:error, :target => target)
+      return_with(:error, target: target)
     end
   end
 
@@ -39,14 +38,13 @@ class SkuCloner < BaseService
 
   private
 
-  # we simply call the memoized method
-  # this will process it once
-  def clone_entry!
-    clone
-  end
+    # we simply call the memoized method
+    # this will process it once
+    def clone_entry!
+      clone
+    end
 
-  def copy_sku_files!
-    CopySkuFilesWorker.perform_async(sku.product.id, target.id, sku.id, clone.id, relationship)
-  end
-
+    def copy_sku_files!
+      CopySkuFilesWorker.perform_async(sku.product.id, target.id, sku.id, clone.id, relationship)
+    end
 end

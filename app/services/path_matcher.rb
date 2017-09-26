@@ -3,7 +3,6 @@
 # TODO : we could improve it to abstract the NavigationHistory::Store class
 # which contains a very similar logic.
 class PathMatcher
-
   attr_reader :request
 
   def initialize(request)
@@ -31,5 +30,4 @@ class PathMatcher
   def location_path
     request.fullpath
   end
-
 end
