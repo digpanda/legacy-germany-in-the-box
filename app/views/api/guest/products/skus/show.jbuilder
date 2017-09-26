@@ -19,11 +19,11 @@ json.discount @sku.discount
 json.images do
 
   @sku.images.each do |image|
-    json.array! [{
-                     :thumb => image.file.url,
-                     :fullsize => image.file.url,
-                     :zoomin => image.file.url
-                 }]
+    json.array! [
+                  thumb: image.file.url,
+                  fullsize: image.file.url,
+                  zoomin: image.file.url
+                 ]
   end
 
 end

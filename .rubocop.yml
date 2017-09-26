@@ -6,6 +6,7 @@ AllCops:
   Exclude:
     - 'test/dummy/**/*'
     - 'db/migrate/**/*'
+    - 'app_front/**/*'
 
 # Prefer &&/|| over and/or.
 Style/AndOr:
