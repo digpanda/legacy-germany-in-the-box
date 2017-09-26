@@ -1,5 +1,4 @@
 class ProductUploader < CarrierWave::Uploader::Base
-
   include Concerns::Uploadable
   include Concerns::Imageable
 
@@ -10,5 +9,4 @@ class ProductUploader < CarrierWave::Uploader::Base
   def default_url
     [version_name].compact.join('_')
   end
-
 end

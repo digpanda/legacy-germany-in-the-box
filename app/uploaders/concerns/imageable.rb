@@ -14,7 +14,7 @@ module Concerns
             @width = img[:width]
             @height = img[:height]
           else
-            @width, @height = `identify -format "%wx %h" #{file.path}`.split(/x/).map{|dim| dim.to_i }
+            @width, @height = `identify -format "%wx %h" #{file.path}`.split(/x/).map { |dim| dim.to_i }
           end
         end
       end
@@ -24,10 +24,9 @@ module Concerns
       end
 
       version :thumb do
-        process :resize_to_limit => [250, 250]
+        process resize_to_limit: [250, 250]
       end
 
     end
-
   end
 end
