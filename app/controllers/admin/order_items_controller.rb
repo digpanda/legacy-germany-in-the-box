@@ -1,5 +1,5 @@
 class Admin::OrderItemsController < ApplicationController
-  attr_accessor :order_item, :order_items, :order
+  attr_reader :order_item, :order_items, :order
 
   authorize_resource class: false
   before_action :set_order_item, :set_order

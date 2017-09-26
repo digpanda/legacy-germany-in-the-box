@@ -1,5 +1,6 @@
+# handle the carts from the admin dashboard
 class Admin::CartsController < ApplicationController
-  attr_accessor :cart, :carts
+  attr_reader :cart, :carts
 
   authorize_resource class: false
   before_action :set_cart, except: [:index]

@@ -3,7 +3,7 @@ require 'nokogiri'
 require 'open-uri'
 
 class Admin::LinksController < ApplicationController
-  attr_accessor :link, :links
+  attr_reader :link, :links
 
   authorize_resource class: false
   before_action :set_link, except: [:index, :create, :new]

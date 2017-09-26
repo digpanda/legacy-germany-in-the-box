@@ -1,5 +1,5 @@
 class Admin::ReferrersController < ApplicationController
-  attr_accessor :referrer, :referrers
+  attr_reader :referrer, :referrers
 
   before_action :set_referrer, except: [:index, :new]
 

@@ -1,7 +1,7 @@
 class Admin::ReferrerGroupsController < ApplicationController
   include DestroyImage
 
-  attr_accessor :referrer_group, :referrer_groups
+  attr_reader :referrer_group, :referrer_groups
 
   authorize_resource class: false
 

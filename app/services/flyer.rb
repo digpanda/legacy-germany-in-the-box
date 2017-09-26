@@ -3,7 +3,7 @@ class Flyer < BaseService
   require 'RMagick'
   include Magick
 
-  attr_accessor :image
+  attr_reader :image
 
   def initialize
   end

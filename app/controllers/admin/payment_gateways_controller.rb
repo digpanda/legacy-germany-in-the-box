@@ -1,5 +1,5 @@
 class Admin::PaymentGatewaysController < ApplicationController
-  attr_accessor :payment_gateway, :payment_gateways
+  attr_reader :payment_gateway, :payment_gateways
 
   authorize_resource class: false
   before_action :set_payment_gateway, except: [:index]

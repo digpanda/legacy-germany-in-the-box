@@ -1,6 +1,6 @@
 # NOTE : the controller itself isn't currently used but only the view.
 class Admin::AddressController < ApplicationController
-  attr_accessor :address
+  attr_reader :address
 
   authorize_resource class: false
 

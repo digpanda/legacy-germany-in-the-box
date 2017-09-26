@@ -1,7 +1,7 @@
 module Locked
   extend ActiveSupport::Concern
 
-  attr_accessor :bypass_locked
+  attr_reader :bypass_locked
 
   included do
     field :locked, type: Boolean, default: false

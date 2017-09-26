@@ -1,5 +1,5 @@
 class Admin::NotesController < ApplicationController
-  attr_accessor :note, :notes
+  attr_reader :note, :notes
 
   authorize_resource class: false
   before_action :set_note, except: [:index, :create]

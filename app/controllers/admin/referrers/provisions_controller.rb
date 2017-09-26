@@ -1,5 +1,5 @@
 class Admin::Referrers::ProvisionsController < ApplicationController
-  attr_accessor :referrer, :referrers, :provision, :provisions
+  attr_reader :referrer, :referrers, :provision, :provisions
 
   before_action :set_referrer
   before_action :set_provision, only: [:refresh]

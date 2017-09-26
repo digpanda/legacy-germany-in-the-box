@@ -1,6 +1,6 @@
 # account management from the shopkeeper area
 class Shopkeeper::AccountController < ApplicationController
-  attr_accessor :user
+  attr_reader :user
 
   authorize_resource class: false
   before_action :set_user

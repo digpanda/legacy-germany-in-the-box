@@ -2,7 +2,7 @@ require 'csv'
 require 'net/ftp'
 
 class Shopkeeper::OrdersController < ApplicationController
-  attr_accessor :order
+  attr_reader :order
 
   authorize_resource class: false
   before_action :set_order, except: [:index]

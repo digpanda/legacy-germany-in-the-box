@@ -1,5 +1,5 @@
 class Admin::Orders::AddressesController < ApplicationController
-  attr_accessor :order, :address
+  attr_reader :order, :address
 
   authorize_resource class: false
 

@@ -1,5 +1,5 @@
 class Admin::CouponsController < ApplicationController
-  attr_accessor :coupon, :coupons
+  attr_reader :coupon, :coupons
 
   authorize_resource class: false
   before_action :set_coupon, except: [:index, :create, :new]

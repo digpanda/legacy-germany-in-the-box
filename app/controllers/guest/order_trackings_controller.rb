@@ -1,5 +1,5 @@
 class Guest::OrderTrackingsController < ApplicationController
-  attr_accessor :order_tracking
+  attr_reader :order_tracking
 
   before_action :set_order_tracking, only: [:public_url]
 

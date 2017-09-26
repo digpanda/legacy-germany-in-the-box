@@ -1,7 +1,7 @@
 class Admin::CategoriesController < ApplicationController
   include DestroyImage
 
-  attr_accessor :category, :categories
+  attr_reader :category, :categories
 
   authorize_resource class: false
 

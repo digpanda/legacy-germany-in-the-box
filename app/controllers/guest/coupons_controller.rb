@@ -1,5 +1,5 @@
 class Guest::CouponsController < ApplicationController
-  attr_accessor :coupon, :coupons
+  attr_reader :coupon, :coupons
 
   before_action :set_coupon
 

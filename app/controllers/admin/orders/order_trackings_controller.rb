@@ -1,5 +1,5 @@
 class Admin::Orders::OrderTrackingsController < ApplicationController
-  attr_accessor :order, :order_tracking
+  attr_reader :order, :order_tracking
 
   authorize_resource class: false
 

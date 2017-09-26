@@ -1,5 +1,5 @@
 class Customer::CartController < ApplicationController
-  attr_accessor :user
+  attr_reader :user
   attr_reader :orders
 
   before_action :freeze_header

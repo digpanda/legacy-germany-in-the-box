@@ -1,5 +1,5 @@
 class Admin::NotificationsController < ApplicationController
-  attr_accessor :notification, :notifications
+  attr_reader :notification, :notifications
 
   before_action :set_notification, except: [:index]
 
