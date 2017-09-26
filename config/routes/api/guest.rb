@@ -14,7 +14,6 @@ namespace :guest do
     get :total
   end
 
-
   resources :products  do
     resources :skus, controller: 'products/skus' do
     end

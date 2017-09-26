@@ -14,15 +14,15 @@ Rails.application.configure do
 
   config.middleware.use ExceptionNotification::Rack,
   email: {
-    :email_prefix => "Report - ",
-    :sender_address => %{"Bug DigPanda Production" <notifier@digpanda.com>},
-    :exception_recipients => %w{laurent.schaffner@digpanda.com, jiang@digpanda.com}
+    email_prefix: 'Report - ',
+    sender_address: %{"Bug DigPanda Production" <notifier@digpanda.com>},
+    exception_recipients: %w{laurent.schaffner@digpanda.com, jiang@digpanda.com}
   }
 
   # used for root_url and equivalent
-  Rails.application.routes.default_url_options = {protocol: :https, host: 'www.germanyinthebox.com', port: 443}
+  Rails.application.routes.default_url_options = { protocol: :https, host: 'www.germanyinthebox.com', port: 443 }
 
-  config.action_mailer.default_url_options = {host: 'www.germanyinthebox.com', port: 443}
+  config.action_mailer.default_url_options = { host: 'www.germanyinthebox.com', port: 443 }
 
   # config.action_mailer.delivery_method = :smtp
   # config.action_mailer.smtp_settings = {
@@ -37,12 +37,10 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method = :mailgun
   config.action_mailer.mailgun_settings = {
-          api_key: 'key-57fccf0c1fa0bf601a25865e43e0f742',
-          domain: 'germanyinthebox.de'
+    api_key: 'key-57fccf0c1fa0bf601a25865e43e0f742',
+    domain: 'germanyinthebox.de'
   }
-
 
   config.active_support.deprecation = :notify
   config.log_formatter = ::Logger::Formatter.new
-
 end

@@ -22,7 +22,7 @@ Mongoid::Search.setup do |config|
   # config.ignore_list = %w{ a an to from as }
 
   ## Or from a file
-  # config.ignore_list = YAML.load(File.open(File.dirname(__FILE__) + '/config/ignorelist.yml'))["ignorelist"]
+  # config.ignore_list = YAML.load(File.open(File.dirname(__FILE__) + '/config/ignorelist.yml'))['ignorelist']
 
   ## Search using regex (slower)
   config.regex_search = true
@@ -38,7 +38,7 @@ Mongoid::Search.setup do |config|
 
   # Ligatures to be replaced
   # http://en.wikipedia.org/wiki/Typographic_ligature
-  config.ligatures = { "œ"=>"oe", "æ"=>"ae" }
+  config.ligatures = { 'œ' => 'oe', 'æ' => 'ae' }
 
   # Minimum word size. Words smaller than it won't be indexed
   config.minimum_word_size = 0

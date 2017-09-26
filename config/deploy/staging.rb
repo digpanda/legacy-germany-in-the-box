@@ -14,10 +14,9 @@ set :nvm_type, :user
 set :nvm_map_bins, %w{node npm}
 #set :nvm_custom_path, '/home/ubuntu/.nvm/bin'
 
-set :ssh_options, {
+set :ssh_options,
   keys: %w(../private/staging/digpanda-staging.pem),
   forward_agent: true,
   auth_methods: %w(publickey, password)
-}
 
 set :branch, :staging

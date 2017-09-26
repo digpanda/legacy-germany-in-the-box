@@ -33,7 +33,7 @@ namespace :customer do
 
   resource :checkout, controller: 'checkout' do
     get :payment_method
-    get '/gateways/:payment_method', to: "checkout#gateway", as: "gateway"
+    get '/gateways/:payment_method', to: 'checkout#gateway', as: 'gateway'
     # get :gateway
   end
 

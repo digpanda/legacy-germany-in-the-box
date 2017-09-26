@@ -1,7 +1,7 @@
 # required
-WxPay.appid = ENV["wechat_username_mobile"]
-WxPay.key = ENV["wechat_pay_key"]
-WxPay.mch_id = ENV["wechat_mch_id"]
+WxPay.appid = ENV['wechat_username_mobile']
+WxPay.key = ENV['wechat_pay_key']
+WxPay.mch_id = ENV['wechat_mch_id']
 WxPay.debug_mode = true # default is `true`
 
 # wechat_username: wx84debd17520da2a3
@@ -20,4 +20,4 @@ WxPay.set_apiclient_by_pkcs12(File.read(pkcs12_filepath), pkcs12_password)
 WxPay.appsecret = 'YOUR_SECRET' # not essential for now
 
 # optional - configurations for RestClient timeout, etc.
-WxPay.extra_rest_client_options = {timeout: 30, open_timeout: 50}
+WxPay.extra_rest_client_options = { timeout: 30, open_timeout: 50 }

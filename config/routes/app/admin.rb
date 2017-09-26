@@ -71,7 +71,6 @@ namespace :admin do
 
     end
 
-
   end
 
   resources :shop_applications do

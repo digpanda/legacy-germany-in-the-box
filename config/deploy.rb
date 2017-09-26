@@ -2,11 +2,11 @@
 lock '3.5.0'
 
 set :application, 'germany_in_the_box'
-set :repo_url, "git@github.com:digpanda/germany-in-the-box.git"
-set :ssh_options, :forward_agent => true
+set :repo_url, 'git@github.com:digpanda/germany-in-the-box.git'
+set :ssh_options, forward_agent: true
 set :use_sudo, false
 
-set :passenger_environment_variables, { :path => '/usr/bin:$PATH' }
+set :passenger_environment_variables, path: '/usr/bin:$PATH'
 set :passenger_restart_command, '/usr/bin/passenger-config restart-app'
 
 set :linked_files, %w(config/mongoid.yml config/secrets.yml config/application.yml)
@@ -40,7 +40,7 @@ set :whenever_identifier, -> { "#{fetch(:application)}_#{fetch(:stage)}" }
 # set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'public/system')
 
 # Default value for default_env is {}
-# set :default_env, { path: "/opt/ruby/bin:$PATH" }
+# set :default_env, { path: '/opt/ruby/bin:$PATH' }
 
 # Default value for keep_releases is 5
 # set :keep_releases, 5
@@ -52,8 +52,8 @@ namespace :deploy do
 
   # task :invoke do
   #   on roles(:web) do
-  #     within "#{current_path}" do
-  #       run "bin/rake #{ENV['task']}"
+  #     within '#{current_path}' do
+  #       run 'bin/rake #{ENV['task']}'
   #     end
   #   end
   # end
@@ -70,17 +70,17 @@ namespace :deploy do
       # execute 'cd /var/www/germany_in_the_box/current && sudo gem install rake-11.1.2 && sudo bundle exec rake mongoid_slug:set'
       # execute 'cd /var/www/germany_in_the_box/current && bundle list'
       # execute '/usr/share/rvm/bin/rvm 2.3.0 do bundle exec rake mongoid_slug:set'
-      # run "bin/rake mongoid_slug:set"
+      # run 'bin/rake mongoid_slug:set'
       #
       # /home/digpanda/.rvm/bin/rvm 2.3.0 do bundle exec rake db:migrate
 
-      execute "sudo service redis-server restart"
+      execute 'sudo service redis-server restart'
       # brunch
-      # execute "alias node=/home/ubuntu/.nvm/v5.0.0/bin/node | node -v" # we artifically set the node version
-      #execute "cd /var/www/germany_in_the_box/current/app_front && npm install && brunch build --production"
-	    #ll ~/.nvm/versions/node/v5.0.0/bin/brunch
-      execute "cd /var/www/germany_in_the_box/current/app_front && npm install && ~/.nvm/versions/node/v5.0.0/bin/brunch build --production"
-      execute "chmod +x /var/www/germany_in_the_box/current/config/cron/dump_and_restore.sh"
+      # execute 'alias node=/home/ubuntu/.nvm/v5.0.0/bin/node | node -v' # we artifically set the node version
+      # execute 'cd /var/www/germany_in_the_box/current/app_front && npm install && brunch build --production'
+      # ll ~/.nvm/versions/node/v5.0.0/bin/brunch
+      execute 'cd /var/www/germany_in_the_box/current/app_front && npm install && ~/.nvm/versions/node/v5.0.0/bin/brunch build --production'
+      execute 'chmod +x /var/www/germany_in_the_box/current/config/cron/dump_and_restore.sh'
 
       # Here we can do anything such as:
       # within release_path do

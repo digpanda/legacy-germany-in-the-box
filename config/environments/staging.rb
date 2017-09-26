@@ -1,6 +1,5 @@
 Rails.application.configure do
 
-
   config.cache_classes = true
   config.middleware.use(Mongoid::QueryCache::Middleware)
   config.eager_load = true
@@ -17,22 +16,22 @@ Rails.application.configure do
 
   config.middleware.use ExceptionNotification::Rack,
   email: {
-    :email_prefix => "Report - ",
-    :sender_address => %{"Bug DigPanda Staging" <notifier@digpanda.com>},
-    :exception_recipients => %w{laurent.schaffner@digpanda.com, jiang@digpanda.com}
+    email_prefix: 'Report - ',
+    sender_address: %{"Bug DigPanda Staging" <notifier@digpanda.com>},
+    exception_recipients: %w{laurent.schaffner@digpanda.com, jiang@digpanda.com}
   }
 
   # used for root_url and equivalent
-  Rails.application.routes.default_url_options = {protocol: :https, host: 'www.germanyintheboxdev.com', port: 443}
+  Rails.application.routes.default_url_options = { protocol: :https, host: 'www.germanyintheboxdev.com', port: 443 }
 
-  config.action_mailer.default_url_options = {host: 'www.germanyintheboxdev.com', port: 443}
+  config.action_mailer.default_url_options = { host: 'www.germanyintheboxdev.com', port: 443 }
   config.action_mailer.delivery_method = :smtp
 
   config.action_mailer.smtp_settings = {
-      address: "mailtrap.io",
+      address: 'mailtrap.io',
       port: 25,
       domain: 'mailtrap.io',
-      authentication: "plain",
+      authentication: 'plain',
       enable_starttls_auto: true,
       user_name: 'f396f41db34e22',
       password: 'f4eede72e026e4'

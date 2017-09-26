@@ -8,7 +8,6 @@ Devise.setup do |config|
     manager.failure_app = UserFailure
   end
 
-
   config.mailer_sender = 'no-reply@germanyinthebox.com'
 
   # Configure the class responsible to send e-mails.
@@ -97,8 +96,8 @@ Devise.setup do |config|
   # config.encryptor = :sha512
 
   # ==> Scopes configuration
-  # Turn scoped views on. Before rendering "sessions/new", it will first check for
-  # "users/sessions/new". It's turned off by default because it's slower if you
+  # Turn scoped views on. Before rendering 'sessions/new', it will first check for
+  # 'users/sessions/new'. It's turned off by default because it's slower if you
   # are using only default views.
   # config.scoped_views = false
 
@@ -118,7 +117,7 @@ Devise.setup do |config|
   # If you have any extra navigational formats, like :iphone or :mobile, you
   # should add them to the navigational formats lists.
   #
-  # The "*/*" below is required to match Internet Explorer requests.
+  # The '*/*' below is required to match Internet Explorer requests.
   # config.navigational_formats = ['*/*', :html]
 
   # The default HTTP method used to sign out a resource. Default is :delete.
@@ -151,7 +150,7 @@ Devise.setup do |config|
   # When using omniauth, Devise cannot automatically set Omniauth path,
   # so you need to do it manually. For the users scope, it would be:
   # config.omniauth_path_prefix = '/my_engine/users/auth'
-  config.omniauth :wechat, Rails.application.config.wechat[:username], Rails.application.config.wechat[:password],  :authorize_params => { scope: Rails.application.config.wechat[:scope] }
+  config.omniauth :wechat, Rails.application.config.wechat[:username], Rails.application.config.wechat[:password],  authorize_params: { scope: Rails.application.config.wechat[:scope] }
 
-  config.secret_key = ENV["devise_secret_key"]
+  config.secret_key = ENV['devise_secret_key']
 end

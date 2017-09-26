@@ -1,8 +1,8 @@
 ::CarrierWave.configure do |config|
 
   config.storage              = :qiniu
-  config.qiniu_access_key     = ENV["qiniu_access_key"]
-  config.qiniu_secret_key     = ENV["qiniu_secret_key"]
+  config.qiniu_access_key     = ENV['qiniu_access_key']
+  config.qiniu_secret_key     = ENV['qiniu_secret_key']
 
   if Rails.env.production?
     config.qiniu_bucket         = 'carrierwave-laiyinn-prod'
@@ -13,7 +13,7 @@
   end
 
   config.qiniu_bucket_private = true
-  config.qiniu_block_size     = 4*1024*1024
+  config.qiniu_block_size     = 4 * 1024 * 1024
   config.qiniu_protocol       = 'https'
   config.qiniu_up_host        = 'http://up.qiniug.com'
 

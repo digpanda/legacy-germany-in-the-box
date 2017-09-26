@@ -16,11 +16,11 @@ Rails.application.configure do
   config.active_support.test_order = :random
   config.active_support.deprecation = :stderr
 
-  config.action_mailer.default_url_options = {host: 'germanyinthebox.com', port: 80}
+  config.action_mailer.default_url_options = { host: 'germanyinthebox.com', port: 80 }
   config.action_mailer.delivery_method = :test #:smtp
 
   # used for root_url and equivalent
-  Rails.application.routes.default_url_options = {host: 'local.dev', port: 3333}
+  Rails.application.routes.default_url_options = { host: 'local.dev', port: 3333 }
 
   OmniAuth.config.test_mode = true
 
@@ -34,6 +34,5 @@ Rails.application.configure do
   #     user_name: 'f396f41db34e22',
   #     password: 'f4eede72e026e4'
   # }
-
 
 end
