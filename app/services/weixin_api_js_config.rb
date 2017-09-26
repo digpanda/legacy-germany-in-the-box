@@ -13,35 +13,34 @@ class WeixinApiJsConfig < BaseService
 
   private
 
-  # TODO : app_id should be centralized and the different APIs as well.
-  def config
-    {
-      app_id: ENV["wechat_username_mobile"],
-      timestamp: timestamp,
-      nonce_str: nonce_str,
-      signature: signature,
-      js_api_list: js_api_list
-    }
-  end
+    # TODO : app_id should be centralized and the different APIs as well.
+    def config
+      {
+        app_id: ENV['wechat_username_mobile'],
+        timestamp: timestamp,
+        nonce_str: nonce_str,
+        signature: signature,
+        js_api_list: js_api_list
+      }
+    end
 
-  def timestamp
-    @timestamp ||= Time.now.to_i.to_s
-  end
+    def timestamp
+      @timestamp ||= Time.now.to_i.to_s
+    end
 
-  def nonce_str
-    @nonce_str ||= SecureRandom.uuid.tr('-', '')
-  end
+    def nonce_str
+      @nonce_str ||= SecureRandom.uuid.tr('-', '')
+    end
 
-  def signature
-    @signature ||= signature_gateway.data[:signature]
-  end
+    def signature
+      @signature ||= signature_gateway.data[:signature]
+    end
 
-  def signature_gateway
-     @signature_gateway ||= WeixinApiSignature.new(request: request, ticket: ticket, nonce_str: nonce_str, timestamp: timestamp).resolve
-  end
+    def signature_gateway
+      @signature_gateway ||= WeixinApiSignature.new(request: request, ticket: ticket, nonce_str: nonce_str, timestamp: timestamp).resolve
+    end
 
-  def js_api_list
-    ['onMenuShareTimeline', 'onMenuShareAppMessage']
-  end
-
+    def js_api_list
+      ['onMenuShareTimeline', 'onMenuShareAppMessage']
+    end
 end

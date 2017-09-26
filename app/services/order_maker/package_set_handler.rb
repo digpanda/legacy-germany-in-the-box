@@ -5,7 +5,6 @@
 # when you edit this class.
 class OrderMaker
   class PackageSetHandler < BaseService
-
     attr_reader :order_maker, :order, :package_set
 
     def initialize(order_maker, package_set)
@@ -52,43 +51,42 @@ class OrderMaker
 
     private
 
-    def current_quantity
-      order.package_set_quantity(package_set)
-    end
-
-    # TODO : limit the interdependency by making the action linked to the package sku here
-    # and not inside sku_handler, like the locking system.
-    def insert_package_sku!(package_sku)
-      added_item = order_maker.sku(package_sku.sku).with_package_sku(package_sku).refresh!(package_sku.quantity)
-      unless added_item.success?
-        remove_package_set!
-        raise OrderMaker::Error, added_item.error[:error]
+      def current_quantity
+        order.package_set_quantity(package_set)
       end
-    end
 
-    def remove_package_set!
-      order.order_items.where(package_set: package_set).delete_all
-    end
-
-    # capture the current order_items matching with this package set and convert it into json
-    # when it's completely deleted from the database we can then rollback by re-creating everything
-    # it's a homemade transaction system because monogid sucks.
-    def capture!
-      @capture = order.order_items.where(package_set: package_set).map(&:as_json)
-    end
-
-    # restore the previously captured order_items in this package_set
-    def restore!
-      @capture.each do |order_item|
-        order.order_items.create!(order_item)
+      # TODO : limit the interdependency by making the action linked to the package sku here
+      # and not inside sku_handler, like the locking system.
+      def insert_package_sku!(package_sku)
+        added_item = order_maker.sku(package_sku.sku).with_package_sku(package_sku).refresh!(package_sku.quantity)
+        unless added_item.success?
+          remove_package_set!
+          raise OrderMaker::Error, added_item.error[:error]
+        end
       end
-    end
 
-    def buyable?
-      unless package_set.active
-        raise OrderMaker::Error, "This package set is not available."
+      def remove_package_set!
+        order.order_items.where(package_set: package_set).delete_all
       end
-    end
 
+      # capture the current order_items matching with this package set and convert it into json
+      # when it's completely deleted from the database we can then rollback by re-creating everything
+      # it's a homemade transaction system because monogid sucks.
+      def capture!
+        @capture = order.order_items.where(package_set: package_set).map(&:as_json)
+      end
+
+      # restore the previously captured order_items in this package_set
+      def restore!
+        @capture.each do |order_item|
+          order.order_items.create!(order_item)
+        end
+      end
+
+      def buyable?
+        unless package_set.active
+          raise OrderMaker::Error, 'This package set is not available.'
+        end
+      end
   end
 end

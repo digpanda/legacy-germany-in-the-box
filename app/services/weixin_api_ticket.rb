@@ -1,7 +1,7 @@
 class WeixinApiTicket < BaseService
   attr_reader :type
 
-  def initialize(type:'jsapi')
+  def initialize(type: 'jsapi')
     @type = type
   end
 
@@ -13,28 +13,27 @@ class WeixinApiTicket < BaseService
 
   private
 
-  def success?
-    !ticket_gateway['errcode'] || (ticket_gateway['errcode'] == 0)
-  end
+    def success?
+      !ticket_gateway['errcode'] || (ticket_gateway['errcode'] == 0)
+    end
 
-  def ticket
-    ticket_gateway['ticket']
-  end
+    def ticket
+      ticket_gateway['ticket']
+    end
 
-  def ticket_gateway
-    @ticket_gateway ||= Parser.get_json ticket_url
-  end
+    def ticket_gateway
+      @ticket_gateway ||= Parser.get_json ticket_url
+    end
 
-  def ticket_url
-    "https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=#{access_token}&type=#{type}"
-  end
+    def ticket_url
+      "https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=#{access_token}&type=#{type}"
+    end
 
-  def access_token_gateway
-    @access_token_gateway ||= WeixinApiAccessToken.new.resolve
-  end
+    def access_token_gateway
+      @access_token_gateway ||= WeixinApiAccessToken.new.resolve
+    end
 
-  def access_token
-    access_token_gateway.data[:access_token]
-  end
-
+    def access_token
+      access_token_gateway.data[:access_token]
+    end
 end

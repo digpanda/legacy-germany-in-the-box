@@ -2,7 +2,6 @@
 class Notifier
   class Dispatcher
     class Sms
-
       attr_reader :dispatcher
 
       def initialize(dispatcher)
@@ -17,14 +16,13 @@ class Notifier
 
       private
 
-      def messenger
-        @messenger ||= PhoneMessenger.new
-      end
+        def messenger
+          @messenger ||= PhoneMessenger.new
+        end
 
-      def recipient_mobile
-        dispatcher.mobile || dispatcher.user.mobile
-      end
-
+        def recipient_mobile
+          dispatcher.mobile || dispatcher.user.mobile
+        end
     end
   end
 end

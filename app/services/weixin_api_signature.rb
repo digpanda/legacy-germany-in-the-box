@@ -14,12 +14,11 @@ class WeixinApiSignature < BaseService
 
   private
 
-  def signature
-    Digest::SHA1.hexdigest(raw)
-  end
+    def signature
+      Digest::SHA1.hexdigest(raw)
+    end
 
-  def raw
-    "jsapi_ticket=#{ticket}&noncestr=#{nonce_str}&timestamp=#{timestamp}&url=#{request.original_url}"
-  end
-
+    def raw
+      "jsapi_ticket=#{ticket}&noncestr=#{nonce_str}&timestamp=#{timestamp}&url=#{request.original_url}"
+    end
 end

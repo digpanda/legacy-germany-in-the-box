@@ -17,16 +17,15 @@ class WeixinApiAccessToken < BaseService
 
   private
 
-  def success?
-    !gateway['errcode'] || (gateway['errcode'] == 0)
-  end
+    def success?
+      !gateway['errcode'] || (gateway['errcode'] == 0)
+    end
 
-  def gateway
-    @gateway ||= Parser.get_json url
-  end
+    def gateway
+      @gateway ||= Parser.get_json url
+    end
 
-  def url
-    "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=#{appid}&secret=#{secret}"
-  end
-
+    def url
+      "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=#{appid}&secret=#{secret}"
+    end
 end

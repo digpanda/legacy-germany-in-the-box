@@ -3,10 +3,9 @@
 # or whatever mode
 class Notifier
   class Dispatcher < BaseService
-
     attr_reader :email, :mobile, :mailer, :user, :unique_id, :title, :desc, :url, :scope, :metadata
 
-    def initialize(email:nil,mobile:nil,mailer:nil,user:nil,unique_id:nil,title:nil,desc:nil,url:nil,scope:nil,metadata:nil)
+    def initialize(email: nil, mobile: nil, mailer: nil, user: nil, unique_id: nil, title: nil, desc: nil, url: nil, scope: nil, metadata: nil)
       @email = email
       @mobile = mobile
       @mailer = mailer
@@ -19,7 +18,7 @@ class Notifier
       @metadata = metadata
     end
 
-    def perform(dispatch:[:email])
+    def perform(dispatch: [:email])
       db! if user
       email! if dispatch.include? :email
       sms! if dispatch.include? :sms
@@ -39,6 +38,5 @@ class Notifier
     def sms!
       Sms.new(self).perform
     end
-
   end
 end
