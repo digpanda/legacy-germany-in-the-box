@@ -203,7 +203,7 @@ class Product
   end
 
   def best_discount_sku
-    @best_discount_sku ||= skus.where('discount.gt': 0).order_by(discount: :desc).first
+    @best_discount_sku ||= skus.where(:discount.gt => 0).order_by(discount: :desc).first
   end
 
   def discount?
