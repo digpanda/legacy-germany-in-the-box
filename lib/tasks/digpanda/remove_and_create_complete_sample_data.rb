@@ -182,7 +182,7 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
       product = Product.new(
         name: name,
         desc: "#{Faker::Lorem.paragraph(1)}\n\n#{Faker::Lorem.paragraph(2)}",
-        cover: setup_image(:banner),
+        # cover: setup_image(:banner),
         referrer_rate: 10.00,
         brand: Brand.create(name: "Brand #{num}"),
         shop: shop,
