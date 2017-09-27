@@ -49,12 +49,14 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
 
     puts 'We create the customers, guides, shopkeepers, admins'
 
-    25.times { setup_customer create_user(:customer) }
+    10.times { setup_customer create_user(:customer) }
     3.times { create_user(:admin) }
 
-    10.times { setup_shopkeeper create_user(:shopkeeper) }
+    5.times { setup_shopkeeper create_user(:shopkeeper) }
     8.times { setup_package_set }
     2.times { setup_package_set(shop: Shop.first) } # same shops for package set
+
+    5.times { setup_service }
 
     convert_product_without_first_sku_left(random_product)
     convert_product_with_documentation_attached(random_product)
@@ -408,6 +410,21 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
       num_products.times do |time|
         create_product(shop)
       end
+    end
+
+    def setup_service
+      num = Service.count
+
+      puts "Let's create Service N#{num} ..."
+
+      service = Service.create(
+        name: "Service #{num}",
+        desc: Faker::Lorem.paragraph,
+        long_desc: Faker::Lorem.paragraph(3),
+        cover: setup_image(:banner),
+        category: random_category,
+        position: [*0..10].sample
+      )
     end
 
     def setup_package_set(shop: nil)

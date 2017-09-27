@@ -2,4 +2,4 @@
 <hr>
 
 <!-- Destroy service -->
-<%= service_to "Delete this service", admin_service_path(service), method: :delete, data: { confirm: "Are you sure you want to delete this service ? It cannot be undone." } , class: "text-button --delete" %>
+<%= link_to "Delete this service", admin_service_path(service), method: :delete, data: { confirm: "Are you sure you want to delete this service ? It cannot be undone." } , class: "text-button --delete" %>
