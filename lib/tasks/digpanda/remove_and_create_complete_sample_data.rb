@@ -52,11 +52,11 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
     10.times { setup_customer create_user(:customer) }
     3.times { create_user(:admin) }
 
-    5.times { setup_shopkeeper create_user(:shopkeeper) }
+    10.times { setup_shopkeeper create_user(:shopkeeper) }
     8.times { setup_package_set }
     2.times { setup_package_set(shop: Shop.first) } # same shops for package set
 
-    5.times { setup_service }
+    # 5.times { setup_service }
 
     convert_product_without_first_sku_left(random_product)
     convert_product_with_documentation_attached(random_product)
