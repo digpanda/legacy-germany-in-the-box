@@ -18,7 +18,7 @@
   <div class="clearfix"></div>
 
   <%= form.label :category, "Category" %>
-  <%= form.select :category, options_from_collection_for_select(Category.all, :id, :name, form.object.category&.id), { :include_blank => I18n.t('multiselect.non_selected_text') }, :class => 'form-control' %>
+  <%= category_select(form) %>
 
   <div class="clearfix"></div>
 

@@ -9,18 +9,19 @@ class Service
   strip_attributes
 
   # research system
-  search_in :name, :desc, categories: :name, brand: :name
+  search_in :name, :desc, category: :name, brand: :name
 
-  field :name, type: String, localize: true
+  field :name, type: String
   slug :name
 
   field :cover, type: String
-  field :desc, type: String, localize: true
+  field :desc, type: String
+  field :long_desc, type: String
   field :active, type: Boolean, default: true
   field :referrer_rate, type: Float, default: 0.0
   field :position, type: Integer, default: 0
 
-  belongs_to :categories
+  belongs_to :category
   belongs_to :brand, inverse_of: :services
 
   mount_uploader :cover, ServiceUploader

@@ -1,4 +1,17 @@
 module FormHelper
+
+  def brand_select(form)
+    form.collection_select :brand, Brand.all, :id, :name, { prompt: true, selected: form.object.brand&.id }, class: 'form-control'
+  end
+
+  def category_select(form)
+    form.select :category, options_from_collection_for_select(Category.all, :id, :name, form.object.category&.id), { include_blank: I18n.t('multiselect.non_selected_text') }, class: 'form-control'
+  end
+
+  def categories_select(form)
+    form.select :categories, options_from_collection_for_select(Category.all, :id, :name), { include_blank: I18n.t('multiselect.non_selected_text') }, class: 'form-control'
+  end
+
   def category_package_set_filter
     Category.with_package_sets.map do |category|
       [category.name, category.slug_name, 'data-href': guest_package_sets_path(category_id: category.slug)]

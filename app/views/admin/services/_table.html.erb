@@ -52,17 +52,14 @@
         <%= editable_field(service, admin_service_path(service), :position, :text_field) %>
       </td>
       <td>
-        <%= service.categories(&:name).join(', ') %>
+        <%= service.category&.name %>
       </td>
       <td>
-        <%= service.brand.name %>
+        <%= service.brand&.name %>
       </td>
       <td>
         <%= boolean_icon(service.active) %>
       </th>
-      <td>
-        <%= service.published_at %>
-      </td>
       <td>
         <%= service.c_at %>
       </td>
@@ -70,8 +67,7 @@
         <%= service.u_at %>
       </td>
       <td>
-        <%= service_to '', admin_service_ping_path(service), :method => :get, :class => 'tooltipster fa fa-service buttons buttons__edit', :title => "Ping" %>
-        <%= service_to '', admin_service_path(service), :method => :get, :class => 'tooltipster fa fa-eye buttons buttons__edit', :title => "Details and configuration" %>
+        <%= link_to '', admin_service_path(service), :method => :get, :class => 'tooltipster fa fa-eye buttons buttons__edit', :title => "Details and configuration" %>
       </td>
     </tr>
   <% end %>

@@ -40,7 +40,7 @@
     </div>
 
     <div class="col-md-10">
-      <%= form.collection_select :brand, Brand.all, :id, :name, prompt: true, selected: form.object.brand&.id %>
+      <%= brand_select(form) %>
     </div>
 
   </div>

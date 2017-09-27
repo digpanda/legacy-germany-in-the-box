@@ -4,7 +4,7 @@ class Admin::ServicesController < ApplicationController
   authorize_resource class: false
   layout :custom_sublayout
 
-  before_action :set_service, except: [:new, :index]
+  before_action :set_service, except: [:new, :create, :index]
 
   def index
     @services = Service.order_by(position: :asc).full_text_search(query, match: :all, allow_empty_search: true).paginate(page: current_page, per_page: 10)
