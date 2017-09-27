@@ -16,6 +16,8 @@ class Admin::Orders::OrderTrackingsController < ApplicationController
 
   def create
     @order_tracking = OrderTracking.create(order: order)
+    SlackDispatcher.new.message("THIS IS THE ORDER #{order}")
+    SlackDispatcher.new.message("YO ORDER TRACKING : #{order_tracking}")
     update
   end
 
