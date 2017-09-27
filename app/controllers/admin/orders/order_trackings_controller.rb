@@ -22,6 +22,7 @@ class Admin::Orders::OrderTrackingsController < ApplicationController
   end
 
   def update
+    SlackDispatcher.new.message("ORDER TRACKING ALREADY HERE #{order_tracking}")
     if order_tracking.update(order_tracking_params)
       flash[:success] = 'The order tracking was updated.'
     else
