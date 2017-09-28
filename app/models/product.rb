@@ -11,7 +11,7 @@ class Product
   field :name, type: String, localize: true
   slug :name
 
-  # field :cover, type: String # deprecated ?
+  field :cover, type: String # deprecated ?
   field :desc, type: String, localize: true
   field :desc_below, type: String, localize: true
   field :status, type: Boolean, default: true
