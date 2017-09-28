@@ -83,6 +83,7 @@ zh-CN:
     no_address: 尚未填写收件地址
     new_adress: 添加新收件地址
   navigation:
+    services: "%{num} Services"
     packages: "%{num}个礼包"
     products: "%{num}件产品"
   categories:

@@ -31,6 +31,6 @@ class Service
   validates :active, presence: true
   validates :desc, length: { maximum: MAX_LONG_TEXT_LENGTH }
 
-  scope :is_active,   -> { self.and(active: true) }
+  scope :active,   -> { self.and(active: true) }
 
 end

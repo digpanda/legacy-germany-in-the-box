@@ -84,6 +84,7 @@ de:
     no_address: Keine Adresse
     new_adress: Neue Adresse hinzufügen
   navigation:
+    services: "%{num} Services"
     packages: "%{num} klassischen Sets"
     products: "%{num} Produkte"
   categories:
