@@ -5,27 +5,7 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
   end
 
   def perform
-    # NOTE Reset the correct migration
-    # This is a manual manipulation on the database.
-    # If something fails in the middle please get back the correct version from staging
-    versions = []
-    db = Mongoid::Clients.default
-    collection = db[:data_migrations]
-    collection.find.each do |data_migration|
-      versions << data_migration['version']
-    end
-
-    #
-    # We first remove absolutely everything
-    #
-    puts 'We purge the whole database ...'
-    Mongoid.purge!
-
-    # NOTE Now we get back the previously purged
-    # version of the migration state
-    versions.each do |version|
-      collection.insert_one(version: version)
-    end
+    reset_database
 
     puts 'We set the locale to Germany'
     I18n.locale = :de
@@ -74,6 +54,30 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
   end
 
   private
+
+    def reset_database
+      # NOTE Reset the correct migration
+      # This is a manual manipulation on the database.
+      # If something fails in the middle please get back the correct version from staging
+      versions = []
+      db = Mongoid::Clients.default
+      collection = db[:data_migrations]
+      collection.find.each do |data_migration|
+        versions << data_migration['version']
+      end
+
+      #
+      # We first remove absolutely everything
+      #
+      puts 'We purge the whole database ...'
+      Mongoid.purge!
+
+      # NOTE Now we get back the previously purged
+      # version of the migration state
+      versions.each do |version|
+        collection.insert_one(version: version)
+      end
+    end
 
     def add_orders_to_customers
       User.where(role: :customer).each do |user|
@@ -167,6 +171,11 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
       product.save!
     end
 
+    def create_brand
+      num = Brand.count
+      Brand.create(name: "Brand #{num}")
+    end
+
     def create_product(shop)
       num           = Product.count + 1
       num_variants  = rand(1..4)
@@ -184,7 +193,7 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
         desc: "#{Faker::Lorem.paragraph(1)}\n\n#{Faker::Lorem.paragraph(2)}",
         # cover: setup_image(:banner),
         referrer_rate: 10.00,
-        brand: Brand.create(name: "Brand #{num}"),
+        brand: create_brand,
         shop: shop,
         hs_code: hs_code,
         approved: approved
@@ -417,12 +426,13 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
 
       puts "Let's create Service N#{num} ..."
 
-      service = Service.create(
+      service = Service.create!(
         name: "Service #{num}",
         desc: Faker::Lorem.paragraph,
         long_desc: Faker::Lorem.paragraph(3),
         cover: setup_image(:banner),
         category: random_category,
+        brand: create_brand,
         position: [*0..10].sample
       )
     end
