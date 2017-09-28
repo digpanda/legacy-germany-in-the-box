@@ -1,4 +1,8 @@
 module ArrayHelper
+  def inquiry_status
+    { 'New' => :new, 'Replied' => :replied, 'Confirmed' => :confirmed, 'Rejected' => :rejected, 'Paid' => :paid, 'Terminated' => :terminated }
+  end
+
   def project_versions
     [['Alpha', :alpha], ['Beta', :beta], ['Stable', :stable]]
   end

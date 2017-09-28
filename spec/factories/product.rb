@@ -4,7 +4,7 @@ FactoryGirl.define do
 
     name      { Faker::Commerce.product_name }
     brand     { FactoryGirl.create(:brand) }
-    cover     'Cover 1'
+    # cover     'Cover 1'
     desc      { Faker::Lorem.paragraph }
     hs_code    'random'
     approved { Time.now }

@@ -100,6 +100,20 @@
       </div>
   </div>
 
+  <!-- Status -->
+  <div class="row">
+    <div class="col-md-2">
+      <label>
+        Status
+      </label>
+    </div>
+
+      <div class="col-md-10 form-group">
+        <%= form.select :status, inquiry_status, selected: inquiry.status %>
+        <div class="help-block with-errors"></div>
+      </div>
+  </div>
+
 </div>
 
 <%= form.submit :class => 'big-button --blue', :value =>  "Save" %>
