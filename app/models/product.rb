@@ -11,7 +11,7 @@ class Product
   field :name, type: String, localize: true
   slug :name
 
-  field :cover, type: String # deprecated ?
+  # field :cover, type: String # deprecated ?
   field :desc, type: String, localize: true
   field :desc_below, type: String, localize: true
   field :status, type: Boolean, default: true
@@ -43,10 +43,10 @@ class Product
   accepts_nested_attributes_for :skus
   accepts_nested_attributes_for :options
 
-  mount_uploader :cover, ProductUploader # deprecated ?
+  # mount_uploader :cover, ProductUploader # deprecated ?
 
   validates :name, presence: true, length:   { maximum: MAX_SHORT_TEXT_LENGTH }
-  validates :brand , presence: true
+  # validates :brand , presence: true, length: { maximum: MAX_SHORT_TEXT_LENGTH }
   validates :shop, presence: true
   validates :status, presence: true
   # validates :hs_code, presence: true <!-- this validation made global migration problems

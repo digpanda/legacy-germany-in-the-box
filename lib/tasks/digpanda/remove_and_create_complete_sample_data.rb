@@ -56,7 +56,7 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
     8.times { setup_package_set }
     2.times { setup_package_set(shop: Shop.first) } # same shops for package set
 
-    # 5.times { setup_service }
+    5.times { setup_service }
 
     convert_product_without_first_sku_left(random_product)
     convert_product_with_documentation_attached(random_product)
