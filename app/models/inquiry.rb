@@ -17,6 +17,7 @@ class Inquiry
 
   belongs_to :user, inverse_of: :inquiries
   belongs_to :referrer, inverse_of: :inquiries
+  belongs_to :service, inverse_of: :inquiries
 
   # TODO : make it manual to add provision from inquiries
   # has_one :referrer_provision,    inverse_of: :inquiry,    dependent: :restrict

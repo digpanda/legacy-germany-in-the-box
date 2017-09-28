@@ -2,6 +2,8 @@
 
 <div class="row details__transparent-block">
 
+  <%= form.hidden_field :service_id, value: service.id %>
+
   <!-- Email -->
   <div class="row">
     <div class="col-md-2">
@@ -9,9 +11,12 @@
         Email
       </label>
     </div>
-
       <div class="col-md-10 form-group">
-        <%= form.text_field :email, :class => 'form-control', required: true %>
+        <% if current_user&.valid_email? %>
+          <%= form.text_field :email, class: 'form-control', value: current_user.email, required: true %>
+        <% else %>
+          <%= form.text_field :email, class: 'form-control', required: true %>
+        <% end %>
         <div class="help-block with-errors"></div>
       </div>
   </div>
@@ -25,7 +30,7 @@
     </div>
 
       <div class="col-md-10 form-group">
-        <%= form.text_field :mobile, class: 'form-control', type: 'mobile', required: true, id: 'inquiry_mobile' %>
+        <%= form.text_field :mobile, class: 'form-control', type: 'mobile', value: current_user&.mobile, required: true, id: 'inquiry_mobile' %>
         <div class="help-block with-errors"></div>
       </div>
   </div>

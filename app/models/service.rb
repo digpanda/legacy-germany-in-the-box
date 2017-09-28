@@ -23,6 +23,8 @@ class Service
 
   belongs_to :category
   belongs_to :brand, inverse_of: :services
+  
+  has_many :inquiries, inverse_of: :services
 
   mount_uploader :cover, ServiceUploader
 
