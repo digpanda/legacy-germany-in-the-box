@@ -9,6 +9,9 @@ class Guest::ServicesController < ApplicationController
   before_action :freeze_header
 
   def show
+    # if the customer wants to send an inquiry
+    # we prepare it first
+    @inquiry = Inquiry.new
   end
 
   # we show the list of package by category

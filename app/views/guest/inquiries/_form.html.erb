@@ -1,0 +1,66 @@
+<%= form_for [:guest, inquiry], :html => {:data => {:toggle => 'validator'}} do |form| %>
+
+<div class="row details__transparent-block">
+
+  <!-- Email -->
+  <div class="row">
+    <div class="col-md-2">
+      <label>
+        Email
+      </label>
+    </div>
+
+      <div class="col-md-10 form-group">
+        <%= form.text_field :email, :class => 'form-control', required: true %>
+        <div class="help-block with-errors"></div>
+      </div>
+  </div>
+
+  <!-- Mobile -->
+  <div class="row">
+    <div class="col-md-2">
+      <label>
+        Mobile
+      </label>
+    </div>
+
+      <div class="col-md-10 form-group">
+        <%= form.text_field :mobile, class: 'form-control', type: 'mobile', required: true, id: 'inquiry_mobile' %>
+        <div class="help-block with-errors"></div>
+      </div>
+  </div>
+
+  <!-- Scheduled -->
+  <div class="row">
+    <div class="col-md-2">
+      <label>
+        Scheduled
+      </label>
+    </div>
+
+      <div class="col-md-10 form-group">
+        <div id="js-show-datepicker"></div>
+        <%= form.text_field :scheduled_for, class: 'form-control', id: 'future-datepicker' %>
+        <div class="help-block with-errors"></div>
+      </div>
+  </div>
+
+  <!-- Comment -->
+  <div class="row">
+    <div class="col-md-2">
+      <label>
+        Comment
+      </label>
+    </div>
+
+      <div class="col-md-10 form-group">
+        <%= form.text_area :comment, :class => 'form-control' %>
+        <div class="help-block with-errors"></div>
+      </div>
+  </div>
+
+  <%= form.submit :class => 'big-button --blue', :value =>  "Send now" %>
+
+</div>
+
+<% end %>

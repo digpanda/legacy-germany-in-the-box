@@ -24,6 +24,9 @@ namespace :guest do
   resources :services do
   end
 
+  resources :inquiries do
+  end
+
   resources :links do
     get :weixin # legacy code
   end

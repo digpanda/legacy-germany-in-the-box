@@ -9,4 +9,6 @@ class Note
   belongs_to :author, class_name: 'User'
   belongs_to :user
   belongs_to :order
+  belongs_to :inquiry
+
 end
