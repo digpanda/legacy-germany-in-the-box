@@ -5,7 +5,7 @@ class Inquiry
   include Mongoid::Search
 
   # research system
-  search_in :id, :status, user: :id
+  search_in :id, :status, user: :id, service: :name
 
   field :status, type: Symbol, default: :new # [:new, :replied, :confirmed, :rejected, :paid, :terminated]
 
@@ -21,7 +21,7 @@ class Inquiry
 
   # TODO : make it manual to add provision from inquiries
   # has_one :referrer_provision,    inverse_of: :inquiry,    dependent: :restrict
-  has_many :notes,                  inverse_of: :inquiry,    dependent: :restrict
+  has_many :notes, inverse_of: :inquiry,    dependent: :restrict
 
   scope :ongoing, -> { self.in(status: [:replied, :confirmed, :paid]) }
 

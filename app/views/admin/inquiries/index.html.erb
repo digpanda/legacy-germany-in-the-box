@@ -1,0 +1,18 @@
+<div class="row">
+  <div class="col-md-10">
+    <h2>Inquiries</h2>
+    <hr>
+  </div>
+  <div class="col-md-2 details__action">
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <%= render partial: "shared/partials/search" %>
+  </div>
+</div>
+
+<%= render partial: "admin/inquiries/table", :locals => { :inquiries => @inquiries } %>
+
+<%= will_paginate @inquiries, renderer: BootstrapPagination::Rails %>

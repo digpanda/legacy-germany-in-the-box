@@ -1,5 +1,13 @@
 module FormHelper
 
+  def customer_select(form)
+    form.collection_select :user, User.where(role: :customer).all, :id, :full_name, { prompt: true, selected: form.object.user&.id }, class: 'form-control'
+  end
+
+  def service_select(form)
+    form.collection_select :service, Service.all, :id, :name, { prompt: true, selected: form.object.service&.id }, class: 'form-control'
+  end
+
   def brand_select(form)
     form.collection_select :brand, Brand.all, :id, :name, { prompt: true, selected: form.object.brand&.id }, class: 'form-control'
   end

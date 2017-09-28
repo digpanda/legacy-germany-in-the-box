@@ -75,6 +75,14 @@ module Application
       # =====
       # ADMIN
       # =====
+      #
+      def breadcrumb_admin_inquiries
+        add_breadcrumb 'Inquiries', admin_inquiries_path
+      end
+
+      def breadcrumb_admin_inquiry
+        add_breadcrumb @inquiry.id, admin_inquiry_path(@inquiry) if @inquiry
+      end
 
       def breadcrumb_admin_links
         add_breadcrumb 'Links', admin_links_path

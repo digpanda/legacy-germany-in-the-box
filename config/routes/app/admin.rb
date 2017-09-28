@@ -45,6 +45,9 @@ namespace :admin do
     patch :unactive
   end
 
+  resources :inquiries do
+  end
+
   resources :shops do
     get :emails, on: :collection
     patch :approve
