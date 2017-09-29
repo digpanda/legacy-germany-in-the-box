@@ -13,7 +13,9 @@
     <li><a href="<%= customer_favorites_path %>"><%= I18n.t('menu.my_favorites') %></a></li>
     <hr />
 
+    <% if current_user&.tester? %>
     <li><a href="<%= guest_services_path %>"><%= I18n.t('menu.services') %></a></li>
+    <% end %>
 
     <% unless @freeze_header %>
       <% unless identity_solver&.wechat_customer? %>
