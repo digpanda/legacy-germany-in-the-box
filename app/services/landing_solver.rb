@@ -57,7 +57,7 @@ class LandingSolver < BaseService
     # if it matches with services or package sets path it's automatically defined
     # if the user comes from wechat, the default landing is package sets area
     def solve_landing!
-      if service_path? || package_sets_path? || from_wechat?
+      if services_path? || package_sets_path? || from_wechat?
         session[:landing] = :package_sets
       else
         session[:landing] = :products
