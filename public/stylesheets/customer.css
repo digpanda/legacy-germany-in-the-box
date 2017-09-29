@@ -1710,7 +1710,8 @@ body {
   -moz-border-radius: 4px;
   -ms-border-radius: 4px;
   border-radius: 4px;
-  min-height: 35vw; }
+  min-height: 35vw;
+  overflow-x: auto; }
   .banner h1 {
     color: white;
     font-size: 4em;
@@ -1718,6 +1719,30 @@ body {
     text-align: center;
     margin: 0 auto;
     padding-top: 3em; }
+  .banner__promotion-text {
+    background-color: #3498db;
+    color: white;
+    text-align: center; }
+    @media (min-width: 995px) {
+      .banner__promotion-text {
+        margin-top: 3.5em;
+        margin-left: -3.5em;
+        padding: 0.3em;
+        font-weight: bold;
+        -ms-transform: rotate(-25deg);
+        -webkit-transform: rotate(-25deg);
+        transform: rotate(-25deg);
+        width: 30%; } }
+    @media (max-width: 994px) {
+      .banner__promotion-text {
+        margin-top: 1.5em;
+        margin-left: -4em;
+        padding: 0.3em;
+        font-weight: bold;
+        -ms-transform: rotate(-25deg);
+        -webkit-transform: rotate(-25deg);
+        transform: rotate(-25deg);
+        width: 70%; } }
 
 .breadcrumb {
   background: none;

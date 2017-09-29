@@ -4,6 +4,9 @@
   <div class="row">
     <div class="col-md-12">
       <div class="banner lazy" data-original="<%= @package_set.details_cover.url %>" style="background-image:url('/images/grey.jpg');">
+        <% if @package_set.promotion_text.present? %>
+          <div class="banner__promotion-text"><%= @package_set.promotion_text %></div>
+        <% end %>
       </div>
     </div>
   </div>

@@ -1,5 +1,6 @@
 +component(banner)
   +header-banner
+  +overflow
 
   h1
     color: $color-white
@@ -7,3 +8,24 @@
     font-weight: bold
     +centered
     padding-top: 3em
+
+  +part(promotion-text)
+    background-color: $color-blue
+    color: $color-white
+    text-align: center
+
+    +breakpoint('desktop')
+      margin-top: 3.5em
+      margin-left: -3.5em
+      padding: 0.3em
+      font-weight: bold
+      +rotate(-25deg)
+      width: 30%
+
+    +breakpoint('mobile')
+      margin-top: 1.5em
+      margin-left: -4em
+      padding: 0.3em
+      font-weight: bold
+      +rotate(-25deg)
+      width: 70%
