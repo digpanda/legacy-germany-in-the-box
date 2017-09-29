@@ -16,7 +16,6 @@ class Guest::InquiriesController < ApplicationController
       end
 
       if inquiry.errors.empty?
-        binding.pry
         flash[:success] = 'Your inquiry was successfully sent.'
         redirect_to guest_services_path
         return
