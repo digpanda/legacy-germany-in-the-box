@@ -9,7 +9,6 @@ class Inquiry
 
   field :status, type: Symbol, default: :new # [:new, :replied, :confirmed, :rejected, :paid, :terminated]
 
-  # TODO : auto fill it if informations already provided by user
   field :email, type: String
   field :mobile, type: String
   field :scheduled_for, type: Time
