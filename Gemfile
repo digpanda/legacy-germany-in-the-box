@@ -42,7 +42,7 @@ gem 'devise', '3.5.3'
 #gem 'omniauth-facebook'
 gem 'draper', '~> 1.3' # decorators
 gem 'draper-cancancan'
-gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
+gem 'carrierwave-mongoid', require: 'carrierwave/mongoid'
 
 gem 'mini_magick'
 gem 'haml-rails'
@@ -73,7 +73,7 @@ gem 'bootstrap-datepicker-rails'
 gem 'bootstrap-validator-rails'
 gem 'abstract_method'
 gem 'mongoid_magic_counter_cache'
-gem 'carrierwave-ftp', :require => 'carrierwave/storage/ftp' # FTP only
+gem 'carrierwave-ftp', require: 'carrierwave/storage/ftp' # FTP only
 gem 'sidekiq'
 gem 'redis-rails'
 
@@ -99,7 +99,7 @@ group :development do
   gem 'rubocop', require: false
   gem 'traceroute'
   gem 'bullet'
-  gem 'brakeman', :require => false
+  gem 'brakeman', require: false
   gem 'rubycritic', require: false
 end
 

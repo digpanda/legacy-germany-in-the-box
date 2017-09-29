@@ -10,5 +10,4 @@ class Note
   belongs_to :user
   belongs_to :order
   belongs_to :inquiry
-
 end

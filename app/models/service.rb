@@ -23,7 +23,7 @@ class Service
 
   belongs_to :category
   belongs_to :brand, inverse_of: :services
-  
+
   has_many :inquiries, inverse_of: :services
 
   mount_uploader :cover, ServiceUploader
@@ -34,5 +34,4 @@ class Service
   validates :desc, length: { maximum: MAX_LONG_TEXT_LENGTH }
 
   scope :active,   -> { self.and(active: true) }
-
 end
