@@ -1,5 +1,26 @@
 +component(package-set-list-block)
 
+  +part(promotion-text)
+    background-color: $color-flash-red
+    color: $color-white
+    text-align: center
+
+    +breakpoint('desktop')
+      margin-top: 2.2em
+      margin-left: -2em
+      padding: 0.3em
+      font-weight: bold
+      +rotate(-25deg)
+      width: 100%
+
+    +breakpoint('mobile')
+      margin-top: 1.5em
+      margin-left: -4em
+      padding: 0.3em
+      font-weight: bold
+      +rotate(-25deg)
+      width: 70%
+
   //+shadow
   //+border-radius(4px)
   font-size: 15px
@@ -28,6 +49,7 @@
     text-align: right
 
   +part(central-image)
+    +overflow
     +centered
     height: 17vw
     +breakpoint('mobile')

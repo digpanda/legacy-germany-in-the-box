@@ -2462,6 +2462,30 @@ body {
 .package-set-list-block {
   font-size: 15px;
   margin-bottom: 1em; }
+  .package-set-list-block__promotion-text {
+    background-color: #df002f;
+    color: white;
+    text-align: center; }
+    @media (min-width: 995px) {
+      .package-set-list-block__promotion-text {
+        margin-top: 2.2em;
+        margin-left: -2em;
+        padding: 0.3em;
+        font-weight: bold;
+        -ms-transform: rotate(-25deg);
+        -webkit-transform: rotate(-25deg);
+        transform: rotate(-25deg);
+        width: 100%; } }
+    @media (max-width: 994px) {
+      .package-set-list-block__promotion-text {
+        margin-top: 1.5em;
+        margin-left: -4em;
+        padding: 0.3em;
+        font-weight: bold;
+        -ms-transform: rotate(-25deg);
+        -webkit-transform: rotate(-25deg);
+        transform: rotate(-25deg);
+        width: 70%; } }
   @media (max-width: 994px) {
     .package-set-list-block {
       margin-bottom: 0; } }
@@ -2485,6 +2509,7 @@ body {
     font-weight: 300;
     text-align: right; }
   .package-set-list-block__central-image {
+    overflow-x: auto;
     text-align: center;
     margin: 0 auto;
     height: 17vw;
