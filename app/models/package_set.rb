@@ -11,6 +11,7 @@ class PackageSet
 
   field :desc, type: String
   field :long_desc, type: String
+  field :promotion_text, type: String
   field :cover,       type: String
   field :details_cover,       type: String
   field :referrer_rate, type: Float, default: 0.0

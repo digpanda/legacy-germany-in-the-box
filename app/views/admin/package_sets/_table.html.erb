@@ -7,9 +7,7 @@
           Cover Image
         </th>
         <th>
-          <label>
-           Position
-          </label>
+          Position
         </th>
         <% if show_shop %>
           <th>
@@ -17,19 +15,16 @@
           </th>
         <% end %>
         <th>
-          <label>
            Name
-          </label>
         </th>
         <th>
-          <label>
-            Package Skus
-          </label>
+          Promotion Text
         </th>
         <th>
-          <label>
-            Action
-          </label>
+          Package Skus
+        </th>
+        <th>
+          Action
         </th>
       </tr>
     </thead>
@@ -51,10 +46,13 @@
             <%= package_set.name %>
           </td>
           <td>
+            <%= package_set.promotion_text %>
+          </td>
+          <td>
             <%= package_set.package_skus.count %>
           </td>
           <td align="left">
-            <%= render partial: 'admin/package_sets/table/action', :locals => { :package_set => package_set } %>
+            <%= render partial: 'admin/package_sets/table/action', :locals => { package_set: package_set } %>
           </td>
         </tr>
       <% end %>

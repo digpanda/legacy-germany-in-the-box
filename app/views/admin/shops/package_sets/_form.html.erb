@@ -2,59 +2,164 @@
 
 <div class="row details__block">
 
-  <%= form.label :name %>
-  <%= form.text_field :name, class: 'field__text' %>
+  <!-- Name -->
+  <div class="row">
+    <div class="col-md-2">
+      <label>
+        Name
+      </label>
+    </div>
 
-  <div class="clearfix"></div>
+      <div class="col-md-10 form-group">
+        <%= form.text_field :name, :class => 'form-control', :required => true %>
+        <div class="help-block with-errors"></div>
+      </div>
+  </div>
 
-  <%= form.label :desc %>
-  <%= form.text_area :desc, rows: 10, cols: 80  %>
+  <!-- Description -->
+  <div class="row">
+    <div class="col-md-2">
+      <label>
+        Description
+      </label>
+    </div>
 
-  <div class="clearfix"></div>
+      <div class="col-md-10 form-group">
+        <%= form.text_area :desc, :class => 'form-control', :required => true %>
+        <div class="help-block with-errors"></div>
+      </div>
+  </div>
 
-  <%= form.label :long_desc %>
-  <%= form.text_area :long_desc, rows: 10, cols: 80 %>
+  <!-- Long Description -->
+  <div class="row">
+    <div class="col-md-2">
+      <label>
+        Long Description
+      </label>
+    </div>
 
-  <div class="clearfix"></div>
+      <div class="col-md-10 form-group">
+        <%= form.text_area :long_desc, :class => 'form-control', :required => true %>
+        <div class="help-block with-errors"></div>
+      </div>
+  </div>
 
-  <%= form.label :category, "Category" %>
-  <%= form.select :category, options_from_collection_for_select(Category.all, :id, :name, form.object.category&.id), { :include_blank => I18n.t('multiselect.non_selected_text') }, :class => 'form-control' %>
+  <!-- Promotion Text -->
+  <div class="row">
+    <div class="col-md-2">
+      <label>
+        Promotion Text
+      </label>
+    </div>
 
-  <div class="clearfix"></div>
+      <div class="col-md-10 form-group">
+        <%= form.text_field :promotion_text, :class => 'form-control' %>
+        <div class="help-block with-errors"></div>
+      </div>
+  </div>
 
-  <%= form.label :referrer_rate %>
-  <%= form.text_area :referrer_rate %>
+  <!-- Category -->
+  <div class="row">
+    <div class="col-md-2">
+      <label>
+        Category
+      </label>
+    </div>
 
-  <div class="clearfix"></div>
+      <div class="col-md-10 form-group">
+        <%= form.select :category, options_from_collection_for_select(Category.all, :id, :name, form.object.category&.id), { :include_blank => I18n.t('multiselect.non_selected_text') }, :class => 'form-control' %>
 
-  <%= form.label :casual_price %>
-  <%= form.text_field :casual_price %>
+        <div class="help-block with-errors"></div>
+      </div>
+  </div>
 
-  <div class="clearfix"></div>
+  <!-- Referrer Rate -->
+  <div class="row">
+    <div class="col-md-2">
+      <label>
+        Referrer Rate
+      </label>
+    </div>
 
-  <%= form.label :shipping_cost %>
-  <%= form.text_field :shipping_cost %>
+      <div class="col-md-10 form-group">
+        <%= form.text_field :referrer_rate, :class => 'form-control', :required => true %>
+        <div class="help-block with-errors"></div>
+      </div>
+  </div>
 
-  <div class="clearfix"></div>
+  <!-- Casual Price -->
+  <div class="row">
+    <div class="col-md-2">
+      <label>
+        Casual Price
+      </label>
+    </div>
 
-  <%= form.label :cover, "Cover" %>
-  <%= js_file_upload(form: form, field: :cover) %>
+      <div class="col-md-10 form-group">
+        <%= form.text_field :casual_price, :class => 'form-control', :required => true %>
+        <div class="help-block with-errors"></div>
+      </div>
+  </div>
 
-  <%= form.label :details_cover, "Details Cover" %>
-  <%= js_file_upload(form: form, field: :details_cover) %>
+  <!-- Shipping Cost -->
+  <div class="row">
+    <div class="col-md-2">
+      <label>
+        Shipping Cost
+      </label>
+    </div>
+
+      <div class="col-md-10 form-group">
+        <%= form.text_field :shipping_cost, :class => 'form-control', :required => true %>
+        <div class="help-block with-errors"></div>
+      </div>
+  </div
+  >
+  <!-- Cover -->
+  <div class="row">
+    <div class="col-md-2">
+      <label>
+        Cover
+      </label>
+    </div>
+
+      <div class="col-md-10 form-group">
+        <%= js_file_upload(form: form, field: :cover) %>
+        <div class="help-block with-errors"></div>
+      </div>
+  </div>
+
+  <!-- Details Cover -->
+  <div class="row">
+    <div class="col-md-2">
+      <label>
+        Details Cover
+      </label>
+    </div>
+
+      <div class="col-md-10 form-group">
+          <%= js_file_upload(form: form, field: :details_cover) %>
+        <div class="help-block with-errors"></div>
+      </div>
+  </div>
 
   <div class="row">
 
-  <%= form.fields_for :images do |field| %>
-  <div class="col-md-3">
-    <%= field.label :file, "Optional Image ##{solve_index}" %>
-    <%= js_image_file_upload(form: field, assoc: form.object, field: :file) %>
-  </div>
-  <% end %>
+    <div class="col-md-2">
+      <label>
+        Optional Images
+      </label>
+    </div>
+
+    <%= form.fields_for :images do |field| %>
+      <div class="col-md-3">
+        <%= field.label :file, "Optional Image ##{solve_index}" %>
+        <%= js_image_file_upload(form: field, assoc: form.object, field: :file) %>
+      </div>
+    <% end %>
 
   </div>
 
-  <div class="clearfix"></div>
 </div>
 
 <div class="row details__block">
@@ -119,8 +224,10 @@
     </tbody>
   </table>
 </div>
-  </div>
+</div>
 
-  <%= form.submit :class => 'btn btn-primary', :value =>  I18n.t('edit_product.update_basic') %>
+<div class="row details__block">
+  <%= form.submit :class => 'big-button --blue', :value =>  'Save' %>
+</div>
 
   <% end %>
