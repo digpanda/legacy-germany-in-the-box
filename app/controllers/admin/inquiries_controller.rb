@@ -35,6 +35,14 @@ class Admin::InquiriesController < ApplicationController
     redirect_to admin_inquiries_path
   end
 
+  # generate the referrer provision for the inquiry
+  # it should never fail otherwise it crashes
+  def setup_referrer_provision
+    provision = ReferrerProvision.create!(inquiry: inquiry, referrer: inquiry.referrer, provision: 0)
+    flash[:success] = 'The provision was setup, please edit it manually.'
+    redirect_to admin_referrer_provision_path(provision.referrer, provision)
+  end
+
   private
 
     def set_inquiry

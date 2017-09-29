@@ -11,8 +11,25 @@
   <div class="+small-spacer"></div>
 
   <div class="row details__block">
+    <h3>Edit</h3>
+    <hr>
     <%= render partial: "admin/inquiries/form", locals: { inquiry: @inquiry } %>
   </div>
+
+  <% if @inquiry.referrer %>
+    <div class="row details__block">
+      <h3>Finances</h3>
+      <hr>
+
+      <h4>Referrer Provisions</h4>
+      <% if @inquiry.referrer_provision %>
+        <%= render partial: "admin/referrers/provisions/table", :locals => { :provisions => [@inquiry.referrer_provision] } %>
+      <% else %>
+        <a href="<%= admin_inquiry_setup_referrer_provision_path(@inquiry) %>" data-method="post" class="text-button --blue">Setup Referrer Provision <i class="fa fa-magic"></i></a>
+      <% end %>
+    </div>
+  <% end %>
+
 
   <div class="row details__block +danger-zone">
     <%= render partial: "admin/inquiries/show/danger_zone", locals: { inquiry: @inquiry } %>

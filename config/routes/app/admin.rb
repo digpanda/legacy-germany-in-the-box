@@ -46,6 +46,7 @@ namespace :admin do
   end
 
   resources :inquiries do
+    post :setup_referrer_provision
   end
 
   resources :shops do

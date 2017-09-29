@@ -7,4 +7,6 @@ class ReferrerProvision
 
   belongs_to :referrer, class_name: 'Referrer', inverse_of: :provisions
   belongs_to :order
+  belongs_to :inquiry
+  
 end

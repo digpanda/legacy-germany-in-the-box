@@ -161,11 +161,15 @@ module Application
       end
 
       def breadcrumb_admin_referrer
-        add_breadcrumb @referrer.reference_id, '#' if @referrer
+        add_breadcrumb @referrer.reference_id, admin_referrer_path(@referrer) if @referrer
       end
 
       def breadcrumb_admin_referrer_provisions
         add_breadcrumb 'Provisions', admin_referrer_provisions_path(@referrer) if @referrer
+      end
+
+      def breadcrumb_admin_referrer_provision
+        add_breadcrumb @provision.id, '#' if @provision
       end
 
       def breadcrumb_admin_referrer_coupon

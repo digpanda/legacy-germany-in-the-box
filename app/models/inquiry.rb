@@ -18,8 +18,7 @@ class Inquiry
   belongs_to :referrer, inverse_of: :inquiries
   belongs_to :service, inverse_of: :inquiries
 
-  # TODO : make it manual to add provision from inquiries
-  # has_one :referrer_provision,    inverse_of: :inquiry,    dependent: :restrict
+  has_one :referrer_provision,    inverse_of: :inquiry,    dependent: :restrict
   has_many :notes, inverse_of: :inquiry,    dependent: :restrict
 
   scope :ongoing, -> { self.in(status: [:replied, :confirmed, :paid]) }
