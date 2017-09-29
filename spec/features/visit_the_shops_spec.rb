@@ -1,4 +1,4 @@
-feature 'visits the shops', js: true, vcr: { record: :skip }  do
+feature 'visits the shops', js: true  do
 
   before(:each) do
     create_categories!

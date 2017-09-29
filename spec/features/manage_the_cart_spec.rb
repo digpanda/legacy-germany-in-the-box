@@ -1,4 +1,4 @@
-feature 'manage the cart', js: true, vcr: { record: :skip }  do
+feature 'manage the cart', js: true do
 
   before(:each) {
     create_categories!
