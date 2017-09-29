@@ -11,7 +11,7 @@ class Product
   field :name, type: String, localize: true
   slug :name
 
-  field :cover, type: String # deprecated ?
+  # field :cover, type: String # deprecated ?
   field :desc, type: String, localize: true
   field :desc_below, type: String, localize: true
   field :status, type: Boolean, default: true
@@ -43,16 +43,16 @@ class Product
   accepts_nested_attributes_for :skus
   accepts_nested_attributes_for :options
 
-  mount_uploader :cover, ProductUploader # deprecated ?
+  # mount_uploader :cover, ProductUploader # deprecated ?
 
   validates :name, presence: true, length:   { maximum: MAX_SHORT_TEXT_LENGTH }
-  validates :brand , presence: true, length: { maximum: MAX_SHORT_TEXT_LENGTH }
+  # validates :brand , presence: true, length: { maximum: MAX_SHORT_TEXT_LENGTH }
   validates :shop, presence: true
   validates :status, presence: true
   # validates :hs_code, presence: true <!-- this validation made global migration problems
   validates :desc, length:                   { maximum: MAX_LONG_TEXT_LENGTH }
 
-  scope :is_active,   -> { self.and(status: true, 'approved.ne': nil) }
+  scope :active,   -> { self.and(status: true, 'approved.ne': nil) }
   scope :has_sku,     -> { self.where('skus.0': { '$exists': true }) }
   scope :has_hs_code, -> { self.where('hs_code.ne': nil) }
   scope :highlight_first, -> { self.order_by(highlight: :desc) }
@@ -69,7 +69,7 @@ class Product
   end
 
   # only available products which are active and got skus
-  scope :can_show,          -> { self.is_active.has_sku }
+  scope :can_show,          -> { self.active.has_sku }
 
   # the main difference between can show and can buy is the fact the customer
   # can effectively select the sku and buy the item because
@@ -217,7 +217,7 @@ class Product
   def available_skus
     # in_stock was here
     # - Laurent
-    skus.is_active.order_by({ discount: :desc }, { quantity: :desc })
+    skus.active.order_by({ discount: :desc }, { quantity: :desc })
   end
 
   def sku_from_option_ids(option_ids)

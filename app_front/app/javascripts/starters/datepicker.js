@@ -19,13 +19,24 @@ var Datepicker = {
           require("javascripts/lib/foreign/datepicker-zh-CN.js");
         }
 
-        $( "#datepicker" ).datepicker({
-          changeMonth: true,
-          changeYear: true,
-          yearRange: '1945:'+(new Date).getFullYear(),
-          dateFormat: "yy-mm-dd"    
-        });
-     
+        if ($('#datepicker').length > 0) {
+          $( "#datepicker" ).datepicker({
+            changeMonth: true,
+            changeYear: true,
+            yearRange: '1945:'+(new Date).getFullYear(),
+            dateFormat: "yy-mm-dd"
+          });
+        }
+
+        if ($('#future-datepicker').length > 0) {
+          $("#future-datepicker").datepicker({
+            changeMonth: true,
+            changeYear: true,
+            yearRange: (new Date).getFullYear()+':2020',
+            dateFormat: "yy-mm-dd"
+          });
+        }
+
       }
 
     },
@@ -33,5 +44,3 @@ var Datepicker = {
 }
 
 module.exports = Datepicker;
-
-

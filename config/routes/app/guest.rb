@@ -21,6 +21,12 @@ namespace :guest do
     get :publicity
   end
 
+  resources :services do
+  end
+
+  resources :inquiries do
+  end
+
   resources :links do
     get :weixin # legacy code
   end

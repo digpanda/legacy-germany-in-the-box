@@ -1,0 +1,90 @@
+<% if inquiries.size > 0 %>
+<div class="main-table">
+<table>
+  <thead>
+    <th>
+      #
+    </th>
+    <th>
+      Service
+    </th>
+    <th>
+      Scheduled For
+    </th>
+    <th>
+      Email
+    </th>
+    <th>
+      Mobile
+    </th>
+    <th>
+      Comment
+    </th>
+    <th>
+      Customer
+    </th>
+    <th>
+      Referrer
+    </th>
+    <th>
+      Status
+    </th>
+    <th>
+      Created At
+    </th>
+    <th>
+      Action
+    </th>
+  </thead>
+  <tbody>
+    <% inquiries.each do |inquiry| %>
+    <tr>
+      <td>
+        <%= inquiry.id %>
+      </td>
+      <td>
+        <% if inquiry.service %>
+        <%= inquiry.service.name %>
+        <% else %>
+          -
+        <% end %>
+      </td>
+      <td>
+        <%= inquiry.scheduled_for %>
+      </td>
+      <td>
+        <%= inquiry.email %>
+      </td>
+      <td>
+        <%= inquiry.mobile %>
+      </td>
+      <td>
+        <%= inquiry.comment %>
+      </td>
+      <td>
+        <%= inquiry.user&.decorate&.full_name %>
+      </td>
+      <td>
+        <%= inquiry.referrer&.user&.decorate&.full_name %>
+      </td>
+      <td>
+        <%= inquiry.status %>
+      </td>
+      <td>
+        <%= inquiry.c_at %>
+      </td>
+      <td>
+        <%= link_to '', admin_inquiry_path(inquiry), :method => :get, :class => 'tooltipster fa fa-eye buttons buttons__edit', :title => "Details and configuration" %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+</div>
+<% else %>
+<div class="+white-box +centered">
+  <h4>
+    No inquiry found
+  </h4>
+</div>
+<% end %>

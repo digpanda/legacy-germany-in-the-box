@@ -1,0 +1,117 @@
+<%= form_for [:admin, @service] do |form| %>
+
+<div class="row details__block">
+
+  <!-- Title -->
+  <div class="row">
+    <div class="col-md-2">
+      <label>
+        Name
+      </label>
+    </div>
+
+      <div class="col-md-10 form-group">
+        <%= form.text_field :name, :class => 'form-control', :required => true %>
+        <div class="help-block with-errors"></div>
+      </div>
+  </div>
+
+  <!-- Description -->
+  <div class="row">
+    <div class="col-md-2">
+      <label>
+        Description
+      </label>
+    </div>
+
+      <div class="col-md-10 form-group">
+        <%= form.text_field :desc, :class => 'form-control', :required => true %>
+        <div class="help-block with-errors"></div>
+      </div>
+  </div>
+
+  <!-- Long Description -->
+  <div class="row">
+    <div class="col-md-2">
+      <label>
+        Long Description
+      </label>
+    </div>
+
+      <div class="col-md-10 form-group">
+        <%= form.text_area :long_desc, :class => 'form-control', :required => true %>
+        <div class="help-block with-errors"></div>
+      </div>
+  </div>
+
+
+  <!-- Cover -->
+  <div class="row">
+    <div class="col-md-2">
+      <%= form.label :cover, "Cover" %>
+    </div>
+    <div class="col-md-10 form-group">
+      <%= js_file_upload(form: form, field: :cover) %>
+    </div>
+  </div>
+
+  <!-- Categories -->
+  <div class="row">
+    <div class="col-md-2">
+      <label>
+        Category <span class="+red">*</span>
+      </label>
+    </div>
+
+    <div class="col-md-10">
+      <%= category_select(form) %>
+    </div>
+
+  </div>
+
+  <!-- Brand -->
+  <div class="row">
+    <div class="col-md-2">
+      <label>
+        Brand <span class="+red">*</span>
+      </label>
+    </div>
+
+    <div class="col-md-10">
+      <%= brand_select(form) %>
+    </div>
+
+  </div>
+
+  <!-- Referrer Rate for Product -->
+  <div class="row form-group">
+    <div class="col-md-4">
+      <label>
+        Referrer Rate
+      </label>
+    </div>
+    <div class="col-md-8">
+        <%= form.text_field :referrer_rate, :class => 'form-control', :placeholder => '10.00' %>
+      <div class="help-block with-errors"></div>
+    </div>
+  </div>
+
+  <!-- Active -->
+  <div class="row">
+    <div class="col-md-2">
+      <label>
+        Active
+      </label>
+    </div>
+
+      <div class="col-md-10 form-group">
+        <%= form.select :active, boolean_select %>
+        <div class="help-block with-errors"></div>
+      </div>
+  </div>
+
+</div>
+
+<%= form.submit :class => 'big-button --blue', :value =>  "Save" %>
+
+<% end %>

@@ -1,0 +1,59 @@
+<!-- NOTE : we must use customized URL because of the model name not matching with the controller name convention -->
+<%= form_for [:admin, referrer, provision], url: admin_referrer_provision_path do |form| %>
+
+<div class="row details__transparent-block">
+
+  <!-- Order / Inquiry -->
+  <!-- NOTE : we cannot edit them for now because it seems way too complicated for the current system -->
+  <div class="row">
+    <div class="col-md-2">
+      <label>
+        Order
+      </label>
+    </div>
+
+      <div class="col-md-4 form-group">
+        <% if provision.order %>
+          <a href="<%= admin_order_path(provision.order) %>"><%= provision.order.id %></a>
+        <% else %>
+          -
+        <% end %>
+        <div class="help-block with-errors"></div>
+      </div>
+
+      <div class="col-md-2">
+        <label>
+          Inquiry
+        </label>
+      </div>
+
+      <div class="col-md-4 form-group">
+        <% if provision.inquiry %>
+          <a href="<%= admin_inquiry_path(provision.inquiry) %>"><%= provision.inquiry.id %></a>
+        <% else %>
+          -
+        <% end %>
+        <div class="help-block with-errors"></div>
+      </div>
+  </div>
+
+
+  <!-- Provision -->
+  <div class="row">
+    <div class="col-md-2">
+      <label>
+        Provision (EUR)
+      </label>
+    </div>
+
+      <div class="col-md-10 form-group">
+        <%= form.text_field :provision, :class => 'form-control', :required => true %>
+        <div class="help-block with-errors"></div>
+      </div>
+  </div>
+
+</div>
+
+<%= form.submit :class => 'big-button --blue', :value =>  "Save" %>
+
+<% end %>

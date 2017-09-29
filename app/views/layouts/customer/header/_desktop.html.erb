@@ -9,6 +9,13 @@
       <!-- Categories -->
       <div class="col-md-7 header-desktop__categories">
         <div class="row">
+
+          <% if @freeze_header && current_user&.tester? %>
+          <li class="col-md-2 menu-dropdown +centered">
+            <a href="<%= guest_services_path %>"><%= I18n.t('menu.services') %></a>
+          </li>
+          <% end %>
+
           <% unless @freeze_header %>
             <%= render partial: "layouts/customer/header/desktop/categories_menu", :locals => { :categories => @categories } %>
           <% end %>

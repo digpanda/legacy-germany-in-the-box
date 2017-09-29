@@ -1,0 +1,123 @@
+<%= form_for [:admin, inquiry] do |form| %>
+
+<div class="row details__block">
+
+  <!-- Title -->
+  <div class="row">
+    <div class="col-md-2">
+      <label>
+        Service
+      </label>
+    </div>
+
+      <div class="col-md-10 form-group">
+        <%= service_select(form) %>
+        <div class="help-block with-errors"></div>
+      </div>
+  </div>
+
+  <!-- Scheduled For -->
+  <div class="row">
+    <div class="col-md-2">
+      <label>
+        Scheduled For
+      </label>
+    </div>
+
+      <div class="col-md-10 form-group">
+        <%= form.text_field :scheduled_for, :class => 'form-control', :required => true %>
+        <div class="help-block with-errors"></div>
+      </div>
+  </div>
+
+  <!-- Email -->
+  <div class="row">
+    <div class="col-md-2">
+      <label>
+        Email
+      </label>
+    </div>
+
+      <div class="col-md-10 form-group">
+        <%= form.text_field :email, :class => 'form-control', :required => true %>
+        <div class="help-block with-errors"></div>
+      </div>
+  </div>
+
+  <!-- Mobile -->
+  <div class="row">
+    <div class="col-md-2">
+      <label>
+        Mobile
+      </label>
+    </div>
+
+      <div class="col-md-10 form-group">
+        <%= form.text_field :mobile, :class => 'form-control', :type => 'phone', :required => true, :id => 'inquiry_mobile' %>
+        <div class="help-block with-errors"></div>
+      </div>
+  </div>
+
+  <!-- Comment -->
+  <div class="row">
+    <div class="col-md-2">
+      <label>
+        Comment
+      </label>
+    </div>
+
+      <div class="col-md-10 form-group">
+        <%= form.text_area :comment, :class => 'form-control', :required => false %>
+        <div class="help-block with-errors"></div>
+      </div>
+  </div>
+
+  <!-- Customer -->
+  <div class="row">
+    <div class="col-md-2">
+      <label>
+        Customer
+      </label>
+    </div>
+
+      <div class="col-md-10 form-group">
+        <%= customer_select(form) %>
+        <div class="help-block with-errors"></div>
+      </div>
+  </div>
+
+  <!-- Referrer -->
+  <div class="row">
+    <div class="col-md-2">
+      <label>
+        Referrer
+      </label>
+    </div>
+
+      <div class="col-md-10 form-group">
+        <%= form.select :referrer_id, parent_referrers, selected: inquiry.referrer&.id, include_blank: true %>
+        <div class="help-block with-errors"></div>
+      </div>
+
+
+  </div>
+
+  <!-- Status -->
+  <div class="row">
+    <div class="col-md-2">
+      <label>
+        Status
+      </label>
+    </div>
+
+      <div class="col-md-10 form-group">
+        <%= form.select :status, inquiry_status, selected: inquiry.status %>
+        <div class="help-block with-errors"></div>
+      </div>
+  </div>
+
+</div>
+
+<%= form.submit :class => 'big-button --blue', :value =>  "Save" %>
+
+<% end %>

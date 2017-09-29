@@ -1,0 +1,83 @@
+<% if services.size > 0 %>
+<div class="main-table">
+<table>
+  <thead>
+    <th>
+      #
+    </th>
+    <th>
+      Cover
+    </th>
+    <th>
+      Name
+    </th>
+    <th>
+      Description
+    </th>
+    <th>
+      Position
+    </th>
+    <th>
+      Categories
+    </th>
+    <th>
+      Brand
+    </th>
+    <th>
+      Active
+    </th>
+    <th>
+      Created At
+    </th>
+    <th>
+      Action
+    </th>
+  </thead>
+  <tbody>
+    <% services.each do |service| %>
+    <tr>
+      <td>
+        <%= service.id %>
+      </td>
+      <td>
+        <img src="<%= service.cover_url %>" class="img-icon">
+      </td>
+      <td>
+        <%= service.name %>
+      </td>
+      <td>
+        <%= service.desc %>
+      </td>
+      <td>
+        <%= editable_field(service, admin_service_path(service), :position, :text_field) %>
+      </td>
+      <td>
+        <%= service.category&.name %>
+      </td>
+      <td>
+        <%= service.brand&.name %>
+      </td>
+      <td>
+        <%= boolean_icon(service.active) %>
+      </th>
+      <td>
+        <%= service.c_at %>
+      </td>
+      <td>
+        <%= service.u_at %>
+      </td>
+      <td>
+        <%= link_to '', admin_service_path(service), :method => :get, :class => 'tooltipster fa fa-eye buttons buttons__edit', :title => "Details and configuration" %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+</div>
+<% else %>
+<div class="+white-box +centered">
+  <h4>
+    No service found
+  </h4>
+</div>
+<% end %>
