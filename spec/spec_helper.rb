@@ -47,9 +47,10 @@ RSpec.configure do |config|
   #   end
   #   VCR.turn_off!
   # end
-  VCR.turn_off!
 
 end
+
+VCR.turn_off!
 
 port = 3333 + ENV['TEST_ENV_NUMBER'].to_i # for `parallel_tests`
 host = 'local.dev'
