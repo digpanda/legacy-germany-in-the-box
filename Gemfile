@@ -29,7 +29,7 @@ gem 'figaro'
 gem 'turnout'
 gem 'business_time'
 gem 'mailgun_rails'
-gem 'whenever', :require => false # cron job handling
+gem 'whenever', require: false # cron job handling
 gem 'wkhtmltopdf-binary' # pdf generation (we need it coupled with wicked_pdf)
 gem 'wicked_pdf' # pdf generation
 gem 'breadcrumbs_on_rails'
