@@ -1,7 +1,7 @@
 <nav>
   <ul>
     <li class="col-md-2 menu-dropdown +centered">
-      <a href="<%= guest_services_path %>" id="services"><%= I18n.t('menu.package_sets') %></a>
+      <a href="<%= guest_package_sets_path %>" id="package_sets"><%= I18n.t('menu.package_sets') %></a>
       <ul class="menu-dropdown__content">
 
       <% Category.with_package_sets.order_by(position: :asc).each do |category| %>

@@ -23,7 +23,11 @@ module FormHelper
   def category_package_set_filter
     Category.with_package_sets.map do |category|
       [category.name, category.slug_name, 'data-href': guest_package_sets_path(category_id: category.slug)]
-    end
+    end.push(services_filter)
+  end
+
+  def services_filter
+    [I18n.t('menu.services'), 'services', 'data-href': guest_services_path]
   end
 
   def brand_package_set_filter
