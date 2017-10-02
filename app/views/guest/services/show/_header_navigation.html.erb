@@ -18,6 +18,10 @@
 
     <!-- Categories filtering -->
     <div class="col-xs-8 col-md-4">
+      <div class="page-navigation__right">
+        <!-- NOTE : same filters than package sets for now -->
+        <%= render partial: "guest/package_sets/navigation_filters", locals: { selected: 'services' } %>
+      </div>
     </div>
 
   </div>
