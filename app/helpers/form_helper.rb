@@ -1,5 +1,4 @@
 module FormHelper
-
   def customer_select(form)
     form.collection_select :user, User.where(role: :customer).all, :id, :full_name, { prompt: true, selected: form.object.user&.id }, { class: 'form-control' }
   end
@@ -13,11 +12,11 @@ module FormHelper
   end
 
   def category_select(form)
-    form.select :category, options_from_collection_for_select(Category.all, :id, :name, form.object.category&.id), { include_blank: I18n.t('multiselect.non_selected_text') }, class: 'form-control'
+    form.select :category, options_from_collection_for_select(Category.all, :id, :name, form.object.category&.id), { include_blank: I18n.t('multiselect.non_selected_text') }, { class: 'form-control' }
   end
 
   def categories_select(form)
-    form.select :categories, options_from_collection_for_select(Category.all, :id, :name), { include_blank: I18n.t('multiselect.non_selected_text') }, class: 'form-control'
+    form.select :categories, options_from_collection_for_select(Category.all, :id, :name), { include_blank: I18n.t('multiselect.non_selected_text') }, { class: 'form-control' }
   end
 
   def category_package_set_filter

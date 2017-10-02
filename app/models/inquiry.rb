@@ -24,5 +24,4 @@ class Inquiry
   scope :ongoing, -> { self.in(status: [:replied, :confirmed, :paid]) }
 
   validates :status, presence: true , inclusion: { in: [:new, :replied, :confirmed, :rejected, :paid, :terminated] }
-
 end

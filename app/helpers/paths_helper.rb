@@ -21,7 +21,6 @@ module PathsHelper
     end
   end
 
-
   def section_active?(path)
     url_for.index(path) == 0
   end
