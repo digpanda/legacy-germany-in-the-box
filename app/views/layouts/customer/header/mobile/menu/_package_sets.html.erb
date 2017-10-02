@@ -1,4 +1,6 @@
 <!-- Services link -->
+<% if current_user&.tester? %>
 <li>
   <a href="<%= guest_services_path %>"><%= I18n.t('menu.services') %></a>
 </li>
+<% end %>
