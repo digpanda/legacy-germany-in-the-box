@@ -1,11 +1,11 @@
 zh-CN:
   services:
-    email: Email
-    mobile: Mobile
-    scheduled: Scheduled
-    comment: Comment
-    ask_for_inquiry: Ask for Inquiry
-    send_now: Send now
+    email: 邮箱
+    mobile: 手机号
+    scheduled: 预计时间
+    comment: 留言
+    ask_for_inquiry: 免费问询
+    send_now: 发送
   tracking_state:
     new: new
     signature_received: signature received
