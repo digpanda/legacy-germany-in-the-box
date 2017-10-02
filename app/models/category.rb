@@ -27,7 +27,7 @@ class Category
   scope :showable, -> { where(:show.ne => false) }
 
   def products_brands
-    products.is_active.map(&:brand).uniq
+    products.active.map(&:brand).uniq
   end
 
   def package_sets_brands

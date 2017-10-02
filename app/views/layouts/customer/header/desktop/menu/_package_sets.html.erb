@@ -1,0 +1,20 @@
+<% if current_user&.tester? %>
+<nav>
+  <ul>
+    <li class="col-md-2 menu-dropdown +centered">
+      <a href="<%= guest_services_path %>" id="services"><%= I18n.t('menu.services') %></a>
+      <ul class="menu-dropdown__content">
+
+      <% Service.active.each do |service| %>
+        <li>
+            <a href="<%= guest_service_path(service) %>">
+            <h4><%= service.name %></h4>
+            </a>
+        </li>
+      <% end %>
+
+      </ul>
+    </li>
+  </ul>
+</nav>
+<% end %>

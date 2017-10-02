@@ -1,4 +1,4 @@
-describe Customer::Orders::AddressesController, type: :controller, vcr: { record: :skip } do
+describe Customer::Orders::AddressesController, type: :controller do
   render_views
 
   let(:current_user) { FactoryGirl.create(:customer) }

@@ -1,0 +1,24 @@
+<div class="details">
+
+  <div class="row">
+    <div class="col-md-10">
+      <h2>Provision <%= @provision.id %></h2>
+    </div>
+    <div class="col-md-2 details__action">
+    </div>
+  </div>
+
+  <div class="+small-spacer"></div>
+
+  <div class="row details__block">
+    <h3>Edit</h3>
+    <em>Order and Inquiry binding cannot be changed for now. Any change of money distribution may be automatically changed via our current system afterwards ; specifically for orders related provisions.</em>
+    <hr>
+    <%= render partial: "admin/referrers/provisions/form", locals: { referrer: @referrer, provision: @provision } %>
+  </div>
+
+  <div class="row details__block +danger-zone">
+    <%= render partial: "admin/referrers/provisions/show/danger_zone", locals: { referrer: @referrer, provision: @provision } %>
+  </div>
+
+</div>

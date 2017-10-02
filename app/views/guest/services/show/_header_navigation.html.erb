@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="subheader">
+
+    <!-- BACK -->
+    <div class="col-xs-4 col-md-4">
+      <div class="subheader__left">
+        <a href="<%= back %>">
+          <i class="digpanda-back"></i><%= I18n.t(:back) %>
+        </a>
+      </div>
+    </div>
+
+    <!-- Number of package sets -->
+    <div class="col-md-4">
+      <div class="page-navigation__middle +desktop">
+      </div>
+    </div>
+
+    <!-- Categories filtering -->
+    <div class="col-xs-8 col-md-4">
+      <div class="page-navigation__right">
+        <!-- NOTE : same filters than package sets for now -->
+        <%= render partial: "guest/package_sets/navigation_filters", locals: { selected: 'services' } %>
+      </div>
+    </div>
+
+  </div>
+</div>

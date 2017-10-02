@@ -83,6 +83,7 @@ zh-CN:
     no_address: 尚未填写收件地址
     new_adress: 添加新收件地址
   navigation:
+    services: "%{num} Services"
     packages: "%{num}个礼包"
     products: "%{num}件产品"
   categories:
@@ -162,6 +163,8 @@ zh-CN:
     go_back_home_page: 回到首页
     start_process_shipment: 准备发货
   menu:
+    package_sets: 套装
+    services: 旅途服务
     my_favorites: 我的收藏
     my_profile: 个人中心
     my_cart: 购物筐

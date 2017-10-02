@@ -1,4 +1,4 @@
-describe Api::Customer::FavoritesController, type: :controller, vcr: { record: :skip } do
+describe Api::Customer::FavoritesController, type: :controller do
   render_views
 
   describe '#update' do

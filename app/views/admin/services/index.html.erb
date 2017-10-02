@@ -1,0 +1,19 @@
+<div class="row">
+  <div class="col-md-10">
+    <h2>Services</h2>
+    <hr>
+  </div>
+  <div class="col-md-2 details__action">
+    <a href="<%= new_admin_service_path %>"><i class="fa fa-plus tooltipster" title="Create new service"></i></a>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <%= render partial: "shared/partials/search" %>
+  </div>
+</div>
+
+<%= render partial: "admin/services/table", :locals => { :services => @services } %>
+
+<%= will_paginate @services, renderer: BootstrapPagination::Rails %>

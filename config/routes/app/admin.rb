@@ -40,6 +40,15 @@ namespace :admin do
   resources :products do
   end
 
+  resources :services do
+    patch :active
+    patch :unactive
+  end
+
+  resources :inquiries do
+    post :setup_referrer_provision
+  end
+
   resources :shops do
     get :emails, on: :collection
     patch :approve

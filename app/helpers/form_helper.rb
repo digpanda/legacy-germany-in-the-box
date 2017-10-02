@@ -1,8 +1,32 @@
 module FormHelper
+  def customer_select(form)
+    form.collection_select :user, User.where(role: :customer).all, :id, :full_name, { prompt: true, selected: form.object.user&.id }, { class: 'form-control' }
+  end
+
+  def service_select(form)
+    form.collection_select :service, Service.all, :id, :name, { prompt: true, selected: form.object.service&.id }, { class: 'form-control' }
+  end
+
+  def brand_select(form)
+    form.collection_select :brand, Brand.all, :id, :name, { prompt: true, selected: form.object.brand&.id }, { class: 'form-control' }
+  end
+
+  def category_select(form)
+    form.select :category, options_from_collection_for_select(Category.all, :id, :name, form.object.category&.id), { include_blank: I18n.t('multiselect.non_selected_text') }, { class: 'form-control' }
+  end
+
+  def categories_select(form)
+    form.select :categories, options_from_collection_for_select(Category.all, :id, :name), { include_blank: I18n.t('multiselect.non_selected_text') }, { class: 'form-control' }
+  end
+
   def category_package_set_filter
     Category.with_package_sets.map do |category|
       [category.name, category.slug_name, 'data-href': guest_package_sets_path(category_id: category.slug)]
-    end
+    end.push(services_filter)
+  end
+
+  def services_filter
+    [I18n.t('menu.services'), 'services', 'data-href': guest_services_path]
   end
 
   def brand_package_set_filter

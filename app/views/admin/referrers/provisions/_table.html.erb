@@ -12,10 +12,16 @@
           Order
         </th>
         <th>
+          Inquiry
+        </th>
+        <th>
           Provision
         </th>
         <th>
           Creation
+        </th>
+        <th>
+          Action
         </th>
       </thead>
       <tbody>
@@ -25,13 +31,27 @@
             <%= provision.id %>
           </td>
           <td>
-            <a href="<%= admin_order_path(provision.order) %>"><%= provision.order.id %></a>
+            <% if provision.order %>
+              <a href="<%= admin_order_path(provision.order) %>"><%= provision.order.id %></a>
+            <% else %>
+              -
+            <% end %>
+          </td>
+          <td>
+            <% if provision.inquiry %>
+              <a href="<%= admin_inquiry_path(provision.inquiry) %>"><%= provision.inquiry.id %></a>
+            <% else %>
+              -
+            <% end %>
           </td>
           <td>
             <%= provision.provision.in_euro.display %>
           </td>
           <td>
             <%= provision.c_at %>
+          </td>
+          <td>
+            <a href="<%= admin_referrer_provision_path(provision.referrer, provision) %>"><i class="fa fa-eye tooltipster buttons buttons__edit"></i></a>
           </td>
         </tr>
         <% end %>

@@ -85,10 +85,6 @@ class ApplicationController < ActionController::Base
     'application'
   end
 
-  def freeze_header
-    @freeze_header = true
-  end
-
   def minimal_layout
     @minimal_layout = true
   end

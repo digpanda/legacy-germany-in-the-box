@@ -1,40 +1,31 @@
 <div class="container-fluid header-mobile">
   <div class="row">
 
-    <!-- Categories -->
+    <!-- Left Slide Menu -->
     <div class="col-xs-2 header-mobile__categories">
       <div class="row">
-
-        <%# unless @freeze_header %>
-          <%# unless identity_solver&.wechat_customer? %>
-            <button id="mobile-menu-button" type="button" class="navbar-toggle" data-toggle="offcanvas" data-target="#mobile-menu" data-canvas=".navbar-fixed-top">
-              <i class="fa fa-bars"></i>
-            </button>
-          <%# end %>
-        <%# end %>
-
-        <%= render partial: "layouts/customer/header/mobile/categories_menu", :locals => { :categories => @categories } %>
-
+        <%= render partial: "layouts/customer/header/mobile/menu/slide", locals: { categories: @categories } %>
       </div>
     </div>
 
-    <!-- Logo -->
+    <!-- Central Logo -->
     <div class="col-xs-7 header-mobile__logo">
-      <%= render partial: "layouts/customer/header/logo" %>
+      <%= render partial: "layouts/customer/header/shared/logo" %>
     </div>
 
-    <!-- Menu -->
+    <!-- Right menu -->
     <div class="col-xs-3 header-mobile__menu">
       <div class="row">
-
-        <%= render partial: "layouts/customer/header/mobile/buttons_menu", :locals => { :categories => @categories } %>
-
+        <%= render partial: "layouts/customer/header/mobile/menu/buttons", locals: { categories: @categories } %>
       </div>
     </div>
   </div>
+
+  <!-- Down search bar -->
   <div class="row">
     <div class="col-xs-12">
-      <%= render partial: "layouts/customer/header/search_bar" %>
+      <%= render partial: "layouts/customer/header/shared/search" %>
     </div>
   </div>
+
 </div>

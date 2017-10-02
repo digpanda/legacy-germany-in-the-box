@@ -7,8 +7,6 @@ class Connect::RegistrationsController < Devise::RegistrationsController
     base64_to_uploadedfile :user, :pic
   }
 
-  before_action :freeze_header
-
   respond_to :html, :json
 
   def new

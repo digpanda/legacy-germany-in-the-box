@@ -1,10 +1,11 @@
 <nav>
   <ul>
+
     <% categories.each do |category| %>
     <li class="col-md-2 menu-dropdown +centered">
       <a href="<%= guest_category_path(category) %>" id="<%= category.slug_name %>"><%= category.name %></a>
-      <!-- Shops in category -->
       <ul class="menu-dropdown__content">
+
       <% category.can_buy_shops(10).each do |shop| %>
       <li>
           <a href="<%= guest_shop_path(shop, category_id: category.slug) %>">
@@ -12,14 +13,16 @@
           </a>
       </li>
       <% end %>
-    </ul>
-      <!-- End of shop in category -->
+
+      </ul>
     </li>
     <% end %>
+
     <% Shop.highlighted.each do |shop| %>
       <li>
         <%= link_to shop&.shopname, guest_shop_path(shop) %>
       </li>
     <% end %>
+
   </ul>
 </nav>

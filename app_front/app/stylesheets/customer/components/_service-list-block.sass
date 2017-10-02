@@ -1,0 +1,44 @@
++component(service-list-block)
+
+  //+shadow
+  //+border-radius(4px)
+  font-size: 15px
+  margin-bottom: 1em
+  +breakpoint('mobile')
+    margin-bottom: 0
+
+  a
+    color: $color-almost-black
+
+  +part(header-content)
+    margin: 1em
+    margin-bottom: 0.2em
+    +breakpoint('mobile')
+      margin-bottom: 0
+
+  +part(header-title)
+    +trim-word
+    font-weight: bold
+    letter-spacing: 0.2px
+    font-size: 14px
+
+  +part(header-category)
+    color: $color-grey
+    font-weight: 300
+    text-align: right
+
+  +part(central-image)
+    +centered
+    height: 17vw
+    +breakpoint('mobile')
+      height: 36vw
+
+    max-height: 672px
+
+    background-position: center center
+    background-size: contain
+    background-repeat: no-repeat
+
+  +part(footer-content)
+    margin: 1em
+    margin-top: 0.1em

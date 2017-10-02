@@ -1,25 +1,35 @@
 <div class="container-fluid header-desktop">
   <div class="row">
 
-    <!-- Logo -->
+    <!-- Left Logo -->
     <div class="col-md-2 header-desktop__logo">
-      <%= render partial: "layouts/customer/header/logo" %>
+      <%= render partial: "layouts/customer/header/shared/logo" %>
     </div>
 
-      <!-- Categories -->
+      <!-- Main Center Menu -->
       <div class="col-md-7 header-desktop__categories">
         <div class="row">
-          <% unless @freeze_header %>
-            <%= render partial: "layouts/customer/header/desktop/categories_menu", :locals => { :categories => @categories } %>
+
+          <% if package_sets_section? %>
+            <!-- Package sets menu -->
+            <%= render partial: "layouts/customer/header/desktop/menu/package_sets" %>
+          <% elsif services_section? %>
+            <!-- Services menu -->
+            <%= render partial: "layouts/customer/header/desktop/menu/services" %>
+          <% elsif general_section? %>
+            <!-- General menu -->
+            <%= render partial: "layouts/customer/header/desktop/menu/general", locals: { categories: @categories } %>
           <% end %>
+
         </div>
       </div>
 
-    <!-- Menu -->
+    <!-- Right Menu -->
     <div class="col-md-3 header-desktop__menu">
       <div class="row">
-        <%= render partial: "layouts/customer/header/desktop/buttons_menu", :locals => { :categories => @categories } %>
+        <%= render partial: "layouts/customer/header/desktop/menu/buttons", locals: { categories: @categories } %>
       </div>
     </div>
+
   </div>
 </div>

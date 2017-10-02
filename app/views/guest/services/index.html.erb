@@ -1,0 +1,12 @@
+<%= render partial: "guest/services/index/navigation", :locals => { services: @services, back: identity_solver.origin_url  } %>
+
+<div class="row">
+
+  <!-- The positioning is impossible to do before we get the actual array -->
+  <% @services.sort_by(&:position).each_with_index do |service, index| %>
+    <%= render "guest/services/index/block", :options => { :reversed => (index % 2 != 0) }, :service => service %>
+  <% end %>
+
+</div>
+
+<div class="+small-spacer"></div>

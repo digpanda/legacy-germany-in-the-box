@@ -19,7 +19,7 @@
     <!-- Categories filtering -->
     <div class="col-xs-8 col-md-4">
       <div class="page-navigation__right">
-        <%= render partial: "guest/package_sets/navigation_filters", locals: { category: category } %>
+        <%= render partial: "guest/package_sets/navigation_filters", locals: { selected: params[:category_id] } %>
       </div>
     </div>
 

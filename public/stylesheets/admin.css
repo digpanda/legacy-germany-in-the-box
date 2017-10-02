@@ -986,6 +986,12 @@
   .details__action a {
     color: #666666; }
 
+.details__transparent-block {
+  margin-left: 0;
+  margin-top: 1em;
+  margin-right: 1em;
+  margin-bottom: 1em; }
+
 .details__block {
   background-color: white;
   padding: 1em;

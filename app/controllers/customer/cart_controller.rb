@@ -2,7 +2,6 @@ class Customer::CartController < ApplicationController
   attr_reader :user
   attr_reader :orders
 
-  before_action :freeze_header
   before_action :breadcrumb_cart
   before_action :set_cart
 

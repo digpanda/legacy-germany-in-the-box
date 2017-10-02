@@ -1,4 +1,4 @@
-feature 'checkout process', js: true, vcr: { record: :skip }  do
+feature 'checkout process', js: true do
 
   let(:customer) { FactoryGirl.create(:customer) }
 

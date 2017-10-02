@@ -26,7 +26,7 @@ module CategoryBase
     validates :status,  presence: true
 
     scope :roots,           ->  { where(parent: nil) }
-    scope :is_active,       ->  { where(status: true) }
+    scope :active,       ->  { where(status: true) }
     scope :has_children,    ->  { where(:children_count.gt => 0) }
 
   end

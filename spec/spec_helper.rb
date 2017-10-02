@@ -29,23 +29,7 @@ RSpec.configure do |config|
       FactoryGirl.create(:shipping_rate, partner: :mkpost, weight: (10 * time), price: (4 * time))
     end
     page.driver.reset!
-    VCR.turn_on!
-  end
-
-  # Add VCR to all tests
-  config.around(:each) do |example|
-    options = example.metadata[:vcr] || {}
-    if options[:record] == :skip
-      # NOTE : don't touch this if you aren't 100% sure of what you do
-      # it was pretty hard to end up with something working.
-      # - Laurent
-      VCR.turn_off!(ignore_cassettes: true)
-      example.run
-      VCR.turn_on!
-    else
-      name = example.metadata[:full_description].split(/\s+/, 2).join('/').underscore.gsub(/\./, '/').gsub(/[^\w\/]+/, '_').gsub(/\/$/, '')
-      VCR.use_cassette(name, options, &example)
-    end
+    # VCR.turn_on!
   end
 
   # Add VCR to all tests
@@ -65,6 +49,8 @@ RSpec.configure do |config|
   # end
 
 end
+
+VCR.turn_off!
 
 port = 3333 + ENV['TEST_ENV_NUMBER'].to_i # for `parallel_tests`
 host = 'local.dev'
