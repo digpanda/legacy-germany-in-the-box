@@ -35,7 +35,11 @@ module PathsHelper
   end
 
   def general_section?
-    PathMatcher.new(request).include?([guest_products_path, guest_shops_path]) || root_url
+    PathMatcher.new(request).include?([guest_products_path, guest_shops_path]) || root_path?
+  end
+
+  def root_path?
+    request.path == root_path
   end
 
   def admin_path?
