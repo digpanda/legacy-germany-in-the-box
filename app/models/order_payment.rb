@@ -44,6 +44,7 @@ class OrderPayment
     save
   end
 
+  # NOTE : the system does not seem to use the refund system anymore, this was wirecard material.
   def refund?
     transaction_type == 'refund-purchase' || transaction_type == 'refund-debit'
   end
