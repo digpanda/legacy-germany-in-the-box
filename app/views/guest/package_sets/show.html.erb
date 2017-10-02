@@ -1,4 +1,4 @@
-<%= render partial: "guest/package_sets/show/header_navigation", :locals => { package_set: @package_set, category: @category, back: guest_package_sets_path(category_id: @package_set.category.id) } %>
+<%= render partial: "guest/package_sets/show/header_navigation", :locals => { package_set: @package_set, category: @category, back: guest_package_sets_path(category_id: @package_set.category.slug) } %>
 
 <% if @package_set.details_cover.present? %>
   <div class="row">

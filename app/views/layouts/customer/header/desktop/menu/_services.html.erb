@@ -1,0 +1,18 @@
+<nav>
+  <ul>
+    <li class="col-md-2 menu-dropdown +centered">
+      <a href="<%= guest_services_path %>" id="services"><%= I18n.t('menu.package_sets') %></a>
+      <ul class="menu-dropdown__content">
+
+      <% Category.with_package_sets.order_by(position: :asc).each do |category| %>
+        <li>
+            <a href="<%= guest_package_sets_path(category_id: category.slug) %>">
+            <h4><%= category.name %></h4>
+            </a>
+        </li>
+      <% end %>
+
+      </ul>
+    </li>
+  </ul>
+</nav>
