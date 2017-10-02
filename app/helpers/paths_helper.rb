@@ -21,6 +21,19 @@ module PathsHelper
     end
   end
 
+
+  def section_active?(path)
+    url_for.index(path) == 0
+  end
+
+  def package_sets_section?
+    section_active? guest_package_sets_path
+  end
+
+  def services_section?
+    section_active? guest_services_path
+  end
+
   def admin_path?
     PathMatcher.new(request).include?(['/admin'])
   end

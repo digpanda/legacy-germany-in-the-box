@@ -1,15 +1,17 @@
 <nav>
   <ul>
-    <li class="col-md-5 +right">
 
+    <!-- Search -->
+    <li class="col-md-5 +right">
       <% unless @freeze_header %>
-        <!-- Desktop searchbar -->
-        <%= render partial: "layouts/customer/header/search_bar" %>
+        <%= render partial: "layouts/customer/header/shared/search" %>
         <a href="#" class="js-search-button search-bar__button header-desktop__menu --green"><i class="fa fa-search"></i></a>
       <% end %>
-
     </li>
+
+    <!-- Profile -->
     <li class="col-md-2">
+
         <% if notifications? %>
           <a href="<%= shared_notifications_path %>">
             <div class="+notif-bubble"><%= current_user.notifications.global.unreads.count %></div>
@@ -18,10 +20,15 @@
         <% else %>
           <a href="<%= resolve_profile_path %>" class="header-desktop__menu --green"><i class="fa fa-user"></i></a>
         <% end %>
+
     </li>
+
+    <!-- Favorites -->
     <li class="col-md-2">
       <a href="<%= customer_favorites_path %>" class="header-desktop__menu --pink"><i class="fa fa-heart"></i></a>
     </li>
+
+    <!-- Cart -->
     <li class="col-md-2">
         <a id="cart" href="<%= customer_cart_path %>" class="header-desktop__menu --green">
           <i class="fa fa-shopping-cart"></i>
@@ -30,6 +37,7 @@
           </span>
         </a>
     </li>
+
   </ul>
 
 </nav>

@@ -1,0 +1,46 @@
+<!-- Button to open it -->
+<button id="mobile-menu-button" type="button" class="navbar-toggle" data-toggle="offcanvas" data-target="#mobile-menu" data-canvas=".navbar-fixed-top">
+  <i class="fa fa-bars"></i>
+</button>
+
+<nav id="mobile-menu" class="navmenu navmenu-default navmenu-fixed-left offcanvas" role="navigation">
+  <ul>
+
+    <!-- Profile -->
+    <li>
+      <% if notifications? %>
+        <a href="<%= shared_notifications_path %>">
+          <span><%= I18n.t('menu.my_profile') %></span> <div class="+notif-bubble-inline"><%= current_user.notifications.global.unreads.count %></div>
+        </a>
+      <% else %>
+        <a href="<%= menu_customer_account_path %>"><%= I18n.t('menu.my_profile') %></a>
+      <% end %>
+    </li>
+
+    <!-- Favorites -->
+    <li><a href="<%= customer_favorites_path %>"><%= I18n.t('menu.my_favorites') %></a></li>
+    <hr />
+
+    <!-- Main Menu -->
+    <% if package_sets_section? %>
+      <!-- Package sets menu -->
+      <%= render partial: "layouts/customer/header/mobile/menu/package_sets" %>
+    <% elsif services_section? %>
+      <!-- Services menu -->
+      <%= render partial: "layouts/customer/header/mobile/menu/services" %>
+    <% else %>
+      <!-- General menu -->
+      <%= render partial: "layouts/customer/header/mobile/menu/general", locals: { categories: @categories } %>
+    <% end %>
+
+    <hr />
+
+    <!-- Extra Informations -->
+    <% if current_user&.tester? %>
+      <li>
+        <span class="+blue +bold">Mode : Tester</span>
+      </li>
+    <% end %>
+
+  </ul>
+</nav>

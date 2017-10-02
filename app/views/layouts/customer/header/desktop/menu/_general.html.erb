@@ -16,10 +16,12 @@
       <!-- End of shop in category -->
     </li>
     <% end %>
+
     <% Shop.highlighted.each do |shop| %>
       <li>
         <%= link_to shop&.shopname, guest_shop_path(shop) %>
       </li>
     <% end %>
+    
   </ul>
 </nav>
