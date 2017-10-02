@@ -1,0 +1,31 @@
+<!-- NOTE : we used the same structure than categories for services (for now) -->
+<div class="row">
+  <div class="col-md-12">
+    <div class="categories-block">
+      <div class="row">
+
+        <a href="<%= guest_services_path %>">
+          <div class="col-md-8 col-md-push-4">
+            <div class="categories-block__image lazy" data-original="/images/services-cover.jpg" style="background-image:url('/images/grey.jpg');">
+            </div>
+          </div>
+        </a>
+
+        <div class="col-md-4 col-md-pull-8 categories-block__no-padding-right">
+          <div class="categories-block__content">
+            <div class="categories-block__wrapper">
+              <h2><%= I18n.t('menu.services') %></h2>
+              <!-- NOTE : hardcoded for now, will be turned dynamically later -->
+              <p>医疗，展会， 拍卖，投资，保险等德国本地服务</p>
+              <div class="categories-block__button">
+              <a class="main-button__hollow category-select" href="<%= guest_services_path %>"><%= I18n.t('categories.more_info') %></a>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
