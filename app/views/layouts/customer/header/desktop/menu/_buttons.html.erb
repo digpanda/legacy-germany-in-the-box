@@ -3,7 +3,7 @@
 
     <!-- Search -->
     <li class="col-md-5 +right">
-      <% unless @freeze_header %>
+      <% if general_section? %>
         <%= render partial: "layouts/customer/header/shared/search" %>
         <a href="#" class="js-search-button search-bar__button header-desktop__menu --green"><i class="fa fa-search"></i></a>
       <% end %>
@@ -11,16 +11,14 @@
 
     <!-- Profile -->
     <li class="col-md-2">
-
-        <% if notifications? %>
-          <a href="<%= shared_notifications_path %>">
-            <div class="+notif-bubble"><%= current_user.notifications.global.unreads.count %></div>
-            <span class="header-desktop__menu --green"><i class="fa fa-user"></i></span>
-          </a>
-        <% else %>
-          <a href="<%= resolve_profile_path %>" class="header-desktop__menu --green"><i class="fa fa-user"></i></a>
-        <% end %>
-
+      <% if notifications? %>
+        <a href="<%= shared_notifications_path %>">
+          <div class="+notif-bubble"><%= current_user.notifications.global.unreads.count %></div>
+          <span class="header-desktop__menu --green"><i class="fa fa-user"></i></span>
+        </a>
+      <% else %>
+        <a href="<%= resolve_profile_path %>" class="header-desktop__menu --green"><i class="fa fa-user"></i></a>
+      <% end %>
     </li>
 
     <!-- Favorites -->

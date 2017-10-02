@@ -6,7 +6,6 @@ class Guest::ServicesController < ApplicationController
   end
 
   before_action :set_service
-  before_action :freeze_header
 
   def show
     # if the customer wants to send an inquiry

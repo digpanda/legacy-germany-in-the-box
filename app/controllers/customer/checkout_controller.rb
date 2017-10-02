@@ -13,8 +13,6 @@ class Customer::CheckoutController < ApplicationController
 
   before_action :breadcrumb_cart, :breadcrumb_checkout_address, :breadcrumb_payment_method
 
-  before_action :freeze_header
-
   def create
     current_address = current_user.addresses.find(params[:delivery_destination_id])
     checkout_ready = CheckoutReady.new(session, current_user, order, current_address).perform!

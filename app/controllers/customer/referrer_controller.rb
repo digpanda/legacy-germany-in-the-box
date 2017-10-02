@@ -1,7 +1,6 @@
 class Customer::ReferrerController < ApplicationController
   attr_reader :referrer
 
-  before_action :freeze_header
   before_filter :valid_referrer?
   before_action :set_referrer
   authorize_resource class: false

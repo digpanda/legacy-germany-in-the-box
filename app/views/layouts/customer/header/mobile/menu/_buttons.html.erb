@@ -1,10 +1,8 @@
 <nav>
     <div class="col-xs-6">
 
-      <% unless @freeze_header %>
-        <% unless identity_solver&.wechat_customer? %>
-          <a href="#" class="js-search-button search-bar__button header-mobile__menu --green"><i class="fa fa-search"></i></a>
-        <% end %>
+      <% if general_section? %>
+        <a href="#" class="js-search-button search-bar__button header-mobile__menu --green"><i class="fa fa-search"></i></a>
       <% end %>
 
     </div>

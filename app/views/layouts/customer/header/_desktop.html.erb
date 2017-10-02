@@ -16,7 +16,7 @@
           <% elsif services_section? %>
             <!-- Services menu -->
             <%= render partial: "layouts/customer/header/desktop/menu/services" %>
-          <% else %>
+          <% elsif general_section? %>
             <!-- General menu -->
             <%= render partial: "layouts/customer/header/desktop/menu/general", locals: { categories: @categories } %>
           <% end %>
