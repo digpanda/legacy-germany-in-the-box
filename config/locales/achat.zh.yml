@@ -1,4 +1,11 @@
 zh-CN:
+  services:
+    email: Email
+    mobile: Mobile
+    scheduled: Scheduled
+    comment: Comment
+    ask_for_inquiry: Ask for Inquiry
+    send_now: Send now
   tracking_state:
     new: new
     signature_received: signature received

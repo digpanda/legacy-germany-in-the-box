@@ -8,7 +8,7 @@
   <div class="row">
     <div class="col-md-2">
       <label>
-        Email
+        <%= I18n.t('services.email') %>
       </label>
     </div>
       <div class="col-md-10 form-group">
@@ -25,7 +25,7 @@
   <div class="row">
     <div class="col-md-2">
       <label>
-        Mobile
+        <%= I18n.t('services.mobile') %>
       </label>
     </div>
 
@@ -39,7 +39,7 @@
   <div class="row">
     <div class="col-md-2">
       <label>
-        Scheduled
+        <%= I18n.t('services.scheduled') %>
       </label>
     </div>
 
@@ -54,7 +54,7 @@
   <div class="row">
     <div class="col-md-2">
       <label>
-        Comment
+        <%= I18n.t('services.comment') %>
       </label>
     </div>
 
@@ -64,7 +64,7 @@
       </div>
   </div>
 
-  <%= form.submit :class => 'big-button --blue', :value =>  "Send now" %>
+  <%= form.submit :class => 'big-button --blue', :value =>  I18n.t('services.send_now') %>
 
 </div>
 
