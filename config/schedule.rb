@@ -26,12 +26,14 @@ set :output, '/var/www/germany_in_the_box/current/log/cron.log'
 #   rake 'cron:cron_name'
 # end
 
-# other cron jobs
+
+# NOTE : this rake task has been removed because the u_at was updated systematically
+# and I realized the search system was automatically updated on adding new entries. - Laurent
 # - reindexing entries for index
-every :hour do
-  command 'The system has launched the rake task `rake mongoid_search:index`'
-  rake 'mongoid_search:index'
-end
+# every :hour do
+#   command 'The system has launched the rake task `rake mongoid_search:index`'
+#   rake 'mongoid_search:index'
+# end
 
 # - check all the links added to the admin dashboard and notify problems
 every :day do
@@ -45,8 +47,9 @@ every :day do
   rake 'cron:remove_empty_carts'
 end
 
+# NOTE : the slug system update by itself now, so i cancelled this task. - Laurent
 # - reindexing models for slug ids
-every :week do
-  command 'The system has launched the rake task `rake mongoid_slug:set`'
-  rake 'mongoid_slug:set'
-end
+# every :week do
+#   command 'The system has launched the rake task `rake mongoid_slug:set`'
+#   rake 'mongoid_slug:set'
+# end
