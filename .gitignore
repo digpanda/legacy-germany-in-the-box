@@ -1,6 +1,7 @@
 Dockerfile
 /public/assets
 /public/uploads
+/public/cache
 *.rbc
 capybara-*.html
 .rspec
