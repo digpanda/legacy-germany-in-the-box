@@ -4,9 +4,9 @@
   <%= render "guest/home/show/landing_page_banner" %>
 
   <% @shops.each do |shop| %>
-
-    <%= render partial: "guest/shops/block", :locals => { :shop => shop } %>
-
+    <% cache shop do %>
+      <%= render partial: "guest/shops/block", :locals => { :shop => shop } %>
+    <% end %>
   <% end %>
 
 <% elsif potential_shopkeeper? %>
