@@ -1,5 +1,9 @@
 <%= render partial: "guest/services/index/navigation", :locals => { services: @services, back: identity_solver.origin_url  } %>
 
+<div class="+small-spacer"></div>
+
+<%= render partial: "guest/services/brand_filters", locals: { current_brand: @brand, brand_filters: @brand_filters} %>
+
 <div class="row">
 
   <!-- The positioning is impossible to do before we get the actual array -->

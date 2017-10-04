@@ -34,4 +34,5 @@ class Service
   validates :desc, length: { maximum: MAX_LONG_TEXT_LENGTH }
 
   scope :active,   -> { self.and(active: true) }
+  scope :with_brand, -> (brand) { self.where(brand: brand) }
 end

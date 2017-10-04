@@ -6,6 +6,7 @@ class Guest::ServicesController < ApplicationController
   end
 
   before_action :set_service
+  before_action :set_brand, only: [:index]
 
   def show
     # if the customer wants to send an inquiry
@@ -17,9 +18,30 @@ class Guest::ServicesController < ApplicationController
   # otherwise we redirect the user to the /categories area
   def index
     @services = Service.active.order_by(position: :asc)
+
+    # brand querying
+    if brand
+      @services = @services.with_brand(brand)
+    end
+
+    @brand_filters = Brand.with_services.order_by(position: :asc).used_as_filters
   end
 
   private
+
+  # NOTE : this was copied from package_sets_controller
+  # If in any case we duplicate again, please abstract it elsewhere.
+  # for filtering (optional)
+  def set_brand
+    if params[:brand_id]
+      begin
+        @brand = Brand.find(params[:brand_id])
+      rescue Mongoid::Errors::DocumentNotFound
+        # we need to rescue to avoid crashing the application
+        # like for the category_id above
+      end
+    end
+  end
 
     def set_service
       @service = Service.find(params[:id] || params[:service_id]) if params[:id] || params[:service_id]
