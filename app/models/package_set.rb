@@ -7,7 +7,7 @@ class PackageSet
   field :position, type: Integer, default: 0
 
   field :name, type: String
-  slug :name
+  slug :name, history: true
 
   field :desc, type: String
   field :long_desc, type: String

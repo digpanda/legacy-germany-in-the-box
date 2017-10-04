@@ -18,5 +18,7 @@
 <div class="+spacer"></div>
 
 <!-- Services -->
-<%= render "guest/package_sets/categories/services" %>
-<div class="+spacer"></div>
+<% if current_user&.tester? %>
+  <%= render "guest/package_sets/categories/services" %>
+  <div class="+spacer"></div>
+<% end %>

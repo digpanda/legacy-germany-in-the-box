@@ -5,7 +5,7 @@ class Brand
   strip_attributes
 
   field :name, type: String, localize: true
-  slug :name
+  slug :name, history: true
 
   field :html_desc, type: String, localize: true
   field :position, type: Integer, default: 0
