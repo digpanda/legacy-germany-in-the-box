@@ -1,6 +1,15 @@
 Rails.application.configure do
 
   config.cache_classes = true
+
+  config.cache_store = :redis_store, {
+    host: 'localhost',
+    port: 6379,
+    db: 0,
+    password: ENV['redis_secret'],
+    namespace: 'cache'
+  }
+  
   config.eager_load = false
 
   config.serve_static_files = true

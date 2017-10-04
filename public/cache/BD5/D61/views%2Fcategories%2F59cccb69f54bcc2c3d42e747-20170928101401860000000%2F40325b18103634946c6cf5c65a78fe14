@@ -1,0 +1,36 @@
+o: ActiveSupport::Cache::Entry:@valueI"�
+    
+<div class="row">
+  <div class="col-md-12">
+    <div class="categories-block">
+      <div class="row">
+
+        <a href="/guest/package_sets?category_id=household">
+          <div class="col-md-8 col-md-push-4">
+            <div class="categories-block__image lazy" data-original="" style="background-image:url('/images/grey.jpg');">
+            </div>
+          </div>
+        </a>
+
+        <div class="col-md-4 col-md-pull-8 categories-block__no-padding-right">
+          <div class="categories-block__content">
+            <div class="categories-block__wrapper">
+              <h2>家居</h2>
+<p>简约的风格，和材料永不妥协的死磕，古典🎼般的制作工艺，完美主义的匠人精神📐，这些基因一一融入来因盒挑选的德国家居用品🏡。满足你身在东方古国，却对欧陆风情的偏爱，对品质生活的追求。但最好的是，这一切会随着的🕙流逝而愈发彰显它们的价值、、、</p>
+<div class="categories-block__button">
+<a class="main-button__hollow category-select" href="/guest/package_sets?category_id=household">浏览分类产品</a>
+</div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="+spacer"></div>
+
+:ET:@created_atf1507122446.952362:@expires_in0

@@ -11,7 +11,9 @@
 <div class="+small-spacer"></div>
 
 <% Category.with_package_sets.order_by(position: :asc).each_with_index do |category, index| %>
-  <%= render "guest/package_sets/categories/block", :options => { :reversed => (index % 2 != 0) }, :category => category %>
+  <%= cache category do %>
+    <%= render "guest/package_sets/categories/block", :options => { :reversed => (index % 2 != 0) }, :category => category %>
+  <% end %>
 <% end %>
 
 <a class="big-button --green" href="<%= guest_package_sets_path(category_id: 'all') %>"><%= I18n.t('button.see_all_products') %></a>

@@ -1,6 +1,15 @@
 Rails.application.configure do
 
   config.cache_classes = true
+
+  config.cache_store = :redis_store, {
+    host: 'localhost',
+    port: 6379,
+    db: 0,
+    password: ENV['redis_secret'],
+    namespace: 'cache'
+  }
+  
   config.middleware.use(Mongoid::QueryCache::Middleware)
   config.eager_load = true
   config.consider_all_requests_local = true

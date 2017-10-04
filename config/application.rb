@@ -26,14 +26,6 @@ module DigPanda
     config.exceptions_app = self.routes # customized error handling
     config.autoload_paths += %W(#{config.root}/lib #{config.root}/app/decorators/concerns #{config.root}/app/uploaders/concerns)
 
-    config.cache_store = :redis_store, {
-      host: 'localhost',
-      port: 6379,
-      db: 0,
-      password: ENV['redis_secret'],
-      namespace: 'cache'
-    }
-
     config.middleware.use Mongoid::QueryCache::Middleware
     config.middleware.use Mobvious::Manager
     config.middleware.use HttpAcceptLanguage::Middleware

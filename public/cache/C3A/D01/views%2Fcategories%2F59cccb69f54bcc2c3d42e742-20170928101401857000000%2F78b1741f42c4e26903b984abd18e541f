@@ -1,0 +1,37 @@
+o: ActiveSupport::Cache::Entry:@valueI"�
+    
+<div class="row">
+  <div class="col-md-12">
+    <div class="categories-block">
+      <div class="row">
+
+        <a href="/guest/package_sets?category_id=food">
+          <div class="col-md-8">
+            <div class="categories-block__image lazy" data-original="" style="background-image:url('/images/grey.jpg');">
+            </div>
+          </div>
+        </a>
+
+        <div class="col-md-4 categories-block__no-padding-left">
+          <div class="categories-block__content">
+            <div class="categories-block__wrapper">
+              <h2>食品佳酿</h2>
+<p>有机食品不是潮流，是每个关心身体健康的消费者的权益。来因盒用心挑选安全的有机食品，让你吃得安心无负担。</p>
+<div class="categories-block__button">
+<a class="main-button__hollow category-select" href="/guest/package_sets?category_id=food">浏览分类产品</a>
+</div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="+spacer"></div>
+
+:ET:@created_atf1507122380.860096:@expires_in0
