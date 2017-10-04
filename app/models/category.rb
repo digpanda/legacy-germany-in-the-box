@@ -13,7 +13,7 @@ class Category
   # the implication within the system
   # such as the filters in the package sets area.
   field :slug_name, type: String
-  slug :slug_name
+  slug :slug_name, history: true
 
   field :desc, type: String, localize: true
   field :position, type: Integer

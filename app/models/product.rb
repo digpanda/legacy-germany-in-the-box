@@ -9,7 +9,7 @@ class Product
   strip_attributes
 
   field :name, type: String, localize: true
-  slug :name
+  slug :name, history: true
 
   # field :cover, type: String # deprecated ?
   field :desc, type: String, localize: true

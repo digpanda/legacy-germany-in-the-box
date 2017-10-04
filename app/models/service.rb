@@ -12,7 +12,7 @@ class Service
   search_in :name, :desc, category: :name, brand: :name
 
   field :name, type: String
-  slug :name
+  slug :name, history: true
 
   field :cover, type: String
   field :desc, type: String
