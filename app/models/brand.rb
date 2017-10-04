@@ -24,6 +24,6 @@ class Brand
     end
 
     def self.services_brand_ids
-      Service.active.map(&:brand).map(&:id)
+      Service.active.map(&:brand).compact.map(&:id)
     end
 end
