@@ -2,11 +2,7 @@
 
 <div class="+small-spacer"></div>
 
-<p class="categories-block__brands +centered">
-  <span class="+strong"><%= I18n.t('brands.hot_brands') %> :</span> <% @brand_filters.each do |brand| %>
-    <a href="<%= guest_package_sets_path(brand_id: brand.slug) %>"><%= brand.name %></a> |
-  <% end %>
-</p>
+<%= render partial: "guest/package_sets/index/brand_filters", locals: { current_brand: @brand, current_category: @category, brand_filters: @brand_filters} %>
 
 <div class="+small-spacer"></div>
 
