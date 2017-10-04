@@ -10,7 +10,9 @@
 
   <!-- The positioning is impossible to do before we get the actual array -->
   <% @package_sets.sort_by(&:position).each_with_index do |package_set, index| %>
-    <%= render "guest/package_sets/index/block", :options => { :reversed => (index % 2 != 0) }, :package_set => package_set %>
+    <% cache package_set do %>
+      <%= render "guest/package_sets/index/block", :options => { :reversed => (index % 2 != 0) }, :package_set => package_set %>
+    <% end %>
   <% end %>
 
 </div>

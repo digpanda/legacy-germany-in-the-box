@@ -1,5 +1,8 @@
 <%= render partial: "guest/package_sets/show/header_navigation", :locals => { package_set: @package_set, category: @category, back: guest_package_sets_path(category_id: @package_set.category.slug) } %>
 
+<!-- TODO : abstract what is below this to make it way more redable than this. -->
+<% cache @package_set do %>
+
 <% if @package_set.details_cover.present? %>
   <div class="row">
     <div class="col-md-12">
@@ -111,4 +114,4 @@
   </div>
 <% end %>
 
-<!-- render partial: "guest/package_sets/show/navigation", :locals => { :package_set => @package_set, category: @category } -->
+<% end %>
