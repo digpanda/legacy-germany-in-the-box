@@ -5,7 +5,7 @@
     <%= render partial: 'customer/referrer/subheader', :locals => { back: customer_referrer_path } %>
 
     <!-- LINKS LIST -->
-    <%= render partial: 'customer/referrer/links/table', :locals => { links: @links } %>
+    <%= render partial: 'customer/referrer/links/table', :locals => { links: @links, referrer: @referrer } %>
 
   </div>
 </div>

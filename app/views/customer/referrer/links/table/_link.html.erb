@@ -1,0 +1,21 @@
+<tr data-href="<%= customer_referrer_link_share_path(link) %>" class="<%= newly_published?(referrer, link) ? "+table-new" : "" %>">
+  <td>
+    <img src="<%= link.thumbnail_url %>" class="icon-img">
+  </td>
+  <td>
+    <a href="#"><%= link.title %></a>
+  </td>
+  <td>
+    <%= link.desc %>
+  </td>
+  <td>
+    <% if link.published_at %>
+      <%= link.published_at.strftime("%Y-%m-%d") %>
+    <% else %>
+      -
+    <% end %>
+  </td>
+</tr>
+<% if newly_published?(referrer, link) %>
+  <% referrer.link_was_read!(link) %>
+<% end %>
