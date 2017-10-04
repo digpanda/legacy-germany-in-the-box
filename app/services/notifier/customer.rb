@@ -39,7 +39,7 @@ class Notifier
       dispatch(
         mobile: "#{order.shipping_address.mobile}",
         title: '发货通知',
-        desc: "亲爱的顾客，您的订单#{order.id}已安排发货。快递单号为：#{order.order_tracking&.unique_id}，您可以访问快递100网站查询快递状态 http://www.kuaidi100.com"
+        desc: "亲爱的顾客，您的订单#{order.id}已安排发货。快递单号为：#{order.order_tracking&.delivery_id}，您可以访问快递100网站查询快递状态 http://www.kuaidi100.com"
       ).perform(dispatch: [:sms])
     end
 
