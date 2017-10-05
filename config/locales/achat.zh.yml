@@ -2,9 +2,9 @@ zh-CN:
   services:
     email: 邮箱
     mobile: 手机号
-    scheduled: 预计时间
+    scheduled: 预约时间
     comment: 留言
-    ask_for_inquiry: 免费咨询问价
+    ask_for_inquiry: 立即咨询 预约
     send_now: 发送
   tracking_state:
     new: new
@@ -18,7 +18,7 @@ zh-CN:
   brands:
     hot_brands: 热销产品
   referrer:
-    service: Service
+    service: 海外金融地产医疗服务
     desc: 副标题
     promotion_text: 广告词(参考)
     a_new_link_was_published: 新的智能软文刚刚发布
@@ -44,8 +44,8 @@ zh-CN:
     qrcode: 专属二维码
     update_account: 更新账户
     agb_agreement: 我已阅读并同意接受<a href="%{url}">AGB</a>条款
-    service_provision_rates: 佣金率
-    package_set_provision_rates: 佣金率
+    service_provision_rates: 海外服务佣金率
+    package_set_provision_rates: 电商佣金率
     balance_history: 收支明细
     type: 类目
     description: 详情
@@ -65,7 +65,7 @@ zh-CN:
     operation: 结算
     customer: 顾客
     order: 订单
-    inquiry: Inquiry
+    inquiry: 问询
     provision: 佣金
     creation: 更新时间
     transfer: 流水
@@ -93,13 +93,13 @@ zh-CN:
     no_address: 尚未填写收件地址
     new_adress: 添加新收件地址
   navigation:
-    services: "%{num} Services"
+    services: "%{num} 海外服务"
     packages: "%{num}个礼包"
     products: "%{num}件产品"
   categories:
     more_info: 浏览分类产品
   package_set:
-    please_scan_qrcode: Please scan QRCode for Wechat fast-buy
+    please_scan_qrcode: 手机微信扫码 快速购买
     more_info: 浏览分类产品
     buy_it: 加入购物车
     see_our_campaigns: 查看特惠精品套装
