@@ -9,7 +9,7 @@ class ReferrerDecorator < Draper::Decorator
     array_provisions = provisions.reduce([]) do |acc, provision|
       acc << {
           type: :order,
-          description: provision.order.products_name_array.join(', '),
+          description: provision.order&.products_name_array&.join(', ') || provision.inquiry.service.name,
           transfer: provision.provision.in_euro.display,
           date: provision.c_at.strftime('%Y-%m-%d')
         }
