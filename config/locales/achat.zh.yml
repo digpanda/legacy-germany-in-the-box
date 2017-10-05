@@ -44,7 +44,8 @@ zh-CN:
     qrcode: 专属二维码
     update_account: 更新账户
     agb_agreement: 我已阅读并同意接受<a href="%{url}">AGB</a>条款
-    provision_rates: 佣金率
+    service_provision_rates: 佣金率
+    package_set_provision_rates: 佣金率
     balance_history: 收支明细
     type: 类目
     description: 详情
