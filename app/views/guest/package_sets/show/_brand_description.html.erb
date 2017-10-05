@@ -1,0 +1,9 @@
+<% if @package_set.package_skus.first&.product&.brand&.html_desc&.present? %>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="package-set-infos">
+        <div><%= @package_set.package_skus.first.product.brand.html_desc.html_safe %></div>
+      </div>
+    </div>
+  </div>
+<% end %>

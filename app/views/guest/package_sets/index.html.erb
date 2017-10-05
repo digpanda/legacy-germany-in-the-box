@@ -1,13 +1,15 @@
 <%= render partial: "guest/package_sets/index/navigation", :locals => { package_sets: @package_sets, category: @category, back: guest_package_sets_categories_path  } %>
 
-<%= render "guest/package_sets/package_set_banner" %>
-
+<!-- Global package set cover -->
+<%= render "guest/package_sets/cover" %>
 <div class="+small-spacer"></div>
 
+<!-- Brand filters for Package sets -->
 <%= render partial: "guest/package_sets/brand_filters", locals: { current_brand: @brand, current_category: @category, brand_filters: @brand_filters} %>
+<div class="+small-spacer"></div>
 
+<!-- Package sets listing -->
 <div class="row">
-
   <!-- The positioning is impossible to do before we get the actual array -->
   <% @package_sets.sort_by(&:position).each_with_index do |package_set, index| %>
     <% cache package_set do %>
@@ -16,5 +18,4 @@
   <% end %>
 
 </div>
-
 <div class="+small-spacer"></div>

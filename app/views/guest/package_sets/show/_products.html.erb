@@ -1,0 +1,13 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="package-set-infos__products">
+      <div class="row">
+        <% package_set.package_skus.each do |package_sku| %>
+          <div class="col-md-2 col-xs-6 package-set-infos__product">
+            <%= render partial: "guest/package_sets/show/products/block", locals: { package_sku: package_sku } %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

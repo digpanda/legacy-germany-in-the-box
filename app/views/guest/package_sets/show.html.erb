@@ -1,117 +1,26 @@
-<%= render partial: "guest/package_sets/show/header_navigation", :locals => { package_set: @package_set, category: @category, back: guest_package_sets_path(category_id: @package_set.category.slug) } %>
+<%= render partial: "guest/package_sets/show/header_navigation", locals: { package_set: @package_set, category: @category, back: guest_package_sets_path(category_id: @package_set.category.slug) } %>
 
-<!-- TODO : abstract what is below this to make it way more redable than this. -->
 <% cache @package_set do %>
 
-<% if @package_set.details_cover.present? %>
-  <div class="row">
-    <div class="col-md-12">
-      <div class="banner lazy" data-original="<%= @package_set.details_cover.url %>" style="background-image:url('/images/grey.jpg');">
-        <% if @package_set.promotion_text.present? %>
-          <div class="banner__promotion-text"><%= @package_set.promotion_text %></div>
-        <% end %>
-      </div>
-    </div>
-  </div>
-<% end %>
+  <%= render partial: "guest/package_sets/show/cover", locals: { package_set: @package_set } %>
 
-<div class="row">
-  <div class="col-md-12">
-    <div class="package-set-infos">
-
-      <!-- Modal introduction -->
-      <div class="remodal" data-remodal-options="hashTracking: false" data-remodal-id="package-set-introduction">
-
-        <div class="package-set-introduction">
-          <!-- Close Action -->
-          <button data-remodal-action="close" class="remodal-close"></button>
-          <h1><%= @package_set.name %></h1>
-          <p><%= simple_format @package_set.long_desc %></p>
-        </div>
-      </div>
-
-      <!-- Introduction -->
-      <div class="row">
-        <div class="col-md-12">
-          <div class="package-set-infos__introduction-header">
-          </div>
-          <div class="package-set-infos__introduction">
-            <h1><%= @package_set.name %></h1>
-            <p><%= simple_format @package_set.desc %></p>
-          </div>
-        </div>
-        <% if @package_set.long_desc.present? %>
-          <div class="+centered">
-            <a data-remodal-target="package-set-introduction" href="#"><%= I18n.t('button.read_more') %></a>
-          </div>
-        <% end %>
-      </div>
-
-      <!-- Products -->
-      <div class="row">
-        <div class="col-md-12">
-          <div class="package-set-infos__products">
-            <div class="row">
-              <% @package_set.package_skus.each do |package_sku| %>
-                <div class="col-md-2 col-xs-6 package-set-infos__product">
-                  <%= render partial: "guest/package_sets/show/product", :locals => { :package_sku => package_sku } %>
-                </div>
-              <% end %>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Price + Purchase -->
-      <div class="row">
-        <div class="col-md-12">
-          <div class="package-set-infos__actions">
-
-            <hr />
-
-            <!-- Prices -->
-            <div class="row">
-              <div class="+centered">
-                <% if @package_set.casual_price? %>
-                  <div class="package-set-infos__original-price"><%= @package_set.casual_price.in_euro.to_yuan.display %></div>
-                <% end %>
-                <div class="package-set-infos__new-price"><%= @package_set.end_price.in_euro.to_yuan.display %></div>
-                <div class="package-set-infos__euro-price"><%#= @package_set.end_price.in_euro.display %> ( <%= I18n.t('cart.all_included') %> )</div>
-                <div class="+spacer"></div>
-              </div>
-            </div>
-
-            <!-- Buttons -->
-            <div class="row">
-              <div class="+centered">
-                <%= link_to I18n.t('package_set.buy_it'), nil,
-                            class: 'js-add-package-set main-button__solid --large', :data => { :package_set_id => @package_set.id.to_s } %>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="package-set-infos__qrcode +desktop">
-                <img src="<%= guest_package_set_qrcode_path(@package_set) %>" />
-                <p><%= I18n.t('package_set.please_scan_qrcode') %></p>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</div>
-
-<% if @package_set.package_skus.first&.product&.brand&.html_desc&.present? %>
   <div class="row">
     <div class="col-md-12">
       <div class="package-set-infos">
-        <div><%= @package_set.package_skus.first.product.brand.html_desc.html_safe %></div>
+
+        <!-- Introduction (with modal) -->
+        <%= render partial: "guest/package_sets/show/introduction", locals: { package_set: @package_set } %>
+
+        <!-- Products -->
+        <%= render partial: "guest/package_sets/show/products", locals: { package_set: @package_set } %>
+
+        <!-- Price + Purchase -->
+        <%= render partial: "guest/package_sets/show/purchase", locals: { package_set: @package_set } %>
+
       </div>
     </div>
   </div>
-<% end %>
+
+  <%= render partial: "guest/package_sets/show/brand_description", locals: { package_set: @package_set } %>
 
 <% end %>
