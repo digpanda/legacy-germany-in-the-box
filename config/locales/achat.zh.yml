@@ -63,6 +63,7 @@ zh-CN:
     operation: 结算
     customer: 顾客
     order: 订单
+    inquiry: Inquiry
     provision: 佣金
     creation: 更新时间
     transfer: 流水

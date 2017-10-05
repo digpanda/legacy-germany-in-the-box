@@ -65,6 +65,7 @@ de:
     operation: Auszahlungen
     customer: Kunden
     order: Bestellungen
+    inquiry: Inquiry
     provision: Provision
     creation: Bestelldatum
     transfer: Auszahlung

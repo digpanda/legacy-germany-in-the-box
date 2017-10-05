@@ -430,6 +430,7 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
         name: "Service #{num}",
         desc: Faker::Lorem.paragraph,
         long_desc: Faker::Lorem.paragraph(3),
+        referrer_rate: [*0..20].sample,
         cover: setup_image(:banner),
         category: random_category,
         brand: create_brand,

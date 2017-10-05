@@ -1,11 +1,14 @@
 <div class="row">
   <div class="col-md-8 col-md-push-2">
 
-    <!-- SUBHEADER (BACK BUTTON + REFERRER ID) -->
+    <!-- Subheader -->
     <%= render partial: 'customer/referrer/subheader', :locals => { back:  provision_customer_referrer_path } %>
 
-    <!-- ORDERS -->
-    <%= render partial: 'customer/referrer/provision/rates', :locals => { package_sets: @package_sets } %>
+    <!-- Package sets -->
+    <%= render partial: 'customer/referrer/provision/rates/package_sets', :locals => { package_sets: @package_sets } %>
+
+    <!-- Services -->
+    <%= render partial: 'customer/referrer/provision/rates/services', :locals => { services: @services } %>
 
   </div>
 </div>

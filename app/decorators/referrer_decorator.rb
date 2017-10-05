@@ -8,8 +8,8 @@ class ReferrerDecorator < Draper::Decorator
 
     array_provisions = provisions.reduce([]) do |acc, provision|
       acc << {
-          type: :order,
-          description: provision.order&.products_name_array&.join(', ') || provision.inquiry.service.name,
+          type: provision.type,
+          description: provision.desc,
           transfer: provision.provision.in_euro.display,
           date: provision.c_at.strftime('%Y-%m-%d')
         }
@@ -24,6 +24,6 @@ class ReferrerDecorator < Draper::Decorator
     end
 
     merged = array_provisions + array_operations
-    merged.sort_by { |k| k[:date] }.reverse
+    merged.sort_by { |key| key[:date] }.reverse
   end
 end
