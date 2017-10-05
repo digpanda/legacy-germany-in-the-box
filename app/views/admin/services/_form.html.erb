@@ -110,6 +110,20 @@
       </div>
   </div>
 
+  <!-- Restricted to Referrer -->
+  <div class="row">
+    <div class="col-md-2">
+      <label>
+        Restricted to Referrers
+      </label>
+    </div>
+
+      <div class="col-md-10 form-group">
+        <%= form.select :referrers_only, boolean_select %>
+        <div class="help-block with-errors"></div>
+      </div>
+  </div>
+
 </div>
 
 <%= form.submit :class => 'big-button --blue', :value =>  "Save" %>

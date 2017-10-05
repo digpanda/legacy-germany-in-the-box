@@ -14,6 +14,8 @@ class Service
   field :name, type: String
   slug :name, history: true
 
+  field :referrers_only, type: Boolean, default: false
+
   field :cover, type: String
   field :desc, type: String
   field :long_desc, type: String
@@ -35,4 +37,5 @@ class Service
 
   scope :active,   -> { self.and(active: true) }
   scope :with_brand, -> (brand) { self.where(brand: brand) }
+  scope :without_referrer, -> { self.and(:referrers_only.ne => true); }
 end
