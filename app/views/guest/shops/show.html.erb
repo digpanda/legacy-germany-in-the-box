@@ -1,50 +1,54 @@
-<div class="row">
-  <div class="col-md-12">
+<% cache @shop do %>
 
-    <!-- Shop Blocks -->
-    <div class="shop-page">
+  <div class="row">
+    <div class="col-md-12">
 
-      <div class="row">
-        <div class="col-md-12">
-          <!-- Shop Navigation -->
-          <%= render partial: "guest/shops/show/subheader", :locals => { :shop => @shop, :back => root_path } %>
+      <!-- Shop Blocks -->
+      <div class="shop-page">
+
+        <div class="row">
+          <div class="col-md-12">
+            <!-- Shop Navigation -->
+            <%= render partial: "guest/shops/show/subheader", :locals => { :shop => @shop, :back => root_path } %>
+          </div>
         </div>
-      </div>
 
-      <div class="row">
-        <div class="col-md-12">
-          <!-- Shop Header -->
-          <%= render partial: "guest/shops/show/header", :locals => { :shop => @shop } %>
+        <div class="row">
+          <div class="col-md-12">
+            <!-- Shop Header -->
+            <%= render partial: "guest/shops/show/header", :locals => { :shop => @shop } %>
+          </div>
         </div>
-      </div>
 
-      <div class="row">
-        <div class="col-md-12">
-          <!-- Shop Filters -->
-          <%= render partial: "guest/shops/show/filters", :locals => { :shop => @shop } %>
+        <div class="row">
+          <div class="col-md-12">
+            <!-- Shop Filters -->
+            <%= render partial: "guest/shops/show/filters", :locals => { :shop => @shop } %>
+          </div>
         </div>
-      </div>
 
-      <div class="row">
-        <div class="col-md-12">
-          <!-- Shop Products list -->
-          <%= render partial: "guest/shops/show/products_list", :locals => { :products => @products } %>
+        <div class="row">
+          <div class="col-md-12">
+            <!-- Shop Products list -->
+            <%= render partial: "guest/shops/show/products", :locals => { :products => @products } %>
+          </div>
         </div>
-      </div>
 
-      <div class="+spacer"></div>
+        <div class="+spacer"></div>
 
-      <div class="row">
-        <div class="col-md-12">
-          <!-- Shop Footer -->
-          <%= render partial: "guest/shops/show/footer", :locals => { :shop => @shop } %>
+        <div class="row">
+          <div class="col-md-12">
+            <!-- Shop Footer -->
+            <%= render partial: "guest/shops/show/footer", :locals => { :shop => @shop } %>
+          </div>
         </div>
-      </div>
 
-      <div class="+spacer"></div>
+        <div class="+spacer"></div>
+
+      </div>
+      <!-- End of Shop Blocks -->
 
     </div>
-    <!-- End of Shop Blocks -->
-
   </div>
-</div>
+
+<% end %>

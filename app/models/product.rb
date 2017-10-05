@@ -27,11 +27,11 @@ class Product
   embeds_many :options, inverse_of: :product, cascade_callbacks: true, class_name: 'VariantOption'
   embeds_many :skus, inverse_of: :product, cascade_callbacks: true
 
-  has_and_belongs_to_many :categories
+  has_and_belongs_to_many :categories, touch: true
 
   has_many :order_items
 
-  belongs_to :shop, inverse_of: :products
+  belongs_to :shop, inverse_of: :products, touch: true
   belongs_to :duty_category, inverse_of: :products, counter_cache: true
   belongs_to :brand, inverse_of: :products
 
