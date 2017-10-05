@@ -10,7 +10,7 @@
     <table>
       <thead>
         <th>
-          <%= I18n.t('referrer.service_product') %>
+          <%= I18n.t('referrer.service') %>
         </th>
         <th>
           <%= I18n.t('referrer.rate') %>
@@ -19,7 +19,7 @@
       <tbody>
 
         <% services.each do |service| %>
-            <tr data-href="#">
+            <tr data-href="<%= guest_service_path(service) %>">
               <td>
                 <%= service.name %>
               </td>

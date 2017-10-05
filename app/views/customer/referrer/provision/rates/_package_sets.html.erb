@@ -19,7 +19,7 @@
       <tbody>
 
         <% package_sets.each do |package_set| %>
-            <tr data-href="#">
+            <tr data-href="<%= guest_package_set_path(package_set) %>">
               <td>
                 <%= package_set.name %>
               </td>

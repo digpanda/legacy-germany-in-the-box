@@ -451,6 +451,7 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
         long_desc: Faker::Lorem.paragraph(3),
         cover: setup_image(:banner),
         category: random_category,
+        referrer_rate: [*0..20].sample,
         details_cover: setup_image(:banner),
         casual_price: Faker::Number.decimal(2),
         shipping_cost: Faker::Number.decimal(1)
