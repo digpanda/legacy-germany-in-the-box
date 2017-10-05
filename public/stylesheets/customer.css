@@ -1976,6 +1976,7 @@ body {
     max-height: 672px;
     text-align: center;
     margin: 0 auto;
+    width: 100%;
     background-color: white; }
     @media (max-width: 994px) {
       .categories-block__content {
@@ -2818,6 +2819,8 @@ body {
   margin-top: 1em;
   margin-bottom: 1em;
   text-align: center; }
+  .service-infos h1 {
+    font-size: 28px; }
   .service-infos__introduction-header {
     color: #bdc3c7;
     text-align: right; }
@@ -2839,9 +2842,6 @@ body {
       .service-list-block__header-content {
         margin-bottom: 0; } }
   .service-list-block__header-title {
-    white-space: nowrap;
-    overflow: hidden !important;
-    text-overflow: ellipsis;
     font-weight: bold;
     letter-spacing: 0.2px;
     font-size: 14px; }
