@@ -15,7 +15,7 @@
         <div class="col-md-4 categories-block__no-padding-left">
           <div class="categories-block__content">
             <div class="categories-block__wrapper">
-              <%= render partial: "guest/package_sets/categories/content", locals: { category: category } %>
+              <%= render partial: "guest/package_sets/categories/block/content", locals: { category: category } %>
             </div>
           </div>
 
@@ -24,7 +24,6 @@
     </div>
   </div>
 </div>
-
 
 <% else %>
 
@@ -43,7 +42,7 @@
         <div class="col-md-4 col-md-pull-8 categories-block__no-padding-right">
           <div class="categories-block__content">
             <div class="categories-block__wrapper">
-              <%= render partial: "guest/package_sets/categories/content", locals: { category: category } %>
+              <%= render partial: "guest/package_sets/categories/block/content", locals: { category: category } %>
             </div>
           </div>
 
