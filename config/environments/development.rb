@@ -40,5 +40,4 @@ Rails.application.configure do
   # Mini profiler activation, please comment to disable
   require 'rack-mini-profiler'
   Rack::MiniProfilerRails.initialize!(Rails.application)
-
 end

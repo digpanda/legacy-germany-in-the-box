@@ -33,19 +33,19 @@ class Guest::ServicesController < ApplicationController
 
   private
 
-  # NOTE : this was copied from package_sets_controller
-  # If in any case we duplicate again, please abstract it elsewhere.
-  # for filtering (optional)
-  def set_brand
-    if params[:brand_id]
-      begin
-        @brand = Brand.find(params[:brand_id])
-      rescue Mongoid::Errors::DocumentNotFound
-        # we need to rescue to avoid crashing the application
-        # like for the category_id above
+    # NOTE : this was copied from package_sets_controller
+    # If in any case we duplicate again, please abstract it elsewhere.
+    # for filtering (optional)
+    def set_brand
+      if params[:brand_id]
+        begin
+          @brand = Brand.find(params[:brand_id])
+        rescue Mongoid::Errors::DocumentNotFound
+          # we need to rescue to avoid crashing the application
+          # like for the category_id above
+        end
       end
     end
-  end
 
     def set_service
       @service = Service.find(params[:id] || params[:service_id]) if params[:id] || params[:service_id]

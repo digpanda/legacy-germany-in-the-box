@@ -9,7 +9,7 @@ Rails.application.configure do
     password: ENV['redis_secret'],
     namespace: 'cache'
   }
-  
+
   config.eager_load = false
 
   config.serve_static_files = true
@@ -43,5 +43,4 @@ Rails.application.configure do
   #     user_name: 'f396f41db34e22',
   #     password: 'f4eede72e026e4'
   # }
-
 end

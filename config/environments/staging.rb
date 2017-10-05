@@ -9,7 +9,7 @@ Rails.application.configure do
     password: ENV['redis_secret'],
     namespace: 'cache'
   }
-  
+
   config.middleware.use(Mongoid::QueryCache::Middleware)
   config.eager_load = true
   config.consider_all_requests_local = true
@@ -45,5 +45,4 @@ Rails.application.configure do
       user_name: 'f396f41db34e22',
       password: 'f4eede72e026e4'
   }
-
 end
