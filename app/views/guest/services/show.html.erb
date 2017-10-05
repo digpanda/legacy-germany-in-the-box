@@ -1,60 +1,23 @@
-<%= render partial: "guest/services/show/header_navigation", :locals => { service: @service, back: guest_services_path } %>
+<!-- Head navigation -->
+<%= render partial: "guest/services/show/header_navigation", locals: { service: @service, back: guest_services_path } %>
 
-<% if @service.cover.present? %>
+<% cache @service do %>
+
+  <!-- Cover -->
+  <%= render partial: "guest/services/show/cover", locals: { service: @service } %>
+
   <div class="row">
     <div class="col-md-12">
-      <div class="banner lazy" data-original="<%= @service.cover.url %>" style="background-image:url('/images/grey.jpg');">
+      <div class="service-infos">
+
+        <!-- Introduction -->
+        <%= render partial: "guest/services/show/introduction", locals: { service: @service } %>
+
+        <!-- Inquiry -->
+        <%= render partial: "guest/services/show/inquiry", locals: { service: @service, inquiry: @inquiry } %>
+
       </div>
     </div>
   </div>
+
 <% end %>
-
-<div class="row">
-  <div class="col-md-12">
-    <div class="service-infos">
-
-      <!-- Introduction -->
-      <div class="row">
-        <div class="col-md-12">
-          <div class="service-infos__introduction-header">
-          </div>
-          <div class="service-infos__introduction">
-            <h1><%= @service.name %></h1>
-            <p><%= simple_format @service.long_desc %></p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Price + Purchase -->
-      <div class="row">
-        <div class="col-md-12">
-          <div class="service-infos__actions">
-
-            <hr />
-
-            <!-- Modal introduction -->
-            <div class="remodal" data-remodal-options="hashTracking: false" data-remodal-id="service-inquiry">
-
-              <div class="service-inquiry">
-                <!-- Close Action -->
-                <button data-remodal-action="close" class="remodal-close"></button>
-
-                <%= render partial: 'guest/inquiries/form', locals: { inquiry: @inquiry, service: @service } %>
-
-              </div>
-            </div>
-
-            <!-- Buttons -->
-            <div class="row">
-              <div class="+centered">
-                <%= link_to I18n.t('services.ask_for_inquiry'), '#modal', class: 'main-button__solid --large', data: {'remodal-target': 'service-inquiry' } %>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</div>

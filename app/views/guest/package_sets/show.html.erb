@@ -2,6 +2,7 @@
 
 <% cache @package_set do %>
 
+  <!-- Cover -->
   <%= render partial: "guest/package_sets/show/cover", locals: { package_set: @package_set } %>
 
   <div class="row">
@@ -21,6 +22,7 @@
     </div>
   </div>
 
+  <!-- Brand description -->
   <%= render partial: "guest/package_sets/show/brand_description", locals: { package_set: @package_set } %>
 
 <% end %>
