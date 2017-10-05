@@ -1,12 +1,11 @@
 <p class="categories-block__brands +centered">
   <span class="+strong"><%= I18n.t('brands.hot_brands') %> :</span>
 
-<% brand_filters.each do |brand| %>
-  <% if brand == current_brand %>
-  <span class="+strong +green"><%= brand.name %></span> |
-  <% else %>
+  <% brand_filters.each do |brand| %>
+    <% if brand == current_brand %>
+    <span class="+strong +green"><%= brand.name %></span> |
+    <% else %>
     <a href="<%= guest_package_sets_path(brand_id: brand.slug, category_id: current_category&.slug) %>"><%= brand.name %></a> |
+    <% end %>
   <% end %>
-<% end %>
-
 </p>
