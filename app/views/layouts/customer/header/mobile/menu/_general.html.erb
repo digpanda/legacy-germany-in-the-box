@@ -1,15 +1,17 @@
 <% categories.each do |category| %>
-<li>
-  <h3><a href="<%= guest_category_path(category) %>" id="<%= category.slug_name %>"><%= category.name %></a></h3>
-  <ul>
-    <% category.can_buy_shops(10).each do |shop| %>
-    <li>
-      <a href="<%= guest_shop_path(shop) %>">
-        <h4><%= shop.shopname %></h4>
-        <%= shop.decorate.short_desc(16) %>
-      </a>
-    </li>
-    <% end %>
-  </ul>
-</li>
+  <% cache category do %>
+  <li>
+    <h3><a href="<%= guest_category_path(category) %>" id="<%= category.slug_name %>"><%= category.name %></a></h3>
+    <ul>
+      <% category.can_buy_shops(10).each do |shop| %>
+      <li>
+        <a href="<%= guest_shop_path(shop) %>">
+          <h4><%= shop.shopname %></h4>
+          <%= shop.decorate.short_desc(16) %>
+        </a>
+      </li>
+      <% end %>
+    </ul>
+  </li>
+  <% end %>
 <% end %>

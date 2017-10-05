@@ -1,21 +1,22 @@
 <nav>
   <ul>
-
     <% categories.each do |category| %>
-    <li class="col-md-2 menu-dropdown +centered">
-      <a href="<%= guest_category_path(category) %>" id="<%= category.slug_name %>"><%= category.name %></a>
-      <ul class="menu-dropdown__content">
+      <% cache category do %>
+      <li class="col-md-2 menu-dropdown +centered">
+        <a href="<%= guest_category_path(category) %>" id="<%= category.slug_name %>"><%= category.name %></a>
+        <ul class="menu-dropdown__content">
 
-      <% category.can_buy_shops(10).each do |shop| %>
-      <li>
-          <a href="<%= guest_shop_path(shop, category_id: category.slug) %>">
-          <h4><%= shop.shopname %></h4>
-          </a>
+        <% category.can_buy_shops(10).each do |shop| %>
+        <li>
+            <a href="<%= guest_shop_path(shop, category_id: category.slug) %>">
+            <h4><%= shop.shopname %></h4>
+            </a>
+        </li>
+        <% end %>
+
+        </ul>
       </li>
       <% end %>
-
-      </ul>
-    </li>
     <% end %>
 
     <% Shop.highlighted.each do |shop| %>

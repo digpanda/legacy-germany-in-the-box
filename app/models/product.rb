@@ -27,7 +27,7 @@ class Product
   embeds_many :options, inverse_of: :product, cascade_callbacks: true, class_name: 'VariantOption'
   embeds_many :skus, inverse_of: :product, cascade_callbacks: true
 
-  has_and_belongs_to_many :categories, touch: true
+  has_and_belongs_to_many :categories
 
   has_many :order_items
 
