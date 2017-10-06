@@ -1,8 +1,8 @@
 zh-CN:
   services:
     email_placeholder: 您的邮箱或微信号
-    referrer: 推广账号
-    email: 邮箱
+    referrer: 导游联系人
+    email: 邮箱|微信号
     mobile: 手机号
     scheduled: 预约时间
     comment: 留言
