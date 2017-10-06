@@ -1976,6 +1976,7 @@ body {
     max-height: 672px;
     text-align: center;
     margin: 0 auto;
+    width: 100%;
     background-color: white; }
     @media (max-width: 994px) {
       .categories-block__content {

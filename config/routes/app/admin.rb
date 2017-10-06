@@ -6,6 +6,9 @@ namespace :admin do
   resource :home, controller: 'home' do
   end
 
+  resource :cache, controller: 'cache' do
+  end
+
   resources :notifications do
   end
 

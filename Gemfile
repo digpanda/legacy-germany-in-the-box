@@ -21,6 +21,9 @@ gem 'keen'
 
 gem 'mongoid-slug'
 
+gem 'actionpack-page_caching'
+gem 'actionpack-action_caching'
+
 gem 'country_select'
 gem 'slack-notifier'
 gem 'delayed_job_mongoid'

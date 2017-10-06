@@ -1,7 +1,7 @@
 class Api::ApplicationController < ApplicationController
-  skip_before_action :verify_authenticity_token
+  # we skip all the normal base before_action because we are in API here
+  skip_before_action :verify_authenticity_token, :force_wechat_login, :solve_silent_login, :solve_origin, :solve_landing
 
-  # Should be slightly refactored and put into libraries ?
   def throw_resource_not_found
     render status: :not_found,
            json: throw_error(:resource_not_found).to_json

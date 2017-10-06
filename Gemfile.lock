@@ -32,6 +32,10 @@ GEM
       rack-test (~> 0.6.2)
       rails-dom-testing (~> 1.0, >= 1.0.5)
       rails-html-sanitizer (~> 1.0, >= 1.0.1)
+    actionpack-action_caching (1.2.0)
+      actionpack (>= 4.0.0, < 6)
+    actionpack-page_caching (1.1.0)
+      actionpack (>= 4.0.0, < 6)
     actionview (4.2.1)
       activesupport (= 4.2.1)
       builder (~> 3.1)
@@ -616,6 +620,8 @@ PLATFORMS
 
 DEPENDENCIES
   abstract_method
+  actionpack-action_caching
+  actionpack-page_caching
   addressable
   alipay (~> 0.14.0)
   api_cache

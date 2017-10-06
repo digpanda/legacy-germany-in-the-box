@@ -2,8 +2,8 @@ Rails.application.configure do
 
   # NOTE : when working on cache, please set those to true
   # - Laurent
-  config.cache_classes = false
-  config.action_controller.perform_caching = false
+  config.cache_classes = true
+  config.action_controller.perform_caching = true
   config.cache_store = :file_store, "#{Rails.root}/public/cache"
   # config.cache_store = :redis_store, {
   #   host: 'localhost',
