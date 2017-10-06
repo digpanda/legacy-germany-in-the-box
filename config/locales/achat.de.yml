@@ -20,6 +20,7 @@ de:
   address:
     apply: Einlösen
   referrer:
+    service_rate_label: "+"
     service: Service
     desc: Description
     promotion_text: Promotion Text
