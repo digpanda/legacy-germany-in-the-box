@@ -121,14 +121,10 @@ class EventDispatcher
 
     # this will be thread-safe
     def keen
-      SlackDispatcher.new.message("KEEN CLIENT WILL BE INTIALIZED")
-      SlackDispatcher.new.message(project_id: ENV['keen_project_id'],
-              write_key: ENV['keen_write_key'],
-              read_key: ENV['keen_read_key'])
       @keen ||= Keen::Client.new(
-        project_id: ENV['keen_project_id'],
-        write_key: ENV['keen_write_key'],
-        read_key: ENV['keen_read_key'],
+        'project_id': ENV['keen_project_id'],
+        'write_key': ENV['keen_write_key'],
+        'read_key': ENV['keen_read_key'],
       )
     end
 
