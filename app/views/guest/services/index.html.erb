@@ -10,9 +10,7 @@
 <!-- The positioning is impossible to do before we get the actual array -->
 <div class="row">
   <% @services.sort_by(&:position).each_with_index do |service, index| %>
-    <% cache service do %>
-      <%= render "guest/services/index/block", options: { reversed: reversed?(index) }, service: service %>
-    <% end %>
+    <%= render "guest/services/index/block", options: { reversed: reversed?(index) }, service: service %>
   <% end %>
 </div>
 <div class="+small-spacer"></div>
