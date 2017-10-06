@@ -64,7 +64,7 @@ class EventDispatcher
   end
 
   def with_geo(ip: '')
-    if IPAddress.valid? ip
+    if valid_ip?(ip)
       @addons << addon_ip_to_geo(ip)
     end
     self
@@ -121,10 +121,18 @@ class EventDispatcher
 
     # this will be thread-safe
     def keen
+      SlackDispatcher.new.message("KEEN CLIENT WILL BE INTIALIZED")
+      SlackDispatcher.new.message(project_id: ENV['keen_project_id'],
+              write_key: ENV['keen_write_key'],
+              read_key: ENV['keen_read_key'])
       @keen ||= Keen::Client.new(
         project_id: ENV['keen_project_id'],
         write_key: ENV['keen_write_key'],
         read_key: ENV['keen_read_key'],
       )
+    end
+
+    def valid_ip?(ip)
+      (ip != '::1') && IPAddress.valid?(ip)
     end
 end
