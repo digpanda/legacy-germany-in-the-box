@@ -7,8 +7,8 @@ zh-CN:
     scheduled: 预约时间
     comment: 留言
     ask_for_inquiry: 立即咨询 预约
-    send_now: 发送
-    contact_us: 立即电话联系预约 49-(0)89-21934711, 49-(0)89-21934727
+    send_now: 发送留言
+    contact_us: 或者 立即电话联系预约 49-(0)89-21934711, 49-(0)89-21934727
   tracking_state:
     new: new
     signature_received: signature received
