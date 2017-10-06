@@ -2828,7 +2828,7 @@ body {
     width: 50%; }
 
 .service-list-block {
-  min-height: 290px;
+  min-height: 350px;
   font-size: 15px;
   margin-bottom: 1em; }
   @media (max-width: 994px) {
