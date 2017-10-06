@@ -13,6 +13,7 @@ class Inquiry
   field :mobile, type: String
   field :scheduled_for, type: Time
   field :comment, type: String
+  field :raw_referrer, type: String # NOTE : this is temporary for the presentation
 
   belongs_to :user, inverse_of: :inquiries
   belongs_to :referrer, inverse_of: :inquiries

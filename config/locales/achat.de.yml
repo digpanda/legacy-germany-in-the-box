@@ -1,11 +1,13 @@
 de:
   services:
+    referrer: Referrer
     email: Email
     mobile: Mobile
     scheduled: Scheduled
     comment: Comment
     ask_for_inquiry: Ask for Inquiry
     send_now: Send now
+    contact_us: Contact Us
   tracking_state:
     new: new
     signature_received: signature received
@@ -20,8 +22,8 @@ de:
   address:
     apply: Einlösen
   referrer:
-    service_rate_label: "+"
     service: Service
+    service_rate_label: "+"
     desc: Description
     promotion_text: Promotion Text
     a_new_link_was_published: Ein neuer Link wurde angelegt.

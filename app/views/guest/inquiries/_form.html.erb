@@ -50,6 +50,21 @@
       </div>
   </div>
 
+  <!-- Referrer -->
+  <div class="row">
+    <div class="col-md-2">
+      <label>
+        <%= I18n.t('services.referrer') %>
+      </label>
+    </div>
+
+      <div class="col-md-10 form-group">
+        <div id="js-show-datepicker"></div>
+        <%= form.text_field :raw_referrer, class: 'form-control' %>
+        <div class="help-block with-errors"></div>
+      </div>
+  </div>
+
   <!-- Comment -->
   <div class="row">
     <div class="col-md-2">
@@ -65,6 +80,10 @@
   </div>
 
   <%= form.submit :class => 'big-button --blue', :value => I18n.t('services.send_now') %>
+
+  <div class="+small-spacer"></div>
+
+  <%= I18n.t('services.contact_us') %>
 
 </div>
 
