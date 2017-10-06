@@ -1,5 +1,6 @@
 zh-CN:
   services:
+    email_placeholder: TO REPLACE
     referrer: 推广账号
     email: 邮箱
     mobile: 手机号

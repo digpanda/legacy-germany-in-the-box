@@ -15,7 +15,7 @@
         <% if current_user&.valid_email? %>
           <%= form.text_field :email, class: 'form-control', value: current_user.email, required: true %>
         <% else %>
-          <%= form.text_field :email, class: 'form-control', required: true %>
+          <%= form.text_field :email, class: 'form-control', required: true, placeholder: I18n.t('services.email_placeholder') %>
         <% end %>
         <div class="help-block with-errors"></div>
       </div>
