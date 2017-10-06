@@ -1,13 +1,13 @@
 zh-CN:
   services:
-    referrer: 推广账号
-    email: 邮箱
+    referrer: 导游联系人
+    email: 邮箱/微信号
     mobile: 手机号
     scheduled: 预约时间
     comment: 留言
     ask_for_inquiry: 立即咨询 预约
     send_now: 发送
-    contact_us: TEXT TO REPLACE FOR CONTACT
+    contact_us: 联系电话 01763545
   tracking_state:
     new: new
     signature_received: signature received
@@ -21,7 +21,7 @@ zh-CN:
     hot_brands: 热销产品
   referrer:
     service: 海外金融地产医疗服务
-    service_rate_label: TO REPLACE
+    service_rate_label: 起
     desc: 副标题
     promotion_text: 广告词(参考)
     a_new_link_was_published: 新的智能软文刚刚发布
