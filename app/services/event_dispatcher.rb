@@ -37,6 +37,7 @@ class EventDispatcher
   end
 
   def customer_signed_in(user)
+    SlackDispatcher.new.message("CUSTOMER SIGNED IN")
     @stream = :customer_authentications
     @params = user.as_json.slice('email', 'nickname', 'provider')
     @params.merge! user_id: user._id, referrer: user.referrer?, full_name: user.decorate.full_name
@@ -109,6 +110,7 @@ class EventDispatcher
         if Rails.env.development? || Rails.env.test?
           result = EventWorker.new.perform(stream, end_params)
         else
+          SlackDispatcher.new.message("ASYNC LAUNCHED")
           result = EventWorker.perform_async(stream, end_params)
         end
         cache!
