@@ -7,7 +7,7 @@ class Order
 
   # research system
   # end_price makes issues on the tests
-  search_in :id, :status, :nickname, :u_at, :total_paid, user: :id, order_tracking: [:state, :delivery_id]
+  search_in :id, :status, :nickname, :paid_at, :total_paid, user: :id, order_tracking: [:state, :delivery_id]
 
   BOUGHT_OR_CANCELLED = [:paid, :shipped, :terminated, :cancelled]
   BOUGHT_OR_UNVERIFIED = [:payment_unverified, :paid, :shipped, :terminated]
