@@ -25,8 +25,7 @@ class EventDispatcher
   end
 
   def test
-    result = EventWorker.perform_async(keen, :tests, {random: 'test_achieved'})
-    SlackDispatcher.new.message("RESULT #{result}")
+     async(:yoyoyo, {param: true})
   end
 
   def dispatch!
@@ -114,7 +113,7 @@ class EventDispatcher
         if Rails.env.development? || Rails.env.test?
           result = keen.publish(stream, end_params)
         else
-          result = keen.delay.publish(stream, end_params)
+          result = async(stream, end_params)
         end
         cache!
         result
@@ -131,6 +130,10 @@ class EventDispatcher
         'write_key': ENV['keen_write_key'],
         'read_key': ENV['keen_read_key'],
       )
+    end
+
+    def async(*arguments)
+      EventWorker.perform_async(keen, *arguments)
     end
 
     def valid_ip?(ip)
