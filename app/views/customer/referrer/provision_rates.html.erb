@@ -4,11 +4,11 @@
     <!-- Subheader -->
     <%= render partial: 'customer/referrer/subheader', :locals => { back:  provision_customer_referrer_path } %>
 
-    <!-- Package sets -->
-    <%= render partial: 'customer/referrer/provision/rates/package_sets', :locals => { package_sets: @package_sets } %>
-
     <!-- Services -->
     <%= render partial: 'customer/referrer/provision/rates/services', :locals => { services: @services } %>
+
+    <!-- Package sets -->
+    <%= render partial: 'customer/referrer/provision/rates/package_sets', :locals => { package_sets: @package_sets } %>
 
   </div>
 </div>

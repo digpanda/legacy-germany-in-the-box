@@ -50,7 +50,7 @@ class PackageSet
 
   scope :with_brand, -> (brand) do
     product_ids = Product.where(brand_id: brand.id).map(&:_id)
-    where(package_skus: {'$elemMatch': {:product_id.in => product_ids}} )
+    where(package_skus: { '$elemMatch': { :product_id.in => product_ids } })
   end
 
   # array of brands for this package set

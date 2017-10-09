@@ -1,8 +1,6 @@
 <!-- Head navigation -->
 <%= render partial: "guest/services/show/header_navigation", locals: { service: @service, back: guest_services_path } %>
 
-<% cache @service do %>
-
   <!-- Cover -->
   <%= render partial: "guest/services/show/cover", locals: { service: @service } %>
 
@@ -19,5 +17,3 @@
       </div>
     </div>
   </div>
-
-<% end %>

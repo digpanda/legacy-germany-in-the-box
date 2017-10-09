@@ -10,7 +10,7 @@ class Referrer
   field :group, type: String # not sure it's still in use in our system since we use referrer group
   field :agb, type: Boolean, default: false
   field :label, type: String
-
+  
   belongs_to :user, class_name: 'User', inverse_of: :referrer
   has_many :children_users, class_name: 'User', inverse_of: :parent_referrer
 

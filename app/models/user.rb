@@ -185,7 +185,7 @@ class User
   end
 
   def tester?
-    self.version_allowed == :beta || self.version_allowed == :alpha
+    self.version_allowed == :beta || self.version_allowed == :alpha || Setting.instance.current_version == :stable
   end
 
   def betatester?

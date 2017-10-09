@@ -2819,6 +2819,8 @@ body {
   margin-top: 1em;
   margin-bottom: 1em;
   text-align: center; }
+  .service-infos h1 {
+    font-size: 28px; }
   .service-infos__introduction-header {
     color: #bdc3c7;
     text-align: right; }
@@ -2826,6 +2828,7 @@ body {
     width: 50%; }
 
 .service-list-block {
+  min-height: 350px;
   font-size: 15px;
   margin-bottom: 1em; }
   @media (max-width: 994px) {
@@ -2840,9 +2843,6 @@ body {
       .service-list-block__header-content {
         margin-bottom: 0; } }
   .service-list-block__header-title {
-    white-space: nowrap;
-    overflow: hidden !important;
-    text-overflow: ellipsis;
     font-weight: bold;
     letter-spacing: 0.2px;
     font-size: 14px; }
@@ -2860,7 +2860,7 @@ body {
     background-repeat: no-repeat; }
     @media (max-width: 994px) {
       .service-list-block__central-image {
-        height: 36vw; } }
+        height: 38vw; } }
   .service-list-block__footer-content {
     margin: 1em;
     margin-top: 0.1em; }

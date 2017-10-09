@@ -1,11 +1,14 @@
 de:
   services:
+    email_placeholder: TO REPLACE
+    referrer: Referrer
     email: Email
     mobile: Mobile
     scheduled: Scheduled
     comment: Comment
     ask_for_inquiry: Ask for Inquiry
     send_now: Send now
+    contact_us: Contact Us
   tracking_state:
     new: new
     signature_received: signature received
@@ -21,6 +24,7 @@ de:
     apply: Einlösen
   referrer:
     service: Service
+    service_rate_label: "+"
     desc: Description
     promotion_text: Promotion Text
     a_new_link_was_published: Ein neuer Link wurde angelegt.
@@ -46,7 +50,8 @@ de:
     qrcode: QRCode
     update_account: Account aktualisieren
     agb_agreement: Ich habe die <a href="%{url}">AGBs</a> gelesen und bin einverstanden.
-    provision_rates: Provision
+    service_provision_rates: Service Provision Rate
+    package_set_provision_rates: Package Set Provision Rate
     balance_history: Aktivitäten
     type: Typ
     description: Übersicht
