@@ -2,7 +2,8 @@ class EventWorker
   include Sidekiq::Worker
 
   def perform(stream, arguments)
-    keen.publish(stream, arguments)
+    result = keen.publish(stream, arguments)
+    SlackDispatcher.new.message("ASYNC RESULT #{result}")
   end
 
   private
