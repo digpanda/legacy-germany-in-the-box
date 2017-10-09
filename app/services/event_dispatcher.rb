@@ -24,10 +24,6 @@ class EventDispatcher
     )
   end
 
-  def test
-     async(:yoyoyo, {param: true})
-  end
-
   def dispatch!
     publish!
   end
@@ -111,29 +107,13 @@ class EventDispatcher
     def publish!
       unless already_cached?
         if Rails.env.development? || Rails.env.test?
-          result = keen.publish(stream, end_params)
+          result = EventWorker.new.perform(stream, end_params)
         else
-          result = async(stream, end_params)
+          result = EventWorker.perform_async(stream, end_params)
         end
         cache!
         result
       end
-      # geo may blow up because of some weird IP result
-      # we ensure it does not block the system
-    rescue Keen::HttpError => exception
-    end
-
-    # this will be thread-safe
-    def keen
-      @keen ||= Keen::Client.new(
-        'project_id': ENV['keen_project_id'],
-        'write_key': ENV['keen_write_key'],
-        'read_key': ENV['keen_read_key'],
-      )
-    end
-
-    def async(*arguments)
-      EventWorker.perform_async(*arguments)
     end
 
     def valid_ip?(ip)

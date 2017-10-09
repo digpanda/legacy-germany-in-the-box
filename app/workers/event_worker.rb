@@ -1,9 +1,14 @@
+# we go through sidekiq to send all the API calls to KeenIO
+# Even when it's not asynchronous, we go through the worker
+# To avoid repeating ourselves
 class EventWorker
   include Sidekiq::Worker
 
   def perform(stream, arguments)
-    result = keen.publish(stream, arguments)
-    SlackDispatcher.new.message("ASYNC RESULT #{result}")
+    keen.publish(stream, arguments)
+    # geo may blow up because of some weird IP result
+    # we ensure it does not block the system
+  rescue Keen::HttpError => exception
   end
 
   private

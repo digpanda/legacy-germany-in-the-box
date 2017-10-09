@@ -6,8 +6,6 @@ class Guest::HomeController < ApplicationController
   caches_action :show
 
   def show
-    SlackDispatcher.new.message("EVENT DISPATCHER WILL BE TRIGGERED VIA SIDEKIQ NOW")
-    EventDispatcher.new.test
     @shops = Shop.can_buy.order_by(position: :asc).all
   end
 
