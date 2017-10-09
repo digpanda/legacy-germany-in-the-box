@@ -25,9 +25,10 @@ class EventDispatcher
   end
 
   def test
-    keen.publish(:tests,
+    result = keen.delay.publish(:tests,
       random: 'test_achieved',
     )
+    SlackDispatcher.new.message("RESULT #{result}")
   end
 
   def dispatch!
@@ -111,13 +112,11 @@ class EventDispatcher
     end
 
     def publish!
-      SlackDispatcher.new.message("CACHING #{already_cached?}")
       unless already_cached?
         if Rails.env.development? || Rails.env.test?
           result = keen.publish(stream, end_params)
         else
           result = keen.delay.publish(stream, end_params)
-          SlackDispatcher.new.message("KEEN RESULT #{result}")
         end
         cache!
         result
