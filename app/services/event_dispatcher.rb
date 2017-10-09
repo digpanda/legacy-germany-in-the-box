@@ -133,7 +133,7 @@ class EventDispatcher
     end
 
     def async(*arguments)
-      EventWorker.perform_async(keen, *arguments)
+      EventWorker.perform_async(*arguments)
     end
 
     def valid_ip?(ip)
