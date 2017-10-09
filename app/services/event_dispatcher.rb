@@ -116,6 +116,7 @@ class EventDispatcher
           result = keen.publish(stream, end_params)
         else
           result = keen.delay.publish(stream, end_params)
+          SlackDispatcher.new.message("KEEN RESULT #{result}")
         end
         cache!
         result
