@@ -6,9 +6,12 @@ class EventWorker
 
   def perform(stream, arguments)
     result = keen.publish(stream, arguments)
+    raise Exception
     # geo may blow up because of some weird IP result
     # we ensure it does not block the system
   rescue Keen::HttpError => exception
+    SlackDispatcher.new.error(exception)
+  rescue Exception => exception
     SlackDispatcher.new.error(exception)
   end
 
