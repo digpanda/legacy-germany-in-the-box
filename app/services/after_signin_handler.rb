@@ -108,7 +108,7 @@ class AfterSigninHandler
     end
 
     def handle_event
-      EventDispatcher.new.customer_signed_in(user).with_geo(ip: request.remote_ip).dispatch!
+      EventDispatcher.new.customer_signed_in(user).dispatch!
     end
 
     def banished?

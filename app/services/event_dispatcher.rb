@@ -9,7 +9,7 @@ class EventDispatcher
   attr_reader :stream, :params, :cache_id
 
   # NOTE HOW TO USE
-  # EventDispatcher.new.user(User.first).with_geo(ip: '0.0.0.0').dispatch!
+  # EventDispatcher.new.user(User.first).dispatch!
   def initialize
     @params = {}
     @addons = []
@@ -64,13 +64,6 @@ class EventDispatcher
     end
   end
 
-  def with_geo(ip: '')
-    if valid_ip?(ip)
-      @addons << addon_ip_to_geo(ip)
-    end
-    self
-  end
-
   private
 
     def addons
@@ -81,15 +74,16 @@ class EventDispatcher
       }
     end
 
-    def addon_ip_to_geo(ip)
-      {
-        "name": 'keen:ip_to_geo',
-        "input": {
-          "ip": "#{ip}"
-        },
-        "output": 'ip_to_geo_info'
-      }
-    end
+    # NOTE : this add-on is extremely problematic ; used to crash everything so i removed it.
+    # def addon_ip_to_geo(ip)
+    #   {
+    #     "name": 'keen:ip_to_geo',
+    #     "input": {
+    #       "ip": "#{ip}"
+    #     },
+    #     "output": 'ip_to_geo_info'
+    #   }
+    # end
 
     def addon_datetime(field)
       {
