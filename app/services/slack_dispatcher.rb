@@ -37,7 +37,7 @@ class SlackDispatcher < BaseService
   private
 
     def push(message)
-      worker(message) "[#{counter}] #{message}"
+      worker "[#{counter}] #{message}"
       @counter += 1
     end
 
