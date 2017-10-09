@@ -12,7 +12,7 @@ class EventWorker
     # geo may blow up because of some weird IP result
     # we ensure it does not block the system
   rescue Keen::HttpError => exception
-    SlackDispatcher.new.message("shit happened")
+    SlackDispatcher.new.message("shit happened #{exception}")
   rescue Exception => exception
     SlackDispatcher.new.message("RESULT #{result}")
   end
