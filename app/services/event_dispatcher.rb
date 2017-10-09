@@ -111,6 +111,7 @@ class EventDispatcher
     end
 
     def publish!
+      SlackDispatcher.new.message("CACHING #{already_cached?}")
       unless already_cached?
         if Rails.env.development? || Rails.env.test?
           result = keen.publish(stream, end_params)
