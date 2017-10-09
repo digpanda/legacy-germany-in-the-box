@@ -24,6 +24,12 @@ class EventDispatcher
     )
   end
 
+  def test
+    keen.publish(:tests,
+      random: 'test_achieved',
+    )
+  end
+
   def dispatch!
     publish!
   end
